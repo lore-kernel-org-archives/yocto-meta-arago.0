@@ -1,37 +1,46 @@
-Return-Path: <h-gou@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id C8D645209B
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-yb0-f193.google.com (mail-yb0-f193.google.com
+	[209.85.213.193])
+	by arago-project.org (Postfix) with ESMTPS id 7EEB652AEA
 	for <meta-arago@arago-project.org>;
-	Mon,  6 Feb 2017 23:09:37 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v16N9RMC018380
-	for <meta-arago@arago-project.org>; Mon, 6 Feb 2017 17:09:27 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v16N9M7K027704
-	for <meta-arago@arago-project.org>; Mon, 6 Feb 2017 17:09:22 -0600
-Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0294.000; Mon, 6 Feb 2017 17:09:22 -0600
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [morty/krogoth][PATCH 5/6]
-	packagegroup-arago-tisdk-matrix: add barcode-roi demo
-Thread-Index: AQHSgKRg4CgitmfREkm1WBKJpG+EvKFcYIeggABuGQD//8wZUA==
-Date: Mon, 6 Feb 2017 23:09:21 +0000
-Message-ID: <2E957F12D11D904590FA9AF86D366BD926CD3656@DLEE08.ent.ti.com>
-References: <1486160539-23523-1-git-send-email-h-gou@ti.com>
-	<1486160539-23523-6-git-send-email-h-gou@ti.com>
-	<20170206181101.GI25590@edge>
-	<2E957F12D11D904590FA9AF86D366BD926CD354E@DLEE08.ent.ti.com>
-	<20170206201448.GJ25590@edge>
-In-Reply-To: <20170206201448.GJ25590@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.172.224.222]
+	Tue,  7 Feb 2017 04:22:04 +0000 (UTC)
+Received: by mail-yb0-f193.google.com with SMTP id j82so4390141ybg.2
+	for <meta-arago@arago-project.org>;
+	Mon, 06 Feb 2017 20:22:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=Io4bd0+XB9g9G6XoW5nsh/phRIbODqnQ5qFQQosSDnI=;
+	b=DGn1KTfyVscUqu7zU4AS3zQW8B1SdqlH0+ld8eB+fe22v+eVygkqhQ1b66TlYXuCfa
+	j3yqNNAid1jeFgPs0qHB9ecum4ltKoNkbnBjxwyoNr9QBKx4dkDw2eiPqQO4kNOezZpC
+	V+F4TGs7fh3b8tY4Bd+wHMedKR/F5TNejuI0EOP7vmWb/jyDw1EepwPkip8wLZ0MJ/oe
+	sLCxrUAjy6UtWFV7MqndnIuIxC8ynotfh1s1wUvd02BkyK6ntTJYOCvGaWtn1/JpvnZK
+	lYq2oRJqaLoBb3yZPy2MYClURIY/EdV9rvHOBfm/m9Si8fWlFikOb2ID0e/edBmWYux/
+	bdag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=Io4bd0+XB9g9G6XoW5nsh/phRIbODqnQ5qFQQosSDnI=;
+	b=nLBKd2mDeMX2djfIOL0QnjJbgsUtu32l96/t8UI0pXygRPJ1WhNvP/rBuRqruWOES8
+	Oe4QIB0ZuQIzN2CPHBQU0X4ZpmyqaZqgTtW40iWOsX3dIlg4TTrzybG5Qkm+83TzQKn/
+	5OW2+kl5aMC9VJuwnKXwUYz2AkXA7k93cX8yRynq4S8JnR1PIPSjNI9OCew+3FKKtal8
+	Vt9PPQ1lUozmWDwSmHUxOWdMhJvhssLDySU7NZAsiOR3bEyF/fPwRsetagwWh/egOCTJ
+	thbT7r/M9rO1B9/lYhGiR2j7PZpqhPyDrSxJnDtVYtX2z/TPaXTyLZtuAeOHhrSfJ04x
+	mCag==
+X-Gm-Message-State: AMke39mQ8lEKd9I/ZRphO/VKGfMcPEdbD6KRa793FOw6TNBTXSATZDmnwVU1+adFZ2Pua5jRTqvrOlcB2WSymA==
+X-Received: by 10.37.177.138 with SMTP id h10mr9697928ybj.9.1486441324331;
+	Mon, 06 Feb 2017 20:22:04 -0800 (PST)
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [morty/krogoth][PATCH 5/6] packagegroup-arago-tisdk-matrix: add barcode-roi demo
+Received: by 10.129.80.215 with HTTP; Mon, 6 Feb 2017 20:21:44 -0800 (PST)
+In-Reply-To: <20170206150057.GA25590@edge>
+References: <CADySD0GYzbgy90bbYg-Gvz+xS963pEOd0qUExa8TkHGC39U4cg@mail.gmail.com>
+	<20170206150057.GA25590@edge>
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Date: Tue, 7 Feb 2017 17:21:44 +1300
+Message-ID: <CADySD0EusK8rAZRf9zk7P6RiMT9BRWWcLaufU0+vjzoCVqBB5Q@mail.gmail.com>
+To: Denys Dmytriyenko <denys@ti.com>
+Cc: meta-arago@arago-project.org
+Subject: Re: tisdk-rootfs-image recipe bitbake error on morty branch
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,137 +53,246 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Feb 2017 23:09:38 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 07 Feb 2017 04:22:04 -0000
+Content-Type: text/plain; charset=UTF-8
 
-V2 patch has been submitted.
+Hi,
 
-Thanks,
-Hongmei
+Here is the log
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Monday, February 06, 2017 3:15 PM
-> To: Gou, Hongmei
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [morty/krogoth][PATCH 5/6] packagegroup-arago-
-> tisdk-matrix: add barcode-roi demo
->=20
-> Hongmei,
->=20
-> I see. We may need a separate "opencv" flag in MACHINE_FEATURES in the
-> future.
->=20
-> For now, can you please group barcode-roi in this packagegroup according =
-to
-> whether it uses opencl or not. Thanks.
->=20
+$ grep external-linaro-toolchain-cross *.dot
+package-depends.dot:"libstdc++-precompile-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libitm-staticdev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libsotruss" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libgomp-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libquadmath-staticdev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libitm-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"external-linaro-toolchain-mtrace" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libasan-staticdev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libmudflap-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"external-linaro-toolchain-pic" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libubsan-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libmemusage" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libg2c" -> "external-linaro-toolchain-cross-arm"
+[style=solid]
+package-depends.dot:"external-linaro-toolchain-utils" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libatomic-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"external-linaro-toolchain-doc" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libstdc++-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libsegfault" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"liblsan" -> "external-linaro-toolchain-cross-arm"
+[style=solid]
+package-depends.dot:"libssp" -> "external-linaro-toolchain-cross-arm"
+[style=solid]
+package-depends.dot:"libtsan-staticdev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libgomp" -> "external-linaro-toolchain-cross-arm"
+[style=solid]
+package-depends.dot:"libstdc++-staticdev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libquadmath-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"ldd" -> "external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libasan-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libgfortran-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libgfortran-staticdev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"liblsan-staticdev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"external-linaro-toolchain-cross-arm"
+[label="external-linaro-toolchain-cross-arm
+:1.0-r1\n/home/nws/yocto-morty-dev/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb"]
+package-depends.dot:"external-linaro-toolchain-staticdev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libcidn" -> "external-linaro-toolchain-cross-arm"
+[style=solid]
+package-depends.dot:"libubsan-staticdev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"sln" -> "external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libtsan" -> "external-linaro-toolchain-cross-arm"
+[style=solid]
+package-depends.dot:"nscd" -> "external-linaro-toolchain-cross-arm"
+[style=solid]
+package-depends.dot:"libssp-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libubsan" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"tzcode" -> "external-linaro-toolchain-cross-arm"
+[style=solid]
+package-depends.dot:"libgcc-dbg" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"external-linaro-toolchain-dbg" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libgfortran" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libtsan-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libssp-staticdev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libgomp-staticdev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libgcc" -> "external-linaro-toolchain-cross-arm"
+[style=solid]
+package-depends.dot:"libgcov-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libstdc++" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libasan" -> "external-linaro-toolchain-cross-arm"
+[style=solid]
+package-depends.dot:"libatomic" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"external-linaro-toolchain" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"external-linaro-toolchain-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"catchsegv" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"glibc-extra-nss" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libgcc-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libmudflap" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libitm" -> "external-linaro-toolchain-cross-arm"
+[style=solid]
+package-depends.dot:"liblsan-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libmudflap-staticdev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"external-linaro-toolchain-pcprofile" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libatomic-staticdev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"glibc-thread-db" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libquadmath" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+package-depends.dot:"libg2c-dev" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+pn-depends.dot:"external-linaro-toolchain-cross-arm"
+[label="external-linaro-toolchain-cross-arm
+:1.0-r1\n/home/nws/yocto-morty-dev/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb"]
+pn-depends.dot:"external-linaro-toolchain" ->
+"external-linaro-toolchain-cross-arm" [style=solid]
+task-depends.dot:"external-linaro-toolchain.do_configure" ->
+"external-linaro-toolchain-cross-arm.do_populate_sysroot"
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_unpack"
+[label="external-linaro-toolchain-cross-arm
+do_unpack\n:1.0-r1\n/home/nws/yocto-morty-dev/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb"]
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_unpack" ->
+"external-linaro-toolchain-cross-arm.do_fetch"
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_install"
+[label="external-linaro-toolchain-cross-arm
+do_install\n:1.0-r1\n/home/nws/yocto-morty-dev/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb"]
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_install" ->
+"external-linaro-toolchain-cross-arm.do_compile"
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_compile"
+[label="external-linaro-toolchain-cross-arm
+do_compile\n:1.0-r1\n/home/nws/yocto-morty-dev/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb"]
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_compile" ->
+"external-linaro-toolchain-cross-arm.do_configure"
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_configure"
+[label="external-linaro-toolchain-cross-arm
+do_configure\n:1.0-r1\n/home/nws/yocto-morty-dev/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb"]
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_configure" ->
+"external-linaro-toolchain-cross-arm.do_create_srcipk"
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_configure" ->
+"external-linaro-toolchain-cross-arm.do_patch"
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_populate_lic"
+[label="external-linaro-toolchain-cross-arm
+do_populate_lic\n:1.0-r1\n/home/nws/yocto-morty-dev/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb"]
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_populate_lic"
+-> "external-linaro-toolchain-cross-arm.do_patch"
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_populate_sysroot"
+[label="external-linaro-toolchain-cross-arm
+do_populate_sysroot\n:1.0-r1\n/home/nws/yocto-morty-dev/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb"]
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_populate_sysroot"
+-> "external-linaro-toolchain-cross-arm.do_install"
+task-depends.dot:"external-linaro-toolchain.do_create_srcipk" ->
+"external-linaro-toolchain-cross-arm.do_patch"
+task-depends.dot:"tisdk-rootfs-image.do_rootfs" ->
+"external-linaro-toolchain-cross-arm.do_populate_lic"
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_build"
+[label="external-linaro-toolchain-cross-arm
+do_build\n:1.0-r1\n/home/nws/yocto-morty-dev/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb"]
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_build" ->
+"external-linaro-toolchain-cross-arm.do_populate_lic"
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_build" ->
+"external-linaro-toolchain-cross-arm.do_populate_sysroot"
+task-depends.dot:"tisdk-rootfs-image.do_build" ->
+"external-linaro-toolchain-cross-arm.do_build"
+task-depends.dot:"tisdk-rootfs-image.do_image" ->
+"external-linaro-toolchain-cross-arm.do_populate_lic"
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_create_srcipk"
+[label="external-linaro-toolchain-cross-arm
+do_create_srcipk\n:1.0-r1\n/home/nws/yocto-morty-dev/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb"]
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_create_srcipk"
+-> "external-linaro-toolchain-cross-arm.do_patch"
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_patch"
+[label="external-linaro-toolchain-cross-arm
+do_patch\n:1.0-r1\n/home/nws/yocto-morty-dev/sources/meta-arago/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb"]
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_patch" ->
+"quilt-native.do_populate_sysroot"
+task-depends.dot:"external-linaro-toolchain-cross-arm.do_patch" ->
+"external-linaro-toolchain-cross-arm.do_unpack"
+
+On Tue, Feb 7, 2017 at 4:00 AM, Denys Dmytriyenko <denys@ti.com> wrote:
+> On Mon, Feb 06, 2017 at 10:03:28PM +1300, Ankur Tyagi wrote:
+>> Hi,
+>>
+>> I am getting following error when trying to bitbake tisdk-rootfs-image
+>> on morty branch
+>>
+>> http://pastebin.com/RYjxsNXa
+>>
+>> This is my build configuration:
+>>
+>> Build Configuration:
+>> BB_VERSION        = "1.32.0"
+>> BUILD_SYS         = "x86_64-linux"
+>> NATIVELSBSTRING   = "Ubuntu-16.04"
+>> TARGET_SYS        = "arm-linux-gnueabi"
+>> MACHINE           = "am335x-evm"
+>> DISTRO            = "arago"
+>> DISTRO_VERSION    = "2017.01"
+>> TUNE_FEATURES     = "arm armv7a vfp thumb neon       callconvention-hard"
+>> TARGET_FPU        = "hard"
+>> meta-arago-distro
+>> meta-arago-extras = "morty:6b2b36c1438b60388f56ce4e37771d6faf1dade8"
+>> meta-qt5          = "morty:4020adfd5198cf581eb20fbfd7d5b4c1a42fcdf4"
+>> meta-networking
+>> meta-ruby
+>> meta-python
+>> meta-oe           = "morty:1efa5d623bc64659b57389e50be2568b1355d5f7"
+>> meta-ti           = "morty:935753e93814a75db2072e5d1b31b759f835e95c"
+>> meta-linaro-toolchain
+>> meta-optee        = "morty:d4639deb43bb6c62ac06aaf951245edc9b9f410e"
+>> meta              = "morty:79f821fb6c1b425ca5cb5e6db360c2743d6c989e"
+>
+> Can you check if external-linaro-toolchain-cross in your dependency tree:
+>
+> $ bitbake tisdk-rootfs-image -g
+> $ grep external-linaro-toolchain-cross *.dot
+>
 > --
 > Denys
->=20
->=20
-> On Mon, Feb 06, 2017 at 02:49:16PM -0500, Gou, Hongmei wrote:
-> > Hi Denys,
-> >
-> > The barcode-roi demo is included for AM3/AM4/DRA7xx/Keystone. It does
-> depend on OpenCV, but not necessarily on OpenCL.
-> >
-> > For dra7xx and keystone, some OpenCV kernels are dispatched to DSP via
-> OpenCL, thus there can be dependency on OpenCL.
-> > For AM3 and AM4, OpenCV kernels run on ARM only, and there is no
-> dependency on OpenCL.
-> >
-> > Thanks,
-> > Hongmei
-> >
-> > > -----Original Message-----
-> > > From: Dmytriyenko, Denys
-> > > Sent: Monday, February 06, 2017 1:11 PM
-> > > To: Gou, Hongmei
-> > > Cc: meta-arago@arago-project.org
-> > > Subject: Re: [meta-arago] [morty/krogoth][PATCH 5/6] packagegroup-
-> arago-
-> > > tisdk-matrix: add barcode-roi demo
-> > >
-> > > Hongmei,
-> > >
-> > > Can you please re-do this patch due to this change:
-> > > http://arago-project.org/git/?p=3Dmeta-
-> > > arago.git;a=3Dcommitdiff;h=3D908f169117c7589eabc78a392e8c43eb099553cd
-> > >
-> > > barcode-roi depends on opencv/opencl and hence should be in
-> > > MATRIX_OPENCL_APPS list, which gets conditionally included based on
-> > > corresponding MACHINE_FEATURE.
-> > >
-> > > --
-> > > Denys
-> > >
-> > >
-> > > On Fri, Feb 03, 2017 at 05:22:18PM -0500, Hongmei Gou wrote:
-> > > > Signed-off-by: Hongmei Gou <h-gou@ti.com>
-> > > > ---
-> > > >  .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> | 6
-> > > +++++-
-> > > >  1 file changed, 5 insertions(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/meta-arago-distro/recipes-
-> core/packagegroups/packagegroup-
-> > > arago-tisdk-matrix.bb b/meta-arago-distro/recipes-
-> > > core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> > > > index a851ed5..7358da4 100644
-> > > > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-
-> > > tisdk-matrix.bb
-> > > > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> > > arago-tisdk-matrix.bb
-> > > > @@ -1,6 +1,6 @@
-> > > >  DESCRIPTION =3D "Task to include Matrix v2"
-> > > >  LICENSE =3D "MIT"
-> > > > -PR =3D "r61"
-> > > > +PR =3D "r62"
-> > > >
-> > > >  PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> > > >
-> > > > @@ -76,6 +76,7 @@ MATRIX_APPS_append_ti33x =3D "        \
-> > > >      matrix-gui-pm-demos-governor    \
-> > > >                                      \
-> > > >      matrix-gui-ethernet-demos       \
-> > > > +    matrix-machinevision-demo-barcoderoi \
-> > > >  "
-> > > >
-> > > >  MATRIX_APPS_append_ti43x =3D "        \
-> > > > @@ -91,6 +92,7 @@ MATRIX_APPS_append_ti43x =3D "        \
-> > > >                                      \
-> > > >      matrix-gui-apps-dual-camera     \
-> > > >      matrix-gui-apps-image-gallery   \
-> > > > +    matrix-machinevision-demo-barcoderoi \
-> > > >  "
-> > > >
-> > > >  MATRIX_APPS_append_omap-a15 =3D "     \
-> > > > @@ -105,6 +107,7 @@ MATRIX_APPS_append_omap-a15 =3D "     \
-> > > >      matrix-gui-generic-pm           \
-> > > >      matrix-gui-clocks               \
-> > > >      matrix-gui-pm-demos-governor    \
-> > > > +    matrix-machinevision-demo-barcoderoi \
-> > > >  "
-> > > >
-> > > >  MATRIX_APPS_append_dra7xx +=3D " \
-> > > > @@ -116,6 +119,7 @@ MATRIX_APPS_append_keystone =3D " \
-> > > >      matrix-gui-utility-demos    \
-> > > >      matrix-mc-demo-ipc          \
-> > > >      matrix-multimedia-demo-dsp66imgproc-f2f \
-> > > > +    matrix-machinevision-demo-barcoderoi-f2f \
-> > > >  "
-> > > >
-> > > >  RDEPENDS_${PN} =3D "        \
-> > > > --
-> > > > 1.9.1
-> > > >
-> > > > _______________________________________________
-> > > > meta-arago mailing list
-> > > > meta-arago@arago-project.org
-> > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
