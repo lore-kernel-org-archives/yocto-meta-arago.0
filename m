@@ -1,27 +1,38 @@
 Return-Path: <h-gou@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 44AF552A76
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 7C4C752A76
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Feb 2017 21:19:52 +0000 (UTC)
+	Wed,  8 Feb 2017 21:21:17 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v18LJfg4007750
-	for <meta-arago@arago-project.org>; Wed, 8 Feb 2017 15:19:41 -0600
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v18LJaBb011177
-	for <meta-arago@arago-project.org>; Wed, 8 Feb 2017 15:19:36 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 8 Feb 2017 15:19:36 -0600
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v18LJaJw001784;	Wed, 8 Feb 2017 15:19:36 -0600
-From: Hongmei Gou <h-gou@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 8 Feb 2017 16:19:34 -0500
-Message-ID: <1486588774-19571-1-git-send-email-h-gou@ti.com>
-X-Mailer: git-send-email 1.9.1
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v18LLHmf009389
+	for <meta-arago@arago-project.org>; Wed, 8 Feb 2017 15:21:17 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v18LLHVW013222
+	for <meta-arago@arago-project.org>; Wed, 8 Feb 2017 15:21:17 -0600
+Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0294.000; Wed, 8 Feb 2017 15:21:16 -0600
+From: "Gou, Hongmei" <h-gou@ti.com>
+To: "Nelson, Sam" <sam.nelson@ti.com>, "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [morty/krogoth][patch] ti-tisdk-makefile: add
+	am572x-idk-pru-excl-uio.dtb to linux-dtbs
+Thread-Index: AQHSgJlHxzqR68Lj2UOwGQG9BP0+QaFcmxkAgALu5dCAAGaYgP//n+NQgAAQpWA=
+Date: Wed, 8 Feb 2017 21:21:16 +0000
+Message-ID: <2E957F12D11D904590FA9AF86D366BD926CD56D5@DLEE08.ent.ti.com>
+References: <1486399437-29605-1-git-send-email-h-gou@ti.com>
+	<20170206165135.GE25590@edge>
+	<2E957F12D11D904590FA9AF86D366BD926CD32DC@DLEE08.ent.ti.com>
+	<4F9216F96E5DF9428610502835A9F4905854E974@DLEE11.ent.ti.com>
+	<20170208200449.GA2612@edge>
+	<4F9216F96E5DF9428610502835A9F4905854EA47@DLEE11.ent.ti.com>
+In-Reply-To: <4F9216F96E5DF9428610502835A9F4905854EA47@DLEE11.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.172.224.222]
 MIME-Version: 1.0
-Subject: [morty/krogoth][PATCH v2] ti-tisdk-makefile: add am572x-idk-pru-excl-uio.dtb to linux-dtbs
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [morty/krogoth][patch] ti-tisdk-makefile: add am572x-idk-pru-excl-uio.dtb to linux-dtbs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,42 +45,143 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Feb 2017 21:19:52 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 08 Feb 2017 21:21:18 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-* This addition is conditional with ENABLE_TI_UIO_DEVICES
+Thanks Sam and Denys. I just submitted the v2 patch.
 
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
----
-V2 changes:
-Make the addition of am572x-idk-pru-excl-uio.dtb conditional with ENABLE_TI_UIO_DEVICES
+Regards,
+Hongmei
 
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb          | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 8cc0758..7e01619 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -50,7 +50,7 @@ SRC_URI = "\
-     file://Makefile_barcode-roi \
- "
- 
--PR = "r77"
-+PR = "r78"
- 
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
-@@ -188,7 +188,7 @@ KERNEL_DEVICETREE_ti43x = "am43x-epos-evm.dtb am437x-gp-evm.dtb am437x-gp-evm-hd
- KERNEL_DEVICETREE_beaglebone = "am335x-bone.dtb am335x-boneblack.dtb am335x-bonegreen.dtb"
- KERNEL_DEVICETREE_omap5-evm = "omap5-uevm.dtb"
- KERNEL_DEVICETREE_dra7xx-evm = "dra7-evm.dtb dra7-evm-lcd-lg.dtb dra7-evm-lcd-osd.dtb dra72-evm.dtb dra72-evm-revc.dtb dra72-evm-lcd-lg.dtb dra72-evm-lcd-osd.dtb"
--KERNEL_DEVICETREE_am57xx-evm = "am57xx-beagle-x15.dtb am57xx-beagle-x15-revb1.dtb am57xx-evm.dtb am57xx-evm-reva3.dtb am571x-idk.dtb am572x-idk.dtb am571x-idk-lcd-osd.dtb am572x-idk-lcd-osd.dtb"
-+KERNEL_DEVICETREE_am57xx-evm = "am57xx-beagle-x15.dtb am57xx-beagle-x15-revb1.dtb am57xx-evm.dtb am57xx-evm-reva3.dtb am571x-idk.dtb am572x-idk.dtb am571x-idk-lcd-osd.dtb am572x-idk-lcd-osd.dtb ${@base_conditional('ENABLE_TI_UIO_DEVICES', '1', 'am572x-idk-pru-excl-uio.dtb', '', d)}"
- KERNEL_DEVICETREE_k2hk-evm = "keystone-k2hk-evm.dtb"
- KERNEL_DEVICETREE_k2e = "keystone-k2e-evm.dtb"
- KERNEL_DEVICETREE_k2g = "keystone-k2g-evm.dtb"
--- 
-1.9.1
-
+> -----Original Message-----
+> From: Nelson, Sam
+> Sent: Wednesday, February 08, 2017 3:25 PM
+> To: Dmytriyenko, Denys
+> Cc: Gou, Hongmei; meta-arago@arago-project.org
+> Subject: RE: [meta-arago] [morty/krogoth][patch] ti-tisdk-makefile: add
+> am572x-idk-pru-excl-uio.dtb to linux-dtbs
+>=20
+> Ok. I misunderstood.
+> Yes. It makes sense make this addition in makefile conditional with
+> ENABLE_TI_UIO_DEVICES.
+>=20
+> Hongmei,
+> See reference in
+> meta-ti/recipes-kernel/linux/ti-uio.inc
+>=20
+> KERNEL_DEVICETREE_append_am57xx-evm =3D
+> "${@base_conditional("ENABLE_TI_UIO_DEVICES", "1", " am572x-idk-pru-
+> excl-uio.dtb", "", d)}"
+>=20
+>=20
+> > -----Original Message-----
+> > From: Dmytriyenko, Denys
+> > Sent: Wednesday, February 08, 2017 3:05 PM
+> > To: Nelson, Sam
+> > Cc: Gou, Hongmei; meta-arago@arago-project.org
+> > Subject: Re: [meta-arago] [morty/krogoth][patch] ti-tisdk-makefile:
+> > add am572x-idk-pru-excl-uio.dtb to linux-dtbs
+> >
+> > Right, but my point was that the corresponding dtb will not even be
+> > installed when uio is not enabled with ENABLE_TI_UIO_DEVICES
+> >
+> >
+> > On Wed, Feb 08, 2017 at 03:00:09PM -0500, Nelson, Sam wrote:
+> > > My understanding is just the device tree source compilation should
+> > > NOT
+> > depend on the UIO enabled in kernel.
+> > > So I don't expect it to fail.
+> > >
+> > > > -----Original Message-----
+> > > > From: Gou, Hongmei
+> > > > Sent: Monday, February 06, 2017 12:10 PM
+> > > > To: Dmytriyenko, Denys; Nelson, Sam
+> > > > Cc: meta-arago@arago-project.org
+> > > > Subject: RE: [meta-arago] [morty/krogoth][patch]
+> > > > ti-tisdk-makefile: add am572x-idk-pru-excl-uio.dtb to linux-dtbs
+> > > >
+> > > > Looping in Sam for this question...
+> > > >
+> > > > > -----Original Message-----
+> > > > > From: Dmytriyenko, Denys
+> > > > > Sent: Monday, February 06, 2017 11:52 AM
+> > > > > To: Gou, Hongmei
+> > > > > Cc: meta-arago@arago-project.org
+> > > > > Subject: Re: [meta-arago] [morty/krogoth][patch] ti-tisdk-makefil=
+e:
+> > > > > add am572x-idk-pru-excl-uio.dtb to linux-dtbs
+> > > > >
+> > > > > Will this fail if UIO is not enabled?
+> > > > >
+> > > > >
+> > > > > On Mon, Feb 06, 2017 at 11:43:57AM -0500, Hongmei Gou wrote:
+> > > > > > Signed-off-by: Hongmei Gou <h-gou@ti.com>
+> > > > > > ---
+> > > > > >  .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb  =
+        | 4
+> ++-
+> > -
+> > > > > >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > > > > >
+> > > > > > diff --git
+> > > > > > a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-m
+> > > > > > akefil
+> > > > > > e_
+> > > > > > 1.0.bb
+> > > > > > b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-m
+> > > > > > akefil
+> > > > > > e_
+> > > > > > 1.0.bb
+> > > > > > index 8cc0758..c27bba6 100644
+> > > > > > ---
+> > > > > > a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-m
+> > > > > > akefil
+> > > > > > e_
+> > > > > > 1.0.bb
+> > > > > > +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tis
+> > > > > > +++ dk-mak
+> > > > > > +++ ef
+> > > > > > +++ ile_1.0.bb
+> > > > > > @@ -50,7 +50,7 @@ SRC_URI =3D "\
+> > > > > >      file://Makefile_barcode-roi \  "
+> > > > > >
+> > > > > > -PR =3D "r77"
+> > > > > > +PR =3D "r78"
+> > > > > >
+> > > > > >  MAKEFILES_MATRIX_GUI =3D "matrix-gui-browser \
+> > > > > >                          refresh-screen \ @@ -188,7 +188,7 @@
+> > > > > > KERNEL_DEVICETREE_ti43x =3D "am43x-epos-evm.dtb am437x-gp-
+> > evm.dtb
+> > > > > > am437x-gp-evm-hd  KERNEL_DEVICETREE_beaglebone =3D "am335x-
+> > > > > bone.dtb am335x-boneblack.dtb am335x-bonegreen.dtb"
+> > > > > >  KERNEL_DEVICETREE_omap5-evm =3D "omap5-uevm.dtb"
+> > > > > >  KERNEL_DEVICETREE_dra7xx-evm =3D "dra7-evm.dtb dra7-evm-lcd-
+> > lg.dtb
+> > > > > dra7-evm-lcd-osd.dtb dra72-evm.dtb dra72-evm-revc.dtb dra72-evm-
+> > lcd-
+> > > > > lg.dtb dra72-evm-lcd-osd.dtb"
+> > > > > > -KERNEL_DEVICETREE_am57xx-evm =3D "am57xx-beagle-x15.dtb
+> > am57xx-
+> > > > > beagle-x15-revb1.dtb am57xx-evm.dtb am57xx-evm-reva3.dtb
+> am571x-
+> > > > > idk.dtb am572x-idk.dtb am571x-idk-lcd-osd.dtb am572x-idk-lcd-
+> > osd.dtb"
+> > > > > > +KERNEL_DEVICETREE_am57xx-evm =3D "am57xx-beagle-x15.dtb
+> > am57xx-
+> > > > > beagle-x15-revb1.dtb am57xx-evm.dtb am57xx-evm-reva3.dtb
+> am571x-
+> > > > > idk.dtb am572x-idk.dtb am571x-idk-lcd-osd.dtb
+> > > > > am572x-idk-lcd-osd.dtb am572x-idk-pru-excl-uio.dtb"
+> > > > > >  KERNEL_DEVICETREE_k2hk-evm =3D "keystone-k2hk-evm.dtb"
+> > > > > >  KERNEL_DEVICETREE_k2e =3D "keystone-k2e-evm.dtb"
+> > > > > >  KERNEL_DEVICETREE_k2g =3D "keystone-k2g-evm.dtb"
+> > > > > > --
+> > > > > > 1.9.1
+> > > > > >
+> > > > > > _______________________________________________
+> > > > > > meta-arago mailing list
+> > > > > > meta-arago@arago-project.org
+> > > > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
