@@ -1,33 +1,31 @@
-Return-Path: <denys@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 65078529D2
+Return-Path: <camden.mannett@protonmail.ch>
+Received: from mail1.protonmail.ch (mail1.protonmail.ch [185.70.40.18])
+	by arago-project.org (Postfix) with ESMTPS id 2AEB452996
 	for <meta-arago@arago-project.org>;
-	Fri, 10 Feb 2017 17:22:05 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v1AHLsFd010847
-	for <meta-arago@arago-project.org>; Fri, 10 Feb 2017 11:21:54 -0600
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1AHLnOE007927
-	for <meta-arago@arago-project.org>; Fri, 10 Feb 2017 11:21:49 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 10 Feb 2017 11:21:48 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1AHLmWW005307;
-	Fri, 10 Feb 2017 11:21:48 -0600
-Date: Fri, 10 Feb 2017 12:21:48 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Dan Murphy <dmurphy@ti.com>
-Message-ID: <20170210172147.GJ2612@edge>
-References: <1486746451-23634-1-git-send-email-dmurphy@ti.com>
+	Fri, 10 Feb 2017 17:48:25 +0000 (UTC)
+Date: Fri, 10 Feb 2017 12:48:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.ch;
+	s=default; t=1486748903;
+	bh=ZZwLP73g9zwK/llIS8t5xcxN5zQmwNmovqtBrelaVcI=;
+	h=To:From:Reply-To:Subject:Feedback-ID:From;
+	b=cUp3JT3ntsafHvcGLj898Q4fWGgGgrGkSG8up7HG+uzgJ0hl5bl/jK2ULNxjd5nXG
+	ZRXLtkgKz7G2bVG/tU8M60/CzONv2InLTX2aWgUE3hMfC3uOc1+yo2c8jzh+t0Y7+W
+	CrwwPXhnRO+1HrNq8xCfThEnk5DhCqlvL72PMtXw=
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+From: Cam Mannett <camden.mannett@protonmail.ch>
+Message-ID: <qY2s2fvulpmLqhQHeI38feeuadsAEds6sMhNp7QZz1WQyuSmDEpv3iee4LsTYD3_olVpLrtDCYx4oaLnKrzohmqVWHWTE08FnrMB4XpZDFg=@protonmail.ch>
+Feedback-ID: qrqs5d2ZKk7JuyaeO0mWfeTcSbuwiEKsKmClo2lF8NGqBXGAEK2xCQgUD6wxTvT3WdUYfQVSVR3iJBLB_l5Hgw==:Ext:ProtonMail
 MIME-Version: 1.0
-In-Reply-To: <1486746451-23634-1-git-send-email-dmurphy@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org, afd@ti.com
-Subject: Re: [PATCH 1/2] optee: Update SRCREV for client, os and test
+X-Spam-Status: No, score=-1.6 required=4.0 tests=ALL_TRUSTED,BAYES_00,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,
+	MIME_BASE64_BLANKS, MISSING_DATE,
+	URIBL_BLOCKED autolearn=no version=3.3.1
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on mail1.protonmail.ch
+Subject: [morty] opkg 'Couldn't find anything to satisfy'
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
+Reply-To: Cam Mannett <camden.mannett@protonmail.ch>
 List-Id: Arago metadata layer for TI SDKs - OE-Core/Yocto compatible
 	<meta-arago.arago-project.org>
 List-Unsubscribe: <http://arago-project.org/cgi-bin/mailman/options/meta-arago>, 
@@ -37,63 +35,122 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Feb 2017 17:22:07 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 10 Feb 2017 17:48:25 -0000
+Content-Type: multipart/alternative;
+	boundary="b1_4bb8604cc14591cc216356068d8a2836"
 
-Thanks, merged.
+--b1_4bb8604cc14591cc216356068d8a2836
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
+
+SSdtIHRyeWluZyB0byBtYWtlIHRvIGEgY3VzdG9tIFNESyBpbWFnZSBiYXNlZCBvbiBhcmFnby1j
+b3JlLXRpc2RrLWltYWdlLmluYyBmb3IgbXkgQmVhZ2xlYm9uZSBHcmVlbiwgSSBoYXZlIG92ZXJ3
+cml0dGVuIHRoZSBUSVNES19UT09MQ0hBSU4gdmFyIHdpdGggYSBtZXRhIHBhY2thZ2UgdGhhdCBs
+b29rcyBsaWtlIHRoaXM6CgpyZXF1aXJlIHJlY2lwZXMtY29yZS9tZXRhL21ldGEtdG9vbGNoYWlu
+LWFyYWdvLXRpc2RrLmluYwpyZXF1aXJlIHJlY2lwZXMtY29yZS9tZXRhL21ldGEtdG9vbGNoYWlu
+LWFyYWdvLmJiClRPT0xDSEFJTl9UQVJHRVRfVEFTSyA9ICIgXApwYWNrYWdlZ3JvdXAtYXJhZ28t
+dGlzZGstYWRkb25zLXNkay10YXJnZXQgXApwYWNrYWdlZ3JvdXAtY21QVFAtc3RhbmRhbG9uZS1z
+ZGstdGFyZ2V0IFwKIgoKTXkgcGFja2FnZWdyb3VwIGZpbGUgaXMgdmVyeSBzaW1wbGU6CgpQQUNL
+QUdFX0FSQ0ggPSAiJHtNQUNISU5FX0FSQ0h9Igppbmhlcml0IHBhY2thZ2Vncm91cApSREVQRU5E
+U18ke1BOfSA9ICJcCmxpYmdjYyBcCmxpYmdjYy1kZXYgXApsaWJzdGRjKystZGV2IFwKJHtMSUJD
+X0RFUEVOREVOQ0lFU30gXApnbGliYy1zdGF0aWNkZXYgXApsaW51eC1saWJjLWhlYWRlcnMtZGV2
+IFwKZ2Ric2VydmVyIFwKaTJjLXRvb2xzLWRldiBcCm9wa2ctZGV2IFwKdXRpbC1saW51eC1kZXYg
+XAoke0BiYXNlX2NvbmRpdGlvbmFsKCdUQ01PREUnLCAnZXh0ZXJuYWwtbGluYXJvJywgJ2xpYmdv
+bXAtZGV2JywgJycsIGQpfSBcCmJvb3N0LWRldiBcCiIKCkR1cmluZyBiaXRiYWtlIGhvd2V2ZXIg
+SSBnZXQgdGhpcyBlcnJvcjoKCkVSUk9SOiBtZXRhLXRvb2xjaGFpbi1jbVBUUC10aXNkay0xLjAt
+cjUuMCBkb19wb3B1bGF0ZV9zZGs6IFVuYWJsZSB0byBpbnN0YWxsIHBhY2thZ2VzLiBDb21tYW5k
+ICcvaG9tZS9jbWFubmV0dDg1L3dvcmtzcGFjZS90aXNkay9idWlsZC9hcmFnby10bXAtZXh0ZXJu
+YWwtbGluYXJvLXRvb2xjaGFpbi9zeXNyb290cy94ODZfNjQtbGludXgvdXNyL2Jpbi9vcGtnIC0t
+dm9sYXRpbGUtY2FjaGUgLWYgL2hvbWUvY21hbm5ldHQ4NS93b3Jrc3BhY2UvdGlzZGsvYnVpbGQv
+YXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4vd29yay9hcm12N2FoZi1uZW9uLWxp
+bnV4LWdudWVhYmkvbWV0YS10b29sY2hhaW4tY21QVFAtdGlzZGsvMS4wLXI1LjAvb3BrZy5jb25m
+IC10IC9ob21lL2NtYW5uZXR0ODUvd29ya3NwYWNlL3Rpc2RrL2J1aWxkL2FyYWdvLXRtcC1leHRl
+cm5hbC1saW5hcm8tdG9vbGNoYWluL3dvcmsvYXJtdjdhaGYtbmVvbi1saW51eC1nbnVlYWJpL21l
+dGEtdG9vbGNoYWluLWNtUFRQLXRpc2RrLzEuMC1yNS4wL3RlbXAvaXBrdGVtcC8gLW8gL2hvbWUv
+Y21hbm5ldHQ4NS93b3Jrc3BhY2UvdGlzZGsvYnVpbGQvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFy
+by10b29sY2hhaW4vd29yay9hcm12N2FoZi1uZW9uLWxpbnV4LWdudWVhYmkvbWV0YS10b29sY2hh
+aW4tY21QVFAtdGlzZGsvMS4wLXI1LjAvc2RrL2ltYWdlL3RtcC94eHh4eHh4eHh4eHh4eHh4eHh4
+eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4
+eHh4eHh4eHh4eHh4eHh4eHh4eHgveXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5
+eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5
+eXl5L3N5c3Jvb3RzL2FybXY3YWhmLW5lb24tbGludXgtZ251ZWFiaSAtLWZvcmNlX3Bvc3RpbnN0
+YWxsIGluc3RhbGwgcGFja2FnZWdyb3VwLWNtUFRQLXN0YW5kYWxvbmUtc2RrLXRhcmdldCBwYWNr
+YWdlZ3JvdXAtYXJhZ28tdGlzZGstYWRkb25zLXNkay10YXJnZXQnIHJldHVybmVkIDI1NToKQ29s
+bGVjdGVkIGVycm9yczoKKiBvcGtnX3ByZXBhcmVfdXJsX2Zvcl9pbnN0YWxsOiBDb3VsZG4ndCBm
+aW5kIGFueXRoaW5nIHRvIHNhdGlzZnkgJ3BhY2thZ2Vncm91cC1jbVBUUC1zdGFuZGFsb25lLXNk
+ay10YXJnZXQnLgoqIHJtX3I6IEZhaWxlZCB0byBvcGVuIGRpciAvaG9tZS9jbWFubmV0dDg1L3dv
+cmtzcGFjZS90aXNkay9idWlsZC9hcmFnby10bXAtZXh0ZXJuYWwtbGluYXJvLXRvb2xjaGFpbi93
+b3JrL2FybXY3YWhmLW5lb24tbGludXgtZ251ZWFiaS9tZXRhLXRvb2xjaGFpbi1jbVBUUC10aXNk
+ay8xLjAtcjUuMC90ZW1wL2lwa3RlbXAvL29wa2ctaUdSOVBhOiBObyBzdWNoIGZpbGUgb3IgZGly
+ZWN0b3J5LgoKVGhlcmUgaXMgaW5kZWVkIG5vIHBhY2thZ2Vncm91cC1jbVBUUC1zdGFuZGFsb25l
+LXNkay10YXJnZXQgSVBLIGZpbGUgaW4gYnVpbGQvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10
+b29sY2hhaW4vZGVwbG95L2lway9jbVBUUF9iYmcgLSB3aHkgZG9lcyBZb2N0byBidWlsZCBvbmUg
+Zm9yIHBhY2thZ2Vncm91cC1hcmFnby10aXNkay1hZGRvbnMtc2RrLXRhcmdldCwgYnV0IG5vdCBt
+aW5lPw==
 
 
-On Fri, Feb 10, 2017 at 11:07:30AM -0600, Dan Murphy wrote:
-> Updating the SRCREV for the optee-client,
-> optee-os and optee-test to align with Linaro's
-> code base and kernel driver.
-> 
-> Signed-off-by: Dan Murphy <dmurphy@ti.com>
-> ---
->  meta-arago-distro/recipes-security/optee/optee-client.bbappend   | 2 +-
->  meta-arago-distro/recipes-security/optee/optee-os_git.bbappend   | 2 +-
->  meta-arago-distro/recipes-security/optee/optee-test_git.bbappend | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-> index cdbfaab..3a24c60 100644
-> --- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-> +++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-> @@ -4,4 +4,4 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
->             file://tee-supplicant.service"
->  
->  BRANCH = "ti_optee_client"
-> -SRCREV = "ce5fefe6cba5df9b4f31399b1155ba768eee0b78"
-> +SRCREV = "5477e9ebf093ba3ac5296409a690944db6c0014c"
-> diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-> index 7ae2a4a..c50c47d 100644
-> --- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-> +++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-> @@ -8,7 +8,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
->             file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
->  "
->  BRANCH = "ti_optee_os"
-> -SRCREV = "4556015010dbf648d236a72857e927317b0f6438"
-> +SRCREV = "f4543643876f50b5c454955763c243b8625b0294"
->  
->  EXTRA_OEMAKE = "CROSS_COMPILE_core=${HOST_PREFIX}  \
->                  CROSS_COMPILE_ta_arm32=${HOST_PREFIX}  \
-> diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-> index 2fa4182..ad70773 100644
-> --- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-> +++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-> @@ -4,4 +4,4 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
->  SRC_URI += "file://fix-build-failure-with-GCC6.patch"
->  
->  BRANCH = "ti_optee_test"
-> -SRCREV = "6203b8769beff4eccf7104a6474991114691bf90"
-> +SRCREV = "ba271a6e3eb2bbb6996b5de73918216f64a9e077"
-> -- 
-> 2.11.0.rc0.7.gbe5a750
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+--b1_4bb8604cc14591cc216356068d8a2836
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
 
+PGRpdj5JJ20gdHJ5aW5nIHRvIG1ha2UgdG8gYSBjdXN0b20gU0RLIGltYWdlIGJhc2VkIG9uJm5i
+c3A7YXJhZ28tY29yZS10aXNkay1pbWFnZS5pbmMgZm9yIG15IEJlYWdsZWJvbmUgR3JlZW4sIEkg
+aGF2ZSBvdmVyd3JpdHRlbiB0aGUgVElTREtfVE9PTENIQUlOIHZhciB3aXRoIGEgbWV0YSBwYWNr
+YWdlIHRoYXQgbG9va3MgbGlrZSB0aGlzOjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PnJl
+cXVpcmUgcmVjaXBlcy1jb3JlL21ldGEvbWV0YS10b29sY2hhaW4tYXJhZ28tdGlzZGsuaW5jIDxi
+cj48L2Rpdj48ZGl2PnJlcXVpcmUgcmVjaXBlcy1jb3JlL21ldGEvbWV0YS10b29sY2hhaW4tYXJh
+Z28uYmI8YnI+PC9kaXY+PGRpdj5UT09MQ0hBSU5fVEFSR0VUX1RBU0sgPSAiIFwgPGJyPjwvZGl2
+PjxkaXY+Jm5ic3A7Jm5ic3A7Jm5ic3A7IHBhY2thZ2Vncm91cC1hcmFnby10aXNkay1hZGRvbnMt
+c2RrLXRhcmdldCBcPGJyPjwvZGl2PjxkaXY+Jm5ic3A7Jm5ic3A7Jm5ic3A7IHBhY2thZ2Vncm91
+cC1jbVBUUC1zdGFuZGFsb25lLXNkay10YXJnZXQgXDxicj48L2Rpdj48ZGl2PiI8YnI+PC9kaXY+
+PGRpdj48YnI+PC9kaXY+PGRpdj5NeSBwYWNrYWdlZ3JvdXAgZmlsZSBpcyB2ZXJ5IHNpbXBsZTo8
+YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5QQUNLQUdFX0FSQ0ggPSAiJHtNQUNISU5FX0FS
+Q0h9IiA8YnI+PC9kaXY+PGRpdj5pbmhlcml0IHBhY2thZ2Vncm91cDxicj48L2Rpdj48ZGl2PlJE
+RVBFTkRTXyR7UE59ID0gIlw8YnI+PC9kaXY+PGRpdj4mbmJzcDsmbmJzcDsmbmJzcDsgbGliZ2Nj
+IFw8YnI+PC9kaXY+PGRpdj4mbmJzcDsmbmJzcDsmbmJzcDsgbGliZ2NjLWRldiBcPGJyPjwvZGl2
+PjxkaXY+Jm5ic3A7Jm5ic3A7Jm5ic3A7IGxpYnN0ZGMrKy1kZXYgXDxicj48L2Rpdj48ZGl2PiZu
+YnNwOyZuYnNwOyZuYnNwOyAke0xJQkNfREVQRU5ERU5DSUVTfSBcPGJyPjwvZGl2PjxkaXY+Jm5i
+c3A7Jm5ic3A7Jm5ic3A7IGdsaWJjLXN0YXRpY2RldiBcPGJyPjwvZGl2PjxkaXY+Jm5ic3A7Jm5i
+c3A7Jm5ic3A7IGxpbnV4LWxpYmMtaGVhZGVycy1kZXYgXDxicj48L2Rpdj48ZGl2PiZuYnNwOyZu
+YnNwOyZuYnNwOyBnZGJzZXJ2ZXIgXDxicj48L2Rpdj48ZGl2PiZuYnNwOyZuYnNwOyZuYnNwOyBp
+MmMtdG9vbHMtZGV2IFw8YnI+PC9kaXY+PGRpdj4mbmJzcDsmbmJzcDsmbmJzcDsgb3BrZy1kZXYg
+XDxicj48L2Rpdj48ZGl2PiZuYnNwOyZuYnNwOyZuYnNwOyB1dGlsLWxpbnV4LWRldiBcPGJyPjwv
+ZGl2PjxkaXY+Jm5ic3A7Jm5ic3A7Jm5ic3A7ICR7QGJhc2VfY29uZGl0aW9uYWwoJ1RDTU9ERScs
+ICdleHRlcm5hbC1saW5hcm8nLCAnbGliZ29tcC1kZXYnLCAnJywgZCl9IFw8YnI+PC9kaXY+PGRp
+dj4mbmJzcDsmbmJzcDsmbmJzcDsgYm9vc3QtZGV2IFw8YnI+PC9kaXY+PGRpdj4iPGJyPjwvZGl2
+PjxkaXY+PGJyPjwvZGl2PjxkaXY+RHVyaW5nIGJpdGJha2UgaG93ZXZlciBJIGdldCB0aGlzIGVy
+cm9yOjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkVSUk9SOiBtZXRhLXRvb2xjaGFpbi1j
+bVBUUC10aXNkay0xLjAtcjUuMCBkb19wb3B1bGF0ZV9zZGs6IFVuYWJsZSB0byBpbnN0YWxsIHBh
+Y2thZ2VzLiBDb21tYW5kICcvaG9tZS9jbWFubmV0dDg1L3dvcmtzcGFjZS90aXNkay9idWlsZC9h
+cmFnby10bXAtZXh0ZXJuYWwtbGluYXJvLXRvb2xjaGFpbi9zeXNyb290cy94ODZfNjQtbGludXgv
+dXNyL2Jpbi9vcGtnIC0tdm9sYXRpbGUtY2FjaGUgLWYgL2hvbWUvY21hbm5ldHQ4NS93b3Jrc3Bh
+Y2UvdGlzZGsvYnVpbGQvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4vd29yay9h
+cm12N2FoZi1uZW9uLWxpbnV4LWdudWVhYmkvbWV0YS10b29sY2hhaW4tY21QVFAtdGlzZGsvMS4w
+LXI1LjAvb3BrZy5jb25mIC10IC9ob21lL2NtYW5uZXR0ODUvd29ya3NwYWNlL3Rpc2RrL2J1aWxk
+L2FyYWdvLXRtcC1leHRlcm5hbC1saW5hcm8tdG9vbGNoYWluL3dvcmsvYXJtdjdhaGYtbmVvbi1s
+aW51eC1nbnVlYWJpL21ldGEtdG9vbGNoYWluLWNtUFRQLXRpc2RrLzEuMC1yNS4wL3RlbXAvaXBr
+dGVtcC8gLW8gL2hvbWUvY21hbm5ldHQ4NS93b3Jrc3BhY2UvdGlzZGsvYnVpbGQvYXJhZ28tdG1w
+LWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4vd29yay9hcm12N2FoZi1uZW9uLWxpbnV4LWdudWVh
+YmkvbWV0YS10b29sY2hhaW4tY21QVFAtdGlzZGsvMS4wLXI1LjAvc2RrL2ltYWdlL3RtcC94eHh4
+eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4
+eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHgveXl5eXl5eXl5eXl5eXl5eXl5eXl5
+eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5
+eXl5eXl5eXl5eXl5eXl5eXl5L3N5c3Jvb3RzL2FybXY3YWhmLW5lb24tbGludXgtZ251ZWFiaSAt
+LWZvcmNlX3Bvc3RpbnN0YWxsIGluc3RhbGwgcGFja2FnZWdyb3VwLWNtUFRQLXN0YW5kYWxvbmUt
+c2RrLXRhcmdldCBwYWNrYWdlZ3JvdXAtYXJhZ28tdGlzZGstYWRkb25zLXNkay10YXJnZXQnIHJl
+dHVybmVkIDI1NTogPGJyPjwvZGl2PjxkaXY+Q29sbGVjdGVkIGVycm9yczo8YnI+PC9kaXY+PGRp
+dj4qIG9wa2dfcHJlcGFyZV91cmxfZm9yX2luc3RhbGw6IENvdWxkbid0IGZpbmQgYW55dGhpbmcg
+dG8gc2F0aXNmeSAncGFja2FnZWdyb3VwLWNtUFRQLXN0YW5kYWxvbmUtc2RrLXRhcmdldCcuPGJy
+PjwvZGl2PjxkaXY+KiBybV9yOiBGYWlsZWQgdG8gb3BlbiBkaXIgL2hvbWUvY21hbm5ldHQ4NS93
+b3Jrc3BhY2UvdGlzZGsvYnVpbGQvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4v
+d29yay9hcm12N2FoZi1uZW9uLWxpbnV4LWdudWVhYmkvbWV0YS10b29sY2hhaW4tY21QVFAtdGlz
+ZGsvMS4wLXI1LjAvdGVtcC9pcGt0ZW1wLy9vcGtnLWlHUjlQYTogTm8gc3VjaCBmaWxlIG9yIGRp
+cmVjdG9yeS48YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5UaGVyZSBpcyBpbmRlZWQgbm8m
+bmJzcDtwYWNrYWdlZ3JvdXAtY21QVFAtc3RhbmRhbG9uZS1zZGstdGFyZ2V0IElQSyBmaWxlIGlu
+IGJ1aWxkL2FyYWdvLXRtcC1leHRlcm5hbC1saW5hcm8tdG9vbGNoYWluL2RlcGxveS9pcGsvY21Q
+VFBfYmJnIC0gd2h5IGRvZXMgWW9jdG8gYnVpbGQgb25lIGZvciZuYnNwO3BhY2thZ2Vncm91cC1h
+cmFnby10aXNkay1hZGRvbnMtc2RrLXRhcmdldCwgYnV0IG5vdCBtaW5lPzxicj48L2Rpdj4=
+
+
+
+--b1_4bb8604cc14591cc216356068d8a2836--
