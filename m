@@ -1,31 +1,33 @@
-Return-Path: <camden.mannett@protonmail.ch>
-Received: from mail1.protonmail.ch (mail1.protonmail.ch [185.70.40.18])
-	by arago-project.org (Postfix) with ESMTPS id 2AEB452996
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 16BE9529D1
 	for <meta-arago@arago-project.org>;
-	Fri, 10 Feb 2017 17:48:25 +0000 (UTC)
-Date: Fri, 10 Feb 2017 12:48:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.ch;
-	s=default; t=1486748903;
-	bh=ZZwLP73g9zwK/llIS8t5xcxN5zQmwNmovqtBrelaVcI=;
-	h=To:From:Reply-To:Subject:Feedback-ID:From;
-	b=cUp3JT3ntsafHvcGLj898Q4fWGgGgrGkSG8up7HG+uzgJ0hl5bl/jK2ULNxjd5nXG
-	ZRXLtkgKz7G2bVG/tU8M60/CzONv2InLTX2aWgUE3hMfC3uOc1+yo2c8jzh+t0Y7+W
-	CrwwPXhnRO+1HrNq8xCfThEnk5DhCqlvL72PMtXw=
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-From: Cam Mannett <camden.mannett@protonmail.ch>
-Message-ID: <qY2s2fvulpmLqhQHeI38feeuadsAEds6sMhNp7QZz1WQyuSmDEpv3iee4LsTYD3_olVpLrtDCYx4oaLnKrzohmqVWHWTE08FnrMB4XpZDFg=@protonmail.ch>
-Feedback-ID: qrqs5d2ZKk7JuyaeO0mWfeTcSbuwiEKsKmClo2lF8NGqBXGAEK2xCQgUD6wxTvT3WdUYfQVSVR3iJBLB_l5Hgw==:Ext:ProtonMail
-MIME-Version: 1.0
-X-Spam-Status: No, score=-1.6 required=4.0 tests=ALL_TRUSTED,BAYES_00,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,
-	MIME_BASE64_BLANKS, MISSING_DATE,
-	URIBL_BLOCKED autolearn=no version=3.3.1
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on mail1.protonmail.ch
-Subject: [morty] opkg 'Couldn't find anything to satisfy'
+	Fri, 10 Feb 2017 18:16:42 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id EFDAA20B2C;
+	Fri, 10 Feb 2017 18:16:41 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id e0jdeGYwoDin; Fri, 10 Feb 2017 18:16:41 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
+	[100.15.95.79])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C5F232099C;
+	Fri, 10 Feb 2017 18:16:40 +0000 (UTC)
+Received: from gimli.denix (pippin [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 043C316236E;
+	Fri, 10 Feb 2017 13:16:40 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Fri, 10 Feb 2017 13:16:39 -0500
+Message-Id: <1486750599-84841-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH] HACK: FIXME: packagegroups: disable barcode-roi demo for now
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
-Reply-To: Cam Mannett <camden.mannett@protonmail.ch>
 List-Id: Arago metadata layer for TI SDKs - OE-Core/Yocto compatible
 	<meta-arago.arago-project.org>
 List-Unsubscribe: <http://arago-project.org/cgi-bin/mailman/options/meta-arago>, 
@@ -35,122 +37,131 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Feb 2017 17:48:25 -0000
-Content-Type: multipart/alternative;
-	boundary="b1_4bb8604cc14591cc216356068d8a2836"
+X-List-Received-Date: Fri, 10 Feb 2017 18:16:42 -0000
 
---b1_4bb8604cc14591cc216356068d8a2836
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+It pulls in cmem, which is currently broken.
 
-SSdtIHRyeWluZyB0byBtYWtlIHRvIGEgY3VzdG9tIFNESyBpbWFnZSBiYXNlZCBvbiBhcmFnby1j
-b3JlLXRpc2RrLWltYWdlLmluYyBmb3IgbXkgQmVhZ2xlYm9uZSBHcmVlbiwgSSBoYXZlIG92ZXJ3
-cml0dGVuIHRoZSBUSVNES19UT09MQ0hBSU4gdmFyIHdpdGggYSBtZXRhIHBhY2thZ2UgdGhhdCBs
-b29rcyBsaWtlIHRoaXM6CgpyZXF1aXJlIHJlY2lwZXMtY29yZS9tZXRhL21ldGEtdG9vbGNoYWlu
-LWFyYWdvLXRpc2RrLmluYwpyZXF1aXJlIHJlY2lwZXMtY29yZS9tZXRhL21ldGEtdG9vbGNoYWlu
-LWFyYWdvLmJiClRPT0xDSEFJTl9UQVJHRVRfVEFTSyA9ICIgXApwYWNrYWdlZ3JvdXAtYXJhZ28t
-dGlzZGstYWRkb25zLXNkay10YXJnZXQgXApwYWNrYWdlZ3JvdXAtY21QVFAtc3RhbmRhbG9uZS1z
-ZGstdGFyZ2V0IFwKIgoKTXkgcGFja2FnZWdyb3VwIGZpbGUgaXMgdmVyeSBzaW1wbGU6CgpQQUNL
-QUdFX0FSQ0ggPSAiJHtNQUNISU5FX0FSQ0h9Igppbmhlcml0IHBhY2thZ2Vncm91cApSREVQRU5E
-U18ke1BOfSA9ICJcCmxpYmdjYyBcCmxpYmdjYy1kZXYgXApsaWJzdGRjKystZGV2IFwKJHtMSUJD
-X0RFUEVOREVOQ0lFU30gXApnbGliYy1zdGF0aWNkZXYgXApsaW51eC1saWJjLWhlYWRlcnMtZGV2
-IFwKZ2Ric2VydmVyIFwKaTJjLXRvb2xzLWRldiBcCm9wa2ctZGV2IFwKdXRpbC1saW51eC1kZXYg
-XAoke0BiYXNlX2NvbmRpdGlvbmFsKCdUQ01PREUnLCAnZXh0ZXJuYWwtbGluYXJvJywgJ2xpYmdv
-bXAtZGV2JywgJycsIGQpfSBcCmJvb3N0LWRldiBcCiIKCkR1cmluZyBiaXRiYWtlIGhvd2V2ZXIg
-SSBnZXQgdGhpcyBlcnJvcjoKCkVSUk9SOiBtZXRhLXRvb2xjaGFpbi1jbVBUUC10aXNkay0xLjAt
-cjUuMCBkb19wb3B1bGF0ZV9zZGs6IFVuYWJsZSB0byBpbnN0YWxsIHBhY2thZ2VzLiBDb21tYW5k
-ICcvaG9tZS9jbWFubmV0dDg1L3dvcmtzcGFjZS90aXNkay9idWlsZC9hcmFnby10bXAtZXh0ZXJu
-YWwtbGluYXJvLXRvb2xjaGFpbi9zeXNyb290cy94ODZfNjQtbGludXgvdXNyL2Jpbi9vcGtnIC0t
-dm9sYXRpbGUtY2FjaGUgLWYgL2hvbWUvY21hbm5ldHQ4NS93b3Jrc3BhY2UvdGlzZGsvYnVpbGQv
-YXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4vd29yay9hcm12N2FoZi1uZW9uLWxp
-bnV4LWdudWVhYmkvbWV0YS10b29sY2hhaW4tY21QVFAtdGlzZGsvMS4wLXI1LjAvb3BrZy5jb25m
-IC10IC9ob21lL2NtYW5uZXR0ODUvd29ya3NwYWNlL3Rpc2RrL2J1aWxkL2FyYWdvLXRtcC1leHRl
-cm5hbC1saW5hcm8tdG9vbGNoYWluL3dvcmsvYXJtdjdhaGYtbmVvbi1saW51eC1nbnVlYWJpL21l
-dGEtdG9vbGNoYWluLWNtUFRQLXRpc2RrLzEuMC1yNS4wL3RlbXAvaXBrdGVtcC8gLW8gL2hvbWUv
-Y21hbm5ldHQ4NS93b3Jrc3BhY2UvdGlzZGsvYnVpbGQvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFy
-by10b29sY2hhaW4vd29yay9hcm12N2FoZi1uZW9uLWxpbnV4LWdudWVhYmkvbWV0YS10b29sY2hh
-aW4tY21QVFAtdGlzZGsvMS4wLXI1LjAvc2RrL2ltYWdlL3RtcC94eHh4eHh4eHh4eHh4eHh4eHh4
-eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4
-eHh4eHh4eHh4eHh4eHh4eHh4eHgveXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5
-eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5
-eXl5L3N5c3Jvb3RzL2FybXY3YWhmLW5lb24tbGludXgtZ251ZWFiaSAtLWZvcmNlX3Bvc3RpbnN0
-YWxsIGluc3RhbGwgcGFja2FnZWdyb3VwLWNtUFRQLXN0YW5kYWxvbmUtc2RrLXRhcmdldCBwYWNr
-YWdlZ3JvdXAtYXJhZ28tdGlzZGstYWRkb25zLXNkay10YXJnZXQnIHJldHVybmVkIDI1NToKQ29s
-bGVjdGVkIGVycm9yczoKKiBvcGtnX3ByZXBhcmVfdXJsX2Zvcl9pbnN0YWxsOiBDb3VsZG4ndCBm
-aW5kIGFueXRoaW5nIHRvIHNhdGlzZnkgJ3BhY2thZ2Vncm91cC1jbVBUUC1zdGFuZGFsb25lLXNk
-ay10YXJnZXQnLgoqIHJtX3I6IEZhaWxlZCB0byBvcGVuIGRpciAvaG9tZS9jbWFubmV0dDg1L3dv
-cmtzcGFjZS90aXNkay9idWlsZC9hcmFnby10bXAtZXh0ZXJuYWwtbGluYXJvLXRvb2xjaGFpbi93
-b3JrL2FybXY3YWhmLW5lb24tbGludXgtZ251ZWFiaS9tZXRhLXRvb2xjaGFpbi1jbVBUUC10aXNk
-ay8xLjAtcjUuMC90ZW1wL2lwa3RlbXAvL29wa2ctaUdSOVBhOiBObyBzdWNoIGZpbGUgb3IgZGly
-ZWN0b3J5LgoKVGhlcmUgaXMgaW5kZWVkIG5vIHBhY2thZ2Vncm91cC1jbVBUUC1zdGFuZGFsb25l
-LXNkay10YXJnZXQgSVBLIGZpbGUgaW4gYnVpbGQvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10
-b29sY2hhaW4vZGVwbG95L2lway9jbVBUUF9iYmcgLSB3aHkgZG9lcyBZb2N0byBidWlsZCBvbmUg
-Zm9yIHBhY2thZ2Vncm91cC1hcmFnby10aXNkay1hZGRvbnMtc2RrLXRhcmdldCwgYnV0IG5vdCBt
-aW5lPw==
+This reverts commit 3956718f52623c92b4a3a0a9b752c52c18db6aa6.
+This reverts commit bede5f969b825df8c2368d8650c9d911c6c66198.
+---
+ .../packagegroups/packagegroup-arago-tisdk-matrix.bb  | 19 +------------------
+ .../packagegroup-arago-tisdk-multimedia-sdk-host.bb   |  9 +--------
+ .../packagegroup-arago-tisdk-multimedia-sdk-target.bb |  8 +-------
+ 3 files changed, 3 insertions(+), 33 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index f64a591..848492c 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r63"
++PR = "r62"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -61,18 +61,6 @@ MATRIX_OPENCL_APPS_append_dra7xx = " \
+     matrix-machinevision-demo-dlp3dscanner \
+ "
+ 
+-MATRIX_OPENCV_ARM_ONLY_APPS = " \
+-     matrix-machinevision-demo-barcoderoi \
+-"
+-
+-MATRIX_OPENCV_OPENCL_APPS = " \
+-    matrix-machinevision-demo-barcoderoi-f2f \
+-"
+-
+-MATRIX_OPENCV_OPENCL_APPS_omap-a15 = " \
+-     matrix-machinevision-demo-barcoderoi \
+-"
+-
+ MATRIX_APPS = ""
+ 
+ MATRIX_APPS_append_ti33x = "        \
+@@ -88,8 +76,6 @@ MATRIX_APPS_append_ti33x = "        \
+     matrix-gui-pm-demos-governor    \
+                                     \
+     matrix-gui-ethernet-demos       \
+-                                    \
+-    ${MATRIX_OPENCV_ARM_ONLY_APPS}  \
+ "
+ 
+ MATRIX_APPS_append_ti43x = "        \
+@@ -105,8 +91,6 @@ MATRIX_APPS_append_ti43x = "        \
+                                     \
+     matrix-gui-apps-dual-camera     \
+     matrix-gui-apps-image-gallery   \
+-                                    \
+-    ${MATRIX_OPENCV_ARM_ONLY_APPS}  \
+ "
+ 
+ MATRIX_APPS_append_omap-a15 = "     \
+@@ -142,5 +126,4 @@ RDEPENDS_${PN} = "        \
+     ${MATRIX_APPS}        \
+     ${@bb.utils.contains('MACHINE_FEATURES','sgx',"${MATRIX_SGX_DEMOS}",'',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','opencl',"${MATRIX_OPENCL_APPS}",'',d)} \
+-    ${@bb.utils.contains('MACHINE_FEATURES','opencl',"${MATRIX_OPENCV_OPENCL_APPS}",'',d)} \
+ "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
+index cded1aa..9bb62fc 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to add multimedia related sources into the SDK"
+ LICENSE = "MIT"
+-PR = "r13"
++PR = "r12"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -11,19 +11,12 @@ MULTIMEDIA = ""
+ MULTIMEDIA_append_ti43x = " \
+     dual-camera-demo-src \
+     image-gallery-src \
+-    barcode-roi-src \
+ "
+ 
+-MULTIMEDIA_append_ti33x = " barcode-roi-src"
+-
+-MULTIMEDIA_append_omap-a15 = " barcode-roi-src"
+-
+ MULTIMEDIA_append_dra7xx = " \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'opencl', 'qt-opencv-opencl-opengl-multithreaded-src', '', d)} \
+ "
+ 
+-MULTIMEDIA_append_keystone = " barcode-roi-src"
+-
+ #Demo doesn't work on 3.14
+ # ${@base_conditional('QT_PROVIDER', 'qt5', '', 'dual-camera-demo-src image-gallery-src', d)}
+ 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
+index 3c72bf0..e77f66d 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to build and install header and libs into sdk"
+ LICENSE = "MIT"
+-PR = "r10"
++PR = "r9"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -14,12 +14,6 @@ MULTIMEDIA_append_dra7xx = " \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'opencl', 'qt-opencv-opencl-opengl-multithreaded-dev', '', d)} \
+ "
+ 
+-MULTIMEDIA_append_ti33x = " barcode-roi-dev"
+-MULTIMEDIA_append_ti43x = " barcode-roi-dev"
+-MULTIMEDIA_append_omap-a15 = " barcode-roi-dev"
+-
+-MULTIMEDIA_append_keystone = " barcode-roi-dev"
+-
+ RDEPENDS_${PN} = "\
+     ${MULTIMEDIA} \
+     packagegroup-arago-gst-sdk-target \
+-- 
+2.7.4
 
 
---b1_4bb8604cc14591cc216356068d8a2836
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
-
-PGRpdj5JJ20gdHJ5aW5nIHRvIG1ha2UgdG8gYSBjdXN0b20gU0RLIGltYWdlIGJhc2VkIG9uJm5i
-c3A7YXJhZ28tY29yZS10aXNkay1pbWFnZS5pbmMgZm9yIG15IEJlYWdsZWJvbmUgR3JlZW4sIEkg
-aGF2ZSBvdmVyd3JpdHRlbiB0aGUgVElTREtfVE9PTENIQUlOIHZhciB3aXRoIGEgbWV0YSBwYWNr
-YWdlIHRoYXQgbG9va3MgbGlrZSB0aGlzOjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PnJl
-cXVpcmUgcmVjaXBlcy1jb3JlL21ldGEvbWV0YS10b29sY2hhaW4tYXJhZ28tdGlzZGsuaW5jIDxi
-cj48L2Rpdj48ZGl2PnJlcXVpcmUgcmVjaXBlcy1jb3JlL21ldGEvbWV0YS10b29sY2hhaW4tYXJh
-Z28uYmI8YnI+PC9kaXY+PGRpdj5UT09MQ0hBSU5fVEFSR0VUX1RBU0sgPSAiIFwgPGJyPjwvZGl2
-PjxkaXY+Jm5ic3A7Jm5ic3A7Jm5ic3A7IHBhY2thZ2Vncm91cC1hcmFnby10aXNkay1hZGRvbnMt
-c2RrLXRhcmdldCBcPGJyPjwvZGl2PjxkaXY+Jm5ic3A7Jm5ic3A7Jm5ic3A7IHBhY2thZ2Vncm91
-cC1jbVBUUC1zdGFuZGFsb25lLXNkay10YXJnZXQgXDxicj48L2Rpdj48ZGl2PiI8YnI+PC9kaXY+
-PGRpdj48YnI+PC9kaXY+PGRpdj5NeSBwYWNrYWdlZ3JvdXAgZmlsZSBpcyB2ZXJ5IHNpbXBsZTo8
-YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5QQUNLQUdFX0FSQ0ggPSAiJHtNQUNISU5FX0FS
-Q0h9IiA8YnI+PC9kaXY+PGRpdj5pbmhlcml0IHBhY2thZ2Vncm91cDxicj48L2Rpdj48ZGl2PlJE
-RVBFTkRTXyR7UE59ID0gIlw8YnI+PC9kaXY+PGRpdj4mbmJzcDsmbmJzcDsmbmJzcDsgbGliZ2Nj
-IFw8YnI+PC9kaXY+PGRpdj4mbmJzcDsmbmJzcDsmbmJzcDsgbGliZ2NjLWRldiBcPGJyPjwvZGl2
-PjxkaXY+Jm5ic3A7Jm5ic3A7Jm5ic3A7IGxpYnN0ZGMrKy1kZXYgXDxicj48L2Rpdj48ZGl2PiZu
-YnNwOyZuYnNwOyZuYnNwOyAke0xJQkNfREVQRU5ERU5DSUVTfSBcPGJyPjwvZGl2PjxkaXY+Jm5i
-c3A7Jm5ic3A7Jm5ic3A7IGdsaWJjLXN0YXRpY2RldiBcPGJyPjwvZGl2PjxkaXY+Jm5ic3A7Jm5i
-c3A7Jm5ic3A7IGxpbnV4LWxpYmMtaGVhZGVycy1kZXYgXDxicj48L2Rpdj48ZGl2PiZuYnNwOyZu
-YnNwOyZuYnNwOyBnZGJzZXJ2ZXIgXDxicj48L2Rpdj48ZGl2PiZuYnNwOyZuYnNwOyZuYnNwOyBp
-MmMtdG9vbHMtZGV2IFw8YnI+PC9kaXY+PGRpdj4mbmJzcDsmbmJzcDsmbmJzcDsgb3BrZy1kZXYg
-XDxicj48L2Rpdj48ZGl2PiZuYnNwOyZuYnNwOyZuYnNwOyB1dGlsLWxpbnV4LWRldiBcPGJyPjwv
-ZGl2PjxkaXY+Jm5ic3A7Jm5ic3A7Jm5ic3A7ICR7QGJhc2VfY29uZGl0aW9uYWwoJ1RDTU9ERScs
-ICdleHRlcm5hbC1saW5hcm8nLCAnbGliZ29tcC1kZXYnLCAnJywgZCl9IFw8YnI+PC9kaXY+PGRp
-dj4mbmJzcDsmbmJzcDsmbmJzcDsgYm9vc3QtZGV2IFw8YnI+PC9kaXY+PGRpdj4iPGJyPjwvZGl2
-PjxkaXY+PGJyPjwvZGl2PjxkaXY+RHVyaW5nIGJpdGJha2UgaG93ZXZlciBJIGdldCB0aGlzIGVy
-cm9yOjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkVSUk9SOiBtZXRhLXRvb2xjaGFpbi1j
-bVBUUC10aXNkay0xLjAtcjUuMCBkb19wb3B1bGF0ZV9zZGs6IFVuYWJsZSB0byBpbnN0YWxsIHBh
-Y2thZ2VzLiBDb21tYW5kICcvaG9tZS9jbWFubmV0dDg1L3dvcmtzcGFjZS90aXNkay9idWlsZC9h
-cmFnby10bXAtZXh0ZXJuYWwtbGluYXJvLXRvb2xjaGFpbi9zeXNyb290cy94ODZfNjQtbGludXgv
-dXNyL2Jpbi9vcGtnIC0tdm9sYXRpbGUtY2FjaGUgLWYgL2hvbWUvY21hbm5ldHQ4NS93b3Jrc3Bh
-Y2UvdGlzZGsvYnVpbGQvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4vd29yay9h
-cm12N2FoZi1uZW9uLWxpbnV4LWdudWVhYmkvbWV0YS10b29sY2hhaW4tY21QVFAtdGlzZGsvMS4w
-LXI1LjAvb3BrZy5jb25mIC10IC9ob21lL2NtYW5uZXR0ODUvd29ya3NwYWNlL3Rpc2RrL2J1aWxk
-L2FyYWdvLXRtcC1leHRlcm5hbC1saW5hcm8tdG9vbGNoYWluL3dvcmsvYXJtdjdhaGYtbmVvbi1s
-aW51eC1nbnVlYWJpL21ldGEtdG9vbGNoYWluLWNtUFRQLXRpc2RrLzEuMC1yNS4wL3RlbXAvaXBr
-dGVtcC8gLW8gL2hvbWUvY21hbm5ldHQ4NS93b3Jrc3BhY2UvdGlzZGsvYnVpbGQvYXJhZ28tdG1w
-LWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4vd29yay9hcm12N2FoZi1uZW9uLWxpbnV4LWdudWVh
-YmkvbWV0YS10b29sY2hhaW4tY21QVFAtdGlzZGsvMS4wLXI1LjAvc2RrL2ltYWdlL3RtcC94eHh4
-eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4
-eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHgveXl5eXl5eXl5eXl5eXl5eXl5eXl5
-eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5eXl5
-eXl5eXl5eXl5eXl5eXl5eXl5L3N5c3Jvb3RzL2FybXY3YWhmLW5lb24tbGludXgtZ251ZWFiaSAt
-LWZvcmNlX3Bvc3RpbnN0YWxsIGluc3RhbGwgcGFja2FnZWdyb3VwLWNtUFRQLXN0YW5kYWxvbmUt
-c2RrLXRhcmdldCBwYWNrYWdlZ3JvdXAtYXJhZ28tdGlzZGstYWRkb25zLXNkay10YXJnZXQnIHJl
-dHVybmVkIDI1NTogPGJyPjwvZGl2PjxkaXY+Q29sbGVjdGVkIGVycm9yczo8YnI+PC9kaXY+PGRp
-dj4qIG9wa2dfcHJlcGFyZV91cmxfZm9yX2luc3RhbGw6IENvdWxkbid0IGZpbmQgYW55dGhpbmcg
-dG8gc2F0aXNmeSAncGFja2FnZWdyb3VwLWNtUFRQLXN0YW5kYWxvbmUtc2RrLXRhcmdldCcuPGJy
-PjwvZGl2PjxkaXY+KiBybV9yOiBGYWlsZWQgdG8gb3BlbiBkaXIgL2hvbWUvY21hbm5ldHQ4NS93
-b3Jrc3BhY2UvdGlzZGsvYnVpbGQvYXJhZ28tdG1wLWV4dGVybmFsLWxpbmFyby10b29sY2hhaW4v
-d29yay9hcm12N2FoZi1uZW9uLWxpbnV4LWdudWVhYmkvbWV0YS10b29sY2hhaW4tY21QVFAtdGlz
-ZGsvMS4wLXI1LjAvdGVtcC9pcGt0ZW1wLy9vcGtnLWlHUjlQYTogTm8gc3VjaCBmaWxlIG9yIGRp
-cmVjdG9yeS48YnI+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5UaGVyZSBpcyBpbmRlZWQgbm8m
-bmJzcDtwYWNrYWdlZ3JvdXAtY21QVFAtc3RhbmRhbG9uZS1zZGstdGFyZ2V0IElQSyBmaWxlIGlu
-IGJ1aWxkL2FyYWdvLXRtcC1leHRlcm5hbC1saW5hcm8tdG9vbGNoYWluL2RlcGxveS9pcGsvY21Q
-VFBfYmJnIC0gd2h5IGRvZXMgWW9jdG8gYnVpbGQgb25lIGZvciZuYnNwO3BhY2thZ2Vncm91cC1h
-cmFnby10aXNkay1hZGRvbnMtc2RrLXRhcmdldCwgYnV0IG5vdCBtaW5lPzxicj48L2Rpdj4=
-
-
-
---b1_4bb8604cc14591cc216356068d8a2836--
