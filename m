@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 3EF8F52AAA
+	by arago-project.org (Postfix) with ESMTPS id 3B20A52A91
 	for <meta-arago@arago-project.org>;
 	Mon, 13 Feb 2017 23:07:25 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 87D5E20B53;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5448220B99;
 	Mon, 13 Feb 2017 23:07:24 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id EhypVZF3kWy5; Mon, 13 Feb 2017 23:07:24 +0000 (UTC)
+	with ESMTP id MrAThVSQ00-x; Mon, 13 Feb 2017 23:07:24 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
 	[100.15.95.79])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 617EE20B89;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3524F20B52;
 	Mon, 13 Feb 2017 23:07:23 +0000 (UTC)
 Received: from gimli.denix (pippin [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id CBC4E162375;
+	by mail.denix.org (Postfix) with ESMTP id A8D61162372;
 	Mon, 13 Feb 2017 18:07:22 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Mon, 13 Feb 2017 18:07:18 -0500
-Message-Id: <1487027238-101793-5-git-send-email-denys@ti.com>
+Date: Mon, 13 Feb 2017 18:07:15 -0500
+Message-Id: <1487027238-101793-2-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1487027238-101793-1-git-send-email-denys@ti.com>
 References: <1487027238-101793-1-git-send-email-denys@ti.com>
-Subject: [morty/master][PATCH 5/5] tisdk-image: add basic support for omapl138
+Subject: [morty/master][PATCH 2/5] packagegroup-*-server-extra: k2-initramfs and parse-ip are KS2 packages in server image
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,51 +43,29 @@ X-List-Received-Date: Mon, 13 Feb 2017 23:07:27 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/classes/tisdk-image.bbclass                    | 3 +++
- meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc | 4 ++++
- 2 files changed, 7 insertions(+)
+ .../packagegroups/packagegroup-arago-base-tisdk-server-extra.bb       | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
-index 94c2718..cb47861 100644
---- a/meta-arago-distro/classes/tisdk-image.bbclass
-+++ b/meta-arago-distro/classes/tisdk-image.bbclass
-@@ -731,6 +731,9 @@ tisdk_image_build () {
-     elif [ -e ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.bin ]
-     then
-         cp ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.bin ${prebuilt_dir}/
-+    elif [ -e ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.ais ]
-+    then
-+        cp ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.ais ${prebuilt_dir}/
-     else
-         echo "Could not find the u-boot image"
-         return 1
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index 1115321..c619da5 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -34,18 +34,22 @@ TARGET_IMAGES = "arago-base-tisdk-image tisdk-rootfs-image"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+index 7724a94..99d8dda 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+@@ -105,6 +105,8 @@ ARAGO_TI_KEYSTONE_PKGS = "\
+     pktlib \
+     cppi-lld \
+     ipsecmgr-mod \
++    k2-initramfs \
++    parse-ip \
+     "
  
- # Some devices do not support display and use a server image instead
- TARGET_IMAGES_keystone = "arago-base-tisdk-image tisdk-server-rootfs-image tisdk-server-extra-rootfs-image"
-+TARGET_IMAGES_omapl138 = "arago-base-tisdk-image tisdk-server-rootfs-image tisdk-server-extra-rootfs-image"
- 
- TISDK_TOOLCHAIN = "meta-toolchain-arago-tisdk"
- TOOLCHAIN_SUFFIX = "-tisdk"
- 
- TISDK_TOOLCHAIN_keystone = "meta-toolchain-arago-tisdk-server"
- TOOLCHAIN_SUFFIX_keystone = "-tisdk-server"
-+TISDK_TOOLCHAIN_omapl138 = "meta-toolchain-arago-tisdk-server"
-+TOOLCHAIN_SUFFIX_omapl138 = "-tisdk-server"
- 
- IMAGE_INSTALL_QT = "\
-     packagegroup-arago-tisdk-qte-sdk-host \
- "
- 
- IMAGE_INSTALL_QT_keystone = ""
-+IMAGE_INSTALL_QT_omapl138 = ""
- 
- IMAGE_INSTALL = "\
-     packagegroup-arago-tisdk-addons-sdk-host \
+ # The following packages are not yet ready for k2g-evm
+@@ -179,6 +181,4 @@ RDEPENDS_${PN} = "\
+     file \
+     libbz2 \
+     boost \
+-    k2-initramfs \
+-    parse-ip \
+     "
 -- 
 2.7.4
 
