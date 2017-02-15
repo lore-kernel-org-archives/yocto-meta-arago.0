@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id B374052996
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 99C395209B
 	for <meta-arago@arago-project.org>;
-	Wed, 15 Feb 2017 20:00:55 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v1FK0elT022524;
-	Wed, 15 Feb 2017 14:00:40 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1FK0ZwI017631;
-	Wed, 15 Feb 2017 14:00:35 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 15 Feb 2017 14:00:35 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1FK0Yl5031705;
-	Wed, 15 Feb 2017 14:00:35 -0600
-Date: Wed, 15 Feb 2017 15:00:34 -0500
+	Wed, 15 Feb 2017 21:10:12 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 9607020B38;
+	Wed, 15 Feb 2017 21:10:12 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id A3li9lGTRFGx; Wed, 15 Feb 2017 21:10:12 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
+	[100.15.95.79])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 761CA20893;
+	Wed, 15 Feb 2017 21:10:11 +0000 (UTC)
+Received: from gimli.denix (pippin [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id D15F7162378;
+	Wed, 15 Feb 2017 16:10:10 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
-To: Douglas Royds <douglas.royds@taitradio.com>
-Message-ID: <20170215200034.GA19009@edge>
-References: <20170209211933.DE7C352A62@arago-project.org>
-MIME-Version: 1.0
-In-Reply-To: <20170209211933.DE7C352A62@arago-project.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] mtd-utils: Install renamed ubifs test scripts
+To: meta-arago@arago-project.org
+Date: Wed, 15 Feb 2017 16:10:09 -0500
+Message-Id: <1487193009-19240-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH] linux-libc-headers: update to include dma-buf.h export fix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,53 +37,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Feb 2017 20:00:56 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 15 Feb 2017 21:10:12 -0000
 
-Thanks, merged.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb       | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On Fri, Feb 10, 2017 at 10:19:26AM +1300, Douglas Royds wrote:
-> When upstream moved over to the autotools, they also renamed
-> tests/ubi-tests/runtests.sh and tests/ubi-tests/stress-test.sh,
-> and made them autotools macro files.
-> 
-> See http://git.infradead.org/mtd-utils.git/commitdiff/8a00021b2ab5529640e5acaca30a27cdaca04178
-> 
-> Signed-off-by: Douglas Royds <douglas@taitradio.com>
-> ---
->  meta-arago-extras/recipes-devtools/mtd/mtd-utils_git.bbappend | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/meta-arago-extras/recipes-devtools/mtd/mtd-utils_git.bbappend b/meta-arago-extras/recipes-devtools/mtd/mtd-utils_git.bbappend
-> index 5a1ad05..aadca84 100644
-> --- a/meta-arago-extras/recipes-devtools/mtd/mtd-utils_git.bbappend
-> +++ b/meta-arago-extras/recipes-devtools/mtd/mtd-utils_git.bbappend
-> @@ -19,8 +19,8 @@ do_install_append() {
->  	install -m 0755 mkvol_bad ${D}${sbindir}/
->  	install -m 0755 mkvol_paral ${D}${sbindir}/
->  	install -m 0755 rsvol ${D}${sbindir}/
-> -	install -m 0755 tests/ubi-tests/runtests.sh ${D}${sbindir}/
-> -	install -m 0755 tests/ubi-tests/stress-test.sh ${D}${sbindir}/
-> +	install -m 0755 tests/ubi-tests/runubitests.sh ${D}${sbindir}/
-> +	install -m 0755 tests/ubi-tests/ubi-stress-test.sh ${D}${sbindir}/
->  }
-> 
->  PACKAGES =+ "mtd-utils-ubifs-tests"
-> @@ -36,6 +36,6 @@ ${sbindir}/mkvol_basic \
->  ${sbindir}/mkvol_bad \
->  ${sbindir}/mkvol_paral \
->  ${sbindir}/rsvol \
-> -${sbindir}/runtests.sh \
-> -${sbindir}/stress-test.sh \
-> +${sbindir}/runubitests.sh \
-> +${sbindir}/ubi-stress-test.sh \
->  "
-> --
-> 2.7.4
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb
+index e27c49d..597d71f 100644
+--- a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb
++++ b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb
+@@ -1,9 +1,9 @@
+ require recipes-kernel/linux-libc-headers/linux-libc-headers.inc
+ 
+-PR_append = ".arago1"
++PR_append = ".arago2"
+ 
+ BRANCH = "ti-lsk-linux-4.9.y"
+-SRCREV = "b4aa954ead9260eaf7138755fc9d062a9f4630eb"
++SRCREV = "1c74e8801cf58a30394ae92236895599f2c77253"
+ 
+ KERNEL_GIT_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git"
+ KERNEL_GIT_PROTOCOL = "git"
+-- 
+2.7.4
+
 
