@@ -1,30 +1,29 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 8212D52AA3
+Return-Path: <h-gou@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 317CE5209B
 	for <meta-arago@arago-project.org>;
-	Wed, 15 Feb 2017 22:08:49 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 7BE4520B38;
-	Wed, 15 Feb 2017 22:08:49 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id xcoTolyuE41c; Wed, 15 Feb 2017 22:08:49 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5B5B520871;
-	Wed, 15 Feb 2017 22:08:48 +0000 (UTC)
-Received: from gimli.denix (pippin [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id BC44C162378;
-	Wed, 15 Feb 2017 17:08:47 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Wed, 15 Feb 2017 17:08:46 -0500
-Message-Id: <1487196526-138300-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] packagegroup-*-test: add pcitest
+	Wed, 15 Feb 2017 22:19:15 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v1FMJEow021745
+	for <meta-arago@arago-project.org>; Wed, 15 Feb 2017 16:19:14 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1FMJEYI011932
+	for <meta-arago@arago-project.org>; Wed, 15 Feb 2017 16:19:14 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 15 Feb 2017 16:19:14 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v1FMJEsS031246;	Wed, 15 Feb 2017 16:19:14 -0600
+From: Hongmei Gou <h-gou@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 15 Feb 2017 17:19:11 -0500
+Message-ID: <1487197151-8160-2-git-send-email-h-gou@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1487197151-8160-1-git-send-email-h-gou@ti.com>
+References: <1487197151-8160-1-git-send-email-h-gou@ti.com>
+MIME-Version: 1.0
+Subject: [morty/krogoth][PATCH 2/2] packagegroup-arago-tisdk-matrix: add ivahdmjpegenc demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,34 +36,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Feb 2017 22:08:49 -0000
+X-List-Received-Date: Wed, 15 Feb 2017 22:19:15 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-test.bb              | 3 ++-
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb      | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-index d01ba36..49697a6 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index f64a591..7598e66 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
 @@ -1,6 +1,6 @@
- DESCRIPTION = "Extended task to get System Test specific apps"
+ DESCRIPTION = "Task to include Matrix v2"
  LICENSE = "MIT"
--PR = "r44"
-+PR = "r45"
+-PR = "r63"
++PR = "r64"
  
  PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-@@ -31,6 +31,7 @@ ARAGO_TEST = "\
-     cpuset \
-     procps \
-     mtd-utils-ubifs-tests \
-+    pcitest \
-     "
- 
- ARAGO_TI_TEST = "\
+@@ -114,6 +114,7 @@ MATRIX_APPS_append_omap-a15 = "     \
+     matrix-multimedia-demo-h265dec  \
+     ${@bb.utils.contains('MACHINE_FEATURES','mmip','matrix-multimedia-demo-ivahdh264dec','matrix-multimedia-demo-h264dec',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','mmip','matrix-multimedia-demo-ivahdh264enc','',d)} \
++    ${@bb.utils.contains('MACHINE_FEATURES','mmip','matrix-multimedia-demo-ivahdmjpegenc','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','mmip','matrix-multimedia-demo-vip-vpe-ivahdmpeg4encdec','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','mmip','','matrix-multimedia-demo-mpeg4aacdec',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','mmip','','matrix-multimedia-demo-mpeg4dec',d)} \
 -- 
-2.7.4
+1.9.1
 
 
