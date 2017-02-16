@@ -1,29 +1,31 @@
 Return-Path: <denys@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 635A252980
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 2481A52AA3
 	for <meta-arago@arago-project.org>;
-	Wed, 15 Feb 2017 23:33:34 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v1FNXYUM005395
-	for <meta-arago@arago-project.org>; Wed, 15 Feb 2017 17:33:34 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1FNXYxP031018
-	for <meta-arago@arago-project.org>; Wed, 15 Feb 2017 17:33:34 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 15 Feb 2017 17:33:33 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v1FNXXl4012074;	Wed, 15 Feb 2017 17:33:33 -0600
+	Thu, 16 Feb 2017 19:58:46 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id F207920B64;
+	Thu, 16 Feb 2017 19:58:45 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id VhW3ihQhvt1f; Thu, 16 Feb 2017 19:58:45 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
+	[100.15.95.79])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C161320147;
+	Thu, 16 Feb 2017 19:58:42 +0000 (UTC)
+Received: from gimli.denix (pippin [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 4F756162374;
+	Thu, 16 Feb 2017 14:58:42 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 15 Feb 2017 18:33:27 -0500
-Message-ID: <1487201607-9571-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1487027238-101793-1-git-send-email-denys@ti.com>
-References: <1487027238-101793-1-git-send-email-denys@ti.com>
-MIME-Version: 1.0
-Subject: [morty/master][PATCH v2 1/5] packagegroup-arago-test: cpuburn-neon only works on ARMv7, mark accordingly
+To: meta-arago@arago-project.org
+Date: Thu, 16 Feb 2017 14:58:30 -0500
+Message-Id: <1487275110-60319-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Subject: [PATCH] kms++: update to the latest, package python bindings
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -36,54 +38,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Feb 2017 23:33:35 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 16 Feb 2017 19:58:46 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc: Alejandro Hernandez <ajhernandez@ti.com>
 ---
-Rebased
+ meta-arago-extras/recipes-graphics/kms++/kms++_git.bb | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
- .../packagegroups/packagegroup-arago-test.bb       |   13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-index 49697a6..d98dcde 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Extended task to get System Test specific apps"
- LICENSE = "MIT"
--PR = "r45"
-+PR = "r46"
+diff --git a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+index 9b30569..121479b 100644
+--- a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
++++ b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+@@ -4,17 +4,21 @@ LICENSE = "MPL-2.0"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=c670e18272184fc0e86e1648678b4f2a"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ PV = "1.0"
+-PR = "r0"
++PR = "r1"
  
-@@ -25,7 +25,6 @@ ARAGO_TEST = "\
-     v4l-utils \
-     smcroute \
-     rwmem \
--    cpuburn-neon \
-     pulseaudio-misc \
-     kselftests \
-     cpuset \
-@@ -34,7 +33,15 @@ ARAGO_TEST = "\
-     pcitest \
-     "
+ BRANCH = "master"
+ SRC_URI = "git://github.com/tomba/kmsxx.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "546e8d16dbc4dc74038dbcf86567186dbd80c3ab"
++SRCREV = "6d28a0dd5d6747116f631d24bcc59d944a1b8b95"
  
--ARAGO_TI_TEST = "\
-+ARAGO_TEST_append_armv7a = " \
-+    cpuburn-neon \
-+"
+-DEPENDS = "drm python3 python3-pybind11"
++DEPENDS = "drm python3-pybind11"
 +
-+ARAGO_TEST_append_armv7ve = " \
-+    cpuburn-neon \
-+"
++PACKAGES =+ "${PN}-python"
 +
-+ARAGO_TI_TEST = " \
-     ltp-ddt \
-     input-utils \
-     cpuloadgen \
++FILES_${PN}-python += "${libdir}/python*/site-packages"
+ 
+ S = "${WORKDIR}/git"
+ 
+-inherit cmake update-alternatives
++inherit python3native cmake update-alternatives
+ 
+ ALTERNATIVE_PRIORITY = "100"
+ ALTERNATIVE_${PN} = "kmstest"
 -- 
-1.7.9.5
+2.7.4
 
 
