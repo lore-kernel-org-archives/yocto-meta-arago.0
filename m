@@ -1,30 +1,30 @@
-Return-Path: <denis@denix.org>
+Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 7C6DC52999
+	by arago-project.org (Postfix) with ESMTPS id F15F152999
 	for <meta-arago@arago-project.org>;
-	Fri, 17 Feb 2017 20:27:07 +0000 (UTC)
+	Fri, 17 Feb 2017 20:28:16 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A8D3F20B96;
-	Fri, 17 Feb 2017 20:27:04 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id EA78920B96;
+	Fri, 17 Feb 2017 20:28:16 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id OEq9EcQE8Im3; Fri, 17 Feb 2017 20:27:04 +0000 (UTC)
+	with ESMTP id ZxQhI5zeFCgu; Fri, 17 Feb 2017 20:28:16 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
 	[100.15.95.79])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 88F1120999;
-	Fri, 17 Feb 2017 20:27:03 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id CF12720999;
+	Fri, 17 Feb 2017 20:28:15 +0000 (UTC)
 Received: from gimli.denix (pippin [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id B3B5916237D;
-	Fri, 17 Feb 2017 15:27:02 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
+	by mail.denix.org (Postfix) with ESMTP id 3C09516237D;
+	Fri, 17 Feb 2017 15:28:15 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Fri, 17 Feb 2017 15:26:58 -0500
-Message-Id: <1487363218-70818-1-git-send-email-denis@denix.org>
+Date: Fri, 17 Feb 2017 15:28:14 -0500
+Message-Id: <1487363294-71224-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [krogoth][PATCH] external-linaro-toolchain: reorder PACKAGES so libgcc-dev picks libgcc.a
+Subject: [morty/master][PATCH] external-linaro-toolchain: reorder PACKAGES so libgcc-dev picks libgcc.a
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,9 +37,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Feb 2017 20:27:13 -0000
-
-From: Denys Dmytriyenko <denys@ti.com>
+X-List-Received-Date: Fri, 17 Feb 2017 20:28:17 -0000
 
 Recent update to the upstream external-linaro-toolchain.bb in meta-linaro
 changed the order of PACKAGES and libgcc-dev is now towards the end of the
@@ -53,15 +51,15 @@ Signed-off-by: Denys Dmytriyenko <denys@ti.com>
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
-index 2c37f02..44b6a34 100644
+index 31f5ba0..dda5607 100644
 --- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
 +++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
 @@ -6,7 +6,7 @@ ALLOW_EMPTY_ldd = "1"
  ALLOW_EMPTY_libstdc++ = "1"
  ALLOW_EMPTY_libgomp = "1"
  
--PR_append = ".arago32"
-+PR_append = ".arago33"
+-PR_append = ".arago33"
++PR_append = ".arago34"
  
  PROVIDES := "${@oe_filter_out('virtual/linux-libc-headers', '${PROVIDES}', d)}"
  PROVIDES := "${@oe_filter_out('linux-libc-headers', '${PROVIDES}', d)}"
