@@ -1,30 +1,31 @@
 Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 11F4352999
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 46AB4529CD
 	for <meta-arago@arago-project.org>;
-	Fri, 17 Feb 2017 23:19:18 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id DC6E820B96;
-	Fri, 17 Feb 2017 23:19:18 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id tKHCjT0C5Ou8; Fri, 17 Feb 2017 23:19:18 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B7BD220893;
-	Fri, 17 Feb 2017 23:19:17 +0000 (UTC)
-Received: from gimli.denix (pippin [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id B31F316237D;
-	Fri, 17 Feb 2017 18:19:16 -0500 (EST)
+	Sat, 18 Feb 2017 03:21:26 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v1I3LPXV016827
+	for <meta-arago@arago-project.org>; Fri, 17 Feb 2017 21:21:25 -0600
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1I3LPqh001645
+	for <meta-arago@arago-project.org>; Fri, 17 Feb 2017 21:21:25 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 17 Feb 2017 21:21:25 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1I3LPI7012530;
+	Fri, 17 Feb 2017 21:21:25 -0600
+Date: Fri, 17 Feb 2017 22:21:24 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Fri, 17 Feb 2017 18:19:16 -0500
-Message-Id: <1487373556-83102-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [PATCH] ltp-ddt: update to the latest
+To: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <20170218032124.GA26872@edge>
+References: <1487275110-60319-1-git-send-email-denys@ti.com>
+	<b38e8d46-ea7b-2a4d-393c-4de3c4b26973@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <b38e8d46-ea7b-2a4d-393c-4de3c4b26973@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH] kms++: update to the latest, package python bindings
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,36 +38,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Feb 2017 23:19:19 -0000
+X-List-Received-Date: Sat, 18 Feb 2017 03:21:26 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Fri, Feb 17, 2017 at 09:06:01AM +0200, Tomi Valkeinen wrote:
+> On 16/02/17 21:58, Denys Dmytriyenko wrote:
+> > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> > Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> > Cc: Alejandro Hernandez <ajhernandez@ti.com>
+> > ---
+> >  meta-arago-extras/recipes-graphics/kms++/kms++_git.bb | 12 ++++++++----
+> >  1 file changed, 8 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+> > index 9b30569..121479b 100644
+> > --- a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+> > +++ b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+> > @@ -4,17 +4,21 @@ LICENSE = "MPL-2.0"
+> >  LIC_FILES_CHKSUM = "file://LICENSE;md5=c670e18272184fc0e86e1648678b4f2a"
+> >  
+> >  PV = "1.0"
+> > -PR = "r0"
+> > +PR = "r1"
+> >  
+> >  BRANCH = "master"
+> >  SRC_URI = "git://github.com/tomba/kmsxx.git;protocol=git;branch=${BRANCH}"
+> > -SRCREV = "546e8d16dbc4dc74038dbcf86567186dbd80c3ab"
+> > +SRCREV = "6d28a0dd5d6747116f631d24bcc59d944a1b8b95"
+> >  
+> > -DEPENDS = "drm python3 python3-pybind11"
+> > +DEPENDS = "drm python3-pybind11"
+> 
+> I'm not familiar with the packaging so I could be wrong, but I presume
+> these are dependencies to other packages? kms++ gets pybind11 as a git
+> submodule, so I don't think there should be a dependency to
+> python3-pybind11 package.
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb
-index b9d286d..22b9621 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
- 
--PR = "r9"
-+PR = "r10"
- PV_append = "+git${SRCPV}"
- 
- PROVIDES += "ltp"
-@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
- 
- inherit autotools-brokensep
- 
--SRCREV = "a45af5cba34a1eda75ec55b3259ca05d83dad9b6"
-+SRCREV = "429d12779e28e1997f656db19c5bf73edf9e9365"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+Tomi,
+
+That wasn't the case before, right? If that's how it works now, then we can 
+probably drop that dependency.
+
 -- 
-2.7.4
-
+Denys
 
