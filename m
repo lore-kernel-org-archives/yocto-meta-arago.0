@@ -1,30 +1,27 @@
-Return-Path: <denys@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 95FCD52995
+Return-Path: <karthik.ramanan@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id F2DA152A60
 	for <meta-arago@arago-project.org>;
-	Fri, 24 Feb 2017 19:49:41 +0000 (UTC)
+	Sun, 26 Feb 2017 16:55:05 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v1OJnfue001537
-	for <meta-arago@arago-project.org>; Fri, 24 Feb 2017 13:49:41 -0600
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1OJnfWk019878
-	for <meta-arago@arago-project.org>; Fri, 24 Feb 2017 13:49:41 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 24 Feb 2017 13:49:40 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1OJne1L017926;
-	Fri, 24 Feb 2017 13:49:40 -0600
-Date: Fri, 24 Feb 2017 14:49:40 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Ruei, Eric" <e-ruei1@ti.com>
-Message-ID: <20170224194939.GV26872@edge>
-References: <009C030982313E4589C6BC55FBF1E82A2534C44C@DFLE09.ent.ti.com>
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v1P3nZM5027309
+	for <meta-arago@arago-project.org>; Fri, 24 Feb 2017 21:49:35 -0600
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1P3nZZT006125
+	for <meta-arago@arago-project.org>; Fri, 24 Feb 2017 21:49:35 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 24 Feb 2017 21:49:34 -0600
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1P3nXl5010656;
+	Fri, 24 Feb 2017 21:49:34 -0600
+From: Karthik Ramanan <a0393906@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Sat, 25 Feb 2017 09:19:31 +0530
+Message-ID: <1487994571-79911-1-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <009C030982313E4589C6BC55FBF1E82A2534C44C@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: e-mail problem
+Subject: [master, krogoth] packagegroup-arago-gst*: remove gstreamer1.0-plugins-dsp66 for dra7xx-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,38 +34,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Feb 2017 19:49:42 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Sun, 26 Feb 2017 16:55:06 -0000
+Content-Type: text/plain
 
-Eric,
+This is causing an issue with gst-inspect and gst-launch
 
-I found all your 9 emails in moderation queue - they were held due to size 
-larger tha 100KB.
+Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+---
+ meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb | 1 -
+ 1 file changed, 1 deletion(-)
 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
+index 4fc0255..ad1fada 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
+@@ -19,7 +19,6 @@ GSTREAMER_DEPS = " \
+ 
+ GSTREAMER_DEPS_append_dra7xx = " \
+     gstreamer1.0-plugins-hevc \
+-    gstreamer1.0-plugins-dsp66 \
+ "
+ 
+ GSTREAMER_DEPS_append_keystone = " \
 -- 
-Denys
+1.9.1
 
-
-On Fri, Feb 24, 2017 at 01:53:34PM -0500, Ruei, Eric wrote:
->    Hi, Denys:
-> 
->     
-> 
->    I have had problem to send e-mail to meta-arago from both Window Outlook
->    and my Linux PC since yesterday.
-> 
->    Do you know what could be the problem?
-> 
->    By the way, I am still able to receive messages from meta-arago.
-> 
->     
-> 
->    Best regards,
-> 
->     
-> 
->    Eric
-> 
->     
 
