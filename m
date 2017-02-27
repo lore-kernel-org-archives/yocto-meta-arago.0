@@ -1,27 +1,30 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id F2DA152A60
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 4CAAB52980
 	for <meta-arago@arago-project.org>;
-	Sun, 26 Feb 2017 16:55:05 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v1P3nZM5027309
-	for <meta-arago@arago-project.org>; Fri, 24 Feb 2017 21:49:35 -0600
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1P3nZZT006125
-	for <meta-arago@arago-project.org>; Fri, 24 Feb 2017 21:49:35 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 24 Feb 2017 21:49:34 -0600
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1P3nXl5010656;
-	Fri, 24 Feb 2017 21:49:34 -0600
-From: Karthik Ramanan <a0393906@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Sat, 25 Feb 2017 09:19:31 +0530
-Message-ID: <1487994571-79911-1-git-send-email-a0393906@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [master, krogoth] packagegroup-arago-gst*: remove gstreamer1.0-plugins-dsp66 for dra7xx-evm
+	Mon, 27 Feb 2017 23:07:06 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 37EC3209DA;
+	Mon, 27 Feb 2017 23:07:05 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id nPq8Gk8qceob; Mon, 27 Feb 2017 23:07:05 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
+	[100.15.95.79])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 182AC20481;
+	Mon, 27 Feb 2017 23:07:04 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 5D2E416238C;
+	Mon, 27 Feb 2017 18:07:03 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Mon, 27 Feb 2017 18:07:03 -0500
+Message-Id: <1488236823-131998-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [PATCH] packagegroup-*-tisdk-addons: add kms++-python package
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -34,29 +37,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 26 Feb 2017 16:55:06 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 27 Feb 2017 23:07:09 -0000
 
-This is causing an issue with gst-inspect and gst-launch
-
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb | 1 -
- 1 file changed, 1 deletion(-)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb      | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-index 4fc0255..ad1fada 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-@@ -19,7 +19,6 @@ GSTREAMER_DEPS = " \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 97184b1..d2d34ab 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r55"
++PR = "r56"
  
- GSTREAMER_DEPS_append_dra7xx = " \
-     gstreamer1.0-plugins-hevc \
--    gstreamer1.0-plugins-dsp66 \
- "
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- GSTREAMER_DEPS_append_keystone = " \
+@@ -22,6 +22,7 @@ UTILS = " \
+     ptpd \
+     libdrm-kms \
+     kms++ \
++    kms++-python \
+     ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
+     stream \
+     strongswan \
 -- 
-1.9.1
+2.7.4
 
 
