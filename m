@@ -1,30 +1,27 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id F0F2A52970
+Return-Path: <j-stiffler@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 7FF8352AC4
 	for <meta-arago@arago-project.org>;
-	Tue, 28 Feb 2017 02:41:48 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 83FB020B98;
-	Tue, 28 Feb 2017 02:41:48 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 0Y9nSv27WPoo; Tue, 28 Feb 2017 02:41:48 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5C3D4209A1;
-	Tue, 28 Feb 2017 02:41:47 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id A1FAA16238C;
-	Mon, 27 Feb 2017 21:41:46 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 27 Feb 2017 21:41:45 -0500
-Message-Id: <1488249706-52208-1-git-send-email-denis@denix.org>
+	Tue, 28 Feb 2017 16:01:38 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v1SG1cfA025740
+	for <meta-arago@arago-project.org>; Tue, 28 Feb 2017 10:01:38 -0600
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v1SG1bIN028660
+	for <meta-arago@arago-project.org>; Tue, 28 Feb 2017 10:01:38 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 28 Feb 2017 10:01:37 -0600
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v1SG1bOf030075;	Tue, 28 Feb 2017 10:01:37 -0600
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 28 Feb 2017 10:59:19 -0500
+Message-ID: <1488297560-24159-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH 1/2] kexec-tools: update to 2.0.14
+MIME-Version: 1.0
+Subject: [krogoth/morty/master][PATCH 1/2] packagegroup-arago-tisdk-opencl*: add linalg for dra7xx
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,37 +34,85 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Feb 2017 02:41:52 -0000
+X-List-Received-Date: Tue, 28 Feb 2017 16:01:38 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../kexec/{kexec-tools_2.0.13pre.bb => kexec-tools_2.0.14.bb}       | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
- rename meta-arago-extras/recipes-kernel/kexec/{kexec-tools_2.0.13pre.bb => kexec-tools_2.0.14.bb} (91%)
+ .../packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bb       | 6 +++++-
+ .../packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb     | 6 +++++-
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb   | 6 +++++-
+ 3 files changed, 15 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.13pre.bb b/meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.14.bb
-similarity index 91%
-rename from meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.13pre.bb
-rename to meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.14.bb
-index 7f498c9..9cf5e94 100644
---- a/meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.13pre.bb
-+++ b/meta-arago-extras/recipes-kernel/kexec/kexec-tools_2.0.14.bb
-@@ -4,10 +4,10 @@ EXTRA_OECONF = " --with-zlib=yes"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bb
+index aac2472..0e0e112 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install sources for OpenCL/MP apps and demos"
+ LICENSE = "MIT"
+-PR = "r0"
++PR = "r1"
  
- S = "${WORKDIR}/git"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
--PV = "2.0.12+2.0.13pre"
-+PV = "2.0.14"
+@@ -15,6 +15,10 @@ UTILS_append_k2hk-evm = " \
+     linalg-examples-src \
+ "
  
--BRANCH="master"
--SRCREV = "4db7f295d59651ead1f7632198fe8c113a2e8890"
-+BRANCH = "master"
-+SRCREV = "69291dbef14f02b5b97d44220412b02a9fa7b5eb"
++UTILS_append_dra7xx = " \
++    linalg-examples-src \
++"
++
+ RDEPENDS_${PN} = "\
+     ${UTILS} \
+ "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb
+index ac235f0..ea0f724 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install headers and libraries of OpenCL/MP and related components"
+ LICENSE = "MIT"
+-PR = "r1"
++PR = "r2"
  
- SRC_URI = "git://git.kernel.org/pub/scm/utils/kernel/kexec/kexec-tools.git;protocol=git;branch=${BRANCH}"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
+@@ -16,6 +16,10 @@ UTILS_append_k2hk-evm = " \
+     linalg-dev \
+ "
+ 
++UTILS_append_dra7xx = " \
++    linalg-dev \
++"
++
+ RDEPENDS_${PN} = "\
+     ${UTILS} \
+ "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb
+index 6898dd6..e882e2a 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install OpenCL/MP and related components"
+ LICENSE = "MIT"
+-PR = "r1"
++PR = "r2"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -23,6 +23,10 @@ EXTRA_PKGS_append_k2hk-evm = " \
+     linalg-examples \
+ "
+ 
++EXTRA_PKGS_append_dra7xx = " \
++    linalg-examples \
++"
++
+ RDEPENDS_${PN} = "\
+     ${MAIN_PKGS} \
+ "
 -- 
 2.7.4
 
