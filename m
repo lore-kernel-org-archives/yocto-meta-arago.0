@@ -1,30 +1,37 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id EDA1F52AA7
+Return-Path: <a0869574local@uda0869574b>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 12FB352A63
 	for <meta-arago@arago-project.org>;
-	Thu,  2 Mar 2017 19:17:03 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 32A2120B64;
-	Thu,  2 Mar 2017 19:17:04 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id vsTUgOiUmpJ8; Thu,  2 Mar 2017 19:17:04 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 13B762088F;
-	Thu,  2 Mar 2017 19:17:03 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 5FF531623A0;
-	Thu,  2 Mar 2017 14:17:02 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu,  2 Mar 2017 14:17:00 -0500
-Message-Id: <1488482220-77911-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] weston: update customizations to 2.0.0
+	Thu,  2 Mar 2017 20:51:50 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v22KpdHc024595
+	for <meta-arago@arago-project.org>; Thu, 2 Mar 2017 14:51:39 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1488487899;
+	bh=Hv9P79QAZRosf+oJ/l5Ox5+Ww0HeXwoaIlt3GvfufTo=;
+	h=From:To:CC:Subject:Date;
+	b=IypXutLy74mk11AqLE09gXy8nKk5RRSZrfGGVCvkowccuR/mrSvRkXlUe4HkQrm+x
+	RDToL0btCFVUuvwQPOnaFjthcBaXkdOb5oxm+jk+TfN+ZLFvEf3AdzjVILMQ/Qgpzn
+	5lEltFBJO6VdCykGohjMFosYcoA6rxZO81FCspkY=
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v22KpY7k029152
+	for <meta-arago@arago-project.org>; Thu, 2 Mar 2017 14:51:34 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 2 Mar 2017 14:51:34 -0600
+Received: from uda0869574b (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v22KpYhG029689;
+	Thu, 2 Mar 2017 14:51:34 -0600
+Received: from a0869574local by uda0869574b with local (Exim 4.82)
+	(envelope-from <a0869574local@uda0869574b>)	id 1cjXhD-0001dc-Bg;
+	Thu, 02 Mar 2017 15:51:31 -0500
+From: Jianzhong Xu <xuj@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 2 Mar 2017 15:51:24 -0500
+Message-ID: <1488487884-6257-1-git-send-email-xuj@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [PATCH] LibArch: added K2G support for PSDK-RTOS.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,129 +44,50 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Mar 2017 19:17:04 -0000
+X-List-Received-Date: Thu, 02 Mar 2017 20:51:50 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jianzhong Xu <xuj@ti.com>
 ---
- .../recipes-graphics/wayland/weston-conf_1.11.1.bb  | 21 ---------------------
- .../recipes-graphics/wayland/weston-conf_2.0.0.bb   | 21 +++++++++++++++++++++
- .../recipes-graphics/wayland/weston_1.11.1.bbappend | 20 --------------------
- .../recipes-graphics/wayland/weston_2.0.0.bbappend  | 20 ++++++++++++++++++++
- 4 files changed, 41 insertions(+), 41 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-conf_1.11.1.bb
- create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-conf_2.0.0.bb
- delete mode 100644 meta-arago-distro/recipes-graphics/wayland/weston_1.11.1.bbappend
- create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend
+ recipes-ti/libarch-rtos/libarch-rtos_git.bb | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-conf_1.11.1.bb b/meta-arago-distro/recipes-graphics/wayland/weston-conf_1.11.1.bb
-deleted file mode 100644
-index 16cac2b..0000000
---- a/meta-arago-distro/recipes-graphics/wayland/weston-conf_1.11.1.bb
-+++ /dev/null
-@@ -1,21 +0,0 @@
--SUMMARY = "Weston configuration files"
--HOMEPAGE = "http://wayland.freedesktop.org"
--LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+diff --git a/recipes-ti/libarch-rtos/libarch-rtos_git.bb b/recipes-ti/libarch-rtos/libarch-rtos_git.bb
+index ce9cd49..e959f29 100644
+--- a/recipes-ti/libarch-rtos/libarch-rtos_git.bb
++++ b/recipes-ti/libarch-rtos/libarch-rtos_git.bb
+@@ -4,7 +4,7 @@ include recipes-ti/libarch/libarch.inc
+ 
+ PR = "${INC_PR}.tisdk-int3"
+ 
+-COMPATIBLE_MACHINE_append = "|c667x-evm"
++COMPATIBLE_MACHINE_append = "|c667x-evm|k2g-evm"
+ 
+ DEPENDS_remove = "opencl \
+                   opencl-monitor \
+@@ -18,19 +18,17 @@ DEPENDS_append = " ti-ipc-rtos \
+ "
+ 
+ TARGET_c667x-evm = "SOC_C6678"
++TARGET_k2g-evm   = "SOC_K2G"
+ 
+ # Variables required to compile libarch examples
+ export IPC_DIR       = "${IPC_INSTALL_DIR}"
+ export OMP_DIR       = "${OMP_INSTALL_DIR}"
+-export C6678_PDK_DIR = "${PDK_INSTALL_DIR}"
++export PDK_DIR       = "${PDK_INSTALL_DIR}"
+ export EDMA3_DIR     = "${EDMA3_LLD_INSTALL_DIR}"
+ export LIBARCH_DIR   = "${S}/exports/libarch_${PV}"
+ 
+ do_compile() {
+     make -f build/Makefile TARGET=${TARGET} LIBOS=LIB_RTOS
 -
--PR = "r2"
--
--PACKAGE_ARCH = "${MACHINE_ARCH}"
--
--SRC_URI = "file://wayland_env.sh \
--           file://weston.ini \
--"
--
--# Add custom Arago Wayland Environment script file
--do_install () {
--    install -d ${D}${sysconfdir}/profile.d
--    install -m 0644 ${WORKDIR}/weston.ini ${D}${sysconfdir}
--    install -m 0644 ${WORKDIR}/wayland_env.sh ${D}${sysconfdir}/profile.d/
--}
--
--FILES_${PN} += "${sysconfdir}/profile.d/* ${sysconfdir}/weston.ini"
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-conf_2.0.0.bb b/meta-arago-distro/recipes-graphics/wayland/weston-conf_2.0.0.bb
-new file mode 100644
-index 0000000..16cac2b
---- /dev/null
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston-conf_2.0.0.bb
-@@ -0,0 +1,21 @@
-+SUMMARY = "Weston configuration files"
-+HOMEPAGE = "http://wayland.freedesktop.org"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+
-+PR = "r2"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+SRC_URI = "file://wayland_env.sh \
-+           file://weston.ini \
-+"
-+
-+# Add custom Arago Wayland Environment script file
-+do_install () {
-+    install -d ${D}${sysconfdir}/profile.d
-+    install -m 0644 ${WORKDIR}/weston.ini ${D}${sysconfdir}
-+    install -m 0644 ${WORKDIR}/wayland_env.sh ${D}${sysconfdir}/profile.d/
-+}
-+
-+FILES_${PN} += "${sysconfdir}/profile.d/* ${sysconfdir}/weston.ini"
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.1.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.1.bbappend
-deleted file mode 100644
-index d0691ad..0000000
---- a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.1.bbappend
-+++ /dev/null
-@@ -1,20 +0,0 @@
--# When configured for fbdev compositor, make it the default
--PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
--PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
--
--PR_append = ".arago16"
--
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--RDEPENDS_${PN} += "weston-conf"
--
--#SRC_URI += " \
--#	file://0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.patch \
--#	file://0002-Weston1.9.0-Allow-visual_id-to-be-0.patch \
--#	file://0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.patch \
--#	file://0004-Weston1.9.0-Fix-touch-screen-crash-issue.patch \
--#	file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
--#	file://0001-Add-soc-performance-monitor-utilites.patch \
--#	file://0001-compositor-drm-support-RGB565-with-pixman-renderer.patch \
--#	file://0001-compositor-drm-fix-hotplug-weston-termination-proble.patch \
--#"
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend
-new file mode 100644
-index 0000000..d0691ad
---- /dev/null
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend
-@@ -0,0 +1,20 @@
-+# When configured for fbdev compositor, make it the default
-+PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
-+PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
-+
-+PR_append = ".arago16"
-+
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+RDEPENDS_${PN} += "weston-conf"
-+
-+#SRC_URI += " \
-+#	file://0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.patch \
-+#	file://0002-Weston1.9.0-Allow-visual_id-to-be-0.patch \
-+#	file://0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.patch \
-+#	file://0004-Weston1.9.0-Fix-touch-screen-crash-issue.patch \
-+#	file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
-+#	file://0001-Add-soc-performance-monitor-utilites.patch \
-+#	file://0001-compositor-drm-support-RGB565-with-pixman-renderer.patch \
-+#	file://0001-compositor-drm-fix-hotplug-weston-termination-proble.patch \
-+#"
+-    cd ${LIBARCH_DIR}/examples
+-    make TARGET=${TARGET} LIBOS=LIB_RTOS
+ }
+ 
+ deltask do_create_srcipk
 -- 
-2.7.4
+1.9.1
 
 
