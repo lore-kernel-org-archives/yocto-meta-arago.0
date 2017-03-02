@@ -1,30 +1,34 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 9B90C52A61
+Return-Path: <h-gou@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 211DE529FA
 	for <meta-arago@arago-project.org>;
-	Thu,  2 Mar 2017 02:10:44 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B015B20B6A;
-	Thu,  2 Mar 2017 02:10:44 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id WXS2-IgoufwR; Thu,  2 Mar 2017 02:10:44 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 82F272088F;
-	Thu,  2 Mar 2017 02:10:43 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id DF3E816230F;
-	Wed,  1 Mar 2017 21:10:42 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed,  1 Mar 2017 21:10:41 -0500
-Message-Id: <1488420642-102485-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH 1/2] conf, recipes: replace use of machine feature opencl with dsp
+	Thu,  2 Mar 2017 17:23:28 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v22HNQVV019915
+	for <meta-arago@arago-project.org>; Thu, 2 Mar 2017 11:23:26 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1488475406;
+	bh=Rl2shmETpRNrp8YbH+zqgcV+V7eTy/fkZetKA/RSE3g=;
+	h=From:To:CC:Subject:Date;
+	b=nZiAUFC7wc7UekTst3EF4ngtKmUKzrGZCEXQFRQkunc++1MhBZRfMt92mVrfcTYef
+	d1xUXb61cGspNJgOdVNjl00WwdgJrYXOxJUFH5pFHycWQUagMCsUqOYeeE7zKl78qU
+	ITPDpnWQOuD58CLSmCJckh75kXk0ZmiVhPpK68xw=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v22HNQFY028632
+	for <meta-arago@arago-project.org>; Thu, 2 Mar 2017 11:23:26 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 2 Mar 2017 11:23:25 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v22HNPH4016336;	Thu, 2 Mar 2017 11:23:26 -0600
+From: Hongmei Gou <h-gou@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 2 Mar 2017 12:23:24 -0500
+Message-ID: <1488475404-24098-1-git-send-email-h-gou@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [morty/krogoth][PATCH] gstreamer1.0-plugins-dsp66: bump SRCREV for oclconv kernel fix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,172 +41,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Mar 2017 02:10:45 -0000
+X-List-Received-Date: Thu, 02 Mar 2017 17:23:30 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+* The file scope OpenCL context object (canny_ctx(CL_DEVICE_TYPE_ACCELERATOR))
+  resulted in constructor for Context called during g_module_open (g_plugin.c) of
+  "/usr/lib/gstreamer-1.0/libgstdsp66.so", leading to OpenCL device initialization
+  and subsequent CMEM error (when CMEM is not installed). The fix is to create the
+  Context object on the stack, along the lines of oclconv_imgproc.
 
-As opencl is rather belongs to DISTRO_FEATURES and not MACHINE_FEATURES
-Moreover, opencl as MACHINE_FEATURES was not fully working and will require
-more changes.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
 ---
- meta-arago-distro/conf/distro/include/branding-core.inc               | 4 ----
- meta-arago-distro/conf/distro/include/branding-processor-sdk.inc      | 2 +-
- meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc      | 2 +-
- meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb           | 4 ++--
- .../recipes-core/images/tisdk-server-extra-rootfs-image.bb            | 2 +-
- meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb    | 2 +-
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb     | 3 ++-
- .../packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb     | 2 +-
- .../packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb   | 2 +-
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb | 2 +-
- .../packagegroups/packagegroup-arago-toolchain-tisdk-target.bb        | 2 +-
- 11 files changed, 12 insertions(+), 15 deletions(-)
+ .../gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb                  | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
-index 5df8109..a506e3c 100644
---- a/meta-arago-distro/conf/distro/include/branding-core.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-core.inc
-@@ -10,7 +10,3 @@ ALTERNATIVE_PRIORITY_pn-opencl-monitor = "1"
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb
+index 6977a47..201e221 100644
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb
++++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb
+@@ -4,7 +4,7 @@ LICENSE = "BSD-3-Clause"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=2827f94fc0a1adeff4d9702e97ce2979"
  
- # Raise priority for sample IPC FW images
- ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
--
--# Temporarily disable "opencl" machine feature for all SOCs while building
--# latest code base, until it is fixed for 4.9 kernel
--MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('opencl', '')}"
-diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-index 01ae13e..166e259 100644
---- a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
-@@ -1,7 +1,7 @@
- ARAGO_TISDK_IMAGE = "processor-sdk-linux-image"
+ SRC_URI = "git://git.ti.com/processor-sdk/gst-plugin-dsp66.git;protocol=git;branch=master"
+-SRCREV = "0db24f44b49ad673bcebce5d25a63ea41551ebec"
++SRCREV = "0abedafadbed693592804f23482a9447d81b2dbf"
  
- # Set CMEM reserved memory region
--RESERVE_CMEM = "${@bb.utils.contains('MACHINE_FEATURES','opencl','1','0',d)}"
-+RESERVE_CMEM = "${@bb.utils.contains('MACHINE_FEATURES','dsp','1','0',d)}"
- CMEM_BASE_omap-a15 ?= "a0000000"
- CMEM_SIZE_omap-a15 ?= "08000000"
+ S = "${WORKDIR}/git"
  
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index c619da5..71041f8 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -53,7 +53,7 @@ IMAGE_INSTALL_QT_omapl138 = ""
+@@ -14,7 +14,7 @@ DEPENDS = "gstreamer1.0 gstreamer1.0-plugins-base opencl ti-cgt6x-native clocl-n
  
- IMAGE_INSTALL = "\
-     packagegroup-arago-tisdk-addons-sdk-host \
--    ${@bb.utils.contains('MACHINE_FEATURES','opencl','packagegroup-arago-tisdk-opencl-sdk-host','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-sdk-host','',d)} \
-     packagegroup-arago-tisdk-crypto-sdk-host \
-     ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics-sdk-host','',d)} \
-     packagegroup-arago-tisdk-matrix-sdk-host \
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-index a169107..c511b83 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-@@ -10,8 +10,8 @@ IMAGE_INSTALL += "\
-     packagegroup-arago-test-addons \
-     ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics','',d)} \
-     packagegroup-arago-tisdk-qte \
--    ${@bb.utils.contains('MACHINE_FEATURES','opencl','packagegroup-arago-tisdk-opencl','',d)} \
--    ${@bb.utils.contains('MACHINE_FEATURES','opencl','packagegroup-arago-tisdk-opencl-extra','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-extra','',d)} \
-     packagegroup-arago-tisdk-connectivity \
-     packagegroup-arago-tisdk-crypto \
-     packagegroup-arago-tisdk-matrix \
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
-index aafb814..f0c7cef 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
-@@ -3,7 +3,7 @@ require recipes-core/images/tisdk-server-rootfs-image.bb
- IMAGE_INSTALL += "\
-     packagegroup-arago-test-addons \
-     packagegroup-arago-tisdk-addons-extra \
--    ${@bb.utils.contains('MACHINE_FEATURES','opencl','packagegroup-arago-tisdk-opencl-extra','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-extra','',d)} \
-     packagegroup-arago-tisdk-multimedia \
- "
+ inherit autotools-brokensep pkgconfig gettext
  
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-index 2f5857f..b64d092 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-@@ -6,7 +6,7 @@ SPLASH = ""
+-PR = "r0"
++PR = "r1"
  
- IMAGE_INSTALL += "\
-     packagegroup-arago-tisdk-addons \
--    ${@bb.utils.contains('MACHINE_FEATURES','opencl','packagegroup-arago-tisdk-opencl','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl','',d)} \
-     packagegroup-arago-tisdk-crypto \
-     packagegroup-arago-tisdk-matrix \
-     packagegroup-arago-base-tisdk-server-extra \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 047cab3..ece837d 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -128,5 +128,6 @@ RDEPENDS_${PN} = "        \
-     ${MATRIX_TOUCH_APPS}  \
-     ${MATRIX_APPS}        \
-     ${@bb.utils.contains('MACHINE_FEATURES','sgx',"${MATRIX_SGX_DEMOS}",'',d)} \
--    ${@bb.utils.contains('MACHINE_FEATURES','opencl',"${MATRIX_OPENCL_APPS}",'',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','dsp',"${MATRIX_OPENCL_APPS}",'',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','dsp',"${MATRIX_OPENCV_OPENCL_APPS}",'',d)} \
- "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
-index 9bb62fc..0740ae8 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
-@@ -14,7 +14,7 @@ MULTIMEDIA_append_ti43x = " \
- "
+ RDEPENDS_${PN} += " opencl-runtime"
  
- MULTIMEDIA_append_dra7xx = " \
--    ${@bb.utils.contains('MACHINE_FEATURES', 'opencl', 'qt-opencv-opencl-opengl-multithreaded-src', '', d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'qt-opencv-opencl-opengl-multithreaded-src', '', d)} \
- "
- 
- #Demo doesn't work on 3.14
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
-index e77f66d..c697850 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
-@@ -11,7 +11,7 @@ MULTIMEDIA = ""
- MULTIMEDIA_append_dra7xx = " \
-     hevc-arm-decoder-dev \
-     hevc-arm-decoder-staticdev \
--    ${@bb.utils.contains('MACHINE_FEATURES', 'opencl', 'qt-opencv-opencl-opengl-multithreaded-dev', '', d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'qt-opencv-opencl-opengl-multithreaded-dev', '', d)} \
- "
- 
- RDEPENDS_${PN} = "\
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-index 67d8d47..0db3856 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-@@ -20,7 +20,7 @@ MULTIMEDIA_append_ti43x = " \
- 
- MULTIMEDIA_append_dra7xx = " \
-     hevc-arm-decoder \
--    ${@bb.utils.contains('MACHINE_FEATURES', 'opencl', 'qt-opencv-opencl-opengl-multithreaded-dev', '', d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'qt-opencv-opencl-opengl-multithreaded-dev', '', d)} \
- "
- 
- MULTIMEDIA_append_omap5-evm = " \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-index 157b1f3..42e1cd4 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-@@ -25,6 +25,6 @@ RDEPENDS_${PN} = "\
-     ${QT_TOOLCHAIN_TARGET} \
-     ${TISDK_TOOLCHAIN_BASE_TARGET} \
-     ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics-sdk-target','',d)} \
--    ${@bb.utils.contains('MACHINE_FEATURES','opencl','packagegroup-arago-tisdk-opencl-sdk-target','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-sdk-target','',d)} \
-     packagegroup-arago-tisdk-addons-sdk-target \
- "
 -- 
-2.7.4
+1.9.1
 
 
