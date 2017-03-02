@@ -1,34 +1,30 @@
-Return-Path: <h-gou@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 211DE529FA
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id B974352A05
 	for <meta-arago@arago-project.org>;
-	Thu,  2 Mar 2017 17:23:28 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v22HNQVV019915
-	for <meta-arago@arago-project.org>; Thu, 2 Mar 2017 11:23:26 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1488475406;
-	bh=Rl2shmETpRNrp8YbH+zqgcV+V7eTy/fkZetKA/RSE3g=;
-	h=From:To:CC:Subject:Date;
-	b=nZiAUFC7wc7UekTst3EF4ngtKmUKzrGZCEXQFRQkunc++1MhBZRfMt92mVrfcTYef
-	d1xUXb61cGspNJgOdVNjl00WwdgJrYXOxJUFH5pFHycWQUagMCsUqOYeeE7zKl78qU
-	ITPDpnWQOuD58CLSmCJckh75kXk0ZmiVhPpK68xw=
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v22HNQFY028632
-	for <meta-arago@arago-project.org>; Thu, 2 Mar 2017 11:23:26 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 2 Mar 2017 11:23:25 -0600
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v22HNPH4016336;	Thu, 2 Mar 2017 11:23:26 -0600
-From: Hongmei Gou <h-gou@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 2 Mar 2017 12:23:24 -0500
-Message-ID: <1488475404-24098-1-git-send-email-h-gou@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [morty/krogoth][PATCH] gstreamer1.0-plugins-dsp66: bump SRCREV for oclconv kernel fix
+	Thu,  2 Mar 2017 18:14:15 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 88D9720B64;
+	Thu,  2 Mar 2017 18:14:15 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id EFwYVtRNlz4k; Thu,  2 Mar 2017 18:14:15 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
+	[100.15.95.79])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 69037207AD;
+	Thu,  2 Mar 2017 18:14:14 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id EB83F1623A0;
+	Thu,  2 Mar 2017 13:14:13 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Thu,  2 Mar 2017 13:14:13 -0500
+Message-Id: <1488478453-130620-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH] kexec-tools: add hack to get it working on dra7
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,43 +37,60 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Mar 2017 17:23:30 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 02 Mar 2017 18:14:15 -0000
 
-* The file scope OpenCL context object (canny_ctx(CL_DEVICE_TYPE_ACCELERATOR))
-  resulted in constructor for Context called during g_module_open (g_plugin.c) of
-  "/usr/lib/gstreamer-1.0/libgstdsp66.so", leading to OpenCL device initialization
-  and subsequent CMEM error (when CMEM is not installed). The fix is to create the
-  Context object on the stack, along the lines of oclconv_imgproc.
-
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb                  | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../0001-HACK-TO-get-kexec-up-on-dra7.patch        | 26 ++++++++++++++++++++++
+ .../recipes-kernel/kexec/kexec-tools_%.bbappend    |  5 +++++
+ 2 files changed, 31 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-kernel/kexec/kexec-tools/0001-HACK-TO-get-kexec-up-on-dra7.patch
+ create mode 100644 meta-arago-distro/recipes-kernel/kexec/kexec-tools_%.bbappend
 
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb
-index 6977a47..201e221 100644
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb
-+++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb
-@@ -4,7 +4,7 @@ LICENSE = "BSD-3-Clause"
- LIC_FILES_CHKSUM = "file://COPYING;md5=2827f94fc0a1adeff4d9702e97ce2979"
- 
- SRC_URI = "git://git.ti.com/processor-sdk/gst-plugin-dsp66.git;protocol=git;branch=master"
--SRCREV = "0db24f44b49ad673bcebce5d25a63ea41551ebec"
-+SRCREV = "0abedafadbed693592804f23482a9447d81b2dbf"
- 
- S = "${WORKDIR}/git"
- 
-@@ -14,7 +14,7 @@ DEPENDS = "gstreamer1.0 gstreamer1.0-plugins-base opencl ti-cgt6x-native clocl-n
- 
- inherit autotools-brokensep pkgconfig gettext
- 
--PR = "r0"
-+PR = "r1"
- 
- RDEPENDS_${PN} += " opencl-runtime"
- 
+diff --git a/meta-arago-distro/recipes-kernel/kexec/kexec-tools/0001-HACK-TO-get-kexec-up-on-dra7.patch b/meta-arago-distro/recipes-kernel/kexec/kexec-tools/0001-HACK-TO-get-kexec-up-on-dra7.patch
+new file mode 100644
+index 0000000..9abdcb3
+--- /dev/null
++++ b/meta-arago-distro/recipes-kernel/kexec/kexec-tools/0001-HACK-TO-get-kexec-up-on-dra7.patch
+@@ -0,0 +1,26 @@
++From b93a24a4df81abfffb8e275970a98736dd42d4f5 Mon Sep 17 00:00:00 2001
++From: Keerthy <j-keerthy@ti.com>
++Date: Tue, 28 Feb 2017 10:44:45 +0530
++Subject: [PATCH] HACK: TO get kexec up on dra7
++
++Signed-off-by: Keerthy <j-keerthy@ti.com>
++---
++ kexec/arch/arm/kexec-zImage-arm.c | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/kexec/arch/arm/kexec-zImage-arm.c b/kexec/arch/arm/kexec-zImage-arm.c
++index 7f02b93..9907496 100644
++--- a/kexec/arch/arm/kexec-zImage-arm.c
+++++ b/kexec/arch/arm/kexec-zImage-arm.c
++@@ -572,7 +572,7 @@ int zImage_arm_load(int argc, char **argv, const char *buf, off_t len,
++ 		 * is 4, and just to be safe, place ramdisk after that.
++ 		 * Note that we must include space for the compressed
++ 		 * image here as well. */
++-		initrd_base = kernel_base + _ALIGN(len * 5, getpagesize());
+++		initrd_base = kernel_base + _ALIGN(len * 6, getpagesize());
++ 	}
++ 
++ 	if (use_atags) {
++-- 
++1.9.1
++
+diff --git a/meta-arago-distro/recipes-kernel/kexec/kexec-tools_%.bbappend b/meta-arago-distro/recipes-kernel/kexec/kexec-tools_%.bbappend
+new file mode 100644
+index 0000000..ef2a464
+--- /dev/null
++++ b/meta-arago-distro/recipes-kernel/kexec/kexec-tools_%.bbappend
+@@ -0,0 +1,5 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++PR_append = ".arago0"
++
++SRC_URI_append_dra7xx = "file://0001-HACK-TO-get-kexec-up-on-dra7.patch"
 -- 
-1.9.1
+2.7.4
 
 
