@@ -1,30 +1,33 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id A06F4529F6
+	by arago-project.org (Postfix) with ESMTPS id F129852ADF
 	for <meta-arago@arago-project.org>;
-	Fri,  3 Mar 2017 01:11:58 +0000 (UTC)
+	Fri,  3 Mar 2017 01:27:16 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5B5F720B64;
-	Fri,  3 Mar 2017 01:11:58 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id EAA3520BAB
+	for <meta-arago@arago-project.org>;
+	Fri,  3 Mar 2017 01:27:16 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id ZnzNX5K-X0mc; Fri,  3 Mar 2017 01:11:58 +0000 (UTC)
+	with ESMTP id qOHzHR2njqoA for <meta-arago@arago-project.org>;
+	Fri,  3 Mar 2017 01:27:16 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
 	[100.15.95.79])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3B572207AD;
-	Fri,  3 Mar 2017 01:11:57 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id BDBDC2088F
+	for <meta-arago@arago-project.org>;
+	Fri,  3 Mar 2017 01:27:15 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 508D31623A5;
-	Thu,  2 Mar 2017 20:11:56 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id 048C01623A5;
+	Thu,  2 Mar 2017 20:27:15 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu,  2 Mar 2017 20:11:55 -0500
-Message-Id: <1488503515-10094-1-git-send-email-denis@denix.org>
+Date: Thu,  2 Mar 2017 20:27:00 -0500
+Message-Id: <1488504432-12167-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] packagegroup-*-test: iperf is already in base-tisdk packagegroup
+Subject: [master][PATCH 00/12] various fixes for latest master
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,27 +40,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Mar 2017 01:11:58 -0000
+X-List-Received-Date: Fri, 03 Mar 2017 01:27:17 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb | 1 -
- 1 file changed, 1 deletion(-)
+Currently only builds with internal toolchain, as Linaro is broken with RSS
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-index d98dcde..eb7f41d 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-@@ -10,7 +10,6 @@ ARAGO_TEST = "\
-     bonnie++ \
-     hdparm \
-     iozone3 \
--    iperf \
-     lmbench \
-     rt-tests \
-     evtest \
+Denys Dmytriyenko (12):
+  libnl: update bbappend for 3.2.29
+  Revert "cryptodev: backport patch for user page API change in recent
+    kernels"
+  packagegroup-*-test: iperf is already in base-tisdk packagegroup
+  packagegroup-*-base-tisdk: iperf was replaced by iperf3
+  packagegroup-*-connectivity: crda was blacklisted upstream for
+    breakage
+  images: disable matrix, as php was blacklised upstream for breakage
+  packagegroup-*-base: alsa-lib no longer provides smixer libs, depend
+    directly on libasound
+  arago.conf: qtwayland 5.8 now requires qtbase with xkbcommon-evdev
+    PACKAGECONFIG
+  ackagegroup-*-qte: use qtdeclarative-qmlplugins instead of -plugins
+  toolchain-gcc: update preferences to current versions
+  arago-prefs: prefer latest libnl version
+  arago-prefs: update gstreamer preference to 1.10.4
+
+ meta-arago-distro/conf/distro/arago.conf           |  2 +-
+ .../conf/distro/include/arago-prefs.inc            | 13 ++++---
+ .../conf/distro/include/toolchain-gcc.inc          | 10 +++---
+ .../recipes-core/images/arago-core-tisdk-image.inc |  3 +-
+ .../recipes-core/images/tisdk-rootfs-image.bb      |  3 +-
+ .../images/tisdk-server-rootfs-image.bb            |  3 +-
+ .../packagegroups/packagegroup-arago-base-tisdk.bb |  2 +-
+ .../packagegroups/packagegroup-arago-base.bb       |  2 +-
+ .../packagegroups/packagegroup-arago-qte.bb        |  2 +-
+ .../packagegroups/packagegroup-arago-test.bb       |  1 -
+ .../packagegroup-arago-tisdk-connectivity.bb       |  3 +-
+ .../cryptodev/cryptodev-module_%.bbappend          |  6 +---
+ ...st-to-another-change-in-the-user-page-API.patch | 40 ----------------------
+ ...libnl_3.2.28.bbappend => libnl_3.2.29.bbappend} |  0
+ 14 files changed, 24 insertions(+), 66 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-kernel/cryptodev/files/0001-Adjust-to-another-change-in-the-user-page-API.patch
+ rename meta-arago-distro/recipes-support/libnl/{libnl_3.2.28.bbappend => libnl_3.2.29.bbappend} (100%)
+
 -- 
 2.7.4
 
