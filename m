@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 3EDA552A8E
+	by arago-project.org (Postfix) with ESMTPS id 4287F52AA7
 	for <meta-arago@arago-project.org>;
 	Fri,  3 Mar 2017 02:59:10 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 6CF0720BAB;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6C22C20BAA;
 	Fri,  3 Mar 2017 02:59:10 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id juBW7gwWItok; Fri,  3 Mar 2017 02:59:10 +0000 (UTC)
+	with ESMTP id pdyFiJeRq-Pv; Fri,  3 Mar 2017 02:59:10 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
 	[100.15.95.79])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5E81220BA9;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 547CE20B64;
 	Fri,  3 Mar 2017 02:59:08 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 1A4FA1623AF;
+	by mail.denix.org (Postfix) with ESMTP id 3E4C81623B2;
 	Thu,  2 Mar 2017 21:59:06 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu,  2 Mar 2017 21:58:58 -0500
-Message-Id: <1488509945-12853-6-git-send-email-denis@denix.org>
+Date: Thu,  2 Mar 2017 21:59:01 -0500
+Message-Id: <1488509945-12853-9-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1488509945-12853-1-git-send-email-denis@denix.org>
 References: <1488509945-12853-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 05/12] packagegroup-*-connectivity: crda was blacklisted upstream for breakage
+Subject: [master][PATCH 08/12] arago.conf: qtwayland 5.8 now requires qtbase with xkbcommon-evdev PACKAGECONFIG
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,30 +45,22 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-connectivity.bb             | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ meta-arago-distro/conf/distro/arago.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-index f64998c..f870102 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-@@ -6,6 +6,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index aa2edb7..d19446f 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -79,7 +79,7 @@ PACKAGECONFIG_pn-weston = "egl kms launch clients"
  
- inherit packagegroup
+ # Configure Qt5 flags (GLES is still required for qtdeclarative and qtwebkit)
+ PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
+-PACKAGECONFIG_DISTRO_pn-qtbase = "icu examples"
++PACKAGECONFIG_DISTRO_pn-qtbase = "icu examples xkbcommon-evdev"
  
-+# Disabled in master:
-+#    crda
- # WLAN support packages.
- # These are the packages that all platforms use for WLAN support
- WLAN_COMMON = "\
-@@ -18,7 +20,6 @@ WLAN_COMMON = "\
-     eventdump \
-     wlconf \
-     wpa-supplicant-wl18xx \
--    crda \
-     hostap-daemon-wl18xx \
-     ti-wifi-utils-wl18xx \
-     wl18xx-target-scripts \
+ # Add gstreamer in package configuration to enable video
+ PACKAGECONFIG_append_pn-qtmultimedia  = " gstreamer"
 -- 
 2.7.4
 
