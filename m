@@ -1,38 +1,38 @@
-Return-Path: <denys@ti.com>
+Return-Path: <a0850405@a0850405-t7500>
 Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 92FFD52A8E
+	by arago-project.org (Postfix) with ESMTPS id 8C8C752A69
 	for <meta-arago@arago-project.org>;
-	Fri,  3 Mar 2017 03:06:32 +0000 (UTC)
+	Fri,  3 Mar 2017 14:26:13 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2336W9K026876;
-	Thu, 2 Mar 2017 21:06:32 -0600
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v23EQCn5007884
+	for <meta-arago@arago-project.org>; Fri, 3 Mar 2017 08:26:12 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1488510392;
-	bh=QyraGBpG/fWLTns03aOGN56OysBVHtW79IiUPfg2EMM=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=sI0kGEgdSG4pLSYqZjdEN/RXowQclJkn9GKCxXiKXCnOrXRU9QPpXoGD57rclvVXu
-	wkNvFhr8P1Zh/F+qNo5OFJUkgVC+sfnXUBq6VSvY84kw+NIhRTCaM7L5pPZvHDjiNV
-	y1POLAu9BlXjQASXrW74HJMO5s1F5HzaHgTGZmuI=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2336Wk6004603;
-	Thu, 2 Mar 2017 21:06:32 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 2 Mar 2017 21:06:31 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2336VPB018511;
-	Thu, 2 Mar 2017 21:06:31 -0600
-Date: Thu, 2 Mar 2017 22:06:31 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>
-Message-ID: <20170303030630.GE12614@edge>
-References: <1488509945-12853-1-git-send-email-denis@denix.org>
-	<1488509945-12853-6-git-send-email-denis@denix.org>
+	s=ti-com-17Q1; t=1488551172;
+	bh=8hVGNjaSim/Vfr/aDeOcXGVZfA3kekndc4QXhOBRv44=;
+	h=From:To:CC:Subject:Date;
+	b=trnZC1xjknKJP46ChlyupWYFBcXGzAYBM0F3PCdnnlbc072+Jk3h4MQv+s+0K0p7g
+	JTZxLhKmyEkrRcEM9BtC8o3c8pTeoB6bPFaVtTzhuu3Oree+6iLfIiCB31zwL82p1R
+	qrErM0wQ14pTcCf3P9tPfreeEpAUEE6k6j+5+iDk=
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v23EQCAY002045
+	for <meta-arago@arago-project.org>; Fri, 3 Mar 2017 08:26:12 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 3 Mar 2017 08:26:11 -0600
+Received: from a0850405-T7500 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v23EQCoi010402;
+	Fri, 3 Mar 2017 08:26:12 -0600
+Received: from a0850405 by a0850405-T7500 with local (Exim 4.86_2)
+	(envelope-from <a0850405@a0850405-t7500>)	id 1cjo9o-000AH9-PT;
+	Fri, 03 Mar 2017 09:26:08 -0500
+From: Carlos Hernandez <ceh@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 3 Mar 2017 09:25:48 -0500
+Message-ID: <1488551149-39460-1-git-send-email-ceh@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <1488509945-12853-6-git-send-email-denis@denix.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [master][PATCH 05/12] packagegroup-*-connectivity: crda was blacklisted upstream for breakage
+Cc: yan-liu@ti.com
+Subject: [PATCH 1/2] ltp-ddt: remove scheduler trace patch no longer required
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,42 +45,72 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Mar 2017 03:06:33 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 03 Mar 2017 14:26:16 -0000
+Content-Type: text/plain
 
-Should probably use "HACK:" prefix to easily spot in the future.
+Latest version of ltp fixes the problem and the patch
+0029-trace_shed-Fix-build-with-musl.patch no longer applies.
 
-On Thu, Mar 02, 2017 at 09:58:58PM -0500, Denys Dmytriyenko wrote:
-> From: Denys Dmytriyenko <denys@ti.com>
-> 
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> ---
->  .../packagegroups/packagegroup-arago-tisdk-connectivity.bb             | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> index f64998c..f870102 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> @@ -6,6 +6,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
->  inherit packagegroup
->  
-> +# Disabled in master:
-> +#    crda
->  # WLAN support packages.
->  # These are the packages that all platforms use for WLAN support
->  WLAN_COMMON = "\
-> @@ -18,7 +20,6 @@ WLAN_COMMON = "\
->      eventdump \
->      wlconf \
->      wpa-supplicant-wl18xx \
-> -    crda \
->      hostap-daemon-wl18xx \
->      ti-wifi-utils-wl18xx \
->      wl18xx-target-scripts \
-> -- 
-> 2.7.4
-> 
+Signed-off-by: Carlos Hernandez <ceh@ti.com>
+---
+ .../0029-trace_shed-Fix-build-with-musl.patch      | 32 ----------------------
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb   |  3 +-
+ 2 files changed, 1 insertion(+), 34 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0029-trace_shed-Fix-build-with-musl.patch
+
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0029-trace_shed-Fix-build-with-musl.patch b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0029-trace_shed-Fix-build-with-musl.patch
+deleted file mode 100644
+index f7ece9e18ef0..000000000000
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0029-trace_shed-Fix-build-with-musl.patch
++++ /dev/null
+@@ -1,32 +0,0 @@
+-From 2f8a57f66a94210d34dd0361659a8297cf3d813f Mon Sep 17 00:00:00 2001
+-From: Khem Raj <raj.khem@gmail.com>
+-Date: Fri, 8 Jan 2016 07:29:24 +0000
+-Subject: [PATCH 29/32] trace_shed: Fix build with musl
+-
+-Errors on musl are
+-
+-trace_sched.c:425:16: error: invalid operands to binary & (have
+-'thread_sched_t * {aka struct <anonymous> *}' and 'int')
+-      thrd_ndx, WEXITSTATUS(status));
+-
+-Signed-off-by: Khem Raj <raj.khem@gmail.com>
+----
+- testcases/kernel/sched/tool/trace_sched.c | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/testcases/kernel/sched/tool/trace_sched.c b/testcases/kernel/sched/tool/trace_sched.c
+-index 7815686..30dca5f 100644
+---- a/testcases/kernel/sched/tool/trace_sched.c
+-+++ b/testcases/kernel/sched/tool/trace_sched.c
+-@@ -422,7 +422,7 @@ int main(int argc,		/* number of input parameters.                        */
+- 			if (status == (thread_sched_t *) - 1) {
+- 				fprintf(stderr,
+- 					"thread [%d] - process exited with errors %d\n",
+--					thrd_ndx, WEXITSTATUS(status));
+-+					thrd_ndx, WEXITSTATUS((int)status));
+- 				exit(-1);
+- 			} else {
+- 				exp_prio[thrd_ndx] = status->exp_prio;
+--- 
+-2.7.0
+-
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb
+index 22b962141dba..3bb17c8f8535 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb
+@@ -17,8 +17,7 @@ inherit autotools-brokensep
+ SRCREV = "429d12779e28e1997f656db19c5bf73edf9e9365"
+ BRANCH ?= "master"
+ 
+-SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+-    file://0029-trace_shed-Fix-build-with-musl.patch"
++SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
+ 
+ S = "${WORKDIR}/git"
+ 
+-- 
+2.7.4
+
 
