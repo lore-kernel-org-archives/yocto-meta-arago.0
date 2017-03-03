@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 7AE9752AC9
+	by arago-project.org (Postfix) with ESMTPS id 6AE9652AC8
 	for <meta-arago@arago-project.org>;
 	Fri,  3 Mar 2017 02:59:10 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 82D2020BA9;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 7EEF12014F;
 	Fri,  3 Mar 2017 02:59:10 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 8PhNL42Zg47C; Fri,  3 Mar 2017 02:59:10 +0000 (UTC)
+	with ESMTP id BKUETuXeZ5Uf; Fri,  3 Mar 2017 02:59:10 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
 	[100.15.95.79])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7E2FA20BA5;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7F91220BA7;
 	Fri,  3 Mar 2017 02:59:08 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 32A211623B1;
+	by mail.denix.org (Postfix) with ESMTP id 26DAE1623B0;
 	Thu,  2 Mar 2017 21:59:06 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu,  2 Mar 2017 21:59:00 -0500
-Message-Id: <1488509945-12853-8-git-send-email-denis@denix.org>
+Date: Thu,  2 Mar 2017 21:58:59 -0500
+Message-Id: <1488509945-12853-7-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1488509945-12853-1-git-send-email-denis@denix.org>
 References: <1488509945-12853-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 07/12] packagegroup-*-base: alsa-lib no longer provides smixer libs, depend directly on libasound
+Subject: [master][PATCH 06/12] images: disable matrix, as php was blacklised upstream for breakage
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,22 +45,69 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc   | 3 ++-
+ meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb        | 3 ++-
+ meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb | 3 ++-
+ 3 files changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
-index 7832a89..8d2e0b7 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
-@@ -7,7 +7,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- inherit packagegroup
+diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+index 71041f8..98e824d 100644
+--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+@@ -51,12 +51,13 @@ IMAGE_INSTALL_QT = "\
+ IMAGE_INSTALL_QT_keystone = ""
+ IMAGE_INSTALL_QT_omapl138 = ""
  
- ARAGO_ALSA_BASE = "\
--    alsa-lib \
-+    libasound \
-     alsa-utils-aplay \
-     "
++# Disable in master due to php breakage
++#    packagegroup-arago-tisdk-matrix-sdk-host
+ IMAGE_INSTALL = "\
+     packagegroup-arago-tisdk-addons-sdk-host \
+     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-sdk-host','',d)} \
+     packagegroup-arago-tisdk-crypto-sdk-host \
+     ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics-sdk-host','',d)} \
+-    packagegroup-arago-tisdk-matrix-sdk-host \
+     packagegroup-arago-tisdk-multimedia-sdk-host \
+     packagegroup-arago-tisdk-amsdk-sdk-host${ARAGO_KERNEL_SUFFIX} \
+     ${IMAGE_INSTALL_QT} \
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
+index c511b83..3744d0b 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
+@@ -2,6 +2,8 @@
  
+ require arago-image.inc
+ 
++# Disbaled in master due to php breakage
++#    packagegroup-arago-tisdk-matrix
+ IMAGE_INSTALL += "\
+     packagegroup-arago-base \
+     packagegroup-arago-console \
+@@ -14,7 +16,6 @@ IMAGE_INSTALL += "\
+     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-extra','',d)} \
+     packagegroup-arago-tisdk-connectivity \
+     packagegroup-arago-tisdk-crypto \
+-    packagegroup-arago-tisdk-matrix \
+     packagegroup-arago-tisdk-multimedia \
+     packagegroup-arago-tisdk-amsdk \
+     packagegroup-arago-tisdk-addons \
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
+index b64d092..5f4caa6 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
+@@ -4,11 +4,12 @@ require arago-base-tisdk-image.bb
+ 
+ SPLASH = ""
+ 
++# Disable in master due to php breakage
++#    packagegroup-arago-tisdk-matrix
+ IMAGE_INSTALL += "\
+     packagegroup-arago-tisdk-addons \
+     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl','',d)} \
+     packagegroup-arago-tisdk-crypto \
+-    packagegroup-arago-tisdk-matrix \
+     packagegroup-arago-base-tisdk-server-extra \
+     packagegroup-arago-tisdk-connectivity \
+ "
 -- 
 2.7.4
 
