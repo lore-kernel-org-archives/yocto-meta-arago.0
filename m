@@ -1,32 +1,38 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id D287D52AF4
+Return-Path: <denys@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 7E81B52A8E
 	for <meta-arago@arago-project.org>;
-	Fri,  3 Mar 2017 02:59:12 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id E858220B64;
-	Fri,  3 Mar 2017 02:59:12 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id rrXYscnKtwtQ; Fri,  3 Mar 2017 02:59:12 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-95-79.washdc.fios.verizon.net
-	[100.15.95.79])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id AA34420BAF;
-	Fri,  3 Mar 2017 02:59:08 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 6445F1623B6;
-	Thu,  2 Mar 2017 21:59:06 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu,  2 Mar 2017 21:59:05 -0500
-Message-Id: <1488509945-12853-13-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1488509945-12853-1-git-send-email-denis@denix.org>
+	Fri,  3 Mar 2017 03:05:36 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2335LYX005365;
+	Thu, 2 Mar 2017 21:05:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1488510321;
+	bh=nvWp5l/UdaXs/AZeEbAT0DbDXDW/vCFw5VYmD/ESroc=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=n8/g9sQ9WMJMfeIB7rapX5XvBeHGWl2xu9ihnjECUNF8w4sebrTGv+JIPvbRwOl2/
+	Xt3Hm8wWGFHIIJDUsHvf1Dl1RVuk4p1nAdK1QHIINoCU/NCtD8OY2SatQF76/w9hJF
+	sZau61lRCMDui76x7kEM2aUS3TLYDqA/oeWzlBEY=
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2335GmZ003415;
+	Thu, 2 Mar 2017 21:05:16 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 2 Mar 2017 21:05:15 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2335FN3032158;
+	Thu, 2 Mar 2017 21:05:15 -0600
+Date: Thu, 2 Mar 2017 22:05:15 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>
+Message-ID: <20170303030514.GC12614@edge>
 References: <1488509945-12853-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 12/12] arago-prefs: update gstreamer preference to 1.10.4
+	<1488509945-12853-10-git-send-email-denis@denix.org>
+MIME-Version: 1.0
+In-Reply-To: <1488509945-12853-10-git-send-email-denis@denix.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [master][PATCH 09/12] packagegroup-*-qte: use qtdeclarative-qmlplugins instead of -plugins
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,36 +45,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Mar 2017 02:59:17 -0000
+X-List-Received-Date: Fri, 03 Mar 2017 03:05:36 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+NAK.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/include/arago-prefs.inc | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+On Thu, Mar 02, 2017 at 09:59:02PM -0500, Denys Dmytriyenko wrote:
+> From: Denys Dmytriyenko <denys@ti.com>
+> 
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ---
+>  meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+> index 5030caa..2479af4 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+> @@ -28,7 +28,7 @@ QT4_ESSENTIALS = "\
+>  
+>  QT5_ESSENTIALS = "\
+>      qtbase-plugins \
+> -    qtdeclarative-plugins \
+> +    qtdeclarative-qmlplugins \
+>      qtdeclarative-qmlplugins \
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index f0fc38f..ac18258 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -42,9 +42,9 @@ PREFERRED_PROVIDER_wpa-supplicant_ti33x = "wpa-supplicant-wl18xx"
- PREFERRED_PROVIDER_wpa-supplicant_ti43x = "wpa-supplicant-wl18xx"
- PREFERRED_PROVIDER_wpa-supplicant_omap-a15 = "wpa-supplicant-wl18xx"
- 
--PREFERRED_VERSION_gstreamer1.0 = "1.10.1"
--PREFERRED_VERSION_gstreamer1.0-plugins-ugly = "1.10.1"
--PREFERRED_VERSION_gstreamer1.0-libav = "1.10.1"
--PREFERRED_VERSION_gstreamer1.0-plugins-good = "1.10.1"
--PREFERRED_VERSION_gstreamer1.0-plugins-bad = "1.10.1"
--PREFERRED_VERSION_gstreamer1.0-plugins-base = "1.10.1"
-+PREFERRED_VERSION_gstreamer1.0 = "1.10.4"
-+PREFERRED_VERSION_gstreamer1.0-plugins-ugly = "1.10.4"
-+PREFERRED_VERSION_gstreamer1.0-libav = "1.10.4"
-+PREFERRED_VERSION_gstreamer1.0-plugins-good = "1.10.4"
-+PREFERRED_VERSION_gstreamer1.0-plugins-bad = "1.10.4"
-+PREFERRED_VERSION_gstreamer1.0-plugins-base = "1.10.4"
--- 
-2.7.4
+^^^ this already has qmlplugins. Need to see why -plugins is no longer available...
 
+
+>      qtlocation-plugins \
+>      qtlocation-qmlplugins \
+> -- 
+> 2.7.4
+> 
 
