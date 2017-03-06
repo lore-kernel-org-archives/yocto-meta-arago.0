@@ -1,38 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id D2AC752AEE
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 3AA6A52970
 	for <meta-arago@arago-project.org>;
-	Fri,  3 Mar 2017 21:00:57 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v23L0laB001517
-	for <meta-arago@arago-project.org>; Fri, 3 Mar 2017 15:00:47 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1488574847;
-	bh=09rjYAeqj5DbWn6pG3vMuRtp9yvXm5sLsGPritGs2ps=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=INqwJ2QraUvGaUmJHc0X4TL23TOmPAOmimugY4Qj8CoMsehEnT4kiKRKEXkBbkI/f
-	3lq65zw6A4Z6Ory9ENCuef6whc74sSvpi0UHVSo/WWTGiyGSV5xiRzfXI3aS63MA/Z
-	potPgdpCNPOrPfGhlT+/yQQ/Y5Mb1CrG4xWuYvmg=
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v23L0gnR015097
-	for <meta-arago@arago-project.org>; Fri, 3 Mar 2017 15:00:42 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 3 Mar 2017 15:00:42 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v23L0g6s019726;
-	Fri, 3 Mar 2017 15:00:42 -0600
-Date: Fri, 3 Mar 2017 16:00:41 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Carlos Hernandez <ceh@ti.com>
-Message-ID: <20170303210041.GM12614@edge>
-References: <1488551149-39460-2-git-send-email-ceh@ti.com>
-	<1488569619-43487-1-git-send-email-ceh@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <1488569619-43487-1-git-send-email-ceh@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org, yan-liu@ti.com
-Subject: Re: [PATCH v3] ltp-ddt: update to latest ltp release 20170116
+	Mon,  6 Mar 2017 16:31:49 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 277C320BCD;
+	Mon,  6 Mar 2017 16:31:49 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id XeCTp2CNOmLk; Mon,  6 Mar 2017 16:31:49 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0701B20BCA;
+	Mon,  6 Mar 2017 16:31:47 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 926E5162395;
+	Mon,  6 Mar 2017 11:31:47 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon,  6 Mar 2017 11:31:47 -0500
+Message-Id: <1488817907-127721-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [PATCH] arago.conf: append fitimage to KERNEL_CLASSES, don't overwrite
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,98 +37,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Mar 2017 21:00:58 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 06 Mar 2017 16:31:50 -0000
 
-Ack, thanks.
+From: Denys Dmytriyenko <denys@ti.com>
 
-On Fri, Mar 03, 2017 at 02:33:39PM -0500, Carlos Hernandez wrote:
-> remove scheduler trace patch no longer required
-> Latest version of ltp fixes the problem and the patch
-> 0029-trace_shed-Fix-build-with-musl.patch no longer applies.
-> 
-> Signed-off-by: Carlos Hernandez <ceh@ti.com>
-> ---
->  .../0029-trace_shed-Fix-build-with-musl.patch      | 32 ----------------------
->  .../{ltp-ddt_20160510.bb => ltp-ddt_20170116.bb}   |  7 ++---
->  2 files changed, 3 insertions(+), 36 deletions(-)
->  delete mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0029-trace_shed-Fix-build-with-musl.patch
->  rename meta-arago-extras/recipes-devtools/ltp-ddt/{ltp-ddt_20160510.bb => ltp-ddt_20170116.bb} (92%)
-> 
-> diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0029-trace_shed-Fix-build-with-musl.patch b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0029-trace_shed-Fix-build-with-musl.patch
-> deleted file mode 100644
-> index f7ece9e18ef0..000000000000
-> --- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0029-trace_shed-Fix-build-with-musl.patch
-> +++ /dev/null
-> @@ -1,32 +0,0 @@
-> -From 2f8a57f66a94210d34dd0361659a8297cf3d813f Mon Sep 17 00:00:00 2001
-> -From: Khem Raj <raj.khem@gmail.com>
-> -Date: Fri, 8 Jan 2016 07:29:24 +0000
-> -Subject: [PATCH 29/32] trace_shed: Fix build with musl
-> -
-> -Errors on musl are
-> -
-> -trace_sched.c:425:16: error: invalid operands to binary & (have
-> -'thread_sched_t * {aka struct <anonymous> *}' and 'int')
-> -      thrd_ndx, WEXITSTATUS(status));
-> -
-> -Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> ----
-> - testcases/kernel/sched/tool/trace_sched.c | 2 +-
-> - 1 file changed, 1 insertion(+), 1 deletion(-)
-> -
-> -diff --git a/testcases/kernel/sched/tool/trace_sched.c b/testcases/kernel/sched/tool/trace_sched.c
-> -index 7815686..30dca5f 100644
-> ---- a/testcases/kernel/sched/tool/trace_sched.c
-> -+++ b/testcases/kernel/sched/tool/trace_sched.c
-> -@@ -422,7 +422,7 @@ int main(int argc,		/* number of input parameters.                        */
-> - 			if (status == (thread_sched_t *) - 1) {
-> - 				fprintf(stderr,
-> - 					"thread [%d] - process exited with errors %d\n",
-> --					thrd_ndx, WEXITSTATUS(status));
-> -+					thrd_ndx, WEXITSTATUS((int)status));
-> - 				exit(-1);
-> - 			} else {
-> - 				exp_prio[thrd_ndx] = status->exp_prio;
-> --- 
-> -2.7.0
-> -
-> diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-> similarity index 92%
-> rename from meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb
-> rename to meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-> index 22b962141dba..2d78fa835c9f 100644
-> --- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb
-> +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-> @@ -4,7 +4,7 @@ SECTION = "console/utils"
->  LICENSE = "GPLv2"
->  LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
->  
-> -PR = "r10"
-> +PR = "r11"
->  PV_append = "+git${SRCPV}"
->  
->  PROVIDES += "ltp"
-> @@ -14,11 +14,10 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
->  
->  inherit autotools-brokensep
->  
-> -SRCREV = "429d12779e28e1997f656db19c5bf73edf9e9365"
-> +SRCREV = "7b43afae8b931541388b0a7e6f65d7ceb6d01b3e"
->  BRANCH ?= "master"
->  
-> -SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
-> -    file://0029-trace_shed-Fix-build-with-musl.patch"
-> +SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
->  
->  S = "${WORKDIR}/git"
->  
-> -- 
-> 2.7.4
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+If machine already sets it for other types, like uImage, don't clear it.
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/conf/distro/arago.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 24fe63a..d0e7a8b 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -24,7 +24,7 @@ IMAGE_CLASSES += "image_types_md5"
+ IMAGE_FSTYPES += "tar.xz.md5"
+ 
+ # FIT image for secure devices
+-KERNEL_CLASSES = "kernel-fitimage"
++KERNEL_CLASSES += "kernel-fitimage"
+ FITIMAGE_HASH_ALGO = ""
+ FITIMAGE_DTB_BY_NAME = "1"
+ FITIMAGE_TEE_BY_NAME = "1"
+-- 
+2.7.4
+
 
