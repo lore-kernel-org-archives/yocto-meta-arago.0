@@ -1,30 +1,34 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id A45D852A77
+Return-Path: <j-stiffler@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 0A5CA52A34
 	for <meta-arago@arago-project.org>;
-	Tue,  7 Mar 2017 19:55:04 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A9F3E20BB6;
-	Tue,  7 Mar 2017 19:55:04 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id x_x1BngTx2Jc; Tue,  7 Mar 2017 19:55:04 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 85B9520B1D;
-	Tue,  7 Mar 2017 19:55:03 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 1753016216E;
-	Tue,  7 Mar 2017 14:55:03 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue,  7 Mar 2017 14:55:01 -0500
-Message-Id: <1488916502-40999-1-git-send-email-denis@denix.org>
+	Tue,  7 Mar 2017 19:56:16 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v27JuGJQ022498
+	for <meta-arago@arago-project.org>; Tue, 7 Mar 2017 13:56:16 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1488916576;
+	bh=UiAQ1fMp5iLzPCgRQquCDg9K/VWXIO1TP1+tg7IznfE=;
+	h=From:To:CC:Subject:Date;
+	b=JbtH/KsS2/uJDvQKFfLIcdIB07P6AcICeqMoFMq8ppD1YIaneYaFrAw6I+kNiqXk3
+	mpqAYD17LRXK7S8wvPfuL7EFEy4wCrJLRYbO76lZxMAwUQ6IfiW5OCqzWMh7gmtoat
+	xcDCOTN+H+HMzck6FfVE+7a6fuT/jYc9Tr9ZHF8g=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v27JuG9Z015381
+	for <meta-arago@arago-project.org>; Tue, 7 Mar 2017 13:56:16 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 7 Mar 2017 13:56:16 -0600
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v27JuFLE018636;	Tue, 7 Mar 2017 13:56:16 -0600
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 7 Mar 2017 14:54:03 -0500
+Message-ID: <1488916443-6489-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [oe-layersetup][PATCH 1/2] arago-morty-config: add meta-browser and dependent meta-gnome layers
+MIME-Version: 1.0
+Subject: [krogoth][PATCH] opencv: clean up PACKAGECONFIG appends
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,30 +41,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Mar 2017 19:55:05 -0000
+X-List-Received-Date: Tue, 07 Mar 2017 19:56:17 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+* add qtwayland for all but keystone
+* add opencl if MACHINE_FEATURES includes opencl
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- configs/arago-morty-config.txt | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/configs/arago-morty-config.txt b/configs/arago-morty-config.txt
-index f3b1e3a..699886c 100644
---- a/configs/arago-morty-config.txt
-+++ b/configs/arago-morty-config.txt
-@@ -3,8 +3,9 @@
+diff --git a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend b/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
+index 2de9b96..eea040f 100644
+--- a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
++++ b/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
+@@ -1,4 +1,4 @@
+-PR = "r1"
++PR = "r2"
  
- bitbake,git://git.openembedded.org/bitbake,1.32,HEAD,layers=
- meta-arago,git://arago-project.org/git/meta-arago.git,morty,HEAD,layers=meta-arago-distro:meta-arago-extras
-+meta-browser,git://github.com/OSSystems/meta-browser.git,morty,HEAD,layers=
- meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,HEAD,layers=
--meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
- meta-ti,git://git.yoctoproject.org/meta-ti,morty,HEAD,layers=
- meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,morty,HEAD,layers=meta-linaro-toolchain:meta-optee
- oe-core,git://git.openembedded.org/openembedded-core,morty,HEAD,layers=meta
+ BRANCH = "tiopencvrelease_3.1"
+ 
+@@ -17,9 +17,12 @@ DEPENDS_remove_keystone = "qtbase"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+-PACKAGECONFIG_append_dra7xx = " opencl"
+-PACKAGECONFIG_append_keystone = " opencl"
+-PACKAGECONFIG_append_dra7xx = "${@bb.utils.contains("DISTRO_FEATURES", "wayland", " qtwayland", "", d)}"
++PACKAGECONFIG_QTWAYLAND = "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "qtwayland", "", d)}"
++PACKAGECONFIG_QTWAYLAND_keystone = ""
++
++PACKAGECONFIG_append = " ${PACKAGECONFIG_QTWAYLAND} \
++                         ${@bb.utils.contains('MACHINE_FEATURES','opencl','opencl', '', d)} \
++"
+ 
+ inherit cmake_qt5
+ 
 -- 
 2.7.4
 
