@@ -1,34 +1,32 @@
-Return-Path: <h-gou@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id A0B63529D2
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id A234C52A34
 	for <meta-arago@arago-project.org>;
-	Tue,  7 Mar 2017 16:44:10 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v27GiAe4029888
-	for <meta-arago@arago-project.org>; Tue, 7 Mar 2017 10:44:10 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1488905050;
-	bh=vo0aJrzz2xVw6irPdGWR94OJneC1cBy6bB/2C+ip97Q=;
-	h=From:To:CC:Subject:Date;
-	b=GzLw0xKxMdg9SUlJnV8fj050g8uqbe5+jsQ34Q6KH2Iq4+BzsED6FgQhKqgJkr2Z0
-	pJ7WjQvNmlnvhi7HFhjA44LXzkWgmYcdVHrpm0+flbJic+a0i6I3VgM3xzHQ5GVh++
-	VqAhhkmaFzVjEhS9NUqEdaNWYLtT47TjjtMdtsuU=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v27GiAu6032027
-	for <meta-arago@arago-project.org>; Tue, 7 Mar 2017 10:44:10 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 7 Mar 2017 10:44:09 -0600
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v27Gi96n015414;	Tue, 7 Mar 2017 10:44:09 -0600
-From: Hongmei Gou <h-gou@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 7 Mar 2017 11:44:08 -0500
-Message-ID: <1488905048-19240-1-git-send-email-h-gou@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [morty/krogoth][PATCH] packagegroup-arago-toolchain-tisdk-target: add packagegroup-arago-tisdk-multimedia-sdk-target for keystone
+	Tue,  7 Mar 2017 19:55:04 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id ADF8320BBA;
+	Tue,  7 Mar 2017 19:55:04 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 6FE0X4LM7L63; Tue,  7 Mar 2017 19:55:04 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 878EF20BB5;
+	Tue,  7 Mar 2017 19:55:03 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 2526B1623AD;
+	Tue,  7 Mar 2017 14:55:03 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue,  7 Mar 2017 14:55:02 -0500
+Message-Id: <1488916502-40999-2-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1488916502-40999-1-git-send-email-denis@denix.org>
+References: <1488916502-40999-1-git-send-email-denis@denix.org>
+Subject: [oe-layersetup][PATCH 2/2] arago-master-config: add meta-browser and dependent meta-gnome layers
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,39 +39,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Mar 2017 16:44:10 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 07 Mar 2017 19:55:05 -0000
 
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroups/packagegroup-arago-toolchain-tisdk-target.bb     | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ configs/arago-master-config.txt | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-index 5b4775b..9140417 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to build and install header and libs into the sdk"
- LICENSE = "MIT"
--PR = "r9"
-+PR = "r10"
+diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.txt
+index 116bed8..44dfcd5 100644
+--- a/configs/arago-master-config.txt
++++ b/configs/arago-master-config.txt
+@@ -3,8 +3,9 @@
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -18,7 +18,10 @@ TISDK_TOOLCHAIN_BASE_TARGET = "\
-     packagegroup-arago-tisdk-crypto-sdk-target \
- "
- 
--TISDK_TOOLCHAIN_BASE_TARGET_keystone = "packagegroup-arago-standalone-sdk-target"
-+TISDK_TOOLCHAIN_BASE_TARGET_keystone = "\
-+    packagegroup-arago-standalone-sdk-target \
-+    packagegroup-arago-tisdk-multimedia-sdk-target \
-+"
- 
- RDEPENDS_${PN} = "\
-     ${QT_TOOLCHAIN_TARGET} \
+ bitbake,git://git.openembedded.org/bitbake,master,HEAD,layers=
+ meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,HEAD,layers=
+ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe
++meta-openembedded,git://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
+ meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,master,HEAD,layers=meta-linaro-toolchain:meta-optee
+ oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
 -- 
-1.9.1
+2.7.4
 
 
