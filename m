@@ -1,37 +1,34 @@
-Return-Path: <dmurphy@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 08EFD52094
+Return-Path: <h-gou@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id C5D63529D2
 	for <meta-arago@arago-project.org>;
-	Mon,  6 Mar 2017 18:53:49 +0000 (UTC)
+	Tue,  7 Mar 2017 16:19:06 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v26IrdlJ023938
-	for <meta-arago@arago-project.org>; Mon, 6 Mar 2017 12:53:39 -0600
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v27GJ6XA017244
+	for <meta-arago@arago-project.org>; Tue, 7 Mar 2017 10:19:06 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1488826419;
-	bh=+XXFjz9kPrEUY+u063SRpvELnYDH4cgYL+Sm5ivyusM=;
+	s=ti-com-17Q1; t=1488903546;
+	bh=Jl0GPNK3VBdX1E2JUgPRQNrAkthPQqQ1OHzZn12obTc=;
 	h=From:To:CC:Subject:Date;
-	b=o9gemarpWUvDzhHtAsGYG92Nv2DpvZVl4EakjjhLSR4MAfAmJlGZPXsum3WLJfrfZ
-	sfuZcuv7F5Pptb7iaFl+5OADnZoczjTSMMrYaEszUncOCwwkP3EDqK23GCOZu+Z3kp
-	9oVWLzekbRAfNoKKSXl1gM7c+Ut6rrXENdpHOsk8=
+	b=eCMHzL1mZd0wpCAj70ouz+jcK+NYPuxLuU4d5LHKrMoCI4a1vApkEF8Cn36g1lDE/
+	MxOaLDwARnWKMTcrT1KztI4fl/wea6EZClZnlr6vQZw9gfs9sbn1CVAlyXDLOUuPOX
+	UdX9iTy6yBckqJj517RjvPo2eDahKPs50/A1n7vc=
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v26IrY5g031128
-	for <meta-arago@arago-project.org>; Mon, 6 Mar 2017 12:53:34 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v27GJ6RN000698
+	for <meta-arago@arago-project.org>; Tue, 7 Mar 2017 10:19:06 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 6 Mar 2017 12:53:34 -0600
-Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
-	[128.247.22.53])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v26IrYT7020507;	Mon, 6 Mar 2017 12:53:34 -0600
-Received: from localhost (a0272616local.dhcp.ti.com [172.22.187.105])	by
-	legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id
-	v26IrY323160; Mon, 6 Mar 2017 12:53:34 -0600 (CST)
-From: Dan Murphy <dmurphy@ti.com>
+	Tue, 7 Mar 2017 10:19:05 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v27GJ5EX015243;	Tue, 7 Mar 2017 10:19:05 -0600
+From: Hongmei Gou <h-gou@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 6 Mar 2017 12:53:38 -0600
-Message-ID: <1488826418-9440-1-git-send-email-dmurphy@ti.com>
-X-Mailer: git-send-email 2.7.2.333.g70bd996
+Date: Tue, 7 Mar 2017 11:19:02 -0500
+Message-ID: <1488903542-1469-1-git-send-email-h-gou@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [PATCH] optee: Update SRCREV for client, os and test
+Subject: [morty/krogoth][PATCH] packagegroup-arago-tisdk-multimedia*: add dual-camera-demo and image-gallery for omap-a15
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,54 +41,65 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Mar 2017 18:53:50 -0000
+X-List-Received-Date: Tue, 07 Mar 2017 16:19:07 -0000
 Content-Type: text/plain
 
-Updating the SRCREV for the optee-client,
-optee-os and optee-test to align with Linaro's
-code base and kernel driver.  For the 2017.00 rc3
-
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
 ---
- meta-arago-distro/recipes-security/optee/optee-client.bbappend   | 2 +-
- meta-arago-distro/recipes-security/optee/optee-os_git.bbappend   | 2 +-
- meta-arago-distro/recipes-security/optee/optee-test_git.bbappend | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb | 8 ++++++--
+ .../packagegroups/packagegroup-arago-tisdk-multimedia.bb          | 7 ++++++-
+ 2 files changed, 12 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-index 3a24c60..d58aa16 100644
---- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-@@ -4,4 +4,4 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
-            file://tee-supplicant.service"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
+index cded1aa..116085b 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to add multimedia related sources into the SDK"
+ LICENSE = "MIT"
+-PR = "r13"
++PR = "r14"
  
- BRANCH = "ti_optee_client"
--SRCREV = "5477e9ebf093ba3ac5296409a690944db6c0014c"
-+SRCREV = "d507b84f82db4c8a85429e1fe255bfbe7b239856"
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-index c50c47d..77e6e94 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-@@ -8,7 +8,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
-            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -16,7 +16,11 @@ MULTIMEDIA_append_ti43x = " \
+ 
+ MULTIMEDIA_append_ti33x = " barcode-roi-src"
+ 
+-MULTIMEDIA_append_omap-a15 = " barcode-roi-src"
++MULTIMEDIA_append_omap-a15 = " \
++    dual-camera-demo-src \
++    image-gallery-src \
++    barcode-roi-src \
++"
+ 
+ MULTIMEDIA_append_dra7xx = " \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'opencl', 'qt-opencv-opencl-opengl-multithreaded-src', '', d)} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+index bb344b0..cb143b8 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to add multimedia related packages"
+ LICENSE = "MIT"
+-PR = "r19"
++PR = "r20"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -17,6 +17,11 @@ MULTIMEDIA_append_ti43x = " \
+     image-gallery \
  "
- BRANCH = "ti_optee_os"
--SRCREV = "f4543643876f50b5c454955763c243b8625b0294"
-+SRCREV = "7f49fe14fc26b6c7d1da3a5f90beb9a5fdbb7098"
  
- EXTRA_OEMAKE = "CROSS_COMPILE_core=${HOST_PREFIX}  \
-                 CROSS_COMPILE_ta_arm32=${HOST_PREFIX}  \
-diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-index a94cd42..115ebbe 100644
---- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-@@ -3,4 +3,4 @@ PR_append = ".arago1"
- SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
- 
- BRANCH = "ti_optee_test"
--SRCREV = "ba271a6e3eb2bbb6996b5de73918216f64a9e077"
-+SRCREV = "d99fe97eab50044bb0a03e0646d019ec0525fa8c"
++MULTIMEDIA_append_omap-a15 = " \
++    dual-camera-demo \
++    image-gallery \
++"
++
+ MULTIMEDIA_append_dra7xx = " \
+     hevc-arm-decoder \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'opencl', 'qt-opencv-opencl-opengl-multithreaded-dev', '', d)} \
 -- 
-2.7.3
+1.9.1
 
 
