@@ -1,30 +1,34 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id D869252A82
+Return-Path: <anandb@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id E533252A77
 	for <meta-arago@arago-project.org>;
-	Tue,  7 Mar 2017 22:34:54 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id EE68B20BB5;
-	Tue,  7 Mar 2017 22:34:54 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 629MUgH9pDXj; Tue,  7 Mar 2017 22:34:54 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C65A220AF0;
-	Tue,  7 Mar 2017 22:34:53 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 660EF16216E;
-	Tue,  7 Mar 2017 17:34:53 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Tue,  7 Mar 2017 17:34:52 -0500
-Message-Id: <1488926092-133359-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] chromium-wayland: add local fixes for Chromium on Wayland
+	Wed,  8 Mar 2017 07:58:43 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v287wXjQ007151
+	for <meta-arago@arago-project.org>; Wed, 8 Mar 2017 01:58:33 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1488959913;
+	bh=G2uPsFD5L6zrdAIXy729sEiOdNbpSq/3eyCCFbeOpjg=;
+	h=From:To:CC:Subject:Date;
+	b=c28Zw+SEx0Jxqi75TvKBmGUG+DH0Wn0jYBq2o7aUqRIueRZUcYbkxBOy6j/HgoJ15
+	e5TfAQzcfywXgj8W98/EDujJ4Y3Bx6Mw94tErzBGGzj281tkm9/uzUycL1NCZhU8q/
+	dDyUJAz59Cb3LKHTAW1+0MVW4rIUOHUfahKWvvu4=
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v287wSD9014796
+	for <meta-arago@arago-project.org>; Wed, 8 Mar 2017 01:58:28 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 8 Mar 2017 01:58:28 -0600
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v287wRup029944;
+	Wed, 8 Mar 2017 01:58:27 -0600
+From: Anand Balagopalakrishnan <anandb@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 8 Mar 2017 13:28:25 +0530
+Message-ID: <1488959905-187610-1-git-send-email-anandb@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [PATCH 1/1] weston: restrict udev enumeration to /dev/dri/card0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,152 +41,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Mar 2017 22:34:55 -0000
+X-List-Received-Date: Wed, 08 Mar 2017 07:58:44 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>
 ---
- meta-arago-distro/conf/layer.conf                  |  1 +
- ...t-paths-in-headers-to-include-libva-prefi.patch | 67 ++++++++++++++++++++++
- ...-adjust-Mesa-version-to-work-with-TI-SGX-.patch | 27 +++++++++
- .../chromium/chromium-wayland_%.bbappend           |  8 +++
- 4 files changed, 103 insertions(+)
- create mode 100644 meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-libva-adjust-paths-in-headers-to-include-libva-prefi.patch
- create mode 100644 meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-wayland.gyp-adjust-Mesa-version-to-work-with-TI-SGX-.patch
- create mode 100644 meta-arago-distro/recipes-browser/chromium/chromium-wayland_%.bbappend
+ .../wayland/weston_1.11.0.bbappend                 | 23 +++++++++++-----------
+ 1 file changed, 12 insertions(+), 11 deletions(-)
 
-diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
-index c86a41a..db90454 100644
---- a/meta-arago-distro/conf/layer.conf
-+++ b/meta-arago-distro/conf/layer.conf
-@@ -17,6 +17,7 @@ LAYERDEPENDS_meta-arago-distro = " \
-     linaro-toolchain \
-     meta-optee \
-     qt5-layer \
-+    browser-layer \
-     meta-arago-extras \
- "
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
+index d0691ad..36585bd 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
+@@ -2,19 +2,20 @@
+ PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
+ PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
  
-diff --git a/meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-libva-adjust-paths-in-headers-to-include-libva-prefi.patch b/meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-libva-adjust-paths-in-headers-to-include-libva-prefi.patch
-new file mode 100644
-index 0000000..c9013cc
---- /dev/null
-+++ b/meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-libva-adjust-paths-in-headers-to-include-libva-prefi.patch
-@@ -0,0 +1,67 @@
-+From 1d875e3526357f6d2bb66ee07605f4d4271d5710 Mon Sep 17 00:00:00 2001
-+From: Denys Dmytriyenko <denys@ti.com>
-+Date: Tue, 7 Mar 2017 15:22:41 -0500
-+Subject: [PATCH] libva: adjust paths in headers to include libva prefix
+-PR_append = ".arago16"
++PR_append = ".arago17"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ RDEPENDS_${PN} += "weston-conf"
+ 
+-#SRC_URI += " \
+-#	file://0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.patch \
+-#	file://0002-Weston1.9.0-Allow-visual_id-to-be-0.patch \
+-#	file://0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.patch \
+-#	file://0004-Weston1.9.0-Fix-touch-screen-crash-issue.patch \
+-#	file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
+-#	file://0001-Add-soc-performance-monitor-utilites.patch \
+-#	file://0001-compositor-drm-support-RGB565-with-pixman-renderer.patch \
+-#	file://0001-compositor-drm-fix-hotplug-weston-termination-proble.patch \
+-#"
 +
-+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-+---
-+ third_party/libva/va/va.h          | 22 +++++++++++-----------
-+ third_party/libva/va/va_dec_jpeg.h |  2 +-
-+ 2 files changed, 12 insertions(+), 12 deletions(-)
-+
-+diff --git a/third_party/libva/va/va.h b/third_party/libva/va/va.h
-+index 88fde4e..10b2e0b 100644
-+--- a/third_party/libva/va/va.h
-++++ b/third_party/libva/va/va.h
-+@@ -80,7 +80,7 @@
-+ 
-+ #include <stddef.h>
-+ #include <stdint.h>
-+-#include <va/va_version.h>
-++#include <libva/va/va_version.h>
-+ 
-+ #ifdef __cplusplus
-+ extern "C" {
-+@@ -2836,16 +2836,16 @@ typedef struct _VAPictureHEVC
-+  */
-+ #define VA_PICTURE_HEVC_RPS_LT_CURR             0x00000040
-+ 
-+-#include <va/va_dec_hevc.h>
-+-#include <va/va_dec_jpeg.h>
-+-#include <va/va_dec_vp8.h>
-+-#include <va/va_dec_vp9.h>
-+-#include <va/va_enc_hevc.h>
-+-#include <va/va_enc_h264.h>
-+-#include <va/va_enc_jpeg.h>
-+-#include <va/va_enc_mpeg2.h>
-+-#include <va/va_enc_vp8.h>
-+-#include <va/va_vpp.h>
-++#include <libva/va/va_dec_hevc.h>
-++#include <libva/va/va_dec_jpeg.h>
-++#include <libva/va/va_dec_vp8.h>
-++#include <libva/va/va_dec_vp9.h>
-++#include <libva/va/va_enc_hevc.h>
-++#include <libva/va/va_enc_h264.h>
-++#include <libva/va/va_enc_jpeg.h>
-++#include <libva/va/va_enc_mpeg2.h>
-++#include <libva/va/va_enc_vp8.h>
-++#include <libva/va/va_vpp.h>
-+ 
-+ /**@}*/
-+ 
-+diff --git a/third_party/libva/va/va_dec_jpeg.h b/third_party/libva/va/va_dec_jpeg.h
-+index 644ce3b..c177aef 100644
-+--- a/third_party/libva/va/va_dec_jpeg.h
-++++ b/third_party/libva/va/va_dec_jpeg.h
-+@@ -36,7 +36,7 @@
-+ extern "C" {
-+ #endif
-+ 
-+-#include <va/va.h>
-++#include <libva/va/va.h>
-+ 
-+ /**
-+  * \defgroup api_dec_jpeg JPEG decoding API
-+-- 
-+2.7.4
-+
-diff --git a/meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-wayland.gyp-adjust-Mesa-version-to-work-with-TI-SGX-.patch b/meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-wayland.gyp-adjust-Mesa-version-to-work-with-TI-SGX-.patch
-new file mode 100644
-index 0000000..5e8798a
---- /dev/null
-+++ b/meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-wayland.gyp-adjust-Mesa-version-to-work-with-TI-SGX-.patch
-@@ -0,0 +1,27 @@
-+From 17457ecbe62d174ad5b7e88f5dcdd2497540c0d9 Mon Sep 17 00:00:00 2001
-+From: Denys Dmytriyenko <denys@ti.com>
-+Date: Mon, 6 Mar 2017 20:15:37 -0500
-+Subject: [PATCH] wayland.gyp: adjust Mesa version to work with TI SGX EGL
-+ provider
-+
-+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-+---
-+ ozone/wayland/wayland.gyp | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/wayland/wayland.gyp b/wayland/wayland.gyp
-+index ff2e210..933cbc8 100644
-+--- a/ozone/wayland/wayland.gyp
-++++ b/ozone/wayland/wayland.gyp
-+@@ -24,7 +24,7 @@
-+       'type': 'static_library',
-+       'variables': {
-+         'WAYLAND_VERSION': '1.4.0',
-+-        'MESA_VERSION': '9.1.3',
-++        'MESA_VERSION': '8.14',
-+         'wayland_packages': [
-+           'egl >= <(MESA_VERSION)',
-+           'wayland-client >= <(WAYLAND_VERSION)',
-+-- 
-+2.7.4
-+
-diff --git a/meta-arago-distro/recipes-browser/chromium/chromium-wayland_%.bbappend b/meta-arago-distro/recipes-browser/chromium/chromium-wayland_%.bbappend
-new file mode 100644
-index 0000000..97e2509
---- /dev/null
-+++ b/meta-arago-distro/recipes-browser/chromium/chromium-wayland_%.bbappend
-@@ -0,0 +1,8 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+OZONE_WAYLAND_EXTRA_PATCHES = " \
-+	file://0001-wayland.gyp-adjust-Mesa-version-to-work-with-TI-SGX-.patch \
-+	file://0001-libva-adjust-paths-in-headers-to-include-libva-prefi.patch \
++SRC_URI += " \
++	file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
 +"
-+
-+DEPENDS += "gperf-native"
++#	file://0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.patch
++#	file://0002-Weston1.9.0-Allow-visual_id-to-be-0.patch
++#	file://0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.patch
++#	file://0004-Weston1.9.0-Fix-touch-screen-crash-issue.patch
++#	file://0001-Add-soc-performance-monitor-utilites.patch
++#	file://0001-compositor-drm-support-RGB565-with-pixman-renderer.patch
++#	file://0001-compositor-drm-fix-hotplug-weston-termination-proble.patch
 -- 
-2.7.4
+1.9.1
 
 
