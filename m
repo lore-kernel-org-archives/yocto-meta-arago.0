@@ -1,41 +1,40 @@
-Return-Path: <anandb@ti.com>
+Return-Path: <e-ruei1@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 47E4152979
+	by arago-project.org (Postfix) with ESMTPS id 2D53D52980
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Mar 2017 17:22:08 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v28HLvmi013482
-	for <meta-arago@arago-project.org>; Wed, 8 Mar 2017 11:21:57 -0600
+	Wed,  8 Mar 2017 20:56:30 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v28KuJ6E007898
+	for <meta-arago@arago-project.org>; Wed, 8 Mar 2017 14:56:19 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1488993717;
-	bh=4mEXTvWvN/vOkVTm2pQzEjnHJWNdbWoTaIef71gSNGE=;
+	s=ti-com-17Q1; t=1489006579;
+	bh=fsNsfVPGFtRUR+xxzBEPsBatnWOzrX1Mf144Ck7gR9M=;
 	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=Qs3q6L8sbgSZ2Txd3HMjdODA9Fy3y9h3JbkIWzY4Xc0rGHhOrvPPsbvXNaVtyYXzO
-	xxj/ZCgx9ivJcj7G7Q3M8HGH08MLZd4wQq9AAs/wer194Gzj1Lo/LPRnaeu/jrDjxA
-	WDLbSiw2TaXj4fZFvV2X5MIxs/RY99L7RidxRFNM=
-Received: from dbdlxv05.itg.ti.com (dbdlxv05.itg.ti.com [172.24.171.60])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v28HLoQf026030
-	for <meta-arago@arago-project.org>; Wed, 8 Mar 2017 11:21:51 -0600
-Received: from DBDE73.ent.ti.com (dbde73.ent.ti.com [172.24.171.98])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id v28HLlB7015116
-	for <meta-arago@arago-project.org>; Wed, 8 Mar 2017 22:51:49 +0530
-Received: from DBDE04.ent.ti.com ([fe80::21ac:d9f:f810:c8e7]) by
-	DBDE73.ent.ti.com ([fe80::bc19:dc43:44da:7415%27]) with mapi id
-	14.03.0294.000; Wed, 8 Mar 2017 22:51:47 +0530
-From: "Balagopalakrishnan, Anand" <anandb@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
+	b=bC9HyoSNMgf6J+zOhq/+YTCYz8Ew87ZvKNSLezq9mxL8kPMmNGvHJ4CJ+q8VVflmy
+	eirIqIkBWkFtiEC2dGDi8b6QxEoXPvmEToCC+Pc39YIm6j49jTT0ZzW9aQGm77rkV3
+	YSJW09UALaHJ5S/gbHCK7UU8NDRR391aXOFrLWMQ=
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v28KuEYI002871
+	for <meta-arago@arago-project.org>; Wed, 8 Mar 2017 14:56:14 -0600
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.03.0294.000; Wed, 8 Mar 2017 14:56:14 -0600
+From: "Ruei, Eric" <e-ruei1@ti.com>
+To: "Balagopalakrishnan, Anand" <anandb@ti.com>, "Dmytriyenko, Denys"
+	<denys@ti.com>
 Thread-Topic: [meta-arago] [PATCH 1/1] weston: restrict udev enumeration to
 	/dev/dri/card0
-Thread-Index: AQHSl+HHv6vdLCNknUmZrPPOHopYeaGKpr6AgACJTus=
-Date: Wed, 8 Mar 2017 17:21:46 +0000
-Message-ID: <05CF4794C98B244ABDC620C109037622C03EBAE5@DBDE04.ent.ti.com>
+Thread-Index: AQHSl+HHv6vdLCNknUmZrPPOHopYeaGKpr6AgACJTuuAADilEA==
+Date: Wed, 8 Mar 2017 20:56:13 +0000
+Message-ID: <009C030982313E4589C6BC55FBF1E82A25350812@DFLE09.ent.ti.com>
 References: <1488959905-187610-1-git-send-email-anandb@ti.com>,
 	<20170308143621.GM23302@edge>
-In-Reply-To: <20170308143621.GM23302@edge>
+	<05CF4794C98B244ABDC620C109037622C03EBAE5@DBDE04.ent.ti.com>
+In-Reply-To: <05CF4794C98B244ABDC620C109037622C03EBAE5@DBDE04.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [157.170.170.56]
+x-originating-ip: [10.172.224.221]
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH 1/1] weston: restrict udev enumeration to /dev/dri/card0
@@ -51,102 +50,147 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Mar 2017 17:22:14 -0000
+X-List-Received-Date: Wed, 08 Mar 2017 20:56:30 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Denys,=0A=
-=0A=
+Hi, Anand and Denys:
+
+I have confirmed that all other 7 Weston patches are still applicable.
+
+0001-weston-Enabling-DRM-backend-with-multiple-displays.patch : still appli=
+cable, need a minor update
+0002-Weston1.9.0-Allow-visual_id-to-be-0.patch: still applicable, resolve t=
+he EGL config problem (LCPD-9399)
+0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.patch: still appl=
+icable
+0004-Weston1.9.0-Fix-touch-screen-crash-issue.patch: still applicable
+0001-udev-seat-restrict-udev-enumeration-to-card0.patch: still applicable, =
+it is what Anand just re-enabled.
+0001-Add-soc-performance-monitor-utilites.patch : still applicable, TI-spec=
+ific changes
+0001-compositor-drm-support-RGB565-with-pixman-renderer.patch: still applic=
+able, Tomi has submitted this one  a while ago, but it is not              =
+                                                                           =
+                                             available at Weston 1.11.0.
+0001-compositor-drm-fix-hotplug-weston-termination-proble.patch: still appl=
+icable, good enough as long as the connecter id/crtc id <64
+I did submit this patch to trigger discussions, but none has provided a bet=
+ter solution.
+
+Should I submit another patch with all other patches after Anand's patch is=
+ applied? Or should we replace Anand's patch with this one which covers all=
+ Weston 1.9 patches?
+
+Best regards,
+
+Eric
+                                                                           =
+                                                              =20
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Balagopalakrishnan, Anand
+Sent: Wednesday, March 08, 2017 12:22 PM
+To: Dmytriyenko, Denys
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH 1/1] weston: restrict udev enumeration to =
+/dev/dri/card0
+
+Denys,
+
 We need to review whether the other patches are required or not. This actio=
 n will happen over the next 1-2 weeks by Karthik and Eric. Till that time, =
-I would like to keep the patches in. =0A=
-=0A=
+I would like to keep the patches in.=20
+
 In the meantime, the commented out lines can be removed from the bbappend f=
 ile itself. If a patch is deemed to be required, we can submit a new recipe=
  update later for SRC_URL. Is this fine? If so, I can submit v2 with this p=
-roposal.=0A=
-=0A=
-Regards,=0A=
-Anand=0A=
-________________________________________=0A=
-From: Dmytriyenko, Denys=0A=
-Sent: Wednesday, March 08, 2017 8:06 PM=0A=
-To: Balagopalakrishnan, Anand=0A=
-Cc: meta-arago@arago-project.org=0A=
+roposal.
+
+Regards,
+Anand
+________________________________________
+From: Dmytriyenko, Denys
+Sent: Wednesday, March 08, 2017 8:06 PM
+To: Balagopalakrishnan, Anand
+Cc: meta-arago@arago-project.org
 Subject: Re: [meta-arago] [PATCH 1/1] weston: restrict udev enumeration to =
-/dev/dri/card0=0A=
-=0A=
-On Wed, Mar 08, 2017 at 01:28:25PM +0530, Anand Balagopalakrishnan wrote:=
-=0A=
-> Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>=0A=
-> ---=0A=
+/dev/dri/card0
+
+On Wed, Mar 08, 2017 at 01:28:25PM +0530, Anand Balagopalakrishnan wrote:
+> Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>
+> ---
 >  .../wayland/weston_1.11.0.bbappend                 | 23 +++++++++++-----=
-------=0A=
->  1 file changed, 12 insertions(+), 11 deletions(-)=0A=
->=0A=
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bba=
-ppend b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend=
-=0A=
-> index d0691ad..36585bd 100644=0A=
-> --- a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend=
-=0A=
-> +++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend=
-=0A=
-> @@ -2,19 +2,20 @@=0A=
+------
+>  1 file changed, 12 insertions(+), 11 deletions(-)
+>
+> diff --git=20
+> a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend=20
+> b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
+> index d0691ad..36585bd 100644
+> ---=20
+> a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
+> +++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappen
+> +++ d
+> @@ -2,19 +2,20 @@
 >  PACKAGECONFIG[fbdev] =3D "--enable-fbdev-compositor WESTON_NATIVE_BACKEN=
-D=3D"fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"=0A=
+D=3D"fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
 >  PACKAGECONFIG[kms] =3D "--enable-drm-compositor,--disable-drm-compositor=
-,drm udev libgbm mtdev"=0A=
->=0A=
-> -PR_append =3D ".arago16"=0A=
-> +PR_append =3D ".arago17"=0A=
->=0A=
->  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"=0A=
->=0A=
->  RDEPENDS_${PN} +=3D "weston-conf"=0A=
->=0A=
-> -#SRC_URI +=3D " \=0A=
+,drm udev libgbm mtdev"
+>
+> -PR_append =3D ".arago16"
+> +PR_append =3D ".arago17"
+>
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>
+>  RDEPENDS_${PN} +=3D "weston-conf"
+>
+> -#SRC_URI +=3D " \
 > -#    file://0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.pa=
-tch \=0A=
-> -#    file://0002-Weston1.9.0-Allow-visual_id-to-be-0.patch \=0A=
+tch \
+> -#    file://0002-Weston1.9.0-Allow-visual_id-to-be-0.patch \
 > -#    file://0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.pa=
-tch \=0A=
-> -#    file://0004-Weston1.9.0-Fix-touch-screen-crash-issue.patch \=0A=
-> -#    file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \=0A=
-> -#    file://0001-Add-soc-performance-monitor-utilites.patch \=0A=
+tch \
+> -#    file://0004-Weston1.9.0-Fix-touch-screen-crash-issue.patch \
+> -#    file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
+> -#    file://0001-Add-soc-performance-monitor-utilites.patch \
 > -#    file://0001-compositor-drm-support-RGB565-with-pixman-renderer.patc=
-h \=0A=
+h \
 > -#    file://0001-compositor-drm-fix-hotplug-weston-termination-proble.pa=
-tch \=0A=
-> -#"=0A=
-> +=0A=
-> +SRC_URI +=3D " \=0A=
-> +     file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \=0A=
-> +"=0A=
+tch \
+> -#"
+> +
+> +SRC_URI +=3D " \
+> +     file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \=20
+> +"
 > +#    file://0001-weston1.9.0-Enabling-DRM-backend-with-multiple-displ.pa=
-tch=0A=
-> +#    file://0002-Weston1.9.0-Allow-visual_id-to-be-0.patch=0A=
+tch
+> +#    file://0002-Weston1.9.0-Allow-visual_id-to-be-0.patch
 > +#    file://0003-Weston1.9.0-Fix-virtual-keyboard-display-issue-for-Q.pa=
-tch=0A=
-> +#    file://0004-Weston1.9.0-Fix-touch-screen-crash-issue.patch=0A=
-> +#    file://0001-Add-soc-performance-monitor-utilites.patch=0A=
+tch
+> +#    file://0004-Weston1.9.0-Fix-touch-screen-crash-issue.patch
+> +#    file://0001-Add-soc-performance-monitor-utilites.patch
 > +#    file://0001-compositor-drm-support-RGB565-with-pixman-renderer.patc=
-h=0A=
+h
 > +#    file://0001-compositor-drm-fix-hotplug-weston-termination-proble.pa=
-tch=0A=
-=0A=
-Anand,=0A=
-=0A=
-What about the rest of the commented out patches? Do we still need them?=0A=
-=0A=
-If we need them, will you be looking at up-porting them?=0A=
+tch
+
+Anand,
+
+What about the rest of the commented out patches? Do we still need them?
+
+If we need them, will you be looking at up-porting them?
 If we don't need them, can you please remove the corresponding comments fro=
-m=0A=
-the recipe.=0A=
-=0A=
-Thanks.=0A=
-=0A=
---=0A=
-Denys=0A=
+m the recipe.
+
+Thanks.
+
+--
+Denys
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
