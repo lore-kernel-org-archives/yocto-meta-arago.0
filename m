@@ -1,34 +1,35 @@
-Return-Path: <j-stiffler@ti.com>
+Return-Path: <e-ruei1@ti.com>
 Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id A87AC52A34
+	by arago-project.org (Postfix) with ESMTPS id 708E752AD1
 	for <meta-arago@arago-project.org>;
-	Thu,  9 Mar 2017 18:16:37 +0000 (UTC)
+	Thu,  9 Mar 2017 19:57:09 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v29IGbOx003974
-	for <meta-arago@arago-project.org>; Thu, 9 Mar 2017 12:16:37 -0600
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v29Jv8BE016634
+	for <meta-arago@arago-project.org>; Thu, 9 Mar 2017 13:57:08 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1489083397;
-	bh=eI0a4tIYDoXorfOIfmWBJ49cOgvfG7yLhtHjnhjF/JU=;
-	h=From:To:CC:Subject:Date;
-	b=N5RugsjeVCSrABECJeCwra8GGIlTBtdHldMtcreCqOvq9S57Ow1mjT1jHnyVK+LO0
-	Y7Yk8RerOqZzMUJIYYm0KWeZy0pa/tuXO3OudaOaleXIgt0CMNu3qO3KFlXcWerANH
-	V4fj8B61LmhslEp2qpnvfS+Uk/iy1CrgdZluQ8eA=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v29IGbsE012826
-	for <meta-arago@arago-project.org>; Thu, 9 Mar 2017 12:16:37 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 9 Mar 2017 12:16:36 -0600
-Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	s=ti-com-17Q1; t=1489089428;
+	bh=ZZFzoEW/GHpDekcLNKBInaVl13u/QdK9BpVrTB/XqL0=;
+	h=From:To:Subject:Date;
+	b=v2AB/vz7bfy3CnZrkSBPAmX0zWTOiOOLaqWBiJryJakAt2ps601K2jXPXKvcmcqqx
+	oDJ8KKBy2M1bFu517myZR93bpNWxPkA8fCGykX5/bnjfGnQb2EbdMlk92P+vtpqSCl
+	hKCdRhtl5Rpjji1tppW4PFoXr/Ps1FjlKW/VRGSM=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v29Jv8WD023621
+	for <meta-arago@arago-project.org>; Thu, 9 Mar 2017 13:57:08 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 9 Mar 2017 13:57:08 -0600
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v29IGaXT008947;	Thu, 9 Mar 2017 12:16:36 -0600
-From: Jacob Stiffler <j-stiffler@ti.com>
+	v29Jv8F9030158	for <meta-arago@arago-project.org>;
+	Thu, 9 Mar 2017 13:57:08 -0600
+From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 9 Mar 2017 13:14:25 -0500
-Message-ID: <1489083265-10509-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
+Date: Thu, 9 Mar 2017 14:57:04 -0500
+Message-ID: <1489089424-17274-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [krogoth/morty/master][PATCH] ti-tisdk-makefile: opencl-examples: restrict to non-persistent examples
+Subject: [morty][PATCH] weston: allow visual_id to be 0 to fix EGL config failure
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,44 +42,67 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Mar 2017 18:16:38 -0000
+X-List-Received-Date: Thu, 09 Mar 2017 19:57:10 -0000
 Content-Type: text/plain
 
-* The opencl persistent examples require the TI RTOS SDK
-
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_opencl-examples        | 2 +-
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb            | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ ...to-be-0.patch => 0002-Weston-Allow-visual_id-to-be-0.patch} | 10 +++++-----
+ .../recipes-graphics/wayland/weston_1.11.0.bbappend            |  3 ++-
+ 2 files changed, 7 insertions(+), 6 deletions(-)
+ rename meta-arago-distro/recipes-graphics/wayland/weston/{0002-Weston1.9.0-Allow-visual_id-to-be-0.patch => 0002-Weston-Allow-visual_id-to-be-0.patch} (72%)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_opencl-examples b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_opencl-examples
-index c1cbf67..0b8aa96 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_opencl-examples
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_opencl-examples
-@@ -3,7 +3,7 @@ opencl-examples:
- 	@echo =====================================
- 	@echo     Building the OpenCL Examples
- 	@echo =====================================
--	@cd example-applications; cd `find . -name "*opencl-examples*"`; . $(ENV_SETUP); make TARGET_ROOTDIR=$(SDK_PATH_TARGET) TI_OCL_CGT_INSTALL=$(SDK_PATH_TARGET)/usr/share/ti/cgt-c6x
-+	@cd example-applications; cd `find . -name "*opencl-examples*"`; . $(ENV_SETUP); make TARGET_ROOTDIR=$(SDK_PATH_TARGET) TI_OCL_CGT_INSTALL=$(SDK_PATH_TARGET)/usr/share/ti/cgt-c6x EXAMPLE_SET=EXCLUDE_PERSISTENT
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston1.9.0-Allow-visual_id-to-be-0.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston-Allow-visual_id-to-be-0.patch
+similarity index 72%
+rename from meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston1.9.0-Allow-visual_id-to-be-0.patch
+rename to meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston-Allow-visual_id-to-be-0.patch
+index 72d067f..39c8401 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston1.9.0-Allow-visual_id-to-be-0.patch
++++ b/meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston-Allow-visual_id-to-be-0.patch
+@@ -1,7 +1,7 @@
+-From 27cf7d0c260fa4754a021e9f6f92f83e2c99f5f4 Mon Sep 17 00:00:00 2001
++From 5b5de6a814b43ca023a92b85b407b3d061dbc64f Mon Sep 17 00:00:00 2001
+ From: Eric Ruei <e-ruei1@ti.com>
+-Date: Mon, 11 Jan 2016 11:59:19 -0500
+-Subject: [PATCH 2/2] Weston1.9.0: Allow visual_id to be 0
++Date: Thu, 9 Mar 2017 14:32:24 -0500
++Subject: [PATCH 2/4] Weston: Allow visual_id to be 0
  
- opencl-examples_install:
- 	@echo =======================================
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 9f1a575..1cc0ccf 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -50,7 +50,7 @@ SRC_URI = "\
-     file://Makefile_barcode-roi \
+ The inquiry of visual id from egl API eglGetConfigAttrib(EGL_NATIVE_VISUAL_ID)
+ is an optional feature. The visual id will be set to 0 if this feature is
+@@ -14,10 +14,10 @@ Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+  1 file changed, 1 insertion(+), 1 deletion(-)
+ 
+ diff --git a/src/gl-renderer.c b/src/gl-renderer.c
+-index d7231f4..e1b925e 100644
++index 23c0cd7..4c1f170 100644
+ --- a/src/gl-renderer.c
+ +++ b/src/gl-renderer.c
+-@@ -2194,7 +2194,7 @@ match_config_to_visual(EGLDisplay egl_display,
++@@ -2462,7 +2462,7 @@ match_config_to_visual(EGLDisplay egl_display,
+  				&id))
+  			continue;
+  
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
+index 60a752b..9a2c3a7 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
+@@ -2,7 +2,7 @@
+ PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
+ PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
+ 
+-PR_append = ".arago17"
++PR_append = ".arago18"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+@@ -11,4 +11,5 @@ RDEPENDS_${PN} += "weston-conf"
+ 
+ SRC_URI += " \
+ 	file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
++	file://0002-Weston-Allow-visual_id-to-be-0.patch \
  "
- 
--PR = "r79"
-+PR = "r80"
- 
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
 -- 
-2.7.4
+1.9.1
 
 
