@@ -1,38 +1,32 @@
-Return-Path: <denys@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 2494552981
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 08C2E52960
 	for <meta-arago@arago-project.org>;
-	Fri, 10 Mar 2017 19:47:54 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2AHJrB9029983
-	for <meta-arago@arago-project.org>; Fri, 10 Mar 2017 11:19:53 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1489166393;
-	bh=3LGz0HIDPKkc/R2HAtOeQbm21nRx+jaX9CgodpVhIkI=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=T1enleV2NxCIBcW6B2tSiphacK/hbeIWdctPfDJnj3q/BAhh4ZnozwDr9aJ2xqI4d
-	M8hf9Hb4eRxHMeXVoDp2D4vuYpNcC/uAUqdx0TLGmDI7YWEcCr9ffCtGIpACEoh3l4
-	h26QyWKeyNm4Eee6L5VSHPU9psEVJarhNTDpSSzs=
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2AHJrp1012377
-	for <meta-arago@arago-project.org>; Fri, 10 Mar 2017 11:19:53 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 10 Mar 2017 11:19:53 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2AHJr36011672;
-	Fri, 10 Mar 2017 11:19:53 -0600
-Date: Fri, 10 Mar 2017 12:19:52 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Eric Ruei <e-ruei1@ti.com>
-Message-ID: <20170310171952.GQ578@edge>
-References: <1489094857-27497-1-git-send-email-e-ruei1@ti.com>
-	<1489094857-27497-2-git-send-email-e-ruei1@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <1489094857-27497-2-git-send-email-e-ruei1@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [morty][PATCH V2 1/5] weston: allow visual_id to be 0 to fix EGL config failure
+	Fri, 10 Mar 2017 21:10:14 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id A969D20BBC;
+	Fri, 10 Mar 2017 21:10:13 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id bMQMS040FOQM; Fri, 10 Mar 2017 21:10:13 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8FB2E20BBD;
+	Fri, 10 Mar 2017 21:10:12 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 32F1D1623B9;
+	Fri, 10 Mar 2017 16:10:12 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 10 Mar 2017 16:10:08 -0500
+Message-Id: <1489180211-138519-4-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1489180211-138519-1-git-send-email-denis@denix.org>
+References: <1489180211-138519-1-git-send-email-denis@denix.org>
+Subject: [PATCH 3/6] wlconf: moved to meta-ti, remove here
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,88 +39,66 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Mar 2017 19:47:54 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 10 Mar 2017 21:10:14 -0000
 
-On Thu, Mar 09, 2017 at 04:27:33PM -0500, Eric Ruei wrote:
-> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> ---
->  ...to-be-0.patch => 0002-Weston-Allow-visual_id-to-be-0.patch} | 10 +++++-----
->  .../recipes-graphics/wayland/weston_1.11.0.bbappend            |  3 ++-
->  2 files changed, 7 insertions(+), 6 deletions(-)
->  rename meta-arago-distro/recipes-graphics/wayland/weston/{0002-Weston1.9.0-Allow-visual_id-to-be-0.patch => 0002-Weston-Allow-visual_id-to-be-0.patch} (72%)
-> 
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston1.9.0-Allow-visual_id-to-be-0.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston-Allow-visual_id-to-be-0.patch
-> similarity index 72%
-> rename from meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston1.9.0-Allow-visual_id-to-be-0.patch
-> rename to meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston-Allow-visual_id-to-be-0.patch
-> index 72d067f..39c8401 100644
-> --- a/meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston1.9.0-Allow-visual_id-to-be-0.patch
-> +++ b/meta-arago-distro/recipes-graphics/wayland/weston/0002-Weston-Allow-visual_id-to-be-0.patch
-> @@ -1,7 +1,7 @@
-> -From 27cf7d0c260fa4754a021e9f6f92f83e2c99f5f4 Mon Sep 17 00:00:00 2001
-> +From 5b5de6a814b43ca023a92b85b407b3d061dbc64f Mon Sep 17 00:00:00 2001
->  From: Eric Ruei <e-ruei1@ti.com>
-> -Date: Mon, 11 Jan 2016 11:59:19 -0500
-> -Subject: [PATCH 2/2] Weston1.9.0: Allow visual_id to be 0
-> +Date: Thu, 9 Mar 2017 14:32:24 -0500
-> +Subject: [PATCH 2/4] Weston: Allow visual_id to be 0
->  
->  The inquiry of visual id from egl API eglGetConfigAttrib(EGL_NATIVE_VISUAL_ID)
->  is an optional feature. The visual id will be set to 0 if this feature is
-> @@ -14,10 +14,10 @@ Signed-off-by: Eric Ruei <e-ruei1@ti.com>
->   1 file changed, 1 insertion(+), 1 deletion(-)
->  
->  diff --git a/src/gl-renderer.c b/src/gl-renderer.c
-> -index d7231f4..e1b925e 100644
-> +index 23c0cd7..4c1f170 100644
->  --- a/src/gl-renderer.c
->  +++ b/src/gl-renderer.c
-> -@@ -2194,7 +2194,7 @@ match_config_to_visual(EGLDisplay egl_display,
-> +@@ -2462,7 +2462,7 @@ match_config_to_visual(EGLDisplay egl_display,
->   				&id))
->   			continue;
->   
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
-> index 60a752b..9a2c3a7 100644
-> --- a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
-> +++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
-> @@ -2,7 +2,7 @@
->  PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
->  PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
->  
-> -PR_append = ".arago17"
-> +PR_append = ".arago18"
+From: Denys Dmytriyenko <denys@ti.com>
 
-BTW, there's no need to bump PR in any of these cases.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-connectivity/wlconf/wlconf.bb          | 43 ----------------------
+ 1 file changed, 43 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-connectivity/wlconf/wlconf.bb
 
-In general, manual PR updates have been deprecated upstream for some time. 
-It's not critical one way or another - i.e. it's not technically required any 
-more, but it also doesn't hurt. Thus I was allowing it in patches to our 
-layers, as people just got used to doing it. But if you ever submit anything 
-upstream, you'll get asked to not bump PR.
-
-There are still some corner cases, when it may help to do so, but in general, 
-a central PR Service resolves those as well...
-
+diff --git a/meta-arago-extras/recipes-connectivity/wlconf/wlconf.bb b/meta-arago-extras/recipes-connectivity/wlconf/wlconf.bb
+deleted file mode 100644
+index 625891c..0000000
+--- a/meta-arago-extras/recipes-connectivity/wlconf/wlconf.bb
++++ /dev/null
+@@ -1,43 +0,0 @@
+-DESCRIPTION = "Configuration utility for TI wireless drivers"
+-LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://README;beginline=1;endline=21;md5=adc05a1903d3f107f85c90328e3a9438"
+-
+-PV = "R8.6+git${SRCPV}"
+-
+-PR = "r5"
+-
+-# Tag: R8.6
+-SRCREV = "cf8965aad73764022669647fa33852558a657930"
+-SRC_URI = "git://git.ti.com/wilink8-wlan/18xx-ti-utils.git"
+-
+-S = "${WORKDIR}/git/wlconf"
+-
+-EXTRA_OEMAKE = "CC="${CC}""
+-
+-do_install() {
+-	install -d ${D}${bindir}
+-	install -d ${D}${bindir}/wlconf/
+-	install -d ${D}${bindir}/wlconf/official_inis
+-	install -d ${D}/lib/firmware/ti-connectivity
+-
+-	install -m 0755 wlconf ${D}${bindir}/wlconf/
+-	install -m 0755 dictionary.txt ${D}${bindir}/wlconf/
+-	install -m 0755 struct.bin ${D}${bindir}/wlconf/
+-	install -m 0755 default.conf ${D}${bindir}/wlconf/
+-	install -m 0755 wl18xx-conf-default.bin ${D}${bindir}/wlconf/
+-	install -m 0755 wl18xx-conf-default.bin ${D}/lib/firmware/ti-connectivity/wl18xx-conf.bin
+-	install -m 0755 README ${D}${bindir}/wlconf/
+-	install -m 0755 example.conf ${D}${bindir}/wlconf/
+-	install -m 0755 example.ini ${D}${bindir}/wlconf/
+-	install -m 0755 configure-device.sh ${D}${bindir}/wlconf/
+-	install -m 0755 ${S}/official_inis/* \
+-			${D}${bindir}/wlconf/official_inis/
+-}
+-
+-FILES_${PN} += " \
+-	${bindir}/wlconf \
+-	${bindir}/wlconf/official_inis \
+-	/lib/firmware/ti-connectivity/wl18xx-conf.bin \
+-"
+-
+-FILES_${PN}-dbg += "${bindir}/wlconf/.debug"
 -- 
-Denys
+2.7.4
 
-
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->  
-> @@ -11,4 +11,5 @@ RDEPENDS_${PN} += "weston-conf"
->  
->  SRC_URI += " \
->  	file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
-> +	file://0002-Weston-Allow-visual_id-to-be-0.patch \
->  "
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
