@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 08C2E52960
+	by arago-project.org (Postfix) with ESMTPS id 122415297D
 	for <meta-arago@arago-project.org>;
 	Fri, 10 Mar 2017 21:10:14 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A969D20BBC;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id B68D920BBD;
 	Fri, 10 Mar 2017 21:10:13 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id bMQMS040FOQM; Fri, 10 Mar 2017 21:10:13 +0000 (UTC)
+	with ESMTP id Jri3K4XO0-gF; Fri, 10 Mar 2017 21:10:13 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8FB2E20BBD;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9D63820BBE;
 	Fri, 10 Mar 2017 21:10:12 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 32F1D1623B9;
+	by mail.denix.org (Postfix) with ESMTP id 3E74D1623BA;
 	Fri, 10 Mar 2017 16:10:12 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 10 Mar 2017 16:10:08 -0500
-Message-Id: <1489180211-138519-4-git-send-email-denis@denix.org>
+Date: Fri, 10 Mar 2017 16:10:09 -0500
+Message-Id: <1489180211-138519-5-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1489180211-138519-1-git-send-email-denis@denix.org>
 References: <1489180211-138519-1-git-send-email-denis@denix.org>
-Subject: [PATCH 3/6] wlconf: moved to meta-ti, remove here
+Subject: [PATCH 4/6] wl18xx-target-scripts: moved to meta-ti, remove here
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,59 +45,42 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-connectivity/wlconf/wlconf.bb          | 43 ----------------------
- 1 file changed, 43 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-connectivity/wlconf/wlconf.bb
+ .../wl18xx-target-scripts/wl18xx-target-scripts.bb | 26 ----------------------
+ 1 file changed, 26 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts.bb
 
-diff --git a/meta-arago-extras/recipes-connectivity/wlconf/wlconf.bb b/meta-arago-extras/recipes-connectivity/wlconf/wlconf.bb
+diff --git a/meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts.bb b/meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts.bb
 deleted file mode 100644
-index 625891c..0000000
---- a/meta-arago-extras/recipes-connectivity/wlconf/wlconf.bb
+index 414ba0c..0000000
+--- a/meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts.bb
 +++ /dev/null
-@@ -1,43 +0,0 @@
--DESCRIPTION = "Configuration utility for TI wireless drivers"
+@@ -1,26 +0,0 @@
+-DESCRIPTION = "Scripts and configuration files for TI wireless drivers"
 -LICENSE = "GPLv2"
--LIC_FILES_CHKSUM = "file://README;beginline=1;endline=21;md5=adc05a1903d3f107f85c90328e3a9438"
+-LIC_FILES_CHKSUM = "file://README;beginline=1;endline=21;md5=b8d6a0865f50159bf5c0d175d1f4a705"
 -
 -PV = "R8.6+git${SRCPV}"
 -
--PR = "r5"
+-PR = "r7"
 -
 -# Tag: R8.6
--SRCREV = "cf8965aad73764022669647fa33852558a657930"
--SRC_URI = "git://git.ti.com/wilink8-wlan/18xx-ti-utils.git"
+-SRCREV = "693f71c709abcaa9047835cf3903aea26a63fa94"
+-BRANCH = "sitara-scripts"
+-SRC_URI = "git://git.ti.com/wilink8-wlan/wl18xx-target-scripts.git;protocol=git;branch=${BRANCH}"
 -
--S = "${WORKDIR}/git/wlconf"
+-S = "${WORKDIR}/git"
 -
--EXTRA_OEMAKE = "CC="${CC}""
+-FILES_${PN} += "${datadir}/wl18xx/"
 -
 -do_install() {
--	install -d ${D}${bindir}
--	install -d ${D}${bindir}/wlconf/
--	install -d ${D}${bindir}/wlconf/official_inis
--	install -d ${D}/lib/firmware/ti-connectivity
+-	install -d ${D}${datadir}/wl18xx/
 -
--	install -m 0755 wlconf ${D}${bindir}/wlconf/
--	install -m 0755 dictionary.txt ${D}${bindir}/wlconf/
--	install -m 0755 struct.bin ${D}${bindir}/wlconf/
--	install -m 0755 default.conf ${D}${bindir}/wlconf/
--	install -m 0755 wl18xx-conf-default.bin ${D}${bindir}/wlconf/
--	install -m 0755 wl18xx-conf-default.bin ${D}/lib/firmware/ti-connectivity/wl18xx-conf.bin
--	install -m 0755 README ${D}${bindir}/wlconf/
--	install -m 0755 example.conf ${D}${bindir}/wlconf/
--	install -m 0755 example.ini ${D}${bindir}/wlconf/
--	install -m 0755 configure-device.sh ${D}${bindir}/wlconf/
--	install -m 0755 ${S}/official_inis/* \
--			${D}${bindir}/wlconf/official_inis/
+-	scripts=`find ./ -type f -name "*.*"`
+-	for s in $scripts
+-	do
+-		install -m 0755 $s ${D}${datadir}/wl18xx/
+-	done
 -}
--
--FILES_${PN} += " \
--	${bindir}/wlconf \
--	${bindir}/wlconf/official_inis \
--	/lib/firmware/ti-connectivity/wl18xx-conf.bin \
--"
--
--FILES_${PN}-dbg += "${bindir}/wlconf/.debug"
 -- 
 2.7.4
 
