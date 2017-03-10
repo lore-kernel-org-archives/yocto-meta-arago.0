@@ -1,32 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 122415297D
+	by arago-project.org (Postfix) with ESMTPS id 0DA445296F
 	for <meta-arago@arago-project.org>;
 	Fri, 10 Mar 2017 21:10:14 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B68D920BBD;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 8520820BBF;
 	Fri, 10 Mar 2017 21:10:13 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id Jri3K4XO0-gF; Fri, 10 Mar 2017 21:10:13 +0000 (UTC)
+	with ESMTP id vWQAK_5kvvty; Fri, 10 Mar 2017 21:10:13 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9D63820BBE;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6A01320BAB;
 	Fri, 10 Mar 2017 21:10:12 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 3E74D1623BA;
+	by mail.denix.org (Postfix) with ESMTP id 1805B16239D;
 	Fri, 10 Mar 2017 16:10:12 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 10 Mar 2017 16:10:09 -0500
-Message-Id: <1489180211-138519-5-git-send-email-denis@denix.org>
+Date: Fri, 10 Mar 2017 16:10:05 -0500
+Message-Id: <1489180211-138519-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1489180211-138519-1-git-send-email-denis@denix.org>
-References: <1489180211-138519-1-git-send-email-denis@denix.org>
-Subject: [PATCH 4/6] wl18xx-target-scripts: moved to meta-ti, remove here
+Subject: [PATCH 0/6] Remove WiLink8 recipes moved to meta-ti, update deps
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,44 +41,34 @@ X-List-Received-Date: Fri, 10 Mar 2017 21:10:14 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../wl18xx-target-scripts/wl18xx-target-scripts.bb | 26 ----------------------
- 1 file changed, 26 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts.bb
+Denys Dmytriyenko (6):
+  wl18xx-firmware: moved to meta-ti as wl18xx-fw, remove here
+  bt-firmware: moved to meta-ti as bt-fw, remove here
+  wlconf: moved to meta-ti, remove here
+  wl18xx-target-scripts: moved to meta-ti, remove here
+  ti-wifi-utils: moved to meta-ti as wl18xx-calibrator, remove here
+  wilink-calibrate: remove outdated wl12xx package
 
-diff --git a/meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts.bb b/meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts.bb
-deleted file mode 100644
-index 414ba0c..0000000
---- a/meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts.bb
-+++ /dev/null
-@@ -1,26 +0,0 @@
--DESCRIPTION = "Scripts and configuration files for TI wireless drivers"
--LICENSE = "GPLv2"
--LIC_FILES_CHKSUM = "file://README;beginline=1;endline=21;md5=b8d6a0865f50159bf5c0d175d1f4a705"
--
--PV = "R8.6+git${SRCPV}"
--
--PR = "r7"
--
--# Tag: R8.6
--SRCREV = "693f71c709abcaa9047835cf3903aea26a63fa94"
--BRANCH = "sitara-scripts"
--SRC_URI = "git://git.ti.com/wilink8-wlan/wl18xx-target-scripts.git;protocol=git;branch=${BRANCH}"
--
--S = "${WORKDIR}/git"
--
--FILES_${PN} += "${datadir}/wl18xx/"
--
--do_install() {
--	install -d ${D}${datadir}/wl18xx/
--
--	scripts=`find ./ -type f -name "*.*"`
--	for s in $scripts
--	do
--		install -m 0755 $s ${D}${datadir}/wl18xx/
--	done
--}
+ .../conf/distro/include/arago-source-ipk.inc       |  4 +-
+ .../packagegroup-arago-tisdk-connectivity.bb       |  6 +--
+ .../recipes-bsp/bt-firmware/bt-firmware_git.bb     | 35 ------------------
+ .../recipes-bsp/wl18xx-firmware/wl18xx-firmware.bb | 35 ------------------
+ .../0001-Add-Makefile-for-SDK.patch                | 33 -----------------
+ .../wl18xx-target-scripts/wl18xx-target-scripts.bb | 26 -------------
+ .../recipes-connectivity/wlconf/wlconf.bb          | 43 ----------------------
+ .../ti-wifi-utils/ti-wifi-utils-wl18xx.bb          | 34 -----------------
+ .../ti-wifi-utils/wilink-calibrate/calibrate.sh    |  7 ----
+ .../ti-wifi-utils/wilink-calibrate_1.0.bb          | 17 ---------
+ 10 files changed, 5 insertions(+), 235 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-bsp/bt-firmware/bt-firmware_git.bb
+ delete mode 100644 meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware.bb
+ delete mode 100644 meta-arago-extras/recipes-bsp/wl18xx-firmware/wl18xx-firmware/0001-Add-Makefile-for-SDK.patch
+ delete mode 100644 meta-arago-extras/recipes-connectivity/wl18xx-target-scripts/wl18xx-target-scripts.bb
+ delete mode 100644 meta-arago-extras/recipes-connectivity/wlconf/wlconf.bb
+ delete mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/ti-wifi-utils-wl18xx.bb
+ delete mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/wilink-calibrate/calibrate.sh
+ delete mode 100644 meta-arago-extras/recipes-devtools/ti-wifi-utils/wilink-calibrate_1.0.bb
+
 -- 
 2.7.4
 
