@@ -1,34 +1,37 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id AA17752A27
+Return-Path: <jon@beiwy.com>
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com
+	[66.111.4.25])
+	by arago-project.org (Postfix) with ESMTPS id 1E0BB52A27
 	for <meta-arago@arago-project.org>;
-	Mon, 13 Mar 2017 18:31:51 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2DIVpIX004010
-	for <meta-arago@arago-project.org>; Mon, 13 Mar 2017 13:31:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1489429911;
-	bh=ariJ3qLxAEWevt6O7a5959eAGMGCaSZZq9gaBnUrBEA=;
-	h=From:To:CC:Subject:Date;
-	b=D/PTsZXmhBxbvXDviR3A3ZXB3uRqH2/arqR4rsHLx5WOhDHw6crxwMf8LrvSMa0P4
-	BZSC6ynF82+WAyMdkOpnNv/bqXHMp3dmfYbXscXu1oek8EtV9Hvt6o6pEbAwjRR7L9
-	82ew0wOeOvZE7l+RMOTAWpNs8pPMIRlkggD0nN1c=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2DIVpY8007202
-	for <meta-arago@arago-project.org>; Mon, 13 Mar 2017 13:31:51 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 13 Mar 2017 13:31:50 -0500
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2DIVnNX008423;
-	Mon, 13 Mar 2017 13:31:50 -0500
-From: Karthik Ramanan <a0393906@ti.com>
+	Mon, 13 Mar 2017 18:32:47 +0000 (UTC)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+	by mailout.nyi.internal (Postfix) with ESMTP id 8366B20852
+	for <meta-arago@arago-project.org>;
+	Mon, 13 Mar 2017 14:32:47 -0400 (EDT)
+Received: from frontend2 ([10.202.2.161])
+	by compute4.internal (MEProxy); Mon, 13 Mar 2017 14:32:47 -0400
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=
+	messagingengine.com; h=content-transfer-encoding:content-type
+	:date:from:message-id:mime-version:subject:to:x-me-sender
+	:x-me-sender:x-sasl-enc:x-sasl-enc; s=smtpout; bh=BPCQW3uEvRpPFl
+	pbYSrUsPvajh0=; b=N05k2f5P+cV9iCf7N0h58G9/MKasITSIjbhSHTJxyTVVQP
+	xJDt5o3nwspKs/BZPc4iRsAQtozy6lDhlWpl9pjKv7LCEa8dUkgPoQwywIwsgC48
+	67HXnetFVEF4iLIWy4WricN8uL8mfVAiSsLSpHtrs/e8Wcnb5Dm/89vcumMqQ=
+X-ME-Sender: <xms:z-XGWM5DcskxokhvIfKHOCFlqy4ZQsFGQwmrYBJlGcoY76-Cn4VHzw>
+X-Sasl-enc: /EakaQtQoqJQp+8GsLb6EXhyK8efllRyy7soE3OdaA2T 1489429967
+Received: from JonThinkpad (c-67-165-223-215.hsd1.co.comcast.net
+	[67.165.223.215])
+	by mail.messagingengine.com (Postfix) with ESMTPA id 2E265246E4
+	for <meta-arago@arago-project.org>;
+	Mon, 13 Mar 2017 14:32:47 -0400 (EDT)
+From: "Jonathan Stackhouse" <jon@beiwy.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 14 Mar 2017 00:01:44 +0530
-Message-ID: <1489429904-13863-1-git-send-email-a0393906@ti.com>
-X-Mailer: git-send-email 1.9.1
+Date: Mon, 13 Mar 2017 12:32:46 -0600
+Message-ID: <000001d29c28$365bdaa0$a3138fe0$@beiwy.com>
 MIME-Version: 1.0
-Subject: [master] weston: Add SoC performance monitoring utilities
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdKcJ+5iyCjjIYB7Qua6+kU80Wf8zA==
+Subject: core-image-weston with meta-arago?
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,39 +44,64 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Mar 2017 18:31:51 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 13 Mar 2017 18:32:47 -0000
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-us
 
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
----
- .../recipes-graphics/wayland/weston_1.11.0.bbappend              | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+Hello,
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
-index f8329c8..9b52df0 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
-@@ -2,7 +2,7 @@
- PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
- PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
- 
--PR_append = ".arago22"
-+PR_append = ".arago25"
- 
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
-@@ -17,3 +17,10 @@ SRC_URI += " \
- 	file://0001-compositor-drm-fix-hotplug-weston-termination-proble.patch \
- 	file://0001-compositor-drm-support-RGB565-with-pixman-renderer.patch \
- "
-+
-+
-+# SoC Performance Monitoring Utility
-+SRC_URI += " \
-+        file://0001-Add-soc-performance-monitor-utilites.patch \
-+"
-+
--- 
-1.9.1
+I'm trying to get a core-image-weston image to build with meta-arago for a
+custom board, but am having difficulties. I've followed the steps outlined
+on the Setting Up Build Environment page of the Arago Project website [1],
+with the exception that I'm using the Linaro 6.2.1-2016.11 toolchain and I
+used the arago-morty-next-config.txt configuration.
+
+I was originally hoping that TI had a core-image-weston style image that I
+could use, but there's no meta-arago/recipes-graphics/images directory. This
+made me assume that I could build core-image-weston, since I can build
+core-image-minimal, and get the results I was hoping for with minimal
+effort. Apparently, I was wrong. When I attempt to build core-image-weston,
+I get the following errors (please note that I've set MACHINE equal to my
+machine in conf/local.conf):
+
+vb@thinkVB:~/yoctoproject/tisdk/build$ bitbake core-image-weston
+NOTE: Started PRServer with DBfile:
+/home/vb/yoctoproject/tisdk/build/cache/prserv.sqlite3, IP: 127.0.0.1, PORT:
+42107, PID: 15505 Loading cache: 100%
+|###########################################################################
+############################################################################
+##################| Time: 0:00:01 Loaded 3033 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing PROVIDES 'virtual/mesa' (but
+/home/vb/yoctoproject/tisdk/sources/oe-core/meta/recipes-gnome/gtk+/gtk+3_3.
+20.9.bb DEPENDS on or otherwise requires it)
+ERROR: mesa PROVIDES virtual/mesa but was skipped:
+PREFERRED_PROVIDER_virtual/libgl set to mesa-gl, not mesa
+ERROR: mesa PROVIDES virtual/mesa but was skipped:
+PREFERRED_PROVIDER_virtual/libgl set to mesa-gl, not mesa
+ERROR: mesa-gl PROVIDES virtual/mesa but was skipped:
+PREFERRED_PROVIDER_virtual/mesa set to mesa, not mesa-gl
+NOTE: Runtime target 'gtk+3-demo' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ['gtk+3-demo', 'virtual/mesa']
+ERROR: Required build target 'core-image-weston' has no buildable providers.
+Missing or unbuildable dependency chain was: ['core-image-weston',
+'gtk+3-demo', 'virtual/mesa']
+
+I also get the same results when building for the am335x-evm.
+
+Is it supposed to be possible to build a core-image-weston style image with
+meta-arago? If so, does anyone have pointers on how I can get it to work? My
+end goal is to get boot2qt on my device, but I've been trying to work at all
+of this step-by-step. 
+
+Both core-image-minimal and arago-console-image work on my board.
+
+[1] - http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment
+
+Thank you,
+
+Jon Stackhouse
 
 
