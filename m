@@ -1,37 +1,37 @@
-Return-Path: <jon@beiwy.com>
-Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com
-	[66.111.4.25])
-	by arago-project.org (Postfix) with ESMTPS id 1E0BB52A27
+Return-Path: <manishalocal@uda0393239>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 416FE52A12
 	for <meta-arago@arago-project.org>;
-	Mon, 13 Mar 2017 18:32:47 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-	by mailout.nyi.internal (Postfix) with ESMTP id 8366B20852
-	for <meta-arago@arago-project.org>;
-	Mon, 13 Mar 2017 14:32:47 -0400 (EDT)
-Received: from frontend2 ([10.202.2.161])
-	by compute4.internal (MEProxy); Mon, 13 Mar 2017 14:32:47 -0400
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-transfer-encoding:content-type
-	:date:from:message-id:mime-version:subject:to:x-me-sender
-	:x-me-sender:x-sasl-enc:x-sasl-enc; s=smtpout; bh=BPCQW3uEvRpPFl
-	pbYSrUsPvajh0=; b=N05k2f5P+cV9iCf7N0h58G9/MKasITSIjbhSHTJxyTVVQP
-	xJDt5o3nwspKs/BZPc4iRsAQtozy6lDhlWpl9pjKv7LCEa8dUkgPoQwywIwsgC48
-	67HXnetFVEF4iLIWy4WricN8uL8mfVAiSsLSpHtrs/e8Wcnb5Dm/89vcumMqQ=
-X-ME-Sender: <xms:z-XGWM5DcskxokhvIfKHOCFlqy4ZQsFGQwmrYBJlGcoY76-Cn4VHzw>
-X-Sasl-enc: /EakaQtQoqJQp+8GsLb6EXhyK8efllRyy7soE3OdaA2T 1489429967
-Received: from JonThinkpad (c-67-165-223-215.hsd1.co.comcast.net
-	[67.165.223.215])
-	by mail.messagingengine.com (Postfix) with ESMTPA id 2E265246E4
-	for <meta-arago@arago-project.org>;
-	Mon, 13 Mar 2017 14:32:47 -0400 (EDT)
-From: "Jonathan Stackhouse" <jon@beiwy.com>
+	Mon, 13 Mar 2017 18:57:59 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2DIvxg6007461
+	for <meta-arago@arago-project.org>; Mon, 13 Mar 2017 13:57:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1489431479;
+	bh=4IJy27eReE0aRNFy9aixKHA6+fw4sMo9ZjPuGAtOWlw=;
+	h=From:To:CC:Subject:Date;
+	b=RUbDAQgzslu85gNB63Of9ZjNqLb/7DsY3E9Grje9suI5jIk1OJVarn3FZduJWdDlx
+	OY380yiW3MEf1MPGhk0bW24ttQ/gROOOcVB3LRei4R/s5eITh4rnf1DiouJWzwcGcA
+	UqZD9VNTHAAOTFegFVaTiyaRdj1wtN7XOI9g6VLc=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2DIvwrv001760
+	for <meta-arago@arago-project.org>; Mon, 13 Mar 2017 13:57:59 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 13 Mar 2017 13:57:58 -0500
+Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2DIvw7p023832;
+	Mon, 13 Mar 2017 13:57:58 -0500
+Received: from manishalocal by uda0393239 with local (Exim 4.76)
+	(envelope-from <manishalocal@uda0393239>)	id 1cnVAM-0003N2-HP;
+	Mon, 13 Mar 2017 13:57:58 -0500
+From: Manisha Agrawal <manisha.agrawal@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 13 Mar 2017 12:32:46 -0600
-Message-ID: <000001d29c28$365bdaa0$a3138fe0$@beiwy.com>
+Date: Mon, 13 Mar 2017 13:57:55 -0500
+Message-ID: <20170313185755.12918-1-manisha.agrawal@ti.com>
+X-Mailer: git-send-email 2.9.3
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AdKcJ+5iyCjjIYB7Qua6+kU80Wf8zA==
-Subject: core-image-weston with meta-arago?
+Subject: [master/morty][PATCH] recipes-multimedia : video-graphics-test : new demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,64 +44,119 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Mar 2017 18:32:47 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-us
+X-List-Received-Date: Mon, 13 Mar 2017 18:57:59 -0000
+Content-Type: text/plain
 
-Hello,
+Add new demo to Processor Linux SDK. This demo is package along with
+source code in PLSDK and binary available under /usr/bin folder of the
+filesystem. The demo is target to showcase AM57x Display Sub System
+capabilities, 2D graphics accelerator GC320 video API usage for overlay
+and QT drawing using 3D graphics accelerator. In this particular release
+the demo is showing the DRM API usage for scaling and overlaying using
+DSS and special QT QPA eglfs-kms for rendering using SGX. QT is the
+master of the drm resource but shares the handle with application too.
 
-I'm trying to get a core-image-weston image to build with meta-arago for a
-custom board, but am having difficulties. I've followed the steps outlined
-on the Setting Up Build Environment page of the Arago Project website [1],
-with the exception that I'm using the Linaro 6.2.1-2016.11 toolchain and I
-used the arago-morty-next-config.txt configuration.
+Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
+---
+ .../conf/distro/arago-source-ipk.conf              |  3 +++
+ .../ti-tisdk-makefile/Makefile_video-graphics-test | 24 +++++++++++++++++++
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  1 +
+ .../video-graphics-test/video-graphics-test_1.0.bb | 28 ++++++++++++++++++++++
+ 4 files changed, 56 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_video-graphics-test
+ create mode 100644 meta-arago-extras/recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb
 
-I was originally hoping that TI had a core-image-weston style image that I
-could use, but there's no meta-arago/recipes-graphics/images directory. This
-made me assume that I could build core-image-weston, since I can build
-core-image-minimal, and get the results I was hoping for with minimal
-effort. Apparently, I was wrong. When I attempt to build core-image-weston,
-I get the following errors (please note that I've set MACHINE equal to my
-machine in conf/local.conf):
-
-vb@thinkVB:~/yoctoproject/tisdk/build$ bitbake core-image-weston
-NOTE: Started PRServer with DBfile:
-/home/vb/yoctoproject/tisdk/build/cache/prserv.sqlite3, IP: 127.0.0.1, PORT:
-42107, PID: 15505 Loading cache: 100%
-|###########################################################################
-############################################################################
-##################| Time: 0:00:01 Loaded 3033 entries from dependency cache.
-NOTE: Resolving any missing task queue dependencies
-ERROR: Nothing PROVIDES 'virtual/mesa' (but
-/home/vb/yoctoproject/tisdk/sources/oe-core/meta/recipes-gnome/gtk+/gtk+3_3.
-20.9.bb DEPENDS on or otherwise requires it)
-ERROR: mesa PROVIDES virtual/mesa but was skipped:
-PREFERRED_PROVIDER_virtual/libgl set to mesa-gl, not mesa
-ERROR: mesa PROVIDES virtual/mesa but was skipped:
-PREFERRED_PROVIDER_virtual/libgl set to mesa-gl, not mesa
-ERROR: mesa-gl PROVIDES virtual/mesa but was skipped:
-PREFERRED_PROVIDER_virtual/mesa set to mesa, not mesa-gl
-NOTE: Runtime target 'gtk+3-demo' is unbuildable, removing...
-Missing or unbuildable dependency chain was: ['gtk+3-demo', 'virtual/mesa']
-ERROR: Required build target 'core-image-weston' has no buildable providers.
-Missing or unbuildable dependency chain was: ['core-image-weston',
-'gtk+3-demo', 'virtual/mesa']
-
-I also get the same results when building for the am335x-evm.
-
-Is it supposed to be possible to build a core-image-weston style image with
-meta-arago? If so, does anyone have pointers on how I can get it to work? My
-end goal is to get boot2qt on my device, but I've been trying to work at all
-of this step-by-step. 
-
-Both core-image-minimal and arago-console-image work on my board.
-
-[1] - http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment
-
-Thank you,
-
-Jon Stackhouse
+diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-arago-distro/conf/distro/arago-source-ipk.conf
+index 96f2db2..5941519 100644
+--- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
++++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
+@@ -67,6 +67,9 @@ SRCIPK_INSTALL_DIR_pn-qt-tstat = "example-applications/${PN}-${PV}"
+ CREATE_SRCIPK_pn-dual-camera-demo = "1"
+ SRCIPK_INSTALL_DIR_pn-dual-camera-demo = "example-applications/${PN}-${PV}"
+ 
++CREATE_SRCIPK_pn-video-graphics-test = "1"
++SRCIPK_INSTALL_DIR_pn-video-graphics-test = "example-applications/${PN}-${PV}"
++
+ CREATE_SRCIPK_pn-image-gallery = "1"
+ SRCIPK_INSTALL_DIR_pn-image-gallery = "example-applications/${PN}"
+ 
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_video-graphics-test b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_video-graphics-test
+new file mode 100644
+index 0000000..1ffc395
+--- /dev/null
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_video-graphics-test
+@@ -0,0 +1,24 @@
++# QT Video Graphics build targets
++video-graphics-test:
++	@echo ================================
++	@echo    Building Video Graphics Test
++	@echo ================================
++	@cd example-applications; cd `find . -name "*video-graphics-test*"`; make -f Makefile.build
++
++video-graphics-test_clean:
++	@echo ================================
++	@echo    Building Video Graphics Test
++	@echo ================================
++	@cd example-applications; cd `find . -name "*video-graphics-test*"`; make -f Makefile.build clean
++
++video-graphics-test_install:
++	@echo ===================================================
++	@echo   Installing Video Graphics Test - Release version
++	@echo ===================================================
++	@cd example-applications; cd `find . -name "*video-graphics-test*"`; make -f Makefile.build install
++
++video-graphics-test_install_debug:
++	@echo =================================================
++	@echo   Installing Video Graphics Test - Debug version
++	@echo =================================================
++	@cd example-applications; cd `find . -name "*video-graphics-test*"`; make -f Makefile.build install_debug
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index 202078c..40ba3be 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -31,6 +31,7 @@ SRC_URI = "\
+     file://Makefile_omapconf \
+     file://Makefile_oprofile-example \
+     file://Makefile_dual-camera-demo \
++    file://Makefile_video-graphics-test \
+     file://Makefile_image-gallery \
+     file://Makefile_cryptodev \
+     file://Makefile_cmem-mod \
+diff --git a/meta-arago-extras/recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb b/meta-arago-extras/recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb
+new file mode 100644
+index 0000000..4e428b2
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb
+@@ -0,0 +1,28 @@
++DESCRIPTION = "Test applications for video and graphics interface"
++HOMEPAGE = "https://git.ti.com/sitara-linux/video-graphics-test"
++SECTION = "multimedia"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=c7ca707704d3354a64feeb4f19f52eb5"
++
++DEPENDS += "libdrm"
++
++PR = "r0"
++
++BRANCH = "master"
++SRCREV = "ebc7ab44d05fc726b0ddc7f4b45d71d7509313f5"
++
++SRC_URI = "git://git.ti.com/sitara-linux/video-graphics-test.git;protocol=git;branch=${BRANCH} \
++"
++
++S = "${WORKDIR}/git"
++
++inherit qt-provider
++
++export SDK_PATH_TARGET='${STAGING_DIR_HOST}'
++
++# use the make targets already created in the Makefile.build files
++do_install() {
++    install -d ${D}/usr/bin
++    install video_graphics_test ${D}/usr/bin/video-graphics-test
++}
++
+-- 
+2.9.3
 
 
