@@ -1,30 +1,34 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 83587520C0
+Return-Path: <karthik.ramanan@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id AA17752A27
 	for <meta-arago@arago-project.org>;
-	Fri, 10 Mar 2017 21:40:49 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 78E7A20BB2;
-	Fri, 10 Mar 2017 21:40:49 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id JI0lQAB_V_rs; Fri, 10 Mar 2017 21:40:49 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 50E6220BA7;
-	Fri, 10 Mar 2017 21:40:48 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id D19ED16239D;
-	Fri, 10 Mar 2017 16:40:47 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 10 Mar 2017 16:40:47 -0500
-Message-Id: <1489182047-145547-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] bt-enable: add startup script to enable bluetooth
+	Mon, 13 Mar 2017 18:31:51 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2DIVpIX004010
+	for <meta-arago@arago-project.org>; Mon, 13 Mar 2017 13:31:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1489429911;
+	bh=ariJ3qLxAEWevt6O7a5959eAGMGCaSZZq9gaBnUrBEA=;
+	h=From:To:CC:Subject:Date;
+	b=D/PTsZXmhBxbvXDviR3A3ZXB3uRqH2/arqR4rsHLx5WOhDHw6crxwMf8LrvSMa0P4
+	BZSC6ynF82+WAyMdkOpnNv/bqXHMp3dmfYbXscXu1oek8EtV9Hvt6o6pEbAwjRR7L9
+	82ew0wOeOvZE7l+RMOTAWpNs8pPMIRlkggD0nN1c=
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2DIVpY8007202
+	for <meta-arago@arago-project.org>; Mon, 13 Mar 2017 13:31:51 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 13 Mar 2017 13:31:50 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2DIVnNX008423;
+	Mon, 13 Mar 2017 13:31:50 -0500
+From: Karthik Ramanan <a0393906@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 14 Mar 2017 00:01:44 +0530
+Message-ID: <1489429904-13863-1-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [master] weston: Add SoC performance monitoring utilities
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,188 +41,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Mar 2017 21:40:50 -0000
+X-List-Received-Date: Mon, 13 Mar 2017 18:31:51 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../recipes-connectivity/bt-enable/bt-enable.bb    | 25 ++++++
- .../bt-enable/bt-enable/bt-enable.service          | 12 +++
- .../bt-enable/bt-enable/bt-enable.sh               | 99 ++++++++++++++++++++++
- .../packagegroup-arago-tisdk-connectivity.bb       |  1 +
- 4 files changed, 137 insertions(+)
- create mode 100644 meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb
- create mode 100644 meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.service
- create mode 100644 meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.sh
+ .../recipes-graphics/wayland/weston_1.11.0.bbappend              | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb
-new file mode 100644
-index 0000000..a0469f8
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb
-@@ -0,0 +1,25 @@
-+SUMMARY = "Bluetooth enable script"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://bt-enable.sh;beginline=2;endline=18;md5=d134d0d385c53f9201a270fef8448f29"
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
+index f8329c8..9b52df0 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston_1.11.0.bbappend
+@@ -2,7 +2,7 @@
+ PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
+ PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
+ 
+-PR_append = ".arago22"
++PR_append = ".arago25"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+@@ -17,3 +17,10 @@ SRC_URI += " \
+ 	file://0001-compositor-drm-fix-hotplug-weston-termination-proble.patch \
+ 	file://0001-compositor-drm-support-RGB565-with-pixman-renderer.patch \
+ "
 +
-+SRC_URI = " \
-+	file://bt-enable.sh \
-+	file://bt-enable.service \
++
++# SoC Performance Monitoring Utility
++SRC_URI += " \
++        file://0001-Add-soc-performance-monitor-utilites.patch \
 +"
 +
-+S = "${WORKDIR}"
-+
-+INITSCRIPT_NAME = "bt-enable.sh"
-+INITSCRIPT_PARAMS = "defaults 99"
-+
-+inherit allarch update-rc.d systemd
-+
-+SYSTEMD_SERVICE_${PN} = "bt-enable.service"
-+
-+do_install () {
-+	install -d ${D}${sysconfdir}/init.d
-+	install -m 0755 bt-enable.sh ${D}${sysconfdir}/init.d/
-+
-+	install -d ${D}${systemd_system_unitdir}
-+	install -m0644 bt-enable.service ${D}${systemd_system_unitdir}
-+}
-diff --git a/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.service b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.service
-new file mode 100644
-index 0000000..2bde23a
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.service
-@@ -0,0 +1,12 @@
-+[Unit]
-+Description=Enable and configure wl18xx bluetooth stack
-+After=network.target
-+
-+[Service]
-+Type=oneshot
-+ExecStart=/etc/init.d/bt-enable.sh
-+WorkingDirectory=/etc/init.d
-+StandardOutput=syslog
-+
-+[Install]
-+WantedBy=multi-user.target
-diff --git a/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.sh b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.sh
-new file mode 100644
-index 0000000..312b631
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.sh
-@@ -0,0 +1,99 @@
-+#!/bin/bash
-+#Permission is hereby granted, free of charge, to any person obtaining a copy
-+#of this software and associated documentation files (the "Software"), to deal
-+#in the Software without restriction, including without limitation the rights
-+#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-+#copies of the Software, and to permit persons to whom the Software is
-+#furnished to do so, subject to the following conditions:
-+#
-+#The above copyright notice and this permission notice shall be included in
-+#all copies or substantial portions of the Software.
-+#
-+#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-+#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-+#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-+#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-+#THE SOFTWARE.
-+
-+function bten_335_evm {
-+	echo 117 > /sys/class/gpio/export
-+	echo out > /sys/class/gpio/gpio117/direction
-+	echo 1 > /sys/class/gpio/gpio117/value
-+	echo "Done enabling BT"
-+
-+	local gpio="nshutdown_gpio=117"
-+	local tty="tty=/dev/ttyS1"
-+	local flow="flow_cntrl=1"
-+	local baud_rate="baud_rate=3000000"
-+	mkdir /home/root/tibt
-+	echo $gpio > /home/root/tibt/config
-+	echo $tty >> /home/root/tibt/config
-+	echo $flow >> /home/root/tibt/config
-+	echo $baud_rate >> /home/root/tibt/config
-+}
-+
-+function bten_437_evm {
-+	echo 16 > /sys/class/gpio/export
-+	echo out > /sys/class/gpio/gpio16/direction
-+	echo 1 > /sys/class/gpio/gpio16/value
-+	echo "Done enabling BT"
-+
-+	local gpio="nshutdown_gpio=16"
-+	local tty="tty=/dev/ttyS3"
-+	local flow="flow_cntrl=1"
-+	local baud_rate="baud_rate=3000000"
-+	mkdir /home/root/tibt
-+	echo $gpio > /home/root/tibt/config
-+	echo $tty >> /home/root/tibt/config
-+	echo $flow >> /home/root/tibt/config
-+	echo $baud_rate >> /home/root/tibt/config
-+}
-+
-+function bten_57x_idk {
-+	echo 132 > /sys/class/gpio/export
-+	echo out > /sys/class/gpio/gpio132/direction
-+	echo 1 > /sys/class/gpio/gpio132/value
-+	echo "Done enabling BT"
-+
-+	local gpio="nshutdown_gpio=16"
-+	local tty="tty=/dev/ttyS7"
-+	local flow="flow_cntrl=1"
-+	local baud_rate="baud_rate=3686400"
-+	mkdir /home/root/tibt
-+	echo $gpio > /home/root/tibt/config
-+	echo $tty >> /home/root/tibt/config
-+	echo $flow >> /home/root/tibt/config
-+	echo $baud_rate >> /home/root/tibt/config
-+}
-+
-+b=$(cat /proc/device-tree/model)
-+echo "$b"
-+if [ `echo $b | grep -c "TI"` -gt 0 ]
-+then
-+	if [ `echo $b | grep -c "EVM"` -gt 0 ]
-+	then
-+		if [ `echo $b | grep -c "335"` -gt 0 ]
-+		then
-+			echo "success"
-+			bten_335_evm
-+		fi
-+		if [ `echo $b | grep -c "437"` -gt 0 ]
-+		then
-+			echo "success"
-+			bten_437_evm
-+		fi
-+	elif [ `echo $b | grep -c "IDK"` -gt 0 ]
-+	then
-+		if [ `echo $b | grep -c "57"` -gt 0 ]
-+		then
-+			echo "success"
-+			bten_57x_idk
-+		fi
-+	else
-+		echo "Not TI EVM board"
-+	fi
-+else
-+	echo "Not a TI board"
-+fi
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-index 92e5c73..7180a8b 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-@@ -42,6 +42,7 @@ BLUETOOTH_STACK = "\
-     bluez5-noinst-tools \
-     bluez5-testtools \
-     uim \
-+    bt-enable \
- "
- 
- CONNECTIVITY_RDEPENDS = " \
 -- 
-2.7.4
+1.9.1
 
 
