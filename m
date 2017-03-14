@@ -1,31 +1,31 @@
 Return-Path: <denys@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 0930C529EC
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 6F2FA529B9
 	for <meta-arago@arago-project.org>;
-	Tue, 14 Mar 2017 21:52:53 +0000 (UTC)
+	Tue, 14 Mar 2017 22:22:16 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2ELqhmP028538
-	for <meta-arago@arago-project.org>; Tue, 14 Mar 2017 16:52:43 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2EMMF4S021057
+	for <meta-arago@arago-project.org>; Tue, 14 Mar 2017 17:22:15 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1489528363;
-	bh=Iurg5vpgAnLfzr9Z6idInP8QGGq0hPeruMN1cQQlbMs=;
+	s=ti-com-17Q1; t=1489530135;
+	bh=KFoWIEMll/vDI8RcDd78U6Uj4q6FrIYgNGjec6+Ts+0=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=B+XX+yqDeoAqq3HTfwdIKXCGmkQd04Ycg9pUyTH1sMPaZQrp+HcdhneFX2+tSpBYk
-	nji2yYu4JTvJ7VJ/nJgm9g7XAA5ZICa8qjPVoKAeax4ynnRyyutBSZwJmd4sJMXa1I
-	PjxNYYrqCf9utSekzslmktvEI6Add+upQgExM9HE=
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2ELqcTr001374
-	for <meta-arago@arago-project.org>; Tue, 14 Mar 2017 16:52:38 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	b=X3bAXwA7yLMrq9+I+xWAhRdXLsgL25f9+XuMPFqbYjlUsZrC+YESUgJOLA7uE12X5
+	94os8GXFEwbav5/VgjlgMx3Kpp7YeZi9gfRskwwqSLn3urap8rl3m2aDvTv4wjdxkG
+	AEGgqNh/VZM0+i6zy8jEo7yFivp2Igrph4Jc/J58=
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2EMMFXb002797
+	for <meta-arago@arago-project.org>; Tue, 14 Mar 2017 17:22:15 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 14 Mar 2017 16:52:38 -0500
+	Tue, 14 Mar 2017 17:22:14 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2ELqc5O017611;
-	Tue, 14 Mar 2017 16:52:38 -0500
-Date: Tue, 14 Mar 2017 17:52:37 -0400
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2EMMEUB023406;
+	Tue, 14 Mar 2017 17:22:14 -0500
+Date: Tue, 14 Mar 2017 18:22:13 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: Karthik Ramanan <a0393906@ti.com>
-Message-ID: <20170314215237.GP578@edge>
+Message-ID: <20170314222213.GQ578@edge>
 References: <1489429904-13863-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
 In-Reply-To: <1489429904-13863-1-git-send-email-a0393906@ti.com>
@@ -44,11 +44,15 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Mar 2017 21:52:54 -0000
+X-List-Received-Date: Tue, 14 Mar 2017 22:22:20 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-I presume this is also needed for morty...
+BTW, can this be done in a separate recipe to add additional app clients, 
+instead of a patch to Weston? This is not scalable/portable at all...
+
+-- 
+Denys
 
 
 On Tue, Mar 14, 2017 at 12:01:44AM +0530, Karthik Ramanan wrote:
