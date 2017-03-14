@@ -1,30 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id B0D3E529CE
+	by arago-project.org (Postfix) with ESMTPS id B45D4529D2
 	for <meta-arago@arago-project.org>;
 	Tue, 14 Mar 2017 21:49:31 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id AEE3A20BAB;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id B3D0020BB0;
 	Tue, 14 Mar 2017 21:49:31 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id skdl4v5JXoOZ; Tue, 14 Mar 2017 21:49:31 +0000 (UTC)
+	with ESMTP id iRb2qRYvh96j; Tue, 14 Mar 2017 21:49:31 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 89A25208FB;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8C51920BA7;
 	Tue, 14 Mar 2017 21:49:30 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 019891623C7;
-	Tue, 14 Mar 2017 17:49:29 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 0F7341623E8;
+	Tue, 14 Mar 2017 17:49:30 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 14 Mar 2017 17:49:28 -0400
-Message-Id: <1489528169-125604-1-git-send-email-denis@denix.org>
+Date: Tue, 14 Mar 2017 17:49:29 -0400
+Message-Id: <1489528169-125604-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH 1/2] toolchain-gcc: update preference for binutils 2.28
+In-Reply-To: <1489528169-125604-1-git-send-email-denis@denix.org>
+References: <1489528169-125604-1-git-send-email-denis@denix.org>
+Subject: [master][PATCH 2/2] arago-prefs: disable preference for old GPLv2 packages removed from OE-Core
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,31 +45,31 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/toolchain-gcc.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-distro/conf/distro/include/arago-prefs.inc | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-index 50fb5e1..89f00c6 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-@@ -18,7 +18,7 @@ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-can
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index ac18258..546cecb 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -28,12 +28,13 @@ PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
  
- # Set Cross and SDK toolchain preferences
- SDKGCCVERSION ?= "6.3%"
--SDKBINUVERSION ?= "2.27%"
-+SDKBINUVERSION ?= "2.28%"
- SDKGLIBCVERSION ?= "2.25%"
- SDKLINUXLIBCVERSION ?= "4.9%"
+ # Setting PREFERRED_VERSIONS due to selecting a specific version of a library or
+ # application that does not have a GPLv3 license
+-PREFERRED_VERSION_gdbm = "1.8.3"
+ PREFERRED_VERSION_crda = "3.18"
+ PREFERRED_VERSION_obex = "0.34"
+-PREFERRED_VERSION_bash = "3.2.57"
+-PREFERRED_VERSION_gettext = "0.16.1"
+-PREFERRED_VERSION_elfutils = "0.148"
++# These old GPLv2 versions are no longer in OE-Core
++#PREFERRED_VERSION_gdbm = "1.8.3"
++#PREFERRED_VERSION_bash = "3.2.57"
++#PREFERRED_VERSION_gettext = "0.16.1"
++#PREFERRED_VERSION_elfutils = "0.148"
  
-@@ -35,7 +35,7 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
- # Set target toolchain preferences to match Cross/SDK by default
- # Can be overwritten globally, if needed
- GCCVERSION ?= "6.3%"
--BINUVERSION ?= "2.27%"
-+BINUVERSION ?= "2.28%"
- GLIBCVERSION ?= "2.25%"
- GLIBCINITVERSION ?= "2.25%"
- LINUXLIBCVERSION ?= "4.9%"
+ PREFERRED_PROVIDER_libnl-xfrm = "libnl"
+ 
 -- 
 2.7.4
 
