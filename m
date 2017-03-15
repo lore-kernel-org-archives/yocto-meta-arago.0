@@ -1,36 +1,34 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 84D6252A4A
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id BB1BC52A4A
 	for <meta-arago@arago-project.org>;
-	Wed, 15 Mar 2017 18:03:19 +0000 (UTC)
+	Wed, 15 Mar 2017 18:03:36 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2FI39XA016460
-	for <meta-arago@arago-project.org>; Wed, 15 Mar 2017 13:03:09 -0500
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2FI3alg007095
+	for <meta-arago@arago-project.org>; Wed, 15 Mar 2017 13:03:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1489600989;
-	bh=3HdCLBcJAfdZ9Y2QbAGj4fdOJ3KWjFIM1SZHic0NYPU=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Ql3odfgzpLBZuEXwYK2IeU4TMipO5zRmqJDUacthJw0cXPWcWKY+vtZNyvQ9mkPAb
-	376Hd2t1hsvGyRFF8dCrOkPrCHICnUZc2pLrqDFKr4OattNEYFzhjBRFe3jPQ9XZMF
-	cmEOWKlirWkwW4OGXkcl4ZYGJT4bgSAErwy1wsSY=
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2FI32SW031555
-	for <meta-arago@arago-project.org>; Wed, 15 Mar 2017 13:03:04 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 15 Mar 2017 13:03:02 -0500
+	s=ti-com-17Q1; t=1489601016;
+	bh=GOZ7G/hHCpY5TStnMku53Eih84ljzFGM52ft5kiD+fY=;
+	h=From:To:CC:Subject:Date;
+	b=tE1wWmsHOEMMz47e799H5L4k0Zbu89YTMcg3YgHlv0MpRPXZTHp+0uQzim7I3m23T
+	WGNTEO947kuEdrmUSyWLdjag2s9NWr5HrIP6sfwBKww1I3fT8bRT10RmGj+bpNhyqE
+	M+OP9ruBxLouwRixNRYuTD4TaYBRBoZoMA2GPHqw=
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2FI3a43032625
+	for <meta-arago@arago-project.org>; Wed, 15 Mar 2017 13:03:36 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 15 Mar 2017 13:03:35 -0500
 Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v2FI31l1004088;	Wed, 15 Mar 2017 13:03:02 -0500
+	v2FI3Zkt004972;	Wed, 15 Mar 2017 13:03:36 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 15 Mar 2017 14:00:45 -0400
-Message-ID: <1489600845-27595-2-git-send-email-j-stiffler@ti.com>
+Date: Wed, 15 Mar 2017 14:01:23 -0400
+Message-ID: <1489600884-27644-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1489600845-27595-1-git-send-email-j-stiffler@ti.com>
-References: <1489600845-27595-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [krogoth][PATCH 2/2] opencl-examples: add persistent examples for dra7xx
+Subject: [morty/master][PATCH 1/2] ocl: update to version 1.1.12.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,66 +41,96 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Mar 2017 18:03:19 -0000
+X-List-Received-Date: Wed, 15 Mar 2017 18:03:37 -0000
 Content-Type: text/plain
+
+* opencl : add systemd service for MCT daemon
+* monitor : sources unified between platforms
+* examples : add new examples
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-ti/ocl/opencl-examples_git.bb            | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+ meta-arago-extras/recipes-ti/ocl/ocl.inc                |  4 ++--
+ meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb |  2 ++
+ meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb  |  2 --
+ meta-arago-extras/recipes-ti/ocl/opencl_git.bb          | 12 +++++++++++-
+ 4 files changed, 15 insertions(+), 5 deletions(-)
 
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index 38f08b9..94e3dd8 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,4 +1,4 @@
+-PV = "1.1.11.2"
++PV = "1.1.12.0"
+ INC_PR = "r0"
+ 
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
+ 
+-OCL_SRCREV = "5a8f16bb1809a410b961292ae070d079b89e749a"
++OCL_SRCREV = "8c0ec9c270cafaef0a56c376fc28c1b7714cb09c"
+ 
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
 diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-index f01d5e1..2cd12dc 100644
+index c69b7e2..cc1db80 100644
 --- a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
 +++ b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-@@ -3,6 +3,7 @@ HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
- LICENSE = "BSD"
+@@ -35,6 +35,8 @@ OCL_EXAMPLE_LIST = " buffer \
+                      vecadd_openmp \
+                      vecadd_openmp_t \
+                      dgemm \
++                     abort_exit \
++                     timeout \
+ "
  
- include ocl.inc
-+require recipes-ti/includes/ti-paths.inc
+ python do_unpack_append() {
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+index 8fc1e81..c0a8a6c 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+@@ -45,8 +45,6 @@ COMPATIBLE_MACHINE = "dra7xx|keystone"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+ S = "${WORKDIR}/git/monitor"
+-S_dra7xx = "${WORKDIR}/git/monitor_vayu"
+-S_k2g = "${WORKDIR}/git/monitor_vayu"
+ 
+ BUILD_TARGET_k2hk-evm = "ARM_K2H"
+ BUILD_TARGET_k2l-evm  = "ARM_K2L"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+index 9676687..1d39274 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+@@ -6,7 +6,7 @@ include ocl.inc
  
  PR = "${INC_PR}.0"
  
-@@ -11,6 +12,10 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+-inherit cmake
++inherit cmake systemd
  
- DEPENDS = "opencl ti-cgt6x-native clocl-native"
+ COMPATIBLE_MACHINE = "dra7xx|keystone"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+@@ -58,6 +58,16 @@ EXTRA_OECMAKE += " -DBUILD_TARGET=${OCL_BUILD_TARGET} -DBUILD_OUTPUT=lib -DENABL
+ EXTRA_OEMAKE += "KERNEL_INSTALL_DIR=${STAGING_KERNEL_DIR} LINUX_DEVKIT_ROOT=${STAGING_DIR_HOST}"
+ export KERNEL_INSTALL_DIR = "${STAGING_KERNEL_DIR}"
  
-+OCL_PERSISTENT_DEPENDS = "ti-xdctools ti-ipc-rtos ti-sysbios"
++MCTD = "${S}/mct-daemon/ti-mct-daemon.service.k2x"
++MCTD_dra7xx = "${S}/mct-daemon/ti-mct-daemon.service.am57x"
 +
-+DEPENDS_append_dra7xx = " ${OCL_PERSISTENT_DEPENDS}"
++do_install_append() {
++    install -d ${D}${systemd_system_unitdir}
++    install -m0644 ${MCTD} ${D}${systemd_system_unitdir}/ti-mct-daemon.service
++}
 +
- RDEPENDS_${PN} += " opencl-runtime"
- RDEPENDS_${PN}-dev += " libgomp-dev"
- 
-@@ -39,6 +44,17 @@ OCL_EXAMPLE_LIST = " buffer \
-                      timeout \
++SYSTEMD_SERVICE_${PN} = "ti-mct-daemon.service"
++
+ FILES_${PN} += " \
+     ${datadir}/ti/opencl/* \
  "
- 
-+OCL_PERSISTENT_EXAMPLE_LIST = " persistent_clock_concurrent \
-+                                persistent_clock_spanning \
-+                                persistent_common \
-+                                persistent_kernel_timeout \
-+                                persistent_messageq_concurrent \
-+                                persistent_task_concurrent \
-+                                persistent_task_spanning \
-+"
-+
-+OCL_EXAMPLE_LIST_append_dra7xx = " ${OCL_PERSISTENT_EXAMPLE_LIST}"
-+
- python do_unpack_append() {
-     import shutil
- 
-@@ -57,6 +73,10 @@ EXTRA_OEMAKE = " TARGET_ROOTDIR=${STAGING_DIR_HOST} \
-                  TI_OCL_CGT_INSTALL=${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x \
- "
- 
-+export XDC_DIR = "${XDC_INSTALL_DIR}/packages"
-+export IPC_DIR = "${IPC_INSTALL_DIR}/packages"
-+export BIOS_DIR = "${SYSBIOS_INSTALL_DIR}/packages"
-+
- do_compile() {
-     oe_runmake
- }
 -- 
 2.7.4
 
