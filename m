@@ -1,38 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id E12D452A2E
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id C2E19529CA
 	for <meta-arago@arago-project.org>;
-	Wed, 15 Mar 2017 15:26:13 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2FFQD51026534
-	for <meta-arago@arago-project.org>; Wed, 15 Mar 2017 10:26:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1489591573;
-	bh=shv/yBhulnXNxUwX+hu56WOSC7p1yAPvSb+g/5sw3hU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=l/D23OXLJVKxBfdv+skhBZywXDoVl8iZ+8D77KEjHfISb21M1N7fkgsrMlEGYmyP+
-	JqcyTtL+BrjAjEFxcCasFyUcmZXU2CBtSAqERVU4KZsAytD+URHVGNlfG7FKpeGE7G
-	UEZwQawlmYvFDZk6TOD4ov667GMb8fLaolqTok5w=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2FFQDSu001197
-	for <meta-arago@arago-project.org>; Wed, 15 Mar 2017 10:26:13 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 15 Mar 2017 10:26:12 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2FFQDeV026770;
-	Wed, 15 Mar 2017 10:26:13 -0500
-Date: Wed, 15 Mar 2017 11:26:10 -0400
+	Wed, 15 Mar 2017 16:42:24 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id AABC820BB0;
+	Wed, 15 Mar 2017 16:42:24 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id o4i30dj9jcTL; Wed, 15 Mar 2017 16:42:24 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 91C7820B0D;
+	Wed, 15 Mar 2017 16:42:23 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 5A41F1623C7;
+	Wed, 15 Mar 2017 12:42:23 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
-To: Karthik Ramanan <a0393906@ti.com>
-Message-ID: <20170315152610.GT578@edge>
-References: <1489429904-13863-1-git-send-email-a0393906@ti.com>
-	<20170314222213.GQ578@edge> <58C8A9B2.40606@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <58C8A9B2.40606@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [master] weston: Add SoC performance monitoring utilities
+To: meta-arago@arago-project.org
+Date: Wed, 15 Mar 2017 12:42:22 -0400
+Message-Id: <1489596142-29562-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH] ti-llvm3.6: depend on valgrind
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,38 +37,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Mar 2017 15:26:15 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 15 Mar 2017 16:42:25 -0000
 
-On Wed, Mar 15, 2017 at 08:10:50AM +0530, Karthik Ramanan wrote:
-> Denys,
-> 
-> Yes this is for morty.
-> May be I missed a notification on this, I'm thinking morty=master?
-> Should I mention morty explicitly?
-> 
-> 
-> On 15-Mar-17 3:52 AM, Denys Dmytriyenko wrote:
-> >BTW, can this be done in a separate recipe to add additional app clients,
-> >instead of a patch to Weston? This is not scalable/portable at all...
-> I take your point.
-> For now, lets have this patch in this way. There have been no
-> changes to the application for sometime.
-> If it undergoes additional changes we will explore ways of combining
-> them. There is an ongoing effort to consolidate applications so we
-> will include this one as well.
+If valgrind is not yet staged, may cause this error:
 
-A bit confused by your statement above...
+| .../git/lib/Support/Valgrind.cpp:20:31: fatal error: valgrind/valgrind.h: No such file or directory
+|  #include <valgrind/valgrind.h>
+|                                ^
+| compilation terminated.
 
-I was talking about "SoC performance monitoring utilities" added by this patch 
-being Weston clients. In other words, they are just apps talking to Weston and 
-hence should be in own separate code bases built by separate recipes. Not as a 
-patch on top of Weston...
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-Are you saying if you don't envision any changes to these SoC monitoring apps, 
-then you'll keep on carrying them as a Weston patch?
-
+diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+index e1db5ec..63c0fef 100644
+--- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
++++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+@@ -17,8 +17,7 @@ require recipes-core/llvm/llvm.inc
+ 
+ LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=47e311aa9caedd1b3abf098bd7814d1d"
+ 
+-DEPENDS += "libxml2"
+-
++DEPENDS += "libxml2 valgrind"
+ 
+ LLVM_DIR = "ti-llvm${PV}"
+ 
 -- 
-Denys
+2.7.4
+
 
