@@ -1,37 +1,37 @@
 Return-Path: <e-ruei1@ti.com>
 Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 5A3EF52A4F
+	by arago-project.org (Postfix) with ESMTPS id 56A5052A46
 	for <meta-arago@arago-project.org>;
 	Thu, 16 Mar 2017 18:57:07 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2GIv7ix004661
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2GIv707004665
 	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 13:57:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
 	s=ti-com-17Q1; t=1489690627;
-	bh=8JBgMXb9R+lY5809O6cilTeXzb1PmpCpIQ10eKCfUSc=;
+	bh=gCxmFKCDDtJpvX4uXMXczDhUxc5P1OrQUNfHUtcFvoA=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=L4DhyzI+NeYCDiKfuep1cm4sEUyAOkIUooLNfZB+RhDCfVTuSJ0o4J9a90tGtOYob
-	X1lqPMeFFyfnsw1p4vHleWrBhHUd/VcrdFxkllgc+nQWACsU4kbv+n0KKHLanBZSSX
-	y/GFrks3ANRiBmf/nSWW0fGrOplsIOwXJvRQUxD0=
+	b=EHP6My7OuNLaeK9x7kaUxPFHsCa0NDDjdaM+eEhSsWKLK8CUcwmzrdKVgyAiYi1yN
+	U/oQOupoG3ggTRr8OntiqK7QFTyj97WBtSwtGbtMrx2n8T6FavqbJM0X5f8SzhlZ56
+	6Yub96EozJffjWyW3MeHI6BvTXr3azK7H1T9FlZE=
 Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2GIv6JD018642
-	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 13:57:06 -0500
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2GIv6JG018642
+	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 13:57:07 -0500
 Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
 	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
 	Thu, 16 Mar 2017 13:57:05 -0500
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v2GIv5DZ010734	for <meta-arago@arago-project.org>;
+	v2GIv5Da010734	for <meta-arago@arago-project.org>;
 	Thu, 16 Mar 2017 13:57:05 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 16 Mar 2017 14:57:00 -0400
-Message-ID: <1489690621-54415-2-git-send-email-e-ruei1@ti.com>
+Date: Thu, 16 Mar 2017 14:57:01 -0400
+Message-ID: <1489690621-54415-3-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1489690621-54415-1-git-send-email-e-ruei1@ti.com>
 References: <1489690621-54415-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
-Subject: [krogoth][PATCH v2 2/3] gstreamer1.0-plugins-bad: kmssink: add YUYV(YUY2) support
+Subject: [krogoth][PATCH v2 3/3] gstreamer1.0-plugins-bad: waylandsink: add input format I420 support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,112 +49,121 @@ Content-Type: text/plain
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../0002-kmssink-add-YUYV-support.patch            | 81 ++++++++++++++++++++++
+ ...waylandsink-add-input-format-I420-support.patch | 89 ++++++++++++++++++++++
  .../gstreamer1.0-plugins-bad_1.6.3.bbappend        |  2 +
- 2 files changed, 83 insertions(+)
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-add-YUYV-support.patch
+ 2 files changed, 91 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstwaylandsink-add-input-format-I420-support.patch
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-add-YUYV-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-add-YUYV-support.patch
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstwaylandsink-add-input-format-I420-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstwaylandsink-add-input-format-I420-support.patch
 new file mode 100644
-index 0000000..a5791cc
+index 0000000..c4bf4b1
 --- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-add-YUYV-support.patch
-@@ -0,0 +1,81 @@
-+From af348c890c04ce9626d411055aae0974f410219f Mon Sep 17 00:00:00 2001
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstwaylandsink-add-input-format-I420-support.patch
+@@ -0,0 +1,89 @@
++From 4d04ea92f196b9e0880917cf029a95c9ebef0ea9 Mon Sep 17 00:00:00 2001
 +From: Eric Ruei <e-ruei1@ti.com>
-+Date: Tue, 14 Mar 2017 17:24:07 -0400
-+Subject: [PATCH 2/2] kmssink: add YUYV support
++Date: Wed, 22 Feb 2017 10:49:01 -0500
++Subject: [PATCH] gstwaylandsink: add input format I420 support
++
++The software-based video decoder produces the output in I420 format. To display
++the output without additional ARM MHz consumed in video format conversion,
++the function gst_wl_memory_construct_wl_buffer is enhanced to support I420 format.
 +
 +Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 +---
-+ sys/kms/gstkmsbufferpriv.c | 32 +++++++++++++++++++++++++++-----
-+ sys/kms/gstkmssink.c       |  2 +-
-+ 2 files changed, 28 insertions(+), 6 deletions(-)
++ ext/wayland/wldrm.c | 41 ++++++++++++++++++++++++++++++++++-------
++ 1 file changed, 34 insertions(+), 7 deletions(-)
 +
-+diff --git a/sys/kms/gstkmsbufferpriv.c b/sys/kms/gstkmsbufferpriv.c
-+index 172a4c3..57c01f8 100644
-+--- a/sys/kms/gstkmsbufferpriv.c
-++++ b/sys/kms/gstkmsbufferpriv.c
-+@@ -41,22 +41,44 @@
-+ static int
-+ create_fb (GstKMSBufferPriv * priv, GstKMSSink * sink)
-+ {
++diff --git a/ext/wayland/wldrm.c b/ext/wayland/wldrm.c
++index 8f2c393..cb2b0f2 100644
++--- a/ext/wayland/wldrm.c
+++++ b/ext/wayland/wldrm.c
++@@ -5,33 +5,60 @@
++ #include <omap_drmif.h>
++ #include <wayland-client.h>
++ 
+++GST_DEBUG_CATEGORY_EXTERN (gstwayland_debug);
+++#define GST_CAT_DEFAULT gstwayland_debug
 ++
-+   /* TODO get format, etc from caps.. and query device for
-+    * supported formats, and make this all more flexible to
-+    * cope with various formats:
-+    */
-+-  uint32_t fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+++
++ struct wl_buffer *
++ gst_wl_drm_memory_construct_wl_buffer (GstMemory * mem, GstWlDisplay * display,
++     const GstVideoInfo * info)
++ {
++   gint video_width = GST_VIDEO_INFO_WIDTH (info);
++   gint video_height = GST_VIDEO_INFO_HEIGHT (info);
+++  GstVideoFormat format = GST_VIDEO_INFO_FORMAT (info);
++   int fd = -1;
++   struct omap_bo *bo;
++   struct wl_buffer *buffer;
 +-
-++  GstVideoFormat format = sink->format;
++-  /* TODO get format, etc from caps.. and query device for
++-   * supported formats, and make this all more flexible to
++-   * cope with various formats:
++-   */
++-  uint32_t fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
 ++  uint32_t fourcc;
-+   uint32_t handles[4] = {
-+-    omap_bo_handle (priv->bo), omap_bo_handle (priv->bo),
-++    omap_bo_handle (priv->bo),
++   uint32_t name;
++   /* note: wayland and mesa use the terminology:
++    *    stride - rowstride in bytes
++    *    pitch  - rowstride in pixels
++    */
++   uint32_t strides[3] = {
++-    GST_ROUND_UP_4 (video_width), GST_ROUND_UP_4 (video_width), 0,
+++    GST_ROUND_UP_4 (video_width), 0, 0,
 +   };
-+   uint32_t pitches[4] = {
-+-    GST_ROUND_UP_4 (sink->input_width), GST_ROUND_UP_4 (sink->input_width),
-++    GST_ROUND_UP_4 (sink->input_width),
-+   };
-+   uint32_t offsets[4] = {
-+-    0, pitches[0] * sink->input_height
-++    0,
++   uint32_t offsets[3] = {
++     0, strides[0] * video_height, 0
 +   };
 + 
-++  /**
-++   * Only two formats are supported:
-++   * AM3/4: YUYV
-++   * AM5: NV12, YUYV
-++   */
-++  if(format == GST_VIDEO_FORMAT_YUY2)
-++  {
-++    /* YUYV */
-++    fourcc = GST_MAKE_FOURCC ('Y', 'U', 'Y', 'V');
-++    pitches[0] = GST_ROUND_UP_4 (sink->input_width*2);
-++  }
-++  else
+++  if (format == GST_VIDEO_FORMAT_NV12)
 ++  {
 ++    /* NV12 */
 ++    fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
-++    handles[1] = omap_bo_handle (priv->bo);
-++    pitches[1] = GST_ROUND_UP_4 (sink->input_width);
-++    offsets[1] = pitches[0] * sink->input_height;
+++    strides[1] = GST_ROUND_UP_4 (video_width);
+++  }
+++  else if(format == GST_VIDEO_FORMAT_I420)
+++  {
+++    /* YUV420 */
+++    fourcc = GST_MAKE_FOURCC ('Y', 'U', '1', '2');
+++    strides[1] = strides[2] = GST_ROUND_UP_4 (video_width/2);
+++    offsets[2] = offsets[1] + strides[1] * video_height/2;
+++  }
+++  else
+++  {
+++
+++    GST_DEBUG ("Unsupported video format: %d", format);
+++    /*
+++     * There are two xRGB frames with width and height = 1 required in the begining of a video stream.
+++     * If we consider them as errot, then it will case libwayland-clent.so crashes
+++     * due to invalid error handling.
+++     * Consider them as NV12 until we can figure out a better solution
+++     */
+++    fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+++    strides[1] = GST_ROUND_UP_4 (video_width);
 ++  }
 ++
-++
-+   return drmModeAddFB2 (priv->fd, sink->input_width, sink->input_height,
-+       fourcc, handles, pitches, offsets, &priv->fb_id, 0);
-+ }
-+diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
-+index 9795bdf..b36d88f 100644
-+--- a/sys/kms/gstkmssink.c
-++++ b/sys/kms/gstkmssink.c
-+@@ -50,7 +50,7 @@ static GstStaticPadTemplate gst_kms_sink_template_factory =
-+ GST_STATIC_PAD_TEMPLATE ("sink",
-+     GST_PAD_SINK,
-+     GST_PAD_ALWAYS,
-+-    GST_STATIC_CAPS (GST_VIDEO_CAPS_MAKE("NV12"))
-++    GST_STATIC_CAPS (GST_VIDEO_CAPS_MAKE("{NV12,YUY2}"))
-+     );
++   fd = gst_fd_memory_get_fd (mem);
 + 
-+ enum
++   if (fd < 0 ) {
 +-- 
 +1.9.1
 +
 diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-index 2c903d4..317b19e 100644
+index 317b19e..bbd1d99 100644
 --- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
 +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-@@ -21,10 +21,12 @@ DEPENDS_append_ti33x = " \
- 
+@@ -22,11 +22,13 @@ DEPENDS_append_ti33x = " \
  SRC_URI_append_omap-a15 = " \
      file://0001-kmssink-remove-DCE-dependencies.patch \
-+    file://0002-kmssink-add-YUYV-support.patch \
+     file://0002-kmssink-add-YUYV-support.patch \
++    file://0001-gstwaylandsink-add-input-format-I420-support.patch \
  "
  
  SRC_URI_append_ti43x = " \
      file://0001-kmssink-remove-DCE-dependencies.patch \
-+    file://0002-kmssink-add-YUYV-support.patch \
+     file://0002-kmssink-add-YUYV-support.patch \
++    file://0001-gstwaylandsink-add-input-format-I420-support.patch \
  "
  
  SRC_URI_append_ti33x = " \
