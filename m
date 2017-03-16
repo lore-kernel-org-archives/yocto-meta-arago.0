@@ -1,41 +1,37 @@
-Return-Path: <manisha.agrawal@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 51506520E4
+Return-Path: <denys@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 2B0CD520E4
 	for <meta-arago@arago-project.org>;
-	Thu, 16 Mar 2017 19:16:58 +0000 (UTC)
+	Thu, 16 Mar 2017 19:20:35 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2GJGmcj013507
-	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 14:16:48 -0500
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2GJKY57017320
+	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 14:20:34 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1489691808;
-	bh=mcK6/vposmSwfwcDzP2jCAxvwxXbi+b8B4VgNM0vQHU=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=GYQMcAu/mbgDW60miaGkbJJX9AmIOlp/XPkoPHgCz1tjwCi4mXG99vi6Wtw8k4V6w
-	Lyx0Ky2XrL0ha2dw1rcvo1a7uhBUqsQMMTkCibHrJpJV39tdNTIe7dp12un60GU6aK
-	fXuua4N3k3n9ha5CtsZg9DPlbrUlhhS+9N6ZkaUg=
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2GJGhTt009687
-	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 14:16:43 -0500
-Received: from DFLE12.ent.ti.com ([fe80::e9a3:bf19:af96:227b]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0294.000; Thu, 16 Mar 2017 14:16:42 -0500
-From: "Agrawal, Manisha" <manisha.agrawal@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [master/morty][PATCH] recipes-multimedia :
-	video-graphics-test : new demo
-Thread-Index: AQHSnCu79an4JXTH8USMqnoDUAsQdaGVP9QAgAKaIAA=
-Date: Thu, 16 Mar 2017 19:16:41 +0000
-Message-ID: <3AC2660648D2B04999D9C7562469E8AF7EB84BC5@DFLE12.ent.ti.com>
-References: <20170313185755.12918-1-manisha.agrawal@ti.com>
-	<20170314222734.GR578@edge>
-In-Reply-To: <20170314222734.GR578@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.172.224.221]
+	s=ti-com-17Q1; t=1489692034;
+	bh=WdpEVrvwdB1hodbIXdjrcGqqkLppbuvrV4niQ8+a0OI=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=ZqpT8qfqGsBwAiA9VTPOy1U42rssQMYjFAjDzfonGNMfJKt0DlyvVLlKUZ2Brezc1
+	tp64QIjAW9MsIaSq+nTKzcpOjla+rJRR5enb8ewv9RFxRZFRiGUr9UG7/AC3Ks0MJC
+	6FEw14EUGXD7IOH+pyGoqRjq1fhoOUT0yZLUeQ+4=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2GJKYpX014643
+	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 14:20:34 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 16 Mar 2017 14:20:34 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2GJKYEb020897;
+	Thu, 16 Mar 2017 14:20:34 -0500
+Date: Thu, 16 Mar 2017 15:20:33 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20170316192033.GP14484@edge>
+References: <1489600884-27644-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [master/morty][PATCH] recipes-multimedia : video-graphics-test : new demo
+In-Reply-To: <1489600884-27644-1-git-send-email-j-stiffler@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [morty/master][PATCH 1/2] ocl: update to version 1.1.12.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,192 +44,114 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Mar 2017 19:16:58 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 16 Mar 2017 19:20:36 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Hi Denys,
+Jake,
 
-I can make separate patches. What do you suggest for changes in meta-arago-=
-distro/conf/distro/arago-source-ipk.conf??
+It appears the new version no longer provides libOpenCL.so - is it expected?
 
-Regards,
-Manisha
+It is currently breaking incremental builds due to package naming change... 
+The workaround is to either make a clean build or bump PR in affected 
+packagegroups. Before doing that, I'm trying to see if there was an issue 
+with the new version. Please let me know.
 
-
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Tuesday, March 14, 2017 5:28 PM
-To: Agrawal, Manisha
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [master/morty][PATCH] recipes-multimedia : video-=
-graphics-test : new demo
-
-Manisha,
-
-Thanks for the patch.
-
-This should rather be 2 or 3 patches - adding the new recipe, adding src-ip=
-k and then patching the tisdk-makefile.
-
-Moreover, this won't apply to morty/master due to this change:
-http://arago-project.org/git/?p=3Dmeta-arago.git;a=3Dcommitdiff;h=3Dd28779a=
-38e75bf3e096a5a7b0cf160d7520f4aca
-
---
+-- 
 Denys
 
 
-On Mon, Mar 13, 2017 at 01:57:55PM -0500, Manisha Agrawal wrote:
-> Add new demo to Processor Linux SDK. This demo is package along with
-> source code in PLSDK and binary available under /usr/bin folder of the
-> filesystem. The demo is target to showcase AM57x Display Sub System
-> capabilities, 2D graphics accelerator GC320 video API usage for overlay
-> and QT drawing using 3D graphics accelerator. In this particular release
-> the demo is showing the DRM API usage for scaling and overlaying using
-> DSS and special QT QPA eglfs-kms for rendering using SGX. QT is the
-> master of the drm resource but shares the handle with application too.
->=20
-> Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
+On Wed, Mar 15, 2017 at 02:01:23PM -0400, Jacob Stiffler wrote:
+> * opencl : add systemd service for MCT daemon
+> * monitor : sources unified between platforms
+> * examples : add new examples
+> 
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 > ---
->  .../conf/distro/arago-source-ipk.conf              |  3 +++
->  .../ti-tisdk-makefile/Makefile_video-graphics-test | 24 ++++++++++++++++=
-+++
->  .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  1 +
->  .../video-graphics-test/video-graphics-test_1.0.bb | 28 ++++++++++++++++=
-++++++
->  4 files changed, 56 insertions(+)
->  create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-=
-tisdk-makefile/Makefile_video-graphics-test
->  create mode 100644 meta-arago-extras/recipes-multimedia/video-graphics-t=
-est/video-graphics-test_1.0.bb
->=20
-> diff --git a/meta-arago-distro/conf/distro/arago-source-ipk.conf b/meta-a=
-rago-distro/conf/distro/arago-source-ipk.conf
-> index 96f2db2..5941519 100644
-> --- a/meta-arago-distro/conf/distro/arago-source-ipk.conf
-> +++ b/meta-arago-distro/conf/distro/arago-source-ipk.conf
-> @@ -67,6 +67,9 @@ SRCIPK_INSTALL_DIR_pn-qt-tstat =3D "example-application=
-s/${PN}-${PV}"
->  CREATE_SRCIPK_pn-dual-camera-demo =3D "1"
->  SRCIPK_INSTALL_DIR_pn-dual-camera-demo =3D "example-applications/${PN}-$=
-{PV}"
-> =20
-> +CREATE_SRCIPK_pn-video-graphics-test =3D "1"
-> +SRCIPK_INSTALL_DIR_pn-video-graphics-test =3D "example-applications/${PN=
-}-${PV}"
+>  meta-arago-extras/recipes-ti/ocl/ocl.inc                |  4 ++--
+>  meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb |  2 ++
+>  meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb  |  2 --
+>  meta-arago-extras/recipes-ti/ocl/opencl_git.bb          | 12 +++++++++++-
+>  4 files changed, 15 insertions(+), 5 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+> index 38f08b9..94e3dd8 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
+> +++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+> @@ -1,4 +1,4 @@
+> -PV = "1.1.11.2"
+> +PV = "1.1.12.0"
+>  INC_PR = "r0"
+>  
+>  LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+> @@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+>  OCL_GIT_PROTOCOL = "git"
+>  OCL_GIT_BRANCH = "master"
+>  
+> -OCL_SRCREV = "5a8f16bb1809a410b961292ae070d079b89e749a"
+> +OCL_SRCREV = "8c0ec9c270cafaef0a56c376fc28c1b7714cb09c"
+>  
+>  BRANCH = "${OCL_GIT_BRANCH}"
+>  SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+> index c69b7e2..cc1db80 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+> @@ -35,6 +35,8 @@ OCL_EXAMPLE_LIST = " buffer \
+>                       vecadd_openmp \
+>                       vecadd_openmp_t \
+>                       dgemm \
+> +                     abort_exit \
+> +                     timeout \
+>  "
+>  
+>  python do_unpack_append() {
+> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+> index 8fc1e81..c0a8a6c 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+> @@ -45,8 +45,6 @@ COMPATIBLE_MACHINE = "dra7xx|keystone"
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+>  S = "${WORKDIR}/git/monitor"
+> -S_dra7xx = "${WORKDIR}/git/monitor_vayu"
+> -S_k2g = "${WORKDIR}/git/monitor_vayu"
+>  
+>  BUILD_TARGET_k2hk-evm = "ARM_K2H"
+>  BUILD_TARGET_k2l-evm  = "ARM_K2L"
+> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+> index 9676687..1d39274 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+> +++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+> @@ -6,7 +6,7 @@ include ocl.inc
+>  
+>  PR = "${INC_PR}.0"
+>  
+> -inherit cmake
+> +inherit cmake systemd
+>  
+>  COMPATIBLE_MACHINE = "dra7xx|keystone"
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+> @@ -58,6 +58,16 @@ EXTRA_OECMAKE += " -DBUILD_TARGET=${OCL_BUILD_TARGET} -DBUILD_OUTPUT=lib -DENABL
+>  EXTRA_OEMAKE += "KERNEL_INSTALL_DIR=${STAGING_KERNEL_DIR} LINUX_DEVKIT_ROOT=${STAGING_DIR_HOST}"
+>  export KERNEL_INSTALL_DIR = "${STAGING_KERNEL_DIR}"
+>  
+> +MCTD = "${S}/mct-daemon/ti-mct-daemon.service.k2x"
+> +MCTD_dra7xx = "${S}/mct-daemon/ti-mct-daemon.service.am57x"
 > +
->  CREATE_SRCIPK_pn-image-gallery =3D "1"
->  SRCIPK_INSTALL_DIR_pn-image-gallery =3D "example-applications/${PN}"
-> =20
-> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-m=
-akefile/Makefile_video-graphics-test b/meta-arago-distro/recipes-tisdk/ti-t=
-isdk-makefile/ti-tisdk-makefile/Makefile_video-graphics-test
-> new file mode 100644
-> index 0000000..1ffc395
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile=
-/Makefile_video-graphics-test
-> @@ -0,0 +1,24 @@
-> +# QT Video Graphics build targets
-> +video-graphics-test:
-> +	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +	@echo    Building Video Graphics Test
-> +	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +	@cd example-applications; cd `find . -name "*video-graphics-test*"`; ma=
-ke -f Makefile.build
-> +
-> +video-graphics-test_clean:
-> +	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +	@echo    Building Video Graphics Test
-> +	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> +	@cd example-applications; cd `find . -name "*video-graphics-test*"`; ma=
-ke -f Makefile.build clean
-> +
-> +video-graphics-test_install:
-> +	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-> +	@echo   Installing Video Graphics Test - Release version
-> +	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-> +	@cd example-applications; cd `find . -name "*video-graphics-test*"`; ma=
-ke -f Makefile.build install
-> +
-> +video-graphics-test_install_debug:
-> +	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D
-> +	@echo   Installing Video Graphics Test - Debug version
-> +	@echo =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D
-> +	@cd example-applications; cd `find . -name "*video-graphics-test*"`; ma=
-ke -f Makefile.build install_debug
-> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-m=
-akefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk=
--makefile_1.0.bb
-> index 202078c..40ba3be 100644
-> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile=
-_1.0.bb
-> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile=
-_1.0.bb
-> @@ -31,6 +31,7 @@ SRC_URI =3D "\
->      file://Makefile_omapconf \
->      file://Makefile_oprofile-example \
->      file://Makefile_dual-camera-demo \
-> +    file://Makefile_video-graphics-test \
->      file://Makefile_image-gallery \
->      file://Makefile_cryptodev \
->      file://Makefile_cmem-mod \
-> diff --git a/meta-arago-extras/recipes-multimedia/video-graphics-test/vid=
-eo-graphics-test_1.0.bb b/meta-arago-extras/recipes-multimedia/video-graphi=
-cs-test/video-graphics-test_1.0.bb
-> new file mode 100644
-> index 0000000..4e428b2
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-multimedia/video-graphics-test/video-grap=
-hics-test_1.0.bb
-> @@ -0,0 +1,28 @@
-> +DESCRIPTION =3D "Test applications for video and graphics interface"
-> +HOMEPAGE =3D "https://git.ti.com/sitara-linux/video-graphics-test"
-> +SECTION =3D "multimedia"
-> +LICENSE =3D "GPLv2"
-> +LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dc7ca707704d3354a64feeb4f19f52=
-eb5"
-> +
-> +DEPENDS +=3D "libdrm"
-> +
-> +PR =3D "r0"
-> +
-> +BRANCH =3D "master"
-> +SRCREV =3D "ebc7ab44d05fc726b0ddc7f4b45d71d7509313f5"
-> +
-> +SRC_URI =3D "git://git.ti.com/sitara-linux/video-graphics-test.git;proto=
-col=3Dgit;branch=3D${BRANCH} \
-> +"
-> +
-> +S =3D "${WORKDIR}/git"
-> +
-> +inherit qt-provider
-> +
-> +export SDK_PATH_TARGET=3D'${STAGING_DIR_HOST}'
-> +
-> +# use the make targets already created in the Makefile.build files
-> +do_install() {
-> +    install -d ${D}/usr/bin
-> +    install video_graphics_test ${D}/usr/bin/video-graphics-test
+> +do_install_append() {
+> +    install -d ${D}${systemd_system_unitdir}
+> +    install -m0644 ${MCTD} ${D}${systemd_system_unitdir}/ti-mct-daemon.service
 > +}
 > +
-> --=20
-> 2.9.3
->=20
+> +SYSTEMD_SERVICE_${PN} = "ti-mct-daemon.service"
+> +
+>  FILES_${PN} += " \
+>      ${datadir}/ti/opencl/* \
+>  "
+> -- 
+> 2.7.4
+> 
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
