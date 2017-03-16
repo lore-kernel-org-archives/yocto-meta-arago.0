@@ -1,37 +1,38 @@
 Return-Path: <denys@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 2DE8752A46
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 6054152A4F
 	for <meta-arago@arago-project.org>;
-	Thu, 16 Mar 2017 18:02:16 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2GI2GiM029495
-	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 13:02:16 -0500
+	Thu, 16 Mar 2017 18:04:08 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2GI47v6007856
+	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 13:04:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1489687336;
-	bh=EngHwcToZ5rJveb4l1gZjqRe+RBwudhw2CbogE/ajc4=;
+	s=ti-com-17Q1; t=1489687448;
+	bh=BB4s/Vx9Cq1Wk/as6KFkFyaNeP/2jplrqlcFPowvh0o=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=F7ILCV1QggZTnYklNUZo0/EWMsBGa0OXRb5/ZgJKK9YQvHamOZ2VMNhLyrDMhBxJM
-	SL1jbGDndOO93kgEdltsOAIDoju7+cLFnmmXgxvje+eOQL+cekb3nGnpvQTFKsPAN3
-	qanIwh6vsuYGR53InWkzBHM2SYCmbbAL42R4nX7A=
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2GI2FhH010578
-	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 13:02:16 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 16 Mar 2017 13:02:15 -0500
+	b=VrKBkelrF61R7twM6s05JEyU/V6hszx9ZWaNEbahCQEetBh4CH8NxESIcvoUKlVId
+	BQJ1NfpUgUY0X//5pz6TqMuQ9O1mym6j0xzLkgXA0HEP6H20A05UqLMU665Xe5iUC9
+	iPRVXVLCs+n/G8Qy/gQB4TKFZ0JIuKUDKtFsOXPA=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2GI47FO020821
+	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 13:04:07 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 16 Mar 2017 13:04:07 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2GI2F7k013889;
-	Thu, 16 Mar 2017 13:02:15 -0500
-Date: Thu, 16 Mar 2017 14:02:15 -0400
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2GI47gK018447;
+	Thu, 16 Mar 2017 13:04:07 -0500
+Date: Thu, 16 Mar 2017 14:04:07 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: Eric Ruei <e-ruei1@ti.com>
-Message-ID: <20170316180214.GJ14484@edge>
+Message-ID: <20170316180406.GK14484@edge>
 References: <1489685377-53666-1-git-send-email-e-ruei1@ti.com>
+	<1489685377-53666-2-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1489685377-53666-1-git-send-email-e-ruei1@ti.com>
+In-Reply-To: <1489685377-53666-2-git-send-email-e-ruei1@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [krogoth][PATCH 1/3] gstreamer1.0-plugins-bad: kmssink: remove DCE dependencies
+Subject: Re: [krogoth][PATCH 2/3] gstreamer1.0-plugins-bad: kmssink: add YUYV support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,171 +45,126 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Mar 2017 18:02:16 -0000
+X-List-Received-Date: Thu, 16 Mar 2017 18:04:09 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-Thanks!
-Do you plan to support am3?
-Is it applicable to morty? Any patches planned?
-
-Also, see inline below.
-
-
-On Thu, Mar 16, 2017 at 01:29:35PM -0400, Eric Ruei wrote:
-> - remove DCE dependencies from kmssink
-> - AM4(ti43x) shares the same branch as of AM5(omap-a15)
-> 
+On Thu, Mar 16, 2017 at 01:29:36PM -0400, Eric Ruei wrote:
 > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 > ---
->  .../0001-kmssink-remove-DCE-dependencies.patch     | 96 ++++++++++++++++++++++
->  .../gstreamer1.0-plugins-bad_1.6.3.bbappend        |  8 +-
->  2 files changed, 102 insertions(+), 2 deletions(-)
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-kmssink-remove-DCE-dependencies.patch
+>  .../0002-kmssink-add-YUYV-support.patch            | 81 ++++++++++++++++++++++
+>  .../gstreamer1.0-plugins-bad_1.6.3.bbappend        |  2 +
+>  2 files changed, 83 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-add-YUYV-support.patch
 > 
-> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-kmssink-remove-DCE-dependencies.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-kmssink-remove-DCE-dependencies.patch
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-add-YUYV-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-add-YUYV-support.patch
 > new file mode 100644
-> index 0000000..e050e08
+> index 0000000..a5791cc
 > --- /dev/null
-> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-kmssink-remove-DCE-dependencies.patch
-> @@ -0,0 +1,96 @@
-> +From 6b04eb39296caec717d310872c1f0acfa85c5ae7 Mon Sep 17 00:00:00 2001
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-add-YUYV-support.patch
+> @@ -0,0 +1,81 @@
+> +From af348c890c04ce9626d411055aae0974f410219f Mon Sep 17 00:00:00 2001
 > +From: Eric Ruei <e-ruei1@ti.com>
-> +Date: Wed, 15 Mar 2017 09:08:13 -0400
-> +Subject: [PATCH 1/2] kmssink: remove DCE dependencies
-> +
-> +Replace DCE related API calls to libdrm and omapdrm API calls
-> +to decouple DCE from kmssink
+> +Date: Tue, 14 Mar 2017 17:24:07 -0400
+> +Subject: [PATCH 2/2] kmssink: add YUYV support
 > +
 > +Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 > +---
-> + configure.ac         |  1 -
-> + sys/kms/Makefile.am  |  2 --
-> + sys/kms/gstkmssink.c | 17 +++++++++++++----
-> + 3 files changed, 13 insertions(+), 7 deletions(-)
+> + sys/kms/gstkmsbufferpriv.c | 32 +++++++++++++++++++++++++++-----
+> + sys/kms/gstkmssink.c       |  2 +-
+> + 2 files changed, 28 insertions(+), 6 deletions(-)
 > +
-> +diff --git a/configure.ac b/configure.ac
-> +index 2e0d1f3..2b1ecaa 100644
-> +--- a/configure.ac
-> ++++ b/configure.ac
-> +@@ -2119,7 +2119,6 @@ dnl *** kms ***
-> + translit(dnm, m, l) AM_CONDITIONAL(USE_KMS, true)
-> + AG_GST_CHECK_FEATURE(KMS, [kmssink], kms, [
-> +   PKG_CHECK_MODULES([DRM], [libdrm libdrm_omap], HAVE_KMS=yes, HAVE_KMS=no)
-> +-  PKG_CHECK_MODULES(LIBDCE, [libdce >= 1.0.0], HAVE_KMS=yes, HAVE_KMS=no)
-> +   AC_SUBST(DRM_CFLAGS)
-> +   AC_SUBST(DRM_LIBS)
-> + ])
-> +diff --git a/sys/kms/Makefile.am b/sys/kms/Makefile.am
-> +index 6d56073..cc7353e 100644
-> +--- a/sys/kms/Makefile.am
-> ++++ b/sys/kms/Makefile.am
-> +@@ -9,7 +9,6 @@ libgstkmssink_la_CFLAGS = \
-> + 	$(GST_PLUGINS_BAD_CFLAGS) \
-> + 	$(GST_PLUGINS_BASE_CFLAGS) \
-> + 	$(GST_BASE_CFLAGS) \
-> +-	$(LIBDCE_CFLAGS) \
-> + 	$(GST_CFLAGS) \
-> + 	$(DRM_CFLAGS)
+> +diff --git a/sys/kms/gstkmsbufferpriv.c b/sys/kms/gstkmsbufferpriv.c
+> +index 172a4c3..57c01f8 100644
+> +--- a/sys/kms/gstkmsbufferpriv.c
+> ++++ b/sys/kms/gstkmsbufferpriv.c
+> +@@ -41,22 +41,44 @@
+> + static int
+> + create_fb (GstKMSBufferPriv * priv, GstKMSSink * sink)
+> + {
+> ++
+> +   /* TODO get format, etc from caps.. and query device for
+> +    * supported formats, and make this all more flexible to
+> +    * cope with various formats:
+> +    */
+> +-  uint32_t fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+> +-
+> ++  GstVideoFormat format = sink->format;
+> ++  uint32_t fourcc;
+> +   uint32_t handles[4] = {
+> +-    omap_bo_handle (priv->bo), omap_bo_handle (priv->bo),
+> ++    omap_bo_handle (priv->bo),
+> +   };
+> +   uint32_t pitches[4] = {
+> +-    GST_ROUND_UP_4 (sink->input_width), GST_ROUND_UP_4 (sink->input_width),
+> ++    GST_ROUND_UP_4 (sink->input_width),
+> +   };
+> +   uint32_t offsets[4] = {
+> +-    0, pitches[0] * sink->input_height
+> ++    0,
+> +   };
 > + 
-> +@@ -17,7 +16,6 @@ libgstkmssink_la_LIBADD = \
-> + 	$(GST_PLUGINS_BASE_LIBS) \
-> + 	$(GST_BASE_LIBS) \
-> + 	$(GST_LIBS) \
-> +-	$(LIBDCE_LIBS) \
-> + 	$(DRM_LIBS) \
-> + 	-lgstvideo-$(GST_API_VERSION) \
-> + 	$(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la
-> +diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
-> +index 17e6407..9795bdf 100644
-> +--- a/sys/kms/gstkmssink.c
-> ++++ b/sys/kms/gstkmssink.c
-> +@@ -31,7 +31,6 @@
-> + #include "gstkmssink.h"
-> + #include "gstkmsbufferpriv.h"
-> + 
-> +-#include <libdce.h>
-> + #include <omap_drm.h>
-> + #include <omap_drmif.h>
-> + #include <xf86drmMode.h>
-> +@@ -516,13 +515,18 @@ gst_kms_sink_start (GstBaseSink * bsink)
-> + 
-> +   sink = GST_KMS_SINK (bsink);
-> + 
-> +-  drm_dev = dce_init ();
-> ++  drm_fd = open("/dev/dri/card0", O_RDWR | O_CLOEXEC);
-> ++  if(drm_fd == NULL)
-> ++    goto drm_failed;
-> ++  else {
-> ++    drm_dev = omap_device_new(drm_fd);
+> ++  /**
+> ++   * Only two formats are supported:
+> ++   * AM3/4: YUYV
+> ++   * AM5: NV12, YUYV
+> ++   */
+> ++  if(format == GST_VIDEO_FORMAT_YUY2)
+> ++  {
+> ++    /* YUYV */
+> ++    fourcc = GST_MAKE_FOURCC ('Y', 'U', 'Y', 'V');
+> ++    pitches[0] = GST_ROUND_UP_4 (sink->input_width*2);
+> ++  }
+> ++  else
+> ++  {
+> ++    /* NV12 */
+> ++    fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+> ++    handles[1] = omap_bo_handle (priv->bo);
+> ++    pitches[1] = GST_ROUND_UP_4 (sink->input_width);
+> ++    offsets[1] = pitches[0] * sink->input_height;
 > ++  }
 > ++
-> +   if (drm_dev == NULL)
-> +     goto device_failed;
-> +   else {
-> ++    sink->fd = drm_fd;
-> +     sink->dev = drm_dev;
-> +-    sink->fd = dce_get_fd ();
-> +-    drm_fd = dce_get_fd ();
-> +   }
-> + 
-> +   sink->resources = drmModeGetResources (sink->fd);
-> +@@ -539,6 +543,11 @@ fail:
-> +   gst_kms_sink_reset (sink);
-> +   return FALSE;
-> + 
-> ++drm_failed:
-> ++  GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
-> ++      (NULL), ("drmOpen failed"));
-> ++  goto fail;
 > ++
-> + device_failed:
-> +   GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
-> +       (NULL), ("omap_device_new failed"));
+> +   return drmModeAddFB2 (priv->fd, sink->input_width, sink->input_height,
+> +       fourcc, handles, pitches, offsets, &priv->fb_id, 0);
+> + }
+> +diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
+> +index 9795bdf..b36d88f 100644
+> +--- a/sys/kms/gstkmssink.c
+> ++++ b/sys/kms/gstkmssink.c
+> +@@ -50,7 +50,7 @@ static GstStaticPadTemplate gst_kms_sink_template_factory =
+> + GST_STATIC_PAD_TEMPLATE ("sink",
+> +     GST_PAD_SINK,
+> +     GST_PAD_ALWAYS,
+> +-    GST_STATIC_CAPS (GST_VIDEO_CAPS_MAKE("NV12"))
+> ++    GST_STATIC_CAPS (GST_VIDEO_CAPS_MAKE("{NV12,YUY2}"))
+
+YUY2 or YUYV?
+
+
+> +     );
+> + 
+> + enum
 > +-- 
 > +1.9.1
 > +
 > diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-> index b5ccebf..2c903d4 100644
+> index 2c903d4..317b19e 100644
 > --- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
 > +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-> @@ -8,7 +8,6 @@ PACKAGECONFIG_append_ti43x = " ${@bb.utils.contains('DISTRO_FEATURES','wayland',
->  PACKAGECONFIG_append_ti33x = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
+> @@ -21,10 +21,12 @@ DEPENDS_append_ti33x = " \
 >  
->  DEPENDS_append_omap-a15 = " \
-> -    libdce \
->      libdrm \
->  "
->  
-> @@ -18,10 +17,14 @@ DEPENDS_append_ti43x = " \
->  
->  DEPENDS_append_ti33x = " \
->      libdrm \
-> +"
-> +
-> +SRC_URI_append_omap-a15 = " \
-> +    file://0001-kmssink-remove-DCE-dependencies.patch \
+>  SRC_URI_append_omap-a15 = " \
+>      file://0001-kmssink-remove-DCE-dependencies.patch \
+> +    file://0002-kmssink-add-YUYV-support.patch \
 >  "
 >  
 >  SRC_URI_append_ti43x = " \
-> -    file://0001-gstwaylandsink-Add-mouse-drag-and-drop-support.patch \
-
-This patch got dropped ^
-If it was intentional, should mention that in the commit message.
-
-
-> +    file://0001-kmssink-remove-DCE-dependencies.patch \
+>      file://0001-kmssink-remove-DCE-dependencies.patch \
+> +    file://0002-kmssink-add-YUYV-support.patch \
 >  "
 >  
 >  SRC_URI_append_ti33x = " \
-> @@ -38,6 +41,7 @@ SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git;bran
->  S = "${WORKDIR}/git"
->  
->  SRCREV_omap-a15 = "eb41f1c8fde05f87587c83d157835e3b2d19a298"
-> +SRCREV_ti43x = "eb41f1c8fde05f87587c83d157835e3b2d19a298"
->  SRCREV = "d0160ca810be30bf2b2e7681f5047933402efb52"
->  
->  PR = "r25"
 > -- 
 > 1.9.1
 > 
