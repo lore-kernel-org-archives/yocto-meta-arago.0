@@ -1,30 +1,41 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 425BC52A2E
+Return-Path: <karthik.ramanan@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 51B29520E4
 	for <meta-arago@arago-project.org>;
-	Thu, 16 Mar 2017 01:58:53 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 083B520B94;
-	Thu, 16 Mar 2017 01:58:53 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id jX0oh70G6b9K; Thu, 16 Mar 2017 01:58:52 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DA29220B37;
-	Thu, 16 Mar 2017 01:58:51 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 655FD1623AE;
-	Wed, 15 Mar 2017 21:58:51 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed, 15 Mar 2017 21:58:50 -0400
-Message-Id: <1489629530-101605-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH v2] ti-llvm3.6: depend on valgrind
+	Thu, 16 Mar 2017 06:15:23 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2G6FM1A005118
+	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 01:15:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1489644922;
+	bh=iC7ti/8c79XmTcTBb9yPxBhYKFAt5T1MbQ8QF/qp2+A=;
+	h=Subject:To:References:CC:From:Date:In-Reply-To;
+	b=Fl2z97viD521AlUt4QgGqISQu11iwOtJJq1a7IJwDpfUywQQvq2Nor03yQM/i0Zxu
+	r0KHow81smX3oMx0QGvPk+1siAXiIzMS7ScVUncq4/SfbLctiQ4tAgt6/wbIv3h1SN
+	wVQkXGxxVF6QisZI+b2oCHqBX+ojXrBAtXgja5jE=
+Received: from dbdlxv05.itg.ti.com (dbdlxv05.itg.ti.com [172.24.171.60])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2G6FLlY004725
+	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 01:15:22 -0500
+Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2G6FJjN029936
+	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 11:45:20 +0530
+Received: from [172.24.145.243] (172.24.145.243) by DBDE72.ent.ti.com
+	(172.24.171.97) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 16 Mar 2017 11:45:18 +0530
+To: Denys Dmytriyenko <denys@ti.com>
+References: <1489429904-13863-1-git-send-email-a0393906@ti.com>
+	<20170314222213.GQ578@edge> <58C8A9B2.40606@ti.com>
+	<20170315152610.GT578@edge>
+From: Karthik Ramanan <a0393906@ti.com>
+Message-ID: <58CA2D76.90500@ti.com>
+Date: Thu, 16 Mar 2017 11:45:18 +0530
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.7.2
+MIME-Version: 1.0
+In-Reply-To: <20170315152610.GT578@edge>
+X-Originating-IP: [172.24.145.243]
+Cc: meta-arago@arago-project.org
+Subject: Re: [master] weston: Add SoC performance monitoring utilities
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,36 +48,57 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Mar 2017 01:58:53 -0000
+X-List-Received-Date: Thu, 16 Mar 2017 06:15:23 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Denys Dmytriyenko <denys@ti.com>
 
-If valgrind is not yet staged, may cause this error:
 
-| .../git/lib/Support/Valgrind.cpp:20:31: fatal error: valgrind/valgrind.h: No such file or directory
-|  #include <valgrind/valgrind.h>
-|                                ^
-| compilation terminated.
+On 15-Mar-17 8:56 PM, Denys Dmytriyenko wrote:
+> On Wed, Mar 15, 2017 at 08:10:50AM +0530, Karthik Ramanan wrote:
+>> Denys,
+>>
+>> Yes this is for morty.
+>> May be I missed a notification on this, I'm thinking morty=master?
+>> Should I mention morty explicitly?
+>>
+>>
+>> On 15-Mar-17 3:52 AM, Denys Dmytriyenko wrote:
+>>> BTW, can this be done in a separate recipe to add additional app clients,
+>>> instead of a patch to Weston? This is not scalable/portable at all...
+>> I take your point.
+>> For now, lets have this patch in this way. There have been no
+>> changes to the application for sometime.
+>> If it undergoes additional changes we will explore ways of combining
+>> them. There is an ongoing effort to consolidate applications so we
+>> will include this one as well.
+> A bit confused by your statement above...
+>
+> I was talking about "SoC performance monitoring utilities" added by this patch
+> being Weston clients. In other words, they are just apps talking to Weston and
+> hence should be in own separate code bases built by separate recipes. Not as a
+> patch on top of Weston...
+The "SoC performance monitoring utilities" is a weston application. At 
+the time it
+was developed, we reused some of the weston application utilities that 
+are present
+in the weston/clients folder - more specifically window.c and window.h 
+utilities.
+These are not libraries and not exported by Weston.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-index e1db5ec..a279e8d 100644
---- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-+++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-@@ -18,7 +18,7 @@ require recipes-core/llvm/llvm.inc
- LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=47e311aa9caedd1b3abf098bd7814d1d"
- 
- DEPENDS += "libxml2"
--
-+DEPENDS_append_class-target = " valgrind"
- 
- LLVM_DIR = "ti-llvm${PV}"
- 
--- 
-2.7.4
+So the way it exists today, "SoC performance monitoring utilities" will 
+be a weston
+client and that it is the reason why it is applied to the Weston 
+repository in this
+manner.
+> Are you saying if you don't envision any changes to these SoC monitoring apps,
+> then you'll keep on carrying them as a Weston patch?
+For now, yes that's the approach. This patch is an independent change to 
+the
+weston/clients. So it should apply to any version. But having said that, 
+we will
+try to explore the possibility of separating it to a different 
+application without
+this dependency, but that will have to be for later.
 
 
