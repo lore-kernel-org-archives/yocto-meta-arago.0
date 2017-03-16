@@ -1,39 +1,37 @@
-Return-Path: <denys@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id DF7A952A20
+Return-Path: <e-ruei1@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 5A3EF52A4F
 	for <meta-arago@arago-project.org>;
-	Thu, 16 Mar 2017 18:47:14 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2GIl4Ch009799
-	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 13:47:04 -0500
+	Thu, 16 Mar 2017 18:57:07 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2GIv7ix004661
+	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 13:57:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1489690024;
-	bh=CUD4H+REQTh4jnda4kIEfVZgWeCFiKfiUljBn6z9RAw=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=CyUxnvZyejNJGHamZ/lOOkNgpU86UdANblliIOabpbvpxVN3qvB47tMQfYtiTtk0Z
-	s694fzMYI4Tx2SD8lX5WiDzWAVTYDKJDJJyT5TDKcLKd7EfoCuHmojHU1Ne1b3qI/P
-	6KKUorufv0Sl2sviOlAkvw48SZKocpswju0EWESs=
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2GIkxsj031455
-	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 13:46:59 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 16 Mar 2017 13:46:59 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2GIkx7L021920;
-	Thu, 16 Mar 2017 13:46:59 -0500
-Date: Thu, 16 Mar 2017 14:46:59 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Ruei, Eric" <a0850410@ti.com>
-Message-ID: <20170316184658.GM14484@edge>
-References: <1489685377-53666-1-git-send-email-e-ruei1@ti.com>
-	<20170316180214.GJ14484@edge>
-	<9109234e-00ec-9bf8-37b4-46f8befd8356@ti.com>
+	s=ti-com-17Q1; t=1489690627;
+	bh=8JBgMXb9R+lY5809O6cilTeXzb1PmpCpIQ10eKCfUSc=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=L4DhyzI+NeYCDiKfuep1cm4sEUyAOkIUooLNfZB+RhDCfVTuSJ0o4J9a90tGtOYob
+	X1lqPMeFFyfnsw1p4vHleWrBhHUd/VcrdFxkllgc+nQWACsU4kbv+n0KKHLanBZSSX
+	y/GFrks3ANRiBmf/nSWW0fGrOplsIOwXJvRQUxD0=
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2GIv6JD018642
+	for <meta-arago@arago-project.org>; Thu, 16 Mar 2017 13:57:06 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 16 Mar 2017 13:57:05 -0500
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v2GIv5DZ010734	for <meta-arago@arago-project.org>;
+	Thu, 16 Mar 2017 13:57:05 -0500
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 16 Mar 2017 14:57:00 -0400
+Message-ID: <1489690621-54415-2-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1489690621-54415-1-git-send-email-e-ruei1@ti.com>
+References: <1489690621-54415-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <9109234e-00ec-9bf8-37b4-46f8befd8356@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [krogoth][PATCH 1/3] gstreamer1.0-plugins-bad: kmssink: remove DCE dependencies
+Subject: [krogoth][PATCH v2 2/3] gstreamer1.0-plugins-bad: kmssink: add YUYV(YUY2) support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -46,198 +44,121 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Mar 2017 18:47:15 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 16 Mar 2017 18:57:07 -0000
+Content-Type: text/plain
 
-On Thu, Mar 16, 2017 at 02:19:07PM -0400, Ruei, Eric wrote:
-> On 3/16/2017 2:02 PM, Denys Dmytriyenko wrote:
-> >Thanks!
-> >Do you plan to support am3?
-> 
-> No, the kmssink will not work on AM3 because it requires overlay DRM
-> plane. And there is no customer requirement for advanced features
-> for AM3.
-> 
-> >Is it applicable to morty? Any patches planned?
-> No, it is not applicable to Morty because new version of gstreamer
-> (1.9) is for morty.
-> 
-> I do plan to submit those patches for review.
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+---
+ .../0002-kmssink-add-YUYV-support.patch            | 81 ++++++++++++++++++++++
+ .../gstreamer1.0-plugins-bad_1.6.3.bbappend        |  2 +
+ 2 files changed, 83 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-add-YUYV-support.patch
 
-morty has 1.8.3 - I meant the change in general, not specific to 1.6.3...
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-add-YUYV-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-add-YUYV-support.patch
+new file mode 100644
+index 0000000..a5791cc
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-add-YUYV-support.patch
+@@ -0,0 +1,81 @@
++From af348c890c04ce9626d411055aae0974f410219f Mon Sep 17 00:00:00 2001
++From: Eric Ruei <e-ruei1@ti.com>
++Date: Tue, 14 Mar 2017 17:24:07 -0400
++Subject: [PATCH 2/2] kmssink: add YUYV support
++
++Signed-off-by: Eric Ruei <e-ruei1@ti.com>
++---
++ sys/kms/gstkmsbufferpriv.c | 32 +++++++++++++++++++++++++++-----
++ sys/kms/gstkmssink.c       |  2 +-
++ 2 files changed, 28 insertions(+), 6 deletions(-)
++
++diff --git a/sys/kms/gstkmsbufferpriv.c b/sys/kms/gstkmsbufferpriv.c
++index 172a4c3..57c01f8 100644
++--- a/sys/kms/gstkmsbufferpriv.c
+++++ b/sys/kms/gstkmsbufferpriv.c
++@@ -41,22 +41,44 @@
++ static int
++ create_fb (GstKMSBufferPriv * priv, GstKMSSink * sink)
++ {
+++
++   /* TODO get format, etc from caps.. and query device for
++    * supported formats, and make this all more flexible to
++    * cope with various formats:
++    */
++-  uint32_t fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
++-
+++  GstVideoFormat format = sink->format;
+++  uint32_t fourcc;
++   uint32_t handles[4] = {
++-    omap_bo_handle (priv->bo), omap_bo_handle (priv->bo),
+++    omap_bo_handle (priv->bo),
++   };
++   uint32_t pitches[4] = {
++-    GST_ROUND_UP_4 (sink->input_width), GST_ROUND_UP_4 (sink->input_width),
+++    GST_ROUND_UP_4 (sink->input_width),
++   };
++   uint32_t offsets[4] = {
++-    0, pitches[0] * sink->input_height
+++    0,
++   };
++ 
+++  /**
+++   * Only two formats are supported:
+++   * AM3/4: YUYV
+++   * AM5: NV12, YUYV
+++   */
+++  if(format == GST_VIDEO_FORMAT_YUY2)
+++  {
+++    /* YUYV */
+++    fourcc = GST_MAKE_FOURCC ('Y', 'U', 'Y', 'V');
+++    pitches[0] = GST_ROUND_UP_4 (sink->input_width*2);
+++  }
+++  else
+++  {
+++    /* NV12 */
+++    fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+++    handles[1] = omap_bo_handle (priv->bo);
+++    pitches[1] = GST_ROUND_UP_4 (sink->input_width);
+++    offsets[1] = pitches[0] * sink->input_height;
+++  }
+++
+++
++   return drmModeAddFB2 (priv->fd, sink->input_width, sink->input_height,
++       fourcc, handles, pitches, offsets, &priv->fb_id, 0);
++ }
++diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
++index 9795bdf..b36d88f 100644
++--- a/sys/kms/gstkmssink.c
+++++ b/sys/kms/gstkmssink.c
++@@ -50,7 +50,7 @@ static GstStaticPadTemplate gst_kms_sink_template_factory =
++ GST_STATIC_PAD_TEMPLATE ("sink",
++     GST_PAD_SINK,
++     GST_PAD_ALWAYS,
++-    GST_STATIC_CAPS (GST_VIDEO_CAPS_MAKE("NV12"))
+++    GST_STATIC_CAPS (GST_VIDEO_CAPS_MAKE("{NV12,YUY2}"))
++     );
++ 
++ enum
++-- 
++1.9.1
++
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
+index 2c903d4..317b19e 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
+@@ -21,10 +21,12 @@ DEPENDS_append_ti33x = " \
+ 
+ SRC_URI_append_omap-a15 = " \
+     file://0001-kmssink-remove-DCE-dependencies.patch \
++    file://0002-kmssink-add-YUYV-support.patch \
+ "
+ 
+ SRC_URI_append_ti43x = " \
+     file://0001-kmssink-remove-DCE-dependencies.patch \
++    file://0002-kmssink-add-YUYV-support.patch \
+ "
+ 
+ SRC_URI_append_ti33x = " \
+-- 
+1.9.1
 
-
-> >Also, see inline below.
-> >
-> >
-> >On Thu, Mar 16, 2017 at 01:29:35PM -0400, Eric Ruei wrote:
-> >>- remove DCE dependencies from kmssink
-> >>- AM4(ti43x) shares the same branch as of AM5(omap-a15)
-> >>
-> >>Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> >>---
-> >> .../0001-kmssink-remove-DCE-dependencies.patch     | 96 ++++++++++++++++++++++
-> >> .../gstreamer1.0-plugins-bad_1.6.3.bbappend        |  8 +-
-> >> 2 files changed, 102 insertions(+), 2 deletions(-)
-> >> create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-kmssink-remove-DCE-dependencies.patch
-> >>
-> >>diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-kmssink-remove-DCE-dependencies.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-kmssink-remove-DCE-dependencies.patch
-> >>new file mode 100644
-> >>index 0000000..e050e08
-> >>--- /dev/null
-> >>+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-kmssink-remove-DCE-dependencies.patch
-> >>@@ -0,0 +1,96 @@
-> >>+From 6b04eb39296caec717d310872c1f0acfa85c5ae7 Mon Sep 17 00:00:00 2001
-> >>+From: Eric Ruei <e-ruei1@ti.com>
-> >>+Date: Wed, 15 Mar 2017 09:08:13 -0400
-> >>+Subject: [PATCH 1/2] kmssink: remove DCE dependencies
-> >>+
-> >>+Replace DCE related API calls to libdrm and omapdrm API calls
-> >>+to decouple DCE from kmssink
-> >>+
-> >>+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> >>+---
-> >>+ configure.ac         |  1 -
-> >>+ sys/kms/Makefile.am  |  2 --
-> >>+ sys/kms/gstkmssink.c | 17 +++++++++++++----
-> >>+ 3 files changed, 13 insertions(+), 7 deletions(-)
-> >>+
-> >>+diff --git a/configure.ac b/configure.ac
-> >>+index 2e0d1f3..2b1ecaa 100644
-> >>+--- a/configure.ac
-> >>++++ b/configure.ac
-> >>+@@ -2119,7 +2119,6 @@ dnl *** kms ***
-> >>+ translit(dnm, m, l) AM_CONDITIONAL(USE_KMS, true)
-> >>+ AG_GST_CHECK_FEATURE(KMS, [kmssink], kms, [
-> >>+   PKG_CHECK_MODULES([DRM], [libdrm libdrm_omap], HAVE_KMS=yes, HAVE_KMS=no)
-> >>+-  PKG_CHECK_MODULES(LIBDCE, [libdce >= 1.0.0], HAVE_KMS=yes, HAVE_KMS=no)
-> >>+   AC_SUBST(DRM_CFLAGS)
-> >>+   AC_SUBST(DRM_LIBS)
-> >>+ ])
-> >>+diff --git a/sys/kms/Makefile.am b/sys/kms/Makefile.am
-> >>+index 6d56073..cc7353e 100644
-> >>+--- a/sys/kms/Makefile.am
-> >>++++ b/sys/kms/Makefile.am
-> >>+@@ -9,7 +9,6 @@ libgstkmssink_la_CFLAGS = \
-> >>+ 	$(GST_PLUGINS_BAD_CFLAGS) \
-> >>+ 	$(GST_PLUGINS_BASE_CFLAGS) \
-> >>+ 	$(GST_BASE_CFLAGS) \
-> >>+-	$(LIBDCE_CFLAGS) \
-> >>+ 	$(GST_CFLAGS) \
-> >>+ 	$(DRM_CFLAGS)
-> >>+
-> >>+@@ -17,7 +16,6 @@ libgstkmssink_la_LIBADD = \
-> >>+ 	$(GST_PLUGINS_BASE_LIBS) \
-> >>+ 	$(GST_BASE_LIBS) \
-> >>+ 	$(GST_LIBS) \
-> >>+-	$(LIBDCE_LIBS) \
-> >>+ 	$(DRM_LIBS) \
-> >>+ 	-lgstvideo-$(GST_API_VERSION) \
-> >>+ 	$(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la
-> >>+diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
-> >>+index 17e6407..9795bdf 100644
-> >>+--- a/sys/kms/gstkmssink.c
-> >>++++ b/sys/kms/gstkmssink.c
-> >>+@@ -31,7 +31,6 @@
-> >>+ #include "gstkmssink.h"
-> >>+ #include "gstkmsbufferpriv.h"
-> >>+
-> >>+-#include <libdce.h>
-> >>+ #include <omap_drm.h>
-> >>+ #include <omap_drmif.h>
-> >>+ #include <xf86drmMode.h>
-> >>+@@ -516,13 +515,18 @@ gst_kms_sink_start (GstBaseSink * bsink)
-> >>+
-> >>+   sink = GST_KMS_SINK (bsink);
-> >>+
-> >>+-  drm_dev = dce_init ();
-> >>++  drm_fd = open("/dev/dri/card0", O_RDWR | O_CLOEXEC);
-> >>++  if(drm_fd == NULL)
-> >>++    goto drm_failed;
-> >>++  else {
-> >>++    drm_dev = omap_device_new(drm_fd);
-> >>++  }
-> >>++
-> >>+   if (drm_dev == NULL)
-> >>+     goto device_failed;
-> >>+   else {
-> >>++    sink->fd = drm_fd;
-> >>+     sink->dev = drm_dev;
-> >>+-    sink->fd = dce_get_fd ();
-> >>+-    drm_fd = dce_get_fd ();
-> >>+   }
-> >>+
-> >>+   sink->resources = drmModeGetResources (sink->fd);
-> >>+@@ -539,6 +543,11 @@ fail:
-> >>+   gst_kms_sink_reset (sink);
-> >>+   return FALSE;
-> >>+
-> >>++drm_failed:
-> >>++  GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
-> >>++      (NULL), ("drmOpen failed"));
-> >>++  goto fail;
-> >>++
-> >>+ device_failed:
-> >>+   GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
-> >>+       (NULL), ("omap_device_new failed"));
-> >>+--
-> >>+1.9.1
-> >>+
-> >>diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-> >>index b5ccebf..2c903d4 100644
-> >>--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-> >>+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
-> >>@@ -8,7 +8,6 @@ PACKAGECONFIG_append_ti43x = " ${@bb.utils.contains('DISTRO_FEATURES','wayland',
-> >> PACKAGECONFIG_append_ti33x = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
-> >>
-> >> DEPENDS_append_omap-a15 = " \
-> >>-    libdce \
-> >>     libdrm \
-> >> "
-> >>
-> >>@@ -18,10 +17,14 @@ DEPENDS_append_ti43x = " \
-> >>
-> >> DEPENDS_append_ti33x = " \
-> >>     libdrm \
-> >>+"
-> >>+
-> >>+SRC_URI_append_omap-a15 = " \
-> >>+    file://0001-kmssink-remove-DCE-dependencies.patch \
-> >> "
-> >>
-> >> SRC_URI_append_ti43x = " \
-> >>-    file://0001-gstwaylandsink-Add-mouse-drag-and-drop-support.patch \
-> >
-> >This patch got dropped ^
-> >If it was intentional, should mention that in the commit message.
-> >
-> >
-> 
-> Yes, it was intentional, a similar patch was covered by the commit
-> ID update. Do you want me to resubmit this patch?
-
-Yes, please. Just a short one-liner should be good enough. Thanks.
-
-
-> >>+    file://0001-kmssink-remove-DCE-dependencies.patch \
-> >> "
-> >>
-> >> SRC_URI_append_ti33x = " \
-> >>@@ -38,6 +41,7 @@ SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git;bran
-> >> S = "${WORKDIR}/git"
-> >>
-> >> SRCREV_omap-a15 = "eb41f1c8fde05f87587c83d157835e3b2d19a298"
-> >>+SRCREV_ti43x = "eb41f1c8fde05f87587c83d157835e3b2d19a298"
-> >> SRCREV = "d0160ca810be30bf2b2e7681f5047933402efb52"
-> >>
-> >> PR = "r25"
-> >>--
-> >>1.9.1
-> >>
-> >>_______________________________________________
-> >>meta-arago mailing list
-> >>meta-arago@arago-project.org
-> >>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
 
