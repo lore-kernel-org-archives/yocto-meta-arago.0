@@ -1,30 +1,40 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 42DAD52007
+Return-Path: <j-stiffler@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 9A94A529A0
 	for <meta-arago@arago-project.org>;
-	Fri, 17 Mar 2017 01:47:02 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 178E420BAF;
-	Fri, 17 Mar 2017 01:47:02 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id SKim_BG7BewR; Fri, 17 Mar 2017 01:47:02 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E6A8C20174;
-	Fri, 17 Mar 2017 01:47:00 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 6FC571623AE;
-	Thu, 16 Mar 2017 21:47:00 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu, 16 Mar 2017 21:46:59 -0400
-Message-Id: <1489715219-136349-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] stress-ng: update to 0.07.25
+	Fri, 17 Mar 2017 13:38:47 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2HDclVZ021120
+	for <meta-arago@arago-project.org>; Fri, 17 Mar 2017 08:38:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1489757927;
+	bh=wKxwIMgt8jxh+82NH2Bqz5dpzv7uUb1nndIUmL0z14g=;
+	h=Subject:To:References:CC:From:Date:In-Reply-To;
+	b=YH5WQwO4hoTXjfYW/K6ErGqbiW3GPvP1X1tvX29+X/cn7Xm0I0JQ4PiIpalaB6zA5
+	x2im2Jevf8IByEuim9sEQDei6BF3Mw0yHPJH+rGOWBCnGi/Mnz6Cl8ZIbQPdOjS/hw
+	ypa39jWvBnbFo7EM+/qoMlFaPzk1KTR2a7eITUUo=
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2HDclLt030450
+	for <meta-arago@arago-project.org>; Fri, 17 Mar 2017 08:38:47 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 17 Mar 2017 08:38:46 -0500
+Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2HDckjj027138;
+	Fri, 17 Mar 2017 08:38:46 -0500
+To: Denys Dmytriyenko <denys@ti.com>
+References: <1489600884-27644-1-git-send-email-j-stiffler@ti.com>
+	<20170316192033.GP14484@edge> <20170316192359.GQ14484@edge>
+	<20170316202805.GT14484@edge>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <281d4261-9aba-1257-d0e9-dec0b8f53d81@ti.com>
+Date: Fri, 17 Mar 2017 09:38:46 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <20170316202805.GT14484@edge>
+Cc: meta-arago@arago-project.org
+Subject: Re: [morty/master][PATCH 1/2] ocl: update to version 1.1.12.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,39 +47,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Mar 2017 01:47:02 -0000
+X-List-Received-Date: Fri, 17 Mar 2017 13:38:47 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../stress-ng/{stress-ng_0.05.09.bb => stress-ng_0.07.25.bb}        | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
- rename meta-arago-extras/recipes-devtools/stress-ng/{stress-ng_0.05.09.bb => stress-ng_0.07.25.bb} (69%)
 
-diff --git a/meta-arago-extras/recipes-devtools/stress-ng/stress-ng_0.05.09.bb b/meta-arago-extras/recipes-devtools/stress-ng/stress-ng_0.07.25.bb
-similarity index 69%
-rename from meta-arago-extras/recipes-devtools/stress-ng/stress-ng_0.05.09.bb
-rename to meta-arago-extras/recipes-devtools/stress-ng/stress-ng_0.07.25.bb
-index 2e92c53..63b939d 100644
---- a/meta-arago-extras/recipes-devtools/stress-ng/stress-ng_0.05.09.bb
-+++ b/meta-arago-extras/recipes-devtools/stress-ng/stress-ng_0.07.25.bb
-@@ -3,10 +3,12 @@ HOMEPAGE = "http://kernel.ubuntu.com/~cking/stress-ng/"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
- 
-+DEPENDS = "zlib libaio"
-+
- SRC_URI = "http://kernel.ubuntu.com/~cking/tarballs/${BPN}/${BP}.tar.gz"
- 
--SRC_URI[md5sum] = "fe65047991f654ffaac3c59ea9537763"
--SRC_URI[sha256sum] = "d785b5f2df042d42c43ddfd5bbafa19151ed96f0c483d7f44c737f492b52ddd6"
-+SRC_URI[md5sum] = "cc2cecc81ff367976b3dbb68e9959cfd"
-+SRC_URI[sha256sum] = "9143c1e78c92612c6a58913c2035c0039e1fe9ff72f99148f049abe47c167224"
- 
- CFLAGS += "-Wall -Wextra -DVERSION='"$(VERSION)"' -O2"
- 
--- 
-2.7.4
+On 3/16/2017 4:28 PM, Denys Dmytriyenko wrote:
+> On Thu, Mar 16, 2017 at 03:23:59PM -0400, Denys Dmytriyenko wrote:
+>> On Thu, Mar 16, 2017 at 03:20:33PM -0400, Denys Dmytriyenko wrote:
+>>> Jake,
+>>>
+>>> It appears the new version no longer provides libOpenCL.so - is it expected?
+>> Actually, it does provide it, just messing up the debian package renaming due
+>> to all the new stuff... I'll see if I can correct it.
+> It's not just few packagegroups, it's everything that depends on opencl
+> (opencv, openmp, examples, etc.) is affected. If you build from scratch every
+> time, you won't see it.
+>
+> I've submitted a patch to hopefully resolve it:
+> http://arago-project.org/pipermail/meta-arago/2017-March/008854.html
+>
+> This doesn't only affect incremental builds, but also package feeds and would
+> break package/distro upgrades in the field. Unfortunately, we haven't been
+> paying much attention to this problem in the past, but as we've already
+> discussed, we should keep an eye on it...
+>
+I'm trying to understand this automatic package naming, and how the 
+opencl package gets renamed to libopencl when the IPK is created. Could 
+you point to where this occurs in OE?
 
+I also see that on krogoth, everything is OK. Even with the new 
+binaries, the IPKs are still name libopencl*. However, I do see that on 
+morty, the addition of the binaries does alter the IPK names.
+
+I'll look at the patch and provide comments once I better understand 
+what is happening.
+
+- Jake
 
