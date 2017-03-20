@@ -1,37 +1,30 @@
-Return-Path: <h-gou@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id D9F3552A6F
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 543AC52A22
 	for <meta-arago@arago-project.org>;
-	Fri, 17 Mar 2017 19:38:04 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2HJc41o003269
-	for <meta-arago@arago-project.org>; Fri, 17 Mar 2017 14:38:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1489779484;
-	bh=HqGiHY8AVt7EZfVgQm0/TqyQwtGkw83D5+lRKMyMQRs=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Yv5mJ4w9upAPkq1KQAkOjQ8uCjJzFZJVRnsxcS0K8BAE4c1S7yfnld4YIDSdROdgP
-	ck45WrYHVa1BrTMqH3fJSPKl6JzZ2h6BhW5A5p5PXBQrOpMzt1/R2Gn5vQ2cY2hH9E
-	w7FVyDn5G6YMi+qrCBFpwvkoiOAQm+7/dEWeNkNQ=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2HJc4it023437
-	for <meta-arago@arago-project.org>; Fri, 17 Mar 2017 14:38:04 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 17 Mar 2017 14:38:01 -0500
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v2HJc07J007022;	Fri, 17 Mar 2017 14:38:01 -0500
-From: Hongmei Gou <h-gou@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 17 Mar 2017 15:37:53 -0400
-Message-ID: <1489779474-16764-3-git-send-email-h-gou@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1489779474-16764-1-git-send-email-h-gou@ti.com>
-References: <1489779474-16764-1-git-send-email-h-gou@ti.com>
-MIME-Version: 1.0
-Cc: Djordje Senicic <d-senicic1@ti.com>
-Subject: [morty/krogoth][PATCH 3/4] matrix-gui-machinevision-demos: add simple-people-tracking demo
+	Mon, 20 Mar 2017 17:43:03 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 356B3208FB;
+	Mon, 20 Mar 2017 17:43:03 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id YulWfOBCjV6X; Mon, 20 Mar 2017 17:43:03 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 14903208E3;
+	Mon, 20 Mar 2017 17:43:02 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 9D7F41623E9;
+	Mon, 20 Mar 2017 13:43:01 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Mon, 20 Mar 2017 13:43:01 -0400
+Message-Id: <1490031781-38601-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH] arago-source-ipk: remove few outdated entries
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,73 +37,63 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Mar 2017 19:38:05 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 20 Mar 2017 17:43:03 -0000
 
-Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc |  4 ++--
- .../recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb | 11 ++++++++++-
- 2 files changed, 12 insertions(+), 3 deletions(-)
+ .../conf/distro/include/arago-source-ipk.inc       | 24 ----------------------
+ 1 file changed, 24 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index 02156c8..acbbcec 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+index 8435bc0..f05acf7 100644
+--- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
++++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+@@ -130,18 +130,6 @@ SRCIPK_PRESERVE_GIT_pn-u-boot-keystone = "true"
+ CREATE_SRCIPK_pn-u-boot-dra7xx = "1"
+ SRCIPK_INSTALL_DIR_pn-u-boot-dra7xx = "board-support/u-boot-${PV}-${PR}"
  
- SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
--SRCREV = "b96f7c7365c166bf59abf6486912eaad2e0ad607"
-+SRCREV = "f324ef86f0f2283709d1625ca26e694a71480a02"
- BRANCH = "master"
--INC_PR = "r45"
-+INC_PR = "r46"
+-CREATE_SRCIPK_pn-u-boot-am180x = "1"
+-SRCIPK_INSTALL_DIR_pn-u-boot-am180x = "board-support/u-boot-${UVER}-psp${PSPREL}"
+-
+-CREATE_SRCIPK_pn-u-boot-am37x = "1"
+-SRCIPK_INSTALL_DIR_pn-u-boot-am37x = "board-support/u-boot-${UVER}-psp${PSPREL}"
+-
+-CREATE_SRCIPK_pn-u-boot-am33x = "1"
+-SRCIPK_INSTALL_DIR_pn-u-boot-am33x = "board-support/u-boot-${UVER}-psp${PSPREL}"
+-
+-CREATE_SRCIPK_pn-u-boot-am3517 = "1"
+-SRCIPK_INSTALL_DIR_pn-u-boot-am3517 = "board-support/u-boot-${UVER}-psp${PSPREL}"
+-
+ CREATE_SRCIPK_pn-linux-ti-staging = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-ti-staging = "board-support/linux-${PV}${KERNEL_LOCALVERSION}"
+ SRCIPK_PRESERVE_GIT_pn-linux-ti-staging = "true"
+@@ -167,12 +155,6 @@ CREATE_SRCIPK_pn-linux-keystone = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-keystone = "board-support/linux-${PV}"
+ SRCIPK_PRESERVE_GIT_pn-linux-keystone = "true"
  
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
-index 9c7eb92..b98fdc9 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
-@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
+-CREATE_SRCIPK_pn-linux-omapl138-psp = "1"
+-SRCIPK_INSTALL_DIR_pn-linux-omapl138-psp = "board-support/linux-${KVER}-psp${PSPREL}"
+-
+-CREATE_SRCIPK_pn-linux-omap-psp = "1"
+-SRCIPK_INSTALL_DIR_pn-linux-omap-psp = "board-support/linux-${KVER}-psp${PSPREL}"
+-
+ CREATE_SRCIPK_pn-linux-am335x-psp = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-am335x-psp = "board-support/linux-${KVER}"
  
- require recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -185,12 +167,6 @@ SRCIPK_INSTALL_DIR_pn-linux = "board-support/linux-${PV}"
+ CREATE_SRCIPK_pn-linux-omap4 = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-omap4 = "board-support/linux-${PV}"
  
--PR = "${INC_PR}.2"
-+PR = "${INC_PR}.3"
+-CREATE_SRCIPK_pn-linux-davinci = "1"
+-SRCIPK_INSTALL_DIR_pn-linux-davinci = "board-support/linux-${KVER}-psp${PSPREL}"
+-
+-CREATE_SRCIPK_pn-linux-omapl1 = "1"
+-SRCIPK_INSTALL_DIR_pn-linux-omapl1 = "board-support/linux-${KVER}-psp${PSPREL}"
+-
+ CREATE_SRCIPK_pn-cryptodev-module = "1"
+ SRCIPK_INSTALL_DIR_pn-cryptodev-module = "board-support/extra-drivers/cryptodev-module-${PV}"
  
- inherit allarch
- 
-@@ -17,6 +17,7 @@ FILES_${PN} += "${MATRIX_BASE_DIR}/*"
- PACKAGES = "matrix-machinevision-demo-dlp3dscanner \
-             matrix-machinevision-demo-barcoderoi \
-             matrix-machinevision-demo-barcoderoi-f2f \
-+            matrix-machinevision-demo-simplepeopletracking \
- "
- 
- RDEPENDS_matrix-machinevision-demo-dlp3dscanner_dra7xx = " \
-@@ -34,6 +35,11 @@ RDEPENDS_matrix-machinevision-demo-barcoderoi-f2f = " \
-     barcode-roi \
- "
- 
-+RDEPENDS_matrix-machinevision-demo-simplepeopletracking = " \
-+    ${MACHINEVISION_RDEPENDS} \
-+    voxelsdk \
-+"
-+
- FILES_matrix-machinevision-demo-dlp3dscanner    = "${MATRIX_APP_DIR}/machinevision_dlp_3d_scanner/*"
- FILES_matrix-machinevision-demo-dlp3dscanner   += "${bindir}/runDlp3DScanner.sh"
- 
-@@ -41,3 +47,6 @@ FILES_matrix-machinevision-demo-barcoderoi    = "${MATRIX_APP_DIR}/machinevision
- FILES_matrix-machinevision-demo-barcoderoi   += "${bindir}/runBarcodeRoi.sh"
- FILES_matrix-machinevision-demo-barcoderoi-f2f = "${MATRIX_APP_DIR}/machinevision_barcode_roi_f2f/*"
- FILES_matrix-machinevision-demo-barcoderoi-f2f += "${bindir}/runBarcodeRoiSave2File.sh"
-+
-+FILES_matrix-machinevision-demo-simplepeopletracking   = "${MATRIX_APP_DIR}/machinevision_simple_people_tracking/*"
-+FILES_matrix-machinevision-demo-simplepeopletracking   += "${bindir}/runSimplePeopleTracking.sh"
 -- 
-1.9.1
+2.7.4
 
 
