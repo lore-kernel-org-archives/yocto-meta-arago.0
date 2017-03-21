@@ -1,34 +1,35 @@
-Return-Path: <h-gou@ti.com>
+Return-Path: <d-senicic1@ti.com>
 Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id EE1E552A1D
+	by arago-project.org (Postfix) with ESMTPS id D589852A81
 	for <meta-arago@arago-project.org>;
-	Tue, 21 Mar 2017 15:10:58 +0000 (UTC)
+	Tue, 21 Mar 2017 15:32:51 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2LFAwIM028724
-	for <meta-arago@arago-project.org>; Tue, 21 Mar 2017 10:10:58 -0500
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2LFWp1F032264
+	for <meta-arago@arago-project.org>; Tue, 21 Mar 2017 10:32:51 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1490109058;
-	bh=5Sk69fnqq/sMoIV2Yh5N9H7yoreGSqJouZCj9ERmq6Q=;
+	s=ti-com-17Q1; t=1490110371;
+	bh=5Fh71Nh+YKNI6SxKTmvFgK6ioF0Csz1FuGoUHl2GtS0=;
 	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=V2LDvMG4TS96rQDhWUBmhV+wwwN0baQL8ZK+N1makb86rW6EZW0C9IwPU/UZOoGuo
-	pVgJ6FLb5lYdxz4pRM3YDxh7G2jjD8p8S7w/3sPz0XAxsykJmSyyJRWkm1Fp16ii+o
-	h8RWOC9SfrmxxE1Q8/jgwFUrW64UQISXkxYDi/Rg=
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2LFAw1T014291
-	for <meta-arago@arago-project.org>; Tue, 21 Mar 2017 10:10:58 -0500
-Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0294.000; Tue, 21 Mar 2017 10:10:58 -0500
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "Senicic, Djordje" <d-senicic1@ti.com>
+	b=VqAPg/10eV31Mw51NtKYvmpMmWPeli2Bj+TPKPfZB0w8P5WUCi8t6PBDxTi2JYZw4
+	t4IbzkrTZNuGw6NWbFgAvY4f+luN8cwDFXRthCJdQBxlS1VzrHX4IwvOEJW/GtIVB9
+	EfH5OOh3FcdnCEWd9BukIK16j/IibxWp/D+nv4aA=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2LFWp6B010511
+	for <meta-arago@arago-project.org>; Tue, 21 Mar 2017 10:32:51 -0500
+Received: from DLEE12.ent.ti.com ([fe80::b01c:958e:1aa:d17f]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0294.000; Tue, 21 Mar 2017 10:32:50 -0500
+From: "Senicic, Djordje" <d-senicic1@ti.com>
+To: "Gou, Hongmei" <h-gou@ti.com>, "Dmytriyenko, Denys" <denys@ti.com>
 Thread-Topic: [meta-arago] [morty/krogoth][PATCH 1/4] voxelsdk: add version
 	0.6.8
-Thread-Index: AQHSoaXi366HYdU1NUmJhxzxbmbnuKGfZloA
-Date: Tue, 21 Mar 2017 15:10:57 +0000
-Message-ID: <2E957F12D11D904590FA9AF86D366BD926CF81ED@DLEE08.ent.ti.com>
+Thread-Index: AQHSn1X8YU7dngq/i0SvNHks/zwoP6GeYOqAgAFe6oD//7HsYA==
+Date: Tue, 21 Mar 2017 15:32:50 +0000
+Message-ID: <F14615FE38B0C8438A0E39BF946F6E781B10696E@DLEE12.ent.ti.com>
 References: <1489779474-16764-1-git-send-email-h-gou@ti.com>
 	<20170320181458.GA23524@edge>
-In-Reply-To: <20170320181458.GA23524@edge>
+	<2E957F12D11D904590FA9AF86D366BD926CF81ED@DLEE08.ent.ti.com>
+In-Reply-To: <2E957F12D11D904590FA9AF86D366BD926CF81ED@DLEE08.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -48,10 +49,23 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Mar 2017 15:10:59 -0000
+X-List-Received-Date: Tue, 21 Mar 2017 15:32:52 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+AFAIK, there is no immediate plan to support Python 3+.
+Initiative for that may come from Larry Li (TOF SW Arch). I'll check w/ him=
+.
+Not feasible for PLSDK3.3, but 2Q (if he agrees) that is likely.
+
+-----Original Message-----
+From: Gou, Hongmei=20
+Sent: Tuesday, March 21, 2017 11:11 AM
+To: Dmytriyenko, Denys; Senicic, Djordje
+Cc: meta-arago@arago-project.org
+Subject: RE: [meta-arago] [morty/krogoth][PATCH 1/4] voxelsdk: add version =
+0.6.8
 
 v2 patch is submitted.
 
@@ -65,8 +79,8 @@ Hongmei
 > Sent: Monday, March 20, 2017 2:15 PM
 > To: Gou, Hongmei
 > Cc: meta-arago@arago-project.org; Senicic, Djordje
-> Subject: Re: [meta-arago] [morty/krogoth][PATCH 1/4] voxelsdk: add versio=
-n
+> Subject: Re: [meta-arago] [morty/krogoth][PATCH 1/4] voxelsdk: add=20
+> version
 > 0.6.8
 >=20
 > On Fri, Mar 17, 2017 at 03:37:51PM -0400, Hongmei Gou wrote:
@@ -74,7 +88,7 @@ n
 > > Signed-off-by: Hongmei Gou <h-gou@ti.com>
 > > ---
 > >  .../voxelsdk/0001-PLSDK-AM437x-update.patch        |  73 +++++
-> >  .../voxelsdk/voxelsdk/0002-Fix-SWIG-support.patch  |  37 +++
+> >  .../voxelsdk/voxelsdk/0002-Fix-SWIG-support.patch  |  37 +++=20
 > > ...mmand-line-options-and-move-OpenCV-render.patch | 324
 > +++++++++++++++++++++
 > >  .../recipes-apps/voxelsdk/voxelsdk_git.bb          |  51 ++++
@@ -137,13 +151,13 @@ ard -
 > > +     ADD_DEFINITIONS(-DARM_OPT)
 > > ++#OK:
 > > ++#add_definitions(-mtune=3Darm7 -mfloat-abi=3Dhard -pthread -std=3Dc++=
-11
+11=20
 > > ++-fPIC -ffast-math)
 > > ++#OK:
 > > ++#add_definitions(-ffast-math -mcpu=3Dcortex-a9 -mfloat-abi=3Dhard
 > > ++-mfpu=3Dneon-fp16 -fPIC -pthread -std=3Dc++11)
 > > ++#OK:
-> > ++#add_definitions(-ffast-math -mcpu=3Dcortex-a9 -mfloat-abi=3Dhard
+> > ++#add_definitions(-ffast-math -mcpu=3Dcortex-a9 -mfloat-abi=3Dhard=20
 > > ++-mfpu=3Dneon -fPIC -pthread -std=3Dc++11)
 > > ++
 > > ++add_definitions(-mtune=3Darm7 -mfpu=3Dneon -mfloat-abi=3Dhard -pthrea=
@@ -166,7 +180,7 @@ d
 > > +
 > > + IF(LINUX)
 > > +   set(CPACK_COMPONENTS_ALL voxel)
-> > +diff --git a/Voxel/SWIG/standard_container.i
+> > +diff --git a/Voxel/SWIG/standard_container.i=20
 > > +b/Voxel/SWIG/standard_container.i index f61e342..1d2cb66 100644
 > > +--- a/Voxel/SWIG/standard_container.i
 > > ++++ b/Voxel/SWIG/standard_container.i
@@ -177,11 +191,12 @@ d
 > > +-
 > > ++#if SWIG_VERSION < 0x030008
 > > + //
-> > + // Ignore member methods for Type with no default constructor  // @@
+> > + // Ignore member methods for Type with no default constructor  //=20
+> > +@@
 > > +-124,4 +124,5 @@
 > > + %feature("ignore") std::deque<Type >::resize(size_type size);
 > > + %feature("ignore") std::list<Type >::list(size_type size);
-> > + %feature("ignore") std::list<Type >::resize(size_type size);
+> > + %feature("ignore") std::list<Type >::resize(size_type size);=20
 > > +-%enddef \ No newline at end of file
 > > ++%enddef
 > > ++#endif
@@ -198,7 +213,8 @@ d
 > > new file mode 100644
 > > index 0000000..77a6de1
 > > --- /dev/null
-> > +++ b/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0002-Fix-SWIG-
+> > +++ b/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0002-Fix-SWIG
+> > +++ -
 > s
 > > +++ upport.patch
 > > @@ -0,0 +1,37 @@
@@ -213,7 +229,7 @@ d
 > > + Voxel/SWIG/CMakeLists.txt | 5 +++--
 > > + 1 file changed, 3 insertions(+), 2 deletions(-)
 > > +
-> > +diff --git a/Voxel/SWIG/CMakeLists.txt b/Voxel/SWIG/CMakeLists.txt
+> > +diff --git a/Voxel/SWIG/CMakeLists.txt b/Voxel/SWIG/CMakeLists.txt=20
 > > +index a4f6d53..f4070ac 100644
 > > +--- a/Voxel/SWIG/CMakeLists.txt
 > > ++++ b/Voxel/SWIG/CMakeLists.txt
@@ -262,7 +278,7 @@ d
 > > +2001
 > > +From: Djordje Senicic <d-senicic1@ti.com>
 > > +Date: Mon, 13 Mar 2017 19:51:30 -0400
-> > +Subject: [PATCH] Add more command line options and move OpenCV
+> > +Subject: [PATCH] Add more command line options and move OpenCV=20
 > > +rendering to  main thread
 > > +
 > > +Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
@@ -284,13 +300,13 @@ d
 > > + #include <stdlib.h>
 > > +
 > > + extern int skipped_frames;
-> > ++extern pthread_mutex_t main_thread_image_mtx; extern Mat
-> > ++app_image[]; extern int main_thread_image_rd; extern int
+> > ++extern pthread_mutex_t main_thread_image_mtx; extern Mat=20
+> > ++app_image[]; extern int main_thread_image_rd; extern int=20
 > > ++main_thread_image_wr; extern int main_thread_image_cnt; extern
 > char
 > > ++show_image;
 > > +
-> > + Horus::Horus(int w, int h) : TOFApp(w, h)  { @@ -126,10 +132,9 @@
+> > + Horus::Horus(int w, int h) : TOFApp(w, h)  { @@ -126,10 +132,9 @@=20
 > > +bool Horus::isPerson(vector<cv::Point> &contour, Mat dMat)
 > > +    return rc;
 > > + }
@@ -355,7 +371,7 @@ t(1,1) );
 > > +-                             CV_CHAIN_APPROX_SIMPLE, cv::Point(0,0));
 > > ++        // Find all contours
 > > ++        findContours(morphMat, contours, hierarchy, CV_RETR_TREE,
-> > ++                               CV_CHAIN_APPROX_SIMPLE,
+> > ++                               CV_CHAIN_APPROX_SIMPLE,=20
 > > ++ cv::Point(0,0));
 > > +
 > > +-      // Draw contours that meet a "person" requirement
@@ -377,12 +393,12 @@ t(1,1) );
 > > ++        for ( int i =3D 0; i < contours.size(); i++ ) {
 > > ++           if (isPerson(contours[i], _dMat)) {
 > > ++              peopleCount++;
-> > ++              drawContours( drawing, contours, i, Scalar(0, 0, 255), =
-2, 8,
+> > ++              drawContours( drawing, contours, i, Scalar(0, 0,=20
+> > ++ 255), 2, 8,
 > vector<Vec4i>(), 0, cv::Point() );
 > > ++           }
 > > ++        }
-> > ++        putText(drawing, "Cnt=3D"+to_string(peopleCount),
+> > ++        putText(drawing, "Cnt=3D"+to_string(peopleCount),=20
 > > ++ cv::Point(40, 30), FONT_HERSHEY_PLAIN, 1, Scalar(255, 0, 0));
 > > +       }
 > > +-      putText(drawing, "Cnt=3D"+to_string(peopleCount), cv::Point(40,=
@@ -424,7 +440,7 @@ t(1,1) );
 > > +       }
 > > +    }
 > > + }
-> > +diff --git a/Demos/SimplePeopleTracking.cpp
+> > +diff --git a/Demos/SimplePeopleTracking.cpp=20
 > > +b/Demos/SimplePeopleTracking.cpp index 8c6e9d4..1eb8e16 100644
 > > +--- a/Demos/SimplePeopleTracking.cpp
 > > ++++ b/Demos/SimplePeopleTracking.cpp
@@ -433,15 +449,13 @@ t(1,1) );
 > > ++#include <getopt.h>
 > > +
 > > + int skipped_frames =3D 0;
-> > ++int resolution_width =3D 160, resolution_height =3D 120; //Variables =
-for
-> > ++communication between main and application thread pthread_mutex_t
-> > ++main_thread_image_mtx; int main_thread_image_rd =3D 0; int
-> > ++main_thread_image_wr =3D 0; int main_thread_image_cnt =3D 0; int acq_=
-fps
-> > ++=3D 30; char show_image =3D 'p'; //By default, detect people int fps =
-=3D
-> > ++30;
+> > ++int resolution_width =3D 160, resolution_height =3D 120; //Variables=
+=20
+> > ++for communication between main and application thread=20
+> > ++pthread_mutex_t main_thread_image_mtx; int main_thread_image_rd =3D=20
+> > ++0; int main_thread_image_wr =3D 0; int main_thread_image_cnt =3D 0;=20
+> > ++int acq_fps =3D 30; char show_image =3D 'p'; //By default, detect=20
+> > ++people int fps =3D 30;
 > > ++
 > > ++Mat app_image[2];
 > > +
@@ -461,15 +475,17 @@ fps
 > > ++  printf ("\n   Images with the result of processing are saved in PNG=
  files.
 > This test always stops after 10 image files recorded\n");
-> > ++  printf ("\n -w <resolution witdh,  default is 160, another
+> > ++  printf ("\n -w <resolution witdh,  default is 160, another=20
 > > ++resolution possible is 320x240>");
-> > ++  printf ("\n -h <resolution height, default is 120, another
+> > ++  printf ("\n -h <resolution height, default is 120, another=20
 > > ++respolution possible is 320x240>");
-> > ++  printf ("\n -i <present image of amplitudes, grey-scale like image
+> > ++  printf ("\n -i <present image of amplitudes, grey-scale like=20
+> > ++image
 > > ++- default is detection of people>");
 > > ++  printf ("\n -d <present distance map - default is detection of
 > > ++people>");
-> > ++  printf ("\n -f <set fps with integer value, 30 is default, 10, 15,
+> > ++  printf ("\n -f <set fps with integer value, 30 is default, 10,=20
+> > ++15,
 > > ++25 are another options to try>");
 > > ++  printf ("\n-----------\n");
 > > ++}
@@ -510,10 +526,10 @@ fps
 > > ++                 exit(EXIT_FAILURE);
 > > ++        }
 > > +    }
-> > ++   printf ("\nUsing following parameters: skipped_frames=3D%d width=
-=3D%d
+> > ++   printf ("\nUsing following parameters: skipped_frames=3D%d=20
+> > ++ width=3D%d
 > height=3D%d mode=3D%c fps=3D%d. Use '-?' to get help.\n",
-> > ++           skipped_frames, resolution_width, resolution_height,
+> > ++           skipped_frames, resolution_width, resolution_height,=20
 > > ++ show_image, acq_fps);
 > > +
 > > +-   //Horus eye(320, 240);
@@ -558,8 +574,9 @@ hread
 d::flush;
 > > ++         }
 > > ++         draw_throttle ++;
-> > ++         if(draw_throttle >=3D (10 * skipped_frames)) done =3D true; =
-//Collect 10
+> > ++         if(draw_throttle >=3D (10 * skipped_frames)) done =3D true;=
+=20
+> > ++ //Collect 10
 > image files only in batch mode
 > > ++       } else imshow ("Draw", locImg);
 > > ++       pthread_mutex_lock(&main_thread_image_mtx);
@@ -583,7 +600,7 @@ d::flush;
 > > +-
 > > ++extern int acq_fps;
 > > + // Frame callback
-> > + static deque<Voxel::Frame *> qFrame;  static pthread_mutex_t gmtx;
+> > + static deque<Voxel::Frame *> qFrame;  static pthread_mutex_t gmtx;=20
 > > +@@ -166,11 +166,7 @@ void *TOFApp::eventLoop(void *p)
 > > +       }
 > > +
@@ -608,8 +625,8 @@ d::flush;
 > > ++   _loopDelay =3D (int)(1000 / acq_fps);
 > > +    _illum_power =3D 60;
 > > +    _intg =3D 20;
-> > +    _profile =3D "MetrilusLongRange";
-> > +@@ -219,7 +215,7 @@ bool TOFApp::connect(DepthCamera::FrameType
+> > +    _profile =3D "MetrilusLongRange"; @@ -219,7 +215,7 @@ bool=20
+> > +TOFApp::connect(DepthCamera::FrameType
 > frmType)
 > > +    else
 > > +       return false;
@@ -648,9 +665,8 @@ by the
 > > +PR =3D "r1"
 > > +BRANCH=3D"plsdk-devel"
 >=20
-> Not critical, but since there will be v2, please use consistent formattin=
-g with
-> spaces around =3D sign.
+> Not critical, but since there will be v2, please use consistent=20
+> formatting with spaces around =3D sign.
 >=20
 >=20
 > > +SRC_URI =3D "git://github.com/3dtof/voxelsdk.git;branch=3D${BRANCH}"
@@ -659,7 +675,8 @@ g with
 > > +SRC_URI +=3D " \
 > > +            file://0001-PLSDK-AM437x-update.patch;patchdir=3D${S} \
 > > +            file://0002-Fix-SWIG-support.patch;patchdir=3D${S} \
-> > +            file://0003-Add-more-command-line-options-and-move-OpenCV-
+> > +           =20
+> > +file://0003-Add-more-command-line-options-and-move-OpenCV-
 > render.patch;patchdir=3D${S} \
 > > +           "
 > > +
@@ -669,8 +686,8 @@ g with
 > > +
 > > +CXXFLAGS_append =3D "-I${STAGING_INCDIR}/libusb-1.0 "
 >=20
-> Using _append, but missing leading space and having unnecessary trailing
-> space.
+> Using _append, but missing leading space and having unnecessary=20
+> trailing space.
 >=20
 >=20
 > > +EXTRA_OECMAKE +=3D "-DDISTROFEATURE=3DExcludePCL -
@@ -695,7 +712,7 @@ g with
 > > +    install -d ${D}${bindir}
 > > +    install -m 0775 ${S}/Test/CameraSystemTest.py ${D}${bindir}
 > > +    install -m 0775 ${S}/Test/CameraSystemIQFrameTest.py ${D}${bindir}
-> > +    install -m 0775 ${S}/Test/LensCalibrationTest.py ${D}${bindir}
+> > +    install -m 0775 ${S}/Test/LensCalibrationTest.py ${D}${bindir}=20
 > > +}
 > > +
 > > +FILES_${PN} =3D "${bindir}"
