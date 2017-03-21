@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 30A0452A7D
+	by arago-project.org (Postfix) with ESMTPS id 4E3E352A1F
 	for <meta-arago@arago-project.org>;
 	Tue, 21 Mar 2017 01:43:16 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 484972010C;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 567FD208FB;
 	Tue, 21 Mar 2017 01:43:16 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id MXcDBAx7BExh; Tue, 21 Mar 2017 01:43:16 +0000 (UTC)
+	with ESMTP id VzqxU2sN2KhC; Tue, 21 Mar 2017 01:43:16 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2EFD4208FB;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2F52F20B80;
 	Tue, 21 Mar 2017 01:43:14 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 5996316241C;
+	by mail.denix.org (Postfix) with ESMTP id 6F91F16241E;
 	Mon, 20 Mar 2017 21:43:12 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon, 20 Mar 2017 21:43:06 -0400
-Message-Id: <1490060589-72852-9-git-send-email-denis@denix.org>
+Date: Mon, 20 Mar 2017 21:43:08 -0400
+Message-Id: <1490060589-72852-11-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1490060589-72852-1-git-send-email-denis@denix.org>
 References: <1490060589-72852-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 09/12] arago-prefs: prefer latest libnl version
+Subject: [master][PATCH 11/12] toolchain-gcc: update preference for binutils 2.28
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,21 +45,31 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/arago-prefs.inc | 1 -
- 1 file changed, 1 deletion(-)
+ meta-arago-distro/conf/distro/include/toolchain-gcc.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index 3b1a0aa..f0fc38f 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -29,7 +29,6 @@ PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
- # Setting PREFERRED_VERSIONS due to selecting a specific version of a library or
- # application that does not have a GPLv3 license
- PREFERRED_VERSION_gdbm = "1.8.3"
--PREFERRED_VERSION_libnl = "3.2.28"
- PREFERRED_VERSION_crda = "3.18"
- PREFERRED_VERSION_obex = "0.34"
- PREFERRED_VERSION_bash = "3.2.57"
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
+index 50fb5e1..89f00c6 100644
+--- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
++++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
+@@ -18,7 +18,7 @@ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-can
+ 
+ # Set Cross and SDK toolchain preferences
+ SDKGCCVERSION ?= "6.3%"
+-SDKBINUVERSION ?= "2.27%"
++SDKBINUVERSION ?= "2.28%"
+ SDKGLIBCVERSION ?= "2.25%"
+ SDKLINUXLIBCVERSION ?= "4.9%"
+ 
+@@ -35,7 +35,7 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
+ # Set target toolchain preferences to match Cross/SDK by default
+ # Can be overwritten globally, if needed
+ GCCVERSION ?= "6.3%"
+-BINUVERSION ?= "2.27%"
++BINUVERSION ?= "2.28%"
+ GLIBCVERSION ?= "2.25%"
+ GLIBCINITVERSION ?= "2.25%"
+ LINUXLIBCVERSION ?= "4.9%"
 -- 
 2.7.4
 
