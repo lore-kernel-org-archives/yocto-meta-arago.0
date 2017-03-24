@@ -1,35 +1,37 @@
-Return-Path: <poojaprajod@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id B799E52A19
+Return-Path: <denys@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 1EEB252A34
 	for <meta-arago@arago-project.org>;
-	Fri, 24 Mar 2017 13:45:11 +0000 (UTC)
+	Fri, 24 Mar 2017 17:26:55 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2ODjB9W022890
-	for <meta-arago@arago-project.org>; Fri, 24 Mar 2017 08:45:11 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2OHQtgH024946
+	for <meta-arago@arago-project.org>; Fri, 24 Mar 2017 12:26:55 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1490363111;
-	bh=2EczJb3+soTWwxkiNjbKsrddFhuv6N7RMsnrXoODX8w=;
-	h=From:To:CC:Subject:Date;
-	b=Dk5pPEwLR/DXOHvUxDCPyeIfzd4OdIx6V02LS3z+nMyMmSfSdFwZjYm06vA6A4D/i
-	lC9YlI6Gopme1GkhhLGggaiyLVNYUjL2w7u9jWCU53Yysf5uV3bIjGv49IkSGbpoU9
-	dLo0N2Ud3Pdn8P5PX35iTBCuSATqnGEXgM35wEPA=
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2ODjBlN016861
-	for <meta-arago@arago-project.org>; Fri, 24 Mar 2017 08:45:11 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 24 Mar 2017 08:45:10 -0500
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2ODj9Lm016755;
-	Fri, 24 Mar 2017 08:45:10 -0500
-From: Pooja Prajod <a0132412@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 24 Mar 2017 19:15:06 +0530
-Message-ID: <1490363106-54029-1-git-send-email-a0132412@ti.com>
-X-Mailer: git-send-email 1.9.1
+	s=ti-com-17Q1; t=1490376415;
+	bh=jTKcGZSbrVfRzFFRVROqyZhexTBf28w5GzjI11rJAH8=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=Bs+bpN2CBLDkH2N+P6qTg95JybjH+oOJuEQEKPujryUqdeRbMbpd1Zs7+IuQC7A6N
+	ckX/6Y86+ZrqFekWSMRn3S22jFKVloDW7Q0j423EDlnKyaaBDa5pshTiK+1KalOIUC
+	IwiGjfMFCIZtGwMbtbr8Cn6KY77B7JYdck9lqFFo=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2OHQtHM005999
+	for <meta-arago@arago-project.org>; Fri, 24 Mar 2017 12:26:55 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 24 Mar 2017 12:26:55 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2OHQtAH012284;
+	Fri, 24 Mar 2017 12:26:55 -0500
+Date: Fri, 24 Mar 2017 13:26:54 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Hongmei Gou <h-gou@ti.com>
+Message-ID: <20170324172654.GI29187@edge>
+References: <1490307847-23237-1-git-send-email-h-gou@ti.com>
 MIME-Version: 1.0
-Cc: Pooja Prajod <a0132412@ti.com>
-Subject: [morty gst-plugins-base] gst-plugin-base: Add bbappend for gst-base
+In-Reply-To: <1490307847-23237-1-git-send-email-h-gou@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [morty/krogoth][PATCH] opencv: bump SRCREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,69 +44,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Mar 2017 13:45:12 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 24 Mar 2017 17:26:57 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-A hack patch : 0001-playbin-HACK-Change-default-value-of-flags.patch
-needs to be added for low fps issue with playbin. Hence adding append file.
+Please briefly mention the changes picked up by the new commit id.
 
-Signed-off-by: Pooja Prajod <a0132412@ti.com>
----
- ...laybin-HACK-Change-default-value-of-flags.patch | 30 ++++++++++++++++++++++
- .../gstreamer1.0-plugins-base_1.8.3.bbappend       |  6 +++++
- 2 files changed, 36 insertions(+)
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-playbin-HACK-Change-default-value-of-flags.patch
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.8.3.bbappend
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-playbin-HACK-Change-default-value-of-flags.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-playbin-HACK-Change-default-value-of-flags.patch
-new file mode 100644
-index 0000000..321f281
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base/0001-playbin-HACK-Change-default-value-of-flags.patch
-@@ -0,0 +1,30 @@
-+From 436543acab9441ebb121da74b6433eae43bc8786 Mon Sep 17 00:00:00 2001
-+From: Pooja Prajod <a0132412@ti.com>
-+Date: Fri, 24 Mar 2017 18:24:15 +0530
-+Subject: [morty gst-plugins-base] playbin HACK: Change default value of flags
-+
-+The deinterlace flag in playbin is causing
-+high cpu load which in turn lowers fps of the playback.
-+The behavior is not yet rootcaused. This is a workaround.
-+
-+Signed-off-by: Pooja Prajod <a0132412@ti.com>
-+---
-+ gst/playback/gstplaybin2.c | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/gst/playback/gstplaybin2.c b/gst/playback/gstplaybin2.c
-+index ad63600..13439e3 100644
-+--- a/gst/playback/gstplaybin2.c
-++++ b/gst/playback/gstplaybin2.c
-+@@ -524,7 +524,7 @@ struct _GstPlayBinClass
-+ #define DEFAULT_SUBURI            NULL
-+ #define DEFAULT_SOURCE            NULL
-+ #define DEFAULT_FLAGS             GST_PLAY_FLAG_AUDIO | GST_PLAY_FLAG_VIDEO | GST_PLAY_FLAG_TEXT | \
-+-                                  GST_PLAY_FLAG_SOFT_VOLUME | GST_PLAY_FLAG_DEINTERLACE | \
-++                                  GST_PLAY_FLAG_SOFT_VOLUME | \
-+                                   GST_PLAY_FLAG_SOFT_COLORBALANCE
-+ #define DEFAULT_N_VIDEO           0
-+ #define DEFAULT_CURRENT_VIDEO     -1
-+-- 
-+1.9.1
-+
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.8.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.8.3.bbappend
-new file mode 100644
-index 0000000..c1d437f
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.8.3.bbappend
-@@ -0,0 +1,6 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+SRC_URI_append = " \
-+    file://0001-playbin-HACK-Change-default-value-of-flags.patch \
-+"
-+PR = "r3"
--- 
-1.9.1
-
+On Thu, Mar 23, 2017 at 06:24:07PM -0400, Hongmei Gou wrote:
+> Signed-off-by: Hongmei Gou <h-gou@ti.com>
+> ---
+>  meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend b/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
+> index eea040f..bcfd8dd 100644
+> --- a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
+> +++ b/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
+> @@ -1,4 +1,4 @@
+> -PR = "r2"
+> +PR = "r3"
+>  
+>  BRANCH = "tiopencvrelease_3.1"
+>  
+> @@ -11,7 +11,7 @@ SRC_URI_append += "\
+>       file://setupEnv.sh \
+>  "
+>  
+> -SRCREV_opencv = "b4f54ac48ced0ade8223eafab9cd3ad6dbb1b515"
+> +SRCREV_opencv = "ffb1eb48afbb1888670f461135c023dcdb6c9aca"
+>  
+>  DEPENDS_remove_keystone = "qtbase"
+>  
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
