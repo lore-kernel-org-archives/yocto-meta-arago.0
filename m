@@ -1,43 +1,40 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 10B2E5299A
+Return-Path: <denys@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 7F1805299A
 	for <meta-arago@arago-project.org>;
-	Tue, 28 Mar 2017 22:00:17 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2SM06uD017335
-	for <meta-arago@arago-project.org>; Tue, 28 Mar 2017 17:00:07 -0500
+	Tue, 28 Mar 2017 22:56:54 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2SMusgm026322
+	for <meta-arago@arago-project.org>; Tue, 28 Mar 2017 17:56:54 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1490738407;
-	bh=YObCMu4lXIwuMUgIYu4WVKSdyjK+WE7brNQ4MlNybhE=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=xq1T7Gli3zl6pv3kiTjRiOAMFzdtzDBclwd39wdqvMElgOjjxCCE4y7fMjm5I7JhU
-	VohOp6oeBh5MDzGSifTuzSM7YF6VUQT/kgh3OK67XtQfmwHKQs7dJP6t2syu1iUIbe
-	ENYtO8Pe7HpJmH4mVE/sxvxSuDBrGRB+XxvL5YB4=
+	s=ti-com-17Q1; t=1490741814;
+	bh=wQbzxilHerD/Ha6gALJthAtMXoR00eqySq8MEi2tVbw=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=u/hMu7H3CvwdSKRPnvw7Cr7x1+fRO32VBI3ZxFCWCURwzIV/iNnZs5Cqm3fn4FMbO
+	SytmCn6jsz5mWQ2wH619BHws0KX8MVxrpD4juWbIJxYcwgPVS4nUBNBOZ6x1rrCqa7
+	frN3YFlBxYQif4owMJ+wYtW0lPAiI2zEfWx/Im8s=
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2SM0112010876
-	for <meta-arago@arago-project.org>; Tue, 28 Mar 2017 17:00:01 -0500
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0294.000; Tue, 28 Mar 2017 17:00:00 -0500
-From: "Ruei, Eric" <e-ruei1@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [krogoth][PATCH] kmscube: cleanup and include bug
-	fix for HDMI
-Thread-Index: AQHSqAxRYOE3nUaVZ0u6YJMGhOJ/RKGqy+hQgABUygD//6xSUA==
-Date: Tue, 28 Mar 2017 21:59:59 +0000
-Message-ID: <009C030982313E4589C6BC55FBF1E82A2535ADCD@DFLE09.ent.ti.com>
-References: <1490648942-28605-1-git-send-email-e-ruei1@ti.com>
-	<20170328214320.GM29187@edge>
-	<009C030982313E4589C6BC55FBF1E82A2535AD83@DFLE09.ent.ti.com>
-	<20170328215852.GP29187@edge>
-In-Reply-To: <20170328215852.GP29187@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.172.224.222]
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2SMusvq022792
+	for <meta-arago@arago-project.org>; Tue, 28 Mar 2017 17:56:54 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 28 Mar 2017 17:56:53 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2SMurGY021661;
+	Tue, 28 Mar 2017 17:56:54 -0500
+Date: Tue, 28 Mar 2017 18:56:53 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Senicic, Djordje" <d-senicic1@ti.com>
+Message-ID: <20170328225653.GR29187@edge>
+References: <1489779474-16764-1-git-send-email-h-gou@ti.com>
+	<20170320181458.GA23524@edge>
+	<2E957F12D11D904590FA9AF86D366BD926CF81ED@DLEE08.ent.ti.com>
+	<F14615FE38B0C8438A0E39BF946F6E781B10696E@DLEE12.ent.ti.com>
 MIME-Version: 1.0
+In-Reply-To: <F14615FE38B0C8438A0E39BF946F6E781B10696E@DLEE12.ent.ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [krogoth][PATCH] kmscube: cleanup and include bug fix for HDMI
+Subject: Re: [morty/krogoth][PATCH 1/4] voxelsdk: add version 0.6.8
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,232 +47,687 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Mar 2017 22:00:17 -0000
-Content-Language: en-US
+X-List-Received-Date: Tue, 28 Mar 2017 22:56:55 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Hi, Denys:
+On Tue, Mar 21, 2017 at 11:32:50AM -0400, Senicic, Djordje wrote:
+> AFAIK, there is no immediate plan to support Python 3+.
+> Initiative for that may come from Larry Li (TOF SW Arch). I'll check w/ him.
+> Not feasible for PLSDK3.3, but 2Q (if he agrees) that is likely.
 
-Sure. I shall do that next time.
+Thanks! That would be helpful. Currently we have to package both python2.7 and 
+python3 in the rootfs, because different components use different versions. 
+Would be nice to align everything on one version to save space. Please keep me 
+posted on this activity, thanks.
 
-Best regards,
+-- 
+Denys
 
-Eric
 
-
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Tuesday, March 28, 2017 5:59 PM
-To: Ruei, Eric
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [krogoth][PATCH] kmscube: cleanup and include bug=
- fix for HDMI
-
-Ok, then, might have been a good idea to mention it was a backport from mor=
-ty...
-
-On Tue, Mar 28, 2017 at 05:56:38PM -0400, Ruei, Eric wrote:
-> Hi, Denys:
->=20
-> The changes have already been applied to morty by Karthik.
->=20
-> Best regards,
->=20
-> Eric
->=20
 > -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Tuesday, March 28, 2017 5:43 PM
-> To: Ruei, Eric
+> From: Gou, Hongmei 
+> Sent: Tuesday, March 21, 2017 11:11 AM
+> To: Dmytriyenko, Denys; Senicic, Djordje
 > Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [krogoth][PATCH] kmscube: cleanup and=20
-> include bug fix for HDMI
->=20
-> Is it applicable to morty or do you need to submit a separate patch?
->=20
->=20
-> On Mon, Mar 27, 2017 at 05:09:02PM -0400, Eric Ruei wrote:
-> > All local patches merged to git repository
-> >=20
-> > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> > ---
-> >  ...001-kmscube.c-init_drm-enable-AM3-support.patch | 28 --------=20
-> > ...nit_drm-select-the-current-CRTC-display-m.patch | 76 ---------------=
--------
-> >  .../recipes-graphics/kmscube/kmscube_1.0.0.bb      |  7 +-
-> >  3 files changed, 1 insertion(+), 110 deletions(-)  delete mode=20
-> > 100644=20
-> > meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-in
-> > it _drm-enable-AM3-support.patch  delete mode 100644=20
-> > meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-in
-> > it _drm-select-the-current-CRTC-display-m.patch
-> >=20
-> > diff --git
-> > a/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-
-> > in
-> > it_drm-enable-AM3-support.patch
-> > b/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-
-> > in
-> > it_drm-enable-AM3-support.patch
-> > deleted file mode 100644
-> > index 64b7b04..0000000
-> > ---
-> > a/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-
-> > in
-> > it_drm-enable-AM3-support.patch
-> > +++ /dev/null
-> > @@ -1,28 +0,0 @@
-> > -From 82a3cc3ddec96fba7204f5ecab0890801a0b54b4 Mon Sep 17 00:00:00
-> > 2001
-> > -From: Eric Ruei <e-ruei1@ti.com>
-> > -Date: Thu, 25 Feb 2016 09:49:24 -0500
-> > -Subject: [PATCH] kmscube.c: init_drm(): enable AM3 support
-> > -
-> > -Enable AM3 support by adding "tilcdc" to the modules list.
-> > -
-> > -Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> > ----
-> > - kmscube.c | 2 +-
-> > - 1 file changed, 1 insertion(+), 1 deletion(-)
-> > -
-> > -diff --git a/kmscube.c b/kmscube.c
-> > -index 5a18c32..919b3e7 100644
-> > ---- a/kmscube.c
-> > -+++ b/kmscube.c
-> > -@@ -84,7 +84,7 @@ struct drm_fb {
-> > - static int init_drm(void)
-> > - {
-> > - 	static const char *modules[] =3D {
-> > --			"omapdrm", "i915", "radeon", "nouveau", "vmwgfx", "exynos"
-> > -+			"omapdrm", "tilcdc", "i915", "radeon", "nouveau", "vmwgfx", "exyno=
-s"
-> > - 	};
-> > - 	drmModeRes *resources;
-> > - 	drmModeConnector *connector =3D NULL;
-> > ---
-> > -1.9.1
-> > -
-> > diff --git
-> > a/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-
-> > in it_drm-select-the-current-CRTC-display-m.patch
-> > b/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-
-> > in it_drm-select-the-current-CRTC-display-m.patch
-> > deleted file mode 100644
-> > index e6db0a3..0000000
-> > ---
-> > a/meta-arago-extras/recipes-graphics/kmscube/kmscube/0001-kmscube.c-
-> > in it_drm-select-the-current-CRTC-display-m.patch
-> > +++ /dev/null
-> > @@ -1,76 +0,0 @@
-> > -From c2fd69466fcf1de1d20ee437470b40584964b32d Mon Sep 17 00:00:00
-> > 2001
-> > -From: Eric Ruei <e-ruei1@ti.com>
-> > -Date: Thu, 10 Dec 2015 12:41:15 -0500
-> > -Subject: [PATCH] kmscube.c: init_drm(): select the current CRTC=20
-> > display mode
-> > - is valid
-> > -
-> > -Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> > ----
-> > - kmscube.c | 35 ++++++++++++++++++++++++++++++++---
-> > - 1 file changed, 32 insertions(+), 3 deletions(-)
-> > -
-> > -diff --git a/kmscube.c b/kmscube.c
-> > -index 5a18c32..51a2c28 100644
-> > ---- a/kmscube.c
-> > -+++ b/kmscube.c
-> > -@@ -89,6 +89,8 @@ static int init_drm(void)
-> > - 	drmModeRes *resources;
-> > - 	drmModeConnector *connector =3D NULL;
-> > - 	drmModeEncoder *encoder =3D NULL;
-> > -+	drmModeCrtc *crtc =3D NULL;
-> > -+
-> > - 	int i, j;
-> > - 	uint32_t maxRes, curRes;
-> > -
-> > -@@ -119,10 +121,8 @@ static int init_drm(void)
-> > - 	for (i =3D 0; i < resources->count_connectors; i++) {
-> > - 		connector =3D drmModeGetConnector(drm.fd, resources->connectors[i])=
-;
-> > - 		if (connector->connection =3D=3D DRM_MODE_CONNECTED) {
-> > --			/* choose the first supported mode */
-> > --			drm.mode[drm.ndisp] =3D &connector->modes[0];
-> > --			drm.connector_id[drm.ndisp] =3D connector->connector_id;
-> > -
-> > -+			/* find the matched encoders */
-> > - 			for (j=3D0; j<resources->count_encoders; j++) {
-> > - 				encoder =3D drmModeGetEncoder(drm.fd, resources->encoders[j]);
-> > - 				if (encoder->encoder_id =3D=3D connector->encoder_id)
-> > -@@ -137,6 +137,35 @@ static int init_drm(void)
-> > - 				return -1;
-> > - 			}
-> > -
-> > -+			/* choose the current or first supported mode */
-> > -+			crtc =3D drmModeGetCrtc(drm.fd, encoder->crtc_id);
-> > -+			for (j =3D 0; j < connector->count_modes; j++)
-> > -+			{
-> > -+				if (crtc->mode_valid)
-> > -+				{
-> > -+					if ((connector->modes[j].hdisplay =3D=3D crtc->width) &&
-> > -+					(connector->modes[j].vdisplay =3D=3D crtc->height))
-> > -+					{
-> > -+						drm.mode[drm.ndisp] =3D &connector->modes[j];
-> > -+						break;
-> > -+					}
-> > -+				}
-> > -+				else
-> > -+				{
-> > -+					if ((connector->modes[j].hdisplay =3D=3D crtc->x) &&
-> > -+					   (connector->modes[j].vdisplay =3D=3D crtc->y))
-> > -+					{
-> > -+						drm.mode[drm.ndisp] =3D &connector->modes[j];
-> > -+						break;
-> > -+					}
-> > -+				}
-> > -+			}
-> > -+
-> > -+			if(j >=3D connector->count_modes)
-> > -+				drm.mode[drm.ndisp] =3D &connector->modes[0];
-> > -+
-> > -+			drm.connector_id[drm.ndisp] =3D connector->connector_id;
-> > -+
-> > - 			drm.encoder[drm.ndisp]  =3D (uint32_t) encoder;
-> > - 			drm.crtc_id[drm.ndisp] =3D encoder->crtc_id;
-> > - 			drm.connectors[drm.ndisp] =3D connector;
-> > ---
-> > -1.9.1
-> > -
-> > -
-> > diff --git
-> > a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-> > b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-> > index 1e9a8bf..ded977d 100644
-> > --- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-> > +++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-> > @@ -11,15 +11,10 @@ PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-> >  inherit autotools pkgconfig
-> > =20
-> >  PR =3D "r5"
-> > -SRCREV =3D "1c8a0d26c5b1918432fd94d2ac9894b3dcdb2814"
-> > +SRCREV =3D "0fa27a594fd3290644f5666eac62dc570f26f866"
-> > =20
-> >  SRC_URI =3D "git://git.ti.com/glsdk/kmscube.git;protocol=3Dgit"
-> > =20
-> > -SRC_URI_append =3D " \
-> > -    file://0001-kmscube.c-init_drm-select-the-current-CRTC-display-m.p=
-atch \
-> > -    file://0001-kmscube.c-init_drm-enable-AM3-support.patch \
-> > -"
-> > -
-> >  S =3D "${WORKDIR}/git"
-> > =20
-> >  INSANE_SKIP_kmscube +=3D "dev-deps"
+> Subject: RE: [meta-arago] [morty/krogoth][PATCH 1/4] voxelsdk: add version 0.6.8
+> 
+> v2 patch is submitted.
+> 
+> Djordje, can you please comment on the plan to use python3 instead of 2.7?
+> 
+> Thanks,
+> Hongmei
+> 
+> > -----Original Message-----
+> > From: Dmytriyenko, Denys
+> > Sent: Monday, March 20, 2017 2:15 PM
+> > To: Gou, Hongmei
+> > Cc: meta-arago@arago-project.org; Senicic, Djordje
+> > Subject: Re: [meta-arago] [morty/krogoth][PATCH 1/4] voxelsdk: add 
+> > version
+> > 0.6.8
+> > 
+> > On Fri, Mar 17, 2017 at 03:37:51PM -0400, Hongmei Gou wrote:
+> > > Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
+> > > Signed-off-by: Hongmei Gou <h-gou@ti.com>
+> > > ---
+> > >  .../voxelsdk/0001-PLSDK-AM437x-update.patch        |  73 +++++
+> > >  .../voxelsdk/voxelsdk/0002-Fix-SWIG-support.patch  |  37 +++ 
+> > > ...mmand-line-options-and-move-OpenCV-render.patch | 324
+> > +++++++++++++++++++++
+> > >  .../recipes-apps/voxelsdk/voxelsdk_git.bb          |  51 ++++
+> > >  4 files changed, 485 insertions(+)
+> > >  create mode 100644
+> > > meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0001-PLSDK-AM437x-
+> > upd
+> > > ate.patch  create mode 100644
+> > > meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0002-Fix-SWIG-
+> > support
+> > > .patch  create mode 100644
+> > > meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0003-Add-more-
+> > command
+> > > -line-options-and-move-OpenCV-render.patch
+> > >  create mode 100644
+> > > meta-arago-extras/recipes-apps/voxelsdk/voxelsdk_git.bb
+> > >
+> > > diff --git
+> > > a/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0001-PLSDK-
+> > AM437x-u
+> > > pdate.patch
+> > > b/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0001-PLSDK-
+> > AM437x-u
+> > > pdate.patch
+> > > new file mode 100644
+> > > index 0000000..2e1e740
+> > > --- /dev/null
+> > > +++ b/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0001-PLSDK-
+> > AM43
+> > > +++ 7x-update.patch
+> > > @@ -0,0 +1,73 @@
+> > > +From 9ef95f0defcd7215b3d514e7fb7321cd299882cd Mon Sep 17 00:00:00
+> > > +2001
+> > > +From: Djordje Senicic <d-senicic1@ti.com>
+> > > +Date: Wed, 22 Feb 2017 12:21:07 -0500
+> > > +Subject: [PATCH] PLSDK AM437x update
+> > > +
+> > > +Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
+> > > +---
+> > > + CMakeLists.txt                  | 11 ++++++++++-
+> > > + Voxel/CMakeLists.txt            |  2 +-
+> > > + Voxel/SWIG/standard_container.i |  5 +++--
+> > > + 3 files changed, 14 insertions(+), 4 deletions(-)
+> > > +
+> > > +diff --git a/CMakeLists.txt b/CMakeLists.txt index ed7a015..a187c96
+> > > +100644
+> > > +--- a/CMakeLists.txt
+> > > ++++ b/CMakeLists.txt
+> > > +@@ -26,9 +26,18 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+> > > +   SET(ARM_PLATFORM 1)
+> > > +
+> > > +   if(ARM_PLATFORM)
+> > > +-    add_definitions(-mtune=arm7 -mfpu=neon-vfpv4 -mfloat-abi=hard -
+> > pthread -std=c++11 -fPIC -ffast-math)
+> > > ++#    add_definitions(-mtune=arm7 -mfpu=neon-vfpv4 -mfloat-abi=hard -
+> > pthread -std=c++11 -fPIC -ffast-math)
+> > > +     #-DARM_OPT to enable arm optimizaions
+> > > +     ADD_DEFINITIONS(-DARM_OPT)
+> > > ++#OK:
+> > > ++#add_definitions(-mtune=arm7 -mfloat-abi=hard -pthread -std=c++11 
+> > > ++-fPIC -ffast-math)
+> > > ++#OK:
+> > > ++#add_definitions(-ffast-math -mcpu=cortex-a9 -mfloat-abi=hard
+> > > ++-mfpu=neon-fp16 -fPIC -pthread -std=c++11)
+> > > ++#OK:
+> > > ++#add_definitions(-ffast-math -mcpu=cortex-a9 -mfloat-abi=hard 
+> > > ++-mfpu=neon -fPIC -pthread -std=c++11)
+> > > ++
+> > > ++add_definitions(-mtune=arm7 -mfpu=neon -mfloat-abi=hard -pthread
+> > > ++-std=c++11 -fPIC -ffast-math)
+> > > ++
+> > > +     ADD_DEFINITIONS(-DCOMMON_OPT)
+> > > +
+> > > +   else()
+> > > +diff --git a/Voxel/CMakeLists.txt b/Voxel/CMakeLists.txt index
+> > > +ae98e81..74528d8 100644
+> > > +--- a/Voxel/CMakeLists.txt
+> > > ++++ b/Voxel/CMakeLists.txt
+> > > +@@ -149,7 +149,7 @@ install(FILES
+> > > +   COMPONENT voxel_dev
+> > > + )
+> > > +
+> > > +-#add_subdirectory(SWIG)
+> > > ++add_subdirectory(SWIG)
+> > > +
+> > > + IF(LINUX)
+> > > +   set(CPACK_COMPONENTS_ALL voxel)
+> > > +diff --git a/Voxel/SWIG/standard_container.i 
+> > > +b/Voxel/SWIG/standard_container.i index f61e342..1d2cb66 100644
+> > > +--- a/Voxel/SWIG/standard_container.i
+> > > ++++ b/Voxel/SWIG/standard_container.i
+> > > +@@ -113,7 +113,7 @@
+> > > +
+> > > + %enddef
+> > > +
+> > > +-
+> > > ++#if SWIG_VERSION < 0x030008
+> > > + //
+> > > + // Ignore member methods for Type with no default constructor  // 
+> > > +@@
+> > > +-124,4 +124,5 @@
+> > > + %feature("ignore") std::deque<Type >::resize(size_type size);
+> > > + %feature("ignore") std::list<Type >::list(size_type size);
+> > > + %feature("ignore") std::list<Type >::resize(size_type size); 
+> > > +-%enddef \ No newline at end of file
+> > > ++%enddef
+> > > ++#endif
+> > > +--
+> > > +1.9.1
+> > > +
+> > > diff --git
+> > > a/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0002-Fix-SWIG-
+> > suppo
+> > > rt.patch
+> > > b/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0002-Fix-SWIG-
+> > suppo
+> > > rt.patch
+> > > new file mode 100644
+> > > index 0000000..77a6de1
+> > > --- /dev/null
+> > > +++ b/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0002-Fix-SWIG
+> > > +++ -
+> > s
+> > > +++ upport.patch
+> > > @@ -0,0 +1,37 @@
+> > > +From a800f446d9c976f6fb11f4d601cc386bbdce59e1 Mon Sep 17 00:00:00
+> > > +2001
+> > > +From: Djordje Senicic <d-senicic1@ti.com>
+> > > +Date: Wed, 22 Feb 2017 14:14:52 -0500
+> > > +Subject: [PATCH] Fix SWIG support
+> > > +
+> > > +Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
+> > > +---
+> > > + Voxel/SWIG/CMakeLists.txt | 5 +++--
+> > > + 1 file changed, 3 insertions(+), 2 deletions(-)
+> > > +
+> > > +diff --git a/Voxel/SWIG/CMakeLists.txt b/Voxel/SWIG/CMakeLists.txt 
+> > > +index a4f6d53..f4070ac 100644
+> > > +--- a/Voxel/SWIG/CMakeLists.txt
+> > > ++++ b/Voxel/SWIG/CMakeLists.txt
+> > > +@@ -1,10 +1,11 @@
+> > > +-SET(GENERATE_PYTHON_BINDINGS "FALSE" CACHE BOOL "Controls
+> > generation
+> > > +of Python bindings")
+> > > ++SET(GENERATE_PYTHON_BINDINGS "TRUE" CACHE BOOL "Controls
+> > generation
+> > > ++of Python bindings")
+> > > +
+> > > + IF(${GENERATE_PYTHON_BINDINGS})
+> > > +
+> > > + FIND_PACKAGE(SWIG REQUIRED)
+> > > + INCLUDE(${SWIG_USE_FILE})
+> > > +
+> > > ++SET(Python_ADDITIONAL_VERSIONS 2.7)
+> > > + FIND_PACKAGE(PythonLibs)
+> > > + INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
+> > > +
+> > > +@@ -46,4 +47,4 @@ install(FILES
+> > > +   DESTINATION lib/python2.7
+> > > +   COMPONENT voxel_python
+> > > + )
+> > > +-ENDIF()
+> > > +\ No newline at end of file
+> > > ++ENDIF()
+> > > +--
+> > > +1.9.1
+> > > +
+> > > diff --git
+> > > a/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0003-Add-more-
+> > comma
+> > > nd-line-options-and-move-OpenCV-render.patch
+> > > b/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0003-Add-more-
+> > comma
+> > > nd-line-options-and-move-OpenCV-render.patch
+> > > new file mode 100644
+> > > index 0000000..4ab74e6
+> > > --- /dev/null
+> > > +++ b/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk/0003-Add-
+> > more-c
+> > > +++ ommand-line-options-and-move-OpenCV-render.patch
+> > > @@ -0,0 +1,324 @@
+> > > +From 29cc2430579eb257d9e1ac1caf0b4515278fd375 Mon Sep 17 00:00:00
+> > > +2001
+> > > +From: Djordje Senicic <d-senicic1@ti.com>
+> > > +Date: Mon, 13 Mar 2017 19:51:30 -0400
+> > > +Subject: [PATCH] Add more command line options and move OpenCV 
+> > > +rendering to  main thread
+> > > +
+> > > +Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
+> > > +---
+> > > + Demos/Horus.cpp                | 98 +++++++++++++++++++++++++------------
+> > -----
+> > > + Demos/SimplePeopleTracking.cpp | 91
+> > ++++++++++++++++++++++++++++++++-------
+> > > + Demos/TOFApp.cpp               | 14 +++---
+> > > + 3 files changed, 139 insertions(+), 64 deletions(-)
+> > > +
+> > > +diff --git a/Demos/Horus.cpp b/Demos/Horus.cpp index
+> > e0181af..de1837e
+> > > +100644
+> > > +--- a/Demos/Horus.cpp
+> > > ++++ b/Demos/Horus.cpp
+> > > +@@ -24,6 +24,12 @@
+> > > + #include <stdlib.h>
+> > > +
+> > > + extern int skipped_frames;
+> > > ++extern pthread_mutex_t main_thread_image_mtx; extern Mat 
+> > > ++app_image[]; extern int main_thread_image_rd; extern int 
+> > > ++main_thread_image_wr; extern int main_thread_image_cnt; extern
+> > char
+> > > ++show_image;
+> > > +
+> > > + Horus::Horus(int w, int h) : TOFApp(w, h)  { @@ -126,10 +132,9 @@ 
+> > > +bool Horus::isPerson(vector<cv::Point> &contour, Mat dMat)
+> > > +    return rc;
+> > > + }
+> > > +
+> > > +-static int draw_throttle = 0;
+> > > +-
+> > > + void Horus::update(Frame *frame)
+> > > + {
+> > > ++   Mat drawing;
+> > > +    vector< vector<cv::Point> > contours;
+> > > +    vector<Vec4i> hierarchy;
+> > > +    RNG rng(12345);
+> > > +@@ -147,51 +152,66 @@ void Horus::update(Frame *frame)
+> > > +
+> > > +       // Apply amplitude gain
+> > > +       _iMat = (float)_ampGain*_iMat;
+> > > ++      if(show_image == 'p')
+> > > ++      { //Skip below processing if we are not detecting people!
+> > > ++        // Update background as required
+> > > ++        if (!_setBackground) {
+> > > ++           _dMat.copyTo(_bkgndMat);
+> > > ++           _setBackground = true;
+> > > ++           cout << endl << "Updated background" << endl;
+> > > ++        }
+> > > +
+> > > +-      // Update background as required
+> > > +-      if (!_setBackground) {
+> > > +-         _dMat.copyTo(_bkgndMat);
+> > > +-         _setBackground = true;
+> > > +-         cout << endl << "Updated background" << endl;
+> > > +-      }
+> > > +-
+> > > +-      // Find foreground by subtraction
+> > > +-      Mat fMat = _bkgndMat-_dMat;
+> > > ++        // Find foreground by subtraction
+> > > ++        Mat fMat = _bkgndMat-_dMat;
+> > > +
+> > > +-      // Convert to binary image based on amplitude and depth thresholds
+> > > +-      clipBackground(fMat, _iMat, (float)_depthThresh/100.0,
+> > (float)_ampThresh/100.0);
+> > > +-      fMat.convertTo(_bMat, CV_8U, 255.0);
+> > > ++        // Convert to binary image based on amplitude and depth thresholds
+> > > ++        clipBackground(fMat, _iMat, (float)_depthThresh/100.0,
+> > (float)_ampThresh/100.0);
+> > > ++        fMat.convertTo(_bMat, CV_8U, 255.0);
+> > > +
+> > > +-      // Apply morphological open to clean up image
+> > > +-      Mat morphMat = _bMat.clone();
+> > > +-      Mat element = getStructuringElement( 0, Size(3,3), cv::Point(1,1) );
+> > > +-      morphologyEx(_bMat, morphMat, 2, element);
+> > > ++        // Apply morphological open to clean up image
+> > > ++        Mat morphMat = _bMat.clone();
+> > > ++        Mat element = getStructuringElement( 0, Size(3,3), cv::Point(1,1) );
+> > > ++        morphologyEx(_bMat, morphMat, 2, element);
+> > > +
+> > > +-      // Find all contours
+> > > +-      findContours(morphMat, contours, hierarchy, CV_RETR_TREE,
+> > > +-                             CV_CHAIN_APPROX_SIMPLE, cv::Point(0,0));
+> > > ++        // Find all contours
+> > > ++        findContours(morphMat, contours, hierarchy, CV_RETR_TREE,
+> > > ++                               CV_CHAIN_APPROX_SIMPLE, 
+> > > ++ cv::Point(0,0));
+> > > +
+> > > +-      // Draw contours that meet a "person" requirement
+> > > +-      Mat drawing = Mat::zeros(_iMat.size(), CV_8UC3);
+> > > +-      cvtColor(_iMat, drawing, CV_GRAY2RGB);
+> > > ++        // Draw contours that meet a "person" requirement
+> > > ++        drawing = Mat::zeros(_iMat.size(), CV_8UC3);
+> > > ++        cvtColor(_iMat, drawing, CV_GRAY2RGB);
+> > > +
+> > > +-      int peopleCount = 0;
+> > > +-      for ( int i = 0; i < contours.size(); i++ ) {
+> > > +-         if (isPerson(contours[i], _dMat)) {
+> > > +-            peopleCount++;
+> > > +-            drawContours( drawing, contours, i, Scalar(0, 0, 255), 2, 8,
+> > vector<Vec4i>(), 0, cv::Point() );
+> > > +-         }
+> > > ++        int peopleCount = 0;
+> > > ++        for ( int i = 0; i < contours.size(); i++ ) {
+> > > ++           if (isPerson(contours[i], _dMat)) {
+> > > ++              peopleCount++;
+> > > ++              drawContours( drawing, contours, i, Scalar(0, 0, 
+> > > ++ 255), 2, 8,
+> > vector<Vec4i>(), 0, cv::Point() );
+> > > ++           }
+> > > ++        }
+> > > ++        putText(drawing, "Cnt="+to_string(peopleCount), 
+> > > ++ cv::Point(40, 30), FONT_HERSHEY_PLAIN, 1, Scalar(255, 0, 0));
+> > > +       }
+> > > +-      putText(drawing, "Cnt="+to_string(peopleCount), cv::Point(40, 30),
+> > FONT_HERSHEY_PLAIN, 1, Scalar(255, 0, 0));
+> > > +-      if(skipped_frames == 0) {
+> > > +-        imshow("Draw", drawing);
+> > > +-      } else {
+> > > +-        if((draw_throttle % skipped_frames) == 0) {
+> > > +-          char file_name[80];
+> > > +-          sprintf (file_name, "draw%03d.png", draw_throttle /
+> > skipped_frames);
+> > > +-          imwrite (file_name, drawing);
+> > > ++
+> > > ++      if(main_thread_image_cnt < 2)
+> > > ++      {
+> > > ++        switch (show_image)
+> > > ++        {
+> > > ++          case 'i':
+> > > ++            _iMat.copyTo(app_image[main_thread_image_wr]);
+> > > ++            putText(app_image[main_thread_image_wr], "Ampl Map",
+> > cv::Point(30, 20), FONT_HERSHEY_PLAIN, 1, Scalar(255, 0, 0));
+> > > ++            break;
+> > > ++          case 'd':
+> > > ++            _dMat.copyTo(app_image[main_thread_image_wr]);
+> > > ++            putText(app_image[main_thread_image_wr], "Dist Map",
+> > cv::Point(30, 20), FONT_HERSHEY_PLAIN, 1, Scalar(255, 0, 0));
+> > > ++            break;
+> > > ++          default:
+> > > ++            drawing.copyTo(app_image[main_thread_image_wr]);
+> > > ++            break;
+> > > +         }
+> > > +-        draw_throttle ++;
+> > > ++        pthread_mutex_lock(&main_thread_image_mtx);
+> > > ++          main_thread_image_wr ++;
+> > > ++          main_thread_image_wr %= 2;
+> > > ++          main_thread_image_cnt ++;
+> > > ++        pthread_mutex_unlock(&main_thread_image_mtx);
+> > > +       }
+> > > +    }
+> > > + }
+> > > +diff --git a/Demos/SimplePeopleTracking.cpp 
+> > > +b/Demos/SimplePeopleTracking.cpp index 8c6e9d4..1eb8e16 100644
+> > > +--- a/Demos/SimplePeopleTracking.cpp
+> > > ++++ b/Demos/SimplePeopleTracking.cpp
+> > > +@@ -1,6 +1,18 @@
+> > > + #include "Horus.h"
+> > > ++#include <getopt.h>
+> > > +
+> > > + int skipped_frames = 0;
+> > > ++int resolution_width = 160, resolution_height = 120; //Variables 
+> > > ++for communication between main and application thread 
+> > > ++pthread_mutex_t main_thread_image_mtx; int main_thread_image_rd = 
+> > > ++0; int main_thread_image_wr = 0; int main_thread_image_cnt = 0; 
+> > > ++int acq_fps = 30; char show_image = 'p'; //By default, detect 
+> > > ++people int fps = 30;
+> > > ++
+> > > ++Mat app_image[2];
+> > > +
+> > > + int getkey() {
+> > > +     int character;
+> > > +@@ -27,29 +39,58 @@ int getkey() {
+> > > +
+> > > + #define TOF_FRAME_TYPE
+> > 	DepthCamera::FRAME_XYZI_POINT_CLOUD_FRAME
+> > > +
+> > > ++void print_usage(void)
+> > > ++{
+> > > ++  printf ("\nFollwoing command line options available:");
+> > > ++  printf ("\n  -s <decimal value>");
+> > > ++  printf ("\n   If you want to run demo without keyboard, provide
+> > 'skipped_frames' as argument (e.g. SimplePeopleTracking -s 30)!");
+> > > ++  printf ("\n   Images with the result of processing are saved in PNG files.
+> > This test always stops after 10 image files recorded\n");
+> > > ++  printf ("\n -w <resolution witdh,  default is 160, another 
+> > > ++resolution possible is 320x240>");
+> > > ++  printf ("\n -h <resolution height, default is 120, another 
+> > > ++respolution possible is 320x240>");
+> > > ++  printf ("\n -i <present image of amplitudes, grey-scale like 
+> > > ++image
+> > > ++- default is detection of people>");
+> > > ++  printf ("\n -d <present distance map - default is detection of
+> > > ++people>");
+> > > ++  printf ("\n -f <set fps with integer value, 30 is default, 10, 
+> > > ++15,
+> > > ++25 are another options to try>");
+> > > ++  printf ("\n-----------\n");
+> > > ++}
+> > > ++
+> > > + int main(int argc, char *argv[])
+> > > + {
+> > > +-int ii = 0;
+> > > +-   int key;
+> > > ++   int ii = 0, draw_throttle = 0;
+> > > ++   int key, c_opt;
+> > > +    bool done = false;
+> > > +-   Mat bImg;
+> > > +-
+> > > +-   if(argc > 1) skipped_frames = atoi(argv[1]);
+> > > +-   else {
+> > > +-     printf ("\nIf you want to run demo without keyboard, provide
+> > 'skipped_frames' as argument (e.g. SimplePeopleTracking 30)!");
+> > > +-     printf ("\nImages with the result of processing are saved in PNG files.
+> > This test always stops after 15 seconds\n");
+> > > ++   Mat bImg, locImg;
+> > > ++
+> > > ++   while ((c_opt = getopt(argc, argv,"s:w:h:f:id")) != -1) {
+> > > ++        switch (c_opt) {
+> > > ++             case 's' : skipped_frames = atoi(optarg);
+> > > ++                 break;
+> > > ++             case 'w' : resolution_width = atoi(optarg);
+> > > ++                 break;
+> > > ++             case 'h' : resolution_height = atoi(optarg);
+> > > ++                 break;
+> > > ++             case 'f' : acq_fps = atoi(optarg);
+> > > ++                 break;
+> > > ++             case 'i' : show_image = 'i';
+> > > ++                 break;
+> > > ++             case 'd' : show_image = 'd';
+> > > ++                 break;
+> > > ++             default: print_usage();
+> > > ++                 exit(EXIT_FAILURE);
+> > > ++        }
+> > > +    }
+> > > ++   printf ("\nUsing following parameters: skipped_frames=%d 
+> > > ++ width=%d
+> > height=%d mode=%c fps=%d. Use '-?' to get help.\n",
+> > > ++           skipped_frames, resolution_width, resolution_height, 
+> > > ++ show_image, acq_fps);
+> > > +
+> > > +-   //Horus eye(320, 240);
+> > > +-   Horus eye(160, 120);
+> > > +-   //Horus eye(80, 60);
+> > > ++   Horus eye(resolution_width, resolution_height);
+> > > +
+> > > +    if (!eye.connect(TOF_FRAME_TYPE)) {
+> > > +       cout << "Cannot connect" << endl;
+> > > +       return -1;
+> > > +    }
+> > > +    eye.start();
+> > > +-   while (!done) {
+> > > ++
+> > > ++   while (!done)
+> > > ++   {
+> > > +      if(skipped_frames == 0)
+> > > +      {
+> > > +        char key = getkey();
+> > > +@@ -57,11 +98,29 @@ int ii = 0;
+> > > +           done = true;
+> > > +        else if (key == 'b')
+> > > +           eye.resetBackground();
+> > > +-     } else {
+> > > +-       usleep(100000);
+> > > +-       ii ++;
+> > > +-       if(ii == 150) done = true;
+> > > +      }
+> > > ++     //Exchange data with the applicaiton thread
+> > > ++     if(main_thread_image_cnt > 0)
+> > > ++     { //imshow() does not work reliable if being ran from non-main thread
+> > > ++       locImg = app_image[main_thread_image_rd];
+> > > ++       if(skipped_frames)
+> > > ++       {
+> > > ++         if((draw_throttle % skipped_frames) == 0) {
+> > > ++           char file_name[80];
+> > > ++           sprintf (file_name, "draw%03d.png", draw_throttle /
+> > skipped_frames);
+> > > ++           imwrite (file_name, locImg);
+> > > ++           std::cout << "Write file:" << file_name << std::endl << std::flush;
+> > > ++         }
+> > > ++         draw_throttle ++;
+> > > ++         if(draw_throttle >= (10 * skipped_frames)) done = true; 
+> > > ++ //Collect 10
+> > image files only in batch mode
+> > > ++       } else imshow ("Draw", locImg);
+> > > ++       pthread_mutex_lock(&main_thread_image_mtx);
+> > > ++         main_thread_image_rd ++;
+> > > ++         main_thread_image_rd %= 2;
+> > > ++         main_thread_image_cnt --;
+> > > ++       pthread_mutex_unlock(&main_thread_image_mtx);
+> > > ++     }
+> > > ++     waitKey(20);
+> > > +    }
+> > > +
+> > > + err_exit:
+> > > +diff --git a/Demos/TOFApp.cpp b/Demos/TOFApp.cpp index
+> > > +1c9c0cd..cb41286 100644
+> > > +--- a/Demos/TOFApp.cpp
+> > > ++++ b/Demos/TOFApp.cpp
+> > > +@@ -22,7 +22,7 @@
+> > > + #define FRAME_QUEUE_SZ		3
+> > > +
+> > > + extern int skipped_frames;
+> > > +-
+> > > ++extern int acq_fps;
+> > > + // Frame callback
+> > > + static deque<Voxel::Frame *> qFrame;  static pthread_mutex_t gmtx; 
+> > > +@@ -166,11 +166,7 @@ void *TOFApp::eventLoop(void *p)
+> > > +       }
+> > > +
+> > > +       done = !app->_isRunning;
+> > > +-      if(skipped_frames == 0) {
+> > > +-        waitKey(app->_loopDelay);
+> > > +-      } else {
+> > > +-        usleep(10000);
+> > > +-      }
+> > > ++      usleep(10000);
+> > > +    }
+> > > +
+> > > +    app->disconnect();
+> > > +@@ -196,9 +192,9 @@ void TOFApp::Init(int w, int h)
+> > > +    _isConnected = false;
+> > > +    _dimen.width = w;
+> > > +    _dimen.height = h;
+> > > +-   _frate.numerator = 30;
+> > > ++   _frate.numerator = acq_fps; //30
+> > > +    _frate.denominator = 1;
+> > > +-   _loopDelay = 66;
+> > > ++   _loopDelay = (int)(1000 / acq_fps);
+> > > +    _illum_power = 60;
+> > > +    _intg = 20;
+> > > +    _profile = "MetrilusLongRange"; @@ -219,7 +215,7 @@ bool 
+> > > +TOFApp::connect(DepthCamera::FrameType
+> > frmType)
+> > > +    else
+> > > +       return false;
+> > > +
+> > > +-   #if 0   //Enable this to list all the profiles that are supported by the
+> > camera
+> > > ++   #if 1   //Enable this to list all the profiles that are supported by the
+> > camera
+> > > +    cout << "List of Profiles:" << endl;
+> > > +    auto &names = _depthCamera->configFile.getCameraProfileNames();
+> > > +
+> > > +--
+> > > +1.9.1
+> > > +
+> > > diff --git a/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk_git.bb
+> > > b/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk_git.bb
+> > > new file mode 100644
+> > > index 0000000..0189ce0
+> > > --- /dev/null
+> > > +++ b/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk_git.bb
+> > > @@ -0,0 +1,51 @@
+> > > +DESCRIPTION = "VOXELSDK and 3D scanning application"
+> > 
+> > For short descriptions, please use SUMMARY instead
+> > 
+> > 
+> > > +HOMEPAGE = "https://github.com/3dtof/voxelsdk"
+> > > +SECTION = "multimedia"
+> > > +LICENSE = "BSD-3-Clause"
+> > > +LIC_FILES_CHKSUM =
+> > "file://LICENSE;md5=e69c599445026ffeae140a21181dfa88"
+> > > +
+> > > +PV = "0.6.8"
+> > > +PR = "r1"
+> > > +BRANCH="plsdk-devel"
+> > 
+> > Not critical, but since there will be v2, please use consistent 
+> > formatting with spaces around = sign.
+> > 
+> > 
+> > > +SRC_URI = "git://github.com/3dtof/voxelsdk.git;branch=${BRANCH}"
+> > > +SRCREV  = "7337ac265a1542f22ccffe592762c226b23b2dbd"
+> > > +
+> > > +SRC_URI += " \
+> > > +            file://0001-PLSDK-AM437x-update.patch;patchdir=${S} \
+> > > +            file://0002-Fix-SWIG-support.patch;patchdir=${S} \
+> > > +            
+> > > +file://0003-Add-more-command-line-options-and-move-OpenCV-
+> > render.patch;patchdir=${S} \
+> > > +           "
+> > > +
+> > > +S = "${WORKDIR}/git"
+> > > +
+> > > +export CMAKE_PREFIX_PATH="${WORKDIR}/build"
+> > > +
+> > > +CXXFLAGS_append = "-I${STAGING_INCDIR}/libusb-1.0 "
+> > 
+> > Using _append, but missing leading space and having unnecessary 
+> > trailing space.
+> > 
+> > 
+> > > +EXTRA_OECMAKE += "-DDISTROFEATURE=ExcludePCL -
+> > DCMAKE_BUILD_TYPE=Debug -
+> > DPYTHON_INCLUDE_DIRS=${STAGING_INCDIR}/include/python2.7 "
+> > 
+> > Trailing space.
+> > BTW, any plan to use python3 instead of 2.7?
+> > 
+> > 
+> > > +inherit pkgconfig cmake pythonnative python-dir
+> > > +
+> > > +DEPENDS = "libusb1 udev opencv boost python python-dev swig swig-
+> > native "
+> > 
+> > Trailing space.
+> > 
+> > 
+> > > +RDEPENDS_${PN} = "libusb1 udev opencv"
+> > > +
+> > > +do_install_append () {
+> > > +    install -d ${D}${bindir}
+> > > +    install -m 0775 ${S}/Test/CameraSystemTest.py ${D}${bindir}
+> > > +    install -m 0775 ${S}/Test/CameraSystemIQFrameTest.py ${D}${bindir}
+> > > +    install -m 0775 ${S}/Test/LensCalibrationTest.py ${D}${bindir} 
+> > > +}
+> > > +
+> > > +FILES_${PN} = "${bindir}"
+> > 
+> > This is the default. No need to re-do the default.
+> > 
+> > 
+> > > +FILES_${PN} += "${datadir}"
+> > > +FILES_${PN} += "/etc /etc/udev /etc/udev/rules.d /etc/udev/rules.d/*"
+> > > +FILES_${PN} += "${libdir}/*.so.*"
+> > 
+> > This is also the default.
+> > 
+> > 
+> > > +FILES_${PN} += "${libdir}/voxel/*.so.*"
+> > > +FILES_${PN} += "${libdir}/python2.7/_*.so"
+> > > +FILES_${PN} += "${libdir}/python2.7/*.py"
+> > > +
+> > > +FILES_${PN}-dev += "${libdir}/cmake ${libdir}/cmake/Voxel
+> > ${libdir}/cmake/TI3DToF"
+> > > +FILES_${PN}-dev += "${libdir}/cmake/Voxel/*.cmake"
+> > > +FILES_${PN}-dev += "${libdir}/cmake/TI3DToF/*.cmake"
+> > > +FILES_${PN}-dev += "${libdir}/*.so"
+> > 
+> > As well as this one.
+> > 
+> > 
+> > > +FILES_${PN}-dev += "${libdir}/voxel/*.so"
+> > 
 > > --
-> > 1.9.1
-> >=20
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > Denys
 
