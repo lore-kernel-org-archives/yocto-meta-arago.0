@@ -1,38 +1,42 @@
-Return-Path: <denys@ti.com>
+Return-Path: <d-senicic1@ti.com>
 Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 7F1805299A
+	by arago-project.org (Postfix) with ESMTPS id 98683529BA
 	for <meta-arago@arago-project.org>;
-	Tue, 28 Mar 2017 22:56:54 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2SMusgm026322
-	for <meta-arago@arago-project.org>; Tue, 28 Mar 2017 17:56:54 -0500
+	Wed, 29 Mar 2017 11:50:39 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2TBod7W027022
+	for <meta-arago@arago-project.org>; Wed, 29 Mar 2017 06:50:39 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1490741814;
-	bh=wQbzxilHerD/Ha6gALJthAtMXoR00eqySq8MEi2tVbw=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=u/hMu7H3CvwdSKRPnvw7Cr7x1+fRO32VBI3ZxFCWCURwzIV/iNnZs5Cqm3fn4FMbO
-	SytmCn6jsz5mWQ2wH619BHws0KX8MVxrpD4juWbIJxYcwgPVS4nUBNBOZ6x1rrCqa7
-	frN3YFlBxYQif4owMJ+wYtW0lPAiI2zEfWx/Im8s=
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2SMusvq022792
-	for <meta-arago@arago-project.org>; Tue, 28 Mar 2017 17:56:54 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 28 Mar 2017 17:56:53 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2SMurGY021661;
-	Tue, 28 Mar 2017 17:56:54 -0500
-Date: Tue, 28 Mar 2017 18:56:53 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Senicic, Djordje" <d-senicic1@ti.com>
-Message-ID: <20170328225653.GR29187@edge>
+	s=ti-com-17Q1; t=1490788239;
+	bh=ekZdrRgWXPll9G0zOmgobIhuRnpzSP6jhVIf6To8qOk=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=Q9CwXsmZkTURVgiK8QkFyZ+1ffgFnh746JktA+dxYmv7AUgosILnEGDBFY/U2SyA2
+	8+ie0ziMpuqS9ylMHjiCTm8hz7ZJ4Xdjz3vWqMtUUTr9tBGiGC+XhlzG1s/S3MH9u5
+	KP55G1TbaJ6V/hGuAUR/T05LiOpuIvHrfql5ZoOA=
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2TBodal020602
+	for <meta-arago@arago-project.org>; Wed, 29 Mar 2017 06:50:39 -0500
+Received: from DLEE12.ent.ti.com ([fe80::b01c:958e:1aa:d17f]) by
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.03.0294.000; Wed, 29 Mar 2017 06:50:39 -0500
+From: "Senicic, Djordje" <d-senicic1@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [morty/krogoth][PATCH 1/4] voxelsdk: add version
+	0.6.8
+Thread-Index: AQHSn1X8YU7dngq/i0SvNHks/zwoP6GeYOqAgAFe6oD//7HsYIAL0JSAgACDOCA=
+Date: Wed, 29 Mar 2017 11:50:37 +0000
+Message-ID: <F14615FE38B0C8438A0E39BF946F6E781B107D53@DLEE12.ent.ti.com>
 References: <1489779474-16764-1-git-send-email-h-gou@ti.com>
 	<20170320181458.GA23524@edge>
 	<2E957F12D11D904590FA9AF86D366BD926CF81ED@DLEE08.ent.ti.com>
 	<F14615FE38B0C8438A0E39BF946F6E781B10696E@DLEE12.ent.ti.com>
+	<20170328225653.GR29187@edge>
+In-Reply-To: <20170328225653.GR29187@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.172.224.222]
 MIME-Version: 1.0
-In-Reply-To: <F14615FE38B0C8438A0E39BF946F6E781B10696E@DLEE12.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [morty/krogoth][PATCH 1/4] voxelsdk: add version 0.6.8
 X-BeenThere: meta-arago@arago-project.org
@@ -47,53 +51,102 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Mar 2017 22:56:55 -0000
+X-List-Received-Date: Wed, 29 Mar 2017 11:50:39 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Based on below responses, regarding voxelsdk, it is not likely Python2.7 su=
+pport will be abandoned soon.
+I would (in general) consent with observation that python2.7 vs 3.5+ dichot=
+omy is not going to end in near future.
+=3D=3D=3D
+From: Gadiyar, Anand=20
+Sent: Wednesday, March 29, 2017 5:11 AM
+To: Li, Larry; Senicic, Djordje
+Subject: RE: TOF python 3.5+ support
+
+No plans for Python 3 support at this time.
+
+Not much is needed to enable Python 3 I think as SWIG should be able to tak=
+e care of it out of the box. However we do not have any active development =
+on the SDK, so we will not be testing.
+If someone puts together a patch to enable Python 3 support, we will be hap=
+py to take it.
+
+
+We require Python 2.7 to work mainly because our other development tools an=
+d VoxelViewer are still using Python 2.7.
+=3D=3D=3D
+From: Li, Larry=20
+Sent: Wednesday, March 29, 2017 4:55 AM
+To: Senicic, Djordje
+Cc: Gadiyar, Anand
+Subject: Re: TOF python 3.5+ support
+
+Python 3 cannot run Python 2.7 scripts in many cases. Is the industry as a =
+whole ready to move to Python 3 only?  What is the Python support plan for =
+most major Linux distros?  If they continue to support both people won't mi=
+grate their existing app.  Python 2.7 is still the default in most distros.=
+=20
+
+Larry
+-----Original Message-----
+From: Dmytriyenko, Denys=20
+Sent: Tuesday, March 28, 2017 6:57 PM
+To: Senicic, Djordje
+Cc: Gou, Hongmei; meta-arago@arago-project.org
+Subject: Re: [meta-arago] [morty/krogoth][PATCH 1/4] voxelsdk: add version =
+0.6.8
 
 On Tue, Mar 21, 2017 at 11:32:50AM -0400, Senicic, Djordje wrote:
 > AFAIK, there is no immediate plan to support Python 3+.
-> Initiative for that may come from Larry Li (TOF SW Arch). I'll check w/ him.
+> Initiative for that may come from Larry Li (TOF SW Arch). I'll check w/ h=
+im.
 > Not feasible for PLSDK3.3, but 2Q (if he agrees) that is likely.
 
-Thanks! That would be helpful. Currently we have to package both python2.7 and 
-python3 in the rootfs, because different components use different versions. 
-Would be nice to align everything on one version to save space. Please keep me 
-posted on this activity, thanks.
+Thanks! That would be helpful. Currently we have to package both python2.7 =
+and
+python3 in the rootfs, because different components use different versions.=
+=20
+Would be nice to align everything on one version to save space. Please keep=
+ me posted on this activity, thanks.
 
--- 
+--
 Denys
 
 
 > -----Original Message-----
-> From: Gou, Hongmei 
+> From: Gou, Hongmei=20
 > Sent: Tuesday, March 21, 2017 11:11 AM
 > To: Dmytriyenko, Denys; Senicic, Djordje
 > Cc: meta-arago@arago-project.org
-> Subject: RE: [meta-arago] [morty/krogoth][PATCH 1/4] voxelsdk: add version 0.6.8
-> 
+> Subject: RE: [meta-arago] [morty/krogoth][PATCH 1/4] voxelsdk: add versio=
+n 0.6.8
+>=20
 > v2 patch is submitted.
-> 
-> Djordje, can you please comment on the plan to use python3 instead of 2.7?
-> 
+>=20
+> Djordje, can you please comment on the plan to use python3 instead of 2.7=
+?
+>=20
 > Thanks,
 > Hongmei
-> 
+>=20
 > > -----Original Message-----
 > > From: Dmytriyenko, Denys
 > > Sent: Monday, March 20, 2017 2:15 PM
 > > To: Gou, Hongmei
 > > Cc: meta-arago@arago-project.org; Senicic, Djordje
-> > Subject: Re: [meta-arago] [morty/krogoth][PATCH 1/4] voxelsdk: add 
+> > Subject: Re: [meta-arago] [morty/krogoth][PATCH 1/4] voxelsdk: add=20
 > > version
 > > 0.6.8
-> > 
+> >=20
 > > On Fri, Mar 17, 2017 at 03:37:51PM -0400, Hongmei Gou wrote:
 > > > Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
 > > > Signed-off-by: Hongmei Gou <h-gou@ti.com>
 > > > ---
 > > >  .../voxelsdk/0001-PLSDK-AM437x-update.patch        |  73 +++++
-> > >  .../voxelsdk/voxelsdk/0002-Fix-SWIG-support.patch  |  37 +++ 
+> > >  .../voxelsdk/voxelsdk/0002-Fix-SWIG-support.patch  |  37 +++=20
 > > > ...mmand-line-options-and-move-OpenCV-render.patch | 324
 > > +++++++++++++++++++++
 > > >  .../recipes-apps/voxelsdk/voxelsdk_git.bb          |  51 ++++
@@ -146,24 +199,28 @@ Denys
 > > > +   SET(ARM_PLATFORM 1)
 > > > +
 > > > +   if(ARM_PLATFORM)
-> > > +-    add_definitions(-mtune=arm7 -mfpu=neon-vfpv4 -mfloat-abi=hard -
-> > pthread -std=c++11 -fPIC -ffast-math)
-> > > ++#    add_definitions(-mtune=arm7 -mfpu=neon-vfpv4 -mfloat-abi=hard -
-> > pthread -std=c++11 -fPIC -ffast-math)
+> > > +-    add_definitions(-mtune=3Darm7 -mfpu=3Dneon-vfpv4 -mfloat-abi=3D=
+hard -
+> > pthread -std=3Dc++11 -fPIC -ffast-math)
+> > > ++#    add_definitions(-mtune=3Darm7 -mfpu=3Dneon-vfpv4 -mfloat-abi=
+=3Dhard -
+> > pthread -std=3Dc++11 -fPIC -ffast-math)
 > > > +     #-DARM_OPT to enable arm optimizaions
 > > > +     ADD_DEFINITIONS(-DARM_OPT)
 > > > ++#OK:
-> > > ++#add_definitions(-mtune=arm7 -mfloat-abi=hard -pthread -std=c++11 
+> > > ++#add_definitions(-mtune=3Darm7 -mfloat-abi=3Dhard -pthread -std=3Dc=
+++11=20
 > > > ++-fPIC -ffast-math)
 > > > ++#OK:
-> > > ++#add_definitions(-ffast-math -mcpu=cortex-a9 -mfloat-abi=hard
-> > > ++-mfpu=neon-fp16 -fPIC -pthread -std=c++11)
+> > > ++#add_definitions(-ffast-math -mcpu=3Dcortex-a9 -mfloat-abi=3Dhard
+> > > ++-mfpu=3Dneon-fp16 -fPIC -pthread -std=3Dc++11)
 > > > ++#OK:
-> > > ++#add_definitions(-ffast-math -mcpu=cortex-a9 -mfloat-abi=hard 
-> > > ++-mfpu=neon -fPIC -pthread -std=c++11)
+> > > ++#add_definitions(-ffast-math -mcpu=3Dcortex-a9 -mfloat-abi=3Dhard=20
+> > > ++-mfpu=3Dneon -fPIC -pthread -std=3Dc++11)
 > > > ++
-> > > ++add_definitions(-mtune=arm7 -mfpu=neon -mfloat-abi=hard -pthread
-> > > ++-std=c++11 -fPIC -ffast-math)
+> > > ++add_definitions(-mtune=3Darm7 -mfpu=3Dneon -mfloat-abi=3Dhard -pthr=
+ead
+> > > ++-std=3Dc++11 -fPIC -ffast-math)
 > > > ++
 > > > +     ADD_DEFINITIONS(-DCOMMON_OPT)
 > > > +
@@ -181,7 +238,7 @@ Denys
 > > > +
 > > > + IF(LINUX)
 > > > +   set(CPACK_COMPONENTS_ALL voxel)
-> > > +diff --git a/Voxel/SWIG/standard_container.i 
+> > > +diff --git a/Voxel/SWIG/standard_container.i=20
 > > > +b/Voxel/SWIG/standard_container.i index f61e342..1d2cb66 100644
 > > > +--- a/Voxel/SWIG/standard_container.i
 > > > ++++ b/Voxel/SWIG/standard_container.i
@@ -192,12 +249,12 @@ Denys
 > > > +-
 > > > ++#if SWIG_VERSION < 0x030008
 > > > + //
-> > > + // Ignore member methods for Type with no default constructor  // 
+> > > + // Ignore member methods for Type with no default constructor  //=20
 > > > +@@
 > > > +-124,4 +124,5 @@
 > > > + %feature("ignore") std::deque<Type >::resize(size_type size);
 > > > + %feature("ignore") std::list<Type >::list(size_type size);
-> > > + %feature("ignore") std::list<Type >::resize(size_type size); 
+> > > + %feature("ignore") std::list<Type >::resize(size_type size);=20
 > > > +-%enddef \ No newline at end of file
 > > > ++%enddef
 > > > ++#endif
@@ -230,7 +287,7 @@ Denys
 > > > + Voxel/SWIG/CMakeLists.txt | 5 +++--
 > > > + 1 file changed, 3 insertions(+), 2 deletions(-)
 > > > +
-> > > +diff --git a/Voxel/SWIG/CMakeLists.txt b/Voxel/SWIG/CMakeLists.txt 
+> > > +diff --git a/Voxel/SWIG/CMakeLists.txt b/Voxel/SWIG/CMakeLists.txt=20
 > > > +index a4f6d53..f4070ac 100644
 > > > +--- a/Voxel/SWIG/CMakeLists.txt
 > > > ++++ b/Voxel/SWIG/CMakeLists.txt
@@ -279,12 +336,13 @@ Denys
 > > > +2001
 > > > +From: Djordje Senicic <d-senicic1@ti.com>
 > > > +Date: Mon, 13 Mar 2017 19:51:30 -0400
-> > > +Subject: [PATCH] Add more command line options and move OpenCV 
+> > > +Subject: [PATCH] Add more command line options and move OpenCV=20
 > > > +rendering to  main thread
 > > > +
 > > > +Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
 > > > +---
-> > > + Demos/Horus.cpp                | 98 +++++++++++++++++++++++++------------
+> > > + Demos/Horus.cpp                | 98 +++++++++++++++++++++++++------=
+------
 > > -----
 > > > + Demos/SimplePeopleTracking.cpp | 91
 > > ++++++++++++++++++++++++++++++++-------
@@ -300,18 +358,18 @@ Denys
 > > > + #include <stdlib.h>
 > > > +
 > > > + extern int skipped_frames;
-> > > ++extern pthread_mutex_t main_thread_image_mtx; extern Mat 
-> > > ++app_image[]; extern int main_thread_image_rd; extern int 
+> > > ++extern pthread_mutex_t main_thread_image_mtx; extern Mat=20
+> > > ++app_image[]; extern int main_thread_image_rd; extern int=20
 > > > ++main_thread_image_wr; extern int main_thread_image_cnt; extern
 > > char
 > > > ++show_image;
 > > > +
-> > > + Horus::Horus(int w, int h) : TOFApp(w, h)  { @@ -126,10 +132,9 @@ 
+> > > + Horus::Horus(int w, int h) : TOFApp(w, h)  { @@ -126,10 +132,9 @@=20
 > > > +bool Horus::isPerson(vector<cv::Point> &contour, Mat dMat)
 > > > +    return rc;
 > > > + }
 > > > +
-> > > +-static int draw_throttle = 0;
+> > > +-static int draw_throttle =3D 0;
 > > > +-
 > > > + void Horus::update(Frame *frame)
 > > > + {
@@ -322,86 +380,93 @@ Denys
 > > > +@@ -147,51 +152,66 @@ void Horus::update(Frame *frame)
 > > > +
 > > > +       // Apply amplitude gain
-> > > +       _iMat = (float)_ampGain*_iMat;
-> > > ++      if(show_image == 'p')
+> > > +       _iMat =3D (float)_ampGain*_iMat;
+> > > ++      if(show_image =3D=3D 'p')
 > > > ++      { //Skip below processing if we are not detecting people!
 > > > ++        // Update background as required
 > > > ++        if (!_setBackground) {
 > > > ++           _dMat.copyTo(_bkgndMat);
-> > > ++           _setBackground = true;
+> > > ++           _setBackground =3D true;
 > > > ++           cout << endl << "Updated background" << endl;
 > > > ++        }
 > > > +
 > > > +-      // Update background as required
 > > > +-      if (!_setBackground) {
 > > > +-         _dMat.copyTo(_bkgndMat);
-> > > +-         _setBackground = true;
+> > > +-         _setBackground =3D true;
 > > > +-         cout << endl << "Updated background" << endl;
 > > > +-      }
 > > > +-
 > > > +-      // Find foreground by subtraction
-> > > +-      Mat fMat = _bkgndMat-_dMat;
+> > > +-      Mat fMat =3D _bkgndMat-_dMat;
 > > > ++        // Find foreground by subtraction
-> > > ++        Mat fMat = _bkgndMat-_dMat;
+> > > ++        Mat fMat =3D _bkgndMat-_dMat;
 > > > +
-> > > +-      // Convert to binary image based on amplitude and depth thresholds
+> > > +-      // Convert to binary image based on amplitude and depth thres=
+holds
 > > > +-      clipBackground(fMat, _iMat, (float)_depthThresh/100.0,
 > > (float)_ampThresh/100.0);
 > > > +-      fMat.convertTo(_bMat, CV_8U, 255.0);
-> > > ++        // Convert to binary image based on amplitude and depth thresholds
+> > > ++        // Convert to binary image based on amplitude and depth thr=
+esholds
 > > > ++        clipBackground(fMat, _iMat, (float)_depthThresh/100.0,
 > > (float)_ampThresh/100.0);
 > > > ++        fMat.convertTo(_bMat, CV_8U, 255.0);
 > > > +
 > > > +-      // Apply morphological open to clean up image
-> > > +-      Mat morphMat = _bMat.clone();
-> > > +-      Mat element = getStructuringElement( 0, Size(3,3), cv::Point(1,1) );
+> > > +-      Mat morphMat =3D _bMat.clone();
+> > > +-      Mat element =3D getStructuringElement( 0, Size(3,3), cv::Poin=
+t(1,1) );
 > > > +-      morphologyEx(_bMat, morphMat, 2, element);
 > > > ++        // Apply morphological open to clean up image
-> > > ++        Mat morphMat = _bMat.clone();
-> > > ++        Mat element = getStructuringElement( 0, Size(3,3), cv::Point(1,1) );
+> > > ++        Mat morphMat =3D _bMat.clone();
+> > > ++        Mat element =3D getStructuringElement( 0, Size(3,3), cv::Po=
+int(1,1) );
 > > > ++        morphologyEx(_bMat, morphMat, 2, element);
 > > > +
 > > > +-      // Find all contours
 > > > +-      findContours(morphMat, contours, hierarchy, CV_RETR_TREE,
-> > > +-                             CV_CHAIN_APPROX_SIMPLE, cv::Point(0,0));
+> > > +-                             CV_CHAIN_APPROX_SIMPLE, cv::Point(0,0)=
+);
 > > > ++        // Find all contours
 > > > ++        findContours(morphMat, contours, hierarchy, CV_RETR_TREE,
-> > > ++                               CV_CHAIN_APPROX_SIMPLE, 
+> > > ++                               CV_CHAIN_APPROX_SIMPLE,=20
 > > > ++ cv::Point(0,0));
 > > > +
 > > > +-      // Draw contours that meet a "person" requirement
-> > > +-      Mat drawing = Mat::zeros(_iMat.size(), CV_8UC3);
+> > > +-      Mat drawing =3D Mat::zeros(_iMat.size(), CV_8UC3);
 > > > +-      cvtColor(_iMat, drawing, CV_GRAY2RGB);
 > > > ++        // Draw contours that meet a "person" requirement
-> > > ++        drawing = Mat::zeros(_iMat.size(), CV_8UC3);
+> > > ++        drawing =3D Mat::zeros(_iMat.size(), CV_8UC3);
 > > > ++        cvtColor(_iMat, drawing, CV_GRAY2RGB);
 > > > +
-> > > +-      int peopleCount = 0;
-> > > +-      for ( int i = 0; i < contours.size(); i++ ) {
+> > > +-      int peopleCount =3D 0;
+> > > +-      for ( int i =3D 0; i < contours.size(); i++ ) {
 > > > +-         if (isPerson(contours[i], _dMat)) {
 > > > +-            peopleCount++;
-> > > +-            drawContours( drawing, contours, i, Scalar(0, 0, 255), 2, 8,
+> > > +-            drawContours( drawing, contours, i, Scalar(0, 0, 255), =
+2, 8,
 > > vector<Vec4i>(), 0, cv::Point() );
 > > > +-         }
-> > > ++        int peopleCount = 0;
-> > > ++        for ( int i = 0; i < contours.size(); i++ ) {
+> > > ++        int peopleCount =3D 0;
+> > > ++        for ( int i =3D 0; i < contours.size(); i++ ) {
 > > > ++           if (isPerson(contours[i], _dMat)) {
 > > > ++              peopleCount++;
-> > > ++              drawContours( drawing, contours, i, Scalar(0, 0, 
+> > > ++              drawContours( drawing, contours, i, Scalar(0, 0,=20
 > > > ++ 255), 2, 8,
 > > vector<Vec4i>(), 0, cv::Point() );
 > > > ++           }
 > > > ++        }
-> > > ++        putText(drawing, "Cnt="+to_string(peopleCount), 
+> > > ++        putText(drawing, "Cnt=3D"+to_string(peopleCount),=20
 > > > ++ cv::Point(40, 30), FONT_HERSHEY_PLAIN, 1, Scalar(255, 0, 0));
 > > > +       }
-> > > +-      putText(drawing, "Cnt="+to_string(peopleCount), cv::Point(40, 30),
+> > > +-      putText(drawing, "Cnt=3D"+to_string(peopleCount), cv::Point(4=
+0, 30),
 > > FONT_HERSHEY_PLAIN, 1, Scalar(255, 0, 0));
-> > > +-      if(skipped_frames == 0) {
+> > > +-      if(skipped_frames =3D=3D 0) {
 > > > +-        imshow("Draw", drawing);
 > > > +-      } else {
-> > > +-        if((draw_throttle % skipped_frames) == 0) {
+> > > +-        if((draw_throttle % skipped_frames) =3D=3D 0) {
 > > > +-          char file_name[80];
 > > > +-          sprintf (file_name, "draw%03d.png", draw_throttle /
 > > skipped_frames);
@@ -428,13 +493,13 @@ Denys
 > > > +-        draw_throttle ++;
 > > > ++        pthread_mutex_lock(&main_thread_image_mtx);
 > > > ++          main_thread_image_wr ++;
-> > > ++          main_thread_image_wr %= 2;
+> > > ++          main_thread_image_wr %=3D 2;
 > > > ++          main_thread_image_cnt ++;
 > > > ++        pthread_mutex_unlock(&main_thread_image_mtx);
 > > > +       }
 > > > +    }
 > > > + }
-> > > +diff --git a/Demos/SimplePeopleTracking.cpp 
+> > > +diff --git a/Demos/SimplePeopleTracking.cpp=20
 > > > +b/Demos/SimplePeopleTracking.cpp index 8c6e9d4..1eb8e16 100644
 > > > +--- a/Demos/SimplePeopleTracking.cpp
 > > > ++++ b/Demos/SimplePeopleTracking.cpp
@@ -442,13 +507,16 @@ Denys
 > > > + #include "Horus.h"
 > > > ++#include <getopt.h>
 > > > +
-> > > + int skipped_frames = 0;
-> > > ++int resolution_width = 160, resolution_height = 120; //Variables 
-> > > ++for communication between main and application thread 
-> > > ++pthread_mutex_t main_thread_image_mtx; int main_thread_image_rd = 
-> > > ++0; int main_thread_image_wr = 0; int main_thread_image_cnt = 0; 
-> > > ++int acq_fps = 30; char show_image = 'p'; //By default, detect 
-> > > ++people int fps = 30;
+> > > + int skipped_frames =3D 0;
+> > > ++int resolution_width =3D 160, resolution_height =3D 120; //Variable=
+s=20
+> > > ++for communication between main and application thread=20
+> > > ++pthread_mutex_t main_thread_image_mtx; int main_thread_image_rd =3D=
+=20
+> > > ++0; int main_thread_image_wr =3D 0; int main_thread_image_cnt =3D 0;=
+=20
+> > > ++int acq_fps =3D 30; char show_image =3D 'p'; //By default, detect=20
+> > > ++people int fps =3D 30;
 > > > ++
 > > > ++Mat app_image[2];
 > > > +
@@ -465,18 +533,19 @@ Denys
 > > > ++  printf ("\n  -s <decimal value>");
 > > > ++  printf ("\n   If you want to run demo without keyboard, provide
 > > 'skipped_frames' as argument (e.g. SimplePeopleTracking -s 30)!");
-> > > ++  printf ("\n   Images with the result of processing are saved in PNG files.
+> > > ++  printf ("\n   Images with the result of processing are saved in P=
+NG files.
 > > This test always stops after 10 image files recorded\n");
-> > > ++  printf ("\n -w <resolution witdh,  default is 160, another 
+> > > ++  printf ("\n -w <resolution witdh,  default is 160, another=20
 > > > ++resolution possible is 320x240>");
-> > > ++  printf ("\n -h <resolution height, default is 120, another 
+> > > ++  printf ("\n -h <resolution height, default is 120, another=20
 > > > ++respolution possible is 320x240>");
-> > > ++  printf ("\n -i <present image of amplitudes, grey-scale like 
+> > > ++  printf ("\n -i <present image of amplitudes, grey-scale like=20
 > > > ++image
 > > > ++- default is detection of people>");
 > > > ++  printf ("\n -d <present distance map - default is detection of
 > > > ++people>");
-> > > ++  printf ("\n -f <set fps with integer value, 30 is default, 10, 
+> > > ++  printf ("\n -f <set fps with integer value, 30 is default, 10,=20
 > > > ++15,
 > > > ++25 are another options to try>");
 > > > ++  printf ("\n-----------\n");
@@ -484,43 +553,44 @@ Denys
 > > > ++
 > > > + int main(int argc, char *argv[])
 > > > + {
-> > > +-int ii = 0;
+> > > +-int ii =3D 0;
 > > > +-   int key;
-> > > ++   int ii = 0, draw_throttle = 0;
+> > > ++   int ii =3D 0, draw_throttle =3D 0;
 > > > ++   int key, c_opt;
-> > > +    bool done = false;
+> > > +    bool done =3D false;
 > > > +-   Mat bImg;
 > > > +-
-> > > +-   if(argc > 1) skipped_frames = atoi(argv[1]);
+> > > +-   if(argc > 1) skipped_frames =3D atoi(argv[1]);
 > > > +-   else {
 > > > +-     printf ("\nIf you want to run demo without keyboard, provide
 > > 'skipped_frames' as argument (e.g. SimplePeopleTracking 30)!");
-> > > +-     printf ("\nImages with the result of processing are saved in PNG files.
+> > > +-     printf ("\nImages with the result of processing are saved in P=
+NG files.
 > > This test always stops after 15 seconds\n");
 > > > ++   Mat bImg, locImg;
 > > > ++
-> > > ++   while ((c_opt = getopt(argc, argv,"s:w:h:f:id")) != -1) {
+> > > ++   while ((c_opt =3D getopt(argc, argv,"s:w:h:f:id")) !=3D -1) {
 > > > ++        switch (c_opt) {
-> > > ++             case 's' : skipped_frames = atoi(optarg);
+> > > ++             case 's' : skipped_frames =3D atoi(optarg);
 > > > ++                 break;
-> > > ++             case 'w' : resolution_width = atoi(optarg);
+> > > ++             case 'w' : resolution_width =3D atoi(optarg);
 > > > ++                 break;
-> > > ++             case 'h' : resolution_height = atoi(optarg);
+> > > ++             case 'h' : resolution_height =3D atoi(optarg);
 > > > ++                 break;
-> > > ++             case 'f' : acq_fps = atoi(optarg);
+> > > ++             case 'f' : acq_fps =3D atoi(optarg);
 > > > ++                 break;
-> > > ++             case 'i' : show_image = 'i';
+> > > ++             case 'i' : show_image =3D 'i';
 > > > ++                 break;
-> > > ++             case 'd' : show_image = 'd';
+> > > ++             case 'd' : show_image =3D 'd';
 > > > ++                 break;
 > > > ++             default: print_usage();
 > > > ++                 exit(EXIT_FAILURE);
 > > > ++        }
 > > > +    }
-> > > ++   printf ("\nUsing following parameters: skipped_frames=%d 
-> > > ++ width=%d
-> > height=%d mode=%c fps=%d. Use '-?' to get help.\n",
-> > > ++           skipped_frames, resolution_width, resolution_height, 
+> > > ++   printf ("\nUsing following parameters: skipped_frames=3D%d=20
+> > > ++ width=3D%d
+> > height=3D%d mode=3D%c fps=3D%d. Use '-?' to get help.\n",
+> > > ++           skipped_frames, resolution_width, resolution_height,=20
 > > > ++ show_image, acq_fps);
 > > > +
 > > > +-   //Horus eye(320, 240);
@@ -537,39 +607,42 @@ Denys
 > > > ++
 > > > ++   while (!done)
 > > > ++   {
-> > > +      if(skipped_frames == 0)
+> > > +      if(skipped_frames =3D=3D 0)
 > > > +      {
-> > > +        char key = getkey();
-> > > +@@ -57,11 +98,29 @@ int ii = 0;
-> > > +           done = true;
-> > > +        else if (key == 'b')
+> > > +        char key =3D getkey();
+> > > +@@ -57,11 +98,29 @@ int ii =3D 0;
+> > > +           done =3D true;
+> > > +        else if (key =3D=3D 'b')
 > > > +           eye.resetBackground();
 > > > +-     } else {
 > > > +-       usleep(100000);
 > > > +-       ii ++;
-> > > +-       if(ii == 150) done = true;
+> > > +-       if(ii =3D=3D 150) done =3D true;
 > > > +      }
 > > > ++     //Exchange data with the applicaiton thread
 > > > ++     if(main_thread_image_cnt > 0)
-> > > ++     { //imshow() does not work reliable if being ran from non-main thread
-> > > ++       locImg = app_image[main_thread_image_rd];
+> > > ++     { //imshow() does not work reliable if being ran from non-main=
+ thread
+> > > ++       locImg =3D app_image[main_thread_image_rd];
 > > > ++       if(skipped_frames)
 > > > ++       {
-> > > ++         if((draw_throttle % skipped_frames) == 0) {
+> > > ++         if((draw_throttle % skipped_frames) =3D=3D 0) {
 > > > ++           char file_name[80];
 > > > ++           sprintf (file_name, "draw%03d.png", draw_throttle /
 > > skipped_frames);
 > > > ++           imwrite (file_name, locImg);
-> > > ++           std::cout << "Write file:" << file_name << std::endl << std::flush;
+> > > ++           std::cout << "Write file:" << file_name << std::endl << =
+std::flush;
 > > > ++         }
 > > > ++         draw_throttle ++;
-> > > ++         if(draw_throttle >= (10 * skipped_frames)) done = true; 
+> > > ++         if(draw_throttle >=3D (10 * skipped_frames)) done =3D true=
+;=20
 > > > ++ //Collect 10
 > > image files only in batch mode
 > > > ++       } else imshow ("Draw", locImg);
 > > > ++       pthread_mutex_lock(&main_thread_image_mtx);
 > > > ++         main_thread_image_rd ++;
-> > > ++         main_thread_image_rd %= 2;
+> > > ++         main_thread_image_rd %=3D 2;
 > > > ++         main_thread_image_cnt --;
 > > > ++       pthread_mutex_unlock(&main_thread_image_mtx);
 > > > ++     }
@@ -588,12 +661,13 @@ Denys
 > > > +-
 > > > ++extern int acq_fps;
 > > > + // Frame callback
-> > > + static deque<Voxel::Frame *> qFrame;  static pthread_mutex_t gmtx; 
+> > > + static deque<Voxel::Frame *> qFrame;  static pthread_mutex_t gmtx;=
+=20
 > > > +@@ -166,11 +166,7 @@ void *TOFApp::eventLoop(void *p)
 > > > +       }
 > > > +
-> > > +       done = !app->_isRunning;
-> > > +-      if(skipped_frames == 0) {
+> > > +       done =3D !app->_isRunning;
+> > > +-      if(skipped_frames =3D=3D 0) {
 > > > +-        waitKey(app->_loopDelay);
 > > > +-      } else {
 > > > +-        usleep(10000);
@@ -603,28 +677,31 @@ Denys
 > > > +
 > > > +    app->disconnect();
 > > > +@@ -196,9 +192,9 @@ void TOFApp::Init(int w, int h)
-> > > +    _isConnected = false;
-> > > +    _dimen.width = w;
-> > > +    _dimen.height = h;
-> > > +-   _frate.numerator = 30;
-> > > ++   _frate.numerator = acq_fps; //30
-> > > +    _frate.denominator = 1;
-> > > +-   _loopDelay = 66;
-> > > ++   _loopDelay = (int)(1000 / acq_fps);
-> > > +    _illum_power = 60;
-> > > +    _intg = 20;
-> > > +    _profile = "MetrilusLongRange"; @@ -219,7 +215,7 @@ bool 
+> > > +    _isConnected =3D false;
+> > > +    _dimen.width =3D w;
+> > > +    _dimen.height =3D h;
+> > > +-   _frate.numerator =3D 30;
+> > > ++   _frate.numerator =3D acq_fps; //30
+> > > +    _frate.denominator =3D 1;
+> > > +-   _loopDelay =3D 66;
+> > > ++   _loopDelay =3D (int)(1000 / acq_fps);
+> > > +    _illum_power =3D 60;
+> > > +    _intg =3D 20;
+> > > +    _profile =3D "MetrilusLongRange"; @@ -219,7 +215,7 @@ bool=20
 > > > +TOFApp::connect(DepthCamera::FrameType
 > > frmType)
 > > > +    else
 > > > +       return false;
 > > > +
-> > > +-   #if 0   //Enable this to list all the profiles that are supported by the
+> > > +-   #if 0   //Enable this to list all the profiles that are supporte=
+d by the
 > > camera
-> > > ++   #if 1   //Enable this to list all the profiles that are supported by the
+> > > ++   #if 1   //Enable this to list all the profiles that are supporte=
+d by the
 > > camera
 > > > +    cout << "List of Profiles:" << endl;
-> > > +    auto &names = _depthCamera->configFile.getCameraProfileNames();
+> > > +    auto &names =3D _depthCamera->configFile.getCameraProfileNames()=
+;
 > > > +
 > > > +--
 > > > +1.9.1
@@ -636,98 +713,100 @@ Denys
 > > > --- /dev/null
 > > > +++ b/meta-arago-extras/recipes-apps/voxelsdk/voxelsdk_git.bb
 > > > @@ -0,0 +1,51 @@
-> > > +DESCRIPTION = "VOXELSDK and 3D scanning application"
-> > 
+> > > +DESCRIPTION =3D "VOXELSDK and 3D scanning application"
+> >=20
 > > For short descriptions, please use SUMMARY instead
-> > 
-> > 
-> > > +HOMEPAGE = "https://github.com/3dtof/voxelsdk"
-> > > +SECTION = "multimedia"
-> > > +LICENSE = "BSD-3-Clause"
-> > > +LIC_FILES_CHKSUM =
-> > "file://LICENSE;md5=e69c599445026ffeae140a21181dfa88"
+> >=20
+> >=20
+> > > +HOMEPAGE =3D "https://github.com/3dtof/voxelsdk"
+> > > +SECTION =3D "multimedia"
+> > > +LICENSE =3D "BSD-3-Clause"
+> > > +LIC_FILES_CHKSUM =3D
+> > "file://LICENSE;md5=3De69c599445026ffeae140a21181dfa88"
 > > > +
-> > > +PV = "0.6.8"
-> > > +PR = "r1"
-> > > +BRANCH="plsdk-devel"
-> > 
-> > Not critical, but since there will be v2, please use consistent 
-> > formatting with spaces around = sign.
-> > 
-> > 
-> > > +SRC_URI = "git://github.com/3dtof/voxelsdk.git;branch=${BRANCH}"
-> > > +SRCREV  = "7337ac265a1542f22ccffe592762c226b23b2dbd"
+> > > +PV =3D "0.6.8"
+> > > +PR =3D "r1"
+> > > +BRANCH=3D"plsdk-devel"
+> >=20
+> > Not critical, but since there will be v2, please use consistent=20
+> > formatting with spaces around =3D sign.
+> >=20
+> >=20
+> > > +SRC_URI =3D "git://github.com/3dtof/voxelsdk.git;branch=3D${BRANCH}"
+> > > +SRCREV  =3D "7337ac265a1542f22ccffe592762c226b23b2dbd"
 > > > +
-> > > +SRC_URI += " \
-> > > +            file://0001-PLSDK-AM437x-update.patch;patchdir=${S} \
-> > > +            file://0002-Fix-SWIG-support.patch;patchdir=${S} \
-> > > +            
+> > > +SRC_URI +=3D " \
+> > > +            file://0001-PLSDK-AM437x-update.patch;patchdir=3D${S} \
+> > > +            file://0002-Fix-SWIG-support.patch;patchdir=3D${S} \
+> > > +           =20
 > > > +file://0003-Add-more-command-line-options-and-move-OpenCV-
-> > render.patch;patchdir=${S} \
+> > render.patch;patchdir=3D${S} \
 > > > +           "
 > > > +
-> > > +S = "${WORKDIR}/git"
+> > > +S =3D "${WORKDIR}/git"
 > > > +
-> > > +export CMAKE_PREFIX_PATH="${WORKDIR}/build"
+> > > +export CMAKE_PREFIX_PATH=3D"${WORKDIR}/build"
 > > > +
-> > > +CXXFLAGS_append = "-I${STAGING_INCDIR}/libusb-1.0 "
-> > 
-> > Using _append, but missing leading space and having unnecessary 
+> > > +CXXFLAGS_append =3D "-I${STAGING_INCDIR}/libusb-1.0 "
+> >=20
+> > Using _append, but missing leading space and having unnecessary=20
 > > trailing space.
-> > 
-> > 
-> > > +EXTRA_OECMAKE += "-DDISTROFEATURE=ExcludePCL -
-> > DCMAKE_BUILD_TYPE=Debug -
-> > DPYTHON_INCLUDE_DIRS=${STAGING_INCDIR}/include/python2.7 "
-> > 
+> >=20
+> >=20
+> > > +EXTRA_OECMAKE +=3D "-DDISTROFEATURE=3DExcludePCL -
+> > DCMAKE_BUILD_TYPE=3DDebug -
+> > DPYTHON_INCLUDE_DIRS=3D${STAGING_INCDIR}/include/python2.7 "
+> >=20
 > > Trailing space.
 > > BTW, any plan to use python3 instead of 2.7?
-> > 
-> > 
+> >=20
+> >=20
 > > > +inherit pkgconfig cmake pythonnative python-dir
 > > > +
-> > > +DEPENDS = "libusb1 udev opencv boost python python-dev swig swig-
+> > > +DEPENDS =3D "libusb1 udev opencv boost python python-dev swig swig-
 > > native "
-> > 
+> >=20
 > > Trailing space.
-> > 
-> > 
-> > > +RDEPENDS_${PN} = "libusb1 udev opencv"
+> >=20
+> >=20
+> > > +RDEPENDS_${PN} =3D "libusb1 udev opencv"
 > > > +
 > > > +do_install_append () {
 > > > +    install -d ${D}${bindir}
 > > > +    install -m 0775 ${S}/Test/CameraSystemTest.py ${D}${bindir}
-> > > +    install -m 0775 ${S}/Test/CameraSystemIQFrameTest.py ${D}${bindir}
-> > > +    install -m 0775 ${S}/Test/LensCalibrationTest.py ${D}${bindir} 
+> > > +    install -m 0775 ${S}/Test/CameraSystemIQFrameTest.py ${D}${bindi=
+r}
+> > > +    install -m 0775 ${S}/Test/LensCalibrationTest.py ${D}${bindir}=20
 > > > +}
 > > > +
-> > > +FILES_${PN} = "${bindir}"
-> > 
+> > > +FILES_${PN} =3D "${bindir}"
+> >=20
 > > This is the default. No need to re-do the default.
-> > 
-> > 
-> > > +FILES_${PN} += "${datadir}"
-> > > +FILES_${PN} += "/etc /etc/udev /etc/udev/rules.d /etc/udev/rules.d/*"
-> > > +FILES_${PN} += "${libdir}/*.so.*"
-> > 
+> >=20
+> >=20
+> > > +FILES_${PN} +=3D "${datadir}"
+> > > +FILES_${PN} +=3D "/etc /etc/udev /etc/udev/rules.d /etc/udev/rules.d=
+/*"
+> > > +FILES_${PN} +=3D "${libdir}/*.so.*"
+> >=20
 > > This is also the default.
-> > 
-> > 
-> > > +FILES_${PN} += "${libdir}/voxel/*.so.*"
-> > > +FILES_${PN} += "${libdir}/python2.7/_*.so"
-> > > +FILES_${PN} += "${libdir}/python2.7/*.py"
+> >=20
+> >=20
+> > > +FILES_${PN} +=3D "${libdir}/voxel/*.so.*"
+> > > +FILES_${PN} +=3D "${libdir}/python2.7/_*.so"
+> > > +FILES_${PN} +=3D "${libdir}/python2.7/*.py"
 > > > +
-> > > +FILES_${PN}-dev += "${libdir}/cmake ${libdir}/cmake/Voxel
+> > > +FILES_${PN}-dev +=3D "${libdir}/cmake ${libdir}/cmake/Voxel
 > > ${libdir}/cmake/TI3DToF"
-> > > +FILES_${PN}-dev += "${libdir}/cmake/Voxel/*.cmake"
-> > > +FILES_${PN}-dev += "${libdir}/cmake/TI3DToF/*.cmake"
-> > > +FILES_${PN}-dev += "${libdir}/*.so"
-> > 
+> > > +FILES_${PN}-dev +=3D "${libdir}/cmake/Voxel/*.cmake"
+> > > +FILES_${PN}-dev +=3D "${libdir}/cmake/TI3DToF/*.cmake"
+> > > +FILES_${PN}-dev +=3D "${libdir}/*.so"
+> >=20
 > > As well as this one.
-> > 
-> > 
-> > > +FILES_${PN}-dev += "${libdir}/voxel/*.so"
-> > 
+> >=20
+> >=20
+> > > +FILES_${PN}-dev +=3D "${libdir}/voxel/*.so"
+> >=20
 > > --
 > > Denys
 
