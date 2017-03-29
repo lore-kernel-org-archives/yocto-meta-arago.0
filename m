@@ -1,42 +1,30 @@
-Return-Path: <h-gou@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 68E4D5297D
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id EBB405297D
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Mar 2017 17:55:35 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2THtZAH010844
-	for <meta-arago@arago-project.org>; Wed, 29 Mar 2017 12:55:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1490810135;
-	bh=4NOSb6OIl0NMhePZP14Z9byOlK+I/vasCwnKUf8YVFQ=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=GZiakGtGD9VqZFMoUSSG0lau3aaJi6wAHMPBuu2HDAMBfbDHklRlbzHfr6ub4q/fE
-	zkyW2MJ96RwvzrEygp4fM1v5xEp7KyRaqm/kWuGY/N8x9tHIUiYDQln6wWn7JYoWf4
-	7hLP5ac5XtB3Zf1WSlXzOrIfhlsNc3kXfDpCKKVc=
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2THtZeO030062
-	for <meta-arago@arago-project.org>; Wed, 29 Mar 2017 12:55:35 -0500
-Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0294.000; Wed, 29 Mar 2017 12:55:34 -0500
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [morty/krogoth][PATCH 3/4 v3]
-	matrix-gui-machinevision-demos: add simple-people-tracking demo
-Thread-Index: AQHSqLVWiD5CNq1mUUiZuZbAiypWtaGsGXjw
-Date: Wed, 29 Mar 2017 17:55:34 +0000
-Message-ID: <2E957F12D11D904590FA9AF86D366BD926D010A5@DLEE08.ent.ti.com>
-References: <1490809856-2829-1-git-send-email-h-gou@ti.com>
-	<20170329175311.GE11364@edge>
-In-Reply-To: <20170329175311.GE11364@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.172.224.222]
-MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Senicic,
-	Djordje" <d-senicic1@ti.com>
-Subject: Re: [morty/krogoth][PATCH 3/4 v3] matrix-gui-machinevision-demos: add simple-people-tracking demo
+	Wed, 29 Mar 2017 18:05:34 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id E5B9D20B7A;
+	Wed, 29 Mar 2017 18:05:34 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id nI2HrUY-Tl_J; Wed, 29 Mar 2017 18:05:34 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 696F6208B3;
+	Wed, 29 Mar 2017 18:05:33 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 83D4416244B;
+	Wed, 29 Mar 2017 14:05:32 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Wed, 29 Mar 2017 14:05:32 -0400
+Message-Id: <1490810732-16654-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH] linalg: pass PARALLEL_MAKE to overwrite the default -j8
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,127 +37,182 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Mar 2017 17:55:35 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 29 Mar 2017 18:05:35 -0000
 
-Thanks Denys. I will resubmit all the patches shortly.
+Other changes are mostly formatting and cleanup.
 
-Regards,
-Hongmei
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ ...ss-PARALLEL_MAKE-variable-to-overwrite-j8.patch | 64 ++++++++++++++++++++++
+ meta-arago-extras/recipes-ti/linalg/linalg.inc     | 45 ++++++++-------
+ meta-arago-extras/recipes-ti/linalg/linalg_git.bb  |  6 +-
+ 3 files changed, 91 insertions(+), 24 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j8.patch
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Wednesday, March 29, 2017 1:53 PM
-> To: Gou, Hongmei
-> Cc: meta-arago@arago-project.org; Senicic, Djordje
-> Subject: Re: [meta-arago] [morty/krogoth][PATCH 3/4 v3] matrix-gui-
-> machinevision-demos: add simple-people-tracking demo
->=20
-> Hongmei,
->=20
-> Thanks. Would you mind re-submitting the entire series again with all the
-> latest patches? It's getting hard for me to pick and choose the right rev=
-isions
-> by now... Thanks.
->=20
-> --
-> Denys
->=20
->=20
-> On Wed, Mar 29, 2017 at 01:50:56PM -0400, Hongmei Gou wrote:
-> > Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
-> > Signed-off-by: Hongmei Gou <h-gou@ti.com>
-> > ---
-> > V3 changes:
-> > * Remove voxelsdk dependency.
-> >   voxelsdk has been added through packagegroup.
-> >
-> >  meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc  |  4 ++=
---
-> >  .../recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb  | 10
-> +++++++++-
-> >  2 files changed, 11 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.=
-inc
-> b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> > index 02156c8..0ae0d21 100644
-> > --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> > +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> > @@ -4,9 +4,9 @@ LICENSE_CHECKSUM =3D
-> "LICENSE;md5=3D6e0ae7214f6c74c149cb25f373057fa9"
-> >  LIC_FILES_CHKSUM :=3D "file://../${LICENSE_CHECKSUM}"
-> >
-> >  SRC_URI =3D "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-
-> apps.git;protocol=3Dgit;branch=3D${BRANCH}"
-> > -SRCREV =3D "b96f7c7365c166bf59abf6486912eaad2e0ad607"
-> > +SRCREV =3D "7ab39e827e65c35f4e37d1142a45071f670395fe"
-> >  BRANCH =3D "master"
-> > -INC_PR =3D "r45"
-> > +INC_PR =3D "r46"
-> >
-> >  # Pull in the base package for installing matrix applications
-> >  require matrix-gui-apps.inc
-> > diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-
-> machinevision-demos_2.0.bb b/meta-arago-extras/recipes-
-> core/matrix/matrix-gui-machinevision-demos_2.0.bb
-> > index 9c7eb92..4adb7bc 100644
-> > --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-
-> demos_2.0.bb
-> > +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-
-> demos_2.0.bb
-> > @@ -3,7 +3,7 @@ HOMEPAGE =3D "https://gitorious.org/matrix-gui-
-> v2/matrix-gui-v2-apps"
-> >
-> >  require recipes-core/matrix/matrix-gui-apps-git.inc
-> >
-> > -PR =3D "${INC_PR}.2"
-> > +PR =3D "${INC_PR}.3"
-> >
-> >  inherit allarch
-> >
-> > @@ -17,6 +17,7 @@ FILES_${PN} +=3D "${MATRIX_BASE_DIR}/*"
-> >  PACKAGES =3D "matrix-machinevision-demo-dlp3dscanner \
-> >              matrix-machinevision-demo-barcoderoi \
-> >              matrix-machinevision-demo-barcoderoi-f2f \
-> > +            matrix-machinevision-demo-simplepeopletracking \
-> >  "
-> >
-> >  RDEPENDS_matrix-machinevision-demo-dlp3dscanner_dra7xx =3D " \
-> > @@ -34,6 +35,10 @@ RDEPENDS_matrix-machinevision-demo-barcoderoi-
-> f2f =3D " \
-> >      barcode-roi \
-> >  "
-> >
-> > +RDEPENDS_matrix-machinevision-demo-simplepeopletracking =3D " \
-> > +    ${MACHINEVISION_RDEPENDS} \
-> > +"
-> > +
-> >  FILES_matrix-machinevision-demo-dlp3dscanner    =3D
-> "${MATRIX_APP_DIR}/machinevision_dlp_3d_scanner/*"
-> >  FILES_matrix-machinevision-demo-dlp3dscanner   +=3D
-> "${bindir}/runDlp3DScanner.sh"
-> >
-> > @@ -41,3 +46,6 @@ FILES_matrix-machinevision-demo-barcoderoi    =3D
-> "${MATRIX_APP_DIR}/machinevision
-> >  FILES_matrix-machinevision-demo-barcoderoi   +=3D
-> "${bindir}/runBarcodeRoi.sh"
-> >  FILES_matrix-machinevision-demo-barcoderoi-f2f =3D
-> "${MATRIX_APP_DIR}/machinevision_barcode_roi_f2f/*"
-> >  FILES_matrix-machinevision-demo-barcoderoi-f2f +=3D
-> "${bindir}/runBarcodeRoiSave2File.sh"
-> > +
-> > +FILES_matrix-machinevision-demo-simplepeopletracking   =3D
-> "${MATRIX_APP_DIR}/machinevision_simple_people_tracking/*"
-> > +FILES_matrix-machinevision-demo-simplepeopletracking   +=3D
-> "${bindir}/runSimplePeopleTracking.sh"
-> > --
-> > 1.9.1
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j8.patch b/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j8.patch
+new file mode 100644
+index 0000000..dacea7a
+--- /dev/null
++++ b/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j8.patch
+@@ -0,0 +1,64 @@
++From 54378094d58c79a9d5ff6c1cc17d7bfd9c497dab Mon Sep 17 00:00:00 2001
++From: Denys Dmytriyenko <denys@ti.com>
++Date: Wed, 29 Mar 2017 13:09:05 -0400
++Subject: [PATCH] Makefile: pass PARALLEL_MAKE variable to overwrite -j8
++
++Signed-off-by: Denys Dmytriyenko <denys@ti.com>
++---
++ src/ti/linalg/Makefile | 12 +++++++-----
++ 1 file changed, 7 insertions(+), 5 deletions(-)
++
++diff --git a/src/ti/linalg/Makefile b/src/ti/linalg/Makefile
++index 90b8ef4..8d8e338 100644
++--- a/src/ti/linalg/Makefile
+++++ b/src/ti/linalg/Makefile
++@@ -13,6 +13,8 @@ CLAPACK_HEADERS =$(LINALG_CLAPACK_DIR)/INCLUDE/blaswrap.h
++ CLAPACK_HEADERS+=$(LINALG_CLAPACK_DIR)/INCLUDE/clapack.h  
++ CLAPACK_HEADERS+=$(LINALG_CLAPACK_DIR)/INCLUDE/f2c.h  
++ 
+++PARALLEL_MAKE ?= "-j8"
+++
++ ifneq (,$(findstring DSP,$(MAKECMDGOALS)))
++ 
++ ifeq ($(LIBOS),LIB_RTOS)
++@@ -52,7 +54,7 @@ endif
++ DSPlibs:
++ 	cd $(LINALG_CBLAS_DIR); make arch=C66 alllib  || exit 1; \
++ 	cd ../$(LINALG_BLIS_DIR); ./configure -p install/$(BLIS_CFG) c66x; \
++-	make -j8 MEM_MODEL=$(MEM_MODEL) TARGET=$(TARGET) LIBOS=$(LIBOS) NUM_DSP_CORES=$(NUM_DSP_CORES) || exit 1; make install; \
+++	make $(PARALLEL_MAKE) MEM_MODEL=$(MEM_MODEL) TARGET=$(TARGET) LIBOS=$(LIBOS) NUM_DSP_CORES=$(NUM_DSP_CORES) || exit 1; make install; \
++ 	cd ../$(LINALG_TICBLAS_DIR)/src; make MEM_MODEL=$(MEM_MODEL) TARGET=$(TARGET) LIBOS=$(LIBOS) NUM_DSP_CORES=$(NUM_DSP_CORES) || exit 1; cd ../lib; \
++ 	echo "combining BLIS, CBLAS, and TICBLAS libraries into one: libcblas.ae66"; \
++ 	rm -rf blas_objs blis_objs; mkdir blas_objs blis_objs; cd blis_objs; ar x ../../../blis/install/$(BLIS_CFG)/lib/libblis.ae66; chmod +rw *; \
++@@ -63,8 +65,8 @@ DSPlibs:
++ # Build ARM code for ARM+DSP platforms
++ ARMlibs:
++ 	cd $(LINALG_CBLAS_DIR); make arch=ARM alllib || exit 1; \
++-	cd ../$(LINALG_BLIS_DIR); ./configure -p install/arm cortex-a15; make -j8 NUM_ARM_CORES=$(NUM_ARM_CORES) || exit 1; make install; \
++-	cd ../$(LINALG_CLAPACK_DIR); make f2clib || exit 1; make cblaswrap || exit 1; cd SRC; make -j8 || exit 1; cd ..
+++	cd ../$(LINALG_BLIS_DIR); ./configure -p install/arm cortex-a15; make $(PARALLEL_MAKE) NUM_ARM_CORES=$(NUM_ARM_CORES) || exit 1; make install; \
+++	cd ../$(LINALG_CLAPACK_DIR); make f2clib || exit 1; make cblaswrap || exit 1; cd SRC; make $(PARALLEL_MAKE) || exit 1; cd ..
++ 
++ # Build host-callable libraries for ARM+DSP platforms. 
++ # BLAS has a single archive: libcblas_armplusdsp.a, which includes:
++@@ -91,7 +93,7 @@ ARMplusDSP: DSPlibs ARMlibs
++ cleanDSPlibs:
++ 	rm -f lib/*
++ 	cd $(LINALG_CBLAS_DIR); make arch=C66 clean; \
++-	cd ../$(LINALG_BLIS_DIR); ./configure -p install/$(BLIS_CFG) c66x; make -j8 clean; rm -r install/$(BLIS_CFG); \
+++	cd ../$(LINALG_BLIS_DIR); ./configure -p install/$(BLIS_CFG) c66x; make $(PARALLEL_MAKE) clean; rm -r install/$(BLIS_CFG); \
++ 	cd ../$(LINALG_TICBLAS_DIR)/src; make clean; 
++ 
++ cleanARMlibs:
++@@ -103,7 +105,7 @@ cleanARMlibs:
++ 
++ BLIStest:
++ 	cd $(LINALG_BLIS_DIR); ./configure -p install/arm cortex-a15; \
++-	cd testsuite; make lib=OpenCLCBLAS -j8 
+++	cd testsuite; make lib=OpenCLCBLAS $(PARALLEL_MAKE)
++ 
++ BLIStestDSP:
++ 	cd $(LINALG_BLIS_DIR); ./configure -p install/$(BLIS_CFG) c66x; \
++-- 
++2.7.4
++
+diff --git a/meta-arago-extras/recipes-ti/linalg/linalg.inc b/meta-arago-extras/recipes-ti/linalg/linalg.inc
+index 8879592..2a0eae3 100644
+--- a/meta-arago-extras/recipes-ti/linalg/linalg.inc
++++ b/meta-arago-extras/recipes-ti/linalg/linalg.inc
+@@ -1,38 +1,43 @@
+ HOMEPAGE = "git://git.ti.com/dense-linear-algebra-libraries/linalg.git"
+ LICENSE = "BSD-3-Clause"
++LIC_FILES_CHKSUM = "file://src/ti/linalg/docs/LINALG_1.2.0_manifest.html;md5=f30895e41e5947c3439b1ad4cf4c8555"
+ 
+ PV = "1_2_0_0"
+ INC_PR = "r7"
+ 
+-S = "${WORKDIR}/git"
++COMPATIBLE_MACHINE = "k2hk-evm|dra7xx"
+ 
+ require recipes-ti/includes/arago-paths.inc
+ require recipes-ti/includes/ti-staging.inc
+ 
+-BRANCH = "master"
+-SRC_URI = "git://git.ti.com/dense-linear-algebra-libraries/linalg.git;protocol=git;branch=${BRANCH} \
+-file://0001-Makefile-fix-toolchain-variables.patch \
++SRC_URI = " \
++	git://git.ti.com/dense-linear-algebra-libraries/linalg.git;protocol=git;branch=${BRANCH} \
++	file://0001-Makefile-fix-toolchain-variables.patch \
++	file://0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j8.patch \
+ "
+-LIC_FILES_CHKSUM = "file://src/ti/linalg/docs/LINALG_1.2.0_manifest.html;md5=f30895e41e5947c3439b1ad4cf4c8555"
++
++BRANCH = "master"
+ SRCREV = "01960b319783b29aacf12b2a72606b28d657b78e"
+ 
+ DEPENDS = " \
+-common-csl-ip \
+-libarch \
+-ti-xdctools \
+-ti-ipc-rtos \
+-ti-sysbios \
+-ti-cgt6x-native \
+-ti-xdais \
+-ti-framework-components \
+-libulm \
+-openmp-rtos \
+-opencl \
+-clocl-native \
+-doxygen-native \
+-zip-native \
++	common-csl-ip \
++	libarch \
++	ti-xdctools \
++	ti-ipc-rtos \
++	ti-sysbios \
++	ti-cgt6x-native \
++	ti-xdais \
++	ti-framework-components \
++	libulm \
++	openmp-rtos \
++	opencl \
++	clocl-native \
++	doxygen-native \
++	zip-native \
+ "
+ 
++S = "${WORKDIR}/git"
++
+ export TI_OCL_INSTALL_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/opencl"
+ export CGTROOT = "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
+ export TI_OCL_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
+@@ -44,5 +49,3 @@ export PDK_DIR = "${PDK_INSTALL_DIR}"
+ export OMP_DIR ="${OMP_INSTALL_DIR}"
+ export LIBARCH_DIR = "${LIBARCH_INSTALL_DIR}"
+ export TARGET_ROOTDIR="${STAGING_DIR_TARGET}"
+-
+-COMPATIBLE_MACHINE = "k2hk-evm|dra7xx"
+diff --git a/meta-arago-extras/recipes-ti/linalg/linalg_git.bb b/meta-arago-extras/recipes-ti/linalg/linalg_git.bb
+index 935c47e..d250fce 100644
+--- a/meta-arago-extras/recipes-ti/linalg/linalg_git.bb
++++ b/meta-arago-extras/recipes-ti/linalg/linalg_git.bb
+@@ -10,12 +10,12 @@ MEM_MODEL_dra7xx     = "Small"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+ do_compile() {
+-   make -f build/Makefile MEM_MODEL=${MEM_MODEL} TARGET=${TARGET} LIBOS=LIB_OPENCL
++	make -f build/Makefile MEM_MODEL=${MEM_MODEL} TARGET=${TARGET} LIBOS=LIB_OPENCL PARALLEL_MAKE="${PARALLEL_MAKE}"
+ }
+ 
+ do_install() {
+-    install -d ${D}${LINALG_INSTALL_DIR_RECIPE}
+-    cp -r exports/linalg_${PV}/* ${D}${LINALG_INSTALL_DIR_RECIPE}
++	install -d ${D}${LINALG_INSTALL_DIR_RECIPE}
++	cp -r exports/linalg_${PV}/* ${D}${LINALG_INSTALL_DIR_RECIPE}
+ }
+ 
+ # to create a package for LINALG
+-- 
+2.7.4
+
 
