@@ -1,30 +1,39 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id EBB405297D
+Return-Path: <e-ruei1@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id CD9255298A
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Mar 2017 18:05:34 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id E5B9D20B7A;
-	Wed, 29 Mar 2017 18:05:34 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id nI2HrUY-Tl_J; Wed, 29 Mar 2017 18:05:34 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 696F6208B3;
-	Wed, 29 Mar 2017 18:05:33 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 83D4416244B;
-	Wed, 29 Mar 2017 14:05:32 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Wed, 29 Mar 2017 14:05:32 -0400
-Message-Id: <1490810732-16654-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] linalg: pass PARALLEL_MAKE to overwrite the default -j8
+	Thu, 30 Mar 2017 20:55:23 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v2UKtDAr010078
+	for <meta-arago@arago-project.org>; Thu, 30 Mar 2017 15:55:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1490907313;
+	bh=CGNha7xNBfGn9Sl4DJx9uB5xzH5q0mzZnf+rpyzmlnY=;
+	h=From:To:Subject:Date:References:In-Reply-To;
+	b=FXEkoYkZZ64YR9t6zqidWc8jJoNjrum1L/u3QjBojEOUdi/ZNaR8d8twBnzkaJNdu
+	O1QXj8jOyBNzhRSrst+4Ft5pEShfdWL+LgWGNLP4RF42l4EM+3Pgj9YkVhE5eLFggu
+	VCoyB3rsdeNZ+neTFwbcrKNg3EIZOe95BTDkw/9s=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v2UKt8fd010446
+	for <meta-arago@arago-project.org>; Thu, 30 Mar 2017 15:55:08 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0294.000; Thu, 30 Mar 2017 15:55:08 -0500
+From: "Ruei, Eric" <e-ruei1@ti.com>
+To: "Prajod, Pooja" <poojaprajod@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [morty] Update gst-bad for bug fix and bump PR
+Thread-Index: AQHSpvxOZp7pdjrFnU6AzknDCBF0qKGt4Qbw
+Date: Thu, 30 Mar 2017 20:55:07 +0000
+Message-ID: <009C030982313E4589C6BC55FBF1E82A2535CE64@DFLE09.ent.ti.com>
+References: <1490620558-142842-1-git-send-email-a0132412@ti.com>
+In-Reply-To: <1490620558-142842-1-git-send-email-a0132412@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.172.224.221]
+MIME-Version: 1.0
+Subject: Re: [morty] Update gst-bad for bug fix and bump PR
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,182 +46,141 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Mar 2017 18:05:35 -0000
+X-List-Received-Date: Thu, 30 Mar 2017 20:55:24 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Other changes are mostly formatting and cleanup.
+Hi, Pooja:
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+This patch is applicable to both AM3 and AM4 and should be upstreamed as we=
+ll.
+I am not sure whether the exact patch can be applied to AM3, but, the same =
+functional changes are required.
+
+Best regards,
+
+Eric
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Prajod, Pooja
+Sent: Monday, March 27, 2017 9:16 AM
+To: meta-arago@arago-project.org
+Cc: Prajod, Pooja
+Subject: [meta-arago] [morty] Update gst-bad for bug fix and bump PR
+
+Pick the patch:-
+   0005-gstwaylandsink-Implement-callbacks-for-version-5-of-.patch
+
+Signed-off-by: Pooja Prajod <a0132412@ti.com>
 ---
- ...ss-PARALLEL_MAKE-variable-to-overwrite-j8.patch | 64 ++++++++++++++++++++++
- meta-arago-extras/recipes-ti/linalg/linalg.inc     | 45 ++++++++-------
- meta-arago-extras/recipes-ti/linalg/linalg_git.bb  |  6 +-
- 3 files changed, 91 insertions(+), 24 deletions(-)
- create mode 100644 meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j8.patch
+ ...ink-Implement-callbacks-for-version-5-of-.patch | 65 ++++++++++++++++++=
+++++
+ .../gstreamer1.0-plugins-bad_1.8.3.bbappend        |  3 +-
+ 2 files changed, 67 insertions(+), 1 deletion(-)  create mode 100644 meta-=
+arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-gst=
+waylandsink-Implement-callbacks-for-version-5-of-.patch
 
-diff --git a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j8.patch b/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j8.patch
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-pl=
+ugins-bad/0005-gstwaylandsink-Implement-callbacks-for-version-5-of-.patch b=
+/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/00=
+05-gstwaylandsink-Implement-callbacks-for-version-5-of-.patch
 new file mode 100644
-index 0000000..dacea7a
+index 0000000..d2091db
 --- /dev/null
-+++ b/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j8.patch
-@@ -0,0 +1,64 @@
-+From 54378094d58c79a9d5ff6c1cc17d7bfd9c497dab Mon Sep 17 00:00:00 2001
-+From: Denys Dmytriyenko <denys@ti.com>
-+Date: Wed, 29 Mar 2017 13:09:05 -0400
-+Subject: [PATCH] Makefile: pass PARALLEL_MAKE variable to overwrite -j8
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugin
++++ s-bad/0005-gstwaylandsink-Implement-callbacks-for-version-5-of-.patc
++++ h
+@@ -0,0 +1,65 @@
++From adfc38273882a102d25fc420adc82b3f225588f9 Mon Sep 17 00:00:00 2001
++From: Pooja Prajod <a0132412@ti.com>
++Date: Mon, 27 Mar 2017 18:27:06 +0530
++Subject: [gst-bad] gstwaylandsink: Implement callbacks for version 5 of =20
++wl_pointer
 +
-+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
++Few extra callbacks are required for wl_pointer listener with the newer=20
++weston. Without the extra dummy callbacks the pipelines results in=20
++segfault.
++
++Signed-off-by: Pooja Prajod <a0132412@ti.com>
 +---
-+ src/ti/linalg/Makefile | 12 +++++++-----
-+ 1 file changed, 7 insertions(+), 5 deletions(-)
++ ext/wayland/wldisplay.c | 22 +++++++++++++++++++++-
++ 1 file changed, 21 insertions(+), 1 deletion(-)
 +
-+diff --git a/src/ti/linalg/Makefile b/src/ti/linalg/Makefile
-+index 90b8ef4..8d8e338 100644
-+--- a/src/ti/linalg/Makefile
-++++ b/src/ti/linalg/Makefile
-+@@ -13,6 +13,8 @@ CLAPACK_HEADERS =$(LINALG_CLAPACK_DIR)/INCLUDE/blaswrap.h
-+ CLAPACK_HEADERS+=$(LINALG_CLAPACK_DIR)/INCLUDE/clapack.h  
-+ CLAPACK_HEADERS+=$(LINALG_CLAPACK_DIR)/INCLUDE/f2c.h  
-+ 
-++PARALLEL_MAKE ?= "-j8"
++diff --git a/ext/wayland/wldisplay.c b/ext/wayland/wldisplay.c index=20
++2f58fd2..54acfdb 100644
++--- a/ext/wayland/wldisplay.c
+++++ b/ext/wayland/wldisplay.c
++@@ -326,12 +326,25 @@ pointer_handle_axis (void *data, struct=20
++wl_pointer *pointer,  {  }
++=20
+++static void pointer_frame(void *data, struct wl_pointer *wl_pointer) {=20
+++} static void pointer_axis_source(void *data, struct wl_pointer=20
+++*wl_pointer, uint32_t axis_source) { } void pointer_axis_stop(void=20
+++*data, struct wl_pointer *wl_pointer, uint32_t time, uint32_t axis) {=20
+++}
 ++
-+ ifneq (,$(findstring DSP,$(MAKECMDGOALS)))
-+ 
-+ ifeq ($(LIBOS),LIB_RTOS)
-+@@ -52,7 +54,7 @@ endif
-+ DSPlibs:
-+ 	cd $(LINALG_CBLAS_DIR); make arch=C66 alllib  || exit 1; \
-+ 	cd ../$(LINALG_BLIS_DIR); ./configure -p install/$(BLIS_CFG) c66x; \
-+-	make -j8 MEM_MODEL=$(MEM_MODEL) TARGET=$(TARGET) LIBOS=$(LIBOS) NUM_DSP_CORES=$(NUM_DSP_CORES) || exit 1; make install; \
-++	make $(PARALLEL_MAKE) MEM_MODEL=$(MEM_MODEL) TARGET=$(TARGET) LIBOS=$(LIBOS) NUM_DSP_CORES=$(NUM_DSP_CORES) || exit 1; make install; \
-+ 	cd ../$(LINALG_TICBLAS_DIR)/src; make MEM_MODEL=$(MEM_MODEL) TARGET=$(TARGET) LIBOS=$(LIBOS) NUM_DSP_CORES=$(NUM_DSP_CORES) || exit 1; cd ../lib; \
-+ 	echo "combining BLIS, CBLAS, and TICBLAS libraries into one: libcblas.ae66"; \
-+ 	rm -rf blas_objs blis_objs; mkdir blas_objs blis_objs; cd blis_objs; ar x ../../../blis/install/$(BLIS_CFG)/lib/libblis.ae66; chmod +rw *; \
-+@@ -63,8 +65,8 @@ DSPlibs:
-+ # Build ARM code for ARM+DSP platforms
-+ ARMlibs:
-+ 	cd $(LINALG_CBLAS_DIR); make arch=ARM alllib || exit 1; \
-+-	cd ../$(LINALG_BLIS_DIR); ./configure -p install/arm cortex-a15; make -j8 NUM_ARM_CORES=$(NUM_ARM_CORES) || exit 1; make install; \
-+-	cd ../$(LINALG_CLAPACK_DIR); make f2clib || exit 1; make cblaswrap || exit 1; cd SRC; make -j8 || exit 1; cd ..
-++	cd ../$(LINALG_BLIS_DIR); ./configure -p install/arm cortex-a15; make $(PARALLEL_MAKE) NUM_ARM_CORES=$(NUM_ARM_CORES) || exit 1; make install; \
-++	cd ../$(LINALG_CLAPACK_DIR); make f2clib || exit 1; make cblaswrap || exit 1; cd SRC; make $(PARALLEL_MAKE) || exit 1; cd ..
-+ 
-+ # Build host-callable libraries for ARM+DSP platforms. 
-+ # BLAS has a single archive: libcblas_armplusdsp.a, which includes:
-+@@ -91,7 +93,7 @@ ARMplusDSP: DSPlibs ARMlibs
-+ cleanDSPlibs:
-+ 	rm -f lib/*
-+ 	cd $(LINALG_CBLAS_DIR); make arch=C66 clean; \
-+-	cd ../$(LINALG_BLIS_DIR); ./configure -p install/$(BLIS_CFG) c66x; make -j8 clean; rm -r install/$(BLIS_CFG); \
-++	cd ../$(LINALG_BLIS_DIR); ./configure -p install/$(BLIS_CFG) c66x; make $(PARALLEL_MAKE) clean; rm -r install/$(BLIS_CFG); \
-+ 	cd ../$(LINALG_TICBLAS_DIR)/src; make clean; 
-+ 
-+ cleanARMlibs:
-+@@ -103,7 +105,7 @@ cleanARMlibs:
-+ 
-+ BLIStest:
-+ 	cd $(LINALG_BLIS_DIR); ./configure -p install/arm cortex-a15; \
-+-	cd testsuite; make lib=OpenCLCBLAS -j8 
-++	cd testsuite; make lib=OpenCLCBLAS $(PARALLEL_MAKE)
-+ 
-+ BLIStestDSP:
-+ 	cd $(LINALG_BLIS_DIR); ./configure -p install/$(BLIS_CFG) c66x; \
-+-- 
-+2.7.4
++ static const struct wl_pointer_listener pointer_listener =3D {
++   pointer_handle_enter,
++   pointer_handle_leave,
++   pointer_handle_motion,
++   pointer_handle_button,
++   pointer_handle_axis,
+++  pointer_frame,
+++  pointer_axis_source,
+++  pointer_axis_stop
++ };
++=20
++ static void
++@@ -508,8 +521,15 @@ registry_handle_global (void *data, struct wl_registr=
+y *registry,
++   }
++ }
++=20
+++static void
+++registry_handle_global_remove(void *data, struct wl_registry *registry,
+++                uint32_t name)
+++{
+++}
+++
++ static const struct wl_registry_listener registry_listener =3D {
++-  registry_handle_global
+++  registry_handle_global,
+++  registry_handle_global_remove
++ };
++=20
++ static gpointer
++--
++1.9.1
 +
-diff --git a/meta-arago-extras/recipes-ti/linalg/linalg.inc b/meta-arago-extras/recipes-ti/linalg/linalg.inc
-index 8879592..2a0eae3 100644
---- a/meta-arago-extras/recipes-ti/linalg/linalg.inc
-+++ b/meta-arago-extras/recipes-ti/linalg/linalg.inc
-@@ -1,38 +1,43 @@
- HOMEPAGE = "git://git.ti.com/dense-linear-algebra-libraries/linalg.git"
- LICENSE = "BSD-3-Clause"
-+LIC_FILES_CHKSUM = "file://src/ti/linalg/docs/LINALG_1.2.0_manifest.html;md5=f30895e41e5947c3439b1ad4cf4c8555"
- 
- PV = "1_2_0_0"
- INC_PR = "r7"
- 
--S = "${WORKDIR}/git"
-+COMPATIBLE_MACHINE = "k2hk-evm|dra7xx"
- 
- require recipes-ti/includes/arago-paths.inc
- require recipes-ti/includes/ti-staging.inc
- 
--BRANCH = "master"
--SRC_URI = "git://git.ti.com/dense-linear-algebra-libraries/linalg.git;protocol=git;branch=${BRANCH} \
--file://0001-Makefile-fix-toolchain-variables.patch \
-+SRC_URI = " \
-+	git://git.ti.com/dense-linear-algebra-libraries/linalg.git;protocol=git;branch=${BRANCH} \
-+	file://0001-Makefile-fix-toolchain-variables.patch \
-+	file://0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j8.patch \
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-pl=
+ugins-bad_1.8.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/g=
+streamer1.0-plugins-bad_1.8.3.bbappend
+index 5e099d5..3b61d2f 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-b=
+ad_1.8.3.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugin
++++ s-bad_1.8.3.bbappend
+@@ -33,8 +33,9 @@ SRC_URI_append_omap-a15 =3D " \
+     file://0002-parsers-Pick-previos-bug-fixes-on-different-parsers.patch =
+\
+     file://0003-gstkmssink-Add-support-for-KMS-based-sink.patch \
+     file://0004-gstwaylandsink-Add-DRM-support-on-waylandsink.patch \
++   =20
++ file://0005-gstwaylandsink-Implement-callbacks-for-version-5-of-.patch=20
++ \
  "
--LIC_FILES_CHKSUM = "file://src/ti/linalg/docs/LINALG_1.2.0_manifest.html;md5=f30895e41e5947c3439b1ad4cf4c8555"
-+
-+BRANCH = "master"
- SRCREV = "01960b319783b29aacf12b2a72606b28d657b78e"
- 
- DEPENDS = " \
--common-csl-ip \
--libarch \
--ti-xdctools \
--ti-ipc-rtos \
--ti-sysbios \
--ti-cgt6x-native \
--ti-xdais \
--ti-framework-components \
--libulm \
--openmp-rtos \
--opencl \
--clocl-native \
--doxygen-native \
--zip-native \
-+	common-csl-ip \
-+	libarch \
-+	ti-xdctools \
-+	ti-ipc-rtos \
-+	ti-sysbios \
-+	ti-cgt6x-native \
-+	ti-xdais \
-+	ti-framework-components \
-+	libulm \
-+	openmp-rtos \
-+	opencl \
-+	clocl-native \
-+	doxygen-native \
-+	zip-native \
- "
- 
-+S = "${WORKDIR}/git"
-+
- export TI_OCL_INSTALL_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/opencl"
- export CGTROOT = "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
- export TI_OCL_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
-@@ -44,5 +49,3 @@ export PDK_DIR = "${PDK_INSTALL_DIR}"
- export OMP_DIR ="${OMP_INSTALL_DIR}"
- export LIBARCH_DIR = "${LIBARCH_INSTALL_DIR}"
- export TARGET_ROOTDIR="${STAGING_DIR_TARGET}"
--
--COMPATIBLE_MACHINE = "k2hk-evm|dra7xx"
-diff --git a/meta-arago-extras/recipes-ti/linalg/linalg_git.bb b/meta-arago-extras/recipes-ti/linalg/linalg_git.bb
-index 935c47e..d250fce 100644
---- a/meta-arago-extras/recipes-ti/linalg/linalg_git.bb
-+++ b/meta-arago-extras/recipes-ti/linalg/linalg_git.bb
-@@ -10,12 +10,12 @@ MEM_MODEL_dra7xx     = "Small"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
- do_compile() {
--   make -f build/Makefile MEM_MODEL=${MEM_MODEL} TARGET=${TARGET} LIBOS=LIB_OPENCL
-+	make -f build/Makefile MEM_MODEL=${MEM_MODEL} TARGET=${TARGET} LIBOS=LIB_OPENCL PARALLEL_MAKE="${PARALLEL_MAKE}"
- }
- 
- do_install() {
--    install -d ${D}${LINALG_INSTALL_DIR_RECIPE}
--    cp -r exports/linalg_${PV}/* ${D}${LINALG_INSTALL_DIR_RECIPE}
-+	install -d ${D}${LINALG_INSTALL_DIR_RECIPE}
-+	cp -r exports/linalg_${PV}/* ${D}${LINALG_INSTALL_DIR_RECIPE}
- }
- 
- # to create a package for LINALG
--- 
-2.7.4
+=20
+ PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+=20
+-PR =3D "r3"
++PR =3D "r4"
+--
+1.9.1
 
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
