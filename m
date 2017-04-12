@@ -1,36 +1,38 @@
-Return-Path: <jake@udc0866934>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id DCDD052A3E
+Return-Path: <karthik.ramanan@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 35B5D5203A
 	for <meta-arago@arago-project.org>;
-	Mon, 10 Apr 2017 17:20:59 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v3AHKwks011537
-	for <meta-arago@arago-project.org>; Mon, 10 Apr 2017 12:20:58 -0500
+	Wed, 12 Apr 2017 05:43:23 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v3C5hNRR016981
+	for <meta-arago@arago-project.org>; Wed, 12 Apr 2017 00:43:23 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1491844858;
-	bh=uaT1G2SBGU8zzR1vZ1qaYohcuEc5JLbrIm25HQHxQBU=;
-	h=From:To:CC:Subject:Date;
-	b=Ruw/MG/vQJ+g6R8+x8BWaXAdb/g8zpbi8DmkjySfVDBZYgOUVq3XI0LVsqC1y71d4
-	mT4njRob3oYYzn8G0ZBVbaBz2LdmWQa/RMbw28tCDgEMw3GpOdkcxrB96grmvBnzDw
-	BLparPa6bJ3E3Q8l2ngoPpajVl6YaHvjbY3cng8Q=
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3AHKv3b017465
-	for <meta-arago@arago-project.org>; Mon, 10 Apr 2017 12:20:57 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 10 Apr 2017 12:20:56 -0500
-Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3AHKv3Z002359;
-	Mon, 10 Apr 2017 12:20:57 -0500
-Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udc0866934>)	id 1cxczo-0006fS-QH; Mon, 10 Apr 2017 13:20:56 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 10 Apr 2017 13:20:51 -0400
-Message-ID: <1491844851-25598-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
+	s=ti-com-17Q1; t=1491975803;
+	bh=+a1EufD+9FgHJD3Nz+C411tSun57asKMI4wIUQrcDmc=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=p4rgC0v6/Rr3c32natm+4M+lQsPRKf73A+4awGATdCynFnTJJRKJU6wi/+auDBXKr
+	hwyZXieWmdJ/mneufv4m3kMInH6xo5kYiKyuNCkom7ld1Lf+K78WItN+QYw+h1Hjgu
+	JFVIFcSU1UtcJduJlTj+NGnbS9lnHS7M1vXKSKe4=
+Received: from dbdlxv05.itg.ti.com (dbdlxv05.itg.ti.com [172.24.171.60])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3C5hMAi024981
+	for <meta-arago@arago-project.org>; Wed, 12 Apr 2017 00:43:22 -0500
+Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3C5hJAO023020
+	for <meta-arago@arago-project.org>; Wed, 12 Apr 2017 11:13:20 +0530
+Received: from [172.24.159.169] (172.24.159.169) by DBDE72.ent.ti.com
+	(172.24.171.97) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 12 Apr 2017 11:13:18 +0530
+To: Jacob Stiffler <j-stiffler@ti.com>, <meta-arago@arago-project.org>
+References: <1491827109-1896-1-git-send-email-j-stiffler@ti.com>
+From: Karthik Ramanan <a0393906@ti.com>
+Message-ID: <58EDBE76.2070801@ti.com>
+Date: Wed, 12 Apr 2017 11:13:18 +0530
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.7.2
 MIME-Version: 1.0
-Subject: [oe-layersetup][PATCH] configs: add processor-sdk-03.03.00.04-config
+In-Reply-To: <1491827109-1896-1-git-send-email-j-stiffler@ti.com>
+X-Originating-IP: [172.24.159.169]
+Subject: Re: [morty/master][PATCH] external-linaro-toolchain: fix against upstream changes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,35 +45,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Apr 2017 17:21:01 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 12 Apr 2017 05:43:23 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- configs/processor-sdk/processor-sdk-03.03.00.04-config.txt | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
- create mode 100644 configs/processor-sdk/processor-sdk-03.03.00.04-config.txt
+ACK.
+I've verified that this resolves the problem.
 
-diff --git a/configs/processor-sdk/processor-sdk-03.03.00.04-config.txt b/configs/processor-sdk/processor-sdk-03.03.00.04-config.txt
-new file mode 100644
-index 0000000..6e7e8b0
---- /dev/null
-+++ b/configs/processor-sdk/processor-sdk-03.03.00.04-config.txt
-@@ -0,0 +1,13 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,1.30,449dc9b955dfbe048e380f5ab9fd61c3d1489dad,layers=
-+meta-processor-sdk,http://arago-project.org/git/projects/meta-processor-sdk.git,master,70283e8e915126b57e30cc7fcf5286a9435c3829,layers=
-+meta-arago,http://arago-project.org/git/meta-arago.git,krogoth,c0e32cc7615f7483ae3a674221dd633205b28ee3,layers=meta-arago-distro:meta-arago-extras
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,krogoth,2b1871f0d139dc3caaa779a32a1931409c245a36,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,krogoth,55c8a76da5dc099a7bc3838495c672140cedb78e,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
-+meta-ti,http://arago-project.org/git/meta-ti.git,krogoth,ed06c3bb58493a40b6fe584251a94f067fc9bdf7,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,krogoth,2f51d38048599d9878f149d6d15539fb97603f8f,layers=meta-linaro-toolchain:meta-optee
-+oe-core,git://git.openembedded.org/openembedded-core,krogoth,ff8c8859434e56894accc5a63980c1b8904eb935,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
--- 
-1.9.1
+On 10-Apr-17 5:55 PM, Jacob Stiffler wrote:
+> * Recent upstream changes cause bindir and sbindir to be removed if
+>    they are empty.
+> * The bbappend in this layer assumes these directories exist.
+> * This change removes that assumption.
+>
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+>   meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+> index 7648e36..e261259 100644
+> --- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+> +++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+> @@ -133,6 +133,7 @@ do_install_append() {
+>   	sed -i -e "s# /lib/# ../../lib/#g" -e "s# /usr/lib/# ./#g" ${D}${libdir}/libpthread.so
+>   
+>   	if [ -d ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/libc/${bindir} ]; then
+> +		install -d ${D}${bindir}
+>   		cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/libc/${bindir}/* ${D}${bindir}
+>   	fi
+>   
+> @@ -161,5 +162,4 @@ do_install_append() {
+>   	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'rm -rf ${D}${includedir}/uapi/.install; rm -rf ${D}${includedir}/misc/.install; rm -rf ${D}${includedir}/misc/cxl.h; rm -rf ${D}${includedir}/scsi/.install; rm -rf ${D}${includedir}/scsi/scsi_netlink*; rm -rf ${D}${includedir}/scsi/scsi_bsg*; rm -rf ${D}${includedir}/scsi/cxlflash_ioctl.h; rm -rf ${D}${includedir}/scsi/fc; rm -rf ${D}${includedir}/xen', d)}
+>   
+>   	rm ${D}${base_libdir}/*.spec
+> -	rmdir ${D}${sbindir}
+>   }
 
 
