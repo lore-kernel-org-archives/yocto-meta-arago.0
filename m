@@ -1,38 +1,36 @@
 Return-Path: <karthik.ramanan@ti.com>
 Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 35B5D5203A
+	by arago-project.org (Postfix) with ESMTPS id 99945520E3
 	for <meta-arago@arago-project.org>;
-	Wed, 12 Apr 2017 05:43:23 +0000 (UTC)
+	Thu, 20 Apr 2017 16:14:32 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v3C5hNRR016981
-	for <meta-arago@arago-project.org>; Wed, 12 Apr 2017 00:43:23 -0500
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v3KGEWgI011648
+	for <meta-arago@arago-project.org>; Thu, 20 Apr 2017 11:14:32 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1491975803;
-	bh=+a1EufD+9FgHJD3Nz+C411tSun57asKMI4wIUQrcDmc=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=p4rgC0v6/Rr3c32natm+4M+lQsPRKf73A+4awGATdCynFnTJJRKJU6wi/+auDBXKr
-	hwyZXieWmdJ/mneufv4m3kMInH6xo5kYiKyuNCkom7ld1Lf+K78WItN+QYw+h1Hjgu
-	JFVIFcSU1UtcJduJlTj+NGnbS9lnHS7M1vXKSKe4=
-Received: from dbdlxv05.itg.ti.com (dbdlxv05.itg.ti.com [172.24.171.60])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3C5hMAi024981
-	for <meta-arago@arago-project.org>; Wed, 12 Apr 2017 00:43:22 -0500
-Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3C5hJAO023020
-	for <meta-arago@arago-project.org>; Wed, 12 Apr 2017 11:13:20 +0530
-Received: from [172.24.159.169] (172.24.159.169) by DBDE72.ent.ti.com
-	(172.24.171.97) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 12 Apr 2017 11:13:18 +0530
-To: Jacob Stiffler <j-stiffler@ti.com>, <meta-arago@arago-project.org>
-References: <1491827109-1896-1-git-send-email-j-stiffler@ti.com>
+	s=ti-com-17Q1; t=1492704872;
+	bh=Yq566DA+ZhQB/jh7xgMwjdFGH87iR1jdN2a6T8wow00=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=SYVHaa3Gkysd7DdApkd2iI+WITXmAizCcnrwo84G/vpfn7ATZx0S8wRWckF8MOyQl
+	uRqeS4iaiK4l+xCGBdLUyyvh/eC9Ia0zBMAkRVhdhPKc/SSQ+eBXKIyvoePjZJMdn5
+	E1oEYRFhybNFKCMze5ui333h8iRYeNzYwSZZPdN4=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3KGEWH9011393
+	for <meta-arago@arago-project.org>; Thu, 20 Apr 2017 11:14:32 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 20 Apr 2017 11:14:32 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3KGERKJ000659;
+	Thu, 20 Apr 2017 11:14:31 -0500
 From: Karthik Ramanan <a0393906@ti.com>
-Message-ID: <58EDBE76.2070801@ti.com>
-Date: Wed, 12 Apr 2017 11:13:18 +0530
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
-	Thunderbird/38.7.2
+To: <meta-arago@arago-project.org>
+Date: Thu, 20 Apr 2017 21:44:23 +0530
+Message-ID: <1492704863-125562-2-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1492704863-125562-1-git-send-email-a0393906@ti.com>
+References: <1492704863-125562-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1491827109-1896-1-git-send-email-j-stiffler@ti.com>
-X-Originating-IP: [172.24.159.169]
-Subject: Re: [morty/master][PATCH] external-linaro-toolchain: fix against upstream changes
+Subject: [morty 2/2] packagegroup*-graphics: Add wayland-ivi-extension
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,41 +43,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Apr 2017 05:43:23 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 20 Apr 2017 16:14:32 -0000
+Content-Type: text/plain
 
-ACK.
-I've verified that this resolves the problem.
+Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+---
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb      | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 10-Apr-17 5:55 PM, Jacob Stiffler wrote:
-> * Recent upstream changes cause bindir and sbindir to be removed if
->    they are empty.
-> * The bbappend in this layer assumes these directories exist.
-> * This change removes that assumption.
->
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->   meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
-> index 7648e36..e261259 100644
-> --- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
-> +++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
-> @@ -133,6 +133,7 @@ do_install_append() {
->   	sed -i -e "s# /lib/# ../../lib/#g" -e "s# /usr/lib/# ./#g" ${D}${libdir}/libpthread.so
->   
->   	if [ -d ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/libc/${bindir} ]; then
-> +		install -d ${D}${bindir}
->   		cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/libc/${bindir}/* ${D}${bindir}
->   	fi
->   
-> @@ -161,5 +162,4 @@ do_install_append() {
->   	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'rm -rf ${D}${includedir}/uapi/.install; rm -rf ${D}${includedir}/misc/.install; rm -rf ${D}${includedir}/misc/cxl.h; rm -rf ${D}${includedir}/scsi/.install; rm -rf ${D}${includedir}/scsi/scsi_netlink*; rm -rf ${D}${includedir}/scsi/scsi_bsg*; rm -rf ${D}${includedir}/scsi/cxlflash_ioctl.h; rm -rf ${D}${includedir}/scsi/fc; rm -rf ${D}${includedir}/xen', d)}
->   
->   	rm ${D}${base_libdir}/*.spec
-> -	rmdir ${D}${sbindir}
->   }
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+index 250a2f7..5dae1b5 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+@@ -8,6 +8,7 @@ GRAPHICS_WESTON = "\
+     weston \
+     weston-init \
+     weston-examples \
++    wayland-ivi-extension \
+ "
+ 
+ GRAPHICS_RDEPENDS = "\
+-- 
+1.9.1
 
 
