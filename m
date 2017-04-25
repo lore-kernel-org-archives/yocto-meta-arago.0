@@ -1,30 +1,30 @@
-Return-Path: <denis@denix.org>
+Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 41D3F52090
+	by arago-project.org (Postfix) with ESMTPS id 60D73529A8
 	for <meta-arago@arago-project.org>;
-	Mon, 24 Apr 2017 22:45:02 +0000 (UTC)
+	Tue, 25 Apr 2017 00:34:43 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 17A7020B85;
-	Mon, 24 Apr 2017 22:45:02 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 2306720B85;
+	Tue, 25 Apr 2017 00:34:43 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id USHwaAiQazA3; Mon, 24 Apr 2017 22:45:02 +0000 (UTC)
+	with ESMTP id Rz6iMf6YEXKY; Tue, 25 Apr 2017 00:34:43 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E8CC92006A;
-	Mon, 24 Apr 2017 22:45:00 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 032CB20174;
+	Tue, 25 Apr 2017 00:34:41 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 6DF09162473;
-	Mon, 24 Apr 2017 18:45:00 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
+	by mail.denix.org (Postfix) with ESMTP id 78CC516246E;
+	Mon, 24 Apr 2017 20:34:41 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Mon, 24 Apr 2017 18:44:59 -0400
-Message-Id: <1493073899-24051-1-git-send-email-denis@denix.org>
+Date: Mon, 24 Apr 2017 20:34:41 -0400
+Message-Id: <1493080481-25375-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [tisdk-build-scripts][PATCH] machine-specific-functions, run-opentest: add k2hk-hs-evm and k2g-hs-evm
+Subject: [morty/master][PATCH] arago-core-tisdk-image: unset DEPLOY_SPL_NAME for k2g devices similar to other KS2
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,59 +37,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Apr 2017 22:45:02 -0000
-
-From: Denys Dmytriyenko <denys@ti.com>
+X-List-Received-Date: Tue, 25 Apr 2017 00:34:44 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- lib/oesdk/machine-specific-functions |  2 +-
- lib/run-opentest                     | 12 ++++++++++++
- 2 files changed, 13 insertions(+), 1 deletion(-)
+ meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/lib/oesdk/machine-specific-functions b/lib/oesdk/machine-specific-functions
-index 1a2cea0..38ea670 100644
---- a/lib/oesdk/machine-specific-functions
-+++ b/lib/oesdk/machine-specific-functions
-@@ -21,7 +21,7 @@ parse_machines() {
-                 ARM9_MACHINES="$ARM9_MACHINES"" $m"
-                 ARCHS="$ARCHS""\n""ARM9"
-                 ;;
--            am335x-evm | am335x-hs-evm | am437x-evm | am437x-hs-evm | am37x-evm | am3517-evm | k2hk-evm | k2e-evm | k2e-hs-evm | k2g-evm | k2g-ice | k2l-evm | beagleboard | beaglebone | pandaboard | omap5-evm | dra7xx-evm | dra7xx-hs-evm | am57xx-evm | am57xx-hs-evm )
-+            am335x-evm | am335x-hs-evm | am437x-evm | am437x-hs-evm | am37x-evm | am3517-evm | k2hk-evm | k2hk-hs-evm | k2e-evm | k2e-hs-evm | k2g-evm | k2g-hs-evm | k2g-ice | k2l-evm | beagleboard | beaglebone | pandaboard | omap5-evm | dra7xx-evm | dra7xx-hs-evm | am57xx-evm | am57xx-hs-evm )
-                 CORTEX_MACHINES="$CORTEX_MACHINES"" $m"
-                 ARCHS="$ARCHS""\n""CORTEX"
-                 ;;
-diff --git a/lib/run-opentest b/lib/run-opentest
-index a05819a..501f622 100644
---- a/lib/run-opentest
-+++ b/lib/run-opentest
-@@ -31,6 +31,12 @@ set_opentest_platform() {
-         k2e-hs-evm )
-             oplatform="k2e-hsevm"
-             ;;
-+        k2hk-hs-evm )
-+            oplatform="k2hk-hsevm"
-+            ;;
-+        k2g-hs-evm )
-+            oplatform="k2g-hsevm"
-+            ;;
-         * )
-             return 2
-             ;;
-@@ -78,6 +84,12 @@ set_opentest_dtb() {
-         k2e-hs-evm )
-             odtb="keystone-k2e.dtb"
-             ;;
-+        k2hk-hs-evm )
-+            odtb="keystone-k2hk.dtb"
-+            ;;
-+        k2g-hs-evm )
-+            odtb="keystone-k2g.dtb"
-+            ;;
-         * )
-             odtb=""
-             ;;
+diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
+index 41b8d68..974db93 100644
+--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
+@@ -4,6 +4,7 @@ DEPLOY_SPL_NAME_omapl138 = ""
+ DEPLOY_SPL_NAME_k2hk = ""
+ DEPLOY_SPL_NAME_k2l-evm = ""
+ DEPLOY_SPL_NAME_k2e = ""
++DEPLOY_SPL_NAME_k2g = ""
+ 
+ ARAGO_TISDK_IMAGE ?= "arago-core-tisdk-image"
+ export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}"
 -- 
 2.7.4
 
