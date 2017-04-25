@@ -1,40 +1,37 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id DCC1952970
+Return-Path: <dmurphy@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id C5E30529EC
 	for <meta-arago@arago-project.org>;
-	Tue, 25 Apr 2017 09:16:02 +0000 (UTC)
+	Tue, 25 Apr 2017 11:58:47 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v3P9G260023786
-	for <meta-arago@arago-project.org>; Tue, 25 Apr 2017 04:16:02 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v3PBwleG006762
+	for <meta-arago@arago-project.org>; Tue, 25 Apr 2017 06:58:47 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1493111762;
-	bh=KcvQdako+KrBoABoFfta2DjkDARKQAS4ZyHsb60SCfQ=;
-	h=Subject:To:References:CC:From:Date:In-Reply-To;
-	b=ZwlhOO3AnQ57vVQBgi2LE0IqZeWlzPg+CziLdUjhFCPMUiNAu+Qq++29yJO37dGm6
-	uDAieUJzNsd5a+ytxCEA6PEI04IhF2csF5qiza8eDIoYk+ThmUqUYVDx9K/ZLnpbwH
-	hwj3NZs51LJZhL55cnsfnKcdNWMjddtvpBMDDuik=
-Received: from dbdlxv05.itg.ti.com (dbdlxv05.itg.ti.com [172.24.171.60])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3P9G1oT022007
-	for <meta-arago@arago-project.org>; Tue, 25 Apr 2017 04:16:02 -0500
-Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3P9FxDs031015
-	for <meta-arago@arago-project.org>; Tue, 25 Apr 2017 14:46:00 +0530
-Received: from [172.24.159.169] (172.24.159.169) by DBDE72.ent.ti.com
-	(172.24.171.97) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 25 Apr 2017 14:45:58 +0530
-To: Denys Dmytriyenko <denys@ti.com>
-References: <1492704863-125562-1-git-send-email-a0393906@ti.com>
-	<20170424170439.GA24846@edge>
-From: Karthik Ramanan <a0393906@ti.com>
-Message-ID: <58FF13CB.6060700@ti.com>
-Date: Tue, 25 Apr 2017 14:45:55 +0530
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
-	Thunderbird/38.7.2
+	s=ti-com-17Q1; t=1493121527;
+	bh=rzCtyoc6zqDJBlU2e7x+OHy+ftNqQaqymUDJWuZ6Zrc=;
+	h=From:To:CC:Subject:Date;
+	b=CTsAlQZSXjlGfS2x9ZhIPaA2xXXpNcwXDETHaxry52clehjg6ahsH6jgcMGuufHQk
+	dWSMnTy+KEhFw8IZJgi4TBKhwGQCWf7ti/knGr/ieiws1VDwbiDGNPEuPhYBeB3p9q
+	ZHGJ59pxzhxkpwNfMlEi7xqPahV6yhv5sxzMIyQI=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3PBwlrW005576
+	for <meta-arago@arago-project.org>; Tue, 25 Apr 2017 06:58:47 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 25 Apr 2017 06:58:46 -0500
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
+	[128.247.22.53])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v3PBwlXm007556;	Tue, 25 Apr 2017 06:58:47 -0500
+Received: from localhost (a0272616local-lt.dhcp.ti.com [172.22.92.18])	by
+	legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id
+	v3PBwl311778; Tue, 25 Apr 2017 06:58:47 -0500 (CDT)
+From: Dan Murphy <dmurphy@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 25 Apr 2017 06:58:40 -0500
+Message-ID: <20170425115840.27376-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.12.2
 MIME-Version: 1.0
-In-Reply-To: <20170424170439.GA24846@edge>
-X-Originating-IP: [172.24.159.169]
-Cc: meta-arago@arago-project.org
-Subject: Re: [morty 1/2] wayland-ivi-extension: add recipe
+Subject: [PATCH] optee: Fix optee os build failure with upstream fix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,303 +44,56 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Apr 2017 09:16:03 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 25 Apr 2017 11:58:48 -0000
+Content-Type: text/plain
 
-Denys,
+Fix build error on am57 by updating the optee os repo
+which contains the fix.
 
-Comments inlined.
+This will need the optee client and test to be updated as well
 
-Regards
-Karthik
+Reported-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ meta-arago-distro/recipes-security/optee/optee-client.bbappend   | 2 +-
+ meta-arago-distro/recipes-security/optee/optee-os_git.bbappend   | 2 +-
+ meta-arago-distro/recipes-security/optee/optee-test_git.bbappend | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-On 24-Apr-17 10:34 PM, Denys Dmytriyenko wrote:
-> On Thu, Apr 20, 2017 at 09:44:22PM +0530, Karthik Ramanan wrote:
->> This recipe is primarily adapted from the meta-agl.
->> URL reference: https://goo.gl/m0LLmT
->>
->> The recipe brings in the capability to use the ivi-shell
->> feature of the Weston and provides utilities to manage
->> the screens, layers and surfaces.
->>
->> force-type-conversion.patch overlayed in the recipe is required
->> to address a compilation issue seen only with TI graphics
->> stack.
->>
->> The other patches are required on top of the 1.11.0 version to
->> fully use the multiple screen features on TI platforms.
->>
->> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
->> ---
->>   ...-add-surfaces-Add-screenId-as-an-argument.patch | 101 +++++++++++++++++++++
->>   ...yer-add-surfaces-surface-layer-management.patch |  69 ++++++++++++++
->>   .../force-type-conversion.patch                    |  13 +++
->>   .../wayland/wayland-ivi-extension_1.11.0.bb        |  33 +++++++
->>   4 files changed, 216 insertions(+)
->>   create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/0001-layer-add-surfaces-Add-screenId-as-an-argument.patch
->>   create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/0002-layer-add-surfaces-surface-layer-management.patch
->>   create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/force-type-conversion.patch
->>   create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb
->>
->> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/0001-layer-add-surfaces-Add-screenId-as-an-argument.patch b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/0001-layer-add-surfaces-Add-screenId-as-an-argument.patch
->> new file mode 100644
->> index 0000000..b8afc0d
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/0001-layer-add-surfaces-Add-screenId-as-an-argument.patch
->> @@ -0,0 +1,101 @@
->> +From 0a368e3d65f3f3cbe193e9e4c6b7b7ddf4ec7b54 Mon Sep 17 00:00:00 2001
->> +From: Ramprasad N <x0038811@ti.com>
->> +Date: Thu, 20 Apr 2017 13:24:20 +0530
->> +Subject: [PATCH 1/2] layer-add-surfaces: Add screenId as an argument
->> +
->> +Add Screen_ID as a argument to handle multiple screens.
->> +Removed choose_screen function as it is redundant
->> +after this change
->> +
->> +Signed-off-by: Ramprasad N <x0038811@ti.com>
->> +Reviewed-by: Karthik Ramanan <a0393906@ti.com>
->> +---
->> + .../layer-add-surfaces/src/layer-add-surfaces.c    | 47 +++++-----------------
->> + 1 file changed, 11 insertions(+), 36 deletions(-)
->> +
->> +diff --git a/ivi-layermanagement-examples/layer-add-surfaces/src/layer-add-surfaces.c b/ivi-layermanagement-examples/layer-add-surfaces/src/layer-add-surfaces.c
->> +index aaff7de..46d7d15 100644
->> +--- a/ivi-layermanagement-examples/layer-add-surfaces/src/layer-add-surfaces.c
->> ++++ b/ivi-layermanagement-examples/layer-add-surfaces/src/layer-add-surfaces.c
->> +@@ -32,6 +32,7 @@
->> +
->> + t_ilm_uint screenWidth;
->> + t_ilm_uint screenHeight;
->> ++t_ilm_uint screen_ID;
->> + t_ilm_uint layer;
->> + pthread_mutex_t mutex;
->> + static pthread_cond_t  waiterVariable = PTHREAD_COND_INITIALIZER;
->> +@@ -91,48 +92,20 @@ static void callbackFunction(ilmObjectType object, t_ilm_uint id, t_ilm_bool cre
->> +     }
->> + }
->> +
->> +-/* Choose the display with the largest resolution.*/
->> +-static t_ilm_uint choose_screen(void)
->> ++int main (int argc, const char * argv[])
->> + {
->> +     struct ilmScreenProperties screenProperties;
->> +-    t_ilm_uint* screen_IDs = NULL;
->> +-    t_ilm_uint screen_ID = 0;
->> +-    t_ilm_uint screen_count = NULL;
->> +-    t_ilm_uint choosen_width = 0;
->> +-    t_ilm_uint choosen_height = 0;
->> +-    int i;
->> +-
->> +-    ilm_getScreenIDs(&screen_count, &screen_IDs);
->> +-
->> +-    for (i = 0; i<screen_count; i++)
->> +-    {
->> +-        ilm_getPropertiesOfScreen(screen_IDs[i], &screenProperties);
->> +-        if (screenProperties.screenWidth > choosen_width) {
->> +-            choosen_width = screenProperties.screenWidth;
->> +-            choosen_height = screenProperties.screenHeight;
->> +-            screen_ID = screen_IDs[i];
->> +-        }
->> +-    }
->> +
->> +-    screenWidth = choosen_width;
->> +-    screenHeight = choosen_height;
->> +-
->> +-    free(screen_IDs);
->> +-
->> +-    return screen_ID;
->> +-}
->> +-
->> +-int main (int argc, const char * argv[])
->> +-{
->> +     // Get command-line options
->> +-    if ( argc != 3) {
->> +-        printf("Call layer-add-surface <layerID> <number_of_surfaces>\n");
->> ++    if ( argc != 4) {
->> ++        printf("Call layer-add-surface <screenID> <layerID> <number_of_surfaces>\n");
->> +         return -1;
->> +     }
->> +
->> +-    layer = strtol(argv[1], NULL, 0);
->> ++    screen_ID = strtol(argv[1], NULL, 0);
->> ++    layer = strtol(argv[2], NULL, 0);
->> +
->> +-    number_of_surfaces = strtol(argv[2], NULL, 0);
->> ++    number_of_surfaces = strtol(argv[3], NULL, 0);
->> +
->> +     pthread_mutexattr_t a;
->> +     if (pthread_mutexattr_init(&a) != 0)
->> +@@ -156,11 +129,13 @@ int main (int argc, const char * argv[])
->> +     pthread_mutexattr_destroy(&a);
->> +
->> +     t_ilm_layer renderOrder[1];
->> +-    t_ilm_uint screen_ID;
->> +     renderOrder[0] = layer;
->> +     ilm_init();
->> +
->> +-    screen_ID = choose_screen();
->> ++    ilm_getPropertiesOfScreen(screen_ID, &screenProperties);
->> ++    screenWidth = screenProperties.screenWidth;
->> ++    screenHeight = screenProperties.screenHeight;
->> ++    printf("GetPropertiesOfScreen: screen ID (%d), Width (%u), Height (%u)\n", screen_ID, screenWidth, screenHeight);
->> +     ilm_layerCreateWithDimension(&layer, screenWidth, screenHeight);
->> +     printf("CreateWithDimension: layer ID (%d), Width (%u), Height (%u)\n", layer, screenWidth, screenHeight);
->> +     ilm_layerSetVisibility(layer,ILM_TRUE);
->> +--
->> +1.9.1
->> +
->> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/0002-layer-add-surfaces-surface-layer-management.patch b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/0002-layer-add-surfaces-surface-layer-management.patch
->> new file mode 100644
->> index 0000000..eff4a79
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/0002-layer-add-surfaces-surface-layer-management.patch
->> @@ -0,0 +1,69 @@
->> +From 0d164d686147d2d3b08cd79ef9930f62ff8d528b Mon Sep 17 00:00:00 2001
->> +From: Ramprasad N <x0038811@ti.com>
->> +Date: Thu, 20 Apr 2017 13:30:31 +0530
->> +Subject: [PATCH 2/2] layer-add-surfaces: surface-layer management
->> +
->> +This patch prevents surfaces from getting added to a new layer
->> +if they are already registered to an existing layer.
->> +
->> +Signed-off-by: Ramprasad N <x0038811@ti.com>
->> +Reviewed-by: Karthik Ramanan <a0393906@ti.com>
->> +---
->> + .../layer-add-surfaces/src/layer-add-surfaces.c    | 35 ++++++++++++++++++++--
->> + 1 file changed, 33 insertions(+), 2 deletions(-)
->> +
->> +diff --git a/ivi-layermanagement-examples/layer-add-surfaces/src/layer-add-surfaces.c b/ivi-layermanagement-examples/layer-add-surfaces/src/layer-add-surfaces.c
->> +index 46d7d15..cc76117 100644
->> +--- a/ivi-layermanagement-examples/layer-add-surfaces/src/layer-add-surfaces.c
->> ++++ b/ivi-layermanagement-examples/layer-add-surfaces/src/layer-add-surfaces.c
->> +@@ -59,14 +59,45 @@ static void surfaceCallbackFunction(t_ilm_uint id, struct ilmSurfaceProperties*
->> +         configure_ilm_surface(id, sp->origSourceWidth, sp->origSourceHeight);
->> +     }
->> + }
->> +-
->> + static void callbackFunction(ilmObjectType object, t_ilm_uint id, t_ilm_bool created, void *user_data)
->> + {
->> +     (void)user_data;
->> +     struct ilmSurfaceProperties sp;
->> ++    t_ilm_int llength, slength, i, j;
->> ++    t_ilm_uint* layerIDs = NULL;
->> ++    t_ilm_uint* surfaceIDs = NULL;
->> ++    t_ilm_bool addRequired = ILM_TRUE;
->> +
->> +     if (object == ILM_SURFACE) {
->> +-        if (created) {
->> ++        ilm_getLayerIDs(&llength, &layerIDs);
->> ++
->> ++        if(llength > 1) {
->> ++            for(i=0; i < llength; i++) {
->> ++                if(layerIDs[i] != layer) {
->> ++                    ilm_getSurfaceIDsOnLayer(layerIDs[i], &slength, &surfaceIDs);
->> ++                    for(j=0; j < slength; j++){
->> ++                        if(surfaceIDs[j] == id){
->> ++                            addRequired = ILM_FALSE;
->> ++                            printf("surface %d is already attached to layer %d\n", id, layerIDs[i]);
->> ++                        }
->> ++
->> ++                    }
->> ++
->> ++                    if(surfaceIDs) {
->> ++                        free(surfaceIDs);
->> ++                    }
->> ++
->> ++                }
->> ++
->> ++            }
->> ++
->> ++        }
->> ++
->> ++        if(layerIDs) {
->> ++            free(layerIDs);
->> ++        }
->> ++
->> ++        if (created && addRequired) {
->> +             if (number_of_surfaces > 0) {
->> +                 number_of_surfaces--;
->> +                 printf("surface                : %d created\n",id);
->> +--
->> +1.9.1
->> +
->> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/force-type-conversion.patch b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/force-type-conversion.patch
->> new file mode 100644
->> index 0000000..a72aeed
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/force-type-conversion.patch
->> @@ -0,0 +1,13 @@
->> +diff --git a/ivi-layermanagement-examples/EGLWLMockNavigation/src/OpenGLES2App.cpp b/ivi-layermanagement-examples/EGLWLMockNavigation/src/OpenGLES2App.cpp
->> +index 2e65864..e14dbc0 100644
->> +--- a/ivi-layermanagement-examples/EGLWLMockNavigation/src/OpenGLES2App.cpp
->> ++++ b/ivi-layermanagement-examples/EGLWLMockNavigation/src/OpenGLES2App.cpp
->> +@@ -244,7 +247,7 @@ bool OpenGLES2App::createEGLContext()
->> +     m_eglContextStruct.eglSurface = NULL;
->> +     m_eglContextStruct.eglContext = NULL;
->> +
->> +-    m_eglContextStruct.eglDisplay = eglGetDisplay(m_wlContextStruct.wlDisplay);
->> ++    m_eglContextStruct.eglDisplay = eglGetDisplay((EGLNativeDisplayType)m_wlContextStruct.wlDisplay);
->> +     eglstatus = eglGetError();
->> +     if (!m_eglContextStruct.eglDisplay)
->> +     {
->> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb
->> new file mode 100644
->> index 0000000..157e1ee
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb
->> @@ -0,0 +1,33 @@
->> +SUMMARY = "Wayland IVI Extension"
->> +DESCRIPTION = "GENIVI Layer Management API based on Wayland IVI Extension"
->> +HOMEPAGE = "http://projects.genivi.org/wayland-ivi-extension"
->> +BUGTRACKER = "http://bugs.genivi.org/enter_bug.cgi?product=Wayland%20IVI%20Extension"
->> +LICENSE = "Apache-2.0"
->> +LIC_FILES_CHKSUM = "file://LICENSE;md5=1f1a56bb2dadf5f2be8eb342acf4ed79"
->> +
->> +SRCREV = "c9001582b10ce209c37b42dd560947c5aa8928b3"
->> +
->> +SRC_URI = "git://github.com/GENIVI/${BPN}.git;protocol=http \
->> +           file://force-type-conversion.patch \
->> +           file://0001-layer-add-surfaces-Add-screenId-as-an-argument.patch \
->> +           file://0002-layer-add-surfaces-surface-layer-management.patch \
->> +    "
->> +
->> +S = "${WORKDIR}/git"
->> +
->> +DEPENDS = "weston virtual/libgles2 pixman"
->> +
->> +inherit cmake
->> +
->> +EXTRA_OECMAKE := "-DWITH_ILM_INPUT=1"
->> +EXTRA_OECMAKE += "-DLIB_SUFFIX=${@d.getVar('baselib', True).replace('lib', '')}"
-> What these 2 lines are doing? There's no need to use := in the first line. And
-> in the second line, why so convoluted way - all it does is pass an empty string.
-> Can these 2 lines be simplified and merged into one?
-Few points:
-a) This recipe section with is taken directly from the meta-agl 
-reference that I provided.
-b) The immediate variable expansion ":=", can be avoided but its fine to 
-have right. Is there a recommended best practice?
-c) You are right that the expansion results in an empty string, but I 
-looked further into this and I see that such a usage is quite prevalent.
-I don't quite understand the intended purpose. Can you please let me 
-know what the intended purpose of this could be?
-Again, I can change this but like I mentioned this is coming from the 
-upstream recipe. Let me know what you think?
-
->
->> +
->> +PR = "r3"
->> +
->> +# Need these temporarily to prevent a non-fatal do_package_qa issue
->> +INSANE_SKIP_${PN} += "dev-deps"
->> +INSANE_SKIP_${PN}-dev += "dev-elf dev-so"
->> -- 
->> 1.9.1
->>
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+index df7587d2..cdf68545 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+@@ -4,4 +4,4 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
+            file://tee-supplicant.service"
+ 
+ BRANCH = "ti_optee_client"
+-SRCREV = "1df4046bd729e866743454a18a71e72228e585fd"
++SRCREV = "0b7aa7d6ff08b20ba20c425eed8b2023a179ed85"
+diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+index 399bac2f..c6e5be4a 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+@@ -8,7 +8,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
+            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
+ "
+ BRANCH = "ti_optee_os"
+-SRCREV = "79a8c877a637113b47f3e9fca417d33c5eacf9c9"
++SRCREV = "941cd2d94db90bde2c6986cb55cd5b5c7bef8457"
+ 
+ EXTRA_OEMAKE = "CROSS_COMPILE_core=${HOST_PREFIX}  \
+                 CROSS_COMPILE_ta_arm32=${HOST_PREFIX}  \
+diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+index 3ab61775..62dc6c72 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+@@ -3,4 +3,4 @@ PR_append = ".arago1"
+ SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
+ 
+ BRANCH = "ti_optee_test"
+-SRCREV = "170a1ee60a98b407790d97dc682568981d344ca3"
++SRCREV = "d232f17ac35d17da3b2446651facf587ee4696f2"
+-- 
+2.12.2
 
 
