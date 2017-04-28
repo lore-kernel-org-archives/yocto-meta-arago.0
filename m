@@ -1,37 +1,36 @@
-Return-Path: <denys@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 3955952A78
+Return-Path: <sam.nelson@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 50CA952A3E
 	for <meta-arago@arago-project.org>;
-	Fri, 28 Apr 2017 14:32:43 +0000 (UTC)
+	Fri, 28 Apr 2017 17:58:43 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v3SEWWrk008660
-	for <meta-arago@arago-project.org>; Fri, 28 Apr 2017 09:32:32 -0500
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v3SHwhba000972
+	for <meta-arago@arago-project.org>; Fri, 28 Apr 2017 12:58:43 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1493389952;
-	bh=d/oRxxDwAJowYAec8IL945Rh8mZTlbRb6H+H3AI3i7c=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=NI2aN+HqpK6pVrAZERSBJs/c5xw1bdHloamqTLPV4KgHQ2DP5QhD74xhmQfnPlIZT
-	es2SrUCjKWG0xZXtbDJ8khXhs8KkxcgNvG7MQgLi2tUizEGZWm3vgdwhrZqqmUOiC1
-	QB6Uz6dP6BYPDMxqa5PZCwELUs5oEoM3tVLxvaEk=
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3SEWRoS015386
-	for <meta-arago@arago-project.org>; Fri, 28 Apr 2017 09:32:27 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 28 Apr 2017 09:32:26 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3SEWQ0d032088;
-	Fri, 28 Apr 2017 09:32:26 -0500
-Date: Fri, 28 Apr 2017 10:32:26 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Sam Nelson <sam.nelson@ti.com>
-Message-ID: <20170428143225.GJ31608@edge>
-References: <1493260049-39927-1-git-send-email-sam.nelson@ti.com>
+	s=ti-com-17Q1; t=1493402323;
+	bh=n9vGfc9ZL0tQyTxvu71qJ6V1iraCdWeIzblmVK48M98=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=hQKVQs77HmGGEkpx3Fp/su/K7oTYhImg4f5HQtGlkrFaNeJ7BuyaFqH4GrNZnFCic
+	/o8gjKzxRWabbnAVKDooQKBUW8Y7Dfv0G84pE3/pQX94Igxf6uK85BmzF3FUpNcpiv
+	A0v707AONu59tsMd2lZKf27XO0diyOW1rfUvnyGU=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v3SHwhtR023166
+	for <meta-arago@arago-project.org>; Fri, 28 Apr 2017 12:58:43 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 28 Apr 2017 12:58:43 -0500
+Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v3SHwfrO008305;	Fri, 28 Apr 2017 12:58:42 -0500
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 28 Apr 2017 13:58:40 -0400
+Message-ID: <1493402320-11537-2-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1493402320-11537-1-git-send-email-sam.nelson@ti.com>
+References: <1493402320-11537-1-git-send-email-sam.nelson@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1493260049-39927-1-git-send-email-sam.nelson@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [morty/master][PATCH] arago-tisdk-addons: Add ipc related packages
+Subject: [morty/master][PATCH v2 2/2] arago-base-tisdk-server-extra: Add ti-ipc-examples-linux package
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,54 +43,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Apr 2017 14:32:45 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 28 Apr 2017 17:58:44 -0000
+Content-Type: text/plain
 
-Sam,
+ti-ipc-examples-linux adds binaries for Host Linux to Slave RTOS IPC
+examples
 
-This addition pushes the size of k2hk rootfs over the limit - need to find 
-something to move to the extras image...
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+---
+ .../packagegroups/packagegroup-arago-base-tisdk-server-extra.bb        | 3 +++
+ 1 file changed, 3 insertions(+)
 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+index 784c5b4..f0248d3 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+@@ -106,6 +106,7 @@ ARAGO_TI_KEYSTONE_PKGS = "\
+     ipsecmgr-mod \
+     k2-initramfs \
+     parse-ip \
++    ti-ipc-examples-linux \
+     "
+ 
+ # The following packages are not yet ready for k2g-evm
+@@ -116,6 +117,8 @@ ARAGO_TI_KEYSTONE_PKGS = "\
+ 
+ ARAGO_TI_PKGS = ""
+ ARAGO_TI_PKGS_append_keystone = " ${ARAGO_TI_KEYSTONE_PKGS}"
++ARAGO_TI_PKGS_append_omap-a15 = " ti-ipc-examples-linux"
++ARAGO_TI_PKGS_append_omapl138 = " ti-ipc-examples-linux"
+ 
+ # Disable netapi due to libnl and xfrm conflict
+ #    netapi
+-- 
+1.9.1
 
-On Wed, Apr 26, 2017 at 10:27:29PM -0400, Sam Nelson wrote:
-> Add ipc packages for omapl138
-> Add ti-ipc-examples-linux to Keystone and omap-a15
-> 
-> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> ---
->  .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb   | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> index 5ad6655..c8b0f4a 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> @@ -55,6 +55,11 @@ UTILS_append_omap-a15 = " mmc-utils \
->                            ti-ipc-rtos-fw \
->                            uio-test-pruss \
->                            uio-module-drv-test \
-> +                          ti-ipc-examples-linux \
-> +"
-> +
-> +UTILS_append_omapl138 = " ti-ipc-rtos-fw \
-> +                          ti-ipc-examples-linux \
->  "
->  
->  UTILS_append_dra7xx = " canutils \
-> @@ -66,6 +71,7 @@ UTILS_append_dra7xx = " canutils \
->  UTILS_append_keystone = " \
->      uio-module-drv-test \
->      ti-ipc-rtos-fw \
-> +    ti-ipc-examples-linux \
->  "
->  
->  UTILS_append_k2hk = " \
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
