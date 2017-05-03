@@ -1,39 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id B9B1F529A8
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id D5C4D520C0
 	for <meta-arago@arago-project.org>;
-	Wed,  3 May 2017 18:55:25 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v43ItPEY005389
-	for <meta-arago@arago-project.org>; Wed, 3 May 2017 13:55:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1493837725;
-	bh=ZdLOUGW2Y55WSXyLJ3P5gmRM6KxRl47qn0qSybowRGY=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=bvKHi6SzQQMUw1QOK4cBBNcaFf5bT2/yYOHAgaqZIVhKxKz+2F1VSP0YpycszWID2
-	zmgK/2LxwUg91H2mQ8SOWvKmbDgnDHZbzSu6nqKjm2oLNX0InopnMJFY1sqVJF+8Rw
-	jN3pr7Zq4QksSEtzEWuVPQMHt81Xpi6WtHrhDKzU=
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v43ItP81019472
-	for <meta-arago@arago-project.org>; Wed, 3 May 2017 13:55:25 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 3 May 2017 13:55:24 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v43ItOj2020099;
-	Wed, 3 May 2017 13:55:24 -0500
-Date: Wed, 3 May 2017 14:55:24 -0400
+	Wed,  3 May 2017 22:22:38 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 93CC820B54;
+	Wed,  3 May 2017 22:22:37 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 8fIYIRKefsry; Wed,  3 May 2017 22:22:37 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 73D0820756;
+	Wed,  3 May 2017 22:22:36 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id ECC8716247B;
+	Wed,  3 May 2017 18:22:35 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
-To: Sam Nelson <sam.nelson@ti.com>
-Message-ID: <20170503185523.GE16330@edge>
-References: <1493410824-49935-1-git-send-email-sam.nelson@ti.com>
-	<1493410824-49935-2-git-send-email-sam.nelson@ti.com>
-	<20170501214828.GX31608@edge>
-MIME-Version: 1.0
-In-Reply-To: <20170501214828.GX31608@edge>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [morty/master][PATCH v3 2/2] arago-base-tisdk-server-extra: Add ti-ipc-examples-linux package
+To: meta-arago@arago-project.org
+Date: Wed,  3 May 2017 18:22:35 -0400
+Message-Id: <1493850155-121821-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH] packagegroup-arago-qte: add qmlplugins of qtquickcontrols and qtquickcontrols2
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -46,68 +37,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 May 2017 18:55:26 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 03 May 2017 22:22:41 -0000
 
-On Mon, May 01, 2017 at 05:48:28PM -0400, Denys Dmytriyenko wrote:
-> On Fri, Apr 28, 2017 at 04:20:24PM -0400, Sam Nelson wrote:
-> > ti-ipc-examples-linux adds binaries for Host Linux to Slave RTOS IPC
-> > examples
-> > 
-> > Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> > 
-> > ---
-> > Changes from previous patch
-> > Remove for omap-a15
-> 
-> Does it mean omap-a15 won't have ipc examples? Don't you need to add them to 
-> another packagegroup?
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-core/packagegroups/packagegroup-arago-qte.bb              | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Sam,
-
-Just a gentle reminder that patch #2 has not been merged in, so there are no 
-ipc examples in any of the rootfs. Let me know if you have further questions. 
-Thanks.
-
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+index 5500ea2..74fb85e 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to add Qt embedded related packages"
+ LICENSE = "MIT"
+-PR = "r11"
++PR = "r12"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -39,6 +39,8 @@ QT5_ESSENTIALS = "\
+     qtwebkit-qmlplugins \
+     qtquick1-plugins \
+     qtquick1-qmlplugins \
++    qtquickcontrols-qmlplugins \
++    qtquickcontrols2-qmlplugins \
+     qtwebengine-qmlplugins \
+     liberation-fonts \
+ "
 -- 
-Denys
+2.7.4
 
-
-> > ---
-> > ---
-> >  .../packagegroups/packagegroup-arago-base-tisdk-server-extra.bb         | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
-> > index 784c5b4..56be64e 100644
-> > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
-> > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
-> > @@ -106,6 +106,7 @@ ARAGO_TI_KEYSTONE_PKGS = "\
-> >      ipsecmgr-mod \
-> >      k2-initramfs \
-> >      parse-ip \
-> > +    ti-ipc-examples-linux \
-> >      "
-> >  
-> >  # The following packages are not yet ready for k2g-evm
-> > @@ -116,6 +117,7 @@ ARAGO_TI_KEYSTONE_PKGS = "\
-> >  
-> >  ARAGO_TI_PKGS = ""
-> >  ARAGO_TI_PKGS_append_keystone = " ${ARAGO_TI_KEYSTONE_PKGS}"
-> > +ARAGO_TI_PKGS_append_omapl138 = " ti-ipc-examples-linux"
-> >  
-> >  # Disable netapi due to libnl and xfrm conflict
-> >  #    netapi
-> > -- 
-> > 1.9.1
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
