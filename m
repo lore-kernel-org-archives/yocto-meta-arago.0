@@ -1,32 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 378AC5297F
+	by arago-project.org (Postfix) with ESMTPS id 3394452094
 	for <meta-arago@arago-project.org>;
 	Thu,  4 May 2017 15:40:32 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 29BE020BE6;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 2D7C920BE9;
 	Thu,  4 May 2017 15:40:32 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id x3akVWvVScpM; Thu,  4 May 2017 15:40:32 +0000 (UTC)
+	with ESMTP id 1pm6CrkUj6Cc; Thu,  4 May 2017 15:40:32 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id EDD6820873;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id EB8A720066;
 	Thu,  4 May 2017 15:40:30 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 7270C162493;
+	by mail.denix.org (Postfix) with ESMTP id 623DD162439;
 	Thu,  4 May 2017 11:40:30 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu,  4 May 2017 11:40:21 -0400
-Message-Id: <1493912421-129421-2-git-send-email-denis@denix.org>
+Date: Thu,  4 May 2017 11:40:20 -0400
+Message-Id: <1493912421-129421-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1493912421-129421-1-git-send-email-denis@denix.org>
-References: <1493912421-129421-1-git-send-email-denis@denix.org>
-Subject: [tisdk-build-scripts][PATCH 2/2] configs/farm/poky*: add Poky configs
+Subject: [tisdk-build-scripts][PATCH 1/2] configs/farm/distroless*: add distroless configs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,17 +43,17 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- configs/farm/poky-master.txt | 196 +++++++++++++++++++++++++++++++++++++++++++
- configs/farm/poky-morty.txt  | 196 +++++++++++++++++++++++++++++++++++++++++++
+ configs/farm/distroless-master.txt | 196 +++++++++++++++++++++++++++++++++++++
+ configs/farm/distroless-morty.txt  | 196 +++++++++++++++++++++++++++++++++++++
  2 files changed, 392 insertions(+)
- create mode 100644 configs/farm/poky-master.txt
- create mode 100644 configs/farm/poky-morty.txt
+ create mode 100644 configs/farm/distroless-master.txt
+ create mode 100644 configs/farm/distroless-morty.txt
 
-diff --git a/configs/farm/poky-master.txt b/configs/farm/poky-master.txt
+diff --git a/configs/farm/distroless-master.txt b/configs/farm/distroless-master.txt
 new file mode 100644
-index 0000000..900f6a1
+index 0000000..bb7153a
 --- /dev/null
-+++ b/configs/farm/poky-master.txt
++++ b/configs/farm/distroless-master.txt
 @@ -0,0 +1,196 @@
 +################################################################################
 +#                      Core TISDK configuration file                           #
@@ -118,7 +116,7 @@ index 0000000..900f6a1
 +#       - BUILD_ROOT/arm9-1/arago-tmp
 +#       - BUILD_ROOT/cortex-1/arago-tmp
 +#       - BUILD_ROOT/cortex-2/arago-tmp
-+BUILD_ROOT="/OE/farm-poky-master"
++BUILD_ROOT="/OE/farm-distroless-master"
 +
 +# This variable points to the base location where files will be extracted for
 +# testing purposes.  This should not be confused with the NFS root which
@@ -182,7 +180,7 @@ index 0000000..900f6a1
 +
 +# This is the configuration file to use in the oe-layertool-setup.sh script
 +# to configure the build.
-+CONFIG_FILE="${BUILD_ROOT}/configs/poky-master-config.txt"
++CONFIG_FILE="${BUILD_ROOT}/configs/distroless-master-config.txt"
 +
 +# This directory will contain the log files for the various parts of the build.
 +# This includes:
@@ -253,11 +251,11 @@ index 0000000..900f6a1
 +# will be copied to the given directory.  If not then they will not be
 +# copied and will be cleaned if CLEAN_AFTER_COPY is true.
 +BACKUP_RESULTS=""
-diff --git a/configs/farm/poky-morty.txt b/configs/farm/poky-morty.txt
+diff --git a/configs/farm/distroless-morty.txt b/configs/farm/distroless-morty.txt
 new file mode 100644
-index 0000000..1b1aa72
+index 0000000..cdea9b9
 --- /dev/null
-+++ b/configs/farm/poky-morty.txt
++++ b/configs/farm/distroless-morty.txt
 @@ -0,0 +1,196 @@
 +################################################################################
 +#                      Core TISDK configuration file                           #
@@ -320,7 +318,7 @@ index 0000000..1b1aa72
 +#       - BUILD_ROOT/arm9-1/arago-tmp
 +#       - BUILD_ROOT/cortex-1/arago-tmp
 +#       - BUILD_ROOT/cortex-2/arago-tmp
-+BUILD_ROOT="/OE/farm-poky-morty"
++BUILD_ROOT="/OE/farm-distroless-morty"
 +
 +# This variable points to the base location where files will be extracted for
 +# testing purposes.  This should not be confused with the NFS root which
@@ -384,7 +382,7 @@ index 0000000..1b1aa72
 +
 +# This is the configuration file to use in the oe-layertool-setup.sh script
 +# to configure the build.
-+CONFIG_FILE="${BUILD_ROOT}/configs/poky-morty-config.txt"
++CONFIG_FILE="${BUILD_ROOT}/configs/distroless-morty-config.txt"
 +
 +# This directory will contain the log files for the various parts of the build.
 +# This includes:
