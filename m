@@ -1,30 +1,37 @@
 Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id E3948529E5
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 9B446529E6
 	for <meta-arago@arago-project.org>;
-	Sat,  6 May 2017 01:03:19 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id D6C9220BE8;
-	Sat,  6 May 2017 01:03:19 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id LSfQFq5BHQtR; Sat,  6 May 2017 01:03:19 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id AB9732023B;
-	Sat,  6 May 2017 01:03:17 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 2D62516249D;
-	Fri,  5 May 2017 21:03:17 -0400 (EDT)
+	Sat,  6 May 2017 01:08:07 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v46187nj011903
+	for <meta-arago@arago-project.org>; Fri, 5 May 2017 20:08:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1494032887;
+	bh=dqylh6wC1ojY6roolFVVcj1HT2MKG/WOZAsVl8T7Uhs=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=Pg/Varvt4xk4Wo6AeyBuk8ehLRGvayG74+XIStOpzrG74/byqOLFCmUtyEIFQWJ7l
+	6Sla0Wb+YlZa4nehZ8fubhi0iZcVLVZDWPhkO3Gq7KBurpO8noRaeR8w32xJLkZmo6
+	7XSDhm/3AXAkk7YxQDUSgO/C/eRzNqmxQ577y5qY=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v46187X0023203
+	for <meta-arago@arago-project.org>; Fri, 5 May 2017 20:08:07 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Fri, 5 May 2017 20:08:07 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v46187Nh006203;
+	Fri, 5 May 2017 20:08:07 -0500
+Date: Fri, 5 May 2017 21:08:06 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Fri,  5 May 2017 21:03:16 -0400
-Message-Id: <1494032596-92353-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] arago-tisdk-addons: add ti-ipc-examples-linux package
+To: Sam Nelson <sam.nelson@ti.com>
+Message-ID: <20170506010806.GN20769@edge>
+References: <1493953346-873-1-git-send-email-sam.nelson@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1493953346-873-1-git-send-email-sam.nelson@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [morty/master][PATCH v2 1/2] arago-base-tisdk-server-extra: Add ti-ipc-examples-linux package for k2 and omapl138
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,40 +44,74 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 May 2017 01:03:20 -0000
+X-List-Received-Date: Sat, 06 May 2017 01:08:07 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-ti-ipc-examples-linux adds binaries for Host Linux to Slave RTOS IPC examples
+Sam,
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-Cc: Sam Nelson <sam.nelson@ti.com>
----
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb   | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+Sorry for misleading you - I was under the impression that server-extra 
+packagegroup is the one responsible for server-extra image... Apparently it 
+is not and server-extra packagegroup goes directly into the main server image.
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 9ed9bc2..c623b37 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
- LICENSE = "MIT"
--PR = "r59"
-+PR = "r60"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -121,6 +121,10 @@ EXTRA_PACKAGES_append_ti33x = " voxelsdk"
- EXTRA_PACKAGES_append_ti43x = " voxelsdk"
- EXTRA_PACKAGES_append_omap-a15 = " voxelsdk"
- 
-+EXTRA_PACKAGES_append_omap-a15 = " ti-ipc-examples-linux"
-+EXTRA_PACKAGES_append_keystone = " ti-ipc-examples-linux"
-+EXTRA_PACKAGES_append_omapl138 = " ti-ipc-examples-linux"
-+
- RDEPENDS_${PN} = "\
-     ${UTILS} \
-     ${UTILS_UBOOT_FW} \
+Once it failed again for the same reason, I finally looked into it closer and 
+the way to feed into server-extra image is through EXTRA_PACKAGES variable 
+inside the tisdk-addons packagegroup. I sent a reworked patch after testing it 
+locally. Sorry again for the confusion.
+
+BTW, we need to fix this going forward, as it's not very intuitive...
+
 -- 
-2.7.4
+Denys
 
+
+On Thu, May 04, 2017 at 11:02:25PM -0400, Sam Nelson wrote:
+> ti-ipc-examples-linux adds binaries for Host Linux to Slave RTOS IPC
+> examples
+> 
+> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> 
+> ---
+> Updated PR
+> ---
+> ---
+>  .../packagegroups/packagegroup-arago-base-tisdk-server-extra.bb       | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+> index 784c5b4..d9b3391 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+> @@ -1,7 +1,7 @@
+>  DESCRIPTION = "Additional packages beyond console packages shared by TI SDKs"
+>  LICENSE = "MIT"
+>  LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+> -PR = "r16"
+> +PR = "r17"
+>  
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+> @@ -106,6 +106,7 @@ ARAGO_TI_KEYSTONE_PKGS = "\
+>      ipsecmgr-mod \
+>      k2-initramfs \
+>      parse-ip \
+> +    ti-ipc-examples-linux \
+>      "
+>  
+>  # The following packages are not yet ready for k2g-evm
+> @@ -116,6 +117,7 @@ ARAGO_TI_KEYSTONE_PKGS = "\
+>  
+>  ARAGO_TI_PKGS = ""
+>  ARAGO_TI_PKGS_append_keystone = " ${ARAGO_TI_KEYSTONE_PKGS}"
+> +ARAGO_TI_PKGS_append_omapl138 = " ti-ipc-examples-linux"
+>  
+>  # Disable netapi due to libnl and xfrm conflict
+>  #    netapi
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
