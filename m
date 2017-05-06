@@ -1,35 +1,30 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 322E152090
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id E3948529E5
 	for <meta-arago@arago-project.org>;
-	Fri,  5 May 2017 23:10:07 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v45NA6gX002369
-	for <meta-arago@arago-project.org>; Fri, 5 May 2017 18:10:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1494025806;
-	bh=Kjgga1pCENGDEPibVHp6jt5j9n5KLA7m4HgnO4jJwo0=;
-	h=From:To:Subject:Date;
-	b=qFRjM7mnvKnUWEIq2arLP6lD2hYPu185cdYpspsloriGAr2F/AjljQiNY2GiaAyfu
-	hWNe4Rs51C7wUIWuq4zxP6TCNLnJfbwufXDuTW1sMKqWkxzbfrBjecwKKdJuOraFO3
-	Qk7Dpa5dC59+udVRHGzUrhTavKyxtwCB1LXFqfBI=
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v45NA6OZ031056
-	for <meta-arago@arago-project.org>; Fri, 5 May 2017 18:10:06 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 5 May 2017 18:10:06 -0500
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v45NA6ER012610	for <meta-arago@arago-project.org>;
-	Fri, 5 May 2017 18:10:06 -0500
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 5 May 2017 19:10:01 -0400
-Message-ID: <1494025801-22765-1-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH] packagegroup-arago-qte: add qmlplugins and plugins of qtgraphicaleffects and qtvirtualkeyboard
+	Sat,  6 May 2017 01:03:19 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D6C9220BE8;
+	Sat,  6 May 2017 01:03:19 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id LSfQFq5BHQtR; Sat,  6 May 2017 01:03:19 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id AB9732023B;
+	Sat,  6 May 2017 01:03:17 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 2D62516249D;
+	Fri,  5 May 2017 21:03:17 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Fri,  5 May 2017 21:03:16 -0400
+Message-Id: <1494032596-92353-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH] arago-tisdk-addons: add ti-ipc-examples-linux package
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,32 +37,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 May 2017 23:10:08 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 06 May 2017 01:03:20 -0000
 
-qtgraphicaleffects and qtvirtualkeyboard are required by certain QT
-applications such as QT webbrowser
+ti-ipc-examples-linux adds binaries for Host Linux to Slave RTOS IPC examples
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Cc: Sam Nelson <sam.nelson@ti.com>
 ---
- meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb | 3 +++
- 1 file changed, 3 insertions(+)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb   | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-index 74fb85e..e9d7a3f 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-@@ -41,6 +41,9 @@ QT5_ESSENTIALS = "\
-     qtquick1-qmlplugins \
-     qtquickcontrols-qmlplugins \
-     qtquickcontrols2-qmlplugins \
-+    qtgraphicaleffects-qmlplugins \
-+    qtvirtualkeyboard-plugins \
-+    qtvirtualkeyboard-qmlplugins \
-     qtwebengine-qmlplugins \
-     liberation-fonts \
- "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 9ed9bc2..c623b37 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r59"
++PR = "r60"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -121,6 +121,10 @@ EXTRA_PACKAGES_append_ti33x = " voxelsdk"
+ EXTRA_PACKAGES_append_ti43x = " voxelsdk"
+ EXTRA_PACKAGES_append_omap-a15 = " voxelsdk"
+ 
++EXTRA_PACKAGES_append_omap-a15 = " ti-ipc-examples-linux"
++EXTRA_PACKAGES_append_keystone = " ti-ipc-examples-linux"
++EXTRA_PACKAGES_append_omapl138 = " ti-ipc-examples-linux"
++
+ RDEPENDS_${PN} = "\
+     ${UTILS} \
+     ${UTILS_UBOOT_FW} \
 -- 
-1.9.1
+2.7.4
 
 
