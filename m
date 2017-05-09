@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id EFE2852A4C
+	by arago-project.org (Postfix) with ESMTPS id EB04C52A49
 	for <meta-arago@arago-project.org>;
 	Tue,  9 May 2017 18:06:59 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 1358620BE4;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 2631C208FB;
 	Tue,  9 May 2017 18:07:00 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id vAqvQADwYrgn; Tue,  9 May 2017 18:07:00 +0000 (UTC)
+	with ESMTP id 9o-SmxC765zs; Tue,  9 May 2017 18:07:00 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DF240208FB;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0649120BEF;
 	Tue,  9 May 2017 18:06:58 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 928171624B3;
+	by mail.denix.org (Postfix) with ESMTP id 9E1F21624B5;
 	Tue,  9 May 2017 14:06:58 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue,  9 May 2017 14:06:51 -0400
-Message-Id: <1494353215-51061-2-git-send-email-denis@denix.org>
+Date: Tue,  9 May 2017 14:06:52 -0400
+Message-Id: <1494353215-51061-3-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1494353215-51061-1-git-send-email-denis@denix.org>
 References: <1494353215-51061-1-git-send-email-denis@denix.org>
-Subject: [master/morty][PATCH 2/6] wayland-ivi-extension: depend on wayland-native for wayland-scanner
+Subject: [master][PATCH 3/6] linux-libc-headers: remove 4.4 bbappend
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,22 +45,26 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb            | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../linux-libc-headers/linux-libc-headers_4.4.bbappend         | 10 ----------
+ 1 file changed, 10 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.4.bbappend
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb
-index 157e1ee..75e284f 100644
---- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb
-+++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb
-@@ -15,7 +15,7 @@ SRC_URI = "git://github.com/GENIVI/${BPN}.git;protocol=http \
- 
- S = "${WORKDIR}/git"
- 
--DEPENDS = "weston virtual/libgles2 pixman"
-+DEPENDS = "weston virtual/libgles2 pixman wayland-native"
- 
- inherit cmake
- 
+diff --git a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.4.bbappend b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.4.bbappend
+deleted file mode 100644
+index 7d0537d..0000000
+--- a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.4.bbappend
++++ /dev/null
+@@ -1,10 +0,0 @@
+-PR_append = ".arago0"
+-
+-BRANCH = "ti-lsk-linux-4.4.y"
+-SRCREV = "6580f85400b48d55d06f11d6b75c056399123a72"
+-
+-KERNEL_GIT_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git"
+-KERNEL_GIT_PROTOCOL = "git"
+-SRC_URI = "${KERNEL_GIT_URI};protocol=${KERNEL_GIT_PROTOCOL};branch=${BRANCH}"
+-
+-S = "${WORKDIR}/git"
 -- 
 2.7.4
 
