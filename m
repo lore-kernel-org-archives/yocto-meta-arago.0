@@ -1,37 +1,30 @@
-Return-Path: <jreeder@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 15ED352981
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id E7C4B52976
 	for <meta-arago@arago-project.org>;
-	Thu, 11 May 2017 19:47:47 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v4BJllXT012808
-	for <meta-arago@arago-project.org>; Thu, 11 May 2017 14:47:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1494532067;
-	bh=pH0Anu8dxBBuHzUOrZQNAksFzw/zedyvqmG81WsPiZE=;
-	h=From:To:CC:Subject:Date;
-	b=DSCBHVx7Z+yuJ9BbddAkrni5hAF0i4b+h7+4fBMRehK1ZFfxQ3mcnoOzbT4IKKijm
-	Y7MVSh76vRxmJLLyOfH9gkZn/BdpthXGR41sp3kNRugF5YJwdxBnMq3IVLjFq5re5K
-	dglluWWUCCuVDjEiVOg+AVjOsYnPEDN9uSBUVJVg=
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v4BJll90025309
-	for <meta-arago@arago-project.org>; Thu, 11 May 2017 14:47:47 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 11 May 2017 14:47:47 -0500
-Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
-	[128.247.22.53])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v4BJllXU026961;	Thu, 11 May 2017 14:47:47 -0500
-Received: from localhost (uda0273976.am.dhcp.ti.com [10.219.21.82])	by
-	legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id
-	v4BJll309921; Thu, 11 May 2017 14:47:47 -0500 (CDT)
-From: Jason Reeder <jreeder@ti.com>
-To: meta-arago <meta-arago@arago-project.org>
-Date: Thu, 11 May 2017 14:47:28 -0500
-Message-ID: <1494532048-21235-1-git-send-email-jreeder@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [PATCH] systemd: updating upstreamed networkd patch
+	Thu, 11 May 2017 22:11:59 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id DAF4E20B87;
+	Thu, 11 May 2017 22:11:59 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id xHI_WxBDdVIT; Thu, 11 May 2017 22:11:59 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id BAF9F20187;
+	Thu, 11 May 2017 22:11:58 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 3B2ED1624B1;
+	Thu, 11 May 2017 18:11:58 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 11 May 2017 18:11:58 -0400
+Message-Id: <1494540718-4365-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH] toolchain-gcc: update preferences for internal gcc toolchain
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,53 +37,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 May 2017 19:47:49 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 11 May 2017 22:12:00 -0000
 
-Upstream-Status: Accepted[233]
-Signed-off-by: Jason Reeder <jreeder@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- ...ibsystemd-network-ipv4ll-probe-conflict-counter.patch | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ meta-arago-distro/conf/distro/include/toolchain-gcc.inc | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/systemd/systemd/0001-libsystemd-network-ipv4ll-probe-conflict-counter.patch b/meta-arago-distro/recipes-core/systemd/systemd/0001-libsystemd-network-ipv4ll-probe-conflict-counter.patch
-index 557a297..c92e662 100644
---- a/meta-arago-distro/recipes-core/systemd/systemd/0001-libsystemd-network-ipv4ll-probe-conflict-counter.patch
-+++ b/meta-arago-distro/recipes-core/systemd/systemd/0001-libsystemd-network-ipv4ll-probe-conflict-counter.patch
-@@ -1,6 +1,6 @@
--From 1e47842a0144c501cc6fd7ccc7996761f3e32ea9 Mon Sep 17 00:00:00 2001
-+From 76f4df1e95b57746094a1b91c38cd4770f2396cc Mon Sep 17 00:00:00 2001
- From: Jason Reeder <jasonreeder@gmail.com>
--Date: Mon, 3 Apr 2017 12:07:17 -0500
-+Date: Thu, 11 May 2017 13:44:52 -0500
- Subject: [PATCH 1/3] libsystemd-network: ipv4ll probe conflict counter
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
+index 89f00c6..a7505aa 100644
+--- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
++++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
+@@ -22,12 +22,13 @@ SDKBINUVERSION ?= "2.28%"
+ SDKGLIBCVERSION ?= "2.25%"
+ SDKLINUXLIBCVERSION ?= "4.9%"
  
- A bug exists where the conflict counter is cleared
-@@ -31,17 +31,17 @@ Signed-off-by: Jason Reeder <jasonreeder@gmail.com>
-  1 file changed, 2 deletions(-)
- 
- diff --git a/src/libsystemd-network/sd-ipv4acd.c b/src/libsystemd-network/sd-ipv4acd.c
--index cc7436d..97f37f2 100644
-+index 4dd343c..2ebc00f 100644
- --- a/src/libsystemd-network/sd-ipv4acd.c
- +++ b/src/libsystemd-network/sd-ipv4acd.c
--@@ -249,8 +249,6 @@ static int ipv4acd_on_timeout(sd_event_source *s, uint64_t usec, void *userdata)
--                         r = ipv4acd_set_next_wakeup(ll, RATE_LIMIT_INTERVAL, PROBE_WAIT);
-+@@ -242,8 +242,6 @@ static int ipv4acd_on_timeout(sd_event_source *s, uint64_t usec, void *userdata)
-+                         r = ipv4acd_set_next_wakeup(acd, RATE_LIMIT_INTERVAL_USEC, PROBE_WAIT_USEC);
-                          if (r < 0)
--                                 goto out;
-+                                 goto fail;
- -
---                        ll->conflict = 0;
-+-                        acd->n_conflict = 0;
-                  } else {
--                         r = ipv4acd_set_next_wakeup(ll, 0, PROBE_WAIT);
-+                         r = ipv4acd_set_next_wakeup(acd, 0, PROBE_WAIT_USEC);
-                          if (r < 0)
- -- 
- 1.9.1
+-PREFERRED_VERSION_gcc-crosssdk ?= "${SDKGCCVERSION}"
+-PREFERRED_VERSION_gcc-crosssdk-initial ?= "${SDKGCCVERSION}"
+-PREFERRED_VERSION_gcc-crosssdk-intermediate ?= "${SDKGCCVERSION}"
++PREFERRED_VERSION_gcc-crosssdk-${SDK_SYS} ?= "${SDKGCCVERSION}"
++PREFERRED_VERSION_gcc-crosssdk-initial-${SDK_SYS} ?= "${SDKGCCVERSION}"
++PREFERRED_VERSION_binutils-crosssdk-${SDK_SYS} ?= "${SDKBINUVERSION}"
++
+ PREFERRED_VERSION_nativesdk-gcc-runtime ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_nativesdk-libgcc ?= "${SDKGCCVERSION}"
+-PREFERRED_VERSION_binutils-crosssdk ?= "${SDKBINUVERSION}"
++PREFERRED_VERSION_nativesdk-libgcc-initial ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_nativesdk-linux-libc-headers ?= "${SDKLINUXLIBCVERSION}"
+ PREFERRED_VERSION_nativesdk-glibc ?= "${SDKGLIBCVERSION}"
+ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
+@@ -46,4 +47,3 @@ PREFERRED_VERSION_linux-libc-headers ?= "${LINUXLIBCVERSION}"
+ PREFERRED_VERSION_glibc ?= "${GLIBCVERSION}"
+ PREFERRED_VERSION_glibc-locale ?= "${GLIBCVERSION}"
+ PREFERRED_VERSION_glibc-initial ?= "${GLIBCINITVERSION}"
+-
 -- 
-1.9.1
+2.7.4
 
 
