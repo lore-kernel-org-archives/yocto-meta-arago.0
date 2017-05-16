@@ -1,32 +1,35 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id D067C520E3
+Return-Path: <poojaprajod@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 08E9C5296D
 	for <meta-arago@arago-project.org>;
-	Tue, 16 May 2017 02:50:45 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id CA01620BF4;
-	Tue, 16 May 2017 02:50:45 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id ROu1kKALBUbt; Tue, 16 May 2017 02:50:45 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A32BC20B87;
-	Tue, 16 May 2017 02:50:44 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 252281624C3;
-	Mon, 15 May 2017 22:50:44 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 15 May 2017 22:50:38 -0400
-Message-Id: <1494903038-55614-2-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1494903038-55614-1-git-send-email-denis@denix.org>
-References: <1494903038-55614-1-git-send-email-denis@denix.org>
-Subject: [PATCH 2/2] arago-armv8: add a generic ARMv8 target for testing
+	Tue, 16 May 2017 12:45:14 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v4GCjEdE012768
+	for <meta-arago@arago-project.org>; Tue, 16 May 2017 07:45:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1494938714;
+	bh=t/eCLzOcHql8yZQze5qTGlvz3f/oTvGI0dYV9DPw5vo=;
+	h=From:To:CC:Subject:Date;
+	b=sn441PVBS82/DZ8B5ZAABRNtoDgAlvAEYi4ad653GGTMdIiqm5OKGYnza/TldjMz4
+	fdQCP/ZmmDTjQHbbqXuUWZpEJ73XhzcFPmkih3ATsdLg5O+fuQyvde42FXCR2LH8eN
+	k2NfqGtLjkI7I/kdwU5YPavLpSB+RldueonIF1no=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v4GCjEfN015849
+	for <meta-arago@arago-project.org>; Tue, 16 May 2017 07:45:14 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 16 May 2017 07:45:14 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v4GCjCpY006422;
+	Tue, 16 May 2017 07:45:13 -0500
+From: Pooja Prajod <a0132412@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 16 May 2017 18:15:08 +0530
+Message-ID: <1494938708-143790-1-git-send-email-a0132412@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Cc: Pooja Prajod <a0132412@ti.com>
+Subject: [meta-arago/morty] gstreamer1.0-plugins-bad: Fix gstwaylandsink scale-up issue for dra7xx
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,43 +42,80 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 May 2017 02:50:46 -0000
+X-List-Received-Date: Tue, 16 May 2017 12:45:15 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+Pick the patch:
+1. 0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Pooja Prajod <a0132412@ti.com>
 ---
- meta-arago-distro/conf/machine/arago-armv8.conf | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 meta-arago-distro/conf/machine/arago-armv8.conf
+ ...aylandsink-Fix-scale-up-with-padded-video.patch | 39 ++++++++++++++++++++++
+ .../gstreamer1.0-plugins-bad_1.8.3.bbappend        |  3 +-
+ 2 files changed, 41 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch
 
-diff --git a/meta-arago-distro/conf/machine/arago-armv8.conf b/meta-arago-distro/conf/machine/arago-armv8.conf
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch
 new file mode 100644
-index 0000000..e953985
+index 0000000..cbedca7
 --- /dev/null
-+++ b/meta-arago-distro/conf/machine/arago-armv8.conf
-@@ -0,0 +1,20 @@
-+#@TYPE: Machine
-+#@NAME: Arago unified/fake machine
-+#@DESCRIPTION: Unified/fake Arago machine configuration for TI/Arago ARMv7 platforms
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch
+@@ -0,0 +1,39 @@
++From 20fd1ae415683168b2dc5ad707ea422c67429578 Mon Sep 17 00:00:00 2001
++From: Pooja Prajod <a0132412@ti.com>
++Date: Fri, 12 May 2017 16:12:55 +0530
++Subject: [gst-bad] gstwaylandsink: Fix scale up with padded video
 +
-+include conf/machine/include/arm/arch-armv8.inc
++Usecases which expects waylandsink cropping support
++negotiates with padded height and width. After cropping,
++the destination viewport is set with the negotiated
++height and width which results in scaled up output.
++To fix this the args while setting dest viewport should
++be taken as the height and width present in the crop metadata
 +
-+IMAGE_FSTYPES = "tar.xz cpio.xz"
++Signed-off-by: Pooja Prajod <a0132412@ti.com>
++---
++ ext/wayland/wlwindow.c | 8 +++++++-
++ 1 file changed, 7 insertions(+), 1 deletion(-)
 +
-+KERNEL_IMAGETYPE = "Image"
-+UBOOT_LOADADDRESS = "0"
++diff --git a/ext/wayland/wlwindow.c b/ext/wayland/wlwindow.c
++index f7e3324..decfdf8 100644
++--- a/ext/wayland/wlwindow.c
+++++ b/ext/wayland/wlwindow.c
++@@ -278,7 +278,13 @@ gst_wl_window_resize_video_surface (GstWlWindow * window, gboolean commit)
++   gst_video_sink_center_rect (src, dst, &res, TRUE);
++ 
++   wl_subsurface_set_position (window->video_subsurface, res.x, res.y);
++-  wl_viewport_set_destination (window->video_viewport, res.w, res.h);
+++
+++  if (window->display->crop) {
+++    wl_viewport_set_destination (window->area_viewport, window->display->crop->width,  window->display->crop->height);
+++    wl_viewport_set_destination (window->video_viewport, window->display->crop->width,  window->display->crop->height);
+++  } else {
+++    wl_viewport_set_destination (window->video_viewport, res.w, res.h);
+++  }
++ 
++   if (commit) {
++     wl_surface_damage (window->video_surface, 0, 0, res.w, res.h);
++-- 
++1.9.1
 +
-+SERIAL_CONSOLE = ""
-+SERIAL_CONSOLES = "115200;ttyS0 115200;ttyS1 115200;ttyS2  115200;ttyS3 115200;ttyO0 115200;ttyO1 115200;ttyO2 115200;ttyO3"
-+SERIAL_CONSOLES_CHECK = "${SERIAL_CONSOLES}"
-+
-+#PREFERRED_PROVIDER_virtual/kernel = "linux-dummy"
-+
-+MACHINE_FEATURES = ""
-+
-+RDEPENDS_kernel-base = ""
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bbappend
+index 97753be..ff61132 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bbappend
+@@ -44,8 +44,9 @@ SRC_URI_append_omap-a15 = " \
+     file://0003-kmssink-add-YUYV-support.patch \
+     file://0001-gstwaylandsink-add-input-format-I420-support.patch \
+     file://0005-gstwaylandsink-Implement-callbacks-for-version-5-of-.patch \
++    file://0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch \
+ "
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+-PR = "r4"
++PR = "r5"
 -- 
-2.7.4
+1.9.1
 
 
