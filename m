@@ -1,35 +1,34 @@
-Return-Path: <poojaprajod@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 08E9C5296D
+Return-Path: <yan-liu@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 2192B5296D
 	for <meta-arago@arago-project.org>;
-	Tue, 16 May 2017 12:45:14 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v4GCjEdE012768
-	for <meta-arago@arago-project.org>; Tue, 16 May 2017 07:45:14 -0500
+	Tue, 16 May 2017 14:19:18 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v4GEJ7N0000586
+	for <meta-arago@arago-project.org>; Tue, 16 May 2017 09:19:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1494938714;
-	bh=t/eCLzOcHql8yZQze5qTGlvz3f/oTvGI0dYV9DPw5vo=;
+	s=ti-com-17Q1; t=1494944347;
+	bh=8fbinH5cSMfk2rWrhGDI7K902MSCkRF15XcmfprXyn8=;
 	h=From:To:CC:Subject:Date;
-	b=sn441PVBS82/DZ8B5ZAABRNtoDgAlvAEYi4ad653GGTMdIiqm5OKGYnza/TldjMz4
-	fdQCP/ZmmDTjQHbbqXuUWZpEJ73XhzcFPmkih3ATsdLg5O+fuQyvde42FXCR2LH8eN
-	k2NfqGtLjkI7I/kdwU5YPavLpSB+RldueonIF1no=
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v4GCjEfN015849
-	for <meta-arago@arago-project.org>; Tue, 16 May 2017 07:45:14 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 16 May 2017 07:45:14 -0500
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v4GCjCpY006422;
-	Tue, 16 May 2017 07:45:13 -0500
-From: Pooja Prajod <a0132412@ti.com>
+	b=t4FVxxvqqAfTCANEtbKovCxJUaz2SIAlUjs61W9fWcSzc5ouM+CmF3uwsLJ9ooDTG
+	r0FF10IBCBBM6CRip7mO0YKloMnJqb1H68lba9NFNxYZnDJonGgBkcOh5QJcwuhY09
+	xOy7+tvX6rDMZtsac7+Z0qjT8bwL67lQjcSYOaws=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v4GEJ2Ts007825
+	for <meta-arago@arago-project.org>; Tue, 16 May 2017 09:19:02 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 16 May 2017 09:19:02 -0500
+Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v4GEJ12m003174;	Tue, 16 May 2017 09:19:02 -0500
+From: <yan-liu@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 16 May 2017 18:15:08 +0530
-Message-ID: <1494938708-143790-1-git-send-email-a0132412@ti.com>
-X-Mailer: git-send-email 1.9.1
+Date: Tue, 16 May 2017 10:13:52 -0400
+Message-ID: <1494944032-3069-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Cc: Pooja Prajod <a0132412@ti.com>
-Subject: [meta-arago/morty] gstreamer1.0-plugins-bad: Fix gstwaylandsink scale-up issue for dra7xx
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,80 +41,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 May 2017 12:45:15 -0000
+X-List-Received-Date: Tue, 16 May 2017 14:19:18 -0000
 Content-Type: text/plain
 
-Pick the patch:
-1. 0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch
+From: Yan Liu <yan-liu@ti.com>
 
-Signed-off-by: Pooja Prajod <a0132412@ti.com>
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- ...aylandsink-Fix-scale-up-with-padded-video.patch | 39 ++++++++++++++++++++++
- .../gstreamer1.0-plugins-bad_1.8.3.bbappend        |  3 +-
- 2 files changed, 41 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch
-new file mode 100644
-index 0000000..cbedca7
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch
-@@ -0,0 +1,39 @@
-+From 20fd1ae415683168b2dc5ad707ea422c67429578 Mon Sep 17 00:00:00 2001
-+From: Pooja Prajod <a0132412@ti.com>
-+Date: Fri, 12 May 2017 16:12:55 +0530
-+Subject: [gst-bad] gstwaylandsink: Fix scale up with padded video
-+
-+Usecases which expects waylandsink cropping support
-+negotiates with padded height and width. After cropping,
-+the destination viewport is set with the negotiated
-+height and width which results in scaled up output.
-+To fix this the args while setting dest viewport should
-+be taken as the height and width present in the crop metadata
-+
-+Signed-off-by: Pooja Prajod <a0132412@ti.com>
-+---
-+ ext/wayland/wlwindow.c | 8 +++++++-
-+ 1 file changed, 7 insertions(+), 1 deletion(-)
-+
-+diff --git a/ext/wayland/wlwindow.c b/ext/wayland/wlwindow.c
-+index f7e3324..decfdf8 100644
-+--- a/ext/wayland/wlwindow.c
-++++ b/ext/wayland/wlwindow.c
-+@@ -278,7 +278,13 @@ gst_wl_window_resize_video_surface (GstWlWindow * window, gboolean commit)
-+   gst_video_sink_center_rect (src, dst, &res, TRUE);
-+ 
-+   wl_subsurface_set_position (window->video_subsurface, res.x, res.y);
-+-  wl_viewport_set_destination (window->video_viewport, res.w, res.h);
-++
-++  if (window->display->crop) {
-++    wl_viewport_set_destination (window->area_viewport, window->display->crop->width,  window->display->crop->height);
-++    wl_viewport_set_destination (window->video_viewport, window->display->crop->width,  window->display->crop->height);
-++  } else {
-++    wl_viewport_set_destination (window->video_viewport, res.w, res.h);
-++  }
-+ 
-+   if (commit) {
-+     wl_surface_damage (window->video_surface, 0, 0, res.w, res.h);
-+-- 
-+1.9.1
-+
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bbappend
-index 97753be..ff61132 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bbappend
-@@ -44,8 +44,9 @@ SRC_URI_append_omap-a15 = " \
-     file://0003-kmssink-add-YUYV-support.patch \
-     file://0001-gstwaylandsink-add-input-format-I420-support.patch \
-     file://0005-gstwaylandsink-Implement-callbacks-for-version-5-of-.patch \
-+    file://0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch \
- "
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
+index e59a0d5..274d9ba 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+-PR = "r15"
++PR = "r16"
+ PV_append = "+git${SRCPV}"
  
--PR = "r4"
-+PR = "r5"
+ PROVIDES += "ltp"
+@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
+ 
+ inherit autotools-brokensep
+ 
+-SRCREV = "287bd93e690bfda99b126e156be49bd8766fdcfd"
++SRCREV = "bc7a1ccb56f902b26259d8684ce36ade25993610"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
 -- 
-1.9.1
+1.7.9.5
 
 
