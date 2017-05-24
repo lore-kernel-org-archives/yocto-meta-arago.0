@@ -1,34 +1,34 @@
 Return-Path: <denys@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 5B8065299D
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id B324652A69
 	for <meta-arago@arago-project.org>;
-	Mon, 22 May 2017 22:57:13 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v4MMvCek025767
-	for <meta-arago@arago-project.org>; Mon, 22 May 2017 17:57:12 -0500
+	Wed, 24 May 2017 19:04:42 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v4OJ4WP6025898
+	for <meta-arago@arago-project.org>; Wed, 24 May 2017 14:04:32 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1495493832;
-	bh=m8bqLu2cr+6qWJWKRa3IyYL4//FkPnzMPVavmuKR6Q8=;
+	s=ti-com-17Q1; t=1495652672;
+	bh=EaAF44ALcyLgtKBIBgluNuR6yLy4PrN+o1sfqM9HIqI=;
 	h=Date:From:To:Subject;
-	b=WFqfQO+y76j0qfDUHpVW8ay0yrWLNjbnZEt6tVDkHmxHBn8KFg5tvD5G/u+ix/KNL
-	w/k3RC/Y23Q50NqL6rcGiySQVpRy/4faGokwKqknhSjFl/q0cTRrCtYBcRXi4w9oBk
-	KM5r6TLH9fmmziRAHnyK+Bms8lt/iYSkreI0fsNI=
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v4MMvCw9013169
-	for <meta-arago@arago-project.org>; Mon, 22 May 2017 17:57:12 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 22 May 2017 17:57:11 -0500
+	b=s28Ka9rFcCnBN6tjuomtOXWkHPHUuWmnmmewyQ54ozxpVdGH6GPC8IB2SlhQ1RKRP
+	26MCwA4WkDhXGtQBoWEL61Xls+kQ5dc46iGlVlgkU5Y32l7NGDmqYKTpVhe5FGdJdV
+	Hv48Ki0Yrl0l+bt2gX7K+3romlg0W1zKUzI+kqDA=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v4OJ4RBg029025
+	for <meta-arago@arago-project.org>; Wed, 24 May 2017 14:04:27 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 24 May 2017 14:04:26 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v4MMvC2u014062	for
-	<meta-arago@arago-project.org>; Mon, 22 May 2017 17:57:12 -0500
-Date: Mon, 22 May 2017 18:57:11 -0400
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v4OJ4Q2I032381	for
+	<meta-arago@arago-project.org>; Wed, 24 May 2017 14:04:26 -0500
+Date: Wed, 24 May 2017 15:04:11 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <20170522225711.GF32329@edge>
+Message-ID: <20170524190410.GB28136@edge>
 MIME-Version: 1.0
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Subject: Test
+Subject: TEst
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,9 +41,9 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 May 2017 22:57:13 -0000
+X-List-Received-Date: Wed, 24 May 2017 19:04:43 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-Test, please ignore
+Please ignore
 
