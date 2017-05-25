@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 579C052A88
+	by arago-project.org (Postfix) with ESMTPS id 5797552A86
 	for <meta-arago@arago-project.org>;
 	Thu, 25 May 2017 19:01:43 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 1B30620BFB;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 1F7A020BFE;
 	Thu, 25 May 2017 19:01:43 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id CsAhUR2hyNxL; Thu, 25 May 2017 19:01:43 +0000 (UTC)
+	with ESMTP id 0E7xMEs2Fbar; Thu, 25 May 2017 19:01:43 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E8141207BD;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id EFD8920BF6;
 	Thu, 25 May 2017 19:01:41 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 659031624C8;
+	by mail.denix.org (Postfix) with ESMTP id 6815F1624CA;
 	Thu, 25 May 2017 15:01:41 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 25 May 2017 15:01:31 -0400
-Message-Id: <1495738892-4367-2-git-send-email-denis@denix.org>
+Date: Thu, 25 May 2017 15:01:32 -0400
+Message-Id: <1495738892-4367-3-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1495738892-4367-1-git-send-email-denis@denix.org>
 References: <1495738892-4367-1-git-send-email-denis@denix.org>
-Subject: [morty/master][PATCH 2/3] packagegroup-arago-cross-canadian: sync up with upstream
+Subject: [morty/master][PATCH 3/3] nativesdk-packagegroup-arago-sdk-host: add auto-tools, shadow, makedevs and clean up recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,47 +43,58 @@ X-List-Received-Date: Thu, 25 May 2017 19:01:44 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-TODO: potentially replace with upstream packagegroup-cross-canadian.bb, once
-environment-setup script from meta-environment is synced and updated.
+Add autoconf, automake, shadow and makedevs nativesdk tools.
+Clean up recipe.
+Rename EXTRA_TOOLS into EXTRA_TI_TOOLS to list TI specific tools.
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroups/packagegroup-arago-cross-canadian.bb  | 17 +++++++++--------
- 1 file changed, 9 insertions(+), 8 deletions(-)
+ .../nativesdk-packagegroup-arago-sdk-host.bb       | 25 ++++++++++++++--------
+ 1 file changed, 16 insertions(+), 9 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bb
-index e68e2a8..b89c5d0 100644
---- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bb
-+++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bb
-@@ -1,19 +1,20 @@
- SUMMARY = "Host Arago SDK package for cross canadian toolchain"
- PN = "packagegroup-arago-cross-canadian-${MACHINE}"
--PR = "r6"
--LICENSE = "MIT"
--
--# Save TRANSLATED_TARGET_ARCH before allarch tramples it
--TRANSLATED_TARGET_ARCH = "${@d.getVar('TUNE_ARCH', True).replace('_', '-')}"
-+PR = "r7"
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
+index bb0e4f1..4f8e62b 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
+@@ -1,22 +1,29 @@
+-DESCRIPTION = "Host packages for a standalone Arago SDK or external toolchain"
+-PR = "r15"
++SUMMARY = "Host packages for a standalone Arago SDK or external toolchain"
++PR = "r16"
+ LICENSE = "MIT"
  
- inherit cross-canadian packagegroup
+ inherit packagegroup nativesdk
  
- PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
- 
-+# Use indirection to stop these being expanded prematurely
-+BINUTILS = "binutils-cross-canadian-${TRANSLATED_TARGET_ARCH}"
-+GCC = "gcc-cross-canadian-${TRANSLATED_TARGET_ARCH}"
-+GDB = "gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}"
+-EXTRA_TOOLS = "nativesdk-ti-cgt6x \
+-               nativesdk-ti-cgt-pru \
+-               nativesdk-clocl \
+-               nativesdk-clacc \
+-               nativesdk-mtd-utils-ubifs \
++PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
 +
- RDEPENDS_${PN} = "\
--    binutils-cross-canadian-${@' binutils-cross-canadian-'.join(all_multilib_tune_values(d,'TRANSLATED_TARGET_ARCH').split())} \
--    gdb-cross-canadian-${@' gdb-cross-canadian-'.join(all_multilib_tune_values(d, 'TRANSLATED_TARGET_ARCH').split())} \
--    gcc-cross-canadian-${@' gcc-cross-canadian-'.join(all_multilib_tune_values(d, 'TRANSLATED_TARGET_ARCH').split())} \
-+    ${@all_multilib_tune_values(d, 'BINUTILS')} \
-+    ${@all_multilib_tune_values(d, 'GCC')} \
-+    ${@all_multilib_tune_values(d, 'GDB')} \
-     "
++EXTRA_TI_TOOLS = " \
++    nativesdk-ti-cgt6x \
++    nativesdk-ti-cgt-pru \
++    nativesdk-clocl \
++    nativesdk-clacc \
+ "
  
- #    meta-environment-${MACHINE}
+ RDEPENDS_${PN} = "\
+     nativesdk-pkgconfig \
+     nativesdk-opkg \
+     nativesdk-libtool \
++    nativesdk-autoconf \
++    nativesdk-automake \
++    nativesdk-shadow \
++    nativesdk-makedevs \
+     nativesdk-python-distutils \
+     nativesdk-git \
+     nativesdk-cmake \
+-    ${EXTRA_TOOLS} \
+-    "
++    nativesdk-mtd-utils-ubifs \
++    ${EXTRA_TI_TOOLS} \
++"
 -- 
 2.7.4
 
