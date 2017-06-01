@@ -1,35 +1,30 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 5944752A49
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 6277E52A19
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Jun 2017 12:49:08 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v51Cn8PN005671
-	for <meta-arago@arago-project.org>; Thu, 1 Jun 2017 07:49:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1496321348;
-	bh=M4wNBF34mrH7ZQTgDtMug7ohHFsFWBILXg4v1dnf08s=;
-	h=From:To:Subject:Date;
-	b=K+II1TOLRNFB4XfUQrAC+h/+o4/VDlt1s2nt0tJtA4MY2igJ7629i3DEcuZnS0JEE
-	wq87Yqd3onAt0uyMvyQK1WooWvIBYAd6kyw68BID+ld1b65VdKxgnLn3EO+smxJElj
-	3fY/12eOY2N5FgQFMV4L4yMNuKRR2lHFPEXbyzX8=
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v51Cn8uo021121
-	for <meta-arago@arago-project.org>; Thu, 1 Jun 2017 07:49:08 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 1 Jun 2017 07:49:07 -0500
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v51Cn7SH005179	for <meta-arago@arago-project.org>;
-	Thu, 1 Jun 2017 07:49:08 -0500
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 1 Jun 2017 08:49:03 -0400
-Message-ID: <1496321343-17626-1-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [morty/master][PATCH v2] gstreamer1.0-plugins-bad: Apply gstwaylandsink scale-up issue fix for AM4
+	Thu,  1 Jun 2017 18:43:08 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 33FEB20B7A;
+	Thu,  1 Jun 2017 18:43:08 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id p0T-Rj0UczHz; Thu,  1 Jun 2017 18:43:08 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 136B7202B6;
+	Thu,  1 Jun 2017 18:43:07 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 929DC1624DB;
+	Thu,  1 Jun 2017 14:43:06 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu,  1 Jun 2017 14:43:06 -0400
+Message-Id: <1496342586-121308-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [oe-layersetup][PATCH] arago-morty*: switch meta-browser to master
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,31 +37,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Jun 2017 12:49:08 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 01 Jun 2017 18:43:10 -0000
 
-Pick the patch:
-1. 0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Pooja Prajod <a0132412@ti.com>
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bbappend | 1 +
- 1 file changed, 1 insertion(+)
+ configs/arago-morty-config.txt      | 2 +-
+ configs/arago-morty-next-config.txt | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bbappend
-index ff61132..d9762af 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.8.3.bbappend
-@@ -28,6 +28,7 @@ SRC_URI_append_ti43x = " \
-     file://0003-kmssink-add-YUYV-support.patch \
-     file://0001-gstwaylandsink-add-input-format-I420-support.patch \
-     file://0005-gstwaylandsink-Implement-callbacks-for-version-5-of-.patch \
-+    file://0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch \
- "
+diff --git a/configs/arago-morty-config.txt b/configs/arago-morty-config.txt
+index af42c22..59de4ed 100644
+--- a/configs/arago-morty-config.txt
++++ b/configs/arago-morty-config.txt
+@@ -3,7 +3,7 @@
  
- SRC_URI_append_ti33x = " \
+ bitbake,git://git.openembedded.org/bitbake,1.32,HEAD,layers=
+ meta-arago,git://arago-project.org/git/meta-arago.git,morty,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,morty,HEAD,layers=
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,HEAD,layers=
+ meta-openamp,git://github.com/OpenAMP/meta-openamp.git,morty,HEAD,layers=
+ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,HEAD,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
+diff --git a/configs/arago-morty-next-config.txt b/configs/arago-morty-next-config.txt
+index 5ab5a8b..46485ba 100644
+--- a/configs/arago-morty-next-config.txt
++++ b/configs/arago-morty-next-config.txt
+@@ -3,7 +3,7 @@
+ 
+ bitbake,git://git.openembedded.org/bitbake,1.32,HEAD,layers=
+ meta-arago,git://arago-project.org/git/meta-arago.git,morty-next,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,morty,HEAD,layers=
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,HEAD,layers=
+ meta-openamp,git://github.com/OpenAMP/meta-openamp.git,morty,HEAD,layers=
+ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,HEAD,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
 -- 
-1.9.1
+2.7.4
 
 
