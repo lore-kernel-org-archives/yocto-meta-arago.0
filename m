@@ -1,34 +1,35 @@
-Return-Path: <yan-liu@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id C0D0E52975
+Return-Path: <e-ruei1@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 57518529D6
 	for <meta-arago@arago-project.org>;
-	Mon,  5 Jun 2017 13:43:31 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v55DhVw7023750
-	for <meta-arago@arago-project.org>; Mon, 5 Jun 2017 08:43:31 -0500
+	Mon,  5 Jun 2017 19:30:18 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v55JUHGA008968
+	for <meta-arago@arago-project.org>; Mon, 5 Jun 2017 14:30:17 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1496670211;
-	bh=bid5LPIvbcfzmdfG9ZNxKa1krfWjt9QwEG2Jki6aB1E=;
-	h=From:To:CC:Subject:Date;
-	b=xX33d3rXIgGW7WBFBjXxX5s9gHymmToJ8BKcVnfRGocj1/1mXTlXTFsx9Ctd4fg0F
-	YmOvVMvNHVdA06FwHBwiQeaB6dpIb1nAn2Ct5iAuRArVsJoHxCFMGCWBLVjT9CDB4K
-	Pl4Qn2v17ICkxi+AdU0+lrTzeWF7gpiYqgGdzDTQ=
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v55DhVdp030554
-	for <meta-arago@arago-project.org>; Mon, 5 Jun 2017 08:43:31 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 5 Jun 2017 08:43:31 -0500
-Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v55DhVR2012530;	Mon, 5 Jun 2017 08:43:31 -0500
-From: <yan-liu@ti.com>
+	s=ti-com-17Q1; t=1496691017;
+	bh=8WoGV0hB7LYMTa60k4SewupnNKqvO9NPoYGnWfXB1JY=;
+	h=From:To:Subject:Date;
+	b=fa2uptbkDFq/l4h5QtrwZPo+onNHNBV1ZMm+sAcw0xAQvKOTVM9S2DNd/3nhMW0NV
+	z9KSopbY3WwxA0W42HdPs46gFfelr2FFYpvp3obLt9iriPyZG8whVy/3Lx84KidDsN
+	bsOTQNtBerS7d42j+wQe1BDeJfxDiJw/L9wGwiWY=
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v55JUHVG025294
+	for <meta-arago@arago-project.org>; Mon, 5 Jun 2017 14:30:17 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 5 Jun 2017 14:30:17 -0500
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v55JUHaL018150	for <meta-arago@arago-project.org>;
+	Mon, 5 Jun 2017 14:30:17 -0500
+From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 5 Jun 2017 09:38:54 -0400
-Message-ID: <1496669934-9026-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Mon, 5 Jun 2017 15:30:13 -0400
+Message-ID: <1496691014-53218-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: [morty/master][PATCH 1/2] qtwebbrowser-example: add QT web browser example
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,39 +42,93 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Jun 2017 13:43:32 -0000
+X-List-Received-Date: Mon, 05 Jun 2017 19:30:19 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
+- This is a touch-friendly web broswer based on qtwebengine and QML
 
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ ...0001-qtwebbrowser-disable-FullScreen-mode.patch | 28 ++++++++++++++++++
+ .../recipes-qt/qt5/qtwebbrowser-example_1.0.bb     | 33 ++++++++++++++++++++++
+ 2 files changed, 61 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebbrowser-example/0001-qtwebbrowser-disable-FullScreen-mode.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebbrowser-example_1.0.bb
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-index 274d9ba..8aac782 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
- 
--PR = "r16"
-+PR = "r17"
- PV_append = "+git${SRCPV}"
- 
- PROVIDES += "ltp"
-@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
- 
- inherit autotools-brokensep
- 
--SRCREV = "bc7a1ccb56f902b26259d8684ce36ade25993610"
-+SRCREV = "a0112c2b2ab82285dcdc49b675d8efe4e470d2e0"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebbrowser-example/0001-qtwebbrowser-disable-FullScreen-mode.patch b/meta-arago-distro/recipes-qt/qt5/qtwebbrowser-example/0001-qtwebbrowser-disable-FullScreen-mode.patch
+new file mode 100644
+index 0000000..9cac96a
+--- /dev/null
++++ b/meta-arago-distro/recipes-qt/qt5/qtwebbrowser-example/0001-qtwebbrowser-disable-FullScreen-mode.patch
+@@ -0,0 +1,28 @@
++From 268cf8dec9486fd875ab7fae241273e7b5b2a143 Mon Sep 17 00:00:00 2001
++From: Eric Ruei <e-ruei1@ti.com>
++Date: Fri, 2 Jun 2017 15:29:01 -0400
++Subject: [PATCH] qtwebbrowser: disable FullScreen mode
++
++We need to disable full-screen mode because there is no way to exit in that mode
++
++Signed-off-by: Eric Ruei <e-ruei1@ti.com>
++---
++ src/main.cpp | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/src/main.cpp b/src/main.cpp
++index 2181f15..5f146b6 100644
++--- a/src/main.cpp
+++++ b/src/main.cpp
++@@ -101,7 +101,7 @@ int main(int argc, char **argv)
++     if (view.size().isEmpty())
++         view.setGeometry(0, 0, 800, 600);
++ #else
++-    view.showFullScreen();
+++    view.show();
++ #endif
++ 
++     app.exec();
++-- 
++1.9.1
++
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebbrowser-example_1.0.bb b/meta-arago-distro/recipes-qt/qt5/qtwebbrowser-example_1.0.bb
+new file mode 100644
+index 0000000..a063207
+--- /dev/null
++++ b/meta-arago-distro/recipes-qt/qt5/qtwebbrowser-example_1.0.bb
+@@ -0,0 +1,33 @@
++SUMMARY = "Qt Touch-Friendly WebBroswer"
++HOMEPAGE = "http://blog.qt.io/blog/2016/07/18/qt-webbrowser-1-0/"
++SECTION = "multimedia"
++LICENSE = "GPL-3.0 & GFDL-1.3"
++LIC_FILES_CHKSUM = " \
++    file://LICENSE.GPLv3;md5=a40e2bb02b1ac431f461afd03ff9d1d6 \
++    file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
++"
++DEPENDS += "qtwebengine"
++
++PR = "r1"
++
++BRANCH = "dev"
++SRCREV = "023733af5523a5ad84359926224fa106001215f4"
++
++SRC_URI = "git://code.qt.io/qt-apps/qtwebbrowser.git;protocol=git;branch=${BRANCH} \
++    file://0001-qtwebbrowser-disable-FullScreen-mode.patch \
++"
++
++S = "${WORKDIR}/git"
++
++inherit qt-provider
++
++# Install qtwebbrowser under /usr/share/qt5/examples/webengine
++do_install() {
++    install -d ${D}${datadir}/qt5/examples/webengine/webbrowser/src
++    install -m 0755 src/qtwebbrowser ${D}${datadir}/qt5/examples/webengine/webbrowser/qtwebbrowser
++    cp -r ${S}/* ${D}${datadir}/qt5/examples/webengine/webbrowser/.
++}
++
++FILES_${PN} +=  " \
++/usr/share/qt5/examples/webengine/webbrowser/* \
++"
 -- 
-1.7.9.5
+1.9.1
 
 
