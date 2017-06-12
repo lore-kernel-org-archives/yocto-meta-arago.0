@@ -1,34 +1,34 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 62C9E529EE
+Return-Path: <yan-liu@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 4B98B52A5B
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Jun 2017 18:45:45 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5CIjjSL022670
-	for <meta-arago@arago-project.org>; Mon, 12 Jun 2017 13:45:45 -0500
+	Mon, 12 Jun 2017 21:35:40 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5CLZda6016816
+	for <meta-arago@arago-project.org>; Mon, 12 Jun 2017 16:35:39 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1497293145;
-	bh=6bXFQeQWnlOjv8ZX4mmi7ygT0epcsM9OV9Y6UsqUt3c=;
+	s=ti-com-17Q1; t=1497303339;
+	bh=LuSO0driil3cQ8MQgzv1b2EYZwl5BD6MenuDvQ6x0Ow=;
 	h=From:To:CC:Subject:Date;
-	b=oaG27DPTU4TuVtA4dpjTn5LWja/AvNa9FhTpHM9F5hs2a+wybYsVLcnwMFjEWlOMX
-	YKZXqQh/PHuarrK+bg0+L/CBd6JVgZ5+7VROoVPOWlBhWuMfuYOg5XkYyKvkyhxYXy
-	CySWsRPYchmsWqexbq09jfTtgxV47lojRD5Crjnk=
+	b=RYsLz6oNPxuPKSxvle76dZ+cokyd+VRiJP1+QC37qVm/Xnxy1jx2gT5Ep4v/BvFym
+	AclMdN2hqmQNHv5q2idbzMc7TaFHyhP18jhmXxx+VJ/B5h5+PAPQ/DxaYfWtg9lSxC
+	rY0+NA9TfIIGMYEc3BQhwUrTPjkZ/V3a3Dimro6M=
 Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5CIjj6h011375
-	for <meta-arago@arago-project.org>; Mon, 12 Jun 2017 13:45:45 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5CLZdXj015688
+	for <meta-arago@arago-project.org>; Mon, 12 Jun 2017 16:35:39 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
 	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 12 Jun 2017 13:45:44 -0500
-Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v5CIjidu002119;	Mon, 12 Jun 2017 13:45:44 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	Mon, 12 Jun 2017 16:35:39 -0500
+Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v5CLZdv0023521;	Mon, 12 Jun 2017 16:35:39 -0500
+From: <yan-liu@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 12 Jun 2017 14:40:14 -0400
-Message-ID: <1497292814-16678-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
+Date: Mon, 12 Jun 2017 17:31:14 -0400
+Message-ID: <1497303074-24559-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH] ti-tisdk-makefile: use KERNEL_DEVICETREE from machine configuration
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,49 +41,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Jun 2017 18:45:46 -0000
+X-List-Received-Date: Mon, 12 Jun 2017 21:35:41 -0000
 Content-Type: text/plain
 
-* Remove the KERNEL_DEVICETREE lists now that they have been moved to
-  the machine configuration.
+From: Yan Liu <yan-liu@ti.com>
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb              | 13 +------------
- 1 file changed, 1 insertion(+), 12 deletions(-)
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 57f37ac..15c14aa 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -50,7 +50,7 @@ SRC_URI = "\
-     file://Makefile_barcode-roi \
- "
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
+index 8aac782..36cd18a 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
  
--PR = "r80"
-+PR = "r81"
+-PR = "r17"
++PR = "r18"
+ PV_append = "+git${SRCPV}"
  
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
-@@ -184,17 +184,6 @@ UBOOT_LOADADDRESS ?= "0"
+ PROVIDES += "ltp"
+@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
  
- KERNEL_BUILD_CMDS = "${@base_conditional('KERNEL_IMAGETYPE','uImage','LOADADDR=${UBOOT_LOADADDRESS} uImage','zImage',d)}"
+ inherit autotools-brokensep
  
--KERNEL_DEVICETREE_ti33x = "am335x-evm.dtb am335x-evmsk.dtb am335x-bone.dtb am335x-boneblack.dtb am335x-bonegreen.dtb am335x-icev2.dtb"
--KERNEL_DEVICETREE_ti43x = "am43x-epos-evm.dtb am437x-gp-evm.dtb am437x-gp-evm-hdmi.dtb am437x-sk-evm.dtb am437x-idk-evm.dtb"
--KERNEL_DEVICETREE_beaglebone = "am335x-bone.dtb am335x-boneblack.dtb am335x-bonegreen.dtb"
--KERNEL_DEVICETREE_omap5-evm = "omap5-uevm.dtb"
--KERNEL_DEVICETREE_dra7xx-evm = "dra7-evm.dtb dra7-evm-lcd-lg.dtb dra7-evm-lcd-osd.dtb dra72-evm.dtb dra72-evm-revc.dtb dra72-evm-lcd-lg.dtb dra72-evm-lcd-osd.dtb"
--KERNEL_DEVICETREE_am57xx-evm = "am57xx-beagle-x15.dtb am57xx-beagle-x15-revb1.dtb am57xx-evm.dtb am57xx-evm-reva3.dtb am571x-idk.dtb am572x-idk.dtb am571x-idk-lcd-osd.dtb am572x-idk-lcd-osd.dtb ${@base_conditional('ENABLE_TI_UIO_DEVICES', '1', 'am572x-idk-pru-excl-uio.dtb', '', d)}"
--KERNEL_DEVICETREE_k2hk = "keystone-k2hk-evm.dtb"
--KERNEL_DEVICETREE_k2e = "keystone-k2e-evm.dtb"
--KERNEL_DEVICETREE_k2g = "keystone-k2g-evm.dtb"
--KERNEL_DEVICETREE_k2l-evm = "keystone-k2l-evm.dtb"
--
- DEFCONFIG = "tisdk_${MACHINE}${ARAGO_KERNEL_SUFFIX}_defconfig"
+-SRCREV = "a0112c2b2ab82285dcdc49b675d8efe4e470d2e0"
++SRCREV = "a579cb4679434569cc8d7004d9ff6779cc0614eb"
+ BRANCH ?= "master"
  
- AMSDK_DEFCONFIG = "singlecore-omap2plus_defconfig"
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
 -- 
-2.7.4
+1.7.9.5
 
 
