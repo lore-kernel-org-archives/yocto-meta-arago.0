@@ -1,36 +1,34 @@
 Return-Path: <j-stiffler@ti.com>
 Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id A66CF52A34
+	by arago-project.org (Postfix) with ESMTPS id 8F71E529AA
 	for <meta-arago@arago-project.org>;
 	Thu, 15 Jun 2017 16:01:58 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5FG1wbx015227
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5FG1wj9015223
 	for <meta-arago@arago-project.org>; Thu, 15 Jun 2017 11:01:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
 	s=ti-com-17Q1; t=1497542518;
-	bh=9Apm7eQAfuscD5OHAUF1LTPg9d1UjXCzsFXEf5Ja/Tc=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=mBk8keapHR0zi9mD2JfEHpHlWAepsILx5GUFhZBvBWJmucKYlLRGaWIpn9RNeMKDe
-	szVabVV174fUveTTQXnqQHA/zMU2FcRF7i2P+LrOaQeW5drWWAjHfSHlz13OvlMKjO
-	izTethAgJycEoq8Y4kttJ9gHaw1yog5sBMMRqF34=
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5FG1wsD018729
+	bh=fZSRTuKRtiK2YGJB+x/CC36RWLk6xUR9XMCWRfXDF00=;
+	h=From:To:CC:Subject:Date;
+	b=mDupXe1So4ekBD0hWDhgQdIjv35KF+MXnk1Xd+bpWDDREekuVXEGv7UzqjqURZMcg
+	7MRrBL9S5cLTrg6PmDD9Sr3VdPa0LqYpOXyRkGJRRuprQ8PTK4VyMk2fbG0nNaaXZZ
+	KqcHPit2JvMyvJ8LtONq7UY8J2JO5G2IxHsVaNUw=
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5FG1w9H030482
 	for <meta-arago@arago-project.org>; Thu, 15 Jun 2017 11:01:58 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
 	Thu, 15 Jun 2017 11:01:58 -0500
 Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v5FG1w6C020163;	Thu, 15 Jun 2017 11:01:58 -0500
+	v5FG1w6B020163;	Thu, 15 Jun 2017 11:01:58 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 15 Jun 2017 11:56:26 -0400
-Message-ID: <1497542187-1311-2-git-send-email-j-stiffler@ti.com>
+Date: Thu, 15 Jun 2017 11:56:25 -0400
+Message-ID: <1497542187-1311-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1497542187-1311-1-git-send-email-j-stiffler@ti.com>
-References: <1497542187-1311-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 2/3] ocl: bump SRCREV to 1.1.13.0
+Subject: [PATCH 1/3] ti-llvm3.6: bump SRCREV for new c6x intrinsics
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -46,45 +44,41 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Thu, 15 Jun 2017 16:01:59 -0000
 Content-Type: text/plain
 
-* New version pulls in the dependency on libjson-c
-
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/recipes-ti/ocl/ocl.inc       | 4 ++--
- meta-arago-extras/recipes-ti/ocl/opencl_git.bb | 1 +
- 2 files changed, 3 insertions(+), 2 deletions(-)
+ meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-index 94e3dd8..8bd8f9e 100644
---- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
-+++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-@@ -1,4 +1,4 @@
--PV = "1.1.12.0"
-+PV = "1.1.13.0"
- INC_PR = "r0"
+diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+index a279e8d..4f36310 100644
+--- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
++++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "LLVM 3.6 with support for TI C66x intrinsics"
+ HOMEPAGE = "https://gitorious.design.ti.com/ocl/llvm33-src"
  
- LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
-@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
- OCL_GIT_PROTOCOL = "git"
- OCL_GIT_BRANCH = "master"
+-PR = "r5"
++PR = "r6"
  
--OCL_SRCREV = "8c0ec9c270cafaef0a56c376fc28c1b7714cb09c"
-+OCL_SRCREV = "c2493c7190c7e5b4135f64d2aacc2de3ff57e0bb"
+ do_configure_prepend_class-native() {
+     # Fix paths in llvm-config
+@@ -27,14 +27,14 @@ LLVM_GIT_URI = "git://git.ti.com/opencl/llvm.git"
+ LLVM_GIT_PROTOCOL = "git"
+ LLVM_GIT_BRANCH = "release_36_ti"
+ LLVM_GIT_DESTSUFFIX = "git"
+-LLVM_GIT_SRCREV = "798386e2513c812ab4b01df5b57c88b225e756bb"
++LLVM_GIT_SRCREV = "8ff2a35c586a3d3f624712e0943777613a017bc5"
  
- BRANCH = "${OCL_GIT_BRANCH}"
- SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
-diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-index 906cad3..7203375 100644
---- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-@@ -28,6 +28,7 @@ DEPENDS = " ocl-gl-headers \
-             pkgconfig-native \
-             libulm \
-             elfutils \
-+            json-c \
- "
+ CLANG_GIT_NAME = "clang"
+ CLANG_GIT_URI = "git://git.ti.com/opencl/clang.git"
+ CLANG_GIT_PROTOCOL = "git"
+ CLANG_GIT_BRANCH = "release_36_ti"
+ CLANG_GIT_DESTSUFFIX = "${LLVM_GIT_DESTSUFFIX}/tools/clang"
+-CLANG_GIT_SRCREV = "5d6b4dfcaf29619cffbb2013a1e0a02e70e0154e"
++CLANG_GIT_SRCREV = "1bffed84d31aa9271ef4c91301f833d103e94010"
  
- DEPENDS_append_dra7xx   = " ti-ipc virtual/kernel"
+ SRC_URI = " \
+   ${LLVM_GIT_URI};protocol=${LLVM_GIT_PROTOCOL};branch=${LLVM_GIT_BRANCH};destsuffix=${LLVM_GIT_DESTSUFFIX};name=${LLVM_GIT_NAME} \
 -- 
 2.7.4
 
