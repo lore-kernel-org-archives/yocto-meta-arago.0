@@ -1,34 +1,36 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 6BACA529BA
+Return-Path: <j-stiffler@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id A66CF52A34
 	for <meta-arago@arago-project.org>;
-	Thu, 15 Jun 2017 13:06:11 +0000 (UTC)
+	Thu, 15 Jun 2017 16:01:58 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5FD6BZr002351
-	for <meta-arago@arago-project.org>; Thu, 15 Jun 2017 08:06:11 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5FG1wbx015227
+	for <meta-arago@arago-project.org>; Thu, 15 Jun 2017 11:01:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1497531971;
-	bh=LV3NifRapEZOSuIzom561it0zFO8Fq7lVE9YyckumLk=;
-	h=From:To:CC:Subject:Date;
-	b=Y/1c11QfuAGF7kmP39PglQLIT3Ql1p83ZXOGnmiiwZXD8P3/B5LTRdDN0esSZNnxc
-	rVnQxULT/svD0FMbsVSIGSAhPdE9tiCJZLLxO0lLxp8dF6n1eMInZxlPYewSEJ4yDt
-	XK0rHjeao2wzFeIVqQdkcYoLfOBvuMPtV1WK7rUc=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5FD6BfY013061
-	for <meta-arago@arago-project.org>; Thu, 15 Jun 2017 08:06:11 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 15 Jun 2017 08:06:10 -0500
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5FD69Xm001505;
-	Thu, 15 Jun 2017 08:06:10 -0500
-From: Karthik Ramanan <a0393906@ti.com>
+	s=ti-com-17Q1; t=1497542518;
+	bh=9Apm7eQAfuscD5OHAUF1LTPg9d1UjXCzsFXEf5Ja/Tc=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=mBk8keapHR0zi9mD2JfEHpHlWAepsILx5GUFhZBvBWJmucKYlLRGaWIpn9RNeMKDe
+	szVabVV174fUveTTQXnqQHA/zMU2FcRF7i2P+LrOaQeW5drWWAjHfSHlz13OvlMKjO
+	izTethAgJycEoq8Y4kttJ9gHaw1yog5sBMMRqF34=
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5FG1wsD018729
+	for <meta-arago@arago-project.org>; Thu, 15 Jun 2017 11:01:58 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 15 Jun 2017 11:01:58 -0500
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v5FG1w6C020163;	Thu, 15 Jun 2017 11:01:58 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 15 Jun 2017 18:36:07 +0530
-Message-ID: <1497531967-44780-1-git-send-email-a0393906@ti.com>
-X-Mailer: git-send-email 1.9.1
+Date: Thu, 15 Jun 2017 11:56:26 -0400
+Message-ID: <1497542187-1311-2-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1497542187-1311-1-git-send-email-j-stiffler@ti.com>
+References: <1497542187-1311-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-Subject: [morty] omapdrmtest: Update SRCREV
+Subject: [PATCH 2/3] ocl: bump SRCREV to 1.1.13.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,35 +43,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Jun 2017 13:06:12 -0000
+X-List-Received-Date: Thu, 15 Jun 2017 16:01:59 -0000
 Content-Type: text/plain
 
-This updates the following testcases:
- * display-kms: Call SetCrtc at init time
- * display-kmscube: Add support for RGB texture
- * filevpedisplay: Change argument numbers for kmscube support
+* New version pulls in the dependency on libjson-c
 
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-extras/recipes-ti/ocl/ocl.inc       | 4 ++--
+ meta-arago-extras/recipes-ti/ocl/opencl_git.bb | 1 +
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-index 4090061..48b1f87 100644
---- a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-+++ b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-@@ -7,8 +7,8 @@ DEPENDS = "ffmpeg libdce libdrm libgbm ti-sgx-ddk-um wayland"
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index 94e3dd8..8bd8f9e 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,4 +1,4 @@
+-PV = "1.1.12.0"
++PV = "1.1.13.0"
+ INC_PR = "r0"
  
- inherit autotools pkgconfig
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
  
--PR = "r22"
--SRCREV = "116c940c2b06b221c13be28bb79af49233ba462a"
-+PR = "r23"
-+SRCREV = "7e63575f149d1a5a4a052d6211131676d4ccc655"
+-OCL_SRCREV = "8c0ec9c270cafaef0a56c376fc28c1b7714cb09c"
++OCL_SRCREV = "c2493c7190c7e5b4135f64d2aacc2de3ff57e0bb"
  
- EXTRA_OEMAKE = "CC="${CC}""
- TARGET_CC_ARCH += "${LDFLAGS}"
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+index 906cad3..7203375 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+@@ -28,6 +28,7 @@ DEPENDS = " ocl-gl-headers \
+             pkgconfig-native \
+             libulm \
+             elfutils \
++            json-c \
+ "
+ 
+ DEPENDS_append_dra7xx   = " ti-ipc virtual/kernel"
 -- 
-1.9.1
+2.7.4
 
 
