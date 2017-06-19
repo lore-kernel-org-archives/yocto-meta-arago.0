@@ -1,34 +1,34 @@
-Return-Path: <yan-liu@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id E4E0352961
+Return-Path: <j-stiffler@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 0B66C5297E
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Jun 2017 18:43:37 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5JIhbbK019218
-	for <meta-arago@arago-project.org>; Mon, 19 Jun 2017 13:43:37 -0500
+	Mon, 19 Jun 2017 19:50:08 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5JJo8qe026655
+	for <meta-arago@arago-project.org>; Mon, 19 Jun 2017 14:50:08 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1497897817;
-	bh=R0g2Yfw2rYTIXPaIc7Wn6NNy2XS1YwngUEzz1X2wl80=;
+	s=ti-com-17Q1; t=1497901808;
+	bh=NHyOsmvKg8VKA9JeMFjGKydOUbZgMjyYPkq15aLmMgw=;
 	h=From:To:CC:Subject:Date;
-	b=SbMFbJh9BTdjwsqMkOAEeWCWEgWeSwStY6bSnQny4cGuhH0BrnP/cuOGDAFkRS2oc
-	Wg+6hI7A54nryahT14Ddmetnx4eWS3uAW5aVllgrEur0AqsAGH0V6GcSj4x7pRJ6Fv
-	YbGxsqAYl/yRphKiNdgqPnfWf6Udky02u+lcusYE=
+	b=V+pHPXhCy0ReFtHNyBximGmYdGHOpEsXNf9nrWAZ788G66xWl+mq/RXPZAM1Vng5L
+	RaPzewyAgpH1OAmnjZTa3n+BTIuoO9yipWnYUIg3h2fCbG2Aoeh0MOB6rJ4+tYry0+
+	k3+Mg3fma/hit5+wxYpeu/Eci7CGMxD4O+t/IDJI=
 Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5JIhbmu028612
-	for <meta-arago@arago-project.org>; Mon, 19 Jun 2017 13:43:37 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5JJo8Fh017221
+	for <meta-arago@arago-project.org>; Mon, 19 Jun 2017 14:50:08 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
 	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 19 Jun 2017 13:43:37 -0500
-Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v5JIhaOO000573;	Mon, 19 Jun 2017 13:43:36 -0500
-From: <yan-liu@ti.com>
+	Mon, 19 Jun 2017 14:50:08 -0500
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v5JJo8hg021000;	Mon, 19 Jun 2017 14:50:08 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 19 Jun 2017 14:38:05 -0400
-Message-ID: <1497897485-3229-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Mon, 19 Jun 2017 15:43:57 -0400
+Message-ID: <1497901439-31567-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: [PATCH 1/3] packagegroup-arago-tisdk-matrix: add "extra" packagegroup
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,39 +41,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Jun 2017 18:43:38 -0000
+X-List-Received-Date: Mon, 19 Jun 2017 19:50:10 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
+* Create an "extra" variant of this packagegroup for packages which
+  may cause a base filesystem to exceed a physical size limitation.
 
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb  | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-index 36cd18a..3a013f0 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index acfdeea..7402427 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,11 +1,13 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r65"
++PR = "r66"
  
--PR = "r18"
-+PR = "r19"
- PV_append = "+git${SRCPV}"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- PROVIDES += "ltp"
-@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
+ inherit packagegroup
  
- inherit autotools-brokensep
- 
--SRCREV = "a579cb4679434569cc8d7004d9ff6779cc0614eb"
-+SRCREV = "b3f82f35246aed3294ab42f1b25d8c3ef7142066"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
++PACKAGES =+ "${PN}-extra"
++
+ MATRIX_ESSENTIALS = "        \
+     matrix-gui               \
+     matrix-lighttpd-config   \
+@@ -147,5 +149,8 @@ RDEPENDS_${PN} = "        \
+     ${MATRIX_APPS}        \
+     ${@bb.utils.contains('MACHINE_FEATURES','sgx',"${MATRIX_SGX_DEMOS}",'',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','dsp',"${MATRIX_OPENCL_APPS}",'',d)} \
++"
++
++RDEPENDS_${PN}-extra = " \
+     ${@bb.utils.contains('MACHINE_FEATURES','dsp',"${MATRIX_OPENCV_OPENCL_APPS}",'',d)} \
+ "
 -- 
-1.7.9.5
+2.7.4
 
 
