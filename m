@@ -1,30 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 5D76452990
+	by arago-project.org (Postfix) with ESMTPS id 4FBCC52990
 	for <meta-arago@arago-project.org>;
-	Tue, 20 Jun 2017 21:16:46 +0000 (UTC)
+	Tue, 20 Jun 2017 21:19:48 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 40E5020BD4;
-	Tue, 20 Jun 2017 21:16:46 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 690BE20BD4;
+	Tue, 20 Jun 2017 21:19:48 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id QzZjj-hpap76; Tue, 20 Jun 2017 21:16:46 +0000 (UTC)
+	with ESMTP id UZTA8XT-Du7P; Tue, 20 Jun 2017 21:19:48 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1CA22204E0;
-	Tue, 20 Jun 2017 21:16:45 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 46FD7204E0;
+	Tue, 20 Jun 2017 21:19:47 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 9FCAD16250E;
-	Tue, 20 Jun 2017 17:16:44 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id CBFB316250E;
+	Tue, 20 Jun 2017 17:19:46 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 20 Jun 2017 17:16:44 -0400
-Message-Id: <1497993404-116192-1-git-send-email-denis@denix.org>
+Date: Tue, 20 Jun 2017 17:19:46 -0400
+Message-Id: <1497993586-116724-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] toolchain-linaro: update toolchain component versions
+Subject: [master][PATCH] packagegroup-*-qte: qtdeclarative no longer produces plugins package
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,45 +37,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Jun 2017 21:16:46 -0000
+X-List-Received-Date: Tue, 20 Jun 2017 21:19:48 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/toolchain-linaro.inc | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-index 6271986..b927846 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-@@ -30,9 +30,9 @@ PREFERRED_PROVIDER_libgcc = "external-linaro-toolchain"
- PREFERRED_PROVIDER_gcc-runtime = "external-linaro-toolchain"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+index e9d7a3f..ebceac7 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to add Qt embedded related packages"
+ LICENSE = "MIT"
+-PR = "r12"
++PR = "r13"
  
- # Set Cross and SDK toolchain preferences
--SDKGCCVERSION ?= "linaro-6.2%"
-+SDKGCCVERSION ?= "linaro-6.3%"
- SDKBINUVERSION ?= "linaro-2.27%"
--SDKGLIBCVERSION ?= "2.24%"
-+SDKGLIBCVERSION ?= "2.25%"
- SDKLINUXLIBCVERSION ?= "4.9%"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- PREFERRED_VERSION_gcc-crosssdk-${SDK_SYS} ?= "${SDKGCCVERSION}"
-@@ -48,10 +48,10 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
+@@ -28,7 +28,6 @@ QT4_ESSENTIALS = "\
  
- # Set target toolchain preferences to match Cross/SDK by default
- # Can be overwritten globally, if needed
--GCCVERSION ?= "linaro-6.2%"
-+GCCVERSION ?= "linaro-6.3%"
- BINUVERSION ?= "linaro-2.27%"
--GLIBCVERSION ?= "2.24%"
--GLIBCINITVERSION ?= "2.24%"
-+GLIBCVERSION ?= "2.25%"
-+GLIBCINITVERSION ?= "2.25%"
- LINUXLIBCVERSION ?= "4.9%"
- 
- PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
+ QT5_ESSENTIALS = "\
+     qtbase-plugins \
+-    qtdeclarative-plugins \
+     qtdeclarative-qmlplugins \
+     qtlocation-plugins \
+     qtlocation-qmlplugins \
 -- 
 2.7.4
 
