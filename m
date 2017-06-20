@@ -1,36 +1,36 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 3CC5452A41
+Return-Path: <sam.nelson@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id B150452990
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Jun 2017 19:50:09 +0000 (UTC)
+	Tue, 20 Jun 2017 17:45:52 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5JJo9Af027569
-	for <meta-arago@arago-project.org>; Mon, 19 Jun 2017 14:50:09 -0500
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5KHjqBG011945
+	for <meta-arago@arago-project.org>; Tue, 20 Jun 2017 12:45:52 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1497901809;
-	bh=KxwpeT8nb6OXLus2REwaY7RnN8+PX7F7e+qJuGpgwMA=;
+	s=ti-com-17Q1; t=1497980752;
+	bh=nE+vZTXoBeprJYjvoWSLobMrMSk20Se76n/fjICbB90=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=D1aMn9X3Pvip0MYnMeRUeRwQlTodpkHuXn8/3P2me9zhzk2dT1qQC3dVlz1ws6FTF
-	P0hr40clPFcVRZMIqJ8wjXlwZiETCT0axxMlQ/5rabmcU3a5z03sogoAiGnYljH2Bg
-	6EyhEHn/qADtKGlwA9fzpzJtWmOsk0gzw1izExlk=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5JJo94G017228
-	for <meta-arago@arago-project.org>; Mon, 19 Jun 2017 14:50:09 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 19 Jun 2017 14:50:09 -0500
-Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v5JJo8hi021000;	Mon, 19 Jun 2017 14:50:08 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	b=OfVI7yDZwMeY7tvp7LYZQUzZJ/P38KCpfg2Lsr8XB2AfWTksxm9VF8QbXp0m6tOf+
+	y7fTwuqL01Jz6UdVH0IZujfe4LQyIrJDcPdlNz/5rd4UZL5X6u+y273/EzsC3Mv71e
+	jn1YZby6ep+qYMOa6jInkYdK8izD9HxYx+wx82cE=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5KHjqrO010018
+	for <meta-arago@arago-project.org>; Tue, 20 Jun 2017 12:45:52 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 20 Jun 2017 12:45:52 -0500
+Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v5KHjoMt022004;	Tue, 20 Jun 2017 12:45:52 -0500
+From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 19 Jun 2017 15:43:59 -0400
-Message-ID: <1497901439-31567-3-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1497901439-31567-1-git-send-email-j-stiffler@ti.com>
-References: <1497901439-31567-1-git-send-email-j-stiffler@ti.com>
+Date: Tue, 20 Jun 2017 13:45:49 -0400
+Message-ID: <1497980749-2975-2-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1497980749-2975-1-git-send-email-sam.nelson@ti.com>
+References: <1497980749-2975-1-git-send-email-sam.nelson@ti.com>
 MIME-Version: 1.0
-Subject: [PATCH 3/3] tisdk-server-extra-rootfs-image: add the matrix-extra packagegroup
+Subject: [morty/master][PATCH 2/2] arago-tisdk-addons: Add big-data-ipc-demo for host linux
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,27 +43,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Jun 2017 19:50:10 -0000
+X-List-Received-Date: Tue, 20 Jun 2017 17:45:53 -0000
 Content-Type: text/plain
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 ---
- meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb | 1 +
- 1 file changed, 1 insertion(+)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb  | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
-index f0c7cef..359dc90 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
-@@ -5,6 +5,7 @@ IMAGE_INSTALL += "\
-     packagegroup-arago-tisdk-addons-extra \
-     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-extra','',d)} \
-     packagegroup-arago-tisdk-multimedia \
-+    packagegroup-arago-tisdk-matrix-extra \
- "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index c623b37..360890b 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r60"
++PR = "r61"
  
- export IMAGE_BASENAME = "tisdk-server-extra-rootfs-image"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -119,7 +119,10 @@ EXTRA_PACKAGES_omapl138 = " \
+ 
+ EXTRA_PACKAGES_append_ti33x = " voxelsdk"
+ EXTRA_PACKAGES_append_ti43x = " voxelsdk"
+-EXTRA_PACKAGES_append_omap-a15 = " voxelsdk"
++EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
++                                   big-data-ipc-demo-linux \
++                                   big-data-ipc-demo-linux-firmware \
++"
+ 
+ EXTRA_PACKAGES_append_omap-a15 = " ti-ipc-examples-linux"
+ EXTRA_PACKAGES_append_keystone = " ti-ipc-examples-linux"
 -- 
-2.7.4
+1.9.1
 
 
