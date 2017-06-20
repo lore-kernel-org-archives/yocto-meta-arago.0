@@ -1,34 +1,37 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 585F852990
+Return-Path: <denys@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 84C82529CD
 	for <meta-arago@arago-project.org>;
-	Tue, 20 Jun 2017 17:46:07 +0000 (UTC)
+	Tue, 20 Jun 2017 18:17:22 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5KHjtda004071
-	for <meta-arago@arago-project.org>; Tue, 20 Jun 2017 12:45:55 -0500
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5KIHMb5015843
+	for <meta-arago@arago-project.org>; Tue, 20 Jun 2017 13:17:22 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1497980755;
-	bh=dgybcWCcW9fbp/hKZvmKWSE93QudyuG+hLRvJ9tQnys=;
-	h=From:To:CC:Subject:Date;
-	b=ZPX2cR4DPBkP3r2Asq8C86yLn8IAC0Y+kkm1wA72BTKgKPycvTid8g5OuTxeUIdeR
-	SMMVcUXQfGjnbMLH87FtpJIwXjbv6k4QKDkBOUzyPDnFd4VcBO1CZlpPNK9f2wiDBI
-	txyZ8kzAdEFGUK8m8SIi5C0IzDb2j5MqqS2557xY=
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5KHjoI1010089
-	for <meta-arago@arago-project.org>; Tue, 20 Jun 2017 12:45:50 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 20 Jun 2017 12:45:50 -0500
-Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v5KHjoMs022004;	Tue, 20 Jun 2017 12:45:50 -0500
-From: Sam Nelson <sam.nelson@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 20 Jun 2017 13:45:48 -0400
-Message-ID: <1497980749-2975-1-git-send-email-sam.nelson@ti.com>
-X-Mailer: git-send-email 1.9.1
+	s=ti-com-17Q1; t=1497982642;
+	bh=LeVR3hToLObg+dmhQOkzfJI3HX5hgnOXBZk9n6lbUtA=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=xkiherjpnGmIdLB6nv9BmhSAfDMSl8HjXsQ/ichfYVjWkBxxgj+luif4hffcrwpOF
+	gJnvN1ZqOE+N/GnZk9lxeI74FJF5zQcXruEFA3PcxSRM1vz441F5Jnulnlnnssk26u
+	al33QBSJ2E2xPdfUseG8A2b0PT/fqQVXVkOWKMP4=
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5KIHMdR013996
+	for <meta-arago@arago-project.org>; Tue, 20 Jun 2017 13:17:22 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 20 Jun 2017 13:17:21 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5KIHLuG002119;
+	Tue, 20 Jun 2017 13:17:21 -0500
+Date: Tue, 20 Jun 2017 14:17:20 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Sam Nelson <sam.nelson@ti.com>
+Message-ID: <20170620181719.GF14665@edge>
+References: <1497980749-2975-1-git-send-email-sam.nelson@ti.com>
 MIME-Version: 1.0
-Subject: [morty/master][PATCH 1/2] big-data-ipc-demo: Add ipc examples for big data buffer exchange
+In-Reply-To: <1497980749-2975-1-git-send-email-sam.nelson@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [morty/master][PATCH 1/2] big-data-ipc-demo: Add ipc examples for big data buffer exchange
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,115 +44,127 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Jun 2017 17:46:07 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 20 Jun 2017 18:17:23 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Adds example with host running linux
-Demonstrates transfer of Big data buffers between A15 host and DSP core
+Sam,
 
-Signed-off-by: Sam Nelson <sam.nelson@ti.com>
----
- .../big-data-ipc-demo-linux_git.bb                 | 41 ++++++++++++++++++++++
- .../big-data-ipc-demo/big-data-ipc-demo.inc        | 41 ++++++++++++++++++++++
- 2 files changed, 82 insertions(+)
- create mode 100644 meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
- create mode 100644 meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
+Is the use of "am57xx-evm" below too strict? That will exclude HS platforms 
+and DRA7xx.
 
-diff --git a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
-new file mode 100644
-index 0000000..0734177
---- /dev/null
-+++ b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
-@@ -0,0 +1,41 @@
-+SUMMARY = "TI Big data IPC: Host linux examples"
-+
-+require recipes-ti/includes/ti-paths.inc
-+require big-data-ipc-demo.inc
-+
-+DEPENDS = "ti-ipc \
-+           ti-xdctools \
-+           ti-sysbios \
-+           ti-ipc-rtos \
-+           cmem \
-+"
-+
-+EXTRA_OEMAKE = "\
-+    PLATFORM=${PLATFORM} \
-+    XDC_INSTALL_DIR="${XDC_INSTALL_DIR}" \
-+    BIOS_INSTALL_DIR="${SYSBIOS_INSTALL_DIR}" \
-+    IPC_INSTALL_DIR="${IPC_INSTALL_DIR}" \
-+    LINUX_SYSROOT_DIR="${STAGING_INCDIR}" \
-+    ${IPC_TARGETS} \
-+    JOBS="${PARALLEL_MAKE}" \
-+"
-+
-+do_create_srcipk_prepend() {
-+  rm -rf host_bios
-+}
-+
-+do_compile() {
-+  if [  "${PLATFORM}" != "UNKNOWN" ]; then
-+      oe_runmake host_linux
-+  fi
-+}
-+
-+do_install() {
-+  if [  "${PLATFORM}" != "UNKNOWN" ]; then
-+    oe_runmake EXEC_DIR="${D}${bindir}" install_linux_bin
-+  fi
-+}
-+
-+PACKAGES =+ "${PN}-firmware"
-+FILES_${PN}-firmware += "${bindir}/simple_buffer_example/release/server_dsp.xe66"
-+INSANE_SKIP_${PN}-firmware += "arch"
-diff --git a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
-new file mode 100644
-index 0000000..18b4cd8
---- /dev/null
-+++ b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
-@@ -0,0 +1,41 @@
-+LICENSE = "BSD-3-Clause"
-+LIC_FILES_CHKSUM = "file://makefile;beginline=1;endline=31;md5=2f2ea348b98d5cc7807ece7adcc2c43a"
-+
-+COMPATIBLE_MACHINE = "am57xx-evm|keystone"
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+BIG_DATA_IPC_GIT_URI = "git://git.ti.com/processor-sdk/big-data-ipc-examples.git"
-+BIG_DATA_IPC_GIT_PROTOCOL = "git"
-+BIG_DATA_IPC_GIT_BRANCH = "master"
-+
-+# Below commit ID corresponds to "DEV.BIG_DATA_IPC.01.01.00.00"
-+BIG_DATA_IPC_SRCREV = "5907bff5a29fe2ba8719ae8c3c5d62b20b7b6bc9"
-+
-+BRANCH = "${BIG_DATA_IPC_GIT_BRANCH}"
-+SRC_URI = "${BIG_DATA_IPC_GIT_URI};protocol=${BIG_DATA_IPC_GIT_PROTOCOL};branch=${BRANCH}"
-+
-+SRCREV = "${BIG_DATA_IPC_SRCREV}"
-+PV = "01.01.00.00"
-+
-+require recipes-ti/includes/ti-staging.inc
-+
-+S = "${WORKDIR}/git"
-+
-+PLATFORM = "UNKNOWN"
-+PLATFORM_am57xx-evm = "DRA7XX"
-+PLATFORM_k2hk-evm = "TCI6636"
-+PLATFORM_k2l-evm = "TCI6630"
-+PLATFORM_k2e = "66AK2E"
-+PLATFORM_k2g = "66AK2G"
-+
-+IPC_TARGETS = ""
-+IPC_TARGETS_am57xx-evm = "\
-+    gnu.targets.arm.A15F="${GCC_ARM_NONE_TOOLCHAIN}" \
-+    ti.targets.elf.C66="${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x" \
-+    ti.targets.arm.elf.M4="${M4_TOOLCHAIN_INSTALL_DIR}" \
-+"
-+
-+IPC_TARGETS_keystone = " \
-+    gnu.targets.arm.A15F="${GCC_ARM_NONE_TOOLCHAIN}" \
-+    ti.targets.elf.C66="${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x" \
-+"
--- 
-1.9.1
 
+On Tue, Jun 20, 2017 at 01:45:48PM -0400, Sam Nelson wrote:
+> Adds example with host running linux
+> Demonstrates transfer of Big data buffers between A15 host and DSP core
+> 
+> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> ---
+>  .../big-data-ipc-demo-linux_git.bb                 | 41 ++++++++++++++++++++++
+>  .../big-data-ipc-demo/big-data-ipc-demo.inc        | 41 ++++++++++++++++++++++
+>  2 files changed, 82 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
+>  create mode 100644 meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
+> 
+> diff --git a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
+> new file mode 100644
+> index 0000000..0734177
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
+> @@ -0,0 +1,41 @@
+> +SUMMARY = "TI Big data IPC: Host linux examples"
+> +
+> +require recipes-ti/includes/ti-paths.inc
+> +require big-data-ipc-demo.inc
+> +
+> +DEPENDS = "ti-ipc \
+> +           ti-xdctools \
+> +           ti-sysbios \
+> +           ti-ipc-rtos \
+> +           cmem \
+> +"
+> +
+> +EXTRA_OEMAKE = "\
+> +    PLATFORM=${PLATFORM} \
+> +    XDC_INSTALL_DIR="${XDC_INSTALL_DIR}" \
+> +    BIOS_INSTALL_DIR="${SYSBIOS_INSTALL_DIR}" \
+> +    IPC_INSTALL_DIR="${IPC_INSTALL_DIR}" \
+> +    LINUX_SYSROOT_DIR="${STAGING_INCDIR}" \
+> +    ${IPC_TARGETS} \
+> +    JOBS="${PARALLEL_MAKE}" \
+> +"
+> +
+> +do_create_srcipk_prepend() {
+> +  rm -rf host_bios
+> +}
+> +
+> +do_compile() {
+> +  if [  "${PLATFORM}" != "UNKNOWN" ]; then
+> +      oe_runmake host_linux
+> +  fi
+> +}
+> +
+> +do_install() {
+> +  if [  "${PLATFORM}" != "UNKNOWN" ]; then
+> +    oe_runmake EXEC_DIR="${D}${bindir}" install_linux_bin
+> +  fi
+> +}
+> +
+> +PACKAGES =+ "${PN}-firmware"
+> +FILES_${PN}-firmware += "${bindir}/simple_buffer_example/release/server_dsp.xe66"
+> +INSANE_SKIP_${PN}-firmware += "arch"
+> diff --git a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
+> new file mode 100644
+> index 0000000..18b4cd8
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
+> @@ -0,0 +1,41 @@
+> +LICENSE = "BSD-3-Clause"
+> +LIC_FILES_CHKSUM = "file://makefile;beginline=1;endline=31;md5=2f2ea348b98d5cc7807ece7adcc2c43a"
+> +
+> +COMPATIBLE_MACHINE = "am57xx-evm|keystone"
+> +PACKAGE_ARCH = "${MACHINE_ARCH}"
+> +
+> +BIG_DATA_IPC_GIT_URI = "git://git.ti.com/processor-sdk/big-data-ipc-examples.git"
+> +BIG_DATA_IPC_GIT_PROTOCOL = "git"
+> +BIG_DATA_IPC_GIT_BRANCH = "master"
+> +
+> +# Below commit ID corresponds to "DEV.BIG_DATA_IPC.01.01.00.00"
+> +BIG_DATA_IPC_SRCREV = "5907bff5a29fe2ba8719ae8c3c5d62b20b7b6bc9"
+> +
+> +BRANCH = "${BIG_DATA_IPC_GIT_BRANCH}"
+> +SRC_URI = "${BIG_DATA_IPC_GIT_URI};protocol=${BIG_DATA_IPC_GIT_PROTOCOL};branch=${BRANCH}"
+> +
+> +SRCREV = "${BIG_DATA_IPC_SRCREV}"
+> +PV = "01.01.00.00"
+> +
+> +require recipes-ti/includes/ti-staging.inc
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +PLATFORM = "UNKNOWN"
+> +PLATFORM_am57xx-evm = "DRA7XX"
+> +PLATFORM_k2hk-evm = "TCI6636"
+> +PLATFORM_k2l-evm = "TCI6630"
+> +PLATFORM_k2e = "66AK2E"
+> +PLATFORM_k2g = "66AK2G"
+> +
+> +IPC_TARGETS = ""
+> +IPC_TARGETS_am57xx-evm = "\
+> +    gnu.targets.arm.A15F="${GCC_ARM_NONE_TOOLCHAIN}" \
+> +    ti.targets.elf.C66="${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x" \
+> +    ti.targets.arm.elf.M4="${M4_TOOLCHAIN_INSTALL_DIR}" \
+> +"
+> +
+> +IPC_TARGETS_keystone = " \
+> +    gnu.targets.arm.A15F="${GCC_ARM_NONE_TOOLCHAIN}" \
+> +    ti.targets.elf.C66="${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x" \
+> +"
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
