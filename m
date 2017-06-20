@@ -1,36 +1,30 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id A61AB52A7F
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 5D76452990
 	for <meta-arago@arago-project.org>;
-	Tue, 20 Jun 2017 18:31:47 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5KIVlZV026035
-	for <meta-arago@arago-project.org>; Tue, 20 Jun 2017 13:31:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1497983507;
-	bh=nE+vZTXoBeprJYjvoWSLobMrMSk20Se76n/fjICbB90=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=kJighm7WIGNBXupJ1BAccxbksOQGMVszdNPmoNiqrhFZ56tnQTb4oT4Dtc+6XWZ9p
-	QdN78Q+rZZXVf32e1w/278mY96htmo4bCJ5WgZ+0sUinFfG1eRn4+f9qjt6E8VEe6p
-	3TrqqX0YFfTcFKqXv/tTSKcNjWUsfwvI8mHCiRTg=
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5KIVl7k030598
-	for <meta-arago@arago-project.org>; Tue, 20 Jun 2017 13:31:47 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 20 Jun 2017 13:31:47 -0500
-Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v5KIVjMb031316;	Tue, 20 Jun 2017 13:31:47 -0500
-From: Sam Nelson <sam.nelson@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 20 Jun 2017 14:31:44 -0400
-Message-ID: <1497983504-4369-2-git-send-email-sam.nelson@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1497983504-4369-1-git-send-email-sam.nelson@ti.com>
-References: <1497983504-4369-1-git-send-email-sam.nelson@ti.com>
-MIME-Version: 1.0
-Subject: [morty/master][PATCH v2 2/2] arago-tisdk-addons: Add big-data-ipc-demo for host linux
+	Tue, 20 Jun 2017 21:16:46 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 40E5020BD4;
+	Tue, 20 Jun 2017 21:16:46 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id QzZjj-hpap76; Tue, 20 Jun 2017 21:16:46 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1CA22204E0;
+	Tue, 20 Jun 2017 21:16:45 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 9FCAD16250E;
+	Tue, 20 Jun 2017 17:16:44 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 20 Jun 2017 17:16:44 -0400
+Message-Id: <1497993404-116192-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH] toolchain-linaro: update toolchain component versions
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,39 +37,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Jun 2017 18:31:47 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 20 Jun 2017 21:16:46 -0000
 
-Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb  | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ meta-arago-distro/conf/distro/include/toolchain-linaro.inc | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index c623b37..360890b 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
- LICENSE = "MIT"
--PR = "r60"
-+PR = "r61"
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
+index 6271986..b927846 100644
+--- a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
++++ b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
+@@ -30,9 +30,9 @@ PREFERRED_PROVIDER_libgcc = "external-linaro-toolchain"
+ PREFERRED_PROVIDER_gcc-runtime = "external-linaro-toolchain"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ # Set Cross and SDK toolchain preferences
+-SDKGCCVERSION ?= "linaro-6.2%"
++SDKGCCVERSION ?= "linaro-6.3%"
+ SDKBINUVERSION ?= "linaro-2.27%"
+-SDKGLIBCVERSION ?= "2.24%"
++SDKGLIBCVERSION ?= "2.25%"
+ SDKLINUXLIBCVERSION ?= "4.9%"
  
-@@ -119,7 +119,10 @@ EXTRA_PACKAGES_omapl138 = " \
+ PREFERRED_VERSION_gcc-crosssdk-${SDK_SYS} ?= "${SDKGCCVERSION}"
+@@ -48,10 +48,10 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
  
- EXTRA_PACKAGES_append_ti33x = " voxelsdk"
- EXTRA_PACKAGES_append_ti43x = " voxelsdk"
--EXTRA_PACKAGES_append_omap-a15 = " voxelsdk"
-+EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
-+                                   big-data-ipc-demo-linux \
-+                                   big-data-ipc-demo-linux-firmware \
-+"
+ # Set target toolchain preferences to match Cross/SDK by default
+ # Can be overwritten globally, if needed
+-GCCVERSION ?= "linaro-6.2%"
++GCCVERSION ?= "linaro-6.3%"
+ BINUVERSION ?= "linaro-2.27%"
+-GLIBCVERSION ?= "2.24%"
+-GLIBCINITVERSION ?= "2.24%"
++GLIBCVERSION ?= "2.25%"
++GLIBCINITVERSION ?= "2.25%"
+ LINUXLIBCVERSION ?= "4.9%"
  
- EXTRA_PACKAGES_append_omap-a15 = " ti-ipc-examples-linux"
- EXTRA_PACKAGES_append_keystone = " ti-ipc-examples-linux"
+ PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
 -- 
-1.9.1
+2.7.4
 
 
