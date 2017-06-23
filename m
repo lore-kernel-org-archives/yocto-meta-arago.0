@@ -1,36 +1,30 @@
-Return-Path: <h-gou@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id EBF7252079
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 5D2CB529E6
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Jun 2017 22:39:47 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5MMdckX032498
-	for <meta-arago@arago-project.org>; Thu, 22 Jun 2017 17:39:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1498171178;
-	bh=Ggmv6B2igZnmA9N8Trjup53Xf9pQcEw5KZxpaA4yiyk=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=aVRWj6qWk+IpPPzMBOiX8ntUwPH3M1dA7nhJrZDfRtoU6ZxtEYnMDAL8O19k9iU4n
-	ST6VzFedxW1tcDVqdyKVqIqYW8bTCf7SVUtv3ORdTQegViiDEd1YKZa7uSzAZSwjEU
-	2UeHfn2WxUXxABqU2wpktWAeVwxq/FsBgJjwr4S0=
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5MMdWWY027147
-	for <meta-arago@arago-project.org>; Thu, 22 Jun 2017 17:39:32 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 22 Jun 2017 17:39:32 -0500
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v5MMdQQO018315;	Thu, 22 Jun 2017 17:39:32 -0500
-From: Hongmei Gou <h-gou@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 22 Jun 2017 18:39:20 -0400
-Message-ID: <1498171160-26749-3-git-send-email-h-gou@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1498171160-26749-1-git-send-email-h-gou@ti.com>
-References: <1498171160-26749-1-git-send-email-h-gou@ti.com>
-MIME-Version: 1.0
-Subject: [PATCH 3/3] ti-tisdk-makefile: add uio-module-drv for am3/am4/am5
+	Fri, 23 Jun 2017 18:02:00 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 34439208FB;
+	Fri, 23 Jun 2017 18:02:00 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id VEWVLhk44Swk; Fri, 23 Jun 2017 18:02:00 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 13F1B204E0;
+	Fri, 23 Jun 2017 18:01:59 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 9015016250E;
+	Fri, 23 Jun 2017 14:01:58 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Fri, 23 Jun 2017 14:01:57 -0400
+Message-Id: <1498240917-41514-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH] kms++: update to the latest from git
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,52 +37,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Jun 2017 22:39:48 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 23 Jun 2017 18:02:00 -0000
 
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb         | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ meta-arago-extras/recipes-graphics/kms++/kms++_git.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 15c14aa..7db995c 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -50,7 +50,7 @@ SRC_URI = "\
-     file://Makefile_barcode-roi \
- "
+diff --git a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+index 121479b..883607c 100644
+--- a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
++++ b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+@@ -4,11 +4,11 @@ LICENSE = "MPL-2.0"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=c670e18272184fc0e86e1648678b4f2a"
  
--PR = "r81"
-+PR = "r82"
+ PV = "1.0"
+-PR = "r1"
++PR = "r2"
  
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
-@@ -90,6 +90,7 @@ MAKEFILES_append_ti33x = " u-boot-spl \
-                            ti-sgx-ddk-km \
-                            pru-icss \
-                            barcode-roi \
-+                           uio-module-drv \
- "
- MAKEFILES_append_ti43x = " u-boot-spl \
-                            ${QUICK_PLAYGROUND} \
-@@ -101,6 +102,7 @@ MAKEFILES_append_ti43x = " u-boot-spl \
-                            ti-sgx-ddk-km \
-                            pru-icss \
-                            barcode-roi \
-+                           uio-module-drv \
- "
+ BRANCH = "master"
+ SRC_URI = "git://github.com/tomba/kmsxx.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "6d28a0dd5d6747116f631d24bcc59d944a1b8b95"
++SRCREV = "cb0786049f960f2bd383617151b01318e02e9ff9"
  
- MAKEFILES_append_dra7xx = " cryptodev \
-@@ -121,6 +123,7 @@ MAKEFILES_append_omap-a15 = " u-boot-spl \
-                               pru-icss \
-                               ti-gc320-driver \
-                               barcode-roi \
-+                              uio-module-drv \
- "
- MAKEFILES_append_omapl138 = " pru \
-                               u-boot-legacy \
+ DEPENDS = "drm python3-pybind11"
+ 
 -- 
-1.9.1
+2.7.4
 
 
