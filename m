@@ -1,30 +1,36 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id D51C052961
+Return-Path: <sam.nelson@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 4FC5152961
 	for <meta-arago@arago-project.org>;
-	Mon, 26 Jun 2017 16:27:32 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id C4D4920BA9;
-	Mon, 26 Jun 2017 16:27:32 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id eYdBvnHxdKNz; Mon, 26 Jun 2017 16:27:32 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A4F12207AF;
-	Mon, 26 Jun 2017 16:27:31 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 27DDD1624E5;
-	Mon, 26 Jun 2017 12:27:31 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Mon, 26 Jun 2017 12:27:30 -0400
-Message-Id: <1498494450-129353-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] kernel-fitimgae: depend on deployment of optee image if OPTEEMACHINE is set
+	Mon, 26 Jun 2017 17:43:20 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v5QHhK4Z010898
+	for <meta-arago@arago-project.org>; Mon, 26 Jun 2017 12:43:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1498499000;
+	bh=nE+vZTXoBeprJYjvoWSLobMrMSk20Se76n/fjICbB90=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=f9RBc+OMt6iuM9PrA1ogiy/TqONuUygBARJcsy0mRRg3yCUoYvVZHJo7idwYclDc8
+	GtYqLb2uOrs+6HiF/t/hDBxaG5vTyqwfsdyLJXdbIEMk8CQsK691Hmn0T7hOaNc6cR
+	e4juXTjsgCtJD08z77BG4pyMxNbtEmMKmG92azVg=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v5QHhKtK009995
+	for <meta-arago@arago-project.org>; Mon, 26 Jun 2017 12:43:20 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 26 Jun 2017 12:43:19 -0500
+Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v5QHhIYF027938;	Mon, 26 Jun 2017 12:43:19 -0500
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 26 Jun 2017 13:43:17 -0400
+Message-ID: <1498498997-30316-2-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1498498997-30316-1-git-send-email-sam.nelson@ti.com>
+References: <1498498997-30316-1-git-send-email-sam.nelson@ti.com>
+MIME-Version: 1.0
+Subject: [morty/master][PATCH v3 2/2] arago-tisdk-addons: Add big-data-ipc-demo for host linux
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,29 +43,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Jun 2017 16:27:34 -0000
+X-List-Received-Date: Mon, 26 Jun 2017 17:43:20 -0000
+Content-Type: text/plain
 
-FITIMAGE_OPTEE never got defined and isn't a correct variable for this condition
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 ---
- meta-arago-distro/classes/kernel-fitimage.bbclass | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb  | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/classes/kernel-fitimage.bbclass b/meta-arago-distro/classes/kernel-fitimage.bbclass
-index 1cfa8d1..3a4da6d 100644
---- a/meta-arago-distro/classes/kernel-fitimage.bbclass
-+++ b/meta-arago-distro/classes/kernel-fitimage.bbclass
-@@ -39,7 +39,7 @@ python __anonymous () {
-             uboot_pn = d.getVar('PREFERRED_PROVIDER_u-boot', True) or 'u-boot'
-             d.appendVarFlag('do_assemble_fitimage', 'depends', ' %s:do_deploy' % uboot_pn)
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index c623b37..360890b 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r60"
++PR = "r61"
  
--        if d.getVar('FITIMAGE_OPTEE', True):
-+        if d.getVar('OPTEEMACHINE', True):
-             d.appendVarFlag('do_assemble_fitimage', 'depends', ' optee-os:do_deploy')
- }
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
+@@ -119,7 +119,10 @@ EXTRA_PACKAGES_omapl138 = " \
+ 
+ EXTRA_PACKAGES_append_ti33x = " voxelsdk"
+ EXTRA_PACKAGES_append_ti43x = " voxelsdk"
+-EXTRA_PACKAGES_append_omap-a15 = " voxelsdk"
++EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
++                                   big-data-ipc-demo-linux \
++                                   big-data-ipc-demo-linux-firmware \
++"
+ 
+ EXTRA_PACKAGES_append_omap-a15 = " ti-ipc-examples-linux"
+ EXTRA_PACKAGES_append_keystone = " ti-ipc-examples-linux"
 -- 
-2.7.4
+1.9.1
 
 
