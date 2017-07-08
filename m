@@ -1,37 +1,40 @@
-Return-Path: <dmurphy@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 71E1F52A51
+Return-Path: <vijaikumar.k@mistralsolutions.com>
+Received: from mail-wr0-f170.google.com (mail-wr0-f170.google.com
+	[209.85.128.170])
+	by arago-project.org (Postfix) with ESMTPS id 37808529D9
 	for <meta-arago@arago-project.org>;
-	Fri,  7 Jul 2017 15:18:16 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v67FI6ha028954
-	for <meta-arago@arago-project.org>; Fri, 7 Jul 2017 10:18:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1499440686;
-	bh=05EOouQA5sd8mQgpbrHP5Yo/E6ent8+MuxX5f/tri50=;
-	h=From:To:CC:Subject:Date;
-	b=uVDfGrdgp9Wd7bXADFou5pOPHPUZ+r5f7EnBP3trRlF/HE7ED420m7b3HnUQ3H1sf
-	Psm4s7wtMMkNZ5WAIPRATmyBFtSN0jeZUHrmxo/jykF3b2qYTZuXOxJjR/+vqM2tVE
-	Zmzf9uzj7Vs0AQP9PGTrH427a8kgUwP/ZSMv8gQA=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v67FI1dV032432
-	for <meta-arago@arago-project.org>; Fri, 7 Jul 2017 10:18:01 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 7 Jul 2017 10:18:01 -0500
-Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
-	[128.247.22.53])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v67FI1If005002;	Fri, 7 Jul 2017 10:18:01 -0500
-Received: from localhost ([172.22.149.61])	by legion.dal.design.ti.com
-	(8.11.7p1+Sun/8.11.7) with ESMTP id v67FI0327232;
-	Fri, 7 Jul 2017 10:18:00 -0500 (CDT)
-From: Dan Murphy <dmurphy@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 7 Jul 2017 10:17:51 -0500
-Message-ID: <20170707151751.11446-1-dmurphy@ti.com>
-X-Mailer: git-send-email 2.12.2
+	Sat,  8 Jul 2017 04:52:15 +0000 (UTC)
+Received: by mail-wr0-f170.google.com with SMTP id 77so70963203wrb.1
+	for <meta-arago@arago-project.org>;
+	Fri, 07 Jul 2017 21:52:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mistralsolutions.com; s=dkim;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=CyGk1dm7DOGvGOtj4OukHiTYix3vPpZWUodk6xRkzGc=;
+	b=Va5yHzZa33Dfu+0jzeS1JM7T4pAbdo82CZJIfGvCkq3lxt7RdE4SaiFA2qhnwnUxwC
+	yBx0kssnbyXaesYZms6Ut06p1BjPZ6cn1nDL2X+HHdidnzzIVnKlPXkpJiFnyEAW5cIp
+	EfnfrLsD3NjKJamyvmfaf3U8zSKy7jTcwVmM0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=CyGk1dm7DOGvGOtj4OukHiTYix3vPpZWUodk6xRkzGc=;
+	b=K8GpFA5v3eWPJ1IB8Tmi8IgbuPxDnAw1ROJl5BBwzutSjzA3mV/uMQAxAdIgVY0tl/
+	7h0UH6Qdz+xKSIl4tNsX4oZXTQWz1E9YbXdQDlboVGnaeTA2DgtncRlNGaiJmmhMQMe3
+	kbwix9k7AxSMxrz+6wkjygrYCncLND/kIsyRKXqvsvf31Gg5xndb5uZxCjnPxj8ztgVO
+	h0EH3vjKoYxo/bHGWTbpIB6wxg8797gnzik7nQgESQKLSCC3HLdVjhju4LqvZi4UGNDq
+	qdt+V0RGhISxbthPYF+h1uYfoT5L5Z9DyvJZg8hF44jXR1HFINsygUC9olilQVV0VRUA
+	8iKA==
+X-Gm-Message-State: AIVw112KkOXl9d4roZTRwYBATcjzytQFr4R1wLhiAFnBJalhmpDCxSB+
+	zgkJGPf72gZJJQ0E/hzx4EXcs9bA58G6
+X-Received: by 10.223.147.98 with SMTP id 89mr2534205wro.103.1499489534624;
+	Fri, 07 Jul 2017 21:52:14 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [PATCH] optee: Update SRCREV for client, os and test
+Received: by 10.28.58.135 with HTTP; Fri, 7 Jul 2017 21:51:54 -0700 (PDT)
+From: vijaikumar k <vijaikumar.k@mistralsolutions.com>
+Date: Sat, 8 Jul 2017 10:21:54 +0530
+Message-ID: <CADOTBT0JSbMsc7t71ZYS8MELag6vK2k83BEbcZMtcDGtm-NJpQ@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: Use of repo instead of oe-layersetup script
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,68 +47,23 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Jul 2017 15:18:16 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 08 Jul 2017 04:52:15 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Updating the SRCREV for the optee-client,
-optee-os and optee-test to Linaro's tagged
-version of 2.5.0 release.
+Hi All,
 
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- meta-arago-distro/recipes-security/optee/optee-client.bbappend   | 4 +++-
- meta-arago-distro/recipes-security/optee/optee-os_git.bbappend   | 4 +++-
- meta-arago-distro/recipes-security/optee/optee-test_git.bbappend | 4 +++-
- 3 files changed, 9 insertions(+), 3 deletions(-)
+Just wondering, why can't we use repo to clone projects instead of
+oe-layersetup script. We could split the current script into a
+manifest and a env setup script. We could have the env setup script
+inside meta-arago. So the whole command for setting up an Arago
+project would be something like this.
 
-diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-index cdf68545..d18ab3ba 100644
---- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-@@ -3,5 +3,7 @@ PR_append = ".arago0"
- SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
-            file://tee-supplicant.service"
- 
-+PV = "2.5.0+git${SRCPV}"
-+
- BRANCH = "ti_optee_client"
--SRCREV = "0b7aa7d6ff08b20ba20c425eed8b2023a179ed85"
-+SRCREV = "0efaf6bae1066d06a075d1f4fe1011b8b3576f75"
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-index c6e5be4a..afd72284 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-@@ -2,13 +2,15 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
- PR_append = ".arago7"
- 
-+PV="2.5.0+git${SRCPV}"
-+
- is_armv7 = "1"
- 
- SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
-            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
- "
- BRANCH = "ti_optee_os"
--SRCREV = "941cd2d94db90bde2c6986cb55cd5b5c7bef8457"
-+SRCREV = "f54c7f1f0a8942338b84a6a9319ebf6e946039f0"
- 
- EXTRA_OEMAKE = "CROSS_COMPILE_core=${HOST_PREFIX}  \
-                 CROSS_COMPILE_ta_arm32=${HOST_PREFIX}  \
-diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-index 62dc6c72..17228b13 100644
---- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-@@ -2,5 +2,7 @@ PR_append = ".arago1"
- 
- SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
- 
-+PV = "2.5.0+git${SRCPV}"
-+
- BRANCH = "ti_optee_test"
--SRCREV = "d232f17ac35d17da3b2446651facf587ee4696f2"
-+SRCREV = "e0ab180a643b67e865b35f869a2ed3b3dee9112d"
--- 
-2.13.2.516.ge629a7d28
+repo init -u <url>/manifest.git -b arago-morty
+repo sync
 
+./sources/meta-arago/env-int.sh
+
+
+Thanks,
+Vijai Kumar K
 
