@@ -1,30 +1,37 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 9F6E1529BA
+Return-Path: <dmurphy@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 29F0152A47
 	for <meta-arago@arago-project.org>;
-	Mon, 10 Jul 2017 21:30:55 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 4B0D220BCC;
-	Mon, 10 Jul 2017 21:30:55 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 9PlQ5jwxgy5v; Mon, 10 Jul 2017 21:30:55 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 29647207AF;
-	Mon, 10 Jul 2017 21:30:54 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 8BD47162522;
-	Mon, 10 Jul 2017 17:30:53 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Mon, 10 Jul 2017 17:30:53 -0400
-Message-Id: <1499722253-89823-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] chromium-wayland: disable use of gold linker
+	Wed, 12 Jul 2017 11:35:45 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6CBZjnx003119
+	for <meta-arago@arago-project.org>; Wed, 12 Jul 2017 06:35:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1499859345;
+	bh=LOWuQu2IHVa1Sy75pqAGXbGZVWeDAhAahFVxa5Lnx9U=;
+	h=From:To:CC:Subject:Date;
+	b=efuMkShwGK0KpVHhf4NcfVo7d0ECi89MioU9kFa1Scrbpm/ukeH5YHrjTWuCgWEBO
+	SaWkjzoVbTN9ycOCrJ8mJwPvVe3ONDAmKl3wEWn1MgEDjrr7lDQsU6QWVlxvoaQ4kn
+	zaaPpuHfGJd/zjvwmOQOdTo7IgmNlqIC25eLkS3M=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6CBZjPq021602
+	for <meta-arago@arago-project.org>; Wed, 12 Jul 2017 06:35:45 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 12 Jul 2017 06:35:44 -0500
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
+	[128.247.22.53])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v6CBZiZl014792;	Wed, 12 Jul 2017 06:35:44 -0500
+Received: from localhost ([172.22.138.231])	by legion.dal.design.ti.com
+	(8.11.7p1+Sun/8.11.7) with ESMTP id v6CBZi320532;
+	Wed, 12 Jul 2017 06:35:44 -0500 (CDT)
+From: Dan Murphy <dmurphy@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 12 Jul 2017 06:35:38 -0500
+Message-ID: <20170712113538.28544-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.12.2
+MIME-Version: 1.0
+Subject: [PATCH v2] optee: Update SRCREV for client, os and test
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,27 +44,71 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Jul 2017 21:30:55 -0000
+X-List-Received-Date: Wed, 12 Jul 2017 11:35:45 -0000
+Content-Type: text/plain
 
-It seems to break with our default external Linaro toolchain
+Updating the SRCREV for the optee-client,
+optee-os and optee-test to Linaro's tagged
+version of 2.5.0 release.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
 ---
- meta-arago-distro/recipes-browser/chromium/chromium-wayland_%.bbappend | 2 ++
- 1 file changed, 2 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-browser/chromium/chromium-wayland_%.bbappend b/meta-arago-distro/recipes-browser/chromium/chromium-wayland_%.bbappend
-index 97e2509..3130a64 100644
---- a/meta-arago-distro/recipes-browser/chromium/chromium-wayland_%.bbappend
-+++ b/meta-arago-distro/recipes-browser/chromium/chromium-wayland_%.bbappend
-@@ -5,4 +5,6 @@ OZONE_WAYLAND_EXTRA_PATCHES = " \
- 	file://0001-libva-adjust-paths-in-headers-to-include-libva-prefi.patch \
- "
+v2 - Fixed optee_os commit sha
+
+ meta-arago-distro/recipes-security/optee/optee-client.bbappend   | 4 +++-
+ meta-arago-distro/recipes-security/optee/optee-os_git.bbappend   | 4 +++-
+ meta-arago-distro/recipes-security/optee/optee-test_git.bbappend | 4 +++-
+ 3 files changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+index cdf68545..d18ab3ba 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+@@ -3,5 +3,7 @@ PR_append = ".arago0"
+ SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
+            file://tee-supplicant.service"
  
-+USEGOLD = ""
++PV = "2.5.0+git${SRCPV}"
 +
- DEPENDS += "gperf-native"
+ BRANCH = "ti_optee_client"
+-SRCREV = "0b7aa7d6ff08b20ba20c425eed8b2023a179ed85"
++SRCREV = "0efaf6bae1066d06a075d1f4fe1011b8b3576f75"
+diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+index c6e5be4a..d5116fb8 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+@@ -2,13 +2,15 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ PR_append = ".arago7"
+ 
++PV="2.5.0+git${SRCPV}"
++
+ is_armv7 = "1"
+ 
+ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
+            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
+ "
+ BRANCH = "ti_optee_os"
+-SRCREV = "941cd2d94db90bde2c6986cb55cd5b5c7bef8457"
++SRCREV = "a73053f395996f649da278cbec361aa01c02befa"
+ 
+ EXTRA_OEMAKE = "CROSS_COMPILE_core=${HOST_PREFIX}  \
+                 CROSS_COMPILE_ta_arm32=${HOST_PREFIX}  \
+diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+index 62dc6c72..17228b13 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+@@ -2,5 +2,7 @@ PR_append = ".arago1"
+ 
+ SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
+ 
++PV = "2.5.0+git${SRCPV}"
++
+ BRANCH = "ti_optee_test"
+-SRCREV = "d232f17ac35d17da3b2446651facf587ee4696f2"
++SRCREV = "e0ab180a643b67e865b35f869a2ed3b3dee9112d"
 -- 
-2.7.4
+2.13.2.516.ge629a7d28
 
 
