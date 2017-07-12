@@ -1,37 +1,37 @@
 Return-Path: <dmurphy@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 29F0152A47
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 13A8C52A60
 	for <meta-arago@arago-project.org>;
-	Wed, 12 Jul 2017 11:35:45 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6CBZjnx003119
-	for <meta-arago@arago-project.org>; Wed, 12 Jul 2017 06:35:45 -0500
+	Wed, 12 Jul 2017 18:03:41 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6CI3eto011218
+	for <meta-arago@arago-project.org>; Wed, 12 Jul 2017 13:03:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1499859345;
-	bh=LOWuQu2IHVa1Sy75pqAGXbGZVWeDAhAahFVxa5Lnx9U=;
+	s=ti-com-17Q1; t=1499882620;
+	bh=TNEisIdx5rSGhMvuD3dwa+DurymQvRtDsnNcrkYSQyw=;
 	h=From:To:CC:Subject:Date;
-	b=efuMkShwGK0KpVHhf4NcfVo7d0ECi89MioU9kFa1Scrbpm/ukeH5YHrjTWuCgWEBO
-	SaWkjzoVbTN9ycOCrJ8mJwPvVe3ONDAmKl3wEWn1MgEDjrr7lDQsU6QWVlxvoaQ4kn
-	zaaPpuHfGJd/zjvwmOQOdTo7IgmNlqIC25eLkS3M=
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6CBZjPq021602
-	for <meta-arago@arago-project.org>; Wed, 12 Jul 2017 06:35:45 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE72.ent.ti.com
-	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
-	Wed, 12 Jul 2017 06:35:44 -0500
+	b=dcDEjkksU1jCCi6Idz9XCfwDT9GSZ8QnBrC8Q5SO9q+oq69O39B5LvaY2I+elRx6O
+	VdpD479E/neSFpdUu+7CHuyclW3fBJAJEyHAFw9CmOAbg5Dl/9MDtByibqd86mWThQ
+	lGQkJ88WXHNTKiPeKncwd3+lDFQP10bBhXkhqsOA=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6CI3eXo010361
+	for <meta-arago@arago-project.org>; Wed, 12 Jul 2017 13:03:40 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 12 Jul 2017 13:03:40 -0500
 Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
-	[128.247.22.53])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v6CBZiZl014792;	Wed, 12 Jul 2017 06:35:44 -0500
-Received: from localhost ([172.22.138.231])	by legion.dal.design.ti.com
-	(8.11.7p1+Sun/8.11.7) with ESMTP id v6CBZi320532;
-	Wed, 12 Jul 2017 06:35:44 -0500 (CDT)
+	[128.247.22.53])	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v6CI3ej7006694;	Wed, 12 Jul 2017 13:03:40 -0500
+Received: from localhost ([172.22.131.55])	by legion.dal.design.ti.com
+	(8.11.7p1+Sun/8.11.7) with ESMTP id v6CI3e316321;
+	Wed, 12 Jul 2017 13:03:40 -0500 (CDT)
 From: Dan Murphy <dmurphy@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 12 Jul 2017 06:35:38 -0500
-Message-ID: <20170712113538.28544-1-dmurphy@ti.com>
+Date: Wed, 12 Jul 2017 13:03:39 -0500
+Message-ID: <20170712180339.12675-1-dmurphy@ti.com>
 X-Mailer: git-send-email 2.12.2
 MIME-Version: 1.0
-Subject: [PATCH v2] optee: Update SRCREV for client, os and test
+Subject: [PATCH v3] optee: Update SRCREV for client, os and test
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,31 +44,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jul 2017 11:35:45 -0000
+X-List-Received-Date: Wed, 12 Jul 2017 18:03:41 -0000
 Content-Type: text/plain
 
 Updating the SRCREV for the optee-client,
 optee-os and optee-test to Linaro's tagged
 version of 2.5.0 release.
 
+Adding LIC_FILES_CHKSUM to optee_client due to change in the
+LICENSE file from optee_client commit d6a329167a13a124b5cf7a4f0e6f9911099e484a
+
 Signed-off-by: Dan Murphy <dmurphy@ti.com>
 ---
 
+v3 - optee_client added new LICENSE check sum
 v2 - Fixed optee_os commit sha
 
- meta-arago-distro/recipes-security/optee/optee-client.bbappend   | 4 +++-
+ meta-arago-distro/recipes-security/optee/optee-client.bbappend   | 6 +++++-
  meta-arago-distro/recipes-security/optee/optee-os_git.bbappend   | 4 +++-
  meta-arago-distro/recipes-security/optee/optee-test_git.bbappend | 4 +++-
- 3 files changed, 9 insertions(+), 3 deletions(-)
+ 3 files changed, 11 insertions(+), 3 deletions(-)
 
 diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-index cdf68545..d18ab3ba 100644
+index cdf68545..16437019 100644
 --- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
 +++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-@@ -3,5 +3,7 @@ PR_append = ".arago0"
+@@ -3,5 +3,9 @@ PR_append = ".arago0"
  SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
             file://tee-supplicant.service"
  
++LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=69663ab153298557a59c67a60a743e5b"
++
 +PV = "2.5.0+git${SRCPV}"
 +
  BRANCH = "ti_optee_client"
