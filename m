@@ -1,37 +1,34 @@
-Return-Path: <denys@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 17CBC52978
+Return-Path: <sam.nelson@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 5F31A52978
 	for <meta-arago@arago-project.org>;
-	Thu, 13 Jul 2017 21:09:38 +0000 (UTC)
+	Thu, 13 Jul 2017 21:12:31 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6DL9c91001848;
-	Thu, 13 Jul 2017 16:09:38 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6DLCLm9023630
+	for <meta-arago@arago-project.org>; Thu, 13 Jul 2017 16:12:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1499980178;
-	bh=hfW3V+sbm7yY1sRrDkXLQSrq3mGcx+eLyNjsZQHK+aI=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Lp0/FVQMKhP5VJY9MVKildfjuFZ7L1jJR2+zcDZVGiUeoMys3pmerr0S8IOMito1a
-	1+2W23l7nwBckUbBlUQTWiBjsJ9zvMTbMCShT6q0HxYiuZEjRF+OZspxMBLRSs5mjT
-	+pr5JUExWWAt0+y1PJOf131NmvVG78jC1KpKdqQE=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6DL9c2O007177;
-	Thu, 13 Jul 2017 16:09:38 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 13 Jul 2017 16:09:37 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6DL9biO012017;
-	Thu, 13 Jul 2017 16:09:37 -0500
-Date: Thu, 13 Jul 2017 17:09:35 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: vijaikumar k <vijaikumar.k@mistralsolutions.com>
-Message-ID: <20170713210934.GD13353@edge>
-References: <CADOTBT0JSbMsc7t71ZYS8MELag6vK2k83BEbcZMtcDGtm-NJpQ@mail.gmail.com>
+	s=ti-com-17Q1; t=1499980341;
+	bh=nWPaeexfPRocfptHFIcqTyZtiUtVHwHt2jPmranL+Lw=;
+	h=From:To:CC:Subject:Date;
+	b=kjSUemyN5A/QnPtzE3tunUTAytGfNArezHvJxksKxIGVRfqe2cccp12+rnKinsiHm
+	QJlqJDo5tyJ610YqzlAA/5V7dPiWfeWhRRTjOhbsBh7XfOQP4Xwxj9dGqh5MeKAnWA
+	sCrya0lJDq03HTcAk5vWfjpcf2uQURFLSS6zGHKU=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6DLCG1V010086
+	for <meta-arago@arago-project.org>; Thu, 13 Jul 2017 16:12:16 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 13 Jul 2017 16:12:15 -0500
+Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v6DLCFrx014660;	Thu, 13 Jul 2017 16:12:15 -0500
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 13 Jul 2017 17:12:13 -0400
+Message-ID: <1499980333-37403-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <CADOTBT0JSbMsc7t71ZYS8MELag6vK2k83BEbcZMtcDGtm-NJpQ@mail.gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: Use of repo instead of oe-layersetup script
+Subject: [morty/master][PATCH] arago-tisdk-addons-sdk-addons-sdk-host: Add big-data-ipc-demo-linux-src
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,29 +41,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Jul 2017 21:09:38 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 13 Jul 2017 21:12:31 -0000
+Content-Type: text/plain
 
-On Sat, Jul 08, 2017 at 10:21:54AM +0530, vijaikumar k wrote:
-> Hi All,
-> 
-> Just wondering, why can't we use repo to clone projects instead of
-> oe-layersetup script. We could split the current script into a
-> manifest and a env setup script. We could have the env setup script
-> inside meta-arago. So the whole command for setting up an Arago
-> project would be something like this.
-> 
-> repo init -u <url>/manifest.git -b arago-morty
-> repo sync
-> 
-> ./sources/meta-arago/env-int.sh
+Adding for omap-a15 platforms only
 
-And the counterquestion I have is why should we replace existing method 
-with repo? I don't see much difference or benefit. As repo comes from the 
-Android world, while it gets used more these days, historically it wasn't 
-very popular back then...
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+---
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb          | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index 7c8b000..5fb877b 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install sources for additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r30"
++PR = "r31"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -38,6 +38,7 @@ EXTRA_LIBS_append_omap-a15 = " \
+     cmem-mod-src \
+     pru-icss-src \
+     uio-module-drv-src \
++    big-data-ipc-demo-linux-src \
+ "
+ 
+ EXTRA_LIBS_append_dra7xx = " \
 -- 
-Denys
+1.9.1
+
 
