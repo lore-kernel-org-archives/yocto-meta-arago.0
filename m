@@ -1,30 +1,34 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 3177152A6D
+Return-Path: <sam.nelson@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 74F3352A51
 	for <meta-arago@arago-project.org>;
-	Wed, 12 Jul 2017 23:36:38 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 09D2B20C20;
-	Wed, 12 Jul 2017 23:36:38 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id BQN8Hdc1Y2wo; Wed, 12 Jul 2017 23:36:37 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DC37620645;
-	Wed, 12 Jul 2017 23:36:36 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 4E4691624E5;
-	Wed, 12 Jul 2017 19:36:36 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Wed, 12 Jul 2017 19:36:35 -0400
-Message-Id: <1499902595-114800-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] packagegroup-*-connectivity: add more pulseaudio/bluetooth packages
+	Thu, 13 Jul 2017 00:05:21 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6D05L2s008184
+	for <meta-arago@arago-project.org>; Wed, 12 Jul 2017 19:05:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1499904321;
+	bh=9Ws65h5T4uQd70gNah3JLMcuMjVy1PV151HyYRElZgQ=;
+	h=From:To:CC:Subject:Date;
+	b=eKZ7hxbh01i9JBDMyY9PB1hq5eVr2CfkPmZUkAiNDKJRKPtomtnP5UL9ItWCdVt6L
+	3Gvk+ClljmJq2UMY7KwXUzbBYAEbBYLZx/WfsnvsCHFXh0pbzjPrJjHnKSZMSxqfON
+	2nvKi1y/MtWqaof9XGEfkB6RW4+slNHJNuTxqnls=
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6D05LtW019997
+	for <meta-arago@arago-project.org>; Wed, 12 Jul 2017 19:05:21 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 12 Jul 2017 19:05:20 -0500
+Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v6D05KAs013067;	Wed, 12 Jul 2017 19:05:20 -0500
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 12 Jul 2017 20:05:19 -0400
+Message-ID: <1499904319-17520-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [morty/master][PATCH] arago-source-ipk: Add big-data-ipc-demo-linux source ipk
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,52 +41,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jul 2017 23:36:39 -0000
+X-List-Received-Date: Thu, 13 Jul 2017 00:05:21 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-connectivity.bb | 14 ++++++++++----
- 1 file changed, 10 insertions(+), 4 deletions(-)
+ meta-arago-distro/conf/distro/include/arago-source-ipk.inc | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-index 7180a8b..8c852cf 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install wireless packages into the target FS"
- LICENSE = "MIT"
--PR = "r36"
-+PR = "r37"
+diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+index f05acf7..c598d5d 100644
+--- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
++++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+@@ -362,3 +362,6 @@ SRCIPK_INSTALL_DIR_pn-imglib-c66x = "component-sources/imglib_c66x_${PV}"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -12,9 +12,6 @@ WLAN_COMMON = "\
-     wireless-tools \
-     iw \
-     softap-udhcpd-config \
--    pulseaudio \
--    pulseaudio-server \
--    pulseaudio-module-loopback \
-     eventdump \
-     wlconf \
-     wpa-supplicant-wl18xx \
-@@ -43,6 +40,15 @@ BLUETOOTH_STACK = "\
-     bluez5-testtools \
-     uim \
-     bt-enable \
-+    pulseaudio \
-+    pulseaudio-server \
-+    pulseaudio-module-loopback \
-+    pulseaudio-module-bluetooth-discover \
-+    pulseaudio-module-bluetooth-policy \
-+    pulseaudio-module-bluez5-device \
-+    pulseaudio-module-bluez5-discover \
-+    pulseaudio-lib-bluez5-util \
-+    sbc \
- "
- 
- CONNECTIVITY_RDEPENDS = " \
+ CREATE_SRCIPK_pn-vlib-c66x = "1"
+ SRCIPK_INSTALL_DIR_pn-vlib-c66x = "component-sources/vlib_c66x_${PV}"
++
++CREATE_SRCIPK_pn-big-data-ipc-demo-linux = "1"
++SRCIPK_INSTALL_DIR_pn-big-data-ipc-demo-linux = "example-applications/${PN}-${PV}"
 -- 
-2.7.4
+1.9.1
 
 
