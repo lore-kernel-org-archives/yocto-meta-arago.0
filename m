@@ -1,30 +1,38 @@
-Return-Path: <denys@ti.com>
-Received: from mailout3.zoneedit.com (mailout3.zoneedit.com [64.68.198.16])
-	by arago-project.org (Postfix) with ESMTPS id F0126529BB
+Return-Path: <jake@udc0866934>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id A537B5299E
 	for <meta-arago@arago-project.org>;
-	Sat, 15 Jul 2017 19:17:20 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout3.zoneedit.com (Postfix) with ESMTP id DF4F540C2F;
-	Sat, 15 Jul 2017 19:17:20 +0000 (UTC)
-Received: from mailout3.zoneedit.com ([127.0.0.1])
-	by localhost (zmo01-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id KcbGGF5kXqLd; Sat, 15 Jul 2017 19:17:20 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout3.zoneedit.com (Postfix) with ESMTPSA id C4346406EA;
-	Sat, 15 Jul 2017 19:17:19 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 83A8B16200E;
-	Sat, 15 Jul 2017 15:17:19 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Sat, 15 Jul 2017 15:17:18 -0400
-Message-Id: <1500146238-89477-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] optee-os: add handling of OPTEE pager config
+	Mon, 17 Jul 2017 16:50:50 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6HGoo0h029454
+	for <meta-arago@arago-project.org>; Mon, 17 Jul 2017 11:50:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1500310250;
+	bh=ErUrYcYI0dOiE6/ZunqzfRx5Z2IX3v6+KwM2sx4xhLs=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=asFOqqMrzn/BZWpjhgJXVoSyP5t6czJOr14eWoJ1ubZdgqC3fe9Lss7okurYe7iXV
+	QxaClwO0vefWpg4QhjOwgOfxG+HH5lsoEk7H5dzXCSGDehTouyVRLFiEsdRHo6C7n6
+	2hMU/xkpCxH6FfWEJXMdtpCuDQzGqD86UxtuWiVc=
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6HGooIF004116
+	for <meta-arago@arago-project.org>; Mon, 17 Jul 2017 11:50:50 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 17 Jul 2017 11:50:50 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6HGooAZ011995;
+	Mon, 17 Jul 2017 11:50:50 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udc0866934>)	id 1dX9EP-0003r0-SM; Mon, 17 Jul 2017 12:50:49 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 17 Jul 2017 12:50:46 -0400
+Message-ID: <1500310246-14776-2-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1500310246-14776-1-git-send-email-j-stiffler@ti.com>
+References: <1500310246-14776-1-git-send-email-j-stiffler@ti.com>
+MIME-Version: 1.0
+Subject: [tisdk-setup-scripts][PATCH 2/2] setup: add support for HS EVMs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,37 +45,1404 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 15 Jul 2017 19:17:21 -0000
+X-List-Received-Date: Mon, 17 Jul 2017 16:50:51 -0000
+Content-Type: text/plain
 
-Requires separate build with enabled config option and install under different name.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-distro/recipes-security/optee/optee-os_git.bbappend | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ setup-tftp-fit.sh                | 148 +++++++++++++
+ setup-uboot-env-am335x-hs.sh     | 339 +++++++++++++++++++++++++++++
+ setup-uboot-env-am43x-hs.sh      | 165 ++++++++++++++
+ setup-uboot-env-am57xx-hs-evm.sh | 242 +++++++++++++++++++++
+ setup-uboot-env-keystone-hs.sh   | 456 +++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 1350 insertions(+)
+ create mode 100644 setup-tftp-fit.sh
+ create mode 100644 setup-uboot-env-am335x-hs.sh
+ create mode 100644 setup-uboot-env-am43x-hs.sh
+ create mode 100644 setup-uboot-env-am57xx-hs-evm.sh
+ create mode 100755 setup-uboot-env-keystone-hs.sh
 
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-index d5116fb..2cf3656 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-@@ -29,6 +29,16 @@ do_compile() {
-         normfl=`echo ${OPTEEFLAVOR} | tr "_" "-"`
-         mv tee.bin.signed $normfl.optee; \
-     )
+diff --git a/setup-tftp-fit.sh b/setup-tftp-fit.sh
+new file mode 100644
+index 0000000..a0cc07d
+--- /dev/null
++++ b/setup-tftp-fit.sh
+@@ -0,0 +1,148 @@
++#!/bin/sh
 +
-+    if [ "${OPTEEPAGER}" = "y" ]; then
-+        oe_runmake clean PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=${OPTEEFLAVOR}
-+        oe_runmake all PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=${OPTEEFLAVOR} CFG_WITH_PAGER=y
-+        ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
-+            ${TI_SECURE_DEV_PKG}/scripts/secure-binary-image.sh tee.bin tee.bin.signed; \
-+            normfl=`echo ${OPTEEFLAVOR} | tr "_" "-"`
-+            mv tee.bin.signed $normfl-pager.optee; \
-+        )
++# This distribution contains contributions or derivatives under copyright
++# as follows:
++#
++# Copyright (c) 2010, Texas Instruments Incorporated
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++# - Redistributions of source code must retain the above copyright notice,
++#   this list of conditions and the following disclaimer.
++# - Redistributions in binary form must reproduce the above copyright
++#   notice, this list of conditions and the following disclaimer in the
++#   documentation and/or other materials provided with the distribution.
++# - Neither the name of Texas Instruments nor the names of its
++#   contributors may be used to endorse or promote products derived
++#   from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
++# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
++# PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
++# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
++# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
++# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
++# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
++# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
++# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++
++cwd=`dirname $0`
++. $cwd/common.sh
++
++tftpcfg=/etc/xinetd.d/tftp
++tftprootdefault=/tftpboot
++
++tftp() {
++    echo "
++service tftp
++{
++protocol = udp
++port = 69
++socket_type = dgram
++wait = yes
++user = nobody
++server = /usr/sbin/in.tftpd
++server_args = $tftproot
++disable = no
++}
++" | sudo tee $tftpcfg > /dev/null
++     check_status
++     echo
++     echo "$tftpcfg successfully created"
++}
++
++prebuiltimagesdir=`cd $cwd/../board-support/prebuilt-images/ ; echo $PWD`
++copy_to_tftproot() {
++    files="$1"
++    for file in $files
++    do
++	if [ -f $tftproot/$file ]; then
++	    echo
++	    echo "$tftproot/$file already exists. The existing installed file can be renamed and saved under the new name."
++	    echo "(o) overwrite (s) skip copy "
++	    read -p "[o] " exists
++	    case "$exists" in
++	      s) echo "Skipping copy of $file, existing version will be used"
++		 ;;
++	      *) sudo cp "$prebuiltimagesdir/$file" $tftproot
++		 check_status
++		 echo
++		 echo "Successfully overwritten $file in tftp root directory $tftproot"
++		 ;;
++	    esac
++	else
++	    sudo cp "$prebuiltimagesdir/$file" $tftproot
++	    check_status
++	    echo
++	    echo "Successfully copied $file to tftp root directory $tftproot"
++	fi
++    done
++}
++
++echo "--------------------------------------------------------------------------------"
++echo "Which directory do you want to be your tftp root directory?(if this directory does not exist it will be created for you)"
++read -p "[ $tftprootdefault ] " tftproot
++
++if [ ! -n "$tftproot" ]; then
++    tftproot=$tftprootdefault
++fi
++echo $tftproot > $cwd/../.tftproot
++echo "--------------------------------------------------------------------------------"
++
++echo
++echo "--------------------------------------------------------------------------------"
++echo "This step will set up the tftp server in the $tftproot directory."
++echo
++echo "Note! This command requires you to have administrator priviliges (sudo access) "
++echo "on your host."
++read -p "Press return to continue" REPLY
++
++if [ -d $tftproot ]; then
++    echo
++    echo "$tftproot already exists, not creating.."
++else
++    sudo mkdir -p $tftproot
++    check_status
++    sudo chmod 777 $tftproot
++    check_status
++    sudo chown nobody $tftproot
++    check_status
++fi
++
++platform=`cat $cwd/../Rules.make | grep -e "^PLATFORM=" | cut -d= -f2`
++itbfiles=`cd $prebuiltimagesdir;ls -1 *.itb`
++copy_to_tftproot "$itbfiles"
++
++uboot_files=`cd $prebuiltimagesdir;ls -1 u-boot_HS_MLO* 2> /dev/null`
++copy_to_tftproot "$uboot_files"
++
++echo
++if [ -f $tftpcfg ]; then
++    echo "$tftpcfg already exists.."
++
++    #Use = instead of == for POSIX and dash shell compliance
++    if [ "`cat $tftpcfg | grep server_args | cut -d= -f2 | sed 's/^[ ]*//'`" \
++          = "$tftproot" ]; then
++        echo "$tftproot already exported for TFTP, skipping.."
++    else
++        echo "Copying old $tftpcfg to $tftpcfg.old"
++        sudo cp $tftpcfg $tftpcfg.old
++        check_status
++        tftp
 +    fi
- }
- 
- do_install() {
++else
++    tftp
++fi
++
++echo
++echo "Restarting tftp server"
++sudo /etc/init.d/xinetd stop
++check_status
++sleep 1
++sudo /etc/init.d/xinetd start
++check_status
++echo "--------------------------------------------------------------------------------"
+diff --git a/setup-uboot-env-am335x-hs.sh b/setup-uboot-env-am335x-hs.sh
+new file mode 100644
+index 0000000..3e7bfad
+--- /dev/null
++++ b/setup-uboot-env-am335x-hs.sh
+@@ -0,0 +1,339 @@
++#!/bin/sh
++
++# This distribution contains contributions or derivatives under copyright
++# as follows:
++#
++# Copyright (c) 2010, Texas Instruments Incorporated
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++# - Redistributions of source code must retain the above copyright notice,
++#   this list of conditions and the following disclaimer.
++# - Redistributions in binary form must reproduce the above copyright
++#   notice, this list of conditions and the following disclaimer in the
++#   documentation and/or other materials provided with the distribution.
++# - Neither the name of Texas Instruments nor the names of its
++#   contributors may be used to endorse or promote products derived
++#   from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
++# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
++# PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
++# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
++# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
++# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
++# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
++# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
++# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++
++cwd=`dirname $0`
++. $cwd/common.sh
++
++do_expect() {
++    echo "expect {" >> $3
++    check_status
++    echo "    $1" >> $3
++    check_status
++    echo "}" >> $3
++    check_status
++    echo $2 >> $3
++    check_status
++    echo >> $3
++}
++
++
++echo
++echo "--------------------------------------------------------------------------------"
++echo "This step will set up the U-Boot variables for booting the EVM."
++echo
++
++ipdefault=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'`
++platform=`grep PLATFORM= $cwd/../Rules.make | cut -d= -f2`
++
++# Configure prompt for U-Boot 2016.05
++prompt="=>"
++
++echo "Autodetected the following ip address of your host, correct it if necessary"
++read -p "[ $ipdefault ] " ip
++echo
++
++if [ ! -n "$ip" ]; then
++    ip=$ipdefault
++fi
++
++fitimage="fitImage-arago-base-tisdk-image-"$platform".itb"
++fitimagesrc=`ls -1 $cwd/../board-support/prebuilt-images/$fitimage`
++fitimagedefault=`basename $fitimagesrc`
++
++
++echo "Select fit image location:"
++echo " 1: TFTP"
++echo " 2: SD card"
++echo
++read -p "[ 1 ] " fit
++
++if [ ! -n "$fitimage" ]; then
++    fit="1"
++fi
++
++
++if [ "$fit" -eq "1" ]; then
++    echo
++    echo "Available fit images in /tftproot:"
++    for file in /tftpboot/*.itb; do
++	basefile=`basename $file`
++	echo "    $basefile"
++    done
++    echo
++    echo "Which fit image do you want to boot from TFTP?"
++    read -p "[ $fitimagedefault ] " fitimage
++
++    if [ ! -n "$fitimage" ]; then
++	fitimage=$fitimagedefault
++    fi
++fi
++
++isBB="n"
++isBBBlack="n"
++isBBrevA3="n"
++configBB="n"
++
++check_for_beaglebone() {
++    # First check if there is a rev A3 board which uses the custom VID/PID
++    # combination
++    lsusb -d 0403:a6d0 > /dev/null
++
++    if [ "$?" = "0" ]
++    then
++        # We found a beaglebone
++        isBB="y"
++        isBBrevA3="y"
++        return
++    fi
++
++    # Now let's check for a standard VID/PID like newer BeagleBones have
++    sudo lsusb -vv -d 0403:6010 | grep "Product" | grep "BeagleBone" > /dev/null
++
++    if [ "$?" = "0" ]
++    then
++        isBB="y"
++        return
++    fi
++
++    # Now let's check for EVM-SK
++    sudo lsusb -vv -d 0403:6010 | grep "Product" | grep "EVM-SK" > /dev/null
++
++    if [ "$?" = "0" ]
++    then
++        isBB="y"
++        return
++    fi
++
++
++    # Now let's check for BeagleBone Black
++    sudo lsusb -vv -d 0403:6001 > /dev/null
++
++    if [ "$?" = "0" ]
++    then
++        isBB="y"
++        isBBBlack="y"
++        return
++     fi
++
++}
++
++echo "timeout 300" > $cwd/setupBoard.minicom
++echo "verbose on" >> $cwd/setupBoard.minicom
++
++do_expect "\"abort autoboot\"" "send \" \"" $cwd/setupBoard.minicom
++do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
++do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
++do_expect "\"$prompt\"" "send \"reset\"" $cwd/setupBoard.minicom
++do_expect "\"abort autoboot\"" "send \" \"" $cwd/setupBoard.minicom
++
++if [ "$fit" -eq "1" ]; then
++	do_expect "\"$prompt\"" "send setenv serverip $ip" $cwd/setupBoard.minicom
++	do_expect "\"$prompt\"" "send setenv fit_bootfile $fitimage" $cwd/setupBoard.minicom
++        do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run init_console; run envboot; setenv autoload no; dhcp; tftp \${fit_loadaddr} \${fit_bootfile}; run args_fit; bootm \${fit_loadaddr}#\${fdtfile}'" $cwd/setupBoard.minicom
++	do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
++fi
++# Default U-Boot environment will boot our default SD card image.
++
++do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
++echo "! killall -s SIGHUP minicom" >> $cwd/setupBoard.minicom
++
++echo "--------------------------------------------------------------------------------"
++echo "Would you like to create a minicom script with the above parameters (y/n)?"
++read -p "[ y ] " minicom
++echo
++
++if [ ! -n "$minicom" ]; then
++    minicom="y"
++fi
++
++if [ "$minicom" = "y" ]; then
++
++    echo -n "Successfully wrote "
++    readlink -m $cwd/setupBoard.minicom
++fi
++
++while [ yes ]
++do
++	check_for_beaglebone
++
++	if [ "$isBB" = "y" ]
++	then
++		echo ""
++		echo "A BeagleBone (Black) or StarterKit board has been detected"
++		echo "Do you want to configure U-Boot for one of the boards mentioned"
++		echo "above? An answer of 'n' will configure U-Boot for the"
++		echo "General Purpose EVM instead"
++		read -p "(y/n) " configBB
++		echo
++
++		if [ "$configBB" = "y" ] || [ "$configBB" = "n" ]
++		then
++			break
++		else
++			echo "Invalid response"
++			echo
++			continue
++		fi
++	else
++		echo ""
++		echo "No BeagleBone (Black) or StarterKit detected. Assuming"
++		echo "general purpose evm is being used. Is this correct?"
++		read -p "(y/n) " validevm
++		echo ""
++		if [ "$validevm" = "y" ]
++		then
++			configBB="n"
++			break
++		else
++			if [ "$validevm" != "n" ]
++			then
++				echo "Invalid response"
++				echo
++				continue
++			fi
++
++			echo "Please connect the Beaglebone (Black) or StarterKit to the PC"
++			echo "If your using the StarterKit board make sure it is turned on"
++			read -p "Press any key to try checking again." temp
++		fi
++	fi
++done
++
++if [ "$configBB" = "y" ]
++then
++    ftdiInstalled=`lsmod | grep ftdi_sio`
++    if [ -z "$ftdiInstalled" ]; then
++    #Add the ability to regconize the BeagleBone as two serial ports
++        if [ "$isBBrevA3" = "y" ]
++        then
++            echo "Finishing install by adding drivers for Beagle Bone..."
++            sudo modprobe -q ftdi_sio vendor=0x0403 product=0xa6d0
++
++            #Create uDev rule
++            echo "# Load ftdi_sio driver including support for XDS100v2." > $cwd/99-custom.rules
++            echo "SYSFS{idVendor}=="0403", SYSFS{idProduct}=="a6d0", \\" >>  $cwd/99-custom.rules
++            echo "RUN+=\"/sbin/modprobe -q ftdi_sio vendor=0x0403 product=0xa6d0\"" >> $cwd/99-custom.rules
++            sudo cp $cwd/99-custom.rules /etc/udev/rules.d/
++            rm $cwd/99-custom.rules
++        else
++            sudo modprobe -q ftdi_sio
++        fi
++    fi
++
++    #infinite loop to look for board unless user asks to stop
++    while [ yes ]
++    do
++	    echo "Detecting connection to board..."
++	    loopCount=0
++	    port=`dmesg | grep FTDI | grep "tty" | tail -1 | grep "attached" |  awk '{ print $NF }'`
++	    while [ -z "$port" ] && [ "$loopCount" -ne "10" ]
++	    do
++		    #count to 10 and timeout if no connection is found
++		    loopCount=$((loopCount+1))
++
++		    sleep 1
++		    port=`dmesg  | grep FTDI | grep "tty" | tail -1 | grep "attached" |  awk '{ print $NF }'`
++	    done
++
++	    #check to see if we actually found a port
++	    if [ -n "$port" ]; then
++		    break;
++	    fi
++
++	    #if we didn't find a port and reached the timeout limit then ask to reconnect
++	    if [ -z "$port" ] && [ "$loopCount" = "10" ]; then
++		    echo ""
++		    echo "Unable to detect which port the board is connected to."
++		    echo "Please reconnect your board."
++		    echo "Press 'y' to attempt to detect your board again or press 'n' to continue..."
++		    read -p "(y/n)" retryBoardDetection
++	    fi
++
++	    #if they choose not to retry, ask user to reboot manually and exit
++	    if [ "$retryBoardDetection" = "n" ]; then
++		    echo ""
++		    echo "Please reboot your board manually and connect using minicom."
++		    exit;
++	    fi
++    done
++
++    #Change minicom to accurately reflect the bone
++    minicomcfg=${HOME}/.minirc.dfl
++    echo "pu port             /dev/$port
++    pu baudrate         115200
++    pu bits             8
++    pu parity           N
++    pu stopbits         1
++    pu minit
++    pu mreset
++    pu mdialpre
++    pu mdialsuf
++    pu mdialpre2
++    pu mdialsuf2
++    pu mdialpre3
++    pu mdialsuf3
++    pu mconnect
++    pu mnocon1          NO CARRIER
++    pu mnocon2          BUSY
++    pu mnocon3          NO DIALTONE
++    pu mnocon4          VOICE
++    pu rtscts           No" | tee $minicomcfg > /dev/null
++    check_status
++fi
++
++echo "Would you like to run the setup script now (y/n)? For the general purpose evm "
++echo "you must now connect the RS-232 cable to your evm now. For the Beaglebone (Black)"
++echo "or StarterKit this step should of already have been done. Also connect the ethernet"
++echo "cable as described in the Quick Start Guide."
++echo "**Important**"
++echo "Once answering 'y' on the prompt below you will have 300 seconds to turn on the"
++echo "board or if it was already on reboot the board before the setup times out"
++echo
++echo "After successfully executing this script, your board will be set up. You will be "
++echo "able to connect to it by executing 'minicom -w' or if you prefer a windows host"
++echo "you can set up Tera Term as explained in the Software Developer's Guide."
++echo "If you connect minicom or Tera Term and power cycle the board Linux will boot."
++echo
++read -p "[ y ] " minicomsetup
++
++if [ ! -n "$minicomsetup" ]; then
++minicomsetup="y"
++fi
++
++if [ "$minicomsetup" = "y" ]; then
++cd $cwd
++sudo minicom -w -S setupBoard.minicom
++cd -
++fi
++
++echo "You can manually run minicom in the future with this setup script using: minicom -S $cwd/setupBoard.minicom"
++echo "--------------------------------------------------------------------------------"
+diff --git a/setup-uboot-env-am43x-hs.sh b/setup-uboot-env-am43x-hs.sh
+new file mode 100644
+index 0000000..7b67a65
+--- /dev/null
++++ b/setup-uboot-env-am43x-hs.sh
+@@ -0,0 +1,165 @@
++#!/bin/sh
++
++# This distribution contains contributions or derivatives under copyright
++# as follows:
++#
++# Copyright (c) 2014, Texas Instruments Incorporated
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++# - Redistributions of source code must retain the above copyright notice,
++#   this list of conditions and the following disclaimer.
++# - Redistributions in binary form must reproduce the above copyright
++#   notice, this list of conditions and the following disclaimer in the
++#   documentation and/or other materials provided with the distribution.
++# - Neither the name of Texas Instruments nor the names of its
++#   contributors may be used to endorse or promote products derived
++#   from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
++# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
++# PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
++# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
++# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
++# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
++# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
++# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
++# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++
++cwd=`dirname $0`
++. $cwd/common.sh
++
++do_expect() {
++    echo "expect {" >> $3
++    check_status
++    echo "    $1" >> $3
++    check_status
++    echo "}" >> $3
++    check_status
++    echo $2 >> $3
++    check_status
++    echo >> $3
++}
++
++
++echo
++echo "--------------------------------------------------------------------------------"
++echo "This step will set up the u-boot variables for booting the EVM."
++echo
++
++ipdefault=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'`
++platform=`grep PLATFORM= $cwd/../Rules.make | cut -d= -f2`
++
++# Configure prompt for U-Boot 2016.05
++prompt="=>"
++
++
++echo "Autodetected the following ip address of your host, correct it if necessary"
++read -p "[ $ipdefault ] " ip
++echo
++
++if [ ! -n "$ip" ]; then
++    ip=$ipdefault
++fi
++
++fitimage="fitImage-arago-base-tisdk-image-"$platform".itb"
++fitimagesrc=`ls -1 $cwd/../board-support/prebuilt-images/$fitimage`
++fitimagedefault=`basename $fitimagesrc`
++
++
++echo "Select fit image location:"
++echo " 1: TFTP"
++echo " 2: SD card"
++echo
++read -p "[ 1 ] " fit
++
++if [ ! -n "$fitimage" ]; then
++    fit="1"
++fi
++
++
++if [ "$fit" -eq "1" ]; then
++    echo
++    echo "Available fit images in /tftproot:"
++    for file in /tftpboot/*.itb; do
++	basefile=`basename $file`
++	echo "    $basefile"
++    done
++    echo
++    echo "Which fit image do you want to boot from TFTP?"
++    read -p "[ $fitimagedefault ] " fitimage
++
++    if [ ! -n "$fitimage" ]; then
++	fitimage=$fitimagedefault
++    fi
++fi
++
++
++#This is an AM437x GP/EPOS EVM and thus has a NAND. Flash information to NAND.
++
++
++echo "timeout 300" > $cwd/setupBoard.minicom
++echo "verbose on" >> $cwd/setupBoard.minicom
++do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
++do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
++do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
++do_expect "\"$prompt\"" "send \"reset\"" $cwd/setupBoard.minicom
++do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
++
++if [ "$fit" -eq "1" ]; then
++	do_expect "\"$prompt\"" "send setenv serverip $ip" $cwd/setupBoard.minicom
++	do_expect "\"$prompt\"" "send setenv fit_bootfile $fitimage" $cwd/setupBoard.minicom
++        do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run init_console; run envboot; setenv autoload no; dhcp; tftp \${fit_loadaddr} \${fit_bootfile}; run args_fit; bootm \${fit_loadaddr}#\${fdtfile}'" $cwd/setupBoard.minicom
++	do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
++fi
++# Default U-Boot environment will boot our default SD card image.
++
++do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
++echo "! killall -s SIGHUP minicom" >> $cwd/setupBoard.minicom
++
++echo "--------------------------------------------------------------------------------"
++echo "Would you like to create a minicom script with the above parameters (y/n)?"
++read -p "[ y ] " minicom
++echo
++
++if [ ! -n "$minicom" ]; then
++    minicom="y"
++fi
++
++if [ "$minicom" = "y" ]; then
++
++    echo -n "Successfully wrote "
++    readlink -m $cwd/setupBoard.minicom
++
++    echo "Would you like to run the setup script now (y/n)? This requires you to connect"
++    echo "the RS-232 cable between your host and EVM as well as your ethernet cable as"
++    echo "described in the Quick Start Guide. Once answering 'y' on the prompt below"
++    echo "you will have 300 seconds to connect the board and power cycle it"
++    echo "before the setup times out"
++    echo
++    echo "After successfully executing this script, your EVM will be set up. You will be "
++    echo "able to connect to it by executing 'minicom -w' or if you prefer a windows host"
++    echo "you can set up Tera Term as explained in the Software Developer's Guide."
++    echo "If you connect minicom or Tera Term and power cycle the board Linux will boot."
++    echo
++    read -p "[ y ] " minicomsetup
++
++    if [ ! -n "$minicomsetup" ]; then
++       minicomsetup="y"
++    fi
++
++    if [ "$minicomsetup" = "y" ]; then
++      cd $cwd
++      sudo minicom -w -S setupBoard.minicom
++      cd -
++    fi
++
++    echo "You can manually run minicom in the future with this setup script using: minicom -S $cwd/setupBoard.minicom"
++    echo "--------------------------------------------------------------------------------"
++
++fi
++
+diff --git a/setup-uboot-env-am57xx-hs-evm.sh b/setup-uboot-env-am57xx-hs-evm.sh
+new file mode 100644
+index 0000000..c3192b5
+--- /dev/null
++++ b/setup-uboot-env-am57xx-hs-evm.sh
+@@ -0,0 +1,242 @@
++#!/bin/sh
++
++# This distribution contains contributions or derivatives under copyright
++# as follows:
++#
++# Copyright (c) 2010, Texas Instruments Incorporated
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++# - Redistributions of source code must retain the above copyright notice,
++#   this list of conditions and the following disclaimer.
++# - Redistributions in binary form must reproduce the above copyright
++#   notice, this list of conditions and the following disclaimer in the
++#   documentation and/or other materials provided with the distribution.
++# - Neither the name of Texas Instruments nor the names of its
++#   contributors may be used to endorse or promote products derived
++#   from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
++# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
++# PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
++# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
++# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
++# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
++# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
++# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
++# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++
++cwd=`dirname $0`
++. $cwd/common.sh
++
++do_expect() {
++    echo "expect {" >> $3
++    check_status
++    echo "    $1" >> $3
++    check_status
++    echo "}" >> $3
++    check_status
++    echo $2 >> $3
++    check_status
++    echo >> $3
++}
++
++
++echo
++echo "--------------------------------------------------------------------------------"
++echo "This step will set up the u-boot variables for booting the EVM."
++echo "--------------------------------------------------------------------------------"
++
++ipdefault=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'`
++platform=`grep PLATFORM= $cwd/../Rules.make | cut -d= -f2`
++
++# Configure prompt for U-Boot 2016.05
++prompt="=>"
++
++
++echo "Autodetected the following ip address of your host, correct it if necessary"
++read -p "[ $ipdefault ] " ip
++echo
++
++if [ ! -n "$ip" ]; then
++    ip=$ipdefault
++fi
++
++fitimage="fitImage-arago-base-tisdk-image-"$platform".itb"
++fitimagesrc=`ls -1 $cwd/../board-support/prebuilt-images/$fitimage`
++fitimagedefault=`basename $fitimagesrc`
++
++
++echo "Select fit image location:"
++echo " 1: TFTP"
++echo " 2: SD card"
++echo
++read -p "[ 1 ] " fit
++
++if [ ! -n "$fitimage" ]; then
++    fit="1"
++fi
++
++
++if [ "$fit" -eq "1" ]; then
++    echo
++    echo "Available fit images in /tftproot:"
++    for file in /tftpboot/*.itb; do
++	basefile=`basename $file`
++	echo "    $basefile"
++    done
++    echo
++    echo "Which fit image do you want to boot from TFTP?"
++    read -p "[ $fitimagedefault ] " fitimage
++
++    if [ ! -n "$fitimage" ]; then
++	fitimage=$fitimagedefault
++    fi
++fi
++
++board="unknown"
++check_for_board() {
++    lsusb -vv -d 0403:6001 > /dev/null 2>&1
++
++    if [ "$?" = "0" ]
++    then
++        board="x15"
++    fi
++
++    lsusb -vv -d 0403:6010 > /dev/null 2>&1
++
++    if [ "$?" = "0" ]
++    then
++        board="am5-idk"
++    fi
++}
++
++echo "timeout 300" > $cwd/setupBoard.minicom
++echo "verbose on" >> $cwd/setupBoard.minicom
++do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
++do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
++do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
++do_expect "\"$prompt\"" "send \"reset\"" $cwd/setupBoard.minicom
++do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
++
++if [ "$fit" -eq "1" ]; then
++	do_expect "\"$prompt\"" "send setenv serverip $ip" $cwd/setupBoard.minicom
++	do_expect "\"$prompt\"" "send setenv fit_bootfile $fitimage" $cwd/setupBoard.minicom
++        do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run init_console; run envboot; setenv autoload no; dhcp; tftp \${fit_loadaddr} \${fit_bootfile}; run args_fit; bootm \${fit_loadaddr}#\${fdtfile}'" $cwd/setupBoard.minicom
++	do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
++fi
++# Default U-Boot environment will boot our default SD card image.
++
++do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
++echo "! killall -s SIGHUP minicom" >> $cwd/setupBoard.minicom
++
++echo "--------------------------------------------------------------------------------"
++echo "Would you like to create a minicom script with the above parameters (y/n)?"
++read -p "[ y ] " minicom
++echo
++
++if [ ! -n "$minicom" ]; then
++    minicom="y"
++fi
++
++if [ "$minicom" = "y" ]; then
++
++    echo -n "Successfully wrote "
++    readlink -m $cwd/setupBoard.minicom
++
++    while [ yes ]
++    do
++        check_for_board
++
++        if [ "$board" != "unknown" ]
++        then
++            break
++        else
++            echo ""
++            echo "Board could not be detected. Please connect the board to the PC."
++            read -p "Press any key to try checking again." temp
++        fi
++    done
++
++    if [ "$board" != "unknown" ]
++    then
++        ftdiInstalled=`lsmod | grep ftdi_sio`
++        if [ -z "$ftdiInstalled" ]
++        then
++            sudo modprobe -q ftdi_sio
++        fi
++
++        while [ yes ]
++        do
++            echo ""
++            echo -n "Detecting connection to board... "
++            loopCount=0
++            port=`dmesg | grep FTDI | grep "tty" | tail -1 | grep "attached" |  awk '{ print $NF }'`
++            while [ -z "$port" ] && [ "$loopCount" -ne "10" ]
++            do
++                #count to 10 and timeout if no connection is found
++                loopCount=$((loopCount+1))
++
++                sleep 1
++                port=`dmesg  | grep FTDI | grep "tty" | tail -1 | grep "attached" |  awk '{ print $NF }'`
++            done
++
++            #check to see if we actually found a port
++            if [ -n "$port" ]; then
++                echo "/dev/$port"
++                break;
++            fi
++
++            #if we didn't find a port and reached the timeout limit then ask to reconnect
++            if [ -z "$port" ] && [ "$loopCount" = "10" ]; then
++                echo ""
++                echo "Unable to detect which port the board is connected to."
++                echo "Please reconnect your board."
++                echo "Press 'y' to attempt to detect your board again or press 'n' to continue..."
++                read -p "(y/n)" retryBoardDetection
++            fi
++
++            #if they choose not to retry, ask user to reboot manually and exit
++            if [ "$retryBoardDetection" = "n" ]; then
++                echo ""
++                echo "Please reboot your board manually and connect using minicom."
++                exit;
++            fi
++        done
++
++        sed -i -e "s|^pu port.*$|pu port             /dev/$port|g" ${HOME}/.minirc.dfl
++    fi
++
++    echo
++    echo "--------------------------------------------------------------------------------"
++    echo "Would you like to run the setup script now (y/n)?"
++    echo
++    echo "Please connect the ethernet cable as described in the Quick Start Guide."
++    echo "Once answering 'y' on the prompt below, you will have 300 seconds to connect"
++    echo "the board and power cycle it before the setup times out"
++    echo
++    echo "After successfully executing this script, your EVM will be set up. You will be "
++    echo "able to connect to it by executing 'minicom -w' or if you prefer a windows host"
++    echo "you can set up Tera Term as explained in the Software Developer's Guide."
++    echo "If you connect minicom or Tera Term and power cycle the board Linux will boot."
++    echo
++    read -p "[ y ] " minicomsetup
++
++    if [ ! -n "$minicomsetup" ]; then
++       minicomsetup="y"
++    fi
++
++    if [ "$minicomsetup" = "y" ]; then
++      cd $cwd
++      sudo minicom -w -S setupBoard.minicom
++      cd -
++    fi
++
++    echo "You can manually run minicom in the future with this setup script using: minicom -S $cwd/setupBoard.minicom"
++    echo "--------------------------------------------------------------------------------"
++
++fi
+diff --git a/setup-uboot-env-keystone-hs.sh b/setup-uboot-env-keystone-hs.sh
+new file mode 100755
+index 0000000..9eff80f
+--- /dev/null
++++ b/setup-uboot-env-keystone-hs.sh
+@@ -0,0 +1,456 @@
++#!/bin/sh
++
++# This distribution contains contributions or derivatives under copyright
++# as follows:
++#
++# Copyright (c) 2010, Texas Instruments Incorporated
++# All rights reserved.
++#
++# Redistribution and use in source and binary forms, with or without
++# modification, are permitted provided that the following conditions
++# are met:
++# - Redistributions of source code must retain the above copyright notice,
++#   this list of conditions and the following disclaimer.
++# - Redistributions in binary form must reproduce the above copyright
++#   notice, this list of conditions and the following disclaimer in the
++#   documentation and/or other materials provided with the distribution.
++# - Neither the name of Texas Instruments nor the names of its
++#   contributors may be used to endorse or promote products derived
++#   from this software without specific prior written permission.
++#
++# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
++# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
++# PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
++# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
++# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
++# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
++# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
++# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
++# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
++# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++
++cwd=`dirname $0`
++. $cwd/common.sh
++
++do_expect() {
++    local expect_str="$1"
++    local command="$2"
++
++    shift; shift
++
++    while [ $# -gt 0 ]
++    do
++        echo "expect {" >> "$1"
++        check_status
++        echo "    $expect_str" >> "$1"
++        check_status
++        echo "    timeout 600 goto end" >> "$1"
++        echo "}" >> "$1"
++        check_status
++        echo $command >> "$1"
++        check_status
++        echo >> "$1"
++
++        shift
++    done
++}
++
++prompt_feedback() {
++    # Usage: prompt_feedback <prompt> [variable] [default_value] [valid_opt1] [valid_opt2]...
++    local prompt="$1"
++    local var=""
++    local default=""
++
++    local opt_str=""
++
++    local response=""
++    local good_response=""
++
++    shift
++    [ $# -eq 0 ] || var="$1"
++    shift
++    [ $# -eq 0 ] || default="$1"
++    shift
++
++    if [ $# -gt 0 ]
++    then
++        opt_str="($1"
++        shift
++
++        while [ $# -gt 0 ]
++        do
++            opt_str="${opt_str}/$1"
++            shift
++        done
++        opt_str="${opt_str})"
++    fi
++
++    echo "$prompt $opt_str"
++    if [ ! -z "$default" ]
++    then
++        read -p "[ $default ] " response
++    else
++        read response
++    fi
++    echo
++
++    [ ! -z "$response" ] || response="$default"
++
++    [ -z "$var" ] || eval $var=\"$response\"
++}
++
++copy_to_tftproot() {
++    files="$1"
++    for file in $files
++    do
++	if [ -f $tftproot/$file ]; then
++	    echo
++	    echo "$tftproot/$file already exists. The existing installed file can be renamed and saved under the new name."
++	    prompt_feedback "(o) overwrite (s) skip copy" exists o
++	    case "$exists" in
++	      s) echo "Skipping copy of $file, existing version will be used"
++		 ;;
++	      *) sudo cp "$prebuiltimagesdir/$file" $tftproot
++		 check_status
++		 echo
++		 echo "Successfully overwritten $file in tftp root directory $tftproot"
++		 ;;
++	    esac
++	else
++	    sudo cp "$prebuiltimagesdir/$file" $tftproot
++	    check_status
++	    echo
++	    echo "Successfully copied $file to tftp root directory $tftproot"
++	fi
++    done
++}
++
++# Create the BMC scripts. These require no configuration from the user.
++create_bmc_scripts() {
++    ( echo "timeout 300"; echo; ) > $cwd/bmcUartBoot.minicom
++    ( echo "timeout 300"; echo; ) > $cwd/bmcNandBoot.minicom
++
++    # Allow time for XMODEM transfer to begin
++    echo "! sleep 1" >> $cwd/bmcUartBoot.minicom
++
++    ( echo "send \" \""; echo; ) >> $cwd/bmcUartBoot.minicom
++    ( echo "send \" \""; echo; ) >> $cwd/bmcNandBoot.minicom
++
++    do_expect "\"BMC>\"" "send \"bootmode #4\"" $cwd/bmcUartBoot.minicom
++    do_expect "\"BMC>\"" "send \"bootmode #0\"" $cwd/bmcNandBoot.minicom
++
++    do_expect "\"BMC>\"" "send \"reboot\"" $cwd/bmcUartBoot.minicom $cwd/bmcNandBoot.minicom
++
++    echo "end:" >> $cwd/bmcUartBoot.minicom
++    echo "end:" >> $cwd/bmcNandBoot.minicom
++
++    # bmcUartboot.minicom will be killed by the updateUboot.minicom script
++    echo "! killall -s SIGHUP minicom" >> $cwd/bmcNandBoot.minicom
++}
++
++echo
++echo "--------------------------------------------------------------------------------"
++echo "This step will set up the u-boot variables for booting the EVM."
++echo "--------------------------------------------------------------------------------"
++
++ipdefault=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'`
++platform=`grep PLATFORM= $cwd/../Rules.make | cut -d= -f2`
++
++# Configure prompt for U-Boot 2016.05
++prompt="=>"
++
++prompt_feedback "Autodetected the following ip address of your host, correct it if necessary" ip "$(echo $ipdefault | sed -e 's| .*||')" $ipdefault
++
++if [ -f $cwd/../.tftproot ]; then
++    tftproot=`cat $cwd/../.tftproot`
++else
++    prompt_feedback "Where is your tftp root directory?" tftproot "/tftpboot"
++fi
++
++if [ -f $cwd/../.targetfs ]; then
++    rootpath=`cat $cwd/../.targetfs`
++else
++    prompt_feedback "Where is your target filesystem extracted?" rootpath "${HOME}/targetNFS"
++fi
++
++
++fitimage="fitImage-arago-base-tisdk-image-"$platform".itb"
++fitimagesrc=`ls -1 $cwd/../board-support/prebuilt-images/$fitimage`
++fitimagedefault=`basename $fitimagesrc`
++
++ubootimage="u-boot_HS_MLO-${platform}"
++ubootimagesrc=`readlink -m $cwd/../board-support/prebuilt-images/$ubootimage`
++
++echo "--------------------------------------------------------------------------------"
++prompt_feedback "Would you like to update U-boot on the board?" ubootupdate y y n
++
++echo
++echo "Available fit images in /tftproot:"
++for file in /tftpboot/*.itb; do
++    basefile=`basename $file`
++    echo "    $basefile"
++done
++echo
++echo "Which fit image do you want to boot from TFTP?"
++read -p "[ $fitimagedefault ] " fitimage
++
++if [ ! -n "$fitimage" ]; then
++    fitimage=$fitimagedefault
++fi
++
++board="unknown"
++check_for_board() {
++    case $platform in
++        "k2hk-evm")
++            lsusb -vv -d 0403:6010 > /dev/null 2>&1
++
++            if [ "$?" = "0" ]
++            then
++                board="k2evm"
++                board_vendor="0403"
++                board_product="6010"
++                num_port="2"
++                uart_port_idx="1"
++                bmc_port_idx="2"
++            fi
++        ;;
++
++        "k2l-evm"|"k2e-evm")
++            lsusb -vv -d 10c4:ea70 > /dev/null 2>&1
++
++            if [ "$?" = "0" ]
++            then
++                board="k2evm"
++                board_vendor="10c4"
++                board_product="ea70"
++                num_port="2"
++                uart_port_idx="1"
++                bmc_port_idx="2"
++            fi
++        ;;
++    esac
++}
++
++echo "timeout 1800" > $cwd/setupBoard.minicom
++echo "timeout 1800" > $cwd/updateBoard.minicom
++echo "verbose on" >> $cwd/setupBoard.minicom
++echo "verbose on" >> $cwd/updateBoard.minicom
++
++do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++
++# If U-Boot was not updated, refuse to proceed.
++cat >> $cwd/setupBoard.minicom << __EOF__
++expect {
++    "$prompt"
++    "# " goto uboot_update_required
++    timeout 60 goto end
++}
++send " "
++__EOF__
++
++# Reset to the default environment
++do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++
++do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
++
++# Reset incase any variables are set when u-boot initializes
++do_expect "\"$prompt\"" "send \"reset\"" $cwd/setupBoard.minicom
++do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
++
++# Set up the U-Boot environment
++do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv tftp_root '$tftproot'\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv name_uboot $ubootimage\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv fit_bootfile $fitimage\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv fit_loadaddr 0xc0000000\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv addr_mon 0xc08000\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv addr_mon_mkimg 0xc07ffc0\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv mon_size 0x1210\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv addr_mon 0xc08000\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv sec_bm_install 'go \${addr_mon}4 0xc084000 \${mon_size}; mon_install \${addr_mon_mkimg}'\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv loadimage 'dhcp \${fit_loadaddr} \${tftp_root}/\${fit_bootfile}'\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv bootcmd 'run sec_bm_install; run loadimage; bootm \${fit_loadaddr}#\${name_fdt}'\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++
++
++# Create command to fetch and flash u-boot and ubi
++#
++# TBD: Save minicom output to a log and use these strings to determine the
++#      update status on the host machine.
++#
++update_uboot_status="U-Boot update:"
++update_ubi_status="UBI update:"
++
++do_expect "\"$prompt\"" "send \"setenv update_uboot 'if run get_uboot_net burn_uboot_nand; then echo $update_uboot_status SUCCESS; else echo $update_uboot_status FAILED; fi'\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++
++do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"printenv\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++
++if [ "$ubootupdate" = "y" ]; then
++    do_expect "\"$prompt\"" "send \"run sec_bm_install\"" $cwd/updateBoard.minicom
++    do_expect "\"$prompt\"" "send \"run update_uboot\"" $cwd/updateBoard.minicom
++fi
++
++do_expect "\"$prompt\"" "send \" \"" $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
++
++cat >> $cwd/setupBoard.minicom << __EOF__
++goto end
++uboot_update_required:
++send echo; echo "*** U-boot is require to be updated before proceeding!"; echo "*** The automatic upgrade of this version of U-boot is currently disabled."; echo "*** Please follow the wiki instructions to manually upgrade U-boot."; echo
++end:
++__EOF__
++
++cat >> $cwd/updateBoard.minicom << __EOF__
++goto end
++uboot_update_required:
++send echo; echo "*** U-boot is require to be updated before proceeding!"; echo "*** The automatic upgrade of this version of U-boot is currently disabled."; echo "*** Please follow the wiki instructions to manually upgrade U-boot."; echo
++end:
++__EOF__
++echo "! killall -s SIGHUP minicom" >> $cwd/updateBoard.minicom
++
++echo "--------------------------------------------------------------------------------"
++prompt_feedback "Would you like to create a minicom script with the above parameters?" minicom y y n
++
++if [ "$minicom" = "y" ]; then
++
++    echo -n "Successfully wrote "
++    readlink -m $cwd/setupBoard.minicom
++
++    while [ yes ]
++    do
++        check_for_board
++
++        if [ "$board" = "k2evm" ]
++        then
++            break
++        else
++            echo ""
++            prompt_feedback "Board could not be detected. Please connect the board to the PC." temp "Press any key to try checking again"
++
++            # Set to default board to allow user to specify the correct ports.
++            board=k2evm
++        fi
++    done
++
++    if [ "$board" != "unknown" ]
++    then
++        ftdiInstalled=`lsmod | grep ftdi_sio`
++        if [ -z "$ftdiInstalled" ]
++        then
++            sudo modprobe -q ftdi_sio
++        fi
++
++        while [ yes ]
++        do
++            echo ""
++            echo "--------------------------------------------------------------------------------"
++            echo
++            echo -n "Detecting connection to board... "
++            loopCount=0
++            usb_id=`dmesg | grep "idVendor=${board_vendor}" | grep "idProduct=${board_product}" | tail -1 | sed -e 's|.*usb \(.*\):.*|\1|'`
++            uart_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${uart_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
++            bmc_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${bmc_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
++            while [ -z "$uart_port" ] && [ "$loopCount" -ne "10" ]
++            do
++                #count to 10 and timeout if no connection is found
++                loopCount=$((loopCount+1))
++
++                sleep 1
++                usb_id=`dmesg | grep "idVendor=${board_vendor}" | grep "idProduct=${board_product}" | tail -1 | sed -e 's|.*usb \(.*\):.*|\1|'`
++                uart_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${uart_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
++                bmc_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${bmc_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
++            done
++
++            #check to see if we actually found a port
++            if [ -n "$uart_port" ]; then
++                echo "${platform} (UART) autodetected at /dev/$uart_port"
++                echo
++                prompt_feedback "Please verify that this is correct or manually enter the correct port:" dev_uart_port "/dev/$uart_port"
++
++                echo "${platform} (BMC) autodetected at /dev/$bmc_port"
++                echo
++                prompt_feedback "Please verify that this is correct or manually enter the correct port:" dev_bmc_port "/dev/$bmc_port"
++
++                if [ ! -e "${dev_uart_port}" ]; then
++                    echo; echo "ERROR: ${dev_uart_port} does not exist!"
++                    dev_uart_port=""
++                fi
++
++                if [ ! -e "${dev_bmc_port}" ]; then
++                    echo; echo "ERROR: ${dev_bmc_port} does not exist!"
++                    dev_bmc_port=""
++                fi
++
++                if [ "$dev_uart_port" = "$dev_bmc_port" ]; then
++                    echo; echo "ERROR: UART and BMC cannot be the same port: $dev_uart_port!"
++                    dev_uart_port=""
++                fi
++
++                if [ -n "$dev_uart_port" ] && [ -n "$dev_bmc_port" ]; then
++                    break
++                fi
++            fi
++
++            #if we didn't find a port and reached the timeout limit then ask to reconnect
++            if [ -z "$uart_port" ] && [ "$loopCount" = "10" ]; then
++                echo ""
++                echo "Unable to detect which port the board is connected to."
++                echo "Please reconnect your board."
++                prompt_feedback "Press 'y' to attempt to detect your board again or press 'n' to continue..." retryBoardDetection y
++            fi
++
++            #if they choose not to retry, ask user to reboot manually and exit
++            if [ "$retryBoardDetection" = "n" ]; then
++                echo ""
++                echo "Please reboot your board manually and connect using minicom."
++                exit;
++            fi
++        done
++
++        sed -i -e "s|^pu port.*$|pu port             $dev_uart_port|g" ${HOME}/.minirc.dfl
++    fi
++
++    echo
++    echo "--------------------------------------------------------------------------------"
++    echo "Would you like to run the setup script now (y/n)?"
++    echo
++    echo "Please connect the ethernet cable as described in the Quick Start Guide."
++    echo "Once answering 'y' on the prompt below, the script will proceed with"
++    echo "automatically booting and configuring the board based on the responses"
++    echo "provided."
++    echo
++    echo "After successfully executing this script, your EVM will be set up. You will be "
++    echo "able to connect to it by executing 'minicom -w' or if you prefer a windows host"
++    echo "you can set up Tera Term as explained in the Software Developer's Guide."
++    echo "If you connect minicom or Tera Term and power cycle the board Linux will boot."
++
++    prompt_feedback "" minicomsetup y
++
++    if [ "$minicomsetup" = "y" ]; then
++      create_bmc_scripts
++
++      cd $cwd
++
++      # Configuring bootmode to UART boot via BMC
++      screen -dmS minicom_${platform}_bmc minicom -D "$dev_bmc_port" -S bmcUartBoot.minicom -C bmcUartBoot.log
++
++      # Transfering uboot.bin using XMODEM protocol
++      sx -kb "$ubootimagesrc" < "$dev_uart_port" > "$dev_uart_port"
++
++      # Configure U-Boot environment and optionally flash board
++      minicom -D "$dev_uart_port" -S updateBoard.minicom -C updateBoard.log
++      rm "$tmp_fifo"
++
++      # Configuring bootmode to NAND boot via BMC
++      minicom -D "$dev_bmc_port" -S bmcNandBoot.minicom -C bmcNandBoot.log
++
++      # Running terminal to board (UART)
++      minicom -w -D "$dev_uart_port" -C bootBoard.log
++      cd -
++    fi
++
++    echo "You can manually run minicom in the future with this setup script using: minicom -S $cwd/setupBoard.minicom"
++    echo "--------------------------------------------------------------------------------"
++
++fi
 -- 
-2.7.4
+1.9.1
 
 
