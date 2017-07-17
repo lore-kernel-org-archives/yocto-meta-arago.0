@@ -1,30 +1,31 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 1A1785299E
+	by arago-project.org (Postfix) with ESMTPS id 58CE9529AB
 	for <meta-arago@arago-project.org>;
-	Mon, 17 Jul 2017 22:02:38 +0000 (UTC)
+	Mon, 17 Jul 2017 22:51:58 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 043EE208FB;
-	Mon, 17 Jul 2017 22:02:38 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 0CEA1208FB;
+	Mon, 17 Jul 2017 22:51:58 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id X19djc-c711X; Mon, 17 Jul 2017 22:02:37 +0000 (UTC)
+	with ESMTP id VFMdvUowZWPd; Mon, 17 Jul 2017 22:51:58 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D7B8B208E7;
-	Mon, 17 Jul 2017 22:02:36 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D9F77208E7;
+	Mon, 17 Jul 2017 22:51:55 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 619A2161D53;
-	Mon, 17 Jul 2017 18:02:36 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 68E2216200E;
+	Mon, 17 Jul 2017 18:51:55 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Mon, 17 Jul 2017 18:02:36 -0400
-Message-Id: <1500328956-131421-1-git-send-email-denys@ti.com>
+Date: Mon, 17 Jul 2017 18:51:54 -0400
+Message-Id: <1500331914-134839-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] toolchain*: fix use of Linaro toolchain as cross-canadian packages
+Cc: Hari Nagalla <hnagalla@ti.com>
+Subject: [morty/master][PATCH] bt-enable: update bluetooth enable boot script
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,75 +38,111 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jul 2017 22:02:41 -0000
-
-Previous commit cd35c1d9bf34e0f592828aefaa0770ff0be68ece attempted to unify
-location of binaries in the devkit and align those with how internal toolchain
-installs them. Unfortunately, it doesn't work that well for prebuilt Linaro
-toolchain and still requires overriding their corresponding bindir, libdir and
-libexecdir variables. Instead, add a conditional check to arago_sdk_fixup()
-to use the correct libexecdir depending on TOOLCHAIN_TYPE.
+X-List-Received-Date: Mon, 17 Jul 2017 22:51:58 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Cc: Hari Nagalla <hnagalla@ti.com>
 ---
- meta-arago-distro/conf/distro/include/toolchain-linaro.inc          | 1 +
- .../recipes-core/meta/external-linaro-sdk-toolchain.bb              | 6 +++++-
- meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb         | 6 +++++-
- 3 files changed, 11 insertions(+), 2 deletions(-)
+ .../recipes-connectivity/bt-enable/bt-enable.bb    |  2 ++
+ .../bt-enable/bt-enable/bt-enable.sh               | 42 ++++++++++++++++++----
+ 2 files changed, 37 insertions(+), 7 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-index 6271986..20a6517 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-@@ -23,6 +23,7 @@ PREFERRED_PROVIDER_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "externa
- #PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "external-linaro-sdk-toolchain"
- 
- # Special case for gdb to be built as part of canadian-cross-sdk, instead of packaged from external toolchain
-+bindir_pn-gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${exec_prefix}/bin"
- PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}"
- 
- # Set up runtime preferences
-diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb b/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
-index ff2598e..92f3fd7 100644
---- a/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
-+++ b/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
-@@ -2,7 +2,7 @@ inherit cross-canadian
- 
- require external-linaro-bfd-version.inc
- 
--PR = "r7"
-+PR = "r8"
- 
- INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
- INHIBIT_PACKAGE_STRIP = "1"
-@@ -33,6 +33,10 @@ PACKAGES = "\
- 	binutils-cross-canadian-arm \
+diff --git a/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb
+index a0469f8..b413bb0 100644
+--- a/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb
++++ b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb
+@@ -7,6 +7,8 @@ SRC_URI = " \
+ 	file://bt-enable.service \
  "
  
-+# Don't need the extra target triplet in the new SDK dir structure
-+bindir = "${exec_prefix}/bin"
-+libdir = "${exec_prefix}/lib"
-+libexecdir = "${exec_prefix}/libexec"
- datadir = "${exec_prefix}/share"
- gcclibdir = "${libdir}/gcc"
++PR = "r1"
++
+ S = "${WORKDIR}"
  
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-index 96fc6bf..3ea63ec 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-@@ -84,7 +84,11 @@ arago_sdk_fixup () {
+ INITSCRIPT_NAME = "bt-enable.sh"
+diff --git a/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.sh b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.sh
+index 312b631..6d5443a 100644
+--- a/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.sh
++++ b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.sh
+@@ -20,6 +20,8 @@
+ function bten_335_evm {
+ 	echo 117 > /sys/class/gpio/export
+ 	echo out > /sys/class/gpio/gpio117/direction
++	echo 0 > /sys/class/gpio/gpio117/value
++	sleep 1
+ 	echo 1 > /sys/class/gpio/gpio117/value
+ 	echo "Done enabling BT"
  
- 	# Do some extra setup work due to new structure
- 	mkdir -p "${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/lib/${TARGET_ARCH}${TARGET_VENDOR}-${TARGET_OS}"
--	lexec="${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/libexec/${TARGET_ARCH}${TARGET_VENDOR}-${TARGET_OS}/gcc/${TOOLCHAIN_SYS}"
-+	if [ "${TOOLCHAIN_TYPE}" = "internal" ]; then
-+		lexec="${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/libexec/${TARGET_ARCH}${TARGET_VENDOR}-${TARGET_OS}/gcc/${TOOLCHAIN_SYS}"
-+	else
-+		lexec="${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/libexec/gcc/${TOOLCHAIN_SYS}"
-+	fi
- 	tcv=`ls -1 $lexec|head -1`
- 	[ -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/$tcv ] || ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/$tcv
- 	[ -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/$tcv ] || ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/$tcv
+@@ -37,6 +39,8 @@ function bten_335_evm {
+ function bten_437_evm {
+ 	echo 16 > /sys/class/gpio/export
+ 	echo out > /sys/class/gpio/gpio16/direction
++	echo 0 > /sys/class/gpio/gpio16/value
++	sleep 1
+ 	echo 1 > /sys/class/gpio/gpio16/value
+ 	echo "Done enabling BT"
+ 
+@@ -51,16 +55,37 @@ function bten_437_evm {
+ 	echo $baud_rate >> /home/root/tibt/config
+ }
+ 
+-function bten_57x_idk {
++function bten_57x_evm {
+ 	echo 132 > /sys/class/gpio/export
+ 	echo out > /sys/class/gpio/gpio132/direction
++	echo 0 > /sys/class/gpio/gpio132/value
++	sleep 1
+ 	echo 1 > /sys/class/gpio/gpio132/value
+ 	echo "Done enabling BT"
+ 
+-	local gpio="nshutdown_gpio=16"
++	local gpio="nshutdown_gpio=132"
+ 	local tty="tty=/dev/ttyS7"
+ 	local flow="flow_cntrl=1"
+-	local baud_rate="baud_rate=3686400"
++	local baud_rate="baud_rate=3000000"
++	mkdir /home/root/tibt
++	echo $gpio > /home/root/tibt/config
++	echo $tty >> /home/root/tibt/config
++	echo $flow >> /home/root/tibt/config
++	echo $baud_rate >> /home/root/tibt/config
++}
++
++function bten_43x_epos_evm {
++	echo 21 > /sys/class/gpio/export
++	echo out > /sys/class/gpio/gpio21/direction
++	echo 0 > /sys/class/gpio/gpio21/value
++	sleep 1
++	echo 1 > /sys/class/gpio/gpio21/value
++	echo "Done enabling BT"
++
++	local gpio="nshutdown_gpio=21"
++	local tty="tty=/dev/ttyS3"
++	local flow="flow_cntrl=1"
++	local baud_rate="baud_rate=3000000"
+ 	mkdir /home/root/tibt
+ 	echo $gpio > /home/root/tibt/config
+ 	echo $tty >> /home/root/tibt/config
+@@ -84,12 +109,15 @@ then
+ 			echo "success"
+ 			bten_437_evm
+ 		fi
+-	elif [ `echo $b | grep -c "IDK"` -gt 0 ]
+-	then
+-		if [ `echo $b | grep -c "57"` -gt 0 ]
++		if [ `echo $b | grep -c "572"` -gt 0 ]
++		then
++			echo "success"
++			bten_57x_evm
++		fi
++		if [ `echo $b | grep -c "EPOS"` -gt 0 ]
+ 		then
+ 			echo "success"
+-			bten_57x_idk
++			bten_43x_epos_evm
+ 		fi
+ 	else
+ 		echo "Not TI EVM board"
 -- 
 2.7.4
 
