@@ -1,31 +1,34 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 58CE9529AB
+Return-Path: <j-stiffler@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 3754A529E7
 	for <meta-arago@arago-project.org>;
-	Mon, 17 Jul 2017 22:51:58 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 0CEA1208FB;
-	Mon, 17 Jul 2017 22:51:58 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id VFMdvUowZWPd; Mon, 17 Jul 2017 22:51:58 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D9F77208E7;
-	Mon, 17 Jul 2017 22:51:55 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 68E2216200E;
-	Mon, 17 Jul 2017 18:51:55 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Mon, 17 Jul 2017 18:51:54 -0400
-Message-Id: <1500331914-134839-1-git-send-email-denys@ti.com>
+	Tue, 18 Jul 2017 15:11:40 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6IFBerq003158
+	for <meta-arago@arago-project.org>; Tue, 18 Jul 2017 10:11:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1500390700;
+	bh=dCfHbGgNnkklFB4w8QLfBJUPMfEVFFgJCYSMHvyQnLs=;
+	h=From:To:CC:Subject:Date;
+	b=JCXw/2/+G/lmxKLrLfLg2KnEA/zZixS7vVHIDI9eE/4MaMiQoplCDrDzUTp0wvYZI
+	hBoMufJL86BYvq2fQSDw17BClrTJ2wO0rzXFOT3iCFAAmMkx45bfWv/HIShX79KhdQ
+	Aai9LppUj7jjuK+nm/hTHlwAZytP8leciejUNSXg=
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6IFBeJf020041
+	for <meta-arago@arago-project.org>; Tue, 18 Jul 2017 10:11:40 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 18 Jul 2017 10:11:39 -0500
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v6IFBdvc028129;	Tue, 18 Jul 2017 10:11:39 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 18 Jul 2017 11:05:31 -0400
+Message-ID: <1500390331-12423-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-Cc: Hari Nagalla <hnagalla@ti.com>
-Subject: [morty/master][PATCH] bt-enable: update bluetooth enable boot script
+MIME-Version: 1.0
+Subject: [PATCH] arago-prefs: c66x/omapl137: prefer linux-dummy
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,111 +41,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jul 2017 22:51:58 -0000
+X-List-Received-Date: Tue, 18 Jul 2017 15:11:40 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-Cc: Hari Nagalla <hnagalla@ti.com>
+* These SOCs do not have linux support.
+
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-connectivity/bt-enable/bt-enable.bb    |  2 ++
- .../bt-enable/bt-enable/bt-enable.sh               | 42 ++++++++++++++++++----
- 2 files changed, 37 insertions(+), 7 deletions(-)
+ meta-arago-distro/conf/distro/include/arago-prefs.inc | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb
-index a0469f8..b413bb0 100644
---- a/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb
-+++ b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb
-@@ -7,6 +7,8 @@ SRC_URI = " \
- 	file://bt-enable.service \
- "
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index 353f918..b68ed8e 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -24,6 +24,10 @@ PREFERRED_PROVIDER_virtual/mesa_keystone = "mesa"
  
-+PR = "r1"
+ PREFERRED_PROVIDER_virtual/kernel = "linux-ti-staging${ARAGO_KERNEL_SUFFIX}"
+ 
++# For TI devices with only baremetal/TI RTOS support
++PREFERRED_PROVIDER_virtual/kernel_c66x = "linux-dummy"
++PREFERRED_PROVIDER_virtual/kernel_omapl137 = "linux-dummy"
 +
- S = "${WORKDIR}"
+ PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
  
- INITSCRIPT_NAME = "bt-enable.sh"
-diff --git a/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.sh b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.sh
-index 312b631..6d5443a 100644
---- a/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.sh
-+++ b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable/bt-enable.sh
-@@ -20,6 +20,8 @@
- function bten_335_evm {
- 	echo 117 > /sys/class/gpio/export
- 	echo out > /sys/class/gpio/gpio117/direction
-+	echo 0 > /sys/class/gpio/gpio117/value
-+	sleep 1
- 	echo 1 > /sys/class/gpio/gpio117/value
- 	echo "Done enabling BT"
- 
-@@ -37,6 +39,8 @@ function bten_335_evm {
- function bten_437_evm {
- 	echo 16 > /sys/class/gpio/export
- 	echo out > /sys/class/gpio/gpio16/direction
-+	echo 0 > /sys/class/gpio/gpio16/value
-+	sleep 1
- 	echo 1 > /sys/class/gpio/gpio16/value
- 	echo "Done enabling BT"
- 
-@@ -51,16 +55,37 @@ function bten_437_evm {
- 	echo $baud_rate >> /home/root/tibt/config
- }
- 
--function bten_57x_idk {
-+function bten_57x_evm {
- 	echo 132 > /sys/class/gpio/export
- 	echo out > /sys/class/gpio/gpio132/direction
-+	echo 0 > /sys/class/gpio/gpio132/value
-+	sleep 1
- 	echo 1 > /sys/class/gpio/gpio132/value
- 	echo "Done enabling BT"
- 
--	local gpio="nshutdown_gpio=16"
-+	local gpio="nshutdown_gpio=132"
- 	local tty="tty=/dev/ttyS7"
- 	local flow="flow_cntrl=1"
--	local baud_rate="baud_rate=3686400"
-+	local baud_rate="baud_rate=3000000"
-+	mkdir /home/root/tibt
-+	echo $gpio > /home/root/tibt/config
-+	echo $tty >> /home/root/tibt/config
-+	echo $flow >> /home/root/tibt/config
-+	echo $baud_rate >> /home/root/tibt/config
-+}
-+
-+function bten_43x_epos_evm {
-+	echo 21 > /sys/class/gpio/export
-+	echo out > /sys/class/gpio/gpio21/direction
-+	echo 0 > /sys/class/gpio/gpio21/value
-+	sleep 1
-+	echo 1 > /sys/class/gpio/gpio21/value
-+	echo "Done enabling BT"
-+
-+	local gpio="nshutdown_gpio=21"
-+	local tty="tty=/dev/ttyS3"
-+	local flow="flow_cntrl=1"
-+	local baud_rate="baud_rate=3000000"
- 	mkdir /home/root/tibt
- 	echo $gpio > /home/root/tibt/config
- 	echo $tty >> /home/root/tibt/config
-@@ -84,12 +109,15 @@ then
- 			echo "success"
- 			bten_437_evm
- 		fi
--	elif [ `echo $b | grep -c "IDK"` -gt 0 ]
--	then
--		if [ `echo $b | grep -c "57"` -gt 0 ]
-+		if [ `echo $b | grep -c "572"` -gt 0 ]
-+		then
-+			echo "success"
-+			bten_57x_evm
-+		fi
-+		if [ `echo $b | grep -c "EPOS"` -gt 0 ]
- 		then
- 			echo "success"
--			bten_57x_idk
-+			bten_43x_epos_evm
- 		fi
- 	else
- 		echo "Not TI EVM board"
+ # Setting PREFERRED_VERSIONS due to selecting a specific version of a library or
 -- 
 2.7.4
 
