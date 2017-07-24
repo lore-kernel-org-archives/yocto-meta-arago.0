@@ -1,35 +1,36 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 3BFF5529BF
+Return-Path: <jake@udc0866934>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 29AEB52978
 	for <meta-arago@arago-project.org>;
-	Fri, 21 Jul 2017 18:51:52 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 25F9320ABA
-	for <meta-arago@arago-project.org>;
-	Fri, 21 Jul 2017 18:51:52 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 8_Ivyv5qVwHw for <meta-arago@arago-project.org>;
-	Fri, 21 Jul 2017 18:51:52 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0D2D7208AE
-	for <meta-arago@arago-project.org>;
-	Fri, 21 Jul 2017 18:51:51 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 848F916253C
-	for <meta-arago@arago-project.org>;
-	Fri, 21 Jul 2017 14:51:51 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Fri, 21 Jul 2017 14:51:51 -0400
-Message-Id: <1500663111-13003-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
+	Mon, 24 Jul 2017 17:03:23 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6OH3Mpb002096
+	for <meta-arago@arago-project.org>; Mon, 24 Jul 2017 12:03:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1500915802;
+	bh=NUzxzDAIiROHQocUtdUh+RDFSWUjFdBavNhui4w7b0c=;
+	h=From:To:CC:Subject:Date;
+	b=ko+rsPAVbSHDBUduPtauJOgV6y1O7WuULyqqHfYsC0uqsiifczrpK2YeD2TKGB5dQ
+	rZ8+Z4OSe7SiON/L8ui32UdW8lvEZpwN1ZulUpaqYjL4nF/xj4lIyq7P7GUPK7xCD5
+	mcSTQaUny+xbUPuiP7e7NcEQ2NXhTHdi1aonKqZ0=
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6OH3MqZ004545
+	for <meta-arago@arago-project.org>; Mon, 24 Jul 2017 12:03:22 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 24 Jul 2017 12:03:22 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6OH3Mvd016649;
+	Mon, 24 Jul 2017 12:03:22 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udc0866934>)	id 1dZglN-0007fL-VS; Mon, 24 Jul 2017 13:03:22 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 24 Jul 2017 13:03:20 -0400
+Message-ID: <1500915800-29435-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [morty/master][PATCH] kernel: fitimage: deploy real fit-image
+Subject: [oe-layersetup][PATCH] processor-sdk-morty-config: add config for morty baseline
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,42 +43,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jul 2017 18:51:52 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 24 Jul 2017 17:03:23 -0000
+Content-Type: text/plain
 
-From: Gaël PORTAY <gael.portay@savoirfairelinux.com>
-
-Currently, do_deploy installs a standard kernel image as an ITB. This
-image is linux.bin and it is prepared by uboot_prep_kimage.
-
-The real kernel fit-image is build under arch/${ARCH}/boot/fitImage.
-
-This patch deploys the real fit-image instead of the one prepared by
-u-boot and which is included in the ITB.
-
-Note: this patch only concerns fit-images without initramfs.
-
-Signed-off-by: Gaël PORTAY <gael.portay@savoirfairelinux.com>
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-distro/classes/kernel-fitimage.bbclass | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ configs/processor-sdk/processor-sdk-morty-config.txt | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 configs/processor-sdk/processor-sdk-morty-config.txt
 
-diff --git a/meta-arago-distro/classes/kernel-fitimage.bbclass b/meta-arago-distro/classes/kernel-fitimage.bbclass
-index 3a4da6d..1249644 100644
---- a/meta-arago-distro/classes/kernel-fitimage.bbclass
-+++ b/meta-arago-distro/classes/kernel-fitimage.bbclass
-@@ -578,7 +578,7 @@ kernel_do_deploy_append() {
- 		cd ${B}
- 		echo "Copying fit-image.its source file..."
- 		install -m 0644 fit-image.its ${DEPLOYDIR}/${FITIMAGE_ITS_IMAGE}
--		install -m 0644 linux.bin ${DEPLOYDIR}/${FITIMAGE_ITB_IMAGE}
-+		install -m 0644 arch/${ARCH}/boot/fitImage ${DEPLOYDIR}/${FITIMAGE_ITB_IMAGE}
- 
- 		if [ -n "${INITRAMFS_IMAGE}" ]; then
- 			echo "Copying fit-image-${INITRAMFS_IMAGE}.its source file..."
+diff --git a/configs/processor-sdk/processor-sdk-morty-config.txt b/configs/processor-sdk/processor-sdk-morty-config.txt
+new file mode 100644
+index 0000000..49d4957
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-morty-config.txt
+@@ -0,0 +1,15 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.32,HEAD,layers=
++meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,HEAD,layers=
++meta-arago,git://arago-project.org/git/meta-arago.git,morty,HEAD,layers=meta-arago-distro:meta-arago-extras
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,HEAD,layers=
++meta-openamp,git://github.com/OpenAMP/meta-openamp.git,morty,HEAD,layers=
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,HEAD,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
++meta-ti,git://git.yoctoproject.org/meta-ti,morty,HEAD,layers=
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,morty,HEAD,layers=meta-linaro-toolchain:meta-optee
++oe-core,git://git.openembedded.org/openembedded-core,morty,HEAD,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
 -- 
-2.7.4
+1.9.1
 
 
