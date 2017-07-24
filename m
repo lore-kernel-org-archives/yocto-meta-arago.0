@@ -1,36 +1,30 @@
-Return-Path: <jake@udc0866934>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 29AEB52978
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 0269F52978
 	for <meta-arago@arago-project.org>;
-	Mon, 24 Jul 2017 17:03:23 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6OH3Mpb002096
-	for <meta-arago@arago-project.org>; Mon, 24 Jul 2017 12:03:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1500915802;
-	bh=NUzxzDAIiROHQocUtdUh+RDFSWUjFdBavNhui4w7b0c=;
-	h=From:To:CC:Subject:Date;
-	b=ko+rsPAVbSHDBUduPtauJOgV6y1O7WuULyqqHfYsC0uqsiifczrpK2YeD2TKGB5dQ
-	rZ8+Z4OSe7SiON/L8ui32UdW8lvEZpwN1ZulUpaqYjL4nF/xj4lIyq7P7GUPK7xCD5
-	mcSTQaUny+xbUPuiP7e7NcEQ2NXhTHdi1aonKqZ0=
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6OH3MqZ004545
-	for <meta-arago@arago-project.org>; Mon, 24 Jul 2017 12:03:22 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 24 Jul 2017 12:03:22 -0500
-Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6OH3Mvd016649;
-	Mon, 24 Jul 2017 12:03:22 -0500
-Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
-	<jake@udc0866934>)	id 1dZglN-0007fL-VS; Mon, 24 Jul 2017 13:03:22 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 24 Jul 2017 13:03:20 -0400
-Message-ID: <1500915800-29435-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Subject: [oe-layersetup][PATCH] processor-sdk-morty-config: add config for morty baseline
+	Mon, 24 Jul 2017 21:10:40 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 1333420A4A;
+	Mon, 24 Jul 2017 21:10:41 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id qr1lprCGfT5K; Mon, 24 Jul 2017 21:10:41 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DC698206EB;
+	Mon, 24 Jul 2017 21:10:39 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 5B5DD162522;
+	Mon, 24 Jul 2017 17:10:39 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Mon, 24 Jul 2017 17:10:39 -0400
+Message-Id: <1500930639-51139-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH] kernel-fitimage: add support for packaging OPTEE pager images
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,37 +37,159 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Jul 2017 17:03:23 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 24 Jul 2017 21:10:41 -0000
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- configs/processor-sdk/processor-sdk-morty-config.txt | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
- create mode 100644 configs/processor-sdk/processor-sdk-morty-config.txt
+ meta-arago-distro/classes/kernel-fitimage.bbclass | 93 ++++++++++++++++++++++-
+ 1 file changed, 89 insertions(+), 4 deletions(-)
 
-diff --git a/configs/processor-sdk/processor-sdk-morty-config.txt b/configs/processor-sdk/processor-sdk-morty-config.txt
-new file mode 100644
-index 0000000..49d4957
---- /dev/null
-+++ b/configs/processor-sdk/processor-sdk-morty-config.txt
-@@ -0,0 +1,15 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+diff --git a/meta-arago-distro/classes/kernel-fitimage.bbclass b/meta-arago-distro/classes/kernel-fitimage.bbclass
+index 3a4da6d..3b38196 100644
+--- a/meta-arago-distro/classes/kernel-fitimage.bbclass
++++ b/meta-arago-distro/classes/kernel-fitimage.bbclass
+@@ -319,10 +319,18 @@ fitimage_emit_section_config() {
+ 	fi
+ 
+ 	if [ -n "${6}" -a -n "${OPTEEFLAVOR}" ]; then
+-		loadables_line="loadables = \"${6}\";"
++		if [ "x${FITIMAGE_TEE_BY_NAME}" = "x1" ]; then
++			loadables_line="loadables = \"${6}.optee\";"
++			loadables_pager_line="loadables = \"${6}-pager.optee\";"
++		else
++			loadables_line="loadables = \"tee@${6}\";"
++			nextnum=`expr ${6} + 1`
++			loadables_pager_line="loadables = \"tee@${nextnum}\";"
++		fi
+ 		final_conf_desc="${conf_desc}, OPTEE OS Image"
+ 	else
+ 		loadables_line=""
++		loadables_pager_line=""
+ 		final_conf_desc="${conf_desc}"
+ 	fi
+ 
+@@ -341,6 +349,7 @@ fitimage_emit_section_config() {
+ EOF
+ 		fi
+ 
++# Generate a single configuration section
+ 			cat << EOF >> ${1}
+                 ${conf_name} {
+                         description = "${final_conf_desc}";
+@@ -389,9 +398,69 @@ EOF
+ 			cat << EOF >> ${1}
+                 };
+ EOF
++# End single config section
 +
-+bitbake,git://git.openembedded.org/bitbake,1.32,HEAD,layers=
-+meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,HEAD,layers=
-+meta-arago,git://arago-project.org/git/meta-arago.git,morty,HEAD,layers=meta-arago-distro:meta-arago-extras
-+meta-browser,git://github.com/OSSystems/meta-browser.git,master,HEAD,layers=
-+meta-openamp,git://github.com/OpenAMP/meta-openamp.git,morty,HEAD,layers=
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,HEAD,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
-+meta-ti,git://git.yoctoproject.org/meta-ti,morty,HEAD,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,morty,HEAD,layers=meta-linaro-toolchain:meta-optee
-+oe-core,git://git.openembedded.org/openembedded-core,morty,HEAD,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
++# Generate a single "pager" configuration section
++		if [ "${OPTEEPAGER}" = "y" ]; then
++			if [ "x${FITIMAGE_CONF_BY_NAME}" = "x1" ] ; then
++				conf_name="${DTB}-pager"
++			else
++				conf_name="conf@${dtbcount}"
++			fi
++
++			cat << EOF >> ${1}
++                ${conf_name} {
++                        description = "${final_conf_desc}";
++                        ${kernel_line}
++                        fdt = "${DTB}";
++                        ${ramdisk_line}
++                        ${setup_line}
++                        ${loadables_pager_line}
++EOF
++
++			if test -n "${FITIMAGE_HASH_ALGO}"; then
++				cat << EOF >> ${1}
++                        hash@1 {
++                                algo = "${conf_csum}";
++                        };
++EOF
++			fi
++
++			if [ ! -z "${conf_sign_keyname}" ] ; then
++
++				sign_line="sign-images = \"kernel\""
++
++				if [ -n "${3}" ]; then
++					sign_line="${sign_line}, \"fdt\""
++				fi
++
++				if [ -n "${4}" ]; then
++					sign_line="${sign_line}, \"ramdisk\""
++				fi
++
++				if [ -n "${5}" ]; then
++					sign_line="${sign_line}, \"setup\""
++				fi
++
++				sign_line="${sign_line};"
++
++				cat << EOF >> ${1}
++                        signature@1 {
++                                algo = "${conf_csum},rsa2048";
++                                key-name-hint = "${conf_sign_keyname}";
++                                ${sign_line}
++                        };
++EOF
++			fi
++
++			cat << EOF >> ${1}
++                };
++EOF
++		fi
++# End single config section
+ 
+ 		dtbcount=`expr ${dtbcount} + 1`
+-		done
++	done
+ }
+ 
+ #
+@@ -462,6 +531,21 @@ fitimage_assemble() {
+ 		else
+ 			fitimage_emit_section_tee ${1} "tee@${teecount}" ${TEE_PATH}.sec
+ 		fi
++
++		if [ "${OPTEEPAGER}" = "y" ]; then
++			teecount=`expr ${teecount} + 1`
++			rm -f ${B}/usr/${OPTEEFLAVOR}-pager.optee
++			if [ -e "${DEPLOY_DIR_IMAGE}/${OPTEEFLAVOR}-pager.optee" ]; then
++				cp ${DEPLOY_DIR_IMAGE}/${OPTEEFLAVOR}-pager.optee ${B}/usr/.
++			fi
++			TEE_PATH="usr/${OPTEEFLAVOR}-pager.optee"
++			fitimage_ti_secure ${TEE_PATH} ${TEE_PATH}.sec
++			if [ "x${FITIMAGE_TEE_BY_NAME}" = "x1" ] ; then
++				fitimage_emit_section_tee ${1} ${OPTEEFLAVOR}-pager.optee ${TEE_PATH}.sec
++			else
++				fitimage_emit_section_tee ${1} "tee@${teecount}" ${TEE_PATH}.sec
++			fi
++		fi
+ 	fi
+ 
+ 	#
+@@ -490,6 +574,7 @@ fitimage_assemble() {
+ 	if test -n "${dtbcount}"; then
+ 		dtbcount=1
+ 	fi
++	teecount=1
+ 
+ 	#
+ 	# Step 5: Prepare a configurations section
+@@ -500,9 +585,9 @@ fitimage_assemble() {
+ 		dtbref="fdt@${dtbcount}"
+ 	fi
+ 	if [ "x${FITIMAGE_TEE_BY_NAME}" = "x1" ] ; then
+-		teeref="${OPTEEFLAVOR}.optee"
++		teeref="${OPTEEFLAVOR}"
+ 	else
+-		teeref="tee@${teecount}"
++		teeref="${teecount}"
+ 	fi
+ 	fitimage_emit_section_config ${1} "${kernelcount}" "${dtbref}" "${ramdiskcount}" "${setupcount}" "${teeref}"
+ 
 -- 
-1.9.1
+2.7.4
 
 
