@@ -1,37 +1,38 @@
-Return-Path: <e-ruei1@ti.com>
+Return-Path: <denys@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id AD52752AB4
+	by arago-project.org (Postfix) with ESMTPS id 25D0552A83
 	for <meta-arago@arago-project.org>;
-	Thu, 27 Jul 2017 22:28:35 +0000 (UTC)
+	Thu, 27 Jul 2017 23:26:37 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6RMSPAs015197
-	for <meta-arago@arago-project.org>; Thu, 27 Jul 2017 17:28:25 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6RNQR41022433
+	for <meta-arago@arago-project.org>; Thu, 27 Jul 2017 18:26:27 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1501194505;
-	bh=yrUZccCYzWSPw82uAZjOC2OTn2Vjst90LxVrJenAqN0=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=yrkGL4ence/mnJr2Z+FgdWuTlvyaO8tcNn25mwdVkpYASc8Mv9iLOrZ6TKvpjE11p
-	IWqDtj7LtpfKzq1eJ7dhKpjldbG9zjC0agHltblujIeHSmgcjaABvF/0+PdA/ruu5G
-	Qk4E4pNX5GDL7o2DiIM1qQKdaQOEDarnenRJljEM=
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6RMSK30004337
-	for <meta-arago@arago-project.org>; Thu, 27 Jul 2017 17:28:20 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 27 Jul 2017 17:28:20 -0500
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v6RMSJXQ022464	for <meta-arago@arago-project.org>;
-	Thu, 27 Jul 2017 17:28:20 -0500
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 27 Jul 2017 18:28:14 -0400
-Message-ID: <1501194495-48938-4-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1501194495-48938-1-git-send-email-e-ruei1@ti.com>
+	s=ti-com-17Q1; t=1501197987;
+	bh=tjDQryKcvXdxu7YKBxARzE3M3jOzJUFVh+1mIfXAAQs=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=ABxc1btPKWhbpH++0ZXn2qi9SgQeW1BYy2+h834DAKhizVV2TdsXmPZOuuNqxrBjS
+	YqDc/8IApbBkPHUK9G5FoFL4T1PHfuCvrKOS+gHjLu2qVIza6Potwn94MDo9vVAhEc
+	v1jSf0p6Yb22djEoUXNxDWZRB+BW7R0KHtcGlVrw=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6RNQLt3016733
+	for <meta-arago@arago-project.org>; Thu, 27 Jul 2017 18:26:21 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Thu, 27 Jul 2017 18:26:21 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6RNQLPT015028;
+	Thu, 27 Jul 2017 18:26:21 -0500
+Date: Thu, 27 Jul 2017 19:26:18 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Eric Ruei <e-ruei1@ti.com>
+Message-ID: <20170727232618.GR18367@edge>
 References: <1501194495-48938-1-git-send-email-e-ruei1@ti.com>
+	<1501194495-48938-3-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
-Subject: [morty/master][PATCH 3/4] matrix-gui-submenu: add browser submenu
+In-Reply-To: <1501194495-48938-3-git-send-email-e-ruei1@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [morty/master][PATCH 2/4] matix-gui-browser-demos: add browser demos
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,49 +45,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jul 2017 22:28:36 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 27 Jul 2017 23:26:37 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
----
- meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+On Thu, Jul 27, 2017 at 06:28:13PM -0400, Eric Ruei wrote:
+> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> ---
+>  .../recipes-core/matrix/matrix-gui-browser-demos_2.0.bb  | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-browser-demos_2.0.bb
+> 
+> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser-demos_2.0.bb
+> new file mode 100644
+> index 0000000..63811c7
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser-demos_2.0.bb
+> @@ -0,0 +1,16 @@
+> +DESCRIPTION = "Various Demo Browsers for Matrix v2"
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-index 7e1f7d1..f592f7a 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-@@ -7,7 +7,7 @@ require matrix-gui-apps-git.inc
- # reset the LIC_FILES_CHKSUM setting from the matrix-gui-apps-git.inc file
- LIC_FILES_CHKSUM = "file://LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- 
--PR = "${INC_PR}.17"
-+PR = "${INC_PR}.18"
- 
- # These packages make submenus in matrix and are not architecture specific
- inherit allarch
-@@ -34,6 +34,7 @@ SUBMENUS = " arm_submenu \
-              videoanalytics_submenu \
-              machinevision_submenu \
-              touch_submenu \
-+             browser_submenu \
- "
- 
- do_install(){
-@@ -66,6 +67,7 @@ PACKAGES += " ${PN}-arm \
-               ${PN}-videoanalytics \
-               ${PN}-machinevision \
-               ${PN}-touch \
-+              ${PN}-browser \
- "
- 
- # Make sure app images has been installed
-@@ -93,3 +95,4 @@ FILES_${PN}-opencl = "${MATRIX_APP_DIR}/opencl_submenu/*"
- FILES_${PN}-videoanalytics = "${MATRIX_APP_DIR}/videoanalytics_submenu/*"
- FILES_${PN}-machinevision = "${MATRIX_APP_DIR}/machinevision_submenu/*"
- FILES_${PN}-touch = "${MATRIX_APP_DIR}/touch_submenu/*"
-+FILES_${PN}-browser = "${MATRIX_APP_DIR}/browser_submenu/*"
--- 
-1.9.1
+SUMMARY ^^^
 
+
+> +HOMEPAGE = "https://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps"
+> +
+> +require matrix-gui-apps-git.inc
+> +
+> +PR = "${INC_PR}.0"
+> +
+> +inherit allarch
+> +
+> +S = "${WORKDIR}/git/browser_apps"
+> +
+> +# Make sure browser submenu and app images has been installed
+> +RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-browser"
+> +
+> +FILES_${PN} += "${MATRIX_BASE_DIR}/*"
+> +FILES_${PN} += "${bindir}/runGoogleChrome.sh"
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
