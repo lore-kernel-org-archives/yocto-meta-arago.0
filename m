@@ -1,42 +1,42 @@
 Return-Path: <e-ruei1@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id DC377529EB
+	by arago-project.org (Postfix) with ESMTPS id 7F3F952ABF
 	for <meta-arago@arago-project.org>;
-	Fri, 28 Jul 2017 13:26:25 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6SDQF2X026872
-	for <meta-arago@arago-project.org>; Fri, 28 Jul 2017 08:26:15 -0500
+	Fri, 28 Jul 2017 13:36:52 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6SDagcY028072
+	for <meta-arago@arago-project.org>; Fri, 28 Jul 2017 08:36:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1501248375;
-	bh=q9Zev3TxRHZxxVck1xwug/V8ONCejdiR6PvlUima+Ak=;
+	s=ti-com-17Q1; t=1501249002;
+	bh=ssUbY8hADiG0iO0t78h00pEbahoXblvS0Y3ET64cnFU=;
 	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=jMOmDwTUwQgcLNpQeqTkZOP21tCEst8oI46AWphulju4F7zzZa9/5aaPsHioFCyVT
-	KKPtVzQHval5JBUVf6vnnx1HlGmBmxksjXACKNgvzgVGRbHc7yqaJCGHXQEe76tODE
-	kDZbzB6zlrV7NYHFqjY8GOA9c+P2pD4DkRq5wEi4=
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6SDQAEd019095
-	for <meta-arago@arago-project.org>; Fri, 28 Jul 2017 08:26:10 -0500
+	b=mwI6WF6EMdVMDVzZHMDV/AGsjfrGqVg98g1ZviWvZTtPKuu6nKG7GoBgtfJZR0EU3
+	xRc/TABdEMtItIQYg5EmcuUTkbUEh2p1C5W0CSOP0H23nT8q0ShRp/c5n/HyjrOOu4
+	p4u+vBn6lCSGlTNa7yH2ftzmPa1u5ZHaGKh8qJbs=
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6SDabrr003440
+	for <meta-arago@arago-project.org>; Fri, 28 Jul 2017 08:36:37 -0500
 Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0294.000; Fri, 28 Jul 2017 08:26:10 -0500
+	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
+	14.03.0294.000; Fri, 28 Jul 2017 08:36:36 -0500
 From: "Ruei, Eric" <e-ruei1@ti.com>
 To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [morty/master][PATCH 2/4]
-	matix-gui-browser-demos: add browser demos
-Thread-Index: AQHTBy/BGa1Cd0NJ9UGd3YU7lGOUTqJpO6Pw
-Date: Fri, 28 Jul 2017 13:26:10 +0000
-Message-ID: <009C030982313E4589C6BC55FBF1E82A25397039@DFLE09.ent.ti.com>
+Thread-Topic: [meta-arago] [morty/master][PATCH 4/4]
+	packagegroup-arago-tisdk-matrix: add browser demos for AM5/DRA7
+Thread-Index: AQHTBy/UgN3uNZVYvkyvpEESN0DtH6JpPaVg
+Date: Fri, 28 Jul 2017 13:36:36 +0000
+Message-ID: <009C030982313E4589C6BC55FBF1E82A2539705C@DFLE09.ent.ti.com>
 References: <1501194495-48938-1-git-send-email-e-ruei1@ti.com>
-	<1501194495-48938-3-git-send-email-e-ruei1@ti.com>
-	<20170727232618.GR18367@edge>
-In-Reply-To: <20170727232618.GR18367@edge>
+	<1501194495-48938-5-git-send-email-e-ruei1@ti.com>
+	<20170727232650.GS18367@edge>
+In-Reply-To: <20170727232650.GS18367@edge>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.172.224.222]
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [morty/master][PATCH 2/4] matix-gui-browser-demos: add browser demos
+Subject: Re: [morty/master][PATCH 4/4] packagegroup-arago-tisdk-matrix: add browser demos for AM5/DRA7
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,7 +49,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Jul 2017 13:26:26 -0000
+X-List-Received-Date: Fri, 28 Jul 2017 13:36:52 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
@@ -58,55 +58,53 @@ Content-Transfer-Encoding: quoted-printable
 
 -----Original Message-----
 From: Dmytriyenko, Denys=20
-Sent: Thursday, July 27, 2017 7:26 PM
+Sent: Thursday, July 27, 2017 7:27 PM
 To: Ruei, Eric
 Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [morty/master][PATCH 2/4] matix-gui-browser-demos=
-: add browser demos
+Subject: Re: [meta-arago] [morty/master][PATCH 4/4] packagegroup-arago-tisd=
+k-matrix: add browser demos for AM5/DRA7
 
-On Thu, Jul 27, 2017 at 06:28:13PM -0400, Eric Ruei wrote:
+On Thu, Jul 27, 2017 at 06:28:15PM -0400, Eric Ruei wrote:
 > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 > ---
->  .../recipes-core/matrix/matrix-gui-browser-demos_2.0.bb  | 16=20
-> ++++++++++++++++
->  1 file changed, 16 insertions(+)
->  create mode 100644=20
-> meta-arago-extras/recipes-core/matrix/matrix-gui-browser-demos_2.0.bb
+>  .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb      |=
+ 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 >=20
-> diff --git=20
-> a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser-demos_2.0.b
-> b=20
-> b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser-demos_2.0.b
-> b
-> new file mode 100644
-> index 0000000..63811c7
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser-demos_2
-> +++ .0.bb
-> @@ -0,0 +1,16 @@
-> +DESCRIPTION =3D "Various Demo Browsers for Matrix v2"
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
+ago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packageg=
+roup-arago-tisdk-matrix.bb
+> index 7402427..9a19224 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
+dk-matrix.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
+dk-matrix.bb
+> @@ -1,6 +1,6 @@
+>  DESCRIPTION =3D "Task to include Matrix v2"
+>  LICENSE =3D "MIT"
+> -PR =3D "r66"
+> +PR =3D "r67"
+> =20
+>  PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+> =20
+> @@ -128,6 +128,7 @@ MATRIX_APPS_append_omap-a15 =3D "     \
+>      matrix-gui-generic-pm           \
+>      matrix-gui-clocks               \
+>      matrix-gui-pm-demos-governor    \
+> +    ${@bb.utils.contains('MACHINE_FEATURES','sgx','matrix-gui-browser-de=
+mos','',d)} \
 
-SUMMARY ^^^
+Are these really specific to sgx?
 
-[Eric] Yes, I shall change to SUMMARY.
+[Eric] One of the browser demo is chromium browser which is based on waylan=
+d-egl . Does it make sense to allow the browser demos only when SGX is enab=
+led? Should I remove the condition?
 
 
-> +HOMEPAGE =3D "https://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps"
-> +
-> +require matrix-gui-apps-git.inc
-> +
-> +PR =3D "${INC_PR}.0"
-> +
-> +inherit allarch
-> +
-> +S =3D "${WORKDIR}/git/browser_apps"
-> +
-> +# Make sure browser submenu and app images has been installed=20
-> +RDEPENDS_${PN} +=3D "matrix-gui-apps-images matrix-gui-submenus-browser"
-> +
-> +FILES_${PN} +=3D "${MATRIX_BASE_DIR}/*"
-> +FILES_${PN} +=3D "${bindir}/runGoogleChrome.sh"
-> --
+>  "
+> =20
+>  MATRIX_APPS_append_dra7xx +=3D " \
+> --=20
 > 1.9.1
 >=20
 > _______________________________________________
