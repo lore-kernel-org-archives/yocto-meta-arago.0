@@ -1,40 +1,34 @@
-Return-Path: <denys@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 80CA852ACD
+Return-Path: <karthik.ramanan@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id E427652094
 	for <meta-arago@arago-project.org>;
-	Fri, 28 Jul 2017 17:06:52 +0000 (UTC)
+	Mon, 31 Jul 2017 11:26:31 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6SH6qtR004189
-	for <meta-arago@arago-project.org>; Fri, 28 Jul 2017 12:06:52 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6VBQKeV019256
+	for <meta-arago@arago-project.org>; Mon, 31 Jul 2017 06:26:20 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1501261612;
-	bh=7bCWzUCsxRqz+usopzhy/XKnDg3oG4M9m2GI+kwx8hg=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Kbnz7XnsWfSybN+USwobCNlDr8+EHZz5cFkl9CJIq6U48RsnnlHIYxlvq3I+9yuR0
-	5yPrGvfpBPU+uycxKrNYqpepRf4De/FSbDWaAnahYIsdstGLKjFvv2YTfB0KXwrVqV
-	orjZ3cBynQDk5MejxyVua6JDqgiqCCdi6nDstlpA=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6SH6q0p013850
-	for <meta-arago@arago-project.org>; Fri, 28 Jul 2017 12:06:52 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Fri, 28 Jul 2017 12:06:51 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6SH6pZZ025729;
-	Fri, 28 Jul 2017 12:06:52 -0500
-Date: Fri, 28 Jul 2017 13:06:49 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Ruei, Eric" <e-ruei1@ti.com>
-Message-ID: <20170728170648.GU18367@edge>
-References: <1501194495-48938-1-git-send-email-e-ruei1@ti.com>
-	<1501194495-48938-5-git-send-email-e-ruei1@ti.com>
-	<20170727232650.GS18367@edge>
-	<009C030982313E4589C6BC55FBF1E82A2539705C@DFLE09.ent.ti.com>
+	s=ti-com-17Q1; t=1501500380;
+	bh=QcEHJXi5sm4SXIkmIxb/FmQIeE1YFyLVnY51hLsULtg=;
+	h=From:To:CC:Subject:Date;
+	b=O0kOyZucgfhEK65QEQNKhe44GSgZosajDhaAgDmGOkhcBn0WBJbEsztsRZ/GFatEX
+	QN5MhAyZi6Hpf5AGlNzhL9TWUzjzNn5bAxCNotT0X70BuimdmU0/BV5GIpRNCYzLRy
+	BSsFlTrM+qIyEBz58eQeNaRltji6yz4XaRPQY0Ks=
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6VBQF7s015776
+	for <meta-arago@arago-project.org>; Mon, 31 Jul 2017 06:26:15 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 31 Jul 2017 06:26:14 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6VBQDeX010841;
+	Mon, 31 Jul 2017 06:26:14 -0500
+From: Karthik Ramanan <a0393906@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 31 Jul 2017 16:56:11 +0530
+Message-ID: <1501500371-124018-1-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <009C030982313E4589C6BC55FBF1E82A2539705C@DFLE09.ent.ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [morty/master][PATCH 4/4] packagegroup-arago-tisdk-matrix: add browser demos for AM5/DRA7
+Subject: [PATCH] kmscube: Update SRCREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,61 +41,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Jul 2017 17:06:52 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 31 Jul 2017 11:26:33 -0000
+Content-Type: text/plain
 
-On Fri, Jul 28, 2017 at 09:36:36AM -0400, Ruei, Eric wrote:
-> 
-> 
-> -----Original Message-----
-> From: Dmytriyenko, Denys 
-> Sent: Thursday, July 27, 2017 7:27 PM
-> To: Ruei, Eric
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [morty/master][PATCH 4/4] packagegroup-arago-tisdk-matrix: add browser demos for AM5/DRA7
-> 
-> On Thu, Jul 27, 2017 at 06:28:15PM -0400, Eric Ruei wrote:
-> > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> > ---
-> >  .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb      | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> > index 7402427..9a19224 100644
-> > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> > @@ -1,6 +1,6 @@
-> >  DESCRIPTION = "Task to include Matrix v2"
-> >  LICENSE = "MIT"
-> > -PR = "r66"
-> > +PR = "r67"
-> >  
-> >  PACKAGE_ARCH = "${MACHINE_ARCH}"
-> >  
-> > @@ -128,6 +128,7 @@ MATRIX_APPS_append_omap-a15 = "     \
-> >      matrix-gui-generic-pm           \
-> >      matrix-gui-clocks               \
-> >      matrix-gui-pm-demos-governor    \
-> > +    ${@bb.utils.contains('MACHINE_FEATURES','sgx','matrix-gui-browser-demos','',d)} \
-> 
-> Are these really specific to sgx?
-> 
-> [Eric] One of the browser demo is chromium browser which is based on 
-> wayland-egl . Does it make sense to allow the browser demos only when SGX is 
-> enabled? Should I remove the condition?
+This patch enhances the app to find the desired pixel format from
+the format list of the primary DRM plane
 
-Should it be dependent on "wayland" distro feature then?
+Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+---
+ meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+index 220cc75..14973b9 100644
+--- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
++++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+@@ -10,8 +10,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+ inherit autotools pkgconfig
+ 
+-PR = "r7"
+-SRCREV = "0fa27a594fd3290644f5666eac62dc570f26f866"
++PR = "r8"
++SRCREV = "24e94f583119896b3ab8ecc7b35c7de3160dcb1f"
+ 
+ SRC_URI = "git://git.ti.com/glsdk/kmscube.git;protocol=git"
+ 
+-- 
+1.9.1
 
-> >  "
-> >  
-> >  MATRIX_APPS_append_dra7xx += " \
-> > -- 
-> > 1.9.1
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
