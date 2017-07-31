@@ -1,34 +1,36 @@
-Return-Path: <yan-liu@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id D99B452B13
+Return-Path: <jake@udc0866934>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id BD2B352B13
 	for <meta-arago@arago-project.org>;
-	Mon, 31 Jul 2017 15:55:20 +0000 (UTC)
+	Mon, 31 Jul 2017 16:01:10 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6VFtA5i022141
-	for <meta-arago@arago-project.org>; Mon, 31 Jul 2017 10:55:10 -0500
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v6VG1AU4017350
+	for <meta-arago@arago-project.org>; Mon, 31 Jul 2017 11:01:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1501516510;
-	bh=nxHSXEdzOeyhrvdyjC7l3PFbaG5srCdQ4O8uYMr/tes=;
+	s=ti-com-17Q1; t=1501516870;
+	bh=fUsORk6z3WlWeJrEtuBJuovr9qzzA04VTjnCxIe2AEQ=;
 	h=From:To:CC:Subject:Date;
-	b=hrq8ymoQG9rLO6DM9RZwCywhu1IvtB6ayM8F11we+usH27A9nqtXvGH5ZcV/pMqcD
-	DW+Lnd2d5HwkUAZqQzf9xrwsN+kz+LrwoiH8r3KuFCooZGtsef5iR5JycF5FYPUm0G
-	Me9r27FvKYUL5+Fgvnc4pMMaaHw09+JPtH4XKUL8=
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6VFt5xG000623
-	for <meta-arago@arago-project.org>; Mon, 31 Jul 2017 10:55:05 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 31 Jul 2017 10:55:05 -0500
-Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v6VFt5Ii012757;	Mon, 31 Jul 2017 10:55:05 -0500
-From: <yan-liu@ti.com>
+	b=J1oD2LsFKBVX5bVWMTUazmJEfygebaddCkponmG5pebLCafxpI5PgTjq20VrnId3y
+	zqQk0wzw9kL6EDs151OOa8lekqJepCv8hn5F/m1uuEUgzNiUq9emzC9YAxBzZwv831
+	GXYmnQxbONAoYwvPMutq1NKHAaEcHRlBOe1GowwA=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6VG1Aoh010016
+	for <meta-arago@arago-project.org>; Mon, 31 Jul 2017 11:01:10 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.294.0;
+	Mon, 31 Jul 2017 11:01:05 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v6VG15qd003587;
+	Mon, 31 Jul 2017 11:01:05 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)	(envelope-from
+	<jake@udc0866934>)	id 1dcD7w-0006iW-Jl; Mon, 31 Jul 2017 12:01:04 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 31 Jul 2017 11:49:36 -0400
-Message-ID: <1501516176-7630-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Mon, 31 Jul 2017 12:01:02 -0400
+Message-ID: <1501516862-25787-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: [oe-layersetup][PATCH] local-processor-sdk-64.cond.sample: weakly set ARAGO_BRAND
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,39 +43,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Jul 2017 15:55:21 -0000
+X-List-Received-Date: Mon, 31 Jul 2017 16:01:11 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
+* This will allow the ARAGO_BRAND to be overriden by the environment.
+* This will still override the value weakly assigned in the distro
+  config as the local.conf is parsed before the distro config.
 
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb   |    4 ++--
+ sample-files/local-processor-sdk-64.conf.sample | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-index 3a013f0..771e117 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+diff --git a/sample-files/local-processor-sdk-64.conf.sample b/sample-files/local-processor-sdk-64.conf.sample
+index 726b1ba..75e59f1 100644
+--- a/sample-files/local-processor-sdk-64.conf.sample
++++ b/sample-files/local-processor-sdk-64.conf.sample
+@@ -147,8 +147,8 @@ PARALLEL_MAKE = "-j 1"
  
--PR = "r19"
-+PR = "r20"
- PV_append = "+git${SRCPV}"
+ DISTRO   = "arago"
  
- PROVIDES += "ltp"
-@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
+-# Set branding policy for AM-SDK
+-ARAGO_BRAND = "processor-sdk"
++# Set branding policy for Processor SDK
++ARAGO_BRAND ?= "processor-sdk"
  
- inherit autotools-brokensep
- 
--SRCREV = "b3f82f35246aed3294ab42f1b25d8c3ef7142066"
-+SRCREV = "6958753d18971cbf3e6f297191d648bc618818f8"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
+ # Set terminal types by default it expects gnome-terminal
+ # but we chose xterm
 -- 
-1.7.9.5
+1.9.1
 
 
