@@ -1,37 +1,37 @@
 Return-Path: <e-ruei1@ti.com>
 Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 214D352A63
+	by arago-project.org (Postfix) with ESMTPS id C7C8452A63
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Aug 2017 19:54:22 +0000 (UTC)
+	Tue,  1 Aug 2017 19:54:23 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v71JsMfK001368
-	for <meta-arago@arago-project.org>; Tue, 1 Aug 2017 14:54:22 -0500
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v71JsNTI001372
+	for <meta-arago@arago-project.org>; Tue, 1 Aug 2017 14:54:23 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1501617262;
-	bh=yrUZccCYzWSPw82uAZjOC2OTn2Vjst90LxVrJenAqN0=;
+	s=ti-com-17Q1; t=1501617263;
+	bh=GHD/4pLAYpZbN7ZnyTKwZbAwNr7CynPWwzC0+4FZurs=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=OGLmHVfuQIvB6H5njRvRDsZzLmiSwOPWcw3a2E4PB3azCly47EvBz1o3vIKpFsAJs
-	tJnz6ROEGj0Q+Lce3iYS5oNIafgigZhCMALHKhUC47DmHYF/7HHtkS0G1H4zp9WKE8
-	Wl0KPB20l/E1NQgtMCsPr42TITAT/mIt5h42rVUo=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v71JsMjx019546
-	for <meta-arago@arago-project.org>; Tue, 1 Aug 2017 14:54:22 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE73.ent.ti.com
-	(128.247.5.110) with Microsoft SMTP Server id 14.3.294.0;
-	Tue, 1 Aug 2017 14:54:21 -0500
+	b=c2yU28HPa8fNj9qZ0pxbk6y7etTteK4ju1Hq2NSGkoACuPlYHU9qPDwR8h3YYZgAK
+	BTdcvw8J0EWPQsiz0vyphUogzfOtmDx6jxIV9IOZjrZi7KfFkh9xVnfH/f7RO0OXRx
+	kTFO1Kp0Af53nWZxG4uYIAtLrloDdl6dgWvKvIyU=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v71JsN28019559
+	for <meta-arago@arago-project.org>; Tue, 1 Aug 2017 14:54:23 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
+	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 1 Aug 2017 14:54:23 -0500
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v71JsAQf012102	for <meta-arago@arago-project.org>;
-	Tue, 1 Aug 2017 14:54:21 -0500
+	v71JsAQg012102	for <meta-arago@arago-project.org>;
+	Tue, 1 Aug 2017 14:54:22 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 1 Aug 2017 15:54:07 -0400
-Message-ID: <1501617248-46185-4-git-send-email-e-ruei1@ti.com>
+Date: Tue, 1 Aug 2017 15:54:08 -0400
+Message-ID: <1501617248-46185-5-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1501617248-46185-1-git-send-email-e-ruei1@ti.com>
 References: <1501617248-46185-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
-Subject: [morty/master][PATCH v2 3/4] matrix-gui-submenu: add browser submenu
+Subject: [morty/master][PATCH v2 4/4] packagegroup-arago-tisdk-matrix: add browser demos for AM5/DRA7
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,48 +44,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Aug 2017 19:54:22 -0000
+X-List-Received-Date: Tue, 01 Aug 2017 19:54:24 -0000
 Content-Type: text/plain
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb      | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-index 7e1f7d1..f592f7a 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-@@ -7,7 +7,7 @@ require matrix-gui-apps-git.inc
- # reset the LIC_FILES_CHKSUM setting from the matrix-gui-apps-git.inc file
- LIC_FILES_CHKSUM = "file://LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index 7402427..02d46c4 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r66"
++PR = "r67"
  
--PR = "${INC_PR}.17"
-+PR = "${INC_PR}.18"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- # These packages make submenus in matrix and are not architecture specific
- inherit allarch
-@@ -34,6 +34,7 @@ SUBMENUS = " arm_submenu \
-              videoanalytics_submenu \
-              machinevision_submenu \
-              touch_submenu \
-+             browser_submenu \
+@@ -128,6 +128,7 @@ MATRIX_APPS_append_omap-a15 = "     \
+     matrix-gui-generic-pm           \
+     matrix-gui-clocks               \
+     matrix-gui-pm-demos-governor    \
++    ${@['','matrix-gui-browser-demos'][bb.utils.contains('MACHINE_FEATURES','sgx',True,False,d) and bb.utils.contains('DISTRO_FEATURES','wayland',True,False,d)]} \
  "
  
- do_install(){
-@@ -66,6 +67,7 @@ PACKAGES += " ${PN}-arm \
-               ${PN}-videoanalytics \
-               ${PN}-machinevision \
-               ${PN}-touch \
-+              ${PN}-browser \
- "
- 
- # Make sure app images has been installed
-@@ -93,3 +95,4 @@ FILES_${PN}-opencl = "${MATRIX_APP_DIR}/opencl_submenu/*"
- FILES_${PN}-videoanalytics = "${MATRIX_APP_DIR}/videoanalytics_submenu/*"
- FILES_${PN}-machinevision = "${MATRIX_APP_DIR}/machinevision_submenu/*"
- FILES_${PN}-touch = "${MATRIX_APP_DIR}/touch_submenu/*"
-+FILES_${PN}-browser = "${MATRIX_APP_DIR}/browser_submenu/*"
+ MATRIX_APPS_append_dra7xx += " \
 -- 
 1.9.1
 
