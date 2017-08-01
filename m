@@ -1,32 +1,35 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id DD064529C8
+Return-Path: <e-ruei1@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 3917D52A63
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Aug 2017 17:54:17 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id C3B4F20B1D;
-	Tue,  1 Aug 2017 17:54:17 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id OhRkP1rEBYKL; Tue,  1 Aug 2017 17:54:17 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9D11D2085A;
-	Tue,  1 Aug 2017 17:54:16 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 179F4162548;
-	Tue,  1 Aug 2017 13:54:16 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Tue,  1 Aug 2017 13:54:15 -0400
-Message-Id: <1501610055-10022-2-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1501610055-10022-1-git-send-email-denys@ti.com>
-References: <1501610055-10022-1-git-send-email-denys@ti.com>
-Subject: [morty/master][PATCH 2/2] arago.conf: add VIRTUAL-RUNTIME_initramfs with corresponding initramfs subpackage
+	Tue,  1 Aug 2017 19:54:14 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v71JsE7S001349
+	for <meta-arago@arago-project.org>; Tue, 1 Aug 2017 14:54:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1501617254;
+	bh=ckoUMmPCTFJdioaLYfB5NNrlV9LJWS2Aqm3XXHUkMwg=;
+	h=From:To:Subject:Date;
+	b=YtjSvHo4F3ZJUbnA5gWVmDWRyd+0sf7ZCgq6Ezz/BQVAV+ZXdpWHBtnOHALVVt2Pv
+	1kBR780C8CHPsTyGVXuUwzY3zHthQZ+1Fobc9h7hdnzYPYIYnpJR8OtPMB8u/ypZzF
+	Ce6jtI0fOS5pqpJJT1AAsN9t4On9W5NrB84OUKPk=
+Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v71JsEw9019465
+	for <meta-arago@arago-project.org>; Tue, 1 Aug 2017 14:54:14 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE70.ent.ti.com
+	(157.170.170.113) with Microsoft SMTP Server id 14.3.294.0;
+	Tue, 1 Aug 2017 14:54:13 -0500
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
+	v71JsAQc012102	for <meta-arago@arago-project.org>;
+	Tue, 1 Aug 2017 14:54:12 -0500
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 1 Aug 2017 15:54:04 -0400
+Message-ID: <1501617248-46185-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [morty/master][PATCH v2 0/4] matrix-gui: add browser demos
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,42 +42,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Aug 2017 17:54:18 -0000
+X-List-Received-Date: Tue, 01 Aug 2017 19:54:14 -0000
+Content-Type: text/plain
 
-Convert hardcoded arago-base-tisdk-image to use this new variable.
+OOB Matrix Gui: add browser submenu and browser demos
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf                        | 1 +
- meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb | 2 +-
- 2 files changed, 2 insertions(+), 1 deletion(-)
+Eric Ruei (4):
+  matrix-gui-apps-git: bump SRCREV to pick up the browser demos
+  matix-gui-browser-demos: add browser demos
+  matrix-gui-submenu: add browser submenu
+  packagegroup-arago-tisdk-matrix: add browser demos for AM5/DRA7
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 51296d5..f4c9f7d 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -75,6 +75,7 @@ ARAGO_SYSVINIT ?= "0"
- VIRTUAL-RUNTIME_dev_manager = "${@base_conditional("ARAGO_SYSVINIT", "1", "udev", "systemd", d)}"
- VIRTUAL-RUNTIME_init_manager = "${@base_conditional("ARAGO_SYSVINIT", "1", "sysvinit", "systemd", d)}"
- VIRTUAL-RUNTIME_initscripts = "${@base_conditional("ARAGO_SYSVINIT", "1", "initscripts", "systemd-compat-units", d)}"
-+VIRTUAL-RUNTIME_initramfs = "${@base_conditional("ARAGO_SYSVINIT", "1", "sysvinit-initramfs", "systemd-initramfs", d)}"
- VIRTUAL-RUNTIME_login_manager = "busybox shadow"
- 
- DISTRO_FEATURES_append = "${@base_conditional("ARAGO_SYSVINIT", "1", "", " systemd", d)}"
-diff --git a/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
-index 6ce97ee..a3f5128 100644
---- a/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
-+++ b/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
-@@ -10,7 +10,7 @@ IMAGE_INSTALL += "\
-     packagegroup-arago-console \
-     packagegroup-arago-base-tisdk \
-     packagegroup-arago-test \
--    systemd-initramfs \
-+    ${VIRTUAL-RUNTIME_initramfs} \
-     "
- 
- export IMAGE_BASENAME = "arago-base-tisdk-image"
+ .../packagegroups/packagegroup-arago-tisdk-matrix.bb     |  3 ++-
+ .../recipes-core/matrix/matrix-gui-apps-git.inc          |  4 ++--
+ .../recipes-core/matrix/matrix-gui-browser-demos_2.0.bb  | 16 ++++++++++++++++
+ .../recipes-core/matrix/matrix-gui-submenus_2.0.bb       |  5 ++++-
+ 4 files changed, 24 insertions(+), 4 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-browser-demos_2.0.bb
+
 -- 
-2.7.4
+1.9.1
 
 
