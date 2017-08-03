@@ -1,33 +1,31 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 8F44C529E8
+	by arago-project.org (Postfix) with ESMTPS id 91CB352A12
 	for <meta-arago@arago-project.org>;
 	Thu,  3 Aug 2017 17:41:53 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5B881203C2;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 445A220B11;
 	Thu,  3 Aug 2017 17:41:53 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id mq97wXaPnsz3; Thu,  3 Aug 2017 17:41:53 +0000 (UTC)
+	with ESMTP id FsqAp1nxz_04; Thu,  3 Aug 2017 17:41:53 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 25EBE208FB;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1A873203C2;
 	Thu,  3 Aug 2017 17:41:51 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id A4FF4162552;
+	by mail.denix.org (Postfix) with ESMTP id 977191621BB;
 	Thu,  3 Aug 2017 13:41:50 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu,  3 Aug 2017 13:41:44 -0400
-Message-Id: <1501782104-134658-2-git-send-email-denis@denix.org>
+Date: Thu,  3 Aug 2017 13:41:43 -0400
+Message-Id: <1501782104-134658-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1501782104-134658-1-git-send-email-denis@denix.org>
-References: <1501782104-134658-1-git-send-email-denis@denix.org>
 Cc: Jean-Jacques Hiblot <jjhiblot@ti.com>
-Subject: [krogoth][PATCH 2/2] u-boot-ti-staging 2016.05: update to the latest for ti2016.08-rc1
+Subject: [krogoth][PATCH 1/2] linux-ti-staging 4.4: update to the latest for ti2016.08-rc1
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,30 +45,35 @@ From: Denys Dmytriyenko <denys@ti.com>
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 Cc: Jean-Jacques Hiblot <jjhiblot@ti.com>
 ---
- recipes-bsp/u-boot/u-boot-ti-staging_2016.05.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ recipes-kernel/linux/linux-ti-staging-rt_4.4.bb | 2 +-
+ recipes-kernel/linux/linux-ti-staging_4.4.bb    | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/recipes-bsp/u-boot/u-boot-ti-staging_2016.05.bb b/recipes-bsp/u-boot/u-boot-ti-staging_2016.05.bb
-index 3650dda..357e78f 100644
---- a/recipes-bsp/u-boot/u-boot-ti-staging_2016.05.bb
-+++ b/recipes-bsp/u-boot/u-boot-ti-staging_2016.05.bb
-@@ -7,14 +7,14 @@ DESCRIPTION = "u-boot bootloader for TI devices"
+diff --git a/recipes-kernel/linux/linux-ti-staging-rt_4.4.bb b/recipes-kernel/linux/linux-ti-staging-rt_4.4.bb
+index d2633bf..6cfa013 100644
+--- a/recipes-kernel/linux/linux-ti-staging-rt_4.4.bb
++++ b/recipes-kernel/linux/linux-ti-staging-rt_4.4.bb
+@@ -6,4 +6,4 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-4.4:"
  
- LIC_FILES_CHKSUM = "file://Licenses/README;md5=a2c678cfd4a4d97135585cad908541c6"
+ BRANCH = "ti-rt-linux-4.4.y"
  
--PR = "r31"
-+PR = "r32"
- PV_append = "+git${SRCPV}"
+-SRCREV = "de9a74a4c9e5122c34b6825f51793910dd8155b5"
++SRCREV = "c49801eebc480f060619ab1327ab45acbc7a56e6"
+diff --git a/recipes-kernel/linux/linux-ti-staging_4.4.bb b/recipes-kernel/linux/linux-ti-staging_4.4.bb
+index dc678ce..11f9c4c 100644
+--- a/recipes-kernel/linux/linux-ti-staging_4.4.bb
++++ b/recipes-kernel/linux/linux-ti-staging_4.4.bb
+@@ -81,8 +81,8 @@ S = "${WORKDIR}/git"
  
- SRC_URI = "git://git.ti.com/ti-u-boot/ti-u-boot.git;protocol=git;branch=${BRANCH}"
+ BRANCH = "ti-lsk-linux-4.4.y"
  
- BRANCH ?= "ti-u-boot-2016.05"
+-SRCREV = "a5602579fd857f04dda1ae292a7c8dea6b6e011a"
+-PV = "4.4.57+git${SRCPV}"
++SRCREV = "a91903e72640421fb1c5de2d0890122f9313fd00"
++PV = "4.4.79+git${SRCPV}"
  
--SRCREV = "e646599450834807fd334dd9593112e89aee11c7"
-+SRCREV = "42a3347aa547e87823e894138b16e467c1206e17"
- 
- # Support for secure devices - detailed info is in doc/README.ti-secure
- TI_SECURE_DEV_PKG ?= ""
+ # Append to the MACHINE_KERNEL_PR so that a new SRCREV will cause a rebuild
+ MACHINE_KERNEL_PR_append = "a"
 -- 
 2.7.4
 
