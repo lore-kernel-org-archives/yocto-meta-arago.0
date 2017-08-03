@@ -1,30 +1,33 @@
-Return-Path: <denys@ti.com>
+Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 0120E52A7E
+	by arago-project.org (Postfix) with ESMTPS id 8F44C529E8
 	for <meta-arago@arago-project.org>;
-	Tue,  1 Aug 2017 20:32:45 +0000 (UTC)
+	Thu,  3 Aug 2017 17:41:53 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5DBBD20AF0;
-	Tue,  1 Aug 2017 20:32:45 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5B881203C2;
+	Thu,  3 Aug 2017 17:41:53 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id ofUfTKv0GMJy; Tue,  1 Aug 2017 20:32:45 +0000 (UTC)
+	with ESMTP id mq97wXaPnsz3; Thu,  3 Aug 2017 17:41:53 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3E2B320821;
-	Tue,  1 Aug 2017 20:32:44 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 25EBE208FB;
+	Thu,  3 Aug 2017 17:41:51 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id B7281162550;
-	Tue,  1 Aug 2017 16:32:43 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
+	by mail.denix.org (Postfix) with ESMTP id A4FF4162552;
+	Thu,  3 Aug 2017 13:41:50 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue,  1 Aug 2017 16:32:43 -0400
-Message-Id: <1501619563-4187-1-git-send-email-denys@ti.com>
+Date: Thu,  3 Aug 2017 13:41:44 -0400
+Message-Id: <1501782104-134658-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] arago.conf: enable coredump functionality in systemd
+In-Reply-To: <1501782104-134658-1-git-send-email-denis@denix.org>
+References: <1501782104-134658-1-git-send-email-denis@denix.org>
+Cc: Jean-Jacques Hiblot <jjhiblot@ti.com>
+Subject: [krogoth][PATCH 2/2] u-boot-ti-staging 2016.05: update to the latest for ti2016.08-rc1
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,36 +40,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Aug 2017 20:32:46 -0000
+X-List-Received-Date: Thu, 03 Aug 2017 17:41:54 -0000
+
+From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Cc: Jean-Jacques Hiblot <jjhiblot@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf                  | 1 +
- meta-arago-distro/recipes-core/systemd/systemd_%.bbappend | 2 +-
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ recipes-bsp/u-boot/u-boot-ti-staging_2016.05.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index f4c9f7d..8bab5d9 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -85,6 +85,7 @@ QT_PROVIDER ?= "qt5"
+diff --git a/recipes-bsp/u-boot/u-boot-ti-staging_2016.05.bb b/recipes-bsp/u-boot/u-boot-ti-staging_2016.05.bb
+index 3650dda..357e78f 100644
+--- a/recipes-bsp/u-boot/u-boot-ti-staging_2016.05.bb
++++ b/recipes-bsp/u-boot/u-boot-ti-staging_2016.05.bb
+@@ -7,14 +7,14 @@ DESCRIPTION = "u-boot bootloader for TI devices"
  
- # Distro-specific package configuration
- PACKAGECONFIG_pn-weston = "egl kms launch clients"
-+PACKAGECONFIG_append_pn-systemd = " coredump"
+ LIC_FILES_CHKSUM = "file://Licenses/README;md5=a2c678cfd4a4d97135585cad908541c6"
  
- # Configure Qt5 flags (GLES is still required for qtdeclarative and qtwebkit)
- PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
-diff --git a/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend b/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend
-index 8fccdb5..7f2ffb6 100644
---- a/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend
-+++ b/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend
-@@ -1,4 +1,4 @@
--PR_append = ".arago3"
-+PR_append = ".arago4"
+-PR = "r31"
++PR = "r32"
+ PV_append = "+git${SRCPV}"
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ SRC_URI = "git://git.ti.com/ti-u-boot/ti-u-boot.git;protocol=git;branch=${BRANCH}"
  
+ BRANCH ?= "ti-u-boot-2016.05"
+ 
+-SRCREV = "e646599450834807fd334dd9593112e89aee11c7"
++SRCREV = "42a3347aa547e87823e894138b16e467c1206e17"
+ 
+ # Support for secure devices - detailed info is in doc/README.ti-secure
+ TI_SECURE_DEV_PKG ?= ""
 -- 
 2.7.4
 
