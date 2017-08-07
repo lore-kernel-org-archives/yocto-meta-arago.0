@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id F3041529AB
+	by arago-project.org (Postfix) with ESMTPS id 3A43B529AB
 	for <meta-arago@arago-project.org>;
-	Mon,  7 Aug 2017 22:24:52 +0000 (UTC)
+	Mon,  7 Aug 2017 22:24:58 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 319B0208E0;
-	Mon,  7 Aug 2017 22:24:53 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6D488208E0;
+	Mon,  7 Aug 2017 22:24:58 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id B5p_rvoF6ySh; Mon,  7 Aug 2017 22:24:53 +0000 (UTC)
+	with ESMTP id 7EP2_b0lWZ6b; Mon,  7 Aug 2017 22:24:58 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 14FEA207BB;
-	Mon,  7 Aug 2017 22:24:52 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 542B2207BB;
+	Mon,  7 Aug 2017 22:24:57 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id C8DF4162551;
-	Mon,  7 Aug 2017 18:24:51 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 1370F162551;
+	Mon,  7 Aug 2017 18:24:57 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Mon,  7 Aug 2017 18:24:51 -0400
-Message-Id: <1502144691-78101-1-git-send-email-denys@ti.com>
+Date: Mon,  7 Aug 2017 18:24:56 -0400
+Message-Id: <1502144696-78161-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] lmbench: remove postprocess scripts and drop dependency on perl
+Subject: [morty/master][PATCH] external-linaro-toolchain: strip binaries and libraries normally
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,36 +37,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Aug 2017 22:24:53 -0000
+X-List-Received-Date: Mon, 07 Aug 2017 22:24:58 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappend | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ .../recipes-core/meta/external-linaro-toolchain.bbappend             | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappend b/meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappend
-index 1f6cd80..e13c8b5 100644
---- a/meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappend
-+++ b/meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappend
-@@ -2,7 +2,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+index 8d50282..ae74e37 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+@@ -1,4 +1,5 @@
+-#INHIBIT_PACKAGE_STRIP = "0"
++INHIBIT_PACKAGE_DEBUG_SPLIT = "0"
++INHIBIT_PACKAGE_STRIP = "0"
  
- INSANE_SKIP_${PN} += "ldflags"
+ ALLOW_EMPTY_${PN}-utils = "1"
+ ALLOW_EMPTY_ldd = "1"
+@@ -6,7 +7,7 @@ ALLOW_EMPTY_ldd = "1"
+ ALLOW_EMPTY_libstdc++ = "1"
+ ALLOW_EMPTY_libgomp = "1"
  
--PR_append = ".arago2"
-+PR_append = ".arago3"
+-PR_append = ".arago35"
++PR_append = ".arago36"
  
- SRC_URI += "file://0001-Makefile-Add-TI-SDK-Modifications.patch"
- 
-@@ -14,3 +14,9 @@ do_compile () {
-     unset CPPFLAGS
-     oe_runmake -C src
- }
-+
-+do_install_append() {
-+    rm -rf ${D}${datadir}
-+}
-+
-+RDEPENDS_${PN}_remove = "perl"
+ PROVIDES := "${@oe_filter_out('virtual/linux-libc-headers', '${PROVIDES}', d)}"
+ PROVIDES := "${@oe_filter_out('linux-libc-headers', '${PROVIDES}', d)}"
 -- 
 2.7.4
 
