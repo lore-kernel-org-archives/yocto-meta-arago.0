@@ -1,37 +1,30 @@
-Return-Path: <dmurphy@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id E0857529AB
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id D98CC529AB
 	for <meta-arago@arago-project.org>;
-	Mon,  7 Aug 2017 20:06:30 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v77K6KZG012634
-	for <meta-arago@arago-project.org>; Mon, 7 Aug 2017 15:06:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1502136380;
-	bh=Xwy9XPUBci3WjQz8w7Hy6QENgrtM/iago+4CpJ17s0E=;
-	h=From:To:CC:Subject:Date;
-	b=GrunnPDxWHvoOsTr9d/ii4GPtkgk0qak3oyMnJ7BLVlYt+wKWH/9jKEPGH72Jz7Ly
-	Wwbu+Zs1drdmXLu+6YHw43QpUawmtJ0sRSuJoC0tHXULPbNikWjGwFz2EvOFV3CC5f
-	9b3K7Qoll1xAjuFyuxM+G7wNpCjr4rME9k5P5y1k=
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v77K6FNU023248
-	for <meta-arago@arago-project.org>; Mon, 7 Aug 2017 15:06:15 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE71.ent.ti.com
-	(157.170.170.114) with Microsoft SMTP Server id 14.3.294.0;
-	Mon, 7 Aug 2017 15:06:14 -0500
-Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
-	[128.247.22.53])	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id
-	v77K6FBg012168;	Mon, 7 Aug 2017 15:06:15 -0500
-Received: from localhost ([172.22.137.197])	by legion.dal.design.ti.com
-	(8.11.7p1+Sun/8.11.7) with ESMTP id v77K6E311869;
-	Mon, 7 Aug 2017 15:06:14 -0500 (CDT)
-From: Dan Murphy <dmurphy@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 7 Aug 2017 15:06:11 -0500
-Message-ID: <20170807200611.18993-1-dmurphy@ti.com>
-X-Mailer: git-send-email 2.12.2
-MIME-Version: 1.0
-Subject: [PATCH] optee-os: Temporarily force am4 to use SW RNG
+	Mon,  7 Aug 2017 22:24:28 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id A2C08208E0;
+	Mon,  7 Aug 2017 22:24:28 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id X073V48kQQbF; Mon,  7 Aug 2017 22:24:28 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 81E9E207BB;
+	Mon,  7 Aug 2017 22:24:27 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id F2C8A162551;
+	Mon,  7 Aug 2017 18:24:26 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Mon,  7 Aug 2017 18:24:26 -0400
+Message-Id: <1502144666-77962-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH] linux-ti-staging: add default defconfig for generic armv8
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,30 +37,66 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Aug 2017 20:06:31 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 07 Aug 2017 22:24:29 -0000
 
-Temporarily force AM4 to use a SW RNG
+Also allow empty devicetree package for generic platforms.
 
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-security/optee/optee-os_git.bbappend | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend | 4 +++-
+ .../recipes-kernel/linux/linux-ti-staging-systest_%.bbappend          | 4 +++-
+ .../recipes-kernel/linux/linux-ti-staging/arago-armv8/defconfig       | 1 +
+ meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend    | 4 +++-
+ 4 files changed, 10 insertions(+), 3 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-kernel/linux/linux-ti-staging/arago-armv8/defconfig
 
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-index 2cf36564..07eb088e 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-@@ -10,7 +10,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
-            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
- "
- BRANCH = "ti_optee_os"
--SRCREV = "a73053f395996f649da278cbec361aa01c02befa"
-+SRCREV = "09fe6fe9099d4479ab6e986f4af78dd9f9215862"
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
+index a3241ab..7d03f8e 100644
+--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
++++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
+@@ -1,5 +1,7 @@
+ MACHINE_KERNEL_PR_append = ".arago1"
  
- EXTRA_OEMAKE = "CROSS_COMPILE_core=${HOST_PREFIX}  \
-                 CROSS_COMPILE_ta_arm32=${HOST_PREFIX}  \
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ require copy-defconfig.inc
++
++ALLOW_EMPTY_kernel-devicetree = "1"
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
+index a3241ab..7d03f8e 100644
+--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
++++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
+@@ -1,5 +1,7 @@
+ MACHINE_KERNEL_PR_append = ".arago1"
+ 
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ require copy-defconfig.inc
++
++ALLOW_EMPTY_kernel-devicetree = "1"
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging/arago-armv8/defconfig b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging/arago-armv8/defconfig
+new file mode 100644
+index 0000000..3228f4e
+--- /dev/null
++++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging/arago-armv8/defconfig
+@@ -0,0 +1 @@
++use-kernel-config=defconfig
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
+index 6ae4bd7..5bddbef 100644
+--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
++++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
+@@ -1,5 +1,7 @@
+ MACHINE_KERNEL_PR_append = ".arago5"
+ 
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${P}:"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ require copy-defconfig.inc
++
++ALLOW_EMPTY_kernel-devicetree = "1"
 -- 
-2.13.2.516.ge629a7d28
+2.7.4
 
 
