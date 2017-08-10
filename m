@@ -1,45 +1,47 @@
-Return-Path: <yan-liu@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id A490E52990
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-pf0-f194.google.com (mail-pf0-f194.google.com
+	[209.85.192.194])
+	by arago-project.org (Postfix) with ESMTPS id E55945297E
 	for <meta-arago@arago-project.org>;
-	Wed,  9 Aug 2017 12:15:19 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v79CFJ2P023616
-	for <meta-arago@arago-project.org>; Wed, 9 Aug 2017 07:15:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1502280919;
-	bh=axs1XqhcV5iMmOrKNhIl3YBfGOSXkGsnMwdYgdUVUmc=;
-	h=From:To:CC:Subject:Date;
-	b=yY1Pj4UCrmAXJNk8TE6y32XOQBlmlhgOz4DMHs0uC/lL3xmb14yvfB/Doukb6zZBg
-	vnSEfr0vK5XL2xHXXjy4fXtzW0m0j+O0Cy7RudIZpwGiqPkW0/M73lRPw+87ggfDWp
-	BW2czv3pN9TIwXfM/6mNmq+PoWIDpPMbTy8yrW7Y=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v79CFJq6007874
-	for <meta-arago@arago-project.org>; Wed, 9 Aug 2017 07:15:19 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Wed, 9 Aug 2017 07:15:19 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Wed, 9 Aug 2017 07:15:19 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Wed, 9 Aug 2017 07:15:19 -0500
-Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v79CFIg0027382;
-	Wed, 9 Aug 2017 07:15:18 -0500
-From: <yan-liu@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 9 Aug 2017 08:10:01 -0400
-Message-ID: <1502280601-22284-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+	Thu, 10 Aug 2017 12:31:57 +0000 (UTC)
+Received: by mail-pf0-f194.google.com with SMTP id t86so566115pfe.1
+	for <meta-arago@arago-project.org>;
+	Thu, 10 Aug 2017 05:31:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=b1T4/bzXo2RZ7TJnGT1jgUmGuB2y1Qvnksqq8Gtyqa4=;
+	b=PsVwjuV09LRHzt6K5USCy2gK0qcFqX6qxbdjq05qYBzQ9QStXtsh+a2MwdkwkwINkq
+	jiK8+72FBcH7zSRK3BTWeII9m5i5qa8kqt04/UmG9fUVcTiXtzUIpor9XGYJUs20C4uE
+	UY98YPHcr/rju3IwdceV4KuiPOhk0hnyAaBhEH37TcsPSrOCGvbqZvX2LSxeLAhhq39q
+	fPfy9H04ltMmw/HMWhv8vPWIQd6ioeNBwDjxZVulSaKejL5c6nH9yYM4oaPfOfv3wDfm
+	LNtTN9cQw4mAImYaJFW1Nzo1ofDQUDqnRbjyqLLDxqcexA1++S23Tb89Q29E8EAcpWXL
+	z3Sw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=b1T4/bzXo2RZ7TJnGT1jgUmGuB2y1Qvnksqq8Gtyqa4=;
+	b=smPuJ0Fg7J/p0nU2QrY7DEOesIaz40wQw1bUPk8cuTlryNYb6A2zrXYm8IFOWeAupC
+	kPbcv79RtmyCfSWRUItlJ11zHJv9mMZZZaifsPHq1FBo8X/H8JlVtaX1twN+p7gi2U4+
+	3vXzhgocRuitYL3ajpjCbHfvbOI9g1ycZauvQrT8qQwoewoUDYWP0VmwdI8RyHwP2WlH
+	c6rKXaw69sMcErtson6IqRzh9wYSh/MFUCCoW0NmzLN6fd3s3PKE889j9BzXHFrMM5hS
+	JAE+rAxO2y4UrWV8enh1rP530Q9onoUoB03cZYI1xxkYJ4aC7i2Ic9FehEJ75Wh0ZXb5
+	C9Qg==
+X-Gm-Message-State: AHYfb5g937w7G08T3ZgKCYCtPJDZm1JKh+DjWAgwYxe7/AXOgX7Jnp0n
+	8AS0ja0GG9HK7PqRvww=
+X-Received: by 10.84.238.1 with SMTP id u1mr13285311plk.187.1502368317386;
+	Thu, 10 Aug 2017 05:31:57 -0700 (PDT)
+Received: from localhost.localdomain (103-224-128-49.flip.co.nz.
+	[103.224.128.49])
+	by smtp.gmail.com with ESMTPSA id l2sm7146616pgc.27.2017.08.10.05.31.54
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 10 Aug 2017 05:31:56 -0700 (PDT)
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+To: meta-arago@arago-project.org
+Date: Fri, 11 Aug 2017 00:31:43 +1200
+Message-Id: <1502368303-9406-1-git-send-email-ankur.tyagi85@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Cc: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Subject: [PATCH] qtbase_%: Check wayland in DISTRO_FEATURES
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,39 +54,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Aug 2017 12:15:19 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 10 Aug 2017 12:31:58 -0000
 
-From: Yan Liu <yan-liu@ti.com>
-
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Ankur Tyagi <ankur.tyagi85@gmail.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb   |    4 ++--
+ meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-index 771e117..46fe4e5 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+index 5d6f5e4..9cf76c4 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+@@ -1,10 +1,10 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
--PR = "r20"
-+PR = "r21"
- PV_append = "+git${SRCPV}"
+-GLES_EXTRA_DEPS = "libdrm wayland"
++GLES_EXTRA_DEPS = "libdrm ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', '', d)}"
  
- PROVIDES += "ltp"
-@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
+ PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
  
- inherit autotools-brokensep
+-PR_append = ".arago12"
++PR_append = ".arago13"
  
--SRCREV = "6958753d18971cbf3e6f297191d648bc618818f8"
-+SRCREV = "70872dcbb890e12533c2bcd973d4e8e77401839f"
- BRANCH ?= "master"
+ QT_CONFIG_FLAGS += "-qpa ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', 'eglfs', d)}"
  
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
 -- 
-1.7.9.5
+2.7.4
 
 
