@@ -1,42 +1,44 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-wr0-f181.google.com (mail-wr0-f181.google.com
-	[209.85.128.181])
-	by arago-project.org (Postfix) with ESMTPS id 3A5E95299D
+Return-Path: <dmurphy@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 6B9A8529A4
 	for <meta-arago@arago-project.org>;
-	Tue, 22 Aug 2017 10:16:48 +0000 (UTC)
-Received: by mail-wr0-f181.google.com with SMTP id p14so52421694wrg.1
-	for <meta-arago@arago-project.org>;
-	Tue, 22 Aug 2017 03:16:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=0pPZMHi66cif3VEwxrs2zRR0wmzR3YrcK9SWmja78Wo=;
-	b=J0QVFBS1BFy9eTyTbP6s6mX2rE6vZdgKzCrCTvEgOv5Ecx0lvxGCR3gEBPYjV6Nu7Q
-	3yF09/NnkLXDM4Ae4/9VmOMIo0jlfGfwc3e+MlHRj3k+Q+M4ZYr1qw05da/QSqfeaZMW
-	cz5QA+P6C0PkEy2GVE94Kb1jK17nXzrYkZ4Kr4286hvbgzVnNpqCaPSuf2T+xrczKQyB
-	lx4aXraEbuenKsfJpLM6hjlYPuNe975BLxOSM3MLKZYWS86N0SLYft38+69SUXTQBccZ
-	wqGOp50fihMdYSi/+MEWmQLi+UfTWHi0ITLNj4ECgWdGjbDifd7A74h8GOZ3kgD316gL
-	CO0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=0pPZMHi66cif3VEwxrs2zRR0wmzR3YrcK9SWmja78Wo=;
-	b=DK8P5r0Eh4XsB3x3LC8gqR+GYpMCKNHlAmIhpj7TyUtuPL1x9lmCiTzQn3iukDvP1r
-	J4LK8i7sb3A8SkWLmuJlYXmi6c88WPJAQ2DavNMupQKBsD6ciZ6BdauEoKfcsfrAPbvl
-	HWCA+kpEFMYHSiA2Lmoz+Wi2JmYe66OVYtAAxw3xP2b4nmT3YwD6SEtaVymTBhutCxwZ
-	qey1snGdSdFinIPB5EcearzzvCJPJ0uoaWKNKSqgihPj3yxfp0ELk2LRx/gn4rP4oEb/
-	+A5h1Dr5krhhMw7vD7X7DPUER/ZTuRCFIMlcE4vFdVbv6C4KCyLAp1rS4Cp4vBJLAmCQ
-	lWmw==
-X-Gm-Message-State: AHYfb5ivi3GKAEsZn2G9zikHcXToy7BY+RdN2aNDs/P6C8iiTJD/oLU6
-	XD6iJxLmNp5Xl24Uc/fuUiDf4sr/Pv+4
-X-Received: by 10.80.171.74 with SMTP id t10mr124351edc.242.1503397007520;
-	Tue, 22 Aug 2017 03:16:47 -0700 (PDT)
+	Tue, 22 Aug 2017 18:43:47 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7MIhltp008756
+	for <meta-arago@arago-project.org>; Tue, 22 Aug 2017 13:43:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1503427427;
+	bh=kGyvWK7tq3RAViJD4QZb1AL1KEczGUi67x0hguEd6jo=;
+	h=From:To:CC:Subject:Date;
+	b=smzIXdOUeDc5xiPZuDQrvnsRip++rkQcMcwLzPoGs0nLgvAcL+61CAYUhjo/+31rL
+	LodRsBQBd73cnnpPzl/pi7oSJqqmiDUSD3Tzfq25D7FVSyEy+wzuxsnD01G95YHEcK
+	NdqZV1vtWSWIdXMJQzB9XAC0S8/6hpIRMyEA2UzM=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7MIhlbJ009654
+	for <meta-arago@arago-project.org>; Tue, 22 Aug 2017 13:43:47 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
+	Tue, 22 Aug 2017 13:43:46 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
+	Transport; Tue, 22 Aug 2017 13:43:46 -0500
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
+	[128.247.22.53])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7MIhk4A007422;
+	Tue, 22 Aug 2017 13:43:46 -0500
+Received: from localhost ([172.22.147.66])
+	by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id
+	v7MIhk320523; Tue, 22 Aug 2017 13:43:46 -0500 (CDT)
+From: Dan Murphy <dmurphy@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 22 Aug 2017 13:43:41 -0500
+Message-ID: <20170822184341.15304-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.12.2
 MIME-Version: 1.0
-Received: by 10.80.240.134 with HTTP; Tue, 22 Aug 2017 03:16:26 -0700 (PDT)
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Tue, 22 Aug 2017 22:16:26 +1200
-Message-ID: <CADySD0F8_ScZKfuJes3SJcpZAELxjSb0SRuddjHa=raoJDAZ5A@mail.gmail.com>
-To: meta-arago@arago-project.org
-Subject: Regarding custom Qt5 image sdk recipe
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH] optee_os: Add Secure Device Playback memory reservation
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,86 +51,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Aug 2017 10:16:49 -0000
-Content-Type: multipart/alternative; boundary="94eb2c0ed80096f80b055754e422"
+X-List-Received-Date: Tue, 22 Aug 2017 18:43:48 -0000
+Content-Type: text/plain
 
---94eb2c0ed80096f80b055754e422
-Content-Type: text/plain; charset="UTF-8"
+Add Secure Device Playblack firewall memory reservation
+and enable SDP feature in OPTEE_OS
 
-Hi,
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ meta-arago-distro/recipes-security/optee/optee-os_git.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I have a custom qt5 image recipe based upon arago distro.
+diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+index 07eb088e..f765d16a 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+@@ -10,7 +10,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
+            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
+ "
+ BRANCH = "ti_optee_os"
+-SRCREV = "09fe6fe9099d4479ab6e986f4af78dd9f9215862"
++SRCREV = "e82ac5b65bc789f3f0d1a3668bb5a2ffe2323f77"
+ 
+ EXTRA_OEMAKE = "CROSS_COMPILE_core=${HOST_PREFIX}  \
+                 CROSS_COMPILE_ta_arm32=${HOST_PREFIX}  \
+-- 
+2.14.0
 
-In order to create an sdk based upon my image, I added following in
-my-image.bb file
-inherit populate_sdk populate_sdk_qt5
 
-So now I can generate custom Qt5 sdk via bitbake my-image -c populate_sdk
-
-However, I see a downside in this approach that it increases the build time
-for my image.
-Toolchain creation is usually one time task while customizing rootfs image
-will be an on-going thing.
-
-I wanted to know what is the best practice here ?
-Ideal would be to have a separate recipe like meta-toolchain-my-image-sdk.bb
-which creates a sdk based upon my image.
-
-I don't want to use meta-toolchain-arago-tisdk as it creates a toolchain
-with everything which might not be available in my custom image. This
-allows to develop and cross-compile an application which might fail to run
-on target (e.g application can be compiled using boost library but my
-custom image lacks boost)
-
-So basically I want to create trimmed version of meta-toolchain-arago-tisdk
-based upon my custom image installs but not sure how.
-
-thanks
-Ankur
-
---94eb2c0ed80096f80b055754e422
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
-lvetica,sans-serif">Hi,</div><div class=3D"gmail_default" style=3D"font-fam=
-ily:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_default" styl=
-e=3D"font-family:arial,helvetica,sans-serif">I have a custom qt5 image reci=
-pe based upon arago distro.</div><div class=3D"gmail_default" style=3D"font=
--family:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_default" =
-style=3D"font-family:arial,helvetica,sans-serif">In order to create an sdk =
-based upon my image, I added following in <a href=3D"http://my-image.bb">my=
--image.bb</a> file</div><div class=3D"gmail_default" style=3D"font-family:a=
-rial,helvetica,sans-serif">inherit populate_sdk populate_sdk_qt5</div><div =
-class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"><b=
-r></div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,s=
-ans-serif">So now I can generate custom Qt5 sdk via bitbake my-image -c pop=
-ulate_sdk</div><div class=3D"gmail_default" style=3D"font-family:arial,helv=
-etica,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-fami=
-ly:arial,helvetica,sans-serif">However, I see a downside in this approach t=
-hat it increases the build time for my image.</div><div class=3D"gmail_defa=
-ult" style=3D"font-family:arial,helvetica,sans-serif">Toolchain creation is=
- usually one time task while customizing rootfs image will be an on-going t=
-hing.</div><div class=3D"gmail_default" style=3D"font-family:arial,helvetic=
-a,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:a=
-rial,helvetica,sans-serif">I wanted to know what is the best practice here =
-? <br></div><div class=3D"gmail_default" style=3D"font-family:arial,helveti=
-ca,sans-serif">Ideal would be to have a separate recipe like <a href=3D"htt=
-p://meta-toolchain-my-image-sdk.bb">meta-toolchain-my-image-sdk.bb</a> whic=
-h creates a sdk based upon my image.</div><div class=3D"gmail_default" styl=
-e=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_=
-default" style=3D"font-family:arial,helvetica,sans-serif">I don&#39;t want =
-to use meta-toolchain-arago-tisdk as it creates a toolchain with everything=
- which might not be available in my custom image. This allows to develop an=
-d cross-compile an application which might fail to run on target (e.g appli=
-cation can be compiled using boost library but my custom image lacks boost)=
-</div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,san=
-s-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,=
-helvetica,sans-serif">So basically I want to create trimmed version of meta=
--toolchain-arago-tisdk based upon my custom image installs but not sure how=
-.</div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sa=
-ns-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:arial=
-,helvetica,sans-serif">thanks</div><div class=3D"gmail_default" style=3D"fo=
-nt-family:arial,helvetica,sans-serif">Ankur<br></div></div>
-
---94eb2c0ed80096f80b055754e422--
