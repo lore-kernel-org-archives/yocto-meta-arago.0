@@ -1,41 +1,42 @@
-Return-Path: <h-gou@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 11715529B0
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-wr0-f181.google.com (mail-wr0-f181.google.com
+	[209.85.128.181])
+	by arago-project.org (Postfix) with ESMTPS id 3A5E95299D
 	for <meta-arago@arago-project.org>;
-	Fri, 18 Aug 2017 23:07:00 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7IN6nUE006652
-	for <meta-arago@arago-project.org>; Fri, 18 Aug 2017 18:06:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1503097609;
-	bh=tHxNcy4Z+pwQyIL+l6ZeIaMuynJMs0jmxvZwRZVJZ2s=;
-	h=From:To:CC:Subject:Date;
-	b=sHAtNbD6IPtnDgnteMJGJPu29su1n5EN398c7zLlBNl+kDeGI1SLBq2laYWQd4K7Y
-	/8PvFkm5hRPyGOf3O+E0kWFAQk2kbjV18ZPECicKEX0pe2xPV205a8VE66ztmXJ3eF
-	E0wDRgRn40FMLAVG9C/N3cW+FBdjBdI8pwcondzY=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7IN6iOY017605
-	for <meta-arago@arago-project.org>; Fri, 18 Aug 2017 18:06:44 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Fri, 18 Aug 2017 18:06:44 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Fri, 18 Aug 2017 18:06:44 -0500
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7IN6iBS006132;
-	Fri, 18 Aug 2017 18:06:44 -0500
-From: Hongmei Gou <h-gou@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 18 Aug 2017 19:06:39 -0400
-Message-ID: <1503097599-5407-1-git-send-email-h-gou@ti.com>
-X-Mailer: git-send-email 1.9.1
+	Tue, 22 Aug 2017 10:16:48 +0000 (UTC)
+Received: by mail-wr0-f181.google.com with SMTP id p14so52421694wrg.1
+	for <meta-arago@arago-project.org>;
+	Tue, 22 Aug 2017 03:16:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=0pPZMHi66cif3VEwxrs2zRR0wmzR3YrcK9SWmja78Wo=;
+	b=J0QVFBS1BFy9eTyTbP6s6mX2rE6vZdgKzCrCTvEgOv5Ecx0lvxGCR3gEBPYjV6Nu7Q
+	3yF09/NnkLXDM4Ae4/9VmOMIo0jlfGfwc3e+MlHRj3k+Q+M4ZYr1qw05da/QSqfeaZMW
+	cz5QA+P6C0PkEy2GVE94Kb1jK17nXzrYkZ4Kr4286hvbgzVnNpqCaPSuf2T+xrczKQyB
+	lx4aXraEbuenKsfJpLM6hjlYPuNe975BLxOSM3MLKZYWS86N0SLYft38+69SUXTQBccZ
+	wqGOp50fihMdYSi/+MEWmQLi+UfTWHi0ITLNj4ECgWdGjbDifd7A74h8GOZ3kgD316gL
+	CO0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=0pPZMHi66cif3VEwxrs2zRR0wmzR3YrcK9SWmja78Wo=;
+	b=DK8P5r0Eh4XsB3x3LC8gqR+GYpMCKNHlAmIhpj7TyUtuPL1x9lmCiTzQn3iukDvP1r
+	J4LK8i7sb3A8SkWLmuJlYXmi6c88WPJAQ2DavNMupQKBsD6ciZ6BdauEoKfcsfrAPbvl
+	HWCA+kpEFMYHSiA2Lmoz+Wi2JmYe66OVYtAAxw3xP2b4nmT3YwD6SEtaVymTBhutCxwZ
+	qey1snGdSdFinIPB5EcearzzvCJPJ0uoaWKNKSqgihPj3yxfp0ELk2LRx/gn4rP4oEb/
+	+A5h1Dr5krhhMw7vD7X7DPUER/ZTuRCFIMlcE4vFdVbv6C4KCyLAp1rS4Cp4vBJLAmCQ
+	lWmw==
+X-Gm-Message-State: AHYfb5ivi3GKAEsZn2G9zikHcXToy7BY+RdN2aNDs/P6C8iiTJD/oLU6
+	XD6iJxLmNp5Xl24Uc/fuUiDf4sr/Pv+4
+X-Received: by 10.80.171.74 with SMTP id t10mr124351edc.242.1503397007520;
+	Tue, 22 Aug 2017 03:16:47 -0700 (PDT)
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk] [PATCH v2] matrix-gui: update init scripts to execute /etc/profile.d/*.sh only when they exist
+Received: by 10.80.240.134 with HTTP; Tue, 22 Aug 2017 03:16:26 -0700 (PDT)
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Date: Tue, 22 Aug 2017 22:16:26 +1200
+Message-ID: <CADySD0F8_ScZKfuJes3SJcpZAELxjSb0SRuddjHa=raoJDAZ5A@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: Regarding custom Qt5 image sdk recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,153 +49,86 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Aug 2017 23:07:00 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 22 Aug 2017 10:16:49 -0000
+Content-Type: multipart/alternative; boundary="94eb2c0ed80096f80b055754e422"
 
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
----
-v2 change: simplify the check as suggested by Denys
+--94eb2c0ed80096f80b055754e422
+Content-Type: text/plain; charset="UTF-8"
 
- recipes-core/matrix/matrix-gui/init         | 49 +++++++++++++++++++++++
- recipes-core/matrix/matrix-gui/init.eglfs   | 60 +++++++++++++++++++++++++++++
- recipes-core/matrix/matrix-gui_2.0.bbappend |  4 +-
- 3 files changed, 112 insertions(+), 1 deletion(-)
- create mode 100644 recipes-core/matrix/matrix-gui/init
- create mode 100644 recipes-core/matrix/matrix-gui/init.eglfs
+Hi,
 
-diff --git a/recipes-core/matrix/matrix-gui/init b/recipes-core/matrix/matrix-gui/init
-new file mode 100644
-index 0000000..5124c38
---- /dev/null
-+++ b/recipes-core/matrix/matrix-gui/init
-@@ -0,0 +1,49 @@
-+#! /bin/sh
-+
-+matrixgui="/usr/bin/matrix_browser"
-+GUI_OPTS="http://localhost:80/ __MATRIX_FLAGS__"
-+PIDFILE="/var/run/matrix-gui-2.0.pid"
-+
-+# Important System Environment Variables
-+for sh in /etc/profile.d/*.sh ; do
-+    [ -r "$sh" ] && . "$sh"
-+done
-+
-+test -x "$matrixgui" || exit 0
-+
-+case "$1" in
-+  start)
-+    __SWITCH_FOREGROUND_VT__
-+
-+    #Clear out the the tmp and lock directory
-+    cd __MATRIX_WEB_DIR__
-+    rm -rf tmp/*
-+    rm -rf lock/*
-+    cd -
-+
-+	if [ -e $PIDFILE ]; then
-+      PIDDIR=/proc/$(cat $PIDFILE)
-+      if [ -d ${PIDDIR} -a  "$(readlink -f ${PIDDIR}/exe)" = "${matrixgui}" ]; then
-+        echo "$DESC already started; not starting."
-+      else
-+        echo "Removing stale PID file $PIDFILE."
-+        rm -f $PIDFILE
-+      fi
-+    fi
-+
-+    echo -n "Starting Matrix GUI application"
-+    start-stop-daemon --start --quiet --background -m --pidfile $PIDFILE --exec $matrixgui -- $GUI_OPTS
-+    echo "."
-+    ;;
-+
-+  stop)
-+    echo -n "Stopping Matrix GUI application"
-+    start-stop-daemon --stop --quiet --pidfile $PIDFILE
-+    echo "."
-+    ;;
-+  *)
-+    echo "Usage: /etc/init.d/matrix-gui-2.0 {start|stop}"
-+    exit 1
-+esac
-+
-+exit 0
-diff --git a/recipes-core/matrix/matrix-gui/init.eglfs b/recipes-core/matrix/matrix-gui/init.eglfs
-new file mode 100644
-index 0000000..df07c05
---- /dev/null
-+++ b/recipes-core/matrix/matrix-gui/init.eglfs
-@@ -0,0 +1,60 @@
-+#! /bin/sh
-+
-+matrixgui="/usr/bin/matrix_browser"
-+GUI_OPTS="http://localhost:80/ __MATRIX_FLAGS__"
-+PIDFILE="/var/run/matrix-gui-2.0.pid"
-+
-+# Important System Environment Variables
-+for sh in /etc/profile.d/*.sh ; do
-+    [ -r "$sh" ] && . "$sh"
-+done
-+
-+test -x "$matrixgui" || exit 0
-+
-+case "$1" in
-+  start)
-+    chvt 4
-+
-+    #Clear out the the tmp and lock directory
-+    cd __MATRIX_WEB_DIR__
-+    rm -rf tmp/*
-+    rm -rf lock/*
-+    cd -
-+
-+	if [ -e $PIDFILE ]; then
-+      PIDDIR=/proc/$(cat $PIDFILE)
-+      if [ -d ${PIDDIR} -a  "$(readlink -f ${PIDDIR}/exe)" = "${matrixgui}" ]; then
-+        echo "$DESC already started; not starting."
-+      else
-+        echo "Removing stale PID file $PIDFILE."
-+        rm -f $PIDFILE
-+      fi
-+    fi
-+
-+    echo 0 > /sys/class/graphics/fbcon/cursor_blink
-+    echo -ne "\033[9;0]\033[14;0]" > /dev/tty4
-+
-+    echo -n "Starting Matrix GUI application"
-+    start-stop-daemon --start --quiet --background -m --pidfile $PIDFILE --exec $matrixgui -- $GUI_OPTS
-+    echo "."
-+    ;;
-+
-+  stop)
-+    echo -n "Stopping Matrix GUI application"
-+    start-stop-daemon --stop --quiet --pidfile $PIDFILE
-+
-+    refresh_screen "background-black"
-+
-+    echo -ne "\033[9;10]\033[14;10]" > /dev/tty4
-+    echo 1 > /sys/class/graphics/fbcon/cursor_blink
-+
-+    chvt 1
-+
-+    echo "."
-+    ;;
-+  *)
-+    echo "Usage: /etc/init.d/matrix-gui-2.0 {start|stop}"
-+    exit 1
-+esac
-+
-+exit 0
-diff --git a/recipes-core/matrix/matrix-gui_2.0.bbappend b/recipes-core/matrix/matrix-gui_2.0.bbappend
-index 57f4e12..1cc5c0a 100644
---- a/recipes-core/matrix/matrix-gui_2.0.bbappend
-+++ b/recipes-core/matrix/matrix-gui_2.0.bbappend
-@@ -1,3 +1,5 @@
--PR_append = ".tisdk1"
-+PR_append = ".tisdk2"
- 
- SRCREV = "9a2d12590102fefc5c29fc9e8d346ce6b0198468"
-+
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--- 
-1.9.1
+I have a custom qt5 image recipe based upon arago distro.
 
+In order to create an sdk based upon my image, I added following in
+my-image.bb file
+inherit populate_sdk populate_sdk_qt5
 
+So now I can generate custom Qt5 sdk via bitbake my-image -c populate_sdk
+
+However, I see a downside in this approach that it increases the build time
+for my image.
+Toolchain creation is usually one time task while customizing rootfs image
+will be an on-going thing.
+
+I wanted to know what is the best practice here ?
+Ideal would be to have a separate recipe like meta-toolchain-my-image-sdk.bb
+which creates a sdk based upon my image.
+
+I don't want to use meta-toolchain-arago-tisdk as it creates a toolchain
+with everything which might not be available in my custom image. This
+allows to develop and cross-compile an application which might fail to run
+on target (e.g application can be compiled using boost library but my
+custom image lacks boost)
+
+So basically I want to create trimmed version of meta-toolchain-arago-tisdk
+based upon my custom image installs but not sure how.
+
+thanks
+Ankur
+
+--94eb2c0ed80096f80b055754e422
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:arial,he=
+lvetica,sans-serif">Hi,</div><div class=3D"gmail_default" style=3D"font-fam=
+ily:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_default" styl=
+e=3D"font-family:arial,helvetica,sans-serif">I have a custom qt5 image reci=
+pe based upon arago distro.</div><div class=3D"gmail_default" style=3D"font=
+-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_default" =
+style=3D"font-family:arial,helvetica,sans-serif">In order to create an sdk =
+based upon my image, I added following in <a href=3D"http://my-image.bb">my=
+-image.bb</a> file</div><div class=3D"gmail_default" style=3D"font-family:a=
+rial,helvetica,sans-serif">inherit populate_sdk populate_sdk_qt5</div><div =
+class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif"><b=
+r></div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,s=
+ans-serif">So now I can generate custom Qt5 sdk via bitbake my-image -c pop=
+ulate_sdk</div><div class=3D"gmail_default" style=3D"font-family:arial,helv=
+etica,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-fami=
+ly:arial,helvetica,sans-serif">However, I see a downside in this approach t=
+hat it increases the build time for my image.</div><div class=3D"gmail_defa=
+ult" style=3D"font-family:arial,helvetica,sans-serif">Toolchain creation is=
+ usually one time task while customizing rootfs image will be an on-going t=
+hing.</div><div class=3D"gmail_default" style=3D"font-family:arial,helvetic=
+a,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:a=
+rial,helvetica,sans-serif">I wanted to know what is the best practice here =
+? <br></div><div class=3D"gmail_default" style=3D"font-family:arial,helveti=
+ca,sans-serif">Ideal would be to have a separate recipe like <a href=3D"htt=
+p://meta-toolchain-my-image-sdk.bb">meta-toolchain-my-image-sdk.bb</a> whic=
+h creates a sdk based upon my image.</div><div class=3D"gmail_default" styl=
+e=3D"font-family:arial,helvetica,sans-serif"><br></div><div class=3D"gmail_=
+default" style=3D"font-family:arial,helvetica,sans-serif">I don&#39;t want =
+to use meta-toolchain-arago-tisdk as it creates a toolchain with everything=
+ which might not be available in my custom image. This allows to develop an=
+d cross-compile an application which might fail to run on target (e.g appli=
+cation can be compiled using boost library but my custom image lacks boost)=
+</div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,san=
+s-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,=
+helvetica,sans-serif">So basically I want to create trimmed version of meta=
+-toolchain-arago-tisdk based upon my custom image installs but not sure how=
+.</div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sa=
+ns-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:arial=
+,helvetica,sans-serif">thanks</div><div class=3D"gmail_default" style=3D"fo=
+nt-family:arial,helvetica,sans-serif">Ankur<br></div></div>
+
+--94eb2c0ed80096f80b055754e422--
