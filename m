@@ -1,43 +1,43 @@
 Return-Path: <denys@ti.com>
 Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 50825529A6
+	by arago-project.org (Postfix) with ESMTPS id 81C4F529A4
 	for <meta-arago@arago-project.org>;
-	Tue, 22 Aug 2017 21:39:06 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7MLd62P002374
-	for <meta-arago@arago-project.org>; Tue, 22 Aug 2017 16:39:06 -0500
+	Tue, 22 Aug 2017 21:40:18 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7MLeI4C002458
+	for <meta-arago@arago-project.org>; Tue, 22 Aug 2017 16:40:18 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1503437946;
-	bh=pRz3MVxhxu+YbRNJGpMxkPCXSCoJ0KgWQs5vKxtXHF0=;
+	s=ti-com-17Q1; t=1503438018;
+	bh=WkX39mdxX45KBNowIiZlW0RBWumNJc1wmRGdl244vCs=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Epyum2dKqL/uM3i/dNyOMrz64UPZ3hlDQjjT09uOD7PWDD0j6vmE1DSEpqQVVEvdN
-	th1NKNeqcu95+PoW0vg7auihqjd+JMvbvSeLTS0Dx6WzlGODkZXn34nCEoXhBV3JWs
-	LrGat8CH/Ztx8Ta54AZGiGlM0k1ivMXMsycI/+Bk=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7MLd6RJ003909
-	for <meta-arago@arago-project.org>; Tue, 22 Aug 2017 16:39:06 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	b=E6gQF6VQDMXPAGN7gvVEGFdgkCi+3Ysj/Fi9irRpe3ssy3ZKOSkdm+HSyNubPbzFk
+	cfwjcVMBZeAKzx8SG/oukroDotN5eNvkNzuZalVhfO4tSLL5TKO0OYdBuCRhfsB9c3
+	AvhEGqIoW9VQqEGm0Mc5VZA1kXIFW0G0XAu5I2FQ=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7MLeHGG013419
+	for <meta-arago@arago-project.org>; Tue, 22 Aug 2017 16:40:17 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 22 Aug 2017 16:39:05 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 22 Aug 2017 16:40:18 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 22 Aug 2017 16:39:05 -0500
+	Transport; Tue, 22 Aug 2017 16:40:18 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7MLd5QW005093;
-	Tue, 22 Aug 2017 16:39:05 -0500
-Date: Tue, 22 Aug 2017 17:39:02 -0400
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7MLeHWX006346;
+	Tue, 22 Aug 2017 16:40:18 -0500
+Date: Tue, 22 Aug 2017 17:40:14 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: Hongmei Gou <h-gou@ti.com>
-Message-ID: <20170822213901.GQ28233@edge>
-References: <1503097164-20985-1-git-send-email-h-gou@ti.com>
+Message-ID: <20170822214014.GR28233@edge>
+References: <1503096060-1126-1-git-send-email-h-gou@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1503097164-20985-1-git-send-email-h-gou@ti.com>
+In-Reply-To: <1503096060-1126-1-git-send-email-h-gou@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH v2] matrix-gui: update init scripts to execute /etc/profile.d/*.sh only when they exist
+Subject: Re: [meta-processor-sdk] [PATCH] linux-ti-staging-4.9-patches: mt9t11 camera sensor support in default DTs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,72 +50,273 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Aug 2017 21:39:06 -0000
+X-List-Received-Date: Tue, 22 Aug 2017 21:40:18 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-Thanks, merged.
+Is this change being submitted to ti-linux-kernel for 2017.04?
 
 
-On Fri, Aug 18, 2017 at 06:59:24PM -0400, Hongmei Gou wrote:
+On Fri, Aug 18, 2017 at 06:41:00PM -0400, Hongmei Gou wrote:
 > Signed-off-by: Hongmei Gou <h-gou@ti.com>
 > ---
-> v2 change: simplify the check as suggested by Denys
+>  .../linux/linux-ti-staging-4.9-patches.inc         |   3 +-
+>  ...7xx-allow-mt9t111-support-in-the-default-.patch | 230 +++++++++++++++++++++
+>  2 files changed, 232 insertions(+), 1 deletion(-)
+>  create mode 100644 recipes-kernel/linux/linux-ti-staging-4.9-patches/0051-arm-dts-am57xx-allow-mt9t111-support-in-the-default-.patch
 > 
->  meta-arago-extras/recipes-core/matrix/matrix-gui/init       | 7 ++-----
->  meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs | 7 ++-----
->  meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb     | 2 +-
->  3 files changed, 5 insertions(+), 11 deletions(-)
-> 
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui/init b/meta-arago-extras/recipes-core/matrix/matrix-gui/init
-> index 3ec0a55..5124c38 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui/init
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui/init
-> @@ -5,11 +5,8 @@ GUI_OPTS="http://localhost:80/ __MATRIX_FLAGS__"
->  PIDFILE="/var/run/matrix-gui-2.0.pid"
+> diff --git a/recipes-kernel/linux/linux-ti-staging-4.9-patches.inc b/recipes-kernel/linux/linux-ti-staging-4.9-patches.inc
+> index 3a62067..9e1ec35 100644
+> --- a/recipes-kernel/linux/linux-ti-staging-4.9-patches.inc
+> +++ b/recipes-kernel/linux/linux-ti-staging-4.9-patches.inc
+> @@ -1,4 +1,4 @@
+> -PR_append = ".p11"
+> +PR_append = ".p12"
 >  
->  # Important System Environment Variables
-> -SCRIPTS=/etc/profile.d/*.sh
-> -
-> -for f in $SCRIPTS
-> -do
-> -    source $f
-> +for sh in /etc/profile.d/*.sh ; do
-> +    [ -r "$sh" ] && . "$sh"
->  done
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/linux-ti-staging-4.9-patches:"
 >  
->  test -x "$matrixgui" || exit 0
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs b/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs
-> index 213f859..df07c05 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui/init.eglfs
-> @@ -5,11 +5,8 @@ GUI_OPTS="http://localhost:80/ __MATRIX_FLAGS__"
->  PIDFILE="/var/run/matrix-gui-2.0.pid"
->  
->  # Important System Environment Variables
-> -SCRIPTS=/etc/profile.d/*.sh
-> -
-> -for f in $SCRIPTS
-> -do
-> -    source $f
-> +for sh in /etc/profile.d/*.sh ; do
-> +    [ -r "$sh" ] && . "$sh"
->  done
->  
->  test -x "$matrixgui" || exit 0
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> index aecc3be..507a98c 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-> @@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
->  
->  SECTION = "multimedia"
->  
-> -PR = "r31"
-> +PR = "r32"
->  
->  INITSCRIPT_NAME = "matrix-gui-2.0"
->  INITSCRIPT_PARAMS = "defaults 97"
+> @@ -55,4 +55,5 @@ TI_LINUX_KERNEL_PATCHES = " \
+>      file://0048-hsr-prp-do-sanity-check-for-offload-before-creating-.patch \
+>      file://0049-prueth-preparatory-patch-to-add-run-time-protocol-ch.patch \
+>      file://0050-prueth-support-run-time-change-of-protocol-at-pru-Et.patch \
+> +    file://0051-arm-dts-am57xx-allow-mt9t111-support-in-the-default-.patch \
+>  "
+> diff --git a/recipes-kernel/linux/linux-ti-staging-4.9-patches/0051-arm-dts-am57xx-allow-mt9t111-support-in-the-default-.patch b/recipes-kernel/linux/linux-ti-staging-4.9-patches/0051-arm-dts-am57xx-allow-mt9t111-support-in-the-default-.patch
+> new file mode 100644
+> index 0000000..cc2808f
+> --- /dev/null
+> +++ b/recipes-kernel/linux/linux-ti-staging-4.9-patches/0051-arm-dts-am57xx-allow-mt9t111-support-in-the-default-.patch
+> @@ -0,0 +1,230 @@
+> +From b4216aa074346d518b0b248a0fa4d4ed8471a2e1 Mon Sep 17 00:00:00 2001
+> +From: Hongmei Gou <h-gou@ti.com>
+> +Date: Fri, 18 Aug 2017 18:30:51 -0400
+> +Subject: [PATCH] arm: dts: am57xx: allow mt9t111 support in the default dtbs
+> +
+> +Signed-off-by: Hongmei Gou <h-gou@ti.com>
+> +---
+> + arch/arm/boot/dts/am57xx-evm-base.dts              | 24 ++++++++++++
+> + arch/arm/boot/dts/am57xx-evm-cam-mt9t111.dts       |  2 +-
+> + arch/arm/boot/dts/am57xx-evm-cam-ov10635.dts       |  2 +-
+> + arch/arm/boot/dts/am57xx-evm-reva3-base.dts        | 45 ++++++++++++++++++++++
+> + arch/arm/boot/dts/am57xx-evm-reva3-cam-mt9t111.dts |  2 +-
+> + arch/arm/boot/dts/am57xx-evm-reva3-cam-ov10635.dts |  2 +-
+> + arch/arm/boot/dts/am57xx-evm-reva3.dts             | 40 ++-----------------
+> + arch/arm/boot/dts/am57xx-evm.dts                   | 17 +-------
+> + 8 files changed, 78 insertions(+), 56 deletions(-)
+> + create mode 100644 arch/arm/boot/dts/am57xx-evm-base.dts
+> + create mode 100644 arch/arm/boot/dts/am57xx-evm-reva3-base.dts
+> +
+> +diff --git a/arch/arm/boot/dts/am57xx-evm-base.dts b/arch/arm/boot/dts/am57xx-evm-base.dts
+> +new file mode 100644
+> +index 0000000..746bcaf
+> +--- /dev/null
+> ++++ b/arch/arm/boot/dts/am57xx-evm-base.dts
+> +@@ -0,0 +1,24 @@
+> ++/*
+> ++ * Copyright (C) 2015-2016 Texas Instruments Incorporated - http://www.ti.com/
+> ++ *
+> ++ * This program is free software; you can redistribute it and/or modify
+> ++ * it under the terms of the GNU General Public License version 2 as
+> ++ * published by the Free Software Foundation.
+> ++ */
+> ++
+> ++#include "am57xx-beagle-x15.dts"
+> ++#include "am57xx-evm-common.dtsi"
+> ++#include "am57xx-commercial-grade.dtsi"
+> ++
+> ++/ {
+> ++	model = "TI AM5728 EVM";
+> ++};
+> ++
+> ++&mmc3 {
+> ++	pinctrl-names = "default", "hs", "sdr12", "sdr25", "sdr50";
+> ++	pinctrl-0 = <&mmc3_pins_default>;
+> ++	pinctrl-1 = <&mmc3_pins_hs>;
+> ++	pinctrl-2 = <&mmc3_pins_sdr12>;
+> ++	pinctrl-3 = <&mmc3_pins_sdr25>;
+> ++	pinctrl-4 = <&mmc3_pins_sdr50 &mmc3_iodelay_manual1_rev11_conf>;
+> ++};
+> +diff --git a/arch/arm/boot/dts/am57xx-evm-cam-mt9t111.dts b/arch/arm/boot/dts/am57xx-evm-cam-mt9t111.dts
+> +index 4c2f0fd..6d41c29 100644
+> +--- a/arch/arm/boot/dts/am57xx-evm-cam-mt9t111.dts
+> ++++ b/arch/arm/boot/dts/am57xx-evm-cam-mt9t111.dts
+> +@@ -6,6 +6,6 @@
+> +  * published by the Free Software Foundation.
+> +  */
+> + 
+> +-#include "am57xx-evm.dts"
+> ++#include "am57xx-evm-base.dts"
+> + #include "am57xx-evm-common-cam-mt9t111.dtsi"
+> + 
+> +diff --git a/arch/arm/boot/dts/am57xx-evm-cam-ov10635.dts b/arch/arm/boot/dts/am57xx-evm-cam-ov10635.dts
+> +index 97ab69e..fef8646 100644
+> +--- a/arch/arm/boot/dts/am57xx-evm-cam-ov10635.dts
+> ++++ b/arch/arm/boot/dts/am57xx-evm-cam-ov10635.dts
+> +@@ -6,6 +6,6 @@
+> +  * published by the Free Software Foundation.
+> +  */
+> + 
+> +-#include "am57xx-evm.dts"
+> ++#include "am57xx-evm-base.dts"
+> + #include "am57xx-evm-common-cam-ov10635.dtsi"
+> + 
+> +diff --git a/arch/arm/boot/dts/am57xx-evm-reva3-base.dts b/arch/arm/boot/dts/am57xx-evm-reva3-base.dts
+> +new file mode 100644
+> +index 0000000..ded3e66
+> +--- /dev/null
+> ++++ b/arch/arm/boot/dts/am57xx-evm-reva3-base.dts
+> +@@ -0,0 +1,45 @@
+> ++/*
+> ++ * Copyright (C) 2016 Texas Instruments Incorporated - http://www.ti.com/
+> ++ *
+> ++ * This program is free software; you can redistribute it and/or modify
+> ++ * it under the terms of the GNU General Public License version 2 as
+> ++ * published by the Free Software Foundation.
+> ++ */
+> ++
+> ++#include "am57xx-beagle-x15-revb1.dts"
+> ++#include "am57xx-evm-common.dtsi"
+> ++#include "am57xx-industrial-grade.dtsi"
+> ++
+> ++/ {
+> ++	model = "TI AM572x EVM Rev A3";
+> ++};
+> ++
+> ++&mmc1 {
+> ++	pinctrl-names = "default", "hs", "sdr12", "sdr25", "sdr50", "ddr50", "sdr104";
+> ++	pinctrl-0 = <&mmc1_pins_default>;
+> ++	pinctrl-1 = <&mmc1_pins_hs>;
+> ++	pinctrl-2 = <&mmc1_pins_sdr12>;
+> ++	pinctrl-3 = <&mmc1_pins_sdr25>;
+> ++	pinctrl-4 = <&mmc1_pins_sdr50>;
+> ++	pinctrl-5 = <&mmc1_pins_ddr50 &mmc1_iodelay_ddr_rev20_conf>;
+> ++	pinctrl-6 = <&mmc1_pins_sdr104 &mmc1_iodelay_sdr104_rev20_conf>;
+> ++	vmmc-supply = <&vdd_3v3>;
+> ++	vmmc_aux-supply = <&ldo1_reg>;
+> ++};
+> ++
+> ++&mmc2 {
+> ++	pinctrl-names = "default", "hs", "ddr_1_8v";
+> ++	pinctrl-0 = <&mmc2_pins_default>;
+> ++	pinctrl-1 = <&mmc2_pins_hs>;
+> ++	pinctrl-2 = <&mmc2_pins_ddr_rev20>;
+> ++	/delete-property/ mmc-hs200-1_8v;
+> ++};
+> ++
+> ++&mmc3 {
+> ++	pinctrl-names = "default", "hs", "sdr12", "sdr25", "sdr50";
+> ++	pinctrl-0 = <&mmc3_pins_default>;
+> ++	pinctrl-1 = <&mmc3_pins_hs>;
+> ++	pinctrl-2 = <&mmc3_pins_sdr12>;
+> ++	pinctrl-3 = <&mmc3_pins_sdr25>;
+> ++	pinctrl-4 = <&mmc3_pins_sdr50 &mmc3_iodelay_manual1_rev20_conf>;
+> ++};
+> +diff --git a/arch/arm/boot/dts/am57xx-evm-reva3-cam-mt9t111.dts b/arch/arm/boot/dts/am57xx-evm-reva3-cam-mt9t111.dts
+> +index eaef0e2..65df28b 100644
+> +--- a/arch/arm/boot/dts/am57xx-evm-reva3-cam-mt9t111.dts
+> ++++ b/arch/arm/boot/dts/am57xx-evm-reva3-cam-mt9t111.dts
+> +@@ -6,6 +6,6 @@
+> +  * published by the Free Software Foundation.
+> +  */
+> + 
+> +-#include "am57xx-evm-reva3.dts"
+> ++#include "am57xx-evm-reva3-base.dts"
+> + #include "am57xx-evm-common-cam-mt9t111.dtsi"
+> + 
+> +diff --git a/arch/arm/boot/dts/am57xx-evm-reva3-cam-ov10635.dts b/arch/arm/boot/dts/am57xx-evm-reva3-cam-ov10635.dts
+> +index 40c6994..ff8770b 100644
+> +--- a/arch/arm/boot/dts/am57xx-evm-reva3-cam-ov10635.dts
+> ++++ b/arch/arm/boot/dts/am57xx-evm-reva3-cam-ov10635.dts
+> +@@ -6,6 +6,6 @@
+> +  * published by the Free Software Foundation.
+> +  */
+> + 
+> +-#include "am57xx-evm-reva3.dts"
+> ++#include "am57xx-evm-reva3-base.dts"
+> + #include "am57xx-evm-common-cam-ov10635.dtsi"
+> + 
+> +diff --git a/arch/arm/boot/dts/am57xx-evm-reva3.dts b/arch/arm/boot/dts/am57xx-evm-reva3.dts
+> +index ded3e66..65df28b 100644
+> +--- a/arch/arm/boot/dts/am57xx-evm-reva3.dts
+> ++++ b/arch/arm/boot/dts/am57xx-evm-reva3.dts
+> +@@ -1,45 +1,11 @@
+> + /*
+> +- * Copyright (C) 2016 Texas Instruments Incorporated - http://www.ti.com/
+> ++ * Copyright (C) 2015-2016 Texas Instruments Incorporated - http://www.ti.com/
+> +  *
+> +  * This program is free software; you can redistribute it and/or modify
+> +  * it under the terms of the GNU General Public License version 2 as
+> +  * published by the Free Software Foundation.
+> +  */
+> + 
+> +-#include "am57xx-beagle-x15-revb1.dts"
+> +-#include "am57xx-evm-common.dtsi"
+> +-#include "am57xx-industrial-grade.dtsi"
+> ++#include "am57xx-evm-reva3-base.dts"
+> ++#include "am57xx-evm-common-cam-mt9t111.dtsi"
+> + 
+> +-/ {
+> +-	model = "TI AM572x EVM Rev A3";
+> +-};
+> +-
+> +-&mmc1 {
+> +-	pinctrl-names = "default", "hs", "sdr12", "sdr25", "sdr50", "ddr50", "sdr104";
+> +-	pinctrl-0 = <&mmc1_pins_default>;
+> +-	pinctrl-1 = <&mmc1_pins_hs>;
+> +-	pinctrl-2 = <&mmc1_pins_sdr12>;
+> +-	pinctrl-3 = <&mmc1_pins_sdr25>;
+> +-	pinctrl-4 = <&mmc1_pins_sdr50>;
+> +-	pinctrl-5 = <&mmc1_pins_ddr50 &mmc1_iodelay_ddr_rev20_conf>;
+> +-	pinctrl-6 = <&mmc1_pins_sdr104 &mmc1_iodelay_sdr104_rev20_conf>;
+> +-	vmmc-supply = <&vdd_3v3>;
+> +-	vmmc_aux-supply = <&ldo1_reg>;
+> +-};
+> +-
+> +-&mmc2 {
+> +-	pinctrl-names = "default", "hs", "ddr_1_8v";
+> +-	pinctrl-0 = <&mmc2_pins_default>;
+> +-	pinctrl-1 = <&mmc2_pins_hs>;
+> +-	pinctrl-2 = <&mmc2_pins_ddr_rev20>;
+> +-	/delete-property/ mmc-hs200-1_8v;
+> +-};
+> +-
+> +-&mmc3 {
+> +-	pinctrl-names = "default", "hs", "sdr12", "sdr25", "sdr50";
+> +-	pinctrl-0 = <&mmc3_pins_default>;
+> +-	pinctrl-1 = <&mmc3_pins_hs>;
+> +-	pinctrl-2 = <&mmc3_pins_sdr12>;
+> +-	pinctrl-3 = <&mmc3_pins_sdr25>;
+> +-	pinctrl-4 = <&mmc3_pins_sdr50 &mmc3_iodelay_manual1_rev20_conf>;
+> +-};
+> +diff --git a/arch/arm/boot/dts/am57xx-evm.dts b/arch/arm/boot/dts/am57xx-evm.dts
+> +index 746bcaf..6d41c29 100644
+> +--- a/arch/arm/boot/dts/am57xx-evm.dts
+> ++++ b/arch/arm/boot/dts/am57xx-evm.dts
+> +@@ -6,19 +6,6 @@
+> +  * published by the Free Software Foundation.
+> +  */
+> + 
+> +-#include "am57xx-beagle-x15.dts"
+> +-#include "am57xx-evm-common.dtsi"
+> +-#include "am57xx-commercial-grade.dtsi"
+> ++#include "am57xx-evm-base.dts"
+> ++#include "am57xx-evm-common-cam-mt9t111.dtsi"
+> + 
+> +-/ {
+> +-	model = "TI AM5728 EVM";
+> +-};
+> +-
+> +-&mmc3 {
+> +-	pinctrl-names = "default", "hs", "sdr12", "sdr25", "sdr50";
+> +-	pinctrl-0 = <&mmc3_pins_default>;
+> +-	pinctrl-1 = <&mmc3_pins_hs>;
+> +-	pinctrl-2 = <&mmc3_pins_sdr12>;
+> +-	pinctrl-3 = <&mmc3_pins_sdr25>;
+> +-	pinctrl-4 = <&mmc3_pins_sdr50 &mmc3_iodelay_manual1_rev11_conf>;
+> +-};
+> +-- 
+> +1.9.1
+> +
 > -- 
 > 1.9.1
 > 
