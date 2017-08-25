@@ -1,45 +1,40 @@
-Return-Path: <manishalocal@uda0393239>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 21582529CD
+Return-Path: <e-ruei1@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 2B90152961
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Aug 2017 16:03:13 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7PG32jN010077
-	for <meta-arago@arago-project.org>; Fri, 25 Aug 2017 11:03:02 -0500
+	Fri, 25 Aug 2017 22:09:22 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7PM9M4f003878
+	for <meta-arago@arago-project.org>; Fri, 25 Aug 2017 17:09:22 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1503676982;
-	bh=WAf0HV6RV9jge/lxNsVA5eI4D2rKh6PgLmr9WSO7cn0=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Y08ByASCWhBXoxSBHYgHD44IUFbE3ax8RSiFTIf4MZCReUFgdmau73/jcofZWhQeu
-	Z/TIAYS6FcUa7i35ZBrUlIofvyz+toU9YOYTYqbPleCuPXMGUNnUCMFAxF3hmdnYYZ
-	yIo3q9J2jb3Nl1N+SYzIjwuIcDcWDG1Za5Q8vU2M=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7PG2vQ7005707
-	for <meta-arago@arago-project.org>; Fri, 25 Aug 2017 11:02:57 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Fri, 25 Aug 2017 11:02:57 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Fri, 25 Aug 2017 11:02:57 -0500
-Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7PG2vrc011702;
-	Fri, 25 Aug 2017 11:02:57 -0500
-Received: from manishalocal by uda0393239 with local (Exim 4.82)
-	(envelope-from <manishalocal@uda0393239>)
-	id 1dlH4R-00036h-4s; Fri, 25 Aug 2017 11:02:56 -0500
-From: Manisha Agrawal <manisha.agrawal@ti.com>
-To: <meta-arago@arago-project.org>, <j-stiffler@ti.com>, <denys@ti.com>
-Date: Fri, 25 Aug 2017 11:02:44 -0500
-Message-ID: <20170825160245.11812-2-manisha.agrawal@ti.com>
-X-Mailer: git-send-email 2.13.0
-In-Reply-To: <20170825160245.11812-1-manisha.agrawal@ti.com>
-References: <20170825160245.11812-1-manisha.agrawal@ti.com>
+	s=ti-com-17Q1; t=1503698962;
+	bh=CGUd4rM97onZFozhtUg9tC+6cFbQ+duQqtlCrFy1G9I=;
+	h=From:To:CC:Subject:Date:References;
+	b=kNv67kBOW0qXi9pru3kZMjBQFhYzDZ6mOawv4i753oGFz4BunJ6GdbmcfBMrY3OJf
+	lg5uJ2bTIJW+WPi5HsLtvn4l1ir9cwU4viV2q5bqBwXIeZFYSb7G9dXq/f5pw0fQnz
+	8DatM5BQRQ9FzCbuECfmfsgR3BKxBVRcaODhj/WQ=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7PM9MfT028564
+	for <meta-arago@arago-project.org>; Fri, 25 Aug 2017 17:09:22 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0294.000; Fri, 25 Aug 2017 17:09:21 -0500
+From: "Ruei, Eric" <e-ruei1@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH] matrix_browser: update for QWebEngine
+	from QWebKit
+Thread-Index: AQHTHS++rNa1JuCr5U+O0mxnvBhAtKKVGA+AgACK2YA=
+Date: Fri, 25 Aug 2017 22:09:21 +0000
+Message-ID: <009C030982313E4589C6BC55FBF1E82A253A24D5@DFLE09.ent.ti.com>
+References: <1503616027-50489-1-git-send-email-e-ruei1@ti.com>
+	<20170824232137.GA4311@edge> 
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.172.224.222]
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty]PATCH 2/3] meta-arago-extras : matrix : recipe for evse hmi
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH] matrix_browser: update for QWebEngine from QWebKit
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,50 +47,148 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Aug 2017 16:03:13 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 25 Aug 2017 22:09:23 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Recipe to enable adding the evse-hmi demo to the matrix launcher
+Hi, Denys:
 
-Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
----
- .../matrix/matrix-gui-hmi-demos_2.0.bb             | 26 ++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
- create mode 100755 meta-arago-extras/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
+Do you require v2 as shown below?
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
-new file mode 100755
-index 0000000..36eaebc
---- /dev/null
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
-@@ -0,0 +1,26 @@
-+DESCRIPTION = "HMI demo descriptions for Matrix v2"
-+HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
-+
-+require recipes-core/matrix/matrix-gui-apps-git.inc
-+
-+PR = "${INC_PR}.0"
-+
-+inherit allarch
-+
-+S = "${WORKDIR}/git/hmi_apps"
-+
-+# Make sure machinevision submenu and app images has been installed
-+HMI_RDEPENDS += "matrix-gui-apps-images matrix-gui-submenus-hmi"
-+
-+FILES_${PN} += "${MATRIX_BASE_DIR}/*"
-+
-+PACKAGES = "matrix-hmi-demo-evse \
-+"
-+
-+RDEPENDS_matrix-hmi-demo-evse = " \
-+    ${HMI_RDEPENDS} \
-+    evse-hmi \
-+"
-+
-+FILES_matrix-hmi-demo-evse    = "${MATRIX_APP_DIR}/hmi-evse/*"
-+FILES_matrix-hmi-demo-evse  += "${bindir}/runHmiEvse.sh"
--- 
-2.13.0
+Hongmei: can you merge the change if there are no other comments?
 
+Best regards,
+
+Eric
+
+
+-----Original Message-----
+From: Ruei, Eric=20
+Sent: Friday, August 25, 2017 9:53 AM
+To: Dmytriyenko, Denys
+Cc: meta-arago@arago-project.org
+Subject: RE: [meta-arago] [PATCH] matrix_browser: update for QWebEngine fro=
+m QWebKit
+
+Hi, Denys:
+
+Do you mean meta-arago component?=20
+
+For example:
+
+[meta-arago] [matrix-gui-browser: PATCH v2] matrix_browser: update for QWeb=
+Engine from QWebKit
+
+Best regards,
+
+Eric
+
+
+
+-----Original Message-----
+From: Dmytriyenko, Denys
+Sent: Thursday, August 24, 2017 7:22 PM
+To: Ruei, Eric
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH] matrix_browser: update for QWebEngine fro=
+m QWebKit
+
+Eric,
+
+Please indicate the component this patch is meant for in square brackets.
+
+
+On Thu, Aug 24, 2017 at 07:07:07PM -0400, Eric Ruei wrote:
+> Replace QWebkit with QWebEngine because QWebkit is obslete.
+>=20
+>=20
+> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> ---
+>  MatrixWebView.cpp  | 5 +----
+>  MatrixWebView.h    | 5 ++---
+>  main.cpp           | 1 -
+>  matrix_browser.pro | 2 +-
+>  4 files changed, 4 insertions(+), 9 deletions(-)  mode change 100755=20
+> =3D> 100644 main.cpp
+>=20
+> diff --git a/MatrixWebView.cpp b/MatrixWebView.cpp index
+> 48459b7..72c4967 100644
+> --- a/MatrixWebView.cpp
+> +++ b/MatrixWebView.cpp
+> @@ -37,9 +37,6 @@
+>   *
+>  */
+> =20
+> -#include <QtWidgets>
+> -#include <QtNetwork>
+> -#include <QtWebKitWidgets>
+>  #include "MatrixWebView.h"
+>  #include <sys/types.h>
+>  #include <sys/socket.h>
+> @@ -53,7 +50,7 @@ MatrixWebView::MatrixWebView(const QUrl& url)
+>      if (::socketpair(AF_UNIX, SOCK_STREAM, 0, sigtermFd))
+>         qFatal("Couldn't create TERM socketpair");
+> =20
+> -    view =3D new QWebView(this);
+> +    view =3D new QWebEngineView(this);
+>      view->load(url);
+>      setCentralWidget(view);
+> =20
+> diff --git a/MatrixWebView.h b/MatrixWebView.h index fec7249..b6d2cc5
+> 100644
+> --- a/MatrixWebView.h
+> +++ b/MatrixWebView.h
+> @@ -40,8 +40,7 @@
+>  #define MATRIXWEBVIEW_H
+> =20
+>  #include <QtWidgets>
+> -#include <QWebView>
+> -#include <QGraphicsWebView>
+> +#include <QWebEngineView>
+>  #include <QSocketNotifier>
+>  #include <QMainWindow>
+> =20
+> @@ -62,7 +61,7 @@ public slots:
+>  private:
+>      static int sigtermFd[2];
+>      QSocketNotifier *snTerm;
+> -    QWebView *view;
+> +    QWebEngineView *view;
+>  };
+> =20
+>  #endif
+> diff --git a/main.cpp b/main.cpp
+> old mode 100755
+> new mode 100644
+> index a1ccd80..dceece5
+> --- a/main.cpp
+> +++ b/main.cpp
+> @@ -36,7 +36,6 @@
+>   *
+>  */
+> =20
+> -#include <QtWidgets>
+>  #include <iostream>
+>  #include <QApplication>
+>  #include "MatrixWebView.h"
+> diff --git a/matrix_browser.pro b/matrix_browser.pro index
+> a6d8e1c..c6d9894 100755
+> --- a/matrix_browser.pro
+> +++ b/matrix_browser.pro
+> @@ -6,7 +6,7 @@ TEMPLATE =3D app
+>  TARGET =3D matrix_browser
+>  DEPENDPATH +=3D .
+>  INCLUDEPATH +=3D .
+> -QT       +=3D   webkit webkitwidgets
+> +QT       +=3D   webenginewidgets
+>  # Input
+>  SOURCES +=3D main.cpp MatrixWebView.cpp  HEADERS =3D MatrixWebView.h
+> --
+> 1.9.1
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
