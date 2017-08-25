@@ -1,42 +1,40 @@
-Return-Path: <denys@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 8312E529CD
+Return-Path: <e-ruei1@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 78698529C8
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Aug 2017 23:21:43 +0000 (UTC)
+	Fri, 25 Aug 2017 13:53:26 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7ONLfed031118
-	for <meta-arago@arago-project.org>; Thu, 24 Aug 2017 18:21:41 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7PDrQr5014331
+	for <meta-arago@arago-project.org>; Fri, 25 Aug 2017 08:53:26 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1503616901;
-	bh=fmTBXZBYdWGz4A2acMhFj/W11p/BPr/r40aV33wvvKc=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=x9KWYTqQf3hT7Y6eubkX+VzwJZnwMBlkJuQlzb3MiYaukqMvDZO33T52ctkxg0us4
-	0LXCmN2euGDkbysLwAhTvtrv5/0VNdJ9ge9BhzmZBcN0MfbUIrxLCzeBTkWBcDemmQ
-	hDeV8YL+Fwjy004FNoZ0ZC73pOwq2Z3nntJjb1jM=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7ONLfPi009456
-	for <meta-arago@arago-project.org>; Thu, 24 Aug 2017 18:21:41 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Thu, 24 Aug 2017 18:21:41 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Thu, 24 Aug 2017 18:21:41 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7ONLfXw028989;
-	Thu, 24 Aug 2017 18:21:41 -0500
-Date: Thu, 24 Aug 2017 19:21:37 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Eric Ruei <e-ruei1@ti.com>
-Message-ID: <20170824232137.GA4311@edge>
+	s=ti-com-17Q1; t=1503669206;
+	bh=sUAkc2E1Vf+iSJ8KjdBgifOj9W87/QjAyAkxsuk2UPA=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=kffbz7mLKMl3XyKfUen94Cg9gyYAoRCYK/saCRQLHNBiDEFLsCrkPvPyv/0jcFdRn
+	2VWqATr8h8EoaqGcK8q3rViTXGGYKo2Jwa0CF/JFeD9ok4uQKQC00vYP8ACMGUiOTP
+	N83HGx3w7bFUuHKZAlj7ziup6Z5ZQNkKs+E6j8Y8=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7PDrQs1016686
+	for <meta-arago@arago-project.org>; Fri, 25 Aug 2017 08:53:26 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0294.000; Fri, 25 Aug 2017 08:53:25 -0500
+From: "Ruei, Eric" <e-ruei1@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH] matrix_browser: update for QWebEngine
+	from QWebKit
+Thread-Index: AQHTHS++rNa1JuCr5U+O0mxnvBhAtKKVGA+A
+Date: Fri, 25 Aug 2017 13:53:25 +0000
+Message-ID: <009C030982313E4589C6BC55FBF1E82A253A2116@DFLE09.ent.ti.com>
 References: <1503616027-50489-1-git-send-email-e-ruei1@ti.com>
+	<20170824232137.GA4311@edge>
+In-Reply-To: <20170824232137.GA4311@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.172.224.222]
 MIME-Version: 1.0
-In-Reply-To: <1503616027-50489-1-git-send-email-e-ruei1@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [PATCH] matrix_browser: update for QWebEngine from QWebKit
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -50,9 +48,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Aug 2017 23:21:46 -0000
+X-List-Received-Date: Fri, 25 Aug 2017 13:53:26 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi, Denys:
+
+Do you mean meta-arago component?=20
+
+For example:
+
+[meta-arago] [matrix-gui-browser: PATCH v2] matrix_browser: update for QWeb=
+Engine from QWebKit
+
+Best regards,
+
+Eric
+
+
+
+-----Original Message-----
+From: Dmytriyenko, Denys=20
+Sent: Thursday, August 24, 2017 7:22 PM
+To: Ruei, Eric
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [PATCH] matrix_browser: update for QWebEngine fro=
+m QWebKit
 
 Eric,
 
@@ -61,25 +83,25 @@ Please indicate the component this patch is meant for in square brackets.
 
 On Thu, Aug 24, 2017 at 07:07:07PM -0400, Eric Ruei wrote:
 > Replace QWebkit with QWebEngine because QWebkit is obslete.
-> 
-> 
+>=20
+>=20
 > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 > ---
 >  MatrixWebView.cpp  | 5 +----
 >  MatrixWebView.h    | 5 ++---
 >  main.cpp           | 1 -
 >  matrix_browser.pro | 2 +-
->  4 files changed, 4 insertions(+), 9 deletions(-)
->  mode change 100755 => 100644 main.cpp
-> 
-> diff --git a/MatrixWebView.cpp b/MatrixWebView.cpp
-> index 48459b7..72c4967 100644
+>  4 files changed, 4 insertions(+), 9 deletions(-)  mode change 100755=20
+> =3D> 100644 main.cpp
+>=20
+> diff --git a/MatrixWebView.cpp b/MatrixWebView.cpp index=20
+> 48459b7..72c4967 100644
 > --- a/MatrixWebView.cpp
 > +++ b/MatrixWebView.cpp
 > @@ -37,9 +37,6 @@
 >   *
 >  */
->  
+> =20
 > -#include <QtWidgets>
 > -#include <QtNetwork>
 > -#include <QtWebKitWidgets>
@@ -89,26 +111,26 @@ On Thu, Aug 24, 2017 at 07:07:07PM -0400, Eric Ruei wrote:
 > @@ -53,7 +50,7 @@ MatrixWebView::MatrixWebView(const QUrl& url)
 >      if (::socketpair(AF_UNIX, SOCK_STREAM, 0, sigtermFd))
 >         qFatal("Couldn't create TERM socketpair");
->  
-> -    view = new QWebView(this);
-> +    view = new QWebEngineView(this);
+> =20
+> -    view =3D new QWebView(this);
+> +    view =3D new QWebEngineView(this);
 >      view->load(url);
 >      setCentralWidget(view);
->  
-> diff --git a/MatrixWebView.h b/MatrixWebView.h
-> index fec7249..b6d2cc5 100644
+> =20
+> diff --git a/MatrixWebView.h b/MatrixWebView.h index fec7249..b6d2cc5=20
+> 100644
 > --- a/MatrixWebView.h
 > +++ b/MatrixWebView.h
 > @@ -40,8 +40,7 @@
 >  #define MATRIXWEBVIEW_H
->  
+> =20
 >  #include <QtWidgets>
 > -#include <QWebView>
 > -#include <QGraphicsWebView>
 > +#include <QWebEngineView>
 >  #include <QSocketNotifier>
 >  #include <QMainWindow>
->  
+> =20
 > @@ -62,7 +61,7 @@ public slots:
 >  private:
 >      static int sigtermFd[2];
@@ -116,7 +138,7 @@ On Thu, Aug 24, 2017 at 07:07:07PM -0400, Eric Ruei wrote:
 > -    QWebView *view;
 > +    QWebEngineView *view;
 >  };
->  
+> =20
 >  #endif
 > diff --git a/main.cpp b/main.cpp
 > old mode 100755
@@ -127,27 +149,26 @@ On Thu, Aug 24, 2017 at 07:07:07PM -0400, Eric Ruei wrote:
 > @@ -36,7 +36,6 @@
 >   *
 >  */
->  
+> =20
 > -#include <QtWidgets>
->  #include <iostream> 
+>  #include <iostream>
 >  #include <QApplication>
 >  #include "MatrixWebView.h"
-> diff --git a/matrix_browser.pro b/matrix_browser.pro
-> index a6d8e1c..c6d9894 100755
+> diff --git a/matrix_browser.pro b/matrix_browser.pro index=20
+> a6d8e1c..c6d9894 100755
 > --- a/matrix_browser.pro
 > +++ b/matrix_browser.pro
-> @@ -6,7 +6,7 @@ TEMPLATE = app
->  TARGET = matrix_browser
->  DEPENDPATH += .
->  INCLUDEPATH += .
-> -QT       +=   webkit webkitwidgets
-> +QT       +=   webenginewidgets
+> @@ -6,7 +6,7 @@ TEMPLATE =3D app
+>  TARGET =3D matrix_browser
+>  DEPENDPATH +=3D .
+>  INCLUDEPATH +=3D .
+> -QT       +=3D   webkit webkitwidgets
+> +QT       +=3D   webenginewidgets
 >  # Input
->  SOURCES += main.cpp MatrixWebView.cpp
->  HEADERS = MatrixWebView.h
-> -- 
+>  SOURCES +=3D main.cpp MatrixWebView.cpp  HEADERS =3D MatrixWebView.h
+> --
 > 1.9.1
-> 
+>=20
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
