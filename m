@@ -1,34 +1,35 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id AE3B652ABA
+Return-Path: <j-stiffler@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 054BB52ABA
 	for <meta-arago@arago-project.org>;
-	Tue, 29 Aug 2017 14:29:04 +0000 (UTC)
+	Tue, 29 Aug 2017 14:29:54 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7TET4I8023849
-	for <meta-arago@arago-project.org>; Tue, 29 Aug 2017 09:29:04 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7TETt5w021559
+	for <meta-arago@arago-project.org>; Tue, 29 Aug 2017 09:29:55 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504016944;
-	bh=J2GVjXcml7kNDUr2emFD717Tvc8J1xDQgq3226O6ROM=;
+	s=ti-com-17Q1; t=1504016995;
+	bh=HzhSOeJ368AVVEcXYcc7HOpYXm5BpF9rYOIFQ0r9aTY=;
 	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=j1mgpPUms911Gkx57oh8NFeTopIGl2//SAkhJlXOTkquNav4jyZZ+NSdQuw/WPYqZ
-	j1dACpldzaYB/fQhF6CoOtJIKsfQt2qOLNjXG9FOVuwE2jFuSFD8DngDKVre193oNn
-	g3EFQXi5rPXmHfxNYxhAwO9UiMGWC/nr4qd5s7xs=
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7TET4lb014994
-	for <meta-arago@arago-project.org>; Tue, 29 Aug 2017 09:29:04 -0500
+	b=vS4QsFqpnlCccjLPp6Fqbk7FU2JMINGR2gkiA4FSiyRop1GgfxMWRqdE7F3ryzlZN
+	lkClz2R9y5goSBYfbz/CmjLCqtGG2O/Ru+MWyAvMSwdCoAwyOkFkw5TCvcLLfG/o/Y
+	eK9XuJYXtxcclqV4p1azXbQGO1HX8ESEEDhA3VaQ=
+Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7TETsjJ015856
+	for <meta-arago@arago-project.org>; Tue, 29 Aug 2017 09:29:54 -0500
 Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
 	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0294.000; Tue, 29 Aug 2017 09:29:04 -0500
-From: "Ruei, Eric" <e-ruei1@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "Stiffler, Jacob" <j-stiffler@ti.com>
+	14.03.0294.000; Tue, 29 Aug 2017 09:29:54 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Ruei, Eric" <e-ruei1@ti.com>, "Dmytriyenko, Denys" <denys@ti.com>
 Thread-Topic: [meta-arago] [matrix-gui-v2-apps][PATCH] qt5_browser: replace
 	webkit-based demo browser with webengine-based one
-Thread-Index: AQHTIDQBw+XHT5mkak204lHkX3bqPqKbZRug
-Date: Tue, 29 Aug 2017 14:29:03 +0000
-Message-ID: <009C030982313E4589C6BC55FBF1E82A253A42A6@DFLE09.ent.ti.com>
+Thread-Index: AQHTINMqxsKAgLIkakqtKOpt8PmgjqKbZNxg
+Date: Tue, 29 Aug 2017 14:29:54 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F95825431D8B@DFLE09.ent.ti.com>
 References: <1503948203-51821-1-git-send-email-e-ruei1@ti.com>
 	<20170828192941.GP4311@edge>
-In-Reply-To: <20170828192941.GP4311@edge>
+	<009C030982313E4589C6BC55FBF1E82A253A42A6@DFLE09.ent.ti.com>
+In-Reply-To: <009C030982313E4589C6BC55FBF1E82A253A42A6@DFLE09.ent.ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -48,68 +49,80 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Aug 2017 14:29:05 -0000
+X-List-Received-Date: Tue, 29 Aug 2017 14:29:55 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi, Jake:
+I have not pushed this yet.
 
-Have you pushed this change yet? If you have not, I plan to generate patch =
-v2 to replace the webkit browser at the browser group as well.
-
-Best regards,
-
-Eric
-
-
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Monday, August 28, 2017 3:30 PM
-To: Ruei, Eric
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [matrix-gui-v2-apps][PATCH] qt5_browser: replace =
-webkit-based demo browser with webengine-based one
-
-Looks good to me!
-
-
-Eric,
-
-Do you have more patches pending to finally make the switch? Thanks.
-
-
-On Mon, Aug 28, 2017 at 03:23:23PM -0400, Eric Ruei wrote:
-> Replace webkit-based demo browser because webkit is obsolete and will=20
-> be removed soon.
+> -----Original Message-----
+> From: Ruei, Eric
+> Sent: Tuesday, August 29, 2017 10:29 AM
+> To: Dmytriyenko, Denys; Stiffler, Jacob
+> Cc: meta-arago@arago-project.org
+> Subject: RE: [meta-arago] [matrix-gui-v2-apps][PATCH] qt5_browser:
+> replace webkit-based demo browser with webengine-based one
 >=20
-> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> ---
->  qt5_apps/qt5_browser/qt5_browser.desktop | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Hi, Jake:
 >=20
-> diff --git a/qt5_apps/qt5_browser/qt5_browser.desktop=20
-> b/qt5_apps/qt5_browser/qt5_browser.desktop
-> index 2f6636f..a5d3953 100644
-> --- a/qt5_apps/qt5_browser/qt5_browser.desktop
-> +++ b/qt5_apps/qt5_browser/qt5_browser.desktop
-> @@ -4,7 +4,7 @@
->  Name=3DBrowser
->  GenericName=3DDemo App
->  Icon=3D/usr/share/matrix-gui-2.0/apps/images/web-icon.png
-> -Exec=3D/usr/share/qt5/examples/webkitwidgets/browser/browser=20
-> http://www.ti.com
-> +Exec=3D/usr/share/qt5/examples/webenginewidgets/demobrowser/demobrowser=
-=20
-> +http://www.ti.com
->  Type=3DApplication
->  ProgramType=3Dgui
->  Categories=3DQt5
-> --
-> 1.9.1
+> Have you pushed this change yet? If you have not, I plan to generate patc=
+h
+> v2 to replace the webkit browser at the browser group as well.
 >=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> Best regards,
+>=20
+> Eric
+>=20
+>=20
+> -----Original Message-----
+> From: Dmytriyenko, Denys
+> Sent: Monday, August 28, 2017 3:30 PM
+> To: Ruei, Eric
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [matrix-gui-v2-apps][PATCH] qt5_browser:
+> replace webkit-based demo browser with webengine-based one
+>=20
+> Looks good to me!
+>=20
+>=20
+> Eric,
+>=20
+> Do you have more patches pending to finally make the switch? Thanks.
+>=20
+>=20
+> On Mon, Aug 28, 2017 at 03:23:23PM -0400, Eric Ruei wrote:
+> > Replace webkit-based demo browser because webkit is obsolete and will
+> > be removed soon.
+> >
+> > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> > ---
+> >  qt5_apps/qt5_browser/qt5_browser.desktop | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/qt5_apps/qt5_browser/qt5_browser.desktop
+> > b/qt5_apps/qt5_browser/qt5_browser.desktop
+> > index 2f6636f..a5d3953 100644
+> > --- a/qt5_apps/qt5_browser/qt5_browser.desktop
+> > +++ b/qt5_apps/qt5_browser/qt5_browser.desktop
+> > @@ -4,7 +4,7 @@
+> >  Name=3DBrowser
+> >  GenericName=3DDemo App
+> >  Icon=3D/usr/share/matrix-gui-2.0/apps/images/web-icon.png
+> > -Exec=3D/usr/share/qt5/examples/webkitwidgets/browser/browser
+> > http://www.ti.com
+> >
+> +Exec=3D/usr/share/qt5/examples/webenginewidgets/demobrowser/demob
+> rowser
+> > +http://www.ti.com
+> >  Type=3DApplication
+> >  ProgramType=3Dgui
+> >  Categories=3DQt5
+> > --
+> > 1.9.1
+> >
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
