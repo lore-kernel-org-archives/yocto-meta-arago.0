@@ -1,43 +1,43 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 9953852ABA
+Return-Path: <e-ruei1@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 5173A52AB8
 	for <meta-arago@arago-project.org>;
-	Tue, 29 Aug 2017 15:02:01 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7TF21HP030566
-	for <meta-arago@arago-project.org>; Tue, 29 Aug 2017 10:02:01 -0500
+	Tue, 29 Aug 2017 16:05:57 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7TG5vL4004369
+	for <meta-arago@arago-project.org>; Tue, 29 Aug 2017 11:05:57 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504018921;
-	bh=MYL/HrD4HfrNoNJSNXN7lWfdrrWnDkYrhVN8l7H+Xnk=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=MVuSZjjFbKFHG6jbEhlWfUFlLg8XyOsLqy4/ZKQpjKrWXZ0cmnZYcFZQn72hMma9o
-	R9dCoeJ/9pUJANwW4d9J/SmghRcAQcOBtTfB1tIjhGe0aJbd9B3EF5u/xs1Zc59Eag
-	jnz/5pR12bZ/asIcoKjC4J39/Dq+gpYN2ylpH9nE=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7TF21iP032612
-	for <meta-arago@arago-project.org>; Tue, 29 Aug 2017 10:02:01 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1504022757;
+	bh=YBv1YvEh2DuMYLUIZjDG0FMKKEYY4Cyd5OSSiZTxxKY=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=FA+06ixSpnGyjIMy0JgRLvhaQZ/9d91d/3Cs5wbHobVcmC9n+ITdhRFuouWqfvQTc
+	KnSgFKqUDfEA0dgrlemP5lPX0pyUO63rCsN/YZJZ1qbE/yOxIiIKE6G9QqdWg7xNZd
+	bJ0eldyu7ShyttDFzGd18rJH/9KRRxro96lNTSxA=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7TG5utN016882
+	for <meta-arago@arago-project.org>; Tue, 29 Aug 2017 11:05:57 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 29 Aug 2017 10:02:01 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 29 Aug 2017 11:05:55 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 29 Aug 2017 10:02:01 -0500
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7TF20Y1002711;
-	Tue, 29 Aug 2017 10:02:01 -0500
-To: Eric Ruei <e-ruei1@ti.com>, <meta-arago@arago-project.org>
-References: <1504018227-58339-1-git-send-email-e-ruei1@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <cbc74641-ff4f-2212-6858-e57c26137bab@ti.com>
-Date: Tue, 29 Aug 2017 11:02:00 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	Transport; Tue, 29 Aug 2017 11:05:56 -0500
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7TG5tDr011739
+	for <meta-arago@arago-project.org>; Tue, 29 Aug 2017 11:05:55 -0500
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 29 Aug 2017 12:05:53 -0400
+Message-ID: <1504022753-20132-2-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1504022753-20132-1-git-send-email-e-ruei1@ti.com>
+References: <1504022753-20132-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1504018227-58339-1-git-send-email-e-ruei1@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [matrix-gui-v2-apps][PATCH v2] qt5_browser & browser_apps: replace webkit-based demo browsers with webengine-based ones
+Subject: [morty/master][PATCH 2/2] matrix-gui-apps-git: bump SRCREV for changes and additions
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,60 +50,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Aug 2017 15:02:01 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Tue, 29 Aug 2017 16:05:57 -0000
+Content-Type: text/plain
 
-Pushed.
+* replace webkit-based browsers with the webengine-based ones
+* add HMI EVSE demo
 
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
+---
+ meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On 8/29/2017 10:50 AM, Eric Ruei wrote:
-> Replace webkit-based demo browser because webkit is obsolete and will be
-> removed soon.
->
-> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> ---
->   .../browser_webengine.desktop}                                      | 6 +++---
->   qt5_apps/qt5_browser/qt5_browser.desktop                            | 2 +-
->   2 files changed, 4 insertions(+), 4 deletions(-)
->   rename browser_apps/{browser_webkit/browser_webkit.desktop => browser_webengine/browser_webengine.desktop} (56%)
->
-> diff --git a/browser_apps/browser_webkit/browser_webkit.desktop b/browser_apps/browser_webengine/browser_webengine.desktop
-> similarity index 56%
-> rename from browser_apps/browser_webkit/browser_webkit.desktop
-> rename to browser_apps/browser_webengine/browser_webengine.desktop
-> index 7140a4b..53b95ca 100644
-> --- a/browser_apps/browser_webkit/browser_webkit.desktop
-> +++ b/browser_apps/browser_webengine/browser_webengine.desktop
-> @@ -1,12 +1,12 @@
->   #!/usr/bin/env xdg-open
->   
->   [Desktop Entry]
-> -Name=Webkit Browser
-> +Name=WebEngine Browser
->   GenericName=Demo App
->   Icon=/usr/share/matrix-gui-2.0/apps/images/web-icon.png
-> -Exec=/usr/share/qt5/examples/webkitwidgets/browser/browser http://www.ti.com
-> +Exec=/usr/share/qt5/examples/webenginewidgets/demobrowser/demobrowser http://www.ti.com
->   Type=Application
->   ProgramType=gui
->   Categories=Browser
->   X-MATRIX-Lock=browser
-> -Name[en_US]=browser_webkit.desktop
-> +Name[en_US]=browser_webengine.desktop
-> diff --git a/qt5_apps/qt5_browser/qt5_browser.desktop b/qt5_apps/qt5_browser/qt5_browser.desktop
-> index 2f6636f..a5d3953 100644
-> --- a/qt5_apps/qt5_browser/qt5_browser.desktop
-> +++ b/qt5_apps/qt5_browser/qt5_browser.desktop
-> @@ -4,7 +4,7 @@
->   Name=Browser
->   GenericName=Demo App
->   Icon=/usr/share/matrix-gui-2.0/apps/images/web-icon.png
-> -Exec=/usr/share/qt5/examples/webkitwidgets/browser/browser http://www.ti.com
-> +Exec=/usr/share/qt5/examples/webenginewidgets/demobrowser/demobrowser http://www.ti.com
->   Type=Application
->   ProgramType=gui
->   Categories=Qt5
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+index b805f5e..4d74224 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+ 
+ SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "38afccb5335216ececa874cf4cf72a67c4164fc3"
++SRCREV = "d910584814644f853f3fe4fbe715f674f24b9bd3"
+ BRANCH = "master"
+-INC_PR = "r47"
++INC_PR = "r48"
+ 
+ # Pull in the base package for installing matrix applications
+ require matrix-gui-apps.inc
+-- 
+1.9.1
 
 
