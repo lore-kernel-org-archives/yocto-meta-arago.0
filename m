@@ -1,41 +1,43 @@
-Return-Path: <j-stiffler@ti.com>
+Return-Path: <manishalocal@uda0393239>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id EE6FC529CB
+	by arago-project.org (Postfix) with ESMTPS id 8BEBA52979
 	for <meta-arago@arago-project.org>;
-	Wed, 30 Aug 2017 18:41:15 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7UIf5bh005277
-	for <meta-arago@arago-project.org>; Wed, 30 Aug 2017 13:41:05 -0500
+	Wed, 30 Aug 2017 21:12:12 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7ULC2Am022762
+	for <meta-arago@arago-project.org>; Wed, 30 Aug 2017 16:12:02 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504118465;
-	bh=Rso4P582T9jmi+PFMxUH7+Ju5oBQ7JIRWPJfc2sO2ck=;
+	s=ti-com-17Q1; t=1504127522;
+	bh=xfyrMFyWbCoNrk08yy/rZ6rq5F6IQw5zY1a135Suwik=;
 	h=From:To:CC:Subject:Date;
-	b=q9eNDUmsPpPRLCZTNRET8E9/3Qeoe0i+xV67a0fBYU23rIXgTtuHllSxO5xhQjYWk
-	aGKlJChGqI4U5tMeYlZ528tRN31O4tIHsJymqZd8MuA8wGxdQa0IMETOqLbgZDEunP
-	lAQqUcDpn3S50hISq3xZNU3kD7vS/SU4isTli6Ds=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7UIf03s024938
-	for <meta-arago@arago-project.org>; Wed, 30 Aug 2017 13:41:00 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	b=qNZ39KRJiHh0j7jh/M7T51dNQDwG/N/4+rVv5aHNTNgJfEHjuBlOXEMIV4jVUXK6w
+	rDMw4UgCpui0N0z38arZI/qCMk8TfYowyKAAZGxRiKcXk9NxsTrXdUeNIwutD4Sesw
+	bpJ1VSwM29jXCcxtXrGZTawnFKUJfcdaLhe5vhR4=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7ULBvoE008393
+	for <meta-arago@arago-project.org>; Wed, 30 Aug 2017 16:11:57 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Wed, 30 Aug 2017 13:41:00 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 30 Aug 2017 16:11:57 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Wed, 30 Aug 2017 13:41:00 -0500
-Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7UIf01v022109;
-	Wed, 30 Aug 2017 13:41:00 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	Transport; Wed, 30 Aug 2017 16:11:57 -0500
+Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7ULBvHf010240;
+	Wed, 30 Aug 2017 16:11:57 -0500
+Received: from manishalocal by uda0393239 with local (Exim 4.82)
+	(envelope-from <manishalocal@uda0393239>)
+	id 1dnAHF-0003WD-0z; Wed, 30 Aug 2017 16:11:57 -0500
+From: Manisha Agrawal <manisha.agrawal@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 30 Aug 2017 14:34:54 -0400
-Message-ID: <1504118094-3974-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
+Date: Wed, 30 Aug 2017 16:11:54 -0500
+Message-ID: <20170830211154.13489-1-manisha.agrawal@ti.com>
+X-Mailer: git-send-email 2.13.0
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] ti-tisdk-makefile: update omapl138 targets
+Subject: [matrix-gui-v2-apps][PATCH v1] hmi_apps : hmi_protection_relays : new demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,47 +50,71 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Aug 2017 18:41:16 -0000
+X-List-Received-Date: Wed, 30 Aug 2017 21:12:12 -0000
 Content-Type: text/plain
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
 ---
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb       | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ .../hmi_protection_relays/desc_hmi_protection_relays.html    |  9 +++++++++
+ hmi_apps/hmi_protection_relays/hmi_protection_relays.desktop | 12 ++++++++++++
+ hmi_apps/hmi_protection_relays/runHmiProtectionRelays.sh     | 12 ++++++++++++
+ 3 files changed, 33 insertions(+)
+ create mode 100644 hmi_apps/hmi_protection_relays/desc_hmi_protection_relays.html
+ create mode 100644 hmi_apps/hmi_protection_relays/hmi_protection_relays.desktop
+ create mode 100755 hmi_apps/hmi_protection_relays/runHmiProtectionRelays.sh
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 7db995c..85110a3 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -50,7 +50,7 @@ SRC_URI = "\
-     file://Makefile_barcode-roi \
- "
- 
--PR = "r82"
-+PR = "r83"
- 
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
-@@ -58,6 +58,7 @@ MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
- "
- 
- MAKEFILES_MATRIX_GUI_keystone = ""
-+MAKEFILES_MATRIX_GUI_omapl138 = ""
- 
- MAKEFILES_COMMON = "linux \
-                     matrix-gui \
-@@ -125,8 +126,8 @@ MAKEFILES_append_omap-a15 = " u-boot-spl \
-                               barcode-roi \
-                               uio-module-drv \
- "
--MAKEFILES_append_omapl138 = " pru \
--                              u-boot-legacy \
-+MAKEFILES_append_omapl138 = " linux-dtbs \
-+                              u-boot-spl \
- "
- 
- MAKEFILES_append_keystone = " u-boot-spl \
+diff --git a/hmi_apps/hmi_protection_relays/desc_hmi_protection_relays.html b/hmi_apps/hmi_protection_relays/desc_hmi_protection_relays.html
+new file mode 100644
+index 0000000..b8e4264
+--- /dev/null
++++ b/hmi_apps/hmi_protection_relays/desc_hmi_protection_relays.html
+@@ -0,0 +1,9 @@
++<h1> Protection Relays HMI Example </h1>
++
++<p> This example demonstrates HMI for Protection Relays application. QT QWidget tool is used to draw the screen.
++
++<br>
++
++
++</p>
++
+diff --git a/hmi_apps/hmi_protection_relays/hmi_protection_relays.desktop b/hmi_apps/hmi_protection_relays/hmi_protection_relays.desktop
+new file mode 100644
+index 0000000..384431b
+--- /dev/null
++++ b/hmi_apps/hmi_protection_relays/hmi_protection_relays.desktop
+@@ -0,0 +1,12 @@
++#!/usr/bin/env xdg-open
++
++[Desktop Entry]
++Name=PROTECTION_RELAYS
++GenericName=Demo App
++Icon=/usr/share/matrix-gui-2.0/apps/images/multimedia-icon.png
++Exec=/usr/bin/runHmiProtectionRelays.sh
++Type=Application
++ProgramType=gui
++Categories=hmi
++X-MATRIX-Lock=hmi_protection_relays_lock
++X-MATRIX-Description=/usr/share/matrix-gui-2.0/apps/hmi_protection_relays/desc_hmi_protection_relays.html
+diff --git a/hmi_apps/hmi_protection_relays/runHmiProtectionRelays.sh b/hmi_apps/hmi_protection_relays/runHmiProtectionRelays.sh
+new file mode 100755
+index 0000000..3d85999
+--- /dev/null
++++ b/hmi_apps/hmi_protection_relays/runHmiProtectionRelays.sh
+@@ -0,0 +1,12 @@
++#!/bin/bash
++
++/etc/init.d/weston stop
++sleep 1
++echo 0 > /sys/class/graphics/fbcon/cursor_blink
++
++protection_relays_hmi -platform linuxfb
++
++echo 1 > /sys/class/graphics/fbcon/cursor_blink
++
++/etc/init.d/weston start
++sleep 1
 -- 
-2.7.4
+2.13.0
 
 
