@@ -1,45 +1,43 @@
 Return-Path: <manishalocal@uda0393239>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id BCF7052ACD
+	by arago-project.org (Postfix) with ESMTPS id 873A4529E7
 	for <meta-arago@arago-project.org>;
-	Wed, 30 Aug 2017 17:57:05 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7UHutkV032023
-	for <meta-arago@arago-project.org>; Wed, 30 Aug 2017 12:56:55 -0500
+	Wed, 30 Aug 2017 17:58:55 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7UHwjjp032178
+	for <meta-arago@arago-project.org>; Wed, 30 Aug 2017 12:58:45 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504115815;
-	bh=ZPAb3gciWrnacLc7265SpWfNEHEsFF+AcMMWZTqTWoE=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=npHyywhiicZgtz6E+fK6BK40D1rx1ar2RXk6IBhkxJKENn7YvQF8jgqkSBAcO+ADw
-	03IpLTO3E+rgtuk6U7X1epvkGyTkzF8quDWOGpSJTdp8fmbbISwOydPLOY3AxzxJcq
-	o/UV+dMgrfGFtqqX4RqUuMlEeI5HI4ZMPE+2gQgE=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7UHuo6q020586
-	for <meta-arago@arago-project.org>; Wed, 30 Aug 2017 12:56:50 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1504115925;
+	bh=d7L2B8QwVijuqq3gNgvGleZuhza6oBB0nPBf3LOIWno=;
+	h=From:To:CC:Subject:Date;
+	b=A2utY390msJ7mXohYfIxr0lNhL6Zzq8Q7hLjIufmu1TUU2eh28Gm6mf62Y152Z5QH
+	krc9RtSvtYZJ5qvd+fzN2gBb85GMXBU//cihsvSCQjAekMTcmza6i55T6o3lRDVYAP
+	LgTy/fByc+KnKIwvRkiAluQZwAci34va+/mLkk88=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7UHwe3t028974
+	for <meta-arago@arago-project.org>; Wed, 30 Aug 2017 12:58:40 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Wed, 30 Aug 2017 12:56:50 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 30 Aug 2017 12:58:40 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Wed, 30 Aug 2017 12:56:50 -0500
+	Transport; Wed, 30 Aug 2017 12:58:40 -0500
 Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7UHuoJ4011838;
-	Wed, 30 Aug 2017 12:56:50 -0500
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7UHweWW023816;
+	Wed, 30 Aug 2017 12:58:40 -0500
 Received: from manishalocal by uda0393239 with local (Exim 4.82)
 	(envelope-from <manishalocal@uda0393239>)
-	id 1dn7EQ-0002zG-7M; Wed, 30 Aug 2017 12:56:50 -0500
+	id 1dn7GC-000313-5o; Wed, 30 Aug 2017 12:58:40 -0500
 From: Manisha Agrawal <manisha.agrawal@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 30 Aug 2017 12:56:45 -0500
-Message-ID: <20170830175647.11427-5-manisha.agrawal@ti.com>
+Date: Wed, 30 Aug 2017 12:58:38 -0500
+Message-ID: <20170830175838.11557-1-manisha.agrawal@ti.com>
 X-Mailer: git-send-email 2.13.0
-In-Reply-To: <20170830175647.11427-1-manisha.agrawal@ti.com>
-References: <20170830175647.11427-1-manisha.agrawal@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty][PATCH v3 5/7] packagegroup-arago-tisdk-hmi: add hmi specific packagegroups
+Subject: [morty][PATCH v3] tisdk-rootfs-image: add evse-hmi packagegroup
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,87 +50,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Aug 2017 17:57:06 -0000
+X-List-Received-Date: Wed, 30 Aug 2017 17:58:55 -0000
 Content-Type: text/plain
-
-Create packagegroup for HMI related demos. HMI is one of the focus
-growth area for Sitara platform and demos planned for individual target end
-equipments. Add evse-hmi demo to the packagegroup.
 
 Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
 ---
- .../packagegroup-arago-tisdk-hmi-sdk-host.bb       | 26 ++++++++++++++++++++
- .../packagegroups/packagegroup-arago-tisdk-hmi.bb  | 28 ++++++++++++++++++++++
- 2 files changed, 54 insertions(+)
- create mode 100755 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
- create mode 100755 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
+ meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-new file mode 100755
-index 00000000..735dda8e
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-@@ -0,0 +1,26 @@
-+SUMMARY = "Task to add HMI related sources into the SDK"
-+LICENSE = "MIT"
-+PR = "r0"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+inherit packagegroup
-+
-+HMI = ""
-+
-+HMI_append_ti43x = " \
-+    evse-hmi-src \
-+"
-+
-+HMI_append_ti33x = " \
-+    evse-hmi-src \
-+"
-+
-+
-+HMI_append_omap-a15 = " \
-+    evse-hmi-src \
-+"
-+
-+RDEPENDS_${PN} = "\
-+    ${HMI} \
-+"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
-new file mode 100755
-index 00000000..38ff06b4
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
-@@ -0,0 +1,28 @@
-+SUMMARY = "Task to add HMI related packages"
-+LICENSE = "MIT"
-+PR = "r0"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+inherit packagegroup
-+
-+HMI = " \
-+"
-+
-+
-+HMI_append_ti33x = " \
-+    evse-hmi \
-+"
-+
-+HMI_append_ti43x = " \
-+    evse-hmi \
-+"
-+
-+HMI_append_omap-a15 = " \
-+    evse-hmi \
-+"
-+
-+
-+RDEPENDS_${PN} = "\
-+	${HMI} \
-+"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
+index 1a477d1f..e40dc1f5 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
+@@ -20,6 +20,7 @@ IMAGE_INSTALL += "\
+     packagegroup-arago-tisdk-amsdk \
+     packagegroup-arago-tisdk-addons \
+     packagegroup-arago-tisdk-addons-extra \
++    packagegroup-arago-tisdk-hmi \
+     "
+ 
+ export IMAGE_BASENAME = "tisdk-rootfs-image"
 -- 
 2.13.0
 
