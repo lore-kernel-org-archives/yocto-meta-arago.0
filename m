@@ -1,48 +1,45 @@
-Return-Path: <denys@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 342B252ABB
+Return-Path: <manishalocal@uda0393239>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 6FB1252ACA
 	for <meta-arago@arago-project.org>;
-	Tue, 29 Aug 2017 21:23:04 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7TLN3lF010916
-	for <meta-arago@arago-project.org>; Tue, 29 Aug 2017 16:23:03 -0500
+	Wed, 30 Aug 2017 17:56:50 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v7UHuok9017559
+	for <meta-arago@arago-project.org>; Wed, 30 Aug 2017 12:56:50 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504041783;
-	bh=7cUAyjT5RSqdCiWR6l1yytYeavUxmifLbxeh2d6IYGE=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=UercJn+BuSEFLQn8oS3CY6hNcqVrUHS20qcisBbCBkeUFCw/TbKLpO3LfnLz4+7ei
-	wc+pamCUy/TDjEqgE0qnKrUzgi8NgYJc69Z85nN6+v1gOza5KIFtzVoG5+8RgrSZub
-	F1lLs/UTub0JLK6gRCe7bFC0INPF96rKngl4iQJo=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7TLN3jO000540
-	for <meta-arago@arago-project.org>; Tue, 29 Aug 2017 16:23:03 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1504115810;
+	bh=y2O/LY+sGJxgkNLoF0M5LuYMMaRzKZoYfL0NKjK5Jfs=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=a1jUsUDfW242B4WY7pfyogMbic+jVT2lADx4JpKrfH6j1va8b3Mj8D9mlGnsP9H3l
+	blqbXfdFbXf0CJsK5yQpB8lUabnkcVSfIGJ3oNDCoMn/XyrhHstn2HNwIvuVpU3qAZ
+	M7ldJzF/t6XaqX5bWdPU7JJJmIc7aKQHPOLzEq+c=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7UHuoxG020583
+	for <meta-arago@arago-project.org>; Wed, 30 Aug 2017 12:56:50 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 29 Aug 2017 16:23:03 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 30 Aug 2017 12:56:50 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE100.ent.ti.com
+	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 29 Aug 2017 16:23:03 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7TLN3FB030373;
-	Tue, 29 Aug 2017 16:23:03 -0500
-Date: Tue, 29 Aug 2017 17:22:59 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Ruei, Eric" <a0850410@ti.com>
-Message-ID: <20170829212259.GS8304@edge>
-References: <1504022753-20132-1-git-send-email-e-ruei1@ti.com>
-	<1504022753-20132-2-git-send-email-e-ruei1@ti.com>
-	<20170829161745.GC8304@edge>
-	<68c499e4-1b3e-3cf8-a023-3059ae7d16e8@ti.com>
-	<20170829174810.GJ8304@edge>
-	<69d759cb-3483-8424-5214-e909573bfb13@ti.com>
+	Transport; Wed, 30 Aug 2017 12:56:50 -0500
+Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7UHuoeQ022456;
+	Wed, 30 Aug 2017 12:56:50 -0500
+Received: from manishalocal by uda0393239 with local (Exim 4.82)
+	(envelope-from <manishalocal@uda0393239>)
+	id 1dn7EQ-0002z6-00; Wed, 30 Aug 2017 12:56:50 -0500
+From: Manisha Agrawal <manisha.agrawal@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 30 Aug 2017 12:56:43 -0500
+Message-ID: <20170830175647.11427-3-manisha.agrawal@ti.com>
+X-Mailer: git-send-email 2.13.0
+In-Reply-To: <20170830175647.11427-1-manisha.agrawal@ti.com>
+References: <20170830175647.11427-1-manisha.agrawal@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <69d759cb-3483-8424-5214-e909573bfb13@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [morty/master][PATCH 2/2] matrix-gui-apps-git: bump SRCREV for changes and additions
+Subject: [morty][PATCH v3 3/7] matrix-gui-hmi-demos : hmi demo descriptions for matrix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,61 +52,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Aug 2017 21:23:09 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 30 Aug 2017 17:56:52 -0000
+Content-Type: text/plain
 
-On Tue, Aug 29, 2017 at 02:12:47PM -0400, Ruei, Eric wrote:
-> On 8/29/2017 1:48 PM, Denys Dmytriyenko wrote:
-> >On Tue, Aug 29, 2017 at 01:33:11PM -0400, Ruei, Eric wrote:
-> >>On 8/29/2017 12:17 PM, Denys Dmytriyenko wrote:
-> >>>Eric,
-> >>>
-> >>>On Tue, Aug 29, 2017 at 12:05:53PM -0400, Eric Ruei wrote:
-> >>>>* replace webkit-based browsers with the webengine-based ones
-> >>>>* add HMI EVSE demo
-> >>>
-> >>>This hasn't been merged yet - see my comments yesterday.
-> >>>
-> >>>
-> >>Which one do you mean? Both of them are pushed at matrix-gui-v2-apps?
-> >
-> >HMI EVSE
-> >
-> >
-> I see Manisha's new patch also include matrix-gui-apps-git.
-> Therefore, I should update this patch on top of hers, right?
+Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
+---
+ .../matrix/matrix-gui-hmi-demos_2.0.bb             | 26 ++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+ create mode 100755 meta-arago-extras/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
 
-The new patch is not merged yet either.
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
+new file mode 100755
+index 00000000..f751f8f8
+--- /dev/null
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
+@@ -0,0 +1,26 @@
++SUMMARY = "HMI demo descriptions for Matrix v2"
++HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
++
++require recipes-core/matrix/matrix-gui-apps-git.inc
++
++PR = "${INC_PR}.0"
++
++inherit allarch
++
++S = "${WORKDIR}/git/hmi_apps"
++
++# Make sure machinevision submenu and app images has been installed
++HMI_RDEPENDS += "matrix-gui-apps-images matrix-gui-submenus-hmi"
++
++FILES_${PN} += "${MATRIX_BASE_DIR}/*"
++
++PACKAGES = "matrix-hmi-demo-evse \
++"
++
++RDEPENDS_matrix-hmi-demo-evse = " \
++    ${HMI_RDEPENDS} \
++    evse-hmi \
++"
++
++FILES_matrix-hmi-demo-evse    = "${MATRIX_APP_DIR}/hmi_evse/*"
++FILES_matrix-hmi-demo-evse  += "${bindir}/runHmiEvse.sh"
+-- 
+2.13.0
 
-
-> >>>>Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> >>>>Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
-> >>>>---
-> >>>>  meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
-> >>>>  1 file changed, 2 insertions(+), 2 deletions(-)
-> >>>>
-> >>>>diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> >>>>index b805f5e..4d74224 100644
-> >>>>--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> >>>>+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> >>>>@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
-> >>>>  LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
-> >>>>  SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
-> >>>>-SRCREV = "38afccb5335216ececa874cf4cf72a67c4164fc3"
-> >>>>+SRCREV = "d910584814644f853f3fe4fbe715f674f24b9bd3"
-> >>>>  BRANCH = "master"
-> >>>>-INC_PR = "r47"
-> >>>>+INC_PR = "r48"
-> >>>>  # Pull in the base package for installing matrix applications
-> >>>>  require matrix-gui-apps.inc
-> >>>>-- 
-> >>>>1.9.1
-> >>>>
-> >>>>_______________________________________________
-> >>>>meta-arago mailing list
-> >>>>meta-arago@arago-project.org
-> >>>>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> >>
-> 
 
