@@ -1,41 +1,41 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id E9B6052A27
+Return-Path: <manisha.agrawal@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 74D7052A05
 	for <meta-arago@arago-project.org>;
-	Fri,  1 Sep 2017 17:50:42 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v81HoW2c025180
-	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 12:50:32 -0500
+	Fri,  1 Sep 2017 18:11:39 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v81IBdDd003342
+	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 13:11:39 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504288232;
-	bh=lYT10BtyzjcnK0xZ0ovKQiYVnxlGt4TjdKTamEwUySo=;
-	h=From:To:Subject:Date;
-	b=tX6RXyWUNOH85T+9h9N5TC1SEc2alFzi8CJVGe7lw33WC6nVHzIPQJ6/R4qbv7ey7
-	XAfFN7srpF/N61cV3Oq3H6zPlhPiK8eHyIJKBSSpiDkRvVqUvBNXAx07zMbbZ2BUJN
-	NqgO9cI+Tyf/H5DIvT68kmhgCr2pHEuz8uYAmrHc=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81HoRnY018310
-	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 12:50:27 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Fri, 1 Sep 2017 12:50:27 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Fri, 1 Sep 2017 12:50:27 -0500
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81HoRYj029591
-	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 12:50:27 -0500
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 1 Sep 2017 13:50:22 -0400
-Message-ID: <1504288223-29056-1-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
+	s=ti-com-17Q1; t=1504289499;
+	bh=HigKy1S05mZuuAWRYjmXYk/MYephtqGtlpTBkJFxqqs=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=bcyh2Db3saVrsBc4uCqzuV4LdXzgguEZaFBV5+tEniuFvKWwnvr3xsXPD2Atse9Zj
+	+ZPzn6j31y5xsr3S431vaAg+BUhHZf529IFs2VI7z7qeXLqtrIQ4SywKSYhSjnhghK
+	ZAcE3g03kOuqd4i7799YqYoyK3272gci+XxCF4kE=
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81IBdbL002137
+	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 13:11:39 -0500
+Received: from DFLE12.ent.ti.com ([fe80::e9a3:bf19:af96:227b]) by
+	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
+	14.03.0294.000; Fri, 1 Sep 2017 13:11:38 -0500
+From: "Agrawal, Manisha" <manisha.agrawal@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: [meta-arago][matrix-gui-v2-apps][PATCH v1] hmi_apps :
+	hmi_protection_relays : new demo
+Thread-Index: AQHTIdSc0GxOdB/VYUuqvlxxUZgL76KgV2gg
+Importance: high
+X-Priority: 1
+Date: Fri, 1 Sep 2017 18:11:38 +0000
+Message-ID: <3AC2660648D2B04999D9C7562469E8AF7EC3B173@DFLE12.ent.ti.com>
+References: <20170830211154.13489-1-manisha.agrawal@ti.com>
+In-Reply-To: <20170830211154.13489-1-manisha.agrawal@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.172.224.221]
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty/master][PATCH v2 1/2] matrix-gui-browser: bump SRCREV and update Description
+Subject: Re: [matrix-gui-v2-apps][PATCH v1] hmi_apps : hmi_protection_relays : new demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,40 +48,100 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Sep 2017 17:50:43 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 01 Sep 2017 18:11:39 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-* update the brower to be Webengine-based instead of Webkit-based
+I am still waiting for feedback on this one. I need commit id from this che=
+ck to push my other patches on another new demo.=20
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+
+Regards,
+Manisha
+
+
+-----Original Message-----
+From: Agrawal, Manisha=20
+Sent: Wednesday, August 30, 2017 4:12 PM
+To: meta-arago@arago-project.org
+Cc: Dmytriyenko, Denys; Stiffler, Jacob; Agrawal, Manisha
+Subject: [meta-arago][matrix-gui-v2-apps][PATCH v1] hmi_apps : hmi_protecti=
+on_relays : new demo
+
+Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
 ---
- meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../hmi_protection_relays/desc_hmi_protection_relays.html    |  9 ++++++++=
++
+ hmi_apps/hmi_protection_relays/hmi_protection_relays.desktop | 12 ++++++++=
+++++
+ hmi_apps/hmi_protection_relays/runHmiProtectionRelays.sh     | 12 ++++++++=
+++++
+ 3 files changed, 33 insertions(+)
+ create mode 100644 hmi_apps/hmi_protection_relays/desc_hmi_protection_rela=
+ys.html
+ create mode 100644 hmi_apps/hmi_protection_relays/hmi_protection_relays.de=
+sktop
+ create mode 100755 hmi_apps/hmi_protection_relays/runHmiProtectionRelays.s=
+h
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-index 0fa1a62..1f91f57 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-@@ -1,4 +1,4 @@
--DESCRIPTION = "Simple Qt web display using webkit"
-+DESCRIPTION = "Simple Qt web display using webengine"
- HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix_browser"
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://main.cpp;beginline=9;endline=37;md5=75a9adc782a6df0d3a5419743e9a9f18"
-@@ -11,10 +11,10 @@ RDEPENDS_${PN} += "${QT_RDEPENDS_FONTS}"
- 
- DEPENDS += "${QT_DEPENDS_WEBKIT}"
- 
--PR = "r13"
-+PR = "r14"
- 
- QT4_SRCREV = "83019b46fb3dec1a12667d251d35ba8682953a79"
--QT5_SRCREV = "78ad5db716d1abc4c05abfe435f066b6b88454d5"
-+QT5_SRCREV = "d3ecf8d0dff3e4f901d588ea0dfe485733dfc9dc"
- 
- SRCREV = "${@base_conditional('QT_PROVIDER', 'qt5', "${QT5_SRCREV}", "${QT4_SRCREV}", d)}"
- BRANCH ?= "master"
--- 
-1.9.1
+diff --git a/hmi_apps/hmi_protection_relays/desc_hmi_protection_relays.html=
+ b/hmi_apps/hmi_protection_relays/desc_hmi_protection_relays.html
+new file mode 100644
+index 0000000..b8e4264
+--- /dev/null
++++ b/hmi_apps/hmi_protection_relays/desc_hmi_protection_relays.html
+@@ -0,0 +1,9 @@
++<h1> Protection Relays HMI Example </h1>
++
++<p> This example demonstrates HMI for Protection Relays application. QT QW=
+idget tool is used to draw the screen.
++
++<br>
++
++
++</p>
++
+diff --git a/hmi_apps/hmi_protection_relays/hmi_protection_relays.desktop b=
+/hmi_apps/hmi_protection_relays/hmi_protection_relays.desktop
+new file mode 100644
+index 0000000..384431b
+--- /dev/null
++++ b/hmi_apps/hmi_protection_relays/hmi_protection_relays.desktop
+@@ -0,0 +1,12 @@
++#!/usr/bin/env xdg-open
++
++[Desktop Entry]
++Name=3DPROTECTION_RELAYS
++GenericName=3DDemo App
++Icon=3D/usr/share/matrix-gui-2.0/apps/images/multimedia-icon.png
++Exec=3D/usr/bin/runHmiProtectionRelays.sh
++Type=3DApplication
++ProgramType=3Dgui
++Categories=3Dhmi
++X-MATRIX-Lock=3Dhmi_protection_relays_lock
++X-MATRIX-Description=3D/usr/share/matrix-gui-2.0/apps/hmi_protection_relay=
+s/desc_hmi_protection_relays.html
+diff --git a/hmi_apps/hmi_protection_relays/runHmiProtectionRelays.sh b/hmi=
+_apps/hmi_protection_relays/runHmiProtectionRelays.sh
+new file mode 100755
+index 0000000..3d85999
+--- /dev/null
++++ b/hmi_apps/hmi_protection_relays/runHmiProtectionRelays.sh
+@@ -0,0 +1,12 @@
++#!/bin/bash
++
++/etc/init.d/weston stop
++sleep 1
++echo 0 > /sys/class/graphics/fbcon/cursor_blink
++
++protection_relays_hmi -platform linuxfb
++
++echo 1 > /sys/class/graphics/fbcon/cursor_blink
++
++/etc/init.d/weston start
++sleep 1
+--=20
+2.13.0
 
 
