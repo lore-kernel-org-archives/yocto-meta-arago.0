@@ -1,45 +1,45 @@
 Return-Path: <manishalocal@uda0393239>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 45A7B52A27
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id CF84E52978
 	for <meta-arago@arago-project.org>;
-	Fri,  1 Sep 2017 20:51:10 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v81KpAjf022251
-	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 15:51:10 -0500
+	Fri,  1 Sep 2017 20:51:24 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v81KpENY012492
+	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 15:51:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504299070;
-	bh=ZSvG44eabHsP1Odg4EgAe1GoWPyCp5nXvdjfMf6pxrM=;
+	s=ti-com-17Q1; t=1504299074;
+	bh=23OarDOLJKXr7dODvLePaBc6UCE8veQ9qOD2IQK0+ds=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=LzRXlVTjRMbDhlWcszyv5c6fGiJ/dXMDVVlTmtLZx58D0ivV70JXyKy+Ira+XgsvX
-	qGo5+kARCmDJCl+PEXXcQ8QchQ0HLJVGXknndPDpAhEdgrkfV3OxxVR48ujC5hwmUs
-	jAjUzOPC5poctrlQ8oYQSwwbJZoyVMjmUThr5ETA=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81KpA9F014579
-	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 15:51:10 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	b=ETWp/sFYC0ieLIVTuf0LXlfPsuhKCPVGH6Wh31Irdbhd5E5XKG4WUFwAHk8tn5ca8
+	4paL+BTTGsO4k2Ty3mjZt+E+oz81RCN5Y1AcLL3m+TfZ56FX6VMcVYyJSTM/7vl3ra
+	DFTEOUQ/YdX75KjmkNC3OxS7utGABgZq82DdtQ+Y=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81Kp96E030742
+	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 15:51:09 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
 	Fri, 1 Sep 2017 15:51:09 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Fri, 1 Sep 2017 15:51:10 -0500
+	Transport; Fri, 1 Sep 2017 15:51:09 -0500
 Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81Kp9wg010953;
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81Kp9Tq014144;
 	Fri, 1 Sep 2017 15:51:09 -0500
 Received: from manishalocal by uda0393239 with local (Exim 4.82)
 	(envelope-from <manishalocal@uda0393239>)
-	id 1dnsuD-0006di-RI; Fri, 01 Sep 2017 15:51:09 -0500
+	id 1dnsuD-0006dT-Fy; Fri, 01 Sep 2017 15:51:09 -0500
 From: Manisha Agrawal <manisha.agrawal@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 1 Sep 2017 15:51:07 -0500
-Message-ID: <20170901205107.25462-6-manisha.agrawal@ti.com>
+Date: Fri, 1 Sep 2017 15:51:04 -0500
+Message-ID: <20170901205107.25462-3-manisha.agrawal@ti.com>
 X-Mailer: git-send-email 2.13.0
 In-Reply-To: <20170901205107.25462-1-manisha.agrawal@ti.com>
 References: <20170901205107.25462-1-manisha.agrawal@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty][PATCH v1 6/6] arago-source-ipk : Add protection-relays-hmi source ipk
+Subject: [morty][PATCH v1 3/6] matrix-gui-hmi-demos : add protection-relays-hmi demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,28 +52,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Sep 2017 20:51:10 -0000
+X-List-Received-Date: Fri, 01 Sep 2017 20:51:25 -0000
 Content-Type: text/plain
 
 Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
 ---
- meta-arago-distro/conf/distro/include/arago-source-ipk.inc | 3 +++
- 1 file changed, 3 insertions(+)
+ .../recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb              | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-index 5dd1ca64..5e3de4ef 100644
---- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-@@ -70,6 +70,9 @@ SRCIPK_INSTALL_DIR_pn-dual-camera-demo = "example-applications/${PN}-${PV}"
- CREATE_SRCIPK_pn-evse-hmi = "1"
- SRCIPK_INSTALL_DIR_pn-evse-hmi = "example-applications/${PN}-${PV}"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
+index f751f8f8..f2ea2ed4 100755
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
+@@ -15,6 +15,7 @@ HMI_RDEPENDS += "matrix-gui-apps-images matrix-gui-submenus-hmi"
+ FILES_${PN} += "${MATRIX_BASE_DIR}/*"
  
-+CREATE_SRCIPK_pn-protection-relays-hmi = "1"
-+SRCIPK_INSTALL_DIR_pn-protection-relays-hmi = "example-applications/${PN}-${PV}"
+ PACKAGES = "matrix-hmi-demo-evse \
++	    matrix-hmi-demo-protection-relays\
+ "
+ 
+ RDEPENDS_matrix-hmi-demo-evse = " \
+@@ -22,5 +23,13 @@ RDEPENDS_matrix-hmi-demo-evse = " \
+     evse-hmi \
+ "
+ 
++RDEPENDS_matrix-hmi-demo-protection-relays = " \
++    ${HMI_RDEPENDS} \
++    protection-relays-hmi \
++"
 +
- CREATE_SRCIPK_pn-image-gallery = "1"
- SRCIPK_INSTALL_DIR_pn-image-gallery = "example-applications/${PN}"
- 
+ FILES_matrix-hmi-demo-evse    = "${MATRIX_APP_DIR}/hmi_evse/*"
+ FILES_matrix-hmi-demo-evse  += "${bindir}/runHmiEvse.sh"
++
++FILES_matrix-hmi-demo-protection-relays   = "${MATRIX_APP_DIR}/hmi_protection_relays/*"
++FILES_matrix-hmi-demo-protection-relays  += "${bindir}/runHmiProtectionRelays.sh"
 -- 
 2.13.0
 
