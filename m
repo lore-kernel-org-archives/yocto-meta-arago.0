@@ -1,43 +1,45 @@
 Return-Path: <manishalocal@uda0393239>
 Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id C4C4452A05
+	by arago-project.org (Postfix) with ESMTPS id 3C5FB52978
 	for <meta-arago@arago-project.org>;
-	Fri,  1 Sep 2017 20:51:09 +0000 (UTC)
+	Fri,  1 Sep 2017 20:51:10 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v81Kp90P016230
-	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 15:51:09 -0500
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v81KpAdF016234
+	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 15:51:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504299069;
-	bh=hUlppPDFIYC5QqswI5paB5GKOUTNtd8R8KU4xZGVvTw=;
-	h=From:To:CC:Subject:Date;
-	b=zVgxi0EtrPcxiNSHb0cZUsRyMoypOiJc+x3cEebxMUeUB5aGUxK8KxO1u0XH6IbpU
-	EFpoCi2A3IrDtaq8M9kSgXLjrXOVB/x7Cx4eVm8bCHUi95gzTZ/LC/A98VNL+//5za
-	IvJ4Cp78RUmHSTNgk5eJ8HzEOaovptwXM7oFCcpU=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81Kp9xs014564
-	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 15:51:09 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1504299070;
+	bh=sbXqqY7RnOcl3NGMNRRxCsWdA6SGouDxH+vCPccRM/I=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=fIl674pNL2hz/u842Poxramjx6Cy6xtTuBPHDQi/nD0DT9wYHk1Tn5Oyoo5UoSjOA
+	3LAFEiPkmZEu+zqeb7CxpJx8DLfix2t+gSGcXmCEafHG1Wm6Jg5nUXa0M5o6+KKx+X
+	RAvRr/qwClWaOVsfa0wJSB5q0ovnGaXVqESgzEMs=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81KpAeI014576
+	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 15:51:10 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
 	Fri, 1 Sep 2017 15:51:09 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
 	Transport; Fri, 1 Sep 2017 15:51:09 -0500
 Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81Kp9gU000573;
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81Kp9Nu015439;
 	Fri, 1 Sep 2017 15:51:09 -0500
 Received: from manishalocal by uda0393239 with local (Exim 4.82)
 	(envelope-from <manishalocal@uda0393239>)
-	id 1dnsuD-0006dK-8f; Fri, 01 Sep 2017 15:51:09 -0500
+	id 1dnsuD-0006dd-NW; Fri, 01 Sep 2017 15:51:09 -0500
 From: Manisha Agrawal <manisha.agrawal@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 1 Sep 2017 15:51:02 -0500
-Message-ID: <20170901205107.25462-1-manisha.agrawal@ti.com>
+Date: Fri, 1 Sep 2017 15:51:06 -0500
+Message-ID: <20170901205107.25462-5-manisha.agrawal@ti.com>
 X-Mailer: git-send-email 2.13.0
+In-Reply-To: <20170901205107.25462-1-manisha.agrawal@ti.com>
+References: <20170901205107.25462-1-manisha.agrawal@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty][PATCH v1 1/6] protectio-relays-hmi : new demo
+Subject: [morty][PATCH v1 5/6] packagegroup-arago-tisdk-hmi: add protection-relays-hmi demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,47 +55,36 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Fri, 01 Sep 2017 20:51:10 -0000
 Content-Type: text/plain
 
-This demo is developed as part of TI Design on Protection Relaysi HMI.
-
-A protection relay is a smart device that receives inputs, compares
-them to set points, and provides outputs. Inputs can be current,
-voltage, resistance, or temperature. Outputs can include visual
-feedback in the form of indicator lights and/or an alphanumeric
-display, communications, control warnings, alarms, and turning
-power off and on
-
 Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
 ---
- .../protection-relays-hmi_git.bb                     | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100755 meta-arago-extras/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb  | 1 +
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb           | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/meta-arago-extras/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb b/meta-arago-extras/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
-new file mode 100755
-index 00000000..71f1ea5d
---- /dev/null
-+++ b/meta-arago-extras/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
-@@ -0,0 +1,20 @@
-+SUMMARY = "HMI demo for Prectection Relays using QT QWidget tools"
-+LICENSE = "BSD-3-Clause"
-+LIC_FILES_CHKSUM = "file://main.cpp;beginline=1;endline=33;md5=a9cde3921a8be42ed79ab74661799104"
-+
-+inherit qt-provider
-+
-+PV = "1.0"
-+PR = "r0"
-+
-+BRANCH = "master"
-+SRC_URI = "git://git.ti.com/sitara-linux/protection-relays-hmi.git;protocol=git;branch=${BRANCH}"
-+
-+SRCREV = "c8764aaba365302090179b6720cbfc994e169842"
-+
-+S = "${WORKDIR}/git"
-+
-+do_install() {
-+    install -d ${D}${bindir}
-+    install -m 755 protection_relays_hmi ${D}${bindir}
-+}
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
+index 735dda8e..4921147c 100755
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
+@@ -14,6 +14,7 @@ HMI_append_ti43x = " \
+ 
+ HMI_append_ti33x = " \
+     evse-hmi-src \
++    protection-relays-hmi-src \
+ "
+ 
+ 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
+index 38ff06b4..125443ae 100755
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
+@@ -12,6 +12,7 @@ HMI = " \
+ 
+ HMI_append_ti33x = " \
+     evse-hmi \
++    protection-relays-hmi \
+ "
+ 
+ HMI_append_ti43x = " \
 -- 
 2.13.0
 
