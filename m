@@ -1,43 +1,45 @@
 Return-Path: <manishalocal@uda0393239>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 9B8F952A27
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 9B70A52A05
 	for <meta-arago@arago-project.org>;
 	Fri,  1 Sep 2017 20:28:33 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v81KSXDK013467
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v81KSXVv020228
 	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 15:28:33 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
 	s=ti-com-17Q1; t=1504297713;
-	bh=dOT+ARE2FhmpUM5sV5i8HpyQIQUYcCH4WT3ZfkHLiEo=;
-	h=From:To:CC:Subject:Date;
-	b=MCVvYlsdQPv9q2Gj94ZuKHlsGORvPzTxNkmdQ7blRtwGqg2/4S/0DssoPH+zSyQNx
-	Ktw9k+bqeBHySanYKiJYkbZ0CUKi1vZiDGp1dWQmkVEW1s4BP6sPow6k9+Bt6PuhWg
-	oNTJ9DuA4L5UZQPDEt7xZ7wBXKUf+VDtrl1rmEIo=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81KSXek028823
+	bh=o+1DlEVnrxZqmIdE2iNADnGsR1JfQwNzwJx6k6B6SrI=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=uoM6jH3GSqx78d8l7Gi15eUYBYAr/T0kyPP/PasEW/BEo0Rl+1OXfYM0XLNR31/gZ
+	f6cQl0pgqoJyTU0D4N/xpBShoGLS6Oidg1tpKnZt3hYLpYqMGt+VkykQxpMho2jCuP
+	pL+EMJ7NgbflGUsQpR20a2aRuV1zIkIXB/Nhovts=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81KSX3F028832
 	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 15:28:33 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Fri, 1 Sep 2017 15:28:32 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 1 Sep 2017 15:28:33 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Fri, 1 Sep 2017 15:28:32 -0500
+	Transport; Fri, 1 Sep 2017 15:28:33 -0500
 Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81KSWRt024776;
-	Fri, 1 Sep 2017 15:28:32 -0500
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81KSX9S023818;
+	Fri, 1 Sep 2017 15:28:33 -0500
 Received: from manishalocal by uda0393239 with local (Exim 4.82)
 	(envelope-from <manishalocal@uda0393239>)
-	id 1dnsYK-0006Ts-QD; Fri, 01 Sep 2017 15:28:32 -0500
+	id 1dnsYL-0006U1-1b; Fri, 01 Sep 2017 15:28:33 -0500
 From: Manisha Agrawal <manisha.agrawal@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 1 Sep 2017 15:28:24 -0500
-Message-ID: <20170901202830.24876-1-manisha.agrawal@ti.com>
+Date: Fri, 1 Sep 2017 15:28:26 -0500
+Message-ID: <20170901202830.24876-3-manisha.agrawal@ti.com>
 X-Mailer: git-send-email 2.13.0
+In-Reply-To: <20170901202830.24876-1-manisha.agrawal@ti.com>
+References: <20170901202830.24876-1-manisha.agrawal@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH v1 1/7] recipe-apps : add evse and protection-relays hmi demo recipe
+Subject: [meta-processor-sdk][PATCH v1 3/7] matrix-gui-hmi-demos : hmi demo descriptions for matrix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,70 +57,52 @@ Content-Type: text/plain
 
 Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
 ---
- recipes-apps/evse-hmi/evse-hmi_git.bb              | 23 ++++++++++++++++++++++
- .../protection-relays-hmi_git.bb                   | 23 ++++++++++++++++++++++
- 2 files changed, 46 insertions(+)
- create mode 100755 recipes-apps/evse-hmi/evse-hmi_git.bb
- create mode 100755 recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
+ recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb | 36 +++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100755 recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
 
-diff --git a/recipes-apps/evse-hmi/evse-hmi_git.bb b/recipes-apps/evse-hmi/evse-hmi_git.bb
+diff --git a/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb b/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
 new file mode 100755
-index 0000000..abd4e90
+index 0000000..1ed5a5e
 --- /dev/null
-+++ b/recipes-apps/evse-hmi/evse-hmi_git.bb
-@@ -0,0 +1,23 @@
-+SUMMARY = "HMI demo for electronic vehicle charging station (EVSE) using QT QWidget tools"
-+LICENSE = "BSD-3-Clause"
-+LIC_FILES_CHKSUM = "file://main.cpp;beginline=1;endline=33;md5=a9cde3921a8be42ed79ab74661799104"
++++ b/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
+@@ -0,0 +1,36 @@
++SUMMARY = "HMI demo descriptions for Matrix v2"
++HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
 +
-+inherit qt-provider
++require recipes-core/matrix/matrix-gui-apps-git.inc
++SRCREV = "094736065e1a15a49da19ef4c5a100aa763c41d1"
 +
-+PV = "1.0"
-+PR = "r0"
++PR = "${INC_PR}.0"
 +
-+BRANCH = "master"
-+SRC_URI = "git://git.ti.com/sitara-linux/evse-hmi.git;protocol=git;branch=${BRANCH}"
++inherit allarch
 +
-+SRCREV = "a257dfc05db311c74cb50838ff5b9e2cfb87dbfe"
++S = "${WORKDIR}/git/hmi_apps"
 +
-+S = "${WORKDIR}/git"
++# Make sure machinevision submenu and app images has been installed
++HMI_RDEPENDS += "matrix-gui-apps-images matrix-gui-submenus-hmi"
 +
-+CREATE_SRCIPK_evse-hmi = "1"                                                                               
-+SRCIPK_INSTALL_DIR_evse-hmi = "example-applications/${PN}-${PV}"
++FILES_${PN} += "${MATRIX_BASE_DIR}/*"
 +
-+do_install() {
-+    install -d ${D}${bindir}
-+    install -m 755 evse_hmi ${D}${bindir}
-+}
-diff --git a/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb b/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
-new file mode 100755
-index 0000000..a6ece91
---- /dev/null
-+++ b/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
-@@ -0,0 +1,23 @@
-+SUMMARY = "HMI demo for Prectection Relays using QT QWidget tools"
-+LICENSE = "BSD-3-Clause"
-+LIC_FILES_CHKSUM = "file://main.cpp;beginline=1;endline=33;md5=a9cde3921a8be42ed79ab74661799104"
++PACKAGES = "matrix-hmi-demo-evse \
++	    matrix-hmi-demo-protection-relays\
++"
 +
-+inherit qt-provider
++RDEPENDS_matrix-hmi-demo-evse = " \
++    ${HMI_RDEPENDS} \
++    evse-hmi \
++"
 +
-+PV = "1.0"
-+PR = "r0"
++RDEPENDS_matrix-hmi-demo-protection-relays = " \
++    ${HMI_RDEPENDS} \
++    protection-relays-hmi \
++"
 +
-+BRANCH = "master"
-+SRC_URI = "git://git.ti.com/sitara-linux/protection-relays-hmi.git;protocol=git;branch=${BRANCH}"
++FILES_matrix-hmi-demo-evse    = "${MATRIX_APP_DIR}/hmi_evse/*"
++FILES_matrix-hmi-demo-evse  += "${bindir}/runHmiEvse.sh"
 +
-+SRCREV = "c8764aaba365302090179b6720cbfc994e169842"
-+
-+S = "${WORKDIR}/git"
-+
-+CREATE_SRCIPK_protection-relays-hmi = "1"
-+SRCIPK_INSTALL_DIR_protection-relays-hmi = "example-applications/${PN}-${PV}"
-+
-+do_install() {
-+    install -d ${D}${bindir}
-+    install -m 755 protection_relays_hmi ${D}${bindir}
-+}
++FILES_matrix-hmi-demo-protection-relays   = "${MATRIX_APP_DIR}/hmi_protection_relays/*"
++FILES_matrix-hmi-demo-protection-relays  += "${bindir}/runHmiProtectionRelays.sh"
 -- 
 2.13.0
 
