@@ -1,45 +1,45 @@
 Return-Path: <manishalocal@uda0393239>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id C472652A27
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id ACC7D52A05
 	for <meta-arago@arago-project.org>;
 	Fri,  1 Sep 2017 21:06:14 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v81L6EeL024347
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v81L6EVI029276
 	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 16:06:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
 	s=ti-com-17Q1; t=1504299974;
-	bh=wRYzIWgor9FyRYMIZBbgO3E423aGuxV4hOj0tEpRyoU=;
+	bh=2ggzPY2DPrZ0ufMD9uTOoGfOVe8XzH+Y8gNopBfrQHc=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=GJHfzSMOiQB8x4oTbNcOXi7MwcE2J5qpmzD48QFrVyK1e9gwRjE0XdTAi2CsyuT/s
-	RzCXzrUMwuGeBzcf1iiOSsnTvl1WQoXev6n3NnSGi5T8Yj6XGYeA1my1hhUcXNf2i7
-	9zF+y+e4ePwMNNWujsmDAKStW5ngfFHgqIKKB2Hk=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81L6Edh021919
+	b=qk9L1QYIkoe+QqXgQNK+5+QmoImPZ5DvniL/y1RQZpvqIKUsR+/pA3spQ6JZSBh4H
+	LsRxkxFo7mnI8vZ16HWj5Fjzej8oT0Y+qZ4gYuqHYAU83krioyFwaSZ9OwGupGcegT
+	C5ir101aWhjrrr5P3kJo/HTKRXmFccdOdiSeCFNI=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81L6EBB005600
 	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 16:06:14 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
 	Fri, 1 Sep 2017 16:06:14 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
 	Transport; Fri, 1 Sep 2017 16:06:14 -0500
 Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81L6EZR031794;
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81L6ETJ031800;
 	Fri, 1 Sep 2017 16:06:14 -0500
 Received: from manishalocal by uda0393239 with local (Exim 4.82)
 	(envelope-from <manishalocal@uda0393239>)
-	id 1dnt8n-0006o3-VG; Fri, 01 Sep 2017 16:06:13 -0500
+	id 1dnt8o-0006oD-6t; Fri, 01 Sep 2017 16:06:14 -0500
 From: Manisha Agrawal <manisha.agrawal@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 1 Sep 2017 16:06:09 -0500
-Message-ID: <20170901210611.26095-6-manisha.agrawal@ti.com>
+Date: Fri, 1 Sep 2017 16:06:11 -0500
+Message-ID: <20170901210611.26095-8-manisha.agrawal@ti.com>
 X-Mailer: git-send-email 2.13.0
 In-Reply-To: <20170901210611.26095-1-manisha.agrawal@ti.com>
 References: <20170901210611.26095-1-manisha.agrawal@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 6/8] packagegroup-arago-tisdk-hmi: add hmi specific packagegroups
+Subject: [PATCH 8/8] arago-core-tisdk-image : add hmi specific packagegroup
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -57,80 +57,23 @@ Content-Type: text/plain
 
 Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
 ---
- .../packagegroup-arago-tisdk-hmi-sdk-host.bb       | 27 ++++++++++++++++++++
- .../packagegroups/packagegroup-arago-tisdk-hmi.bb  | 29 ++++++++++++++++++++++
- 2 files changed, 56 insertions(+)
- create mode 100755 recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
- create mode 100755 recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
+ recipes-core/images/arago-core-tisdk-image.bbappend | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb b/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-new file mode 100755
-index 0000000..2aafcd3
---- /dev/null
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-@@ -0,0 +1,27 @@
-+SUMMARY = "Task to add HMI related sources into the SDK"
-+LICENSE = "MIT"
-+PR = "r0"
+diff --git a/recipes-core/images/arago-core-tisdk-image.bbappend b/recipes-core/images/arago-core-tisdk-image.bbappend
+index 2857178..2c804f0 100644
+--- a/recipes-core/images/arago-core-tisdk-image.bbappend
++++ b/recipes-core/images/arago-core-tisdk-image.bbappend
+@@ -1,5 +1,9 @@
+ PR_append = ".tisdk13"
+ 
++IMAGE_INSTALL_append = " \                                                                                                                   
++      packagegroup-arago-tisdk-hmi-sdk-host \ 
++ "
 +
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+inherit packagegroup
-+
-+HMI = ""
-+
-+HMI_append_ti43x = " \
-+    evse-hmi-src \
-+"
-+
-+HMI_append_ti33x = " \
-+    evse-hmi-src \ 
-+    protection-relays-hmi-src \
-+"
-+
-+
-+HMI_append_omap-a15 = " \
-+    evse-hmi-src \
-+"
-+
-+RDEPENDS_${PN} = "\
-+    ${HMI} \
-+"
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb b/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
-new file mode 100755
-index 0000000..125443a
---- /dev/null
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
-@@ -0,0 +1,29 @@
-+SUMMARY = "Task to add HMI related packages"
-+LICENSE = "MIT"
-+PR = "r0"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+inherit packagegroup
-+
-+HMI = " \
-+"
-+
-+
-+HMI_append_ti33x = " \
-+    evse-hmi \
-+    protection-relays-hmi \
-+"
-+
-+HMI_append_ti43x = " \
-+    evse-hmi \
-+"
-+
-+HMI_append_omap-a15 = " \
-+    evse-hmi \
-+"
-+
-+
-+RDEPENDS_${PN} = "\
-+	${HMI} \
-+"
+ # The following FITIMAGE vars are copied from kernel-fitimage.bbclass.
+ #
+ # We need to get these into the prebuilt-images. We don't want to inherit the
 -- 
 2.13.0
 
