@@ -1,43 +1,43 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 23026529AF
+Return-Path: <manishalocal@uda0393239>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 0C6C5529AF
 	for <meta-arago@arago-project.org>;
-	Tue,  5 Sep 2017 17:30:05 +0000 (UTC)
+	Tue,  5 Sep 2017 17:44:18 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v85HU4cN017438
-	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 12:30:05 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v85Hi7ur022696
+	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 12:44:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504632605;
-	bh=Wgi5bzrQNznGokmuEcJ0rQzszAKFEQTufZgc2G+trR8=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=fXxXY3EsF0XjbJlN3itvf6JPB79GHp9azgv9iwyqpQz4vBvSS8hrQ1EfknNAdeJMR
-	w53K2P/aWGlRypPEsM2+3KoI7W/LtnUQl7orJaKpf6fDpN00Esgf2vlSQxooDBPJMh
-	mlo8RUriDwxj7gOj79R/8y+kAE/q+CU/QDFthcCY=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85HU3tG003922
-	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 12:30:04 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1504633448;
+	bh=RalO9sM7UkX+oQGW1qsniBLJzcm4KHJQfuioCmxoiGQ=;
+	h=From:To:CC:Subject:Date;
+	b=uKLQiFaAbhG+0tnOsVQqaB9WaPaBIW9ENba8qUacLyJS27jDus+LDaXr3r2eP3pQY
+	4YD4LuCAvIL4U4cbhXC5v29LKQ9oiKIbEYdOaUwKQYtK81ykSu+bngG43uBZ2QWlXU
+	axMlAWnrnigDk4yuUmKQnPQbvk37vq/SDnesycEk=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85Hi2hQ024210
+	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 12:44:02 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 5 Sep 2017 12:30:04 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 5 Sep 2017 12:44:02 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE100.ent.ti.com
+	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 5 Sep 2017 12:30:04 -0500
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85HU4Nw026403;
-	Tue, 5 Sep 2017 12:30:04 -0500
-To: Manisha Agrawal <manisha.agrawal@ti.com>, <meta-arago@arago-project.org>
-References: <20170905170926.13566-1-manisha.agrawal@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <81a1242d-97b4-dab8-ff7c-2af846bade5c@ti.com>
-Date: Tue, 5 Sep 2017 13:30:04 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	Transport; Tue, 5 Sep 2017 12:44:02 -0500
+Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85Hi2Ya018783;
+	Tue, 5 Sep 2017 12:44:02 -0500
+Received: from manishalocal by uda0393239 with local (Exim 4.82)
+	(envelope-from <manishalocal@uda0393239>)
+	id 1dpHtK-0003hn-8b; Tue, 05 Sep 2017 12:44:02 -0500
+From: Manisha Agrawal <manisha.agrawal@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 5 Sep 2017 12:43:56 -0500
+Message-ID: <20170905174356.14207-1-manisha.agrawal@ti.com>
+X-Mailer: git-send-email 2.13.0
 MIME-Version: 1.0
-In-Reply-To: <20170905170926.13566-1-manisha.agrawal@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [meta-processor-sdk][PATCH v4 1/8] recipes-apps : add evse-hmi demo
+Subject: [meta-processor-sdk][PATCH v1] ti-tisdk-makefile : Add evse-hmi and protection-relays-hmi Makefile
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,53 +50,106 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Sep 2017 17:30:05 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Tue, 05 Sep 2017 17:44:18 -0000
+Content-Type: text/plain
 
-Thanks. This set has been pushed.
+Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
+---
+ .../ti-tisdk-makefile/Makefile_evse-hmi            | 24 ++++++++++++++++++++++
+ .../Makefile_protection-relays-hmi                 | 24 ++++++++++++++++++++++
+ .../ti-tisdk-makefile_1.0.bbappend                 |  9 +++++++-
+ 3 files changed, 56 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_evse-hmi
+ create mode 100644 recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_protection-relays-hmi
 
-
-On 9/5/2017 1:09 PM, Manisha Agrawal wrote:
-> EVSE stands for Electronic Vehicle Supply Station.  This demo is created as part
-> of TID on EVSE to demonsrate drawing the gui for EVSE application using QT
-> QWidget and rendering on LCD panel using  linuxfb QPA.
->
-> Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
-> ---
->   recipes-apps/evse-hmi/evse-hmi_git.bb | 23 +++++++++++++++++++++++
->   1 file changed, 23 insertions(+)
->   create mode 100755 recipes-apps/evse-hmi/evse-hmi_git.bb
->
-> diff --git a/recipes-apps/evse-hmi/evse-hmi_git.bb b/recipes-apps/evse-hmi/evse-hmi_git.bb
-> new file mode 100755
-> index 0000000..1bb66f5
-> --- /dev/null
-> +++ b/recipes-apps/evse-hmi/evse-hmi_git.bb
-> @@ -0,0 +1,23 @@
-> +SUMMARY = "HMI demo for electronic vehicle charging station (EVSE) using QT QWidget tools"
-> +LICENSE = "BSD-3-Clause"
-> +LIC_FILES_CHKSUM = "file://main.cpp;beginline=1;endline=33;md5=a9cde3921a8be42ed79ab74661799104"
-> +
-> +inherit qt-provider
-> +
-> +PV = "1.0"
-> +PR = "r0"
-> +
-> +BRANCH = "master"
-> +SRC_URI = "git://git.ti.com/sitara-linux/evse-hmi.git;protocol=git;branch=${BRANCH}"
-> +
-> +SRCREV = "a257dfc05db311c74cb50838ff5b9e2cfb87dbfe"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +CREATE_SRCIPK = "1"
-> +SRCIPK_INSTALL_DIR = "example-applications/${PN}-${PV}"
-> +
-> +do_install() {
-> +    install -d ${D}${bindir}
-> +    install -m 755 evse_hmi ${D}${bindir}
-> +}
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_evse-hmi b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_evse-hmi
+new file mode 100644
+index 0000000..b19e630
+--- /dev/null
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_evse-hmi
+@@ -0,0 +1,24 @@
++# Evse HMI build targets
++evse-hmi:
++	@echo ================================
++	@echo    Building Evse HMI Demo
++	@echo ================================
++	@cd example-applications; cd `find . -name "*evse-hmi*"`; make -f Makefile.build
++
++evse-hmi_clean:
++	@echo ================================
++	@echo    Building Evse HMI Demo
++	@echo ================================
++	@cd example-applications; cd `find . -name "*evse-hmi*"`; make -f Makefile.build clean
++
++evse-hmi_install:
++	@echo ===================================================
++	@echo   Installing Evse HMI Demo - Release version
++	@echo ===================================================
++	@cd example-applications; cd `find . -name "*evse-hmi*"`; make -f Makefile.build install
++
++evse-hmi_install_debug:
++	@echo =================================================
++	@echo   Installing Evse HMI Demo - Debug version
++	@echo =================================================
++	@cd example-applications; cd `find . -name "*evse-hmi*"`; make -f Makefile.build install_debug
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_protection-relays-hmi b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_protection-relays-hmi
+new file mode 100644
+index 0000000..04f434f
+--- /dev/null
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_protection-relays-hmi
+@@ -0,0 +1,24 @@
++#Protection Relays HMI build targets
++protection-relays-hmi:
++	@echo ================================
++	@echo    Building Protection Relays HMI Demo
++	@echo ================================
++	@cd example-applications; cd `find . -name "*protection-relays-hmi*"`; make -f Makefile.build
++
++protection-relays-hmi_clean:
++	@echo ================================
++	@echo    Building Protection Relays HMI Demo
++	@echo ================================
++	@cd example-applications; cd `find . -name "*protection-relays-hmi*"`; make -f Makefile.build clean
++
++protection-relays-hmi_install:
++	@echo ===================================================
++	@echo   Installing Protection Relays HMI Demo - Release version
++	@echo ===================================================
++	@cd example-applications; cd `find . -name "*protection-relays-hmi*"`; make -f Makefile.build install
++
++protection-relays-hmi_install_debug:
++	@echo =================================================
++	@echo   Installing Protection Relays HMI Demo - Debug version
++	@echo =================================================
++	@cd example-applications; cd `find . -name "*protection-relays-hmi*"`; make -f Makefile.build install_debug
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+index 68d11c6..bd12f12 100644
+--- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+@@ -22,6 +22,7 @@ MAKEFILES_append_omap-a15 = " dual-camera-demo \
+                               image-gallery \
+                               ti-ipc \
+                               big-data-ipc-demo \
++			      evse-hmi \
+ "
+ 
+ MAKEFILES_append_omapl138 = " ti-ipc \
+@@ -33,7 +34,13 @@ MAKEFILES_remove_omapl138 = "u-boot-legacy"
+ 
+ MAKEFILES_append_omap-a15 = " video-graphics-test"
+ 
+-MAKEFILES_append_ti43x = " cmem-mod"
++MAKEFILES_append_ti43x = " cmem-mod \
++			   evse-hmi \
++"
++
++MAKEFILES_append_ti33x = " evse-hmi \
++			   protection-relays-hmi \
++"
+ 
+ MAKEFILES_append_am57xx-evm = " jailhouse"
+ 
+-- 
+2.13.0
 
 
