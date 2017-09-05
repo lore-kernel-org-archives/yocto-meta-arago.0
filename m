@@ -1,30 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id AB49A529CD
+	by arago-project.org (Postfix) with ESMTPS id AAB53529CC
 	for <meta-arago@arago-project.org>;
 	Tue,  5 Sep 2017 23:09:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3A1CD20A31;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5B915209BD;
 	Tue,  5 Sep 2017 23:09:55 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 6ygn6-YShK_K; Tue,  5 Sep 2017 23:09:55 +0000 (UTC)
+	with ESMTP id hJ6gfGiSPdud; Tue,  5 Sep 2017 23:09:55 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0EF3F2005C;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2CF5520999;
 	Tue,  5 Sep 2017 23:09:54 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 84C5E1625EC;
+	by mail.denix.org (Postfix) with ESMTP id 9C6571625EE;
 	Tue,  5 Sep 2017 19:09:53 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Tue,  5 Sep 2017 19:09:49 -0400
-Message-Id: <1504652992-35063-1-git-send-email-denys@ti.com>
+Date: Tue,  5 Sep 2017 19:09:51 -0400
+Message-Id: <1504652992-35063-3-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH 1/4] qt-vars: add QtWebEngine dependency variable
+In-Reply-To: <1504652992-35063-1-git-send-email-denys@ti.com>
+References: <1504652992-35063-1-git-send-email-denys@ti.com>
+Subject: [morty/master][PATCH 3/4] packagegroup-*-graphics: add chromium-wayland for A15 platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,21 +43,51 @@ X-List-Received-Date: Tue, 05 Sep 2017 23:09:56 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/classes/qt-vars.bbclass | 1 +
- 1 file changed, 1 insertion(+)
+ .../packagegroups/packagegroup-arago-tisdk-graphics.bb        | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/classes/qt-vars.bbclass b/meta-arago-distro/classes/qt-vars.bbclass
-index 4c4cb11..866b5ad 100644
---- a/meta-arago-distro/classes/qt-vars.bbclass
-+++ b/meta-arago-distro/classes/qt-vars.bbclass
-@@ -9,6 +9,7 @@ QT_DEPENDS_BASE = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtbase', 'qt4-embe
- QT_DEPENDS_WEBKIT = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtwebkit', '', d)}"
- QT_DEPENDS_SVG = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtsvg', '', d)}"
- QT_DEPENDS_SCRIPT = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtscript', '', d)}"
-+QT_DEPENDS_WEBENGINE = "${@base_conditional('QT_PROVIDER', 'qt5', 'qtwebengine', '', d)}"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+index 5dae1b5..b19e759 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+@@ -1,23 +1,26 @@
+ DESCRIPTION = "Task to install graphics binaries"
+ LICENSE = "MIT"
+-PR = "r16"
++PR = "r17"
  
- # Run-time dependencies
- QT_RDEPENDS_FONTS = "${@base_conditional('QT_PROVIDER', 'qt5', '', 'qt4-embedded-fonts', d)}"
+ inherit packagegroup
+ 
+-GRAPHICS_WESTON = "\
++GRAPHICS_WAYLAND = "\
+     weston \
+     weston-init \
+     weston-examples \
+     wayland-ivi-extension \
+ "
+ 
++GRAPHICS_WAYLAND_append_omap-a15 = "\
++    chromium-wayland \
++"
++
+ GRAPHICS_RDEPENDS = "\
+     libgbm \
+     ti-sgx-ddk-km \
+     ti-sgx-ddk-um \
+ "
+ 
+-
+ GRAPHICS_RDEPENDS_append_omap-a15 = "\
+     ti-gc320-tests \
+     ti-gc320-driver \
+@@ -25,6 +28,6 @@ GRAPHICS_RDEPENDS_append_omap-a15 = "\
+ "
+ 
+ RDEPENDS_${PN} = "\
+-    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', "${GRAPHICS_WESTON}", '', d)} \
++    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', "${GRAPHICS_WAYLAND}", '', d)} \
+     ${GRAPHICS_RDEPENDS} \
+ "
 -- 
 2.7.4
 
