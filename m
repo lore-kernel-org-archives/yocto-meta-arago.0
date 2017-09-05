@@ -1,41 +1,45 @@
-Return-Path: <yan-liu@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 2B6F7529AF
+Return-Path: <manishalocal@uda0393239>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id C48B1529AF
 	for <meta-arago@arago-project.org>;
-	Tue,  5 Sep 2017 15:35:04 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v85FZ3qu031109
-	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 10:35:03 -0500
+	Tue,  5 Sep 2017 17:09:28 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v85H9SjM029090
+	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 12:09:28 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504625703;
-	bh=92g9aaoazWOvh06lgK8grMilCG1VXYHWf/MRhCfcpKE=;
-	h=From:To:CC:Subject:Date;
-	b=lbPzMNOmqy7JWeQDB6OPbF9fjyWL36aKdNGbV/J09Bs6nmEr+PLArtUWHofXvhEr7
-	7/JFNdyKYpUhA2+3T7U31Td6yQ+Z5xLmV3ntpnIhtYbegbh4K7EpwrvXtf85daWzCb
-	isOHb2eGL9q2GCFzE/vwr8Iz9PKoklxsaPlx58/I=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85FZ3gr023633
-	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 10:35:03 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1504631368;
+	bh=K/n5K/4hapu+ZHyKYrpFQ/pd11lV/23Jyoe/HPt6N5Y=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=nGPXJzerNJ2jcZRDWd5OIlzy4svL00Zhy3D5s8fJZ20I+PnzZNq5EUSoO50TdKDWH
+	l/zC46A8Lkt79zJvyt0IVSL7WzPwE5PwN2FjgkEoUVAFXQp1BAmm7sAlJ+4eBpCqmg
+	34VvauPaK8NAUAS4SXl84NTllxAIRua2FNsAZKl8=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85H9S9P010535
+	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 12:09:28 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 5 Sep 2017 10:35:03 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 5 Sep 2017 12:09:28 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 5 Sep 2017 10:35:03 -0500
-Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85FZ3vm012519;
-	Tue, 5 Sep 2017 10:35:03 -0500
-From: <yan-liu@ti.com>
+	Transport; Tue, 5 Sep 2017 12:09:28 -0500
+Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85H9SXf008057;
+	Tue, 5 Sep 2017 12:09:28 -0500
+Received: from manishalocal by uda0393239 with local (Exim 4.82)
+	(envelope-from <manishalocal@uda0393239>)
+	id 1dpHLs-0003Xd-9e; Tue, 05 Sep 2017 12:09:28 -0500
+From: Manisha Agrawal <manisha.agrawal@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 5 Sep 2017 11:30:25 -0400
-Message-ID: <1504625425-22565-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Tue, 5 Sep 2017 12:09:20 -0500
+Message-ID: <20170905170926.13566-2-manisha.agrawal@ti.com>
+X-Mailer: git-send-email 2.13.0
+In-Reply-To: <20170905170926.13566-1-manisha.agrawal@ti.com>
+References: <20170905170926.13566-1-manisha.agrawal@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: [meta-processor-sdk][PATCH v4 2/8] recipes-apps : add protection-relays-hmi demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,39 +52,54 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Sep 2017 15:35:04 -0000
+X-List-Received-Date: Tue, 05 Sep 2017 17:09:29 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
+This demo is developed as part of TI Design on Protection Relaysi HMI.
 
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+A protection relay is a smart device that receives inputs, compares
+them to set points, and provides outputs. Inputs can be current,
+voltage, resistance, or temperature. Outputs can include visual
+feedback in the form of indicator lights and/or an alphanumeric
+display, communications, control warnings, alarms,  and turning
+power off and on.
+
+Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../protection-relays-hmi_git.bb                   | 23 ++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+ create mode 100755 recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-index 0385d88..894393b 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
- 
--PR = "r22"
-+PR = "r23"
- PV_append = "+git${SRCPV}"
- 
- PROVIDES += "ltp"
-@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
- 
- inherit autotools-brokensep
- 
--SRCREV = "b84cac39ddf71f4071e6ac31c2a1bd6d21e9443b"
-+SRCREV = "d8fc13042f7a65bbc3db0256be12c94d4ff2075a"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
+diff --git a/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb b/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
+new file mode 100755
+index 0000000..7ef73e6
+--- /dev/null
++++ b/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
+@@ -0,0 +1,23 @@
++SUMMARY = "HMI demo for Prectection Relays using QT QWidget tools"
++LICENSE = "BSD-3-Clause"
++LIC_FILES_CHKSUM = "file://main.cpp;beginline=1;endline=33;md5=a9cde3921a8be42ed79ab74661799104"
++
++inherit qt-provider
++
++PV = "1.0"
++PR = "r0"
++
++BRANCH = "master"
++SRC_URI = "git://git.ti.com/sitara-linux/protection-relays-hmi.git;protocol=git;branch=${BRANCH}"
++
++SRCREV = "c8764aaba365302090179b6720cbfc994e169842"
++
++S = "${WORKDIR}/git"
++
++CREATE_SRCIPK = "1"
++SRCIPK_INSTALL_DIR = "example-applications/${PN}-${PV}"
++
++do_install() {
++    install -d ${D}${bindir}
++    install -m 755 protection_relays_hmi ${D}${bindir}
++}
 -- 
-1.7.9.5
+2.13.0
 
 
