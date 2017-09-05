@@ -1,38 +1,43 @@
-Return-Path: <manisha.agrawal@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 7A4BD52A3E
+Return-Path: <j-stiffler@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id B8E0A529AF
 	for <meta-arago@arago-project.org>;
-	Fri,  1 Sep 2017 21:20:36 +0000 (UTC)
+	Tue,  5 Sep 2017 12:42:06 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v81LKaPv020512
-	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 16:20:36 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v85Cg6aR022098
+	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 07:42:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504300836;
-	bh=4lAsFDq5eVKpnuZWoUqEi+TFTG8qGMX1SD9cwKzCnf8=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=sumUaCcOcggkrgn5NVYRex0RjNAy/kHLV32xQ4FrCEtHSFtKogDvzDPgzDVekP8tT
-	Q6XaN9AP2kVKnWmvS2vZt2NoZj9QwASKmdduMK+3+xeSfJgOpo0TB/RyS3fp/FAt+p
-	euP8vUj8zgCb+I0INTFN/WUd2r74FkunmH+kDsZc=
-Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v81LKaWg024233
-	for <meta-arago@arago-project.org>; Fri, 1 Sep 2017 16:20:36 -0500
-Received: from DFLE12.ent.ti.com ([fe80::e9a3:bf19:af96:227b]) by
-	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
-	14.03.0294.000; Fri, 1 Sep 2017 16:20:36 -0500
-From: "Agrawal, Manisha" <manisha.agrawal@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [PATCH 1/8] recipes-apps : add evse-hmi demo
-Thread-Index: AQHTI2Yk+KDhnzpInEW1KQYBCu+vBKKgiU6w
-Date: Fri, 1 Sep 2017 21:20:34 +0000
-Message-ID: <3AC2660648D2B04999D9C7562469E8AF7EC3B92E@DFLE12.ent.ti.com>
-References: <20170901210611.26095-1-manisha.agrawal@ti.com>
-In-Reply-To: <20170901210611.26095-1-manisha.agrawal@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.172.224.221]
+	s=ti-com-17Q1; t=1504615326;
+	bh=f1h2uJYCF52zb+jxwIRyS+eTQ1W6mU+fkf4nOi0WMKo=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=VZ5LvsQ7FOZjWt8MUXbL0/d98dp5zKYMDY4mBREzsypMRgVV6LaN2aDBBYA5gka7k
+	IyzawoTI2VJQBmX4h5BWmN6PPZVg/sGM9to20cDNxnOA+xGF8yET+oJozbXNtD1/Ug
+	KeZCFUltS1/zIaVdG6klbV+CFKVe7B9xrTIF0XU8=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85Cg6oD027787
+	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 07:42:06 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
+	Tue, 5 Sep 2017 07:42:06 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
+	Transport; Tue, 5 Sep 2017 07:42:06 -0500
+Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85Cg5Rv026167;
+	Tue, 5 Sep 2017 07:42:06 -0500
+To: Manisha Agrawal <manisha.agrawal@ti.com>, <meta-arago@arago-project.org>
+References: <20170901211741.26451-1-manisha.agrawal@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <b9508243-1771-913c-c044-98b9eced4913@ti.com>
+Date: Tue, 5 Sep 2017 08:42:05 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/8] recipes-apps : add evse-hmi demo
+In-Reply-To: <20170901211741.26451-1-manisha.agrawal@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: Re: [meta-processor-sdk][PATCH v3 1/7] recipes-apps : add evse-hmi demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,65 +50,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Sep 2017 21:20:36 -0000
+X-List-Received-Date: Tue, 05 Sep 2017 12:42:08 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Please ignore this series. They were meant for [meta-processor-sdk] subject=
- but somehow my git send email deleted the prefix.=20
-
-Regards,
-Manisha
+Can you use a commit log similar to what was used for meta-arago?
 
 
------Original Message-----
-From: Agrawal, Manisha=20
-Sent: Friday, September 01, 2017 4:06 PM
-To: meta-arago@arago-project.org
-Cc: Dmytriyenko, Denys; Stiffler, Jacob; Agrawal, Manisha
-Subject: [PATCH 1/8] recipes-apps : add evse-hmi demo
+On 9/1/2017 5:17 PM, Manisha Agrawal wrote:
+> Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
+> ---
+>   recipes-apps/evse-hmi/evse-hmi_git.bb | 23 +++++++++++++++++++++++
+>   1 file changed, 23 insertions(+)
+>   create mode 100755 recipes-apps/evse-hmi/evse-hmi_git.bb
+>
+> diff --git a/recipes-apps/evse-hmi/evse-hmi_git.bb b/recipes-apps/evse-hmi/evse-hmi_git.bb
+> new file mode 100755
+> index 0000000..abd4e90
+> --- /dev/null
+> +++ b/recipes-apps/evse-hmi/evse-hmi_git.bb
+> @@ -0,0 +1,23 @@
+> +SUMMARY = "HMI demo for electronic vehicle charging station (EVSE) using QT QWidget tools"
+> +LICENSE = "BSD-3-Clause"
+> +LIC_FILES_CHKSUM = "file://main.cpp;beginline=1;endline=33;md5=a9cde3921a8be42ed79ab74661799104"
+> +
+> +inherit qt-provider
+> +
+> +PV = "1.0"
+> +PR = "r0"
+> +
+> +BRANCH = "master"
+> +SRC_URI = "git://git.ti.com/sitara-linux/evse-hmi.git;protocol=git;branch=${BRANCH}"
+> +
+> +SRCREV = "a257dfc05db311c74cb50838ff5b9e2cfb87dbfe"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +CREATE_SRCIPK_evse-hmi = "1"
+> +SRCIPK_INSTALL_DIR_evse-hmi = "example-applications/${PN}-${PV}"
 
-Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
----
- recipes-apps/evse-hmi/evse-hmi_git.bb | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
- create mode 100755 recipes-apps/evse-hmi/evse-hmi_git.bb
+You do not need variable overrides here as you are configuring this 
+within the recipe.
 
-diff --git a/recipes-apps/evse-hmi/evse-hmi_git.bb b/recipes-apps/evse-hmi/=
-evse-hmi_git.bb
-new file mode 100755
-index 0000000..abd4e90
---- /dev/null
-+++ b/recipes-apps/evse-hmi/evse-hmi_git.bb
-@@ -0,0 +1,23 @@
-+SUMMARY =3D "HMI demo for electronic vehicle charging station (EVSE) using=
- QT QWidget tools"
-+LICENSE =3D "BSD-3-Clause"
-+LIC_FILES_CHKSUM =3D "file://main.cpp;beginline=3D1;endline=3D33;md5=3Da9c=
-de3921a8be42ed79ab74661799104"
-+
-+inherit qt-provider
-+
-+PV =3D "1.0"
-+PR =3D "r0"
-+
-+BRANCH =3D "master"
-+SRC_URI =3D "git://git.ti.com/sitara-linux/evse-hmi.git;protocol=3Dgit;bra=
-nch=3D${BRANCH}"
-+
-+SRCREV =3D "a257dfc05db311c74cb50838ff5b9e2cfb87dbfe"
-+
-+S =3D "${WORKDIR}/git"
-+
-+CREATE_SRCIPK_evse-hmi =3D "1"                                            =
-                                  =20
-+SRCIPK_INSTALL_DIR_evse-hmi =3D "example-applications/${PN}-${PV}"
-+
-+do_install() {
-+    install -d ${D}${bindir}
-+    install -m 755 evse_hmi ${D}${bindir} }
---
-2.13.0
+You can use 'CREATE_SRCIPK = "1"', and 'SRCIPK_INSTALL_DIR = ...'
+
+> +
+> +do_install() {
+> +    install -d ${D}${bindir}
+> +    install -m 755 evse_hmi ${D}${bindir}
+> +}
 
 
