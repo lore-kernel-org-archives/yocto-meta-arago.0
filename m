@@ -1,45 +1,45 @@
 Return-Path: <manishalocal@uda0393239>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 004F852AA2
+	by arago-project.org (Postfix) with ESMTPS id 463DB52AB1
 	for <meta-arago@arago-project.org>;
-	Tue,  5 Sep 2017 17:09:43 +0000 (UTC)
+	Tue,  5 Sep 2017 17:09:44 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v85H9XOH018945
-	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 12:09:33 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v85H9Ykq018947
+	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 12:09:34 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504631373;
-	bh=wNyRWsmI+Dvj+OIt6GTzvgbd4IfWBjQbjsQtXaBGu8w=;
+	s=ti-com-17Q1; t=1504631374;
+	bh=wRYzIWgor9FyRYMIZBbgO3E423aGuxV4hOj0tEpRyoU=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=yShXFy3z8fRon88+EEE94mz1s02JRgBnqmwFdX1dgQocfYAbV8jbtJQQTCiFbqffm
-	QoPWMRX+Ew0BcvrT6f05qvgGaYuJO8ipasrQifppxXdT+04NMbte9wzFD4B3x8q5dk
-	wuvzqW4WMA5ik5ueRioDt2vMTOVUnGK9mnrrsfos=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85H9SRw031149
-	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 12:09:28 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	b=JQnvVGqiDunsPLc20+LBFi2KVmZXf7W0vLO1aTaAX1Lqjwc/LIIiA+qSSlWETkX1w
+	wR4kkrgDuys4S54Xv/H3KLfnz9Mt6LPhQ2AqDVLgZvG4S7HqRYq3KjMpuo+QqDwPCs
+	aN1gl7aSuL2XSEeX4XSPQk7Jzud8ESmSogXyNbvs=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85H9TuP031162
+	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 12:09:29 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
 	Tue, 5 Sep 2017 12:09:28 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 5 Sep 2017 12:09:28 -0500
+	Transport; Tue, 5 Sep 2017 12:09:29 -0500
 Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85H9Skp016180;
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85H9S6V008060;
 	Tue, 5 Sep 2017 12:09:28 -0500
 Received: from manishalocal by uda0393239 with local (Exim 4.82)
 	(envelope-from <manishalocal@uda0393239>)
-	id 1dpHLs-0003Xi-Dy; Tue, 05 Sep 2017 12:09:28 -0500
+	id 1dpHLs-0003Xx-Pr; Tue, 05 Sep 2017 12:09:28 -0500
 From: Manisha Agrawal <manisha.agrawal@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 5 Sep 2017 12:09:21 -0500
-Message-ID: <20170905170926.13566-3-manisha.agrawal@ti.com>
+Date: Tue, 5 Sep 2017 12:09:24 -0500
+Message-ID: <20170905170926.13566-6-manisha.agrawal@ti.com>
 X-Mailer: git-send-email 2.13.0
 In-Reply-To: <20170905170926.13566-1-manisha.agrawal@ti.com>
 References: <20170905170926.13566-1-manisha.agrawal@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH v4 3/8] matrix-gui-submenus : create hmi sub menu
+Subject: [meta-processor-sdk][PATCH v4 6/8] packagegroup-arago-tisdk-hmi: add hmi specific packagegroups
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -57,29 +57,80 @@ Content-Type: text/plain
 
 Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
 ---
- recipes-core/matrix/matrix-gui-submenus_2.0.bbappend | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
- create mode 100644 recipes-core/matrix/matrix-gui-submenus_2.0.bbappend
+ .../packagegroup-arago-tisdk-hmi-sdk-host.bb       | 27 ++++++++++++++++++++
+ .../packagegroups/packagegroup-arago-tisdk-hmi.bb  | 29 ++++++++++++++++++++++
+ 2 files changed, 56 insertions(+)
+ create mode 100755 recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
+ create mode 100755 recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
 
-diff --git a/recipes-core/matrix/matrix-gui-submenus_2.0.bbappend b/recipes-core/matrix/matrix-gui-submenus_2.0.bbappend
-new file mode 100644
-index 0000000..169b225
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb b/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
+new file mode 100755
+index 0000000..2aafcd3
 --- /dev/null
-+++ b/recipes-core/matrix/matrix-gui-submenus_2.0.bbappend
-@@ -0,0 +1,13 @@
-+PR_append = ".tisdk2"
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
+@@ -0,0 +1,27 @@
++SUMMARY = "Task to add HMI related sources into the SDK"
++LICENSE = "MIT"
++PR = "r0"
 +
-+SRCREV = "094736065e1a15a49da19ef4c5a100aa763c41d1"
++PACKAGE_ARCH = "${MACHINE_ARCH}"
 +
-+SUBMENUS_append = " \
-+    hmi_submenu \
++inherit packagegroup
++
++HMI = ""
++
++HMI_append_ti43x = " \
++    evse-hmi-src \
 +"
 +
-+PACKAGES_append = " \
-+    ${PN}-hmi \
++HMI_append_ti33x = " \
++    evse-hmi-src \ 
++    protection-relays-hmi-src \
 +"
 +
-+FILES_${PN}-hmi = "${MATRIX_APP_DIR}/hmi_submenu/*"   
++
++HMI_append_omap-a15 = " \
++    evse-hmi-src \
++"
++
++RDEPENDS_${PN} = "\
++    ${HMI} \
++"
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb b/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
+new file mode 100755
+index 0000000..125443a
+--- /dev/null
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
+@@ -0,0 +1,29 @@
++SUMMARY = "Task to add HMI related packages"
++LICENSE = "MIT"
++PR = "r0"
++
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++inherit packagegroup
++
++HMI = " \
++"
++
++
++HMI_append_ti33x = " \
++    evse-hmi \
++    protection-relays-hmi \
++"
++
++HMI_append_ti43x = " \
++    evse-hmi \
++"
++
++HMI_append_omap-a15 = " \
++    evse-hmi \
++"
++
++
++RDEPENDS_${PN} = "\
++	${HMI} \
++"
 -- 
 2.13.0
 
