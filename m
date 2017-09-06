@@ -1,43 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 98D27529C8
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 4BEB4529CD
 	for <meta-arago@arago-project.org>;
-	Tue,  5 Sep 2017 23:19:32 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v85NJWVj028282
-	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 18:19:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504653572;
-	bh=PboZfnKkV4EwJHIig9uHg3dBda2VamxuP9i2vs2X+XI=;
-	h=Date:From:To:Subject:References:In-Reply-To;
-	b=yBe9ntE/gwmoOwQgcp7Ew7E5rsEa2XJuJQhyENWFdJa2DTHYEdMbCy3eVGxO5ynIo
-	kuPaSdCSuxtHBwL75qWdQKkuL5iOlhpEQSQCXgP/DRdugtwpV1Jnaum5cjzmryCnMd
-	8+x+C0OXieUzmSYUOpmCe4E+fINrNYuNqMLx821A=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85NJW6B013757
-	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 18:19:32 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 5 Sep 2017 18:19:32 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 5 Sep 2017 18:19:32 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v85NJW6s019449
-	for <meta-arago@arago-project.org>; Tue, 5 Sep 2017 18:19:32 -0500
-Date: Tue, 5 Sep 2017 19:19:27 -0400
+	Wed,  6 Sep 2017 01:31:05 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 400E4209BC;
+	Wed,  6 Sep 2017 01:31:05 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id WYiOAc3jlteD; Wed,  6 Sep 2017 01:31:05 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 164D6208FB;
+	Wed,  6 Sep 2017 01:31:04 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 7F6F81625ED;
+	Tue,  5 Sep 2017 21:31:03 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Message-ID: <20170905231927.GI8304@edge>
-References: <1504652992-35063-1-git-send-email-denys@ti.com>
-	<1504652992-35063-4-git-send-email-denys@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <1504652992-35063-4-git-send-email-denys@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [morty/master][PATCH 4/4] packagegroup-*-qte*: remove QtWebKit dependency
+To: meta-arago@arago-project.org
+Date: Tue,  5 Sep 2017 21:31:01 -0400
+Message-Id: <1504661462-77396-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH 1/2] can-utils: update to the latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,115 +37,24 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Sep 2017 23:19:32 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 06 Sep 2017 01:31:05 -0000
 
-Eric, Jake, et al,
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-extended/socketcan/can-utils_git.bbappend | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-extended/socketcan/can-utils_git.bbappend
 
-I'll take the first 3 patches in this series into morty-next for testing to 
-get into rc2, but I'll leave out this #4 for now - waiting for your comments. 
-Thanks.
-
+diff --git a/meta-arago-distro/recipes-extended/socketcan/can-utils_git.bbappend b/meta-arago-distro/recipes-extended/socketcan/can-utils_git.bbappend
+new file mode 100644
+index 0000000..c0e6666
+--- /dev/null
++++ b/meta-arago-distro/recipes-extended/socketcan/can-utils_git.bbappend
+@@ -0,0 +1,3 @@
++SRCREV = "5b518a0a5fa56856f804372a6b99b518dedb5386"
++
++PR_append = ".arago0"
 -- 
-Denys
+2.7.4
 
-
-On Tue, Sep 05, 2017 at 07:09:52PM -0400, Denys Dmytriyenko wrote:
-> Replaced with either QtWebEngine or full Chromium on A15 platforms.
-> 
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> ---
->  .../recipes-core/packagegroups/packagegroup-arago-qte.bb             | 5 +----
->  .../recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb       | 4 +---
->  .../packagegroups/packagegroup-arago-qte-toolchain-target.bb         | 5 +----
->  3 files changed, 3 insertions(+), 11 deletions(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-> index f6788f3..fb38ab8 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-> @@ -1,6 +1,6 @@
->  DESCRIPTION = "Task to add Qt embedded related packages"
->  LICENSE = "MIT"
-> -PR = "r12"
-> +PR = "r13"
->  
->  PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
-> @@ -36,9 +36,6 @@ QT5_ESSENTIALS = "\
->      qtmultimedia-qmlplugins \
->      ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-plugins', '', d)} \
->      qt3d-qmlplugins \
-> -    qtwebkit-qmlplugins \
-> -    qtquick1-plugins \
-> -    qtquick1-qmlplugins \
->      qtquickcontrols-qmlplugins \
->      qtquickcontrols2-qmlplugins \
->      qtgraphicaleffects-qmlplugins \
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-> index 30bac7b..f6f7468 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-> @@ -1,6 +1,6 @@
->  DESCRIPTION = "Task to add Qt embedded related packages"
->  LICENSE = "MIT"
-> -PR = "r16"
-> +PR = "r17"
->  
->  PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
-> @@ -20,14 +20,12 @@ QT5_DEMOS = "\
->      qtdeclarative-tools \
->      qtlocation-examples \
->      qtmultimedia-examples \
-> -    qtquick1-examples \
->      qtscript-examples \
->      qtsvg-examples \
->      ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-examples', '', d)} \
->      qtwebbrowser \
->      qtwebbrowser-examples \
->      qtwebengine-examples \
-> -    qtwebkit-examples-examples \
->  "
->  
->  QT_DEMOS = "\
-> diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-> index 73bae9d..88c5c6b 100644
-> --- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-> +++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-> @@ -1,7 +1,7 @@
->  DESCRIPTION = "Target packages for Qt Embedded SDK"
->  LICENSE = "MIT"
->  
-> -PR = "r11"
-> +PR = "r12"
->  
->  PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
-> @@ -47,7 +47,6 @@ QT5_DEV = " \
->          qtbase-mkspecs \
->          qtdeclarative-mkspecs \
->          qtscript-mkspecs \
-> -        qtwebkit-mkspecs \
->          qt3d-mkspecs \
->          qtlocation-mkspecs \
->          qtsensors-mkspecs \
-> @@ -57,13 +56,11 @@ QT5_DEV = " \
->          qtbase-staticdev \
->          qtdeclarative-dev \
->          qtscript-dev \
-> -        qtwebkit-dev \
->          qt3d-dev \
->          qtlocation-dev \
->          qtsensors-dev \
->          qtsvg-dev \
->          qtxmlpatterns-dev \
-> -        qtquick1-dev \
->          qtwebengine-mkspecs \
->          qtwebengine-dev \
->  "
-> -- 
-> 2.7.4
-> 
 
