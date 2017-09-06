@@ -1,43 +1,43 @@
-Return-Path: <manisha.agrawal@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id A945B5297F
+Return-Path: <manishalocal@uda0393239>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id BDF295297F
 	for <meta-arago@arago-project.org>;
-	Wed,  6 Sep 2017 17:42:08 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v86HfwUi005606
-	for <meta-arago@arago-project.org>; Wed, 6 Sep 2017 12:41:58 -0500
+	Wed,  6 Sep 2017 17:42:18 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v86HgIOo014376
+	for <meta-arago@arago-project.org>; Wed, 6 Sep 2017 12:42:18 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504719718;
-	bh=/lek0GclyP2TVZaXeEI5piyil7UgRKSA1kNx+rLGHvw=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=lKoQK9SvLdxB/8vmX+5Lgn4HRV9pUnnGnuZGbEcs1rk3VhVaCIWYei2/KosHqKG6U
-	Umj3C8Mv4S86Vaj+O+t+fiUoFHMEFVrd+F9qalHBLwmvSd7Vz4RZmGvyZWPiUWmlWO
-	nmXhW1Q/v8qOxEpG4Jm2lmbz/Gq/AFPVAP0jBV5k=
-Received: from DLEE70.ent.ti.com (dlemailx.itg.ti.com [157.170.170.113])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v86Hfr5u024442
-	for <meta-arago@arago-project.org>; Wed, 6 Sep 2017 12:41:53 -0500
-Received: from DFLE12.ent.ti.com ([fe80::e9a3:bf19:af96:227b]) by
-	DLEE70.ent.ti.com ([fe80::c4c6:f618:54e7:ad11%28]) with mapi id
-	14.03.0294.000; Wed, 6 Sep 2017 12:41:53 -0500
-From: "Agrawal, Manisha" <manisha.agrawal@ti.com>
-To: "Gou, Hongmei" <h-gou@ti.com>, "Stiffler, Jacob" <j-stiffler@ti.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] Re: [meta-arago] [meta-processor-sdk][PATCH v1]
-	ti-tisdk-makefile : Add evse-hmi and protection-relays-hmi Makefile
-Thread-Index: AQHTJzLrIzKuIzytRECBRg54wx3bf6KoH+fw
-Date: Wed, 6 Sep 2017 17:41:52 +0000
-Message-ID: <3AC2660648D2B04999D9C7562469E8AF7EC40EE9@DFLE12.ent.ti.com>
-References: <20170905174356.14207-1-manisha.agrawal@ti.com>
-	<e6c476e1-03aa-6fad-f5c3-6c1ab870c36e@ti.com>
-	<9c892470-9b33-63e6-885f-036b0b6f7f19@ti.com>
-	<2E957F12D11D904590FA9AF86D366BD926D77198@DLEE08.ent.ti.com>
-In-Reply-To: <2E957F12D11D904590FA9AF86D366BD926D77198@DLEE08.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.172.224.222]
+	s=ti-com-17Q1; t=1504719738;
+	bh=3/4H0QjJpJrVy6o1gvo0pH5yxwROZJ7Pfs8Y6Y4FYA4=;
+	h=From:To:CC:Subject:Date;
+	b=rFED84iUHnAf5f7RxXEwzf03Lsp4iiFXzmXkiHIb4zFneAlTu74H9i09oWyx7aA8W
+	0tI+yunLDagTphU/VIvfM93pfufGeWYzmrMV3OYVRTrWN1RDJOPUx6bJFJLMhzIUlD
+	8as2AU8pQW51qGUlGzIjdbbRWtSqLacQsUlyJr94=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v86HgIKI025117
+	for <meta-arago@arago-project.org>; Wed, 6 Sep 2017 12:42:18 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
+	Wed, 6 Sep 2017 12:42:18 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
+	Transport; Wed, 6 Sep 2017 12:42:18 -0500
+Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v86HgI7Q008535;
+	Wed, 6 Sep 2017 12:42:18 -0500
+Received: from manishalocal by uda0393239 with local (Exim 4.82)
+	(envelope-from <manishalocal@uda0393239>)
+	id 1dpeLC-0008Q3-1u; Wed, 06 Sep 2017 12:42:18 -0500
+From: Manisha Agrawal <manisha.agrawal@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 6 Sep 2017 12:42:16 -0500
+Message-ID: <20170906174216.32327-1-manisha.agrawal@ti.com>
+X-Mailer: git-send-email 2.13.0
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] Re: [meta-processor-sdk][PATCH v1] ti-tisdk-makefile : Add evse-hmi and protection-relays-hmi Makefile
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [meta-processor-sdk][PATCH v2] ti-tisdk-makefile : Add evse-hmi and protection-relays-hmi Makefile
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,136 +50,115 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Sep 2017 17:42:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 06 Sep 2017 17:42:19 -0000
+Content-Type: text/plain
 
-VGhhbmtzIEhvbmdtZWkgZm9yIHBvaW50aW5nIG91dCB0aGF0IFNSQ19VUklfYXBwZW5kIGlzIG1p
-c3NpbmcgdGhlIG5ldyBtYWtlZmlsZS4gV2hpbGUgSSB0cnkgdG8gcmVzb2x2ZSBteSBsb2NhbCAg
-YnVpbGQgc2V0dXAgaXNzdWVzLCBJIHdpbGwgcXVpY2tseSBzaGFyZSBhbm90aGVyIHJldmlzaW9u
-IG9mIHRoZSBwYXRjaCB3aXRoIHlvdXIgZmVlZGJhY2sgaW5jb3Jwb3JhdGVkLiBIb3BlZnVsbHkg
-dGhhdCdzIHRoZSBvbmx5IGlzc3VlIHdpdGggdGhlIHBhdGNoLiANCg0KUmVnYXJkcywNCk1hbmlz
-aGENCg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogR291LCBIb25nbWVpIA0K
-U2VudDogV2VkbmVzZGF5LCBTZXB0ZW1iZXIgMDYsIDIwMTcgMTI6MTAgUE0NClRvOiBTdGlmZmxl
-ciwgSmFjb2I7IEFncmF3YWwsIE1hbmlzaGE7IG1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmcN
-ClN1YmplY3Q6IFJFOiBbRVhURVJOQUxdIFJlOiBbbWV0YS1hcmFnb10gW21ldGEtcHJvY2Vzc29y
-LXNka11bUEFUQ0ggdjFdIHRpLXRpc2RrLW1ha2VmaWxlIDogQWRkIGV2c2UtaG1pIGFuZCBwcm90
-ZWN0aW9uLXJlbGF5cy1obWkgTWFrZWZpbGUNCg0KSGkgTWFuaXNoYSwNCg0KSSBoYXZlIGEgcGF0
-Y2ggcGVuZGluZyBvbiB0aGlzLiBDYW4geW91IHBsZWFzZSB1cGRhdGUgdGktdGlzZGstbWFrZWZp
-bGVfMS4wLmJiYXBwZW5kPyANCkkgYmVsaWV2ZSB3ZSBuZWVkIHRvIGFkZCB0aGUgbmV3IG1ha2Vm
-aWxlcyAoTWFrZWZpbGVfZXZzZS1obWkgYW5kIE1ha2VmaWxlX3Byb3RlY3Rpb24tcmVsYXlzLWht
-aSkgdG8gU1JDX1VSSV9hcHBlbmRfKiBhY2NvcmRpbmdseS4NCg0KVGhhbmtzLA0KSG9uZ21laQ0K
-DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IG1ldGEtYXJhZ28tYm91bmNl
-c0BhcmFnby1wcm9qZWN0Lm9yZyBbbWFpbHRvOm1ldGEtYXJhZ28tIA0KPiBib3VuY2VzQGFyYWdv
-LXByb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgU3RpZmZsZXIsIEphY29iDQo+IFNlbnQ6IFdlZG5l
-c2RheSwgU2VwdGVtYmVyIDA2LCAyMDE3IDEyOjQ4IFBNDQo+IFRvOiBBZ3Jhd2FsLCBNYW5pc2hh
-OyBtZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qub3JnDQo+IFN1YmplY3Q6IFtFWFRFUk5BTF0gUmU6
-IFttZXRhLWFyYWdvXSBbbWV0YS1wcm9jZXNzb3Itc2RrXVtQQVRDSCB2MV0gDQo+IHRpLSB0aXNk
-ay1tYWtlZmlsZSA6IEFkZCBldnNlLWhtaSBhbmQgcHJvdGVjdGlvbi1yZWxheXMtaG1pIE1ha2Vm
-aWxlDQo+IA0KPiBXaWxsIHlvdSBiZSBwcm92aWRpbmcgYW4gdXBkYXRlPw0KPiANCj4gDQo+IE9u
-IDkvNS8yMDE3IDE6NDYgUE0sIEphY29iIFN0aWZmbGVyIHdyb3RlOg0KPiA+IFRoaXMgZmFpbHMg
-dG8gYnVpbGQuIFBsZWFzZSB0ZXN0IHlvdXIgcGF0Y2hlcyBiZWZvcmUgc3VibWl0dGluZy4NCj4g
-Pg0KPiA+DQo+ID4gT24gOS81LzIwMTcgMTo0MyBQTSwgTWFuaXNoYSBBZ3Jhd2FsIHdyb3RlOg0K
-PiA+PiBTaWduZWQtb2ZmLWJ5OiBNYW5pc2hhIEFncmF3YWwgPG1hbmlzaGEuYWdyYXdhbEB0aS5j
-b20+DQo+ID4+IC0tLQ0KPiA+PiDCoCAuLi4vdGktdGlzZGstbWFrZWZpbGUvTWFrZWZpbGVfZXZz
-ZS1obWnCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwgMjQNCj4gPj4gKysrKysrKysrKysrKysrKysr
-KysrKw0KPiA+PiDCoCAuLi4vTWFrZWZpbGVfcHJvdGVjdGlvbi1yZWxheXMtaG1pwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfCAyNA0KPiA+PiArKysrKysrKysrKysrKysrKysrKysr
-DQo+ID4+IMKgIC4uLi90aS10aXNkay1tYWtlZmlsZV8xLjAuYmJhcHBlbmTCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgOSArKysrKysrLQ0KPiA+PiDCoCAzIGZpbGVzIGNoYW5n
-ZWQsIDU2IGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkNCj4gPj4gwqAgY3JlYXRlIG1vZGUg
-MTAwNjQ0DQo+ID4+IHJlY2lwZXMtdGlzZGsvdGktdGlzZGstbWFrZWZpbGUvdGktdGlzZGstbWFr
-ZWZpbGUvTWFrZWZpbGVfZXZzZS1obWkNCj4gPj4gwqAgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+ID4+
-IHJlY2lwZXMtdGlzZGsvdGktdGlzZGstbWFrZWZpbGUvdGktdGlzZGstbWFrZWZpbGUvTWFrZWZp
-bGVfcHJvdGVjdGkNCj4gPj4gb24NCj4gPj4gLXJlbGF5cy1obWkNCj4gPj4NCj4gPj4gZGlmZiAt
-LWdpdA0KPiA+PiBhL3JlY2lwZXMtdGlzZGsvdGktdGlzZGstbWFrZWZpbGUvdGktdGlzZGstbWFr
-ZWZpbGUvTWFrZWZpbGVfZXZzZS1oDQo+ID4+IG1pIA0KPiA+PiBiL3JlY2lwZXMtdGlzZGsvdGkt
-dGlzZGstbWFrZWZpbGUvdGktdGlzZGstbWFrZWZpbGUvTWFrZWZpbGVfZXZzZS1oDQo+ID4+IG1p
-DQo+ID4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4+IGluZGV4IDAwMDAwMDAuLmIxOWU2MzAN
-Cj4gPj4gLS0tIC9kZXYvbnVsbA0KPiA+PiArKysNCj4gPj4gYi9yZWNpcGVzLXRpc2RrL3RpLXRp
-c2RrLW1ha2VmaWxlL3RpLXRpc2RrLW1ha2VmaWxlL01ha2VmaWxlX2V2c2UtaA0KPiA+PiBtaQ0K
-PiA+PiBAQCAtMCwwICsxLDI0IEBADQo+ID4+ICsjIEV2c2UgSE1JIGJ1aWxkIHRhcmdldHMNCj4g
-Pj4gK2V2c2UtaG1pOg0KPiA+PiArwqDCoMKgIEBlY2hvID09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09DQo+ID4+ICvCoMKgwqAgQGVjaG/CoMKgwqAgQnVpbGRpbmcgRXZzZSBITUkgRGVt
-bw0KPiA+PiArwqDCoMKgIEBlY2hvID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQo+
-ID4+ICvCoMKgwqAgQGNkIGV4YW1wbGUtYXBwbGljYXRpb25zOyBjZCBgZmluZCAuIC1uYW1lICIq
-ZXZzZS1obWkqImA7IG1ha2UNCj4gPj4gLWYgTWFrZWZpbGUuYnVpbGQNCj4gPj4gKw0KPiA+PiAr
-ZXZzZS1obWlfY2xlYW46DQo+ID4+ICvCoMKgwqAgQGVjaG8gPT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT0NCj4gPj4gK8KgwqDCoCBAZWNob8KgwqDCoCBCdWlsZGluZyBFdnNlIEhNSSBE
-ZW1vDQo+ID4+ICvCoMKgwqAgQGVjaG8gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0N
-Cj4gPj4gK8KgwqDCoCBAY2QgZXhhbXBsZS1hcHBsaWNhdGlvbnM7IGNkIGBmaW5kIC4gLW5hbWUg
-IipldnNlLWhtaSoiYDsgbWFrZQ0KPiA+PiAtZiBNYWtlZmlsZS5idWlsZCBjbGVhbg0KPiA+PiAr
-DQo+ID4+ICtldnNlLWhtaV9pbnN0YWxsOg0KPiA+PiArwqDCoMKgIEBlY2hvDQo+ID09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KPiA+PiArwqDCoMKg
-IEBlY2hvwqDCoCBJbnN0YWxsaW5nIEV2c2UgSE1JIERlbW8gLSBSZWxlYXNlIHZlcnNpb24NCj4g
-Pj4gK8KgwqDCoCBAZWNobw0KPiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT0NCj4gPj4gK8KgwqDCoCBAY2QgZXhhbXBsZS1hcHBsaWNhdGlvbnM7IGNk
-IGBmaW5kIC4gLW5hbWUgIipldnNlLWhtaSoiYDsgbWFrZQ0KPiA+PiAtZiBNYWtlZmlsZS5idWls
-ZCBpbnN0YWxsDQo+ID4+ICsNCj4gPj4gK2V2c2UtaG1pX2luc3RhbGxfZGVidWc6DQo+ID4+ICvC
-oMKgwqAgQGVjaG8NCj4gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PQ0KPiA+PiArwqDCoMKgIEBlY2hvwqDCoCBJbnN0YWxsaW5nIEV2c2UgSE1JIERlbW8g
-LSBEZWJ1ZyB2ZXJzaW9uDQo+ID4+ICvCoMKgwqAgQGVjaG8NCj4gPT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KPiA+PiArwqDCoMKgIEBjZCBleGFtcGxl
-LWFwcGxpY2F0aW9uczsgY2QgYGZpbmQgLiAtbmFtZSAiKmV2c2UtaG1pKiJgOyBtYWtlDQo+ID4+
-IC1mIE1ha2VmaWxlLmJ1aWxkIGluc3RhbGxfZGVidWcNCj4gPj4gZGlmZiAtLWdpdA0KPiA+PiBh
-L3JlY2lwZXMtdGlzZGsvdGktdGlzZGstbWFrZWZpbGUvdGktdGlzZGstbWFrZWZpbGUvTWFrZWZp
-bGVfcHJvdGVjDQo+ID4+IHRpDQo+ID4+IG9uLXJlbGF5cy1obWkNCj4gPj4gYi9yZWNpcGVzLXRp
-c2RrL3RpLXRpc2RrLW1ha2VmaWxlL3RpLXRpc2RrLW1ha2VmaWxlL01ha2VmaWxlX3Byb3RlYw0K
-PiA+PiB0aQ0KPiA+PiBvbi1yZWxheXMtaG1pDQo+ID4+DQo+ID4+IG5ldyBmaWxlIG1vZGUgMTAw
-NjQ0DQo+ID4+IGluZGV4IDAwMDAwMDAuLjA0ZjQzNGYNCj4gPj4gLS0tIC9kZXYvbnVsbA0KPiA+
-PiArKysNCj4gPj4gYi9yZWNpcGVzLXRpc2RrL3RpLXRpc2RrLW1ha2VmaWxlL3RpLXRpc2RrLW1h
-a2VmaWxlL01ha2VmaWxlX3Byb3RlYw0KPiA+PiB0aQ0KPiA+PiBvbi1yZWxheXMtaG1pDQo+ID4+
-IEBAIC0wLDAgKzEsMjQgQEANCj4gPj4gKyNQcm90ZWN0aW9uIFJlbGF5cyBITUkgYnVpbGQgdGFy
-Z2V0cw0KPiA+PiArcHJvdGVjdGlvbi1yZWxheXMtaG1pOg0KPiA+PiArwqDCoMKgIEBlY2hvID09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQo+ID4+ICvCoMKgwqAgQGVjaG/CoMKgwqAg
-QnVpbGRpbmcgUHJvdGVjdGlvbiBSZWxheXMgSE1JIERlbW8NCj4gPj4gK8KgwqDCoCBAZWNobyA9
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KPiA+PiArwqDCoMKgIEBjZCBleGFtcGxl
-LWFwcGxpY2F0aW9uczsgY2QgYGZpbmQgLiAtbmFtZQ0KPiA+PiAiKnByb3RlY3Rpb24tcmVsYXlz
-LWhtaSoiYDsgbWFrZSAtZiBNYWtlZmlsZS5idWlsZA0KPiA+PiArDQo+ID4+ICtwcm90ZWN0aW9u
-LXJlbGF5cy1obWlfY2xlYW46DQo+ID4+ICvCoMKgwqAgQGVjaG8gPT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT0NCj4gPj4gK8KgwqDCoCBAZWNob8KgwqDCoCBCdWlsZGluZyBQcm90ZWN0
-aW9uIFJlbGF5cyBITUkgRGVtbw0KPiA+PiArwqDCoMKgIEBlY2hvID09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09DQo+ID4+ICvCoMKgwqAgQGNkIGV4YW1wbGUtYXBwbGljYXRpb25zOyBj
-ZCBgZmluZCAuIC1uYW1lDQo+ID4+ICIqcHJvdGVjdGlvbi1yZWxheXMtaG1pKiJgOyBtYWtlIC1m
-IE1ha2VmaWxlLmJ1aWxkIGNsZWFuDQo+ID4+ICsNCj4gPj4gK3Byb3RlY3Rpb24tcmVsYXlzLWht
-aV9pbnN0YWxsOg0KPiA+PiArwqDCoMKgIEBlY2hvDQo+ID09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KPiA+PiArwqDCoMKgIEBlY2hvwqDCoCBJbnN0
-YWxsaW5nIFByb3RlY3Rpb24gUmVsYXlzIEhNSSBEZW1vIC0gUmVsZWFzZSANCj4gPj4gK3ZlcnNp
-b24NCj4gPj4gK8KgwqDCoCBAZWNobw0KPiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT0NCj4gPj4gK8KgwqDCoCBAY2QgZXhhbXBsZS1hcHBsaWNhdGlv
-bnM7IGNkIGBmaW5kIC4gLW5hbWUNCj4gPj4gIipwcm90ZWN0aW9uLXJlbGF5cy1obWkqImA7IG1h
-a2UgLWYgTWFrZWZpbGUuYnVpbGQgaW5zdGFsbA0KPiA+PiArDQo+ID4+ICtwcm90ZWN0aW9uLXJl
-bGF5cy1obWlfaW5zdGFsbF9kZWJ1ZzoNCj4gPj4gK8KgwqDCoCBAZWNobw0KPiA9PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQo+ID4+ICvCoMKgwqAgQGVj
-aG/CoMKgIEluc3RhbGxpbmcgUHJvdGVjdGlvbiBSZWxheXMgSE1JIERlbW8gLSBEZWJ1ZyB2ZXJz
-aW9uDQo+ID4+ICvCoMKgwqAgQGVjaG8NCj4gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PQ0KPiA+PiArwqDCoMKgIEBjZCBleGFtcGxlLWFwcGxpY2F0aW9u
-czsgY2QgYGZpbmQgLiAtbmFtZQ0KPiA+PiAiKnByb3RlY3Rpb24tcmVsYXlzLWhtaSoiYDsgbWFr
-ZSAtZiBNYWtlZmlsZS5idWlsZCBpbnN0YWxsX2RlYnVnIA0KPiA+PiBkaWZmIC0tZ2l0IA0KPiA+
-PiBhL3JlY2lwZXMtdGlzZGsvdGktdGlzZGstbWFrZWZpbGUvdGktdGlzZGstbWFrZWZpbGVfMS4w
-LmJiYXBwZW5kDQo+ID4+IGIvcmVjaXBlcy10aXNkay90aS10aXNkay1tYWtlZmlsZS90aS10aXNk
-ay1tYWtlZmlsZV8xLjAuYmJhcHBlbmQNCj4gPj4gaW5kZXggNjhkMTFjNi4uYmQxMmYxMiAxMDA2
-NDQNCj4gPj4gLS0tIA0KPiA+PiBhL3JlY2lwZXMtdGlzZGsvdGktdGlzZGstbWFrZWZpbGUvdGkt
-dGlzZGstbWFrZWZpbGVfMS4wLmJiYXBwZW5kDQo+ID4+ICsrKyBiL3JlY2lwZXMtdGlzZGsvdGkt
-dGlzZGstbWFrZWZpbGUvdGktdGlzZGstbWFrZWZpbGVfMS4wLmJiYXBwZW4NCj4gPj4gKysrIGQN
-Cj4gPj4gQEAgLTIyLDYgKzIyLDcgQEAgTUFLRUZJTEVTX2FwcGVuZF9vbWFwLWExNSA9ICIgZHVh
-bC1jYW1lcmEtDQo+IGRlbW8gXA0KPiA+PiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpbWFnZS1nYWxsZXJ5IFwNCj4gPj4gwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAgdGktaXBjIFwNCj4gPj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgYmlnLWRhdGEtaXBjLWRlbW8gXA0KPiA+PiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBldnNlLWhtaSBcDQo+ID4+IMKgICINCj4gPj4g
-wqAgwqAgTUFLRUZJTEVTX2FwcGVuZF9vbWFwbDEzOCA9ICIgdGktaXBjIFwgQEAgLTMzLDcgKzM0
-LDEzIEBADQo+ID4+IE1BS0VGSUxFU19yZW1vdmVfb21hcGwxMzggPSAidS1ib290LWxlZ2FjeSIN
-Cj4gPj4gwqAgwqAgTUFLRUZJTEVTX2FwcGVuZF9vbWFwLWExNSA9ICIgdmlkZW8tZ3JhcGhpY3Mt
-dGVzdCINCj4gPj4gwqAgLU1BS0VGSUxFU19hcHBlbmRfdGk0M3ggPSAiIGNtZW0tbW9kIg0KPiA+
-PiArTUFLRUZJTEVTX2FwcGVuZF90aTQzeCA9ICIgY21lbS1tb2QgXA0KPiA+PiArwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCBldnNlLWhtaSBcDQo+ID4+ICsiDQo+ID4+ICsNCj4gPj4gK01B
-S0VGSUxFU19hcHBlbmRfdGkzM3ggPSAiIGV2c2UtaG1pIFwNCj4gPj4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgcHJvdGVjdGlvbi1yZWxheXMtaG1pIFwgIg0KPiA+PiDCoCDCoCBNQUtF
-RklMRVNfYXBwZW5kX2FtNTd4eC1ldm0gPSAiIGphaWxob3VzZSINCj4gPg0KPiANCj4gX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gbWV0YS1hcmFnbyBt
-YWlsaW5nIGxpc3QNCj4gbWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZw0KPiBodHRwOi8vYXJh
-Z28tcHJvamVjdC5vcmcvY2dpLWJpbi9tYWlsbWFuL2xpc3RpbmZvL21ldGEtYXJhZ28NCg==
+Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
+---
+ .../ti-tisdk-makefile/Makefile_evse-hmi            | 24 ++++++++++++++++++++++
+ .../Makefile_protection-relays-hmi                 | 24 ++++++++++++++++++++++
+ .../ti-tisdk-makefile_1.0.bbappend                 | 11 +++++++++-
+ 3 files changed, 58 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_evse-hmi
+ create mode 100644 recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_protection-relays-hmi
+
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_evse-hmi b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_evse-hmi
+new file mode 100644
+index 0000000..b19e630
+--- /dev/null
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_evse-hmi
+@@ -0,0 +1,24 @@
++# Evse HMI build targets
++evse-hmi:
++	@echo ================================
++	@echo    Building Evse HMI Demo
++	@echo ================================
++	@cd example-applications; cd `find . -name "*evse-hmi*"`; make -f Makefile.build
++
++evse-hmi_clean:
++	@echo ================================
++	@echo    Building Evse HMI Demo
++	@echo ================================
++	@cd example-applications; cd `find . -name "*evse-hmi*"`; make -f Makefile.build clean
++
++evse-hmi_install:
++	@echo ===================================================
++	@echo   Installing Evse HMI Demo - Release version
++	@echo ===================================================
++	@cd example-applications; cd `find . -name "*evse-hmi*"`; make -f Makefile.build install
++
++evse-hmi_install_debug:
++	@echo =================================================
++	@echo   Installing Evse HMI Demo - Debug version
++	@echo =================================================
++	@cd example-applications; cd `find . -name "*evse-hmi*"`; make -f Makefile.build install_debug
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_protection-relays-hmi b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_protection-relays-hmi
+new file mode 100644
+index 0000000..04f434f
+--- /dev/null
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_protection-relays-hmi
+@@ -0,0 +1,24 @@
++#Protection Relays HMI build targets
++protection-relays-hmi:
++	@echo ================================
++	@echo    Building Protection Relays HMI Demo
++	@echo ================================
++	@cd example-applications; cd `find . -name "*protection-relays-hmi*"`; make -f Makefile.build
++
++protection-relays-hmi_clean:
++	@echo ================================
++	@echo    Building Protection Relays HMI Demo
++	@echo ================================
++	@cd example-applications; cd `find . -name "*protection-relays-hmi*"`; make -f Makefile.build clean
++
++protection-relays-hmi_install:
++	@echo ===================================================
++	@echo   Installing Protection Relays HMI Demo - Release version
++	@echo ===================================================
++	@cd example-applications; cd `find . -name "*protection-relays-hmi*"`; make -f Makefile.build install
++
++protection-relays-hmi_install_debug:
++	@echo =================================================
++	@echo   Installing Protection Relays HMI Demo - Debug version
++	@echo =================================================
++	@cd example-applications; cd `find . -name "*protection-relays-hmi*"`; make -f Makefile.build install_debug
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+index 68d11c6..b56c12e 100644
+--- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+@@ -6,6 +6,8 @@ SRC_URI_append = "\
+     file://Makefile_ti-ipc \
+     file://Makefile_video-graphics-test \
+     file://Makefile_jailhouse \
++    file://Makefile_evse-hmi \
++    file://Makefile_protection-relays-hmi \
+ "
+ 
+ SRC_URI_append_omap-a15 = " file://Makefile_big-data-ipc-demo"
+@@ -22,6 +24,7 @@ MAKEFILES_append_omap-a15 = " dual-camera-demo \
+                               image-gallery \
+                               ti-ipc \
+                               big-data-ipc-demo \
++			      evse-hmi \
+ "
+ 
+ MAKEFILES_append_omapl138 = " ti-ipc \
+@@ -33,7 +36,13 @@ MAKEFILES_remove_omapl138 = "u-boot-legacy"
+ 
+ MAKEFILES_append_omap-a15 = " video-graphics-test"
+ 
+-MAKEFILES_append_ti43x = " cmem-mod"
++MAKEFILES_append_ti43x = " cmem-mod \
++			   evse-hmi \
++"
++
++MAKEFILES_append_ti33x = " evse-hmi \
++			   protection-relays-hmi \
++"
+ 
+ MAKEFILES_append_am57xx-evm = " jailhouse"
+ 
+-- 
+2.13.0
+
 
