@@ -1,40 +1,44 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 2ED02529CD
+Return-Path: <a0323918@sdocg001>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 0A24752A25
 	for <meta-arago@arago-project.org>;
-	Wed,  6 Sep 2017 20:38:39 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v86KcdUo010287
-	for <meta-arago@arago-project.org>; Wed, 6 Sep 2017 15:38:39 -0500
+	Thu,  7 Sep 2017 15:19:06 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v87FJ6ow030508
+	for <meta-arago@arago-project.org>; Thu, 7 Sep 2017 10:19:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504730319;
-	bh=7M158NwB9rkSnXNSpNTylts8YdSbg4/gm4usYDxWJ8U=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=hHS00bwtVm+X0O5bnP1u60KXBxYLZkxD728xVCPa+USduJcIT0QZ3k+NV5YrdgJ4f
-	8l+lVOyl91xuOk4OkCAmebqizwX09elesLsD3zvKV0qYgVUnEcnkot/VDtCxalRjOa
-	TUQ6hPH85+zsSEC/Yxxc5tv0p0jFBYHIlgyFNC8w=
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v86Kcd6N015667
-	for <meta-arago@arago-project.org>; Wed, 6 Sep 2017 15:38:39 -0500
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0294.000; Wed, 6 Sep 2017 15:38:38 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Pang, Ivan" <i-pang@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [meta-processor-sdk][PATCH]
-	ti-cgt-pru:   updated version to 2.1.5
-Thread-Index: AQHTJ06uB0KfBPFQo0GGG1DIOJ7qd6KoUZVw
-Date: Wed, 6 Sep 2017 20:38:38 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F9582543A413@DFLE09.ent.ti.com>
-References: <1504729693-32319-1-git-send-email-i-pang@ti.com>
-In-Reply-To: <1504729693-32319-1-git-send-email-i-pang@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.172.224.221]
+	s=ti-com-17Q1; t=1504797546;
+	bh=M6TvLW0vJoXeWQTQSA8WGwloFYBMP4Ct3ICrelIU5f8=;
+	h=From:To:CC:Subject:Date;
+	b=hg6WQ8dJYg6ODPJv6TWyNhi9zyZ88E66kXy7300pnsKN6ttb9ag4t1zIaefjR/Shi
+	GfktzDHtXcBCwT7YLvIdbzhblj10RJEjs91YdRHr75xg4Yn3vwJZAtAzeUH6yd4IsJ
+	Zwd61glZNbVZZh9L5N1Ae4qWo+opWshFz35JVbQ0=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v87FJ6Iq007549
+	for <meta-arago@arago-project.org>; Thu, 7 Sep 2017 10:19:06 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
+	Thu, 7 Sep 2017 10:19:06 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
+	Transport; Thu, 7 Sep 2017 10:19:06 -0500
+Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v87FJ6qu005835;
+	Thu, 7 Sep 2017 10:19:06 -0500
+Received: from a0323918 by sdomc-build0.hou.asp.ti.com with local (Exim 4.82)
+	(envelope-from <a0323918@sdocg001>)
+	id 1dpyaA-000Zy3-Da; Thu, 07 Sep 2017 10:19:06 -0500
+From: Yuan Zhao <yuanzhao@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 7 Sep 2017 10:19:03 -0500
+Message-ID: <20170907151904.138219-1-yuanzhao@ti.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] [meta-processor-sdk][PATCH] ti-cgt-pru: updated version to 2.1.5
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH 1/2] openmpacc: bump SRCREV to version 1.5.3.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,99 +51,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Sep 2017 20:38:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 07 Sep 2017 15:19:07 -0000
+Content-Type: text/plain
 
-Pushed.
+Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+---
+ meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Pang, Ivan
-> Sent: Wednesday, September 06, 2017 4:28 PM
-> To: meta-arago@arago-project.org
-> Subject: [EXTERNAL] [meta-arago] [meta-processor-sdk][PATCH] ti-cgt-pru:
-> updated version to 2.1.5
->=20
-> Signed-off-by: Ivan Pang <i-pang@ti.com>
-> ---
->  recipes-ti/devtools/ti-cgt-pru_2.1.5.bb | 49
-> +++++++++++++++++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 recipes-ti/devtools/ti-cgt-pru_2.1.5.bb
->=20
-> diff --git a/recipes-ti/devtools/ti-cgt-pru_2.1.5.bb b/recipes-ti/devtool=
-s/ti-
-> cgt-pru_2.1.5.bb
-> new file mode 100644
-> index 0000000..5586d0f
-> --- /dev/null
-> +++ b/recipes-ti/devtools/ti-cgt-pru_2.1.5.bb
-> @@ -0,0 +1,49 @@
-> +DESCRIPTION =3D "TI PRU Code Generation Tools"
-> +HOMEPAGE =3D "https://www-
-> a.ti.com/downloads/sds_support/TICodegenerationTools/download.htm"
-> +LICENSE =3D "(TI-TSPA & Thai-Open-Source-Software-Center) & BSD-3-Clause
-> & BSL-1.0 & Hewlett-Packard & AFL-3.0 & MIT & BSD-2-Clause & PD"
-> +
-> +LIC_FILES_CHKSUM =3D "file://ti-cgt-
-> pru_${PV}/PRU_Code_Generation_Tools_2.1.x_manifest.html;md5=3Dd7fea45
-> a7968939ff953ae8a1e6719f4"
-> +LIC_FILES_CHKSUM_class-target =3D "file://usr/share/doc/ti/cgt-
-> pru/PRU_Code_Generation_Tools_2.1.x_manifest.html;md5=3Dd7fea45a79689
-> 39ff953ae8a1e6719f4"
-> +
-> +require recipes-ti/includes/ti-paths.inc require
-> +recipes-ti/includes/ti-unpack.inc
-> +
-> +BINFILE =3D "ti_cgt_pru_${PV}_linux_installer_x86.bin"
-> +BINFILE_NAME =3D "cgt-pru-x86"
-> +TI_BIN_UNPK_ARGS =3D "--prefix ${S}"
-> +TI_BIN_UNPK_CMDS =3D ""
-> +
-> +BINFILE_class-target =3D
-> "ti_cgt_pru_${PV}_armlinuxa8hf_busybox_installer.sh"
-> +BINFILE_NAME_class-target =3D "cgt-pru-arm"
-> +
-> +SRC_URI =3D "http://software-
-> dl.ti.com/codegen/esd/cgt_public_sw/PRU/${PV}/${BINFILE};name=3D${BINFI
-> LE_NAME}"
-> +
-> +SRC_URI[cgt-pru-x86.md5sum] =3D "06ac11b90a55ee787ac20fcca9a27013"
-> +SRC_URI[cgt-pru-x86.sha256sum] =3D
-> "0f5b965ae1fda818ce5a81f1adbdae0a65047c6ae6cff1869e08e678122f8dff"
-> +
-> +SRC_URI[cgt-pru-arm.md5sum] =3D "bedda3b31d8918d5d1d3c6d886821d0a"
-> +SRC_URI[cgt-pru-arm.sha256sum] =3D
-> "f2711478f9160a73660a2b2f316ad446bc481141bb9889f1001441beccce3584"
-> +
-> +do_install() {
-> +    install -d ${D}${TI_CGT_PRU_INSTALL_DIR_RECIPE}
-> +    cp -r ${S}/ti-cgt-pru_${PV}/. \
-> +          ${D}${TI_CGT_PRU_INSTALL_DIR_RECIPE}/
-> +}
-> +
-> +do_install_class-target() {
-> +    ${WORKDIR}/${BINFILE} --prefix ${D} }
-> +
-> +FILES_${PN} +=3D "${datadir}/ti/*"
-> +
-> +FILES_${PN}-dbg =3D "${TI_CGT_PRU_INSTALL_DIR_RECIPE}/bin/.debug \
-> +                   ${TI_CGT_PRU_INSTALL_DIR_RECIPE}/lib/.debug \ "
-> +
-> +INHIBIT_PACKAGE_STRIP =3D "1"
-> +INHIBIT_SYSROOT_STRIP =3D "1"
-> +INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1"
-> +
-> +INSANE_SKIP_${PN} +=3D "arch staticdev already-stripped"
-> +
-> +BBCLASSEXTEND =3D "native nativesdk"
-> --
-> 1.9.1
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
+index 239c8576..27779ba2 100644
+--- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
++++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
+@@ -2,7 +2,7 @@ SUMMARY = "TI OpenMP Accelerator Model"
+ HOMEPAGE = "http://downloads.ti.com/mctools/esd/docs/openmpacc/"
+ LICENSE = "BSD"
+ 
+-PV = "1.5.2.0"
++PV = "1.5.3.0"
+ INC_PR = "r0"
+ 
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=aaa2a0939d08197132fc382e97b62eb0"
+@@ -13,7 +13,7 @@ OMPACC_GIT_URI = "git://git.ti.com/openmp/ti-openmpacc.git"
+ OMPACC_GIT_PROTOCOL = "git"
+ OMPACC_GIT_BRANCH = "master"
+ 
+-OMPACC_SRCREV = "f114e70085613e2fdf373895646c82e1581f95c5"
++OMPACC_SRCREV = "1689b5d68ce67df57a1992188e466b7c4d4069c4"
+ 
+ BRANCH = "${OMPACC_GIT_BRANCH}"
+ SRC_URI = "${OMPACC_GIT_URI};protocol=${OMPACC_GIT_PROTOCOL};branch=${BRANCH}"
+-- 
+2.14.1
+
 
