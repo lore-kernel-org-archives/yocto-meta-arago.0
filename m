@@ -1,46 +1,43 @@
-Return-Path: <a0323918@sdocg001>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 691A852A25
+Return-Path: <manishalocal@uda0393239>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 6DF66520C0
 	for <meta-arago@arago-project.org>;
-	Thu,  7 Sep 2017 15:19:23 +0000 (UTC)
+	Fri,  8 Sep 2017 21:49:54 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v87FJDSg001819
-	for <meta-arago@arago-project.org>; Thu, 7 Sep 2017 10:19:13 -0500
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v88LnsWO032272
+	for <meta-arago@arago-project.org>; Fri, 8 Sep 2017 16:49:54 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504797553;
-	bh=gJbHeoqveWwjaBxYbqOUla3bHghBGFU93Vfik6DYF2A=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=kkhdryqhoW/MsMQ0GSRuyUGKlkhyHUzAdJQwMPm5qMhWOtzSzirvthgNtQ6ob7/ap
-	SZiypoNt0eZKmygpLyDATgqvlcnV9b31YpZL+1uPYH7qTrtvoWF7IZZFo68JE7Pj73
-	Xls7K9pJt6ONNTdAX0s478vvxThBRYG8wElV6SzE=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v87FJ8KF007603
-	for <meta-arago@arago-project.org>; Thu, 7 Sep 2017 10:19:08 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1504907394;
+	bh=55X3AfqRYwplU7T5nPWigINv550BqqbJ6a1IsmrlBbs=;
+	h=From:To:CC:Subject:Date;
+	b=kBFf58vTdTsR0i7OpdOKkPXq7kbGGhzdzDIl4dsIuOshSdPCsvgCep595TKH6MJPI
+	kVgrgedPMSvOgAfnB4orT2D3HNC6zYEifnG13l3XCVZp2nzRhPvBaB+Xv16K0ar3mo
+	El2GmLyLrDFnrUTxM87EhW7wzq1/sL2o5bhG5Crk=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v88LnsQL016924
+	for <meta-arago@arago-project.org>; Fri, 8 Sep 2017 16:49:54 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Thu, 7 Sep 2017 10:19:08 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 8 Sep 2017 16:49:54 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Thu, 7 Sep 2017 10:19:08 -0500
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v87FJ83t017671;
-	Thu, 7 Sep 2017 10:19:08 -0500
-Received: from a0323918 by sdomc-build0.hou.asp.ti.com with local (Exim 4.82)
-	(envelope-from <a0323918@sdocg001>)
-	id 1dpyaB-000Zy8-Vt; Thu, 07 Sep 2017 10:19:08 -0500
-From: Yuan Zhao <yuanzhao@ti.com>
+	Transport; Fri, 8 Sep 2017 16:49:54 -0500
+Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v88LnsQb009748;
+	Fri, 8 Sep 2017 16:49:54 -0500
+Received: from manishalocal by uda0393239 with local (Exim 4.82)
+	(envelope-from <manishalocal@uda0393239>)
+	id 1dqR9t-0007lU-Tl; Fri, 08 Sep 2017 16:49:53 -0500
+From: Manisha Agrawal <manisha.agrawal@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 7 Sep 2017 10:19:04 -0500
-Message-ID: <20170907151904.138219-2-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.14.1
-In-Reply-To: <20170907151904.138219-1-yuanzhao@ti.com>
-References: <20170907151904.138219-1-yuanzhao@ti.com>
+Date: Fri, 8 Sep 2017 16:49:51 -0500
+Message-ID: <20170908214951.29812-1-manisha.agrawal@ti.com>
+X-Mailer: git-send-email 2.13.0
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 2/2] ocl: update to version 1.1.14.0
+Subject: [meta-processor-sdk][PATCH v1] evse-hmi : SRCREV update
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,58 +50,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Sep 2017 15:19:23 -0000
+X-List-Received-Date: Fri, 08 Sep 2017 21:49:54 -0000
 Content-Type: text/plain
 
-- opencl : externd OpenCL kernel profiling capability based on libaet
-- monitor : use libaet for profiling hardware events
+Application fix for screen index. Set the index to 0 to always render
+Welcome screen first.
 
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
 ---
- meta-arago-extras/recipes-ti/ocl/ocl.inc               | 4 ++--
- meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb | 2 ++
- 2 files changed, 4 insertions(+), 2 deletions(-)
+ recipes-apps/evse-hmi/evse-hmi_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-index 8bd8f9e9..444e310b 100644
---- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
-+++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-@@ -1,4 +1,4 @@
--PV = "1.1.13.0"
-+PV = "1.1.14.0"
- INC_PR = "r0"
+diff --git a/recipes-apps/evse-hmi/evse-hmi_git.bb b/recipes-apps/evse-hmi/evse-hmi_git.bb
+index 1bb66f5..114ba29 100755
+--- a/recipes-apps/evse-hmi/evse-hmi_git.bb
++++ b/recipes-apps/evse-hmi/evse-hmi_git.bb
+@@ -10,7 +10,7 @@ PR = "r0"
+ BRANCH = "master"
+ SRC_URI = "git://git.ti.com/sitara-linux/evse-hmi.git;protocol=git;branch=${BRANCH}"
  
- LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
-@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
- OCL_GIT_PROTOCOL = "git"
- OCL_GIT_BRANCH = "master"
+-SRCREV = "a257dfc05db311c74cb50838ff5b9e2cfb87dbfe"
++SRCREV = "ce093e76faddce78dbaa3e22af6d252f57d5f700"
  
--OCL_SRCREV = "c2493c7190c7e5b4135f64d2aacc2de3ff57e0bb"
-+OCL_SRCREV = "3bd90be6d3bb0b0f74c0a33f28ce8a08ec554ca5"
- 
- BRANCH = "${OCL_GIT_BRANCH}"
- SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
-diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-index 35bd993d..b69aa950 100644
---- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-@@ -20,6 +20,7 @@ DEPENDS = " ti-llvm3.6-native \
-             ti-framework-components \
-             libulm \
-             gdbserver-c6x \
-+            libaet \
-             openmp-rtos \
- "
- 
-@@ -72,6 +73,7 @@ export MPM_DIR = "${MPM_INSTALL_DIR}"
- export OMP_DIR = "${OMP_INSTALL_DIR}"
- export ULM_DIR ="${STAGING_DIR_TARGET}/usr/share/ti/ulm"
- export GDB_SERVER_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/gdbc6x"
-+export AET_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/ctoolslib/aet"
- export X86_LLVM_DIR = "${STAGING_DIR_NATIVE}/usr"
- export XDCPATH = "${S};${IPC_DIR}/packages;${BIOS_DIR}/packages;${EDMA3LLD_DIR}/packages;${FC_DIR}/packages;${XDAIS_DIR}/packages"
+ S = "${WORKDIR}/git"
  
 -- 
-2.14.1
+2.13.0
 
 
