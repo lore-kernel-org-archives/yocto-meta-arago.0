@@ -1,43 +1,41 @@
-Return-Path: <manishalocal@uda0393239>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 6DF66520C0
+Return-Path: <denys@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 4DAFB529BE
 	for <meta-arago@arago-project.org>;
-	Fri,  8 Sep 2017 21:49:54 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v88LnsWO032272
-	for <meta-arago@arago-project.org>; Fri, 8 Sep 2017 16:49:54 -0500
+	Mon, 11 Sep 2017 16:57:46 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8BGvaCs023257
+	for <meta-arago@arago-project.org>; Mon, 11 Sep 2017 11:57:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1504907394;
-	bh=55X3AfqRYwplU7T5nPWigINv550BqqbJ6a1IsmrlBbs=;
+	s=ti-com-17Q1; t=1505149056;
+	bh=idqYWAcbJwW3La3t9U5WrT7xK8QYe+Z2KQmV6vM3paI=;
 	h=From:To:CC:Subject:Date;
-	b=kBFf58vTdTsR0i7OpdOKkPXq7kbGGhzdzDIl4dsIuOshSdPCsvgCep595TKH6MJPI
-	kVgrgedPMSvOgAfnB4orT2D3HNC6zYEifnG13l3XCVZp2nzRhPvBaB+Xv16K0ar3mo
-	El2GmLyLrDFnrUTxM87EhW7wzq1/sL2o5bhG5Crk=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v88LnsQL016924
-	for <meta-arago@arago-project.org>; Fri, 8 Sep 2017 16:49:54 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	b=aUYAIbaACqyESm00zToVF7mMKLyBVsV4XyDo4ERT2X0P/V40R1Y8vqsUhgbB/p3i6
+	rGLZX36UwFBzBTWE3R3b8w3Eq/2PipcPFqBfO2cLoVyf0eXYr794sp3DUzsirYMlVq
+	Wl9tvLgZAZ/JBL4rH9LH+BYIpl1wmfCIfqCyere4=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8BGvVBG008732
+	for <meta-arago@arago-project.org>; Mon, 11 Sep 2017 11:57:31 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Fri, 8 Sep 2017 16:49:54 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 11 Sep 2017 11:57:30 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Fri, 8 Sep 2017 16:49:54 -0500
-Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v88LnsQb009748;
-	Fri, 8 Sep 2017 16:49:54 -0500
-Received: from manishalocal by uda0393239 with local (Exim 4.82)
-	(envelope-from <manishalocal@uda0393239>)
-	id 1dqR9t-0007lU-Tl; Fri, 08 Sep 2017 16:49:53 -0500
-From: Manisha Agrawal <manisha.agrawal@ti.com>
+	Transport; Mon, 11 Sep 2017 11:57:30 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8BGvUek028894;
+	Mon, 11 Sep 2017 11:57:30 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 8 Sep 2017 16:49:51 -0500
-Message-ID: <20170908214951.29812-1-manisha.agrawal@ti.com>
-X-Mailer: git-send-email 2.13.0
+Date: Mon, 11 Sep 2017 12:57:27 -0400
+Message-ID: <1505149047-24104-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH v1] evse-hmi : SRCREV update
+Subject: [oe-layersetup][PATCH] coresdk-2017.03-config: add config for 2017.03 release
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,31 +48,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Sep 2017 21:49:54 -0000
+X-List-Received-Date: Mon, 11 Sep 2017 16:57:46 -0000
 Content-Type: text/plain
 
-Application fix for screen index. Set the index to 0 to always render
-Welcome screen first.
-
-Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- recipes-apps/evse-hmi/evse-hmi_git.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ configs/coresdk/coresdk-2017.03-config.txt |   13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+ create mode 100644 configs/coresdk/coresdk-2017.03-config.txt
 
-diff --git a/recipes-apps/evse-hmi/evse-hmi_git.bb b/recipes-apps/evse-hmi/evse-hmi_git.bb
-index 1bb66f5..114ba29 100755
---- a/recipes-apps/evse-hmi/evse-hmi_git.bb
-+++ b/recipes-apps/evse-hmi/evse-hmi_git.bb
-@@ -10,7 +10,7 @@ PR = "r0"
- BRANCH = "master"
- SRC_URI = "git://git.ti.com/sitara-linux/evse-hmi.git;protocol=git;branch=${BRANCH}"
- 
--SRCREV = "a257dfc05db311c74cb50838ff5b9e2cfb87dbfe"
-+SRCREV = "ce093e76faddce78dbaa3e22af6d252f57d5f700"
- 
- S = "${WORKDIR}/git"
- 
+diff --git a/configs/coresdk/coresdk-2017.03-config.txt b/configs/coresdk/coresdk-2017.03-config.txt
+new file mode 100644
+index 0000000..ad33f85
+--- /dev/null
++++ b/configs/coresdk/coresdk-2017.03-config.txt
+@@ -0,0 +1,13 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.32,887ea6d25cee5114365dfbf1130603599e13ee80,layers=
++meta-arago,git://arago-project.org/git/meta-arago.git,morty,ti2017.03,layers=meta-arago-distro:meta-arago-extras
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,08576b03af624b65ad949c410d84c11c7d1f2e39,layers=
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,2c9f0e4eb0e9097f6f872ec1e1d81768a8ab5f1b,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,fe5c83312de11e80b85680ef237f8acb04b4b26e,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
++meta-ti,git://git.yoctoproject.org/meta-ti,morty,ti2017.03,layers=
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,morty,49b0f32d7e955f250b0022d1b2f403f45a2c2d9c,layers=meta-linaro-toolchain:meta-optee
++oe-core,git://git.openembedded.org/openembedded-core,morty,e3911133ee9aad7cc3ae89faea80a097f6614fab,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64.conf.sample
 -- 
-2.13.0
+1.7.9.5
 
 
