@@ -1,42 +1,40 @@
-Return-Path: <d-senicic1@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 860B852A1C
+Return-Path: <j-stiffler@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 507CE52AA4
 	for <meta-arago@arago-project.org>;
-	Fri, 15 Sep 2017 11:38:56 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8FBcugo012001
-	for <meta-arago@arago-project.org>; Fri, 15 Sep 2017 06:38:56 -0500
+	Fri, 15 Sep 2017 14:13:42 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8FEDgI3014232
+	for <meta-arago@arago-project.org>; Fri, 15 Sep 2017 09:13:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1505475536;
-	bh=8IpXXzZqxFyuStI2cQQU0FQTpd+gLLZ8joeDKiDGNwE=;
-	h=From:To:CC:Subject:Date;
-	b=TYQpbLHFZmilU15cyTDNEA7vYOX3I4g4DrOUUET7Nv882ODGI8ctcwg/eua4aVzCC
-	MZe4omlTON/hki/xxs/WF/kXUIQnCHQsfP6kaCBb1jTis2A5emdmBQPcLWN1UK59vS
-	Bjk92eQ4WsQDvW3oFYFDBOeza0AFTiJtrVJHR7Ow=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8FBcuSb022178
-	for <meta-arago@arago-project.org>; Fri, 15 Sep 2017 06:38:56 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Fri, 15 Sep 2017 06:38:56 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Fri, 15 Sep 2017 06:38:55 -0500
-Received: from UDA0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8FBctpY011931;
-	Fri, 15 Sep 2017 06:38:55 -0500
-From: Djordje Senicic <x0157990@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 15 Sep 2017 07:38:52 -0400
-Message-ID: <1505475532-20699-1-git-send-email-x0157990@ti.com>
-X-Mailer: git-send-email 1.9.1
+	s=ti-com-17Q1; t=1505484822;
+	bh=syPT9t02hxLqEGcMFiWdUGayIRr8HZRQggqLHYTDc6w=;
+	h=From:To:Subject:Date:References:In-Reply-To;
+	b=mdGru+HJwS7uTfhbVNcumG8Qvpg8nj2USZCND9DJ1U7rX6wjRh2kg9sqd8sBsiHtp
+	yzTHAu1QZWvRIKuqCcyYgkHm4xeKU36t2CSdzVD+7GAGICCRGnMRDvMVxzwHRVGmQ8
+	VBpUPSGNiNSr+URqj70Cap/sU9RFlYn3r0/GIZt4=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8FEDgqO014101
+	for <meta-arago@arago-project.org>; Fri, 15 Sep 2017 09:13:42 -0500
+Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0294.000; Fri, 15 Sep 2017 09:13:42 -0500
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Senicic, Djordje" <d-senicic1@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [EXTERNAL] [meta-arago] [EXTERNAL][meta-processor-sdk][PATCH]
+	opencv: bump SRCREV to fix OpenCL context iniitialization
+Thread-Index: AQHTLhWRMYTBFXWqjkyRns4pVtDeDKK1/WwQ
+Date: Fri, 15 Sep 2017 14:13:41 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F958254534DB@DFLE09.ent.ti.com>
+References: <1505474786-20531-1-git-send-email-x0157990@ti.com>
+In-Reply-To: <1505474786-20531-1-git-send-email-x0157990@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.172.224.221]
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: d-senicic1@ti.com, Djordje Senicic <x0157990@ti.com>
-Subject: [EXTERNAL][PATCH] opencv: bump SRCREV to fix OpenCL context iniitialization
+Subject: Re: [EXTERNAL] [EXTERNAL][meta-processor-sdk][PATCH] opencv: bump SRCREV to fix OpenCL context iniitialization
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,30 +47,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Sep 2017 11:38:56 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 15 Sep 2017 14:13:42 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-* Initialize OpenCL context only if cmem module is inserted and ti-mctd is running
+Thank you. This has been pushed.
 
-Signed-off-by: Djordje Senicic <x0157990@ti.com>
----
- meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend b/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
-index 1eae97d..bf33a2e 100644
---- a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
-+++ b/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
-@@ -11,7 +11,7 @@ SRC_URI_append += "\
-      file://setupEnv.sh \
- "
- 
--SRCREV_opencv = "ffb1eb48afbb1888670f461135c023dcdb6c9aca"
-+SRCREV_opencv = "4458601eb2766461f2f9da0d2527ff25ecb20284"
- 
- DEPENDS_remove_keystone = "qtbase"
- 
--- 
-1.9.1
-
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Senicic, Djordje
+> Sent: Friday, September 15, 2017 7:26 AM
+> To: meta-arago@arago-project.org
+> Cc: Senicic, Djordje; Senicic, Djordje
+> Subject: [EXTERNAL] [meta-arago] [EXTERNAL][meta-processor-sdk][PATCH]
+> opencv: bump SRCREV to fix OpenCL context iniitialization
+>=20
+> * Initialize OpenCL context only if cmem module is inserted and ti-mctd i=
+s
+> running
+>=20
+> Signed-off-by: Djordje Senicic <x0157990@ti.com>
+> ---
+>  recipes-support/opencv/opencv_3.1.bbappend | 3 +++
+>  1 file changed, 3 insertions(+)
+>  create mode 100644 recipes-support/opencv/opencv_3.1.bbappend
+>=20
+> diff --git a/recipes-support/opencv/opencv_3.1.bbappend b/recipes-
+> support/opencv/opencv_3.1.bbappend
+> new file mode 100644
+> index 0000000..a8aeef0
+> --- /dev/null
+> +++ b/recipes-support/opencv/opencv_3.1.bbappend
+> @@ -0,0 +1,3 @@
+> +PR_append =3D ".tisdk0"
+> +
+> +SRCREV_opencv =3D "4458601eb2766461f2f9da0d2527ff25ecb20284"
+> --
+> 1.9.1
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
