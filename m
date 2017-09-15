@@ -1,41 +1,42 @@
-Return-Path: <yuanzhao@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id DC0C552A99
+Return-Path: <d-senicic1@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 9912B52A0C
 	for <meta-arago@arago-project.org>;
-	Fri, 15 Sep 2017 02:35:28 +0000 (UTC)
+	Fri, 15 Sep 2017 11:26:59 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8F2ZSEN020261
-	for <meta-arago@arago-project.org>; Thu, 14 Sep 2017 21:35:28 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8FBQnCx013253
+	for <meta-arago@arago-project.org>; Fri, 15 Sep 2017 06:26:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1505442928;
-	bh=gOQqAtFCtdTU7xgg7DYYEZbM3S84lt2zUBuoD34d4yQ=;
+	s=ti-com-17Q1; t=1505474809;
+	bh=c4hDgqhhh0LYKxwp6EJX4ipsmRaGGbgUBx3yocVdU4k=;
 	h=From:To:CC:Subject:Date;
-	b=lmg8HTBs8Nl9woeprX0MF6tii03omrvKvjWlvLZw70C10G4KpZnFCd4vFLUlmiZ4X
-	KOKfudNgWgDQpUK9xymsrS3FgTIzq7VTCx49RQ4XfYF7rdb0aZg9Pvd6M3tfWsQQyV
-	PFYDYDWS/LNYYXTHLfiTtCIlDlSyrCQ+rMdJwYc4=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8F2ZSLG004773
-	for <meta-arago@arago-project.org>; Thu, 14 Sep 2017 21:35:28 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	b=FfpKMu1UJFJ2hFFGXCMQ/ZGUQonpo9Gh6Qpr3n7ub3jpLBtgn2FkkHTe4pC/rz/BG
+	rClG6QgLFOXAorpbPg4KfH6EXJRuWdtm/vPaZIUt0FDsilJu9REKu8Hr9wkQWD34WC
+	WaiIW0c/rQauK38kI5HokiFrqH8kkf39ENxZswnA=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8FBQiY0005291
+	for <meta-arago@arago-project.org>; Fri, 15 Sep 2017 06:26:44 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Thu, 14 Sep 2017 21:35:28 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 15 Sep 2017 06:26:43 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Thu, 14 Sep 2017 21:35:28 -0500
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Fri, 15 Sep 2017 06:26:43 -0500
+Received: from UDA0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8F2ZSOv008662;
-	Thu, 14 Sep 2017 21:35:28 -0500
-From: Yuan Zhao <yuanzhao@ti.com>
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8FBQh6A018070;
+	Fri, 15 Sep 2017 06:26:43 -0500
+From: Djordje Senicic <x0157990@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 14 Sep 2017 21:35:21 -0500
-Message-ID: <20170915023521.50112-1-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.14.1
+Date: Fri, 15 Sep 2017 07:26:26 -0400
+Message-ID: <1505474786-20531-1-git-send-email-x0157990@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] ocl: bump SRCREV to version 1.1.14.2
+Cc: d-senicic1@ti.com, Djordje Senicic <x0157990@ti.com>
+Subject: [EXTERNAL][meta-processor-sdk][PATCH] opencv: bump SRCREV to fix OpenCL context iniitialization
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,34 +49,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Sep 2017 02:35:29 -0000
+X-List-Received-Date: Fri, 15 Sep 2017 11:27:00 -0000
 Content-Type: text/plain
 
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
----
- meta-arago-extras/recipes-ti/ocl/ocl.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+* Initialize OpenCL context only if cmem module is inserted and ti-mctd is running
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-index 444e310b..7b196fff 100644
---- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
-+++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-@@ -1,4 +1,4 @@
--PV = "1.1.14.0"
-+PV = "1.1.14.2"
- INC_PR = "r0"
- 
- LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
-@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
- OCL_GIT_PROTOCOL = "git"
- OCL_GIT_BRANCH = "master"
- 
--OCL_SRCREV = "3bd90be6d3bb0b0f74c0a33f28ce8a08ec554ca5"
-+OCL_SRCREV = "e1314591c668c32b8d360badfa4d6a3dc1d345f2"
- 
- BRANCH = "${OCL_GIT_BRANCH}"
- SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+Signed-off-by: Djordje Senicic <x0157990@ti.com>
+---
+ recipes-support/opencv/opencv_3.1.bbappend | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 recipes-support/opencv/opencv_3.1.bbappend
+
+diff --git a/recipes-support/opencv/opencv_3.1.bbappend b/recipes-support/opencv/opencv_3.1.bbappend
+new file mode 100644
+index 0000000..a8aeef0
+--- /dev/null
++++ b/recipes-support/opencv/opencv_3.1.bbappend
+@@ -0,0 +1,3 @@
++PR_append = ".tisdk0"
++
++SRCREV_opencv = "4458601eb2766461f2f9da0d2527ff25ecb20284"
 -- 
-2.14.1
+1.9.1
 
 
