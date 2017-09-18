@@ -1,41 +1,41 @@
-Return-Path: <yan-liu@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 850A8529D0
+Return-Path: <sam.nelson@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 4EC75529D0
 	for <meta-arago@arago-project.org>;
-	Mon, 18 Sep 2017 16:39:09 +0000 (UTC)
+	Mon, 18 Sep 2017 17:55:50 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8IGcxNX030530
-	for <meta-arago@arago-project.org>; Mon, 18 Sep 2017 11:38:59 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8IHtoKc010699
+	for <meta-arago@arago-project.org>; Mon, 18 Sep 2017 12:55:50 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1505752739;
-	bh=/TP/rOqKTaJPPNrySMH5iOEPY+U44d5xT/BFJ6TO9TE=;
+	s=ti-com-17Q1; t=1505757350;
+	bh=HiLzchymP8Es6SxOqcJ3VPmTXSRQsevVy8IysKZI8gA=;
 	h=From:To:CC:Subject:Date;
-	b=K26PZJP693LRwR/d51YSMqcVNt5MwVq4P9tg8MEsAwzacBNh5aX9fIvHeVuLyqxs9
-	cPQSjnPy7MFzNnNt7mYWQzmBTPvkSjs2s4a/Cw3oNPUtoB7+LGAn/VQ4q4HIw4XCDZ
-	XwG7nTgC99W3U64WRhwkw58kLJZSVa1GLCGdYFL4=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8IGcsxi010610
-	for <meta-arago@arago-project.org>; Mon, 18 Sep 2017 11:38:54 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	b=kzqmzz6EQldDJ1Sd9bguGG3qRN8CtD3coqXzRKyPOZIKloOFI37IWviKB327RJtZ/
+	WRBS7sYFAGoevflRpLqEiEs7p4rvEjAYaTbyy3e+0AdkpOI7BklA4XYIPeF6Jxw+5B
+	v2TuP6biaoa677GL4CvKL0SDyhZgzgf/njwMv2xQ=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8IHtolk019739
+	for <meta-arago@arago-project.org>; Mon, 18 Sep 2017 12:55:50 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Mon, 18 Sep 2017 11:38:54 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 18 Sep 2017 12:55:50 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Mon, 18 Sep 2017 11:38:54 -0500
-Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Mon, 18 Sep 2017 12:55:50 -0500
+Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8IGcrV0003662;
-	Mon, 18 Sep 2017 11:38:53 -0500
-From: <yan-liu@ti.com>
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8IHtn2i002174;
+	Mon, 18 Sep 2017 12:55:49 -0500
+From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 18 Sep 2017 12:34:35 -0400
-Message-ID: <1505752475-19488-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Mon, 18 Sep 2017 13:55:47 -0400
+Message-ID: <1505757347-17137-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: [meta-processor-sdk PATCH] multiprocmgr: Update to new version 3.0.4.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,39 +48,61 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Sep 2017 16:39:09 -0000
+X-List-Received-Date: Mon, 18 Sep 2017 17:55:50 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 
-Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+meta-ti already has this update
+Applying here as the processor SDK release needs this
+---
+---
+ recipes-ti/multiprocmgr/multiprocmgr-rtos_git.bbappend | 6 ++++++
+ recipes-ti/multiprocmgr/multiprocmgr-test_git.bbappend | 6 ++++++
+ recipes-ti/multiprocmgr/multiprocmgr_git.bbappend      | 6 ++++++
+ 3 files changed, 18 insertions(+)
+ create mode 100644 recipes-ti/multiprocmgr/multiprocmgr-rtos_git.bbappend
+ create mode 100644 recipes-ti/multiprocmgr/multiprocmgr-test_git.bbappend
+ create mode 100644 recipes-ti/multiprocmgr/multiprocmgr_git.bbappend
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-index 28357b4..34d3d9f 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
- 
--PR = "r24"
-+PR = "r25"
- PV_append = "+git${SRCPV}"
- 
- PROVIDES += "ltp"
-@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
- 
- inherit autotools-brokensep
- 
--SRCREV = "3f2f71c327543b31d14507d50d263f2be4817a8d"
-+SRCREV = "80cfb406f1ae0231fa68458a780619efbebe0eb7"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
+diff --git a/recipes-ti/multiprocmgr/multiprocmgr-rtos_git.bbappend b/recipes-ti/multiprocmgr/multiprocmgr-rtos_git.bbappend
+new file mode 100644
+index 0000000..ee9f453
+--- /dev/null
++++ b/recipes-ti/multiprocmgr/multiprocmgr-rtos_git.bbappend
+@@ -0,0 +1,6 @@
++PR_append = ".tisdk0"
++
++# The following commits correspond to DEV.MPM-3.00.04.00
++MULTIPROCMGR_SRCREV = "21579a066b469ff4620e7cff12803ae152880bb5"
++
++PV = "3.0.4.0"
+diff --git a/recipes-ti/multiprocmgr/multiprocmgr-test_git.bbappend b/recipes-ti/multiprocmgr/multiprocmgr-test_git.bbappend
+new file mode 100644
+index 0000000..ee9f453
+--- /dev/null
++++ b/recipes-ti/multiprocmgr/multiprocmgr-test_git.bbappend
+@@ -0,0 +1,6 @@
++PR_append = ".tisdk0"
++
++# The following commits correspond to DEV.MPM-3.00.04.00
++MULTIPROCMGR_SRCREV = "21579a066b469ff4620e7cff12803ae152880bb5"
++
++PV = "3.0.4.0"
+diff --git a/recipes-ti/multiprocmgr/multiprocmgr_git.bbappend b/recipes-ti/multiprocmgr/multiprocmgr_git.bbappend
+new file mode 100644
+index 0000000..ee9f453
+--- /dev/null
++++ b/recipes-ti/multiprocmgr/multiprocmgr_git.bbappend
+@@ -0,0 +1,6 @@
++PR_append = ".tisdk0"
++
++# The following commits correspond to DEV.MPM-3.00.04.00
++MULTIPROCMGR_SRCREV = "21579a066b469ff4620e7cff12803ae152880bb5"
++
++PV = "3.0.4.0"
 -- 
-1.7.9.5
+1.9.1
 
 
