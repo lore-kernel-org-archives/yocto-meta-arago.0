@@ -1,41 +1,30 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 48A05529D1
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id E3E2352AF4
 	for <meta-arago@arago-project.org>;
-	Mon, 18 Sep 2017 19:09:11 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8IJ9BT1030892
-	for <meta-arago@arago-project.org>; Mon, 18 Sep 2017 14:09:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1505761751;
-	bh=TTEpbtCqQjwsAALYm534teMTnXQcblWWbdFHvXnw5d4=;
-	h=From:To:CC:Subject:Date;
-	b=b0UB5fm24klmmp2sTiUGAryXlQoo9FejeoXeHtCAq7CACT+Gix7fg4ychiLHnOtTF
-	xEAKYDEmOMhwEduAN8uykwpUS3k0ihdbQy00Erqh+ocFY2+pXkDGe/Gt0bR153Jx9A
-	XpgxuWND1zyLZjMyPUEuyFYNy76VC+ieOQjHSyuc=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8IJ9BAR003384
-	for <meta-arago@arago-project.org>; Mon, 18 Sep 2017 14:09:11 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Mon, 18 Sep 2017 14:09:10 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Mon, 18 Sep 2017 14:09:10 -0500
-Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8IJ9AQH013005;
-	Mon, 18 Sep 2017 14:09:10 -0500
-From: Sam Nelson <sam.nelson@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 18 Sep 2017 15:09:05 -0400
-Message-ID: <1505761745-61153-1-git-send-email-sam.nelson@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processsor-sdk PATCH] uio-module-drv: Update to new version 02.02.01.00
+	Mon, 18 Sep 2017 19:24:49 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 649D920AE0;
+	Mon, 18 Sep 2017 19:24:49 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id ajVNQlX6T2cM; Mon, 18 Sep 2017 19:24:49 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 43E04207BA;
+	Mon, 18 Sep 2017 19:24:48 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id A1295162325;
+	Mon, 18 Sep 2017 15:24:47 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Mon, 18 Sep 2017 15:24:47 -0400
+Message-Id: <1505762687-130176-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH v2] arago-base-tisdk-image: enable UBI for minimal FS on dra7xx platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,47 +37,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Sep 2017 19:09:11 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 18 Sep 2017 19:24:50 -0000
 
-Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+v2 - only enable on dra7xx, as some other platforms can't do UBI
 
----
-Same update sent to meta-ti as well.
-This is needed for the upcoming processor sdk release
----
----
- recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend | 6 ++++++
- recipes-bsp/uio-module-drv/uio-module-drv_git.bbappend      | 6 ++++++
- 2 files changed, 12 insertions(+)
- create mode 100644 recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend
- create mode 100644 recipes-bsp/uio-module-drv/uio-module-drv_git.bbappend
+ meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend b/recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend
-new file mode 100644
-index 0000000..15fbc54
---- /dev/null
-+++ b/recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend
-@@ -0,0 +1,6 @@
-+PR_append = ".tisdk0"
-+
-+# This corresponds to version 02.02.01.00
-+UIO_MODULE_DRV_SRCREV = "bda9260f2220840a60ec0fbc8011cbadf3cf1b91"
-+
-+PV = "2.2.1.0+git${SRCPV}"
-diff --git a/recipes-bsp/uio-module-drv/uio-module-drv_git.bbappend b/recipes-bsp/uio-module-drv/uio-module-drv_git.bbappend
-new file mode 100644
-index 0000000..15fbc54
---- /dev/null
-+++ b/recipes-bsp/uio-module-drv/uio-module-drv_git.bbappend
-@@ -0,0 +1,6 @@
-+PR_append = ".tisdk0"
-+
-+# This corresponds to version 02.02.01.00
-+UIO_MODULE_DRV_SRCREV = "bda9260f2220840a60ec0fbc8011cbadf3cf1b91"
-+
-+PV = "2.2.1.0+git${SRCPV}"
+diff --git a/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
+index a3f5128..e926724 100644
+--- a/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
+@@ -4,6 +4,7 @@
+ require arago-image.inc
+ 
+ IMAGE_FSTYPES += "cpio.xz"
++IMAGE_FSTYPES_append_dra7xx = " ubifs ubi"
+ 
+ IMAGE_INSTALL += "\
+     packagegroup-arago-base \
 -- 
-1.9.1
+2.7.4
 
 
