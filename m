@@ -1,40 +1,41 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id C5345529B6
+Return-Path: <sam.nelson@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 48A05529D1
 	for <meta-arago@arago-project.org>;
-	Mon, 18 Sep 2017 18:27:49 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8IIRdq8012135
-	for <meta-arago@arago-project.org>; Mon, 18 Sep 2017 13:27:39 -0500
+	Mon, 18 Sep 2017 19:09:11 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8IJ9BT1030892
+	for <meta-arago@arago-project.org>; Mon, 18 Sep 2017 14:09:11 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1505759259;
-	bh=gNYXr8WDR5voFdzv4G7dxG2ti5eY68UV36ThnnDnviU=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=IMCxojk91WTEAoVUBpr8dR+LbzpgOZl27e254+aDT5BzUmir4Vkp5ERwa5eQTEcKG
-	Jkqp/9FLudcbndzLFJc3o/a8phlhZf7iCx9qbgDxcfo5Iop6P6K+wtzocuPfmSR5ms
-	uXu4fZqkjHnV+5eOj8nx2P3pfRzchtQPGysM4y8Q=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8IIRYuQ019352
-	for <meta-arago@arago-project.org>; Mon, 18 Sep 2017 13:27:34 -0500
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0294.000; Mon, 18 Sep 2017 13:27:34 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Nelson, Sam" <sam.nelson@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [meta-processor-sdk PATCH]
-	multiprocmgr: Update to new version 3.0.4.0
-Thread-Index: AQHTMKdh1hX9j+az+EeBhyB0naurjKK69jfA
-Date: Mon, 18 Sep 2017 18:27:33 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F95825453F20@DFLE09.ent.ti.com>
-References: <1505757347-17137-1-git-send-email-sam.nelson@ti.com>
-In-Reply-To: <1505757347-17137-1-git-send-email-sam.nelson@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.172.224.221]
+	s=ti-com-17Q1; t=1505761751;
+	bh=TTEpbtCqQjwsAALYm534teMTnXQcblWWbdFHvXnw5d4=;
+	h=From:To:CC:Subject:Date;
+	b=b0UB5fm24klmmp2sTiUGAryXlQoo9FejeoXeHtCAq7CACT+Gix7fg4ychiLHnOtTF
+	xEAKYDEmOMhwEduAN8uykwpUS3k0ihdbQy00Erqh+ocFY2+pXkDGe/Gt0bR153Jx9A
+	XpgxuWND1zyLZjMyPUEuyFYNy76VC+ieOQjHSyuc=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8IJ9BAR003384
+	for <meta-arago@arago-project.org>; Mon, 18 Sep 2017 14:09:11 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
+	Mon, 18 Sep 2017 14:09:10 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
+	Transport; Mon, 18 Sep 2017 14:09:10 -0500
+Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8IJ9AQH013005;
+	Mon, 18 Sep 2017 14:09:10 -0500
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 18 Sep 2017 15:09:05 -0400
+Message-ID: <1505761745-61153-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] [meta-processor-sdk PATCH] multiprocmgr: Update to new version 3.0.4.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [meta-processsor-sdk PATCH] uio-module-drv: Update to new version 02.02.01.00
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,82 +48,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Sep 2017 18:27:50 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 18 Sep 2017 19:09:11 -0000
+Content-Type: text/plain
 
-Pushed. Thank you.
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Nelson, Sam
-> Sent: Monday, September 18, 2017 1:56 PM
-> To: meta-arago@arago-project.org
-> Subject: [EXTERNAL] [meta-arago] [meta-processor-sdk PATCH]
-> multiprocmgr: Update to new version 3.0.4.0
->=20
-> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
->=20
-> ---
-> meta-ti already has this update
-> Applying here as the processor SDK release needs this
-> ---
-> ---
->  recipes-ti/multiprocmgr/multiprocmgr-rtos_git.bbappend | 6 ++++++
-> recipes-ti/multiprocmgr/multiprocmgr-test_git.bbappend | 6 ++++++
->  recipes-ti/multiprocmgr/multiprocmgr_git.bbappend      | 6 ++++++
->  3 files changed, 18 insertions(+)
->  create mode 100644 recipes-ti/multiprocmgr/multiprocmgr-
-> rtos_git.bbappend
->  create mode 100644 recipes-ti/multiprocmgr/multiprocmgr-
-> test_git.bbappend
->  create mode 100644 recipes-ti/multiprocmgr/multiprocmgr_git.bbappend
->=20
-> diff --git a/recipes-ti/multiprocmgr/multiprocmgr-rtos_git.bbappend
-> b/recipes-ti/multiprocmgr/multiprocmgr-rtos_git.bbappend
-> new file mode 100644
-> index 0000000..ee9f453
-> --- /dev/null
-> +++ b/recipes-ti/multiprocmgr/multiprocmgr-rtos_git.bbappend
-> @@ -0,0 +1,6 @@
-> +PR_append =3D ".tisdk0"
-> +
-> +# The following commits correspond to DEV.MPM-3.00.04.00
-> +MULTIPROCMGR_SRCREV =3D "21579a066b469ff4620e7cff12803ae152880bb5"
-> +
-> +PV =3D "3.0.4.0"
-> diff --git a/recipes-ti/multiprocmgr/multiprocmgr-test_git.bbappend
-> b/recipes-ti/multiprocmgr/multiprocmgr-test_git.bbappend
-> new file mode 100644
-> index 0000000..ee9f453
-> --- /dev/null
-> +++ b/recipes-ti/multiprocmgr/multiprocmgr-test_git.bbappend
-> @@ -0,0 +1,6 @@
-> +PR_append =3D ".tisdk0"
-> +
-> +# The following commits correspond to DEV.MPM-3.00.04.00
-> +MULTIPROCMGR_SRCREV =3D "21579a066b469ff4620e7cff12803ae152880bb5"
-> +
-> +PV =3D "3.0.4.0"
-> diff --git a/recipes-ti/multiprocmgr/multiprocmgr_git.bbappend b/recipes-
-> ti/multiprocmgr/multiprocmgr_git.bbappend
-> new file mode 100644
-> index 0000000..ee9f453
-> --- /dev/null
-> +++ b/recipes-ti/multiprocmgr/multiprocmgr_git.bbappend
-> @@ -0,0 +1,6 @@
-> +PR_append =3D ".tisdk0"
-> +
-> +# The following commits correspond to DEV.MPM-3.00.04.00
-> +MULTIPROCMGR_SRCREV =3D "21579a066b469ff4620e7cff12803ae152880bb5"
-> +
-> +PV =3D "3.0.4.0"
-> --
-> 1.9.1
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+---
+Same update sent to meta-ti as well.
+This is needed for the upcoming processor sdk release
+---
+---
+ recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend | 6 ++++++
+ recipes-bsp/uio-module-drv/uio-module-drv_git.bbappend      | 6 ++++++
+ 2 files changed, 12 insertions(+)
+ create mode 100644 recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend
+ create mode 100644 recipes-bsp/uio-module-drv/uio-module-drv_git.bbappend
+
+diff --git a/recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend b/recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend
+new file mode 100644
+index 0000000..15fbc54
+--- /dev/null
++++ b/recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend
+@@ -0,0 +1,6 @@
++PR_append = ".tisdk0"
++
++# This corresponds to version 02.02.01.00
++UIO_MODULE_DRV_SRCREV = "bda9260f2220840a60ec0fbc8011cbadf3cf1b91"
++
++PV = "2.2.1.0+git${SRCPV}"
+diff --git a/recipes-bsp/uio-module-drv/uio-module-drv_git.bbappend b/recipes-bsp/uio-module-drv/uio-module-drv_git.bbappend
+new file mode 100644
+index 0000000..15fbc54
+--- /dev/null
++++ b/recipes-bsp/uio-module-drv/uio-module-drv_git.bbappend
+@@ -0,0 +1,6 @@
++PR_append = ".tisdk0"
++
++# This corresponds to version 02.02.01.00
++UIO_MODULE_DRV_SRCREV = "bda9260f2220840a60ec0fbc8011cbadf3cf1b91"
++
++PV = "2.2.1.0+git${SRCPV}"
+-- 
+1.9.1
+
 
