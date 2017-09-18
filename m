@@ -1,40 +1,41 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 507CE52AA4
+Return-Path: <yan-liu@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 850A8529D0
 	for <meta-arago@arago-project.org>;
-	Fri, 15 Sep 2017 14:13:42 +0000 (UTC)
+	Mon, 18 Sep 2017 16:39:09 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8FEDgI3014232
-	for <meta-arago@arago-project.org>; Fri, 15 Sep 2017 09:13:42 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8IGcxNX030530
+	for <meta-arago@arago-project.org>; Mon, 18 Sep 2017 11:38:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1505484822;
-	bh=syPT9t02hxLqEGcMFiWdUGayIRr8HZRQggqLHYTDc6w=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=mdGru+HJwS7uTfhbVNcumG8Qvpg8nj2USZCND9DJ1U7rX6wjRh2kg9sqd8sBsiHtp
-	yzTHAu1QZWvRIKuqCcyYgkHm4xeKU36t2CSdzVD+7GAGICCRGnMRDvMVxzwHRVGmQ8
-	VBpUPSGNiNSr+URqj70Cap/sU9RFlYn3r0/GIZt4=
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8FEDgqO014101
-	for <meta-arago@arago-project.org>; Fri, 15 Sep 2017 09:13:42 -0500
-Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0294.000; Fri, 15 Sep 2017 09:13:42 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Senicic, Djordje" <d-senicic1@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [EXTERNAL][meta-processor-sdk][PATCH]
-	opencv: bump SRCREV to fix OpenCL context iniitialization
-Thread-Index: AQHTLhWRMYTBFXWqjkyRns4pVtDeDKK1/WwQ
-Date: Fri, 15 Sep 2017 14:13:41 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F958254534DB@DFLE09.ent.ti.com>
-References: <1505474786-20531-1-git-send-email-x0157990@ti.com>
-In-Reply-To: <1505474786-20531-1-git-send-email-x0157990@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.172.224.221]
+	s=ti-com-17Q1; t=1505752739;
+	bh=/TP/rOqKTaJPPNrySMH5iOEPY+U44d5xT/BFJ6TO9TE=;
+	h=From:To:CC:Subject:Date;
+	b=K26PZJP693LRwR/d51YSMqcVNt5MwVq4P9tg8MEsAwzacBNh5aX9fIvHeVuLyqxs9
+	cPQSjnPy7MFzNnNt7mYWQzmBTPvkSjs2s4a/Cw3oNPUtoB7+LGAn/VQ4q4HIw4XCDZ
+	XwG7nTgC99W3U64WRhwkw58kLJZSVa1GLCGdYFL4=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8IGcsxi010610
+	for <meta-arago@arago-project.org>; Mon, 18 Sep 2017 11:38:54 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
+	Mon, 18 Sep 2017 11:38:54 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
+	Transport; Mon, 18 Sep 2017 11:38:54 -0500
+Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8IGcrV0003662;
+	Mon, 18 Sep 2017 11:38:53 -0500
+From: <yan-liu@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 18 Sep 2017 12:34:35 -0400
+Message-ID: <1505752475-19488-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] [EXTERNAL][meta-processor-sdk][PATCH] opencv: bump SRCREV to fix OpenCL context iniitialization
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,47 +48,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Sep 2017 14:13:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 18 Sep 2017 16:39:09 -0000
+Content-Type: text/plain
 
-Thank you. This has been pushed.
+From: Yan Liu <yan-liu@ti.com>
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Senicic, Djordje
-> Sent: Friday, September 15, 2017 7:26 AM
-> To: meta-arago@arago-project.org
-> Cc: Senicic, Djordje; Senicic, Djordje
-> Subject: [EXTERNAL] [meta-arago] [EXTERNAL][meta-processor-sdk][PATCH]
-> opencv: bump SRCREV to fix OpenCL context iniitialization
->=20
-> * Initialize OpenCL context only if cmem module is inserted and ti-mctd i=
-s
-> running
->=20
-> Signed-off-by: Djordje Senicic <x0157990@ti.com>
-> ---
->  recipes-support/opencv/opencv_3.1.bbappend | 3 +++
->  1 file changed, 3 insertions(+)
->  create mode 100644 recipes-support/opencv/opencv_3.1.bbappend
->=20
-> diff --git a/recipes-support/opencv/opencv_3.1.bbappend b/recipes-
-> support/opencv/opencv_3.1.bbappend
-> new file mode 100644
-> index 0000000..a8aeef0
-> --- /dev/null
-> +++ b/recipes-support/opencv/opencv_3.1.bbappend
-> @@ -0,0 +1,3 @@
-> +PR_append =3D ".tisdk0"
-> +
-> +SRCREV_opencv =3D "4458601eb2766461f2f9da0d2527ff25ecb20284"
-> --
-> 1.9.1
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Yan Liu <yan-liu@ti.com>
+---
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
+index 28357b4..34d3d9f 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+ 
+-PR = "r24"
++PR = "r25"
+ PV_append = "+git${SRCPV}"
+ 
+ PROVIDES += "ltp"
+@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
+ 
+ inherit autotools-brokensep
+ 
+-SRCREV = "3f2f71c327543b31d14507d50d263f2be4817a8d"
++SRCREV = "80cfb406f1ae0231fa68458a780619efbebe0eb7"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
+-- 
+1.7.9.5
+
 
