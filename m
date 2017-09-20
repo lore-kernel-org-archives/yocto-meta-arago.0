@@ -1,44 +1,43 @@
-Return-Path: <h-gou@ti.com>
+Return-Path: <j-stiffler@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 5E5F1529FD
+	by arago-project.org (Postfix) with ESMTPS id 4266D52990
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Sep 2017 13:15:06 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8JLtvqu022016
-	for <meta-arago@arago-project.org>; Tue, 19 Sep 2017 16:55:57 -0500
+	Wed, 20 Sep 2017 14:01:41 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8KE1VtJ011106
+	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 09:01:31 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1505858157;
-	bh=nDm67juVtrUqVDyp25qsoM7+Dz7fzD50q5Ylxzk12M0=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=jgqF4r4C6Kh7d0QujPfkCIElFKK15DIi/qRP+JAdKr+IeQA7s0j1eiebe1Go+J3WG
-	FvmiSzqAv/2jE80Tii+osq1JofiSGiZ619lHGxZAMsGRa0A/JZkuhJEu4Cy7v80tK8
-	6nUsOEUKce+kCIEyQ9YltwqZz0f7j+FO3vivyQXg=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8JLtq5v002105
-	for <meta-arago@arago-project.org>; Tue, 19 Sep 2017 16:55:52 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1505916091;
+	bh=m8ZRuXYpHz5WA1tAYuX9Js2z7pnf1w/dJo1emOEdceY=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=nmVtjaZFg/oogs2BrzgrYPRimEYr8+wvdONJQkYXr+7yo+6NJqhMTuO/YQzPOqsZq
+	TI1ibW3Wz3N7gBjb9vCr0tcIOW87y968OuCcVpfsGPPavO/aSGjCoXbLlxwCXhGP97
+	/voUOGGQLa+XJCCxKFBLbr1AKxLB8TE5Jf98lyVo=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KE1QxM008278
+	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 09:01:26 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 19 Sep 2017 16:55:52 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 20 Sep 2017 09:01:25 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 19 Sep 2017 16:55:52 -0500
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8JLtpBC012034;
-	Tue, 19 Sep 2017 16:55:52 -0500
-From: Hongmei Gou <a0271529@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 19 Sep 2017 17:55:48 -0400
-Message-ID: <1505858148-5618-2-git-send-email-a0271529@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1505858148-5618-1-git-send-email-a0271529@ti.com>
-References: <1505858148-5618-1-git-send-email-a0271529@ti.com>
+	Transport; Wed, 20 Sep 2017 09:01:25 -0500
+Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KE1Pid019773;
+	Wed, 20 Sep 2017 09:01:25 -0500
+To: Hongmei Gou <a0271529@ti.com>, <meta-arago@arago-project.org>
+References: <1505854171-9145-1-git-send-email-a0271529@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <7c4d1d4b-3ba6-8c69-d916-79f6d2ca7e55@ti.com>
+Date: Wed, 20 Sep 2017 10:01:25 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
+In-Reply-To: <1505854171-9145-1-git-send-email-a0271529@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processor-sdk] [PATCH 2/2] uio-module-drv-test: include pruss_uio_test for k2g-evm
+Subject: Re: [EXTERNAL] [meta-processsor-sdk] [PATCH] ti-pdk-build-rtos: updated the version to 1.0.0.6
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,33 +50,78 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Sep 2017 13:15:06 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 20 Sep 2017 14:01:41 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
----
- recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+Please provide the patch for meta-ti.
 
-diff --git a/recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend b/recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend
-index 15fbc54..5f02601 100644
---- a/recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend
-+++ b/recipes-bsp/uio-module-drv/uio-module-drv-test_git.bbappend
-@@ -1,6 +1,12 @@
--PR_append = ".tisdk0"
-+PR_append = ".tisdk1"
- 
- # This corresponds to version 02.02.01.00
- UIO_MODULE_DRV_SRCREV = "bda9260f2220840a60ec0fbc8011cbadf3cf1b91"
- 
- PV = "2.2.1.0+git${SRCPV}"
-+
-+DEVICE_NAME_k2g-evm = "k2g"
-+
-+do_install_append_k2g-evm () {
-+        install -c -m 755 ${S}/test/prussdrv_test/test/pruss_uio_test ${D}${bindir}/.
-+}
--- 
-1.9.1
+
+On 9/19/2017 4:49 PM, Hongmei Gou wrote:
+> * Also added the pruss linker command files for linux user space
+>
+> Signed-off-by: Hongmei Gou <a0271529@ti.com>
+> ---
+>   recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb | 12 +++++++++---
+>   1 file changed, 9 insertions(+), 3 deletions(-)
+>
+> diff --git a/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb b/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb
+> index 0807983..b59f8ca 100644
+> --- a/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb
+> +++ b/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb
+> @@ -4,15 +4,15 @@ LIC_FILES_CHKSUM = "file://makerules/env.mk;beginline=1;endline=31;md5=10503e8de
+>   
+>   require recipes-ti/includes/ti-paths.inc
+>   
+> -PV = "01.00.00.05A"
+> +PV = "01.00.00.06"
+>   PR = "r0"
+>   
+>   PDK_BUILD_GIT_URI = "git://git.ti.com/keystone-rtos/processor-pdk-build.git"
+>   PDK_BUILD_GIT_PROTOCOL = "git"
+>   PDK_BUILD_GIT_BRANCH = "master"
+>   
+> -# Below Commit ID corresponds to "DEV.PDK_BUILD.01.00.00.05A"
+> -PDK_BUILD_SRCREV = "3a7a42bcd85388b24fe83401fb284ce22d7b2978"
+> +# Below Commit ID corresponds to "DEV.PDK_BUILD.01.00.00.06"
+> +PDK_BUILD_SRCREV = "67986fbcef0b37428587a3d50d68d81f935f0c30"
+>   
+>   BRANCH = "${PDK_BUILD_GIT_BRANCH}"
+>   SRC_URI = "${PDK_BUILD_GIT_URI};protocol=${PDK_BUILD_GIT_PROTOCOL};branch=${BRANCH}"
+> @@ -55,6 +55,7 @@ do_install_append_ti33x() {
+>       install -m 0755 pruss/lnk_a8_a9_a15_REV1.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+>       install -m 0755 pruss/PRU0_REV1_to_ARM.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+>       install -m 0755 pruss/PRU1_REV1_to_ARM.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+> +    install -m 0755 pruss/lnk_a8_a9_a15_REV1_linux.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+>       
+>   }
+>   
+> @@ -69,6 +70,7 @@ do_install_append_ti43x() {
+>       install -m 0755 pruss/lnk_a8_a9_a15_REV1.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+>       install -m 0755 pruss/PRU0_REV1_to_ARM.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+>       install -m 0755 pruss/PRU1_REV1_to_ARM.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+> +    install -m 0755 pruss/lnk_a8_a9_a15_REV1_linux.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+>       
+>   }
+>   
+> @@ -104,6 +106,9 @@ do_install_append_am57xx-evm() {
+>       install -m 0755 pruss/PRU0_REV2_to_C66.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+>       install -m 0755 pruss/PRU1_REV2_to_ARM.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+>       install -m 0755 pruss/PRU1_REV2_to_C66.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+> +    install -m 0755 pruss/lnk_a8_a9_a15_REV1_linux.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+> +    install -m 0755 pruss/lnk_a8_a9_a15_REV2_linux.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+> +
+>   }
+>   
+>   do_install_append_am57xx-hs-evm() {
+> @@ -178,6 +183,7 @@ do_install_append_k2g() {
+>       install -m 0755 pruss/PRU0_REV2_to_C66.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+>       install -m 0755 pruss/PRU1_REV2_to_ARM.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+>       install -m 0755 pruss/PRU1_REV2_to_C66.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+> +    install -m 0755 pruss/lnk_a8_a9_a15_REV2_linux.cmd ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/pruss
+>   }
+>   
+>   FILES_${PN} += "${PDK_INSTALL_DIR_RECIPE}/packages/*"
 
 
