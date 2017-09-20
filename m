@@ -1,43 +1,43 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id D0B9052A3E
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 52E1852A3E
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Sep 2017 18:08:08 +0000 (UTC)
+	Wed, 20 Sep 2017 18:08:30 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8KI7w8m012337
-	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 13:07:58 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8KI8Ukj032539
+	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 13:08:30 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1505930878;
-	bh=qLAIBvhWbJqSGJKsasAKL9S7BuVPUnKEkvK+SE0upbY=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=LVJPao/jWi+2fsf56U/YPZI2YeP1PE8hfIJ5gZpi9SYrsCNe7YhoO3F4O8UchNamC
-	A27te4hwBeIcOlKJep8iSKHmSU83tOZiVeiPRwjeQrSI7iddP/pk90ydX40Hp3YoMe
-	ITrZEabjPA2FLqov+BBF7frsKg3g0t4G9W8owZ9w=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KI7ruq029797
-	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 13:07:53 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1505930910;
+	bh=ZnsGghrd2PlDRtL1+2WVo9mVq6lkIoD/GuAMbRGMVXQ=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=WVpDj2eO1Daom/InyQWVimlJgsV2q7fn+WwSVJ1gp3RT4JZ3EORjRM1TpYKZDaZil
+	xt9ipzwIEyKEnsajipihK1Wg6wYFZWN81/kt2JIdI+egt6W9zi4weChAFVTcLmPjeC
+	HgL1SHNH7f1OZ6WqTqKWFUckKHZjP+l+mqGjpinA=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KI8U1a030948
+	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 13:08:30 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Wed, 20 Sep 2017 13:07:53 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 20 Sep 2017 13:08:29 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Wed, 20 Sep 2017 13:07:53 -0500
+	Transport; Wed, 20 Sep 2017 13:08:30 -0500
 Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KI7rOh015053;
-	Wed, 20 Sep 2017 13:07:53 -0500
-To: Hongmei Gou <a0271529@ti.com>, <meta-arago@arago-project.org>
-References: <1505927347-1586-1-git-send-email-a0271529@ti.com>
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KI8Tpn009389;
+	Wed, 20 Sep 2017 13:08:29 -0500
+To: Manisha Agrawal <manisha.agrawal@ti.com>, <meta-arago@arago-project.org>
+References: <20170919214136.18852-1-manisha.agrawal@ti.com>
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <91ebaef4-0d92-8c7e-3592-2e617f433859@ti.com>
-Date: Wed, 20 Sep 2017 14:07:53 -0400
+Message-ID: <577af47e-4e8f-85a0-995b-5dc176dadfc7@ti.com>
+Date: Wed, 20 Sep 2017 14:08:29 -0400
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
 	Thunderbird/52.3.0
 MIME-Version: 1.0
-In-Reply-To: <1505927347-1586-1-git-send-email-a0271529@ti.com>
+In-Reply-To: <20170919214136.18852-1-manisha.agrawal@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [meta-processor-sdk] [PATCH 1/2] ccief-basic: add CCLINK IEF Basic for Linux
+Subject: Re: [meta-processor-sdk][PATCH v1] protection-relays-hmi : SRCREV update for truncated text fix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,70 +50,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Sep 2017 18:08:09 -0000
+X-List-Received-Date: Wed, 20 Sep 2017 18:08:30 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-These two have been pushed.
+Pushed. Thank you.
 
 
-On 9/20/2017 1:09 PM, Hongmei Gou wrote:
-> Signed-off-by: Hongmei Gou <a0271529@ti.com>
-> ---
->   recipes-support/cclink/ccief-basic_git.bb | 44 +++++++++++++++++++++++++++++++
->   1 file changed, 44 insertions(+)
->   create mode 100644 recipes-support/cclink/ccief-basic_git.bb
+On 9/19/2017 5:41 PM, Manisha Agrawal wrote:
+> protection-relays-hmi demo has two fixes-
+> 1. Adjust font size to fit the text in AM335x Starter Kit EVM
+> 2. Force the display  screen order to start with index 0
 >
-> diff --git a/recipes-support/cclink/ccief-basic_git.bb b/recipes-support/cclink/ccief-basic_git.bb
-> new file mode 100644
-> index 0000000..41332fa
-> --- /dev/null
-> +++ b/recipes-support/cclink/ccief-basic_git.bb
-> @@ -0,0 +1,44 @@
-> +DESCRIPTION = "CC-Link Industrial Ethernet Field Basic Master and Slave Implementation"
-> +LICENSE = "BSD-3-Clause"
-> +LIC_FILES_CHKSUM = "file://CCIEF-BASIC_Master/library/include/SLMP.h;beginline=1;endline=34;md5=9bcca1b46fb3c83966c242e5afa3c352"
-> +
-> +PV = "1.0"
-> +PR = "r0"
-> +
-> +CCIEF-BASIC_GIT_URI = "git://git.ti.com/processor-sdk/cclink.git"
-> +CCIEF-BASIC_GIT_PROTOCOL = "git"
-> +CCIEF-BASIC_GIT_BRANCH = "master"
-> +
-> +CCIEF-BASIC_SRCREV = "8b4f9aea6550ff563d21ff3979aa6e7cdc708998"
-> +
-> +BRANCH = "${CCIEF-BASIC_GIT_BRANCH}"
-> +SRC_URI = "${CCIEF-BASIC_GIT_URI};protocol=${CCIEF-BASIC_GIT_PROTOCOL};branch=${BRANCH}"
-> +
-> +SRCREV = "${CCIEF-BASIC_SRCREV}"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +do_compile() {
-> +# build Master sample application
-> +    cd ${S}/CCIEF-BASIC_Master/build/linux
-> +    oe_runmake
-> +# build Slave sample application
-> +    cd ${S}/CCIEF-BASIC_Slave/build/linux
-> +    oe_runmake
-> +}
-> +
-> +do_install() {
-> +# install CCIEF BASIC binaries
-> +    install -d ${D}${bindir}
-> +    install -m 755 ${S}/CCIEF-BASIC_Master/build/linux/Master_sample ${D}${bindir}
-> +    install -m 755 ${S}/CCIEF-BASIC_Slave/build/linux/Slave_sample ${D}${bindir}
-> +
-> +# install CCIEF BASIC configuration files
-> +    install -d ${D}${datadir}/cclink
-> +    install -m 644 ${S}/CCIEF-BASIC_Master/sample/MasterParameter.csv ${D}${datadir}/cclink
-> +    install -m 644 ${S}/CCIEF-BASIC_Slave/sample/SlaveParameter.csv ${D}${datadir}/cclink
-> +}
-> +
-> +FILES_${PN} += "${datadir}/cclink"
-> +
-> +INSANE_SKIP_${PN} = "ldflags"
+> Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
+> ---
+>   recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb b/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
+> index 7ef73e6..67d42fa 100755
+> --- a/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
+> +++ b/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
+> @@ -10,7 +10,7 @@ PR = "r0"
+>   BRANCH = "master"
+>   SRC_URI = "git://git.ti.com/sitara-linux/protection-relays-hmi.git;protocol=git;branch=${BRANCH}"
+>   
+> -SRCREV = "c8764aaba365302090179b6720cbfc994e169842"
+> +SRCREV = "b116b5628a68ba3b6db88435023cf034504655d3"
+>   
+>   S = "${WORKDIR}/git"
+>   
 
 
