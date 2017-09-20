@@ -1,46 +1,43 @@
-Return-Path: <j-stiffler@ti.com>
+Return-Path: <h-gou@ti.com>
 Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id B1C7252990
+	by arago-project.org (Postfix) with ESMTPS id 5D7BA52990
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Sep 2017 15:46:11 +0000 (UTC)
+	Wed, 20 Sep 2017 15:55:46 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8KFkBsh013779
-	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 10:46:11 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8KFtkBD015445
+	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 10:55:46 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1505922371;
-	bh=OhmQMXj8/J/sQwnmTbXpsSatqAl/PuD9zGMAglGL8Cc=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=CSXC7JIWwFzVNk1OJ3+HI7aPJqLnlLbx927FKdQnthUUBlRZSHBAphj4dQAi8nKIj
-	Z3sBhn61Prs/lowoQZZPWXxUWlpvBMeN+e+jKfZRTQX7nDUs1PJi5vSgPv6MpJgZjU
-	VlKJVaOyzxCzg6IgqfdwuuCyEhSSjWgWi0AJaMwc=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KFkBlp013976
-	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 10:46:11 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Wed, 20 Sep 2017 10:46:11 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Wed, 20 Sep 2017 10:46:11 -0500
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KFkAAj027856;
-	Wed, 20 Sep 2017 10:46:11 -0500
-To: "Radhakrishnan, Mahesh" <m-radhakrishnan2@ti.com>, "Gou, Hongmei"
-	<h-gou@ti.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
+	s=ti-com-17Q1; t=1505922946;
+	bh=CfCUcsPBE3b/Ou/DyAY0YhqOqaXUdhkJvImUTC3XVto=;
+	h=From:To:Subject:Date:References:In-Reply-To;
+	b=oLgwkMavV0YrEHV8EfvLAGhmVp9U9YEtrq4L796MopwWXRjz9/S5rs9pxD3zJvviA
+	maXD1pheUlm+TavM1vetnEwo9SQj1vnHx3ZjpiBv/F3ZcgOo/DyYtpcEAS2+4bpWLx
+	P0FOw+3nFksDuN5p7l/JV39zRosk2nTE+jxP62Xs=
+Received: from DLEE71.ent.ti.com (dlee71.ent.ti.com [157.170.170.114])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KFtkLP028235
+	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 10:55:46 -0500
+Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
+	DLEE71.ent.ti.com ([fe80::4dce:5c82:1ad0:d462%28]) with mapi id
+	14.03.0294.000; Wed, 20 Sep 2017 10:55:45 -0500
+From: "Gou, Hongmei" <h-gou@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>, "Radhakrishnan, Mahesh"
+	<m-radhakrishnan2@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [meta-arago] [EXTERNAL] [meta-processor-sdk] [PATCH]
+	icss-emac-lld*: update to version 01.00.00.08
+Thread-Index: AQHTMieV7qhvKXpmIkCFDxP6lKwoFqK97PRQ
+Date: Wed, 20 Sep 2017 15:55:45 +0000
+Message-ID: <2E957F12D11D904590FA9AF86D366BD926D7EFA1@DLEE08.ent.ti.com>
 References: <1505918341-15928-1-git-send-email-a0271529@ti.com>
 	<e2b26ef7-9497-f6c7-0345-7e6ddf73f374@ti.com>
 	<5130E41A1BA9D145BA0F3B18D5CFB0A7437F67E5@DFLE12.ent.ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <3e841243-7748-473a-a520-d4732c77944d@ti.com>
-Date: Wed, 20 Sep 2017 11:46:10 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	<3e841243-7748-473a-a520-d4732c77944d@ti.com>
+In-Reply-To: <3e841243-7748-473a-a520-d4732c77944d@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.172.224.222]
 MIME-Version: 1.0
-In-Reply-To: <5130E41A1BA9D145BA0F3B18D5CFB0A7437F67E5@DFLE12.ent.ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Subject: Re: [EXTERNAL] [meta-processor-sdk] [PATCH] icss-emac-lld*: update to version 01.00.00.08
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -54,207 +51,164 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Sep 2017 15:46:11 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 20 Sep 2017 15:55:46 -0000
 Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-
-
-On 9/20/2017 11:42 AM, Radhakrishnan, Mahesh wrote:
-> Jake,
->   For the RTOS recipe,  can we apply the below meta-ti patch (under review) which has addressed the review comments ?
-> http://patchwork.dal.design.ti.com/patch/32325/
-
-We will still need to bump the version to 1.0.0.8.
-
->
-> Regards
-> Mahesh
->
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago-project.org] On Behalf Of Stiffler, Jacob
-> Sent: Wednesday, September 20, 2017 11:40 AM
-> To: Gou, Hongmei; meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [EXTERNAL] [meta-processor-sdk] [PATCH] icss-emac-lld*: update to version 01.00.00.08
->
->
->
-> On 9/20/2017 10:39 AM, Hongmei Gou wrote:
->> * Add icss-emac-lld-rtos to build firmware binaries
->> * Add k2g support for linux user space
->> * Cleanup to remove TARGET from oe_runmake
->>
->> Signed-off-by: Hongmei Gou <a0271529@ti.com>
->> ---
->>    .../icss-emac-lld/icss-emac-lld-01.00.00.inc       |  6 ++--
->>    .../icss-emac-lld/icss-emac-lld-rtos_git.bb        | 28 ++++++++++++++++++
->>    .../icss-emac-lld/icss-emac-lld-test_git.bb        | 34 +++++++++++++---------
->>    recipes-bsp/icss-emac-lld/icss-emac-lld_git.bb     |  5 ++--
->>    4 files changed, 54 insertions(+), 19 deletions(-)
->>    create mode 100644
->> recipes-bsp/icss-emac-lld/icss-emac-lld-rtos_git.bb
->>
->> diff --git a/recipes-bsp/icss-emac-lld/icss-emac-lld-01.00.00.inc
->> b/recipes-bsp/icss-emac-lld/icss-emac-lld-01.00.00.inc
->> index 8e2ffd4..621219b 100644
->> --- a/recipes-bsp/icss-emac-lld/icss-emac-lld-01.00.00.inc
->> +++ b/recipes-bsp/icss-emac-lld/icss-emac-lld-01.00.00.inc
->> @@ -9,14 +9,14 @@ ICSS_EMAC_LLD_GIT_PROTOCOL = "git"
->>    ICSS_EMAC_LLD_GIT_BRANCH = "master"
->>    ICSS_EMAC_LLD_GIT_DESTSUFFIX = "git/ti/drv/icss_emac"
->>    
->> -# Below commit ID corresponds to "DEV.ICSS_EMAC_LLD.01.00.00.07C"
->> -ICSS_EMAC_LLD_SRCREV = "08cb0540eeab7721fe82b603cb6285393f314117"
->> +# Below commit ID corresponds to "DEV.ICSS_EMAC_LLD.01.00.00.08"
->> +ICSS_EMAC_LLD_SRCREV = "e689df18417236110590f7b290525a610d63f574"
->>    
->>    BRANCH = "${ICSS_EMAC_LLD_GIT_BRANCH}"
->>    SRC_URI = "${ICSS_EMAC_LLD_GIT_URI};destsuffix=${ICSS_EMAC_LLD_GIT_DESTSUFFIX};protocol=${ICSS_EMAC_LLD_GIT_PROTOCOL};branch=${BRANCH}"
->>    
->>    SRCREV = "${ICSS_EMAC_LLD_SRCREV}"
->> -PV = "01.00.00.07C"
->> +PV = "01.00.00.08"
->>    INC_PR = "r0"
->>    
->>    S = "${WORKDIR}/${ICSS_EMAC_LLD_GIT_DESTSUFFIX}"
->> diff --git a/recipes-bsp/icss-emac-lld/icss-emac-lld-rtos_git.bb
->> b/recipes-bsp/icss-emac-lld/icss-emac-lld-rtos_git.bb
->> new file mode 100644
->> index 0000000..06ee279
->> --- /dev/null
->> +++ b/recipes-bsp/icss-emac-lld/icss-emac-lld-rtos_git.bb
->> @@ -0,0 +1,28 @@
->> +inherit ti-pdk
->> +require icss-emac-lld-01.00.00.inc
->> +
->> +PR = "${INC_PR}.0"
->> +
->> +DEPENDS_append = " osal-rtos \
->> +                   pruss-lld-rtos \
->> +"
->> +DEPENDS_append_ti33x = " starterware-rtos \ "
->> +DEPENDS_append_ti43x = " starterware-rtos \ "
->> +
->> +# Build with make instead of XDC
->> +TI_PDK_XDCMAKE = "0"
->> +
->> +LIMSOCS_ti33x = "am335x"
->> +LIMSOCS_ti43x = "am437x"
->> +LIMSOCS_am57xx-evm = "am571x am572x"
->> +LIMSOCS_k2g = "k2g"
-> The LIMIT_SOCS are not used by the ti-pdk.bbclass anymore. See http://arago-project.org/git/?p=meta-ti.git;a=commitdiff;h=b00044c43e7785decb1d6ac35349ca4b2711676e
->
-> The correct variables are set in the machine configuration, so they can be removed from there.
->
->> +
->> +export PDK_ICSS_EMAC_ROOT_PATH ="${WORKDIR}/build"
->> +export DEST_ROOT="${S}"
->> +
->> +# HTML doc link params
->> +PDK_COMP_LINK_TEXT = "ICSS-EMAC LLD"
->> +
->> +INSANE_SKIP_${PN} = "arch"
->> diff --git a/recipes-bsp/icss-emac-lld/icss-emac-lld-test_git.bb
->> b/recipes-bsp/icss-emac-lld/icss-emac-lld-test_git.bb
->> index 6beafbf..375bfbc 100644
->> --- a/recipes-bsp/icss-emac-lld/icss-emac-lld-test_git.bb
->> +++ b/recipes-bsp/icss-emac-lld/icss-emac-lld-test_git.bb
->> @@ -1,47 +1,55 @@
->>    DESCRIPTION = "TI ICSS-EMAC low level driver tests"
->>    
->> -DEPENDS="common-csl-ip pruss-lld icss-emac-lld osal"
->> +DEPENDS="common-csl-ip pruss-lld icss-emac-lld osal ti-pdk-build-rtos icss-emac-lld-rtos"
->>    
->>    DEPENDS_append_ti33x = " starterware"
->>    DEPENDS_append_ti43x = " starterware"
->>    
->>    include icss-emac-lld-01.00.00.inc
->>    
->> -PR = "${INC_PR}.2"
->> +PR = "${INC_PR}.0"
->>    
->> -COMPATIBLE_MACHINE = "am57xx-evm|ti33x|ti43x"
->> -
->> -EXTRA_OEMAKE += "-f makefile_armv7 PDK_INSTALL_PATH=${STAGING_INCDIR} ICSS_EMAC_SRC_DIR=${S}"
->> +EXTRA_OEMAKE += "-f makefile_armv7 PDK_INSTALL_PATH=${STAGING_INCDIR} PDK_PKG_PATH=${STAGING_DATADIR}/ti/ti-pdk-tree/packages ICSS_EMAC_SRC_DIR=${S}"
->>    
->>    do_compile_am57xx-evm () {
->>    #   Build the tests
->> -    oe_runmake tests DEVICE="am571x" TARGET="SOC_AM571x"
->> +    oe_runmake tests DEVICE="am571x"
->>        oe_runmake clean
->> -    oe_runmake tests DEVICE="am572x" TARGET="SOC_AM572x"
->> +    oe_runmake tests DEVICE="am572x"
->>    }
->>    
->>    do_compile_ti33x () {
->>    #   Build the tests
->> -    oe_runmake tests DEVICE="am335x" TARGET="SOC_AM335x"
->> +    oe_runmake tests DEVICE="am335x"
->>    }
->>    
->>    do_compile_ti43x () {
->>    #   Build the tests
->> -    oe_runmake tests DEVICE="am437x" TARGET="SOC_AM437x"
->> +    oe_runmake tests DEVICE="am437x"
->> +}
->> +
->> +do_compile_k2g-evm () {
->> +#   Build the tests
->> +    oe_runmake tests DEVICE="k2g"
->>    }
->>    
->>    do_install_am57xx-evm () {
->>    #   Install the binary
->> -    oe_runmake installbin INSTALL_BIN_BASE_DIR=${D}${bindir} DEVICE="am571x" TARGET="SOC_AM571x"
->> -    oe_runmake installbin INSTALL_BIN_BASE_DIR=${D}${bindir} DEVICE="am572x" TARGET="SOC_AM572x"
->> +    oe_runmake installbin INSTALL_BIN_BASE_DIR=${D}${bindir} DEVICE="am571x"
->> +    oe_runmake installbin INSTALL_BIN_BASE_DIR=${D}${bindir} DEVICE="am572x"
->>    }
->>    
->>    do_install_ti33x () {
->>    #   Install the binary
->> -    oe_runmake installbin INSTALL_BIN_BASE_DIR=${D}${bindir} DEVICE="am335x" TARGET="SOC_AM335x"
->> +    oe_runmake installbin INSTALL_BIN_BASE_DIR=${D}${bindir} DEVICE="am335x"
->>    }
->>    
->>    do_install_ti43x () {
->>    #   Install the binary
->> -    oe_runmake installbin INSTALL_BIN_BASE_DIR=${D}${bindir} DEVICE="am437x" TARGET="SOC_AM437x"
->> +    oe_runmake installbin INSTALL_BIN_BASE_DIR=${D}${bindir} DEVICE="am437x"
->> +}
->> +
->> +do_install_k2g-evm () {
->> +#   Install the binary
->> +    oe_runmake installbin INSTALL_BIN_BASE_DIR=${D}${bindir} DEVICE="k2g"
->>    }
-> It appears that this "DEVICE" is an element out of the TI_PDK_LIMIT_SOCS list. If this is true, then these compile and install tasks can be greatly simplified by looping over the TI_PDK_LIMIT_SOCS list.
->
->> diff --git a/recipes-bsp/icss-emac-lld/icss-emac-lld_git.bb
->> b/recipes-bsp/icss-emac-lld/icss-emac-lld_git.bb
->> index b3be89b..bfa655d 100644
->> --- a/recipes-bsp/icss-emac-lld/icss-emac-lld_git.bb
->> +++ b/recipes-bsp/icss-emac-lld/icss-emac-lld_git.bb
->> @@ -4,13 +4,12 @@ DEPENDS="common-csl-ip pruss-lld osal"
->>    
->>    include icss-emac-lld-01.00.00.inc
->>    
->> -PR = "${INC_PR}.2"
->> -
->> -COMPATIBLE_MACHINE = "am57xx-evm|ti33x|ti43x"
->> +PR = "${INC_PR}.0"
->>    
->>    TARGET_NAME_am57xx-evm = "SOC_AM572x"
->>    TARGET_NAME_ti33x = "SOC_AM335x"
->>    TARGET_NAME_ti43x = "SOC_AM437x"
->> +TARGET_NAME_k2g-evm = "SOC_K2G"
->>    
->>    EXTRA_OEMAKE += "-f makefile_armv7 PDK_INSTALL_PATH=${STAGING_INCDIR} TARGET=${TARGET_NAME}"
->>    
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBTdGlmZmxlciwgSmFjb2INCj4g
+U2VudDogV2VkbmVzZGF5LCBTZXB0ZW1iZXIgMjAsIDIwMTcgMTE6NDYgQU0NCj4gVG86IFJhZGhh
+a3Jpc2huYW4sIE1haGVzaDsgR291LCBIb25nbWVpOyBtZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qu
+b3JnDQo+IFN1YmplY3Q6IFJlOiBbbWV0YS1hcmFnb10gW0VYVEVSTkFMXSBbbWV0YS1wcm9jZXNz
+b3Itc2RrXSBbUEFUQ0hdIGljc3MtDQo+IGVtYWMtbGxkKjogdXBkYXRlIHRvIHZlcnNpb24gMDEu
+MDAuMDAuMDgNCj4gDQo+IA0KPiANCj4gT24gOS8yMC8yMDE3IDExOjQyIEFNLCBSYWRoYWtyaXNo
+bmFuLCBNYWhlc2ggd3JvdGU6DQo+ID4gSmFrZSwNCj4gPiAgIEZvciB0aGUgUlRPUyByZWNpcGUs
+ICBjYW4gd2UgYXBwbHkgdGhlIGJlbG93IG1ldGEtdGkgcGF0Y2ggKHVuZGVyDQo+IHJldmlldykg
+d2hpY2ggaGFzIGFkZHJlc3NlZCB0aGUgcmV2aWV3IGNvbW1lbnRzID8NCj4gPiBodHRwOi8vcGF0
+Y2h3b3JrLmRhbC5kZXNpZ24udGkuY29tL3BhdGNoLzMyMzI1Lw0KPiANCj4gV2Ugd2lsbCBzdGls
+bCBuZWVkIHRvIGJ1bXAgdGhlIHZlcnNpb24gdG8gMS4wLjAuOC4NCj4gDQoNCkkgd2lsbCBzZXBh
+cmF0ZSB0aGUgb3JpZ2luYWwgcGF0Y2ggaW50byB0d28gcGF0Y2hlcywgb25lIGZvciBSVE9TIHdo
+aWNoIA0KdXNlcyBodHRwOi8vcGF0Y2h3b3JrLmRhbC5kZXNpZ24udGkuY29tL3BhdGNoLzMyMzI1
+LywgYW5kIGFub3RoZXIgb25lIA0Kd2hpY2ggaW5jbHVkZXMgdmVyc2lvbiBidW1wIGFuZCB0aGUg
+dXBkYXRlIGZvciBsaW51eCB1c2VyIHNwYWNlLg0KDQo+ID4NCj4gPiBSZWdhcmRzDQo+ID4gTWFo
+ZXNoDQo+ID4NCj4gPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+IEZyb206IG1ldGEt
+YXJhZ28tYm91bmNlc0BhcmFnby1wcm9qZWN0Lm9yZyBbbWFpbHRvOm1ldGEtYXJhZ28tDQo+IGJv
+dW5jZXNAYXJhZ28tcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBTdGlmZmxlciwgSmFjb2INCj4g
+PiBTZW50OiBXZWRuZXNkYXksIFNlcHRlbWJlciAyMCwgMjAxNyAxMTo0MCBBTQ0KPiA+IFRvOiBH
+b3UsIEhvbmdtZWk7IG1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmcNCj4gPiBTdWJqZWN0OiBS
+ZTogW21ldGEtYXJhZ29dIFtFWFRFUk5BTF0gW21ldGEtcHJvY2Vzc29yLXNka10gW1BBVENIXSBp
+Y3NzLQ0KPiBlbWFjLWxsZCo6IHVwZGF0ZSB0byB2ZXJzaW9uIDAxLjAwLjAwLjA4DQo+ID4NCj4g
+Pg0KPiA+DQo+ID4gT24gOS8yMC8yMDE3IDEwOjM5IEFNLCBIb25nbWVpIEdvdSB3cm90ZToNCj4g
+Pj4gKiBBZGQgaWNzcy1lbWFjLWxsZC1ydG9zIHRvIGJ1aWxkIGZpcm13YXJlIGJpbmFyaWVzDQo+
+ID4+ICogQWRkIGsyZyBzdXBwb3J0IGZvciBsaW51eCB1c2VyIHNwYWNlDQo+ID4+ICogQ2xlYW51
+cCB0byByZW1vdmUgVEFSR0VUIGZyb20gb2VfcnVubWFrZQ0KPiA+Pg0KPiA+PiBTaWduZWQtb2Zm
+LWJ5OiBIb25nbWVpIEdvdSA8YTAyNzE1MjlAdGkuY29tPg0KPiA+PiAtLS0NCj4gPj4gICAgLi4u
+L2ljc3MtZW1hYy1sbGQvaWNzcy1lbWFjLWxsZC0wMS4wMC4wMC5pbmMgICAgICAgfCAgNiArKy0t
+DQo+ID4+ICAgIC4uLi9pY3NzLWVtYWMtbGxkL2ljc3MtZW1hYy1sbGQtcnRvc19naXQuYmIgICAg
+ICAgIHwgMjgNCj4gKysrKysrKysrKysrKysrKysrDQo+ID4+ICAgIC4uLi9pY3NzLWVtYWMtbGxk
+L2ljc3MtZW1hYy1sbGQtdGVzdF9naXQuYmIgICAgICAgIHwgMzQgKysrKysrKysrKysrKy0tLS0t
+LS0NCj4gLS0NCj4gPj4gICAgcmVjaXBlcy1ic3AvaWNzcy1lbWFjLWxsZC9pY3NzLWVtYWMtbGxk
+X2dpdC5iYiAgICAgfCAgNSArKy0tDQo+ID4+ICAgIDQgZmlsZXMgY2hhbmdlZCwgNTQgaW5zZXJ0
+aW9ucygrKSwgMTkgZGVsZXRpb25zKC0pDQo+ID4+ICAgIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiA+
+PiByZWNpcGVzLWJzcC9pY3NzLWVtYWMtbGxkL2ljc3MtZW1hYy1sbGQtcnRvc19naXQuYmINCj4g
+Pj4NCj4gPj4gZGlmZiAtLWdpdCBhL3JlY2lwZXMtYnNwL2ljc3MtZW1hYy1sbGQvaWNzcy1lbWFj
+LWxsZC0wMS4wMC4wMC5pbmMNCj4gPj4gYi9yZWNpcGVzLWJzcC9pY3NzLWVtYWMtbGxkL2ljc3Mt
+ZW1hYy1sbGQtMDEuMDAuMDAuaW5jDQo+ID4+IGluZGV4IDhlMmZmZDQuLjYyMTIxOWIgMTAwNjQ0
+DQo+ID4+IC0tLSBhL3JlY2lwZXMtYnNwL2ljc3MtZW1hYy1sbGQvaWNzcy1lbWFjLWxsZC0wMS4w
+MC4wMC5pbmMNCj4gPj4gKysrIGIvcmVjaXBlcy1ic3AvaWNzcy1lbWFjLWxsZC9pY3NzLWVtYWMt
+bGxkLTAxLjAwLjAwLmluYw0KPiA+PiBAQCAtOSwxNCArOSwxNCBAQCBJQ1NTX0VNQUNfTExEX0dJ
+VF9QUk9UT0NPTCA9ICJnaXQiDQo+ID4+ICAgIElDU1NfRU1BQ19MTERfR0lUX0JSQU5DSCA9ICJt
+YXN0ZXIiDQo+ID4+ICAgIElDU1NfRU1BQ19MTERfR0lUX0RFU1RTVUZGSVggPSAiZ2l0L3RpL2Ry
+di9pY3NzX2VtYWMiDQo+ID4+DQo+ID4+IC0jIEJlbG93IGNvbW1pdCBJRCBjb3JyZXNwb25kcyB0
+byAiREVWLklDU1NfRU1BQ19MTEQuMDEuMDAuMDAuMDdDIg0KPiA+PiAtSUNTU19FTUFDX0xMRF9T
+UkNSRVYgPQ0KPiAiMDhjYjA1NDBlZWFiNzcyMWZlODJiNjAzY2I2Mjg1MzkzZjMxNDExNyINCj4g
+Pj4gKyMgQmVsb3cgY29tbWl0IElEIGNvcnJlc3BvbmRzIHRvICJERVYuSUNTU19FTUFDX0xMRC4w
+MS4wMC4wMC4wOCINCj4gPj4gK0lDU1NfRU1BQ19MTERfU1JDUkVWID0NCj4gImU2ODlkZjE4NDE3
+MjM2MTEwNTkwZjdiMjkwNTI1YTYxMGQ2M2Y1NzQiDQo+ID4+DQo+ID4+ICAgIEJSQU5DSCA9ICIk
+e0lDU1NfRU1BQ19MTERfR0lUX0JSQU5DSH0iDQo+ID4+ICAgIFNSQ19VUkkgPQ0KPiAiJHtJQ1NT
+X0VNQUNfTExEX0dJVF9VUkl9O2Rlc3RzdWZmaXg9JHtJQ1NTX0VNQUNfTExEX0dJVF9ERVNUU1VG
+RkkNCj4gWH07cHJvdG9jb2w9JHtJQ1NTX0VNQUNfTExEX0dJVF9QUk9UT0NPTH07YnJhbmNoPSR7
+QlJBTkNIfSINCj4gPj4NCj4gPj4gICAgU1JDUkVWID0gIiR7SUNTU19FTUFDX0xMRF9TUkNSRVZ9
+Ig0KPiA+PiAtUFYgPSAiMDEuMDAuMDAuMDdDIg0KPiA+PiArUFYgPSAiMDEuMDAuMDAuMDgiDQo+
+ID4+ICAgIElOQ19QUiA9ICJyMCINCj4gPj4NCj4gPj4gICAgUyA9ICIke1dPUktESVJ9LyR7SUNT
+U19FTUFDX0xMRF9HSVRfREVTVFNVRkZJWH0iDQo+ID4+IGRpZmYgLS1naXQgYS9yZWNpcGVzLWJz
+cC9pY3NzLWVtYWMtbGxkL2ljc3MtZW1hYy1sbGQtcnRvc19naXQuYmINCj4gPj4gYi9yZWNpcGVz
+LWJzcC9pY3NzLWVtYWMtbGxkL2ljc3MtZW1hYy1sbGQtcnRvc19naXQuYmINCj4gPj4gbmV3IGZp
+bGUgbW9kZSAxMDA2NDQNCj4gPj4gaW5kZXggMDAwMDAwMC4uMDZlZTI3OQ0KPiA+PiAtLS0gL2Rl
+di9udWxsDQo+ID4+ICsrKyBiL3JlY2lwZXMtYnNwL2ljc3MtZW1hYy1sbGQvaWNzcy1lbWFjLWxs
+ZC1ydG9zX2dpdC5iYg0KPiA+PiBAQCAtMCwwICsxLDI4IEBADQo+ID4+ICtpbmhlcml0IHRpLXBk
+aw0KPiA+PiArcmVxdWlyZSBpY3NzLWVtYWMtbGxkLTAxLjAwLjAwLmluYw0KPiA+PiArDQo+ID4+
+ICtQUiA9ICIke0lOQ19QUn0uMCINCj4gPj4gKw0KPiA+PiArREVQRU5EU19hcHBlbmQgPSAiIG9z
+YWwtcnRvcyBcDQo+ID4+ICsgICAgICAgICAgICAgICAgICAgcHJ1c3MtbGxkLXJ0b3MgXA0KPiA+
+PiArIg0KPiA+PiArREVQRU5EU19hcHBlbmRfdGkzM3ggPSAiIHN0YXJ0ZXJ3YXJlLXJ0b3MgXCAi
+DQo+ID4+ICtERVBFTkRTX2FwcGVuZF90aTQzeCA9ICIgc3RhcnRlcndhcmUtcnRvcyBcICINCj4g
+Pj4gKw0KPiA+PiArIyBCdWlsZCB3aXRoIG1ha2UgaW5zdGVhZCBvZiBYREMNCj4gPj4gK1RJX1BE
+S19YRENNQUtFID0gIjAiDQo+ID4+ICsNCj4gPj4gK0xJTVNPQ1NfdGkzM3ggPSAiYW0zMzV4Ig0K
+PiA+PiArTElNU09DU190aTQzeCA9ICJhbTQzN3giDQo+ID4+ICtMSU1TT0NTX2FtNTd4eC1ldm0g
+PSAiYW01NzF4IGFtNTcyeCINCj4gPj4gK0xJTVNPQ1NfazJnID0gImsyZyINCj4gPiBUaGUgTElN
+SVRfU09DUyBhcmUgbm90IHVzZWQgYnkgdGhlIHRpLXBkay5iYmNsYXNzIGFueW1vcmUuIFNlZQ0K
+PiBodHRwOi8vYXJhZ28tcHJvamVjdC5vcmcvZ2l0Lz9wPW1ldGEtDQo+IHRpLmdpdDthPWNvbW1p
+dGRpZmY7aD1iMDAwNDRjNDNlNzc4NWRlY2IxZDZhYzM1MzQ5Y2E0YjI3MTE2NzZlDQo+ID4NCj4g
+PiBUaGUgY29ycmVjdCB2YXJpYWJsZXMgYXJlIHNldCBpbiB0aGUgbWFjaGluZSBjb25maWd1cmF0
+aW9uLCBzbyB0aGV5IGNhbiBiZQ0KPiByZW1vdmVkIGZyb20gdGhlcmUuDQo+ID4NCj4gPj4gKw0K
+PiA+PiArZXhwb3J0IFBES19JQ1NTX0VNQUNfUk9PVF9QQVRIID0iJHtXT1JLRElSfS9idWlsZCIN
+Cj4gPj4gK2V4cG9ydCBERVNUX1JPT1Q9IiR7U30iDQo+ID4+ICsNCj4gPj4gKyMgSFRNTCBkb2Mg
+bGluayBwYXJhbXMNCj4gPj4gK1BES19DT01QX0xJTktfVEVYVCA9ICJJQ1NTLUVNQUMgTExEIg0K
+PiA+PiArDQo+ID4+ICtJTlNBTkVfU0tJUF8ke1BOfSA9ICJhcmNoIg0KPiA+PiBkaWZmIC0tZ2l0
+IGEvcmVjaXBlcy1ic3AvaWNzcy1lbWFjLWxsZC9pY3NzLWVtYWMtbGxkLXRlc3RfZ2l0LmJiDQo+
+ID4+IGIvcmVjaXBlcy1ic3AvaWNzcy1lbWFjLWxsZC9pY3NzLWVtYWMtbGxkLXRlc3RfZ2l0LmJi
+DQo+ID4+IGluZGV4IDZiZWFmYmYuLjM3NWJmYmMgMTAwNjQ0DQo+ID4+IC0tLSBhL3JlY2lwZXMt
+YnNwL2ljc3MtZW1hYy1sbGQvaWNzcy1lbWFjLWxsZC10ZXN0X2dpdC5iYg0KPiA+PiArKysgYi9y
+ZWNpcGVzLWJzcC9pY3NzLWVtYWMtbGxkL2ljc3MtZW1hYy1sbGQtdGVzdF9naXQuYmINCj4gPj4g
+QEAgLTEsNDcgKzEsNTUgQEANCj4gPj4gICAgREVTQ1JJUFRJT04gPSAiVEkgSUNTUy1FTUFDIGxv
+dyBsZXZlbCBkcml2ZXIgdGVzdHMiDQo+ID4+DQo+ID4+IC1ERVBFTkRTPSJjb21tb24tY3NsLWlw
+IHBydXNzLWxsZCBpY3NzLWVtYWMtbGxkIG9zYWwiDQo+ID4+ICtERVBFTkRTPSJjb21tb24tY3Ns
+LWlwIHBydXNzLWxsZCBpY3NzLWVtYWMtbGxkIG9zYWwgdGktcGRrLWJ1aWxkLXJ0b3MNCj4gaWNz
+cy1lbWFjLWxsZC1ydG9zIg0KPiA+Pg0KPiA+PiAgICBERVBFTkRTX2FwcGVuZF90aTMzeCA9ICIg
+c3RhcnRlcndhcmUiDQo+ID4+ICAgIERFUEVORFNfYXBwZW5kX3RpNDN4ID0gIiBzdGFydGVyd2Fy
+ZSINCj4gPj4NCj4gPj4gICAgaW5jbHVkZSBpY3NzLWVtYWMtbGxkLTAxLjAwLjAwLmluYw0KPiA+
+Pg0KPiA+PiAtUFIgPSAiJHtJTkNfUFJ9LjIiDQo+ID4+ICtQUiA9ICIke0lOQ19QUn0uMCINCj4g
+Pj4NCj4gPj4gLUNPTVBBVElCTEVfTUFDSElORSA9ICJhbTU3eHgtZXZtfHRpMzN4fHRpNDN4Ig0K
+PiA+PiAtDQo+ID4+IC1FWFRSQV9PRU1BS0UgKz0gIi1mIG1ha2VmaWxlX2FybXY3DQo+IFBES19J
+TlNUQUxMX1BBVEg9JHtTVEFHSU5HX0lOQ0RJUn0gSUNTU19FTUFDX1NSQ19ESVI9JHtTfSINCj4g
+Pj4gK0VYVFJBX09FTUFLRSArPSAiLWYgbWFrZWZpbGVfYXJtdjcNCj4gUERLX0lOU1RBTExfUEFU
+SD0ke1NUQUdJTkdfSU5DRElSfQ0KPiBQREtfUEtHX1BBVEg9JHtTVEFHSU5HX0RBVEFESVJ9L3Rp
+L3RpLXBkay10cmVlL3BhY2thZ2VzDQo+IElDU1NfRU1BQ19TUkNfRElSPSR7U30iDQo+ID4+DQo+
+ID4+ICAgIGRvX2NvbXBpbGVfYW01N3h4LWV2bSAoKSB7DQo+ID4+ICAgICMgICBCdWlsZCB0aGUg
+dGVzdHMNCj4gPj4gLSAgICBvZV9ydW5tYWtlIHRlc3RzIERFVklDRT0iYW01NzF4IiBUQVJHRVQ9
+IlNPQ19BTTU3MXgiDQo+ID4+ICsgICAgb2VfcnVubWFrZSB0ZXN0cyBERVZJQ0U9ImFtNTcxeCIN
+Cj4gPj4gICAgICAgIG9lX3J1bm1ha2UgY2xlYW4NCj4gPj4gLSAgICBvZV9ydW5tYWtlIHRlc3Rz
+IERFVklDRT0iYW01NzJ4IiBUQVJHRVQ9IlNPQ19BTTU3MngiDQo+ID4+ICsgICAgb2VfcnVubWFr
+ZSB0ZXN0cyBERVZJQ0U9ImFtNTcyeCINCj4gPj4gICAgfQ0KPiA+Pg0KPiA+PiAgICBkb19jb21w
+aWxlX3RpMzN4ICgpIHsNCj4gPj4gICAgIyAgIEJ1aWxkIHRoZSB0ZXN0cw0KPiA+PiAtICAgIG9l
+X3J1bm1ha2UgdGVzdHMgREVWSUNFPSJhbTMzNXgiIFRBUkdFVD0iU09DX0FNMzM1eCINCj4gPj4g
+KyAgICBvZV9ydW5tYWtlIHRlc3RzIERFVklDRT0iYW0zMzV4Ig0KPiA+PiAgICB9DQo+ID4+DQo+
+ID4+ICAgIGRvX2NvbXBpbGVfdGk0M3ggKCkgew0KPiA+PiAgICAjICAgQnVpbGQgdGhlIHRlc3Rz
+DQo+ID4+IC0gICAgb2VfcnVubWFrZSB0ZXN0cyBERVZJQ0U9ImFtNDM3eCIgVEFSR0VUPSJTT0Nf
+QU00Mzd4Ig0KPiA+PiArICAgIG9lX3J1bm1ha2UgdGVzdHMgREVWSUNFPSJhbTQzN3giDQo+ID4+
+ICt9DQo+ID4+ICsNCj4gPj4gK2RvX2NvbXBpbGVfazJnLWV2bSAoKSB7DQo+ID4+ICsjICAgQnVp
+bGQgdGhlIHRlc3RzDQo+ID4+ICsgICAgb2VfcnVubWFrZSB0ZXN0cyBERVZJQ0U9ImsyZyINCj4g
+Pj4gICAgfQ0KPiA+Pg0KPiA+PiAgICBkb19pbnN0YWxsX2FtNTd4eC1ldm0gKCkgew0KPiA+PiAg
+ICAjICAgSW5zdGFsbCB0aGUgYmluYXJ5DQo+ID4+IC0gICAgb2VfcnVubWFrZSBpbnN0YWxsYmlu
+IElOU1RBTExfQklOX0JBU0VfRElSPSR7RH0ke2JpbmRpcn0NCj4gREVWSUNFPSJhbTU3MXgiIFRB
+UkdFVD0iU09DX0FNNTcxeCINCj4gPj4gLSAgICBvZV9ydW5tYWtlIGluc3RhbGxiaW4gSU5TVEFM
+TF9CSU5fQkFTRV9ESVI9JHtEfSR7YmluZGlyfQ0KPiBERVZJQ0U9ImFtNTcyeCIgVEFSR0VUPSJT
+T0NfQU01NzJ4Ig0KPiA+PiArICAgIG9lX3J1bm1ha2UgaW5zdGFsbGJpbiBJTlNUQUxMX0JJTl9C
+QVNFX0RJUj0ke0R9JHtiaW5kaXJ9DQo+IERFVklDRT0iYW01NzF4Ig0KPiA+PiArICAgIG9lX3J1
+bm1ha2UgaW5zdGFsbGJpbiBJTlNUQUxMX0JJTl9CQVNFX0RJUj0ke0R9JHtiaW5kaXJ9DQo+IERF
+VklDRT0iYW01NzJ4Ig0KPiA+PiAgICB9DQo+ID4+DQo+ID4+ICAgIGRvX2luc3RhbGxfdGkzM3gg
+KCkgew0KPiA+PiAgICAjICAgSW5zdGFsbCB0aGUgYmluYXJ5DQo+ID4+IC0gICAgb2VfcnVubWFr
+ZSBpbnN0YWxsYmluIElOU1RBTExfQklOX0JBU0VfRElSPSR7RH0ke2JpbmRpcn0NCj4gREVWSUNF
+PSJhbTMzNXgiIFRBUkdFVD0iU09DX0FNMzM1eCINCj4gPj4gKyAgICBvZV9ydW5tYWtlIGluc3Rh
+bGxiaW4gSU5TVEFMTF9CSU5fQkFTRV9ESVI9JHtEfSR7YmluZGlyfQ0KPiBERVZJQ0U9ImFtMzM1
+eCINCj4gPj4gICAgfQ0KPiA+Pg0KPiA+PiAgICBkb19pbnN0YWxsX3RpNDN4ICgpIHsNCj4gPj4g
+ICAgIyAgIEluc3RhbGwgdGhlIGJpbmFyeQ0KPiA+PiAtICAgIG9lX3J1bm1ha2UgaW5zdGFsbGJp
+biBJTlNUQUxMX0JJTl9CQVNFX0RJUj0ke0R9JHtiaW5kaXJ9DQo+IERFVklDRT0iYW00Mzd4IiBU
+QVJHRVQ9IlNPQ19BTTQzN3giDQo+ID4+ICsgICAgb2VfcnVubWFrZSBpbnN0YWxsYmluIElOU1RB
+TExfQklOX0JBU0VfRElSPSR7RH0ke2JpbmRpcn0NCj4gREVWSUNFPSJhbTQzN3giDQo+ID4+ICt9
+DQo+ID4+ICsNCj4gPj4gK2RvX2luc3RhbGxfazJnLWV2bSAoKSB7DQo+ID4+ICsjICAgSW5zdGFs
+bCB0aGUgYmluYXJ5DQo+ID4+ICsgICAgb2VfcnVubWFrZSBpbnN0YWxsYmluIElOU1RBTExfQklO
+X0JBU0VfRElSPSR7RH0ke2JpbmRpcn0NCj4gREVWSUNFPSJrMmciDQo+ID4+ICAgIH0NCj4gPiBJ
+dCBhcHBlYXJzIHRoYXQgdGhpcyAiREVWSUNFIiBpcyBhbiBlbGVtZW50IG91dCBvZiB0aGUgVElf
+UERLX0xJTUlUX1NPQ1MNCj4gbGlzdC4gSWYgdGhpcyBpcyB0cnVlLCB0aGVuIHRoZXNlIGNvbXBp
+bGUgYW5kIGluc3RhbGwgdGFza3MgY2FuIGJlIGdyZWF0bHkNCj4gc2ltcGxpZmllZCBieSBsb29w
+aW5nIG92ZXIgdGhlIFRJX1BES19MSU1JVF9TT0NTIGxpc3QuDQo+ID4NCj4gPj4gZGlmZiAtLWdp
+dCBhL3JlY2lwZXMtYnNwL2ljc3MtZW1hYy1sbGQvaWNzcy1lbWFjLWxsZF9naXQuYmINCj4gPj4g
+Yi9yZWNpcGVzLWJzcC9pY3NzLWVtYWMtbGxkL2ljc3MtZW1hYy1sbGRfZ2l0LmJiDQo+ID4+IGlu
+ZGV4IGIzYmU4OWIuLmJmYTY1NWQgMTAwNjQ0DQo+ID4+IC0tLSBhL3JlY2lwZXMtYnNwL2ljc3Mt
+ZW1hYy1sbGQvaWNzcy1lbWFjLWxsZF9naXQuYmINCj4gPj4gKysrIGIvcmVjaXBlcy1ic3AvaWNz
+cy1lbWFjLWxsZC9pY3NzLWVtYWMtbGxkX2dpdC5iYg0KPiA+PiBAQCAtNCwxMyArNCwxMiBAQCBE
+RVBFTkRTPSJjb21tb24tY3NsLWlwIHBydXNzLWxsZCBvc2FsIg0KPiA+Pg0KPiA+PiAgICBpbmNs
+dWRlIGljc3MtZW1hYy1sbGQtMDEuMDAuMDAuaW5jDQo+ID4+DQo+ID4+IC1QUiA9ICIke0lOQ19Q
+Un0uMiINCj4gPj4gLQ0KPiA+PiAtQ09NUEFUSUJMRV9NQUNISU5FID0gImFtNTd4eC1ldm18dGkz
+M3h8dGk0M3giDQo+ID4+ICtQUiA9ICIke0lOQ19QUn0uMCINCj4gPj4NCj4gPj4gICAgVEFSR0VU
+X05BTUVfYW01N3h4LWV2bSA9ICJTT0NfQU01NzJ4Ig0KPiA+PiAgICBUQVJHRVRfTkFNRV90aTMz
+eCA9ICJTT0NfQU0zMzV4Ig0KPiA+PiAgICBUQVJHRVRfTkFNRV90aTQzeCA9ICJTT0NfQU00Mzd4
+Ig0KPiA+PiArVEFSR0VUX05BTUVfazJnLWV2bSA9ICJTT0NfSzJHIg0KPiA+Pg0KPiA+PiAgICBF
+WFRSQV9PRU1BS0UgKz0gIi1mIG1ha2VmaWxlX2FybXY3DQo+IFBES19JTlNUQUxMX1BBVEg9JHtT
+VEFHSU5HX0lOQ0RJUn0gVEFSR0VUPSR7VEFSR0VUX05BTUV9Ig0KPiA+Pg0KPiA+IF9fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+ID4gbWV0YS1hcmFnbyBt
+YWlsaW5nIGxpc3QNCj4gPiBtZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qub3JnDQo+ID4gaHR0cDov
+L2FyYWdvLXByb2plY3Qub3JnL2NnaS1iaW4vbWFpbG1hbi9saXN0aW5mby9tZXRhLWFyYWdvDQoN
+Cg==
 
