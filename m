@@ -1,43 +1,40 @@
-Return-Path: <j-stiffler@ti.com>
+Return-Path: <m-radhakrishnan2@ti.com>
 Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 9750652961
+	by arago-project.org (Postfix) with ESMTPS id 51296529FD
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Sep 2017 14:13:31 +0000 (UTC)
+	Wed, 20 Sep 2017 14:32:04 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8KEDVuB031617
-	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 09:13:31 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8KEW4dO002322
+	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 09:32:04 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1505916811;
-	bh=awrJCdqDonKTKlGJXYq1WYbfbSYHj3BMHGNpw/SUjjY=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=uv059/kkgXSV/Whq4kHaoLFQftJcbbOzTqzR1tSrvRMPwIxDAhE3yfC/G2qWGATab
-	EKmt0iDyd5HhEpLPMErt/gEKFB1ZpU+LL7gtmYLocnFecTATsnWDGHAZ0dNm3T53uL
-	2f5FvlCqXplTrVW0W3NR1mkCVlgzj77xteh6nnPU=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KEDVWj003108
-	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 09:13:31 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Wed, 20 Sep 2017 09:13:31 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Wed, 20 Sep 2017 09:13:31 -0500
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KEDUvV026940;
-	Wed, 20 Sep 2017 09:13:31 -0500
-To: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>,
+	s=ti-com-17Q1; t=1505917924;
+	bh=D2h/ysgcryVg4YFg5jB0/5tpJ03CDUmsSMbyXCZmqSE=;
+	h=From:To:Subject:Date:References:In-Reply-To;
+	b=moGVswenmexK42M8cT+bWZ0V9fvmSKw+zIegYnBY5xXu8U6tmK2FcMJoUGSrJhT98
+	PG8LbcRWj3CVSDdgzVgJbpZtN6dyAwpVFbKrnNv5hBh81DdCnThJGrTsn7sGMM2vzu
+	is9k8ocaSQncQHBNIm8jpPI26nWAhX9fpjAPFjCQ=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KEW4Zi000899
+	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 09:32:04 -0500
+Received: from DFLE12.ent.ti.com ([fe80::e9a3:bf19:af96:227b]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0294.000; Wed, 20 Sep 2017 09:32:03 -0500
+From: "Radhakrishnan, Mahesh" <m-radhakrishnan2@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
+Thread-Topic: [EXTERNAL] [meta-arago] [meta-processor-sdk PATCH]
+	pruss-lld-rtos: Adding RTOS recipe for pruss-lld
+Thread-Index: AQHTMZbxoi2bLEg9AUqQeMtpkHsCTKK+JegA//+xQkA=
+Date: Wed, 20 Sep 2017 14:32:02 +0000
+Message-ID: <5130E41A1BA9D145BA0F3B18D5CFB0A7437F64E9@DFLE12.ent.ti.com>
 References: <1505860246-5344-1-git-send-email-m-radhakrishnan2@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <f4cfe5c3-6bfe-f887-cbcd-34cd21991400@ti.com>
-Date: Wed, 20 Sep 2017 10:13:30 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	<f4cfe5c3-6bfe-f887-cbcd-34cd21991400@ti.com>
+In-Reply-To: <f4cfe5c3-6bfe-f887-cbcd-34cd21991400@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.172.224.222]
 MIME-Version: 1.0
-In-Reply-To: <1505860246-5344-1-git-send-email-m-radhakrishnan2@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Subject: Re: [EXTERNAL] [meta-processor-sdk PATCH] pruss-lld-rtos: Adding RTOS recipe for pruss-lld
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -51,50 +48,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Sep 2017 14:13:31 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 20 Sep 2017 14:32:05 -0000
 Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Please submit this to meta-ti.
-
-On 9/19/2017 6:30 PM, Mahesh Radhakrishnan wrote:
-> Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
-> ---
->   recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb | 25 +++++++++++++++++++++++++
->   1 file changed, 25 insertions(+)
->   create mode 100644 recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb
->
-> diff --git a/recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb b/recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb
-> new file mode 100644
-> index 0000000..499afce
-> --- /dev/null
-> +++ b/recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb
-> @@ -0,0 +1,25 @@
-> +SUMMARY = "TI RTOS low level driver library for PRUSS"
-> +
-> +inherit ti-pdk
-> +require recipes-bsp/pruss-lld/pruss-lld.inc
-> +require recipes-bsp/pruss-lld/pruss-lld-1.0.0.inc
-> +
-> +
-> +PR = "${INC_PR}.0"
-> +
-> +S = "${WORKDIR}/${PRUSS_LLD_GIT_DESTSUFFIX}"
-> +
-> +DEPENDS_append = " osal-rtos"
-> +DEPENDS_append_ti33x = " starterware-rtos"
-> +DEPENDS_append_ti43x = " starterware-rtos"
-> +
-> +# Build with make instead of XDC
-> +TI_PDK_XDCMAKE = "0"
-> +
-> +export PDK_PRUSS_ROOT_PATH ="${WORKDIR}/build"
-> +export DEST_ROOT="${WORKDIR}/build"
-> +
-> +# HTML doc link params
-> +PDK_COMP_LINK_TEXT = "PRUSS LLD"
-> +
-> +INSANE_SKIP_${PN} = "arch"
-
+VGhlIHBhdGNoIHdhcyBzdWJtaXR0ZWQgc29tZXRpbWUgYmFjayBhbmQgaXMgdW5kZXIgcmV2aWV3
+Lg0KaHR0cDovL3BhdGNod29yay5kYWwuZGVzaWduLnRpLmNvbS9wYXRjaC8zMzE2MC8NCg0KDQot
+LS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogU3RpZmZsZXIsIEphY29iIA0KU2VudDog
+V2VkbmVzZGF5LCBTZXB0ZW1iZXIgMjAsIDIwMTcgMTA6MTQgQU0NClRvOiBSYWRoYWtyaXNobmFu
+LCBNYWhlc2g7IG1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbRVhU
+RVJOQUxdIFttZXRhLWFyYWdvXSBbbWV0YS1wcm9jZXNzb3Itc2RrIFBBVENIXSBwcnVzcy1sbGQt
+cnRvczogQWRkaW5nIFJUT1MgcmVjaXBlIGZvciBwcnVzcy1sbGQNCg0KUGxlYXNlIHN1Ym1pdCB0
+aGlzIHRvIG1ldGEtdGkuDQoNCk9uIDkvMTkvMjAxNyA2OjMwIFBNLCBNYWhlc2ggUmFkaGFrcmlz
+aG5hbiB3cm90ZToNCj4gU2lnbmVkLW9mZi1ieTogTWFoZXNoIFJhZGhha3Jpc2huYW4gPG0tcmFk
+aGFrcmlzaG5hbjJAdGkuY29tPg0KPiAtLS0NCj4gICByZWNpcGVzLWJzcC9wcnVzcy1sbGQvcHJ1
+c3MtbGxkLXJ0b3NfZ2l0LmJiIHwgMjUgKysrKysrKysrKysrKysrKysrKysrKysrKw0KPiAgIDEg
+ZmlsZSBjaGFuZ2VkLCAyNSBpbnNlcnRpb25zKCspDQo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IHJl
+Y2lwZXMtYnNwL3BydXNzLWxsZC9wcnVzcy1sbGQtcnRvc19naXQuYmINCj4NCj4gZGlmZiAtLWdp
+dCBhL3JlY2lwZXMtYnNwL3BydXNzLWxsZC9wcnVzcy1sbGQtcnRvc19naXQuYmIgYi9yZWNpcGVz
+LWJzcC9wcnVzcy1sbGQvcHJ1c3MtbGxkLXJ0b3NfZ2l0LmJiDQo+IG5ldyBmaWxlIG1vZGUgMTAw
+NjQ0DQo+IGluZGV4IDAwMDAwMDAuLjQ5OWFmY2UNCj4gLS0tIC9kZXYvbnVsbA0KPiArKysgYi9y
+ZWNpcGVzLWJzcC9wcnVzcy1sbGQvcHJ1c3MtbGxkLXJ0b3NfZ2l0LmJiDQo+IEBAIC0wLDAgKzEs
+MjUgQEANCj4gK1NVTU1BUlkgPSAiVEkgUlRPUyBsb3cgbGV2ZWwgZHJpdmVyIGxpYnJhcnkgZm9y
+IFBSVVNTIg0KPiArDQo+ICtpbmhlcml0IHRpLXBkaw0KPiArcmVxdWlyZSByZWNpcGVzLWJzcC9w
+cnVzcy1sbGQvcHJ1c3MtbGxkLmluYw0KPiArcmVxdWlyZSByZWNpcGVzLWJzcC9wcnVzcy1sbGQv
+cHJ1c3MtbGxkLTEuMC4wLmluYw0KPiArDQo+ICsNCj4gK1BSID0gIiR7SU5DX1BSfS4wIg0KPiAr
+DQo+ICtTID0gIiR7V09SS0RJUn0vJHtQUlVTU19MTERfR0lUX0RFU1RTVUZGSVh9Ig0KPiArDQo+
+ICtERVBFTkRTX2FwcGVuZCA9ICIgb3NhbC1ydG9zIg0KPiArREVQRU5EU19hcHBlbmRfdGkzM3gg
+PSAiIHN0YXJ0ZXJ3YXJlLXJ0b3MiDQo+ICtERVBFTkRTX2FwcGVuZF90aTQzeCA9ICIgc3RhcnRl
+cndhcmUtcnRvcyINCj4gKw0KPiArIyBCdWlsZCB3aXRoIG1ha2UgaW5zdGVhZCBvZiBYREMNCj4g
+K1RJX1BES19YRENNQUtFID0gIjAiDQo+ICsNCj4gK2V4cG9ydCBQREtfUFJVU1NfUk9PVF9QQVRI
+ID0iJHtXT1JLRElSfS9idWlsZCINCj4gK2V4cG9ydCBERVNUX1JPT1Q9IiR7V09SS0RJUn0vYnVp
+bGQiDQo+ICsNCj4gKyMgSFRNTCBkb2MgbGluayBwYXJhbXMNCj4gK1BES19DT01QX0xJTktfVEVY
+VCA9ICJQUlVTUyBMTEQiDQo+ICsNCj4gK0lOU0FORV9TS0lQXyR7UE59ID0gImFyY2giDQoNCg==
 
