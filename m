@@ -1,42 +1,41 @@
-Return-Path: <h-gou@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 0F46152093
+Return-Path: <m-radhakrishnan2@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 4C26952093
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Sep 2017 22:17:02 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8KMGpsW008831
-	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 17:16:51 -0500
+	Wed, 20 Sep 2017 22:45:08 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8KMj7Dk001437
+	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 17:45:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1505945811;
-	bh=84sbf1UsJgSaP3urqdiOAyOS5bl47xIxcDEnql4UxPY=;
+	s=ti-com-17Q1; t=1505947507;
+	bh=Wb21aL7Kk+fY3NcthgoCL+kLpvWXbsL7Ty6sItdbxtc=;
 	h=From:To:CC:Subject:Date;
-	b=xagfkkDlTfySONWksLZnsJM1gN9z/FxYvUlCB6bhg8Rw8rlcCaaVr+mgOd6DgnZne
-	jMInUjbqLvyaS7xyJssnnEomvf94G62aaROolzbxR/RcceesXbyci2/34aOLhJXK0/
-	gC5UujJEm+j7WOeYwYzhKtc54BWlapLXxjN1oBb4=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KMGk4M010080
-	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 17:16:46 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	b=w4EF66A2Y7R49o0mo5d/4fWDrlR9ls1x/EkAjQPOUoashnbHkMiDOT9sQ8DKNIblC
+	fB1HkDMd96KNXzugU9i6ubmpatLctTdMjBghm4bdlCBVb7uAnxphIlf+qbPjp2m+DW
+	e/dZbEJ8dISgnMLqQERImc5M7LnRI7pNoaoI1crk=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KMj7Fo012730
+	for <meta-arago@arago-project.org>; Wed, 20 Sep 2017 17:45:07 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Wed, 20 Sep 2017 17:16:46 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 20 Sep 2017 17:45:07 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Wed, 20 Sep 2017 17:16:46 -0500
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Wed, 20 Sep 2017 17:45:07 -0500
+Received: from uda0875154a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KMGkb4029542;
-	Wed, 20 Sep 2017 17:16:46 -0500
-From: Hongmei Gou <a0271529@ti.com>
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8KMj7cQ026594;
+	Wed, 20 Sep 2017 17:45:07 -0500
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 20 Sep 2017 18:16:42 -0400
-Message-ID: <1505945802-11705-1-git-send-email-a0271529@ti.com>
+Date: Wed, 20 Sep 2017 18:44:53 -0400
+Message-ID: <1505947493-21847-1-git-send-email-m-radhakrishnan2@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processsor-sdk] [PATCH] pruss-lld-rtos: add DEPENDS on ti-cgt-pru-native
+Subject: [meta-processor-sdk PATCH] starterware: Updating to version 2.1.1.4
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,32 +48,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Sep 2017 22:17:02 -0000
+X-List-Received-Date: Wed, 20 Sep 2017 22:45:09 -0000
 Content-Type: text/plain
 
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ recipes-bsp/starterware/starterware-2.1.1.inc | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb b/recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb
-index 499afce..7a05def 100644
---- a/recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb
-+++ b/recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb
-@@ -5,11 +5,11 @@ require recipes-bsp/pruss-lld/pruss-lld.inc
- require recipes-bsp/pruss-lld/pruss-lld-1.0.0.inc
+diff --git a/recipes-bsp/starterware/starterware-2.1.1.inc b/recipes-bsp/starterware/starterware-2.1.1.inc
+index c5d7655..8e0b647 100644
+--- a/recipes-bsp/starterware/starterware-2.1.1.inc
++++ b/recipes-bsp/starterware/starterware-2.1.1.inc
+@@ -8,14 +8,14 @@ STARTERWARE_GIT_URI = "git://git.ti.com/keystone-rtos/starterware.git"
+ STARTERWARE_GIT_PROTOCOL = "git"
+ STARTERWARE_GIT_BRANCH = "master"
  
+-# Below commit ID corresponds to "DEV.STARTERWARE.PROCSDK.02.01.01.03A"
+-STARTERWARE_SRCREV = "08f65ae3d5ccd19fbaf36040a99de971b685d144"
++# Below commit ID corresponds to "DEV.STARTERWARE.PROCSDK.02.01.01.04"
++STARTERWARE_SRCREV = "03c5e4e2db71f7fac0206e17e8d00d903f15561c"
  
--PR = "${INC_PR}.0"
-+PR = "${INC_PR}.1"
+ BRANCH = "${STARTERWARE_GIT_BRANCH}"
+ SRC_URI = "${STARTERWARE_GIT_URI};protocol=${STARTERWARE_GIT_PROTOCOL};branch=${BRANCH}"
  
- S = "${WORKDIR}/${PRUSS_LLD_GIT_DESTSUFFIX}"
+ SRCREV = "${STARTERWARE_SRCREV}"
+-PV = "02.01.01.03A"
++PV = "02.01.01.04"
+ INC_PR = "r0"
  
--DEPENDS_append = " osal-rtos"
-+DEPENDS_append = " osal-rtos ti-cgt-pru-native"
- DEPENDS_append_ti33x = " starterware-rtos"
- DEPENDS_append_ti43x = " starterware-rtos"
- 
+ S = "${WORKDIR}/git"
 -- 
 1.9.1
 
