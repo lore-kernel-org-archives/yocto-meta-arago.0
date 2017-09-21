@@ -1,40 +1,40 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 2007C52A1F
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 98B6F52A1F
 	for <meta-arago@arago-project.org>;
-	Thu, 21 Sep 2017 18:05:10 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8LI5Adw001957
-	for <meta-arago@arago-project.org>; Thu, 21 Sep 2017 13:05:10 -0500
+	Thu, 21 Sep 2017 18:05:41 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8LI5fxv007924
+	for <meta-arago@arago-project.org>; Thu, 21 Sep 2017 13:05:41 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1506017110;
-	bh=VSTV2cfNNx0Z8PKnzmwPR/6e0USR9wSKr9bwHORMOcI=;
+	s=ti-com-17Q1; t=1506017141;
+	bh=Le996qMeoQTpzf/m/TgKge62yhDoTQVP+lcmEoGhvYA=;
 	h=From:To:Subject:Date:References:In-Reply-To;
-	b=CVJgUivW8CIstcembGIolj8YbXm+AMADtPyyrmmgaF00wMKFWvzY6pbeUr8Rjk+IF
-	lpIN+qml9uOJ1uq9FQ1okCBxC3rqUr9ZPZFjCTPPmq2dTerhxQ0rQ2UPD//V8SA13U
-	mHstCqvEd0cr2Paz0TN/uTY9d20PB1uv8QjUyXWg=
-Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8LI59Wd021515
-	for <meta-arago@arago-project.org>; Thu, 21 Sep 2017 13:05:10 -0500
+	b=i6/ur3LVPsMvChQK9fft0+Gz0ywILXq7n3PoY68HnJPRbwszusTImlaj2k2jAlzl/
+	bOaw6zBaEw0y1lvG0nPbXpc97KWwTj7m+r61/y8UNMErYdWKigDSwFXLxBQ1a+r0xE
+	XqHZPuOxEmcWu/9YvKdGiK2UZtG7BuWP54dprPAQ=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8LI5fOq015230
+	for <meta-arago@arago-project.org>; Thu, 21 Sep 2017 13:05:41 -0500
 Received: from DFLE09.ent.ti.com ([fe80::7090:147d:b5eb:4c12]) by
-	DFLE73.ent.ti.com ([fe80::c9be:a3a9:7cd8:c8b3%28]) with mapi id
-	14.03.0294.000; Thu, 21 Sep 2017 13:05:08 -0500
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0294.000; Thu, 21 Sep 2017 13:05:41 -0500
 From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Radhakrishnan, Mahesh" <m-radhakrishnan2@ti.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [meta-processor-sdk PATCH]
-	starterware:   Updating to version 2.1.1.4
-Thread-Index: AQHTMmIgpGBqxPewVE+bG7rN15LP/6K/o4mg
-Date: Thu, 21 Sep 2017 18:05:08 +0000
-Message-ID: <4B26FB5A64EBA14C87266869E037F95825455E1D@DFLE09.ent.ti.com>
-References: <1505947493-21847-1-git-send-email-m-radhakrishnan2@ti.com>
-In-Reply-To: <1505947493-21847-1-git-send-email-m-radhakrishnan2@ti.com>
+To: "Gou, Hongmei" <h-gou@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [EXTERNAL] [meta-arago] [meta-processsor-sdk] [PATCH]
+	pruss-lld-rtos: add DEPENDS on ti-cgt-pru-native
+Thread-Index: AQHTMl4zzaEaL+REIUSF/bqQ0xU2T6K/o5sw
+Date: Thu, 21 Sep 2017 18:05:40 +0000
+Message-ID: <4B26FB5A64EBA14C87266869E037F95825455E2E@DFLE09.ent.ti.com>
+References: <1505945802-11705-1-git-send-email-a0271529@ti.com>
+In-Reply-To: <1505945802-11705-1-git-send-email-a0271529@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.172.224.222]
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] [meta-processor-sdk PATCH] starterware: Updating to version 2.1.1.4
+Subject: Re: [EXTERNAL] [meta-processsor-sdk] [PATCH] pruss-lld-rtos: add DEPENDS on ti-cgt-pru-native
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,53 +47,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Sep 2017 18:05:10 -0000
+X-List-Received-Date: Thu, 21 Sep 2017 18:05:41 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Pushed.
+NAK. As we discussed, the toolchain dependency will go into the ti-pdk clas=
+s, similar to the other toolchains.
 
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Radhakrishnan, Mahesh
-> Sent: Wednesday, September 20, 2017 6:45 PM
+> bounces@arago-project.org] On Behalf Of Gou, Hongmei
+> Sent: Wednesday, September 20, 2017 6:17 PM
 > To: meta-arago@arago-project.org
-> Subject: [EXTERNAL] [meta-arago] [meta-processor-sdk PATCH] starterware:
-> Updating to version 2.1.1.4
+> Cc: Gou, Hongmei
+> Subject: [EXTERNAL] [meta-arago] [meta-processsor-sdk] [PATCH] pruss-lld-
+> rtos: add DEPENDS on ti-cgt-pru-native
 >=20
+> Signed-off-by: Hongmei Gou <a0271529@ti.com>
 > ---
->  recipes-bsp/starterware/starterware-2.1.1.inc | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >=20
-> diff --git a/recipes-bsp/starterware/starterware-2.1.1.inc b/recipes-
-> bsp/starterware/starterware-2.1.1.inc
-> index c5d7655..8e0b647 100644
-> --- a/recipes-bsp/starterware/starterware-2.1.1.inc
-> +++ b/recipes-bsp/starterware/starterware-2.1.1.inc
-> @@ -8,14 +8,14 @@ STARTERWARE_GIT_URI =3D "git://git.ti.com/keystone-
-> rtos/starterware.git"
->  STARTERWARE_GIT_PROTOCOL =3D "git"
->  STARTERWARE_GIT_BRANCH =3D "master"
+> diff --git a/recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb b/recipes-bsp/pr=
+uss-
+> lld/pruss-lld-rtos_git.bb
+> index 499afce..7a05def 100644
+> --- a/recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb
+> +++ b/recipes-bsp/pruss-lld/pruss-lld-rtos_git.bb
+> @@ -5,11 +5,11 @@ require recipes-bsp/pruss-lld/pruss-lld.inc
+>  require recipes-bsp/pruss-lld/pruss-lld-1.0.0.inc
 >=20
-> -# Below commit ID corresponds to
-> "DEV.STARTERWARE.PROCSDK.02.01.01.03A"
-> -STARTERWARE_SRCREV =3D "08f65ae3d5ccd19fbaf36040a99de971b685d144"
-> +# Below commit ID corresponds to
-> "DEV.STARTERWARE.PROCSDK.02.01.01.04"
-> +STARTERWARE_SRCREV =3D "03c5e4e2db71f7fac0206e17e8d00d903f15561c"
 >=20
->  BRANCH =3D "${STARTERWARE_GIT_BRANCH}"
->  SRC_URI =3D
-> "${STARTERWARE_GIT_URI};protocol=3D${STARTERWARE_GIT_PROTOCOL};bra
-> nch=3D${BRANCH}"
+> -PR =3D "${INC_PR}.0"
+> +PR =3D "${INC_PR}.1"
 >=20
->  SRCREV =3D "${STARTERWARE_SRCREV}"
-> -PV =3D "02.01.01.03A"
-> +PV =3D "02.01.01.04"
->  INC_PR =3D "r0"
+>  S =3D "${WORKDIR}/${PRUSS_LLD_GIT_DESTSUFFIX}"
 >=20
->  S =3D "${WORKDIR}/git"
+> -DEPENDS_append =3D " osal-rtos"
+> +DEPENDS_append =3D " osal-rtos ti-cgt-pru-native"
+>  DEPENDS_append_ti33x =3D " starterware-rtos"
+>  DEPENDS_append_ti43x =3D " starterware-rtos"
+>=20
 > --
 > 1.9.1
 >=20
