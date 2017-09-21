@@ -1,44 +1,43 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id B51D5529DA
+Return-Path: <denys@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id C46A3529DA
 	for <meta-arago@arago-project.org>;
-	Thu, 21 Sep 2017 19:51:04 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8LJosm2018315
-	for <meta-arago@arago-project.org>; Thu, 21 Sep 2017 14:50:54 -0500
+	Thu, 21 Sep 2017 19:51:39 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8LJpdaW027100
+	for <meta-arago@arago-project.org>; Thu, 21 Sep 2017 14:51:39 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1506023454;
-	bh=QjovIY0pkUrJnjUL8XHQ88NHVCRq1oSzy1aF0VrBbjk=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=dWbmDudvLySHvSJ4FEGjybxHFueMcqmspweRprMpNEfwmJ4pUcyzno2ZfgNQw3DSe
-	QU/K8oEhFt+URyKiKZj1ZXNnxb+NriiA/WErOmKzawW2+X+LeiF+thNSOlgXg6Kebi
-	P0aJhQDp5KSH0bjsdiSYyTA0F62u39qFK8pLJzdw=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8LJonVJ026248
-	for <meta-arago@arago-project.org>; Thu, 21 Sep 2017 14:50:49 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1506023499;
+	bh=+KY5Q0L0cwAp/PaRU07qvLLfRm6xXrh/Lxane3cs0xo=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=FAMQ1vUGKzRcPFACUFDxglYJaMF3NtEhCeNn4WqRTWbpHykVeVyr9vHVSMjrfnVXe
+	YCffCcdIyujoQB4FOjFyz/HanKrF6kpu49ecOibuIuNXEviucSH3c200a/GGLn4LGU
+	tlBE0EPh13KtljdstxUWArw0hiWN47yuR//2twQQ=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8LJpdnc018282
+	for <meta-arago@arago-project.org>; Thu, 21 Sep 2017 14:51:39 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Thu, 21 Sep 2017 14:50:49 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 21 Sep 2017 14:51:39 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE100.ent.ti.com
+	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Thu, 21 Sep 2017 14:50:49 -0500
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8LJom4Q008478;
-	Thu, 21 Sep 2017 14:50:49 -0500
-To: Djordje Senicic <x0157990@ti.com>, <meta-arago@arago-project.org>
+	Transport; Thu, 21 Sep 2017 14:51:39 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8LJpdvJ009244;
+	Thu, 21 Sep 2017 14:51:39 -0500
+Date: Thu, 21 Sep 2017 15:51:23 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Djordje Senicic <x0157990@ti.com>
+Message-ID: <20170921195123.GI26843@edge>
 References: <1506023193-16873-1-git-send-email-x0157990@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <8764bc9a-7698-16a1-03f8-1ac7be28f2f5@ti.com>
-Date: Thu, 21 Sep 2017 15:50:48 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
 MIME-Version: 1.0
 In-Reply-To: <1506023193-16873-1-git-send-email-x0157990@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: d-senicic1@ti.com
-Subject: Re: [EXTERNAL] [meta-processor-sdk][PATCH] tiovx: Add TIOVX framework host side package, IPC implementation and sample application
+Cc: meta-arago@arago-project.org, d-senicic1@ti.com
+Subject: Re: [meta-processor-sdk][PATCH] tiovx: Add TIOVX framework host side package, IPC implementation and sample application
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,53 +50,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Sep 2017 19:51:04 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Thu, 21 Sep 2017 19:51:40 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+
+Is it going public?
 
 
-
-On 9/21/2017 3:46 PM, Djordje Senicic wrote:
-> * TIOVX is TI’s implementation of OpenVX Khronos Standard. TIOVX allows users to create vision and compute applications using OpenVX API and can be executed on TI SoCs.
->    TIOVX also provides optimized OpenVX kernels for C66x DSP. An extension API allows users to integrate their own natively developed custom kernels and call them using OpenVX APIs.
->
+On Thu, Sep 21, 2017 at 03:46:33PM -0400, Djordje Senicic wrote:
+> * TIOVX is TI’s implementation of OpenVX Khronos Standard. TIOVX allows users to create vision and compute applications using OpenVX API and can be executed on TI SoCs. 
+>   TIOVX also provides optimized OpenVX kernels for C66x DSP. An extension API allows users to integrate their own natively developed custom kernels and call them using OpenVX APIs.
+> 
 > * TIOVX-APP includes sample TIOVX applications, like conformance tests, IPC implementation and DSP firmware (includes kernels and DSP-side of TIOVX framework)
->
->
+> 
+> 
 > Signed-off-by: Djordje Senicic <x0157990@ti.com>
 > ---
-
-Can you split this into multi commits? One per recipe?
-
->   ...agegroup-arago-tisdk-addons-sdk-target.bbappend |   6 +
->   .../packagegroup-arago-tisdk-addons.bbappend       |   2 +
->   recipes-ti/includes/ti-paths-append.inc            |   5 +
->   ...hs-for-Yocto-build-and-add-RTOS-build-var.patch | 133 +++++++++++++++++++++
->   recipes-ti/tiovx/tiovx-app-host.bb                 |  32 +++++
->   recipes-ti/tiovx/tiovx-lib-host.bb                 |  41 +++++++
->   recipes-ti/tiovx/tiovx-sys-iface.bb                |  32 +++++
->   recipes-ti/tiovx/tiovx-sys.inc                     |   5 +
->   8 files changed, 256 insertions(+)
->   create mode 100644 recipes-ti/includes/ti-paths-append.inc
-
-This file should not exist in meta-processor-sdk. Please make the 
-updates in recipes-ti/includes/tisdk-paths.inc
-
->   create mode 100644 recipes-ti/tiovx/files/0001-Fix-paths-for-Yocto-build-and-add-RTOS-build-var.patch
->   create mode 100644 recipes-ti/tiovx/tiovx-app-host.bb
->   create mode 100644 recipes-ti/tiovx/tiovx-lib-host.bb
->   create mode 100644 recipes-ti/tiovx/tiovx-sys-iface.bb
->   create mode 100644 recipes-ti/tiovx/tiovx-sys.inc
->
+>  ...agegroup-arago-tisdk-addons-sdk-target.bbappend |   6 +
+>  .../packagegroup-arago-tisdk-addons.bbappend       |   2 +
+>  recipes-ti/includes/ti-paths-append.inc            |   5 +
+>  ...hs-for-Yocto-build-and-add-RTOS-build-var.patch | 133 +++++++++++++++++++++
+>  recipes-ti/tiovx/tiovx-app-host.bb                 |  32 +++++
+>  recipes-ti/tiovx/tiovx-lib-host.bb                 |  41 +++++++
+>  recipes-ti/tiovx/tiovx-sys-iface.bb                |  32 +++++
+>  recipes-ti/tiovx/tiovx-sys.inc                     |   5 +
+>  8 files changed, 256 insertions(+)
+>  create mode 100644 recipes-ti/includes/ti-paths-append.inc
+>  create mode 100644 recipes-ti/tiovx/files/0001-Fix-paths-for-Yocto-build-and-add-RTOS-build-var.patch
+>  create mode 100644 recipes-ti/tiovx/tiovx-app-host.bb
+>  create mode 100644 recipes-ti/tiovx/tiovx-lib-host.bb
+>  create mode 100644 recipes-ti/tiovx/tiovx-sys-iface.bb
+>  create mode 100644 recipes-ti/tiovx/tiovx-sys.inc
+> 
 > diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
 > index aeabbc0..8de7992 100644
 > --- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
 > +++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
 > @@ -75,3 +75,9 @@ EXTRA_LIBS_append_ti43x = "\
->       cmem-dev \
->       cmem-staticdev \
->   "
+>      cmem-dev \
+>      cmem-staticdev \
+>  "
 > +
 > +EXTRA_LIBS_append_dra7xx = " \
 > +    tiovx-lib-host-dev \
@@ -109,9 +102,9 @@ updates in recipes-ti/includes/tisdk-paths.inc
 > --- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
 > +++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
 > @@ -34,3 +34,5 @@ UTILS_append_k2g = " uio-test-pruss"
->   EXTRA_PACKAGES_append_omap-a15 = " big-data-ipc-demo-linux \
->                                      big-data-ipc-demo-linux-firmware \
->   "
+>  EXTRA_PACKAGES_append_omap-a15 = " big-data-ipc-demo-linux \
+>                                     big-data-ipc-demo-linux-firmware \
+>  "
 > +
 > +EXTRA_PACKAGES_append_dra7xx = " tiovx-app-host "
 > diff --git a/recipes-ti/includes/ti-paths-append.inc b/recipes-ti/includes/ti-paths-append.inc
@@ -147,16 +140,16 @@ updates in recipes-ti/includes/tisdk-paths.inc
 > +--- a/Makefile
 > ++++ b/Makefile
 > +@@ -1,6 +1,6 @@
-> +
+> + 
 > + # Valid values are: vsdk psdk
 > +-BUILD_SDK=vsdk
 > ++BUILD_SDK=psdk
-> +
+> + 
 > + include $(BUILD_SDK)_tools_path.mak
-> +
+> + 
 > +@@ -8,11 +8,12 @@ BUILD_EMULATION_MODE?=no
 > + BUILD_TARGET_MODE?=yes
-> +
+> + 
 > + BUILD_CONFORMANCE_TEST?=yes
 > +-BUILD_IVISION_KERNELS?=yes
 > ++BUILD_IVISION_KERNELS?=no
@@ -166,11 +159,11 @@ updates in recipes-ti/includes/tisdk-paths.inc
 > +-BUILD_EVE?=yes
 > ++BUILD_RTOS?=no
 > ++BUILD_EVE?=no
-> +
+> + 
 > + PROFILE?=all
-> +
+> + 
 > +@@ -43,12 +44,17 @@ TARGET_COMBOS :=
-> +
+> + 
 > + ifeq ($(BUILD_TARGET_MODE),yes)
 > +   ifeq ($(PROFILE), $(filter $(PROFILE), debug all))
 > +-	TARGET_COMBOS += TDAX:SYSBIOS:M4:1:debug:TIARMCGT
@@ -191,7 +184,7 @@ updates in recipes-ti/includes/tisdk-paths.inc
 > + 		TARGET_COMBOS += TDAX:LINUX:A15:1:debug:GCC_LINARO
 > +@@ -57,12 +63,17 @@ ifeq ($(BUILD_TARGET_MODE),yes)
 > +   endif
-> +
+> + 
 > +   ifeq ($(PROFILE), $(filter $(PROFILE), release all))
 > +-	TARGET_COMBOS += TDAX:SYSBIOS:M4:1:release:TIARMCGT
 > +-	TARGET_COMBOS += TDAX:SYSBIOS:C66:1:release:CGT6X
@@ -216,16 +209,16 @@ updates in recipes-ti/includes/tisdk-paths.inc
 > ++++ b/psdk_tools_path.mak
 > +@@ -2,7 +2,6 @@
 > + TIOVX_PATH = $(abspath .)
-> +
+> + 
 > + PLSDK_PATH := /home/x0157990/ti-processor-sdk-linux-am57xx-evm-04.00.00.04
 > +-PRSDK_PATH := /home/x0157990/ti-processor-sdk-rtos-am57xx-evm-04-00-00-04
-> +
+> + 
 > + CROSS_COMPILE_LINARO := arm-linux-gnueabihf-
 > + CROSS_COMPILE := arm-none-eabi-
 > +@@ -16,23 +15,20 @@ ifeq ($(BUILD_OS),Windows_NT)
 > + GCC_WINDOWS_ROOT ?= C:/CodeBlocks/MinGW
 > + endif
-> +
+> + 
 > +-XDC_PATH := $(PRSDK_PATH)/xdctools_3_32_01_22_core/
 > +-TIARMCGT_ROOT := $(PRSDK_PATH)/ti-cgt-arm_16.9.2.LTS
 > ++XDC_PATH := $(XDC_INSTALL_DIR)
@@ -235,7 +228,7 @@ updates in recipes-ti/includes/tisdk-paths.inc
 > ++BIOS_PATH := $(SYSBIOSPATH)
 > ++PDK_PATH := $(PDKPATH)
 > ++SDK_PLATFORM_IF_PATH := $(SDKPLATFORMIFPATH)
-> +
+> + 
 > +-GCC_ROOT := $(PRSDK_PATH)/gcc-arm-none-eabi-4_9-2015q3
 > +-GCC_ROOT_LINARO := /home/x0157990/linaro/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf
 > +-CGT6X_ROOT := $(PRSDK_PATH)/ti-cgt-c6000_8.1.3/
@@ -247,7 +240,7 @@ updates in recipes-ti/includes/tisdk-paths.inc
 > ++DMAUTILS_PATH ?= $(DSPAPPS_PATH)/dmautils
 > ++ALGFRAMEWORK_PATH ?= $(DSPAPPS_PATH)/algframework
 > ++EDMA3_LLD_PATH := $(EDMA3LLDPATH)
-> +
+> + 
 > +-
 > +-VXLIB_PATH ?= $(PRSDK_PATH)/vxlib_c66x_1_1_0_0
 > +-XDIAS_PATH := $(PRSDK_PATH)/xdais_7_24_00_04
@@ -261,7 +254,7 @@ updates in recipes-ti/includes/tisdk-paths.inc
 > +-TARGETFS := $(PLSDK_PATH)/linux-devkit/sysroots/armv7ahf-neon-linux-gnueabi/
 > +-SDK_PLATFORM_IF_PATH ?= /home/x0157990/am57/openvx/ex41_forwardmsg/vx
 > +\ No newline at end of file
-> +--
+> +-- 
 > +1.9.1
 > +
 > diff --git a/recipes-ti/tiovx/tiovx-app-host.bb b/recipes-ti/tiovx/tiovx-app-host.bb
@@ -398,5 +391,11 @@ updates in recipes-ti/includes/tisdk-paths.inc
 > +BRANCH="master"
 > +SRCREV = "b17cafb972fb3803794785f70a449e67bcf455a2"
 > +SRC_URI = "git://git@bitbucket.itg.ti.com/processor-sdk/tiovx-app.git;protocol=ssh;branch=${BRANCH}"
-
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
