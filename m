@@ -1,44 +1,42 @@
-Return-Path: <denys@ti.com>
+Return-Path: <manisha.agrawal@ti.com>
 Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 7AAAF52A65
+	by arago-project.org (Postfix) with ESMTPS id 3534F52A67
 	for <meta-arago@arago-project.org>;
-	Fri, 22 Sep 2017 17:55:45 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8MHtjKQ001101
-	for <meta-arago@arago-project.org>; Fri, 22 Sep 2017 12:55:45 -0500
+	Fri, 22 Sep 2017 18:25:07 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8MIP7t5004712
+	for <meta-arago@arago-project.org>; Fri, 22 Sep 2017 13:25:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1506102945;
-	bh=8Nt2BeMzpz6wD1AWO7qsEn+WOVm0FWKBHhAvLmxogcQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=INPiMXEoBE7iscumGDQqSHv23KbZDNDA4NSCRo6OPzRbA3cM9johIekqUZ8aKzlh1
-	hwbImMtY1n0O+Ne9OTWsX92xAJ6/MGFZiHnGwZGOpDpLqpR1QJb3xDXV3o7RN/mLhP
-	pTHo3Df2N3C1HNaUNWnBJZ6zl79NgTNmJAmZCzEI=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8MHtj3Q014858
-	for <meta-arago@arago-project.org>; Fri, 22 Sep 2017 12:55:45 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Fri, 22 Sep 2017 12:55:45 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Fri, 22 Sep 2017 12:55:45 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8MHtj81022756;
-	Fri, 22 Sep 2017 12:55:45 -0500
-Date: Fri, 22 Sep 2017 13:55:29 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Dan Murphy <dmurphy@ti.com>
-Message-ID: <20170922175529.GO26843@edge>
-References: <1506098041-19036-1-git-send-email-a0271529@ti.com>
-	<77949247-bfd4-6b7c-820a-66780bd83768@ti.com>
+	s=ti-com-17Q1; t=1506104707;
+	bh=dG43QgQKQcSt0SmpGo7BunfHep17/onh5xIwrgQOvNk=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=ndK3YiJjfAcvQK/nbiuIFIesQnhQqOxpZ0/GVsA4QCgXON2eAYuR7CGt17mvMqqCA
+	3s7CedFGh6RB07ZKvRk0lWdMld7pfg5JEPMmsBEStcXLXMdtAxPvC/KHUmUzJY14z6
+	Z+UKQ0s/q3gzWpgicr9XFCBVgogMWpxWUyyQ/+ZI=
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8MIP71T018643
+	for <meta-arago@arago-project.org>; Fri, 22 Sep 2017 13:25:07 -0500
+Received: from DFLE12.ent.ti.com ([fe80::e9a3:bf19:af96:227b]) by
+	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
+	14.03.0294.000; Fri, 22 Sep 2017 13:25:06 -0500
+From: "Agrawal, Manisha" <manisha.agrawal@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago][morty][PATCH v1 2/6] matrix-gui-apps-git : update
+	SRCREV version
+Thread-Index: AQHTI2QKM4tvM8DVEUSwYizv6lWgQaKw6e6AgBBTXXA=
+Date: Fri, 22 Sep 2017 18:25:06 +0000
+Message-ID: <3AC2660648D2B04999D9C7562469E8AF7EC55BC3@DFLE12.ent.ti.com>
+References: <20170901205107.25462-1-manisha.agrawal@ti.com>
+	<20170901205107.25462-2-manisha.agrawal@ti.com>
+	<20170912022548.GT8304@edge>
+In-Reply-To: <20170912022548.GT8304@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.172.224.221]
 MIME-Version: 1.0
-In-Reply-To: <77949247-bfd4-6b7c-820a-66780bd83768@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org, Hongmei Gou <a0271529@ti.com>
-Subject: Re: [meta-processsor-sdk] [PATCH] prueth-fw: update the firmwares to 5.1.4
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [morty][PATCH v1 2/6] matrix-gui-apps-git : update SRCREV version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,37 +49,165 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Sep 2017 17:55:45 -0000
+X-List-Received-Date: Fri, 22 Sep 2017 18:25:07 -0000
+X-Groupsio-MsgNum: 9470
+Content-Language: en-US
+Content-Type: multipart/mixed;
+	boundary="_002_3AC2660648D2B04999D9C7562469E8AF7EC55BC3DFLE12entticom_"
+
+--_002_3AC2660648D2B04999D9C7562469E8AF7EC55BC3DFLE12entticom_
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 22, 2017 at 12:49:11PM -0500, Dan Murphy wrote:
-> On 09/22/2017 11:34 AM, Hongmei Gou wrote:
-> > Signed-off-by: Hongmei Gou <a0271529@ti.com>
-> > ---
-> >  recipes-bsp/prueth-fw/prueth-fw_git.bbappend | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >  create mode 100644 recipes-bsp/prueth-fw/prueth-fw_git.bbappend
-> > 
-> > diff --git a/recipes-bsp/prueth-fw/prueth-fw_git.bbappend b/recipes-bsp/prueth-fw/prueth-fw_git.bbappend
-> > new file mode 100644
-> > index 0000000..6e8ca3e
-> > --- /dev/null
-> > +++ b/recipes-bsp/prueth-fw/prueth-fw_git.bbappend
-> > @@ -0,0 +1,4 @@
-> > +PV = "5.1.4"
-> > +PR = "r0"
-> > +
-> > +SRCREV = "b9d9e4bef2f32d4b55a63ecfec2e21f7b1eaaa34"
-> > 
-> 
-> NACK!!!!!!!!!!!!!
+Hi Denys,
 
-Dan,
+Which meta-arago branch is attached patch series applied to? My patch serie=
+s below are on top of attached one. I tried to update my local repo with be=
+low instruction but I do not see evse-hmi under meta-arago-extras/recipe-ap=
+ps/=20
+#./oe-layertool-setup.sh  -f configs/arago-morty-config.txt
 
-Please note the [meta-processor-sdk] modifier in the subject - it goes to that 
-layer and won't affect 2017.04 release.
 
--- 
+Regards,
+Manisha
+
+
+-----Original Message-----
+From: Dmytriyenko, Denys=20
+Sent: Monday, September 11, 2017 9:26 PM
+To: Agrawal, Manisha
+Cc: meta-arago@arago-project.org; Stiffler, Jacob
+Subject: Re: [meta-arago][morty][PATCH v1 2/6] matrix-gui-apps-git : update=
+ SRCREV version
+
+On Fri, Sep 01, 2017 at 03:51:03PM -0500, Manisha Agrawal wrote:
+> Add new demo pretection-relays-hmi in hmi_apps.
+
+"pretection"
+
+
+> Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
+> ---
+>  meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.in=
+c b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> index 551416d9..1b20f919 100644
+> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> @@ -4,7 +4,7 @@ LICENSE_CHECKSUM =3D "LICENSE;md5=3D6e0ae7214f6c74c149cb2=
+5f373057fa9"
+>  LIC_FILES_CHKSUM :=3D "file://../${LICENSE_CHECKSUM}"
+> =20
+>  SRC_URI =3D "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;proto=
+col=3Dgit;branch=3D${BRANCH}"
+> -SRCREV =3D "50a2f2ec7043e17bc7af72186e3d0a8d7773ec0a"
+> +SRCREV =3D "094736065e1a15a49da19ef4c5a100aa763c41d1"
+>  BRANCH =3D "master"
+>  INC_PR =3D "r48"
+> =20
+> --=20
+> 2.13.0
+>=20
+
+--_002_3AC2660648D2B04999D9C7562469E8AF7EC55BC3DFLE12entticom_
+Content-Type: message/rfc822
+Content-Disposition: attachment;
+	creation-date="Fri, 22 Sep 2017 18:25:05 GMT";
+	modification-date="Fri, 22 Sep 2017 18:25:05 GMT"
+
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE72.ent.ti.com
+ (128.247.5.109) with Microsoft SMTP Server (TLS) id 14.3.294.0; Thu, 31 Aug
+ 2017 14:02:48 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34; Thu, 31
+ Aug 2017 14:02:48 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_0,
+ cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend Transport;
+ Thu, 31 Aug 2017 14:02:48 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
+ dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v7VJ2mQf010131;	Thu, 31 Aug
+ 2017 14:02:48 -0500
+From: "Dmytriyenko, Denys" <denys@ti.com>
+To: "Agrawal, Manisha" <manisha.agrawal@ti.com>
+CC: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Stiffler,
+ Jacob" <j-stiffler@ti.com>
+Subject: Re: [meta-arago][morty][PATCH v3 1/7] evse-hmi : add new demo
+Thread-Topic: [meta-arago][morty][PATCH v3 1/7] evse-hmi : add new demo
+Thread-Index: AQHTIblaDylsZV2NCUSDbzHOnlsw4aKfJ9IA
+Date: Thu, 31 Aug 2017 19:02:44 +0000
+Message-ID: <20170831190244.GB8304@edge>
+References: <20170830175647.11427-1-manisha.agrawal@ti.com>
+In-Reply-To: <20170830175647.11427-1-manisha.agrawal@ti.com>
+Content-Language: en-US
+X-MS-Exchange-Organization-AuthMechanism: 10
+X-MS-Exchange-Organization-AuthSource: DFLE107.ent.ti.com
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <67368E74756CB6439B51C29CF3D1000A@owa.mail.ti.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Thanks. The entire series now looks good. Though your separate patch for
+tisdk-rootfs-image should have been part of this series as well, somewhere
+between patch #6 and #7...
+
+--
 Denys
 
+
+On Wed, Aug 30, 2017 at 12:56:41PM -0500, Manisha Agrawal wrote:
+> EVSE stands for electronic vehicle supply station.  This demo is created =
+as part
+> of TID on EVSE to demonsrate drawing the gui for EVSE application using Q=
+T
+> QWidget and rendering on LCD panel using  linuxfb QPA.
+>
+> Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
+> ---
+>  .../recipes-apps/evse-hmi/evse-hmi_git.bb            | 20 ++++++++++++++=
+++++++
+>  1 file changed, 20 insertions(+)
+>  create mode 100755 meta-arago-extras/recipes-apps/evse-hmi/evse-hmi_git.=
+bb
+>
+> diff --git a/meta-arago-extras/recipes-apps/evse-hmi/evse-hmi_git.bb b/me=
+ta-arago-extras/recipes-apps/evse-hmi/evse-hmi_git.bb
+> new file mode 100755
+> index 00000000..27a58a96
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-apps/evse-hmi/evse-hmi_git.bb
+> @@ -0,0 +1,20 @@
+> +SUMMARY =3D "HMI demo for electronic vehicle charging station (EVSE) usi=
+ng QT QWidget tools"
+> +LICENSE =3D "BSD-3-Clause"
+> +LIC_FILES_CHKSUM =3D "file://main.cpp;beginline=3D1;endline=3D33;md5=3Da=
+9cde3921a8be42ed79ab74661799104"
+> +
+> +inherit qt-provider
+> +
+> +PV =3D "1.0"
+> +PR =3D "r0"
+> +
+> +BRANCH =3D "master"
+> +SRC_URI =3D "git://git.ti.com/sitara-linux/evse-hmi.git;protocol=3Dgit;b=
+ranch=3D${BRANCH}"
+> +
+> +SRCREV =3D "a257dfc05db311c74cb50838ff5b9e2cfb87dbfe"
+> +
+> +S =3D "${WORKDIR}/git"
+> +
+> +do_install() {
+> +    install -d ${D}${bindir}
+> +    install -m 755 evse_hmi ${D}${bindir}
+> +}
+> --
+> 2.13.0
+>
+
+--_002_3AC2660648D2B04999D9C7562469E8AF7EC55BC3DFLE12entticom_--
