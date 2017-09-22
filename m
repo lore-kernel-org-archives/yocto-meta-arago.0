@@ -1,45 +1,45 @@
 Return-Path: <manishalocal@uda0393239>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id B3A0452A96
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id CE38C52A9C
 	for <meta-arago@arago-project.org>;
 	Fri, 22 Sep 2017 19:34:21 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8MJYLBI027828
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8MJYLff001976
 	for <meta-arago@arago-project.org>; Fri, 22 Sep 2017 14:34:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
 	s=ti-com-17Q1; t=1506108861;
-	bh=hZDMBSiT3ZmnzRmob3JrRqMpngP/Z+3XO5IvWlwVynM=;
+	bh=0/PEx195sIWYgEh+xv1CR1kmYKkVPWo2Cs52W83wpM0=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=mO64XW9JdxdTlLJz2YQTgdccdmnPMZkON4z7elCnGzJ/KVbYV+ThutdYhx667CR7P
-	4aDKCeEaqowly1+oeX4TWZZ2pEPWqSvaimQb51Up28S4jFu9f3owxhCat46D8hhsZQ
-	xsdTEuGfID1B0wvtMjnvrBJ4mBaFTGW+ILCFjrk0=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8MJYLRt029678
+	b=HeaQ4R+ofuZzc0/w2S8ESpKms41ivQALLgiowwwkRvyL13rjwCCOUCv4DTUt+UITn
+	tQEkhq4XPOGGO7zPspwny+K21a5M+7nfSFL0NFTnkHb1YT5v4pqBEGIsM+K3QtDJ9a
+	AgaYt1JqjlOcGlI0C/ids4lLC1p2jHvS/dfxMYEI=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8MJYLii029684
 	for <meta-arago@arago-project.org>; Fri, 22 Sep 2017 14:34:21 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
 	Fri, 22 Sep 2017 14:34:21 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
 	Transport; Fri, 22 Sep 2017 14:34:21 -0500
 Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8MJYLKc025337;
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8MJYLqs028791;
 	Fri, 22 Sep 2017 14:34:21 -0500
 Received: from manishalocal by uda0393239 with local (Exim 4.82)
 	(envelope-from <manishalocal@uda0393239>)
-	id 1dvTiP-0000QS-35; Fri, 22 Sep 2017 14:34:21 -0500
+	id 1dvTiP-0000Qi-Fl; Fri, 22 Sep 2017 14:34:21 -0500
 From: Manisha Agrawal <manisha.agrawal@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 22 Sep 2017 14:34:13 -0500
-Message-ID: <20170922193417.1595-2-manisha.agrawal@ti.com>
+Date: Fri, 22 Sep 2017 14:34:16 -0500
+Message-ID: <20170922193417.1595-5-manisha.agrawal@ti.com>
 X-Mailer: git-send-email 2.13.0
 In-Reply-To: <20170922193417.1595-1-manisha.agrawal@ti.com>
 References: <20170922193417.1595-1-manisha.agrawal@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty][PATCH v2 2/6] matrix-gui-apps-git : update SRCREV version
+Subject: [morty][PATCH v2 5/6] packagegroup-arago-tisdk-hmi: add protection-relays-hmi demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,29 +55,36 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Fri, 22 Sep 2017 19:34:22 -0000
 Content-Type: text/plain
 
-Add new demo protection-relays-hmi in hmi_apps.
-
 Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
 ---
- meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb  | 1 +
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb           | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index c6e48586..2d93b340 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
+index 735dda8e..4921147c 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
+@@ -14,6 +14,7 @@ HMI_append_ti43x = " \
  
- SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
--SRCREV = "d910584814644f853f3fe4fbe715f674f24b9bd3"
-+SRCREV = "094736065e1a15a49da19ef4c5a100aa763c41d1"
- BRANCH = "master"
--INC_PR = "r49"
-+INC_PR = "r50"
+ HMI_append_ti33x = " \
+     evse-hmi-src \
++    protection-relays-hmi-src \
+ "
  
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
+ 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
+index 38ff06b4..125443ae 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
+@@ -12,6 +12,7 @@ HMI = " \
+ 
+ HMI_append_ti33x = " \
+     evse-hmi \
++    protection-relays-hmi \
+ "
+ 
+ HMI_append_ti43x = " \
 -- 
 2.13.0
 
