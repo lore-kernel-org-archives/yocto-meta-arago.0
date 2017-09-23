@@ -1,40 +1,42 @@
 Return-Path: <h-gou@ti.com>
 Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 4989152A96
+	by arago-project.org (Postfix) with ESMTPS id 3030A529D3
 	for <meta-arago@arago-project.org>;
-	Fri, 22 Sep 2017 20:46:14 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8MKkEUl012525
-	for <meta-arago@arago-project.org>; Fri, 22 Sep 2017 15:46:14 -0500
+	Sat, 23 Sep 2017 15:10:58 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8NFAwB8015985
+	for <meta-arago@arago-project.org>; Sat, 23 Sep 2017 10:10:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1506113174;
-	bh=tXctrxxv7B+9g1HwINWyL4WKsd9DpTzZidVDA39aHHA=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=B4ubR7uwJpWwOFAtCsJBi/5zii9G5DAeY5MhK+FRmnRP9JVUgstFVHEbDexf3449O
-	81xTl/pj+jNzKH4vNT4PZu36Z7SwJuMul7JhrMQxw5WhE2R5rXVO4WWYgskOnl/zIv
-	eyEswhbYQrsOem15Qdps3n12ahEMON7XRXMyZ3I0=
-Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8MKkENu028117
-	for <meta-arago@arago-project.org>; Fri, 22 Sep 2017 15:46:14 -0500
-Received: from DLEE08.ent.ti.com ([fe80::b57d:c966:76e5:eb71]) by
-	DFLE72.ent.ti.com ([fe80::e5e2:bab6:34dc:a483%28]) with mapi id
-	14.03.0294.000; Fri, 22 Sep 2017 15:46:13 -0500
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "Pang, Ivan" <i-pang@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [meta-processor-sdk][PATCH] edma3-lld:
-	updated to version 2.12.5.29
-Thread-Index: AQHTM92Bq0lQ78ZKDE6ikB9P78+Z7aLBX8kA
-Date: Fri, 22 Sep 2017 20:46:13 +0000
-Message-ID: <2E957F12D11D904590FA9AF86D366BD926D811AE@DLEE08.ent.ti.com>
-References: <1506110447-30676-1-git-send-email-i-pang@ti.com>
-In-Reply-To: <1506110447-30676-1-git-send-email-i-pang@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.172.224.222]
+	s=ti-com-17Q1; t=1506179458;
+	bh=9TlOWBgvdfz8bAt3/SE++9Iq3YUQUYkT9Qy7f25d+AQ=;
+	h=From:To:CC:Subject:Date;
+	b=xKJRy7MWDbYH599hl+DRJNEBzPySCBHBzOsZyNJf3OH8lMIv4bC4Hxilw5NA4vndz
+	zam0oMaVGZrDoeQg7NBCztDwM/B5jzyT8tIZpNuAxQh/ZnPtrhSr0xLckfcZzqNYtH
+	PA+6DWpAcXxaR7o1cmjIND4s4r5JETV0B9CIYiQ8=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8NFAwIR031560
+	for <meta-arago@arago-project.org>; Sat, 23 Sep 2017 10:10:58 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
+	Sat, 23 Sep 2017 10:10:57 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
+	Transport; Sat, 23 Sep 2017 10:10:57 -0500
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8NFAvVg004047;
+	Sat, 23 Sep 2017 10:10:57 -0500
+From: Hongmei Gou <a0271529@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Sat, 23 Sep 2017 11:10:52 -0400
+Message-ID: <1506179452-13924-1-git-send-email-a0271529@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] [meta-processor-sdk][PATCH] edma3-lld: updated to version 2.12.5.29
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [meta-processsor-sdk] [PATCH] tiovx-app-host: add RDEPENDS on tiovx-sys-iface-firmware
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,75 +49,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Sep 2017 20:46:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 23 Sep 2017 15:10:58 -0000
+Content-Type: text/plain
 
-Pushed.
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
+---
+ recipes-ti/tiovx/tiovx-app-host.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Pang, Ivan
-> Sent: Friday, September 22, 2017 4:01 PM
-> To: meta-arago@arago-project.org
-> Subject: [EXTERNAL] [meta-arago] [meta-processor-sdk][PATCH] edma3-lld:
-> updated to version 2.12.5.29
->=20
-> Signed-off-by: Ivan Pang <i-pang@ti.com>
-> ---
->  recipes-bsp/edma3-lld/edma3-lld-2.12.4.inc        | 4 ----
->  recipes-bsp/edma3-lld/edma3-lld-2.12.5.inc        | 4 ++++
->  recipes-bsp/edma3-lld/edma3-lld-rtos_git.bbappend | 2 +-
->  recipes-bsp/edma3-lld/edma3-lld_git.bbappend      | 2 +-
->  4 files changed, 6 insertions(+), 6 deletions(-)  delete mode 100644 rec=
-ipes-
-> bsp/edma3-lld/edma3-lld-2.12.4.inc
->  create mode 100644 recipes-bsp/edma3-lld/edma3-lld-2.12.5.inc
->=20
-> diff --git a/recipes-bsp/edma3-lld/edma3-lld-2.12.4.inc b/recipes-
-> bsp/edma3-lld/edma3-lld-2.12.4.inc
-> deleted file mode 100644
-> index 5a57119..0000000
-> --- a/recipes-bsp/edma3-lld/edma3-lld-2.12.4.inc
-> +++ /dev/null
-> @@ -1,4 +0,0 @@
-> -# Below commit ID corresponds to tag "DEV_EDMA3_LLD_02_12_04_28A"
-> -EDMA3_LLD_SRCREV =3D "8a8ed96465b6625cc3446a65fecebd9c510f4342"
-> -
-> -PV =3D "2.12.04.28"
-> diff --git a/recipes-bsp/edma3-lld/edma3-lld-2.12.5.inc b/recipes-
-> bsp/edma3-lld/edma3-lld-2.12.5.inc
-> new file mode 100644
-> index 0000000..57a8c02
-> --- /dev/null
-> +++ b/recipes-bsp/edma3-lld/edma3-lld-2.12.5.inc
-> @@ -0,0 +1,4 @@
-> +# Below commit ID corresponds to tag "DEV_EDMA3_LLD_02_12_05_29"
-> +EDMA3_LLD_SRCREV =3D "2e6011af7e4045c3c26c01f8ace7427a7a3dec10"
-> +
-> +PV =3D "2.12.05.29"
-> diff --git a/recipes-bsp/edma3-lld/edma3-lld-rtos_git.bbappend b/recipes-
-> bsp/edma3-lld/edma3-lld-rtos_git.bbappend
-> index 26b6f4c..1534652 100644
-> --- a/recipes-bsp/edma3-lld/edma3-lld-rtos_git.bbappend
-> +++ b/recipes-bsp/edma3-lld/edma3-lld-rtos_git.bbappend
-> @@ -1 +1 @@
-> -require edma3-lld-2.12.4.inc
-> +require edma3-lld-2.12.5.inc
-> diff --git a/recipes-bsp/edma3-lld/edma3-lld_git.bbappend b/recipes-
-> bsp/edma3-lld/edma3-lld_git.bbappend
-> index 26b6f4c..1534652 100644
-> --- a/recipes-bsp/edma3-lld/edma3-lld_git.bbappend
-> +++ b/recipes-bsp/edma3-lld/edma3-lld_git.bbappend
-> @@ -1 +1 @@
-> -require edma3-lld-2.12.4.inc
-> +require edma3-lld-2.12.5.inc
-> --
-> 1.9.1
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/recipes-ti/tiovx/tiovx-app-host.bb b/recipes-ti/tiovx/tiovx-app-host.bb
+index 2ab0aa5..097fede 100644
+--- a/recipes-ti/tiovx/tiovx-app-host.bb
++++ b/recipes-ti/tiovx/tiovx-app-host.bb
+@@ -8,9 +8,9 @@ require recipes-ti/includes/tisdk-paths.inc
+ require tiovx-sys.inc
+ 
+ DEPENDS = " tiovx-sys-iface tiovx-lib-host ti-ipc cmem "
+-RDEPENDS_${PN} = " tiovx-sys-iface tiovx-lib-host ti-ipc cmem "
++RDEPENDS_${PN} = " tiovx-sys-iface tiovx-sys-iface-firmware tiovx-lib-host ti-ipc cmem "
+ 
+-PR = "r1"
++PR = "r2"
+ 
+ COMPATIBLE_MACHINE = "dra7xx"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+-- 
+1.9.1
+
 
