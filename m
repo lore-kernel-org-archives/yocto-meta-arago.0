@@ -1,43 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 9F6F952A92
+Return-Path: <esc@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 8C19D52A02
 	for <meta-arago@arago-project.org>;
-	Tue, 26 Sep 2017 17:34:08 +0000 (UTC)
+	Tue, 26 Sep 2017 18:08:51 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8QHY8ZX031671
-	for <meta-arago@arago-project.org>; Tue, 26 Sep 2017 12:34:08 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8QI8fM8016015
+	for <meta-arago@arago-project.org>; Tue, 26 Sep 2017 13:08:41 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1506447248;
-	bh=A/L4XWckoD7/3zk10jx6FW+ieOJx5a5XvRDuEyuNEVI=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=MFVjcXhaOQmgq7PRlsI9DH8lzdSnH6sJPk+PmuyjJc8j28huc1OEFNBZS2iAcfL7y
-	cc5lH4KnJs+WzA63JQkHBe04YzsUUyksmbaRfTU9fQHh/x5o3YsG13dVXXIkLE5y8n
-	WHwi5vqudwFyF6g5DRocPWi1yfuKJN7h3UwSa+s8=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8QHY8lf029010
-	for <meta-arago@arago-project.org>; Tue, 26 Sep 2017 12:34:08 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1506449321;
+	bh=DmndEvZl5I6joTlX/gvrlRiXnma7rOrX63aro1NBc6o=;
+	h=From:To:CC:Subject:Date;
+	b=aWHPJTKAQR7WPXP7OiBD3gahycmxwLsgEzgbGfHgcGPI+Yo1WZk3rD5Yr/NadK2sr
+	T+xlgff++3GqdVoAQEtchSvAvPZJv+ZXtScKYmXXMgG+jV1q2TMkffFUc7/QEb7CkD
+	89cj986DNQJicxQqCqTRg3ESZv1zAraVl1y7rFzo=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8QI8aV9015568
+	for <meta-arago@arago-project.org>; Tue, 26 Sep 2017 13:08:36 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE100.ent.ti.com
+	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 26 Sep 2017 12:34:08 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 26 Sep 2017 13:08:36 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 26 Sep 2017 12:34:08 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8QHY73r003599;
-	Tue, 26 Sep 2017 12:34:08 -0500
-Date: Tue, 26 Sep 2017 13:33:52 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Hongmei Gou <a0271529@ti.com>
-Message-ID: <20170926173352.GA26843@edge>
-References: <1506366173-17907-1-git-send-email-a0271529@ti.com>
+	Transport; Tue, 26 Sep 2017 13:08:36 -0500
+Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8QI8ZmJ016502;
+	Tue, 26 Sep 2017 13:08:36 -0500
+From: Emily Curry <esc@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 26 Sep 2017 13:07:17 -0500
+Message-ID: <20170926180717.72244-1-esc@ti.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
-In-Reply-To: <1506366173-17907-1-git-send-email-a0271529@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 1/2] ccief-basic: add CCLINK IEF Basic for Linux
+Subject: [PATCH] ocl: Update to v01.01.14.04
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,82 +48,75 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Sep 2017 17:34:08 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 26 Sep 2017 18:08:51 -0000
+Content-Type: text/plain
 
-On Mon, Sep 25, 2017 at 03:02:52PM -0400, Hongmei Gou wrote:
-> Signed-off-by: Hongmei Gou <a0271529@ti.com>
-> ---
->  .../recipes-support/cclink/ccief-basic_git.bb      | 44 ++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 meta-arago-extras/recipes-support/cclink/ccief-basic_git.bb
-> 
-> diff --git a/meta-arago-extras/recipes-support/cclink/ccief-basic_git.bb b/meta-arago-extras/recipes-support/cclink/ccief-basic_git.bb
-> new file mode 100644
-> index 0000000..41332fa
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-support/cclink/ccief-basic_git.bb
-> @@ -0,0 +1,44 @@
-> +DESCRIPTION = "CC-Link Industrial Ethernet Field Basic Master and Slave Implementation"
+* Build system update including variables to avoid hardcoding compiler prefix
 
-^^^^^^
-https://lists.yoctoproject.org/pipermail/meta-ti/2017-July/010261.html
+Signed-off-by: Emily Curry <esc@ti.com>
+---
+ meta-arago-extras/recipes-ti/ocl/ocl.inc                | 4 ++--
+ meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb | 8 --------
+ meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb  | 3 +--
+ 3 files changed, 3 insertions(+), 12 deletions(-)
 
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index 7b196fff..e211478f 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,4 +1,4 @@
+-PV = "1.1.14.2"
++PV = "1.1.14.4"
+ INC_PR = "r0"
+ 
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
+ 
+-OCL_SRCREV = "e1314591c668c32b8d360badfa4d6a3dc1d345f2"
++OCL_SRCREV = "733e105ab96d0395cd8ed2f405c5e038543d33ba"
+ 
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+index fbecbc1d..0f769f4d 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+@@ -73,18 +73,10 @@ EXTRA_OEMAKE = " TARGET_ROOTDIR=${STAGING_DIR_HOST} \
+                  TI_OCL_CGT_INSTALL=${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x \
+ "
+ 
+-do_configure() {
+-    sed "s|arm-linux-gnueabihf-g++|${CXX}|g" -i make.inc
+-}
+-
+ export XDC_DIR = "${XDC_INSTALL_DIR}/packages"
+ export IPC_DIR = "${IPC_INSTALL_DIR}/packages"
+ export BIOS_DIR = "${SYSBIOS_INSTALL_DIR}/packages"
+ 
+-do_compile() {
+-    oe_runmake CC="${CC}" CPP="${CPP}" CXX="${CXX}"
+-}
+-
+ do_install() {
+     install -d ${D}${datadir}/ti/examples/opencl
+ 
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+index b69aa950..44050f11 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+@@ -61,8 +61,7 @@ EXTRA_OECMAKE += " -DCROSS_COMPILE=TRUE \
+ "
+ 
+ export TI_OCL_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
+-export AM57_PDK_DIR = "${PDK_INSTALL_DIR}"
+-export C6636_PDK_DIR = "${PDK_INSTALL_DIR}"
++export PDK_DIR = "${PDK_INSTALL_DIR}"
+ export IPC_DIR = "${IPC_INSTALL_DIR}"
+ export XDC_DIR = "${XDC_INSTALL_DIR}"
+ export BIOS_DIR = "${SYSBIOS_INSTALL_DIR}"
+-- 
+2.14.1
 
-> +LICENSE = "BSD-3-Clause"
-> +LIC_FILES_CHKSUM = "file://CCIEF-BASIC_Master/library/include/SLMP.h;beginline=1;endline=34;md5=9bcca1b46fb3c83966c242e5afa3c352"
-> +
-> +PV = "1.0"
-> +PR = "r0"
-> +
-> +CCIEF-BASIC_GIT_URI = "git://git.ti.com/processor-sdk/cclink.git"
-> +CCIEF-BASIC_GIT_PROTOCOL = "git"
-> +CCIEF-BASIC_GIT_BRANCH = "master"
-> +
-> +CCIEF-BASIC_SRCREV = "8b4f9aea6550ff563d21ff3979aa6e7cdc708998"
-> +
-> +BRANCH = "${CCIEF-BASIC_GIT_BRANCH}"
-> +SRC_URI = "${CCIEF-BASIC_GIT_URI};protocol=${CCIEF-BASIC_GIT_PROTOCOL};branch=${BRANCH}"
-> +
-> +SRCREV = "${CCIEF-BASIC_SRCREV}"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +do_compile() {
-> +# build Master sample application
-> +    cd ${S}/CCIEF-BASIC_Master/build/linux
-> +    oe_runmake
-> +# build Slave sample application
-> +    cd ${S}/CCIEF-BASIC_Slave/build/linux
-> +    oe_runmake
-> +}
-> +
-> +do_install() {
-> +# install CCIEF BASIC binaries
-> +    install -d ${D}${bindir}
-> +    install -m 755 ${S}/CCIEF-BASIC_Master/build/linux/Master_sample ${D}${bindir}
-> +    install -m 755 ${S}/CCIEF-BASIC_Slave/build/linux/Slave_sample ${D}${bindir}
-> +
-> +# install CCIEF BASIC configuration files
-> +    install -d ${D}${datadir}/cclink
-> +    install -m 644 ${S}/CCIEF-BASIC_Master/sample/MasterParameter.csv ${D}${datadir}/cclink
-> +    install -m 644 ${S}/CCIEF-BASIC_Slave/sample/SlaveParameter.csv ${D}${datadir}/cclink
-> +}
-> +
-> +FILES_${PN} += "${datadir}/cclink"
-> +
-> +INSANE_SKIP_${PN} = "ldflags"
-
-If you need this, then LDFLAGS are not being passed properly to the build. Any 
-chance to fix this?
-
-
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
