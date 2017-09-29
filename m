@@ -1,43 +1,43 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 03A6A52AF7
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id BB13952A88
 	for <meta-arago@arago-project.org>;
-	Fri, 29 Sep 2017 18:23:37 +0000 (UTC)
+	Fri, 29 Sep 2017 18:23:48 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8TINbG7007562
-	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:37 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8TINcM3018708
+	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1506709417;
-	bh=KZ4j7UH2mIXWNnUie7fGdzeXcbD3MzKz7lGkoCdC64k=;
+	s=ti-com-17Q1; t=1506709418;
+	bh=GQVrbxynbmsuuNF1kUlyU8xhB/LpY/1hHTQI08jxbcA=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=xf/eqtZ8PYZoyznOHn4KDTJQg2Y+YyySfXRUsLR3k3UPny0PBrLbGUFnmspXidmGE
-	c9qawA3FekgnFfBK3YtkBOTcoINfasxy/IuMdDGOLPn9BT8qsV5P0foN2yYcU+9w1y
-	vANeXOnvCLenScV5MALzC6JLCyaCwAWLNr6BI9Xo=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8TINbp4010458
-	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:37 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	b=FlMEgvC0kyqy22EsE/OOUfZw5evqlZWBXRFeVQHrns0xVWppx1p6a/YjA4uT7hhnw
+	dbQxKVj0uuqfmRtOI/PKxx1mNIkLRb5GRFrRCDzyfiSZV+mS8EsRfWWl8vmkVO7t4S
+	07qOtHeV+VlH+4x2FVoZ4FFJ+kkHUErDfaAxlPx8=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8TINX5Z010390
+	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:33 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Fri, 29 Sep 2017 13:23:37 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 29 Sep 2017 13:23:33 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Fri, 29 Sep 2017 13:23:37 -0500
+	Transport; Fri, 29 Sep 2017 13:23:33 -0500
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8TINW8l006890
-	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:37 -0500
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8TINW8R006890
+	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:33 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 29 Sep 2017 14:23:26 -0400
-Message-ID: <1506709407-16448-23-git-send-email-e-ruei1@ti.com>
+Date: Fri, 29 Sep 2017 14:23:06 -0400
+Message-ID: <1506709407-16448-3-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1506709407-16448-1-git-send-email-e-ruei1@ti.com>
 References: <1506709407-16448-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][morty-x11-experimental][PATCH 22/ matrix-gui-hmi-demos: remove unsupported HMI demos for X11(xsgx) build
+Subject: [meta-processor-sdk][morty-x11-experimental][PATCH 02/layer.conf: select sgx-ddk based on ddk window support (xsgx vs, sgx)
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,35 +50,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Sep 2017 18:23:43 -0000
+X-List-Received-Date: Fri, 29 Sep 2017 18:23:49 -0000
 Content-Type: text/plain
-
-X11 build: remove atrix-hmi-demo-evse and matrix-hmi-demo-protection-relays
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
- mode change 100755 => 100644 recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
+ conf/layer.conf | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb b/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
-old mode 100755
-new mode 100644
-index 1ed5a5e..20c0426
---- a/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
-+++ b/recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
-@@ -15,8 +15,9 @@ HMI_RDEPENDS += "matrix-gui-apps-images matrix-gui-submenus-hmi"
- 
- FILES_${PN} += "${MATRIX_BASE_DIR}/*"
- 
--PACKAGES = "matrix-hmi-demo-evse \
--	    matrix-hmi-demo-protection-relays\
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 0334463..8e2c5a1 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -7,3 +7,9 @@ BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
+ BBFILE_COLLECTIONS += "meta-processor-sdk"
+ BBFILE_PATTERN_meta-processor-sdk := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-processor-sdk = "15"
 +
-+PACKAGES = "${@bb.utils.contains("MACHINE_FEATURES", "xsgx", '', "matrix-hmi-demo-evse", d)} \
-+	    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", '', "matrix-hmi-demo-protection-relays", d)} \
- "
- 
- RDEPENDS_matrix-hmi-demo-evse = " \
++SIGGEN_EXCLUDERECIPES_ABISAFE_remove = " ti-sgx-ddk-km  ti-sgx-ddk-um"
++SIGGEN_EXCLUDERECIPES_ABISAFE_append = " \
++    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", "ti-xsgx-ddk-km", "ti-sgx-ddk-km", d)} \
++    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", "ti-xsgx-ddk-um", "ti-sgx-ddk-um", d)} \
++"
 -- 
 1.9.1
 
