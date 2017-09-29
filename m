@@ -1,43 +1,43 @@
 Return-Path: <e-ruei1@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id C40E652B11
+	by arago-project.org (Postfix) with ESMTPS id 2DFD052AF8
 	for <meta-arago@arago-project.org>;
-	Fri, 29 Sep 2017 18:23:52 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8TINgnZ018746
+	Fri, 29 Sep 2017 18:23:53 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8TINgJd018811
 	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1506709422;
-	bh=8Ewm8WT9aiEz/R5aRJJwaXvlke66wUgcuwLUyhRTt+o=;
+	s=ti-com-17Q1; t=1506709423;
+	bh=i4+XzgTIDkE+/DiW6h1Rw6f0KCsRjlqVBTxoeofDyTw=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=uKlLV2f0fJZIfcF/wrcSNdzCaWiIt+Vhik5Exq3924QjUWRnvucgaJdduQaqfzLut
-	6apesD8hJgOpyrnEocfK8sQL46OdrbUXpReHE83IRzF31m/q/nlRenykeygyWWzM2j
-	77y/FZPougLcxAD+1e9WsOqXb+3SmCjgljctKRnM=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8TINbbS010268
+	b=WXUZKWotESgk8eesSBhkPTWjYJpIGD9cc+UKtCcYL/rymYEXtqbYe7rZiY9oafDR4
+	UJ8sZEcpcS7WHZQuiF8z0loY7Vq5mPX5GZjXvVj+/8+4tGqBRQkiu1QvueO8NdoHuH
+	Bn/KJODi5gRkjk7b09w4QaX2aD/Estiv8ASN5Dco=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8TINbTN010463
 	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:37 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
 	Fri, 29 Sep 2017 13:23:37 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
 	Transport; Fri, 29 Sep 2017 13:23:37 -0500
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8TINW8j006890
-	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:36 -0500
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8TINW8m006890
+	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:37 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 29 Sep 2017 14:23:24 -0400
-Message-ID: <1506709407-16448-21-git-send-email-e-ruei1@ti.com>
+Date: Fri, 29 Sep 2017 14:23:27 -0400
+Message-ID: <1506709407-16448-24-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1506709407-16448-1-git-send-email-e-ruei1@ti.com>
 References: <1506709407-16448-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][morty-x11-experimental][PATCH 20/ packagegroup-arago-tisdk-hmi(-sdk): remove HMI demos for X11(xsgx) build
+Subject: [meta-processor-sdk][morty-x11-experimental][PATCH 23/ packagegroup-arago-tisdk-addons(-sdk-target): removed unsupported modules for X11(xsgx) build
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,82 +53,67 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Fri, 29 Sep 2017 18:23:54 -0000
 Content-Type: text/plain
 
-The HMI demo programs only work on non-X11 window systems.
-Remove those demo for X11(xsgx) build
+X11 build: remove opencv
+Non-Wayland build: remove glsdk-example-apps
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb     | 10 +++++-----
- recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb     | 10 +++++-----
- 2 files changed, 10 insertions(+), 10 deletions(-)
+ .../packagegroup-arago-tisdk-addons-sdk-target.bbappend        | 10 ++++++----
+ .../packagegroups/packagegroup-arago-tisdk-addons.bbappend     | 10 ++++++----
+ 2 files changed, 12 insertions(+), 8 deletions(-)
 
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb b/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-index 2aafcd3..3612feb 100755
---- a/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-@@ -1,6 +1,6 @@
- SUMMARY = "Task to add HMI related sources into the SDK"
- LICENSE = "MIT"
--PR = "r0"
-+PR = "r1"
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
+index 14e4930..88a73d7 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
+@@ -1,15 +1,17 @@
+-PR_append = "-tisdk25"
++PR_append = "-tisdk26"
++
++EXTRA_PACKAGES_remove = "${@bb.utils.contains('MACHINE_FEATURES', 'xsgx', 'voxelsdk-dev', '', d)}"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -9,17 +9,17 @@ inherit packagegroup
- HMI = ""
- 
- HMI_append_ti43x = " \
--    evse-hmi-src \
-+    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", '', 'evse-hmi-src', d)} \
+ UTILS_append_ti33x = " \
+-    opencv-dev \
++    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", '', "opencv-dev", d)} \
  "
  
- HMI_append_ti33x = " \
--    evse-hmi-src \ 
--    protection-relays-hmi-src \
-+    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", '', 'evse-hmi-src', d)} \
-+    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", '', 'protection-relays-hmi-src', d)} \
+ UTILS_append_ti43x = " \
+-    opencv-dev \
++    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", '', "opencv-dev", d)} \
  "
  
- 
- HMI_append_omap-a15 = " \
--    evse-hmi-src \
-+    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", '', 'evse-hmi-src', d)} \
+ UTILS_append_omap-a15 = " \
+-    opencv-dev \
++    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", '', "opencv-dev", d)} \
  "
  
- RDEPENDS_${PN} = "\
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb b/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
-index 125443a..0230fb6 100755
---- a/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
-@@ -1,6 +1,6 @@
- SUMMARY = "Task to add HMI related packages"
- LICENSE = "MIT"
--PR = "r0"
-+PR = "r1"
+ UTILS_append_keystone = " \
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
+index 91e92ff..b7f2b44 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
+@@ -1,8 +1,9 @@
+-PR_append = "-tisdk40"
++PR_append = "-tisdk41"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+-EXTRA_PACKAGES_append_ti33x = " opencv"
+-EXTRA_PACKAGES_append_ti43x = " opencv"
+-EXTRA_PACKAGES_append_omap-a15 = " opencv"
++EXTRA_PACKAGES_remove = "${@bb.utils.contains('MACHINE_FEATURES', 'xsgx', 'voxelsdk', '', d)}"
++EXTRA_PACKAGES_append_ti33x = " ${@bb.utils.contains('MACHINE_FEATURES', 'xsgx', '', ' opencv', d)}"
++EXTRA_PACKAGES_append_ti43x = " ${@bb.utils.contains('MACHINE_FEATURES', 'xsgx', '', ' opencv', d)}"
++EXTRA_PACKAGES_append_omap-a15 = "${@bb.utils.contains('MACHINE_FEATURES', 'xsgx', '', ' opencv', d)}"
+ EXTRA_PACKAGES_append_keystone = " opencv"
+ EXTRA_PACKAGES_remove_k2hk-hs-evm = "opencv"
  
-@@ -11,16 +11,16 @@ HMI = " \
- 
- 
- HMI_append_ti33x = " \
--    evse-hmi \
--    protection-relays-hmi \
-+    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", '', 'evse-hmi', d)} \
-+    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", '', 'protection-relays-hmi', d)} \
+@@ -29,6 +30,7 @@ UTILS_append_ti33x = " uio-module-drv-test \
+                        uio-test-pruss \
  "
  
- HMI_append_ti43x = " \
--    evse-hmi \
-+    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", '', 'evse-hmi', d)} \
- "
++UTILS_remove_dra7xx = "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', '', 'glsdk-example-apps', d)}"
+ UTILS_append_k2g = " uio-test-pruss"
  
- HMI_append_omap-a15 = " \
--    evse-hmi \
-+    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", '', 'evse-hmi', d)} \
- "
- 
- 
+ EXTRA_PACKAGES_append_omap-a15 = " big-data-ipc-demo-linux \
 -- 
 1.9.1
 
