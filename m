@@ -1,43 +1,43 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 619AB52A87
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 380F852AA3
 	for <meta-arago@arago-project.org>;
-	Fri, 29 Sep 2017 18:23:34 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8TINY9v032440
-	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:34 -0500
+	Fri, 29 Sep 2017 18:23:35 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v8TINZpt007537
+	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:35 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1506709414;
-	bh=s5UUYhS+8u/VKvqfYLoDx/bjVRdsQNkldX3aDO/0DCw=;
+	s=ti-com-17Q1; t=1506709415;
+	bh=9Gp574AxG7i3PoluT1pZDwzOH0FAvwzmEK17CFWQy2E=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=fbi9jwRU1cqpLHWwKqsH8CAtQK+rYCzuUKBJd/mjLpM00CyCvJovHDD61390+jDMV
-	1CDC1T0s2oQKBUoNJmJv6eYGFMm0xHg3Px50ObBewaeVvKKRb21kjkou4PeLHTo6wu
-	Yvr7EmUEkvjuAMXlHyoT2RFKTy8sGWSe4mJXj/VI=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8TINYgR010404
-	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:34 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	b=ql1qXmE1tgyDcsTe5DIZsfnvkhGZUvzJcQJpIHpgShiTv6gxlyt/0nIAk1LjGLK+9
+	MvXIVzqsYC3zj5IUFeaRH1xSWc92kP+VN7JsT023DT625zVtayd9iU/JPwVxreJtVG
+	mnO4MV98ZCNNzfbM24TKs6EcVBo5fXgkYXBeZDFs=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8TINZ2u010237
+	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:35 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Fri, 29 Sep 2017 13:23:33 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 29 Sep 2017 13:23:34 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Fri, 29 Sep 2017 13:23:33 -0500
+	Transport; Fri, 29 Sep 2017 13:23:34 -0500
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8TINW8T006890
-	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:33 -0500
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v8TINW8Y006890
+	for <meta-arago@arago-project.org>; Fri, 29 Sep 2017 13:23:34 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 29 Sep 2017 14:23:08 -0400
-Message-ID: <1506709407-16448-5-git-send-email-e-ruei1@ti.com>
+Date: Fri, 29 Sep 2017 14:23:13 -0400
+Message-ID: <1506709407-16448-10-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1506709407-16448-1-git-send-email-e-ruei1@ti.com>
 References: <1506709407-16448-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][morty-x11-experimental][PATCH 04/ tisdk-rootfs-image: add packagegroup-arago-tisdk-graphics for omap-a15 unconditionally
+Subject: [meta-processor-sdk][morty-x11-experimental][PATCH 09/qtbase-conf: add qt_env.sh for X11 support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,33 +50,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Sep 2017 18:23:37 -0000
+X-List-Received-Date: Fri, 29 Sep 2017 18:23:38 -0000
 Content-Type: text/plain
 
-Note: This has been done for both ti33x and ti43x already.
+X11: need to set DISPLAY and LD_LIBRARY_PATH
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- recipes-core/images/tisdk-rootfs-image.bbappend | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ recipes-qt/qt5/qtbase-conf/qt_env_xsgx.sh | 6 ++++++
+ recipes-qt/qt5/qtbase-conf_1.0.bbappend   | 9 +++++++--
+ 2 files changed, 13 insertions(+), 2 deletions(-)
+ create mode 100644 recipes-qt/qt5/qtbase-conf/qt_env_xsgx.sh
 
-diff --git a/recipes-core/images/tisdk-rootfs-image.bbappend b/recipes-core/images/tisdk-rootfs-image.bbappend
-index 7346c0d..4b5230f 100644
---- a/recipes-core/images/tisdk-rootfs-image.bbappend
-+++ b/recipes-core/images/tisdk-rootfs-image.bbappend
-@@ -1,4 +1,4 @@
--PR_append = ".tisdk4"
-+PR_append = ".tisdk5"
+diff --git a/recipes-qt/qt5/qtbase-conf/qt_env_xsgx.sh b/recipes-qt/qt5/qtbase-conf/qt_env_xsgx.sh
+new file mode 100644
+index 0000000..43da0cd
+--- /dev/null
++++ b/recipes-qt/qt5/qtbase-conf/qt_env_xsgx.sh
+@@ -0,0 +1,6 @@
++#!/bin/sh
++
++### QT Environment Variables ###
++export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
++export DISPLAY=:0
++export LD_LIBRARY_PATH=/usr/local/XSGX/lib
+\ No newline at end of file
+diff --git a/recipes-qt/qt5/qtbase-conf_1.0.bbappend b/recipes-qt/qt5/qtbase-conf_1.0.bbappend
+index 5eac07e..047dca7 100644
+--- a/recipes-qt/qt5/qtbase-conf_1.0.bbappend
++++ b/recipes-qt/qt5/qtbase-conf_1.0.bbappend
+@@ -1,12 +1,17 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-PR_append = ".tisdk1"
++PR_append = ".tisdk2"
  
- IMAGE_INSTALL_append_ti43x = " \
- 	packagegroup-arago-tisdk-graphics \
-@@ -11,5 +11,6 @@ IMAGE_INSTALL_append_ti33x = " \
+-SRC_URI += "file://eglfs_kms_cfg.json"
++SRC_URI += " file://eglfs_kms_cfg.json \
++             file://qt_env_xsgx.sh     \
++           "
  
+ # Add custom Arago qtbase eglfs_kms configuration file
+ do_install_append () {
+     install -d ${D}${sysconfdir}/qt5
+     install -m 0644 ${WORKDIR}/eglfs_kms_cfg.json ${D}${sysconfdir}/qt5/
++    if [ "${@bb.utils.contains('MACHINE_FEATURES','xsgx','true','false',d)}" = "true" ]; then
++        install -m 0644 ${WORKDIR}/qt_env_xsgx.sh ${D}${sysconfdir}/profile.d/qt_env.sh
++    fi
+ }
  
- IMAGE_INSTALL_append_omap-a15 = " \
-+	packagegroup-arago-tisdk-graphics \
-   	packagegroup-arago-tisdk-hmi \
- "
+ FILES_${PN} += "${sysconfdir}/qt5/*"
 -- 
 1.9.1
 
