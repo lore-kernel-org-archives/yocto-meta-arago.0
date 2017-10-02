@@ -1,44 +1,43 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id ED426529E3
+Return-Path: <jake@udc0866934>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id D28D8529E2
 	for <meta-arago@arago-project.org>;
-	Mon,  2 Oct 2017 13:44:29 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v92DiJxK013023
-	for <meta-arago@arago-project.org>; Mon, 2 Oct 2017 08:44:19 -0500
+	Mon,  2 Oct 2017 15:12:36 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v92FCaFi003080
+	for <meta-arago@arago-project.org>; Mon, 2 Oct 2017 10:12:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1506951859;
-	bh=O2MWX19dhIsCoPj4rJYB5O6NmACtcqOsn1vMirMlzrg=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=QOK3/3yewgF7DMpDIQv2iydvtfDhfKoR1Nrj7hXq7gc/XbxrVyjrXXAnKuoTzAtIO
-	R3dRr/dZl+aXg/Fyy8i7VwXvscZAk3etOqTFCuqzZ/j3S4uc154JlpoRUSTQotUmrE
-	5uBEwSx/Ws6k2bOYtFVPJPLf4+t3U5JLqSl5n6xM=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v92DiEB8029372
-	for <meta-arago@arago-project.org>; Mon, 2 Oct 2017 08:44:14 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1506957156;
+	bh=ECokLYvDLFeZOLX3rYj5wAed3reCjbSCDcTW5PjmiB0=;
+	h=From:To:CC:Subject:Date;
+	b=SGDTCrq9NFEULt5yBxlMgrHFCHRzep4PapCnnXnXkfLi6I6ZPnZcADHcCcCQz+EtI
+	7iwjC54hQCRcWW2rIvCxzsVi1c3aJvRxx8siOv9Df5WV8XBOBMMXPqCYLEb/aOzNLm
+	qY5LKOm5tnAkH7DPwKCVYc5iPjRrgXDg01q2VwQ8=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v92FCauH024126
+	for <meta-arago@arago-project.org>; Mon, 2 Oct 2017 10:12:36 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Mon, 2 Oct 2017 08:44:14 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 2 Oct 2017 10:12:36 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Mon, 2 Oct 2017 08:44:14 -0500
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v92DiEj9005774;
-	Mon, 2 Oct 2017 08:44:14 -0500
-To: Eric Ruei <e-ruei1@ti.com>, <meta-arago@arago-project.org>
-References: <1506709407-16448-1-git-send-email-e-ruei1@ti.com>
-	<1506709407-16448-7-git-send-email-e-ruei1@ti.com>
+	Transport; Mon, 2 Oct 2017 10:12:36 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v92FCabi028087;
+	Mon, 2 Oct 2017 10:12:36 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)
+	(envelope-from <jake@udc0866934>)
+	id 1dz2OZ-0004ps-Rk; Mon, 02 Oct 2017 11:12:35 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <142ce6cb-7495-da1c-f6f4-9ae92a64b329@ti.com>
-Date: Mon, 2 Oct 2017 09:44:14 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+To: <meta-arago@arago-project.org>
+Date: Mon, 2 Oct 2017 11:12:33 -0400
+Message-ID: <1506957153-18556-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <1506709407-16448-7-git-send-email-e-ruei1@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [meta-processor-sdk][morty-x11-experimen tal][PATCH 06/ti-xsgx-ddk-um: sgx ddk um recipe for X11 support
+Subject: [PATCH] processor-sdk-04.01.00.06: add Processor SDK 4.1.0.6 release config
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,115 +50,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Oct 2017 13:44:30 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Mon, 02 Oct 2017 15:12:37 -0000
+Content-Type: text/plain
 
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../processor-sdk/processor-sdk-04.01.00.06-config.txt    | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 configs/processor-sdk/processor-sdk-04.01.00.06-config.txt
 
-
-On 9/29/2017 2:23 PM, Eric Ruei wrote:
-> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> ---
->   .../libgles/ti-xsgx-ddk-um_1.15.4564147.bb         | 86 ++++++++++++++++++++++
->   1 file changed, 86 insertions(+)
->   create mode 100644 recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
->
-> diff --git a/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb b/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
-> new file mode 100644
-> index 0000000..c959e14
-> --- /dev/null
-> +++ b/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
-> @@ -0,0 +1,86 @@
-> +SUMMARY = "X11 Userspace libraries for PowerVR SGX chipset on TI SoCs"
-> +HOMEPAGE = "https://git.ti.com/processor-sdk/omap5-sgx-ddk-um-linux-x11-experimental"
-> +LICENSE = "TI-TSPA"
-> +LIC_FILES_CHKSUM = "file://TI-Linux-Graphics-DDK-UM-Manifest.doc;md5=550702a031857e0426ef7d6f6cf2d9f4"
-> +
-> +PACKAGE_ARCH = "${MACHINE_ARCH}"
-> +
-> +BRANCH = "ti-img-sgx/${PV}"
-> +
-> +SRC_URI = "git://git.ti.com/processor-sdk/omap5-sgx-ddk-um-linux-x11-experimental.git;protocol=git;branch=${BRANCH}"
-> +SRCREV = "c00eb002f624cddac4956c901314c07d83a13260"
-> +
-> +# There's only hardfp version available
-> +python __anonymous() {
-> +    tunes = bb.data.getVar("TUNE_FEATURES", d, 1)
-> +    if not tunes:
-> +        return
-> +    pkgn = bb.data.getVar("PN", d, 1)
-> +    pkgv = bb.data.getVar("PV", d, 1)
-> +    if "callconvention-hard" not in tunes:
-> +        bb.warn("%s-%s ONLY supports hardfp mode for now" % (pkgn, pkgv))
-> +        raise bb.parse.SkipPackage("%s-%s ONLY supports hardfp mode for now" % (pkgn, pkgv))
-> +}
-> +
-> +TARGET_PRODUCT_omap-a15 = "jacinto6evm"
-> +TARGET_PRODUCT_ti33x = "ti335x"
-> +TARGET_PRODUCT_ti43x = "ti437x"
-> +
-> +INITSCRIPT_NAME = "rc.pvr"
-> +INITSCRIPT_PARAMS = "defaults 8"
-> +
-> +inherit update-rc.d
-> +
-> +PR = "r0"
-> +PROVIDES += "virtual/egl virtual/libgles1 virtual/libgles2 omap5-xsgx-ddk-um-linux"
-> +
-> +DEPENDS += "udev"
-> +RDEPENDS_${PN} += "libudev"
-> +
-> +
-> +RPROVIDES_${PN} = "libegl libgles1 libgles2 omap5-xsgx-ddk-um-linux"
-> +RPROVIDES_${PN}-dev = "libegl-dev libgles1-dev libgles2-dev omap5-xsgx-ddk-um-linux-dev"
-> +RPROVIDES_${PN}-dbg = "libegl-dbg libgles1-dbg libgles2-dbg omap5-xsgx-ddk-um-linux-dbg"
-> +
-> +RREPLACES_${PN} = "libegl libgles1 libgles2 omap5-xsgx-ddk-um-linux"
-> +RREPLACES_${PN}-dev = "libegl-dev libgles1-dev libgles2-dev omap5-xsgx-ddk-um-linux-dev"
-> +RREPLACES_${PN}-dbg = "libegl-dbg libgles1-dbg libgles2-dbg omap5-xsgx-ddk-um-linux-dbg"
-> +
-> +RCONFLICTS_${PN} = "libegl libgles1 libgles2 omap5-xsgx-ddk-um-linux"
-> +RCONFLICTS_${PN}-dev = "libegl-dev libgles1-dev libgles2-dev omap5-xsgx-ddk-um-linux-dev"
-> +RCONFLICTS_${PN}-dbg = "libegl-dbg libgles1-dbg libgles2-dbg omap5-xsgx-ddk-um-linux-dbg"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +do_install () {
-> +    oe_runmake install DESTDIR=${D} TARGET_PRODUCT=${TARGET_PRODUCT}
-> +}
-> +
-> +SYSROOT_DIRS_append = "/usr/local"
-> +
-> +FILES_${PN} +=  "/usr/local/*"
-> +
-> +FILES_${PN}-staticdev +=  "/usr/local/*"
-> +
-> +PACKAGES =+ "${PN}-plugins"
-> +FILES_${PN}-plugins = "${libdir}/libsrv_init.so ${libdir}/libsrv_um.so ${libdir}/libglslcompiler.so ${libdir}/libPVRScopeServices.so ${libdir}/libGLESv1_PVR_MESA.so ${libdir}/libGLESv2_PVR_MESA.so"
-> +FILES_${PN}-plugins += "/usr/local/XSGX/lib/dri/*.so /usr/local/XSGX/lib/xorg/modules/*.so /usr/local/XSGX/lib/xorg/modules/drivers/*.so /usr/local/XSGX/lib/xorg/modules/extensions/*.so /usr/local/XSGX/lib/xorg/modules/input/*.so"
-> +FILES_${PN}-staticdev += "/usr/local/XSGX/lib/dri/*.so /usr/local/XSGX/lib/xorg/modules/*.so /usr/local/XSGX/lib/xorg/modules/drivers/*.so /usr/local/XSGX/lib/xorg/modules/extensions/*.so /usr/local/XSGX/lib/xorg/modules/input/*.so"
-> +RDEPENDS_${PN} += "${PN}-plugins"
-> +
-> +SYSROOT_DIRS_BLACKLIST_append = " /usr/local/XSGX/lib/libpng12.a /usr/local/XSGX/lib/libpng12.so /usr/local/XSGX/lib/libpng12.so.0  /usr/local/XSGX/lib/libpng12.so.0.56.0"
-
-Can you just prevent these from being installed by removing them in the 
-do_install task. This will also prevent them from corrupting any packages.
-
-> +
-> +
-> +ALLOW_EMPTY_${PN}-plugins = "1"
-> +
-> +INHIBIT_PACKAGE_STRIP = "1"
-> +INHIBIT_SYSROOT_STRIP = "1"
-> +
-> +INSANE_SKIP_${PN} += "dev-so ldflags useless-rpaths"
-> +INSANE_SKIP_${PN}-plugins = "dev-so"
-> +INSANE_SKIP_${PN}-dev = "dev-so"
-> +INSANE_SKIP_${PN}-staticdev = "dev-so"
-> +INSANE_SKIP_${PN} += "already-stripped"
-> +
-> +CLEANBROKEN = "1"
-> +
+diff --git a/configs/processor-sdk/processor-sdk-04.01.00.06-config.txt b/configs/processor-sdk/processor-sdk-04.01.00.06-config.txt
+new file mode 100644
+index 0000000..2718148
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-04.01.00.06-config.txt
+@@ -0,0 +1,15 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.32,887ea6d25cee5114365dfbf1130603599e13ee80,layers=
++meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,2b7f7b00654eb3faaea7c66271ebe508b9ffc019,layers=
++meta-arago,git://arago-project.org/git/meta-arago.git,morty,8f49ed67d0627a04ac72fd388fda7756273ba2d7,layers=meta-arago-distro:meta-arago-extras
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,08576b03af624b65ad949c410d84c11c7d1f2e39,layers=
++meta-openamp,git://github.com/OpenAMP/meta-openamp.git,morty,8a214032bfb7e8124bc1485c70c69f7d60abb819,layers=
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,2c9f0e4eb0e9097f6f872ec1e1d81768a8ab5f1b,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,fe5c83312de11e80b85680ef237f8acb04b4b26e,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
++meta-ti,git://git.yoctoproject.org/meta-ti,morty,a18d57af8384ced25996739bb66d197c69efb77b,layers=
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,morty,49b0f32d7e955f250b0022d1b2f403f45a2c2d9c,layers=meta-linaro-toolchain:meta-optee
++oe-core,git://git.openembedded.org/openembedded-core,morty,e3911133ee9aad7cc3ae89faea80a097f6614fab,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
+-- 
+1.9.1
 
 
