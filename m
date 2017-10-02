@@ -1,44 +1,44 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 61B5D529E2
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 34528529E3
 	for <meta-arago@arago-project.org>;
-	Mon,  2 Oct 2017 13:37:41 +0000 (UTC)
+	Mon,  2 Oct 2017 13:41:34 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v92DbfUO005061
-	for <meta-arago@arago-project.org>; Mon, 2 Oct 2017 08:37:41 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v92DfOsg012756
+	for <meta-arago@arago-project.org>; Mon, 2 Oct 2017 08:41:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1506951461;
-	bh=VJVzql9gSQAy0+61FEnXnAMLw3pPl1KAkZ5nKqxaIgY=;
+	s=ti-com-17Q1; t=1506951684;
+	bh=sEjj67xoTT+nI4aBV/MgF5Yie8PXfseRClOAv8xYAyM=;
 	h=Subject:To:References:From:Date:In-Reply-To;
-	b=Q0/lXI49rbm+BCRoGOFyQw0WdfM1k9GBBXssTOx2RrIHFTweu/yBTy2IJocEj9BCG
-	mPkZoGmBFKQKkcuaLANW0gDQDKbA+U/+E92kjnOdWyI+c3ZxRhU/MBttYiekUkXy63
-	NE93hydcY9CJrzmWGFVgmv2X8rmbXtllSdViUu0Q=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v92DbfUG017378
-	for <meta-arago@arago-project.org>; Mon, 2 Oct 2017 08:37:41 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	b=WnvwQ+gb0RmBMoBwWlYfLV9igJHb3yZDN/7T6rgfR4+lwssA5FbBSsuuCezsWKbXp
+	0phIVJMHFTcz7grYhvuJBdWo2GT/Q44K7ptnAf8vPTZU4qSqSsTazL360eC+Soy8KA
+	sKFtIvx06Wth6gUXQEvQ86F7iN3g9pRW3Ixc3Qxc=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v92DfJmm024984
+	for <meta-arago@arago-project.org>; Mon, 2 Oct 2017 08:41:19 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Mon, 2 Oct 2017 08:37:40 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 2 Oct 2017 08:41:18 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Mon, 2 Oct 2017 08:37:40 -0500
+	Transport; Mon, 2 Oct 2017 08:41:18 -0500
 Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v92Dbe3T014704;
-	Mon, 2 Oct 2017 08:37:40 -0500
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v92DfIZA002521;
+	Mon, 2 Oct 2017 08:41:18 -0500
 To: Eric Ruei <e-ruei1@ti.com>, <meta-arago@arago-project.org>
 References: <1506709407-16448-1-git-send-email-e-ruei1@ti.com>
-	<1506709407-16448-3-git-send-email-e-ruei1@ti.com>
+	<1506709407-16448-6-git-send-email-e-ruei1@ti.com>
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <9641a48b-7d52-fecf-4d92-23dc77284a6f@ti.com>
-Date: Mon, 2 Oct 2017 09:37:40 -0400
+Message-ID: <a0f805fe-a64c-7ad8-1893-c0f2cec23269@ti.com>
+Date: Mon, 2 Oct 2017 09:41:18 -0400
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
 	Thunderbird/52.3.0
 MIME-Version: 1.0
-In-Reply-To: <1506709407-16448-3-git-send-email-e-ruei1@ti.com>
+In-Reply-To: <1506709407-16448-6-git-send-email-e-ruei1@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [meta-processor-sdk][morty-x11-experimen tal][PATCH 02/layer.conf: select sgx-ddk based on ddk window support (xsgx vs, sgx)
+Subject: Re: [EXTERNAL] [meta-processor-sdk][morty-x11-experimen tal][PATCH 05/ti-xsgx-ddk-km: sgx ddk km recipe for X11 support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,37 +51,74 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Oct 2017 13:37:41 -0000
+X-List-Received-Date: Mon, 02 Oct 2017 13:41:34 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
+This should probably be the first patch in the set as it appears that 
+all previous patches reference this recipe.
 
+And please try to clean up the extra new lines at the end of this recipe.
 
 On 9/29/2017 2:23 PM, Eric Ruei wrote:
 > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 > ---
->   conf/layer.conf | 6 ++++++
->   1 file changed, 6 insertions(+)
+>   .../powervr-drivers/ti-xsgx-ddk-km_1.15.4564147.bb | 46 ++++++++++++++++++++++
+>   1 file changed, 46 insertions(+)
+>   create mode 100644 recipes-bsp/powervr-drivers/ti-xsgx-ddk-km_1.15.4564147.bb
 >
-> diff --git a/conf/layer.conf b/conf/layer.conf
-> index 0334463..8e2c5a1 100644
-> --- a/conf/layer.conf
-> +++ b/conf/layer.conf
-> @@ -7,3 +7,9 @@ BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
->   BBFILE_COLLECTIONS += "meta-processor-sdk"
->   BBFILE_PATTERN_meta-processor-sdk := "^${LAYERDIR}/"
->   BBFILE_PRIORITY_meta-processor-sdk = "15"
+> diff --git a/recipes-bsp/powervr-drivers/ti-xsgx-ddk-km_1.15.4564147.bb b/recipes-bsp/powervr-drivers/ti-xsgx-ddk-km_1.15.4564147.bb
+> new file mode 100644
+> index 0000000..d51d9df
+> --- /dev/null
+> +++ b/recipes-bsp/powervr-drivers/ti-xsgx-ddk-km_1.15.4564147.bb
+> @@ -0,0 +1,46 @@
+> +DESCRIPTION =  "X11 Kernel drivers for the PowerVR SGX chipset found in the TI SoCs"
+> +HOMEPAGE = "https://git.ti.com/processor-sdk/omap5-sgx-ddk-linux-x11-experimental"
+> +LICENSE = "MIT | GPLv2"
+> +LIC_FILES_CHKSUM = "file://eurasia_km/README;beginline=13;endline=22;md5=74506d9b8e5edbce66c2747c50fcef12"
 > +
-> +SIGGEN_EXCLUDERECIPES_ABISAFE_remove = " ti-sgx-ddk-km  ti-sgx-ddk-um"
-> +SIGGEN_EXCLUDERECIPES_ABISAFE_append = " \
-
-There should be no need to replace these in this list. As not all of 
-these recipes are applicable in every build, you should only need to add 
-'ti-xsgx-ddk-km' to this list.
-
-> +    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", "ti-xsgx-ddk-km", "ti-sgx-ddk-km", d)} \
-> +    ${@bb.utils.contains("MACHINE_FEATURES", "xsgx", "ti-xsgx-ddk-um", "ti-sgx-ddk-um", d)} \
-> +"
+> +inherit module
+> +
+> +COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15"
+> +
+> +MACHINE_KERNEL_PR_append = "m"
+> +PR = "${MACHINE_KERNEL_PR}"
+> +
+> +PACKAGE_ARCH = "${MACHINE_ARCH}"
+> +
+> +DEPENDS = "virtual/kernel"
+> +
+> +PROVIDES = "omapdrm-pvr"
+> +
+> +RPROVIDES_${PN} = "omapdrm-pvr"
+> +RREPLACES_${PN} = "omapdrm-pvr"
+> +RCONFLICTS_${PN} = "omapdrm-pvr"
+> +
+> +BRANCH = "ti-img-sgx/${PV}/k4.9"
+> +
+> +SRC_URI = "git://git.ti.com/processor-sdk/omap5-sgx-ddk-linux-x11-experimental.git;protocol=git;branch=${BRANCH}"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +SRCREV = "24ae481718cc24dc2da55c89b53c39558e32061e"
+> +
+> +TARGET_PRODUCT_omap-a15 = "jacinto6evm"
+> +TARGET_PRODUCT_ti33x = "ti335x"
+> +TARGET_PRODUCT_ti43x = "ti437x"
+> +
+> +EXTRA_OEMAKE += 'KERNELDIR="${STAGING_KERNEL_DIR}" TARGET_PRODUCT=${TARGET_PRODUCT}'
+> +
+> +do_compile_prepend() {
+> +    cd ${S}/eurasia_km/eurasiacon/build/linux2/omap_linux
+> +}
+> +
+> +do_install() {
+> +    make -C ${STAGING_KERNEL_DIR} SUBDIRS=${B}/eurasia_km/eurasiacon/binary_omap_linux_xorg_release/target/kbuild INSTALL_MOD_PATH=${D} PREFIX=${STAGING_DIR_HOST} modules_install
+> +}
+> +
+> +
+> +
 
 
