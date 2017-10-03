@@ -1,43 +1,43 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 1755052A58
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 3B5E652A62
 	for <meta-arago@arago-project.org>;
 	Tue,  3 Oct 2017 15:54:16 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v93FsGl7005794
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v93FsGua012288
 	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
 	s=ti-com-17Q1; t=1507046056;
-	bh=jS1tLNMy4zZncZ2uwtEBDnRdxEk5U4WOkZiurGJFxEE=;
+	bh=rI61hqo0L1Y+Wp4a3j6K8Y4FR3Z6x6lnrAqF1EsUv44=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=lFeVx/rKKQrFnkzweZtfLGSeV4eDgN8ggPVOz8NoR6EhK4yEC1R0wdCoW7PhAzTqW
-	ktCp6VdM6QHaEWSlMFUFC7SunxLhrTcYa5fMnlcwIJPYsuxnQ8A0fAXmz275UP6kuE
-	h0t9ab+mDwgr5aMnE1pYw4iJ45IvjPdI2c6S8kSw=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsGq7013447
+	b=XZ0tqpg1gK377dRODc+ip3TwNzSIKSrPVfpQxpZ77ya7B5NMVOrrng7y84wBcu8R5
+	uHHWHKhSo3doFGisNtse8Y56Yiro9TTllWJEhGFMSPPy1mjyw2DXOzY8dS24J0i+WP
+	lbh6PICvDL9LMT7N6UjUnF0jhoiKw0e3uPit7fpw=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsGns018657
 	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:16 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
 	Tue, 3 Oct 2017 10:54:15 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
 	Transport; Tue, 3 Oct 2017 10:54:15 -0500
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsFRw013524
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsFRx013524
 	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:15 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 3 Oct 2017 11:53:49 -0400
-Message-ID: <1507046051-57949-2-git-send-email-e-ruei1@ti.com>
+Date: Tue, 3 Oct 2017 11:53:50 -0400
+Message-ID: <1507046051-57949-3-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1507046051-57949-1-git-send-email-e-ruei1@ti.com>
 References: <1507046051-57949-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH v2 01/23] ti-xsgx-ddk-km: sgx ddk km recipe for X11 support
+Subject: [meta-processor-sdk][PATCH v2 02/23] ti-xsgx-ddk-um: sgx ddk um recipe for X11 support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,59 +55,102 @@ Content-Type: text/plain
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../powervr-drivers/ti-xsgx-ddk-km_1.15.4564147.bb | 43 ++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
- create mode 100644 recipes-bsp/powervr-drivers/ti-xsgx-ddk-km_1.15.4564147.bb
+ .../libgles/ti-xsgx-ddk-um_1.15.4564147.bb         | 86 ++++++++++++++++++++++
+ 1 file changed, 86 insertions(+)
+ create mode 100644 recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
 
-diff --git a/recipes-bsp/powervr-drivers/ti-xsgx-ddk-km_1.15.4564147.bb b/recipes-bsp/powervr-drivers/ti-xsgx-ddk-km_1.15.4564147.bb
+diff --git a/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb b/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
 new file mode 100644
-index 0000000..5be6fd6
+index 0000000..c959e14
 --- /dev/null
-+++ b/recipes-bsp/powervr-drivers/ti-xsgx-ddk-km_1.15.4564147.bb
-@@ -0,0 +1,43 @@
-+DESCRIPTION =  "X11 Kernel drivers for the PowerVR SGX chipset found in the TI SoCs"
-+HOMEPAGE = "https://git.ti.com/processor-sdk/omap5-sgx-ddk-linux-x11-experimental"
-+LICENSE = "MIT | GPLv2"
-+LIC_FILES_CHKSUM = "file://eurasia_km/README;beginline=13;endline=22;md5=74506d9b8e5edbce66c2747c50fcef12"
-+
-+inherit module
-+
-+COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15"
-+
-+MACHINE_KERNEL_PR_append = "m"
-+PR = "${MACHINE_KERNEL_PR}"
++++ b/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
+@@ -0,0 +1,86 @@
++SUMMARY = "X11 Userspace libraries for PowerVR SGX chipset on TI SoCs"
++HOMEPAGE = "https://git.ti.com/processor-sdk/omap5-sgx-ddk-um-linux-x11-experimental"
++LICENSE = "TI-TSPA"
++LIC_FILES_CHKSUM = "file://TI-Linux-Graphics-DDK-UM-Manifest.doc;md5=550702a031857e0426ef7d6f6cf2d9f4"
 +
 +PACKAGE_ARCH = "${MACHINE_ARCH}"
 +
-+DEPENDS = "virtual/kernel"
++BRANCH = "ti-img-sgx/${PV}"
 +
-+PROVIDES = "omapdrm-pvr"
++SRC_URI = "git://git.ti.com/processor-sdk/omap5-sgx-ddk-um-linux-x11-experimental.git;protocol=git;branch=${BRANCH}"
++SRCREV = "c00eb002f624cddac4956c901314c07d83a13260"
 +
-+RPROVIDES_${PN} = "omapdrm-pvr"
-+RREPLACES_${PN} = "omapdrm-pvr"
-+RCONFLICTS_${PN} = "omapdrm-pvr"
-+
-+BRANCH = "ti-img-sgx/${PV}/k4.9"
-+
-+SRC_URI = "git://git.ti.com/processor-sdk/omap5-sgx-ddk-linux-x11-experimental.git;protocol=git;branch=${BRANCH}"
-+
-+S = "${WORKDIR}/git"
-+
-+SRCREV = "24ae481718cc24dc2da55c89b53c39558e32061e"
++# There's only hardfp version available
++python __anonymous() {
++    tunes = bb.data.getVar("TUNE_FEATURES", d, 1)
++    if not tunes:
++        return
++    pkgn = bb.data.getVar("PN", d, 1)
++    pkgv = bb.data.getVar("PV", d, 1)
++    if "callconvention-hard" not in tunes:
++        bb.warn("%s-%s ONLY supports hardfp mode for now" % (pkgn, pkgv))
++        raise bb.parse.SkipPackage("%s-%s ONLY supports hardfp mode for now" % (pkgn, pkgv))
++}
 +
 +TARGET_PRODUCT_omap-a15 = "jacinto6evm"
 +TARGET_PRODUCT_ti33x = "ti335x"
 +TARGET_PRODUCT_ti43x = "ti437x"
 +
-+EXTRA_OEMAKE += 'KERNELDIR="${STAGING_KERNEL_DIR}" TARGET_PRODUCT=${TARGET_PRODUCT}'
++INITSCRIPT_NAME = "rc.pvr"
++INITSCRIPT_PARAMS = "defaults 8"
 +
-+do_compile_prepend() {
-+    cd ${S}/eurasia_km/eurasiacon/build/linux2/omap_linux
++inherit update-rc.d
++
++PR = "r0"
++PROVIDES += "virtual/egl virtual/libgles1 virtual/libgles2 omap5-xsgx-ddk-um-linux"
++
++DEPENDS += "udev"
++RDEPENDS_${PN} += "libudev"
++
++
++RPROVIDES_${PN} = "libegl libgles1 libgles2 omap5-xsgx-ddk-um-linux"
++RPROVIDES_${PN}-dev = "libegl-dev libgles1-dev libgles2-dev omap5-xsgx-ddk-um-linux-dev"
++RPROVIDES_${PN}-dbg = "libegl-dbg libgles1-dbg libgles2-dbg omap5-xsgx-ddk-um-linux-dbg"
++
++RREPLACES_${PN} = "libegl libgles1 libgles2 omap5-xsgx-ddk-um-linux"
++RREPLACES_${PN}-dev = "libegl-dev libgles1-dev libgles2-dev omap5-xsgx-ddk-um-linux-dev"
++RREPLACES_${PN}-dbg = "libegl-dbg libgles1-dbg libgles2-dbg omap5-xsgx-ddk-um-linux-dbg"
++
++RCONFLICTS_${PN} = "libegl libgles1 libgles2 omap5-xsgx-ddk-um-linux"
++RCONFLICTS_${PN}-dev = "libegl-dev libgles1-dev libgles2-dev omap5-xsgx-ddk-um-linux-dev"
++RCONFLICTS_${PN}-dbg = "libegl-dbg libgles1-dbg libgles2-dbg omap5-xsgx-ddk-um-linux-dbg"
++
++S = "${WORKDIR}/git"
++
++do_install () {
++    oe_runmake install DESTDIR=${D} TARGET_PRODUCT=${TARGET_PRODUCT}
 +}
 +
-+do_install() {
-+    make -C ${STAGING_KERNEL_DIR} SUBDIRS=${B}/eurasia_km/eurasiacon/binary_omap_linux_xorg_release/target/kbuild INSTALL_MOD_PATH=${D} PREFIX=${STAGING_DIR_HOST} modules_install
-+}
++SYSROOT_DIRS_append = "/usr/local"
++
++FILES_${PN} +=  "/usr/local/*"
++
++FILES_${PN}-staticdev +=  "/usr/local/*"
++
++PACKAGES =+ "${PN}-plugins"
++FILES_${PN}-plugins = "${libdir}/libsrv_init.so ${libdir}/libsrv_um.so ${libdir}/libglslcompiler.so ${libdir}/libPVRScopeServices.so ${libdir}/libGLESv1_PVR_MESA.so ${libdir}/libGLESv2_PVR_MESA.so"
++FILES_${PN}-plugins += "/usr/local/XSGX/lib/dri/*.so /usr/local/XSGX/lib/xorg/modules/*.so /usr/local/XSGX/lib/xorg/modules/drivers/*.so /usr/local/XSGX/lib/xorg/modules/extensions/*.so /usr/local/XSGX/lib/xorg/modules/input/*.so"
++FILES_${PN}-staticdev += "/usr/local/XSGX/lib/dri/*.so /usr/local/XSGX/lib/xorg/modules/*.so /usr/local/XSGX/lib/xorg/modules/drivers/*.so /usr/local/XSGX/lib/xorg/modules/extensions/*.so /usr/local/XSGX/lib/xorg/modules/input/*.so"
++RDEPENDS_${PN} += "${PN}-plugins"
++
++SYSROOT_DIRS_BLACKLIST_append = " /usr/local/XSGX/lib/libpng12.a /usr/local/XSGX/lib/libpng12.so /usr/local/XSGX/lib/libpng12.so.0  /usr/local/XSGX/lib/libpng12.so.0.56.0"
++
++
++ALLOW_EMPTY_${PN}-plugins = "1"
++
++INHIBIT_PACKAGE_STRIP = "1"
++INHIBIT_SYSROOT_STRIP = "1"
++
++INSANE_SKIP_${PN} += "dev-so ldflags useless-rpaths"
++INSANE_SKIP_${PN}-plugins = "dev-so"
++INSANE_SKIP_${PN}-dev = "dev-so"
++INSANE_SKIP_${PN}-staticdev = "dev-so"
++INSANE_SKIP_${PN} += "already-stripped"
++
++CLEANBROKEN = "1"
++
 -- 
 1.9.1
 
