@@ -1,43 +1,43 @@
 Return-Path: <e-ruei1@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 88A9252AE8
+	by arago-project.org (Postfix) with ESMTPS id 9E79252AF5
 	for <meta-arago@arago-project.org>;
 	Tue,  3 Oct 2017 15:54:32 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v93FsM5A005620
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v93FsMhA005621
 	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:22 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
 	s=ti-com-17Q1; t=1507046062;
-	bh=MwQOXy3YgoNa0UH+YHaohaWPIKrDXQKCGDNHL2YqWog=;
+	bh=9Gp574AxG7i3PoluT1pZDwzOH0FAvwzmEK17CFWQy2E=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=uvCWULvZ+qroPjfifvmXsJT0Q+EMcDO9XG/Pjy6NvxcKtHzds7e6fTntOxGvOY7jZ
-	0w7nrHIIHYXLk7WMlu4T+Mo9jt2fSDa9n3ClgCguehCiVXtIh2jS0ONBSRrlY+/I5c
-	A4ScnUHkT4QO5CR0XaGzmQC5qxskwwBsDOqIFQ0g=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsHnn013473
+	b=cOi20hnSP8Ia490D0I5mphcr9i7B+FIJnUY3gbSKYyZkTlgY9YBNN6knDxNOy7IDo
+	hmz9ZMFo203DeeVS7YpC2vFraz5ej/cB6EpO6bgsvm4pJJkjOskDWHesBn03I9G6bI
+	uUgb3a7TjUEOFWZpX80TSP7hJhJCrQWA2MBCQLV0=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsHf5013476
 	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:17 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 3 Oct 2017 10:54:16 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 3 Oct 2017 10:54:17 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
 	Transport; Tue, 3 Oct 2017 10:54:17 -0500
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsFS5013524
-	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:16 -0500
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsFS6013524
+	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:17 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 3 Oct 2017 11:53:56 -0400
-Message-ID: <1507046051-57949-9-git-send-email-e-ruei1@ti.com>
+Date: Tue, 3 Oct 2017 11:53:57 -0400
+Message-ID: <1507046051-57949-10-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1507046051-57949-1-git-send-email-e-ruei1@ti.com>
 References: <1507046051-57949-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH v2 08/23] qtbase: add x11 build support for (x)sgx ddk
+Subject: [meta-processor-sdk][PATCH v2 09/23] qtbase-conf: add qt_env.sh for X11 support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,440 +50,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Oct 2017 15:54:32 -0000
+X-List-Received-Date: Tue, 03 Oct 2017 15:54:33 -0000
 Content-Type: text/plain
 
-This is a hack to allow  qt5 X11 build with the SGX DDK where all the
-X11 dependent components are provided by the SGX DDK X11 package under
-/usr/local/XSGX/lib and /usr/local/XSGX/include.
-- add additional include and lib search paths
-- replace the dependency of the X11 related components to libgles2 which
-  is equivalent to the SGX DDK UM
+X11: need to set DISPLAY and LD_LIBRARY_PATH
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- recipes-qt/qt5/nativesdk-qtbase_git.bbappend        |  2 ++
- recipes-qt/qt5/qt3d_git.bbappend                    |  2 ++
- recipes-qt/qt5/qt5-creator_3.5.1.bbappend           |  2 ++
- recipes-qt/qt5/qt5-path-hack.inc                    |  2 ++
- .../qt5/qt5-plugin-generic-vboxtouch_git.bbappend   |  2 ++
- recipes-qt/qt5/qtbase_%.bbappend                    | 21 ++++++++++++++++++---
- recipes-qt/qt5/qtcanvas3d_git.bbappend              |  2 ++
- recipes-qt/qt5/qtcharts_git.bbappend                |  2 ++
- recipes-qt/qt5/qtconnectivity_git.bbappend          |  2 ++
- recipes-qt/qt5/qtdatavis3d_git.bbappend             |  2 ++
- recipes-qt/qt5/qtdeclarative-render2d_git.bbappend  |  2 ++
- recipes-qt/qt5/qtdeclarative_git.bbappend           |  2 ++
- recipes-qt/qt5/qtenginio_git.bbappend               |  2 ++
- recipes-qt/qt5/qtgraphicaleffects_git.bbappend      |  2 ++
- recipes-qt/qt5/qtimageformats_git.bbappend          |  2 ++
- recipes-qt/qt5/qtlocation_git.bbappend              |  2 ++
- recipes-qt/qt5/qtmultimedia_git.bbappend            |  2 ++
- recipes-qt/qt5/qtquick1_git.bbappend                |  2 ++
- recipes-qt/qt5/qtquickcontrols2_git.bbappend        |  2 ++
- recipes-qt/qt5/qtquickcontrols_git.bbappend         |  2 ++
- recipes-qt/qt5/qtscript_git.bbappend                |  2 ++
- recipes-qt/qt5/qtsensors_git.bbappend               |  2 ++
- recipes-qt/qt5/qtserialbus_git.bbappend             |  2 ++
- recipes-qt/qt5/qtserialport_git.bbappend            |  2 ++
- recipes-qt/qt5/qtsvg_git.bbappend                   |  2 ++
- recipes-qt/qt5/qtsystems_git.bbappend               |  2 ++
- recipes-qt/qt5/qttools_git.bbappend                 |  2 ++
- recipes-qt/qt5/qttranslations_git.bbappend          |  2 ++
- recipes-qt/qt5/qtvirtualkeyboard_git.bbappend       |  2 ++
- recipes-qt/qt5/qtwayland-native_git.bbappend        |  2 ++
- recipes-qt/qt5/qtwayland_git.bbappend               |  2 ++
- recipes-qt/qt5/qtwebchannel_git.bbappend            |  2 ++
- recipes-qt/qt5/qtwebengine_git.bbappend             |  2 ++
- recipes-qt/qt5/qtwebkit-examples_git.bbappend       |  2 ++
- recipes-qt/qt5/qtwebkit_git.bbappend                |  2 ++
- recipes-qt/qt5/qtwebsockets_git.bbappend            |  2 ++
- recipes-qt/qt5/qtx11extras_git.bbappend             |  2 ++
- recipes-qt/qt5/qtxmlpatterns_git.bbappend           |  2 ++
- 38 files changed, 92 insertions(+), 3 deletions(-)
- create mode 100644 recipes-qt/qt5/nativesdk-qtbase_git.bbappend
- create mode 100644 recipes-qt/qt5/qt3d_git.bbappend
- create mode 100644 recipes-qt/qt5/qt5-creator_3.5.1.bbappend
- create mode 100644 recipes-qt/qt5/qt5-path-hack.inc
- create mode 100644 recipes-qt/qt5/qt5-plugin-generic-vboxtouch_git.bbappend
- mode change 100644 => 100755 recipes-qt/qt5/qtbase_%.bbappend
- create mode 100644 recipes-qt/qt5/qtcanvas3d_git.bbappend
- create mode 100644 recipes-qt/qt5/qtcharts_git.bbappend
- create mode 100644 recipes-qt/qt5/qtconnectivity_git.bbappend
- create mode 100644 recipes-qt/qt5/qtdatavis3d_git.bbappend
- create mode 100644 recipes-qt/qt5/qtdeclarative-render2d_git.bbappend
- create mode 100644 recipes-qt/qt5/qtdeclarative_git.bbappend
- create mode 100644 recipes-qt/qt5/qtenginio_git.bbappend
- create mode 100644 recipes-qt/qt5/qtgraphicaleffects_git.bbappend
- create mode 100644 recipes-qt/qt5/qtimageformats_git.bbappend
- create mode 100644 recipes-qt/qt5/qtlocation_git.bbappend
- create mode 100644 recipes-qt/qt5/qtmultimedia_git.bbappend
- create mode 100644 recipes-qt/qt5/qtquick1_git.bbappend
- create mode 100644 recipes-qt/qt5/qtquickcontrols2_git.bbappend
- create mode 100644 recipes-qt/qt5/qtquickcontrols_git.bbappend
- create mode 100644 recipes-qt/qt5/qtscript_git.bbappend
- create mode 100644 recipes-qt/qt5/qtsensors_git.bbappend
- create mode 100644 recipes-qt/qt5/qtserialbus_git.bbappend
- create mode 100644 recipes-qt/qt5/qtserialport_git.bbappend
- create mode 100644 recipes-qt/qt5/qtsvg_git.bbappend
- create mode 100644 recipes-qt/qt5/qtsystems_git.bbappend
- create mode 100644 recipes-qt/qt5/qttools_git.bbappend
- create mode 100644 recipes-qt/qt5/qttranslations_git.bbappend
- create mode 100644 recipes-qt/qt5/qtvirtualkeyboard_git.bbappend
- create mode 100644 recipes-qt/qt5/qtwayland-native_git.bbappend
- create mode 100644 recipes-qt/qt5/qtwayland_git.bbappend
- create mode 100644 recipes-qt/qt5/qtwebchannel_git.bbappend
- create mode 100644 recipes-qt/qt5/qtwebengine_git.bbappend
- create mode 100644 recipes-qt/qt5/qtwebkit-examples_git.bbappend
- create mode 100644 recipes-qt/qt5/qtwebkit_git.bbappend
- create mode 100644 recipes-qt/qt5/qtwebsockets_git.bbappend
- create mode 100644 recipes-qt/qt5/qtx11extras_git.bbappend
- create mode 100644 recipes-qt/qt5/qtxmlpatterns_git.bbappend
+ recipes-qt/qt5/qtbase-conf/qt_env_xsgx.sh | 6 ++++++
+ recipes-qt/qt5/qtbase-conf_1.0.bbappend   | 9 +++++++--
+ 2 files changed, 13 insertions(+), 2 deletions(-)
+ create mode 100644 recipes-qt/qt5/qtbase-conf/qt_env_xsgx.sh
 
-diff --git a/recipes-qt/qt5/nativesdk-qtbase_git.bbappend b/recipes-qt/qt5/nativesdk-qtbase_git.bbappend
+diff --git a/recipes-qt/qt5/qtbase-conf/qt_env_xsgx.sh b/recipes-qt/qt5/qtbase-conf/qt_env_xsgx.sh
 new file mode 100644
-index 0000000..b07c280
+index 0000000..43da0cd
 --- /dev/null
-+++ b/recipes-qt/qt5/nativesdk-qtbase_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qt3d_git.bbappend b/recipes-qt/qt5/qt3d_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qt3d_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qt5-creator_3.5.1.bbappend b/recipes-qt/qt5/qt5-creator_3.5.1.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qt5-creator_3.5.1.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qt5-path-hack.inc b/recipes-qt/qt5/qt5-path-hack.inc
-new file mode 100644
-index 0000000..f9b0aef
---- /dev/null
-+++ b/recipes-qt/qt5/qt5-path-hack.inc
-@@ -0,0 +1,2 @@
-+CXXFLAGS_append = " -I${STAGING_DIR_HOST}/usr/local/XSGX/include -L${STAGING_DIR_HOST}/usr/local/XSGX/lib"
-+LDFLAGS_append = " -L${STAGING_DIR_HOST}/usr/local/XSGX/lib -Wl,-rpath-link,${STAGING_DIR_HOST}/usr/local/XSGX/lib"
-diff --git a/recipes-qt/qt5/qt5-plugin-generic-vboxtouch_git.bbappend b/recipes-qt/qt5/qt5-plugin-generic-vboxtouch_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qt5-plugin-generic-vboxtouch_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtbase_%.bbappend b/recipes-qt/qt5/qtbase_%.bbappend
-old mode 100644
-new mode 100755
-index 98710f3..df013b2
---- a/recipes-qt/qt5/qtbase_%.bbappend
-+++ b/recipes-qt/qt5/qtbase_%.bbappend
-@@ -1,8 +1,9 @@
--PR_append = ".tisdk4"
-+PR_append = ".tisdk5"
- 
++++ b/recipes-qt/qt5/qtbase-conf/qt_env_xsgx.sh
+@@ -0,0 +1,6 @@
++#!/bin/sh
++
++### QT Environment Variables ###
++export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
++export DISPLAY=:0
++export LD_LIBRARY_PATH=/usr/local/XSGX/lib
+\ No newline at end of file
+diff --git a/recipes-qt/qt5/qtbase-conf_1.0.bbappend b/recipes-qt/qt5/qtbase-conf_1.0.bbappend
+index 5eac07e..047dca7 100644
+--- a/recipes-qt/qt5/qtbase-conf_1.0.bbappend
++++ b/recipes-qt/qt5/qtbase-conf_1.0.bbappend
+@@ -1,12 +1,17 @@
  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+include qt5-path-hack.inc
+-PR_append = ".tisdk1"
++PR_append = ".tisdk2"
  
--GLES_EXTRA_DEPS = "libdrm ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', 'wayland', '', d)}"
-+GLES_EXTRA_DEPS = "libdrm libgbm ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', 'wayland', '', d)}"
+-SRC_URI += "file://eglfs_kms_cfg.json"
++SRC_URI += " file://eglfs_kms_cfg.json \
++             file://qt_env_xsgx.sh     \
++           "
  
- # kms packageconfig requires virtual/mesa
- #
-@@ -13,6 +14,20 @@ GLES_EXTRA_DEPS = "libdrm ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', 'wayla
- PACKAGECONFIG[kms] = "-kms,-no-kms,drm virtual/egl"
- PACKAGECONFIG += "kms"
+ # Add custom Arago qtbase eglfs_kms configuration file
+ do_install_append () {
+     install -d ${D}${sysconfdir}/qt5
+     install -m 0644 ${WORKDIR}/eglfs_kms_cfg.json ${D}${sysconfdir}/qt5/
++    if [ "${@bb.utils.contains('MACHINE_FEATURES','xsgx','true','false',d)}" = "true" ]; then
++        install -m 0644 ${WORKDIR}/qt_env_xsgx.sh ${D}${sysconfdir}/profile.d/qt_env.sh
++    fi
+ }
  
-+PACKAGECONFIG[xcursor] = "-xcursor,-no-xcursor,virtual/libgles2"
-+PACKAGECONFIG[xinput2] = "-xinput2,-no-xinput2,virtual/libgles2"
-+PACKAGECONFIG[xfixes] = "-xfixes,-no-xfixes,virtual/libgles2"
-+PACKAGECONFIG[xrandr] = "-xrandr,-no-xrandr,virtual/libgles2"
-+PACKAGECONFIG[xrender] = "-xrender,-no-xrender,virtual/libgles2"
-+PACKAGECONFIG[xshape] = "-xshape,-no-xshape"
-+PACKAGECONFIG[xsync] = "-xsync,-no-xsync"
-+PACKAGECONFIG[xkb] = "-xkb,-no-xkb -no-xkbcommon,virtual/libgles2"
-+PACKAGECONFIG[glib] = "-glib,-no-glib,virtual/libgles2"
-+
-+PACKAGECONFIG_X11_FORCE = " xsync xshape xrender xrandr xfixes xinput2 xcursor glib xkb "
-+
-+PACKAGECONFIG_append = "${@bb.utils.contains('MACHINE_FEATURES', 'xsgx', "${PACKAGECONFIG_X11_FORCE}", '', d)}"
-+
- QT_NOSGX_PATCHES = "\
-     file://0001-calculator-Add-exit-button-for-non-window-environmen.patch \
-     file://0002-animatedtiles-Add-exit-button-for-non-window-environ.patch \
-@@ -20,7 +35,7 @@ QT_NOSGX_PATCHES = "\
- "
- 
- SRC_URI += "\
--    ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', "${QT_NOSGX_PATCHES}", d)}\
-+    ${@['',"${QT_NOSGX_PATCHES}"][bb.utils.contains('MACHINE_FEATURES','sgx',False,True,d) and bb.utils.contains('DISTRO_FEATURES','wayland',True,False,d)]} \
-     file://0001-qtbase-enhance-eglfs_kms-to-handle-DRM-plane-set-req.patch        \
- "
- 
-diff --git a/recipes-qt/qt5/qtcanvas3d_git.bbappend b/recipes-qt/qt5/qtcanvas3d_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtcanvas3d_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtcharts_git.bbappend b/recipes-qt/qt5/qtcharts_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtcharts_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtconnectivity_git.bbappend b/recipes-qt/qt5/qtconnectivity_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtconnectivity_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtdatavis3d_git.bbappend b/recipes-qt/qt5/qtdatavis3d_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtdatavis3d_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtdeclarative-render2d_git.bbappend b/recipes-qt/qt5/qtdeclarative-render2d_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtdeclarative-render2d_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtdeclarative_git.bbappend b/recipes-qt/qt5/qtdeclarative_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtdeclarative_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtenginio_git.bbappend b/recipes-qt/qt5/qtenginio_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtenginio_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtgraphicaleffects_git.bbappend b/recipes-qt/qt5/qtgraphicaleffects_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtgraphicaleffects_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtimageformats_git.bbappend b/recipes-qt/qt5/qtimageformats_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtimageformats_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtlocation_git.bbappend b/recipes-qt/qt5/qtlocation_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtlocation_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtmultimedia_git.bbappend b/recipes-qt/qt5/qtmultimedia_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtmultimedia_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtquick1_git.bbappend b/recipes-qt/qt5/qtquick1_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtquick1_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtquickcontrols2_git.bbappend b/recipes-qt/qt5/qtquickcontrols2_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtquickcontrols2_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtquickcontrols_git.bbappend b/recipes-qt/qt5/qtquickcontrols_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtquickcontrols_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtscript_git.bbappend b/recipes-qt/qt5/qtscript_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtscript_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtsensors_git.bbappend b/recipes-qt/qt5/qtsensors_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtsensors_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtserialbus_git.bbappend b/recipes-qt/qt5/qtserialbus_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtserialbus_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtserialport_git.bbappend b/recipes-qt/qt5/qtserialport_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtserialport_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtsvg_git.bbappend b/recipes-qt/qt5/qtsvg_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtsvg_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtsystems_git.bbappend b/recipes-qt/qt5/qtsystems_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtsystems_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qttools_git.bbappend b/recipes-qt/qt5/qttools_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qttools_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qttranslations_git.bbappend b/recipes-qt/qt5/qttranslations_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qttranslations_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtvirtualkeyboard_git.bbappend b/recipes-qt/qt5/qtvirtualkeyboard_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtvirtualkeyboard_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtwayland-native_git.bbappend b/recipes-qt/qt5/qtwayland-native_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtwayland-native_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtwayland_git.bbappend b/recipes-qt/qt5/qtwayland_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtwayland_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtwebchannel_git.bbappend b/recipes-qt/qt5/qtwebchannel_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtwebchannel_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtwebengine_git.bbappend b/recipes-qt/qt5/qtwebengine_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtwebengine_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtwebkit-examples_git.bbappend b/recipes-qt/qt5/qtwebkit-examples_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtwebkit-examples_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtwebkit_git.bbappend b/recipes-qt/qt5/qtwebkit_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtwebkit_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtwebsockets_git.bbappend b/recipes-qt/qt5/qtwebsockets_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtwebsockets_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtx11extras_git.bbappend b/recipes-qt/qt5/qtx11extras_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtx11extras_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
-diff --git a/recipes-qt/qt5/qtxmlpatterns_git.bbappend b/recipes-qt/qt5/qtxmlpatterns_git.bbappend
-new file mode 100644
-index 0000000..b07c280
---- /dev/null
-+++ b/recipes-qt/qt5/qtxmlpatterns_git.bbappend
-@@ -0,0 +1,2 @@
-+PR_append = ".tisdk0"
-+include qt5-path-hack.inc
+ FILES_${PN} += "${sysconfdir}/qt5/*"
 -- 
 1.9.1
 
