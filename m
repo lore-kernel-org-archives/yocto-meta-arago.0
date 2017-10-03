@@ -1,43 +1,43 @@
 Return-Path: <e-ruei1@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 8B21052AF5
+	by arago-project.org (Postfix) with ESMTPS id 9077852AF7
 	for <meta-arago@arago-project.org>;
 	Tue,  3 Oct 2017 15:54:31 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v93FsL7v005615
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v93FsLf5005617
 	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
 	s=ti-com-17Q1; t=1507046061;
-	bh=19mg0qAwRRWu1z3yC+oviyfqEguAMBVxNRhb8Ftm2xw=;
+	bh=occhx35xLbe+/OKlcFac69qcI338pR8E4vNv88wIVfE=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=Sxssu2ik3/e3het5m1rJP5uAvYixyS12nfMsldyXAb8QlejLoc8Bne0IxvKUpeZQM
-	WrlsEUu/MLpnk2Qevx1tiRXJkynpjxAQsjSpSBVEZFlU7NbEwrdjh9V84mojcL3SOs
-	Rim6Iwm0pyy5jUfd77XwEn88RwtbbE/KdMdbpuh4=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsGR0018663
+	b=mPgxKtRugSIYKjnn9oWghakWfAGGicm3Jr6YQ6fmgwjU+k5wa5RoPfmqOK1unh+t5
+	QySmMjAdrWFsRvqfRmedyDoI04uM+MHR7DO7In0ywnZ/b+sclEBw1psbar91U7bI9/
+	IZg4nCo+e1W5/OsD1EQX1u0ll1j8iiW40/HsfiTg=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsG4k013464
 	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:16 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
 	Tue, 3 Oct 2017 10:54:16 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE100.ent.ti.com
+	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
 	Transport; Tue, 3 Oct 2017 10:54:16 -0500
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsFS1013524
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsFS2013524
 	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:16 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 3 Oct 2017 11:53:52 -0400
-Message-ID: <1507046051-57949-5-git-send-email-e-ruei1@ti.com>
+Date: Tue, 3 Oct 2017 11:53:53 -0400
+Message-ID: <1507046051-57949-6-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1507046051-57949-1-git-send-email-e-ruei1@ti.com>
 References: <1507046051-57949-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH v2 04/23] layer.conf: add xsgx-ddk for X11 support
+Subject: [meta-processor-sdk][PATCH v2 05/23] arago-core-tisdk-image: add additional packagegroup for X11 (xsgx) build
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,19 +55,24 @@ Content-Type: text/plain
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- conf/layer.conf | 2 ++
- 1 file changed, 2 insertions(+)
+ recipes-core/images/arago-core-tisdk-image.bbappend | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 0334463..7b2e9a0 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -7,3 +7,5 @@ BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
- BBFILE_COLLECTIONS += "meta-processor-sdk"
- BBFILE_PATTERN_meta-processor-sdk := "^${LAYERDIR}/"
- BBFILE_PRIORITY_meta-processor-sdk = "15"
-+
-+SIGGEN_EXCLUDERECIPES_ABISAFE_append = " ti-xsgx-ddk-km  ti-xsgx-ddk-um"
+diff --git a/recipes-core/images/arago-core-tisdk-image.bbappend b/recipes-core/images/arago-core-tisdk-image.bbappend
+index 2c804f0..58195b3 100644
+--- a/recipes-core/images/arago-core-tisdk-image.bbappend
++++ b/recipes-core/images/arago-core-tisdk-image.bbappend
+@@ -1,7 +1,9 @@
+-PR_append = ".tisdk13"
++PR_append = ".tisdk14"
+ 
+ IMAGE_INSTALL_append = " \                                                                                                                   
+       packagegroup-arago-tisdk-hmi-sdk-host \ 
++      ${@bb.utils.contains('MACHINE_FEATURES','xsgx','packagegroup-arago-tisdk-qte-sdk-host','',d)} \
++      ${@bb.utils.contains('MACHINE_FEATURES','xsgx','packagegroup-arago-tisdk-graphics-sdk-host','',d)} \
+  "
+ 
+ # The following FITIMAGE vars are copied from kernel-fitimage.bbclass.
 -- 
 1.9.1
 
