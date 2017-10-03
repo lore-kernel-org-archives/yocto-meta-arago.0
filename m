@@ -1,42 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 4013F52A65
+Return-Path: <e-ruei1@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id EDFF252A33
 	for <meta-arago@arago-project.org>;
-	Mon,  2 Oct 2017 23:12:55 +0000 (UTC)
+	Tue,  3 Oct 2017 15:54:15 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v92NCjnI021568
-	for <meta-arago@arago-project.org>; Mon, 2 Oct 2017 18:12:45 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v93FsFA0008234
+	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:15 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1506985965;
-	bh=f28Ec9Sww/3eEmdVCwGRkkTWruv0hChoVoucsRdF1rM=;
-	h=Date:From:To:Subject:References:In-Reply-To;
-	b=GWHrQ7UMX6KnTRizIUVjkXBTAf19c+bqMMLqxome5WR3Wb0KqNWIbTBqwzXCpk+L+
-	YdLTvfRReJiaCVhzBTzoE6yxwRiYUPFVgAQIHehhv5f5+4RG1mZMx0xGmA19LP100P
-	rDBJMDZTjWkddWC7z02q+MXWDlXkqdRGMGafTMaY=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v92NCe1E023911
-	for <meta-arago@arago-project.org>; Mon, 2 Oct 2017 18:12:40 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1507046055;
+	bh=HwW5jCwzrr2zjMuADbzIY2CZXVpsNnKV3j5lTZhloFM=;
+	h=From:To:Subject:Date;
+	b=gV7xYZrfUcVBwjNAb6qcjbOKn3K2Gg4qfklXELWr/RYLMei49MVq+YBHT5WCKfV5j
+	ZxOnWILMwRn0pfDisQOOPXyfLMIXUVHndZ2migIdbI/Tewws8WfyZ6xR21V1OmKSco
+	wzTGK7a0hyGVqqh5ZntMdIdVMsRht3X8ee1XQwQw=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsF4n018654
+	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:15 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Mon, 2 Oct 2017 18:12:39 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 3 Oct 2017 10:54:15 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Mon, 2 Oct 2017 18:12:40 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v92NCdOF017595
-	for <meta-arago@arago-project.org>; Mon, 2 Oct 2017 18:12:39 -0500
-Date: Mon, 2 Oct 2017 19:12:24 -0400
-From: Denys Dmytriyenko <denys@ti.com>
+	Transport; Tue, 3 Oct 2017 10:54:15 -0500
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsFRv013524
+	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:15 -0500
+From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <20171002231224.GR8393@edge>
-References: <1506980714-9971-1-git-send-email-denys@ti.com>
+Date: Tue, 3 Oct 2017 11:53:48 -0400
+Message-ID: <1507046051-57949-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <1506980714-9971-1-git-send-email-denys@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [morty/master][PATCH v2] pm/vps-lld, cmb/audk2g-addon: fix double-inclusion warning for ti-paths.inc
+Subject: [meta-processor-sdk][PATCH v2 00/23] Add X11 Build Support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,70 +48,176 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Oct 2017 23:12:55 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 03 Oct 2017 15:54:16 -0000
+Content-Type: text/plain
 
-Sorry, wrong list
+Add X11 Build Support based on SGX DDK 1.15 X11 package
+- Add SGX DDK 1.15 UM/KM recipes
+- Add new Machine Feature xsgx for SGX X11 package
+- Enable qt5 eglfs.x11 build
+  - add x11 modules to package list
+  - replace x11 original component dependency list with img-egl (um)
+  - add include/lib search paths to point to SGX DDK UM X11 directories
+- Remove unsupported modules based on the availability of xsgx
 
-On Mon, Oct 02, 2017 at 05:45:14PM -0400, Denys Dmytriyenko wrote:
-> ti-pdk.bbclass already includes it.
-> 
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> ---
-> v2 - same for vps-lld, cmb-addon and audk2g-addon
-> 
->  recipes-bsp/audk2g-addon/audk2g-addon-rtos_git.bb |    1 -
->  recipes-bsp/cmb-addon/cmb-addon-rtos_git.bb       |    2 +-
->  recipes-bsp/pm-lld/pm-lld-rtos_git.bb             |    1 -
->  recipes-bsp/vps-lld/vps-lld-rtos_git.bb           |    1 -
->  4 files changed, 1 insertion(+), 4 deletions(-)
-> 
-> diff --git a/recipes-bsp/audk2g-addon/audk2g-addon-rtos_git.bb b/recipes-bsp/audk2g-addon/audk2g-addon-rtos_git.bb
-> index 6959864..0cb9ff1 100644
-> --- a/recipes-bsp/audk2g-addon/audk2g-addon-rtos_git.bb
-> +++ b/recipes-bsp/audk2g-addon/audk2g-addon-rtos_git.bb
-> @@ -1,6 +1,5 @@
->  SUMMARY = "TI RTOS Audio add-on software for k2g"
->  
-> -require recipes-ti/includes/ti-paths.inc
->  inherit ti-pdk
->  
->  LICENSE = "BSD-3-Clause"
-> diff --git a/recipes-bsp/cmb-addon/cmb-addon-rtos_git.bb b/recipes-bsp/cmb-addon/cmb-addon-rtos_git.bb
-> index 4d69863..0fade74 100644
-> --- a/recipes-bsp/cmb-addon/cmb-addon-rtos_git.bb
-> +++ b/recipes-bsp/cmb-addon/cmb-addon-rtos_git.bb
-> @@ -1,5 +1,5 @@
->  SUMMARY = "TI RTOS software supporting circular microphone array board"
-> -require recipes-ti/includes/ti-paths.inc
-> +
->  inherit ti-pdk
->  
->  LICENSE = "BSD-3-Clause"
-> diff --git a/recipes-bsp/pm-lld/pm-lld-rtos_git.bb b/recipes-bsp/pm-lld/pm-lld-rtos_git.bb
-> index 6fedc80..05388e5 100644
-> --- a/recipes-bsp/pm-lld/pm-lld-rtos_git.bb
-> +++ b/recipes-bsp/pm-lld/pm-lld-rtos_git.bb
-> @@ -1,6 +1,5 @@
->  SUMMARY = "TI RTOS driver for Power Management module (PM)"
->  
-> -require recipes-ti/includes/ti-paths.inc
->  inherit ti-pdk
->  
->  LICENSE = "BSD-3-Clause"
-> diff --git a/recipes-bsp/vps-lld/vps-lld-rtos_git.bb b/recipes-bsp/vps-lld/vps-lld-rtos_git.bb
-> index f13e2fc..88f79e1 100644
-> --- a/recipes-bsp/vps-lld/vps-lld-rtos_git.bb
-> +++ b/recipes-bsp/vps-lld/vps-lld-rtos_git.bb
-> @@ -1,6 +1,5 @@
->  SUMMARY = "TI RTOS Low level driver for Video Processing Subsystem (VPS) "
->  
-> -require recipes-ti/includes/ti-paths.inc
->  inherit ti-pdk
->  
->  LICENSE = "BSD-3-Clause"
-> -- 
-> 1.7.9.5
-> 
+Note: This is a tentative hack to provide X11 support as a build option.
+      It is not intended to be upstreamed to meta-arago and will be
+      removed when the official solution is available.
+
+Eric Ruei (23):
+  ti-xsgx-ddk-km: sgx ddk km recipe for X11 support
+  ti-xsgx-ddk-um: sgx ddk um recipe for X11 support
+  branding-processor-sdk.inc: select xsgx-ddk for X11 build
+  layer.conf: add xsgx-ddk for X11 support
+  arago-core-tisdk-image: add additional packagegroup for X11 (xsgx)
+    build
+  tisdk-rootfs-image: add packagegroup-arago-tisdk-graphics for omap-a15
+    unconditionally
+  img-pvr-sdk: add X11 demo programs for X11 build
+  qtbase: add x11 build support for (x)sgx ddk
+  qtbase-conf: add qt_env.sh for X11 support
+  qtwebbrowser: add additional include/lib search path for X11 build
+  refresh_screen: add additional include/lib search path for X11 build
+  matrix-gui-browser: add additional include/lib search path for X11
+    build
+  matrix-gui: add X11 support
+  matrix-gui-3d-demos: remove kmscube-based demos for X11 (xsgx) build
+  packagegroup-arago-test-addons: remove omapdrmtest for X11(xsgx) build
+  ti-tisdk-makefile: add/remove modules for X11(xsgx) build
+  packagegroup-arago-tisdk-graphics-sdk-host(target): select sgx ddk
+    package based om MACHINE_FEATURES (xsgx vs. sgx)
+  packagegroup-arago-tisdk-graphics: add X11 build support
+  packagegroup-arago-tisdk-multimedia(-sdk): remove unsupported tests
+    for X11
+  packagegroup-arago-tisdk-hmi(-sdk): remove HMI demos for X11(xsgx)
+    build
+  packagegroup-arago-tisdk-matrix: remove unsupported matrix-gui demos
+    for X11(xsgx) build
+  matrix-gui-hmi-demos: remove unsupported HMI demos for X11(xsgx) build
+  packagegroup-arago-tisdk-addons(-sdk-target): removed unsupported
+    modules for X11(xsgx) build
+
+ conf/distro/include/branding-processor-sdk.inc     | 13 ++++
+ conf/layer.conf                                    |  2 +
+ .../powervr-drivers/ti-xsgx-ddk-km_1.15.4564147.bb | 43 +++++++++++
+ .../images/arago-core-tisdk-image.bbappend         |  4 +-
+ recipes-core/images/tisdk-rootfs-image.bbappend    |  3 +-
+ .../matrix/matrix-gui-3d-demos_2.0.bbappend        | 16 ++++
+ .../matrix/matrix-gui-browser_2.0.bbappend         |  4 +
+ recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb    |  5 +-
+ ...mand-X11-Stop-matrix-when-running-a-GUI-d.patch | 83 +++++++++++++++++++++
+ recipes-core/matrix/matrix-gui_2.0.bbappend        | 12 ++-
+ recipes-core/matrix/refresh-screen_2.0.bbappend    |  4 +
+ .../packagegroup-arago-test-addons.bbappend        |  6 +-
+ ...agegroup-arago-tisdk-addons-sdk-target.bbappend | 10 ++-
+ .../packagegroup-arago-tisdk-addons.bbappend       | 10 ++-
+ ...agegroup-arago-tisdk-graphics-sdk-host.bbappend |  4 +-
+ ...egroup-arago-tisdk-graphics-sdk-target.bbappend |  5 +-
+ .../packagegroup-arago-tisdk-graphics.bbappend     | 21 +++---
+ .../packagegroup-arago-tisdk-hmi-sdk-host.bb       | 10 +--
+ .../packagegroups/packagegroup-arago-tisdk-hmi.bb  | 10 +--
+ .../packagegroup-arago-tisdk-matrix.bbappend       | 52 +++++++++++--
+ ...egroup-arago-tisdk-multimedia-sdk-host.bbappend | 24 +++++-
+ ...roup-arago-tisdk-multimedia-sdk-target.bbappend | 21 ++++++
+ .../packagegroup-arago-tisdk-multimedia.bbappend   | 24 ++++--
+ .../img-pvr-sdk/img-pvr-sdk_3.3.2.bbappend         | 19 +++++
+ .../libgles/ti-xsgx-ddk-um_1.15.4564147.bb         | 86 ++++++++++++++++++++++
+ recipes-qt/examples/qtwebbrowser_1.0.bbappend      |  4 +
+ recipes-qt/qt5/nativesdk-qtbase_git.bbappend       |  2 +
+ recipes-qt/qt5/qt3d_git.bbappend                   |  2 +
+ recipes-qt/qt5/qt5-creator_3.5.1.bbappend          |  2 +
+ recipes-qt/qt5/qt5-path-hack.inc                   |  2 +
+ .../qt5/qt5-plugin-generic-vboxtouch_git.bbappend  |  2 +
+ recipes-qt/qt5/qtbase-conf/qt_env_xsgx.sh          |  6 ++
+ recipes-qt/qt5/qtbase-conf_1.0.bbappend            |  9 ++-
+ recipes-qt/qt5/qtbase_%.bbappend                   | 21 +++++-
+ recipes-qt/qt5/qtcanvas3d_git.bbappend             |  2 +
+ recipes-qt/qt5/qtcharts_git.bbappend               |  2 +
+ recipes-qt/qt5/qtconnectivity_git.bbappend         |  2 +
+ recipes-qt/qt5/qtdatavis3d_git.bbappend            |  2 +
+ recipes-qt/qt5/qtdeclarative-render2d_git.bbappend |  2 +
+ recipes-qt/qt5/qtdeclarative_git.bbappend          |  2 +
+ recipes-qt/qt5/qtenginio_git.bbappend              |  2 +
+ recipes-qt/qt5/qtgraphicaleffects_git.bbappend     |  2 +
+ recipes-qt/qt5/qtimageformats_git.bbappend         |  2 +
+ recipes-qt/qt5/qtlocation_git.bbappend             |  2 +
+ recipes-qt/qt5/qtmultimedia_git.bbappend           |  2 +
+ recipes-qt/qt5/qtquick1_git.bbappend               |  2 +
+ recipes-qt/qt5/qtquickcontrols2_git.bbappend       |  2 +
+ recipes-qt/qt5/qtquickcontrols_git.bbappend        |  2 +
+ recipes-qt/qt5/qtscript_git.bbappend               |  2 +
+ recipes-qt/qt5/qtsensors_git.bbappend              |  2 +
+ recipes-qt/qt5/qtserialbus_git.bbappend            |  2 +
+ recipes-qt/qt5/qtserialport_git.bbappend           |  2 +
+ recipes-qt/qt5/qtsvg_git.bbappend                  |  2 +
+ recipes-qt/qt5/qtsystems_git.bbappend              |  2 +
+ recipes-qt/qt5/qttools_git.bbappend                |  2 +
+ recipes-qt/qt5/qttranslations_git.bbappend         |  2 +
+ recipes-qt/qt5/qtvirtualkeyboard_git.bbappend      |  2 +
+ recipes-qt/qt5/qtwayland-native_git.bbappend       |  2 +
+ recipes-qt/qt5/qtwayland_git.bbappend              |  2 +
+ recipes-qt/qt5/qtwebchannel_git.bbappend           |  2 +
+ recipes-qt/qt5/qtwebengine_git.bbappend            |  2 +
+ recipes-qt/qt5/qtwebkit-examples_git.bbappend      |  2 +
+ recipes-qt/qt5/qtwebkit_git.bbappend               |  2 +
+ recipes-qt/qt5/qtwebsockets_git.bbappend           |  2 +
+ recipes-qt/qt5/qtx11extras_git.bbappend            |  2 +
+ recipes-qt/qt5/qtxmlpatterns_git.bbappend          |  2 +
+ .../ti-tisdk-makefile/Makefile_ti-xsgx-ddk-km      | 25 +++++++
+ .../ti-tisdk-makefile_1.0.bbappend                 | 31 +++++---
+ 68 files changed, 593 insertions(+), 68 deletions(-)
+ create mode 100644 recipes-bsp/powervr-drivers/ti-xsgx-ddk-km_1.15.4564147.bb
+ create mode 100644 recipes-core/matrix/matrix-gui-3d-demos_2.0.bbappend
+ create mode 100644 recipes-core/matrix/matrix-gui-browser_2.0.bbappend
+ mode change 100755 => 100644 recipes-core/matrix/matrix-gui-hmi-demos_2.0.bb
+ create mode 100755 recipes-core/matrix/matrix-gui/0001-execute_command-X11-Stop-matrix-when-running-a-GUI-d.patch
+ create mode 100644 recipes-core/matrix/refresh-screen_2.0.bbappend
+ create mode 100644 recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bbappend
+ create mode 100644 recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bbappend
+ create mode 100644 recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
+ create mode 100644 recipes-qt/examples/qtwebbrowser_1.0.bbappend
+ create mode 100644 recipes-qt/qt5/nativesdk-qtbase_git.bbappend
+ create mode 100644 recipes-qt/qt5/qt3d_git.bbappend
+ create mode 100644 recipes-qt/qt5/qt5-creator_3.5.1.bbappend
+ create mode 100644 recipes-qt/qt5/qt5-path-hack.inc
+ create mode 100644 recipes-qt/qt5/qt5-plugin-generic-vboxtouch_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtbase-conf/qt_env_xsgx.sh
+ mode change 100644 => 100755 recipes-qt/qt5/qtbase_%.bbappend
+ create mode 100644 recipes-qt/qt5/qtcanvas3d_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtcharts_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtconnectivity_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtdatavis3d_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtdeclarative-render2d_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtdeclarative_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtenginio_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtgraphicaleffects_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtimageformats_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtlocation_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtmultimedia_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtquick1_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtquickcontrols2_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtquickcontrols_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtscript_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtsensors_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtserialbus_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtserialport_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtsvg_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtsystems_git.bbappend
+ create mode 100644 recipes-qt/qt5/qttools_git.bbappend
+ create mode 100644 recipes-qt/qt5/qttranslations_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtvirtualkeyboard_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtwayland-native_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtwayland_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtwebchannel_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtwebengine_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtwebkit-examples_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtwebkit_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtwebsockets_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtx11extras_git.bbappend
+ create mode 100644 recipes-qt/qt5/qtxmlpatterns_git.bbappend
+ create mode 100644 recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-xsgx-ddk-km
+
+-- 
+1.9.1
+
 
