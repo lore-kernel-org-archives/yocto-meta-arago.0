@@ -1,43 +1,43 @@
 Return-Path: <e-ruei1@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 0DAE752B03
+	by arago-project.org (Postfix) with ESMTPS id 2D47552AFA
 	for <meta-arago@arago-project.org>;
 	Tue,  3 Oct 2017 15:54:34 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v93FsN7t005623
-	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:23 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v93FsOFE005624
+	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1507046063;
-	bh=06cOX8KGM2tc15L6NXHhqiBL3UlFwriLUvTFKBFGzTY=;
+	s=ti-com-17Q1; t=1507046064;
+	bh=X+2hHaFY4XosemHqJ59Eam+Ybby2TljWZMaqMKYj6es=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=XY7c1TXfX3PzCsK7Ne+W9FkpVujgVfuDXrTmtsF+ZSycxGyjx1O1odxF6kcvfck9c
-	9DjO+tUpc5B1885e9c9+lJiKB/uXC6+8ExVLsFRwv9vK2Op+OQmPIOFgjMErI0O9Yd
-	dRlKd7swGaK5H5HJNdfTSXlIv1gW6bit5PXwMfnE=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsIde018715
-	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:18 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	b=Kv69K6P2cj8NuZdEspedL0W9oiI3NkJHBmJMdrVfVSr28BF3aUWpTmNd5DTb+vupo
+	+1VliS8JCffdsSb3z83PBJUTBD8/a26KkHOwQR7Ser6Nfob11+H4gwtqcIGrYZdudw
+	vlDsWsWY3B+Ty/ZAYfPnnqdbdgApm4gfROAawAmc=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsJid018720
+	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:19 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
 	Tue, 3 Oct 2017 10:54:18 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
 	Transport; Tue, 3 Oct 2017 10:54:18 -0500
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsFSD013524
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93FsFSE013524
 	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 10:54:18 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 3 Oct 2017 11:54:04 -0400
-Message-ID: <1507046051-57949-17-git-send-email-e-ruei1@ti.com>
+Date: Tue, 3 Oct 2017 11:54:05 -0400
+Message-ID: <1507046051-57949-18-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1507046051-57949-1-git-send-email-e-ruei1@ti.com>
 References: <1507046051-57949-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH v2 16/23] ti-tisdk-makefile: add/remove modules for X11(xsgx) build
+Subject: [meta-processor-sdk][PATCH v2 17/23] packagegroup-arago-tisdk-graphics-sdk-host(target): select sgx ddk package based om MACHINE_FEATURES (xsgx vs. sgx)
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,124 +53,38 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Tue, 03 Oct 2017 15:54:35 -0000
 Content-Type: text/plain
 
-For X11 build:
-add: ti-xsgx-ddk-km
-remove: dual-camera-demo image-gallery qt-opencv-opencl-opengl-multithreaded
-        barcode-roi, evse-hmi and protection-relays-hmi
+Note: xsgx represents sgx for X11 support
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../ti-tisdk-makefile/Makefile_ti-xsgx-ddk-km      | 25 +++++++++++++++++
- .../ti-tisdk-makefile_1.0.bbappend                 | 31 ++++++++++++++--------
- 2 files changed, 45 insertions(+), 11 deletions(-)
- create mode 100644 recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-xsgx-ddk-km
+ .../packagegroup-arago-tisdk-graphics-sdk-host.bbappend              | 4 +++-
+ .../packagegroup-arago-tisdk-graphics-sdk-target.bbappend            | 5 ++++-
+ 2 files changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-xsgx-ddk-km b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-xsgx-ddk-km
-new file mode 100644
-index 0000000..5957153
---- /dev/null
-+++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-xsgx-ddk-km
-@@ -0,0 +1,25 @@
-+# ti-xsgx-ddk-km module
-+ti-xsgx-ddk-km: linux
-+	@echo ================================
-+	@echo      Building ti-sgx-ddk-km
-+	@echo ================================
-+	@cd board-support/extra-drivers; \
-+	cd `find . -maxdepth 1 -name "ti-sgx-ddk-km*" -type d`; \
-+	make -C ./eurasia_km/eurasiacon/build/linux2/omap_linux ARCH=arm TARGET_PRODUCT=__TARGET_PRODUCT__ KERNELDIR=$(LINUXKERNEL_INSTALL_DIR)
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bbappend
+index 2fc476e..2dcbaec 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bbappend
+@@ -1,4 +1,6 @@
+-PR_append = ".tisdk3"
++PR_append = ".tisdk4"
 +
-+ti-xsgx-ddk-km_clean:
-+	@echo ================================
-+	@echo      Cleaning ti-sgx-ddk-km
-+	@echo ================================
-+	@cd board-support/extra-drivers; \
-+	cd `find . -maxdepth 1 -name "ti-sgx-ddk-km*" -type d`; \
-+	make -C ./eurasia_km/eurasiacon/build/linux2/omap_linux ARCH=arm KERNELDIR=$(LINUXKERNEL_INSTALL_DIR) clean
++GRAPHICS_RDEPENDS = "${@bb.utils.contains("MACHINE_FEATURES", "xsgx", "ti-xsgx-ddk-km-src", "ti-sgx-ddk-km-src", d)}"
+ 
+ GRAPHICS_GC320_RDEPENDS = "ti-gc320-driver-src"
+ 
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bbappend
+index 40ea58a..7c40d56 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bbappend
+@@ -1,4 +1,7 @@
+-PR_append = ".tisdk3"
++PR_append = ".tisdk4"
 +
-+ti-xsgx-ddk-km_install:
-+	@echo ================================
-+	@echo      Installing ti-sgx-ddk-km
-+	@echo ================================
-+	@cd board-support/extra-drivers; \
-+	cd `find . -maxdepth 1 -name "ti-sgx-ddk-km*" -type d`; \
-+	cd ./eurasia_km/eurasiacon/binary2_omap_linux_release/target/kbuild; \
-+	make -C $(LINUXKERNEL_INSTALL_DIR) SUBDIRS=`pwd` INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) modules_install
-diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
-index 1c79dd2..dab4cdb 100644
---- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
-+++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
-@@ -1,4 +1,4 @@
--PR_append = ".tisdk47"
-+PR_append = ".tisdk48"
++GRAPHICS_RDEPENDS_remove = "ti-sgx-ddk-um-dev"
++GRAPHICS_RDEPENDS_append = "${@bb.utils.contains("MACHINE_FEATURES", "xsgx", "ti-xsgx-ddk-um-dev", "ti-sgx-ddk-um-dev", d)}"
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
-@@ -8,23 +8,33 @@ SRC_URI_append = "\
-     file://Makefile_jailhouse \
-     file://Makefile_evse-hmi \
-     file://Makefile_protection-relays-hmi \
-+    file://Makefile_ti-xsgx-ddk-km \
- "
- 
- SRC_URI_append_omap-a15 = " file://Makefile_big-data-ipc-demo"
- 
- MAKEFILES_MATRIX_GUI_omapl138 = ""
- 
-+MAKEFILES_remove = "\
-+    ${@bb.utils.contains("MACHINE_FEATURES", 'sgx', '', 'ti-sgx-ddk-km', d)} \
-+    ${@bb.utils.contains("MACHINE_FEATURES", 'xsgx', 'dual-camera-demo image-gallery', '', d)} \
-+    ${@bb.utils.contains("MACHINE_FEATURES", 'xsgx', 'qt-opencv-opencl-opengl-multithreaded barcode-roi', '', d)} \
-+"
-+
- MAKEFILES_append_keystone = " ti-ipc"
- 
- MAKEFILES_append_k2g = " opencl-examples \
-                          openmpacc-examples \
- "
- 
--MAKEFILES_append_omap-a15 = " dual-camera-demo \
--                              image-gallery \
-+MAKEFILES_append_omap-a15 = "\
-                               ti-ipc \
-                               big-data-ipc-demo \
--			      evse-hmi \
-+               ${@bb.utils.contains("MACHINE_FEATURES", 'xsgx', '', 'dual-camera-demo', d)} \
-+               ${@bb.utils.contains("MACHINE_FEATURES", 'xsgx', '', 'image-gallery', d)} \
-+               ${@bb.utils.contains("MACHINE_FEATURES", 'xsgx', '', 'evse-hmi', d)} \
-+               ${@bb.utils.contains("MACHINE_FEATURES", 'xsgx', '', 'video-graphics-test', d)} \
-+               ${@bb.utils.contains("MACHINE_FEATURES", 'xsgx', 'ti-xsgx-ddk-km', '', d)} \
- "
- 
- MAKEFILES_append_omapl138 = " ti-ipc \
-@@ -34,22 +44,21 @@ MAKEFILES_append_omapl138 = " ti-ipc \
- MAKEFILES_remove_omapl138 = "pru"
- MAKEFILES_remove_omapl138 = "u-boot-legacy"
- 
--MAKEFILES_append_omap-a15 = " video-graphics-test"
--
- MAKEFILES_append_ti43x = " cmem-mod \
--			   evse-hmi \
-+               ${@bb.utils.contains("MACHINE_FEATURES", 'xsgx', '', 'evse-hmi', d)} \
-+               ${@bb.utils.contains("MACHINE_FEATURES", 'xsgx', 'ti-xsgx-ddk-km', '', d)} \
- "
- 
--MAKEFILES_append_ti33x = " evse-hmi \
--			   protection-relays-hmi \
-+MAKEFILES_append_ti33x = " \
-+               ${@bb.utils.contains("MACHINE_FEATURES", 'xsgx', '', 'evse-hmi', d)} \
-+               ${@bb.utils.contains("MACHINE_FEATURES", 'xsgx', '', 'protection-relays-hmi', d)} \
-+               ${@bb.utils.contains("MACHINE_FEATURES", 'xsgx', 'ti-xsgx-ddk-km', '', d)} \
- "
- 
- MAKEFILES_append_am57xx-evm = " jailhouse"
- 
- MAKEFILES_append_k2g = " pru-icss"
- 
--MAKEFILES_remove_ti33x = "${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', 'ti-sgx-ddk-km', d)}"
--MAKEFILES_remove_ti43x = "${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', 'ti-sgx-ddk-km', d)}"
- 
- PRU_ICSS_INSTALL_TARGET_k2g = "pru-icss_install_k2g"
+ GRAPHICS_GC320_RDEPENDS = "ti-gc320-libs-dev"
  
 -- 
 1.9.1
