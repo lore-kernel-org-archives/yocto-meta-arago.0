@@ -1,41 +1,43 @@
-Return-Path: <denys@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 6C29052A3C
+Return-Path: <j-stiffler@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id F1FF9529ED
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Oct 2017 23:30:32 +0000 (UTC)
+	Wed,  4 Oct 2017 15:06:58 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v93NUWe5032218
-	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 18:30:32 -0500
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v94F6wkV028194
+	for <meta-arago@arago-project.org>; Wed, 4 Oct 2017 10:06:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1507073432;
-	bh=7sIj8hqYFIbLUqkC+D596fbO4K+A9z86XfAn0LVMZgk=;
-	h=From:To:CC:Subject:Date;
-	b=xUNVH0vH/hU86gw4F9x3/GQdlcIIJ35+8ANXLB9pobJigYEDXx1rro/35v6a2CPH5
-	W5iVrIFSVigfrLJxxGI3lycmsn/SOPxurrOhLso6VgeebaTrCRDlJdLJ/Woo2wPsSM
-	frxQyRKIPLKij69qlHN5lX0JWPks0Zqd725yEbmA=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93NUWHs012648
-	for <meta-arago@arago-project.org>; Tue, 3 Oct 2017 18:30:32 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1507129618;
+	bh=/8JXOhc2ZqX77eRIqD6e0X9PK1aGZVkARBshdsruH8k=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=iWSuGYqlKng42onzDgfoh9p50Gon8LCgPJuXDmP4u1phsRjUw5ZLIFv4IUkiIIaaq
+	DJN1DV3plqc9sf+K9z4K3WTy0BfGt6LRNPsxS8eiLVGY0GYrtNFlElMqiVqrIHbxed
+	Asb1jApSZkHpkY5aUUUqb6Cc+gtREFIg0gAoxt54=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v94F6wkL031225
+	for <meta-arago@arago-project.org>; Wed, 4 Oct 2017 10:06:58 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 3 Oct 2017 18:30:31 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 4 Oct 2017 10:06:58 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 3 Oct 2017 18:30:31 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v93NUVaG007426;
-	Tue, 3 Oct 2017 18:30:31 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 3 Oct 2017 19:30:31 -0400
-Message-ID: <1507073431-24724-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	Transport; Wed, 4 Oct 2017 10:06:58 -0500
+Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v94F6wSd003954;
+	Wed, 4 Oct 2017 10:06:58 -0500
+To: Eric Ruei <e-ruei1@ti.com>, <meta-arago@arago-project.org>
+References: <1507064577-60360-1-git-send-email-e-ruei1@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <e56474eb-fdcc-bae3-65a2-ea4a26597181@ti.com>
+Date: Wed, 4 Oct 2017 11:06:58 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.3.0
 MIME-Version: 1.0
+In-Reply-To: <1507064577-60360-1-git-send-email-e-ruei1@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master][PATCH] toolchain-gcc: bump gcc version for internal toolchain
+Subject: Re: [EXTERNAL] [meta-processor-sdk][PATCH v3 0/2] Add X11 Build Support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,37 +50,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Oct 2017 23:30:33 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 04 Oct 2017 15:06:59 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../conf/distro/include/toolchain-gcc.inc          |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+These resolved the conflicts. I have push all 23 patches to the 
+"morty-x11-experimental" of meta-processor-sdk.
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-index 277661f..f98b089 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-@@ -13,7 +13,7 @@ PREFERRED_PROVIDER_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "binutil
- PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}"
- 
- # Set Cross and SDK toolchain preferences
--SDKGCCVERSION ?= "6.3%"
-+SDKGCCVERSION ?= "7.2%"
- SDKBINUVERSION ?= "2.29%"
- SDKGLIBCVERSION ?= "2.26%"
- SDKLINUXLIBCVERSION ?= "4.9%"
-@@ -31,7 +31,7 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
- 
- # Set target toolchain preferences to match Cross/SDK by default
- # Can be overwritten globally, if needed
--GCCVERSION ?= "6.3%"
-+GCCVERSION ?= "7.2%"
- BINUVERSION ?= "2.29%"
- GLIBCVERSION ?= "2.26%"
- GLIBCINITVERSION ?= "2.26%"
--- 
-1.7.9.5
+
+On 10/3/2017 5:02 PM, Eric Ruei wrote:
+> rebase the following two patches
+>
+> Eric Ruei (2):
+>    packagegroup-arago-test-addons: remove omapdrmtest for X11(xsgx) build
+>    packagegroup-arago-tisdk-addons(-sdk-target): removed unsupported
+>      modules for X11(xsgx) build
+>
+>   .../packagegroups/packagegroup-arago-test-addons.bbappend      |  5 ++++-
+>   .../packagegroup-arago-tisdk-addons-sdk-target.bbappend        | 10 ++++++----
+>   .../packagegroups/packagegroup-arago-tisdk-addons.bbappend     | 10 ++++++----
+>   3 files changed, 16 insertions(+), 9 deletions(-)
+>
 
 
