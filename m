@@ -1,40 +1,40 @@
 Return-Path: <karthik.ramanan@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 1275952A0A
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 5DBF252A0A
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Oct 2017 09:02:25 +0000 (UTC)
+	Tue, 10 Oct 2017 09:53:06 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9A92Ffb003061
-	for <meta-arago@arago-project.org>; Tue, 10 Oct 2017 04:02:15 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9A9r6V8002709
+	for <meta-arago@arago-project.org>; Tue, 10 Oct 2017 04:53:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1507626135;
-	bh=pocnTOI0hgSydmOkl50xn5eAOeBeSia8o+MnYugaxaQ=;
+	s=ti-com-17Q1; t=1507629186;
+	bh=38S3JbFBFm1BoI4P9Vyk/BtH830PphCNwLhayeInOSs=;
 	h=From:To:CC:Subject:Date;
-	b=uybBLwI8IPOgCgugPENTRcWAAHwGc+UR+5KAu+Z4xIFqDy2eS+qWEWvqW2UyHY7kw
-	S+SFkLVO9ZtiK59jIh3W4B0jBtLX8SZHnrPX7xgrBj5kz1z5c7pJRbXcf40tJ9RFdO
-	H/A91Fhdi0TP3gr+c3DRJzRdqczywcsTyKOfzefw=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9A929G3002189
-	for <meta-arago@arago-project.org>; Tue, 10 Oct 2017 04:02:09 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	b=jEmd2F1QHw9UACh8diHsaoFfWm/P+QPadAsOzISronHGFa6gfuY/xfAm+w2seaJGM
+	2uNEzArig6Kex0AKO554Nf2QOjkWG17U+vVCNgpr/WhXXvTSgXANIMJ+noQgXvMMQF
+	nn/KFHuxQRUNK/T49L/4UEOwZLJoYwLus2xMIi28=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9A9r609009954
+	for <meta-arago@arago-project.org>; Tue, 10 Oct 2017 04:53:06 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 10 Oct 2017 04:02:09 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 10 Oct 2017 04:53:05 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 10 Oct 2017 04:02:09 -0500
+	Transport; Tue, 10 Oct 2017 04:53:05 -0500
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9A928TS030144;
-	Tue, 10 Oct 2017 04:02:08 -0500
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9A9r4cY031127;
+	Tue, 10 Oct 2017 04:53:05 -0500
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 10 Oct 2017 14:32:01 +0530
-Message-ID: <1507626126-149180-1-git-send-email-a0393906@ti.com>
+Date: Tue, 10 Oct 2017 15:23:02 +0530
+Message-ID: <1507629183-171718-1-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [krogoth 1/6] gstreamer1.0-*vpe: Update SRCREV
+Subject: [krogoth 1/2] glsdk-util-scripts: Add the initial version of recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,34 +47,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Oct 2017 09:02:25 -0000
+X-List-Received-Date: Tue, 10 Oct 2017 09:53:06 -0000
 Content-Type: text/plain
 
-This update brings the following changes:
- * Increase number of buffers in pool
- * Keep a copy of the negotiated v4l2 format
- * Change NV12 buffer to use one plane instead of two
+These are utility scripts used for debugging the VPE and DSS.
+They have been in use for very critical customer debugs and
+it is useful to have this shipped as part of the SDK.
 
 Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../util-scripts/glsdk-util-scripts.bb             | 28 ++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb
 
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
-index e0fb640..d33b646 100644
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
-+++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
-@@ -5,8 +5,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
- 
- require gstreamer1.0-plugins-ti.inc
- 
--PR = "${INC_PR}.14"
--SRCREV = "6ec1a9c9fc17e0cae781aed067a2a6f2c1f92d68"
-+PR = "${INC_PR}.15"
-+SRCREV = "4fe4beaa1498e27878bf04020aef0099c17f2262"
- 
- SRC_URI = "git://git.ti.com/glsdk/gst-plugin-vpe.git;protocol=git \
-            file://ti-video.conf \
+diff --git a/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb b/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb
+new file mode 100644
+index 0000000..87c4937
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb
+@@ -0,0 +1,28 @@
++DESCRIPTION = "Utility scripts for debug"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://debug/filter-dmesg-rproc.sh;md5=ce264e7cbc036fd2f37073947c2f0800"
++PR = "r1"
++
++COMPATIBLE_MACHINE = "omap-a15"
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++SRC_URI = "git://git.ti.com/glsdk/util-scripts.git"
++
++SRCREV = "ecbb9cd13e1728686a82e87e5c1b325c0e806202"
++
++S = "${WORKDIR}/git"
++
++do_compile() {
++    :
++}
++
++do_install() {
++    install -d ${D}${datadir}/ti/util-scripts 
++    install -d ${D}${datadir}/ti/util-scripts/debug
++    install -d ${D}${datadir}/ti/util-scripts/perf
++    install -m 0644 ${S}/debug/* ${D}${datadir}/ti/util-scripts/debug/.
++    install -m 0644 ${S}/perf/* ${D}${datadir}/ti/util-scripts/perf/.
++}
++
++FILES_${PN} += "${datadir}/ti/util-scripts/*"
++
 -- 
 1.9.1
 
