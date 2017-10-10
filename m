@@ -1,42 +1,40 @@
 Return-Path: <karthik.ramanan@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 3802052A5A
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 1275952A0A
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Oct 2017 09:02:16 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9A92GBA012488
-	for <meta-arago@arago-project.org>; Tue, 10 Oct 2017 04:02:16 -0500
+	Tue, 10 Oct 2017 09:02:25 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9A92Ffb003061
+	for <meta-arago@arago-project.org>; Tue, 10 Oct 2017 04:02:15 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1507626136;
-	bh=0CfwoCRchR42ChtX6Y5mcbTTGinbEnqASyCw5ncKPqg=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=RRYNPk8OQISjoUUbItSYKhWIt8jgpbVS/UfzRHuosFSopo7YMOMZcHi7w5A5xD1ey
-	3VRkncN6RWpRrFefOVLe9eihWWCmabzr8JVEmMPG80IOJnUJykiWTMOKGwgh1+ZAIR
-	csUn9ZEuDjyYmoc6rX2DVWjUV7ffnxK8+9yxg9PA=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9A92Gc2026290
-	for <meta-arago@arago-project.org>; Tue, 10 Oct 2017 04:02:16 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1507626135;
+	bh=pocnTOI0hgSydmOkl50xn5eAOeBeSia8o+MnYugaxaQ=;
+	h=From:To:CC:Subject:Date;
+	b=uybBLwI8IPOgCgugPENTRcWAAHwGc+UR+5KAu+Z4xIFqDy2eS+qWEWvqW2UyHY7kw
+	S+SFkLVO9ZtiK59jIh3W4B0jBtLX8SZHnrPX7xgrBj5kz1z5c7pJRbXcf40tJ9RFdO
+	H/A91Fhdi0TP3gr+c3DRJzRdqczywcsTyKOfzefw=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9A929G3002189
+	for <meta-arago@arago-project.org>; Tue, 10 Oct 2017 04:02:09 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 10 Oct 2017 04:02:15 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 10 Oct 2017 04:02:09 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 10 Oct 2017 04:02:15 -0500
+	Transport; Tue, 10 Oct 2017 04:02:09 -0500
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9A928TX030144;
-	Tue, 10 Oct 2017 04:02:15 -0500
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9A928TS030144;
+	Tue, 10 Oct 2017 04:02:08 -0500
 From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 10 Oct 2017 14:32:06 +0530
-Message-ID: <1507626126-149180-6-git-send-email-a0393906@ti.com>
+Date: Tue, 10 Oct 2017 14:32:01 +0530
+Message-ID: <1507626126-149180-1-git-send-email-a0393906@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1507626126-149180-1-git-send-email-a0393906@ti.com>
-References: <1507626126-149180-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [krogoth 6/6] omapconf: Update SRCREV for DRA76x support
+Subject: [krogoth 1/6] gstreamer1.0-*vpe: Update SRCREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,33 +47,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Oct 2017 09:02:16 -0000
+X-List-Received-Date: Tue, 10 Oct 2017 09:02:25 -0000
 Content-Type: text/plain
+
+This update brings the following changes:
+ * Increase number of buffers in pool
+ * Keep a copy of the negotiated v4l2 format
+ * Change NV12 buffer to use one plane instead of two
 
 Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb | 4 ++--
+ .../recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-index 8ae572c..9e092fa 100644
---- a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-+++ b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-@@ -5,12 +5,12 @@ LICENSE = "GPLv2 | BSD"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=205c83c4e2242a765acb923fc766e914"
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
+index e0fb640..d33b646 100644
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
++++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
+@@ -5,8 +5,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
  
- PV = "1.73"
--PR = "r1"
-+PR = "r2"
+ require gstreamer1.0-plugins-ti.inc
  
- COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|omap4"
+-PR = "${INC_PR}.14"
+-SRCREV = "6ec1a9c9fc17e0cae781aed067a2a6f2c1f92d68"
++PR = "${INC_PR}.15"
++SRCREV = "4fe4beaa1498e27878bf04020aef0099c17f2262"
  
- BRANCH ?= "master"
--SRCREV = "a5dac6c5a65c672bd299b42ca495566a7cc137a4"
-+SRCREV = "578778b39a594767294db483f2d05a7200a83baa"
- 
- SRC_URI = "git://github.com/omapconf/omapconf.git;protocol=git;branch=${BRANCH}"
- 
+ SRC_URI = "git://git.ti.com/glsdk/gst-plugin-vpe.git;protocol=git \
+            file://ti-video.conf \
 -- 
 1.9.1
 
