@@ -1,42 +1,43 @@
-Return-Path: <h-gou@ti.com>
+Return-Path: <jake@udc0866934>
 Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 1F5F652A14
+	by arago-project.org (Postfix) with ESMTPS id 24D6E52961
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Oct 2017 16:04:34 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9AG4Y8q014717
-	for <meta-arago@arago-project.org>; Tue, 10 Oct 2017 11:04:34 -0500
+	Wed, 11 Oct 2017 16:56:09 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9BGu8k7027961
+	for <meta-arago@arago-project.org>; Wed, 11 Oct 2017 11:56:08 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1507651474;
-	bh=PXjQXh3zJIHAzSjoXNOC6RZZ0aj6lhQoiyJtYghp6y4=;
+	s=ti-com-17Q1; t=1507740968;
+	bh=jkmqyWE8jC65N/G1WJwoSkXyMUb7R1shgRDs3W66Awk=;
 	h=From:To:CC:Subject:Date;
-	b=Qx9IZaE/FClGqcTBMDBWsFY/e+WCzGiJPWHvIBPbyZYZlPmxSoLTUXnz+N4SLYyj4
-	kiU78paAXLKGaXtHCASDYYC+h7OOsgegf+bck3ppe+ZIp10gsatddQ9mGGQVGMJ1Gb
-	bM8oLlI+U4rW3CAFeQdNQo2t1kd8oEzVsbqvUqd4=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9AG4XB6006365
-	for <meta-arago@arago-project.org>; Tue, 10 Oct 2017 11:04:33 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	b=scXXLEajZw6cj3cdmIOcDDRWtOD2kV+jqF1wcTJepr86dayPHcK4BBoyZ2M3Z2cuC
+	daUI83W2kXvlMqGZkziP2ubbDdjoAYRYhaeXIA9ch5uWlf0B5Ny+9Fp/cXBWZFwYdO
+	x8mF0ippUiSJNqPoNmjWAUuwHgdDIFOVCuXvLD5M=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9BGu85w023784
+	for <meta-arago@arago-project.org>; Wed, 11 Oct 2017 11:56:08 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE100.ent.ti.com
+	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 10 Oct 2017 11:04:33 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 11 Oct 2017 11:56:08 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 10 Oct 2017 11:04:33 -0500
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9AG4XbJ032687;
-	Tue, 10 Oct 2017 11:04:33 -0500
-From: Hongmei Gou <a0271529@ti.com>
+	Transport; Wed, 11 Oct 2017 11:56:08 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9BGu8WR013254;
+	Wed, 11 Oct 2017 11:56:08 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)
+	(envelope-from <jake@udc0866934>)
+	id 1e2KIh-0001rb-VL; Wed, 11 Oct 2017 12:56:07 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 10 Oct 2017 12:04:31 -0400
-Message-ID: <1507651471-4163-1-git-send-email-a0271529@ti.com>
+Date: Wed, 11 Oct 2017 12:55:56 -0400
+Message-ID: <1507740956-7132-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [PATCH] matrix-gui: Bump SRCREV to get the fix for execute-command.sh
+Subject: [oe-layersetup][PATCH] processor-sdk-04.01.00.06-x11: add config for experimental x11 support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,39 +50,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Oct 2017 16:04:34 -0000
+X-List-Received-Date: Wed, 11 Oct 2017 16:56:09 -0000
 Content-Type: text/plain
 
-* Fix for execute-command.sh:
-  source /etc/profile.d/*.sh only when they exist
-
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../processor-sdk-04.01.00.06-x11-config.txt              | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 configs/processor-sdk/processor-sdk-04.01.00.06-x11-config.txt
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-index 507a98c..2bd0d89 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
- 
- SECTION = "multimedia"
- 
--PR = "r32"
-+PR = "r33"
- 
- INITSCRIPT_NAME = "matrix-gui-2.0"
- INITSCRIPT_PARAMS = "defaults 97"
-@@ -16,7 +16,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- inherit update-rc.d
- 
- BRANCH ?= "master"
--SRCREV = "621bab39c23ea476ec0b31a7baf86c1bd4f24ec4"
-+SRCREV = "9a2d12590102fefc5c29fc9e8d346ce6b0198468"
- 
- MATRIX_INITSCRIPT = "${@base_conditional('QT_PROVIDER', 'qt5', bb.utils.contains('DISTRO_FEATURES', 'wayland', 'init', 'init.eglfs', d), 'init', d)}"
- 
+diff --git a/configs/processor-sdk/processor-sdk-04.01.00.06-x11-config.txt b/configs/processor-sdk/processor-sdk-04.01.00.06-x11-config.txt
+new file mode 100644
+index 0000000..bdb8d01
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-04.01.00.06-x11-config.txt
+@@ -0,0 +1,15 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.32,887ea6d25cee5114365dfbf1130603599e13ee80,layers=
++meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,morty-x11-experimental,25e37e074b3a5f43588b3979c84e8684efb49c85,layers=
++meta-arago,git://arago-project.org/git/meta-arago.git,morty,8f49ed67d0627a04ac72fd388fda7756273ba2d7,layers=meta-arago-distro:meta-arago-extras
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,08576b03af624b65ad949c410d84c11c7d1f2e39,layers=
++meta-openamp,git://github.com/OpenAMP/meta-openamp.git,morty,8a214032bfb7e8124bc1485c70c69f7d60abb819,layers=
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,2c9f0e4eb0e9097f6f872ec1e1d81768a8ab5f1b,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,fe5c83312de11e80b85680ef237f8acb04b4b26e,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
++meta-ti,git://git.yoctoproject.org/meta-ti,morty,a18d57af8384ced25996739bb66d197c69efb77b,layers=
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,morty,49b0f32d7e955f250b0022d1b2f403f45a2c2d9c,layers=meta-linaro-toolchain:meta-optee
++oe-core,git://git.openembedded.org/openembedded-core,morty,e3911133ee9aad7cc3ae89faea80a097f6614fab,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
 -- 
 1.9.1
 
