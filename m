@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 7ED24529AC
+	by arago-project.org (Postfix) with ESMTPS id 7AE8552093
 	for <meta-arago@arago-project.org>;
 	Thu, 12 Oct 2017 21:28:17 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 85C6820B03;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 50B9E2043F;
 	Thu, 12 Oct 2017 21:28:17 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id vWIZb4HJhf-s; Thu, 12 Oct 2017 21:28:17 +0000 (UTC)
+	with ESMTP id sbH7oH7DsD39; Thu, 12 Oct 2017 21:28:17 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 606B720B04;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 36E7820AD5;
 	Thu, 12 Oct 2017 21:28:16 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id E9B8D1626F0;
+	by mail.denix.org (Postfix) with ESMTP id C70C71626EC;
 	Thu, 12 Oct 2017 17:28:15 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 12 Oct 2017 17:28:09 -0400
-Message-Id: <1507843693-2615-5-git-send-email-denis@denix.org>
+Date: Thu, 12 Oct 2017 17:28:06 -0400
+Message-Id: <1507843693-2615-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1507843693-2615-1-git-send-email-denis@denix.org>
 References: <1507843693-2615-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 5/9] dual-camera-demo: no need for #!/bin/bash, use #!/bin/sh
+Subject: [master][PATCH 2/9] big-data-ipc-demo: explicitly depend on ti-cgt6x-native
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,37 +43,27 @@ X-List-Received-Date: Thu, 12 Oct 2017 21:28:18 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
+Since cgt-c6x is being called during the build, should depend on
+ti-cgt6x-native for deterministic builds and avoid breaking with
+Recipe-Specific-Sysroot (RSS).
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../dual-camera-demo/dual-camera-demo/dual_camera_qt4.sh               | 3 +--
- .../dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh               | 2 +-
- 2 files changed, 2 insertions(+), 3 deletions(-)
+ .../recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb        | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt4.sh b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt4.sh
-index 7a3e497..6d9675d 100644
---- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt4.sh
-+++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt4.sh
-@@ -1,4 +1,4 @@
--#!/bin/bash
-+#!/bin/sh
+diff --git a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
+index 0734177..8f7820b 100644
+--- a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
++++ b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
+@@ -8,6 +8,7 @@ DEPENDS = "ti-ipc \
+            ti-sysbios \
+            ti-ipc-rtos \
+            cmem \
++           ti-cgt6x-native \
+ "
  
- /etc/init.d/matrix-gui-2.0 stop
- 
-@@ -8,4 +8,3 @@ export QWS_MOUSE_PROTO=Tslib:/dev/input/touchscreen0
- dual_camera -qws
- 
- /etc/init.d/matrix-gui-2.0 start
--
-diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh
-index 4802337..f01bea3 100644
---- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh
-+++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh
-@@ -1,4 +1,4 @@
--#!/bin/bash
-+#!/bin/sh
- 
- /etc/init.d/weston stop
- sleep 1
+ EXTRA_OEMAKE = "\
 -- 
 2.7.4
 
