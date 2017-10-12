@@ -1,40 +1,43 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id C744352A1C
+Return-Path: <e-ruei1@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 5861D52093
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Oct 2017 04:35:54 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9C4Zsow003448
-	for <meta-arago@arago-project.org>; Wed, 11 Oct 2017 23:35:54 -0500
+	Thu, 12 Oct 2017 18:38:22 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9CIcMmt011101
+	for <meta-arago@arago-project.org>; Thu, 12 Oct 2017 13:38:22 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1507782954;
-	bh=9RKtNbFCr07R7eOh4fRVGBVyn3LcDrfBo4Ppf15O7JU=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=wo0CrBRnvmDwQzhmyQ0n58eucHhkBaEFrk85oFYy/r0o1tBUHM3HNE3pczYAsyByy
-	UA0HljasX9ZuOYjGbeXx7wyEXW+DSFs6OE4kE4zyR21ZEDtGCjXI9xNh91ruZa2+tO
-	7KPdUrANObeXvXqtHl68Uwf/3UT7oyc0LwxtxoJU=
-Received: from dbdlxv05.itg.ti.com (dbdlxv05.itg.ti.com [172.24.171.60])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9C4ZrF3031244
-	for <meta-arago@arago-project.org>; Wed, 11 Oct 2017 23:35:54 -0500
-Received: from DBDE72.ent.ti.com (dbde72.ent.ti.com [172.24.171.97])
-	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9C4ZpeW022459
-	for <meta-arago@arago-project.org>; Thu, 12 Oct 2017 10:05:52 +0530
-Received: from [172.24.157.163] (172.24.157.163) by DBDE72.ent.ti.com
-	(172.24.171.97) with Microsoft SMTP Server id 14.3.294.0;
-	Thu, 12 Oct 2017 10:05:51 +0530
-To: Denys Dmytriyenko <denys@ti.com>
-References: <1507629183-171718-1-git-send-email-a0393906@ti.com>
-	<20171011194727.GA16210@edge>
-From: Karthik Ramanan <a0393906@ti.com>
-Message-ID: <1eda4dad-036e-6ec2-875e-6b4efaa6b6a2@ti.com>
-Date: Thu, 12 Oct 2017 10:05:51 +0530
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.3.0
+	s=ti-com-17Q1; t=1507833502;
+	bh=dqaYqNvsm/gitSuYNmCAQzRoqmMj/hbfGnxtPcRk4vc=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=Ddexxn7ONE3im2F8TARkAZRVpD7RCA4YAAEzDe9t/aPUyGxRHv26mALBxmziAjqV7
+	gqN1dmQJDcfcuuFx0vYVwUvtYyF/x9YFfL0VKwfRXLDL0UgPUtMsGifVIVeGXH8Wsn
+	n2lGkXyUZYNPZGuBctI2FGTXvsOMRJN5Nt1HxlLo=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9CIcMjR007394
+	for <meta-arago@arago-project.org>; Thu, 12 Oct 2017 13:38:22 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
+	Thu, 12 Oct 2017 13:38:21 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
+	Transport; Thu, 12 Oct 2017 13:38:21 -0500
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9CIcLa8016500
+	for <meta-arago@arago-project.org>; Thu, 12 Oct 2017 13:38:21 -0500
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 12 Oct 2017 14:38:17 -0400
+Message-ID: <1507833497-25049-2-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1507833497-25049-1-git-send-email-e-ruei1@ti.com>
+References: <1507833497-25049-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20171011194727.GA16210@edge>
-X-Originating-IP: [172.24.157.163]
-Cc: meta-arago@arago-project.org
-Subject: Re: [krogoth 1/2] glsdk-util-scripts: Add the initial version of recipe
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [morty][meta-processor-sdk][PATCH 2/2] packagegroup-arago-tisdk-multimedia: fix non-sgx/non-wayland build
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,78 +50,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Oct 2017 04:35:55 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Thu, 12 Oct 2017 18:38:24 -0000
+Content-Type: text/plain
 
-Denys,
+non-sgx build does not support video-graphics-test
+non-sgx/non-wayland build do not support chromium-wayland
 
-I'm in the process of including this in morty. There are some other 
-patches to be included too.
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+---
+ .../packagegroups/packagegroup-arago-tisdk-multimedia.bbappend | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-Will send it out in a day or two.
-
-Regards
-
-Karthik
-
-
-On 12-Oct-17 1:17 AM, Denys Dmytriyenko wrote:
-> Is this coming to morty?
->
->
-> On Tue, Oct 10, 2017 at 03:23:02PM +0530, Karthik Ramanan wrote:
->> These are utility scripts used for debugging the VPE and DSS.
->> They have been in use for very critical customer debugs and
->> it is useful to have this shipped as part of the SDK.
->>
->> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
->> ---
->>   .../util-scripts/glsdk-util-scripts.bb             | 28 ++++++++++++++++++++++
->>   1 file changed, 28 insertions(+)
->>   create mode 100644 meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb
->>
->> diff --git a/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb b/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb
->> new file mode 100644
->> index 0000000..87c4937
->> --- /dev/null
->> +++ b/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb
->> @@ -0,0 +1,28 @@
->> +DESCRIPTION = "Utility scripts for debug"
->> +LICENSE = "GPLv2"
->> +LIC_FILES_CHKSUM = "file://debug/filter-dmesg-rproc.sh;md5=ce264e7cbc036fd2f37073947c2f0800"
->> +PR = "r1"
->> +
->> +COMPATIBLE_MACHINE = "omap-a15"
->> +PACKAGE_ARCH = "${MACHINE_ARCH}"
->> +
->> +SRC_URI = "git://git.ti.com/glsdk/util-scripts.git"
->> +
->> +SRCREV = "ecbb9cd13e1728686a82e87e5c1b325c0e806202"
->> +
->> +S = "${WORKDIR}/git"
->> +
->> +do_compile() {
->> +    :
->> +}
->> +
->> +do_install() {
->> +    install -d ${D}${datadir}/ti/util-scripts
->> +    install -d ${D}${datadir}/ti/util-scripts/debug
->> +    install -d ${D}${datadir}/ti/util-scripts/perf
->> +    install -m 0644 ${S}/debug/* ${D}${datadir}/ti/util-scripts/debug/.
->> +    install -m 0644 ${S}/perf/* ${D}${datadir}/ti/util-scripts/perf/.
->> +}
->> +
->> +FILES_${PN} += "${datadir}/ti/util-scripts/*"
->> +
->> -- 
->> 1.9.1
->>
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bbappend
+index db94cad..9ef92a4 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bbappend
+@@ -1,14 +1,14 @@
+-PR_append = ".tisdk1"
++PR_append = ".tisdk2"
+ 
+ MULTIMEDIA_append_omap-a15 = " \
+-    video-graphics-test \
+-    chromium-wayland \
++    ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', 'video-graphics-test', '', d)} \
++    ${@['','chromium-wayland'][bb.utils.contains('MACHINE_FEATURES', 'sgx', True, False, d) and bb.utils.contains('DISTRO_FEATURES', 'wayland', True, False, d)]} \
+ "
+ 
+ MULTIMEDIA_append_ti43x = " \
+-    chromium-wayland \
++    ${@['','chromium-wayland'][bb.utils.contains('MACHINE_FEATURES', 'sgx', True, False, d) and bb.utils.contains('DISTRO_FEATURES', 'wayland', True, False, d)]} \
+ "
+ 
+ MULTIMEDIA_append_ti33x = " \
+-    chromium-wayland \
++    ${@['','chromium-wayland'][bb.utils.contains('MACHINE_FEATURES', 'sgx', True, False, d) and bb.utils.contains('DISTRO_FEATURES', 'wayland', True, False, d)]} \
+ "
+-- 
+1.9.1
 
 
