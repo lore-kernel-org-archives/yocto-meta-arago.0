@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 8147E529BE
+	by arago-project.org (Postfix) with ESMTPS id 7ED24529AC
 	for <meta-arago@arago-project.org>;
 	Thu, 12 Oct 2017 21:28:17 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 6E8B020AD5;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 85C6820B03;
 	Thu, 12 Oct 2017 21:28:17 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id J5OCvyOc2Top; Thu, 12 Oct 2017 21:28:17 +0000 (UTC)
+	with ESMTP id vWIZb4HJhf-s; Thu, 12 Oct 2017 21:28:17 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4052C20AEE;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 606B720B04;
 	Thu, 12 Oct 2017 21:28:16 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id D217B1626EE;
+	by mail.denix.org (Postfix) with ESMTP id E9B8D1626F0;
 	Thu, 12 Oct 2017 17:28:15 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 12 Oct 2017 17:28:07 -0400
-Message-Id: <1507843693-2615-3-git-send-email-denis@denix.org>
+Date: Thu, 12 Oct 2017 17:28:09 -0400
+Message-Id: <1507843693-2615-5-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1507843693-2615-1-git-send-email-denis@denix.org>
 References: <1507843693-2615-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 3/9] bt-enable: RDEPENDS on bash
+Subject: [master][PATCH 5/9] dual-camera-demo: no need for #!/bin/bash, use #!/bin/sh
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,22 +45,35 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb | 2 ++
- 1 file changed, 2 insertions(+)
+ .../dual-camera-demo/dual-camera-demo/dual_camera_qt4.sh               | 3 +--
+ .../dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh               | 2 +-
+ 2 files changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb
-index b413bb0..50dc369 100644
---- a/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb
-+++ b/meta-arago-distro/recipes-connectivity/bt-enable/bt-enable.bb
-@@ -18,6 +18,8 @@ inherit allarch update-rc.d systemd
+diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt4.sh b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt4.sh
+index 7a3e497..6d9675d 100644
+--- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt4.sh
++++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt4.sh
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/bin/sh
  
- SYSTEMD_SERVICE_${PN} = "bt-enable.service"
+ /etc/init.d/matrix-gui-2.0 stop
  
-+RDEPENDS_${PN} += "bash"
-+
- do_install () {
- 	install -d ${D}${sysconfdir}/init.d
- 	install -m 0755 bt-enable.sh ${D}${sysconfdir}/init.d/
+@@ -8,4 +8,3 @@ export QWS_MOUSE_PROTO=Tslib:/dev/input/touchscreen0
+ dual_camera -qws
+ 
+ /etc/init.d/matrix-gui-2.0 start
+-
+diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh
+index 4802337..f01bea3 100644
+--- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh
++++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo/dual_camera_qt5.sh
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/bin/sh
+ 
+ /etc/init.d/weston stop
+ sleep 1
 -- 
 2.7.4
 
