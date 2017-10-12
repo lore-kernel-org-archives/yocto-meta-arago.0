@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 5DF51529AC
+	by arago-project.org (Postfix) with ESMTPS id 66FE8529BE
 	for <meta-arago@arago-project.org>;
 	Thu, 12 Oct 2017 21:28:19 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 97AD220AD5;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id AA7F220AEE;
 	Thu, 12 Oct 2017 21:28:19 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id a_Dw8yMUlSCI; Thu, 12 Oct 2017 21:28:19 +0000 (UTC)
+	with ESMTP id 4K-2qx50F78D; Thu, 12 Oct 2017 21:28:19 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7856A20B0C;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 96A0B20B04;
 	Thu, 12 Oct 2017 21:28:17 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id EC6C91626F1;
-	Thu, 12 Oct 2017 17:28:15 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 118E01626F3;
+	Thu, 12 Oct 2017 17:28:16 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 12 Oct 2017 17:28:10 -0400
-Message-Id: <1507843693-2615-6-git-send-email-denis@denix.org>
+Date: Thu, 12 Oct 2017 17:28:12 -0400
+Message-Id: <1507843693-2615-8-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1507843693-2615-1-git-send-email-denis@denix.org>
 References: <1507843693-2615-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 6/9] matrix-gui-submenus: RDEPENDS on bash
+Subject: [master][PATCH 8/9] ltp-ddt: some tests use awk, perl and python3, RDEPENDS on them
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,22 +45,22 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb | 2 +-
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-index b9973dd..34bd759 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-submenus_2.0.bb
-@@ -73,7 +73,7 @@ PACKAGES += " ${PN}-arm \
- "
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
+index cf09093..edc43f3 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
+@@ -10,7 +10,7 @@ PV_append = "+git${SRCPV}"
+ PROVIDES += "ltp"
+ DEPENDS += "zip-native alsa-lib libaio"
  
- # Make sure app images has been installed
--RDEPENDS_${PN} += "matrix-gui-apps-images"
-+RDEPENDS_${PN} += "matrix-gui-apps-images bash"
+-RDEPENDS_${PN} += "pm-qa serialcheck"
++RDEPENDS_${PN} += "pm-qa serialcheck gawk perl python3-core"
  
- # Add the files for each submenu package
- FILES_${PN}-arm = "${MATRIX_APP_DIR}/arm_submenu/*"
+ inherit autotools-brokensep
+ 
 -- 
 2.7.4
 
