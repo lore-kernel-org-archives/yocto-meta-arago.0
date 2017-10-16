@@ -1,42 +1,30 @@
-Return-Path: <ajayj@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 2006352093
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id B57DE5299D
 	for <meta-arago@arago-project.org>;
-	Fri, 13 Oct 2017 18:20:15 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9DIK5lZ021332
-	for <meta-arago@arago-project.org>; Fri, 13 Oct 2017 13:20:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1507918805;
-	bh=g1WDdVCy9K40c0SacZyUSZDj4U13IXN70tG+kzjL3UI=;
-	h=From:To:CC:Subject:Date;
-	b=bMesDiA3V2a7u5nxodRF+HypC3MKC8jH+LH1S/rJVt3IVoOInvpg2fSA2LIipJu/J
-	wfuOYNG5b3dzfB59Z+2zil26PiUzEQ5ortatv4dLUYnyV9eZqZYyfgI++1r76ye7UD
-	D8+plKmzCXEvLpGl4W+rNT9rOkshGpKi1CYB6pFs=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9DIK0VA000583
-	for <meta-arago@arago-project.org>; Fri, 13 Oct 2017 13:20:00 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Fri, 13 Oct 2017 13:20:00 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Fri, 13 Oct 2017 13:20:00 -0500
-Received: from ares-ubuntu2.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9DIK0IR031777;
-	Fri, 13 Oct 2017 13:20:00 -0500
-From: Ajay Jayaraj <ajayj@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 13 Oct 2017 14:19:52 -0400
-Message-ID: <1507918792-21878-1-git-send-email-ajayj@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Ajay Jayaraj <ajayj@ti.com>
-Subject: [PATCH] ocl-rtos: OpenCL offload to C66x on TI-RTOS host
+	Mon, 16 Oct 2017 01:47:39 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 951A020B13;
+	Mon, 16 Oct 2017 01:47:39 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id GtKJBfV0_mgC; Mon, 16 Oct 2017 01:47:39 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 73A0E20B11;
+	Mon, 16 Oct 2017 01:47:38 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id E30C41626E6;
+	Sun, 15 Oct 2017 21:47:27 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Sun, 15 Oct 2017 21:47:27 -0400
+Message-Id: <1508118447-27888-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [morty/master][PATCH] packagegroup-*-graphics, arago.conf: add glmark2 benchmarking tool
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,389 +37,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Oct 2017 18:20:18 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 16 Oct 2017 01:47:40 -0000
 
-Recipes to build OpenCL when the host is running TI-RTOS.
-
-Signed-off-by: Ajay Jayaraj <ajayj@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-ti/includes/arago-paths.inc            |  2 +
- .../recipes-ti/ocl-rtos/clocl-rtos_git.bb          | 40 +++++++++
- .../recipes-ti/ocl-rtos/clocl-win_git.bb           | 32 +++++++
- .../ocl-rtos/opencl-examples-rtos_git.bb           | 97 ++++++++++++++++++++++
- .../recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb | 64 ++++++++++++++
- .../recipes-ti/ocl-rtos/opencl-rtos_git.bb         | 85 +++++++++++++++++++
- 6 files changed, 320 insertions(+)
- create mode 100644 meta-arago-extras/recipes-ti/ocl-rtos/clocl-rtos_git.bb
- create mode 100644 meta-arago-extras/recipes-ti/ocl-rtos/clocl-win_git.bb
- create mode 100644 meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb
- create mode 100644 meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
- create mode 100644 meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb
+ meta-arago-distro/conf/distro/arago.conf                               | 2 ++
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb    | 3 ++-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-ti/includes/arago-paths.inc b/meta-arago-extras/recipes-ti/includes/arago-paths.inc
-index 393f14b..d617af3 100644
---- a/meta-arago-extras/recipes-ti/includes/arago-paths.inc
-+++ b/meta-arago-extras/recipes-ti/includes/arago-paths.inc
-@@ -3,7 +3,9 @@ require recipes-ti/includes/ti-paths.inc
- export LIBARCH_INSTALL_DIR_RECIPE    = "${installdir}/ti-libarch-tree"
- export LINALG_INSTALL_DIR_RECIPE     = "${installdir}/ti-linalg-tree"
- export LLVM_RTOS_INSTALL_DIR_RECIPE  = "${installdir}/llvm-rtos-tree"
-+export OCL_RTOS_INSTALL_DIR_RECIPE   = "${installdir}/ti-opencl-rtos-tree"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 8bab5d9..ba09514 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -101,6 +101,8 @@ PACKAGECONFIG_pn-curl = "${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6",
+ # No GFX on Keystone
+ PACKAGECONFIG_remove_pn-gstreamer1.0-plugins-bad_keystone = "wayland egl gles2"
  
- export LIBARCH_INSTALL_DIR    = "${STAGING_DIR_TARGET}${LIBARCH_INSTALL_DIR_RECIPE}"
- export LINALG_INSTALL_DIR     = "${STAGING_DIR_TARGET}${LINALG_INSTALL_DIR_RECIPE}"
- export LLVM_RTOS_INSTALL_DIR  = "${STAGING_DIR_NATIVE}${LLVM_RTOS_INSTALL_DIR_RECIPE}"
-+export OCL_RTOS_INSTALL_DIR   = "${STAGING_DIR_TARGET}${OCL_RTOS_INSTALL_DIR_RECIPE}"
-diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/clocl-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/clocl-rtos_git.bb
-new file mode 100644
-index 0000000..3725567
---- /dev/null
-+++ b/meta-arago-extras/recipes-ti/ocl-rtos/clocl-rtos_git.bb
-@@ -0,0 +1,40 @@
-+SUMMARY = "TI OpenCL-C compiler for C66x (Linux hosted)"
-+HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
-+LICENSE = "BSD"
-+
-+require recipes-ti/ocl/ocl.inc
-+require recipes-ti/includes/arago-paths.inc
-+
-+PR = "${INC_PR}.0"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+DEPENDS = "ti-llvm3.6-native boost-native"
-+
-+S = "${WORKDIR}/git/host"
-+
-+TARGET_class-target = "am57xx"
-+TARGET_class-native = "x86"
-+
-+export WANT_LLVM_RELEASE = "3.6-ti"
-+export DESTDIR="${OCL_RTOS_INSTALL_DIR}"
-+export LDFLAGS="${BUILD_LDFLAGS}"
-+export CXXFLAGS="${BUILD_CFLAGS}"
-+
-+EXTRA_OEMAKE = "CXX=${BUILD_CXX} \
-+                -C ${S}/clocl \
-+                 _PRODUCT_VERSION=${PV} \
-+                 TARGET=x86 \
-+                 LLVM_CONFIG_EXE=llvm-config \
-+"
-+
-+do_compile() {
-+  oe_runmake
-+}
-+
-+do_install() {
-+    install -d ${DESTDIR}/bin/x86
-+    install -m 755 ${S}/clocl/x86/clocl ${DESTDIR}/bin/x86/
-+}
-+
-+BBCLASSEXTEND = "native"
-diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/clocl-win_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/clocl-win_git.bb
-new file mode 100644
-index 0000000..230c34a
---- /dev/null
-+++ b/meta-arago-extras/recipes-ti/ocl-rtos/clocl-win_git.bb
-@@ -0,0 +1,32 @@
-+SUMMARY = "TI OpenCL-C compiler for C66x (Windows hosted)"
-+HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
-+LICENSE = "BSD"
-+
-+require recipes-ti/ocl/ocl.inc
-+require recipes-ti/includes/arago-paths.inc
-+
-+PR = "${INC_PR}.0"
-+
-+CLOCL_WIN_GIT_URI = "git://git.ti.com/opencl/clocl-win.git"
-+CLOCL_WIN_GIT_BRANCH = "master"
-+CLOCL_WIN_SRCREV = "eac7ac7cc2e64a9ff05e4238e44dff3f9a9fcf6b"
-+
-+BRANCH = "${CLOCL_WIN_GIT_BRANCH}"
-+SRC_URI = "${CLOCL_WIN_GIT_URI};protocol=git;branch=${BRANCH}"
-+SRCREV = "${CLOCL_WIN_SRCREV}"
-+
-+LIC_FILES_CHKSUM = "file://opencl-manifest.html;md5=e0810676ad435e2ef53c1a538e24a9a7"
-+
-+COMPATIBLE_MACHINE = "omap-a15"
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+RELEASE_TARGET = ""
-+RELEASE_TARGET_omap-a15 = "am57xx"
-+
-+S = "${WORKDIR}/git"
-+export DESTDIR="${OCL_RTOS_INSTALL_DIR}/ti-opencl-rtos-${RELEASE_TARGET}-${PV}/packages/ti/opencl"
-+
-+do_install() {
-+    install -d ${DESTDIR}/usr/share/ti/opencl/bin/pc
-+    install -m 755 ${S}/bin/clocl.exe ${DESTDIR}/usr/share/ti/opencl/bin/pc
-+}
-diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb
-new file mode 100644
-index 0000000..531fc2f
---- /dev/null
-+++ b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb
-@@ -0,0 +1,97 @@
-+SUMMARY = "TI OpenCL example applications"
-+HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
-+LICENSE = "BSD"
-+
-+require recipes-ti/ocl/ocl.inc
-+require recipes-ti/includes/arago-paths.inc
-+
-+PR = "${INC_PR}.0"
-+
-+COMPATIBLE_MACHINE = "omap-a15"
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+DEPENDS = "opencl-rtos ti-cgt6x-native clocl-rtos-native opencl-monitor-rtos \
-+           clocl-win \
-+"
-+
-+S = "${WORKDIR}/git/opencl_example_src"
-+B = "${S}"
-+
-+OCL_EXAMPLE_LIST = " abort_exit \
-+                     buffer \
-+                     ccode \
-+                     dsplib_fft \
-+                     float_compute \
-+                     null \
-+                     offline_embed \
-+                     platforms \
-+                     simple \
-+                     timeout \
-+                     vecadd \
-+                     matmpy \
-+                     ooo_callback \
-+                     sgemm \
-+                     edmamgr \
-+                     vecadd_openmp \
-+		     vecadd_openmp_t \
-+"
-+
-+RELEASE_TARGET = ""
-+RELEASE_TARGET_omap-a15 = "am57xx"
-+
-+export BIOS_INSTALL_DIR = "${SYSBIOS_INSTALL_DIR}"
-+export DESTDIR="${OCL_RTOS_INSTALL_DIR}/ti-opencl-rtos-${RELEASE_TARGET}-${PV}"
-+export TI_OCL_INSTALL = "${DESTDIR}/packages/ti/opencl"
-+
-+
-+python do_unpack_append() {
-+    import shutil
-+
-+    git_dir = d.expand("${WORKDIR}/git/examples")
-+    s = d.getVar("S", True)
-+
-+    os.makedirs(s)
-+    shutil.copy(os.path.join(git_dir,"Makefile"),s)
-+    shutil.copy(os.path.join(git_dir,"make_rtos.inc"),s)
-+    shutil.copy(os.path.join(git_dir,"rtos_main.c"),s)
-+    shutil.copy(os.path.join(git_dir,"load_am57_rtos.js"),s)
-+    for example in d.getVar("OCL_EXAMPLE_LIST", True).split():
-+        shutil.copytree(os.path.join(git_dir,example), os.path.join(s,example))
-+}
-+
-+
-+EXTRA_OEMAKE = "BUILD_OS=SYS_BIOS \
-+                TI_OCL_CGT_INSTALL=${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x \
-+"
-+
-+do_compile() {
-+    unset LDFLAGS
-+    unset TARGET_LDFLAGS
-+
-+    oe_runmake
-+}
-+
-+do_install() {
-+    install -d ${DESTDIR}/examples
-+
-+    install ${B}/Makefile ${DESTDIR}/examples
-+    install ${B}/make_rtos.inc ${DESTDIR}/examples
-+    install ${B}/rtos_main.c ${DESTDIR}/examples
-+
-+    for ocl_example in ${OCL_EXAMPLE_LIST}; do
-+        install -d ${DESTDIR}/examples/${ocl_example}
-+        cp -rv ${B}/${ocl_example}/* ${DESTDIR}/examples/${ocl_example}
-+    done
-+}
-+
-+CM_NAME = "OpenCL"
-+CM_VERSION = "${PV}"
-+CM_ROOT_DIR = "opencl_rtos_${RELEASE_TARGET}_${@'${PV}'.replace('.', '_')}"
-+CM_DESCRIPTION = "OpenCL is a framework for writing programs that execute across heterogeneous systems"
-+
-+deltask do_create_srcipk
-+addtask create_srcipk after do_install before do_package
-+
-+CREATE_SRCIPK = "1"
-+SRCIPK_SRC_DIR = "${DESTDIR}"
-+SRCIPK_INSTALL_DIR = "${CM_ROOT_DIR}"
-diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
-new file mode 100644
-index 0000000..b6f21aa
---- /dev/null
-+++ b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
-@@ -0,0 +1,64 @@
-+SUMMARY = "TI OpenCL compute device firmware for C66x (RTOS)"
-+HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
-+LICENSE = "BSD"
-+
-+require recipes-ti/ocl/ocl.inc
-+require recipes-ti/includes/arago-paths.inc
-+
-+PR = "${INC_PR}.0"
-+
-+inherit cmake
-+
-+DEPENDS = " ti-llvm3.6-native \
-+            common-csl-ip-rtos \
-+            ti-xdctools \
-+            ti-ipc-rtos \
-+            ti-sysbios \
-+            ti-cgt6x-native \
-+            edma3-lld-rtos \
-+            ti-xdais \
-+            ti-framework-components \
-+            libaet \
-+            openmp-rtos \
-+"
-+
-+COMPATIBLE_MACHINE = "omap-a15"
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+S = "${WORKDIR}/git/monitor"
-+
-+BUILD_TARGET_omap-a15   = "ARM_AM57"
-+
-+RELEASE_TARGET = ""
-+RELEASE_TARGET_omap-a15 = "am57xx"
-+
-+EXTRA_OECMAKE += " -DCROSS_COMPILE=TRUE \
-+                   -DOCL_MONITOR_DIR=${S} \
-+                   -DBUILD_OUTPUT=all \
-+                   -DSHARE_PATH=${datadir}/ti \
-+                   -DBUILD_TARGET=${BUILD_TARGET} \
-+                   -DBUILD_OS=SYS_BIOS \
-+"
-+
-+export TI_OCL_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
-+export PDK_DIR = "${PDK_INSTALL_DIR}"
-+export IPC_DIR = "${IPC_INSTALL_DIR}"
-+export XDC_DIR = "${XDC_INSTALL_DIR}"
-+export BIOS_DIR = "${SYSBIOS_INSTALL_DIR}"
-+export EDMA3LLD_DIR = "${EDMA3_LLD_INSTALL_DIR}"
-+export XDAIS_DIR = "${XDAIS_INSTALL_DIR}"
-+export FC_DIR = "${FC_INSTALL_DIR}"
-+export MPM_DIR = "${MPM_INSTALL_DIR}"
-+export OMP_DIR = "${OMP_INSTALL_DIR}"
-+export ULM_DIR ="${STAGING_DIR_TARGET}/usr/share/ti/ulm"
-+export GDB_SERVER_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/gdbc6x"
-+export AET_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/ctoolslib/aet"
-+export X86_LLVM_DIR = "${STAGING_DIR_NATIVE}/usr"
-+export XDCPATH = "${S};${IPC_DIR}/packages;${BIOS_DIR}/packages;${EDMA3LLD_DIR}/packages;${FC_DIR}/packages;${XDAIS_DIR}/packages"
-+export DESTDIR="${OCL_RTOS_INSTALL_DIR}/ti-opencl-rtos-${RELEASE_TARGET}-${PV}/packages/ti/opencl"
-+
-+do_install() {
-+    oe_runmake install
-+    install -d ${DESTDIR}/platforms/am57x_rtos
-+    cp -r ${S}/../packages/ti/opencl/platforms/am57x_rtos/* ${DESTDIR}/platforms/am57x_rtos/
-+}
-diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb
-new file mode 100644
-index 0000000..41b6653
---- /dev/null
-+++ b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb
-@@ -0,0 +1,85 @@
-+SUMMARY = "TI OpenCL host runtime (RTOS)"
-+HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
-+LICENSE = "BSD"
-+
-+require recipes-ti/ocl/ocl.inc
-+require recipes-ti/includes/arago-paths.inc
-+
-+PR = "${INC_PR}.0"
-+
-+
-+COMPATIBLE_MACHINE = "omap-a15"
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+PACKAGES += " ${PN}-runtime"
-+
-+DEPENDS = "cmake-native \
-+           llvm-rtos \
-+           libloki \
-+           gcc-arm-none-eabi-native \
-+           ti-sysbios \
-+           ti-xdctools \
-+           ti-ipc-rtos  \
-+           opencl-monitor-rtos  \
-+           clocl-rtos-native  \
-+"
-+
-+#RDEPENDS_${PN}-dev += " opencl-monitor-rtos"
-+
-+ALLOW_EMPTY_${PN}-runtime = "1"
-+
-+
-+S = "${WORKDIR}/git/host"
-+
-+export WANT_LLVM_RELEASE = "3.6-ti"
-+
-+OCL_BUILD_TARGET_omap-a15   = "ARM_AM57"
-+
-+ENABLE_ULM = "0"
-+
-+RELEASE_TARGET = ""
-+RELEASE_TARGET_omap-a15 = "am57xx"
-+
-+export TI_OCL_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
-+export ARM_LLVM_DIR="${LLVM_RTOS_INSTALL_DIR}"
-+export DESTDIR="${OCL_RTOS_INSTALL_DIR}/ti-opencl-rtos-${RELEASE_TARGET}-${PV}/packages/ti/opencl"
-+
-+# Required for eclipse plugin and packages
-+export XDC_DIR = "${XDC_INSTALL_DIR}"
-+export BIOS_DIR = "${SYSBIOS_INSTALL_DIR}"
-+export IPC_DIR = "${IPC_INSTALL_DIR}"
-+
-+do_compile() {
-+
-+    echo "LLVM_RTOS_INSTALL_DIR=${LLVM_RTOS_INSTALL_DIR}"
-+
-+    unset LDFLAGS
-+    unset TARGET_LDFLAGS
-+
-+    cd ${WORKDIR}
-+    rm -rf build
-+
-+    mkdir -p build
-+    cd build; cmake \
-+        -DCMAKE_TOOLCHAIN_FILE=../git/host/cmake/CMakeBiosARMToolChain.txt \
-+        -DBUILD_TARGET=${OCL_BUILD_TARGET} \
-+        -DBUILD_OUTPUT=lib \
-+        -DENABLE_ULM=${ENABLE_ULM} \
-+        -DBUILD_OS=SYS_BIOS \
-+        -DIPC_INSTALL_PATH=${IPC_INSTALL_DIR}/packages \
-+        -DXDC_INSTALL_PATH=${XDC_INSTALL_DIR}/packages \
-+        -DBIOS_INSTALL_PATH=${SYSBIOS_INSTALL_DIR}/packages \
-+        -DLOKI_INCLUDE_PATH=${STAGING_DIR_HOST}/usr/include/loki \
-+        -DARM_LLVM_DIR=${ARM_LLVM_DIR} \
-+        -DOCL_VERSION=${PV} ../git/host;
-+    make install
-+    make -C eclipse install
-+    make -C packages install
-+    cd ..
-+}
-+
-+# Install x86/Linux clocl built by clocl-rtos-native recipe
-+do_install() {
-+    install -d ${DESTDIR}/usr/share/ti/opencl/bin/x86
-+    install -m 755 ${STAGING_DIR_NATIVE}/usr/share/ti/ti-opencl-rtos-tree/bin/x86/clocl ${DESTDIR}/usr/share/ti/opencl/bin/x86
-+}
++PACKAGECONFIG_pn-glmark2 = "drm-gles2 wayland-gles2"
++
+ # Enable UI and scripting for perf
+ PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
+ 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+index b19e759..53aaadd 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install graphics binaries"
+ LICENSE = "MIT"
+-PR = "r17"
++PR = "r18"
+ 
+ inherit packagegroup
+ 
+@@ -19,6 +19,7 @@ GRAPHICS_RDEPENDS = "\
+     libgbm \
+     ti-sgx-ddk-km \
+     ti-sgx-ddk-um \
++    glmark2 \
+ "
+ 
+ GRAPHICS_RDEPENDS_append_omap-a15 = "\
 -- 
-1.9.1
+2.7.4
 
 
