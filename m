@@ -1,30 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id AF23352093
+Return-Path: <esc@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 6C4F752A05
 	for <meta-arago@arago-project.org>;
-	Wed, 18 Oct 2017 19:22:00 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 20498208CF;
-	Wed, 18 Oct 2017 19:21:59 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id WwEsPbyqLuKE; Wed, 18 Oct 2017 19:21:59 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id F30E3204B1;
-	Wed, 18 Oct 2017 19:21:57 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 7302F162700;
-	Wed, 18 Oct 2017 15:21:57 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Wed, 18 Oct 2017 15:21:56 -0400
-Message-Id: <1508354516-12334-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH] kms++: python bindings require Python3, RDEPENDS on it
+	Mon, 23 Oct 2017 21:57:30 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9NLvUB3008145
+	for <meta-arago@arago-project.org>; Mon, 23 Oct 2017 16:57:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1508795850;
+	bh=o9UvkaTBvjWhINDC2S5HxkEEbwkGXfCBUezhd7t7t6E=;
+	h=From:To:CC:Subject:Date;
+	b=dJwSNC77HTlTzyf4Bs0dP4wF0ST+nGnSk0JF0eR8UiYQVbKXVRi/4YigsCMwUPB8t
+	phLlUCl3FckLt3paBD+1RKXBNigNrjq+xUOaLUDitredKrKAdsWLMivMPIbTbo365C
+	ZawD5BnFZmEeVnQwY7/btkJAuIvPQumybfdKds0M=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9NLvU3a018662
+	for <meta-arago@arago-project.org>; Mon, 23 Oct 2017 16:57:30 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
+	Mon, 23 Oct 2017 16:57:30 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
+	Transport; Mon, 23 Oct 2017 16:57:29 -0500
+Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9NLvTaO025071;
+	Mon, 23 Oct 2017 16:57:29 -0500
+From: Emily Curry <esc@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 23 Oct 2017 16:57:11 -0500
+Message-ID: <20171023215711.36722-1-esc@ti.com>
+X-Mailer: git-send-email 2.14.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH] ocl: Update to v01.01.14.06
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,39 +48,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Oct 2017 19:22:03 -0000
+X-List-Received-Date: Mon, 23 Oct 2017 21:57:30 -0000
+Content-Type: text/plain
 
-This way if kms++-python package gets pulled to rootfs, it will bring the
-necessary python3 runtime as well.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+* Fix OpenCL example cross-compile failure
 ---
- meta-arago-extras/recipes-graphics/kms++/kms++_git.bb | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ meta-arago-extras/recipes-ti/ocl/ocl.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
-index 883607c..911384a 100644
---- a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
-+++ b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
-@@ -4,7 +4,7 @@ LICENSE = "MPL-2.0"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=c670e18272184fc0e86e1648678b4f2a"
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index 5cd1e02f..d036dfc6 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,4 +1,4 @@
+-PV = "1.1.14.5"
++PV = "1.1.14.6"
+ INC_PR = "r0"
  
- PV = "1.0"
--PR = "r2"
-+PR = "r3"
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
  
- BRANCH = "master"
- SRC_URI = "git://github.com/tomba/kmsxx.git;protocol=git;branch=${BRANCH}"
-@@ -14,6 +14,8 @@ DEPENDS = "drm python3-pybind11"
+-OCL_SRCREV = "e77c89ddd5c9da66ad0a0eec859958c3d8728f87"
++OCL_SRCREV = "03e89944c6dc4ab508698610baef623231de436d"
  
- PACKAGES =+ "${PN}-python"
- 
-+RDEPENDS_${PN}-python += "python3-core"
-+
- FILES_${PN}-python += "${libdir}/python*/site-packages"
- 
- S = "${WORKDIR}/git"
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
 -- 
-2.7.4
+2.14.1
 
 
