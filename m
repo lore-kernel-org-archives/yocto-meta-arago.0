@@ -1,40 +1,44 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id EDF9C52A73
+Return-Path: <dmurphy@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 8961E52A81
 	for <meta-arago@arago-project.org>;
-	Mon, 30 Oct 2017 06:24:23 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9U6ONsm009089
-	for <meta-arago@arago-project.org>; Mon, 30 Oct 2017 01:24:23 -0500
+	Mon, 30 Oct 2017 14:49:07 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9UEn79s030182
+	for <meta-arago@arago-project.org>; Mon, 30 Oct 2017 09:49:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1509344663;
-	bh=OnSNzwNDkRk1o2SzDpxl7LjdvDuwasRIEEqzKbdHEQI=;
+	s=ti-com-17Q1; t=1509374947;
+	bh=BTA+eM+YP0ysyfIHrtltwoyOUX6d+fEtXRSplTfll3g=;
 	h=From:To:CC:Subject:Date;
-	b=i6m7HqmZZB1O1Xbeclne/v49FFqVF+9zNWZfQHHxn0Ab/6LGq/+9o17CL8Xg7donu
-	ZrGXZHAxCUjcQUVqAX6FhEpPIiBM5C54wL0b8sfPucT4/Q1DdzOMV+F7QmgZfKl81t
-	kor4/1mWJFv/u+kHOpACb65QXjbVuLGXq2CgsWK8=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9U6ONuX022445
-	for <meta-arago@arago-project.org>; Mon, 30 Oct 2017 01:24:23 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	b=BhS3WP/vH6Ldr1wVtANIfwyitL8mVwKMDo/3+VoHV973twWR7gJeQLbJFEyk2wYZz
+	YatvGtsdXNSrc0Bko7jfnptNgBw28W62OPdW21htNmQ/nyte8s7QwROkSClh/ozSHv
+	EBcqdyZgya+ULkLtepvxEYV3Yxa55F6EVdxJUvKw=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9UEn7UA017181
+	for <meta-arago@arago-project.org>; Mon, 30 Oct 2017 09:49:07 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Mon, 30 Oct 2017 01:24:23 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 30 Oct 2017 09:49:07 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Mon, 30 Oct 2017 01:24:23 -0500
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9U6OL9Y008551;
-	Mon, 30 Oct 2017 01:24:22 -0500
-From: Karthik Ramanan <a0393906@ti.com>
+	Transport; Mon, 30 Oct 2017 09:49:07 -0500
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
+	[128.247.22.53])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9UEn7TW023100;
+	Mon, 30 Oct 2017 09:49:07 -0500
+Received: from localhost (a0272616local-lt.dhcp.ti.com [172.22.172.9])
+	by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id
+	v9UEn6324831; Mon, 30 Oct 2017 09:49:06 -0500 (CDT)
+From: Dan Murphy <dmurphy@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 30 Oct 2017 11:54:19 +0530
-Message-ID: <1509344659-103084-1-git-send-email-a0393906@ti.com>
-X-Mailer: git-send-email 1.9.1
+Date: Mon, 30 Oct 2017 09:49:01 -0500
+Message-ID: <20171030144901.12511-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.12.2
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [krogoth] kmscube: Update SRCREV for Jitter fix
+Subject: [PATCH] optee: Update SRCREV for client, os and test
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,33 +51,71 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Oct 2017 06:24:28 -0000
+X-List-Received-Date: Mon, 30 Oct 2017 14:49:07 -0000
 Content-Type: text/plain
 
-This patch is introduces pageflip for all displays in modeset
-and thus solving the jitter issue
+Updating the SRCREV for the optee-client,
+optee-os and optee-test to Linaro's tagged
+version of 2.6.0 release.
 
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
 ---
- meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-distro/recipes-security/optee/optee-client.bbappend   | 4 ++--
+ meta-arago-distro/recipes-security/optee/optee-os_git.bbappend   | 4 ++--
+ meta-arago-distro/recipes-security/optee/optee-test_git.bbappend | 4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-index 742d242..e5ef85b 100644
---- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-+++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-@@ -10,8 +10,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+index 16437019..fcfb2bb0 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+@@ -5,7 +5,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
  
- inherit autotools pkgconfig
+ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=69663ab153298557a59c67a60a743e5b"
  
--PR = "r6"
--SRCREV = "24e94f583119896b3ab8ecc7b35c7de3160dcb1f"
-+PR = "r8"
-+SRCREV = "3e9807ddcf2b4e8ccf711cdaf851752ec40d7904"
+-PV = "2.5.0+git${SRCPV}"
++PV = "2.6.0+git${SRCPV}"
  
- SRC_URI = "git://git.ti.com/glsdk/kmscube.git;protocol=git"
+ BRANCH = "ti_optee_client"
+-SRCREV = "0efaf6bae1066d06a075d1f4fe1011b8b3576f75"
++SRCREV = "73b4e490a8ed0b4a7714818e80998b9d8a7da958"
+diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+index 550d75ca..8b84ca33 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+@@ -2,7 +2,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
+ PR_append = ".arago7"
+ 
+-PV="2.5.0+git${SRCPV}"
++PV="2.6.0+git${SRCPV}"
+ 
+ is_armv7 = "1"
+ 
+@@ -10,7 +10,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
+            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
+ "
+ BRANCH = "ti_optee_os"
+-SRCREV = "342a75f64d69fa9a60a2934d56131243d540fe42"
++SRCREV = "f918b24d27744d682e6f2c7fa91828a7b818b5a0"
+ 
+ EXTRA_OEMAKE = "CROSS_COMPILE_core=${HOST_PREFIX}  \
+                 CROSS_COMPILE_ta_arm32=${HOST_PREFIX}  \
+diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+index 17228b13..996032ed 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+@@ -2,7 +2,7 @@ PR_append = ".arago1"
+ 
+ SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
+ 
+-PV = "2.5.0+git${SRCPV}"
++PV = "2.6.0+git${SRCPV}"
+ 
+ BRANCH = "ti_optee_test"
+-SRCREV = "e0ab180a643b67e865b35f869a2ed3b3dee9112d"
++SRCREV = "cc72dd2ce5c45318ad1618633bf0c859ad56cd8a"
 -- 
-1.9.1
+2.14.0
 
 
