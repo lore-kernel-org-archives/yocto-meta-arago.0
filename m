@@ -1,44 +1,41 @@
-Return-Path: <afd@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 5C82F52A70
+Return-Path: <yan-liu@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 60C8F52A70
 	for <meta-arago@arago-project.org>;
-	Mon, 30 Oct 2017 16:42:22 +0000 (UTC)
+	Mon, 30 Oct 2017 21:24:06 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9UGgC7l012161
-	for <meta-arago@arago-project.org>; Mon, 30 Oct 2017 11:42:12 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9ULO6BG032023
+	for <meta-arago@arago-project.org>; Mon, 30 Oct 2017 16:24:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1509381732;
-	bh=+KDj+aW2PmkXT1Q2Ii9E4WHDb5Eh3jMBcpui+v3dMIU=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=wrJaNBnwKd4znIGWaQUU+PNIIew5WCiDUHcf0x3bmpLvQF8a3T6tdHCdZJDpsS+Mo
-	rImIfnSb6GWcgX7t6uGLTZasZfjDY/OHbZCAolntxUKVrfWRQcwQRBx8Jb1GwYPC28
-	Zp5EHlTEthFbvmoe6GYYLUyu/FR1S1ouezvs1xhw=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9UGg767028126
-	for <meta-arago@arago-project.org>; Mon, 30 Oct 2017 11:42:07 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1509398646;
+	bh=nk93Rq96stCBdNE3aBrcFMp2aIq+gV9yrUENHQbiHg8=;
+	h=From:To:CC:Subject:Date;
+	b=GBmmM8J5F1FVjlvYxz4d6v5q++kNTnaWaqnLu5bFDtLbJxxaSU3AvQvNgx8nre8OY
+	kulPVHZoJ76Fm1ahZRbE2fJWvNsedCFhh2RRNcD1sUVD3R2IWHbymMpVJPlyH6uPJe
+	zV6sH/4rwBDBmxf0jz0WKDqSZ1MMst8o2z/+zoMI=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9ULO5H9010978
+	for <meta-arago@arago-project.org>; Mon, 30 Oct 2017 16:24:05 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Mon, 30 Oct 2017 11:42:06 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 30 Oct 2017 16:24:05 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Mon, 30 Oct 2017 11:42:07 -0500
-Received: from [128.247.59.134] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9UGg6w7021189;
-	Mon, 30 Oct 2017 11:42:06 -0500
-To: Dan Murphy <dmurphy@ti.com>, <meta-arago@arago-project.org>
-References: <20171030144901.12511-1-dmurphy@ti.com>
-	<8429cc01-72b6-ae6f-b84d-d764d6814b9d@ti.com>
-From: "Andrew F. Davis" <afd@ti.com>
-Message-ID: <b42e03ea-3881-c26c-8aca-a7843fcd17e0@ti.com>
-Date: Mon, 30 Oct 2017 11:42:06 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	Transport; Mon, 30 Oct 2017 16:24:05 -0500
+Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9ULO5tH032419;
+	Mon, 30 Oct 2017 16:24:05 -0500
+From: <yan-liu@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 30 Oct 2017 17:18:17 -0400
+Message-ID: <1509398297-8198-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-In-Reply-To: <8429cc01-72b6-ae6f-b84d-d764d6814b9d@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [PATCH] optee: Update SRCREV for client, os and test
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,82 +48,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Oct 2017 16:42:22 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 30 Oct 2017 21:24:10 -0000
+Content-Type: text/plain
 
-On 10/30/2017 09:49 AM, Dan Murphy wrote:
-> +Andrew
-> 
-> On 10/30/2017 09:49 AM, Dan Murphy wrote:
->> Updating the SRCREV for the optee-client,
->> optee-os and optee-test to Linaro's tagged
->> version of 2.6.0 release.
->>
->> Signed-off-by: Dan Murphy <dmurphy@ti.com>
->> ---
+From: Yan Liu <yan-liu@ti.com>
 
-Looks good to me:
+Signed-off-by: Yan Liu <yan-liu@ti.com>
+---
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Acked-by: Andrew F. Davis <afd@ti.com>
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
+index 6ceb645..f71a41f 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+ 
+-PR = "r28"
++PR = "r29"
+ PV_append = "+git${SRCPV}"
+ 
+ PROVIDES += "ltp"
+@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
+ 
+ inherit autotools-brokensep
+ 
+-SRCREV = "10bd2c40c21569b2ce6f47a7e3ad874655a7c310"
++SRCREV = "ea64df36bc1f411bdcd20bf4057206f9e0cb7e52"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
+-- 
+1.7.9.5
 
->>  meta-arago-distro/recipes-security/optee/optee-client.bbappend   | 4 ++--
->>  meta-arago-distro/recipes-security/optee/optee-os_git.bbappend   | 4 ++--
->>  meta-arago-distro/recipes-security/optee/optee-test_git.bbappend | 4 ++--
->>  3 files changed, 6 insertions(+), 6 deletions(-)
->>
->> diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
->> index 16437019..fcfb2bb0 100644
->> --- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
->> +++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
->> @@ -5,7 +5,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
->>  
->>  LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=69663ab153298557a59c67a60a743e5b"
->>  
->> -PV = "2.5.0+git${SRCPV}"
->> +PV = "2.6.0+git${SRCPV}"
->>  
->>  BRANCH = "ti_optee_client"
->> -SRCREV = "0efaf6bae1066d06a075d1f4fe1011b8b3576f75"
->> +SRCREV = "73b4e490a8ed0b4a7714818e80998b9d8a7da958"
->> diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
->> index 550d75ca..8b84ca33 100644
->> --- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
->> +++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
->> @@ -2,7 +2,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>  
->>  PR_append = ".arago7"
->>  
->> -PV="2.5.0+git${SRCPV}"
->> +PV="2.6.0+git${SRCPV}"
->>  
->>  is_armv7 = "1"
->>  
->> @@ -10,7 +10,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
->>             file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
->>  "
->>  BRANCH = "ti_optee_os"
->> -SRCREV = "342a75f64d69fa9a60a2934d56131243d540fe42"
->> +SRCREV = "f918b24d27744d682e6f2c7fa91828a7b818b5a0"
->>  
->>  EXTRA_OEMAKE = "CROSS_COMPILE_core=${HOST_PREFIX}  \
->>                  CROSS_COMPILE_ta_arm32=${HOST_PREFIX}  \
->> diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
->> index 17228b13..996032ed 100644
->> --- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
->> +++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
->> @@ -2,7 +2,7 @@ PR_append = ".arago1"
->>  
->>  SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
->>  
->> -PV = "2.5.0+git${SRCPV}"
->> +PV = "2.6.0+git${SRCPV}"
->>  
->>  BRANCH = "ti_optee_test"
->> -SRCREV = "e0ab180a643b67e865b35f869a2ed3b3dee9112d"
->> +SRCREV = "cc72dd2ce5c45318ad1618633bf0c859ad56cd8a"
->>
-> 
-> 
 
