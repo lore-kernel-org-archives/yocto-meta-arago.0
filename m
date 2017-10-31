@@ -1,41 +1,40 @@
-Return-Path: <yan-liu@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 60C8F52A70
+Return-Path: <karthik.ramanan@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 1DE59529D3
 	for <meta-arago@arago-project.org>;
-	Mon, 30 Oct 2017 21:24:06 +0000 (UTC)
+	Tue, 31 Oct 2017 11:25:40 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9ULO6BG032023
-	for <meta-arago@arago-project.org>; Mon, 30 Oct 2017 16:24:06 -0500
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9VBPdh6031682
+	for <meta-arago@arago-project.org>; Tue, 31 Oct 2017 06:25:39 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1509398646;
-	bh=nk93Rq96stCBdNE3aBrcFMp2aIq+gV9yrUENHQbiHg8=;
+	s=ti-com-17Q1; t=1509449139;
+	bh=OjE9pA6nsTxmMfATz3dkMaMqU+QJ0uBIql6iqTUMeKM=;
 	h=From:To:CC:Subject:Date;
-	b=GBmmM8J5F1FVjlvYxz4d6v5q++kNTnaWaqnLu5bFDtLbJxxaSU3AvQvNgx8nre8OY
-	kulPVHZoJ76Fm1ahZRbE2fJWvNsedCFhh2RRNcD1sUVD3R2IWHbymMpVJPlyH6uPJe
-	zV6sH/4rwBDBmxf0jz0WKDqSZ1MMst8o2z/+zoMI=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9ULO5H9010978
-	for <meta-arago@arago-project.org>; Mon, 30 Oct 2017 16:24:05 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	b=xJaJUaO+4XxJQyVjPuMk+cW3/iwk58M64wMMTHojEuOJLaM5RMijOqbXcNNTurBCt
+	VKSO6HvIbRwJQFk6ICZHa0Nmz/tFLyNYJRIXXMQEUn+HltBjik4e8ij9EFKv1v6UxS
+	fpkAPfwotkkNjqMZ9fih4+GCkLv8J1gRpjZjquw0=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9VBPdFQ027770
+	for <meta-arago@arago-project.org>; Tue, 31 Oct 2017 06:25:39 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Mon, 30 Oct 2017 16:24:05 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 31 Oct 2017 06:25:39 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Mon, 30 Oct 2017 16:24:05 -0500
-Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9ULO5tH032419;
-	Mon, 30 Oct 2017 16:24:05 -0500
-From: <yan-liu@ti.com>
+	Transport; Tue, 31 Oct 2017 06:25:39 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9VBPb9m024933;
+	Tue, 31 Oct 2017 06:25:38 -0500
+From: Karthik Ramanan <a0393906@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 30 Oct 2017 17:18:17 -0400
-Message-ID: <1509398297-8198-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Tue, 31 Oct 2017 16:55:36 +0530
+Message-ID: <1509449136-2444-1-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: [morty] kmscube: Update SRCREV for jitter fix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,39 +47,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Oct 2017 21:24:10 -0000
+X-List-Received-Date: Tue, 31 Oct 2017 11:25:41 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
-
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb   |    4 ++--
+ meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-index 6ceb645..f71a41f 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+index 14973b9..51a4adf 100644
+--- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
++++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+@@ -10,8 +10,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
--PR = "r28"
-+PR = "r29"
- PV_append = "+git${SRCPV}"
+ inherit autotools pkgconfig
  
- PROVIDES += "ltp"
-@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
+-PR = "r8"
+-SRCREV = "24e94f583119896b3ab8ecc7b35c7de3160dcb1f"
++PR = "r9"
++SRCREV = "3e9807ddcf2b4e8ccf711cdaf851752ec40d7904"
  
- inherit autotools-brokensep
+ SRC_URI = "git://git.ti.com/glsdk/kmscube.git;protocol=git"
  
--SRCREV = "10bd2c40c21569b2ce6f47a7e3ad874655a7c310"
-+SRCREV = "ea64df36bc1f411bdcd20bf4057206f9e0cb7e52"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
 -- 
-1.7.9.5
+1.9.1
 
 
