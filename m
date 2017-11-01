@@ -1,43 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 8229C52A25
+Return-Path: <j-stiffler@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 648E252992
 	for <meta-arago@arago-project.org>;
-	Tue, 31 Oct 2017 20:19:25 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id v9VKJF2j007923
-	for <meta-arago@arago-project.org>; Tue, 31 Oct 2017 15:19:15 -0500
+	Wed,  1 Nov 2017 15:13:51 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id vA1FDpe2005586
+	for <meta-arago@arago-project.org>; Wed, 1 Nov 2017 10:13:51 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1509481155;
-	bh=0FHbZPrpAtZuV2S5qwZXXu3T2EZl3HXeR4IY/vBJavc=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=ZH/TO/TulEdV6sbPXai6/keyhruY3QFQM9o+Xbyqbd2EXiX+efwEwq1W0SG5eB6kp
-	9HTiJ8W23DCWtNNkYhYzP00es8udquHkSaRK0kX/lf26ZGBAj0rBsLCzXUbdI3XCb+
-	wSuxelDbyAFq78/a7BbBGQ53a7dmueBf+4uew9Tc=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9VKJAjS002416
-	for <meta-arago@arago-project.org>; Tue, 31 Oct 2017 15:19:10 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1509549231;
+	bh=PRoZ6rIoouhU21UBsIWjuLug2u/y42B7M3kyFrChXCI=;
+	h=From:To:CC:Subject:Date;
+	b=sA4x/KnRBLpsmArBDbHyd7xPyiDvF9IuBhvD5QSy4E3sr6hFlPpg7ravLHEH9L848
+	Zcaoc4ufWZLMttjKUfTPUlxdEWqLBGq7tqso2+pyqD39Y7BJ6/we64Ofg2d0k8HZnk
+	jRtmgYZJygqUqm3GPYc+GhYA7RZTdudG3hRiyVCo=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vA1FDpQT007827
+	for <meta-arago@arago-project.org>; Wed, 1 Nov 2017 10:13:51 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 31 Oct 2017 15:19:10 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 1 Nov 2017 10:13:51 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 31 Oct 2017 15:19:10 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id v9VKJAjt023074;
-	Tue, 31 Oct 2017 15:19:10 -0500
-Date: Tue, 31 Oct 2017 16:18:54 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Karthik Ramanan <a0393906@ti.com>
-Message-ID: <20171031201854.GD12918@edge>
-References: <1509466602-173226-1-git-send-email-a0393906@ti.com>
+	Transport; Wed, 1 Nov 2017 10:13:50 -0500
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id vA1FDovE015538;
+	Wed, 1 Nov 2017 10:13:50 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 1 Nov 2017 11:06:10 -0400
+Message-ID: <1509548771-27947-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <1509466602-173226-1-git-send-email-a0393906@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [krogoth] packagegroup-arago-tisdk-multimedia: TMP: Remove dspdce-fw temporarily
+Subject: [RFC 1/2] recipe-data: add method get other recipe's info
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,57 +48,116 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Oct 2017 20:19:26 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 01 Nov 2017 15:13:51 -0000
+Content-Type: text/plain
 
-Karthik,
+* This class provides a task to collect private recipe variables in
+  such a way that can be used by other recipes.
 
-Please stop removing [PATCH] qualifier from the Subject line. If you want to 
-specify krogoth, you should add extra [krogoth], not replace existing tags...
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ meta-arago-distro/classes/recipe-data.bbclass | 91 +++++++++++++++++++++++++++
+ 1 file changed, 91 insertions(+)
+ create mode 100644 meta-arago-distro/classes/recipe-data.bbclass
 
+diff --git a/meta-arago-distro/classes/recipe-data.bbclass b/meta-arago-distro/classes/recipe-data.bbclass
+new file mode 100644
+index 0000000..d4dbfd3
+--- /dev/null
++++ b/meta-arago-distro/classes/recipe-data.bbclass
+@@ -0,0 +1,91 @@
++# This class will record certain information about dependent recipes to a conf
++# file. This way it can be retrieved by other recipes. For example, this can be
++# used to obtain the SRC_URI for the SDK's SW manifest.
++
++# Configuration file to record the recipe data.
++RECIPE_DATA_FILE ?= "${TMPDIR}/recipe_data.conf"
++
++# Variables to record
++RECIPE_DATA_VARS ?= "PV SRC_URI FILE"
++
++
++# Helper to load the data from the conf file
++def recipe_data_load(d, recipe_data = bb.data.init()):
++    fn = d.getVar('RECIPE_DATA_FILE', True)
++
++    if not fn:
++        bb.fatal('"RECIPE_DATA_FILE" is not defined!')
++
++    if os.path.exists(fn):
++        with bb.utils.fileslocked([fn + '.lock']):
++            try:
++                bb.parse.handle(fn, recipe_data)
++            except Exception as e:
++                bb.warn('ERROR parsing "%s"' % fn)
++                bb.fatal(str(e))
++
++    return recipe_data
++
++
++def recipe_data_get_var(var, pn, d):
++    if var not in (d.getVar('RECIPE_DATA_VARS', True) or '').split():
++        bb.fatal('Variable "%s" was not configured to be recored' % var)
++
++    recipe_data = recipe_data_load(d)
++    return recipe_data.getVar('%s_pn-%s' % (var,pn), True)
++
++
++# Update the conf file with a new data.
++# Variables such as "FILE" and "TOPDIR" are filtered out by default.
++def recipe_data_update(fn, update_data, var_blacklist = ['__.*', 'FILE', 'TOPDIR'], expand = False):
++    import re
++
++    recipe_data = bb.data.init()
++
++    # Create the regex to filter out variables
++    re_blacklist = re.compile('^' + '$|^'.join(var_blacklist) + '$')
++    with bb.utils.fileslocked([fn + '.lock']):
++        try:
++            bb.parse.handle(fn, recipe_data)
++        except:
++            pass
++
++        for var in update_data.keys():
++            recipe_data.setVar(var, update_data.getVar(var,expand))
++
++        # We could use bb.data_smart's built in "emit_var", but that gives
++        # unnecessary comments.
++        with open(fn, "w") as f:
++            for var in recipe_data.keys():
++                if not re_blacklist.match(var):
++                    f.write('%s = "%s"\n' % (var, recipe_data.getVar(var,expand)))
++
++
++addtask emit_recipe_data
++do_emit_recipe_data[nostamp] = "1"
++python do_emit_recipe_data(){
++    recipe_vars = (d.getVar('RECIPE_DATA_VARS', True) or '').split()
++    recipe_data_file = d.getVar('RECIPE_DATA_FILE', True)
++
++    pn = d.getVar('PN', True) or bb.fatal('"PN" is not defined!')
++
++    data = bb.data.init()
++
++    # Set pn-${PN} to the overrides for convenience
++    data.setVar('OVERRIDES', 'pn-${PN}')
++    for var in recipe_vars:
++        val = d.getVar(var, True) or ''
++        data.setVar('%s_pn-%s' % (var, pn), val)
++
++    recipe_data_update(recipe_data_file, data)
++}
++
++# Add empty task to control dependencies
++addtask emit_recipe_data_all after do_emit_recipe_data
++do_emit_recipe_data_all[noexec] = "1"
++do_emit_recipe_data_all[nostamp] = "1"
++do_emit_recipe_data_all[recrdeptask] = "do_emit_recipe_data_all do_emit_recipe_data"
++do_emit_recipe_data_all[recideptask] = "do_${BB_DEFAULT_TASK}"
++do_emit_recipe_data_all() {
++    :
++}
 -- 
-Denys
+2.7.4
 
-
-On Tue, Oct 31, 2017 at 09:46:42PM +0530, Karthik Ramanan wrote:
-> From: Sam Nelson <sam.nelson@ti.com>
-> 
-> Build with new bios version is broken. Need to be fixed.
-> 
-> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> 
-> (from meta-arago/morty f2b86b34c7664425a98c69de52af62ce1c968539)
-> 
-> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
-> ---
->  .../recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-> index d850e0f..a468086 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-> @@ -36,7 +36,7 @@ MULTIMEDIA_append_omap5-evm = " \
->  ACCEL_FW = ""
->  
->  ACCEL_FW_append_am57xx-evm = " \
-> -    ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'ipumm-fw dspdce-fw', '', d)} \
-> +    ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'ipumm-fw', '', d)} \
->  "
->  
->  ACCEL_FW_append_omap5-evm = " \
-> @@ -44,7 +44,7 @@ ACCEL_FW_append_omap5-evm = " \
->  "
->  
->  ACCEL_FW_append_dra7xx-evm = " \
-> -    ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'ipumm-fw dspdce-fw', '', d)} \
-> +    ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'ipumm-fw', '', d)} \
->      vis \
->  "
->  
-> -- 
-> 1.9.1
-> 
 
