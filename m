@@ -1,43 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 175325299D
+Return-Path: <adam.yh.lee@gmail.com>
+Received: from mail-yw0-f180.google.com (mail-yw0-f180.google.com
+	[209.85.161.180])
+	by arago-project.org (Postfix) with ESMTPS id F21BC52A3A
 	for <meta-arago@arago-project.org>;
-	Wed,  1 Nov 2017 22:15:47 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id vA1MFl9F001159
-	for <meta-arago@arago-project.org>; Wed, 1 Nov 2017 17:15:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1509574547;
-	bh=Q3oWfOK2GI85xz3rvBZO11J1VFxkTa8LLDOOyJFeMP8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=hPrjRQGJ8AMXjg74J073QqAqaPHGlbV2mLbY5Coyy5srCrmn4IE21f9aw0SLbdNFs
-	ea2Gh9YKgyH9J9PCvSWK3UpgNXGzUCvqM7O19ohLTazwRf5lQwDSYp/+9NfMCjHrEP
-	fSVjUWkpJ+z56vvRT8JPCR8/vxuNGL0BQx4zshy8=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id vA1MFlR2005678
-	for <meta-arago@arago-project.org>; Wed, 1 Nov 2017 17:15:47 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Wed, 1 Nov 2017 17:15:47 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Wed, 1 Nov 2017 17:15:47 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id vA1MFlT0017470;
-	Wed, 1 Nov 2017 17:15:47 -0500
-Date: Wed, 1 Nov 2017 18:15:31 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20171101221530.GJ12918@edge>
-References: <1509559196-26703-1-git-send-email-j-stiffler@ti.com>
+	Thu,  2 Nov 2017 13:49:20 +0000 (UTC)
+Received: by mail-yw0-f180.google.com with SMTP id t71so4825742ywc.3
+	for <meta-arago@arago-project.org>;
+	Thu, 02 Nov 2017 06:49:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=q/ya/a2wDDUlf+WhJyDpIVDOnOc9XaBNmjYu331fsh8=;
+	b=X8wzCJbgm49HH/O9yYaXg0DYr2a5buBTHqbfon415pJPcygg2XvFVGS0Tw7kNvTjMn
+	hF7+BRnFZqJqmVnbMcGekA/Z6qDZqyTshuZUX+TMse4/IKVvu/kpfwJoBAkoHSikjwBy
+	AHgwoh6Bn5LuM/UxlEggmauryZHt5EWKDWk18DiDTwJSChMSLmkY79zHzZfmizjQC3X5
+	ZUkbAbyGkmX5zi5yYCc25m51gVQefl2CtGy7klO23whhg6hUfQF/Pnaeq8h2MNRo54D4
+	8nGqHWCUc1QqaPgR+18VEHZP6Hy7R4aMzeCU1rxuVfiVqSJ9uU3HNNcyk8OKDUN2aXiR
+	6Nfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=q/ya/a2wDDUlf+WhJyDpIVDOnOc9XaBNmjYu331fsh8=;
+	b=Xwcb1mB/sk0n0fw2jX5oa27YuQMhXSLJT+DtQf7P3k8Yd2Bnc0CcwSLw0BySTCTDp9
+	fC28jjrQraaBVXHiS3SSZZvkrSOT2H6DFW1tp9cAJAxHemvmB0Tka4DzlgPn+mMRI+7y
+	UnAhdhL8N0mJcmnZgGHI0bg71XAOa+cuXIb7/AFUQakBDxAuuZVmeg3xSCg/sDbCaH5h
+	yaDvRNzhSFMVey+AZFEcUtQIZBaat+u0kOZN0PpkYfKyT42Zk39pSu6o4+teLglIVKdi
+	lukXxg47VJJeipBIG3yLJA2xT0O/73Iy1LPfsLjCPR6oQ1Dd0RUr+AvpiHnaiILz1s/Q
+	D7Gg==
+X-Gm-Message-State: AMCzsaXQMUrSIlVVFUuk2h7CIaZbV2vnm43ppRhSnQ7vv66R2JiJYDUg
+	j4rPWu1fqXorDrCguziEVPc3kcZOFqgVetjgiL8=
+X-Google-Smtp-Source: ABhQp+QcVCUYhtIuIKPJ6CvtZl/XRDZcXE4/wA4vlPymG9EGIsmgXfzo90qajGMlzUd5HqADcpxUX9xyeIGhvxsfp8w=
+X-Received: by 10.13.252.66 with SMTP id m63mr1991248ywf.293.1509630560853;
+	Thu, 02 Nov 2017 06:49:20 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1509559196-26703-1-git-send-email-j-stiffler@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [oe-layersetup][PATCH] processor-sdk-morty-config: add meta-ros layer
+From: Adam Lee <adam.yh.lee@gmail.com>
+Date: Thu, 02 Nov 2017 13:49:10 +0000
+Message-ID: <CAFeBWL7qNnVC9ryX7bNt_JgYkrd11iJBZ_5Y3HRF+no4EwVBhQ@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: Building Xwayland
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,36 +49,50 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Nov 2017 22:15:48 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 02 Nov 2017 13:49:21 -0000
+Content-Type: multipart/alternative; boundary="94eb2c06ac48526426055d004186"
 
-I have a million questions... What's in meta-ros, why only processor-sdk, 
-etc., etc.
+--94eb2c06ac48526426055d004186
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Nov 01, 2017 at 01:59:56PM -0400, Jacob Stiffler wrote:
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->  configs/processor-sdk/processor-sdk-morty-config.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/configs/processor-sdk/processor-sdk-morty-config.txt b/configs/processor-sdk/processor-sdk-morty-config.txt
-> index 49d4957..ad5e815 100644
-> --- a/configs/processor-sdk/processor-sdk-morty-config.txt
-> +++ b/configs/processor-sdk/processor-sdk-morty-config.txt
-> @@ -4,6 +4,7 @@
->  bitbake,git://git.openembedded.org/bitbake,1.32,HEAD,layers=
->  meta-processor-sdk,git://arago-project.org/git/projects/meta-processor-sdk.git,master,HEAD,layers=
->  meta-arago,git://arago-project.org/git/meta-arago.git,morty,HEAD,layers=meta-arago-distro:meta-arago-extras
-> +meta-ros,https://github.com/bmwcarit/meta-ros.git,master,HEAD,layers=
->  meta-browser,git://github.com/OSSystems/meta-browser.git,master,HEAD,layers=
->  meta-openamp,git://github.com/OpenAMP/meta-openamp.git,morty,HEAD,layers=
->  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,HEAD,layers=
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Has anyone built Xwayland for Beagleboard X15 or AM57xx-EVM?
 
+There is no "official" support for X11 in the TI SDK. Only Wayland is
+present. I am hoping to run my X11 applications with Xwayland. I have
+included x11 and wayland in DISTRO_FEATURES, but weston-xwayland /
+xserver-xorg are refusing to build.
+
+OE/meta has core-image-weston [0] which should build Xwayland as well but
+it also fails at weston-xwayland / xserver-xorg.
+
+I notice there is an experimental branch [1] but it removes Wayland
+altogether and appears to be very experimental, so that is a no-go for me.
+
+[0]
+http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-graphics/images/core-image-weston.bb?h=master
+[1]
+http://arago-project.org/git/projects/?p=meta-processor-sdk.git;a=shortlog;h=refs/heads/morty-x11-experimental
+
+--94eb2c06ac48526426055d004186
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Has anyone built Xwayland for Beagleboard X15 or AM57xx-EV=
+M?<div><br></div><div>There is no &quot;official&quot; support for X11 in t=
+he TI SDK. Only Wayland is present. I am hoping to run my X11 applications =
+with Xwayland. I have included x11 and wayland in DISTRO_FEATURES, but west=
+on-xwayland / xserver-xorg are refusing to build.=C2=A0</div><div><br></div=
+><div>OE/meta has core-image-weston [0] which should build Xwayland as well=
+ but it also fails at weston-xwayland / xserver-xorg.=C2=A0</div><div><br><=
+/div><div>I notice there is an experimental branch [1] but it removes Wayla=
+nd altogether and appears to be very experimental, so that is a no-go for m=
+e.</div><div><br></div><div>[0]=C2=A0<a href=3D"http://cgit.openembedded.or=
+g/openembedded-core/tree/meta/recipes-graphics/images/core-image-weston.bb?=
+h=3Dmaster">http://cgit.openembedded.org/openembedded-core/tree/meta/recipe=
+s-graphics/images/core-image-weston.bb?h=3Dmaster</a></div><div>[1]=C2=A0<a=
+ href=3D"http://arago-project.org/git/projects/?p=3Dmeta-processor-sdk.git;=
+a=3Dshortlog;h=3Drefs/heads/morty-x11-experimental">http://arago-project.or=
+g/git/projects/?p=3Dmeta-processor-sdk.git;a=3Dshortlog;h=3Drefs/heads/mort=
+y-x11-experimental</a></div><div><br></div></div>
+
+--94eb2c06ac48526426055d004186--
