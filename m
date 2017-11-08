@@ -1,43 +1,38 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id BC3F952A3A
+Return-Path: <karthik.ramanan@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 09DD152A48
 	for <meta-arago@arago-project.org>;
-	Tue,  7 Nov 2017 18:20:57 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id vA7IKjAu025142
-	for <meta-arago@arago-project.org>; Tue, 7 Nov 2017 12:20:45 -0600
+	Wed,  8 Nov 2017 09:36:41 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id vA89afmZ023920
+	for <meta-arago@arago-project.org>; Wed, 8 Nov 2017 03:36:41 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1510078845;
-	bh=yiycyBZSKfG0mWkTp9wrm7jDIPCWo9tkaJAxrB6rAiQ=;
+	s=ti-com-17Q1; t=1510133801;
+	bh=0g+vi8hAn6+BRIpTD7DDJAjLd83qQdxJ737Vi5BOOUM=;
 	h=Subject:To:References:From:Date:In-Reply-To;
-	b=blQdjIswISh0dcnYZeN1wMm8G4VMif43Ct/tyKvWprwcPyADQmF6NRujMJ8eIr1os
-	OoxYpCDVWuE0YEXBVTQiygPQFqeaCkOCwk0E/MhGgf1tZwV0G4YJqew4HZtjk2JYhO
-	NejuKuEC0zsiQl0zHxE8ADN3EZttirx0Tfujtdl4=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vA7IKeTU016855
-	for <meta-arago@arago-project.org>; Tue, 7 Nov 2017 12:20:40 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 7 Nov 2017 12:20:40 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 7 Nov 2017 12:20:40 -0600
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id vA7IKegc001948
-	for <meta-arago@arago-project.org>; Tue, 7 Nov 2017 12:20:40 -0600
-To: <meta-arago@arago-project.org>
-References: <1509548771-27947-1-git-send-email-j-stiffler@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <84bf0f01-f69f-f272-55ad-311730db78f3@ti.com>
-Date: Tue, 7 Nov 2017 13:20:39 -0500
+	b=RRaUroPJTG53G2avuee7qedL9Rm8TzkIbg4Z5TTjejSwQ+YVa2R0DYK8rfTMha3Nk
+	57fwcCQxvMOrTW++Uu+jdpek608WF52Ho2Vys0aB8YUbWYPG5UH5VPSKKDBv17q065
+	CnraEAItuR04a3Xox7DCklYsZpX6oQmcuZIm9bYU=
+Received: from dbdlxv05.itg.ti.com (dbdlxv05.itg.ti.com [172.24.171.60])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id vA89aerE006634
+	for <meta-arago@arago-project.org>; Wed, 8 Nov 2017 03:36:41 -0600
+Received: from DBDE72.ent.ti.com (dbdmailx.itg.ti.com [172.24.171.97])
+	by dbdlxv05.itg.ti.com (8.14.3/8.13.8) with ESMTP id vA89acBi023327
+	for <meta-arago@arago-project.org>; Wed, 8 Nov 2017 15:06:39 +0530
+Received: from [10.87.38.24] (10.87.38.24) by DBDE72.ent.ti.com
+	(172.24.171.97) with Microsoft SMTP Server id 14.3.294.0;
+	Wed, 8 Nov 2017 15:06:35 +0530
+To: Ramprasad N <x0038811@ti.com>, <meta-arago@arago-project.org>
+References: <1510112505-15937-1-git-send-email-x0038811@ti.com>
+From: Karthik Ramanan <a0393906@ti.com>
+Message-ID: <4913a363-0e3b-8a93-88e3-d7187a795a2f@ti.com>
+Date: Wed, 8 Nov 2017 17:36:33 +0800
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
 	Thunderbird/52.4.0
 MIME-Version: 1.0
-In-Reply-To: <1509548771-27947-1-git-send-email-j-stiffler@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [RFC 1/2] recipe-data: add method get other recipe's info
+In-Reply-To: <1510112505-15937-1-git-send-email-x0038811@ti.com>
+X-Originating-IP: [10.87.38.24]
+Subject: Re: [morty PATCH] gstreamer1.0*-good: Increase v4l2src minimum buffers by 4
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,126 +45,75 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Nov 2017 18:20:59 -0000
+X-List-Received-Date: Wed, 08 Nov 2017 09:36:42 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-Any feedback on this approach?
+Looks good. ACK.
 
 
-One addition that I have realized would be beneficial is to provide a 
-shell function retrieve data similar to recipe_data_get_var().
-
-
-- Jake
-
-On 11/1/2017 11:06 AM, Jacob Stiffler wrote:
-> * This class provides a task to collect private recipe variables in
->    such a way that can be used by other recipes.
->
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+On 08-Nov-17 11:41 AM, Ramprasad N wrote:
+> Signed-off-by: Ramprasad N <x0038811@ti.com>
 > ---
->   meta-arago-distro/classes/recipe-data.bbclass | 91 +++++++++++++++++++++++++++
->   1 file changed, 91 insertions(+)
->   create mode 100644 meta-arago-distro/classes/recipe-data.bbclass
+>   ...v4l2src-Increase-minimum-num-buffers-by-4.patch | 33 ++++++++++++++++++++++
+>   .../gstreamer1.0-plugins-good_1.8.3.bbappend       |  8 ++++++
+>   2 files changed, 41 insertions(+)
+>   create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2src-Increase-minimum-num-buffers-by-4.patch
+>   create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.8.3.bbappend
 >
-> diff --git a/meta-arago-distro/classes/recipe-data.bbclass b/meta-arago-distro/classes/recipe-data.bbclass
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2src-Increase-minimum-num-buffers-by-4.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2src-Increase-minimum-num-buffers-by-4.patch
 > new file mode 100644
-> index 0000000..d4dbfd3
+> index 0000000..1af90c1
 > --- /dev/null
-> +++ b/meta-arago-distro/classes/recipe-data.bbclass
-> @@ -0,0 +1,91 @@
-> +# This class will record certain information about dependent recipes to a conf
-> +# file. This way it can be retrieved by other recipes. For example, this can be
-> +# used to obtain the SRC_URI for the SDK's SW manifest.
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2src-Increase-minimum-num-buffers-by-4.patch
+> @@ -0,0 +1,33 @@
+> +From 73254df370fec6a2eb1ae6711955307a1d4bf173 Mon Sep 17 00:00:00 2001
+> +From: Ramprasad N <x0038811@ti.com>
+> +Date: Fri, 13 Oct 2017 15:48:06 +0530
+> +Subject: [PATCH] v4l2src: Increase minimum num buffers by 4
 > +
-> +# Configuration file to record the recipe data.
-> +RECIPE_DATA_FILE ?= "${TMPDIR}/recipe_data.conf"
+> +v4l2src plugin allocates 4 buffers for the pipeline.
+> +To capture video in realtime the pipeline without frameloss,
+> +four buffers are not sufficient. Increase the
+> +number of buffers by 4 more.
 > +
-> +# Variables to record
-> +RECIPE_DATA_VARS ?= "PV SRC_URI FILE"
+> +Signed-off-by: Ramprasad N <x0038811@ti.com>
+> +---
+> + sys/v4l2/gstv4l2object.c | 4 +++-
+> + 1 file changed, 3 insertions(+), 1 deletion(-)
 > +
+> +diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
+> +index 549e06f..773f46d 100644
+> +--- a/sys/v4l2/gstv4l2object.c
+> ++++ b/sys/v4l2/gstv4l2object.c
+> +@@ -3939,7 +3939,9 @@ gst_v4l2_object_decide_allocation (GstV4l2Object * obj, GstQuery * query)
+> +      * to fill the pipeline, the minimum required to decoder according to the
+> +      * driver and 1 more, so we don't endup up with everything downstream or
+> +      * held by the decoder. */
+> +-    own_min = min + obj->min_buffers + 1;
+> ++    /* Increase the number of buffers required by 4 more to capture video in
+> ++     * realtime. With default number of 4 buffers, frame loss is observed */
+> ++    own_min = min + obj->min_buffers + 5;
 > +
-> +# Helper to load the data from the conf file
-> +def recipe_data_load(d, recipe_data = bb.data.init()):
-> +    fn = d.getVar('RECIPE_DATA_FILE', True)
+> +     /* If no allocation parameters where provided, allow for a little more
+> +      * buffers and enable copy threshold */
+> +--
+> +1.9.1
 > +
-> +    if not fn:
-> +        bb.fatal('"RECIPE_DATA_FILE" is not defined!')
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.8.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.8.3.bbappend
+> new file mode 100644
+> index 0000000..29a07b2
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.8.3.bbappend
+> @@ -0,0 +1,8 @@
+> +PR_append = ".arago0"
 > +
-> +    if os.path.exists(fn):
-> +        with bb.utils.fileslocked([fn + '.lock']):
-> +            try:
-> +                bb.parse.handle(fn, recipe_data)
-> +            except Exception as e:
-> +                bb.warn('ERROR parsing "%s"' % fn)
-> +                bb.fatal(str(e))
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 > +
-> +    return recipe_data
+> +SRC_URI += " \
+> +      file://0001-v4l2src-Increase-minimum-num-buffers-by-4.patch \
+> +      "
 > +
-> +
-> +def recipe_data_get_var(var, pn, d):
-> +    if var not in (d.getVar('RECIPE_DATA_VARS', True) or '').split():
-> +        bb.fatal('Variable "%s" was not configured to be recored' % var)
-> +
-> +    recipe_data = recipe_data_load(d)
-> +    return recipe_data.getVar('%s_pn-%s' % (var,pn), True)
-> +
-> +
-> +# Update the conf file with a new data.
-> +# Variables such as "FILE" and "TOPDIR" are filtered out by default.
-> +def recipe_data_update(fn, update_data, var_blacklist = ['__.*', 'FILE', 'TOPDIR'], expand = False):
-> +    import re
-> +
-> +    recipe_data = bb.data.init()
-> +
-> +    # Create the regex to filter out variables
-> +    re_blacklist = re.compile('^' + '$|^'.join(var_blacklist) + '$')
-> +    with bb.utils.fileslocked([fn + '.lock']):
-> +        try:
-> +            bb.parse.handle(fn, recipe_data)
-> +        except:
-> +            pass
-> +
-> +        for var in update_data.keys():
-> +            recipe_data.setVar(var, update_data.getVar(var,expand))
-> +
-> +        # We could use bb.data_smart's built in "emit_var", but that gives
-> +        # unnecessary comments.
-> +        with open(fn, "w") as f:
-> +            for var in recipe_data.keys():
-> +                if not re_blacklist.match(var):
-> +                    f.write('%s = "%s"\n' % (var, recipe_data.getVar(var,expand)))
-> +
-> +
-> +addtask emit_recipe_data
-> +do_emit_recipe_data[nostamp] = "1"
-> +python do_emit_recipe_data(){
-> +    recipe_vars = (d.getVar('RECIPE_DATA_VARS', True) or '').split()
-> +    recipe_data_file = d.getVar('RECIPE_DATA_FILE', True)
-> +
-> +    pn = d.getVar('PN', True) or bb.fatal('"PN" is not defined!')
-> +
-> +    data = bb.data.init()
-> +
-> +    # Set pn-${PN} to the overrides for convenience
-> +    data.setVar('OVERRIDES', 'pn-${PN}')
-> +    for var in recipe_vars:
-> +        val = d.getVar(var, True) or ''
-> +        data.setVar('%s_pn-%s' % (var, pn), val)
-> +
-> +    recipe_data_update(recipe_data_file, data)
-> +}
-> +
-> +# Add empty task to control dependencies
-> +addtask emit_recipe_data_all after do_emit_recipe_data
-> +do_emit_recipe_data_all[noexec] = "1"
-> +do_emit_recipe_data_all[nostamp] = "1"
-> +do_emit_recipe_data_all[recrdeptask] = "do_emit_recipe_data_all do_emit_recipe_data"
-> +do_emit_recipe_data_all[recideptask] = "do_${BB_DEFAULT_TASK}"
-> +do_emit_recipe_data_all() {
-> +    :
-> +}
 
 
