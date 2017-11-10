@@ -1,46 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id BE99452A82
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 6737052A86
 	for <meta-arago@arago-project.org>;
-	Thu,  9 Nov 2017 16:28:13 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id vA9GS3fu006799
-	for <meta-arago@arago-project.org>; Thu, 9 Nov 2017 10:28:03 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1510244883;
-	bh=v7GwJek0OrbkbzK4MXqQVeylMzpGECF5c1dUFzqmrvM=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=FxOKjJHBQ6Qg92ixL2qgmN9z1y+N3HbxbnIzvwyfY4ygIr5t+v4vU9zeSpu8V4HzM
-	bqFJdOl+KnK4TiGWv83D95JmzyNIf6e/P8Wt5jb3ZqGe3+52QDJKBGk/9Mbb1CjhMd
-	xalBBiNf1WskRVYxinRAvegBlWTpsSn4SdQ2jtUo=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vA9GRwYB014333
-	for <meta-arago@arago-project.org>; Thu, 9 Nov 2017 10:27:58 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Thu, 9 Nov 2017 10:27:58 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Thu, 9 Nov 2017 10:27:58 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id vA9GRwNG018288;
-	Thu, 9 Nov 2017 10:27:58 -0600
-Date: Thu, 9 Nov 2017 11:27:42 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Karthik Ramanan <a0393906@ti.com>
-Message-ID: <20171109162742.GA24755@edge>
-References: <1510112505-15937-1-git-send-email-x0038811@ti.com>
-	<4913a363-0e3b-8a93-88e3-d7187a795a2f@ti.com>
-	<20171108144504.GA12918@edge>
-	<48c70982-7a4a-d4ca-0388-803733879496@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <48c70982-7a4a-d4ca-0388-803733879496@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org, Ramprasad N <x0038811@ti.com>
-Subject: Re: [morty PATCH] gstreamer1.0*-good: Increase v4l2src minimum buffers by 4
+	Fri, 10 Nov 2017 00:25:04 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 30F5A20901;
+	Fri, 10 Nov 2017 00:25:04 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id oqChFpehXh8M; Fri, 10 Nov 2017 00:25:04 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0F7B8202B9;
+	Fri, 10 Nov 2017 00:25:03 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 7CB75162713;
+	Thu,  9 Nov 2017 19:25:02 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu,  9 Nov 2017 19:25:02 -0500
+Message-Id: <1510273502-97565-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [oe-layersetup][PATCH] arago-rocko-config: add initial rocko configuration
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,92 +37,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Nov 2017 16:28:15 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 10 Nov 2017 00:25:05 -0000
 
-On Thu, Nov 09, 2017 at 09:33:46PM +0800, Karthik Ramanan wrote:
-> Denys,
-> 
-> 
-> On 08-Nov-17 10:45 PM, Denys Dmytriyenko wrote:
-> >On Wed, Nov 08, 2017 at 05:36:33PM +0800, Karthik Ramanan wrote:
-> >>Looks good. ACK.
-> >Where's the patch?
-> Are you referring to the patch missing in the patchwork on the
-> meta-arago list? Even I was wondering why I couldn't find it.
+From: Denys Dmytriyenko <denys@ti.com>
 
-The patch was not on the list.
+Some layers still use master for now.
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ configs/arago-rocko-config.txt | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+ create mode 100644 configs/arago-rocko-config.txt
 
-> Or is it something else?
-> >
-> >
-> >>On 08-Nov-17 11:41 AM, Ramprasad N wrote:
-> >>>Signed-off-by: Ramprasad N <x0038811@ti.com>
-> >>>---
-> >>>  ...v4l2src-Increase-minimum-num-buffers-by-4.patch | 33 ++++++++++++++++++++++
-> >>>  .../gstreamer1.0-plugins-good_1.8.3.bbappend       |  8 ++++++
-> >>>  2 files changed, 41 insertions(+)
-> >>>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2src-Increase-minimum-num-buffers-by-4.patch
-> >>>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.8.3.bbappend
-> >>>
-> >>>diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2src-Increase-minimum-num-buffers-by-4.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2src-Increase-minimum-num-buffers-by-4.patch
-> >>>new file mode 100644
-> >>>index 0000000..1af90c1
-> >>>--- /dev/null
-> >>>+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2src-Increase-minimum-num-buffers-by-4.patch
-> >>>@@ -0,0 +1,33 @@
-> >>>+From 73254df370fec6a2eb1ae6711955307a1d4bf173 Mon Sep 17 00:00:00 2001
-> >>>+From: Ramprasad N <x0038811@ti.com>
-> >>>+Date: Fri, 13 Oct 2017 15:48:06 +0530
-> >>>+Subject: [PATCH] v4l2src: Increase minimum num buffers by 4
-> >>>+
-> >>>+v4l2src plugin allocates 4 buffers for the pipeline.
-> >>>+To capture video in realtime the pipeline without frameloss,
-> >>>+four buffers are not sufficient. Increase the
-> >>>+number of buffers by 4 more.
-> >>>+
-> >>>+Signed-off-by: Ramprasad N <x0038811@ti.com>
-> >>>+---
-> >>>+ sys/v4l2/gstv4l2object.c | 4 +++-
-> >>>+ 1 file changed, 3 insertions(+), 1 deletion(-)
-> >>>+
-> >>>+diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
-> >>>+index 549e06f..773f46d 100644
-> >>>+--- a/sys/v4l2/gstv4l2object.c
-> >>>++++ b/sys/v4l2/gstv4l2object.c
-> >>>+@@ -3939,7 +3939,9 @@ gst_v4l2_object_decide_allocation (GstV4l2Object * obj, GstQuery * query)
-> >>>+      * to fill the pipeline, the minimum required to decoder according to the
-> >>>+      * driver and 1 more, so we don't endup up with everything downstream or
-> >>>+      * held by the decoder. */
-> >>>+-    own_min = min + obj->min_buffers + 1;
-> >>>++    /* Increase the number of buffers required by 4 more to capture video in
-> >>>++     * realtime. With default number of 4 buffers, frame loss is observed */
-> >>>++    own_min = min + obj->min_buffers + 5;
-> >>>+
-> >>>+     /* If no allocation parameters where provided, allow for a little more
-> >>>+      * buffers and enable copy threshold */
-> >>>+--
-> >>>+1.9.1
-> >>>+
-> >>>diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.8.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.8.3.bbappend
-> >>>new file mode 100644
-> >>>index 0000000..29a07b2
-> >>>--- /dev/null
-> >>>+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.8.3.bbappend
-> >>>@@ -0,0 +1,8 @@
-> >>>+PR_append = ".arago0"
-> >>>+
-> >>>+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> >>>+
-> >>>+SRC_URI += " \
-> >>>+      file://0001-v4l2src-Increase-minimum-num-buffers-by-4.patch \
-> >>>+      "
-> >>>+
-> >>_______________________________________________
-> >>meta-arago mailing list
-> >>meta-arago@arago-project.org
-> >>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
+diff --git a/configs/arago-rocko-config.txt b/configs/arago-rocko-config.txt
+new file mode 100644
+index 0000000..8ce7fff
+--- /dev/null
++++ b/configs/arago-rocko-config.txt
+@@ -0,0 +1,13 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.36,HEAD,layers=
++meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,HEAD,layers=
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,rocko,HEAD,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,rocko,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome
++meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,rocko,HEAD,layers=meta-linaro-toolchain:meta-optee
++oe-core,git://git.openembedded.org/openembedded-core,rocko,HEAD,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+-- 
+2.7.4
+
 
