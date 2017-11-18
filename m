@@ -1,30 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 9B9CC529D4
+	by arago-project.org (Postfix) with ESMTPS id 81FD9529D4
 	for <meta-arago@arago-project.org>;
-	Fri, 17 Nov 2017 23:06:45 +0000 (UTC)
+	Sat, 18 Nov 2017 04:35:20 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 641EF20B84;
-	Fri, 17 Nov 2017 23:06:45 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 8524220B64;
+	Sat, 18 Nov 2017 04:35:19 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id gRGLGaOdPoZk; Fri, 17 Nov 2017 23:06:45 +0000 (UTC)
+	with ESMTP id DrVtoEtcPwv2; Sat, 18 Nov 2017 04:35:19 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3D92420B6D;
-	Fri, 17 Nov 2017 23:06:44 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5EA5A20B4D;
+	Sat, 18 Nov 2017 04:35:18 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id A326C162728;
-	Fri, 17 Nov 2017 18:06:43 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id CDFFE162731;
+	Fri, 17 Nov 2017 23:35:17 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 17 Nov 2017 18:06:42 -0500
-Message-Id: <1510960002-43443-1-git-send-email-denis@denix.org>
+Date: Fri, 17 Nov 2017 23:35:17 -0500
+Message-Id: <1510979717-84888-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [morty][PATCH] systemd: add backport from v234 to help with rare missing serial device issue
+Subject: [morty/master][PATCH v2] ltp-ddt: update to latest 20170929 base
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,359 +37,170 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Nov 2017 23:06:46 -0000
+X-List-Received-Date: Sat, 18 Nov 2017 04:35:21 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Issue discussed and patch identified by AGL:
-https://jira.automotivelinux.org/browse/SPEC-544
+Drop the do_compile_prepend function, because the upstream already fix
+the parallel make race, we can check it here:
+https://github.com/linux-test-project/ltp/commit/3f385652efe811fe7491474f8513baf44cf0a12d
+
+Sync up with oe-core on DEPENDS/RDEPENDS/SKIP_*
+
+Disable TI RPC (Transport-Independent RPC) due to missing dependency
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../systemd/backport-v234-e266c06-v230.patch       | 315 +++++++++++++++++++++
- .../recipes-core/systemd/systemd_%.bbappend        |   3 +-
- 2 files changed, 317 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-distro/recipes-core/systemd/systemd/backport-v234-e266c06-v230.patch
+v2 - disable TI RPC dependency
 
-diff --git a/meta-arago-distro/recipes-core/systemd/systemd/backport-v234-e266c06-v230.patch b/meta-arago-distro/recipes-core/systemd/systemd/backport-v234-e266c06-v230.patch
+ .../0003-Add-knob-to-control-tirpc-support.patch   | 45 ++++++++++++++++++
+ .../{ltp-ddt_20170116.bb => ltp-ddt_20170929.bb}   | 54 ++++++++++++++++------
+ 2 files changed, 85 insertions(+), 14 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0003-Add-knob-to-control-tirpc-support.patch
+ rename meta-arago-extras/recipes-devtools/ltp-ddt/{ltp-ddt_20170116.bb => ltp-ddt_20170929.bb} (55%)
+
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0003-Add-knob-to-control-tirpc-support.patch b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0003-Add-knob-to-control-tirpc-support.patch
 new file mode 100644
-index 0000000..013c128
+index 0000000..bf1176f
 --- /dev/null
-+++ b/meta-arago-distro/recipes-core/systemd/systemd/backport-v234-e266c06-v230.patch
-@@ -0,0 +1,315 @@
-+commit e266c068b5597e18b2299f9c9d3ee6cf04198c41
-+Author: Michal Sekletar <msekleta@redhat.com>
-+Date:   Mon Jan 23 17:12:35 2017 +0100
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0003-Add-knob-to-control-tirpc-support.patch
+@@ -0,0 +1,45 @@
++From b193011da301b3d944e8fddcf4817513c31c5b88 Mon Sep 17 00:00:00 2001
++From: Fathi Boudra <fathi.boudra@linaro.org>
++Date: Thu, 7 Jan 2016 17:36:19 +0000
++Subject: [PATCH 03/32] Add knob to control tirpc support
 +
-+    service: serialize information about currently executing command
-+    
-+    Stored information will help us to resume execution after the
-+    daemon-reload.
-+    
-+    This commit implements following scheme,
-+    
-+    * On serialization:
-+      - we count rank of the currently executing command
-+      - we store command type, its rank and command line arguments
-+    
-+    * On deserialization:
-+      - configuration is parsed and loaded
-+      - we deserialize stored data, command type, rank and arguments
-+      - we look at the given rank in the list and if command there has same
-+        arguments then we restore execution at that point
-+      - otherwise we search respective command list and we look for command
-+        that has the same arguments
-+      - if both methods fail we do not do not resume execution at all
-+    
-+    To better illustrate how does above scheme works, please consider
-+    following cases (<<< denotes position where we resume execution after reload)
-+    
-+    ; Original unit file
-+    [Service]
-+    ExecStart=/bin/true <<<
-+    ExecStart=/bin/false
-+    
-+    ; Swapped commands
-+    ; Second command is not going to be executed
-+    [Service]
-+    ExecStart=/bin/false
-+    ExecStart=/bin/true <<<
-+    
-+    ; Commands added before
-+    ; Same commands are problematic and execution could be restarted at wrong place
-+    [Service]
-+    ExecStart=/bin/foo
-+    ExecStart=/bin/bar
-+    ExecStart=/bin/true <<<
-+    ExecStart=/bin/false
-+    
-+    ; Commands added after
-+    ; Same commands are not an issue in this case
-+    [Service]
-+    ExecStart=/bin/true <<<
-+    ExecStart=/bin/false
-+    ExecStart=/bin/foo
-+    ExecStart=/bin/bar
-+    
-+    ; New commands interleaved with old commands
-+    ; Some new commands will be executed while others won't
-+    ExecStart=/bin/foo
-+    ExecStart=/bin/true <<<
-+    ExecStart=/bin/bar
-+    ExecStart=/bin/false
-+    
-+    As you can see, above scheme has some drawbacks. However, in most
-+    cases (we assume that in most common case unit file command list is not
-+    changed while some other command is running for the same unit) it
-+    should cause that systemd does the right thing, which is restoring
-+    execution exactly at the point we were before daemon-reload.
-+    
-+    Fixes #518
++allow to disable tirpc. Helps to disable it at top level for eg. musl it
++does not yet work.
 +
-+Signed-off-by: Scott Murray <scott.murray@konsulko.com>
++Signed-off-by: Fathi Boudra <fathi.boudra@linaro.org>
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++---
++ configure.ac | 9 +++++++++
++ 1 file changed, 9 insertions(+)
 +
-+Upstream-Status: backport
++diff --git a/configure.ac b/configure.ac
++index cc50397..9e2936b 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -98,6 +98,13 @@ if test "x$with_python" = xyes; then
++ else
++     AC_SUBST([WITH_PYTHON],["no"])
++ fi
+++
+++# TI RPC
+++AC_ARG_WITH([tirpc],
+++  AC_HELP_STRING([--without-tirpc],
+++    [without libtirpc support]),
+++  [],[with_tirpc=yes],
+++)
++ # END tools knobs
++ 
++ # Testsuites knobs
++@@ -169,7 +176,9 @@ LTP_CHECK_RENAMEAT2
++ LTP_CHECK_FALLOCATE
++ LTP_CHECK_SYSCALL_FCNTL
++ LTP_CHECK_SYSCALL_PERF_EVENT_OPEN
+++if test "x$with_tirpc" = xyes; then
++ LTP_CHECK_TIRPC
+++fi
++ LTP_CHECK_TEE
++ LTP_CHECK_SPLICE
++ LTP_CHECK_VMSPLICE
++-- 
++2.7.0
 +
-+diff --git a/src/core/service.c b/src/core/service.c
-+index 7ebabca5d..faa65efca 100644
-+--- a/src/core/service.c
-++++ b/src/core/service.c
-+@@ -45,6 +45,7 @@
-+ #include "service.h"
-+ #include "signal-util.h"
-+ #include "special.h"
-++#include "stdio-util.h"
-+ #include "string-table.h"
-+ #include "string-util.h"
-+ #include "strv.h"
-+@@ -2059,6 +2060,80 @@ _pure_ static bool service_can_reload(Unit *u) {
-+         return !!s->exec_command[SERVICE_EXEC_RELOAD];
-+ }
-+ 
-++static unsigned service_exec_command_index(Unit *u, ServiceExecCommand id, ExecCommand *current) {
-++        Service *s = SERVICE(u);
-++        unsigned idx = 0;
-++        ExecCommand *first, *c;
-++
-++        assert(s);
-++
-++        first = s->exec_command[id];
-++
-++        /* Figure out where we are in the list by walking back to the beginning */
-++        for (c = current; c != first; c = c->command_prev)
-++                idx++;
-++
-++        return idx;
-++}
-++
-++static int service_serialize_exec_command(Unit *u, FILE *f, ExecCommand *command) {
-++        Service *s = SERVICE(u);
-++        ServiceExecCommand id;
-++        unsigned idx;
-++        const char *type;
-++        char **arg;
-++        _cleanup_strv_free_ char **escaped_args = NULL;
-++        _cleanup_free_ char *args = NULL, *p = NULL;
-++        size_t allocated = 0, length = 0;
-++
-++        assert(s);
-++        assert(f);
-++
-++        if (!command)
-++                return 0;
-++
-++        if (command == s->control_command) {
-++                type = "control";
-++                id = s->control_command_id;
-++        } else {
-++                type = "main";
-++                id = SERVICE_EXEC_START;
-++        }
-++
-++        idx = service_exec_command_index(u, id, command);
-++
-++        STRV_FOREACH(arg, command->argv) {
-++                size_t n;
-++                _cleanup_free_ char *e = NULL;
-++
-++                e = xescape(*arg, WHITESPACE);
-++                if (!e)
-++                        return -ENOMEM;
-++
-++                n = strlen(e);
-++                if (!GREEDY_REALLOC(args, allocated, length + 1 + n + 1))
-++                        return -ENOMEM;
-++
-++                if (length > 0)
-++                        args[length++] = ' ';
-++
-++                memcpy(args + length, e, n);
-++                length += n;
-++        }
-++
-++        if (!GREEDY_REALLOC(args, allocated, length + 1))
-++                return -ENOMEM;
-++        args[length++] = 0;
-++
-++        p = xescape(command->path, WHITESPACE);
-++        if (!p)
-++                return -ENOMEM;
-++
-++        fprintf(f, "%s-command=%s %u %s %s\n", type, service_exec_command_to_string(id), idx, p, args);
-++
-++        return 0;
-++}
-++
-+ static int service_serialize(Unit *u, FILE *f, FDSet *fds) {
-+         Service *s = SERVICE(u);
-+         ServiceFDStore *fs;
-+@@ -2086,11 +2161,8 @@ static int service_serialize(Unit *u, FILE *f, FDSet *fds) {
-+         if (r < 0)
-+                 return r;
-+ 
-+-        /* FIXME: There's a minor uncleanliness here: if there are
-+-         * multiple commands attached here, we will start from the
-+-         * first one again */
-+-        if (s->control_command_id >= 0)
-+-                unit_serialize_item(u, f, "control-command", service_exec_command_to_string(s->control_command_id));
-++        service_serialize_exec_command(u, f, s->control_command);
-++        service_serialize_exec_command(u, f, s->main_command);
-+ 
-+         r = unit_serialize_item_fd(u, f, fds, "stdin-fd", s->stdin_fd);
-+         if (r < 0)
-+@@ -2137,6 +2209,106 @@ static int service_serialize(Unit *u, FILE *f, FDSet *fds) {
-+         return 0;
-+ }
-+ 
-++static int service_deserialize_exec_command(Unit *u, const char *key, const char *value) {
-++        Service *s = SERVICE(u);
-++        int r;
-++        unsigned idx = 0, i;
-++        bool control, found = false;
-++        ServiceExecCommand id = _SERVICE_EXEC_COMMAND_INVALID;
-++        ExecCommand *command = NULL;
-++        _cleanup_free_ char *args = NULL, *path = NULL;
-++        _cleanup_strv_free_ char **argv = NULL;
-++
-++        enum ExecCommandState {
-++                STATE_EXEC_COMMAND_TYPE,
-++                STATE_EXEC_COMMAND_INDEX,
-++                STATE_EXEC_COMMAND_PATH,
-++                STATE_EXEC_COMMAND_ARGS,
-++                _STATE_EXEC_COMMAND_MAX,
-++                _STATE_EXEC_COMMAND_INVALID = -1,
-++        } state;
-++
-++        assert(s);
-++        assert(key);
-++        assert(value);
-++
-++        control = streq(key, "control-command");
-++
-++        state = STATE_EXEC_COMMAND_TYPE;
-++
-++        for (;;) {
-++                _cleanup_free_ char *arg = NULL;
-++
-++                r = extract_first_word(&value, &arg, NULL, EXTRACT_CUNESCAPE);
-++                if (r == 0)
-++                        break;
-++                else if (r < 0)
-++                        return r;
-++
-++                switch (state) {
-++                case STATE_EXEC_COMMAND_TYPE:
-++                        id = service_exec_command_from_string(arg);
-++                        if (id < 0)
-++                                return -EINVAL;
-++
-++                        state = STATE_EXEC_COMMAND_INDEX;
-++                        break;
-++                case STATE_EXEC_COMMAND_INDEX:
-++                        r = safe_atou(arg, &idx);
-++                        if (r < 0)
-++                                return -EINVAL;
-++
-++                        state = STATE_EXEC_COMMAND_PATH;
-++                        break;
-++                case STATE_EXEC_COMMAND_PATH:
-++                        path = arg;
-++                        arg = NULL;
-++                        state = STATE_EXEC_COMMAND_ARGS;
-++
-++                        if (!path_is_absolute(path))
-++                                return -EINVAL;
-++                        break;
-++                case STATE_EXEC_COMMAND_ARGS:
-++                        r = strv_extend(&argv, arg);
-++                        if (r < 0)
-++                                return -ENOMEM;
-++                        break;
-++                default:
-++                        assert_not_reached("Unknown error at deserialization of exec command");
-++                        break;
-++                }
-++        }
-++
-++        if (state != STATE_EXEC_COMMAND_ARGS)
-++                return -EINVAL;
-++
-++        /* Let's check whether exec command on given offset matches data that we just deserialized */
-++        for (command = s->exec_command[id], i = 0; command; command = command->command_next, i++) {
-++                if (i != idx)
-++                        continue;
-++
-++                found = strv_equal(argv, command->argv) && streq(command->path, path);
-++                break;
-++        }
-++
-++        if (!found) {
-++                /* Command at the index we serialized is different, let's look for command that exactly
-++                 * matches but is on different index. If there is no such command we will not resume execution. */
-++                for (command = s->exec_command[id]; command; command = command->command_next)
-++                        if (strv_equal(command->argv, argv) && streq(command->path, path))
-++                                break;
-++        }
-++
-++        if (command && control)
-++                s->control_command = command;
-++        else if (command)
-++                s->main_command = command;
-++        else
-++                log_unit_warning(u, "Current command vanished from the unit file, execution of the command list won't be resumed.");
-++
-++        return 0;
-++}
-++
-+ static int service_deserialize_item(Unit *u, const char *key, const char *value, FDSet *fds) {
-+         Service *s = SERVICE(u);
-+         int r;
-+@@ -2219,16 +2391,6 @@ static int service_deserialize_item(Unit *u, const char *key, const char *value,
-+                         s->status_text = t;
-+                 }
-+ 
-+-        } else if (streq(key, "control-command")) {
-+-                ServiceExecCommand id;
-+-
-+-                id = service_exec_command_from_string(value);
-+-                if (id < 0)
-+-                        log_unit_debug(u, "Failed to parse exec-command value: %s", value);
-+-                else {
-+-                        s->control_command_id = id;
-+-                        s->control_command = s->exec_command[id];
-+-                }
-+         } else if (streq(key, "socket-fd")) {
-+                 int fd;
-+ 
-+@@ -2328,6 +2490,10 @@ static int service_deserialize_item(Unit *u, const char *key, const char *value,
-+                         s->stderr_fd = fdset_remove(fds, fd);
-+                         s->exec_context.stdio_as_fds = true;
-+                 }
-++        } else if (STR_IN_SET(key, "main-command", "control-command")) {
-++                r = service_deserialize_exec_command(u, key, value);
-++                if (r < 0)
-++                        log_unit_debug_errno(u, r, "Failed to parse serialized command \"%s\": %m", value);
-+         } else
-+                 log_unit_debug(u, "Unknown serialization key: %s", key);
-+ 
-diff --git a/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend b/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend
-index 7f2ffb6..155d79e 100644
---- a/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend
-+++ b/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend
-@@ -1,4 +1,4 @@
--PR_append = ".arago4"
-+PR_append = ".arago5"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb
+similarity index 55%
+rename from meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
+rename to meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb
+index 245645d..6bf701b 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170116.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb
+@@ -4,25 +4,53 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-PR = "r29"
++PR = "r0"
+ PV_append = "+git${SRCPV}"
  
-@@ -17,6 +17,7 @@ SRC_URI_append = " \
-     file://0001-libsystemd-network-ipv4ll-probe-conflict-counter.patch \
-     file://0002-libsystemd-network-sd-ipv4ll-Wrapper-to-restart-addr.patch \
-     file://0003-libsystemd-network-sd-ipv4ll-acquire-new-address-aft.patch \
-+    file://backport-v234-e266c06-v230.patch \
+ PROVIDES += "ltp"
+-DEPENDS += "zip-native alsa-lib libaio"
++DEPENDS = "alsa-lib attr libaio libcap acl openssl zip-native"
+ 
+-RDEPENDS_${PN} += "pm-qa serialcheck gawk perl python3-core"
++RDEPENDS_${PN} = "\
++    acl \
++    at \
++    attr \
++    bash \
++    cpio \
++    cronie \
++    curl \
++    e2fsprogs-mke2fs \
++    expect \
++    gawk \
++    gzip \
++    iproute2 \
++    ldd \
++    libaio \
++    logrotate \
++    perl \
++    pm-qa \
++    python-core \
++    serialcheck \
++    unzip \
++    util-linux \
++    which \
++"
+ 
+ inherit autotools-brokensep
+ 
+-SRCREV = "ea64df36bc1f411bdcd20bf4057206f9e0cb7e52"
++SRCREV = "feec63612a16bb48cd1da698ca794d25ff03bedc"
+ BRANCH ?= "master"
+ 
+-SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
++SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
++    file://0003-Add-knob-to-control-tirpc-support.patch \
++"
+ 
+ S = "${WORKDIR}/git"
+ 
+ LTPROOT = "/opt/ltp"
+ 
++# disable TI RPC (Transport-Independent RPC) due to missing dependency
++EXTRA_OECONF += " --without-tirpc"
++
+ EXTRA_OEMAKE_append = " \
+     prefix=${LTPROOT} \
+     CROSS_COMPILE=${HOST_PREFIX} \
+@@ -50,17 +78,15 @@ FILES_${PN}-dbg += " \
+     ${LTPROOT}/testcases/realtime/*/*/.debug \
  "
  
- do_install_append() {
+-FILES_${PN}-staticdev += "${LTPROOT}/lib"
++FILES_${PN}-staticdev += "${LTPROOT}/lib ${LTPROOT}/lib/libmem.a ${LTPROOT}/testcases/data/nm01/lib.a"
+ FILES_${PN} += "${LTPROOT}/*"
+ 
+-# The makefiles make excessive use of make -C and several include testcases.mk
+-# which triggers a build of the syscall header. To reproduce, build ltp,
+-# then delete the header, then "make -j XX" and watch regen.sh run multiple
+-# times. Its easier to generate this once here instead.
+-do_compile_prepend () {
+-    ( make -C ${B}/testcases/kernel include/linux_syscall_numbers.h )
+-}
+-
+ do_install() {
+     oe_runmake install
+ }
++
++# Avoid file dependency scans, as LTP checks for things that may or may not
++# exist on the running system.  For instance it has specific checks for
++# csh and ksh which are not typically part of OpenEmbedded systems (but
++# can be added via additional layers.)
++SKIP_FILEDEPS_${PN} = '1'
 -- 
 2.7.4
 
