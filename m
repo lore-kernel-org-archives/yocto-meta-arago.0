@@ -1,41 +1,44 @@
-Return-Path: <yan-liu@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 6C55952986
+Return-Path: <h-gou@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id AE12C52986
 	for <meta-arago@arago-project.org>;
-	Mon, 27 Nov 2017 23:13:03 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id vARNCrD2019898
-	for <meta-arago@arago-project.org>; Mon, 27 Nov 2017 17:12:53 -0600
+	Mon, 27 Nov 2017 23:33:27 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id vARNXRkD014785
+	for <meta-arago@arago-project.org>; Mon, 27 Nov 2017 17:33:27 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1511824373;
-	bh=OGeK6fZd27i7HvNRmncihNyyMWzb3j6d3lwhiEc9lFU=;
-	h=From:To:CC:Subject:Date;
-	b=Xxgo2tMA4b0QQZXajvKDuqx4gvAS/Pa0YlI9Y3rKyt4iOp1n25ueUXgNck98hnvvM
-	6J+b1cMqZKW5FRWDxVWkcp5KdH293kVmigm4G4hgOVIr2tSfx6fAjsI4ydownpDVYG
-	UwUxq1GmgW2opjxN1k/V1JBswijQsqstHbFzLl/w=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id vARNCm2o010336
-	for <meta-arago@arago-project.org>; Mon, 27 Nov 2017 17:12:48 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1511825607;
+	bh=o1OuKZgnQoeE5d71vvZInjOy/HSDYziBz257A9PJv10=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=RjsH0oZdsCzkU+cRuAuLXvV7n1LRMkh7F2zPJXo3NgKHyBdqUPBOCJve6JdYSzUpS
+	ohHB4qxH2xHvZgcLhbe+6Ldgl7Z5G+zK06YVruJn/26eq+nBTrP0ixdcJ6y3KiwCTX
+	0RCd7tBnzKZiQzIfx5/MSDmrr4aALCKYHPzMcviA=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vARNXRpD019161
+	for <meta-arago@arago-project.org>; Mon, 27 Nov 2017 17:33:27 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Mon, 27 Nov 2017 17:12:47 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 27 Nov 2017 17:33:27 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Mon, 27 Nov 2017 17:12:47 -0600
-Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Mon, 27 Nov 2017 17:33:27 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id vARNClHn031052;
-	Mon, 27 Nov 2017 17:12:47 -0600
-From: <yan-liu@ti.com>
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id vARNXMTv002011;
+	Mon, 27 Nov 2017 17:33:26 -0600
+From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 27 Nov 2017 18:07:42 -0500
-Message-ID: <1511824062-2741-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Mon, 27 Nov 2017 18:33:16 -0500
+Message-ID: <1511825598-8552-2-git-send-email-a0271529@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1511825598-8552-1-git-send-email-a0271529@ti.com>
+References: <1511825598-8552-1-git-send-email-a0271529@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v2] ltp-ddt: Update to latest
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [PATCH 1/3] packagegroup-arago-tisdk-addons*: add cmem and cmem-mod for AM4
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,39 +51,80 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Nov 2017 23:13:03 -0000
+X-List-Received-Date: Mon, 27 Nov 2017 23:33:28 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
-
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb       | 3 ++-
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb     | 6 +++++-
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb   | 3 ++-
+ 3 files changed, 9 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb
-index ca30617..df3e854 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index 5fb877b..2175501 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install sources for additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r31"
++PR = "r32"
  
--PR = "r2"
-+PR = "r3"
- PV_append = "+git${SRCPV}"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- PROVIDES += "ltp"
-@@ -37,7 +37,7 @@ RDEPENDS_${PN} = "\
+@@ -51,6 +51,7 @@ EXTRA_LIBS_append_ti33x = " \
+ "
  
- inherit autotools-brokensep
+ EXTRA_LIBS_append_ti43x = " \
++    cmem-mod-src \
+     uio-module-drv-src \
+ "
  
--SRCREV = "53fa422841f1ed753728af61ca729baaa0519907"
-+SRCREV = "876a4a42bda33adad26ba4c89608b406b2d8cbc6"
- BRANCH ?= "master"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index 387d39e..21beca4 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
+ LICENSE = "MIT"
+-PR = "r37"
++PR = "r38"
  
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -127,6 +127,10 @@ UTILS_append_dra7xx = " can-utils-dev \
+ UTILS_append_k2g = " can-utils-dev"
+ 
+ EXTRA_LIBS = ""
++EXTRA_LIBS_append_ti43x = "\
++    cmem-dev \
++    cmem-staticdev \
++"
+ EXTRA_LIBS_append_omap-a15 = " cmem-dev"
+ EXTRA_LIBS_append_dra7xx = " libulm-dev \
+                              libulm-staticdev \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index a3944bc..31ff258 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r65"
++PR = "r66"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -107,6 +107,7 @@ EXTRA_LIBS_append_keystone = " \
+ "
+ 
+ EXTRA_LIBS_append_ti43x = " \
++    cmem \
+     uio-module-drv \
+ "
+ 
 -- 
-1.7.9.5
+1.9.1
 
 
