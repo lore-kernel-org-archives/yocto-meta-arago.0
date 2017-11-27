@@ -1,41 +1,41 @@
 Return-Path: <yan-liu@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id B36F252986
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 6C55952986
 	for <meta-arago@arago-project.org>;
-	Mon, 27 Nov 2017 23:11:45 +0000 (UTC)
+	Mon, 27 Nov 2017 23:13:03 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id vARNBjjv002030
-	for <meta-arago@arago-project.org>; Mon, 27 Nov 2017 17:11:45 -0600
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id vARNCrD2019898
+	for <meta-arago@arago-project.org>; Mon, 27 Nov 2017 17:12:53 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1511824305;
+	s=ti-com-17Q1; t=1511824373;
 	bh=OGeK6fZd27i7HvNRmncihNyyMWzb3j6d3lwhiEc9lFU=;
 	h=From:To:CC:Subject:Date;
-	b=H5vMsebuYkHghG6GXMLYAPk3PVRfmaC73/XUTixYQ7cf2KlfCk0kLhbo/Ypb49/lI
-	aVWxixVbaR3E3ir3E30ifY2+tT21jlVa/X66wjTPkAnqz/1lPGkTqi/99O4CnWRoZp
-	PEikaHTNxqW8n8PmuwpFY9wkH6CbQKpZXjQ9Th+Y=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id vARNBjRY009118
-	for <meta-arago@arago-project.org>; Mon, 27 Nov 2017 17:11:45 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	b=Xxgo2tMA4b0QQZXajvKDuqx4gvAS/Pa0YlI9Y3rKyt4iOp1n25ueUXgNck98hnvvM
+	6J+b1cMqZKW5FRWDxVWkcp5KdH293kVmigm4G4hgOVIr2tSfx6fAjsI4ydownpDVYG
+	UwUxq1GmgW2opjxN1k/V1JBswijQsqstHbFzLl/w=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id vARNCm2o010336
+	for <meta-arago@arago-project.org>; Mon, 27 Nov 2017 17:12:48 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Mon, 27 Nov 2017 17:11:45 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 27 Nov 2017 17:12:47 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Mon, 27 Nov 2017 17:11:45 -0600
+	Transport; Mon, 27 Nov 2017 17:12:47 -0600
 Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id vARNBjAm026236;
-	Mon, 27 Nov 2017 17:11:45 -0600
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id vARNClHn031052;
+	Mon, 27 Nov 2017 17:12:47 -0600
 From: <yan-liu@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 27 Nov 2017 18:06:40 -0500
-Message-ID: <1511824001-2699-1-git-send-email-yan-liu@ti.com>
+Date: Mon, 27 Nov 2017 18:07:42 -0500
+Message-ID: <1511824062-2741-1-git-send-email-yan-liu@ti.com>
 X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: [PATCH v2] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,7 +48,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Nov 2017 23:11:46 -0000
+X-List-Received-Date: Mon, 27 Nov 2017 23:13:03 -0000
 Content-Type: text/plain
 
 From: Yan Liu <yan-liu@ti.com>
