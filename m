@@ -1,43 +1,37 @@
-Return-Path: <manishalocal@uda0393239>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 0340052985
+Return-Path: <eyalr@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 05C9852A42
 	for <meta-arago@arago-project.org>;
-	Fri,  1 Dec 2017 02:27:21 +0000 (UTC)
+	Sun,  3 Dec 2017 10:38:06 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id vAUMXHSF009874
-	for <meta-arago@arago-project.org>; Thu, 30 Nov 2017 16:33:17 -0600
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id vB3Ac6te000674
+	for <meta-arago@arago-project.org>; Sun, 3 Dec 2017 04:38:06 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1512081197;
-	bh=65nhKWSJS+CAewRg2ZKx0lIZLmzI/eY4jKK/2raUgeA=;
+	s=ti-com-17Q1; t=1512297486;
+	bh=I7m5RxKm972yOWzgHdfUVF/mrAzvlTlH9NrUdImyRUA=;
 	h=From:To:CC:Subject:Date;
-	b=JwZz5rF/RuixBRXEyAYJFPly8jGbGBRmnYzHrSJsD5VhPuFOwgtlcWfhT5YV8UFwQ
-	dj+OB3L0PgrzCDBDMR2XS7+xnJLj5X49V50ywLV1leyLFs8TcL9AdEjgKAY/T8zDnL
-	DqC+Zb8/j5zkU6OzWV7GIJcBiZwmv9IsJVbytqDs=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id vAUMXHqt018956
-	for <meta-arago@arago-project.org>; Thu, 30 Nov 2017 16:33:17 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Thu, 30 Nov 2017 16:33:17 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Thu, 30 Nov 2017 16:33:17 -0600
-Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id vAUMXH9G004820;
-	Thu, 30 Nov 2017 16:33:17 -0600
-Received: from manishalocal by uda0393239 with local (Exim 4.82)
-	(envelope-from <manishalocal@uda0393239>)
-	id 1eKXOP-0008GY-2N; Thu, 30 Nov 2017 16:33:17 -0600
-From: Manisha Agrawal <manisha.agrawal@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 30 Nov 2017 16:33:08 -0600
-Message-ID: <20171130223308.31738-1-manisha.agrawal@ti.com>
-X-Mailer: git-send-email 2.13.0
+	b=HYDtgELmBla2zbbZ9v07/MMsPHfB/41OA8QmlfQL+fdJ9GlorUC+iltGgfQPalDgm
+	gey0aTt0UKhrmm6Wv/dJ/1wvr6TD9g/M6KbCU4YFoTKgsalDS2+RDcs66Z5oc2v4Os
+	6Gq+KJnK2yxuIOuo0WNxusHV9lsFgkn0/lxRytyU=
+Received: from DFRE71.ent.ti.com (dfre71.ent.ti.com [10.167.188.35])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB3Ac5Up012052
+	for <meta-arago@arago-project.org>; Sun, 3 Dec 2017 04:38:06 -0600
+Received: from DFRE01.ent.ti.com ([fe80::b027:5293:c8d8:d82a]) by
+	DFRE71.ent.ti.com ([fe80::1d1a:fb50:7d9b:ab68%31]) with mapi id
+	14.03.0294.000; Sun, 3 Dec 2017 11:38:05 +0100
+From: "Reizer, Eyal" <eyalr@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: [PATCH 0/2] wl18xx: add recipes for building R8.7_SP3
+Thread-Index: AdNsIsiEuZtQQr8bQw21tdPCkzAHrw==
+Date: Sun, 3 Dec 2017 10:38:04 +0000
+Message-ID: <8665E2433BC68541A24DFFCA87B70F5B364A85A7@DFRE01.ent.ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.167.188.94]
+x-exclaimer-md-config: f9c360f5-3d1e-4c3c-8703-f45bf52eff6b
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH v1] recipes-multimedia : video-graphics-test : fix make install error
+Subject: [PATCH 0/2] wl18xx: add recipes for building R8.7_SP3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,30 +44,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Dec 2017 02:27:23 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sun, 03 Dec 2017 10:38:07 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Recipe update with commit id having fix for make install error
+R8.7_SP3 contains WPA2 vulnurability fixes.
 
-Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
----
- recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Fixes: LCPD-11124
 
-diff --git a/recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb b/recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb
-index 28aacdf..c19af16 100644
---- a/recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb
-+++ b/recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb
-@@ -9,7 +9,7 @@ DEPENDS += "libdrm"
- PR = "r0"
- 
- BRANCH = "master"
--SRCREV = "ebc7ab44d05fc726b0ddc7f4b45d71d7509313f5"
-+SRCREV = "3b3007680845d39784146396a2dd2a68aa1a2283"
- 
- SRC_URI = "git://git.ti.com/sitara-linux/video-graphics-test.git;protocol=git;branch=${BRANCH} \
- "
--- 
-2.13.0
+Eyal Reizer (2):
+  wpa-supplicant-wl18xx: update recipe for version R8.7_SP3
+  hostap-daemon-wl18xx: update recipe for version R8.7_SP3
+
+ .../recipes-connectivity/hostap/hostap-daemon-wl18xx.bb  | 12 ++++++------
+ .../wpa-supplicant/wpa-supplicant-wl18xx.bb              | 16 ++++++++----=
+----
+ 2 files changed, 14 insertions(+), 14 deletions(-)
+
+--=20
+2.7.4
 
 
