@@ -1,38 +1,30 @@
-Return-Path: <eyalr@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id A058F52A23
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 0A15352A46
 	for <meta-arago@arago-project.org>;
-	Sun,  3 Dec 2017 10:39:08 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id vB3Ad8xA001815
-	for <meta-arago@arago-project.org>; Sun, 3 Dec 2017 04:39:08 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1512297548;
-	bh=ye1fos/gHxVv+z4FRKJ9yAeN7dx2CDhn480ruHGxYd0=;
-	h=From:To:CC:Subject:Date;
-	b=WChoMbXTmJfLbE6co5uAa+DJytEAbouHmPvqOxOxdCXQqYFilwhBm9qjTfd0kOAfi
-	qlmIWztgPIYaV+SITUW3NfBwNJeUKrR4YqQvP/qS/hEVVPsWwjgAdQ3nOYsM0OTLQO
-	lOxGrdexaYwTT8kt7YYrJOrn6XjBmSboMzN8J2fs=
-Received: from DFRE71.ent.ti.com (dfre71.ent.ti.com [10.167.188.35])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB3Ad7cs002759
-	for <meta-arago@arago-project.org>; Sun, 3 Dec 2017 04:39:07 -0600
-Received: from DFRE01.ent.ti.com ([fe80::b027:5293:c8d8:d82a]) by
-	DFRE71.ent.ti.com ([fe80::1d1a:fb50:7d9b:ab68%31]) with mapi id
-	14.03.0294.000; Sun, 3 Dec 2017 11:39:07 +0100
-From: "Reizer, Eyal" <eyalr@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [PATCH 2/2] hostap-daemon-wl18xx: update recipe for version
-	R8.7_SP3
-Thread-Index: AdNsIuzxfVM0HZj8T4WuxXAxtMxYZA==
-Date: Sun, 3 Dec 2017 10:39:06 +0000
-Message-ID: <8665E2433BC68541A24DFFCA87B70F5B364A85F9@DFRE01.ent.ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.167.188.94]
-x-exclaimer-md-config: f9c360f5-3d1e-4c3c-8703-f45bf52eff6b
-MIME-Version: 1.0
-Subject: [PATCH 2/2] hostap-daemon-wl18xx: update recipe for version R8.7_SP3
+	Mon,  4 Dec 2017 19:02:45 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 601D720B26;
+	Mon,  4 Dec 2017 19:02:44 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id SdDT1nE2GXrG; Mon,  4 Dec 2017 19:02:44 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 333372084E;
+	Mon,  4 Dec 2017 19:02:43 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id B229B162740;
+	Mon,  4 Dec 2017 14:02:42 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon,  4 Dec 2017 14:02:41 -0500
+Message-Id: <1512414162-119886-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [krogoth][PATCH 1/2] ltp-ddt: update to the latest known commit before 20170929 rebase
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,52 +37,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 03 Dec 2017 10:39:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 04 Dec 2017 19:02:45 -0000
 
-Signed-off-by: Eyal Reizer <eyalr@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-connectivity/hostap/hostap-daemon-wl18xx.bb      | 12 ++++++--=
-----
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl=
-18xx.bb b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18x=
-x.bb
-index 1151012..0288a54 100644
---- a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx.bb
-@@ -4,19 +4,19 @@
- require hostap.inc
-=20
- LICENSE =3D "GPLv2"
--LIC_FILES_CHKSUM =3D "file://../COPYING;md5=3D36b27801447e0662ee0138d17fe9=
-3880"
-+LIC_FILES_CHKSUM =3D "file://../COPYING;md5=3D292eece3f2ebbaa25608eed84640=
-18a3"
-=20
--PR_append =3D "d"
-+PR_append =3D "e"
-=20
- FILESEXTRAPATHS_append :=3D ":${THISDIR}/hostap-daemon"
-=20
- # Add TI to the end to make it clear that this is a TI customized version
- # of hostap
--PV =3D "R8.6-devel-ti+git${SRCPV}"
-+PV =3D "R8.7_SP3-devel-ti+git${SRCPV}"
-=20
--# Tag: R8.6
--SRCREV =3D "f80fe345acf103ba6882ac8396f19584ac184904"
--BRANCH =3D "upstream_24"
-+# Tag: R8.7_SP3
-+SRCREV =3D "ee8fbdb840d95e048f58fb62bf3b5472041b5417"
-+BRANCH =3D "upstream_25_rebase"
-=20
- PROVIDES +=3D "hostap-daemon"
- RPROVIDES_${PN} +=3D "hostap-daemon"
---=20
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb
+index 56f0b63..b48ab8d 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20160510.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+ 
+-PR = "r9"
++PR = "r10"
+ PV_append = "+git${SRCPV}"
+ 
+ PROVIDES += "ltp"
+@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "pm-qa serialcheck"
+ 
+ inherit autotools-brokensep
+ 
+-SRCREV = "a45af5cba34a1eda75ec55b3259ca05d83dad9b6"
++SRCREV = "ea64df36bc1f411bdcd20bf4057206f9e0cb7e52"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH}"
+-- 
 2.7.4
 
 
