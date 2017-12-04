@@ -1,30 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 211FA52A40
+Return-Path: <e-ruei1@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 6073A52A40
 	for <meta-arago@arago-project.org>;
-	Mon,  4 Dec 2017 21:17:21 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A597320B21;
-	Mon,  4 Dec 2017 21:17:15 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id j9jx7MRfa3qo; Mon,  4 Dec 2017 21:17:15 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7CD1C207BA;
-	Mon,  4 Dec 2017 21:17:14 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id E6869162740;
-	Mon,  4 Dec 2017 16:17:13 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Mon,  4 Dec 2017 16:17:08 -0500
-Message-Id: <1512422231-43396-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH 1/4] pybind11: update to 2.2.1
+	Mon,  4 Dec 2017 23:17:10 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id vB4NGxQV030475
+	for <meta-arago@arago-project.org>; Mon, 4 Dec 2017 17:16:59 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1512429419;
+	bh=Tpu/BiVfJgvuoZRYqfmJKELSgWBv4Cbrm+SX5oPB3Ak=;
+	h=From:To:Subject:Date;
+	b=AwbxWzh1RqlZ0h0aMdl5a3892DJMWSJg9fjVFVh6RB5g63rpV2OXeonyhK8QtcRAM
+	OGTacmCAWmm9jKVGw+Nq2BM3HlGByRGX5tewvh2t0CCJtmgZeZZ7Byc5wj1X+zBZL8
+	QnSamsagMVyg9tUheHck/s8eeyhPVh7LTg1wGq7k=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB4NGsKR006011
+	for <meta-arago@arago-project.org>; Mon, 4 Dec 2017 17:16:54 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
+	Mon, 4 Dec 2017 17:16:54 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
+	Transport; Mon, 4 Dec 2017 17:16:54 -0600
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB4NGrr5005732
+	for <meta-arago@arago-project.org>; Mon, 4 Dec 2017 17:16:54 -0600
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 4 Dec 2017 18:16:38 -0500
+Message-ID: <1512429398-11919-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [meta-processor-sdk][PATCH] ti-xsgx-ddk-um: enable script xorg as executable
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,44 +48,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Dec 2017 21:17:21 -0000
+X-List-Received-Date: Mon, 04 Dec 2017 23:17:11 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- meta-arago-extras/recipes-devtools/python/python-pybind11.inc     | 8 ++++----
- .../python/{python-pybind11_1.8.1.bb => python-pybind11_2.2.1.bb} | 0
- .../{python3-pybind11_1.8.1.bb => python3-pybind11_2.2.1.bb}      | 0
- 3 files changed, 4 insertions(+), 4 deletions(-)
- rename meta-arago-extras/recipes-devtools/python/{python-pybind11_1.8.1.bb => python-pybind11_2.2.1.bb} (100%)
- rename meta-arago-extras/recipes-devtools/python/{python3-pybind11_1.8.1.bb => python3-pybind11_2.2.1.bb} (100%)
+ recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/python/python-pybind11.inc b/meta-arago-extras/recipes-devtools/python/python-pybind11.inc
-index e13f6a5..0f3d3cc 100644
---- a/meta-arago-extras/recipes-devtools/python/python-pybind11.inc
-+++ b/meta-arago-extras/recipes-devtools/python/python-pybind11.inc
-@@ -1,9 +1,9 @@
- SUMMARY = "Seamless operability between C++11 and Python"
- HOMEPAGE = "https://github.com/wjakob/pybind11"
- LICENSE = "BSD-2-Clause"
--LIC_FILES_CHKSUM = "file://PKG-INFO;md5=1e9383cd3e97753d7dd6067d079519ea"
-+LIC_FILES_CHKSUM = "file://PKG-INFO;md5=5399ae4d93a67b891d79b1e1cbfa4593"
- PR = "r0"
+diff --git a/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb b/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
+index 8bdf4bd..96cbb0e 100644
+--- a/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
++++ b/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
+@@ -33,7 +33,7 @@ INITSCRIPT_PARAMS = "defaults 8"
  
--SRC_URI = "https://pypi.python.org/packages/89/0b/f3a25633e49be5fae17ed2c7751c8106a08199db70e3c82e8cc043388ba9/pybind11-1.8.1.tar.gz"
--SRC_URI[md5sum] = "67845d8fd89a1c400dc7c61ccdee14d6"
--SRC_URI[sha256sum] = "358d4b7d8c38cd1dde66064178c6bbaaa2c479a44e67e642820fe0f329a4fff8"
-+SRC_URI = "https://pypi.python.org/packages/c9/f7/fc9c44bf088d942c71b04646891034036a63e5bd00daff1c9a377e0f5a9f/pybind11-2.2.1.tar.gz"
-+SRC_URI[md5sum] = "f454d8991f47befe56d4126df861fc96"
-+SRC_URI[sha256sum] = "a96a924fae6e2721efbf24f47561284fd1ea0b655619a8621c4423036183b824"
-diff --git a/meta-arago-extras/recipes-devtools/python/python-pybind11_1.8.1.bb b/meta-arago-extras/recipes-devtools/python/python-pybind11_2.2.1.bb
-similarity index 100%
-rename from meta-arago-extras/recipes-devtools/python/python-pybind11_1.8.1.bb
-rename to meta-arago-extras/recipes-devtools/python/python-pybind11_2.2.1.bb
-diff --git a/meta-arago-extras/recipes-devtools/python/python3-pybind11_1.8.1.bb b/meta-arago-extras/recipes-devtools/python/python3-pybind11_2.2.1.bb
-similarity index 100%
-rename from meta-arago-extras/recipes-devtools/python/python3-pybind11_1.8.1.bb
-rename to meta-arago-extras/recipes-devtools/python/python3-pybind11_2.2.1.bb
+ inherit update-rc.d
+ 
+-PR = "r2"
++PR = "r3"
+ PROVIDES += "virtual/egl virtual/libgles1 virtual/libgles2 omap5-xsgx-ddk-um-linux"
+ 
+ DEPENDS += "udev"
+@@ -56,7 +56,7 @@ S = "${WORKDIR}/git"
+ 
+ do_install () {
+     oe_runmake install DESTDIR=${D} TARGET_PRODUCT=${TARGET_PRODUCT}
+-    install -m 0644 ${WORKDIR}/xorg ${D}${sysconfdir}/init.d/
++    install -m 0755 ${WORKDIR}/xorg ${D}${sysconfdir}/init.d/
+ }
+ 
+ SYSROOT_DIRS_append = "/usr/local"
 -- 
-2.7.4
+1.9.1
 
 
