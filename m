@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id AEAF452A45
+	by arago-project.org (Postfix) with ESMTPS id B006F52A46
 	for <meta-arago@arago-project.org>;
 	Mon,  4 Dec 2017 21:17:16 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A89D220B30;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C6EF920AD6;
 	Mon,  4 Dec 2017 21:17:15 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 6Fi6ikpWo5s3; Mon,  4 Dec 2017 21:17:15 +0000 (UTC)
+	with ESMTP id 5RFrykwwRHSp; Mon,  4 Dec 2017 21:17:15 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 81A7720867;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8AAB120B04;
 	Mon,  4 Dec 2017 21:17:14 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 0A41B162754;
+	by mail.denix.org (Postfix) with ESMTP id 16813162755;
 	Mon,  4 Dec 2017 16:17:14 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Mon,  4 Dec 2017 16:17:10 -0500
-Message-Id: <1512422231-43396-3-git-send-email-denys@ti.com>
+Date: Mon,  4 Dec 2017 16:17:11 -0500
+Message-Id: <1512422231-43396-4-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1512422231-43396-1-git-send-email-denys@ti.com>
 References: <1512422231-43396-1-git-send-email-denys@ti.com>
-Subject: [master][PATCH 3/4] kms++: update to the latest, bump version
+Subject: [master][PATCH 4/4] packagegroup-*-addons: re-enable kms++
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,34 +41,35 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
 X-List-Received-Date: Mon, 04 Dec 2017 21:17:17 -0000
 
-Although upstream package has no versions, but since Python binding were
-update for the new pybind11, bump to version 2.0
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+This reverts commit af121cdeb97a1180060487f15cccd2de2c76e637.
 ---
- meta-arago-extras/recipes-graphics/kms++/kms++_git.bb | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb   | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
-index 6647bf7..6f6f3fc 100644
---- a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
-+++ b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
-@@ -3,12 +3,12 @@ HOMEPAGE = "https://github.com/tomba/kmsxx"
- LICENSE = "MPL-2.0"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=c670e18272184fc0e86e1648678b4f2a"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index ce6069a..31ff258 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -10,10 +10,6 @@ PACKAGES =+ "${PN}-extra"
  
--PV = "1.0"
--PR = "r3"
-+PV = "2.0"
-+PR = "r0"
+ #    dt
  
- BRANCH = "master"
- SRC_URI = "git://github.com/tomba/kmsxx.git;protocol=git;branch=${BRANCH}"
--SRCREV = "cb0786049f960f2bd383617151b01318e02e9ff9"
-+SRCREV = "c13047e3f7674a5a05b107ef3fd97d9ff4165639"
- 
- DEPENDS = "drm python3-pybind11"
- 
+-# Disable due to gcc 7.2 failure in pybind11
+-#    kms++
+-#    kms++-python
+-
+ UTILS = " \
+     am-sysinfo \
+     gdbserver \
+@@ -25,6 +21,8 @@ UTILS = " \
+     openssh-sftp-server \
+     ptpd \
+     libdrm-kms \
++    kms++ \
++    kms++-python \
+     ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
+     stream \
+     strongswan \
 -- 
 2.7.4
 
