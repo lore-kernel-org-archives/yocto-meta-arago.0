@@ -1,41 +1,30 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 6073A52A40
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 197D352A40
 	for <meta-arago@arago-project.org>;
-	Mon,  4 Dec 2017 23:17:10 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id vB4NGxQV030475
-	for <meta-arago@arago-project.org>; Mon, 4 Dec 2017 17:16:59 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1512429419;
-	bh=Tpu/BiVfJgvuoZRYqfmJKELSgWBv4Cbrm+SX5oPB3Ak=;
-	h=From:To:Subject:Date;
-	b=AwbxWzh1RqlZ0h0aMdl5a3892DJMWSJg9fjVFVh6RB5g63rpV2OXeonyhK8QtcRAM
-	OGTacmCAWmm9jKVGw+Nq2BM3HlGByRGX5tewvh2t0CCJtmgZeZZ7Byc5wj1X+zBZL8
-	QnSamsagMVyg9tUheHck/s8eeyhPVh7LTg1wGq7k=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB4NGsKR006011
-	for <meta-arago@arago-project.org>; Mon, 4 Dec 2017 17:16:54 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Mon, 4 Dec 2017 17:16:54 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Mon, 4 Dec 2017 17:16:54 -0600
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB4NGrr5005732
-	for <meta-arago@arago-project.org>; Mon, 4 Dec 2017 17:16:54 -0600
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 4 Dec 2017 18:16:38 -0500
-Message-ID: <1512429398-11919-1-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH] ti-xsgx-ddk-um: enable script xorg as executable
+	Tue,  5 Dec 2017 01:20:04 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 84B4F20867;
+	Tue,  5 Dec 2017 01:20:03 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id vl8HSezEUQoN; Tue,  5 Dec 2017 01:20:03 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 639C0207BA;
+	Tue,  5 Dec 2017 01:20:02 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id D0B1D162753;
+	Mon,  4 Dec 2017 20:20:01 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Mon,  4 Dec 2017 20:20:01 -0500
+Message-Id: <1512436801-26330-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH] ltp-ddt: drop 0001-dirtyc0w-Include-stdint.h.patch already present upstream
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,37 +37,77 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Dec 2017 23:17:11 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 05 Dec 2017 01:20:04 -0000
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../ltp-ddt/0001-dirtyc0w-Include-stdint.h.patch   | 34 ----------------------
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb   |  3 +-
+ 2 files changed, 1 insertion(+), 36 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-dirtyc0w-Include-stdint.h.patch
 
-diff --git a/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb b/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
-index 8bdf4bd..96cbb0e 100644
---- a/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
-+++ b/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
-@@ -33,7 +33,7 @@ INITSCRIPT_PARAMS = "defaults 8"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-dirtyc0w-Include-stdint.h.patch b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-dirtyc0w-Include-stdint.h.patch
+deleted file mode 100644
+index 5c73be4..0000000
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-dirtyc0w-Include-stdint.h.patch
++++ /dev/null
+@@ -1,34 +0,0 @@
+-From 1b30d8dac1a37dc0abbb3b545db2824d6489e23f Mon Sep 17 00:00:00 2001
+-From: Khem Raj <raj.khem@gmail.com>
+-Date: Fri, 9 Jun 2017 09:32:13 -0700
+-Subject: [PATCH] dirtyc0w: Include stdint.h
+-
+-uintptr_t is defined in stdint.h
+-
+-Fixes
+-| dirtyc0w_child.c:76:15: error: 'uintptr_t' undeclared (first use in this function); did you mean 'intptr_t'?
+-|    lseek(mfd, (uintptr_t) map, SEEK_SET);
+-|                ^~~~~~~~~
+-
+-Signed-off-by: Khem Raj <raj.khem@gmail.com>
+----
+-Upstream-Status: Submitted
+-
+- testcases/kernel/security/dirtyc0w/dirtyc0w_child.c | 1 +
+- 1 file changed, 1 insertion(+)
+-
+-diff --git a/testcases/kernel/security/dirtyc0w/dirtyc0w_child.c b/testcases/kernel/security/dirtyc0w/dirtyc0w_child.c
+-index 5328a9bc4..49abdd6ba 100644
+---- a/testcases/kernel/security/dirtyc0w/dirtyc0w_child.c
+-+++ b/testcases/kernel/security/dirtyc0w/dirtyc0w_child.c
+-@@ -23,6 +23,7 @@
+- #include <sys/stat.h>
+- #include <string.h>
+- #include <stdlib.h>
+-+#include <stdint.h>
+- #include <pwd.h>
+- 
+- #include "tst_safe_pthread.h"
+--- 
+-2.13.1
+-
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb
+index af56d03..f836a04 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
  
- inherit update-rc.d
+-PR = "r3"
++PR = "r4"
+ PV_append = "+git${SRCPV}"
  
--PR = "r2"
-+PR = "r3"
- PROVIDES += "virtual/egl virtual/libgles1 virtual/libgles2 omap5-xsgx-ddk-um-linux"
+ PROVIDES += "ltp"
+@@ -42,7 +42,6 @@ BRANCH ?= "master"
  
- DEPENDS += "udev"
-@@ -56,7 +56,7 @@ S = "${WORKDIR}/git"
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+     file://0003-Add-knob-to-control-tirpc-support.patch \
+-    file://0001-dirtyc0w-Include-stdint.h.patch \
+ "
  
- do_install () {
-     oe_runmake install DESTDIR=${D} TARGET_PRODUCT=${TARGET_PRODUCT}
--    install -m 0644 ${WORKDIR}/xorg ${D}${sysconfdir}/init.d/
-+    install -m 0755 ${WORKDIR}/xorg ${D}${sysconfdir}/init.d/
- }
- 
- SYSROOT_DIRS_append = "/usr/local"
+ S = "${WORKDIR}/git"
 -- 
-1.9.1
+2.7.4
 
 
