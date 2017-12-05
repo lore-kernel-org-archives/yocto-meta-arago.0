@@ -1,43 +1,41 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 0A1A3529ED
+Return-Path: <yan-liu@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id BCCD7529ED
 	for <meta-arago@arago-project.org>;
-	Tue,  5 Dec 2017 15:35:55 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id vB5FZjXY023633
-	for <meta-arago@arago-project.org>; Tue, 5 Dec 2017 09:35:45 -0600
+	Tue,  5 Dec 2017 17:46:48 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id vB5Hkmcg024184
+	for <meta-arago@arago-project.org>; Tue, 5 Dec 2017 11:46:48 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1512488145;
-	bh=h0cwoy+Prkegwr3kzs2ju1gqnatGvKlSrF64irC8KTo=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=jeAB5J93Nogopw/i5t7Iofhzil+MMUDJZa8Biy96EO0l9QG46tQb15315Kgl3HE6a
-	EyGWyjILOrNi73RqD5FXbjglUcLLMWuSTv37giFLKuGUhR2sI5OszHoMgTr8MsbQB5
-	oZ8MI2Qv1Fv5/ebaejnwEIFhY0myj4S/YLLfotf8=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB5FZecD014143
-	for <meta-arago@arago-project.org>; Tue, 5 Dec 2017 09:35:40 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1512496008;
+	bh=kBSBz14PUZ+udnsK7g89bK4TZcshExkulcN2siejuMU=;
+	h=From:To:CC:Subject:Date;
+	b=FjADBgcMYiatJT+VmTGkTCzzUPlZ/p/s0zZn2BFtensJzepvDA63RIomwKxt+omqd
+	Vo5XRziTIo3i9cSV8+xfsdWGAC9MzUDujLhzqmqw+O92EkM3cHL8DaHZzdq+G/PT/4
+	QCfPcRaYGhoXNLpZujIqMmGUHATCSdGKGYu+nAGg=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB5Hkm68011097
+	for <meta-arago@arago-project.org>; Tue, 5 Dec 2017 11:46:48 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 5 Dec 2017 09:35:40 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 5 Dec 2017 11:46:47 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 5 Dec 2017 09:35:40 -0600
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB5FZeFA011407;
-	Tue, 5 Dec 2017 09:35:40 -0600
-To: Eric Ruei <e-ruei1@ti.com>, <meta-arago@arago-project.org>
-References: <1512429398-11919-1-git-send-email-e-ruei1@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <9126227d-453f-afc4-8215-0456e6488634@ti.com>
-Date: Tue, 5 Dec 2017 10:35:40 -0500
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.4.0
+	Transport; Tue, 5 Dec 2017 11:46:47 -0600
+Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB5Hklug025289;
+	Tue, 5 Dec 2017 11:46:47 -0600
+From: <yan-liu@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 5 Dec 2017 12:41:47 -0500
+Message-ID: <1512495707-21768-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-In-Reply-To: <1512429398-11919-1-git-send-email-e-ruei1@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [meta-processor-sdk][PATCH] ti-xsgx-ddk-um: enable script xorg as executable
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,41 +48,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Dec 2017 15:35:56 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Tue, 05 Dec 2017 17:46:49 -0000
+Content-Type: text/plain
 
-Pushed to the "morty-x11-experimental" branch of meta-processor-sdk.
+From: Yan Liu <yan-liu@ti.com>
 
+Signed-off-by: Yan Liu <yan-liu@ti.com>
+---
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On 12/4/2017 6:16 PM, Eric Ruei wrote:
-> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> ---
->   recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb b/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
-> index 8bdf4bd..96cbb0e 100644
-> --- a/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
-> +++ b/recipes-graphics/libgles/ti-xsgx-ddk-um_1.15.4564147.bb
-> @@ -33,7 +33,7 @@ INITSCRIPT_PARAMS = "defaults 8"
->   
->   inherit update-rc.d
->   
-> -PR = "r2"
-> +PR = "r3"
->   PROVIDES += "virtual/egl virtual/libgles1 virtual/libgles2 omap5-xsgx-ddk-um-linux"
->   
->   DEPENDS += "udev"
-> @@ -56,7 +56,7 @@ S = "${WORKDIR}/git"
->   
->   do_install () {
->       oe_runmake install DESTDIR=${D} TARGET_PRODUCT=${TARGET_PRODUCT}
-> -    install -m 0644 ${WORKDIR}/xorg ${D}${sysconfdir}/init.d/
-> +    install -m 0755 ${WORKDIR}/xorg ${D}${sysconfdir}/init.d/
->   }
->   
->   SYSROOT_DIRS_append = "/usr/local"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb
+index f836a04..34a82fd 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20170929.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+ 
+-PR = "r4"
++PR = "r5"
+ PV_append = "+git${SRCPV}"
+ 
+ PROVIDES += "ltp"
+@@ -37,7 +37,7 @@ RDEPENDS_${PN} = "\
+ 
+ inherit autotools-brokensep
+ 
+-SRCREV = "876a4a42bda33adad26ba4c89608b406b2d8cbc6"
++SRCREV = "f76f614f7bfd15f4b558dad51eb532e11759f274"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+-- 
+1.7.9.5
 
 
