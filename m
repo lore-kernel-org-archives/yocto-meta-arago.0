@@ -1,41 +1,41 @@
 Return-Path: <e-ruei1@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 80360529BD
+	by arago-project.org (Postfix) with ESMTPS id 12758529D1
 	for <meta-arago@arago-project.org>;
-	Wed,  6 Dec 2017 16:09:37 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id vB6G9Rja027296
-	for <meta-arago@arago-project.org>; Wed, 6 Dec 2017 10:09:27 -0600
+	Thu,  7 Dec 2017 21:16:39 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id vB7LGSYv003920
+	for <meta-arago@arago-project.org>; Thu, 7 Dec 2017 15:16:28 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1512576567;
-	bh=6CFw/2rYkAPkUZjhus/G/aUkO6Z954+u3fncuyITuV8=;
+	s=ti-com-17Q1; t=1512681388;
+	bh=oe6u9Sbseq7wipmToHpGiC4xHxwNhw38L9C8Z5kvMDM=;
 	h=From:To:Subject:Date;
-	b=gkZhlH3jbL4cRhSfwZZ3g6d0oJVIQzb7+4VtrwDMq1/S7Y7XYSgcTAJotIM9bc4Nv
-	+a3kjEtepoopBsJysOoGbMD09A54syqPk4VoEoPyFNLkIVZQM9Kd7LxUESRbB1KkLb
-	Z3Lsoz+qBR1ECPIdU47A7/guAQR2bClcM45hhu+E=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB6G9Lnk022266
-	for <meta-arago@arago-project.org>; Wed, 6 Dec 2017 10:09:21 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	b=B3ZBrVC7tJ0yeILqQODCKtbhgh4s7X/QcmEa1/SYsSDyLkpAx8X3jBKgsj2D8KijC
+	HPZ4jX+goIC3tfxQMhNyZnwQzHYCpPZB9SyC6IpsOfxNwhqybBy3CFhEpt+l/9D466
+	eLj06L0A0cmyjRnZmcqG+vddQqrLXjJHDH+ypDvM=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB7LGNPE001539
+	for <meta-arago@arago-project.org>; Thu, 7 Dec 2017 15:16:23 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Wed, 6 Dec 2017 10:09:21 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 7 Dec 2017 15:16:22 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Wed, 6 Dec 2017 10:09:21 -0600
+	Transport; Thu, 7 Dec 2017 15:16:22 -0600
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB6G9LlV018980
-	for <meta-arago@arago-project.org>; Wed, 6 Dec 2017 10:09:21 -0600
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id vB7LGJR1029620
+	for <meta-arago@arago-project.org>; Thu, 7 Dec 2017 15:16:21 -0600
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 6 Dec 2017 11:09:18 -0500
-Message-ID: <1512576558-12272-1-git-send-email-e-ruei1@ti.com>
+Date: Thu, 7 Dec 2017 16:16:15 -0500
+Message-ID: <1512681375-7744-1-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty][meta-processor-sdk][PATCH] ti-sgx-ddk-um: update srcrev to pick up the latest fixes
+Subject: [morty][meta-processor-sdk][PATCH] packagegroup-arago-tisdk-graphics: update for non-sgx build
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,36 +48,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Dec 2017 16:09:38 -0000
+X-List-Received-Date: Thu, 07 Dec 2017 21:16:39 -0000
 Content-Type: text/plain
 
-- gbm: Fix compilation error with BUILD=debug
-- change GLES filenames to mesa style
-- gbm: dont increment surface refcount inside internal function
-- gbm: decrement gbm bo recount on DeleteDrawable
-- add symbolic link libGLESv2.so.1 for backward compatibility of SGX binary demos
+- remove ti-sgx-ddk-km if non-sgx for all targets
+- remove glmark2 for non-sgx build
+- Update GRSAPHICS_WESTON to GRAPHICS_WAYLAND per meta-arago change
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- recipes-graphics/libgles/ti-sgx-ddk-um_1.14.3699939.bbappend | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-graphics.bbappend   | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/recipes-graphics/libgles/ti-sgx-ddk-um_1.14.3699939.bbappend b/recipes-graphics/libgles/ti-sgx-ddk-um_1.14.3699939.bbappend
-index bd19733..a48f670 100644
---- a/recipes-graphics/libgles/ti-sgx-ddk-um_1.14.3699939.bbappend
-+++ b/recipes-graphics/libgles/ti-sgx-ddk-um_1.14.3699939.bbappend
-@@ -1,8 +1,8 @@
--PR_append = ".tisdk5"
-+PR_append = ".tisdk6"
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bbappend
+index 8479572..412e94c 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bbappend
+@@ -1,18 +1,18 @@
+-PR_append = ".tisdk9"
++PR_append = ".tisdk10"
  
- BRANCH = "${@bb.utils.contains('MACHINE_FEATURES','sgx','ti-img-sgx/${PV}','ti-img-sgx-nohardware/${PV}',d)}"
--SRCREV = "${@bb.utils.contains('MACHINE_FEATURES','sgx','cf8cd620e96c9741bfcbe7f07c95328fe2d6ece9','07acdd3981364d5c4afdcb250e30d392bb53f951',d)}"
-+SRCREV = "${@bb.utils.contains('MACHINE_FEATURES','sgx','bbbd5cbb55e4c54d3b02456ae553bea86fd61506','07acdd3981364d5c4afdcb250e30d392bb53f951',d)}"
+ GRAPHICS_DEMO = ""
+ GRAPHICS_DEMO_omap-a15 = "\
+     kmscube \
+ "
  
- do_install_append () {
--    ln -sf ./libGLESv2.so.${PV} ${D}${libdir}/libGLESv2.so.2
-+    ln -sf ./libGLESv2.so.${PV} ${D}${libdir}/libGLESv2.so.1
- }
+-GRAPHICS_RDEPENDS_remove_ti33x = "\
++GRAPHICS_RDEPENDS_remove = "\
+     ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', 'ti-sgx-ddk-km', d)} \
+ "
+-GRAPHICS_RDEPENDS_remove_ti43x = "\
+-    ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', 'ti-sgx-ddk-km', d)} \
++GRAPHICS_RDEPENDS_remove = "\
++    ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', 'glmark2', d)} \
+ "
+ 
+-GRAPHICS_WESTON_remove = "\
++GRAPHICS_WAYLAND_remove = "\
+     ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', 'wayland-ivi-extension', d)} \
+ "
+ 
 -- 
 1.9.1
 
