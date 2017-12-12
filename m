@@ -1,30 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id E0D0752A43
+Return-Path: <h-gou@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 8141F52093
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Dec 2017 22:19:44 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 60A0220ADA;
-	Mon, 11 Dec 2017 22:19:44 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id m84NdsKnzeDi; Mon, 11 Dec 2017 22:19:44 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 390072086C;
-	Mon, 11 Dec 2017 22:19:43 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 99F34162752;
-	Mon, 11 Dec 2017 17:19:42 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Mon, 11 Dec 2017 17:19:41 -0500
-Message-Id: <1513030782-22973-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [morty/master][PATCH 1/2] opencl-examples-rtos: move CM and SRCIPK stuff to meta-arago-distro
+	Tue, 12 Dec 2017 00:13:50 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id vBC0Dnwo019093
+	for <meta-arago@arago-project.org>; Mon, 11 Dec 2017 18:13:49 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1513037629;
+	bh=Va2fM6KghFEKcNJ2KD93tjFOVEE4FjMzIJVOsJWQSpo=;
+	h=From:To:CC:Subject:Date;
+	b=O6owaV2A1dQzuToJ5E6s1LED8hRFiA1xNdlWaKC16lu0p4VzCsI51DOUushJxFHxr
+	IcHMcpLtXc49Y6KQnJBbpXWQKND/jhfcu/4f0N48yVpVk1TUC2f8jTJRfscwmjL1TE
+	UX7t+BqmUCiAfguXqUrj6eGxQ6bKLNFaYwkjpw2w=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBC0Dnew005661
+	for <meta-arago@arago-project.org>; Mon, 11 Dec 2017 18:13:49 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
+	Mon, 11 Dec 2017 18:13:49 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
+	Transport; Mon, 11 Dec 2017 18:13:49 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBC0Dneq019263;
+	Mon, 11 Dec 2017 18:13:49 -0600
+From: Hongmei Gou <a0271529@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 11 Dec 2017 19:13:42 -0500
+Message-ID: <1513037623-6080-1-git-send-email-a0271529@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [meta-processor-sdk] [PATCH 1/2] packagegroup-*-qte*: add QtWebKit and remove QtWenEngine for non-sgx build
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,91 +49,65 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Dec 2017 22:19:45 -0000
+X-List-Received-Date: Tue, 12 Dec 2017 00:13:51 -0000
+Content-Type: text/plain
 
-Breaks parsing of meta-arago-extras when used independently of Arago distro.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- .../ocl-rtos/opencl-examples-rtos_git.bbappend         | 13 +++++++++++++
- .../recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb    | 18 ++----------------
- 2 files changed, 15 insertions(+), 16 deletions(-)
- create mode 100644 meta-arago-distro/recipes-tisdk/ocl-rtos/opencl-examples-rtos_git.bbappend
+ .../packagegroup-arago-qte-toolchain-target.bbappend             | 9 +++++++++
+ recipes-core/packagegroups/packagegroup-arago-qte.bbappend       | 9 +++++++++
+ recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bbappend | 9 +++++++++
+ 3 files changed, 27 insertions(+)
+ create mode 100644 recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bbappend
+ create mode 100644 recipes-core/packagegroups/packagegroup-arago-qte.bbappend
+ create mode 100644 recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bbappend
 
-diff --git a/meta-arago-distro/recipes-tisdk/ocl-rtos/opencl-examples-rtos_git.bbappend b/meta-arago-distro/recipes-tisdk/ocl-rtos/opencl-examples-rtos_git.bbappend
+diff --git a/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bbappend b/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bbappend
 new file mode 100644
-index 0000000..831aba0
+index 0000000..691916d
 --- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/ocl-rtos/opencl-examples-rtos_git.bbappend
-@@ -0,0 +1,13 @@
-+PR_append = ".arago0"
++++ b/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bbappend
+@@ -0,0 +1,9 @@
++PR_append = ".tisdk0"
 +
-+CM_NAME = "OpenCL"
-+CM_VERSION = "${PV}"
-+CM_ROOT_DIR = "opencl_rtos_${RELEASE_TARGET}_${@'${PV}'.replace('.', '_')}"
-+CM_DESCRIPTION = "OpenCL is a framework for writing programs that execute across heterogeneous systems"
++QT5_DEV_remove = "\
++    ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', 'qtwebengine-mkspecs qtwebengine-dev', d)} \
++"
 +
-+deltask do_create_srcipk
-+addtask create_srcipk after do_install before do_package
++QT5_DEV_append = "\
++    ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', ' qtwebkit-mkspecs qtwebkit-dev qtquick1-dev', d)} \
++"
+diff --git a/recipes-core/packagegroups/packagegroup-arago-qte.bbappend b/recipes-core/packagegroups/packagegroup-arago-qte.bbappend
+new file mode 100644
+index 0000000..ac545ec
+--- /dev/null
++++ b/recipes-core/packagegroups/packagegroup-arago-qte.bbappend
+@@ -0,0 +1,9 @@
++PR_append = ".tisdk0"
 +
-+CREATE_SRCIPK = "1"
-+SRCIPK_SRC_DIR = "${DESTDIR}"
-+SRCIPK_INSTALL_DIR = "${CM_ROOT_DIR}"
-diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb
-index 531fc2f..8496749 100644
---- a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb
-@@ -5,7 +5,7 @@ LICENSE = "BSD"
- require recipes-ti/ocl/ocl.inc
- require recipes-ti/includes/arago-paths.inc
- 
--PR = "${INC_PR}.0"
-+PR = "${INC_PR}.1"
- 
- COMPATIBLE_MACHINE = "omap-a15"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
-@@ -33,7 +33,7 @@ OCL_EXAMPLE_LIST = " abort_exit \
-                      sgemm \
-                      edmamgr \
-                      vecadd_openmp \
--		     vecadd_openmp_t \
-+                     vecadd_openmp_t \
- "
- 
- RELEASE_TARGET = ""
-@@ -43,7 +43,6 @@ export BIOS_INSTALL_DIR = "${SYSBIOS_INSTALL_DIR}"
- export DESTDIR="${OCL_RTOS_INSTALL_DIR}/ti-opencl-rtos-${RELEASE_TARGET}-${PV}"
- export TI_OCL_INSTALL = "${DESTDIR}/packages/ti/opencl"
- 
--
- python do_unpack_append() {
-     import shutil
- 
-@@ -59,7 +58,6 @@ python do_unpack_append() {
-         shutil.copytree(os.path.join(git_dir,example), os.path.join(s,example))
- }
- 
--
- EXTRA_OEMAKE = "BUILD_OS=SYS_BIOS \
-                 TI_OCL_CGT_INSTALL=${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x \
- "
-@@ -83,15 +81,3 @@ do_install() {
-         cp -rv ${B}/${ocl_example}/* ${DESTDIR}/examples/${ocl_example}
-     done
- }
--
--CM_NAME = "OpenCL"
--CM_VERSION = "${PV}"
--CM_ROOT_DIR = "opencl_rtos_${RELEASE_TARGET}_${@'${PV}'.replace('.', '_')}"
--CM_DESCRIPTION = "OpenCL is a framework for writing programs that execute across heterogeneous systems"
--
--deltask do_create_srcipk
--addtask create_srcipk after do_install before do_package
--
--CREATE_SRCIPK = "1"
--SRCIPK_SRC_DIR = "${DESTDIR}"
--SRCIPK_INSTALL_DIR = "${CM_ROOT_DIR}"
++QT5_ESSENTIALS_remove = "\
++    ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', 'qtwebengine-qmlplugins', d)} \
++"
++
++QT5_ESSENTIALS_append = "\
++    ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', ' qtwebkit-qmlplugins qtquick1-plugins qtquick1-qmlplugins', d)} \
++"
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bbappend
+new file mode 100644
+index 0000000..6fa1035
+--- /dev/null
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bbappend
+@@ -0,0 +1,9 @@
++PR_append = ".tisdk0"
++
++QT5_DEMOS_remove = "\
++    ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', 'qtwebengine-examples', d)} \
++"
++
++QT5_DEMOS_append = "\
++    ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', ' qtquick1-examples qtwebkit-examples-examples', d)} \
++"
 -- 
-2.7.4
+1.9.1
 
 
