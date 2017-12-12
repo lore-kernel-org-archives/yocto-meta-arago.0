@@ -1,43 +1,41 @@
-Return-Path: <denys@ti.com>
+Return-Path: <m-radhakrishnan2@ti.com>
 Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 5D56552990
+	by arago-project.org (Postfix) with ESMTPS id EC2B05209B
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Dec 2017 20:05:48 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id vBCK5lLB014242
-	for <meta-arago@arago-project.org>; Tue, 12 Dec 2017 14:05:47 -0600
+	Tue, 12 Dec 2017 23:23:10 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id vBCNN6oj011144
+	for <meta-arago@arago-project.org>; Tue, 12 Dec 2017 17:23:06 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1513109147;
-	bh=RwoLk40d6zoZrXU1J/jVG8ITE4n1Y4Brhld2ZOzOVZE=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=R8GbC85kYdo33IMgcpRcgfrF8yagvO9hE8FAXH9KjDjvOHSYxARL/3Qf9N1d+5grS
-	Ntb7v5v7Bq/1/jlShPBkqioNE5IFYK7IS9Apt1DzN1iiPCf0D/SKl8yBIsXW68SuyJ
-	9UNTBl1DvYTAc73FOHXptvqLc+HK7qjcHuABGBEc=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBCK5lZm031518
-	for <meta-arago@arago-project.org>; Tue, 12 Dec 2017 14:05:47 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1513120986;
+	bh=Ccj/rY2zeOtkRtQJIoI9DeuWdnE1IxjmKa6ErEAVBFc=;
+	h=From:To:Subject:Date;
+	b=o8tZ3vKB8l7yCYPIqD/2Vq4uFNncAODQD6nAF8E5NSNHuI32vn+rTWcr3R6jSGaOv
+	p2LU834t+3L8uzAjQPL3U1Z0O6DRHNH5n966QqR4uYmyTu6qDGunAwjgp6NIoB4JcV
+	I4AjcT55aJyYCBYCfrHA0aOdYJ1khI01hQwNU6S8=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBCNN64w017695
+	for <meta-arago@arago-project.org>; Tue, 12 Dec 2017 17:23:06 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Tue, 12 Dec 2017 14:05:47 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 12 Dec 2017 17:23:06 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Tue, 12 Dec 2017 14:05:47 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBCK5kTv010585;
-	Tue, 12 Dec 2017 14:05:47 -0600
-Date: Tue, 12 Dec 2017 15:05:31 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Gaurav Mitra <gaurav@ti.com>
-Message-ID: <20171212200531.GB28177@edge>
-References: <20171212170940.5147-1-gaurav@ti.com>
+	Transport; Tue, 12 Dec 2017 17:23:06 -0600
+Received: from uda0875154a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBCNN51M005434
+	for <meta-arago@arago-project.org>; Tue, 12 Dec 2017 17:23:06 -0600
+From: Mahesh Radhakrsihnan <m-radhakrishnan2@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 12 Dec 2017 18:22:54 -0500
+Message-ID: <1513120974-54884-1-git-send-email-m-radhakrishnan2@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <20171212170940.5147-1-gaurav@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] Patch to integrate OCL v01.01.14.08 with fix for ICD conformance with gcc7.2
+Subject: [morty][meta-processor-sdk][PATCH] common-csl-ip: Updating to version 3.0.0.9
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,56 +48,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Dec 2017 20:05:49 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 12 Dec 2017 23:23:18 -0000
+Content-Type: text/plain
 
-Thanks! I'll give it a try.
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 
+Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+---
+ recipes-bsp/common-csl-ip/common-csl-ip-3.0.0.9.inc       | 8 ++++++++
+ recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend | 5 +++++
+ recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend      | 2 ++
+ 3 files changed, 15 insertions(+)
+ create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-3.0.0.9.inc
+ create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
+ create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
 
-On Tue, Dec 12, 2017 at 11:09:40AM -0600, Gaurav Mitra wrote:
-> Signed-off-by: Gaurav Mitra <gaurav@ti.com>
-> ---
->  meta-arago-extras/recipes-ti/ocl/ocl.inc       | 4 ++--
->  meta-arago-extras/recipes-ti/ocl/opencl_git.bb | 1 +
->  2 files changed, 3 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> index 9a3fb70d..ffa3cbee 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> +++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> @@ -1,4 +1,4 @@
-> -PV = "1.1.14.7"
-> +PV = "1.1.14.8"
->  INC_PR = "r0"
->  
->  LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
-> @@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
->  OCL_GIT_PROTOCOL = "git"
->  OCL_GIT_BRANCH = "master"
->  
-> -OCL_SRCREV = "2be51882b5c1f0f8a97fddcc7e8db2b09db41dfe"
-> +OCL_SRCREV = "caf4a0e55831ea34e3659e81877aaffde29ccfd1"
->  
->  BRANCH = "${OCL_GIT_BRANCH}"
->  SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-> index 4daef6b1..fdc822d0 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-> @@ -35,6 +35,7 @@ DEPENDS_append_dra7xx   = " ti-ipc virtual/kernel"
->  DEPENDS_append_keystone = " mpm-transport multiprocmgr"
->  DEPENDS_remove_k2g = " libulm"
->  
-> +RDEPENDS_${PN} += " bash"
->  RDEPENDS_${PN}-dev += " ocl-gl-headers-dev opencl-monitor"
->  RDEPENDS_${PN}-runtime += " ${PN} opencl-monitor clocl ti-cgt6x"
->  
-> -- 
-> 2.14.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/recipes-bsp/common-csl-ip/common-csl-ip-3.0.0.9.inc b/recipes-bsp/common-csl-ip/common-csl-ip-3.0.0.9.inc
+new file mode 100644
+index 0000000..c745413
+--- /dev/null
++++ b/recipes-bsp/common-csl-ip/common-csl-ip-3.0.0.9.inc
+@@ -0,0 +1,8 @@
++require recipes-bsp/common-csl-ip/common-csl-ip.inc
++
++PV = "03.03.00.09"
++INC_PR = "r0"
++
++# Below commit ID corresponding to "DEV.CSL_PROCESSOR-SDK.03.03.00.09"
++CSL_SRCREV = "7a7ef0633d9e305072b79ac978738c48e46583cc"
++
+diff --git a/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend b/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
+new file mode 100644
+index 0000000..71c86e6
+--- /dev/null
++++ b/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
+@@ -0,0 +1,5 @@
++require recipes-bsp/common-csl-ip/common-csl-ip-3.0.0.9.inc
++
++# HTML doc link params
++PDK_COMP_LINK_TEXT = "CSL-Chip Support Library"
++
+diff --git a/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend b/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
+new file mode 100644
+index 0000000..1e42938
+--- /dev/null
++++ b/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
+@@ -0,0 +1,2 @@
++require recipes-bsp/common-csl-ip/common-csl-ip-3.0.0.9.inc
++
+-- 
+1.9.1
+
 
