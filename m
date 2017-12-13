@@ -1,32 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 3F0C65209B
+Return-Path: <m-radhakrishnan2@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id CCDB05209B
 	for <meta-arago@arago-project.org>;
-	Wed, 13 Dec 2017 19:24:16 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5E79020B11;
-	Wed, 13 Dec 2017 19:24:15 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 1hdjvlE0WH-V; Wed, 13 Dec 2017 19:24:15 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3B79B208CC;
-	Wed, 13 Dec 2017 19:24:14 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id C1607162771;
-	Wed, 13 Dec 2017 14:24:13 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Wed, 13 Dec 2017 14:24:13 -0500
-Message-Id: <1513193053-56682-2-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1513193053-56682-1-git-send-email-denys@ti.com>
-References: <1513193053-56682-1-git-send-email-denys@ti.com>
-Subject: [master][PATCH 2/2] images: drop deprecated LIC_FILES_CHKSUM
+	Wed, 13 Dec 2017 19:34:45 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id vBDJYZn0024189
+	for <meta-arago@arago-project.org>; Wed, 13 Dec 2017 13:34:35 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1513193675;
+	bh=T6yoteYigjGq0yPM+FUJLX3Hu3wP3P+50nPv1LHk7Rg=;
+	h=From:To:Subject:Date;
+	b=dWti3KhtKH+o39+RvP9ZY7q7Y3+eUGvbW59T0t5ZrD3tWUidVR4iprHexVtBCxT/X
+	SVn9l7Eq/5KkF4v3vyWnE2n16kUemarF4bRv/q41M3DlZv7UJbw2cWrM/Su+gG10Qm
+	1PdpchUB1atb6v8Q9TScIBHewUJuoAVDc2cDvx3g=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBDJYUfB001210
+	for <meta-arago@arago-project.org>; Wed, 13 Dec 2017 13:34:30 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
+	Wed, 13 Dec 2017 13:34:30 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
+	Transport; Wed, 13 Dec 2017 13:34:29 -0600
+Received: from uda0875154a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBDJYTRV012599
+	for <meta-arago@arago-project.org>; Wed, 13 Dec 2017 13:34:29 -0600
+From: Mahesh Radhakrsihnan <m-radhakrishnan2@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 13 Dec 2017 14:34:26 -0500
+Message-ID: <1513193666-10626-1-git-send-email-m-radhakrishnan2@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [morty][meta-processor-sdk][PATCH v2] osal: Update to version 1.0.0.9
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,52 +48,63 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Dec 2017 19:24:17 -0000
+X-List-Received-Date: Wed, 13 Dec 2017 19:34:46 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+
 ---
- meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc | 1 -
- meta-arago-distro/recipes-core/images/arago-image.inc            | 1 -
- meta-arago-distro/recipes-core/images/arago-test-image.bb        | 1 -
- 3 files changed, 3 deletions(-)
+ v2 - Removed the reference to osal.inc
+ v1 - Initial draft
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index 652fbd2..e369c3f 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -1,7 +1,6 @@
- # This include is for the common setting used to build TISDK images.  These images
- # include both host and target side content. 
- LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
- 
- IMAGE_FSTYPES = "tar.xz"
- IMAGE_NAME_SUFFIX = ""
-diff --git a/meta-arago-distro/recipes-core/images/arago-image.inc b/meta-arago-distro/recipes-core/images/arago-image.inc
-index 8c45a92..dbd89d7 100644
---- a/meta-arago-distro/recipes-core/images/arago-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-image.inc
-@@ -1,7 +1,6 @@
- # Common pieces for Arago images
- 
- LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
- 
- COMPATIBLE_MACHINE = "ti-soc"
- 
-diff --git a/meta-arago-distro/recipes-core/images/arago-test-image.bb b/meta-arago-distro/recipes-core/images/arago-test-image.bb
-index 911e9b8..1142112 100644
---- a/meta-arago-distro/recipes-core/images/arago-test-image.bb
-+++ b/meta-arago-distro/recipes-core/images/arago-test-image.bb
-@@ -1,7 +1,6 @@
- # Arago System Test image
- # gives you test applications
- LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
- 
- require arago-image.inc
- 
+ recipes-bsp/osal/osal-1.0.0.9.inc       | 7 +++++++
+ recipes-bsp/osal/osal-rtos_git.bbappend | 2 ++
+ recipes-bsp/osal/osal-test_git.bbappend | 2 ++
+ recipes-bsp/osal/osal_git.bbappend      | 2 ++
+ 4 files changed, 13 insertions(+)
+ create mode 100644 recipes-bsp/osal/osal-1.0.0.9.inc
+ create mode 100644 recipes-bsp/osal/osal-rtos_git.bbappend
+ create mode 100644 recipes-bsp/osal/osal-test_git.bbappend
+ create mode 100644 recipes-bsp/osal/osal_git.bbappend
+
+diff --git a/recipes-bsp/osal/osal-1.0.0.9.inc b/recipes-bsp/osal/osal-1.0.0.9.inc
+new file mode 100644
+index 0000000..f5c8118
+--- /dev/null
++++ b/recipes-bsp/osal/osal-1.0.0.9.inc
+@@ -0,0 +1,7 @@
++
++PV = "01.00.00.09"
++INC_PR = "r0"
++
++# Below commit ID corresponding to "DEV.OSAL.01.00.00.09"
++OSAL_SRCREV = "0bb1151f3622fb65f41f1d3dcffcee63fe9724de"
++
+diff --git a/recipes-bsp/osal/osal-rtos_git.bbappend b/recipes-bsp/osal/osal-rtos_git.bbappend
+new file mode 100644
+index 0000000..dadb121
+--- /dev/null
++++ b/recipes-bsp/osal/osal-rtos_git.bbappend
+@@ -0,0 +1,2 @@
++require recipes-bsp/osal/osal-1.0.0.9.inc
++
+diff --git a/recipes-bsp/osal/osal-test_git.bbappend b/recipes-bsp/osal/osal-test_git.bbappend
+new file mode 100644
+index 0000000..dadb121
+--- /dev/null
++++ b/recipes-bsp/osal/osal-test_git.bbappend
+@@ -0,0 +1,2 @@
++require recipes-bsp/osal/osal-1.0.0.9.inc
++
+diff --git a/recipes-bsp/osal/osal_git.bbappend b/recipes-bsp/osal/osal_git.bbappend
+new file mode 100644
+index 0000000..dadb121
+--- /dev/null
++++ b/recipes-bsp/osal/osal_git.bbappend
+@@ -0,0 +1,2 @@
++require recipes-bsp/osal/osal-1.0.0.9.inc
++
 -- 
-2.7.4
+1.9.1
 
 
