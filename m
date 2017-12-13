@@ -1,41 +1,30 @@
-Return-Path: <m-radhakrishnan2@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 1D72B5209B
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id EE7DE52986
 	for <meta-arago@arago-project.org>;
-	Wed, 13 Dec 2017 16:50:39 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id vBDGoSJR029540
-	for <meta-arago@arago-project.org>; Wed, 13 Dec 2017 10:50:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1513183828;
-	bh=3ObvMJV8DXRN89GOGk8kLb3ypW034F1zpGDR7fUUllk=;
-	h=From:To:Subject:Date;
-	b=OQSFXDLE6yl87iYimoCznWKCLUlvnrZti31+YggPeN9sekS9zYbsLg/9AS9gyIoym
-	YIw0HxYKXpHjcYW/hrSH+aSMGCnlIne9i9nA584aIHbnojQGpcYkuFSh9jQQFvIMGW
-	oYBCVy7vPw0KCDifSPiyexQYUDQR/J2sYXUNhevE=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBDGoNmr019144
-	for <meta-arago@arago-project.org>; Wed, 13 Dec 2017 10:50:23 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.845.34;
-	Wed, 13 Dec 2017 10:50:23 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.845.34 via Frontend
-	Transport; Wed, 13 Dec 2017 10:50:23 -0600
-Received: from uda0875154a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBDGoMJB031939
-	for <meta-arago@arago-project.org>; Wed, 13 Dec 2017 10:50:23 -0600
-From: Mahesh Radhakrsihnan <m-radhakrishnan2@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 13 Dec 2017 11:50:20 -0500
-Message-ID: <1513183820-64308-1-git-send-email-m-radhakrishnan2@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty][meta-processor-sdk][PATCH v2] common-csl-ip: Updating to version 3.3.0.9
+	Wed, 13 Dec 2017 17:19:44 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6B257208CC;
+	Wed, 13 Dec 2017 17:19:44 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id YJb7BjdH5NPW; Wed, 13 Dec 2017 17:19:44 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4258420433;
+	Wed, 13 Dec 2017 17:19:42 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id D86FA162752;
+	Wed, 13 Dec 2017 12:19:41 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Wed, 13 Dec 2017 12:19:40 -0500
+Message-Id: <1513185580-26249-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH] opencl: update to 1.1.14.8, fix ICD gcc7 conformance, RDEPENDS on bash
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,56 +37,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Dec 2017 16:50:39 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 13 Dec 2017 17:19:45 -0000
 
-From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+From: Gaurav Mitra <gaurav@ti.com>
 
-Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+Signed-off-by: Gaurav Mitra <gaurav@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- v2 - Renamed inc to correct version, remove reference to common-csl-ip.inc
- v1 - Initial version
+ meta-arago-extras/recipes-ti/ocl/ocl.inc       | 4 ++--
+ meta-arago-extras/recipes-ti/ocl/opencl_git.bb | 1 +
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
- recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc       | 6 ++++++
- recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend | 5 +++++
- recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend      | 2 ++
- 3 files changed, 13 insertions(+)
- create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc
- create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
- create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
-
-diff --git a/recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc b/recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc
-new file mode 100644
-index 0000000..e87cf57
---- /dev/null
-+++ b/recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc
-@@ -0,0 +1,6 @@
-+PV = "03.03.00.09"
-+INC_PR = "r0"
-+
-+# Below commit ID corresponding to "DEV.CSL_PROCESSOR-SDK.03.03.00.09"
-+CSL_SRCREV = "7a7ef0633d9e305072b79ac978738c48e46583cc"
-+
-diff --git a/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend b/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
-new file mode 100644
-index 0000000..43e3564
---- /dev/null
-+++ b/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
-@@ -0,0 +1,5 @@
-+require recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc
-+
-+# HTML doc link params
-+PDK_COMP_LINK_TEXT = "CSL-Chip Support Library"
-+
-diff --git a/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend b/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
-new file mode 100644
-index 0000000..ae2ca3e
---- /dev/null
-+++ b/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
-@@ -0,0 +1,2 @@
-+require recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc
-+
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index 9a3fb70..ffa3cbe 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,4 +1,4 @@
+-PV = "1.1.14.7"
++PV = "1.1.14.8"
+ INC_PR = "r0"
+ 
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
+ 
+-OCL_SRCREV = "2be51882b5c1f0f8a97fddcc7e8db2b09db41dfe"
++OCL_SRCREV = "caf4a0e55831ea34e3659e81877aaffde29ccfd1"
+ 
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+index 4daef6b..fdc822d 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+@@ -35,6 +35,7 @@ DEPENDS_append_dra7xx   = " ti-ipc virtual/kernel"
+ DEPENDS_append_keystone = " mpm-transport multiprocmgr"
+ DEPENDS_remove_k2g = " libulm"
+ 
++RDEPENDS_${PN} += " bash"
+ RDEPENDS_${PN}-dev += " ocl-gl-headers-dev opencl-monitor"
+ RDEPENDS_${PN}-runtime += " ${PN} opencl-monitor clocl ti-cgt6x"
+ 
 -- 
-1.9.1
+2.7.4
 
 
