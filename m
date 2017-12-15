@@ -1,41 +1,41 @@
 Return-Path: <m-radhakrishnan2@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id D3140529ED
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 7504A529ED
 	for <meta-arago@arago-project.org>;
-	Fri, 15 Dec 2017 22:52:54 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id vBFMqih3004754
-	for <meta-arago@arago-project.org>; Fri, 15 Dec 2017 16:52:44 -0600
+	Fri, 15 Dec 2017 23:44:39 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id vBFNiclr011233
+	for <meta-arago@arago-project.org>; Fri, 15 Dec 2017 17:44:38 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1513378364;
-	bh=VvHL/+jeCyc4DJkT5q7ZMCHlJWn/mvg7+umAp6ZVcHA=;
+	s=ti-com-17Q1; t=1513381478;
+	bh=EG5icLiW38EkOJgnPAS4K3/zs6aYYcP4MVejM/sFzLI=;
 	h=From:To:Subject:Date;
-	b=xervQInITjNzOOg9EevknYwTPMy46YuPaQQK5v0INvIR7zroQ1xCnn86jkGqBKkTE
-	kCjPIETx3BAllUetF+0GOlfx9IOF+lwVm9Gq6hbLcmmgRbJ/ZSPaAztsKvcw9AALnG
-	q8TuN3vut7NMoIjc1pm63b1HUihhClep6GU1rKDE=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBFMqdQO028636
-	for <meta-arago@arago-project.org>; Fri, 15 Dec 2017 16:52:39 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	b=OUB6VTn6THtY/jCpHdC2FHMO3hvN56HTEk5XSzR+eJ366chR6Fc8LpoSybEkI12aK
+	R5hJ9sKk3cKqLCIzXLDeVQLF62YW1rrPwMB5/S0HuYRF9ruUv09Xuh3bwh47b9LKm0
+	nnD95p+8M+vVMy2CaMXWvFw6HTWSmTrqPt6+jBew=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBFNicr2031705
+	for <meta-arago@arago-project.org>; Fri, 15 Dec 2017 17:44:38 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Fri, 15 Dec 2017 16:52:39 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 15 Dec 2017 17:44:38 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Fri, 15 Dec 2017 16:52:39 -0600
+	Transport; Fri, 15 Dec 2017 17:44:38 -0600
 Received: from uda0875154a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBFMqcjH008202
-	for <meta-arago@arago-project.org>; Fri, 15 Dec 2017 16:52:38 -0600
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBFNicGs004544
+	for <meta-arago@arago-project.org>; Fri, 15 Dec 2017 17:44:38 -0600
 From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 15 Dec 2017 17:52:37 -0500
-Message-ID: <1513378357-443-1-git-send-email-m-radhakrishnan2@ti.com>
+Date: Fri, 15 Dec 2017 18:44:37 -0500
+Message-ID: <1513381477-17961-1-git-send-email-m-radhakrishnan2@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty][meta-processor-sdk][PATCH] emca-lld-rtos: Update to version 1.0.3.8A
+Subject: [morty][meta-processor-sdk][PATCH] serdes-diag-rtos: Update to version 1.0.0.9
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,29 +48,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Dec 2017 22:52:55 -0000
+X-List-Received-Date: Fri, 15 Dec 2017 23:44:40 -0000
 Content-Type: text/plain
 
 Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 ---
- recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ recipes-bsp/serdes-diag/serdes-diag-rtos_git.bbappend | 5 +++++
+ 1 file changed, 5 insertions(+)
+ create mode 100644 recipes-bsp/serdes-diag/serdes-diag-rtos_git.bbappend
 
-diff --git a/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend b/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend
-index e123b65..fa4a70a 100644
---- a/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend
-+++ b/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend
-@@ -1,7 +1,7 @@
--# Below commit ID corresponds to "DEV.EMAC_LLD.01.00.03.08"
--EMAC_LLD_SRCREV = "20b30c9dd37ae1f899e93b560dce41f804e43317"
-+# Below commit ID corresponds to "DEV.EMAC_LLD.01.00.03.08A"
-+EMAC_LLD_SRCREV = "20a21b3c25fcfebbc0450e88397a4be135ff703b"
- 
--PV = "01.00.03.08"
-+PV = "01.00.03.08A"
- PR = "r0"
- 
- # Build with make instead of XDC
+diff --git a/recipes-bsp/serdes-diag/serdes-diag-rtos_git.bbappend b/recipes-bsp/serdes-diag/serdes-diag-rtos_git.bbappend
+new file mode 100644
+index 0000000..00da3e1
+--- /dev/null
++++ b/recipes-bsp/serdes-diag/serdes-diag-rtos_git.bbappend
+@@ -0,0 +1,5 @@
++# Below commit ID corresponds to "DEV.DIAG_SERDES_SB.01.00.00.09"
++SERDES_DIAG_SRCREV = "22c47cc6e1784a3d2813424da5b469e4168659a6"
++
++PV = "01.00.00.09"
++PR = "r0"
 -- 
 1.9.1
 
