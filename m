@@ -1,41 +1,32 @@
-Return-Path: <yuanzhao@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id CB696529ED
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 2A003529CF
 	for <meta-arago@arago-project.org>;
-	Fri, 15 Dec 2017 23:56:27 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id vBFNuHUo012833
-	for <meta-arago@arago-project.org>; Fri, 15 Dec 2017 17:56:17 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1513382177;
-	bh=oJwroTtXPHplz0H19C1M1S6qeAVBPznbFUNBeqrKto4=;
-	h=From:To:CC:Subject:Date;
-	b=wt39mLX8A75nxLl1eYCL6fCudijDa1ZuaF9TU522rucSIUl4sjeZPE/AAJ4NuTSs3
-	QFugjkLZlJU7zZ60vePEIsYrN3Ow4zw01AACObOogz86IXlpHdqv6gwDFB1okrJUrs
-	koB4eSXxvYyov0t1NPLCXqRpP6yfLkZkJ+0OCClE=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBFNuCoQ022843
-	for <meta-arago@arago-project.org>; Fri, 15 Dec 2017 17:56:12 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Fri, 15 Dec 2017 17:56:11 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Fri, 15 Dec 2017 17:56:11 -0600
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id vBFNuB27007186;
-	Fri, 15 Dec 2017 17:56:11 -0600
-From: Yuan Zhao <yuanzhao@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 15 Dec 2017 17:56:07 -0600
-Message-ID: <20171215235607.96899-1-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.14.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] ocl: update to version 01.01.14.09
+	Sat, 16 Dec 2017 18:09:38 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id A493C209AE;
+	Sat, 16 Dec 2017 18:09:37 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id t_333bxZZTju; Sat, 16 Dec 2017 18:09:37 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6D58D201FD;
+	Sat, 16 Dec 2017 18:09:34 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 09BD01631EF;
+	Sat, 16 Dec 2017 13:09:34 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Sat, 16 Dec 2017 13:09:33 -0500
+Message-Id: <1513447773-21409-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Cc: "Mertz, Timothy" <timothy.mertz@garmin.com>,
+	Joshua Watt <JPEWhacker@gmail.com>
+Subject: [morty][PATCH] recipes: update for ti-xdctools-native change in meta-ti
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,36 +39,113 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Dec 2017 23:56:28 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 16 Dec 2017 18:09:38 -0000
 
-- opencl: workaround interference with PRUETH test on K2G-ICE
-
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+Cc: "Mertz, Timothy" <timothy.mertz@garmin.com>
+Cc: Joshua Watt <JPEWhacker@gmail.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-ti/ocl/ocl.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb       | 2 +-
+ meta-arago-extras/recipes-ti/libarch/libarch.inc                        | 2 +-
+ meta-arago-extras/recipes-ti/linalg/linalg.inc                          | 2 +-
+ meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb        | 2 +-
+ meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb                | 2 +-
+ meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb                 | 2 +-
+ meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb                  | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-index ffa3cbee..e35feaa6 100644
---- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
-+++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-@@ -1,4 +1,4 @@
--PV = "1.1.14.8"
-+PV = "1.1.14.9"
- INC_PR = "r0"
+diff --git a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
+index 8f7820b..858dc2d 100644
+--- a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
++++ b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
+@@ -4,7 +4,7 @@ require recipes-ti/includes/ti-paths.inc
+ require big-data-ipc-demo.inc
  
- LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
-@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
- OCL_GIT_PROTOCOL = "git"
- OCL_GIT_BRANCH = "master"
+ DEPENDS = "ti-ipc \
+-           ti-xdctools \
++           ti-xdctools-native \
+            ti-sysbios \
+            ti-ipc-rtos \
+            cmem \
+diff --git a/meta-arago-extras/recipes-ti/libarch/libarch.inc b/meta-arago-extras/recipes-ti/libarch/libarch.inc
+index 5575f95..a21333b 100644
+--- a/meta-arago-extras/recipes-ti/libarch/libarch.inc
++++ b/meta-arago-extras/recipes-ti/libarch/libarch.inc
+@@ -17,7 +17,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
--OCL_SRCREV = "caf4a0e55831ea34e3659e81877aaffde29ccfd1"
-+OCL_SRCREV = "f116d5695cdf7436d636daacb24fc340e249401b"
+ S = "${WORKDIR}/git"
  
- BRANCH = "${OCL_GIT_BRANCH}"
- SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+-DEPENDS = "common-csl-ip-rtos ti-xdctools ti-sysbios ti-cgt6x-native ti-xdais ti-framework-components opencl opencl-monitor doxygen-native zip-native"
++DEPENDS = "common-csl-ip-rtos ti-xdctools-native ti-sysbios ti-cgt6x-native ti-xdais ti-framework-components opencl opencl-monitor doxygen-native zip-native"
+ 
+ export CGTROOT = "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
+ export TI_OCL_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
+diff --git a/meta-arago-extras/recipes-ti/linalg/linalg.inc b/meta-arago-extras/recipes-ti/linalg/linalg.inc
+index c60387e..60a9b4b 100644
+--- a/meta-arago-extras/recipes-ti/linalg/linalg.inc
++++ b/meta-arago-extras/recipes-ti/linalg/linalg.inc
+@@ -22,7 +22,7 @@ SRCREV = "01960b319783b29aacf12b2a72606b28d657b78e"
+ DEPENDS = " \
+ 	common-csl-ip \
+ 	libarch \
+-	ti-xdctools \
++	ti-xdctools-native \
+ 	ti-ipc-rtos \
+ 	ti-sysbios \
+ 	ti-cgt6x-native \
+diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
+index b6f21aa..8add3ef 100644
+--- a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
+@@ -11,7 +11,7 @@ inherit cmake
+ 
+ DEPENDS = " ti-llvm3.6-native \
+             common-csl-ip-rtos \
+-            ti-xdctools \
++            ti-xdctools-native \
+             ti-ipc-rtos \
+             ti-sysbios \
+             ti-cgt6x-native \
+diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb
+index 41b6653..40f3f98 100644
+--- a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb
+@@ -18,7 +18,7 @@ DEPENDS = "cmake-native \
+            libloki \
+            gcc-arm-none-eabi-native \
+            ti-sysbios \
+-           ti-xdctools \
++           ti-xdctools-native \
+            ti-ipc-rtos  \
+            opencl-monitor-rtos  \
+            clocl-rtos-native  \
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+index 0f769f4..9f39edc 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+@@ -12,7 +12,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+ DEPENDS = "opencl ti-cgt6x-native clocl-native"
+ 
+-OCL_PERSISTENT_DEPENDS = "ti-xdctools ti-ipc-rtos ti-sysbios"
++OCL_PERSISTENT_DEPENDS = "ti-xdctools-native ti-ipc-rtos ti-sysbios"
+ 
+ DEPENDS_append_dra7xx = " ${OCL_PERSISTENT_DEPENDS}"
+ 
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+index 44050f1..42a257d 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+@@ -11,7 +11,7 @@ inherit cmake update-alternatives
+ 
+ DEPENDS = " ti-llvm3.6-native \
+             common-csl-ip-rtos \
+-            ti-xdctools \
++            ti-xdctools-native \
+             ti-ipc-rtos \
+             ti-sysbios \
+             ti-cgt6x-native \
 -- 
-2.14.1
+2.7.4
 
 
