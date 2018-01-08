@@ -1,41 +1,41 @@
 Return-Path: <s-das@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 3A5ED529BB
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id DF68A529BB
 	for <meta-arago@arago-project.org>;
-	Mon,  8 Jan 2018 20:07:37 +0000 (UTC)
+	Mon,  8 Jan 2018 20:28:22 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w08K7UkU026553
-	for <meta-arago@arago-project.org>; Mon, 8 Jan 2018 14:07:30 -0600
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w08KSGU7029746
+	for <meta-arago@arago-project.org>; Mon, 8 Jan 2018 14:28:16 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1515442051;
-	bh=eP2hqWJYp6gHpjHQqy31lQnu9pQ6llW/RClq38OBtwg=;
+	s=ti-com-17Q1; t=1515443296;
+	bh=5EIDv1fyE/GYVNg8cNRT0KGd36dbuuh/yeAUljvn+Tw=;
 	h=From:To:CC:Subject:Date;
-	b=u0v4/ojTu602Tcf0DFA6qFlT7hw1XeZGBBGGtqIsUpfjXM/SIrCHb/cdlabKy/s/l
-	xiX94/j/Y+ckxaG7HgnNac++k9cXKm5d6rT1WFbxUN7kRRsvNCwKb5Kh/KGoe8yIEe
-	vL+w7MqvyHPhTm1lN9aCD3XKJI1mFNtLeSQuTDfw=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08K7UVQ007059
-	for <meta-arago@arago-project.org>; Mon, 8 Jan 2018 14:07:30 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	b=Eqli+Hqsjou1Nouigi/Ts6JMOaXqU7dKPSVDwN5DqXs5gPlqyNpKYiCFh5abwTmsl
+	6VM7t1Hz0as62kKe85FC1udCJZBNvXbXzyUtCaK8WKWHwodT0SPrueEcFj6jo0qz8M
+	qX7QZx88qlwZNRkAYrQP9CysYCxd9WGkUqj7LCIc=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08KSGfs007958
+	for <meta-arago@arago-project.org>; Mon, 8 Jan 2018 14:28:16 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Mon, 8 Jan 2018 14:07:30 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 8 Jan 2018 14:28:16 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Mon, 8 Jan 2018 14:07:30 -0600
+	Transport; Mon, 8 Jan 2018 14:28:16 -0600
 Received: from uda0226011a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08K7UcJ024670;
-	Mon, 8 Jan 2018 14:07:30 -0600
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08KSGkq017849;
+	Mon, 8 Jan 2018 14:28:16 -0600
 From: Suraj Das <s-das@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 8 Jan 2018 15:07:25 -0500
-Message-ID: <1515442045-9279-1-git-send-email-s-das@ti.com>
+Date: Mon, 8 Jan 2018 15:28:13 -0500
+Message-ID: <1515443293-9739-1-git-send-email-s-das@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk] ti-cgt-pru: update toolchain to 2.2.1 version
+Subject: [meta-processor-sdkD] ti-cgt-pru: update toolchain to 2.2.1 version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,9 +48,10 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jan 2018 20:07:37 -0000
+X-List-Received-Date: Mon, 08 Jan 2018 20:28:23 -0000
 Content-Type: text/plain
 
+Signed-off-by: Suraj Das <s-das@ti.com>
 ---
  recipes-ti/devtools/ti-cgt-pru_2.2.1.bb | 49 +++++++++++++++++++++++++++++++++
  1 file changed, 49 insertions(+)
