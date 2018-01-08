@@ -1,44 +1,30 @@
-Return-Path: <h-gou@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 3D93952A43
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 8A0D4529AB
 	for <meta-arago@arago-project.org>;
-	Mon,  8 Jan 2018 23:34:04 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w08NXv0F027279
-	for <meta-arago@arago-project.org>; Mon, 8 Jan 2018 17:33:57 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1515454437;
-	bh=3yFGFBki7OEYSBO6OcfUbIADrLUiSzDa6FZwCuYs870=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=jxbOptamUWd+0zZOjOi1MuEIFOzR5DvZpYkP3LIKfcIj3C1kWmAx72Bd9Ohw2Ayv/
-	6LvCEVku97g+bGlqWe3VtXs6JCVgq1q9FPV7a3c35NSAQRy+IvpSks2A63n5Z8PhJY
-	9R6CPqM1meyEfhKRZ+SprJp2gn82ZLBpXEq+xVQY=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08NXvEk025921
-	for <meta-arago@arago-project.org>; Mon, 8 Jan 2018 17:33:57 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Mon, 8 Jan 2018 17:33:57 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Mon, 8 Jan 2018 17:33:57 -0600
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08NXrhH019194;
-	Mon, 8 Jan 2018 17:33:57 -0600
-From: Hongmei Gou <a0271529@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 8 Jan 2018 18:33:40 -0500
-Message-ID: <1515454420-19972-13-git-send-email-a0271529@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1515454420-19972-1-git-send-email-a0271529@ti.com>
-References: <1515454420-19972-1-git-send-email-a0271529@ti.com>
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processor-sdk 12/12] uart-lld-rtos: upstreamed to meta-ti
+	Mon,  8 Jan 2018 23:34:48 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 70DA920B37;
+	Mon,  8 Jan 2018 23:34:42 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id XmuVvvN26i2c; Mon,  8 Jan 2018 23:34:42 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4FCD120189;
+	Mon,  8 Jan 2018 23:34:41 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id CAC7716271B;
+	Mon,  8 Jan 2018 18:34:40 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon,  8 Jan 2018 18:34:26 -0500
+Message-Id: <1515454467-7986-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [oe-layersetup][PATCH 1/2] coresdk-2017.05-config.txt: add CoreSDK config for 2017.05 release
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,27 +37,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jan 2018 23:34:07 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 08 Jan 2018 23:34:49 -0000
 
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- recipes-bsp/uart-lld/uart-lld-rtos_git.bbappend | 5 -----
- 1 file changed, 5 deletions(-)
- delete mode 100644 recipes-bsp/uart-lld/uart-lld-rtos_git.bbappend
+ configs/coresdk/coresdk-2017.05-config.txt | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+ create mode 100644 configs/coresdk/coresdk-2017.05-config.txt
 
-diff --git a/recipes-bsp/uart-lld/uart-lld-rtos_git.bbappend b/recipes-bsp/uart-lld/uart-lld-rtos_git.bbappend
-deleted file mode 100644
-index 67249f5..0000000
---- a/recipes-bsp/uart-lld/uart-lld-rtos_git.bbappend
-+++ /dev/null
-@@ -1,5 +0,0 @@
--# Below commit ID corresponds to "DEV.UART_LLD.01.00.00.09"
--UART_LLD_SRCREV = "f3670e497186b5ec5258d0e51fb1ebdaa3d60577"
--
--PV = "01.00.00.09"
--PR = "r0"
+diff --git a/configs/coresdk/coresdk-2017.05-config.txt b/configs/coresdk/coresdk-2017.05-config.txt
+new file mode 100644
+index 0000000..7b29f11
+--- /dev/null
++++ b/configs/coresdk/coresdk-2017.05-config.txt
+@@ -0,0 +1,13 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.32,991b533f1d61042a7b3edd1fbf3dea0bf9991606,layers=
++meta-arago,git://arago-project.org/git/meta-arago.git,morty,ti2017.05,layers=meta-arago-distro:meta-arago-extras
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,2c9f0e4eb0e9097f6f872ec1e1d81768a8ab5f1b,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,b40116cf457b88a2db14b86fda9627fb34d56ae6,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
++meta-ti,git://git.yoctoproject.org/meta-ti,morty,ti2017.05,layers=
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,morty,e3099758a75e439c54ba45c3434fbf22e98ee779,layers=meta-linaro-toolchain:meta-optee
++oe-core,git://git.openembedded.org/openembedded-core,morty,c79b479ab4b129007c6679bb0bdd8e2ec7ecb6ad,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64.conf.sample
 -- 
-1.9.1
+2.7.4
 
 
