@@ -1,44 +1,44 @@
 Return-Path: <h-gou@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 6D7AE529DC
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 680FE529BB
 	for <meta-arago@arago-project.org>;
 	Mon,  8 Jan 2018 23:34:01 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w08NXtcn027271
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w08NXtEE017869
 	for <meta-arago@arago-project.org>; Mon, 8 Jan 2018 17:33:55 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
 	s=ti-com-17Q1; t=1515454435;
-	bh=C+hV3DXw2Xkjya8wYhHkBGSBBFsCJH2/WgyEUoOrjh8=;
+	bh=CB7wfsqc9TLPd/Nq0ohtdltOvd+91kTqQc2453corrw=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=GQeMY1ERyuFOfJvRtNNAHd07kn4zz3i0zStI6c+c1bSrM374xofW/iuCI/u9A+h3M
-	r00ZhjSw3bzXi3NUrpq3OjFLVYSfn3UTGpQP8alnU8L9krYrM/huKWUQjbq/Y6veBw
-	utXRs+oXlv2a1msKGlCsJsXhveG57ko+wGF4gQto=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08NXtkO004791
+	b=CAoAOMlNHQNep3ZulJTtFLI7zyAeysQw15tIVzxyj07HVIN06Yit8SIOfyP2G2xgU
+	MInyB2fIVADKaUZZ8l9p/3GSWYY8JUjCLnTo5P/5OL9tciZaVKxEup4yHr4gt9T/Hs
+	2MvOc3KBCsOrOxkT6sIcr494m0ydIQ1dL+Kts68Y=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08NXt6t004785
 	for <meta-arago@arago-project.org>; Mon, 8 Jan 2018 17:33:55 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Mon, 8 Jan 2018 17:33:55 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 8 Jan 2018 17:33:54 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Mon, 8 Jan 2018 17:33:55 -0600
+	Transport; Mon, 8 Jan 2018 17:33:54 -0600
 Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08NXrh8019194;
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08NXrh7019194;
 	Mon, 8 Jan 2018 17:33:54 -0600
 From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 8 Jan 2018 18:33:31 -0500
-Message-ID: <1515454420-19972-4-git-send-email-a0271529@ti.com>
+Date: Mon, 8 Jan 2018 18:33:30 -0500
+Message-ID: <1515454420-19972-3-git-send-email-a0271529@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1515454420-19972-1-git-send-email-a0271529@ti.com>
 References: <1515454420-19972-1-git-send-email-a0271529@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processor-sdk 03/12] common-csl-ip: upstreamed to meta-ti
+Subject: [meta-processor-sdk 02/12] board-rtos: upstreamed to meta-ti
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,42 +56,23 @@ Content-Type: text/plain
 
 Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc       | 5 -----
- recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend | 4 ----
- recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend      | 1 -
- 3 files changed, 10 deletions(-)
- delete mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc
- delete mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
- delete mode 100644 recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
+ recipes-bsp/board-rtos/board-rtos_git.bbappend | 7 -------
+ 1 file changed, 7 deletions(-)
+ delete mode 100644 recipes-bsp/board-rtos/board-rtos_git.bbappend
 
-diff --git a/recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc b/recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc
+diff --git a/recipes-bsp/board-rtos/board-rtos_git.bbappend b/recipes-bsp/board-rtos/board-rtos_git.bbappend
 deleted file mode 100644
-index ebea173..0000000
---- a/recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc
+index aefef8d..0000000
+--- a/recipes-bsp/board-rtos/board-rtos_git.bbappend
 +++ /dev/null
-@@ -1,5 +0,0 @@
--PV = "03.03.00.09"
--INC_PR = "r0"
+@@ -1,7 +0,0 @@
+-COMPATIBLE_MACHINE_append = "|c66x"
 -
--# Below commit ID corresponding to "DEV.CSL_PROCESSOR-SDK.03.03.00.09"
--CSL_SRCREV = "7a7ef0633d9e305072b79ac978738c48e46583cc"
-diff --git a/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend b/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
-deleted file mode 100644
-index b3b7c1c..0000000
---- a/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
-+++ /dev/null
-@@ -1,4 +0,0 @@
--require recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc
+-# Below commit ID corresponds to "DEV.BOARD.01.00.09.00A"
+-BOARD_SRCREV = "387d77aff6e36af54c239a315cb2d477f1466f4d"
 -
--# HTML doc link params
--PDK_COMP_LINK_TEXT = "CSL-Chip Support Library"
-diff --git a/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend b/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
-deleted file mode 100644
-index b781ce2..0000000
---- a/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
-+++ /dev/null
-@@ -1 +0,0 @@
--require recipes-bsp/common-csl-ip/common-csl-ip-3.3.0.9.inc
+-PV = "01.00.09.00A"
+-PR = "r0"
 -- 
 1.9.1
 
