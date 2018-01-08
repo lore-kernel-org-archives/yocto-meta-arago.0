@@ -1,44 +1,44 @@
 Return-Path: <h-gou@ti.com>
 Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 0B108529BB
+	by arago-project.org (Postfix) with ESMTPS id AEE8A529AB
 	for <meta-arago@arago-project.org>;
-	Mon,  8 Jan 2018 23:34:03 +0000 (UTC)
+	Mon,  8 Jan 2018 23:34:02 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w08NXuul017885
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w08NXuDu017881
 	for <meta-arago@arago-project.org>; Mon, 8 Jan 2018 17:33:56 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
 	s=ti-com-17Q1; t=1515454436;
-	bh=9y5aoVNH/Gr/emw34yCC1d95Do3O8tTji5CjRo5FIoU=;
+	bh=zBJvoEDtkWLzuI97tddKJYwbFHJDgRkTl193alx5EOg=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Rhvox54u48EPFp5YyS+VRuf7dMbLy+AYp45VgA1YD2ymkA/8UuoZTVzWBi6Q5ZQ93
-	OFGAIpOvDAhsxDrrlMYEkw0hiF5qhRFjTC+Mk4LN/QjcIRLOyID/5pZKLTSA97AamB
-	iqU1JdLjfAREJA6Xg76u8lY8OtfOq1U120p72Brk=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08NXuD2025897
+	b=T2WOd+TPnz67J+f4eCiuABZqV51+BF1WupYnKx8kbEtGHPMbdzUc/evVzS9btgoTI
+	UhfMsQj/qaKLngvLFH2OQYW4QWoaqtt55NYOrRwwS9OdZGiyWbLR2DblEZSmXpDsLd
+	1zbVReYUOOv/HWQHlansPRadntzrf1LXH0fS9WBU=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08NXunY025894
 	for <meta-arago@arago-project.org>; Mon, 8 Jan 2018 17:33:56 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
 	Mon, 8 Jan 2018 17:33:56 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
 	Transport; Mon, 8 Jan 2018 17:33:56 -0600
 Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08NXrhD019194;
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w08NXrhC019194;
 	Mon, 8 Jan 2018 17:33:56 -0600
 From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 8 Jan 2018 18:33:36 -0500
-Message-ID: <1515454420-19972-9-git-send-email-a0271529@ti.com>
+Date: Mon, 8 Jan 2018 18:33:35 -0500
+Message-ID: <1515454420-19972-8-git-send-email-a0271529@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1515454420-19972-1-git-send-email-a0271529@ti.com>
 References: <1515454420-19972-1-git-send-email-a0271529@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processor-sdk 08/12] osal: upstreamed to meta-ti
+Subject: [meta-processor-sdk 07/12] mmcsd-lld-rtos: upstreamed to meta-ti
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,52 +56,21 @@ Content-Type: text/plain
 
 Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- recipes-bsp/osal/osal-1.0.0.9.inc       | 6 ------
- recipes-bsp/osal/osal-rtos_git.bbappend | 2 +-
- recipes-bsp/osal/osal-test_git.bbappend | 2 --
- recipes-bsp/osal/osal_git.bbappend      | 2 --
- 4 files changed, 1 insertion(+), 11 deletions(-)
- delete mode 100644 recipes-bsp/osal/osal-1.0.0.9.inc
- delete mode 100644 recipes-bsp/osal/osal-test_git.bbappend
- delete mode 100644 recipes-bsp/osal/osal_git.bbappend
+ recipes-bsp/mmcsd-lld/mmcsd-lld-rtos_git.bbappend | 5 -----
+ 1 file changed, 5 deletions(-)
+ delete mode 100644 recipes-bsp/mmcsd-lld/mmcsd-lld-rtos_git.bbappend
 
-diff --git a/recipes-bsp/osal/osal-1.0.0.9.inc b/recipes-bsp/osal/osal-1.0.0.9.inc
+diff --git a/recipes-bsp/mmcsd-lld/mmcsd-lld-rtos_git.bbappend b/recipes-bsp/mmcsd-lld/mmcsd-lld-rtos_git.bbappend
 deleted file mode 100644
-index cf4bc39..0000000
---- a/recipes-bsp/osal/osal-1.0.0.9.inc
+index 081715c..0000000
+--- a/recipes-bsp/mmcsd-lld/mmcsd-lld-rtos_git.bbappend
 +++ /dev/null
-@@ -1,6 +0,0 @@
--PV = "01.00.00.09"
--INC_PR = "r0"
+@@ -1,5 +0,0 @@
+-# Below commit ID corresponds to "DEV.MMCSD_LLD.01.00.00.10"
+-MMCSD_LLD_SRCREV = "9bb118bdc1ac46863f57a68d70f421734a4dcf25"
 -
--# Below commit ID corresponding to "DEV.OSAL.01.00.00.09"
--OSAL_SRCREV = "0bb1151f3622fb65f41f1d3dcffcee63fe9724de"
--
-diff --git a/recipes-bsp/osal/osal-rtos_git.bbappend b/recipes-bsp/osal/osal-rtos_git.bbappend
-index a4316c3..136d696 100644
---- a/recipes-bsp/osal/osal-rtos_git.bbappend
-+++ b/recipes-bsp/osal/osal-rtos_git.bbappend
-@@ -1,3 +1,3 @@
--require recipes-bsp/osal/osal-1.0.0.9.inc
-+PR_append = ".tisdk0"
- 
- COMPATIBLE_MACHINE_append = "|c66x"
-diff --git a/recipes-bsp/osal/osal-test_git.bbappend b/recipes-bsp/osal/osal-test_git.bbappend
-deleted file mode 100644
-index dadb121..0000000
---- a/recipes-bsp/osal/osal-test_git.bbappend
-+++ /dev/null
-@@ -1,2 +0,0 @@
--require recipes-bsp/osal/osal-1.0.0.9.inc
--
-diff --git a/recipes-bsp/osal/osal_git.bbappend b/recipes-bsp/osal/osal_git.bbappend
-deleted file mode 100644
-index dadb121..0000000
---- a/recipes-bsp/osal/osal_git.bbappend
-+++ /dev/null
-@@ -1,2 +0,0 @@
--require recipes-bsp/osal/osal-1.0.0.9.inc
--
+-PV = "01.00.00.10"
+-PR = "r0"
 -- 
 1.9.1
 
