@@ -1,32 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 8999952983
+Return-Path: <h-gou@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 2A41C52093
 	for <meta-arago@arago-project.org>;
-	Mon,  8 Jan 2018 23:34:48 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 7C12320189;
-	Mon,  8 Jan 2018 23:34:42 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id iKCZZLAlzE-k; Mon,  8 Jan 2018 23:34:42 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5B6432087C;
-	Mon,  8 Jan 2018 23:34:41 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id CE71E163227;
-	Mon,  8 Jan 2018 18:34:40 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon,  8 Jan 2018 18:34:27 -0500
-Message-Id: <1515454467-7986-2-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1515454467-7986-1-git-send-email-denis@denix.org>
-References: <1515454467-7986-1-git-send-email-denis@denix.org>
-Subject: [oe-layersetup][PATCH 2/2] coresdk-2017.06-config.txt: add CoreSDK config for 2017.06 release
+	Tue,  9 Jan 2018 18:05:06 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w09I4xPY007050
+	for <meta-arago@arago-project.org>; Tue, 9 Jan 2018 12:04:59 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1515521099;
+	bh=V4BHzdC1kJWgDE86weCiUwEnIX/pUszGkP3xDrCl1r4=;
+	h=From:To:CC:Subject:Date;
+	b=l5R3SEbtPKbeP/xcgH1/CzLj4dGp3rDD9TFjBeny7CPlAU4bEP+L8ORSNhUWUg1Cr
+	UI3jNlGqqpyaDI2hw6nT8qNeLCymWQkxfRAjRXRz81GhFptwuiRl1trzlmtQtvHiyG
+	rOJaoAP3XMxW+UMOt2LqHU4mcgPgpGDxts9tLCFE=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w09I4xAj012716
+	for <meta-arago@arago-project.org>; Tue, 9 Jan 2018 12:04:59 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
+	Tue, 9 Jan 2018 12:04:58 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
+	Transport; Tue, 9 Jan 2018 12:04:58 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w09I4wW0032548;
+	Tue, 9 Jan 2018 12:04:58 -0600
+From: Hongmei Gou <a0271529@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 9 Jan 2018 13:04:55 -0500
+Message-ID: <1515521095-27254-1-git-send-email-a0271529@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [meta-processor-sdk] linux-ti-staging: rebase patches against 2017.06 kernel
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,36 +49,99 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jan 2018 23:34:49 -0000
+X-List-Received-Date: Tue, 09 Jan 2018 18:05:06 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+* Removed the patch to add camera support in the default dtb for am57x-evm,
+  due to the baseline difference between rt and non-rt in 2017.06 kernel.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- configs/coresdk/coresdk-2017.06-config.txt | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
- create mode 100644 configs/coresdk/coresdk-2017.06-config.txt
+ recipes-kernel/linux/linux-ti-staging-4.9-patches.inc          |  3 +--
+ ...-net-prueth-Add-TI-PRUSS-Ethernet-driver-support-of-H.patch |  4 ++--
+ recipes-kernel/linux/linux-ti-staging-rt_4.9.bbappend          | 10 +++++-----
+ recipes-kernel/linux/linux-ti-staging_4.9.bbappend             | 10 +++++-----
+ 4 files changed, 13 insertions(+), 14 deletions(-)
 
-diff --git a/configs/coresdk/coresdk-2017.06-config.txt b/configs/coresdk/coresdk-2017.06-config.txt
-new file mode 100644
-index 0000000..1887eed
---- /dev/null
-+++ b/configs/coresdk/coresdk-2017.06-config.txt
-@@ -0,0 +1,13 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,1.32,991b533f1d61042a7b3edd1fbf3dea0bf9991606,layers=
-+meta-arago,git://arago-project.org/git/meta-arago.git,morty,ti2017.06,layers=meta-arago-distro:meta-arago-extras
-+meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,2c9f0e4eb0e9097f6f872ec1e1d81768a8ab5f1b,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,b40116cf457b88a2db14b86fda9627fb34d56ae6,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
-+meta-ti,git://git.yoctoproject.org/meta-ti,morty,ti2017.06,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,morty,5d2cb685217794293ea2bab18d7e62019c329d06,layers=meta-linaro-toolchain:meta-optee
-+oe-core,git://git.openembedded.org/openembedded-core,morty,1718f0a6c1de9c23660a9bebfd4420e3c4ed37e6,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/recipes-kernel/linux/linux-ti-staging-4.9-patches.inc b/recipes-kernel/linux/linux-ti-staging-4.9-patches.inc
+index 9294303..a01deaa 100644
+--- a/recipes-kernel/linux/linux-ti-staging-4.9-patches.inc
++++ b/recipes-kernel/linux/linux-ti-staging-4.9-patches.inc
+@@ -1,4 +1,4 @@
+-PR_append = ".p32"
++PR_append = ".p33"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/linux-ti-staging-4.9-patches:"
+ 
+@@ -56,7 +56,6 @@ TI_LINUX_KERNEL_PATCHES = " \
+     file://0049-prueth-preparatory-patch-to-add-run-time-protocol-ch.patch \
+     file://0050-prueth-support-run-time-change-of-protocol-at-pru-Et.patch \
+     file://0051-prueth-parse-red-rx-red-tx-DT-property-only-if-eth-t.patch \
+-    file://0052-arm-dts-am57xx-allow-mt9t111-support-in-the-default-.patch \
+     file://0053-arm-dts-rename-am572x-idk-jailhouse.dts-to-dtsi.patch \
+     file://0054-arm-dtb-am572x-idk-add-dts-files-to-support-jailhous.patch \
+     file://0055-net-prueth-Add-promiscuous-mode-support.patch \
+diff --git a/recipes-kernel/linux/linux-ti-staging-4.9-patches/0037-net-prueth-Add-TI-PRUSS-Ethernet-driver-support-of-H.patch b/recipes-kernel/linux/linux-ti-staging-4.9-patches/0037-net-prueth-Add-TI-PRUSS-Ethernet-driver-support-of-H.patch
+index d574098..5037f7f 100644
+--- a/recipes-kernel/linux/linux-ti-staging-4.9-patches/0037-net-prueth-Add-TI-PRUSS-Ethernet-driver-support-of-H.patch
++++ b/recipes-kernel/linux/linux-ti-staging-4.9-patches/0037-net-prueth-Add-TI-PRUSS-Ethernet-driver-support-of-H.patch
+@@ -3268,9 +3268,9 @@ index a03e955..812793c 100644
+  			(void __iomem *)gen_pool_alloc(prueth->sram_pool,
+ -						       OCMC_RAM_SIZE);
+ +						       prueth->ocmc_ram_size);
+- 	if (IS_ERR(prueth->mem[PRUETH_MEM_OCMC].va)) {
+- 		ret = PTR_ERR(prueth->mem[PRUETH_MEM_OCMC].va);
++ 	if (!prueth->mem[PRUETH_MEM_OCMC].va) {
+  		dev_err(dev, "unable to allocate OCMC resource\n");
++ 		ret = -ENOMEM;
+ @@ -1737,7 +3473,7 @@ static int prueth_probe(struct platform_device *pdev)
+  	prueth->mem[PRUETH_MEM_OCMC].pa =
+  			gen_pool_virt_to_phys(prueth->sram_pool,
+diff --git a/recipes-kernel/linux/linux-ti-staging-rt_4.9.bbappend b/recipes-kernel/linux/linux-ti-staging-rt_4.9.bbappend
+index 3b0c152..7f0bf1f 100644
+--- a/recipes-kernel/linux/linux-ti-staging-rt_4.9.bbappend
++++ b/recipes-kernel/linux/linux-ti-staging-rt_4.9.bbappend
+@@ -1,12 +1,12 @@
+-PR_append = ".tisdk16"
++PR_append = ".tisdk17"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-4.9:${THISDIR}/files:"
+ 
+-#require linux-ti-staging-4.9-patches.inc
++require linux-ti-staging-4.9-patches.inc
+ 
+-KERNEL_GIT_URI = "git://git.ti.com/processor-sdk/processor-sdk-linux.git"
+-BRANCH = "processor-sdk-linux-rt-04.02.00"
+-SRCREV = "273202a0d36d6cc2c0ca8bd2a9fd6333a7b69407"
++#KERNEL_GIT_URI = "git://git.ti.com/processor-sdk/processor-sdk-linux.git"
++#BRANCH = "processor-sdk-linux-rt-04.02.00"
++#SRCREV = "273202a0d36d6cc2c0ca8bd2a9fd6333a7b69407"
+ 
+ SRC_URI_append = " file://jailhouse.cfg"
+ 
+diff --git a/recipes-kernel/linux/linux-ti-staging_4.9.bbappend b/recipes-kernel/linux/linux-ti-staging_4.9.bbappend
+index c082c0e..ea2e12f 100644
+--- a/recipes-kernel/linux/linux-ti-staging_4.9.bbappend
++++ b/recipes-kernel/linux/linux-ti-staging_4.9.bbappend
+@@ -1,12 +1,12 @@
+-PR_append = ".tisdk16"
++PR_append = ".tisdk17"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-4.9:${THISDIR}/files:"
+ 
+-#require linux-ti-staging-4.9-patches.inc
++require linux-ti-staging-4.9-patches.inc
+ 
+-KERNEL_GIT_URI = "git://git.ti.com/processor-sdk/processor-sdk-linux.git"
+-BRANCH = "processor-sdk-linux-04.02.00"
+-SRCREV = "a75d8e93056181d512f6c818e8627bd4554aaf92"
++#KERNEL_GIT_URI = "git://git.ti.com/processor-sdk/processor-sdk-linux.git"
++#BRANCH = "processor-sdk-linux-04.02.00"
++#SRCREV = "a75d8e93056181d512f6c818e8627bd4554aaf92"
+ 
+ SRC_URI_append = " file://jailhouse.cfg"
+ 
 -- 
-2.7.4
+1.9.1
 
 
