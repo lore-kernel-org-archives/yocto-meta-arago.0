@@ -1,44 +1,44 @@
 Return-Path: <h-gou@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 5A17C529D2
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 8D96552093
 	for <meta-arago@arago-project.org>;
 	Tue,  9 Jan 2018 21:48:55 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w09LmmIU018457
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w09Lmmn6009348
 	for <meta-arago@arago-project.org>; Tue, 9 Jan 2018 15:48:48 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
 	s=ti-com-17Q1; t=1515534528;
-	bh=Heoy5zqaoOhEcl4otxcUzXDAlxI4oHLSpEf3TdGjxu4=;
+	bh=oUPc5TwrJqf1/FpLKvbWKrWS4RzN6PIqxwfXeey8IXU=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=hMPdIQr7UZHMoFztSifnXJtAGPErOUt9QEn0S+ThYZ1p+AClvibYzVkCJdosGMstd
-	grRNvl5+wbjxyrSYDl2tPx+nIUiVS0pYBaWUhf+GmSPsdZ4zpjCRUDV4PbgXD2s0KX
-	Z1M027bk03gppsSUvTq7dKZ/M0fKa7WR0rAoOL1w=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w09Lmm1V022452
+	b=hG6csEmfhMi6vQ12V+j9bbtRaYC5ewxjdrMk245P5aHzlaGETRtmOyB/vH6WphFOA
+	l9i30wC7H2kmYnoAbLUN/ztCe1mmJloMQcH9F8ygoL0FhdpzkP/FLVl84jkm2w3Si5
+	G8MSXpH9bzhL5Qe1fj6FATHwtNs/FBJ4fEMUNeXo=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w09LmmvJ022455
 	for <meta-arago@arago-project.org>; Tue, 9 Jan 2018 15:48:48 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Tue, 9 Jan 2018 15:48:47 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 9 Jan 2018 15:48:48 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Tue, 9 Jan 2018 15:48:47 -0600
+	Transport; Tue, 9 Jan 2018 15:48:48 -0600
 Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w09LmkRa011305;
-	Tue, 9 Jan 2018 15:48:47 -0600
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w09LmkRb011305;
+	Tue, 9 Jan 2018 15:48:48 -0600
 From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 9 Jan 2018 16:48:43 -0500
-Message-ID: <1515534524-21325-5-git-send-email-a0271529@ti.com>
+Date: Tue, 9 Jan 2018 16:48:44 -0500
+Message-ID: <1515534524-21325-6-git-send-email-a0271529@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1515534524-21325-1-git-send-email-a0271529@ti.com>
 References: <1515534524-21325-1-git-send-email-a0271529@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processor-sdk 4/5] packagegroup-arago-test-addons: remove cmem-test for AM4
+Subject: [meta-processor-sdk 5/5] ti-tisdk-makefile: remove cmem-mod for AM4
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -58,30 +58,30 @@ Content-Type: text/plain
 
 Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- recipes-core/packagegroups/packagegroup-arago-test-addons.bbappend | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/recipes-core/packagegroups/packagegroup-arago-test-addons.bbappend b/recipes-core/packagegroups/packagegroup-arago-test-addons.bbappend
-index 038d122..7b390e9 100644
---- a/recipes-core/packagegroups/packagegroup-arago-test-addons.bbappend
-+++ b/recipes-core/packagegroups/packagegroup-arago-test-addons.bbappend
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+index db065a8..37aa6a6 100644
+--- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
 @@ -1,4 +1,4 @@
--PR_append = ".tisdk7"
-+PR_append = ".tisdk8"
+-PR_append = ".tisdk48"
++PR_append = ".tisdk49"
  
- TEST_ADDONS_TI_append_keystone = " \
-     mmap-lld-test \
-@@ -23,10 +23,6 @@ TEST_ADDONS_TI_append_am57xx-evm = " \
-     icss-emac-lld-test \
- "
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
--TEST_ADDONS_TI_append_ti43x  = " \
--    cmem-test \
+@@ -36,9 +36,7 @@ MAKEFILES_remove_omapl138 = "u-boot-legacy"
+ 
+ MAKEFILES_append_omap-a15 = " video-graphics-test"
+ 
+-MAKEFILES_append_ti43x = " cmem-mod \
+-			   evse-hmi \
 -"
--
- TEST_ADDONS_TI_append_am335x-evm  = " icss-emac-lld-test"
- TEST_ADDONS_TI_append_am437x-evm  = " icss-emac-lld-test"
- TEST_ADDONS_TI_append_k2g-evm  = " icss-emac-lld-test"
++MAKEFILES_append_ti43x = " evse-hmi"
+ 
+ MAKEFILES_append_ti33x = " evse-hmi \
+ 			   protection-relays-hmi \
 -- 
 1.9.1
 
