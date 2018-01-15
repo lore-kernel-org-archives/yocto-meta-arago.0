@@ -1,46 +1,30 @@
-Return-Path: <h-gou@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 5697252A28
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 46CCB52A28
 	for <meta-arago@arago-project.org>;
-	Mon, 15 Jan 2018 23:34:41 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w0FNYRLV006562
-	for <meta-arago@arago-project.org>; Mon, 15 Jan 2018 17:34:27 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1516059267;
-	bh=ZAz6OAJUVUgBLMHS1bsv14FbD4Rnl+WKD9aw3y+YDhw=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=YyJpdnv2V4F2rCELeYlDykeOOveqxSt6U1ljnquZdGtGC6v9VW3iHKADLPLUfGtsZ
-	fWSGwhcD9ROzOUQP68B/PMy5tsZ62Pm7ViQW+jZH2YAFetpubm1iyRrXt4weji4LQq
-	LsD9raJGz0s2C8pjW/NNmGOkIHHXnjQ3QWs4goGw=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w0FNYRnh021188
-	for <meta-arago@arago-project.org>; Mon, 15 Jan 2018 17:34:27 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Mon, 15 Jan 2018 17:34:27 -0600
-Received: from DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f]) by
-	DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f%18]) with mapi id
-	15.01.1261.035; Mon, 15 Jan 2018 17:34:27 -0600
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [meta-processor-sdk] branding-processor-sdk: bump
-	max_leb_cnt for k2hk
-Thread-Index: AQHTjlgT9kozJelL6kSDllVVwlvxJqN1lMjg
-Date: Mon, 15 Jan 2018 23:34:27 +0000
-Message-ID: <f52ea77d0c044d5fb021a8686d221bd7@ti.com>
-References: <1516058569-7239-1-git-send-email-a0271529@ti.com>
-	<20180115232504.GB31682@edge>
-In-Reply-To: <20180115232504.GB31682@edge>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.218.109.254]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [meta-processor-sdk] branding-processor-sdk: bump max_leb_cnt for k2hk
+	Mon, 15 Jan 2018 23:41:21 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id BF5E920B99;
+	Mon, 15 Jan 2018 23:41:07 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id WHjZdLpYEx4E; Mon, 15 Jan 2018 23:41:07 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9E8B520B93;
+	Mon, 15 Jan 2018 23:41:06 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 20760163261;
+	Mon, 15 Jan 2018 18:41:06 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Mon, 15 Jan 2018 18:41:05 -0500
+Message-Id: <1516059665-5822-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [rocko/master][PATCH] external-linaro-toolchain: stop using deprecated ${COREBASE}/LICENSE
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,55 +37,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jan 2018 23:34:41 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 15 Jan 2018 23:41:21 -0000
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Monday, January 15, 2018 6:25 PM
-> To: Gou, Hongmei
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [meta-processor-sdk] branding-processor-sdk:
-> bump max_leb_cnt for k2hk
->=20
-> On Mon, Jan 15, 2018 at 06:22:49PM -0500, Hongmei Gou wrote:
-> > Signed-off-by: Hongmei Gou <a0271529@ti.com>
-> > ---
-> >  conf/distro/include/branding-processor-sdk.inc | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/conf/distro/include/branding-processor-sdk.inc
-> > b/conf/distro/include/branding-processor-sdk.inc
-> > index 955606f..2fbcb04 100644
-> > --- a/conf/distro/include/branding-processor-sdk.inc
-> > +++ b/conf/distro/include/branding-processor-sdk.inc
-> > @@ -43,7 +43,7 @@ MKUBIFS_ARGS_am57xx-evm     =3D "-F -m 2048 -e
-> 126976 -c 15000"
-> >  MKUBIFS_ARGS_am57xx-hs-evm  =3D "-F -m 2048 -e 126976 -c 15000"
-> >  MKUBIFS_ARGS_dra7xx-evm     =3D "-F -m 2048 -e 126976 -c 15000"
-> >  MKUBIFS_ARGS_dra7xx-hs-evm  =3D "-F -m 2048 -e 126976 -c 15000"
-> > -MKUBIFS_ARGS_k2hk           =3D "-F -m 2048 -e 126976 -c 4100"
-> > +MKUBIFS_ARGS_k2hk           =3D "-F -m 2048 -e 126976 -c 4200"
->=20
-> Would it fit into flash?
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb | 5 +----
+ .../recipes-core/meta/external-linaro-toolchain-cross.bb             | 2 +-
+ 2 files changed, 2 insertions(+), 5 deletions(-)
 
-Not sure what would be the maximal to use to fit into flash.=20
-Below is reported from the nightly builds for K2HK in processor SDK:
-Non-RT: max_leb_cnt too low (4120 needed)
-RT: max_leb_cnt too low (4118 needed)
-HS: max_leb_cnt too low (4130 needed)
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb b/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
+index 92f3fd7..945ef7b 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
+@@ -12,10 +12,7 @@ EXCLUDE_FROM_SHLIBS = "1"
+ 
+ # License applies to this recipe code, not the toolchain itself
+ LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "\
+-	file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
+-	file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420 \
+-"
++LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+ 
+ INSANE_SKIP_gcc-cross-canadian-arm = "dev-so staticdev"
+ INSANE_SKIP_gdb-cross-canadian-arm = "dev-so"
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb
+index d448f47..14e0826 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain-cross.bb
+@@ -1,7 +1,7 @@
+ SUMMARY = "Stage provided unwind.h header being used by target gcc installation"
+ 
+ LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
++LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+ 
+ PR = "r1"
+ 
+-- 
+2.7.4
 
->=20
->=20
-> >  # By default, do not include OPTEE for any HS platform  # Comment the
-> > OPTEEMACHINE and OPTEEFLAVOR line for a
-> > --
-> > 1.9.1
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
