@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 548AA52A60
+	by arago-project.org (Postfix) with ESMTPS id 5DF1B52A64
 	for <meta-arago@arago-project.org>;
 	Tue, 16 Jan 2018 02:15:38 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 8A0FC20B9C;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 8EE3520B9F;
 	Tue, 16 Jan 2018 02:15:24 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id STAoAGHnkMUR; Tue, 16 Jan 2018 02:15:24 +0000 (UTC)
+	with ESMTP id mObxJFRK7OOz; Tue, 16 Jan 2018 02:15:24 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 608CF20B99;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5E0D820B93;
 	Tue, 16 Jan 2018 02:15:23 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 7AF98163267;
+	by mail.denix.org (Postfix) with ESMTP id 867AE163268;
 	Mon, 15 Jan 2018 21:15:22 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Mon, 15 Jan 2018 21:15:11 -0500
-Message-Id: <1516068913-79829-2-git-send-email-denys@ti.com>
+Date: Mon, 15 Jan 2018 21:15:12 -0500
+Message-Id: <1516068913-79829-3-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1516068913-79829-1-git-send-email-denys@ti.com>
 References: <1516068913-79829-1-git-send-email-denys@ti.com>
-Subject: [rocko/master][PATCH 2/4] at: explicitly depend on bison-native for deterministic builds
+Subject: [rocko/master][PATCH 3/4] perf: depend on native versions of bison and flex
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -46,17 +46,17 @@ backported to rocko.
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-extended/at/at_%.bbappend | 1 +
+ meta-arago-distro/recipes-kernel/perf/perf.bbappend | 1 +
  1 file changed, 1 insertion(+)
- create mode 100644 meta-arago-distro/recipes-extended/at/at_%.bbappend
+ create mode 100644 meta-arago-distro/recipes-kernel/perf/perf.bbappend
 
-diff --git a/meta-arago-distro/recipes-extended/at/at_%.bbappend b/meta-arago-distro/recipes-extended/at/at_%.bbappend
+diff --git a/meta-arago-distro/recipes-kernel/perf/perf.bbappend b/meta-arago-distro/recipes-kernel/perf/perf.bbappend
 new file mode 100644
-index 0000000..ab5a588
+index 0000000..73ef203
 --- /dev/null
-+++ b/meta-arago-distro/recipes-extended/at/at_%.bbappend
++++ b/meta-arago-distro/recipes-kernel/perf/perf.bbappend
 @@ -0,0 +1 @@
-+DEPENDS += "bison-native"
++DEPENDS += "bison-native flex-native"
 -- 
 2.7.4
 
