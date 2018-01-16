@@ -1,30 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 5BA0A52A62
+	by arago-project.org (Postfix) with ESMTPS id 63EF252A65
 	for <meta-arago@arago-project.org>;
 	Tue, 16 Jan 2018 02:15:38 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 9D2AE20B93;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id A75D020B9A;
 	Tue, 16 Jan 2018 02:15:24 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id jq-oNpoZZRVW; Tue, 16 Jan 2018 02:15:24 +0000 (UTC)
+	with ESMTP id omKgpcx2yquz; Tue, 16 Jan 2018 02:15:24 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6374220B9A;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 657FA20B9B;
 	Tue, 16 Jan 2018 02:15:23 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 6DFCF163266;
+	by mail.denix.org (Postfix) with ESMTP id 9240B163269;
 	Mon, 15 Jan 2018 21:15:22 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Mon, 15 Jan 2018 21:15:10 -0500
-Message-Id: <1516068913-79829-1-git-send-email-denys@ti.com>
+Date: Mon, 15 Jan 2018 21:15:13 -0500
+Message-Id: <1516068913-79829-4-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [rocko/master][PATCH 1/4] bash: ptest dependency on locale should honor virtual/libc-locale
+In-Reply-To: <1516068913-79829-1-git-send-email-denys@ti.com>
+References: <1516068913-79829-1-git-send-email-denys@ti.com>
+Subject: [rocko/master][PATCH 4/4] gcc: add flex-native explicit dependency
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,20 +46,17 @@ backported to rocko.
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-extended/bash/bash_%.bbappend | 3 +++
- 1 file changed, 3 insertions(+)
+ meta-arago-distro/recipes-devtools/gcc/gcc_%.bbappend | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 meta-arago-distro/recipes-devtools/gcc/gcc_%.bbappend
 
-diff --git a/meta-arago-distro/recipes-extended/bash/bash_%.bbappend b/meta-arago-distro/recipes-extended/bash/bash_%.bbappend
-index 01e4c85..bbea260 100644
---- a/meta-arago-distro/recipes-extended/bash/bash_%.bbappend
-+++ b/meta-arago-distro/recipes-extended/bash/bash_%.bbappend
-@@ -1,3 +1,6 @@
- PR_append = ".arago0"
- 
- EXTRA_OECONF += " --disable-command-timing"
-+
-+DEPENDS_append_libc-glibc = " virtual/libc-locale"
-+DEPENDS_remove = "glibc-locale"
+diff --git a/meta-arago-distro/recipes-devtools/gcc/gcc_%.bbappend b/meta-arago-distro/recipes-devtools/gcc/gcc_%.bbappend
+new file mode 100644
+index 0000000..b84c9e4
+--- /dev/null
++++ b/meta-arago-distro/recipes-devtools/gcc/gcc_%.bbappend
+@@ -0,0 +1 @@
++DEPENDS =+ "flex-native"
 -- 
 2.7.4
 
