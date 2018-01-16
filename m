@@ -1,41 +1,41 @@
 Return-Path: <m-radhakrishnan2@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 7F87552A78
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 373FA52A82
 	for <meta-arago@arago-project.org>;
-	Tue, 16 Jan 2018 17:16:14 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w0GHFxjH015797
-	for <meta-arago@arago-project.org>; Tue, 16 Jan 2018 11:15:59 -0600
+	Tue, 16 Jan 2018 20:34:39 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w0GKYOSF015892
+	for <meta-arago@arago-project.org>; Tue, 16 Jan 2018 14:34:24 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1516122959;
-	bh=qm5XI8M0BLkz2ZGneCQ/uDxfifce64HLJ5KtzwOdYCk=;
+	s=ti-com-17Q1; t=1516134864;
+	bh=c1Vi+gossjUX9ihYxo7TDr/3knDLC0k0jBz840oX5EQ=;
 	h=From:To:Subject:Date;
-	b=YyTk7oQH0VEaU+iVPfmWJNRVzLpMaR0SW+R2PNfrKp7HCYwIiVDoKNCR2Jkb3QCym
-	k7nM7Rwtw2NEILlyJXQcF0+gVpS+ReCG9C7Qfqn07uCnVFRVL48ZLO9wcjPp/WbpJf
-	CU2oyx0D/Znni9or6UOFqdfHGiB4OEGrI9g+EA84=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w0GHFxcY022322
-	for <meta-arago@arago-project.org>; Tue, 16 Jan 2018 11:15:59 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	b=eIeezcX5RA95BE5vtEWOGMxhHfGljUzyho26Hs0hJq5+ENb5XW+SothuOT81bYors
+	f9JqGRrJU0TT7r7s+vO3Yh1vsRpK0ZIEfdMtyrUYFdRIYdvlxjIYDYw4pH9uGK8uhR
+	+Hy3v8cTfvSnjPNl6sNXGhWi4xAQNyl5ZuJhLYxA=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w0GKYOsF023564
+	for <meta-arago@arago-project.org>; Tue, 16 Jan 2018 14:34:24 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Tue, 16 Jan 2018 11:15:59 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 16 Jan 2018 14:34:23 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Tue, 16 Jan 2018 11:15:59 -0600
+	Transport; Tue, 16 Jan 2018 14:34:24 -0600
 Received: from uda0875154a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w0GHFxWe011989
-	for <meta-arago@arago-project.org>; Tue, 16 Jan 2018 11:15:59 -0600
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w0GKYNlc023211
+	for <meta-arago@arago-project.org>; Tue, 16 Jan 2018 14:34:23 -0600
 From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 16 Jan 2018 12:15:57 -0500
-Message-ID: <1516122957-17975-1-git-send-email-m-radhakrishnan2@ti.com>
+Date: Tue, 16 Jan 2018 15:34:21 -0500
+Message-ID: <1516134861-19384-1-git-send-email-m-radhakrishnan2@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty][meta-processor-sdk][PATCH] i2c-lld-rtos: Adding dependency to pruss-lld-rtos for am335x, am437x and am57xx
+Subject: [morty][meta-processor-sdk][PATCH] branding-processor-sdk: Excluding am57x targets from TI_PDK_LIMIT_SOCS
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,28 +48,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jan 2018 17:16:14 -0000
+X-List-Received-Date: Tue, 16 Jan 2018 20:34:39 -0000
 Content-Type: text/plain
 
 Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 ---
- recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend | 7 +++++++
- 1 file changed, 7 insertions(+)
- create mode 100644 recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend
+ conf/distro/include/branding-processor-sdk.inc | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend b/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend
-new file mode 100644
-index 0000000..f46d2b6
---- /dev/null
-+++ b/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend
-@@ -0,0 +1,7 @@
-+DEPENDS_append_ti33x = " pruss-lld-rtos \
-+"
-+DEPENDS_append_ti43x = " pruss-lld-rtos \
-+"
-+DEPENDS_append_am57xx-evm = " pruss-lld-rtos \
-+"
-+INSANE_SKIP_${PN} = "arch"
+diff --git a/conf/distro/include/branding-processor-sdk.inc b/conf/distro/include/branding-processor-sdk.inc
+index 2fbcb04..ff127d4 100644
+--- a/conf/distro/include/branding-processor-sdk.inc
++++ b/conf/distro/include/branding-processor-sdk.inc
+@@ -105,3 +105,6 @@ SRCIPK_CUSTOM_GIT_MESSAGE_pn-u-boot-ti-staging = "${SRCIPK_GIT_COMMIT_MESSAGE}"
+ 
+ TI_PDK_LIMIT_SOCS_append_am57xx-evm = " am574x"
+ TI_PDK_LIMIT_BOARDS_append_am57xx-evm = " idkAM574x"
++
++TI_PDK_LIMIT_SOCS = "dra72x dra75x dra78x"
++
 -- 
 1.9.1
 
