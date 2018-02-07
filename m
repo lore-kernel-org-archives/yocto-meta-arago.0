@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 9466B529BD
+	by arago-project.org (Postfix) with ESMTPS id D108D529E1
 	for <meta-arago@arago-project.org>;
 	Wed,  7 Feb 2018 20:33:27 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5FBD3200BB;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 848B320B01;
 	Wed,  7 Feb 2018 20:33:19 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 8b2-OUB8JU9H; Wed,  7 Feb 2018 20:33:19 +0000 (UTC)
+	with ESMTP id 3Ck6U-_L_QHJ; Wed,  7 Feb 2018 20:33:19 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3B8B720AD5;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 545C520B04;
 	Wed,  7 Feb 2018 20:33:18 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id D1464163285;
+	by mail.denix.org (Postfix) with ESMTP id E8B2C163287;
 	Wed,  7 Feb 2018 15:33:17 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Wed,  7 Feb 2018 15:33:02 -0500
-Message-Id: <1518035594-38357-3-git-send-email-denys@ti.com>
+Date: Wed,  7 Feb 2018 15:33:04 -0500
+Message-Id: <1518035594-38357-5-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1518035594-38357-1-git-send-email-denys@ti.com>
 References: <1518035594-38357-1-git-send-email-denys@ti.com>
-Subject: [rocko/master][PATCH 03/15] toolchain-linaro: add gdb preferences
+Subject: [rocko/master][PATCH 05/15] toolchain-linaro: set default TOOLCHAIN_PATH for supported archs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,43 +43,49 @@ X-List-Received-Date: Wed, 07 Feb 2018 20:33:28 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/toolchain-linaro.inc | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../conf/distro/include/toolchain-linaro.inc       | 23 +++++++++++++++++-----
+ 1 file changed, 18 insertions(+), 5 deletions(-)
 
 diff --git a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-index 0a16ee7..c9301b0 100644
+index c9301b0..b888be2 100644
 --- a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
 +++ b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-@@ -32,12 +32,14 @@ PREFERRED_PROVIDER_gcc-runtime = "external-linaro-toolchain"
+@@ -2,17 +2,30 @@
+ TCMODE = "external-linaro"
+ TCLIBC = "external-linaro-toolchain"
  
- # Set Cross and SDK toolchain preferences
- SDKGCCVERSION ?= "linaro-7.1%"
-+SDKGDBVERSION ?= "8.0"
- SDKBINUVERSION ?= "linaro-2.27%"
- SDKGLIBCVERSION ?= "2.26%"
- SDKLINUXLIBCVERSION ?= "4.9%"
+-ELT_TARGET_SYS = "arm-linux-gnueabihf"
+-ELT_TARGET_SYS_armv5 = "arm-linux-gnueabi"
+-ELT_TARGET_SYS_aarch64 = "aarch64-linux-gnu"
++ELT_TARGET_SYS_ARMV5 ?= "arm-linux-gnueabi"
++ELT_TARGET_SYS_ARMV7 ?= "arm-linux-gnueabihf"
++ELT_TARGET_SYS_ARMV8 ?= "aarch64-linux-gnu"
++
++ELT_TARGET_SYS_arm = "${ELT_TARGET_SYS_ARMV5}"
++ELT_TARGET_SYS_armv7a = "${ELT_TARGET_SYS_ARMV7}"
++ELT_TARGET_SYS_aarch64 = "${ELT_TARGET_SYS_ARMV8}"
++
+ TARGET_VENDOR = ""
  
- PREFERRED_VERSION_gcc-crosssdk-${SDK_SYS} ?= "${SDKGCCVERSION}"
- PREFERRED_VERSION_gcc-crosssdk-initial-${SDK_SYS} ?= "${SDKGCCVERSION}"
-+PREFERRED_VERSION_gdb-crosssdk-${SDK_SYS} ?= "${SDKGDBVERSION}"
- PREFERRED_VERSION_binutils-crosssdk-${SDK_SYS} ?= "${SDKBINUVERSION}"
+-PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-intermediate = "external-linaro-toolchain"
++TOOLCHAIN_BASE ?= "/opt"
++TOOLCHAIN_PATH_ARMV5 ?= "${TOOLCHAIN_BASE}/gcc-linaro-7.2.1-ti2018.00-armv5-x86_64_${ELT_TARGET_SYS_ARMV5}"
++TOOLCHAIN_PATH_ARMV7 ?= "${TOOLCHAIN_BASE}/gcc-linaro-7.2.1-2017.11-x86_64_${ELT_TARGET_SYS_ARMV7}"
++TOOLCHAIN_PATH_ARMV8 ?= "${TOOLCHAIN_BASE}/gcc-linaro-7.2.1-2017.11-x86_64_${ELT_TARGET_SYS_ARMV8}"
++
++TOOLCHAIN_PATH_arm = "${TOOLCHAIN_PATH_ARMV5}"
++TOOLCHAIN_PATH_armv7a = "${TOOLCHAIN_PATH_ARMV7}"
++TOOLCHAIN_PATH_aarch64 = "${TOOLCHAIN_PATH_ARMV8}"
  
- PREFERRED_VERSION_nativesdk-gcc-runtime ?= "${SDKGCCVERSION}"
-@@ -50,12 +52,14 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
- # Set target toolchain preferences to match Cross/SDK by default
- # Can be overwritten globally, if needed
- GCCVERSION ?= "linaro-7.1%"
-+GDBVERSION ?= "8.0"
- BINUVERSION ?= "linaro-2.27%"
- GLIBCVERSION ?= "2.26%"
- GLIBCINITVERSION ?= "2.26%"
- LINUXLIBCVERSION ?= "4.9%"
+-# Set some vars to help locate the toolchain automatically from PATH
+ TOOLCHAIN_SYS := "${ELT_TARGET_SYS}"
+ TOOLCHAIN_PREFIX := "${TOOLCHAIN_SYS}-"
  
- PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
-+PREFERRED_VERSION_gdb ?= "${GDBVERSION}"
- PREFERRED_VERSION_binutils ?= "${BINUVERSION}"
- PREFERRED_VERSION_linux-libc-headers ?= "${LINUXLIBCVERSION}"
- PREFERRED_VERSION_glibc ?= "${GLIBCVERSION}"
++PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-intermediate = "external-linaro-toolchain"
++
+ # Use specific libc headers instead of ones provided by toolchain
+ PREFERRED_PROVIDER_linux-libc-headers_forcevariable = "linux-libc-headers"
+ PREFERRED_PROVIDER_linux-libc-headers-dev_forcevariable = "linux-libc-headers"
 -- 
 2.7.4
 
