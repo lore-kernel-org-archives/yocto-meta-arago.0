@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 898CB52A50
+	by arago-project.org (Postfix) with ESMTPS id 9BB9052A53
 	for <meta-arago@arago-project.org>;
 	Wed,  7 Feb 2018 20:33:29 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 32D3820AD5;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 474BB20B04;
 	Wed,  7 Feb 2018 20:33:21 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id yEruqSh25far; Wed,  7 Feb 2018 20:33:21 +0000 (UTC)
+	with ESMTP id I1ckx-Bv22pE; Wed,  7 Feb 2018 20:33:21 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1399620B04;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 28857200BB;
 	Wed,  7 Feb 2018 20:33:20 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 00345163288;
+	by mail.denix.org (Postfix) with ESMTP id 0BA93163289;
 	Wed,  7 Feb 2018 15:33:18 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Wed,  7 Feb 2018 15:33:05 -0500
-Message-Id: <1518035594-38357-6-git-send-email-denys@ti.com>
+Date: Wed,  7 Feb 2018 15:33:06 -0500
+Message-Id: <1518035594-38357-7-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1518035594-38357-1-git-send-email-denys@ti.com>
 References: <1518035594-38357-1-git-send-email-denys@ti.com>
-Subject: [rocko/master][PATCH 06/15] external-linaro-sdk-toolchain: skip file-rdeps QA check not applicable to external toolchain
+Subject: [rocko/master][PATCH 07/15] external-linaro-toolchain, gcc: move external-linaro-toolchain-cross dependency
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,30 +39,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Feb 2018 20:33:30 -0000
+X-List-Received-Date: Wed, 07 Feb 2018 20:33:31 -0000
+
+Since gcc is the one that needs it and no common sysroot available now.
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/meta/external-linaro-sdk-toolchain.bb              | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ meta-arago-distro/recipes-devtools/gcc/gcc_%.bbappend                  | 3 +++
+ meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend | 2 --
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb b/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
-index 945ef7b..de6fd57 100644
---- a/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
-+++ b/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
-@@ -14,9 +14,9 @@ EXCLUDE_FROM_SHLIBS = "1"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+diff --git a/meta-arago-distro/recipes-devtools/gcc/gcc_%.bbappend b/meta-arago-distro/recipes-devtools/gcc/gcc_%.bbappend
+index b84c9e4..92f2874 100644
+--- a/meta-arago-distro/recipes-devtools/gcc/gcc_%.bbappend
++++ b/meta-arago-distro/recipes-devtools/gcc/gcc_%.bbappend
+@@ -1 +1,4 @@
+ DEPENDS =+ "flex-native"
++
++EXTRA_DEPS = "${@['','external-linaro-toolchain-cross-${TARGET_ARCH}'][d.getVar('TOOLCHAIN_TYPE', True) == 'external' and d.getVar('TOOLCHAIN_BRAND', True) == 'linaro']}"
++DEPENDS += "${EXTRA_DEPS}"
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+index ae74e37..df5b5c0 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-toolchain.bbappend
+@@ -26,8 +26,6 @@ PACKAGES =+ "libgcc-dev"
  
--INSANE_SKIP_gcc-cross-canadian-arm = "dev-so staticdev"
--INSANE_SKIP_gdb-cross-canadian-arm = "dev-so"
--INSANE_SKIP_binutils-cross-canadian-arm = "dev-so"
-+INSANE_SKIP_gcc-cross-canadian-arm = "dev-so staticdev file-rdeps"
-+INSANE_SKIP_gdb-cross-canadian-arm = "dev-so file-rdeps"
-+INSANE_SKIP_binutils-cross-canadian-arm = "dev-so file-rdeps"
+ DEPENDS += "${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', 'external-linaro-toolchain', '', 'linux-libc-headers', d)}"
  
- PROVIDES = "\
- 	gcc-cross-canadian-arm \
+-DEPENDS += "external-linaro-toolchain-cross-${TARGET_ARCH}"
+-
+ RDEPENDS_${PN}-utils = ""
+ 
+ PKGV = "${ELT_VER_LIBC}"
 -- 
 2.7.4
 
