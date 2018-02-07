@@ -1,43 +1,42 @@
-Return-Path: <e-ruei1@ti.com>
+Return-Path: <j-stiffler@ti.com>
 Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id A7C85529F9
+	by arago-project.org (Postfix) with ESMTPS id 055DD5298F
 	for <meta-arago@arago-project.org>;
-	Tue,  6 Feb 2018 20:16:03 +0000 (UTC)
+	Wed,  7 Feb 2018 16:05:08 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w16KFuaQ027936
-	for <meta-arago@arago-project.org>; Tue, 6 Feb 2018 14:15:56 -0600
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w17G50aV026864
+	for <meta-arago@arago-project.org>; Wed, 7 Feb 2018 10:05:00 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1517948156;
-	bh=ZdcJtvIVBj+m3FV8hIzP49t81I82IrcXUFjNU+/56VE=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=FBrFxpa9xFrmUI3e6T/0ov0vZPivmRujUPZPq2xRLcJV2refaJzPJTdqjI2PtdlO0
-	RF43vAXwBwvOoxvvUyAdOw1CbZeQLKEW/mNYiW6AEZt7dhZHPwHBMLWORBca8wdD5n
-	v++HjUA/YvWBvju1zmaxCD+o1TYYFNFUtCZG7r14=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w16KFum9025445
-	for <meta-arago@arago-project.org>; Tue, 6 Feb 2018 14:15:56 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1518019500;
+	bh=/+a7UNBAojNbl5V80rHp16gtIT0JR4uI3K7nh/H0TpE=;
+	h=From:To:CC:Subject:Date;
+	b=lJTjf8TKdexC9q+D2olO0/PRiPFJHaSR6jvIY3pOvZ1ceUfhkVtIJPpIxeEMnncc1
+	GZa06nLXgIzNgJkJotXWaJ+AxJp00h7kt3p4D/kSrp/USH4D2vxWmxLFPaGPoUDIfA
+	zbHnJ6YsLJFdsqEhyLbnV1c2u/1zHgD0e/ZLzNa0=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w17G50Jx009873
+	for <meta-arago@arago-project.org>; Wed, 7 Feb 2018 10:05:00 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Tue, 6 Feb 2018 14:15:56 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE102.ent.ti.com
+	Wed, 7 Feb 2018 10:05:00 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE102.ent.ti.com
 	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Tue, 6 Feb 2018 14:15:56 -0600
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Wed, 7 Feb 2018 10:05:00 -0600
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w16KFtSb029875
-	for <meta-arago@arago-project.org>; Tue, 6 Feb 2018 14:15:56 -0600
-From: Eric Ruei <e-ruei1@ti.com>
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w17G4x5D010994;
+	Wed, 7 Feb 2018 10:05:00 -0600
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 6 Feb 2018 15:15:50 -0500
-Message-ID: <1517948150-41783-5-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1517948150-41783-1-git-send-email-e-ruei1@ti.com>
-References: <1517948150-41783-1-git-send-email-e-ruei1@ti.com>
+Date: Wed, 7 Feb 2018 10:56:21 -0500
+Message-ID: <1518018981-12950-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty/master][PATCH 4/4] qt-tstat: pickup the latest version for both Qt4/Qt5 support
+Cc: rnambiath@ti.com
+Subject: [meta-processor-sdk][PATCH] tisdk-paths: add PROC_SDK_INSTALL_DIR
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,87 +49,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Feb 2018 20:16:04 -0000
+X-List-Received-Date: Wed, 07 Feb 2018 16:05:10 -0000
 Content-Type: text/plain
 
-- update the git URL and SRCREV
-- select matrix desktop file based on QT vesion
-- add qt-tstat.sh to force the QT5 demo to run as eglfs full-screen app
+* PROC_SDK_INSTALL_DIR is needed by jailhouse-examples-rtos
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../thermostat-demo/qt-tstat/qt_tstat.sh            | 13 +++++++++++++
- .../recipes-apps/thermostat-demo/qt-tstat_2.0.bb    | 21 +++++++++++----------
- 2 files changed, 24 insertions(+), 10 deletions(-)
- create mode 100755 meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat/qt_tstat.sh
 
-diff --git a/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat/qt_tstat.sh b/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat/qt_tstat.sh
-new file mode 100755
-index 0000000..01ca4f9
---- /dev/null
-+++ b/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat/qt_tstat.sh
-@@ -0,0 +1,13 @@
-+#!/bin/bash
+* Resolves PRSDK-3527
+
+ recipes-ti/includes/tisdk-paths.inc | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/recipes-ti/includes/tisdk-paths.inc b/recipes-ti/includes/tisdk-paths.inc
+index 300f352..77dac07 100644
+--- a/recipes-ti/includes/tisdk-paths.inc
++++ b/recipes-ti/includes/tisdk-paths.inc
+@@ -1,4 +1,7 @@
+ require recipes-ti/includes/arago-paths.inc
+ 
+ export TIOVX_INSTALL_DIR_RECIPE      = "${installdir}/ti-tiovx-lib-tree"
++export PROC_SDK_INSTALL_DIR_RECIPE   = "${installdir}/ti-proc-sdk-rtos-tree"
 +
-+/etc/init.d/weston stop
-+sleep 1
-+
-+echo 0 > /sys/class/graphics/fbcon/cursor_blink
-+
-+ThermostatDemo -platform eglfs
-+
-+echo 1 > /sys/class/graphics/fbcon/cursor_blink
-+
-+/etc/init.d/weston start
-+sleep 1
-diff --git a/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat_2.0.bb b/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat_2.0.bb
-index 494d582..acb0720 100644
---- a/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat_2.0.bb
-+++ b/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat_2.0.bb
-@@ -12,31 +12,32 @@ require recipes-core/matrix/matrix-gui-paths.inc
- 
- inherit qt-provider
- 
--PR = "r9"
-+PR = "r10"
- 
- DEPENDS += "${QT_DEPENDS_SVG} ${QT_DEPENDS_SCRIPT}"
- 
- BRANCH ?= "master"
--SRCREV = "2512773c2d9da989e6a42c1e90b2b34496713072"
-+SRCREV = "db7959b200e0ecbe59ff1c867251b1a8b17bd567"
- 
--SRC_URI = " \
--	git://gitorious.org/thermostat-demo/thermostat-demo.git;protocol=git \
--"
--
--SRC_URI += "${@base_conditional('QT_PROVIDER', 'qt5', 'file://0002-Replace-QtGui-with-QtWidgets-per-Qt5-migration-guide.patch \
--	file://0003-Replace-fromAscii-toAscii-with-fromLatin1-toLatin1-p.patch', '', d)}"
-+SRC_URI = "git://git.ti.com/apps/thermostat-demo.git;protocol=git;branch=${BRANCH} \
-+	   file://qt_tstat.sh"
- 
- S = "${WORKDIR}/git/"
- 
-+DESKTOP_FILE = "${@base_conditional('QT_PROVIDER', 'qt5', 'thermostat_demo_qt5.desktop', 'thermostat_demo.desktop', d)}"
-+
-+
- do_install() {
- 	install -d ${D}/usr/bin
- 	install -m 0755 ${B}/ThermostatDemo ${D}/usr/bin/ThermostatDemo
-+	install ${WORKDIR}/qt_tstat.sh ${D}/usr/bin/qt_tstat.sh
- 	install -d ${D}${MATRIX_APP_DIR}/qt_tstat
--	cp -rf ${S}/matrix-files/*  ${D}${MATRIX_APP_DIR}/qt_tstat
-+	install ${S}/matrix-files/desc_thermostat_demo.html  ${D}${MATRIX_APP_DIR}/qt_tstat
-+	install ${S}/matrix-files/${DESKTOP_FILE}  ${D}${MATRIX_APP_DIR}/qt_tstat/thermostat_demo.desktop
- }
- 
- PACKAGES += "matrix-gui-thermostat-demo"
- 
--RDEPENDS_matrix-gui-thermostat-demo += "matrix-gui-apps-images matrix-gui-submenus-qt4"
-+RDEPENDS_matrix-gui-thermostat-demo += "matrix-gui-apps-images ${@base_conditional('QT_PROVIDER', 'qt5', 'matrix-gui-submenus-qt5', 'matrix-gui-submenus-qt4', d)}"
- 
- FILES_matrix-gui-thermostat-demo += "${MATRIX_APP_DIR}/*"
+ export TIOVX_INSTALL_DIR      = "${STAGING_DIR_TARGET}${TIOVX_INSTALL_DIR_RECIPE}"
++export PROC_SDK_INSTALL_DIR   = "${STAGING_DIR_TARGET}${PROC_SDK_INSTALL_DIR_RECIPE}"
 -- 
-1.9.1
+2.7.4
 
 
