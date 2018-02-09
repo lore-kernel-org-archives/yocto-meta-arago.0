@@ -1,43 +1,45 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 4437E52092
+Return-Path: <m-radhakrishnan2@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 47F0B52092
 	for <meta-arago@arago-project.org>;
-	Fri,  9 Feb 2018 16:03:50 +0000 (UTC)
+	Fri,  9 Feb 2018 16:38:25 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w19G3d5Y013603
-	for <meta-arago@arago-project.org>; Fri, 9 Feb 2018 10:03:39 -0600
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w19GcEXO011694
+	for <meta-arago@arago-project.org>; Fri, 9 Feb 2018 10:38:14 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1518192219;
-	bh=yTbuSEowDntvP/7lZtBf+linUrf0YZJxq368msHwHEU=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=eqz/035SdczbhF3biibzdCnPZK7QlFpAc/FC5aAaBG+Ex8bwzVDPUuOtdCfss6XQz
-	BZ5kY2i9GEcEO8q62vQN17kSTOjt2il0Mu+4P/lJSBt6TfwoF46yykwzwX55YnFMrG
-	X8FSPbGRUB4YShxMOBnQsA0YJNjE5i9Khp4R2jSc=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w19G3dwL031181
-	for <meta-arago@arago-project.org>; Fri, 9 Feb 2018 10:03:39 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1518194294;
+	bh=B4XnbLWw/mPhltJUPcv5RmzmGVaAjB0rZH+flF5bhpg=;
+	h=From:To:Subject:Date:References:In-Reply-To;
+	b=wR8EEavw7/bOxjd8rRxNk080jc5RxkJZ617BVUwCmi228NGu5OA3+lfGltKl5SZ9B
+	Z7BsPjqff3BiLBbIniIJfkhhYe0Wnt9tLkFDLEtExa/Hz3ApAOSaqGTgvFOvQ8dXeV
+	PRB2ezVxaUBGVfD/gh+JsvXYao7PO96E/tYriRvg=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w19GcERt022378
+	for <meta-arago@arago-project.org>; Fri, 9 Feb 2018 10:38:14 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Fri, 9 Feb 2018 10:03:39 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Fri, 9 Feb 2018 10:03:39 -0600
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w19G3c1F016041;
-	Fri, 9 Feb 2018 10:03:39 -0600
-To: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>,
+	Fri, 9 Feb 2018 10:38:14 -0600
+Received: from DLEE109.ent.ti.com ([fe80::992e:7546:157e:3b3d]) by
+	DLEE109.ent.ti.com ([fe80::992e:7546:157e:3b3d%17]) with mapi id
+	15.01.1261.035; Fri, 9 Feb 2018 10:38:14 -0600
+From: "Radhakrishnan, Mahesh" <m-radhakrishnan2@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
+Thread-Topic: [EXTERNAL] [meta-arago] [morty][meta-processor-sdk][PATCH]
+	i2c-lld-rtos: Updating version & checksum
+Thread-Index: AQHTob+MyT68oLIGJkCLc4A1YyFLpaOcRP8g
+Date: Fri, 9 Feb 2018 16:38:14 +0000
+Message-ID: <3fca7c959e4d419787af68e4b29c695b@ti.com>
 References: <1518190522-46326-1-git-send-email-m-radhakrishnan2@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <46835993-0fef-d46d-7700-7cb6fa3eb3e0@ti.com>
-Date: Fri, 9 Feb 2018 11:03:38 -0500
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.2
+	<46835993-0fef-d46d-7700-7cb6fa3eb3e0@ti.com>
+In-Reply-To: <46835993-0fef-d46d-7700-7cb6fa3eb3e0@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.218.109.180]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-In-Reply-To: <1518190522-46326-1-git-send-email-m-radhakrishnan2@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Subject: Re: [EXTERNAL] [morty][meta-processor-sdk][PATCH] i2c-lld-rtos: Updating version & checksum
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -51,36 +53,128 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Feb 2018 16:03:50 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 09 Feb 2018 16:38:25 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_3fca7c959e4d419787af68e4b29c695bticom_"
 
+--_000_3fca7c959e4d419787af68e4b29c695bticom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+DQoNCg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogU3RpZmZsZXIsIEphY29i
+DQpTZW50OiBGcmlkYXksIEZlYnJ1YXJ5IDksIDIwMTggMTE6MDQgQU0NClRvOiBSYWRoYWtyaXNo
+bmFuLCBNYWhlc2g7IG1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBb
+RVhURVJOQUxdIFttZXRhLWFyYWdvXSBbbW9ydHldW21ldGEtcHJvY2Vzc29yLXNka11bUEFUQ0hd
+IGkyYy1sbGQtcnRvczogVXBkYXRpbmcgdmVyc2lvbiAmIGNoZWNrc3VtDQoNCg0KDQoNCg0KDQoN
+Ck9uIDIvOS8yMDE4IDEwOjM1IEFNLCBNYWhlc2ggUmFkaGFrcmlzaG5hbiB3cm90ZToNCg0KPiAt
+LS0NCg0KPiAgIHJlY2lwZXMtYnNwL2kyYy1sbGQvaTJjLWxsZC1ydG9zX2dpdC5iYmFwcGVuZCB8
+IDcgKysrKysrKw0KDQo+ICAgMSBmaWxlIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKQ0KDQo+DQoN
+Cj4gZGlmZiAtLWdpdCBhL3JlY2lwZXMtYnNwL2kyYy1sbGQvaTJjLWxsZC1ydG9zX2dpdC5iYmFw
+cGVuZCBiL3JlY2lwZXMtYnNwL2kyYy1sbGQvaTJjLWxsZC1ydG9zX2dpdC5iYmFwcGVuZA0KDQo+
+IGluZGV4IGY0NmQyYjYuLmQ0ZGE0Y2UgMTAwNjQ0DQoNCj4gLS0tIGEvcmVjaXBlcy1ic3AvaTJj
+LWxsZC9pMmMtbGxkLXJ0b3NfZ2l0LmJiYXBwZW5kDQoNCj4gKysrIGIvcmVjaXBlcy1ic3AvaTJj
+LWxsZC9pMmMtbGxkLXJ0b3NfZ2l0LmJiYXBwZW5kDQoNCj4gQEAgLTQsNCArNCwxMSBAQCBERVBF
+TkRTX2FwcGVuZF90aTQzeCA9ICIgcHJ1c3MtbGxkLXJ0b3MgXA0KDQo+ICAgIg0KDQo+ICAgREVQ
+RU5EU19hcHBlbmRfYW01N3h4LWV2bSA9ICIgcHJ1c3MtbGxkLXJ0b3MgXA0KDQo+ICAgIg0KDQo+
+ICtMSUNfRklMRVNfQ0hLU1VNID0gImZpbGU6Ly9JMkMuaDtiZWdpbmxpbmU9MTtlbmRsaW5lPTMy
+O21kNT01MDA4NDM3NTI3OGMxYTI3Nzk1NzFiZTEzNGY5OGY3YzxmaWxlOi8vL1xcSTJDLmg7YmVn
+aW5saW5lPTE7ZW5kbGluZT0zMjttZDU9NTAwODQzNzUyNzhjMWEyNzc5NTcxYmUxMzRmOThmN2M+
+Ig0KDQoNCg0KV2h5IGRpZCB0aGUgbGljZW5zZSBjaGVja3N1bSBjaGFuZ2U/DQoNClRoZSBjb3B5
+cmlnaHQgeWVhciBjaGFuZ2VkIGluIHRoZSBjb3B5cmlnaHQgaGVhZGVyIGluIGkyYy5oICggQ29w
+eXJpZ2h0IChDKSAyMDE0LTIwMTgpLiBIZW5jZSB0aGUgY2hlY2tzdW0gY2hhbmdlLg0KDQoNCg0K
+PiArDQoNCj4gK0kyQ19MTERfU1JDUkVWID0gIjEzN2M2YzYwZDE4YTE0NjI5ZjFhNzU3MmZkODc0
+MDI3MTZiZDUxMDQiDQoNCj4gKw0KDQo+ICtQViA9ICIwMS4wMC4wMC4xMCINCg0KPiArDQoNCj4g
+ICBJTlNBTkVfU0tJUF8ke1BOfSA9ICJhcmNoIg0KDQo+ICsNCg0KDQo=
 
-On 2/9/2018 10:35 AM, Mahesh Radhakrishnan wrote:
-> ---
->   recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend | 7 +++++++
->   1 file changed, 7 insertions(+)
->
-> diff --git a/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend b/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend
-> index f46d2b6..d4da4ce 100644
-> --- a/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend
-> +++ b/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend
-> @@ -4,4 +4,11 @@ DEPENDS_append_ti43x = " pruss-lld-rtos \
->   "
->   DEPENDS_append_am57xx-evm = " pruss-lld-rtos \
->   "
-> +LIC_FILES_CHKSUM = "file://I2C.h;beginline=1;endline=32;md5=50084375278c1a2779571be134f98f7c"
+--_000_3fca7c959e4d419787af68e4b29c695bticom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Why did the license checksum change?
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZp
+bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
+YXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0Ow0K
+CWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5
+cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRl
+Y29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dl
+ZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3Jh
+dGlvbjp1bmRlcmxpbmU7fQ0KcC5Nc29QbGFpblRleHQsIGxpLk1zb1BsYWluVGV4dCwgZGl2Lk1z
+b1BsYWluVGV4dA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IlBs
+YWluIFRleHQgQ2hhciI7DQoJbWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiO30N
+CnNwYW4uUGxhaW5UZXh0Q2hhcg0KCXttc28tc3R5bGUtbmFtZToiUGxhaW4gVGV4dCBDaGFyIjsN
+Cgltc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IlBsYWluIFRleHQiOw0K
+CWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7fQ0KLk1zb0NocERlZmF1bHQNCgl7
+bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
+LXNlcmlmIjt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFy
+Z2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpX
+b3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNo
+YXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRp
+Zl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0
+Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0Pjwv
+eG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUi
+IHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJN
+c29QbGFpblRleHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4
+dCI+PGEgbmFtZT0iX01haWxFbmRDb21wb3NlIj48bzpwPiZuYnNwOzwvbzpwPjwvYT48L3A+DQo8
+cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLTxicj4NCkZy
+b206IFN0aWZmbGVyLCBKYWNvYiA8YnI+DQpTZW50OiBGcmlkYXksIEZlYnJ1YXJ5IDksIDIwMTgg
+MTE6MDQgQU08YnI+DQpUbzogUmFkaGFrcmlzaG5hbiwgTWFoZXNoOyBtZXRhLWFyYWdvQGFyYWdv
+LXByb2plY3Qub3JnPGJyPg0KU3ViamVjdDogUmU6IFtFWFRFUk5BTF0gW21ldGEtYXJhZ29dIFtt
+b3J0eV1bbWV0YS1wcm9jZXNzb3Itc2RrXVtQQVRDSF0gaTJjLWxsZC1ydG9zOiBVcGRhdGluZyB2
+ZXJzaW9uICZhbXA7IGNoZWNrc3VtPC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+PG86cD4m
+bmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48bzpwPiZuYnNwOzwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb1BsYWluVGV4dCI+T24gMi85LzIwMTggMTA6MzUgQU0sIE1haGVzaCBSYWRoYWty
+aXNobmFuIHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jmd0
+OyAtLS08bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPiZndDsmbmJzcDsm
+bmJzcDsgcmVjaXBlcy1ic3AvaTJjLWxsZC9pMmMtbGxkLXJ0b3NfZ2l0LmJiYXBwZW5kIHwgNyAm
+IzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb1BsYWluVGV4dCI+Jmd0OyZuYnNwOyZuYnNwOyAxIGZpbGUgY2hhbmdlZCwgNyBpbnNl
+cnRpb25zKCYjNDM7KTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jmd0
+OzxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jmd0OyBkaWZm
+IC0tZ2l0IGEvcmVjaXBlcy1ic3AvaTJjLWxsZC9pMmMtbGxkLXJ0b3NfZ2l0LmJiYXBwZW5kIGIv
+cmVjaXBlcy1ic3AvaTJjLWxsZC9pMmMtbGxkLXJ0b3NfZ2l0LmJiYXBwZW5kPG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mZ3Q7IGluZGV4IGY0NmQyYjYuLmQ0ZGE0Y2Ug
+MTAwNjQ0PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mZ3Q7IC0tLSBh
+L3JlY2lwZXMtYnNwL2kyYy1sbGQvaTJjLWxsZC1ydG9zX2dpdC5iYmFwcGVuZDxvOnA+PC9vOnA+
+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jmd0OyAmIzQzOyYjNDM7JiM0MzsgYi9yZWNp
+cGVzLWJzcC9pMmMtbGxkL2kyYy1sbGQtcnRvc19naXQuYmJhcHBlbmQ8bzpwPjwvbzpwPjwvcD4N
+CjxwIGNsYXNzPSJNc29QbGFpblRleHQiPiZndDsgQEAgLTQsNCAmIzQzOzQsMTEgQEAgREVQRU5E
+U19hcHBlbmRfdGk0M3ggPSAmcXVvdDsgcHJ1c3MtbGxkLXJ0b3MgXDxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jmd0OyZuYnNwOyZuYnNwOyAmcXVvdDs8bzpwPjwvbzpw
+PjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPiZndDsmbmJzcDsmbmJzcDsgREVQRU5EU19h
+cHBlbmRfYW01N3h4LWV2bSA9ICZxdW90OyBwcnVzcy1sbGQtcnRvcyBcPG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mZ3Q7Jm5ic3A7Jm5ic3A7ICZxdW90OzxvOnA+PC9v
+OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jmd0OyAmIzQzO0xJQ19GSUxFU19DSEtT
+VU0gPSAmcXVvdDs8YSBocmVmPSJmaWxlOi8vL1xcSTJDLmg7YmVnaW5saW5lPTE7ZW5kbGluZT0z
+MjttZDU9NTAwODQzNzUyNzhjMWEyNzc5NTcxYmUxMzRmOThmN2MiPjxzcGFuIHN0eWxlPSJjb2xv
+cjp3aW5kb3d0ZXh0O3RleHQtZGVjb3JhdGlvbjpub25lIj5maWxlOi8vSTJDLmg7YmVnaW5saW5l
+PTE7ZW5kbGluZT0zMjttZDU9NTAwODQzNzUyNzhjMWEyNzc5NTcxYmUxMzRmOThmN2M8L3NwYW4+
+PC9hPiZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+PG86cD4m
+bmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij5XaHkgZGlkIHRoZSBsaWNl
+bnNlIGNoZWNrc3VtIGNoYW5nZT88bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRl
+eHQiPlRoZSBjb3B5cmlnaHQgeWVhciBjaGFuZ2VkIGluIHRoZSBjb3B5cmlnaHQgaGVhZGVyIGlu
+IGkyYy5oICggQ29weXJpZ2h0IChDKSAyMDE0LTxzcGFuIHN0eWxlPSJjb2xvcjpyZWQiPjIwMTg8
+L3NwYW4+KS4gSGVuY2UgdGhlIGNoZWNrc3VtIGNoYW5nZS48bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29QbGFpblRleHQiPjxzcGFuIHN0eWxlPSJjb2xvcjpibGFjayI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jmd0OyAmIzQzOzxvOnA+
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jmd0OyAmIzQzO0kyQ19MTERfU1JD
+UkVWID0gJnF1b3Q7MTM3YzZjNjBkMThhMTQ2MjlmMWE3NTcyZmQ4NzQwMjcxNmJkNTEwNCZxdW90
+OzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jmd0OyAmIzQzOzxvOnA+
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+Jmd0OyAmIzQzO1BWID0gJnF1b3Q7
+MDEuMDAuMDAuMTAmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQi
+PiZndDsgJiM0Mzs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPiZndDsm
+bmJzcDsmbmJzcDsgSU5TQU5FX1NLSVBfJHtQTn0gPSAmcXVvdDthcmNoJnF1b3Q7PG86cD48L286
+cD48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij4mZ3Q7ICYjNDM7PG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PC9ib2R5Pg0KPC9odG1sPg0K
 
-> +
-> +I2C_LLD_SRCREV = "137c6c60d18a14629f1a7572fd87402716bd5104"
-> +
-> +PV = "01.00.00.10"
-> +
->   INSANE_SKIP_${PN} = "arch"
-> +
-
-
+--_000_3fca7c959e4d419787af68e4b29c695bticom_--
