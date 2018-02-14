@@ -1,46 +1,42 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 3EB6C52092
+Return-Path: <adam.yh.lee@gmail.com>
+Received: from mail-yw0-f182.google.com (mail-yw0-f182.google.com
+	[209.85.161.182])
+	by arago-project.org (Postfix) with ESMTPS id 47C8B529AB
 	for <meta-arago@arago-project.org>;
-	Fri,  9 Feb 2018 16:42:50 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w19GgdbE019521
-	for <meta-arago@arago-project.org>; Fri, 9 Feb 2018 10:42:39 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1518194559;
-	bh=RllEWbtaZTlHN+qWAEyCbHPScYbEZv0OTM3I654mG1E=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=yLSCrte30jewLd8LnVaQKhev9Z++Ry1Kxc58gpJMa2uRdzsn06byWi2VG0cEJhCSJ
-	sWoX1UH/UIlhWQWtiM/pczcW9m7TsIdbG5AfPdcv9a+IuUrxlAjKFFpeumIE+UE5px
-	zuXNoXWf5aSyxhIJh4n7tHIZbHuolhOwhxD6lL8s=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w19GgdaH029048
-	for <meta-arago@arago-project.org>; Fri, 9 Feb 2018 10:42:39 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Fri, 9 Feb 2018 10:42:39 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Fri, 9 Feb 2018 10:42:39 -0600
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w19GgcYk010795;
-	Fri, 9 Feb 2018 10:42:39 -0600
-To: "Radhakrishnan, Mahesh" <m-radhakrishnan2@ti.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-References: <1518190522-46326-1-git-send-email-m-radhakrishnan2@ti.com>
-	<46835993-0fef-d46d-7700-7cb6fa3eb3e0@ti.com>
-	<3fca7c959e4d419787af68e4b29c695b@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <3ba364e1-dbb1-d4c1-c530-700b37198452@ti.com>
-Date: Fri, 9 Feb 2018 11:42:38 -0500
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.2
+	Wed, 14 Feb 2018 14:45:55 +0000 (UTC)
+Received: by mail-yw0-f182.google.com with SMTP id v139so14888388ywg.4
+	for <meta-arago@arago-project.org>;
+	Wed, 14 Feb 2018 06:45:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=BSee3cXe2jDBiaUWUCuNPhInTB11vx/ktT2HImVpbWk=;
+	b=l0r33r1B2PwZInPkBTs2G+zPd5u8FBcJHGrBERX8qrG/rRetqDzdCdl8oZygXMrUZo
+	iA2uKLePSeA9ypyBkl7xnSWm9B96zktRnVs7BCWet5HPbouTs6qEFSxHLMJIgC3oZ3Dd
+	xGBDfeofyIvugCMIwNrSJ7FOrqRq0cgQ08Z/KhCI9cB+T4zuHvZ1bdjZEyHV5W5xZPfN
+	lMhj/z3imVsfjg1Ss2re+i1OCrEYthSHOMFZ70FV90PhcbqiUqMUOERFDzcmYzkEwIa0
+	N0exQtoJmGibm2QNTvWgMV2Z2+6yzxnKiq2YD2/3NZbEfltLbNf5eJd+HVTqqBGlnMUP
+	gNsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=BSee3cXe2jDBiaUWUCuNPhInTB11vx/ktT2HImVpbWk=;
+	b=FArd8uGuogPZxEpWvFHnjXjtC+NClMLWJLMDQKskfWJZc6G2GWohX4+417gOWsX1LT
+	ZIuNkG///WMCpCT/85FxmMXA/IsklSqGG9MeNEE6TfT6+UBY4oLkODBClxB671+syYOy
+	xsa5J9cQoB1DowfLpc3pc10Ox3fv9pZj83qYglZn3CmzzXVEuAj1gGJ68ypNM02LqPHu
+	lmGts/ctnLh0hiKzZTdD/l3BuNsIe8NfWsuFB5OSoEqz8W/SalQ40yNjnd6CovHNPXX6
+	PsrRTC8AFp1hq9Q4gcGS64z3dE2UUDikxe1Nc4pM21YsIKrko8U7Nn8lrobrvuCZngN1
+	izGA==
+X-Gm-Message-State: APf1xPCPOd8ZYOR22nlyYiFDNxNZnQZj2sK8lx4Jp6+PFKWIpmkUtH36
+	gcoa8PB36wMw8LdUkN04Kq0V/v5zkNYVYQIXGBg=
+X-Google-Smtp-Source: AH8x226v7G5oVKLRYj5LFFy8mlKBu3LUR3G962Bi2+ZzlVmPH3sQ8MoFDzx62PU41F+OPCHqm7cfYXCKsrg8GzL+Gjc=
+X-Received: by 10.37.186.65 with SMTP id z1mr3314360ybj.523.1518619537558;
+	Wed, 14 Feb 2018 06:45:37 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <3fca7c959e4d419787af68e4b29c695b@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [morty][meta-processor-sdk][PATCH] i2c-lld-rtos: Updating version & checksum
+From: Adam Lee <adam.yh.lee@gmail.com>
+Date: Wed, 14 Feb 2018 14:45:27 +0000
+Message-ID: <CAFeBWL525C75dwezNganhmoQ2gTRQ-ppbUcxT3r5MJCBwHWVQQ@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: Gforge dicommissioned
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,213 +49,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Feb 2018 16:42:50 -0000
-Content-Type: multipart/alternative;
-	boundary="------------F9B7C9683CC5DAE8B705FEC6"
-Content-Language: en-US
+X-List-Received-Date: Wed, 14 Feb 2018 14:45:56 -0000
+Content-Type: multipart/alternative; boundary="f403043ded0c15d43405652d2acd"
 
---------------F9B7C9683CC5DAE8B705FEC6
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+--f403043ded0c15d43405652d2acd
+Content-Type: text/plain; charset="UTF-8"
 
+It looks like gforge.ti.com has been decommissioned.
+I am getting fetch failures and there are no working mirrors.
 
+Has anyone encountered this issue?
 
-On 2/9/2018 11:38 AM, Radhakrishnan, Mahesh wrote:
->
-> -----Original Message-----
-> From: Stiffler, Jacob
-> Sent: Friday, February 9, 2018 11:04 AM
-> To: Radhakrishnan, Mahesh; meta-arago@arago-project.org
-> Subject: Re: [EXTERNAL] [meta-arago] 
-> [morty][meta-processor-sdk][PATCH] i2c-lld-rtos: Updating version & 
-> checksum
->
-> On 2/9/2018 10:35 AM, Mahesh Radhakrishnan wrote:
->
-> > ---
->
-> > recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend | 7 +++++++
->
-> >   1 file changed, 7 insertions(+)
->
-> >
->
-> > diff --git a/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend 
-> b/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend
->
-> > index f46d2b6..d4da4ce 100644
->
-> > --- a/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend
->
-> > +++ b/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend
->
-> > @@ -4,4 +4,11 @@ DEPENDS_append_ti43x = " pruss-lld-rtos \
->
-> >   "
->
-> >   DEPENDS_append_am57xx-evm = " pruss-lld-rtos \
->
-> >   "
->
-> > +LIC_FILES_CHKSUM = 
-> "file://I2C.h;beginline=1;endline=32;md5=50084375278c1a2779571be134f98f7c 
-> <file:///%5C%5CI2C.h;beginline=1;endline=32;md5=50084375278c1a2779571be134f98f7c>"
->
-> Why did the license checksum change?
->
-> The copyright year changed in the copyright header in i2c.h ( 
-> Copyright (C) 2014-2018). Hence the checksum change.
->
+Adam
 
-OK. Thank you.
+--f403043ded0c15d43405652d2acd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> > +
->
-> > +I2C_LLD_SRCREV = "137c6c60d18a14629f1a7572fd87402716bd5104"
->
-> > +
->
-> > +PV = "01.00.00.10"
->
-> > +
->
-> >   INSANE_SKIP_${PN} = "arch"
->
-> > +
->
+<div dir=3D"ltr">It looks like <a href=3D"http://gforge.ti.com">gforge.ti.c=
+om</a> has been decommissioned.=C2=A0<div>I am getting fetch failures and t=
+here are no working mirrors.</div><div><br></div><div>Has anyone encountere=
+d this issue?</div><div><br></div><div>Adam</div></div>
 
-
---------------F9B7C9683CC5DAE8B705FEC6
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p><br>
-    </p>
-    <br>
-    <div class="moz-cite-prefix">On 2/9/2018 11:38 AM, Radhakrishnan,
-      Mahesh wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:3fca7c959e4d419787af68e4b29c695b@ti.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      <meta name="Generator" content="Microsoft Word 14 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:"Calibri","sans-serif";}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoPlainText"><o:p> </o:p></p>
-        <p class="MsoPlainText"><a name="_MailEndCompose"
-            moz-do-not-send="true"><o:p> </o:p></a></p>
-        <p class="MsoPlainText">-----Original Message-----<br>
-          From: Stiffler, Jacob <br>
-          Sent: Friday, February 9, 2018 11:04 AM<br>
-          To: Radhakrishnan, Mahesh; <a class="moz-txt-link-abbreviated" href="mailto:meta-arago@arago-project.org">meta-arago@arago-project.org</a><br>
-          Subject: Re: [EXTERNAL] [meta-arago]
-          [morty][meta-processor-sdk][PATCH] i2c-lld-rtos: Updating
-          version &amp; checksum</p>
-        <p class="MsoPlainText"><o:p> </o:p></p>
-        <p class="MsoPlainText"><o:p> </o:p></p>
-        <p class="MsoPlainText"><o:p> </o:p></p>
-        <p class="MsoPlainText">On 2/9/2018 10:35 AM, Mahesh
-          Radhakrishnan wrote:<o:p></o:p></p>
-        <p class="MsoPlainText">&gt; ---<o:p></o:p></p>
-        <p class="MsoPlainText">&gt;  
-          recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend | 7 +++++++<o:p></o:p></p>
-        <p class="MsoPlainText">&gt;   1 file changed, 7 insertions(+)<o:p></o:p></p>
-        <p class="MsoPlainText">&gt;<o:p> </o:p></p>
-        <p class="MsoPlainText">&gt; diff --git
-          a/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend
-          b/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend<o:p></o:p></p>
-        <p class="MsoPlainText">&gt; index f46d2b6..d4da4ce 100644<o:p></o:p></p>
-        <p class="MsoPlainText">&gt; ---
-          a/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend<o:p></o:p></p>
-        <p class="MsoPlainText">&gt; +++
-          b/recipes-bsp/i2c-lld/i2c-lld-rtos_git.bbappend<o:p></o:p></p>
-        <p class="MsoPlainText">&gt; @@ -4,4 +4,11 @@
-          DEPENDS_append_ti43x = " pruss-lld-rtos \<o:p></o:p></p>
-        <p class="MsoPlainText">&gt;   "<o:p></o:p></p>
-        <p class="MsoPlainText">&gt;   DEPENDS_append_am57xx-evm = "
-          pruss-lld-rtos \<o:p></o:p></p>
-        <p class="MsoPlainText">&gt;   "<o:p></o:p></p>
-        <p class="MsoPlainText">&gt; +LIC_FILES_CHKSUM = "<a
-href="file:///%5C%5CI2C.h;beginline=1;endline=32;md5=50084375278c1a2779571be134f98f7c"
-            moz-do-not-send="true"><span
-              style="color:windowtext;text-decoration:none">file://I2C.h;beginline=1;endline=32;md5=50084375278c1a2779571be134f98f7c</span></a>"<o:p></o:p></p>
-        <p class="MsoPlainText"><o:p> </o:p></p>
-        <p class="MsoPlainText">Why did the license checksum change?<o:p></o:p></p>
-        <p class="MsoPlainText">The copyright year changed in the
-          copyright header in i2c.h ( Copyright (C) 2014-<span
-            style="color:red">2018</span>). Hence the checksum change.<o:p></o:p></p>
-        <p class="MsoPlainText"><span style="color:black"><o:p> </o:p></span></p>
-      </div>
-    </blockquote>
-    <br>
-    OK. Thank you.<br>
-    <br>
-    <blockquote type="cite"
-      cite="mid:3fca7c959e4d419787af68e4b29c695b@ti.com">
-      <div class="WordSection1">
-        <p class="MsoPlainText">&gt; +<o:p></o:p></p>
-        <p class="MsoPlainText">&gt; +I2C_LLD_SRCREV =
-          "137c6c60d18a14629f1a7572fd87402716bd5104"<o:p></o:p></p>
-        <p class="MsoPlainText">&gt; +<o:p></o:p></p>
-        <p class="MsoPlainText">&gt; +PV = "01.00.00.10"<o:p></o:p></p>
-        <p class="MsoPlainText">&gt; +<o:p></o:p></p>
-        <p class="MsoPlainText">&gt;   INSANE_SKIP_${PN} = "arch"<o:p></o:p></p>
-        <p class="MsoPlainText">&gt; +<o:p></o:p></p>
-        <p class="MsoPlainText"><o:p> </o:p></p>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------F9B7C9683CC5DAE8B705FEC6--
+--f403043ded0c15d43405652d2acd--
