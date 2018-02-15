@@ -1,32 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id CC9D352986
+Return-Path: <j-stiffler@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 240B552986
 	for <meta-arago@arago-project.org>;
-	Thu, 15 Feb 2018 17:13:59 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A4B012017C;
-	Thu, 15 Feb 2018 17:13:41 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id qnQwkYmtNcN1; Thu, 15 Feb 2018 17:13:41 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B1C6020B60;
-	Thu, 15 Feb 2018 17:13:35 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 3001A1632AB;
-	Thu, 15 Feb 2018 12:13:35 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Thu, 15 Feb 2018 12:13:26 -0500
-Message-Id: <1518714813-23100-5-git-send-email-denys@ti.com>
+	Thu, 15 Feb 2018 17:46:36 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1FHkHt1024701
+	for <meta-arago@arago-project.org>; Thu, 15 Feb 2018 11:46:17 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1518716777;
+	bh=+SAgw48TAwuczyiVpivNcziYLpo7w3VZI6FYnPAkr6E=;
+	h=From:To:CC:Subject:Date;
+	b=JgZMcFxqXgLjE7/sa0LcWGZGhgrJ+NAaB54zBwSt5xS6iLXV9EXoxm6kWEiW7ILxg
+	jdQtgYcrDj+v2/T9yVGJsQYY0BEkaTLHTd9oG6AM0G8H7HgUiflLlqbLSYprJQLY5l
+	6rtdT5//sPF/1olhou2xODL8srK8THlbuGx/R1r8=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1FHkHP2024448
+	for <meta-arago@arago-project.org>; Thu, 15 Feb 2018 11:46:17 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
+	Thu, 15 Feb 2018 11:46:17 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
+	Transport; Thu, 15 Feb 2018 11:46:17 -0600
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1FHkGEs009193;
+	Thu, 15 Feb 2018 11:46:16 -0600
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 15 Feb 2018 12:37:50 -0500
+Message-ID: <1518716270-17171-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1518714813-23100-1-git-send-email-denys@ti.com>
-References: <1518714813-23100-1-git-send-email-denys@ti.com>
-Subject: [master][PATCH 05/12] iproute2: update bbappend to 4.14.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH] arago.conf: add TI_MIRROR to mirrors
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,18 +48,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Feb 2018 17:14:00 -0000
+X-List-Received-Date: Thu, 15 Feb 2018 17:46:37 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+* Add the TI_MIRROR as a fallback to any upstream fetch issues.
+
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../iproute2/{iproute2_4.11.0.bbappend => iproute2_4.14.1.bbappend}       | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- rename meta-arago-distro/recipes-connectivity/iproute2/{iproute2_4.11.0.bbappend => iproute2_4.14.1.bbappend} (100%)
+ meta-arago-distro/conf/distro/arago.conf | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.11.0.bbappend b/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.14.1.bbappend
-similarity index 100%
-rename from meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.11.0.bbappend
-rename to meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.14.1.bbappend
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 00db445..bc7c18c 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -7,9 +7,21 @@ FEEDURIPREFIX ?= "packages/${DISTRO}-morty/${BUILD_VARIANT}/"
+ 
+ OPKG_ARGS_remove = "--prefer-arch-to-version"
+ 
++TI_MIRROR = "http://software-dl.ti.com/processor-sdk-mirror/sources/"
+ MIRRORS += " \
+ ftp://.*/.*       http://arago-project.org/files/sources/ \n \
+ https?$://.*/.*   http://arago-project.org/files/sources/ \n \
++bzr://.*/.*      ${TI_MIRROR} \n \
++cvs://.*/.*      ${TI_MIRROR} \n \
++git://.*/.*      ${TI_MIRROR} \n \
++gitsm://.*/.*    ${TI_MIRROR} \n \
++hg://.*/.*       ${TI_MIRROR} \n \
++osc://.*/.*      ${TI_MIRROR} \n \
++p4://.*/.*       ${TI_MIRROR} \n \
++npm://.*/.*      ${TI_MIRROR} \n \
++ftp://.*/.*      ${TI_MIRROR} \n \
++https?$://.*/.*  ${TI_MIRROR} \n \
++svn://.*/.*      ${TI_MIRROR} \n \
+ "
+ 
+ # SDK paths and names
 -- 
 2.7.4
 
