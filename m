@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id BD0B552A5C
+	by arago-project.org (Postfix) with ESMTPS id C4B4D52A5D
 	for <meta-arago@arago-project.org>;
 	Thu, 15 Feb 2018 17:13:57 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 6F60020AA4;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 7F61C2017C;
 	Thu, 15 Feb 2018 17:13:39 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id jS5SFjaMeo_X; Thu, 15 Feb 2018 17:13:39 +0000 (UTC)
+	with ESMTP id 59D-J_aVPocD; Thu, 15 Feb 2018 17:13:39 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3FA1F2017C;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5EFC720B15;
 	Thu, 15 Feb 2018 17:13:37 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 489511632AD;
+	by mail.denix.org (Postfix) with ESMTP id 600D21632AF;
 	Thu, 15 Feb 2018 12:13:35 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Thu, 15 Feb 2018 12:13:28 -0500
-Message-Id: <1518714813-23100-7-git-send-email-denys@ti.com>
+Date: Thu, 15 Feb 2018 12:13:30 -0500
+Message-Id: <1518714813-23100-9-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1518714813-23100-1-git-send-email-denys@ti.com>
 References: <1518714813-23100-1-git-send-email-denys@ti.com>
-Subject: [master][PATCH 07/12] weston: update bbappend and conf to 3.0.0
+Subject: [master][PATCH 09/12] libnl: update bbappend to 3.4.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,20 +43,14 @@ X-List-Received-Date: Thu, 15 Feb 2018 17:14:00 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../wayland/{weston-conf_2.0.0.bb => weston-conf_3.0.0.bb}                | 0
- .../wayland/{weston_2.0.0.bbappend => weston_3.0.0.bbappend}              | 0
- 2 files changed, 0 insertions(+), 0 deletions(-)
- rename meta-arago-distro/recipes-graphics/wayland/{weston-conf_2.0.0.bb => weston-conf_3.0.0.bb} (100%)
- rename meta-arago-distro/recipes-graphics/wayland/{weston_2.0.0.bbappend => weston_3.0.0.bbappend} (100%)
+ .../recipes-support/libnl/{libnl_3.2.29.bbappend => libnl_3.4.0.bbappend} | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename meta-arago-distro/recipes-support/libnl/{libnl_3.2.29.bbappend => libnl_3.4.0.bbappend} (100%)
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-conf_2.0.0.bb b/meta-arago-distro/recipes-graphics/wayland/weston-conf_3.0.0.bb
+diff --git a/meta-arago-distro/recipes-support/libnl/libnl_3.2.29.bbappend b/meta-arago-distro/recipes-support/libnl/libnl_3.4.0.bbappend
 similarity index 100%
-rename from meta-arago-distro/recipes-graphics/wayland/weston-conf_2.0.0.bb
-rename to meta-arago-distro/recipes-graphics/wayland/weston-conf_3.0.0.bb
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_3.0.0.bbappend
-similarity index 100%
-rename from meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend
-rename to meta-arago-distro/recipes-graphics/wayland/weston_3.0.0.bbappend
+rename from meta-arago-distro/recipes-support/libnl/libnl_3.2.29.bbappend
+rename to meta-arago-distro/recipes-support/libnl/libnl_3.4.0.bbappend
 -- 
 2.7.4
 
