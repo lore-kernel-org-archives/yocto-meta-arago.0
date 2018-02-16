@@ -1,30 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 7F01052986
+Return-Path: <e-ruei1@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id DC3DD52975
 	for <meta-arago@arago-project.org>;
-	Thu, 15 Feb 2018 22:32:49 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 50AED20AA4;
-	Thu, 15 Feb 2018 22:32:30 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id bG8bS7CjpVKC; Thu, 15 Feb 2018 22:32:30 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2BB0B20862;
-	Thu, 15 Feb 2018 22:32:29 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id A7BD91632AF;
-	Thu, 15 Feb 2018 17:32:28 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Thu, 15 Feb 2018 17:32:27 -0500
-Message-Id: <1518733947-51895-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] opencv: backport patch "Fix sign() macro redefinition compile-time error"
+	Fri, 16 Feb 2018 20:56:00 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1GKtfDb011634
+	for <meta-arago@arago-project.org>; Fri, 16 Feb 2018 14:55:41 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1518814541;
+	bh=5UhJu7ZcLfVjxaDSQlmCXXRDeTr16NtbKnmZY2NNLh4=;
+	h=From:To:Subject:Date;
+	b=V4opjaP3LyADHlfQ+t5d1VA/cYTXZ7XGPCqrPIPUyVISQSl51liLEE+i7lyzWdb8/
+	7St2ncwQa1UQFpVIFSceEbF0JeVpMDaMrTp9PY/84eOp1iwrXiePmdTSC1TuTmGwo1
+	ha1jrRdXuPOi5E+DZNn7t+d10SSjF6beNtNZxETc=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1GKtex4023824
+	for <meta-arago@arago-project.org>; Fri, 16 Feb 2018 14:55:40 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
+	Fri, 16 Feb 2018 14:55:40 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
+	Transport; Fri, 16 Feb 2018 14:55:40 -0600
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1GKtepe017265
+	for <meta-arago@arago-project.org>; Fri, 16 Feb 2018 14:55:40 -0600
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 16 Feb 2018 15:55:32 -0500
+Message-ID: <1518814536-42298-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [morty/rocko/master][PATCH v2 0/4] Re-enable QT5 Thermostat demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,73 +48,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Feb 2018 22:32:50 -0000
+X-List-Received-Date: Fri, 16 Feb 2018 20:56:01 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- ...ign-macro-redefinition-compile-time-error.patch | 39 ++++++++++++++++++++++
- .../recipes-support/opencv/opencv_3.1.bb           |  1 +
- 2 files changed, 40 insertions(+)
- create mode 100644 meta-arago-extras/recipes-support/opencv/opencv/0001-Fix-sign-macro-redefinition-compile-time-error.patch
+Eric Ruei (4):
+  qt-tstat: pickup the latest version for both Qt4/Qt5 support
+  packagegroup-arago-tisdk-matrix: add thermostat demo back to
+    MATRIX_QT_APPS
+  packagegroup-arago-tisdk-qte(-sdk-host): move qt-tstat to QT_DEMOS
+  ti-tisdk-makefile: add qt-tstat to MAKEFILES_MATRIX_GUI
+    unconditionally
 
-diff --git a/meta-arago-extras/recipes-support/opencv/opencv/0001-Fix-sign-macro-redefinition-compile-time-error.patch b/meta-arago-extras/recipes-support/opencv/opencv/0001-Fix-sign-macro-redefinition-compile-time-error.patch
-new file mode 100644
-index 0000000..481bccb
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/opencv/opencv/0001-Fix-sign-macro-redefinition-compile-time-error.patch
-@@ -0,0 +1,39 @@
-+From 395db9e7211d58473beafa6a9643d3cd49ad4eb4 Mon Sep 17 00:00:00 2001
-+From: Gregory Kramida <algomorph@gmail.com>
-+Date: Mon, 23 May 2016 12:56:39 -0400
-+Subject: [PATCH] Fix sign() macro redefinition compile-time error
-+
-+---
-+ modules/tracking/include/opencv2/tracking/onlineMIL.hpp | 2 --
-+ modules/tracking/src/onlineMIL.cpp                      | 2 ++
-+ 2 files changed, 2 insertions(+), 2 deletions(-)
-+
-+diff --git a/modules/tracking/include/opencv2/tracking/onlineMIL.hpp b/modules/tracking/include/opencv2/tracking/onlineMIL.hpp
-+index b6fc25b..78e1372 100644
-+--- a/modules/tracking/include/opencv2/tracking/onlineMIL.hpp
-++++ b/modules/tracking/include/opencv2/tracking/onlineMIL.hpp
-+@@ -54,8 +54,6 @@ namespace cv
-+ //TODO based on the original implementation
-+ //http://vision.ucsd.edu/~bbabenko/project_miltrack.shtml
-+ 
-+-#define  sign(s)  ((s > 0 ) ? 1 : ((s<0) ? -1 : 0))
-+-
-+ class ClfOnlineStump;
-+ 
-+ class CV_EXPORTS ClfMilBoost
-+diff --git a/modules/tracking/src/onlineMIL.cpp b/modules/tracking/src/onlineMIL.cpp
-+index 4fcfb54..29fa9fe 100644
-+--- a/modules/tracking/src/onlineMIL.cpp
-++++ b/modules/tracking/src/onlineMIL.cpp
-+@@ -42,6 +42,8 @@
-+ #include "precomp.hpp"
-+ #include "opencv2/tracking/onlineMIL.hpp"
-+ 
-++#define  sign(s)  ((s > 0 ) ? 1 : ((s<0) ? -1 : 0))
-++
-+ template<class T> class SortableElementRev
-+ {
-+  public:
-+-- 
-+2.7.4
-+
-diff --git a/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb b/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-index 168eeff..acc9d71 100644
---- a/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-+++ b/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-@@ -22,6 +22,7 @@ SRC_URI = "git://github.com/opencv/opencv.git;name=opencv \
-     file://0001-3rdparty-ippicv-Use-pre-downloaded-ipp.patch \
-     file://fixgcc60.patch \
-     file://fixpkgconfig.patch \
-+    file://0001-Fix-sign-macro-redefinition-compile-time-error.patch;patchdir=../contrib \
- "
- 
- PV = "3.1+git${SRCPV}"
+ .../packagegroup-arago-tisdk-matrix.bb              |  4 ++--
+ .../packagegroup-arago-tisdk-qte-sdk-host.bb        |  5 ++---
+ .../packagegroups/packagegroup-arago-tisdk-qte.bb   |  5 ++---
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb      |  4 ++--
+ .../thermostat-demo/qt-tstat/qt_tstat.sh            | 13 +++++++++++++
+ .../recipes-apps/thermostat-demo/qt-tstat_2.0.bb    | 21 +++++++++++----------
+ 6 files changed, 32 insertions(+), 20 deletions(-)
+ create mode 100755 meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat/qt_tstat.sh
+
 -- 
-2.7.4
+1.9.1
 
 
