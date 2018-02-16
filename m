@@ -1,43 +1,43 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 1D34B529AB
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 44436529EC
 	for <meta-arago@arago-project.org>;
 	Fri, 16 Feb 2018 20:56:01 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1GKtfsP014283
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1GKtfiO007369
 	for <meta-arago@arago-project.org>; Fri, 16 Feb 2018 14:55:41 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
 	s=ti-com-17Q1; t=1518814541;
-	bh=3b5tZTmVvoRLpKSipIF7Uw+qrxyE2097xF6Mv/QZbjQ=;
+	bh=ThVSbBY+wQquwWh6yrAG8GS9rQZLGL4L2aoGYbvn2w8=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=i8Wkh4DpBXF+DJWp3WszYGhl5U5KUMQFYX7S5uqaW398RC7xXYZD08CVYlqaUZMGE
-	dQINPjEEEy+LjbQS3oUPai/jOVBKL9Y+CgLvV3tUEB3R8N+DE8CrHyJ2b43uLcuA/A
-	o63Xxb9SqHDSs9xsZfBqijmFf54e1J8qppCo7los=
+	b=ro5pF4XFs5kf3lA9AZ8ckrRXWifSDGH8T/tX12w54refig/6ax3g4iDxrbV+FIvGm
+	pki8tIio/8WNV+4t3opnZ0NEXHhbDFrzIQvSLwxVXM/b7qdIgEqh9HWrloFQYmiKF7
+	Mw7C/LeqUHn4MejNTNL2jF+cGyrzLgeRoEHag6uY=
 Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1GKtf5U026985
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1GKtfs0026994
 	for <meta-arago@arago-project.org>; Fri, 16 Feb 2018 14:55:41 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE102.ent.ti.com
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE102.ent.ti.com
 	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
 	Fri, 16 Feb 2018 14:55:41 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
 	Transport; Fri, 16 Feb 2018 14:55:41 -0600
 Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1GKtepg017265
-	for <meta-arago@arago-project.org>; Fri, 16 Feb 2018 14:55:40 -0600
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1GKteph017265
+	for <meta-arago@arago-project.org>; Fri, 16 Feb 2018 14:55:41 -0600
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 16 Feb 2018 15:55:34 -0500
-Message-ID: <1518814536-42298-3-git-send-email-e-ruei1@ti.com>
+Date: Fri, 16 Feb 2018 15:55:35 -0500
+Message-ID: <1518814536-42298-4-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1518814536-42298-1-git-send-email-e-ruei1@ti.com>
 References: <1518814536-42298-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty/rocko/master][PATCH v2 2/4] packagegroup-arago-tisdk-matrix: add thermostat demo back to MATRIX_QT_APPS
+Subject: [morty/rocko/master][PATCH v2 3/4] packagegroup-arago-tisdk-qte(-sdk-host): move qt-tstat to QT_DEMOS
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,37 +53,70 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Fri, 16 Feb 2018 20:56:02 -0000
 Content-Type: text/plain
 
-note: The thermostat demo was removed from MATRIX_QT_APPS because it was for
-      Qt4 only
+qt-tstat has been enhanced to support both Qt4 and Qt5
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb     | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-qte-sdk-host.bb           | 5 ++---
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb       | 5 ++---
+ 2 files changed, 4 insertions(+), 6 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 0cae08d..f1c3083 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte-sdk-host.bb
+index 5d596f8..1cef6bb 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte-sdk-host.bb
 @@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
+ DESCRIPTION = "Task to add Qt embedded related sources into the sdk"
  LICENSE = "MIT"
--PR = "r68"
-+PR = "r69"
+-PR = "r7"
++PR = "r8"
  
  PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-@@ -31,9 +31,9 @@ MATRIX_COMMON_APPS = "              \
-     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'matrix-gui-weston-terminal-demo', '', d)} \
+@@ -8,12 +8,11 @@ inherit packagegroup
+ 
+ QT4_DEMOS = "\
+     ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles', 'quick-playground-src', '', d)} \
+-    qt-tstat-src \
  "
  
--#    matrix-gui-thermostat-demo
- MATRIX_QT_APPS = " \
-     matrix-gui-qt5-demos \
-+    matrix-gui-thermostat-demo \
+ QT_DEMOS = "\
++    qt-tstat-src \
+ "
+-#    qt-tstat-src 
+ 
+ RDEPENDS_${PN} = "\
+     ${@base_conditional('QT_PROVIDER', 'qt5', '', "${QT4_DEMOS}", d)} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
+index f6f7468..4215653 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to add Qt embedded related packages"
+ LICENSE = "MIT"
+-PR = "r17"
++PR = "r18"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -10,7 +10,6 @@ QT4_DEMOS = "\
+     qt4-embedded-examples \
+     qt4-embedded-demos \
+     ${@base_conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles', 'quick-playground', '', d)} \
+-    qt-tstat \
  "
  
- MATRIX_TOUCH_APPS = " \
+ QT5_DEMOS = "\
+@@ -29,8 +28,8 @@ QT5_DEMOS = "\
+ "
+ 
+ QT_DEMOS = "\
++    qt-tstat \
+ "
+-#    qt-tstat 
+ 
+ RDEPENDS_${PN} = "\
+     packagegroup-arago-qte \
 -- 
 1.9.1
 
