@@ -1,43 +1,30 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 8C1E6529EE
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 021EC529EC
 	for <meta-arago@arago-project.org>;
-	Fri, 16 Feb 2018 20:56:01 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1GKtfVj028737
-	for <meta-arago@arago-project.org>; Fri, 16 Feb 2018 14:55:41 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1518814541;
-	bh=704QxCiZC0+WdVDDAKb+2DRjlQtSGNsbiLM7Ug0RNqc=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=GFxGrDgazB1CBShjQe4dlmkF5xq7tR3Pg9optzfysNxL5HEOivr56N5q026s25IvM
-	zViW1+2E8/LckoLE2Na1PfyX4l2Lw/pRRw61kTFOJu4xpWUFXxr0j5/sxEMj7OG9pI
-	9OwiNs7mMV8mcXUx/95iwFkd7szY+ys47zOzeQvg=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1GKtfLe027000
-	for <meta-arago@arago-project.org>; Fri, 16 Feb 2018 14:55:41 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Fri, 16 Feb 2018 14:55:41 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Fri, 16 Feb 2018 14:55:41 -0600
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1GKtepi017265
-	for <meta-arago@arago-project.org>; Fri, 16 Feb 2018 14:55:41 -0600
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 16 Feb 2018 15:55:36 -0500
-Message-ID: <1518814536-42298-5-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1518814536-42298-1-git-send-email-e-ruei1@ti.com>
-References: <1518814536-42298-1-git-send-email-e-ruei1@ti.com>
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty/rocko/master][PATCH v2 4/4] ti-tisdk-makefile: add qt-tstat to MAKEFILES_MATRIX_GUI unconditionally
+	Sat, 17 Feb 2018 00:27:55 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 98AF5208D7;
+	Sat, 17 Feb 2018 00:27:35 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id ZnBID_ECKDjk; Sat, 17 Feb 2018 00:27:35 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 747E5200BB;
+	Sat, 17 Feb 2018 00:27:34 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id EB9AC1632A7;
+	Fri, 16 Feb 2018 19:27:33 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 16 Feb 2018 19:27:33 -0500
+Message-Id: <1518827253-25203-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [oe-layersetup][PATCH] oe-layertool-setup: add TOOLCHAIN_PATH* environment whitelisting
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,35 +37,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Feb 2018 20:56:02 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 17 Feb 2018 00:27:57 -0000
 
-qt-tstat has been enhanced to support both Qt4 and Qt5
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+* Allows setting TOOLCHAIN_PATH* variables on command line
+* Removed deprecated TI_SECURE_DEV_PKG* variables
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb          | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ oe-layertool-setup.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 29e74b0..0f7670c 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -50,11 +50,11 @@ SRC_URI = "\
-     file://Makefile_barcode-roi \
- "
+diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
+index 6e62d22..d73db5a 100755
+--- a/oe-layertool-setup.sh
++++ b/oe-layertool-setup.sh
+@@ -805,7 +805,7 @@ unset BITBAKEDIR
+ unset SCRIPTS
+ export PATH
+ export BUILDDIR=${builddir}
+-export BB_ENV_EXTRAWHITE="MACHINE DISTRO TCMODE TCLIBC http_proxy ftp_proxy https_proxy all_proxy ALL_PROXY no_proxy SSH_AGENT_PID SSH_AUTH_SOCK BB_SRCREV_POLICY SDKMACHINE BB_NUMBER_THREADS PARALLEL_MAKE GIT_PROXY_COMMAND GIT_PROXY_IGNORE SOCKS5_PASSWD SOCKS5_USER OEBASE META_SDK_PATH TOOLCHAIN_TYPE TOOLCHAIN_BRAND EXTRA_TISDK_FILES TISDK_VERSION ARAGO_BRAND ARAGO_RT_ENABLE ARAGO_SYSTEST_ENABLE ARAGO_KERNEL_SUFFIX TI_SECURE_DEV_PKG_AM4 TI_SECURE_DEV_PKG_DRA7 TI_SECURE_DEV_PKG_CAT TI_SECURE_DEV_PKG_AUTO ARAGO_SYSVINIT"
++export BB_ENV_EXTRAWHITE="MACHINE DISTRO TCMODE TCLIBC http_proxy ftp_proxy https_proxy all_proxy ALL_PROXY no_proxy SSH_AGENT_PID SSH_AUTH_SOCK BB_SRCREV_POLICY SDKMACHINE BB_NUMBER_THREADS PARALLEL_MAKE GIT_PROXY_COMMAND GIT_PROXY_IGNORE SOCKS5_PASSWD SOCKS5_USER OEBASE META_SDK_PATH TOOLCHAIN_TYPE TOOLCHAIN_BRAND TOOLCHAIN_PATH TOOLCHAIN_PATH_ARMV5 TOOLCHAIN_PATH_ARMV7 TOOLCHAIN_PATH_ARMV8 EXTRA_TISDK_FILES TISDK_VERSION ARAGO_BRAND ARAGO_RT_ENABLE ARAGO_SYSTEST_ENABLE ARAGO_KERNEL_SUFFIX TI_SECURE_DEV_PKG_CAT TI_SECURE_DEV_PKG_AUTO ARAGO_SYSVINIT"
+ EOM
+ }
  
--PR = "r84"
-+PR = "r85"
- 
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
--                        ${@base_conditional('QT_PROVIDER', 'qt5', '', 'qt-tstat', d)} \
-+                        qt-tstat \
- "
- 
- MAKEFILES_MATRIX_GUI_keystone = ""
 -- 
-1.9.1
+2.7.4
 
 
