@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 68E3F52983
+	by arago-project.org (Postfix) with ESMTPS id 0B8FB5298F
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Feb 2018 18:14:44 +0000 (UTC)
+	Tue, 20 Feb 2018 19:59:52 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B9D7C20B15;
-	Mon, 19 Feb 2018 18:14:20 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 05BDF20B09;
+	Tue, 20 Feb 2018 19:59:28 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id g1IKYdYLIW7H; Mon, 19 Feb 2018 18:14:20 +0000 (UTC)
+	with ESMTP id uafW0caXzl-c; Tue, 20 Feb 2018 19:59:27 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0190B2073F;
-	Mon, 19 Feb 2018 18:14:18 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id CFFDE2073F;
+	Tue, 20 Feb 2018 19:59:26 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 371151631E8;
-	Mon, 19 Feb 2018 13:14:18 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id 4D3501632BF;
+	Tue, 20 Feb 2018 14:59:26 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Mon, 19 Feb 2018 13:14:17 -0500
-Message-Id: <1519064057-5743-1-git-send-email-denys@ti.com>
+Date: Tue, 20 Feb 2018 14:59:25 -0500
+Message-Id: <1519156765-35407-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [rocko/master][PATCH] toolchain-linaro: abstract TOOLCHAIN_PATH setting for default override
+Subject: [rocko/master][PATCH] layer.conf: explicitly whitelist corkscrew and getent for proxy scripts
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,32 +37,23 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Feb 2018 18:14:44 -0000
+X-List-Received-Date: Tue, 20 Feb 2018 19:59:53 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/toolchain-linaro.inc | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ meta-arago-distro/conf/layer.conf | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-index 61a3b50..a3d52fe 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-linaro.inc
-@@ -17,9 +17,11 @@ TOOLCHAIN_PATH_ARMV5 ?= "${TOOLCHAIN_BASE}/gcc-linaro-7.2.1-ti2018.00-armv5-x86_
- TOOLCHAIN_PATH_ARMV7 ?= "${TOOLCHAIN_BASE}/gcc-linaro-7.2.1-2017.11-x86_64_${ELT_TARGET_SYS_ARMV7}"
- TOOLCHAIN_PATH_ARMV8 ?= "${TOOLCHAIN_BASE}/gcc-linaro-7.2.1-2017.11-x86_64_${ELT_TARGET_SYS_ARMV8}"
- 
--TOOLCHAIN_PATH_arm = "${TOOLCHAIN_PATH_ARMV5}"
--TOOLCHAIN_PATH_armv7a = "${TOOLCHAIN_PATH_ARMV7}"
--TOOLCHAIN_PATH_aarch64 = "${TOOLCHAIN_PATH_ARMV8}"
-+DEF_TOOLCHAIN_PATH_arm = "${TOOLCHAIN_PATH_ARMV5}"
-+DEF_TOOLCHAIN_PATH_armv7a = "${TOOLCHAIN_PATH_ARMV7}"
-+DEF_TOOLCHAIN_PATH_aarch64 = "${TOOLCHAIN_PATH_ARMV8}"
+diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
+index db90454..c175bd8 100644
+--- a/meta-arago-distro/conf/layer.conf
++++ b/meta-arago-distro/conf/layer.conf
+@@ -35,3 +35,5 @@ SIGGEN_EXCLUDERECIPES_ABISAFE += " \
+     qtbase-conf \
+     cryptodev-module \
+ "
 +
-+TOOLCHAIN_PATH ?= "${DEF_TOOLCHAIN_PATH}"
- 
- TOOLCHAIN_SYS := "${ELT_TARGET_SYS}"
- TOOLCHAIN_PREFIX := "${TOOLCHAIN_SYS}-"
++HOSTTOOLS_NONFATAL += "corkscrew getent"
 -- 
 2.7.4
 
