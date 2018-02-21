@@ -1,42 +1,41 @@
-Return-Path: <d-senicic1@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 4565A52998
+Return-Path: <e-ruei1@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 174CA52983
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Feb 2018 01:48:07 +0000 (UTC)
+	Wed, 21 Feb 2018 23:12:47 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1L1lgwt019778
-	for <meta-arago@arago-project.org>; Tue, 20 Feb 2018 19:47:42 -0600
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1LNCKva022801
+	for <meta-arago@arago-project.org>; Wed, 21 Feb 2018 17:12:20 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1519177662;
-	bh=S4h1VbQ8xOaQMFbmez8k/XrOnFfLoLnxnCSpi6P6jQs=;
-	h=From:To:CC:Subject:Date;
-	b=IW66aY4XJHAeC2QchGhGXXAkZBydlsXYkslZWzRlSXImid90t7z7HyWCEtGD084aZ
-	8UWEmIO9of2pbJ95iG4Xt9BlN019CxurbTuTHAovOrjhZTgc02S3kYMD+qihwzDNP7
-	bnML/mTCCTqAIT/h9TZ5OxqDFctbOFoCgM3zfy/s=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1L1lgVI009946
-	for <meta-arago@arago-project.org>; Tue, 20 Feb 2018 19:47:42 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1519254740;
+	bh=8u1vHMkc0xAx4Iz1eZZs9OWphR2eI74RetE3Z1LWZ7I=;
+	h=From:To:Subject:Date;
+	b=xkIxpMnxP/X7IqUJ85nX5piJm42ET/mmzIqdp8DPFGgGtFgWrI3eIdNHHt0EOR9gq
+	y24pqt3vnr3Slud+1Nwi30OFsl6y8RNkYSniO+8WbPyCGH4Mkd4kYOxPg02pGZ6pZf
+	pdwE74wcl7qvfSsfzlhtOqKdt5zcU/WPpb8NcZhs=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1LNCKQ8009808
+	for <meta-arago@arago-project.org>; Wed, 21 Feb 2018 17:12:20 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Tue, 20 Feb 2018 19:47:41 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 21 Feb 2018 17:12:20 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Tue, 20 Feb 2018 19:47:41 -0600
-Received: from UDA0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Wed, 21 Feb 2018 17:12:20 -0600
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1L1lfxI032501;
-	Tue, 20 Feb 2018 19:47:41 -0600
-From: Djordje Senicic <x0157990@ti.com>
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1LNCKwx011430
+	for <meta-arago@arago-project.org>; Wed, 21 Feb 2018 17:12:20 -0600
+From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 20 Feb 2018 20:47:26 -0500
-Message-ID: <1519177646-5449-1-git-send-email-x0157990@ti.com>
+Date: Wed, 21 Feb 2018 18:12:01 -0500
+Message-ID: <1519254721-4087-1-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: d-senicic1@ti.com, Djordje Senicic <x0157990@ti.com>
-Subject: [PATCH] opencv: Fix OpenCL linking with unused DSP library
+Subject: [meta-processor-sdk][PATCH] ti-tisdk-makefile: add am571x-idk-pps.dtb am572x-idk-pps.dtb to KERNEL_DEVICETREE list
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,26 +48,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Feb 2018 01:48:07 -0000
+X-List-Received-Date: Wed, 21 Feb 2018 23:12:47 -0000
 Content-Type: text/plain
 
-Signed-off-by: Djordje Senicic <x0157990@ti.com>
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend b/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
-index bf33a2e..3915c4d 100644
---- a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
-+++ b/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
-@@ -11,7 +11,7 @@ SRC_URI_append += "\
-      file://setupEnv.sh \
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+index 51e5b6e..e609aae 100644
+--- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = ".tisdk50"
++PR_append = ".tisdk51"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+@@ -62,6 +62,8 @@ KERNEL_DEVICETREE_append_am57xx-evm = " \
+     am572x-idk-lcd-osd101t2045-jh.dtb \
+     am572x-idk-lcd-osd101t2587-jh.dtb \
+     am574x-idk-jailhouse.dtb \
++    am571x-idk-pps.dtb \
++    am572x-idk-pps.dtb \
  "
  
--SRCREV_opencv = "4458601eb2766461f2f9da0d2527ff25ecb20284"
-+SRCREV_opencv = "9b88e8c746e531a1b4cc61e5235e4e747c319945"
- 
- DEPENDS_remove_keystone = "qtbase"
  
 -- 
 1.9.1
