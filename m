@@ -1,42 +1,46 @@
-Return-Path: <h-gou@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 7E79152986
+Return-Path: <j-stiffler@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 561E852985
 	for <meta-arago@arago-project.org>;
-	Fri, 23 Feb 2018 16:14:22 +0000 (UTC)
+	Fri, 23 Feb 2018 19:17:15 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1NGDscL031729
-	for <meta-arago@arago-project.org>; Fri, 23 Feb 2018 10:13:54 -0600
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1NJGkZX003192
+	for <meta-arago@arago-project.org>; Fri, 23 Feb 2018 13:16:46 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1519402434;
-	bh=Uc/GijJAbo2UWBOjm6p8KrUUj8rWGlC4SqBJ4wY8RHI=;
-	h=From:To:CC:Subject:Date;
-	b=K1HDqU3W2vXYINsY/5nvtz8ipd+rtx1sQ0FNeuX+11yFFzb8w+yKj3PFtCcSiUpNP
-	ahNxi4BGSmwYL4tmD+wfyDGGDvSHsY6WAXHW0Pe8GzuDzHGO90F5tzLSCDYhBLbgea
-	B5hZrUQgNLOygfKVw0MR3oE82yzGRBFpGNkq/7uY=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1NGDseE026655
-	for <meta-arago@arago-project.org>; Fri, 23 Feb 2018 10:13:54 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1519413407;
+	bh=y58blRZHPq8DrsuFaGfAyoM440RvXbjY9pcTHvoplq8=;
+	h=From:To:Subject:Date:References:In-Reply-To;
+	b=nnGcy0ZauWnxWx3Xs0Bc46wXyZtCLn379RCkFqAG4Sy4T5YYHGBPnsI/BDk64ZEUE
+	v1xU37Rk7jVZIm0hu6cWD0Ya04DogCD+CVJJfFkIpHRuB89aGh0gULMIeFFzf+UBYm
+	ooTkXv3IM/V9u8ryuPci7W5d5uE7690jBYiqE9DM=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1NJGk9I004921
+	for <meta-arago@arago-project.org>; Fri, 23 Feb 2018 13:16:46 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Fri, 23 Feb 2018 10:13:53 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Fri, 23 Feb 2018 10:13:54 -0600
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1NGDr4i005985;
-	Fri, 23 Feb 2018 10:13:53 -0600
-From: Hongmei Gou <a0271529@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 23 Feb 2018 11:13:51 -0500
-Message-ID: <1519402431-3322-1-git-send-email-a0271529@ti.com>
-X-Mailer: git-send-email 1.9.1
+	Fri, 23 Feb 2018 13:16:46 -0600
+Received: from DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222]) by
+	DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222%18]) with mapi id
+	15.01.1261.035; Fri, 23 Feb 2018 13:16:46 -0600
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Ruei, Eric" <e-ruei1@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [EXTERNAL] [meta-arago] [meta-processor-sdk][PATCH]
+	ti-tisdk-makefile: add am571x-idk-pps.dtb am572x-idk-pps.dtb to
+	KERNEL_DEVICETREE list
+Thread-Index: AQHTq2lvZcn7ihvrLkGlQ5AIxf8fIqOyXpag
+Date: Fri, 23 Feb 2018 19:16:46 +0000
+Message-ID: <c898c0048d294f679620d4e0d8510a3a@ti.com>
+References: <1519254721-4087-1-git-send-email-e-ruei1@ti.com>
+In-Reply-To: <1519254721-4087-1-git-send-email-e-ruei1@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.218.109.201]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processor-sdk] dual-camera-demo: bump SRCREV
+Subject: Re: [EXTERNAL] [meta-processor-sdk][PATCH] ti-tisdk-makefile: add am571x-idk-pps.dtb am572x-idk-pps.dtb to KERNEL_DEVICETREE list
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,27 +53,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Feb 2018 16:14:22 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 23 Feb 2018 19:17:16 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Support run-time selection of cmem vs. omapdrm memory
+Eric,
 
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
----
- recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bbappend | 3 +++
- 1 file changed, 3 insertions(+)
- create mode 100644 recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bbappend
+These entries will also need to be added to the kernel recipes.
 
-diff --git a/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bbappend b/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bbappend
-new file mode 100644
-index 0000000..0a0f7ad
---- /dev/null
-+++ b/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bbappend
-@@ -0,0 +1,3 @@
-+PR_append = ".tisdk0"
-+
-+SRCREV = "3546c21b17fa5f54b6ac6259b56e9a6f23b4e8b1"
--- 
-1.9.1
+See recipes-kernel/linux/linux-ti-staging{,-rt}_4.9.bbappend
 
+- Jake
+
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Ruei, Eric
+> Sent: Wednesday, February 21, 2018 6:12 PM
+> To: meta-arago@arago-project.org
+> Subject: [EXTERNAL] [meta-arago] [meta-processor-sdk][PATCH] ti-tisdk-
+> makefile: add am571x-idk-pps.dtb am572x-idk-pps.dtb to
+> KERNEL_DEVICETREE list
+>=20
+> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> ---
+>  recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappe=
+nd
+> b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+> index 51e5b6e..e609aae 100644
+> --- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+> +++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+> @@ -1,4 +1,4 @@
+> -PR_append =3D ".tisdk50"
+> +PR_append =3D ".tisdk51"
+>=20
+>  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+>=20
+> @@ -62,6 +62,8 @@ KERNEL_DEVICETREE_append_am57xx-evm =3D " \
+>      am572x-idk-lcd-osd101t2045-jh.dtb \
+>      am572x-idk-lcd-osd101t2587-jh.dtb \
+>      am574x-idk-jailhouse.dtb \
+> +    am571x-idk-pps.dtb \
+> +    am572x-idk-pps.dtb \
+>  "
+>=20
+>=20
+> --
+> 1.9.1
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
