@@ -1,43 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 1BB9652976
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id AF2C352976
 	for <meta-arago@arago-project.org>;
-	Mon, 26 Feb 2018 20:42:04 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1QKfWTq019763
-	for <meta-arago@arago-project.org>; Mon, 26 Feb 2018 14:41:32 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1519677692;
-	bh=83PrmNN67XOWuBxjO1lUQeYmXGKtCETHY5t/JQcX+WM=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=TwA2rCCHD5/Pvmxh5+N8uBN2GVemxEhlMcYFfwRYmO/G2dBhWu0Edi+HrHuZCK7I/
-	/bfhByVfSyS47NP6FjyiZlyoeN8UzbIX/SIWunFQBuzWNxa8lewf3mswnEoXeSt6Uh
-	5twUBVvH8wve4V+6CpkYq51XZYS4QKh57ud9Djic=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1QKfWEj024311
-	for <meta-arago@arago-project.org>; Mon, 26 Feb 2018 14:41:32 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Mon, 26 Feb 2018 14:41:31 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Mon, 26 Feb 2018 14:41:31 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1QKfVv8028773;
-	Mon, 26 Feb 2018 14:41:31 -0600
-Date: Mon, 26 Feb 2018 15:41:31 -0500
+	Mon, 26 Feb 2018 22:28:23 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 93B6C209AE;
+	Mon, 26 Feb 2018 22:27:51 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id O7BLNBaZrbqX; Mon, 26 Feb 2018 22:27:51 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 78F9520059;
+	Mon, 26 Feb 2018 22:27:50 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 0DB101632C4;
+	Mon, 26 Feb 2018 17:27:50 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
-To: Hongmei Gou <a0271529@ti.com>
-Message-ID: <20180226204130.GG12117@edge>
-References: <1519676239-31976-1-git-send-email-a0271529@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <1519676239-31976-1-git-send-email-a0271529@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [morty/rocko/master] [PATCH v2] dual-camera-demo: bump SRCREV and update dependency
+To: meta-arago@arago-project.org
+Date: Mon, 26 Feb 2018 17:27:49 -0500
+Message-Id: <1519684069-43723-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH] kexec-tools: the HACK patch is no longer required
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,52 +37,61 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Feb 2018 20:42:04 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 26 Feb 2018 22:28:24 -0000
 
-On Mon, Feb 26, 2018 at 03:17:19PM -0500, Hongmei Gou wrote:
-> * Support run-time selection of cmem vs. omapdrm memory
-> * Add dependency on cmem
-> 
-> Signed-off-by: Hongmei Gou <a0271529@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../0001-HACK-TO-get-kexec-up-on-dra7.patch        | 26 ----------------------
+ .../recipes-kernel/kexec/kexec-tools_%.bbappend    |  2 --
+ 2 files changed, 28 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-kernel/kexec/kexec-tools/0001-HACK-TO-get-kexec-up-on-dra7.patch
 
-Tested-by: Denys Dmytriyenko <denys@ti.com>
+diff --git a/meta-arago-distro/recipes-kernel/kexec/kexec-tools/0001-HACK-TO-get-kexec-up-on-dra7.patch b/meta-arago-distro/recipes-kernel/kexec/kexec-tools/0001-HACK-TO-get-kexec-up-on-dra7.patch
+deleted file mode 100644
+index 9abdcb3..0000000
+--- a/meta-arago-distro/recipes-kernel/kexec/kexec-tools/0001-HACK-TO-get-kexec-up-on-dra7.patch
++++ /dev/null
+@@ -1,26 +0,0 @@
+-From b93a24a4df81abfffb8e275970a98736dd42d4f5 Mon Sep 17 00:00:00 2001
+-From: Keerthy <j-keerthy@ti.com>
+-Date: Tue, 28 Feb 2017 10:44:45 +0530
+-Subject: [PATCH] HACK: TO get kexec up on dra7
+-
+-Signed-off-by: Keerthy <j-keerthy@ti.com>
+----
+- kexec/arch/arm/kexec-zImage-arm.c | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/kexec/arch/arm/kexec-zImage-arm.c b/kexec/arch/arm/kexec-zImage-arm.c
+-index 7f02b93..9907496 100644
+---- a/kexec/arch/arm/kexec-zImage-arm.c
+-+++ b/kexec/arch/arm/kexec-zImage-arm.c
+-@@ -572,7 +572,7 @@ int zImage_arm_load(int argc, char **argv, const char *buf, off_t len,
+- 		 * is 4, and just to be safe, place ramdisk after that.
+- 		 * Note that we must include space for the compressed
+- 		 * image here as well. */
+--		initrd_base = kernel_base + _ALIGN(len * 5, getpagesize());
+-+		initrd_base = kernel_base + _ALIGN(len * 6, getpagesize());
+- 	}
+- 
+- 	if (use_atags) {
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-distro/recipes-kernel/kexec/kexec-tools_%.bbappend b/meta-arago-distro/recipes-kernel/kexec/kexec-tools_%.bbappend
+index 9e1f301..e66dcda 100644
+--- a/meta-arago-distro/recipes-kernel/kexec/kexec-tools_%.bbappend
++++ b/meta-arago-distro/recipes-kernel/kexec/kexec-tools_%.bbappend
+@@ -2,8 +2,6 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ PR_append = ".arago2"
+ 
+-#SRC_URI += "file://0001-HACK-TO-get-kexec-up-on-dra7.patch"
+-
+ do_install_append() {
+ 	chmod -x ${D}${sysconfdir}/init.d/kdump
+ }
+-- 
+2.7.4
 
-
-> ---
-> V2 change:
-> * Add dependency on cmem
-> 
->  .../recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb     | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
-> index 1d1d836..15a71af 100644
-> --- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
-> +++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
-> @@ -4,13 +4,13 @@ SECTION = "multimedia"
->  LICENSE = "GPLv2"
->  LIC_FILES_CHKSUM = "file://LICENSE;md5=c7ca707704d3354a64feeb4f19f52eb5"
->  
-> -DEPENDS += "libdrm"
-> +DEPENDS += "libdrm cmem"
->  require recipes-core/matrix/matrix-gui-paths.inc
->  
-> -PR = "r17"
-> +PR = "r18"
->  
->  BRANCH = "master"
-> -SRCREV = "f52cb4354785e5f2fd63f7cf8ab02d99a2fbbea7"
-> +SRCREV = "3546c21b17fa5f54b6ac6259b56e9a6f23b4e8b1"
->  
->  SRC_URI = "git://git.ti.com/sitara-linux/dual-camera-demo.git;protocol=git;branch=${BRANCH} \
->             file://desc_dual-camera.html \
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
