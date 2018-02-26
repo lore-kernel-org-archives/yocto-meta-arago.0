@@ -1,45 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 2D715529A0
+Return-Path: <huangqy.fnst@cn.fujitsu.com>
+Received: from heian.cn.fujitsu.com (mail.cn.fujitsu.com [183.91.158.132])
+	by arago-project.org (Postfix) with ESMTP id 03F29529A0
 	for <meta-arago@arago-project.org>;
-	Sat, 24 Feb 2018 04:25:37 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1O4P8WO007981
-	for <meta-arago@arago-project.org>; Fri, 23 Feb 2018 22:25:08 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1519446308;
-	bh=vQd/WXMvCakkZmGYYy5A517FVbDaRrwfMRrvVB+5OTU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=RDl0c+ekltBbAg9cPE4PH9UZLKr30pMND+B6qiF5YFHpAcyh6Tw0IigW2FeeQP7Lz
-	pKToBbJJ+m7OUgdbEJlgnW1arpmBWKsaNl5KMotKFUbatsDPs+lyca0dkPZFHpvpdF
-	Efq8JSQikiIyGpneXQKwXxpHYgQy9V5lkNA/Hg0I=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1O4P8iN022326
-	for <meta-arago@arago-project.org>; Fri, 23 Feb 2018 22:25:08 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Fri, 23 Feb 2018 22:25:07 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Fri, 23 Feb 2018 22:25:07 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1O4P7mu009437;
-	Fri, 23 Feb 2018 22:25:07 -0600
-Date: Fri, 23 Feb 2018 23:25:06 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20180224042506.GA12117@edge>
-References: <1519177646-5449-1-git-send-email-x0157990@ti.com>
-	<b5a492dd-fe37-b40f-ebd9-e5e4f4424622@ti.com>
+	Mon, 26 Feb 2018 07:17:05 +0000 (UTC)
+X-IronPort-AV: E=Sophos;i="5.43,368,1503331200"; d="scan'208";a="37254051"
+Received: from bogon (HELO cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 26 Feb 2018 15:16:25 +0800
+Received: from G08CNEXCHPEKD02.g08.fujitsu.local (unknown [10.167.33.83])
+	by cn.fujitsu.com (Postfix) with ESMTP id 35C5B48AE762
+	for <meta-arago@arago-project.org>;
+	Mon, 26 Feb 2018 15:16:21 +0800 (CST)
+Received: from localhost.localdomain (10.167.225.125) by
+	G08CNEXCHPEKD02.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
+	Server (TLS) id 14.3.361.1; Mon, 26 Feb 2018 15:16:22 +0800
+From: Huang Qiyu <huangqy.fnst@cn.fujitsu.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 26 Feb 2018 15:16:20 +0800
+Message-ID: <1519629380-808-1-git-send-email-huangqy.fnst@cn.fujitsu.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <b5a492dd-fe37-b40f-ebd9-e5e4f4424622@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org, d-senicic1@ti.com,
-	Djordje Senicic <x0157990@ti.com>
-Subject: Re: [EXTERNAL] [PATCH] opencv: Fix OpenCL linking with unused DSP library
+X-Originating-IP: [10.167.225.125]
+X-yoursite-MailScanner-ID: 35C5B48AE762.A96C7
+X-yoursite-MailScanner: Found to be clean
+X-yoursite-MailScanner-From: huangqy.fnst@cn.fujitsu.com
+X-Spam-Status: No
+Subject: [PATCH] thttpd: 2.25b -> 2.28
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,41 +37,99 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Feb 2018 04:25:37 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 26 Feb 2018 07:17:07 -0000
+Content-Type: text/plain
 
-Done.
+1.Upgrade thttpd from 2.25b to 2.28.
+2.Update the checksum of LIC_FILES_CHKSUM, since thttpd.c has been changed. But lincese remains the same.
+3.Modify htpasswd_getline.diff, since the data has been changed.
 
-On Fri, Feb 23, 2018 at 02:32:46PM -0500, Jacob Stiffler wrote:
-> Denys,
-> 
-> Can you also apply this to morty?
-> 
-> Thank you,
-> 
-> Jake
-> 
-> 
-> On 2/20/2018 8:47 PM, Djordje Senicic wrote:
-> >Signed-off-by: Djordje Senicic <x0157990@ti.com>
-> >---
-> >  meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> >diff --git a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend b/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
-> >index bf33a2e..3915c4d 100644
-> >--- a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
-> >+++ b/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
-> >@@ -11,7 +11,7 @@ SRC_URI_append += "\
-> >       file://setupEnv.sh \
-> >  "
-> >-SRCREV_opencv = "4458601eb2766461f2f9da0d2527ff25ecb20284"
-> >+SRCREV_opencv = "9b88e8c746e531a1b4cc61e5235e4e747c319945"
-> >  DEPENDS_remove_keystone = "qtbase"
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Huang Qiyu <huangqy.fnst@cn.fujitsu.com>
+---
+ .../thttpd/{thttpd-2.25b => thttpd-2.28}/acinclude.m4               | 0
+ .../thttpd/{thttpd-2.25b => thttpd-2.28}/htpasswd_getline.diff      | 6 +++---
+ .../thttpd/{thttpd-2.25b => thttpd-2.28}/htpasswd_shared.diff       | 0
+ .../recipes-extended/thttpd/{thttpd-2.25b => thttpd-2.28}/init      | 0
+ .../thttpd/{thttpd-2.25b => thttpd-2.28}/install.patch              | 0
+ .../recipes-extended/thttpd/{thttpd_2.25b.bb => thttpd_2.28.bb}     | 6 +++---
+ 6 files changed, 6 insertions(+), 6 deletions(-)
+ rename meta-arago-extras/recipes-extended/thttpd/{thttpd-2.25b => thttpd-2.28}/acinclude.m4 (100%)
+ rename meta-arago-extras/recipes-extended/thttpd/{thttpd-2.25b => thttpd-2.28}/htpasswd_getline.diff (80%)
+ rename meta-arago-extras/recipes-extended/thttpd/{thttpd-2.25b => thttpd-2.28}/htpasswd_shared.diff (100%)
+ rename meta-arago-extras/recipes-extended/thttpd/{thttpd-2.25b => thttpd-2.28}/init (100%)
+ rename meta-arago-extras/recipes-extended/thttpd/{thttpd-2.25b => thttpd-2.28}/install.patch (100%)
+ rename meta-arago-extras/recipes-extended/thttpd/{thttpd_2.25b.bb => thttpd_2.28.bb} (81%)
+
+diff --git a/meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/acinclude.m4 b/meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/acinclude.m4
+similarity index 100%
+rename from meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/acinclude.m4
+rename to meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/acinclude.m4
+diff --git a/meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/htpasswd_getline.diff b/meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/htpasswd_getline.diff
+similarity index 80%
+rename from meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/htpasswd_getline.diff
+rename to meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/htpasswd_getline.diff
+index 82b12e2..7edd313 100644
+--- a/meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/htpasswd_getline.diff
++++ b/meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/htpasswd_getline.diff
+@@ -4,16 +4,16 @@
+      while((line[y++] = line[x++]));
+  }
+  
+--static int getline(char *s, int n, FILE *f) {
++-static int my_getline(char *s, int n, FILE *f) {
+ +static int ht_getline(char *s, int n, FILE *f) {
+-     register int i=0;
++     int i=0;
+  
+      while(1) {
+ @@ -189,7 +189,7 @@
+      strcpy(user,argv[2]);
+  
+      found = 0;
+--    while(!(getline(line,MAX_STRING_LEN,f))) {
++-    while(!(my_getline(line,MAX_STRING_LEN,f))) {
+ +    while(!(ht_getline(line,MAX_STRING_LEN,f))) {
+          if(found || (line[0] == '#') || (!line[0])) {
+              putline(tfp,line);
+diff --git a/meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/htpasswd_shared.diff b/meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/htpasswd_shared.diff
+similarity index 100%
+rename from meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/htpasswd_shared.diff
+rename to meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/htpasswd_shared.diff
+diff --git a/meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/init b/meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/init
+similarity index 100%
+rename from meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/init
+rename to meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/init
+diff --git a/meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/install.patch b/meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/install.patch
+similarity index 100%
+rename from meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/install.patch
+rename to meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/install.patch
+diff --git a/meta-arago-extras/recipes-extended/thttpd/thttpd_2.25b.bb b/meta-arago-extras/recipes-extended/thttpd/thttpd_2.28.bb
+similarity index 81%
+rename from meta-arago-extras/recipes-extended/thttpd/thttpd_2.25b.bb
+rename to meta-arago-extras/recipes-extended/thttpd/thttpd_2.28.bb
+index 477eff4..0477509 100644
+--- a/meta-arago-extras/recipes-extended/thttpd/thttpd_2.25b.bb
++++ b/meta-arago-extras/recipes-extended/thttpd/thttpd_2.28.bb
+@@ -6,7 +6,7 @@ LICENSE = "BSD"
+ HOMEPAGE = "http://www.acme.com/software/thttpd/"
+ PR ="r0"
+ 
+-LIC_FILES_CHKSUM = "file://thttpd.c;beginline=1;endline=26;md5=0c5762c2c34dcbe9eb18815516502872"
++LIC_FILES_CHKSUM = "file://thttpd.c;beginline=1;endline=26;md5=525c6428ecff95f4e71d5b3c88a34fff"
+ SRC_URI = "http://www.acme.com/software/thttpd/thttpd-${PV}.tar.gz \
+ 	   file://install.patch \
+ 	   file://acinclude.m4 \
+@@ -39,5 +39,5 @@ do_install_append () {
+ }
+ 
+ 
+-SRC_URI[md5sum] = "156b249b3b0bcd48b06badd2db0d56c5"
+-SRC_URI[sha256sum] = "07719b08b1cff6a21c08697a7bcb4395425b07ee753106262fb62a03a7d32360"
++SRC_URI[md5sum] = "f5747680740dfbf8fc73a4fd82c754bb"
++SRC_URI[sha256sum] = "8552f929d4ede26cb193411c1208168e169dda24ee9eb1da8f8da4f4f8e10328"
+-- 
+2.7.4
+
+
+
 
