@@ -1,30 +1,42 @@
-Return-Path: <huangqy.fnst@cn.fujitsu.com>
-Received: from heian.cn.fujitsu.com (mail.cn.fujitsu.com [183.91.158.132])
-	by arago-project.org (Postfix) with ESMTP id 03F29529A0
+Return-Path: <h-gou@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 330CA529CE
 	for <meta-arago@arago-project.org>;
-	Mon, 26 Feb 2018 07:17:05 +0000 (UTC)
-X-IronPort-AV: E=Sophos;i="5.43,368,1503331200"; d="scan'208";a="37254051"
-Received: from bogon (HELO cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 26 Feb 2018 15:16:25 +0800
-Received: from G08CNEXCHPEKD02.g08.fujitsu.local (unknown [10.167.33.83])
-	by cn.fujitsu.com (Postfix) with ESMTP id 35C5B48AE762
-	for <meta-arago@arago-project.org>;
-	Mon, 26 Feb 2018 15:16:21 +0800 (CST)
-Received: from localhost.localdomain (10.167.225.125) by
-	G08CNEXCHPEKD02.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
-	Server (TLS) id 14.3.361.1; Mon, 26 Feb 2018 15:16:22 +0800
-From: Huang Qiyu <huangqy.fnst@cn.fujitsu.com>
+	Mon, 26 Feb 2018 20:17:54 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1QKHM3w021219
+	for <meta-arago@arago-project.org>; Mon, 26 Feb 2018 14:17:22 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1519676242;
+	bh=DNYitAHubDmGvp6ojls8gg8Og5UYIc0oRrRqntFycPI=;
+	h=From:To:CC:Subject:Date;
+	b=eZIB5YKt0PMyeSxsnxkV59HhIyH6/x+WrZZn0cuk0NgG0DepPWcfTpoaZgfjdXnHV
+	KTEBtYKcevM6FiWIt3t0t5scwWZK7QFIlj+c5eqAAuAmwGNVY2gl1QOkCMNugrcIlu
+	Ho0KbZCVGy8TCFfFMIph9/h/d3k1h7LSLv6/in78=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1QKHMWd018339
+	for <meta-arago@arago-project.org>; Mon, 26 Feb 2018 14:17:22 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
+	Mon, 26 Feb 2018 14:17:20 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
+	Transport; Mon, 26 Feb 2018 14:17:21 -0600
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1QKHKiE018909;
+	Mon, 26 Feb 2018 14:17:20 -0600
+From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 26 Feb 2018 15:16:20 +0800
-Message-ID: <1519629380-808-1-git-send-email-huangqy.fnst@cn.fujitsu.com>
-X-Mailer: git-send-email 2.7.4
+Date: Mon, 26 Feb 2018 15:17:19 -0500
+Message-ID: <1519676239-31976-1-git-send-email-a0271529@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-X-Originating-IP: [10.167.225.125]
-X-yoursite-MailScanner-ID: 35C5B48AE762.A96C7
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-From: huangqy.fnst@cn.fujitsu.com
-X-Spam-Status: No
-Subject: [PATCH] thttpd: 2.25b -> 2.28
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [morty/rocko/master] [PATCH v2] dual-camera-demo: bump SRCREV and update dependency
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,99 +49,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Feb 2018 07:17:07 -0000
+X-List-Received-Date: Mon, 26 Feb 2018 20:17:54 -0000
 Content-Type: text/plain
 
-1.Upgrade thttpd from 2.25b to 2.28.
-2.Update the checksum of LIC_FILES_CHKSUM, since thttpd.c has been changed. But lincese remains the same.
-3.Modify htpasswd_getline.diff, since the data has been changed.
+* Support run-time selection of cmem vs. omapdrm memory
+* Add dependency on cmem
 
-Signed-off-by: Huang Qiyu <huangqy.fnst@cn.fujitsu.com>
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- .../thttpd/{thttpd-2.25b => thttpd-2.28}/acinclude.m4               | 0
- .../thttpd/{thttpd-2.25b => thttpd-2.28}/htpasswd_getline.diff      | 6 +++---
- .../thttpd/{thttpd-2.25b => thttpd-2.28}/htpasswd_shared.diff       | 0
- .../recipes-extended/thttpd/{thttpd-2.25b => thttpd-2.28}/init      | 0
- .../thttpd/{thttpd-2.25b => thttpd-2.28}/install.patch              | 0
- .../recipes-extended/thttpd/{thttpd_2.25b.bb => thttpd_2.28.bb}     | 6 +++---
- 6 files changed, 6 insertions(+), 6 deletions(-)
- rename meta-arago-extras/recipes-extended/thttpd/{thttpd-2.25b => thttpd-2.28}/acinclude.m4 (100%)
- rename meta-arago-extras/recipes-extended/thttpd/{thttpd-2.25b => thttpd-2.28}/htpasswd_getline.diff (80%)
- rename meta-arago-extras/recipes-extended/thttpd/{thttpd-2.25b => thttpd-2.28}/htpasswd_shared.diff (100%)
- rename meta-arago-extras/recipes-extended/thttpd/{thttpd-2.25b => thttpd-2.28}/init (100%)
- rename meta-arago-extras/recipes-extended/thttpd/{thttpd-2.25b => thttpd-2.28}/install.patch (100%)
- rename meta-arago-extras/recipes-extended/thttpd/{thttpd_2.25b.bb => thttpd_2.28.bb} (81%)
+V2 change:
+* Add dependency on cmem
 
-diff --git a/meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/acinclude.m4 b/meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/acinclude.m4
-similarity index 100%
-rename from meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/acinclude.m4
-rename to meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/acinclude.m4
-diff --git a/meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/htpasswd_getline.diff b/meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/htpasswd_getline.diff
-similarity index 80%
-rename from meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/htpasswd_getline.diff
-rename to meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/htpasswd_getline.diff
-index 82b12e2..7edd313 100644
---- a/meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/htpasswd_getline.diff
-+++ b/meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/htpasswd_getline.diff
-@@ -4,16 +4,16 @@
-      while((line[y++] = line[x++]));
-  }
-  
---static int getline(char *s, int n, FILE *f) {
-+-static int my_getline(char *s, int n, FILE *f) {
- +static int ht_getline(char *s, int n, FILE *f) {
--     register int i=0;
-+     int i=0;
-  
-      while(1) {
- @@ -189,7 +189,7 @@
-      strcpy(user,argv[2]);
-  
-      found = 0;
---    while(!(getline(line,MAX_STRING_LEN,f))) {
-+-    while(!(my_getline(line,MAX_STRING_LEN,f))) {
- +    while(!(ht_getline(line,MAX_STRING_LEN,f))) {
-          if(found || (line[0] == '#') || (!line[0])) {
-              putline(tfp,line);
-diff --git a/meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/htpasswd_shared.diff b/meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/htpasswd_shared.diff
-similarity index 100%
-rename from meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/htpasswd_shared.diff
-rename to meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/htpasswd_shared.diff
-diff --git a/meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/init b/meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/init
-similarity index 100%
-rename from meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/init
-rename to meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/init
-diff --git a/meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/install.patch b/meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/install.patch
-similarity index 100%
-rename from meta-arago-extras/recipes-extended/thttpd/thttpd-2.25b/install.patch
-rename to meta-arago-extras/recipes-extended/thttpd/thttpd-2.28/install.patch
-diff --git a/meta-arago-extras/recipes-extended/thttpd/thttpd_2.25b.bb b/meta-arago-extras/recipes-extended/thttpd/thttpd_2.28.bb
-similarity index 81%
-rename from meta-arago-extras/recipes-extended/thttpd/thttpd_2.25b.bb
-rename to meta-arago-extras/recipes-extended/thttpd/thttpd_2.28.bb
-index 477eff4..0477509 100644
---- a/meta-arago-extras/recipes-extended/thttpd/thttpd_2.25b.bb
-+++ b/meta-arago-extras/recipes-extended/thttpd/thttpd_2.28.bb
-@@ -6,7 +6,7 @@ LICENSE = "BSD"
- HOMEPAGE = "http://www.acme.com/software/thttpd/"
- PR ="r0"
+ .../recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb     | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+index 1d1d836..15a71af 100644
+--- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
++++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
+@@ -4,13 +4,13 @@ SECTION = "multimedia"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=c7ca707704d3354a64feeb4f19f52eb5"
  
--LIC_FILES_CHKSUM = "file://thttpd.c;beginline=1;endline=26;md5=0c5762c2c34dcbe9eb18815516502872"
-+LIC_FILES_CHKSUM = "file://thttpd.c;beginline=1;endline=26;md5=525c6428ecff95f4e71d5b3c88a34fff"
- SRC_URI = "http://www.acme.com/software/thttpd/thttpd-${PV}.tar.gz \
- 	   file://install.patch \
- 	   file://acinclude.m4 \
-@@ -39,5 +39,5 @@ do_install_append () {
- }
+-DEPENDS += "libdrm"
++DEPENDS += "libdrm cmem"
+ require recipes-core/matrix/matrix-gui-paths.inc
  
+-PR = "r17"
++PR = "r18"
  
--SRC_URI[md5sum] = "156b249b3b0bcd48b06badd2db0d56c5"
--SRC_URI[sha256sum] = "07719b08b1cff6a21c08697a7bcb4395425b07ee753106262fb62a03a7d32360"
-+SRC_URI[md5sum] = "f5747680740dfbf8fc73a4fd82c754bb"
-+SRC_URI[sha256sum] = "8552f929d4ede26cb193411c1208168e169dda24ee9eb1da8f8da4f4f8e10328"
+ BRANCH = "master"
+-SRCREV = "f52cb4354785e5f2fd63f7cf8ab02d99a2fbbea7"
++SRCREV = "3546c21b17fa5f54b6ac6259b56e9a6f23b4e8b1"
+ 
+ SRC_URI = "git://git.ti.com/sitara-linux/dual-camera-demo.git;protocol=git;branch=${BRANCH} \
+            file://desc_dual-camera.html \
 -- 
-2.7.4
-
-
+1.9.1
 
 
