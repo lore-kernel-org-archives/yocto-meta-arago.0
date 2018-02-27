@@ -1,30 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id AF2C352976
+Return-Path: <m-radhakrishnan2@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 0BCAF52976
 	for <meta-arago@arago-project.org>;
-	Mon, 26 Feb 2018 22:28:23 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 93B6C209AE;
-	Mon, 26 Feb 2018 22:27:51 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id O7BLNBaZrbqX; Mon, 26 Feb 2018 22:27:51 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 78F9520059;
-	Mon, 26 Feb 2018 22:27:50 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 0DB101632C4;
-	Mon, 26 Feb 2018 17:27:50 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Mon, 26 Feb 2018 17:27:49 -0500
-Message-Id: <1519684069-43723-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] kexec-tools: the HACK patch is no longer required
+	Tue, 27 Feb 2018 02:29:19 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1R2Sl2V019488
+	for <meta-arago@arago-project.org>; Mon, 26 Feb 2018 20:28:47 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1519698527;
+	bh=J7xKNFPPn9OE1T331WmPAkbdwpYlqInGjjjZj7q4eRU=;
+	h=From:To:Subject:Date;
+	b=BlKs1bfZUspbw6GA/2cCuJay2aaSF/aN/IGjPyAJcjBc+p6A2VTHzvoaLHCJ/PO5w
+	ZgwJxw5bVT84OK4ez2ivmgW4rGxxrKSS1lGL4UPzBlN2M8K+z9/0x9P6UzEq5M+H/R
+	oe+Ssd9CSwORz7N3swCMfGm4E11ue4KJu1rkWrKY=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1R2Sl63004209
+	for <meta-arago@arago-project.org>; Mon, 26 Feb 2018 20:28:47 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
+	Mon, 26 Feb 2018 20:28:47 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
+	Transport; Mon, 26 Feb 2018 20:28:47 -0600
+Received: from uda0875154a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1R2Sk0E018275
+	for <meta-arago@arago-project.org>; Mon, 26 Feb 2018 20:28:47 -0600
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 26 Feb 2018 21:28:41 -0500
+Message-ID: <1519698521-897-1-git-send-email-m-radhakrishnan2@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [morty][meta-processor-sdk][PATCH] ti-pdk-build-rtos: Installing newly added comp_paths.mk
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,61 +48,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Feb 2018 22:28:24 -0000
+X-List-Received-Date: Tue, 27 Feb 2018 02:29:21 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 ---
- .../0001-HACK-TO-get-kexec-up-on-dra7.patch        | 26 ----------------------
- .../recipes-kernel/kexec/kexec-tools_%.bbappend    |  2 --
- 2 files changed, 28 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-kernel/kexec/kexec-tools/0001-HACK-TO-get-kexec-up-on-dra7.patch
+ recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-distro/recipes-kernel/kexec/kexec-tools/0001-HACK-TO-get-kexec-up-on-dra7.patch b/meta-arago-distro/recipes-kernel/kexec/kexec-tools/0001-HACK-TO-get-kexec-up-on-dra7.patch
-deleted file mode 100644
-index 9abdcb3..0000000
---- a/meta-arago-distro/recipes-kernel/kexec/kexec-tools/0001-HACK-TO-get-kexec-up-on-dra7.patch
-+++ /dev/null
-@@ -1,26 +0,0 @@
--From b93a24a4df81abfffb8e275970a98736dd42d4f5 Mon Sep 17 00:00:00 2001
--From: Keerthy <j-keerthy@ti.com>
--Date: Tue, 28 Feb 2017 10:44:45 +0530
--Subject: [PATCH] HACK: TO get kexec up on dra7
--
--Signed-off-by: Keerthy <j-keerthy@ti.com>
-----
-- kexec/arch/arm/kexec-zImage-arm.c | 2 +-
-- 1 file changed, 1 insertion(+), 1 deletion(-)
--
--diff --git a/kexec/arch/arm/kexec-zImage-arm.c b/kexec/arch/arm/kexec-zImage-arm.c
--index 7f02b93..9907496 100644
----- a/kexec/arch/arm/kexec-zImage-arm.c
--+++ b/kexec/arch/arm/kexec-zImage-arm.c
--@@ -572,7 +572,7 @@ int zImage_arm_load(int argc, char **argv, const char *buf, off_t len,
-- 		 * is 4, and just to be safe, place ramdisk after that.
-- 		 * Note that we must include space for the compressed
-- 		 * image here as well. */
---		initrd_base = kernel_base + _ALIGN(len * 5, getpagesize());
--+		initrd_base = kernel_base + _ALIGN(len * 6, getpagesize());
-- 	}
-- 
-- 	if (use_atags) {
---- 
--1.9.1
--
-diff --git a/meta-arago-distro/recipes-kernel/kexec/kexec-tools_%.bbappend b/meta-arago-distro/recipes-kernel/kexec/kexec-tools_%.bbappend
-index 9e1f301..e66dcda 100644
---- a/meta-arago-distro/recipes-kernel/kexec/kexec-tools_%.bbappend
-+++ b/meta-arago-distro/recipes-kernel/kexec/kexec-tools_%.bbappend
-@@ -2,8 +2,6 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb b/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb
+index e1e8ccc..6ae955b 100644
+--- a/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb
++++ b/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb
+@@ -35,6 +35,7 @@ do_install() {
  
- PR_append = ".arago2"
+     install -m 0755 Rules.make ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build
+     install -m 0755 comp_top.mk ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build
++    install -m 0755 comp_paths.mk ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build
  
--#SRC_URI += "file://0001-HACK-TO-get-kexec-up-on-dra7.patch"
--
- do_install_append() {
- 	chmod -x ${D}${sysconfdir}/init.d/kdump
- }
+     install -m 0755 makerules/build_config.mk ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/makerules
+     install -m 0755 makerules/common.mk ${D}${PDK_INSTALL_DIR_RECIPE}/packages/ti/build/makerules
 -- 
-2.7.4
+1.9.1
 
 
