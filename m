@@ -1,45 +1,41 @@
-Return-Path: <denys@ti.com>
+Return-Path: <e-ruei1@ti.com>
 Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 9B72352976
+	by arago-project.org (Postfix) with ESMTPS id 65A3252975
 	for <meta-arago@arago-project.org>;
-	Tue, 27 Feb 2018 19:21:04 +0000 (UTC)
+	Wed, 28 Feb 2018 18:21:20 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1RJKVgr015320
-	for <meta-arago@arago-project.org>; Tue, 27 Feb 2018 13:20:31 -0600
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w1SIKi1a017376
+	for <meta-arago@arago-project.org>; Wed, 28 Feb 2018 12:20:44 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1519759231;
-	bh=KJjusv0x46VIOiU8S3qfUULeiwKQrV6G+GTqqD6U/W4=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=bgpgZm3b/GY6h969/7+dSLk7e8qQr04JgsKisxKjByj2/8jO8gKUA/EWh/w7wiy4b
-	sLvmAzdVeSwoAbzzSLxKbcrzbYcRWOf+euPAv9VNyy6hCzsyYWNEODisweizbsNI7V
-	GjZICTNZZkJiJ6iXbp79e7esLvM+Wq+qGb5CPzF0=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1RJKVBo028556
-	for <meta-arago@arago-project.org>; Tue, 27 Feb 2018 13:20:31 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1519842044;
+	bh=I0bxq/PhiiE5QtDDG2oC1aut58srnTc1Z4+I8EUSdDs=;
+	h=From:To:Subject:Date;
+	b=SGEDnmuUo/ArDjcdg9Z65osxg695hepTOFi3HRTGvVrBFoAEFAqAG6bH6g/FeB+kl
+	Yuynsn3MDR7lzsZzWBzaTLyJeXD1hZpf6nsDo3T8st9+3NWCASdayNXfIULIB+sTxC
+	VvGdBoEqlLUC1t/Em0walqeoFN0/WzaTQ6bmLVSw=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1SIKiCG001143
+	for <meta-arago@arago-project.org>; Wed, 28 Feb 2018 12:20:44 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Tue, 27 Feb 2018 13:20:30 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 28 Feb 2018 12:20:44 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Tue, 27 Feb 2018 13:20:30 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1RJKUao027213;
-	Tue, 27 Feb 2018 13:20:30 -0600
-Date: Tue, 27 Feb 2018 14:20:30 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20180227192029.GN12117@edge>
-References: <1519757440-25574-1-git-send-email-x0157990@ti.com>
-	<8636d323-2d05-f34c-74dd-73d6a3bca223@ti.com>
+	Transport; Wed, 28 Feb 2018 12:20:44 -0600
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w1SIKimr004371
+	for <meta-arago@arago-project.org>; Wed, 28 Feb 2018 12:20:44 -0600
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 28 Feb 2018 13:20:39 -0500
+Message-ID: <1519842039-54717-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <8636d323-2d05-f34c-74dd-73d6a3bca223@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org, d-senicic1@ti.com,
-	Djordje Senicic <x0157990@ti.com>
-Subject: Re: [EXTERNAL] [meta-processor-sdk] [PATCH] tiovx-app: Fix memory map for DSP firmware
+Subject: [morty/rocko/master][PATCH] maxrix-gui:Update the "execute-command" patch to support win_type
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,35 +48,168 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Feb 2018 19:21:04 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 28 Feb 2018 18:21:23 -0000
+Content-Type: text/plain
 
-Why is this not upstreamed?
+An optional variable win_type can be specified at app.desktop to
+force matrix-gui to exit Weston prior to application launching
 
-On Tue, Feb 27, 2018 at 01:58:07PM -0500, Jacob Stiffler wrote:
-> Thank you. This has been pushed.
-> 
-> 
-> On 2/27/2018 1:50 PM, Djordje Senicic wrote:
-> >Signed-off-by: Djordje Senicic <x0157990@ti.com>
-> >---
-> >  recipes-ti/tiovx/tiovx-sys.inc | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> >diff --git a/recipes-ti/tiovx/tiovx-sys.inc b/recipes-ti/tiovx/tiovx-sys.inc
-> >index fc24947..43c4e1d 100644
-> >--- a/recipes-ti/tiovx/tiovx-sys.inc
-> >+++ b/recipes-ti/tiovx/tiovx-sys.inc
-> >@@ -1,5 +1,5 @@
-> >  PV = "01.00.00.00"
-> >  BRANCH="master"
-> >-SRCREV = "c208217c5c3788c78d10ff0d25e5db9782e00be9"
-> >+SRCREV = "375fa639773970e433171686f01f360a9a5b2ad4"
-> >  SRC_URI = "git://git.ti.com/processor-sdk/tiovx-app.git;protocol=git;branch=${BRANCH}"
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+---
+ ...mmand-workaround-for-GUI-apps-with-weston.patch | 64 +++++++++++++++-------
+ .../recipes-core/matrix/matrix-gui_2.0.bb          |  2 +-
+ 2 files changed, 44 insertions(+), 22 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-workaround-for-GUI-apps-with-weston.patch b/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-workaround-for-GUI-apps-with-weston.patch
+index 4dbdbab..5a85935 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-workaround-for-GUI-apps-with-weston.patch
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-workaround-for-GUI-apps-with-weston.patch
+@@ -1,27 +1,27 @@
+-From 9169773b546cfea3c829b3c5e79c68c7979ceea4 Mon Sep 17 00:00:00 2001
+-From: Jacob Stiffler <j-stiffler@ti.com>
+-Date: Sat, 13 Aug 2016 13:27:30 -0400
++From 9647ddc10dc9424b1433db2f8184268523d829da Mon Sep 17 00:00:00 2001
++From: Eric Ruei <e-ruei1@ti.com>
++Date: Wed, 28 Feb 2018 12:20:32 -0500
+ Subject: [PATCH] execute_command: workaround for GUI apps with weston
+ 
+ * For all GUI apps, shutdown matrix before launching
+   - This is needed since matrix is launched fullscreen, and another
+     GUI app may get hidden behind matrix with no way to recover.
+-* For MM and 3D apps, shutdown weston before launching
+-  - These apps use KMS sink, which collides with weston.
++* For MM and 3D and null window apps, shutdown weston before launching
++  - These apps use KMS sink or DRM, which collides with weston
+ 
+ Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+ Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+ ---
+- execute_command.sh |   34 +++++++++++++++++++++++++++++++++-
+- generate.php       |    2 ++
+- run_script.php     |    2 +-
+- 3 files changed, 36 insertions(+), 2 deletions(-)
++ execute_command.sh | 39 ++++++++++++++++++++++++++++++++++++++-
++ generate.php       |  4 ++++
++ run_script.php     | 10 +++++++++-
++ 3 files changed, 51 insertions(+), 2 deletions(-)
+ 
+ diff --git a/execute_command.sh b/execute_command.sh
+-index 2be1278..b8d98a5 100755
++index 325dcb9..180e71f 100755
+ --- a/execute_command.sh
+ +++ b/execute_command.sh
+-@@ -59,7 +59,17 @@ do
++@@ -63,7 +63,22 @@ do
+  	outputfilename=$item 
+    fi
+  
+@@ -36,11 +36,16 @@ index 2be1278..b8d98a5 100755
+ +    category=$item
+ +  fi
+ +
+-+  if [ $i -gt 3 ]
+++  if [ $i -eq 4 ]
+++  then
+++    win_type=$item
+++  fi
+++
+++  if [ $i -gt 4 ]
+    then
+      touch "lock/"$item
+  
+-@@ -68,10 +78,32 @@ do
++@@ -72,10 +87,32 @@ do
+  
+  done
+  
+@@ -48,7 +53,7 @@ index 2be1278..b8d98a5 100755
+ +then
+ +  /etc/init.d/matrix-gui-2.0 stop
+ +
+-+  if [ $category == 3d -o $category == multimedia -o $category == touch ]
+++  if [ $category == 3d -o $category == multimedia -o $category == touch -o $win_type == null ]
+ +  then
+ +    /etc/init.d/weston stop
+ +    sleep 1
+@@ -61,7 +66,7 @@ index 2be1278..b8d98a5 100755
+  
+ +if [ $program_type == gui ]
+ +then
+-+  if [ $category == 3d -o $category == multimedia -o $category == touch ]
+++  if [ $category == 3d -o $category == multimedia -o $category == touch -o $win_type == null ]
+ +  then
+ +    /etc/init.d/weston start
+ +    sleep 1
+@@ -74,31 +79,48 @@ index 2be1278..b8d98a5 100755
+  echo "_?!!MATRIX_SCRIPT_COMPLETED!!?_" >> "tmp/"$outputfilename
+  
+ diff --git a/generate.php b/generate.php
+-index 10cfed4..7c08282 100644
++index 10cfed4..cd88dd3 100644
+ --- a/generate.php
+ +++ b/generate.php
+-@@ -105,6 +105,8 @@ for($x = 0;$x<count($contents)&&strlen($contents[$x])>0;$x++)
++@@ -105,6 +105,10 @@ for($x = 0;$x<count($contents)&&strlen($contents[$x])>0;$x++)
+  		$top["Description_Link"] = get_contents("X-MATRIX-Description",$dotdesktop);
+  
+  		$top["Lock"] = get_contents("X-MATRIX-LOCK",$dotdesktop);
+ +
+ +		$top["Category"] = get_contents("Categories",$dotdesktop);
+++
+++		$top["WinType"] = get_contents("WinType",$dotdesktop);
+  	} 
+  
+  	if($category == -1)
+ diff --git a/run_script.php b/run_script.php
+-index 9dd7a10..1481b17 100644
++index 9dd7a10..d34a286 100644
+ --- a/run_script.php
+ +++ b/run_script.php
+-@@ -91,7 +91,7 @@ if($currently_locked==false)
++@@ -55,6 +55,7 @@ $submenu = isset($_GET["submenu"]) == true ? $_GET["submenu"] : "main_menu" ;
++ $found_app = get_application($var,$submenu,$_GET["app"]);
++ 
++ $lock_list = $found_app["Lock"];
+++$win_type = $found_app["WinType"];
++ 
++ //Verify that there is a lock specified for this application
++ if($lock_list != -1 )
++@@ -91,7 +92,14 @@ if($currently_locked==false)
+  	$random_string = strval(rand());
+  	$random_string .= strval(rand());
+  
+ -	$script_command = "./execute_command.sh \"".addslashes($script_link). "\" ".$random_string.".txt ".$lock_list;
+-+	$script_command = "./execute_command.sh \"".addslashes($script_link). "\" ".$random_string.".txt \"".$found_app["ProgramType"]."\" \"".$found_app["Category"]."\" ".$lock_list;
+++        if($win_type != -1 )
+++	{
+++		$script_command = "./execute_command.sh \"".addslashes($script_link). "\" ".$random_string.".txt \"".$found_app["ProgramType"]."\" \"".$found_app["Category"]."\" \"".$found_app["WinType"]."\"  ".$lock_list;
+++	}
+++	else
+++	{
+++		$script_command = "./execute_command.sh \"".addslashes($script_link). "\" ".$random_string.".txt \"".$found_app["ProgramType"]."\" \"".$found_app["Category"]."\"  \"wayland\" ".$lock_list;
+++	}
+  
+  	$last_line = system($script_command." > /dev/null 2>/dev/null & ", $retval);
+  }
+ -- 
+-1.7.9.5
++1.9.1
+ 
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
+index 2bd0d89..21f5b18 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
+@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
+ 
+ SECTION = "multimedia"
+ 
+-PR = "r33"
++PR = "r34"
+ 
+ INITSCRIPT_NAME = "matrix-gui-2.0"
+ INITSCRIPT_PARAMS = "defaults 97"
+-- 
+1.9.1
+
 
