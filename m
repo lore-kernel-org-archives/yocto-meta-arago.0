@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id BC9D452976
+	by arago-project.org (Postfix) with ESMTPS id 1B79B52976
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Mar 2018 21:27:08 +0000 (UTC)
+	Thu,  1 Mar 2018 21:36:09 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 950C120B48;
-	Thu,  1 Mar 2018 21:26:32 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 41FDF20B6F;
+	Thu,  1 Mar 2018 21:35:33 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id r08CnNXsw9_e; Thu,  1 Mar 2018 21:26:32 +0000 (UTC)
+	with ESMTP id oBCfu44Prebd; Thu,  1 Mar 2018 21:35:33 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5F2432086C;
-	Thu,  1 Mar 2018 21:26:31 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 12FBD20B48;
+	Thu,  1 Mar 2018 21:35:32 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id C0F421632DF;
-	Thu,  1 Mar 2018 16:26:30 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id 9F6801632DF;
+	Thu,  1 Mar 2018 16:35:31 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Thu,  1 Mar 2018 16:26:30 -0500
-Message-Id: <1519939590-30905-1-git-send-email-denys@ti.com>
+Date: Thu,  1 Mar 2018 16:35:31 -0500
+Message-Id: <1519940131-50542-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [rocko/master][PATCH] packagegroups: disable keystone ipsecmgr-mod, hplib-mod and their deps due to K4.14 breakage
+Subject: [rocko/master][PATCH] opencl-monitor: fix missing alternative provider warnings on keystone
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,223 +37,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Mar 2018 21:27:09 -0000
+X-List-Received-Date: Thu, 01 Mar 2018 21:36:09 -0000
+
+WARNING: opencl-monitor-1.1.14.10-r0.0 do_package: opencl-monitor: NOT adding alternative provide /lib/firmware/dra7-dsp1-fw.xe66: /lib/firmware/dra7-dsp1-fw.xe66.opencl-monitor does not exist
+WARNING: opencl-monitor-1.1.14.10-r0.0 do_package: opencl-monitor: NOT adding alternative provide /lib/firmware/dra7-dsp2-fw.xe66: /lib/firmware/dra7-dsp2-fw.xe66.opencl-monitor does not exist
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroup-arago-base-tisdk-server-extra.bb  | 21 ++++++++++-------
- .../packagegroup-arago-test-addons.bb              | 21 +++++++++--------
- .../packagegroup-arago-tisdk-addons-sdk-host.bb    |  3 ++-
- .../packagegroup-arago-tisdk-addons-sdk-target.bb  | 27 ++++++++++++----------
- 4 files changed, 42 insertions(+), 30 deletions(-)
+ meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
-index c07cc59..c5dfc99 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
-@@ -81,6 +81,10 @@ ARAGO_SECURE_STORAGE = "\
-     engine-pkcs11 \
-     "
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+index 42a257d..88d7c2e 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+@@ -80,7 +80,7 @@ do_install_append_dra7xx() {
+ 	for i in 1 2; do mv ${D}${base_libdir}/firmware/dra7-dsp$i-fw.xe66 ${D}${base_libdir}/firmware/dra7-dsp$i-fw.xe66.${BPN}; done
+ }
  
-+# ipsecmgr has been disabled for a while
-+# disable ipsecmgr-mod,hplib-mod due to K4.14 API changes
-+#    ipsecmgr-mod
-+#    hplib-mod
- ARAGO_TI_KEYSTONE_PKGS = "\
-     ${ARAGO_SECURE_STORAGE} \
-     uio-module-drv \
-@@ -99,10 +103,8 @@ ARAGO_TI_KEYSTONE_PKGS = "\
-     rm-lld \
-     pa-lld \
-     qmss-lld \
--    hplib-mod \
-     pktlib \
-     cppi-lld \
--    ipsecmgr-mod \
-     k2-fw-initrd \
-     parse-ip \
-     "
-@@ -119,33 +121,36 @@ ARAGO_TI_PKGS_append_keystone = " ${ARAGO_TI_KEYSTONE_PKGS}"
- # Disable netapi due to libnl and xfrm conflict
- #    netapi
- #    netapi-test
-+# Disable hplib,nwal-lld as hplib-mod is broken against K4.14
-+#    hplib
-+#    nwal-lld
- ARAGO_TI_PKGS_append_k2l-evm = "\
-     dfe-lld \
-     iqn2-lld \
--    hplib \
--    nwal-lld \
-     "
- 
- # Disable netapi due to libnl and xfrm conflict
- #    netapi
- #    netapi-test
-+# Disable hplib,nwal-lld as hplib-mod is broken against K4.14
-+#    hplib
-+#    nwal-lld
- ARAGO_TI_PKGS_append_k2hk = "\
-     srio-lld \
-     mmap-lld \
-     hyplnk-lld \
-     aif2-lld \
--    hplib \
--    nwal-lld \
-     "
- 
- # Disable netapi due to libnl and xfrm conflict
- #    netapi
- #    netapi-test
-+# Disable hplib,nwal-lld as hplib-mod is broken against K4.14
-+#    hplib
-+#    nwal-lld
- ARAGO_TI_PKGS_append_k2e = "\
-     mmap-lld \
-     hyplnk-lld \
--    hplib \
--    nwal-lld \
-     "
- 
- #    recovery-kernel
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
-index f84f7f9..075e470 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
-@@ -51,6 +51,10 @@ TEST_ADDONS_TI_append_keystone = " \
- 
- # Disable netapi due to libnl and xfrm conflict
- #    netapi-test
-+# Disable hplib-test,nwal-lld due to hplib-mod breakage against K4.14
-+#    hplib-test
-+#    nwal-lld-test
-+#    nwal-lld
- TEST_ADDONS_TI_append_k2hk = " \
-     srio-lld-test \
-     ipc-transport-srio-test \
-@@ -58,30 +62,29 @@ TEST_ADDONS_TI_append_k2hk = " \
-     hyplnk-lld-test \
-     mmap-lld-test \
-     aif2-lld-test \
--    nwal-lld-test \
--    hplib-test \
--    nwal-lld \
-     "
- 
- # Disable netapi due to libnl and xfrm conflict
- #    netapi-test
-+# Disable hplib-test,nwal-lld due to hplib-mod breakage against K4.14
-+#    hplib-test
-+#    nwal-lld-test
-+#    nwal-lld
- TEST_ADDONS_TI_append_k2l-evm = " \
-     dfe-lld-test \
-     iqn2-lld-test \
--    nwal-lld-test \
--    hplib-test \
--    nwal-lld \
-     ipc-transport-qmss-test \
-     "
- 
- # Disable netapi due to libnl and xfrm conflict
- #    netapi-test
-+# Disable hplib-test,nwal-lld due to hplib-mod breakage against K4.14
-+#    hplib-test
-+#    nwal-lld-test
-+#    nwal-lld
- TEST_ADDONS_TI_append_k2e = " \
-     mmap-lld-test \
-     hyplnk-lld-test \
--    nwal-lld-test \
--    hplib-test \
--    nwal-lld \
-     ipc-transport-qmss-test \
-     "
- 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index 2175501..5a80bf4 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -57,10 +57,11 @@ EXTRA_LIBS_append_ti43x = " \
- 
- # Disable ipsecmgr due to libnl and xfrm conflict
- #    ipsecmgr-mod-src
-+# Disable hplib-mod-srv due to K4.14 breakage
-+#    hplib-mod-src
- EXTRA_LIBS_append_keystone = " \
-     cmem-mod-src \
-     uio-module-drv-src \
--    hplib-mod-src \
- "
- 
- EXTRA_LIBS_append_k2hk = " \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-index 21beca4..3ca669e 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-@@ -73,20 +73,26 @@ EXTRA_LIBS_append_keystone = "\
- # Disable netapi due to libnl and xfrm conflict
- #	netapi-dev
- #	netapi-staticdev
-+# Disable hplib-dev/staticdev,nwal-lld due to hplib-mod breakage against K4.14
-+#	hplib-dev
-+#	hplib-staticdev
-+#	nwal-lld-dev
-+#	nwal-lld-staticdev
- EXTRA_LIBS_append_k2l-evm = "\
- 	dfe-lld-dev \
- 	dfe-lld-staticdev \
- 	iqn2-lld-dev \
- 	iqn2-lld-staticdev \
--	hplib-dev \
--	hplib-staticdev \
--	nwal-lld-dev \
--	nwal-lld-staticdev \
- 	"
- 
- # Disable netapi due to libnl and xfrm conflict
- #	netapi-dev
- #	netapi-staticdev
-+# Disable hplib-dev/staticdev,nwal-lld due to hplib-mod breakage against K4.14
-+#	hplib-dev
-+#	hplib-staticdev
-+#	nwal-lld-dev
-+#	nwal-lld-staticdev
- EXTRA_LIBS_append_k2hk = "\
- 	srio-lld-dev \
- 	srio-lld-staticdev \
-@@ -96,10 +102,6 @@ EXTRA_LIBS_append_k2hk = "\
- 	mmap-lld-staticdev \
- 	hyplnk-lld-dev \
- 	hyplnk-lld-staticdev \
--	hplib-dev \
--	hplib-staticdev \
--	nwal-lld-dev \
--	nwal-lld-staticdev \
- 	aif2-lld-dev \
- 	aif2-lld-staticdev \
- 	"
-@@ -107,15 +109,16 @@ EXTRA_LIBS_append_k2hk = "\
- # Disable netapi due to libnl and xfrm conflict
- #	netapi-dev
- #	netapi-staticdev
-+# Disable hplib-dev/staticdev,nwal-lld due to hplib-mod breakage against K4.14
-+#	hplib-dev
-+#	hplib-staticdev
-+#	nwal-lld-dev
-+#	nwal-lld-staticdev
- EXTRA_LIBS_append_k2e = "\
- 	mmap-lld \
- 	mmap-lld-staticdev \
- 	hyplnk-lld-dev \
- 	hyplnk-lld-staticdev \
--	hplib-dev \
--	hplib-staticdev \
--	nwal-lld-dev \
--	nwal-lld-staticdev \
- "
- 
- UTILS_append_ti33x = " can-utils-dev"
+-ALTERNATIVE_${PN} = "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66"
++ALTERNATIVE_${PN}_dra7xx = "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66"
+ ALTERNATIVE_LINK_NAME[dra7-dsp1-fw.xe66] = "${base_libdir}/firmware/dra7-dsp1-fw.xe66"
+ ALTERNATIVE_TARGET[dra7-dsp1-fw.xe66] = "${base_libdir}/firmware/dra7-dsp1-fw.xe66.${BPN}"
+ ALTERNATIVE_LINK_NAME[dra7-dsp2-fw.xe66] = "${base_libdir}/firmware/dra7-dsp2-fw.xe66"
 -- 
 2.7.4
 
