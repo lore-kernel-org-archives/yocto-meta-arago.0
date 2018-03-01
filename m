@@ -1,45 +1,41 @@
-Return-Path: <d-senicic1@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id F0A4152976
+Return-Path: <sam.nelson@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id A913652976
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Mar 2018 19:49:25 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w21Jmn96007667
-	for <meta-arago@arago-project.org>; Thu, 1 Mar 2018 13:48:49 -0600
+	Thu,  1 Mar 2018 19:56:36 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w21Ju021032022
+	for <meta-arago@arago-project.org>; Thu, 1 Mar 2018 13:56:00 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1519933729;
-	bh=D5lk01fB33Ar6QkKndr0dMPrav/qAY5OFL9Td1EnADc=;
-	h=From:To:CC:Subject:Date:References;
-	b=azfTDV8v7W7Z45OfiYz8GkUrKCBTnEVqPfOHAU1jVaQ/eURiPnSnba77gzoLKsC9p
-	yjWo4KyNA0MoNjNjYsot5yZDjrG/DY4XpafDmOd9hCBMeB3yZFeoG2ss5pC1MLOCW0
-	X4lX118k8MgO0+uVxciRqBGmrQZfObnrTFDJvqXo=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w21Jmn0m029298
-	for <meta-arago@arago-project.org>; Thu, 1 Mar 2018 13:48:49 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1519934160;
+	bh=5zzzrOIlRGEf/I9G5oBDrimFinAkdv/IovnRac43mx4=;
+	h=From:To:CC:Subject:Date;
+	b=HhD2iQnS3f41awq7CUR8X4v/nvZJhONe7lLUAgwd6ZM2XSzroryTTL5H0TgJkh5Dx
+	WclLj56svwzZteTFEv9uSBcq97YczGFOFgJcy8vSwxCD+PJ3zGojDUG480mPrWDonk
+	8A9dtXO/HpqX35PwH4sQ3vJdsfRgFwNV9+MBycAc=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w21Ju0Rd011866
+	for <meta-arago@arago-project.org>; Thu, 1 Mar 2018 13:56:00 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Thu, 1 Mar 2018 13:48:49 -0600
-Received: from DLEE100.ent.ti.com ([fe80::ad4d:c227:3f85:880d]) by
-	DLEE100.ent.ti.com ([fe80::ad4d:c227:3f85:880d%17]) with mapi id
-	15.01.1261.035; Thu, 1 Mar 2018 13:48:49 -0600
-From: "Senicic, Djordje" <d-senicic1@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [PATCH] tiovx-app: Fix memory map for DSP firmware
-Thread-Index: AQHTsY76f4XC4mv6LUWoXIQf0yG3uKO7vrfQgABl3oD//5uCgIAACP7g
-Date: Thu, 1 Mar 2018 19:48:49 +0000
-Message-ID: <c19edf7ffb2c45c999f931b969034935@ti.com>
-References: <1519924373-4999-1-git-send-email-x0157990@ti.com>
-	<20180301185615.GL22424@edge> <6be3d52ef55c43cbbd0070792708d988@ti.com>
-	<20180301191445.GO22424@edge> 
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.102.235]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Thu, 1 Mar 2018 13:56:00 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
+	Transport; Thu, 1 Mar 2018 13:56:00 -0600
+Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w21Ju0rL025626;
+	Thu, 1 Mar 2018 13:56:00 -0600
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 1 Mar 2018 14:55:58 -0500
+Message-ID: <1519934158-60521-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [PATCH] tiovx-app: Fix memory map for DSP firmware
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [meta-processor-sdk][master][PATCH] ti-ipc: Update corrected 3.47.01.00 GA version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,83 +48,77 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Mar 2018 19:49:26 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 01 Mar 2018 19:56:36 -0000
+Content-Type: text/plain
 
-On further thought, as this is for DSP firmware only, Denys pls ignore meta=
--arago patch from this thread.
-(I confirmed with Vivek).
+Minor update for documentation and build optimization
+This is specifically a patch for morty.
+Upstream meta-ti will have patches sent for rocko.
 
------Original Message-----
-From: Senicic, Djordje=20
-Sent: Thursday, March 01, 2018 2:18 PM
-To: Dmytriyenko, Denys; Chengalvala, Vivek
-Cc: meta-arago@arago-project.org
-Subject: RE: [meta-arago] [PATCH] tiovx-app: Fix memory map for DSP firmwar=
-e
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+---
+ recipes-ti/ipc/ti-ipc-3.47.01.00.inc              | 2 +-
+ recipes-ti/ipc/ti-ipc-examples-linux_git.bbappend | 2 +-
+ recipes-ti/ipc/ti-ipc-examples_git.bbappend       | 2 +-
+ recipes-ti/ipc/ti-ipc-rtos-3.47.01.00.inc         | 9 +++++++--
+ recipes-ti/ipc/ti-ipc-rtos_git.bbappend           | 2 +-
+ 5 files changed, 11 insertions(+), 6 deletions(-)
 
-As this is for TIOVX  DSP firmware, I do not think this needs to be upstrea=
-med (i.e. just in meta-processor-sdk).
-Vivek, you flagged  this - are you ok we stick w/ meta-processor-sdk only (=
-patch was sent yesterday)?
+diff --git a/recipes-ti/ipc/ti-ipc-3.47.01.00.inc b/recipes-ti/ipc/ti-ipc-3.47.01.00.inc
+index 66bcda4..02abfa6 100644
+--- a/recipes-ti/ipc/ti-ipc-3.47.01.00.inc
++++ b/recipes-ti/ipc/ti-ipc-3.47.01.00.inc
+@@ -1,4 +1,4 @@
+ PV = "3.47.01.00"
+ 
+-#Corresponds to 3.47.01.00
++#Corresponds to 3.47.01.00A
+ TI_IPC_SRCREV = "6a2595a4148fb12f259efc19164a9d33ad2ed294"
+diff --git a/recipes-ti/ipc/ti-ipc-examples-linux_git.bbappend b/recipes-ti/ipc/ti-ipc-examples-linux_git.bbappend
+index 4adc0e6..c0eac74 100644
+--- a/recipes-ti/ipc/ti-ipc-examples-linux_git.bbappend
++++ b/recipes-ti/ipc/ti-ipc-examples-linux_git.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = ".tisdk0"
++PR_append = ".tisdk1"
+ 
+ require ti-ipc-3.47.01.00.inc
+ 
+diff --git a/recipes-ti/ipc/ti-ipc-examples_git.bbappend b/recipes-ti/ipc/ti-ipc-examples_git.bbappend
+index 4adc0e6..c0eac74 100644
+--- a/recipes-ti/ipc/ti-ipc-examples_git.bbappend
++++ b/recipes-ti/ipc/ti-ipc-examples_git.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = ".tisdk0"
++PR_append = ".tisdk1"
+ 
+ require ti-ipc-3.47.01.00.inc
+ 
+diff --git a/recipes-ti/ipc/ti-ipc-rtos-3.47.01.00.inc b/recipes-ti/ipc/ti-ipc-rtos-3.47.01.00.inc
+index ffe6ef9..8274dd5 100644
+--- a/recipes-ti/ipc/ti-ipc-rtos-3.47.01.00.inc
++++ b/recipes-ti/ipc/ti-ipc-rtos-3.47.01.00.inc
+@@ -1,2 +1,7 @@
+-# Corresponds to tag: 3.47.01.00
+-SRCREV_ipc-metadata = "f78329ff0b2c65469271dab59e232e6e0dc82dc7"
++# Corresponds to tag: 3.47.01.00A
++SRCREV_ipc-examples = "7f23e9b0ae395461b0854881dcc174392355d854"
++
++# Corresponds to tag: 3.47.01.00A
++SRCREV_ipc-metadata = "72578cce9c9f9a932eb22b3397b46131efb12d69"
++
++PR = "${INC_PR}.r4"
+diff --git a/recipes-ti/ipc/ti-ipc-rtos_git.bbappend b/recipes-ti/ipc/ti-ipc-rtos_git.bbappend
+index 4adc0e6..c0eac74 100644
+--- a/recipes-ti/ipc/ti-ipc-rtos_git.bbappend
++++ b/recipes-ti/ipc/ti-ipc-rtos_git.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = ".tisdk0"
++PR_append = ".tisdk1"
+ 
+ require ti-ipc-3.47.01.00.inc
+ 
+-- 
+1.9.1
 
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Thursday, March 01, 2018 2:15 PM
-To: Senicic, Djordje
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [PATCH] tiovx-app: Fix memory map for DSP firmwar=
-e
-
-Well, have you tried this patch on meta-arago? The path is wrong, there's n=
-o tiovx and my question was whether tiovx itself will be upstreamed or not.
-
---
-Denys
-
-
-On Thu, Mar 01, 2018 at 02:11:54PM -0500, Senicic, Djordje wrote:
->    Earlier I sent one for meta-processor-sdk.
->    This is the same one for meta-arago (I think you asked if we are going=
- to
->    upstream).
->=20
->    -----Original Message-----
->    From: Dmytriyenko, Denys
->    Sent: Thursday, March 01, 2018 1:56 PM
->    To: Senicic, Djordje
->    Cc: meta-arago@arago-project.org; Senicic, Djordje
->    Subject: Re: [meta-arago] [PATCH] tiovx-app: Fix memory map for DSP
->    firmware
->=20
->    Is this for processor-sdk layer?
->=20
->    On Thu, Mar 01, 2018 at 12:12:53PM -0500, Djordje Senicic wrote:
->    > Signed-off-by: Djordje Senicic <x0157990@ti.com>
->    > ---
->    >  recipes-ti/tiovx/tiovx-sys.inc | 2 +-
->    >  1 file changed, 1 insertion(+), 1 deletion(-)
->    >
->    > diff --git a/recipes-ti/tiovx/tiovx-sys.inc
->    > b/recipes-ti/tiovx/tiovx-sys.inc index fc24947..43c4e1d 100644
->    > --- a/recipes-ti/tiovx/tiovx-sys.inc
->    > +++ b/recipes-ti/tiovx/tiovx-sys.inc
->    > @@ -1,5 +1,5 @@
->    >  PV =3D "01.00.00.00"
->    >=20
->    >  BRANCH=3D"master"
->    > -SRCREV =3D "c208217c5c3788c78d10ff0d25e5db9782e00be9"
->    > +SRCREV =3D "375fa639773970e433171686f01f360a9a5b2ad4"
->    >  SRC_URI =3D
->    "git://git.ti.com/processor-sdk/tiovx-app.git;protocol=3Dgit;branch=3D=
-${BRANCH}"
->    > --
->    > 1.9.1
->    >
->    > _______________________________________________
->    > meta-arago mailing list
->    > meta-arago@arago-project.org
->    > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
