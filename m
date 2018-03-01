@@ -1,43 +1,45 @@
-Return-Path: <denys@ti.com>
+Return-Path: <d-senicic1@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id DB23B52976
+	by arago-project.org (Postfix) with ESMTPS id 83CB0529C7
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Mar 2018 19:00:57 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w21J0MnY023634
-	for <meta-arago@arago-project.org>; Thu, 1 Mar 2018 13:00:22 -0600
+	Thu,  1 Mar 2018 19:12:30 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w21JBs8t025421
+	for <meta-arago@arago-project.org>; Thu, 1 Mar 2018 13:11:54 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1519930822;
-	bh=NqyDdytxyDqpuA9AlC5ucZcEh2fSxGpqIEi2Myiq0eg=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=kKZ+JecxZjAyTf0GM8SaXWRwq0hP91Svg4Q+us8sfi0/J3DSCk710rAlleV+ga34K
-	fJsWqXD12TFt2b1o2xJKSk5Kf+1tBqd5jpdNSilRZ1yJoOqbAazdeoGzUZrzcFXUtP
-	VFQXIxBydPG6d56GGPehFv0iF17IiNPbCtz647Z4=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w21J0LbV024119
-	for <meta-arago@arago-project.org>; Thu, 1 Mar 2018 13:00:21 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1519931514;
+	bh=pegx3tkWsWNoQ7yFu5OVPHWJCUCnfy7spna+Dq8/10E=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=uls9gjw0amTLf3X25Wvkdvtcg0GznU8mSycOpfeCQKIFsiMbj9h4XvTvsyswUhQni
+	jx4oWfyHzhnKVJNARbs7aI92tyDda9bI1McFRVDRlmeYMPhm45UVh41srXarUergVF
+	7UdGC1rf0kO1chfC/hBUfxURnwldfUI6uSx4/9zc=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w21JBs3P017338
+	for <meta-arago@arago-project.org>; Thu, 1 Mar 2018 13:11:54 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Thu, 1 Mar 2018 13:00:21 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Thu, 1 Mar 2018 13:00:21 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w21J0LDr029446;
-	Thu, 1 Mar 2018 13:00:21 -0600
-Date: Thu, 1 Mar 2018 14:00:20 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20180301190020.GN22424@edge>
-References: <1519916131-7750-1-git-send-email-j-stiffler@ti.com>
+	Thu, 1 Mar 2018 13:11:54 -0600
+Received: from DLEE100.ent.ti.com ([fe80::ad4d:c227:3f85:880d]) by
+	DLEE100.ent.ti.com ([fe80::ad4d:c227:3f85:880d%17]) with mapi id
+	15.01.1261.035; Thu, 1 Mar 2018 13:11:54 -0600
+From: "Senicic, Djordje" <d-senicic1@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [PATCH] tiovx-app: Fix memory map for DSP firmware
+Thread-Index: AQHTsY76f4XC4mv6LUWoXIQf0yG3uKO7vrfQ
+Date: Thu, 1 Mar 2018 19:11:54 +0000
+Message-ID: <6be3d52ef55c43cbbd0070792708d988@ti.com>
+References: <1519924373-4999-1-git-send-email-x0157990@ti.com>
+	<20180301185615.GL22424@edge>
+In-Reply-To: <20180301185615.GL22424@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [158.218.102.235]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-In-Reply-To: <1519916131-7750-1-git-send-email-j-stiffler@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [tisdk-setup-scripts][PATCH] setup-package-install: select u-boot-tools for Ubuntu 16.04
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [PATCH] tiovx-app: Fix memory map for DSP firmware
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,47 +52,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Mar 2018 19:00:58 -0000
+X-List-Received-Date: Thu, 01 Mar 2018 19:12:31 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-ACK
+Earlier I sent one for meta-processor-sdk.
+This is the same one for meta-arago (I think you asked if we are going to u=
+pstream).
 
-On Thu, Mar 01, 2018 at 09:55:31AM -0500, Jacob Stiffler wrote:
-> And fix potential issue in detection of required package status as
-> "dpkg-query -l" will list matching packages available on the system,
-> but not the intallation status as "dpkg-query -s" does.
-> 
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+-----Original Message-----
+From: Dmytriyenko, Denys=20
+Sent: Thursday, March 01, 2018 1:56 PM
+To: Senicic, Djordje
+Cc: meta-arago@arago-project.org; Senicic, Djordje
+Subject: Re: [meta-arago] [PATCH] tiovx-app: Fix memory map for DSP firmwar=
+e
+
+Is this for processor-sdk layer?
+
+
+On Thu, Mar 01, 2018 at 12:12:53PM -0500, Djordje Senicic wrote:
+> Signed-off-by: Djordje Senicic <x0157990@ti.com>
 > ---
->  setup-package-install.sh | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/setup-package-install.sh b/setup-package-install.sh
-> index 1ef94f9..c5c134f 100644
-> --- a/setup-package-install.sh
-> +++ b/setup-package-install.sh
-> @@ -63,7 +63,7 @@ get_host_type host
->  # Starting with Ubuntu 14.04 the package name for uboot-mkimage has changed
->  # to u-boot-tools
->  
-> -if [ "$host" = "trusty" ]; then
-> +if [ "$host" = "trusty" -o "$host" = "xenial" ]; then
->      packages_to_install="$packages_to_install u-boot-tools"
->  else
->      packages_to_install="$packages_to_install uboot-mkimage"
-> @@ -74,7 +74,7 @@ cmd="sudo apt-get install "
->  
->  # Check and only install the missing packages
->  for i in $packages_to_install; do
-> -	is_it_installed=`dpkg-query -l $i 2>/dev/null`
-> +	is_it_installed=`dpkg-query -s $i 2>/dev/null`
->  	if [ "$?" -ne "0" ]; then
->  		needs_installation=`echo $needs_installation`" "$i
->  		new_cmd=`echo $cmd`" "$i
-> -- 
+>  recipes-ti/tiovx/tiovx-sys.inc | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/recipes-ti/tiovx/tiovx-sys.inc=20
+> b/recipes-ti/tiovx/tiovx-sys.inc index fc24947..43c4e1d 100644
+> --- a/recipes-ti/tiovx/tiovx-sys.inc
+> +++ b/recipes-ti/tiovx/tiovx-sys.inc
+> @@ -1,5 +1,5 @@
+>  PV =3D "01.00.00.00"
+> =20
+>  BRANCH=3D"master"
+> -SRCREV =3D "c208217c5c3788c78d10ff0d25e5db9782e00be9"
+> +SRCREV =3D "375fa639773970e433171686f01f360a9a5b2ad4"
+>  SRC_URI =3D "git://git.ti.com/processor-sdk/tiovx-app.git;protocol=3Dgit=
+;branch=3D${BRANCH}"
+> --
 > 1.9.1
-> 
+>=20
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
