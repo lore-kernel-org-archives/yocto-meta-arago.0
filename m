@@ -1,43 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 22963529C7
+Return-Path: <j-stiffler@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 3B44F529C7
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Mar 2018 19:15:45 +0000 (UTC)
+	Thu,  1 Mar 2018 19:17:01 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w21JF9vq004614
-	for <meta-arago@arago-project.org>; Thu, 1 Mar 2018 13:15:09 -0600
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w21JGPN3026227
+	for <meta-arago@arago-project.org>; Thu, 1 Mar 2018 13:16:25 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1519931709;
-	bh=xSfNucgWLAw08saYKMXeEFsbRd25iQ/nrVew1Qxw8ok=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=TM/e3U+c7b6OuE2E6HdoT+LY3/Hcwa21LJFwSfcvrFaofN4WnZNLaqIbiDWiMIcX2
-	nahz6UK1uCONx+H2SqgMyBsGlznoPmGFqTW6qDOEgPX5aVCBWGPjhpqk+VqbfbKo6q
-	7uW5CxNpLcSnHiTOeSE1coPCIEhCzkPNJ99dwg9U=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w21JF9MC021457
-	for <meta-arago@arago-project.org>; Thu, 1 Mar 2018 13:15:09 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1519931785;
+	bh=8FT/rj1yJAu6tj2l+RCCMpx4PS9FsgfkE1r0dxKPtUE=;
+	h=From:To:CC:Subject:Date;
+	b=kgLt4xgu0R4rZpO/FOpWQ6f3a0LAYQAyrzAht154ccUAs/+V/7Nj2tQlywBiziO3i
+	UF0bRy7wbPQCEf5lQqR9DIf2XLlszFZITOMKbil5z9s0voW+tE1rt9kxwV0kocWlrU
+	tjmk2IWc4rWzk9FyUPzvSLHk5nEo7CkBx84eWEx8=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w21JGPjq022765
+	for <meta-arago@arago-project.org>; Thu, 1 Mar 2018 13:16:25 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Thu, 1 Mar 2018 13:15:08 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 1 Mar 2018 13:16:25 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Thu, 1 Mar 2018 13:15:08 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w21JF8oj019759;
-	Thu, 1 Mar 2018 13:15:08 -0600
-Date: Thu, 1 Mar 2018 14:15:08 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20180301191508.GP22424@edge>
-References: <1519931086-26137-1-git-send-email-j-stiffler@ti.com>
+	Transport; Thu, 1 Mar 2018 13:16:25 -0600
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w21JGO6w015469;
+	Thu, 1 Mar 2018 13:16:25 -0600
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 1 Mar 2018 14:08:01 -0500
+Message-ID: <1519931281-26332-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <1519931086-26137-1-git-send-email-j-stiffler@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] ti-tisdk-setup: bump SRCREV to latest
+Subject: [morty/rocko/master][PATCH] ti-llvm3.6: add dependency on groff-native
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,40 +48,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Mar 2018 19:15:45 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 01 Mar 2018 19:17:01 -0000
+Content-Type: text/plain
 
-Which branch?
+* groff is used to generate documentaion during the install task
 
-On Thu, Mar 01, 2018 at 02:04:46PM -0500, Jacob Stiffler wrote:
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->  meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-> index 175fc3a..425bba6 100644
-> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-> @@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
->  LICENSE = "BSD"
->  LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
->  
-> -PR = "r32"
-> +PR = "r33"
->  
->  BRANCH ?= "master"
-> -SRCREV = "1f2ce6e8d389ec32e1abbe80354c55f6e7259fc0"
-> +SRCREV = "2184048a4a01a338f9e839ffb39663805a4e7a58"
->  SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
->  
->  S = "${WORKDIR}/git/"
-> -- 
-> 2.7.4
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+index 4f36310..91d3cea 100644
+--- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
++++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+@@ -17,7 +17,7 @@ require recipes-core/llvm/llvm.inc
+ 
+ LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=47e311aa9caedd1b3abf098bd7814d1d"
+ 
+-DEPENDS += "libxml2"
++DEPENDS += "libxml2 groff-native"
+ DEPENDS_append_class-target = " valgrind"
+ 
+ LLVM_DIR = "ti-llvm${PV}"
+-- 
+2.7.4
+
 
