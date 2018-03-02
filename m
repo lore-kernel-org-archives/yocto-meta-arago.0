@@ -1,41 +1,41 @@
-Return-Path: <yuanzhao@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 2A85B529F6
+Return-Path: <m-radhakrishnan2@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id B1B6252976
 	for <meta-arago@arago-project.org>;
-	Fri,  2 Mar 2018 23:00:52 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w22N0FAv027010
-	for <meta-arago@arago-project.org>; Fri, 2 Mar 2018 17:00:15 -0600
+	Fri,  2 Mar 2018 23:12:56 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w22NCJZJ014484
+	for <meta-arago@arago-project.org>; Fri, 2 Mar 2018 17:12:19 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1520031615;
-	bh=pmMseGWQiCCKHOS0w5YTQ9yOhSQsk2CBEvpPkjYOx4M=;
-	h=From:To:CC:Subject:Date;
-	b=nE5O66k5Qps50tRbCeyQM3JJMoiElV1t/dxWWr/sNM4R6tfRNUD/hkefsc/NIfTlv
-	WXmudPF/SD4XvtlRyKmNhBrnLFDoeg/6mXcGKl1GxV3WT9Kr85ZRMhAxYFWZBT9lD2
-	JekzfCuLrQ/MS+8O8ZyK8IDxnQb6BXWIfIIAgw1w=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w22N0FLL031176
-	for <meta-arago@arago-project.org>; Fri, 2 Mar 2018 17:00:15 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1520032339;
+	bh=OE6v2Fo3IoyNYqsCFQq4a+KUa8kWNK6sHsmLTRV3j/s=;
+	h=From:To:Subject:Date;
+	b=AnUoLjjqydFweoB7mcBpfjC3em9pqjlUxYt9V7EVnnbh75MYvOFtmPOezwu5t/Erw
+	Sws/x4PYMNghteuXigW8VVYHgHPWd8zJRh8/5WCv8ouCsYjxAKvwqXDCCkF/JFcs1j
+	cGRWD8kL8hTdHQ1ro8MJ15kfyZdW0Iu1LOo25d2M=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w22NCJK2006012
+	for <meta-arago@arago-project.org>; Fri, 2 Mar 2018 17:12:19 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Fri, 2 Mar 2018 17:00:14 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 2 Mar 2018 17:12:19 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Fri, 2 Mar 2018 17:00:14 -0600
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Fri, 2 Mar 2018 17:12:19 -0600
+Received: from uda0875154a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w22N0EW4015937;
-	Fri, 2 Mar 2018 17:00:14 -0600
-From: Yuan Zhao <yuanzhao@ti.com>
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w22NCI6H011615
+	for <meta-arago@arago-project.org>; Fri, 2 Mar 2018 17:12:18 -0600
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 2 Mar 2018 17:00:08 -0600
-Message-ID: <20180302230008.110732-1-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.14.1
+Date: Fri, 2 Mar 2018 18:12:16 -0500
+Message-ID: <1520032336-58939-1-git-send-email-m-radhakrishnan2@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] openmpacc: update to version 01.05.04.00
+Subject: [morty][meta-processor-sdk][PATCH] transport-rtos: Updating to version 1.0.0.10
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,39 +48,60 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Mar 2018 23:00:52 -0000
+X-List-Received-Date: Fri, 02 Mar 2018 23:12:57 -0000
 Content-Type: text/plain
 
-- fix msmc size in dspheap example for k2g
-
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
 ---
- meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ recipes-bsp/transport-rtos/bmet-eth-rtos_git.bbappend  | 4 ++++
+ recipes-bsp/transport-rtos/nimu-icss-rtos_git.bbappend | 4 ++++
+ recipes-bsp/transport-rtos/nimu-rtos_git.bbappend      | 3 +++
+ recipes-bsp/transport-rtos/transport-1.0.0.10.inc      | 7 +++++++
+ 4 files changed, 18 insertions(+)
+ create mode 100644 recipes-bsp/transport-rtos/transport-1.0.0.10.inc
 
-diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
-index 27779ba2..ce0236d4 100644
---- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
-+++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
-@@ -2,7 +2,7 @@ SUMMARY = "TI OpenMP Accelerator Model"
- HOMEPAGE = "http://downloads.ti.com/mctools/esd/docs/openmpacc/"
- LICENSE = "BSD"
- 
--PV = "1.5.3.0"
-+PV = "1.5.4.0"
- INC_PR = "r0"
- 
- LIC_FILES_CHKSUM = "file://../debian/copyright;md5=aaa2a0939d08197132fc382e97b62eb0"
-@@ -13,7 +13,7 @@ OMPACC_GIT_URI = "git://git.ti.com/openmp/ti-openmpacc.git"
- OMPACC_GIT_PROTOCOL = "git"
- OMPACC_GIT_BRANCH = "master"
- 
--OMPACC_SRCREV = "1689b5d68ce67df57a1992188e466b7c4d4069c4"
-+OMPACC_SRCREV = "808cef58b4ed196a9ced2310d419dbaf63dfbeb6"
- 
- BRANCH = "${OMPACC_GIT_BRANCH}"
- SRC_URI = "${OMPACC_GIT_URI};protocol=${OMPACC_GIT_PROTOCOL};branch=${BRANCH}"
+diff --git a/recipes-bsp/transport-rtos/bmet-eth-rtos_git.bbappend b/recipes-bsp/transport-rtos/bmet-eth-rtos_git.bbappend
+index 053fbac..4ae2d0b 100644
+--- a/recipes-bsp/transport-rtos/bmet-eth-rtos_git.bbappend
++++ b/recipes-bsp/transport-rtos/bmet-eth-rtos_git.bbappend
+@@ -1 +1,5 @@
+ require recipes-bsp/transport-rtos/ndk-path.inc
++require recipes-bsp/transport-rtos/transport-1.0.0.10.inc
++
++LIC_FILES_CHKSUM = "file://bmet_transport.h;beginline=12;endline=40;md5=6d209c698b273aef180b0c1d38469e8e"
++
+diff --git a/recipes-bsp/transport-rtos/nimu-icss-rtos_git.bbappend b/recipes-bsp/transport-rtos/nimu-icss-rtos_git.bbappend
+index 053fbac..d9db349 100644
+--- a/recipes-bsp/transport-rtos/nimu-icss-rtos_git.bbappend
++++ b/recipes-bsp/transport-rtos/nimu-icss-rtos_git.bbappend
+@@ -1 +1,5 @@
+ require recipes-bsp/transport-rtos/ndk-path.inc
++require recipes-bsp/transport-rtos/transport-1.0.0.10.inc
++
++LIC_FILES_CHKSUM = "file://nimu_icssEth.h;beginline=1;endline=35;md5=3ea633a510be24d8a89d9d08b930994c"
++
+diff --git a/recipes-bsp/transport-rtos/nimu-rtos_git.bbappend b/recipes-bsp/transport-rtos/nimu-rtos_git.bbappend
+index 053fbac..691364e 100644
+--- a/recipes-bsp/transport-rtos/nimu-rtos_git.bbappend
++++ b/recipes-bsp/transport-rtos/nimu-rtos_git.bbappend
+@@ -1 +1,4 @@
+ require recipes-bsp/transport-rtos/ndk-path.inc
++require recipes-bsp/transport-rtos/transport-1.0.0.10.inc
++
++LIC_FILES_CHKSUM = "file://nimu_eth.h;beginline=1;endline=35;md5=ee9c662c39d4584fb2a8b66413d2866d"
+diff --git a/recipes-bsp/transport-rtos/transport-1.0.0.10.inc b/recipes-bsp/transport-rtos/transport-1.0.0.10.inc
+new file mode 100644
+index 0000000..560e96a
+--- /dev/null
++++ b/recipes-bsp/transport-rtos/transport-1.0.0.10.inc
+@@ -0,0 +1,7 @@
++require recipes-bsp/transport-rtos/transport.inc
++
++# Below commit ID corresponds to "DEV.TRANSPORT.01.00.00.10"
++TRANSPORT_SRCREV = "d933e59654c1fdfc05b0afa166a4c6670632ae00"
++
++PV = "01.00.00.10"
++INC_PR = "r0"
 -- 
-2.14.1
+1.9.1
 
 
