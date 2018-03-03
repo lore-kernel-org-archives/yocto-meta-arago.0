@@ -1,30 +1,44 @@
 Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id ECEBE52A1D
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id A880252A1D
 	for <meta-arago@arago-project.org>;
-	Sat,  3 Mar 2018 03:21:04 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B5EF220B67;
-	Sat,  3 Mar 2018 03:20:27 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id IWsl-3UgYvE2; Sat,  3 Mar 2018 03:20:27 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9B09E2098D;
-	Sat,  3 Mar 2018 03:20:26 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 4EE761632F8;
-	Fri,  2 Mar 2018 22:20:26 -0500 (EST)
+	Sat,  3 Mar 2018 03:47:03 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w233kQRd004725
+	for <meta-arago@arago-project.org>; Fri, 2 Mar 2018 21:46:26 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1520048786;
+	bh=er6dkHmMDlK+huTW2Ux0A6WeRZ53Fjr1Vmi6BoQAoEc=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=j0zgZciqHcDgAww/TXoWgF6OKB9l+8GJQyH/Zv/Nl9Qz0Zv1dMI1U6JfGultxIAzI
+	MZicsz1DtLkaUVwFiPi87kNm/N9T92znjPHwxKTuQyTIyFCH8i/Lp8qIX1p63HMy4X
+	/yqCoPAV4QjdoSOIwdxJC8WPe5slWua5OfzghXO4=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w233kPGR013832
+	for <meta-arago@arago-project.org>; Fri, 2 Mar 2018 21:46:26 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
+	Fri, 2 Mar 2018 21:46:25 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
+	Transport; Fri, 2 Mar 2018 21:46:25 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w233kPgJ013857;
+	Fri, 2 Mar 2018 21:46:25 -0600
+Date: Fri, 2 Mar 2018 22:46:25 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Fri,  2 Mar 2018 22:20:26 -0500
-Message-Id: <1520047226-52420-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH v2] toolchain-gcc: update glibc preference to 2.27
+To: Eric Ruei <e-ruei1@ti.com>
+Message-ID: <20180303034625.GA26586@edge>
+References: <1519843260-55405-1-git-send-email-e-ruei1@ti.com>
+	<1519843260-55405-2-git-send-email-e-ruei1@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1519843260-55405-2-git-send-email-e-ruei1@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [morty/rocko/master][PATCH v3 1/4] qt-tstat: pickup the latest version for both Qt4/Qt5 support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,38 +51,73 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 03 Mar 2018 03:21:05 -0000
+X-List-Received-Date: Sat, 03 Mar 2018 03:47:04 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/include/toolchain-gcc.inc | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+On Wed, Feb 28, 2018 at 01:40:57PM -0500, Eric Ruei wrote:
+> - update the git URL and SRCREV
+> - select matrix desktop file based on QT vesion
+> 
+> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> ---
+>  .../recipes-apps/thermostat-demo/qt-tstat_2.0.bb      | 19 +++++++++----------
+>  1 file changed, 9 insertions(+), 10 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat_2.0.bb b/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat_2.0.bb
+> index 494d582..43e35ab 100644
+> --- a/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat_2.0.bb
+> +++ b/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat_2.0.bb
+> @@ -12,31 +12,30 @@ require recipes-core/matrix/matrix-gui-paths.inc
+>  
+>  inherit qt-provider
+>  
+> -PR = "r9"
+> +PR = "r10"
+>  
+>  DEPENDS += "${QT_DEPENDS_SVG} ${QT_DEPENDS_SCRIPT}"
+>  
+>  BRANCH ?= "master"
+> -SRCREV = "2512773c2d9da989e6a42c1e90b2b34496713072"
+> +SRCREV = "3429dfc4333f11b9022e3aa6fd2850c5093777f9"
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-index 11c6b11..3d983c0 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-@@ -15,7 +15,7 @@ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-can
- # Set Cross and SDK toolchain preferences
- SDKGCCVERSION ?= "7.3%"
- SDKBINUVERSION ?= "2.30%"
--SDKGLIBCVERSION ?= "2.26%"
-+SDKGLIBCVERSION ?= "2.27%"
- SDKLINUXLIBCVERSION ?= "4.9%"
- 
- PREFERRED_VERSION_gcc-crosssdk-${SDK_SYS} ?= "${SDKGCCVERSION}"
-@@ -33,8 +33,8 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
- # Can be overwritten globally, if needed
- GCCVERSION ?= "7.3%"
- BINUVERSION ?= "2.30%"
--GLIBCVERSION ?= "2.26%"
--GLIBCINITVERSION ?= "2.26%"
-+GLIBCVERSION ?= "2.27%"
-+GLIBCINITVERSION ?= "2.27%"
- LINUXLIBCVERSION ?= "4.9%"
- 
- PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
--- 
-2.7.4
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Where is this commit ID?
 
+
+> -SRC_URI = " \
+> -	git://gitorious.org/thermostat-demo/thermostat-demo.git;protocol=git \
+> -"
+> -
+> -SRC_URI += "${@base_conditional('QT_PROVIDER', 'qt5', 'file://0002-Replace-QtGui-with-QtWidgets-per-Qt5-migration-guide.patch \
+> -	file://0003-Replace-fromAscii-toAscii-with-fromLatin1-toLatin1-p.patch', '', d)}"
+> +SRC_URI = "git://git.ti.com/apps/thermostat-demo.git;protocol=git;branch=${BRANCH}"
+>  
+>  S = "${WORKDIR}/git/"
+>  
+> +DESKTOP_FILE = "${@base_conditional('QT_PROVIDER', 'qt5', 'thermostat_demo_qt5.desktop', 'thermostat_demo.desktop', d)}"
+> +
+> +
+>  do_install() {
+>  	install -d ${D}/usr/bin
+>  	install -m 0755 ${B}/ThermostatDemo ${D}/usr/bin/ThermostatDemo
+>  	install -d ${D}${MATRIX_APP_DIR}/qt_tstat
+> -	cp -rf ${S}/matrix-files/*  ${D}${MATRIX_APP_DIR}/qt_tstat
+> +	install ${S}/matrix-files/desc_thermostat_demo.html  ${D}${MATRIX_APP_DIR}/qt_tstat
+> +	install ${S}/matrix-files/${DESKTOP_FILE}  ${D}${MATRIX_APP_DIR}/qt_tstat/thermostat_demo.desktop
+>  }
+>  
+>  PACKAGES += "matrix-gui-thermostat-demo"
+>  
+> -RDEPENDS_matrix-gui-thermostat-demo += "matrix-gui-apps-images matrix-gui-submenus-qt4"
+> +RDEPENDS_matrix-gui-thermostat-demo += "matrix-gui-apps-images ${@base_conditional('QT_PROVIDER', 'qt5', 'matrix-gui-submenus-qt5', 'matrix-gui-submenus-qt4', d)}"
+>  
+>  FILES_matrix-gui-thermostat-demo += "${MATRIX_APP_DIR}/*"
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
