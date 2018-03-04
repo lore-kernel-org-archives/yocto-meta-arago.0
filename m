@@ -1,43 +1,30 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id D006452A69
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 3895152986
 	for <meta-arago@arago-project.org>;
-	Sat,  3 Mar 2018 19:31:40 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w23JV2A1021305
-	for <meta-arago@arago-project.org>; Sat, 3 Mar 2018 13:31:02 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1520105462;
-	bh=3b5tZTmVvoRLpKSipIF7Uw+qrxyE2097xF6Mv/QZbjQ=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=vNXikLLxjNoNCKfhM6JP1/bfXnH+enGIy3XKsLL8T6XqnsdYfMq9XKO74dNuzwsvY
-	wWyhIwJHFDOZd6fWOgG6NpPqGacfG/jKOe7mZzKsWgguUDjY7YjT/+GKqDMA2dUE1L
-	bJHIA/fBSF7juT3BRg8L0jmDa5G1OJH36semq4wc=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w23JV2Pb021072
-	for <meta-arago@arago-project.org>; Sat, 3 Mar 2018 13:31:02 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Sat, 3 Mar 2018 13:31:01 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Sat, 3 Mar 2018 13:31:01 -0600
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w23JV07Z019492
-	for <meta-arago@arago-project.org>; Sat, 3 Mar 2018 13:31:01 -0600
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Sat, 3 Mar 2018 14:30:53 -0500
-Message-ID: <1520105455-43017-3-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1520105455-43017-1-git-send-email-e-ruei1@ti.com>
-References: <1520105455-43017-1-git-send-email-e-ruei1@ti.com>
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty/rocko/master][PATCH v4 2/4] packagegroup-arago-tisdk-matrix: add thermostat demo back to MATRIX_QT_APPS
+	Sun,  4 Mar 2018 03:33:02 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 3EA882099F;
+	Sun,  4 Mar 2018 03:32:23 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id pBp0ho3RScI4; Sun,  4 Mar 2018 03:32:23 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1A64B2086C;
+	Sun,  4 Mar 2018 03:32:22 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 9D21D1632F0;
+	Sat,  3 Mar 2018 22:32:21 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Sat,  3 Mar 2018 22:32:21 -0500
+Message-Id: <1520134341-1345-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH] stress-ng: upstreamed to meta-oe, remove locally
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,41 +37,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 03 Mar 2018 19:31:42 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sun, 04 Mar 2018 03:33:02 -0000
 
-note: The thermostat demo was removed from MATRIX_QT_APPS because it was for
-      Qt4 only
-
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb     | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-devtools/stress-ng/stress-ng_0.09.09.bb    | 18 ------------------
+ 1 file changed, 18 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-devtools/stress-ng/stress-ng_0.09.09.bb
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 0cae08d..f1c3083 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
--PR = "r68"
-+PR = "r69"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -31,9 +31,9 @@ MATRIX_COMMON_APPS = "              \
-     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'matrix-gui-weston-terminal-demo', '', d)} \
- "
- 
--#    matrix-gui-thermostat-demo
- MATRIX_QT_APPS = " \
-     matrix-gui-qt5-demos \
-+    matrix-gui-thermostat-demo \
- "
- 
- MATRIX_TOUCH_APPS = " \
+diff --git a/meta-arago-extras/recipes-devtools/stress-ng/stress-ng_0.09.09.bb b/meta-arago-extras/recipes-devtools/stress-ng/stress-ng_0.09.09.bb
+deleted file mode 100644
+index c6ac793..0000000
+--- a/meta-arago-extras/recipes-devtools/stress-ng/stress-ng_0.09.09.bb
++++ /dev/null
+@@ -1,18 +0,0 @@
+-SUMMARY = "A tool to load and stress a computer system"
+-HOMEPAGE = "http://kernel.ubuntu.com/~cking/stress-ng/"
+-LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+-
+-DEPENDS = "zlib libaio"
+-
+-SRC_URI = "http://kernel.ubuntu.com/~cking/tarballs/${BPN}/${BP}.tar.xz"
+-
+-SRC_URI[md5sum] = "6e4df71095e780654ccc0a713b8423fe"
+-SRC_URI[sha256sum] = "e993fddb1d990a0cdb23b2af6cf6c417a1c09e155ada7c558ad80eae8a5feed3"
+-
+-CFLAGS += "-Wall -Wextra -DVERSION='"$(VERSION)"' -O2"
+-
+-do_install() {
+-	oe_runmake DESTDIR=${D} install
+-	chown -R root:root ${D}
+-}
 -- 
-1.9.1
+2.7.4
 
 
