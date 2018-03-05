@@ -1,41 +1,41 @@
 Return-Path: <sam.nelson@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 7102A529C7
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 569A652994
 	for <meta-arago@arago-project.org>;
-	Mon,  5 Mar 2018 15:31:15 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w25FUXIO011394
-	for <meta-arago@arago-project.org>; Mon, 5 Mar 2018 09:30:33 -0600
+	Mon,  5 Mar 2018 17:17:24 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w25HGhln029098
+	for <meta-arago@arago-project.org>; Mon, 5 Mar 2018 11:16:43 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1520263833;
+	s=ti-com-17Q1; t=1520270203;
 	bh=7GPNt3P6stoAQLjw+0XIs9shcfnWPT5pNgigXXlXLyQ=;
 	h=From:To:CC:Subject:Date;
-	b=TaQQafKZIMMYL9IYqaMG11KYFONLRBaMugVJpUiwYLGPbC0Kq4hqo6ZgCQ97j0ChK
-	hhbMdh3ketL3OSKajKUhl5fnFkdiDA0mTa+wjJiQUrTMoh1MuOuYMf0nVT0A1K3x7O
-	lYnebxWyOmCToCocw8kIcOuCwoyLS0FtuW7pwcAI=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w25FUXFe018897
-	for <meta-arago@arago-project.org>; Mon, 5 Mar 2018 09:30:33 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	b=SBvh7fBy1egYtpCdYAOa5/saMwnB4do6m/gErCtLxTBlXf/FlM3I39HKrJSV4Ih1+
+	Yghlos3PGD/BpiJ2csAnCQMOpNeNzY/hsFGgbsFy+rNZggtCowMLsVaGkERIaYO26F
+	s0gwBZr/ejbtfuKXMXM/BLfI9+z9IQmD5lbUB3j8=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w25HGhWk019437
+	for <meta-arago@arago-project.org>; Mon, 5 Mar 2018 11:16:43 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Mon, 5 Mar 2018 09:30:33 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 5 Mar 2018 11:16:43 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Mon, 5 Mar 2018 09:30:33 -0600
+	Transport; Mon, 5 Mar 2018 11:16:43 -0600
 Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w25FUX95015755;
-	Mon, 5 Mar 2018 09:30:33 -0600
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w25HGhXN028891;
+	Mon, 5 Mar 2018 11:16:43 -0600
 From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 5 Mar 2018 10:30:32 -0500
-Message-ID: <1520263832-41055-1-git-send-email-sam.nelson@ti.com>
+Date: Mon, 5 Mar 2018 12:16:42 -0500
+Message-ID: <1520270202-54752-1-git-send-email-sam.nelson@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][master][PATCH v2] ti-ipc: Update corrected 3.47.01.00 GA version
+Subject: [meta-processor-sdk][morty][PATCH v2] ti-ipc: Update corrected 3.47.01.00 GA version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,7 +48,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Mar 2018 15:31:16 -0000
+X-List-Received-Date: Mon, 05 Mar 2018 17:17:24 -0000
 Content-Type: text/plain
 
 Minor update for documentation and build optimization
