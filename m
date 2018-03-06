@@ -1,46 +1,46 @@
-Return-Path: <e-ruei1@ti.com>
+Return-Path: <j-stiffler@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 7A95B529F8
+	by arago-project.org (Postfix) with ESMTPS id 512B1529F8
 	for <meta-arago@arago-project.org>;
-	Tue,  6 Mar 2018 16:40:11 +0000 (UTC)
+	Tue,  6 Mar 2018 16:40:17 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w26GdT47032656
-	for <meta-arago@arago-project.org>; Tue, 6 Mar 2018 10:39:29 -0600
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w26GdZbm032664
+	for <meta-arago@arago-project.org>; Tue, 6 Mar 2018 10:39:35 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1520354369;
-	bh=okB3ygLJ+TIX20FxonIZc9/xiYdD7cxQqBKg8dBjetM=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=accGw786g1Ul9e/D43eFgyBNclJQWbc9Xil5Es9KaP+FbJuDeljTKsZVJNx6ooUtA
-	VPCk4Y1Qy6U2hbNlMNyNuqrywjtPrN9YlhwcsAl20QtKuwAyaQ9ZKTePj31rL7cB+D
-	onJsLWF5Z+5zZ4yDwOb8kiHyvXB3LvKKUgc/2y3k=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w26GdTnl014404
-	for <meta-arago@arago-project.org>; Tue, 6 Mar 2018 10:39:29 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1520354375;
+	bh=KhCMdMJCIYGns1HIhwJZrMB2xK4q6iGVoZM2KgZtgRs=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=d2BOmoSIQJnWC/vmLatHuZEcV9xB4rOkwj8dNbQHJRlrm3RfkcHuTLAxU3Wus/RTk
+	k25TMlDkGKp3VPgfJhhE1q/qYQS4gjvV6F3BxW5F760+X49JGTl/tt9DB4pl0u+Yn9
+	V0Y2OptReCfT87IdpPQhdMN1/Yuwv10BsLExGoB8=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w26GdZjS014522
+	for <meta-arago@arago-project.org>; Tue, 6 Mar 2018 10:39:35 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Tue, 6 Mar 2018 10:39:29 -0600
-Received: from DLEE113.ent.ti.com ([fe80::a10b:711a:6ba7:e455]) by
-	DLEE113.ent.ti.com ([fe80::a10b:711a:6ba7:e455%17]) with mapi id
-	15.01.1261.035; Tue, 6 Mar 2018 10:39:29 -0600
-From: "Ruei, Eric" <e-ruei1@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [morty][meta-processor-sdk][PATCH]
-	video-graphics-test: bump SRCREV to pick up the latest version
-Thread-Index: AQHTtWTJEtUF7+Rk1kKK9isJmdroxqPDaHfQ
-Date: Tue, 6 Mar 2018 16:39:29 +0000
-Message-ID: <028b0ed9b2af4c1281ee27fd54ffdc7d@ti.com>
-References: <1520348769-6194-1-git-send-email-e-ruei1@ti.com>
-	<bc25f3fd-05f7-2991-6fbb-9ad20c1540d1@ti.com>
-In-Reply-To: <bc25f3fd-05f7-2991-6fbb-9ad20c1540d1@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.103.39]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Tue, 6 Mar 2018 10:39:35 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
+	Transport; Tue, 6 Mar 2018 10:39:35 -0600
+Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w26GdYdF031235;
+	Tue, 6 Mar 2018 10:39:35 -0600
+To: Denys Dmytriyenko <denys@ti.com>
+References: <1519932329-26946-1-git-send-email-j-stiffler@ti.com>
+	<356933e6-5334-3661-bb5f-2f892fcb13a7@ti.com>
+	<20180306162145.GM29482@edge> <20180306162554.GN29482@edge>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <73b9c7d2-a649-368f-e89a-0b8f1b82127f@ti.com>
+Date: Tue, 6 Mar 2018 11:39:34 -0500
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] [morty][meta-processor-sdk][PATCH] video-graphics-test: bump SRCREV to pick up the latest version
+In-Reply-To: <20180306162554.GN29482@edge>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [morty/rocko/master][PATCH v2 1/2] ti-llvm3.6: add dependency on groff-native
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,38 +53,56 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Mar 2018 16:40:11 -0000
+X-List-Received-Date: Tue, 06 Mar 2018 16:40:17 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-VGhhbmtzISBJIGp1c3Qgc3VibWl0dGVkIHBhdGNoIHYyLg0KDQpCZXN0IHJlZ2FyZHMsDQoNCkVy
-aWMNCg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogU3RpZmZsZXIsIEphY29i
-IA0KU2VudDogVHVlc2RheSwgTWFyY2ggMDYsIDIwMTggMTE6MDQgQU0NClRvOiBSdWVpLCBFcmlj
-OyBtZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW0VYVEVSTkFMXSBb
-bWV0YS1hcmFnb10gW21vcnR5XVttZXRhLXByb2Nlc3Nvci1zZGtdW1BBVENIXSB2aWRlby1ncmFw
-aGljcy10ZXN0OiBidW1wIFNSQ1JFViB0byBwaWNrIHVwIHRoZSBsYXRlc3QgdmVyc2lvbg0KDQpU
-aGlzIHBhdGNoIGRvZXMgbm90IGFwcGx5LiBQbGVhc2UgcmViYXNlIGFuZCBzZW5kIGEgdjIuDQoN
-Cg0KT24gMy82LzIwMTggMTA6MDYgQU0sIEVyaWMgUnVlaSB3cm90ZToNCj4gLSBpbmNsdWRlIGdj
-MzIwDQo+IC0gUVBBIGludGVyZmFjZSBjaGFuZ2VzDQo+IC0gZHVhbC1zY3JlZW4gc3VwcG9ydA0K
-Pg0KPiBTaWduZWQtb2ZmLWJ5OiBNYW5pc2hhIEFncmF3YWwgPG1hbmlzaGEuYWdyYXdhbEB0aS5j
-b20+DQo+IFNpZ25lZC1vZmYtYnk6IEVyaWMgUnVlaSA8ZS1ydWVpMUB0aS5jb20+DQo+IC0tLQ0K
-PiAgIHJlY2lwZXMtbXVsdGltZWRpYS92aWRlby1ncmFwaGljcy10ZXN0L3ZpZGVvLWdyYXBoaWNz
-LXRlc3RfMS4wLmJiIHwgNiArKystLS0NCj4gICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25z
-KCspLCAzIGRlbGV0aW9ucygtKQ0KPg0KPiBkaWZmIC0tZ2l0IGEvcmVjaXBlcy1tdWx0aW1lZGlh
-L3ZpZGVvLWdyYXBoaWNzLXRlc3QvdmlkZW8tZ3JhcGhpY3MtdGVzdF8xLjAuYmIgYi9yZWNpcGVz
-LW11bHRpbWVkaWEvdmlkZW8tZ3JhcGhpY3MtdGVzdC92aWRlby1ncmFwaGljcy10ZXN0XzEuMC5i
-Yg0KPiBpbmRleCAyOGFhY2RmLi5lYzY3NmU3IDEwMDY0NA0KPiAtLS0gYS9yZWNpcGVzLW11bHRp
-bWVkaWEvdmlkZW8tZ3JhcGhpY3MtdGVzdC92aWRlby1ncmFwaGljcy10ZXN0XzEuMC5iYg0KPiAr
-KysgYi9yZWNpcGVzLW11bHRpbWVkaWEvdmlkZW8tZ3JhcGhpY3MtdGVzdC92aWRlby1ncmFwaGlj
-cy10ZXN0XzEuMC5iYg0KPiBAQCAtNCwxMiArNCwxMiBAQCBTRUNUSU9OID0gIm11bHRpbWVkaWEi
-DQo+ICAgTElDRU5TRSA9ICJHUEx2MiINCj4gICBMSUNfRklMRVNfQ0hLU1VNID0gImZpbGU6Ly9M
-SUNFTlNFO21kNT1jN2NhNzA3NzA0ZDMzNTRhNjRmZWViNGYxOWY1MmViNSINCj4gICANCj4gLURF
-UEVORFMgKz0gImxpYmRybSINCj4gK0RFUEVORFMgKz0gImxpYmRybSB0aS1nYzMyMC1saWJzIg0K
-PiAgIA0KPiAtUFIgPSAicjAiDQo+ICtQUiA9ICJyMSINCj4gICANCj4gICBCUkFOQ0ggPSAibWFz
-dGVyIg0KPiAtU1JDUkVWID0gImViYzdhYjQ0ZDA1ZmM3MjZiMGRkYzdmNGI0NWQ3MWQ3NTA5MzEz
-ZjUiDQo+ICtTUkNSRVYgPSAiYmRmYmM0MTc5ZDhkMTc2ZmVlYzFkZjE0ODcyOGIxODgyZmNhNzQx
-NiINCj4gICANCj4gICBTUkNfVVJJID0gImdpdDovL2dpdC50aS5jb20vc2l0YXJhLWxpbnV4L3Zp
-ZGVvLWdyYXBoaWNzLXRlc3QuZ2l0O3Byb3RvY29sPWdpdDticmFuY2g9JHtCUkFOQ0h9IFwNCj4g
-ICAiDQoNCg==
+
+
+On 3/6/2018 11:25 AM, Denys Dmytriyenko wrote:
+> On Tue, Mar 06, 2018 at 11:21:46AM -0500, Denys Dmytriyenko wrote:
+>> That's what I was just asking Eric last night...
+> Sorry, disregard this - I confused this for qt-tstat.
+>
+>
+>> On Tue, Mar 06, 2018 at 08:28:29AM -0500, Jacob Stiffler wrote:
+>>> I see that this was accepted into rocko/master, but can this also be
+>>> accepted into morty?
+> Why do you need it in morty? It would use host groff just fine...
+
+I ran into this while building a different distro within a docker 
+container. The default container did not have groff, so it does not seem 
+safe to assume that all hosts will have groff.
+
+>
+>>> On 3/1/2018 2:25 PM, Jacob Stiffler wrote:
+>>>> * groff is used to generate documentaion during the install task
+>>>>
+>>>> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+>>>> ---
+>>>> * No change for this patch, but an additional patch is added to the set.
+>>>>
+>>>>   meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb | 2 +-
+>>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+>>>> index 4f36310..91d3cea 100644
+>>>> --- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+>>>> +++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+>>>> @@ -17,7 +17,7 @@ require recipes-core/llvm/llvm.inc
+>>>>   LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=47e311aa9caedd1b3abf098bd7814d1d"
+>>>> -DEPENDS += "libxml2"
+>>>> +DEPENDS += "libxml2 groff-native"
+>>>>   DEPENDS_append_class-target = " valgrind"
+>>>>   LLVM_DIR = "ti-llvm${PV}"
+>>> _______________________________________________
+>>> meta-arago mailing list
+>>> meta-arago@arago-project.org
+>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
 
