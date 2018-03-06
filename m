@@ -1,30 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id A384352994
+	by arago-project.org (Postfix) with ESMTPS id 5D85F52986
 	for <meta-arago@arago-project.org>;
-	Mon,  5 Mar 2018 23:30:14 +0000 (UTC)
+	Tue,  6 Mar 2018 04:03:33 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3151820855;
-	Mon,  5 Mar 2018 23:29:33 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C0B8620A8A;
+	Tue,  6 Mar 2018 04:02:51 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 82Zz_FsjaGFI; Mon,  5 Mar 2018 23:29:33 +0000 (UTC)
+	with ESMTP id 5BOYtdKLUpfK; Tue,  6 Mar 2018 04:02:51 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1359B20059;
-	Mon,  5 Mar 2018 23:29:32 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8BFD02098D;
+	Tue,  6 Mar 2018 04:02:50 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id C47261632FA;
-	Mon,  5 Mar 2018 18:29:31 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id DA3D4163310;
+	Mon,  5 Mar 2018 23:02:49 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Mon,  5 Mar 2018 18:29:31 -0500
-Message-Id: <1520292571-33202-1-git-send-email-denys@ti.com>
+Date: Mon,  5 Mar 2018 23:02:47 -0500
+Message-Id: <1520308967-16965-2-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [rocko][PATCH] README: update references to rocko
+In-Reply-To: <1520308967-16965-1-git-send-email-denys@ti.com>
+References: <1520308967-16965-1-git-send-email-denys@ti.com>
+Subject: [rocko/master][PATCH 2/2] external-linaro-toolchain: update custom linux-libc-headers to 4.14.24
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,100 +39,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Mar 2018 23:30:15 -0000
+X-List-Received-Date: Tue, 06 Mar 2018 04:03:33 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/README | 16 ++++++++--------
- meta-arago-extras/README | 14 +++++++-------
- 2 files changed, 15 insertions(+), 15 deletions(-)
+ .../recipes-core/meta/external-linaro-toolchain.bbappend              | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/README b/meta-arago-distro/README
-index 03157ae..c1133cd 100644
---- a/meta-arago-distro/README
-+++ b/meta-arago-distro/README
-@@ -1,33 +1,33 @@
- meta-arago-distro provides Arago distribution configuration for TI SDK products
+diff --git a/meta-arago-distro/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-distro/recipes-core/meta/external-linaro-toolchain.bbappend
+index 0120c12..fa3210b 100644
+--- a/meta-arago-distro/recipes-core/meta/external-linaro-toolchain.bbappend
++++ b/meta-arago-distro/recipes-core/meta/external-linaro-toolchain.bbappend
+@@ -3,8 +3,8 @@
+ # on linux-libc-headers creates circular dependencies now. Mostly
+ # duplication of code from corresponding recipe.
  
--This layer works with the latest Yocto Project release (currently 2.2+) and tracks
--the stable/maintenance branches (currently "master") of the corresponding layers:
-+This layer works with the latest Yocto Project release (currently 2.4+) and tracks
-+the stable/maintenance branches (currently "rocko") of the corresponding layers:
+-BRANCH = "ti-lsk-linux-4.9.y"
+-SRCREV = "1c74e8801cf58a30394ae92236895599f2c77253"
++BRANCH = "ti-lsk-linux-4.14.y"
++SRCREV = "57341df0b46c6be612d7487fb0a1df8b056449d8"
  
- URI: git://git.openembedded.org/openembedded-core
--branch: master
-+branch: rocko
- revision: HEAD
- layers: meta
- 
- URI: git://git.openembedded.org/meta-openembedded
--branch: master
-+branch: rocko
- revision: HEAD
- layers: meta-oe, meta-networking, meta-python
- 
- URI: git://git.yoctoproject.org/meta-ti
--branch: master
-+branch: rocko
- revision: HEAD
- 
- URI: https://github.com/meta-qt5/meta-qt5
--branch: master
-+branch: rocko
- revision: HEAD
- 
- URI: git://arago-project.org/git/meta-arago
--branch: master
-+branch: rocko
- revision: HEAD
- layers: meta-arago-extras
- 
- URI: git://git.linaro.org/openembedded/meta-linaro
--branch: master
-+branch: rocko
- revision: HEAD
- layers: meta-linaro-toolchain, meta-optee
- 
-diff --git a/meta-arago-extras/README b/meta-arago-extras/README
-index 62416cd..a5184b6 100644
---- a/meta-arago-extras/README
-+++ b/meta-arago-extras/README
-@@ -1,28 +1,28 @@
- meta-arago-extras provides additional TI SDK applications that are distro-agnostic
- 
--This layer works with the latest Yocto Project release (currently 2.2+) and tracks
--the stable/maintenance branches (currently "master") of the corresponding layers:
-+This layer works with the latest Yocto Project release (currently 2.4+) and tracks
-+the stable/maintenance branches (currently "rocko") of the corresponding layers:
- 
- URI: git://git.openembedded.org/openembedded-core
--branch: master
-+branch: rocko
- revision: HEAD
- layers: meta
- 
- URI: git://git.openembedded.org/meta-openembedded
--branch: master
-+branch: rocko
- revision: HEAD
- layers: meta-oe, meta-networking, meta-python
- 
- URI: git://git.yoctoproject.org/meta-ti
--branch: master
-+branch: rocko
- revision: HEAD
- 
- URI: https://github.com/meta-qt5/meta-qt5
--branch: master
-+branch: rocko
- revision: HEAD
- 
- URI: git://git.linaro.org/openembedded/meta-linaro
--branch: master
-+branch: rocko
- revision: HEAD
- layers: meta-linaro-toolchain
- 
+ KERNEL_GIT_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git"
+ KERNEL_GIT_PROTOCOL = "git"
 -- 
 2.7.4
 
