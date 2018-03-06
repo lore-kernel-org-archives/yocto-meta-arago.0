@@ -1,43 +1,41 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 4C1D052975
+Return-Path: <sjmolfetta@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 3993A529F8
 	for <meta-arago@arago-project.org>;
-	Tue,  6 Mar 2018 13:29:12 +0000 (UTC)
+	Tue,  6 Mar 2018 14:25:28 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w26DSTMY031014
-	for <meta-arago@arago-project.org>; Tue, 6 Mar 2018 07:28:29 -0600
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w26EOjNv011054
+	for <meta-arago@arago-project.org>; Tue, 6 Mar 2018 08:24:45 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1520342909;
-	bh=WP3jtost165ZDeXAKkw86+5IsDBmmg4tpBueLKRRIHw=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=NDYbuCT4MmJwNgjrLPM4+4gbZVvYfumitUy2Vd0L0pximAfVfnI1+8+aahKHCtP28
-	PjBsk0m2YxwkrBAdtIwxm1WfhxP5ai02u0ERM5yyHfREuyijtHEMCn/Wd0g2YlOw0d
-	yPMxIfQP5dcGppjp4ljYfW+VhMcMkmAV4ZgsfHtk=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w26DSTbD001554
-	for <meta-arago@arago-project.org>; Tue, 6 Mar 2018 07:28:29 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1520346285;
+	bh=U/f/m7FDv9mFnEUg6DAYatZuw27hTaTNFPU44KR9XTA=;
+	h=From:To:CC:Subject:Date;
+	b=YK8UMoVEoyXqWlKQhbHxvRLP2y5QIHcy1BG9iQcoh8ZUoWRTZVX+Bs0BhuMbKB/ph
+	zHsbXqA1cwcuCgpN2szbgSsjaAE9z82zOv/Z0kFAdhheO2uetR1lvh0DW9tU8Xt9g6
+	d75o1kAOMAm21cihwpKV4Su425pJlpPAPada40yw=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w26EOjON022930
+	for <meta-arago@arago-project.org>; Tue, 6 Mar 2018 08:24:45 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Tue, 6 Mar 2018 07:28:29 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 6 Mar 2018 08:24:45 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Tue, 6 Mar 2018 07:28:29 -0600
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w26DSTxn011954
-	for <meta-arago@arago-project.org>; Tue, 6 Mar 2018 07:28:29 -0600
+	Transport; Tue, 6 Mar 2018 08:24:45 -0600
+Received: from houapbldadm.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w26EOj6L011985;
+	Tue, 6 Mar 2018 08:24:45 -0600
+From: Stephen Molfetta <sjmolfetta@ti.com>
 To: <meta-arago@arago-project.org>
-References: <1519932329-26946-1-git-send-email-j-stiffler@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <356933e6-5334-3661-bb5f-2f892fcb13a7@ti.com>
-Date: Tue, 6 Mar 2018 08:28:29 -0500
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+Date: Tue, 6 Mar 2018 08:24:44 -0600
+Message-ID: <1520346284-2853-1-git-send-email-sjmolfetta@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <1519932329-26946-1-git-send-email-j-stiffler@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [morty/rocko/master][PATCH v2 1/2] ti-llvm3.6: add dependency on groff-native
+Subject: [meta-processor-sdk][master][PATCH] dra7xx: updating board-rtos depends
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,37 +48,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Mar 2018 13:29:13 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Tue, 06 Mar 2018 14:25:29 -0000
+Content-Type: text/plain
 
-I see that this was accepted into rocko/master, but can this also be 
-accepted into morty?
+DRA7xx board changes have introduced dependencies on mmcsd-lld-rtos and
+pm-lld-rtos.  Adding these modules to the dra7xx board depends list as
+a staging change until the omap-15 depends are updated in meta-ti
+---
+ recipes-bsp/board-rtos/board-rtos_git.bbappend | 4 ++++
+ 1 file changed, 4 insertions(+)
+ create mode 100644 recipes-bsp/board-rtos/board-rtos_git.bbappend
 
-
-On 3/1/2018 2:25 PM, Jacob Stiffler wrote:
-> * groff is used to generate documentaion during the install task
->
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
-> * No change for this patch, but an additional patch is added to the set.
->
->   meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-> index 4f36310..91d3cea 100644
-> --- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-> +++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-> @@ -17,7 +17,7 @@ require recipes-core/llvm/llvm.inc
->   
->   LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=47e311aa9caedd1b3abf098bd7814d1d"
->   
-> -DEPENDS += "libxml2"
-> +DEPENDS += "libxml2 groff-native"
->   DEPENDS_append_class-target = " valgrind"
->   
->   LLVM_DIR = "ti-llvm${PV}"
+diff --git a/recipes-bsp/board-rtos/board-rtos_git.bbappend b/recipes-bsp/board-rtos/board-rtos_git.bbappend
+new file mode 100644
+index 0000000..e3ed986
+--- /dev/null
++++ b/recipes-bsp/board-rtos/board-rtos_git.bbappend
+@@ -0,0 +1,4 @@
++DEPENDS_append_dra7xx = " pm-lld-rtos \
++                          mmcsd-lld-rtos \
++"
++
+-- 
+2.7.4
 
 
