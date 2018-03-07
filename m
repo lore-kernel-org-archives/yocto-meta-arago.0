@@ -1,42 +1,41 @@
-Return-Path: <h-gou@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 81B8652983
+Return-Path: <m-radhakrishnan2@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 63E1052975
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Mar 2018 20:18:15 +0000 (UTC)
+	Wed,  7 Mar 2018 22:17:18 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w27KHWI0010410
-	for <meta-arago@arago-project.org>; Wed, 7 Mar 2018 14:17:32 -0600
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w27MGYGT004775
+	for <meta-arago@arago-project.org>; Wed, 7 Mar 2018 16:16:34 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1520453852;
-	bh=8FAYHJ98lBsRHhiCRtI8IxnPZzKtSyNUFwE7V+4nCqY=;
-	h=From:To:CC:Subject:Date;
-	b=NDrRUq6AWBGwNfpcKvDJB/DKBdsgq6SmI/KN6bExRde9iF/sermZ+aj8KOqJSTcQh
-	xuWuMYzEWOYjArvfNhw6rJvf1Fpgs6PZAKFk+RDLLjKGo/69vWJCY4Y/0UKo7VCDvs
-	8E+rYRfNFtnoJU/vhyMK0+hBKOuOPdikobFaGTUc=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w27KHWDn012936
-	for <meta-arago@arago-project.org>; Wed, 7 Mar 2018 14:17:32 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1520460994;
+	bh=q1Eh3Vs7ZWNnSSqxEAJDXp0hdyrATgvz9noh1DaGz7I=;
+	h=From:To:Subject:Date;
+	b=mtL+bqjlLXjST4Vi4YTewQPBJL7yvsp3UpXgcJgLPD4p84hdVzCsyjNvpd0t91tpk
+	hkD5SCBO7r1J0pqtCAoz/jDPKtD0aOWHRH0GjiM/Zue5MQgLSiU5qikgDB04MmEWaf
+	z3laJ0iDLx/tHfGprN1CNBgPTOjc5X/+p553qPTc=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w27MGYHe023982
+	for <meta-arago@arago-project.org>; Wed, 7 Mar 2018 16:16:34 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Wed, 7 Mar 2018 14:17:31 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 7 Mar 2018 16:16:34 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Wed, 7 Mar 2018 14:17:31 -0600
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Wed, 7 Mar 2018 16:16:34 -0600
+Received: from uda0875154a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w27KHQj9012274;
-	Wed, 7 Mar 2018 14:17:29 -0600
-From: Hongmei Gou <a0271529@ti.com>
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w27MGYDY015810
+	for <meta-arago@arago-project.org>; Wed, 7 Mar 2018 16:16:34 -0600
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 7 Mar 2018 15:17:23 -0500
-Message-ID: <1520453843-11149-1-git-send-email-a0271529@ti.com>
+Date: Wed, 7 Mar 2018 17:16:33 -0500
+Message-ID: <1520460993-28842-1-git-send-email-m-radhakrishnan2@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [matrix-gui-v2-apps] [patch]ivahd_multimedia_h264dec: update the audio sink for AM5 IDKs
+Subject: [morty][meta-processor-sdk][PATCH] starterware-rtos: Adding dependency to ti-pdk-build & env variables
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,35 +48,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Mar 2018 20:18:15 -0000
+X-List-Received-Date: Wed, 07 Mar 2018 22:17:19 -0000
 Content-Type: text/plain
 
-* Use fakesink as the audio sink since AM5 IDKs do not have on-board audio ports.
-  Meanwhile, the primary display of AM5 IDKs is LCD instead of HDMI.
-
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
+Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 ---
- multimedia_apps/ivahd_multimedia_h264dec/runIvahdH264Dec.sh | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
+ recipes-bsp/starterware/starterware-rtos_git.bbappend | 5 +++++
+ 1 file changed, 5 insertions(+)
+ create mode 100644 recipes-bsp/starterware/starterware-rtos_git.bbappend
 
-diff --git a/multimedia_apps/ivahd_multimedia_h264dec/runIvahdH264Dec.sh b/multimedia_apps/ivahd_multimedia_h264dec/runIvahdH264Dec.sh
-index 028fea8..a0cbd37 100644
---- a/multimedia_apps/ivahd_multimedia_h264dec/runIvahdH264Dec.sh
-+++ b/multimedia_apps/ivahd_multimedia_h264dec/runIvahdH264Dec.sh
-@@ -8,11 +8,8 @@ AUDIO_SINK="alsasink"
- 
- if cat /proc/device-tree/model | grep "IDK"
- then
--  if modetest | grep "HDMI" | grep "disconnected" > /dev/null
--  then
--    # Use audio fakesink for IDK when HDMI is disconnected
--    AUDIO_SINK="fakesink"
--  fi
-+  # Use fakesink for IDKs as they do not have audio ports
-+  AUDIO_SINK="fakesink"
- else
-   # Detect audio card for GP EVM
-   AUDIO_CARD=$(aplay -l | grep -i -v hdmi | grep -i -o 'card [0-9]*' | grep -o [0-9])
+diff --git a/recipes-bsp/starterware/starterware-rtos_git.bbappend b/recipes-bsp/starterware/starterware-rtos_git.bbappend
+new file mode 100644
+index 0000000..07fd9b4
+--- /dev/null
++++ b/recipes-bsp/starterware/starterware-rtos_git.bbappend
+@@ -0,0 +1,5 @@
++export PDK_INSTALL_PATH = "${PDK_INSTALL_DIR}/packages"
++export XDC_INSTALL_PATH = "${XDC_INSTALL_DIR}"
++
++DEPENDS_append=" ti-pdk-build-rtos"
++
 -- 
 1.9.1
 
