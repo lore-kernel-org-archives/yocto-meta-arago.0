@@ -1,41 +1,45 @@
-Return-Path: <m-radhakrishnan2@ti.com>
+Return-Path: <j-stiffler@ti.com>
 Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id E018252975
+	by arago-project.org (Postfix) with ESMTPS id A0B8352975
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Mar 2018 18:37:17 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w27IaYFO002243
-	for <meta-arago@arago-project.org>; Wed, 7 Mar 2018 12:36:34 -0600
+	Wed,  7 Mar 2018 19:39:07 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w27JcNOG011979
+	for <meta-arago@arago-project.org>; Wed, 7 Mar 2018 13:38:23 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1520447794;
-	bh=4g8ZD7+0rMxvLTTgT8EoCn5VF+X+daZ517iwoiioM6E=;
-	h=From:To:Subject:Date;
-	b=emw7rAyxKFjGNslO9av9akHgOgki5Sfz4h/FQO8AwrncUrlUQx3gYp2rAP9tDzrWv
-	45/J7bl/w52aTpHSPGp+io4Qquqf7JFSnBDp8n+CTrPaXs74NlED6dBFDQA2airo8t
-	Osxft/si4bYrfjCDgWf90kwUuyf4/eYXQtk35btk=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w27IaYmk014455
-	for <meta-arago@arago-project.org>; Wed, 7 Mar 2018 12:36:34 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1520451504;
+	bh=6+1lJbCquH3M0mdOJHeXzqfEh9Dh/OB/9z6fVPyimBQ=;
+	h=From:To:Subject:Date:References:In-Reply-To;
+	b=YSkEJg4lBU0GSfRo2+mY+aD29I7BiZB37UDrXQ0GSyYEH9kagRpzCOinSFiOV4J5d
+	ltbK914xRbLRl4NzIQJgfYVgoGiEqimvqIEAxD9JhJWjNhdO2Ku8KrYJY3xqrY0DpP
+	T/5c71hOcHHIAgMiUlU1VXM5+0PrRMueXTTMvJK8=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w27JcNFt024542
+	for <meta-arago@arago-project.org>; Wed, 7 Mar 2018 13:38:23 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Wed, 7 Mar 2018 12:36:34 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Wed, 7 Mar 2018 12:36:34 -0600
-Received: from uda0875154a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w27IaXeR005668
-	for <meta-arago@arago-project.org>; Wed, 7 Mar 2018 12:36:34 -0600
-From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 7 Mar 2018 13:36:32 -0500
-Message-ID: <1520447792-23191-1-git-send-email-m-radhakrishnan2@ti.com>
-X-Mailer: git-send-email 1.9.1
+	Wed, 7 Mar 2018 13:38:23 -0600
+Received: from DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222]) by
+	DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222%18]) with mapi id
+	15.01.1261.035; Wed, 7 Mar 2018 13:38:23 -0600
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Radhakrishnan, Mahesh" <m-radhakrishnan2@ti.com>,
+	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: [EXTERNAL] [meta-arago] [morty][meta-processor-sdk][PATCH]
+	ti-pdk-build-rtos: Updating the version to include fix for K2G-HS
+Thread-Index: AQHTtkM8+dM4VGUxRUOTT6yyFReqJqPFKxmw
+Date: Wed, 7 Mar 2018 19:38:23 +0000
+Message-ID: <efa447695eb448658d41d06c8e223128@ti.com>
+References: <1520447792-23191-1-git-send-email-m-radhakrishnan2@ti.com>
+In-Reply-To: <1520447792-23191-1-git-send-email-m-radhakrishnan2@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.218.109.201]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty][meta-processor-sdk][PATCH] ti-pdk-build-rtos: Updating the version to include fix for K2G-HS
+Subject: Re: [EXTERNAL] [morty][meta-processor-sdk][PATCH] ti-pdk-build-rtos: Updating the version to include fix for K2G-HS
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,35 +52,57 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Mar 2018 18:37:19 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 07 Mar 2018 19:39:08 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
----
- recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Pushed.
 
-diff --git a/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb b/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb
-index 3e8157d..4b2936f 100644
---- a/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb
-+++ b/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb
-@@ -5,14 +5,14 @@ LIC_FILES_CHKSUM = "file://makerules/env.mk;beginline=1;endline=31;md5=10503e8de
- require recipes-ti/includes/ti-paths.inc
- 
- PV = "01.00.00.08"
--PR = "r1"
-+PR = "r2"
- 
- PDK_BUILD_GIT_URI = "git://git.ti.com/keystone-rtos/processor-pdk-build.git"
- PDK_BUILD_GIT_PROTOCOL = "git"
- PDK_BUILD_GIT_BRANCH = "master"
- 
- # Below Commit ID corresponds to "DEV.PDK_BUILD.01.00.00.08"
--PDK_BUILD_SRCREV = "f68931ff82eb051fc026ae28b2555f3c581eb6b9"
-+PDK_BUILD_SRCREV = "beb1161f0d346fd0c079860c4aa543a033e74d0d"
- 
- BRANCH = "${PDK_BUILD_GIT_BRANCH}"
- SRC_URI = "${PDK_BUILD_GIT_URI};protocol=${PDK_BUILD_GIT_PROTOCOL};branch=${BRANCH}"
--- 
-1.9.1
-
+> -----Original Message-----
+> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> bounces@arago-project.org] On Behalf Of Radhakrishnan, Mahesh
+> Sent: Wednesday, March 07, 2018 1:37 PM
+> To: meta-arago@arago-project.org
+> Subject: [EXTERNAL] [meta-arago] [morty][meta-processor-sdk][PATCH] ti-
+> pdk-build-rtos: Updating the version to include fix for K2G-HS
+>=20
+> ---
+>  recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb b/recipes-t=
+i/ti-
+> pdk-build/ti-pdk-build-rtos_git.bb
+> index 3e8157d..4b2936f 100644
+> --- a/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb
+> +++ b/recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bb
+> @@ -5,14 +5,14 @@ LIC_FILES_CHKSUM =3D
+> "file://makerules/env.mk;beginline=3D1;endline=3D31;md5=3D10503e8de
+>  require recipes-ti/includes/ti-paths.inc
+>=20
+>  PV =3D "01.00.00.08"
+> -PR =3D "r1"
+> +PR =3D "r2"
+>=20
+>  PDK_BUILD_GIT_URI =3D "git://git.ti.com/keystone-rtos/processor-pdk-
+> build.git"
+>  PDK_BUILD_GIT_PROTOCOL =3D "git"
+>  PDK_BUILD_GIT_BRANCH =3D "master"
+>=20
+>  # Below Commit ID corresponds to "DEV.PDK_BUILD.01.00.00.08"
+> -PDK_BUILD_SRCREV =3D "f68931ff82eb051fc026ae28b2555f3c581eb6b9"
+> +PDK_BUILD_SRCREV =3D "beb1161f0d346fd0c079860c4aa543a033e74d0d"
+>=20
+>  BRANCH =3D "${PDK_BUILD_GIT_BRANCH}"
+>  SRC_URI =3D
+> "${PDK_BUILD_GIT_URI};protocol=3D${PDK_BUILD_GIT_PROTOCOL};branch=3D${B
+> RANCH}"
+> --
+> 1.9.1
+>=20
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
