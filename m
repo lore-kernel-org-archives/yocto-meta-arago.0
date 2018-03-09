@@ -1,45 +1,30 @@
-Return-Path: <h-gou@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id E0897529F9
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id D278E529F9
 	for <meta-arago@arago-project.org>;
-	Fri,  9 Mar 2018 15:31:36 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w29FUo2Q031558
-	for <meta-arago@arago-project.org>; Fri, 9 Mar 2018 09:30:50 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1520609450;
-	bh=y7aHq06VB25fkpnHQ1DG5ROJqMTLe7hgqMEOC+FuJMo=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=Ek5v7mM2KKp8bMVV1Rqi8vY5SpB3KB8mmpN1kWh+7qMe7ehrRkW/LxUqXok90Fojo
-	lFGDi0dRtYa6egOStSMF3KySKC3ntQP1NDTagKN7DNnhfWMjtdyUV9e5axt2j/7ghz
-	JxcLYiIktXVRVBWq79qzocfGbhpiPlx/B+FfxCYk=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w29FUovi026893
-	for <meta-arago@arago-project.org>; Fri, 9 Mar 2018 09:30:50 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Fri, 9 Mar 2018 09:30:50 -0600
-Received: from DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f]) by
-	DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f%18]) with mapi id
-	15.01.1261.035; Fri, 9 Mar 2018 09:30:50 -0600
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
-	"Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [morty/rocko/master] [PATCH] matrix-gui-apps-git:
-	bump SRCREV for fixes
-Thread-Index: AQHTtmcAJYjhU9R97UChSJH6DftUhaPICk0g
-Date: Fri, 9 Mar 2018 15:30:50 +0000
-Message-ID: <10482baca2ea4336af0734b86c2cc8e9@ti.com>
-References: <1520463157-12324-1-git-send-email-a0271529@ti.com>
-In-Reply-To: <1520463157-12324-1-git-send-email-a0271529@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.103.131]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-MIME-Version: 1.0
-Subject: Re: [morty/rocko/master] [PATCH] matrix-gui-apps-git: bump SRCREV for fixes
+	Fri,  9 Mar 2018 21:07:57 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 0F3FF20B23;
+	Fri,  9 Mar 2018 21:07:12 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id gAYE4FHLEO7O; Fri,  9 Mar 2018 21:07:12 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DF2E320059;
+	Fri,  9 Mar 2018 21:07:10 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 7C58A163325;
+	Fri,  9 Mar 2018 16:07:10 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Fri,  9 Mar 2018 16:07:10 -0500
+Message-Id: <1520629630-15316-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [rocko/master][PATCH] branding-{core, processor-sdk}: re-enable sgx and gc320 graphics support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,52 +37,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Mar 2018 15:31:37 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 09 Mar 2018 21:07:58 -0000
 
-Ping...
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/conf/distro/include/branding-core.inc          | 4 ----
+ meta-arago-distro/conf/distro/include/branding-processor-sdk.inc | 4 ----
+ 2 files changed, 8 deletions(-)
 
-> -----Original Message-----
-> From: Gou, Hongmei
-> Sent: Wednesday, March 07, 2018 5:53 PM
-> To: meta-arago@arago-project.org
-> Cc: Gou, Hongmei
-> Subject: [meta-arago] [morty/rocko/master] [PATCH] matrix-gui-apps-git:
-> bump SRCREV for fixes
->=20
-> * browser_chromium: fix runGoogleChrome.sh
-> * runGoogleChrome: fix line endings
-> * ivahd_multimedia_h264dec: update the audio sink for AM5 IDKs
->=20
-> Signed-off-by: Hongmei Gou <a0271529@ti.com>
-> ---
->  meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.in=
-c
-> b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> index 2d93b34..ff90a66 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> @@ -4,9 +4,9 @@ LICENSE_CHECKSUM =3D
-> "LICENSE;md5=3D6e0ae7214f6c74c149cb25f373057fa9"
->  LIC_FILES_CHKSUM :=3D "file://../${LICENSE_CHECKSUM}"
->=20
->  SRC_URI =3D "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-
-> apps.git;protocol=3Dgit;branch=3D${BRANCH}"
-> -SRCREV =3D "094736065e1a15a49da19ef4c5a100aa763c41d1"
-> +SRCREV =3D "2ef38ec90f2523f138fb54f11f9a895145d88522"
->  BRANCH =3D "master"
-> -INC_PR =3D "r50"
-> +INC_PR =3D "r51"
->=20
->  # Pull in the base package for installing matrix applications  require m=
-atrix-
-> gui-apps.inc
-> --
-> 1.9.1
+diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
+index 717d355..10c5acf 100644
+--- a/meta-arago-distro/conf/distro/include/branding-core.inc
++++ b/meta-arago-distro/conf/distro/include/branding-core.inc
+@@ -15,9 +15,5 @@ ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
+ # latest code base, until it is fixed for gstreamer > 1.10
+ MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('mmip', '')}"
+ 
+-# Temporarily disable "sgx" machine feature for all SOCs while building
+-# latest code base, until it is fixed for kernel 4.14
+-MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('sgx', '')}"
+-
+ # Temporarily disable UBI images for K2 "server" rootfs due to size
+ IMAGE_FSTYPES_remove_pn-tisdk-server-rootfs-image = "ubi ubifs"
+diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+index 549c52a..e434f0d 100644
+--- a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
++++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+@@ -36,7 +36,3 @@ SRCIPK_CUSTOM_GIT_MESSAGE_pn-u-boot-ti-staging = "${SRCIPK_GIT_COMMIT_MESSAGE}"
+ # Temporarily disable "mmip" machine feature for all SOCs while building
+ # latest code base, until it is fixed for gstreamer 1.12
+ MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('mmip', '')}"
+-
+-# Temporarily disable "sgx" machine feature for all SOCs while building
+-# latest code base, until it is fixed for kernel 4.14
+-MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('sgx', '')}"
+-- 
+2.7.4
 
 
