@@ -1,41 +1,42 @@
-Return-Path: <yan-liu@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 7CC3352970
+Return-Path: <d-senicic1@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 221AE52983
 	for <meta-arago@arago-project.org>;
-	Tue, 13 Mar 2018 14:16:20 +0000 (UTC)
+	Wed, 14 Mar 2018 23:41:58 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2DEFTSK018074
-	for <meta-arago@arago-project.org>; Tue, 13 Mar 2018 09:15:30 -0500
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2ENf5i9022488
+	for <meta-arago@arago-project.org>; Wed, 14 Mar 2018 18:41:05 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1520950530;
-	bh=k7RhfhmWvE+7ADa3lIKVlGaOMJlF/IrJ/1LQVvTODTM=;
+	s=ti-com-17Q1; t=1521070865;
+	bh=RBK+AJnhXg9eQPIIA/p2C/l0v/yRCSXwgVgqTM+/Mgw=;
 	h=From:To:CC:Subject:Date;
-	b=L6XhrT9TofXvUV0zGfgtahujNGX57nJLHI+TvNIB1YTyuJF/+ZWHffaCLBYvDfmOp
-	2Gpi6r/BRBgIYnhAICfBhSJ5W0aT0eTH+kO55zIIPDmrTXZt0R+NQ9gwUx2Vs7VhZ7
-	yBm1oX3lEsBO5pZAlZ594w6IZjWI4KCzKcBYEEko=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2DEFTY4026460
-	for <meta-arago@arago-project.org>; Tue, 13 Mar 2018 09:15:29 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	b=SoXAeIY0/AL+OewOt+930o2nfv8oMxK6zaY2kNyB6Cv9NQi6aavu1GGX13WKPt+hs
+	BwHg2Xc+Ma1ABYh6maLoQuGRce94ajipaMZMC82Q4AiB/tUZId9j/3FaXsZmX9ETQA
+	OwfqytLJih4YdAe/MZH+s9iJeo0FmSEQbqxx0qN4=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2ENf5me015768
+	for <meta-arago@arago-project.org>; Wed, 14 Mar 2018 18:41:05 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Tue, 13 Mar 2018 09:15:29 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 14 Mar 2018 18:41:05 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Tue, 13 Mar 2018 09:15:29 -0500
-Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Wed, 14 Mar 2018 18:41:05 -0500
+Received: from UDA0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2DEFTr4005281;
-	Tue, 13 Mar 2018 09:15:29 -0500
-From: <yan-liu@ti.com>
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2ENf5Ae018868;
+	Wed, 14 Mar 2018 18:41:05 -0500
+From: Djordje Senicic <x0157990@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 13 Mar 2018 10:12:55 -0400
-Message-ID: <1520950375-1905-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Wed, 14 Mar 2018 19:40:47 -0400
+Message-ID: <1521070847-6029-1-git-send-email-x0157990@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Cc: d-senicic1@ti.com, Djordje Senicic <x0157990@ti.com>
+Subject: [meta-processor-sdk] [PATCH] ros: mmwave: Update to latest ROS driver for mmwave radar
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,39 +49,153 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Mar 2018 14:16:20 -0000
+X-List-Received-Date: Wed, 14 Mar 2018 23:41:59 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
-
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Djordje Senicic <x0157990@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../files/0001-CMakeLists-remote-rpath.patch       |  12 ----------
+ .../append_cfg/map_4ft_by_6ft_border_large.bt      | Bin 0 -> 1062 bytes
+ .../files/append_launch/plsdk_rviz_1443_3d.launch  |  26 +++++++++++++++++++++
+ .../files/append_launch/plsdk_rviz_1642_2d.launch  |  26 +++++++++++++++++++++
+ .../ros-mmwave/mmwave-ros-pkg-master_0.1.0.bb      |  12 ++++++----
+ 5 files changed, 60 insertions(+), 16 deletions(-)
+ delete mode 100644 recipes-ros/ros-mmwave/files/0001-CMakeLists-remote-rpath.patch
+ create mode 100644 recipes-ros/ros-mmwave/files/append_cfg/map_4ft_by_6ft_border_large.bt
+ create mode 100644 recipes-ros/ros-mmwave/files/append_launch/plsdk_rviz_1443_3d.launch
+ create mode 100644 recipes-ros/ros-mmwave/files/append_launch/plsdk_rviz_1642_2d.launch
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
-index e401d23..b827008 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+diff --git a/recipes-ros/ros-mmwave/files/0001-CMakeLists-remote-rpath.patch b/recipes-ros/ros-mmwave/files/0001-CMakeLists-remote-rpath.patch
+deleted file mode 100644
+index 4ad4996..0000000
+--- a/recipes-ros/ros-mmwave/files/0001-CMakeLists-remote-rpath.patch
++++ /dev/null
+@@ -1,12 +0,0 @@
+---- CMakeLists.txt	2017-11-22 09:21:14.225928764 -0500
+-+++ CMakeLists_new.txt	2017-11-22 09:21:20.758046256 -0500
+-@@ -4,6 +4,9 @@
+- ## Add support for C++11, supported in ROS Kinetic and newer
+-  add_definitions(-std=c++11)
+- 
+-+## Skip any hardcoded paths
+-+set(CMAKE_SKIP_RPATH true)
+-+
+- ## Find catkin macros and libraries
+- ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
+- ## is used, also find other catkin packages
+diff --git a/recipes-ros/ros-mmwave/files/append_cfg/map_4ft_by_6ft_border_large.bt b/recipes-ros/ros-mmwave/files/append_cfg/map_4ft_by_6ft_border_large.bt
+new file mode 100644
+index 0000000000000000000000000000000000000000..7c13bde542ea671eb36c61e3d655f864a33c45eb
+GIT binary patch
+literal 1062
+zcma)3u};G<5Ixjp@zQ2sKj;DoK_CLLm4Tfi)k`<GacHDAMM*${KPh{W_!mAV5(5iT
+zI6DbWQlRK`_Px93_pWIVuP4c3F7D_aMpEK92u1XWelU})hkL%1GxXIUS)lMdJjTgX
+zgtrnWi}_rJNqmUo`vhlFJP>Cp>17lX4nm0{#vs8U-q~k87I=jPi-RYLC+8QZERr!g
+zN6s1ZL?RfxInaz0ibw~1zz={ysw<|dYF+J8A2@K$F;%l`GZ<;V6d)Z@4bC&P)}jMh
+z9xk^@lya9MQwBP+-})8KN6sBqUQuUzNXbcED_Gp(Mp>cEEi8(DiPS#ITXX2XAuh4O
+z%uS`Z2K`-Cn99JW>|WB*rmW09%UL<8%r<x#X1`G3a8*<9E9Wk7)y*gB`w-BPf1eU{
+zGO)n%398IdL8N_+m#ONU1_J23z>3Zlot@&&ky0}%rfMkYeSX^DJ^#aO^^4kTyK0rK
+e@?G7zj$Cln9$Co+cL~ciyqWPIm2c<PD|`V*jRP_O
+
+literal 0
+HcmV?d00001
+
+diff --git a/recipes-ros/ros-mmwave/files/append_launch/plsdk_rviz_1443_3d.launch b/recipes-ros/ros-mmwave/files/append_launch/plsdk_rviz_1443_3d.launch
+new file mode 100644
+index 0000000..df81d9a
+--- /dev/null
++++ b/recipes-ros/ros-mmwave/files/append_launch/plsdk_rviz_1443_3d.launch
+@@ -0,0 +1,26 @@
++<!--
++  This file will launch rViz along with the mmWave sensor node and configure a TI mmWave 1443 sensor using a 3D config
++ -->
++
++<launch>
++
++  <!-- Call mmWave sensor launch file -->
++  <include file="$(find ti_mmwave_rospkg)/launch/ti_mmwave_sensor.launch">
++    <arg name="device" value="1443" doc="TI mmWave sensor device type [1443, 1642]"/>
++    <arg name="config" value="3d" doc="TI mmWave sensor device configuration [3d (not supported by 1642 EVM), 2d]"/>
++    <arg name="max_allowed_elevation_angle_deg" value="90" doc="Maximum allowed elevation angle in degrees for detected object data [0 > value >= 90]}"/>
++    <arg name="max_allowed_azimuth_angle_deg" value="90" doc="Maximum allowed azimuth angle in degrees for detected object data [0 > value >= 90]}"/>
++  </include>
++
++  <!-- Static transform from map to base_radar_link for visualization of stand-alone mmWave sensor using Rviz -->
++  <node pkg="tf" type="static_transform_publisher" name="static_tf_map_to_odom" args="0 0 0 0 0 0 map odom 100"/>
++  <node pkg="tf" type="static_transform_publisher" name="static_tf_map_to_base_radar_link" args="0 0 0 0 0 0 base_footprint base_radar_link 100"/>
++
++  <!-- Map server -->
++  <node name="octomap_server" pkg="octomap_server" type="octomap_server_node" args="$(find ti_mmwave_rospkg)/cfg/map_4ft_by_6ft_border_large.bt projected_map:=map cloud_in:=no_input" />
++  <node pkg="fake_localization" type="fake_localization" name="fake_localization">
++    <param name="use_map_topic" value="true"/>
++    <remap from="base_pose_ground_truth" to="odom"/>
++  </node>
++
++</launch>
+diff --git a/recipes-ros/ros-mmwave/files/append_launch/plsdk_rviz_1642_2d.launch b/recipes-ros/ros-mmwave/files/append_launch/plsdk_rviz_1642_2d.launch
+new file mode 100644
+index 0000000..7e4ff78
+--- /dev/null
++++ b/recipes-ros/ros-mmwave/files/append_launch/plsdk_rviz_1642_2d.launch
+@@ -0,0 +1,26 @@
++<!--
++  This file will launch rViz along with the mmWave sensor node and configure a TI mmWave 1642 sensor using a 2D config
++ -->
++
++<launch>
++
++  <!-- Call mmWave sensor launch file -->
++  <include file="$(find ti_mmwave_rospkg)/launch/ti_mmwave_sensor.launch">
++    <arg name="device" value="1642" doc="TI mmWave sensor device type [1443, 1642]"/>
++    <arg name="config" value="2d" doc="TI mmWave sensor device configuration [3d (not supported by 1642 EVM), 2d]"/>
++    <arg name="max_allowed_elevation_angle_deg" value="90" doc="Maximum allowed elevation angle in degrees for detected object data [0 > value >= 90]}"/>
++    <arg name="max_allowed_azimuth_angle_deg" value="90" doc="Maximum allowed azimuth angle in degrees for detected object data [0 > value >= 90]}"/>
++  </include>
++
++  <!-- Static transform from map to base_radar_link for visualization of stand-alone mmWave sensor using Rviz -->
++  <node pkg="tf" type="static_transform_publisher" name="static_tf_map_to_odom" args="0 0 0 0 0 0 map odom 100"/>
++  <node pkg="tf" type="static_transform_publisher" name="static_tf_map_to_base_radar_link" args="0 0 0 0 0 0 base_footprint base_radar_link 100"/>
++
++  <!-- Map server -->
++  <node name="octomap_server" pkg="octomap_server" type="octomap_server_node" args="$(find ti_mmwave_rospkg)/cfg/map_4ft_by_6ft_border_large.bt projected_map:=map cloud_in:=no_
++  <node pkg="fake_localization" type="fake_localization" name="fake_localization">
++    <param name="use_map_topic" value="true"/>
++    <remap from="base_pose_ground_truth" to="odom"/>
++  </node>
++
++</launch>
+diff --git a/recipes-ros/ros-mmwave/mmwave-ros-pkg-master_0.1.0.bb b/recipes-ros/ros-mmwave/mmwave-ros-pkg-master_0.1.0.bb
+index 87c5aac..9a984f5 100644
+--- a/recipes-ros/ros-mmwave/mmwave-ros-pkg-master_0.1.0.bb
++++ b/recipes-ros/ros-mmwave/mmwave-ros-pkg-master_0.1.0.bb
+@@ -1,11 +1,13 @@
+ DESCRIPTION = "This package contains ROS driver for mmWave TI sensor."
+ SECTION = "devel"
+ LICENSE = "BSD"
+-LIC_FILES_CHKSUM = "file://docs/TI_mmWave_ROS_Driver_manifest.pdf;md5=6ee5d8ff5204a889d79a1ffd1812b3c1"
  
--PR = "r0"
-+PR = "r1"
- PV_append = "+git${SRCPV}"
+-SRC_URI[base.md5sum] = "f48fe4a1e654f359382fc617667f33c0"
+-SRC_URI[base.sha256sum] = "72b424a1c7568b04f1b583ef46d7716c10f77a0d05f4e950ac6d70991427a073"
+-SRC_URI = "http://dev.ti.com/tirex/content/mmwave_industrial_toolbox_2_0_0/labs/lab0006-ros-driver/lab0006_ros_driver_pjt/ti_mmwave_rospkg_v1p2.zip;name=base;subdir=${P}"
++LIC_FILES_CHKSUM = "file://docs/TI_mmWave_ROS_Driver_manifest.pdf;md5=da4f1cae75b0590538edcb7e23a325d8"
++SRC_URI[base.md5sum] = "e85370690db8652d9d706aa77facce6a"
++SRC_URI[base.sha256sum] = "1c88f501f5e9827299b8172d5895e54cb0178a65879f1d1092761cfe0e48bae4"
++SRC_URI = "http://dev.ti.com/tirex/content/mmwave_industrial_toolbox_2_1_1/labs/lab0006-ros-driver/lab0006_ros_driver_pjt/ti_mmwave_rospkg_v1p2p1.zip;name=base;subdir=${P}"
++SRC_URI += "file://append_launch"
++SRC_URI += "file://append_cfg"
  
- PROVIDES += "ltp"
-@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+ # do not use rpath
+ EXTRA_OECMAKE_append = " -DCMAKE_SKIP_RPATH=ON"
+@@ -23,6 +25,8 @@ do_install_append() {
+      cp ${S}/mmWave_nodelets.xml ${D}${ros_datadir}/ti_mmwave_rospkg/
+      cp -r ${S}/cfg ${D}${ros_datadir}/ti_mmwave_rospkg/
+      cp -r ${S}/launch ${D}${ros_datadir}/ti_mmwave_rospkg/
++     cp  ${WORKDIR}/append_launch/*.launch  ${D}${ros_datadir}/ti_mmwave_rospkg/launch/.
++     cp  ${WORKDIR}/append_cfg/*.bt  ${D}${ros_datadir}/ti_mmwave_rospkg/cfg/.
+ }
  
- inherit autotools-brokensep
- 
--SRCREV = "41e36ba5eb1dd1e059503576b6cc3c93b901652f"
-+SRCREV = "d7af19d35061600eb25a4f8677c8b637775037ba"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+ FILES_${PN} += "${ros_libdir}/ti_mmwave_rospkg"
 -- 
-1.7.9.5
+1.9.1
 
 
