@@ -1,41 +1,41 @@
 Return-Path: <m-radhakrishnan2@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 6546C52994
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 48DF952994
 	for <meta-arago@arago-project.org>;
-	Fri, 16 Mar 2018 15:39:16 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2GFcM39031885
-	for <meta-arago@arago-project.org>; Fri, 16 Mar 2018 10:38:22 -0500
+	Fri, 16 Mar 2018 15:46:12 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2GFjHcF030348
+	for <meta-arago@arago-project.org>; Fri, 16 Mar 2018 10:45:17 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1521214702;
-	bh=Sr4F+17FuITts703vQGbCPtpO5Zn0xv0vIWbyqNOi6U=;
+	s=ti-com-17Q1; t=1521215117;
+	bh=nuTiohq3+mdJ7c/f4rRx2gl3jn8utUeolz02RekGLiQ=;
 	h=From:To:Subject:Date;
-	b=AorEZDL4ENaAvhAgRL5yiw/A59u9mm+gq+XFnPqZbe9uFbGfk6PYzNzCXy2a0GXNN
-	NjLdeNV8tM+HyhzS8bd+pWwdtnQPj5hDBoaZUF3lh8JIpuvabQAvQXEVM6aK15AFw4
-	Yb7bWj2XJN4hOqIFFb9ZVaJOeF146tLHdQ1Vk8qc=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2GFcMuA019967
-	for <meta-arago@arago-project.org>; Fri, 16 Mar 2018 10:38:22 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	b=nyDoE1Zl6rwVTBfXbqY8QsbFPuipzz7QrwXmXOceOjv93HqXItRFKAqu54/ffyqHw
+	6hD/HM6zlD3kDqgq4soto3wMiwYWowmQm+BqwunU5wBgZCJrLTRQJ0Z4L29qR0izwY
+	RyND3mHdHvKhEalgurAxwlHhP40JmOLRVtI7oi6U=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2GFjHpf022434
+	for <meta-arago@arago-project.org>; Fri, 16 Mar 2018 10:45:17 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Fri, 16 Mar 2018 10:38:21 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 16 Mar 2018 10:45:17 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Fri, 16 Mar 2018 10:38:21 -0500
+	Transport; Fri, 16 Mar 2018 10:45:17 -0500
 Received: from uda0875154a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2GFcLDB010105
-	for <meta-arago@arago-project.org>; Fri, 16 Mar 2018 10:38:21 -0500
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2GFjHNS029457
+	for <meta-arago@arago-project.org>; Fri, 16 Mar 2018 10:45:17 -0500
 From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 16 Mar 2018 11:38:20 -0400
-Message-ID: <1521214700-26461-1-git-send-email-m-radhakrishnan2@ti.com>
+Date: Fri, 16 Mar 2018 11:45:16 -0400
+Message-ID: <1521215116-26591-1-git-send-email-m-radhakrishnan2@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty][meta-processor-sdk][PATCH] common-csl-ip: Updating to version 03.03.00.10
+Subject: [morty][meta-processor-sdk][PATCH] emac-lld-rtos:Updating to version 01.00.03.10A
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,53 +48,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Mar 2018 15:39:16 -0000
+X-List-Received-Date: Fri, 16 Mar 2018 15:46:12 -0000
 Content-Type: text/plain
-
-Also removing redundant definitions which are present in meta-ti
 
 Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 ---
- recipes-bsp/common-csl-ip/common-csl-ip-03.03.00.10.inc   | 5 +++++
- recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend | 7 +++++--
- recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend      | 1 +
- 3 files changed, 11 insertions(+), 2 deletions(-)
- create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-03.03.00.10.inc
- create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
+ recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend | 11 +++--------
+ 1 file changed, 3 insertions(+), 8 deletions(-)
 
-diff --git a/recipes-bsp/common-csl-ip/common-csl-ip-03.03.00.10.inc b/recipes-bsp/common-csl-ip/common-csl-ip-03.03.00.10.inc
-new file mode 100644
-index 0000000..b43a671
---- /dev/null
-+++ b/recipes-bsp/common-csl-ip/common-csl-ip-03.03.00.10.inc
-@@ -0,0 +1,5 @@
-+# Below commit ID corresponding to "DEV.CSL_PROCESSOR-SDK.03.03.00.10"
-+CSL_SRCREV = "b252ed25443938ff59a6622aee2de7bc36304787"
-+
-+PV = "03.03.00.10"
-+INC_PR = "r0"
-diff --git a/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend b/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
-index 06132fb..47f275a 100644
---- a/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
-+++ b/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
-@@ -1,5 +1,8 @@
--PR_append = ".tisdk0"
-+require recipes-bsp/common-csl-ip/common-csl-ip-03.03.00.10.inc
-+
-+PR_append = ".tisdk1"
+diff --git a/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend b/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend
+index fa4a70a..6bc480b 100644
+--- a/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend
++++ b/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend
+@@ -1,11 +1,6 @@
+-# Below commit ID corresponds to "DEV.EMAC_LLD.01.00.03.08A"
+-EMAC_LLD_SRCREV = "20a21b3c25fcfebbc0450e88397a4be135ff703b"
++# Below commit ID corresponds to "DEV.EMAC_LLD.01.00.03.10A"
++EMAC_LLD_SRCREV = "a2b663fcdfb485806f5a547336b343e73ebbae86"
  
- # opencl-monitor does not distinguish between am57xx-evm and dra7xx-evm and thus
- # requires the am57xx-evm CSL libraries for both devices.
--TI_PDK_LIMIT_SOCS_append_dra7xx = " am571x am572x am574x"
-+TI_PDK_LIMIT_SOCS_append_dra7xx = " am574x"
-+
-diff --git a/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend b/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
-new file mode 100644
-index 0000000..22fa7d6
---- /dev/null
-+++ b/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
-@@ -0,0 +1 @@
-+require recipes-bsp/common-csl-ip/common-csl-ip-03.03.00.10.inc
+-PV = "01.00.03.08A"
++PV = "01.00.03.10A"
+ PR = "r0"
+ 
+-# Build with make instead of XDC
+-TI_PDK_XDCMAKE = "0"
+-
+-export PDK_EMAC_ROOT_PATH ="${WORKDIR}/build"
+-export DEST_ROOT="${S}"
 -- 
 1.9.1
 
