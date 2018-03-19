@@ -1,41 +1,42 @@
-Return-Path: <m-radhakrishnan2@ti.com>
+Return-Path: <h-gou@ti.com>
 Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 837AF52998
+	by arago-project.org (Postfix) with ESMTPS id 789AC52998
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Mar 2018 18:18:52 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2JIHsfu002114
-	for <meta-arago@arago-project.org>; Mon, 19 Mar 2018 13:17:54 -0500
+	Mon, 19 Mar 2018 18:37:04 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2JIa5vP004656
+	for <meta-arago@arago-project.org>; Mon, 19 Mar 2018 13:36:05 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1521483474;
-	bh=Q0jLaHU6VXr4AJ4s4YnhzdfHdjfL4RfFA5Abhhp2GWQ=;
-	h=From:To:Subject:Date;
-	b=WhfA7X5YZFL2pDel2DMRQQR/brKv+dOSRuw+9A4nwc6k9YSG+Tgi5/9cbHy6p9IrZ
-	wBekaGkDMb8bbWllAuuM8E6AhRXUWU6+CkUN1m8lzfzxWdDcwZG88KMebM6LMsSPM2
-	2i7hn8VkCYoHxuMx3uDRgNSzIUDmLNYWAB7ynRTY=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JIHs6q015993
-	for <meta-arago@arago-project.org>; Mon, 19 Mar 2018 13:17:54 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1521484565;
+	bh=sVp/zKqi1YSsuXdEVmpEwlPiXX5381v0tyyv0vcbHQs=;
+	h=From:To:CC:Subject:Date;
+	b=FAsvAzpzFov8qBpEz4FSlN2j3gffUyS1qUb4xxrDGFS2yDkzLByRjF+aCRJeVDdj7
+	PyBVeRC3RCD8J2Irffqk8R2AapqylHX32ylsga9J6+zY/+rfOZF+BXhDURnju/jUgV
+	pvnWT2NW1FYrBf7GYOVuTZP1RZc1ChDpq+QG0aok=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JIa5Ar014709
+	for <meta-arago@arago-project.org>; Mon, 19 Mar 2018 13:36:05 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Mon, 19 Mar 2018 13:17:53 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 19 Mar 2018 13:36:05 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Mon, 19 Mar 2018 13:17:53 -0500
-Received: from uda0875154a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Mon, 19 Mar 2018 13:36:05 -0500
+Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JIHrc7014258
-	for <meta-arago@arago-project.org>; Mon, 19 Mar 2018 13:17:53 -0500
-From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JIa4S7009580;
+	Mon, 19 Mar 2018 13:36:05 -0500
+From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 19 Mar 2018 14:17:52 -0400
-Message-ID: <1521483472-25066-1-git-send-email-m-radhakrishnan2@ti.com>
+Date: Mon, 19 Mar 2018 14:35:35 -0400
+Message-ID: <1521484541-8104-1-git-send-email-a0271529@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty/rocko/master][PATCH] posix-smp-demo: Updating to version 01.01.00.00
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [meta-processor-sdk 0/6] [PATCH] Add OpenVX Khronos tutorial example
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,36 +49,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Mar 2018 18:18:52 -0000
+X-List-Received-Date: Mon, 19 Mar 2018 18:37:05 -0000
 Content-Type: text/plain
 
-Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
----
- meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Add OpenVX Khronos tutorial example building upon TIOVX:
 
-diff --git a/meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc b/meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc
-index b0abd2b..3d78727 100644
---- a/meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc
-+++ b/meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc
-@@ -7,14 +7,14 @@ POSIX_SMP_GIT_URI = "git://git.ti.com/keystone-demos/posix-smp.git"
- POSIX_SMP_GIT_PROTOCOL = "git"
- POSIX_SMP_GIT_BRANCH = "master"
- 
--# Below commit ID corresponds to "DEV.POSIX-SMP.01.00.01.07"
--POSIX_SMP_SRCREV = "2614d4cbe9d83c8345e051c7f3767f86226398ea"
-+# Below commit ID corresponds to "DEV.POSIX-SMP.01.01.00.00"
-+POSIX_SMP_SRCREV = "139fe7ec58939dc2743355e5fede0735f8693ebd"
- 
- BRANCH = "${POSIX_SMP_GIT_BRANCH}"
- SRC_URI = "${POSIX_SMP_GIT_URI};protocol=${POSIX_SMP_GIT_PROTOCOL};branch=${BRANCH}"
- 
- SRCREV = "${POSIX_SMP_SRCREV}"
--PV = "01.00.01.07"
-+PV = "01.01.00.00"
- INC_PR = "r0"
- 
- S = "${WORKDIR}/git"
+* Build and install example binary
+* License is updated with the newly added example
+* Make the test and tutorial example from the top-level makefile
+* Enable native compilation of the test and tutorial example on target
+
+Hongmei Gou (6):
+  tiovx-app-host: add Khronos tutorial example
+  tiovx-app-host: create SRCIPK
+  packagegroup-arago-tisdk-addons-sdk-host: add tiovx-app-host-src
+  ti-tisdk-makefile: add tiovx-app-host
+  tiovx-app-host: enable compilation of app-host and tutorial example on
+    target
+  packagegroup-arago-tisdk-addons: add tiovx-app-host-examples
+
+ ...ckagegroup-arago-tisdk-addons-sdk-host.bbappend |  6 +++-
+ .../packagegroup-arago-tisdk-addons.bbappend       |  4 +--
+ recipes-ti/tiovx/tiovx-app-host.bb                 | 39 +++++++++++++++++-----
+ recipes-ti/tiovx/tiovx-sys.inc                     |  4 +--
+ .../ti-tisdk-makefile/Makefile_tiovx-app-host      | 34 +++++++++++++++++++
+ .../ti-tisdk-makefile_1.0.bbappend                 |  5 ++-
+ 6 files changed, 78 insertions(+), 14 deletions(-)
+ create mode 100644 recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_tiovx-app-host
+
 -- 
 1.9.1
 
