@@ -1,44 +1,44 @@
 Return-Path: <h-gou@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 7EDA7529A2
+	by arago-project.org (Postfix) with ESMTPS id 7E0D4529E6
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Mar 2018 18:37:04 +0000 (UTC)
+	Mon, 19 Mar 2018 18:37:05 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2JIa5pG007746
-	for <meta-arago@arago-project.org>; Mon, 19 Mar 2018 13:36:05 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2JIa7EC007750
+	for <meta-arago@arago-project.org>; Mon, 19 Mar 2018 13:36:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1521484565;
-	bh=Xa00ueJIkDjJpHcOizXxOsuAzf9G7HsY2jFpTg6xjCE=;
+	s=ti-com-17Q1; t=1521484567;
+	bh=e7Sb9o7HqH/8ppTVJeNMBAGsPB/eIPugfecNzAOxUU4=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=EIJNw1anwW42ASx6GK5eQSlKQbANPwslboKzsv5z/MByxodR0JtInfsD9dOMZlqfD
-	XkcizmoKv4GD8FQAW0/4t0sTF/s5sSAmx+KjMpx48Pgt5KBT/A/odkFwBUz3x3j/Hy
-	Hu53F6gte62Ixo3sUhHqp8jsot/oMx12nR4lcKgM=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JIa5qr014729
-	for <meta-arago@arago-project.org>; Mon, 19 Mar 2018 13:36:05 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	b=nkg+UqDUDKfg2luTwoVOBWBsV+cLyNaLw68H5QzLMVJN2NbysvX3KZSqS712wUZtg
+	8zvdqTR2f18VA3SIlnjWsJRZDRkbbiIc3PSHjvzGbPfKZyEbkE9VcbuYrQYbyxDDnE
+	7OKUQESOTIQhEvBnwtz3BVwTYo5ZRg67O6Zw+39A=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JIa7gG014791
+	for <meta-arago@arago-project.org>; Mon, 19 Mar 2018 13:36:07 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Mon, 19 Mar 2018 13:36:05 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 19 Mar 2018 13:36:06 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Mon, 19 Mar 2018 13:36:05 -0500
+	Transport; Mon, 19 Mar 2018 13:36:06 -0500
 Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JIa4S8009580;
-	Mon, 19 Mar 2018 13:36:05 -0500
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JIa4SD009580;
+	Mon, 19 Mar 2018 13:36:06 -0500
 From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 19 Mar 2018 14:35:36 -0400
-Message-ID: <1521484541-8104-2-git-send-email-a0271529@ti.com>
+Date: Mon, 19 Mar 2018 14:35:41 -0400
+Message-ID: <1521484541-8104-7-git-send-email-a0271529@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1521484541-8104-1-git-send-email-a0271529@ti.com>
 References: <1521484541-8104-1-git-send-email-a0271529@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processor-sdk 1/6] [PATCH] tiovx-app-host: add Khronos tutorial example
+Subject: [meta-processor-sdk 6/6] [PATCH] packagegroup-arago-tisdk-addons: add tiovx-app-host-examples
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,75 +54,29 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Mon, 19 Mar 2018 18:37:06 -0000
 Content-Type: text/plain
 
-* bump SRCREV and version
-* update SUMMARY, DESCRIPTION, LICENSE, and software manifest
-* add DEPENDs on opencv
-* build and install the example binary
-
 Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- recipes-ti/tiovx/tiovx-app-host.bb | 17 +++++++++--------
- recipes-ti/tiovx/tiovx-sys.inc     |  4 ++--
- 2 files changed, 11 insertions(+), 10 deletions(-)
+ recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-ti/tiovx/tiovx-app-host.bb b/recipes-ti/tiovx/tiovx-app-host.bb
-index 097fede..c45c4b8 100644
---- a/recipes-ti/tiovx/tiovx-app-host.bb
-+++ b/recipes-ti/tiovx/tiovx-app-host.bb
-@@ -1,32 +1,33 @@
--SUMMARY = "TI OpenVX HOST (Linux A15) conformance verification application, and Host side IPC implementation "
--DESCRIPTION = "TI OpenVX implementation, TIOVX, includes Khronos defined conformance test as well as additional TI specific tests. This package creates application which runs all the tests (7K-8K). Same package includes IPC implementation (MessageQ based) needed for communication with DSP firmware (loaded at boot time) "
-+SUMMARY = "TI OpenVX HOST (Linux A15) conformance verification application, Khronos tutorial example, and Host side IPC implementation "
-+DESCRIPTION = "TI OpenVX implementation, TIOVX, includes Khronos defined conformance test and tutorial example, as well as additional TI specific tests. This package creates application which runs all the conformance tests (7K-8K) and Khronos tutorial exercise1. Same package includes IPC implementation (MessageQ based) needed for communication with DSP firmware (loaded at boot time) "
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
+index cb75be2..43640e2 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = "-tisdk45"
++PR_append = "-tisdk46"
  
--LICENSE = "BSD-3-Clause"
--LIC_FILES_CHKSUM = "file://docs/manifest/TIOVX-APP-HOST_1.0.0.0_manifest.html;md5=de53bc8bf67ffa9a316fe48e3bacbf6d"
-+LICENSE = "BSD-3-Clause & MIT"
-+LIC_FILES_CHKSUM = "file://docs/manifest/TIOVX-APP-HOST_01.00.01.00_manifest.html;md5=247d7c56d783f583bf802490d5c93db3"
+ EXTRA_PACKAGES_append_ti33x = " opencv"
+ EXTRA_PACKAGES_append_ti43x = " opencv"
+@@ -14,6 +14,6 @@ EXTRA_PACKAGES_append = " zbar hidapi"
  
- require recipes-ti/includes/tisdk-paths.inc
- require tiovx-sys.inc
+ UTILS_append = " net-snmp net-snmp-server-snmpd"
  
--DEPENDS = " tiovx-sys-iface tiovx-lib-host ti-ipc cmem "
-+DEPENDS = " tiovx-sys-iface tiovx-lib-host ti-ipc cmem opencv"
- RDEPENDS_${PN} = " tiovx-sys-iface tiovx-sys-iface-firmware tiovx-lib-host ti-ipc cmem "
+-EXTRA_PACKAGES_append_dra7xx = " tiovx-app-host kaldi ti-fftw-examples"
++EXTRA_PACKAGES_append_dra7xx = " tiovx-app-host tiovx-app-host-examples kaldi ti-fftw-examples"
  
--PR = "r2"
-+PR = "r0"
- 
- COMPATIBLE_MACHINE = "dra7xx"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--PROCLIST = "host"
-+PROCLIST = "host khronos_example"
- 
- S = "${WORKDIR}/git"
- 
- EXTRA_OEMAKE += " TARGET_ROOTDIR=${STAGING_DIR_HOST} "
- EXTRA_OEMAKE += " GCCLINARO=${TOOLCHAIN_PATH} TIOVXPATH=${TIOVX_INSTALL_DIR} IPCPATH=${IPC_INSTALL_DIR} "
- EXTRA_OEMAKE += " SDKPLATFORMIFPATH=${TIOVX_INSTALL_DIR}/sys-iface "
--EXTRA_OEMAKE += " PROC_LIST=${PROCLIST} "
-+EXTRA_OEMAKE += " PROC_LIST='${PROCLIST}' "
- 
- do_install () {
-     install -d ${D}${bindir}/
-     install -m 0755 ${S}/host/bin/debug/app_host ${D}${bindir}/tiovx-app_host
-+    install -m 0755 ${S}/khronos_example/bin/debug/opticalflow ${D}${bindir}/tiovx-opticalflow
- }
- 
- FILES_${PN} += "${bindir}/*"
-diff --git a/recipes-ti/tiovx/tiovx-sys.inc b/recipes-ti/tiovx/tiovx-sys.inc
-index 43c4e1d..e45f130 100644
---- a/recipes-ti/tiovx/tiovx-sys.inc
-+++ b/recipes-ti/tiovx/tiovx-sys.inc
-@@ -1,5 +1,5 @@
--PV = "01.00.00.00"
-+PV = "01.00.01.00"
- 
- BRANCH="master"
--SRCREV = "375fa639773970e433171686f01f360a9a5b2ad4"
-+SRCREV = "dc60c253a218fb3ec92fdeeaa454fce047f8964a"
- SRC_URI = "git://git.ti.com/processor-sdk/tiovx-app.git;protocol=git;branch=${BRANCH}"
+ EXTRA_PACKAGES_append_k2hk = " ti-fftw-examples"
 -- 
 1.9.1
 
