@@ -1,43 +1,43 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 44ACF52994
+Return-Path: <j-stiffler@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id C030E52968
 	for <meta-arago@arago-project.org>;
-	Sat, 17 Mar 2018 16:39:36 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2HGce7N009238
-	for <meta-arago@arago-project.org>; Sat, 17 Mar 2018 11:38:40 -0500
+	Mon, 19 Mar 2018 13:22:50 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2JDLnfC007642
+	for <meta-arago@arago-project.org>; Mon, 19 Mar 2018 08:21:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1521304720;
-	bh=MQGhJ3MvEIVZn78khvDAKBmhfXQRzGDnpqbLbNPEJPM=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=k5qC+UsLH0qDndEku+gh5O5AJj5YnYc6opI6rvMIaALe+0dMLNq8G/NLMwUg4gUve
-	AsQ0VzCS81FQHPIkATg9XZIgKxRuU7rynDCeQwGWJvTTW+yJiHXJYv40Hwr2UibXg2
-	g0XEihvy4OrPXAG59yZb3edTxXtm3Gqz+/CkPEKE=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2HGcedJ001109
-	for <meta-arago@arago-project.org>; Sat, 17 Mar 2018 11:38:40 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1521465709;
+	bh=LinKDUVkZvIL3zMBHwMUb5XQ9NVsJIXiefZIlzuurYQ=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=MXgKfT4sGkMU8Roc462/eDXuvkBWUjq4IIyTwlb7O+ALsczURAcxbYXoS8wCwAP0d
+	hS74PKojtiWupMotg3LLGUBzFI8En+tm3HUP5Sq74mkv59R9jjxs/J2qaL8dHsBH2M
+	eHkJptuifbqH63WI0jbVWy/jyg5BUA8UwMCFIeWU=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JDLnrE031075
+	for <meta-arago@arago-project.org>; Mon, 19 Mar 2018 08:21:49 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Sat, 17 Mar 2018 11:38:40 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 19 Mar 2018 08:21:49 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Sat, 17 Mar 2018 11:38:40 -0500
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2HGcd4H004442
-	for <meta-arago@arago-project.org>; Sat, 17 Mar 2018 11:38:40 -0500
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Sat, 17 Mar 2018 12:38:33 -0400
-Message-ID: <1521304713-8408-2-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1521304713-8408-1-git-send-email-e-ruei1@ti.com>
+	Transport; Mon, 19 Mar 2018 08:21:49 -0500
+Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JDLni4024096;
+	Mon, 19 Mar 2018 08:21:49 -0500
+To: Eric Ruei <e-ruei1@ti.com>, <meta-arago@arago-project.org>
 References: <1521304713-8408-1-git-send-email-e-ruei1@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <50646fe0-043f-2331-d07d-10f17255e45c@ti.com>
+Date: Mon, 19 Mar 2018 09:21:48 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
 MIME-Version: 1.0
+In-Reply-To: <1521304713-8408-1-git-send-email-e-ruei1@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty][meta-processor-sdk][PATCH 2/2] packagegroup-arago-tisdk-matrix: add video-graphics test
+Subject: Re: [EXTERNAL] [morty][meta-processor-sdk][PATCH 1/2] matrix-gui-multimedia-demos: add video-graphics demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,27 +50,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 17 Mar 2018 16:39:37 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 19 Mar 2018 13:22:54 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
----
- recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bbappend | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bbappend
-index 67241fa..cf86727 100644
---- a/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bbappend
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bbappend
-@@ -11,6 +11,7 @@ MATRIX_COMMON_APPS_remove = " \
- MATRIX_APPS_append_omap-a15 = " \
-     matrix-gui-apps-dual-camera \
-     matrix-gui-apps-image-gallery \
-+    ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', 'matrix-multimedia-demo-video-graphics', '', d)} \
- "
- 
- MATRIX_TOUCH_APPS_keystone = ""
--- 
-1.9.1
+
+On 3/17/2018 12:38 PM, Eric Ruei wrote:
+> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> ---
+>   recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bbappend | 10 ++++++++++
+>   1 file changed, 10 insertions(+)
+>   create mode 100644 recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bbappend
+>
+> diff --git a/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bbappend b/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bbappend
+> new file mode 100644
+> index 0000000..2cddc90
+> --- /dev/null
+> +++ b/recipes-core/matrix/matrix-gui-multimedia-demos_2.0.bbappend
+> @@ -0,0 +1,10 @@
+> +PR_append = ".tisdk0"
+> +
+> +SRCREV = "71c1049e7a73cc731766aa72fc7197a45003625d"
+> +
+> +PACKAGES_append = "matrix-multimedia-demo-video-graphics"
+
+Need a space here since this is an append.
+
+> +
+> +RDEPENDS_matrix-multimedia-demo-video-graphics  = "${MULTIMEDIA_RDEPENDS}"
+> +
+> +FILES_matrix-multimedia-demo-video-graphics     = "${MATRIX_APP_DIR}/video-graphics/*"
+
+I think this should be "video_graphics", not "video-graphics". Is this 
+correct?
+
+> +
 
 
