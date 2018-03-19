@@ -1,44 +1,44 @@
 Return-Path: <h-gou@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 98F95529F4
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id B384752A0C
 	for <meta-arago@arago-project.org>;
 	Mon, 19 Mar 2018 18:37:05 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2JIa741000382
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2JIa7WC026080
 	for <meta-arago@arago-project.org>; Mon, 19 Mar 2018 13:36:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
 	s=ti-com-17Q1; t=1521484567;
-	bh=j8RDpCDVayvGiciC4H56GrQnucT1r3pNE6ZlLJOUIGs=;
+	bh=wYhI977c9kFSMcWJwEGQRAoTPy9YKbd+2Gw34mTG0VA=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Wmdy7K4F1vUFAO6ZDaEE75Ea+2LhKADIF7JYVi6VAr45ZwpYyC/vcdX0XDzIxYorV
-	8wg155kG6qZhfEALycyl+TIEa/wj9nzDdoMqGn6fGUVqPkDI9NetVBEBelzGO9DFBr
-	44nbhJKfDXkUbotSUgWXJZhtuCsbjDYW4vxwuNi0=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JIa6s9014783
+	b=e2VCMY2FBrW3k3I+J2r+3VxsFj9hi6+YBNg1ySVCqu/GZnK4X1kyPchD2m0NJORTJ
+	2nKMpiiZ5JwSFAve0eCn33h7VC6tRMIgmDDVfJrj5jaZTPs/sIgAlpMbIthxGHobGN
+	sjKQL7V6q9qMWVoBexp9ozSfHpw72kQ79OSZEopY=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JIa6Um014790
 	for <meta-arago@arago-project.org>; Mon, 19 Mar 2018 13:36:07 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
 	Mon, 19 Mar 2018 13:36:06 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
 	Transport; Mon, 19 Mar 2018 13:36:06 -0500
 Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JIa4SC009580;
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2JIa4SB009580;
 	Mon, 19 Mar 2018 13:36:06 -0500
 From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 19 Mar 2018 14:35:40 -0400
-Message-ID: <1521484541-8104-6-git-send-email-a0271529@ti.com>
+Date: Mon, 19 Mar 2018 14:35:39 -0400
+Message-ID: <1521484541-8104-5-git-send-email-a0271529@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1521484541-8104-1-git-send-email-a0271529@ti.com>
 References: <1521484541-8104-1-git-send-email-a0271529@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processor-sdk 5/6] [PATCH] tiovx-app-host: enable compilation of app-host and tutorial example on target
+Subject: [meta-processor-sdk 4/6] [PATCH] ti-tisdk-makefile: add tiovx-app-host
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,66 +54,80 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Mon, 19 Mar 2018 18:37:06 -0000
 Content-Type: text/plain
 
-* Copy source files and makefiles to target
-* Create setenv.sh and copy it to target
-* Create examples package with tiovx-lib-host dependencies specified
-* Build procedure on target: "source setenv.sh; make"
-
 Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- recipes-ti/tiovx/tiovx-app-host.bb | 23 +++++++++++++++++++++--
- 1 file changed, 21 insertions(+), 2 deletions(-)
+ .../ti-tisdk-makefile/Makefile_tiovx-app-host      | 34 ++++++++++++++++++++++
+ .../ti-tisdk-makefile_1.0.bbappend                 |  5 +++-
+ 2 files changed, 38 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_tiovx-app-host
 
-diff --git a/recipes-ti/tiovx/tiovx-app-host.bb b/recipes-ti/tiovx/tiovx-app-host.bb
-index eb312b3..093025e 100644
---- a/recipes-ti/tiovx/tiovx-app-host.bb
-+++ b/recipes-ti/tiovx/tiovx-app-host.bb
-@@ -4,13 +4,19 @@ DESCRIPTION = "TI OpenVX implementation, TIOVX, includes Khronos defined conform
- LICENSE = "BSD-3-Clause & MIT"
- LIC_FILES_CHKSUM = "file://docs/manifest/TIOVX-APP-HOST_01.00.01.00_manifest.html;md5=247d7c56d783f583bf802490d5c93db3"
- 
-+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_tiovx-app-host b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_tiovx-app-host
+new file mode 100644
+index 0000000..998368b
+--- /dev/null
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_tiovx-app-host
+@@ -0,0 +1,34 @@
++# tiovx-app-host build targets
++tiovx-app-host:
++	@echo =====================================
++	@echo     Building TIOVX Host Application
++	@echo =====================================
++	@cd example-applications; cd `find . -name "*tiovx-app-host*"`; . $(ENV_SETUP); make \
++		TARGET_ROOTDIR=$(SDK_PATH_TARGET) \
++	 	GCCLINARO=$(LINUX_DEVKIT_PATH)/sysroots/x86_64-arago-linux/usr \
++		TIOVXPATH=$(SDK_PATH_TARGET)/usr/include/VX \
++		IPCPATH=$(SDK_PATH_TARGET)/usr/share/ti/ti-ipc-tree \
++		SDKPLATFORMIFPATH=$(SDK_PATH_TARGET)/usr/share/ti/ti-tiovx-lib-tree/sys-iface \
++		PROC_LIST='host khronos_example'
 +
-+SRC_URI_append += "\
-+     file://setenv.sh \
-+"
++tiovx-app-host_install:
++	@echo =======================================
++	@echo     Installing TIOVX Host Application
++	@echo =======================================
++	@if [ ! -d $(DESTDIR) ] ; then \
++		echo "The extracted target filesystem directory doesn't exist."; \
++		echo "Please run setup.sh in the SDK's root directory and then try again."; \
++		exit 1; \
++	fi
++	@cd example-applications; \
++	cd `find . -name "*tiovx-app-host*"`; \
++	install -m 0755 host/bin/debug/app_host $(DESTDIR)/usr/bin/tiovx-app_host; \
++	install -m 0755 khronos_example/bin/debug/opticalflow $(DESTDIR)/usr/bin/tiovx-opticalflow
 +
- require recipes-ti/includes/tisdk-paths.inc
- require tiovx-sys.inc
- 
- DEPENDS = " tiovx-sys-iface tiovx-lib-host ti-ipc cmem opencv"
- RDEPENDS_${PN} = " tiovx-sys-iface tiovx-sys-iface-firmware tiovx-lib-host ti-ipc cmem "
- 
--PR = "r1"
-+PR = "r2"
- 
- COMPATIBLE_MACHINE = "dra7xx"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
-@@ -28,10 +34,23 @@ do_install () {
-     install -d ${D}${bindir}/
-     install -m 0755 ${S}/host/bin/debug/app_host ${D}${bindir}/tiovx-app_host
-     install -m 0755 ${S}/khronos_example/bin/debug/opticalflow ${D}${bindir}/tiovx-opticalflow
++tiovx-app-host_clean:
++	@echo =======================================
++	@echo     Cleaning TIOVX Host Application
++	@echo =======================================
++	@cd example-applications; cd `find . -name "*tiovx-app-host*"`; . $(ENV_SETUP); \
++	make PROC_LIST='host khronos_example' clean
 +
-+    oe_runmake clean
-+    install -d ${D}${datadir}/ti/examples/openvx
-+    install -m 644 ${S}/products.mak ${D}${datadir}/ti/examples/openvx
-+    install -m 644 ${S}/makefile ${D}${datadir}/ti/examples/openvx
-+    install -m 644 ${WORKDIR}/setenv.sh ${D}${datadir}/ti/examples/openvx
-+    cp -r ${S}/host ${D}${datadir}/ti/examples/openvx
-+    cp -r ${S}/khronos_example  ${D}${datadir}/ti/examples/openvx
-+    cp -r ${S}/shared ${D}${datadir}/ti/examples/openvx
- }
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+index e609aae..d6a7d3d 100644
+--- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = ".tisdk51"
++PR_append = ".tisdk52"
  
-+PACKAGES += "${PN}-examples"
-+FILES_${PN}-examples = "${datadir}/ti/examples/openvx"
-+RDEPENDS_${PN}-examples = "tiovx-lib-host-staticdev tiovx-lib-host-dev"
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+@@ -8,6 +8,7 @@ SRC_URI_append = "\
+     file://Makefile_jailhouse \
+     file://Makefile_evse-hmi \
+     file://Makefile_protection-relays-hmi \
++    file://Makefile_tiovx-app-host \
+ "
+ 
+ SRC_URI_append_omap-a15 = " file://Makefile_big-data-ipc-demo"
+@@ -46,6 +47,8 @@ MAKEFILES_append_am57xx-evm = " jailhouse"
+ 
+ MAKEFILES_append_k2g = " pru-icss"
+ 
++MAKEFILES_append_dra7xx = " tiovx-app-host"
 +
- CREATE_SRCIPK = "1"
- SRCIPK_INSTALL_DIR = "example-applications/${PN}-${PV}"
+ MAKEFILES_remove_ti33x = "${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', 'ti-sgx-ddk-km', d)}"
+ MAKEFILES_remove_ti43x = "${@bb.utils.contains('MACHINE_FEATURES', 'sgx', '', 'ti-sgx-ddk-km', d)}"
  
- FILES_${PN} += "${bindir}/*"
--INSANE_SKIP_${PN} = "ldflags"
-+INSANE_SKIP_${PN} = "ldflags dev-deps"
 -- 
 1.9.1
 
