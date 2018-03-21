@@ -1,44 +1,43 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id DC1E7529A2
+Return-Path: <denys@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 7ECC7529BD
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Mar 2018 13:20:28 +0000 (UTC)
+	Wed, 21 Mar 2018 16:28:38 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2LDKRWS009835
-	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 08:20:27 -0500
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2LGSa3Z017881
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 11:28:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1521638427;
-	bh=NyWZOyQpjKIEJx4iP7fUeCfEy6OMCsOs4SgpeSEmEeg=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=JD7snTlKSfnrPyy4DR6wVq3jhI1H5fkfE8fo2y16LM9AKfFpiU1Bq06YK+6pdZjQj
-	UrWv8cLExCukF87OMQTkbLtyC9s37qqABSQCaJwL1OwxYSJPiE9HLawPwjDodd1PvP
-	kK5MyQFsYAE7uLm/cqjirWub55RZQqmk676gNOgs=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2LDKRP1023881
-	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 08:20:27 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1521649716;
+	bh=jUAoQ3WD3r5Yk2SyYWDdOS1EHTU3V8yZs/AUAyv07yA=;
+	h=Date:From:To:Subject:References:In-Reply-To;
+	b=GV9GpgvrnrltGwmjjupL6mMysY8RgvEa1ZIGN48RTlQr0QvIhpdiy3xuQuWsCJ8Si
+	vfUCR3CPrE/lnBz1klFVq+Ga2QEblXKugRDuofJHBkfslDNJv/HabvxWG43cgjjopW
+	boBnkDdGuAnUBUVCzVIy5LZ/aO93B3ra6SocqNuQ=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2LGSaJk022081
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 11:28:36 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Wed, 21 Mar 2018 08:20:27 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 21 Mar 2018 11:28:36 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Wed, 21 Mar 2018 08:20:27 -0500
-Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2LDKRfG018350;
-	Wed, 21 Mar 2018 08:20:27 -0500
-To: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>,
-	<meta-arago@arago-project.org>
-References: <1521637792-32939-1-git-send-email-m-radhakrishnan2@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <1333a91d-8b81-0498-f6a3-fd80230c0707@ti.com>
-Date: Wed, 21 Mar 2018 09:20:26 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.6.0
+	Transport; Wed, 21 Mar 2018 11:28:36 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2LGSabk006631
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 11:28:36 -0500
+Date: Wed, 21 Mar 2018 12:28:35 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Message-ID: <20180321162835.GE14973@edge>
+References: <1521582729-47998-1-git-send-email-denys@ti.com>
+	<1521593761-7567-1-git-send-email-denys@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1521637792-32939-1-git-send-email-m-radhakrishnan2@ti.com>
+In-Reply-To: <1521593761-7567-1-git-send-email-denys@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [morty][meta-processor-sdk][PATCH v2] posix-smp-demo: Updating to version 01.01.00.00
+Subject: Re: [rocko/master][PATCHv2 1/4] matrix-gui-machinevision-demos: make machine-specific due to machine override
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,42 +50,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Mar 2018 13:20:30 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Wed, 21 Mar 2018 16:28:41 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Pushed. Thank you.
+That still didn't solve the issue...
 
-
-On 3/21/2018 9:09 AM, Mahesh Radhakrishnan wrote:
-> Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+On Tue, Mar 20, 2018 at 08:56:01PM -0400, Denys Dmytriyenko wrote:
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 > ---
->   v2 - Excluding the rtos bbappend from the v1 patch
->
->   recipes-apps/posix-smp-demo/posix-smp-demo-01.01.00.00.inc | 5 +++++
->   recipes-apps/posix-smp-demo/posix-smp-demo_git.bbappend    | 1 +
->   2 files changed, 6 insertions(+)
->   create mode 100644 recipes-apps/posix-smp-demo/posix-smp-demo-01.01.00.00.inc
->   create mode 100644 recipes-apps/posix-smp-demo/posix-smp-demo_git.bbappend
->
-> diff --git a/recipes-apps/posix-smp-demo/posix-smp-demo-01.01.00.00.inc b/recipes-apps/posix-smp-demo/posix-smp-demo-01.01.00.00.inc
-> new file mode 100644
-> index 0000000..2058ada
-> --- /dev/null
-> +++ b/recipes-apps/posix-smp-demo/posix-smp-demo-01.01.00.00.inc
-> @@ -0,0 +1,5 @@
-> +# Below commit ID corresponds to "DEV.POSIX-SMP.01.01.00.00"
-> +POSIX_SMP_SRCREV = "139fe7ec58939dc2743355e5fede0735f8693ebd"
+> v2 - instead of removing machine override, make package machine-specific
+> 
+>  .../recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb      | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
+> index 4adb7bc..35cd630 100644
+> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
+> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
+> @@ -5,7 +5,7 @@ require recipes-core/matrix/matrix-gui-apps-git.inc
+>  
+>  PR = "${INC_PR}.3"
+>  
+> -inherit allarch
+> +PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+>  S = "${WORKDIR}/git/machinevision_apps"
+>  
+> @@ -20,8 +20,11 @@ PACKAGES = "matrix-machinevision-demo-dlp3dscanner \
+>              matrix-machinevision-demo-simplepeopletracking \
+>  "
+>  
+> -RDEPENDS_matrix-machinevision-demo-dlp3dscanner_dra7xx = " \
+> +RDEPENDS_matrix-machinevision-demo-dlp3dscanner = " \
+>      ${MACHINEVISION_RDEPENDS} \
+> +"
 > +
-> +PV = "01.01.00.00"
-> +INC_PR = "r0"
-> diff --git a/recipes-apps/posix-smp-demo/posix-smp-demo_git.bbappend b/recipes-apps/posix-smp-demo/posix-smp-demo_git.bbappend
-> new file mode 100644
-> index 0000000..e7b3dce
-> --- /dev/null
-> +++ b/recipes-apps/posix-smp-demo/posix-smp-demo_git.bbappend
-> @@ -0,0 +1 @@
-> +require recipes-apps/posix-smp-demo/posix-smp-demo-01.01.00.00.inc
-
+> +RDEPENDS_matrix-machinevision-demo-dlp3dscanner_append_dra7xx = " \
+>      point-cloud-viewer \
+>  "
+>  
+> -- 
+> 2.7.4
+> 
 
