@@ -1,43 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 7ECC7529BD
+Return-Path: <m-radhakrishnan2@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 925E9529A2
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Mar 2018 16:28:38 +0000 (UTC)
+	Wed, 21 Mar 2018 16:50:19 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2LGSa3Z017881
-	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 11:28:36 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2LGoJwj015773
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 11:50:19 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1521649716;
-	bh=jUAoQ3WD3r5Yk2SyYWDdOS1EHTU3V8yZs/AUAyv07yA=;
-	h=Date:From:To:Subject:References:In-Reply-To;
-	b=GV9GpgvrnrltGwmjjupL6mMysY8RgvEa1ZIGN48RTlQr0QvIhpdiy3xuQuWsCJ8Si
-	vfUCR3CPrE/lnBz1klFVq+Ga2QEblXKugRDuofJHBkfslDNJv/HabvxWG43cgjjopW
-	boBnkDdGuAnUBUVCzVIy5LZ/aO93B3ra6SocqNuQ=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2LGSaJk022081
-	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 11:28:36 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1521651019;
+	bh=iHqpBJlLwVQ+B7ZRe9EwhsEMD5ywRFqWoTw2aSassq4=;
+	h=From:To:Subject:Date;
+	b=uIq8jN1/sY3uCfCVmF8JMGk92qmD1jRQo9tUvEJFYjQjtBe7gjqVbyHj2zPkc7p4k
+	wI3ZyTldjqNLRnqH72eX3DU2qtXpDCUPBHXRd6qPunUIVR7wSdfbekA8+O9u+/mypA
+	IIpFWU1KoVSmJb6WjGGRdRRbVxTwg/nvzzEgsyKw=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2LGoJ1v025646
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 11:50:19 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Wed, 21 Mar 2018 11:28:36 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 21 Mar 2018 11:50:18 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Wed, 21 Mar 2018 11:28:36 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2LGSabk006631
-	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 11:28:36 -0500
-Date: Wed, 21 Mar 2018 12:28:35 -0400
-From: Denys Dmytriyenko <denys@ti.com>
+	Transport; Wed, 21 Mar 2018 11:50:18 -0500
+Received: from uda0875154a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2LGoI9J018929
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 11:50:18 -0500
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Message-ID: <20180321162835.GE14973@edge>
-References: <1521582729-47998-1-git-send-email-denys@ti.com>
-	<1521593761-7567-1-git-send-email-denys@ti.com>
+Date: Wed, 21 Mar 2018 12:50:15 -0400
+Message-ID: <1521651015-37229-1-git-send-email-m-radhakrishnan2@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <1521593761-7567-1-git-send-email-denys@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [rocko/master][PATCHv2 1/4] matrix-gui-machinevision-demos: make machine-specific due to machine override
+Subject: [morty][meta-processor-sdk][PATCH] osal: SRCREV bump to version 1.0.0.10A
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,47 +48,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Mar 2018 16:28:41 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 21 Mar 2018 16:50:20 -0000
+Content-Type: text/plain
 
-That still didn't solve the issue...
+Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+---
+ recipes-bsp/osal/osal-01.00.00.10.inc | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-On Tue, Mar 20, 2018 at 08:56:01PM -0400, Denys Dmytriyenko wrote:
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> ---
-> v2 - instead of removing machine override, make package machine-specific
-> 
->  .../recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb      | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
-> index 4adb7bc..35cd630 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
-> @@ -5,7 +5,7 @@ require recipes-core/matrix/matrix-gui-apps-git.inc
->  
->  PR = "${INC_PR}.3"
->  
-> -inherit allarch
-> +PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
->  S = "${WORKDIR}/git/machinevision_apps"
->  
-> @@ -20,8 +20,11 @@ PACKAGES = "matrix-machinevision-demo-dlp3dscanner \
->              matrix-machinevision-demo-simplepeopletracking \
->  "
->  
-> -RDEPENDS_matrix-machinevision-demo-dlp3dscanner_dra7xx = " \
-> +RDEPENDS_matrix-machinevision-demo-dlp3dscanner = " \
->      ${MACHINEVISION_RDEPENDS} \
-> +"
-> +
-> +RDEPENDS_matrix-machinevision-demo-dlp3dscanner_append_dra7xx = " \
->      point-cloud-viewer \
->  "
->  
-> -- 
-> 2.7.4
-> 
+diff --git a/recipes-bsp/osal/osal-01.00.00.10.inc b/recipes-bsp/osal/osal-01.00.00.10.inc
+index 56541ef..1364c7f 100644
+--- a/recipes-bsp/osal/osal-01.00.00.10.inc
++++ b/recipes-bsp/osal/osal-01.00.00.10.inc
+@@ -1,5 +1,5 @@
+-# Below commit ID corresponding to "DEV.OSAL.01.00.00.10"
+-OSAL_SRCREV = "91e954dd18b8ee6480b9d655d9c1306aee9e7ac1"
++# Below commit ID corresponding to "DEV.OSAL.01.00.00.10A"
++OSAL_SRCREV = "d26876bd625d14fc71a9dc79c09d03fab22631dd"
+ 
+-PV = "01.00.00.10"
++PV = "01.00.00.10A"
+ INC_PR = "r0"
+-- 
+1.9.1
+
 
