@@ -1,46 +1,44 @@
-Return-Path: <m-radhakrishnan2@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 5D898529A2
+Return-Path: <j-stiffler@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id DC1E7529A2
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Mar 2018 13:11:57 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2LDBuuL007688
-	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 08:11:56 -0500
+	Wed, 21 Mar 2018 13:20:28 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2LDKRWS009835
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 08:20:27 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1521637917;
-	bh=XK15pZG8HHHeV382K/pinflkTphOkVz9Uwo3dOpGwu4=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=XSdUWrr515usHSCA8pCVPr9AEZSnHYyd7L7qUilXQvJM0DxUyS7+JtB9reMJSNn8a
-	sba79xg90u3/C15UH7twHSzSxRMT94+By8fEHTKdKrHZCWAgpUF8JGVLmusyV7mW6w
-	tnMTZ7wNOObPAO/BQKPn8fZyo1LX9pgxCDYf/MF4=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2LDBuHK010092
-	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 08:11:56 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1521638427;
+	bh=NyWZOyQpjKIEJx4iP7fUeCfEy6OMCsOs4SgpeSEmEeg=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=JD7snTlKSfnrPyy4DR6wVq3jhI1H5fkfE8fo2y16LM9AKfFpiU1Bq06YK+6pdZjQj
+	UrWv8cLExCukF87OMQTkbLtyC9s37qqABSQCaJwL1OwxYSJPiE9HLawPwjDodd1PvP
+	kK5MyQFsYAE7uLm/cqjirWub55RZQqmk676gNOgs=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2LDKRP1023881
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 08:20:27 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Wed, 21 Mar 2018 08:11:56 -0500
-Received: from DLEE109.ent.ti.com ([fe80::992e:7546:157e:3b3d]) by
-	DLEE109.ent.ti.com ([fe80::992e:7546:157e:3b3d%17]) with mapi id
-	15.01.1261.035; Wed, 21 Mar 2018 08:11:56 -0500
-From: "Radhakrishnan, Mahesh" <m-radhakrishnan2@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
+	Wed, 21 Mar 2018 08:20:27 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
+	Transport; Wed, 21 Mar 2018 08:20:27 -0500
+Received: from [10.218.109.201] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2LDKRfG018350;
+	Wed, 21 Mar 2018 08:20:27 -0500
+To: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>,
 	<meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [morty][meta-processor-sdk][PATCH]
-	posix-smp-demo: Updating to version 01.01.00.00
-Thread-Index: AQHTwJIGHOKzTWXBkUGKybvuw5Kyn6PaqxHQ
-Date: Wed, 21 Mar 2018 13:11:56 +0000
-Message-ID: <b8ddada296104e1fa6d7662a08063d79@ti.com>
-References: <1521579632-31441-1-git-send-email-m-radhakrishnan2@ti.com>
-	<629d7d6f-cff6-618e-ff62-7d6cc2dace74@ti.com>
-In-Reply-To: <629d7d6f-cff6-618e-ff62-7d6cc2dace74@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.218.109.180]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1521637792-32939-1-git-send-email-m-radhakrishnan2@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <1333a91d-8b81-0498-f6a3-fd80230c0707@ti.com>
+Date: Wed, 21 Mar 2018 09:20:26 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.6.0
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] [morty][meta-processor-sdk][PATCH] posix-smp-demo: Updating to version 01.01.00.00
+In-Reply-To: <1521637792-32939-1-git-send-email-m-radhakrishnan2@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: Re: [EXTERNAL] [morty][meta-processor-sdk][PATCH v2] posix-smp-demo: Updating to version 01.01.00.00
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,49 +51,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Mar 2018 13:11:57 -0000
+X-List-Received-Date: Wed, 21 Mar 2018 13:20:30 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-DQpTb3JyeSBmb3IgdGhhdC4gSSBoYXZlIGNvcnJlY3RlZCAocmVtb3ZlZCB0aGUgcnRvcyBhcHBl
-bmQpIGFuZCBzdWJtaXR0ZWQgdGhlIHBhdGNoIHYyDQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdl
-LS0tLS0NCkZyb206IFN0aWZmbGVyLCBKYWNvYiANClNlbnQ6IFR1ZXNkYXksIE1hcmNoIDIwLCAy
-MDE4IDU6MjYgUE0NClRvOiBSYWRoYWtyaXNobmFuLCBNYWhlc2g7IG1ldGEtYXJhZ29AYXJhZ28t
-cHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbRVhURVJOQUxdIFttZXRhLWFyYWdvXSBbbW9ydHld
-W21ldGEtcHJvY2Vzc29yLXNka11bUEFUQ0hdIHBvc2l4LXNtcC1kZW1vOiBVcGRhdGluZyB0byB2
-ZXJzaW9uIDAxLjAxLjAwLjAwDQoNCg0KDQpPbiAzLzIwLzIwMTggNTowMCBQTSwgTWFoZXNoIFJh
-ZGhha3Jpc2huYW4gd3JvdGU6DQo+IFNpZ25lZC1vZmYtYnk6IE1haGVzaCBSYWRoYWtyaXNobmFu
-IDxtLXJhZGhha3Jpc2huYW4yQHRpLmNvbT4NCj4gLS0tDQo+ICAgcmVjaXBlcy1hcHBzL3Bvc2l4
-LXNtcC1kZW1vL3Bvc2l4LXNtcC1kZW1vLTAxLjAxLjAwLjAwLmluYyAgIHwgNSArKysrKw0KPiAg
-IHJlY2lwZXMtYXBwcy9wb3NpeC1zbXAtZGVtby9wb3NpeC1zbXAtZGVtby1ydG9zX2dpdC5iYmFw
-cGVuZCB8IDEgKw0KPiAgIHJlY2lwZXMtYXBwcy9wb3NpeC1zbXAtZGVtby9wb3NpeC1zbXAtZGVt
-b19naXQuYmJhcHBlbmQgICAgICB8IDEgKw0KPiAgIDMgZmlsZXMgY2hhbmdlZCwgNyBpbnNlcnRp
-b25zKCspDQo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IHJlY2lwZXMtYXBwcy9wb3NpeC1zbXAtZGVt
-by9wb3NpeC1zbXAtZGVtby0wMS4wMS4wMC4wMC5pbmMNCj4gICBjcmVhdGUgbW9kZSAxMDA2NDQg
-cmVjaXBlcy1hcHBzL3Bvc2l4LXNtcC1kZW1vL3Bvc2l4LXNtcC1kZW1vLXJ0b3NfZ2l0LmJiYXBw
-ZW5kDQoNClRoZXJlIGlzIG5vIHBvc2l4LXNtcC1kZW1vLXJ0b3MgcmVjaXBlIGZvciB0aGlzIGJi
-YXBwZW5kLg0KDQo+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IHJlY2lwZXMtYXBwcy9wb3NpeC1zbXAt
-ZGVtby9wb3NpeC1zbXAtZGVtb19naXQuYmJhcHBlbmQNCj4NCj4gZGlmZiAtLWdpdCBhL3JlY2lw
-ZXMtYXBwcy9wb3NpeC1zbXAtZGVtby9wb3NpeC1zbXAtZGVtby0wMS4wMS4wMC4wMC5pbmMgYi9y
-ZWNpcGVzLWFwcHMvcG9zaXgtc21wLWRlbW8vcG9zaXgtc21wLWRlbW8tMDEuMDEuMDAuMDAuaW5j
-DQo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAuLjIwNThhZGENCj4gLS0t
-IC9kZXYvbnVsbA0KPiArKysgYi9yZWNpcGVzLWFwcHMvcG9zaXgtc21wLWRlbW8vcG9zaXgtc21w
-LWRlbW8tMDEuMDEuMDAuMDAuaW5jDQo+IEBAIC0wLDAgKzEsNSBAQA0KPiArIyBCZWxvdyBjb21t
-aXQgSUQgY29ycmVzcG9uZHMgdG8gIkRFVi5QT1NJWC1TTVAuMDEuMDEuMDAuMDAiDQo+ICtQT1NJ
-WF9TTVBfU1JDUkVWID0gIjEzOWZlN2VjNTg5MzlkYzI3NDMzNTVlNWZlZGUwNzM1Zjg2OTNlYmQi
-DQo+ICsNCj4gK1BWID0gIjAxLjAxLjAwLjAwIg0KPiArSU5DX1BSID0gInIwIg0KPiBkaWZmIC0t
-Z2l0IGEvcmVjaXBlcy1hcHBzL3Bvc2l4LXNtcC1kZW1vL3Bvc2l4LXNtcC1kZW1vLXJ0b3NfZ2l0
-LmJiYXBwZW5kIGIvcmVjaXBlcy1hcHBzL3Bvc2l4LXNtcC1kZW1vL3Bvc2l4LXNtcC1kZW1vLXJ0
-b3NfZ2l0LmJiYXBwZW5kDQo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAu
-LmU3YjNkY2UNCj4gLS0tIC9kZXYvbnVsbA0KPiArKysgYi9yZWNpcGVzLWFwcHMvcG9zaXgtc21w
-LWRlbW8vcG9zaXgtc21wLWRlbW8tcnRvc19naXQuYmJhcHBlbmQNCj4gQEAgLTAsMCArMSBAQA0K
-PiArcmVxdWlyZSByZWNpcGVzLWFwcHMvcG9zaXgtc21wLWRlbW8vcG9zaXgtc21wLWRlbW8tMDEu
-MDEuMDAuMDAuaW5jDQo+IGRpZmYgLS1naXQgYS9yZWNpcGVzLWFwcHMvcG9zaXgtc21wLWRlbW8v
-cG9zaXgtc21wLWRlbW9fZ2l0LmJiYXBwZW5kIGIvcmVjaXBlcy1hcHBzL3Bvc2l4LXNtcC1kZW1v
-L3Bvc2l4LXNtcC1kZW1vX2dpdC5iYmFwcGVuZA0KPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiBp
-bmRleCAwMDAwMDAwLi5lN2IzZGNlDQo+IC0tLSAvZGV2L251bGwNCj4gKysrIGIvcmVjaXBlcy1h
-cHBzL3Bvc2l4LXNtcC1kZW1vL3Bvc2l4LXNtcC1kZW1vX2dpdC5iYmFwcGVuZA0KPiBAQCAtMCww
-ICsxIEBADQo+ICtyZXF1aXJlIHJlY2lwZXMtYXBwcy9wb3NpeC1zbXAtZGVtby9wb3NpeC1zbXAt
-ZGVtby0wMS4wMS4wMC4wMC5pbmMNCg0K
+Pushed. Thank you.
+
+
+On 3/21/2018 9:09 AM, Mahesh Radhakrishnan wrote:
+> Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+> ---
+>   v2 - Excluding the rtos bbappend from the v1 patch
+>
+>   recipes-apps/posix-smp-demo/posix-smp-demo-01.01.00.00.inc | 5 +++++
+>   recipes-apps/posix-smp-demo/posix-smp-demo_git.bbappend    | 1 +
+>   2 files changed, 6 insertions(+)
+>   create mode 100644 recipes-apps/posix-smp-demo/posix-smp-demo-01.01.00.00.inc
+>   create mode 100644 recipes-apps/posix-smp-demo/posix-smp-demo_git.bbappend
+>
+> diff --git a/recipes-apps/posix-smp-demo/posix-smp-demo-01.01.00.00.inc b/recipes-apps/posix-smp-demo/posix-smp-demo-01.01.00.00.inc
+> new file mode 100644
+> index 0000000..2058ada
+> --- /dev/null
+> +++ b/recipes-apps/posix-smp-demo/posix-smp-demo-01.01.00.00.inc
+> @@ -0,0 +1,5 @@
+> +# Below commit ID corresponds to "DEV.POSIX-SMP.01.01.00.00"
+> +POSIX_SMP_SRCREV = "139fe7ec58939dc2743355e5fede0735f8693ebd"
+> +
+> +PV = "01.01.00.00"
+> +INC_PR = "r0"
+> diff --git a/recipes-apps/posix-smp-demo/posix-smp-demo_git.bbappend b/recipes-apps/posix-smp-demo/posix-smp-demo_git.bbappend
+> new file mode 100644
+> index 0000000..e7b3dce
+> --- /dev/null
+> +++ b/recipes-apps/posix-smp-demo/posix-smp-demo_git.bbappend
+> @@ -0,0 +1 @@
+> +require recipes-apps/posix-smp-demo/posix-smp-demo-01.01.00.00.inc
+
 
