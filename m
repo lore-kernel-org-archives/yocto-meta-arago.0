@@ -1,42 +1,42 @@
 Return-Path: <x0038811@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 8A3DE529D5
+	by arago-project.org (Postfix) with ESMTPS id C1750529DC
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Mar 2018 04:06:57 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2M46v7Y024798
-	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:57 -0500
+	Thu, 22 Mar 2018 04:06:58 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2M46w72024802
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1521691617;
-	bh=IVTQCC+Wzxs/5vaYnbdBZ68HzGzOYdYxKhzbcSxFNAM=;
+	s=ti-com-17Q1; t=1521691618;
+	bh=a027R06kO3PQi2zsUh9mREgEWbXwh1qVWXvxZAtmfTc=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=FC8NzhXf1f7aE7BK2dX8l3Wxy8jPTHDKicMKYI913QJYjfH/3nB6a9XSwtqDtFBXU
-	5TN1gOg5wd9jj6AUkwjeKUKOGgiKFprNbLUK4EiG7U9XSFUJ3ElSkaCBuw7UwGJ+4m
-	zRfMjCMZ9WCDMOr4eY0Y9aHsJYaMRa8VYzIforQg=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46vA2014253
-	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:57 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	b=gMxuillTRF9HkNJTw2ovOjEBIRRQaoRzrZfsI75YOfc/+roPER/M1aEk86saapayQ
+	QkHZOHFgc1FXrVCmpqV3l7n1f3MRIYuYYs5181ZYCwv29v7Oe07U39O9CznJQIiUB3
+	XOSsMriaArwxjGIsDm6aV2S5DpbvtsqddAgy7ugo=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46wu8002728
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:58 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Wed, 21 Mar 2018 23:06:56 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 21 Mar 2018 23:06:57 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Wed, 21 Mar 2018 23:06:56 -0500
+	Transport; Wed, 21 Mar 2018 23:06:57 -0500
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46nAP028035;
-	Wed, 21 Mar 2018 23:06:55 -0500
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46nAQ028035;
+	Wed, 21 Mar 2018 23:06:57 -0500
 From: Ramprasad N <x0038811@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 22 Mar 2018 09:36:41 +0530
-Message-ID: <1521691605-49259-6-git-send-email-x0038811@ti.com>
+Date: Thu, 22 Mar 2018 09:36:42 +0530
+Message-ID: <1521691605-49259-7-git-send-email-x0038811@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1521691605-49259-1-git-send-email-x0038811@ti.com>
 References: <1521691605-49259-1-git-send-email-x0038811@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko 5/9] gstreamer1.0*-bad: Enable kmssink with gst 1.12
+Subject: [rocko 6/9] wayland-protocols: Add drm protocol to stable
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,218 +49,224 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Mar 2018 04:06:59 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 22 Mar 2018 04:07:00 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
 Signed-off-by: Ramprasad N <x0038811@ti.com>
 ---
- ...Add-omapdrm-in-the-list-of-driver-modules.patch | 165 +++++++++++++++++++++
- .../gstreamer1.0-plugins-bad_1.12.2.bbappend       |   5 +-
- 2 files changed, 169 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
+ ...nd-drm-Add-wayland-drm-protocol-to-stable.patch | 179 +++++++++++++++++++++
+ .../wayland/wayland-protocols_1.10.bbappend        |  15 ++
+ 2 files changed, 194 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/wayland-protocols/0001-wayland-drm-Add-wayland-drm-protocol-to-stable.patch
+ create mode 100644 meta-arago-extras/recipes-graphics/wayland/wayland-protocols_1.10.bbappend
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
+diff --git a/meta-arago-extras/recipes-graphics/wayland/wayland-protocols/0001-wayland-drm-Add-wayland-drm-protocol-to-stable.patch b/meta-arago-extras/recipes-graphics/wayland/wayland-protocols/0001-wayland-drm-Add-wayland-drm-protocol-to-stable.patch
 new file mode 100644
-index 0000000..2e4965c
+index 0000000..7cb1750
 --- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
-@@ -0,0 +1,165 @@
-+From 4ef13bc433d218f2ebcbe2e9b7853d10d7b9acbc Mon Sep 17 00:00:00 2001
++++ b/meta-arago-extras/recipes-graphics/wayland/wayland-protocols/0001-wayland-drm-Add-wayland-drm-protocol-to-stable.patch
+@@ -0,0 +1,179 @@
++From aad79976f85fda12ade80a0bd760733a6ffb519e Mon Sep 17 00:00:00 2001
 +From: Ramprasad N <x0038811@ti.com>
-+Date: Tue, 6 Mar 2018 19:02:20 +0530
-+Subject: [PATCH 3/5] kmssink: Add omapdrm in the list of driver modules
++Date: Mon, 26 Feb 2018 09:22:00 +0530
++Subject: [PATCH] wayland-drm: Add wayland-drm protocol to stable
 +
-+In gstreamer-bad v1.12.2 kmssink plugin is available
-+but omapdrm driver is not added in the list of driver
-+module.
-+
-+DRM and DMABUF are treated differently by gstreamer
-+eventhough they are based on fd allocator.
-+GST1.12 has many changes to dmabuf allocator and
-+hence DRM and DMABUF will be treated differently.
-+
-+Added support for DRM buffer importing. Without
-+this addition, there will be frame-copy happens and
-+slows down the playback.
++wayland-drm protocol is missing in the protocols list since this
++protocol is MESA specific. For waylandsink gstreamer support
++wayland-drm protocol is needed.
 +
 +Signed-off-by: Ramprasad N <x0038811@ti.com>
 +---
-+ sys/kms/Makefile.am  |   1 +
-+ sys/kms/gstkmssink.c | 101 ++++++++++++++++++++++++++++++++++++++++++++++++++-
-+ 2 files changed, 101 insertions(+), 1 deletion(-)
++ stable/wayland-drm/wayland-drm.xml | 155 +++++++++++++++++++++++++++++++++++++
++ 1 file changed, 155 insertions(+)
++ create mode 100644 stable/wayland-drm/wayland-drm.xml
 +
-+diff --git a/sys/kms/Makefile.am b/sys/kms/Makefile.am
-+index a97cad1..063f5ef 100644
-+--- a/sys/kms/Makefile.am
-++++ b/sys/kms/Makefile.am
-+@@ -23,6 +23,7 @@ libgstkms_la_LIBADD = 			\
-+ 	$(GST_ALLOCATORS_LIBS)			\
-+ 	$(GST_LIBS) 				\
-+ 	$(KMS_DRM_LIBS) 			\
-++	$(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la \
-+ 	$(NULL)
-+ 
-+ libgstkms_la_LDFLAGS = 			\
-+diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
-+index d19e19e..028bec6 100644
-+--- a/sys/kms/gstkmssink.c
-++++ b/sys/kms/gstkmssink.c
-+@@ -85,7 +85,8 @@ static int
-+ kms_open (gchar ** driver)
-+ {
-+   static const char *drivers[] = { "i915", "radeon", "nouveau", "vmwgfx",
-+-    "exynos", "amdgpu", "imx-drm", "rockchip", "atmel-hlcdc", "msm"
-++    "exynos", "amdgpu", "imx-drm", "rockchip", "atmel-hlcdc", "msm",
-++    "omapdrm"
-+   };
-+   int i, fd = -1;
-+ 
-+@@ -1041,6 +1042,100 @@ set_cached_kmsmem (GstMemory * mem, GstMemory * kmsmem)
-+ }
-+ 
-+ static gboolean
-++gst_kms_sink_import_drmbuf (GstKMSSink * self, GstBuffer * inbuf,
-++    GstBuffer ** outbuf)
-++{
-++  gint prime_fds[GST_VIDEO_MAX_PLANES] = { 0, };
-++  GstVideoMeta *meta;
-++  guint i, n_mem, n_planes;
-++  GstKMSMemory *kmsmem;
-++  guint mems_idx[GST_VIDEO_MAX_PLANES];
-++  gsize mems_skip[GST_VIDEO_MAX_PLANES];
-++  GstMemory *mems[GST_VIDEO_MAX_PLANES];
++diff --git a/stable/wayland-drm/wayland-drm.xml b/stable/wayland-drm/wayland-drm.xml
++new file mode 100644
++index 0000000..265d4f8
++--- /dev/null
+++++ b/stable/wayland-drm/wayland-drm.xml
++@@ -0,0 +1,155 @@
+++<?xml version="1.0" encoding="UTF-8"?>
+++<protocol name="drm">
 ++
-++  if (!self->has_prime_import)
-++    return FALSE;
+++  <copyright>
+++    Copyright © 2008-2011 Kristian Høgsberg
+++    Copyright © 2010-2011 Intel Corporation
 ++
-++  /* This will eliminate most non-dmabuf out there */
-++  if (!gst_is_drm_memory (gst_buffer_peek_memory (inbuf, 0)))
-++    return FALSE;
+++    Permission to use, copy, modify, distribute, and sell this
+++    software and its documentation for any purpose is hereby granted
+++    without fee, provided that\n the above copyright notice appear in
+++    all copies and that both that copyright notice and this permission
+++    notice appear in supporting documentation, and that the name of
+++    the copyright holders not be used in advertising or publicity
+++    pertaining to distribution of the software without specific,
+++    written prior permission.  The copyright holders make no
+++    representations about the suitability of this software for any
+++    purpose.  It is provided "as is" without express or implied
+++    warranty.
 ++
-++  n_planes = GST_VIDEO_INFO_N_PLANES (&self->vinfo);
-++  n_mem = gst_buffer_n_memory (inbuf);
-++  meta = gst_buffer_get_video_meta (inbuf);
+++    THE COPYRIGHT HOLDERS DISCLAIM ALL WARRANTIES WITH REGARD TO THIS
+++    SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+++    FITNESS, IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+++    SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+++    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+++    AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+++    ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+++    THIS SOFTWARE.
+++  </copyright>
 ++
-++  GST_TRACE_OBJECT (self, "Found a drmbuf with %u planes and %u memories",
-++      n_planes, n_mem);
+++  <!-- drm support. This object is created by the server and published
+++       using the display's global event. -->
+++  <interface name="wl_drm" version="1">
+++    <enum name="error">
+++      <entry name="authenticate_fail" value="0"/>
+++      <entry name="invalid_format" value="1"/>
+++      <entry name="invalid_name" value="2"/>
+++    </enum>
 ++
-++  /* We cannot have multiple dmabuf per plane */
-++  if (n_mem > n_planes)
-++    return FALSE;
-++  g_assert (n_planes != 0);
+++    <enum name="format">
+++      <!-- The drm format codes match the #defines in drm_fourcc.h.
+++           The formats actually supported by the compositor will be
+++           reported by the format event. -->
+++      <entry name="c8" value="0x20203843"/>
+++      <entry name="rgb332" value="0x38424752"/>
+++      <entry name="bgr233" value="0x38524742"/>
+++      <entry name="xrgb4444" value="0x32315258"/>
+++      <entry name="xbgr4444" value="0x32314258"/>
+++      <entry name="rgbx4444" value="0x32315852"/>
+++      <entry name="bgrx4444" value="0x32315842"/>
+++      <entry name="argb4444" value="0x32315241"/>
+++      <entry name="abgr4444" value="0x32314241"/>
+++      <entry name="rgba4444" value="0x32314152"/>
+++      <entry name="bgra4444" value="0x32314142"/>
+++      <entry name="xrgb1555" value="0x35315258"/>
+++      <entry name="xbgr1555" value="0x35314258"/>
+++      <entry name="rgbx5551" value="0x35315852"/>
+++      <entry name="bgrx5551" value="0x35315842"/>
+++      <entry name="argb1555" value="0x35315241"/>
+++      <entry name="abgr1555" value="0x35314241"/>
+++      <entry name="rgba5551" value="0x35314152"/>
+++      <entry name="bgra5551" value="0x35314142"/>
+++      <entry name="rgb565" value="0x36314752"/>
+++      <entry name="bgr565" value="0x36314742"/>
+++      <entry name="rgb888" value="0x34324752"/>
+++      <entry name="bgr888" value="0x34324742"/>
+++      <entry name="xrgb8888" value="0x34325258"/>
+++      <entry name="xbgr8888" value="0x34324258"/>
+++      <entry name="rgbx8888" value="0x34325852"/>
+++      <entry name="bgrx8888" value="0x34325842"/>
+++      <entry name="argb8888" value="0x34325241"/>
+++      <entry name="abgr8888" value="0x34324241"/>
+++      <entry name="rgba8888" value="0x34324152"/>
+++      <entry name="bgra8888" value="0x34324142"/>
+++      <entry name="xrgb2101010" value="0x30335258"/>
+++      <entry name="xbgr2101010" value="0x30334258"/>
+++      <entry name="rgbx1010102" value="0x30335852"/>
+++      <entry name="bgrx1010102" value="0x30335842"/>
+++      <entry name="argb2101010" value="0x30335241"/>
+++      <entry name="abgr2101010" value="0x30334241"/>
+++      <entry name="rgba1010102" value="0x30334152"/>
+++      <entry name="bgra1010102" value="0x30334142"/>
+++      <entry name="yuyv" value="0x56595559"/>
+++      <entry name="yvyu" value="0x55595659"/>
+++      <entry name="uyvy" value="0x59565955"/>
+++      <entry name="vyuy" value="0x59555956"/>
+++      <entry name="ayuv" value="0x56555941"/>
+++      <entry name="nv12" value="0x3231564e"/>
+++      <entry name="nv21" value="0x3132564e"/>
+++      <entry name="nv16" value="0x3631564e"/>
+++      <entry name="nv61" value="0x3136564e"/>
+++      <entry name="yuv410" value="0x39565559"/>
+++      <entry name="yvu410" value="0x39555659"/>
+++      <entry name="yuv411" value="0x31315559"/>
+++      <entry name="yvu411" value="0x31315659"/>
+++      <entry name="yuv420" value="0x32315559"/>
+++      <entry name="yvu420" value="0x32315659"/>
+++      <entry name="yuv422" value="0x36315559"/>
+++      <entry name="yvu422" value="0x36315659"/>
+++      <entry name="yuv444" value="0x34325559"/>
+++      <entry name="yvu444" value="0x34325659"/>
+++    </enum>
 ++
-++  /* Update video info based on video meta */
-++  if (meta) {
-++    GST_VIDEO_INFO_WIDTH (&self->vinfo) = meta->width;
-++    GST_VIDEO_INFO_HEIGHT (&self->vinfo) = meta->height;
+++    <!-- Call this request with the magic received from drmGetMagic().
+++         It will be passed on to the drmAuthMagic() or
+++         DRIAuthConnection() call.  This authentication must be
+++         completed before create_buffer could be used. -->
+++    <request name="authenticate">
+++      <arg name="id" type="uint"/>
+++    </request>
 ++
-++    for (i = 0; i < meta->n_planes; i++) {
-++      GST_VIDEO_INFO_PLANE_OFFSET (&self->vinfo, i) = meta->offset[i];
-++      GST_VIDEO_INFO_PLANE_STRIDE (&self->vinfo, i) = meta->stride[i];
-++    }
-++  }
+++    <!-- Create a wayland buffer for the named DRM buffer.  The DRM
+++         surface must have a name using the flink ioctl -->
+++    <request name="create_buffer">
+++      <arg name="id" type="new_id" interface="wl_buffer"/>
+++      <arg name="name" type="uint"/>
+++      <arg name="width" type="int"/>
+++      <arg name="height" type="int"/>
+++      <arg name="stride" type="uint"/>
+++      <arg name="format" type="uint"/>
+++    </request>
 ++
-++  /* Find and validate all memories */
-++  for (i = 0; i < n_planes; i++) {
-++    guint length;
+++    <!-- Create a wayland buffer for the named DRM buffer.  The DRM
+++         surface must have a name using the flink ioctl -->
+++    <request name="create_planar_buffer">
+++      <arg name="id" type="new_id" interface="wl_buffer"/>
+++      <arg name="name" type="uint"/>
+++      <arg name="width" type="int"/>
+++      <arg name="height" type="int"/>
+++      <arg name="format" type="uint"/>
+++      <arg name="offset0" type="int"/>
+++      <arg name="stride0" type="int"/>
+++      <arg name="offset1" type="int"/>
+++      <arg name="stride1" type="int"/>
+++      <arg name="offset2" type="int"/>
+++      <arg name="stride2" type="int"/>
+++    </request>
 ++
-++    if (!gst_buffer_find_memory (inbuf,
-++            GST_VIDEO_INFO_PLANE_OFFSET (&self->vinfo, i), 1,
-++            &mems_idx[i], &length, &mems_skip[i]))
-++      return FALSE;
+++    <!-- Notification of the path of the drm device which is used by
+++         the server.  The client should use this device for creating
+++         local buffers.  Only buffers created from this device should
+++         be be passed to the server using this drm object's
+++         create_buffer request. -->
+++    <event name="device">
+++      <arg name="name" type="string"/>
+++    </event>
 ++
-++    mems[i] = gst_buffer_peek_memory (inbuf, mems_idx[i]);
+++    <event name="format">
+++      <arg name="format" type="uint"/>
+++    </event>
 ++
-++    /* adjust for memory offset, in case data does not
-++     * start from byte 0 in the dmabuf fd */
-++    mems_skip[i] += mems[i]->offset;
+++    <!-- Raised if the authenticate request succeeded -->
+++    <event name="authenticated"/>
+++  </interface>
 ++
-++    /* And all memory found must be dmabuf */
-++    if (!gst_is_drm_memory (mems[i]))
-++      return FALSE;
-++  }
-++
-++  kmsmem = (GstKMSMemory *) get_cached_kmsmem (mems[0]);
-++  if (kmsmem) {
-++    GST_LOG_OBJECT (self, "found KMS mem %p in DMABuf mem %p with fb id = %d",
-++        kmsmem, mems[0], kmsmem->fb_id);
-++    goto wrap_mem;
-++  }
-++
-++  for (i = 0; i < n_planes; i++)
-++    prime_fds[i] = gst_fd_memory_get_fd (mems[i]);
-++
-++  GST_LOG_OBJECT (self, "found these prime ids: %d, %d, %d, %d", prime_fds[0],
-++      prime_fds[1], prime_fds[2], prime_fds[3]);
-++
-++  kmsmem = gst_kms_allocator_dmabuf_import (self->allocator, prime_fds,
-++      n_planes, mems_skip, &self->vinfo);
-++  if (!kmsmem)
-++    return FALSE;
-++
-++  GST_LOG_OBJECT (self, "setting KMS mem %p to DMABuf mem %p with fb id = %d",
-++      kmsmem, mems[0], kmsmem->fb_id);
-++  set_cached_kmsmem (mems[0], GST_MEMORY_CAST (kmsmem));
-++
-++wrap_mem:
-++  *outbuf = gst_buffer_new ();
-++  if (!*outbuf)
-++    return FALSE;
-++  gst_buffer_append_memory (*outbuf, gst_memory_ref (GST_MEMORY_CAST (kmsmem)));
-++  gst_buffer_add_parent_buffer_meta (*outbuf, inbuf);
-++  gst_buffer_copy_into (*outbuf, inbuf, GST_BUFFER_COPY_METADATA, 0, -1);
-++
-++  return TRUE;
-++}
-++static gboolean
-+ gst_kms_sink_import_dmabuf (GstKMSSink * self, GstBuffer * inbuf,
-+     GstBuffer ** outbuf)
-+ {
-+@@ -1151,6 +1246,10 @@ gst_kms_sink_get_input_buffer (GstKMSSink * self, GstBuffer * inbuf)
-+     return gst_buffer_ref (inbuf);
-+ 
-+   buf = NULL;
-++  if (gst_kms_sink_import_drmbuf (self, inbuf, &buf))
-++    return buf;
-++
-++  buf = NULL;
-+   if (gst_kms_sink_import_dmabuf (self, inbuf, &buf))
-+     return buf;
-+ 
+++</protocol>
 +-- 
 +1.9.1
 +
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
-index 437689f..f99b81d 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
-@@ -1,6 +1,7 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
- PACKAGECONFIG = "faad"
-+PACKAGECONFIG = "kms"
- 
- # gstreamer is now also included on Keystone, be mindful of any Graphics dependencies
- PACKAGECONFIG_append_omap-a15 = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
-@@ -22,6 +23,7 @@ DEPENDS_append_ti33x = " \
- SRC_URI_append_ti43x = " \
-     file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
-     file://0002-parsers-bug-fixes-on-parsers.patch \
-+    file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch \
- "
- 
- SRC_URI_append_ti33x = " \
-@@ -30,8 +32,9 @@ SRC_URI_append_ti33x = " \
- SRC_URI_append_omap-a15 = " \
-     file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
-     file://0002-parsers-bug-fixes-on-parsers.patch \
-+    file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch \
- "
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--PR = "r2"
-+PR = "r3"
+diff --git a/meta-arago-extras/recipes-graphics/wayland/wayland-protocols_1.10.bbappend b/meta-arago-extras/recipes-graphics/wayland/wayland-protocols_1.10.bbappend
+new file mode 100644
+index 0000000..eba62d8
+--- /dev/null
++++ b/meta-arago-extras/recipes-graphics/wayland/wayland-protocols_1.10.bbappend
+@@ -0,0 +1,15 @@
++PR_append = "_arago1"
++
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++SRC_URI += " \
++      file://0001-wayland-drm-Add-wayland-drm-protocol-to-stable.patch \
++      "
++
++S = "${WORKDIR}/wayland-protocols-1.10"
++
++do_install_append() {
++	install -d ${D}${datadir}/wayland-protocols/stable/wayland-drm
++	cp ${S}/stable/wayland-drm/wayland-drm.xml ${D}${datadir}/wayland-protocols/stable/wayland-drm/
++
++}
 -- 
 1.9.1
 
