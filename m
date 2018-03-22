@@ -1,42 +1,42 @@
 Return-Path: <x0038811@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 869A9529DC
+	by arago-project.org (Postfix) with ESMTPS id 8A3DE529D5
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Mar 2018 04:06:56 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2M46tXY024794
-	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:55 -0500
+	Thu, 22 Mar 2018 04:06:57 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2M46v7Y024798
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:57 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1521691615;
-	bh=EP5TUEyypnC00OZSD9r8YB5yQeXDPvaFwPl1mVYhAl4=;
+	s=ti-com-17Q1; t=1521691617;
+	bh=IVTQCC+Wzxs/5vaYnbdBZ68HzGzOYdYxKhzbcSxFNAM=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=xVe9n8FOjhm+nWEWiMviaa+UFPwr7kf0SRAO4VIONfuZq/VvcuNZ7PboucI7Oy5GP
-	cyLyKIBc4lXBGn+bLBYU6+L7L50EQhKD7kXrciWtYJ6gVVtJm4wU7F/7XixsGow05w
-	KMo8vCXaSiR47NPpS5AfP5c5gbvqJeqPcQJRup00=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46tEK002699
-	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:55 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	b=FC8NzhXf1f7aE7BK2dX8l3Wxy8jPTHDKicMKYI913QJYjfH/3nB6a9XSwtqDtFBXU
+	5TN1gOg5wd9jj6AUkwjeKUKOGgiKFprNbLUK4EiG7U9XSFUJ3ElSkaCBuw7UwGJ+4m
+	zRfMjCMZ9WCDMOr4eY0Y9aHsJYaMRa8VYzIforQg=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46vA2014253
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:57 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Wed, 21 Mar 2018 23:06:55 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 21 Mar 2018 23:06:56 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Wed, 21 Mar 2018 23:06:55 -0500
+	Transport; Wed, 21 Mar 2018 23:06:56 -0500
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46nAO028035;
-	Wed, 21 Mar 2018 23:06:54 -0500
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46nAP028035;
+	Wed, 21 Mar 2018 23:06:55 -0500
 From: Ramprasad N <x0038811@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 22 Mar 2018 09:36:40 +0530
-Message-ID: <1521691605-49259-5-git-send-email-x0038811@ti.com>
+Date: Thu, 22 Mar 2018 09:36:41 +0530
+Message-ID: <1521691605-49259-6-git-send-email-x0038811@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1521691605-49259-1-git-send-email-x0038811@ti.com>
 References: <1521691605-49259-1-git-send-email-x0038811@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko 4/9] gstreamer1.0*-bad: Add parser specific fixes
+Subject: [rocko 5/9] gstreamer1.0*-bad: Enable kmssink with gst 1.12
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,192 +49,218 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Mar 2018 04:06:58 -0000
+X-List-Received-Date: Thu, 22 Mar 2018 04:06:59 -0000
 Content-Type: text/plain
 
 Signed-off-by: Ramprasad N <x0038811@ti.com>
 ---
- .../0002-parsers-bug-fixes-on-parsers.patch        | 147 +++++++++++++++++++++
- .../gstreamer1.0-plugins-bad_1.12.2.bbappend       |   4 +-
- 2 files changed, 150 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-bug-fixes-on-parsers.patch
+ ...Add-omapdrm-in-the-list-of-driver-modules.patch | 165 +++++++++++++++++++++
+ .../gstreamer1.0-plugins-bad_1.12.2.bbappend       |   5 +-
+ 2 files changed, 169 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-bug-fixes-on-parsers.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-bug-fixes-on-parsers.patch
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
 new file mode 100644
-index 0000000..34ec6b4
+index 0000000..2e4965c
 --- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-bug-fixes-on-parsers.patch
-@@ -0,0 +1,147 @@
-+From e44c23a75544aa4eea9a151b8d7a5168de86c0da Mon Sep 17 00:00:00 2001
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
+@@ -0,0 +1,165 @@
++From 4ef13bc433d218f2ebcbe2e9b7853d10d7b9acbc Mon Sep 17 00:00:00 2001
 +From: Ramprasad N <x0038811@ti.com>
-+Date: Thu, 18 Jan 2018 17:01:37 +0530
-+Subject: [PATCH 2/5] parsers: Pick bug fixes on different parsers
++Date: Tue, 6 Mar 2018 19:02:20 +0530
++Subject: [PATCH 3/5] kmssink: Add omapdrm in the list of driver modules
 +
-+The following bug fixes which were previously identified are picked :
-+1. Increase rank for vc1parse and jpegparse
-+2. Modify h264 and mpeg4 parsers to interpolate pts
-+3. Fix create() width and height calculation on h264parse
++In gstreamer-bad v1.12.2 kmssink plugin is available
++but omapdrm driver is not added in the list of driver
++module.
 +
-+Signed-off-by: Pooja Prajod <a0132412@ti.com>
++DRM and DMABUF are treated differently by gstreamer
++eventhough they are based on fd allocator.
++GST1.12 has many changes to dmabuf allocator and
++hence DRM and DMABUF will be treated differently.
++
++Added support for DRM buffer importing. Without
++this addition, there will be frame-copy happens and
++slows down the playback.
++
 +Signed-off-by: Ramprasad N <x0038811@ti.com>
 +---
-+ gst/jpegformat/gstjpegformat.c        |  2 +-
-+ gst/jpegformat/gstjpegparse.c         |  2 +-
-+ gst/videoparsers/gsth264parse.c       | 22 +++++++---------------
-+ gst/videoparsers/gstmpeg4videoparse.c |  2 +-
-+ gst/videoparsers/gstmpegvideoparse.c  |  2 +-
-+ gst/videoparsers/plugin.c             |  2 +-
-+ 6 files changed, 12 insertions(+), 20 deletions(-)
++ sys/kms/Makefile.am  |   1 +
++ sys/kms/gstkmssink.c | 101 ++++++++++++++++++++++++++++++++++++++++++++++++++-
++ 2 files changed, 101 insertions(+), 1 deletion(-)
 +
-+diff --git a/gst/jpegformat/gstjpegformat.c b/gst/jpegformat/gstjpegformat.c
-+index b410466..ecb9311 100644
-+--- a/gst/jpegformat/gstjpegformat.c
-++++ b/gst/jpegformat/gstjpegformat.c
-+@@ -30,7 +30,7 @@
++diff --git a/sys/kms/Makefile.am b/sys/kms/Makefile.am
++index a97cad1..063f5ef 100644
++--- a/sys/kms/Makefile.am
+++++ b/sys/kms/Makefile.am
++@@ -23,6 +23,7 @@ libgstkms_la_LIBADD = 			\
++ 	$(GST_ALLOCATORS_LIBS)			\
++ 	$(GST_LIBS) 				\
++ 	$(KMS_DRM_LIBS) 			\
+++	$(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la \
++ 	$(NULL)
++ 
++ libgstkms_la_LDFLAGS = 			\
++diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
++index d19e19e..028bec6 100644
++--- a/sys/kms/gstkmssink.c
+++++ b/sys/kms/gstkmssink.c
++@@ -85,7 +85,8 @@ static int
++ kms_open (gchar ** driver)
++ {
++   static const char *drivers[] = { "i915", "radeon", "nouveau", "vmwgfx",
++-    "exynos", "amdgpu", "imx-drm", "rockchip", "atmel-hlcdc", "msm"
+++    "exynos", "amdgpu", "imx-drm", "rockchip", "atmel-hlcdc", "msm",
+++    "omapdrm"
++   };
++   int i, fd = -1;
++ 
++@@ -1041,6 +1042,100 @@ set_cached_kmsmem (GstMemory * mem, GstMemory * kmsmem)
++ }
++ 
 + static gboolean
-+ plugin_init (GstPlugin * plugin)
+++gst_kms_sink_import_drmbuf (GstKMSSink * self, GstBuffer * inbuf,
+++    GstBuffer ** outbuf)
+++{
+++  gint prime_fds[GST_VIDEO_MAX_PLANES] = { 0, };
+++  GstVideoMeta *meta;
+++  guint i, n_mem, n_planes;
+++  GstKMSMemory *kmsmem;
+++  guint mems_idx[GST_VIDEO_MAX_PLANES];
+++  gsize mems_skip[GST_VIDEO_MAX_PLANES];
+++  GstMemory *mems[GST_VIDEO_MAX_PLANES];
+++
+++  if (!self->has_prime_import)
+++    return FALSE;
+++
+++  /* This will eliminate most non-dmabuf out there */
+++  if (!gst_is_drm_memory (gst_buffer_peek_memory (inbuf, 0)))
+++    return FALSE;
+++
+++  n_planes = GST_VIDEO_INFO_N_PLANES (&self->vinfo);
+++  n_mem = gst_buffer_n_memory (inbuf);
+++  meta = gst_buffer_get_video_meta (inbuf);
+++
+++  GST_TRACE_OBJECT (self, "Found a drmbuf with %u planes and %u memories",
+++      n_planes, n_mem);
+++
+++  /* We cannot have multiple dmabuf per plane */
+++  if (n_mem > n_planes)
+++    return FALSE;
+++  g_assert (n_planes != 0);
+++
+++  /* Update video info based on video meta */
+++  if (meta) {
+++    GST_VIDEO_INFO_WIDTH (&self->vinfo) = meta->width;
+++    GST_VIDEO_INFO_HEIGHT (&self->vinfo) = meta->height;
+++
+++    for (i = 0; i < meta->n_planes; i++) {
+++      GST_VIDEO_INFO_PLANE_OFFSET (&self->vinfo, i) = meta->offset[i];
+++      GST_VIDEO_INFO_PLANE_STRIDE (&self->vinfo, i) = meta->stride[i];
+++    }
+++  }
+++
+++  /* Find and validate all memories */
+++  for (i = 0; i < n_planes; i++) {
+++    guint length;
+++
+++    if (!gst_buffer_find_memory (inbuf,
+++            GST_VIDEO_INFO_PLANE_OFFSET (&self->vinfo, i), 1,
+++            &mems_idx[i], &length, &mems_skip[i]))
+++      return FALSE;
+++
+++    mems[i] = gst_buffer_peek_memory (inbuf, mems_idx[i]);
+++
+++    /* adjust for memory offset, in case data does not
+++     * start from byte 0 in the dmabuf fd */
+++    mems_skip[i] += mems[i]->offset;
+++
+++    /* And all memory found must be dmabuf */
+++    if (!gst_is_drm_memory (mems[i]))
+++      return FALSE;
+++  }
+++
+++  kmsmem = (GstKMSMemory *) get_cached_kmsmem (mems[0]);
+++  if (kmsmem) {
+++    GST_LOG_OBJECT (self, "found KMS mem %p in DMABuf mem %p with fb id = %d",
+++        kmsmem, mems[0], kmsmem->fb_id);
+++    goto wrap_mem;
+++  }
+++
+++  for (i = 0; i < n_planes; i++)
+++    prime_fds[i] = gst_fd_memory_get_fd (mems[i]);
+++
+++  GST_LOG_OBJECT (self, "found these prime ids: %d, %d, %d, %d", prime_fds[0],
+++      prime_fds[1], prime_fds[2], prime_fds[3]);
+++
+++  kmsmem = gst_kms_allocator_dmabuf_import (self->allocator, prime_fds,
+++      n_planes, mems_skip, &self->vinfo);
+++  if (!kmsmem)
+++    return FALSE;
+++
+++  GST_LOG_OBJECT (self, "setting KMS mem %p to DMABuf mem %p with fb id = %d",
+++      kmsmem, mems[0], kmsmem->fb_id);
+++  set_cached_kmsmem (mems[0], GST_MEMORY_CAST (kmsmem));
+++
+++wrap_mem:
+++  *outbuf = gst_buffer_new ();
+++  if (!*outbuf)
+++    return FALSE;
+++  gst_buffer_append_memory (*outbuf, gst_memory_ref (GST_MEMORY_CAST (kmsmem)));
+++  gst_buffer_add_parent_buffer_meta (*outbuf, inbuf);
+++  gst_buffer_copy_into (*outbuf, inbuf, GST_BUFFER_COPY_METADATA, 0, -1);
+++
+++  return TRUE;
+++}
+++static gboolean
++ gst_kms_sink_import_dmabuf (GstKMSSink * self, GstBuffer * inbuf,
++     GstBuffer ** outbuf)
 + {
-+-  if (!gst_element_register (plugin, "jpegparse", GST_RANK_NONE,
-++  if (!gst_element_register (plugin, "jpegparse", GST_RANK_PRIMARY + 2,
-+           GST_TYPE_JPEG_PARSE))
-+     return FALSE;
-+   if (!gst_element_register (plugin, "jifmux", GST_RANK_SECONDARY,
-+diff --git a/gst/jpegformat/gstjpegparse.c b/gst/jpegformat/gstjpegparse.c
-+index dd684d7..2682afb 100644
-+--- a/gst/jpegformat/gstjpegparse.c
-++++ b/gst/jpegformat/gstjpegparse.c
-+@@ -151,7 +151,7 @@ gst_jpeg_parse_class_init (GstJpegParseClass * klass)
++@@ -1151,6 +1246,10 @@ gst_kms_sink_get_input_buffer (GstKMSSink * self, GstBuffer * inbuf)
++     return gst_buffer_ref (inbuf);
 + 
-+   gst_element_class_set_static_metadata (gstelement_class,
-+       "JPEG stream parser",
-+-      "Video/Parser",
-++      "Codec/Parser/Video",
-+       "Parse JPEG images into single-frame buffers",
-+       "Arnout Vandecappelle (Essensium/Mind) <arnout@mind.be>");
++   buf = NULL;
+++  if (gst_kms_sink_import_drmbuf (self, inbuf, &buf))
+++    return buf;
+++
+++  buf = NULL;
++   if (gst_kms_sink_import_dmabuf (self, inbuf, &buf))
++     return buf;
 + 
-+diff --git a/gst/videoparsers/gsth264parse.c b/gst/videoparsers/gsth264parse.c
-+index 10543ea..ebea0f9 100644
-+--- a/gst/videoparsers/gsth264parse.c
-++++ b/gst/videoparsers/gsth264parse.c
-+@@ -161,7 +161,7 @@ static void
-+ gst_h264_parse_init (GstH264Parse * h264parse)
-+ {
-+   h264parse->frame_out = gst_adapter_new ();
-+-  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (h264parse), FALSE);
-++  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (h264parse), TRUE);
-+   GST_PAD_SET_ACCEPT_INTERSECT (GST_BASE_PARSE_SINK_PAD (h264parse));
-+   GST_PAD_SET_ACCEPT_TEMPLATE (GST_BASE_PARSE_SINK_PAD (h264parse));
-+ 
-+@@ -1778,13 +1778,8 @@ gst_h264_parse_update_src_caps (GstH264Parse * h264parse, GstCaps * caps)
-+     gint fps_num, fps_den;
-+     gint par_n, par_d;
-+ 
-+-    if (sps->frame_cropping_flag) {
-+-      crop_width = sps->crop_rect_width;
-+-      crop_height = sps->crop_rect_height;
-+-    } else {
-+-      crop_width = sps->width;
-+-      crop_height = sps->height;
-+-    }
-++    crop_width = (sps->crop_rect_width > sps->width)? sps->crop_rect_width: sps->width;
-++    crop_height = (sps->crop_rect_height > sps->height)? sps->crop_rect_height: sps->height;
-+ 
-+     if (G_UNLIKELY (h264parse->width != crop_width ||
-+             h264parse->height != crop_height)) {
-+@@ -1819,7 +1814,7 @@ gst_h264_parse_update_src_caps (GstH264Parse * h264parse, GstCaps * caps)
-+ 
-+     if (G_UNLIKELY (modified || h264parse->update_caps)) {
-+       GstVideoInterlaceMode imode = GST_VIDEO_INTERLACE_MODE_PROGRESSIVE;
-+-      gint width, height;
-++      gint width=0, height=0;
-+       GstClockTime latency;
-+ 
-+       const gchar *caps_mview_mode = NULL;
-+@@ -1831,16 +1826,13 @@ gst_h264_parse_update_src_caps (GstH264Parse * h264parse, GstCaps * caps)
-+ 
-+       caps = gst_caps_copy (sink_caps);
-+ 
-+-      /* sps should give this but upstream overrides */
-+       if (s && gst_structure_has_field (s, "width"))
-+         gst_structure_get_int (s, "width", &width);
-+-      else
-+-        width = h264parse->width;
-+-
-++      width = (width > h264parse->width)? width: h264parse->width;
-++     
-+       if (s && gst_structure_has_field (s, "height"))
-+         gst_structure_get_int (s, "height", &height);
-+-      else
-+-        height = h264parse->height;
-++      height = (height > h264parse->height)? height: h264parse->height;
-+ 
-+       if (s == NULL ||
-+           !gst_structure_get_fraction (s, "pixel-aspect-ratio", &par_n,
-+diff --git a/gst/videoparsers/gstmpeg4videoparse.c b/gst/videoparsers/gstmpeg4videoparse.c
-+index 38e1f45..49434c7 100644
-+--- a/gst/videoparsers/gstmpeg4videoparse.c
-++++ b/gst/videoparsers/gstmpeg4videoparse.c
-+@@ -183,7 +183,7 @@ gst_mpeg4vparse_init (GstMpeg4VParse * parse)
-+   parse->interval = DEFAULT_CONFIG_INTERVAL;
-+   parse->last_report = GST_CLOCK_TIME_NONE;
-+ 
-+-  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (parse), FALSE);
-++  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (parse), TRUE);
-+   GST_PAD_SET_ACCEPT_INTERSECT (GST_BASE_PARSE_SINK_PAD (parse));
-+   GST_PAD_SET_ACCEPT_TEMPLATE (GST_BASE_PARSE_SINK_PAD (parse));
-+ }
-+diff --git a/gst/videoparsers/gstmpegvideoparse.c b/gst/videoparsers/gstmpegvideoparse.c
-+index 6896339..cd87838 100644
-+--- a/gst/videoparsers/gstmpegvideoparse.c
-++++ b/gst/videoparsers/gstmpegvideoparse.c
-+@@ -173,7 +173,7 @@ gst_mpegv_parse_init (GstMpegvParse * parse)
-+ {
-+   parse->config_flags = FLAG_NONE;
-+ 
-+-  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (parse), FALSE);
-++  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (parse), TRUE);
-+   GST_PAD_SET_ACCEPT_INTERSECT (GST_BASE_PARSE_SINK_PAD (parse));
-+   GST_PAD_SET_ACCEPT_TEMPLATE (GST_BASE_PARSE_SINK_PAD (parse));
-+ }
-+diff --git a/gst/videoparsers/plugin.c b/gst/videoparsers/plugin.c
-+index 2deddf4..c622b50 100644
-+--- a/gst/videoparsers/plugin.c
-++++ b/gst/videoparsers/plugin.c
-+@@ -54,7 +54,7 @@ plugin_init (GstPlugin * plugin)
-+   ret |= gst_element_register (plugin, "h265parse",
-+       GST_RANK_SECONDARY, GST_TYPE_H265_PARSE);
-+   ret |= gst_element_register (plugin, "vc1parse",
-+-      GST_RANK_NONE, GST_TYPE_VC1_PARSE);
-++      GST_RANK_PRIMARY + 2, GST_TYPE_VC1_PARSE);
-+ 
-+   return ret;
-+ }
 +-- 
 +1.9.1
 +
 diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
-index 11a3867..437689f 100644
+index 437689f..f99b81d 100644
 --- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
 +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
-@@ -21,6 +21,7 @@ DEPENDS_append_ti33x = " \
+@@ -1,6 +1,7 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
+ PACKAGECONFIG = "faad"
++PACKAGECONFIG = "kms"
+ 
+ # gstreamer is now also included on Keystone, be mindful of any Graphics dependencies
+ PACKAGECONFIG_append_omap-a15 = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
+@@ -22,6 +23,7 @@ DEPENDS_append_ti33x = " \
  SRC_URI_append_ti43x = " \
      file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
-+    file://0002-parsers-bug-fixes-on-parsers.patch \
+     file://0002-parsers-bug-fixes-on-parsers.patch \
++    file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch \
  "
  
  SRC_URI_append_ti33x = " \
-@@ -28,8 +29,9 @@ SRC_URI_append_ti33x = " \
- 
+@@ -30,8 +32,9 @@ SRC_URI_append_ti33x = " \
  SRC_URI_append_omap-a15 = " \
      file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
-+    file://0002-parsers-bug-fixes-on-parsers.patch \
+     file://0002-parsers-bug-fixes-on-parsers.patch \
++    file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch \
  "
  
  PACKAGE_ARCH = "${MACHINE_ARCH}"
  
--PR = "r1"
-+PR = "r2"
+-PR = "r2"
++PR = "r3"
 -- 
 1.9.1
 
