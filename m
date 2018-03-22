@@ -1,43 +1,41 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id EA106529BD
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 8F4EA529A2
 	for <meta-arago@arago-project.org>;
 	Thu, 22 Mar 2018 14:08:22 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2ME8Ma8027729
-	for <meta-arago@arago-project.org>; Thu, 22 Mar 2018 09:08:22 -0500
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2ME8Ln1031449
+	for <meta-arago@arago-project.org>; Thu, 22 Mar 2018 09:08:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1521727702;
-	bh=wCtmLKDgeG5+dJjA4N3C9B1eI/MHWHZq3+wbITBz974=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=GEMesXM0S1wyHzzPyThzHWWFiF6Y2gEUwzzXtEf9EO5xUsR+nuLERhwGQC69NF7l5
-	s9QSkY8adqFQfO1a47iupriIadM9PiHC8VsbmcOCQOZ5PsRcOuO0xMDDIUmNJCmmxJ
-	P/3AGngyzWPk5k/p1Ga6vxA9SYIaBKP6JcjrHu/o=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2ME8M9b024258
-	for <meta-arago@arago-project.org>; Thu, 22 Mar 2018 09:08:22 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1521727701;
+	bh=XAEU3+fI9NuyCwm/5XLCeSXiH6zAc279EdmeOHhohn4=;
+	h=From:To:CC:Subject:Date;
+	b=EfuyMsRLWLNRzT2Fm0Uzf+Z5MMD5SIQIiXuOQH+ZaVF8loOmSFL4+2Dft/pEwDwou
+	6oHnofBRTiYsxnZRiV9Ea7U/v6tYpKLv7alIG2je43CgfPo6fP/XbTi9kP5Z5odVey
+	VMGQS6jpZV/xwgo5QL6RLZA0gk+xbb5RrpiMEBbo=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2ME8LQO027061
+	for <meta-arago@arago-project.org>; Thu, 22 Mar 2018 09:08:21 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
 	Thu, 22 Mar 2018 09:08:21 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
 	Transport; Thu, 22 Mar 2018 09:08:21 -0500
 Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2ME8LGx014397;
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2ME8LGw014397;
 	Thu, 22 Mar 2018 09:08:21 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 22 Mar 2018 09:58:09 -0400
-Message-ID: <1521727089-14554-2-git-send-email-j-stiffler@ti.com>
+Date: Thu, 22 Mar 2018 09:58:08 -0400
+Message-ID: <1521727089-14554-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1521727089-14554-1-git-send-email-j-stiffler@ti.com>
-References: <1521727089-14554-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH 2/2] linuxptp: update to latest TI fork
+Subject: [meta-processor-sdk][PATCH 1/2] linux-libc-headers: use latest processor-sdk-linux
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,61 +51,32 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Thu, 22 Mar 2018 14:08:23 -0000
 Content-Type: text/plain
 
+* This is needed for ptp_clock.h change
+
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../linuxptp/change-pr_warn-to-pr_warning.patch      | 20 ++++++++++++++++++++
- recipes-connectivity/linuxptp/linuxptp_%.bbappend    |  9 ++++++---
- 2 files changed, 26 insertions(+), 3 deletions(-)
- create mode 100644 recipes-connectivity/linuxptp/linuxptp/change-pr_warn-to-pr_warning.patch
+ recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+ create mode 100644 recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb
 
-diff --git a/recipes-connectivity/linuxptp/linuxptp/change-pr_warn-to-pr_warning.patch b/recipes-connectivity/linuxptp/linuxptp/change-pr_warn-to-pr_warning.patch
+diff --git a/recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb b/recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb
 new file mode 100644
-index 0000000..faa19ff
+index 0000000..7b9ba65
 --- /dev/null
-+++ b/recipes-connectivity/linuxptp/linuxptp/change-pr_warn-to-pr_warning.patch
-@@ -0,0 +1,20 @@
-+diff --git a/phc2sys.c b/phc2sys.c
-+index e3aec67..9a36668 100644
-+--- a/phc2sys.c
-++++ b/phc2sys.c
-+@@ -607,13 +607,13 @@ static void enable_pps_output(clockid_t src, int enable)
-+ static void set_pps_offset(clockid_t src, int offset)
-+ {
-+ 	if (!phc_has_pps(src)) {
-+-		pr_warn("src clk %d does not have pps", src);
-++		pr_warning("src clk %d does not have pps", src);
-+ 		return;
-+ 	}
-+ 
-+ 	pr_info("set_pps_offset(%d): offset = %d", src, offset);
-+ 	if (ioctl(CLOCKID_TO_FD(src), PTP_PPS_OFFSET, offset) < 0)
-+-		pr_warn("failed to set PPS offset");
-++		pr_warning("failed to set PPS offset");
-+ }
-+ 
-+ static int read_pps(int fd, int64_t *offset, uint64_t *ts)
-diff --git a/recipes-connectivity/linuxptp/linuxptp_%.bbappend b/recipes-connectivity/linuxptp/linuxptp_%.bbappend
-index 5990e08..3637427 100644
---- a/recipes-connectivity/linuxptp/linuxptp_%.bbappend
-+++ b/recipes-connectivity/linuxptp/linuxptp_%.bbappend
-@@ -1,11 +1,14 @@
--PR_append = ".tisdk1"
-+PR_append = ".tisdk2"
- PV = "1.8+"
- 
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++++ b/recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb
+@@ -0,0 +1,12 @@
++require recipes-kernel/linux-libc-headers/linux-libc-headers.inc
 +
- BRANCH = "ti-linuxptp-release"
- SRC_URI = "git://git.ti.com/processor-sdk/linuxptp.git;protocol=git;branch=${BRANCH} \
--           file://build-Allow-CC-and-prefix-to-be-overriden.patch"
-+           file://build-Allow-CC-and-prefix-to-be-overriden.patch \
-+           file://change-pr_warn-to-pr_warning.patch"
- 
--SRCREV = "15de3319fadb0c49b085cb7ea83ca5ecd398f75a"
-+SRCREV = "19abd3664ded04f57e7d3a0daf9831cc373715f7"
- 
- S = "${WORKDIR}/git"
- 
++PR_append = ".tisdk0"
++
++BRANCH = "processor-sdk-linux-04.03.00"
++SRCREV = "b84a80dbbb9901f550a6bff7acbb956f7f18c515"
++
++KERNEL_GIT_URI = "git://git.ti.com/processor-sdk/processor-sdk-linux.git"
++KERNEL_GIT_PROTOCOL = "git"
++SRC_URI = "${KERNEL_GIT_URI};protocol=${KERNEL_GIT_PROTOCOL};branch=${BRANCH}"
++
++S = "${WORKDIR}/git"
 -- 
 2.7.4
 
