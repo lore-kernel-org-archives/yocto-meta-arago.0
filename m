@@ -1,44 +1,43 @@
-Return-Path: <j-stiffler@ti.com>
+Return-Path: <x0038811@ti.com>
 Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 13D9C529DC
+	by arago-project.org (Postfix) with ESMTPS id 71093529D5
 	for <meta-arago@arago-project.org>;
-	Fri, 23 Mar 2018 02:11:49 +0000 (UTC)
+	Thu, 22 Mar 2018 04:06:53 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2N2Bnku022730
-	for <meta-arago@arago-project.org>; Thu, 22 Mar 2018 21:11:49 -0500
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2M46qCM031987
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:52 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1521771109;
-	bh=bGQnP8vHeU+Uchfq9H7IaODJq6fA5rtWzFlYIBYV7tQ=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=aERMWRV+y6eC6OTi1GsNWCoHiCkJP7v9xKuTNr1gsAf4LbRjXcavvp0jbm4O7BK4K
-	Y2M7ip2hrlSUtNziomldSu0l/JAApbzkS1Fb2bfqGDSHE93WOWKKL4Qbm1xOxCse9R
-	TDERMbcOH6eCDQ/rrTJOpwaZZWKDe4XHRwIjzSG0=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2N2Bngg018581
-	for <meta-arago@arago-project.org>; Thu, 22 Mar 2018 21:11:49 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1521691612;
+	bh=E45L3gmXJ9BaFeuFOFHQwINmksNsfyn5SFG9sEih22k=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=VjsYsc6Viqcu6VEI8P3uxgbCJr1WSxkCkO8ONDzptW0Ekihsld7PH+Spr0x96N+Ub
+	ZFDJpAw24/yzooWTHHB4OfoAxZhNVunp1wUiVpSd/jdWytI58V03KQNVn454dovTez
+	ScuA26ilmNLo3AFueEugfAjEj9XwEWhDjh+ul+9A=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46qmi002663
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:52 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Thu, 22 Mar 2018 21:11:49 -0500
-Received: from DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222]) by
-	DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222%18]) with mapi id
-	15.01.1261.035; Thu, 22 Mar 2018 21:11:49 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-processor-sdk][PATCH 1/2] linux-libc-headers: use latest
-	processor-sdk-linux
-Thread-Index: AQHTwec8mLKUNhy340SLCzy1y1AkHaPdFHVg
-Date: Fri, 23 Mar 2018 02:11:49 +0000
-Message-ID: <1f63d8df5e234577b4d88993de37d63a@ti.com>
-References: <1521727089-14554-1-git-send-email-j-stiffler@ti.com>
-In-Reply-To: <1521727089-14554-1-git-send-email-j-stiffler@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.218.109.201]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Wed, 21 Mar 2018 23:06:51 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
+	Transport; Wed, 21 Mar 2018 23:06:51 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46nAL028035;
+	Wed, 21 Mar 2018 23:06:51 -0500
+From: Ramprasad N <x0038811@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 22 Mar 2018 09:36:37 +0530
+Message-ID: <1521691605-49259-2-git-send-email-x0038811@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1521691605-49259-1-git-send-email-x0038811@ti.com>
+References: <1521691605-49259-1-git-send-email-x0038811@ti.com>
 MIME-Version: 1.0
-Subject: Re: [meta-processor-sdk][PATCH 1/2] linux-libc-headers: use latest processor-sdk-linux
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Mailman-Approved-At: Sun, 25 Mar 2018 03:54:21 +0000
+Subject: [rocko 1/9] gstreamer1.0*-bad: Clean up gstreamer 1.8 bad patches
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,57 +50,5237 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Mar 2018 02:11:51 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 22 Mar 2018 04:06:54 -0000
+X-List-Received-Date: Thu, 22 Mar 2018 04:06:54 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-NAK.
+Remove all gstreamer bad patches. New rebased patches will
+be created instead of overwriting on the existing patches
 
-The ptp_clock.h change is minimal and we can avoid the change here by dupli=
-cating in linuxptp.
+Signed-off-by: Ramprasad N <x0038811@ti.com>
+---
+ ...-mouse-movement-for-videos-on-waylandsink.patch |  404 -----
+ ...gstdrmallocator-Add-DRM-allocator-support.patch |  482 ------
+ ...ylandsink-Add-mouse-drag-and-drop-support.patch |  408 -----
+ ...waylandsink-add-input-format-I420-support.patch |   89 -
+ .../0002-kmssink-remove-DCE-dependencies.patch     |   96 --
+ ...ck-previos-bug-fixes-on-different-parsers.patch |  146 --
+ ...gstkmssink-Add-support-for-KMS-based-sink.patch | 1592 ------------------
+ .../0003-kmssink-add-YUYV-support.patch            |   81 -
+ ...aylandsink-Add-DRM-support-on-waylandsink.patch | 1728 --------------------
+ ...ink-Implement-callbacks-for-version-5-of-.patch |   65 -
+ ...aylandsink-Fix-scale-up-with-padded-video.patch |   39 -
+ 11 files changed, 5130 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-Enable-mouse-movement-for-videos-on-waylandsink.patch
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrmallocator-Add-DRM-allocator-support.patch
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstwaylandsink-Add-mouse-drag-and-drop-support.patch
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstwaylandsink-add-input-format-I420-support.patch
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-remove-DCE-dependencies.patch
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-Pick-previos-bug-fixes-on-different-parsers.patch
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-gstkmssink-Add-support-for-KMS-based-sink.patch
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-add-YUYV-support.patch
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-gstwaylandsink-Add-DRM-support-on-waylandsink.patch
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-gstwaylandsink-Implement-callbacks-for-version-5-of-.patch
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch
 
-> -----Original Message-----
-> From: Stiffler, Jacob
-> Sent: Thursday, March 22, 2018 9:58 AM
-> To: meta-arago@arago-project.org
-> Cc: Ruei, Eric; Chengalvala, Vivek; Stiffler, Jacob
-> Subject: [meta-processor-sdk][PATCH 1/2] linux-libc-headers: use latest
-> processor-sdk-linux
->=20
-> * This is needed for ptp_clock.h change
->=20
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->  recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb | 12
-> ++++++++++++
->  1 file changed, 12 insertions(+)
->  create mode 100644 recipes-kernel/linux-libc-headers/linux-libc-
-> headers_4.9.bb
->=20
-> diff --git a/recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb
-> b/recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb
-> new file mode 100644
-> index 0000000..7b9ba65
-> --- /dev/null
-> +++ b/recipes-kernel/linux-libc-headers/linux-libc-headers_4.9.bb
-> @@ -0,0 +1,12 @@
-> +require recipes-kernel/linux-libc-headers/linux-libc-headers.inc
-> +
-> +PR_append =3D ".tisdk0"
-> +
-> +BRANCH =3D "processor-sdk-linux-04.03.00"
-> +SRCREV =3D "b84a80dbbb9901f550a6bff7acbb956f7f18c515"
-> +
-> +KERNEL_GIT_URI =3D "git://git.ti.com/processor-sdk/processor-sdk-linux.g=
-it"
-> +KERNEL_GIT_PROTOCOL =3D "git"
-> +SRC_URI =3D
-> "${KERNEL_GIT_URI};protocol=3D${KERNEL_GIT_PROTOCOL};branch=3D${BRANCH
-> }"
-> +
-> +S =3D "${WORKDIR}/git"
-> --
-> 2.7.4
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-Enable-mouse-movement-for-videos-on-waylandsink.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-Enable-mouse-movement-for-videos-on-waylandsink.patch
+deleted file mode 100644
+index 06d28bc..0000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-Enable-mouse-movement-for-videos-on-waylandsink.patch
++++ /dev/null
+@@ -1,404 +0,0 @@
+-From 90fafb6ea39940161f3bf86ab7f557197ff389ff Mon Sep 17 00:00:00 2001
+-From: Pooja Prajod <a0132412@ti.com>
+-Date: Fri, 26 Feb 2016 16:46:39 -0500
+-Subject: [PATCH] Enable mouse movement for videos on waylandsink
+-
+-This patch enables grab, drag and ungrab of videos
+-that are being played on waylandsink.
+-
+-Signed-off-by: Pooja Prajod <a0132412@ti.com>
+----
+- ext/wayland/gstwaylandsink.c | 283 +++++++++++++++++++++++++++++++++++++++++++
+- ext/wayland/gstwaylandsink.h |  26 ++++
+- 2 files changed, 309 insertions(+)
+-
+-diff --git a/ext/wayland/gstwaylandsink.c b/ext/wayland/gstwaylandsink.c
+-index cabf310..7394a2b 100644
+---- a/ext/wayland/gstwaylandsink.c
+-+++ b/ext/wayland/gstwaylandsink.c
+-@@ -41,6 +41,7 @@
+- #endif
+- 
+- #include "gstwaylandsink.h"
+-+#include <linux/input.h>
+- 
+- /* signals */
+- enum
+-@@ -100,6 +101,9 @@ static void create_window (GstWaylandSink * sink, struct display *display,
+-     int width, int height);
+- static void shm_pool_destroy (struct shm_pool *pool);
+- 
+-+static void input_grab (struct input *input, struct window *window);
+-+static void input_ungrab (struct input *input);
+-+
+- typedef struct
+- {
+-   uint32_t wl_format;
+-@@ -225,6 +229,54 @@ gst_wayland_sink_set_property (GObject * object,
+- }
+- 
+- static void
+-+input_grab (struct input *input, struct window *window)
+-+{
+-+  input->grab = window;
+-+}
+-+
+-+static void
+-+input_ungrab (struct input *input)
+-+{
+-+  input->grab = NULL;
+-+}
+-+
+-+static void
+-+input_remove_pointer_focus (struct input *input)
+-+{
+-+  struct window *window = input->pointer_focus;
+-+
+-+  if (!window)
+-+    return;
+-+
+-+  input->pointer_focus = NULL;
+-+}
+-+
+-+static void
+-+input_destroy (struct input *input)
+-+{
+-+  input_remove_pointer_focus (input);
+-+
+-+  if (input->display->seat_version >= 3) {
+-+    if (input->pointer)
+-+      wl_pointer_release (input->pointer);
+-+  }
+-+
+-+  wl_list_remove (&input->link);
+-+  wl_seat_destroy (input->seat);
+-+  free (input);
+-+}
+-+
+-+static void
+-+display_destroy_inputs (struct display *display)
+-+{
+-+  struct input *tmp;
+-+  struct input *input;
+-+
+-+  wl_list_for_each_safe (input, tmp, &display->input_list, link)
+-+      input_destroy (input);
+-+}
+-+
+-+static void
+- destroy_display (struct display *display)
+- {
+-   if (display->shm)
+-@@ -236,6 +288,7 @@ destroy_display (struct display *display)
+-   if (display->compositor)
+-     wl_compositor_destroy (display->compositor);
+- 
+-+  display_destroy_inputs (display);
+-   wl_display_flush (display->display);
+-   wl_display_disconnect (display->display);
+-   free (display);
+-@@ -318,6 +371,229 @@ struct wl_shm_listener shm_listenter = {
+-   shm_format
+- };
+- 
+-+
+-+static void
+-+pointer_handle_enter (void *data, struct wl_pointer *pointer,
+-+    uint32_t serial, struct wl_surface *surface,
+-+    wl_fixed_t sx_w, wl_fixed_t sy_w)
+-+{
+-+  struct input *input = data;
+-+
+-+  if (!surface) {
+-+    /* enter event for a window we've just destroyed */
+-+    return;
+-+  }
+-+
+-+  input->display->serial = serial;
+-+  input->pointer_focus = wl_surface_get_user_data (surface);
+-+}
+-+
+-+static void
+-+pointer_handle_leave (void *data, struct wl_pointer *pointer,
+-+    uint32_t serial, struct wl_surface *surface)
+-+{
+-+  struct input *input = data;
+-+
+-+  input_remove_pointer_focus (input);
+-+}
+-+
+-+static void
+-+pointer_handle_motion (void *data, struct wl_pointer *pointer,
+-+    uint32_t time, wl_fixed_t sx_w, wl_fixed_t sy_w)
+-+{
+-+  struct input *input = data;
+-+  struct window *window = input->pointer_focus;
+-+
+-+  if (!window)
+-+    return;
+-+
+-+  if (input->grab)
+-+    wl_shell_surface_move (input->grab->shell_surface, input->seat,
+-+        input->display->serial);
+-+
+-+}
+-+
+-+static void
+-+pointer_handle_button (void *data, struct wl_pointer *pointer, uint32_t serial,
+-+    uint32_t time, uint32_t button, uint32_t state_w)
+-+{
+-+  struct input *input = data;
+-+  enum wl_pointer_button_state state = state_w;
+-+  input->display->serial = serial;
+-+
+-+  if (button == BTN_LEFT) {
+-+    if (state == WL_POINTER_BUTTON_STATE_PRESSED)
+-+      input_grab (input, input->pointer_focus);
+-+
+-+    if (input->grab && state == WL_POINTER_BUTTON_STATE_RELEASED)
+-+      input_ungrab (input);
+-+  }
+-+
+-+  if (input->grab)
+-+    wl_shell_surface_move (input->grab->shell_surface, input->seat,
+-+        input->display->serial);
+-+}
+-+
+-+static void
+-+pointer_handle_axis (void *data, struct wl_pointer *pointer,
+-+    uint32_t time, uint32_t axis, wl_fixed_t value)
+-+{
+-+}
+-+
+-+static const struct wl_pointer_listener pointer_listener = {
+-+  pointer_handle_enter,
+-+  pointer_handle_leave,
+-+  pointer_handle_motion,
+-+  pointer_handle_button,
+-+  pointer_handle_axis,
+-+};
+-+
+-+static void
+-+touch_handle_down (void *data, struct wl_touch *wl_touch,
+-+    uint32_t serial, uint32_t time, struct wl_surface *surface,
+-+    int32_t id, wl_fixed_t x_w, wl_fixed_t y_w)
+-+{
+-+  struct input *input = data;
+-+  struct touch_point *tp;
+-+
+-+  input->display->serial = serial;
+-+  input->touch_focus = wl_surface_get_user_data (surface);
+-+  if (!input->touch_focus) {
+-+    return;
+-+  }
+-+
+-+  tp = malloc (sizeof *tp);
+-+  if (tp) {
+-+    tp->id = id;
+-+    wl_list_insert (&input->touch_point_list, &tp->link);
+-+    wl_shell_surface_move (input->touch_focus->shell_surface, input->seat,
+-+        serial);
+-+  }
+-+}
+-+
+-+static void
+-+touch_handle_motion (void *data, struct wl_touch *wl_touch,
+-+    uint32_t time, int32_t id, wl_fixed_t x_w, wl_fixed_t y_w)
+-+{
+-+  struct input *input = data;
+-+  struct touch_point *tp;
+-+
+-+
+-+  if (!input->touch_focus) {
+-+    return;
+-+  }
+-+  wl_list_for_each (tp, &input->touch_point_list, link) {
+-+    if (tp->id != id)
+-+      continue;
+-+
+-+    wl_shell_surface_move (input->touch_focus->shell_surface, input->seat,
+-+        input->display->serial);
+-+
+-+    return;
+-+  }
+-+}
+-+
+-+static void
+-+touch_handle_frame (void *data, struct wl_touch *wl_touch)
+-+{
+-+}
+-+
+-+static void
+-+touch_handle_cancel (void *data, struct wl_touch *wl_touch)
+-+{
+-+}
+-+
+-+static void
+-+touch_handle_up (void *data, struct wl_touch *wl_touch,
+-+    uint32_t serial, uint32_t time, int32_t id)
+-+{
+-+  struct input *input = data;
+-+  struct touch_point *tp, *tmp;
+-+
+-+  if (!input->touch_focus) {
+-+    return;
+-+  }
+-+
+-+  wl_list_for_each_safe (tp, tmp, &input->touch_point_list, link) {
+-+    if (tp->id != id)
+-+      continue;
+-+
+-+    wl_list_remove (&tp->link);
+-+    free (tp);
+-+
+-+    return;
+-+  }
+-+}
+-+
+-+static const struct wl_touch_listener touch_listener = {
+-+  touch_handle_down,
+-+  touch_handle_up,
+-+  touch_handle_motion,
+-+  touch_handle_frame,
+-+  touch_handle_cancel,
+-+};
+-+
+-+
+-+
+-+static void
+-+seat_handle_capabilities (void *data, struct wl_seat *seat,
+-+    enum wl_seat_capability caps)
+-+{
+-+  struct input *input = data;
+-+
+-+  if ((caps & WL_SEAT_CAPABILITY_POINTER) && !input->pointer) {
+-+    input->pointer = wl_seat_get_pointer (seat);
+-+    wl_pointer_set_user_data (input->pointer, input);
+-+    wl_pointer_add_listener (input->pointer, &pointer_listener, input);
+-+  } else if (!(caps & WL_SEAT_CAPABILITY_POINTER) && input->pointer) {
+-+    wl_pointer_destroy (input->pointer);
+-+    input->pointer = NULL;
+-+  }
+-+
+-+  if ((caps & WL_SEAT_CAPABILITY_TOUCH) && !input->touch) {
+-+    input->touch = wl_seat_get_touch (seat);
+-+    wl_touch_set_user_data (input->touch, input);
+-+    wl_touch_add_listener (input->touch, &touch_listener, input);
+-+  } else if (!(caps & WL_SEAT_CAPABILITY_TOUCH) && input->touch) {
+-+    wl_touch_destroy (input->touch);
+-+    input->touch = NULL;
+-+  }
+-+}
+-+
+-+static void
+-+seat_handle_name (void *data, struct wl_seat *seat, const char *name)
+-+{
+-+
+-+}
+-+
+-+static const struct wl_seat_listener seat_listener = {
+-+  seat_handle_capabilities,
+-+  seat_handle_name
+-+};
+-+
+-+static void
+-+display_add_input (struct display *d, uint32_t id)
+-+{
+-+  struct input *input;
+-+
+-+  input = calloc (1, sizeof (*input));
+-+  if (input == NULL) {
+-+    fprintf (stderr, "%s: out of memory\n", "gst-wayland-sink");
+-+    exit (EXIT_FAILURE);
+-+  }
+-+  input->display = d;
+-+  input->seat = wl_registry_bind (d->registry, id, &wl_seat_interface,
+-+      MAX (d->seat_version, 3));
+-+  input->touch_focus = NULL;
+-+  input->pointer_focus = NULL;
+-+  wl_list_init (&input->touch_point_list);
+-+  wl_list_insert (d->input_list.prev, &input->link);
+-+
+-+  wl_seat_add_listener (input->seat, &seat_listener, input);
+-+  wl_seat_set_user_data (input->seat, input);
+-+
+-+}
+-+
+- static void
+- registry_handle_global (void *data, struct wl_registry *registry,
+-     uint32_t id, const char *interface, uint32_t version)
+-@@ -332,6 +608,9 @@ registry_handle_global (void *data, struct wl_registry *registry,
+-   } else if (strcmp (interface, "wl_shm") == 0) {
+-     d->shm = wl_registry_bind (registry, id, &wl_shm_interface, 1);
+-     wl_shm_add_listener (d->shm, &shm_listenter, d);
+-+  } else if (strcmp (interface, "wl_seat") == 0) {
+-+    d->seat_version = version;
+-+    display_add_input (d, id);
+-   }
+- }
+- 
+-@@ -352,6 +631,8 @@ create_display (void)
+-     return NULL;
+-   }
+- 
+-+  wl_list_init (&display->input_list);
+-+
+-   display->registry = wl_display_get_registry (display->display);
+-   wl_registry_add_listener (display->registry, &registry_listener, display);
+- 
+-@@ -491,6 +772,8 @@ create_window (GstWaylandSink * sink, struct display *display, int width,
+- 
+-   window->surface = wl_compositor_create_surface (display->compositor);
+- 
+-+  wl_surface_set_user_data (window->surface, window);
+-+
+-   window->shell_surface = wl_shell_get_shell_surface (display->shell,
+-       window->surface);
+- 
+-diff --git a/ext/wayland/gstwaylandsink.h b/ext/wayland/gstwaylandsink.h
+-index cb3383e..f7d30dc 100644
+---- a/ext/wayland/gstwaylandsink.h
+-+++ b/ext/wayland/gstwaylandsink.h
+-@@ -55,6 +55,27 @@
+- #define GST_WAYLAND_SINK_GET_CLASS(inst) \
+-         (G_TYPE_INSTANCE_GET_CLASS ((inst), GST_TYPE_WAYLAND_SINK, GstWaylandSinkClass))
+- 
+-+struct touch_point
+-+{
+-+  int32_t id;
+-+  struct wl_list link;
+-+};
+-+
+-+struct input
+-+{
+-+  struct display *display;
+-+  struct wl_seat *seat;
+-+  struct wl_pointer *pointer;
+-+  struct wl_touch *touch;
+-+  struct wl_list touch_point_list;
+-+  struct window *pointer_focus;
+-+  struct window *touch_focus;
+-+  struct wl_list link;
+-+  struct window *grab;
+-+
+-+};
+-+
+-+
+- struct  display
+- {
+-   struct wl_display *display;
+-@@ -63,6 +84,11 @@ struct  display
+-   struct wl_shell *shell;
+-   struct wl_shm *shm;
+-   uint32_t formats;
+-+
+-+  struct wl_list input_list;
+-+  int seat_version;
+-+  uint32_t serial;
+-+
+- };
+- 
+- struct window
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrmallocator-Add-DRM-allocator-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrmallocator-Add-DRM-allocator-support.patch
+deleted file mode 100644
+index 38eb5a1..0000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrmallocator-Add-DRM-allocator-support.patch
++++ /dev/null
+@@ -1,482 +0,0 @@
+-From c5d115bf88f0d2fb64f58b21b72a3195eae98d0a Mon Sep 17 00:00:00 2001
+-From: Pooja Prajod <a0132412@ti.com>
+-Date: Fri, 20 Jan 2017 14:41:45 +0530
+-Subject: [PATCH 1/5] gstdrmallocator: Add DRM allocator support
+-
+-Add DRM based allocator support.
+-
+-The following changes are included :
+-1. Use DRM dumb buffers and associated APIs for
+-dmabuf allocation.
+-2. Have DRM device fd a member of allocator object
+-3. Allocate GstMemory objects with mem_type as 'dmabuf'
+-
+-Signed-off-by: Pooja Prajod <a0132412@ti.com>
+----
+- configure.ac                              |   5 +
+- gst-libs/gst/Makefile.am                  |   4 +-
+- gst-libs/gst/drm/Makefile.am              |  33 +++++
+- gst-libs/gst/drm/gstdrmallocator.c        | 206 ++++++++++++++++++++++++++++++
+- gst-libs/gst/drm/gstdrmallocator.h        |  77 +++++++++++
+- pkgconfig/Makefile.am                     |   3 +
+- pkgconfig/gstreamer-drm-uninstalled.pc.in |  11 ++
+- pkgconfig/gstreamer-drm.pc.in             |  12 ++
+- 8 files changed, 349 insertions(+), 2 deletions(-)
+- create mode 100644 gst-libs/gst/drm/Makefile.am
+- create mode 100644 gst-libs/gst/drm/gstdrmallocator.c
+- create mode 100644 gst-libs/gst/drm/gstdrmallocator.h
+- create mode 100644 pkgconfig/gstreamer-drm-uninstalled.pc.in
+- create mode 100644 pkgconfig/gstreamer-drm.pc.in
+-
+-diff --git a/configure.ac b/configure.ac
+-index 5e85e56..e254605 100644
+---- a/configure.ac
+-+++ b/configure.ac
+-@@ -621,6 +621,8 @@ if test x$with_egl_module_name != x; then
+-   AC_DEFINE_UNQUOTED(GST_GL_LIBEGL_MODULE_NAME, "$with_egl_module_name", [EGL module name])
+- fi
+- 
+-+PKG_CHECK_MODULES([DRM], [libdrm libdrm_omap], HAVE_KMS=yes, HAVE_KMS=no)
+-+
+- AC_ARG_ENABLE([wgl],
+-      [  --enable-wgl            Enable WGL support @<:@default=auto@:>@],
+-      [case "${enableval}" in
+-@@ -3590,6 +3592,7 @@ gst-libs/Makefile
+- gst-libs/gst/Makefile
+- gst-libs/gst/adaptivedemux/Makefile
+- gst-libs/gst/basecamerabinsrc/Makefile
+-+gst-libs/gst/drm/Makefile
+- gst-libs/gst/gl/Makefile
+- gst-libs/gst/gl/android/Makefile
+- gst-libs/gst/gl/cocoa/Makefile
+-@@ -3749,6 +3752,8 @@ pkgconfig/gstreamer-plugins-bad.pc
+- pkgconfig/gstreamer-plugins-bad-uninstalled.pc
+- pkgconfig/gstreamer-codecparsers.pc
+- pkgconfig/gstreamer-codecparsers-uninstalled.pc
+-+pkgconfig/gstreamer-drm.pc
+-+pkgconfig/gstreamer-drm-uninstalled.pc
+- pkgconfig/gstreamer-insertbin.pc
+- pkgconfig/gstreamer-insertbin-uninstalled.pc
+- pkgconfig/gstreamer-gl.pc
+-diff --git a/gst-libs/gst/Makefile.am b/gst-libs/gst/Makefile.am
+-index 7d0b309..5ec3967 100644
+---- a/gst-libs/gst/Makefile.am
+-+++ b/gst-libs/gst/Makefile.am
+-@@ -11,7 +11,7 @@ WAYLAND_DIR=wayland
+- endif
+- 
+- SUBDIRS = uridownloader adaptivedemux interfaces basecamerabinsrc codecparsers \
+--	 insertbin mpegts base video audio player $(GL_DIR) $(WAYLAND_DIR)
+-+	 insertbin mpegts base video audio player drm $(GL_DIR) $(WAYLAND_DIR)
+- 
+- noinst_HEADERS = gst-i18n-plugin.h gettext.h glib-compat-private.h
+- DIST_SUBDIRS = uridownloader adaptivedemux interfaces gl basecamerabinsrc \
+-@@ -24,7 +24,7 @@ adaptivedemux: uridownloader
+- 
+- INDEPENDENT_SUBDIRS = \
+- 	interfaces basecamerabinsrc codecparsers insertbin uridownloader \
+--	mpegts base player $(GL_DIR) $(WAYLAND_DIR)
+-+	mpegts base player drm $(GL_DIR) $(WAYLAND_DIR)
+- 
+- .PHONY: independent-subdirs $(INDEPENDENT_SUBDIRS)
+- 
+-diff --git a/gst-libs/gst/drm/Makefile.am b/gst-libs/gst/drm/Makefile.am
+-new file mode 100644
+-index 0000000..9a45dfb
+---- /dev/null
+-+++ b/gst-libs/gst/drm/Makefile.am
+-@@ -0,0 +1,33 @@
+-+lib_LTLIBRARIES = libgstdrm-@GST_API_VERSION@.la
+-+
+-+CLEANFILES = $(BUILT_SOURCES)
+-+
+-+libgstdrm_@GST_API_VERSION@_la_SOURCES = \
+-+	gstdrmallocator.c 
+-+
+-+libgstdrm_@GST_API_VERSION@includedir = \
+-+	$(includedir)/gstreamer-@GST_API_VERSION@/gst/drm
+-+
+-+libgstdrm_@GST_API_VERSION@include_HEADERS = \
+-+	gstdrmallocator.h 
+-+
+-+libgstdrm_@GST_API_VERSION@_la_CFLAGS = \
+-+	$(DRM_CFLAGS) \
+-+	$(OMAPDRM_CFLAGS) \
+-+	$(GST_PLUGINS_BAD_CFLAGS) \
+-+	$(GST_PLUGINS_BASE_CFLAGS) \
+-+	-DGST_USE_UNSTABLE_API \
+-+	$(GST_CFLAGS)
+-+
+-+libgstdrm_@GST_API_VERSION@_la_LIBADD = \
+-+	$(DRM_LIBS) \
+-+	$(GST_PLUGINS_BASE_LIBS) \
+-+	$(GST_BASE_LIBS) \
+-+        -lgstallocators-$(GST_API_VERSION) \
+-+	$(GST_LIBS) 
+-+
+-+libgstdrm_@GST_API_VERSION@_la_LDFLAGS = \
+-+	$(DRM_LDFLAGS) \
+-+	$(GST_LIB_LDFLAGS) \
+-+	$(GST_ALL_LDFLAGS) \
+-+	$(GST_LT_LDFLAGS)
+-diff --git a/gst-libs/gst/drm/gstdrmallocator.c b/gst-libs/gst/drm/gstdrmallocator.c
+-new file mode 100644
+-index 0000000..b557ad2
+---- /dev/null
+-+++ b/gst-libs/gst/drm/gstdrmallocator.c
+-@@ -0,0 +1,206 @@
+-+/*
+-+ * GStreamer
+-+ *
+-+ * Copyright (C) 2012 Texas Instruments
+-+ *
+-+ * Authors:
+-+ *  Pooja Prajod <poojaprajod@ti.com>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation
+-+ * version 2.1 of the License.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, write to the Free Software
+-+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+-+ */
+-+
+-+/**
+-+ * SECTION:GstDRMAllocator
+-+ * @short_description: GStreamer DRM allocator support
+-+ *
+-+ * Since: 1.6.3
+-+ */
+-+
+-+
+-+#include "gstdrmallocator.h"
+-+#include <stdio.h>
+-+#include <stdlib.h>
+-+#include <string.h>
+-+#include <errno.h>
+-+#include <unistd.h>
+-+#include <sys/mman.h>
+-+#include <sys/types.h>
+-+
+-+#define INVALID_DRM_FD (-1)
+-+
+-+GST_DEBUG_CATEGORY (drmallocator_debug);
+-+#define GST_CAT_DEFAULT drmallocator_debug
+-+
+-+#define gst_drm_allocator_parent_class parent_class
+-+G_DEFINE_TYPE (GstDRMAllocator, gst_drm_allocator, GST_TYPE_FD_ALLOCATOR);
+-+
+-+static GstMemory *
+-+gst_drm_allocator_alloc (GstAllocator * allocator, gsize size,
+-+    GstAllocationParams * params)
+-+{
+-+  GstDRMAllocator *self = GST_DRM_ALLOCATOR (allocator);
+-+  int fd = -1;
+-+  int DrmDeviceFD = self->DrmDeviceFD;
+-+  GstMemory *mem;
+-+  /* Variable for DRM Dumb Buffers */
+-+
+-+  struct drm_mode_create_dumb creq;
+-+  struct drm_mode_destroy_dumb dreq;
+-+  int ret ;
+-+  
+-+  GST_LOG_OBJECT (self, "DRM Memory alloc");  
+-+  
+-+  memset(&creq, 0, sizeof(struct drm_mode_create_dumb));
+-+  /* 
+-+   We have only total size as argument to _allocator_alloc.
+-+   Since the DDR storage is linear, it is as good as saying
+-+   the buffer is of width = size and height = 1
+-+  */
+-+  creq.width = size;
+-+  creq.height = 1;
+-+  creq.bpp = 8;
+-+
+-+  /* Create a DRM dumb buffer */
+-+  ret = drmIoctl (DrmDeviceFD, DRM_IOCTL_MODE_CREATE_DUMB, &creq);
+-+  if (ret < 0) {
+-+    GST_ERROR_OBJECT (self, "Create DRM dumb buffer failed");
+-+    return NULL;
+-+  }
+-+  /* Get a dmabuf fd from the dumb buffer handle */
+-+  drmPrimeHandleToFD (DrmDeviceFD, creq.handle, DRM_CLOEXEC | O_RDWR, &fd);
+-+
+-+  if (fd < 0) {
+-+    GST_ERROR_OBJECT (self, "Invalid fd returned: %d", fd);
+-+    goto fail;
+-+  }
+-+
+-+  /* Get a dmabuf gstmemory with the fd */
+-+  mem = gst_fd_allocator_alloc (allocator, fd, size, 0);  
+-+
+-+  if (G_UNLIKELY (!mem)) {
+-+    GST_ERROR_OBJECT (self, "GstDmaBufMemory allocation failed");
+-+    close (fd);
+-+    goto fail;
+-+  }
+-+
+-+  return mem;
+-+
+-+  fail:
+-+    memset(&dreq, 0, sizeof(struct drm_mode_destroy_dumb));
+-+    dreq.handle = creq.handle;
+-+    drmIoctl (DrmDeviceFD, DRM_IOCTL_MODE_DESTROY_DUMB, &dreq);
+-+    return NULL;
+-+}
+-+
+-+static void
+-+gst_drm_allocator_free (GstAllocator * allocator, GstMemory * mem)
+-+{
+-+  GstDRMAllocator *self = GST_DRM_ALLOCATOR (allocator);
+-+  uint32_t handle = 0;
+-+  int DrmDeviceFD = self->DrmDeviceFD;
+-+  int fd = -1;
+-+
+-+  GST_LOG_OBJECT (self, "DRM Memory free");
+-+
+-+  g_return_if_fail (GST_IS_ALLOCATOR (allocator));
+-+  g_return_if_fail (mem != NULL);
+-+  g_return_if_fail (gst_is_drm_memory (mem));
+-+
+-+  fd = gst_fd_memory_get_fd (mem);
+-+  drmPrimeFDToHandle(DrmDeviceFD, fd, &handle);    
+-+
+-+  /* Incase there are some mapped memory, we unmap and ready it to be cleaned*/
+-+  GST_ALLOCATOR_CLASS (parent_class)->free (allocator, mem);
+-+
+-+  if (handle) {
+-+    struct drm_mode_destroy_dumb dreq;
+-+    memset(&dreq, 0, sizeof(struct drm_mode_destroy_dumb));
+-+    dreq.handle = handle;
+-+    drmIoctl (DrmDeviceFD, DRM_IOCTL_MODE_DESTROY_DUMB, &dreq);
+-+  }
+-+  
+-+  close (fd);
+-+}
+-+
+-+static void
+-+gst_drm_allocator_finalize (GObject * obj)
+-+{
+-+  GstDRMAllocator *self = GST_DRM_ALLOCATOR (obj);
+-+  GST_LOG_OBJECT (obj, "DRM Allocator finalize");
+-+
+-+  close (self->DrmDeviceFD);
+-+  self->DrmDeviceFD = INVALID_DRM_FD;
+-+
+-+  G_OBJECT_CLASS (parent_class)->finalize (obj);
+-+}
+-+
+-+static void
+-+gst_drm_allocator_class_init (GstDRMAllocatorClass * klass)
+-+{
+-+  GstAllocatorClass *drm_alloc = (GstAllocatorClass *) klass;
+-+
+-+  drm_alloc->alloc = GST_DEBUG_FUNCPTR (gst_drm_allocator_alloc);
+-+  drm_alloc->free = GST_DEBUG_FUNCPTR (gst_drm_allocator_free);
+-+  GST_DEBUG_CATEGORY_INIT (drmallocator_debug, "drmallocator", 0,
+-+    "GstDRMAllocator debug");
+-+
+-+}
+-+
+-+static void
+-+gst_drm_allocator_init (GstDRMAllocator * self)
+-+{
+-+  GstAllocator *alloc = GST_ALLOCATOR_CAST (self);
+-+  GObjectClass *object_class = G_OBJECT_CLASS (GST_DRM_ALLOCATOR_GET_CLASS(self));
+-+  
+-+  if (self->DrmDeviceFD <= 0) {
+-+    self->DrmDeviceFD = open("/dev/dri/card0", O_RDWR | O_CLOEXEC);
+-+    if (self->DrmDeviceFD < 0) {
+-+      GST_ERROR_OBJECT (self, "Failed to open DRM device");
+-+    } else {
+-+      drmDropMaster (self->DrmDeviceFD);
+-+    }
+-+  }
+-+
+-+  alloc->mem_type = GST_ALLOCATOR_DMABUF;
+-+
+-+  object_class->finalize = gst_drm_allocator_finalize;
+-+
+-+  GST_OBJECT_FLAG_UNSET (self, GST_ALLOCATOR_FLAG_CUSTOM_ALLOC);
+-+}
+-+
+-+void
+-+gst_drm_allocator_register (void)
+-+{
+-+  gst_allocator_register (GST_ALLOCATOR_DRM,
+-+      g_object_new (GST_TYPE_DRM_ALLOCATOR, NULL));
+-+}
+-+
+-+GstAllocator *
+-+gst_drm_allocator_get (void)
+-+{
+-+  GstAllocator *alloc;
+-+  alloc = gst_allocator_find (GST_ALLOCATOR_DRM);
+-+  if (!alloc) {
+-+    gst_drm_allocator_register();
+-+    alloc = gst_allocator_find (GST_ALLOCATOR_DRM);
+-+  }
+-+  return alloc; 
+-+}
+-+
+-+gboolean
+-+gst_is_drm_memory (GstMemory * mem)
+-+{
+-+  return gst_memory_is_type (mem, GST_ALLOCATOR_DMABUF);
+-+}
+-diff --git a/gst-libs/gst/drm/gstdrmallocator.h b/gst-libs/gst/drm/gstdrmallocator.h
+-new file mode 100644
+-index 0000000..1ca93ba
+---- /dev/null
+-+++ b/gst-libs/gst/drm/gstdrmallocator.h
+-@@ -0,0 +1,77 @@
+-+/*
+-+ * GStreamer
+-+ *
+-+ * Copyright (C) 2012 Texas Instruments
+-+ *
+-+ * Authors:
+-+ *  Pooja Prajod <poojaprajod@ti.com>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation
+-+ * version 2.1 of the License.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, write to the Free Software
+-+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+-+ */
+-+
+-+/**
+-+ * SECTION:GstDRMAllocator
+-+ * @short_description: GStreamer DRM allocator support
+-+ *
+-+ * Since: 1.6.3
+-+ */
+-+
+-+#ifndef __GSTDRMALLOCATOR_H__
+-+#define __GSTDRMALLOCATOR_H__
+-+
+-+#include <gst/gst.h>
+-+#include <gst/video/video.h>
+-+#include <gst/allocators/allocators.h>
+-+#include <stdint.h>
+-+
+-+#include <xf86drm.h>
+-+#include <xf86drmMode.h>
+-+#include <fcntl.h>
+-+
+-+G_BEGIN_DECLS
+-+
+-+#define GST_TYPE_DRM_ALLOCATOR                  (gst_drm_allocator_get_type ())
+-+#define GST_DRM_ALLOCATOR(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), GST_TYPE_DRM_ALLOCATOR, GstDRMAllocator))
+-+#define GST_IS_DRM_ALLOCATOR(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GST_TYPE_DRM_ALLOCATOR))
+-+#define GST_DRM_ALLOCATOR_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), GST_TYPE_DRM_ALLOCATOR, GstDRMAllocatorClass))
+-+#define GST_IS_DRM_ALLOCATOR_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), GST_TYPE_DRM_ALLOCATOR))
+-+#define GST_DRM_ALLOCATOR_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), GST_TYPE_DRM_ALLOCATOR, GstDRMAllocatorClass))
+-+
+-+#define GST_ALLOCATOR_DRM "DRM"
+-+
+-+typedef struct _GstDRMAllocator GstDRMAllocator;
+-+typedef struct _GstDRMAllocatorClass GstDRMAllocatorClass;
+-+
+-+struct _GstDRMAllocator
+-+{
+-+  GstFdAllocator parent;
+-+  int DrmDeviceFD;
+-+};
+-+
+-+struct _GstDRMAllocatorClass
+-+{
+-+  GstFdAllocatorClass parent_class;
+-+};
+-+
+-+void gst_drm_allocator_register (void);
+-+GstAllocator * gst_drm_allocator_get (void);
+-+
+-+gboolean gst_is_drm_memory (GstMemory * mem);
+-+
+-+GType gst_drm_allocator_get_type (void);
+-+
+-+G_END_DECLS
+-+
+-+#endif /* __GSTDRMALLOCATOR_H__ */
+-diff --git a/pkgconfig/Makefile.am b/pkgconfig/Makefile.am
+-index 88c7e52..5fdccbf 100644
+---- a/pkgconfig/Makefile.am
+-+++ b/pkgconfig/Makefile.am
+-@@ -2,6 +2,7 @@
+- ### all of the standard pc files we need to generate
+- pcverfiles =  \
+- 	gstreamer-plugins-bad-@GST_API_VERSION@.pc \
+-+        gstreamer-drm-@GST_API_VERSION@.pc \
+- 	gstreamer-codecparsers-@GST_API_VERSION@.pc \
+- 	gstreamer-insertbin-@GST_API_VERSION@.pc \
+- 	gstreamer-mpegts-@GST_API_VERSION@.pc \
+-@@ -12,6 +13,7 @@ pcverfiles =  \
+- 
+- pcverfiles_uninstalled = \
+- 	gstreamer-plugins-bad-@GST_API_VERSION@-uninstalled.pc \
+-+        gstreamer-drm-@GST_API_VERSION@-uninstalled.pc \
+- 	gstreamer-codecparsers-@GST_API_VERSION@-uninstalled.pc \
+- 	gstreamer-insertbin-@GST_API_VERSION@-uninstalled.pc \
+- 	gstreamer-mpegts-@GST_API_VERSION@-uninstalled.pc \
+-@@ -43,6 +45,7 @@ pkgconfig_DATA = $(pcverfiles)
+- CLEANFILES = $(pcverfiles) $(pcverfiles_uninstalled)
+- pcinfiles = \
+-            gstreamer-plugins-bad.pc.in gstreamer-plugins-bad-uninstalled.pc.in \
+-+           gstreamer-drm.pc.in gstreamer-drm-uninstalled.pc.in \
+-            gstreamer-codecparsers.pc.in gstreamer-codecparsers-uninstalled.pc.in \
+-            gstreamer-gl.pc.in gstreamer-gl-uninstalled.pc.in \
+-            gstreamer-insertbin.pc.in gstreamer-insertbin-uninstalled.pc.in \
+-diff --git a/pkgconfig/gstreamer-drm-uninstalled.pc.in b/pkgconfig/gstreamer-drm-uninstalled.pc.in
+-new file mode 100644
+-index 0000000..9dcf978
+---- /dev/null
+-+++ b/pkgconfig/gstreamer-drm-uninstalled.pc.in
+-@@ -0,0 +1,11 @@
+-+prefix=
+-+exec_prefix=
+-+libdir=${pcfiledir}/../gst-libs/gst/drm
+-+includedir=${pcfiledir}/../gst-libs
+-+
+-+Name: GStreamer DRM Allocator, Uninstalled
+-+Description: DRM Allocator for GStreamer elements, uninstalled
+-+Requires: gstreamer-@GST_MAJORMINOR@ gstreamer-base-@GST_MAJORMINOR@
+-+Version: @VERSION@
+-+Libs: -L${libdir} ${libdir}/libgstdrm-@GST_MAJORMINOR@.la
+-+Cflags: -I${includedir}
+-diff --git a/pkgconfig/gstreamer-drm.pc.in b/pkgconfig/gstreamer-drm.pc.in
+-new file mode 100644
+-index 0000000..d155e80
+---- /dev/null
+-+++ b/pkgconfig/gstreamer-drm.pc.in
+-@@ -0,0 +1,12 @@
+-+prefix=@prefix@
+-+exec_prefix=@exec_prefix@
+-+libdir=@libdir@
+-+includedir=@includedir@/gstreamer-@GST_MAJORMINOR@
+-+
+-+Name: GStreamer DRM Allocator
+-+Description: DRM Allocator for GStreamer elements
+-+Requires: gstreamer-@GST_MAJORMINOR@ gstreamer-base-@GST_MAJORMINOR@
+-+Version: @VERSION@
+-+Libs: -L${libdir} -lgstdrm-@GST_MAJORMINOR@
+-+Cflags: -I${includedir}
+-+
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstwaylandsink-Add-mouse-drag-and-drop-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstwaylandsink-Add-mouse-drag-and-drop-support.patch
+deleted file mode 100644
+index 6962026..0000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstwaylandsink-Add-mouse-drag-and-drop-support.patch
++++ /dev/null
+@@ -1,408 +0,0 @@
+-From 79db7e4cab226515f0e4d40afdb5a5b478755396 Mon Sep 17 00:00:00 2001
+-From: Pooja Prajod <a0132412@ti.com>
+-Date: Wed, 14 Sep 2016 16:03:17 -0400
+-Subject: [PATCH] gstwaylandsink: Add mouse drag and drop support
+-
+-This patch adds mouse input listeners to WlDisplay instance.
+-
+-Signed-off-by: Pooja Prajod <a0132412@ti.com>
+-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+----
+- ext/wayland/wldisplay.c | 305 +++++++++++++++++++++++++++++++++++++++++++++++-
+- ext/wayland/wldisplay.h |   4 +
+- ext/wayland/wlwindow.c  |   2 +
+- 3 files changed, 310 insertions(+), 1 deletion(-)
+-
+-diff --git a/ext/wayland/wldisplay.c b/ext/wayland/wldisplay.c
+-index 8c5eeaf..c647f34 100644
+---- a/ext/wayland/wldisplay.c
+-+++ b/ext/wayland/wldisplay.c
+-@@ -21,18 +21,45 @@
+- #ifdef HAVE_CONFIG_H
+- #include <config.h>
+- #endif
+--
+-+#include <stdlib.h>
+-+#include <stdio.h>
+- #include "wldisplay.h"
+- #include "wlbuffer.h"
+-+#include "wlwindow.h"
+-+
+-+#include <wayland-client-protocol.h>
+- 
+-+#include <unistd.h>
+- #include <errno.h>
+-+#include <linux/input.h>
+- 
+- GST_DEBUG_CATEGORY_EXTERN (gstwayland_debug);
+- #define GST_CAT_DEFAULT gstwayland_debug
+- 
+- G_DEFINE_TYPE (GstWlDisplay, gst_wl_display, G_TYPE_OBJECT);
+- 
+-+struct touch_point
+-+{
+-+  int32_t id;
+-+  struct wl_list link;
+-+};
+-+
+-+struct input
+-+{
+-+  GstWlDisplay *display;
+-+  struct wl_seat *seat;
+-+  struct wl_pointer *pointer;
+-+  struct wl_touch *touch;
+-+  struct wl_list touch_point_list;
+-+  GstWlWindow *pointer_focus;
+-+  GstWlWindow *touch_focus;
+-+  struct wl_list link;
+-+  GstWlWindow *grab;
+-+};
+-+
+- static void gst_wl_display_finalize (GObject * gobject);
+-+static void input_grab (struct input *input, GstWlWindow *window);
+-+static void input_ungrab (struct input *input);
+- 
+- static void
+- gst_wl_display_class_init (GstWlDisplayClass * klass)
+-@@ -51,6 +78,54 @@ gst_wl_display_init (GstWlDisplay * self)
+- }
+- 
+- static void
+-+input_grab (struct input *input, GstWlWindow *window)
+-+{
+-+  input->grab = window;
+-+}
+-+
+-+static void
+-+input_ungrab (struct input *input)
+-+{
+-+  input->grab = NULL;
+-+}
+-+
+-+static void
+-+input_remove_pointer_focus (struct input *input)
+-+{
+-+  GstWlWindow *window = input->pointer_focus;
+-+
+-+  if (!window)
+-+    return;
+-+
+-+  input->pointer_focus = NULL;
+-+}
+-+
+-+static void
+-+input_destroy (struct input *input)
+-+{
+-+  input_remove_pointer_focus (input);
+-+
+-+  if (input->display->seat_version >= 3) {
+-+    if (input->pointer)
+-+      wl_pointer_release (input->pointer);
+-+  }
+-+
+-+  wl_list_remove (&input->link);
+-+  wl_seat_destroy (input->seat);
+-+  free (input);
+-+}
+-+
+-+static void
+-+display_destroy_inputs (GstWlDisplay *display)
+-+{
+-+  struct input *tmp;
+-+  struct input *input;
+-+
+-+  wl_list_for_each_safe (input, tmp, &display->input_list, link)
+-+      input_destroy (input);
+-+}
+-+
+-+static void
+- gst_wl_display_finalize (GObject * gobject)
+- {
+-   GstWlDisplay *self = GST_WL_DISPLAY (gobject);
+-@@ -74,6 +149,8 @@ gst_wl_display_finalize (GObject * gobject)
+-   g_hash_table_unref (self->buffers);
+-   g_mutex_clear (&self->buffers_mutex);
+- 
+-+  display_destroy_inputs (self);
+-+
+-   if (self->shm)
+-     wl_shm_destroy (self->shm);
+- 
+-@@ -143,6 +220,228 @@ static const struct wl_shm_listener shm_listener = {
+-   shm_format
+- };
+- 
+-+
+-+static void
+-+pointer_handle_enter (void *data, struct wl_pointer *pointer,
+-+    uint32_t serial, struct wl_surface *surface,
+-+    wl_fixed_t sx_w, wl_fixed_t sy_w)
+-+{
+-+  struct input *input = data;
+-+
+-+  if (!surface) {
+-+    /* enter event for a window we've just destroyed */
+-+    return;
+-+  }
+-+
+-+  input->display->serial = serial;
+-+  input->pointer_focus = wl_surface_get_user_data (surface);
+-+}
+-+
+-+static void
+-+pointer_handle_leave (void *data, struct wl_pointer *pointer,
+-+    uint32_t serial, struct wl_surface *surface)
+-+{
+-+  struct input *input = data;
+-+
+-+  input_remove_pointer_focus (input);
+-+}
+-+
+-+static void
+-+pointer_handle_motion (void *data, struct wl_pointer *pointer,
+-+    uint32_t time, wl_fixed_t sx_w, wl_fixed_t sy_w)
+-+{
+-+  struct input *input = data;
+-+  GstWlWindow *window = input->pointer_focus;
+-+
+-+  if (!window)
+-+    return;
+-+
+-+  if (input->grab)
+-+    wl_shell_surface_move (input->grab->shell_surface, input->seat,
+-+        input->display->serial);
+-+
+-+}
+-+
+-+static void
+-+pointer_handle_button (void *data, struct wl_pointer *pointer, uint32_t serial,
+-+    uint32_t time, uint32_t button, uint32_t state_w)
+-+{
+-+  struct input *input = data;
+-+  enum wl_pointer_button_state state = state_w;
+-+  input->display->serial = serial;
+-+
+-+  if (button == BTN_LEFT) {
+-+    if (state == WL_POINTER_BUTTON_STATE_PRESSED)
+-+      input_grab (input, input->pointer_focus);
+-+
+-+    if (input->grab && state == WL_POINTER_BUTTON_STATE_RELEASED)
+-+      input_ungrab (input);
+-+  }
+-+
+-+  if (input->grab)
+-+    wl_shell_surface_move (input->grab->shell_surface, input->seat,
+-+        input->display->serial);
+-+}
+-+
+-+static void
+-+pointer_handle_axis (void *data, struct wl_pointer *pointer,
+-+    uint32_t time, uint32_t axis, wl_fixed_t value)
+-+{
+-+}
+-+
+-+static const struct wl_pointer_listener pointer_listener = {
+-+  pointer_handle_enter,
+-+  pointer_handle_leave,
+-+  pointer_handle_motion,
+-+  pointer_handle_button,
+-+  pointer_handle_axis,
+-+};
+-+
+-+static void
+-+touch_handle_down (void *data, struct wl_touch *wl_touch,
+-+    uint32_t serial, uint32_t time, struct wl_surface *surface,
+-+    int32_t id, wl_fixed_t x_w, wl_fixed_t y_w)
+-+{
+-+  struct input *input = data;
+-+  struct touch_point *tp;
+-+
+-+  input->display->serial = serial;
+-+  input->touch_focus = wl_surface_get_user_data (surface);
+-+  if (!input->touch_focus) {
+-+    return;
+-+  }
+-+
+-+  tp = malloc (sizeof *tp);
+-+  if (tp) {
+-+    tp->id = id;
+-+    wl_list_insert (&input->touch_point_list, &tp->link);
+-+    wl_shell_surface_move (input->touch_focus->shell_surface, input->seat,
+-+        serial);
+-+  }
+-+}
+-+
+-+static void
+-+touch_handle_motion (void *data, struct wl_touch *wl_touch,
+-+    uint32_t time, int32_t id, wl_fixed_t x_w, wl_fixed_t y_w)
+-+{
+-+  struct input *input = data;
+-+  struct touch_point *tp;
+-+
+-+
+-+  if (!input->touch_focus) {
+-+    return;
+-+  }
+-+  wl_list_for_each (tp, &input->touch_point_list, link) {
+-+    if (tp->id != id)
+-+      continue;
+-+
+-+    wl_shell_surface_move (input->touch_focus->shell_surface, input->seat,
+-+        input->display->serial);
+-+
+-+    return;
+-+  }
+-+}
+-+
+-+static void
+-+touch_handle_frame (void *data, struct wl_touch *wl_touch)
+-+{
+-+}
+-+
+-+static void
+-+touch_handle_cancel (void *data, struct wl_touch *wl_touch)
+-+{
+-+}
+-+
+-+static void
+-+touch_handle_up (void *data, struct wl_touch *wl_touch,
+-+    uint32_t serial, uint32_t time, int32_t id)
+-+{
+-+  struct input *input = data;
+-+  struct touch_point *tp, *tmp;
+-+
+-+  if (!input->touch_focus) {
+-+    return;
+-+  }
+-+
+-+  wl_list_for_each_safe (tp, tmp, &input->touch_point_list, link) {
+-+    if (tp->id != id)
+-+      continue;
+-+
+-+    wl_list_remove (&tp->link);
+-+    free (tp);
+-+
+-+    return;
+-+  }
+-+}
+-+
+-+static const struct wl_touch_listener touch_listener = {
+-+  touch_handle_down,
+-+  touch_handle_up,
+-+  touch_handle_motion,
+-+  touch_handle_frame,
+-+  touch_handle_cancel,
+-+};
+-+
+-+
+-+static void
+-+seat_handle_capabilities (void *data, struct wl_seat *seat,
+-+    enum wl_seat_capability caps)
+-+{
+-+  struct input *input = data;
+-+
+-+  if ((caps & WL_SEAT_CAPABILITY_POINTER) && !input->pointer) {
+-+    input->pointer = wl_seat_get_pointer (seat);
+-+    wl_pointer_set_user_data (input->pointer, input);
+-+    wl_pointer_add_listener (input->pointer, &pointer_listener, input);
+-+  } else if (!(caps & WL_SEAT_CAPABILITY_POINTER) && input->pointer) {
+-+    wl_pointer_destroy (input->pointer);
+-+    input->pointer = NULL;
+-+  }
+-+
+-+  if ((caps & WL_SEAT_CAPABILITY_TOUCH) && !input->touch) {
+-+    input->touch = wl_seat_get_touch (seat);
+-+    wl_touch_set_user_data (input->touch, input);
+-+    wl_touch_add_listener (input->touch, &touch_listener, input);
+-+  } else if (!(caps & WL_SEAT_CAPABILITY_TOUCH) && input->touch) {
+-+    wl_touch_destroy (input->touch);
+-+    input->touch = NULL;
+-+  }
+-+}
+-+
+-+static void
+-+seat_handle_name (void *data, struct wl_seat *seat, const char *name)
+-+{
+-+
+-+}
+-+
+-+static const struct wl_seat_listener seat_listener = {
+-+  seat_handle_capabilities,
+-+  seat_handle_name
+-+};
+-+
+-+static void
+-+display_add_input (GstWlDisplay *d, uint32_t id)
+-+{
+-+  struct input *input;
+-+
+-+  input = calloc (1, sizeof (*input));
+-+  if (input == NULL) {
+-+    fprintf (stderr, "%s: out of memory\n", "gst-wayland-sink");
+-+    exit (EXIT_FAILURE);
+-+  }
+-+  input->display = d;
+-+  input->seat = wl_registry_bind (d->registry, id, &wl_seat_interface,
+-+      MAX (d->seat_version, 3));
+-+  input->touch_focus = NULL;
+-+  input->pointer_focus = NULL;
+-+  wl_list_init (&input->touch_point_list);
+-+  wl_list_insert (d->input_list.prev, &input->link);
+-+
+-+  wl_seat_add_listener (input->seat, &seat_listener, input);
+-+  wl_seat_set_user_data (input->seat, input);
+-+
+-+}
+-+
+- static void
+- registry_handle_global (void *data, struct wl_registry *registry,
+-     uint32_t id, const char *interface, uint32_t version)
+-@@ -160,6 +459,9 @@ registry_handle_global (void *data, struct wl_registry *registry,
+-   } else if (g_strcmp0 (interface, "wl_shm") == 0) {
+-     self->shm = wl_registry_bind (registry, id, &wl_shm_interface, 1);
+-     wl_shm_add_listener (self->shm, &shm_listener, self);
+-+  } else if (g_strcmp0 (interface, "wl_seat") == 0) {
+-+    self->seat_version = version;
+-+    display_add_input (self, id);
+-   } else if (g_strcmp0 (interface, "wl_scaler") == 0) {
+-     self->scaler = wl_registry_bind (registry, id, &wl_scaler_interface, 2);
+-   }
+-@@ -237,6 +539,7 @@ gst_wl_display_new_existing (struct wl_display * display,
+-   self->own_display = take_ownership;
+- 
+-   self->queue = wl_display_create_queue (self->display);
+-+  wl_list_init (&self->input_list);
+-   self->registry = wl_display_get_registry (self->display);
+-   wl_proxy_set_queue ((struct wl_proxy *) self->registry, self->queue);
+-   wl_registry_add_listener (self->registry, &registry_listener, self);
+-diff --git a/ext/wayland/wldisplay.h b/ext/wayland/wldisplay.h
+-index 5505d60..d8c2cef 100644
+---- a/ext/wayland/wldisplay.h
+-+++ b/ext/wayland/wldisplay.h
+-@@ -62,6 +62,10 @@ struct _GstWlDisplay
+-   GMutex buffers_mutex;
+-   GHashTable *buffers;
+-   gboolean shutting_down;
+-+
+-+  struct wl_list input_list;
+-+  int seat_version;
+-+  uint32_t serial;
+- };
+- 
+- struct _GstWlDisplayClass
+-diff --git a/ext/wayland/wlwindow.c b/ext/wayland/wlwindow.c
+-index a964335..34ae385 100644
+---- a/ext/wayland/wlwindow.c
+-+++ b/ext/wayland/wlwindow.c
+-@@ -111,6 +111,8 @@ gst_wl_window_new_internal (GstWlDisplay * display)
+- 
+-   window->area_surface = wl_compositor_create_surface (display->compositor);
+-   window->video_surface = wl_compositor_create_surface (display->compositor);
+-+  wl_surface_set_user_data (window->area_surface, window);
+-+  wl_surface_set_user_data (window->video_surface, window);
+- 
+-   wl_proxy_set_queue ((struct wl_proxy *) window->area_surface, display->queue);
+-   wl_proxy_set_queue ((struct wl_proxy *) window->video_surface,
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstwaylandsink-add-input-format-I420-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstwaylandsink-add-input-format-I420-support.patch
+deleted file mode 100644
+index 507f57b..0000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstwaylandsink-add-input-format-I420-support.patch
++++ /dev/null
+@@ -1,89 +0,0 @@
+-From 1364ee6e60eb09a3fe3b072fe4671c5d645e523a Mon Sep 17 00:00:00 2001
+-From: Eric Ruei <e-ruei1@ti.com>
+-Date: Wed, 22 Feb 2017 10:49:01 -0500
+-Subject: [PATCH 1/3] gstwaylandsink: add input format I420 support
+-
+-The software-based video decoder produces the output in I420 format. To display
+-the output without additional ARM MHz consumed in video format conversion,
+-the function gst_wl_memory_construct_wl_buffer is enhanced to support I420 format.
+-
+-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+----
+- ext/wayland/wldrm.c | 41 ++++++++++++++++++++++++++++++++++-------
+- 1 file changed, 34 insertions(+), 7 deletions(-)
+-
+-diff --git a/ext/wayland/wldrm.c b/ext/wayland/wldrm.c
+-index 3dc9c21..ecbdc88 100644
+---- a/ext/wayland/wldrm.c
+-+++ b/ext/wayland/wldrm.c
+-@@ -5,33 +5,60 @@
+- #include <omap_drmif.h>
+- #include <wayland-client.h>
+- 
+-+GST_DEBUG_CATEGORY_EXTERN (gstwayland_debug);
+-+#define GST_CAT_DEFAULT gstwayland_debug
+-+
+-+
+- struct wl_buffer *
+- gst_wl_drm_memory_construct_wl_buffer (GstMemory * mem, GstWlDisplay * display,
+-     const GstVideoInfo * info)
+- {
+-   gint video_width = GST_VIDEO_INFO_WIDTH (info);
+-   gint video_height = GST_VIDEO_INFO_HEIGHT (info);
+-+  GstVideoFormat format = GST_VIDEO_INFO_FORMAT (info);
+-   int fd = -1;
+-   struct omap_bo *bo;
+-   struct wl_buffer *buffer;
+--
+--  /* TODO get format, etc from caps.. and query device for
+--   * supported formats, and make this all more flexible to
+--   * cope with various formats:
+--   */
+--  uint32_t fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+-+  uint32_t fourcc;
+-   uint32_t name;
+-   /* note: wayland and mesa use the terminology:
+-    *    stride - rowstride in bytes
+-    *    pitch  - rowstride in pixels
+-    */
+-   uint32_t strides[3] = {
+--    GST_ROUND_UP_4 (video_width), GST_ROUND_UP_4 (video_width), 0,
+-+    GST_ROUND_UP_4 (video_width), 0, 0,
+-   };
+-   uint32_t offsets[3] = {
+-     0, strides[0] * video_height, 0
+-   };
+- 
+-+  if (format == GST_VIDEO_FORMAT_NV12)
+-+  {
+-+    /* NV12 */
+-+    fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+-+    strides[1] = GST_ROUND_UP_4 (video_width);
+-+  }
+-+  else if(format == GST_VIDEO_FORMAT_I420)
+-+  {
+-+    /* YUV420 */
+-+    fourcc = GST_MAKE_FOURCC ('Y', 'U', '1', '2');
+-+    strides[1] = strides[2] = GST_ROUND_UP_4 (video_width/2);
+-+    offsets[2] = offsets[1] + strides[1] * video_height/2;
+-+  }
+-+  else
+-+  {
+-+
+-+    GST_DEBUG ("Unsupported video format: %d", format);
+-+    /*
+-+     * There are two xRGB frames with width and height = 1 required in the begining of a video stream.
+-+     * If we consider them as errot, then it will case libwayland-clent.so crashes
+-+     * due to invalid error handling.
+-+     * Consider them as NV12 until we can figure out a better solution
+-+     */
+-+    fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+-+    strides[1] = GST_ROUND_UP_4 (video_width);
+-+  }
+-+
+-   fd = gst_fd_memory_get_fd (mem);
+- 
+-   if (fd < 0 ) {
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-remove-DCE-dependencies.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-remove-DCE-dependencies.patch
+deleted file mode 100644
+index 308a849..0000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-kmssink-remove-DCE-dependencies.patch
++++ /dev/null
+@@ -1,96 +0,0 @@
+-From 68936c7fb864440bb4d2ab737a651888ac7c253a Mon Sep 17 00:00:00 2001
+-From: Eric Ruei <e-ruei1@ti.com>
+-Date: Fri, 17 Mar 2017 10:42:32 -0400
+-Subject: [PATCH 2/3] kmssink: remove DCE dependencies
+-
+-Replace DCE related API calls to libdrm and omapdrm API calls
+-to decouple DCE from kmssink
+-
+-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+----
+- configure.ac         |  1 -
+- sys/kms/Makefile.am  |  2 --
+- sys/kms/gstkmssink.c | 17 +++++++++++++----
+- 3 files changed, 13 insertions(+), 7 deletions(-)
+-
+-diff --git a/configure.ac b/configure.ac
+-index f93d52d..a6f93a5 100644
+---- a/configure.ac
+-+++ b/configure.ac
+-@@ -2321,7 +2321,6 @@ dnl *** kms ***
+- translit(dnm, m, l) AM_CONDITIONAL(USE_KMS, true)
+- AG_GST_CHECK_FEATURE(KMS, [kmssink], kms, [
+- PKG_CHECK_MODULES([DRM], [libdrm libdrm_omap], HAVE_KMS=yes, HAVE_KMS=no)
+--PKG_CHECK_MODULES(LIBDCE, [libdce >= 1.0.0], HAVE_KMS=yes, HAVE_KMS=no)
+- AC_SUBST(DRM_CFLAGS)
+- AC_SUBST(DRM_LIBS)
+- ])
+-diff --git a/sys/kms/Makefile.am b/sys/kms/Makefile.am
+-index 6d56073..cc7353e 100644
+---- a/sys/kms/Makefile.am
+-+++ b/sys/kms/Makefile.am
+-@@ -9,7 +9,6 @@ libgstkmssink_la_CFLAGS = \
+- 	$(GST_PLUGINS_BAD_CFLAGS) \
+- 	$(GST_PLUGINS_BASE_CFLAGS) \
+- 	$(GST_BASE_CFLAGS) \
+--	$(LIBDCE_CFLAGS) \
+- 	$(GST_CFLAGS) \
+- 	$(DRM_CFLAGS)
+- 
+-@@ -17,7 +16,6 @@ libgstkmssink_la_LIBADD = \
+- 	$(GST_PLUGINS_BASE_LIBS) \
+- 	$(GST_BASE_LIBS) \
+- 	$(GST_LIBS) \
+--	$(LIBDCE_LIBS) \
+- 	$(DRM_LIBS) \
+- 	-lgstvideo-$(GST_API_VERSION) \
+- 	$(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la
+-diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
+-index 17e6407..9795bdf 100644
+---- a/sys/kms/gstkmssink.c
+-+++ b/sys/kms/gstkmssink.c
+-@@ -31,7 +31,6 @@
+- #include "gstkmssink.h"
+- #include "gstkmsbufferpriv.h"
+- 
+--#include <libdce.h>
+- #include <omap_drm.h>
+- #include <omap_drmif.h>
+- #include <xf86drmMode.h>
+-@@ -516,13 +515,18 @@ gst_kms_sink_start (GstBaseSink * bsink)
+- 
+-   sink = GST_KMS_SINK (bsink);
+- 
+--  drm_dev = dce_init ();
+-+  drm_fd = open("/dev/dri/card0", O_RDWR | O_CLOEXEC);
+-+  if(drm_fd == NULL)
+-+    goto drm_failed;
+-+  else {
+-+    drm_dev = omap_device_new(drm_fd);
+-+  }
+-+
+-   if (drm_dev == NULL)
+-     goto device_failed;
+-   else {
+-+    sink->fd = drm_fd;
+-     sink->dev = drm_dev;
+--    sink->fd = dce_get_fd ();
+--    drm_fd = dce_get_fd ();
+-   }
+- 
+-   sink->resources = drmModeGetResources (sink->fd);
+-@@ -539,6 +543,11 @@ fail:
+-   gst_kms_sink_reset (sink);
+-   return FALSE;
+- 
+-+drm_failed:
+-+  GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
+-+      (NULL), ("drmOpen failed"));
+-+  goto fail;
+-+
+- device_failed:
+-   GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
+-       (NULL), ("omap_device_new failed"));
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-Pick-previos-bug-fixes-on-different-parsers.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-Pick-previos-bug-fixes-on-different-parsers.patch
+deleted file mode 100644
+index 707cfc2..0000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-Pick-previos-bug-fixes-on-different-parsers.patch
++++ /dev/null
+@@ -1,146 +0,0 @@
+-From c748e947ff35c4137178aef9bf229e0c67952982 Mon Sep 17 00:00:00 2001
+-From: Pooja Prajod <a0132412@ti.com>
+-Date: Fri, 20 Jan 2017 14:57:29 +0530
+-Subject: [PATCH 2/5] parsers: Pick previos bug fixes on different parsers
+-
+-The following bug fixes which were previously identified are picked :
+-1. Increase rank for vc1parse and jpegparse
+-2. Modify h264 and mpeg4 parsers to interpolate pts
+-3. Fix create() width and height calculation on h264parse
+-
+-Signed-off-by: Pooja Prajod <a0132412@ti.com>
+----
+- gst/jpegformat/gstjpegformat.c        |  2 +-
+- gst/jpegformat/gstjpegparse.c         |  2 +-
+- gst/videoparsers/gsth264parse.c       | 22 +++++++---------------
+- gst/videoparsers/gstmpeg4videoparse.c |  2 +-
+- gst/videoparsers/gstmpegvideoparse.c  |  2 +-
+- gst/videoparsers/plugin.c             |  2 +-
+- 6 files changed, 12 insertions(+), 20 deletions(-)
+-
+-diff --git a/gst/jpegformat/gstjpegformat.c b/gst/jpegformat/gstjpegformat.c
+-index b410466..ecb9311 100644
+---- a/gst/jpegformat/gstjpegformat.c
+-+++ b/gst/jpegformat/gstjpegformat.c
+-@@ -30,7 +30,7 @@
+- static gboolean
+- plugin_init (GstPlugin * plugin)
+- {
+--  if (!gst_element_register (plugin, "jpegparse", GST_RANK_NONE,
+-+  if (!gst_element_register (plugin, "jpegparse", GST_RANK_PRIMARY + 2,
+-           GST_TYPE_JPEG_PARSE))
+-     return FALSE;
+-   if (!gst_element_register (plugin, "jifmux", GST_RANK_SECONDARY,
+-diff --git a/gst/jpegformat/gstjpegparse.c b/gst/jpegformat/gstjpegparse.c
+-index 77e53a6..5bfba7b 100644
+---- a/gst/jpegformat/gstjpegparse.c
+-+++ b/gst/jpegformat/gstjpegparse.c
+-@@ -151,7 +151,7 @@ gst_jpeg_parse_class_init (GstJpegParseClass * klass)
+- 
+-   gst_element_class_set_static_metadata (gstelement_class,
+-       "JPEG stream parser",
+--      "Video/Parser",
+-+      "Codec/Parser/Video",
+-       "Parse JPEG images into single-frame buffers",
+-       "Arnout Vandecappelle (Essensium/Mind) <arnout@mind.be>");
+- 
+-diff --git a/gst/videoparsers/gsth264parse.c b/gst/videoparsers/gsth264parse.c
+-index 05b6b75..6fe2914 100644
+---- a/gst/videoparsers/gsth264parse.c
+-+++ b/gst/videoparsers/gsth264parse.c
+-@@ -162,7 +162,7 @@ static void
+- gst_h264_parse_init (GstH264Parse * h264parse)
+- {
+-   h264parse->frame_out = gst_adapter_new ();
+--  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (h264parse), FALSE);
+-+  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (h264parse), TRUE);
+-   GST_PAD_SET_ACCEPT_INTERSECT (GST_BASE_PARSE_SINK_PAD (h264parse));
+-   GST_PAD_SET_ACCEPT_TEMPLATE (GST_BASE_PARSE_SINK_PAD (h264parse));
+- }
+-@@ -1722,13 +1722,8 @@ gst_h264_parse_update_src_caps (GstH264Parse * h264parse, GstCaps * caps)
+-     gint fps_num, fps_den;
+-     gint par_n, par_d;
+- 
+--    if (sps->frame_cropping_flag) {
+--      crop_width = sps->crop_rect_width;
+--      crop_height = sps->crop_rect_height;
+--    } else {
+--      crop_width = sps->width;
+--      crop_height = sps->height;
+--    }
+-+    crop_width = (sps->crop_rect_width > sps->width)? sps->crop_rect_width: sps->width;
+-+    crop_height = (sps->crop_rect_height > sps->height)? sps->crop_rect_height: sps->height;
+- 
+-     if (G_UNLIKELY (h264parse->width != crop_width ||
+-             h264parse->height != crop_height)) {
+-@@ -1762,7 +1757,7 @@ gst_h264_parse_update_src_caps (GstH264Parse * h264parse, GstCaps * caps)
+-     }
+- 
+-     if (G_UNLIKELY (modified || h264parse->update_caps)) {
+--      gint width, height;
+-+      gint width=0, height=0;
+-       GstClockTime latency;
+- 
+-       const gchar *caps_mview_mode = NULL;
+-@@ -1774,16 +1769,13 @@ gst_h264_parse_update_src_caps (GstH264Parse * h264parse, GstCaps * caps)
+- 
+-       caps = gst_caps_copy (sink_caps);
+- 
+--      /* sps should give this but upstream overrides */
+-       if (s && gst_structure_has_field (s, "width"))
+-         gst_structure_get_int (s, "width", &width);
+--      else
+--        width = h264parse->width;
+--
+-+      width = (width > h264parse->width)? width: h264parse->width;
+-+     
+-       if (s && gst_structure_has_field (s, "height"))
+-         gst_structure_get_int (s, "height", &height);
+--      else
+--        height = h264parse->height;
+-+      height = (height > h264parse->height)? height: h264parse->height;
+- 
+-       if (s == NULL ||
+-           !gst_structure_get_fraction (s, "pixel-aspect-ratio", &par_n,
+-diff --git a/gst/videoparsers/gstmpeg4videoparse.c b/gst/videoparsers/gstmpeg4videoparse.c
+-index a1fd3b2..7912254 100644
+---- a/gst/videoparsers/gstmpeg4videoparse.c
+-+++ b/gst/videoparsers/gstmpeg4videoparse.c
+-@@ -185,7 +185,7 @@ gst_mpeg4vparse_init (GstMpeg4VParse * parse)
+-   parse->interval = DEFAULT_CONFIG_INTERVAL;
+-   parse->last_report = GST_CLOCK_TIME_NONE;
+- 
+--  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (parse), FALSE);
+-+  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (parse), TRUE);
+-   GST_PAD_SET_ACCEPT_INTERSECT (GST_BASE_PARSE_SINK_PAD (parse));
+-   GST_PAD_SET_ACCEPT_TEMPLATE (GST_BASE_PARSE_SINK_PAD (parse));
+- }
+-diff --git a/gst/videoparsers/gstmpegvideoparse.c b/gst/videoparsers/gstmpegvideoparse.c
+-index bf71a3e..f203cca 100644
+---- a/gst/videoparsers/gstmpegvideoparse.c
+-+++ b/gst/videoparsers/gstmpegvideoparse.c
+-@@ -175,7 +175,7 @@ gst_mpegv_parse_init (GstMpegvParse * parse)
+- {
+-   parse->config_flags = FLAG_NONE;
+- 
+--  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (parse), FALSE);
+-+  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (parse), TRUE);
+-   GST_PAD_SET_ACCEPT_INTERSECT (GST_BASE_PARSE_SINK_PAD (parse));
+-   GST_PAD_SET_ACCEPT_TEMPLATE (GST_BASE_PARSE_SINK_PAD (parse));
+- }
+-diff --git a/gst/videoparsers/plugin.c b/gst/videoparsers/plugin.c
+-index 79d1df6..fb866b5 100644
+---- a/gst/videoparsers/plugin.c
+-+++ b/gst/videoparsers/plugin.c
+-@@ -51,7 +51,7 @@ plugin_init (GstPlugin * plugin)
+-   ret |= gst_element_register (plugin, "h265parse",
+-       GST_RANK_SECONDARY, GST_TYPE_H265_PARSE);
+-   ret |= gst_element_register (plugin, "vc1parse",
+--      GST_RANK_NONE, GST_TYPE_VC1_PARSE);
+-+      GST_RANK_PRIMARY + 2, GST_TYPE_VC1_PARSE);
+- 
+-   return ret;
+- }
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-gstkmssink-Add-support-for-KMS-based-sink.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-gstkmssink-Add-support-for-KMS-based-sink.patch
+deleted file mode 100644
+index 1068fda..0000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-gstkmssink-Add-support-for-KMS-based-sink.patch
++++ /dev/null
+@@ -1,1592 +0,0 @@
+-From 44ba6f9839a410e981c9c941f099316ebfac2659 Mon Sep 17 00:00:00 2001
+-From: Pooja Prajod <a0132412@ti.com>
+-Date: Fri, 20 Jan 2017 16:18:22 +0530
+-Subject: [PATCH 3/5] gstkmssink: Add support for KMS based sink
+-
+-The following features are enabled:
+-1. Add support for kmssink
+-2. Fix memory leak by using API's that do not hold
+-   reference to GstMemory
+-3. Restrict the number of buffers that will be allocated
+-   by kmssink bufferpool
+-4. Use Atomic mode setting instead of SetPlane
+-5. Store encoder and plane data as static data to enable
+-   same process looping usecase
+-6. Handle usecase where display is disabled by default
+-
+-Signed-off-by: Pooja Prajod <a0132412@ti.com>
+----
+- configure.ac               |  14 +
+- sys/Makefile.am            |  10 +-
+- sys/kms/Makefile.am        |  28 ++
+- sys/kms/gstdrmutils.c      | 347 +++++++++++++++++++++
+- sys/kms/gstdrmutils.h      |  50 +++
+- sys/kms/gstkmsbufferpriv.c | 121 ++++++++
+- sys/kms/gstkmsbufferpriv.h |  64 ++++
+- sys/kms/gstkmssink.c       | 740 +++++++++++++++++++++++++++++++++++++++++++++
+- sys/kms/gstkmssink.h       |  92 ++++++
+- 9 files changed, 1464 insertions(+), 2 deletions(-)
+- create mode 100644 sys/kms/Makefile.am
+- create mode 100644 sys/kms/gstdrmutils.c
+- create mode 100644 sys/kms/gstdrmutils.h
+- create mode 100644 sys/kms/gstkmsbufferpriv.c
+- create mode 100644 sys/kms/gstkmsbufferpriv.h
+- create mode 100644 sys/kms/gstkmssink.c
+- create mode 100644 sys/kms/gstkmssink.h
+-
+-diff --git a/configure.ac b/configure.ac
+-index e254605..9fdfbc7 100644
+---- a/configure.ac
+-+++ b/configure.ac
+-@@ -2324,6 +2324,18 @@ AG_GST_CHECK_FEATURE(KATE, [Kate], kate, [
+-   AC_SUBST(TIGER_LIBS)
+- ],,,[AM_CONDITIONAL(USE_TIGER, false)])
+- 
+-+	
+-+	
+-+dnl *** kms ***
+-+translit(dnm, m, l) AM_CONDITIONAL(USE_KMS, true)
+-+AG_GST_CHECK_FEATURE(KMS, [kmssink], kms, [
+-+PKG_CHECK_MODULES([DRM], [libdrm libdrm_omap], HAVE_KMS=yes, HAVE_KMS=no)
+-+PKG_CHECK_MODULES(LIBDCE, [libdce >= 1.0.0], HAVE_KMS=yes, HAVE_KMS=no)
+-+AC_SUBST(DRM_CFLAGS)
+-+AC_SUBST(DRM_LIBS)
+-+])
+-+
+-+
+- dnl *** ladspa ***
+- translit(dnm, m, l) AM_CONDITIONAL(USE_LADSPA, true)
+- AG_GST_CHECK_FEATURE(LADSPA, [ladspa], ladspa, [
+-@@ -3383,6 +3395,7 @@ AM_CONDITIONAL(USE_GTK3_GL, false)
+- AM_CONDITIONAL(USE_HLS, false)
+- AM_CONDITIONAL(USE_KATE, false)
+- AM_CONDITIONAL(USE_TIGER, false)
+-+AM_CONDITIONAL(USE_KMS, false)
+- AM_CONDITIONAL(USE_LADSPA, false)
+- AM_CONDITIONAL(USE_LV2, false)
+- AM_CONDITIONAL(USE_LIBDE265, false)
+-@@ -3632,6 +3645,7 @@ sys/fbdev/Makefile
+- sys/linsys/Makefile
+- sys/nvenc/Makefile
+- sys/opensles/Makefile
+-+sys/kms/Makefile
+- sys/shm/Makefile
+- sys/tinyalsa/Makefile
+- sys/uvch264/Makefile
+-diff --git a/sys/Makefile.am b/sys/Makefile.am
+-index 32f79fb..325b4af 100644
+---- a/sys/Makefile.am
+-+++ b/sys/Makefile.am
+-@@ -87,6 +87,12 @@ PVR_DIR=pvr2d
+- else
+- PVR_DIR=
+- endif
+-+	
+-+if USE_KMS
+-+KMS_DIR=kms
+-+else
+-+KMS_DIR=
+-+endif
+- 
+- if USE_SHM
+- SHM_DIR=shm
+-@@ -148,10 +154,10 @@ else
+- TINYALSA_DIR=
+- endif
+- 
+--SUBDIRS = $(ACM_DIR) $(ANDROID_MEDIA_DIR) $(APPLE_MEDIA_DIR) $(AVC_DIR) $(BLUEZ_DIR) $(D3DVIDEOSINK_DIR) $(DECKLINK_DIR) $(DIRECTSOUND_DIR) $(WINKS_DIR) $(DVB_DIR) $(FBDEV_DIR) $(LINSYS_DIR) $(OPENSLES_DIR) $(PVR_DIR) $(SHM_DIR) $(UVCH264_DIR) $(VCD_DIR) $(VDPAU_DIR) $(WININET_DIR) $(WINSCREENCAP_DIR) $(WASAPI_DIR) $(NVENC_DIR) $(TINYALSA_DIR)
+-+SUBDIRS = $(ACM_DIR) $(ANDROID_MEDIA_DIR) $(APPLE_MEDIA_DIR) $(AVC_DIR) $(BLUEZ_DIR) $(D3DVIDEOSINK_DIR) $(DECKLINK_DIR) $(DIRECTSOUND_DIR) $(WINKS_DIR) $(DVB_DIR) $(FBDEV_DIR) $(LINSYS_DIR) $(OPENSLES_DIR) $(PVR_DIR) $(KMS_DIR) $(SHM_DIR) $(UVCH264_DIR) $(VCD_DIR) $(VDPAU_DIR) $(WININET_DIR) $(WINSCREENCAP_DIR) $(WASAPI_DIR) $(NVENC_DIR) $(TINYALSA_DIR)
+- 
+- DIST_SUBDIRS = acmenc acmmp3dec androidmedia applemedia applemedia-nonpublic avc bluez d3dvideosink decklink directsound dvb linsys fbdev dshowdecwrapper dshowsrcwrapper dshowvideosink \
+--		opensles pvr2d shm uvch264 vcd vdpau wasapi wininet winks winscreencap \
+-+		opensles pvr2d kms shm uvch264 vcd vdpau wasapi wininet winks winscreencap \
+- 		nvenc tinyalsa
+- 
+- include $(top_srcdir)/common/parallel-subdirs.mak
+-diff --git a/sys/kms/Makefile.am b/sys/kms/Makefile.am
+-new file mode 100644
+-index 0000000..6d56073
+---- /dev/null
+-+++ b/sys/kms/Makefile.am
+-@@ -0,0 +1,28 @@
+-+plugin_LTLIBRARIES = libgstkmssink.la
+-+
+-+libgstkmssink_la_SOURCES = \
+-+	gstkmssink.c \
+-+	gstkmsbufferpriv.c \
+-+	gstdrmutils.c
+-+
+-+libgstkmssink_la_CFLAGS = \
+-+	$(GST_PLUGINS_BAD_CFLAGS) \
+-+	$(GST_PLUGINS_BASE_CFLAGS) \
+-+	$(GST_BASE_CFLAGS) \
+-+	$(LIBDCE_CFLAGS) \
+-+	$(GST_CFLAGS) \
+-+	$(DRM_CFLAGS)
+-+
+-+libgstkmssink_la_LIBADD = \
+-+	$(GST_PLUGINS_BASE_LIBS) \
+-+	$(GST_BASE_LIBS) \
+-+	$(GST_LIBS) \
+-+	$(LIBDCE_LIBS) \
+-+	$(DRM_LIBS) \
+-+	-lgstvideo-$(GST_API_VERSION) \
+-+	$(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la
+-+
+-+libgstkmssink_la_LDFLAGS = $(GST_PLUGIN_LDFLAGS)
+-+libgstkmssink_la_LIBTOOLFLAGS = --tag=disable-static
+-+
+-+noinst_HEADERS = gstkmssink.h gstdrmutils.h gstkmsbufferpriv.h
+-diff --git a/sys/kms/gstdrmutils.c b/sys/kms/gstdrmutils.c
+-new file mode 100644
+-index 0000000..0e67a48
+---- /dev/null
+-+++ b/sys/kms/gstdrmutils.c
+-@@ -0,0 +1,347 @@
+-+/* GStreamer
+-+ *
+-+ * Copyright (C) 2012 Texas Instruments
+-+ * Copyright (C) 2012 Collabora Ltd
+-+ *
+-+ * Authors:
+-+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Library General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Library General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Library General Public
+-+ * License along with this library; if not, write to the
+-+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+-+ * Boston, MA 02111-1307, USA.
+-+ */
+-+
+-+#include <gst/gst.h>
+-+#include "gstdrmutils.h"
+-+
+-+static int stored_enc = 0;
+-+static drmModeEncoder *enc;
+-+static struct plane_data *stored_plane;
+-+
+-+GST_DEBUG_CATEGORY_EXTERN (gst_debug_kms_sink);
+-+#define GST_CAT_DEFAULT gst_debug_kms_sink
+-+
+-+void
+-+gst_drm_connector_cleanup (int fd, struct connector *c)
+-+{
+-+  if (c->connector) {
+-+    drmModeFreeConnector (c->connector);
+-+    c->connector = NULL;
+-+  }
+-+
+-+  if (c->fb_id) {
+-+    drmModeRmFB (fd, c->fb_id);
+-+    c->fb_id = 0;
+-+  }
+-+  if (c->fb_bo) {
+-+    omap_bo_del (c->fb_bo);
+-+    c->fb_bo = NULL;
+-+  }
+-+}
+-+
+-+
+-+static gboolean
+-+gst_drm_connector_find_mode_and_plane_helper (int fd,
+-+    struct omap_device *dev, int width, int height,
+-+    drmModeRes * resources, drmModePlaneRes * plane_resources,
+-+    struct connector *c)
+-+{
+-+  int i, best_area = 0, ret;
+-+  struct drm_set_client_cap req;
+-+  unsigned int j;
+-+  int32_t crtc;
+-+
+-+  gst_drm_connector_cleanup (fd, c);
+-+
+-+  req.capability = DRM_CLIENT_CAP_ATOMIC;
+-+  req.value = 1;
+-+  ret = ioctl(fd, DRM_IOCTL_SET_CLIENT_CAP, &req);
+-+  if(ret < 0) {
+-+    GST_DEBUG("drm set atomic cap failed");
+-+    goto fail;
+-+  }
+-+
+-+  /* First, find the connector & mode */
+-+  c->connector = drmModeGetConnector (fd, c->id);
+-+  if (!c->connector)
+-+    goto error_no_connector;
+-+
+-+  if (!c->connector->count_modes)
+-+    goto error_no_mode;
+-+
+-+  /* just look for the highest resolution: */
+-+  for (i = 0; i < c->connector->count_modes; i++) {
+-+    drmModeModeInfo *mode = &c->connector->modes[i];
+-+    int area = mode->hdisplay * mode->vdisplay;
+-+
+-+    if (area > best_area) {
+-+      c->mode = mode;
+-+      best_area = area;
+-+    }
+-+  }
+-+
+-+  if (c->mode == NULL) {
+-+    /* XXX: just pick the first available mode. Not sure this is correct... */
+-+    c->mode = &c->connector->modes[0];
+-+#if 0
+-+    goto error_no_mode;
+-+#endif
+-+  }
+-+
+-+  /* Now get the encoder */
+-+
+-+  if (stored_enc) {
+-+    c->encoder = enc;
+-+    c->connector->encoder_id = stored_enc;
+-+  } else {
+-+    c->encoder = drmModeGetEncoder (fd, c->connector->encoder_id);
+-+    enc = c->encoder;
+-+    stored_enc = c->connector->encoder_id;
+-+  }
+-+
+-+  if (!c->encoder) {
+-+    for (i = 0; i < c->connector->count_encoders; ++i) {
+-+       c->encoder = drmModeGetEncoder(fd, c->connector->encoders[i]);
+-+       if (!c->encoder) {
+-+          GST_DEBUG ("Cannot retrieve encoder %u:%u (%d): %m\n",
+-+              i, c->connector->encoders[i], errno);
+-+          continue;
+-+       }
+-+       /* iterate all global CRTCs */
+-+       for (j = 0; j < resources->count_crtcs; ++j) {
+-+          /* check whether this CRTC works with the encoder */
+-+          if (!(c->encoder->possible_crtcs & (1 << j)))
+-+             continue;
+-+          crtc = resources->crtcs[j];
+-+          break;
+-+       }
+-+      if (crtc >= 0) {
+-+         enc = c->encoder;
+-+         stored_enc = c->connector->encoder_id;
+-+         c->crtc = crtc;
+-+         goto found_encoder;
+-+      }
+-+    }
+-+  }
+-+
+-+found_encoder:
+-+
+-+  if (!c->encoder)
+-+    goto error_no_encoder;
+-+
+-+  if (c->crtc == -1)
+-+    c->crtc = c->encoder->crtc_id;
+-+
+-+  /* and figure out which crtc index it is: */
+-+  c->pipe = -1;
+-+  for (i = 0; i < resources->count_crtcs; i++) {
+-+    if (c->crtc == (int) resources->crtcs[i]) {
+-+      c->pipe = i;
+-+      break;
+-+    }
+-+  }
+-+
+-+  if (c->pipe == -1)
+-+    goto error_no_crtc;
+-+
+-+  if (stored_plane) {
+-+    c->pdata = stored_plane;
+-+  } else {
+-+
+-+    c->pdata = calloc(sizeof(struct plane_data), 1);
+-+    for (i = 0; i < plane_resources->count_planes; i++) {
+-+      drmModePlane *plane = drmModeGetPlane (fd, plane_resources->planes[i]);
+-+      int propc;
+-+      if (plane->possible_crtcs & (1 << c->pipe)) {
+-+        drmModeObjectPropertiesPtr props = drmModeObjectGetProperties(fd, plane_resources->planes[i], DRM_MODE_OBJECT_PLANE);
+-+        for(propc = 0; propc < props->count_props; propc++) {
+-+          drmModePropertyPtr prop = drmModeGetProperty(fd, props->props[propc]);
+-+          if(strcmp(prop->name, "FB_ID") == 0)
+-+            c->pdata[0].fb_id_property = props->props[propc];
+-+        }
+-+        c->pdata[0].plane = plane_resources->planes[i];
+-+        stored_plane = c->pdata;
+-+        break;
+-+      }
+-+    }
+-+    if (stored_plane == NULL)
+-+      goto error_no_plane;
+-+  }
+-+  c->fb_bo = omap_bo_new (dev, best_area * 2, OMAP_BO_WC);
+-+  if (c->fb_bo) {
+-+    uint32_t fourcc = DRM_FORMAT_RGB565;
+-+    uint32_t handles[4] = { omap_bo_handle (c->fb_bo) };
+-+    uint32_t pitches[4] = { c->mode->hdisplay * 2 };
+-+    uint32_t offsets[4] = { 0 };
+-+    ret = drmModeAddFB2 (fd, c->mode->hdisplay, c->mode->vdisplay,
+-+        fourcc, handles, pitches, offsets, &c->fb_id, 0);
+-+    if (ret) {
+-+      GST_DEBUG ("RGB565 AddFb2 failed");
+-+    }
+-+  }
+-+
+-+  /* now set the desired mode: */
+-+  ret = drmModeSetCrtc (fd, c->crtc, c->fb_id, 0, 0, &c->id, 1, c->mode);
+-+  if (ret) {
+-+    GST_DEBUG ("SetCrtc failed");
+-+  }
+-+
+-+  return TRUE;
+-+
+-+fail:
+-+  gst_drm_connector_cleanup (fd, c);
+-+
+-+  return FALSE;
+-+
+-+error_no_connector:
+-+  GST_DEBUG ("could not get connector %s", strerror (errno));
+-+  goto fail;
+-+
+-+error_no_mode:
+-+  GST_DEBUG ("could not find mode %dx%d (count_modes %d)",
+-+      width, height, c->connector->count_modes);
+-+  goto fail;
+-+
+-+error_no_encoder:
+-+  GST_DEBUG ("could not get encoder: %s", strerror (errno));
+-+  goto fail;
+-+
+-+error_no_crtc:
+-+  GST_DEBUG ("couldn't find a crtc");
+-+  goto fail;
+-+
+-+error_no_plane:
+-+  GST_DEBUG ("couldn't find a plane");
+-+  goto fail;
+-+}
+-+
+-+gboolean
+-+gst_drm_connector_find_mode_and_plane (int fd,
+-+    struct omap_device *dev, int width, int height,
+-+    drmModeRes * resources, drmModePlaneRes * plane_resources,
+-+    struct connector *c)
+-+{
+-+  int i;
+-+  gboolean found = FALSE;
+-+
+-+  /* First, find the connector & mode */
+-+  if (c->id == 0) {
+-+    /* Any connector */
+-+    GST_DEBUG ("Any connector, %d available", resources->count_connectors);
+-+    for (i = 0; i < resources->count_connectors; i++) {
+-+      GST_DEBUG ("  %d", resources->connectors[i]);
+-+    }
+-+    for (i = 0; i < resources->count_connectors; i++) {
+-+      GST_DEBUG ("Trying connector %d: %d", i, resources->connectors[i]);
+-+      c->id = resources->connectors[i];
+-+      if (gst_drm_connector_find_mode_and_plane_helper (fd, dev, width, height,
+-+              resources, plane_resources, c)) {
+-+        GST_DEBUG ("Found suitable connector");
+-+        found = TRUE;
+-+        break;
+-+      }
+-+      GST_DEBUG ("Connector not suitable");
+-+    }
+-+  } else {
+-+    /* A specific connector */
+-+    GST_DEBUG ("Connector %d", c->id);
+-+    found =
+-+        gst_drm_connector_find_mode_and_plane_helper (fd, dev, width, height,
+-+        resources, plane_resources, c);
+-+  }
+-+
+-+  return found;
+-+}
+-+
+-+/* table nicked off libdrm's modetest.c */
+-+/* *INDENT-OFF* */
+-+static const struct {
+-+  int type_id;
+-+  const char *type_name;
+-+} connector_type_names[] = {
+-+  { DRM_MODE_CONNECTOR_Unknown, "unknown" },
+-+  { DRM_MODE_CONNECTOR_VGA, "VGA" },
+-+  { DRM_MODE_CONNECTOR_DVII, "DVI-I" },
+-+  { DRM_MODE_CONNECTOR_DVID, "DVI-D" },
+-+  { DRM_MODE_CONNECTOR_DVIA, "DVI-A" },
+-+  { DRM_MODE_CONNECTOR_Composite, "composite" },
+-+  { DRM_MODE_CONNECTOR_SVIDEO, "s-video" },
+-+  { DRM_MODE_CONNECTOR_LVDS, "LVDS" },
+-+  { DRM_MODE_CONNECTOR_Component, "component" },
+-+  { DRM_MODE_CONNECTOR_9PinDIN, "9-pin-DIN" },
+-+  { DRM_MODE_CONNECTOR_DisplayPort, "displayport" },
+-+  { DRM_MODE_CONNECTOR_HDMIA, "HDMI-A" },
+-+  { DRM_MODE_CONNECTOR_HDMIB, "HDMI-B" },
+-+  { DRM_MODE_CONNECTOR_TV, "TV" },
+-+  { DRM_MODE_CONNECTOR_eDP, "embedded-displayport" },
+-+};
+-+/* *INDENT-ON* */
+-+
+-+gboolean
+-+gst_drm_connector_find_mode_and_plane_by_name (int fd,
+-+    struct omap_device * dev, int width, int height,
+-+    drmModeRes * resources, drmModePlaneRes * plane_resources,
+-+    struct connector * c, const char *name)
+-+{
+-+  int i, n;
+-+  char tmp[64];
+-+  const char *type_name;
+-+  int found[G_N_ELEMENTS (connector_type_names)] = { 0 };
+-+
+-+  /* Find connector from name */
+-+  for (i = 0; i < resources->count_connectors; i++) {
+-+    GST_DEBUG ("Trying connector %d: %d", i, resources->connectors[i]);
+-+    c->id = resources->connectors[i];
+-+    c->connector = drmModeGetConnector (fd, c->id);
+-+    if (!c->connector)
+-+      continue;
+-+
+-+    /* Find type name from this connector */
+-+    for (n = 0; n < G_N_ELEMENTS (connector_type_names); n++)
+-+      if (connector_type_names[n].type_id == c->connector->connector_type)
+-+        break;
+-+    if (n == G_N_ELEMENTS (connector_type_names))
+-+      continue;
+-+
+-+    type_name = connector_type_names[n].type_name;
+-+    GST_DEBUG ("Connector %d has type %s", i, type_name);
+-+    ++found[n];
+-+
+-+    drmModeFreeConnector (c->connector);
+-+    c->connector = NULL;
+-+
+-+    /* Try a few different matches, such as modetest and xrandr
+-+       output, and also a indexless one matching first found */
+-+    snprintf (tmp, sizeof (tmp), "%s-%u", type_name, found[n]);
+-+    if (!g_ascii_strcasecmp (tmp, name))
+-+      goto found;
+-+    snprintf (tmp, sizeof (tmp), "%s%u", type_name, found[n]);
+-+    if (!g_ascii_strcasecmp (tmp, name))
+-+      goto found;
+-+    if (!g_ascii_strcasecmp (name, type_name))
+-+      goto found;
+-+
+-+    continue;
+-+
+-+  found:
+-+    if (gst_drm_connector_find_mode_and_plane_helper (fd, dev, width, height,
+-+            resources, plane_resources, c)) {
+-+      GST_DEBUG ("Found suitable connector");
+-+      return TRUE;
+-+    }
+-+    GST_DEBUG ("Connector not suitable");
+-+  }
+-+
+-+  return FALSE;
+-+}
+-diff --git a/sys/kms/gstdrmutils.h b/sys/kms/gstdrmutils.h
+-new file mode 100644
+-index 0000000..ebc5fc6
+---- /dev/null
+-+++ b/sys/kms/gstdrmutils.h
+-@@ -0,0 +1,50 @@
+-+#ifndef __GST_DRMUTILS_H__
+-+#define __GST_DRMUTILS_H__
+-+
+-+#include <fcntl.h>
+-+#include <xf86drm.h>
+-+#include <stdio.h>
+-+#include <stdint.h>
+-+#include <stdlib.h>
+-+#include <string.h>
+-+#include <errno.h>
+-+#include <unistd.h>
+-+#include <assert.h>
+-+#include <libdrm/drm.h>
+-+#include <libdrm/drm_mode.h>
+-+#include <xf86drmMode.h>
+-+#include <omap_drm.h>
+-+#include <omap_drmif.h>
+-+#include <drm_fourcc.h>
+-+#include <gst/gst.h>
+-+#include <sys/ioctl.h>
+-+
+-+struct plane_data {
+-+	int plane;
+-+	int fb_id_property;
+-+};
+-+
+-+struct connector {
+-+	uint32_t id;
+-+	char mode_str[64];
+-+	drmModeConnector *connector;
+-+	drmModeModeInfo *mode;
+-+	drmModeEncoder *encoder;
+-+	uint32_t fb_id;
+-+	struct omap_bo *fb_bo;
+-+	int crtc;
+-+	int pipe;
+-+        struct plane_data *pdata;
+-+};
+-+
+-+void gst_drm_connector_cleanup (int fd, struct connector * c);
+-+gboolean gst_drm_connector_find_mode_and_plane (int fd,
+-+    struct omap_device * dev, int width, int height,
+-+    drmModeRes * resources, drmModePlaneRes * plane_resources,
+-+    struct connector *c);
+-+gboolean gst_drm_connector_find_mode_and_plane_by_name (int fd,
+-+    struct omap_device *dev, int width, int height,
+-+    drmModeRes * resources, drmModePlaneRes * plane_resources,
+-+    struct connector *c, const char *name);
+-+
+-+#endif /* __GST_DRMUTILS_H__ */
+-diff --git a/sys/kms/gstkmsbufferpriv.c b/sys/kms/gstkmsbufferpriv.c
+-new file mode 100644
+-index 0000000..172a4c3
+---- /dev/null
+-+++ b/sys/kms/gstkmsbufferpriv.c
+-@@ -0,0 +1,121 @@
+-+/*
+-+ * GStreamer
+-+ *
+-+ * Copyright (C) 2012 Texas Instruments
+-+ * Copyright (C) 2012 Collabora Ltd
+-+ *
+-+ * Authors:
+-+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
+-+ *  Rob Clark <rob.clark@linaro.org>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation
+-+ * version 2.1 of the License.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, write to the Free Software
+-+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+-+ */
+-+
+-+#ifdef HAVE_CONFIG_H
+-+#include "config.h"
+-+#endif
+-+
+-+#include <stdint.h>
+-+#include <gst/gst.h>
+-+#include <gst/allocators/allocators.h>
+-+
+-+#include <omap_drm.h>
+-+#include <omap_drmif.h>
+-+#include <xf86drmMode.h>
+-+
+-+#include "gstkmssink.h"
+-+#include "gstkmsbufferpriv.h"
+-+
+-+static int
+-+create_fb (GstKMSBufferPriv * priv, GstKMSSink * sink)
+-+{
+-+  /* TODO get format, etc from caps.. and query device for
+-+   * supported formats, and make this all more flexible to
+-+   * cope with various formats:
+-+   */
+-+  uint32_t fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+-+
+-+  uint32_t handles[4] = {
+-+    omap_bo_handle (priv->bo), omap_bo_handle (priv->bo),
+-+  };
+-+  uint32_t pitches[4] = {
+-+    GST_ROUND_UP_4 (sink->input_width), GST_ROUND_UP_4 (sink->input_width),
+-+  };
+-+  uint32_t offsets[4] = {
+-+    0, pitches[0] * sink->input_height
+-+  };
+-+
+-+  return drmModeAddFB2 (priv->fd, sink->input_width, sink->input_height,
+-+      fourcc, handles, pitches, offsets, &priv->fb_id, 0);
+-+}
+-+
+-+/**
+-+ * gst_kms_buffer_priv:
+-+ * @sink: a #GstKMSSink
+-+ * @buf: a pointer to #GstBuffer
+-+ *
+-+ * Checks if the @buf has a GstMetaDmaBuf metadata set. If it doesn't we return a NULL
+-+ * indicating its not a dmabuf buffer. We maintain a hashtable with dmabuf fd as key and 
+-+ * the GstKMSBufferPriv structure as value
+-+ *
+-+ * Returns: the #GstKMSBufferPriv
+-+ *
+-+ * Since: 1.2.?
+-+ */
+-+GstKMSBufferPriv *
+-+gst_kms_buffer_priv (GstKMSSink * sink, GstBuffer * buf)
+-+{
+-+    struct omap_bo *bo;
+-+    int fd;
+-+    int fd_copy;
+-+    GstKMSBufferPriv * priv;
+-+    GstMemory *mem;
+-+
+-+    /* if it isn't a dmabuf buffer that we can import, then there
+-+     * is nothing we can do with it:
+-+     */
+-+    mem = gst_buffer_peek_memory (buf, 0);
+-+    fd_copy = gst_fd_memory_get_fd (mem); 
+-+    if (fd_copy < 0) {
+-+      GST_DEBUG_OBJECT (sink, "not importing non dmabuf buffer");
+-+      return NULL;
+-+    }
+-+
+-+    /* lookup the hashtable with fd as key. If present return bo & buffer structure */
+-+    priv = g_hash_table_lookup (sink->kmsbufferpriv, (gpointer)fd_copy);
+-+    if(priv) {
+-+       return priv;
+-+     }
+-+
+-+    priv = g_malloc0 (sizeof (GstKMSBufferPriv));
+-+    bo = omap_bo_from_dmabuf (sink->dev, fd_copy);
+-+    fd = sink->fd;
+-+
+-+      priv->bo = bo;
+-+      priv->fd = fd;
+-+
+-+    if (create_fb (priv, sink)) {
+-+      GST_WARNING_OBJECT (sink, "could not create framebuffer: %s",
+-+          strerror (errno));
+-+      g_free(priv);
+-+      return NULL;
+-+    }
+-+
+-+    /* if fd not present, write to hash table fd and the corresponding priv. */
+-+    g_hash_table_insert(sink->kmsbufferpriv, (gpointer)fd_copy, priv); 
+-+   
+-+  
+-+  return priv;
+-+}
+-diff --git a/sys/kms/gstkmsbufferpriv.h b/sys/kms/gstkmsbufferpriv.h
+-new file mode 100644
+-index 0000000..a1070da
+---- /dev/null
+-+++ b/sys/kms/gstkmsbufferpriv.h
+-@@ -0,0 +1,64 @@
+-+/*
+-+ * GStreamer
+-+ *
+-+ * Copyright (C) 2012 Texas Instruments
+-+ * Copyright (C) 2012 Collabora Ltd
+-+ *
+-+ * Authors:
+-+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
+-+ *  Rob Clark <rob.clark@linaro.org>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Lesser General Public
+-+ * License as published by the Free Software Foundation
+-+ * version 2.1 of the License.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+-+ * Lesser General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Lesser General Public
+-+ * License along with this library; if not, write to the Free Software
+-+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+-+ */
+-+
+-+#ifndef __GSTKMSBUFFERPRIV_H__
+-+#define __GSTKMSBUFFERPRIV_H__
+-+
+-+#include <stdint.h>
+-+#include <gst/gst.h>
+-+
+-+G_BEGIN_DECLS
+-+
+-+/*
+-+ * per-buffer private data so kmssink can attach a drm_framebuffer
+-+ * handle (fb_id) to a buffer, which gets deleted when the buffer
+-+ * is finalized
+-+ */
+-+
+-+#define GST_TYPE_KMS_BUFFER_PRIV      \
+-+  (gst_kms_buffer_priv_get_type ())
+-+#define GST_KMS_BUFFER_PRIV(obj)      \
+-+  (G_TYPE_CHECK_INSTANCE_CAST((obj),GST_TYPE_KMS_BUFFER_PRIV, GstKMSBufferPriv))
+-+#define GST_IS_KMS_BUFFER_PRIV(obj)     \
+-+  (G_TYPE_CHECK_INSTANCE_TYPE((obj),GST_TYPE_KMS_BUFFER_PRIV))
+-+
+-+
+-+typedef struct
+-+{
+-+  struct omap_bo *bo;
+-+  int fd;
+-+  uint32_t fb_id;
+-+}GstKMSBufferPriv;
+-+
+-+
+-+GType gst_kms_buffer_priv_get_type (void);
+-+
+-+/* Returns a GstKMSBufferPriv, if it has a dmabuf fd metadata */
+-+GstKMSBufferPriv * gst_kms_buffer_priv (GstKMSSink *sink, GstBuffer * buf);
+-+
+-+G_END_DECLS
+-+
+-+
+-+#endif /* __GSTKMSBUFFERPRIV_H__ */
+-diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
+-new file mode 100644
+-index 0000000..17e6407
+---- /dev/null
+-+++ b/sys/kms/gstkmssink.c
+-@@ -0,0 +1,740 @@
+-+/* GStreamer
+-+ * Copyright (C) 2012 Texas Instruments
+-+ * Copyright (C) 2012 Collabora Ltd
+-+ *
+-+ * Authors:
+-+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Library General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Library General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Library General Public
+-+ * License along with this library; if not, write to the
+-+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+-+ * Boston, MA 02111-1307, USA.
+-+ *
+-+ * Authors:
+-+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
+-+ */
+-+
+-+#ifdef HAVE_CONFIG_H
+-+#include "config.h"
+-+#endif
+-+
+-+#include "gstkmssink.h"
+-+#include "gstkmsbufferpriv.h"
+-+
+-+#include <libdce.h>
+-+#include <omap_drm.h>
+-+#include <omap_drmif.h>
+-+#include <xf86drmMode.h>
+-+
+-+static int drm_fd = -1;
+-+static struct omap_device *drm_dev;
+-+static int once =1;
+-+
+-+GST_DEBUG_CATEGORY (gst_debug_kms_sink);
+-+#define GST_CAT_DEFAULT gst_debug_kms_sink
+-+
+-+G_DEFINE_TYPE (GstKMSSink, gst_kms_sink, GST_TYPE_VIDEO_SINK);
+-+
+-+static void gst_kms_sink_reset (GstKMSSink * sink);
+-+
+-+static GstStaticPadTemplate gst_kms_sink_template_factory =
+-+GST_STATIC_PAD_TEMPLATE ("sink",
+-+    GST_PAD_SINK,
+-+    GST_PAD_ALWAYS,
+-+    GST_STATIC_CAPS (GST_VIDEO_CAPS_MAKE("NV12"))
+-+    );
+-+
+-+enum
+-+{
+-+  PROP_0,
+-+  PROP_PIXEL_ASPECT_RATIO,
+-+  PROP_FORCE_ASPECT_RATIO,
+-+  PROP_SCALE,
+-+  PROP_CONNECTOR,
+-+  PROP_CONNECTOR_NAME,
+-+};
+-+
+-+
+-+static inline void
+-+display_bufs_queue (GstKMSSink * sink, GstBuffer * buf)
+-+{
+-+  int i;
+-+  for (i = 0; i < (NUM_DISPLAY_BUFS - 1); i++)
+-+    gst_buffer_replace (&sink->display_bufs[i], sink->display_bufs[i + 1]);
+-+  gst_buffer_replace (&sink->display_bufs[i], buf);
+-+}
+-+
+-+static inline void
+-+display_bufs_free (GstKMSSink * sink)
+-+{
+-+  int i;
+-+  for (i = 0; i < NUM_DISPLAY_BUFS; i++)
+-+    gst_buffer_replace (&sink->display_bufs[i], NULL);
+-+}
+-+
+-+static gboolean
+-+gst_kms_sink_calculate_aspect_ratio (GstKMSSink * sink, gint width,
+-+    gint height, gint video_par_n, gint video_par_d)
+-+{
+-+  guint calculated_par_n;
+-+  guint calculated_par_d;
+-+
+-+  if (!gst_video_calculate_display_ratio (&calculated_par_n, &calculated_par_d,
+-+          width, height, video_par_n, video_par_d, 1, 1)) {
+-+    GST_ELEMENT_ERROR (sink, CORE, NEGOTIATION, (NULL),
+-+        ("Error calculating the output display ratio of the video."));
+-+    return FALSE;
+-+  }
+-+  GST_DEBUG_OBJECT (sink,
+-+      "video width/height: %dx%d, calculated display ratio: %d/%d",
+-+      width, height, calculated_par_n, calculated_par_d);
+-+
+-+  /* now find a width x height that respects this display ratio.
+-+   * prefer those that have one of w/h the same as the incoming video
+-+   * using wd / hd = calculated_pad_n / calculated_par_d */
+-+
+-+  /* start with same height, because of interlaced video */
+-+  /* check hd / calculated_par_d is an integer scale factor, and scale wd with the PAR */
+-+  if (height % calculated_par_d == 0) {
+-+    GST_DEBUG_OBJECT (sink, "keeping video height");
+-+    GST_VIDEO_SINK_WIDTH (sink) = (guint)
+-+        gst_util_uint64_scale_int (height, calculated_par_n, calculated_par_d);
+-+    GST_VIDEO_SINK_HEIGHT (sink) = height;
+-+  } else if (width % calculated_par_n == 0) {
+-+    GST_DEBUG_OBJECT (sink, "keeping video width");
+-+    GST_VIDEO_SINK_WIDTH (sink) = width;
+-+    GST_VIDEO_SINK_HEIGHT (sink) = (guint)
+-+        gst_util_uint64_scale_int (width, calculated_par_d, calculated_par_n);
+-+  } else {
+-+    GST_DEBUG_OBJECT (sink, "approximating while keeping video height");
+-+    GST_VIDEO_SINK_WIDTH (sink) = (guint)
+-+        gst_util_uint64_scale_int (height, calculated_par_n, calculated_par_d);
+-+    GST_VIDEO_SINK_HEIGHT (sink) = height;
+-+  }
+-+  GST_DEBUG_OBJECT (sink, "scaling to %dx%d",
+-+      GST_VIDEO_SINK_WIDTH (sink), GST_VIDEO_SINK_HEIGHT (sink));
+-+
+-+  return TRUE;
+-+}
+-+
+-+static gboolean
+-+gst_kms_sink_setcaps (GstBaseSink * bsink, GstCaps * caps)
+-+{
+-+  GstKMSSink *sink;
+-+  gboolean ret = TRUE;
+-+  gint width, height;
+-+  gint fps_n, fps_d;
+-+  gint par_n, par_d;
+-+  GstVideoFormat format;
+-+  GstVideoInfo info;
+-+  GstStructure *conf;
+-+  GstStructure *s;
+-+  int size;
+-+
+-+  sink = GST_KMS_SINK (bsink);
+-+
+-+  ret = gst_video_info_from_caps (&info, caps);
+-+  format = GST_VIDEO_INFO_FORMAT(&info);
+-+  width = GST_VIDEO_INFO_WIDTH(&info);
+-+  height = GST_VIDEO_INFO_HEIGHT(&info);
+-+  fps_n = GST_VIDEO_INFO_FPS_N(&info);
+-+  fps_d = GST_VIDEO_INFO_FPS_D(&info);
+-+  par_n = GST_VIDEO_INFO_PAR_N(&info);
+-+  par_d = GST_VIDEO_INFO_PAR_D(&info);
+-+
+-+  if (!ret)
+-+    return FALSE;
+-+
+-+  if (width <= 0 || height <= 0) {
+-+    GST_ELEMENT_ERROR (sink, CORE, NEGOTIATION, (NULL),
+-+        ("Invalid image size."));
+-+    return FALSE;
+-+  }
+-+
+-+  sink->format = format;
+-+  sink->par_n = par_n;
+-+  sink->par_d = par_d;
+-+  sink->src_rect.x = sink->src_rect.y = 0;
+-+  sink->src_rect.w = width;
+-+  sink->src_rect.h = height;
+-+  sink->input_width = width;
+-+  sink->input_height = height;
+-+  size = info.size;
+-+
+-+  if (!sink->pool) {
+-+    GstAllocator *allocator;
+-+
+-+    allocator = gst_drm_allocator_get ();
+-+    sink->pool = gst_buffer_pool_new ();
+-+    conf = gst_buffer_pool_get_config (GST_BUFFER_POOL(sink->pool));
+-+    gst_buffer_pool_config_set_params (conf, caps, size, 0, 0);
+-+    gst_buffer_pool_config_set_allocator (conf, allocator, NULL);
+-+    gst_buffer_pool_set_config (GST_BUFFER_POOL(sink->pool), conf);
+-+    if (allocator)
+-+      gst_object_unref (allocator);
+-+  }
+-+
+-+  sink->conn.crtc = -1;
+-+  return TRUE;
+-+}
+-+
+-+static void
+-+gst_kms_sink_get_times (GstBaseSink * bsink, GstBuffer * buf,
+-+    GstClockTime * start, GstClockTime * end)
+-+{
+-+  GstKMSSink *sink;
+-+
+-+  sink = GST_KMS_SINK (bsink);
+-+
+-+  if (GST_BUFFER_PTS_IS_VALID (buf)) {
+-+    *start = GST_BUFFER_PTS (buf);
+-+    if (GST_BUFFER_DURATION_IS_VALID (buf)) {
+-+      *end = *start + GST_BUFFER_DURATION (buf);
+-+    } else {
+-+      if (sink->fps_n > 0) {
+-+        *end = *start +
+-+            gst_util_uint64_scale_int (GST_SECOND, sink->fps_d, sink->fps_n);
+-+      }
+-+    }
+-+  }
+-+}
+-+
+-+
+-+static void page_flip_handler(int fd, unsigned int frame,
+-+                  unsigned int sec, unsigned int usec, void *data)
+-+{
+-+        int *waiting_for_flip = data;
+-+        *waiting_for_flip = 0;
+-+}
+-+
+-+
+-+static GstFlowReturn
+-+gst_kms_sink_show_frame (GstVideoSink * vsink, GstBuffer * inbuf)
+-+{
+-+  GstKMSSink *sink = GST_KMS_SINK (vsink);
+-+  GstBuffer *buf = NULL;
+-+  GstKMSBufferPriv *priv;
+-+  GstFlowReturn flow_ret = GST_FLOW_OK;
+-+  int ret = 0;
+-+  gint width, height;
+-+  GstVideoRectangle *c = &sink->src_rect;
+-+  int waiting_for_flip = 1;
+-+
+-+  fd_set fds;
+-+  drmEventContext evctx = {
+-+                          .version = DRM_EVENT_CONTEXT_VERSION,
+-+                          .vblank_handler = 0,
+-+                          .page_flip_handler = page_flip_handler,
+-+                           };
+-+
+-+  g_mutex_lock (&sink->render_lock);
+-+  GstVideoCropMeta* crop = gst_buffer_get_video_crop_meta (inbuf);
+-+  if (crop){
+-+    c->y = crop->y;
+-+    c->x = crop->x;
+-+
+-+    if (crop->width >= 0) {
+-+      width = crop->width;
+-+    } else {
+-+      width = sink->input_width;
+-+    }
+-+    if (crop->height >= 0){
+-+      height = crop->height;
+-+    } else {
+-+      height = sink->input_height;
+-+    }
+-+  } else {
+-+    width = sink->input_width;
+-+    height = sink->input_height;
+-+  }
+-+
+-+  c->w = width;
+-+  c->h = height;
+-+
+-+
+-+  if (!gst_kms_sink_calculate_aspect_ratio (sink, width, height,
+-+              sink->par_n, sink->par_d))
+-+    GST_DEBUG_OBJECT (sink, "calculate aspect ratio failed");
+-+
+-+
+-+  GST_INFO_OBJECT (sink, "enter");
+-+
+-+  if (sink->conn.crtc == -1) {
+-+    if (sink->conn_name) {
+-+      if (!gst_drm_connector_find_mode_and_plane_by_name (sink->fd,
+-+              sink->dev, sink->src_rect.w, sink->src_rect.h,
+-+              sink->resources, sink->plane_resources, &sink->conn,
+-+              sink->conn_name))
+-+        goto connector_not_found;
+-+    } else {
+-+      sink->conn.id = sink->conn_id;
+-+      if (!gst_drm_connector_find_mode_and_plane (sink->fd,
+-+              sink->dev, sink->src_rect.w, sink->src_rect.h,
+-+              sink->resources, sink->plane_resources, &sink->conn))
+-+        goto connector_not_found;
+-+    }
+-+   once = 1;
+-+  }
+-+
+-+  priv = gst_kms_buffer_priv (sink, inbuf);
+-+
+-+  if (priv) {
+-+    buf = inbuf;
+-+  } else {
+-+    GST_LOG_OBJECT (sink, "not a KMS buffer, slow-path!");
+-+    gst_buffer_pool_acquire_buffer (sink->pool, &buf, NULL);
+-+    if (buf) {
+-+      GST_BUFFER_PTS (buf) = GST_BUFFER_PTS (inbuf);
+-+      GST_BUFFER_DURATION (buf) = GST_BUFFER_DURATION (inbuf);
+-+      gst_buffer_copy_into (buf, inbuf, GST_BUFFER_COPY_DEEP, 0 ,-1);
+-+      priv = gst_kms_buffer_priv (sink, buf);
+-+    }
+-+    if (!priv)
+-+      goto add_fb2_failed;
+-+  }
+-+  
+-+ if (once) {
+-+    once = 0;
+-+    static  GstVideoRectangle dest = { 0 };
+-+    dest.w = sink->conn.mode->hdisplay;
+-+    dest.h = sink->conn.mode->vdisplay;
+-+
+-+    gst_video_sink_center_rect (sink->src_rect, dest, &sink->dst_rect,
+-+        sink->scale);
+-+    ret = drmModeSetPlane (sink->fd, sink->conn.pdata[0].plane,
+-+        sink->conn.crtc, priv->fb_id, 0,
+-+        sink->dst_rect.x, sink->dst_rect.y, sink->dst_rect.w, sink->dst_rect.h,
+-+        sink->src_rect.x << 16, sink->src_rect.y << 16,
+-+        sink->src_rect.w << 16, sink->src_rect.h << 16);
+-+    if (ret)
+-+      goto set_plane_failed;
+-+  }
+-+
+-+  drmModeAtomicReqPtr m_req = drmModeAtomicAlloc();
+-+
+-+  drmModeAtomicAddProperty(m_req, sink->conn.pdata[0].plane,
+-+			sink->conn.pdata[0].fb_id_property,
+-+			priv->fb_id);
+-+
+-+  drmModeAtomicCommit(sink->fd, m_req, DRM_MODE_ATOMIC_TEST_ONLY, 0);
+-+  drmModeAtomicCommit(sink->fd, m_req, DRM_MODE_PAGE_FLIP_EVENT | DRM_MODE_ATOMIC_NONBLOCK, &waiting_for_flip);
+-+  drmModeAtomicFree(m_req);
+-+
+-+  while (waiting_for_flip) {
+-+    FD_ZERO(&fds);
+-+    FD_SET(sink->fd, &fds);
+-+    int err;
+-+    err = select(sink->fd + 1, &fds, NULL, NULL, NULL);
+-+    if (err < 0) {
+-+      GST_ERROR_OBJECT (sink,"select err: %s\n", strerror(errno));
+-+      flow_ret = GST_FLOW_ERROR;
+-+      goto out;
+-+    }
+-+    if (FD_ISSET(sink->fd, &fds)) {
+-+      drmHandleEvent(sink->fd, &evctx);
+-+    }
+-+  }
+-+
+-+  display_bufs_queue (sink, buf);
+-+
+-+out:
+-+  GST_INFO_OBJECT (sink, "exit");
+-+  if (buf != inbuf)
+-+    gst_buffer_unref (buf);
+-+  g_mutex_unlock (&sink->render_lock);
+-+  return flow_ret;
+-+
+-+add_fb2_failed:
+-+  GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
+-+      (NULL), ("drmModeAddFB2 failed: %s (%d)", strerror (errno), errno));
+-+  flow_ret = GST_FLOW_ERROR;
+-+  goto out;
+-+
+-+set_plane_failed:
+-+  GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
+-+      (NULL), ("drmModeSetPlane failed: %s (%d)", strerror (errno), errno));
+-+  flow_ret = GST_FLOW_ERROR;
+-+  goto out;
+-+
+-+connector_not_found:
+-+  GST_ELEMENT_ERROR (sink, RESOURCE, NOT_FOUND,
+-+      (NULL), ("connector not found", strerror (errno), errno));
+-+  goto out;
+-+}
+-+
+-+
+-+static gboolean
+-+gst_kms_sink_event (GstBaseSink * bsink, GstEvent * event)
+-+{
+-+  GstKMSSink *sink = GST_KMS_SINK (bsink);
+-+
+-+  switch (GST_EVENT_TYPE (event)) {
+-+    default:
+-+      break;
+-+  }
+-+  if (GST_BASE_SINK_CLASS (gst_kms_sink_parent_class)->event)
+-+    return GST_BASE_SINK_CLASS (gst_kms_sink_parent_class)->event (bsink,
+-+        event);
+-+  else
+-+    return TRUE;
+-+}
+-+
+-+static void
+-+gst_kms_sink_set_property (GObject * object, guint prop_id,
+-+    const GValue * value, GParamSpec * pspec)
+-+{
+-+  GstKMSSink *sink;
+-+
+-+  g_return_if_fail (GST_IS_KMS_SINK (object));
+-+
+-+  sink = GST_KMS_SINK (object);
+-+
+-+  switch (prop_id) {
+-+    case PROP_FORCE_ASPECT_RATIO:
+-+      sink->keep_aspect = g_value_get_boolean (value);
+-+      break;
+-+    case PROP_SCALE:
+-+      sink->scale = g_value_get_boolean (value);
+-+      break;
+-+    case PROP_CONNECTOR:
+-+      sink->conn_id = g_value_get_uint (value);
+-+      break;
+-+    case PROP_CONNECTOR_NAME:
+-+      g_free (sink->conn_name);
+-+      sink->conn_name = g_strdup (g_value_get_string (value));
+-+      break;
+-+    case PROP_PIXEL_ASPECT_RATIO:
+-+    {
+-+      GValue *tmp;
+-+
+-+      tmp = g_new0 (GValue, 1);
+-+      g_value_init (tmp, GST_TYPE_FRACTION);
+-+
+-+      if (!g_value_transform (value, tmp)) {
+-+        GST_WARNING_OBJECT (sink, "Could not transform string to aspect ratio");
+-+      } else {
+-+        sink->par_n = gst_value_get_fraction_numerator (tmp);
+-+        sink->par_d = gst_value_get_fraction_denominator (tmp);
+-+        GST_DEBUG_OBJECT (sink, "set PAR to %d/%d", sink->par_n, sink->par_d);
+-+      }
+-+      g_free (tmp);
+-+    }
+-+      break;
+-+    default:
+-+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+-+      break;
+-+  }
+-+}
+-+
+-+static void
+-+gst_kms_sink_get_property (GObject * object, guint prop_id,
+-+    GValue * value, GParamSpec * pspec)
+-+{
+-+  GstKMSSink *sink;
+-+
+-+  g_return_if_fail (GST_IS_KMS_SINK (object));
+-+
+-+  sink = GST_KMS_SINK (object);
+-+
+-+  switch (prop_id) {
+-+    case PROP_FORCE_ASPECT_RATIO:
+-+      g_value_set_boolean (value, sink->keep_aspect);
+-+      break;
+-+    case PROP_SCALE:
+-+      g_value_set_boolean (value, sink->scale);
+-+      break;
+-+    case PROP_CONNECTOR:
+-+      g_value_set_uint (value, sink->conn.id);
+-+      break;
+-+    case PROP_PIXEL_ASPECT_RATIO:
+-+    {
+-+      char *v = g_strdup_printf ("%d/%d", sink->par_n, sink->par_d);
+-+      g_value_take_string (value, v);
+-+      break;
+-+    }
+-+    default:
+-+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+-+      break;
+-+  }
+-+}
+-+
+-+static void
+-+gst_kms_sink_reset (GstKMSSink * sink)
+-+{
+-+  GST_DEBUG_OBJECT (sink, "reset");
+-+
+-+  if (sink->fd != -1) {
+-+    gst_drm_connector_cleanup (sink->fd, &sink->conn);
+-+  }
+-+  memset (&sink->conn, 0, sizeof (struct connector));
+-+
+-+  display_bufs_free (sink);
+-+  
+-+ if (sink->pool) {
+-+    gst_buffer_pool_set_active (GST_BUFFER_POOL(sink->pool), FALSE);
+-+    gst_object_unref(sink->pool);
+-+    sink->pool = NULL;
+-+  }
+-+
+-+  if (sink->plane_resources) {
+-+    drmModeFreePlaneResources (sink->plane_resources);
+-+    sink->plane_resources = NULL;
+-+  }
+-+
+-+  if (sink->resources) {
+-+    drmModeFreeResources (sink->resources);
+-+    sink->resources = NULL;
+-+  }
+-+
+-+  sink->par_n = sink->par_d = 1;
+-+  sink->src_rect.x = 0;
+-+  sink->src_rect.y = 0;
+-+  sink->src_rect.w = 0;
+-+  sink->src_rect.h = 0;
+-+  sink->input_width = 0;
+-+  sink->input_height = 0;
+-+  sink->format = GST_VIDEO_FORMAT_UNKNOWN;
+-+
+-+  memset (&sink->src_rect, 0, sizeof (GstVideoRectangle));
+-+  memset (&sink->dst_rect, 0, sizeof (GstVideoRectangle));
+-+}
+-+
+-+static gboolean
+-+gst_kms_sink_start (GstBaseSink * bsink)
+-+{
+-+  GstKMSSink *sink;
+-+
+-+  sink = GST_KMS_SINK (bsink);
+-+
+-+  drm_dev = dce_init ();
+-+  if (drm_dev == NULL)
+-+    goto device_failed;
+-+  else {
+-+    sink->dev = drm_dev;
+-+    sink->fd = dce_get_fd ();
+-+    drm_fd = dce_get_fd ();
+-+  }
+-+
+-+  sink->resources = drmModeGetResources (sink->fd);
+-+  if (sink->resources == NULL)
+-+    goto resources_failed;
+-+
+-+  sink->plane_resources = drmModeGetPlaneResources (sink->fd);
+-+  if (sink->plane_resources == NULL)
+-+    goto plane_resources_failed;
+-+
+-+  return TRUE;
+-+
+-+fail:
+-+  gst_kms_sink_reset (sink);
+-+  return FALSE;
+-+
+-+device_failed:
+-+  GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
+-+      (NULL), ("omap_device_new failed"));
+-+  goto fail;
+-+
+-+resources_failed:
+-+  GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
+-+      (NULL), ("drmModeGetResources failed: %s (%d)", strerror (errno), errno));
+-+  goto fail;
+-+
+-+plane_resources_failed:
+-+  GST_ELEMENT_ERROR (sink, RESOURCE, FAILED,
+-+      (NULL), ("drmModeGetPlaneResources failed: %s (%d)",
+-+          strerror (errno), errno));
+-+  goto fail;
+-+}
+-+
+-+static gboolean
+-+gst_kms_sink_stop (GstBaseSink * bsink)
+-+{
+-+  GstKMSSink *sink;
+-+
+-+  sink = GST_KMS_SINK (bsink);
+-+  gst_kms_sink_reset (sink);
+-+
+-+  return TRUE;
+-+}
+-+
+-+
+-+static gboolean
+-+gst_kms_sink_propose_allocation (GstBaseSink * bsink, GstQuery * query)
+-+{
+-+  GstKMSSink *sink;
+-+  GstStructure *conf;
+-+  GstCaps *caps;
+-+  guint size;
+-+  gboolean need_pool;
+-+  GstStructure *s;
+-+  int num_buffers = 0;
+-+
+-+
+-+  sink = GST_KMS_SINK (bsink);
+-+
+-+  GST_DEBUG_OBJECT (sink, "begin");
+-+
+-+  gst_query_parse_allocation (query, &caps, &need_pool);
+-+
+-+  if (G_UNLIKELY (!caps)) {
+-+    GST_WARNING_OBJECT (sink, "have no caps, doing fallback allocation");
+-+    return FALSE;
+-+  }
+-+
+-+  if (need_pool) {
+-+    GstVideoInfo info;
+-+  
+-+    if (!gst_video_info_from_caps (&info, caps))
+-+      goto invalid_caps;
+-+
+-+    GST_LOG_OBJECT (sink,
+-+        "a bufferpool was requested with caps %" GST_PTR_FORMAT, caps);
+-+
+-+    /* We already have a pool after set_caps */
+-+    if (sink->pool) {
+-+      GstStructure *config;
+-+      int min,max;
+-+      config = gst_buffer_pool_get_config (sink->pool);
+-+      gst_buffer_pool_config_get_params (config, NULL, &size, &min, &max);
+-+      gst_structure_free (config);
+-+    
+-+      gst_query_add_allocation_pool (query, sink->pool, size, min, max);
+-+      gst_query_add_allocation_param (query, gst_drm_allocator_get (), NULL);
+-+      return TRUE;
+-+   } else {
+-+     GST_LOG_OBJECT (sink, "No bufferpool available");
+-+     return FALSE;
+-+   }
+-+  }
+-+ 
+-+
+-+invalid_caps:
+-+  GST_DEBUG_OBJECT (sink, "invalid caps specified");
+-+  return FALSE;
+-+}
+-+
+-+static void
+-+gst_kms_sink_finalize (GObject * object)
+-+{
+-+  GstKMSSink *sink;
+-+
+-+  sink = GST_KMS_SINK (object);
+-+  g_mutex_clear (&sink->render_lock);
+-+  g_free (sink->conn_name);
+-+  if (sink->kmsbufferpriv){
+-+    g_hash_table_destroy (sink->kmsbufferpriv);
+-+    sink->kmsbufferpriv = NULL;
+-+  gst_kms_sink_reset (sink);
+-+}
+-+
+-+  G_OBJECT_CLASS (gst_kms_sink_parent_class)->finalize (object);
+-+}
+-+
+-+static void
+-+kmsbufferpriv_free_func (GstKMSBufferPriv *priv)
+-+{
+-+  drmModeRmFB (priv->fd, priv->fb_id);
+-+  omap_bo_del (priv->bo);
+-+  g_free(priv);
+-+}
+-+
+-+
+-+static void
+-+gst_kms_sink_init (GstKMSSink * sink)
+-+{
+-+  sink->fd = -1;
+-+  gst_kms_sink_reset (sink);
+-+  sink->kmsbufferpriv = g_hash_table_new_full (g_direct_hash, g_direct_equal,
+-+      NULL, (GDestroyNotify) kmsbufferpriv_free_func);
+-+  g_mutex_init (&sink->render_lock);
+-+}
+-+
+-+static void
+-+gst_kms_sink_class_init (GstKMSSinkClass * klass)
+-+{
+-+  GObjectClass *gobject_class;
+-+  GstElementClass *gstelement_class;
+-+  GstBaseSinkClass *gstbasesink_class;
+-+  GstVideoSinkClass *videosink_class;
+-+
+-+  gobject_class = (GObjectClass *) klass;
+-+  gstelement_class = (GstElementClass *) klass;
+-+  gstbasesink_class = (GstBaseSinkClass *) klass;
+-+  videosink_class = (GstVideoSinkClass *) klass;
+-+
+-+  gobject_class->finalize = gst_kms_sink_finalize;
+-+  gobject_class->set_property = gst_kms_sink_set_property;
+-+  gobject_class->get_property = gst_kms_sink_get_property;
+-+
+-+  g_object_class_install_property (gobject_class, PROP_FORCE_ASPECT_RATIO,
+-+      g_param_spec_boolean ("force-aspect-ratio", "Force aspect ratio",
+-+          "When enabled, reverse caps negotiation (scaling) will respect "
+-+          "original aspect ratio", FALSE,
+-+          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+-+  g_object_class_install_property (gobject_class, PROP_PIXEL_ASPECT_RATIO,
+-+      g_param_spec_string ("pixel-aspect-ratio", "Pixel Aspect Ratio",
+-+          "The pixel aspect ratio of the device", "1/1",
+-+          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+-+  g_object_class_install_property (gobject_class, PROP_SCALE,
+-+      g_param_spec_boolean ("scale", "Scale",
+-+          "When true, scale to render fullscreen", FALSE,
+-+          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+-+  g_object_class_install_property (gobject_class, PROP_CONNECTOR,
+-+      g_param_spec_uint ("connector", "Connector",
+-+          "DRM connector id (0 for automatic selection)", 0, G_MAXUINT32, 0,
+-+          G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS | G_PARAM_CONSTRUCT));
+-+  g_object_class_install_property (gobject_class, PROP_CONNECTOR_NAME,
+-+      g_param_spec_string ("connector-name", "Connector name",
+-+          "DRM connector name (alternative to the connector property, "
+-+          "use $type$index, $type-$index, or $type)", "",
+-+          G_PARAM_WRITABLE | G_PARAM_STATIC_STRINGS));
+-+
+-+  gst_element_class_set_details_simple (gstelement_class,
+-+      "Video sink", "Sink/Video",
+-+      "A video sink using the linux kernel mode setting API",
+-+      "Alessandro Decina <alessandro.d@gmail.com>");
+-+
+-+  gst_element_class_add_pad_template (gstelement_class,
+-+      gst_static_pad_template_get (&gst_kms_sink_template_factory));
+-+
+-+  gstbasesink_class->set_caps = GST_DEBUG_FUNCPTR (gst_kms_sink_setcaps);
+-+  gstbasesink_class->get_times = GST_DEBUG_FUNCPTR (gst_kms_sink_get_times);
+-+  gstbasesink_class->event = GST_DEBUG_FUNCPTR (gst_kms_sink_event);
+-+  gstbasesink_class->start = GST_DEBUG_FUNCPTR (gst_kms_sink_start);
+-+  gstbasesink_class->stop = GST_DEBUG_FUNCPTR (gst_kms_sink_stop);
+-+  gstbasesink_class->propose_allocation = GST_DEBUG_FUNCPTR (gst_kms_sink_propose_allocation);
+-+
+-+  /* disable preroll as it's called before GST_CROP_EVENT has been received, so
+-+   * we end up configuring the wrong mode... (based on padded caps)
+-+   */
+-+  gstbasesink_class->preroll = NULL;
+-+  videosink_class->show_frame = GST_DEBUG_FUNCPTR (gst_kms_sink_show_frame);
+-+}
+-+
+-+static gboolean
+-+plugin_init (GstPlugin * plugin)
+-+{
+-+  if (!gst_element_register (plugin, "kmssink",
+-+          GST_RANK_PRIMARY + 1, GST_TYPE_KMS_SINK))
+-+    return FALSE;
+-+
+-+  GST_DEBUG_CATEGORY_INIT (gst_debug_kms_sink, "kmssink", 0, "kmssink element");
+-+
+-+  return TRUE;
+-+}
+-+
+-+GST_PLUGIN_DEFINE (GST_VERSION_MAJOR,
+-+    GST_VERSION_MINOR,
+-+    kms,
+-+    "KMS video output element",
+-+    plugin_init, VERSION, GST_LICENSE, GST_PACKAGE_NAME, GST_PACKAGE_ORIGIN)
+-diff --git a/sys/kms/gstkmssink.h b/sys/kms/gstkmssink.h
+-new file mode 100644
+-index 0000000..9f76839
+---- /dev/null
+-+++ b/sys/kms/gstkmssink.h
+-@@ -0,0 +1,92 @@
+-+/* GStreamer
+-+ *
+-+ * Copyright (C) 2012 Texas Instruments 
+-+ * Copyright (C) 2012 Collabora Ltd
+-+ *
+-+ * Authors:
+-+ *  Alessandro Decina <alessandro.decina@collabora.co.uk>
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Library General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Library General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Library General Public
+-+ * License along with this library; if not, write to the
+-+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+-+ * Boston, MA 02111-1307, USA.
+-+ */
+-+
+-+#ifndef __GST_KMS_SINK_H__
+-+#define __GST_KMS_SINK_H__
+-+
+-+#include <gst/video/video.h>
+-+#include <gst/video/gstvideosink.h>
+-+#include <gst/drm/gstdrmallocator.h>
+-+
+-+#include <stdio.h>
+-+#include <stdint.h>
+-+#include <stdlib.h>
+-+#include <string.h>
+-+#include <errno.h>
+-+#include <unistd.h>
+-+#include <assert.h>
+-+
+-+#include "gstdrmutils.h"
+-+
+-+G_BEGIN_DECLS
+-+#define GST_TYPE_KMS_SINK \
+-+  (gst_kms_sink_get_type())
+-+#define GST_KMS_SINK(obj) \
+-+  (G_TYPE_CHECK_INSTANCE_CAST((obj), GST_TYPE_KMS_SINK, GstKMSSink))
+-+#define GST_KMS_SINK_CLASS(klass) \
+-+  (G_TYPE_CHECK_CLASS_CAST((klass), GST_TYPE_KMS_SINK, GstKMSSinkClass))
+-+#define GST_IS_KMS_SINK(obj) \
+-+  (G_TYPE_CHECK_INSTANCE_TYPE((obj), GST_TYPE_KMS_SINK))
+-+#define GST_IS_KMS_SINK_CLASS(klass) \
+-+  (G_TYPE_CHECK_CLASS_TYPE((klass), GST_TYPE_KMS_SINK))
+-+typedef struct _GstKMSSink GstKMSSink;
+-+typedef struct _GstKMSSinkClass GstKMSSinkClass;
+-+
+-+#define NUM_DISPLAY_BUFS 1
+-+
+-+struct _GstKMSSink
+-+{
+-+  GstVideoSink videosink;
+-+  gint input_width, input_height;
+-+  GstVideoFormat format;
+-+  gint par_n, par_d;
+-+  gint fps_n, fps_d;
+-+  gboolean keep_aspect;
+-+  GstVideoRectangle src_rect;
+-+  GstVideoRectangle dst_rect;
+-+  int fd;
+-+  struct omap_device *dev;
+-+  drmModeRes *resources;
+-+  drmModePlaneRes *plane_resources;
+-+  struct connector conn;
+-+  uint32_t conn_id;
+-+  char *conn_name;
+-+  drmModePlane *plane;
+-+  GstBufferPool *pool;
+-+  GHashTable *kmsbufferpriv;
+-+  /* current displayed buffer and last displayed buffer: */
+-+  GstBuffer *display_bufs[NUM_DISPLAY_BUFS];
+-+  gboolean scale;
+-+  GMutex render_lock;
+-+};
+-+
+-+struct _GstKMSSinkClass
+-+{
+-+  GstVideoSinkClass parent_class;
+-+};
+-+
+-+GType gst_kms_sink_get_type (void);
+-+
+-+G_END_DECLS
+-+#endif /* __GST_KMS_SINK_H__ */
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-add-YUYV-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-add-YUYV-support.patch
+deleted file mode 100644
+index a57a0bb..0000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-add-YUYV-support.patch
++++ /dev/null
+@@ -1,81 +0,0 @@
+-From 11a3ff4b9451f12374006f853ef5736f5d098932 Mon Sep 17 00:00:00 2001
+-From: Eric Ruei <e-ruei1@ti.com>
+-Date: Tue, 14 Mar 2017 17:24:07 -0400
+-Subject: [PATCH 3/3] kmssink: add YUYV support
+-
+-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+----
+- sys/kms/gstkmsbufferpriv.c | 32 +++++++++++++++++++++++++++-----
+- sys/kms/gstkmssink.c       |  2 +-
+- 2 files changed, 28 insertions(+), 6 deletions(-)
+-
+-diff --git a/sys/kms/gstkmsbufferpriv.c b/sys/kms/gstkmsbufferpriv.c
+-index 172a4c3..57c01f8 100644
+---- a/sys/kms/gstkmsbufferpriv.c
+-+++ b/sys/kms/gstkmsbufferpriv.c
+-@@ -41,22 +41,44 @@
+- static int
+- create_fb (GstKMSBufferPriv * priv, GstKMSSink * sink)
+- {
+-+
+-   /* TODO get format, etc from caps.. and query device for
+-    * supported formats, and make this all more flexible to
+-    * cope with various formats:
+-    */
+--  uint32_t fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+--
+-+  GstVideoFormat format = sink->format;
+-+  uint32_t fourcc;
+-   uint32_t handles[4] = {
+--    omap_bo_handle (priv->bo), omap_bo_handle (priv->bo),
+-+    omap_bo_handle (priv->bo),
+-   };
+-   uint32_t pitches[4] = {
+--    GST_ROUND_UP_4 (sink->input_width), GST_ROUND_UP_4 (sink->input_width),
+-+    GST_ROUND_UP_4 (sink->input_width),
+-   };
+-   uint32_t offsets[4] = {
+--    0, pitches[0] * sink->input_height
+-+    0,
+-   };
+- 
+-+  /**
+-+   * Only two formats are supported:
+-+   * AM3/4: YUYV
+-+   * AM5: NV12, YUYV
+-+   */
+-+  if(format == GST_VIDEO_FORMAT_YUY2)
+-+  {
+-+    /* YUYV */
+-+    fourcc = GST_MAKE_FOURCC ('Y', 'U', 'Y', 'V');
+-+    pitches[0] = GST_ROUND_UP_4 (sink->input_width*2);
+-+  }
+-+  else
+-+  {
+-+    /* NV12 */
+-+    fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+-+    handles[1] = omap_bo_handle (priv->bo);
+-+    pitches[1] = GST_ROUND_UP_4 (sink->input_width);
+-+    offsets[1] = pitches[0] * sink->input_height;
+-+  }
+-+
+-+
+-   return drmModeAddFB2 (priv->fd, sink->input_width, sink->input_height,
+-       fourcc, handles, pitches, offsets, &priv->fb_id, 0);
+- }
+-diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
+-index 9795bdf..b36d88f 100644
+---- a/sys/kms/gstkmssink.c
+-+++ b/sys/kms/gstkmssink.c
+-@@ -50,7 +50,7 @@ static GstStaticPadTemplate gst_kms_sink_template_factory =
+- GST_STATIC_PAD_TEMPLATE ("sink",
+-     GST_PAD_SINK,
+-     GST_PAD_ALWAYS,
+--    GST_STATIC_CAPS (GST_VIDEO_CAPS_MAKE("NV12"))
+-+    GST_STATIC_CAPS (GST_VIDEO_CAPS_MAKE("{NV12,YUY2}"))
+-     );
+- 
+- enum
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-gstwaylandsink-Add-DRM-support-on-waylandsink.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-gstwaylandsink-Add-DRM-support-on-waylandsink.patch
+deleted file mode 100644
+index 2902bc3..0000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-gstwaylandsink-Add-DRM-support-on-waylandsink.patch
++++ /dev/null
+@@ -1,1728 +0,0 @@
+-From 78ddc83ebfe7cf69c62610e1f7d14e7f49bf65c9 Mon Sep 17 00:00:00 2001
+-From: Pooja Prajod <a0132412@ti.com>
+-Date: Wed, 25 Jan 2017 17:09:35 +0530
+-Subject: [gst-bad-1.8] gstwaylandsink: Add DRM support on waylandsink
+-
+-Add wl_drm interface on waylandsink.
+-The following features are supported:
+-1. Support for mouse drag and drop.
+-2. Support for video cropping
+-
+-The following bug fixes identified earlier have been picked:
+-1. Consolidate header files to avoid circular dependency
+-2. Fix bug reported on waylandsink incase of same process looping
+-
+-Signed-off-by: Pooja Prajod <a0132412@ti.com>
+----
+- configure.ac                              |   4 +-
+- ext/wayland/Makefile.am                   |  17 +-
+- ext/wayland/gstwaylandsink.c              |  82 ++++++-
+- ext/wayland/gstwaylandsink.h              |   4 +-
+- ext/wayland/wayland-drm-client-protocol.h | 213 ++++++++++++++++++
+- ext/wayland/wayland-drm-protocol.c        |  74 +++++++
+- ext/wayland/wlbuffer.c                    |   2 +-
+- ext/wayland/wlbuffer.h                    |  67 ------
+- ext/wayland/wldisplay-wlwindow-wlbuffer.h | 216 ++++++++++++++++++
+- ext/wayland/wldisplay.c                   | 350 +++++++++++++++++++++++++++++-
+- ext/wayland/wldisplay.h                   |  84 -------
+- ext/wayland/wldrm.c                       |  69 ++++++
+- ext/wayland/wldrm.h                       |   3 +
+- ext/wayland/wlshmallocator.h              |   2 +-
+- ext/wayland/wlvideoformat.c               |   8 +-
+- ext/wayland/wlwindow.c                    |  47 +++-
+- ext/wayland/wlwindow.h                    |  84 -------
+- 17 files changed, 1056 insertions(+), 270 deletions(-)
+- create mode 100644 ext/wayland/wayland-drm-client-protocol.h
+- create mode 100644 ext/wayland/wayland-drm-protocol.c
+- delete mode 100644 ext/wayland/wlbuffer.h
+- create mode 100644 ext/wayland/wldisplay-wlwindow-wlbuffer.h
+- delete mode 100644 ext/wayland/wldisplay.h
+- create mode 100644 ext/wayland/wldrm.c
+- create mode 100644 ext/wayland/wldrm.h
+- delete mode 100644 ext/wayland/wlwindow.h
+-
+-diff --git a/configure.ac b/configure.ac
+-index 9fdfbc7..76166cb 100644
+---- a/configure.ac
+-+++ b/configure.ac
+-@@ -2172,8 +2172,10 @@ AG_GST_CHECK_FEATURE(DIRECTFB, [directfb], dfbvideosink , [
+- dnl **** Wayland ****
+- translit(dnm, m, l) AM_CONDITIONAL(USE_WAYLAND, true)
+- AC_PATH_PROG([wayland_scanner], [wayland-scanner])
+--AG_GST_CHECK_FEATURE(WAYLAND, [wayland sink], wayland , [
+-+AG_GST_CHECK_FEATURE(WAYLAND, [wayland sink], wayland libdrm libdrm_omap, [
+-   PKG_CHECK_MODULES(WAYLAND, wayland-client >= 1.4.0, [
+-+    AC_SUBST(DRM_CFLAGS)
+-+    AC_SUBST(DRM_LIBS)
+-     if test "x$wayland_scanner" != "x"; then
+-       HAVE_WAYLAND="yes"
+-     else
+-diff --git a/ext/wayland/Makefile.am b/ext/wayland/Makefile.am
+-index c742bfc..eb6e326 100644
+---- a/ext/wayland/Makefile.am
+-+++ b/ext/wayland/Makefile.am
+-@@ -3,31 +3,34 @@ plugin_LTLIBRARIES = libgstwaylandsink.la
+- libgstwaylandsink_la_SOURCES =  \
+- 	gstwaylandsink.c \
+- 	wlshmallocator.c \
+-+        wldrm.c \
+- 	wlbuffer.c \
+- 	wldisplay.c \
+- 	wlwindow.c \
+- 	wlvideoformat.c \
+--	scaler-protocol.c
+-+	scaler-protocol.c \
+-+        wayland-drm-protocol.c
+- 
+- libgstwaylandsink_la_CFLAGS = $(GST_CFLAGS) $(GST_PLUGINS_BASE_CFLAGS) \
+--                               $(WAYLAND_CFLAGS) $(GST_PLUGINS_BAD_CFLAGS)
+-+                               $(WAYLAND_CFLAGS) $(GST_PLUGINS_BAD_CFLAGS) $(DRM_CFLAGS)
+- libgstwaylandsink_la_LIBADD = \
+- 	$(GST_PLUGINS_BASE_LIBS) \
+- 	-lgstvideo-$(GST_API_VERSION) \
+- 	-lgstallocators-$(GST_API_VERSION) \
+- 	$(WAYLAND_LIBS) \
+--	$(top_builddir)/gst-libs/gst/wayland/libgstwayland-$(GST_API_VERSION).la
+-+	$(top_builddir)/gst-libs/gst/wayland/libgstwayland-$(GST_API_VERSION).la \
+-+        $(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la
+- libgstwaylandsink_la_LDFLAGS = $(GST_PLUGIN_LDFLAGS)
+- libgstwaylandsink_la_LIBTOOLFLAGS = $(GST_PLUGIN_LIBTOOLFLAGS)
+- 
+- noinst_HEADERS = \
+- 	gstwaylandsink.h \
+- 	wlshmallocator.h \
+--	wlbuffer.h \
+--	wldisplay.h \
+--	wlwindow.h \
+-+        wldisplay-wlwindow-wlbuffer.h \
+-+        wldrm.h \
+- 	wlvideoformat.h \
+--	scaler-client-protocol.h
+-+	scaler-client-protocol.h \
+-+        wayland-drm-client-protocol.h
+- 
+- EXTRA_DIST = scaler.xml
+- CLEANFILES = scaler-protocol.c scaler-client-protocol.h
+-diff --git a/ext/wayland/gstwaylandsink.c b/ext/wayland/gstwaylandsink.c
+-index f4f34a8..3e8ff19 100644
+---- a/ext/wayland/gstwaylandsink.c
+-+++ b/ext/wayland/gstwaylandsink.c
+-@@ -43,8 +43,14 @@
+- 
+- #include "gstwaylandsink.h"
+- #include "wlvideoformat.h"
+--#include "wlbuffer.h"
+- #include "wlshmallocator.h"
+-+#include "wldrm.h"
+-+
+-+#include <gst/drm/gstdrmallocator.h>
+-+#include "wayland-drm-client-protocol.h"
+-+#include <omap_drm.h>
+-+#include <omap_drmif.h>
+-+#include <wayland-client.h>
+- 
+- #include <gst/wayland/wayland.h>
+- #include <gst/video/videooverlay.h>
+-@@ -60,7 +66,8 @@ enum
+- enum
+- {
+-   PROP_0,
+--  PROP_DISPLAY
+-+  PROP_DISPLAY,
+-+  PROP_ALLOCATION
+- };
+- 
+- GST_DEBUG_CATEGORY (gstwayland_debug);
+-@@ -75,6 +82,7 @@ static GstStaticPadTemplate sink_template = GST_STATIC_PAD_TEMPLATE ("sink",
+-             "YUV9, YVU9, Y41B, I420, YV12, Y42B, v308 }"))
+-     );
+- 
+-+
+- static void gst_wayland_sink_get_property (GObject * object,
+-     guint prop_id, GValue * value, GParamSpec * pspec);
+- static void gst_wayland_sink_set_property (GObject * object,
+-@@ -158,6 +166,11 @@ gst_wayland_sink_class_init (GstWaylandSinkClass * klass)
+-       g_param_spec_string ("display", "Wayland Display name", "Wayland "
+-           "display name to connect to, if not supplied via the GstContext",
+-           NULL, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+-+  
+-+  g_object_class_install_property (gobject_class, PROP_ALLOCATION,
+-+      g_param_spec_boolean ("use-drm", "Wayland Allocation name", "Wayland "
+-+          "Use DRM based memory for allocation",
+-+          FALSE, G_PARAM_WRITABLE));
+- }
+- 
+- static void
+-@@ -197,6 +210,11 @@ gst_wayland_sink_set_property (GObject * object,
+-       sink->display_name = g_value_dup_string (value);
+-       GST_OBJECT_UNLOCK (sink);
+-       break;
+-+   case PROP_ALLOCATION:
+-+      GST_OBJECT_LOCK (sink);
+-+      sink->use_drm = g_value_get_boolean (value);
+-+      GST_OBJECT_UNLOCK (sink);
+-+      break;     
+-     default:
+-       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+-       break;
+-@@ -281,6 +299,7 @@ gst_wayland_sink_find_display (GstWaylandSink * sink)
+-         /* if the application didn't set a display, let's create it ourselves */
+-         GST_OBJECT_LOCK (sink);
+-         sink->display = gst_wl_display_new (sink->display_name, &error);
+-+        sink->display->use_drm = sink->use_drm;
+-         GST_OBJECT_UNLOCK (sink);
+- 
+-         if (error) {
+-@@ -408,7 +427,6 @@ gst_wayland_sink_get_caps (GstBaseSink * bsink, GstCaps * filter)
+- 
+-     caps = gst_caps_make_writable (caps);
+-     gst_structure_set_value (gst_caps_get_structure (caps, 0), "format", &list);
+--
+-     GST_DEBUG_OBJECT (sink, "display caps: %" GST_PTR_FORMAT, caps);
+-   }
+- 
+-@@ -426,6 +444,18 @@ gst_wayland_sink_get_caps (GstBaseSink * bsink, GstCaps * filter)
+-   return caps;
+- }
+- 
+-+static void
+-+wait_authentication (GstWaylandSink * sink)
+-+{
+-+  GST_DEBUG_OBJECT (sink, "Before wait aunthenticated value is %d : \n", sink->display->authenticated );
+-+  while (!sink->display->authenticated) {
+-+    GST_DEBUG_OBJECT (sink, "waiting for authentication");
+-+    wl_display_roundtrip (sink->display->display);
+-+  }
+-+  GST_DEBUG_OBJECT (sink, "After wait aunthenticated value is %d : \n", sink->display->authenticated );
+-+}
+-+
+-+
+- static gboolean
+- gst_wayland_sink_set_caps (GstBaseSink * bsink, GstCaps * caps)
+- {
+-@@ -436,11 +466,20 @@ gst_wayland_sink_set_caps (GstBaseSink * bsink, GstCaps * caps)
+-   GArray *formats;
+-   gint i;
+-   GstStructure *structure;
+-+  GstStructure *s;
+-+  gboolean use_drm = 0;
+-+  int num_buffers = 0;
+- 
+-   sink = GST_WAYLAND_SINK (bsink);
+- 
+-   GST_DEBUG_OBJECT (sink, "set caps %" GST_PTR_FORMAT, caps);
+- 
+-+  wait_authentication (sink);
+-+
+-+  while (!sink->display->authenticated) {
+-+    GST_DEBUG_OBJECT (sink, "not authenticated yet");
+-+  } 
+-+
+-   /* extract info from caps */
+-   if (!gst_video_info_from_caps (&info, caps))
+-     goto invalid_format;
+-@@ -460,14 +499,27 @@ gst_wayland_sink_set_caps (GstBaseSink * bsink, GstCaps * caps)
+-     goto unsupported_format;
+- 
+-   /* create a new pool for the new configuration */
+--  newpool = gst_video_buffer_pool_new ();
+-+
+-+  s = gst_caps_get_structure (caps, 0);
+-+  gst_structure_get_boolean (s, "drm_mem", &use_drm);
+-+  gst_structure_get_int (s, "max-ref-frames", &num_buffers);
+-+  if (num_buffers )
+-+    num_buffers = num_buffers + 2;
+-+
+-+  newpool = gst_buffer_pool_new ();
+-   if (!newpool)
+-     goto pool_failed;
+- 
+-   structure = gst_buffer_pool_get_config (newpool);
+--  gst_buffer_pool_config_set_params (structure, caps, info.size, 2, 0);
+--  gst_buffer_pool_config_set_allocator (structure, gst_wl_shm_allocator_get (),
+--      NULL);
+-+  gst_buffer_pool_config_set_params (structure, caps, info.size, 2, num_buffers);
+-+  if ( use_drm ) {
+-+    gst_buffer_pool_config_set_allocator (structure, gst_drm_allocator_get (),
+-+        NULL);
+-+    sink->display->use_drm = TRUE;
+-+  } else {
+-+    gst_buffer_pool_config_set_allocator (structure, gst_wl_shm_allocator_get (),
+-+        NULL);
+-+  }
+-   if (!gst_buffer_pool_set_config (newpool, structure))
+-     goto config_failed;
+- 
+-@@ -518,8 +570,11 @@ gst_wayland_sink_propose_allocation (GstBaseSink * bsink, GstQuery * query)
+-   /* we do have a pool for sure (created in set_caps),
+-    * so let's propose it anyway, but also propose the allocator on its own */
+-   gst_query_add_allocation_pool (query, sink->pool, size, min_bufs, max_bufs);
+--  gst_query_add_allocation_param (query, gst_wl_shm_allocator_get (), NULL);
+--
+-+  if (sink->display->use_drm) {
+-+    gst_query_add_allocation_param (query, gst_drm_allocator_get (), NULL);
+-+  } else {
+-+    gst_query_add_allocation_param (query, gst_wl_shm_allocator_get (), NULL);
+-+  }
+-   gst_structure_free (config);
+- 
+-   return TRUE;
+-@@ -582,6 +637,10 @@ gst_wayland_sink_render (GstBaseSink * bsink, GstBuffer * buffer)
+- 
+-   GST_LOG_OBJECT (sink, "render buffer %p", buffer);
+- 
+-+  if (sink->display) {
+-+    sink->display->crop = gst_buffer_get_video_crop_meta (buffer); 
+-+  }
+-+
+-   if (G_UNLIKELY (!sink->window)) {
+-     /* ask for window handle. Unlock render_lock while doing that because
+-      * set_window_handle & friends will lock it in this context */
+-@@ -623,6 +682,11 @@ gst_wayland_sink_render (GstBaseSink * bsink, GstBuffer * buffer)
+-       wbuf = gst_wl_shm_memory_construct_wl_buffer (mem, sink->display,
+-           &sink->video_info);
+-     }
+-+    
+-+    if (gst_is_drm_memory (mem)) {
+-+      wbuf = gst_wl_drm_memory_construct_wl_buffer (mem, sink->display,
+-+          &sink->video_info);      
+-+    }
+- 
+-     if (wbuf) {
+-       gst_buffer_add_wl_buffer (buffer, wbuf, sink->display);
+-diff --git a/ext/wayland/gstwaylandsink.h b/ext/wayland/gstwaylandsink.h
+-index afbed40..c1092ce 100644
+---- a/ext/wayland/gstwaylandsink.h
+-+++ b/ext/wayland/gstwaylandsink.h
+-@@ -27,8 +27,7 @@
+- 
+- #include <wayland-client.h>
+- 
+--#include "wldisplay.h"
+--#include "wlwindow.h"
+-+#include "wldisplay-wlwindow-wlbuffer.h"
+- 
+- G_BEGIN_DECLS
+- 
+-@@ -61,6 +60,7 @@ struct _GstWaylandSink
+-   GstVideoInfo video_info;
+- 
+-   gchar *display_name;
+-+  gboolean use_drm;  
+- 
+-   gboolean redraw_pending;
+-   GMutex render_lock;
+-diff --git a/ext/wayland/wayland-drm-client-protocol.h b/ext/wayland/wayland-drm-client-protocol.h
+-new file mode 100644
+-index 0000000..7ddb614
+---- /dev/null
+-+++ b/ext/wayland/wayland-drm-client-protocol.h
+-@@ -0,0 +1,213 @@
+-+/* 
+-+ * Copyright © 2008-2011 Kristian Høgsberg
+-+ * Copyright © 2010-2011 Intel Corporation
+-+ * 
+-+ * Permission to use, copy, modify, distribute, and sell this
+-+ * software and its documentation for any purpose is hereby granted
+-+ * without fee, provided that\n the above copyright notice appear in
+-+ * all copies and that both that copyright notice and this permission
+-+ * notice appear in supporting documentation, and that the name of
+-+ * the copyright holders not be used in advertising or publicity
+-+ * pertaining to distribution of the software without specific,
+-+ * written prior permission.  The copyright holders make no
+-+ * representations about the suitability of this software for any
+-+ * purpose.  It is provided "as is" without express or implied
+-+ * warranty.
+-+ * 
+-+ * THE COPYRIGHT HOLDERS DISCLAIM ALL WARRANTIES WITH REGARD TO THIS
+-+ * SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+-+ * FITNESS, IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+-+ * SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+-+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+-+ * AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+-+ * ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+-+ * THIS SOFTWARE.
+-+ */
+-+
+-+#ifndef DRM_CLIENT_PROTOCOL_H
+-+#define DRM_CLIENT_PROTOCOL_H
+-+
+-+#ifdef  __cplusplus
+-+extern "C" {
+-+#endif
+-+
+-+#include <stdint.h>
+-+#include <stddef.h>
+-+#include "wayland-util.h"
+-+
+-+struct wl_client;
+-+struct wl_resource;
+-+
+-+struct wl_drm;
+-+
+-+extern const struct wl_interface wl_drm_interface;
+-+
+-+#ifndef WL_DRM_ERROR_ENUM
+-+#define WL_DRM_ERROR_ENUM
+-+enum wl_drm_error {
+-+	WL_DRM_ERROR_AUTHENTICATE_FAIL = 0,
+-+	WL_DRM_ERROR_INVALID_FORMAT = 1,
+-+	WL_DRM_ERROR_INVALID_NAME = 2,
+-+};
+-+#endif /* WL_DRM_ERROR_ENUM */
+-+
+-+#ifndef WL_DRM_FORMAT_ENUM
+-+#define WL_DRM_FORMAT_ENUM
+-+enum wl_drm_format {
+-+	WL_DRM_FORMAT_C8 = 0x20203843,
+-+	WL_DRM_FORMAT_RGB332 = 0x38424752,
+-+	WL_DRM_FORMAT_BGR233 = 0x38524742,
+-+	WL_DRM_FORMAT_XRGB4444 = 0x32315258,
+-+	WL_DRM_FORMAT_XBGR4444 = 0x32314258,
+-+	WL_DRM_FORMAT_RGBX4444 = 0x32315852,
+-+	WL_DRM_FORMAT_BGRX4444 = 0x32315842,
+-+	WL_DRM_FORMAT_ARGB4444 = 0x32315241,
+-+	WL_DRM_FORMAT_ABGR4444 = 0x32314241,
+-+	WL_DRM_FORMAT_RGBA4444 = 0x32314152,
+-+	WL_DRM_FORMAT_BGRA4444 = 0x32314142,
+-+	WL_DRM_FORMAT_XRGB1555 = 0x35315258,
+-+	WL_DRM_FORMAT_XBGR1555 = 0x35314258,
+-+	WL_DRM_FORMAT_RGBX5551 = 0x35315852,
+-+	WL_DRM_FORMAT_BGRX5551 = 0x35315842,
+-+	WL_DRM_FORMAT_ARGB1555 = 0x35315241,
+-+	WL_DRM_FORMAT_ABGR1555 = 0x35314241,
+-+	WL_DRM_FORMAT_RGBA5551 = 0x35314152,
+-+	WL_DRM_FORMAT_BGRA5551 = 0x35314142,
+-+	WL_DRM_FORMAT_RGB565 = 0x36314752,
+-+	WL_DRM_FORMAT_BGR565 = 0x36314742,
+-+	WL_DRM_FORMAT_RGB888 = 0x34324752,
+-+	WL_DRM_FORMAT_BGR888 = 0x34324742,
+-+	WL_DRM_FORMAT_XRGB8888 = 0x34325258,
+-+	WL_DRM_FORMAT_XBGR8888 = 0x34324258,
+-+	WL_DRM_FORMAT_RGBX8888 = 0x34325852,
+-+	WL_DRM_FORMAT_BGRX8888 = 0x34325842,
+-+	WL_DRM_FORMAT_ARGB8888 = 0x34325241,
+-+	WL_DRM_FORMAT_ABGR8888 = 0x34324241,
+-+	WL_DRM_FORMAT_RGBA8888 = 0x34324152,
+-+	WL_DRM_FORMAT_BGRA8888 = 0x34324142,
+-+	WL_DRM_FORMAT_XRGB2101010 = 0x30335258,
+-+	WL_DRM_FORMAT_XBGR2101010 = 0x30334258,
+-+	WL_DRM_FORMAT_RGBX1010102 = 0x30335852,
+-+	WL_DRM_FORMAT_BGRX1010102 = 0x30335842,
+-+	WL_DRM_FORMAT_ARGB2101010 = 0x30335241,
+-+	WL_DRM_FORMAT_ABGR2101010 = 0x30334241,
+-+	WL_DRM_FORMAT_RGBA1010102 = 0x30334152,
+-+	WL_DRM_FORMAT_BGRA1010102 = 0x30334142,
+-+	WL_DRM_FORMAT_YUYV = 0x56595559,
+-+	WL_DRM_FORMAT_YVYU = 0x55595659,
+-+	WL_DRM_FORMAT_UYVY = 0x59565955,
+-+	WL_DRM_FORMAT_VYUY = 0x59555956,
+-+	WL_DRM_FORMAT_AYUV = 0x56555941,
+-+	WL_DRM_FORMAT_NV12 = 0x3231564e,
+-+	WL_DRM_FORMAT_NV21 = 0x3132564e,
+-+	WL_DRM_FORMAT_NV16 = 0x3631564e,
+-+	WL_DRM_FORMAT_NV61 = 0x3136564e,
+-+	WL_DRM_FORMAT_YUV410 = 0x39565559,
+-+	WL_DRM_FORMAT_YVU410 = 0x39555659,
+-+	WL_DRM_FORMAT_YUV411 = 0x31315559,
+-+	WL_DRM_FORMAT_YVU411 = 0x31315659,
+-+	WL_DRM_FORMAT_YUV420 = 0x32315559,
+-+	WL_DRM_FORMAT_YVU420 = 0x32315659,
+-+	WL_DRM_FORMAT_YUV422 = 0x36315559,
+-+	WL_DRM_FORMAT_YVU422 = 0x36315659,
+-+	WL_DRM_FORMAT_YUV444 = 0x34325559,
+-+	WL_DRM_FORMAT_YVU444 = 0x34325659,
+-+};
+-+#endif /* WL_DRM_FORMAT_ENUM */
+-+
+-+struct wl_drm_listener {
+-+	/**
+-+	 * device - (none)
+-+	 * @name: (none)
+-+	 */
+-+	void (*device)(void *data,
+-+		       struct wl_drm *wl_drm,
+-+		       const char *name);
+-+	/**
+-+	 * format - (none)
+-+	 * @format: (none)
+-+	 */
+-+	void (*format)(void *data,
+-+		       struct wl_drm *wl_drm,
+-+		       uint32_t format);
+-+	/**
+-+	 * authenticated - (none)
+-+	 */
+-+	void (*authenticated)(void *data,
+-+			      struct wl_drm *wl_drm);
+-+};
+-+
+-+static inline int
+-+wl_drm_add_listener(struct wl_drm *wl_drm,
+-+		    const struct wl_drm_listener *listener, void *data)
+-+{
+-+	return wl_proxy_add_listener((struct wl_proxy *) wl_drm,
+-+				     (void (**)(void)) listener, data);
+-+}
+-+
+-+#define WL_DRM_AUTHENTICATE	0
+-+#define WL_DRM_CREATE_BUFFER	1
+-+#define WL_DRM_CREATE_PLANAR_BUFFER	2
+-+
+-+static inline void
+-+wl_drm_set_user_data(struct wl_drm *wl_drm, void *user_data)
+-+{
+-+	wl_proxy_set_user_data((struct wl_proxy *) wl_drm, user_data);
+-+}
+-+
+-+static inline void *
+-+wl_drm_get_user_data(struct wl_drm *wl_drm)
+-+{
+-+	return wl_proxy_get_user_data((struct wl_proxy *) wl_drm);
+-+}
+-+
+-+static inline void
+-+wl_drm_destroy(struct wl_drm *wl_drm)
+-+{
+-+	wl_proxy_destroy((struct wl_proxy *) wl_drm);
+-+}
+-+
+-+static inline void
+-+wl_drm_authenticate(struct wl_drm *wl_drm, uint32_t id)
+-+{
+-+	wl_proxy_marshal((struct wl_proxy *) wl_drm,
+-+			 WL_DRM_AUTHENTICATE, id);
+-+}
+-+
+-+static inline struct wl_buffer *
+-+wl_drm_create_buffer(struct wl_drm *wl_drm, uint32_t name, int32_t width, int32_t height, uint32_t stride, uint32_t format)
+-+{
+-+	struct wl_proxy *id;
+-+
+-+	id = wl_proxy_create((struct wl_proxy *) wl_drm,
+-+			     &wl_buffer_interface);
+-+	if (!id)
+-+		return NULL;
+-+
+-+	wl_proxy_marshal((struct wl_proxy *) wl_drm,
+-+			 WL_DRM_CREATE_BUFFER, id, name, width, height, stride, format);
+-+
+-+	return (struct wl_buffer *) id;
+-+}
+-+
+-+static inline struct wl_buffer *
+-+wl_drm_create_planar_buffer(struct wl_drm *wl_drm, uint32_t name, int32_t width, int32_t height, uint32_t format, int32_t offset0, int32_t stride0, int32_t offset1, int32_t stride1, int32_t offset2, int32_t stride2)
+-+{
+-+	struct wl_proxy *id;
+-+
+-+	id = wl_proxy_create((struct wl_proxy *) wl_drm,
+-+			     &wl_buffer_interface);
+-+	if (!id)
+-+		return NULL;
+-+
+-+	wl_proxy_marshal((struct wl_proxy *) wl_drm,
+-+			 WL_DRM_CREATE_PLANAR_BUFFER, id, name, width, height, format, offset0, stride0, offset1, stride1, offset2, stride2);
+-+
+-+	return (struct wl_buffer *) id;
+-+}
+-+
+-+#ifdef  __cplusplus
+-+}
+-+#endif
+-+
+-+#endif
+-diff --git a/ext/wayland/wayland-drm-protocol.c b/ext/wayland/wayland-drm-protocol.c
+-new file mode 100644
+-index 0000000..939af53
+---- /dev/null
+-+++ b/ext/wayland/wayland-drm-protocol.c
+-@@ -0,0 +1,74 @@
+-+/* 
+-+ * Copyright © 2008-2011 Kristian Høgsberg
+-+ * Copyright © 2010-2011 Intel Corporation
+-+ * 
+-+ * Permission to use, copy, modify, distribute, and sell this
+-+ * software and its documentation for any purpose is hereby granted
+-+ * without fee, provided that\n the above copyright notice appear in
+-+ * all copies and that both that copyright notice and this permission
+-+ * notice appear in supporting documentation, and that the name of
+-+ * the copyright holders not be used in advertising or publicity
+-+ * pertaining to distribution of the software without specific,
+-+ * written prior permission.  The copyright holders make no
+-+ * representations about the suitability of this software for any
+-+ * purpose.  It is provided "as is" without express or implied
+-+ * warranty.
+-+ * 
+-+ * THE COPYRIGHT HOLDERS DISCLAIM ALL WARRANTIES WITH REGARD TO THIS
+-+ * SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+-+ * FITNESS, IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
+-+ * SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+-+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
+-+ * AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
+-+ * ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
+-+ * THIS SOFTWARE.
+-+ */
+-+
+-+#include <stdlib.h>
+-+#include <stdint.h>
+-+#include "wayland-util.h"
+-+
+-+#define ARRAY_LENGTH(a) (sizeof (a) /sizeof (a)[0])
+-+
+-+extern const struct wl_interface wl_buffer_interface;
+-+extern const struct wl_interface wl_buffer_interface;
+-+
+-+static const struct wl_interface *types[] = {
+-+	NULL,
+-+	&wl_buffer_interface,
+-+	NULL,
+-+	NULL,
+-+	NULL,
+-+	NULL,
+-+	NULL,
+-+	&wl_buffer_interface,
+-+	NULL,
+-+	NULL,
+-+	NULL,
+-+	NULL,
+-+	NULL,
+-+	NULL,
+-+	NULL,
+-+	NULL,
+-+	NULL,
+-+	NULL,
+-+};
+-+
+-+static const struct wl_message wl_drm_requests[] = {
+-+	{ "authenticate", "u", types + 0 },
+-+	{ "create_buffer", "nuiiuu", types + 1 },
+-+	{ "create_planar_buffer", "nuiiuiiiiii", types + 7 },
+-+};
+-+
+-+static const struct wl_message wl_drm_events[] = {
+-+	{ "device", "s", types + 0 },
+-+	{ "format", "u", types + 0 },
+-+	{ "authenticated", "", types + 0 },
+-+};
+-+
+-+WL_EXPORT const struct wl_interface wl_drm_interface = {
+-+	"wl_drm", 1,
+-+	ARRAY_LENGTH(wl_drm_requests), wl_drm_requests,
+-+	ARRAY_LENGTH(wl_drm_events), wl_drm_events,
+-+};
+-+
+-diff --git a/ext/wayland/wlbuffer.c b/ext/wayland/wlbuffer.c
+-index 4ac99ef..0e38d2e 100644
+---- a/ext/wayland/wlbuffer.c
+-+++ b/ext/wayland/wlbuffer.c
+-@@ -76,7 +76,7 @@
+-  * as soon as we remove the reference that GstWlDisplay holds.
+-  */
+- 
+--#include "wlbuffer.h"
+-+#include "wldisplay-wlwindow-wlbuffer.h"
+- 
+- GST_DEBUG_CATEGORY_EXTERN (gstwayland_debug);
+- #define GST_CAT_DEFAULT gstwayland_debug
+-diff --git a/ext/wayland/wlbuffer.h b/ext/wayland/wlbuffer.h
+-deleted file mode 100644
+-index cbb50f7..0000000
+---- a/ext/wayland/wlbuffer.h
+-+++ /dev/null
+-@@ -1,67 +0,0 @@
+--/* GStreamer Wayland video sink
+-- *
+-- * Copyright (C) 2014 Collabora Ltd.
+-- *
+-- * This library is free software; you can redistribute it and/or
+-- * modify it under the terms of the GNU Library General Public
+-- * License as published by the Free Software Foundation; either
+-- * version 2 of the License, or (at your option) any later version.
+-- *
+-- * This library is distributed in the hope that it will be useful,
+-- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-- * Library General Public License for more details.
+-- *
+-- * You should have received a copy of the GNU Library General Public
+-- * License along with this library; if not, write to the Free
+-- * Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+-- * Boston, MA 02110-1301 USA.
+-- */
+--
+--#ifndef __GST_WL_BUFFER_H__
+--#define __GST_WL_BUFFER_H__
+--
+--#include "wldisplay.h"
+--
+--G_BEGIN_DECLS
+--
+--#define GST_TYPE_WL_BUFFER                  (gst_wl_buffer_get_type ())
+--#define GST_WL_BUFFER(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), GST_TYPE_WL_BUFFER, GstWlBuffer))
+--#define GST_IS_WL_BUFFER(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GST_TYPE_WL_BUFFER))
+--#define GST_WL_BUFFER_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), GST_TYPE_WL_BUFFER, GstWlBufferClass))
+--#define GST_IS_WL_BUFFER_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), GST_TYPE_WL_BUFFER))
+--#define GST_WL_BUFFER_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), GST_TYPE_WL_BUFFER, GstWlBufferClass))
+--
+--typedef struct _GstWlBuffer GstWlBuffer;
+--typedef struct _GstWlBufferClass GstWlBufferClass;
+--
+--struct _GstWlBuffer
+--{
+--  GObject parent_instance;
+--
+--  struct wl_buffer * wlbuffer;
+--  GstBuffer *gstbuffer;
+--
+--  GstWlDisplay *display;
+--
+--  gboolean used_by_compositor;
+--};
+--
+--struct _GstWlBufferClass
+--{
+--  GObjectClass parent_class;
+--};
+--
+--GType gst_wl_buffer_get_type (void);
+--
+--GstWlBuffer * gst_buffer_add_wl_buffer (GstBuffer * gstbuffer,
+--    struct wl_buffer * wlbuffer, GstWlDisplay * display);
+--GstWlBuffer * gst_buffer_get_wl_buffer (GstBuffer * gstbuffer);
+--
+--void gst_wl_buffer_force_release_and_unref (GstWlBuffer * self);
+--
+--void gst_wl_buffer_attach (GstWlBuffer * self, struct wl_surface *surface);
+--
+--G_END_DECLS
+--
+--#endif /* __GST_WL_BUFFER_H__ */
+-diff --git a/ext/wayland/wldisplay-wlwindow-wlbuffer.h b/ext/wayland/wldisplay-wlwindow-wlbuffer.h
+-new file mode 100644
+-index 0000000..684d145
+---- /dev/null
+-+++ b/ext/wayland/wldisplay-wlwindow-wlbuffer.h
+-@@ -0,0 +1,216 @@
+-+/* GStreamer Wayland video sink
+-+ *
+-+ * Copyright (C) 2014 Collabora Ltd.
+-+ *
+-+ * This library is free software; you can redistribute it and/or
+-+ * modify it under the terms of the GNU Library General Public
+-+ * License as published by the Free Software Foundation; either
+-+ * version 2 of the License, or (at your option) any later version.
+-+ *
+-+ * This library is distributed in the hope that it will be useful,
+-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-+ * Library General Public License for more details.
+-+ *
+-+ * You should have received a copy of the GNU Library General Public
+-+ * License along with this library; if not, write to the Free
+-+ * Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+-+ * Boston, MA 02110-1301 USA.
+-+ */
+-+
+-+#ifndef __GST_WL_DISPLAY_WL_WINDOW_H__
+-+#define __GST_WL_DISPLAY_WL_WINDOW_H__
+-+
+-+#include <gst/gst.h>
+-+#include <stdlib.h>
+-+#include <stdio.h>
+-+#include <wayland-client.h>
+-+#include "scaler-client-protocol.h"
+-+#include <gst/video/video.h>
+-+#include <gst/video/gstvideometa.h>
+-+
+-+G_BEGIN_DECLS
+-+
+-+#define GST_TYPE_WL_DISPLAY                  (gst_wl_display_get_type ())
+-+#define GST_WL_DISPLAY(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), GST_TYPE_WL_DISPLAY, GstWlDisplay))
+-+#define GST_IS_WL_DISPLAY(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GST_TYPE_WL_DISPLAY))
+-+#define GST_WL_DISPLAY_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), GST_TYPE_WL_DISPLAY, GstWlDisplayClass))
+-+#define GST_IS_WL_DISPLAY_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), GST_TYPE_WL_DISPLAY))
+-+#define GST_WL_DISPLAY_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), GST_TYPE_WL_DISPLAY, GstWlDisplayClass))
+-+
+-+#define GST_TYPE_WL_WINDOW                  (gst_wl_window_get_type ())
+-+#define GST_WL_WINDOW(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), GST_TYPE_WL_WINDOW, GstWlWindow))
+-+#define GST_IS_WL_WINDOW(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GST_TYPE_WL_WINDOW))
+-+#define GST_WL_WINDOW_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), GST_TYPE_WL_WINDOW, GstWlWindowClass))
+-+#define GST_IS_WL_WINDOW_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), GST_TYPE_WL_WINDOW))
+-+#define GST_WL_WINDOW_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), GST_TYPE_WL_WINDOW, GstWlWindowClass))
+-+
+-+#define GST_TYPE_WL_BUFFER                  (gst_wl_buffer_get_type ())
+-+#define GST_WL_BUFFER(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), GST_TYPE_WL_BUFFER, GstWlBuffer))
+-+#define GST_IS_WL_BUFFER(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GST_TYPE_WL_BUFFER))
+-+#define GST_WL_BUFFER_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), GST_TYPE_WL_BUFFER, GstWlBufferClass))
+-+#define GST_IS_WL_BUFFER_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), GST_TYPE_WL_BUFFER))
+-+#define GST_WL_BUFFER_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), GST_TYPE_WL_BUFFER, GstWlBufferClass))
+-+
+-+typedef struct _GstWlBuffer GstWlBuffer;
+-+typedef struct _GstWlBufferClass GstWlBufferClass;
+-+
+-+typedef struct _GstWlWindow GstWlWindow;
+-+typedef struct _GstWlWindowClass GstWlWindowClass;
+-+
+-+typedef struct _GstWlDisplay GstWlDisplay;
+-+typedef struct _GstWlDisplayClass GstWlDisplayClass;
+-+
+-+struct _GstWlBuffer
+-+{
+-+  GObject parent_instance;
+-+
+-+  struct wl_buffer * wlbuffer;
+-+  GstBuffer *gstbuffer;
+-+
+-+  GstWlDisplay *display;
+-+
+-+  gboolean used_by_compositor;
+-+};
+-+
+-+struct _GstWlBufferClass
+-+{
+-+  GObjectClass parent_class;
+-+};
+-+
+-+GType gst_wl_buffer_get_type (void);
+-+
+-+GstWlBuffer * gst_buffer_add_wl_buffer (GstBuffer * gstbuffer,
+-+    struct wl_buffer * wlbuffer, GstWlDisplay * display);
+-+GstWlBuffer * gst_buffer_get_wl_buffer (GstBuffer * gstbuffer);
+-+
+-+void gst_wl_buffer_force_release_and_unref (GstWlBuffer * self);
+-+
+-+void gst_wl_buffer_attach (GstWlBuffer * self, struct wl_surface *surface);
+-+
+-+
+-+struct touch_point
+-+{
+-+  int32_t id;
+-+  struct wl_list link;
+-+};
+-+       
+-+struct input
+-+{
+-+  GstWlDisplay *display;
+-+  struct wl_seat *seat;
+-+  struct wl_pointer *pointer;
+-+  struct wl_touch *touch;
+-+  struct wl_list touch_point_list;
+-+  GstWlWindow *pointer_focus;
+-+  GstWlWindow *touch_focus;
+-+  struct wl_list link; 
+-+  GstWlWindow *grab;      
+-+};
+-+
+-+
+-+struct _GstWlWindow
+-+{
+-+  GObject parent_instance;
+-+
+-+  GstWlDisplay *display;
+-+  struct wl_surface *area_surface;
+-+  struct wl_subsurface *area_subsurface;
+-+  struct wl_viewport *area_viewport;
+-+  struct wl_surface *video_surface;
+-+  struct wl_subsurface *video_subsurface;
+-+  struct wl_viewport *video_viewport;
+-+  struct wl_shell_surface *shell_surface;
+-+
+-+  /* the size and position of the area_(sub)surface */
+-+  GstVideoRectangle render_rectangle;
+-+  /* the size of the video in the buffers */
+-+  gint video_width, video_height;
+-+  /* the size of the video_(sub)surface */
+-+  gint surface_width, surface_height;
+-+};
+-+
+-+struct _GstWlWindowClass
+-+{
+-+  GObjectClass parent_class;
+-+};
+-+
+-+GType gst_wl_window_get_type (void);
+-+
+-+GstWlWindow *gst_wl_window_new_toplevel (GstWlDisplay * display,
+-+        const GstVideoInfo * info);
+-+GstWlWindow *gst_wl_window_new_in_surface (GstWlDisplay * display,
+-+        struct wl_surface * parent);
+-+
+-+GstWlDisplay *gst_wl_window_get_display (GstWlWindow * window);
+-+struct wl_surface *gst_wl_window_get_wl_surface (GstWlWindow * window);
+-+gboolean gst_wl_window_is_toplevel (GstWlWindow *window);
+-+
+-+void gst_wl_window_render (GstWlWindow * window, GstWlBuffer * buffer,
+-+        const GstVideoInfo * info);
+-+void gst_wl_window_set_render_rectangle (GstWlWindow * window, gint x, gint y,
+-+        gint w, gint h);
+-+
+-+
+-+struct _GstWlDisplay
+-+{
+-+  GObject parent_instance;
+-+
+-+  /* public objects */
+-+  struct wl_display *display;
+-+  struct wl_event_queue *queue;
+-+
+-+  /* globals */
+-+  struct wl_registry *registry;
+-+  struct wl_compositor *compositor;
+-+  struct wl_subcompositor *subcompositor;
+-+  struct wl_shell *shell;
+-+  struct wl_shm *shm;
+-+  struct wl_drm *drm;
+-+  struct wl_scaler *scaler;
+-+  GArray *shm_formats;
+-+
+-+  /* private */
+-+  gboolean own_display;
+-+  GThread *thread;
+-+  GstPoll *wl_fd_poll;
+-+
+-+  GMutex buffers_mutex;
+-+  GHashTable *buffers;
+-+  gboolean shutting_down;
+-+
+-+  /* the drm device.. needed for sharing direct-render buffers..
+-+   * TODO nothing about this should really be omapdrm specific.  But some
+-+   * of the code, like hashtable of imported buffers in libdrm_omap should
+-+   * be refactored out into some generic libdrm code..
+-+   */
+-+  struct omap_device *dev;
+-+  int fd;
+-+  int authenticated;
+-+  gboolean use_drm;
+-+
+-+  struct wl_list input_list;
+-+  int seat_version;
+-+  uint32_t serial;
+-+
+-+  GstVideoCropMeta *crop;
+-+};
+-+
+-+struct _GstWlDisplayClass
+-+{
+-+  GObjectClass parent_class;
+-+};
+-+
+-+GType gst_wl_display_get_type (void);
+-+
+-+GstWlDisplay *gst_wl_display_new (const gchar * name, GError ** error);
+-+GstWlDisplay *gst_wl_display_new_existing (struct wl_display * display,
+-+    gboolean take_ownership, GError ** error);
+-+
+-+/* see wlbuffer.c for explanation */
+-+void gst_wl_display_register_buffer (GstWlDisplay * self, gpointer buf);
+-+void gst_wl_display_unregister_buffer (GstWlDisplay * self, gpointer buf);
+-+
+-+G_END_DECLS
+-+
+-+#endif /* __GST_WL_DISPLAY_WL_WINDOW_H__ */
+-diff --git a/ext/wayland/wldisplay.c b/ext/wayland/wldisplay.c
+-index 3318095..2f58fd2 100644
+---- a/ext/wayland/wldisplay.c
+-+++ b/ext/wayland/wldisplay.c
+-@@ -22,9 +22,15 @@
+- #include <config.h>
+- #endif
+- 
+--#include "wldisplay.h"
+--#include "wlbuffer.h"
+--
+-+#include "wldisplay-wlwindow-wlbuffer.h"
+-+
+-+#include <wayland-client-protocol.h>
+-+#include "wayland-drm-client-protocol.h"
+-+#include <linux/input.h>
+-+#include <omap_drm.h>
+-+#include <omap_drmif.h>
+-+#include <fcntl.h>
+-+#include <unistd.h>
+- #include <errno.h>
+- 
+- GST_DEBUG_CATEGORY_EXTERN (gstwayland_debug);
+-@@ -33,6 +39,8 @@ GST_DEBUG_CATEGORY_EXTERN (gstwayland_debug);
+- G_DEFINE_TYPE (GstWlDisplay, gst_wl_display, G_TYPE_OBJECT);
+- 
+- static void gst_wl_display_finalize (GObject * gobject);
+-+static void input_grab (struct input *input, GstWlWindow *window);
+-+static void input_ungrab (struct input *input);
+- 
+- static void
+- gst_wl_display_class_init (GstWlDisplayClass * klass)
+-@@ -45,12 +53,62 @@ static void
+- gst_wl_display_init (GstWlDisplay * self)
+- {
+-   self->shm_formats = g_array_new (FALSE, FALSE, sizeof (uint32_t));
+-+  self->fd = -1;
+-+  self->use_drm = FALSE;
+-   self->wl_fd_poll = gst_poll_new (TRUE);
+-   self->buffers = g_hash_table_new (g_direct_hash, g_direct_equal);
+-   g_mutex_init (&self->buffers_mutex);
+- }
+- 
+- static void
+-+input_grab (struct input *input, GstWlWindow *window)
+-+{
+-+  input->grab = window;
+-+}
+-+
+-+static void
+-+input_ungrab (struct input *input)
+-+{
+-+  input->grab = NULL;
+-+}
+-+
+-+static void
+-+input_remove_pointer_focus (struct input *input)
+-+{
+-+  GstWlWindow *window = input->pointer_focus;
+-+
+-+  if (!window)
+-+    return;
+-+
+-+  input->pointer_focus = NULL;
+-+}
+-+
+-+static void
+-+input_destroy (struct input *input)
+-+{
+-+  input_remove_pointer_focus (input);
+-+
+-+  if (input->display->seat_version >= 3) {
+-+    if (input->pointer)
+-+      wl_pointer_release (input->pointer);
+-+  }
+-+
+-+  wl_list_remove (&input->link);
+-+  wl_seat_destroy (input->seat);
+-+  free (input);
+-+}
+-+
+-+static void
+-+display_destroy_inputs (GstWlDisplay *display)
+-+{
+-+  struct input *tmp;
+-+  struct input *input;
+-+
+-+  wl_list_for_each_safe (input, tmp, &display->input_list, link)
+-+      input_destroy (input);
+-+}
+-+
+-+static void
+- gst_wl_display_finalize (GObject * gobject)
+- {
+-   GstWlDisplay *self = GST_WL_DISPLAY (gobject);
+-@@ -71,13 +129,26 @@ gst_wl_display_finalize (GObject * gobject)
+-   g_hash_table_remove_all (self->buffers);
+- 
+-   g_array_unref (self->shm_formats);
+-+
+-+  if (self->dev) {
+-+    omap_device_del (self->dev);
+-+    self->dev = NULL;
+-+  }
+-+  if (self->fd !=-1)
+-+    close (self->fd);
+-+
+-   gst_poll_free (self->wl_fd_poll);
+-   g_hash_table_unref (self->buffers);
+-   g_mutex_clear (&self->buffers_mutex);
+- 
+-+  display_destroy_inputs (self);
+-+
+-   if (self->shm)
+-     wl_shm_destroy (self->shm);
+- 
+-+  if (self->drm)
+-+    wl_drm_destroy (self->drm);
+-+
+-   if (self->shell)
+-     wl_shell_destroy (self->shell);
+- 
+-@@ -138,12 +209,277 @@ shm_format (void *data, struct wl_shm *wl_shm, uint32_t format)
+-   GstWlDisplay *self = data;
+- 
+-   g_array_append_val (self->shm_formats, format);
+-+  GST_DEBUG ("shm got format: %" GST_FOURCC_FORMAT, GST_FOURCC_ARGS (format));
+- }
+- 
+- static const struct wl_shm_listener shm_listener = {
+-   shm_format
+- };
+- 
+-+/* For wl_drm_listener */
+-+
+-+static void
+-+drm_handle_device (void *data, struct wl_drm *drm, const char *device)
+-+{
+-+  GstWlDisplay *d = data;
+-+  drm_magic_t magic;
+-+  d->fd = open (device, O_RDWR | O_CLOEXEC);
+-+  if (d->fd == -1) {
+-+    GST_ERROR ("could not open %s: %m", device);
+-+    return;
+-+  }
+-+  drmGetMagic (d->fd, &magic);
+-+  wl_drm_authenticate (d->drm, magic);
+-+}
+-+
+-+static void
+-+drm_handle_format (void *data, struct wl_drm *drm, uint32_t format)
+-+{
+-+  GstWlDisplay *self = data;
+-+  g_array_append_val (self->shm_formats, format);
+-+  GST_DEBUG ("drm got format: %" GST_FOURCC_FORMAT, GST_FOURCC_ARGS (format));
+-+}
+-+
+-+static void
+-+drm_handle_authenticated (void *data, struct wl_drm *drm)
+-+{
+-+  GstWlDisplay *d = data;
+-+  GST_DEBUG ("authenticated");
+-+  d->dev = omap_device_new (d->fd);
+-+  d->authenticated = 1;
+-+  GST_DEBUG ("drm_handle_authenticated: dev: %p, d->authenticated: %d\n",
+-+      d->dev, d->authenticated);
+-+}
+-+
+-+static const struct wl_drm_listener drm_listener = {
+-+  drm_handle_device,
+-+  drm_handle_format,
+-+  drm_handle_authenticated
+-+};
+-+
+-+
+-+static void
+-+pointer_handle_enter (void *data, struct wl_pointer *pointer,
+-+    uint32_t serial, struct wl_surface *surface,
+-+    wl_fixed_t sx_w, wl_fixed_t sy_w)
+-+{
+-+  struct input *input = data;
+-+
+-+  if (!surface) {
+-+    /* enter event for a window we've just destroyed */
+-+    return;
+-+  }
+-+
+-+  input->display->serial = serial;
+-+  input->pointer_focus = wl_surface_get_user_data (surface);
+-+}
+-+
+-+static void
+-+pointer_handle_leave (void *data, struct wl_pointer *pointer,
+-+    uint32_t serial, struct wl_surface *surface)
+-+{
+-+  struct input *input = data;
+-+
+-+  input_remove_pointer_focus (input);
+-+}
+-+
+-+static void
+-+pointer_handle_motion (void *data, struct wl_pointer *pointer,
+-+    uint32_t time, wl_fixed_t sx_w, wl_fixed_t sy_w)
+-+{
+-+  struct input *input = data;
+-+  GstWlWindow *window = input->pointer_focus;
+-+
+-+  if (!window)
+-+    return;
+-+
+-+  if (input->grab)
+-+    wl_shell_surface_move (input->grab->shell_surface, input->seat,
+-+        input->display->serial);
+-+
+-+}
+-+
+-+static void
+-+pointer_handle_button (void *data, struct wl_pointer *pointer, uint32_t serial,
+-+    uint32_t time, uint32_t button, uint32_t state_w)
+-+{
+-+  struct input *input = data;
+-+  enum wl_pointer_button_state state = state_w;
+-+  input->display->serial = serial;
+-+
+-+  if (button == BTN_LEFT) {
+-+    if (state == WL_POINTER_BUTTON_STATE_PRESSED)
+-+      input_grab (input, input->pointer_focus);
+-+
+-+    if (input->grab && state == WL_POINTER_BUTTON_STATE_RELEASED)
+-+      input_ungrab (input);
+-+  }
+-+
+-+  if (input->grab)
+-+    wl_shell_surface_move (input->grab->shell_surface, input->seat,
+-+        input->display->serial);
+-+}
+-+
+-+static void
+-+pointer_handle_axis (void *data, struct wl_pointer *pointer,
+-+    uint32_t time, uint32_t axis, wl_fixed_t value)
+-+{
+-+}
+-+
+-+static const struct wl_pointer_listener pointer_listener = {
+-+  pointer_handle_enter,
+-+  pointer_handle_leave,
+-+  pointer_handle_motion,
+-+  pointer_handle_button,
+-+  pointer_handle_axis,
+-+};
+-+
+-+static void
+-+touch_handle_down (void *data, struct wl_touch *wl_touch,
+-+    uint32_t serial, uint32_t time, struct wl_surface *surface,
+-+    int32_t id, wl_fixed_t x_w, wl_fixed_t y_w)
+-+{
+-+  struct input *input = data;
+-+  struct touch_point *tp;
+-+
+-+  input->display->serial = serial;
+-+  input->touch_focus = wl_surface_get_user_data (surface);
+-+  if (!input->touch_focus) {
+-+    return;
+-+  }
+-+
+-+  tp = malloc (sizeof *tp);
+-+  if (tp) {
+-+    tp->id = id;
+-+    wl_list_insert (&input->touch_point_list, &tp->link);
+-+    wl_shell_surface_move (input->touch_focus->shell_surface, input->seat,
+-+        serial);
+-+  }
+-+}
+-+
+-+static void
+-+touch_handle_motion (void *data, struct wl_touch *wl_touch,
+-+    uint32_t time, int32_t id, wl_fixed_t x_w, wl_fixed_t y_w)
+-+{
+-+  struct input *input = data;
+-+  struct touch_point *tp;
+-+
+-+
+-+  if (!input->touch_focus) {
+-+    return;
+-+  }
+-+  wl_list_for_each (tp, &input->touch_point_list, link) {
+-+    if (tp->id != id)
+-+      continue;
+-+
+-+    wl_shell_surface_move (input->touch_focus->shell_surface, input->seat,
+-+        input->display->serial);
+-+
+-+    return;
+-+  }
+-+}
+-+
+-+static void
+-+touch_handle_frame (void *data, struct wl_touch *wl_touch)
+-+{
+-+}
+-+
+-+static void
+-+touch_handle_cancel (void *data, struct wl_touch *wl_touch)
+-+{
+-+}
+-+
+-+static void
+-+touch_handle_up (void *data, struct wl_touch *wl_touch,
+-+    uint32_t serial, uint32_t time, int32_t id)
+-+{
+-+  struct input *input = data;
+-+  struct touch_point *tp, *tmp;
+-+
+-+  if (!input->touch_focus) {
+-+    return;
+-+  }
+-+
+-+  wl_list_for_each_safe (tp, tmp, &input->touch_point_list, link) {
+-+    if (tp->id != id)
+-+      continue;
+-+
+-+    wl_list_remove (&tp->link);
+-+    free (tp);
+-+
+-+    return;
+-+  }
+-+}
+-+
+-+static const struct wl_touch_listener touch_listener = {
+-+  touch_handle_down,
+-+  touch_handle_up,
+-+  touch_handle_motion,
+-+  touch_handle_frame,
+-+  touch_handle_cancel,
+-+};
+-+
+-+
+-+static void
+-+seat_handle_capabilities (void *data, struct wl_seat *seat,
+-+    enum wl_seat_capability caps)
+-+{
+-+  struct input *input = data;
+-+
+-+  if ((caps & WL_SEAT_CAPABILITY_POINTER) && !input->pointer) {
+-+    input->pointer = wl_seat_get_pointer (seat);
+-+    wl_pointer_set_user_data (input->pointer, input);
+-+    wl_pointer_add_listener (input->pointer, &pointer_listener, input);
+-+  } else if (!(caps & WL_SEAT_CAPABILITY_POINTER) && input->pointer) {
+-+    wl_pointer_destroy (input->pointer);
+-+    input->pointer = NULL;
+-+  }
+-+
+-+  if ((caps & WL_SEAT_CAPABILITY_TOUCH) && !input->touch) {
+-+    input->touch = wl_seat_get_touch (seat);
+-+    wl_touch_set_user_data (input->touch, input);
+-+    wl_touch_add_listener (input->touch, &touch_listener, input);
+-+  } else if (!(caps & WL_SEAT_CAPABILITY_TOUCH) && input->touch) {
+-+    wl_touch_destroy (input->touch);
+-+    input->touch = NULL;
+-+  }
+-+}
+-+
+-+static void
+-+seat_handle_name (void *data, struct wl_seat *seat, const char *name)
+-+{
+-+ 
+-+}
+-+
+-+static const struct wl_seat_listener seat_listener = {
+-+  seat_handle_capabilities,
+-+  seat_handle_name
+-+};
+-+
+-+static void
+-+display_add_input (GstWlDisplay *d, uint32_t id)
+-+{
+-+  struct input *input;
+-+
+-+  input = calloc (1, sizeof (*input));
+-+  if (input == NULL) {
+-+    fprintf (stderr, "%s: out of memory\n", "gst-wayland-sink");
+-+    exit (EXIT_FAILURE);
+-+  }
+-+  input->display = d;
+-+  input->seat = wl_registry_bind (d->registry, id, &wl_seat_interface,
+-+      MAX (d->seat_version, 3));
+-+  input->touch_focus = NULL;
+-+  input->pointer_focus = NULL;
+-+  wl_list_init (&input->touch_point_list);
+-+  wl_list_insert (d->input_list.prev, &input->link);
+-+
+-+  wl_seat_add_listener (input->seat, &seat_listener, input);
+-+  wl_seat_set_user_data (input->seat, input);
+-+
+-+}
+-+
+-+
+- static void
+- registry_handle_global (void *data, struct wl_registry *registry,
+-     uint32_t id, const char *interface, uint32_t version)
+-@@ -161,6 +497,12 @@ registry_handle_global (void *data, struct wl_registry *registry,
+-   } else if (g_strcmp0 (interface, "wl_shm") == 0) {
+-     self->shm = wl_registry_bind (registry, id, &wl_shm_interface, 1);
+-     wl_shm_add_listener (self->shm, &shm_listener, self);
+-+  } else if (g_strcmp0 (interface, "wl_drm") == 0) {
+-+    self->drm = wl_registry_bind (registry, id, &wl_drm_interface, 1);
+-+    wl_drm_add_listener (self->drm, &drm_listener, self);
+-+  } else if (g_strcmp0 (interface, "wl_seat") == 0) {
+-+    self->seat_version = version;
+-+    display_add_input (self, id);
+-   } else if (g_strcmp0 (interface, "wl_scaler") == 0) {
+-     self->scaler = wl_registry_bind (registry, id, &wl_scaler_interface, 2);
+-   }
+-@@ -238,6 +580,7 @@ gst_wl_display_new_existing (struct wl_display * display,
+-   self->own_display = take_ownership;
+- 
+-   self->queue = wl_display_create_queue (self->display);
+-+  wl_list_init (&self->input_list);
+-   self->registry = wl_display_get_registry (self->display);
+-   wl_proxy_set_queue ((struct wl_proxy *) self->registry, self->queue);
+-   wl_registry_add_listener (self->registry, &registry_listener, self);
+-@@ -266,6 +609,7 @@ gst_wl_display_new_existing (struct wl_display * display,
+-   VERIFY_INTERFACE_EXISTS (subcompositor, "wl_subcompositor");
+-   VERIFY_INTERFACE_EXISTS (shell, "wl_shell");
+-   VERIFY_INTERFACE_EXISTS (shm, "wl_shm");
+-+  VERIFY_INTERFACE_EXISTS (drm, "wl_drm");
+-   VERIFY_INTERFACE_EXISTS (scaler, "wl_scaler");
+- 
+- #undef VERIFY_INTERFACE_EXISTS
+-diff --git a/ext/wayland/wldisplay.h b/ext/wayland/wldisplay.h
+-deleted file mode 100644
+-index e9df749..0000000
+---- a/ext/wayland/wldisplay.h
+-+++ /dev/null
+-@@ -1,84 +0,0 @@
+--/* GStreamer Wayland video sink
+-- *
+-- * Copyright (C) 2014 Collabora Ltd.
+-- *
+-- * This library is free software; you can redistribute it and/or
+-- * modify it under the terms of the GNU Library General Public
+-- * License as published by the Free Software Foundation; either
+-- * version 2 of the License, or (at your option) any later version.
+-- *
+-- * This library is distributed in the hope that it will be useful,
+-- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-- * Library General Public License for more details.
+-- *
+-- * You should have received a copy of the GNU Library General Public
+-- * License along with this library; if not, write to the Free
+-- * Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+-- * Boston, MA 02110-1301 USA.
+-- */
+--
+--#ifndef __GST_WL_DISPLAY_H__
+--#define __GST_WL_DISPLAY_H__
+--
+--#include <gst/gst.h>
+--#include <wayland-client.h>
+--#include "scaler-client-protocol.h"
+--
+--G_BEGIN_DECLS
+--
+--#define GST_TYPE_WL_DISPLAY                  (gst_wl_display_get_type ())
+--#define GST_WL_DISPLAY(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), GST_TYPE_WL_DISPLAY, GstWlDisplay))
+--#define GST_IS_WL_DISPLAY(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GST_TYPE_WL_DISPLAY))
+--#define GST_WL_DISPLAY_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), GST_TYPE_WL_DISPLAY, GstWlDisplayClass))
+--#define GST_IS_WL_DISPLAY_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), GST_TYPE_WL_DISPLAY))
+--#define GST_WL_DISPLAY_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), GST_TYPE_WL_DISPLAY, GstWlDisplayClass))
+--
+--typedef struct _GstWlDisplay GstWlDisplay;
+--typedef struct _GstWlDisplayClass GstWlDisplayClass;
+--
+--struct _GstWlDisplay
+--{
+--  GObject parent_instance;
+--
+--  /* public objects */
+--  struct wl_display *display;
+--  struct wl_event_queue *queue;
+--
+--  /* globals */
+--  struct wl_registry *registry;
+--  struct wl_compositor *compositor;
+--  struct wl_subcompositor *subcompositor;
+--  struct wl_shell *shell;
+--  struct wl_shm *shm;
+--  struct wl_scaler *scaler;
+--  GArray *shm_formats;
+--
+--  /* private */
+--  gboolean own_display;
+--  GThread *thread;
+--  GstPoll *wl_fd_poll;
+--
+--  GMutex buffers_mutex;
+--  GHashTable *buffers;
+--  gboolean shutting_down;
+--};
+--
+--struct _GstWlDisplayClass
+--{
+--  GObjectClass parent_class;
+--};
+--
+--GType gst_wl_display_get_type (void);
+--
+--GstWlDisplay *gst_wl_display_new (const gchar * name, GError ** error);
+--GstWlDisplay *gst_wl_display_new_existing (struct wl_display * display,
+--    gboolean take_ownership, GError ** error);
+--
+--/* see wlbuffer.c for explanation */
+--void gst_wl_display_register_buffer (GstWlDisplay * self, gpointer buf);
+--void gst_wl_display_unregister_buffer (GstWlDisplay * self, gpointer buf);
+--
+--G_END_DECLS
+--
+--#endif /* __GST_WL_DISPLAY_H__ */
+-diff --git a/ext/wayland/wldrm.c b/ext/wayland/wldrm.c
+-new file mode 100644
+-index 0000000..3dc9c21
+---- /dev/null
+-+++ b/ext/wayland/wldrm.c
+-@@ -0,0 +1,69 @@
+-+#include "wldisplay-wlwindow-wlbuffer.h"
+-+#include <gst/drm/gstdrmallocator.h>
+-+#include "wayland-drm-client-protocol.h"
+-+#include <omap_drm.h>
+-+#include <omap_drmif.h>
+-+#include <wayland-client.h>
+-+
+-+struct wl_buffer *
+-+gst_wl_drm_memory_construct_wl_buffer (GstMemory * mem, GstWlDisplay * display,
+-+    const GstVideoInfo * info)
+-+{
+-+  gint video_width = GST_VIDEO_INFO_WIDTH (info);
+-+  gint video_height = GST_VIDEO_INFO_HEIGHT (info);
+-+  int fd = -1;
+-+  struct omap_bo *bo;
+-+  struct wl_buffer *buffer;
+-+
+-+  /* TODO get format, etc from caps.. and query device for
+-+   * supported formats, and make this all more flexible to
+-+   * cope with various formats:
+-+   */
+-+  uint32_t fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+-+  uint32_t name;
+-+  /* note: wayland and mesa use the terminology:
+-+   *    stride - rowstride in bytes
+-+   *    pitch  - rowstride in pixels
+-+   */
+-+  uint32_t strides[3] = {
+-+    GST_ROUND_UP_4 (video_width), GST_ROUND_UP_4 (video_width), 0,
+-+  };
+-+  uint32_t offsets[3] = {
+-+    0, strides[0] * video_height, 0
+-+  };
+-+
+-+  fd = gst_fd_memory_get_fd (mem);
+-+
+-+  if (fd < 0 ) {
+-+    GST_DEBUG ("Invalid fd");
+-+    return NULL;
+-+  }
+-+
+-+  bo = omap_bo_from_dmabuf (display->dev, fd);
+-+
+-+  struct drm_gem_flink req = {
+-+                  .handle = omap_bo_handle(bo),
+-+  };
+-+
+-+  int ret;
+-+  ret = drmIoctl(display->fd, DRM_IOCTL_GEM_FLINK, &req);
+-+  if (ret) {
+-+    GST_DEBUG ("could not get name, DRM_IOCTL_GEM_FLINK returned %d", ret);
+-+    return NULL;
+-+  }
+-+
+-+  name = req.name;
+-+
+-+ GST_LOG ("width = %d , height = %d , fourcc = %d ",  video_width, video_height, fourcc );
+-+ buffer = wl_drm_create_planar_buffer (display->drm, name,
+-+      video_width, video_height, fourcc,
+-+      offsets[0], strides[0],
+-+      offsets[1], strides[1],
+-+      offsets[2], strides[2]);
+-+
+-+  GST_DEBUG ("create planar buffer: %p (name=%d)",
+-+      buffer, name);
+-+
+-+  return buffer;
+-+}
+-+
+-diff --git a/ext/wayland/wldrm.h b/ext/wayland/wldrm.h
+-new file mode 100644
+-index 0000000..9751029
+---- /dev/null
+-+++ b/ext/wayland/wldrm.h
+-@@ -0,0 +1,3 @@
+-+struct wl_buffer *
+-+gst_wl_drm_memory_construct_wl_buffer (GstMemory * mem, GstWlDisplay * display,
+-+    const GstVideoInfo * info);
+-diff --git a/ext/wayland/wlshmallocator.h b/ext/wayland/wlshmallocator.h
+-index 07ae17f..2860fc3 100644
+---- a/ext/wayland/wlshmallocator.h
+-+++ b/ext/wayland/wlshmallocator.h
+-@@ -26,7 +26,7 @@
+- #include <gst/video/video.h>
+- #include <gst/allocators/allocators.h>
+- #include <wayland-client-protocol.h>
+--#include "wldisplay.h"
+-+#include "wldisplay-wlwindow-wlbuffer.h"
+- 
+- G_BEGIN_DECLS
+- 
+-diff --git a/ext/wayland/wlvideoformat.c b/ext/wayland/wlvideoformat.c
+-index 1302da6..aa336aa 100644
+---- a/ext/wayland/wlvideoformat.c
+-+++ b/ext/wayland/wlvideoformat.c
+-@@ -106,6 +106,10 @@ gst_wl_shm_format_to_video_format (enum wl_shm_format wl_format)
+- const gchar *
+- gst_wl_shm_format_to_string (enum wl_shm_format wl_format)
+- {
+--  return gst_video_format_to_string
+--      (gst_wl_shm_format_to_video_format (wl_format));
+-+  GstVideoFormat fmt = gst_wl_shm_format_to_video_format (wl_format);
+-+  if (fmt != GST_VIDEO_FORMAT_UNKNOWN) {
+-+    return gst_video_format_to_string (fmt);
+-+  } else {
+-+    return NULL;
+-+  }
+- }
+-diff --git a/ext/wayland/wlwindow.c b/ext/wayland/wlwindow.c
+-index 79000ae..f7e3324 100644
+---- a/ext/wayland/wlwindow.c
+-+++ b/ext/wayland/wlwindow.c
+-@@ -24,9 +24,10 @@
+- #include <config.h>
+- #endif
+- 
+--#include "wlwindow.h"
+-+#include "wldisplay-wlwindow-wlbuffer.h"
+- #include "wlshmallocator.h"
+--#include "wlbuffer.h"
+-+#include "wldrm.h"
+-+#include <gst/drm/gstdrmallocator.h>
+- 
+- GST_DEBUG_CATEGORY_EXTERN (gstwayland_debug);
+- #define GST_CAT_DEFAULT gstwayland_debug
+-@@ -111,6 +112,8 @@ gst_wl_window_new_internal (GstWlDisplay * display)
+- 
+-   window->area_surface = wl_compositor_create_surface (display->compositor);
+-   window->video_surface = wl_compositor_create_surface (display->compositor);
+-+  wl_surface_set_user_data (window->area_surface, window);
+-+  wl_surface_set_user_data (window->video_surface, window);
+- 
+-   wl_proxy_set_queue ((struct wl_proxy *) window->area_surface, display->queue);
+-   wl_proxy_set_queue ((struct wl_proxy *) window->video_surface,
+-@@ -126,6 +129,21 @@ gst_wl_window_new_internal (GstWlDisplay * display)
+-       window->area_surface);
+-   window->video_viewport = wl_scaler_get_viewport (display->scaler,
+-       window->video_surface);
+-+  if (display->crop) {
+-+    GST_DEBUG ("Setting source crop : %d %d %d %d",display->crop->x, display->crop->y,
+-+                    display->crop->width, display->crop->height);
+-+    wl_viewport_set_source (window->area_viewport,
+-+                                        wl_fixed_from_int(display->crop->x),
+-+                                        wl_fixed_from_int(display->crop->y),
+-+                                        wl_fixed_from_int(display->crop->width),
+-+                                        wl_fixed_from_int(display->crop->height));
+-+    wl_viewport_set_source (window->video_viewport,
+-+                                        wl_fixed_from_int(display->crop->x),
+-+                                        wl_fixed_from_int(display->crop->y),
+-+                                        wl_fixed_from_int(display->crop->width),
+-+                                        wl_fixed_from_int(display->crop->height));
+-+
+-+  }
+- 
+-   /* draw the area_subsurface */
+-   gst_video_info_set_format (&info,
+-@@ -136,14 +154,25 @@ gst_wl_window_new_internal (GstWlDisplay * display)
+-       GST_VIDEO_FORMAT_BGRx,
+- #endif
+-       1, 1);
+--
+--  buf = gst_buffer_new_allocate (gst_wl_shm_allocator_get (), info.size, NULL);
+-+  if (display->use_drm) {
+-+    buf = gst_buffer_new_allocate (gst_drm_allocator_get (), info.size, NULL);
+-+  } else {
+-+    buf = gst_buffer_new_allocate (gst_wl_shm_allocator_get (), info.size, NULL);
+-+  } 
+-   gst_buffer_map (buf, &mapinfo, GST_MAP_WRITE);
+--  *((guint32 *) mapinfo.data) = 0;      /* paint it black */
+--  gst_buffer_unmap (buf, &mapinfo);
+--  wlbuf =
+--      gst_wl_shm_memory_construct_wl_buffer (gst_buffer_peek_memory (buf, 0),
+--      display, &info);
+-+   *((guint32 *) mapinfo.data) = 0;      /* paint it black */
+-+   gst_buffer_unmap (buf, &mapinfo);
+-+   
+-+  if (display->use_drm) {
+-+     wlbuf =
+-+       gst_wl_drm_memory_construct_wl_buffer (gst_buffer_peek_memory (buf, 0),
+-+       display, &info);
+-+   } else {
+-+     wlbuf =
+-+       gst_wl_shm_memory_construct_wl_buffer (gst_buffer_peek_memory (buf, 0),
+-+       display, &info);
+-+   }
+-+
+-   gwlbuf = gst_buffer_add_wl_buffer (buf, wlbuf, display);
+-   gst_wl_buffer_attach (gwlbuf, window->area_surface);
+- 
+-diff --git a/ext/wayland/wlwindow.h b/ext/wayland/wlwindow.h
+-deleted file mode 100644
+-index e22cb26..0000000
+---- a/ext/wayland/wlwindow.h
+-+++ /dev/null
+-@@ -1,84 +0,0 @@
+--/* GStreamer Wayland video sink
+-- *
+-- * Copyright (C) 2014 Collabora Ltd.
+-- *
+-- * This library is free software; you can redistribute it and/or
+-- * modify it under the terms of the GNU Library General Public
+-- * License as published by the Free Software Foundation; either
+-- * version 2 of the License, or (at your option) any later version.
+-- *
+-- * This library is distributed in the hope that it will be useful,
+-- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+-- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+-- * Library General Public License for more details.
+-- *
+-- * You should have received a copy of the GNU Library General Public
+-- * License along with this library; if not, write to the Free
+-- * Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+-- * Boston, MA 02110-1301 USA.
+-- */
+--
+--#ifndef __GST_WL_WINDOW_H__
+--#define __GST_WL_WINDOW_H__
+--
+--#include "wldisplay.h"
+--#include "wlbuffer.h"
+--#include <gst/video/video.h>
+--
+--G_BEGIN_DECLS
+--
+--#define GST_TYPE_WL_WINDOW                  (gst_wl_window_get_type ())
+--#define GST_WL_WINDOW(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), GST_TYPE_WL_WINDOW, GstWlWindow))
+--#define GST_IS_WL_WINDOW(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GST_TYPE_WL_WINDOW))
+--#define GST_WL_WINDOW_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), GST_TYPE_WL_WINDOW, GstWlWindowClass))
+--#define GST_IS_WL_WINDOW_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), GST_TYPE_WL_WINDOW))
+--#define GST_WL_WINDOW_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), GST_TYPE_WL_WINDOW, GstWlWindowClass))
+--
+--typedef struct _GstWlWindow GstWlWindow;
+--typedef struct _GstWlWindowClass GstWlWindowClass;
+--
+--struct _GstWlWindow
+--{
+--  GObject parent_instance;
+--
+--  GstWlDisplay *display;
+--  struct wl_surface *area_surface;
+--  struct wl_subsurface *area_subsurface;
+--  struct wl_viewport *area_viewport;
+--  struct wl_surface *video_surface;
+--  struct wl_subsurface *video_subsurface;
+--  struct wl_viewport *video_viewport;
+--  struct wl_shell_surface *shell_surface;
+--
+--  /* the size and position of the area_(sub)surface */
+--  GstVideoRectangle render_rectangle;
+--  /* the size of the video in the buffers */
+--  gint video_width, video_height;
+--  /* the size of the video_(sub)surface */
+--  gint surface_width, surface_height;
+--};
+--
+--struct _GstWlWindowClass
+--{
+--  GObjectClass parent_class;
+--};
+--
+--GType gst_wl_window_get_type (void);
+--
+--GstWlWindow *gst_wl_window_new_toplevel (GstWlDisplay * display,
+--        const GstVideoInfo * info);
+--GstWlWindow *gst_wl_window_new_in_surface (GstWlDisplay * display,
+--        struct wl_surface * parent);
+--
+--GstWlDisplay *gst_wl_window_get_display (GstWlWindow * window);
+--struct wl_surface *gst_wl_window_get_wl_surface (GstWlWindow * window);
+--gboolean gst_wl_window_is_toplevel (GstWlWindow *window);
+--
+--void gst_wl_window_render (GstWlWindow * window, GstWlBuffer * buffer,
+--        const GstVideoInfo * info);
+--void gst_wl_window_set_render_rectangle (GstWlWindow * window, gint x, gint y,
+--        gint w, gint h);
+--
+--G_END_DECLS
+--
+--#endif /* __GST_WL_WINDOW_H__ */
+--- 
+-2.7.4
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-gstwaylandsink-Implement-callbacks-for-version-5-of-.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-gstwaylandsink-Implement-callbacks-for-version-5-of-.patch
+deleted file mode 100644
+index bcb66c8..0000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-gstwaylandsink-Implement-callbacks-for-version-5-of-.patch
++++ /dev/null
+@@ -1,65 +0,0 @@
+-From adfc38273882a102d25fc420adc82b3f225588f9 Mon Sep 17 00:00:00 2001
+-From: Pooja Prajod <a0132412@ti.com>
+-Date: Mon, 27 Mar 2017 18:27:06 +0530
+-Subject: [PATCH] gstwaylandsink: Implement callbacks for version 5 of
+- wl_pointer
+-
+-Few extra callbacks are required for wl_pointer listener
+-with the newer weston. Without the extra dummy callbacks
+-the pipelines results in segfault.
+-
+-Signed-off-by: Pooja Prajod <a0132412@ti.com>
+----
+- ext/wayland/wldisplay.c | 22 +++++++++++++++++++++-
+- 1 file changed, 21 insertions(+), 1 deletion(-)
+-
+-diff --git a/ext/wayland/wldisplay.c b/ext/wayland/wldisplay.c
+-index 2f58fd2..54acfdb 100644
+---- a/ext/wayland/wldisplay.c
+-+++ b/ext/wayland/wldisplay.c
+-@@ -326,12 +326,25 @@ pointer_handle_axis (void *data, struct wl_pointer *pointer,
+- {
+- }
+- 
+-+static void pointer_frame(void *data, struct wl_pointer *wl_pointer)
+-+{
+-+}
+-+static void pointer_axis_source(void *data, struct wl_pointer *wl_pointer, uint32_t axis_source)
+-+{
+-+}
+-+void pointer_axis_stop(void *data, struct wl_pointer *wl_pointer, uint32_t time, uint32_t axis)
+-+{
+-+}
+-+
+- static const struct wl_pointer_listener pointer_listener = {
+-   pointer_handle_enter,
+-   pointer_handle_leave,
+-   pointer_handle_motion,
+-   pointer_handle_button,
+-   pointer_handle_axis,
+-+  pointer_frame,
+-+  pointer_axis_source,
+-+  pointer_axis_stop
+- };
+- 
+- static void
+-@@ -508,8 +521,15 @@ registry_handle_global (void *data, struct wl_registry *registry,
+-   }
+- }
+- 
+-+static void
+-+registry_handle_global_remove(void *data, struct wl_registry *registry,
+-+                uint32_t name)
+-+{
+-+}
+-+
+- static const struct wl_registry_listener registry_listener = {
+--  registry_handle_global
+-+  registry_handle_global,
+-+  registry_handle_global_remove
+- };
+- 
+- static gpointer
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch
+deleted file mode 100644
+index cbedca7..0000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch
++++ /dev/null
+@@ -1,39 +0,0 @@
+-From 20fd1ae415683168b2dc5ad707ea422c67429578 Mon Sep 17 00:00:00 2001
+-From: Pooja Prajod <a0132412@ti.com>
+-Date: Fri, 12 May 2017 16:12:55 +0530
+-Subject: [gst-bad] gstwaylandsink: Fix scale up with padded video
+-
+-Usecases which expects waylandsink cropping support
+-negotiates with padded height and width. After cropping,
+-the destination viewport is set with the negotiated
+-height and width which results in scaled up output.
+-To fix this the args while setting dest viewport should
+-be taken as the height and width present in the crop metadata
+-
+-Signed-off-by: Pooja Prajod <a0132412@ti.com>
+----
+- ext/wayland/wlwindow.c | 8 +++++++-
+- 1 file changed, 7 insertions(+), 1 deletion(-)
+-
+-diff --git a/ext/wayland/wlwindow.c b/ext/wayland/wlwindow.c
+-index f7e3324..decfdf8 100644
+---- a/ext/wayland/wlwindow.c
+-+++ b/ext/wayland/wlwindow.c
+-@@ -278,7 +278,13 @@ gst_wl_window_resize_video_surface (GstWlWindow * window, gboolean commit)
+-   gst_video_sink_center_rect (src, dst, &res, TRUE);
+- 
+-   wl_subsurface_set_position (window->video_subsurface, res.x, res.y);
+--  wl_viewport_set_destination (window->video_viewport, res.w, res.h);
+-+
+-+  if (window->display->crop) {
+-+    wl_viewport_set_destination (window->area_viewport, window->display->crop->width,  window->display->crop->height);
+-+    wl_viewport_set_destination (window->video_viewport, window->display->crop->width,  window->display->crop->height);
+-+  } else {
+-+    wl_viewport_set_destination (window->video_viewport, res.w, res.h);
+-+  }
+- 
+-   if (commit) {
+-     wl_surface_damage (window->video_surface, 0, 0, res.w, res.h);
+--- 
+-1.9.1
+-
+-- 
+1.9.1
 
 
