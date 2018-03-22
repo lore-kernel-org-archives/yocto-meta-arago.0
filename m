@@ -1,42 +1,42 @@
 Return-Path: <x0038811@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id C1750529DC
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id D0290529D5
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Mar 2018 04:06:58 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2M46w72024802
-	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:58 -0500
+	Thu, 22 Mar 2018 04:06:59 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2M46xV4032003
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1521691618;
-	bh=a027R06kO3PQi2zsUh9mREgEWbXwh1qVWXvxZAtmfTc=;
+	s=ti-com-17Q1; t=1521691619;
+	bh=hXwWsjx+rGQo4cJ5q6+RiPTSFuXm7ULfLf+2X7iVD5o=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=gMxuillTRF9HkNJTw2ovOjEBIRRQaoRzrZfsI75YOfc/+roPER/M1aEk86saapayQ
-	QkHZOHFgc1FXrVCmpqV3l7n1f3MRIYuYYs5181ZYCwv29v7Oe07U39O9CznJQIiUB3
-	XOSsMriaArwxjGIsDm6aV2S5DpbvtsqddAgy7ugo=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46wu8002728
-	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:58 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	b=Sg8uhM5P955W9PAlj/w4WEf3+wTkxOpRHeavcgyYQPaDZZgCsWNTFKMFj94l2owz6
+	DUN3Zht3oEnzSMj+o9UMNeLQS+k371Kmk2UFni9zoX6xjmattVv4r1Zh5ymCJADDee
+	JhEASFpUVhGOSJIURpYk6zF5S4OLAIddj78GXQKU=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46xCs014283
+	for <meta-arago@arago-project.org>; Wed, 21 Mar 2018 23:06:59 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Wed, 21 Mar 2018 23:06:57 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 21 Mar 2018 23:06:59 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Wed, 21 Mar 2018 23:06:57 -0500
+	Transport; Wed, 21 Mar 2018 23:06:59 -0500
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46nAQ028035;
-	Wed, 21 Mar 2018 23:06:57 -0500
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2M46nAR028035;
+	Wed, 21 Mar 2018 23:06:58 -0500
 From: Ramprasad N <x0038811@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 22 Mar 2018 09:36:42 +0530
-Message-ID: <1521691605-49259-7-git-send-email-x0038811@ti.com>
+Date: Thu, 22 Mar 2018 09:36:43 +0530
+Message-ID: <1521691605-49259-8-git-send-email-x0038811@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1521691605-49259-1-git-send-email-x0038811@ti.com>
 References: <1521691605-49259-1-git-send-email-x0038811@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko 6/9] wayland-protocols: Add drm protocol to stable
+Subject: [rocko 7/9] gstreamer1.0*-bad: Add DRM support to waylandsink
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,224 +49,751 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Mar 2018 04:07:00 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 22 Mar 2018 04:07:01 -0000
+Content-Type: text/plain
 
 Signed-off-by: Ramprasad N <x0038811@ti.com>
 ---
- ...nd-drm-Add-wayland-drm-protocol-to-stable.patch | 179 +++++++++++++++++++++
- .../wayland/wayland-protocols_1.10.bbappend        |  15 ++
- 2 files changed, 194 insertions(+)
- create mode 100644 meta-arago-extras/recipes-graphics/wayland/wayland-protocols/0001-wayland-drm-Add-wayland-drm-protocol-to-stable.patch
- create mode 100644 meta-arago-extras/recipes-graphics/wayland/wayland-protocols_1.10.bbappend
+ ...aylandsink-Add-drm-support-in-waylandsink.patch | 706 +++++++++++++++++++++
+ .../gstreamer1.0-plugins-bad_1.12.2.bbappend       |   4 +-
+ 2 files changed, 709 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-waylandsink-Add-drm-support-in-waylandsink.patch
 
-diff --git a/meta-arago-extras/recipes-graphics/wayland/wayland-protocols/0001-wayland-drm-Add-wayland-drm-protocol-to-stable.patch b/meta-arago-extras/recipes-graphics/wayland/wayland-protocols/0001-wayland-drm-Add-wayland-drm-protocol-to-stable.patch
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-waylandsink-Add-drm-support-in-waylandsink.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-waylandsink-Add-drm-support-in-waylandsink.patch
 new file mode 100644
-index 0000000..7cb1750
+index 0000000..2f0eae4
 --- /dev/null
-+++ b/meta-arago-extras/recipes-graphics/wayland/wayland-protocols/0001-wayland-drm-Add-wayland-drm-protocol-to-stable.patch
-@@ -0,0 +1,179 @@
-+From aad79976f85fda12ade80a0bd760733a6ffb519e Mon Sep 17 00:00:00 2001
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0004-waylandsink-Add-drm-support-in-waylandsink.patch
+@@ -0,0 +1,706 @@
++From a26880618a302269542abffc8f4db9ac08e6c2e7 Mon Sep 17 00:00:00 2001
 +From: Ramprasad N <x0038811@ti.com>
-+Date: Mon, 26 Feb 2018 09:22:00 +0530
-+Subject: [PATCH] wayland-drm: Add wayland-drm protocol to stable
++Date: Mon, 26 Feb 2018 09:50:41 +0530
++Subject: [PATCH 4/5] waylandsink: Add drm support in waylandsink
 +
-+wayland-drm protocol is missing in the protocols list since this
-+protocol is MESA specific. For waylandsink gstreamer support
-+wayland-drm protocol is needed.
++Waylandsink works out of shm memory. We have a DRM
++based memory allocator in place. Adding wl_drm support
++enables us to use DRM buffers without copy
++
++Following features are also added
++1) YUY2 and BGRA input format support
++2) Crop support
++3) Window resolution configuration support
++4) A property use-drm to command DRM buffer allocation
++   when propose_allocation is called
 +
 +Signed-off-by: Ramprasad N <x0038811@ti.com>
 +---
-+ stable/wayland-drm/wayland-drm.xml | 155 +++++++++++++++++++++++++++++++++++++
-+ 1 file changed, 155 insertions(+)
-+ create mode 100644 stable/wayland-drm/wayland-drm.xml
++ ext/wayland/Makefile.am      |  11 +++-
++ ext/wayland/gstwaylandsink.c |  90 +++++++++++++++++++++++++++++++--
++ ext/wayland/gstwaylandsink.h |   3 ++
++ ext/wayland/wldisplay.c      |  58 +++++++++++++++++++++-
++ ext/wayland/wldisplay.h      |   8 +++
++ ext/wayland/wldrm.c          | 116 +++++++++++++++++++++++++++++++++++++++++++
++ ext/wayland/wldrm.h          |  21 ++++++++
++ ext/wayland/wlwindow.c       |  56 +++++++++++++++++++--
++ 8 files changed, 351 insertions(+), 12 deletions(-)
++ create mode 100644 ext/wayland/wldrm.c
++ create mode 100644 ext/wayland/wldrm.h
 +
-+diff --git a/stable/wayland-drm/wayland-drm.xml b/stable/wayland-drm/wayland-drm.xml
++diff --git a/ext/wayland/Makefile.am b/ext/wayland/Makefile.am
++index 8442dbd..02fd83a 100644
++--- a/ext/wayland/Makefile.am
+++++ b/ext/wayland/Makefile.am
++@@ -4,11 +4,14 @@ BUILT_SOURCES = \
++ 	viewporter-protocol.c \
++ 	viewporter-client-protocol.h \
++ 	linux-dmabuf-unstable-v1-protocol.c \
++-	linux-dmabuf-unstable-v1-client-protocol.h
+++	linux-dmabuf-unstable-v1-client-protocol.h \
+++	wayland-drm-protocol.c \
+++	wayland-drm-client-protocol.h
++ 
++ libgstwaylandsink_la_SOURCES =  \
++ 	gstwaylandsink.c \
++ 	wlshmallocator.c \
+++	wldrm.c \
++ 	wlbuffer.c \
++ 	wldisplay.c \
++ 	wlwindow.c \
++@@ -17,18 +20,21 @@ libgstwaylandsink_la_SOURCES =  \
++ 
++ nodist_libgstwaylandsink_la_SOURCES = \
++ 	viewporter-protocol.c \
++-	linux-dmabuf-unstable-v1-protocol.c
+++	linux-dmabuf-unstable-v1-protocol.c \
+++	wayland-drm-protocol.c
++ 
++ libgstwaylandsink_la_CFLAGS = \
++ 	$(GST_PLUGINS_BAD_CFLAGS) \
++ 	$(GST_PLUGINS_BASE_CFLAGS) \
++ 	$(GST_CFLAGS) \
+++	$(DRM_CFLAGS) \
++ 	$(WAYLAND_CFLAGS)
++ libgstwaylandsink_la_LIBADD = \
++ 	$(top_builddir)/gst-libs/gst/wayland/libgstwayland-$(GST_API_VERSION).la \
++ 	$(GST_PLUGINS_BASE_LIBS) \
++ 	-lgstvideo-$(GST_API_VERSION) \
++ 	-lgstallocators-$(GST_API_VERSION) \
+++	$(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la \
++ 	$(WAYLAND_LIBS)
++ libgstwaylandsink_la_LDFLAGS = $(GST_PLUGIN_LDFLAGS)
++ libgstwaylandsink_la_LIBTOOLFLAGS = $(GST_PLUGIN_LIBTOOLFLAGS)
++@@ -36,6 +42,7 @@ libgstwaylandsink_la_LIBTOOLFLAGS = $(GST_PLUGIN_LIBTOOLFLAGS)
++ noinst_HEADERS = \
++ 	gstwaylandsink.h \
++ 	wlshmallocator.h \
+++	wldrm.h \
++ 	wlbuffer.h \
++ 	wldisplay.h \
++ 	wlwindow.h \
++diff --git a/ext/wayland/gstwaylandsink.c b/ext/wayland/gstwaylandsink.c
++index 46a710f..4d365f2 100644
++--- a/ext/wayland/gstwaylandsink.c
+++++ b/ext/wayland/gstwaylandsink.c
++@@ -46,6 +46,7 @@
++ #include "wlbuffer.h"
++ #include "wlshmallocator.h"
++ #include "wllinuxdmabuf.h"
+++#include "wldrm.h"
++ 
++ #include <gst/wayland/wayland.h>
++ #include <gst/video/videooverlay.h>
++@@ -61,7 +62,9 @@ enum
++ enum
++ {
++   PROP_0,
++-  PROP_DISPLAY
+++  PROP_DISPLAY,
+++  PROP_ALLOCATION,
+++  PROP_SCALE
++ };
++ 
++ GST_DEBUG_CATEGORY (gstwayland_debug);
++@@ -163,6 +166,18 @@ gst_wayland_sink_class_init (GstWaylandSinkClass * klass)
++       g_param_spec_string ("display", "Wayland Display name", "Wayland "
++           "display name to connect to, if not supplied via the GstContext",
++           NULL, G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
+++
+++  g_object_class_install_property (gobject_class, PROP_ALLOCATION,
+++      g_param_spec_boolean ("use-drm", "Wayland Allocation name", "Wayland "
+++          "Use DRM based memory for allocation",
+++          FALSE, G_PARAM_WRITABLE));
+++
+++  g_object_class_install_property (gobject_class, PROP_SCALE,
+++      g_param_spec_string ("window-resolution", "window resolution on display",
+++          "resolution of video widthxheight ",
+++          "NULL",
+++          G_PARAM_WRITABLE | G_PARAM_STATIC_STRINGS));
+++
++ }
++ 
++ static void
++@@ -170,6 +185,7 @@ gst_wayland_sink_init (GstWaylandSink * sink)
++ {
++   g_mutex_init (&sink->display_lock);
++   g_mutex_init (&sink->render_lock);
+++  sink->scale_width = sink->scale_height = 0;
++ }
++ 
++ static void
++@@ -195,6 +211,7 @@ gst_wayland_sink_set_property (GObject * object,
++     guint prop_id, const GValue * value, GParamSpec * pspec)
++ {
++   GstWaylandSink *sink = GST_WAYLAND_SINK (object);
+++  gchar *string = NULL, *end;
++ 
++   switch (prop_id) {
++     case PROP_DISPLAY:
++@@ -202,6 +219,24 @@ gst_wayland_sink_set_property (GObject * object,
++       sink->display_name = g_value_dup_string (value);
++       GST_OBJECT_UNLOCK (sink);
++       break;
+++   case PROP_ALLOCATION:
+++      GST_OBJECT_LOCK (sink);
+++      sink->use_drm = g_value_get_boolean (value);
+++      GST_OBJECT_UNLOCK (sink);
+++      break;
+++   case PROP_SCALE:
+++      GST_OBJECT_LOCK (sink);
+++      string = g_value_dup_string (value);
+++      sink->scale_width = g_ascii_strtoull (string, &end, 10);
+++      if (*end != 'x')
+++         sink->scale_width = 0 ;
+++
+++      sink->scale_height = g_ascii_strtoull (end+1, &end, 10);
+++      if(string)
+++          g_free(string);
+++      GST_OBJECT_UNLOCK (sink);
+++      break;
+++
++     default:
++       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
++       break;
++@@ -286,6 +321,10 @@ gst_wayland_sink_find_display (GstWaylandSink * sink)
++         /* if the application didn't set a display, let's create it ourselves */
++         GST_OBJECT_LOCK (sink);
++         sink->display = gst_wl_display_new (sink->display_name, &error);
+++	sink->display->use_drm = sink->use_drm;
+++        sink->display->scale_width = sink->scale_width;
+++        sink->display->scale_height = sink->scale_height;
+++
++         GST_OBJECT_UNLOCK (sink);
++ 
++         if (error) {
++@@ -460,8 +499,13 @@ gst_wayland_create_pool (GstWaylandSink * sink, GstCaps * caps)
++ 
++   structure = gst_buffer_pool_get_config (pool);
++   gst_buffer_pool_config_set_params (structure, caps, size, 2, 0);
++-  gst_buffer_pool_config_set_allocator (structure, gst_wl_shm_allocator_get (),
++-      NULL);
+++
+++  if(sink->display->use_drm)
+++      gst_buffer_pool_config_set_allocator (structure, gst_drm_allocator_get (),
+++	  NULL);
+++  else
+++      gst_buffer_pool_config_set_allocator (structure, gst_wl_shm_allocator_get (),
+++	  NULL);
++ 
++   if (!gst_buffer_pool_set_config (pool, structure)) {
++     g_object_unref (pool);
++@@ -471,17 +515,36 @@ gst_wayland_create_pool (GstWaylandSink * sink, GstCaps * caps)
++   return pool;
++ }
++ 
+++static void
+++wait_authentication (GstWaylandSink * sink)
+++{
+++  GST_DEBUG_OBJECT (sink, "Before wait aunthenticated value is %d : \n", sink->display->authenticated );
+++  while (!sink->display->authenticated) {
+++    GST_DEBUG_OBJECT (sink, "waiting for authentication");
+++    wl_display_roundtrip (sink->display->display);
+++  }
+++  GST_DEBUG_OBJECT (sink, "After wait aunthenticated value is %d : \n", sink->display->authenticated );
+++}
+++
++ static gboolean
++ gst_wayland_sink_set_caps (GstBaseSink * bsink, GstCaps * caps)
++ {
++   GstWaylandSink *sink;
++   gboolean use_dmabuf;
+++  gboolean use_drm = 0;
++   GstVideoFormat format;
+++  GstStructure *s;
++ 
++   sink = GST_WAYLAND_SINK (bsink);
++ 
++   GST_DEBUG_OBJECT (sink, "set caps %" GST_PTR_FORMAT, caps);
++ 
+++  wait_authentication (sink);
+++
+++  while (!sink->display->authenticated) {
+++    GST_DEBUG_OBJECT (sink, "not authenticated yet");
+++  }
+++
++   /* extract info from caps */
++   if (!gst_video_info_from_caps (&sink->video_info, caps))
++     goto invalid_format;
++@@ -489,6 +552,12 @@ gst_wayland_sink_set_caps (GstBaseSink * bsink, GstCaps * caps)
++   format = GST_VIDEO_INFO_FORMAT (&sink->video_info);
++   sink->video_info_changed = TRUE;
++ 
+++  s = gst_caps_get_structure (caps, 0);
+++  gst_structure_get_boolean (s, "drm_mem", &use_drm);
+++
+++  if(use_drm)
+++     sink->display->use_drm = TRUE;
+++
++   /* create a new pool for the new caps */
++   if (sink->pool)
++     gst_object_unref (sink->pool);
++@@ -497,6 +566,7 @@ gst_wayland_sink_set_caps (GstBaseSink * bsink, GstCaps * caps)
++   use_dmabuf = gst_caps_features_contains (gst_caps_get_features (caps, 0),
++       GST_CAPS_FEATURE_MEMORY_DMABUF);
++ 
+++
++   /* validate the format base on the memory type. */
++   if (use_dmabuf) {
++     if (!gst_wl_display_check_format_for_dmabuf (sink->display, format))
++@@ -531,6 +601,7 @@ gst_wayland_sink_propose_allocation (GstBaseSink * bsink, GstQuery * query)
++   GstBufferPool *pool = NULL;
++   gboolean need_pool;
++ 
+++
++   gst_query_parse_allocation (query, &caps, &need_pool);
++ 
++   if (need_pool)
++@@ -540,8 +611,11 @@ gst_wayland_sink_propose_allocation (GstBaseSink * bsink, GstQuery * query)
++     gst_query_add_allocation_pool (query, pool, sink->video_info.size, 2, 0);
++     g_object_unref (pool);
++   }
+++  if(sink->display->use_drm)
+++     gst_query_add_allocation_param (query, gst_drm_allocator_get (), NULL);
+++  else
+++     gst_query_add_allocation_param (query, gst_wl_shm_allocator_get (), NULL);
++ 
++-  gst_query_add_allocation_param (query, gst_wl_shm_allocator_get (), NULL);
++   gst_query_add_allocation_meta (query, GST_VIDEO_META_API_TYPE, NULL);
++ 
++   return TRUE;
++@@ -604,6 +678,9 @@ gst_wayland_sink_show_frame (GstVideoSink * vsink, GstBuffer * buffer)
++   g_mutex_lock (&sink->render_lock);
++ 
++   GST_LOG_OBJECT (sink, "render buffer %p", buffer);
+++  if (sink->display) {
+++     sink->display->crop = gst_buffer_get_video_crop_meta (buffer);
+++  }
++ 
++   if (G_UNLIKELY (!sink->window)) {
++     /* ask for window handle. Unlock render_lock while doing that because
++@@ -668,6 +745,11 @@ gst_wayland_sink_show_frame (GstVideoSink * vsink, GstBuffer * buffer)
++           &sink->video_info);
++   }
++ 
+++  if (gst_is_drm_memory (mem)) {
+++     wbuf = gst_wl_drm_memory_construct_wl_buffer (mem, sink->display,
+++         &sink->video_info);
+++  }
+++
++   if (!wbuf && gst_wl_display_check_format_for_shm (sink->display, format)) {
++     if (gst_is_fd_memory (mem)) {
++       wbuf = gst_wl_shm_memory_construct_wl_buffer (mem, sink->display,
++diff --git a/ext/wayland/gstwaylandsink.h b/ext/wayland/gstwaylandsink.h
++index 2704d00..ea655ae 100644
++--- a/ext/wayland/gstwaylandsink.h
+++++ b/ext/wayland/gstwaylandsink.h
++@@ -62,6 +62,9 @@ struct _GstWaylandSink
++   GstVideoInfo video_info;
++ 
++   gchar *display_name;
+++  gboolean use_drm;
+++  gint scale_width, scale_height;
+++
++ 
++   gboolean redraw_pending;
++   GMutex render_lock;
++diff --git a/ext/wayland/wldisplay.c b/ext/wayland/wldisplay.c
++index 39782bc..2ea4fe2 100644
++--- a/ext/wayland/wldisplay.c
+++++ b/ext/wayland/wldisplay.c
++@@ -25,7 +25,10 @@
++ #include "wldisplay.h"
++ #include "wlbuffer.h"
++ #include "wlvideoformat.h"
++-
+++#include "wayland-drm-client-protocol.h"
+++#include <fcntl.h>
+++#include <xf86drm.h>
+++#include <xf86drmMode.h>
++ #include <errno.h>
++ 
++ GST_DEBUG_CATEGORY_EXTERN (gstwayland_debug);
++@@ -46,9 +49,12 @@ static void
++ gst_wl_display_init (GstWlDisplay * self)
++ {
++   self->shm_formats = g_array_new (FALSE, FALSE, sizeof (uint32_t));
+++  self->drm_formats = g_array_new (FALSE, FALSE, sizeof (uint32_t));
++   self->dmabuf_formats = g_array_new (FALSE, FALSE, sizeof (uint32_t));
++   self->wl_fd_poll = gst_poll_new (TRUE);
++   self->buffers = g_hash_table_new (g_direct_hash, g_direct_equal);
+++  self->fd = -1;
+++  self->use_drm = FALSE;
++   g_mutex_init (&self->buffers_mutex);
++ }
++ 
++@@ -73,11 +79,15 @@ gst_wl_display_finalize (GObject * gobject)
++   g_hash_table_remove_all (self->buffers);
++ 
++   g_array_unref (self->shm_formats);
+++  g_array_unref (self->drm_formats);
++   g_array_unref (self->dmabuf_formats);
++   gst_poll_free (self->wl_fd_poll);
++   g_hash_table_unref (self->buffers);
++   g_mutex_clear (&self->buffers_mutex);
++ 
+++  if(self->fd != -1)
+++	close(self->fd);
+++
++   if (self->viewporter)
++     wp_viewporter_destroy (self->viewporter);
++ 
++@@ -87,6 +97,9 @@ gst_wl_display_finalize (GObject * gobject)
++   if (self->dmabuf)
++     zwp_linux_dmabuf_v1_destroy (self->dmabuf);
++ 
+++  if (self->drm)
+++    wl_drm_destroy (self->drm);
+++
++   if (self->shell)
++     wl_shell_destroy (self->shell);
++ 
++@@ -210,6 +223,45 @@ gst_wl_display_check_format_for_dmabuf (GstWlDisplay * display,
++ 
++   return FALSE;
++ }
+++/* For wl_drm_listener */
+++
+++static void
+++drm_handle_device (void *data, struct wl_drm *drm, const char *device)
+++{
+++  GstWlDisplay *d = data;
+++  drm_magic_t magic;
+++  d->fd = open (device, O_RDWR | O_CLOEXEC);
+++  if (d->fd == -1) {
+++    GST_ERROR ("could not open %s: %m", device);
+++    return;
+++  }
+++  drmGetMagic (d->fd, &magic);
+++  wl_drm_authenticate (d->drm, magic);
+++}
+++
+++static void
+++drm_handle_format (void *data, struct wl_drm *drm, uint32_t format)
+++{
+++  GstWlDisplay *self = data;
+++  g_array_append_val (self->drm_formats, format);
+++  GST_DEBUG ("got format: %" GST_FOURCC_FORMAT, GST_FOURCC_ARGS (format));
+++}
+++
+++static void
+++drm_handle_authenticated (void *data, struct wl_drm *drm)
+++{
+++  GstWlDisplay *d = data;
+++  GST_DEBUG ("authenticated");
+++  d->authenticated = 1;
+++  GST_DEBUG ("drm_handle_authenticated: d->authenticated: %d\n",d->authenticated);
+++}
+++
+++
+++static const struct wl_drm_listener drm_listener = {
+++  drm_handle_device,
+++  drm_handle_format,
+++  drm_handle_authenticated
+++};
++ 
++ static void
++ registry_handle_global (void *data, struct wl_registry *registry,
++@@ -228,6 +280,9 @@ registry_handle_global (void *data, struct wl_registry *registry,
++   } else if (g_strcmp0 (interface, "wl_shm") == 0) {
++     self->shm = wl_registry_bind (registry, id, &wl_shm_interface, 1);
++     wl_shm_add_listener (self->shm, &shm_listener, self);
+++  } else if (g_strcmp0 (interface, "wl_drm") == 0) {
+++    self->drm = wl_registry_bind (registry, id, &wl_drm_interface, 1);
+++    wl_drm_add_listener (self->drm, &drm_listener, self);
++   } else if (g_strcmp0 (interface, "wp_viewporter") == 0) {
++     self->viewporter =
++         wl_registry_bind (registry, id, &wp_viewporter_interface, 1);
++@@ -338,6 +393,7 @@ gst_wl_display_new_existing (struct wl_display * display,
++   VERIFY_INTERFACE_EXISTS (subcompositor, "wl_subcompositor");
++   VERIFY_INTERFACE_EXISTS (shell, "wl_shell");
++   VERIFY_INTERFACE_EXISTS (shm, "wl_shm");
+++  VERIFY_INTERFACE_EXISTS (drm, "wl_drm");
++ 
++ #undef VERIFY_INTERFACE_EXISTS
++ 
++diff --git a/ext/wayland/wldisplay.h b/ext/wayland/wldisplay.h
++index 7c89212..4ab7610 100644
++--- a/ext/wayland/wldisplay.h
+++++ b/ext/wayland/wldisplay.h
++@@ -53,10 +53,12 @@ struct _GstWlDisplay
++   struct wl_subcompositor *subcompositor;
++   struct wl_shell *shell;
++   struct wl_shm *shm;
+++  struct wl_drm *drm;
++   struct wp_viewporter *viewporter;
++   struct zwp_linux_dmabuf_v1 *dmabuf;
++   GArray *shm_formats;
++   GArray *dmabuf_formats;
+++  GArray *drm_formats;
++ 
++   /* private */
++   gboolean own_display;
++@@ -66,6 +68,12 @@ struct _GstWlDisplay
++   GMutex buffers_mutex;
++   GHashTable *buffers;
++   gboolean shutting_down;
+++
+++  int fd;
+++  int authenticated;
+++  gboolean use_drm;
+++  gint scale_width, scale_height;
+++  GstVideoCropMeta *crop;
++ };
++ 
++ struct _GstWlDisplayClass
++diff --git a/ext/wayland/wldrm.c b/ext/wayland/wldrm.c
 +new file mode 100644
-+index 0000000..265d4f8
++index 0000000..89d767c
 +--- /dev/null
-++++ b/stable/wayland-drm/wayland-drm.xml
-+@@ -0,0 +1,155 @@
-++<?xml version="1.0" encoding="UTF-8"?>
-++<protocol name="drm">
+++++ b/ext/wayland/wldrm.c
++@@ -0,0 +1,116 @@
+++#include "wldisplay.h"
+++#include <gst/drm/gstdrmallocator.h>
+++#include "wayland-drm-client-protocol.h"
+++#include <wayland-client.h>
 ++
-++  <copyright>
-++    Copyright © 2008-2011 Kristian Høgsberg
-++    Copyright © 2010-2011 Intel Corporation
+++GST_DEBUG_CATEGORY_EXTERN (gstwayland_debug);
+++#define GST_CAT_DEFAULT gstwayland_debug
 ++
-++    Permission to use, copy, modify, distribute, and sell this
-++    software and its documentation for any purpose is hereby granted
-++    without fee, provided that\n the above copyright notice appear in
-++    all copies and that both that copyright notice and this permission
-++    notice appear in supporting documentation, and that the name of
-++    the copyright holders not be used in advertising or publicity
-++    pertaining to distribution of the software without specific,
-++    written prior permission.  The copyright holders make no
-++    representations about the suitability of this software for any
-++    purpose.  It is provided "as is" without express or implied
-++    warranty.
 ++
-++    THE COPYRIGHT HOLDERS DISCLAIM ALL WARRANTIES WITH REGARD TO THIS
-++    SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
-++    FITNESS, IN NO EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY
-++    SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-++    WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN
-++    AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
-++    ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF
-++    THIS SOFTWARE.
-++  </copyright>
+++struct wl_buffer *
+++gst_wl_drm_memory_construct_wl_buffer (GstMemory * mem, GstWlDisplay * display,
+++    const GstVideoInfo * info)
+++{
+++  gint video_width = GST_VIDEO_INFO_WIDTH (info);
+++  gint video_height = GST_VIDEO_INFO_HEIGHT (info);
+++  GstVideoFormat format = GST_VIDEO_INFO_FORMAT (info);
+++  int fd = -1;
+++  struct wl_buffer *buffer;
+++  uint32_t fourcc;
+++  uint32_t bpp;
+++  uint32_t name;
+++  int singlePlane = 0;
+++  int ret;
+++  struct drm_prime_handle req1;
+++  struct drm_gem_flink req2;
+++  /* note: wayland and mesa use the terminology:
+++   *    stride - rowstride in bytes
+++   *    pitch  - rowstride in pixels
+++   */
+++  uint32_t strides[3] = {
+++    GST_ROUND_UP_4 (video_width), 0, 0,
+++  };
+++  uint32_t offsets[3] = {
+++    0, strides[0] * video_height, 0
+++  };
 ++
-++  <!-- drm support. This object is created by the server and published
-++       using the display's global event. -->
-++  <interface name="wl_drm" version="1">
-++    <enum name="error">
-++      <entry name="authenticate_fail" value="0"/>
-++      <entry name="invalid_format" value="1"/>
-++      <entry name="invalid_name" value="2"/>
-++    </enum>
+++  if (format == GST_VIDEO_FORMAT_NV12)
+++  {
+++    /* NV12 */
+++    fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+++    strides[1] = GST_ROUND_UP_4 (video_width);
+++  }
+++  else if(format == GST_VIDEO_FORMAT_I420)
+++  {
+++    /* YUV420 */
+++    fourcc = GST_MAKE_FOURCC ('Y', 'U', '1', '2');
+++    strides[1] = strides[2] = GST_ROUND_UP_4 (video_width/2);
+++    offsets[2] = offsets[1] + strides[1] * video_height/2;
+++  }
+++  else if(format == GST_VIDEO_FORMAT_BGRA)
+++  {
+++    singlePlane = 1;
+++    bpp = 4;
+++    fourcc = GST_MAKE_FOURCC ('A', 'R', '2', '4');
+++  }
+++  else if(format == GST_VIDEO_FORMAT_YUY2)
+++  {
+++    singlePlane = 1;
+++    bpp = 2;
+++    fourcc = GST_MAKE_FOURCC ('Y', 'U', 'Y', 'V');
+++  }
+++  else
+++  {
 ++
-++    <enum name="format">
-++      <!-- The drm format codes match the #defines in drm_fourcc.h.
-++           The formats actually supported by the compositor will be
-++           reported by the format event. -->
-++      <entry name="c8" value="0x20203843"/>
-++      <entry name="rgb332" value="0x38424752"/>
-++      <entry name="bgr233" value="0x38524742"/>
-++      <entry name="xrgb4444" value="0x32315258"/>
-++      <entry name="xbgr4444" value="0x32314258"/>
-++      <entry name="rgbx4444" value="0x32315852"/>
-++      <entry name="bgrx4444" value="0x32315842"/>
-++      <entry name="argb4444" value="0x32315241"/>
-++      <entry name="abgr4444" value="0x32314241"/>
-++      <entry name="rgba4444" value="0x32314152"/>
-++      <entry name="bgra4444" value="0x32314142"/>
-++      <entry name="xrgb1555" value="0x35315258"/>
-++      <entry name="xbgr1555" value="0x35314258"/>
-++      <entry name="rgbx5551" value="0x35315852"/>
-++      <entry name="bgrx5551" value="0x35315842"/>
-++      <entry name="argb1555" value="0x35315241"/>
-++      <entry name="abgr1555" value="0x35314241"/>
-++      <entry name="rgba5551" value="0x35314152"/>
-++      <entry name="bgra5551" value="0x35314142"/>
-++      <entry name="rgb565" value="0x36314752"/>
-++      <entry name="bgr565" value="0x36314742"/>
-++      <entry name="rgb888" value="0x34324752"/>
-++      <entry name="bgr888" value="0x34324742"/>
-++      <entry name="xrgb8888" value="0x34325258"/>
-++      <entry name="xbgr8888" value="0x34324258"/>
-++      <entry name="rgbx8888" value="0x34325852"/>
-++      <entry name="bgrx8888" value="0x34325842"/>
-++      <entry name="argb8888" value="0x34325241"/>
-++      <entry name="abgr8888" value="0x34324241"/>
-++      <entry name="rgba8888" value="0x34324152"/>
-++      <entry name="bgra8888" value="0x34324142"/>
-++      <entry name="xrgb2101010" value="0x30335258"/>
-++      <entry name="xbgr2101010" value="0x30334258"/>
-++      <entry name="rgbx1010102" value="0x30335852"/>
-++      <entry name="bgrx1010102" value="0x30335842"/>
-++      <entry name="argb2101010" value="0x30335241"/>
-++      <entry name="abgr2101010" value="0x30334241"/>
-++      <entry name="rgba1010102" value="0x30334152"/>
-++      <entry name="bgra1010102" value="0x30334142"/>
-++      <entry name="yuyv" value="0x56595559"/>
-++      <entry name="yvyu" value="0x55595659"/>
-++      <entry name="uyvy" value="0x59565955"/>
-++      <entry name="vyuy" value="0x59555956"/>
-++      <entry name="ayuv" value="0x56555941"/>
-++      <entry name="nv12" value="0x3231564e"/>
-++      <entry name="nv21" value="0x3132564e"/>
-++      <entry name="nv16" value="0x3631564e"/>
-++      <entry name="nv61" value="0x3136564e"/>
-++      <entry name="yuv410" value="0x39565559"/>
-++      <entry name="yvu410" value="0x39555659"/>
-++      <entry name="yuv411" value="0x31315559"/>
-++      <entry name="yvu411" value="0x31315659"/>
-++      <entry name="yuv420" value="0x32315559"/>
-++      <entry name="yvu420" value="0x32315659"/>
-++      <entry name="yuv422" value="0x36315559"/>
-++      <entry name="yvu422" value="0x36315659"/>
-++      <entry name="yuv444" value="0x34325559"/>
-++      <entry name="yvu444" value="0x34325659"/>
-++    </enum>
+++    GST_DEBUG ("Unsupported video format: %d", format);
+++    /*
+++     * There are two xRGB frames with width and height = 1 required in the begining of a video stream.
+++     * If we consider them as errot, then it will case libwayland-clent.so crashes
+++     * due to invalid error handling.
+++     * Consider them as NV12 until we can figure out a better solution
+++     */
+++    fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
+++    strides[1] = GST_ROUND_UP_4 (video_width);
+++  }
 ++
-++    <!-- Call this request with the magic received from drmGetMagic().
-++         It will be passed on to the drmAuthMagic() or
-++         DRIAuthConnection() call.  This authentication must be
-++         completed before create_buffer could be used. -->
-++    <request name="authenticate">
-++      <arg name="id" type="uint"/>
-++    </request>
+++  fd = gst_fd_memory_get_fd (mem);
 ++
-++    <!-- Create a wayland buffer for the named DRM buffer.  The DRM
-++         surface must have a name using the flink ioctl -->
-++    <request name="create_buffer">
-++      <arg name="id" type="new_id" interface="wl_buffer"/>
-++      <arg name="name" type="uint"/>
-++      <arg name="width" type="int"/>
-++      <arg name="height" type="int"/>
-++      <arg name="stride" type="uint"/>
-++      <arg name="format" type="uint"/>
-++    </request>
+++  if (fd < 0 ) {
+++    GST_DEBUG ("Invalid fd");
+++    return NULL;
+++  }
+++  req1.fd = fd,
 ++
-++    <!-- Create a wayland buffer for the named DRM buffer.  The DRM
-++         surface must have a name using the flink ioctl -->
-++    <request name="create_planar_buffer">
-++      <arg name="id" type="new_id" interface="wl_buffer"/>
-++      <arg name="name" type="uint"/>
-++      <arg name="width" type="int"/>
-++      <arg name="height" type="int"/>
-++      <arg name="format" type="uint"/>
-++      <arg name="offset0" type="int"/>
-++      <arg name="stride0" type="int"/>
-++      <arg name="offset1" type="int"/>
-++      <arg name="stride1" type="int"/>
-++      <arg name="offset2" type="int"/>
-++      <arg name="stride2" type="int"/>
-++    </request>
+++  ret = drmIoctl(display->fd, DRM_IOCTL_PRIME_FD_TO_HANDLE, &req1);
+++  if (ret) {
+++    GST_DEBUG ("could not get handle, DRM_IOCTL_PRIME_FD_TO_HANDLE returned %d", ret);
+++    return NULL;
+++  }
 ++
-++    <!-- Notification of the path of the drm device which is used by
-++         the server.  The client should use this device for creating
-++         local buffers.  Only buffers created from this device should
-++         be be passed to the server using this drm object's
-++         create_buffer request. -->
-++    <event name="device">
-++      <arg name="name" type="string"/>
-++    </event>
+++  req2.handle = req1.handle,
 ++
-++    <event name="format">
-++      <arg name="format" type="uint"/>
-++    </event>
+++  ret = drmIoctl(display->fd, DRM_IOCTL_GEM_FLINK, &req2);
+++  if (ret) {
+++    GST_DEBUG ("could not get name, DRM_IOCTL_GEM_FLINK returned %d", ret);
+++    return NULL;
+++  }
 ++
-++    <!-- Raised if the authenticate request succeeded -->
-++    <event name="authenticated"/>
-++  </interface>
+++  name = req2.name;
+++  GST_LOG ("width = %d , height = %d , fourcc = %d ",  video_width, video_height, fourcc );
 ++
-++</protocol>
+++  if(!singlePlane)
+++     buffer = wl_drm_create_planar_buffer (display->drm, name,
+++          video_width, video_height, fourcc,
+++          offsets[0], strides[0],
+++          offsets[1], strides[1],
+++          offsets[2], strides[2]);
+++  else
+++     buffer = wl_drm_create_buffer(display->drm, name, video_width, video_height,
+++			video_width * bpp, fourcc);
+++
+++  GST_DEBUG ("create planar buffer: %p (name=%d)",
+++      buffer, name);
+++
+++  return buffer;
+++}
+++
++diff --git a/ext/wayland/wldrm.h b/ext/wayland/wldrm.h
++new file mode 100644
++index 0000000..c6b4ae1
++--- /dev/null
+++++ b/ext/wayland/wldrm.h
++@@ -0,0 +1,21 @@
+++/*
+++ *******************************************************************************
+++ *
+++ * Copyright (C) 2017 Texas Instruments Incorporated - http://www.ti.com/
+++ * ALL RIGHTS RESERVED
+++ *
+++ *******************************************************************************
+++ */
+++#ifndef __GST_WL_DRM_H__
+++#define __GST_WL_DRM_H__
+++
+++#include <gst/drm/gstdrmallocator.h>
+++#include "wayland-drm-client-protocol.h"
+++#include <wayland-client.h>
+++
+++struct wl_buffer *
+++gst_wl_drm_memory_construct_wl_buffer (GstMemory * mem, GstWlDisplay * display,
+++    const GstVideoInfo * info);
+++
+++
+++#endif /* __GST_WL_DRM_H__ */
++diff --git a/ext/wayland/wlwindow.c b/ext/wayland/wlwindow.c
++index d08ed87..20ef8bb 100644
++--- a/ext/wayland/wlwindow.c
+++++ b/ext/wayland/wlwindow.c
++@@ -137,6 +137,16 @@ gst_wl_window_new_internal (GstWlDisplay * display, GMutex * render_lock)
++     window->video_viewport = wp_viewporter_get_viewport (display->viewporter,
++         window->video_surface);
++   }
+++  if (display->crop) {
+++    GST_DEBUG ("Setting source crop : %d %d %d %d",display->crop->x, display->crop->y,
+++                    display->crop->width, display->crop->height);
+++    wp_viewport_set_source (window->video_viewport,
+++                                        wl_fixed_from_int(display->crop->x),
+++                                        wl_fixed_from_int(display->crop->y),
+++                                        wl_fixed_from_int(display->crop->width),
+++                                        wl_fixed_from_int(display->crop->height));
+++
+++  }
++ 
++   /* do not accept input */
++   region = wl_compositor_create_region (display->compositor);
++@@ -228,6 +238,8 @@ gst_wl_window_resize_video_surface (GstWlWindow * window, gboolean commit)
++   GstVideoRectangle src = { 0, };
++   GstVideoRectangle dst = { 0, };
++   GstVideoRectangle res;
+++  gint scale_width = window->display->scale_width;
+++  gint scale_height = window->display->scale_height;
++ 
++   /* center the video_subsurface inside area_subsurface */
++   src.w = window->video_width;
++@@ -237,7 +249,25 @@ gst_wl_window_resize_video_surface (GstWlWindow * window, gboolean commit)
++ 
++   if (window->video_viewport) {
++     gst_video_sink_center_rect (src, dst, &res, TRUE);
+++
+++  if(scale_width > 0 && scale_height > 0)
+++  {
+++     res.x = 0;
+++     res.y = 0;
+++     res.w = scale_width;
+++     res.h = scale_height;
+++     if (window->display->crop) {
+++        window->display->crop->width = scale_width;
+++        window->display->crop->height = scale_height;
+++     }
+++  }
+++
+++  if (window->display->crop) {
+++    wp_viewport_set_destination (window->area_viewport, window->display->crop->width,  window->display->crop->height);
+++    wp_viewport_set_destination (window->video_viewport, window->display->crop->width,  window->display->crop->height);
+++  } else {
++     wp_viewport_set_destination (window->video_viewport, res.w, res.h);
+++   }
++   } else {
++     gst_video_sink_center_rect (src, dst, &res, FALSE);
++   }
++@@ -353,12 +383,20 @@ gst_wl_window_update_borders (GstWlWindow * window)
++ 
++   /* draw the area_subsurface */
++   gst_video_info_set_format (&info, format, width, height);
++-
++-  buf = gst_buffer_new_allocate (gst_wl_shm_allocator_get (), info.size, NULL);
+++  if(!window->display->use_drm)
+++      buf = gst_buffer_new_allocate (gst_wl_shm_allocator_get (), info.size, NULL);
+++  else
+++      buf = gst_buffer_new_allocate (gst_drm_allocator_get (), info.size, NULL);
++   gst_buffer_memset (buf, 0, 0, info.size);
++-  wlbuf =
++-      gst_wl_shm_memory_construct_wl_buffer (gst_buffer_peek_memory (buf, 0),
++-      window->display, &info);
+++
+++  if(!window->display->use_drm)
+++      wlbuf =
+++          gst_wl_shm_memory_construct_wl_buffer (gst_buffer_peek_memory (buf, 0),
+++          window->display, &info);
+++  else
+++      wlbuf =
+++          gst_wl_drm_memory_construct_wl_buffer (gst_buffer_peek_memory (buf, 0),
+++          window->display, &info);
++   gwlbuf = gst_buffer_add_wl_buffer (buf, wlbuf, window->display);
++   gst_wl_buffer_attach (gwlbuf, window->area_surface);
++ 
++@@ -371,8 +409,16 @@ void
++ gst_wl_window_set_render_rectangle (GstWlWindow * window, gint x, gint y,
++     gint w, gint h)
++ {
+++  gint scale_width = window->display->scale_width;
+++  gint scale_height = window->display->scale_height;
+++
++   g_return_if_fail (window != NULL);
++ 
+++  if(scale_width > 0 && scale_height > 0) {
+++    w = scale_width;
+++    h = scale_height;
+++   }
+++
++   window->render_rectangle.x = x;
++   window->render_rectangle.y = y;
++   window->render_rectangle.w = w;
 +-- 
 +1.9.1
 +
-diff --git a/meta-arago-extras/recipes-graphics/wayland/wayland-protocols_1.10.bbappend b/meta-arago-extras/recipes-graphics/wayland/wayland-protocols_1.10.bbappend
-new file mode 100644
-index 0000000..eba62d8
---- /dev/null
-+++ b/meta-arago-extras/recipes-graphics/wayland/wayland-protocols_1.10.bbappend
-@@ -0,0 +1,15 @@
-+PR_append = "_arago1"
-+
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+SRC_URI += " \
-+      file://0001-wayland-drm-Add-wayland-drm-protocol-to-stable.patch \
-+      "
-+
-+S = "${WORKDIR}/wayland-protocols-1.10"
-+
-+do_install_append() {
-+	install -d ${D}${datadir}/wayland-protocols/stable/wayland-drm
-+	cp ${S}/stable/wayland-drm/wayland-drm.xml ${D}${datadir}/wayland-protocols/stable/wayland-drm/
-+
-+}
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
+index f99b81d..af86859 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
+@@ -24,6 +24,7 @@ SRC_URI_append_ti43x = " \
+     file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
+     file://0002-parsers-bug-fixes-on-parsers.patch \
+     file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch \
++    file://0004-waylandsink-Add-drm-support-in-waylandsink.patch \
+ "
+ 
+ SRC_URI_append_ti33x = " \
+@@ -33,8 +34,9 @@ SRC_URI_append_omap-a15 = " \
+     file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
+     file://0002-parsers-bug-fixes-on-parsers.patch \
+     file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch \
++    file://0004-waylandsink-Add-drm-support-in-waylandsink.patch \
+ "
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+-PR = "r3"
++PR = "r4"
 -- 
 1.9.1
 
