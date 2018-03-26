@@ -1,44 +1,47 @@
-Return-Path: <denys@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 1E2175203A
+Return-Path: <x0038811@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 838FB5203A
 	for <meta-arago@arago-project.org>;
-	Mon, 26 Mar 2018 01:11:15 +0000 (UTC)
+	Mon, 26 Mar 2018 10:38:04 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2Q1BEUd011142
-	for <meta-arago@arago-project.org>; Sun, 25 Mar 2018 20:11:14 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2QAc33Z018147
+	for <meta-arago@arago-project.org>; Mon, 26 Mar 2018 05:38:03 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1522026674;
-	bh=2deHRMk6UnKs8msCAKcb9Qv1p1XGNn/kh91AT4zLFoQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=WmTMgM2jknrs6a3CJD3buD7n0KTb8UR8UtPCvyatpTQm+s9AKFXgOnvP3ezaXZm86
-	IYS+UU+/x0Exw47CjuATa/ykRftr5DWdZfg2SEBDb0FdF79HH1d2528uSRfzD6mrME
-	xe4HMfHOYwzDIdY0u8VYQwGFvMeBCnn3daqCPDS4=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2Q1BD7K005396
-	for <meta-arago@arago-project.org>; Sun, 25 Mar 2018 20:11:14 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1522060683;
+	bh=cHRZJQBC7natwR1Q+bqD49S2FKbHYeYvJFO0fs7p5Dc=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=jV3M1UpKnrZsIB+urZPVKfc/y4M6jS9DfDlxpahceOUU29rXIVeUnzzzYxg7DIgbz
+	JmPEjtsBfYM209rTjY6Veb7Npqbo2MuGM71TiGbWAkZEeuLaFKIYMrVfXYvGhg/6xE
+	oorqgFg2x14tla7LPJGX01ZdRgWmmRaYvX14JlFM=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2QAc39M023236
+	for <meta-arago@arago-project.org>; Mon, 26 Mar 2018 05:38:03 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Sun, 25 Mar 2018 20:11:13 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Sun, 25 Mar 2018 20:11:13 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2Q1BDq8003281;
-	Sun, 25 Mar 2018 20:11:13 -0500
-Date: Sun, 25 Mar 2018 21:11:12 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Ramprasad N <x0038811@ti.com>
-Message-ID: <20180326011112.GC20556@edge>
+	Mon, 26 Mar 2018 05:38:03 -0500
+Received: from DFLE106.ent.ti.com ([fe80::4dc:7374:f90c:1f12]) by
+	DFLE106.ent.ti.com ([fe80::4dc:7374:f90c:1f12%17]) with mapi id
+	15.01.1261.035; Mon, 26 Mar 2018 05:38:02 -0500
+From: "Prasad, Ram" <x0038811@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [rocko 1/9] gstreamer1.0*-bad: Clean up gstreamer
+	1.8 bad patches
+Thread-Index: AQHTwZM13wyaSXwLhEmuH2VnhNVkOaPiDqmAgABLLiA=
+Date: Mon, 26 Mar 2018 10:38:02 +0000
+Message-ID: <e10b8425c9b34a1fbaddfe27458fcc94@ti.com>
 References: <1521691605-49259-1-git-send-email-x0038811@ti.com>
-	<1521691605-49259-6-git-send-email-x0038811@ti.com>
+	<1521691605-49259-2-git-send-email-x0038811@ti.com>
+	<20180326010848.GA20556@edge>
+In-Reply-To: <20180326010848.GA20556@edge>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.24.145.223]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-In-Reply-To: <1521691605-49259-6-git-send-email-x0038811@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [rocko 5/9] gstreamer1.0*-bad: Enable kmssink with gst 1.12
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [rocko 1/9] gstreamer1.0*-bad: Clean up gstreamer 1.8 bad patches
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,228 +54,78 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2018 01:11:15 -0000
+X-List-Received-Date: Mon, 26 Mar 2018 10:38:05 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 22, 2018 at 09:36:41AM +0530, Ramprasad N wrote:
+Hi Denys,
+We internally discussed the option of overwriting the existing patches inst=
+ead of cleaning.
+But only two patches have rebase changes and rest all patches will not be a=
+pplicable on gst1.12
+hence we decided to clean all patches and create new patches.
+
+Thanks
+Ramprasad
+
+-----Original Message-----
+From: Dmytriyenko, Denys=20
+Sent: Monday, March 26, 2018 6:39 AM
+To: Prasad, Ram
+Cc: meta-arago@arago-project.org
+Subject: Re: [meta-arago] [rocko 1/9] gstreamer1.0*-bad: Clean up gstreamer=
+ 1.8 bad patches
+
+Are the new patches so much different that it doesn't make sense to just up=
+date them?
+
+
+On Thu, Mar 22, 2018 at 09:36:37AM +0530, Ramprasad N wrote:
+> Remove all gstreamer bad patches. New rebased patches will
+> be created instead of overwriting on the existing patches
+>=20
 > Signed-off-by: Ramprasad N <x0038811@ti.com>
 > ---
->  ...Add-omapdrm-in-the-list-of-driver-modules.patch | 165 +++++++++++++++++++++
->  .../gstreamer1.0-plugins-bad_1.12.2.bbappend       |   5 +-
->  2 files changed, 169 insertions(+), 1 deletion(-)
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
-> 
-> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
-> new file mode 100644
-> index 0000000..2e4965c
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
-> @@ -0,0 +1,165 @@
-> +From 4ef13bc433d218f2ebcbe2e9b7853d10d7b9acbc Mon Sep 17 00:00:00 2001
-> +From: Ramprasad N <x0038811@ti.com>
-> +Date: Tue, 6 Mar 2018 19:02:20 +0530
-> +Subject: [PATCH 3/5] kmssink: Add omapdrm in the list of driver modules
-> +
-> +In gstreamer-bad v1.12.2 kmssink plugin is available
-> +but omapdrm driver is not added in the list of driver
-> +module.
-> +
-> +DRM and DMABUF are treated differently by gstreamer
-> +eventhough they are based on fd allocator.
-> +GST1.12 has many changes to dmabuf allocator and
-> +hence DRM and DMABUF will be treated differently.
-> +
-> +Added support for DRM buffer importing. Without
-> +this addition, there will be frame-copy happens and
-> +slows down the playback.
-> +
-> +Signed-off-by: Ramprasad N <x0038811@ti.com>
-> +---
-> + sys/kms/Makefile.am  |   1 +
-> + sys/kms/gstkmssink.c | 101 ++++++++++++++++++++++++++++++++++++++++++++++++++-
-> + 2 files changed, 101 insertions(+), 1 deletion(-)
-> +
-> +diff --git a/sys/kms/Makefile.am b/sys/kms/Makefile.am
-> +index a97cad1..063f5ef 100644
-> +--- a/sys/kms/Makefile.am
-> ++++ b/sys/kms/Makefile.am
-> +@@ -23,6 +23,7 @@ libgstkms_la_LIBADD = 			\
-> + 	$(GST_ALLOCATORS_LIBS)			\
-> + 	$(GST_LIBS) 				\
-> + 	$(KMS_DRM_LIBS) 			\
-> ++	$(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la \
-> + 	$(NULL)
-> + 
-> + libgstkms_la_LDFLAGS = 			\
-> +diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
-> +index d19e19e..028bec6 100644
-> +--- a/sys/kms/gstkmssink.c
-> ++++ b/sys/kms/gstkmssink.c
-> +@@ -85,7 +85,8 @@ static int
-> + kms_open (gchar ** driver)
-> + {
-> +   static const char *drivers[] = { "i915", "radeon", "nouveau", "vmwgfx",
-> +-    "exynos", "amdgpu", "imx-drm", "rockchip", "atmel-hlcdc", "msm"
-> ++    "exynos", "amdgpu", "imx-drm", "rockchip", "atmel-hlcdc", "msm",
-> ++    "omapdrm"
-> +   };
-> +   int i, fd = -1;
-> + 
-> +@@ -1041,6 +1042,100 @@ set_cached_kmsmem (GstMemory * mem, GstMemory * kmsmem)
-> + }
-> + 
-> + static gboolean
-> ++gst_kms_sink_import_drmbuf (GstKMSSink * self, GstBuffer * inbuf,
-> ++    GstBuffer ** outbuf)
-> ++{
-> ++  gint prime_fds[GST_VIDEO_MAX_PLANES] = { 0, };
-> ++  GstVideoMeta *meta;
-> ++  guint i, n_mem, n_planes;
-> ++  GstKMSMemory *kmsmem;
-> ++  guint mems_idx[GST_VIDEO_MAX_PLANES];
-> ++  gsize mems_skip[GST_VIDEO_MAX_PLANES];
-> ++  GstMemory *mems[GST_VIDEO_MAX_PLANES];
-> ++
-> ++  if (!self->has_prime_import)
-> ++    return FALSE;
-> ++
-> ++  /* This will eliminate most non-dmabuf out there */
-> ++  if (!gst_is_drm_memory (gst_buffer_peek_memory (inbuf, 0)))
-> ++    return FALSE;
-> ++
-> ++  n_planes = GST_VIDEO_INFO_N_PLANES (&self->vinfo);
-> ++  n_mem = gst_buffer_n_memory (inbuf);
-> ++  meta = gst_buffer_get_video_meta (inbuf);
-> ++
-> ++  GST_TRACE_OBJECT (self, "Found a drmbuf with %u planes and %u memories",
-> ++      n_planes, n_mem);
-> ++
-> ++  /* We cannot have multiple dmabuf per plane */
-> ++  if (n_mem > n_planes)
-> ++    return FALSE;
-> ++  g_assert (n_planes != 0);
-> ++
-> ++  /* Update video info based on video meta */
-> ++  if (meta) {
-> ++    GST_VIDEO_INFO_WIDTH (&self->vinfo) = meta->width;
-> ++    GST_VIDEO_INFO_HEIGHT (&self->vinfo) = meta->height;
-> ++
-> ++    for (i = 0; i < meta->n_planes; i++) {
-> ++      GST_VIDEO_INFO_PLANE_OFFSET (&self->vinfo, i) = meta->offset[i];
-> ++      GST_VIDEO_INFO_PLANE_STRIDE (&self->vinfo, i) = meta->stride[i];
-> ++    }
-> ++  }
-> ++
-> ++  /* Find and validate all memories */
-> ++  for (i = 0; i < n_planes; i++) {
-> ++    guint length;
-> ++
-> ++    if (!gst_buffer_find_memory (inbuf,
-> ++            GST_VIDEO_INFO_PLANE_OFFSET (&self->vinfo, i), 1,
-> ++            &mems_idx[i], &length, &mems_skip[i]))
-> ++      return FALSE;
-> ++
-> ++    mems[i] = gst_buffer_peek_memory (inbuf, mems_idx[i]);
-> ++
-> ++    /* adjust for memory offset, in case data does not
-> ++     * start from byte 0 in the dmabuf fd */
-> ++    mems_skip[i] += mems[i]->offset;
-> ++
-> ++    /* And all memory found must be dmabuf */
-> ++    if (!gst_is_drm_memory (mems[i]))
-> ++      return FALSE;
-> ++  }
-> ++
-> ++  kmsmem = (GstKMSMemory *) get_cached_kmsmem (mems[0]);
-> ++  if (kmsmem) {
-> ++    GST_LOG_OBJECT (self, "found KMS mem %p in DMABuf mem %p with fb id = %d",
-> ++        kmsmem, mems[0], kmsmem->fb_id);
-> ++    goto wrap_mem;
-> ++  }
-> ++
-> ++  for (i = 0; i < n_planes; i++)
-> ++    prime_fds[i] = gst_fd_memory_get_fd (mems[i]);
-> ++
-> ++  GST_LOG_OBJECT (self, "found these prime ids: %d, %d, %d, %d", prime_fds[0],
-> ++      prime_fds[1], prime_fds[2], prime_fds[3]);
-> ++
-> ++  kmsmem = gst_kms_allocator_dmabuf_import (self->allocator, prime_fds,
-> ++      n_planes, mems_skip, &self->vinfo);
-> ++  if (!kmsmem)
-> ++    return FALSE;
-> ++
-> ++  GST_LOG_OBJECT (self, "setting KMS mem %p to DMABuf mem %p with fb id = %d",
-> ++      kmsmem, mems[0], kmsmem->fb_id);
-> ++  set_cached_kmsmem (mems[0], GST_MEMORY_CAST (kmsmem));
-> ++
-> ++wrap_mem:
-> ++  *outbuf = gst_buffer_new ();
-> ++  if (!*outbuf)
-> ++    return FALSE;
-> ++  gst_buffer_append_memory (*outbuf, gst_memory_ref (GST_MEMORY_CAST (kmsmem)));
-> ++  gst_buffer_add_parent_buffer_meta (*outbuf, inbuf);
-> ++  gst_buffer_copy_into (*outbuf, inbuf, GST_BUFFER_COPY_METADATA, 0, -1);
-> ++
-> ++  return TRUE;
-> ++}
-> ++static gboolean
-> + gst_kms_sink_import_dmabuf (GstKMSSink * self, GstBuffer * inbuf,
-> +     GstBuffer ** outbuf)
-> + {
-> +@@ -1151,6 +1246,10 @@ gst_kms_sink_get_input_buffer (GstKMSSink * self, GstBuffer * inbuf)
-> +     return gst_buffer_ref (inbuf);
-> + 
-> +   buf = NULL;
-> ++  if (gst_kms_sink_import_drmbuf (self, inbuf, &buf))
-> ++    return buf;
-> ++
-> ++  buf = NULL;
-> +   if (gst_kms_sink_import_dmabuf (self, inbuf, &buf))
-> +     return buf;
-> + 
-> +-- 
-> +1.9.1
-> +
-> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
-> index 437689f..f99b81d 100644
-> --- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
-> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
-> @@ -1,6 +1,7 @@
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->  
->  PACKAGECONFIG = "faad"
-> +PACKAGECONFIG = "kms"
-
-^^^ This doesn't look right...
-
-
->  # gstreamer is now also included on Keystone, be mindful of any Graphics dependencies
->  PACKAGECONFIG_append_omap-a15 = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
-> @@ -22,6 +23,7 @@ DEPENDS_append_ti33x = " \
->  SRC_URI_append_ti43x = " \
->      file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
->      file://0002-parsers-bug-fixes-on-parsers.patch \
-> +    file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch \
->  "
->  
->  SRC_URI_append_ti33x = " \
-> @@ -30,8 +32,9 @@ SRC_URI_append_ti33x = " \
->  SRC_URI_append_omap-a15 = " \
->      file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
->      file://0002-parsers-bug-fixes-on-parsers.patch \
-> +    file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch \
->  "
->  
->  PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
-> -PR = "r2"
-> +PR = "r3"
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+>  ...-mouse-movement-for-videos-on-waylandsink.patch |  404 -----
+>  ...gstdrmallocator-Add-DRM-allocator-support.patch |  482 ------
+>  ...ylandsink-Add-mouse-drag-and-drop-support.patch |  408 -----
+>  ...waylandsink-add-input-format-I420-support.patch |   89 -
+>  .../0002-kmssink-remove-DCE-dependencies.patch     |   96 --
+>  ...ck-previos-bug-fixes-on-different-parsers.patch |  146 --
+>  ...gstkmssink-Add-support-for-KMS-based-sink.patch | 1592 --------------=
+----
+>  .../0003-kmssink-add-YUYV-support.patch            |   81 -
+>  ...aylandsink-Add-DRM-support-on-waylandsink.patch | 1728 --------------=
+------
+>  ...ink-Implement-callbacks-for-version-5-of-.patch |   65 -
+>  ...aylandsink-Fix-scale-up-with-padded-video.patch |   39 -
+>  11 files changed, 5130 deletions(-)
+>  delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
+mer1.0-plugins-bad/0001-Enable-mouse-movement-for-videos-on-waylandsink.pat=
+ch
+>  delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
+mer1.0-plugins-bad/0001-gstdrmallocator-Add-DRM-allocator-support.patch
+>  delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
+mer1.0-plugins-bad/0001-gstwaylandsink-Add-mouse-drag-and-drop-support.patc=
+h
+>  delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
+mer1.0-plugins-bad/0001-gstwaylandsink-add-input-format-I420-support.patch
+>  delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
+mer1.0-plugins-bad/0002-kmssink-remove-DCE-dependencies.patch
+>  delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
+mer1.0-plugins-bad/0002-parsers-Pick-previos-bug-fixes-on-different-parsers=
+.patch
+>  delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
+mer1.0-plugins-bad/0003-gstkmssink-Add-support-for-KMS-based-sink.patch
+>  delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
+mer1.0-plugins-bad/0003-kmssink-add-YUYV-support.patch
+>  delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
+mer1.0-plugins-bad/0004-gstwaylandsink-Add-DRM-support-on-waylandsink.patch
+>  delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
+mer1.0-plugins-bad/0005-gstwaylandsink-Implement-callbacks-for-version-5-of=
+-.patch
+>  delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
+mer1.0-plugins-bad/0006-gstwaylandsink-Fix-scale-up-with-padded-video.patch
+>=20
 
