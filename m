@@ -1,44 +1,44 @@
 Return-Path: <denys@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 99ACA5203A
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 1E2175203A
 	for <meta-arago@arago-project.org>;
-	Mon, 26 Mar 2018 01:10:12 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2Q1ABOw018881
-	for <meta-arago@arago-project.org>; Sun, 25 Mar 2018 20:10:11 -0500
+	Mon, 26 Mar 2018 01:11:15 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2Q1BEUd011142
+	for <meta-arago@arago-project.org>; Sun, 25 Mar 2018 20:11:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1522026611;
-	bh=5KU5xNEAAPKoGCrMAsWfIGigh96M/phWeKiA3jDvjaw=;
+	s=ti-com-17Q1; t=1522026674;
+	bh=2deHRMk6UnKs8msCAKcb9Qv1p1XGNn/kh91AT4zLFoQ=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=ZLrtVnwgf9LJ7t0AGaZbwgrczwHqd5MOogRNsYl4pE6ZC4gKqIFWiou3eRCMNu39X
-	xw5tzQ+zrS8uaxUbtAFLiZODrq9p9OMr7h8G5kTQ2h9xN+hvbOAiH0XsNAj5TsKUCF
-	Ni23BJB/jj4pvmcz3xhislDpUb4Yy2oNA8/0JEnY=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2Q1ABs9009695
-	for <meta-arago@arago-project.org>; Sun, 25 Mar 2018 20:10:11 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	b=WmTMgM2jknrs6a3CJD3buD7n0KTb8UR8UtPCvyatpTQm+s9AKFXgOnvP3ezaXZm86
+	IYS+UU+/x0Exw47CjuATa/ykRftr5DWdZfg2SEBDb0FdF79HH1d2528uSRfzD6mrME
+	xe4HMfHOYwzDIdY0u8VYQwGFvMeBCnn3daqCPDS4=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2Q1BD7K005396
+	for <meta-arago@arago-project.org>; Sun, 25 Mar 2018 20:11:14 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Sun, 25 Mar 2018 20:10:11 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_0,
+	Sun, 25 Mar 2018 20:11:13 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Sun, 25 Mar 2018 20:10:11 -0500
+	Transport; Sun, 25 Mar 2018 20:11:13 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2Q1ABMi015183;
-	Sun, 25 Mar 2018 20:10:11 -0500
-Date: Sun, 25 Mar 2018 21:10:10 -0400
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2Q1BDq8003281;
+	Sun, 25 Mar 2018 20:11:13 -0500
+Date: Sun, 25 Mar 2018 21:11:12 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: Ramprasad N <x0038811@ti.com>
-Message-ID: <20180326011010.GB20556@edge>
+Message-ID: <20180326011112.GC20556@edge>
 References: <1521691605-49259-1-git-send-email-x0038811@ti.com>
-	<1521691605-49259-4-git-send-email-x0038811@ti.com>
+	<1521691605-49259-6-git-send-email-x0038811@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1521691605-49259-4-git-send-email-x0038811@ti.com>
+In-Reply-To: <1521691605-49259-6-git-send-email-x0038811@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: Re: [rocko 3/9] gstreamer1.0*-bad: Add drmallocator support
+Subject: Re: [rocko 5/9] gstreamer1.0*-bad: Enable kmssink with gst 1.12
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,551 +51,223 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Mar 2018 01:10:12 -0000
+X-List-Received-Date: Mon, 26 Mar 2018 01:11:15 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Thu, Mar 22, 2018 at 09:36:39AM +0530, Ramprasad N wrote:
+On Thu, Mar 22, 2018 at 09:36:41AM +0530, Ramprasad N wrote:
 > Signed-off-by: Ramprasad N <x0038811@ti.com>
 > ---
->  ...gstdrmallocator-Add-DRM-allocator-support.patch | 480 +++++++++++++++++++++
->  .../gstreamer1.0-plugins-bad_1.12.2.bbappend       |  35 ++
->  2 files changed, 515 insertions(+)
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrmallocator-Add-DRM-allocator-support.patch
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
+>  ...Add-omapdrm-in-the-list-of-driver-modules.patch | 165 +++++++++++++++++++++
+>  .../gstreamer1.0-plugins-bad_1.12.2.bbappend       |   5 +-
+>  2 files changed, 169 insertions(+), 1 deletion(-)
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
 > 
-> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrmallocator-Add-DRM-allocator-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrmallocator-Add-DRM-allocator-support.patch
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
 > new file mode 100644
-> index 0000000..efd8cd0
+> index 0000000..2e4965c
 > --- /dev/null
-> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrmallocator-Add-DRM-allocator-support.patch
-> @@ -0,0 +1,480 @@
-> +From b425588c6ab12b1728f05f6f32071636661110bb Mon Sep 17 00:00:00 2001
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
+> @@ -0,0 +1,165 @@
+> +From 4ef13bc433d218f2ebcbe2e9b7853d10d7b9acbc Mon Sep 17 00:00:00 2001
 > +From: Ramprasad N <x0038811@ti.com>
-> +Date: Thu, 18 Jan 2018 16:49:11 +0530
-> +Subject: [PATCH 1/5] gstdrmallocator: Add DRM allocator support
+> +Date: Tue, 6 Mar 2018 19:02:20 +0530
+> +Subject: [PATCH 3/5] kmssink: Add omapdrm in the list of driver modules
 > +
-> +Add DRM based allocator support.
+> +In gstreamer-bad v1.12.2 kmssink plugin is available
+> +but omapdrm driver is not added in the list of driver
+> +module.
 > +
-> +The following changes are included :
-> +1. Use DRM dumb buffers and associated APIs for
-> +dmabuf allocation.
-> +2. Have DRM device fd a member of allocator object
-> +3. Allocate GstMemory objects with mem_type as 'dmabuf'
+> +DRM and DMABUF are treated differently by gstreamer
+> +eventhough they are based on fd allocator.
+> +GST1.12 has many changes to dmabuf allocator and
+> +hence DRM and DMABUF will be treated differently.
 > +
-> +Signed-off-by: Pooja Prajod <a0132412@ti.com>
+> +Added support for DRM buffer importing. Without
+> +this addition, there will be frame-copy happens and
+> +slows down the playback.
+> +
 > +Signed-off-by: Ramprasad N <x0038811@ti.com>
 > +---
-> + configure.ac                              |   5 +
-> + gst-libs/gst/Makefile.am                  |   4 +-
-> + gst-libs/gst/drm/Makefile.am              |  33 +++++
-> + gst-libs/gst/drm/gstdrmallocator.c        | 206 ++++++++++++++++++++++++++++++
-> + gst-libs/gst/drm/gstdrmallocator.h        |  77 +++++++++++
-> + pkgconfig/Makefile.am                     |   3 +
-> + pkgconfig/gstreamer-drm-uninstalled.pc.in |  11 ++
-> + pkgconfig/gstreamer-drm.pc.in             |  12 ++
-> + 8 files changed, 349 insertions(+), 2 deletions(-)
-> + create mode 100644 gst-libs/gst/drm/Makefile.am
-> + create mode 100644 gst-libs/gst/drm/gstdrmallocator.c
-> + create mode 100644 gst-libs/gst/drm/gstdrmallocator.h
-> + create mode 100644 pkgconfig/gstreamer-drm-uninstalled.pc.in
-> + create mode 100644 pkgconfig/gstreamer-drm.pc.in
+> + sys/kms/Makefile.am  |   1 +
+> + sys/kms/gstkmssink.c | 101 ++++++++++++++++++++++++++++++++++++++++++++++++++-
+> + 2 files changed, 101 insertions(+), 1 deletion(-)
 > +
-> +diff --git a/configure.ac b/configure.ac
-> +index 30e26b8..9310114 100644
-> +--- a/configure.ac
-> ++++ b/configure.ac
-> +@@ -611,6 +611,8 @@ if test x$with_egl_module_name != x; then
-> +   AC_DEFINE_UNQUOTED(GST_GL_LIBEGL_MODULE_NAME, "$with_egl_module_name", [EGL module name])
-> + fi
+> +diff --git a/sys/kms/Makefile.am b/sys/kms/Makefile.am
+> +index a97cad1..063f5ef 100644
+> +--- a/sys/kms/Makefile.am
+> ++++ b/sys/kms/Makefile.am
+> +@@ -23,6 +23,7 @@ libgstkms_la_LIBADD = 			\
+> + 	$(GST_ALLOCATORS_LIBS)			\
+> + 	$(GST_LIBS) 				\
+> + 	$(KMS_DRM_LIBS) 			\
+> ++	$(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la \
+> + 	$(NULL)
 > + 
-> ++PKG_CHECK_MODULES([DRM], [libdrm libdrm_omap], HAVE_KMS=yes, HAVE_KMS=no)
-> ++
-> + AC_ARG_ENABLE([wgl],
-> +      [  --enable-wgl            Enable WGL support @<:@default=auto@:>@],
-> +      [case "${enableval}" in
-> +@@ -3576,6 +3578,7 @@ gst-libs/Makefile
-> + gst-libs/gst/Makefile
-> + gst-libs/gst/adaptivedemux/Makefile
-> + gst-libs/gst/basecamerabinsrc/Makefile
-> ++gst-libs/gst/drm/Makefile
-> + gst-libs/gst/gl/Makefile
-> + gst-libs/gst/gl/android/Makefile
-> + gst-libs/gst/gl/cocoa/Makefile
-> +@@ -3733,6 +3736,8 @@ pkgconfig/gstreamer-plugins-bad.pc
-> + pkgconfig/gstreamer-plugins-bad-uninstalled.pc
-> + pkgconfig/gstreamer-codecparsers.pc
-> + pkgconfig/gstreamer-codecparsers-uninstalled.pc
-> ++pkgconfig/gstreamer-drm.pc
-> ++pkgconfig/gstreamer-drm-uninstalled.pc
-> + pkgconfig/gstreamer-insertbin.pc
-> + pkgconfig/gstreamer-insertbin-uninstalled.pc
-> + pkgconfig/gstreamer-gl.pc
-> +diff --git a/gst-libs/gst/Makefile.am b/gst-libs/gst/Makefile.am
-> +index 338f708..b7a9007 100644
-> +--- a/gst-libs/gst/Makefile.am
-> ++++ b/gst-libs/gst/Makefile.am
-> +@@ -15,12 +15,12 @@ OPENCV_DIR=opencv
-> + endif
+> + libgstkms_la_LDFLAGS = 			\
+> +diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
+> +index d19e19e..028bec6 100644
+> +--- a/sys/kms/gstkmssink.c
+> ++++ b/sys/kms/gstkmssink.c
+> +@@ -85,7 +85,8 @@ static int
+> + kms_open (gchar ** driver)
+> + {
+> +   static const char *drivers[] = { "i915", "radeon", "nouveau", "vmwgfx",
+> +-    "exynos", "amdgpu", "imx-drm", "rockchip", "atmel-hlcdc", "msm"
+> ++    "exynos", "amdgpu", "imx-drm", "rockchip", "atmel-hlcdc", "msm",
+> ++    "omapdrm"
+> +   };
+> +   int i, fd = -1;
 > + 
-> + SUBDIRS = uridownloader adaptivedemux interfaces basecamerabinsrc codecparsers \
-> +-	 insertbin mpegts base video audio player allocators $(GL_DIR) $(WAYLAND_DIR) \
-> ++	 insertbin mpegts base video audio player allocators drm $(GL_DIR) $(WAYLAND_DIR) \
-> + 	 $(OPENCV_DIR)
+> +@@ -1041,6 +1042,100 @@ set_cached_kmsmem (GstMemory * mem, GstMemory * kmsmem)
+> + }
 > + 
-> + noinst_HEADERS = gst-i18n-plugin.h gettext.h glib-compat-private.h
-> + DIST_SUBDIRS = uridownloader adaptivedemux interfaces gl basecamerabinsrc \
-> +-	codecparsers insertbin mpegts wayland opencv base video audio player allocators
-> ++	codecparsers insertbin mpegts wayland opencv base video audio player allocators drm
-> + 
-> + #dependencies
-> + video, audio: base
-> +diff --git a/gst-libs/gst/drm/Makefile.am b/gst-libs/gst/drm/Makefile.am
-> +new file mode 100644
-> +index 0000000..9a45dfb
-> +--- /dev/null
-> ++++ b/gst-libs/gst/drm/Makefile.am
-> +@@ -0,0 +1,33 @@
-> ++lib_LTLIBRARIES = libgstdrm-@GST_API_VERSION@.la
-> ++
-> ++CLEANFILES = $(BUILT_SOURCES)
-> ++
-> ++libgstdrm_@GST_API_VERSION@_la_SOURCES = \
-> ++	gstdrmallocator.c 
-> ++
-> ++libgstdrm_@GST_API_VERSION@includedir = \
-> ++	$(includedir)/gstreamer-@GST_API_VERSION@/gst/drm
-> ++
-> ++libgstdrm_@GST_API_VERSION@include_HEADERS = \
-> ++	gstdrmallocator.h 
-> ++
-> ++libgstdrm_@GST_API_VERSION@_la_CFLAGS = \
-> ++	$(DRM_CFLAGS) \
-> ++	$(OMAPDRM_CFLAGS) \
-> ++	$(GST_PLUGINS_BAD_CFLAGS) \
-> ++	$(GST_PLUGINS_BASE_CFLAGS) \
-> ++	-DGST_USE_UNSTABLE_API \
-> ++	$(GST_CFLAGS)
-> ++
-> ++libgstdrm_@GST_API_VERSION@_la_LIBADD = \
-> ++	$(DRM_LIBS) \
-> ++	$(GST_PLUGINS_BASE_LIBS) \
-> ++	$(GST_BASE_LIBS) \
-> ++        -lgstallocators-$(GST_API_VERSION) \
-> ++	$(GST_LIBS) 
-> ++
-> ++libgstdrm_@GST_API_VERSION@_la_LDFLAGS = \
-> ++	$(DRM_LDFLAGS) \
-> ++	$(GST_LIB_LDFLAGS) \
-> ++	$(GST_ALL_LDFLAGS) \
-> ++	$(GST_LT_LDFLAGS)
-> +diff --git a/gst-libs/gst/drm/gstdrmallocator.c b/gst-libs/gst/drm/gstdrmallocator.c
-> +new file mode 100644
-> +index 0000000..b557ad2
-> +--- /dev/null
-> ++++ b/gst-libs/gst/drm/gstdrmallocator.c
-> +@@ -0,0 +1,206 @@
-> ++/*
-> ++ * GStreamer
-> ++ *
-> ++ * Copyright (C) 2012 Texas Instruments
-> ++ *
-> ++ * Authors:
-> ++ *  Pooja Prajod <poojaprajod@ti.com>
-> ++ *
-> ++ * This library is free software; you can redistribute it and/or
-> ++ * modify it under the terms of the GNU Lesser General Public
-> ++ * License as published by the Free Software Foundation
-> ++ * version 2.1 of the License.
-> ++ *
-> ++ * This library is distributed in the hope that it will be useful,
-> ++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-> ++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-> ++ * Lesser General Public License for more details.
-> ++ *
-> ++ * You should have received a copy of the GNU Lesser General Public
-> ++ * License along with this library; if not, write to the Free Software
-> ++ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-> ++ */
-> ++
-> ++/**
-> ++ * SECTION:GstDRMAllocator
-> ++ * @short_description: GStreamer DRM allocator support
-> ++ *
-> ++ * Since: 1.6.3
-> ++ */
-> ++
-> ++
-> ++#include "gstdrmallocator.h"
-> ++#include <stdio.h>
-> ++#include <stdlib.h>
-> ++#include <string.h>
-> ++#include <errno.h>
-> ++#include <unistd.h>
-> ++#include <sys/mman.h>
-> ++#include <sys/types.h>
-> ++
-> ++#define INVALID_DRM_FD (-1)
-> ++
-> ++GST_DEBUG_CATEGORY (drmallocator_debug);
-> ++#define GST_CAT_DEFAULT drmallocator_debug
-> ++
-> ++#define gst_drm_allocator_parent_class parent_class
-> ++G_DEFINE_TYPE (GstDRMAllocator, gst_drm_allocator, GST_TYPE_FD_ALLOCATOR);
-> ++
-> ++static GstMemory *
-> ++gst_drm_allocator_alloc (GstAllocator * allocator, gsize size,
-> ++    GstAllocationParams * params)
+> + static gboolean
+> ++gst_kms_sink_import_drmbuf (GstKMSSink * self, GstBuffer * inbuf,
+> ++    GstBuffer ** outbuf)
 > ++{
-> ++  GstDRMAllocator *self = GST_DRM_ALLOCATOR (allocator);
-> ++  int fd = -1;
-> ++  int DrmDeviceFD = self->DrmDeviceFD;
-> ++  GstMemory *mem;
-> ++  /* Variable for DRM Dumb Buffers */
+> ++  gint prime_fds[GST_VIDEO_MAX_PLANES] = { 0, };
+> ++  GstVideoMeta *meta;
+> ++  guint i, n_mem, n_planes;
+> ++  GstKMSMemory *kmsmem;
+> ++  guint mems_idx[GST_VIDEO_MAX_PLANES];
+> ++  gsize mems_skip[GST_VIDEO_MAX_PLANES];
+> ++  GstMemory *mems[GST_VIDEO_MAX_PLANES];
 > ++
-> ++  struct drm_mode_create_dumb creq;
-> ++  struct drm_mode_destroy_dumb dreq;
-> ++  int ret ;
-> ++  
-> ++  GST_LOG_OBJECT (self, "DRM Memory alloc");  
-> ++  
-> ++  memset(&creq, 0, sizeof(struct drm_mode_create_dumb));
-> ++  /* 
-> ++   We have only total size as argument to _allocator_alloc.
-> ++   Since the DDR storage is linear, it is as good as saying
-> ++   the buffer is of width = size and height = 1
-> ++  */
-> ++  creq.width = size;
-> ++  creq.height = 1;
-> ++  creq.bpp = 8;
+> ++  if (!self->has_prime_import)
+> ++    return FALSE;
 > ++
-> ++  /* Create a DRM dumb buffer */
-> ++  ret = drmIoctl (DrmDeviceFD, DRM_IOCTL_MODE_CREATE_DUMB, &creq);
-> ++  if (ret < 0) {
-> ++    GST_ERROR_OBJECT (self, "Create DRM dumb buffer failed");
-> ++    return NULL;
-> ++  }
-> ++  /* Get a dmabuf fd from the dumb buffer handle */
-> ++  drmPrimeHandleToFD (DrmDeviceFD, creq.handle, DRM_CLOEXEC | O_RDWR, &fd);
+> ++  /* This will eliminate most non-dmabuf out there */
+> ++  if (!gst_is_drm_memory (gst_buffer_peek_memory (inbuf, 0)))
+> ++    return FALSE;
 > ++
-> ++  if (fd < 0) {
-> ++    GST_ERROR_OBJECT (self, "Invalid fd returned: %d", fd);
-> ++    goto fail;
-> ++  }
+> ++  n_planes = GST_VIDEO_INFO_N_PLANES (&self->vinfo);
+> ++  n_mem = gst_buffer_n_memory (inbuf);
+> ++  meta = gst_buffer_get_video_meta (inbuf);
 > ++
-> ++  /* Get a dmabuf gstmemory with the fd */
-> ++  mem = gst_fd_allocator_alloc (allocator, fd, size, 0);  
+> ++  GST_TRACE_OBJECT (self, "Found a drmbuf with %u planes and %u memories",
+> ++      n_planes, n_mem);
 > ++
-> ++  if (G_UNLIKELY (!mem)) {
-> ++    GST_ERROR_OBJECT (self, "GstDmaBufMemory allocation failed");
-> ++    close (fd);
-> ++    goto fail;
-> ++  }
+> ++  /* We cannot have multiple dmabuf per plane */
+> ++  if (n_mem > n_planes)
+> ++    return FALSE;
+> ++  g_assert (n_planes != 0);
 > ++
-> ++  return mem;
+> ++  /* Update video info based on video meta */
+> ++  if (meta) {
+> ++    GST_VIDEO_INFO_WIDTH (&self->vinfo) = meta->width;
+> ++    GST_VIDEO_INFO_HEIGHT (&self->vinfo) = meta->height;
 > ++
-> ++  fail:
-> ++    memset(&dreq, 0, sizeof(struct drm_mode_destroy_dumb));
-> ++    dreq.handle = creq.handle;
-> ++    drmIoctl (DrmDeviceFD, DRM_IOCTL_MODE_DESTROY_DUMB, &dreq);
-> ++    return NULL;
-> ++}
-> ++
-> ++static void
-> ++gst_drm_allocator_free (GstAllocator * allocator, GstMemory * mem)
-> ++{
-> ++  GstDRMAllocator *self = GST_DRM_ALLOCATOR (allocator);
-> ++  uint32_t handle = 0;
-> ++  int DrmDeviceFD = self->DrmDeviceFD;
-> ++  int fd = -1;
-> ++
-> ++  GST_LOG_OBJECT (self, "DRM Memory free");
-> ++
-> ++  g_return_if_fail (GST_IS_ALLOCATOR (allocator));
-> ++  g_return_if_fail (mem != NULL);
-> ++  g_return_if_fail (gst_is_drm_memory (mem));
-> ++
-> ++  fd = gst_fd_memory_get_fd (mem);
-> ++  drmPrimeFDToHandle(DrmDeviceFD, fd, &handle);    
-> ++
-> ++  /* Incase there are some mapped memory, we unmap and ready it to be cleaned*/
-> ++  GST_ALLOCATOR_CLASS (parent_class)->free (allocator, mem);
-> ++
-> ++  if (handle) {
-> ++    struct drm_mode_destroy_dumb dreq;
-> ++    memset(&dreq, 0, sizeof(struct drm_mode_destroy_dumb));
-> ++    dreq.handle = handle;
-> ++    drmIoctl (DrmDeviceFD, DRM_IOCTL_MODE_DESTROY_DUMB, &dreq);
-> ++  }
-> ++  
-> ++  close (fd);
-> ++}
-> ++
-> ++static void
-> ++gst_drm_allocator_finalize (GObject * obj)
-> ++{
-> ++  GstDRMAllocator *self = GST_DRM_ALLOCATOR (obj);
-> ++  GST_LOG_OBJECT (obj, "DRM Allocator finalize");
-> ++
-> ++  close (self->DrmDeviceFD);
-> ++  self->DrmDeviceFD = INVALID_DRM_FD;
-> ++
-> ++  G_OBJECT_CLASS (parent_class)->finalize (obj);
-> ++}
-> ++
-> ++static void
-> ++gst_drm_allocator_class_init (GstDRMAllocatorClass * klass)
-> ++{
-> ++  GstAllocatorClass *drm_alloc = (GstAllocatorClass *) klass;
-> ++
-> ++  drm_alloc->alloc = GST_DEBUG_FUNCPTR (gst_drm_allocator_alloc);
-> ++  drm_alloc->free = GST_DEBUG_FUNCPTR (gst_drm_allocator_free);
-> ++  GST_DEBUG_CATEGORY_INIT (drmallocator_debug, "drmallocator", 0,
-> ++    "GstDRMAllocator debug");
-> ++
-> ++}
-> ++
-> ++static void
-> ++gst_drm_allocator_init (GstDRMAllocator * self)
-> ++{
-> ++  GstAllocator *alloc = GST_ALLOCATOR_CAST (self);
-> ++  GObjectClass *object_class = G_OBJECT_CLASS (GST_DRM_ALLOCATOR_GET_CLASS(self));
-> ++  
-> ++  if (self->DrmDeviceFD <= 0) {
-> ++    self->DrmDeviceFD = open("/dev/dri/card0", O_RDWR | O_CLOEXEC);
-> ++    if (self->DrmDeviceFD < 0) {
-> ++      GST_ERROR_OBJECT (self, "Failed to open DRM device");
-> ++    } else {
-> ++      drmDropMaster (self->DrmDeviceFD);
+> ++    for (i = 0; i < meta->n_planes; i++) {
+> ++      GST_VIDEO_INFO_PLANE_OFFSET (&self->vinfo, i) = meta->offset[i];
+> ++      GST_VIDEO_INFO_PLANE_STRIDE (&self->vinfo, i) = meta->stride[i];
 > ++    }
 > ++  }
 > ++
-> ++  alloc->mem_type = GST_ALLOCATOR_DMABUF;
+> ++  /* Find and validate all memories */
+> ++  for (i = 0; i < n_planes; i++) {
+> ++    guint length;
 > ++
-> ++  object_class->finalize = gst_drm_allocator_finalize;
+> ++    if (!gst_buffer_find_memory (inbuf,
+> ++            GST_VIDEO_INFO_PLANE_OFFSET (&self->vinfo, i), 1,
+> ++            &mems_idx[i], &length, &mems_skip[i]))
+> ++      return FALSE;
 > ++
-> ++  GST_OBJECT_FLAG_UNSET (self, GST_ALLOCATOR_FLAG_CUSTOM_ALLOC);
-> ++}
+> ++    mems[i] = gst_buffer_peek_memory (inbuf, mems_idx[i]);
 > ++
-> ++void
-> ++gst_drm_allocator_register (void)
-> ++{
-> ++  gst_allocator_register (GST_ALLOCATOR_DRM,
-> ++      g_object_new (GST_TYPE_DRM_ALLOCATOR, NULL));
-> ++}
+> ++    /* adjust for memory offset, in case data does not
+> ++     * start from byte 0 in the dmabuf fd */
+> ++    mems_skip[i] += mems[i]->offset;
 > ++
-> ++GstAllocator *
-> ++gst_drm_allocator_get (void)
-> ++{
-> ++  GstAllocator *alloc;
-> ++  alloc = gst_allocator_find (GST_ALLOCATOR_DRM);
-> ++  if (!alloc) {
-> ++    gst_drm_allocator_register();
-> ++    alloc = gst_allocator_find (GST_ALLOCATOR_DRM);
+> ++    /* And all memory found must be dmabuf */
+> ++    if (!gst_is_drm_memory (mems[i]))
+> ++      return FALSE;
 > ++  }
-> ++  return alloc; 
+> ++
+> ++  kmsmem = (GstKMSMemory *) get_cached_kmsmem (mems[0]);
+> ++  if (kmsmem) {
+> ++    GST_LOG_OBJECT (self, "found KMS mem %p in DMABuf mem %p with fb id = %d",
+> ++        kmsmem, mems[0], kmsmem->fb_id);
+> ++    goto wrap_mem;
+> ++  }
+> ++
+> ++  for (i = 0; i < n_planes; i++)
+> ++    prime_fds[i] = gst_fd_memory_get_fd (mems[i]);
+> ++
+> ++  GST_LOG_OBJECT (self, "found these prime ids: %d, %d, %d, %d", prime_fds[0],
+> ++      prime_fds[1], prime_fds[2], prime_fds[3]);
+> ++
+> ++  kmsmem = gst_kms_allocator_dmabuf_import (self->allocator, prime_fds,
+> ++      n_planes, mems_skip, &self->vinfo);
+> ++  if (!kmsmem)
+> ++    return FALSE;
+> ++
+> ++  GST_LOG_OBJECT (self, "setting KMS mem %p to DMABuf mem %p with fb id = %d",
+> ++      kmsmem, mems[0], kmsmem->fb_id);
+> ++  set_cached_kmsmem (mems[0], GST_MEMORY_CAST (kmsmem));
+> ++
+> ++wrap_mem:
+> ++  *outbuf = gst_buffer_new ();
+> ++  if (!*outbuf)
+> ++    return FALSE;
+> ++  gst_buffer_append_memory (*outbuf, gst_memory_ref (GST_MEMORY_CAST (kmsmem)));
+> ++  gst_buffer_add_parent_buffer_meta (*outbuf, inbuf);
+> ++  gst_buffer_copy_into (*outbuf, inbuf, GST_BUFFER_COPY_METADATA, 0, -1);
+> ++
+> ++  return TRUE;
 > ++}
-> ++
-> ++gboolean
-> ++gst_is_drm_memory (GstMemory * mem)
-> ++{
-> ++  return gst_memory_is_type (mem, GST_ALLOCATOR_DMABUF);
-> ++}
-> +diff --git a/gst-libs/gst/drm/gstdrmallocator.h b/gst-libs/gst/drm/gstdrmallocator.h
-> +new file mode 100644
-> +index 0000000..1ca93ba
-> +--- /dev/null
-> ++++ b/gst-libs/gst/drm/gstdrmallocator.h
-> +@@ -0,0 +1,77 @@
-> ++/*
-> ++ * GStreamer
-> ++ *
-> ++ * Copyright (C) 2012 Texas Instruments
-> ++ *
-> ++ * Authors:
-> ++ *  Pooja Prajod <poojaprajod@ti.com>
-> ++ *
-> ++ * This library is free software; you can redistribute it and/or
-> ++ * modify it under the terms of the GNU Lesser General Public
-> ++ * License as published by the Free Software Foundation
-> ++ * version 2.1 of the License.
-> ++ *
-> ++ * This library is distributed in the hope that it will be useful,
-> ++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-> ++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-> ++ * Lesser General Public License for more details.
-> ++ *
-> ++ * You should have received a copy of the GNU Lesser General Public
-> ++ * License along with this library; if not, write to the Free Software
-> ++ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
-> ++ */
-> ++
-> ++/**
-> ++ * SECTION:GstDRMAllocator
-> ++ * @short_description: GStreamer DRM allocator support
-> ++ *
-> ++ * Since: 1.6.3
-> ++ */
-> ++
-> ++#ifndef __GSTDRMALLOCATOR_H__
-> ++#define __GSTDRMALLOCATOR_H__
-> ++
-> ++#include <gst/gst.h>
-> ++#include <gst/video/video.h>
-> ++#include <gst/allocators/allocators.h>
-> ++#include <stdint.h>
-> ++
-> ++#include <xf86drm.h>
-> ++#include <xf86drmMode.h>
-> ++#include <fcntl.h>
-> ++
-> ++G_BEGIN_DECLS
-> ++
-> ++#define GST_TYPE_DRM_ALLOCATOR                  (gst_drm_allocator_get_type ())
-> ++#define GST_DRM_ALLOCATOR(obj)                  (G_TYPE_CHECK_INSTANCE_CAST ((obj), GST_TYPE_DRM_ALLOCATOR, GstDRMAllocator))
-> ++#define GST_IS_DRM_ALLOCATOR(obj)               (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GST_TYPE_DRM_ALLOCATOR))
-> ++#define GST_DRM_ALLOCATOR_CLASS(klass)          (G_TYPE_CHECK_CLASS_CAST ((klass), GST_TYPE_DRM_ALLOCATOR, GstDRMAllocatorClass))
-> ++#define GST_IS_DRM_ALLOCATOR_CLASS(klass)       (G_TYPE_CHECK_CLASS_TYPE ((klass), GST_TYPE_DRM_ALLOCATOR))
-> ++#define GST_DRM_ALLOCATOR_GET_CLASS(obj)        (G_TYPE_INSTANCE_GET_CLASS ((obj), GST_TYPE_DRM_ALLOCATOR, GstDRMAllocatorClass))
-> ++
-> ++#define GST_ALLOCATOR_DRM "DRM"
-> ++
-> ++typedef struct _GstDRMAllocator GstDRMAllocator;
-> ++typedef struct _GstDRMAllocatorClass GstDRMAllocatorClass;
-> ++
-> ++struct _GstDRMAllocator
-> ++{
-> ++  GstFdAllocator parent;
-> ++  int DrmDeviceFD;
-> ++};
-> ++
-> ++struct _GstDRMAllocatorClass
-> ++{
-> ++  GstFdAllocatorClass parent_class;
-> ++};
-> ++
-> ++void gst_drm_allocator_register (void);
-> ++GstAllocator * gst_drm_allocator_get (void);
-> ++
-> ++gboolean gst_is_drm_memory (GstMemory * mem);
-> ++
-> ++GType gst_drm_allocator_get_type (void);
-> ++
-> ++G_END_DECLS
-> ++
-> ++#endif /* __GSTDRMALLOCATOR_H__ */
-> +diff --git a/pkgconfig/Makefile.am b/pkgconfig/Makefile.am
-> +index 99e6332..f90c322 100644
-> +--- a/pkgconfig/Makefile.am
-> ++++ b/pkgconfig/Makefile.am
-> +@@ -2,6 +2,7 @@
-> + ### all of the standard pc files we need to generate
-> + pcverfiles =  \
-> + 	gstreamer-plugins-bad-@GST_API_VERSION@.pc \
-> ++        gstreamer-drm-@GST_API_VERSION@.pc \
-> + 	gstreamer-codecparsers-@GST_API_VERSION@.pc \
-> + 	gstreamer-insertbin-@GST_API_VERSION@.pc \
-> + 	gstreamer-mpegts-@GST_API_VERSION@.pc \
-> +@@ -13,6 +14,7 @@ pcverfiles =  \
+> ++static gboolean
+> + gst_kms_sink_import_dmabuf (GstKMSSink * self, GstBuffer * inbuf,
+> +     GstBuffer ** outbuf)
+> + {
+> +@@ -1151,6 +1246,10 @@ gst_kms_sink_get_input_buffer (GstKMSSink * self, GstBuffer * inbuf)
+> +     return gst_buffer_ref (inbuf);
 > + 
-> + pcverfiles_uninstalled = \
-> + 	gstreamer-plugins-bad-@GST_API_VERSION@-uninstalled.pc \
-> ++        gstreamer-drm-@GST_API_VERSION@-uninstalled.pc \
-> + 	gstreamer-codecparsers-@GST_API_VERSION@-uninstalled.pc \
-> + 	gstreamer-insertbin-@GST_API_VERSION@-uninstalled.pc \
-> + 	gstreamer-mpegts-@GST_API_VERSION@-uninstalled.pc \
-> +@@ -59,6 +61,7 @@ pkgconfig_DATA = $(pcverfiles)
-> + CLEANFILES = $(pcverfiles) $(pcverfiles_uninstalled)
-> + pcinfiles = \
-> +            gstreamer-plugins-bad.pc.in gstreamer-plugins-bad-uninstalled.pc.in \
-> ++           gstreamer-drm.pc.in gstreamer-drm-uninstalled.pc.in \
-> +            gstreamer-codecparsers.pc.in gstreamer-codecparsers-uninstalled.pc.in \
-> +            gstreamer-gl.pc.in gstreamer-gl-uninstalled.pc.in \
-> +            gstreamer-insertbin.pc.in gstreamer-insertbin-uninstalled.pc.in \
-> +diff --git a/pkgconfig/gstreamer-drm-uninstalled.pc.in b/pkgconfig/gstreamer-drm-uninstalled.pc.in
-> +new file mode 100644
-> +index 0000000..9dcf978
-> +--- /dev/null
-> ++++ b/pkgconfig/gstreamer-drm-uninstalled.pc.in
-> +@@ -0,0 +1,11 @@
-> ++prefix=
-> ++exec_prefix=
-> ++libdir=${pcfiledir}/../gst-libs/gst/drm
-> ++includedir=${pcfiledir}/../gst-libs
+> +   buf = NULL;
+> ++  if (gst_kms_sink_import_drmbuf (self, inbuf, &buf))
+> ++    return buf;
 > ++
-> ++Name: GStreamer DRM Allocator, Uninstalled
-> ++Description: DRM Allocator for GStreamer elements, uninstalled
-> ++Requires: gstreamer-@GST_MAJORMINOR@ gstreamer-base-@GST_MAJORMINOR@
-> ++Version: @VERSION@
-> ++Libs: -L${libdir} ${libdir}/libgstdrm-@GST_MAJORMINOR@.la
-> ++Cflags: -I${includedir}
-> +diff --git a/pkgconfig/gstreamer-drm.pc.in b/pkgconfig/gstreamer-drm.pc.in
-> +new file mode 100644
-> +index 0000000..d155e80
-> +--- /dev/null
-> ++++ b/pkgconfig/gstreamer-drm.pc.in
-> +@@ -0,0 +1,12 @@
-> ++prefix=@prefix@
-> ++exec_prefix=@exec_prefix@
-> ++libdir=@libdir@
-> ++includedir=@includedir@/gstreamer-@GST_MAJORMINOR@
-> ++
-> ++Name: GStreamer DRM Allocator
-> ++Description: DRM Allocator for GStreamer elements
-> ++Requires: gstreamer-@GST_MAJORMINOR@ gstreamer-base-@GST_MAJORMINOR@
-> ++Version: @VERSION@
-> ++Libs: -L${libdir} -lgstdrm-@GST_MAJORMINOR@
-> ++Cflags: -I${includedir}
-> ++
+> ++  buf = NULL;
+> +   if (gst_kms_sink_import_dmabuf (self, inbuf, &buf))
+> +     return buf;
+> + 
 > +-- 
 > +1.9.1
 > +
 > diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
-> new file mode 100644
-> index 0000000..11a3867
-> --- /dev/null
+> index 437689f..f99b81d 100644
+> --- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
 > +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
-> @@ -0,0 +1,35 @@
+> @@ -1,6 +1,7 @@
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>  
+>  PACKAGECONFIG = "faad"
+> +PACKAGECONFIG = "kms"
 
-This bbappend below looks very similar to the old one - I would have preferred 
-to see it as a git move and a diff against the old one.
+^^^ This doesn't look right...
 
 
-> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> +
-> +PACKAGECONFIG = "faad"
-> +
-> +# gstreamer is now also included on Keystone, be mindful of any Graphics dependencies
-> +PACKAGECONFIG_append_omap-a15 = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
-> +PACKAGECONFIG_append_ti43x = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
-> +PACKAGECONFIG_append_ti33x = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
-> +
-> +DEPENDS_append_omap-a15 = " \
-> +    libdrm \
-> +"
-> +
-> +DEPENDS_append_ti43x = " \
-> +    libdrm \
-> +"
-> +
-> +DEPENDS_append_ti33x = " \
-> +    libdrm \
-> +"
-> +
-> +SRC_URI_append_ti43x = " \
-> +    file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
-> +"
-> +
-> +SRC_URI_append_ti33x = " \
-> +"
-> +
-> +SRC_URI_append_omap-a15 = " \
-> +    file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
-> +"
-> +
-> +PACKAGE_ARCH = "${MACHINE_ARCH}"
-> +
-> +PR = "r1"
+>  # gstreamer is now also included on Keystone, be mindful of any Graphics dependencies
+>  PACKAGECONFIG_append_omap-a15 = " ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
+> @@ -22,6 +23,7 @@ DEPENDS_append_ti33x = " \
+>  SRC_URI_append_ti43x = " \
+>      file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
+>      file://0002-parsers-bug-fixes-on-parsers.patch \
+> +    file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch \
+>  "
+>  
+>  SRC_URI_append_ti33x = " \
+> @@ -30,8 +32,9 @@ SRC_URI_append_ti33x = " \
+>  SRC_URI_append_omap-a15 = " \
+>      file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
+>      file://0002-parsers-bug-fixes-on-parsers.patch \
+> +    file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch \
+>  "
+>  
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+> -PR = "r2"
+> +PR = "r3"
 > -- 
 > 1.9.1
 > 
