@@ -1,50 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 9A9C852970
+Return-Path: <e-ruei1@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 6F71652970
 	for <meta-arago@arago-project.org>;
-	Wed, 28 Mar 2018 02:43:00 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2S2gxfE020127
-	for <meta-arago@arago-project.org>; Tue, 27 Mar 2018 21:42:59 -0500
+	Wed, 28 Mar 2018 21:59:51 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2SLxm6r020038
+	for <meta-arago@arago-project.org>; Wed, 28 Mar 2018 16:59:48 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1522204979;
-	bh=3DSw7vbI1BwfHjqeraPP6Fo7CtZl7CpaO7ortHCOaZo=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=GdxzenVgbrWBL6ncFyW2XAaNIkcl+O/glvQkfucSmb3y54wuW9FfoQukP3x0ocBag
-	NkvsiQv4RuEjpzxi5KPSjI/1kx9HMAbTxKC7nWpMOq3Cy2RFPmdjaz9/FIif89z1/Z
-	EMfqkQT2ZUn4HHqDWGtfulQD0gnpupMN0qKQAnwg=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2S2gx3S020651
-	for <meta-arago@arago-project.org>; Tue, 27 Mar 2018 21:42:59 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1522274389;
+	bh=mj4btqYpX7gGwvakd8/79FzwMcWMb+7qp+9BvR5uamk=;
+	h=From:To:Subject:Date;
+	b=AT0jOr+h5NiCQXh4EA9rn6nScU2EZgs59cbYluHkRD5nvZsEUBfQyM767+TEGK27G
+	SMpVNE6LcfU3YLbLjW8OVORhuH81EhLOeGfVGZEPYOroXhKs4h9CZETy33ehgaaS9q
+	0fdFV8XguZ03TLPPjAE5qrKVBPU6aZ75Bqf/Ddho=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2SLxmpN024039
+	for <meta-arago@arago-project.org>; Wed, 28 Mar 2018 16:59:48 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Tue, 27 Mar 2018 21:42:59 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE105.ent.ti.com
+	Wed, 28 Mar 2018 16:59:48 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE105.ent.ti.com
 	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Tue, 27 Mar 2018 21:42:59 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2S2gwZH005437;
-	Tue, 27 Mar 2018 21:42:59 -0500
-Date: Tue, 27 Mar 2018 22:42:58 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Prasad, Ram" <x0038811@ti.com>
-Message-ID: <20180328024258.GD21816@edge>
-References: <1521691605-49259-1-git-send-email-x0038811@ti.com>
-	<1521691605-49259-6-git-send-email-x0038811@ti.com>
-	<20180326011112.GC20556@edge>
-	<10d158d6998f4875897287a39c19776d@ti.com>
-	<20180326135232.GE20556@edge> <20180326163621.GK20556@edge>
-	<soyjc3qkgfgdwwnl67982tkk.1522082528280@email.android.com>
-	<20180326164722.GL20556@edge>
-	<cabe788a75774b528c459d59eea48fa9@ti.com>
+	Transport; Wed, 28 Mar 2018 16:59:48 -0500
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2SLxmxe004751
+	for <meta-arago@arago-project.org>; Wed, 28 Mar 2018 16:59:48 -0500
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 28 Mar 2018 17:59:44 -0400
+Message-ID: <1522274384-35142-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <cabe788a75774b528c459d59eea48fa9@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [rocko 5/9] gstreamer1.0*-bad: Enable kmssink with gst 1.12
+Subject: [morty][PATCH] qtwayland: fix the display issue of qwindow-compositor for AM3/4
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -57,410 +48,78 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Mar 2018 02:43:01 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 28 Mar 2018 21:59:55 -0000
+Content-Type: text/plain
 
-Correct, I made few fixes and pushed the series - it made the build test on 
-rocko-next and it's now in rocko. Thanks.
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+---
+ ...positor-compositor.cpp-fix-display-issue-.patch | 42 ++++++++++++++++++++++
+ .../recipes-qt/qt5/qtwayland_git.bbappend          |  3 +-
+ 2 files changed, 44 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwayland/0001-qwindow-compositor-compositor.cpp-fix-display-issue-.patch
 
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-qwindow-compositor-compositor.cpp-fix-display-issue-.patch b/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-qwindow-compositor-compositor.cpp-fix-display-issue-.patch
+new file mode 100644
+index 0000000..b5337c0
+--- /dev/null
++++ b/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-qwindow-compositor-compositor.cpp-fix-display-issue-.patch
+@@ -0,0 +1,42 @@
++From b63395a9ff48b1a60fdb7efb7c439f42f1d8c459 Mon Sep 17 00:00:00 2001
++From: Eric Ruei <e-ruei1@ti.com>
++Date: Wed, 28 Mar 2018 17:36:44 -0400
++Subject: [PATCH] qwindow-compositor: compositor.cpp: fix display issue for
++ AM3/4
++
++On OpenGL ES 2 core implementation, only GL_CLAMP_TO_EDGE parameter is
++supported as wrap mode for NPOT (non power of two dimension) textures.
++However, the default parameter is GL_REPEAT.
++An extension OES_texture_npot adds the support of other GL_REPEAT
++and GL_MIRRORED_REPEAT to the wrap. However, many openGLES2 cores do
++not support this extension. Therefore, it is much safer to specify the
++wrap mode as GL_CLAMP_TO_EDGE.
++
++Note: This patch is for QT5.7.1 (morty) only because the qtwayland has been
++re-implemented at QT5.9.
++
++Signed-off-by: Eric Ruei <e-ruei1@ti.com>
++---
++ examples/wayland/qwindow-compositor/compositor.cpp | 5 ++++-
++ 1 file changed, 4 insertions(+), 1 deletion(-)
++
++diff --git a/examples/wayland/qwindow-compositor/compositor.cpp b/examples/wayland/qwindow-compositor/compositor.cpp
++index c60ecc6..ced0014 100644
++--- a/examples/wayland/qwindow-compositor/compositor.cpp
+++++ b/examples/wayland/qwindow-compositor/compositor.cpp
++@@ -81,8 +81,11 @@ GLuint View::getTexture(GLenum *target)
++             glGenTextures(1, &m_texture);
++ 
++         glBindTexture(m_textureTarget, m_texture);
++-        if (buf.isShm())
+++        if (buf.isShm()) {
++             glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+++            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+++            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+++	}
++         buf.bindToTexture();
++     }
++ 
++-- 
++1.9.1
++
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
+index 82d98e5..2bb7974 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
+@@ -1,6 +1,7 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-PR_append = ".arago0"
++PR_append = ".arago1"
+ 
+ SRC_URI += " \
+     file://0001-plugins-decorations-bradient-display-window-icon-onl.patch \
++    file://0001-qwindow-compositor-compositor.cpp-fix-display-issue-.patch \
+ "
+-- 
+1.9.1
 
-On Tue, Mar 27, 2018 at 07:19:57AM -0400, Prasad, Ram wrote:
->    Hi Denys,
->    I didn't intend to disable "faad" . Now I realized, this should have been 
->    PACKAGECONFIG += "kms"  otherwise it disables faad.
->    Thanks for pushing the patches to rocko-next branch with the correct fix.
-> 
->    Thanks
->    Ramprasad 
-> 
->    -----Original Message-----
->    From: Dmytriyenko, Denys
->    Sent: Monday, March 26, 2018 10:17 PM
->    To: Prasad, Ram
->    Cc: meta-arago@arago-project.org
->    Subject: Re: [meta-arago] [rocko 5/9] gstreamer1.0*-bad: Enable kmssink
->    with gst 1.12
-> 
->    Which platforms support kms? Why are you disabling faad?
-> 
->    On Mon, Mar 26, 2018 at 12:42:14PM -0400, Prasad, Ram wrote:
->    >    Hi Denys,
->    >    Yes, I want enable kmssink and only PACKAGECONFIG statement is
->    enabling
->    >    kms. If I don't add this it won't compile kmssink.
->    >
->    >    Ram
->    >
->    >    -------- Original Message --------
->    >    From: "Dmytriyenko, Denys" <denys@ti.com>
->    >    Date: Mon 26 Mar, 2018, 10:06 PM
->    >    To: "Prasad, Ram" <x0038811@ti.com>
->    >    CC: meta-arago@arago-project.org
->    >    Subject: Re: [meta-arago] [rocko 5/9] gstreamer1.0*-bad: Enable
->    kmssink
->    >    with gst 1.12
->    >
->    >    On Mon, Mar 26, 2018 at 09:52:32AM -0400, Denys Dmytriyenko wrote:
->    >    > >    >  PACKAGECONFIG = "faad"
->    >    > >    > +PACKAGECONFIG = "kms"
->    >    > >
->    >    > >    ^^^ This doesn't look right...
->    >    >
->    >    > Just see it in the context.
->    >
->    >    Ramprasad,
->    >
->    >    PACKAGECONFIG is a list of enabled options. Your change replaces
->    existing
->    >    "faad" option with "kms" - maybe you meant to add it instead?
->    >
->    >    Please let me know ASAP, as I want to merge the set for testing
->    today.
->    >    Thanks.
->    >
->    >    --
->    >    Denys
->    >
->    >    > On Mon, Mar 26, 2018 at 09:49:54AM -0400, Prasad, Ram wrote:
->    >    > >    HI Denys,
->    >    > >    > +PACKAGECONFIG = "kms"
->    >    > >    This was required to make sure kms get compiled.
->    >    > >    Is it required to make this platform dependent PACKAGECONFIG?
->    >    > >
->    >    > >    Ramprasad
->    >    > >
->    >    > >    -----Original Message-----
->    >    > >    From: Dmytriyenko, Denys
->    >    > >    Sent: Monday, March 26, 2018 6:41 AM
->    >    > >    To: Prasad, Ram
->    >    > >    Cc: meta-arago@arago-project.org
->    >    > >    Subject: Re: [meta-arago] [rocko 5/9] gstreamer1.0*-bad:
->    Enable
->    >    kmssink
->    >    > >    with gst 1.12
->    >    > >
->    >    > >    On Thu, Mar 22, 2018 at 09:36:41AM +0530, Ramprasad N wrote:
->    >    > >    > Signed-off-by: Ramprasad N <x0038811@ti.com>
->    >    > >    > ---
->    >    > >    >  ...Add-omapdrm-in-the-list-of-driver-modules.patch | 165
->    >    > >    +++++++++++++++++++++
->    >    > >    >  .../gstreamer1.0-plugins-bad_1.12.2.bbappend       |   5 +-
->    >    > >    >  2 files changed, 169 insertions(+), 1 deletion(-)  create
->    mode
->    >    100644
->    >    > >    >
->    >   
->    meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-ba
->    >    > >    >
->    d/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
->    >    > >    >
->    >    > >    > diff --git
->    >    > >    >
->    >   
->    a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-
->    >    > >    >
->    bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
->    >    > >    >
->    >   
->    b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-
->    >    > >    >
->    bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
->    >    > >    > new file mode 100644
->    >    > >    > index 0000000..2e4965c
->    >    > >    > --- /dev/null
->    >    > >    > +++
->    >    b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plug
->    >    > >    > +++
->    >    ins-bad/0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.pat
->    >    > >    > +++ ch
->    >    > >    > @@ -0,0 +1,165 @@
->    >    > >    > +From 4ef13bc433d218f2ebcbe2e9b7853d10d7b9acbc Mon Sep 17
->    >    00:00:00
->    >    > >    > +2001
->    >    > >    > +From: Ramprasad N <x0038811@ti.com>
->    >    > >    > +Date: Tue, 6 Mar 2018 19:02:20 +0530
->    >    > >    > +Subject: [PATCH 3/5] kmssink: Add omapdrm in the list of
->    driver
->    >    > >    > +modules
->    >    > >    > +
->    >    > >    > +In gstreamer-bad v1.12.2 kmssink plugin is available but
->    omapdrm
->    >    > >    > +driver is not added in the list of driver module.
->    >    > >    > +
->    >    > >    > +DRM and DMABUF are treated differently by gstreamer
->    eventhough
->    >    they
->    >    > >    > +are based on fd allocator.
->    >    > >    > +GST1.12 has many changes to dmabuf allocator and hence DRM
->    and
->    >    DMABUF
->    >    > >    > +will be treated differently.
->    >    > >    > +
->    >    > >    > +Added support for DRM buffer importing. Without this
->    addition,
->    >    there
->    >    > >    > +will be frame-copy happens and slows down the playback.
->    >    > >    > +
->    >    > >    > +Signed-off-by: Ramprasad N <x0038811@ti.com>
->    >    > >    > +---
->    >    > >    > + sys/kms/Makefile.am  |   1 +
->    >    > >    > + sys/kms/gstkmssink.c | 101
->    >    > >    > +++++++++++++++++++++++++++++++++++++++++++++++++++-
->    >    > >    > + 2 files changed, 101 insertions(+), 1 deletion(-)
->    >    > >    > +
->    >    > >    > +diff --git a/sys/kms/Makefile.am b/sys/kms/Makefile.am
->    index
->    >    > >    > +a97cad1..063f5ef 100644
->    >    > >    > +--- a/sys/kms/Makefile.am
->    >    > >    > ++++ b/sys/kms/Makefile.am
->    >    > >    > +@@ -23,6 +23,7 @@ libgstkms_la_LIBADD
->    =                       \
->    >    > >    > +      $(GST_ALLOCATORS_LIBS)                  \
->    >    > >    > +      $(GST_LIBS)                              \
->    >    > >    > +      $(KMS_DRM_LIBS)                  \
->    >    > >    > ++  
->    >    $(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la \
->    >    > >    > +      $(NULL)
->    >    > >    > +
->    >    > >    > + libgstkms_la_LDFLAGS =                       \
->    >    > >    > +diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
->    index
->    >    > >    > +d19e19e..028bec6 100644
->    >    > >    > +--- a/sys/kms/gstkmssink.c
->    >    > >    > ++++ b/sys/kms/gstkmssink.c
->    >    > >    > +@@ -85,7 +85,8 @@ static int
->    >    > >    > + kms_open (gchar ** driver)
->    >    > >    > + {
->    >    > >    > +   static const char *drivers[] = { "i915", "radeon",
->    "nouveau",
->    >    > >    "vmwgfx",
->    >    > >    > +-    "exynos", "amdgpu", "imx-drm", "rockchip",
->    "atmel-hlcdc",
->    >    "msm"
->    >    > >    > ++    "exynos", "amdgpu", "imx-drm", "rockchip",
->    "atmel-hlcdc",
->    >    "msm",
->    >    > >    > ++    "omapdrm"
->    >    > >    > +   };
->    >    > >    > +   int i, fd = -1;
->    >    > >    > +
->    >    > >    > +@@ -1041,6 +1042,100 @@ set_cached_kmsmem (GstMemory * mem,
->    >    GstMemory
->    >    > >    > +* kmsmem)  }
->    >    > >    > +
->    >    > >    > + static gboolean
->    >    > >    > ++gst_kms_sink_import_drmbuf (GstKMSSink * self, GstBuffer *
->    >    inbuf,
->    >    > >    > ++    GstBuffer ** outbuf)
->    >    > >    > ++{
->    >    > >    > ++  gint prime_fds[GST_VIDEO_MAX_PLANES] = { 0, };
->    >    > >    > ++  GstVideoMeta *meta;
->    >    > >    > ++  guint i, n_mem, n_planes;
->    >    > >    > ++  GstKMSMemory *kmsmem;
->    >    > >    > ++  guint mems_idx[GST_VIDEO_MAX_PLANES];
->    >    > >    > ++  gsize mems_skip[GST_VIDEO_MAX_PLANES];
->    >    > >    > ++  GstMemory *mems[GST_VIDEO_MAX_PLANES];
->    >    > >    > ++
->    >    > >    > ++  if (!self->has_prime_import)
->    >    > >    > ++    return FALSE;
->    >    > >    > ++
->    >    > >    > ++  /* This will eliminate most non-dmabuf out there */  if
->    >    > >    > ++ (!gst_is_drm_memory (gst_buffer_peek_memory (inbuf, 0)))
->    >    > >    > ++    return FALSE;
->    >    > >    > ++
->    >    > >    > ++  n_planes = GST_VIDEO_INFO_N_PLANES (&self->vinfo); 
->    n_mem =
->    >    > >    > ++ gst_buffer_n_memory (inbuf);  meta =
->    gst_buffer_get_video_meta
->    >    > >    > ++ (inbuf);
->    >    > >    > ++
->    >    > >    > ++  GST_TRACE_OBJECT (self, "Found a drmbuf with %u planes
->    and %u
->    >    > >    memories",
->    >    > >    > ++      n_planes, n_mem);
->    >    > >    > ++
->    >    > >    > ++  /* We cannot have multiple dmabuf per plane */  if
->    (n_mem >
->    >    > >    > ++ n_planes)
->    >    > >    > ++    return FALSE;
->    >    > >    > ++  g_assert (n_planes != 0);
->    >    > >    > ++
->    >    > >    > ++  /* Update video info based on video meta */  if (meta) {
->    >    > >    > ++    GST_VIDEO_INFO_WIDTH (&self->vinfo) = meta->width;
->    >    > >    > ++    GST_VIDEO_INFO_HEIGHT (&self->vinfo) = meta->height;
->    >    > >    > ++
->    >    > >    > ++    for (i = 0; i < meta->n_planes; i++) {
->    >    > >    > ++      GST_VIDEO_INFO_PLANE_OFFSET (&self->vinfo, i) =
->    >    meta->offset[i];
->    >    > >    > ++      GST_VIDEO_INFO_PLANE_STRIDE (&self->vinfo, i) =
->    >    meta->stride[i];
->    >    > >    > ++    }
->    >    > >    > ++  }
->    >    > >    > ++
->    >    > >    > ++  /* Find and validate all memories */  for (i = 0; i <
->    >    n_planes;
->    >    > >    > ++ i++) {
->    >    > >    > ++    guint length;
->    >    > >    > ++
->    >    > >    > ++    if (!gst_buffer_find_memory (inbuf,
->    >    > >    > ++            GST_VIDEO_INFO_PLANE_OFFSET (&self->vinfo, i),
->    1,
->    >    > >    > ++            &mems_idx[i], &length, &mems_skip[i]))
->    >    > >    > ++      return FALSE;
->    >    > >    > ++
->    >    > >    > ++    mems[i] = gst_buffer_peek_memory (inbuf, mems_idx[i]);
->    >    > >    > ++
->    >    > >    > ++    /* adjust for memory offset, in case data does not
->    >    > >    > ++     * start from byte 0 in the dmabuf fd */
->    >    > >    > ++    mems_skip[i] += mems[i]->offset;
->    >    > >    > ++
->    >    > >    > ++    /* And all memory found must be dmabuf */
->    >    > >    > ++    if (!gst_is_drm_memory (mems[i]))
->    >    > >    > ++      return FALSE;
->    >    > >    > ++  }
->    >    > >    > ++
->    >    > >    > ++  kmsmem = (GstKMSMemory *) get_cached_kmsmem (mems[0]); 
->    if
->    >    > >    > ++ (kmsmem) {
->    >    > >    > ++    GST_LOG_OBJECT (self, "found KMS mem %p in DMABuf mem
->    %p
->    >    with fb
->    >    > >    id = %d",
->    >    > >    > ++        kmsmem, mems[0], kmsmem->fb_id);
->    >    > >    > ++    goto wrap_mem;
->    >    > >    > ++  }
->    >    > >    > ++
->    >    > >    > ++  for (i = 0; i < n_planes; i++)
->    >    > >    > ++    prime_fds[i] = gst_fd_memory_get_fd (mems[i]);
->    >    > >    > ++
->    >    > >    > ++  GST_LOG_OBJECT (self, "found these prime ids: %d, %d,
->    %d,
->    >    %d",
->    >    > >    prime_fds[0],
->    >    > >    > ++      prime_fds[1], prime_fds[2], prime_fds[3]);
->    >    > >    > ++
->    >    > >    > ++  kmsmem = gst_kms_allocator_dmabuf_import
->    (self->allocator,
->    >    > >    prime_fds,
->    >    > >    > ++      n_planes, mems_skip, &self->vinfo);  if (!kmsmem)
->    >    > >    > ++    return FALSE;
->    >    > >    > ++
->    >    > >    > ++  GST_LOG_OBJECT (self, "setting KMS mem %p to DMABuf mem
->    %p
->    >    with fb
->    >    > >    id = %d",
->    >    > >    > ++      kmsmem, mems[0], kmsmem->fb_id);  set_cached_kmsmem
->    >    (mems[0],
->    >    > >    > ++ GST_MEMORY_CAST (kmsmem));
->    >    > >    > ++
->    >    > >    > ++wrap_mem:
->    >    > >    > ++  *outbuf = gst_buffer_new ();
->    >    > >    > ++  if (!*outbuf)
->    >    > >    > ++    return FALSE;
->    >    > >    > ++  gst_buffer_append_memory (*outbuf, gst_memory_ref
->    >    (GST_MEMORY_CAST
->    >    > >    > ++(kmsmem)));
->    >    > >    > ++  gst_buffer_add_parent_buffer_meta (*outbuf, inbuf);
->    >    > >    > ++  gst_buffer_copy_into (*outbuf, inbuf,
->    >    GST_BUFFER_COPY_METADATA, 0,
->    >    > >    > ++-1);
->    >    > >    > ++
->    >    > >    > ++  return TRUE;
->    >    > >    > ++}
->    >    > >    > ++static gboolean
->    >    > >    > + gst_kms_sink_import_dmabuf (GstKMSSink * self, GstBuffer *
->    >    inbuf,
->    >    > >    > +     GstBuffer ** outbuf)
->    >    > >    > + {
->    >    > >    > +@@ -1151,6 +1246,10 @@ gst_kms_sink_get_input_buffer
->    (GstKMSSink
->    >    *
->    >    > >    self, GstBuffer * inbuf)
->    >    > >    > +     return gst_buffer_ref (inbuf);
->    >    > >    > +
->    >    > >    > +   buf = NULL;
->    >    > >    > ++  if (gst_kms_sink_import_drmbuf (self, inbuf, &buf))
->    >    > >    > ++    return buf;
->    >    > >    > ++
->    >    > >    > ++  buf = NULL;
->    >    > >    > +   if (gst_kms_sink_import_dmabuf (self, inbuf, &buf))
->    >    > >    > +     return buf;
->    >    > >    > +
->    >    > >    > +--
->    >    > >    > +1.9.1
->    >    > >    > +
->    >    > >    > diff --git
->    >    > >    >
->    >   
->    a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-
->    >    > >    > bad_1.12.2.bbappend
->    >    > >    >
->    >   
->    b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-
->    >    > >    > bad_1.12.2.bbappend
->    >    > >    > index 437689f..f99b81d 100644
->    >    > >    > ---
->    >    > >    >
->    >   
->    a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-
->    >    > >    > bad_1.12.2.bbappend
->    >    > >    > +++
->    >    b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plug
->    >    > >    > +++ ins-bad_1.12.2.bbappend
->    >    > >    > @@ -1,6 +1,7 @@
->    >    > >    >  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->    >    > >    >
->    >    > >    >  PACKAGECONFIG = "faad"
->    >    > >    > +PACKAGECONFIG = "kms"
->    >    > >
->    >    > >    ^^^ This doesn't look right...
->    >    > >
->    >    > >    >  # gstreamer is now also included on Keystone, be mindful of
->    any
->    >    > >    > Graphics dependencies
->    >    > >    >  PACKAGECONFIG_append_omap-a15 = "
->    >    > >   
->    ${@bb.utils.contains('DISTRO_FEATURES','wayland','wayland','',d)}"
->    >    > >    > @@ -22,6 +23,7 @@ DEPENDS_append_ti33x = " \
->    >    SRC_URI_append_ti43x = "
->    >    > >    > \
->    >    > >    >     
->    file://0001-gstdrmallocator-Add-DRM-allocator-support.patch
->    >    \
->    >    > >    >      file://0002-parsers-bug-fixes-on-parsers.patch \
->    >    > >    > + 
->    >    > >    > +
->    >    file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
->    >    > >    > + \
->    >    > >    >  "
->    >    > >    >
->    >    > >    >  SRC_URI_append_ti33x = " \
->    >    > >    > @@ -30,8 +32,9 @@ SRC_URI_append_ti33x = " \
->    >    > >    >  SRC_URI_append_omap-a15 = " \
->    >    > >    >     
->    file://0001-gstdrmallocator-Add-DRM-allocator-support.patch
->    >    \
->    >    > >    >      file://0002-parsers-bug-fixes-on-parsers.patch \
->    >    > >    > + 
->    >    > >    > +
->    >    file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch
->    >    > >    > + \
->    >    > >    >  "
->    >    > >    >
->    >    > >    >  PACKAGE_ARCH = "${MACHINE_ARCH}"
->    >    > >    >
->    >    > >    > -PR = "r2"
->    >    > >    > +PR = "r3"
->    >    > >    > --
->    >    > >    > 1.9.1
->    >    > >    >
->    >    > >    > _______________________________________________
->    >    > >    > meta-arago mailing list
->    >    > >    > meta-arago@arago-project.org
->    >    > >    > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->    >    > _______________________________________________
->    >    > meta-arago mailing list
->    >    > meta-arago@arago-project.org
->    >    > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
