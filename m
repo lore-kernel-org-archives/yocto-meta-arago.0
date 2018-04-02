@@ -1,30 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id E2F1C52975
+	by arago-project.org (Postfix) with ESMTPS id D1EE35203A
 	for <meta-arago@arago-project.org>;
 	Mon,  2 Apr 2018 22:47:28 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B1F13209AE;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 8F18320BB3;
 	Mon,  2 Apr 2018 22:47:25 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id gnuiVHLXkgH6; Mon,  2 Apr 2018 22:47:25 +0000 (UTC)
+	with ESMTP id azmFYh2S_yCx; Mon,  2 Apr 2018 22:47:25 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6BEA320992;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5FDC32079D;
 	Mon,  2 Apr 2018 22:47:24 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id DAD0A163387;
+	by mail.denix.org (Postfix) with ESMTP id DDE431633B2;
 	Mon,  2 Apr 2018 18:47:18 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Mon,  2 Apr 2018 18:47:15 -0400
-Message-Id: <1522709238-24760-1-git-send-email-denys@ti.com>
+Date: Mon,  2 Apr 2018 18:47:16 -0400
+Message-Id: <1522709238-24760-2-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [rocko/master][PATCH 1/4] external-linaro-toolchain: cleanup ..install.cmd and overwrite PV with correct version
+In-Reply-To: <1522709238-24760-1-git-send-email-denys@ti.com>
+References: <1522709238-24760-1-git-send-email-denys@ti.com>
+Subject: [rocko/master][PATCH 2/4] cmake: move help files into -doc package
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,38 +43,17 @@ X-List-Received-Date: Mon, 02 Apr 2018 22:47:30 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/meta/external-linaro-toolchain.bbappend         | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ meta-arago-distro/recipes-devtools/cmake/cmake_%.bbappend | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 meta-arago-distro/recipes-devtools/cmake/cmake_%.bbappend
 
-diff --git a/meta-arago-distro/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-distro/recipes-core/meta/external-linaro-toolchain.bbappend
-index 306c547..8addc91 100644
---- a/meta-arago-distro/recipes-core/meta/external-linaro-toolchain.bbappend
-+++ b/meta-arago-distro/recipes-core/meta/external-linaro-toolchain.bbappend
-@@ -10,6 +10,9 @@ KERNEL_GIT_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git"
- KERNEL_GIT_PROTOCOL = "git"
- SRC_URI += "${KERNEL_GIT_URI};protocol=${KERNEL_GIT_PROTOCOL};branch=${BRANCH}"
- 
-+PKGV_linux-libc-headers-dev = "4.14"
-+PKGV_linux-libc-headers = "4.14"
-+
- inherit kernel-arch pkgconfig multilib_header
- 
- EXTRA_OEMAKE = " HOSTCC="${BUILD_CC}" HOSTCPP="${BUILD_CPP}""
-@@ -23,11 +26,11 @@ do_install_append() {
- 	cd ${WORKDIR}/git
- 	oe_runmake headers_install INSTALL_HDR_PATH=${B}${exec_prefix}
- 
--	# The ..install.cmd conflicts between various configure runs
--	find ${B}${includedir} -name ..install.cmd | xargs rm -f
--
- 	CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
- 	cp ${CP_ARGS} ${B}${includedir} ${D}${exec_prefix}
-+
-+	# The ..install.cmd conflicts between various configure runs
-+	find ${D}${exec_prefix} -name ..install.cmd | xargs rm -f
- }
- 
- do_install_append_aarch64 () {
+diff --git a/meta-arago-distro/recipes-devtools/cmake/cmake_%.bbappend b/meta-arago-distro/recipes-devtools/cmake/cmake_%.bbappend
+new file mode 100644
+index 0000000..042e4d7
+--- /dev/null
++++ b/meta-arago-distro/recipes-devtools/cmake/cmake_%.bbappend
+@@ -0,0 +1 @@
++FILES_${PN}-doc += "${datadir}/cmake-${CMAKE_MAJOR_VERSION}/Help/"
 -- 
 2.7.4
 
