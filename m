@@ -1,41 +1,43 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 6F71652970
+Return-Path: <jake@udc0866934>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 6DA8F5203A
 	for <meta-arago@arago-project.org>;
-	Wed, 28 Mar 2018 21:59:51 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w2SLxm6r020038
-	for <meta-arago@arago-project.org>; Wed, 28 Mar 2018 16:59:48 -0500
+	Mon,  2 Apr 2018 13:46:37 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w32DkZEB023529
+	for <meta-arago@arago-project.org>; Mon, 2 Apr 2018 08:46:35 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1522274389;
-	bh=mj4btqYpX7gGwvakd8/79FzwMcWMb+7qp+9BvR5uamk=;
-	h=From:To:Subject:Date;
-	b=AT0jOr+h5NiCQXh4EA9rn6nScU2EZgs59cbYluHkRD5nvZsEUBfQyM767+TEGK27G
-	SMpVNE6LcfU3YLbLjW8OVORhuH81EhLOeGfVGZEPYOroXhKs4h9CZETy33ehgaaS9q
-	0fdFV8XguZ03TLPPjAE5qrKVBPU6aZ75Bqf/Ddho=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2SLxmpN024039
-	for <meta-arago@arago-project.org>; Wed, 28 Mar 2018 16:59:48 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1522676795;
+	bh=jD4FYYRhPFOxiMXcIQ7W0D3GLx2fDxfNrCUtvVKx2fo=;
+	h=From:To:CC:Subject:Date;
+	b=wr4jGYh9VJFPhvMs+Nq2IWvnxaP+gfhwcWC+sTX9x768KbpPuAiCy0Rv9hmLlERZC
+	jaedR1hMYjV4La0ew8+ae5MyOnLOIpouwHahgwYrU+sNbygVAdHjWjBcROCq7gI5Nx
+	Jnkl0I44yfrE4VN7O7qxNz4MFOiCCsNl84YtQ6YY=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w32DkZcE007471
+	for <meta-arago@arago-project.org>; Mon, 2 Apr 2018 08:46:35 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Wed, 28 Mar 2018 16:59:48 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 2 Apr 2018 08:46:35 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Wed, 28 Mar 2018 16:59:48 -0500
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w2SLxmxe004751
-	for <meta-arago@arago-project.org>; Wed, 28 Mar 2018 16:59:48 -0500
-From: Eric Ruei <e-ruei1@ti.com>
+	Transport; Mon, 2 Apr 2018 08:46:35 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w32DkZSH028341;
+	Mon, 2 Apr 2018 08:46:35 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)
+	(envelope-from <jake@udc0866934>)
+	id 1f2zn8-0002nJ-VG; Mon, 02 Apr 2018 09:46:35 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 28 Mar 2018 17:59:44 -0400
-Message-ID: <1522274384-35142-1-git-send-email-e-ruei1@ti.com>
+Date: Mon, 2 Apr 2018 09:46:33 -0400
+Message-ID: <1522676793-10709-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [morty][PATCH] qtwayland: fix the display issue of qwindow-compositor for AM3/4
+Subject: [oe-layersetup][PATCH] processor-sdk: add 4.3.0.5 release config
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,77 +50,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Mar 2018 21:59:55 -0000
+X-List-Received-Date: Mon, 02 Apr 2018 13:46:38 -0000
 Content-Type: text/plain
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- ...positor-compositor.cpp-fix-display-issue-.patch | 42 ++++++++++++++++++++++
- .../recipes-qt/qt5/qtwayland_git.bbappend          |  3 +-
- 2 files changed, 44 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwayland/0001-qwindow-compositor-compositor.cpp-fix-display-issue-.patch
+ .../processor-sdk/processor-sdk-04.03.00.05-config.txt   | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 configs/processor-sdk/processor-sdk-04.03.00.05-config.txt
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-qwindow-compositor-compositor.cpp-fix-display-issue-.patch b/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-qwindow-compositor-compositor.cpp-fix-display-issue-.patch
+diff --git a/configs/processor-sdk/processor-sdk-04.03.00.05-config.txt b/configs/processor-sdk/processor-sdk-04.03.00.05-config.txt
 new file mode 100644
-index 0000000..b5337c0
+index 0000000..9837395
 --- /dev/null
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-qwindow-compositor-compositor.cpp-fix-display-issue-.patch
-@@ -0,0 +1,42 @@
-+From b63395a9ff48b1a60fdb7efb7c439f42f1d8c459 Mon Sep 17 00:00:00 2001
-+From: Eric Ruei <e-ruei1@ti.com>
-+Date: Wed, 28 Mar 2018 17:36:44 -0400
-+Subject: [PATCH] qwindow-compositor: compositor.cpp: fix display issue for
-+ AM3/4
++++ b/configs/processor-sdk/processor-sdk-04.03.00.05-config.txt
+@@ -0,0 +1,16 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
 +
-+On OpenGL ES 2 core implementation, only GL_CLAMP_TO_EDGE parameter is
-+supported as wrap mode for NPOT (non power of two dimension) textures.
-+However, the default parameter is GL_REPEAT.
-+An extension OES_texture_npot adds the support of other GL_REPEAT
-+and GL_MIRRORED_REPEAT to the wrap. However, many openGLES2 cores do
-+not support this extension. Therefore, it is much safer to specify the
-+wrap mode as GL_CLAMP_TO_EDGE.
-+
-+Note: This patch is for QT5.7.1 (morty) only because the qtwayland has been
-+re-implemented at QT5.9.
-+
-+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-+---
-+ examples/wayland/qwindow-compositor/compositor.cpp | 5 ++++-
-+ 1 file changed, 4 insertions(+), 1 deletion(-)
-+
-+diff --git a/examples/wayland/qwindow-compositor/compositor.cpp b/examples/wayland/qwindow-compositor/compositor.cpp
-+index c60ecc6..ced0014 100644
-+--- a/examples/wayland/qwindow-compositor/compositor.cpp
-++++ b/examples/wayland/qwindow-compositor/compositor.cpp
-+@@ -81,8 +81,11 @@ GLuint View::getTexture(GLenum *target)
-+             glGenTextures(1, &m_texture);
-+ 
-+         glBindTexture(m_textureTarget, m_texture);
-+-        if (buf.isShm())
-++        if (buf.isShm()) {
-+             glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-++            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-++            glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-++	}
-+         buf.bindToTexture();
-+     }
-+ 
-+-- 
-+1.9.1
-+
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
-index 82d98e5..2bb7974 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
-@@ -1,6 +1,7 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--PR_append = ".arago0"
-+PR_append = ".arago1"
- 
- SRC_URI += " \
-     file://0001-plugins-decorations-bradient-display-window-icon-onl.patch \
-+    file://0001-qwindow-compositor-compositor.cpp-fix-display-issue-.patch \
- "
++bitbake,git://git.openembedded.org/bitbake,1.32,da85da9b58ed252c7b80a437fb5babff9e6dde48,layers=
++meta-processor-sdk,http://arago-project.org/git/projects/meta-processor-sdk.git,master,92db4d8023d88ab59fab2953e7447ec0bd5a6db1,layers=
++meta-ros,https://github.com/bmwcarit/meta-ros.git,master,e2566402ab108a19634354a934788109422cf409,layers=
++meta-arago,http://arago-project.org/git/meta-arago.git,morty,5b2a44b0c4d989133bc13d59398fd10375d351bb,layers=meta-arago-distro:meta-arago-extras
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
++meta-openamp,git://github.com/OpenAMP/meta-openamp.git,morty,8a214032bfb7e8124bc1485c70c69f7d60abb819,layers=
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,2c9f0e4eb0e9097f6f872ec1e1d81768a8ab5f1b,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,b40116cf457b88a2db14b86fda9627fb34d56ae6,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome:meta-multimedia
++meta-ti,git://git.yoctoproject.org/meta-ti,morty,3dc08477529b31ce887bb22a08201a843ded48f0,layers=
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,morty,d73e794c7e7ebb1cc5bf495a52a72b26fb118250,layers=meta-linaro-toolchain:meta-optee
++oe-core,git://git.openembedded.org/openembedded-core,morty,39fd8c129e2bff7f2f1649b7f6e036ccc50fd5d8,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
 -- 
 1.9.1
 
