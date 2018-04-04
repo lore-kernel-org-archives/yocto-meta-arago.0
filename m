@@ -1,43 +1,41 @@
-Return-Path: <denys@ti.com>
+Return-Path: <yan-liu@ti.com>
 Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 09B8F52986
+	by arago-project.org (Postfix) with ESMTPS id 28257529BA
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Apr 2018 17:54:39 +0000 (UTC)
+	Wed,  4 Apr 2018 20:29:57 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w34HscRv001502;
-	Wed, 4 Apr 2018 12:54:38 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w34KTsUI027375
+	for <meta-arago@arago-project.org>; Wed, 4 Apr 2018 15:29:54 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1522864478;
-	bh=pM4/kIL7hZbwRGEkkRw1s5GDH3UcVfjfAGgNDlB3f1U=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=OIFycZMg76Czz4CjhOFgzrdznpOV4jkmw59DN4uVadTJLYznv3Lo93fJxGNcejLcF
-	sjlssCNAJBnQQv/gdTaXXBWz2xZz0boSfi5kaTviWs0tpQhdt7nB9j+aTj7QZ3o6IZ
-	MdeYL0CvoACKY/dVA20gDaNnL9gt0JA61bSB7nJI=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w34Hsckf026796;
-	Wed, 4 Apr 2018 12:54:38 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1522873794;
+	bh=TWvf/ogxHNuw4AvdN+TA7Xl3A6uoNWzDfn4nrqywpC8=;
+	h=From:To:CC:Subject:Date;
+	b=lBOBd8J0Q961sSocqtwjKwyqu8oQFaGw0xA4jggFAs5vconKcBw6/dJXSunub/zpD
+	lu5gGxH96DLPc2W6Abp/Aq1tASHautFeDAiMJ+5w49QhgsAPnoA2SzB69BntFPAALU
+	Ez+zOTYRVgQ+7CFonWsEOyqxQAJChoj1+M3P4xf4=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w34KTsEd004943
+	for <meta-arago@arago-project.org>; Wed, 4 Apr 2018 15:29:54 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Wed, 4 Apr 2018 12:54:37 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 4 Apr 2018 15:29:53 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Wed, 4 Apr 2018 12:54:38 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w34HsbFE032685;
-	Wed, 4 Apr 2018 12:54:37 -0500
-Date: Wed, 4 Apr 2018 13:54:37 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Huang Qiyu <huangqy.fnst@cn.fujitsu.com>
-Message-ID: <20180404175437.GG32427@edge>
-References: <1522834047-15232-1-git-send-email-huangqy.fnst@cn.fujitsu.com>
+	Transport; Wed, 4 Apr 2018 15:29:53 -0500
+Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w34KTrec019947;
+	Wed, 4 Apr 2018 15:29:53 -0500
+From: <yan-liu@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 4 Apr 2018 16:27:49 -0400
+Message-ID: <1522873669-662-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-In-Reply-To: <1522834047-15232-1-git-send-email-huangqy.fnst@cn.fujitsu.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] remove the layer directories
+Subject: [PATCH v2] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,76 +48,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Apr 2018 17:54:41 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 04 Apr 2018 20:29:57 -0000
+Content-Type: text/plain
 
-On Wed, Apr 04, 2018 at 05:27:26PM +0800, Huang Qiyu wrote:
-> Meta-arago writes all the dependent layer directories to the bblayer, which caused to
-> add these dependent layers to build environment even though only need one of them.
-> This is obviously unreasonable.
+From: Yan Liu <yan-liu@ti.com>
 
-Huh? No, this change is not correct. NAK.
+Signed-off-by: Yan Liu <yan-liu@ti.com>
+---
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+index 8ceb710..f506c91 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+ 
+-PR = "r2"
++PR = "r3"
+ PV_append = "+git${SRCPV}"
+ 
+ PROVIDES += "ltp"
+@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+ 
+ inherit autotools-brokensep
+ 
+-SRCREV = "39ceef8669ec5f60283a8ca86f29ea4c43fe909a"
++SRCREV = "5b4a12d2d372262cf1184a11340c0ee4f8e93f46"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+-- 
+1.7.9.5
 
-> Signed-off-by: Huang Qiyu <huangqy.fnst@cn.fujitsu.com>
-> ---
->  meta-arago-distro/conf/layer.conf | 13 -------------
->  meta-arago-extras/conf/layer.conf | 10 ----------
->  2 files changed, 23 deletions(-)
-> 
-> diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
-> index c175bd8..260efed 100644
-> --- a/meta-arago-distro/conf/layer.conf
-> +++ b/meta-arago-distro/conf/layer.conf
-> @@ -8,19 +8,6 @@ BBFILE_COLLECTIONS += "meta-arago-distro"
->  BBFILE_PATTERN_meta-arago-distro := "^${LAYERDIR}/"
->  BBFILE_PRIORITY_meta-arago-distro = "10"
->  
-> -LAYERDEPENDS_meta-arago-distro = " \
-> -    core \
-> -    meta-ti \
-> -    openembedded-layer \
-> -    networking-layer \
-> -    meta-python \
-> -    linaro-toolchain \
-> -    meta-optee \
-> -    qt5-layer \
-> -    browser-layer \
-> -    meta-arago-extras \
-> -"
-> -
->  BB_DANGLINGAPPENDS_WARNONLY = "true"
->  
->  SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS += " \
-> diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
-> index 83ac107..605d083 100644
-> --- a/meta-arago-extras/conf/layer.conf
-> +++ b/meta-arago-extras/conf/layer.conf
-> @@ -13,16 +13,6 @@ ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
->  
->  LICENSE_PATH += "${LAYERDIR}/licenses"
->  
-> -LAYERDEPENDS_meta-arago-extras = " \
-> -    core \
-> -    meta-ti \
-> -    openembedded-layer \
-> -    networking-layer \
-> -    meta-python \
-> -    linaro-toolchain \
-> -    qt5-layer \
-> -"
-> -
->  SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS += " \
->      matrix-gui-multimedia-demos->amsdk-av-files \
->      matrix-gui-oprofile-demos->oprofile \
-> -- 
-> 2.7.4
-> 
-> 
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
