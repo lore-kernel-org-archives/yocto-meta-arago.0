@@ -1,44 +1,41 @@
-Return-Path: <h-gou@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id D1A3E529BE
+Return-Path: <j-stiffler@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 6840F52986
 	for <meta-arago@arago-project.org>;
-	Mon, 16 Apr 2018 22:12:44 +0000 (UTC)
+	Tue, 17 Apr 2018 20:36:01 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w3GMCg9T008682
-	for <meta-arago@arago-project.org>; Mon, 16 Apr 2018 17:12:42 -0500
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w3HKZwTb009707
+	for <meta-arago@arago-project.org>; Tue, 17 Apr 2018 15:35:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1523916762;
-	bh=2dTba3wll1kAyvwACDjvd1ypZxo06V5mhyIESRjgqHs=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Jz9iIS1xhp8WVUM3D4esvtU7MJOO3hVQ9WjD4UhgeFk5Hi2sZ0Ue6T8qnIWL+dxgZ
-	MeBkU4fhQgBg/h70UhT2xa41aCzyM6oYcH5qywsVzy8DExZRvLBlpbSnXSsoK4Y9Ca
-	JUhCbs7fYrBZytS2b++iHRjCGqGMNSVqQ5OnvRnY=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3GMCgiq029919
-	for <meta-arago@arago-project.org>; Mon, 16 Apr 2018 17:12:42 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1523997358;
+	bh=mHxh8sdEMVe9nxk6CL13UHVRdECJuuRP4mKZcpCYtO8=;
+	h=From:To:CC:Subject:Date;
+	b=RJd/tzEPbNzdfFbpEEUuUaOavBXes988sIVeH1rTCjl1Lp2vqhwc/5SHHZyRV64jg
+	yXJVzPiFeKdGHWVcOMt2HLXqmwIjFguhoIODqN4fYO/4D1Q2wpalLxDjzRG1KBgWo4
+	m6QMKi+hyBxnp4bwZ+2BTYnqhKgJWthI9FqstfNI=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3HKZw9n014553
+	for <meta-arago@arago-project.org>; Tue, 17 Apr 2018 15:35:58 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1261.35;
-	Mon, 16 Apr 2018 17:12:41 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 17 Apr 2018 15:35:57 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1261.35 via Frontend
-	Transport; Mon, 16 Apr 2018 17:12:41 -0500
-Received: from uda0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Tue, 17 Apr 2018 15:35:57 -0500
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3GMCfkd006425;
-	Mon, 16 Apr 2018 17:12:41 -0500
-From: Hongmei Gou <a0271529@ti.com>
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3HKZvDC022445;
+	Tue, 17 Apr 2018 15:35:57 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 16 Apr 2018 18:12:35 -0400
-Message-ID: <1523916755-32359-3-git-send-email-a0271529@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1523916755-32359-1-git-send-email-a0271529@ti.com>
-References: <1523916755-32359-1-git-send-email-a0271529@ti.com>
+Date: Tue, 17 Apr 2018 16:25:33 -0400
+Message-ID: <1523996734-5478-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [arm_benchmarks] [PATCH 2/2] dhrystone: fix compilation warnings
+Subject: [rocko/master][PATCH 1/2] llvm-rtos: fix installation to sysroot
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,148 +48,75 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Apr 2018 22:12:46 -0000
+X-List-Received-Date: Tue, 17 Apr 2018 20:36:02 -0000
 Content-Type: text/plain
 
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
----
- dhrystone/dhry.h   | 14 +++++++++++++-
- dhrystone/dhry_1.c | 18 ++++++------------
- dhrystone/dhry_2.c |  6 +++---
- 3 files changed, 22 insertions(+), 16 deletions(-)
+* Move all installation to do_install and install relative to ${D}.
+* Add proper packaging.
 
-diff --git a/dhrystone/dhry.h b/dhrystone/dhry.h
-index f236e79..100e578 100755
---- a/dhrystone/dhry.h
-+++ b/dhrystone/dhry.h
-@@ -431,6 +431,8 @@
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../recipes-ti/includes/arago-paths.inc            |  2 +-
+ .../recipes-ti/llvm-rtos/llvm-rtos_git.bb          | 23 +++++++++++++++-------
+ 2 files changed, 17 insertions(+), 8 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-ti/includes/arago-paths.inc b/meta-arago-extras/recipes-ti/includes/arago-paths.inc
+index d617af3..a652df0 100644
+--- a/meta-arago-extras/recipes-ti/includes/arago-paths.inc
++++ b/meta-arago-extras/recipes-ti/includes/arago-paths.inc
+@@ -7,5 +7,5 @@ export OCL_RTOS_INSTALL_DIR_RECIPE   = "${installdir}/ti-opencl-rtos-tree"
  
- #include <stdio.h>
-                 /* for strcpy, strcmp */
-+#include <string.h>
-+#include <stdlib.h>
+ export LIBARCH_INSTALL_DIR    = "${STAGING_DIR_TARGET}${LIBARCH_INSTALL_DIR_RECIPE}"
+ export LINALG_INSTALL_DIR     = "${STAGING_DIR_TARGET}${LINALG_INSTALL_DIR_RECIPE}"
+-export LLVM_RTOS_INSTALL_DIR  = "${STAGING_DIR_NATIVE}${LLVM_RTOS_INSTALL_DIR_RECIPE}"
++export LLVM_RTOS_INSTALL_DIR  = "${STAGING_DIR_TARGET}${LLVM_RTOS_INSTALL_DIR_RECIPE}"
+ export OCL_RTOS_INSTALL_DIR   = "${STAGING_DIR_TARGET}${OCL_RTOS_INSTALL_DIR_RECIPE}"
+diff --git a/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos_git.bb b/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos_git.bb
+index fac9d6b..ee4d7f2 100644
+--- a/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos_git.bb
++++ b/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos_git.bb
+@@ -24,7 +24,7 @@ RELEASE_TARGET_omap-a15 = "am57xx"
+ CLEANBROKEN = "1"
  
- #define Null 0 
-                 /* Value of a Null pointer */
-@@ -466,4 +468,14 @@ typedef struct record
-           } variant;
-       } Rec_Type, *Rec_Pointer;
+ export LLVM_SRC_DIR="${S}"
+-export LLVM_INSTALL_DIR="${LLVM_RTOS_INSTALL_DIR}"
++export LLVM_INSTALL_DIR="${D}${LLVM_RTOS_INSTALL_DIR_RECIPE}"
  
+ do_compile() {
+     unset LDFLAGS
+@@ -41,16 +41,25 @@ do_compile() {
+ 
+     make -C build.sysbios LLVMSupport LLVMCore LLVMBitReader ${PARALLEL_MAKE}
+ 
+-    cd build.sysbios; make -f include/llvm/Makefile install/local; cd ..
 -
-+void Proc_1 ();
-+void Proc_2 ();
-+void Proc_3 ();
-+void Proc_4 ();
-+void Proc_5 ();
-+void Proc_6 ();
-+void Proc_7 ();
-+void Proc_8 ();
-+Enumeration Func_1 ();
-+Boolean Func_2 ();
-+Boolean Func_3 ();
-diff --git a/dhrystone/dhry_1.c b/dhrystone/dhry_1.c
-index 49c23cb..ef44f09 100644
---- a/dhrystone/dhry_1.c
-+++ b/dhrystone/dhry_1.c
-@@ -66,12 +66,6 @@ char            Ch_1_Glob,
- int             Arr_1_Glob [50];
- int             Arr_2_Glob [50] [50];
- 
--extern char     *malloc (size_t size);
--extern char     *strcpy (char *destination, const char *source);
--
--Enumeration     Func_1 ();
--  /* forward declaration necessary since Enumeration may not simply be int */
--
- #ifndef REG
-         Boolean Reg = false;
- #define REG
-@@ -112,7 +106,7 @@ int             CpuFreq=0; // in KHz
- /* end of variables for time measurement */
- 
- 
--main (int argc, char **argv)
-+void main (int argc, char **argv)
- /*****/
- 
-   /* main program, corresponds to procedures        */
-@@ -346,7 +340,7 @@ main (int argc, char **argv)
  }
  
+ do_install() {
+-    install -d ${LLVM_RTOS_INSTALL_DIR}/bin
+-    install -m 755 ${S}/build.sysbios/build.native/bin/llvm-config ${LLVM_RTOS_INSTALL_DIR}/bin/llvm-config-host
++    cd build.sysbios; make -f include/llvm/Makefile install/local; cd ..
++
++    install -d ${D}${LLVM_RTOS_INSTALL_DIR_RECIPE}/bin
++    install -m 755 ${S}/build.sysbios/build.native/bin/llvm-config ${D}${LLVM_RTOS_INSTALL_DIR_RECIPE}/bin/llvm-config-host
  
--Proc_1 (Ptr_Val_Par)
-+void Proc_1 (Ptr_Val_Par)
- /******************/
- 
- REG Rec_Pointer Ptr_Val_Par;
-@@ -380,7 +374,7 @@ REG Rec_Pointer Ptr_Val_Par;
- } /* Proc_1 */
- 
- 
--Proc_2 (Int_Par_Ref)
-+void Proc_2 (Int_Par_Ref)
- /******************/
-     /* executed once */
-     /* *Int_Par_Ref == 1, becomes 4 */
-@@ -403,7 +397,7 @@ One_Fifty   *Int_Par_Ref;
- } /* Proc_2 */
- 
- 
--Proc_3 (Ptr_Ref_Par)
-+void Proc_3 (Ptr_Ref_Par)
- /******************/
-     /* executed once */
-     /* Ptr_Ref_Par becomes Ptr_Glob */
-@@ -418,7 +412,7 @@ Rec_Pointer *Ptr_Ref_Par;
- } /* Proc_3 */
- 
- 
--Proc_4 () /* without parameters */
-+void Proc_4 () /* without parameters */
- /*******/
-     /* executed once */
- {
-@@ -430,7 +424,7 @@ Proc_4 () /* without parameters */
- } /* Proc_4 */
- 
- 
--Proc_5 () /* without parameters */
-+void Proc_5 () /* without parameters */
- /*******/
-     /* executed once */
- {
-diff --git a/dhrystone/dhry_2.c b/dhrystone/dhry_2.c
-index 11b8280..4d6b352 100644
---- a/dhrystone/dhry_2.c
-+++ b/dhrystone/dhry_2.c
-@@ -65,7 +65,7 @@ extern  int     Int_Glob;
- extern  char    Ch_1_Glob;
- 
- 
--Proc_6 (Enum_Val_Par, Enum_Ref_Par)
-+void Proc_6 (Enum_Val_Par, Enum_Ref_Par)
- /*********************************/
-     /* executed once */
-     /* Enum_Val_Par == Ident_3, Enum_Ref_Par becomes Ident_2 */
-@@ -99,7 +99,7 @@ Enumeration *Enum_Ref_Par;
- } /* Proc_6 */
- 
- 
--Proc_7 (Int_1_Par_Val, Int_2_Par_Val, Int_Par_Ref)
-+void Proc_7 (Int_1_Par_Val, Int_2_Par_Val, Int_Par_Ref)
- /**********************************************/
-     /* executed three times                                      */ 
-     /* first call:      Int_1_Par_Val == 2, Int_2_Par_Val == 3,  */
-@@ -119,7 +119,7 @@ One_Fifty      *Int_Par_Ref;
- } /* Proc_7 */
- 
- 
--Proc_8 (Arr_1_Par_Ref, Arr_2_Par_Ref, Int_1_Par_Val, Int_2_Par_Val)
-+void Proc_8 (Arr_1_Par_Ref, Arr_2_Par_Ref, Int_1_Par_Val, Int_2_Par_Val)
- /*********************************************************************/
-     /* executed once      */
-     /* Int_Par_Val_1 == 3 */
+-    install -d ${LLVM_RTOS_INSTALL_DIR}/lib
++    install -d ${D}${LLVM_RTOS_INSTALL_DIR_RECIPE}/lib
+     for libfile in ${S}/build.sysbios/lib/*.a; do
+-        install -m 644 ${libfile} ${LLVM_RTOS_INSTALL_DIR}/lib
++        install -m 644 ${libfile} ${D}${LLVM_RTOS_INSTALL_DIR_RECIPE}/lib
+     done
+ }
++
++FILES_${PN} += "${LLVM_RTOS_INSTALL_DIR_RECIPE}"
++
++# This package contains one x86-64 executable and a few static libraries
++INSANE_SKIP_${PN} = "arch file-rdeps staticdev"
++
++INHIBIT_PACKAGE_STRIP = "1"
++INHIBIT_SYSROOT_STRIP = "1"
++INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 -- 
-1.9.1
+2.7.4
 
 
