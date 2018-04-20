@@ -1,30 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 104D452986
+Return-Path: <yuanzhao@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id A71AE52986
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Apr 2018 19:23:39 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id E6B4820BB9;
-	Fri, 20 Apr 2018 19:23:34 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id Sks3NwOfTWy8; Fri, 20 Apr 2018 19:23:34 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B54B92079D;
-	Fri, 20 Apr 2018 19:23:33 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 6E59F1633B1;
-	Fri, 20 Apr 2018 15:23:33 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Fri, 20 Apr 2018 15:23:32 -0400
-Message-Id: <1524252212-462-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [rocko/master][PATCH] conf, recipes: introduce k2l family and add support for k2l-hs-evm
+	Fri, 20 Apr 2018 21:10:41 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w3KLAc8c006325
+	for <meta-arago@arago-project.org>; Fri, 20 Apr 2018 16:10:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1524258638;
+	bh=bsb0DYuhjMggYEwGAuhrvDljQNUS5AdyW7nzRBESsMg=;
+	h=From:To:CC:Subject:Date;
+	b=fbYagQ/Wb6TPwPC2HtIE4ME0L8N0fqTS816WKx+RsjPfd+zdjyXeK1vcPjrvCEzSg
+	/6f2PjAuhek3NGBqHOdZGjtwzUcyteahp2ALETASqfpEJNgQJMxLTKRJx5l4jQVYaG
+	CrOu/JmQzMg0iBRYMRP0IcX2Nv7vhtN7j8+JGFf0=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3KLAcX3013955
+	for <meta-arago@arago-project.org>; Fri, 20 Apr 2018 16:10:38 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
+	Fri, 20 Apr 2018 16:10:38 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
+	Transport; Fri, 20 Apr 2018 16:10:38 -0500
+Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3KLAcLB026929;
+	Fri, 20 Apr 2018 16:10:38 -0500
+From: Yuan Zhao <yuanzhao@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 20 Apr 2018 16:10:32 -0500
+Message-ID: <20180420211032.117513-1-yuanzhao@ti.com>
+X-Mailer: git-send-email 2.14.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH v2] ocl: update to version 01.01.15.00
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,222 +48,185 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Apr 2018 19:23:44 -0000
+X-List-Received-Date: Fri, 20 Apr 2018 21:10:42 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+- opencl: add monitor build recipe for ipu
+- opencl: update examples list
+
+Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf                            | 4 ++++
- meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb     | 2 +-
- meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc    | 2 +-
- .../packagegroups/packagegroup-arago-base-tisdk-server-extra.bb     | 2 +-
- .../recipes-core/packagegroups/packagegroup-arago-test-addons.bb    | 2 +-
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb       | 2 +-
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb     | 4 ++--
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb   | 2 +-
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb        | 2 +-
- .../recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc            | 2 +-
- meta-arago-extras/recipes-ti/netapi/netapi.inc                      | 2 +-
- meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb              | 6 +++---
- meta-arago-extras/recipes-ti/ocl/opencl_git.bb                      | 4 ++--
- 13 files changed, 20 insertions(+), 16 deletions(-)
+ meta-arago-extras/recipes-ti/ocl/ocl.inc           |  4 +-
+ .../recipes-ti/ocl/opencl-examples_git.bb          | 29 ++++++++----
+ .../recipes-ti/ocl/opencl-monitor-ipu_git.bb       | 54 ++++++++++++++++++++++
+ meta-arago-extras/recipes-ti/ocl/opencl_git.bb     |  6 ++-
+ 4 files changed, 80 insertions(+), 13 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 6dc98a9..1ed0c1f 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -70,6 +70,10 @@ KERNEL_IMAGETYPES_k2g-hs-evm = "zImage fitImage"
- INITRAMFS_IMAGE_k2g-hs-evm = "arago-base-tisdk-image"
- INITRAMFS_FSTYPES_k2g-hs-evm = "cpio.xz"
- 
-+KERNEL_IMAGETYPES_k2l-hs-evm = "zImage fitImage"
-+INITRAMFS_IMAGE_k2l-hs-evm = "arago-base-tisdk-image"
-+INITRAMFS_FSTYPES_k2l-hs-evm = "cpio.xz"
-+
- # Mask any broken recipes (currently none)
- #BBMASK = ""
- 
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
-index d361c3d..fcf843a 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
-@@ -2,7 +2,7 @@ require arago-core-tisdk-image.inc
- 
- DEPLOY_SPL_NAME_omapl138 = ""
- DEPLOY_SPL_NAME_k2hk = ""
--DEPLOY_SPL_NAME_k2l-evm = ""
-+DEPLOY_SPL_NAME_k2l = ""
- DEPLOY_SPL_NAME_k2e = ""
- # Only unset it for HS device, as k2g GP does provide MLO/SPL
- DEPLOY_SPL_NAME_k2g-hs-evm = ""
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index 673a56d..08e101d 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -24,7 +24,7 @@ DTB_FILTER_am57xx-evm = "am57xx"
- DTB_FILTER_am57xx-hs-evm = "${DTB_FILTER_am57xx-evm}"
- DTB_FILTER_ti43x = "am43"
- DTB_FILTER_k2hk = "k2hk"
--DTB_FILTER_k2l-evm = "k2l"
-+DTB_FILTER_k2l = "k2l"
- DTB_FILTER_k2e = "k2e"
- DTB_FILTER_k2g = "k2g"
- DTB_FILTER_omapl138 = "da850"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
-index c5dfc99..343fd2a 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
-@@ -124,7 +124,7 @@ ARAGO_TI_PKGS_append_keystone = " ${ARAGO_TI_KEYSTONE_PKGS}"
- # Disable hplib,nwal-lld as hplib-mod is broken against K4.14
- #    hplib
- #    nwal-lld
--ARAGO_TI_PKGS_append_k2l-evm = "\
-+ARAGO_TI_PKGS_append_k2l = "\
-     dfe-lld \
-     iqn2-lld \
-     "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
-index 075e470..53954f7 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
-@@ -70,7 +70,7 @@ TEST_ADDONS_TI_append_k2hk = " \
- #    hplib-test
- #    nwal-lld-test
- #    nwal-lld
--TEST_ADDONS_TI_append_k2l-evm = " \
-+TEST_ADDONS_TI_append_k2l = " \
-     dfe-lld-test \
-     iqn2-lld-test \
-     ipc-transport-qmss-test \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index 5a80bf4..6ed5aff 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -69,7 +69,7 @@ EXTRA_LIBS_append_k2hk = " \
-     gdbserverproxy-module-drv-src \
- "
- 
--EXTRA_LIBS_append_k2l-evm = " \
-+EXTRA_LIBS_append_k2l = " \
-     debugss-module-drv-src \
-     gdbserverproxy-module-drv-src \
- "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-index 3ca669e..dc33381 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-@@ -78,7 +78,7 @@ EXTRA_LIBS_append_keystone = "\
- #	hplib-staticdev
- #	nwal-lld-dev
- #	nwal-lld-staticdev
--EXTRA_LIBS_append_k2l-evm = "\
-+EXTRA_LIBS_append_k2l = "\
- 	dfe-lld-dev \
- 	dfe-lld-staticdev \
- 	iqn2-lld-dev \
-@@ -142,7 +142,7 @@ EXTRA_LIBS_append_dra7xx = " libulm-dev \
- EXTRA_LIBS_append_k2hk = " libulm-staticdev \
-                                gdbserver-c6x-dev \
- "
--EXTRA_LIBS_append_k2l-evm = " libulm-staticdev \
-+EXTRA_LIBS_append_k2l = " libulm-staticdev \
-                               gdbserver-c6x-dev \
- "
- EXTRA_LIBS_append_k2e = " libulm-staticdev \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 7d3f567..288b25a 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -79,7 +79,7 @@ UTILS_append_k2hk = " \
-     dsptop \
- "
- 
--UTILS_append_k2l-evm = " \
-+UTILS_append_k2l = " \
-     gdbc6x \
-     dsptop \
- "
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 2bb462d..f2f16f5 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -150,7 +150,7 @@ MAKEFILES_append_k2hk = " opencl-examples \
-                               linalg-examples \
- "
- 
--MAKEFILES_append_k2l-evm = " opencl-examples \
-+MAKEFILES_append_k2l = " opencl-examples \
-                              gdbserverproxy-module-drv \
-                              debugss-module-drv \
-                              openmpacc-examples \
-diff --git a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
-index c3f8f38..307e5e9 100644
---- a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
-+++ b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
-@@ -22,7 +22,7 @@ S = "${WORKDIR}/git"
- PLATFORM = "UNKNOWN"
- PLATFORM_omap-a15 = "DRA7XX"
- PLATFORM_k2hk-evm = "TCI6636"
--PLATFORM_k2l-evm = "TCI6630"
-+PLATFORM_k2l = "TCI6630"
- PLATFORM_k2e = "66AK2E"
- PLATFORM_k2g = "66AK2G"
- 
-diff --git a/meta-arago-extras/recipes-ti/netapi/netapi.inc b/meta-arago-extras/recipes-ti/netapi/netapi.inc
-index 83fb6aa..ef4607f 100644
---- a/meta-arago-extras/recipes-ti/netapi/netapi.inc
-+++ b/meta-arago-extras/recipes-ti/netapi/netapi.inc
-@@ -24,7 +24,7 @@ PV = "01.01.00.07"
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index 635bb911..dd336397 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,4 +1,4 @@
+-PV = "1.1.14.11"
++PV = "1.1.15.0"
  INC_PR = "r0"
  
- DEVICELIST_k2hk = "k2h k2k"
--DEVICELIST_k2l-evm  = "k2l"
-+DEVICELIST_k2l  = "k2l"
- DEVICELIST_k2e  = "k2e"
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
  
- CHOICELIST = "yes no"
-diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-index 88d7c2e..50a5270 100644
---- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-@@ -30,7 +30,7 @@ DEPENDS_append_k2hk = " multiprocmgr-rtos \
-                             rm-lld-rtos \
+-OCL_SRCREV = "6bbf15687cffc62567848e2c041e9c2dbddea999"
++OCL_SRCREV = "78b0bc0eb38e76a057bc20ed2e3e485f262a9349"
+ 
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+index 5721e581..25b01258 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+@@ -5,7 +5,7 @@ LICENSE = "BSD"
+ include ocl.inc
+ require recipes-ti/includes/ti-paths.inc
+ 
+-PR = "${INC_PR}.1"
++PR = "${INC_PR}.0"
+ 
+ COMPATIBLE_MACHINE = "dra7xx|keystone"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+@@ -22,26 +22,29 @@ RDEPENDS_${PN}-dev += " libgomp-dev"
+ S = "${WORKDIR}/git/opencl_example_src"
+ B = "${S}"
+ 
+-OCL_EXAMPLE_LIST = " buffer \
++OCL_EXAMPLE_LIST = " abort_exit \
++                     buffer \
+                      ccode \
++                     conv1d \
++                     dgemm \
++                     dspheap \
+                      dsplib_fft \
++                     edmamgr \
+                      float_compute \
++                     matmpy \
++                     monte_carlo \
+                      null \
+                      offline \
+                      offline_embed \
++                     ooo_callback \
+                      platforms \
++                     sgemm \
+                      simple \
++                     timeout \
+                      vecadd \
+-                     matmpy \
+-                     monte_carlo \
+-                     ooo_callback \
+-                     edmamgr \
+-                     sgemm \
+                      vecadd_openmp \
+                      vecadd_openmp_t \
+-                     dgemm \
+-                     abort_exit \
+-                     timeout \
++                     vecadd_subdevice \
  "
  
--DEPENDS_append_k2l-evm  = " multiprocmgr-rtos \
-+DEPENDS_append_k2l  = " multiprocmgr-rtos \
-                             qmss-lld-rtos \
-                             cppi-lld-rtos \
-                             rm-lld-rtos \
-@@ -47,10 +47,10 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ OCL_PERSISTENT_EXAMPLE_LIST = " persistent_clock_concurrent \
+@@ -55,6 +58,12 @@ OCL_PERSISTENT_EXAMPLE_LIST = " persistent_clock_concurrent \
  
- S = "${WORKDIR}/git/monitor"
+ OCL_EXAMPLE_LIST_append_dra7xx = " ${OCL_PERSISTENT_EXAMPLE_LIST}"
  
++OCL_MPAX_EXAMPLE_LIST = " vecadd_mpax \
++                          vecadd_mpax_openmp \
++"
++
++OCL_EXAMPLE_LIST_append_k2hk = " ${OCL_MPAX_EXAMPLE_LIST}"
++
+ python do_unpack_append() {
+     import shutil
+ 
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
+new file mode 100644
+index 00000000..853c7d3a
+--- /dev/null
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
+@@ -0,0 +1,54 @@
++DESCRIPTION = "TI OpenCL M4/IPU device firmware for AM57x"
++HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
++LICENSE = "BSD"
++
++include ocl.inc
++require recipes-ti/includes/ti-paths.inc
++
++PR = "${INC_PR}.0"
++
++inherit cmake update-alternatives
++
++DEPENDS = " common-csl-ip-rtos \
++            pm-lld-rtos \
++            ti-xdctools-native \
++            ti-ipc-rtos \
++            ti-sysbios \
++            ti-pdk-build-rtos \
++            ti-cgt-arm-native \
++            util-linux-native \
++"
++
++COMPATIBLE_MACHINE = "am57xx-evm|am57xx-hs-evm"
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++S = "${WORKDIR}/git/monitor_ipu"
++
 +BUILD_TARGET_dra7xx = "ARM_AM57"
- BUILD_TARGET_k2hk = "ARM_K2H"
--BUILD_TARGET_k2l-evm  = "ARM_K2L"
-+BUILD_TARGET_k2l = "ARM_K2L"
- BUILD_TARGET_k2e = "ARM_K2E"
--BUILD_TARGET_dra7xx = "ARM_AM57"
- BUILD_TARGET_k2g = "ARM_K2G"
- 
- EXTRA_OECMAKE += " -DCROSS_COMPILE=TRUE \
++
++EXTRA_OECMAKE += " -DCROSS_COMPILE=TRUE \
++                   -DOCL_MONITOR_IPU_DIR=${S} \
++                   -DBUILD_OUTPUT=all \
++"
++
++export IPC_DIR = "${IPC_INSTALL_DIR}"
++export BIOS_DIR = "${SYSBIOS_INSTALL_DIR}"
++export PDK_DIR = "${PDK_INSTALL_DIR}"
++export XDC_DIR = "${XDC_INSTALL_DIR}"
++export TI_OCL_M4_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/ti-cgt-arm"
++export CSL_LIB_M4 = "${PDK_DIR}/packages/ti/csl/lib/am572x/m4/release/ti.csl.aem4"
++export PM_HAL_LIB_M4 = "$(PDK_DIR)/packages/ti/drv/pm/lib/am572x/m4/release/pm_hal.aem4"
++
++ALTERNATIVE_${PN}_dra7xx = "dra7-ipu1-fw.xem4"
++ALTERNATIVE_LINK_NAME[dra7-ipu1-fw.xem4] = "${base_libdir}/firmware/dra7-ipu1-fw.xem4"
++ALTERNATIVE_TARGET[dra7-ipu1-fw.xem4] = "${base_libdir}/firmware/dra7-ipu1-fw.xem4.opencl-monitor"
++ALTERNATIVE_PRIORITY = "100"
++
++MONITOR_IPU_FIRMWARE = ""
++MONITOR_IPU_FIRMWARE_dra7xx = "${base_libdir}/firmware/dra7-ipu1-fw.*"
++
++FILES_${PN} += " \
++    ${MONITOR_IPU_FIRMWARE} \
++"
++
++INSANE_SKIP_${PN} = "arch"
 diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-index fdc822d..892a091 100644
+index fdc822d0..d1aed8a1 100644
 --- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
 +++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-@@ -45,9 +45,9 @@ S = "${WORKDIR}/git/host"
+@@ -35,9 +35,13 @@ DEPENDS_append_dra7xx   = " ti-ipc virtual/kernel"
+ DEPENDS_append_keystone = " mpm-transport multiprocmgr"
+ DEPENDS_remove_k2g = " libulm"
  
- export WANT_LLVM_RELEASE = "3.6-ti"
++MONITORS                      = " opencl-monitor"
++MONITORS_append_am57xx-evm    = " opencl-monitor-ipu"
++MONITORS_append_am57xx-hs-evm = " opencl-monitor-ipu"
++
+ RDEPENDS_${PN} += " bash"
+ RDEPENDS_${PN}-dev += " ocl-gl-headers-dev opencl-monitor"
+-RDEPENDS_${PN}-runtime += " ${PN} opencl-monitor clocl ti-cgt6x"
++RDEPENDS_${PN}-runtime += " ${PN} ${MONITORS} clocl ti-cgt6x"
  
--OCL_BUILD_TARGET_dra7xx   = "ARM_AM57"
-+OCL_BUILD_TARGET_dra7xx = "ARM_AM57"
- OCL_BUILD_TARGET_k2hk = "ARM_K2H"
--OCL_BUILD_TARGET_k2l-evm  = "ARM_K2L"
-+OCL_BUILD_TARGET_k2l = "ARM_K2L"
- OCL_BUILD_TARGET_k2e = "ARM_K2E"
- OCL_BUILD_TARGET_k2g = "ARM_K2G"
+ ALLOW_EMPTY_${PN}-runtime = "1"
  
 -- 
-2.7.4
+2.14.1
 
 
