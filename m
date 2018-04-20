@@ -1,43 +1,43 @@
 Return-Path: <j-stiffler@ti.com>
 Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id A3BFD529B6
+	by arago-project.org (Postfix) with ESMTPS id 162DF529FE
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Apr 2018 14:39:24 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w3KEdLMF024522
-	for <meta-arago@arago-project.org>; Fri, 20 Apr 2018 09:39:21 -0500
+	Fri, 20 Apr 2018 14:39:25 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w3KEdM51024526
+	for <meta-arago@arago-project.org>; Fri, 20 Apr 2018 09:39:22 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1524235161;
-	bh=cUDBvC5n9TvzcaS40sTy93bvwC2MkSenOBH6+elFwKQ=;
+	s=ti-com-17Q1; t=1524235162;
+	bh=qqJCLTYvT+IkjPTpjGOT6uPOGaVG0O3310ROQuvnqVM=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=QGHIERxNjk5MSnILhvYKwZOsMdbTEdDMDkkHYy/9p3E4gBsq6fvtGPiDTP5O4YJvS
-	ELeMbGSc3nEQF0cVvognpushFR4ibVq0nDPaMFRWSauDx2oGv/vM+Qe1Fm3XgB8s/J
-	Mz5cdEzsF2FwmbQuhUEjKpOkEsvqe6rtGsBZZL6k=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3KEdLcF026336
-	for <meta-arago@arago-project.org>; Fri, 20 Apr 2018 09:39:21 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+	b=wLxgs0ujqvd+yVkeJCHU5KJ+nb0bFFjk9NpiV/XoJJd7f7745up5DkWpc1sKmuQDh
+	hvU7JM0iVw3op8ceX/EBGElknVWxdYsvTkqp9ICiDBdHjbkDpv3y45dBYmSKDluBM6
+	HvSuz+qN3ni58VCh5eWKdxp+AKmSYL+o42MTTAWI=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3KEdMdS027786
+	for <meta-arago@arago-project.org>; Fri, 20 Apr 2018 09:39:22 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Fri, 20 Apr 2018 09:39:21 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 20 Apr 2018 09:39:22 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Fri, 20 Apr 2018 09:39:21 -0500
+	Transport; Fri, 20 Apr 2018 09:39:22 -0500
 Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3KEdK4x002328;
-	Fri, 20 Apr 2018 09:39:21 -0500
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3KEdK51002328;
+	Fri, 20 Apr 2018 09:39:22 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 20 Apr 2018 10:28:58 -0400
-Message-ID: <1524234540-28454-3-git-send-email-j-stiffler@ti.com>
+Date: Fri, 20 Apr 2018 10:29:00 -0400
+Message-ID: <1524234540-28454-5-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1524234540-28454-1-git-send-email-j-stiffler@ti.com>
 References: <1524234540-28454-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko/master][PATCH 3/5] opencl-monitor-rtos: fix installation to sysroot
+Subject: [rocko/master][PATCH 5/5] opencl-examples-rtos: add missing dependencies
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,41 +53,35 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Fri, 20 Apr 2018 14:39:26 -0000
 Content-Type: text/plain
 
-* Install relative to ${D}
-* Add files to a package
-* Add missing dependency
+* set path to clocl as it is located in the native sysroot
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
-index 8add3ef..62e7131 100644
---- a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
-@@ -20,6 +20,7 @@ DEPENDS = " ti-llvm3.6-native \
-             ti-framework-components \
-             libaet \
-             openmp-rtos \
-+            gcc-arm-none-eabi-native \
+diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb
+index 8496749..29c45fa 100644
+--- a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb
+@@ -11,7 +11,7 @@ COMPATIBLE_MACHINE = "omap-a15"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+ DEPENDS = "opencl-rtos ti-cgt6x-native clocl-rtos-native opencl-monitor-rtos \
+-           clocl-win \
++           clocl-win gcc-arm-none-eabi-native ti-xdctools-native ti-sysbios \
  "
  
- COMPATIBLE_MACHINE = "omap-a15"
-@@ -55,10 +56,10 @@ export GDB_SERVER_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/gdbc6x"
- export AET_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/ctoolslib/aet"
- export X86_LLVM_DIR = "${STAGING_DIR_NATIVE}/usr"
- export XDCPATH = "${S};${IPC_DIR}/packages;${BIOS_DIR}/packages;${EDMA3LLD_DIR}/packages;${FC_DIR}/packages;${XDAIS_DIR}/packages"
--export DESTDIR="${OCL_RTOS_INSTALL_DIR}/ti-opencl-rtos-${RELEASE_TARGET}-${PV}/packages/ti/opencl"
-+export DESTDIR="${D}${OCL_RTOS_INSTALL_DIR_RECIPE}/ti-opencl-rtos-${RELEASE_TARGET}-${PV}/packages/ti/opencl"
+ S = "${WORKDIR}/git/opencl_example_src"
+@@ -66,7 +66,7 @@ do_compile() {
+     unset LDFLAGS
+     unset TARGET_LDFLAGS
+ 
+-    oe_runmake
++    oe_runmake CLOCL=${STAGING_DIR_NATIVE}/usr/share/ti/ti-opencl-rtos-tree/bin/x86/clocl
+ }
  
  do_install() {
-     oe_runmake install
--    install -d ${DESTDIR}/platforms/am57x_rtos
--    cp -r ${S}/../packages/ti/opencl/platforms/am57x_rtos/* ${DESTDIR}/platforms/am57x_rtos/
- }
-+
-+FILES_${PN} += "${OCL_RTOS_INSTALL_DIR_RECIPE}"
 -- 
 2.7.4
 
