@@ -1,41 +1,41 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id D8C685299F
+Return-Path: <yan-liu@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id D45BB5299F
 	for <meta-arago@arago-project.org>;
-	Mon, 23 Apr 2018 15:08:36 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w3NF8XCm010723
-	for <meta-arago@arago-project.org>; Mon, 23 Apr 2018 10:08:33 -0500
+	Mon, 23 Apr 2018 18:28:17 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w3NISEV9006263
+	for <meta-arago@arago-project.org>; Mon, 23 Apr 2018 13:28:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1524496113;
-	bh=RuS6XEErcSxixHAV+VuWLbrTyjKiRD76tr8UhskBIW8=;
-	h=From:To:Subject:Date;
-	b=m4G6osDnGSt6dW+XeO4FTWEqs6mjRe8U4VHMFWRVp5h+K61N1D6z4QId//fxWp1tt
-	cgG4crAGfQKbJWoE7frYKNVSAl3JHPRix75kVT5y22kAj4ij1/tNmsZTHEqG+XxiwM
-	WtKfZMdaAk2/Ibdbbt94Z0S9uQ/Q9tcMN0t/fhR8=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3NF8XeF016020
-	for <meta-arago@arago-project.org>; Mon, 23 Apr 2018 10:08:33 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1524508094;
+	bh=1Ptt/16umECLl6QlJG4zY4WUavT7Pn3aAxyxfCeoJXw=;
+	h=From:To:CC:Subject:Date;
+	b=JdRwVJvhImbIYewb2+yDFwQ2RejfdoQUyThKvRpQeyaVWT2n4plLu3Fk+m5SRFqX+
+	T8tUaNCxlNm75qzZDR/RWI8brurnsf/5Z7oHrmnlsAPiV8Vm/xdOASZnaxA29gc0KA
+	0drbhI+u5lCH0f3Nf7GF2XeAJEYZ0p3d4VHV3BZw=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3NISE8F027396
+	for <meta-arago@arago-project.org>; Mon, 23 Apr 2018 13:28:14 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Mon, 23 Apr 2018 10:08:33 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 23 Apr 2018 13:28:14 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Mon, 23 Apr 2018 10:08:33 -0500
-Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Mon, 23 Apr 2018 13:28:14 -0500
+Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3NF8XPk003934
-	for <meta-arago@arago-project.org>; Mon, 23 Apr 2018 10:08:33 -0500
-From: Eric Ruei <e-ruei1@ti.com>
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3NIS97W017045;
+	Mon, 23 Apr 2018 13:28:11 -0500
+From: <yan-liu@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 23 Apr 2018 11:08:29 -0400
-Message-ID: <1524496109-11156-1-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
+Date: Mon, 23 Apr 2018 14:19:41 -0400
+Message-ID: <1524507582-14412-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko][meta-processor-sdk][PATCH] qtbase: enable eglfs_kms for QT5.9.4
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,39 +48,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Apr 2018 15:08:37 -0000
+X-List-Received-Date: Mon, 23 Apr 2018 18:28:19 -0000
 Content-Type: text/plain
 
-For QT5.9.4 the new component gbm should be included in order to enable
-eglfs_kms (GBM)
+From: Yan Liu <yan-liu@ti.com>
 
-
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- recipes-qt/qt5/qtbase_%.bbappend | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-qt/qt5/qtbase_%.bbappend b/recipes-qt/qt5/qtbase_%.bbappend
-index 28255b7..1503beb 100644
---- a/recipes-qt/qt5/qtbase_%.bbappend
-+++ b/recipes-qt/qt5/qtbase_%.bbappend
-@@ -1,4 +1,4 @@
--PR_append = ".tisdk5.1"
-+PR_append = ".tisdk5.2"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+index f506c91..1517d17 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-PR = "r3"
++PR = "r4"
+ PV_append = "+git${SRCPV}"
  
-@@ -13,6 +13,9 @@ GLES_EXTRA_DEPS = "libdrm ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', 'wayla
- PACKAGECONFIG[kms] = "-kms,-no-kms,drm virtual/egl"
- PACKAGECONFIG += "kms"
+ PROVIDES += "ltp"
+@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
  
-+PACKAGECONFIG[gbm] = "-gbm,-no-gbm,drm virtual/egl"
-+PACKAGECONFIG += "gbm"
-+
- QT_NOSGX_PATCHES = "\
-     file://0001-calculator-Add-exit-button-for-non-window-environmen.patch \
-     file://0002-animatedtiles-Add-exit-button-for-non-window-environ.patch \
+ inherit autotools-brokensep
+ 
+-SRCREV = "5b4a12d2d372262cf1184a11340c0ee4f8e93f46"
++SRCREV = "e2f4f79f1707b63586157801f63050d8f8479b67"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
 -- 
-1.9.1
+1.7.9.5
 
 
