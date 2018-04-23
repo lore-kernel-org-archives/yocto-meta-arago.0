@@ -1,43 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 6D01652986
+Return-Path: <e-ruei1@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id D8C685299F
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Apr 2018 21:42:52 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w3KLgngW005263
-	for <meta-arago@arago-project.org>; Fri, 20 Apr 2018 16:42:49 -0500
+	Mon, 23 Apr 2018 15:08:36 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w3NF8XCm010723
+	for <meta-arago@arago-project.org>; Mon, 23 Apr 2018 10:08:33 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
-	s=ti-com-17Q1; t=1524260569;
-	bh=CmYXIVSuBSGNCjL335zPEmGz/8WvB/rrmgA93l3FJys=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=R6JCzB79ZwfiBFzaWZ5Buy2EH+aQF2Oy6r5ISSOSJ/z2/YxwgOD+rlVhOKvQbp6AP
-	VohTKsLyROBqi5kE8EHbgY1x0GTL0H4YxzIQICZXevG+1fzGBqU2T+fFJQ0Ao1ST5f
-	QSHrNJKhlO2Ble4H2UaxLGCc8/LydLillkqNpVSI=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3KLgnCI026784
-	for <meta-arago@arago-project.org>; Fri, 20 Apr 2018 16:42:49 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1524496113;
+	bh=RuS6XEErcSxixHAV+VuWLbrTyjKiRD76tr8UhskBIW8=;
+	h=From:To:Subject:Date;
+	b=m4G6osDnGSt6dW+XeO4FTWEqs6mjRe8U4VHMFWRVp5h+K61N1D6z4QId//fxWp1tt
+	cgG4crAGfQKbJWoE7frYKNVSAl3JHPRix75kVT5y22kAj4ij1/tNmsZTHEqG+XxiwM
+	WtKfZMdaAk2/Ibdbbt94Z0S9uQ/Q9tcMN0t/fhR8=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3NF8XeF016020
+	for <meta-arago@arago-project.org>; Mon, 23 Apr 2018 10:08:33 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Fri, 20 Apr 2018 16:42:49 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 23 Apr 2018 10:08:33 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Fri, 20 Apr 2018 16:42:49 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3KLgmhT014345;
-	Fri, 20 Apr 2018 16:42:49 -0500
-Date: Fri, 20 Apr 2018 17:42:48 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Yuan Zhao <yuanzhao@ti.com>
-Message-ID: <20180420214248.GG7580@edge>
-References: <20180420212705.117863-1-yuanzhao@ti.com>
+	Transport; Mon, 23 Apr 2018 10:08:33 -0500
+Received: from uda0850410.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3NF8XPk003934
+	for <meta-arago@arago-project.org>; Mon, 23 Apr 2018 10:08:33 -0500
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 23 Apr 2018 11:08:29 -0400
+Message-ID: <1524496109-11156-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <20180420212705.117863-1-yuanzhao@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH v3] ocl: update to version 01.01.15.00
+Subject: [rocko][meta-processor-sdk][PATCH] qtbase: enable eglfs_kms for QT5.9.4
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,193 +48,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Apr 2018 21:42:52 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 23 Apr 2018 15:08:37 -0000
+Content-Type: text/plain
 
-Thanks! Merging it now to rocko-next.
+For QT5.9.4 the new component gbm should be included in order to enable
+eglfs_kms (GBM)
 
 
-On Fri, Apr 20, 2018 at 04:27:05PM -0500, Yuan Zhao wrote:
-> - opencl: add monitor build recipe for ipu
-> - opencl: update examples list
-> 
-> Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
-> ---
->  meta-arago-extras/recipes-ti/ocl/ocl.inc           |  4 +-
->  .../recipes-ti/ocl/opencl-examples_git.bb          | 29 ++++++++----
->  .../recipes-ti/ocl/opencl-monitor-ipu_git.bb       | 53 ++++++++++++++++++++++
->  meta-arago-extras/recipes-ti/ocl/opencl_git.bb     |  6 ++-
->  4 files changed, 79 insertions(+), 13 deletions(-)
->  create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> 
-> diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> index 635bb911..dd336397 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> +++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> @@ -1,4 +1,4 @@
-> -PV = "1.1.14.11"
-> +PV = "1.1.15.0"
->  INC_PR = "r0"
->  
->  LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
-> @@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
->  OCL_GIT_PROTOCOL = "git"
->  OCL_GIT_BRANCH = "master"
->  
-> -OCL_SRCREV = "6bbf15687cffc62567848e2c041e9c2dbddea999"
-> +OCL_SRCREV = "78b0bc0eb38e76a057bc20ed2e3e485f262a9349"
->  
->  BRANCH = "${OCL_GIT_BRANCH}"
->  SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-> index 5721e581..25b01258 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-> @@ -5,7 +5,7 @@ LICENSE = "BSD"
->  include ocl.inc
->  require recipes-ti/includes/ti-paths.inc
->  
-> -PR = "${INC_PR}.1"
-> +PR = "${INC_PR}.0"
->  
->  COMPATIBLE_MACHINE = "dra7xx|keystone"
->  PACKAGE_ARCH = "${MACHINE_ARCH}"
-> @@ -22,26 +22,29 @@ RDEPENDS_${PN}-dev += " libgomp-dev"
->  S = "${WORKDIR}/git/opencl_example_src"
->  B = "${S}"
->  
-> -OCL_EXAMPLE_LIST = " buffer \
-> +OCL_EXAMPLE_LIST = " abort_exit \
-> +                     buffer \
->                       ccode \
-> +                     conv1d \
-> +                     dgemm \
-> +                     dspheap \
->                       dsplib_fft \
-> +                     edmamgr \
->                       float_compute \
-> +                     matmpy \
-> +                     monte_carlo \
->                       null \
->                       offline \
->                       offline_embed \
-> +                     ooo_callback \
->                       platforms \
-> +                     sgemm \
->                       simple \
-> +                     timeout \
->                       vecadd \
-> -                     matmpy \
-> -                     monte_carlo \
-> -                     ooo_callback \
-> -                     edmamgr \
-> -                     sgemm \
->                       vecadd_openmp \
->                       vecadd_openmp_t \
-> -                     dgemm \
-> -                     abort_exit \
-> -                     timeout \
-> +                     vecadd_subdevice \
->  "
->  
->  OCL_PERSISTENT_EXAMPLE_LIST = " persistent_clock_concurrent \
-> @@ -55,6 +58,12 @@ OCL_PERSISTENT_EXAMPLE_LIST = " persistent_clock_concurrent \
->  
->  OCL_EXAMPLE_LIST_append_dra7xx = " ${OCL_PERSISTENT_EXAMPLE_LIST}"
->  
-> +OCL_MPAX_EXAMPLE_LIST = " vecadd_mpax \
-> +                          vecadd_mpax_openmp \
-> +"
-> +
-> +OCL_EXAMPLE_LIST_append_k2hk = " ${OCL_MPAX_EXAMPLE_LIST}"
-> +
->  python do_unpack_append() {
->      import shutil
->  
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> new file mode 100644
-> index 00000000..d560744a
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> @@ -0,0 +1,53 @@
-> +DESCRIPTION = "TI OpenCL M4/IPU device firmware for AM57x"
-> +HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
-> +LICENSE = "BSD"
-> +
-> +include ocl.inc
-> +require recipes-ti/includes/ti-paths.inc
-> +
-> +PR = "${INC_PR}.0"
-> +
-> +inherit cmake update-alternatives
-> +
-> +DEPENDS = " common-csl-ip-rtos \
-> +            pm-lld-rtos \
-> +            ti-xdctools-native \
-> +            ti-ipc-rtos \
-> +            ti-sysbios \
-> +            ti-pdk-build-rtos \
-> +            ti-cgt-arm-native \
-> +            util-linux-native \
-> +"
-> +
-> +COMPATIBLE_MACHINE = "am57xx-evm|am57xx-hs-evm"
-> +PACKAGE_ARCH = "${MACHINE_ARCH}"
-> +
-> +S = "${WORKDIR}/git/monitor_ipu"
-> +
-> +BUILD_TARGET = "ARM_AM57"
-> +
-> +EXTRA_OECMAKE += " -DCROSS_COMPILE=TRUE \
-> +                   -DOCL_MONITOR_IPU_DIR=${S} \
-> +                   -DBUILD_OUTPUT=all \
-> +"
-> +
-> +export IPC_DIR = "${IPC_INSTALL_DIR}"
-> +export BIOS_DIR = "${SYSBIOS_INSTALL_DIR}"
-> +export PDK_DIR = "${PDK_INSTALL_DIR}"
-> +export XDC_DIR = "${XDC_INSTALL_DIR}"
-> +export TI_OCL_M4_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/ti-cgt-arm"
-> +export CSL_LIB_M4 = "${PDK_DIR}/packages/ti/csl/lib/am572x/m4/release/ti.csl.aem4"
-> +export PM_HAL_LIB_M4 = "$(PDK_DIR)/packages/ti/drv/pm/lib/am572x/m4/release/pm_hal.aem4"
-> +
-> +ALTERNATIVE_${PN} = "dra7-ipu1-fw.xem4"
-> +ALTERNATIVE_LINK_NAME[dra7-ipu1-fw.xem4] = "${base_libdir}/firmware/dra7-ipu1-fw.xem4"
-> +ALTERNATIVE_TARGET[dra7-ipu1-fw.xem4] = "${base_libdir}/firmware/dra7-ipu1-fw.xem4.opencl-monitor"
-> +ALTERNATIVE_PRIORITY = "100"
-> +
-> +MONITOR_IPU_FIRMWARE = "${base_libdir}/firmware/dra7-ipu1-fw.*"
-> +
-> +FILES_${PN} += " \
-> +    ${MONITOR_IPU_FIRMWARE} \
-> +"
-> +
-> +INSANE_SKIP_${PN} = "arch"
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-> index fdc822d0..d1aed8a1 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-> @@ -35,9 +35,13 @@ DEPENDS_append_dra7xx   = " ti-ipc virtual/kernel"
->  DEPENDS_append_keystone = " mpm-transport multiprocmgr"
->  DEPENDS_remove_k2g = " libulm"
->  
-> +MONITORS                      = " opencl-monitor"
-> +MONITORS_append_am57xx-evm    = " opencl-monitor-ipu"
-> +MONITORS_append_am57xx-hs-evm = " opencl-monitor-ipu"
-> +
->  RDEPENDS_${PN} += " bash"
->  RDEPENDS_${PN}-dev += " ocl-gl-headers-dev opencl-monitor"
-> -RDEPENDS_${PN}-runtime += " ${PN} opencl-monitor clocl ti-cgt6x"
-> +RDEPENDS_${PN}-runtime += " ${PN} ${MONITORS} clocl ti-cgt6x"
->  
->  ALLOW_EMPTY_${PN}-runtime = "1"
->  
-> -- 
-> 2.14.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+---
+ recipes-qt/qt5/qtbase_%.bbappend | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/recipes-qt/qt5/qtbase_%.bbappend b/recipes-qt/qt5/qtbase_%.bbappend
+index 28255b7..1503beb 100644
+--- a/recipes-qt/qt5/qtbase_%.bbappend
++++ b/recipes-qt/qt5/qtbase_%.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = ".tisdk5.1"
++PR_append = ".tisdk5.2"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+@@ -13,6 +13,9 @@ GLES_EXTRA_DEPS = "libdrm ${@bb.utils.contains('MACHINE_FEATURES', 'sgx', 'wayla
+ PACKAGECONFIG[kms] = "-kms,-no-kms,drm virtual/egl"
+ PACKAGECONFIG += "kms"
+ 
++PACKAGECONFIG[gbm] = "-gbm,-no-gbm,drm virtual/egl"
++PACKAGECONFIG += "gbm"
++
+ QT_NOSGX_PATCHES = "\
+     file://0001-calculator-Add-exit-button-for-non-window-environmen.patch \
+     file://0002-animatedtiles-Add-exit-button-for-non-window-environ.patch \
+-- 
+1.9.1
+
 
