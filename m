@@ -1,30 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 2424F52975
+Return-Path: <j-stiffler@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id B0994529D5
 	for <meta-arago@arago-project.org>;
-	Tue, 24 Apr 2018 20:15:50 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id F27AC20AD5;
-	Tue, 24 Apr 2018 20:15:46 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 0cDNPbaRHL6Y; Tue, 24 Apr 2018 20:15:46 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D7E52208CB;
-	Tue, 24 Apr 2018 20:15:45 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 6ECB3163440;
-	Tue, 24 Apr 2018 16:15:45 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Tue, 24 Apr 2018 16:15:44 -0400
-Message-Id: <1524600944-21030-1-git-send-email-denys@ti.com>
+	Wed, 25 Apr 2018 16:59:34 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w3PGxVGS031114
+	for <meta-arago@arago-project.org>; Wed, 25 Apr 2018 11:59:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1524675571;
+	bh=YuA7l+Gk0cEcchjcW2gif/reWO+MVc13H4PVLzWYdxc=;
+	h=From:To:CC:Subject:Date;
+	b=MY+N5Nh1KpDxUO4vwFKx+/qysdRmVtjLKH/0kQhgfnARSRjbH1pwx74Cu1SBH5vEv
+	TwYbik046agpgNx8+uG9c/Zgmqk89EawdJW3zcpWLtyaCtIjrwSA7/Abgo270z3th7
+	Nc9UIdseyNq0Krok8daedP34rORrvdcz3xk+ssXc=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3PGxV03003616
+	for <meta-arago@arago-project.org>; Wed, 25 Apr 2018 11:59:31 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
+	Wed, 25 Apr 2018 11:59:31 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
+	Transport; Wed, 25 Apr 2018 11:59:31 -0500
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3PGxUT5013603;
+	Wed, 25 Apr 2018 11:59:30 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 25 Apr 2018 12:49:11 -0400
+Message-ID: <1524674951-20311-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] layer.conf: add LAYERSERIES_COMPAT for sumo
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH] opencl-monitor-rtos: skip arch check
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,40 +48,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Apr 2018 20:15:50 -0000
+X-List-Received-Date: Wed, 25 Apr 2018 16:59:35 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+* The package contains DSP binaries, so disable this QA check.
+
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-distro/conf/layer.conf | 2 ++
- meta-arago-extras/conf/layer.conf | 2 ++
- 2 files changed, 4 insertions(+)
+ meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
-index c175bd8..be2e4b7 100644
---- a/meta-arago-distro/conf/layer.conf
-+++ b/meta-arago-distro/conf/layer.conf
-@@ -8,6 +8,8 @@ BBFILE_COLLECTIONS += "meta-arago-distro"
- BBFILE_PATTERN_meta-arago-distro := "^${LAYERDIR}/"
- BBFILE_PRIORITY_meta-arago-distro = "10"
+diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
+index 62e7131..b0e7016 100644
+--- a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
+@@ -63,3 +63,4 @@ do_install() {
+ }
  
-+LAYERSERIES_COMPAT_meta-arago-distro = "sumo"
-+
- LAYERDEPENDS_meta-arago-distro = " \
-     core \
-     meta-ti \
-diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
-index 83ac107..806447a 100644
---- a/meta-arago-extras/conf/layer.conf
-+++ b/meta-arago-extras/conf/layer.conf
-@@ -8,6 +8,8 @@ BBFILE_COLLECTIONS += "meta-arago-extras"
- BBFILE_PATTERN_meta-arago-extras := "^${LAYERDIR}/"
- BBFILE_PRIORITY_meta-arago-extras = "10"
- 
-+LAYERSERIES_COMPAT_meta-arago-extras = "sumo"
-+
- # Set a variable to get to the top of the metadata location
- ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
- 
+ FILES_${PN} += "${OCL_RTOS_INSTALL_DIR_RECIPE}"
++INSANE_SKIP_${PN} = "arch"
 -- 
 2.7.4
 
