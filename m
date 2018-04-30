@@ -1,30 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 682A052975
+Return-Path: <yan-liu@ti.com>
+Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
+	by arago-project.org (Postfix) with ESMTPS id 7957752978
 	for <meta-arago@arago-project.org>;
-	Wed, 25 Apr 2018 19:15:21 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3392020B55;
-	Wed, 25 Apr 2018 19:15:18 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id eqm0plDB2ysq; Wed, 25 Apr 2018 19:15:18 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 10ED8208CB;
-	Wed, 25 Apr 2018 19:15:17 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 64726163440;
-	Wed, 25 Apr 2018 15:15:16 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Wed, 25 Apr 2018 15:15:15 -0400
-Message-Id: <1524683715-11324-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [rocko/master][PATCH] thermal-init: point to correct MIT license, not the COREBASE one.
+	Mon, 30 Apr 2018 18:05:15 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w3UI5BSf030856
+	for <meta-arago@arago-project.org>; Mon, 30 Apr 2018 13:05:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ti.com;
+	s=ti-com-17Q1; t=1525111511;
+	bh=umOfGutOzwV+MUFvGDPnisKLBQseVZEXCLgs5jYg8uk=;
+	h=From:To:CC:Subject:Date;
+	b=nvNoY5ToY1beD0PajKhzeO6exxxjIf942UZXox5P4VET68AyasIRj4vBS7Yu4HS7K
+	S30OQ3WX6DHy4n3bU6Bgyp2EwOWaWgiRqKMA5pv98PZF4kLVeTDrf5v23Y8NF4akit
+	gKO5jF1dJ093iMMN4s6VfQQ7FzZPKYvXJagy8NsA=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3UI5BgC002775
+	for <meta-arago@arago-project.org>; Mon, 30 Apr 2018 13:05:11 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
+	Mon, 30 Apr 2018 13:05:11 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
+	Transport; Mon, 30 Apr 2018 13:05:11 -0500
+Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w3UI5AJ6026199;
+	Mon, 30 Apr 2018 13:05:11 -0500
+From: <yan-liu@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 30 Apr 2018 13:57:01 -0400
+Message-ID: <1525111021-30352-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,26 +48,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Apr 2018 19:15:22 -0000
+X-List-Received-Date: Mon, 30 Apr 2018 18:05:16 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+From: Yan Liu <yan-liu@ti.com>
+
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- meta-arago-distro/recipes-core/thermal-init/thermal-init.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/thermal-init/thermal-init.bb b/meta-arago-distro/recipes-core/thermal-init/thermal-init.bb
-index 0bc76e0..f128c73 100644
---- a/meta-arago-distro/recipes-core/thermal-init/thermal-init.bb
-+++ b/meta-arago-distro/recipes-core/thermal-init/thermal-init.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Init script to enable cpu_thermal zones"
- LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
-+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+index 1517d17..99b02b5 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
  
- PR = "r1"
+-PR = "r4"
++PR = "r5"
+ PV_append = "+git${SRCPV}"
  
+ PROVIDES += "ltp"
+@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+ 
+ inherit autotools-brokensep
+ 
+-SRCREV = "e2f4f79f1707b63586157801f63050d8f8479b67"
++SRCREV = "b367a6d09b1c9b307a88b8946c309d05825c4b80"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
 -- 
-2.7.4
+1.7.9.5
 
 
