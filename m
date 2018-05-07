@@ -1,30 +1,30 @@
-Return-Path: <denys@ti.com>
+Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 5CEF452090
+	by arago-project.org (Postfix) with ESMTPS id C0A43529A6
 	for <meta-arago@arago-project.org>;
-	Mon,  7 May 2018 18:01:58 +0000 (UTC)
+	Mon,  7 May 2018 20:28:23 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 455BF20B38;
-	Mon,  7 May 2018 18:01:54 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 9831E20B38;
+	Mon,  7 May 2018 20:28:19 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 319ylhw9Td7K; Mon,  7 May 2018 18:01:54 +0000 (UTC)
+	with ESMTP id 3uhcLFRvnLuj; Mon,  7 May 2018 20:28:19 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 210C3208BD;
-	Mon,  7 May 2018 18:01:53 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 74A15208BD;
+	Mon,  7 May 2018 20:28:18 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 94C39163457;
-	Mon,  7 May 2018 14:01:52 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
+	by mail.denix.org (Postfix) with ESMTP id E19B3163457;
+	Mon,  7 May 2018 16:28:17 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon,  7 May 2018 14:01:51 -0400
-Message-Id: <1525716111-12277-1-git-send-email-denys@ti.com>
+Date: Mon,  7 May 2018 16:28:17 -0400
+Message-Id: <1525724897-45780-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [rocko/master][PATCH] packagegroup-*-toolchain-tisdk-target: restructure packagegroup dependencies
+Subject: [oe-layersetup][PATCH] oe-layer-setup.sh: reduce number of threads used down to 75%
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,60 +37,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 May 2018 18:02:00 -0000
+X-List-Received-Date: Mon, 07 May 2018 20:28:24 -0000
 
-This is to fix omission of standalone-sdk-target packagegroup on omapl138 and
-to avoid same mistake in the future.
+From: Denys Dmytriyenko <denys@ti.com>
+
+Since number of threads is used to set number of parallel bitbake processes,
+as well as number of make processes, the total number of compile tasks
+running at the same time is threads^2 and can easily spike to thousands on
+modern machines. It seems while real hardware can handle such load just fine,
+doing so in VM can cause resource deprivation and result in issues like
+Internal Compiler Error (ICE) and unable to fork in some processes.
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroup-arago-toolchain-tisdk-target.bb          | 15 ++++++++-------
- 1 file changed, 8 insertions(+), 7 deletions(-)
+ oe-layertool-setup.sh | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-index 59987fa..5614d3a 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to build and install header and libs into the sdk"
- LICENSE = "MIT"
--PR = "r10"
-+PR = "r11"
+diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
+index 154b117..d3b36ee 100755
+--- a/oe-layertool-setup.sh
++++ b/oe-layertool-setup.sh
+@@ -730,8 +730,9 @@ EOM
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+     # set the number of threads
+     threads=`cat /proc/cpuinfo | grep -c processor`
+-    sed -i "s/^PARALLEL_MAKE.*/PARALLEL_MAKE = \"-j ${threads}\"/" $confdir/local.conf
+-    sed -i "s/^BB_NUMBER_THREADS.*/BB_NUMBER_THREADS = \"${threads}\"/" $confdir/local.conf
++    tnum=`echo "(${threads}*.75+.5)/1" | bc`
++    sed -i "s/^PARALLEL_MAKE.*/PARALLEL_MAKE = \"-j ${tnum}\"/" $confdir/local.conf
++    sed -i "s/^BB_NUMBER_THREADS.*/BB_NUMBER_THREADS = \"${tnum}\"/" $confdir/local.conf
  
-@@ -9,24 +9,25 @@ inherit packagegroup
- QT_TOOLCHAIN_TARGET = "\
-     packagegroup-arago-qte-toolchain-target \
- "
--
- QT_TOOLCHAIN_TARGET_keystone = ""
- QT_TOOLCHAIN_TARGET_omapl138 = ""
- 
- TISDK_TOOLCHAIN_BASE_TARGET = "\
-+    packagegroup-arago-standalone-sdk-target \
-     packagegroup-arago-tisdk-multimedia-sdk-target \
--    packagegroup-arago-tisdk-connectivity-sdk-target \
--    packagegroup-arago-tisdk-crypto-sdk-target \
- "
- 
--TISDK_TOOLCHAIN_BASE_TARGET_keystone = "\
--    packagegroup-arago-standalone-sdk-target \
--    packagegroup-arago-tisdk-multimedia-sdk-target \
-+TISDK_TOOLCHAIN_EXTRA_TARGET = "\
-+    packagegroup-arago-tisdk-connectivity-sdk-target \
-+    packagegroup-arago-tisdk-crypto-sdk-target \
- "
-+TISDK_TOOLCHAIN_EXTRA_TARGET_keystone = ""
-+TISDK_TOOLCHAIN_EXTRA_TARGET_omapl138 = ""
- 
- RDEPENDS_${PN} = "\
-     ${QT_TOOLCHAIN_TARGET} \
-     ${TISDK_TOOLCHAIN_BASE_TARGET} \
-+    ${TISDK_TOOLCHAIN_EXTRA_TARGET} \
-     ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics-sdk-target','',d)} \
-     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-sdk-target','',d)} \
-     packagegroup-arago-tisdk-addons-sdk-target \
+     # Find if old DL_DIR was set
+     if [ -e $confdir/local.conf.bak ]
 -- 
 2.7.4
 
