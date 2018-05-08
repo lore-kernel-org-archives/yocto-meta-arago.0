@@ -1,30 +1,41 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 737AF529C7
+Return-Path: <yan-liu@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 79B46529C7
 	for <meta-arago@arago-project.org>;
-	Tue,  8 May 2018 18:01:22 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3205820914;
-	Tue,  8 May 2018 18:01:18 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 9qrjWqAiupEg; Tue,  8 May 2018 18:01:18 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0C31A2079D;
-	Tue,  8 May 2018 18:01:16 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 72B4B163444;
-	Tue,  8 May 2018 14:01:16 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue,  8 May 2018 14:01:15 -0400
-Message-Id: <1525802475-40591-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [oe-layersetup][PATCH] oe-layertool-setup.sh: don't depend on bc for math, use expr instead
+	Tue,  8 May 2018 18:07:31 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w48I7R2I022757
+	for <meta-arago@arago-project.org>; Tue, 8 May 2018 13:07:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1525802847;
+	bh=sFC555bUOqL3IiHVlnCHreomD8H9Lj9TisB1JE/Rbq8=;
+	h=From:To:CC:Subject:Date;
+	b=VXSIlJ+9pLk7UYbh/YbnqfKwq5gRq158DsEAp2ISTB34uBMM3e9/Rz6sN7T02N4x1
+	fVcuCBSQXjY48QT+AbqZ9Bz7VBy622TognBhi32pcCd2uNAdllIBNu5u0tVu7b+Og8
+	0o38tJ+VdHjPUctbR+cZWaZVnDWDf5OsgbHk+vl0=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w48I7RRv025342
+	for <meta-arago@arago-project.org>; Tue, 8 May 2018 13:07:27 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
+	Tue, 8 May 2018 13:07:27 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
+	Transport; Tue, 8 May 2018 13:07:26 -0500
+Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w48I7QVk025864;
+	Tue, 8 May 2018 13:07:26 -0500
+From: <yan-liu@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 8 May 2018 13:59:36 -0400
+Message-ID: <1525802376-8173-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,29 +48,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 May 2018 18:01:23 -0000
+X-List-Received-Date: Tue, 08 May 2018 18:07:31 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+From: Yan Liu <yan-liu@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- oe-layertool-setup.sh | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
-index d3b36ee..ed65ca1 100755
---- a/oe-layertool-setup.sh
-+++ b/oe-layertool-setup.sh
-@@ -730,7 +730,7 @@ EOM
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+index 99b02b5..393d5f3 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
  
-     # set the number of threads
-     threads=`cat /proc/cpuinfo | grep -c processor`
--    tnum=`echo "(${threads}*.75+.5)/1" | bc`
-+    tnum=`expr \( ${threads} + 1 \) \* 75 / 100`
-     sed -i "s/^PARALLEL_MAKE.*/PARALLEL_MAKE = \"-j ${tnum}\"/" $confdir/local.conf
-     sed -i "s/^BB_NUMBER_THREADS.*/BB_NUMBER_THREADS = \"${tnum}\"/" $confdir/local.conf
+-PR = "r5"
++PR = "r6"
+ PV_append = "+git${SRCPV}"
  
+ PROVIDES += "ltp"
+@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+ 
+ inherit autotools-brokensep
+ 
+-SRCREV = "b367a6d09b1c9b307a88b8946c309d05825c4b80"
++SRCREV = "32ab2dc391e16c92f7a7e8354d4369c3d6c5f8c3"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
 -- 
-2.7.4
+1.7.9.5
 
 
