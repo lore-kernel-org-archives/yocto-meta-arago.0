@@ -1,41 +1,41 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id A914252090
+Return-Path: <yan-liu@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 5FEE752987
 	for <meta-arago@arago-project.org>;
-	Mon, 14 May 2018 17:02:36 +0000 (UTC)
+	Tue, 15 May 2018 16:13:03 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w4EH2V1N016068
-	for <meta-arago@arago-project.org>; Mon, 14 May 2018 12:02:31 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w4FGCwTb017017
+	for <meta-arago@arago-project.org>; Tue, 15 May 2018 11:12:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1526317351;
-	bh=8qk8NcXa8uITX+XSii+dUMdsQf1+Ak4HhATwsm85H8U=;
+	s=ti-com-17Q1; t=1526400778;
+	bh=8UILaXBjCOGkd7gwbM8aegYoQGm4WY1mm/RYX4/8LiA=;
 	h=From:To:CC:Subject:Date;
-	b=zFIBwPHKNScY7EdBvXXFesDc0aoVuaifKvV3XmbXLuFlb8pvnNpUU2rlZMAkZeIu2
-	fhfn9YWLQvzT7yHeqZ6H6vw91w1CHXl+ZxAQotic0JWDd5YJ/JSxr7h4auMKsk6afC
-	SRxog6HhRn55nvlKITeM09MvOyyMezNXO0WSFuEo=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w4EH2VsR008341
-	for <meta-arago@arago-project.org>; Mon, 14 May 2018 12:02:31 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	b=XACHq4KsR/epVPhuXluKrtwbUMw2l6PpI+rAGu+SNebfSycTj5gFuDOiafEYTk44z
+	oESQU4AookFnGjTxGv6ukWz0MMnT310vPWQvqMlAPShKBxtu+345Z1MIvDLMjOz2D6
+	f/fkHSZv0TEdEdOK/I1kHzZOcY9g1R0t0JAWRUdg=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w4FGCwCm025952
+	for <meta-arago@arago-project.org>; Tue, 15 May 2018 11:12:58 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Mon, 14 May 2018 12:02:31 -0500
+	Tue, 15 May 2018 11:12:41 -0500
 Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE109.ent.ti.com
 	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Mon, 14 May 2018 12:02:31 -0500
-Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Tue, 15 May 2018 11:12:42 -0500
+Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w4EH2Ukk024026;
-	Mon, 14 May 2018 12:02:30 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w4FGCfRY014726;
+	Tue, 15 May 2018 11:12:41 -0500
+From: <yan-liu@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 14 May 2018 12:52:13 -0400
-Message-ID: <1526316733-26436-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
+Date: Tue, 15 May 2018 12:05:01 -0400
+Message-ID: <1526400301-7008-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v3] ti-tisdk-makefile: linux-dtbs: loop over individual DTBs
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,51 +48,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 May 2018 17:02:37 -0000
+X-List-Received-Date: Tue, 15 May 2018 16:13:03 -0000
 Content-Type: text/plain
 
-* The device tree merge cannot handle multiple DTBs using multiple
-  threads in parallel, so following from kernel-devicetree.bbclass,
-  loop over individual DTBs.
+From: Yan Liu <yan-liu@ti.com>
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
-v2 changes: loop over DTBs, following OE procedure.
-v3 changes: update commit message
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
- .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux-dtbs           | 4 +++-
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb          | 2 +-
- 2 files changed, 4 insertions(+), 2 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux-dtbs b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux-dtbs
-index 012ddc7..d1d7e02 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux-dtbs
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux-dtbs
-@@ -4,7 +4,9 @@ linux-dtbs:
- 	@echo     Building the Linux Kernel DTBs
- 	@echo =====================================
- 	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) $(DEFCONFIG)
--	$(MAKE) -j $(MAKE_JOBS) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) __KERNEL_DEVICETREE__
-+	@for DTB in __KERNEL_DEVICETREE__; do \
-+		$(MAKE) -j $(MAKE_JOBS) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) $$DTB; \
-+	done
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+index 393d5f3..74e2e8e 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
  
- linux-dtbs_install:
- 	@echo =======================================
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index f2f16f5..4fdd99f 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -50,7 +50,7 @@ SRC_URI = "\
-     file://Makefile_barcode-roi \
- "
+-PR = "r6"
++PR = "r7"
+ PV_append = "+git${SRCPV}"
  
--PR = "r85"
-+PR = "r86"
+ PROVIDES += "ltp"
+@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
  
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
+ inherit autotools-brokensep
+ 
+-SRCREV = "32ab2dc391e16c92f7a7e8354d4369c3d6c5f8c3"
++SRCREV = "f7fc06c290333ce08a7d4fba104eee0f0f1d942b"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
 -- 
-2.7.4
+1.7.9.5
 
 
