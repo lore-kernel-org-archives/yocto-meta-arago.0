@@ -1,41 +1,41 @@
 Return-Path: <sam.nelson@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 47B60529B3
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 99A6D5297E
 	for <meta-arago@arago-project.org>;
-	Thu, 17 May 2018 02:22:47 +0000 (UTC)
+	Thu, 17 May 2018 03:57:16 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w4H2MflI028562
-	for <meta-arago@arago-project.org>; Wed, 16 May 2018 21:22:41 -0500
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w4H3vBuw022330
+	for <meta-arago@arago-project.org>; Wed, 16 May 2018 22:57:11 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1526523761;
-	bh=KGQOXqFcXg45HLcVscDlmZjoxH/+jpRrB41dEApfyL4=;
+	s=ti-com-17Q1; t=1526529431;
+	bh=jG7Mh9dHRn07KEXC3jFGZ/CmjhvKg2WzS2p8Fasbc3g=;
 	h=From:To:CC:Subject:Date;
-	b=jBWISOQoFAlIJH8jZNgQfT1hlMjjj7XZ/zJ6q3VMoH6hchwnwV3zMStfuLAtlkWKb
-	ywEedXp1u/fXbApAxyCQphHjtFXMIcUYCmGWXSjPXjrZT8pJWpPObJIvRRWFxO/8j2
-	YQ63YWurpIhPbdr4ZIwjGv/sbrm/ApIeq4tN21ow=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w4H2Mfv4015500
-	for <meta-arago@arago-project.org>; Wed, 16 May 2018 21:22:41 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	b=Pp7Xd6z4RQHG/jOOcbmofJbeeALpA+R7N6XiXJcqCc6ILoRomDE742lq3yuwIrvkM
+	+MM4+H9v6y2FO5TBH4KBGtAmRolL32D0w7tr6ch+vR5uXkZS7GJm0mZ2EIeNIZPpSo
+	gtLFVRyZE3bFRmwya2yRXu5yfNyRlM9s8Zu4bJhE=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w4H3vBdY001331
+	for <meta-arago@arago-project.org>; Wed, 16 May 2018 22:57:11 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 16 May 2018 21:22:41 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 16 May 2018 22:57:11 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Wed, 16 May 2018 21:22:41 -0500
+	Transport; Wed, 16 May 2018 22:57:11 -0500
 Received: from uda0862859a.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w4H2MfuH003032;
-	Wed, 16 May 2018 21:22:41 -0500
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w4H3vBVI019497;
+	Wed, 16 May 2018 22:57:11 -0500
 From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 16 May 2018 22:22:38 -0400
-Message-ID: <1526523758-12681-1-git-send-email-sam.nelson@ti.com>
+Date: Wed, 16 May 2018 23:57:09 -0400
+Message-ID: <1526529429-25464-1-git-send-email-sam.nelson@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH] ti-ipc: Update to new version 3.47.02.00
+Subject: [meta-processor-sdk][PATCH v2] ti-ipc: Update to new version 3.47.02.00
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,22 +48,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 May 2018 02:22:50 -0000
+X-List-Received-Date: Thu, 17 May 2018 03:57:17 -0000
 Content-Type: text/plain
 
 Added new examples for AM571X
 
 Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+
+---
+Change from previous version
+- Rabased to latest
+---
 ---
  recipes-ti/ipc/ti-ipc-3.47.01.00.inc              |  4 --
  recipes-ti/ipc/ti-ipc-3.47.02.00.inc              |  4 ++
  recipes-ti/ipc/ti-ipc-examples-linux_git.bbappend |  4 +-
  recipes-ti/ipc/ti-ipc-examples_git.bbappend       | 57 ++++++++++++++++++-
- recipes-ti/ipc/ti-ipc-rtos-3.47.01.00.inc         |  2 -
+ recipes-ti/ipc/ti-ipc-rtos-3.47.01.00.inc         |  7 ---
  recipes-ti/ipc/ti-ipc-rtos-3.47.02.00.inc         |  5 ++
  recipes-ti/ipc/ti-ipc-rtos_git.bbappend           | 67 ++++++++++++++++++++++-
  recipes-ti/ipc/ti-ipc_git.bbappend                |  2 +-
- 8 files changed, 132 insertions(+), 13 deletions(-)
+ 8 files changed, 132 insertions(+), 18 deletions(-)
  delete mode 100644 recipes-ti/ipc/ti-ipc-3.47.01.00.inc
  create mode 100644 recipes-ti/ipc/ti-ipc-3.47.02.00.inc
  delete mode 100644 recipes-ti/ipc/ti-ipc-rtos-3.47.01.00.inc
@@ -71,13 +76,13 @@ Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 
 diff --git a/recipes-ti/ipc/ti-ipc-3.47.01.00.inc b/recipes-ti/ipc/ti-ipc-3.47.01.00.inc
 deleted file mode 100644
-index 66bcda4..0000000
+index 02abfa6..0000000
 --- a/recipes-ti/ipc/ti-ipc-3.47.01.00.inc
 +++ /dev/null
 @@ -1,4 +0,0 @@
 -PV = "3.47.01.00"
 -
--#Corresponds to 3.47.01.00
+-#Corresponds to 3.47.01.00A
 -TI_IPC_SRCREV = "6a2595a4148fb12f259efc19164a9d33ad2ed294"
 diff --git a/recipes-ti/ipc/ti-ipc-3.47.02.00.inc b/recipes-ti/ipc/ti-ipc-3.47.02.00.inc
 new file mode 100644
@@ -90,11 +95,11 @@ index 0000000..970f04b
 +#Corresponds to 3.47.02.00
 +TI_IPC_SRCREV = "24c36385d096613af123d1e1696fb2fee652ef36"
 diff --git a/recipes-ti/ipc/ti-ipc-examples-linux_git.bbappend b/recipes-ti/ipc/ti-ipc-examples-linux_git.bbappend
-index 4adc0e6..b2a28b6 100644
+index c0eac74..6d6a771 100644
 --- a/recipes-ti/ipc/ti-ipc-examples-linux_git.bbappend
 +++ b/recipes-ti/ipc/ti-ipc-examples-linux_git.bbappend
 @@ -1,5 +1,5 @@
- PR_append = ".tisdk0"
+ PR_append = ".tisdk1"
  
 -require ti-ipc-3.47.01.00.inc
 +require ti-ipc-3.47.02.00.inc
@@ -102,11 +107,11 @@ index 4adc0e6..b2a28b6 100644
 -require ti-ipc-rtos-3.47.01.00.inc
 +require ti-ipc-rtos-3.47.02.00.inc
 diff --git a/recipes-ti/ipc/ti-ipc-examples_git.bbappend b/recipes-ti/ipc/ti-ipc-examples_git.bbappend
-index 4adc0e6..6482e1e 100644
+index c0eac74..5796468 100644
 --- a/recipes-ti/ipc/ti-ipc-examples_git.bbappend
 +++ b/recipes-ti/ipc/ti-ipc-examples_git.bbappend
 @@ -1,5 +1,58 @@
- PR_append = ".tisdk0"
+ PR_append = ".tisdk1"
  
 -require ti-ipc-3.47.01.00.inc
 +require ti-ipc-3.47.02.00.inc
@@ -168,12 +173,17 @@ index 4adc0e6..6482e1e 100644
 -require ti-ipc-rtos-3.47.01.00.inc
 diff --git a/recipes-ti/ipc/ti-ipc-rtos-3.47.01.00.inc b/recipes-ti/ipc/ti-ipc-rtos-3.47.01.00.inc
 deleted file mode 100644
-index ffe6ef9..0000000
+index d31773d..0000000
 --- a/recipes-ti/ipc/ti-ipc-rtos-3.47.01.00.inc
 +++ /dev/null
-@@ -1,2 +0,0 @@
--# Corresponds to tag: 3.47.01.00
--SRCREV_ipc-metadata = "f78329ff0b2c65469271dab59e232e6e0dc82dc7"
+@@ -1,7 +0,0 @@
+-# Corresponds to tag: 3.47.01.00B
+-SRCREV_ipc-examples = "03ff856444b5bb9e60a907125a1f042b29b25d7b"
+-
+-# Corresponds to tag: 3.47.01.00A
+-SRCREV_ipc-metadata = "72578cce9c9f9a932eb22b3397b46131efb12d69"
+-
+-PR = "${INC_PR}.r5"
 diff --git a/recipes-ti/ipc/ti-ipc-rtos-3.47.02.00.inc b/recipes-ti/ipc/ti-ipc-rtos-3.47.02.00.inc
 new file mode 100644
 index 0000000..84178e7
@@ -186,11 +196,11 @@ index 0000000..84178e7
 +# Corresponds to tag: 3.47.02.00
 +SRCREV_ipc-examples = "351e9a6d94c68f7ff64b2c002ee6750242ece6d9"
 diff --git a/recipes-ti/ipc/ti-ipc-rtos_git.bbappend b/recipes-ti/ipc/ti-ipc-rtos_git.bbappend
-index 4adc0e6..ab578dd 100644
+index c0eac74..3a9fbd8 100644
 --- a/recipes-ti/ipc/ti-ipc-rtos_git.bbappend
 +++ b/recipes-ti/ipc/ti-ipc-rtos_git.bbappend
 @@ -1,5 +1,68 @@
- PR_append = ".tisdk0"
+ PR_append = ".tisdk1"
  
 -require ti-ipc-3.47.01.00.inc
 +require ti-ipc-3.47.02.00.inc
