@@ -1,43 +1,41 @@
-Return-Path: <x0038811@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 5A482529C0
+Return-Path: <sam.nelson@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 3D65252978
 	for <meta-arago@arago-project.org>;
-	Fri,  8 Jun 2018 11:26:27 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w58BQMKo009394
-	for <meta-arago@arago-project.org>; Fri, 8 Jun 2018 06:26:22 -0500
+	Mon, 11 Jun 2018 19:26:02 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5BJPtha004649
+	for <meta-arago@arago-project.org>; Mon, 11 Jun 2018 14:25:55 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1528457182;
-	bh=BoKnLB9unDR50wz+/J8k3Q1iA5x/G0UwOG/tI0PIztI=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=j74VCjbCibB0JziMj+YVUGL/juiJdJKQHQnHC+pI92dFvWeQ/ij8Rg6ipi8YtmRxI
-	7F12PWuU7oSAb3SrXPBwqKbI54VGAmgkrA0J2L7ooTHJsUrLjNuEd5+FXEWRYaWjAp
-	nZa8M94k867QWEzknoYuRfALEMfraH/1LVmFrpSo=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w58BQMlf020771
-	for <meta-arago@arago-project.org>; Fri, 8 Jun 2018 06:26:22 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1528745155;
+	bh=BKJXZSFBmqp5N7yodfBDEwjysylyNY8qcc1R8EBBj+o=;
+	h=From:To:CC:Subject:Date;
+	b=UF9rXsHiyp8avSEk486SyplzEineZQEsdC4vJ8M/NJJkx8LnSuLStChl2W5dYiGEB
+	hazkeG/OxizFCS7In/iCyFE8pnmCEyoNakoMj/w4rdXynTyugh7DfaHnyeEgLdaN7C
+	JwO0YB3cTRJ8bnSQo4ajEJdFEWTQfS9N4MAdSSSA=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5BJPtbE003612
+	for <meta-arago@arago-project.org>; Mon, 11 Jun 2018 14:25:55 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Fri, 8 Jun 2018 06:26:21 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 11 Jun 2018 14:25:55 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Fri, 8 Jun 2018 06:26:21 -0500
-Received: from udx0038811.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Mon, 11 Jun 2018 14:25:55 -0500
+Received: from uda0862859a.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w58BQHAg028663;
-	Fri, 8 Jun 2018 06:26:20 -0500
-From: Ramprasad N <x0038811@ti.com>
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5BJPt3B028427;
+	Mon, 11 Jun 2018 14:25:55 -0500
+From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 8 Jun 2018 16:56:13 +0530
-Message-ID: <1528457173-29368-3-git-send-email-x0038811@ti.com>
+Date: Mon, 11 Jun 2018 15:25:53 -0400
+Message-ID: <1528745153-36003-1-git-send-email-sam.nelson@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1528457173-29368-1-git-send-email-x0038811@ti.com>
-References: <1528457173-29368-1-git-send-email-x0038811@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko] gst-ducati: Bump SRCREV with latest commit
+Subject: [meta-processor-sdk][PATCH v2] ti-tisdk-makefile: Update to fix issue with ipc builds from linux
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,31 +48,151 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Jun 2018 11:26:28 -0000
+X-List-Received-Date: Mon, 11 Jun 2018 19:26:03 -0000
 Content-Type: text/plain
 
-Update recipe with latest commit
+setupenv.sh in PRSDK is getting deprecated and all the definitions moved
+to Rules.make. With this change, Rules.make from RTOS package is
+directly used.
 
-Signed-off-by: Ramprasad N <x0038811@ti.com>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 ---
- .../gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb                 | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../ti-tisdk-makefile/Makefile_big-data-ipc-demo   | 21 +++++++----------
+ .../ti-tisdk-makefile/Makefile_ti-ipc              | 27 +++++++++++-----------
+ .../ti-tisdk-makefile_1.0.bbappend                 |  6 ++---
+ 3 files changed, 25 insertions(+), 29 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
-index 6c6a474..556dc31 100644
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
-+++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
-@@ -4,8 +4,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_big-data-ipc-demo b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_big-data-ipc-demo
+index 32bb398..ea6ae34 100644
+--- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_big-data-ipc-demo
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_big-data-ipc-demo
+@@ -19,14 +19,12 @@ big-data-ipc-demo-linux:
+ 	@echo     Building the big data ipc demo: Linux host
+ 	@echo ==================================================
+ 	@cd example-applications; cd `find . -name "*big-data-ipc-demo-linux*"`; \
+-	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+-	source $(ENV_SETUP); \
+-	make -j $(MAKE_JOBS) host_linux \
+-		PLATFORM="$${IPC_PLATFORM}" \
++	$(MAKE) -j $(MAKE_JOBS) host_linux \
++		PLATFORM="$(IPC_PLATFORM)" \
+ 		KERNEL_INSTALL_DIR="$(LINUXKERNEL_INSTALL_DIR)" \
+-		XDC_INSTALL_DIR="$${XDC_INSTALL_PATH}" \
+-		BIOS_INSTALL_DIR="$${BIOS_INSTALL_PATH}" \
+-		IPC_INSTALL_DIR="$${IPC_INSTALL_PATH}" \
++		XDC_INSTALL_DIR="$(XDC_INSTALL_PATH)" \
++		BIOS_INSTALL_DIR="$(BIOS_INSTALL_PATH)" \
++		IPC_INSTALL_DIR="$(IPC_INSTALL_PATH)" \
+ 		TOOLCHAIN_LONGNAME=$${TOOLCHAIN_SYS} \
+ 		TOOLCHAIN_INSTALL_DIR=$${SDK_PATH_NATIVE}/usr \
+ 		TOOLCHAIN_PREFIX=$(CROSS_COMPILE) \
+@@ -44,17 +42,14 @@ big-data-ipc-demo-linux_install:
+ 	fi
+ 	@cd example-applications; \
+ 	cd `find . -name "*big-data-ipc-demo-linux*"`; \
+-	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+-	source $(ENV_SETUP); \
+ 	$(MAKE) -j $(MAKE_JOBS) install_linux_bin DESTDIR=$(DESTDIR) \
+-	PLATFORM="$${IPC_PLATFORM}"
++	PLATFORM="$(IPC_PLATFORM)"
  
- require gstreamer1.0-plugins-ti.inc
+ big-data-ipc-demo-linux_clean:
+ 	@echo ==================================================
+ 	@echo     Cleaning the big data ipc demo: Linux host
+ 	@echo ==================================================
+ 	@cd example-applications; cd `find . -name "*big-data-ipc-demo-linux*"`; \
+-	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+-	source $(ENV_SETUP); \
+ 	$(MAKE) -j $(MAKE_JOBS) clean_linux \
+-	PLATFORM="$${IPC_PLATFORM}"
++	PLATFORM="$(IPC_PLATFORM)"
++
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
+index f1721c7..49aefb3 100644
+--- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
+@@ -15,10 +15,15 @@ endif
+ TI_IPC_CLEAN = $(addsuffix _clean, $(TI_IPC_TARGETS))
+ TI_IPC_INSTALL = $(addsuffix _install, $(TI_IPC_TARGETS))
  
--PR = "${INC_PR}.28"
--SRCREV = "7f3326b81b838fb6c916acd1d6a3090fda12c772"
-+PR = "${INC_PR}.29"
-+SRCREV = "19e911bb45757d8341ffd7819ca783ca04f5e3b1"
++ifneq ($(TI_RTOS_PATH),)
+ export TI_PRSDK_PATH=$(TI_RTOS_PATH_ABS)/processor_sdk_rtos_$(PRSDK_PLATFORM)_$(PRSDK_VERSION)
++export SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS)
++include $(TI_PRSDK_PATH)/Rules.make
  
- BRANCH ?= "master"
+ export IPC_TOOLS_PATHS=__IPC_TOOLS_PATHS__
  
++endif
++
+ ti-ipc-rtos-missing ti-ipc-rtos-missing_clean ti-ipc-rtos-missing_install:
+ 	@echo
+ 	@echo ===========================================================
+@@ -91,15 +96,13 @@ ti-ipc-linux-examples: ti-ipc-rtos-path-check
+ 	@echo =================================
+ 	@echo     Building the IPC Examples
+ 	@echo =================================
+-	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+-	source $(ENV_SETUP); \
+ 	$(MAKE) -j $(MAKE_JOBS) -C $${IPC_INSTALL_PATH}/examples \
+ 		HOSTOS="linux" \
+-		PLATFORM="$${IPC_PLATFORM}" \
++		PLATFORM="$(IPC_PLATFORM)" \
+ 		KERNEL_INSTALL_DIR="$(LINUXKERNEL_INSTALL_DIR)" \
+-		XDC_INSTALL_DIR="$${XDC_INSTALL_PATH}" \
+-		BIOS_INSTALL_DIR="$${BIOS_INSTALL_PATH}" \
+-		IPC_INSTALL_DIR="$${IPC_INSTALL_PATH}" \
++		XDC_INSTALL_DIR="$(XDC_INSTALL_PATH)" \
++		BIOS_INSTALL_DIR="$(BIOS_INSTALL_PATH)" \
++		IPC_INSTALL_DIR="$(IPC_INSTALL_PATH)" \
+ 		TOOLCHAIN_LONGNAME=$${TOOLCHAIN_SYS} \
+ 		TOOLCHAIN_INSTALL_DIR=$${SDK_PATH_NATIVE}/usr \
+ 		TOOLCHAIN_PREFIX=$(CROSS_COMPILE) \
+@@ -114,11 +117,9 @@ ti-ipc-linux-examples_install: ti-ipc-rtos-path-check ti-ipc-linux-examples
+ 		echo "Please run setup.sh in the SDK's root directory and then try again."; \
+ 		exit 1; \
+ 	fi
+-	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+-	source $(ENV_SETUP); \
+ 	$(MAKE) -j $(MAKE_JOBS) -C $${IPC_INSTALL_PATH}/examples install \
+ 		HOSTOS="linux" \
+-		PLATFORM="$${IPC_PLATFORM}" \
++		PLATFORM="$(IPC_PLATFORM)" \
+ 		EXEC_DIR="$(EXEC_DIR)"
+ 
+ ti-ipc-linux-examples_clean: ti-ipc-rtos-path-check
+@@ -129,11 +130,11 @@ ti-ipc-linux-examples_clean: ti-ipc-rtos-path-check
+ 	source $(ENV_SETUP); \
+ 	$(MAKE) -j $(MAKE_JOBS) -C $${IPC_INSTALL_PATH}/examples clean \
+ 		HOSTOS="linux" \
+-		PLATFORM="$${IPC_PLATFORM}" \
++		PLATFORM="$(IPC_PLATFORM)" \
+ 		KERNEL_INSTALL_DIR="$(LINUXKERNEL_INSTALL_DIR)" \
+-		XDC_INSTALL_DIR="$${XDC_INSTALL_PATH}" \
+-		BIOS_INSTALL_DIR="$${BIOS_INSTALL_PATH}" \
+-		IPC_INSTALL_DIR="$${IPC_INSTALL_PATH}" \
++		XDC_INSTALL_DIR="$(XDC_INSTALL_PATH)" \
++		BIOS_INSTALL_DIR="$(BIOS_INSTALL_PATH)" \
++		IPC_INSTALL_DIR="$(IPC_INSTALL_PATH)" \
+ 		TOOLCHAIN_LONGNAME=$${TOOLCHAIN_SYS} \
+ 		TOOLCHAIN_INSTALL_DIR=$${SDK_PATH_NATIVE}/usr \
+ 		TOOLCHAIN_PREFIX=$(CROSS_COMPILE) \
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+index 27a8b2b..b7399c7 100644
+--- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+@@ -71,9 +71,9 @@ KERNEL_DEVICETREE_append_am57xx-evm = " \
+ "
+ 
+ 
+-IPC_TOOLS_PATHS_C66 = "ti.targets.elf.C66="\$\${C6X_GEN_INSTALL_PATH}""
+-IPC_TOOLS_PATHS_M4  = "ti.targets.arm.elf.M4="\$\${TOOLCHAIN_PATH_M4}" ti.targets.arm.elf.M4F="\$\${TOOLCHAIN_PATH_M4}""
+-IPC_TOOLS_PATHS_C674 = "ti.targets.elf.C674="\$\${C6X_GEN_INSTALL_PATH}""
++IPC_TOOLS_PATHS_C66 = "ti.targets.elf.C66="\$\(C6X_GEN_INSTALL_PATH\)""
++IPC_TOOLS_PATHS_M4  = "ti.targets.arm.elf.M4="\$\(TOOLCHAIN_PATH_M4\)" ti.targets.arm.elf.M4F="\$\(TOOLCHAIN_PATH_M4\)""
++IPC_TOOLS_PATHS_C674 = "ti.targets.elf.C674="\$\(C6X_GEN_INSTALL_PATH\)""
+ 
+ IPC_TOOLS_PATHS = ""
+ IPC_TOOLS_PATHS_append_keystone = " ${IPC_TOOLS_PATHS_C66}"
 -- 
 1.9.1
 
