@@ -1,45 +1,43 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 32A19529CA
+Return-Path: <denys@ti.com>
+Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
+	by arago-project.org (Postfix) with ESMTPS id 5962252A39
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Jun 2018 17:29:20 +0000 (UTC)
+	Tue, 12 Jun 2018 21:38:15 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5CHTEEQ014524
-	for <meta-arago@arago-project.org>; Tue, 12 Jun 2018 12:29:14 -0500
+	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5CLc9JR031450
+	for <meta-arago@arago-project.org>; Tue, 12 Jun 2018 16:38:09 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1528824554;
-	bh=ryv7n2Sn2sdwhUJ7zNkKl4qAakbxe1abAtgZvV+GSaY=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=hmLGRu5cSOBkxQw3CWDuPwqBxp/ufvxgN8kK5VyBvAvshGlONBerRPhAnrFeJGxHT
-	Qpzuys4r2azFQbhn/ka9O10Fn/Rn/NJBK8FJNz+t59NlWvKPI9fieUoO9CO+A4yZ1q
-	WMv4G1vTM/knZwQGPOeXI5tUgYyvSGX4xPkbsGwg=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5CHTEZb029054
-	for <meta-arago@arago-project.org>; Tue, 12 Jun 2018 12:29:14 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1528839489;
+	bh=cSTZPWotjvluPUevo6WKLB2POSzcxvT7WkwZ8Qx/JPc=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=Uh4bNKt6Y4VxHqjFzUkSlLNLH7+CnNZxknzB5uKPjPft9p8y83oFByMTGe/RepvZ7
+	SFtNF9FweB1Lo7ufKWRrA/HE6b7zZR6AQz6BcF3QPLYulkywt3gC08KWh6Rda8totZ
+	S72F4N02pnFR9BifrHGhOhGFgMbC7miljDM/8NzY=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5CLc9wV001183
+	for <meta-arago@arago-project.org>; Tue, 12 Jun 2018 16:38:09 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Tue, 12 Jun 2018 12:29:13 -0500
-Received: from DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222]) by
-	DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222%18]) with mapi id
-	15.01.1466.003; Tue, 12 Jun 2018 12:29:13 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Senicic, Djordje" <d-senicic1@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [meta-processor-sdk][PATCH] csl: Add
-	special compile for IDK targets only
-Thread-Index: AQHUAnCiwPQZrnSepE2y8MB8iWiPiKRc4L4Q
-Date: Tue, 12 Jun 2018 17:29:13 +0000
-Message-ID: <413602b7876b4d38a034fe9eee3c05e4@ti.com>
-References: <1528823578-8427-1-git-send-email-x0157990@ti.com>
-In-Reply-To: <1528823578-8427-1-git-send-email-x0157990@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.113.191]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Tue, 12 Jun 2018 16:38:09 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
+	Transport; Tue, 12 Jun 2018 16:38:09 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5CLc9bG020030;
+	Tue, 12 Jun 2018 16:38:09 -0500
+Date: Tue, 12 Jun 2018 17:36:58 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Ramprasad N <x0038811@ti.com>
+Message-ID: <20180612213658.GB5417@beryl>
+References: <1528778710-2395-1-git-send-email-x0038811@ti.com>
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] [meta-processor-sdk][PATCH] csl: Add special compile for IDK targets only
+In-Reply-To: <1528778710-2395-1-git-send-email-x0038811@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [rocko V2 0/2] gstreamer 1.12 patches
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,72 +50,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Jun 2018 17:29:21 -0000
-Content-Language: en-US
+X-List-Received-Date: Tue, 12 Jun 2018 21:38:16 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-NAK. " ti-cgt-arp32-native" is not available.
+Sorry for the delay.
+What are the differences from v1?
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Senicic, Djordje
-> Sent: Tuesday, June 12, 2018 1:13 PM
-> To: meta-arago@arago-project.org
-> Cc: Senicic, Djordje; Senicic, Djordje
-> Subject: [EXTERNAL] [meta-arago] [meta-processor-sdk][PATCH] csl: Add
-> special compile for IDK targets only
->=20
-> * AM57xx IDK requires also ARP32 tool chain for compilation
->=20
-> Signed-off-by: Djordje Senicic <x0157990@ti.com>
-> ---
->  .../common-csl-ip/common-csl-ip-rtos_git.bbappend  | 28
-> +++++++++++++++++++++-
->  1 file changed, 27 insertions(+), 1 deletion(-)
->=20
-> diff --git a/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
-> b/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
-> index dbf994a..2b0840e 100644
-> --- a/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
-> +++ b/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
-> @@ -1 +1,27 @@
-> -require recipes-bsp/common-csl-ip/common-csl-ip-03.03.00.11.inc
-> +require recipes-bsp/common-csl-ip/common-csl-ip-03.03.00.11.inc
-> +PR_append =3D ".tisdk1"
-> +
-> +# opencl-monitor does not distinguish between am57xx-evm and dra7xx-
-> evm and thus
-> +# requires the am57xx-evm CSL libraries for both devices.
-> +TI_PDK_LIMIT_SOCS_append_dra7xx =3D " am574x"
-> +
-> +DEPENDS_append_dra7xx =3D " ti-cgt-arp32-native "
-> +DEPENDS_append_am57xx =3D " ti-cgt-arp32-native "
-> +
-> +do_compile_append_am57xx-evm() {
-> +
-> +    if [ "${TI_PDK_XDCMAKE}" =3D=3D "1" ]
-> +    then
-> +        ${XDC_INSTALL_DIR}/xdc all ${PARALLEL_XDC}
-> XDCARGS=3D"${TI_PDK_XDC_ARGS}" ROOTDIR=3D"${ROOTDIR}" -PR .
-> +        ${XDC_INSTALL_DIR}/xdc release XDCARGS=3D"${TI_PDK_XDC_ARGS}" -
-> PR .
-> +    else
-> +        BUILD_DIR=3D${B}/`get_build_dir_bash`
-> +        cd ${BUILD_DIR}
-> +
-> +        oe_runmake ${TI_PDK_MAKE_TARGET}
-> +
-> +        oe_runmake csl BOARD=3DidkAM572x CORE=3Darp32_1 BUILD_ARP32=3Dye=
-s
-> +        oe_runmake csl BOARD=3DidkAM574x CORE=3Darp32_1 BUILD_ARP32=3Dye=
-s
-> +    fi
-> +}
-> +
-> --
+
+On Tue, Jun 12, 2018 at 10:15:08AM +0530, Ramprasad N wrote:
+> Update SRCREV of gst-vpe and gst-ducati with latest commits
+> 
+> Ramprasad N (2):
+>   gstvpe: Bump SRCREV with latest fixes
+>   gst-ducati: Update SRCREV with latest commit
+> 
+>  .../gstreamer1.0-plugins-ducati_git.bb             |  4 +--
+>  ...late-the-output-structure-with-progressiv.patch | 33 ----------------------
+>  .../gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb |  5 ++--
+>  3 files changed, 4 insertions(+), 38 deletions(-)
+>  delete mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe/0001-gstvpe-Populate-the-output-structure-with-progressiv.patch
+> 
+> -- 
 > 1.9.1
->=20
+> 
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
