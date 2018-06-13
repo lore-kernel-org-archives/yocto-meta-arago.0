@@ -1,44 +1,45 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id A20D55299A
+Return-Path: <denys@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 71A2E52978
 	for <meta-arago@arago-project.org>;
-	Wed, 13 Jun 2018 05:26:48 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5D5Qh7M012378
-	for <meta-arago@arago-project.org>; Wed, 13 Jun 2018 00:26:43 -0500
+	Wed, 13 Jun 2018 15:03:11 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5DF3577000340
+	for <meta-arago@arago-project.org>; Wed, 13 Jun 2018 10:03:05 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1528867603;
-	bh=462EaTidXx72HsYFmT6fGeYoiNkBO00NI3Z0bxddwzg=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=URBX6Kp3KAhftC34sAF8jOxqhJeSERN9HZ/PXtoVxdSSmksYt7ZjEcpCaGLhkVpTI
-	29VBiFb9K8Kt4YjqBtQlHWHZwez7hRxiELiXpP6VSJ09uwEFMTxlwAZV3pBBNJQB5O
-	8bIdarSDKerQaIm6oXTfC08RjNQcdnmnrQq99OwA=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5D5QhEa017560
-	for <meta-arago@arago-project.org>; Wed, 13 Jun 2018 00:26:43 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1528902185;
+	bh=1y2Gl7xIzwfhS1DQ43BIm/7YRLLTvocRZ+elarkhccU=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=ucUohvv1xkRIjAx2cZEXeYbNt15hvXO0ppSWdR+HPI4bFnwNWdUtIDP0Kmj1qhsOR
+	sF5Tntf/Z9m813rdMBVwnCgbnFaVww6hSo7T6qKDQ539L36bwHr1O8lw3LYY0BRcZV
+	5hZPuz1Vk1/rpqQDllLPgg4ldD5SuWSJZJET9PLE=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5DF35Eb024361
+	for <meta-arago@arago-project.org>; Wed, 13 Jun 2018 10:03:05 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 13 Jun 2018 00:26:42 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 13 Jun 2018 10:03:05 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Wed, 13 Jun 2018 00:26:42 -0500
-Received: from [172.24.158.83] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5D5QfmM000519;
-	Wed, 13 Jun 2018 00:26:42 -0500
-To: Ramprasad N <x0038811@ti.com>, <meta-arago@arago-project.org>
+	Transport; Wed, 13 Jun 2018 10:03:05 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5DF35v7008622;
+	Wed, 13 Jun 2018 10:03:05 -0500
+Date: Wed, 13 Jun 2018 11:01:53 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Prasad, Ram" <x0038811@ti.com>
+Message-ID: <20180613150153.GB3859@beryl>
 References: <1528778710-2395-1-git-send-email-x0038811@ti.com>
-	<1528778710-2395-3-git-send-email-x0038811@ti.com>
-From: Karthik Ramanan <a0393906@ti.com>
-Message-ID: <06e5f868-c124-77b4-54c6-57cfa986b769@ti.com>
-Date: Wed, 13 Jun 2018 10:56:41 +0530
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.8.0
+	<20180612213658.GB5417@beryl>
+	<14bb9e4323dd412485ea202cefbf9084@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1528778710-2395-3-git-send-email-x0038811@ti.com>
+In-Reply-To: <14bb9e4323dd412485ea202cefbf9084@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [rocko V2 2/2] gst-ducati: Update SRCREV with latest commit
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [rocko V2 0/2] gstreamer 1.12 patches
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,37 +52,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Jun 2018 05:26:49 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Wed, 13 Jun 2018 15:03:11 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Acked-by: Karthik Ramanan <a0393906@ti.com>
+Thanks, merged.
 
-
-On 12-Jun-18 10:15 AM, Ramprasad N wrote:
-> This update brings in setting display-delay property
-> for ducati h264decoder.
->
-> Signed-off-by: Ramprasad N <x0038811@ti.com>
-> ---
->   .../gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb                 | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
-> index 6c6a474..556dc31 100644
-> --- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
-> +++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
-> @@ -4,8 +4,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
->   
->   require gstreamer1.0-plugins-ti.inc
->   
-> -PR = "${INC_PR}.28"
-> -SRCREV = "7f3326b81b838fb6c916acd1d6a3090fda12c772"
-> +PR = "${INC_PR}.29"
-> +SRCREV = "19e911bb45757d8341ffd7819ca783ca04f5e3b1"
->   
->   BRANCH ?= "master"
->   
-
+On Tue, Jun 12, 2018 at 11:30:14PM -0400, Prasad, Ram wrote:
+> Hi Denys,
+> I updated meta-arago commit-messages in V2 with proper wordings so that it 
+> clearly tells what has changed. This is the only change wrt V1
+> 
+> Thanks
+> Ramprasad
+> 
+> -----Original Message-----
+> From: Dmytriyenko, Denys 
+> Sent: Wednesday, June 13, 2018 3:07 AM
+> To: Prasad, Ram
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [rocko V2 0/2] gstreamer 1.12 patches
+> 
+> Sorry for the delay.
+> What are the differences from v1?
+> 
+> 
+> On Tue, Jun 12, 2018 at 10:15:08AM +0530, Ramprasad N wrote:
+> > Update SRCREV of gst-vpe and gst-ducati with latest commits
+> > 
+> > Ramprasad N (2):
+> >   gstvpe: Bump SRCREV with latest fixes
+> >   gst-ducati: Update SRCREV with latest commit
+> > 
+> >  .../gstreamer1.0-plugins-ducati_git.bb             |  4 +--
+> >  ...late-the-output-structure-with-progressiv.patch | 33 ----------------------
+> >  .../gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb |  5 ++--
+> >  3 files changed, 4 insertions(+), 38 deletions(-)
+> >  delete mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe/0001-gstvpe-Populate-the-output-structure-with-progressiv.patch
+> > 
+> > -- 
+> > 1.9.1
+> > 
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
