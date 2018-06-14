@@ -1,45 +1,45 @@
-Return-Path: <sam.nelson@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id 99DF0529A9
+Return-Path: <j-stiffler@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 2068F529DB
 	for <meta-arago@arago-project.org>;
-	Thu, 14 Jun 2018 17:58:55 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5EHwnDb003532
-	for <meta-arago@arago-project.org>; Thu, 14 Jun 2018 12:58:49 -0500
+	Thu, 14 Jun 2018 18:17:31 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5EIHPYi003384
+	for <meta-arago@arago-project.org>; Thu, 14 Jun 2018 13:17:25 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1528999129;
-	bh=BpFSSC6zvwEriP5pYhQNUHprWoLjAsiDdsBvL1mMbxI=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=nDpSWJ1trzHadxxV5jjdjM2QQ06/vHbPn3TZFKDX5QtidFEl52O23EW3zsCUy3LYA
-	WhfNQSDEEr65JR6FO/z/F3bhbQc+UzgZB4bVdjWwZ2J7rJwOmCOWFkGGYCZ8ZQSjrB
-	bnurYtf/m4rHgEC+1PtQMW2coUfc04Anebcdee4I=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5EHwn9s016439
-	for <meta-arago@arago-project.org>; Thu, 14 Jun 2018 12:58:49 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1529000245;
+	bh=PgZJu6ioMM/oJ9UJLCOOZV5CrEBAioA1pZSiZpEV3tw=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=yANrTfJG4Z7PqbRrYcvA/K9Ljoa4XTsNISkXur5bToeRup5RCgk4rHnt4yFvqJdC4
+	qcpCw0EixdHngBT9fh52u8oL21TUk5WvTkR4stQIyxhI5M4irkLLtH0umh4cPxtDtj
+	A0PQBEJG6PolZAc0DQgUlHEcuvuHkZGkbfcZ+rbg=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5EIHPQ1000911
+	for <meta-arago@arago-project.org>; Thu, 14 Jun 2018 13:17:25 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Thu, 14 Jun 2018 12:58:49 -0500
-Received: from DFLE112.ent.ti.com ([fe80::d4dd:a09e:396d:a895]) by
-	DFLE112.ent.ti.com ([fe80::d4dd:a09e:396d:a895%18]) with mapi id
-	15.01.1466.003; Thu, 14 Jun 2018 12:58:49 -0500
-From: "Nelson, Sam" <sam.nelson@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
+	Thu, 14 Jun 2018 13:17:25 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
+	Transport; Thu, 14 Jun 2018 13:17:25 -0500
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5EIHOqq021555;
+	Thu, 14 Jun 2018 13:17:24 -0500
+To: "Nelson, Sam" <sam.nelson@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [meta-processor-sdk][PATCH v3]
-	ti-tisdk-makefile: Update to fix issue with ipc builds from linux
-Thread-Index: AQHUA0dl7TR8FN+BsUOd6NE4AFPIZaRgTJ8A//++0/A=
-Date: Thu, 14 Jun 2018 17:58:49 +0000
-Message-ID: <53aff06be81149f5a04a704c5b09079e@ti.com>
 References: <1528915818-61843-1-git-send-email-sam.nelson@ti.com>
 	<d154f0eb-ee38-49b9-7028-fa00522b63bb@ti.com>
-In-Reply-To: <d154f0eb-ee38-49b9-7028-fa00522b63bb@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.113.135]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	<53aff06be81149f5a04a704c5b09079e@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <b0a19e70-5fbb-262a-883d-5fe740357fd4@ti.com>
+Date: Thu, 14 Jun 2018 14:17:24 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.8.0
 MIME-Version: 1.0
+In-Reply-To: <53aff06be81149f5a04a704c5b09079e@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Subject: Re: [EXTERNAL] [meta-processor-sdk][PATCH v3] ti-tisdk-makefile: Update to fix issue with ipc builds from linux
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -53,208 +53,292 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jun 2018 17:58:57 -0000
+X-List-Received-Date: Thu, 14 Jun 2018 18:17:31 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogU3RpZmZsZXIsIEphY29i
-DQo+IFNlbnQ6IFRodXJzZGF5LCBKdW5lIDE0LCAyMDE4IDEyOjUwIFBNDQo+IFRvOiBOZWxzb24s
-IFNhbTsgbWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0OiBSZTogW0VYVEVS
-TkFMXSBbbWV0YS1hcmFnb10gW21ldGEtcHJvY2Vzc29yLXNka11bUEFUQ0ggdjNdIHRpLQ0KPiB0
-aXNkay1tYWtlZmlsZTogVXBkYXRlIHRvIGZpeCBpc3N1ZSB3aXRoIGlwYyBidWlsZHMgZnJvbSBs
-aW51eA0KPiANCj4gDQo+IA0KPiBPbiA2LzEzLzIwMTggMjo1MCBQTSwgU2FtIE5lbHNvbiB3cm90
-ZToNCj4gPiBzZXR1cGVudi5zaCBpbiBQUlNESyBpcyBnZXR0aW5nIGRlcHJlY2F0ZWQgYW5kIGFs
-bCB0aGUgZGVmaW5pdGlvbnMgbW92ZWQNCj4gPiB0byBSdWxlcy5tYWtlLiBXaXRoIHRoaXMgY2hh
-bmdlLCBSdWxlcy5tYWtlIGZyb20gUlRPUyBwYWNrYWdlIGlzDQo+ID4gZGlyZWN0bHkgdXNlZC4N
-Cj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFNhbSBOZWxzb24gPHNhbS5uZWxzb25AdGkuY29tPg0K
-PiA+DQo+ID4gLS0tDQo+ID4gQ2hhbmdlcyBmcm9tIHByZXZpb3VzIHZlcnNpb24gb2YgcGF0Y2gN
-Cj4gPiBNb3ZlIFJUT1MgcmVsYXRlZCBkZWZpbmVzIGludG8gZXhpc3RpbmcgaWZuZXEgc3RhdGVt
-ZW50DQo+ID4gUmVtb3ZlIGV4cG9ydCBvZiBJUEMgcmVsYXRlZCB2YXJpYWJsZXMNCj4gPiBVcGRh
-dGUgb3RoZXIgdXNlcyBvZiBJUENfSU5TVEFMTF9QQVRIDQo+ID4gLS0tDQo+ID4gLS0tDQo+ID4g
-ICAuLi4vdGktdGlzZGstbWFrZWZpbGUvTWFrZWZpbGVfYmlnLWRhdGEtaXBjLWRlbW8gICB8IDIx
-ICsrKystLS0tLQ0KPiA+ICAgLi4uL3RpLXRpc2RrLW1ha2VmaWxlL01ha2VmaWxlX3RpLWlwYyAg
-ICAgICAgICAgICAgfCA1MCArKysrKysrKysrLS0tLS0tLS0tLS0tDQo+ID4gICAuLi4vdGktdGlz
-ZGstbWFrZWZpbGVfMS4wLmJiYXBwZW5kICAgICAgICAgICAgICAgICB8ICA2ICstLQ0KPiA+ICAg
-MyBmaWxlcyBjaGFuZ2VkLCAzMyBpbnNlcnRpb25zKCspLCA0NCBkZWxldGlvbnMoLSkNCj4gPg0K
-PiA+IGRpZmYgLS1naXQgYS9yZWNpcGVzLXRpc2RrL3RpLXRpc2RrLW1ha2VmaWxlL3RpLXRpc2Rr
-LW1ha2VmaWxlL01ha2VmaWxlX2JpZy1kYXRhLQ0KPiBpcGMtZGVtbyBiL3JlY2lwZXMtdGlzZGsv
-dGktdGlzZGstbWFrZWZpbGUvdGktdGlzZGstbWFrZWZpbGUvTWFrZWZpbGVfYmlnLWRhdGEtDQo+
-IGlwYy1kZW1vDQo+ID4gaW5kZXggMzJiYjM5OC4uZWE2YWUzNCAxMDA2NDQNCj4gPiAtLS0gYS9y
-ZWNpcGVzLXRpc2RrL3RpLXRpc2RrLW1ha2VmaWxlL3RpLXRpc2RrLW1ha2VmaWxlL01ha2VmaWxl
-X2JpZy1kYXRhLWlwYy0NCj4gZGVtbw0KPiA+ICsrKyBiL3JlY2lwZXMtdGlzZGsvdGktdGlzZGst
-bWFrZWZpbGUvdGktdGlzZGstbWFrZWZpbGUvTWFrZWZpbGVfYmlnLWRhdGEtaXBjLQ0KPiBkZW1v
-DQo+ID4gQEAgLTE5LDE0ICsxOSwxMiBAQCBiaWctZGF0YS1pcGMtZGVtby1saW51eDoNCj4gPiAg
-IAlAZWNobyAgICAgQnVpbGRpbmcgdGhlIGJpZyBkYXRhIGlwYyBkZW1vOiBMaW51eCBob3N0DQo+
-ID4gICAJQGVjaG8gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT0NCj4gPiAgIAlAY2QgZXhhbXBsZS1hcHBsaWNhdGlvbnM7IGNkIGBmaW5kIC4gLW5hbWUg
-IipiaWctZGF0YS1pcGMtZGVtby0NCj4gbGludXgqImA7IFwNCj4gPiAtCVNES19JTlNUQUxMX1BB
-VEg9JChUSV9SVE9TX1BBVEhfQUJTKSBzb3VyY2UNCj4gJChUSV9QUlNES19QQVRIKS9zZXR1cGVu
-di5zaCA+IC9kZXYvbnVsbDsgXA0KPiA+IC0Jc291cmNlICQoRU5WX1NFVFVQKTsgXA0KPiA+IC0J
-bWFrZSAtaiAkKE1BS0VfSk9CUykgaG9zdF9saW51eCBcDQo+ID4gLQkJUExBVEZPUk09IiQke0lQ
-Q19QTEFURk9STX0iIFwNCj4gPiArCSQoTUFLRSkgLWogJChNQUtFX0pPQlMpIGhvc3RfbGludXgg
-XA0KPiA+ICsJCVBMQVRGT1JNPSIkKElQQ19QTEFURk9STSkiIFwNCj4gPiAgIAkJS0VSTkVMX0lO
-U1RBTExfRElSPSIkKExJTlVYS0VSTkVMX0lOU1RBTExfRElSKSIgXA0KPiA+IC0JCVhEQ19JTlNU
-QUxMX0RJUj0iJCR7WERDX0lOU1RBTExfUEFUSH0iIFwNCj4gPiAtCQlCSU9TX0lOU1RBTExfRElS
-PSIkJHtCSU9TX0lOU1RBTExfUEFUSH0iIFwNCj4gPiAtCQlJUENfSU5TVEFMTF9ESVI9IiQke0lQ
-Q19JTlNUQUxMX1BBVEh9IiBcDQo+ID4gKwkJWERDX0lOU1RBTExfRElSPSIkKFhEQ19JTlNUQUxM
-X1BBVEgpIiBcDQo+ID4gKwkJQklPU19JTlNUQUxMX0RJUj0iJChCSU9TX0lOU1RBTExfUEFUSCki
-IFwNCj4gPiArCQlJUENfSU5TVEFMTF9ESVI9IiQoSVBDX0lOU1RBTExfUEFUSCkiIFwNCj4gPiAg
-IAkJVE9PTENIQUlOX0xPTkdOQU1FPSQke1RPT0xDSEFJTl9TWVN9IFwNCj4gPiAgIAkJVE9PTENI
-QUlOX0lOU1RBTExfRElSPSQke1NES19QQVRIX05BVElWRX0vdXNyIFwNCj4gPiAgIAkJVE9PTENI
-QUlOX1BSRUZJWD0kKENST1NTX0NPTVBJTEUpIFwNCj4gPiBAQCAtNDQsMTcgKzQyLDE0IEBAIGJp
-Zy1kYXRhLWlwYy1kZW1vLWxpbnV4X2luc3RhbGw6DQo+ID4gICAJZmkNCj4gPiAgIAlAY2QgZXhh
-bXBsZS1hcHBsaWNhdGlvbnM7IFwNCj4gPiAgIAljZCBgZmluZCAuIC1uYW1lICIqYmlnLWRhdGEt
-aXBjLWRlbW8tbGludXgqImA7IFwNCj4gPiAtCVNES19JTlNUQUxMX1BBVEg9JChUSV9SVE9TX1BB
-VEhfQUJTKSBzb3VyY2UNCj4gJChUSV9QUlNES19QQVRIKS9zZXR1cGVudi5zaCA+IC9kZXYvbnVs
-bDsgXA0KPiA+IC0Jc291cmNlICQoRU5WX1NFVFVQKTsgXA0KPiA+ICAgCSQoTUFLRSkgLWogJChN
-QUtFX0pPQlMpIGluc3RhbGxfbGludXhfYmluIERFU1RESVI9JChERVNURElSKSBcDQo+ID4gLQlQ
-TEFURk9STT0iJCR7SVBDX1BMQVRGT1JNfSINCj4gPiArCVBMQVRGT1JNPSIkKElQQ19QTEFURk9S
-TSkiDQo+ID4NCj4gPiAgIGJpZy1kYXRhLWlwYy1kZW1vLWxpbnV4X2NsZWFuOg0KPiA+ICAgCUBl
-Y2hvID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQo+
-ID4gICAJQGVjaG8gICAgIENsZWFuaW5nIHRoZSBiaWcgZGF0YSBpcGMgZGVtbzogTGludXggaG9z
-dA0KPiA+ICAgCUBlY2hvID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09DQo+ID4gICAJQGNkIGV4YW1wbGUtYXBwbGljYXRpb25zOyBjZCBgZmluZCAuIC1u
-YW1lICIqYmlnLWRhdGEtaXBjLWRlbW8tDQo+IGxpbnV4KiJgOyBcDQo+ID4gLQlTREtfSU5TVEFM
-TF9QQVRIPSQoVElfUlRPU19QQVRIX0FCUykgc291cmNlDQo+ICQoVElfUFJTREtfUEFUSCkvc2V0
-dXBlbnYuc2ggPiAvZGV2L251bGw7IFwNCj4gPiAtCXNvdXJjZSAkKEVOVl9TRVRVUCk7IFwNCj4g
-PiAgIAkkKE1BS0UpIC1qICQoTUFLRV9KT0JTKSBjbGVhbl9saW51eCBcDQo+ID4gLQlQTEFURk9S
-TT0iJCR7SVBDX1BMQVRGT1JNfSINCj4gPiArCVBMQVRGT1JNPSIkKElQQ19QTEFURk9STSkiDQo+
-ID4gKw0KPiA+IGRpZmYgLS1naXQgYS9yZWNpcGVzLXRpc2RrL3RpLXRpc2RrLW1ha2VmaWxlL3Rp
-LXRpc2RrLW1ha2VmaWxlL01ha2VmaWxlX3RpLWlwYw0KPiBiL3JlY2lwZXMtdGlzZGsvdGktdGlz
-ZGstbWFrZWZpbGUvdGktdGlzZGstbWFrZWZpbGUvTWFrZWZpbGVfdGktaXBjDQo+ID4gaW5kZXgg
-ZjE3MjFjNy4uZjAxNWIyNCAxMDA2NDQNCj4gPiAtLS0gYS9yZWNpcGVzLXRpc2RrL3RpLXRpc2Rr
-LW1ha2VmaWxlL3RpLXRpc2RrLW1ha2VmaWxlL01ha2VmaWxlX3RpLWlwYw0KPiA+ICsrKyBiL3Jl
-Y2lwZXMtdGlzZGsvdGktdGlzZGstbWFrZWZpbGUvdGktdGlzZGstbWFrZWZpbGUvTWFrZWZpbGVf
-dGktaXBjDQo+ID4gQEAgLTgsNiArOCwxMyBAQCBpZm5lcSAoJChUSV9SVE9TX1BBVEgpLCkNCj4g
-Pg0KPiA+ICAgICBUSV9SVE9TX1BBVEhfQUJTIDo9ICQocmVhbHBhdGggJChUSV9SVE9TX1BBVEgp
-KQ0KPiA+DQo+ID4gKw0KPiBUSV9QUlNES19QQVRIPSQoVElfUlRPU19QQVRIX0FCUykvcHJvY2Vz
-c29yX3Nka19ydG9zXyQoUFJTREtfUExBVEYNCj4gT1JNKV8kKFBSU0RLX1ZFUlNJT04pDQo+ID4g
-KyAgU0RLX0lOU1RBTExfUEFUSD0kKFRJX1JUT1NfUEFUSF9BQlMpDQo+IA0KPiBJIGFtIHN0aWxs
-IG5vdCBjb21mb3J0YWJsZSBnbG9iYWxseSBkZWZpbmluZyB0aGlzIHZhcmlhYmxlIGFzIHRoZSBu
-YW1lDQo+IGlzIHRvbyBnZW5lcmljLg0KPiANCj4gQ2FuIHlvdSBvbmx5IHN1cHBseSBpdCB0byB0
-aGUgY29tbWFuZHMgdGhhdCBuZWVkIGl0PyBGb3IgZXhhbXBsZSwNCj4gDQo+IGlwYy10YXJnZXQ6
-DQo+ICDCoMKgwqAgU0RLX0lOU1RBTExfUEFUSD0iLi4uIiAkKE1BS0UpIC4uLg0KPiANCg0KVW5m
-b3J0dW5hdGVseSB0aGlzIHZhcmlhYmxlIGlzIHVzZWQgYnkgdGhlIFBSU0RLIFJ1bGVzLm1ha2Ug
-aW5jbHVkZWQgYmVsb3cuDQpUaGVyZSBpcyBubyB3YXkgdG8gcGFzcyB0aGF0IGFzIGFuIGFyZ3Vt
-ZW50IHRvIHRoZSBpbmNsdWRlZCBmaWxlLg0KDQo+ID4gKyAgaW5jbHVkZSAkKFRJX1BSU0RLX1BB
-VEgpL1J1bGVzLm1ha2UNCj4gPiArDQo+ID4gKyAgSVBDX1RPT0xTX1BBVEhTPSB0aS50YXJnZXRz
-LmVsZi5DNjY9IiR7QzZYX0dFTl9JTlNUQUxMX1BBVEh9Ig0KPiB0aS50YXJnZXRzLmFybS5lbGYu
-TTQ9IiR7VE9PTENIQUlOX1BBVEhfTTR9Ig0KPiB0aS50YXJnZXRzLmFybS5lbGYuTTRGPSIke1RP
-T0xDSEFJTl9QQVRIX000fSINCj4gDQo+IFRoaXMgd2FzIHByZXZpb3VzbHkgIl9fSVBDX1RPT0xT
-X1BBVEhTX18iLiBEaWQgeW91IG1lYW4gdG8gY2hhbmdlIHRoaXMNCj4gaGVyZT8NCj4gDQo+ID4g
-Kw0KPiA+ICsNCj4gPiAgIGVsc2UNCj4gPiAgICAgVElfSVBDX1RBUkdFVFMgPSB0aS1pcGMtcnRv
-cy1taXNzaW5nDQo+ID4gICBlbmRpZg0KPiA+IEBAIC0xNSwxMCArMjIsNiBAQCBlbmRpZg0KPiA+
-ICAgVElfSVBDX0NMRUFOID0gJChhZGRzdWZmaXggX2NsZWFuLCAkKFRJX0lQQ19UQVJHRVRTKSkN
-Cj4gPiAgIFRJX0lQQ19JTlNUQUxMID0gJChhZGRzdWZmaXggX2luc3RhbGwsICQoVElfSVBDX1RB
-UkdFVFMpKQ0KPiA+DQo+ID4gLWV4cG9ydA0KPiBUSV9QUlNES19QQVRIPSQoVElfUlRPU19QQVRI
-X0FCUykvcHJvY2Vzc29yX3Nka19ydG9zXyQoUFJTREtfUExBVEYNCj4gT1JNKV8kKFBSU0RLX1ZF
-UlNJT04pDQo+ID4gLQ0KPiA+IC1leHBvcnQgSVBDX1RPT0xTX1BBVEhTPV9fSVBDX1RPT0xTX1BB
-VEhTX18NCj4gPiAtDQo+ID4gICB0aS1pcGMtcnRvcy1taXNzaW5nIHRpLWlwYy1ydG9zLW1pc3Np
-bmdfY2xlYW4gdGktaXBjLXJ0b3MtbWlzc2luZ19pbnN0YWxsOg0KPiA+ICAgCUBlY2hvDQo+ID4g
-ICAJQGVjaG8NCj4gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT0NCj4gPiBAQCAtNDgsMTMgKzUxLDEyIEBAIHRpLWlwYy1saW51eC1jb25m
-aWc6IHRpLWlwYy1ydG9zLXBhdGgtY2hlY2sNCj4gPiAgIAlAZWNobyA9PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT0NCj4gPiAgIAlAZWNobyAgICAgQ29uZmlndXJpbmcgSVBDDQo+ID4g
-ICAJQGVjaG8gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQo+ID4gLQlTREtfSU5T
-VEFMTF9QQVRIPSQoVElfUlRPU19QQVRIX0FCUykgc291cmNlDQo+ICQoVElfUFJTREtfUEFUSCkv
-c2V0dXBlbnYuc2ggPiAvZGV2L251bGw7IFwNCj4gPiAgIAkuICQoRU5WX1NFVFVQKTsgXA0KPiA+
-IC0JY2QgJCR7SVBDX0lOU1RBTExfUEFUSH07IFwNCj4gPiAtICAgICAgICAuL2NvbmZpZ3VyZSAk
-JHtDT05GSUdVUkVfRkxBR1N9IFwNCj4gPiArCWNkICQoSVBDX0lOU1RBTExfUEFUSCk7IFwNCj4g
-PiArCS4vY29uZmlndXJlICQke0NPTkZJR1VSRV9GTEFHU30gXA0KPiA+ICAgCQlDQz0kJHtDQ30g
-XA0KPiA+ICAgCQktLXByZWZpeD0vdXNyIFwNCj4gPiAtCQlQTEFURk9STT0kJHtJUENfUExBVEZP
-Uk19IFwNCj4gPiArCQlQTEFURk9STT0kKElQQ19QTEFURk9STSkgXA0KPiA+ICAgCQlLRVJORUxf
-SU5TVEFMTF9ESVI9JChMSU5VWEtFUk5FTF9JTlNUQUxMX0RJUikNCj4gPg0KPiA+DQo+ID4gQEAg
-LTYyLDE3ICs2NCwxNSBAQCB0aS1pcGMtbGludXg6IHRpLWlwYy1ydG9zLXBhdGgtY2hlY2sgbGlu
-dXggdGktaXBjLWxpbnV4LQ0KPiBjb25maWcNCj4gPiAgIAlAZWNobyA9PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT0NCj4gPiAgIAlAZWNobyAgICAgQnVpbGRpbmcgSVBDDQo+ID4gICAJ
-QGVjaG8gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQo+ID4gLQlTREtfSU5TVEFM
-TF9QQVRIPSQoVElfUlRPU19QQVRIX0FCUykgc291cmNlDQo+ICQoVElfUFJTREtfUEFUSCkvc2V0
-dXBlbnYuc2ggPiAvZGV2L251bGw7IFwNCj4gPiAgIAlzb3VyY2UgJChFTlZfU0VUVVApOyBcDQo+
-ID4gLQkkKE1BS0UpIC1qICQoTUFLRV9KT0JTKSAtQyAkJHtJUENfSU5TVEFMTF9QQVRIfQ0KPiA+
-ICsJJChNQUtFKSAtaiAkKE1BS0VfSk9CUykgLUMgJChJUENfSU5TVEFMTF9QQVRIKQ0KPiA+DQo+
-ID4gICB0aS1pcGMtbGludXhfY2xlYW46IHRpLWlwYy1ydG9zLXBhdGgtY2hlY2sgdGktaXBjLWxp
-bnV4LWNvbmZpZw0KPiA+ICAgCUBlY2hvID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PQ0KPiA+ICAgCUBlY2hvICAgICBDbGVhbmluZyBJUEMNCj4gPiAgIAlAZWNobyA9PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT0NCj4gPiAtCVNES19JTlNUQUxMX1BBVEg9JChUSV9SVE9T
-X1BBVEhfQUJTKSBzb3VyY2UNCj4gJChUSV9QUlNES19QQVRIKS9zZXR1cGVudi5zaCA+IC9kZXYv
-bnVsbDsgXA0KPiA+ICAgCXNvdXJjZSAkKEVOVl9TRVRVUCk7IFwNCj4gPiAtCSQoTUFLRSkgLWog
-JChNQUtFX0pPQlMpIC1DICQke0lQQ19JTlNUQUxMX1BBVEh9IGNsZWFuDQo+ID4gKwkkKE1BS0Up
-IC1qICQoTUFLRV9KT0JTKSAtQyAkKElQQ19JTlNUQUxMX1BBVEgpIGNsZWFuDQo+ID4NCj4gPiAg
-IHRpLWlwYy1saW51eF9pbnN0YWxsOiB0aS1pcGMtcnRvcy1wYXRoLWNoZWNrIHRpLWlwYy1saW51
-eA0KPiA+ICAgCUBlY2hvID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KPiA+IEBA
-IC04MywyMyArODMsMjAgQEAgdGktaXBjLWxpbnV4X2luc3RhbGw6IHRpLWlwYy1ydG9zLXBhdGgt
-Y2hlY2sgdGktaXBjLWxpbnV4DQo+ID4gICAJCWVjaG8gIlBsZWFzZSBydW4gc2V0dXAuc2ggaW4g
-dGhlIFNESydzIHJvb3QgZGlyZWN0b3J5IGFuZCB0aGVuDQo+IHRyeSBhZ2Fpbi4iOyBcDQo+ID4g
-ICAJCWV4aXQgMTsgXA0KPiA+ICAgCWZpDQo+ID4gLQlTREtfSU5TVEFMTF9QQVRIPSQoVElfUlRP
-U19QQVRIX0FCUykgc291cmNlDQo+ICQoVElfUFJTREtfUEFUSCkvc2V0dXBlbnYuc2ggPiAvZGV2
-L251bGw7IFwNCj4gPiAgIAlzb3VyY2UgJChFTlZfU0VUVVApOyBcDQo+ID4gLQkkKE1BS0UpIC1q
-ICQoTUFLRV9KT0JTKSAtQyAkJHtJUENfSU5TVEFMTF9QQVRIfSBpbnN0YWxsDQo+IERFU1RESVI9
-JChERVNURElSKQ0KPiA+ICsJJChNQUtFKSAtaiAkKE1BS0VfSk9CUykgLUMgJChJUENfSU5TVEFM
-TF9QQVRIKSBpbnN0YWxsDQo+IERFU1RESVI9JChERVNURElSKQ0KPiA+DQo+ID4gICB0aS1pcGMt
-bGludXgtZXhhbXBsZXM6IHRpLWlwYy1ydG9zLXBhdGgtY2hlY2sNCj4gPiAgIAlAZWNobyA9PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0NCj4gPiAgIAlAZWNobyAgICAgQnVpbGRpbmcg
-dGhlIElQQyBFeGFtcGxlcw0KPiA+ICAgCUBlY2hvID09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PQ0KPiA+IC0JU0RLX0lOU1RBTExfUEFUSD0kKFRJX1JUT1NfUEFUSF9BQlMpIHNvdXJj
-ZQ0KPiAkKFRJX1BSU0RLX1BBVEgpL3NldHVwZW52LnNoID4gL2Rldi9udWxsOyBcDQo+ID4gLQlz
-b3VyY2UgJChFTlZfU0VUVVApOyBcDQo+ID4gICAJJChNQUtFKSAtaiAkKE1BS0VfSk9CUykgLUMg
-JCR7SVBDX0lOU1RBTExfUEFUSH0vZXhhbXBsZXMgXA0KPiA+ICAgCQlIT1NUT1M9ImxpbnV4IiBc
-DQo+ID4gLQkJUExBVEZPUk09IiQke0lQQ19QTEFURk9STX0iIFwNCj4gPiArCQlQTEFURk9STT0i
-JChJUENfUExBVEZPUk0pIiBcDQo+ID4gICAJCUtFUk5FTF9JTlNUQUxMX0RJUj0iJChMSU5VWEtF
-Uk5FTF9JTlNUQUxMX0RJUikiIFwNCj4gPiAtCQlYRENfSU5TVEFMTF9ESVI9IiQke1hEQ19JTlNU
-QUxMX1BBVEh9IiBcDQo+ID4gLQkJQklPU19JTlNUQUxMX0RJUj0iJCR7QklPU19JTlNUQUxMX1BB
-VEh9IiBcDQo+ID4gLQkJSVBDX0lOU1RBTExfRElSPSIkJHtJUENfSU5TVEFMTF9QQVRIfSIgXA0K
-PiA+ICsJCVhEQ19JTlNUQUxMX0RJUj0iJChYRENfSU5TVEFMTF9QQVRIKSIgXA0KPiA+ICsJCUJJ
-T1NfSU5TVEFMTF9ESVI9IiQoQklPU19JTlNUQUxMX1BBVEgpIiBcDQo+ID4gKwkJSVBDX0lOU1RB
-TExfRElSPSIkKElQQ19JTlNUQUxMX1BBVEgpIiBcDQo+ID4gICAJCVRPT0xDSEFJTl9MT05HTkFN
-RT0kJHtUT09MQ0hBSU5fU1lTfSBcDQo+ID4gICAJCVRPT0xDSEFJTl9JTlNUQUxMX0RJUj0kJHtT
-REtfUEFUSF9OQVRJVkV9L3VzciBcDQo+ID4gICAJCVRPT0xDSEFJTl9QUkVGSVg9JChDUk9TU19D
-T01QSUxFKSBcDQo+ID4gQEAgLTExNCwyNiArMTExLDIzIEBAIHRpLWlwYy1saW51eC1leGFtcGxl
-c19pbnN0YWxsOiB0aS1pcGMtcnRvcy1wYXRoLWNoZWNrDQo+IHRpLWlwYy1saW51eC1leGFtcGxl
-cw0KPiA+ICAgCQllY2hvICJQbGVhc2UgcnVuIHNldHVwLnNoIGluIHRoZSBTREsncyByb290IGRp
-cmVjdG9yeSBhbmQgdGhlbg0KPiB0cnkgYWdhaW4uIjsgXA0KPiA+ICAgCQlleGl0IDE7IFwNCj4g
-PiAgIAlmaQ0KPiA+IC0JU0RLX0lOU1RBTExfUEFUSD0kKFRJX1JUT1NfUEFUSF9BQlMpIHNvdXJj
-ZQ0KPiAkKFRJX1BSU0RLX1BBVEgpL3NldHVwZW52LnNoID4gL2Rldi9udWxsOyBcDQo+ID4gLQlz
-b3VyY2UgJChFTlZfU0VUVVApOyBcDQo+ID4gICAJJChNQUtFKSAtaiAkKE1BS0VfSk9CUykgLUMg
-JCR7SVBDX0lOU1RBTExfUEFUSH0vZXhhbXBsZXMgaW5zdGFsbA0KPiBcDQo+ID4gICAJCUhPU1RP
-Uz0ibGludXgiIFwNCj4gPiAtCQlQTEFURk9STT0iJCR7SVBDX1BMQVRGT1JNfSIgXA0KPiA+ICsJ
-CVBMQVRGT1JNPSIkKElQQ19QTEFURk9STSkiIFwNCj4gPiAgIAkJRVhFQ19ESVI9IiQoRVhFQ19E
-SVIpIg0KPiA+DQo+ID4gICB0aS1pcGMtbGludXgtZXhhbXBsZXNfY2xlYW46IHRpLWlwYy1ydG9z
-LXBhdGgtY2hlY2sNCj4gPiAgIAlAZWNobyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT0NCj4gPiAgIAlAZWNobyAgICAgQ2xlYW5pbmcgdGhlIElQQyBFeGFtcGxlcw0KPiA+ICAgCUBl
-Y2hvID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KPiA+IC0JU0RLX0lOU1RBTExf
-UEFUSD0kKFRJX1JUT1NfUEFUSF9BQlMpIHNvdXJjZQ0KPiAkKFRJX1BSU0RLX1BBVEgpL3NldHVw
-ZW52LnNoID4gL2Rldi9udWxsOyBcDQo+ID4gICAJc291cmNlICQoRU5WX1NFVFVQKTsgXA0KPiA+
-ICAgCSQoTUFLRSkgLWogJChNQUtFX0pPQlMpIC1DICQke0lQQ19JTlNUQUxMX1BBVEh9L2V4YW1w
-bGVzIGNsZWFuIFwNCj4gPiAgIAkJSE9TVE9TPSJsaW51eCIgXA0KPiA+IC0JCVBMQVRGT1JNPSIk
-JHtJUENfUExBVEZPUk19IiBcDQo+ID4gKwkJUExBVEZPUk09IiQoSVBDX1BMQVRGT1JNKSIgXA0K
-PiA+ICAgCQlLRVJORUxfSU5TVEFMTF9ESVI9IiQoTElOVVhLRVJORUxfSU5TVEFMTF9ESVIpIiBc
-DQo+ID4gLQkJWERDX0lOU1RBTExfRElSPSIkJHtYRENfSU5TVEFMTF9QQVRIfSIgXA0KPiA+IC0J
-CUJJT1NfSU5TVEFMTF9ESVI9IiQke0JJT1NfSU5TVEFMTF9QQVRIfSIgXA0KPiA+IC0JCUlQQ19J
-TlNUQUxMX0RJUj0iJCR7SVBDX0lOU1RBTExfUEFUSH0iIFwNCj4gPiArCQlYRENfSU5TVEFMTF9E
-SVI9IiQoWERDX0lOU1RBTExfUEFUSCkiIFwNCj4gPiArCQlCSU9TX0lOU1RBTExfRElSPSIkKEJJ
-T1NfSU5TVEFMTF9QQVRIKSIgXA0KPiA+ICsJCUlQQ19JTlNUQUxMX0RJUj0iJChJUENfSU5TVEFM
-TF9QQVRIKSIgXA0KPiA+ICAgCQlUT09MQ0hBSU5fTE9OR05BTUU9JCR7VE9PTENIQUlOX1NZU30g
-XA0KPiA+ICAgCQlUT09MQ0hBSU5fSU5TVEFMTF9ESVI9JCR7U0RLX1BBVEhfTkFUSVZFfS91c3Ig
-XA0KPiA+ICAgCQlUT09MQ0hBSU5fUFJFRklYPSQoQ1JPU1NfQ09NUElMRSkgXA0KPiA+IGRpZmYg
-LS1naXQgYS9yZWNpcGVzLXRpc2RrL3RpLXRpc2RrLW1ha2VmaWxlL3RpLXRpc2RrLW1ha2VmaWxl
-XzEuMC5iYmFwcGVuZA0KPiBiL3JlY2lwZXMtdGlzZGsvdGktdGlzZGstbWFrZWZpbGUvdGktdGlz
-ZGstbWFrZWZpbGVfMS4wLmJiYXBwZW5kDQo+ID4gaW5kZXggMjdhOGIyYi4uYjczOTljNyAxMDA2
-NDQNCj4gPiAtLS0gYS9yZWNpcGVzLXRpc2RrL3RpLXRpc2RrLW1ha2VmaWxlL3RpLXRpc2RrLW1h
-a2VmaWxlXzEuMC5iYmFwcGVuZA0KPiA+ICsrKyBiL3JlY2lwZXMtdGlzZGsvdGktdGlzZGstbWFr
-ZWZpbGUvdGktdGlzZGstbWFrZWZpbGVfMS4wLmJiYXBwZW5kDQo+ID4gQEAgLTcxLDkgKzcxLDkg
-QEAgS0VSTkVMX0RFVklDRVRSRUVfYXBwZW5kX2FtNTd4eC1ldm0gPSAiIFwNCj4gPiAgICINCj4g
-Pg0KPiA+DQo+ID4gLUlQQ19UT09MU19QQVRIU19DNjYgPQ0KPiAidGkudGFyZ2V0cy5lbGYuQzY2
-PSJcJFwke0M2WF9HRU5fSU5TVEFMTF9QQVRIfSIiDQo+ID4gLUlQQ19UT09MU19QQVRIU19NNCAg
-PQ0KPiAidGkudGFyZ2V0cy5hcm0uZWxmLk00PSJcJFwke1RPT0xDSEFJTl9QQVRIX000fSINCj4g
-dGkudGFyZ2V0cy5hcm0uZWxmLk00Rj0iXCRcJHtUT09MQ0hBSU5fUEFUSF9NNH0iIg0KPiA+IC1J
-UENfVE9PTFNfUEFUSFNfQzY3NCA9DQo+ICJ0aS50YXJnZXRzLmVsZi5DNjc0PSJcJFwke0M2WF9H
-RU5fSU5TVEFMTF9QQVRIfSIiDQo+ID4gK0lQQ19UT09MU19QQVRIU19DNjYgPQ0KPiAidGkudGFy
-Z2V0cy5lbGYuQzY2PSJcJFwoQzZYX0dFTl9JTlNUQUxMX1BBVEhcKSIiDQo+ID4gK0lQQ19UT09M
-U19QQVRIU19NNCAgPQ0KPiAidGkudGFyZ2V0cy5hcm0uZWxmLk00PSJcJFwoVE9PTENIQUlOX1BB
-VEhfTTRcKSINCj4gdGkudGFyZ2V0cy5hcm0uZWxmLk00Rj0iXCRcKFRPT0xDSEFJTl9QQVRIX000
-XCkiIg0KPiA+ICtJUENfVE9PTFNfUEFUSFNfQzY3NCA9DQo+ICJ0aS50YXJnZXRzLmVsZi5DNjc0
-PSJcJFwoQzZYX0dFTl9JTlNUQUxMX1BBVEhcKSIiDQo+ID4NCj4gPiAgIElQQ19UT09MU19QQVRI
-UyA9ICIiDQo+ID4gICBJUENfVE9PTFNfUEFUSFNfYXBwZW5kX2tleXN0b25lID0gIiAke0lQQ19U
-T09MU19QQVRIU19DNjZ9Ig0KDQo=
+Sam,
+
+I had an additional comment on "IPC_TOOLS_PATHS" below.
+
+
+On 6/14/2018 1:58 PM, Nelson, Sam wrote:
+>
+>> -----Original Message-----
+>> From: Stiffler, Jacob
+>> Sent: Thursday, June 14, 2018 12:50 PM
+>> To: Nelson, Sam; meta-arago@arago-project.org
+>> Subject: Re: [EXTERNAL] [meta-arago] [meta-processor-sdk][PATCH v3] ti-
+>> tisdk-makefile: Update to fix issue with ipc builds from linux
+>>
+>>
+>>
+>> On 6/13/2018 2:50 PM, Sam Nelson wrote:
+>>> setupenv.sh in PRSDK is getting deprecated and all the definitions moved
+>>> to Rules.make. With this change, Rules.make from RTOS package is
+>>> directly used.
+>>>
+>>> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+>>>
+>>> ---
+>>> Changes from previous version of patch
+>>> Move RTOS related defines into existing ifneq statement
+>>> Remove export of IPC related variables
+>>> Update other uses of IPC_INSTALL_PATH
+>>> ---
+>>> ---
+>>>    .../ti-tisdk-makefile/Makefile_big-data-ipc-demo   | 21 ++++-----
+>>>    .../ti-tisdk-makefile/Makefile_ti-ipc              | 50 ++++++++++------------
+>>>    .../ti-tisdk-makefile_1.0.bbappend                 |  6 +--
+>>>    3 files changed, 33 insertions(+), 44 deletions(-)
+>>>
+>>> diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_big-data-
+>> ipc-demo b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_big-data-
+>> ipc-demo
+>>> index 32bb398..ea6ae34 100644
+>>> --- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_big-data-ipc-
+>> demo
+>>> +++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_big-data-ipc-
+>> demo
+>>> @@ -19,14 +19,12 @@ big-data-ipc-demo-linux:
+>>>    	@echo     Building the big data ipc demo: Linux host
+>>>    	@echo ==================================================
+>>>    	@cd example-applications; cd `find . -name "*big-data-ipc-demo-
+>> linux*"`; \
+>>> -	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source
+>> $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+>>> -	source $(ENV_SETUP); \
+>>> -	make -j $(MAKE_JOBS) host_linux \
+>>> -		PLATFORM="$${IPC_PLATFORM}" \
+>>> +	$(MAKE) -j $(MAKE_JOBS) host_linux \
+>>> +		PLATFORM="$(IPC_PLATFORM)" \
+>>>    		KERNEL_INSTALL_DIR="$(LINUXKERNEL_INSTALL_DIR)" \
+>>> -		XDC_INSTALL_DIR="$${XDC_INSTALL_PATH}" \
+>>> -		BIOS_INSTALL_DIR="$${BIOS_INSTALL_PATH}" \
+>>> -		IPC_INSTALL_DIR="$${IPC_INSTALL_PATH}" \
+>>> +		XDC_INSTALL_DIR="$(XDC_INSTALL_PATH)" \
+>>> +		BIOS_INSTALL_DIR="$(BIOS_INSTALL_PATH)" \
+>>> +		IPC_INSTALL_DIR="$(IPC_INSTALL_PATH)" \
+>>>    		TOOLCHAIN_LONGNAME=$${TOOLCHAIN_SYS} \
+>>>    		TOOLCHAIN_INSTALL_DIR=$${SDK_PATH_NATIVE}/usr \
+>>>    		TOOLCHAIN_PREFIX=$(CROSS_COMPILE) \
+>>> @@ -44,17 +42,14 @@ big-data-ipc-demo-linux_install:
+>>>    	fi
+>>>    	@cd example-applications; \
+>>>    	cd `find . -name "*big-data-ipc-demo-linux*"`; \
+>>> -	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source
+>> $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+>>> -	source $(ENV_SETUP); \
+>>>    	$(MAKE) -j $(MAKE_JOBS) install_linux_bin DESTDIR=$(DESTDIR) \
+>>> -	PLATFORM="$${IPC_PLATFORM}"
+>>> +	PLATFORM="$(IPC_PLATFORM)"
+>>>
+>>>    big-data-ipc-demo-linux_clean:
+>>>    	@echo ==================================================
+>>>    	@echo     Cleaning the big data ipc demo: Linux host
+>>>    	@echo ==================================================
+>>>    	@cd example-applications; cd `find . -name "*big-data-ipc-demo-
+>> linux*"`; \
+>>> -	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source
+>> $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+>>> -	source $(ENV_SETUP); \
+>>>    	$(MAKE) -j $(MAKE_JOBS) clean_linux \
+>>> -	PLATFORM="$${IPC_PLATFORM}"
+>>> +	PLATFORM="$(IPC_PLATFORM)"
+>>> +
+>>> diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
+>> b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
+>>> index f1721c7..f015b24 100644
+>>> --- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
+>>> +++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
+>>> @@ -8,6 +8,13 @@ ifneq ($(TI_RTOS_PATH),)
+>>>
+>>>      TI_RTOS_PATH_ABS := $(realpath $(TI_RTOS_PATH))
+>>>
+>>> +
+>> TI_PRSDK_PATH=$(TI_RTOS_PATH_ABS)/processor_sdk_rtos_$(PRSDK_PLATF
+>> ORM)_$(PRSDK_VERSION)
+>>> +  SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS)
+>> I am still not comfortable globally defining this variable as the name
+>> is too generic.
+>>
+>> Can you only supply it to the commands that need it? For example,
+>>
+>> ipc-target:
+>>       SDK_INSTALL_PATH="..." $(MAKE) ...
+>>
+> Unfortunately this variable is used by the PRSDK Rules.make included below.
+> There is no way to pass that as an argument to the included file.
+
+I'll accept this for now, but if anything breaks, this will need to be 
+reverted.
+
+>>> +  include $(TI_PRSDK_PATH)/Rules.make
+>>> +
+>>> +  IPC_TOOLS_PATHS= ti.targets.elf.C66="${C6X_GEN_INSTALL_PATH}"
+>> ti.targets.arm.elf.M4="${TOOLCHAIN_PATH_M4}"
+>> ti.targets.arm.elf.M4F="${TOOLCHAIN_PATH_M4}"
+>>
+>> This was previously "__IPC_TOOLS_PATHS__". Did you mean to change this
+>> here?
+
+Was this intentional?
+
+>>> +
+>>> +
+>>>    else
+>>>      TI_IPC_TARGETS = ti-ipc-rtos-missing
+>>>    endif
+>>> @@ -15,10 +22,6 @@ endif
+>>>    TI_IPC_CLEAN = $(addsuffix _clean, $(TI_IPC_TARGETS))
+>>>    TI_IPC_INSTALL = $(addsuffix _install, $(TI_IPC_TARGETS))
+>>>
+>>> -export
+>> TI_PRSDK_PATH=$(TI_RTOS_PATH_ABS)/processor_sdk_rtos_$(PRSDK_PLATF
+>> ORM)_$(PRSDK_VERSION)
+>>> -
+>>> -export IPC_TOOLS_PATHS=__IPC_TOOLS_PATHS__
+>>> -
+>>>    ti-ipc-rtos-missing ti-ipc-rtos-missing_clean ti-ipc-rtos-missing_install:
+>>>    	@echo
+>>>    	@echo
+>> ===========================================================
+>>> @@ -48,13 +51,12 @@ ti-ipc-linux-config: ti-ipc-rtos-path-check
+>>>    	@echo =================================
+>>>    	@echo     Configuring IPC
+>>>    	@echo =================================
+>>> -	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source
+>> $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+>>>    	. $(ENV_SETUP); \
+>>> -	cd $${IPC_INSTALL_PATH}; \
+>>> -        ./configure $${CONFIGURE_FLAGS} \
+>>> +	cd $(IPC_INSTALL_PATH); \
+>>> +	./configure $${CONFIGURE_FLAGS} \
+>>>    		CC=$${CC} \
+>>>    		--prefix=/usr \
+>>> -		PLATFORM=$${IPC_PLATFORM} \
+>>> +		PLATFORM=$(IPC_PLATFORM) \
+>>>    		KERNEL_INSTALL_DIR=$(LINUXKERNEL_INSTALL_DIR)
+>>>
+>>>
+>>> @@ -62,17 +64,15 @@ ti-ipc-linux: ti-ipc-rtos-path-check linux ti-ipc-linux-
+>> config
+>>>    	@echo =================================
+>>>    	@echo     Building IPC
+>>>    	@echo =================================
+>>> -	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source
+>> $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+>>>    	source $(ENV_SETUP); \
+>>> -	$(MAKE) -j $(MAKE_JOBS) -C $${IPC_INSTALL_PATH}
+>>> +	$(MAKE) -j $(MAKE_JOBS) -C $(IPC_INSTALL_PATH)
+>>>
+>>>    ti-ipc-linux_clean: ti-ipc-rtos-path-check ti-ipc-linux-config
+>>>    	@echo =================================
+>>>    	@echo     Cleaning IPC
+>>>    	@echo =================================
+>>> -	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source
+>> $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+>>>    	source $(ENV_SETUP); \
+>>> -	$(MAKE) -j $(MAKE_JOBS) -C $${IPC_INSTALL_PATH} clean
+>>> +	$(MAKE) -j $(MAKE_JOBS) -C $(IPC_INSTALL_PATH) clean
+>>>
+>>>    ti-ipc-linux_install: ti-ipc-rtos-path-check ti-ipc-linux
+>>>    	@echo =================================
+>>> @@ -83,23 +83,20 @@ ti-ipc-linux_install: ti-ipc-rtos-path-check ti-ipc-linux
+>>>    		echo "Please run setup.sh in the SDK's root directory and then
+>> try again."; \
+>>>    		exit 1; \
+>>>    	fi
+>>> -	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source
+>> $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+>>>    	source $(ENV_SETUP); \
+>>> -	$(MAKE) -j $(MAKE_JOBS) -C $${IPC_INSTALL_PATH} install
+>> DESTDIR=$(DESTDIR)
+>>> +	$(MAKE) -j $(MAKE_JOBS) -C $(IPC_INSTALL_PATH) install
+>> DESTDIR=$(DESTDIR)
+>>>    ti-ipc-linux-examples: ti-ipc-rtos-path-check
+>>>    	@echo =================================
+>>>    	@echo     Building the IPC Examples
+>>>    	@echo =================================
+>>> -	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source
+>> $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+>>> -	source $(ENV_SETUP); \
+>>>    	$(MAKE) -j $(MAKE_JOBS) -C $${IPC_INSTALL_PATH}/examples \
+>>>    		HOSTOS="linux" \
+>>> -		PLATFORM="$${IPC_PLATFORM}" \
+>>> +		PLATFORM="$(IPC_PLATFORM)" \
+>>>    		KERNEL_INSTALL_DIR="$(LINUXKERNEL_INSTALL_DIR)" \
+>>> -		XDC_INSTALL_DIR="$${XDC_INSTALL_PATH}" \
+>>> -		BIOS_INSTALL_DIR="$${BIOS_INSTALL_PATH}" \
+>>> -		IPC_INSTALL_DIR="$${IPC_INSTALL_PATH}" \
+>>> +		XDC_INSTALL_DIR="$(XDC_INSTALL_PATH)" \
+>>> +		BIOS_INSTALL_DIR="$(BIOS_INSTALL_PATH)" \
+>>> +		IPC_INSTALL_DIR="$(IPC_INSTALL_PATH)" \
+>>>    		TOOLCHAIN_LONGNAME=$${TOOLCHAIN_SYS} \
+>>>    		TOOLCHAIN_INSTALL_DIR=$${SDK_PATH_NATIVE}/usr \
+>>>    		TOOLCHAIN_PREFIX=$(CROSS_COMPILE) \
+>>> @@ -114,26 +111,23 @@ ti-ipc-linux-examples_install: ti-ipc-rtos-path-check
+>> ti-ipc-linux-examples
+>>>    		echo "Please run setup.sh in the SDK's root directory and then
+>> try again."; \
+>>>    		exit 1; \
+>>>    	fi
+>>> -	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source
+>> $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+>>> -	source $(ENV_SETUP); \
+>>>    	$(MAKE) -j $(MAKE_JOBS) -C $${IPC_INSTALL_PATH}/examples install
+>> \
+>>>    		HOSTOS="linux" \
+>>> -		PLATFORM="$${IPC_PLATFORM}" \
+>>> +		PLATFORM="$(IPC_PLATFORM)" \
+>>>    		EXEC_DIR="$(EXEC_DIR)"
+>>>
+>>>    ti-ipc-linux-examples_clean: ti-ipc-rtos-path-check
+>>>    	@echo =================================
+>>>    	@echo     Cleaning the IPC Examples
+>>>    	@echo =================================
+>>> -	SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS) source
+>> $(TI_PRSDK_PATH)/setupenv.sh > /dev/null; \
+>>>    	source $(ENV_SETUP); \
+>>>    	$(MAKE) -j $(MAKE_JOBS) -C $${IPC_INSTALL_PATH}/examples clean \
+>>>    		HOSTOS="linux" \
+>>> -		PLATFORM="$${IPC_PLATFORM}" \
+>>> +		PLATFORM="$(IPC_PLATFORM)" \
+>>>    		KERNEL_INSTALL_DIR="$(LINUXKERNEL_INSTALL_DIR)" \
+>>> -		XDC_INSTALL_DIR="$${XDC_INSTALL_PATH}" \
+>>> -		BIOS_INSTALL_DIR="$${BIOS_INSTALL_PATH}" \
+>>> -		IPC_INSTALL_DIR="$${IPC_INSTALL_PATH}" \
+>>> +		XDC_INSTALL_DIR="$(XDC_INSTALL_PATH)" \
+>>> +		BIOS_INSTALL_DIR="$(BIOS_INSTALL_PATH)" \
+>>> +		IPC_INSTALL_DIR="$(IPC_INSTALL_PATH)" \
+>>>    		TOOLCHAIN_LONGNAME=$${TOOLCHAIN_SYS} \
+>>>    		TOOLCHAIN_INSTALL_DIR=$${SDK_PATH_NATIVE}/usr \
+>>>    		TOOLCHAIN_PREFIX=$(CROSS_COMPILE) \
+>>> diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+>> b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+>>> index 27a8b2b..b7399c7 100644
+>>> --- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+>>> +++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+>>> @@ -71,9 +71,9 @@ KERNEL_DEVICETREE_append_am57xx-evm = " \
+>>>    "
+>>>
+>>>
+>>> -IPC_TOOLS_PATHS_C66 =
+>> "ti.targets.elf.C66="\$\${C6X_GEN_INSTALL_PATH}""
+>>> -IPC_TOOLS_PATHS_M4  =
+>> "ti.targets.arm.elf.M4="\$\${TOOLCHAIN_PATH_M4}"
+>> ti.targets.arm.elf.M4F="\$\${TOOLCHAIN_PATH_M4}""
+>>> -IPC_TOOLS_PATHS_C674 =
+>> "ti.targets.elf.C674="\$\${C6X_GEN_INSTALL_PATH}""
+>>> +IPC_TOOLS_PATHS_C66 =
+>> "ti.targets.elf.C66="\$\(C6X_GEN_INSTALL_PATH\)""
+>>> +IPC_TOOLS_PATHS_M4  =
+>> "ti.targets.arm.elf.M4="\$\(TOOLCHAIN_PATH_M4\)"
+>> ti.targets.arm.elf.M4F="\$\(TOOLCHAIN_PATH_M4\)""
+>>> +IPC_TOOLS_PATHS_C674 =
+>> "ti.targets.elf.C674="\$\(C6X_GEN_INSTALL_PATH\)""
+>>>    IPC_TOOLS_PATHS = ""
+>>>    IPC_TOOLS_PATHS_append_keystone = " ${IPC_TOOLS_PATHS_C66}"
+
 
