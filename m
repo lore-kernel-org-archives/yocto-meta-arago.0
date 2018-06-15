@@ -1,43 +1,41 @@
-Return-Path: <x0038811@ti.com>
-Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
-	by arago-project.org (Postfix) with ESMTPS id 48E3F529A9
+Return-Path: <e-ruei1@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 05F8252987
 	for <meta-arago@arago-project.org>;
-	Fri, 15 Jun 2018 06:42:10 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5F6g4h4023618
-	for <meta-arago@arago-project.org>; Fri, 15 Jun 2018 01:42:04 -0500
+	Fri, 15 Jun 2018 18:17:43 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5FIHcU4003216
+	for <meta-arago@arago-project.org>; Fri, 15 Jun 2018 13:17:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1529044924;
-	bh=FCiVjSyd9UCvxyAnabFDBArluLbTwmLBWz2TL0HHYR8=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=ssnqforQdt1MvoECMu3ZoRpbWC7RtmtjlQtFqezNQ7NWLXCZ6zqoQlFZ5EmJmuRVU
-	XZjkrUq/5AZUQzcJY3jmDjkfbB2eTJCMirMdHKGf9+h5n4VUh5auvULeZSlFN7DQDP
-	pYXQiND6SYCCCfpZk/6TyEHjba5OaIo8bnOCTo5g=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5F6g4vF025032
-	for <meta-arago@arago-project.org>; Fri, 15 Jun 2018 01:42:04 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1529086658;
+	bh=SZ3n/Y48BJTGYIhmQWocV5UmlxFw0y+4XHJoD9tWhQ4=;
+	h=From:To:Subject:Date;
+	b=iQNMN5pcjqrrqHEBg/L9rcU8sJ8B1YFaKbwnl2MguxF0ABxtSuC96ZhNwsp5KirOP
+	hOTgGAEdbvC3AyYqSD/Wms4Bj6I81Lebd8WOFKAAYFZYV19hhdTDjc0/jrsmhDuPF+
+	0JB4D+E6+TmdFT6YO5c9vRiazsqD/4Y4GELIAMAs=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5FIHcUw023925
+	for <meta-arago@arago-project.org>; Fri, 15 Jun 2018 13:17:38 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Fri, 15 Jun 2018 01:42:04 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 15 Jun 2018 13:17:37 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Fri, 15 Jun 2018 01:42:04 -0500
-Received: from udx0038811.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Fri, 15 Jun 2018 13:17:37 -0500
+Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5F6g13Z018762;
-	Fri, 15 Jun 2018 01:42:03 -0500
-From: Ramprasad N <x0038811@ti.com>
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5FIHbmF010244
+	for <meta-arago@arago-project.org>; Fri, 15 Jun 2018 13:17:37 -0500
+From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 15 Jun 2018 12:11:59 +0530
-Message-ID: <1529044919-10825-2-git-send-email-x0038811@ti.com>
+Date: Fri, 15 Jun 2018 14:17:02 -0400
+Message-ID: <1529086622-44160-1-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1529044919-10825-1-git-send-email-x0038811@ti.com>
-References: <1529044919-10825-1-git-send-email-x0038811@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko 1/1] omapdrmtest: Update SRCREV
+Subject: [meta-processor-sdk][PATCH] packagegroup-arago-tisdk-multimedia-sdk-host: re-enable video-graphics-test source
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,33 +48,23 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Jun 2018 06:42:11 -0000
+X-List-Received-Date: Fri, 15 Jun 2018 18:17:44 -0000
 Content-Type: text/plain
 
-This update addresses the following:
-   *fix build issue with Android O
-   *Replace scaler wayland API with viewporter wayland API
-
-Signed-off-by: Ramprasad N <x0038811@ti.com>
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-index 47d3245..51f06ae 100644
---- a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-+++ b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-@@ -7,8 +7,8 @@ DEPENDS = "ffmpeg libdce libdrm libgbm ti-sgx-ddk-um wayland"
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bbappend
+index 34656e4..d832f6f 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia-sdk-host.bbappend
+@@ -1,3 +1,3 @@
+ PR_append = ".tisdk0"
  
- inherit autotools pkgconfig
- 
--PR = "r25"
--SRCREV = "6d81a5c7dc998a914c482bd8aef0d6b2ffd3aa09"
-+PR = "r26"
-+SRCREV = "6877f56301e46e2ba377fc3dc18fcc1f333a3cce"
- 
- EXTRA_OEMAKE = "CC="${CC}""
- TARGET_CC_ARCH += "${LDFLAGS}"
+-#MULTIMEDIA_append_omap-a15 = " video-graphics-test-src"
++MULTIMEDIA_append_omap-a15 = " video-graphics-test-src"
 -- 
 1.9.1
 
