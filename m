@@ -1,30 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 4339552987
+	by arago-project.org (Postfix) with ESMTPS id 9A64B529BF
 	for <meta-arago@arago-project.org>;
-	Sat, 16 Jun 2018 01:12:32 +0000 (UTC)
+	Sun, 17 Jun 2018 19:37:49 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 99E3E20BD9;
-	Sat, 16 Jun 2018 01:12:26 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 8BDBF20BBE;
+	Sun, 17 Jun 2018 19:37:43 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id n_GiztKzdsyE; Sat, 16 Jun 2018 01:12:26 +0000 (UTC)
+	with ESMTP id ZtP5Op9zY92K; Sun, 17 Jun 2018 19:37:43 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 732CC20B0C;
-	Sat, 16 Jun 2018 01:12:25 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 53FC020BCF;
+	Sun, 17 Jun 2018 19:37:42 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 00B2A1634A4;
-	Fri, 15 Jun 2018 21:12:24 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id D4C571634B0;
+	Sun, 17 Jun 2018 15:37:41 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Fri, 15 Jun 2018 21:12:24 -0400
-Message-Id: <1529111544-29918-1-git-send-email-denys@ti.com>
+Date: Sun, 17 Jun 2018 15:37:36 -0400
+Message-Id: <1529264260-41284-5-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [rocko/master][PATCH] iperf: update to 2.0.11
+In-Reply-To: <1529264260-41284-1-git-send-email-denys@ti.com>
+References: <1529264260-41284-1-git-send-email-denys@ti.com>
+Subject: [rocko/master][PATCH 5/9] packagegroup-*-server-extra: vtun does not support Aarch64, skip it
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,32 +39,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Jun 2018 01:12:32 -0000
+X-List-Received-Date: Sun, 17 Jun 2018 19:37:50 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-benchmark/iperf/{iperf_2.0.10.bb => iperf_2.0.11.bb}      | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
- rename meta-arago-extras/recipes-benchmark/iperf/{iperf_2.0.10.bb => iperf_2.0.11.bb} (83%)
+ .../packagegroups/packagegroup-arago-base-tisdk-server-extra.bb   | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.10.bb b/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.11.bb
-similarity index 83%
-rename from meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.10.bb
-rename to meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.11.bb
-index 737efba..c6ba7dc 100644
---- a/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.10.bb
-+++ b/meta-arago-extras/recipes-benchmark/iperf/iperf_2.0.11.bb
-@@ -9,8 +9,8 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/iperf2/${BP}.tar.gz \
-         file://0002-fix-bool-size-m4.patch \
- "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+index 343fd2a..564a799 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+@@ -153,6 +153,12 @@ ARAGO_TI_PKGS_append_k2e = "\
+     hyplnk-lld \
+     "
  
--SRC_URI[md5sum] = "097cf0754bc1afa165975c06a91e6906"
--SRC_URI[sha256sum] = "7fe4348dcca313b74e0aa9c34a8ccd713b84a5615b8578f4aa94cedce9891ef2"
-+SRC_URI[md5sum] = "c63766d275b4537f419db096b9dfe4dc"
-+SRC_URI[sha256sum] = "b7d650d07c6bb0e357b5938a20e4ac33876012fddb952299c5d321e6958da5d2"
- 
- S = "${WORKDIR}/${BP}"
- 
++ARAGO_VTUN = "\
++    vtun \
++"
++# vtun does not support aarch64
++ARAGO_VTUN_aarch64 = ""
++
+ #    recovery-kernel
+ RDEPENDS_${PN} = "\
+     ${ARAGO_LIBNL} \
+@@ -160,6 +166,7 @@ RDEPENDS_${PN} = "\
+     ${ARAGO_NDISC6} \
+     ${ARAGO_PYTHON} \
+     ${ARAGO_TI_PKGS} \
++    ${ARAGO_VTUN} \
+     ptpd \
+     vsftpd \
+     syslog-ng \
+@@ -170,7 +177,6 @@ RDEPENDS_${PN} = "\
+     lksctp-tools \
+     lksctp-tools-utils \
+     libdnet \
+-    vtun \
+     bridge-utils \
+     ebtables \
+     rng-tools \
 -- 
 2.7.4
 
