@@ -1,30 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id A258F529C0
+	by arago-project.org (Postfix) with ESMTPS id AA19F52A33
 	for <meta-arago@arago-project.org>;
 	Sun, 17 Jun 2018 19:37:49 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3B7D7207AB;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 73F1120C17;
 	Sun, 17 Jun 2018 19:37:43 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id hq0LyuIrBw7Z; Sun, 17 Jun 2018 19:37:43 +0000 (UTC)
+	with ESMTP id ClhhuxkH9ZkQ; Sun, 17 Jun 2018 19:37:43 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 141A720B1F;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 31C5E20BBE;
 	Sun, 17 Jun 2018 19:37:42 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id AC3FC1634A5;
+	by mail.denix.org (Postfix) with ESMTP id BC1D91634AD;
 	Sun, 17 Jun 2018 15:37:41 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Sun, 17 Jun 2018 15:37:32 -0400
-Message-Id: <1529264260-41284-1-git-send-email-denys@ti.com>
+Date: Sun, 17 Jun 2018 15:37:34 -0400
+Message-Id: <1529264260-41284-3-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [rocko/master][PATCH 1/9] u-boot-ti-staging: add handling of R8 side on AM65x
+In-Reply-To: <1529264260-41284-1-git-send-email-denys@ti.com>
+References: <1529264260-41284-1-git-send-email-denys@ti.com>
+Subject: [rocko/master][PATCH 3/9] optee-client: update to 3.0.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,49 +39,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Jun 2018 19:37:50 -0000
-
-This uses a different ARMv7 toolchain when building for ARMv8 platform.
-It passes SYSFW binary to the build referred by SYSFW_FILE environment variable.
+X-List-Received-Date: Sun, 17 Jun 2018 19:37:51 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../u-boot/u-boot-ti-staging_2018.01.bbappend      | 26 ++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
- create mode 100644 meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2018.01.bbappend
+ meta-arago-distro/recipes-security/optee/optee-client.bbappend | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2018.01.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2018.01.bbappend
-new file mode 100644
-index 0000000..13f0a65
---- /dev/null
-+++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2018.01.bbappend
-@@ -0,0 +1,26 @@
-+PACKAGECONFIG_append_k3 = " optee"
-+
-+CROSS_COMPILE_V7 = "${ELT_TARGET_SYS_ARMV7}-"
-+PATH_prepend = "${TOOLCHAIN_PATH_ARMV7}/bin:"
-+
-+UBOOT_R8_BINARY = "tiboot3.bin"
-+UBOOT_R8_IMAGE = "tiboot3-${MACHINE}-${PV}-${PR}.bin"
-+UBOOT_R8_SYMLINK = "tiboot3-${MACHINE}.bin"
-+
-+do_compile_append_am65xx-evm() {
-+	# Build R8 side now
-+	make ${PARALLEL_MAKE} ARCH=arm CROSS_COMPILE=${CROSS_COMPILE_V7} CC="${CROSS_COMPILE_V7}gcc ${TOOLCHAIN_OPTIONS}" V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" -C ${S} O=${B} am65x_evm_r5_defconfig
-+	make ${PARALLEL_MAKE} ARCH=arm CROSS_COMPILE=${CROSS_COMPILE_V7} CC="${CROSS_COMPILE_V7}gcc ${TOOLCHAIN_OPTIONS}" V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" -C ${S} O=${B} SYSFW=${SYSFW_FILE} ${UBOOT_MAKE_TARGET}
-+}
-+
-+do_install_append_am65xx-evm() {
-+	install -m 644 ${B}/${UBOOT_R8_BINARY} ${D}/boot/${UBOOT_R8_IMAGE}
-+	ln -sf ${UBOOT_R8_IMAGE} ${D}/boot/${UBOOT_R8_BINARY}
-+}
-+
-+do_deploy_append_am65xx-evm() {
-+	install ${B}/${UBOOT_R8_BINARY} ${DEPLOYDIR}/${UBOOT_R8_IMAGE}
-+	rm -f ${DEPLOYDIR}/${UBOOT_R8_BINARY} ${DEPLOYDIR}/${UBOOT_R8_SYMLINK}
-+	ln -sf ${UBOOT_R8_IMAGE} ${DEPLOYDIR}/${UBOOT_R8_BINARY}
-+	ln -sf ${UBOOT_R8_IMAGE} ${DEPLOYDIR}/${UBOOT_R8_SYMLINK}
-+}
+diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+index fcfb2bb..bb1f631 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+@@ -5,7 +5,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
+ 
+ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=69663ab153298557a59c67a60a743e5b"
+ 
+-PV = "2.6.0+git${SRCPV}"
++PV = "3.0.0+git${SRCPV}"
+ 
+ BRANCH = "ti_optee_client"
+-SRCREV = "73b4e490a8ed0b4a7714818e80998b9d8a7da958"
++SRCREV = "09b69afa5e9e74aac39e383d74f14b4d61c90476"
 -- 
 2.7.4
 
