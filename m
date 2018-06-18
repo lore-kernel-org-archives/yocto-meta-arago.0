@@ -1,40 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from lelnx194.ext.ti.com (lelnx194.ext.ti.com [198.47.27.80])
-	by arago-project.org (Postfix) with ESMTPS id D2C3A52987
+Return-Path: <yan-liu@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 12F2052987
 	for <meta-arago@arago-project.org>;
-	Mon, 18 Jun 2018 17:06:09 +0000 (UTC)
+	Mon, 18 Jun 2018 21:04:39 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelnx194.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5IH63m8021012
-	for <meta-arago@arago-project.org>; Mon, 18 Jun 2018 12:06:04 -0500
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5IL4YwG010695
+	for <meta-arago@arago-project.org>; Mon, 18 Jun 2018 16:04:34 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1529341564;
-	bh=R6Qj8QF6FR6dT/W4dvPAiBLrkiyV4MzwuDsuxr89RE8=;
+	s=ti-com-17Q1; t=1529355874;
+	bh=mmCvfJoHJDFhpe2bpb/BiACjHCAic0Uj0MmKKKYXxX0=;
 	h=From:To:CC:Subject:Date;
-	b=AL6Gxn8qtq4dZF+1ohU975YAOXWZAM418HRedIamIym9H5VbfYVrO2VISfMkSepnc
-	8mm39IW4P8iIkBkja6l4sIXqGRTg4qoecUwMi52VLl0SfjmixTTlZhEB7hAI7NsUHj
-	kUxuGYKc+gqyEIVqpWoqD7UQ3WS4ZaDJXclObWZ4=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5IH63Jb022478
-	for <meta-arago@arago-project.org>; Mon, 18 Jun 2018 12:06:03 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	b=mh9JYjjEYPsbx6+oG8xL96+Gms3naVMGkTEvfQ2/bZkAnucxmZKrEz2BCdiMsLA/+
+	PsrE/osJLZuStAbr6uIG31qMc7ID9qlfGfK1plvh83z9nzbV/A38aa0wIPyzFNzz9T
+	+8LgEmKX9EUSc2z31/hDfuhBOSNfUfwYMQ563NQc=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5IL4YwW016289
+	for <meta-arago@arago-project.org>; Mon, 18 Jun 2018 16:04:34 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Mon, 18 Jun 2018 12:06:03 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 18 Jun 2018 16:04:33 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Mon, 18 Jun 2018 12:06:03 -0500
-Received: from puget.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5IH63Tf001810;
-	Mon, 18 Jun 2018 12:06:03 -0500
-From: Denys Dmytriyenko <denys@ti.com>
+	Transport; Mon, 18 Jun 2018 16:04:33 -0500
+Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5IL4XfT020763;
+	Mon, 18 Jun 2018 16:04:33 -0500
+From: <yan-liu@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 18 Jun 2018 17:05:24 +0000
-Message-ID: <20180618170524.6398-1-denys@ti.com>
-X-Mailer: git-send-email 2.17.1
+Date: Mon, 18 Jun 2018 16:55:32 -0400
+Message-ID: <1529355332-3095-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [tisdk-build-scripts][PATCH] build-oesdk, machine-specific-functions: support Aarch64 and am65xx-evm
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,56 +48,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Jun 2018 17:06:10 -0000
+X-List-Received-Date: Mon, 18 Jun 2018 21:04:40 -0000
 Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- build-oesdk.sh                       |  1 +
- lib/oesdk/machine-specific-functions | 10 ++++++++++
- 2 files changed, 11 insertions(+)
+From: Yan Liu <yan-liu@ti.com>
 
-diff --git a/build-oesdk.sh b/build-oesdk.sh
-index 8b9c604..038a7ab 100755
---- a/build-oesdk.sh
-+++ b/build-oesdk.sh
-@@ -165,6 +165,7 @@ parse_machines
- # lists that will be run through as parallel builds in the build process.
- create_build_lists "CORTEX"
- create_build_lists "ARM9"
-+create_build_lists "AARCH64"
+Signed-off-by: Yan Liu <yan-liu@ti.com>
+---
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+index 74e2e8e..8e3a26a 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
  
- # Go through the list of "lists" and configure the individual build
- # directories for each one
-diff --git a/lib/oesdk/machine-specific-functions b/lib/oesdk/machine-specific-functions
-index 166e891..50e2cf9 100644
---- a/lib/oesdk/machine-specific-functions
-+++ b/lib/oesdk/machine-specific-functions
-@@ -25,6 +25,10 @@ parse_machines() {
-                 CORTEX_MACHINES="$CORTEX_MACHINES"" $m"
-                 ARCHS="$ARCHS""\n""CORTEX"
-                 ;;
-+            am65xx-evm )
-+                AARCH64_MACHINES="$AARCH64_MACHINES"" $m"
-+                ARCHS="$ARCHS""\n""AARCH64"
-+                ;;
-             * )
-                 log $error_log echo "Unknown machine ($m) specified"
-                 exit 1
-@@ -50,6 +54,12 @@ add_toolchain_to_path() {
-                 export PATH="$TOOLCHAIN_ROOT_CORTEX:$PATH"
-             fi
-             ;;
-+        AARCH64* )
-+            if [ ! -z $TOOLCHAIN_ROOT_AARCH64 ]
-+            then
-+                export PATH="$TOOLCHAIN_ROOT_AARCH64:$PATH"
-+            fi
-+            ;;
-         * )
-             log $error_log echo "Unknown machine ($m) specified.  Cannot set PATH"
-             exit 1
+-PR = "r7"
++PR = "r8"
+ PV_append = "+git${SRCPV}"
+ 
+ PROVIDES += "ltp"
+@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+ 
+ inherit autotools-brokensep
+ 
+-SRCREV = "f7fc06c290333ce08a7d4fba104eee0f0f1d942b"
++SRCREV = "077550aa255afac2837bddae8c7543e9bc3737ae"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
 -- 
-2.17.1
+1.7.9.5
 
 
