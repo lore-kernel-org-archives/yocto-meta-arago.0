@@ -1,32 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 951EE529CA
+	by arago-project.org (Postfix) with ESMTPS id F2437529E3
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Jun 2018 19:24:00 +0000 (UTC)
+	Tue, 19 Jun 2018 20:49:23 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B441020C15;
-	Tue, 19 Jun 2018 19:23:54 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 283EA20BFB;
+	Tue, 19 Jun 2018 20:49:18 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id NM-SwclxBGq9; Tue, 19 Jun 2018 19:23:54 +0000 (UTC)
+	with ESMTP id k6VXy-7r5p3E; Tue, 19 Jun 2018 20:49:18 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
 	[100.15.85.143])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8C74120BFB;
-	Tue, 19 Jun 2018 19:23:53 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id EFAA02017D;
+	Tue, 19 Jun 2018 20:49:16 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id F12261634BF;
-	Tue, 19 Jun 2018 15:23:52 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 664561634AC;
+	Tue, 19 Jun 2018 16:49:16 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Tue, 19 Jun 2018 15:23:51 -0400
-Message-Id: <1529436231-29959-2-git-send-email-denys@ti.com>
+Date: Tue, 19 Jun 2018 16:49:15 -0400
+Message-Id: <1529441355-31101-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1529436231-29959-1-git-send-email-denys@ti.com>
-References: <1529436231-29959-1-git-send-email-denys@ti.com>
-Subject: [rocko/master][PATCH 2/2] optee-test: fix build issue for ARM32 TI HS platforms
+Subject: [rocko/master][PATCH] devmem2: ensure word is 32-bit and add support for 64-bit double
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,89 +37,103 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Jun 2018 19:24:01 -0000
+X-List-Received-Date: Tue, 19 Jun 2018 20:49:24 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- ...Makefile-fix-COMPILE_NS_USER-not-being-se.patch | 52 ++++++++++++++++++++++
- .../recipes-security/optee/optee-test_git.bbappend |  4 ++
- 2 files changed, 56 insertions(+)
- create mode 100644 meta-arago-distro/recipes-security/optee/optee-test/0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch
+ .../recipes-support/devmem2/devmem2.bbappend       |  5 ++
+ ...sure-word-is-32-bit-and-add-support-for-6.patch | 70 ++++++++++++++++++++++
+ 2 files changed, 75 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-support/devmem2/devmem2.bbappend
+ create mode 100644 meta-arago-extras/recipes-support/devmem2/devmem2/0001-devmem.c-ensure-word-is-32-bit-and-add-support-for-6.patch
 
-diff --git a/meta-arago-distro/recipes-security/optee/optee-test/0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch b/meta-arago-distro/recipes-security/optee/optee-test/0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch
+diff --git a/meta-arago-extras/recipes-support/devmem2/devmem2.bbappend b/meta-arago-extras/recipes-support/devmem2/devmem2.bbappend
 new file mode 100644
-index 0000000..f7cf97f
+index 0000000..c0a2460
 --- /dev/null
-+++ b/meta-arago-distro/recipes-security/optee/optee-test/0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch
-@@ -0,0 +1,52 @@
-+From 001c6b560ccd4f66dc4b623e8b2c3f93bd2cab43 Mon Sep 17 00:00:00 2001
++++ b/meta-arago-extras/recipes-support/devmem2/devmem2.bbappend
+@@ -0,0 +1,5 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++SRC_URI += " \
++file://0001-devmem.c-ensure-word-is-32-bit-and-add-support-for-6.patch \
++"
+diff --git a/meta-arago-extras/recipes-support/devmem2/devmem2/0001-devmem.c-ensure-word-is-32-bit-and-add-support-for-6.patch b/meta-arago-extras/recipes-support/devmem2/devmem2/0001-devmem.c-ensure-word-is-32-bit-and-add-support-for-6.patch
+new file mode 100644
+index 0000000..ad8ae67
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/devmem2/devmem2/0001-devmem.c-ensure-word-is-32-bit-and-add-support-for-6.patch
+@@ -0,0 +1,70 @@
++From 1360a907879dd24041797a3b709d49aeac2ab444 Mon Sep 17 00:00:00 2001
 +From: Denys Dmytriyenko <denys@ti.com>
-+Date: Tue, 19 Jun 2018 14:11:18 -0400
-+Subject: [PATCH] host/xtest/Makefile: fix COMPILE_NS_USER not being set by
-+ default
-+
-+The build for TI ARM32 platforms attempts linking with aarch64 libcrypto.a
-+and breaks, even when CFG_ARM32_core is set in the optee-os TA devkit.
-+
-+Fix it by moving setting of COMPILE_NS_USER based on CFG_ARM32_core outside
-+of ifdef CFG_GP_PACKAGE_PATH, as it's also needed for CFG_TA_MBEDTLS
++Date: Tue, 29 May 2018 16:55:42 -0400
++Subject: [PATCH] devmem.c: ensure word is 32-bit and add support for 64-bit
++ double
 +
 +Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 +---
-+ host/xtest/Makefile | 14 +++++++-------
-+ 1 file changed, 7 insertions(+), 7 deletions(-)
++ devmem2.c | 23 +++++++++++++++++------
++ 1 file changed, 17 insertions(+), 6 deletions(-)
 +
-+diff --git a/host/xtest/Makefile b/host/xtest/Makefile
-+index 47d24c2..2073cf6 100644
-+--- a/host/xtest/Makefile
-++++ b/host/xtest/Makefile
-+@@ -24,6 +24,13 @@ OBJCOPY		?= $(CROSS_COMPILE)objcopy
-+ OBJDUMP		?= $(CROSS_COMPILE)objdump
-+ READELF		?= $(CROSS_COMPILE)readelf
++diff --git a/devmem2.c b/devmem2.c
++index 5845381..68131b2 100644
++--- a/devmem2.c
+++++ b/devmem2.c
++@@ -39,6 +39,7 @@
 + 
-++# by default, the client application is compiled as the kernel of optee-os
-++ifeq ($(CFG_ARM32_core),y)
-++COMPILE_NS_USER ?= 32
-++else
-++COMPILE_NS_USER ?= 64
-++endif
-++
-+ # OpenSSL is used by GP tests series 8500 and Mbed TLS test 8103
-+ ifneq (,$(filter y,$(CFG_GP_PACKAGE_PATH) $(CFG_TA_MBEDTLS)))
-+ CFLAGS += -I../openssl/include -DOPENSSL_FOUND=1
-+@@ -122,13 +129,6 @@ CFLAGS += -I../../ta/GP_TTA_check_OpenSession_with_4_parameters
-+ CFLAGS += -I../../ta/GP_TTA_testingClientAPI
-+ 
-+ 
-+-# by default, the client application is compiled as the kernel of optee-os
-+-ifeq ($(CFG_ARM32_core),y)
-+-COMPILE_NS_USER ?= 32
-+-else
-+-COMPILE_NS_USER ?= 64
-+-endif
-+-
-+ endif
-+ 
-+ TA_DIR ?= /lib/optee_armtz
++ #include <stdio.h>
++ #include <stdlib.h>
+++#include <stdint.h>
++ #include <unistd.h>
++ #include <string.h>
++ #include <errno.h>
++@@ -69,7 +70,7 @@ int main(int argc, char **argv) {
++ 	if(argc < 2) {
++ 		fprintf(stderr, "\nUsage:\t%s { address } [ type [ data ] ]\n"
++ 			"\taddress : memory address to act upon\n"
++-			"\ttype    : access operation type : [b]yte, [h]alfword, [w]ord\n"
+++			"\ttype    : access operation type : [b]yte, [h]alfword, [w]ord, [d]ouble\n"
++ 			"\tdata    : data to be written\n\n",
++ 			argv[0]);
++ 		exit(1);
++@@ -103,9 +104,14 @@ int main(int argc, char **argv) {
++ 			read_result = *((unsigned short *) virt_addr);
++ 			break;
++ 		case 'w':
++-			data_size = sizeof(unsigned long);
+++			data_size = sizeof(uint32_t);
++ 			virt_addr = fixup_addr(virt_addr, data_size);
++-			read_result = *((unsigned long *) virt_addr);
+++			read_result = *((uint32_t *) virt_addr);
+++			break;
+++		case 'd':
+++			data_size = sizeof(uint64_t);
+++			virt_addr = fixup_addr(virt_addr, data_size);
+++			read_result = *((uint64_t *) virt_addr);
++ 			break;
++ 		default:
++ 			fprintf(stderr, "Illegal data type '%c'.\n", access_type);
++@@ -129,9 +135,14 @@ int main(int argc, char **argv) {
++ 				read_result = *((unsigned short *) virt_addr);
++ 				break;
++ 			case 'w':
++-				virt_addr = fixup_addr(virt_addr, sizeof(unsigned long));
++-				*((unsigned long *) virt_addr) = write_val;
++-				read_result = *((unsigned long *) virt_addr);
+++				virt_addr = fixup_addr(virt_addr, sizeof(uint32_t));
+++				*((uint32_t *) virt_addr) = write_val;
+++				read_result = *((uint32_t *) virt_addr);
+++				break;
+++			case 'd':
+++				virt_addr = fixup_addr(virt_addr, sizeof(uint64_t));
+++				*((uint64_t *) virt_addr) = write_val;
+++				read_result = *((uint64_t *) virt_addr);
++ 				break;
++ 		}
++ 		sprintf(fmt_str, "Write at address 0x%%08lX (%%p): 0x%%0%dlX, "
 +-- 
 +2.7.4
 +
-diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-index d99361f..e6d1073 100644
---- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-@@ -1,7 +1,11 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
- PR_append = ".arago0"
- 
- SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
- 
-+SRC_URI += "file://0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch"
-+
- PV = "3.1.0+git${SRCPV}"
- 
- BRANCH = "ti_optee_test"
 -- 
 2.7.4
 
