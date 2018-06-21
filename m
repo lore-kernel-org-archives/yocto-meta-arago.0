@@ -1,45 +1,30 @@
-Return-Path: <x0038811@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id 04605529CA
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id AEF85529B3
 	for <meta-arago@arago-project.org>;
-	Thu, 21 Jun 2018 06:50:16 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5L6oBkB023028
-	for <meta-arago@arago-project.org>; Thu, 21 Jun 2018 01:50:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1529563811;
-	bh=u8mYZf+Q61jp7zsPq4DOO4fF4cZVVkenNXEMFXc2VdU=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=J1banfJ+zIUb+fVxBSFCRuPeDarBpL+mQ4W3r/nq62VpQ6aqxhyP9+9T0CUBZ8QWL
-	zsTMMdRKhSU86sOVcnJppax9bYXqkYBf2Qa9MIZQsC5KsVOAMNcsdTEB7THV3n3HSk
-	cnYdrWngUuCTyb1rOmRkEcEFVMkgcctuQsdbHezU=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5L6oBji006222
-	for <meta-arago@arago-project.org>; Thu, 21 Jun 2018 01:50:11 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Thu, 21 Jun 2018 01:50:10 -0500
-Received: from DFLE106.ent.ti.com ([fe80::4dc:7374:f90c:1f12]) by
-	DFLE106.ent.ti.com ([fe80::4dc:7374:f90c:1f12%17]) with mapi id
-	15.01.1466.003; Thu, 21 Jun 2018 01:50:10 -0500
-From: "Prasad, Ram" <x0038811@ti.com>
-To: "R, Karthik" <karthik.ramanan@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [krogoth] gst1.0-plugins-bad:
-	gstwaylandsink: Update SRCREV
-Thread-Index: AQHUCSlHXW8TEyJlzUqFgoaLh8ED2KRqRcSQ
-Date: Thu, 21 Jun 2018 06:50:10 +0000
-Message-ID: <7594a1c8f759453788d088f76b43552e@ti.com>
-References: <1529562587-46299-1-git-send-email-a0393906@ti.com>
-In-Reply-To: <1529562587-46299-1-git-send-email-a0393906@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.24.145.0]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-MIME-Version: 1.0
-Subject: Re: [EXTERNAL] [krogoth] gst1.0-plugins-bad: gstwaylandsink: Update SRCREV
+	Thu, 21 Jun 2018 18:36:42 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C820520BEE;
+	Thu, 21 Jun 2018 18:36:36 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 3vbSzOqytC5D; Thu, 21 Jun 2018 18:36:36 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9316C2079D;
+	Thu, 21 Jun 2018 18:36:35 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 0BF2D1634AC;
+	Thu, 21 Jun 2018 14:36:35 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Thu, 21 Jun 2018 14:36:34 -0400
+Message-Id: <1529606194-21954-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [rocko/master][PATCH] u-boot-ti-staging: use ${B}/r8 to not overwrite output of a53 build
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,55 +37,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Jun 2018 06:50:17 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 21 Jun 2018 18:36:43 -0000
 
-Acknowledged.
+But ${B} itself cannot change for sstate to work correctly.
 
-
------Original Message-----
-From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
--project.org] On Behalf Of R, Karthik
-Sent: Thursday, June 21, 2018 12:00 PM
-To: meta-arago@arago-project.org
-Subject: [EXTERNAL] [meta-arago] [krogoth] gst1.0-plugins-bad: gstwaylandsi=
-nk: Update SRCREV
-
-This patch resets the redraw_pending in PAUSE to READY transition
-
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend                 | 4 =
-++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-bsp/u-boot/u-boot-ti-staging_2018.01.bbappend         | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-pl=
-ugins-bad_1.6.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/g=
-streamer1.0-plugins-bad_1.6.3.bbappend
-index f732a02..9d297c5 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-b=
-ad_1.6.3.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-b=
-ad_1.6.3.bbappend
-@@ -38,8 +38,8 @@ SRC_URI =3D "git://git.ti.com/glsdk/gstreamer1-0-plugins-=
-bad.git;protocol=3Dgit;bran
-=20
- S =3D "${WORKDIR}/git"
-=20
--SRCREV_omap-a15 =3D "3a5a7f778b3c3259faab04748e7b10f0fd696aab"
-+SRCREV_omap-a15 =3D "9a1cd733fa57e1eace21524456b652087d04168e"
- SRCREV_ti43x =3D "3a5a7f778b3c3259faab04748e7b10f0fd696aab"
- SRCREV =3D "d0160ca810be30bf2b2e7681f5047933402efb52"
-=20
--PR =3D "r27"
-+PR =3D "r29"
---=20
-1.9.1
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2018.01.bbappend b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2018.01.bbappend
+index 13f0a65..0dc1994 100644
+--- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2018.01.bbappend
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-ti-staging_2018.01.bbappend
+@@ -9,17 +9,17 @@ UBOOT_R8_SYMLINK = "tiboot3-${MACHINE}.bin"
+ 
+ do_compile_append_am65xx-evm() {
+ 	# Build R8 side now
+-	make ${PARALLEL_MAKE} ARCH=arm CROSS_COMPILE=${CROSS_COMPILE_V7} CC="${CROSS_COMPILE_V7}gcc ${TOOLCHAIN_OPTIONS}" V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" -C ${S} O=${B} am65x_evm_r5_defconfig
+-	make ${PARALLEL_MAKE} ARCH=arm CROSS_COMPILE=${CROSS_COMPILE_V7} CC="${CROSS_COMPILE_V7}gcc ${TOOLCHAIN_OPTIONS}" V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" -C ${S} O=${B} SYSFW=${SYSFW_FILE} ${UBOOT_MAKE_TARGET}
++	make ${PARALLEL_MAKE} ARCH=arm CROSS_COMPILE=${CROSS_COMPILE_V7} CC="${CROSS_COMPILE_V7}gcc ${TOOLCHAIN_OPTIONS}" V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" -C ${S} O=${B}/r8 am65x_evm_r5_defconfig
++	make ${PARALLEL_MAKE} ARCH=arm CROSS_COMPILE=${CROSS_COMPILE_V7} CC="${CROSS_COMPILE_V7}gcc ${TOOLCHAIN_OPTIONS}" V=1 HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" -C ${S} O=${B}/r8 SYSFW=${SYSFW_FILE} ${UBOOT_MAKE_TARGET}
+ }
+ 
+ do_install_append_am65xx-evm() {
+-	install -m 644 ${B}/${UBOOT_R8_BINARY} ${D}/boot/${UBOOT_R8_IMAGE}
++	install -m 644 ${B}/r8/${UBOOT_R8_BINARY} ${D}/boot/${UBOOT_R8_IMAGE}
+ 	ln -sf ${UBOOT_R8_IMAGE} ${D}/boot/${UBOOT_R8_BINARY}
+ }
+ 
+ do_deploy_append_am65xx-evm() {
+-	install ${B}/${UBOOT_R8_BINARY} ${DEPLOYDIR}/${UBOOT_R8_IMAGE}
++	install ${B}/r8/${UBOOT_R8_BINARY} ${DEPLOYDIR}/${UBOOT_R8_IMAGE}
+ 	rm -f ${DEPLOYDIR}/${UBOOT_R8_BINARY} ${DEPLOYDIR}/${UBOOT_R8_SYMLINK}
+ 	ln -sf ${UBOOT_R8_IMAGE} ${DEPLOYDIR}/${UBOOT_R8_BINARY}
+ 	ln -sf ${UBOOT_R8_IMAGE} ${DEPLOYDIR}/${UBOOT_R8_SYMLINK}
+-- 
+2.7.4
 
-_______________________________________________
-meta-arago mailing list
-meta-arago@arago-project.org
-http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
