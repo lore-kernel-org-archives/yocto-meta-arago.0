@@ -1,43 +1,40 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
-	by arago-project.org (Postfix) with ESMTPS id 6DF40529DB
+Return-Path: <karthik.ramanan@ti.com>
+Received: from fllnx209.ext.ti.com (fllnx209.ext.ti.com [198.47.19.16])
+	by arago-project.org (Postfix) with ESMTPS id 43FDE52A15
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Jun 2018 12:21:44 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5KCLct3025528
-	for <meta-arago@arago-project.org>; Wed, 20 Jun 2018 07:21:38 -0500
+	Thu, 21 Jun 2018 06:29:57 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllnx209.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5L6Tp17011597
+	for <meta-arago@arago-project.org>; Thu, 21 Jun 2018 01:29:51 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1529497298;
-	bh=FZ6DxlHtSCkJRJq2lS06UPkydlDLhpFtS9L27qmH0VQ=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=rVySgmHJ6AggaC2cHr0dFIanVjGj4P7wKbaQXtSN/WSRZm01B2iJQu6YdOKJa+SY3
-	/XDmnNtRRV2R5T8eSN8+YgfDuLzF5URmx8IxS0GzAmWTdjLWYbOI+DkK5dPQ2lmVTr
-	hYjAGSNayBpDLch8dMFD2uAX3mqUgdEINkFGpqDk=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5KCLcCv011002
-	for <meta-arago@arago-project.org>; Wed, 20 Jun 2018 07:21:38 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1529562591;
+	bh=LGue/vkrBdhoMvNWTN9xTjTYScKWCWFYCHhQxhEIaSI=;
+	h=From:To:CC:Subject:Date;
+	b=ySz1lG2BMybNYYH51vQCO4xWKuncCGRczhNWsGXATpaH2EYESq2ycgmSRiqXsO0x8
+	taxdw+BnlaVuhtaArVhGSWMlvs4SMMLEtEj6K7hGj1w5u+EhwV/IZ2SkiPwtWZgRhY
+	nBBinChE4r8w2/D8ewMEOx7dx9xwzRcLJ5BNVbWo=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5L6TpJi002140
+	for <meta-arago@arago-project.org>; Thu, 21 Jun 2018 01:29:51 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 20 Jun 2018 07:21:38 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 21 Jun 2018 01:29:50 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Wed, 20 Jun 2018 07:21:38 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5KCLb1H003605;
-	Wed, 20 Jun 2018 07:21:37 -0500
-To: Yuan Zhao <yuanzhao@ti.com>, <meta-arago@arago-project.org>
-References: <20180531151451.21291-1-yuanzhao@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <ee344fa3-70f5-c663-37e4-93a8f72d92d6@ti.com>
-Date: Wed, 20 Jun 2018 08:21:37 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.8.0
+	Transport; Thu, 21 Jun 2018 01:29:51 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5L6Tnvl031658;
+	Thu, 21 Jun 2018 01:29:50 -0500
+From: Karthik Ramanan <a0393906@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 21 Jun 2018 11:59:47 +0530
+Message-ID: <1529562587-46299-1-git-send-email-a0393906@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <20180531151451.21291-1-yuanzhao@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [PATCH] tidl-api: Initial release v01.00.00
+Subject: [krogoth] gst1.0-plugins-bad: gstwaylandsink: Update SRCREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,144 +47,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Jun 2018 12:21:45 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Thu, 21 Jun 2018 06:29:57 -0000
+Content-Type: text/plain
 
-Denys,
+This patch resets the redraw_pending in PAUSE to READY transition
 
+Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+---
+ .../gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend                 | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Can you please apply this to the ti2018.01 branch?
-
-
-Thanks,
-
-Jake
-
-
-On 5/31/2018 11:14 AM, Yuan Zhao wrote:
-> - Recipes for building from repository for TI Deep Learning (TIDL) API.
->    Repo contains the API, examples, and a TIDL network viewer.
-> - Recipes: tidl-examples, tidl-viewer, tidl-viewer-native
->
-> Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
-> ---
->   meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc | 11 +++++
->   .../recipes-ti/tidl-api/tidl-examples_git.bb       | 47 ++++++++++++++++++++++
->   .../recipes-ti/tidl-api/tidl-viewer_git.bb         | 32 +++++++++++++++
->   3 files changed, 90 insertions(+)
->   create mode 100644 meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
->   create mode 100644 meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
->   create mode 100644 meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb
->
-> diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-> new file mode 100644
-> index 00000000..d266611c
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-> @@ -0,0 +1,11 @@
-> +PV = "1.0.0.0"
-> +INC_PR = "r0"
-> +
-> +LIC_FILES_CHKSUM = "file://tidl_api_manifest.html;md5=ae816cc40db02fe06193212437ad00e8"
-> +
-> +GIT_URI = "git://git.ti.com/tidl/tidl-api.git"
-> +GIT_PROTOCOL = "git"
-> +BRANCH = "master"
-> +
-> +SRC_URI = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
-> +SRCREV = "d6326ad29c9ed4b79ebf3e0f588f247ed2cf3d2e"
-> diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb b/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
-> new file mode 100644
-> index 00000000..be9bb65f
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
-> @@ -0,0 +1,47 @@
-> +SUMMARY = "TIDL API and examples"
-> +DESCRIPTION = "TIDL API and examples of API usage. Refer TIDL API User's Guide for details."
-> +HOMEPAGE = "http://software-dl.ti.com/mctools/docs/tidl-api/intro.html"
-> +LICENSE = "BSD"
-> +
-> +include tidl-api.inc
-> +require recipes-ti/includes/ti-paths.inc
-> +
-> +PR = "${INC_PR}.0"
-> +
-> +COMPATIBLE_MACHINE = "am57xx-evm|am57xx-hs-evm"
-> +PACKAGE_ARCH = "${MACHINE_ARCH}"
-> +
-> +DEPENDS = "opencv opencl opencl-monitor ti-cgt6x-native clocl-native"
-> +
-> +RDEPENDS_${PN} += " opencl-runtime opencv"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +EXTRA_OEMAKE = " -C ${S}/examples \
-> +                 TARGET_ROOTDIR=${STAGING_DIR_HOST} \
-> +                 TI_OCL_CGT_INSTALL=${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x \
-> +"
-> +
-> +do_compile() {
-> +  oe_runmake
-> +}
-> +
-> +CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
-> +
-> +do_install() {
-> +    install -d ${D}${datadir}/ti/tidl-api
-> +    install -d ${D}${datadir}/ti/tidl-api/examples
-> +    install -d ${D}${datadir}/ti/tidl-api/tidl_api
-> +    install -d ${D}${datadir}/ti/tidl-api/viewer
-> +    cp ${CP_ARGS} ${S}/examples/* ${D}${datadir}/ti/tidl-api/examples/
-> +    cp ${CP_ARGS} ${S}/tidl_api/* ${D}${datadir}/ti/tidl-api/tidl_api/
-> +    cp ${CP_ARGS} ${S}/viewer/* ${D}${datadir}/ti/tidl-api/viewer/
-> +    install ${S}/readme.md ${D}${datadir}/ti/tidl-api/
-> +}
-> +
-> +FILES_${PN} += "\
-> +    ${datadir}/ti/tidl-api \
-> +"
-> +
-> +
-> +INSANE_SKIP_${PN} = "arch ldflags textrel staticdev"
-> diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb b/meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb
-> new file mode 100644
-> index 00000000..3c761747
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb
-> @@ -0,0 +1,32 @@
-> +SUMMARY = "TIDL Network Viewer"
-> +DESCRIPTION = "TIDL Network viewer using dot and graphviz"
-> +HOMEPAGE = "http://software-dl.ti.com/mctools/docs/tidl-api/intro.html"
-> +LICENSE = "BSD"
-> +
-> +include tidl-api.inc
-> +
-> +PR = "${INC_PR}.0"
-> +
-> +DEPENDS = "boost boost-native ti-cgt6x-native clocl-native"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +TARGET_class-target = "arm"
-> +TARGET_class-native = "x86"
-> +TARGET_class-nativesdk = "x86"
-> +
-> +EXTRA_OEMAKE = " -C ${S}/viewer \
-> +                 TARGET=${TARGET} \
-> +                 TARGET_ROOTDIR=${STAGING_DIR_HOST} \
-> +"
-> +
-> +do_compile() {
-> +  oe_runmake
-> +}
-> +
-> +do_install() {
-> +  install -d ${D}${bindir}
-> +  install -m 755 ${S}/viewer/${TARGET}/tidl_viewer ${D}${bindir}
-> +}
-> +
-> +BBCLASSEXTEND = "native nativesdk"
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
+index f732a02..9d297c5 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.6.3.bbappend
+@@ -38,8 +38,8 @@ SRC_URI = "git://git.ti.com/glsdk/gstreamer1-0-plugins-bad.git;protocol=git;bran
+ 
+ S = "${WORKDIR}/git"
+ 
+-SRCREV_omap-a15 = "3a5a7f778b3c3259faab04748e7b10f0fd696aab"
++SRCREV_omap-a15 = "9a1cd733fa57e1eace21524456b652087d04168e"
+ SRCREV_ti43x = "3a5a7f778b3c3259faab04748e7b10f0fd696aab"
+ SRCREV = "d0160ca810be30bf2b2e7681f5047933402efb52"
+ 
+-PR = "r27"
++PR = "r29"
+-- 
+1.9.1
 
 
