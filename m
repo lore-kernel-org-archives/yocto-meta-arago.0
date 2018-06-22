@@ -1,42 +1,41 @@
-Return-Path: <karthik.ramanan@ti.com>
-Received: from lelnx193.ext.ti.com (lelnx193.ext.ti.com [198.47.27.77])
-	by arago-project.org (Postfix) with ESMTPS id C212952A4E
+Return-Path: <x0038811@ti.com>
+Received: from fllnx210.ext.ti.com (fllnx210.ext.ti.com [198.47.19.17])
+	by arago-project.org (Postfix) with ESMTPS id 98A58529F7
 	for <meta-arago@arago-project.org>;
-	Fri, 22 Jun 2018 05:18:00 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelnx193.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5M5Hsdh005900
-	for <meta-arago@arago-project.org>; Fri, 22 Jun 2018 00:17:54 -0500
+	Fri, 22 Jun 2018 11:28:13 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllnx210.ext.ti.com (8.15.1/8.15.1) with ESMTP id w5MBS7rT025931
+	for <meta-arago@arago-project.org>; Fri, 22 Jun 2018 06:28:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1529644674;
-	bh=GR/x9MTkJNmsWJyvxpcfCoezSZnmT8s2bjfYRQ7kpOE=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=pPGm5oKo+p166iCIVzhmzS50f0rcLbBMZ+/Suxga52c62FejSqAvBzMQ/hLtvkbEf
-	3GkCRrQgxgi8sprU180tfY5SYzjN7jylWRM5hDIvJ/mTn0suig04SBV/tf9UumL70O
-	LvbRqqWYd0WY3aljmoGU6+ny9GDVvVHVLIoP+/wI=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5M5HsoM006176
-	for <meta-arago@arago-project.org>; Fri, 22 Jun 2018 00:17:54 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1529666887;
+	bh=cycFbNqdjC1JdM1wjUYvPX6C1WCzGWLa1TpqIFPcBk4=;
+	h=From:To:CC:Subject:Date;
+	b=ed9FG8LgrbOEjRS/AwWxG4qKkc0K5FOETUD4tgDn30iq8osfLWNutplf8kRE3OE4f
+	z0U6gQQOdcbh4Z4/2nRaeFtPTQ/dMZk1H6PHSUL/0xJHisNOwhBlcNyl1TbSLmPvZE
+	AOTcPZlWLCLPqPXHOOXfTir9QyPjCcFVOqYK7Jhw=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5MBS7PY019584
+	for <meta-arago@arago-project.org>; Fri, 22 Jun 2018 06:28:07 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Fri, 22 Jun 2018 00:17:54 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 22 Jun 2018 06:28:07 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Fri, 22 Jun 2018 00:17:54 -0500
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5M5HoGT013342;
-	Fri, 22 Jun 2018 00:17:53 -0500
-From: Karthik Ramanan <a0393906@ti.com>
+	Transport; Fri, 22 Jun 2018 06:28:07 -0500
+Received: from udx0038811.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5MBS5m9019760;
+	Fri, 22 Jun 2018 06:28:06 -0500
+From: Ramprasad N <x0038811@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 22 Jun 2018 10:47:48 +0530
-Message-ID: <1529644668-63037-3-git-send-email-a0393906@ti.com>
+Date: Fri, 22 Jun 2018 16:58:03 +0530
+Message-ID: <1529666884-6396-1-git-send-email-x0038811@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1529644668-63037-1-git-send-email-a0393906@ti.com>
-References: <1529644668-63037-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko 3/3] packagegroup*-graphics: Enable wayland-ivi-extension
+Subject: [rocko 0/1] gstwaylandsink
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,31 +48,21 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jun 2018 05:18:02 -0000
+X-List-Received-Date: Fri, 22 Jun 2018 11:28:14 -0000
 Content-Type: text/plain
 
-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
----
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb     | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Add input device like mouse, touch etc to waylandsink.
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-index 8029665..75cd9bc 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-@@ -4,11 +4,11 @@ PR = "r20"
- 
- inherit packagegroup
- 
--#    wayland-ivi-extension
- GRAPHICS_WAYLAND = "\
-     weston \
-     weston-init \
-     weston-examples \
-+    wayland-ivi-extension \
- "
- 
- GRAPHICS_WAYLAND_append_omap-a15 = "\
+Ramprasad N (1):
+  gstreamer1.0*-bad: Input device support in waylandsink
+
+ ...ylandsink-Add-mouse-drag-and-drop-support.patch | 426 +++++++++
+ ...0005-waylandsink-Add-input-device-support.patch | 990 +++++++++++++++++++++
+ .../gstreamer1.0-plugins-bad_1.12.2.bbappend       |   5 +-
+ 3 files changed, 1420 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-waylandsink-Add-mouse-drag-and-drop-support.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-waylandsink-Add-input-device-support.patch
+
 -- 
 1.9.1
 
