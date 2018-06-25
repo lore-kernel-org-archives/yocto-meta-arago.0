@@ -1,42 +1,43 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 3324E529B3
+Return-Path: <denys@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id D5B72529C7
 	for <meta-arago@arago-project.org>;
-	Fri, 22 Jun 2018 18:55:00 +0000 (UTC)
+	Mon, 25 Jun 2018 18:07:20 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5MIss2Q080663
-	for <meta-arago@arago-project.org>; Fri, 22 Jun 2018 13:54:54 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5PI7EHd027259
+	for <meta-arago@arago-project.org>; Mon, 25 Jun 2018 13:07:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1529693694;
-	bh=q/6ZQM1jD2ykDOud5wanSED74SAtFGsjE7nIT34Mj20=;
-	h=From:To:CC:Subject:Date;
-	b=eNq4XQNCr6I92Hkovzc+LDXmZLPjLGdjVnhgIe88mJwvQH+t9/1rPmr2tYIPV9PQc
-	cEf1U/vbvhMNLyJSRqXsmnvpyt3FIfOCkclnLLhgBm3jumX+fORyaAp64sx2UKcSJz
-	M77lsmAkwzy6lhqOy8NYTk9Z8XbrL+FFaP9WkTUM=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5MIssOW017429
-	for <meta-arago@arago-project.org>; Fri, 22 Jun 2018 13:54:54 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1529950034;
+	bh=7pKIMKw7qz8wiNHgvmf3fcO34S2Nr2P9lfNVxCVVOsI=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=AGd9DrXuHgtrlLOCNg+cJa3coRquVIklXtqRm8sX9fvjkpFPT86Neb61NkHebIfzW
+	2piKTooXZgBowcyRX+6p0+YbxadAQwa9RO0gWCAKRsVZ9mTvsyLMiTMonv2ddgWymo
+	swoRp2LSebAIyvW9s/i151H99fa5yvh7x9SvFr3c=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5PI7Edi017999
+	for <meta-arago@arago-project.org>; Mon, 25 Jun 2018 13:07:14 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Fri, 22 Jun 2018 13:54:53 -0500
+	Mon, 25 Jun 2018 13:07:14 -0500
 Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE103.ent.ti.com
 	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Fri, 22 Jun 2018 13:54:53 -0500
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5MIsrDE016014;
-	Fri, 22 Jun 2018 13:54:53 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 22 Jun 2018 14:43:25 -0400
-Message-ID: <1529693010-26382-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
+	Transport; Mon, 25 Jun 2018 13:07:14 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5PI7Eie015955;
+	Mon, 25 Jun 2018 13:07:14 -0500
+Date: Mon, 25 Jun 2018 14:06:16 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Karthik Ramanan <a0393906@ti.com>
+Message-ID: <20180625180615.GA2344@beryl>
+References: <1529644668-63037-1-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
+In-Reply-To: <1529644668-63037-1-git-send-email-a0393906@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: ajayj@ti.com
-Subject: [meta-processor-sdk][PATCH v2 1/6] tidl-api: various updates
+Cc: meta-arago@arago-project.org
+Subject: Re: [rocko 1/3] weston: Addition of add_screen_remove_layer API
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,71 +50,142 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Jun 2018 18:55:00 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 25 Jun 2018 18:07:21 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-* Bump SRCREV for nativesdk-tidl-viewer fix
-* Rename tidl-examples installation directory.
-* Enable creation of tidl-examples sourceipk.
+On Fri, Jun 22, 2018 at 10:47:46AM +0530, Karthik Ramanan wrote:
+> This additional patch is a required dependency for adding
+> support for wayland-ivi-extension >= 2.0.0
+> 
+> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+> ---
+>  ...001-ivi-shell-add_screen_remove_layer-API.patch | 85 ++++++++++++++++++++++
+>  .../recipes-graphics/wayland/weston_2.0.0.bbappend |  3 +-
+>  2 files changed, 87 insertions(+), 1 deletion(-)
+>  create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0001-ivi-shell-add_screen_remove_layer-API.patch
+> 
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0001-ivi-shell-add_screen_remove_layer-API.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0001-ivi-shell-add_screen_remove_layer-API.patch
+> new file mode 100644
+> index 0000000..4eb28e1
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-graphics/wayland/weston/0001-ivi-shell-add_screen_remove_layer-API.patch
+> @@ -0,0 +1,85 @@
+> +From deee858b0b199d8cfa8033a46d7078f30b23725e Mon Sep 17 00:00:00 2001
+> +From: "Ucan, Emre (ADITG/SW1)" <eucan@de.adit-jv.com>
+> +Date: Thu, 2 Mar 2017 08:47:33 +0000
+> +Subject: [PATCH] ivi-shell: add_screen_remove_layer API
+> +
+> +It is analagous to layer_remove_surface API.
+> +The API removes a layer from the render order
+> +of the screen.
+> +
+> +v3:
+> +add the new vfunc at the end of
+> +the ivi_layout_interface struct.
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
-v2 changes: changed TIDL_INSTALL_PATH
+Missing Upstream-Status field here, probably "Backport"
+https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines#Patch_Header_Recommendations:_Upstream-Status
 
- recipes-ti/tidl-api/tidl-api.inc         |  2 +-
- recipes-ti/tidl-api/tidl-examples_git.bb | 23 ++++++++++++++---------
- 2 files changed, 15 insertions(+), 10 deletions(-)
 
-diff --git a/recipes-ti/tidl-api/tidl-api.inc b/recipes-ti/tidl-api/tidl-api.inc
-index d266611..ed38516 100644
---- a/recipes-ti/tidl-api/tidl-api.inc
-+++ b/recipes-ti/tidl-api/tidl-api.inc
-@@ -8,4 +8,4 @@ GIT_PROTOCOL = "git"
- BRANCH = "master"
- 
- SRC_URI = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
--SRCREV = "d6326ad29c9ed4b79ebf3e0f588f247ed2cf3d2e"
-+SRCREV = "1ea871c6aed97f5891a04e0cf479b64cbbb7bb2c"
-diff --git a/recipes-ti/tidl-api/tidl-examples_git.bb b/recipes-ti/tidl-api/tidl-examples_git.bb
-index be9bb65..f6c3020 100644
---- a/recipes-ti/tidl-api/tidl-examples_git.bb
-+++ b/recipes-ti/tidl-api/tidl-examples_git.bb
-@@ -28,20 +28,25 @@ do_compile() {
- 
- CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
- 
-+TIDL_INSTALL_DIR = "${datadir}/ti/tidl"
-+
- do_install() {
--    install -d ${D}${datadir}/ti/tidl-api
--    install -d ${D}${datadir}/ti/tidl-api/examples
--    install -d ${D}${datadir}/ti/tidl-api/tidl_api
--    install -d ${D}${datadir}/ti/tidl-api/viewer
--    cp ${CP_ARGS} ${S}/examples/* ${D}${datadir}/ti/tidl-api/examples/
--    cp ${CP_ARGS} ${S}/tidl_api/* ${D}${datadir}/ti/tidl-api/tidl_api/
--    cp ${CP_ARGS} ${S}/viewer/* ${D}${datadir}/ti/tidl-api/viewer/
--    install ${S}/readme.md ${D}${datadir}/ti/tidl-api/
-+    install -d ${D}${TIDL_INSTALL_DIR}
-+    install -d ${D}${TIDL_INSTALL_DIR}/examples
-+    install -d ${D}${TIDL_INSTALL_DIR}/tidl_api
-+    install -d ${D}${TIDL_INSTALL_DIR}/viewer
-+    cp ${CP_ARGS} ${S}/examples/* ${D}${TIDL_INSTALL_DIR}/examples/
-+    cp ${CP_ARGS} ${S}/tidl_api/* ${D}${TIDL_INSTALL_DIR}/tidl_api/
-+    cp ${CP_ARGS} ${S}/viewer/* ${D}${TIDL_INSTALL_DIR}/viewer/
-+    install ${S}/readme.md ${D}${TIDL_INSTALL_DIR}/
- }
- 
- FILES_${PN} += "\
--    ${datadir}/ti/tidl-api \
-+    ${TIDL_INSTALL_DIR} \
- "
- 
- 
- INSANE_SKIP_${PN} = "arch ldflags textrel staticdev"
-+
-+CREATE_SRCIPK = "1"
-+SRCIPK_INSTALL_DIR = "example-applications/tidl-api-${PV}"
--- 
-2.7.4
-
+> +Signed-off-by: Emre Ucan <eucan@de.adit-jv.com>
+> +Reviewed-by: Eugen Friedrich <friedrix@gmail.com>
+> +Reviewed-by: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
+> +---
+> + ivi-shell/ivi-layout-export.h | 10 ++++++++++
+> + ivi-shell/ivi-layout.c        | 22 ++++++++++++++++++++++
+> + 2 files changed, 32 insertions(+)
+> +
+> +diff --git a/ivi-shell/ivi-layout-export.h b/ivi-shell/ivi-layout-export.h
+> +index 2317d6e..39ffde1 100644
+> +--- a/ivi-shell/ivi-layout-export.h
+> ++++ b/ivi-shell/ivi-layout-export.h
+> +@@ -578,6 +578,16 @@ struct ivi_layout_interface {
+> + 	 */
+> + 	struct ivi_layout_surface *
+> + 		(*get_surface)(struct weston_surface *surface);
+> ++
+> ++	/**
+> ++	 * \brief Remove a ivi_layer to a weston_output which is currently managed
+> ++	 * by the service
+> ++	 *
+> ++	 * \return IVI_SUCCEEDED if the method call was successful
+> ++	 * \return IVI_FAILED if the method call was failed
+> ++	 */
+> ++	int32_t (*screen_remove_layer)(struct weston_output *output,
+> ++				       struct ivi_layout_layer *removelayer);
+> + };
+> + 
+> + #ifdef __cplusplus
+> +diff --git a/ivi-shell/ivi-layout.c b/ivi-shell/ivi-layout.c
+> +index 298e18e..8e4280b 100644
+> +--- a/ivi-shell/ivi-layout.c
+> ++++ b/ivi-shell/ivi-layout.c
+> +@@ -1664,6 +1664,27 @@ ivi_layout_screen_add_layer(struct weston_output *output,
+> + }
+> + 
+> + static int32_t
+> ++ivi_layout_screen_remove_layer(struct weston_output *output,
+> ++			    struct ivi_layout_layer *removelayer)
+> ++{
+> ++	struct ivi_layout_screen *iviscrn;
+> ++
+> ++	if (output == NULL || removelayer == NULL) {
+> ++		weston_log("ivi_layout_screen_remove_layer: invalid argument\n");
+> ++		return IVI_FAILED;
+> ++	}
+> ++
+> ++	iviscrn = get_screen_from_output(output);
+> ++
+> ++	wl_list_remove(&removelayer->pending.link);
+> ++	wl_list_init(&removelayer->pending.link);
+> ++
+> ++	iviscrn->order.dirty = 1;
+> ++
+> ++	return IVI_SUCCEEDED;
+> ++}
+> ++
+> ++static int32_t
+> + ivi_layout_screen_set_render_order(struct weston_output *output,
+> + 				   struct ivi_layout_layer **pLayer,
+> + 				   const int32_t number)
+> +@@ -2088,6 +2109,7 @@ static struct ivi_layout_interface ivi_layout_interface = {
+> + 	 */
+> + 	.get_screens_under_layer	= ivi_layout_get_screens_under_layer,
+> + 	.screen_add_layer		= ivi_layout_screen_add_layer,
+> ++	.screen_remove_layer		= ivi_layout_screen_remove_layer,
+> + 	.screen_set_render_order	= ivi_layout_screen_set_render_order,
+> + 
+> + 	/**
+> +-- 
+> +1.9.1
+> +
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend
+> index ce6f56d..ec8e6b0 100644
+> --- a/meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend
+> +++ b/meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend
+> @@ -2,7 +2,7 @@
+>  PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
+>  PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
+>  
+> -PR_append = ".arago28"
+> +PR_append = ".arago29"
+>  
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>  
+> @@ -14,6 +14,7 @@ SRC_URI += " \
+>          file://0002-weston-Allow-visual_id-to-be-0.patch \
+>          file://0003-weston-Fix-virtual-keyboard-display-issue-for-QT5-ap.patch \
+>          file://0004-weston-Fix-touch-screen-crash-issue.patch \
+> +        file://0001-ivi-shell-add_screen_remove_layer-API.patch \
+>  "
+>  
+>  INHIBIT_PACKAGE_STRIP = "1"
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
