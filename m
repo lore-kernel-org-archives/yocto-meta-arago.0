@@ -1,43 +1,44 @@
 Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id D5B72529C7
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 81B47529C7
 	for <meta-arago@arago-project.org>;
-	Mon, 25 Jun 2018 18:07:20 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5PI7EHd027259
-	for <meta-arago@arago-project.org>; Mon, 25 Jun 2018 13:07:14 -0500
+	Mon, 25 Jun 2018 18:08:44 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5PI8caH075274
+	for <meta-arago@arago-project.org>; Mon, 25 Jun 2018 13:08:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1529950034;
-	bh=7pKIMKw7qz8wiNHgvmf3fcO34S2Nr2P9lfNVxCVVOsI=;
+	s=ti-com-17Q1; t=1529950118;
+	bh=40JtnNtJNSjJqANFcQsClqmmXcLzDLAbT9CGaD4mW+0=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=AGd9DrXuHgtrlLOCNg+cJa3coRquVIklXtqRm8sX9fvjkpFPT86Neb61NkHebIfzW
-	2piKTooXZgBowcyRX+6p0+YbxadAQwa9RO0gWCAKRsVZ9mTvsyLMiTMonv2ddgWymo
-	swoRp2LSebAIyvW9s/i151H99fa5yvh7x9SvFr3c=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5PI7Edi017999
-	for <meta-arago@arago-project.org>; Mon, 25 Jun 2018 13:07:14 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	b=bCx/909QlddB3uUMGQPaU/o2tLFJAjLZNPn8Hht2qKDd26HWyHb6aDWM9MuJ/odA7
+	WdXzTjCZ4l7w9YO7DbIpExqQC3ExkI9cKrHuWB4omGWv+yGtZbtOR2mj+BNc4yV/1R
+	9YnzDcPYR7vKHZzzvGqS6yPeLqPBrsTSZu5WymGc=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5PI8cAS000606
+	for <meta-arago@arago-project.org>; Mon, 25 Jun 2018 13:08:38 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Mon, 25 Jun 2018 13:07:14 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 25 Jun 2018 13:08:38 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Mon, 25 Jun 2018 13:07:14 -0500
+	Transport; Mon, 25 Jun 2018 13:08:38 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5PI7Eie015955;
-	Mon, 25 Jun 2018 13:07:14 -0500
-Date: Mon, 25 Jun 2018 14:06:16 -0400
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5PI8cYE008073;
+	Mon, 25 Jun 2018 13:08:38 -0500
+Date: Mon, 25 Jun 2018 14:07:39 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: Karthik Ramanan <a0393906@ti.com>
-Message-ID: <20180625180615.GA2344@beryl>
+Message-ID: <20180625180739.GB2344@beryl>
 References: <1529644668-63037-1-git-send-email-a0393906@ti.com>
+	<1529644668-63037-2-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1529644668-63037-1-git-send-email-a0393906@ti.com>
+In-Reply-To: <1529644668-63037-2-git-send-email-a0393906@ti.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: Re: [rocko 1/3] weston: Addition of add_screen_remove_layer API
+Subject: Re: [rocko 2/3] wayland-ivi-extension: Update to version 2.1.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,137 +51,100 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Jun 2018 18:07:21 -0000
+X-List-Received-Date: Mon, 25 Jun 2018 18:08:44 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Fri, Jun 22, 2018 at 10:47:46AM +0530, Karthik Ramanan wrote:
-> This additional patch is a required dependency for adding
-> support for wayland-ivi-extension >= 2.0.0
+On Fri, Jun 22, 2018 at 10:47:47AM +0530, Karthik Ramanan wrote:
+> This version is compatible with weston 2.0.0
 > 
 > Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 > ---
->  ...001-ivi-shell-add_screen_remove_layer-API.patch | 85 ++++++++++++++++++++++
->  .../recipes-graphics/wayland/weston_2.0.0.bbappend |  3 +-
->  2 files changed, 87 insertions(+), 1 deletion(-)
->  create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0001-ivi-shell-add_screen_remove_layer-API.patch
-> 
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0001-ivi-shell-add_screen_remove_layer-API.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0001-ivi-shell-add_screen_remove_layer-API.patch
+>  .../wayland/wayland-ivi-extension_1.11.0.bb        | 33 ----------------------
+>  .../wayland/wayland-ivi-extension_2.1.0.bb         | 31 ++++++++++++++++++++
+>  2 files changed, 31 insertions(+), 33 deletions(-)
+>  delete mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb
+>  create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
+
+To simplify review, please make it as a diff (-M/-C flags) between old and new.
+
+
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb
+> deleted file mode 100644
+> index 75e284f..0000000
+> --- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb
+> +++ /dev/null
+> @@ -1,33 +0,0 @@
+> -SUMMARY = "Wayland IVI Extension"
+> -DESCRIPTION = "GENIVI Layer Management API based on Wayland IVI Extension"
+> -HOMEPAGE = "http://projects.genivi.org/wayland-ivi-extension"
+> -BUGTRACKER = "http://bugs.genivi.org/enter_bug.cgi?product=Wayland%20IVI%20Extension"
+> -LICENSE = "Apache-2.0"
+> -LIC_FILES_CHKSUM = "file://LICENSE;md5=1f1a56bb2dadf5f2be8eb342acf4ed79"
+> -
+> -SRCREV = "c9001582b10ce209c37b42dd560947c5aa8928b3"
+> -
+> -SRC_URI = "git://github.com/GENIVI/${BPN}.git;protocol=http \
+> -           file://force-type-conversion.patch \
+> -           file://0001-layer-add-surfaces-Add-screenId-as-an-argument.patch \
+> -           file://0002-layer-add-surfaces-surface-layer-management.patch \
+> -    "
+> -
+> -S = "${WORKDIR}/git"
+> -
+> -DEPENDS = "weston virtual/libgles2 pixman wayland-native"
+> -
+> -inherit cmake
+> -
+> -EXTRA_OECMAKE := "-DWITH_ILM_INPUT=1"
+> -
+> -FILES_${PN} += "${libdir}/weston/*"
+> -FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
+> -
+> -EXTRA_OECMAKE += "-DLIB_SUFFIX=${@d.getVar('baselib', True).replace('lib', '')}"
+> -
+> -PR = "r3"
+> -
+> -# Need these temporarily to prevent a non-fatal do_package_qa issue
+> -INSANE_SKIP_${PN} += "dev-deps"
+> -INSANE_SKIP_${PN}-dev += "dev-elf dev-so"
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
 > new file mode 100644
-> index 0000000..4eb28e1
+> index 0000000..894d1b8
 > --- /dev/null
-> +++ b/meta-arago-distro/recipes-graphics/wayland/weston/0001-ivi-shell-add_screen_remove_layer-API.patch
-> @@ -0,0 +1,85 @@
-> +From deee858b0b199d8cfa8033a46d7078f30b23725e Mon Sep 17 00:00:00 2001
-> +From: "Ucan, Emre (ADITG/SW1)" <eucan@de.adit-jv.com>
-> +Date: Thu, 2 Mar 2017 08:47:33 +0000
-> +Subject: [PATCH] ivi-shell: add_screen_remove_layer API
+> +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
+> @@ -0,0 +1,31 @@
+> +SUMMARY = "Wayland IVI Extension"
+> +DESCRIPTION = "GENIVI Layer Management API based on Wayland IVI Extension"
+> +HOMEPAGE = "http://projects.genivi.org/wayland-ivi-extension"
+> +BUGTRACKER = "http://bugs.genivi.org/enter_bug.cgi?product=Wayland%20IVI%20Extension"
+> +LICENSE = "Apache-2.0"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=1f1a56bb2dadf5f2be8eb342acf4ed79"
 > +
-> +It is analagous to layer_remove_surface API.
-> +The API removes a layer from the render order
-> +of the screen.
+> +SRCREV = "d2c2e262f3bdc9db33b3014293fcdbcfdc90ab27"
 > +
-> +v3:
-> +add the new vfunc at the end of
-> +the ivi_layout_interface struct.
-
-Missing Upstream-Status field here, probably "Backport"
-https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines#Patch_Header_Recommendations:_Upstream-Status
-
-
-> +Signed-off-by: Emre Ucan <eucan@de.adit-jv.com>
-> +Reviewed-by: Eugen Friedrich <friedrix@gmail.com>
-> +Reviewed-by: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
-> +---
-> + ivi-shell/ivi-layout-export.h | 10 ++++++++++
-> + ivi-shell/ivi-layout.c        | 22 ++++++++++++++++++++++
-> + 2 files changed, 32 insertions(+)
+> +SRC_URI = "git://github.com/GENIVI/${BPN}.git;protocol=http \
+> +           file://force-type-conversion.patch \
+> +    "
 > +
-> +diff --git a/ivi-shell/ivi-layout-export.h b/ivi-shell/ivi-layout-export.h
-> +index 2317d6e..39ffde1 100644
-> +--- a/ivi-shell/ivi-layout-export.h
-> ++++ b/ivi-shell/ivi-layout-export.h
-> +@@ -578,6 +578,16 @@ struct ivi_layout_interface {
-> + 	 */
-> + 	struct ivi_layout_surface *
-> + 		(*get_surface)(struct weston_surface *surface);
-> ++
-> ++	/**
-> ++	 * \brief Remove a ivi_layer to a weston_output which is currently managed
-> ++	 * by the service
-> ++	 *
-> ++	 * \return IVI_SUCCEEDED if the method call was successful
-> ++	 * \return IVI_FAILED if the method call was failed
-> ++	 */
-> ++	int32_t (*screen_remove_layer)(struct weston_output *output,
-> ++				       struct ivi_layout_layer *removelayer);
-> + };
-> + 
-> + #ifdef __cplusplus
-> +diff --git a/ivi-shell/ivi-layout.c b/ivi-shell/ivi-layout.c
-> +index 298e18e..8e4280b 100644
-> +--- a/ivi-shell/ivi-layout.c
-> ++++ b/ivi-shell/ivi-layout.c
-> +@@ -1664,6 +1664,27 @@ ivi_layout_screen_add_layer(struct weston_output *output,
-> + }
-> + 
-> + static int32_t
-> ++ivi_layout_screen_remove_layer(struct weston_output *output,
-> ++			    struct ivi_layout_layer *removelayer)
-> ++{
-> ++	struct ivi_layout_screen *iviscrn;
-> ++
-> ++	if (output == NULL || removelayer == NULL) {
-> ++		weston_log("ivi_layout_screen_remove_layer: invalid argument\n");
-> ++		return IVI_FAILED;
-> ++	}
-> ++
-> ++	iviscrn = get_screen_from_output(output);
-> ++
-> ++	wl_list_remove(&removelayer->pending.link);
-> ++	wl_list_init(&removelayer->pending.link);
-> ++
-> ++	iviscrn->order.dirty = 1;
-> ++
-> ++	return IVI_SUCCEEDED;
-> ++}
-> ++
-> ++static int32_t
-> + ivi_layout_screen_set_render_order(struct weston_output *output,
-> + 				   struct ivi_layout_layer **pLayer,
-> + 				   const int32_t number)
-> +@@ -2088,6 +2109,7 @@ static struct ivi_layout_interface ivi_layout_interface = {
-> + 	 */
-> + 	.get_screens_under_layer	= ivi_layout_get_screens_under_layer,
-> + 	.screen_add_layer		= ivi_layout_screen_add_layer,
-> ++	.screen_remove_layer		= ivi_layout_screen_remove_layer,
-> + 	.screen_set_render_order	= ivi_layout_screen_set_render_order,
-> + 
-> + 	/**
-> +-- 
-> +1.9.1
+> +S = "${WORKDIR}/git"
 > +
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend
-> index ce6f56d..ec8e6b0 100644
-> --- a/meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend
-> +++ b/meta-arago-distro/recipes-graphics/wayland/weston_2.0.0.bbappend
-> @@ -2,7 +2,7 @@
->  PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
->  PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
->  
-> -PR_append = ".arago28"
-> +PR_append = ".arago29"
->  
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->  
-> @@ -14,6 +14,7 @@ SRC_URI += " \
->          file://0002-weston-Allow-visual_id-to-be-0.patch \
->          file://0003-weston-Fix-virtual-keyboard-display-issue-for-QT5-ap.patch \
->          file://0004-weston-Fix-touch-screen-crash-issue.patch \
-> +        file://0001-ivi-shell-add_screen_remove_layer-API.patch \
->  "
->  
->  INHIBIT_PACKAGE_STRIP = "1"
+> +DEPENDS = "weston virtual/libgles2 pixman wayland-native"
+> +
+> +inherit cmake
+> +
+> +EXTRA_OECMAKE := "-DWITH_ILM_INPUT=1"
+> +
+> +FILES_${PN} += "${libdir}/weston/*"
+> +FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
+> +
+> +EXTRA_OECMAKE += "-DLIB_SUFFIX=${@d.getVar('baselib', True).replace('lib', '')}"
+> +
+> +PR = "r1"
+> +
+> +# Need these temporarily to prevent a non-fatal do_package_qa issue
+> +INSANE_SKIP_${PN} += "dev-deps"
+> +INSANE_SKIP_${PN}-dev += "dev-elf dev-so"
 > -- 
 > 1.9.1
 > 
