@@ -1,41 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 0CC9F52978
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 735E1529CE
 	for <meta-arago@arago-project.org>;
-	Tue, 26 Jun 2018 19:10:56 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5QJAoTq045450
-	for <meta-arago@arago-project.org>; Tue, 26 Jun 2018 14:10:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1530040250;
-	bh=cFXxKZ09L6sZmd+Anyzy25s6NQfmEoCbzpw5CXqiyWY=;
-	h=From:To:CC:Subject:Date;
-	b=t43u90IG8mbRNEfOcakIDpW0wFSA9isNyhu7GQYOitTvwKrZcQJbQC+Z9BMTZjIVf
-	TY+eixNqUeeBa2kHgIj6ktaIHg3R6rDuWcYVCGplzQe3Kocbhb+q7MB4pxAQD7YnK/
-	ylv3AVtogA3u7ryM800fHO94RkpHMMLzOK7pHPes=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5QJAodr019777
-	for <meta-arago@arago-project.org>; Tue, 26 Jun 2018 14:10:50 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Tue, 26 Jun 2018 14:10:50 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Tue, 26 Jun 2018 14:10:50 -0500
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5QJAos4024654;
-	Tue, 26 Jun 2018 14:10:50 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 26 Jun 2018 14:59:27 -0400
-Message-ID: <1530039568-1313-1-git-send-email-j-stiffler@ti.com>
+	Tue, 26 Jun 2018 21:08:07 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 664CD20BD9;
+	Tue, 26 Jun 2018 21:08:01 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id xKGAFl5xTGHq; Tue, 26 Jun 2018 21:08:01 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 395CC20174;
+	Tue, 26 Jun 2018 21:08:00 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id ACFC11634C4;
+	Tue, 26 Jun 2018 17:07:59 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Tue, 26 Jun 2018 17:07:56 -0400
+Message-Id: <1530047276-8874-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master/rocko][PATCH 1/2] ti-tisdk-makefile: abstract kernel ARCH
+Subject: [rocko/master][PATCH] external-linaro-sdk-toolchain: add support for aarch64
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,323 +37,146 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2018 19:10:57 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 26 Jun 2018 21:08:07 -0000
 
-* With the addition of a aarch64 device, ARCH=arm is not a safe
-  assumption.
-* Use the kernel-arch.bbclass to set the appropritate ARCH and
-  replace that in each makefile fragment.
+Use TRANSLATED_TARGET_ARCH and not hardcode "arm".
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cmem-mod      |  4 ++--
- .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cryptodev     |  6 +++---
- .../ti-tisdk-makefile/Makefile_debugss-module-drv              |  6 +++---
- .../ti-tisdk-makefile/Makefile_gdbserverproxy-module-drv       |  6 +++---
- .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_hplib-mod     |  6 +++---
- .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ipsecmgr-mod  |  6 +++---
- .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux         | 10 +++++-----
- .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux-dtbs    |  4 ++--
- .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-sgx-ddk-km |  4 ++--
- .../ti-tisdk-makefile/Makefile_uio-module-drv                  |  6 +++---
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb   |  9 ++++++++-
- 11 files changed, 37 insertions(+), 30 deletions(-)
+ .../meta/external-linaro-sdk-toolchain.bb          | 70 ++++++++++------------
+ 1 file changed, 32 insertions(+), 38 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cmem-mod b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cmem-mod
-index d1ae4e1..8cd34b1 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cmem-mod
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cmem-mod
-@@ -6,7 +6,7 @@ cmem-mod: linux
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "cmem-mod*"`; \
- 	. $(ENV_SETUP); \
--	make -f lu.mak ARCH=arm KERNEL_INSTALL_DIR=$(LINUXKERNEL_INSTALL_DIR) module
-+	make -f lu.mak ARCH=__KERNEL_ARCH__ KERNEL_INSTALL_DIR=$(LINUXKERNEL_INSTALL_DIR) module
+diff --git a/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb b/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
+index de6fd57..acb2183 100644
+--- a/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
++++ b/meta-arago-extras/recipes-core/meta/external-linaro-sdk-toolchain.bb
+@@ -14,20 +14,20 @@ EXCLUDE_FROM_SHLIBS = "1"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
  
- cmem-mod_clean:
- 	@echo ================================
-@@ -15,7 +15,7 @@ cmem-mod_clean:
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "cmem-mod*"`; \
- 	. $(ENV_SETUP); \
--	make -f lu.mak ARCH=arm KERNEL_INSTALL_DIR=$(LINUXKERNEL_INSTALL_DIR) modules_clean
-+	make -f lu.mak ARCH=__KERNEL_ARCH__ KERNEL_INSTALL_DIR=$(LINUXKERNEL_INSTALL_DIR) modules_clean
+-INSANE_SKIP_gcc-cross-canadian-arm = "dev-so staticdev file-rdeps"
+-INSANE_SKIP_gdb-cross-canadian-arm = "dev-so file-rdeps"
+-INSANE_SKIP_binutils-cross-canadian-arm = "dev-so file-rdeps"
++INSANE_SKIP_gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} = "dev-so staticdev file-rdeps"
++INSANE_SKIP_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "dev-so file-rdeps"
++INSANE_SKIP_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} = "dev-so file-rdeps"
  
- cmem-mod_install:
- 	@echo ================================
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cryptodev b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cryptodev
-index ee54327..db89c5e 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cryptodev
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_cryptodev
-@@ -4,7 +4,7 @@ cryptodev: linux
- 	@echo ================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "cryptodev*"`; \
--	make ARCH=arm KERNEL_DIR=$(LINUXKERNEL_INSTALL_DIR)
-+	make ARCH=__KERNEL_ARCH__ KERNEL_DIR=$(LINUXKERNEL_INSTALL_DIR)
- 
- cryptodev_clean:
- 	@echo ================================
-@@ -12,7 +12,7 @@ cryptodev_clean:
- 	@echo ================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "cryptodev*"`; \
--	make ARCH=arm KERNEL_DIR=$(LINUXKERNEL_INSTALL_DIR) clean
-+	make ARCH=__KERNEL_ARCH__ KERNEL_DIR=$(LINUXKERNEL_INSTALL_DIR) clean
- 
- cryptodev_install:
- 	@echo ================================
-@@ -25,4 +25,4 @@ cryptodev_install:
- 	fi
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "cryptodev*"`; \
--	make ARCH=arm  KERNEL_DIR=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) install
-+	make ARCH=__KERNEL_ARCH__  KERNEL_DIR=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) install
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_debugss-module-drv b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_debugss-module-drv
-index 913653c..078d579 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_debugss-module-drv
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_debugss-module-drv
-@@ -4,7 +4,7 @@ debugss-module-drv: linux
- 	@echo =======================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "debugss*"`; \
--	make ARCH=arm KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR) PLATFORM=__PLATFORM_DEBUGSS__
-+	make ARCH=__KERNEL_ARCH__ KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR) PLATFORM=__PLATFORM_DEBUGSS__
- 
- debugss-module-drv_clean:
- 	@echo =======================================
-@@ -12,7 +12,7 @@ debugss-module-drv_clean:
- 	@echo =======================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "debugss*"`; \
--	make ARCH=arm KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR) PLATFORM=__PLATFORM_DEBUGSS__ clean
-+	make ARCH=__KERNEL_ARCH__ KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR) PLATFORM=__PLATFORM_DEBUGSS__ clean
- 
- debugss-module-drv_install:
- 	@echo =======================================
-@@ -25,5 +25,5 @@ debugss-module-drv_install:
- 	fi
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "debugss*"`; \
--	make ARCH=arm  KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) PLATFORM=__PLATFORM_DEBUGSS__ modules_install
-+	make ARCH=__KERNEL_ARCH__  KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) PLATFORM=__PLATFORM_DEBUGSS__ modules_install
- 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_gdbserverproxy-module-drv b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_gdbserverproxy-module-drv
-index b81833b..3333910 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_gdbserverproxy-module-drv
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_gdbserverproxy-module-drv
-@@ -4,7 +4,7 @@ gdbserverproxy-module-drv: linux
- 	@echo ==============================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "gdbserverproxy*"`; \
--	make ARCH=arm KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR) PLATFORM=__PLATFORM_GDBSERVERPROXY__
-+	make ARCH=__KERNEL_ARCH__ KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR) PLATFORM=__PLATFORM_GDBSERVERPROXY__
- 
- gdbserverproxy-module-drv_clean:
- 	@echo ==============================================
-@@ -12,7 +12,7 @@ gdbserverproxy-module-drv_clean:
- 	@echo ==============================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "gdbserverproxy*"`; \
--	make ARCH=arm KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR) PLATFORM=__PLATFORM_GDBSERVERPROXY__ clean
-+	make ARCH=__KERNEL_ARCH__ KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR) PLATFORM=__PLATFORM_GDBSERVERPROXY__ clean
- 
- gdbserverproxy-module-drv_install:
- 	@echo ==============================================
-@@ -25,5 +25,5 @@ gdbserverproxy-module-drv_install:
- 	fi
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "gdbserverproxy*"`; \
--	make ARCH=arm  KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) PLATFORM=__PLATFORM_GDBSERVERPROXY__ modules_install
-+	make ARCH=__KERNEL_ARCH__  KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) PLATFORM=__PLATFORM_GDBSERVERPROXY__ modules_install
- 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_hplib-mod b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_hplib-mod
-index dcee4e2..bd273f8 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_hplib-mod
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_hplib-mod
-@@ -4,7 +4,7 @@ hplib-mod: linux
- 	@echo ================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "hplib-mod*"`; \
--	make -C module ARCH=arm KDIR=$(LINUXKERNEL_INSTALL_DIR)
-+	make -C module ARCH=__KERNEL_ARCH__ KDIR=$(LINUXKERNEL_INSTALL_DIR)
- 
- hplib-mod_clean:
- 	@echo ================================
-@@ -12,7 +12,7 @@ hplib-mod_clean:
- 	@echo ================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "hplib-mod*"`; \
--	make -C module ARCH=arm KDIR=$(LINUXKERNEL_INSTALL_DIR) clean
-+	make -C module ARCH=__KERNEL_ARCH__ KDIR=$(LINUXKERNEL_INSTALL_DIR) clean
- 
- hplib-mod_install:
- 	@echo ================================
-@@ -25,4 +25,4 @@ hplib-mod_install:
- 	fi
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "hplib-mod*"`; \
--	make -C module ARCH=arm  KDIR=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) install
-+	make -C module ARCH=__KERNEL_ARCH__  KDIR=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) install
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ipsecmgr-mod b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ipsecmgr-mod
-index 35456b2..7ce0dcf 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ipsecmgr-mod
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ipsecmgr-mod
-@@ -4,7 +4,7 @@ ipsecmgr-mod: linux
- 	@echo ================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "ipsecmgr-mod*"`; \
--	make ARCH=arm KDIR=$(LINUXKERNEL_INSTALL_DIR)
-+	make ARCH=__KERNEL_ARCH__ KDIR=$(LINUXKERNEL_INSTALL_DIR)
- 
- ipsecmgr-mod_clean:
- 	@echo ================================
-@@ -12,7 +12,7 @@ ipsecmgr-mod_clean:
- 	@echo ================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "ipsecmgr-mod*"`; \
--	make ARCH=arm KDIR=$(LINUXKERNEL_INSTALL_DIR) clean
-+	make ARCH=__KERNEL_ARCH__ KDIR=$(LINUXKERNEL_INSTALL_DIR) clean
- 
- ipsecmgr-mod_install:
- 	@echo ================================
-@@ -25,4 +25,4 @@ ipsecmgr-mod_install:
- 	fi
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "ipsecmgr-mod*"`; \
--	make ARCH=arm  KDIR=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) install
-+	make ARCH=__KERNEL_ARCH__  KDIR=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) install
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux
-index 2e878d5..100a225 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux
-@@ -3,9 +3,9 @@ linux: __DTB_DEPEND__
- 	@echo =================================
- 	@echo     Building the Linux Kernel
- 	@echo =================================
--	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) $(DEFCONFIG)
--	$(MAKE) -j $(MAKE_JOBS) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) __KERNEL_BUILD_CMDS__
--	$(MAKE) -j $(MAKE_JOBS) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) modules
-+	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=__KERNEL_ARCH__ CROSS_COMPILE=$(CROSS_COMPILE) $(DEFCONFIG)
-+	$(MAKE) -j $(MAKE_JOBS) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=__KERNEL_ARCH__ CROSS_COMPILE=$(CROSS_COMPILE) __KERNEL_BUILD_CMDS__
-+	$(MAKE) -j $(MAKE_JOBS) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=__KERNEL_ARCH__ CROSS_COMPILE=$(CROSS_COMPILE) modules
- 
- linux_install: __DTB_DEPEND_INSTALL__
- 	@echo ===================================
-@@ -20,10 +20,10 @@ linux_install: __DTB_DEPEND_INSTALL__
- 	install $(LINUXKERNEL_INSTALL_DIR)/arch/arm/boot/__KERNEL_BUILD_CMDS__ $(DESTDIR)/boot
- 	install $(LINUXKERNEL_INSTALL_DIR)/vmlinux $(DESTDIR)/boot
- 	install $(LINUXKERNEL_INSTALL_DIR)/System.map $(DESTDIR)/boot
--	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) INSTALL_MOD_PATH=$(DESTDIR) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) modules_install
-+	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=__KERNEL_ARCH__ CROSS_COMPILE=$(CROSS_COMPILE) INSTALL_MOD_PATH=$(DESTDIR) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) modules_install
- 
- linux_clean:
- 	@echo =================================
- 	@echo     Cleaning the Linux Kernel
- 	@echo =================================
--	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) mrproper
-+	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=__KERNEL_ARCH__ CROSS_COMPILE=$(CROSS_COMPILE) mrproper
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux-dtbs b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux-dtbs
-index d1d7e02..1ecaf5e 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux-dtbs
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_linux-dtbs
-@@ -3,9 +3,9 @@ linux-dtbs:
- 	@echo =====================================
- 	@echo     Building the Linux Kernel DTBs
- 	@echo =====================================
--	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) $(DEFCONFIG)
-+	$(MAKE) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=__KERNEL_ARCH__ CROSS_COMPILE=$(CROSS_COMPILE) $(DEFCONFIG)
- 	@for DTB in __KERNEL_DEVICETREE__; do \
--		$(MAKE) -j $(MAKE_JOBS) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=arm CROSS_COMPILE=$(CROSS_COMPILE) $$DTB; \
-+		$(MAKE) -j $(MAKE_JOBS) -C $(LINUXKERNEL_INSTALL_DIR) ARCH=__KERNEL_ARCH__ CROSS_COMPILE=$(CROSS_COMPILE) $$DTB; \
- 	done
- 
- linux-dtbs_install:
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-sgx-ddk-km b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-sgx-ddk-km
-index 8d9b583..3c12972 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-sgx-ddk-km
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-sgx-ddk-km
-@@ -5,7 +5,7 @@ ti-sgx-ddk-km: linux
- 	@echo ================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "ti-sgx-ddk-km*" -type d`; \
--	make -C ./eurasia_km/eurasiacon/build/linux2/omap_linux ARCH=arm TARGET_PRODUCT=__TARGET_PRODUCT__ KERNELDIR=$(LINUXKERNEL_INSTALL_DIR)
-+	make -C ./eurasia_km/eurasiacon/build/linux2/omap_linux ARCH=__KERNEL_ARCH__ TARGET_PRODUCT=__TARGET_PRODUCT__ KERNELDIR=$(LINUXKERNEL_INSTALL_DIR)
- 
- ti-sgx-ddk-km_clean:
- 	@echo ================================
-@@ -13,7 +13,7 @@ ti-sgx-ddk-km_clean:
- 	@echo ================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "ti-sgx-ddk-km*" -type d`; \
--	make -C ./eurasia_km/eurasiacon/build/linux2/omap_linux ARCH=arm KERNELDIR=$(LINUXKERNEL_INSTALL_DIR) clean
-+	make -C ./eurasia_km/eurasiacon/build/linux2/omap_linux ARCH=__KERNEL_ARCH__ KERNELDIR=$(LINUXKERNEL_INSTALL_DIR) clean
- 
- ti-sgx-ddk-km_install:
- 	@echo ================================
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_uio-module-drv b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_uio-module-drv
-index ceecb28..be037a3 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_uio-module-drv
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_uio-module-drv
-@@ -4,7 +4,7 @@ uio-module-drv: linux
- 	@echo ================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "uio-module-drv*"`; \
--	make ARCH=arm KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR)
-+	make ARCH=__KERNEL_ARCH__ KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR)
- 
- uio-module-drv_clean:
- 	@echo ================================
-@@ -12,7 +12,7 @@ uio-module-drv_clean:
- 	@echo ================================
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "uio-module-drv*"`; \
--	make ARCH=arm KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR) clean
-+	make ARCH=__KERNEL_ARCH__ KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR) clean
- 
- uio-module-drv_install:
- 	@echo ================================
-@@ -25,4 +25,4 @@ uio-module-drv_install:
- 	fi
- 	@cd board-support/extra-drivers; \
- 	cd `find . -maxdepth 1 -name "uio-module-drv*"`; \
--	make ARCH=arm  KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) modules_install
-+	make ARCH=__KERNEL_ARCH__  KERNEL_SRC=$(LINUXKERNEL_INSTALL_DIR)  INSTALL_MOD_PATH=$(DESTDIR) PREFIX=$(SDK_PATH_TARGET) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) modules_install
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 4fdd99f..4669827 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -50,7 +50,7 @@ SRC_URI = "\
-     file://Makefile_barcode-roi \
+ PROVIDES = "\
+-	gcc-cross-canadian-arm \
+-	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-arm', 'external-linaro-sdk-toolchain', 'gdb-cross-canadian-arm', '', d)} \
+-	binutils-cross-canadian-arm \
++	gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} \
++	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-linaro-sdk-toolchain', 'gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', '', d)} \
++	binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} \
  "
  
--PR = "r86"
-+PR = "r87"
- 
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
-@@ -162,6 +162,12 @@ MAKEFILES_append_k2e = " opencl-examples \
-                              openmpacc-examples \
+ PACKAGES = "\
+-	gcc-cross-canadian-arm \
+-	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-arm', 'external-linaro-sdk-toolchain', 'gdb-cross-canadian-arm', '', d)} \
+-	binutils-cross-canadian-arm \
++	gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} \
++	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-linaro-sdk-toolchain', 'gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', '', d)} \
++	binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} \
  "
  
-+# Use this to export kernel arch to ARCH
-+#
-+# We need to be very careful here. This class will also overwrite UBOOT_ARCH
-+# even though it may be set in the machine configuration.
-+inherit kernel-arch
+ # Don't need the extra target triplet in the new SDK dir structure
+@@ -37,15 +37,7 @@ libexecdir = "${exec_prefix}/libexec"
+ datadir = "${exec_prefix}/share"
+ gcclibdir = "${libdir}/gcc"
+ 
+-# New Linaro toolchain misses these binaries, comment out for now
+-#	${prefix}/${ELT_TARGET_SYS}/bin/cpp
+-#	${prefix}/${ELT_TARGET_SYS}/bin/cc
+-#	${prefix}/${ELT_TARGET_SYS}/bin/g++
+-#	${prefix}/${ELT_TARGET_SYS}/bin/c++
+-#	${prefix}/${ELT_TARGET_SYS}/bin/gcov
+-#	${prefix}/${ELT_TARGET_SYS}/bin/gcc*
+-
+-FILES_gcc-cross-canadian-arm = "\
++FILES_gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} = "\
+ 	${prefix}/${ELT_TARGET_SYS}/lib/libstdc++.* \
+ 	${prefix}/${ELT_TARGET_SYS}/lib/libgcc_s.* \
+ 	${prefix}/${ELT_TARGET_SYS}/lib/libsupc++.* \
+@@ -57,7 +49,7 @@ FILES_gcc-cross-canadian-arm = "\
+ 	${libexecdir}/* \
+ "
+ 
+-FILES_gdb-cross-canadian-arm = "\
++FILES_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "\
+ 	${bindir}/${TARGET_PREFIX}gdb \
+ 	${bindir}/${TARGET_PREFIX}gdbtui \
+ 	${datadir}/gdb/* \
+@@ -65,7 +57,7 @@ FILES_gdb-cross-canadian-arm = "\
+ 	${datadir}/man/man1/${TARGET_PREFIX}* \
+ "
+ 
+-FILES_binutils-cross-canadian-arm = "\
++FILES_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} = "\
+ 	${prefix}/${ELT_TARGET_SYS}/bin/ld* \
+ 	${prefix}/${ELT_TARGET_SYS}/bin/objcopy \
+ 	${prefix}/${ELT_TARGET_SYS}/bin/strip \
+@@ -91,19 +83,22 @@ FILES_binutils-cross-canadian-arm = "\
+ 	${bindir}/${TARGET_PREFIX}size \
+ "
+ 
+-DESCRIPTION_gcc-cross-canadian-arm = "The GNU cc and gcc C compilers"
+-DESCRIPTION_gdb-cross-canadian-arm = "gdb - GNU debugger"
+-DESCRIPTION_binutils-cross-canadian-arm = "A GNU collection of binary utilities"
++DESCRIPTION_gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} = "The GNU cc and gcc C compilers"
++DESCRIPTION_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb - GNU debugger"
++DESCRIPTION_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} = "A GNU collection of binary utilities"
+ 
+ #LICENSE = "${ARG_LIC_LIBC}"
+-#LICENSE_gcc-cross-canadian-arm = "${ARG_LIC_GCC}"
+-#LICENSE_gdb-cross-canadian-arm = "${ARG_LIC_GDB}"
+-#LICENSE_binutils-cross-canadian-arm = "${ARG_LIC_BFD}"
++#LICENSE_gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${ARG_LIC_GCC}"
++#LICENSE_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${ARG_LIC_GDB}"
++#LICENSE_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${ARG_LIC_BFD}"
+ 
+ PKGV = "${ELT_VER_MAIN}"
+-PKGV_gcc-cross-canadian-arm = "${ELT_VER_GCC}"
+-PKGV_gdb-cross-canadian-arm = "${ELT_VER_GDB}"
+-PKGV_binutils-cross-canadian-arm = "${ELT_VER_BFD}"
++PKGV_gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${ELT_VER_GCC}"
++PKGV_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${ELT_VER_GDB}"
++PKGV_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${ELT_VER_BFD}"
 +
- # Use ARCH format expected by the makefile
- PLATFORM_ARCH = "armv7-a"
- PLATFORM_ARCH_omapl138 = "armv5te"
-@@ -234,6 +240,7 @@ do_install () {
-         sed -i -e "s/__INSTALL_TARGETS__/$install_targets/" ${D}/Makefile
-     fi
++LIBDIR = "lib"
++LIBDIR_aarch64 = "lib64"
  
-+    sed -i -e "s/__KERNEL_ARCH__/${ARCH}/" ${D}/Makefile
-     sed -i -e "s/__KERNEL_BUILD_CMDS__/${KERNEL_BUILD_CMDS}/" ${D}/Makefile
-     sed -i -e "s/__SDKMACHINE__/${SDKMACHINE}/g" ${D}/Makefile
+ do_install() {
+ 	install -d ${D}${prefix}/${ELT_TARGET_SYS}/bin
+@@ -112,21 +107,20 @@ do_install() {
+ 	install -d ${D}${libdir}
+ 	install -d ${D}${prefix}/${ELT_TARGET_SYS}/lib/ldscripts
+ 	install -d ${D}${libexecdir}
+-	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-arm', 'external-linaro-sdk-toolchain', 'install -d ${D}${datadir}/gdb', '', d)}
+-	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-arm', 'external-linaro-sdk-toolchain', 'install -d ${D}${datadir}/info', '', d)}
+-	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-arm', 'external-linaro-sdk-toolchain', 'install -d ${D}${datadir}/man/man1', '', d)}
++	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-linaro-sdk-toolchain', 'install -d ${D}${datadir}/gdb', '', d)}
++	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-linaro-sdk-toolchain', 'install -d ${D}${datadir}/info', '', d)}
++	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-linaro-sdk-toolchain', 'install -d ${D}${datadir}/man/man1', '', d)}
+ 	install -d ${D}${gcclibdir}/${ELT_TARGET_SYS}/${ELT_VER_GCC}/include
  
+-#	cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/bin/{c++,g++,gcc*} ${D}${prefix}/${ELT_TARGET_SYS}/bin
+-	cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/lib/{libstdc++.*,libgcc_s.*,libsupc++.*} ${D}${prefix}/${ELT_TARGET_SYS}/lib
++	cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/${LIBDIR}/{libstdc++.*,libgcc_s.*,libsupc++.*} ${D}${prefix}/${ELT_TARGET_SYS}/lib
+ 	cp -a ${TOOLCHAIN_PATH}/lib/gcc/${ELT_TARGET_SYS}/${ELT_VER_GCC}/* ${D}${gcclibdir}/${ELT_TARGET_SYS}/${ELT_VER_GCC}
+ 	cp -a ${TOOLCHAIN_PATH}/bin/${TARGET_PREFIX}{gcov,gcc*,g++,cpp} ${D}${bindir}
+ 	cp -a ${TOOLCHAIN_PATH}/libexec/* ${D}${libexecdir}
+ 
+-	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-arm', 'external-linaro-sdk-toolchain', 'cp -a ${TOOLCHAIN_PATH}/bin/${TARGET_PREFIX}gdb* ${D}${bindir}', '', d)}
+-	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-arm', 'external-linaro-sdk-toolchain', 'cp -a ${TOOLCHAIN_PATH}/share/gdb/* ${D}${datadir}/gdb/', '', d)}
+-	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-arm', 'external-linaro-sdk-toolchain', 'cp -a ${TOOLCHAIN_PATH}/share/info/* ${D}${datadir}/info/', '', d)}
+-	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-arm', 'external-linaro-sdk-toolchain', 'cp -a ${TOOLCHAIN_PATH}/share/man/man1/${TARGET_PREFIX}* ${D}${datadir}/man/man1/', '', d)}
++	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-linaro-sdk-toolchain', 'cp -a ${TOOLCHAIN_PATH}/bin/${TARGET_PREFIX}gdb* ${D}${bindir}', '', d)}
++	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-linaro-sdk-toolchain', 'cp -a ${TOOLCHAIN_PATH}/share/gdb/* ${D}${datadir}/gdb/', '', d)}
++	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-linaro-sdk-toolchain', 'cp -a ${TOOLCHAIN_PATH}/share/info/* ${D}${datadir}/info/', '', d)}
++	${@base_conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-linaro-sdk-toolchain', 'cp -a ${TOOLCHAIN_PATH}/share/man/man1/${TARGET_PREFIX}* ${D}${datadir}/man/man1/', '', d)}
+ 
+ 	cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/bin/{ld*,objcopy,strip,nm,ranlib,as,ar,objdump} ${D}${prefix}/${ELT_TARGET_SYS}/bin
+ 	cp -a ${TOOLCHAIN_PATH}/${ELT_TARGET_SYS}/lib/ldscripts/* ${D}${prefix}/${ELT_TARGET_SYS}/lib/ldscripts
 -- 
 2.7.4
 
