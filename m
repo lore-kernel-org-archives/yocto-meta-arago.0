@@ -1,30 +1,43 @@
 Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 4AAE452987
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id C22A452987
 	for <meta-arago@arago-project.org>;
-	Tue, 26 Jun 2018 18:59:25 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5268F20BD9;
-	Tue, 26 Jun 2018 18:59:19 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id bg_MEE3qIaxs; Tue, 26 Jun 2018 18:59:19 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
-	[100.15.85.143])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3622520174;
-	Tue, 26 Jun 2018 18:59:18 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id A600A1634C4;
-	Tue, 26 Jun 2018 14:59:17 -0400 (EDT)
+	Tue, 26 Jun 2018 19:03:55 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5QJ3nk7056868
+	for <meta-arago@arago-project.org>; Tue, 26 Jun 2018 14:03:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1530039829;
+	bh=bsmoIK+E6xA49dzKClVw3JcuYZONMHVg3FxyiSQpPfg=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=pVJ9EYlhL/SqlmFsdXjgez9Xe1OjRIp+2fcFYCjeJAcMpLjXD2pWZg+9KseFf/d8r
+	SA66oMC24D1iUJ0qC8eHJZo4dTrlMankNMKNefvi0IUThsBBFyvwa158wCk9TftEvA
+	INV6xO1s3TKP6Os9lOJ9UIKm6w5yK1QfTgVZ4eDs=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5QJ3nDp006229
+	for <meta-arago@arago-project.org>; Tue, 26 Jun 2018 14:03:49 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
+	Tue, 26 Jun 2018 14:03:49 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
+	Transport; Tue, 26 Jun 2018 14:03:49 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5QJ3nGc015850;
+	Tue, 26 Jun 2018 14:03:49 -0500
+Date: Tue, 26 Jun 2018 15:02:51 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Tue, 26 Jun 2018 14:59:17 -0400
-Message-Id: <1530039557-5348-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [rocko/master][PATCH] optee-os: also install and deploy ELF version
+To: Ramprasad N <x0038811@ti.com>
+Message-ID: <20180626190251.GK3163@beryl>
+References: <1529666884-6396-1-git-send-email-x0038811@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1529666884-6396-1-git-send-email-x0038811@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [rocko 0/1] gstwaylandsink
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,42 +50,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Jun 2018 18:59:25 -0000
+X-List-Received-Date: Tue, 26 Jun 2018 19:03:56 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/recipes-security/optee/optee-os_git.bbappend | 3 +++
- 1 file changed, 3 insertions(+)
+On Fri, Jun 22, 2018 at 04:58:03PM +0530, Ramprasad N wrote:
+> Add input device like mouse, touch etc to waylandsink.
+> 
+> Ramprasad N (1):
+>   gstreamer1.0*-bad: Input device support in waylandsink
+> 
+>  ...ylandsink-Add-mouse-drag-and-drop-support.patch | 426 +++++++++
+>  ...0005-waylandsink-Add-input-device-support.patch | 990 +++++++++++++++++++++
+>  .../gstreamer1.0-plugins-bad_1.12.2.bbappend       |   5 +-
+>  3 files changed, 1420 insertions(+), 1 deletion(-)
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-waylandsink-Add-mouse-drag-and-drop-support.patch
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-waylandsink-Add-input-device-support.patch
 
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-index c85f413..cf643b0 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-@@ -58,6 +58,7 @@ do_compile_aarch64() {
-     oe_runmake all PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=${OPTEEFLAVOR}
-     ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
-         mv tee-pager.bin bl32.bin; \
-+        mv tee.elf bl32.elf; \
-     )
- }
- 
-@@ -66,6 +67,7 @@ do_install() {
-     install -d ${D}/boot
-     install -m 644 ${B}/out/arm-plat-${OPTEEOUTPUTMACHINE}/core/*.optee ${D}/boot || true
-     install -m 644 ${B}/out/arm-plat-${OPTEEOUTPUTMACHINE}/core/bl32.bin ${D}/boot || true
-+    install -m 644 ${B}/out/arm-plat-${OPTEEOUTPUTMACHINE}/core/bl32.elf ${D}/boot || true
- 
-     #install TA devkit
-     install -d ${D}/usr/include/optee/export-user_ta/
-@@ -78,6 +80,7 @@ do_deploy() {
-     install -d ${DEPLOYDIR}
-     install -m 644 ${B}/out/arm-plat-${OPTEEOUTPUTMACHINE}/core/*.optee ${DEPLOYDIR} || true
-     install -m 644 ${B}/out/arm-plat-${OPTEEOUTPUTMACHINE}/core/bl32.bin ${DEPLOYDIR} || true
-+    install -m 644 ${B}/out/arm-plat-${OPTEEOUTPUTMACHINE}/core/bl32.elf ${DEPLOYDIR} || true
- }
- 
- FILES_${PN} = "/boot"
+What is the upstream status of these patches?
+
 -- 
-2.7.4
-
+Denys
 
