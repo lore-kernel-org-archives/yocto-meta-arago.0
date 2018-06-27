@@ -1,45 +1,44 @@
-Return-Path: <x0038811@ti.com>
+Return-Path: <denys@ti.com>
 Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id A976E529CE
+	by arago-project.org (Postfix) with ESMTPS id 0CE3052978
 	for <meta-arago@arago-project.org>;
-	Wed, 27 Jun 2018 14:02:53 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5RE2lYS057281
-	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 09:02:47 -0500
+	Wed, 27 Jun 2018 15:55:43 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5RFtb6a084415
+	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 10:55:37 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1530108167;
-	bh=T5ZOXpSjN1K3WTneQgoNrqniOu6klvSyrJjp7KwRkRc=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=sjPxBGIVA2c7TLrH/sPxYJRStB0MEQXhcpu1FBmwQL1LtWGTaMcH//RgxOyrWRtO5
-	mGKnh6/zzf8DkUs1voq5rHA/nCGjutwvB96drdK8K0qt3DJm2tHrbjGN/rT4+p4cxA
-	ajFdqg7KMM4V5j7G/8m6oX2gqJRWi75Oewgc4Zo0=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RE2lFK011104
-	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 09:02:47 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1530114937;
+	bh=EYgAKHpNjd479RxMujgcNNECt0hV5ViDAmWOEdFK8ws=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=jKLQ3yAhxQ7QJXnXFVYAEJU9s7dlExuWR+4KWBiTVADltm0xjKR5Z+It1VP+7MuwW
+	iQHaqKrmmJDvDPhKK+OYIL2SUEeEZvLRpvcetOCJGdQqL7tGZptTGucKJfhH/dpC8O
+	rn/BA/qDaXv+FEf9FQL7mLSVBsUDZ1f/COKXqPBc=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RFtbce015176
+	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 10:55:37 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 27 Jun 2018 09:02:47 -0500
-Received: from DFLE106.ent.ti.com ([fe80::4dc:7374:f90c:1f12]) by
-	DFLE106.ent.ti.com ([fe80::4dc:7374:f90c:1f12%17]) with mapi id
-	15.01.1466.003; Wed, 27 Jun 2018 09:02:47 -0500
-From: "Prasad, Ram" <x0038811@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [rocko 0/1] gstwaylandsink
-Thread-Index: AQHUChwXHqi+82uIMEazpX9kxVHqe6RzQCiAgAC+utA=
-Date: Wed, 27 Jun 2018 14:02:47 +0000
-Message-ID: <b615320b2e644321b8dc44df61a182b1@ti.com>
-References: <1529666884-6396-1-git-send-email-x0038811@ti.com>
-	<20180626190251.GK3163@beryl>
-In-Reply-To: <20180626190251.GK3163@beryl>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.91.86.186]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Wed, 27 Jun 2018 10:55:37 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
+	Transport; Wed, 27 Jun 2018 10:55:37 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RFtbNs011362;
+	Wed, 27 Jun 2018 10:55:37 -0500
+Date: Wed, 27 Jun 2018 11:54:41 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Karthik Ramanan <a0393906@ti.com>
+Message-ID: <20180627155441.GZ3163@beryl>
+References: <1530087529-102302-1-git-send-email-a0393906@ti.com>
+	<1530087529-102302-2-git-send-email-a0393906@ti.com>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [rocko 0/1] gstwaylandsink
+In-Reply-To: <1530087529-102302-2-git-send-email-a0393906@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [rocko 2/3] wayland-ivi-extension: Update to version 2.1.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,43 +51,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2018 14:02:54 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 27 Jun 2018 15:55:44 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Hi Denys,
-Upstreaming gstreamer patches is still pending. We are estimating the effor=
-t required.
+On Wed, Jun 27, 2018 at 01:48:48PM +0530, Karthik Ramanan wrote:
+> This version is compatible with weston 2.0.0
+> 
+> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+> ---
+>  ...yland-ivi-extension_1.11.0.bb => wayland-ivi-extension_2.1.0.bb} | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
+>  rename meta-arago-distro/recipes-graphics/wayland/{wayland-ivi-extension_1.11.0.bb => wayland-ivi-extension_2.1.0.bb} (80%)
+> 
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
+> similarity index 80%
+> rename from meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb
+> rename to meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
+> index 75e284f..894d1b8 100644
+> --- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb
+> +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
+> @@ -5,12 +5,10 @@ BUGTRACKER = "http://bugs.genivi.org/enter_bug.cgi?product=Wayland%20IVI%20Exten
+>  LICENSE = "Apache-2.0"
+>  LIC_FILES_CHKSUM = "file://LICENSE;md5=1f1a56bb2dadf5f2be8eb342acf4ed79"
+>  
+> -SRCREV = "c9001582b10ce209c37b42dd560947c5aa8928b3"
+> +SRCREV = "d2c2e262f3bdc9db33b3014293fcdbcfdc90ab27"
+>  
+>  SRC_URI = "git://github.com/GENIVI/${BPN}.git;protocol=http \
+>             file://force-type-conversion.patch \
+> -           file://0001-layer-add-surfaces-Add-screenId-as-an-argument.patch \
+> -           file://0002-layer-add-surfaces-surface-layer-management.patch \
 
-Thanks
-Ramprasad
+Now that this is a diff, it clearly reveals that these 2 patches are no 
+longer used - do you want to remove them?
 
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Wednesday, June 27, 2018 12:33 AM
-To: Prasad, Ram
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [rocko 0/1] gstwaylandsink
 
-On Fri, Jun 22, 2018 at 04:58:03PM +0530, Ramprasad N wrote:
-> Add input device like mouse, touch etc to waylandsink.
->=20
-> Ramprasad N (1):
->   gstreamer1.0*-bad: Input device support in waylandsink
->=20
->  ...ylandsink-Add-mouse-drag-and-drop-support.patch | 426 +++++++++
->  ...0005-waylandsink-Add-input-device-support.patch | 990 +++++++++++++++=
-++++++
->  .../gstreamer1.0-plugins-bad_1.12.2.bbappend       |   5 +-
->  3 files changed, 1420 insertions(+), 1 deletion(-)
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
-mer1.0-plugins-bad/0001-waylandsink-Add-mouse-drag-and-drop-support.patch
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
-mer1.0-plugins-bad/0005-waylandsink-Add-input-device-support.patch
-
-What is the upstream status of these patches?
-
---=20
-Denys
+>      "
+>  
+>  S = "${WORKDIR}/git"
+> @@ -26,7 +24,7 @@ FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
+>  
+>  EXTRA_OECMAKE += "-DLIB_SUFFIX=${@d.getVar('baselib', True).replace('lib', '')}"
+>  
+> -PR = "r3"
+> +PR = "r1"
+>  
+>  # Need these temporarily to prevent a non-fatal do_package_qa issue
+>  INSANE_SKIP_${PN} += "dev-deps"
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
