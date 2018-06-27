@@ -1,46 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id AD475529CE
+Return-Path: <j-stiffler@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 6C89E529CE
 	for <meta-arago@arago-project.org>;
-	Wed, 27 Jun 2018 16:21:26 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5RGLKM0101755
-	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 11:21:20 -0500
+	Wed, 27 Jun 2018 17:23:20 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5RHNEhA027164
+	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 12:23:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1530116480;
-	bh=8lq3/7LrhCvTXOYFEVUhvNQP+2s2W25W2LBk9o0NvLk=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=CXPU61+I68w695KT5Fg5Ww8Ud++yR0GxnVqK0rqK16NdFeMuDX1PWOjpiX3eqbyVP
-	omd7WD1mJvxGtmLHXxKo1zsFF2YP9taU36vNM6KINoB26GO5Yzb4AgU9XaeMvJftEI
-	V/4kvA1u3Fq61DWT0v7q1VB3YKCEOYUY6i7I5/9A=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RGLKb8018750
-	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 11:21:20 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1530120194;
+	bh=e5Beearl8lxZFV7KjAmJi+DEZ+3BFoG7H3TAHugJJ1E=;
+	h=From:To:CC:Subject:Date;
+	b=R3xbA2Eu4oTWXlcKbkge5sFi+w+/YymzxIS7XK2t6zwkuOhJ9R3yDv6zjKBvW6h1v
+	4MUr3NMpF9Smp7/7GvRh++87YrstebV/5yFOGTlBg0wJ2xwSzqtfXsQjZYNhXDdg4M
+	6iTLRr3jNXVHznHJO0WmFVp+i6T6QGj1kKR61aqc=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RHNEHl029021
+	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 12:23:14 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 27 Jun 2018 11:21:19 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 27 Jun 2018 12:23:13 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Wed, 27 Jun 2018 11:21:19 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RGLJ5d009489;
-	Wed, 27 Jun 2018 11:21:19 -0500
-Date: Wed, 27 Jun 2018 12:20:23 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Karthik Ramanan <a0393906@ti.com>
-Message-ID: <20180627162023.GB3163@beryl>
-References: <1530087529-102302-1-git-send-email-a0393906@ti.com>
-	<1530087529-102302-2-git-send-email-a0393906@ti.com>
-	<20180627155441.GZ3163@beryl>
-	<70d4530f-dde9-5068-e857-1f1b756e7d67@ti.com>
+	Transport; Wed, 27 Jun 2018 12:23:13 -0500
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RHNDF6012629;
+	Wed, 27 Jun 2018 12:23:13 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 27 Jun 2018 13:11:50 -0400
+Message-ID: <1530119512-30012-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <70d4530f-dde9-5068-e857-1f1b756e7d67@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [rocko 2/3] wayland-ivi-extension: Update to version 2.1.0
+Subject: [rocko/master][PATCH 1/3] tisdk-image: enable multiple SPL images
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,65 +48,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2018 16:21:27 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 27 Jun 2018 17:23:21 -0000
+Content-Type: text/plain
 
-On Wed, Jun 27, 2018 at 09:50:22PM +0530, Karthik Ramanan wrote:
-> 
-> 
-> On 27-Jun-18 9:24 PM, Denys Dmytriyenko wrote:
-> >On Wed, Jun 27, 2018 at 01:48:48PM +0530, Karthik Ramanan wrote:
-> >>This version is compatible with weston 2.0.0
-> >>
-> >>Signed-off-by: Karthik Ramanan <a0393906@ti.com>
-> >>---
-> >>  ...yland-ivi-extension_1.11.0.bb => wayland-ivi-extension_2.1.0.bb} | 6 ++----
-> >>  1 file changed, 2 insertions(+), 4 deletions(-)
-> >>  rename meta-arago-distro/recipes-graphics/wayland/{wayland-ivi-extension_1.11.0.bb => wayland-ivi-extension_2.1.0.bb} (80%)
-> >>
-> >>diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
-> >>similarity index 80%
-> >>rename from meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb
-> >>rename to meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
-> >>index 75e284f..894d1b8 100644
-> >>--- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_1.11.0.bb
-> >>+++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
-> >>@@ -5,12 +5,10 @@ BUGTRACKER = "http://bugs.genivi.org/enter_bug.cgi?product=Wayland%20IVI%20Exten
-> >>  LICENSE = "Apache-2.0"
-> >>  LIC_FILES_CHKSUM = "file://LICENSE;md5=1f1a56bb2dadf5f2be8eb342acf4ed79"
-> >>-SRCREV = "c9001582b10ce209c37b42dd560947c5aa8928b3"
-> >>+SRCREV = "d2c2e262f3bdc9db33b3014293fcdbcfdc90ab27"
-> >>  SRC_URI = "git://github.com/GENIVI/${BPN}.git;protocol=http \
-> >>             file://force-type-conversion.patch \
-> >>-           file://0001-layer-add-surfaces-Add-screenId-as-an-argument.patch \
-> >>-           file://0002-layer-add-surfaces-surface-layer-management.patch \
-> >Now that this is a diff, it clearly reveals that these 2 patches are no
-> >longer used - do you want to remove them?
-> This was intentionally left behind. So lets not remove it at the moment.
-> These two patches were additions by TI to the wayland-ivi-extension. I still
-> need more time to determine how and in what form these changes have made its
-> way into the upstream.
-> Lets keep it for now and I am looking into reworking/removing them from here
-> soon.
+* am65xx-evm requires 2 SPL images, one for A53 and one for R5.
 
-Ok, thanks.
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ meta-arago-distro/classes/tisdk-image.bbclass | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
+diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
+index dc715a6..39e6461 100644
+--- a/meta-arago-distro/classes/tisdk-image.bbclass
++++ b/meta-arago-distro/classes/tisdk-image.bbclass
+@@ -772,17 +772,17 @@ tisdk_image_build () {
+         done
+     fi
+ 
+-    if [ "${DEPLOY_SPL_NAME}" != "" ]
+-    then
++    for spl_name in ${DEPLOY_SPL_NAME}
++    do
+         # Copy the SPL image if it exists
+-        if [ -e ${DEPLOY_DIR_IMAGE}/${DEPLOY_SPL_NAME} ]
++        if [ -e ${DEPLOY_DIR_IMAGE}/$spl_name ]
+         then
+-            cp ${DEPLOY_DIR_IMAGE}/${DEPLOY_SPL_NAME} ${prebuilt_dir}/
++            cp ${DEPLOY_DIR_IMAGE}/$spl_name ${prebuilt_dir}/
+         else
+-            echo "Could not find the SPL image"
++            echo "Could not find the SPL image \"$spl_name\""
+             return 1
+         fi
+-    fi
++    done
+ 
+     if [ "${DEPLOY_SPL_UART_NAME}" != "" ]
+     then
+-- 
+2.7.4
 
-> >>      "
-> >>  S = "${WORKDIR}/git"
-> >>@@ -26,7 +24,7 @@ FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
-> >>  EXTRA_OECMAKE += "-DLIB_SUFFIX=${@d.getVar('baselib', True).replace('lib', '')}"
-> >>-PR = "r3"
-> >>+PR = "r1"
-> >>  # Need these temporarily to prevent a non-fatal do_package_qa issue
-> >>  INSANE_SKIP_${PN} += "dev-deps"
-> >>-- 
-> >>1.9.1
-> >>
-> >>_______________________________________________
-> >>meta-arago mailing list
-> >>meta-arago@arago-project.org
-> >>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
 
