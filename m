@@ -1,43 +1,43 @@
-Return-Path: <j-stiffler@ti.com>
+Return-Path: <jake@udc0866934>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 117F652987
+	by arago-project.org (Postfix) with ESMTPS id 45D69529F0
 	for <meta-arago@arago-project.org>;
-	Wed, 27 Jun 2018 17:52:48 +0000 (UTC)
+	Wed, 27 Jun 2018 18:41:06 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5RHqfD5031944
-	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 12:52:41 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5RIf0Rh041501
+	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 13:41:00 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1530121961;
-	bh=c7rKRB+14pojx2D/QlDn6gqEoL+8epJX8WVlNMji9ig=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=xHRWVsaV/lNY/LgMFC13apN60dsrdlzlTKQqr7qCiHrhGqoVzEH7riIIJs0SkM3UB
-	bbQAXgykUPOT+GQ4IfgrNRf4d0dQOQtlI6M7Ss+NPK1Y/8VxeMvKDa97k3p/7p9GcW
-	WfO/S0q2vRIi6I2/gEZFRrEX5vckgs9Jvo7HNlwM=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RHqfXA008649
-	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 12:52:41 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1530124860;
+	bh=q2jeB8c/AXz4if0F1Ob3IBRQhmfjB7WeRTFlJmq2UEs=;
+	h=From:To:CC:Subject:Date;
+	b=xI53XRPEs/arD1LeXpcsT28DOPXDlcc87p/RVua5sB8VKTl4i7pQ7xnaIVYq/lQVn
+	wTRmnL6pfA4K6tg+qZsSdp4dgkc6skrbL21aqi9br3kHBUIpj55NXa9+C2bbFgQ+O3
+	PKOgobxVGwD6i85MiZZzEA1T3qGgEqtoMPrHM4GM=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RIf03V021103
+	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 13:41:00 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 27 Jun 2018 12:52:41 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 27 Jun 2018 13:40:59 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Wed, 27 Jun 2018 12:52:41 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RHqfbM005182;
-	Wed, 27 Jun 2018 12:52:41 -0500
-To: Yuan Zhao <yuanzhao@ti.com>, <meta-arago@arago-project.org>
-References: <20180627173557.55824-1-yuanzhao@ti.com>
+	Transport; Wed, 27 Jun 2018 13:40:59 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RIexGa031604;
+	Wed, 27 Jun 2018 13:40:59 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)
+	(envelope-from <jake@udc0866934>)
+	id 1fYFNC-00029D-Ln; Wed, 27 Jun 2018 14:40:58 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <c3e04715-7fa6-ff8f-268f-ffb9e3451c18@ti.com>
-Date: Wed, 27 Jun 2018 13:52:40 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.8.0
+To: <meta-arago@arago-project.org>
+Date: Wed, 27 Jun 2018 14:40:56 -0400
+Message-ID: <1530124856-8222-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <20180627173557.55824-1-yuanzhao@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [PATCH] ocl: update version to 01.01.15.02
+Subject: [tisdk-setup-scripts][PATCH] create-sdcard: add support for aarch64
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,167 +50,71 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2018 17:52:48 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Wed, 27 Jun 2018 18:41:06 -0000
+Content-Type: text/plain
 
-Denys,
+* Add A53 and R5 SPL images to the boot partition as expected for
+  TI devices.
 
-Can you also apply this to the ti2018.01 branch?
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ create-sdcard.sh | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-
-Thank you,
-
-Jake
-
-
-On 6/27/2018 1:35 PM, Yuan Zhao wrote:
-> Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
-> ---
->   .../recipes-ti/includes/arago-paths.inc            |  2 ++
->   meta-arago-extras/recipes-ti/ocl/ocl.inc           |  4 +--
->   .../recipes-ti/ocl/opencl-monitor-ipu_git.bb       |  4 ++-
->   .../recipes-ti/ocl/opencl-monitor_git.bb           |  4 ++-
->   .../recipes-ti/ocl/opencl-tidl-fw_git.bb           | 38 ++++++++++++++++++++++
->   5 files changed, 48 insertions(+), 4 deletions(-)
->   create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
->
-> diff --git a/meta-arago-extras/recipes-ti/includes/arago-paths.inc b/meta-arago-extras/recipes-ti/includes/arago-paths.inc
-> index a652df08..5a2efaff 100644
-> --- a/meta-arago-extras/recipes-ti/includes/arago-paths.inc
-> +++ b/meta-arago-extras/recipes-ti/includes/arago-paths.inc
-> @@ -4,8 +4,10 @@ export LIBARCH_INSTALL_DIR_RECIPE    = "${installdir}/ti-libarch-tree"
->   export LINALG_INSTALL_DIR_RECIPE     = "${installdir}/ti-linalg-tree"
->   export LLVM_RTOS_INSTALL_DIR_RECIPE  = "${installdir}/llvm-rtos-tree"
->   export OCL_RTOS_INSTALL_DIR_RECIPE   = "${installdir}/ti-opencl-rtos-tree"
-> +export OCL_TIDL_FW_INSTALL_DIR_RECIPE   = "${installdir}/ti-opencl-tidl-fw-tree"
->   
->   export LIBARCH_INSTALL_DIR    = "${STAGING_DIR_TARGET}${LIBARCH_INSTALL_DIR_RECIPE}"
->   export LINALG_INSTALL_DIR     = "${STAGING_DIR_TARGET}${LINALG_INSTALL_DIR_RECIPE}"
->   export LLVM_RTOS_INSTALL_DIR  = "${STAGING_DIR_TARGET}${LLVM_RTOS_INSTALL_DIR_RECIPE}"
->   export OCL_RTOS_INSTALL_DIR   = "${STAGING_DIR_TARGET}${OCL_RTOS_INSTALL_DIR_RECIPE}"
-> +export OCL_TIDL_FW_INSTALL_DIR   = "${STAGING_DIR_TARGET}${OCL_TIDL_FW_INSTALL_DIR_RECIPE}"
-> diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> index edde12b2..1fd705da 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> +++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> @@ -1,4 +1,4 @@
-> -PV = "1.1.15.1"
-> +PV = "1.1.15.2"
->   INC_PR = "r0"
->   
->   LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
-> @@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
->   OCL_GIT_PROTOCOL = "git"
->   OCL_GIT_BRANCH = "master"
->   
-> -OCL_SRCREV = "5b77a9c0ac39985430f11ff9b80d3122d11e261c"
-> +OCL_SRCREV = "84f2e36f38eca46c6c376bacd757d45f2e5733f1"
->   
->   BRANCH = "${OCL_GIT_BRANCH}"
->   SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> index d560744a..61d5cad0 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> @@ -3,7 +3,7 @@ HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
->   LICENSE = "BSD"
->   
->   include ocl.inc
-> -require recipes-ti/includes/ti-paths.inc
-> +require recipes-ti/includes/arago-paths.inc
->   
->   PR = "${INC_PR}.0"
->   
-> @@ -17,6 +17,7 @@ DEPENDS = " common-csl-ip-rtos \
->               ti-pdk-build-rtos \
->               ti-cgt-arm-native \
->               util-linux-native \
-> +            opencl-tidl-fw \
->   "
->   
->   COMPATIBLE_MACHINE = "am57xx-evm|am57xx-hs-evm"
-> @@ -38,6 +39,7 @@ export XDC_DIR = "${XDC_INSTALL_DIR}"
->   export TI_OCL_M4_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/ti-cgt-arm"
->   export CSL_LIB_M4 = "${PDK_DIR}/packages/ti/csl/lib/am572x/m4/release/ti.csl.aem4"
->   export PM_HAL_LIB_M4 = "$(PDK_DIR)/packages/ti/drv/pm/lib/am572x/m4/release/pm_hal.aem4"
-> +export OCL_TIDL_FW_DIR = "${OCL_TIDL_FW_INSTALL_DIR}"
->   
->   ALTERNATIVE_${PN} = "dra7-ipu1-fw.xem4"
->   ALTERNATIVE_LINK_NAME[dra7-ipu1-fw.xem4] = "${base_libdir}/firmware/dra7-ipu1-fw.xem4"
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> index 50a5270e..5605bfbd 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> @@ -3,7 +3,7 @@ HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
->   LICENSE = "BSD"
->   
->   include ocl.inc
-> -require recipes-ti/includes/ti-paths.inc
-> +require recipes-ti/includes/arago-paths.inc
->   
->   PR = "${INC_PR}.0"
->   
-> @@ -22,6 +22,7 @@ DEPENDS = " ti-llvm3.6-native \
->               gdbserver-c6x \
->               libaet \
->               openmp-rtos \
-> +            opencl-tidl-fw \
->   "
->   
->   DEPENDS_append_k2hk = " multiprocmgr-rtos \
-> @@ -75,6 +76,7 @@ export GDB_SERVER_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/gdbc6x"
->   export AET_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/ctoolslib/aet"
->   export X86_LLVM_DIR = "${STAGING_DIR_NATIVE}/usr"
->   export XDCPATH = "${S};${IPC_DIR}/packages;${BIOS_DIR}/packages;${EDMA3LLD_DIR}/packages;${FC_DIR}/packages;${XDAIS_DIR}/packages"
-> +export OCL_TIDL_FW_DIR = "${OCL_TIDL_FW_INSTALL_DIR}"
->   
->   do_install_append_dra7xx() {
->   	for i in 1 2; do mv ${D}${base_libdir}/firmware/dra7-dsp$i-fw.xe66 ${D}${base_libdir}/firmware/dra7-dsp$i-fw.xe66.${BPN}; done
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-> new file mode 100644
-> index 00000000..d36c4152
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-> @@ -0,0 +1,38 @@
-> +SUMMARY = "OpenCL TIDL firmware for AM57xx"
-> +
-> +LICENSE = "TI-TFL"
-> +LIC_FILES_CHKSUM = "file://LICENSE.ti;md5=082a028431c455252c1e1d3d1021d382"
-> +
-> +PV = "01.00.00.02"
-> +PR = "r0"
-> +
-> +require recipes-ti/includes/arago-paths.inc
-> +
-> +COMPATIBLE_MACHINE = "am57xx-evm"
-> +
-> +PACKAGE_ARCH = "${MACHINE_ARCH}"
-> +
-> +GIT_URI      = "git://git.ti.com/opencl/opencl-firmware.git"
-> +GIT_PROTOCOL = "git"
-> +BRANCH       = "master"
-> +SRCREV       = "3b2dca5cb5718db93f7742186839591188c46b25"
-> +SRC_URI      = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +TARGET = "eve_firmware.bin ocl_tidl_dsp.lib"
-> +
-> +do_install() {
-> +    install -d ${D}${OCL_TIDL_FW_INSTALL_DIR_RECIPE}
-> +    for f in ${TARGET}; do
-> +	install -m 0644 ${S}/$f ${D}${OCL_TIDL_FW_INSTALL_DIR_RECIPE}/$f
-> +    done
-> +}
-> +
-> +FILES_${PN} += "${OCL_TIDL_FW_INSTALL_DIR_RECIPE}"
-> +
-> +INSANE_SKIP_${PN} = "arch"
-> +
-> +INHIBIT_PACKAGE_STRIP = "1"
-> +INHIBIT_SYSROOT_STRIP = "1"
-> +INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+diff --git a/create-sdcard.sh b/create-sdcard.sh
+index 7ada332..078e258 100644
+--- a/create-sdcard.sh
++++ b/create-sdcard.sh
+@@ -743,6 +743,8 @@ if [ $FILEPATHOPTION -eq 1 ] ; then
+ 	#check that files are in SDK
+ 	BOOTFILEPATH="$PARSEPATH/board-support/prebuilt-images"
+ 	MLO=`ls $BOOTFILEPATH | grep MLO | awk {'print $1'}`
++	SPL_A53=`ls $BOOTFILEPATH | grep tispl | awk {'print $1'}`
++	SPL_R5=`ls $BOOTFILEPATH | grep tiboot3 | awk {'print $1'}`
+ 	KERNELIMAGE=`ls $BOOTFILEPATH | grep [uz]Image | awk {'print $1'}`
+ 	BOOTIMG=`ls $BOOTFILEPATH | grep u-boot | grep .img | awk {'print $1'}`
+ 	BOOTBIN=`ls $BOOTFILEPATH | grep u-boot | grep .bin | awk {'print $1'}`
+@@ -967,6 +969,8 @@ EOM
+ 		BOOTPATHOPTION=1
+ 		BOOTFILEPATH=$BOOTUSERFILEPATH
+ 		MLO=`ls $BOOTFILEPATH | grep MLO | awk {'print $1'}`
++		SPL_A53=`ls $BOOTFILEPATH | grep tispl | awk {'print $1'}`
++		SPL_R5=`ls $BOOTFILEPATH | grep tiboot3 | awk {'print $1'}`
+ 		BOOTIMG=`ls $BOOTFILEPATH | grep u-boot | grep .img | awk {'print $1'}`
+ 		BOOTBIN=`ls $BOOTFILEPATH | grep u-boot | grep .bin | awk {'print $1'}`
+ 		BOOTUENV=`ls $BOOTFILEPATH | grep uEnv.txt | awk {'print $1'}`
+@@ -1017,6 +1021,30 @@ if [ $BOOTPATHOPTION -eq 1 ] ; then
+ 
+ 	echo ""
+ 
++	#copy boot files out of board support
++	if [ "$SPL_A53" != "" ] ; then
++		cp $BOOTFILEPATH/$SPL_A53 $PATH_TO_SDBOOT/tispl.bin
++		echo "tispl.bin copied"
++	else
++		echo "tispl.bin file not found"
++	fi
++
++	echo ""
++
++	echo ""
++
++	#copy boot files out of board support
++	if [ "$SPL_R5" != "" ] ; then
++		cp $BOOTFILEPATH/$SPL_R5 $PATH_TO_SDBOOT/tiboot3.bin
++		echo "tiboot3.bin copied"
++	else
++		echo "tiboot3.bin file not found"
++	fi
++
++	echo ""
++
++	echo ""
++
+ 	if [ "$BOOTIMG" != "" ] ; then
+ 		cp $BOOTFILEPATH/$BOOTIMG $PATH_TO_SDBOOT/u-boot.img
+ 		echo "u-boot.img copied"
+-- 
+1.9.1
 
 
