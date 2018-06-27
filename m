@@ -1,41 +1,43 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 6C89E529CE
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id CECAD529F0
 	for <meta-arago@arago-project.org>;
 	Wed, 27 Jun 2018 17:23:20 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5RHNEhA027164
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w5RHNEQw103534
 	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 12:23:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1530120194;
-	bh=e5Beearl8lxZFV7KjAmJi+DEZ+3BFoG7H3TAHugJJ1E=;
-	h=From:To:CC:Subject:Date;
-	b=R3xbA2Eu4oTWXlcKbkge5sFi+w+/YymzxIS7XK2t6zwkuOhJ9R3yDv6zjKBvW6h1v
-	4MUr3NMpF9Smp7/7GvRh++87YrstebV/5yFOGTlBg0wJ2xwSzqtfXsQjZYNhXDdg4M
-	6iTLRr3jNXVHznHJO0WmFVp+i6T6QGj1kKR61aqc=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RHNEHl029021
+	bh=R/kzIh/TWWotTLrbZMeLxRxA0VvWuPM4JhC5pTkqRJI=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=grltGQNOKf6eVeHT8sHAVGGCjcTQkcKsND6hMUFdU7MAp2oEqel+sJUueim8PZJQl
+	BHIsdMyNVf5jNSThrf9XUDbLFs+asqE+XdbLSDp/cP2KsqlaPkhI13hardc7axKJSl
+	DelUk6BOowtKJqlnGT4tzKYmV3N7yL6g0Ej0up7w=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RHNEsF026634
 	for <meta-arago@arago-project.org>; Wed, 27 Jun 2018 12:23:14 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 27 Jun 2018 12:23:13 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 27 Jun 2018 12:23:14 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Wed, 27 Jun 2018 12:23:13 -0500
+	Transport; Wed, 27 Jun 2018 12:23:14 -0500
 Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RHNDF6012629;
-	Wed, 27 Jun 2018 12:23:13 -0500
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w5RHNDF8012629;
+	Wed, 27 Jun 2018 12:23:14 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 27 Jun 2018 13:11:50 -0400
-Message-ID: <1530119512-30012-1-git-send-email-j-stiffler@ti.com>
+Date: Wed, 27 Jun 2018 13:11:52 -0400
+Message-ID: <1530119512-30012-3-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1530119512-30012-1-git-send-email-j-stiffler@ti.com>
+References: <1530119512-30012-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko/master][PATCH 1/3] tisdk-image: enable multiple SPL images
+Subject: [rocko/master][PATCH 3/3] tisdk-image: enhance cleanup of image
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,44 +50,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Jun 2018 17:23:21 -0000
+X-List-Received-Date: Wed, 27 Jun 2018 17:23:22 -0000
 Content-Type: text/plain
 
-* am65xx-evm requires 2 SPL images, one for A53 and one for R5.
+* The upstream image class is creating many more directories and file
+  by default in an image.
+* As this SDK image is not a filesystem, we do not need these
+  defaults.
+* Clean up these directories and files using a customizable list.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-distro/classes/tisdk-image.bbclass | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ meta-arago-distro/classes/tisdk-image.bbclass | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
 
 diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
-index dc715a6..39e6461 100644
+index 39e6461..4ae3a80 100644
 --- a/meta-arago-distro/classes/tisdk-image.bbclass
 +++ b/meta-arago-distro/classes/tisdk-image.bbclass
-@@ -772,17 +772,17 @@ tisdk_image_build () {
-         done
-     fi
+@@ -859,12 +859,23 @@ tisdk_image_build () {
+     cp ${WORKDIR}/opkg.conf ${IMAGE_ROOTFS}/etc/
+ }
  
--    if [ "${DEPLOY_SPL_NAME}" != "" ]
--    then
-+    for spl_name in ${DEPLOY_SPL_NAME}
++TISDK_IMAGE_CLEANUP_DIRS ?= "var etc lib boot dev home media mnt proc run sbin sys tmp usr"
++TISDK_IMAGE_CLEANUP_FILES ?= "bin/bash bin/bash.bash bin/sh"
++
+ tisdk_image_cleanup () {
++    # Some extra files are now pulled in by the general image class, so remove
++    # them.
++    for file in ${TISDK_IMAGE_CLEANUP_FILES}
 +    do
-         # Copy the SPL image if it exists
--        if [ -e ${DEPLOY_DIR_IMAGE}/${DEPLOY_SPL_NAME} ]
-+        if [ -e ${DEPLOY_DIR_IMAGE}/$spl_name ]
-         then
--            cp ${DEPLOY_DIR_IMAGE}/${DEPLOY_SPL_NAME} ${prebuilt_dir}/
-+            cp ${DEPLOY_DIR_IMAGE}/$spl_name ${prebuilt_dir}/
-         else
--            echo "Could not find the SPL image"
-+            echo "Could not find the SPL image \"$spl_name\""
-             return 1
-         fi
--    fi
++        [ ! -f ${IMAGE_ROOTFS}/$file ] || rm -f ${IMAGE_ROOTFS}/$file
 +    done
++
+     # Move the var/etc directories which contains the opkg data used for the
+     # manifest (and maybe one day for online updates) to a hidden directory.
+-    mv ${IMAGE_ROOTFS}/var ${IMAGE_ROOTFS}/.var
+-    mv ${IMAGE_ROOTFS}/etc ${IMAGE_ROOTFS}/.etc
+-    mv ${IMAGE_ROOTFS}/lib ${IMAGE_ROOTFS}/.lib
++    for dir in ${TISDK_IMAGE_CLEANUP_DIRS}
++    do
++        [ ! -d ${IMAGE_ROOTFS}/$dir ] || mv ${IMAGE_ROOTFS}/$dir ${IMAGE_ROOTFS}/.$dir
++    done
+ }
  
-     if [ "${DEPLOY_SPL_UART_NAME}" != "" ]
-     then
+ license_create_manifest() {
 -- 
 2.7.4
 
