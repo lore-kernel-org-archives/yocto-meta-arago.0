@@ -1,43 +1,42 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 72360529C0
+Return-Path: <d-senicic1@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 5DBFB529C0
 	for <meta-arago@arago-project.org>;
-	Mon,  2 Jul 2018 12:35:50 +0000 (UTC)
+	Mon,  2 Jul 2018 18:10:19 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w62CZigm114031
-	for <meta-arago@arago-project.org>; Mon, 2 Jul 2018 07:35:44 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w62IAD9v099512
+	for <meta-arago@arago-project.org>; Mon, 2 Jul 2018 13:10:13 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1530534944;
-	bh=AzVwrSLIxOsayNeRQKoA02zVaVrtAogIavwM08+QHV8=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=KJ1wG3FqeKF+IZWZuP+QbOvb+uhfUQ4gGz9m0vkZCMh2ceF7MVRpatiMZXqNPEUOY
-	8NLHLKC+Q1ObW725O87nu2MkHBoQvl5bJPUH0Qq2VJif3giDBpoHosmB97GsFJOC9p
-	dwjGU/0qcXkd5wqKxQHCfSmG/mu2ywSVZzLOk8Nc=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w62CZiC9023014
-	for <meta-arago@arago-project.org>; Mon, 2 Jul 2018 07:35:44 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1530555013;
+	bh=gEUzuDFnp51x9yv0jLZk2zFAeX7Eqsugp1QPiMHsYN0=;
+	h=From:To:CC:Subject:Date;
+	b=lE4CbZSjBpeeB/ogWVdPdtj7bjwXuSUoIJ0xMQ22v6QUU111UyY5KrDp1z/tECxYS
+	eLx+VQVgTBgVfYvzwTjcMNB3nNZIsAqtTmK3S2RElhTrauODAV4SNhUVJJ6hUO/2W5
+	6D70e6aGeiGqmEvb2M/9ZbREAjtqDan66OjdzH8o=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w62IADXP032630
+	for <meta-arago@arago-project.org>; Mon, 2 Jul 2018 13:10:13 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Mon, 2 Jul 2018 07:35:43 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 2 Jul 2018 13:10:12 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Mon, 2 Jul 2018 07:35:43 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w62CZh8f025417;
-	Mon, 2 Jul 2018 07:35:43 -0500
-To: Yuan Zhao <yuanzhao@ti.com>, <meta-arago@arago-project.org>
-References: <20180627213825.97575-1-yuanzhao@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <743edfa0-e26a-5906-841f-34273f631f78@ti.com>
-Date: Mon, 2 Jul 2018 08:35:43 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.8.0
+	Transport; Mon, 2 Jul 2018 13:10:12 -0500
+Received: from UDA0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w62IACfv014804;
+	Mon, 2 Jul 2018 13:10:12 -0500
+From: Djordje Senicic <x0157990@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 2 Jul 2018 14:10:07 -0400
+Message-ID: <1530555007-22337-1-git-send-email-x0157990@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <20180627213825.97575-1-yuanzhao@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [PATCH v2] ocl: update version to 01.01.15.02
+Cc: d-senicic1@ti.com, Djordje Senicic <x0157990@ti.com>
+Subject: [meta-processor-sdk][PATCH] tidl: Add tidl-demos and tidl-utils to opencl packagegroups
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,169 +49,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jul 2018 12:35:50 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Mon, 02 Jul 2018 18:10:19 -0000
+Content-Type: text/plain
 
-Denys,
+* tidl-utils: ARM and x86 binary utilities, like tidl-viewer
+* tidl-demos: System level demo, like tidl-examples package
 
-Can you apply this to the ti2018.01 branch?
+Signed-off-by: Djordje Senicic <x0157990@ti.com>
+---
+ .../packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bbappend   | 2 +-
+ recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bbappend     | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-
-Thank you,
-
-Jake
-
-
-On 6/27/2018 5:38 PM, Yuan Zhao wrote:
-> Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
-> ---
->   .../recipes-ti/includes/arago-paths.inc            |  2 ++
->   meta-arago-extras/recipes-ti/ocl/ocl.inc           |  4 +--
->   .../recipes-ti/ocl/opencl-monitor-ipu_git.bb       |  4 ++-
->   .../recipes-ti/ocl/opencl-monitor_git.bb           |  6 +++-
->   .../recipes-ti/ocl/opencl-tidl-fw_git.bb           | 38 ++++++++++++++++++++++
->   5 files changed, 50 insertions(+), 4 deletions(-)
->   create mode 100644 meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
->
-> diff --git a/meta-arago-extras/recipes-ti/includes/arago-paths.inc b/meta-arago-extras/recipes-ti/includes/arago-paths.inc
-> index a652df08..5a2efaff 100644
-> --- a/meta-arago-extras/recipes-ti/includes/arago-paths.inc
-> +++ b/meta-arago-extras/recipes-ti/includes/arago-paths.inc
-> @@ -4,8 +4,10 @@ export LIBARCH_INSTALL_DIR_RECIPE    = "${installdir}/ti-libarch-tree"
->   export LINALG_INSTALL_DIR_RECIPE     = "${installdir}/ti-linalg-tree"
->   export LLVM_RTOS_INSTALL_DIR_RECIPE  = "${installdir}/llvm-rtos-tree"
->   export OCL_RTOS_INSTALL_DIR_RECIPE   = "${installdir}/ti-opencl-rtos-tree"
-> +export OCL_TIDL_FW_INSTALL_DIR_RECIPE   = "${installdir}/ti-opencl-tidl-fw-tree"
->   
->   export LIBARCH_INSTALL_DIR    = "${STAGING_DIR_TARGET}${LIBARCH_INSTALL_DIR_RECIPE}"
->   export LINALG_INSTALL_DIR     = "${STAGING_DIR_TARGET}${LINALG_INSTALL_DIR_RECIPE}"
->   export LLVM_RTOS_INSTALL_DIR  = "${STAGING_DIR_TARGET}${LLVM_RTOS_INSTALL_DIR_RECIPE}"
->   export OCL_RTOS_INSTALL_DIR   = "${STAGING_DIR_TARGET}${OCL_RTOS_INSTALL_DIR_RECIPE}"
-> +export OCL_TIDL_FW_INSTALL_DIR   = "${STAGING_DIR_TARGET}${OCL_TIDL_FW_INSTALL_DIR_RECIPE}"
-> diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> index edde12b2..1fd705da 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> +++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> @@ -1,4 +1,4 @@
-> -PV = "1.1.15.1"
-> +PV = "1.1.15.2"
->   INC_PR = "r0"
->   
->   LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
-> @@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
->   OCL_GIT_PROTOCOL = "git"
->   OCL_GIT_BRANCH = "master"
->   
-> -OCL_SRCREV = "5b77a9c0ac39985430f11ff9b80d3122d11e261c"
-> +OCL_SRCREV = "84f2e36f38eca46c6c376bacd757d45f2e5733f1"
->   
->   BRANCH = "${OCL_GIT_BRANCH}"
->   SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> index d560744a..61d5cad0 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> @@ -3,7 +3,7 @@ HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
->   LICENSE = "BSD"
->   
->   include ocl.inc
-> -require recipes-ti/includes/ti-paths.inc
-> +require recipes-ti/includes/arago-paths.inc
->   
->   PR = "${INC_PR}.0"
->   
-> @@ -17,6 +17,7 @@ DEPENDS = " common-csl-ip-rtos \
->               ti-pdk-build-rtos \
->               ti-cgt-arm-native \
->               util-linux-native \
-> +            opencl-tidl-fw \
->   "
->   
->   COMPATIBLE_MACHINE = "am57xx-evm|am57xx-hs-evm"
-> @@ -38,6 +39,7 @@ export XDC_DIR = "${XDC_INSTALL_DIR}"
->   export TI_OCL_M4_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/ti-cgt-arm"
->   export CSL_LIB_M4 = "${PDK_DIR}/packages/ti/csl/lib/am572x/m4/release/ti.csl.aem4"
->   export PM_HAL_LIB_M4 = "$(PDK_DIR)/packages/ti/drv/pm/lib/am572x/m4/release/pm_hal.aem4"
-> +export OCL_TIDL_FW_DIR = "${OCL_TIDL_FW_INSTALL_DIR}"
->   
->   ALTERNATIVE_${PN} = "dra7-ipu1-fw.xem4"
->   ALTERNATIVE_LINK_NAME[dra7-ipu1-fw.xem4] = "${base_libdir}/firmware/dra7-ipu1-fw.xem4"
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> index 50a5270e..b2f9d988 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> @@ -3,7 +3,7 @@ HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
->   LICENSE = "BSD"
->   
->   include ocl.inc
-> -require recipes-ti/includes/ti-paths.inc
-> +require recipes-ti/includes/arago-paths.inc
->   
->   PR = "${INC_PR}.0"
->   
-> @@ -42,6 +42,9 @@ DEPENDS_append_k2e  = " multiprocmgr-rtos \
->                               rm-lld-rtos \
->   "
->   
-> +DEPENDS_append_dra7xx = " opencl-tidl-fw \
-> +"
-> +
->   COMPATIBLE_MACHINE = "dra7xx|keystone"
->   PACKAGE_ARCH = "${MACHINE_ARCH}"
->   
-> @@ -75,6 +78,7 @@ export GDB_SERVER_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/gdbc6x"
->   export AET_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/ctoolslib/aet"
->   export X86_LLVM_DIR = "${STAGING_DIR_NATIVE}/usr"
->   export XDCPATH = "${S};${IPC_DIR}/packages;${BIOS_DIR}/packages;${EDMA3LLD_DIR}/packages;${FC_DIR}/packages;${XDAIS_DIR}/packages"
-> +export OCL_TIDL_FW_DIR = "${OCL_TIDL_FW_INSTALL_DIR}"
->   
->   do_install_append_dra7xx() {
->   	for i in 1 2; do mv ${D}${base_libdir}/firmware/dra7-dsp$i-fw.xe66 ${D}${base_libdir}/firmware/dra7-dsp$i-fw.xe66.${BPN}; done
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-> new file mode 100644
-> index 00000000..80c7021a
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-> @@ -0,0 +1,38 @@
-> +SUMMARY = "OpenCL TIDL firmware for AM57xx"
-> +
-> +LICENSE = "TI-TFL"
-> +LIC_FILES_CHKSUM = "file://LICENSE.ti;md5=082a028431c455252c1e1d3d1021d382"
-> +
-> +PV = "01.00.00.02"
-> +PR = "r0"
-> +
-> +require recipes-ti/includes/arago-paths.inc
-> +
-> +COMPATIBLE_MACHINE = "dra7xx"
-> +
-> +PACKAGE_ARCH = "${MACHINE_ARCH}"
-> +
-> +GIT_URI      = "git://git.ti.com/opencl/opencl-firmware.git"
-> +GIT_PROTOCOL = "git"
-> +BRANCH       = "master"
-> +SRCREV       = "3b2dca5cb5718db93f7742186839591188c46b25"
-> +SRC_URI      = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +TARGET = "eve_firmware.bin ocl_tidl_dsp.lib"
-> +
-> +do_install() {
-> +    install -d ${D}${OCL_TIDL_FW_INSTALL_DIR_RECIPE}
-> +    for f in ${TARGET}; do
-> +	install -m 0644 ${S}/$f ${D}${OCL_TIDL_FW_INSTALL_DIR_RECIPE}/$f
-> +    done
-> +}
-> +
-> +FILES_${PN} += "${OCL_TIDL_FW_INSTALL_DIR_RECIPE}"
-> +
-> +INSANE_SKIP_${PN} = "arch"
-> +
-> +INHIBIT_PACKAGE_STRIP = "1"
-> +INHIBIT_SYSROOT_STRIP = "1"
-> +INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bbappend
+index 694fa75..35e362e 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bbappend
+@@ -1,3 +1,3 @@
+ PR_append = ".tisdk0"
+ 
+-UTILS_append_am57xx-evm = " tidl-examples-dev"
++UTILS_append_am57xx-evm = " tidl-examples-dev tidl-demos-dev"
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bbappend
+index 782affe..bf50cea 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bbappend
+@@ -1,6 +1,6 @@
+ PR_append = ".tisdk0"
+ 
+-TIDL_PKGS = "tidl-examples-dev tidl-viewer"
++TIDL_PKGS = "tidl-examples-dev tidl-viewer tidl-utils tidl-demos-dev"
+ 
+ EXTRA_PKGS_append_am57xx-evm = " ${TIDL_PKGS}"
+ EXTRA_PKGS_append_am57xx-hs-evm = " ${TIDL_PKGS}"
+-- 
+1.9.1
 
 
