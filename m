@@ -1,41 +1,42 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 7187B529AE
+Return-Path: <h-gou@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 03373529BC
 	for <meta-arago@arago-project.org>;
-	Mon,  9 Jul 2018 16:12:54 +0000 (UTC)
+	Mon,  9 Jul 2018 19:11:00 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w69GClfg055568
-	for <meta-arago@arago-project.org>; Mon, 9 Jul 2018 11:12:47 -0500
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w69JAsYN106278
+	for <meta-arago@arago-project.org>; Mon, 9 Jul 2018 14:10:54 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1531152767;
-	bh=Bo2G1o4zVOHJa/GAdm/N65mUgUdcyEPQfujMiidJjcY=;
+	s=ti-com-17Q1; t=1531163454;
+	bh=IXv90AM9Cgip0KbFyvTFt//+zku2T3Jg5oG8TQwyJ5U=;
 	h=From:To:CC:Subject:Date;
-	b=JL2GWeMf9W3E9GMYlyezf6aWZnlO8wcllpnzjHjyWG5WzmX+phgIkyNeAc/YEyxaW
-	xza0UaISmcGco5ljqBXICnYoASWkmPHy8OH3Ej5jJ9gPFwPqHgTe9YQuNJA7irdSki
-	0HJRRv41TiIeopsu55AUAE9yIrMxiOJDnoH1Xc/Y=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w69GClBK021393
-	for <meta-arago@arago-project.org>; Mon, 9 Jul 2018 11:12:47 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	b=NcAWnVbzoYZbZpumRp0GaL/ILQ8L9pWa3FIq0SKe9sFzcoVXJrKewp2huH1rAhJOt
+	wIrnmwtHipOhFW+SEveRSjjr1ovnkhIKpyqby605/mGGHi5gsfhBXuyoA5ap4g9Y2Z
+	bUHPIIc+QJNhYnRlazto5WP4CLYbAKBzkP/BQerY=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w69JAsc6006457
+	for <meta-arago@arago-project.org>; Mon, 9 Jul 2018 14:10:54 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Mon, 9 Jul 2018 11:12:47 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 9 Jul 2018 14:10:53 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Mon, 9 Jul 2018 11:12:47 -0500
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Mon, 9 Jul 2018 14:10:53 -0500
+Received: from uda0271529.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w69GChot030270;
-	Mon, 9 Jul 2018 11:12:45 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w69JArx8005908;
+	Mon, 9 Jul 2018 14:10:53 -0500
+From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 9 Jul 2018 12:01:18 -0400
-Message-ID: <1531152078-7592-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
+Date: Mon, 9 Jul 2018 15:10:51 -0400
+Message-ID: <1531163451-4172-1-git-send-email-a0271529@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [ti2018.01/rocko/master][PATCH] meta-toolchain-arago-qte: update qt.conf
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [ti2018.01/rocko/master] [PATCH] matrix-gui-aps-git: bump SRCREV for fixes and additions
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,48 +49,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jul 2018 16:12:54 -0000
+X-List-Received-Date: Mon, 09 Jul 2018 19:11:01 -0000
 Content-Type: text/plain
 
-* The qt.conf now supports/requires the sysroot option.
-* Update relevant paths accordingly.
+* arm_multimedia_*: script fix for am3/am4 HS EVMs and am438x EPOS EVM
+* video_graphics_demo: add as a new test app
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-index 9aa29ca..fdca2c3 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-@@ -23,8 +23,9 @@ toolchain_create_sdk_env_script_append() {
- 	echo 'export OE_QMAKE_CXX=$CXX' >> $script
- 	echo 'export OE_QMAKE_LINK=$CXX' >> $script
- 	echo 'export OE_QMAKE_AR=$AR' >> $script
--	echo 'export OE_QMAKE_LIBDIR_QT=$SDK_PATH_TARGET${libdir}' >> $script
--	echo 'export OE_QMAKE_INCDIR_QT=$SDK_PATH_TARGET${includedir}/${QT_DIR_NAME}' >> $script
-+	echo 'export OE_QMAKE_PREFIX_QT=${prefix}' >> $script
-+	echo 'export OE_QMAKE_LIBDIR_QT=${libdir}' >> $script
-+	echo 'export OE_QMAKE_INCDIR_QT=${includedir}/${QT_DIR_NAME}' >> $script
- 	echo 'export OE_QMAKE_HOST_BINDIR_QT=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}' >> $script
- 	echo 'export OE_QMAKE_MOC=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}moc${QT_BIN_SUFFIX}' >> $script
- 	echo 'export OE_QMAKE_UIC=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}uic${QT_BIN_SUFFIX}' >> $script
-@@ -44,11 +45,12 @@ toolchain_create_sdk_env_script_append() {
- 	qt_conf="${SDK_OUTPUT}/${SDKPATHNATIVE}${bindir_nativesdk}/${QT_BIN_PREFIX}qt.conf"
- 	touch $qt_conf
- 	echo '[Paths]' >> $qt_conf
--	echo 'Prefix = $(SDK_PATH_TARGET)' >> $qt_conf
-+	echo 'Prefix = $(OE_QMAKE_PREFIX_QT)' >> $qt_conf
- 	echo 'Libraries = $(OE_QMAKE_LIBDIR_QT)' >> $qt_conf
- 	echo 'Headers = $(OE_QMAKE_INCDIR_QT)' >> $qt_conf
- 	echo 'HostPrefix = $(SDK_PATH_NATIVE)' >> $qt_conf
- 	echo 'HostBinaries = $(OE_QMAKE_HOST_BINDIR_QT)' >> $qt_conf
-+	echo 'Sysroot = $(SDK_PATH_TARGET)' >> $qt_conf
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+index ff90a66..210be27 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
  
- 	# make a symbolic link to mkspecs for compatibility with Qt SDK and QTCreator
- 	(cd ${SDK_OUTPUT}/${SDKTARGETSYSROOT}; ln -sf .${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs mkspecs;)
+ SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "2ef38ec90f2523f138fb54f11f9a895145d88522"
++SRCREV = "65fee8957447ae4e403ad324acf735d811b2c412"
+ BRANCH = "master"
+-INC_PR = "r51"
++INC_PR = "r52"
+ 
+ # Pull in the base package for installing matrix applications
+ require matrix-gui-apps.inc
 -- 
-2.7.4
+1.9.1
 
 
