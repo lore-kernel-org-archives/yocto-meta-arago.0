@@ -1,41 +1,30 @@
-Return-Path: <yuanzhao@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 7C83052978
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 4AA1B529C0
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Jul 2018 22:21:22 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w6CMLFJr119990
-	for <meta-arago@arago-project.org>; Thu, 12 Jul 2018 17:21:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1531434075;
-	bh=zy/1qDEbAIGXyU6k42V/LEScKI8WavlqEbj2xJdFn2c=;
-	h=From:To:CC:Subject:Date;
-	b=nmOM3SpqgEbVvtHlzNd/XzUGNxDKa8DghWTULlmBiBDeQRDRICEx0iIGQB6Y9cp76
-	i5x23eHhdmSYlqPhnMyauWl9W4mvp5sDrLyfrhS2UjJpZIwWdn7rtTo3Zdz/25Z3E2
-	eau36Vf2otug1YvHv6Cz5XXrgqOabJs0sazoggKg=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6CMLFWD013184
-	for <meta-arago@arago-project.org>; Thu, 12 Jul 2018 17:21:15 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Thu, 12 Jul 2018 17:21:14 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Thu, 12 Jul 2018 17:21:14 -0500
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6CMLEDu012422;
-	Thu, 12 Jul 2018 17:21:14 -0500
-From: Yuan Zhao <yuanzhao@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 12 Jul 2018 17:21:10 -0500
-Message-ID: <20180712222110.144900-1-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.14.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] ocl: update version to 01.01.15.03
+	Fri, 13 Jul 2018 01:06:45 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C149320DEC;
+	Fri, 13 Jul 2018 01:06:38 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 8Bx5RUpETsZ8; Fri, 13 Jul 2018 01:06:38 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-85-143.washdc.fios.verizon.net
+	[100.15.85.143])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A019E20DD7;
+	Fri, 13 Jul 2018 01:06:37 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 59204163512;
+	Thu, 12 Jul 2018 21:06:37 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Thu, 12 Jul 2018 21:06:36 -0400
+Message-Id: <1531443996-23038-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [rocko/master][PATCH] packagegroup-*-addons*: pull pru-icss packages for am65xx-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,34 +37,66 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jul 2018 22:21:24 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 13 Jul 2018 01:06:45 -0000
 
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-ti/ocl/ocl.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb      | 7 +++++--
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb  | 6 +++++-
+ 2 files changed, 10 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-index 1fd705da..87a3e862 100644
---- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
-+++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-@@ -1,4 +1,4 @@
--PV = "1.1.15.2"
-+PV = "1.1.15.3"
- INC_PR = "r0"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index 6ed5aff..142e4b3 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install sources for additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r32"
++PR = "r33"
  
- LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
-@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
- OCL_GIT_PROTOCOL = "git"
- OCL_GIT_BRANCH = "master"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
--OCL_SRCREV = "84f2e36f38eca46c6c376bacd757d45f2e5733f1"
-+OCL_SRCREV = "84da661abc3f9398bca9497aa13ec42604f7efd8"
+@@ -32,11 +32,14 @@ UTILS_append_ti43x = " \
+     pru-icss-src \
+ "
  
- BRANCH = "${OCL_GIT_BRANCH}"
- SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
++UTILS_append_k3 = " \
++    pru-icss-src \
++"
++
+ EXTRA_LIBS = ""
+ 
+ EXTRA_LIBS_append_omap-a15 = " \
+     cmem-mod-src \
+-    pru-icss-src \
+     uio-module-drv-src \
+     big-data-ipc-demo-linux-src \
+ "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 94303e3..08df10e 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r67"
++PR = "r68"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -63,6 +63,10 @@ UTILS_append_omap-a15 = " mmc-utils \
+                           uio-module-drv-test \
+ "
+ 
++UTILS_append_k3 = " mmc-utils \
++                    pru-icss \
++"
++
+ UTILS_append_omapl138 = " ti-ipc-rtos-fw"
+ 
+ UTILS_append_dra7xx = " can-utils \
 -- 
-2.14.1
+2.7.4
 
 
