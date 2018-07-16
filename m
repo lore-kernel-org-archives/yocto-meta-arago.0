@@ -1,41 +1,43 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id B82D5529AE
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 0020F529BC
 	for <meta-arago@arago-project.org>;
 	Mon, 16 Jul 2018 18:37:55 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w6GIbmTB054236
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w6GIbmdn027554
 	for <meta-arago@arago-project.org>; Mon, 16 Jul 2018 13:37:48 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1531766268;
-	bh=xwFq4WAjR5g+Kv7Z5ONT3fBBJo4khpB2Yhw8wWNTUTc=;
-	h=From:To:Subject:Date;
-	b=nfe0ueBFJtTptLVvTrx21iU6oKGfw1JSh9I52P/xZAVloOpyjUpAO+r9d/F7yHQOM
-	GYSzqJwi93RVVgPB9P1pon+NnycKe8zRbx0JO7O8Z5mp3HgGv1jo4M/t3SqFJ+LNDO
-	m5u5DNxE5vApp9iCaVQdEYoq25nw+qklkjzyvCx0=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6GIbmq4001776
+	bh=hpP4KZlxlwd6Ec0GypCnZAWGZh8ObnyN1TqXBEYQGN8=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=fdVe0VqhLD/TjeCRC5gPn7mx+PEFgt9BgBjw/x13oONlGjZdH5kRE9gNRYliaYScv
+	6IlKV6eGzNPjby/0VCHib61Eblcc5WQoo+80jazw8fwve37huFTRluGDTeZD9abRWW
+	PrcE1YaFLjYHxrRmGm3KKc7Aa05X7zXq7ZgUVXgs=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6GIbmGr010468
 	for <meta-arago@arago-project.org>; Mon, 16 Jul 2018 13:37:48 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
 	Mon, 16 Jul 2018 13:37:48 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
 	Transport; Mon, 16 Jul 2018 13:37:48 -0500
 Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6GIbm9g023924
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6GIbm9h023924
 	for <meta-arago@arago-project.org>; Mon, 16 Jul 2018 13:37:48 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 16 Jul 2018 14:37:43 -0400
-Message-ID: <1531766264-22936-1-git-send-email-e-ruei1@ti.com>
+Date: Mon, 16 Jul 2018 14:37:44 -0400
+Message-ID: <1531766264-22936-2-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1531766264-22936-1-git-send-email-e-ruei1@ti.com>
+References: <1531766264-22936-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [matrix-gui-v2-apps][PATCH 1/2] qt5_deform: change from full-screen mode to window mode
+Subject: [matrix-gui-v2-apps][PATCH 2/2] videoanalytics_opencv_opencl_Opengl_demo: use qwindow-compositor instead of Weston
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,28 +53,25 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Mon, 16 Jul 2018 18:37:56 -0000
 Content-Type: text/plain
 
-This may be a tentative change to work aroubd the Weston 2.0 full-screen
-dispaly issue. It might be a permanent chnage because the full-screen
-is no longer required with Weston/Wayland window system.
+This is a tentattive hack to run the demo on qwindow-compositor instead of
+Weston to work around the Weston2.0.0 full-screen pop-up dispaly issue
+
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- qt5_apps/qt5_deform/qt5_deform.desktop | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../videoanalytics_opencv_opencl_opengl_demo.desktop                     | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/qt5_apps/qt5_deform/qt5_deform.desktop b/qt5_apps/qt5_deform/qt5_deform.desktop
-index 9ad1d6f..ffe8e8a 100644
---- a/qt5_apps/qt5_deform/qt5_deform.desktop
-+++ b/qt5_apps/qt5_deform/qt5_deform.desktop
-@@ -4,7 +4,7 @@
- Name=Deform
- GenericName=Demo App
- Icon=/usr/share/matrix-gui-2.0/apps/images/qt-icon.png
--Exec=/usr/share/qt5/examples/widgets/painting/deform/deform -small-screen
-+Exec=/usr/share/qt5/examples/widgets/painting/deform/deform
- Type=Application
- Categories=Qt5
+diff --git a/videoanalytics_apps/videoanalytics_opencv_opencl_opengl_demo/videoanalytics_opencv_opencl_opengl_demo.desktop b/videoanalytics_apps/videoanalytics_opencv_opencl_opengl_demo/videoanalytics_opencv_opencl_opengl_demo.desktop
+index 90931c2..b4cc6f3 100644
+--- a/videoanalytics_apps/videoanalytics_opencv_opencl_opengl_demo/videoanalytics_opencv_opencl_opengl_demo.desktop
++++ b/videoanalytics_apps/videoanalytics_opencv_opencl_opengl_demo/videoanalytics_opencv_opencl_opengl_demo.desktop
+@@ -7,4 +7,5 @@ Type=Application
+ Exec=qt-opencv-opencl-opengl-multithreaded
+ Categories=videoanalytics
  ProgramType=gui
++WinType=qwindow
+ X-MATRIX-Description=/usr/share/matrix-gui-2.0/apps/videoanalytics_opencv_opencl_opengl_demo/desc_videoanalytics_opencv_opencl_opengl_demo.html
 -- 
 1.9.1
 
