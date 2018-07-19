@@ -1,43 +1,41 @@
 Return-Path: <m-radhakrishnan2@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id ABA43529AE
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 4AACE52987
 	for <meta-arago@arago-project.org>;
-	Thu, 19 Jul 2018 17:29:00 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w6JHSroO023048
-	for <meta-arago@arago-project.org>; Thu, 19 Jul 2018 12:28:53 -0500
+	Thu, 19 Jul 2018 17:30:22 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w6JHUF5o001200
+	for <meta-arago@arago-project.org>; Thu, 19 Jul 2018 12:30:15 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1532021333;
-	bh=1MfOM4kC9TNOWuwP1GBUbrIOoEMJ93qSS7sThn/EE1o=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=msilt9rXqZEC+d00ccbPQ4FQvJ/DwgBMYERA8uv0dXnCePWc34ib+JsDJBXiysoej
-	JcBf/JWQxQ2ggnCZDhl+TwoxTm4UGX+HvhmdXPP4qhtXxx998pUzseR6h6grvwX9Qy
-	xgCMD75wQplebEhFBFp2gso4Ayqz1FyM/oYlIvhQ=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6JHSrpx021882
-	for <meta-arago@arago-project.org>; Thu, 19 Jul 2018 12:28:53 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1532021415;
+	bh=4wuBxfVUzfU3van5USE64N3AsRHtTq/sqwo1RhcaTx0=;
+	h=From:To:Subject:Date;
+	b=bTPPC/In+pkSn0QDc7UmNPCOeAW+Z6n+A9aVWgscxoNdZzFJA/H+sHX9Euod3C0e5
+	+GqD86ozUICEQLC48JzvLpagA8EG2OVYEJQSrx5zBCe3yZtTp/Tle/zZyk2XPTNmuS
+	ZSTqHcPmQEZYP/GJQXzmQkX8NUYE3g2oDh3zse/w=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6JHUFqt022481
+	for <meta-arago@arago-project.org>; Thu, 19 Jul 2018 12:30:15 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Thu, 19 Jul 2018 12:28:52 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 19 Jul 2018 12:30:15 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Thu, 19 Jul 2018 12:28:52 -0500
+	Transport; Thu, 19 Jul 2018 12:30:15 -0500
 Received: from uda0875154a.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6JHSpg9028108
-	for <meta-arago@arago-project.org>; Thu, 19 Jul 2018 12:28:52 -0500
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6JHUF9L028381
+	for <meta-arago@arago-project.org>; Thu, 19 Jul 2018 12:30:15 -0500
 From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 19 Jul 2018 13:28:49 -0400
-Message-ID: <1532021329-48972-5-git-send-email-m-radhakrishnan2@ti.com>
+Date: Thu, 19 Jul 2018 13:30:12 -0400
+Message-ID: <1532021413-49029-1-git-send-email-m-radhakrishnan2@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1532021329-48972-1-git-send-email-m-radhakrishnan2@ti.com>
-References: <1532021329-48972-1-git-send-email-m-radhakrishnan2@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master][meta-processor-sdk][PATCH 4/4] jailhouse-examples-rtos: SRCREV bump
+Subject: [master][PATCH] SRCREV updates for RTOS (posix-smp)
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,31 +48,17 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jul 2018 17:29:01 -0000
+X-List-Received-Date: Thu, 19 Jul 2018 17:30:22 -0000
 Content-Type: text/plain
 
-Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
----
- recipes-support/jailhouse/jailhouse-examples-rtos_git.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+SRCREV updates for Processor SDK RTOS 5.0 release
 
-diff --git a/recipes-support/jailhouse/jailhouse-examples-rtos_git.bb b/recipes-support/jailhouse/jailhouse-examples-rtos_git.bb
-index 3bcd331..c2d50de 100644
---- a/recipes-support/jailhouse/jailhouse-examples-rtos_git.bb
-+++ b/recipes-support/jailhouse/jailhouse-examples-rtos_git.bb
-@@ -6,10 +6,10 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/git/baremetal/soc/am572x/rules.mk;endline=
- 
- BRANCH = "master"
- SRC_URI = "git://git.ti.com/processor-sdk/jailhouse-inmate.git;branch=${BRANCH}"
--SRCREV = "8ccdfdf8761d2df8b0e8ae822dfc69128e988d09"
-+SRCREV = "4b17bc03df92aa8bf55a161d311cc2fccd0bc7ac"
- 
- PV = "1.0"
--PR = "r5"
-+PR = "r6"
- 
- require recipes-ti/includes/tisdk-paths.inc
- 
+Mahesh Radhakrishnan (1):
+  posix-smp-demo: SRCREV bump to 1.1.0.1
+
+ meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
 -- 
 1.9.1
 
