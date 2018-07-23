@@ -1,46 +1,42 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 93FBB52987
+Return-Path: <d-senicic1@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 5666C529AE
 	for <meta-arago@arago-project.org>;
-	Thu, 19 Jul 2018 17:36:30 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w6JHaNXu002310
-	for <meta-arago@arago-project.org>; Thu, 19 Jul 2018 12:36:23 -0500
+	Mon, 23 Jul 2018 18:38:54 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w6NIclH8033967
+	for <meta-arago@arago-project.org>; Mon, 23 Jul 2018 13:38:47 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1532021783;
-	bh=8+u8Zi3+C2N0gqStODAyYrbM9klbNc8W1VxOqBR01vI=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=wxMs6lLHg/S3MMknFshzd01n+KwWiDoQuqv15Iy1fHUewG6oXNJ+gESoreqYihooU
-	S3jcbVFfeZsOifAQK7CeMO6tTjCsxA5WiqUMaZyrnMYP1N5qMjtoLuu8rV2eybP2Ce
-	CT08yqy0qxGqznYAC2jTIoDIi4S+Ks962BOD3kA8=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6JHaNov003260
-	for <meta-arago@arago-project.org>; Thu, 19 Jul 2018 12:36:23 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1532371127;
+	bh=5lNXxYx8vc1LWd5yUpJUI312+yAtbJnS0Z5b3+Aw1c8=;
+	h=From:To:CC:Subject:Date;
+	b=zEUIqsNwvxrY9QlpHpAzzKVmuhc3FK7R3MYqHaDmus576BmuH+M8K1sOQ34+95EcP
+	OZOng/fquo+YKhskOo5SN4U17PzA8RxhJYRsNg4nDxU2H+Oh6QOMSNmTOjAI3ROh+v
+	5zPSI0YXXCIaz1kO3LnTX58GpHWd3vCPuzH22zyw=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6NIclJj007117
+	for <meta-arago@arago-project.org>; Mon, 23 Jul 2018 13:38:47 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Thu, 19 Jul 2018 12:36:23 -0500
-Received: from DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222]) by
-	DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222%18]) with mapi id
-	15.01.1466.003; Thu, 19 Jul 2018 12:36:23 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Radhakrishnan, Mahesh" <m-radhakrishnan2@ti.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [master][meta-processor-sdk][PATCH 3/4]
-	jailhouse: SRCREV bump
-Thread-Index: AQHUH4X91xS/UGA1bkOZRBmdpGDguqSWzozg
-Date: Thu, 19 Jul 2018 17:36:23 +0000
-Message-ID: <7b10b517c55b4e20b794bee5aa6ee41e@ti.com>
-References: <1532021329-48972-1-git-send-email-m-radhakrishnan2@ti.com>
-	<1532021329-48972-4-git-send-email-m-radhakrishnan2@ti.com>
-In-Reply-To: <1532021329-48972-4-git-send-email-m-radhakrishnan2@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.113.191]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Mon, 23 Jul 2018 13:38:47 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
+	Transport; Mon, 23 Jul 2018 13:38:47 -0500
+Received: from UDA0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6NIckvg000825;
+	Mon, 23 Jul 2018 13:38:46 -0500
+From: Djordje Senicic <x0157990@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 23 Jul 2018 14:38:44 -0400
+Message-ID: <1532371124-500-1-git-send-email-x0157990@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] [master][meta-processor-sdk][PATCH 3/4] jailhouse: SRCREV bump
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: d-senicic1@ti.com, Djordje Senicic <x0157990@ti.com>
+Subject: [meta-processor-sdk][PATCH] tidl-utils: Add tidl-utils to devkit
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,57 +49,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jul 2018 17:36:30 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 23 Jul 2018 18:38:54 -0000
+Content-Type: text/plain
 
-This change was already made  [1]. Please rebase you patches against the la=
-test.
+* Include tidl-utils package along with tidl-viewer into devkit
 
-- Jake
+Signed-off-by: Djordje Senicic <x0157990@ti.com>
+---
+ .../packagegroups/nativesdk-packagegroup-arago-sdk-host.bbappend      | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-[1] http://arago-project.org/git/projects/?p=3Dmeta-processor-sdk.git;a=3Dc=
-ommitdiff;h=3D78d25dcb555ccdf64e131f0b35a0b31111ba3f4d
+diff --git a/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bbappend b/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bbappend
+index 514d125..b0fafee 100644
+--- a/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bbappend
++++ b/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bbappend
+@@ -1,3 +1,3 @@
+-PR_append = ".tisdk0"
++PR_append = ".tisdk1"
+ 
+-EXTRA_TI_TOOLS_append = " nativesdk-tidl-viewer"
++EXTRA_TI_TOOLS_append = " nativesdk-tidl-viewer nativesdk-tidl-utils "
+-- 
+1.9.1
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Radhakrishnan, Mahesh
-> Sent: Thursday, July 19, 2018 1:29 PM
-> To: meta-arago@arago-project.org
-> Subject: [EXTERNAL] [meta-arago] [master][meta-processor-sdk][PATCH
-> 3/4] jailhouse: SRCREV bump
->=20
-> ---
->  recipes-support/jailhouse/jailhouse_git.bb | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->=20
-> diff --git a/recipes-support/jailhouse/jailhouse_git.bb b/recipes-
-> support/jailhouse/jailhouse_git.bb
-> index b1c88bd..6c5cd14 100644
-> --- a/recipes-support/jailhouse/jailhouse_git.bb
-> +++ b/recipes-support/jailhouse/jailhouse_git.bb
-> @@ -7,10 +7,10 @@ LIC_FILES_CHKSUM =3D
-> "file://COPYING;md5=3D9fa7f895f96bde2d47fd5b7d95b6ba4d"
->  BRANCH =3D "plsdk_am57xx"
->  SRC_URI =3D "git://git.ti.com/processor-sdk/jailhouse.git;branch=3D${BRA=
-NCH}"
->=20
-> -SRCREV =3D "238433e3f4203b23dc4bba9d09118a3608be1931"
-> +SRCREV =3D "2ad429b04f30a082f206e0083c398f018467ef1c"
->=20
-> -PV =3D "0.7"
-> -PR =3D "r1"
-> +PV =3D "0.8"
-> +PR =3D "r0"
->=20
->  PACKAGES =3D+ "${PN}-drivers ${PN}-firmware ${PN}-examples"
->  RDEPENDS_${PN} +=3D "${PN}-drivers ${PN}-firmware"
-> --
-> 1.9.1
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
