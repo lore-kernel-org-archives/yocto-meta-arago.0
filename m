@@ -1,42 +1,42 @@
 Return-Path: <d-senicic1@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 24990529AE
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 0E635529AE
 	for <meta-arago@arago-project.org>;
-	Tue, 24 Jul 2018 20:55:45 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w6OKtcIm029271
-	for <meta-arago@arago-project.org>; Tue, 24 Jul 2018 15:55:38 -0500
+	Tue, 24 Jul 2018 20:57:18 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w6OKvC2E048803
+	for <meta-arago@arago-project.org>; Tue, 24 Jul 2018 15:57:12 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1532465738;
-	bh=UFRreQoBZV7beHy3ReBkcm2bUz0B/+OsfV/xUPQNgfw=;
+	s=ti-com-17Q1; t=1532465832;
+	bh=8J5Lr07syoIpGs2mP+TDBQ5rrcFvpKyOgC0UhOaaWkM=;
 	h=From:To:CC:Subject:Date;
-	b=J2lCJZySBuBM2wehPcGEyHqsnMyqEmzx6yRZv/Z6W/w0AJDFYMYMYWF/3WxidenIU
-	cA4mTytDMABiGpR7zf0/n6jRRgY3ojDAl/5PzCI5wfcskZok5g9KOjC07oymDrTtf5
-	taw/lkNHnW6ib5NC9ORkqnR++CRY2wm4QwsDj8EI=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6OKtcNV024383
-	for <meta-arago@arago-project.org>; Tue, 24 Jul 2018 15:55:38 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	b=zA4kDNaz6SHbGPFsaeafq+GkeLfEDfYrJfu7j3H6iySJ94UQigDqoO94H3lHiILHY
+	oIpF7fIFkcDqwK4yqZWTxG0sEN6OpDL0IPVKR7B/1+1P6YAFXQyA+jb7OxxBYRCZ41
+	6kiQh0YpKKV/7GRv2rq2Fz4H9g0y84hQXOqJZK5A=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6OKvCFU022966
+	for <meta-arago@arago-project.org>; Tue, 24 Jul 2018 15:57:12 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Tue, 24 Jul 2018 15:55:37 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 24 Jul 2018 15:57:11 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Tue, 24 Jul 2018 15:55:37 -0500
+	Transport; Tue, 24 Jul 2018 15:57:11 -0500
 Received: from UDA0271529.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6OKtbAu025629;
-	Tue, 24 Jul 2018 15:55:37 -0500
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6OKvBF7027183;
+	Tue, 24 Jul 2018 15:57:11 -0500
 From: Djordje Senicic <x0157990@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 24 Jul 2018 16:55:35 -0400
-Message-ID: <1532465735-3184-1-git-send-email-x0157990@ti.com>
+Date: Tue, 24 Jul 2018 16:57:08 -0400
+Message-ID: <1532465828-3221-1-git-send-email-x0157990@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: d-senicic1@ti.com, Djordje Senicic <x0157990@ti.com>
-Subject: (No subject)
+Subject: [rocko/master][PATCHv2] tidl-api: Update test video clip (subject line fixed)
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,10 +49,8 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jul 2018 20:55:45 -0000
+X-List-Received-Date: Tue, 24 Jul 2018 20:57:19 -0000
 Content-Type: text/plain
-
-Subject: [meta-arago][rocko/master][PATCH] tidl-api: Update test video clip
 
 * Use real-life video clip and list of classes
 
