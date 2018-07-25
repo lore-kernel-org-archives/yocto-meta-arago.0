@@ -1,45 +1,43 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id C1BB952993
+Return-Path: <eyalreizer@gmail.com>
+Received: from mail-io0-f179.google.com (mail-io0-f179.google.com
+	[209.85.223.179])
+	by arago-project.org (Postfix) with ESMTPS id A10A6529B9
 	for <meta-arago@arago-project.org>;
-	Tue, 24 Jul 2018 23:48:34 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w6ONmRYr057145
-	for <meta-arago@arago-project.org>; Tue, 24 Jul 2018 18:48:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1532476107;
-	bh=57UcIrRiT68qocExByNl0Pl293kySTmeoipDzzqG1GU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=kFtBjgZtgcp9+HHmziPJEcUepnvjNBcEZu2byNv8o3MpY5Bil9fX+piGA+U6LT+YZ
-	xgpXBstTLReaFiOL1mEp4MpFn1iDldTPoO5qOaDDQ5VXL3fuWSZ2T4JSM5/feNtLmO
-	Ejgym6LRuPvh6T40Mujo0D2NFVbB/YnJWN7PE+dM=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6ONmRPl009323
-	for <meta-arago@arago-project.org>; Tue, 24 Jul 2018 18:48:27 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Tue, 24 Jul 2018 18:48:27 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Tue, 24 Jul 2018 18:48:27 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6ONmRoI031356;
-	Tue, 24 Jul 2018 18:48:27 -0500
-Date: Tue, 24 Jul 2018 19:47:01 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Senicic, Djordje" <d-senicic1@ti.com>
-Message-ID: <20180724234700.GB2269@beryl>
-References: <1532465828-3221-1-git-send-email-x0157990@ti.com>
-	<20180724224424.GN5506@beryl>
-	<dcd4002b5f8d4657afc3266067b53ee8@ti.com>
+	Wed, 25 Jul 2018 08:26:06 +0000 (UTC)
+Received: by mail-io0-f179.google.com with SMTP id y10-v6so5648836ioa.10
+	for <meta-arago@arago-project.org>;
+	Wed, 25 Jul 2018 01:26:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=wGHWzDquGBfCicniJgFXM8zu1tjgFv/5F1x3rCWYdU0=;
+	b=MqcHTCK2BTHKjOt8GjK7yBDavqeRNVTYdvRF5maP0SO5n1cToQCVteT1fVvGV6YEwo
+	oGCX/+69jpcID1IUWxLXkl1KVf5Rjz3j84c5u4uVNqBAa5TMgqy00D4I4WXSKz22fdke
+	UP/EFiMG+1C5jq9+lvS2LQcei7A2iVTKolugVjex9Jo6ac4L0aOIAxMogeQLxmOqGQ8d
+	bnCGR8Y6q6Pid0uq+5wOm6ritSAO9wYKlvg+fqVboPgxLK9jh/aa+v4RWzhhvqWngCkl
+	9ay1rVdf279s/sL8k76C7hbjFurAKpOzoXBkZ2FunC5E30sGWOp+jOKAfwldQ6zt/M2R
+	XDYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=wGHWzDquGBfCicniJgFXM8zu1tjgFv/5F1x3rCWYdU0=;
+	b=ChWcCmErUDXOh/sSagwoVDD/JJZsNcX1XtwgS5VeqPvCR28/kfiwBGmnNm5BJzjmne
+	7Xs8BLP4MsqYcL0aZToMswVNbgvZXUxXG67sAEvYjdTppwWfuRjSu5RMyrsKIEH1xU2G
+	WEwaurdcZRvy/iAGVcKFuAKmjSvDjWQOpdSyy/pHYFO4tpehUagcdhOK//8yEpMC6TEN
+	OZ4kCRjkFZnDClT4GBEGxKSHgtqBe8SyPtkcofJcTOH/+4dAx1QEbLe9RFd4ml5DWvql
+	xvXNB+N+10rthrtWr2A64LHDt7ai9EnhAwlu826nkEdv8Hs+XNbEKPe+ANhCEfIiyrlz
+	T1LQ==
+X-Gm-Message-State: AOUpUlGhnxielTADKYxI6eCyTkDM7Zt2c94BZEz7C8VlEpbGXc1Its6T
+	X8ocNgkQeT7eMbpu/nnuwsUm36d4irGTAmWtimc9WkS5
+X-Google-Smtp-Source: AAOMgpcAAHyNxP9XZVuuIPpQVmVXPFS4yORYojtUCg1SRqMwiJlUFtnzP8np8onv0ehsQTbyMtOaZfWPc54JwGCZGJA=
+X-Received: by 2002:a6b:9c09:: with SMTP id
+	f9-v6mr16146821ioe.179.1532507159039; 
+	Wed, 25 Jul 2018 01:25:59 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <dcd4002b5f8d4657afc3266067b53ee8@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [rocko/master][PATCHv2] tidl-api: Update test video clip (subject line fixed)
+From: Eyal Reizer <eyalreizer@gmail.com>
+Date: Wed, 25 Jul 2018 11:25:46 +0300
+Message-ID: <CAFVcGOdR=J3kbLkjEwLG1kXYeM_oeTuvspxyM5cRcRd=v06V3A@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: (No subject)
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,58 +50,19 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jul 2018 23:48:35 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 25 Jul 2018 08:26:07 -0000
+Content-Type: multipart/alternative; boundary="000000000000d493b80571cea04b"
 
-I understood the need for v2, but everything in Subject line besides square 
-brackets goes into git commit log, including (subject line fixed), which has 
-no meaning to the actual change that will get into git history. I only pointed 
-out where comments like this should go, so they are human readable, but will 
-be ignored by git. And yes, clean v3 would be nice, thanks.
+--000000000000d493b80571cea04b
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
 
--- 
-Denys
+15bXp9en16fXltehDQo=
 
+--000000000000d493b80571cea04b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: base64
 
-On Tue, Jul 24, 2018 at 06:47:08PM -0400, Senicic, Djordje wrote:
-> Previous (same) patch was accidently left w/o any subject (blank line).
-> Do I need to resubmit  PATCHv3?
-> 
-> -----Original Message-----
-> From: Dmytriyenko, Denys 
-> Sent: Tuesday, July 24, 2018 6:44 PM
-> To: Senicic, Djordje
-> Cc: meta-arago@arago-project.org; Senicic, Djordje
-> Subject: Re: [meta-arago] [rocko/master][PATCHv2] tidl-api: Update test video clip (subject line fixed)
-> 
-> On Tue, Jul 24, 2018 at 04:57:08PM -0400, Djordje Senicic wrote:
-> > * Use real-life video clip and list of classes
-> > 
-> > Signed-off-by: Djordje Senicic <x0157990@ti.com>
-> > ---
-> 
-> Please make change notes like "subject line fixed" in here, after ---
-> 
-> 
-> >  meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-> > index d2b570d..f1a34eb 100644
-> > --- a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-> > +++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-> > @@ -8,4 +8,4 @@ GIT_PROTOCOL = "git"
-> >  BRANCH = "master"
-> >  
-> >  SRC_URI = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
-> > -SRCREV = "8bad8d86fd89fd8c482aa10ab89f3049337a9ca2"
-> > +SRCREV = "06585057d0f47bb930647123557bc5a1506dabda"
-> > -- 
-> > 1.9.1
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+PGRpdiBkaXI9ImF1dG8iPteW16fXp9en15bXoTwvZGl2Pg0K
 
+--000000000000d493b80571cea04b--
