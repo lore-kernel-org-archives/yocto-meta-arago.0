@@ -1,43 +1,41 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 5C17E52A14
+Return-Path: <denys@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id BAE9A52987
 	for <meta-arago@arago-project.org>;
-	Fri, 27 Jul 2018 16:09:12 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w6RG950R129573
-	for <meta-arago@arago-project.org>; Fri, 27 Jul 2018 11:09:05 -0500
+	Fri, 27 Jul 2018 20:15:39 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w6RKFVCq126798
+	for <meta-arago@arago-project.org>; Fri, 27 Jul 2018 15:15:31 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1532707745;
-	bh=n4bd+Wu4fSsLTWBVrWwpYNXns0nuz+h9a8zggvuL/ao=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=tHHZDG+kCoVXxijmIdjM82RboFH2+LTx9ZhJSX2Tg0eFGO5I+qesI2XYVHxEIOHIk
-	ftcsYk4NqVgeZQ0dTBZshXh2aR44Vt/gV4qdiF2O9HauuzBQCucIVREBDfp0t3O6f5
-	j53E8VAi+pwvrCO9zDtrkuBQ2yaZxo4apLsjTD2Y=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6RG95AS012085
-	for <meta-arago@arago-project.org>; Fri, 27 Jul 2018 11:09:05 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1532722531;
+	bh=OYdSZ9OrMsSYC3eMc/GzObzadS/0SlhtdyNEbQU1R1o=;
+	h=From:To:CC:Subject:Date;
+	b=LNL4YnFbFT54l8DEBZhhsljXLLxmSM5RC8EG3mz9Vkiefn2ybLzHW/ZNUc8bG3P2a
+	o9ICMtR4sCcuZfWsiYCkda9aKXFtnLSE4i3kRDn0dp1xBbdA4hoR38ULw6RKRAGOcD
+	kulM4eiaG3HcGARN8+4RpL/mH12JcoAdU5CB8cI4=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6RKFVcd001032
+	for <meta-arago@arago-project.org>; Fri, 27 Jul 2018 15:15:31 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Fri, 27 Jul 2018 11:09:04 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 27 Jul 2018 15:15:31 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Fri, 27 Jul 2018 11:09:04 -0500
-Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Fri, 27 Jul 2018 15:15:31 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6RG94Ko017026
-	for <meta-arago@arago-project.org>; Fri, 27 Jul 2018 11:09:04 -0500
-From: Eric Ruei <e-ruei1@ti.com>
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w6RKFVuK023457;
+	Fri, 27 Jul 2018 15:15:31 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 27 Jul 2018 12:08:57 -0400
-Message-ID: <1532707738-28510-4-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1532707738-28510-1-git-send-email-e-ruei1@ti.com>
-References: <1532707738-28510-1-git-send-email-e-ruei1@ti.com>
+Date: Fri, 27 Jul 2018 20:13:36 +0000
+Message-ID: <20180727201336.3501-1-denys@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 3/4] maxtrx-gui: enable k3 support
+Subject: [rocko/master][PATCH] arago-core-tisdk-image: switch K3 from server to full rootfs image
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,69 +48,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jul 2018 16:09:13 -0000
+X-List-Received-Date: Fri, 27 Jul 2018 20:15:40 -0000
 Content-Type: text/plain
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb | 7 ++++++-
- meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb          | 3 +--
- 2 files changed, 7 insertions(+), 3 deletions(-)
+ .../recipes-core/images/arago-core-tisdk-image.inc            | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-index 1e88084..0d4d867 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-3d-demos_2.0.bb
-@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
+diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+index 4ad3ac34..dddec2c2 100644
+--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+@@ -39,7 +39,6 @@ TARGET_IMAGES_append_dra7xx-evm = " netboot-initrd"
+ # Some devices do not support display and use a server image instead
+ TARGET_IMAGES_keystone = "arago-base-tisdk-image tisdk-server-rootfs-image tisdk-server-extra-rootfs-image"
+ TARGET_IMAGES_omapl138 = "arago-base-tisdk-image tisdk-server-rootfs-image tisdk-server-extra-rootfs-image"
+-TARGET_IMAGES_k3 = "arago-base-tisdk-image tisdk-server-rootfs-image tisdk-server-extra-rootfs-image"
  
- require matrix-gui-apps-git.inc
+ TISDK_TOOLCHAIN = "meta-toolchain-arago-tisdk"
+ TOOLCHAIN_SUFFIX = "-tisdk"
+@@ -48,8 +47,6 @@ TISDK_TOOLCHAIN_keystone = "meta-toolchain-arago-tisdk-server"
+ TOOLCHAIN_SUFFIX_keystone = "-tisdk-server"
+ TISDK_TOOLCHAIN_omapl138 = "meta-toolchain-arago-tisdk-server"
+ TOOLCHAIN_SUFFIX_omapl138 = "-tisdk-server"
+-TISDK_TOOLCHAIN_k3 = "meta-toolchain-arago-tisdk-server"
+-TOOLCHAIN_SUFFIX_k3 = "-tisdk-server"
  
--PR = "${INC_PR}.8"
-+PR = "${INC_PR}.9"
+ IMAGE_INSTALL_QT = "\
+     packagegroup-arago-tisdk-qte-sdk-host \
+@@ -57,7 +54,6 @@ IMAGE_INSTALL_QT = "\
  
- S = "${WORKDIR}/git/3d_apps"
+ IMAGE_INSTALL_QT_keystone = ""
+ IMAGE_INSTALL_QT_omapl138 = ""
+-IMAGE_INSTALL_QT_k3 = ""
  
-@@ -41,6 +41,10 @@ PACKAGES_append_ti33x = " \
-             matrix-3d-demo-kmscube \
- "
- 
-+PACKAGES_append_k3 = " \
-+            matrix-3d-demo-kmscube \
-+"
-+
- MATRIX_3D_DEMO_SGX_QAF_PARAM = "1000"
- 
- do_install_prepend() {
-@@ -53,6 +57,7 @@ do_install_prepend() {
- 3D_DEMOS_RDEPENDS_omap-a15 = "${3D_DEMOS_RDEPENDS_MATRIX} img-pvr-sdk"
- 3D_DEMOS_RDEPENDS_ti43x    = "${3D_DEMOS_RDEPENDS_MATRIX} img-pvr-sdk"
- 3D_DEMOS_RDEPENDS_ti33x    = "${3D_DEMOS_RDEPENDS_MATRIX} img-pvr-sdk"
-+3D_DEMOS_RDEPENDS_k3       = "${3D_DEMOS_RDEPENDS_MATRIX} img-pvr-sdk"
- 
- RDEPENDS_matrix-3d-demo-chameleon = "${3D_DEMOS_RDEPENDS}"
- RDEPENDS_matrix-3d-demo-coverflow = "${3D_DEMOS_RDEPENDS}"
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-index ff57e12..d8aa00b 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
- 
- SECTION = "multimedia"
- 
--PR = "r34"
-+PR = "r35"
- 
- INITSCRIPT_NAME = "matrix-gui-2.0"
- INITSCRIPT_PARAMS = "defaults 97"
-@@ -55,7 +55,6 @@ do_install(){
- GUIDEPS = "matrix-gui-browser refresh-screen"
- GUIDEPS_keystone = ""
- GUIDEPS_omapl138 = ""
--GUIDEPS_k3 = ""
- 
- RDEPENDS_${PN} += "matrix-lighttpd-config lighttpd lighttpd-module-cgi lighttpd-module-compress lighttpd-module-expire php php-cgi php-cli ${GUIDEPS}"
- 
+ IMAGE_INSTALL = "\
+     packagegroup-arago-tisdk-addons-sdk-host \
 -- 
-1.9.1
+2.17.1
 
 
