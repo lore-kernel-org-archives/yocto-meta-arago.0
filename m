@@ -1,43 +1,41 @@
 Return-Path: <denys@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 376FD52A44
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 4AA5E52A44
 	for <meta-arago@arago-project.org>;
-	Tue,  7 Aug 2018 20:44:32 +0000 (UTC)
+	Tue,  7 Aug 2018 20:51:49 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w77KiPdO108174
-	for <meta-arago@arago-project.org>; Tue, 7 Aug 2018 15:44:25 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w77Kpgr3096888
+	for <meta-arago@arago-project.org>; Tue, 7 Aug 2018 15:51:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1533674665;
-	bh=UqKyqmdYdmcKkvUqucxdQGGlvYhCq/w3Y4mqn/D9f58=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=vbyvwFIOk7xVZVY916wIGeXW+uTSl9XbJHHRlzuEtGDvbCeStUw5MePE4tdluIYFH
-	9H0uaMqaHxrusWbVOYHPq7m4wqcr9JtHy6gY/OmVBaF+lZk0IUdjcNwMDMgDFsaDhN
-	d4JtaxKSnYR0l2jKIcz+nRBhdzsEh5FK4C1OGin8=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w77KiO7x026532
-	for <meta-arago@arago-project.org>; Tue, 7 Aug 2018 15:44:24 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1533675102;
+	bh=+iLNKAVwbbu9lCkSsGa0Th4M0mB9+kZJcKUC0araulc=;
+	h=From:To:CC:Subject:Date;
+	b=cOraxvnH/ndBBPPUcwWWB1x0l8yrNk6x1mBE+Sy3AXUxX4Z7ED3CUY51YqHQ1azjb
+	//HowW3jycQzZkl3FjCz+rEPkQz86ipRDoZ5HoNXqdzlHzKPloCtR1gehMb1VE4ngN
+	pxgxXnCe9xu4hjY9w8JUFdvhATBJueMCdFO56K2E=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w77KpgEn007975
+	for <meta-arago@arago-project.org>; Tue, 7 Aug 2018 15:51:42 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Tue, 7 Aug 2018 15:44:24 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 7 Aug 2018 15:51:41 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Tue, 7 Aug 2018 15:44:24 -0500
+	Transport; Tue, 7 Aug 2018 15:51:41 -0500
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w77KiOwe029164;
-	Tue, 7 Aug 2018 15:44:24 -0500
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w77KpfKm006623;
+	Tue, 7 Aug 2018 15:51:41 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 7 Aug 2018 20:42:05 +0000
-Message-ID: <20180807204205.15813-2-denys@ti.com>
+Date: Tue, 7 Aug 2018 20:49:23 +0000
+Message-ID: <20180807204923.16120-1-denys@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20180807204205.15813-1-denys@ti.com>
-References: <20180807204205.15813-1-denys@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [oe-layersetup][PATCH 2/2] coresdk-2018.02: add config for ti2018.02 release
+Subject: [rocko/master][PATCH] optee-os: move resulting bins from out/ directory, as it's removed between builds
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,34 +48,72 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Aug 2018 20:44:32 -0000
+X-List-Received-Date: Tue, 07 Aug 2018 20:51:49 -0000
 Content-Type: text/plain
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- configs/coresdk/coresdk-2018.02-config.txt | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
- create mode 100644 configs/coresdk/coresdk-2018.02-config.txt
+ .../optee/optee-os_git.bbappend               | 20 +++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/configs/coresdk/coresdk-2018.02-config.txt b/configs/coresdk/coresdk-2018.02-config.txt
-new file mode 100644
-index 0000000..450d110
---- /dev/null
-+++ b/configs/coresdk/coresdk-2018.02-config.txt
-@@ -0,0 +1,13 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,1.36,d0fb46eead1f23356d8c3bd53a85047521ef29a7,layers=
-+meta-arago,git://arago-project.org/git/meta-arago.git,rocko,ti2018.02,layers=meta-arago-distro:meta-arago-extras
-+meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,rocko,682ad61c071a9710e9f9d8a32ab1b5f3c14953d1,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,rocko,352531015014d1957d6444d114f4451e241c4d23,layers=meta-networking:meta-python:meta-oe:meta-gnome
-+meta-ti,git://git.yoctoproject.org/meta-ti,rocko,ti2018.02,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,rocko,75dfb67bbb14a70cd47afda9726e2e1c76731885,layers=meta-linaro-toolchain:meta-optee
-+oe-core,git://git.openembedded.org/openembedded-core,rocko,6c20c550a82aed9e8fa312f09888c8f16250159c,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+index 8fc9cf32..2204a50c 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+@@ -40,7 +40,7 @@ do_compile() {
+     ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
+         ${TI_SECURE_DEV_PKG}/scripts/secure-binary-image.sh tee.bin tee.bin.signed; \
+         normfl=`echo ${OPTEEFLAVOR} | tr "_" "-"`
+-        mv tee.bin.signed $normfl.optee; \
++        mv tee.bin.signed ${B}/$normfl.optee; \
+     )
+ 
+     if [ "${OPTEEPAGER}" = "y" ]; then
+@@ -50,7 +50,7 @@ do_compile() {
+         ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
+             ${TI_SECURE_DEV_PKG}/scripts/secure-binary-image.sh tee.bin tee.bin.signed; \
+             normfl=`echo ${OPTEEFLAVOR} | tr "_" "-"`
+-            mv tee.bin.signed $normfl-pager.optee; \
++            mv tee.bin.signed ${B}/$normfl-pager.optee; \
+         )
+     fi
+ }
+@@ -58,17 +58,17 @@ do_compile() {
+ do_compile_aarch64() {
+     oe_runmake all PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=${OPTEEFLAVOR}
+     ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
+-        cp tee-pager.bin bl32.bin; \
+-        cp tee.elf bl32.elf; \
++        cp tee-pager.bin ${B}/bl32.bin; \
++        cp tee.elf ${B}/bl32.elf; \
+     )
+ }
+ 
+ do_install() {
+     #install core on boot directory
+     install -d ${D}/boot
+-    install -m 644 ${B}/out/arm-plat-${OPTEEOUTPUTMACHINE}/core/*.optee ${D}/boot || true
+-    install -m 644 ${B}/out/arm-plat-${OPTEEOUTPUTMACHINE}/core/bl32.bin ${D}/boot || true
+-    install -m 644 ${B}/out/arm-plat-${OPTEEOUTPUTMACHINE}/core/bl32.elf ${D}/boot || true
++    install -m 644 ${B}/*.optee ${D}/boot || true
++    install -m 644 ${B}/bl32.bin ${D}/boot || true
++    install -m 644 ${B}/bl32.elf ${D}/boot || true
+ 
+     #install TA devkit
+     install -d ${D}/usr/include/optee/export-user_ta/
+@@ -79,9 +79,9 @@ do_install() {
+ 
+ do_deploy() {
+     install -d ${DEPLOYDIR}
+-    install -m 644 ${B}/out/arm-plat-${OPTEEOUTPUTMACHINE}/core/*.optee ${DEPLOYDIR} || true
+-    install -m 644 ${B}/out/arm-plat-${OPTEEOUTPUTMACHINE}/core/bl32.bin ${DEPLOYDIR} || true
+-    install -m 644 ${B}/out/arm-plat-${OPTEEOUTPUTMACHINE}/core/bl32.elf ${DEPLOYDIR} || true
++    install -m 644 ${B}/*.optee ${DEPLOYDIR} || true
++    install -m 644 ${B}/bl32.bin ${DEPLOYDIR} || true
++    install -m 644 ${B}/bl32.elf ${DEPLOYDIR} || true
+ }
+ 
+ FILES_${PN} = "/boot"
 -- 
 2.17.1
 
