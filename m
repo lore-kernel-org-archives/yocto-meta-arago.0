@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id E564C52A4A
+	by arago-project.org (Postfix) with ESMTPS id 0A04552A74
 	for <meta-arago@arago-project.org>;
 	Thu,  9 Aug 2018 02:01:09 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id BE33720C5A;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C992020C29;
 	Thu,  9 Aug 2018 02:01:02 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id S4R0P8z0dnWw; Thu,  9 Aug 2018 02:01:02 +0000 (UTC)
+	with ESMTP id oFMH5Ravnqbm; Thu,  9 Aug 2018 02:01:02 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
 	[100.15.91.218])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B86E820C5F;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 92B7E20C5B;
 	Thu,  9 Aug 2018 02:01:00 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 826BA163582;
+	by mail.denix.org (Postfix) with ESMTP id 45EA716357D;
 	Wed,  8 Aug 2018 22:00:58 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Wed,  8 Aug 2018 22:00:51 -0400
-Message-Id: <1533780054-50159-11-git-send-email-denys@ti.com>
+Date: Wed,  8 Aug 2018 22:00:46 -0400
+Message-Id: <1533780054-50159-6-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1533780054-50159-1-git-send-email-denys@ti.com>
 References: <1533780054-50159-1-git-send-email-denys@ti.com>
-Subject: [master][PATCH 11/14] devmem2: patch accepted upstream, remove locally
+Subject: [master][PATCH 06/14] packagegroup-arago-tisdk-connectivity: remove deprecated wireless-tools
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,99 +43,21 @@ X-List-Received-Date: Thu, 09 Aug 2018 02:01:17 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-support/devmem2/devmem2.bbappend       |  5 --
- ...sure-word-is-32-bit-and-add-support-for-6.patch | 70 ----------------------
- 2 files changed, 75 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-support/devmem2/devmem2.bbappend
- delete mode 100644 meta-arago-extras/recipes-support/devmem2/devmem2/0001-devmem.c-ensure-word-is-32-bit-and-add-support-for-6.patch
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb  | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-support/devmem2/devmem2.bbappend b/meta-arago-extras/recipes-support/devmem2/devmem2.bbappend
-deleted file mode 100644
-index c0a2460..0000000
---- a/meta-arago-extras/recipes-support/devmem2/devmem2.bbappend
-+++ /dev/null
-@@ -1,5 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--SRC_URI += " \
--file://0001-devmem.c-ensure-word-is-32-bit-and-add-support-for-6.patch \
--"
-diff --git a/meta-arago-extras/recipes-support/devmem2/devmem2/0001-devmem.c-ensure-word-is-32-bit-and-add-support-for-6.patch b/meta-arago-extras/recipes-support/devmem2/devmem2/0001-devmem.c-ensure-word-is-32-bit-and-add-support-for-6.patch
-deleted file mode 100644
-index ad8ae67..0000000
---- a/meta-arago-extras/recipes-support/devmem2/devmem2/0001-devmem.c-ensure-word-is-32-bit-and-add-support-for-6.patch
-+++ /dev/null
-@@ -1,70 +0,0 @@
--From 1360a907879dd24041797a3b709d49aeac2ab444 Mon Sep 17 00:00:00 2001
--From: Denys Dmytriyenko <denys@ti.com>
--Date: Tue, 29 May 2018 16:55:42 -0400
--Subject: [PATCH] devmem.c: ensure word is 32-bit and add support for 64-bit
-- double
--
--Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-----
-- devmem2.c | 23 +++++++++++++++++------
-- 1 file changed, 17 insertions(+), 6 deletions(-)
--
--diff --git a/devmem2.c b/devmem2.c
--index 5845381..68131b2 100644
----- a/devmem2.c
--+++ b/devmem2.c
--@@ -39,6 +39,7 @@
-- 
-- #include <stdio.h>
-- #include <stdlib.h>
--+#include <stdint.h>
-- #include <unistd.h>
-- #include <string.h>
-- #include <errno.h>
--@@ -69,7 +70,7 @@ int main(int argc, char **argv) {
-- 	if(argc < 2) {
-- 		fprintf(stderr, "\nUsage:\t%s { address } [ type [ data ] ]\n"
-- 			"\taddress : memory address to act upon\n"
---			"\ttype    : access operation type : [b]yte, [h]alfword, [w]ord\n"
--+			"\ttype    : access operation type : [b]yte, [h]alfword, [w]ord, [d]ouble\n"
-- 			"\tdata    : data to be written\n\n",
-- 			argv[0]);
-- 		exit(1);
--@@ -103,9 +104,14 @@ int main(int argc, char **argv) {
-- 			read_result = *((unsigned short *) virt_addr);
-- 			break;
-- 		case 'w':
---			data_size = sizeof(unsigned long);
--+			data_size = sizeof(uint32_t);
-- 			virt_addr = fixup_addr(virt_addr, data_size);
---			read_result = *((unsigned long *) virt_addr);
--+			read_result = *((uint32_t *) virt_addr);
--+			break;
--+		case 'd':
--+			data_size = sizeof(uint64_t);
--+			virt_addr = fixup_addr(virt_addr, data_size);
--+			read_result = *((uint64_t *) virt_addr);
-- 			break;
-- 		default:
-- 			fprintf(stderr, "Illegal data type '%c'.\n", access_type);
--@@ -129,9 +135,14 @@ int main(int argc, char **argv) {
-- 				read_result = *((unsigned short *) virt_addr);
-- 				break;
-- 			case 'w':
---				virt_addr = fixup_addr(virt_addr, sizeof(unsigned long));
---				*((unsigned long *) virt_addr) = write_val;
---				read_result = *((unsigned long *) virt_addr);
--+				virt_addr = fixup_addr(virt_addr, sizeof(uint32_t));
--+				*((uint32_t *) virt_addr) = write_val;
--+				read_result = *((uint32_t *) virt_addr);
--+				break;
--+			case 'd':
--+				virt_addr = fixup_addr(virt_addr, sizeof(uint64_t));
--+				*((uint64_t *) virt_addr) = write_val;
--+				read_result = *((uint64_t *) virt_addr);
-- 				break;
-- 		}
-- 		sprintf(fmt_str, "Write at address 0x%%08lX (%%p): 0x%%0%dlX, "
---- 
--2.7.4
--
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index 6d3be93..f09d1e3 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -11,7 +11,6 @@ inherit packagegroup
+ # WLAN support packages.
+ # These are the packages that all platforms use for WLAN support
+ WLAN_COMMON = "\
+-    wireless-tools \
+     iw \
+     softap-udhcpd-config \
+     eventdump \
 -- 
 2.7.4
 
