@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id D416A52A41
+	by arago-project.org (Postfix) with ESMTPS id CFD8052993
 	for <meta-arago@arago-project.org>;
-	Thu,  9 Aug 2018 02:01:07 +0000 (UTC)
+	Thu,  9 Aug 2018 02:01:08 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5EC5C207AB;
-	Thu,  9 Aug 2018 02:01:00 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 9993920C62;
+	Thu,  9 Aug 2018 02:01:01 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id pwPzdRoawgmL; Thu,  9 Aug 2018 02:01:00 +0000 (UTC)
+	with ESMTP id IHola7g0RXgs; Thu,  9 Aug 2018 02:01:01 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
 	[100.15.91.218])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D83B820C5A;
-	Thu,  9 Aug 2018 02:00:58 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7953720C4D;
+	Thu,  9 Aug 2018 02:01:00 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 3A1CE16357C;
+	by mail.denix.org (Postfix) with ESMTP id 6B032163580;
 	Wed,  8 Aug 2018 22:00:58 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Wed,  8 Aug 2018 22:00:45 -0400
-Message-Id: <1533780054-50159-5-git-send-email-denys@ti.com>
+Date: Wed,  8 Aug 2018 22:00:49 -0400
+Message-Id: <1533780054-50159-9-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1533780054-50159-1-git-send-email-denys@ti.com>
 References: <1533780054-50159-1-git-send-email-denys@ti.com>
-Subject: [master][PATCH 05/14] toolchain-gcc: update binutils preference to 2.31
+Subject: [master][PATCH 09/14] qtwebengine: disable failing "disable-SECCOMP-BPF-Sandbox" patch
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,31 +43,25 @@ X-List-Received-Date: Thu, 09 Aug 2018 02:01:11 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/toolchain-gcc.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-index 3a8c77d..da1deea 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-@@ -14,7 +14,7 @@ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-can
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
+index a64231d..0e0c6d2 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
+@@ -2,10 +2,10 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ PR_append = ".arago0"
  
- # Set Cross and SDK toolchain preferences
- SDKGCCVERSION ?= "7.3%"
--SDKBINUVERSION ?= "2.30%"
-+SDKBINUVERSION ?= "2.31%"
- SDKGLIBCVERSION ?= "2.27%"
- SDKLINUXLIBCVERSION ?= "4.14%"
+ #    file://0001-qtwebengine-fix-the-system-crash-due-to-mismatched-G.patch
++#    file://0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch
  
-@@ -33,7 +33,7 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
- # Set target toolchain preferences to match Cross/SDK by default
- # Can be overwritten globally, if needed
- GCCVERSION ?= "7.3%"
--BINUVERSION ?= "2.30%"
-+BINUVERSION ?= "2.31%"
- GLIBCVERSION ?= "2.27%"
- LINUXLIBCVERSION ?= "4.14%"
+ SRC_URI += " \
+     file://0002-qtwebengine-set-default-logging-level-back-to-LOG_FA.patch \
+-    file://0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch \
+ "
  
+ DEPENDS += "bison-native"
 -- 
 2.7.4
 
