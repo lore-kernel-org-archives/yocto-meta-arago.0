@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 32AD252A76
+	by arago-project.org (Postfix) with ESMTPS id 28E0B52A75
 	for <meta-arago@arago-project.org>;
-	Thu,  9 Aug 2018 02:01:11 +0000 (UTC)
+	Thu,  9 Aug 2018 02:01:10 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 24A71207AB;
-	Thu,  9 Aug 2018 02:01:04 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 0AAA720C5B;
+	Thu,  9 Aug 2018 02:01:03 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id wn92Xoj9hvlv; Thu,  9 Aug 2018 02:01:04 +0000 (UTC)
+	with ESMTP id ACfGZ0CkC9mC; Thu,  9 Aug 2018 02:01:02 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
 	[100.15.91.218])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9837720C61;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 81F33207AB;
 	Thu,  9 Aug 2018 02:01:00 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 76C42163581;
+	by mail.denix.org (Postfix) with ESMTP id 5F8FF16357F;
 	Wed,  8 Aug 2018 22:00:58 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Wed,  8 Aug 2018 22:00:50 -0400
-Message-Id: <1533780054-50159-10-git-send-email-denys@ti.com>
+Date: Wed,  8 Aug 2018 22:00:48 -0400
+Message-Id: <1533780054-50159-8-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1533780054-50159-1-git-send-email-denys@ti.com>
 References: <1533780054-50159-1-git-send-email-denys@ti.com>
-Subject: [master][PATCH 10/14] gtk+3: fix wayland PACKAGECONFIG to pull libgbm instead of mesa
+Subject: [master][PATCH 08/14] qtbase: disable QOpenGLTexture patch
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,17 +43,27 @@ X-List-Received-Date: Thu, 09 Aug 2018 02:01:18 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-gnome/gtk+/gtk+3_%.bbappend | 1 +
- 1 file changed, 1 insertion(+)
- create mode 100644 meta-arago-distro/recipes-gnome/gtk+/gtk+3_%.bbappend
+ meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-gnome/gtk+/gtk+3_%.bbappend b/meta-arago-distro/recipes-gnome/gtk+/gtk+3_%.bbappend
-new file mode 100644
-index 0000000..4d0e306
---- /dev/null
-+++ b/meta-arago-distro/recipes-gnome/gtk+/gtk+3_%.bbappend
-@@ -0,0 +1 @@
-+PACKAGECONFIG[wayland] = "--enable-wayland-backend,--disable-wayland-backend,wayland wayland-protocols libxkbcommon libgbm wayland-native"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+index 571261e..4cb8f9c 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+@@ -14,11 +14,12 @@ QT_EGLFS_PATCHES = "\
+     file://quit.png \
+ "
+ 
++#    file://0001-QOpenGLTexture-Set-wrap-mode-if-NPOT-textures-are-no.patch
++
+ SRC_URI += "\
+     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', '', "${QT_EGLFS_PATCHES}", d)}\
+     file://0001-deform-Fix-how-controls-are-shown.patch \
+     file://0002-deform-disable-opengl-button.patch \
+-    file://0001-QOpenGLTexture-Set-wrap-mode-if-NPOT-textures-are-no.patch \
+ "
+ 
+ python do_patch_append() {
 -- 
 2.7.4
 
