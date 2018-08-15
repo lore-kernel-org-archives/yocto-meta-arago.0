@@ -1,34 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 4B2E152A49
+Return-Path: <e-ruei1@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id A462152A49
 	for <meta-arago@arago-project.org>;
-	Wed, 15 Aug 2018 17:52:42 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7FHqYe5123157
-	for <meta-arago@arago-project.org>; Wed, 15 Aug 2018 12:52:34 -0500
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7FHqYGQ017398
-	for <meta-arago@arago-project.org>; Wed, 15 Aug 2018 12:52:34 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 15 Aug 2018 19:28:43 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7FJSaf6020275
+	for <meta-arago@arago-project.org>; Wed, 15 Aug 2018 14:28:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1534361316;
+	bh=rQ5lnssGa2PhTFyDHpRl78cRO6BUF+o4kSWOBI7okc8=;
+	h=From:To:Subject:Date;
+	b=uMENEkR4dfPnrpgzuTiL4isWOlPzT+ERSYDa9hqufYssBF3w/xCza62VV2a1myu0q
+	cxZp7NXGf/q6L0B2kvcIWjRqqzU197axkJYd5YYrMQ9lXcAQon1d26szYDdI87BSiC
+	1B24BkkdDUHnFCHSfnepGGkR+a5XvXHV5Mq3WKwg=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7FJSakB028041
+	for <meta-arago@arago-project.org>; Wed, 15 Aug 2018 14:28:36 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 15 Aug 2018 12:52:34 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 15 Aug 2018 14:28:36 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Wed, 15 Aug 2018 12:52:34 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	Transport; Wed, 15 Aug 2018 14:28:35 -0500
+Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7FHqYTb019774;
-	Wed, 15 Aug 2018 12:52:34 -0500
-From: Denys Dmytriyenko <denys@ti.com>
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7FJSZJA023223
+	for <meta-arago@arago-project.org>; Wed, 15 Aug 2018 14:28:35 -0500
+From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 15 Aug 2018 17:49:59 +0000
-Message-ID: <20180815174959.22322-1-denys@ti.com>
-X-Mailer: git-send-email 2.17.1
+Date: Wed, 15 Aug 2018 15:28:31 -0400
+Message-ID: <1534361311-56287-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko][PATCH] cryptodev-module: drop patch now being applied in oe-core
+Subject: [matrix-gui-v2-apps][PATCH] arm_multimedia: add AM65xx (Maxwell) support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,84 +48,107 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Aug 2018 17:52:42 -0000
+X-List-Received-Date: Wed, 15 Aug 2018 19:28:44 -0000
 Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- ...01-ioctl.c-Fix-build-with-linux-4.13.patch | 49 -------------------
- .../cryptodev/cryptodev-module_%.bbappend     |  4 --
- 2 files changed, 53 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module/0001-ioctl.c-Fix-build-with-linux-4.13.patch
+ multimedia_apps/arm_multimedia_aacdec/runAACDec.sh             | 4 ++++
+ multimedia_apps/arm_multimedia_audiocapture/runAudioCapture.sh | 4 ++++
+ multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh           | 2 +-
+ multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh   | 4 +++-
+ multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh         | 2 +-
+ 5 files changed, 13 insertions(+), 3 deletions(-)
+ mode change 100755 => 100644 multimedia_apps/arm_multimedia_audiocapture/runAudioCapture.sh
 
-diff --git a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module/0001-ioctl.c-Fix-build-with-linux-4.13.patch b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module/0001-ioctl.c-Fix-build-with-linux-4.13.patch
-deleted file mode 100644
-index a41efacd..00000000
---- a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module/0001-ioctl.c-Fix-build-with-linux-4.13.patch
-+++ /dev/null
-@@ -1,49 +0,0 @@
--From f0d69774afb27ffc62bf353465fba145e70cb85a Mon Sep 17 00:00:00 2001
--From: Ricardo Ribalda Delgado <ricardo.ribalda@gmail.com>
--Date: Mon, 4 Sep 2017 11:05:08 +0200
--Subject: [PATCH] ioctl.c: Fix build with linux 4.13
--
--git/ioctl.c:1127:3: error: positional initialization of field in 'struct' declared with 'designated_init' attribute [-Werror=designated-init]
--   {0, },
--    ^
--note: (near initialization for 'verbosity_ctl_dir[1]')
--git/ioctl.c:1136:3: error: positional initialization of field in 'struct' declared with 'designated_init' attribute [-Werror=designated-init]
--   {0, },
--    ^
--
--Linux kernel has added -Werror=designated-init around 4.11 (c834f0e8a8b)
--triggering build errors with gcc 5 and 6 (but not with gcc 4)
--
--Upstream-Status: Backport
--
--Signed-off-by: Ricardo Ribalda Delgado <ricardo.ribalda@gmail.com>
--Signed-off-by: Cristian Stoica <cristian.stoica@nxp.com>
-----
-- ioctl.c | 4 ++--
-- 1 file changed, 2 insertions(+), 2 deletions(-)
--
--diff --git a/ioctl.c b/ioctl.c
--index 0385203..8d4a162 100644
----- a/ioctl.c
--+++ b/ioctl.c
--@@ -1124,7 +1124,7 @@ static struct ctl_table verbosity_ctl_dir[] = {
-- 		.mode           = 0644,
-- 		.proc_handler   = proc_dointvec,
-- 	},
---	{0, },
--+	{},
-- };
-- 
-- static struct ctl_table verbosity_ctl_root[] = {
--@@ -1133,7 +1133,7 @@ static struct ctl_table verbosity_ctl_root[] = {
-- 		.mode           = 0555,
-- 		.child          = verbosity_ctl_dir,
-- 	},
---	{0, },
--+	{},
-- };
-- static struct ctl_table_header *verbosity_sysctl_header;
-- static int __init init_cryptodev(void)
---- 
--2.7.4
--
-diff --git a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_%.bbappend b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_%.bbappend
-index 647c5ea8..f8a35cd7 100644
---- a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_%.bbappend
-+++ b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_%.bbappend
-@@ -1,7 +1,3 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
- PR_append = ".arago0"
+diff --git a/multimedia_apps/arm_multimedia_aacdec/runAACDec.sh b/multimedia_apps/arm_multimedia_aacdec/runAACDec.sh
+index 111d107..dce07ee 100644
+--- a/multimedia_apps/arm_multimedia_aacdec/runAACDec.sh
++++ b/multimedia_apps/arm_multimedia_aacdec/runAACDec.sh
+@@ -4,6 +4,8 @@ amixer_find="/usr/bin/amixer"
+ if [ ! -f $amixer_find ]; then
+         echo "amixer not found"
+         echo "Please connect audio output and install ALSA soundcard driver"
++elif grep -q "no soundcards" /proc/asound/cards; then
++        echo "No sound devices found!"
+ else
+ 	machine_type="`cat /etc/hostname`"
+ 	filename="/usr/share/ti/audio/HistoryOfTI.aac"
+@@ -22,6 +24,8 @@ else
+ 		amixer cset name='PCM Playback Volume' 127
+ 	elif [ "$machine_type" = "omap5-evm" ]; then
+ 		amixer cset name='PCM Playback Volume' 127
++	elif [ "$machine_type" = "am65xx-evm" ]; then
++		amixer cset name='PCM Playback Volume' 127
+         elif [ "$machine_type" = "am57xx-evm" ]; then
+                 # Exit for AM5 IDK when HDMI is disconnected
+                 if cat /proc/device-tree/model | grep "IDK"
+diff --git a/multimedia_apps/arm_multimedia_audiocapture/runAudioCapture.sh b/multimedia_apps/arm_multimedia_audiocapture/runAudioCapture.sh
+old mode 100755
+new mode 100644
+index c7b2b3f..9e63590
+--- a/multimedia_apps/arm_multimedia_audiocapture/runAudioCapture.sh
++++ b/multimedia_apps/arm_multimedia_audiocapture/runAudioCapture.sh
+@@ -92,6 +92,10 @@ else
+                 amixer -c AM437xGPEVM sset 'PGA' 40
+             fi
+         fi
++    elif [ "$machine_type" = "am65xx-evm" ]; then
++        # Exit for AM65 for now until audio card info is available
++            echo "Exit as there is no audio port"
++            exit 1
+     fi
  
- KERNEL_MODULE_AUTOLOAD += "cryptodev"
--
--SRC_URI += "file://0001-ioctl.c-Fix-build-with-linux-4.13.patch"
+     echo "Recording of 1000 buffers from Line-In will begin in 5 seconds..."
+diff --git a/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh b/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh
+index 3f15084..be8b2dc 100644
+--- a/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh
++++ b/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh
+@@ -15,7 +15,7 @@ then
+ elif [ "$machine_type" = "omap5-evm" ]
+ then
+     filename="/usr/share/ti/video/TearOfSteel-Short-720x406.264"
+-elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]
++elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ] || [ "$machine_type" = "am65xx-evm" ]
+ then
+         resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+         if [ "$resolution" = "480x272" ]; then
+diff --git a/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh b/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
+index f4a860e..18ee0ea 100644
+--- a/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
++++ b/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
+@@ -4,6 +4,8 @@ amixer_find="/usr/bin/amixer"
+ if [ ! -f $amixer_find ]; then
+         echo "amixer not found"
+         echo "Please connect audio output and install ALSA soundcard driver"
++elif grep -q "no soundcards" /proc/asound/cards; then
++        echo "No sound devices found!"
+ else
+ 	machine_type="`cat /etc/hostname`"
+ 	if [ "$machine_type" = "am335x-evm" ] || [ "$machine_type" = "am335x-hs-evm" ]; then
+@@ -20,7 +22,7 @@ else
+     elif [ "$machine_type" = "omap5-evm" ]
+     then
+         filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x406.mp4"
+-    elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]
++    elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]|| [ "$machine_type" = "am65xx-evm" ]
+     then
+             resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+             if [ "$resolution" = "480x272" ]; then
+diff --git a/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh b/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
+index 92a44e0..410d8ea 100644
+--- a/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
++++ b/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
+@@ -15,7 +15,7 @@ then
+ elif [ "$machine_type" = "omap5-evm" ]
+ then
+     filename="/usr/share/ti/video/TearOfSteel-Short-720x406.m4v"
+-elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]
++elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ] || [ "$machine_type" = "am65xx-evm" ]
+ then
+     resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+     if [ "$resolution" = "480x272" ]; then
 -- 
-2.17.1
+1.9.1
 
 
