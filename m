@@ -1,41 +1,30 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id A462152A49
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 5937552A29
 	for <meta-arago@arago-project.org>;
-	Wed, 15 Aug 2018 19:28:43 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7FJSaf6020275
-	for <meta-arago@arago-project.org>; Wed, 15 Aug 2018 14:28:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1534361316;
-	bh=rQ5lnssGa2PhTFyDHpRl78cRO6BUF+o4kSWOBI7okc8=;
-	h=From:To:Subject:Date;
-	b=uMENEkR4dfPnrpgzuTiL4isWOlPzT+ERSYDa9hqufYssBF3w/xCza62VV2a1myu0q
-	cxZp7NXGf/q6L0B2kvcIWjRqqzU197axkJYd5YYrMQ9lXcAQon1d26szYDdI87BSiC
-	1B24BkkdDUHnFCHSfnepGGkR+a5XvXHV5Mq3WKwg=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7FJSakB028041
-	for <meta-arago@arago-project.org>; Wed, 15 Aug 2018 14:28:36 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 15 Aug 2018 14:28:36 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Wed, 15 Aug 2018 14:28:35 -0500
-Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7FJSZJA023223
-	for <meta-arago@arago-project.org>; Wed, 15 Aug 2018 14:28:35 -0500
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 15 Aug 2018 15:28:31 -0400
-Message-ID: <1534361311-56287-1-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [matrix-gui-v2-apps][PATCH] arm_multimedia: add AM65xx (Maxwell) support
+	Wed, 15 Aug 2018 22:04:41 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D62D020C46;
+	Wed, 15 Aug 2018 22:04:33 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id a6FpGq8IaUbM; Wed, 15 Aug 2018 22:04:33 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
+	[100.15.91.218])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A41E720567;
+	Wed, 15 Aug 2018 22:04:32 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 2111F16354F;
+	Wed, 15 Aug 2018 18:04:32 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 15 Aug 2018 18:04:31 -0400
+Message-Id: <1534370671-53172-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [rocko/master][PATCH] u-boot-k3-r5: update SYSFW to public version 2018.07a from git.ti.com/ti-linux-firmware
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,107 +37,52 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Aug 2018 19:28:44 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 15 Aug 2018 22:04:41 -0000
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- multimedia_apps/arm_multimedia_aacdec/runAACDec.sh             | 4 ++++
- multimedia_apps/arm_multimedia_audiocapture/runAudioCapture.sh | 4 ++++
- multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh           | 2 +-
- multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh   | 4 +++-
- multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh         | 2 +-
- 5 files changed, 13 insertions(+), 3 deletions(-)
- mode change 100755 => 100644 multimedia_apps/arm_multimedia_audiocapture/runAudioCapture.sh
+ .../recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb             | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/multimedia_apps/arm_multimedia_aacdec/runAACDec.sh b/multimedia_apps/arm_multimedia_aacdec/runAACDec.sh
-index 111d107..dce07ee 100644
---- a/multimedia_apps/arm_multimedia_aacdec/runAACDec.sh
-+++ b/multimedia_apps/arm_multimedia_aacdec/runAACDec.sh
-@@ -4,6 +4,8 @@ amixer_find="/usr/bin/amixer"
- if [ ! -f $amixer_find ]; then
-         echo "amixer not found"
-         echo "Please connect audio output and install ALSA soundcard driver"
-+elif grep -q "no soundcards" /proc/asound/cards; then
-+        echo "No sound devices found!"
- else
- 	machine_type="`cat /etc/hostname`"
- 	filename="/usr/share/ti/audio/HistoryOfTI.aac"
-@@ -22,6 +24,8 @@ else
- 		amixer cset name='PCM Playback Volume' 127
- 	elif [ "$machine_type" = "omap5-evm" ]; then
- 		amixer cset name='PCM Playback Volume' 127
-+	elif [ "$machine_type" = "am65xx-evm" ]; then
-+		amixer cset name='PCM Playback Volume' 127
-         elif [ "$machine_type" = "am57xx-evm" ]; then
-                 # Exit for AM5 IDK when HDMI is disconnected
-                 if cat /proc/device-tree/model | grep "IDK"
-diff --git a/multimedia_apps/arm_multimedia_audiocapture/runAudioCapture.sh b/multimedia_apps/arm_multimedia_audiocapture/runAudioCapture.sh
-old mode 100755
-new mode 100644
-index c7b2b3f..9e63590
---- a/multimedia_apps/arm_multimedia_audiocapture/runAudioCapture.sh
-+++ b/multimedia_apps/arm_multimedia_audiocapture/runAudioCapture.sh
-@@ -92,6 +92,10 @@ else
-                 amixer -c AM437xGPEVM sset 'PGA' 40
-             fi
-         fi
-+    elif [ "$machine_type" = "am65xx-evm" ]; then
-+        # Exit for AM65 for now until audio card info is available
-+            echo "Exit as there is no audio port"
-+            exit 1
-     fi
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb b/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb
+index b733793..0ff5658 100644
+--- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb
+@@ -7,16 +7,16 @@ PKG_${PN}-dbg = "${PN}-dbg"
  
-     echo "Recording of 1000 buffers from Line-In will begin in 5 seconds..."
-diff --git a/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh b/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh
-index 3f15084..be8b2dc 100644
---- a/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh
-+++ b/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh
-@@ -15,7 +15,7 @@ then
- elif [ "$machine_type" = "omap5-evm" ]
- then
-     filename="/usr/share/ti/video/TearOfSteel-Short-720x406.264"
--elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]
-+elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ] || [ "$machine_type" = "am65xx-evm" ]
- then
-         resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
-         if [ "$resolution" = "480x272" ]; then
-diff --git a/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh b/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
-index f4a860e..18ee0ea 100644
---- a/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
-+++ b/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
-@@ -4,6 +4,8 @@ amixer_find="/usr/bin/amixer"
- if [ ! -f $amixer_find ]; then
-         echo "amixer not found"
-         echo "Please connect audio output and install ALSA soundcard driver"
-+elif grep -q "no soundcards" /proc/asound/cards; then
-+        echo "No sound devices found!"
- else
- 	machine_type="`cat /etc/hostname`"
- 	if [ "$machine_type" = "am335x-evm" ] || [ "$machine_type" = "am335x-hs-evm" ]; then
-@@ -20,7 +22,7 @@ else
-     elif [ "$machine_type" = "omap5-evm" ]
-     then
-         filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x406.mp4"
--    elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]
-+    elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]|| [ "$machine_type" = "am65xx-evm" ]
-     then
-             resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
-             if [ "$resolution" = "480x272" ]; then
-diff --git a/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh b/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
-index 92a44e0..410d8ea 100644
---- a/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
-+++ b/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
-@@ -15,7 +15,7 @@ then
- elif [ "$machine_type" = "omap5-evm" ]
- then
-     filename="/usr/share/ti/video/TearOfSteel-Short-720x406.m4v"
--elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]
-+elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ] || [ "$machine_type" = "am65xx-evm" ]
- then
-     resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
-     if [ "$resolution" = "480x272" ]; then
+ COMPATIBLE_MACHINE = "k3"
+ 
+-SYSFW_VER = "2018.07"
++SYSFW_VER = "2018.07a"
+ SYSFW_BIN_am65xx-evm = "ti-sci-firmware-am6x-gp.bin"
+-SYSFW_DL_am65xx-evm = "ti-sci-firmware-am6x-gp-${SYSFW_VER}.bin"
++
++SRCREV_sysfw = "2035022224dcc885ac2cd0b11f8c76190f5af962"
++SYSFW_BRANCH = "ti-linux-firmware-4.1.y"
++SRCREV_FORMAT = "sysfw"
+ 
+ SRC_URI += " \
+ 	file://gen_x509_cert.sh \
+-	http://lcpd.gt.design.ti.com/sysfw/${SYSFW_VER}/${SYSFW_BIN};name=sysfw;downloadfilename=${SYSFW_DL}"
+-
+-SRC_URI[sysfw.md5sum] = "368fc9e9b2113b0d25bae901d521c638"
+-SRC_URI[sysfw.sha256sum] = "7ed6262ce8a1171eb10a89845d6007ea5e54d80647c6af57434d10d4ded8d80b"
++	git://git.ti.com/processor-firmware/ti-linux-firmware.git;protocol=git;name=sysfw;branch=${SYSFW_BRANCH};destsuffix=fw"
+ 
+ CROSS_COMPILE_V7 = "${ELT_TARGET_SYS_ARMV7}-"
+ PATH_prepend = "${TOOLCHAIN_PATH_ARMV7}/bin:"
+@@ -33,7 +33,7 @@ UBOOT_SYMLINK = "tiboot3-${MACHINE}.bin"
+ SPL_BINARY_k3 = ""
+ 
+ do_configure_append() {
+-	${WORKDIR}/gen_x509_cert.sh -m rom -c m3 -b ${WORKDIR}/${SYSFW_DL} -o ${WORKDIR}/sysfw.bin -l 0x40000
++	${WORKDIR}/gen_x509_cert.sh -m rom -c m3 -b ${WORKDIR}/fw/ti-sysfw/${SYSFW_BIN} -o ${WORKDIR}/sysfw.bin -l 0x40000
+ }
+ 
+ do_install_append() {
 -- 
-1.9.1
+2.7.4
 
 
