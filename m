@@ -1,30 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id 5937552A29
+	by arago-project.org (Postfix) with ESMTPS id D13BD52A59
 	for <meta-arago@arago-project.org>;
-	Wed, 15 Aug 2018 22:04:41 +0000 (UTC)
+	Thu, 16 Aug 2018 05:35:30 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id D62D020C46;
-	Wed, 15 Aug 2018 22:04:33 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 682AD207AF;
+	Thu, 16 Aug 2018 05:35:23 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id a6FpGq8IaUbM; Wed, 15 Aug 2018 22:04:33 +0000 (UTC)
+	with ESMTP id lpz_DSOJOA1h; Thu, 16 Aug 2018 05:35:23 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
 	[100.15.91.218])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A41E720567;
-	Wed, 15 Aug 2018 22:04:32 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1E20320567;
+	Thu, 16 Aug 2018 05:35:21 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 2111F16354F;
-	Wed, 15 Aug 2018 18:04:32 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 525D916358C;
+	Thu, 16 Aug 2018 01:35:21 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Wed, 15 Aug 2018 18:04:31 -0400
-Message-Id: <1534370671-53172-1-git-send-email-denis@denix.org>
+Date: Thu, 16 Aug 2018 01:35:20 -0400
+Message-Id: <1534397720-37555-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [rocko/master][PATCH] u-boot-k3-r5: update SYSFW to public version 2018.07a from git.ti.com/ti-linux-firmware
+Subject: [rocko][PATCH] module-base: overlay local fix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,51 +37,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Aug 2018 22:04:41 -0000
+X-List-Received-Date: Thu, 16 Aug 2018 05:35:31 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
+http://lists.openembedded.org/pipermail/openembedded-core/2018-August/154191.html
+http://lists.openembedded.org/pipermail/openembedded-core/2018-August/154189.html
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb             | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ meta-arago-distro/classes/module-base.bbclass | 30 +++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+ create mode 100644 meta-arago-distro/classes/module-base.bbclass
 
-diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb b/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb
-index b733793..0ff5658 100644
---- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb
-+++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb
-@@ -7,16 +7,16 @@ PKG_${PN}-dbg = "${PN}-dbg"
- 
- COMPATIBLE_MACHINE = "k3"
- 
--SYSFW_VER = "2018.07"
-+SYSFW_VER = "2018.07a"
- SYSFW_BIN_am65xx-evm = "ti-sci-firmware-am6x-gp.bin"
--SYSFW_DL_am65xx-evm = "ti-sci-firmware-am6x-gp-${SYSFW_VER}.bin"
+diff --git a/meta-arago-distro/classes/module-base.bbclass b/meta-arago-distro/classes/module-base.bbclass
+new file mode 100644
+index 0000000..c1fa3ad
+--- /dev/null
++++ b/meta-arago-distro/classes/module-base.bbclass
+@@ -0,0 +1,30 @@
++inherit kernel-arch
 +
-+SRCREV_sysfw = "2035022224dcc885ac2cd0b11f8c76190f5af962"
-+SYSFW_BRANCH = "ti-linux-firmware-4.1.y"
-+SRCREV_FORMAT = "sysfw"
- 
- SRC_URI += " \
- 	file://gen_x509_cert.sh \
--	http://lcpd.gt.design.ti.com/sysfw/${SYSFW_VER}/${SYSFW_BIN};name=sysfw;downloadfilename=${SYSFW_DL}"
--
--SRC_URI[sysfw.md5sum] = "368fc9e9b2113b0d25bae901d521c638"
--SRC_URI[sysfw.sha256sum] = "7ed6262ce8a1171eb10a89845d6007ea5e54d80647c6af57434d10d4ded8d80b"
-+	git://git.ti.com/processor-firmware/ti-linux-firmware.git;protocol=git;name=sysfw;branch=${SYSFW_BRANCH};destsuffix=fw"
- 
- CROSS_COMPILE_V7 = "${ELT_TARGET_SYS_ARMV7}-"
- PATH_prepend = "${TOOLCHAIN_PATH_ARMV7}/bin:"
-@@ -33,7 +33,7 @@ UBOOT_SYMLINK = "tiboot3-${MACHINE}.bin"
- SPL_BINARY_k3 = ""
- 
- do_configure_append() {
--	${WORKDIR}/gen_x509_cert.sh -m rom -c m3 -b ${WORKDIR}/${SYSFW_DL} -o ${WORKDIR}/sysfw.bin -l 0x40000
-+	${WORKDIR}/gen_x509_cert.sh -m rom -c m3 -b ${WORKDIR}/fw/ti-sysfw/${SYSFW_BIN} -o ${WORKDIR}/sysfw.bin -l 0x40000
- }
- 
- do_install_append() {
++# This is instead of DEPENDS = "virtual/kernel"
++do_configure[depends] += "virtual/kernel:do_compile_kernelmodules"
++
++export OS = "${TARGET_OS}"
++export CROSS_COMPILE = "${TARGET_PREFIX}"
++
++# This points to the build artefacts from the main kernel build
++# such as .config and System.map
++# Confusingly it is not the module build output (which is ${B}) but
++# we didn't pick the name.
++export KBUILD_OUTPUT = "${STAGING_KERNEL_BUILDDIR}"
++
++DEPENDS += "bc-native"
++
++export KERNEL_VERSION = "${@base_read_file('${STAGING_KERNEL_BUILDDIR}/kernel-abiversion')}"
++KERNEL_OBJECT_SUFFIX = ".ko"
++
++# kernel modules are generally machine specific
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++# Function to ensure the kernel scripts are created. Expected to
++# be called before do_compile. See module.bbclass for an example.
++do_make_scripts() {
++	unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS 
++	make CC="${KERNEL_CC}" LD="${KERNEL_LD}" AR="${KERNEL_AR}" \
++	           HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}" HOSTCPP="${BUILD_CPP}" \
++	           -C ${STAGING_KERNEL_DIR} O=${STAGING_KERNEL_BUILDDIR} scripts prepare
++}
 -- 
 2.7.4
 
