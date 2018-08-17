@@ -1,34 +1,41 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 6682B52A7C
+Return-Path: <j-stiffler@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 779B152A7A
 	for <meta-arago@arago-project.org>;
-	Fri, 17 Aug 2018 12:28:17 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7HCS9DS024825
-	for <meta-arago@arago-project.org>; Fri, 17 Aug 2018 07:28:09 -0500
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7HCS9cX021868
-	for <meta-arago@arago-project.org>; Fri, 17 Aug 2018 07:28:09 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 17 Aug 2018 14:38:02 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7HEbsuB031921
+	for <meta-arago@arago-project.org>; Fri, 17 Aug 2018 09:37:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1534516675;
+	bh=cfwNmWooTnJem0MDKd1dLm1zcHYCzcEhHgQDzi+Gc3c=;
+	h=From:To:CC:Subject:Date;
+	b=uNvsqMG+0Ja2zb5jCufMphs12KlUJrMu+XtwamGGBYH9f6+mCMEKxENu82FLiOB0M
+	oJ3FrDa/YFU3noPvtoeSnAm8HJbBcchk6IfBTp2YY0lSsPu9SZbBMgj27gRtb1J9gL
+	WS44ngyQRMAuyKe8LDg0Lv6QSfmtwLGmfqc9X9tU=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7HEbsTa012345
+	for <meta-arago@arago-project.org>; Fri, 17 Aug 2018 09:37:54 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Fri, 17 Aug 2018 07:28:09 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 17 Aug 2018 09:37:54 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Fri, 17 Aug 2018 07:28:09 -0500
-Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Fri, 17 Aug 2018 09:37:54 -0500
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7HCS9x4032266
-	for <meta-arago@arago-project.org>; Fri, 17 Aug 2018 07:28:09 -0500
-From: Eric Ruei <e-ruei1@ti.com>
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7HEbpBV012531;
+	Fri, 17 Aug 2018 09:37:52 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 17 Aug 2018 08:28:02 -0400
-Message-ID: <1534508882-43944-1-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
+Date: Fri, 17 Aug 2018 10:25:50 -0400
+Message-ID: <1534515953-32644-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] kmscube: bump SRCREV to pick up k3 support
+Subject: [RFC 0/3] Add secondary toolchain to devkit
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,32 +48,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Aug 2018 12:28:18 -0000
+X-List-Received-Date: Fri, 17 Aug 2018 14:38:02 -0000
 Content-Type: text/plain
 
-- add drm module "tidss"
+Add a method to install a second toolchain in the devkit for situation
+when a chip has multiple cores with different architectures.
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
----
- meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Jacob Stiffler (3):
+  external-linaro-secondary-sdk-toolchain: secondary toolchain for
+    devkit
+  packagegroup-arago-cross-canadian: add SECONDARY_TOOLCHAIN
+  arago-prefs: enable SECONDARY_TOOLCHAIN
 
-diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-index 68ff432..d041e8c 100644
---- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-+++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-@@ -10,8 +10,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
- inherit autotools pkgconfig
- 
--PR = "r10"
--SRCREV = "3e9807ddcf2b4e8ccf711cdaf851752ec40d7904"
-+PR = "r11"
-+SRCREV = "5f90636ae01b859a064b9136da4b759b41c1ee10"
- 
- SRC_URI = "git://git.ti.com/glsdk/kmscube.git;protocol=git"
- 
+ meta-arago-distro/conf/distro/include/arago-prefs.inc                 | 3 +++
+ .../recipes-core/meta/external-linaro-secondary-sdk-toolchain.bb      | 4 ++++
+ .../recipes-core/packagegroups/packagegroup-arago-cross-canadian.bb   | 4 ++++
+ 3 files changed, 11 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-core/meta/external-linaro-secondary-sdk-toolchain.bb
+
 -- 
-1.9.1
+2.7.4
 
 
