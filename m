@@ -1,49 +1,41 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-pl0-f67.google.com (mail-pl0-f67.google.com
-	[209.85.160.67])
-	by arago-project.org (Postfix) with ESMTPS id 798DF52A39
+Return-Path: <j-stiffler@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 58AEE52A54
 	for <meta-arago@arago-project.org>;
-	Mon, 20 Aug 2018 09:22:56 +0000 (UTC)
-Received: by mail-pl0-f67.google.com with SMTP id j8-v6so6798015pll.12
-	for <meta-arago@arago-project.org>;
-	Mon, 20 Aug 2018 02:22:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=qy6rpy2Mt2QlncRbxPhWO4CrZitq3zmlqYSJj2seYzM=;
-	b=EtNZ5IyRNLyqzkmuiwJoAr2df0jawPqY1yF0/asawAAAKCYB0uDkHS2RP2wvTtN0Qt
-	9ajqM4XMWQPYY1Jxb6Somr38YD/NHRyRojTwJ0jUw3HrE6uZCT8N9VzszcKFPqyvlY2C
-	tDvzubjMnJDSKtbEAn692ZoG+7iVYjs4iIy1q6VWlFa2YLm0xbd8iG+6Yxwm2FoUL7Nm
-	Mo1Eavt4TAIH6PrXyeVjiewpDZxpy9LAOnZqMYy0g9fxy+N+O7QcZvbE0eOCJiCdnS/0
-	5do4z7sHs5Xe4aIHXkbUlfSBNixLazJL+AR2Gi53WmoGc2KchAOPcmdps3/ddAS+CFa7
-	vPwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=qy6rpy2Mt2QlncRbxPhWO4CrZitq3zmlqYSJj2seYzM=;
-	b=cRJ5lmxFttvt6WMP5H4SmfcgXLjbhBlSXr4zL9dXCFDioBPBgtzlpVUyY54wX4erMA
-	5wk2Uo8c3S78zxmcnqHKD1MhdHjge/JDC7wJKhYmwq6CQP4oEXXcWtugncAGlv3ZdokR
-	ablDJkpVq2CVROm+2lgmETe3qb8j0uAkTiFZ9dqCbX8lqMuEUA30jcl7rDlCGByGAheL
-	zabZGGs90om8Tr1tm6xBy6auR5ZaQtV8XELFutQpwEcItFbFFLE4DS43xLA19NKZr9Oy
-	+XFLf/ljWbo0wNvFk6ja6rc+7YIiCUYNuEx3EWYcG+16iOKU6vDxhF9cwV6U/MqfhRoy
-	TPFA==
-X-Gm-Message-State: AOUpUlEVWXlJZKoRXsfxBl5VzNxp8T8HO1IGDL4bYg2Cw5KWaq7nlb+y
-	xdSlVvg3LGF45G2hYUv39KjON94B
-X-Google-Smtp-Source: AA+uWPzdES8DArc6/igH35q2Soix6iDfiLDriWahWEs3Ih7zxTUD+kzWeSiacYgC9cHVO5kgL82DGA==
-X-Received: by 2002:a17:902:8ec8:: with SMTP id
-	x8-v6mr44127490plo.308.1534756968321; 
-	Mon, 20 Aug 2018 02:22:48 -0700 (PDT)
-Received: from localhost.localdomain (163-47-106-116.flip.co.nz.
-	[163.47.106.116]) by smtp.gmail.com with ESMTPSA id
-	q127-v6sm5269596pgq.11.2018.08.20.02.22.45
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 20 Aug 2018 02:22:47 -0700 (PDT)
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-To: meta-arago@arago-project.org
-Date: Mon, 20 Aug 2018 21:22:27 +1200
-Message-Id: <1534756947-24631-1-git-send-email-ankur.tyagi85@gmail.com>
+	Mon, 20 Aug 2018 18:21:45 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7KILbij026731
+	for <meta-arago@arago-project.org>; Mon, 20 Aug 2018 13:21:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1534789297;
+	bh=QOnwPr3rQ5Ip7TYjBCs/ssAJaXv0wpK61Dqe/4z+65M=;
+	h=From:To:CC:Subject:Date;
+	b=cOBFn7z5C8xsvGw/A0uYjLT9jSgOuB/tze1O0k5Dw0Q6esXtOQqC2rOX2eMOEC2VN
+	2MmNobH+sq0pxb7Y9OG5r5FyKMb2aYNtb/z878vkRpg3nbhn3WHHQhrPIuFirVDjPG
+	HIeVDhvJCQY041IZTDP3txPlHvRAvxIl6eGbbdso=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7KILbOS026555
+	for <meta-arago@arago-project.org>; Mon, 20 Aug 2018 13:21:37 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
+	Mon, 20 Aug 2018 13:21:37 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
+	Transport; Mon, 20 Aug 2018 13:21:37 -0500
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7KILaMj003356;
+	Mon, 20 Aug 2018 13:21:36 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 20 Aug 2018 14:09:44 -0400
+Message-ID: <1534788584-7301-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-Cc: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Subject: [rocko/sumo/master/][PATCH] meta-toolchain-arago-qte: fix TOOLCHAIN_TARGET_TASK
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH] arago-core-tisdk-image: k3: add sysfw.bin to prebuilt images
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,29 +48,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Aug 2018 09:22:57 -0000
+X-List-Received-Date: Mon, 20 Aug 2018 18:21:45 -0000
+Content-Type: text/plain
 
-Resolves following error when building meta-toolchain-arago-qte
-ERROR: Nothing RPROVIDES 'packagegroup-arago-qt5-toolchain-target'
+* The sysfw.bin is required for building U-Boot for the R5
 
-
-Signed-off-by: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb | 2 +-
+ meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-index fdca2c3..0e0e057 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-@@ -1,6 +1,6 @@
- # Qt Embedded toolchain
- TOOLCHAIN_HOST_TASK ?= "nativesdk-packagegroup-arago-qte-toolchain-host"
--TOOLCHAIN_TARGET_TASK ?= "${@base_conditional('QT_PROVIDER', 'qt5', 'packagegroup-arago-qt5-toolchain-target', 'packagegroup-arago-qte-toolchain-target', d)}"
-+TOOLCHAIN_TARGET_TASK ?= "packagegroup-arago-qte-toolchain-target"
- TOOLCHAIN_SUFFIX ?= "-qte-sdk"
+diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
+index 147f126..1f0ef1c 100644
+--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
+@@ -8,7 +8,7 @@ DEPLOY_SPL_NAME_k2e = ""
+ DEPLOY_SPL_NAME_k2g-hs-evm = ""
+ DEPLOY_SPL_NAME_k3 = "tispl.bin tiboot3.bin"
  
- require meta-toolchain-arago.bb
+-DEPLOY_IMAGES_NAME_k3 = "bl31.bin bl32.bin"
++DEPLOY_IMAGES_NAME_k3 = "bl31.bin bl32.bin sysfw.bin"
+ 
+ ARAGO_TISDK_IMAGE ?= "arago-core-tisdk-image"
+ export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}"
 -- 
 2.7.4
 
