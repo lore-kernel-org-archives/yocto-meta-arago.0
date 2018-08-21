@@ -1,49 +1,44 @@
 Return-Path: <denys@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id E0DDD52A4F
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 1A1F7529F1
 	for <meta-arago@arago-project.org>;
-	Tue, 21 Aug 2018 21:35:10 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7LLZ3r7076713
-	for <meta-arago@arago-project.org>; Tue, 21 Aug 2018 16:35:03 -0500
+	Tue, 21 Aug 2018 21:41:49 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7LLffHO074355
+	for <meta-arago@arago-project.org>; Tue, 21 Aug 2018 16:41:41 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1534887303;
-	bh=KbfSA6mCfj3BZfc7tIBIW6HmCR4E5YithJzUs6KbbnU=;
+	s=ti-com-17Q1; t=1534887701;
+	bh=eB/tPbkshsTQtk48Mcm1x+ttsJmOf4Grw8NDkPOUR6A=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=jZ9x5jsn52iUOEz1z6lolJX4npqx2GHexK2cBKGbfJAt9MX0KAMIRCXZ9aupmELhM
-	rDma+EwSZPDbYd5i4bHh8mE/TOUaKf5raoUTCPXFFZkMmP63YZHPt9ZSSESUfBOn3J
-	GM3ruBbdE0+ll+xSh0U8CBbfKT0J/Z6CyGiZl80Y=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7LLZ3SP032043
-	for <meta-arago@arago-project.org>; Tue, 21 Aug 2018 16:35:03 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	b=EXF5TCewawNWIGS9wglx5CEx60U2CYOnLoLBl3Ko5FqPl2tqXz83SQR3xVoGorLAq
+	Up3do/L7n4y1asnaHt6XOuKAuX4Kg7WYCAhhzZ6rf76yXP7S5WmbhibzeIIiKZ0LVs
+	EC0eCO2xVlM0oM/K0jmciON1Jvib4alUDYqKQBNc=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7LLff58008888
+	for <meta-arago@arago-project.org>; Tue, 21 Aug 2018 16:41:41 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Tue, 21 Aug 2018 16:35:02 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 21 Aug 2018 16:41:41 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Tue, 21 Aug 2018 16:35:02 -0500
+	Transport; Tue, 21 Aug 2018 16:41:41 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7LLZ2eu009199;
-	Tue, 21 Aug 2018 16:35:02 -0500
-Date: Tue, 21 Aug 2018 17:34:06 -0400
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7LLff1d016952;
+	Tue, 21 Aug 2018 16:41:41 -0500
+Date: Tue, 21 Aug 2018 17:40:44 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Ruei, Eric" <a0850410@ti.com>
-Message-ID: <20180821213406.GV29422@beryl>
-References: <1534879768-59124-1-git-send-email-e-ruei1@ti.com>
-	<1534879768-59124-2-git-send-email-e-ruei1@ti.com>
-	<20180821194838.GQ29422@beryl>
-	<88d0259e-498e-b5bb-dd06-2f330c1a2f9d@ti.com>
-	<20180821210036.GS29422@beryl>
-	<6240f2f2-33b2-58c2-25ef-fc2d817cf43f@ti.com>
-	<20180821212927.GU29422@beryl>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20180821214044.GW29422@beryl>
+References: <1534878837-20469-1-git-send-email-j-stiffler@ti.com>
+	<1534878837-20469-3-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20180821212927.GU29422@beryl>
+In-Reply-To: <1534878837-20469-3-git-send-email-j-stiffler@ti.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 1/4] gtk+3: update wayland dependency and add patches
+Subject: Re: [PATCH 2/3] packagegroup-arago-cross-canadian: add SECONDARY_TOOLCHAIN
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,153 +51,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Aug 2018 21:35:11 -0000
+X-List-Received-Date: Tue, 21 Aug 2018 21:41:49 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Tue, Aug 21, 2018 at 05:29:27PM -0400, Denys Dmytriyenko wrote:
-> On Tue, Aug 21, 2018 at 05:27:35PM -0400, Ruei, Eric wrote:
-> > On 8/21/2018 5:00 PM, Denys Dmytriyenko wrote:
-> > >On Tue, Aug 21, 2018 at 04:38:08PM -0400, Ruei, Eric wrote:
-> > >>On 8/21/2018 3:48 PM, Denys Dmytriyenko wrote:
-> > >>>On Tue, Aug 21, 2018 at 03:29:25PM -0400, Eric Ruei wrote:
-> > >>>>- replace wayland dependency mesa with virtual/egl
-> > >>>
-> > >>>In the past we were using libgbm instead of virtual/egl
-> > >>>http://arago-project.org/git/?p=meta-arago.git;a=blob;f=meta-arago-distro/recipes-graphics/wayland/weston_4.0.0.bbappend;hb=HEAD
-> > >>>http://arago-project.org/git/?p=meta-arago.git;a=blob;f=meta-arago-distro/recipes-gnome/gtk%2B/gtk%2B3_%25.bbappend;hb=HEAD
-> > >>>
-> > >>>
-> > >>Denys: It does not make sense, virtual/egl replaces virtual/mesa, GTK will
-> > >>be a wayland-client and uses wayland-egl which does not depends on libgbm.
-> > >>The drm-backend of Weston compositor does depend on libgbm.
-> > >
-> > >Well, drm-backend of Weston also originally depended on virtual/mesa:
-> > >http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-graphics/wayland/weston_2.0.0.bb?h=rocko
-> > >
-> > >And we replace it with libgbm, not virtual/egl.
-> > >
-> > >But if you say gtk+ really needs entire virtual/egl dependency to work with
-> > >wayland-egl, then I'm fine.
-> > >
-> > >
-> > virtual/mesa covers everything. drm-backend actually depends on both
-> > virtual/egl and libgbm.
+On Tue, Aug 21, 2018 at 03:13:56PM -0400, Jacob Stiffler wrote:
+> * Add the secondary toolchain to the devkit
+>  if SECONDARY_TOOLCHAIN_ARCH is defined.
 > 
-> http://arago-project.org/git/?p=meta-arago.git;a=blob;f=meta-arago-distro/recipes-graphics/wayland/weston_4.0.0.bbappend;hb=HEAD
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+>  .../packagegroups/packagegroup-arago-cross-canadian.bbappend      | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>  create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bbappend
 > 
-> "drm udev libgbm mtdev"
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bbappend b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bbappend
+> new file mode 100644
+> index 0000000..f02dfd9
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bbappend
+> @@ -0,0 +1,8 @@
+> +PR_append = ".arago0"
+> +
+> +SECONDARY_TOOLCHAIN = "gcc-cross-canadian-${SECONDARY_TARGET_ARCH} \
+> +                       binutils-cross-canadian-${SECONDARY_TARGET_ARCH}"
 
-Ok, nevermind, looks like it depends on egl unconditionally...
+Since this is a bbappend, it will come into play for internal toolchain as 
+well, but in that case SECONDARY_TARGET_ARCH won't be set.
+
+You might want to do something like this:
+http://arago-project.org/git/?p=meta-arago.git;a=blob;f=meta-arago-distro/recipes-devtools/gcc/gcc_%25.bbappend;hb=HEAD
 
 
-> > Gtk+, as a wayland-client, depends on virtual/egl only.
-
-I have no more questions, I'll merge it. Please fix the other patch.
-
-
-> > >>>>- patch to fix egl API calls for GLES2
-> > >>>>
-> > >>>>Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> > >>>>---
-> > >>>>  ...t-wayland.c-cleanup-the-parameters-of-egl.patch | 61 ++++++++++++++++++++++
-> > >>>>  .../recipes-gnome/gtk+/gtk+3_%.bbappend            | 10 ++++
-> > >>>>  2 files changed, 71 insertions(+)
-> > >>>>  create mode 100644 meta-arago-distro/recipes-gnome/gtk+/gtk+3/0001-gdkglcontext-wayland.c-cleanup-the-parameters-of-egl.patch
-> > >>>>  create mode 100644 meta-arago-distro/recipes-gnome/gtk+/gtk+3_%.bbappend
-> > >>>>
-> > >>>>diff --git a/meta-arago-distro/recipes-gnome/gtk+/gtk+3/0001-gdkglcontext-wayland.c-cleanup-the-parameters-of-egl.patch b/meta-arago-distro/recipes-gnome/gtk+/gtk+3/0001-gdkglcontext-wayland.c-cleanup-the-parameters-of-egl.patch
-> > >>>>new file mode 100644
-> > >>>>index 0000000..174dbdd
-> > >>>>--- /dev/null
-> > >>>>+++ b/meta-arago-distro/recipes-gnome/gtk+/gtk+3/0001-gdkglcontext-wayland.c-cleanup-the-parameters-of-egl.patch
-> > >>>>@@ -0,0 +1,61 @@
-> > >>>>+From d4c8511b845de02271b6dcf57a6edbf01f3f1905 Mon Sep 17 00:00:00 2001
-> > >>>>+From: Eric Ruei <e-ruei1@ti.com>
-> > >>>>+Date: Tue, 21 Aug 2018 11:07:13 -0400
-> > >>>>+Subject: [PATCH] gdkglcontext-wayland.c: cleanup the parameters of egl API
-> > >>>>+ calls when GLES is used
-> > >>>>+
-> > >>>>+eglBindAPI: use EGL_OPENGL_ES_API instead of EGL_OPENGL_API
-> > >>>>+eglChooseConfig: need to specify EGL_OPENGL_ES2_BIT as EGL_RENDERABLE_TYPE
-> > >>>>+
-> > >>>>+Upstream-Status: Pending
-> > >>>>+
-> > >>>>+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> > >>>>+---
-> > >>>>+ gdk/wayland/gdkglcontext-wayland.c | 10 +++++++++-
-> > >>>>+ 1 file changed, 9 insertions(+), 1 deletion(-)
-> > >>>>+
-> > >>>>+diff --git a/gdk/wayland/gdkglcontext-wayland.c b/gdk/wayland/gdkglcontext-wayland.c
-> > >>>>+index 254900d..3361eb3 100644
-> > >>>>+--- a/gdk/wayland/gdkglcontext-wayland.c
-> > >>>>++++ b/gdk/wayland/gdkglcontext-wayland.c
-> > >>>>+@@ -314,6 +314,7 @@ gdk_wayland_display_init_gl (GdkDisplay *display)
-> > >>>>+   GdkWaylandDisplay *display_wayland = GDK_WAYLAND_DISPLAY (display);
-> > >>>>+   EGLint major, minor;
-> > >>>>+   EGLDisplay dpy;
-> > >>>>++  gboolean use_es = (_gdk_gl_flags & GDK_GL_GLES) != 0 ;
-> > >>>>+
-> > >>>>+   if (display_wayland->have_egl)
-> > >>>>+     return TRUE;
-> > >>>>+@@ -326,7 +327,7 @@ gdk_wayland_display_init_gl (GdkDisplay *display)
-> > >>>>+   if (!eglInitialize (dpy, &major, &minor))
-> > >>>>+     return FALSE;
-> > >>>>+
-> > >>>>+-  if (!eglBindAPI (EGL_OPENGL_API))
-> > >>>>++  if (!eglBindAPI (use_es?EGL_OPENGL_ES_API:EGL_OPENGL_API))
-> > >>>>+     return FALSE;
-> > >>>>+
-> > >>>>+   display_wayland->egl_display = dpy;
-> > >>>>+@@ -379,6 +380,7 @@ find_eglconfig_for_window (GdkWindow  *window,
-> > >>>>+   EGLint count;
-> > >>>>+   EGLConfig *configs, chosen_config;
-> > >>>>+   gboolean use_rgba;
-> > >>>>++  gboolean use_es = (_gdk_gl_flags & GDK_GL_GLES) != 0 ;
-> > >>>>+
-> > >>>>+   int i = 0;
-> > >>>>+
-> > >>>>+@@ -395,6 +397,12 @@ find_eglconfig_for_window (GdkWindow  *window,
-> > >>>>+   attrs[i++] = EGL_BLUE_SIZE;
-> > >>>>+   attrs[i++] = 1;
-> > >>>>+
-> > >>>>++  if (use_es)
-> > >>>>++    {
-> > >>>>++      attrs[i++] = EGL_RENDERABLE_TYPE;
-> > >>>>++      attrs[i++] = EGL_OPENGL_ES2_BIT;
-> > >>>>++    }
-> > >>>>++
-> > >>>>+   use_rgba = (visual == gdk_screen_get_rgba_visual (gdk_display_get_default_screen (display)));
-> > >>>>+
-> > >>>>+   if (use_rgba)
-> > >>>>+--
-> > >>>>+1.9.1
-> > >>>>+
-> > >>>>diff --git a/meta-arago-distro/recipes-gnome/gtk+/gtk+3_%.bbappend b/meta-arago-distro/recipes-gnome/gtk+/gtk+3_%.bbappend
-> > >>>>new file mode 100644
-> > >>>>index 0000000..d3fe505
-> > >>>>--- /dev/null
-> > >>>>+++ b/meta-arago-distro/recipes-gnome/gtk+/gtk+3_%.bbappend
-> > >>>>@@ -0,0 +1,10 @@
-> > >>>>+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> > >>>>+
-> > >>>>+PACKAGECONFIG[wayland] = "--enable-wayland-backend,--disable-wayland-backend,wayland wayland-protocols libxkbcommon virtual/egl wayland-native"
-> > >>>>+GTKGLIBC_RRECOMMENDS = "${GTKBASE_RRECOMMENDS}"
-> > >>>>+
-> > >>>>+PR_append = ".arago0"
-> > >>>>+
-> > >>>>+SRC_URI += "\
-> > >>>>+    file://0001-gdkglcontext-wayland.c-cleanup-the-parameters-of-egl.patch \
-> > >>>>+"
-> > >>>>-- 
-> > >>>>1.9.1
-> > >>>>
-> > >>>>_______________________________________________
-> > >>>>meta-arago mailing list
-> > >>>>meta-arago@arago-project.org
-> > >>>>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > >>
-> > 
+> +RDEPENDS_${PN}_append = " \
+> +    ${@base_conditional('SECONDARY_TARGET_ARCH', '', '', '${SECONDARY_TOOLCHAIN}', d)} \
+> +"
+> -- 
+> 2.7.4
+> 
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
