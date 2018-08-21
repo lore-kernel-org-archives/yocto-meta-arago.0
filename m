@@ -1,43 +1,43 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id DCB4152AFE
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 0245252B01
 	for <meta-arago@arago-project.org>;
 	Tue, 21 Aug 2018 19:29:40 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7LJTXB5096290
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7LJTXYP043348
 	for <meta-arago@arago-project.org>; Tue, 21 Aug 2018 14:29:33 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1534879773;
-	bh=zDvUCQlZsBEnGRsXsdB2WZxdijB6SVRZv7Xf+faE7x8=;
+	bh=FKr3L6vTceL1R/aqWolBwNxq7MVczoWwqYOA+Om9UVo=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=kkLTxxym80hcn4JL+6XtuhSm/lVEKyAXW6PYJs8z6+4pUhgkmN03uXjCrDAiMxUq/
-	2wkWHmzzIUyclIymz7ul/+i2G/ly36bqyzj7NXmtRZUTy7Yf131xPUBUJt5LrciOZ1
-	k/Y4B2Vjyl5dRcQdg0CQelAHO+/511YInCwy/EbA=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7LJTX7s023906
+	b=jVYx/wQCbFykB1oZjMq8b0bdskYcE/xmJQTV9R+cSRpLzkrpKZme4ddoJ7kdzEwXi
+	xHGZ/M6SUEHslexUjD12M+UBy+xenenRo9HvsiBOzubDBrPc8njVNDfeju6qBYJ6yd
+	L34m9eJ/VT2kCEQ/Iwinxw6gKcv+uZdVuvRLq9LA=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7LJTXI7014107
 	for <meta-arago@arago-project.org>; Tue, 21 Aug 2018 14:29:33 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
 	Tue, 21 Aug 2018 14:29:32 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Tue, 21 Aug 2018 14:29:32 -0500
+	Transport; Tue, 21 Aug 2018 14:29:33 -0500
 Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7LJTV8S012810
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7LJTV8T012810
 	for <meta-arago@arago-project.org>; Tue, 21 Aug 2018 14:29:32 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 21 Aug 2018 15:29:27 -0400
-Message-ID: <1534879768-59124-4-git-send-email-e-ruei1@ti.com>
+Date: Tue, 21 Aug 2018 15:29:28 -0400
+Message-ID: <1534879768-59124-5-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1534879768-59124-1-git-send-email-e-ruei1@ti.com>
 References: <1534879768-59124-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 3/4] tisdk-roofs-image: add the GTK packagegroup
+Subject: [PATCH 4/4] packagegroup-arago-toolchain-tidsk-target: add GTK packagegroup
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,21 +55,42 @@ Content-Type: text/plain
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb | 1 +
- 1 file changed, 1 insertion(+)
+ .../packagegroups/packagegroup-arago-toolchain-tisdk-target.bb   | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-index e40dc1f..a86691d 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-@@ -9,6 +9,7 @@ IMAGE_INSTALL += "\
-     packagegroup-arago-test \
-     packagegroup-arago-test-addons \
-     ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics','',d)} \
-+    packagegroup-arago-tisdk-gtk \
-     packagegroup-arago-tisdk-qte \
-     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl','',d)} \
-     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-extra','',d)} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
+index 52e3456..75c190d 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to build and install header and libs into the sdk"
+ LICENSE = "MIT"
+-PR = "r12"
++PR = "r13"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -12,6 +12,12 @@ QT_TOOLCHAIN_TARGET = "\
+ QT_TOOLCHAIN_TARGET_keystone = ""
+ QT_TOOLCHAIN_TARGET_omapl138 = ""
+ 
++GTK_TOOLCHAIN_TARGET = "\
++    packagegroup-arago-gtk-sdk-target \
++"
++GTK_TOOLCHAIN_TARGET_keystone = ""
++GTK_TOOLCHAIN_TARGET_omapl138 = ""
++
+ TISDK_TOOLCHAIN_BASE_TARGET = "\
+     packagegroup-arago-standalone-sdk-target \
+     packagegroup-arago-tisdk-multimedia-sdk-target \
+@@ -26,6 +32,7 @@ TISDK_TOOLCHAIN_EXTRA_TARGET_omapl138 = ""
+ 
+ RDEPENDS_${PN} = "\
+     ${QT_TOOLCHAIN_TARGET} \
++    ${GTK_TOOLCHAIN_TARGET} \
+     ${TISDK_TOOLCHAIN_BASE_TARGET} \
+     ${TISDK_TOOLCHAIN_EXTRA_TARGET} \
+     ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics-sdk-target','',d)} \
 -- 
 1.9.1
 
