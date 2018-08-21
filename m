@@ -1,43 +1,41 @@
-Return-Path: <denys@ti.com>
+Return-Path: <e-ruei1@ti.com>
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 0C4C9529F1
+	by arago-project.org (Postfix) with ESMTPS id F3152529F1
 	for <meta-arago@arago-project.org>;
-	Tue, 21 Aug 2018 22:17:32 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7LMHPRK079757
-	for <meta-arago@arago-project.org>; Tue, 21 Aug 2018 17:17:25 -0500
+	Tue, 21 Aug 2018 22:29:33 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7LMTQ1e081929
+	for <meta-arago@arago-project.org>; Tue, 21 Aug 2018 17:29:26 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1534889845;
-	bh=ds1kTAVPVcaG+rQv2+3SW2OXVoJG32osKmcgP0cEwx4=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=cjI7EhCDxk+H+gMbB90D5MH7SIWgaFidGwCDUbKSFzT8zUfnfzcmq1wA65dchLzJy
-	NSjYjFTgZc59WtsOPIHPBaE/6ggCvh3r2gS79aKx6xHbxIBEzTBnl+EXYRfokDwaZn
-	uLCnklSV72i5OFQytA6BMdrL94bxvl/ixhqhPvrE=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7LMHPwm005031
-	for <meta-arago@arago-project.org>; Tue, 21 Aug 2018 17:17:25 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1534890566;
+	bh=fs0XVB6u0lC92/hLeNayM6rkPxSMpxUapxngxCgnJ+g=;
+	h=From:To:Subject:Date;
+	b=cgXwuGL21JxnfIJpPJcwI+rWCi+QAv2KihNt+T5fksXqHeO2LLd9PqiTqd2i0zWF0
+	afJ5GrvHxuR2NocDuPHmTdT8VByyIfoqmVP/9D75CIfR1C+ut9s2mWmcZ1krJWQkl1
+	D3SCXQciY4anoQgW4bm1wKPjceBh/9TN6jeqHcEY=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7LMTQiX023782
+	for <meta-arago@arago-project.org>; Tue, 21 Aug 2018 17:29:26 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Tue, 21 Aug 2018 17:17:25 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 21 Aug 2018 17:29:26 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Tue, 21 Aug 2018 17:17:25 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7LMHPOX017837;
-	Tue, 21 Aug 2018 17:17:25 -0500
-Date: Tue, 21 Aug 2018 18:16:28 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20180821221628.GY29422@beryl>
-References: <1534889027-32133-2-git-send-email-j-stiffler@ti.com>
+	Transport; Tue, 21 Aug 2018 17:29:26 -0500
+Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7LMTPKp031317
+	for <meta-arago@arago-project.org>; Tue, 21 Aug 2018 17:29:26 -0500
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 21 Aug 2018 18:29:18 -0400
+Message-ID: <1534890562-62245-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <1534889027-32133-2-git-send-email-j-stiffler@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH v2 2/3] packagegroup-arago-cross-canadian: add SECONDARY_TOOLCHAIN
+Subject: [PATCH v2 0/4] Enable GTK+3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,47 +48,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Aug 2018 22:17:33 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 21 Aug 2018 22:29:34 -0000
+Content-Type: text/plain
 
-On Tue, Aug 21, 2018 at 06:03:46PM -0400, Jacob Stiffler wrote:
-> * Add the secondary toolchain to the devkit
->   if SECONDARY_TOOLCHAIN_ARCH is defined.
+Enable GTK+3
 
-SECONDARY_TARGET_ARCH?
+v2 changes:
+- make packagegroup-arago-tisdk-gtk conditional on sgx
 
+Eric Ruei (4):
+  gtk+3: update wayland dependency and add patches
+  packagegroup-arago-gtk: add package group files for GTK
+  tisdk-roofs-image: add the GTK packagegroup
+  packagegroup-arago-toolchain-tidsk-target: add GTK packagegroup
 
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
-> v2 changes:
-> * initialize SECONDARY_TOOLCHAIN_ARCH
-> 
->  .../packagegroups/packagegroup-arago-cross-canadian.bbappend   | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->  create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bbappend
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bbappend b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bbappend
-> new file mode 100644
-> index 0000000..b05e493
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bbappend
-> @@ -0,0 +1,10 @@
-> +PR_append = ".arago0"
-> +
-> +SECONDARY_TARGET_ARCH ?= ""
-> +
-> +SECONDARY_TOOLCHAIN = "gcc-cross-canadian-${SECONDARY_TARGET_ARCH} \
-> +                       binutils-cross-canadian-${SECONDARY_TARGET_ARCH}"
-> +
-> +RDEPENDS_${PN}_append = " \
-> +    ${@base_conditional('SECONDARY_TARGET_ARCH', '', '', '${SECONDARY_TOOLCHAIN}', d)} \
-> +"
-> -- 
-> 2.7.4
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+ .../recipes-core/images/tisdk-rootfs-image.bb      |  1 +
+ .../packagegroup-arago-gtk-sdk-target.bb           | 11 ++++
+ .../packagegroups/packagegroup-arago-tisdk-gtk.bb  | 20 +++++++
+ .../packagegroup-arago-toolchain-tisdk-target.bb   |  9 +++-
+ ...t-wayland.c-cleanup-the-parameters-of-egl.patch | 61 ++++++++++++++++++++++
+ .../recipes-gnome/gtk+/gtk+3_%.bbappend            | 10 ++++
+ 6 files changed, 111 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gtk-sdk-target.bb
+ create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-gtk.bb
+ create mode 100644 meta-arago-distro/recipes-gnome/gtk+/gtk+3/0001-gdkglcontext-wayland.c-cleanup-the-parameters-of-egl.patch
+ create mode 100644 meta-arago-distro/recipes-gnome/gtk+/gtk+3_%.bbappend
+
+-- 
+1.9.1
+
 
