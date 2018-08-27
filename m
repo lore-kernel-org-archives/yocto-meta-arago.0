@@ -1,41 +1,41 @@
-Return-Path: <yan-liu@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 93B9F52A0E
+Return-Path: <qsu@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 10D4752A3E
 	for <meta-arago@arago-project.org>;
-	Sun, 26 Aug 2018 15:04:51 +0000 (UTC)
+	Mon, 27 Aug 2018 15:24:40 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7QF4hCj064434
-	for <meta-arago@arago-project.org>; Sun, 26 Aug 2018 10:04:43 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7RFOVpP093310
+	for <meta-arago@arago-project.org>; Mon, 27 Aug 2018 10:24:31 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1535295883;
-	bh=g/A0xut7ImYsI2jTozn5mOOy4Qi3jXcMFIgeN3PaJiU=;
+	s=ti-com-17Q1; t=1535383471;
+	bh=fF9H06g8ZRMtvf+12Ea6rZXw/U0N8DlZQEfuD7wtP4U=;
 	h=From:To:CC:Subject:Date;
-	b=g+zqRhC4aW6s91ht+4ReeFsSwU7nzx0AbGaLMrP1kgFeZacOtBZfxpvxsu65tq8A6
-	UBh9sEKMNJIpebmyvh7LJHEYNX7s1ix2n2G3qybXkDTkYtOr4qUtO9s1UbhVnvDrqd
-	k4wwmx6o7lmJcqd+sIU9feHhwMu52k7wB+VS17hA=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7QF4hrA003084
-	for <meta-arago@arago-project.org>; Sun, 26 Aug 2018 10:04:43 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	b=QmG6KD4wtHhKqIu/RF6loZDiaER0ODT1W88rYSefw/g8rhSVzHTZEPqIoboENMjPv
+	NHo/WnxMnRj8OzIWHJAv55rTAj2mseqFUNOMQtJYTS6qeetyt9j846GEw4He7h9lz4
+	fR1VbdVj4B1WnZRuvqXwSf3BYskP+PTtZtVeRafc=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7RFOVXx030206
+	for <meta-arago@arago-project.org>; Mon, 27 Aug 2018 10:24:31 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Sun, 26 Aug 2018 10:04:43 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE108.ent.ti.com
+	Mon, 27 Aug 2018 10:24:31 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE108.ent.ti.com
 	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Sun, 26 Aug 2018 10:04:43 -0500
-Received: from yan-ubuntu-1204.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Mon, 27 Aug 2018 10:24:31 -0500
+Received: from UDA0216595.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7QF4hBC030202;
-	Sun, 26 Aug 2018 10:04:43 -0500
-From: <yan-liu@ti.com>
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7RFOV8x025547;
+	Mon, 27 Aug 2018 10:24:31 -0500
+From: Qin Su <qsu@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Sun, 26 Aug 2018 10:55:16 -0400
-Message-ID: <1535295317-28616-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Mon, 27 Aug 2018 11:24:28 -0400
+Message-ID: <1535383468-25650-1-git-send-email-qsu@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: [PATCH] add the compiler flag for building armnn.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,39 +48,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 26 Aug 2018 15:04:51 -0000
+X-List-Received-Date: Mon, 27 Aug 2018 15:24:40 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
-
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Qin Su <qsu@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-distro/recipes-support/boost/boost_%.bbappend | 5 +++++
+ 1 file changed, 5 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-support/boost/boost_%.bbappend
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
-index d8a8901..de7de3a 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
- 
--PR = "r14"
-+PR = "r15"
- PV_append = "+git${SRCPV}"
- 
- PROVIDES += "ltp"
-@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
- 
- inherit autotools-brokensep
- 
--SRCREV = "e79d04f0d11e95890456254e320eaa4a27087446"
-+SRCREV = "831ed83e49df467fb4a7d7ac00b1ae3c5e6961be"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+diff --git a/meta-arago-distro/recipes-support/boost/boost_%.bbappend b/meta-arago-distro/recipes-support/boost/boost_%.bbappend
+new file mode 100644
+index 0000000..76f95b4
+--- /dev/null
++++ b/meta-arago-distro/recipes-support/boost/boost_%.bbappend
+@@ -0,0 +1,5 @@
++PR_append = ".arago0"
++
++# add the compiler flag for building armnn
++CXXFLAGS += "-fPIC"
++
 -- 
-1.7.9.5
+1.9.1
 
 
