@@ -1,43 +1,41 @@
-Return-Path: <qsu@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id D3BD0529D5
+Return-Path: <yuanzhao@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id D59DE529D5
 	for <meta-arago@arago-project.org>;
-	Mon, 27 Aug 2018 16:11:46 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7RGBcCj092796
-	for <meta-arago@arago-project.org>; Mon, 27 Aug 2018 11:11:38 -0500
+	Mon, 27 Aug 2018 17:13:06 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7RHCxAK121096
+	for <meta-arago@arago-project.org>; Mon, 27 Aug 2018 12:12:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1535386298;
-	bh=+IIY8/ajAOJpeYU22haMUzjr7p4ImS8GJvDFhRyRI+g=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=x7TsJiYF+xU2JxGYWYPTwTG5LnDK471gR7SU/MYMfXWVpd9W5QVrM7LeKlnrNHMgN
-	4W5S1XcLp99z0MDVjcNpkgjQ0389qT9olL2rXnc81/bbh62HJVgh54btmXjl0C6I6L
-	owRGqgTPRK6hO3bIZu0kZQRc/DwXCh3AJqUDwOJU=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7RGBcdp019487
-	for <meta-arago@arago-project.org>; Mon, 27 Aug 2018 11:11:38 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1535389979;
+	bh=DLNWI5qKBbB1u0W2Z72oD8veYQmqDQrOB7Ww/WLJMOU=;
+	h=From:To:CC:Subject:Date;
+	b=D2avhGfmdC/qc8x5qpKP9+Omn8aYeuN4H/bfkkte3kjFulv0Lc5J7tiXclW77CkAA
+	gSULSuKL7WLvZtQ64BPY1M9NY+yiW0/+6HTt/R64fboy1g89U58YoHtG7L8/kR9u2q
+	KL5a/FsA/UCK28famk0yvdsbKail4xKmE2strhUU=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7RHCxio023367
+	for <meta-arago@arago-project.org>; Mon, 27 Aug 2018 12:12:59 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Mon, 27 Aug 2018 11:11:38 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 27 Aug 2018 12:12:58 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Mon, 27 Aug 2018 11:11:38 -0500
-Received: from UDA0216595.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Mon, 27 Aug 2018 12:12:58 -0500
+Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7RGBWWk016546;
-	Mon, 27 Aug 2018 11:11:38 -0500
-From: Qin Su <qsu@ti.com>
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7RHCwiZ029738;
+	Mon, 27 Aug 2018 12:12:58 -0500
+From: Yuan Zhao <yuanzhao@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 27 Aug 2018 12:11:29 -0400
-Message-ID: <1535386289-26218-3-git-send-email-qsu@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1535386289-26218-1-git-send-email-qsu@ti.com>
-References: <1535386289-26218-1-git-send-email-qsu@ti.com>
+Date: Mon, 27 Aug 2018 12:12:54 -0500
+Message-ID: <20180827171254.104531-1-yuanzhao@ti.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 3/3] armnn: ARM NN machine learning SDK.
+Subject: [PATCH] ocl: update version to 01.01.15.06
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,138 +48,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Aug 2018 16:11:47 -0000
+X-List-Received-Date: Mon, 27 Aug 2018 17:13:07 -0000
 Content-Type: text/plain
 
-Arm NN SDK is a set of open-source Linux software and tools that enables
-machine learning workloads on power-efficient devices. Arm NN takes Caffe,
-TensorFlow network frameworks, translate them to the internal Arm NN
-formatand then, through the Compute Library, deploy them efficiently on
-Cortex-A CPUs.
-
-Signed-off-by: Qin Su <qsu@ti.com>
+Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
 ---
- meta-arago-extras/recipes-support/armnn/armnn.bb   | 47 ++++++++++++++++++
- .../armnn/0001-stdlib-issue-work-around.patch      | 55 ++++++++++++++++++++++
- 2 files changed, 102 insertions(+)
- create mode 100644 meta-arago-extras/recipes-support/armnn/armnn.bb
- create mode 100644 meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch
+ meta-arago-extras/recipes-ti/ocl/ocl.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-support/armnn/armnn.bb b/meta-arago-extras/recipes-support/armnn/armnn.bb
-new file mode 100644
-index 0000000..51bd919
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/armnn/armnn.bb
-@@ -0,0 +1,47 @@
-+DESCRIPTION = "Linux software and tools to enable machine learning (Caffe/Tensorflow) workloads on power-efficient devices"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=3e14a924c16f7d828b8335a59da64074"
-+
-+SRCREV = "4c7098bfeab1ffe1cdc77f6c15548d3e73274746"
-+
-+S = "${WORKDIR}/git"
-+
-+FILES_${PN}-dev += "{libdir}/cmake/*"
-+
-+inherit cmake
-+
-+SRC_URI = " \
-+    git://github.com/ARM-software/armnn.git \
-+    file://0001-stdlib-issue-work-around.patch \
-+"
-+
-+DEPENDS = " \
-+           boost \
-+           protobuf-tidl \
-+           stb \
-+           arm-compute-library \
-+		   armnn-caffe \
-+		   armnn-tensorflow \
-+"
-+
-+EXTRA_OECMAKE=" \
-+               -DBUILD_SHARED_LIBS=ON -DREGISTER_INSTALL_PREFIX=OFF \
-+               -DARMCOMPUTE_ROOT=${STAGING_DIR_HOST}${datadir}/arm-compute-library \
-+               -DARMCOMPUTE_BUILD_DIR=${STAGING_DIR_HOST}${datadir}/arm-compute-library/build \
-+               -DCAFFE_GENERATED_SOURCES=${STAGING_DIR_HOST}${datadir}/armnn-caffe \
-+               -DTF_GENERATED_SOURCES=${STAGING_DIR_HOST}${datadir}/armnn-tensorflow \
-+               -DBUILD_CAFFE_PARSER=1 -DBUILD_TF_PARSER=1 \
-+               -DARMCOMPUTENEON=1 \ 
-+               -DBUILD_TESTS=1 -DPROFILING=1 \
-+               -DTHIRD_PARTY_INCLUDE_DIRS=${STAGING_DIR_HOST}${includedir} \
-+"
-+
-+CXXFLAGS += "-fopenmp"
-+LIBS += "-larmpl_lp64_mp"
-+
-+INSANE_SKIP_${PN}-dev = "dev-elf"
-+
-+PACKAGES =+ "${PN}-bash-completion"
-+FILES_${PN}-bash-completion += "${bindir}/armnn_completions.sh"
-+RDEPENDS_${PN}-bash-completion = "bash bash-completion"
-+
-diff --git a/meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch b/meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch
-new file mode 100644
-index 0000000..eab2902
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch
-@@ -0,0 +1,55 @@
-+From 3691057b51010c1bd979998c460ad7b43f97496f Mon Sep 17 00:00:00 2001
-+From: Qin Su <qsu@ti.com>
-+Date: Fri, 10 Aug 2018 11:02:14 -0400
-+Subject: [PATCH] stdlib issue work around
-+
-+Signed-off-by: Qin Su <qsu@ti.com>
-+---
-+ cmake/GlobalConfig.cmake | 28 ++++++++++++++++++++++++++++
-+ 1 file changed, 28 insertions(+)
-+ mode change 100644 => 100755 cmake/GlobalConfig.cmake
-+
-+diff --git a/cmake/GlobalConfig.cmake b/cmake/GlobalConfig.cmake
-+old mode 100644
-+new mode 100755
-+index 2dbeada..2b88c16
-+--- a/cmake/GlobalConfig.cmake
-++++ b/cmake/GlobalConfig.cmake
-+@@ -47,6 +47,34 @@ elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
-+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc /MP")
-+     add_definitions(-DNOMINMAX=1 -DNO_STRICT=1)
-+ endif()
-++
-++# Ensure that the default include system directories are added to the list of CMake implicit includes.
-++# This workarounds an issue that happens when using GCC 6 and using system includes (-isystem).
-++# For more details check: https://bugs.webkit.org/show_bug.cgi?id=161697
-++macro(DETERMINE_GCC_SYSTEM_INCLUDE_DIRS _lang _compiler _flags _result)
-++    file(WRITE "${CMAKE_BINARY_DIR}/CMakeFiles/dummy" "\n")
-++    separate_arguments(_buildFlags UNIX_COMMAND "${_flags}")
-++    execute_process(COMMAND ${_compiler} ${_buildFlags} -v -E -x ${_lang} -dD dummy
-++                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/CMakeFiles OUTPUT_QUIET
-++                    ERROR_VARIABLE _gccOutput)
-++    file(REMOVE "${CMAKE_BINARY_DIR}/CMakeFiles/dummy")
-++    if ("${_gccOutput}" MATCHES "> search starts here[^\n]+\n *(.+) *\n *End of (search) list")
-++        set(${_result} ${CMAKE_MATCH_1})
-++        string(REPLACE "\n" " " ${_result} "${${_result}}")
-++        separate_arguments(${_result})
-++    endif ()
-++endmacro()
-++
-++if (CMAKE_COMPILER_IS_GNUCC)
-++   DETERMINE_GCC_SYSTEM_INCLUDE_DIRS("c" "${CMAKE_C_COMPILER}" "${CMAKE_C_FLAGS}" SYSTEM_INCLUDE_DIRS)
-++   set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES ${CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES} ${SYSTEM_INCLUDE_DIRS})
-++endif ()
-++
-++if (CMAKE_COMPILER_IS_GNUCXX)
-++   DETERMINE_GCC_SYSTEM_INCLUDE_DIRS("c++" "${CMAKE_CXX_COMPILER}" "${CMAKE_CXX_FLAGS}" SYSTEM_INCLUDE_DIRS)
-++   set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES} ${SYSTEM_INCLUDE_DIRS})
-++endif ()
-++
-+ if("${CMAKE_SYSTEM_NAME}" STREQUAL Android)
-+     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -llog")
-+     set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -llog")
-+-- 
-+1.9.1
-+
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index 47e1eea5..ec7af4d4 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,4 +1,4 @@
+-PV = "1.1.15.5"
++PV = "1.1.15.6"
+ INC_PR = "r0"
+ 
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
+ 
+-OCL_SRCREV = "9129453670a6299bf66f9932b7c0949a10eb82c6"
++OCL_SRCREV = "7f6a93c96e4a4dfd8c1a19078f6a8d0c15d531d5"
+ 
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
 -- 
-1.9.1
+2.14.1
 
 
