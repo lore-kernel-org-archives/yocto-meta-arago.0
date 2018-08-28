@@ -1,44 +1,43 @@
 Return-Path: <j-stiffler@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 6F2B152A52
+	by arago-project.org (Postfix) with ESMTPS id 50E2F529EE
 	for <meta-arago@arago-project.org>;
-	Tue, 28 Aug 2018 17:46:54 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7SHkktw096443
-	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 12:46:46 -0500
+	Tue, 28 Aug 2018 19:04:38 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7SJ4UgP114964
+	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 14:04:30 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1535478406;
-	bh=wQKsy+yMfrbItbQmL4R0ZGCE4zb9Lkjn/Ae7yVE3swk=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=E0tT/VH2ZxRO1YwYhu7LoCP7LDc7KfpPts0HQkPf4UiOpeZD2vGupgtq7340VlI+A
-	hOHUkaJMT/qSPI3HKh7TGuC50Gf0asSuZXohFfwKXuCOjWc0wM1uMY2CbgzZ6R5UBF
-	BZIZhKUWsUh4Cvb0KoCvm2ZMxGQGwRWvOKEL370I=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7SHkkJU016898
-	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 12:46:46 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1535483070;
+	bh=JLx08nWARttOLBG+lAt3UEubQ7F4sBg67ldwZP72bFg=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=Vz/uE8VVOsGt1katGo7+zgmDsRyEtVAt7U7jDsSPa9+csnAQxbopFZGYqD+dw9REW
+	crYCnAop+a/ArLvSmS0V4m+n8IA9P0ttTellP34NeJY5GuHmUoMOv1MtyAWshzEBBD
+	/nDZfqU/pESTJeN30b0W7zLx54o/TBtpvvf8dKF0=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7SJ4UjZ014082
+	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 14:04:30 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Tue, 28 Aug 2018 12:46:46 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 28 Aug 2018 14:04:30 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Tue, 28 Aug 2018 12:46:46 -0500
-Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7SHkdhY023691;
-	Tue, 28 Aug 2018 12:46:46 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	Transport; Tue, 28 Aug 2018 14:04:30 -0500
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7SJ4T81010936
+	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 14:04:30 -0500
 To: <meta-arago@arago-project.org>
-Date: Tue, 28 Aug 2018 13:34:23 -0400
-Message-ID: <1535477663-15879-4-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1535477663-15879-1-git-send-email-j-stiffler@ti.com>
 References: <1535477663-15879-1-git-send-email-j-stiffler@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <0969cfda-be66-0cf7-244f-574b5cfb2963@ti.com>
+Date: Tue, 28 Aug 2018 15:04:29 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
 MIME-Version: 1.0
+In-Reply-To: <1535477663-15879-1-git-send-email-j-stiffler@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Nick Saulnier <nsaulnier@ti.com>
-Subject: [PATCH 4/4] ti-tisdk-makefile: enable pru-icss for k3
+Subject: Re: [PATCH 1/4] ti-tisdk-makefile: fix KERNEL_IMAGETYPE replacement
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,74 +50,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Aug 2018 17:46:54 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 28 Aug 2018 19:04:38 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Cc: Nick Saulnier <nsaulnier@ti.com>
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../ti-tisdk-makefile/Makefile_pru-icss              | 20 ++++++++++++++++++++
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb       |  4 +++-
- 2 files changed, 23 insertions(+), 1 deletion(-)
+I have identified and fixed another issue with ti-tisdk-makefile for k3.
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss
-index 8035b3a..d0f5130 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss
-@@ -83,3 +83,23 @@ pru-icss_install_k2g: pru-icss_install_common
- 				$(DESTDIR)/lib/firmware/pru; \
- 		done; \
- 	done
-+
-+pru-icss_install_am65x: pru-icss_install_common
-+	@cd example-applications; cd `find . -name "*pru-icss*"`; \
-+	for i in 0 1; \
-+	do \
-+		install -m 0644 ./examples/am65x/PRU_Halt/gen/PRU$${i}/PRU_Halt_$${i}.out \
-+			$(DESTDIR)/lib/firmware/pru; \
-+		install -m 644 ./examples/am65x/RTU_Halt/gen/RTU$${i}/RTU_Halt_$${i}.out \
-+			$(DESTDIR)/lib/firmware/pru; \
-+	done; \
-+	for i in 0 1 2; \
-+	do \
-+		for j in 0 1; \
-+		do \
-+			install -m 0644 ./examples/am65x/PRU_RPMsg_Echo_Interrupt$${j}/gen/icssg$${i}/PRU_RPMsg_Echo_Interrupt$${i}_$${j}.out \
-+				$(DESTDIR)/lib/firmware/pru; \
-+			install -m 0644 ./examples/am65x/RTU_RPMsg_Echo_Interrupt$${j}/gen/icssg$${i}/RTU_RPMsg_Echo_Interrupt$${i}_$${j}.out \
-+				$(DESTDIR)/lib/firmware/pru; \
-+		done; \
-+	done
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 802451f..78baa9b 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -50,7 +50,7 @@ SRC_URI = "\
-     file://Makefile_barcode-roi \
- "
- 
--PR = "r89"
-+PR = "r90"
- 
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
-@@ -169,6 +169,7 @@ MAKEFILES_append_k3 = " u-boot-spl \
-                         barcode-roi \
-                         cryptodev \
-                         ti-sgx-ddk-km \
-+                        pru-icss \
- "
- 
- # Use this to export kernel arch to ARCH
-@@ -199,6 +200,7 @@ PRU_ICSS_INSTALL_TARGET_ti33x = "pru-icss_install_am335x"
- PRU_ICSS_INSTALL_TARGET_ti43x = "pru-icss_install_am437x"
- PRU_ICSS_INSTALL_TARGET_omap-a15 = "pru-icss_install_am572x"
- PRU_ICSS_INSTALL_TARGET_k2g = "pru-icss_install_k2g"
-+PRU_ICSS_INSTALL_TARGET_k3 = "pru-icss_install_am65x"
- 
- 
- # If it's not defined at all, like for zImage case
--- 
-2.7.4
+I will submit a v2 of the entire set to keep the patches in order.
+
+- Jake
+
+
+On 8/28/2018 1:34 PM, Jacob Stiffler wrote:
+> * KERNEL_IMAGE_TYPE was used when the correct variable name is
+>    KERNEL_IMAGETYPE.
+>
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+>   .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb            | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+> index aba71d9..f83713a 100644
+> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+> @@ -249,7 +249,7 @@ do_install () {
+>       fi
+>   
+>       sed -i -e "s/__KERNEL_ARCH__/${ARCH}/" ${D}/Makefile
+> -    sed -i -e "s/__KERNEL_IMAGE_TYPE__/${KERNEL_IMAGE_TYPE}/" ${D}/Makefile
+> +    sed -i -e "s/__KERNEL_IMAGE_TYPE__/${KERNEL_IMAGETYPE}/" ${D}/Makefile
+>       sed -i -e "s/__KERNEL_BUILD_CMDS__/${KERNEL_BUILD_CMDS}/" ${D}/Makefile
+>       sed -i -e "s/__SDKMACHINE__/${SDKMACHINE}/g" ${D}/Makefile
+>   
 
 
