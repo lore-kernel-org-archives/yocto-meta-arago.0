@@ -1,43 +1,44 @@
 Return-Path: <j-stiffler@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id B6A0952A52
+	by arago-project.org (Postfix) with ESMTPS id 6F2B152A52
 	for <meta-arago@arago-project.org>;
-	Tue, 28 Aug 2018 17:46:51 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7SHkhZw096430
-	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 12:46:43 -0500
+	Tue, 28 Aug 2018 17:46:54 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7SHkktw096443
+	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 12:46:46 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1535478403;
-	bh=9mvI42wJVBU9kuI/CBKEIPq/TD4RTLrXi+3D4tf9XhQ=;
+	s=ti-com-17Q1; t=1535478406;
+	bh=wQKsy+yMfrbItbQmL4R0ZGCE4zb9Lkjn/Ae7yVE3swk=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=sGOhzeDjptLGlthe+cCnzSVXT3QYJ6YX+4Szbz/aGWKp9vcDamTsztjm9IiZxdIZJ
-	8d/GlqUv01rRa8cxJSxoEfZz0djMl0JRhOSnAbqbcy60p37RQFNI1kdYzTdKgt2LJI
-	b2lKfmXyslnFyfO4w4YCvezLSa70M9xsRbh4bjtQ=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7SHkhLK012943
-	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 12:46:43 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	b=E0tT/VH2ZxRO1YwYhu7LoCP7LDc7KfpPts0HQkPf4UiOpeZD2vGupgtq7340VlI+A
+	hOHUkaJMT/qSPI3HKh7TGuC50Gf0asSuZXohFfwKXuCOjWc0wM1uMY2CbgzZ6R5UBF
+	BZIZhKUWsUh4Cvb0KoCvm2ZMxGQGwRWvOKEL370I=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7SHkkJU016898
+	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 12:46:46 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Tue, 28 Aug 2018 12:46:43 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 28 Aug 2018 12:46:46 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Tue, 28 Aug 2018 12:46:43 -0500
+	Transport; Tue, 28 Aug 2018 12:46:46 -0500
 Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7SHkdhX023691;
-	Tue, 28 Aug 2018 12:46:42 -0500
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7SHkdhY023691;
+	Tue, 28 Aug 2018 12:46:46 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 28 Aug 2018 13:34:22 -0400
-Message-ID: <1535477663-15879-3-git-send-email-j-stiffler@ti.com>
+Date: Tue, 28 Aug 2018 13:34:23 -0400
+Message-ID: <1535477663-15879-4-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1535477663-15879-1-git-send-email-j-stiffler@ti.com>
 References: <1535477663-15879-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 3/4] ti-tisdk-makefile add pru-icss target for k2g
+Cc: Nick Saulnier <nsaulnier@ti.com>
+Subject: [PATCH 4/4] ti-tisdk-makefile: enable pru-icss for k3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,62 +51,70 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Aug 2018 17:46:52 -0000
+X-List-Received-Date: Tue, 28 Aug 2018 17:46:54 -0000
 Content-Type: text/plain
 
+Cc: Nick Saulnier <nsaulnier@ti.com>
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss    | 12 ++++++++++++
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb |  5 ++++-
- 2 files changed, 16 insertions(+), 1 deletion(-)
+ .../ti-tisdk-makefile/Makefile_pru-icss              | 20 ++++++++++++++++++++
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb       |  4 +++-
+ 2 files changed, 23 insertions(+), 1 deletion(-)
 
 diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss
-index 02f81bf..8035b3a 100644
+index 8035b3a..d0f5130 100644
 --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss
 +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss
-@@ -71,3 +71,15 @@ pru-icss_install_am572x: pru-icss_install_common
+@@ -83,3 +83,23 @@ pru-icss_install_k2g: pru-icss_install_common
+ 				$(DESTDIR)/lib/firmware/pru; \
  		done; \
  	done
- 
-+pru-icss_install_k2g: pru-icss_install_common
++
++pru-icss_install_am65x: pru-icss_install_common
 +	@cd example-applications; cd `find . -name "*pru-icss*"`; \
-+	install -m 0644 ./examples/k2g/PRU_Halt/gen/PRU_Halt.out \
-+		$(DESTDIR)/lib/firmware/pru; \
 +	for i in 0 1; \
++	do \
++		install -m 0644 ./examples/am65x/PRU_Halt/gen/PRU$${i}/PRU_Halt_$${i}.out \
++			$(DESTDIR)/lib/firmware/pru; \
++		install -m 644 ./examples/am65x/RTU_Halt/gen/RTU$${i}/RTU_Halt_$${i}.out \
++			$(DESTDIR)/lib/firmware/pru; \
++	done; \
++	for i in 0 1 2; \
 +	do \
 +		for j in 0 1; \
 +		do \
-+			install -m 0644 ./examples/k2g/PRU_RPMsg_Echo_Interrupt$${i}_$${j}/gen/PRU_RPMsg_Echo_Interrupt$${i}_$${j}.out \
++			install -m 0644 ./examples/am65x/PRU_RPMsg_Echo_Interrupt$${j}/gen/icssg$${i}/PRU_RPMsg_Echo_Interrupt$${i}_$${j}.out \
++				$(DESTDIR)/lib/firmware/pru; \
++			install -m 0644 ./examples/am65x/RTU_RPMsg_Echo_Interrupt$${j}/gen/icssg$${i}/RTU_RPMsg_Echo_Interrupt$${i}_$${j}.out \
 +				$(DESTDIR)/lib/firmware/pru; \
 +		done; \
 +	done
 diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index f83713a..802451f 100644
+index 802451f..78baa9b 100644
 --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
 +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
 @@ -50,7 +50,7 @@ SRC_URI = "\
      file://Makefile_barcode-roi \
  "
  
--PR = "r88"
-+PR = "r89"
+-PR = "r89"
++PR = "r90"
  
  MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
                          refresh-screen \
-@@ -162,6 +162,8 @@ MAKEFILES_append_k2e = " opencl-examples \
-                              openmpacc-examples \
+@@ -169,6 +169,7 @@ MAKEFILES_append_k3 = " u-boot-spl \
+                         barcode-roi \
+                         cryptodev \
+                         ti-sgx-ddk-km \
++                        pru-icss \
  "
  
-+MAKEFILES_append_k2g = " pru-icss"
-+
- MAKEFILES_append_k3 = " u-boot-spl \
-                         linux-dtbs \
-                         barcode-roi \
-@@ -196,6 +198,7 @@ PRU_ICSS_INSTALL_TARGET = "pru-icss_install_none"
- PRU_ICSS_INSTALL_TARGET_ti33x = "pru-icss_install_am335x"
+ # Use this to export kernel arch to ARCH
+@@ -199,6 +200,7 @@ PRU_ICSS_INSTALL_TARGET_ti33x = "pru-icss_install_am335x"
  PRU_ICSS_INSTALL_TARGET_ti43x = "pru-icss_install_am437x"
  PRU_ICSS_INSTALL_TARGET_omap-a15 = "pru-icss_install_am572x"
-+PRU_ICSS_INSTALL_TARGET_k2g = "pru-icss_install_k2g"
+ PRU_ICSS_INSTALL_TARGET_k2g = "pru-icss_install_k2g"
++PRU_ICSS_INSTALL_TARGET_k3 = "pru-icss_install_am65x"
  
  
  # If it's not defined at all, like for zImage case
