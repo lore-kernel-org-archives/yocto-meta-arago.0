@@ -1,43 +1,41 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 50E2F529EE
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 1FFD0529EE
 	for <meta-arago@arago-project.org>;
-	Tue, 28 Aug 2018 19:04:38 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7SJ4UgP114964
-	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 14:04:30 -0500
+	Tue, 28 Aug 2018 19:10:13 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7SJA5oM119622
+	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 14:10:05 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1535483070;
-	bh=JLx08nWARttOLBG+lAt3UEubQ7F4sBg67ldwZP72bFg=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=Vz/uE8VVOsGt1katGo7+zgmDsRyEtVAt7U7jDsSPa9+csnAQxbopFZGYqD+dw9REW
-	crYCnAop+a/ArLvSmS0V4m+n8IA9P0ttTellP34NeJY5GuHmUoMOv1MtyAWshzEBBD
-	/nDZfqU/pESTJeN30b0W7zLx54o/TBtpvvf8dKF0=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7SJ4UjZ014082
-	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 14:04:30 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1535483405;
+	bh=vr8hH+7eJ/J46oIlFKLTgcePK0IWm2AvsIa4lLsOQdU=;
+	h=From:To:CC:Subject:Date;
+	b=EHFKizZ9X07o/hjILDSenmVDGelTWNyehbnMEf1dVweHhMPCgSKJA51ppD9DUNE6c
+	/qVSTQ5hEz1yk0ape+khiiOWhQAx0PrIT/dXd4IKxe7ZsIYtR8usLg8xYJxZTMZqya
+	KVHyqLjO79r/GFZtei8W1CLvJyZ2WLsa6rvl+bM8=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7SJA51H021544
+	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 14:10:05 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Tue, 28 Aug 2018 14:04:30 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 28 Aug 2018 14:10:04 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Tue, 28 Aug 2018 14:04:30 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7SJ4T81010936
-	for <meta-arago@arago-project.org>; Tue, 28 Aug 2018 14:04:30 -0500
-To: <meta-arago@arago-project.org>
-References: <1535477663-15879-1-git-send-email-j-stiffler@ti.com>
+	Transport; Tue, 28 Aug 2018 14:10:04 -0500
+Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7SJA4cq003290;
+	Tue, 28 Aug 2018 14:10:04 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <0969cfda-be66-0cf7-244f-574b5cfb2963@ti.com>
-Date: Tue, 28 Aug 2018 15:04:29 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
+To: <meta-arago@arago-project.org>
+Date: Tue, 28 Aug 2018 14:57:44 -0400
+Message-ID: <1535482668-18232-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <1535477663-15879-1-git-send-email-j-stiffler@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [PATCH 1/4] ti-tisdk-makefile: fix KERNEL_IMAGETYPE replacement
+Subject: [PATCH v2 1/5] ti-tisdk-makefile: fix KERNEL_IMAGETYPE replacement
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,39 +48,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Aug 2018 19:04:38 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Tue, 28 Aug 2018 19:10:13 -0000
+Content-Type: text/plain
 
-I have identified and fixed another issue with ti-tisdk-makefile for k3.
+* KERNEL_IMAGE_TYPE was used when the correct variable name is
+  KERNEL_IMAGETYPE.
 
-I will submit a v2 of the entire set to keep the patches in order.
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb            | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-- Jake
-
-
-On 8/28/2018 1:34 PM, Jacob Stiffler wrote:
-> * KERNEL_IMAGE_TYPE was used when the correct variable name is
->    KERNEL_IMAGETYPE.
->
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->   .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb            | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-> index aba71d9..f83713a 100644
-> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-> @@ -249,7 +249,7 @@ do_install () {
->       fi
->   
->       sed -i -e "s/__KERNEL_ARCH__/${ARCH}/" ${D}/Makefile
-> -    sed -i -e "s/__KERNEL_IMAGE_TYPE__/${KERNEL_IMAGE_TYPE}/" ${D}/Makefile
-> +    sed -i -e "s/__KERNEL_IMAGE_TYPE__/${KERNEL_IMAGETYPE}/" ${D}/Makefile
->       sed -i -e "s/__KERNEL_BUILD_CMDS__/${KERNEL_BUILD_CMDS}/" ${D}/Makefile
->       sed -i -e "s/__SDKMACHINE__/${SDKMACHINE}/g" ${D}/Makefile
->   
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index aba71d9..f83713a 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -249,7 +249,7 @@ do_install () {
+     fi
+ 
+     sed -i -e "s/__KERNEL_ARCH__/${ARCH}/" ${D}/Makefile
+-    sed -i -e "s/__KERNEL_IMAGE_TYPE__/${KERNEL_IMAGE_TYPE}/" ${D}/Makefile
++    sed -i -e "s/__KERNEL_IMAGE_TYPE__/${KERNEL_IMAGETYPE}/" ${D}/Makefile
+     sed -i -e "s/__KERNEL_BUILD_CMDS__/${KERNEL_BUILD_CMDS}/" ${D}/Makefile
+     sed -i -e "s/__SDKMACHINE__/${SDKMACHINE}/g" ${D}/Makefile
+ 
+-- 
+2.7.4
 
 
