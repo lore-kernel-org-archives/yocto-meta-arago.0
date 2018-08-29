@@ -1,43 +1,43 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id EB4E752A87
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 2DD4352A88
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Aug 2018 15:03:33 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7TF3QQv089693
+	Wed, 29 Aug 2018 15:03:34 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7TF3QTj052885
 	for <meta-arago@arago-project.org>; Wed, 29 Aug 2018 10:03:26 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1535555006;
-	bh=LUzWpEFOPUlTK8cAPrzx06IALbfM4TmIyXsH2EIPfqI=;
+	bh=IrU93pFGaIOjE3uAbwxk3HelRm9SgirFMmX7D08Yius=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=a7YknjMQzlYRQ9fbcUKbHKsXvADgZ3l0gqWhWJUMzrywNLM0pv+Yv/cM/mU7YLSHp
-	xMOmIMVdPU2zcxMdqqsgM+VlzJ2HAJLjWmpeuz/lBoEjhUvAacvjgaaW2DB82dGY3J
-	F+uT//TKn+IcDeV77ts/zC6leRX4RUlkUrvLDTGA=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7TF3QDc024373
+	b=KNTBi+KoZIc+u5lc65bVseqbOlo5MPFi6wkoP+MBGdO3yopnkabQGB+Yif7gab7EX
+	HrqM8WPM8rdYR2VrCoqTLvBKN6f6pJayNzAMHyMmSSfGiFTocgrd3HKaqrivyHa0MG
+	40G/tbW4dE6y1P+fXiDo0JEg13fUcWi5dp0FSkP4=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7TF3QD8007480
 	for <meta-arago@arago-project.org>; Wed, 29 Aug 2018 10:03:26 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 29 Aug 2018 10:03:25 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 29 Aug 2018 10:03:26 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
 	Transport; Wed, 29 Aug 2018 10:03:25 -0500
 Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7TF3OiY028516
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7TF3OiZ028516
 	for <meta-arago@arago-project.org>; Wed, 29 Aug 2018 10:03:25 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 29 Aug 2018 11:03:19 -0400
-Message-ID: <1535555000-25564-7-git-send-email-e-ruei1@ti.com>
+Date: Wed, 29 Aug 2018 11:03:20 -0400
+Message-ID: <1535555000-25564-8-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1535555000-25564-1-git-send-email-e-ruei1@ti.com>
 References: <1535555000-25564-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 6/7] matrix-gui-qt5-demos: use webkit browser instead of webengine browser for k3 devices
+Subject: [PATCH 7/7] packagegroup-arago-qte-toolchain-target: replace qtwebenine with qtwebkit for k3 devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,75 +50,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Aug 2018 15:03:36 -0000
+X-List-Received-Date: Wed, 29 Aug 2018 15:03:37 -0000
 Content-Type: text/plain
 
 Note: qtwebengine-based browser does not work on k3 devices
 
+
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- ...-use-webkit-browser-instead-of-webengine-.patch | 31 ++++++++++++++++++++++
- .../matrix/matrix-gui-qt5-demos_2.0.bb             |  6 ++++-
- 2 files changed, 36 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos/0001-qt5_broswer-use-webkit-browser-instead-of-webengine-.patch
+ .../packagegroups/packagegroup-arago-qte-toolchain-target.bb | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos/0001-qt5_broswer-use-webkit-browser-instead-of-webengine-.patch b/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos/0001-qt5_broswer-use-webkit-browser-instead-of-webengine-.patch
-new file mode 100644
-index 0000000..b10a436
---- /dev/null
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos/0001-qt5_broswer-use-webkit-browser-instead-of-webengine-.patch
-@@ -0,0 +1,31 @@
-+From 05e10a940ca734df90684059963b10bd0a832584 Mon Sep 17 00:00:00 2001
-+From: Eric Ruei <e-ruei1@ti.com>
-+Date: Sat, 25 Aug 2018 16:24:10 -0400
-+Subject: [PATCH] qt5_broswer: use webkit/browser instead of
-+ webengine/demobrowser
-+
-+Upstream_Status: Inappropriate [other]
-+- This patch is a tentative workaround until the webengine web page
-+  display problem can be fixed.
-+
-+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-+---
-+ qt5_apps/qt5_browser/qt5_browser.desktop | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/qt5_apps/qt5_browser/qt5_browser.desktop b/qt5_apps/qt5_browser/qt5_browser.desktop
-+index a5d3953..2f6636f 100644
-+--- a/qt5_apps/qt5_browser/qt5_browser.desktop
-++++ b/qt5_apps/qt5_browser/qt5_browser.desktop
-+@@ -4,7 +4,7 @@
-+ Name=Browser
-+ GenericName=Demo App
-+ Icon=/usr/share/matrix-gui-2.0/apps/images/web-icon.png
-+-Exec=/usr/share/qt5/examples/webenginewidgets/demobrowser/demobrowser http://www.ti.com
-++Exec=/usr/share/qt5/examples/webkitwidgets/browser/browser http://www.ti.com
-+ Type=Application
-+ ProgramType=gui
-+ Categories=Qt5
-+-- 
-+1.9.1
-+
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb
-index 2dfeba3..2401832 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb
-@@ -3,10 +3,14 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
+diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
+index 88c5c6b..d9c47d5 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Target packages for Qt Embedded SDK"
+ LICENSE = "MIT"
  
- require matrix-gui-apps-git.inc
+-PR = "r12"
++PR = "r13"
  
--PR = "${INC_PR}.0"
-+PR = "${INC_PR}.1"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- inherit allarch
+@@ -65,6 +65,16 @@ QT5_DEV = " \
+         qtwebengine-dev \
+ "
  
-+SRC_URI_append_k3 = " \
-+           file://0001-qt5_broswer-use-webkit-browser-instead-of-webengine-.patch;pnum=2 \
++QT5_DEV_append_k3 = " \
++        qtwebkit-mkspecs \
++        qtwebkit-dev \
 +"
 +
- S = "${WORKDIR}/git/qt5_apps"
- 
- # Make sure qt5 submenu and app images has been installed
++QT5_DEV_remove_k3 = " \
++        qtwebengine-mkspecs \
++        qtwebengine-dev \
++"
++
+ RDEPENDS_${PN} += " \
+         ${@base_conditional('QT_PROVIDER', 'qt5', "${QT5_DEV}", "${QT4_DEV}", d)} \
+ "
 -- 
 1.9.1
 
