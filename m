@@ -1,43 +1,41 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id EE5BF52A4E
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id D0F86529AE
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Aug 2018 19:20:40 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7UJKVrQ011591
-	for <meta-arago@arago-project.org>; Thu, 30 Aug 2018 14:20:31 -0500
+	Thu, 30 Aug 2018 19:31:19 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w7UJVBrr009915
+	for <meta-arago@arago-project.org>; Thu, 30 Aug 2018 14:31:11 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1535656831;
-	bh=DYNDPozmnCJoWnFHbnNhicPM0277+Ot9Co7T54b1MeE=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=J9qASXDEFomGQmVFB3BbFYwQCUE8a2EACLuwyEjbzSHbON25YPbq3lzZ1sAaknpNx
-	lX0UQGRjFsmGv1hMU9xfcMzx8EZB/84lshSMjNnK7C1CViM2bHro7i3qp2hCbG/IKU
-	AcnrAbC69r8DB2L6wdjnTBvA04vtthNL+N6eup6M=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7UJKVhL030679
-	for <meta-arago@arago-project.org>; Thu, 30 Aug 2018 14:20:31 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1535657471;
+	bh=j0RDd6te6E/FMPUwqDRdUi56VGqqEmMmSssJJLZv0Xs=;
+	h=From:To:CC:Subject:Date;
+	b=lLPCJZy31qw+h/a1XJ7YAwdSisKtgS33iIr/EKMkOaAiyJx5vo3IGq6j0ac2T8S50
+	1N7Nz9GTzQFDnuJhX+PCs4ziJa/jm//4Wluos/thxn6oswijyfbjv5rTqGkkMrygZi
+	fpP3mX2KqACgCfAc20F/vNTZecqWLqb/A4YDI95w=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7UJVBLL019718
+	for <meta-arago@arago-project.org>; Thu, 30 Aug 2018 14:31:11 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Thu, 30 Aug 2018 14:20:31 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 30 Aug 2018 14:31:11 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Thu, 30 Aug 2018 14:20:31 -0500
+	Transport; Thu, 30 Aug 2018 14:31:11 -0500
 Received: from udd0866934.am.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7UJKV0r018722;
-	Thu, 30 Aug 2018 14:20:31 -0500
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w7UJVBgv031686;
+	Thu, 30 Aug 2018 14:31:11 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 30 Aug 2018 15:08:15 -0400
-Message-ID: <1535656095-12896-2-git-send-email-j-stiffler@ti.com>
+Date: Thu, 30 Aug 2018 15:18:55 -0400
+Message-ID: <1535656735-16400-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1535656095-12896-1-git-send-email-j-stiffler@ti.com>
-References: <1535656095-12896-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 2/2] packagegroup-arago-tisdk-amsdk-sdk-host: k3: add tisdk-uenv
+Subject: [PATCH] ti-tisdk-setup: k3: install k3-specific create-sdcard
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,34 +48,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Aug 2018 19:20:41 -0000
+X-List-Received-Date: Thu, 30 Aug 2018 19:31:20 -0000
 Content-Type: text/plain
+
+* This is temporarily needed while board auto-detection is not
+  supported.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb           | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-index 8020bb8..b0736d4 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional scripts and applications into the SDK"
- LICENSE = "MIT"
--PR = "r28"
-+PR = "r29"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index d6921d0..1408b47 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
  
- PN = "packagegroup-arago-tisdk-amsdk-sdk-host${ARAGO_KERNEL_SUFFIX}"
+-PR = "r35"
++PR = "r36"
  
-@@ -21,6 +21,7 @@ BOOT_MONITOR_keystone = "boot-monitor-src"
- EXTRA_FILES = ""
- EXTRA_FILES_ti43x = "tisdk-uenv"
- EXTRA_FILES_omap-a15 = "tisdk-readme tisdk-uenv"
-+EXTRA_FILES_k3 = "tisdk-readme tisdk-uenv"
+ BRANCH ?= "master"
+-SRCREV = "c6517247c9bc5564bbe63d7322314010ac28b1c3"
++SRCREV = "81862f79b19bf4f312555863d247de88921a019b"
+ SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
  
- RDEPENDS_${PN} = "\
-     ti-tisdk-setup \
+ S = "${WORKDIR}/git/"
+@@ -15,6 +15,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ SDCARD_SCRIPT = " create-sdcard.sh"
+ SDCARD_SCRIPT_keystone = ""
+ SDCARD_SCRIPT_k2g = " create-sdcard.sh"
++SDCARD_SCRIPT_k3 = " k3/create-sdcard.sh"
+ 
+ SETUP_SCRIPTS = " common.sh \
+                   setup-host-check.sh \
 -- 
 2.7.4
 
