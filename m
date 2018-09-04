@@ -1,39 +1,38 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 9E51952A3C
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id AD0FC52A3C
 	for <meta-arago@arago-project.org>;
-	Tue,  4 Sep 2018 12:29:46 +0000 (UTC)
+	Tue,  4 Sep 2018 12:59:26 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w84CTc5B026019
-	for <meta-arago@arago-project.org>; Tue, 4 Sep 2018 07:29:38 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w84CxIS2051659
+	for <meta-arago@arago-project.org>; Tue, 4 Sep 2018 07:59:18 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1536064178;
-	bh=YwH1ymNz109auS0PUpiat5PzNQu1GfoVm2AdwwSy7UU=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=qTXIUpa6L6BNWiPZmV1WQeCLjXl6jksh5+wq/TDT4JEgXmKXjPoc0kMJjbJjKq7Oy
-	aEB2kBFO4UWiBZB5hKY+UtjEi0boU7I9UFlGfJTNDRXg0PnA58alW0ke+szNl7xkL8
-	eUUuvHtdFurXUwzOEm9o9BsJ9qCSnyb1QjPpJtvw=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w84CTcqw004392
-	for <meta-arago@arago-project.org>; Tue, 4 Sep 2018 07:29:38 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1536065958;
+	bh=Oxx7mpG6KCoGPkDorvJJdu6VJP7biHCpeOQnITxt1UQ=;
+	h=From:To:Subject:Date:References;
+	b=zIQNZ1XHdJjqpqyo6NFXecJ6Jpbrcbpeqslt/2//Tjex+Eeez+XxbJMmLUud4Vcj+
+	K0sMlgbCwmTz4vf9pXT49dfxl1Pg3ocZ0m3tvmjpQ/CD5LF+m2TWy1d1XbKi/JY3W2
+	UTdK86b4MiSYHahdfItZhFydqDT1AQUPDM1oC69g=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w84CxIkT024794
+	for <meta-arago@arago-project.org>; Tue, 4 Sep 2018 07:59:18 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Tue, 4 Sep 2018 07:29:38 -0500
+	Tue, 4 Sep 2018 07:59:18 -0500
 Received: from DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222]) by
 	DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222%18]) with mapi id
-	15.01.1466.003; Tue, 4 Sep 2018 07:29:38 -0500
+	15.01.1466.003; Tue, 4 Sep 2018 07:59:18 -0500
 From: "Stiffler, Jacob" <j-stiffler@ti.com>
 To: "Reddy, M V Pratap" <x0257344@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
 Thread-Topic: [EXTERNAL] [meta-arago] [master][meta-processor-sdk][PATCH]
 	icss-emac-lld: Checksum update
-Thread-Index: AQHUQu6KBSHbQBc4BUG0C2a+N2WXg6TdqteAgAJk9NA=
-Date: Tue, 4 Sep 2018 12:29:38 +0000
-Message-ID: <2cf39966034a4d95ad44ebf7c14703d9@ti.com>
+Thread-Index: AQHUQu6KBSHbQBc4BUG0C2a+N2WXg6TdqteAgAJk9NCAAAcagA==
+Date: Tue, 4 Sep 2018 12:59:18 +0000
+Message-ID: <eff367e1631c4e498c04fe291641e494@ti.com>
 References: <1535914497-12916-1-git-send-email-x0257344@ti.com>
-	<1535914497-12916-2-git-send-email-x0257344@ti.com>
-In-Reply-To: <1535914497-12916-2-git-send-email-x0257344@ti.com>
+	<1535914497-12916-2-git-send-email-x0257344@ti.com> 
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -53,51 +52,70 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Sep 2018 12:29:46 -0000
+X-List-Received-Date: Tue, 04 Sep 2018 12:59:27 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-NAK.
+Additionally, this only changes the checksum for "icss-emac-lld". The check=
+sum for "icss-emac-lld-rtos" and "icss-emac-lld-test" will remain unchanged=
+. All three of these recipes share the same source (including license) via =
+"icss-lld.inc" in meta-ti. And can you directly submit to meta-ti?
 
-Without a SRCREV update, not sure how the license checksum could change.
+And whenever the license checksum changes, you will need to explain what ha=
+s changed.
 
 - Jake
 
 > -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Reddy, M V Pratap
-> Sent: Sunday, September 02, 2018 2:55 PM
-> To: meta-arago@arago-project.org
-> Subject: [EXTERNAL] [meta-arago] [master][meta-processor-sdk][PATCH]
-> icss-emac-lld: Checksum update
+> From: Stiffler, Jacob
+> Sent: Tuesday, September 04, 2018 8:30 AM
+> To: Reddy, M V Pratap; meta-arago@arago-project.org
+> Subject: RE: [EXTERNAL] [meta-arago] [master][meta-processor-
+> sdk][PATCH] icss-emac-lld: Checksum update
 >=20
-> From: M V Pratap Reddy <x0257344@ti.com>
+> NAK.
 >=20
-> Signed-off-by: M V Pratap Reddy <x0257344@ti.com>
-> ---
->  recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend | 1 +
->  1 file changed, 1 insertion(+)
->  create mode 100644 recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend
+> Without a SRCREV update, not sure how the license checksum could change.
 >=20
-> diff --git a/recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend b/recip=
-es-
-> bsp/icss-emac-lld/icss-emac-lld_git.bbappend
-> new file mode 100644
-> index 0000000..e2ef25c
-> --- /dev/null
-> +++ b/recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend
-> @@ -0,0 +1 @@
-> +LIC_FILES_CHKSUM =3D
+> - Jake
+>=20
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
+> > bounces@arago-project.org] On Behalf Of Reddy, M V Pratap
+> > Sent: Sunday, September 02, 2018 2:55 PM
+> > To: meta-arago@arago-project.org
+> > Subject: [EXTERNAL] [meta-arago] [master][meta-processor-sdk][PATCH]
+> > icss-emac-lld: Checksum update
+> >
+> > From: M V Pratap Reddy <x0257344@ti.com>
+> >
+> > Signed-off-by: M V Pratap Reddy <x0257344@ti.com>
+> > ---
+> >  recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend | 1 +
+> >  1 file changed, 1 insertion(+)
+> >  create mode 100644 recipes-bsp/icss-emac-lld/icss-emac-
+> lld_git.bbappend
+> >
+> > diff --git a/recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend
+> b/recipes-
+> > bsp/icss-emac-lld/icss-emac-lld_git.bbappend
+> > new file mode 100644
+> > index 0000000..e2ef25c
+> > --- /dev/null
+> > +++ b/recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend
+> > @@ -0,0 +1 @@
+> > +LIC_FILES_CHKSUM =3D
+> >
 > "file://icss_emacDrv.h;beginline=3D1;endline=3D40;md5=3D590829f0298e5fc11=
 6589
-> 4e26d5380fc"
-> --
-> 1.9.5.msysgit.1
->=20
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > 4e26d5380fc"
+> > --
+> > 1.9.5.msysgit.1
+> >
+> >
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
