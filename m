@@ -1,44 +1,44 @@
 Return-Path: <h-gou@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 65F16529A0
+	by arago-project.org (Postfix) with ESMTPS id B56F7529BF
 	for <meta-arago@arago-project.org>;
 	Thu,  6 Sep 2018 21:04:23 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w86L4FSv124852
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w86L4FKX124856
 	for <meta-arago@arago-project.org>; Thu, 6 Sep 2018 16:04:15 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1536267855;
-	bh=9hOMamEbIxvxHKnRaDRGyuXhKXQ+Zru/KHlCLcGkX8s=;
+	bh=acSp+N9xjkSye0sxzS7z/sevbxhHAGFRHMa0vu7/rIA=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=ypDYIJMJfqnBe8gaI3imrLW5GoJEE9BuLHxi58X3WItdIb3vLbsu4K/YAe9t81FiS
-	m+N3c12sY3AJW5egX7QdH8qjsHrZY5CJnTJoWtPHmlfbR6hPmep3Fc2ud27R3Ltt3K
-	sl7PzW6axYp/rmg9rCF9d5ziiCeNjM1LipFee/V8=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w86L4FTm005040
+	b=mkerh8USOlg4HlgTe1C6baMOYRHwPklErpx8jlKCcdHewoQKYmIijmhbEh2RE9mST
+	Gcf9ZXo9GJsQCkEdrk6pNFXva6utk4gCGUzna/WWa00MW+9d57WgsnRHY6R7h2kPr5
+	sYQoHY0xQVzlXhwN13uXw7dPeH2LHB2jsH0E+N6Y=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w86L4Fdh005063
 	for <meta-arago@arago-project.org>; Thu, 6 Sep 2018 16:04:15 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
 	Thu, 6 Sep 2018 16:04:15 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
 	Transport; Thu, 6 Sep 2018 16:04:15 -0500
 Received: from uda0271529.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w86L4Ehf009473;
-	Thu, 6 Sep 2018 16:04:14 -0500
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w86L4Ehg009473;
+	Thu, 6 Sep 2018 16:04:15 -0500
 From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 6 Sep 2018 17:04:07 -0400
-Message-ID: <1536267851-5510-2-git-send-email-a0271529@ti.com>
+Date: Thu, 6 Sep 2018 17:04:08 -0400
+Message-ID: <1536267851-5510-3-git-send-email-a0271529@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1536267851-5510-1-git-send-email-a0271529@ti.com>
 References: <1536267851-5510-1-git-send-email-a0271529@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processor-sdk 1/5] pru-icss: install header files and rpmsg_lib
+Subject: [meta-processor-sdk 2/5] pru-adc: add multiple-channel adc demo with pru
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,29 +51,70 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Sep 2018 21:04:24 -0000
+X-List-Received-Date: Thu, 06 Sep 2018 21:04:25 -0000
 Content-Type: text/plain
 
 Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- recipes-bsp/pru/pru-icss_git.bbappend | 8 ++++++++
- 1 file changed, 8 insertions(+)
- create mode 100644 recipes-bsp/pru/pru-icss_git.bbappend
+ recipes-apps/pru-adc/pru-adc_git.bb | 49 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 49 insertions(+)
+ create mode 100644 recipes-apps/pru-adc/pru-adc_git.bb
 
-diff --git a/recipes-bsp/pru/pru-icss_git.bbappend b/recipes-bsp/pru/pru-icss_git.bbappend
+diff --git a/recipes-apps/pru-adc/pru-adc_git.bb b/recipes-apps/pru-adc/pru-adc_git.bb
 new file mode 100644
-index 0000000..cb56e38
+index 0000000..5525e48
 --- /dev/null
-+++ b/recipes-bsp/pru/pru-icss_git.bbappend
-@@ -0,0 +1,8 @@
-+PR_append = ".tisdk0"
++++ b/recipes-apps/pru-adc/pru-adc_git.bb
+@@ -0,0 +1,49 @@
++UMMARY = "PRU Multi-channel ADC Interface Reference Design"
++LICENSE = "BSD-3-Clause"
++LIC_FILES_CHKSUM = "file://PRUMulti-channelADCInterfaceReferen_manifest.html;md5=1302c86d3951a0d1254e1805158ccf2e"
 +
-+do_install_append() {
-+    install -d ${D}${includedir}
-+    cp -r ${S}/include/* ${D}${includedir}
-+    install -d ${D}${libdir}
-+    cp ${S}/lib/rpmsg_lib.lib ${D}${libdir}
++require recipes-ti/includes/ti-paths.inc
++
++inherit update-alternatives
++
++COMPATIBLE_MACHINE = "am335x-evm"
++
++PV = "1.0"
++PR = "r0"
++
++BRANCH = "master"
++SRC_URI = "git://git.ti.com/apps/tida01555.git;protocol=git;branch=${BRANCH}"
++
++SRCREV = "7cbdf20ed44eb6486137e3866e43eec39eb7a468"
++
++S = "${WORKDIR}/git"
++
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++DEPENDS = "ti-cgt-pru-native pru-icss ncurses"
++RDEPENDS_${PN} += "bash"
++
++EXTRA_OEMAKE += "PRU_CGT="${TI_CGT_PRU_INSTALL_DIR}" PRU_SSP="${STAGING_DIR_TARGET}/usr""
++
++do_install() {
++# install firmware
++    install -d ${D}${base_libdir}/firmware/pru
++    install -m 0644 PRU_ADS8688_Controller/gen/PRU_ADS8688_Controller.out ${D}${base_libdir}/firmware/pru
++    install -m 0644 PRU_ADS8688_Interface/gen/PRU_ADS8688_Interface.out ${D}${base_libdir}/firmware/pru
++# install binary and scripts
++    install -d ${D}${bindir}
++    install -m 755 ARM_User_Space_App/gen/ARM_User_Space_App.out ${D}${bindir}
++    install -m 755 run.sh ${D}${bindir}/run-pru-adc.sh
 +}
++
++FILES_${PN} += "${base_libdir}/firmware"
++
++ALTERNATIVE_TARGET_pru-adc[am335x-pru0-fw] = "/lib/firmware/pru/PRU_ADS8688_Controller.out"
++ALTERNATIVE_TARGET_pru-adc[am335x-pru1-fw] = "/lib/firmware/pru/PRU_ADS8688_Interface.out"
++
++ALTERNATIVE_PRIORITY_pru-adc = "20"
++
++CREATE_SRCIPK = "1"
++SRCIPK_INSTALL_DIR = "example-applications/${PN}-${PV}"
++
++INSANE_SKIP_${PN} = "arch ldflags"
 -- 
 1.9.1
 
