@@ -1,43 +1,41 @@
 Return-Path: <qsu@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 8971052A3A
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 283DC52A1F
 	for <meta-arago@arago-project.org>;
-	Fri,  7 Sep 2018 19:38:27 +0000 (UTC)
+	Fri,  7 Sep 2018 19:41:32 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w87JcJVh063223
-	for <meta-arago@arago-project.org>; Fri, 7 Sep 2018 14:38:19 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w87JfOaF101601
+	for <meta-arago@arago-project.org>; Fri, 7 Sep 2018 14:41:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1536349099;
-	bh=G5VehyMnhC8f0cAKBRtC9gyVIh3N/pERqzb0xGj2k2Q=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=xuunHEpTaJOp2jNES06bOZ7bDhn2963QIKPgQgfcIc2WZV21LhdkqxKe+9HcWkV89
-	3Lp4z+CWfhtq0GvdACMB21ypA6WPfKqhSTCWqTj3cxv8gBbJNLS6nCbKLfMVU8YSOx
-	Y+ooTtdFRYEI3f9GJtvStyoGRcuwgxwoU8p+KCbA=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w87JcJs2012157
-	for <meta-arago@arago-project.org>; Fri, 7 Sep 2018 14:38:19 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1536349284;
+	bh=FR3s+a7cxu2DWLTYq9hJ5gTxfQ0D81bIS0TRW6XFRew=;
+	h=From:To:Subject:Date;
+	b=GRB5TS9Y2j/f1htcmOxvuy2f7g6oSRr9CiIVCjsv8Pe/5o7GYPwW20VF1j8wMRlBj
+	1ucztR+s6+stob8Z0GuCYDPf0l04yY8nQYLjWCQFbuSw8/GgguTUX1c4I16NCKNBlh
+	lNdQWLBzKWJJlXRgGArGAfS29EVl3tXttpUrlUtk=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w87JfO6U018357
+	for <meta-arago@arago-project.org>; Fri, 7 Sep 2018 14:41:24 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Fri, 7 Sep 2018 14:38:19 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 7 Sep 2018 14:41:24 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Fri, 7 Sep 2018 14:38:19 -0500
+	Transport; Fri, 7 Sep 2018 14:41:24 -0500
 Received: from UDA0216595.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w87JcIlQ024961
-	for <meta-arago@arago-project.org>; Fri, 7 Sep 2018 14:38:19 -0500
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w87JfNGn029881
+	for <meta-arago@arago-project.org>; Fri, 7 Sep 2018 14:41:23 -0500
 From: Qin Su <qsu@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 7 Sep 2018 15:38:09 -0400
-Message-ID: <1536349089-1659-4-git-send-email-qsu@ti.com>
+Date: Fri, 7 Sep 2018 15:41:19 -0400
+Message-ID: <1536349279-1713-1-git-send-email-qsu@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1536349089-1659-1-git-send-email-qsu@ti.com>
-References: <1536349089-1659-1-git-send-email-qsu@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v5 3/3] armnn: ARM NN machine learning SDK.
+Subject: [PATCH] Revert "protobuf-tidl: protobuf version 3.2.0."
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,138 +48,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Sep 2018 19:38:29 -0000
+X-List-Received-Date: Fri, 07 Sep 2018 19:41:32 -0000
 Content-Type: text/plain
 
-Arm NN SDK is a set of open-source Linux software and tools that enables
-machine learning workloads on power-efficient devices. Arm NN takes Caffe,
-TensorFlow network frameworks, translate them to the internal Arm NN
-formatand then, through the Compute Library, deploy them efficiently on
-Cortex-A CPUs.
-
-
-Signed-off-by: Qin Su <qsu@ti.com>
+This reverts commit 4d2cba1b52da4f1e3f71b23c71c9aaf615e3d794.
 ---
- meta-arago-extras/recipes-support/armnn/armnn.bb   | 47 ++++++++++++++++++
- .../armnn/0001-stdlib-issue-work-around.patch      | 55 ++++++++++++++++++++++
- 2 files changed, 102 insertions(+)
- create mode 100644 meta-arago-extras/recipes-support/armnn/armnn.bb
- create mode 100644 meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch
+ .../protobuf-tidl/protobuf-tidl_3.2.0.bb           | 38 ----------------------
+ 1 file changed, 38 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-support/protobuf-tidl/protobuf-tidl_3.2.0.bb
 
-diff --git a/meta-arago-extras/recipes-support/armnn/armnn.bb b/meta-arago-extras/recipes-support/armnn/armnn.bb
-new file mode 100644
-index 0000000..6ecf633
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/armnn/armnn.bb
-@@ -0,0 +1,47 @@
-+DESCRIPTION = "Linux software and tools to enable machine learning (Caffe/Tensorflow) workloads on power-efficient devices"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=3e14a924c16f7d828b8335a59da64074"
-+
-+SRCREV = "4c7098bfeab1ffe1cdc77f6c15548d3e73274746"
-+
-+S = "${WORKDIR}/git"
-+
-+FILES_${PN}-dev += "{libdir}/cmake/*"
-+
-+inherit cmake
-+
-+SRC_URI = " \
-+    git://github.com/ARM-software/armnn.git \
-+    file://0001-stdlib-issue-work-around.patch \
-+"
-+
-+DEPENDS = " \
-+           boost \
-+           protobuf \
-+           stb \
-+           arm-compute-library \
-+		   armnn-caffe \
-+		   armnn-tensorflow \
-+"
-+
-+EXTRA_OECMAKE=" \
-+               -DBUILD_SHARED_LIBS=ON -DREGISTER_INSTALL_PREFIX=OFF \
-+               -DARMCOMPUTE_ROOT=${STAGING_DIR_HOST}${datadir}/arm-compute-library \
-+               -DARMCOMPUTE_BUILD_DIR=${STAGING_DIR_HOST}${datadir}/arm-compute-library/build \
-+               -DCAFFE_GENERATED_SOURCES=${STAGING_DIR_HOST}${datadir}/armnn-caffe \
-+               -DTF_GENERATED_SOURCES=${STAGING_DIR_HOST}${datadir}/armnn-tensorflow \
-+               -DBUILD_CAFFE_PARSER=1 -DBUILD_TF_PARSER=1 \
-+               -DARMCOMPUTENEON=1 \
-+               -DBUILD_TESTS=1 -DPROFILING=1 \
-+               -DTHIRD_PARTY_INCLUDE_DIRS=${STAGING_DIR_HOST}${includedir} \
-+"
-+
-+CXXFLAGS += "-fopenmp"
-+LIBS += "-larmpl_lp64_mp"
-+
-+INSANE_SKIP_${PN}-dev = "dev-elf"
-+
-+PACKAGES =+ "${PN}-bash-completion"
-+FILES_${PN}-bash-completion += "${bindir}/armnn_completions.sh"
-+RDEPENDS_${PN}-bash-completion = "bash bash-completion"
-+
-diff --git a/meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch b/meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch
-new file mode 100644
-index 0000000..eab2902
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch
-@@ -0,0 +1,55 @@
-+From 3691057b51010c1bd979998c460ad7b43f97496f Mon Sep 17 00:00:00 2001
-+From: Qin Su <qsu@ti.com>
-+Date: Fri, 10 Aug 2018 11:02:14 -0400
-+Subject: [PATCH] stdlib issue work around
-+
-+Signed-off-by: Qin Su <qsu@ti.com>
-+---
-+ cmake/GlobalConfig.cmake | 28 ++++++++++++++++++++++++++++
-+ 1 file changed, 28 insertions(+)
-+ mode change 100644 => 100755 cmake/GlobalConfig.cmake
-+
-+diff --git a/cmake/GlobalConfig.cmake b/cmake/GlobalConfig.cmake
-+old mode 100644
-+new mode 100755
-+index 2dbeada..2b88c16
-+--- a/cmake/GlobalConfig.cmake
-++++ b/cmake/GlobalConfig.cmake
-+@@ -47,6 +47,34 @@ elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
-+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc /MP")
-+     add_definitions(-DNOMINMAX=1 -DNO_STRICT=1)
-+ endif()
-++
-++# Ensure that the default include system directories are added to the list of CMake implicit includes.
-++# This workarounds an issue that happens when using GCC 6 and using system includes (-isystem).
-++# For more details check: https://bugs.webkit.org/show_bug.cgi?id=161697
-++macro(DETERMINE_GCC_SYSTEM_INCLUDE_DIRS _lang _compiler _flags _result)
-++    file(WRITE "${CMAKE_BINARY_DIR}/CMakeFiles/dummy" "\n")
-++    separate_arguments(_buildFlags UNIX_COMMAND "${_flags}")
-++    execute_process(COMMAND ${_compiler} ${_buildFlags} -v -E -x ${_lang} -dD dummy
-++                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/CMakeFiles OUTPUT_QUIET
-++                    ERROR_VARIABLE _gccOutput)
-++    file(REMOVE "${CMAKE_BINARY_DIR}/CMakeFiles/dummy")
-++    if ("${_gccOutput}" MATCHES "> search starts here[^\n]+\n *(.+) *\n *End of (search) list")
-++        set(${_result} ${CMAKE_MATCH_1})
-++        string(REPLACE "\n" " " ${_result} "${${_result}}")
-++        separate_arguments(${_result})
-++    endif ()
-++endmacro()
-++
-++if (CMAKE_COMPILER_IS_GNUCC)
-++   DETERMINE_GCC_SYSTEM_INCLUDE_DIRS("c" "${CMAKE_C_COMPILER}" "${CMAKE_C_FLAGS}" SYSTEM_INCLUDE_DIRS)
-++   set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES ${CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES} ${SYSTEM_INCLUDE_DIRS})
-++endif ()
-++
-++if (CMAKE_COMPILER_IS_GNUCXX)
-++   DETERMINE_GCC_SYSTEM_INCLUDE_DIRS("c++" "${CMAKE_CXX_COMPILER}" "${CMAKE_CXX_FLAGS}" SYSTEM_INCLUDE_DIRS)
-++   set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES} ${SYSTEM_INCLUDE_DIRS})
-++endif ()
-++
-+ if("${CMAKE_SYSTEM_NAME}" STREQUAL Android)
-+     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -llog")
-+     set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -llog")
-+-- 
-+1.9.1
-+
+diff --git a/meta-arago-extras/recipes-support/protobuf-tidl/protobuf-tidl_3.2.0.bb b/meta-arago-extras/recipes-support/protobuf-tidl/protobuf-tidl_3.2.0.bb
+deleted file mode 100644
+index d67529a..0000000
+--- a/meta-arago-extras/recipes-support/protobuf-tidl/protobuf-tidl_3.2.0.bb
++++ /dev/null
+@@ -1,38 +0,0 @@
+-SUMMARY = "Protocol Buffers - structured data serialisation mechanism"
+-DESCRIPTION = "Protocol Buffers are a way of encoding structured data in an \
+-efficient yet extensible format. Google uses Protocol Buffers for almost \
+-all of its internal RPC protocols and file formats. This recipe is needed for \
+-compatiblity with TIDL 1.1.0 release, Linux x86 version of import tool"
+-
+-HOMEPAGE = "https://github.com/google/protobuf"
+-SECTION = "console/tools"
+-LICENSE = "BSD-3-Clause"
+-
+-PACKAGE_BEFORE_PN = "${PN}-compiler ${PN}-lite"
+-
+-DEPENDS = "zlib"
+-RDEPENDS_${PN}-compiler = "${PN}"
+-RDEPENDS_${PN}-dev += "${PN}-compiler"
+-
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=35953c752efc9299b184f91bef540095"
+-
+-SRCREV = "593e917c176b5bc5aafa57bf9f6030d749d91cd5"
+-
+-PV = "3.2.0+git${SRCPV}"
+-
+-SRC_URI = "git://github.com/google/protobuf.git;branch=3.2.x"
+-
+-EXTRA_OECONF_class-target     = " --with-protoc=echo"
+-EXTRA_OECONF_class-native     = " --with-protoc=echo"
+-EXTRA_OECONF_class-native    += "CFLAGS="-m32 -DNDEBUG" CXXFLAGS="-m32 -DNDEBUG" LDFLAGS=-m32"
+-
+-inherit autotools-brokensep
+-
+-S = "${WORKDIR}/git"
+-
+-FILES_${PN}-compiler = "${bindir} ${libdir}/libprotoc${SOLIBS}"
+-FILES_${PN}-lite = "${bindir} ${libdir}/libprotobuf-lite${SOLIBS}"
+-
+-MIPS_INSTRUCTION_SET = "mips"
+-
+-BBCLASSEXTEND = "native"
 -- 
 1.9.1
 
