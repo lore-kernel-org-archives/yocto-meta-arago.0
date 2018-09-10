@@ -1,44 +1,42 @@
 Return-Path: <h-gou@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id D016E52A12
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 9B99E52A00
 	for <meta-arago@arago-project.org>;
 	Mon, 10 Sep 2018 15:05:21 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8AF5Dpo058733
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8AF5Dsw049178
 	for <meta-arago@arago-project.org>; Mon, 10 Sep 2018 10:05:13 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1536591913;
-	bh=lcfkBoYxofFCAD6oa9lFVn4J8MJw8CYdKAowDuBVQmI=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=A31kzgGjzeN8bc7trU7G1eP+3ilLbL9N7JgabHfYIJKF3chQIVXwteOKDcTUsgZBu
-	pngYH3SQumTMAA5hRO+T7oJ+uytq6HRahU8YHbrP2MA4Wzsq+fqcah4qQN38NQpfrV
-	mY5EkBBuBmEPe+0PzENp9SQwr+zT4jhUtrgVUNvY=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8AF5Dhg007588
+	bh=nDMuRN+a1hH//1czS8/bO/8a+jPZ0rik9Jt6Pte1Gyo=;
+	h=From:To:CC:Subject:Date;
+	b=etDVOpGVIoNApThigXwSBrcIhT2e6UjCneilrZhWnsczgxRlaysF/862dsBLrPWs5
+	5a4a7u+DXY+Yjtw5kdFu5qpDIirqwTqztSXL5SlI4hL7F9CDRHwrCMohz+l/UWEVLl
+	TqjiHEotnZUv+6gMhmi020zEktNiItbyxFR0g5Uk=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8AF5D8t015694
 	for <meta-arago@arago-project.org>; Mon, 10 Sep 2018 10:05:13 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
 	Mon, 10 Sep 2018 10:05:13 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
 	Transport; Mon, 10 Sep 2018 10:05:13 -0500
 Received: from uda0271529.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8AF5DnF001701;
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8AF5DnE001701;
 	Mon, 10 Sep 2018 10:05:13 -0500
 From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 10 Sep 2018 11:05:10 -0400
-Message-ID: <1536591910-29066-2-git-send-email-a0271529@ti.com>
+Date: Mon, 10 Sep 2018 11:05:09 -0400
+Message-ID: <1536591910-29066-1-git-send-email-a0271529@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1536591910-29066-1-git-send-email-a0271529@ti.com>
-References: <1536591910-29066-1-git-send-email-a0271529@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processor-sdk 2/2] [PATCH] ti-tisdk-makefile: add pru-adc Makefile segment for am335x-evm
+Subject: [meta-processor-sdk 1/2] [PATCH] packagegroup-arago-tisdk-addons-sdk-host: include pru-adc for am335x-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,31 +54,25 @@ Content-Type: text/plain
 
 Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bbappend   | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
-index 80394a1..f80e65b 100644
---- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
-+++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bbappend
+index b490cb7..1d8a1ac 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bbappend
 @@ -1,4 +1,4 @@
--PR_append = ".tisdk56"
-+PR_append = ".tisdk57"
+-PR_append = ".tisdk11"
++PR_append = ".tisdk12"
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
-@@ -43,9 +43,10 @@ MAKEFILES_append_ti43x = " evse-hmi"
- 
- MAKEFILES_append_ti33x = " evse-hmi \
- 			   protection-relays-hmi \
--			   pru-adc \
+ EXTRA_LIBS_append_am57xx-evm = " \
+     jailhouse-src \
+@@ -16,4 +16,4 @@ EXTRA_LIBS_append_dra7xx = " \
+     tiovx-app-host-src \
  "
  
-+MAKEFILES_append_am335x-evm = " pru-adc"
-+
- MAKEFILES_append_am57xx-evm = " jailhouse \
-                                 tidl-examples \
- "
+-UTILS_append_ti33x = " pru-adc-src"
++UTILS_append_am335x-evm = " pru-adc-src"
 -- 
 1.9.1
 
