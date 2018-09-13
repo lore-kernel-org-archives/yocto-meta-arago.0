@@ -1,43 +1,43 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 7D83052993
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id C6C4C52993
 	for <meta-arago@arago-project.org>;
-	Thu, 13 Sep 2018 16:18:12 +0000 (UTC)
+	Thu, 13 Sep 2018 16:18:24 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8DGI4Ro104536
-	for <meta-arago@arago-project.org>; Thu, 13 Sep 2018 11:18:04 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8DGIGCE097281
+	for <meta-arago@arago-project.org>; Thu, 13 Sep 2018 11:18:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1536855484;
-	bh=ZurJVbDaD61S4vw+amhAYidhW9cbeX3nhqvsfIeuY84=;
+	s=ti-com-17Q1; t=1536855496;
+	bh=ZAG03AODmr3XBQJ1OU0gf0Oj+ZmypjkJ+73plgcGGWM=;
 	h=Subject:To:References:From:Date:In-Reply-To;
-	b=VKPD7eIuJ5OhHXaIaT5TDQj53+SShYJWtouj0sFH3iUnJy7N4M0+W0/7VBz51YhFl
-	nEsmrPEm1XI5iYnfVbIRHXH7pnPWhL7cAEn6qHy8DUzEK4Ci5vMschvxx+zFH7ma1Q
-	55k+qV3VH1IKai4UASqJFIPhz8JQNHOkmVL4xttE=
+	b=KEp57B+f3SQVIAYq6w7wFw8CA0Xa2ID87IJDAn9mjV4mdHx3UAwDxbvD3doekLg3x
+	tt/VhSxggqBgFeeQXmiBzigxzjPwnlnkm3KUojZotSI3P1yAKzyXqDRmCd9b4KKmOO
+	VU/KthV3dCxA+syaXoOtTjcd+0Xy+4eXzWwHwjeg=
 Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8DGI4wK004712
-	for <meta-arago@arago-project.org>; Thu, 13 Sep 2018 11:18:04 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE107.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8DGIGi9005074
+	for <meta-arago@arago-project.org>; Thu, 13 Sep 2018 11:18:16 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE107.ent.ti.com
 	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Thu, 13 Sep 2018 11:18:04 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 13 Sep 2018 11:18:16 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Thu, 13 Sep 2018 11:18:04 -0500
+	Transport; Thu, 13 Sep 2018 11:18:16 -0500
 Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8DGI3gA003699;
-	Thu, 13 Sep 2018 11:18:03 -0500
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8DGIGCq003891;
+	Thu, 13 Sep 2018 11:18:16 -0500
 To: Yuan Zhao <yuanzhao@ti.com>, <meta-arago@arago-project.org>
-References: <20180907204105.84328-1-yuanzhao@ti.com>
+References: <20180907205041.85540-1-yuanzhao@ti.com>
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <f3802628-aa9d-2b3a-d652-ffafbb153364@ti.com>
-Date: Thu, 13 Sep 2018 12:18:03 -0400
+Message-ID: <9cc32e56-96cd-1738-95e3-aa4cc5f66cca@ti.com>
+Date: Thu, 13 Sep 2018 12:18:16 -0400
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
 	Thunderbird/52.9.1
 MIME-Version: 1.0
-In-Reply-To: <20180907204105.84328-1-yuanzhao@ti.com>
+In-Reply-To: <20180907205041.85540-1-yuanzhao@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [PATCH] ocl: update version to 01.01.16.00
+Subject: Re: [EXTERNAL] [PATCH] tidl-api: update to version 01.01.00.00
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,7 +50,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Sep 2018 16:18:12 -0000
+X-List-Received-Date: Thu, 13 Sep 2018 16:18:25 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
@@ -65,114 +65,69 @@ Thank you,
 Jake
 
 
-On 9/7/2018 4:41 PM, Yuan Zhao wrote:
+On 9/7/2018 4:50 PM, Yuan Zhao wrote:
 > Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
 > ---
->   meta-arago-extras/recipes-ti/ocl/clocl_git.bb              | 2 +-
->   meta-arago-extras/recipes-ti/ocl/ocl.inc                   | 4 ++--
->   meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb    | 2 +-
->   meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb | 2 +-
->   meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb     | 2 +-
->   meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb     | 5 +++--
->   meta-arago-extras/recipes-ti/ocl/opencl_git.bb             | 2 +-
->   7 files changed, 10 insertions(+), 9 deletions(-)
+>   meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc         | 6 +++---
+>   meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb      | 2 +-
+>   meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb | 2 +-
+>   meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb   | 2 +-
+>   4 files changed, 6 insertions(+), 6 deletions(-)
 >
-> diff --git a/meta-arago-extras/recipes-ti/ocl/clocl_git.bb b/meta-arago-extras/recipes-ti/ocl/clocl_git.bb
-> index bf00267b..c7f467f5 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/clocl_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/clocl_git.bb
-> @@ -1,5 +1,5 @@
->   DESCRIPTION = "TI OpenCL offline C compiler for compute devices"
-> -HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
-> +HOMEPAGE = "https://downloads.ti.com/mctools/esd/docs/opencl/index.html"
->   LICENSE = "BSD"
->   
->   include ocl.inc
-> diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> index ec7af4d4..b4883c26 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> +++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-> @@ -1,4 +1,4 @@
-> -PV = "1.1.15.6"
-> +PV = "1.1.16.0"
+> diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
+> index f1a34eb0..97c2b68d 100644
+> --- a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
+> +++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
+> @@ -1,11 +1,11 @@
+> -PV = "1.0.0.2"
+> +PV = "1.1.0.0"
 >   INC_PR = "r0"
 >   
->   LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
-> @@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
->   OCL_GIT_PROTOCOL = "git"
->   OCL_GIT_BRANCH = "master"
+> -LIC_FILES_CHKSUM = "file://tidl_api_manifest.html;md5=ae816cc40db02fe06193212437ad00e8"
+> +LIC_FILES_CHKSUM = "file://tidl_api_manifest.html;md5=fb8d8b8edb866b0b233462139d1c3222"
 >   
-> -OCL_SRCREV = "7f6a93c96e4a4dfd8c1a19078f6a8d0c15d531d5"
-> +OCL_SRCREV = "3e9d6af770888b3e8f1d693df419c0d5edd70f14"
->   
->   BRANCH = "${OCL_GIT_BRANCH}"
->   SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-> index f5de598d..cbc35ce5 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-> @@ -1,5 +1,5 @@
->   SUMMARY = "TI OpenCL example applications"
-> -HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
-> +HOMEPAGE = "https://downloads.ti.com/mctools/esd/docs/opencl/index.html"
->   LICENSE = "BSD"
->   
->   include ocl.inc
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> index 61d5cad0..72855665 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> @@ -1,5 +1,5 @@
->   DESCRIPTION = "TI OpenCL M4/IPU device firmware for AM57x"
-> -HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
-> +HOMEPAGE = "https://downloads.ti.com/mctools/esd/docs/opencl/index.html"
->   LICENSE = "BSD"
->   
->   include ocl.inc
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> index b2f9d988..3cc6572b 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> @@ -1,5 +1,5 @@
->   DESCRIPTION = "TI OpenCL compute device firmware"
-> -HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
-> +HOMEPAGE = "https://downloads.ti.com/mctools/esd/docs/opencl/index.html"
->   LICENSE = "BSD"
->   
->   include ocl.inc
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-> index 80c7021a..221e0d62 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-> @@ -3,7 +3,7 @@ SUMMARY = "OpenCL TIDL firmware for AM57xx"
->   LICENSE = "TI-TFL"
->   LIC_FILES_CHKSUM = "file://LICENSE.ti;md5=082a028431c455252c1e1d3d1021d382"
->   
-> -PV = "01.00.00.02"
-> +PV = "01.01.16.00"
->   PR = "r0"
->   
->   require recipes-ti/includes/arago-paths.inc
-> @@ -15,7 +15,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
->   GIT_URI      = "git://git.ti.com/opencl/opencl-firmware.git"
+>   GIT_URI = "git://git.ti.com/tidl/tidl-api.git"
 >   GIT_PROTOCOL = "git"
->   BRANCH       = "master"
-> -SRCREV       = "3b2dca5cb5718db93f7742186839591188c46b25"
-> +SRCREV       = "185e13d273fbbbbdb007111f87855f43c03535fa"
-> +
->   SRC_URI      = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
+>   BRANCH = "master"
 >   
->   S = "${WORKDIR}/git"
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-> index 1c0e2e71..1cf2e626 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
-> @@ -1,5 +1,5 @@
->   DESCRIPTION = "TI OpenCL host runtime and development packages"
-> -HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
-> +HOMEPAGE = "https://downloads.ti.com/mctools/esd/docs/opencl/index.html"
+>   SRC_URI = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
+> -SRCREV = "06585057d0f47bb930647123557bc5a1506dabda"
+> +SRCREV = "a229faf1c14ddfa48e44d271ddfad44e4e7fc033"
+> diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb b/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb
+> index 9c41ef11..47e98ef9 100644
+> --- a/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb
+> +++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb
+> @@ -1,6 +1,6 @@
+>   SUMMARY = "TIDL API"
+>   DESCRIPTION = "TIDL API header and library. Refer TIDL API User's Guide for details."
+> -HOMEPAGE = "http://software-dl.ti.com/mctools/docs/tidl-api/intro.html"
+> +HOMEPAGE = "https://downloads.ti.com/mctools/esd/docs/tidl-api/intro.html"
 >   LICENSE = "BSD"
 >   
->   include ocl.inc
+>   include tidl-api.inc
+> diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb b/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
+> index a1f3ea68..94f215c3 100644
+> --- a/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
+> +++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
+> @@ -1,6 +1,6 @@
+>   SUMMARY = "TIDL API examples"
+>   DESCRIPTION = "Examples of TIDL API. Refer TIDL API User's Guide for details."
+> -HOMEPAGE = "http://software-dl.ti.com/mctools/docs/tidl-api/intro.html"
+> +HOMEPAGE = "https://downloads.ti.com/mctools/esd/docs/tidl-api/intro.html"
+>   LICENSE = "BSD"
+>   
+>   include tidl-api.inc
+> diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb b/meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb
+> index 3c761747..9a2cff13 100644
+> --- a/meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb
+> +++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb
+> @@ -1,6 +1,6 @@
+>   SUMMARY = "TIDL Network Viewer"
+>   DESCRIPTION = "TIDL Network viewer using dot and graphviz"
+> -HOMEPAGE = "http://software-dl.ti.com/mctools/docs/tidl-api/intro.html"
+> +HOMEPAGE = "https://downloads.ti.com/mctools/esd/docs/tidl-api/intro.html"
+>   LICENSE = "BSD"
+>   
+>   include tidl-api.inc
 
 
