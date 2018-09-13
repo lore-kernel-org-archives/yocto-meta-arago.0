@@ -1,43 +1,43 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 7951752993
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 7D83052993
 	for <meta-arago@arago-project.org>;
-	Thu, 13 Sep 2018 13:15:52 +0000 (UTC)
+	Thu, 13 Sep 2018 16:18:12 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8DDFiQv057752
-	for <meta-arago@arago-project.org>; Thu, 13 Sep 2018 08:15:44 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8DGI4Ro104536
+	for <meta-arago@arago-project.org>; Thu, 13 Sep 2018 11:18:04 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1536844544;
-	bh=TU6zTvjXpI9FIlLMQ9z4w6yeFRWIP2u754kqVSoJ4Oo=;
+	s=ti-com-17Q1; t=1536855484;
+	bh=ZurJVbDaD61S4vw+amhAYidhW9cbeX3nhqvsfIeuY84=;
 	h=Subject:To:References:From:Date:In-Reply-To;
-	b=LZXxejrSWCcq/FcDBvqWyp0waya4MPJfyBESI34st+0Cp384tJxlOGBoeDv50x4Vp
-	OlMm/TvF/uCN1wPrvDPISkO8fAWi8YP3awxvIviBL1/6DrzP9a457E+ysmTxTumelc
-	upeGXIidPwriGasKIsyaN8a9J0NS/BxaEYAG+n0o=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8DDFiGX027067
-	for <meta-arago@arago-project.org>; Thu, 13 Sep 2018 08:15:44 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	b=VKPD7eIuJ5OhHXaIaT5TDQj53+SShYJWtouj0sFH3iUnJy7N4M0+W0/7VBz51YhFl
+	nEsmrPEm1XI5iYnfVbIRHXH7pnPWhL7cAEn6qHy8DUzEK4Ci5vMschvxx+zFH7ma1Q
+	55k+qV3VH1IKai4UASqJFIPhz8JQNHOkmVL4xttE=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8DGI4wK004712
+	for <meta-arago@arago-project.org>; Thu, 13 Sep 2018 11:18:04 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Thu, 13 Sep 2018 08:15:44 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 13 Sep 2018 11:18:04 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Thu, 13 Sep 2018 08:15:44 -0500
+	Transport; Thu, 13 Sep 2018 11:18:04 -0500
 Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8DDFhiL003231;
-	Thu, 13 Sep 2018 08:15:43 -0500
-To: Eric Ruei <e-ruei1@ti.com>, <meta-arago@arago-project.org>
-References: <1536843642-41755-1-git-send-email-e-ruei1@ti.com>
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8DGI3gA003699;
+	Thu, 13 Sep 2018 11:18:03 -0500
+To: Yuan Zhao <yuanzhao@ti.com>, <meta-arago@arago-project.org>
+References: <20180907204105.84328-1-yuanzhao@ti.com>
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <e712fe2a-a105-c1d3-529e-686d83d7d99c@ti.com>
-Date: Thu, 13 Sep 2018 09:15:43 -0400
+Message-ID: <f3802628-aa9d-2b3a-d652-ffafbb153364@ti.com>
+Date: Thu, 13 Sep 2018 12:18:03 -0400
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
 	Thunderbird/52.9.1
 MIME-Version: 1.0
-In-Reply-To: <1536843642-41755-1-git-send-email-e-ruei1@ti.com>
+In-Reply-To: <20180907204105.84328-1-yuanzhao@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [matrix-gui-v2-apps][PATCH] add qt5 webkit-based browser app
+Subject: Re: [EXTERNAL] [PATCH] ocl: update version to 01.01.16.00
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,41 +50,129 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Sep 2018 13:15:52 -0000
+X-List-Received-Date: Thu, 13 Sep 2018 16:18:12 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-This has been pushed. Thank you.
+Denys,
+
+Can you please backport this to ti2018.03?
 
 
-On 9/13/2018 9:00 AM, Eric Ruei wrote:
-> The default browser app is webengine-based. This patch adds a webkit-based
-> browser which may be required for some SoCs.
->
-> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Thank you,
+
+Jake
+
+
+On 9/7/2018 4:41 PM, Yuan Zhao wrote:
+> Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
 > ---
->   qt5_apps/qt5_webkit_browser/qt5_webkit_browser.desktop | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
->   create mode 100644 qt5_apps/qt5_webkit_browser/qt5_webkit_browser.desktop
+>   meta-arago-extras/recipes-ti/ocl/clocl_git.bb              | 2 +-
+>   meta-arago-extras/recipes-ti/ocl/ocl.inc                   | 4 ++--
+>   meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb    | 2 +-
+>   meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb | 2 +-
+>   meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb     | 2 +-
+>   meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb     | 5 +++--
+>   meta-arago-extras/recipes-ti/ocl/opencl_git.bb             | 2 +-
+>   7 files changed, 10 insertions(+), 9 deletions(-)
 >
-> diff --git a/qt5_apps/qt5_webkit_browser/qt5_webkit_browser.desktop b/qt5_apps/qt5_webkit_browser/qt5_webkit_browser.desktop
-> new file mode 100644
-> index 0000000..f259c01
-> --- /dev/null
-> +++ b/qt5_apps/qt5_webkit_browser/qt5_webkit_browser.desktop
-> @@ -0,0 +1,12 @@
-> +#!/usr/bin/env xdg-open
+> diff --git a/meta-arago-extras/recipes-ti/ocl/clocl_git.bb b/meta-arago-extras/recipes-ti/ocl/clocl_git.bb
+> index bf00267b..c7f467f5 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/clocl_git.bb
+> +++ b/meta-arago-extras/recipes-ti/ocl/clocl_git.bb
+> @@ -1,5 +1,5 @@
+>   DESCRIPTION = "TI OpenCL offline C compiler for compute devices"
+> -HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
+> +HOMEPAGE = "https://downloads.ti.com/mctools/esd/docs/opencl/index.html"
+>   LICENSE = "BSD"
+>   
+>   include ocl.inc
+> diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+> index ec7af4d4..b4883c26 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
+> +++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+> @@ -1,4 +1,4 @@
+> -PV = "1.1.15.6"
+> +PV = "1.1.16.0"
+>   INC_PR = "r0"
+>   
+>   LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+> @@ -9,7 +9,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+>   OCL_GIT_PROTOCOL = "git"
+>   OCL_GIT_BRANCH = "master"
+>   
+> -OCL_SRCREV = "7f6a93c96e4a4dfd8c1a19078f6a8d0c15d531d5"
+> +OCL_SRCREV = "3e9d6af770888b3e8f1d693df419c0d5edd70f14"
+>   
+>   BRANCH = "${OCL_GIT_BRANCH}"
+>   SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+> index f5de598d..cbc35ce5 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
+> @@ -1,5 +1,5 @@
+>   SUMMARY = "TI OpenCL example applications"
+> -HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
+> +HOMEPAGE = "https://downloads.ti.com/mctools/esd/docs/opencl/index.html"
+>   LICENSE = "BSD"
+>   
+>   include ocl.inc
+> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
+> index 61d5cad0..72855665 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
+> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
+> @@ -1,5 +1,5 @@
+>   DESCRIPTION = "TI OpenCL M4/IPU device firmware for AM57x"
+> -HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
+> +HOMEPAGE = "https://downloads.ti.com/mctools/esd/docs/opencl/index.html"
+>   LICENSE = "BSD"
+>   
+>   include ocl.inc
+> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+> index b2f9d988..3cc6572b 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+> @@ -1,5 +1,5 @@
+>   DESCRIPTION = "TI OpenCL compute device firmware"
+> -HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
+> +HOMEPAGE = "https://downloads.ti.com/mctools/esd/docs/opencl/index.html"
+>   LICENSE = "BSD"
+>   
+>   include ocl.inc
+> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
+> index 80c7021a..221e0d62 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
+> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
+> @@ -3,7 +3,7 @@ SUMMARY = "OpenCL TIDL firmware for AM57xx"
+>   LICENSE = "TI-TFL"
+>   LIC_FILES_CHKSUM = "file://LICENSE.ti;md5=082a028431c455252c1e1d3d1021d382"
+>   
+> -PV = "01.00.00.02"
+> +PV = "01.01.16.00"
+>   PR = "r0"
+>   
+>   require recipes-ti/includes/arago-paths.inc
+> @@ -15,7 +15,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+>   GIT_URI      = "git://git.ti.com/opencl/opencl-firmware.git"
+>   GIT_PROTOCOL = "git"
+>   BRANCH       = "master"
+> -SRCREV       = "3b2dca5cb5718db93f7742186839591188c46b25"
+> +SRCREV       = "185e13d273fbbbbdb007111f87855f43c03535fa"
 > +
-> +[Desktop Entry]
-> +Name=Browser
-> +GenericName=Demo App
-> +Icon=/usr/share/matrix-gui-2.0/apps/images/web-icon.png
-> +Exec=/usr/share/qt5/examples/webkitwidgets/browser/browser http://www.ti.com
-> +Type=Application
-> +ProgramType=gui
-> +Categories=Qt5
-> +X-MATRIX-Lock=qt
-> +Name[en_US]=qt5_webkit_browser.desktop
+>   SRC_URI      = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
+>   
+>   S = "${WORKDIR}/git"
+> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+> index 1c0e2e71..1cf2e626 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+> +++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+> @@ -1,5 +1,5 @@
+>   DESCRIPTION = "TI OpenCL host runtime and development packages"
+> -HOMEPAGE = "http://software-dl.ti.com/mctools/docs/opencl/intro.html"
+> +HOMEPAGE = "https://downloads.ti.com/mctools/esd/docs/opencl/index.html"
+>   LICENSE = "BSD"
+>   
+>   include ocl.inc
 
 
