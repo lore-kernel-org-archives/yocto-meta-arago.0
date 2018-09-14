@@ -1,44 +1,44 @@
 Return-Path: <denys@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 17A2E5203A
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 8D1AA5203A
 	for <meta-arago@arago-project.org>;
-	Fri, 14 Sep 2018 19:40:53 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8EJejei110810
-	for <meta-arago@arago-project.org>; Fri, 14 Sep 2018 14:40:45 -0500
+	Fri, 14 Sep 2018 19:55:51 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8EJthxu022162
+	for <meta-arago@arago-project.org>; Fri, 14 Sep 2018 14:55:43 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1536954045;
-	bh=4GekIUUWnIUmlx2//Q+YeXRgKXhkrceL+OD9PdYB8j0=;
+	s=ti-com-17Q1; t=1536954943;
+	bh=3ajPs3kVhZ9E0dxAhKbMFlJHI/P6/yqlntNbzrKSBL0=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=W3PygCjpUH3z0lKoeky8bzhH7sa9u5nUyOGGL6q/fnOlicHXjxTkZR76jjev5+DVc
-	lUrHRoqzLo/YbdkXS4eEzdwXmUjE61RiwTF//ylF85wHYgJmlP1JGQBIpx5wgLoZ1p
-	9wqCohTrxuN9wkFZVeSycN2CbZJGAH37738WCekI=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8EJejsK024539
-	for <meta-arago@arago-project.org>; Fri, 14 Sep 2018 14:40:45 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	b=bCTVIa78QNYQYNBNLiLPppFGJYYShe7csKQOFmdrehbJnm0YTkGpNkauH88gri38m
+	YVYmLLc75DQHNJBQ533O6gnkEP6F1JXUTxD0dxTIGPUaOb6niRRatwVPthbFxUFnYL
+	nTUxX//e+eF18gBMc8BsLFx5BcYoApeWXEQ8dKbU=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8EJthXq005380
+	for <meta-arago@arago-project.org>; Fri, 14 Sep 2018 14:55:43 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Fri, 14 Sep 2018 14:40:45 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 14 Sep 2018 14:55:43 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Fri, 14 Sep 2018 14:40:45 -0500
+	Transport; Fri, 14 Sep 2018 14:55:43 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8EJejEr015873;
-	Fri, 14 Sep 2018 14:40:45 -0500
-Date: Fri, 14 Sep 2018 15:39:21 -0400
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8EJthuq022682;
+	Fri, 14 Sep 2018 14:55:43 -0500
+Date: Fri, 14 Sep 2018 15:54:19 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: Eric Ruei <e-ruei1@ti.com>
-Message-ID: <20180914193921.GW12296@beryl>
-References: <1536875257-56734-1-git-send-email-e-ruei1@ti.com>
-	<1536875257-56734-2-git-send-email-e-ruei1@ti.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20180914195418.GY12296@beryl>
+References: <1536949618-21293-2-git-send-email-j-stiffler@ti.com>
+	<1536949618-21293-5-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1536875257-56734-2-git-send-email-e-ruei1@ti.com>
+In-Reply-To: <1536949618-21293-5-git-send-email-j-stiffler@ti.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 1/2] matrix-gui: qt5-demos: break qt5 demos package into individual ones
+Subject: Re: [rocko/master][PATCH v8 5/5] armnn: ARM NN machine learning SDK.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,86 +51,207 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Sep 2018 19:40:54 -0000
+X-List-Received-Date: Fri, 14 Sep 2018 19:55:51 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-Eric,
-
-Please rebase - the patch doesn't apply due to:
-http://arago-project.org/git/?p=meta-arago.git;a=commitdiff;h=805e88f44bc7b1f23ced8ac568c7085e37a232c4
-
-Denys
-
-
-On Thu, Sep 13, 2018 at 05:47:36PM -0400, Eric Ruei wrote:
-> - bump SRCREV of matrix-gui-v2-apps to pickup webkit-browser demo
-> - break qt5 demos package into individual one for each demo to to be
->   selected based on certain conditions.
+On Fri, Sep 14, 2018 at 02:26:58PM -0400, Jacob Stiffler wrote:
+> From: Qin Su <qsu@ti.com>
 > 
+> Arm NN SDK is a set of open-source Linux software and tools that enables
+> machine learning workloads on power-efficient devices. Arm NN takes Caffe,
+> TensorFlow network frameworks, translate them to the internal Arm NN
+> formatand then, through the Compute Library, deploy them efficiently on
+> Cortex-A CPUs.
 > 
-> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> Signed-off-by: Qin Su <qsu@ti.com>
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 > ---
->  .../recipes-core/matrix/matrix-gui-apps-git.inc    |  4 ++--
->  .../matrix/matrix-gui-qt5-demos_2.0.bb             | 25 +++++++++++++++++-----
->  2 files changed, 22 insertions(+), 7 deletions(-)
+> Changes from v6:
+> * Add SUMMARY
+> * Add "Upstream-Status" to patches
+
+Thanks again for all the fixes and cleanups! Especially detailed Upstream-status.
+
+
+> Changes from previous versions:
+> * Add "_git" suffix to recipe name.
+> * Add version.
+> * Add branch option for SRC_URI.
+> * Remove bash-completion package as the file is not present.
 > 
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> index 3620e85..a5da492 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> @@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
->  LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
->  
->  SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
-> -SRCREV = "1fab50f6ceac640bf946e8716a68b1c827256489"
-> +SRCREV = "28aa0adb7733f103e07d82123924c5a6d1a9bfeb"
->  BRANCH = "master"
-> -INC_PR = "r57"
-> +INC_PR = "r58"
->  
->  # Pull in the base package for installing matrix applications
->  require matrix-gui-apps.inc
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb
-> index 2401832..78f5547 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-qt5-demos_2.0.bb
-> @@ -7,13 +7,28 @@ PR = "${INC_PR}.1"
->  
->  inherit allarch
->  
-> -SRC_URI_append_k3 = " \
-> -           file://0001-qt5_broswer-use-webkit-browser-instead-of-webengine-.patch;pnum=2 \
-> -"
-> -
->  S = "${WORKDIR}/git/qt5_apps"
->  
->  # Make sure qt5 submenu and app images has been installed
-> -RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-qt5"
-> +QT5_RDEPENDS += "matrix-gui-apps-images matrix-gui-submenus-qt5"
->  
->  FILES_${PN} += "${MATRIX_BASE_DIR}/*"
-> +PACKAGES = "matrix-qt5-demo-animated \
-> +            matrix-qt5-demo-browser \
-> +            matrix-qt5-demo-calculator \
-> +            matrix-qt5-demo-deform \
-> +            matrix-qt5-demo-webkit-browser \
+>  .../armnn/0001-stdlib-issue-work-around.patch      | 61 ++++++++++++++++++++++
+>  .../0002-enable-use-of-boost-shared-library.patch  | 37 +++++++++++++
+>  .../recipes-support/armnn/armnn_git.bb             | 46 ++++++++++++++++
+>  3 files changed, 144 insertions(+)
+>  create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch
+>  create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0002-enable-use-of-boost-shared-library.patch
+>  create mode 100644 meta-arago-extras/recipes-support/armnn/armnn_git.bb
+> 
+> diff --git a/meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch b/meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch
+> new file mode 100755
+> index 0000000..cf83532
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch
+> @@ -0,0 +1,61 @@
+> +From 3691057b51010c1bd979998c460ad7b43f97496f Mon Sep 17 00:00:00 2001
+> +From: Qin Su <qsu@ti.com>
+> +Date: Fri, 10 Aug 2018 11:02:14 -0400
+> +Subject: [PATCH] stdlib issue work around
+> +
+> +Upstream-Status: Pending
+> +Need to invesitate whether this is appropriate, or if cmake should be
+> +fixed. This is currently an open issue on the cmake project [1].
+> +
+> +[1] https://gitlab.kitware.com/cmake/cmake/issues/16291
+> +
+> +Signed-off-by: Qin Su <qsu@ti.com>
+> +---
+> + cmake/GlobalConfig.cmake | 28 ++++++++++++++++++++++++++++
+> + 1 file changed, 28 insertions(+)
+> + mode change 100644 => 100755 cmake/GlobalConfig.cmake
+> +
+> +diff --git a/cmake/GlobalConfig.cmake b/cmake/GlobalConfig.cmake
+> +old mode 100644
+> +new mode 100755
+> +index 2dbeada..2b88c16
+> +--- a/cmake/GlobalConfig.cmake
+> ++++ b/cmake/GlobalConfig.cmake
+> +@@ -47,6 +47,34 @@ elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
+> +     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc /MP")
+> +     add_definitions(-DNOMINMAX=1 -DNO_STRICT=1)
+> + endif()
+> ++
+> ++# Ensure that the default include system directories are added to the list of CMake implicit includes.
+> ++# This workarounds an issue that happens when using GCC 6 and using system includes (-isystem).
+> ++# For more details check: https://bugs.webkit.org/show_bug.cgi?id=161697
+> ++macro(DETERMINE_GCC_SYSTEM_INCLUDE_DIRS _lang _compiler _flags _result)
+> ++    file(WRITE "${CMAKE_BINARY_DIR}/CMakeFiles/dummy" "\n")
+> ++    separate_arguments(_buildFlags UNIX_COMMAND "${_flags}")
+> ++    execute_process(COMMAND ${_compiler} ${_buildFlags} -v -E -x ${_lang} -dD dummy
+> ++                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/CMakeFiles OUTPUT_QUIET
+> ++                    ERROR_VARIABLE _gccOutput)
+> ++    file(REMOVE "${CMAKE_BINARY_DIR}/CMakeFiles/dummy")
+> ++    if ("${_gccOutput}" MATCHES "> search starts here[^\n]+\n *(.+) *\n *End of (search) list")
+> ++        set(${_result} ${CMAKE_MATCH_1})
+> ++        string(REPLACE "\n" " " ${_result} "${${_result}}")
+> ++        separate_arguments(${_result})
+> ++    endif ()
+> ++endmacro()
+> ++
+> ++if (CMAKE_COMPILER_IS_GNUCC)
+> ++   DETERMINE_GCC_SYSTEM_INCLUDE_DIRS("c" "${CMAKE_C_COMPILER}" "${CMAKE_C_FLAGS}" SYSTEM_INCLUDE_DIRS)
+> ++   set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES ${CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES} ${SYSTEM_INCLUDE_DIRS})
+> ++endif ()
+> ++
+> ++if (CMAKE_COMPILER_IS_GNUCXX)
+> ++   DETERMINE_GCC_SYSTEM_INCLUDE_DIRS("c++" "${CMAKE_CXX_COMPILER}" "${CMAKE_CXX_FLAGS}" SYSTEM_INCLUDE_DIRS)
+> ++   set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES} ${SYSTEM_INCLUDE_DIRS})
+> ++endif ()
+> ++
+> + if("${CMAKE_SYSTEM_NAME}" STREQUAL Android)
+> +     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -llog")
+> +     set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -llog")
+> +--
+> +1.9.1
+> +
+> diff --git a/meta-arago-extras/recipes-support/armnn/armnn/0002-enable-use-of-boost-shared-library.patch b/meta-arago-extras/recipes-support/armnn/armnn/0002-enable-use-of-boost-shared-library.patch
+> new file mode 100755
+> index 0000000..50c2e1d
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-support/armnn/armnn/0002-enable-use-of-boost-shared-library.patch
+> @@ -0,0 +1,37 @@
+> +From 34a7ec821b11f7bed3dd644bf341cbaf6023516b Mon Sep 17 00:00:00 2001
+> +From: Qin Su <qsu@ti.com>
+> +Date: Tue, 11 Sep 2018 17:11:07 -0400
+> +Subject: [PATCH] enable use of boost shared library
+> +
+> +Upstream-Status: Inappropriate [configuration]
+> +This is a hack to modify hard coded configuration. If anything, it
+> +should be made configurable.
+> +
+> +Signed-off-by: Qin Su <qsu@ti.com>
+> +---
+> + cmake/GlobalConfig.cmake | 6 ++++--
+> + 1 file changed, 4 insertions(+), 2 deletions(-)
+> + mode change 100644 => 100755 cmake/GlobalConfig.cmake
+> +
+> +diff --git a/cmake/GlobalConfig.cmake b/cmake/GlobalConfig.cmake
+> +old mode 100644
+> +new mode 100755
+> +index 2dbeada..a5a1113
+> +--- a/cmake/GlobalConfig.cmake
+> ++++ b/cmake/GlobalConfig.cmake
+> +@@ -96,8 +96,10 @@ endif()
+> + set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
+> +
+> + # Boost
+> +-add_definitions("-DBOOST_ALL_NO_LIB") # Turn off auto-linking as we specify the libs manually
+> +-set(Boost_USE_STATIC_LIBS ON)
+> ++#add_definitions("-DBOOST_ALL_NO_LIB") # Turn off auto-linking as we specify the libs manually
+> ++#set(Boost_USE_STATIC_LIBS ON)
+> ++add_definitions(-DBOOST_ALL_DYN_LINK) # use shared library
+> ++set(Boost_USE_STATIC_LIBS OFF)
+> + find_package(Boost 1.59 REQUIRED COMPONENTS unit_test_framework system filesystem log program_options)
+> + include_directories(SYSTEM "${Boost_INCLUDE_DIR}")
+> + link_directories(${Boost_LIBRARY_DIR})
+> +--
+> +1.9.1
+> +
+> diff --git a/meta-arago-extras/recipes-support/armnn/armnn_git.bb b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+> new file mode 100644
+> index 0000000..3bd4c82
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+> @@ -0,0 +1,46 @@
+> +SUMMARY = "ARM Neural Network SDK"
+> +DESCRIPTION = "Linux software and tools to enable machine learning (Caffe/Tensorflow) workloads on power-efficient devices"
+> +LICENSE = "MIT"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=3e14a924c16f7d828b8335a59da64074"
+> +
+> +PV = "20180502"
+> +
+> +BRANCH = "master"
+> +SRCREV = "4c7098bfeab1ffe1cdc77f6c15548d3e73274746"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +inherit cmake
+> +
+> +SRC_URI = " \
+> +    git://github.com/ARM-software/armnn.git;branch=${BRANCH} \
+> +    file://0001-stdlib-issue-work-around.patch \
+> +    file://0002-enable-use-of-boost-shared-library.patch \
 > +"
 > +
-> +RDEPENDS_matrix-qt5-demo-animated = "${QT5_RDEPENDS}"
-> +RDEPENDS_matrix-qt5-demo-browser = "${QT5_RDEPENDS}"
-> +RDEPENDS_matrix-qt5-demo-calculator = "${QT5_RDEPENDS}"
-> +RDEPENDS_matrix-qt5-demo-deform = "${QT5_RDEPENDS}"
-> +RDEPENDS_matrix-qt5-demo-webkit-browser = "${QT5_RDEPENDS}"
+> +DEPENDS = " \
+> +    boost \
+> +    protobuf \
+> +    stb \
+> +    arm-compute-library \
+> +    armnn-caffe \
+> +    armnn-tensorflow \
+> +"
 > +
-> +# Split the matrix files by qt5 demos
-> +FILES_matrix-qt5-demo-animated = "${MATRIX_APP_DIR}/qt5_animated_tiles/*"
-> +FILES_matrix-qt5-demo-browser = "${MATRIX_APP_DIR}/qt5_browser/*"
-> +FILES_matrix-qt5-demo-calculator = "${MATRIX_APP_DIR}/qt5_calculator/*"
-> +FILES_matrix-qt5-demo-deform = "${MATRIX_APP_DIR}/qt5_deform/*"
-> +FILES_matrix-qt5-demo-webkit-browser = "${MATRIX_APP_DIR}/qt5_webkit_browser/*"
+> +EXTRA_OECMAKE=" \
+> +    -DBUILD_SHARED_LIBS=ON -DREGISTER_INSTALL_PREFIX=OFF \
+> +    -DARMCOMPUTE_ROOT=${STAGING_DIR_HOST}${datadir}/arm-compute-library \
+> +    -DARMCOMPUTE_BUILD_DIR=${STAGING_DIR_HOST}${datadir}/arm-compute-library/build \
+> +    -DCAFFE_GENERATED_SOURCES=${STAGING_DIR_HOST}${datadir}/armnn-caffe \
+> +    -DTF_GENERATED_SOURCES=${STAGING_DIR_HOST}${datadir}/armnn-tensorflow \
+> +    -DBUILD_CAFFE_PARSER=1 -DBUILD_TF_PARSER=1 \
+> +    -DARMCOMPUTENEON=1 \
+> +    -DBUILD_TESTS=1 -DPROFILING=1 \
+> +    -DTHIRD_PARTY_INCLUDE_DIRS=${STAGING_DIR_HOST}${includedir} \
+> +"
+> +
+> +CXXFLAGS += "-fopenmp"
+> +LIBS += "-larmpl_lp64_mp"
+> +
+> +FILES_${PN}-dev += "{libdir}/cmake/*"
+> +INSANE_SKIP_${PN}-dev = "dev-elf"
 > -- 
-> 1.9.1
+> 2.7.4
 > 
 > _______________________________________________
 > meta-arago mailing list
