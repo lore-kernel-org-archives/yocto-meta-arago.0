@@ -1,43 +1,41 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 0675552AA9
+Return-Path: <yuanzhao@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id D93C752993
 	for <meta-arago@arago-project.org>;
-	Thu, 13 Sep 2018 21:47:48 +0000 (UTC)
+	Fri, 14 Sep 2018 00:04:48 +0000 (UTC)
 Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8DLleFh013815
-	for <meta-arago@arago-project.org>; Thu, 13 Sep 2018 16:47:40 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8E04eQu084452
+	for <meta-arago@arago-project.org>; Thu, 13 Sep 2018 19:04:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1536875260;
-	bh=vRDl4UTSipTq/H2MYbEcB1gEPzmLMKa7V+/wzsnCaUE=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=UlDfdK3+KnTygtLXEePt2vJR223q+kK5d/OSY34Lbl7IwhZ1mGnRWwUrl3X1WHSQM
-	lmtYUMXxqFrPTBZpf7aZOoazzNkIFMuUht7WSzcuB4nwLVm6T1IjzXv1TSq/hFAbeJ
-	1Co14GEjUSlrBBHycqe7WZK5iTof+w4iApvwsixs=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8DLleI7013055
-	for <meta-arago@arago-project.org>; Thu, 13 Sep 2018 16:47:40 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1536883480;
+	bh=VPFXiYcuNGIE1Ta57VwLphx0u8rddKLsy/oVDfMhccs=;
+	h=From:To:CC:Subject:Date;
+	b=r7WNdn/j8eTp2E2if5t+0E9Jzfb14VR2/jRBYxOxlnVHSfr5AtFmbhJtuCtECpb7b
+	qPzzoDptAtcaDCBEd0aTrzLDbaE3sZphFY0bgwGhvR+Ij48rHPXb/SNWbqQdICnm+q
+	jzdkMMWURWMHOLV+4SomtuSPh0cHGAGUG1HUwwfU=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8E04eDe024341
+	for <meta-arago@arago-project.org>; Thu, 13 Sep 2018 19:04:40 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Thu, 13 Sep 2018 16:47:40 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 13 Sep 2018 19:04:40 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Thu, 13 Sep 2018 16:47:40 -0500
-Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Thu, 13 Sep 2018 19:04:40 -0500
+Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8DLlerB010574
-	for <meta-arago@arago-project.org>; Thu, 13 Sep 2018 16:47:40 -0500
-From: Eric Ruei <e-ruei1@ti.com>
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8E04eH0011945;
+	Thu, 13 Sep 2018 19:04:40 -0500
+From: Yuan Zhao <yuanzhao@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 13 Sep 2018 17:47:37 -0400
-Message-ID: <1536875257-56734-3-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1536875257-56734-1-git-send-email-e-ruei1@ti.com>
-References: <1536875257-56734-1-git-send-email-e-ruei1@ti.com>
+Date: Thu, 13 Sep 2018 19:04:28 -0500
+Message-ID: <20180914000428.112293-1-yuanzhao@ti.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 2/2] packagegroup-arago-tisdk-matrix: replace qt5 demo browser with webkit broswer for K3 devices
+Subject: [PATCH] ocl: fix patch version in recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,50 +48,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Sep 2018 21:47:50 -0000
+X-List-Received-Date: Fri, 14 Sep 2018 00:04:49 -0000
 Content-Type: text/plain
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-matrix.bb          | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ meta-arago-extras/recipes-ti/ocl/ocl.inc | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 919bd41..edb7a50 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
--PR = "r73"
-+PR = "r74"
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index b4883c26..c2dc4002 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,5 +1,6 @@
+-PV = "1.1.16.0"
+-INC_PR = "r0"
++# patch version at the end needs to be in double digits
++PV = "1.1.16.00"
++INC_PR = "r1"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
  
-@@ -32,7 +32,10 @@ MATRIX_COMMON_APPS = "              \
- "
- 
- MATRIX_QT_APPS = " \
--    matrix-gui-qt5-demos \
-+    matrix-qt5-demo-animated \
-+    matrix-qt5-demo-browser \
-+    matrix-qt5-demo-calculator \
-+    matrix-qt5-demo-deform \
-     matrix-gui-thermostat-demo \
- "
- 
-@@ -42,6 +45,10 @@ MATRIX_TOUCH_APPS = " \
- 
- MATRIX_QT_APPS_keystone = ""
- MATRIX_QT_APPS_omapl138 = ""
-+MATRIX_QT_APPS_remove_k3 = "matrix-qt5-demo-browser"
-+MATRIX_QT_APPS_append_k3 = " \
-+    matrix-qt5-demo-webkit-browser \
-+"
- 
- MATRIX_SGX_DEMOS = " \
-     matrix-3d-demo-chameleon \
 -- 
-1.9.1
+2.14.1
 
 
