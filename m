@@ -1,41 +1,43 @@
-Return-Path: <yan-liu@ti.com>
+Return-Path: <e-ruei1@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id AFEEC5203A
+	by arago-project.org (Postfix) with ESMTPS id 03DF2520E3
 	for <meta-arago@arago-project.org>;
-	Fri, 14 Sep 2018 20:02:59 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8EK2pnm115941
-	for <meta-arago@arago-project.org>; Fri, 14 Sep 2018 15:02:51 -0500
+	Fri, 14 Sep 2018 21:07:57 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8EL7n1V000801
+	for <meta-arago@arago-project.org>; Fri, 14 Sep 2018 16:07:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1536955371;
-	bh=tSlv+A1r0qi8q45mlkWPIFeCVKqEE861V/StEve4e4A=;
-	h=From:To:CC:Subject:Date;
-	b=qDw2E/9oZ0RJE7WDgMsyYdvE3gokXk88JyE2973OCgHRGrE06nqxah5SCY0Q02X1k
-	9ix4UL+9V8ha+xF4GNHtFpmg8Lc6sOxOwRbDPuN7ikj2Isljg7yiIN2W43L+LC7EWC
-	m/PnxDxeLfppg2mxm9lZUV76sA2yjg34eSS2mcSc=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8EK2p1C026138
-	for <meta-arago@arago-project.org>; Fri, 14 Sep 2018 15:02:51 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1536959269;
+	bh=vRDl4UTSipTq/H2MYbEcB1gEPzmLMKa7V+/wzsnCaUE=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=Ra3I3p5nEqDUZEwZtXKH07LdvZy8wgFCS++lE4ueOZKE5b40pkrrzocqFbodRr/UR
+	3mHJl0AInKiGHLvEAM1ut5atME+wZV24bZkAz62XVkE+fEWF8MyWjbawIGT6edhrVS
+	FXflbkvEGBrWW/Tg51wg7A7mhMCH26SGsqj9w0Mw=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8EL7nXw007413
+	for <meta-arago@arago-project.org>; Fri, 14 Sep 2018 16:07:49 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Fri, 14 Sep 2018 15:02:51 -0500
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 14 Sep 2018 16:07:49 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Fri, 14 Sep 2018 15:02:51 -0500
-Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Fri, 14 Sep 2018 16:07:49 -0500
+Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8EK2oTP022770;
-	Fri, 14 Sep 2018 15:02:51 -0500
-From: <yan-liu@ti.com>
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8EL7mCc016015
+	for <meta-arago@arago-project.org>; Fri, 14 Sep 2018 16:07:49 -0500
+From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 14 Sep 2018 16:03:34 -0400
-Message-ID: <1536955414-4000-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Fri, 14 Sep 2018 17:07:45 -0400
+Message-ID: <1536959265-3351-3-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1536959265-3351-1-git-send-email-e-ruei1@ti.com>
+References: <1536959265-3351-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: [PATCH v2 2/2] packagegroup-arago-tisdk-matrix: replace qt5 demo browser with webkit broswer for K3 devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,39 +50,50 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Sep 2018 20:03:00 -0000
+X-List-Received-Date: Fri, 14 Sep 2018 21:07:59 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
-
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-matrix.bb          | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
-index de7de3a..82ff848 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index 919bd41..edb7a50 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to include Matrix v2"
+ LICENSE = "MIT"
+-PR = "r73"
++PR = "r74"
  
--PR = "r15"
-+PR = "r16"
- PV_append = "+git${SRCPV}"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- PROVIDES += "ltp"
-@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+@@ -32,7 +32,10 @@ MATRIX_COMMON_APPS = "              \
+ "
  
- inherit autotools-brokensep
+ MATRIX_QT_APPS = " \
+-    matrix-gui-qt5-demos \
++    matrix-qt5-demo-animated \
++    matrix-qt5-demo-browser \
++    matrix-qt5-demo-calculator \
++    matrix-qt5-demo-deform \
+     matrix-gui-thermostat-demo \
+ "
  
--SRCREV = "831ed83e49df467fb4a7d7ac00b1ae3c5e6961be"
-+SRCREV = "622cd6d54ceb8a8e4477121a4cd48cb19fa77c21"
- BRANCH ?= "master"
+@@ -42,6 +45,10 @@ MATRIX_TOUCH_APPS = " \
  
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+ MATRIX_QT_APPS_keystone = ""
+ MATRIX_QT_APPS_omapl138 = ""
++MATRIX_QT_APPS_remove_k3 = "matrix-qt5-demo-browser"
++MATRIX_QT_APPS_append_k3 = " \
++    matrix-qt5-demo-webkit-browser \
++"
+ 
+ MATRIX_SGX_DEMOS = " \
+     matrix-3d-demo-chameleon \
 -- 
-1.7.9.5
+1.9.1
 
 
