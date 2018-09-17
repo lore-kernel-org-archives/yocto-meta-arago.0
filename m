@@ -1,43 +1,43 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 40D27529CA
+Return-Path: <jake@udc0866934>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 7B935529CA
 	for <meta-arago@arago-project.org>;
-	Mon, 17 Sep 2018 13:51:51 +0000 (UTC)
+	Mon, 17 Sep 2018 14:00:01 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8HDphoJ024304
-	for <meta-arago@arago-project.org>; Mon, 17 Sep 2018 08:51:43 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8HDxrRj032387
+	for <meta-arago@arago-project.org>; Mon, 17 Sep 2018 08:59:53 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1537192303;
-	bh=WBnQyDrOO4y4Xt/GWfizIsSQknQeGvZnEMYPcN4754E=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=BP50Lm7fScpDixDmKSTyyXjCBL/ZXOJJdivPypPo+zrsbp8arYwvtU8wVGZv6f8H5
-	Nt6uzrx8vBI7WE4WuTx7Rlfyz3EqRRv+XlSAUoVQaIMfLK5x2cvLVzj/85m2ZMXP4i
-	Mm9/7fdJjBlTms6GkIfG/eKaZmTYBtgn91gDuWc4=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8HDph8h012341
-	for <meta-arago@arago-project.org>; Mon, 17 Sep 2018 08:51:43 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1537192793;
+	bh=shZ8ceOX5OqO0kiw3jL8/Icg98YqnnLgn0+AixCtV2s=;
+	h=From:To:CC:Subject:Date;
+	b=uPw/4dNg0VLC8gvOu9U3a/KkvIOv2BQmoM7jPnT2+umh6pc7WE415slkNeqyuhcpV
+	ShzbTpFjx+RxhQwuxEBW2ozhBpEs5wotIXxQsYO54VKTJsavVJhgQ7bm4Q3TBHDgZ0
+	Rzq5AWEtkKyU77YliB/HjRkQ+ZUx7deKxR83KtqQ=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8HDxrMA026961
+	for <meta-arago@arago-project.org>; Mon, 17 Sep 2018 08:59:53 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Mon, 17 Sep 2018 08:51:43 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 17 Sep 2018 08:59:53 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Mon, 17 Sep 2018 08:51:43 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8HDpg5o018234
-	for <meta-arago@arago-project.org>; Mon, 17 Sep 2018 08:51:42 -0500
-To: <meta-arago@arago-project.org>
-References: <1536861387-7418-1-git-send-email-j-stiffler@ti.com>
+	Transport; Mon, 17 Sep 2018 08:59:53 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8HDxqII000616;
+	Mon, 17 Sep 2018 08:59:52 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)
+	(envelope-from <jake@udc0866934>)
+	id 1g1u48-00052l-5l; Mon, 17 Sep 2018 09:59:52 -0400
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <17578a1a-385b-f1a7-9742-37f3a5e0aa10@ti.com>
-Date: Mon, 17 Sep 2018 09:51:42 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
-	Thunderbird/52.9.1
+To: <meta-arago@arago-project.org>
+Date: Mon, 17 Sep 2018 09:59:50 -0400
+Message-ID: <1537192790-19355-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <1536861387-7418-1-git-send-email-j-stiffler@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [rocko/master][PATCH v6 0/5] Add ARMNN
+Subject: [tisdk-setup-scripts][PATCH] setup-uboot-env-am335x: run init_console while booting
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,109 +50,58 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Sep 2018 13:51:51 -0000
-Content-Type: multipart/alternative;
-	boundary="------------C0E2B4F74E391B3681C94D11"
-Content-Language: en-US
+X-List-Received-Date: Mon, 17 Sep 2018 14:00:01 -0000
+Content-Type: text/plain
 
---------------C0E2B4F74E391B3681C94D11
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+* Running the init_console routine is needed as all am335x boards do
+  not use the same console.
 
-Denys,
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ setup-uboot-env-am335x.sh | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Can you please backport this set to ti2018.03?
-
-
-Thank you,
-
-Jake
-
-
-On 9/13/2018 1:56 PM, Jacob Stiffler wrote:
-> Add ARMNN and required dependencies.
->
-> Qin Su (5):
->    stb: C/C++ libraries used to build armnn test examples.
->    arm-compute-library: Machine Learning library for ARM.
->    armnn-caffe: caffe protobuf files used in building caffe models in
->      armnn.
->    armnn-tensorflow: tensorflow protobuf files for building tensorflow
->      models in armnn
->    armnn: ARM NN machine learning SDK.
->
->   .../arm-compute-library/arm-compute-library_git.bb | 44 +++++++++++++++++
->   .../recipes-support/armnn-caffe/armnn-caffe_git.bb | 22 +++++++++
->   .../armnn-tensorflow/armnn-tensorflow_git.bb       | 25 ++++++++++
->   .../armnn/0001-stdlib-issue-work-around.patch      | 55 ++++++++++++++++++++++
->   .../0002-enable-use-of-boost-shared-library.patch  | 33 +++++++++++++
->   .../recipes-support/armnn/armnn_git.bb             | 45 ++++++++++++++++++
->   meta-arago-extras/recipes-support/stb/stb_git.bb   | 22 +++++++++
->   7 files changed, 246 insertions(+)
->   create mode 100644 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library_git.bb
->   create mode 100644 meta-arago-extras/recipes-support/armnn-caffe/armnn-caffe_git.bb
->   create mode 100644 meta-arago-extras/recipes-support/armnn-tensorflow/armnn-tensorflow_git.bb
->   create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch
->   create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0002-enable-use-of-boost-shared-library.patch
->   create mode 100644 meta-arago-extras/recipes-support/armnn/armnn_git.bb
->   create mode 100644 meta-arago-extras/recipes-support/stb/stb_git.bb
->
-
-
---------------C0E2B4F74E391B3681C94D11
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <pre class="content">Denys,
-
-Can you please backport this set to ti2018.03?
+diff --git a/setup-uboot-env-am335x.sh b/setup-uboot-env-am335x.sh
+index 6950caf..80b0a52 100644
+--- a/setup-uboot-env-am335x.sh
++++ b/setup-uboot-env-am335x.sh
+@@ -189,7 +189,7 @@ if [ "$kernel" -eq "1" ]; then
+ 		do_expect "\"$prompt\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
+-		do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no;dhcp ;tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
++		do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run init_console; run getuenv; setenv autoload no;dhcp ;tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
+ 	else
+@@ -198,7 +198,7 @@ if [ "$kernel" -eq "1" ]; then
+ 		do_expect "\"$prompt\"" "send \"setenv bootfile $kernelimage\"" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
+-		do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no; dhcp ; tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run args_mmc; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
++		do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run init_console; run getuenv; setenv autoload no; dhcp ; tftp \${loadaddr} $kernelimage; tftp \${fdtaddr} \${fdtfile}; run args_mmc; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
+ 	fi
+@@ -211,7 +211,7 @@ else
+ 		do_expect "\"$prompt\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
+-		do_expect "\"$prompt\"" "send setenv bootcmd 'setenv autoload no; mmc rescan; run findfdt; run getuenv; setenv devtype mmc; run loadimage; run loadfdt; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
++		do_expect "\"$prompt\"" "send setenv bootcmd 'setenv autoload no; mmc rescan; run findfdt; run init_console; run getuenv; setenv devtype mmc; run loadimage; run loadfdt; run netargs; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
+ 	    else
+@@ -219,7 +219,7 @@ else
+ 		do_expect "\"$prompt\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"setenv bootfile zImage\"" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
+-		do_expect "\"$prompt\"" "send setenv bootcmd 'mmc rescan; run findfdt; run getuenv; setenv devtype mmc; run loadimage; run loadfdt; run args_mmc; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
++		do_expect "\"$prompt\"" "send setenv bootcmd 'mmc rescan; run findfdt; run init_console; run getuenv; setenv devtype mmc; run loadimage; run loadfdt; run args_mmc; bootz \${loadaddr} - \${fdtaddr}'" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
+ 		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
+ 
+-- 
+1.9.1
 
 
-Thank you,
-
-Jake</pre>
-    <br>
-    <div class="moz-cite-prefix">On 9/13/2018 1:56 PM, Jacob Stiffler
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:1536861387-7418-1-git-send-email-j-stiffler@ti.com">
-      <pre wrap="">Add ARMNN and required dependencies.
-
-Qin Su (5):
-  stb: C/C++ libraries used to build armnn test examples.
-  arm-compute-library: Machine Learning library for ARM.
-  armnn-caffe: caffe protobuf files used in building caffe models in
-    armnn.
-  armnn-tensorflow: tensorflow protobuf files for building tensorflow
-    models in armnn
-  armnn: ARM NN machine learning SDK.
-
- .../arm-compute-library/arm-compute-library_git.bb | 44 +++++++++++++++++
- .../recipes-support/armnn-caffe/armnn-caffe_git.bb | 22 +++++++++
- .../armnn-tensorflow/armnn-tensorflow_git.bb       | 25 ++++++++++
- .../armnn/0001-stdlib-issue-work-around.patch      | 55 ++++++++++++++++++++++
- .../0002-enable-use-of-boost-shared-library.patch  | 33 +++++++++++++
- .../recipes-support/armnn/armnn_git.bb             | 45 ++++++++++++++++++
- meta-arago-extras/recipes-support/stb/stb_git.bb   | 22 +++++++++
- 7 files changed, 246 insertions(+)
- create mode 100644 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library_git.bb
- create mode 100644 meta-arago-extras/recipes-support/armnn-caffe/armnn-caffe_git.bb
- create mode 100644 meta-arago-extras/recipes-support/armnn-tensorflow/armnn-tensorflow_git.bb
- create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch
- create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0002-enable-use-of-boost-shared-library.patch
- create mode 100644 meta-arago-extras/recipes-support/armnn/armnn_git.bb
- create mode 100644 meta-arago-extras/recipes-support/stb/stb_git.bb
-
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------C0E2B4F74E391B3681C94D11--
