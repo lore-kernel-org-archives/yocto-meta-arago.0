@@ -1,47 +1,43 @@
-Return-Path: <e-ruei1@ti.com>
+Return-Path: <j-stiffler@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 50E5F529CA
+	by arago-project.org (Postfix) with ESMTPS id 40D27529CA
 	for <meta-arago@arago-project.org>;
-	Mon, 17 Sep 2018 13:51:01 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8HDor5U024139
-	for <meta-arago@arago-project.org>; Mon, 17 Sep 2018 08:50:53 -0500
+	Mon, 17 Sep 2018 13:51:51 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8HDphoJ024304
+	for <meta-arago@arago-project.org>; Mon, 17 Sep 2018 08:51:43 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1537192253;
-	bh=ddcKAYd6fl3SCMqxKFSah4Tx3B43q7ZxI5awcls2zk0=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=Jdyu3EDkMoCVZLoXWNOk1is5w7u7btX4RHjd8IZfzZaWGn8sjnuhBOB8W5Qeqe69t
-	EVtdrZTG0gRJconHGHBRx9cX1/wr/2fa6XCK2jsHpEpKXA6J2JXuAEc0KgfddKrrjk
-	Nu4VAgHp4lMKanyW2fbYtESZ5nCOeboIrLwRd5AI=
+	s=ti-com-17Q1; t=1537192303;
+	bh=WBnQyDrOO4y4Xt/GWfizIsSQknQeGvZnEMYPcN4754E=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=BP50Lm7fScpDixDmKSTyyXjCBL/ZXOJJdivPypPo+zrsbp8arYwvtU8wVGZv6f8H5
+	Nt6uzrx8vBI7WE4WuTx7Rlfyz3EqRRv+XlSAUoVQaIMfLK5x2cvLVzj/85m2ZMXP4i
+	Mm9/7fdJjBlTms6GkIfG/eKaZmTYBtgn91gDuWc4=
 Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8HDor47018234
-	for <meta-arago@arago-project.org>; Mon, 17 Sep 2018 08:50:53 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8HDph8h012341
+	for <meta-arago@arago-project.org>; Mon, 17 Sep 2018 08:51:43 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE112.ent.ti.com
 	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Mon, 17 Sep 2018 08:50:53 -0500
-Received: from DLEE113.ent.ti.com ([fe80::a10b:711a:6ba7:e455]) by
-	DLEE113.ent.ti.com ([fe80::a10b:711a:6ba7:e455%17]) with mapi id
-	15.01.1466.003; Mon, 17 Sep 2018 08:50:53 -0500
-From: "Ruei, Eric" <e-ruei1@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>, "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [EXTERNAL] Re: [meta-arago] [PATCH] matrix-gui-qt5-demos:remove
-	the extra .pc directory under matrix-gui/apps for k3 devices
-Thread-Index: AQHUStHUOfXn9Kwydk65ZxXqBliC6qT02JqA//+sWVA=
-Date: Mon, 17 Sep 2018 13:50:53 +0000
-Message-ID: <2a819fd94ba84598a6aa825005292703@ti.com>
-References: <1536767529-46653-1-git-send-email-e-ruei1@ti.com>
-	<20180912194850.GC12296@beryl>
-	<ef9362d8-3b83-b386-7b34-2b89448d8945@ti.com>
-In-Reply-To: <ef9362d8-3b83-b386-7b34-2b89448d8945@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.113.148]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Mon, 17 Sep 2018 08:51:43 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE100.ent.ti.com
+	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
+	Transport; Mon, 17 Sep 2018 08:51:43 -0500
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8HDpg5o018234
+	for <meta-arago@arago-project.org>; Mon, 17 Sep 2018 08:51:42 -0500
+To: <meta-arago@arago-project.org>
+References: <1536861387-7418-1-git-send-email-j-stiffler@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <17578a1a-385b-f1a7-9742-37f3a5e0aa10@ti.com>
+Date: Mon, 17 Sep 2018 09:51:42 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
+	Thunderbird/52.9.1
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [EXTERNAL] Re: [PATCH] matrix-gui-qt5-demos:remove the extra .pc directory under matrix-gui/apps for k3 devices
+In-Reply-To: <1536861387-7418-1-git-send-email-j-stiffler@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: Re: [rocko/master][PATCH v6 0/5] Add ARMNN
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,253 +50,109 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Sep 2018 13:51:01 -0000
-Content-Language: en-US
+X-List-Received-Date: Mon, 17 Sep 2018 13:51:51 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_2a819fd94ba84598a6aa825005292703ticom_"
+	boundary="------------C0E2B4F74E391B3681C94D11"
+Content-Language: en-US
 
---_000_2a819fd94ba84598a6aa825005292703ticom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--------------C0E2B4F74E391B3681C94D11
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-SGksIEpha2UgYW5kIERlbnlzOg0KDQpUaGVyZSBhcmUgYWxzbyBuZXcgcGF0Y2hlcyBvbiB0b3Ag
-b2YgdGhlIOKAnHJldmVydOKAnSBwYXRjaC4NCg0KQmVzdCByZWdhcmRzLA0KDQpFcmljDQoNCg0K
-RnJvbTogU3RpZmZsZXIsIEphY29iDQpTZW50OiBNb25kYXksIFNlcHRlbWJlciAxNywgMjAxOCA5
-OjQ5IEFNDQpUbzogRG15dHJpeWVua28sIERlbnlzOyBSdWVpLCBFcmljDQpDYzogbWV0YS1hcmFn
-b0BhcmFnby1wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFtFWFRFUk5BTF0gUmU6IFttZXRhLWFy
-YWdvXSBbUEFUQ0hdIG1hdHJpeC1ndWktcXQ1LWRlbW9zOnJlbW92ZSB0aGUgZXh0cmEgLnBjIGRp
-cmVjdG9yeSB1bmRlciBtYXRyaXgtZ3VpL2FwcHMgZm9yIGszIGRldmljZXMNCg0KDQpEZW55cywN
-Cg0KDQoNCkNhbiB5b3UgcGxlYXNlIGJhY2twb3J0IHRoZSAicmV2ZXJ0IiB0byB0aTIwMTguMDM/
-DQoNCg0KDQoNCg0KVGhhbmsgeW91LA0KDQoNCg0KSmFrZQ0KDQpPbiA5LzEyLzIwMTggMzo0OCBQ
-TSwgRGVueXMgRG15dHJpeWVua28gd3JvdGU6DQoNClRoaXMgcGFja2FnZSBpcyBhbGxhcmNoIC0g
-eW91IGNhbm5vdCBkbyBtYWNoaW5lIG92ZXJyaWRlcy4gQlRXLCB5b3VyIHByZXZpb3VzDQoNCmNo
-YW5nZSBmb3IgcXR3ZWJraXQgcGF0Y2hpbmcgaXMgYWxzbyBpbmNvcnJlY3QgLSBJJ2xsIHJldmVy
-dCBpdC4NCg0KDQoNCg0KDQpPbiBXZWQsIFNlcCAxMiwgMjAxOCBhdCAxMTo1MjowOUFNIC0wNDAw
-LCBFcmljIFJ1ZWkgd3JvdGU6DQoNCk5vdGU6IHRoZSAucGMgZGlyZWN0b3J5IGlzIGNyZWF0ZWQg
-ZHVlIHRvIHRoZSBrMyBwYXRjaA0KDQoNCg0KU2lnbmVkLW9mZi1ieTogRXJpYyBSdWVpIDxlLXJ1
-ZWkxQHRpLmNvbT48bWFpbHRvOmUtcnVlaTFAdGkuY29tPg0KDQotLS0NCg0KIG1ldGEtYXJhZ28t
-ZXh0cmFzL3JlY2lwZXMtY29yZS9tYXRyaXgvbWF0cml4LWd1aS1xdDUtZGVtb3NfMi4wLmJiIHwg
-NyArKysrKystDQoNCiAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9u
-KC0pDQoNCg0KDQpkaWZmIC0tZ2l0IGEvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1jb3JlL21h
-dHJpeC9tYXRyaXgtZ3VpLXF0NS1kZW1vc18yLjAuYmIgYi9tZXRhLWFyYWdvLWV4dHJhcy9yZWNp
-cGVzLWNvcmUvbWF0cml4L21hdHJpeC1ndWktcXQ1LWRlbW9zXzIuMC5iYg0KDQppbmRleCAyNDAx
-ODMyLi42MjQxYmJmIDEwMDY0NA0KDQotLS0gYS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNv
-cmUvbWF0cml4L21hdHJpeC1ndWktcXQ1LWRlbW9zXzIuMC5iYg0KDQorKysgYi9tZXRhLWFyYWdv
-LWV4dHJhcy9yZWNpcGVzLWNvcmUvbWF0cml4L21hdHJpeC1ndWktcXQ1LWRlbW9zXzIuMC5iYg0K
-DQpAQCAtMyw3ICszLDcgQEAgSE9NRVBBR0UgPSAiaHR0cHM6Ly9naXRvcmlvdXMub3JnL21hdHJp
-eC1ndWktdjIvbWF0cml4LWd1aS12Mi1hcHBzIjxodHRwczovL2dpdG9yaW91cy5vcmcvbWF0cml4
-LWd1aS12Mi9tYXRyaXgtZ3VpLXYyLWFwcHM+DQoNCg0KDQogcmVxdWlyZSBtYXRyaXgtZ3VpLWFw
-cHMtZ2l0LmluYw0KDQoNCg0KLVBSID0gIiR7SU5DX1BSfS4xIg0KDQorUFIgPSAiJHtJTkNfUFJ9
-LjIiDQoNCg0KDQogaW5oZXJpdCBhbGxhcmNoDQoNCg0KDQpAQCAtMTMsNiArMTMsMTEgQEAgU1JD
-X1VSSV9hcHBlbmRfazMgPSAiIFwNCg0KDQoNCiBTID0gIiR7V09SS0RJUn0vZ2l0L3F0NV9hcHBz
-Ig0KDQoNCg0KK2RvX2luc3RhbGxfYXBwZW5kX2szKCl7DQoNCisgICAgcm0gLXIgJHtEfSR7TUFU
-UklYX0FQUF9ESVJ9Ly5wYw0KDQorfQ0KDQorDQoNCisNCg0KICMgTWFrZSBzdXJlIHF0NSBzdWJt
-ZW51IGFuZCBhcHAgaW1hZ2VzIGhhcyBiZWVuIGluc3RhbGxlZA0KDQogUkRFUEVORFNfJHtQTn0g
-Kz0gIm1hdHJpeC1ndWktYXBwcy1pbWFnZXMgbWF0cml4LWd1aS1zdWJtZW51cy1xdDUiDQoNCg0K
-DQotLQ0KDQoxLjkuMQ0KDQoNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX18NCg0KbWV0YS1hcmFnbyBtYWlsaW5nIGxpc3QNCg0KbWV0YS1hcmFnb0BhcmFn
-by1wcm9qZWN0Lm9yZzxtYWlsdG86bWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZz4NCg0KaHR0
-cDovL2FyYWdvLXByb2plY3Qub3JnL2NnaS1iaW4vbWFpbG1hbi9saXN0aW5mby9tZXRhLWFyYWdv
-DQoNCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQoNCm1l
-dGEtYXJhZ28gbWFpbGluZyBsaXN0DQoNCm1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmc8bWFp
-bHRvOm1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmc+DQoNCmh0dHA6Ly9hcmFnby1wcm9qZWN0
-Lm9yZy9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8vbWV0YS1hcmFnbw0KDQo=
+Denys,
 
---_000_2a819fd94ba84598a6aa825005292703ticom_
+Can you please backport this set to ti2018.03?
+
+
+Thank you,
+
+Jake
+
+
+On 9/13/2018 1:56 PM, Jacob Stiffler wrote:
+> Add ARMNN and required dependencies.
+>
+> Qin Su (5):
+>    stb: C/C++ libraries used to build armnn test examples.
+>    arm-compute-library: Machine Learning library for ARM.
+>    armnn-caffe: caffe protobuf files used in building caffe models in
+>      armnn.
+>    armnn-tensorflow: tensorflow protobuf files for building tensorflow
+>      models in armnn
+>    armnn: ARM NN machine learning SDK.
+>
+>   .../arm-compute-library/arm-compute-library_git.bb | 44 +++++++++++++++++
+>   .../recipes-support/armnn-caffe/armnn-caffe_git.bb | 22 +++++++++
+>   .../armnn-tensorflow/armnn-tensorflow_git.bb       | 25 ++++++++++
+>   .../armnn/0001-stdlib-issue-work-around.patch      | 55 ++++++++++++++++++++++
+>   .../0002-enable-use-of-boost-shared-library.patch  | 33 +++++++++++++
+>   .../recipes-support/armnn/armnn_git.bb             | 45 ++++++++++++++++++
+>   meta-arago-extras/recipes-support/stb/stb_git.bb   | 22 +++++++++
+>   7 files changed, 246 insertions(+)
+>   create mode 100644 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library_git.bb
+>   create mode 100644 meta-arago-extras/recipes-support/armnn-caffe/armnn-caffe_git.bb
+>   create mode 100644 meta-arago-extras/recipes-support/armnn-tensorflow/armnn-tensorflow_git.bb
+>   create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch
+>   create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0002-enable-use-of-boost-shared-library.patch
+>   create mode 100644 meta-arago-extras/recipes-support/armnn/armnn_git.bb
+>   create mode 100644 meta-arago-extras/recipes-support/stb/stb_git.bb
+>
+
+
+--------------C0E2B4F74E391B3681C94D11
 Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6eD0idXJuOnNjaGVtYXMtbWljcm9z
-b2Z0LWNvbTpvZmZpY2U6ZXhjZWwiIHhtbG5zOnA9InVybjpzY2hlbWFzLW1pY3Jvc29mdC1jb206
-b2ZmaWNlOnBvd2VycG9pbnQiIHhtbG5zOmE9InVybjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2Zm
-aWNlOmFjY2VzcyIgeG1sbnM6ZHQ9InV1aWQ6QzJGNDEwMTAtNjVCMy0xMWQxLUEyOUYtMDBBQTAw
-QzE0ODgyIiB4bWxuczpzPSJ1dWlkOkJEQzZFM0YwLTZEQTMtMTFkMS1BMkEzLTAwQUEwMEMxNDg4
-MiIgeG1sbnM6cnM9InVybjpzY2hlbWFzLW1pY3Jvc29mdC1jb206cm93c2V0IiB4bWxuczp6PSIj
-Um93c2V0U2NoZW1hIiB4bWxuczpiPSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTpw
-dWJsaXNoZXIiIHhtbG5zOnNzPSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTpzcHJl
-YWRzaGVldCIgeG1sbnM6Yz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6Y29tcG9u
-ZW50OnNwcmVhZHNoZWV0IiB4bWxuczpvZGM9InVybjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2Zm
-aWNlOm9kYyIgeG1sbnM6b2E9InVybjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOmFjdGl2
-YXRpb24iIHhtbG5zOmh0bWw9Imh0dHA6Ly93d3cudzMub3JnL1RSL1JFQy1odG1sNDAiIHhtbG5z
-OnE9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpydGM9
-Imh0dHA6Ly9taWNyb3NvZnQuY29tL29mZmljZW5ldC9jb25mZXJlbmNpbmciIHhtbG5zOkQ9IkRB
-VjoiIHhtbG5zOlJlcGw9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vcmVwbC8iIHhtbG5z
-Om10PSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NoYXJlcG9pbnQvc29hcC9tZWV0aW5n
-cy8iIHhtbG5zOngyPSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS9leGNlbC8y
-MDAzL3htbCIgeG1sbnM6cHBkYT0iaHR0cDovL3d3dy5wYXNzcG9ydC5jb20vTmFtZVNwYWNlLnhz
-ZCIgeG1sbnM6b2lzPSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NoYXJlcG9pbnQvc29h
-cC9vaXMvIiB4bWxuczpkaXI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2hhcmVwb2lu
-dC9zb2FwL2RpcmVjdG9yeS8iIHhtbG5zOmRzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3ht
-bGRzaWcjIiB4bWxuczpkc3A9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2hhcmVwb2lu
-dC9kc3AiIHhtbG5zOnVkYz0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9kYXRhL3VkYyIg
-eG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6c3ViPSJo
-dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3NoYXJlcG9pbnQvc29hcC8yMDAyLzEvYWxlcnRz
-LyIgeG1sbnM6ZWM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMDQveG1sZW5jIyIgeG1sbnM6c3A9
-Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2hhcmVwb2ludC8iIHhtbG5zOnNwcz0iaHR0
-cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9zaGFyZXBvaW50L3NvYXAvIiB4bWxuczp4c2k9Imh0
-dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp1ZGNzPSJodHRw
-Oi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL2RhdGEvdWRjL3NvYXAiIHhtbG5zOnVkY3hmPSJodHRw
-Oi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL2RhdGEvdWRjL3htbGZpbGUiIHhtbG5zOnVkY3AycD0i
-aHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9kYXRhL3VkYy9wYXJ0dG9wYXJ0IiB4bWxuczp3
-Zj0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9zaGFyZXBvaW50L3NvYXAvd29ya2Zsb3cv
-IiB4bWxuczpkc3NzPSJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA2L2Rp
-Z3NpZy1zZXR1cCIgeG1sbnM6ZHNzaT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9vZmZp
-Y2UvMjAwNi9kaWdzaWciIHhtbG5zOm1kc3NpPSJodHRwOi8vc2NoZW1hcy5vcGVueG1sZm9ybWF0
-cy5vcmcvcGFja2FnZS8yMDA2L2RpZ2l0YWwtc2lnbmF0dXJlIiB4bWxuczptdmVyPSJodHRwOi8v
-c2NoZW1hcy5vcGVueG1sZm9ybWF0cy5vcmcvbWFya3VwLWNvbXBhdGliaWxpdHkvMjAwNiIgeG1s
-bnM6bT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4
-bWxuczptcmVscz0iaHR0cDovL3NjaGVtYXMub3BlbnhtbGZvcm1hdHMub3JnL3BhY2thZ2UvMjAw
-Ni9yZWxhdGlvbnNoaXBzIiB4bWxuczpzcHdwPSJodHRwOi8vbWljcm9zb2Z0LmNvbS9zaGFyZXBv
-aW50L3dlYnBhcnRwYWdlcyIgeG1sbnM6ZXgxMnQ9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5j
-b20vZXhjaGFuZ2Uvc2VydmljZXMvMjAwNi90eXBlcyIgeG1sbnM6ZXgxMm09Imh0dHA6Ly9zY2hl
-bWFzLm1pY3Jvc29mdC5jb20vZXhjaGFuZ2Uvc2VydmljZXMvMjAwNi9tZXNzYWdlcyIgeG1sbnM6
-cHB0c2w9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc2hhcmVwb2ludC9zb2FwL1NsaWRl
-TGlicmFyeS8iIHhtbG5zOnNwc2w9Imh0dHA6Ly9taWNyb3NvZnQuY29tL3dlYnNlcnZpY2VzL1No
-YXJlUG9pbnRQb3J0YWxTZXJ2ZXIvUHVibGlzaGVkTGlua3NTZXJ2aWNlIiB4bWxuczpaPSJ1cm46
-c2NoZW1hcy1taWNyb3NvZnQtY29tOiIgeG1sbnM6dGF4PSJodHRwOi8vc2NoZW1hcy5taWNyb3Nv
-ZnQuY29tL3NoYXJlcG9pbnQvdGF4b25vbXkvc29hcC8iIHhtbG5zOnRucz0iaHR0cDovL3NjaGVt
-YXMubWljcm9zb2Z0LmNvbS9zaGFyZXBvaW50L3NvYXAvcmVjb3Jkc3JlcG9zaXRvcnkvIiB4bWxu
-czpzcHN1cD0iaHR0cDovL21pY3Jvc29mdC5jb20vd2Vic2VydmljZXMvU2hhcmVQb2ludFBvcnRh
-bFNlcnZlci9Vc2VyUHJvZmlsZVNlcnZpY2UiIHhtbG5zOm1tbD0iaHR0cDovL3d3dy53My5vcmcv
-MTk5OC9NYXRoL01hdGhNTCIgeG1sbnM6c3Q9IiYjMTsiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9y
-Zy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBl
-IiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1ldGEgbmFtZT0iR2VuZXJh
-dG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNCAoZmlsdGVyZWQgbWVkaXVtKSI+DQo8c3R5
-bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWls
-eTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0O30NCkBmb250LWZhY2UN
-Cgl7Zm9udC1mYW1pbHk6VGFob21hOw0KCXBhbm9zZS0xOjIgMTEgNiA0IDMgNSA0IDQgMiA0O30N
-CkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q29uc29sYXM7DQoJcGFub3NlLTE6MiAxMSA2IDkg
-MiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5N
-c29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4w
-MDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFu
-Iiwic2VyaWYiOw0KCWNvbG9yOmJsYWNrO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7
-bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVu
-ZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0
-eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJs
-aW5lO30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhU
-TUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRvbTouMDAw
-MXB0Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3IjsNCglj
-b2xvcjpibGFjazt9DQpzcGFuLkhUTUxQcmVmb3JtYXR0ZWRDaGFyDQoJe21zby1zdHlsZS1uYW1l
-OiJIVE1MIFByZWZvcm1hdHRlZCBDaGFyIjsNCgltc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNv
-LXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVkIjsNCglmb250LWZhbWlseTpDb25zb2xhczsN
-Cgljb2xvcjpibGFjazt9DQpzcGFuLkVtYWlsU3R5bGUxOQ0KCXttc28tc3R5bGUtdHlwZTpwZXJz
-b25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9y
-OiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7
-DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAx
-MS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlv
-bjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+
-PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8
-L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0
-IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNo
-YXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgYmdjb2xvcj0id2hp
-dGUiIGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9
-IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
-aWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SGksIEpha2UgYW5kIERlbnlzOjxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
-Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
-dDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+VGhl
-cmUgYXJlIGFsc28gbmV3IHBhdGNoZXMgb24gdG9wIG9mIHRoZSDigJxyZXZlcnTigJ0gcGF0Y2gu
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtz
-YW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xv
-cjojMUY0OTdEIj5CZXN0IHJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1
-b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5FcmljPG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
-Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2Nv
-bG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZu
-YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9y
-ZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9u
-dC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6
-d2luZG93dGV4dCI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2Nv
-bG9yOndpbmRvd3RleHQiPiBTdGlmZmxlciwgSmFjb2INCjxicj4NCjxiPlNlbnQ6PC9iPiBNb25k
-YXksIFNlcHRlbWJlciAxNywgMjAxOCA5OjQ5IEFNPGJyPg0KPGI+VG86PC9iPiBEbXl0cml5ZW5r
-bywgRGVueXM7IFJ1ZWksIEVyaWM8YnI+DQo8Yj5DYzo8L2I+IG1ldGEtYXJhZ29AYXJhZ28tcHJv
-amVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFtFWFRFUk5BTF0gUmU6IFttZXRhLWFy
-YWdvXSBbUEFUQ0hdIG1hdHJpeC1ndWktcXQ1LWRlbW9zOnJlbW92ZSB0aGUgZXh0cmEgLnBjIGRp
-cmVjdG9yeSB1bmRlciBtYXRyaXgtZ3VpL2FwcHMgZm9yIGszIGRldmljZXM8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
-cDs8L286cD48L3A+DQo8cHJlPkRlbnlzLDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wcmU+DQo8cHJlPkNhbiB5b3UgcGxlYXNlIGJhY2twb3J0IHRoZSAmcXVvdDty
-ZXZlcnQmcXVvdDsgdG8gdGkyMDE4LjAzPzxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9wcmU+DQo8cHJlPjxvOnA+Jm5ic3A7PC9vOnA+PC9wcmU+DQo8cHJlPlRoYW5r
-IHlvdSw8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZuYnNwOzwvbzpwPjwvcHJlPg0KPHBy
-ZT5KYWtlPG86cD48L286cD48L3ByZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIDkvMTIvMjAxOCAzOjQ4
-IFBNLCBEZW55cyBEbXl0cml5ZW5rbyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGJs
-b2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8
-cHJlPlRoaXMgcGFja2FnZSBpcyBhbGxhcmNoIC0geW91IGNhbm5vdCBkbyBtYWNoaW5lIG92ZXJy
-aWRlcy4gQlRXLCB5b3VyIHByZXZpb3VzIDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPmNoYW5nZSBm
-b3IgcXR3ZWJraXQgcGF0Y2hpbmcgaXMgYWxzbyBpbmNvcnJlY3QgLSBJJ2xsIHJldmVydCBpdC48
-bzpwPjwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZuYnNwOzwvbzpwPjwvcHJlPg0KPHByZT48bzpw
-PiZuYnNwOzwvbzpwPjwvcHJlPg0KPHByZT5PbiBXZWQsIFNlcCAxMiwgMjAxOCBhdCAxMTo1Mjow
-OUFNIC0wNDAwLCBFcmljIFJ1ZWkgd3JvdGU6PG86cD48L286cD48L3ByZT4NCjxibG9ja3F1b3Rl
-IHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPHByZT5Ob3Rl
-OiB0aGUgLnBjIGRpcmVjdG9yeSBpcyBjcmVhdGVkIGR1ZSB0byB0aGUgazMgcGF0Y2g8bzpwPjwv
-bzpwPjwvcHJlPg0KPHByZT48bzpwPiZuYnNwOzwvbzpwPjwvcHJlPg0KPHByZT5TaWduZWQtb2Zm
-LWJ5OiBFcmljIFJ1ZWkgPGEgaHJlZj0ibWFpbHRvOmUtcnVlaTFAdGkuY29tIj4mbHQ7ZS1ydWVp
-MUB0aS5jb20mZ3Q7PC9hPjxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPi0tLTxvOnA+PC9vOnA+PC9w
-cmU+DQo8cHJlPiBtZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNvcmUvbWF0cml4L21hdHJpeC1n
-dWktcXQ1LWRlbW9zXzIuMC5iYiB8IDcgJiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7LTxv
-OnA+PC9vOnA+PC9wcmU+DQo8cHJlPiAxIGZpbGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCYjNDM7
-KSwgMSBkZWxldGlvbigtKTxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9wcmU+DQo8cHJlPmRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNvcmUv
-bWF0cml4L21hdHJpeC1ndWktcXQ1LWRlbW9zXzIuMC5iYiBiL21ldGEtYXJhZ28tZXh0cmFzL3Jl
-Y2lwZXMtY29yZS9tYXRyaXgvbWF0cml4LWd1aS1xdDUtZGVtb3NfMi4wLmJiPG86cD48L286cD48
-L3ByZT4NCjxwcmU+aW5kZXggMjQwMTgzMi4uNjI0MWJiZiAxMDA2NDQ8bzpwPjwvbzpwPjwvcHJl
-Pg0KPHByZT4tLS0gYS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNvcmUvbWF0cml4L21hdHJp
-eC1ndWktcXQ1LWRlbW9zXzIuMC5iYjxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiYjNDM7JiM0Mzsm
-IzQzOyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtY29yZS9tYXRyaXgvbWF0cml4LWd1aS1x
-dDUtZGVtb3NfMi4wLmJiPG86cD48L286cD48L3ByZT4NCjxwcmU+QEAgLTMsNyAmIzQzOzMsNyBA
-QCBIT01FUEFHRSA9IDxhIGhyZWY9Imh0dHBzOi8vZ2l0b3Jpb3VzLm9yZy9tYXRyaXgtZ3VpLXYy
-L21hdHJpeC1ndWktdjItYXBwcyI+JnF1b3Q7aHR0cHM6Ly9naXRvcmlvdXMub3JnL21hdHJpeC1n
-dWktdjIvbWF0cml4LWd1aS12Mi1hcHBzJnF1b3Q7PC9hPjxvOnA+PC9vOnA+PC9wcmU+DQo8cHJl
-PiA8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4mbmJzcDtyZXF1aXJlIG1hdHJpeC1ndWktYXBwcy1n
-aXQuaW5jPG86cD48L286cD48L3ByZT4NCjxwcmU+IDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPi1Q
-UiA9ICZxdW90OyR7SU5DX1BSfS4xJnF1b3Q7PG86cD48L286cD48L3ByZT4NCjxwcmU+JiM0MztQ
-UiA9ICZxdW90OyR7SU5DX1BSfS4yJnF1b3Q7PG86cD48L286cD48L3ByZT4NCjxwcmU+IDxvOnA+
-PC9vOnA+PC9wcmU+DQo8cHJlPiZuYnNwO2luaGVyaXQgYWxsYXJjaDxvOnA+PC9vOnA+PC9wcmU+
-DQo8cHJlPiA8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5AQCAtMTMsNiAmIzQzOzEzLDExIEBAIFNS
-Q19VUklfYXBwZW5kX2szID0gJnF1b3Q7IFw8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4gPG86cD48
-L286cD48L3ByZT4NCjxwcmU+Jm5ic3A7UyA9ICZxdW90OyR7V09SS0RJUn0vZ2l0L3F0NV9hcHBz
-JnF1b3Q7PG86cD48L286cD48L3ByZT4NCjxwcmU+IDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiYj
-NDM7ZG9faW5zdGFsbF9hcHBlbmRfazMoKXs8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4mIzQzOyZu
-YnNwOyZuYnNwOyZuYnNwOyBybSAtciAke0R9JHtNQVRSSVhfQVBQX0RJUn0vLnBjPG86cD48L286
-cD48L3ByZT4NCjxwcmU+JiM0Mzt9PG86cD48L286cD48L3ByZT4NCjxwcmU+JiM0Mzs8bzpwPjwv
-bzpwPjwvcHJlPg0KPHByZT4mIzQzOzxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPiAjIE1ha2Ugc3Vy
-ZSBxdDUgc3VibWVudSBhbmQgYXBwIGltYWdlcyBoYXMgYmVlbiBpbnN0YWxsZWQ8bzpwPjwvbzpw
-PjwvcHJlPg0KPHByZT4gUkRFUEVORFNfJHtQTn0gJiM0Mzs9ICZxdW90O21hdHJpeC1ndWktYXBw
-cy1pbWFnZXMgbWF0cml4LWd1aS1zdWJtZW51cy1xdDUmcXVvdDs8bzpwPjwvbzpwPjwvcHJlPg0K
-PHByZT4gPG86cD48L286cD48L3ByZT4NCjxwcmU+LS0gPG86cD48L286cD48L3ByZT4NCjxwcmU+
-MS45LjE8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZuYnNwOzwvbzpwPjwvcHJlPg0KPHBy
-ZT5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzxvOnA+PC9v
-OnA+PC9wcmU+DQo8cHJlPm1ldGEtYXJhZ28gbWFpbGluZyBsaXN0PG86cD48L286cD48L3ByZT4N
-CjxwcmU+PGEgaHJlZj0ibWFpbHRvOm1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmciPm1ldGEt
-YXJhZ29AYXJhZ28tcHJvamVjdC5vcmc8L2E+PG86cD48L286cD48L3ByZT4NCjxwcmU+PGEgaHJl
-Zj0iaHR0cDovL2FyYWdvLXByb2plY3Qub3JnL2NnaS1iaW4vbWFpbG1hbi9saXN0aW5mby9tZXRh
-LWFyYWdvIj5odHRwOi8vYXJhZ28tcHJvamVjdC5vcmcvY2dpLWJpbi9tYWlsbWFuL2xpc3RpbmZv
-L21ldGEtYXJhZ288L2E+PG86cD48L286cD48L3ByZT4NCjwvYmxvY2txdW90ZT4NCjxwcmU+X19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188bzpwPjwvbzpwPjwv
-cHJlPg0KPHByZT5tZXRhLWFyYWdvIG1haWxpbmcgbGlzdDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJl
-PjxhIGhyZWY9Im1haWx0bzptZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qub3JnIj5tZXRhLWFyYWdv
-QGFyYWdvLXByb2plY3Qub3JnPC9hPjxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPjxhIGhyZWY9Imh0
-dHA6Ly9hcmFnby1wcm9qZWN0Lm9yZy9jZ2ktYmluL21haWxtYW4vbGlzdGluZm8vbWV0YS1hcmFn
-byI+aHR0cDovL2FyYWdvLXByb2plY3Qub3JnL2NnaS1iaW4vbWFpbG1hbi9saXN0aW5mby9tZXRh
-LWFyYWdvPC9hPjxvOnA+PC9vOnA+PC9wcmU+DQo8L2Jsb2NrcXVvdGU+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <pre class="content">Denys,
 
---_000_2a819fd94ba84598a6aa825005292703ticom_--
+Can you please backport this set to ti2018.03?
+
+
+Thank you,
+
+Jake</pre>
+    <br>
+    <div class="moz-cite-prefix">On 9/13/2018 1:56 PM, Jacob Stiffler
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:1536861387-7418-1-git-send-email-j-stiffler@ti.com">
+      <pre wrap="">Add ARMNN and required dependencies.
+
+Qin Su (5):
+  stb: C/C++ libraries used to build armnn test examples.
+  arm-compute-library: Machine Learning library for ARM.
+  armnn-caffe: caffe protobuf files used in building caffe models in
+    armnn.
+  armnn-tensorflow: tensorflow protobuf files for building tensorflow
+    models in armnn
+  armnn: ARM NN machine learning SDK.
+
+ .../arm-compute-library/arm-compute-library_git.bb | 44 +++++++++++++++++
+ .../recipes-support/armnn-caffe/armnn-caffe_git.bb | 22 +++++++++
+ .../armnn-tensorflow/armnn-tensorflow_git.bb       | 25 ++++++++++
+ .../armnn/0001-stdlib-issue-work-around.patch      | 55 ++++++++++++++++++++++
+ .../0002-enable-use-of-boost-shared-library.patch  | 33 +++++++++++++
+ .../recipes-support/armnn/armnn_git.bb             | 45 ++++++++++++++++++
+ meta-arago-extras/recipes-support/stb/stb_git.bb   | 22 +++++++++
+ 7 files changed, 246 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library_git.bb
+ create mode 100644 meta-arago-extras/recipes-support/armnn-caffe/armnn-caffe_git.bb
+ create mode 100644 meta-arago-extras/recipes-support/armnn-tensorflow/armnn-tensorflow_git.bb
+ create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0001-stdlib-issue-work-around.patch
+ create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0002-enable-use-of-boost-shared-library.patch
+ create mode 100644 meta-arago-extras/recipes-support/armnn/armnn_git.bb
+ create mode 100644 meta-arago-extras/recipes-support/stb/stb_git.bb
+
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------C0E2B4F74E391B3681C94D11--
