@@ -1,44 +1,44 @@
 Return-Path: <h-gou@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 3C3DB52A12
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 7B4B6529E6
 	for <meta-arago@arago-project.org>;
 	Tue, 18 Sep 2018 20:13:54 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8IKDjA8059455
-	for <meta-arago@arago-project.org>; Tue, 18 Sep 2018 15:13:45 -0500
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8IKDkim062685
+	for <meta-arago@arago-project.org>; Tue, 18 Sep 2018 15:13:46 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1537301625;
-	bh=ahKgseINce3jUYNcErQn4mme9MtMIMPD+VV4auAAQTg=;
+	s=ti-com-17Q1; t=1537301626;
+	bh=FfMuwCqV53Bcxje/FR+L7cGz9KOp4JfirrAu6FVfp90=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=blApg0D0DsNPyZqxAaZi2XLjNtUN6DHnG8/1THHRmucpJ/sEJXU2oKTKglpU2TCbR
-	Ac33mCWjnf4W034qCrHXasNyCv4DhMCK2OmIhqeQBSyFuvzHnrShbjlSY+6s7704dw
-	lhsVvo21xNkRRNd0K7xBLXFHaKp8WiqdC51cpojE=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8IKDja4003565
-	for <meta-arago@arago-project.org>; Tue, 18 Sep 2018 15:13:45 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	b=TNJ8/YxISmfchDN6i/o988M6d66iHXa9TX5l8trc5oOlVO2l7hvyOw1hi48yNADoS
+	w7l0R92yMOVM2Wsr1wdT8Lh5xJSJ07bvxhU3CjOQATHW4HfO9v4znhlQLWXxirpBuK
+	qdOwWgV7ak19332VTsPJ5e19CVS0G5NJTlAeQzp8=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8IKDkHg028247
+	for <meta-arago@arago-project.org>; Tue, 18 Sep 2018 15:13:46 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
 	Tue, 18 Sep 2018 15:13:46 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Tue, 18 Sep 2018 15:13:45 -0500
+	Transport; Tue, 18 Sep 2018 15:13:46 -0500
 Received: from uda0271529.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8IKDit9002786;
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8IKDitB002786;
 	Tue, 18 Sep 2018 15:13:45 -0500
 From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 18 Sep 2018 16:13:39 -0400
-Message-ID: <1537301622-8988-5-git-send-email-a0271529@ti.com>
+Date: Tue, 18 Sep 2018 16:13:41 -0400
+Message-ID: <1537301622-8988-7-git-send-email-a0271529@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1537301622-8988-1-git-send-email-a0271529@ti.com>
 References: <1537301622-8988-1-git-send-email-a0271529@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processor-sdk 4/7] rotate-recovery: add patch for ROS navigation demo
+Subject: [meta-processor-sdk 6/7] mmwave-ros-autonomous-robotics: added for ROS navigation demo with obstacle avoidance
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,117 +56,314 @@ Content-Type: text/plain
 
 Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- ...navigation-rotate-recovery-mmwave-changes.patch | 88 ++++++++++++++++++++++
- .../navigation/rotate-recovery_1.12.14.bbappend    |  5 ++
- 2 files changed, 93 insertions(+)
- create mode 100644 recipes-ros/navigation/files/0001-navigation-rotate-recovery-mmwave-changes.patch
- create mode 100644 recipes-ros/navigation/rotate-recovery_1.12.14.bbappend
+ ...-turtlebot-bringup-description-launch-xml.patch |  12 ++
+ ...e-launchers-navigation-visualization-rviz.patch | 151 +++++++++++++++++++++
+ ...-turtlebot-navigation-costmap-params-yaml.patch |  22 +++
+ .../0002-turtlebot-bringup-minimal-launch.patch    |  26 ++++
+ .../mmwave-ros-autonomous-robotics_2.5.1.bb        |  55 ++++++++
+ 5 files changed, 266 insertions(+)
+ create mode 100644 recipes-ros/ros-mmwave/files/0001-turtlebot-bringup-description-launch-xml.patch
+ create mode 100644 recipes-ros/ros-mmwave/files/0001-turtlebot-mmwave-launchers-navigation-visualization-rviz.patch
+ create mode 100644 recipes-ros/ros-mmwave/files/0001-turtlebot-navigation-costmap-params-yaml.patch
+ create mode 100644 recipes-ros/ros-mmwave/files/0002-turtlebot-bringup-minimal-launch.patch
+ create mode 100644 recipes-ros/ros-mmwave/mmwave-ros-autonomous-robotics_2.5.1.bb
 
-diff --git a/recipes-ros/navigation/files/0001-navigation-rotate-recovery-mmwave-changes.patch b/recipes-ros/navigation/files/0001-navigation-rotate-recovery-mmwave-changes.patch
+diff --git a/recipes-ros/ros-mmwave/files/0001-turtlebot-bringup-description-launch-xml.patch b/recipes-ros/ros-mmwave/files/0001-turtlebot-bringup-description-launch-xml.patch
 new file mode 100644
-index 0000000..089ac34
+index 0000000..cc4a794
 --- /dev/null
-+++ b/recipes-ros/navigation/files/0001-navigation-rotate-recovery-mmwave-changes.patch
-@@ -0,0 +1,88 @@
-+diff --git a/rotate_recovery/src/rotate_recovery.cpp b/rotate_recovery/src/rotate_recovery.cpp
-+index 64e9999..65959e8 100644
-+--- a/rotate_recovery/src/rotate_recovery.cpp
-++++ b/rotate_recovery/src/rotate_recovery.cpp
-+@@ -3,6 +3,7 @@
-+ * Software License Agreement (BSD License)
-+ *
-+ *  Copyright (c) 2009, Willow Garage, Inc.
-++*  Copyright (c) 2017, Texas Instruments Incorporated
-+ *  All rights reserved.
-+ *
-+ *  Redistribution and use in source and binary forms, with or without
-+@@ -38,7 +39,7 @@
-+ #include <pluginlib/class_list_macros.h>
++++ b/recipes-ros/ros-mmwave/files/0001-turtlebot-bringup-description-launch-xml.patch
+@@ -0,0 +1,12 @@
++--- a/launch/includes/description.launch.xml
+++++ b/launch/includes/description.launch.xml
++@@ -6,7 +6,9 @@
++   <arg name="stacks"/>
++   <arg name="3d_sensor"/>
++   
+++<!--
++   <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find turtlebot_description)/robots/$(arg base)_$(arg stacks)_$(arg 3d_sensor).urdf.xacro'" />
++   <param name="robot_description" command="$(arg urdf_file)" />
+++ -->
 + 
-+ //register this planner as a RecoveryBehavior plugin
-+-PLUGINLIB_DECLARE_CLASS(rotate_recovery, RotateRecovery, rotate_recovery::RotateRecovery, nav_core::RecoveryBehavior)
-++PLUGINLIB_EXPORT_CLASS(rotate_recovery::RotateRecovery, nav_core::RecoveryBehavior)
-+ 
-+ namespace rotate_recovery {
-+ RotateRecovery::RotateRecovery(): global_costmap_(NULL), local_costmap_(NULL), 
-+@@ -54,7 +55,7 @@ void RotateRecovery::initialize(std::string name, tf::TransformListener* tf,
-+ 
-+     //get some parameters from the parameter server
-+     ros::NodeHandle private_nh("~/" + name_);
-+-    ros::NodeHandle blp_nh("~/TrajectoryPlannerROS");
-++    ros::NodeHandle blp_nh("~/DWAPlannerROS");
-+ 
-+     //we'll simulate every degree by default
-+     private_nh.param("sim_granularity", sim_granularity_, 0.017);
-+@@ -88,8 +89,13 @@ void RotateRecovery::runBehavior(){
-+     ROS_ERROR("The costmaps passed to the RotateRecovery object cannot be NULL. Doing nothing.");
-+     return;
-+   }
-+-  ROS_WARN("Rotate recovery behavior started.");
-++  ROS_WARN("mmWave customized rotate recovery behavior started.");
-+ 
-++  ROS_WARN("Clearing costmaps...");
-++  global_costmap_->resetLayers();
-++  local_costmap_->resetLayers();
-++
-++  ROS_WARN("Performing rotation...");
-+   ros::Rate r(frequency_);
-+   ros::NodeHandle n;
-+   ros::Publisher vel_pub = n.advertise<geometry_msgs::Twist>("cmd_vel", 10);
-+@@ -101,15 +107,15 @@ void RotateRecovery::runBehavior(){
-+ 
-+   bool got_180 = false;
-+ 
-+-  double start_offset = 0 - angles::normalize_angle(tf::getYaw(global_pose.getRotation()));
-++  double start_offset = angles::normalize_angle_positive(tf::getYaw(global_pose.getRotation()));
-+   while(n.ok()){
-+     local_costmap_->getRobotPose(global_pose);
-+ 
-+-    double norm_angle = angles::normalize_angle(tf::getYaw(global_pose.getRotation()));
-+-    current_angle = angles::normalize_angle(norm_angle + start_offset);
-++    double norm_angle = angles::normalize_angle_positive(tf::getYaw(global_pose.getRotation()));
-++    current_angle = angles::normalize_angle_positive(norm_angle - start_offset);
-+ 
-+     //compute the distance left to rotate
-+-    double dist_left = M_PI - current_angle;
-++    double dist_left = (2 * M_PI) - current_angle;
-+ 
-+     double x = global_pose.getOrigin().x(), y = global_pose.getOrigin().y();
-+ 
-+@@ -142,12 +148,20 @@ void RotateRecovery::runBehavior(){
-+     vel_pub.publish(cmd_vel);
-+ 
-+     //makes sure that we won't decide we're done right after we start
-+-    if(current_angle < 0.0)
-++    if ((fabs(current_angle - M_PI) < M_PI/2) && (got_180 == false))
-++    {
-+       got_180 = true;
-++    }
-+ 
-+     //if we're done with our in-place rotation... then return
-+-    if(got_180 && current_angle >= (0.0 - tolerance_))
-++    if(got_180 && ((current_angle >= (2*M_PI - tolerance_)) || (current_angle <= (M_PI/2))))
-++    {
-++      cmd_vel.angular.z = 0;
-++      vel_pub.publish(cmd_vel);
-++
-++      ROS_WARN("Completed rotation...");
-+       return;
-++    }
-+ 
-+     r.sleep();
-+   }
-diff --git a/recipes-ros/navigation/rotate-recovery_1.12.14.bbappend b/recipes-ros/navigation/rotate-recovery_1.12.14.bbappend
++ </launch>
+diff --git a/recipes-ros/ros-mmwave/files/0001-turtlebot-mmwave-launchers-navigation-visualization-rviz.patch b/recipes-ros/ros-mmwave/files/0001-turtlebot-mmwave-launchers-navigation-visualization-rviz.patch
 new file mode 100644
-index 0000000..435a3d6
+index 0000000..3956c52
 --- /dev/null
-+++ b/recipes-ros/navigation/rotate-recovery_1.12.14.bbappend
-@@ -0,0 +1,5 @@
-+PR_append = ".tisdk0"
++++ b/recipes-ros/ros-mmwave/files/0001-turtlebot-mmwave-launchers-navigation-visualization-rviz.patch
+@@ -0,0 +1,151 @@
++--- a/launch/navigation_visualization.rviz
+++++ b/launch/navigation_visualization.rviz
++@@ -250,36 +250,6 @@
++       Value: true
++       Visual Enabled: true
++     - Alpha: 1
++-      Axes Length: 1
++-      Axes Radius: 0.100000001
++-      Class: rviz/PoseWithCovariance
++-      Color: 255; 25; 0
++-      Covariance:
++-        Orientation:
++-          Alpha: 0.5
++-          Color: 255; 255; 127
++-          Color Style: Unique
++-          Frame: Local
++-          Offset: 1
++-          Scale: 1
++-          Value: true
++-        Position:
++-          Alpha: 0.300000012
++-          Color: 204; 51; 204
++-          Scale: 1
++-          Value: true
++-        Value: true
++-      Enabled: true
++-      Head Length: 0.300000012
++-      Head Radius: 0.100000001
++-      Name: PoseWithCovariance
++-      Shaft Length: 1
++-      Shaft Radius: 0.0500000007
++-      Shape: Arrow
++-      Topic: /initialpose
++-      Unreliable: false
++-      Value: true
++-    - Alpha: 1
++       Buffer Length: 1
++       Class: rviz/Path
++       Color: 255; 0; 0
++@@ -343,6 +313,36 @@
++       Unreliable: false
++       Use Timestamp: false
++       Value: true
+++    - Alpha: 1
+++      Axes Length: 1
+++      Axes Radius: 0.1
+++      Class: rviz_plugin_covariance/PoseWithCovariance
+++      Color: 255; 25; 0
+++      Covariance:
+++        Orientation:
+++          Alpha: 0.5
+++          Color: 255; 255; 127
+++          Color Style: Unique
+++          Frame: Local
+++          Offset: 1
+++          Scale: 1
+++          Value: true
+++        Position:
+++          Alpha: 0.3
+++          Color: 204; 51; 204
+++          Scale: 1
+++          Value: true
+++        Value: true
+++      Enabled: true
+++      Head Length: 0.3
+++      Head Radius: 0.1
+++      Name: PoseWithCovariance
+++      Shaft Length: 1
+++      Shaft Radius: 0.05
+++      Shape: Arrow
+++      Topic: /initialpose
+++      Unreliable: false
+++      Value: true
++   Enabled: true
++   Global Options:
++     Background Color: 48; 48; 48
++--- a/launch/navigation_visualization_2.rviz
+++++ b/launch/navigation_visualization_2.rviz
++@@ -251,35 +251,6 @@
++       Visual Enabled: true
++     - Alpha: 1
++       Axes Length: 1
++-      Axes Radius: 0.100000001
++-      Class: rviz/PoseWithCovariance
++-      Color: 255; 25; 0
++-      Covariance:
++-        Orientation:
++-          Alpha: 0.5
++-          Color: 255; 255; 127
++-          Color Style: Unique
++-          Frame: Local
++-          Offset: 1
++-          Scale: 1
++-          Value: true
++-        Position:
++-          Alpha: 0.300000012
++-          Color: 204; 51; 204
++-          Scale: 1
++-          Value: true
++-        Value: true
++-      Enabled: false
++-      Head Length: 0.300000012
++-      Head Radius: 0.100000001
++-      Name: PoseWithCovariance
++-      Shaft Length: 1
++-      Shaft Radius: 0.0500000007
++-      Shape: Arrow
++-      Topic: /initialpose
++-      Unreliable: false
++-      Value: false
++-    - Alpha: 1
++       Buffer Length: 1
++       Class: rviz/Path
++       Color: 255; 0; 0
++@@ -373,6 +344,36 @@
++       Unreliable: false
++       Use Timestamp: false
++       Value: true
+++    - Alpha: 1
+++      Axes Length: 1
+++      Axes Radius: 0.1
+++      Class: rviz_plugin_covariance/PoseWithCovariance
+++      Color: 255; 25; 0
+++      Covariance:
+++        Orientation:
+++          Alpha: 0.5
+++          Color: 255; 255; 127
+++          Color Style: Unique
+++          Frame: Local
+++          Offset: 1
+++          Scale: 1
+++          Value: true
+++        Position:
+++          Alpha: 0.3
+++          Color: 204; 51; 204
+++          Scale: 1
+++          Value: true
+++        Value: true
+++      Enabled: true
+++      Head Length: 0.3
+++      Head Radius: 0.1
+++      Name: PoseWithCovariance
+++      Shaft Length: 1
+++      Shaft Radius: 0.05
+++      Shape: Arrow
+++      Topic: /initialpose
+++      Unreliable: false
+++      Value: true
++   Enabled: true
++   Global Options:
++     Background Color: 48; 48; 48
+diff --git a/recipes-ros/ros-mmwave/files/0001-turtlebot-navigation-costmap-params-yaml.patch b/recipes-ros/ros-mmwave/files/0001-turtlebot-navigation-costmap-params-yaml.patch
+new file mode 100644
+index 0000000..7fba277
+--- /dev/null
++++ b/recipes-ros/ros-mmwave/files/0001-turtlebot-navigation-costmap-params-yaml.patch
+@@ -0,0 +1,22 @@
++--- a/param/global_costmap_params.yaml
+++++ b/param/global_costmap_params.yaml
++@@ -1,7 +1,7 @@
++ global_costmap:
++    global_frame: /map
++    robot_base_frame: /base_footprint
++-   update_frequency: 15
+++   update_frequency: 8 
++    publish_frequency: 5
++    static_map: false
++    rolling_window: true
++--- a/param/local_costmap_params.yaml
+++++ b/param/local_costmap_params.yaml
++@@ -1,7 +1,7 @@
++ local_costmap:
++    global_frame: /odom
++    robot_base_frame: /base_footprint
++-   update_frequency: 20
+++   update_frequency: 15
++    publish_frequency: 10
++    static_map: false
++    rolling_window: true
+diff --git a/recipes-ros/ros-mmwave/files/0002-turtlebot-bringup-minimal-launch.patch b/recipes-ros/ros-mmwave/files/0002-turtlebot-bringup-minimal-launch.patch
+new file mode 100644
+index 0000000..e09f750
+--- /dev/null
++++ b/recipes-ros/ros-mmwave/files/0002-turtlebot-bringup-minimal-launch.patch
+@@ -0,0 +1,26 @@
++--- a/launch/minimal.launch
+++++ b/launch/minimal.launch
++@@ -1,11 +1,10 @@
++ <launch>
++   <!-- Turtlebot -->
++   <arg name="base"              default="kobuki"         doc="mobile base type [create, roomba]"/>
++-  <arg name="battery"           default="$(env TURTLEBOT_BATTERY)"      doc="kernel provided locatio for battery info, use /proc/acpi/battery/BAT0 in 2.6 or earlier kernels." />
++-  <arg name="stacks"            default="$(env TURTLEBOT_STACKS)"       doc="stack type displayed in visualisation/simulation [circles, hexagons]"/>
++-  <arg name="3d_sensor"         default="radar"    doc="3d sensor types [kinect, asux_xtion_pro, radar]"/>
++-  <arg name="simulation"        default="$(env TURTLEBOT_SIMULATION)"   doc="set flags to indicate this turtle is run in simulation mode."/>
++-  <arg name="serialport"        default="$(env TURTLEBOT_SERIAL_PORT)"  doc="used by create to configure the port it is connected on [/dev/ttyUSB0, /dev/ttyS0]"/>
+++  <arg name="stacks"            default="hexagons"       doc="stack type displayed in visualisation/simulation [circles, hexagons]"/>
+++  <arg name="3d_sensor"         default="radar"          doc="3d sensor types [kinect, asux_xtion_pro, radar]"/>
+++  <arg name="simulation"        default="false"          doc="set flags to indicate this turtle is run in simulation mode."/>
+++  <arg name="serialport"        default="/dev/kobuki"    doc="used by create to configure the port it is connected on [/dev/ttyUSB0, /dev/ttyS0]"/>
++ 
++   <param name="/use_sim_time" value="$(arg simulation)"/>
++ 
++@@ -18,7 +17,4 @@
++     <arg name="base" value="$(arg base)" />
++     <arg name="serialport" value="$(arg serialport)" />
++   </include>
++-  <include unless="$(eval arg('battery') == 'None')" file="$(find turtlebot_bringup)/launch/includes/netbook.launch.xml">
++-    <arg name="battery" value="$(arg battery)" />
++-  </include>
++ </launch>
+diff --git a/recipes-ros/ros-mmwave/mmwave-ros-autonomous-robotics_2.5.1.bb b/recipes-ros/ros-mmwave/mmwave-ros-autonomous-robotics_2.5.1.bb
+new file mode 100644
+index 0000000..1c391e2
+--- /dev/null
++++ b/recipes-ros/ros-mmwave/mmwave-ros-autonomous-robotics_2.5.1.bb
+@@ -0,0 +1,55 @@
++DESCRIPTION = "This package contains mmwave autonomous robotics demos"
++SECTION = "devel"
++LICENSE = "BSD"
 +
-+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++LIC_FILES_CHKSUM = "file://docs/Autonomous_Robotics_with_ROS_for_mmWave_manifest.pdf;md5=052cbb2cc0847a82abb159996f974c35"
++SRC_URI[base.md5sum] = "561921297c73a7ead40bf7486ee8f4f9"
++SRC_URI[base.sha256sum] = "768661b88bd31f083660287045dc49a9441d15cf10b0c48e7d29377a23864191"
++SRC_URI = "http://dev.ti.com/tirex/content/mmwave_industrial_toolbox_2_5_1/labs/lab0008-autonomous-robotics-ros/lab0008_autonomous_robotics_ros/ti_mmwave_ros_map_nav_v1p1.gz;name=base;subdir=${P}"
 +
-+SRC_URI += "file://0001-navigation-rotate-recovery-mmwave-changes.patch;patchdir=.."
++SRC_URI += "file://0001-turtlebot-bringup-description-launch-xml.patch;patchdir=${WORKDIR}/${P}/turtlebot/turtlebot/turtlebot_bringup \
++            file://0002-turtlebot-bringup-minimal-launch.patch;patchdir=${WORKDIR}/${P}/turtlebot/turtlebot/turtlebot_bringup \
++            file://0001-turtlebot-navigation-costmap-params-yaml.patch;patchdir=${WORKDIR}/${P}/turtlebot/turtlebot_apps/turtlebot_navigation \
++            file://0001-turtlebot-mmwave-launchers-navigation-visualization-rviz.patch;patchdir=${S} \
++"
++
++S = "${WORKDIR}/${P}/turtlebot_mmwave_launchers"
++
++PR = "r1"
++
++inherit catkin
++
++RDEPENDS_${PN} += "bash"
++
++tar_xf() {
++    tar xf ${WORKDIR}/ti_mmwave_ros_map_nav_v1p1 -C ${WORKDIR}/${P}
++}
++
++do_unpack[postfuncs] += "tar_xf"
++
++do_install_append() {
++    install -d ${D}${ros_datadir}/turtlebot_mmwave_launchers
++    cp -r ${S}/launch ${D}${ros_datadir}/turtlebot_mmwave_launchers
++    cp -r ${S}/scripts ${D}${ros_datadir}/turtlebot_mmwave_launchers
++
++    install -d ${D}${ros_datadir}/ti_mmwave_rospkg
++    cp -r ${WORKDIR}/${P}/ti_mmwave_rospkg/cfg ${D}${ros_datadir}/ti_mmwave_rospkg
++
++    install -d ${D}${ros_datadir}/turtlebot_bringup
++    install -d ${D}${ros_datadir}/turtlebot_description
++    cp -r ${WORKDIR}/${P}/turtlebot/turtlebot/turtlebot_bringup/* ${D}${ros_datadir}/turtlebot_bringup
++    cp -r ${WORKDIR}/${P}/turtlebot/turtlebot/turtlebot_description/* ${D}${ros_datadir}/turtlebot_description 
++    rm -rf ${D}${ros_datadir}/turtlebot_bringup/patches
++
++    install -d ${D}${ros_datadir}/turtlebot_navigation
++    cp -r ${WORKDIR}/${P}/turtlebot/turtlebot_apps/turtlebot_navigation/* ${D}${ros_datadir}/turtlebot_navigation
++    rm -rf ${D}${ros_datadir}/turtlebot_navigation/patches
++}
++
++FILES_${PN} += "${ros_datadir}/turtlebot_mmwave_launchers"
++FILES_${PN} += "${ros_datadir}/ti_mmwave_rospkg"
++FILES_${PN} += "${ros_datadir}/turtlebot_bringup"
++FILES_${PN} += "${ros_datadir}/turtlebot_description"
++FILES_${PN} += "${ros_datadir}/turtlebot_navigation"
++
++ROS_SPN = "turtlebot_mmwave_launchers"
 -- 
 1.9.1
 
