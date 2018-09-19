@@ -1,43 +1,43 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id C53D452A2A
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 3D43052A2A
 	for <meta-arago@arago-project.org>;
-	Wed, 19 Sep 2018 16:13:33 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8JGDPx0079153
-	for <meta-arago@arago-project.org>; Wed, 19 Sep 2018 11:13:25 -0500
+	Wed, 19 Sep 2018 16:14:40 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8JGEVia079710
+	for <meta-arago@arago-project.org>; Wed, 19 Sep 2018 11:14:31 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1537373605;
-	bh=7VBFkcYDv/EXsAi9r9XQKXIGG/I9M94kTH9Zg+d/7Fw=;
+	s=ti-com-17Q1; t=1537373671;
+	bh=IL+bDT1kKeudhCEANF50Yo46Gd2LE1wv5Yc3UKa8WQM=;
 	h=Subject:To:References:From:Date:In-Reply-To;
-	b=iqY99RkVsqbjoaV4ATTmkmt92/gT9NoMHC6DfxmSwLiksvGW6WO+/674DhzOO+lIV
-	t77WPbc5NVzczZOmJL8+5/pk/67+ixMxJAXvn6bbdrKPO4oxgzoPGUqwYx9IG6Y8mr
-	c6E9iDqtvrmvoTTvn+bC+cXzkr9zGd6zTlpviZb4=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8JGDP0D016916
-	for <meta-arago@arago-project.org>; Wed, 19 Sep 2018 11:13:25 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	b=tnQNKVYryx5I4B6nrvwsPddQL02LVqescB8VNGx95ZmVRmuVqKiTNGXvgI/kqTzQi
+	WPIGQeIiSx433H6qbepkC2I1Ayepgnr3IievoIPNco//RvqN82QfWK2eIviP1mBDcC
+	M9sAn6BDEFalKUFbRoW+6HkNoxyxidzEhsaNl/Ug=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8JGEVWg008132
+	for <meta-arago@arago-project.org>; Wed, 19 Sep 2018 11:14:31 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 19 Sep 2018 11:13:25 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 19 Sep 2018 11:14:31 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Wed, 19 Sep 2018 11:13:25 -0500
+	Transport; Wed, 19 Sep 2018 11:14:31 -0500
 Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8JGDO3q013529;
-	Wed, 19 Sep 2018 11:13:25 -0500
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8JGEUT5026810;
+	Wed, 19 Sep 2018 11:14:31 -0500
 To: Eric Ruei <e-ruei1@ti.com>, <meta-arago@arago-project.org>
-References: <1537187430-57902-1-git-send-email-e-ruei1@ti.com>
+References: <1537223919-14381-1-git-send-email-e-ruei1@ti.com>
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <a5237401-97cc-252e-f4ec-953d4fece1ee@ti.com>
-Date: Wed, 19 Sep 2018 12:13:24 -0400
+Message-ID: <2158b781-61d5-6da3-33cb-21af1b36af99@ti.com>
+Date: Wed, 19 Sep 2018 12:14:31 -0400
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
 	Thunderbird/52.9.1
 MIME-Version: 1.0
-In-Reply-To: <1537187430-57902-1-git-send-email-e-ruei1@ti.com>
+In-Reply-To: <1537223919-14381-1-git-send-email-e-ruei1@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [PATCH] packagegroup-arago-tidsk-hmi-sdk-host: add evse demo source for k3 devices
+Subject: Re: [EXTERNAL] [PATCH] weston-init: add warning messages for requirement of input devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,12 +50,12 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Sep 2018 16:13:34 -0000
+X-List-Received-Date: Wed, 19 Sep 2018 16:14:42 -0000
 Content-Type: multipart/alternative;
-	boundary="------------19BB80FBCA986ED47FB3A1B6"
+	boundary="------------AD9CAB5359739444D83E61B3"
 Content-Language: en-US
 
---------------19BB80FBCA986ED47FB3A1B6
+--------------AD9CAB5359739444D83E61B3
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -69,38 +69,55 @@ Thank you,
 Jake
 
 
-On 9/17/2018 8:30 AM, Eric Ruei wrote:
+On 9/17/2018 6:38 PM, Eric Ruei wrote:
 > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 > ---
->   .../packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb          | 6 +++++-
->   1 file changed, 5 insertions(+), 1 deletion(-)
+>   .../recipes-graphics/wayland/weston-init.bbappend             |  2 +-
+>   .../recipes-graphics/wayland/weston-init/runWeston            | 11 ++++++-----
+>   2 files changed, 7 insertions(+), 6 deletions(-)
 >
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-> index 4921147..dd3407d 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-> @@ -1,6 +1,6 @@
->   SUMMARY = "Task to add HMI related sources into the SDK"
->   LICENSE = "MIT"
-> -PR = "r0"
-> +PR = "r1"
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
+> index 041e5ab..4ed6a62 100644
+> --- a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
+> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
+> @@ -1,4 +1,4 @@
+> -PR_append = ".arago7"
+> +PR_append = ".arago8"
 >   
->   PACKAGE_ARCH = "${MACHINE_ARCH}"
+>   FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 >   
-> @@ -22,6 +22,10 @@ HMI_append_omap-a15 = " \
->       evse-hmi-src \
->   "
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston b/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
+> index aed5d5f..8bb968b 100644
+> --- a/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
+> +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
+> @@ -18,11 +18,7 @@ cat << EOF
 >   
-> +HMI_append_k3 = " \
-> +    evse-hmi-src \
-> +"
-> +
->   RDEPENDS_${PN} = "\
->       ${HMI} \
->   "
+>   
+>   
+> -                                        Please wait...
+> -
+> -
+> -
+> -
+> +        Please wait... Weston is loading
+>   
+>   
+>   
+> @@ -30,6 +26,11 @@ cat << EOF
+>   
+>   
+>   
+> +Note: If you see that the display is stuck on this message
+> +for more than 5 seconds, Weston probably failed to run.
+> +Weston will not run without input devices such as
+> +touchscreen or a mouse. Please check your setup and
+> +attach an input device, and reboot.
+>   
+>   
+>   
 
 
---------------19BB80FBCA986ED47FB3A1B6
+--------------AD9CAB5359739444D83E61B3
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 
@@ -118,42 +135,59 @@ Thank you,
 
 Jake</pre>
     <br>
-    <div class="moz-cite-prefix">On 9/17/2018 8:30 AM, Eric Ruei wrote:<br>
+    <div class="moz-cite-prefix">On 9/17/2018 6:38 PM, Eric Ruei wrote:<br>
     </div>
     <blockquote type="cite"
-      cite="mid:1537187430-57902-1-git-send-email-e-ruei1@ti.com">
+      cite="mid:1537223919-14381-1-git-send-email-e-ruei1@ti.com">
       <pre wrap="">Signed-off-by: Eric Ruei <a class="moz-txt-link-rfc2396E" href="mailto:e-ruei1@ti.com">&lt;e-ruei1@ti.com&gt;</a>
 ---
- .../packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb          | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ .../recipes-graphics/wayland/weston-init.bbappend             |  2 +-
+ .../recipes-graphics/wayland/weston-init/runWeston            | 11 ++++++-----
+ 2 files changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-index 4921147..dd3407d 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-@@ -1,6 +1,6 @@
- SUMMARY = "Task to add HMI related sources into the SDK"
- LICENSE = "MIT"
--PR = "r0"
-+PR = "r1"
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
+index 041e5ab..4ed6a62 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = ".arago7"
++PR_append = ".arago8"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
-@@ -22,6 +22,10 @@ HMI_append_omap-a15 = " \
-     evse-hmi-src \
- "
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston b/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
+index aed5d5f..8bb968b 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
+@@ -18,11 +18,7 @@ cat &lt;&lt; EOF
  
-+HMI_append_k3 = " \
-+    evse-hmi-src \
-+"
-+
- RDEPENDS_${PN} = "\
-     ${HMI} \
- "
+ 
+ 
+-                                        Please wait...
+-
+-
+-
+-
++        Please wait... Weston is loading
+ 
+ 
+ 
+@@ -30,6 +26,11 @@ cat &lt;&lt; EOF
+ 
+ 
+ 
++Note: If you see that the display is stuck on this message
++for more than 5 seconds, Weston probably failed to run.
++Weston will not run without input devices such as
++touchscreen or a mouse. Please check your setup and
++attach an input device, and reboot.
+ 
+ 
+ 
 </pre>
     </blockquote>
     <br>
   </body>
 </html>
 
---------------19BB80FBCA986ED47FB3A1B6--
+--------------AD9CAB5359739444D83E61B3--
