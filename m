@@ -1,45 +1,43 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 15EB252A2A;
-	Wed, 19 Sep 2018 16:07:26 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8JG7IFx071880;
-	Wed, 19 Sep 2018 11:07:18 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id C112252A06
+	for <meta-arago@arago-project.org>;
+	Wed, 19 Sep 2018 16:09:31 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8JG9NMI078685
+	for <meta-arago@arago-project.org>; Wed, 19 Sep 2018 11:09:23 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1537373238;
-	bh=aMbUQpejJz39hRmE2eKvNRHj9LSHENmuniVPPR1lfbY=;
+	s=ti-com-17Q1; t=1537373363;
+	bh=pr2GGjCBW9oKKQKRl6IRefziBEHpQAS9m8abbfrJw5M=;
 	h=Subject:To:References:From:Date:In-Reply-To;
-	b=KzS5G+2uWnid+SeeOK+PSYGhmtGly8GR7JBexrMB3BYI7VFSyBGz79NKrEYILE0yq
-	1w9hZC8WmaxKIB3vGt7Fp60Lbke+7448ieE33bEZFRCD2fhYbhQK2QJs/FvjuRPC9t
-	cZgbW/6t12OzWQ7w4vSAQ50o/DJnF/1Gkpcb3gME=
+	b=lv/ynirDk/GZHqG+CJf6J+pNI/V9wGQ1oIcLU8YYKmduw5yoasUj4k7dt3wpPrfs0
+	AzWAezuArf6UZj3LnMKHntrEkgDHv3buwwTWpQRWvvfZfViHU1JURkCTw29d+ybgKr
+	+FRaoZJfh/LAfTMfKr2jCpYe1H5DBNFr7QUk42Zc=
 Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8JG7Igh006321;
-	Wed, 19 Sep 2018 11:07:18 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8JG9NUh032390
+	for <meta-arago@arago-project.org>; Wed, 19 Sep 2018 11:09:23 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE112.ent.ti.com
 	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 19 Sep 2018 11:07:18 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 19 Sep 2018 11:09:23 -0500
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Wed, 19 Sep 2018 11:07:19 -0500
+	Transport; Wed, 19 Sep 2018 11:09:23 -0500
 Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8JG7Hok005886;
-	Wed, 19 Sep 2018 11:07:18 -0500
-To: "Nelson, Sam" <sam.nelson@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>, "arago-commits@arago-project.org"
-	<arago-commits@arago-project.org>
-References: <20180918004325.EB4B6529E6@arago-project.org>
-	<cf6abb6401f94af4975dab1e0bf113b6@ti.com>
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8JG9MdY020420;
+	Wed, 19 Sep 2018 11:09:22 -0500
+To: Denys Dmytriyenko <denys@ti.com>, <meta-arago@arago-project.org>
+References: <1536867790-1768-1-git-send-email-denys@ti.com>
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <dfb776e3-b0fd-85aa-bf1e-81d9194f294f@ti.com>
-Date: Wed, 19 Sep 2018 12:07:17 -0400
+Message-ID: <b450c850-41fb-9e92-affe-aefeec5b7158@ti.com>
+Date: Wed, 19 Sep 2018 12:09:22 -0400
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:52.0) Gecko/20100101
 	Thunderbird/52.9.1
 MIME-Version: 1.0
-In-Reply-To: <cf6abb6401f94af4975dab1e0bf113b6@ti.com>
+In-Reply-To: <1536867790-1768-1-git-send-email-denys@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [arago-commits] Sam Nelson : ti-ipc: Update to new version 3.50.02.02
+Subject: Re: [EXTERNAL] [rocko/master][PATCH v2] u-boot-k3-r5: update SYSFW to 2018.08b
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,106 +50,171 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Sep 2018 16:07:28 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 19 Sep 2018 16:09:32 -0000
+Content-Type: multipart/alternative;
+	boundary="------------4AAC989A53CEE74A3B871B61"
 Content-Language: en-US
 
+--------------4AAC989A53CEE74A3B871B61
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Denys,
+
+Can you please backport this to ti2018.03?
 
 
-On 9/18/2018 8:52 AM, Nelson, Sam wrote:
-> Can this be backported this to 2018.03 as well?
+Thank you,
 
-ACK
+Jake
 
-> Thanks,
-> Sam
+
+On 9/13/2018 3:43 PM, Denys Dmytriyenko wrote:
+> Also install and deploy versioned SYSFW binary with short symlink.
 >
->> -----Original Message-----
->> From: arago-commits-bounces@arago-project.org [mailto:arago-commits-
->> bounces@arago-project.org] On Behalf Of Arago Project git
->> Sent: Monday, September 17, 2018 8:43 PM
->> To: arago-commits@arago-project.org
->> Subject: [EXTERNAL] [arago-commits] Sam Nelson : ti-ipc: Update to new
->> version 3.50.02.02
->>
->> Module: meta-ti
->> Branch: rocko-next
->> Commit: 29b4c0210b20ab60cd21ad60a8bd75b1edfe8404
->> URL:    http://arago-project.org/git/meta-
->> ti.git?a=commit;h=29b4c0210b20ab60cd21ad60a8bd75b1edfe8404
->>
->> Author: Sam Nelson <sam.nelson@ti.com>
->> Date:   Sat Sep 15 08:24:28 2018 +0000
->>
->> ti-ipc: Update to new version 3.50.02.02
->>
->> Fixes backward compatibility issues for K2 and omapl138
->>
->> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
->> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
->>
->> ---
->>
->>   recipes-ti/ipc/ti-ipc-common.inc |    2 +-
->>   recipes-ti/ipc/ti-ipc-rtos.inc   |    4 ++--
->>   recipes-ti/ipc/ti-ipc.inc        |    4 ++--
->>   3 files changed, 5 insertions(+), 5 deletions(-)
->>
->> diff --git a/recipes-ti/ipc/ti-ipc-common.inc b/recipes-ti/ipc/ti-ipc-
->> common.inc
->> index 543990a..dddb734 100644
->> --- a/recipes-ti/ipc/ti-ipc-common.inc
->> +++ b/recipes-ti/ipc/ti-ipc-common.inc
->> @@ -1,4 +1,4 @@
->> -PV = "3.50.01.01"
->> +PV = "3.50.02.02"
->>   INC_PR = "r0"
->>
->>   PACKAGE_ARCH = "${MACHINE_ARCH}"
->> diff --git a/recipes-ti/ipc/ti-ipc-rtos.inc b/recipes-ti/ipc/ti-ipc-rtos.inc
->> index 4b2d7d7..7378d42 100644
->> --- a/recipes-ti/ipc/ti-ipc-rtos.inc
->> +++ b/recipes-ti/ipc/ti-ipc-rtos.inc
->> @@ -24,8 +24,8 @@ protocol=${TI_IPC_METADATA_GIT_PROTOCOL};\
->>   branch=${TI_IPC_METADATA_GIT_BRANCH};\
->>   name=${TI_IPC_METADATA_NAME}"
->>
->> -# Corresponds to tag: 3.50.01.01
->> -TI_IPC_METADATA_SRCREV =
->> "c749d4dd70cc259679dc862a164ad147d51381f6"
->> +# Corresponds to tag: 3.50.02.02
->> +TI_IPC_METADATA_SRCREV =
->> "171ed5b4cfc73fd2ebfeefe42249bec18f475613"
->>   # Corresponds to tag: 3.50.01.01
->>   TI_IPC_EXAMPLES_SRCREV =
->> "71f6e59a6b2c7e20c2656e5000f318339ded2f3c"
->>
->> diff --git a/recipes-ti/ipc/ti-ipc.inc b/recipes-ti/ipc/ti-ipc.inc
->> index ca39292..230c7ef 100644
->> --- a/recipes-ti/ipc/ti-ipc.inc
->> +++ b/recipes-ti/ipc/ti-ipc.inc
->> @@ -8,8 +8,8 @@ TI_IPC_GIT_URI = "git://git.ti.com/ipc/ipcdev.git"
->>   TI_IPC_GIT_PROTOCOL = "git"
->>   TI_IPC_GIT_BRANCH = "3.50"
->>
->> -#Corresponds to 3.50.01.01
->> -TI_IPC_SRCREV = "771859b9687476c3ba1b5bf0d4afb3c97876137e"
->> +#Corresponds to 3.50.02.02
->> +TI_IPC_SRCREV = "c2bb741e4a2723155d38ede6a5a5dea8d6592089"
->>
->>   BRANCH = "${TI_IPC_GIT_BRANCH}"
->>   SRC_URI =
->> "${TI_IPC_GIT_URI};protocol=${TI_IPC_GIT_PROTOCOL};branch=${BRANCH};
->> name=ipcdev"
->>
->> _______________________________________________
->> arago-commits mailing list
->> arago-commits@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/arago-commits
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ---
+> v2 - replace remaining 2 instances of sysfw.bin with ${SYSFW_BINARY}
+>
+>   .../recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb        | 19 ++++++++++++-------
+>   1 file changed, 12 insertions(+), 7 deletions(-)
+>
+> diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb b/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb
+> index 0ff5658..04476ae 100644
+> --- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb
+> +++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb
+> @@ -7,10 +7,12 @@ PKG_${PN}-dbg = "${PN}-dbg"
+>   
+>   COMPATIBLE_MACHINE = "k3"
+>   
+> -SYSFW_VER = "2018.07a"
+> -SYSFW_BIN_am65xx-evm = "ti-sci-firmware-am6x-gp.bin"
+> +SYSFW_VER = "2018.08b"
+> +SYSFW_TISCI_am65xx-evm = "ti-sci-firmware-am65x-gp.bin"
+> +SYSFW_BINARY = "sysfw.bin"
+> +SYSFW_IMAGE = "sysfw-${SYSFW_VER}.bin"
+>   
+> -SRCREV_sysfw = "2035022224dcc885ac2cd0b11f8c76190f5af962"
+> +SRCREV_sysfw = "463b1b4a50e8e361fa333f87caf74d2e05bc0a82"
+>   SYSFW_BRANCH = "ti-linux-firmware-4.1.y"
+>   SRCREV_FORMAT = "sysfw"
+>   
+> @@ -25,7 +27,7 @@ UBOOT_MACHINE_am65xx-evm = "am65x_evm_r5_defconfig"
+>   
+>   EXTRA_OEMAKE = 'ARCH=arm CROSS_COMPILE=${CROSS_COMPILE_V7} CC="${CROSS_COMPILE_V7}gcc ${TOOLCHAIN_OPTIONS}" V=1'
+>   EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
+> -EXTRA_OEMAKE += 'SYSFW=${WORKDIR}/sysfw.bin'
+> +EXTRA_OEMAKE += 'SYSFW=${WORKDIR}/${SYSFW_BINARY}'
+>   
+>   UBOOT_BINARY = "tiboot3.bin"
+>   UBOOT_IMAGE = "tiboot3-${MACHINE}-${PV}-${PR}.bin"
+> @@ -33,13 +35,16 @@ UBOOT_SYMLINK = "tiboot3-${MACHINE}.bin"
+>   SPL_BINARY_k3 = ""
+>   
+>   do_configure_append() {
+> -	${WORKDIR}/gen_x509_cert.sh -m rom -c m3 -b ${WORKDIR}/fw/ti-sysfw/${SYSFW_BIN} -o ${WORKDIR}/sysfw.bin -l 0x40000
+> +	${WORKDIR}/gen_x509_cert.sh -m rom -c m3 -b ${WORKDIR}/fw/ti-sysfw/${SYSFW_TISCI} -o ${WORKDIR}/${SYSFW_BINARY} -l 0x40000
+>   }
+>   
+>   do_install_append() {
+> -	install -m 644 ${WORKDIR}/sysfw.bin ${D}/boot/
+> +	install -m 644 ${WORKDIR}/${SYSFW_BINARY} ${D}/boot/${SYSFW_IMAGE}
+> +	ln -sf ${SYSFW_IMAGE} ${D}/boot/${SYSFW_BINARY}
+>   }
+>   
+>   do_deploy_append() {
+> -	install -m 644 ${WORKDIR}/sysfw.bin ${DEPLOYDIR}/
+> +	install -m 644 ${WORKDIR}/${SYSFW_BINARY} ${DEPLOYDIR}/${SYSFW_IMAGE}
+> +	rm -f ${DEPLOYDIR}/${SYSFW_BINARY}
+> +	ln -sf ${SYSFW_IMAGE} ${DEPLOYDIR}/${SYSFW_BINARY}
+>   }
 
 
+--------------4AAC989A53CEE74A3B871B61
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <pre class="content">Denys,
+
+Can you please backport this to ti2018.03?
+
+
+Thank you,
+
+Jake</pre>
+    <br>
+    <div class="moz-cite-prefix">On 9/13/2018 3:43 PM, Denys Dmytriyenko
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:1536867790-1768-1-git-send-email-denys@ti.com">
+      <pre wrap="">Also install and deploy versioned SYSFW binary with short symlink.
+
+Signed-off-by: Denys Dmytriyenko <a class="moz-txt-link-rfc2396E" href="mailto:denys@ti.com">&lt;denys@ti.com&gt;</a>
+---
+v2 - replace remaining 2 instances of sysfw.bin with ${SYSFW_BINARY}
+
+ .../recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb        | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb b/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb
+index 0ff5658..04476ae 100644
+--- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2018.01.bb
+@@ -7,10 +7,12 @@ PKG_${PN}-dbg = "${PN}-dbg"
+ 
+ COMPATIBLE_MACHINE = "k3"
+ 
+-SYSFW_VER = "2018.07a"
+-SYSFW_BIN_am65xx-evm = "ti-sci-firmware-am6x-gp.bin"
++SYSFW_VER = "2018.08b"
++SYSFW_TISCI_am65xx-evm = "ti-sci-firmware-am65x-gp.bin"
++SYSFW_BINARY = "sysfw.bin"
++SYSFW_IMAGE = "sysfw-${SYSFW_VER}.bin"
+ 
+-SRCREV_sysfw = "2035022224dcc885ac2cd0b11f8c76190f5af962"
++SRCREV_sysfw = "463b1b4a50e8e361fa333f87caf74d2e05bc0a82"
+ SYSFW_BRANCH = "ti-linux-firmware-4.1.y"
+ SRCREV_FORMAT = "sysfw"
+ 
+@@ -25,7 +27,7 @@ UBOOT_MACHINE_am65xx-evm = "am65x_evm_r5_defconfig"
+ 
+ EXTRA_OEMAKE = 'ARCH=arm CROSS_COMPILE=${CROSS_COMPILE_V7} CC="${CROSS_COMPILE_V7}gcc ${TOOLCHAIN_OPTIONS}" V=1'
+ EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
+-EXTRA_OEMAKE += 'SYSFW=${WORKDIR}/sysfw.bin'
++EXTRA_OEMAKE += 'SYSFW=${WORKDIR}/${SYSFW_BINARY}'
+ 
+ UBOOT_BINARY = "tiboot3.bin"
+ UBOOT_IMAGE = "tiboot3-${MACHINE}-${PV}-${PR}.bin"
+@@ -33,13 +35,16 @@ UBOOT_SYMLINK = "tiboot3-${MACHINE}.bin"
+ SPL_BINARY_k3 = ""
+ 
+ do_configure_append() {
+-	${WORKDIR}/gen_x509_cert.sh -m rom -c m3 -b ${WORKDIR}/fw/ti-sysfw/${SYSFW_BIN} -o ${WORKDIR}/sysfw.bin -l 0x40000
++	${WORKDIR}/gen_x509_cert.sh -m rom -c m3 -b ${WORKDIR}/fw/ti-sysfw/${SYSFW_TISCI} -o ${WORKDIR}/${SYSFW_BINARY} -l 0x40000
+ }
+ 
+ do_install_append() {
+-	install -m 644 ${WORKDIR}/sysfw.bin ${D}/boot/
++	install -m 644 ${WORKDIR}/${SYSFW_BINARY} ${D}/boot/${SYSFW_IMAGE}
++	ln -sf ${SYSFW_IMAGE} ${D}/boot/${SYSFW_BINARY}
+ }
+ 
+ do_deploy_append() {
+-	install -m 644 ${WORKDIR}/sysfw.bin ${DEPLOYDIR}/
++	install -m 644 ${WORKDIR}/${SYSFW_BINARY} ${DEPLOYDIR}/${SYSFW_IMAGE}
++	rm -f ${DEPLOYDIR}/${SYSFW_BINARY}
++	ln -sf ${SYSFW_IMAGE} ${DEPLOYDIR}/${SYSFW_BINARY}
+ }
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------4AAC989A53CEE74A3B871B61--
