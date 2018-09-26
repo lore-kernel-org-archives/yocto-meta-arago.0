@@ -1,48 +1,43 @@
-Return-Path: <d-senicic1@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id D51DF52079
+Return-Path: <jake@udc0866934>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id E48375297F
 	for <meta-arago@arago-project.org>;
-	Mon, 24 Sep 2018 18:26:35 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8OIQRVx066983
-	for <meta-arago@arago-project.org>; Mon, 24 Sep 2018 13:26:27 -0500
+	Wed, 26 Sep 2018 13:23:23 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8QDNFZL017868
+	for <meta-arago@arago-project.org>; Wed, 26 Sep 2018 08:23:15 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1537813587;
-	bh=uzWndovF+hvhjuE7tw72qL9V1V0Q0cCPRCQ1sqbX+AM=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=XKIgzss9XwCSZN5xMPqY4L3DmrDEWDrF93ACzJL30Ie3aFy9MPjUB/i+nA16GZn0P
-	W/3XeKBG1DYZ+ieVz2TEVtuBRHC/IEKH54B4EZHjE9GMQjbmmfv5RynpgwDwnRmMRA
-	lwS2XH8ecAgDtwdf30eLcq++8S5+JhxAIg0ugLAQ=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8OIQR8s027614
-	for <meta-arago@arago-project.org>; Mon, 24 Sep 2018 13:26:27 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1537968195;
+	bh=y5d+LeIjz+8nhEYeNoInr5Whm8KI5FsUWhwdw1gAslo=;
+	h=From:To:CC:Subject:Date;
+	b=tH9fH+YvvBFMsj5uefHpRwScg5i2ypTEoodiESdyZgE08udma8VGDmwcCPnlh6VGV
+	QuGh9WMVQGm7KEU9nyJPoy5u7qANiflvLhlCodO64wgqz6Q8AlXwp8sgg0TK+VuPCM
+	+fYWciWeFan3qjAaDkPukaXnZL8NKNQsB+qkC8M4=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8QDNFEk017563
+	for <meta-arago@arago-project.org>; Wed, 26 Sep 2018 08:23:15 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Mon, 24 Sep 2018 13:26:26 -0500
-Received: from DLEE100.ent.ti.com ([fe80::ad4d:c227:3f85:880d]) by
-	DLEE100.ent.ti.com ([fe80::ad4d:c227:3f85:880d%17]) with mapi id
-	15.01.1466.003; Mon, 24 Sep 2018 13:26:27 -0500
-From: "Senicic, Djordje" <d-senicic1@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [rocko][PATCH 1/3] arm-compute-library: Add
-	executables to the filesystem
-Thread-Index: AQHUVCPkZEmWGcSZiU2Qd4HdQtdTkKT/p+BQgABf3QD//7aX8A==
-Date: Mon, 24 Sep 2018 18:26:27 +0000
-Message-ID: <ce58534e76c64e1cbb527a2aefe2b7d7@ti.com>
-References: <1537805152-4059-1-git-send-email-x0157990@ti.com>
-	<20180924162909.GC18600@beryl>
-	<a02db7c71f094780b1480871e87b6f49@ti.com>
-	<20180924174328.GD18600@beryl>
-In-Reply-To: <20180924174328.GD18600@beryl>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.218.103.75]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Wed, 26 Sep 2018 08:23:15 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
+	Transport; Wed, 26 Sep 2018 08:23:15 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8QDNFpT009400;
+	Wed, 26 Sep 2018 08:23:15 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)
+	(envelope-from <jake@udc0866934>)
+	id 1g59mc-0003Ia-Ji; Wed, 26 Sep 2018 09:23:14 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 26 Sep 2018 09:23:11 -0400
+Message-ID: <1537968192-12648-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [rocko][PATCH 1/3] arm-compute-library: Add executables to the filesystem
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [tisdk-setup-scripts][PATCH 1/2] create-sdcard: k3: fix boot image error messages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,117 +50,92 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Sep 2018 18:26:36 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 26 Sep 2018 13:23:24 -0000
+Content-Type: text/plain
 
-This is the build folder and share libraries created with baseline ARM pack=
-age. E.g. for arm-compute-library:
-..../oe-layersetup/build/arago-tmp-external-linaro-toolchain/work/armv7ahf-=
-neon-linux-gnueabi/arm-compute-library/18.05-r0/git$ ls -ltr build/
-total 14024
--rw-r--r-- 1 x0123456 crrrryyy 6546120 Sep 24 10:05 libarm_compute_core-sta=
-tic.a
--rw-r--r-- 1 x0123456 crrrryyy 1811472 Sep 24 10:09 libarm_compute-static.a
--rwxr-xr-x 1 x0123456 crrrryyy 4058208 Sep 24 10:09 libarm_compute_core.so
-drwxr-xr-x 5 x0123456 crrrryyy    4096 Sep 24 10:10 src
--rwxr-xr-x 1 x0123456 crrrryyy  755212 Sep 24 10:10 libarm_compute.so
--rw-r--r-- 1 x0123456 crrrryyy  824470 Sep 24 10:10 libarm_compute_graph-st=
-atic.a
--rwxr-xr-x 1 x0123456 crrrryyy  334928 Sep 24 10:11 libarm_compute_graph.so
-drwxr-xr-x 2 x0123456 crrrryyy    4096 Sep 24 10:11 utils
-drwxr-xr-x 2 x0123456 crrrryyy    4096 Sep 24 10:12 examples
-drwxr-xr-x 4 x0123456 crrrryyy    4096 Sep 24 10:14 tests
+Carry fix from common script (24aeb6d4dce7236d0f40556d611b704493833e1e).
 
-So preserving original flags.
+Instead of printing an error if a certain boot image is not found,
+determine which set of boot images are to be used (MLO or tiboot3.bin
+and tispl.bin), and only print an error if an incomplete set is found.
 
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Monday, September 24, 2018 1:43 PM
-To: Senicic, Djordje
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [rocko][PATCH 1/3] arm-compute-library: Add execu=
-tables to the filesystem
+While this is not perfect, it allows for a common script that can be
+used independent of the SDK.
 
-On Mon, Sep 24, 2018 at 01:02:30PM -0400, Senicic, Djordje wrote:
-> I was recreating flags the way they are set in image folder.
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ k3/create-sdcard.sh | 38 +++++++++++++++++++++++---------------
+ 1 file changed, 23 insertions(+), 15 deletions(-)
 
-Not sure I follow. Do they need to be executable? Normally *.so in Linux ar=
-e=20
-not.
+diff --git a/k3/create-sdcard.sh b/k3/create-sdcard.sh
+index 44b84b6..3bb6e17 100644
+--- a/k3/create-sdcard.sh
++++ b/k3/create-sdcard.sh
+@@ -1048,40 +1048,48 @@ if [ $BOOTPATHOPTION -eq 1 ] ; then
+ 
+ 	echo ""
+ 	#copy boot files out of board support
+-	if [ "$MLO" != "" ] ; then
+-		cp $BOOTFILEPATH/$MLO $PATH_TO_SDBOOT/MLO
+-		echo "MLO copied"
+-	else
+-		echo "MLO file not found"
++	if [ "$MLO" == "" ] && ( [ "$SPL_R5" == "" ] || [ "$SPL_A53" == "" ] ); then
++		if [ "$SPL_R5" != "" ]; then
++			echo "tispl.bin file not found"
++		elif [ "$SPL_A53" != "" ]; then
++			echo "tiboot3.bin file not found"
++		else
++			echo "Boot image not found"
++		fi
+ 	fi
+ 
+ 	echo ""
+ 
+ 	echo ""
+ 
++	if [ "$MLO" != "" ] ; then
++		cp $BOOTFILEPATH/$MLO $PATH_TO_SDBOOT/MLO
++		echo "MLO copied"
++
++		echo ""
++
++		echo ""
++	fi
++
+ 	#copy boot files out of board support
+ 	if [ "$SPL_A53" != "" ] ; then
+ 		cp $BOOTFILEPATH/$SPL_A53 $PATH_TO_SDBOOT/tispl.bin
+ 		echo "tispl.bin copied"
+-	else
+-		echo "tispl.bin file not found"
+-	fi
+ 
+-	echo ""
++		echo ""
+ 
+-	echo ""
++		echo ""
++	fi
+ 
+ 	#copy boot files out of board support
+ 	if [ "$SPL_R5" != "" ] ; then
+ 		cp $BOOTFILEPATH/$SPL_R5 $PATH_TO_SDBOOT/tiboot3.bin
+ 		echo "tiboot3.bin copied"
+-	else
+-		echo "tiboot3.bin file not found"
+-	fi
+ 
+-	echo ""
++		echo ""
+ 
+-	echo ""
++		echo ""
++	fi
+ 
+ 	if [ "$BOOTIMG" != "" ] ; then
+ 		cp $BOOTFILEPATH/$BOOTIMG $PATH_TO_SDBOOT/u-boot.img
+-- 
+1.9.1
 
-
-> *.so  are actual shared libraries.
->=20
-> -----Original Message-----
-> From: Dmytriyenko, Denys=20
-> Sent: Monday, September 24, 2018 12:29 PM
-> To: Senicic, Djordje
-> Cc: meta-arago@arago-project.org; Senicic, Djordje
-> Subject: Re: [meta-arago] [rocko][PATCH 1/3] arm-compute-library: Add exe=
-cutables to the filesystem
->=20
-> On Mon, Sep 24, 2018 at 12:05:50PM -0400, Djordje Senicic wrote:
-> > Signed-off-by: Djordje Senicic <x0157990@ti.com>
-> > ---
-> >  .../arm-compute-library/arm-compute-library_git.bb         | 14 ++++++=
-++++++--
-> >  1 file changed, 12 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/meta-arago-extras/recipes-support/arm-compute-library/arm-=
-compute-library_git.bb b/meta-arago-extras/recipes-support/arm-compute-libr=
-ary/arm-compute-library_git.bb
-> > index d9fa8b0..8a65ade 100644
-> > --- a/meta-arago-extras/recipes-support/arm-compute-library/arm-compute=
--library_git.bb
-> > +++ b/meta-arago-extras/recipes-support/arm-compute-library/arm-compute=
--library_git.bb
-> > @@ -29,20 +29,30 @@ LIBS +=3D "-larmpl_lp64_mp"
-> >  do_install() {
-> >      CP_ARGS=3D"-Prf --preserve=3Dmode,timestamps --no-preserve=3Downer=
-ship"
-> > =20
-> > -    install -d ${D}${libdir}
-> > +    install -m 0755 -d ${D}${libdir}
-> >      for lib in ${S}/build/*.so
-> >      do
-> > -        install -m 0644 $lib ${D}${libdir}
-> > +        install -m 0755 $lib ${D}${libdir}
->=20
-> Why do you make libraries executable?
-> BTW, are those *.so actual libraries or symlinks?
->=20
->=20
-> >      done
-> > =20
-> > +    # Install 'example' and benchmark executables
-> > +    install -d ${D}${bindir}
-> > +    find ${S}/build/examples/ -maxdepth 1 -type f -executable -exec cp=
- $CP_ARGS {} ${D}${bindir} \;
-> > +    cp $CP_ARGS ${S}/build/tests/arm_compute_benchmark ${D}${bindir}
-> > +
-> >      # Install built source package as expected by ARMNN
-> >      install -d ${D}${datadir}/${BPN}
-> >      cp $CP_ARGS ${S}/. ${D}${datadir}/${BPN}
-> >  }
-> > =20
-> > +SOLIBS =3D ".so"
-> > +FILES_SOLIBSDEV =3D ""
-> > +INSANE_SKIP_${PN} =3D "ldflags"
-> >  INSANE_SKIP_${PN}-dev =3D "dev-elf ldflags"
-> > =20
-> >  PACKAGES =3D+ "${PN}-source"
-> > +FILES_${PN} +=3D "${bindir}/*"
-> > +FILES_${PN} +=3D "${libdir}/*.so"
-> >  FILES_${PN}-source =3D "${datadir}/${BPN}"
-> >  INSANE_SKIP_${PN}-source =3D "ldflags libdir staticdev"
-> >  INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1"
-> > --=20
-> > 1.9.1
-> >=20
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
