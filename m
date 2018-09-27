@@ -1,41 +1,41 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 3CBA952998
+Return-Path: <m-radhakrishnan2@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 1682552A14
 	for <meta-arago@arago-project.org>;
-	Wed, 26 Sep 2018 20:45:02 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8QKirbR030039
-	for <meta-arago@arago-project.org>; Wed, 26 Sep 2018 15:44:53 -0500
+	Thu, 27 Sep 2018 15:25:51 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8RFPg1E109629
+	for <meta-arago@arago-project.org>; Thu, 27 Sep 2018 10:25:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1537994693;
-	bh=M99Mg24HSNbJN+EnmVdpyAf609jdGUsaTuWZ27vQIBM=;
-	h=From:To:CC:Subject:Date;
-	b=w4ZGGAZEExBHKzPnwpVAh2adzyYEH2eh4IYQl2gbJdp5E+EtgVAjxtY07c/F/1JCa
-	3GwnTNdKHH95c/Vm+Ex95Y6TAIaCUWGEGwnDrR0Upxv+4ugr7rzNaOMKY+XyvxPT0m
-	EHbE23XAyC+pSoNve3MkGUWizrc7FGNvvUkYxI9g=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8QKirQF019178
-	for <meta-arago@arago-project.org>; Wed, 26 Sep 2018 15:44:53 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1538061942;
+	bh=ZBiith+0ZSg54fzZkAa6NoiFuQlFsSMYn1IUc4CBhRM=;
+	h=From:To:Subject:Date;
+	b=OQs7c50iBS8sDAlX0p9ev93mRmUEOCwycfS6Qt/TZuOqojBtBfUPwwm2G8dsZGqA7
+	A9H/o2KkXRFOF2Lpkc4BSkLEDKwHsDUEVCVK72JHvkCNGgTGTo0sVJ3p62ZjhPjWJV
+	1nKXM57+b2S+9Do3ym7Wvvz5rhkDPYF5U0YZpxww=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8RFPgB8021845
+	for <meta-arago@arago-project.org>; Thu, 27 Sep 2018 10:25:42 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 26 Sep 2018 15:44:53 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 27 Sep 2018 10:25:42 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Wed, 26 Sep 2018 15:44:53 -0500
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Thu, 27 Sep 2018 10:25:42 -0500
+Received: from uda0875154a.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8QKirXc017947;
-	Wed, 26 Sep 2018 15:44:53 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8RFPgZv028810
+	for <meta-arago@arago-project.org>; Thu, 27 Sep 2018 10:25:42 -0500
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 26 Sep 2018 16:32:24 -0400
-Message-ID: <1537993944-9028-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
+Date: Thu, 27 Sep 2018 11:25:40 -0400
+Message-ID: <1538061940-55063-1-git-send-email-m-radhakrishnan2@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [ti2018.03/rocko/master][PATCH] ti-tisdk-setup: bump SRCREV for k3 create-sdcard fix
+Subject: [morty][meta-processor-sdk][PATCH] board-rtos: Removing the bbappend as the changes are upstreamed to meta-ti
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,34 +48,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Sep 2018 20:45:02 -0000
+X-List-Received-Date: Thu, 27 Sep 2018 15:25:57 -0000
 Content-Type: text/plain
 
-* fix modifying "board_name" when craeting an sd card with 3 partitions for k3
-
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 ---
- meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ recipes-bsp/board-rtos/board-rtos_git.bbappend | 6 ------
+ 1 file changed, 6 deletions(-)
+ delete mode 100644 recipes-bsp/board-rtos/board-rtos_git.bbappend
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-index a79a770..a77ba84 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
- 
--PR = "r38"
-+PR = "r39"
- 
- BRANCH ?= "master"
--SRCREV = "07b6621da0e5268079071ab495a079ba0c85b32a"
-+SRCREV = "1a951176f9ab2320c4391b7794c66f4f18e0b92b"
- SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
- 
- S = "${WORKDIR}/git/"
+diff --git a/recipes-bsp/board-rtos/board-rtos_git.bbappend b/recipes-bsp/board-rtos/board-rtos_git.bbappend
+deleted file mode 100644
+index 32567e2..0000000
+--- a/recipes-bsp/board-rtos/board-rtos_git.bbappend
++++ /dev/null
+@@ -1,6 +0,0 @@
+-PR_append = ".tisdk0"
+-
+-# The year in the license was updated to 2018
+-LIC_FILES_CHKSUM = "file://board.h;beginline=1;endline=32;md5=9bed8e4ac2fb37fc627cefe49eb1c919"
+-
+-BOARD_SRCREV = "983d89de8143645571e7893e95632a8be0fab67e"
 -- 
-2.7.4
+1.9.1
 
 
