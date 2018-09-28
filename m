@@ -1,42 +1,43 @@
-Return-Path: <h-gou@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id E722952090
+Return-Path: <denys@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id DDD9852093
 	for <meta-arago@arago-project.org>;
-	Fri, 28 Sep 2018 16:52:36 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8SGqSAX005522
-	for <meta-arago@arago-project.org>; Fri, 28 Sep 2018 11:52:28 -0500
+	Fri, 28 Sep 2018 17:18:58 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w8SHIovH070290
+	for <meta-arago@arago-project.org>; Fri, 28 Sep 2018 12:18:50 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1538153548;
-	bh=QIPA6qvDveptTW2XwpJKUm72zsmojgcUeSrDmLgyGu0=;
-	h=From:To:CC:Subject:Date;
-	b=HsPJQXX3P5VIZ7uNPo7UvG8OMtVfaJZ9xH86LQbloDQF1yOZ3418J4zMbtPQVnbHm
-	sBUV6LtaHbuG1FNnxcDpHOjbzcl8OPkOeRel7XI7NJratA99fbSFAvNHZeEAW+WR8M
-	RwIAuXelabNPsTG7y34dJCA8t3NAVxoJqjx4WrFg=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8SGqSZh010681
-	for <meta-arago@arago-project.org>; Fri, 28 Sep 2018 11:52:28 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1538155130;
+	bh=aCPenbR8V9uH1zBD9M0N4Y34our0m9u5S4JexiPKtio=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=XvUOROYLTTHMtAVMHs/lGaGRO39DpzcjsKSe9GFklXCAVXt8YwBCeh5AW4ahS3xaG
+	YiR/uQ0lVcvGcWkDKnhAxDdaQMtctRH9PeVtMHo2ENqykn7uUSMMNvVIVfRJ8XRPdA
+	KQAIpbvTyY0pAHYEjhA/sweOPyrvQuy/KptX3s2M=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8SHIoDb002127
+	for <meta-arago@arago-project.org>; Fri, 28 Sep 2018 12:18:50 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Fri, 28 Sep 2018 11:52:28 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 28 Sep 2018 12:18:50 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Fri, 28 Sep 2018 11:52:28 -0500
-Received: from uda0271529.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8SGqRWH003988;
-	Fri, 28 Sep 2018 11:52:27 -0500
-From: Hongmei Gou <a0271529@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 28 Sep 2018 12:52:26 -0400
-Message-ID: <1538153546-1341-1-git-send-email-a0271529@ti.com>
-X-Mailer: git-send-email 1.9.1
+	Transport; Fri, 28 Sep 2018 12:18:50 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w8SHInq9012462;
+	Fri, 28 Sep 2018 12:18:49 -0500
+Date: Fri, 28 Sep 2018 13:18:49 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Hongmei Gou <a0271529@ti.com>
+Message-ID: <20180928171849.GC13888@beryl>
+References: <1538150870-27795-1-git-send-email-a0271529@ti.com>
 MIME-Version: 1.0
+In-Reply-To: <1538150870-27795-1-git-send-email-a0271529@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [rocko/master/ti2018.03] [PATCH] matrix-gui-apps-git.inc: bump SRCREV to get script changes for tidl demos
+Cc: meta-arago@arago-project.org, Murali Karicheri <m-karicheri2@ti.com>
+Subject: Re: [rocko/master/ti2018.03] [PATCH] iproute2: add patches to fix segmentation fault for prp
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,31 +50,158 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Sep 2018 16:52:37 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 28 Sep 2018 17:18:59 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
----
- meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Fri, Sep 28, 2018 at 12:07:50PM -0400, Hongmei Gou wrote:
+> When ip -d link command is executed with prp interface setup,
+> it encounters a segmentation fault. This causes snmpwalk command
+> to time out since it uses the above command to list the
+> interfaces. This patch fixes the issue.
+> 
+> Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
+> Signed-off-by: Hongmei Gou <a0271529@ti.com>
+> ---
+>  ...able-display-for-vlan-params-in-ip-d-link.patch | 63 ++++++++++++++++++++++
+>  .../iproute2/0002-prp-invalid-maxattr.patch        | 29 ++++++++++
+>  .../iproute2/iproute2_4.11.0.bbappend              |  4 +-
+>  3 files changed, 95 insertions(+), 1 deletion(-)
+>  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-hsr-prp-disable-display-for-vlan-params-in-ip-d-link.patch
+>  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0002-prp-invalid-maxattr.patch
+> 
+> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-hsr-prp-disable-display-for-vlan-params-in-ip-d-link.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-hsr-prp-disable-display-for-vlan-params-in-ip-d-link.patch
+> new file mode 100644
+> index 0000000..cb5a6b9
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-hsr-prp-disable-display-for-vlan-params-in-ip-d-link.patch
+> @@ -0,0 +1,63 @@
+> +From b893b6e581785fd4a458d5cf1a8178e858636db2 Mon Sep 17 00:00:00 2001
+> +From: Murali Karicheri <m-karicheri2@ti.com>
+> +Date: Thu, 27 Sep 2018 11:56:00 -0400
+> +Subject: [PATCH 1/2] hsr/prp: disable display for vlan params in ip -d link
+> + command
+> +
+> +Seeing a crash with ip -d link command for prp. Disable it for now
+> +as a trial to check if that is causing the segmentation fault
+> +for prp. These values are not coming from kernel anyways. So it
+> +doesn't correctly display it currently. So this has no impact on
+> +the functionality. Can add it later once kernel provide the right
+> +values in the response.
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index c407088..1443d53 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
- 
- SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
--SRCREV = "f9eabc0cc02330351b1cbe049ba0b7d049cc26c1"
-+SRCREV = "d376d6287c749eec8846105d9aa4b8d4c7437dc8"
- BRANCH = "master"
--INC_PR = "r60"
-+INC_PR = "r61"
- 
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
--- 
-1.9.1
+Upstream-status is missing.
 
+
+> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
+> +---
+> + ip/iplink_hsr.c | 9 ---------
+> + ip/iplink_prp.c | 9 ---------
+> + 2 files changed, 18 deletions(-)
+> +
+> +diff --git a/ip/iplink_hsr.c b/ip/iplink_hsr.c
+> +index 34e91679..e713cb7b 100644
+> +--- a/ip/iplink_hsr.c
+> ++++ b/ip/iplink_hsr.c
+> +@@ -180,15 +180,6 @@ static void hsr_print_opt(struct link_util *lu, FILE *f, struct rtattr *tb[])
+> + 				    RTA_PAYLOAD(tb[IFLA_HSR_SUPERVISION_ADDR]),
+> + 				    ARPHRD_VOID,
+> + 				    b1, sizeof(b1)));
+> +-	if (tb[IFLA_HSR_SV_VID])
+> +-		fprintf(f, "SV_VID %d ",
+> +-			rta_getattr_u16(tb[IFLA_HSR_SV_VID]));
+> +-	if (tb[IFLA_HSR_SV_PCP])
+> +-		fprintf(f, "SV_PCP %d ",
+> +-			rta_getattr_u8(tb[IFLA_HSR_SV_PCP]));
+> +-	if (tb[IFLA_HSR_SV_CFI])
+> +-		fprintf(f, "SV_CFI %d ",
+> +-			rta_getattr_u8(tb[IFLA_HSR_SV_CFI]));
+> + }
+> + 
+> + static void hsr_print_help(struct link_util *lu, int argc, char **argv,
+> +diff --git a/ip/iplink_prp.c b/ip/iplink_prp.c
+> +index e25ae82d..b09528a5 100644
+> +--- a/ip/iplink_prp.c
+> ++++ b/ip/iplink_prp.c
+> +@@ -170,15 +170,6 @@ static void prp_print_opt(struct link_util *lu, FILE *f, struct rtattr *tb[])
+> + 				    RTA_PAYLOAD(tb[IFLA_PRP_SUPERVISION_ADDR]),
+> + 				    ARPHRD_VOID,
+> + 				    b1, sizeof(b1)));
+> +-	if (tb[IFLA_PRP_SV_VID])
+> +-		fprintf(f, "SV_VID %d ",
+> +-			rta_getattr_u16(tb[IFLA_PRP_SV_VID]));
+> +-	if (tb[IFLA_PRP_SV_PCP])
+> +-		fprintf(f, "SV_PCP %d ",
+> +-			rta_getattr_u8(tb[IFLA_PRP_SV_PCP]));
+> +-	if (tb[IFLA_PRP_SV_CFI])
+> +-		fprintf(f, "SV_CFI %d ",
+> +-			rta_getattr_u8(tb[IFLA_PRP_SV_CFI]));
+> + }
+> + 
+> + static void prp_print_help(struct link_util *lu, int argc, char **argv,
+> +-- 
+> +2.17.0
+> +
+> +
+> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0002-prp-invalid-maxattr.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0002-prp-invalid-maxattr.patch
+> new file mode 100644
+> index 0000000..cfd0106
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0002-prp-invalid-maxattr.patch
+> @@ -0,0 +1,29 @@
+> +From 755328f9c9d45149cad1a8e6c371d2020b99f18e Mon Sep 17 00:00:00 2001
+> +From: Murali Karicheri <m-karicheri2@ti.com>
+> +Date: Thu, 27 Sep 2018 14:54:48 -0400
+> +Subject: [PATCH 2/2] prp: invalid maxattr
+> +
+> +Fix the cut and paste error of using IFLA_VLAN_MAX instead of IFLA_PRP_MAX.
+
+Upstream-status is missing.
+
+
+> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
+> +---
+> + ip/iplink_prp.c | 2 +-
+> + 1 file changed, 1 insertion(+), 1 deletion(-)
+> +
+> +diff --git a/ip/iplink_prp.c b/ip/iplink_prp.c
+> +index b09528a5..beef603b 100644
+> +--- a/ip/iplink_prp.c
+> ++++ b/ip/iplink_prp.c
+> +@@ -180,7 +180,7 @@ static void prp_print_help(struct link_util *lu, int argc, char **argv,
+> + 
+> + struct link_util prp_link_util = {
+> + 	.id		= "prp",
+> +-	.maxattr	= IFLA_VLAN_MAX,
+> ++	.maxattr	= IFLA_PRP_MAX,
+> + 	.parse_opt	= prp_parse_opt,
+> + 	.print_opt	= prp_print_opt,
+> + 	.print_help	= prp_print_help,
+> +-- 
+> +2.17.0
+> +
+> +
+> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.11.0.bbappend b/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.11.0.bbappend
+> index 2b2d6d2..26949c4 100644
+> --- a/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.11.0.bbappend
+> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.11.0.bbappend
+> @@ -1,4 +1,4 @@
+> -PR_append = ".arago2"
+> +PR_append = ".arago3"
+>  
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>  
+> @@ -6,4 +6,6 @@ SRC_URI_append = " \
+>             file://0001-add-support-for-prp-similar-to-hsr.patch \
+>             file://0001-hsr-prp-add-support-for-vlan-tagged-sv-frames.patch \
+>             file://0001-hsr-prp-remove-the-debug-print-from-the-code.patch \
+> +           file://0001-hsr-prp-disable-display-for-vlan-params-in-ip-d-link.patch \
+> +           file://0002-prp-invalid-maxattr.patch \
+>            "
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
