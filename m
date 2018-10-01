@@ -1,47 +1,43 @@
 Return-Path: <j-stiffler@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 3D51352079
+	by arago-project.org (Postfix) with ESMTPS id 59E5852079
 	for <meta-arago@arago-project.org>;
-	Mon,  1 Oct 2018 12:26:19 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w91CQAMS009898
-	for <meta-arago@arago-project.org>; Mon, 1 Oct 2018 07:26:10 -0500
+	Mon,  1 Oct 2018 12:27:14 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w91CR6uc010013
+	for <meta-arago@arago-project.org>; Mon, 1 Oct 2018 07:27:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1538396770;
-	bh=CXa2BZCoVptAjxiD2CfN25X8epWngxtA9CbLRIXRzxE=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=bspAV7+BNUHEcuQvhsj/dpaaXqGBj9HE3bwDa3F2B4dI3dLooWznF5yVg+aSyE6GB
-	1nzJNAyJHtuSs7Af+Wwb8HEQWCrfuf5jD6uqjEWCFUc/k6O2emH0Vp0zgMxqLYYbSG
-	sB5wdCqeXq8tHLgndUxWEyiZ/1DujGGw9hc+Q+eA=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w91CQAA0031620
-	for <meta-arago@arago-project.org>; Mon, 1 Oct 2018 07:26:10 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1538396826;
+	bh=U/1taqQR8izRuvSGIRwyuZx5CXgxLDUw/VVU/bE1wVE=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=iCcFsdJENO/YunKOGrev7pQed3q9N5jt254rI970k9AVRiHFSqe6VEanv+KcAJaYr
+	QaAAeqCqaDaf7iTcoLjgaErDPBCx9u5mz9iHF+wOromiCL0EYQcqgQAX8Bhmx9Wkp0
+	f+hdK4eTQpSL0Kwnn2vPiUQZIwRHN9B3+fXZE8nM=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w91CR5xP020392
+	for <meta-arago@arago-project.org>; Mon, 1 Oct 2018 07:27:06 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Mon, 1 Oct 2018 07:26:10 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 1 Oct 2018 07:27:05 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Mon, 1 Oct 2018 07:26:10 -0500
+	Transport; Mon, 1 Oct 2018 07:27:05 -0500
 Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id w91CQ9uD027885;
-	Mon, 1 Oct 2018 07:26:10 -0500
-To: Denys Dmytriyenko <denys@ti.com>, Mahesh Radhakrishnan
-	<m-radhakrishnan2@ti.com>
-References: <1538081991-52963-1-git-send-email-m-radhakrishnan2@ti.com>
-	<1538081991-52963-2-git-send-email-m-radhakrishnan2@ti.com>
-	<20180927213401.GK8582@beryl>
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w91CR5EZ017711;
+	Mon, 1 Oct 2018 07:27:05 -0500
+To: Hongmei Gou <a0271529@ti.com>, <meta-arago@arago-project.org>
+References: <1538153546-1341-1-git-send-email-a0271529@ti.com>
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <ccc36500-c140-f519-5d0f-1cf62e5e8801@ti.com>
-Date: Mon, 1 Oct 2018 08:26:10 -0400
+Message-ID: <269a6aaf-fde4-1535-73b3-9875570dce96@ti.com>
+Date: Mon, 1 Oct 2018 08:27:06 -0400
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
 	Thunderbird/60.0
 MIME-Version: 1.0
-In-Reply-To: <20180927213401.GK8582@beryl>
+In-Reply-To: <1538153546-1341-1-git-send-email-a0271529@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [EXTERNAL] Re: [rocko/master/ti2018.03][PATCH v2 1/2] posix-smp-demo: Update to versin 01.01.00.02B
+Subject: Re: [EXTERNAL] [rocko/master/ti2018.03] [PATCH] matrix-gui-apps-git.inc: bump SRCREV to get script changes for tidl demos
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,14 +50,15 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Oct 2018 12:26:19 -0000
+X-List-Received-Date: Mon, 01 Oct 2018 12:27:14 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 Denys,
 
-Can you please backport this set to the ti2018.03 branch?
+
+Can you please backport this to the ti2018.03 branch?
 
 
 Thank you,
@@ -69,46 +66,26 @@ Thank you,
 Jake
 
 
-On 9/27/2018 5:34 PM, Denys Dmytriyenko wrote:
-> ACK
+On 9/28/2018 12:52 PM, Hongmei Gou wrote:
+> Signed-off-by: Hongmei Gou <a0271529@ti.com>
+> ---
+>   meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> On Thu, Sep 27, 2018 at 04:59:50PM -0400, Mahesh Radhakrishnan wrote:
->> Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
->> ---
->>   meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc | 6 +++---
->>   1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc b/meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc
->> index b89ebd4..77b61ac 100644
->> --- a/meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc
->> +++ b/meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc
->> @@ -7,14 +7,14 @@ POSIX_SMP_GIT_URI = "git://git.ti.com/keystone-demos/posix-smp.git"
->>   POSIX_SMP_GIT_PROTOCOL = "git"
->>   POSIX_SMP_GIT_BRANCH = "master"
->>   
->> -# Below commit ID corresponds to "DEV.POSIX-SMP.01.01.00.01"
->> -POSIX_SMP_SRCREV = "99834751f63f8f418e659b251f10e8e13b900881"
->> +# Below commit ID corresponds to "DEV.POSIX-SMP.01.01.00.02B"
->> +POSIX_SMP_SRCREV = "339039e281586a79c5b04fac6c2ae84eb30c0576"
->>   
->>   BRANCH = "${POSIX_SMP_GIT_BRANCH}"
->>   SRC_URI = "${POSIX_SMP_GIT_URI};protocol=${POSIX_SMP_GIT_PROTOCOL};branch=${BRANCH}"
->>   
->>   SRCREV = "${POSIX_SMP_SRCREV}"
->> -PV = "01.01.00.01"
->> +PV = "01.01.00.02B"
->>   INC_PR = "r0"
->>   
->>   S = "${WORKDIR}/git"
->> -- 
->> 1.9.1
->>
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> index c407088..1443d53 100644
+> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> @@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+>   LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+>   
+>   SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+> -SRCREV = "f9eabc0cc02330351b1cbe049ba0b7d049cc26c1"
+> +SRCREV = "d376d6287c749eec8846105d9aa4b8d4c7437dc8"
+>   BRANCH = "master"
+> -INC_PR = "r60"
+> +INC_PR = "r61"
+>   
+>   # Pull in the base package for installing matrix applications
+>   require matrix-gui-apps.inc
 
