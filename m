@@ -1,41 +1,41 @@
-Return-Path: <yan-liu@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id C72F8520C0
+Return-Path: <sam.nelson@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 491C252079
 	for <meta-arago@arago-project.org>;
-	Mon,  8 Oct 2018 16:08:22 +0000 (UTC)
+	Mon,  8 Oct 2018 17:48:58 +0000 (UTC)
 Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w98G8EID104212
-	for <meta-arago@arago-project.org>; Mon, 8 Oct 2018 11:08:14 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w98HmnCv046531
+	for <meta-arago@arago-project.org>; Mon, 8 Oct 2018 12:48:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1539014894;
-	bh=5QOk+BGxgzXSufTNiEo6LfS8N8wWFrp8z7adIVcXoDU=;
+	s=ti-com-17Q1; t=1539020929;
+	bh=pzcEY5LqjQoOqa+W9MHJwPFUyHLs5tpikOLKx1jykKs=;
 	h=From:To:CC:Subject:Date;
-	b=pAgnopytAfd4qcyx+/MzXbDEBLpPhBJeHOidv55L/ebHg+RfN1pCv0REbEwCRfDSY
-	0j84gxCWQw9Fk+3O3658iRvEMetnmPLDegevMYHKltE2HfV2Napf8V3+7fvWTKYuzo
-	YHB3n1craWx4m5blfTRvJOmvoKdTDfhXJTw7ZlXc=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w98G8E5w015248
-	for <meta-arago@arago-project.org>; Mon, 8 Oct 2018 11:08:14 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	b=WRujC+D81HYJVWnSYc5sWOIlkWxkllDlvXF6YfE/Ueo9KWmODGAsJzIyNeQvY2etF
+	dXPP5pFsbetnheskr9+H7/dIkUY2ZpurYVwRA9omHmZzDZNpPm+RCc8sjhcKpt2KUa
+	gWoqCa+pjP3/QKdPC9sWZC/i2mAb/HQufF2KZ1PA=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w98HmnER008431
+	for <meta-arago@arago-project.org>; Mon, 8 Oct 2018 12:48:49 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Mon, 8 Oct 2018 11:08:14 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 8 Oct 2018 12:48:48 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Mon, 8 Oct 2018 11:08:14 -0500
-Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Mon, 8 Oct 2018 12:48:49 -0500
+Received: from uda0862859a.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w98G8DY4026786;
-	Mon, 8 Oct 2018 11:08:13 -0500
-From: <yan-liu@ti.com>
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w98Hmmc7009106;
+	Mon, 8 Oct 2018 12:48:48 -0500
+From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 8 Oct 2018 12:08:55 -0400
-Message-ID: <1539014935-18730-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Mon, 8 Oct 2018 13:48:46 -0400
+Message-ID: <1539020926-6805-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: [meta-processor-sdk][master][PATCH] ti-tisdk-makefile: Add ipc targets for top level make
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,39 +48,93 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Oct 2018 16:08:23 -0000
+X-List-Received-Date: Mon, 08 Oct 2018 17:48:59 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
+Also modify usage of source to "." to make it work with native shell
+environment as well
 
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc          | 9 +++++----
+ recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend   | 3 +++
+ 2 files changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
-index e85f492..0894958 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
+index e74660b..7f566cf 100644
+--- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
+@@ -63,14 +63,14 @@ ti-ipc-linux: ti-ipc-rtos-path-check linux ti-ipc-linux-config
+ 	@echo =================================
+ 	@echo     Building IPC
+ 	@echo =================================
+-	source $(ENV_SETUP); \
++	. $(ENV_SETUP); \
+ 	$(MAKE) -j $(MAKE_JOBS) -C $(IPC_INSTALL_PATH)
  
--PR = "r18"
-+PR = "r19"
- PV_append = "+git${SRCPV}"
+ ti-ipc-linux_clean: ti-ipc-rtos-path-check ti-ipc-linux-config
+ 	@echo =================================
+ 	@echo     Cleaning IPC
+ 	@echo =================================
+-	source $(ENV_SETUP); \
++	. $(ENV_SETUP); \
+ 	$(MAKE) -j $(MAKE_JOBS) -C $(IPC_INSTALL_PATH) clean
  
- PROVIDES += "ltp"
-@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+ ti-ipc-linux_install: ti-ipc-rtos-path-check ti-ipc-linux
+@@ -82,7 +82,7 @@ ti-ipc-linux_install: ti-ipc-rtos-path-check ti-ipc-linux
+ 		echo "Please run setup.sh in the SDK's root directory and then try again."; \
+ 		exit 1; \
+ 	fi
+-	source $(ENV_SETUP); \
++	. $(ENV_SETUP); \
+ 	$(MAKE) -j $(MAKE_JOBS) -C $(IPC_INSTALL_PATH) install DESTDIR=$(DESTDIR)
  
- inherit autotools-brokensep
+ ti-ipc-linux-examples: ti-ipc-rtos-path-check
+@@ -94,6 +94,7 @@ ti-ipc-linux-examples: ti-ipc-rtos-path-check
+ 		PLATFORM="$(IPC_PLATFORM)" \
+ 		KERNEL_INSTALL_DIR="$(LINUXKERNEL_INSTALL_DIR)" \
+ 		XDC_INSTALL_DIR="$(XDC_INSTALL_PATH)" \
++		PDK_INSTALL_DIR="$(PDK_INSTALL_PATH)/.." \
+ 		BIOS_INSTALL_DIR="$(BIOS_INSTALL_PATH)" \
+ 		IPC_INSTALL_DIR="$(IPC_INSTALL_PATH)" \
+ 		TOOLCHAIN_LONGNAME=$${TOOLCHAIN_SYS} \
+@@ -119,7 +120,7 @@ ti-ipc-linux-examples_clean: ti-ipc-rtos-path-check
+ 	@echo =================================
+ 	@echo     Cleaning the IPC Examples
+ 	@echo =================================
+-	source $(ENV_SETUP); \
++	. $(ENV_SETUP); \
+ 	$(MAKE) -j $(MAKE_JOBS) -C $${IPC_INSTALL_PATH}/examples clean \
+ 		HOSTOS="linux" \
+ 		PLATFORM="$(IPC_PLATFORM)" \
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+index 29e0e76..70289a8 100644
+--- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+@@ -18,6 +18,7 @@ SRC_URI_append_omap-a15 = " file://Makefile_big-data-ipc-demo"
+ MAKEFILES_MATRIX_GUI_omapl138 = ""
  
--SRCREV = "9009e1cedfbaa11ded60e2a20ca3f06ed398a889"
-+SRCREV = "96e20a6305f05148dbfc6df403f56be6922c4f3d"
- BRANCH ?= "master"
+ MAKEFILES_append_keystone = " ti-ipc"
++MAKEFILES_append_k3 = " ti-ipc"
  
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+ MAKEFILES_append_k2g = " opencl-examples \
+                          openmpacc-examples \
+@@ -88,12 +89,14 @@ KERNEL_DEVICETREE_append_am57xx-hs-evm = " ${AM57XX_KERNEL_DEVICETREE}"
+ 
+ IPC_TOOLS_PATHS_C66 = "ti.targets.elf.C66="\$\(C6X_GEN_INSTALL_PATH\)""
+ IPC_TOOLS_PATHS_M4  = "ti.targets.arm.elf.M4="\$\(TOOLCHAIN_PATH_M4\)" ti.targets.arm.elf.M4F="\$\(TOOLCHAIN_PATH_M4\)""
++IPC_TOOLS_PATHS_R5F  = "ti.targets.arm.elf.R5F="\$\(TOOLCHAIN_PATH_R5\)""
+ IPC_TOOLS_PATHS_C674 = "ti.targets.elf.C674="\$\(C6X_GEN_INSTALL_PATH\)""
+ 
+ IPC_TOOLS_PATHS = ""
+ IPC_TOOLS_PATHS_append_keystone = " ${IPC_TOOLS_PATHS_C66}"
+ IPC_TOOLS_PATHS_append_omap-a15 = " ${IPC_TOOLS_PATHS_C66} ${IPC_TOOLS_PATHS_M4}"
+ IPC_TOOLS_PATHS_append_omapl138 = " ${IPC_TOOLS_PATHS_C674}"
++IPC_TOOLS_PATHS_append_k3 = "${IPC_TOOLS_PATHS_R5F}"
+ 
+ do_install_append() {
+     sed -i -e "s/__IPC_TOOLS_PATHS__/${IPC_TOOLS_PATHS}/g" ${D}/Makefile
 -- 
-1.7.9.5
+1.9.1
 
 
