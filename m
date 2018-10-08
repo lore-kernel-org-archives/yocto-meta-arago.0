@@ -1,44 +1,41 @@
-Return-Path: <x0038811@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 31AC252092
+Return-Path: <yan-liu@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id C72F8520C0
 	for <meta-arago@arago-project.org>;
-	Wed,  3 Oct 2018 10:10:39 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w93AAUIi118877
-	for <meta-arago@arago-project.org>; Wed, 3 Oct 2018 05:10:30 -0500
+	Mon,  8 Oct 2018 16:08:22 +0000 (UTC)
+Received: from dflxv15.itg.ti.com ([128.247.5.124])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w98G8EID104212
+	for <meta-arago@arago-project.org>; Mon, 8 Oct 2018 11:08:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1538561430;
-	bh=XuvjXV1hrPJCLaJm0hYdWDVBDViGtizZqZJ6Z/t3WRk=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=BshnCilnbFlg2EOgINeJiWS8QTmfyjOUjjIKoq3yW03frLOJfNRuYD64tx+Lb5dfn
-	OoQm/bu7ANMnyKAsjxQTcKgSVVtBq4w3cfoe5Wc+QGuLNDT7GRStHkyqJ7+hMc2o1F
-	oIfpp/gM/SH77CmKhsYrSn5HUO5U8cM5TINoqAfw=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w93AAUL8003171
-	for <meta-arago@arago-project.org>; Wed, 3 Oct 2018 05:10:30 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1539014894;
+	bh=5QOk+BGxgzXSufTNiEo6LfS8N8wWFrp8z7adIVcXoDU=;
+	h=From:To:CC:Subject:Date;
+	b=pAgnopytAfd4qcyx+/MzXbDEBLpPhBJeHOidv55L/ebHg+RfN1pCv0REbEwCRfDSY
+	0j84gxCWQw9Fk+3O3658iRvEMetnmPLDegevMYHKltE2HfV2Napf8V3+7fvWTKYuzo
+	YHB3n1craWx4m5blfTRvJOmvoKdTDfhXJTw7ZlXc=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w98G8E5w015248
+	for <meta-arago@arago-project.org>; Mon, 8 Oct 2018 11:08:14 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 3 Oct 2018 05:10:30 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 8 Oct 2018 11:08:14 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Wed, 3 Oct 2018 05:10:30 -0500
-Received: from udx0038811.india.ti.com (ileax41-snat.itg.ti.com
+	Transport; Mon, 8 Oct 2018 11:08:14 -0500
+Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w93AAQIW010521;
-	Wed, 3 Oct 2018 05:10:29 -0500
-From: Ramprasad N <x0038811@ti.com>
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w98G8DY4026786;
+	Mon, 8 Oct 2018 11:08:13 -0500
+From: <yan-liu@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 3 Oct 2018 15:40:24 +0530
-Message-ID: <1538561424-29788-2-git-send-email-x0038811@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1538561424-29788-1-git-send-email-x0038811@ti.com>
-References: <1538561424-29788-1-git-send-email-x0038811@ti.com>
+Date: Mon, 8 Oct 2018 12:08:55 -0400
+Message-ID: <1539014935-18730-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: karthik.ramanan@ti.com
-Subject: [rocko/master 1/1] omapdrmtest: Update SRCREV with latest fix
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,33 +48,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Oct 2018 10:10:39 -0000
+X-List-Received-Date: Mon, 08 Oct 2018 16:08:23 -0000
 Content-Type: text/plain
 
-This updates brings UYVY format support with
-eglCreateImageKHR
+From: Yan Liu <yan-liu@ti.com>
 
-Signed-off-by: Ramprasad N <x0038811@ti.com>
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb | 4 ++--
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb   |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-index 80ab68e..c877e58 100644
---- a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-+++ b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-@@ -7,8 +7,8 @@ DEPENDS = "ffmpeg libdce libdrm libgbm ti-sgx-ddk-um wayland"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+index e85f492..0894958 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
  
- inherit autotools pkgconfig
+-PR = "r18"
++PR = "r19"
+ PV_append = "+git${SRCPV}"
  
--PR = "r27"
--SRCREV = "b6c02d24be6f8dae939168c154cf2345b33e459d"
-+PR = "r28"
-+SRCREV = "20338b9f575ffe9c18c12bbed41c16069d27ccf4"
+ PROVIDES += "ltp"
+@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
  
- EXTRA_OEMAKE = "CC="${CC}""
- TARGET_CC_ARCH += "${LDFLAGS}"
+ inherit autotools-brokensep
+ 
+-SRCREV = "9009e1cedfbaa11ded60e2a20ca3f06ed398a889"
++SRCREV = "96e20a6305f05148dbfc6df403f56be6922c4f3d"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
 -- 
-1.9.1
+1.7.9.5
 
 
