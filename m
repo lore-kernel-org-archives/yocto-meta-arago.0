@@ -1,41 +1,41 @@
 Return-Path: <sam.nelson@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 491C252079
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 7963F52079
 	for <meta-arago@arago-project.org>;
-	Mon,  8 Oct 2018 17:48:58 +0000 (UTC)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id w98HmnCv046531
-	for <meta-arago@arago-project.org>; Mon, 8 Oct 2018 12:48:49 -0500
+	Mon,  8 Oct 2018 17:50:55 +0000 (UTC)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id w98Hok6G104001
+	for <meta-arago@arago-project.org>; Mon, 8 Oct 2018 12:50:46 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1539020929;
-	bh=pzcEY5LqjQoOqa+W9MHJwPFUyHLs5tpikOLKx1jykKs=;
+	s=ti-com-17Q1; t=1539021046;
+	bh=Hz/SGmsEhWaqqz+ljqiMECCB6OEwue+du986I5+f0cI=;
 	h=From:To:CC:Subject:Date;
-	b=WRujC+D81HYJVWnSYc5sWOIlkWxkllDlvXF6YfE/Ueo9KWmODGAsJzIyNeQvY2etF
-	dXPP5pFsbetnheskr9+H7/dIkUY2ZpurYVwRA9omHmZzDZNpPm+RCc8sjhcKpt2KUa
-	gWoqCa+pjP3/QKdPC9sWZC/i2mAb/HQufF2KZ1PA=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id w98HmnER008431
-	for <meta-arago@arago-project.org>; Mon, 8 Oct 2018 12:48:49 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	b=DMlYoDA4vf/K/7JHPVVlvJG8a1GxA3diS7sUL6Hcur7Q6H3VN+qiH7RqbJrDpcqbW
+	4uGsIRr4CoOgnPw9sRJPui+bfoloZm+g2+CoSfojUfFSXTvO56kDrg0osuU3iOCjzQ
+	LHRODQJMIvLzGezWKuq5rhc3K5vL5X4ryW7IuWkM=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w98Hoknv002404
+	for <meta-arago@arago-project.org>; Mon, 8 Oct 2018 12:50:46 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Mon, 8 Oct 2018 12:48:48 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 8 Oct 2018 12:50:46 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Mon, 8 Oct 2018 12:48:49 -0500
+	Transport; Mon, 8 Oct 2018 12:50:46 -0500
 Received: from uda0862859a.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w98Hmmc7009106;
-	Mon, 8 Oct 2018 12:48:48 -0500
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w98HokZ4011136;
+	Mon, 8 Oct 2018 12:50:46 -0500
 From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 8 Oct 2018 13:48:46 -0400
-Message-ID: <1539020926-6805-1-git-send-email-sam.nelson@ti.com>
+Date: Mon, 8 Oct 2018 13:50:45 -0400
+Message-ID: <1539021045-6899-1-git-send-email-sam.nelson@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][master][PATCH] ti-tisdk-makefile: Add ipc targets for top level make
+Subject: [meta-processor-sdk][master][PATCH v2] ti-tisdk-makefile: Add ipc targets for top level make for k3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,13 +48,18 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Oct 2018 17:48:59 -0000
+X-List-Received-Date: Mon, 08 Oct 2018 17:50:55 -0000
 Content-Type: text/plain
 
 Also modify usage of source to "." to make it work with native shell
 environment as well
 
 Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+
+---
+Change from previous version of patch
+- updated title
+---
 ---
  .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc          | 9 +++++----
  recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend   | 3 +++
