@@ -1,43 +1,47 @@
-Return-Path: <jake@udc0866934>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 00E8452092
+Return-Path: <robertcnelson@gmail.com>
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com
+	[209.85.208.169])
+	by arago-project.org (Postfix) with ESMTPS id E4BA952998
 	for <meta-arago@arago-project.org>;
-	Tue,  9 Oct 2018 14:09:46 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w99E9cBW011088
-	for <meta-arago@arago-project.org>; Tue, 9 Oct 2018 09:09:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1539094178;
-	bh=GG2NLPbDxFZWqPdpFjFTuqkBwa/edCPolcWFaQiUKqk=;
-	h=From:To:CC:Subject:Date;
-	b=k8ODBVIZ1pIdBlWUjczSaXm/nlKE6fn74OVuXdvc2D6E4iC2wRHj2/vOrYqnHClvC
-	dqFyAHzYXUv9SPyMVa1PpcQ/ZNwsj0lDl4UNss8Bd0wPHwjx+fjJR7thR0T5/2XLqt
-	3NU4Mh3MSVxIRq5Wcng+ofQlDz2c8EdEgw/nkZaE=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w99E9ckE016570
-	for <meta-arago@arago-project.org>; Tue, 9 Oct 2018 09:09:38 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Tue, 9 Oct 2018 09:09:38 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Tue, 9 Oct 2018 09:09:38 -0500
-Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w99E9b0m004998;
-	Tue, 9 Oct 2018 09:09:37 -0500
-Received: from jake by udc0866934 with local (Exim 4.82)
-	(envelope-from <jake@udc0866934>)
-	id 1g9shd-0008P4-De; Tue, 09 Oct 2018 10:09:37 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 9 Oct 2018 10:09:35 -0400
-Message-ID: <1539094175-32270-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
+	Wed, 10 Oct 2018 20:52:10 +0000 (UTC)
+Received: by mail-lj1-f169.google.com with SMTP id r8-v6so6175000ljc.10
+	for <meta-arago@arago-project.org>;
+	Wed, 10 Oct 2018 13:52:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=14NUn16nfTcIXg5qGm0EgiWaVHRmRw7hbtbsRHprrCA=;
+	b=Rh2KXghojorf+LazxzyWct2+qNgU1mQjBjW1N7viOu8Kv2yOU6APam/khKYaOsMq94
+	+ZwKwGsOMdagDl2F8asbilpmcb3uLQMyRHVxmeJyIVG5Im/Ll2tGHsgj0R0sVJ1TSVwH
+	QsZ1z2mAPjZppFbEbh7pJRMnQvYsZH44vH0ofGWDg1He8BXR2gmV5qZwMLJ5X5CTXZlC
+	8ctgv32S52c8wq0qmSt/hDrwmIf4e/sdkcQpgdjBax/oDmNgZglXLv6iyqvk7wRoNIBX
+	xUJBY636Bwakr5LgMbupMY/QgTRItq6aA/e6R6O/kjyTZX+/Y2SPXKvAN067NCTicn+e
+	146g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=14NUn16nfTcIXg5qGm0EgiWaVHRmRw7hbtbsRHprrCA=;
+	b=X1sFLqACjS9RQBApI842tZHfsLKsgiUay/ZmMCNSB/jBoZi4lVBahSi/K25KPK45Dq
+	GEyiJZSyEP/vrxWy8BEO2FIZR4ka1tHO0HSMjmY7qoVUentbetF1jFG4EgqWsyJLBotv
+	fSTXcjBXi6I+wguXtmL9Z1Q31/6t74UN2WCyXSA5ANHITjjUo0SxZuDwbC3NaPKRLQW9
+	J2DasTfatQ9jBzJ7zVFXLIkznV2AkDBMN1GYCw3mylJM5T2EDNrYLfyih++mTZbYksXY
+	pni3BT2YkCE37jZ94BYVmX5e+/WAf18itq1tL2Aw6kKnWWgTOFldRyUn/Xel53w88vf1
+	bFNg==
+X-Gm-Message-State: ABuFfohJT61crP/ut2wJ/kaz92yzkpCVKBpWEqzBLCOKKKv2LFaqONEz
+	ptj99AZozXMTr8yTee73TDD7SsjUcb5BFtaHZRE=
+X-Google-Smtp-Source: ACcGV61oL31S0tKCEh8pGFvUfZfU4ghXow9gzhTOszAn6mhzpl01QTv4NkGqtX7TECnr1nPJMIAt0RcjKkNwMVopiFc=
+X-Received: by 2002:a2e:7608:: with SMTP id
+	r8-v6mr12431809ljc.175.1539204721185; 
+	Wed, 10 Oct 2018 13:52:01 -0700 (PDT)
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [oe-layersetup][PATCH] processor-sdk: add 5.1.0.11 release config
+References: <1539094175-32270-1-git-send-email-j-stiffler@ti.com>
+In-Reply-To: <1539094175-32270-1-git-send-email-j-stiffler@ti.com>
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Wed, 10 Oct 2018 15:51:34 -0500
+Message-ID: <CAOCHtYhAzLGmOK9CQDuNS9_cvCZgiNvwH498N5Z2xx4OHJyUZQ@mail.gmail.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Cc: meta-arago@arago-project.org, Jason Kridner <jdk@ti.com>
+Subject: Re: [oe-layersetup][PATCH] processor-sdk: add 5.1.0.11 release config
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,37 +54,97 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Oct 2018 14:09:48 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 10 Oct 2018 20:52:11 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../processor-sdk/processor-sdk-05.01.00.11-config.txt    | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
- create mode 100644 configs/processor-sdk/processor-sdk-05.01.00.11-config.txt
+On Tue, Oct 9, 2018 at 9:09 AM Jacob Stiffler <j-stiffler@ti.com> wrote:
+>
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+>  .../processor-sdk/processor-sdk-05.01.00.11-config.txt    | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+>  create mode 100644 configs/processor-sdk/processor-sdk-05.01.00.11-config.txt
+>
+> diff --git a/configs/processor-sdk/processor-sdk-05.01.00.11-config.txt b/configs/processor-sdk/processor-sdk-05.01.00.11-config.txt
+> new file mode 100644
+> index 0000000..33c29d9
+> --- /dev/null
+> +++ b/configs/processor-sdk/processor-sdk-05.01.00.11-config.txt
+> @@ -0,0 +1,15 @@
+> +# This file takes repo entries in the format
+> +# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+> +
+> +bitbake,git://git.openembedded.org/bitbake,1.36,8bd16328a9332c57b03198826e22b48fadcd21d9,layers=
+> +meta-processor-sdk,http://arago-project.org/git/projects/meta-processor-sdk.git,master,012bf1c42b1826380ca7557e5185fe88f939a93c,layers=
+> +meta-ros,https://github.com/bmwcarit/meta-ros.git,master,e2566402ab108a19634354a934788109422cf409,layers=
+> +meta-arago,http://arago-project.org/git/meta-arago.git,ti2018.03,85f191c83f7cd7b3b4fb6df08b22fabe24e25773,layers=meta-arago-distro:meta-arago-extras
+> +meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
+> +meta-qt5,git://github.com/meta-qt5/meta-qt5.git,rocko,682ad61c071a9710e9f9d8a32ab1b5f3c14953d1,layers=
+> +meta-openembedded,git://git.openembedded.org/meta-openembedded,rocko,eae996301d9c097bcbeb8046f08041dc82bb62f8,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-multimedia
+> +meta-ti,git://git.yoctoproject.org/meta-ti,ti2018.03,3f26d1f94fbc87740fdfe33292c904e865257e81,layers=
+> +meta-linaro,https://git.linaro.org/openembedded/meta-linaro.git,rocko,75dfb67bbb14a70cd47afda9726e2e1c76731885,layers=meta-linaro-toolchain:meta-optee
+> +oe-core,git://git.openembedded.org/openembedded-core,rocko,7d518d342eb67d25aa071fb08d03f06d6da576c6,layers=meta
+> +OECORELAYERCONF=./sample-files/bblayers.conf.sample
+> +OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
+> --
+> 1.9.1
 
-diff --git a/configs/processor-sdk/processor-sdk-05.01.00.11-config.txt b/configs/processor-sdk/processor-sdk-05.01.00.11-config.txt
-new file mode 100644
-index 0000000..33c29d9
---- /dev/null
-+++ b/configs/processor-sdk/processor-sdk-05.01.00.11-config.txt
-@@ -0,0 +1,15 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,1.36,8bd16328a9332c57b03198826e22b48fadcd21d9,layers=
-+meta-processor-sdk,http://arago-project.org/git/projects/meta-processor-sdk.git,master,012bf1c42b1826380ca7557e5185fe88f939a93c,layers=
-+meta-ros,https://github.com/bmwcarit/meta-ros.git,master,e2566402ab108a19634354a934788109422cf409,layers=
-+meta-arago,http://arago-project.org/git/meta-arago.git,ti2018.03,85f191c83f7cd7b3b4fb6df08b22fabe24e25773,layers=meta-arago-distro:meta-arago-extras
-+meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,rocko,682ad61c071a9710e9f9d8a32ab1b5f3c14953d1,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,rocko,eae996301d9c097bcbeb8046f08041dc82bb62f8,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-multimedia
-+meta-ti,git://git.yoctoproject.org/meta-ti,ti2018.03,3f26d1f94fbc87740fdfe33292c904e865257e81,layers=
-+meta-linaro,https://git.linaro.org/openembedded/meta-linaro.git,rocko,75dfb67bbb14a70cd47afda9726e2e1c76731885,layers=meta-linaro-toolchain:meta-optee
-+oe-core,git://git.openembedded.org/openembedded-core,rocko,7d518d342eb67d25aa071fb08d03f06d6da576c6,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
+Hi Jacob,
+
+For BeagleBoard.org, we built this so we could get the OpenCL firmware
+bits, however the 05.01.00.11 tag seem's to have a problem.
+
+TOOLCHAIN_PATH=/var/lib/jenkins/gcc-linaro-7.2.1-2017.11-x86_64_arm-linux-gnueabihf
+MACHINE=am57xx-evm bitbake opencl-monitor ipumm-fw vpdma-fw cmem-mod
+tidl-api tidl-examples
+
+15:20:30 | INTERNAL ERROR:
+/var/lib/jenkins/jobs/ti-sdk-05.01.00.11/workspace/tisdk/build/arago-tmp-external-linaro-toolchain/work/am57xx_evm-linux-gnueabi/opencl-monitor/1.1.16.01-r0.0/recipe-sysroot-native/usr/share/ti/cgt-c6x/bin/cg6x3
+experienced a segmentation fault
+15:20:30 |                   while processing function _Z7shuffleDv16_mDv16_t
+15:20:30 |
+15:20:30 | This is caused by a defect in the TI C/C++ Codegen.
+15:20:30 | TI Customer Support may be able to suggest a workaround to
+avoid this.
+15:20:30 |
+15:20:30 | Upgrading to the newest version of the compiler may fix this problem.
+15:20:30 |
+15:20:30 | Contact TI in the E2E support forums at http://e2e.ti.com under
+15:20:30 | "Development Tools", "TI C/C++ Compiler".  See the link titled
+15:20:30 | "Submitting an issue".
+15:20:30 |
+15:20:30 | We need to see this ENTIRE error message and a complete, reproducable
+15:20:30 | test case including ALL of the command-line options.
+15:20:30 | Include the .pp file created by option --preproc_with_comment
+15:20:30 |
+15:20:30 |
+15:20:30 | >> Compilation failure
+15:20:30 | Makefile:52: recipe for target 'shuffle.obj' failed
+15:20:30 | make[2]: *** [shuffle.obj] Error 1
+15:20:30 | make[2]: *** Waiting for unfinished jobs....
+15:20:30 | rm modf.bc all.bc any.bc shuffle.bc smoothstep.bc rotate.bc
+abs.bc cross.bc mul_hi.bc mad_sat.bc sincos.bc hadd.bc lgamma_r.bc
+convert_round.bc select.bc remquo.bc clamp.bc frexp.bc relationals.bc
+misc.bc max.bc step.bc sub_sat.bc degrees.bc add_sat.bc abs_diff.bc
+atomics.bc sign.bc clz.bc upsample.bc math.bc length.bc convert.bc
+mix.bc bitselect.bc fract.bc half.bc
+15:20:30 | make[2]: Leaving directory
+'/var/lib/jenkins/jobs/ti-sdk-05.01.00.11/workspace/tisdk/build/arago-tmp-external-linaro-toolchain/work/am57xx_evm-linux-gnueabi/opencl-monitor/1.1.16.01-r0.0/git/builtins'
+15:20:30 | Makefile.am57x:127: recipe for target '../builtins/dsp.lib' failed
+15:20:30 | make[1]: Leaving directory
+'/var/lib/jenkins/jobs/ti-sdk-05.01.00.11/workspace/tisdk/build/arago-tmp-external-linaro-toolchain/work/am57xx_evm-linux-gnueabi/opencl-monitor/1.1.16.01-r0.0/git/monitor'
+15:20:30 | make[1]: *** [../builtins/dsp.lib] Error 2
+15:20:30 | CMake Error at cmake_install.cmake:48 (file):
+15:20:30 |   file INSTALL cannot find
+15:20:30 |   "/var/lib/jenkins/jobs/ti-sdk-05.01.00.11/workspace/tisdk/build/arago-tmp-external-linaro-toolchain/work/am57xx_evm-linux-gnueabi/opencl-monitor/1.1.16.01-r0.0/git/monitor/monitor_am57x/dsp0.syms".
+15:20:30 |
+15:20:30 |
+15:20:30 | Makefile:120: recipe for target 'install' failed
+15:20:30 | make: *** [install] Error 1
+
+Regards,
+
 -- 
-1.9.1
-
+Robert Nelson
+https://rcn-ee.com/
 
