@@ -1,32 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
-	by arago-project.org (Postfix) with ESMTPS id ADB8D529B5
+	by arago-project.org (Postfix) with ESMTPS id 23DAB5296D
 	for <meta-arago@arago-project.org>;
-	Sun, 14 Oct 2018 20:03:23 +0000 (UTC)
+	Mon, 15 Oct 2018 01:44:25 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id E511F20CE7;
-	Sun, 14 Oct 2018 20:03:14 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 393F720CF1;
+	Mon, 15 Oct 2018 01:44:16 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id VoR9S2KWa25C; Sun, 14 Oct 2018 20:03:14 +0000 (UTC)
+	with ESMTP id joCSCIgVF6ie; Mon, 15 Oct 2018 01:44:16 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
 	[100.15.91.218])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C945520CBD;
-	Sun, 14 Oct 2018 20:03:13 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 13C5120CF0;
+	Mon, 15 Oct 2018 01:44:15 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 4F1CB16476B;
-	Sun, 14 Oct 2018 16:03:12 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 8070316476A;
+	Sun, 14 Oct 2018 21:44:14 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Sun, 14 Oct 2018 16:03:09 -0400
-Message-Id: <1539547389-5881-6-git-send-email-denys@ti.com>
+Date: Sun, 14 Oct 2018 21:44:10 -0400
+Message-Id: <1539567851-28246-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1539547389-5881-1-git-send-email-denys@ti.com>
-References: <1539547389-5881-1-git-send-email-denys@ti.com>
-Subject: [master][PATCH 6/6] toolchain-gcc: switch defaults to gcc8
+Subject: [master][PATCH 1/2] hostap: inherit pkgconfig and depend on openssl10
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,35 +37,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 14 Oct 2018 20:03:25 -0000
+X-List-Received-Date: Mon, 15 Oct 2018 01:44:25 -0000
+
+1. build calls pkg-config, so need to inherit pkgconfig
+2. upstream migrated to OpenSSL 1.1, so depend on openssl10 for now
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/toolchain-gcc.inc | 4 ++--
+ meta-arago-extras/recipes-connectivity/hostap/hostap.inc | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-index 8e83edb..ec8acf8 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-@@ -13,7 +13,7 @@ PREFERRED_PROVIDER_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "binutil
- PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}"
+diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
+index 180fc01..f58a3dc 100644
+--- a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
++++ b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
+@@ -5,7 +5,7 @@ HOMEPAGE = "http://hostap.epitest.fi"
+ DESCRIPTION = "User space daemon for extended IEEE 802.11 management"
+ SECTION = "kernel/userland"
  
- # Set Cross and SDK toolchain preferences
--SDKGCCVERSION ?= "7.3%"
-+SDKGCCVERSION ?= "8%"
- SDKBINUVERSION ?= "2.31%"
- SDKGLIBCVERSION ?= "2.28%"
- SDKLINUXLIBCVERSION ?= "4.14%"
-@@ -32,7 +32,7 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
+-DEPENDS = "libnl openssl"
++DEPENDS = "libnl openssl10"
  
- # Set target toolchain preferences to match Cross/SDK by default
- # Can be overwritten globally, if needed
--GCCVERSION ?= "7.3%"
-+GCCVERSION ?= "8%"
- BINUVERSION ?= "2.31%"
- GLIBCVERSION ?= "2.28%"
- LINUXLIBCVERSION ?= "4.14%"
+ # Since this is a TI customized version of hostap-daemon do not make this the
+ # default
+@@ -13,7 +13,7 @@ DEFAULT_PREFERENCE = "-1"
+ 
+ PR = "r6"
+ 
+-inherit update-rc.d
++inherit update-rc.d pkgconfig
+ INITSCRIPT_NAME="hostapd"
+ 
+ CONFFILES_${PN} += "${sysconfdir}/hostapd.conf"
 -- 
 2.7.4
 
