@@ -1,41 +1,30 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id D0AA85296D
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 52C9B529AF
 	for <meta-arago@arago-project.org>;
-	Thu, 18 Oct 2018 15:58:02 +0000 (UTC)
-Received: from dlelxv90.itg.ti.com ([172.17.2.17])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id w9IFvrNR105151
-	for <meta-arago@arago-project.org>; Thu, 18 Oct 2018 10:57:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1539878273;
-	bh=pRz1gHKOQPIlg/eY2t6aX8321bYeFCkzcbA0eqh03qg=;
-	h=From:To:Subject:Date;
-	b=EIwvKsGZOde6XL5ZG1JRTaCL2rMFru/pWx1Kob62nYT8qJI5uN4+v4S9Skyv0/QsW
-	9L/rOQKX/jRJUdh03t/PT5yyXjC982nMrJ8LCJOOWq1b1MDuTt3gXd+jNxNoL+T0tO
-	KN9zLFCMLpM8MtIDGbL73yiyCUCuAa7G4pxbVJlA=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id w9IFvrfW031773
-	for <meta-arago@arago-project.org>; Thu, 18 Oct 2018 10:57:53 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Thu, 18 Oct 2018 10:57:53 -0500
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Thu, 18 Oct 2018 10:57:53 -0500
-Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id w9IFvqXV029796
-	for <meta-arago@arago-project.org>; Thu, 18 Oct 2018 10:57:53 -0500
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 18 Oct 2018 11:57:07 -0400
-Message-ID: <1539878227-19641-1-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] weston-conf: replace panel-location with panel-position at weston.ini
+	Fri, 19 Oct 2018 05:48:23 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5624A20BC4;
+	Fri, 19 Oct 2018 05:48:14 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id vQFw9abLuCx9; Fri, 19 Oct 2018 05:48:14 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
+	[100.15.91.218])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3476020BB0;
+	Fri, 19 Oct 2018 05:48:13 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id A4FB516457D;
+	Fri, 19 Oct 2018 01:48:12 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 19 Oct 2018 01:48:12 -0400
+Message-Id: <1539928092-10247-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [rocko-next][PATCH] ti-sci-fw: update to 2018.09 version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,44 +37,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Oct 2018 15:58:03 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 19 Oct 2018 05:48:24 -0000
 
-The panel-location has been replaced with panel-position since Weston 2.0.0
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-graphics/wayland/weston-conf/ti43x/weston.ini | 2 +-
- meta-arago-distro/recipes-graphics/wayland/weston-conf/weston.ini       | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ .../ti-sci-fw/{ti-sci-fw_2018.08b.bb => ti-sci-fw_2018.09.bb}         | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename meta-arago-distro/recipes-bsp/ti-sci-fw/{ti-sci-fw_2018.08b.bb => ti-sci-fw_2018.09.bb} (94%)
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-conf/ti43x/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-conf/ti43x/weston.ini
-index 3fb2018..8a9dd99 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston-conf/ti43x/weston.ini
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston-conf/ti43x/weston.ini
-@@ -4,7 +4,7 @@ require-input=false
- [shell]
- locking=false
- animation=zoom
--panel-location=top
-+panel-position=top
- startup-animation=fade
+diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2018.08b.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2018.09.bb
+similarity index 94%
+rename from meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2018.08b.bb
+rename to meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2018.09.bb
+index bf34031..76516b6 100644
+--- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2018.08b.bb
++++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2018.09.bb
+@@ -11,9 +11,9 @@ COMPATIBLE_MACHINE = "k3"
  
- [screensaver]
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-conf/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-conf/weston.ini
-index a78a843..c0ae9f9 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston-conf/weston.ini
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston-conf/weston.ini
-@@ -4,7 +4,7 @@ require-input=false
- [shell]
- locking=false
- animation=zoom
--panel-location=top
-+panel-position=top
- startup-animation=fade
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- [screensaver]
+-SRCREV = "463b1b4a50e8e361fa333f87caf74d2e05bc0a82"
++SRCREV = "a18a84895c6d40ba8c4dd439883e227db425232d"
+ 
+-BRANCH ?= "ti-linux-firmware-4.1.y"
++BRANCH ?= "ti-firmware-next"
+ 
+ SRC_URI = " \
+ 	git://git.ti.com/processor-firmware/ti-linux-firmware.git;protocol=git;branch=${BRANCH} \
 -- 
-1.9.1
+2.7.4
 
 
