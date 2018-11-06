@@ -1,38 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id BB7BA52981
+Received: from mailout4.zoneedit.com (unknown [64.68.198.17])
+	by arago-project.org (Postfix) with ESMTPS id 1D72C52092
 	for <meta-arago@arago-project.org>;
-	Tue,  6 Nov 2018 19:42:45 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id wA6JgaAC016440
-	for <meta-arago@arago-project.org>; Tue, 6 Nov 2018 13:42:36 -0600
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wA6JgaWx122730
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 6 Nov 2018 13:42:36 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Tue, 6 Nov 2018 13:42:35 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Tue, 6 Nov 2018 13:42:35 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wA6JgZip028992;
-	Tue, 6 Nov 2018 13:42:35 -0600
-Date: Tue, 6 Nov 2018 14:42:35 -0500
+	Tue,  6 Nov 2018 21:23:22 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 50C9320B66;
+	Tue,  6 Nov 2018 21:23:12 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo03-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id rbg9Nejn3kwi; Tue,  6 Nov 2018 21:23:12 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
+	[100.15.91.218])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3AED1206F3;
+	Tue,  6 Nov 2018 21:23:11 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id BEAF1164D0C;
+	Tue,  6 Nov 2018 16:23:10 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20181106194234.GV27560@beryl>
-References: <1540907045-1534-1-git-send-email-j-stiffler@ti.com>
-	<55f039c6-e736-2aef-3e60-25851e8549b9@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <55f039c6-e736-2aef-3e60-25851e8549b9@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [tisdk-build-scripts][PATCH] tisdk.xml: add Ubuntu 18.04 to recommended distros
+To: meta-arago@arago-project.org
+Date: Tue,  6 Nov 2018 16:23:07 -0500
+Message-Id: <1541539388-7197-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [rocko/master][PATCH 1/2] external-linaro-toolchain, linux-libc-headers: update to pull backport of uvc
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,35 +37,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Nov 2018 19:42:46 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 06 Nov 2018 21:23:22 -0000
 
-Sorry, missed that one - merged now.
+g_uvc.h UAPI has been backported from 4.19. Need to use it for uvc-gadget app.
 
-On Tue, Nov 06, 2018 at 09:29:59AM -0500, Jacob Stiffler wrote:
-> Ping.
-> 
-> On 10/30/2018 9:44 AM, Jacob Stiffler wrote:
-> >Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> >---
-> >  installer-files/tisdk.xml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> >diff --git a/installer-files/tisdk.xml b/installer-files/tisdk.xml
-> >index e763f1e..52f235f 100644
-> >--- a/installer-files/tisdk.xml
-> >+++ b/installer-files/tisdk.xml
-> >@@ -70,7 +70,7 @@
-> >              <title>Linux Environment Support Message</title>
-> >              <description></description>
-> >              <explanation></explanation>
-> >-            <value>It is highly recommend that the user, or especially new users, install this SDK into a Ubuntu 14.04 or Ubuntu 16.04 distribution environment. This is the environment that was used to develop and test this SDK.
-> >+            <value>It is highly recommend that the user, or especially new users, install this SDK into a Ubuntu 14.04, Ubuntu 16.04, or Ubuntu 18.04 distribution environment. This is the environment that was used to develop and test this SDK.
-> >  Please note that this suggestion does not prevent the SDK from installing on other Linux Distributions.</value>
-> >              <default></default>
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-core/meta/external-linaro-toolchain.bbappend  | 2 +-
+ .../recipes-kernel/linux-libc-headers/linux-libc-headers_4.14.bb        | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-core/meta/external-linaro-toolchain.bbappend b/meta-arago-distro/recipes-core/meta/external-linaro-toolchain.bbappend
+index 8addc91..02760d8 100644
+--- a/meta-arago-distro/recipes-core/meta/external-linaro-toolchain.bbappend
++++ b/meta-arago-distro/recipes-core/meta/external-linaro-toolchain.bbappend
+@@ -4,7 +4,7 @@
+ # duplication of code from corresponding recipe.
+ 
+ BRANCH = "ti-lsk-linux-4.14.y"
+-SRCREV = "3bacc614e300e497679bdd7d2759f486e713f373"
++SRCREV = "3e50654361c34b75784ab7c8c9aa8e96b3a37fc1"
+ 
+ KERNEL_GIT_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git"
+ KERNEL_GIT_PROTOCOL = "git"
+diff --git a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.14.bb b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.14.bb
+index c313ca2..5c54e56 100644
+--- a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.14.bb
++++ b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.14.bb
+@@ -3,7 +3,7 @@ require recipes-kernel/linux-libc-headers/linux-libc-headers.inc
+ PR_append = ".arago0"
+ 
+ BRANCH = "ti-lsk-linux-4.14.y"
+-SRCREV = "3bacc614e300e497679bdd7d2759f486e713f373"
++SRCREV = "3e50654361c34b75784ab7c8c9aa8e96b3a37fc1"
+ 
+ KERNEL_GIT_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git"
+ KERNEL_GIT_PROTOCOL = "git"
+-- 
+2.7.4
+
 
