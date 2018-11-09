@@ -1,37 +1,37 @@
 Return-Path: <j-stiffler@ti.com>
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 639CC52992
+	by arago-project.org (Postfix) with ESMTPS id 44B895298D
 	for <meta-arago@arago-project.org>;
 	Fri,  9 Nov 2018 17:09:03 +0000 (UTC)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wA9H8rHh028787
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wA9H8rsF028783
 	for <meta-arago@arago-project.org>; Fri, 9 Nov 2018 11:08:53 -0600
 Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wA9H8rFO008520
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wA9H8rsj008517
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@arago-project.org>; Fri, 9 Nov 2018 11:08:53 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE110.ent.ti.com
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE110.ent.ti.com
 	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Fri, 9 Nov 2018 11:08:53 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 9 Nov 2018 11:08:52 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Fri, 9 Nov 2018 11:08:53 -0600
+	Transport; Fri, 9 Nov 2018 11:08:52 -0600
 Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wA9H8qoC029532;
-	Fri, 9 Nov 2018 11:08:53 -0600
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wA9H8qoB029532;
+	Fri, 9 Nov 2018 11:08:52 -0600
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 9 Nov 2018 11:56:24 -0500
-Message-ID: <1541782587-24044-4-git-send-email-j-stiffler@ti.com>
+Date: Fri, 9 Nov 2018 11:56:23 -0500
+Message-ID: <1541782587-24044-3-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1541782587-24044-1-git-send-email-j-stiffler@ti.com>
 References: <1541782587-24044-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko/master][PATCH 3/6] arago-source-ipk: enable srcipk of sysfw-image-gen
+Subject: [rocko/master][PATCH 2/6] arago-core-tisdk-image: k3: deploy ti-sci-fw
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,27 +47,24 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Fri, 09 Nov 2018 17:09:06 -0000
 Content-Type: text/plain
 
-* This is is onyl provided within the k3 recipe, so only enable for
-  k3.
-* This will be used to rebuild the sysfw.itb
-
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-distro/conf/distro/include/arago-source-ipk.inc | 4 ++++
- 1 file changed, 4 insertions(+)
+ meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-index 30a4739..0ec3138 100644
---- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-@@ -375,3 +375,7 @@ SRCIPK_INSTALL_DIR_pn-vlib-c66x = "component-sources/vlib_c66x_${PV}"
+diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
+index eacf31b..529d9de 100644
+--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
+@@ -8,7 +8,7 @@ DEPLOY_SPL_NAME_k2e = ""
+ DEPLOY_SPL_NAME_k2g-hs-evm = ""
+ DEPLOY_SPL_NAME_k3 = "tispl.bin tiboot3.bin"
  
- CREATE_SRCIPK_pn-big-data-ipc-demo-linux = "1"
- SRCIPK_INSTALL_DIR_pn-big-data-ipc-demo-linux = "example-applications/${PN}-${PV}"
-+
-+CREATE_SRCIPK_pn-ti-sci-fw_k3 = "1"
-+SRCIPK_SRC_DIR_pn-ti-sci-fw_k3 = "${WORKDIR}/imggen"
-+SRCIPK_INSTALL_DIR_pn-ti-sci-fw_k3 = "board-support/system-firmware-image-gen-${PV}"
+-DEPLOY_IMAGES_NAME_k3 = "bl31.bin bl32.bin sysfw.itb"
++DEPLOY_IMAGES_NAME_k3 = "bl31.bin bl32.bin sysfw.itb ti-sci-firmware-am65x-gp.bin"
+ 
+ ARAGO_TISDK_IMAGE ?= "arago-core-tisdk-image"
+ export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}"
 -- 
 2.7.4
 
