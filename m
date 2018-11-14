@@ -1,42 +1,44 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 2BDAA52092
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 9FA6B529A6
 	for <meta-arago@arago-project.org>;
-	Wed, 14 Nov 2018 13:37:04 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wAEDasvM016410
-	for <meta-arago@arago-project.org>; Wed, 14 Nov 2018 07:36:54 -0600
+	Wed, 14 Nov 2018 13:51:16 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id wAEDp6nJ100820
+	for <meta-arago@arago-project.org>; Wed, 14 Nov 2018 07:51:06 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1542202614;
-	bh=4XAX2IrMUjI5qssXLfIK3LFn4J1o//MDyS8X+7SnNtc=;
-	h=From:To:Subject:Date;
-	b=hNgofnChRX0FNhQoCVEiYBntB2VtYSZSmaHOlZ3Nk1zePvDukcrOfkYefETJLnQiF
-	6kEIEBR18R+oEcuUb4yxOi97upDDqFc2Tb2IHIYeo4I7MfN/jt2FwtQSUvxTvLFTZX
-	q+/bTLCAlfcRLGgwBPs9phP1t1RvfECYOKQ2p6Dk=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wAEDas4m095089
+	s=ti-com-17Q1; t=1542203466;
+	bh=5trVTcut2hS4FXwPrW6hXgiKMACcvpFOsp3dRtpdddE=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=njI9yxjgebeP4FzQ7tUvlqS4hWIBm3Ww8ZgdBTKEEfjeCoI0fn2aQr17hJi/qTRU6
+	MqaMAFurdE4UWdQJTXoZlivpNeNTX+IKVismw4aTPiMQ/9I1Yxt7czb7i6X7PM3iff
+	BbuaVjxuZnT2VRiRkvYwGd7pv0LHG1gDfqQGDvdk=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wAEDp6sl072630
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 14 Nov 2018 07:36:54 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1466.3;
-	Wed, 14 Nov 2018 07:36:53 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
+	for <meta-arago@arago-project.org>; Wed, 14 Nov 2018 07:51:06 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
+	Wed, 14 Nov 2018 07:51:06 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1466.3 via Frontend
-	Transport; Wed, 14 Nov 2018 07:36:53 -0600
+	Transport; Wed, 14 Nov 2018 07:51:06 -0600
 Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wAEDarCk019948
-	for <meta-arago@arago-project.org>; Wed, 14 Nov 2018 07:36:53 -0600
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wAEDp5pU012952
+	for <meta-arago@arago-project.org>; Wed, 14 Nov 2018 07:51:06 -0600
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 14 Nov 2018 08:36:03 -0500
-Message-ID: <1542202563-24901-1-git-send-email-e-ruei1@ti.com>
+Date: Wed, 14 Nov 2018 08:50:41 -0500
+Message-ID: <1542203441-24961-2-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1542203441-24961-1-git-send-email-e-ruei1@ti.com>
+References: <1542203441-24961-1-git-send-email-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] Revert "matrix-gui: sleep 1 second prior to weston shutdown"
+Subject: [meta-processor-sdk][PATCH 2/2] Revert "recipes-apps : add evse-hmi demo"
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,84 +51,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Nov 2018 13:37:05 -0000
+X-List-Received-Date: Wed, 14 Nov 2018 13:51:17 -0000
 Content-Type: text/plain
 
-This reverts commit 13f988e5e897e10607cd3c9910ce526019f93a48a.
-This patch is no longer needed. We need to fix the root issue
-at the SGX DDK UM.
+This reverts commit ea36050ee38e8e14a9fde113b50afa8ec83d482e.
+To be deleted from meta-processor-sdk. The same has been upstreamed
+already.
 ---
- ...e_command-workaround-for-GUI-apps-with-weston.patch | 18 ++++++++----------
- .../recipes-core/matrix/matrix-gui_2.0.bb              |  2 +-
- 2 files changed, 9 insertions(+), 11 deletions(-)
+ recipes-apps/evse-hmi/evse-hmi_git.bb | 23 -----------------------
+ 1 file changed, 23 deletions(-)
+ delete mode 100755 recipes-apps/evse-hmi/evse-hmi_git.bb
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-workaround-for-GUI-apps-with-weston.patch b/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-workaround-for-GUI-apps-with-weston.patch
-index 90a604e..5a85935 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-workaround-for-GUI-apps-with-weston.patch
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui/0001-execute_command-workaround-for-GUI-apps-with-weston.patch
-@@ -1,6 +1,6 @@
--From 156ce8d8d9ee1b614b0079e1e9506af1835bdab7 Mon Sep 17 00:00:00 2001
--From: Jacob Stiffler <j-stiffler@ti.com>
--Date: Wed, 7 Nov 2018 15:48:47 -0500
-+From 9647ddc10dc9424b1433db2f8184268523d829da Mon Sep 17 00:00:00 2001
-+From: Eric Ruei <e-ruei1@ti.com>
-+Date: Wed, 28 Feb 2018 12:20:32 -0500
- Subject: [PATCH] execute_command: workaround for GUI apps with weston
- 
- * For all GUI apps, shutdown matrix before launching
-@@ -8,18 +8,17 @@ Subject: [PATCH] execute_command: workaround for GUI apps with weston
-     GUI app may get hidden behind matrix with no way to recover.
- * For MM and 3D and null window apps, shutdown weston before launching
-   - These apps use KMS sink or DRM, which collides with weston
--  - Wait 1 second to make sure the application freeing all SGX resources
--    prior to weston shutdown
-+
- Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
- Signed-off-by: Eric Ruei <e-ruei1@ti.com>
- ---
-- execute_command.sh | 40 +++++++++++++++++++++++++++++++++++++++-
-+ execute_command.sh | 39 ++++++++++++++++++++++++++++++++++++++-
-  generate.php       |  4 ++++
-  run_script.php     | 10 +++++++++-
-- 3 files changed, 52 insertions(+), 2 deletions(-)
-+ 3 files changed, 51 insertions(+), 2 deletions(-)
- 
- diff --git a/execute_command.sh b/execute_command.sh
--index 325dcb9..b8bb6da 100755
-+index 325dcb9..180e71f 100755
- --- a/execute_command.sh
- +++ b/execute_command.sh
- @@ -63,7 +63,22 @@ do
-@@ -46,7 +45,7 @@ index 325dcb9..b8bb6da 100755
-    then
-      touch "lock/"$item
-  
--@@ -72,10 +87,33 @@ do
-+@@ -72,10 +87,32 @@ do
-  
-  done
-  
-@@ -56,7 +55,6 @@ index 325dcb9..b8bb6da 100755
- +
- +  if [ $category == 3d -o $category == multimedia -o $category == touch -o $win_type == null ]
- +  then
--+    sleep 1
- +    /etc/init.d/weston stop
- +    sleep 1
- +  fi
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-index 4e335e7..d8aa00b 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a886c9ef769b2d8271115d2502512e5d"
- 
- SECTION = "multimedia"
- 
--PR = "r36"
-+PR = "r35"
- 
- INITSCRIPT_NAME = "matrix-gui-2.0"
- INITSCRIPT_PARAMS = "defaults 97"
+diff --git a/recipes-apps/evse-hmi/evse-hmi_git.bb b/recipes-apps/evse-hmi/evse-hmi_git.bb
+deleted file mode 100755
+index 1bb66f5..0000000
+--- a/recipes-apps/evse-hmi/evse-hmi_git.bb
++++ /dev/null
+@@ -1,23 +0,0 @@
+-SUMMARY = "HMI demo for electronic vehicle charging station (EVSE) using QT QWidget tools"
+-LICENSE = "BSD-3-Clause"
+-LIC_FILES_CHKSUM = "file://main.cpp;beginline=1;endline=33;md5=a9cde3921a8be42ed79ab74661799104"
+-
+-inherit qt-provider
+-
+-PV = "1.0"
+-PR = "r0"
+-
+-BRANCH = "master"
+-SRC_URI = "git://git.ti.com/sitara-linux/evse-hmi.git;protocol=git;branch=${BRANCH}"
+-
+-SRCREV = "a257dfc05db311c74cb50838ff5b9e2cfb87dbfe"
+-
+-S = "${WORKDIR}/git"
+-
+-CREATE_SRCIPK = "1"                                                                               
+-SRCIPK_INSTALL_DIR = "example-applications/${PN}-${PV}"
+-
+-do_install() {
+-    install -d ${D}${bindir}
+-    install -m 755 evse_hmi ${D}${bindir}
+-}
 -- 
 1.9.1
 
