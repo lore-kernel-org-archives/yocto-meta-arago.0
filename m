@@ -1,44 +1,42 @@
-Return-Path: <jake@udc0866934>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 4B42652092
+Return-Path: <e-ruei1@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id BA90E52092
 	for <meta-arago@arago-project.org>;
-	Fri, 16 Nov 2018 19:47:49 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id wAGJldLE007472
-	for <meta-arago@arago-project.org>; Fri, 16 Nov 2018 13:47:39 -0600
+	Fri, 16 Nov 2018 19:53:31 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id wAGJrLBB129051
+	for <meta-arago@arago-project.org>; Fri, 16 Nov 2018 13:53:21 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1542397659;
-	bh=WTle0q1eAftxGd0PZuhOeTjaCDErOT1w7PtlgcrqDlE=;
-	h=From:To:CC:Subject:Date;
-	b=ajkjPtkGOEmY8hqJxoZc3W3l3JDf6td/D4Ju0+m+fNO+AcwEvthdavM0nj40wvLJ+
-	Xa/ORhwkwNwJeg7CNSZR7Wve3YUAiM7v/iZ95dQgAA+ccxTqQzE/Fz2SSGDM4P4cZk
-	ZR+TRrTrI7pOFcWcUj96IoLiCejEX0yRp61ANqX4=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wAGJldKo126786
+	s=ti-com-17Q1; t=1542398001;
+	bh=vMu8aicXMWgKZT4gZ3Ajo4eQCd80WOGiPmWlzpW17ik=;
+	h=From:To:Subject:Date;
+	b=aJ0w+Sze4t1EJ+lvMJ5QuQF/N3HwRWokO7gJtozOiC/fNH60f4nxqJV3dVvUB756M
+	+XPdSoJODkaUFDICquVLJpH+WCkwbusNUfP4pJfiUwAix7DwpfPx0YhXRHrQoub+kS
+	CKDk+64tuNuiwLp04Yds6VT9qRDGWaQIlefGEpO8=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wAGJrL6W119967
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 16 Nov 2018 13:47:39 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 16 Nov 2018 13:53:21 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Fri, 16 Nov 2018 13:47:38 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 16 Nov 2018 13:53:21 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Fri, 16 Nov 2018 13:47:38 -0600
-Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wAGJlc8J031485;
-	Fri, 16 Nov 2018 13:47:38 -0600
-Received: from jake by udc0866934 with local (Exim 4.82)
-	(envelope-from <jake@udc0866934>)
-	id 1gNk5a-0005n3-9e; Fri, 16 Nov 2018 14:47:38 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	Transport; Fri, 16 Nov 2018 13:53:21 -0600
+Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wAGJrLCE012663
+	for <meta-arago@arago-project.org>; Fri, 16 Nov 2018 13:53:21 -0600
+From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 16 Nov 2018 14:47:36 -0500
-Message-ID: <1542397656-22225-1-git-send-email-j-stiffler@ti.com>
+Date: Fri, 16 Nov 2018 14:53:12 -0500
+Message-ID: <1542397992-41880-1-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [tisdk-setup-scripts][PATCH] setup-uboot-env-am65x: remove board option
+Subject: [meta-processor-sdk][PATCH] ti-sgx-ddk-km: bump SRCREV to pickup the latest changes as listed below
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,57 +49,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Nov 2018 19:47:49 -0000
+X-List-Received-Date: Fri, 16 Nov 2018 19:53:32 -0000
 Content-Type: text/plain
 
-* Automatic board detection is functional, so remove this workaround.
+- um: Validate mutex before lock and unlock
+- um: Fix for RefCounting with mutex held
+- um: Set the default mutex type to pthread mutex
+- um: Fix the install path and scripts
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- setup-uboot-env-am65x.sh | 23 -----------------------
- 1 file changed, 23 deletions(-)
+ recipes-graphics/libgles/ti-sgx-ddk-um_1.14.3699939.bbappend | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/setup-uboot-env-am65x.sh b/setup-uboot-env-am65x.sh
-index 8d70880..beb7713 100644
---- a/setup-uboot-env-am65x.sh
-+++ b/setup-uboot-env-am65x.sh
-@@ -82,28 +82,6 @@ kernelimage="Image-""$platform"".bin"
- kernelimagesrc=`ls -1 $cwd/../board-support/prebuilt-images/$kernelimage`
- kernelimagedefault=`basename $kernelimagesrc`
+diff --git a/recipes-graphics/libgles/ti-sgx-ddk-um_1.14.3699939.bbappend b/recipes-graphics/libgles/ti-sgx-ddk-um_1.14.3699939.bbappend
+index 179a56d..0c2dcac 100644
+--- a/recipes-graphics/libgles/ti-sgx-ddk-um_1.14.3699939.bbappend
++++ b/recipes-graphics/libgles/ti-sgx-ddk-um_1.14.3699939.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = ".tisdk7"
++PR_append = ".tisdk8"
  
--board_name=""
--while [ -z "$board_name" ]
--do
--    echo "Do you have the AM65x EVM or IDK?"
--    echo " 1: UNKOWN"
--    echo " 2: EVM"
--    echo " 3: IDK"
--    echo
--    read -p "[ 1 ] " board
--
--    if [ ! -n "$board" ]; then
--        board="1"
--    fi
--
--    case $board in
--        "1") board_name="am65x";;
--        "2") board_name="am65x_evm";;
--        "3") board_name="am65x_idk";;
--        *) echo "Invalid reponse. Please enter 1-3."; echo;;
--    esac
--done
--
- echo "Select Linux kernel location:"
- echo " 1: TFTP"
- echo " 2: SD card"
-@@ -168,7 +146,6 @@ do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
- # Configurable settings
- do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
- do_expect "\"$prompt\"" "send \"setenv nfs_root $rootpath\"" $cwd/setupBoard.minicom
--do_expect "\"$prompt\"" "send \"setenv board_name $board_name\"" $cwd/setupBoard.minicom
- do_expect "\"$prompt\"" "send \"setenv name_kern $kernelimage\"" $cwd/setupBoard.minicom
- 
- # General macros
+ BRANCH = "${@bb.utils.contains('MACHINE_FEATURES','sgx','ti-img-sgx/rocko/${PV}','ti-img-sgx-nohardware/${PV}',d)}"
+-SRCREV = "${@bb.utils.contains('MACHINE_FEATURES','sgx','9ad48144e89d48c7bf2db2a12795985e7a80e4fa','07acdd3981364d5c4afdcb250e30d392bb53f951',d)}"
++SRCREV = "${@bb.utils.contains('MACHINE_FEATURES','sgx','bc62c9d0c590dfbc801bf6b10176c3a8b6a39d98','07acdd3981364d5c4afdcb250e30d392bb53f951',d)}"
 -- 
 1.9.1
 
