@@ -1,30 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 2E1B15297E
+	by arago-project.org (Postfix) with ESMTPS id 15299529CC
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Nov 2018 19:21:15 +0000 (UTC)
+	Mon, 19 Nov 2018 19:52:13 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id CB5DB40AE0;
-	Mon, 19 Nov 2018 19:21:04 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id A06E940AE8;
+	Mon, 19 Nov 2018 19:52:02 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id sTEtX65acphB; Mon, 19 Nov 2018 19:21:04 +0000 (UTC)
+	with ESMTP id bGUCBEr3oWTL; Mon, 19 Nov 2018 19:52:02 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
 	[100.15.91.218])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id EF88940A58;
-	Mon, 19 Nov 2018 19:21:02 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 50C1040AE0;
+	Mon, 19 Nov 2018 19:52:01 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id B4C94164CC2;
-	Mon, 19 Nov 2018 14:21:01 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id A3AB4165BA8;
+	Mon, 19 Nov 2018 14:52:00 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon, 19 Nov 2018 14:21:01 -0500
-Message-Id: <1542655261-45996-1-git-send-email-denis@denix.org>
+Date: Mon, 19 Nov 2018 14:51:59 -0500
+Message-Id: <1542657119-46946-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [oe-layersetup][PATCH] local.conf, local-poky.conf: unset ENABLE_BINARY_LOCALE_GENERATION = "0"
+In-Reply-To: <1542657119-46946-1-git-send-email-denis@denix.org>
+References: <1542657119-46946-1-git-send-email-denis@denix.org>
+Subject: [oe-layersetup][PATCH 2/2] coresdk-2018.04: add config for ti2018.04 release
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,45 +39,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2018 19:21:18 -0000
+X-List-Received-Date: Mon, 19 Nov 2018 19:52:14 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-It is currently results in error in master/thud due to postinst code refactoring:
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=13028
-
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- sample-files/local-poky.conf.sample | 2 +-
- sample-files/local.conf.sample      | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ configs/coresdk/coresdk-2018.04-config.txt | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+ create mode 100644 configs/coresdk/coresdk-2018.04-config.txt
 
-diff --git a/sample-files/local-poky.conf.sample b/sample-files/local-poky.conf.sample
-index af324df..34b6b10 100644
---- a/sample-files/local-poky.conf.sample
-+++ b/sample-files/local-poky.conf.sample
-@@ -120,7 +120,7 @@ USER_CLASSES ?= "buildstats image-mklibs image-prelink"
- PATCHRESOLVE = "noop"
- 
- # Qemu 0.12.x is giving too much problems recently (2010.05), so disable it for users
--ENABLE_BINARY_LOCALE_GENERATION = "0"
-+#ENABLE_BINARY_LOCALE_GENERATION = "0"
- 
- # By default the machine configuration file sets the IMAGE_FSTYPES.  But if you
- # would like to add additional file system types you can uncomment the
-diff --git a/sample-files/local.conf.sample b/sample-files/local.conf.sample
-index 9c732f6..d971b97 100644
---- a/sample-files/local.conf.sample
-+++ b/sample-files/local.conf.sample
-@@ -120,7 +120,7 @@ USER_CLASSES ?= "buildstats image-mklibs image-prelink"
- PATCHRESOLVE = "noop"
- 
- # Qemu 0.12.x is giving too much problems recently (2010.05), so disable it for users
--ENABLE_BINARY_LOCALE_GENERATION = "0"
-+#ENABLE_BINARY_LOCALE_GENERATION = "0"
- 
- # By default the machine configuration file sets the IMAGE_FSTYPES.  But if you
- # would like to add additional file system types you can uncomment the
+diff --git a/configs/coresdk/coresdk-2018.04-config.txt b/configs/coresdk/coresdk-2018.04-config.txt
+new file mode 100644
+index 0000000..a3faa17
+--- /dev/null
++++ b/configs/coresdk/coresdk-2018.04-config.txt
+@@ -0,0 +1,13 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.36,8bd16328a9332c57b03198826e22b48fadcd21d9,layers=
++meta-arago,git://arago-project.org/git/meta-arago.git,rocko,ti2018.04,layers=meta-arago-distro:meta-arago-extras
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,rocko,682ad61c071a9710e9f9d8a32ab1b5f3c14953d1,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,rocko,eae996301d9c097bcbeb8046f08041dc82bb62f8,layers=meta-networking:meta-python:meta-oe:meta-gnome
++meta-ti,git://git.yoctoproject.org/meta-ti,rocko,ti2018.04,layers=
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,rocko,75dfb67bbb14a70cd47afda9726e2e1c76731885,layers=meta-linaro-toolchain:meta-optee
++oe-core,git://git.openembedded.org/openembedded-core,rocko,7d518d342eb67d25aa071fb08d03f06d6da576c6,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64.conf.sample
 -- 
 2.7.4
 
