@@ -1,30 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 004A5529AC
+Return-Path: <j-stiffler@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 0746E529AC
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Nov 2018 19:52:12 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 9A73340AE2;
-	Mon, 19 Nov 2018 19:52:02 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id FGuSZo_wtqVN; Mon, 19 Nov 2018 19:52:02 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
-	[100.15.91.218])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4507C409F0;
-	Mon, 19 Nov 2018 19:52:01 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 9FE5C165619;
-	Mon, 19 Nov 2018 14:52:00 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 19 Nov 2018 14:51:58 -0500
-Message-Id: <1542657119-46946-1-git-send-email-denis@denix.org>
+	Mon, 19 Nov 2018 19:54:36 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wAJJsQ42078167
+	for <meta-arago@arago-project.org>; Mon, 19 Nov 2018 13:54:26 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1542657266;
+	bh=DoESk8C7Tiq2Oa33KfftdCImM3xgLb6MqvFjF7ndYds=;
+	h=From:To:CC:Subject:Date;
+	b=Gim5i/4rqtSW+7GDWGXPFCxzQ1KpA3nihXYhxwuvW+nLiVl3Uy8gXzl4pTwbUNAxQ
+	k2ZBiFehzgjC/i42YmGEZjwru3DZTxZC9V7m1SvBAF0a258i78zrS6/D/O0nS2ICis
+	U++KLCXI2TMyx0Y+jFIVOPGPxVNOnfM0Iyq1TwiI=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wAJJsQxw038854
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Mon, 19 Nov 2018 13:54:26 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
+	Mon, 19 Nov 2018 13:54:26 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
+	Transport; Mon, 19 Nov 2018 13:54:26 -0600
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wAJJsQSa008093;
+	Mon, 19 Nov 2018 13:54:26 -0600
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 19 Nov 2018 14:42:02 -0500
+Message-ID: <1542656522-3832-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [oe-layersetup][PATCH 1/2] coresdk-2018.03: add config for ti2018.03 release
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [rocko/master][PATCH] ti-tisdk-setup: bump SRCREV to the latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,35 +49,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Nov 2018 19:52:14 -0000
+X-List-Received-Date: Mon, 19 Nov 2018 19:54:37 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+* Get update to am65x u-boot setup script to remove board detection
+  workaround.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- configs/coresdk/coresdk-2018.03-config.txt | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
- create mode 100644 configs/coresdk/coresdk-2018.03-config.txt
+ meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/configs/coresdk/coresdk-2018.03-config.txt b/configs/coresdk/coresdk-2018.03-config.txt
-new file mode 100644
-index 0000000..56408f0
---- /dev/null
-+++ b/configs/coresdk/coresdk-2018.03-config.txt
-@@ -0,0 +1,13 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,1.36,8bd16328a9332c57b03198826e22b48fadcd21d9,layers=
-+meta-arago,git://arago-project.org/git/meta-arago.git,rocko,ti2018.03,layers=meta-arago-distro:meta-arago-extras
-+meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,rocko,682ad61c071a9710e9f9d8a32ab1b5f3c14953d1,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,rocko,d1824f5572faa9d7cc8eb14dd83d61faa8c35988,layers=meta-networking:meta-python:meta-oe:meta-gnome
-+meta-ti,git://git.yoctoproject.org/meta-ti,rocko,ti2018.03,layers=
-+meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,rocko,75dfb67bbb14a70cd47afda9726e2e1c76731885,layers=meta-linaro-toolchain:meta-optee
-+oe-core,git://git.openembedded.org/openembedded-core,rocko,f6f54155420ae54a34f1ab87e76623c536adf2f9,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index 4907fc6..24d8c6a 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
+ 
+-PR = "r40"
++PR = "r41"
+ 
+ BRANCH ?= "master"
+-SRCREV = "68829daa05d20c1621476acb6591b741d9bd613b"
++SRCREV = "f0548d4327d025aeba1e8a81534539e6e4d98103"
+ SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
+ 
+ S = "${WORKDIR}/git/"
 -- 
 2.7.4
 
