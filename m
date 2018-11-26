@@ -1,42 +1,46 @@
-Return-Path: <yuanzhao@ti.com>
+Return-Path: <a0227568local@uda0227568>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 371E05298D
+	by arago-project.org (Postfix) with ESMTPS id 8F24E529A8
 	for <meta-arago@arago-project.org>;
-	Fri, 30 Nov 2018 16:41:53 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id wAUGfgrh016410
-	for <meta-arago@arago-project.org>; Fri, 30 Nov 2018 10:41:42 -0600
+	Mon, 26 Nov 2018 17:19:09 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id wAQHIwJp071047
+	for <meta-arago@arago-project.org>; Mon, 26 Nov 2018 11:18:58 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1543596102;
-	bh=ku8l4kfF8YmYnzCc+VmWZmkk/dDu9czqa47OVO6YDVE=;
+	s=ti-com-17Q1; t=1543252739;
+	bh=v604yCar69nFV6/ObNzVLcyQ8Y24B+P7QUkc2l3lkI4=;
 	h=From:To:CC:Subject:Date;
-	b=YsyXCav/ITqpab1L3rweqN5P0lV0v3wgzD9AiivfJMHOlsr5LAifnXH7hWO81e1xN
-	deKbawa+bf1fOR3LWohjfXCUMgG3wEFfQHwU+/sr4Z05sq6dNO3Nhr4q+LM6K8uq6e
-	xHmAMxlPq97kvGbJd4Ky6WE0IOqCtZv3GqnBt/SQ=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wAUGfgXt123647
+	b=GVC7zDkwl+ikGX0tNs4uOoqfx3U34k4YTub7Bxk0zhoPVFqJMyB8PvD53CtEsmvEZ
+	7t/bfHUZhbCWawjR4G0bgjyg/x+/OikyhB4bl4dw2xkcpiJtIZEej8Nk+M8yPUbvb3
+	2tH5pPZQ3v8uTf/9X/B8KNOt8OdbX1f7vdLpSuwc=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wAQHIweH097319
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 30 Nov 2018 10:41:42 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 26 Nov 2018 11:18:58 -0600
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Fri, 30 Nov 2018 10:41:41 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 26 Nov 2018 11:18:58 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Fri, 30 Nov 2018 10:41:42 -0600
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wAUGffcc016260;
-	Fri, 30 Nov 2018 10:41:41 -0600
-From: Yuan Zhao <yuanzhao@ti.com>
+	Transport; Mon, 26 Nov 2018 11:18:58 -0600
+Received: from uda0227568 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wAQHIw2k020320;
+	Mon, 26 Nov 2018 11:18:58 -0600
+Received: from a0227568local by uda0227568 with local (Exim 4.82)
+	(envelope-from <a0227568local@uda0227568>)
+	id 1gRKXC-0007Kz-Gb; Mon, 26 Nov 2018 11:18:58 -0600
+From: Krunal Bhargav <a0227568@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 30 Nov 2018 10:41:35 -0600
-Message-ID: <20181130164135.101859-1-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.14.1
+Date: Mon, 26 Nov 2018 11:17:59 -0600
+Message-ID: <1543252679-28171-1-git-send-email-a0227568@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] ocl: update opencl tidl firmware to 01.01.17.01
+X-Mailman-Approved-At: Fri, 30 Nov 2018 22:27:58 +0000
+Cc: k-bhargav@ti.com
+Subject: [meta-processor-sdk][PATCH] Commit ID update for the video-graphics-test
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,53 +53,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Nov 2018 16:41:53 -0000
+X-List-Received-Date: Mon, 26 Nov 2018 17:19:09 -0000
 Content-Type: text/plain
 
-- firmware is built with latest TIDL library v1.1.2.2 for PSDK v5.2
-- firmware will be built into opencl monitors
+video-graphics-test application is enhanced to demonstrate GC320 usage
+for scaling, rotation and composition/overlaying feature. Updated the
+recipe to pick the new commit id.
 
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+Signed-off-by: Krunal Bhargav <a0227568@ti.com>
 ---
- meta-arago-extras/recipes-ti/ocl/ocl.inc               | 2 +-
- meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-index 3450a400..96d1836f 100644
---- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
-+++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-@@ -1,6 +1,6 @@
- # patch version at the end needs to be in double digits
- PV = "1.1.17.01"
--INC_PR = "r0"
-+INC_PR = "r1"
+diff --git a/recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb b/recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb
+index cbc664f..cee5c8c 100644
+--- a/recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb
++++ b/recipes-multimedia/video-graphics-test/video-graphics-test_1.0.bb
+@@ -9,7 +9,7 @@ DEPENDS += "libdrm ti-gc320-libs cmem qtdeclarative"
+ PR = "r2"
  
- LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+ BRANCH = "master"
+-SRCREV = "54ec5ff165413d41d32bb2672e127487ee37a82b"
++SRCREV = "2db3848cd1047e688ea0a94a987e35a292bcbda9"
  
-diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-index 221e0d62..a47d9128 100644
---- a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-@@ -3,7 +3,7 @@ SUMMARY = "OpenCL TIDL firmware for AM57xx"
- LICENSE = "TI-TFL"
- LIC_FILES_CHKSUM = "file://LICENSE.ti;md5=082a028431c455252c1e1d3d1021d382"
- 
--PV = "01.01.16.00"
-+PV = "01.01.17.01"
- PR = "r0"
- 
- require recipes-ti/includes/arago-paths.inc
-@@ -15,7 +15,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- GIT_URI      = "git://git.ti.com/opencl/opencl-firmware.git"
- GIT_PROTOCOL = "git"
- BRANCH       = "master"
--SRCREV       = "185e13d273fbbbbdb007111f87855f43c03535fa"
-+SRCREV       = "2f1715affab9ef4debf02769cf113dc1922cf75f"
- 
- SRC_URI      = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
- 
+ SRC_URI = "git://git.ti.com/sitara-linux/video-graphics-test.git;protocol=git;branch=${BRANCH} \
+ "
 -- 
-2.14.1
+1.9.1
 
 
