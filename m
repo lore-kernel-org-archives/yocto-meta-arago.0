@@ -1,44 +1,44 @@
 Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id A8896529D0
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 3DBE1529A8
 	for <meta-arago@arago-project.org>;
-	Mon, 26 Nov 2018 22:08:09 +0000 (UTC)
+	Mon, 26 Nov 2018 22:11:56 +0000 (UTC)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id wAQM7wdA024325
-	for <meta-arago@arago-project.org>; Mon, 26 Nov 2018 16:07:58 -0600
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wAQMBjmE111787
+	for <meta-arago@arago-project.org>; Mon, 26 Nov 2018 16:11:45 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1543270079;
-	bh=dSfLw1YImSZNolLkp/9r1wumuXGsBBb3qijAUkU6+Xo=;
+	s=ti-com-17Q1; t=1543270305;
+	bh=GfKI79vEnF4l5F3sR5h7EK1famTWZe8ceH1CtXIVvls=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=cxq+lE6BEKnQREmGSTDd+HpIN/PwDgtdvP0vwe1QrhBJOE7dpN1I9d0uZMXSU+u9J
-	Bc68iX58itBVaQtOXxkOOyoLVxWjzwbupmU7fkFm1QWBdp2fXbvwhp60dYAfixRgzO
-	U509RtYoM/pFxEGe6deGVPHw9R8k5Iv4DIFs1sLI=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wAQM7wA0016666
+	b=pQAI6rV/WdkkZ4HPyiIaf5paDzlAeC7KJx7InhWb2P5ocrp8TFkUmrcOVRHxkgyEh
+	qpq2fwvtBPSoZvBvEZBrRSJZ3LwIWqQ7cGbTUy9Kn8QvNST13A6PKVQedSMVBpcMOJ
+	xIQPGiPTP/9mbNZFraOYZdldYQ1eZYq/BYsRVbGk=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wAQMBjkF019700
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 26 Nov 2018 16:07:58 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 26 Nov 2018 16:11:45 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Mon, 26 Nov 2018 16:07:58 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 26 Nov 2018 16:11:45 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Mon, 26 Nov 2018 16:07:58 -0600
+	Transport; Mon, 26 Nov 2018 16:11:45 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wAQM7wvZ018801;
-	Mon, 26 Nov 2018 16:07:58 -0600
-Date: Mon, 26 Nov 2018 17:07:58 -0500
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wAQMBiPP017227;
+	Mon, 26 Nov 2018 16:11:44 -0600
+Date: Mon, 26 Nov 2018 17:11:44 -0500
 From: Denys Dmytriyenko <denys@ti.com>
 To: Qin Su <qsu@ti.com>
-Message-ID: <20181126220758.GH21933@beryl>
-References: <1542837395-7368-1-git-send-email-qsu@ti.com>
+Message-ID: <20181126221144.GI21933@beryl>
+References: <1542826913-4093-1-git-send-email-qsu@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1542837395-7368-1-git-send-email-qsu@ti.com>
+In-Reply-To: <1542826913-4093-1-git-send-email-qsu@ti.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH v2] armnn: bump SRCREV and add a demo example
+Subject: Re: [PATCH v2] arm-compute-library: bump SRCREV and add TI benchmark test group.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,137 +51,133 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Nov 2018 22:08:10 -0000
+X-List-Received-Date: Mon, 26 Nov 2018 22:11:56 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Wed, Nov 21, 2018 at 04:56:35PM -0500, Qin Su wrote:
+On Wed, Nov 21, 2018 at 02:01:53PM -0500, Qin Su wrote:
 > updated to the latest version of 18.08
+> updated LIC_FILES_CHKSUM as Copyright time changed in LICENSE from 2017 to 2017-2018
 > updated to generate versioned library
-> created a demo example with mobileNet
-> 
+> added benchmark preset group for squeezenet and inceptionnet
+
+Mostly looks good. 2 comments re: permissions and *.so below.
+
+
 > Signed-off-by: Qin Su <qsu@ti.com>
 > ---
+>  .../0001-add-ti-benchmark-test-group.patch         | 64 +++++++++++++++++++
+>  .../0002-add-ti-benchmark-test-group.patch         | 74 ++++++++++++++++++++++
+>  .../0003-add-ti-benchmark-test-group.patch         | 42 ++++++++++++
+>  .../0004-add-ti-benchmark-test-group.patch         | 49 ++++++++++++++
+>  .../0005-add-ti-benchmark-test-group.patch         | 46 ++++++++++++++
+>  .../0006-add-ti-benchmark-test-group.patch         | 44 +++++++++++++
+>  .../0007-add-ti-benchmark-test-group.patch         | 44 +++++++++++++
+>  .../0008-add-ti-benchmark-test-group.patch         | 31 +++++++++
+>  .../0009-add-ti-benchmark-test-group.patch         | 44 +++++++++++++
+>  .../0010-add-ti-benchmark-test-group.patch         | 50 +++++++++++++++
+>  .../0011-add-ti-benchmark-test-group.patch         | 37 +++++++++++
+>  .../arm-compute-library/arm-compute-library_git.bb | 32 ++++++----
+>  12 files changed, 546 insertions(+), 11 deletions(-)
+>  create mode 100755 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library/0001-add-ti-benchmark-test-group.patch
+>  create mode 100755 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library/0002-add-ti-benchmark-test-group.patch
+>  create mode 100755 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library/0003-add-ti-benchmark-test-group.patch
+>  create mode 100755 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library/0004-add-ti-benchmark-test-group.patch
+>  create mode 100755 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library/0005-add-ti-benchmark-test-group.patch
+>  create mode 100755 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library/0006-add-ti-benchmark-test-group.patch
+>  create mode 100755 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library/0007-add-ti-benchmark-test-group.patch
+>  create mode 100755 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library/0008-add-ti-benchmark-test-group.patch
+>  create mode 100755 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library/0009-add-ti-benchmark-test-group.patch
+>  create mode 100755 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library/0010-add-ti-benchmark-test-group.patch
+>  create mode 100755 meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library/0011-add-ti-benchmark-test-group.patch
 
-Would be nice to document here changes between patch revisions, i.e. v1 -> v2
-
-
->  ...0003-add-more-test-command-line-arguments.patch |  75 ++
->  .../armnn/0004-generate-versioned-library.patch    |  63 ++
->  .../0005-add-armnn-mobilenet-test-example.patch    |  69 ++
->  .../armnn/0006-armnn-mobilenet-test-example.patch  | 886 +++++++++++++++++++++
->  .../recipes-support/armnn/armnn_git.bb             |  40 +-
->  5 files changed, 1125 insertions(+), 8 deletions(-)
->  create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0003-add-more-test-command-line-arguments.patch
->  create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0004-generate-versioned-library.patch
->  create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0005-add-armnn-mobilenet-test-example.patch
->  create mode 100755 meta-arago-extras/recipes-support/armnn/armnn/0006-armnn-mobilenet-test-example.patch
->  mode change 100644 => 100755 meta-arago-extras/recipes-support/armnn/armnn_git.bb
-
-^^^^^^^^^^^^^^^^^^^^^^
-Why are you making all patches and the recipe executable?
+Please fix file permissions.
 
 [snip]
 
 
-> diff --git a/meta-arago-extras/recipes-support/armnn/armnn_git.bb b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
-> old mode 100644
-> new mode 100755
-> index 726a9da..2b25da8
-> --- a/meta-arago-extras/recipes-support/armnn/armnn_git.bb
-> +++ b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
-> @@ -1,23 +1,39 @@
->  SUMMARY = "ARM Neural Network SDK"
->  DESCRIPTION = "Linux software and tools to enable machine learning (Caffe/Tensorflow) workloads on power-efficient devices"
-> -LICENSE = "MIT"
-> +LICENSE = "MIT & Apache-2.0"
->  LIC_FILES_CHKSUM = "file://LICENSE;md5=3e14a924c16f7d828b8335a59da64074"
-> +LIC_FILES_CHKSUM_tfmodel = "file://tfmodel/LICENSE;md5=7e2764bb89441ae65b52f305ffee5fa8"
-
-This is incorrect - why do you use _tfmodel override here? And it won't work 
-anyway. You simply need to add both entries to the variable.
-
-BTW, tfmodel is a new entry in v2 - it wasn't there in v1...
-
-
-> -PV = "20180502"
-> +PV = "18.08"
+> diff --git a/meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library_git.bb b/meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library_git.bb
+> index 8a65ade..3c6fae5 100644
+> --- a/meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library_git.bb
+> +++ b/meta-arago-extras/recipes-support/arm-compute-library/arm-compute-library_git.bb
+> @@ -1,18 +1,30 @@
+>  SUMMARY = "The ARM Computer Vision and Machine Learning library"
+>  DESCRIPTION = "The ARM Computer Vision and Machine Learning library is a set of functions optimised for both ARM CPUs and GPUs."
+>  LICENSE = "MIT"
+> -LIC_FILES_CHKSUM = "file://LICENSE;md5=e2c93841b20cd522af621cabaea3aef8"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=762a7ba8d2ddc3b38d88742fbaf0b62d"
+>  
+> -COMPATIBLE_MACHINE = "armv7a"
+> +COMPATIBLE_MACHINE = "armv7a|aarch64"
+>  
+>  SRC_URI = " \
+>      git://github.com/ARM-software/ComputeLibrary.git;branch=${BRANCH} \
+> +    file://0001-add-ti-benchmark-test-group.patch \
+> +    file://0002-add-ti-benchmark-test-group.patch \
+> +    file://0003-add-ti-benchmark-test-group.patch \
+> +    file://0004-add-ti-benchmark-test-group.patch \
+> +    file://0005-add-ti-benchmark-test-group.patch \
+> +    file://0006-add-ti-benchmark-test-group.patch \
+> +    file://0007-add-ti-benchmark-test-group.patch \
+> +    file://0008-add-ti-benchmark-test-group.patch \
+> +    file://0009-add-ti-benchmark-test-group.patch \
+> +    file://0010-add-ti-benchmark-test-group.patch \
+> +    file://0011-add-ti-benchmark-test-group.patch \
+>  "
+>  
+> -PV  = "18.05"
+> +PV  = "18.08"
 > +PV_MAJOR = "${@d.getVar('PV',d,1).split('.')[0]}"
 >  
 >  BRANCH = "master"
-> -SRCREV = "4c7098bfeab1ffe1cdc77f6c15548d3e73274746"
-> +SRCREV = "c577f2c6a3b4ddb6ba87a882723c53a248afbeba"
-> +SRCREV_tfmodel = "d299118e54aade794d5d98d9122b392783faeb8a"
-> +SRCREV_tidl-api = "7e9a3942ec38efd64d45e34c10cba2f2938f5618"
-> +
-> +SRCREV_FORMAT = "armnn"
+> -SRCREV = "e2542c9f35ca427286822cd0c9296f49914f78b0"
+> +SRCREV = "52ba29e936b8e711e8acdfe819e36f884d4f3fe1"
 >  
 >  S = "${WORKDIR}/git"
 >  
->  inherit cmake
+> @@ -22,7 +34,8 @@ do_compile_prepend() {
 >  
->  SRC_URI = " \
-> -    git://github.com/ARM-software/armnn.git;branch=${BRANCH} \
-> +    git://github.com/ARM-software/armnn.git;name=armnn;branch=${BRANCH} \
->      file://0001-stdlib-issue-work-around.patch \
->      file://0002-enable-use-of-boost-shared-library.patch \
-> +    file://0003-add-more-test-command-line-arguments.patch \
-> +    file://0004-generate-versioned-library.patch \
-> +    file://0005-add-armnn-mobilenet-test-example.patch \
-> +    file://0006-armnn-mobilenet-test-example.patch \
-> +    git://github.com/tensorflow/models;name=tfmodel;branch=${BRANCH};subdir=${WORKDIR}/tfmodel;destsuffix=tfmodel \
-> +    http://download.tensorflow.org/models/mobilenet_v1_2018_02_22/mobilenet_v1_1.0_224.tgz;name=mobilenet;subdir=${WORKDIR}/tfmodel;destsuffix=tfmodel \
-> +    git://git.ti.com/tidl/tidl-api.git;name=tidl-api;branch=${BRANCH};subdir=${WORKDIR}/tidl-api;destsuffix=tidl-api \
->  "
+>  inherit scons
 >  
-> +SRC_URI[mobilenet.md5sum] = "d5f69cef81ad8afb335d9727a17c462a"
-> +SRC_URI[mobilenet.sha256sum] = "1ccb74dbd9c5f7aea879120614e91617db9534bdfaa53dfea54b7c14162e126b"
-> +
->  DEPENDS = " \
->      boost \
->      protobuf \
-> @@ -25,6 +41,7 @@ DEPENDS = " \
->      arm-compute-library \
->      armnn-caffe \
->      armnn-tensorflow \
-> +    opencv \
->  "
+> -EXTRA_OESCONS = "arch=armv7a extra_cxx_flags="-fPIC" benchmark_tests=1 validation_tests=0 neon=1 openmp=1 opencl=0"
+> +EXTRA_OESCONS = "arch=armv7a extra_cxx_flags="-fPIC" benchmark_tests=1 validation_tests=0 neon=1 openmp=1 opencl=0 set_soname=1"
+> +EXTRA_OESCONS_aarch64 = "arch=arm64-v8a extra_cxx_flags="-fPIC" benchmark_tests=1 validation_tests=0 neon=1 openmp=1 opencl=0 set_soname=1"
 >  
->  RDEPENDS_${PN} = " arm-compute-library protobuf boost "
-> @@ -39,22 +56,29 @@ EXTRA_OECMAKE=" \
->      -DARMCOMPUTENEON=1 \
->      -DBUILD_TESTS=1 -DPROFILING=1 \
->      -DTHIRD_PARTY_INCLUDE_DIRS=${STAGING_DIR_HOST}${includedir} \
-> +    -DBUILD_ARMNN_EXAMPLES=1 \
-> +    -DGENERIC_LIB_VERSION=${PV} -DGENERIC_LIB_SOVERSION=${PV_MAJOR} \
->  "
->  
-> +TESTVECS_INSTALL_DIR = "${datadir}/arm/armnn"
-> +
->  do_install_append() {
->      CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
->      install -d ${D}${bindir}
->      find ${WORKDIR}/build/tests -maxdepth 1 -type f -executable -exec cp $CP_ARGS {} ${D}${bindir} \;
->      cp $CP_ARGS ${WORKDIR}/build/UnitTests  ${D}${bindir}
-> +    install -d ${D}${TESTVECS_INSTALL_DIR}/models
-> +    cp ${WORKDIR}/tfmodel/mobilenet_v1_1.0_224_frozen.pb  ${D}${TESTVECS_INSTALL_DIR}/models
-> +    cp ${WORKDIR}/git/tests/TfMobileNet-Armnn/labels.txt  ${D}${TESTVECS_INSTALL_DIR}/models
-> +    install -d ${D}${TESTVECS_INSTALL_DIR}/testvecs
-> +    cp ${WORKDIR}/tidl-api/examples/classification/clips/*.mp4  ${D}${TESTVECS_INSTALL_DIR}/testvecs
-> +    cp ${WORKDIR}/tidl-api/examples/classification/images/*.jpg  ${D}${TESTVECS_INSTALL_DIR}/testvecs
->      chrpath -d ${D}${bindir}/*
->  }
->  
->  CXXFLAGS += "-fopenmp"
 >  LIBS += "-larmpl_lp64_mp"
+>  
+> @@ -30,7 +43,7 @@ do_install() {
+>      CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
+>  
+>      install -m 0755 -d ${D}${libdir}
+> -    for lib in ${S}/build/*.so
+> +    for lib in ${S}/build/*.so*
+>      do
+>          install -m 0755 $lib ${D}${libdir}
+>      done
+> @@ -43,16 +56,13 @@ do_install() {
+>      # Install built source package as expected by ARMNN
+>      install -d ${D}${datadir}/${BPN}
+>      cp $CP_ARGS ${S}/. ${D}${datadir}/${BPN}
+> +    # Remove unneeded symlink .so
+> +    rm -f ${D}${datadir}/${BPN}/build/*.so
+
+Why? They are useful for development and would automatically get packaged into 
+${PN}-dev package...
+
+
+>  }
 >  
 > -SOLIBS = ".so"
 > -FILES_SOLIBSDEV = ""
-> -FILES_${PN} += "{bindir}/*"
-> -FILES_${PN} += "{libdir}/*"
-> +FILES_${PN} += "${TESTVECS_INSTALL_DIR}"
->  FILES_${PN}-dev += "{libdir}/cmake/*"
->  INSANE_SKIP_${PN}-dev = "dev-elf"
+>  INSANE_SKIP_${PN} = "ldflags"
+>  INSANE_SKIP_${PN}-dev = "dev-elf ldflags"
+>  
+> -PACKAGES =+ "${PN}-source"
+> -FILES_${PN} += "${bindir}/*"
+> -FILES_${PN} += "${libdir}/*.so"
+>  FILES_${PN}-source = "${datadir}/${BPN}"
+>  INSANE_SKIP_${PN}-source = "ldflags libdir staticdev"
+>  INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 > -- 
 > 1.9.1
 > 
