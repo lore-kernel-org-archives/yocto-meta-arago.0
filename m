@@ -1,42 +1,44 @@
-Return-Path: <e-ruei1@ti.com>
+Return-Path: <denys@ti.com>
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 88FDE5298A
+	by arago-project.org (Postfix) with ESMTPS id C60B45299E
 	for <meta-arago@arago-project.org>;
-	Thu, 29 Nov 2018 16:05:23 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wATG5CUF098565
-	for <meta-arago@arago-project.org>; Thu, 29 Nov 2018 10:05:12 -0600
+	Thu, 29 Nov 2018 18:06:48 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wATI6cCH002217
+	for <meta-arago@arago-project.org>; Thu, 29 Nov 2018 12:06:38 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1543507512;
-	bh=FIZRrQ2/PQtQMOOsNrKRaXA6aQ4SfnFLmOwV3L5RQk0=;
-	h=From:To:Subject:Date;
-	b=Hdt+ucJjZ3xjgkLXmd53b0EHbnXGwEE1fgWaC2sqjjoW2x70R8aCy+CqFJ/wwKt5K
-	aJ9TotC5DsVvISWclWcIeOdjAA7eiawUyM0Yfzs6vNMOB2MkVS0hUApHwP9k31X2Ds
-	cyUAqC6JXS34ni1N5Z3x7TOUQ0wQXnGPqZagvCkA=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wATG5C2e018728
+	s=ti-com-17Q1; t=1543514798;
+	bh=MvU0CsqTIoFbfqDTdYS4f3xnJtQGsP4gCG7RkeVq4Jk=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=WYyAjQXnZ/SFTh+W1thVL/XJH/7zP4fmQEEyTLXfRGCMFRuwAOViQ1m8jDv+5YDqg
+	e4vIX+CYoIIZtV541J0zxAzvl+ZqIXuCexxQOmFd7KcSRC2j2gmqeij4Sik4j9AnU3
+	AgWhXWlTBCOTZvet57mUsCCLaN3hhBFBNVyNHmAA=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wATI6bPZ109874
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 29 Nov 2018 10:05:12 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 29 Nov 2018 12:06:38 -0600
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Thu, 29 Nov 2018 10:05:12 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 29 Nov 2018 12:06:37 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Thu, 29 Nov 2018 10:05:12 -0600
-Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wATG5CnI013760
-	for <meta-arago@arago-project.org>; Thu, 29 Nov 2018 10:05:12 -0600
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 29 Nov 2018 11:05:05 -0500
-Message-ID: <1543507505-40833-1-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
+	Transport; Thu, 29 Nov 2018 12:06:37 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wATI6bt3008261;
+	Thu, 29 Nov 2018 12:06:37 -0600
+Date: Thu, 29 Nov 2018 13:06:37 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Qin Su <qsu@ti.com>
+Message-ID: <20181129180636.GN29204@beryl>
+References: <1543358655-13618-1-git-send-email-qsu@ti.com>
 MIME-Version: 1.0
+In-Reply-To: <1543358655-13618-1-git-send-email-qsu@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] Revert "weston-init: add warning messages for requirement of input devices"
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH v3] arm-compute-library: bump SRCREV and add TI benchmark test group.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,46 +51,9 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Nov 2018 16:05:24 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 29 Nov 2018 18:06:49 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-This reverts commit e594e0697269c1b60fbd49aab9d76797e25a3e10.
-This patch is no longer needed with the weston-conf patch to
-allow Weston to start even when no input devices are found.
----
- .../recipes-graphics/wayland/weston-init/runWeston            | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston b/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
-index 8bb968b..aed5d5f 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/runWeston
-@@ -18,7 +18,11 @@ cat << EOF
- 
- 
- 
--        Please wait... Weston is loading
-+                                        Please wait...
-+
-+
-+
-+
- 
- 
- 
-@@ -26,11 +30,6 @@ cat << EOF
- 
- 
- 
--Note: If you see that the display is stuck on this message
--for more than 5 seconds, Weston probably failed to run.
--Weston will not run without input devices such as
--touchscreen or a mouse. Please check your setup and
--attach an input device, and reboot.
- 
- 
- 
--- 
-1.9.1
-
+Thanks, merged into next for testing.
 
