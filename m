@@ -1,44 +1,44 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 0F5B85297E
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 4AEF7529A6
 	for <meta-arago@arago-project.org>;
-	Wed,  5 Dec 2018 14:34:18 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wB5EY8Di072239
+	Wed,  5 Dec 2018 14:34:19 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id wB5EY8xk007521
 	for <meta-arago@arago-project.org>; Wed, 5 Dec 2018 08:34:08 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1544020448;
-	bh=V3INcZm+AiZ7Mg5zaXfMH9nDNLaCatSBrm4IE4gaEhc=;
+	bh=Z2MeQ4YMRR5XjX3xiqwwovM4lvhbaZ4Jk+6bAtN3Zdw=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=lbT3IMQvWJQRQ/WKfK2lKDp1Vd5kEARGbMIJADXpJS2DoKFIZGing0r8c2zba5+PH
-	YlX//a3HegT7GW97UQl9iAwWM7cJU1CYtOJ44rXhPb6xYPc/aj3CojjSx0RMTEvB16
-	LmdyKg3cppIkbDVDawKD99+J6hKvbhg9YNd8mOsI=
+	b=miSM1EXv7ul+dL8iMsnlKuoY3rg8J8oQGOlp9uN4SE7H2NXhNvC2TkguwwWc6aSpK
+	4cdpisXqTVpUFRnES1hXce4PMLQgvRvrJJh5dsEtwZI2qxaSRtErRw8JTqv2Ha3Ohi
+	pmLx7wgWIq0bxzOfDbEq8hV9w28Q26Xbvz+I6V5c=
 Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wB5EY7mc130515
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wB5EY8G6028599
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@arago-project.org>; Wed, 5 Dec 2018 08:34:08 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE114.ent.ti.com
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE114.ent.ti.com
 	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Wed, 5 Dec 2018 08:34:07 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 5 Dec 2018 08:34:08 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
 	Transport; Wed, 5 Dec 2018 08:34:07 -0600
 Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wB5EY77k023930;
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wB5EY77l023930;
 	Wed, 5 Dec 2018 08:34:07 -0600
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 5 Dec 2018 09:21:43 -0500
-Message-ID: <1544019704-20384-2-git-send-email-j-stiffler@ti.com>
+Date: Wed, 5 Dec 2018 09:21:44 -0500
+Message-ID: <1544019704-20384-3-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1544019704-20384-1-git-send-email-j-stiffler@ti.com>
 References: <1544019704-20384-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko/master][PATCH 2/3] arago-tiny-image: minimal sysvinit-based filesystem
+Subject: [rocko/master][PATCH 3/3] arago-core-tisdk-image: add arago-tiny-image rootfs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,59 +56,31 @@ Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-core/images/arago-tiny-image.bb        | 43 ++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
- create mode 100644 meta-arago-distro/recipes-core/images/arago-tiny-image.bb
+ meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-tiny-image.bb b/meta-arago-distro/recipes-core/images/arago-tiny-image.bb
-new file mode 100644
-index 0000000..56e9429
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/images/arago-tiny-image.bb
-@@ -0,0 +1,43 @@
-+
-+# Common pieces for Arago images
-+
-+LICENSE = "MIT"
-+
-+COMPATIBLE_MACHINE = "ti-soc"
-+
-+IMAGE_FEATURES += "package-management splash"
-+
-+# 4KB per 1 inode should be enough
-+EXTRA_IMAGECMD_ext2.gz += "-i 4096"
-+
-+# Install a small set of utils which can be used for diagnostics
-+ARAGO_TINY_IMAGE_EXTRA_INSTALL ?= "parted util-linux e2fsprogs dosfstools devmem2"
-+
-+IMAGE_INSTALL += " \
-+	packagegroup-arago-sysvinit-boot \
-+	${ARAGO_TINY_IMAGE_EXTRA_INSTALL} \
-+"
-+
-+export IMAGE_BASENAME = "arago-tiny-image"
-+
-+IMAGE_LINGUAS = ""
-+
-+make_bootfiles_symlinks_relative() {
-+    for f in "${IMAGE_ROOTFS}/boot"/*
-+    do
-+        [ -L "$f" ] || continue
-+
-+        l=$(readlink "$f")
-+        if [ "${l:0:6}" == "/boot/" ]
-+        then
-+            ln -sf "${l##/boot/}" "$f"
-+        elif ["${l:0:1}" == "/" ]
-+        then
-+            ln -sf "..$l" "$f"
-+        fi
-+    done
-+}
-+
-+ROOTFS_POSTPROCESS_COMMAND += "make_bootfiles_symlinks_relative;"
-+
-+inherit core-image
+diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+index dddec2c..76102a1 100644
+--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+@@ -31,14 +31,14 @@ DTB_FILTER_omapl138 = "da850"
+ DTB_FILTER_am65xx-evm = "am65"
+ 
+ # List of target side images to build for the SDK
+-TARGET_IMAGES = "arago-base-tisdk-image tisdk-rootfs-image"
++TARGET_IMAGES = "arago-base-tisdk-image tisdk-rootfs-image arago-tiny-image"
+ 
+ # dra71 lcard requires an initramfs with modules for NFS boot
+ TARGET_IMAGES_append_dra7xx-evm = " netboot-initrd"
+ 
+ # Some devices do not support display and use a server image instead
+-TARGET_IMAGES_keystone = "arago-base-tisdk-image tisdk-server-rootfs-image tisdk-server-extra-rootfs-image"
+-TARGET_IMAGES_omapl138 = "arago-base-tisdk-image tisdk-server-rootfs-image tisdk-server-extra-rootfs-image"
++TARGET_IMAGES_keystone = "arago-base-tisdk-image tisdk-server-rootfs-image tisdk-server-extra-rootfs-image arago-tiny-image"
++TARGET_IMAGES_omapl138 = "arago-base-tisdk-image tisdk-server-rootfs-image tisdk-server-extra-rootfs-image arago-tiny-image"
+ 
+ TISDK_TOOLCHAIN = "meta-toolchain-arago-tisdk"
+ TOOLCHAIN_SUFFIX = "-tisdk"
 -- 
 2.7.4
 
