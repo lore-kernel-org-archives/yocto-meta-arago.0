@@ -1,43 +1,35 @@
-Return-Path: <d-senicic1@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id F09FB529A6
+Return-Path: <j-stiffler@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 84E325297E
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Dec 2018 02:08:03 +0000 (UTC)
+	Thu,  6 Dec 2018 14:23:59 +0000 (UTC)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id wB627qtO089343
-	for <meta-arago@arago-project.org>; Wed, 5 Dec 2018 20:07:52 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1544062072;
-	bh=jIvw/ztamqh3eIBKzbtq2wckePzpV2UDyXINWZbPB48=;
-	h=From:To:CC:Subject:Date;
-	b=EX+2FOSfCsytP/5FS9bcoBP1CEZpOTTjd4blogp3ejophFozAda+inSQHjQ7Hks1r
-	HFU897PXSEb0Bkob7ojOHJyDsSUGBxVSG9xPmU8EeM/JJ7VsYN3h0EDzPjFyGRcnIT
-	DhnjugNV69atSz/WHWREOBzpRN+6CEV1TZPYtlxs=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wB627quP086458
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id wB6ENlUx069812
+	for <meta-arago@arago-project.org>; Thu, 6 Dec 2018 08:23:47 -0600
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wB6ENlWk080468
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 5 Dec 2018 20:07:52 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 6 Dec 2018 08:23:47 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Wed, 5 Dec 2018 20:07:52 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 6 Dec 2018 08:23:46 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Wed, 5 Dec 2018 20:07:52 -0600
-Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
+	Transport; Thu, 6 Dec 2018 08:23:46 -0600
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wB627qWS006869;
-	Wed, 5 Dec 2018 20:07:52 -0600
-From: Djordje Senicic <x0157990@ti.com>
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wB6ENkQ3022376;
+	Thu, 6 Dec 2018 08:23:46 -0600
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 5 Dec 2018 16:04:30 -0500
-Message-ID: <20181205210430.31919-1-x0157990@ti.com>
-X-Mailer: git-send-email 2.17.1
+Date: Thu, 6 Dec 2018 09:11:25 -0500
+Message-ID: <1544105485-10885-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: d-senicic1@ti.com, Djordje Senicic <x0157990@ti.com>
-Subject: [matrix-gui-v2-apps][PATCH] tof: Check if SimplePeopleTracking file is present, before starting TOF demo
+Subject: [rocko/master][PATCH] ti-tisdk-setup: bump SRCREV to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,35 +42,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Dec 2018 02:08:04 -0000
+X-List-Received-Date: Thu, 06 Dec 2018 14:24:04 -0000
 Content-Type: text/plain
 
-Signed-off-by: Djordje Senicic <x0157990@ti.com>
----
- .../runSimplePeopleTracking.sh                              | 6 ++++++
- 1 file changed, 6 insertions(+)
+* setup-uboot-env-am65x: enable reboot for clean env
 
-diff --git a/machinevision_apps/machinevision_simple_people_tracking/runSimplePeopleTracking.sh b/machinevision_apps/machinevision_simple_people_tracking/runSimplePeopleTracking.sh
-index b01110c..53686ce 100644
---- a/machinevision_apps/machinevision_simple_people_tracking/runSimplePeopleTracking.sh
-+++ b/machinevision_apps/machinevision_simple_people_tracking/runSimplePeopleTracking.sh
-@@ -1,5 +1,7 @@
- #!/bin/sh
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index 24d8c6a..f0ec287 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
  
-+FILE="/usr/bin/SimplePeopleTracking"
-+if [ -f $FILE ]; then
- machine_type="`cat /etc/hostname`"
- echo "Simple People Tracking TOF demo started!"
- SimplePeopleTracking -w 160 -h 120 -f 30 & pid=$!
-@@ -8,3 +10,7 @@ for adjpri in $(pgrep weston)
- do
-    renice -n 19 -p $adjpri
- done
-+
-+else
-+echo "SimplePeopleTracking not included in the filesystem"
-+fi
+-PR = "r41"
++PR = "r42"
+ 
+ BRANCH ?= "master"
+-SRCREV = "f0548d4327d025aeba1e8a81534539e6e4d98103"
++SRCREV = "b33c55bee6591c681e3b3c2ea243bce581b13c31"
+ SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
+ 
+ S = "${WORKDIR}/git/"
 -- 
-2.17.1
+2.7.4
 
 
