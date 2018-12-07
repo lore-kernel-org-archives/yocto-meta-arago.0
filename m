@@ -1,42 +1,44 @@
 Return-Path: <qsu@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 2C44D52997
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 313E9529BE
 	for <meta-arago@arago-project.org>;
 	Fri,  7 Dec 2018 19:28:57 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id wB7JSjf5122092
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id wB7JSjSm129584
 	for <meta-arago@arago-project.org>; Fri, 7 Dec 2018 13:28:45 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1544210925;
-	bh=6YfdESpM5FzYk9Fvv2kwIp0P4CPbEDWkbYXNmspS/6w=;
-	h=From:To:Subject:Date;
-	b=SKnJBBftWoij9uR02/dXngVGOtd42kqZpOcXw5GQVBzv+epGoE7GfDL+Oa9+MD6VK
-	/f+GmnexzPV1bpNGCIQtR9TPojgem448JQwCxV/8u9j8HiNB5n43CBuQ9M5IGpSsgv
-	2sKjIoLSFq8EPTyCqQHeIdFdhRKWOhrsP/KYhDOU=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wB7JSj67041325
+	bh=Byj2HRGK44uocNw/RgUrSNIHRhIRmp001FpBMNU6BBU=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=QgQafAO4+OTtXhNLXmwgHfVmfGs4x5+baxiwrSUqKJGKfeOqE4CD0cln08CkmunWl
+	TIRoqvjoRCor3OeU+T0LCRtB3GNqHhqC0jeRiVo/Rcgs7wEFzey4/M79TBm152bKc2
+	cqImWgQM5ut7UmIpOxREnZebGKJxfILpfvF8blzA=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wB7JSjJ9058494
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@arago-project.org>; Fri, 7 Dec 2018 13:28:45 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
 	Fri, 7 Dec 2018 13:28:45 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
 	Transport; Fri, 7 Dec 2018 13:28:45 -0600
 Received: from UDA0216595.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wB7JSiJj021043
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wB7JSiJk021043
 	for <meta-arago@arago-project.org>; Fri, 7 Dec 2018 13:28:45 -0600
 From: Qin Su <qsu@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 7 Dec 2018 14:28:37 -0500
-Message-ID: <1544210919-14906-1-git-send-email-qsu@ti.com>
+Date: Fri, 7 Dec 2018 14:28:38 -0500
+Message-ID: <1544210919-14906-2-git-send-email-qsu@ti.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1544210919-14906-1-git-send-email-qsu@ti.com>
+References: <1544210919-14906-1-git-send-email-qsu@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 1/3] matrix-gui-apps-git: bump SRCREV
+Subject: [PATCH 2/3] matrix-gui-tidl-demos: add Arm NN Matrix GUI demo examples
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,30 +54,58 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Fri, 07 Dec 2018 19:28:58 -0000
 Content-Type: text/plain
 
-Added Arm NN Matrix GUI demo examples
-Detect AM571x, to invoke TIDL classification demo with only one DSP
-
 Signed-off-by: Qin Su <qsu@ti.com>
 ---
- meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-core/matrix/matrix-gui-tidl-demos_2.0.bb   | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index cc98aa2..e63b007 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-tidl-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-tidl-demos_2.0.bb
+index 33d0af7..8062648 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-tidl-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-tidl-demos_2.0.bb
+@@ -3,7 +3,7 @@ HOMEPAGE = "http://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps"
  
- SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
--SRCREV = "a40f814c5321964861b5d837278943a3c8eefcd9"
-+SRCREV = "cde4f1895dc3b42354488e9927773a976cc38a4e"
- BRANCH = "master"
--INC_PR = "r62"
-+INC_PR = "r63"
+ require matrix-gui-apps-git.inc
  
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
+-PR = "${INC_PR}.0"
++PR = "${INC_PR}.1"
+ 
+ inherit allarch
+ 
+@@ -20,6 +20,8 @@ PACKAGES = "matrix-tidl-demo-staticimg \
+             matrix-tidl-demo-pnexamples \
+             matrix-tidl-demo-livecam \
+             matrix-tidl-demo-livecam-lg2 \
++            matrix-armnn-demo-staticimg \
++            matrix-armnn-demo-livecam \
+ "
+ 
+ RDEPENDS_matrix-tidl-demo-staticimg = " \
+@@ -46,6 +48,14 @@ RDEPENDS_matrix-tidl-demo-livecam-lg2 = " \
+     ${TIDLDEMO_RDEPENDS} \
+ "
+ 
++RDEPENDS_matrix-armnn-demo-staticimg = " \
++    ${TIDLDEMO_RDEPENDS} \
++"
++
++RDEPENDS_matrix-armnn-demo-livecam = " \
++    ${TIDLDEMO_RDEPENDS} \
++"
++
+ FILES_matrix-tidl-demo-staticimg = "${MATRIX_APP_DIR}/tidl_demo_staticimg/*"
+ FILES_matrix-tidl-demo-staticimg += "${bindir}/runTidlStaticImg.sh"
+ 
+@@ -63,3 +73,9 @@ FILES_matrix-tidl-demo-livecam   += "${bindir}/runTidlLiveCam.sh"
+ 
+ FILES_matrix-tidl-demo-livecam-lg2  = "${MATRIX_APP_DIR}/tidl_demo_livecam_lg2/*"
+ FILES_matrix-tidl-demo-livecam-lg2  += "${bindir}/runTidlLiveCam_lg2.sh"
++
++FILES_matrix-armnn-demo-staticimg = "${MATRIX_APP_DIR}/armnn_demo_staticimg/*"
++FILES_matrix-armnn-demo-staticimg += "${bindir}/runArmnnStaticImg.sh"
++
++FILES_matrix-armnn-demo-livecam = "${MATRIX_APP_DIR}/armnn_demo_livecam/*"
++FILES_matrix-armnn-demo-livecam += "${bindir}/runArmnnLiveCam.sh"
 -- 
 1.9.1
 
