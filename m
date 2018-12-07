@@ -1,42 +1,42 @@
 Return-Path: <qsu@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 8C30D520C0
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 2C44D52997
 	for <meta-arago@arago-project.org>;
-	Fri,  7 Dec 2018 16:17:26 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id wB7GHFT7078118
-	for <meta-arago@arago-project.org>; Fri, 7 Dec 2018 10:17:15 -0600
+	Fri,  7 Dec 2018 19:28:57 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id wB7JSjf5122092
+	for <meta-arago@arago-project.org>; Fri, 7 Dec 2018 13:28:45 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1544199435;
-	bh=9RgI3wqPaHbig+1Vk0HtT23CqMF+4K6YOA68Y+qpZec=;
+	s=ti-com-17Q1; t=1544210925;
+	bh=6YfdESpM5FzYk9Fvv2kwIp0P4CPbEDWkbYXNmspS/6w=;
 	h=From:To:Subject:Date;
-	b=SlvZKFOeeUm2Ug35oRrtddgtQ4kno/p1adQCRPvmwIxcxMqMpTPG2ZBrppb6Yx9ZP
-	HQlY3wFHyafPvFOmphwcxgyXGuoKvRHSqMUCXGzP35C3wHJdOdlDt5pkMWh99f3vJn
-	7Yh5QnQkIMA/EbNZCF002kZ5/GxW9GLOwJKAsRsw=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wB7GHF2x070509
+	b=SKnJBBftWoij9uR02/dXngVGOtd42kqZpOcXw5GQVBzv+epGoE7GfDL+Oa9+MD6VK
+	/f+GmnexzPV1bpNGCIQtR9TPojgem448JQwCxV/8u9j8HiNB5n43CBuQ9M5IGpSsgv
+	2sKjIoLSFq8EPTyCqQHeIdFdhRKWOhrsP/KYhDOU=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wB7JSj67041325
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 7 Dec 2018 10:17:15 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 7 Dec 2018 13:28:45 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Fri, 7 Dec 2018 10:17:14 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 7 Dec 2018 13:28:45 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Fri, 7 Dec 2018 10:17:14 -0600
+	Transport; Fri, 7 Dec 2018 13:28:45 -0600
 Received: from UDA0216595.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wB7GHEpY005370
-	for <meta-arago@arago-project.org>; Fri, 7 Dec 2018 10:17:14 -0600
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wB7JSiJj021043
+	for <meta-arago@arago-project.org>; Fri, 7 Dec 2018 13:28:45 -0600
 From: Qin Su <qsu@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 7 Dec 2018 11:17:12 -0500
-Message-ID: <1544199432-4952-1-git-send-email-qsu@ti.com>
+Date: Fri, 7 Dec 2018 14:28:37 -0500
+Message-ID: <1544210919-14906-1-git-send-email-qsu@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [matrix-gui-v2-apps][PATCH] tidl_apps: update Arm NN demo examples
+Subject: [PATCH 1/3] matrix-gui-apps-git: bump SRCREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,47 +49,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Dec 2018 16:17:27 -0000
+X-List-Received-Date: Fri, 07 Dec 2018 19:28:58 -0000
 Content-Type: text/plain
 
-Add more description in demo with camera input & reduced test loop count.
+Added Arm NN Matrix GUI demo examples
+Detect AM571x, to invoke TIDL classification demo with only one DSP
 
 Signed-off-by: Qin Su <qsu@ti.com>
 ---
- tidl_apps/armnn_demo_livecam/desc_armnn_demo_livecam.html | 3 +++
- tidl_apps/armnn_demo_livecam/runArmnnLiveCam.sh           | 2 +-
- tidl_apps/armnn_demo_staticimg/runArmnnStaticImg.sh       | 2 +-
- 3 files changed, 5 insertions(+), 2 deletions(-)
+ meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/tidl_apps/armnn_demo_livecam/desc_armnn_demo_livecam.html b/tidl_apps/armnn_demo_livecam/desc_armnn_demo_livecam.html
-index db0c2bb..6bfe303 100644
---- a/tidl_apps/armnn_demo_livecam/desc_armnn_demo_livecam.html
-+++ b/tidl_apps/armnn_demo_livecam/desc_armnn_demo_livecam.html
-@@ -3,3 +3,6 @@
- <p>This application demonstrates Deep Learning Imagenet classification (1000 classes) with MobileNet network topology based on Arm NN SDK.</p>
- <p>Single Arm core is used with live camera input (at 640x480 resolution).</p>
- <p>Exit demo by doing right-click on image window.</p>
-+<p>
-+<span style="color:red">NOTE: Please make sure Camera card is connected to the main processor board. </span>
-+</p>
-diff --git a/tidl_apps/armnn_demo_livecam/runArmnnLiveCam.sh b/tidl_apps/armnn_demo_livecam/runArmnnLiveCam.sh
-index 68007f3..bd1749f 100644
---- a/tidl_apps/armnn_demo_livecam/runArmnnLiveCam.sh
-+++ b/tidl_apps/armnn_demo_livecam/runArmnnLiveCam.sh
-@@ -1,3 +1,3 @@
- cd /usr/bin
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+index cc98aa2..e63b007 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
  
--./ArmnnExamples -f tensorflow-binary -i input -s '1 224 224 3' -o MobilenetV1/Predictions/Reshape_1 -d /usr/share/arm/armnn/testvecs/camera_live_input -m /usr/share/arm/armnn/models/mobilenet_v1_1.0_224_frozen.pb -c CpuAcc --number_frame 999900
-+./ArmnnExamples -f tensorflow-binary -i input -s '1 224 224 3' -o MobilenetV1/Predictions/Reshape_1 -d /usr/share/arm/armnn/testvecs/camera_live_input -m /usr/share/arm/armnn/models/mobilenet_v1_1.0_224_frozen.pb -c CpuAcc --number_frame 999
-diff --git a/tidl_apps/armnn_demo_staticimg/runArmnnStaticImg.sh b/tidl_apps/armnn_demo_staticimg/runArmnnStaticImg.sh
-index 8b996ff..e42c9d6 100644
---- a/tidl_apps/armnn_demo_staticimg/runArmnnStaticImg.sh
-+++ b/tidl_apps/armnn_demo_staticimg/runArmnnStaticImg.sh
-@@ -1,3 +1,3 @@
- cd /usr/bin
+ SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "a40f814c5321964861b5d837278943a3c8eefcd9"
++SRCREV = "cde4f1895dc3b42354488e9927773a976cc38a4e"
+ BRANCH = "master"
+-INC_PR = "r62"
++INC_PR = "r63"
  
--./ArmnnExamples -f tensorflow-binary -i input -s '1 224 224 3' -o MobilenetV1/Predictions/Reshape_1 -d /usr/share/arm/armnn/testvecs/test2.mp4 -m /usr/share/arm/armnn/models/mobilenet_v1_1.0_224_frozen.pb -c CpuAcc --number_frame 999900
-+./ArmnnExamples -f tensorflow-binary -i input -s '1 224 224 3' -o MobilenetV1/Predictions/Reshape_1 -d /usr/share/arm/armnn/testvecs/test2.mp4 -m /usr/share/arm/armnn/models/mobilenet_v1_1.0_224_frozen.pb -c CpuAcc --number_frame 999
+ # Pull in the base package for installing matrix applications
+ require matrix-gui-apps.inc
 -- 
 1.9.1
 
