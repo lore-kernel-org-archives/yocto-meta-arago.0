@@ -1,44 +1,42 @@
-Return-Path: <qsu@ti.com>
+Return-Path: <e-ruei1@ti.com>
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 3EA54529D0
+	by arago-project.org (Postfix) with ESMTPS id 5DBCC529AE
 	for <meta-arago@arago-project.org>;
-	Fri,  7 Dec 2018 19:28:57 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wB7JSjVj058819
-	for <meta-arago@arago-project.org>; Fri, 7 Dec 2018 13:28:45 -0600
+	Mon, 10 Dec 2018 15:52:17 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wBAFq5xT098091
+	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:52:05 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1544210925;
-	bh=dRKZtY/NwjGkRAHBHvCOdm5J316K5JeRWFQfh6leis0=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=H0miMZwJRgJteQzVSgioFFB4EYh/EKGS10HZzmNLX1CznunQgo3okDWdlcr5+jKs9
-	N6qPnVZyEVZWGYvAn1jxU60DxHYPwx8iZK6WeYKwJ3OUa7/yu+HaLsNcUWpCIvFMqi
-	LaVkt920PSU4RR4iRJ4xAXaXTWGcw7BTEG5czroo=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wB7JSjsG041328
+	s=ti-com-17Q1; t=1544457125;
+	bh=2GEDY9JGI8QrhEVA2a1g5ixxKJcpKhihkDC7Zh/qjdM=;
+	h=From:To:Subject:Date;
+	b=SiIInj9hEwJPcGvTsue54ZBm1gorICfrh3jD3tPoGWj1HOZMxLNvnhZ8FzgvEBUx/
+	JWGQGqLUiujjCcZD0lxeaJK01xktv6+Rmcl6CtLcaogPYqEqqOfcJfXjTl25wABncR
+	6S2B/Ka8aDJju8dLru2csKeEB2Vu8gBoOYFwDt4c=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wBAFq5GZ036892
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 7 Dec 2018 13:28:45 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:52:05 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Fri, 7 Dec 2018 13:28:45 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 10 Dec 2018 09:52:05 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Fri, 7 Dec 2018 13:28:45 -0600
-Received: from UDA0216595.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Mon, 10 Dec 2018 09:52:05 -0600
+Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wB7JSiJl021043
-	for <meta-arago@arago-project.org>; Fri, 7 Dec 2018 13:28:45 -0600
-From: Qin Su <qsu@ti.com>
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wBAFq4YU009131
+	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:52:04 -0600
+From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 7 Dec 2018 14:28:39 -0500
-Message-ID: <1544210919-14906-3-git-send-email-qsu@ti.com>
+Date: Mon, 10 Dec 2018 10:51:44 -0500
+Message-ID: <1544457104-42812-1-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1544210919-14906-1-git-send-email-qsu@ti.com>
-References: <1544210919-14906-1-git-send-email-qsu@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 3/3] packagegroup-arago-tisdk-matrix: add Arm NN Matrix GUI demo examples
+Subject: [PATCH] amsdk-av-files: move the AMSDK AV files from gforge.ti.com to git.ti.com
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,66 +49,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Dec 2018 19:28:58 -0000
+X-List-Received-Date: Mon, 10 Dec 2018 15:52:17 -0000
 Content-Type: text/plain
 
-Signed-off-by: Qin Su <qsu@ti.com>
----
- .../packagegroups/packagegroup-arago-tisdk-matrix.bb       | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
+- move the AMSDK AV files location
+- add k3 specific video images
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index d3ab6ec..5ddaa9f 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
--PR = "r75"
-+PR = "r76"
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+---
+ .../amsdk-av-files/amsdk-av-files_1.4.bb                 | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb
+index 9d20b1a..2f570d4 100644
+--- a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb
++++ b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb
+@@ -1,9 +1,9 @@
+ DESCRIPTION = "AMSDK multimedia support files"
+-HOMEPAGE = "https://gforge.ti.com/gf/project/am_multimedia/"
++HOMEPAGE = "https://git.ti.com/processor-sdk/amsdk-av-files/"
+ LICENSE = "CC-BY-NC-ND-3.0 & CC-BY-3.0"
+ SECTION = "multimedia"
+-LIC_FILES_CHKSUM = "file://Multimedia_Data_Files_Manifest.doc;md5=da0727f80b90422138535dfffc36cd1a"
+-PR = "r1"
++LIC_FILES_CHKSUM = "file://Multimedia_Data_Files_Manifest.doc;md5=fe154d291c69c51495a5bb4a456403b5"
++PR = "r2"
  
  PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-@@ -106,6 +106,9 @@ MATRIX_APPS_append_ti33x = "        \
-     matrix-hmi-demo-protection-relays \
-                                     \
-     ${MATRIX_OPENCV_ARM_ONLY_APPS}  \
-+                                    \
-+    matrix-armnn-demo-staticimg     \
-+    matrix-armnn-demo-livecam       \
- "
+@@ -19,12 +19,16 @@ VIDEO_FILES_append_dra7xx      = "video_wvga \
+                                   video_1080p \
+                                   video_720p \
+                                   video_yuv"
++VIDEO_FILES_append_k3          = "video_720p"
  
- MATRIX_APPS_append_ti43x = "        \
-@@ -126,6 +129,9 @@ MATRIX_APPS_append_ti43x = "        \
-     matrix-hmi-demo-evse            \
-                                     \
-     ${MATRIX_OPENCV_ARM_ONLY_APPS}  \
-+                                    \
-+    matrix-armnn-demo-staticimg     \
-+    matrix-armnn-demo-livecam       \
- "
+ VIDEO_FILES_keystone = "video_720p "
  
- MATRIX_APPS_append_omap-a15 = "     \
-@@ -145,6 +151,9 @@ MATRIX_APPS_append_omap-a15 = "     \
-     matrix-gui-clocks               \
-     matrix-gui-pm-demos-governor    \
-     ${@['','matrix-gui-browser-demos'][bb.utils.contains('MACHINE_FEATURES','sgx',True,False,d) and bb.utils.contains('DISTRO_FEATURES','wayland',True,False,d)]} \
-+                                \
-+    matrix-armnn-demo-staticimg \
-+    matrix-armnn-demo-livecam   \
- "
+-SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/1279/7769/amsdk-av-files_${PV}.tar.gz;name=avfilestarball"
++BRANCH = "master"
  
- MATRIX_APPS_append_k3 = "           \
-@@ -157,6 +166,9 @@ MATRIX_APPS_append_k3 = "           \
-     matrix-hmi-demo-evse            \
-                                     \
-     ${MATRIX_OPENCV_ARM_ONLY_APPS}  \
-+                                    \
-+    matrix-armnn-demo-staticimg     \
-+    matrix-armnn-demo-livecam       \
- "
+-S = "${WORKDIR}/amsdk-av-files"
++SRC_URI = "git://git.ti.com/processor-sdk/amsdk-av-files.git;protocol=git;branch=${BRANCH}"
++SRCREV = "1b73009090265328ebaf1b6c880dfeccae5a8f19"
++
++S = "${WORKDIR}/git"
  
- MATRIX_APPS_append_dra7xx += " \
+ do_compile() {
+     :
+@@ -42,5 +46,3 @@ do_install() {
+ 
+ FILES_${PN} += "${datadir}/ti/*"
+ 
+-SRC_URI[avfilestarball.md5sum] = "29a2f8b5f41f49e30bbe9cf53eb06c5a"
+-SRC_URI[avfilestarball.sha256sum] = "64dde10d03156d480c6f38494c9503e73878fa0a8d5009182ed43b0e926b5569"
 -- 
 1.9.1
 
