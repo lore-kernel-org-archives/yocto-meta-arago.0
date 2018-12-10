@@ -1,42 +1,42 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 5DBCC529AE
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 96E6C529AE
 	for <meta-arago@arago-project.org>;
-	Mon, 10 Dec 2018 15:52:17 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wBAFq5xT098091
-	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:52:05 -0600
+	Mon, 10 Dec 2018 15:53:12 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id wBAFr1LE051122
+	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:53:01 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1544457125;
-	bh=2GEDY9JGI8QrhEVA2a1g5ixxKJcpKhihkDC7Zh/qjdM=;
+	s=ti-com-17Q1; t=1544457181;
+	bh=8alAuS6bYUj9ZSp8namn7eauoHTovJAR5CsbQg/oXVs=;
 	h=From:To:Subject:Date;
-	b=SiIInj9hEwJPcGvTsue54ZBm1gorICfrh3jD3tPoGWj1HOZMxLNvnhZ8FzgvEBUx/
-	JWGQGqLUiujjCcZD0lxeaJK01xktv6+Rmcl6CtLcaogPYqEqqOfcJfXjTl25wABncR
-	6S2B/Ka8aDJju8dLru2csKeEB2Vu8gBoOYFwDt4c=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wBAFq5GZ036892
+	b=VBrufRlD0Q78yrjHhaAKHmd+8EnSg9lx5qtejhZasPmf/CWQHg3WlhYk/ObD2GYih
+	wn2K7TCbJkaTZIEmldVGhYjZXdYOS6RaSKmP+WcmmXppvRjWJaPqEaMk+Zya14Oa5T
+	sg1PaeAkJ1/0AnP9DOINCY2L+y/wieL1odPfCAbg=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wBAFr1Xj064704
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:52:05 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:53:01 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Mon, 10 Dec 2018 09:52:05 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 10 Dec 2018 09:53:00 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Mon, 10 Dec 2018 09:52:05 -0600
+	Transport; Mon, 10 Dec 2018 09:53:00 -0600
 Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wBAFq4YU009131
-	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:52:04 -0600
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wBAFr0qm026814
+	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:53:00 -0600
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 10 Dec 2018 10:51:44 -0500
-Message-ID: <1544457104-42812-1-git-send-email-e-ruei1@ti.com>
+Date: Mon, 10 Dec 2018 10:52:58 -0500
+Message-ID: <1544457178-42856-1-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] amsdk-av-files: move the AMSDK AV files from gforge.ti.com to git.ti.com
+Subject: [meta-processor-sdk][PATCH] arm_multimedia: use higher resolution video image for AM654x EVM
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,59 +49,120 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Dec 2018 15:52:17 -0000
+X-List-Received-Date: Mon, 10 Dec 2018 15:53:12 -0000
 Content-Type: text/plain
 
-- move the AMSDK AV files location
-- add k3 specific video images
+AM654x EVM: play 1280x540 video image on 1280x800 LCD
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../amsdk-av-files/amsdk-av-files_1.4.bb                 | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+ .../arm_multimedia_h264dec/runH264Dec.sh           |  5 ++-
+ .../arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh   | 37 ++++++++++++----------
+ .../arm_multimedia_mpeg4dec/runMpeg4Dec.sh         |  5 ++-
+ 3 files changed, 28 insertions(+), 19 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb
-index 9d20b1a..2f570d4 100644
---- a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb
-+++ b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb
-@@ -1,9 +1,9 @@
- DESCRIPTION = "AMSDK multimedia support files"
--HOMEPAGE = "https://gforge.ti.com/gf/project/am_multimedia/"
-+HOMEPAGE = "https://git.ti.com/processor-sdk/amsdk-av-files/"
- LICENSE = "CC-BY-NC-ND-3.0 & CC-BY-3.0"
- SECTION = "multimedia"
--LIC_FILES_CHKSUM = "file://Multimedia_Data_Files_Manifest.doc;md5=da0727f80b90422138535dfffc36cd1a"
--PR = "r1"
-+LIC_FILES_CHKSUM = "file://Multimedia_Data_Files_Manifest.doc;md5=fe154d291c69c51495a5bb4a456403b5"
-+PR = "r2"
+diff --git a/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh b/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh
+index be8b2dc..f1ea7dd 100644
+--- a/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh
++++ b/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh
+@@ -15,7 +15,7 @@ then
+ elif [ "$machine_type" = "omap5-evm" ]
+ then
+     filename="/usr/share/ti/video/TearOfSteel-Short-720x406.264"
+-elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ] || [ "$machine_type" = "am65xx-evm" ]
++elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]
+ then
+         resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+         if [ "$resolution" = "480x272" ]; then
+@@ -23,6 +23,9 @@ then
+         else
+                 filename="/usr/share/ti/video/TearOfSteel-Short-720x406.264"
+         fi
++elif [ "$machine_type" = "am65xx-evm" ]
++then
++     filename="/usr/share/ti/video/TearOfSteel-Short-1280x540.h264"
+ else
+ 	default_display="`cat /sys/devices/platform/omapdss/manager0/display`"
+ 	if [ "$default_display" = "dvi" ]; then
+diff --git a/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh b/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
+index 18ee0ea..93e6eae 100644
+--- a/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
++++ b/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
+@@ -15,21 +15,24 @@ else
+ 		else
+ 			# Use WVGA for all other resolutions
+ 			filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x420.mp4"
+-	fi
+-    elif [ "$machine_type" = "dra7xx-evm" ]
+-    then
+-	    filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x420.mp4"
+-    elif [ "$machine_type" = "omap5-evm" ]
+-    then
+-        filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x406.mp4"
+-    elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]|| [ "$machine_type" = "am65xx-evm" ]
+-    then
+-            resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+-            if [ "$resolution" = "480x272" ]; then
+-                filename="/usr/share/ti/video/TearOfSteel-AV-Short-400x240.mp4"
+-            else
+-                filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x406.mp4"
+-            fi
++		fi
++	elif [ "$machine_type" = "dra7xx-evm" ]
++	then
++		filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x420.mp4"
++	elif [ "$machine_type" = "omap5-evm" ]
++	then
++		filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x406.mp4"
++	elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]
++	then
++		resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
++		if [ "$resolution" = "480x272" ]; then
++			filename="/usr/share/ti/video/TearOfSteel-AV-Short-400x240.mp4"
++		else
++			filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x406.mp4"
++		fi
++	elif [ "$machine_type" = "am65xx-evm" ]
++	then
++		filename="/usr/share/ti/video/TearOfSteel-Short-1280x540.m4v"
+ 	else
+ 		default_display="`cat /sys/devices/platform/omapdss/manager0/display`"
+ 		if [ "$default_display" = "dvi" ]; then
+@@ -52,9 +55,9 @@ else
+ 		amixer -c 0 set Headset 1+ unmute
+ 	elif [ "$machine_type" = "am335x-evm" ] || [ "$machine_type" = "am335x-hs-evm" ]; then
+ 		amixer cset name='PCM Playback Volume' 127
+-    elif [ "$machine_type" = "omap5-evm" ]; then
++	elif [ "$machine_type" = "omap5-evm" ]; then
+ 		amixer cset name='PCM Playback Volume' 127
+-    elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]; then
++	elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]; then
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -19,12 +19,16 @@ VIDEO_FILES_append_dra7xx      = "video_wvga \
-                                   video_1080p \
-                                   video_720p \
-                                   video_yuv"
-+VIDEO_FILES_append_k3          = "video_720p"
- 
- VIDEO_FILES_keystone = "video_720p "
- 
--SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/1279/7769/amsdk-av-files_${PV}.tar.gz;name=avfilestarball"
-+BRANCH = "master"
- 
--S = "${WORKDIR}/amsdk-av-files"
-+SRC_URI = "git://git.ti.com/processor-sdk/amsdk-av-files.git;protocol=git;branch=${BRANCH}"
-+SRCREV = "1b73009090265328ebaf1b6c880dfeccae5a8f19"
-+
-+S = "${WORKDIR}/git"
- 
- do_compile() {
-     :
-@@ -42,5 +46,3 @@ do_install() {
- 
- FILES_${PN} += "${datadir}/ti/*"
- 
--SRC_URI[avfilestarball.md5sum] = "29a2f8b5f41f49e30bbe9cf53eb06c5a"
--SRC_URI[avfilestarball.sha256sum] = "64dde10d03156d480c6f38494c9503e73878fa0a8d5009182ed43b0e926b5569"
+ 		# EPOS uses a different configuration so check if
+ 		# we are running on that board
+diff --git a/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh b/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
+index 410d8ea..82fcb2c 100644
+--- a/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
++++ b/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
+@@ -15,7 +15,7 @@ then
+ elif [ "$machine_type" = "omap5-evm" ]
+ then
+     filename="/usr/share/ti/video/TearOfSteel-Short-720x406.m4v"
+-elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ] || [ "$machine_type" = "am65xx-evm" ]
++elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]
+ then
+     resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+     if [ "$resolution" = "480x272" ]; then
+@@ -23,6 +23,9 @@ then
+     else
+             filename="/usr/share/ti/video/TearOfSteel-Short-720x406.m4v"
+     fi
++elif [ "$machine_type" = "am65xx-evm" ]
++then
++     filename="/usr/share/ti/video/TearOfSteel-Short-1280x540.m4v"
+ else
+ 	default_display="`cat /sys/devices/platform/omapdss/manager0/display`"
+ 	if [ "$default_display" = "dvi" ]; then
 -- 
 1.9.1
 
