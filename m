@@ -1,42 +1,42 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 96E6C529AE
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id B556F529AE
 	for <meta-arago@arago-project.org>;
-	Mon, 10 Dec 2018 15:53:12 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id wBAFr1LE051122
-	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:53:01 -0600
+	Mon, 10 Dec 2018 15:58:11 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wBAFw0Kw100133
+	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:58:00 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1544457181;
+	s=ti-com-17Q1; t=1544457480;
 	bh=8alAuS6bYUj9ZSp8namn7eauoHTovJAR5CsbQg/oXVs=;
 	h=From:To:Subject:Date;
-	b=VBrufRlD0Q78yrjHhaAKHmd+8EnSg9lx5qtejhZasPmf/CWQHg3WlhYk/ObD2GYih
-	wn2K7TCbJkaTZIEmldVGhYjZXdYOS6RaSKmP+WcmmXppvRjWJaPqEaMk+Zya14Oa5T
-	sg1PaeAkJ1/0AnP9DOINCY2L+y/wieL1odPfCAbg=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wBAFr1Xj064704
+	b=LE4ak3iAfNX0WK0FcRQ+GFATst3Ff/rC79PHY8oO4wdib0OSZ4zLWBdepG93JCvIW
+	Yi7Z1I5MZtetm6+kb2Mn878oDRBzLvrSpLK2zTPmJj8EaMp/rJyBwMXj3ugUjS0NbH
+	sl4Pxj3UVYW2Yj2qX8Dtoeo5xHHvv+eD+VGS3aDI=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wBAFw02S086791
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:53:01 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:58:00 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Mon, 10 Dec 2018 09:53:00 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 10 Dec 2018 09:58:00 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Mon, 10 Dec 2018 09:53:00 -0600
+	Transport; Mon, 10 Dec 2018 09:58:00 -0600
 Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wBAFr0qm026814
-	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:53:00 -0600
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wBAFvxQb032367
+	for <meta-arago@arago-project.org>; Mon, 10 Dec 2018 09:57:59 -0600
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 10 Dec 2018 10:52:58 -0500
-Message-ID: <1544457178-42856-1-git-send-email-e-ruei1@ti.com>
+Date: Mon, 10 Dec 2018 10:57:56 -0500
+Message-ID: <1544457476-42896-1-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH] arm_multimedia: use higher resolution video image for AM654x EVM
+Subject: [matrix-gui-v2-apps][PATCH] arm_multimedia: use higher resolution video image for AM654x EVM
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,7 +49,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Dec 2018 15:53:12 -0000
+X-List-Received-Date: Mon, 10 Dec 2018 15:58:12 -0000
 Content-Type: text/plain
 
 AM654x EVM: play 1280x540 video image on 1280x800 LCD
