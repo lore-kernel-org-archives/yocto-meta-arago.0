@@ -1,44 +1,35 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id F13D8529AE
+Return-Path: <xuj@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id E7956529A6
 	for <meta-arago@arago-project.org>;
-	Tue, 11 Dec 2018 19:38:42 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id wBBJcTgc020234
-	for <meta-arago@arago-project.org>; Tue, 11 Dec 2018 13:38:29 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1544557109;
-	bh=X+i6i1wP6iHcGDUtJhVsQBcywDwZywChIyH+3OBZWo0=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Kq9K1R6ZnmwzW+o0kKoTarZEPdLyBw/s9tsPMrq4YZMFyIpNXVBQXDNcHYwuwT0Gh
-	lY3O4Sr16EY5qiv5U1vaKRgyroT9ZpzVXnJjKCDRM6CK9sc54MChO5iZm27lPEj96T
-	HRmdO2e8CPwi4+zjyHS5fLgxdXFKeMdxpx8Rsucg=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wBBJcTpC021380
+	Tue, 11 Dec 2018 21:54:47 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id wBBLsah7031786
+	for <meta-arago@arago-project.org>; Tue, 11 Dec 2018 15:54:36 -0600
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wBBLsak1037590
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 11 Dec 2018 13:38:29 -0600
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 11 Dec 2018 15:54:36 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Tue, 11 Dec 2018 13:38:29 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 11 Dec 2018 15:54:36 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Tue, 11 Dec 2018 13:38:29 -0600
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Tue, 11 Dec 2018 15:54:36 -0600
+Received: from UDA0869574.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wBBJcS1T026540;
-	Tue, 11 Dec 2018 13:38:29 -0600
-From: Jacob Stiffler <j-stiffler@ti.com>
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wBBLsZrg024696;
+	Tue, 11 Dec 2018 15:54:36 -0600
+From: Jianzhong Xu <xuj@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 11 Dec 2018 14:26:07 -0500
-Message-ID: <1544556367-5429-2-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1544556367-5429-1-git-send-email-j-stiffler@ti.com>
-References: <1544556367-5429-1-git-send-email-j-stiffler@ti.com>
+Date: Tue, 11 Dec 2018 16:54:34 -0500
+Message-ID: <1544565274-46138-1-git-send-email-xuj@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko/master][PATCH 2/2] hevc-arm-decoder: fetch from git
+Subject: [rocko/master][PATCH v2] tidl-utils: add TIDL import tool source compilation.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,54 +42,113 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Dec 2018 19:38:43 -0000
+X-List-Received-Date: Tue, 11 Dec 2018 21:54:48 -0000
 Content-Type: text/plain
 
-* Fetch from git as previous hosting location has been shutdown.
-
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Jianzhong Xu <xuj@ti.com>
 ---
- ...arm-decoder_01.00.00.01.bb => hevc-arm-decoder_git.bb} | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
- rename meta-arago-extras/recipes-multimedia/hevc-arm-decoder/{hevc-arm-decoder_01.00.00.01.bb => hevc-arm-decoder_git.bb} (75%)
+ .../nativesdk-packagegroup-arago-sdk-host.bb       |  1 +
+ .../recipes-ti/tidl-utils/tidl-import_git.bb       | 43 ++++++++++++++++++++++
+ .../recipes-ti/tidl-utils/tidl-utils.bb            |  7 ++--
+ .../recipes-ti/tidl-utils/tidl-utils.inc           |  2 +
+ 4 files changed, 49 insertions(+), 4 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
+ create mode 100644 meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
 
-diff --git a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb
-similarity index 75%
-rename from meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb
-rename to meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb
-index c942e2e..069e839 100644
---- a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_01.00.00.01.bb
-+++ b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb
-@@ -1,19 +1,22 @@
- SUMMARY = "ARM HEVC Decoder with Unit Test Application"
--HOMEPAGE = "https://gforge.ti.com/gf/project/am_multimedia/"
-+HOMEPAGE = "https://git.ti.com/processor-sdk/hevc_arm_decoder/"
- LICENSE = "TI-TSPA"
- LIC_FILES_CHKSUM = "file://Inc/exp_pp_h265decoder.h;beginline=1;endline=27;md5=51a0ae5cca603a21186bf6ff458f3be9"
--PR = "r3"
-+PR = "r4"
- 
- COMPATIBLE_MACHINE = "dra7xx|keystone"
- 
--SRC_URI = "https://gforge.ti.com/gf/download/frsrelease/1280/7770/REL.HEVC.D.ARM.OBJ.${PV}.tar.gz \
-+BRANCH = "master"
-+
-+SRC_URI = "git://git.ti.com/processor-sdk/hevc_arm_decode.git;protocol=git;branch=${BRANCH} \
-            file://Testparams.cfg \
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
+index 54466b7..af83521 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
+@@ -13,6 +13,7 @@ EXTRA_TI_TOOLS = " \
+     nativesdk-clacc \
+     nativesdk-open62541-examples \
+     nativesdk-open62541-tests \
++    nativesdk-tidl-import \
  "
  
--SRC_URI[md5sum] = "bb7620e34175f53a1ed989f7ce8f6d29"
--SRC_URI[sha256sum] = "e5743478e94bcfcee2e59e2e0056ece648c11bcbac91a6a8b8e492e3b42738d4"
-+SRCREV = "4004c553e672538d0c3b5fa2ea0490ec095d0060"
+ RDEPENDS_${PN} = "\
+diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb b/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
+new file mode 100644
+index 0000000..a644fbe
+--- /dev/null
++++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
+@@ -0,0 +1,43 @@
++SUMMARY = " TIDL import tool for conversion of Caffe and TF models into TI custom network format "
++DESCRIPTION = "TIDL import tool is using protobuf to read and parse information from external network models \
++               This is ARM Linux implementation."
 +
-+PV = "01.00.00.01"
++require ./tidl-utils.inc
++
++LICENSE = "BSD-3"
++LIC_FILES_CHKSUM = "file://modules/ti_dl/inc/itidl_ti.h;md5=7baa68fec0aadbac92c3b41b283d26c4"
++
++PV = "01.00.00.00"
++PR = "r1"
++
++S = "${WORKDIR}/git/src/importTool/"
++
++DEPENDS="protobuf zlib protobuf-native"
++
++EXTRA_OEMAKE += "TIARM_TOOLS=${GCC_ARM_NONE_TOOLCHAIN}"
++EXTRA_OEMAKE += "XDAIS_PATH=${XDAIS_INSTALL_DIR}"
++EXTRA_OEMAKE += "SHOW_COMMANDS=1"
++EXTRA_OEMAKE += "CORE=eve"
++EXTRA_OEMAKE += "TARGET_BUILD=release"
++EXTRA_OEMAKE += "TARGET_PLATFORM=PC"
++
++EXTRA_MAKE_ARGS = "PLATFORM_BUILD=x86 LINUX_IMPORT_TOOL=64BIT PROTOBUF_LIB_DIR=${STAGING_DIR_NATIVE}/usr/lib PROTOBUF_INC_DIR=${STAGING_DIR_NATIVE}/usr/include"
++EXTRA_MAKE_ARGS_class-target = "LINUX_BUILD_TOOLS=${TOOLCHAIN_PATH}/bin/${TARGET_PREFIX} PROTOBUF_LIB_DIR=${STAGING_LIBDIR} PROTOBUF_INC_DIR=${STAGING_INCDIR} LINUXENV=oearm"
++
++EXTRA_OEMAKE += "${EXTRA_MAKE_ARGS}"
++
++do_compile() {
++    cd ${S}/modules/ti_dl/utils
++    ./genProtoSrc.sh
++    cd ${S}
++    oe_runmake -C modules/ti_dl/utils/tidlModelImport
++}
++
++do_install () {
++    install -d ${D}${bindir}
++    install -m 755 ${S}/modules/ti_dl/utils/tidlModelImport/out/tidl_model_import.out ${D}${bindir}
++}
++
++INSANE_SKIP_${PN} = "ldflags"
++
++BBCLASSEXTEND="native nativesdk"
+diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
+index 569de5a..575a0a0 100644
+--- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
++++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
+@@ -3,16 +3,15 @@ DESCRIPTION = "TIDL Utilities for standalone simulation and importing / translat
+ HOMEPAGE = "http://software-dl.ti.com/processor-sdk-linux/esd/docs/latest/linux/Foundational_Components.html#tidl"
+ LICENSE = "TI-TFL"
  
--S = "${WORKDIR}/HEVC.D.ARM.${PV}/ARM_001"
-+S = "${WORKDIR}/git"
+-PV = "1.0.0.0"
++require ./tidl-utils.inc
++
++PV = "1.0.0.1"
+ INC_PR = "r0"
  
- do_configure() {
-     sed "s/-lpthread/-pthread/g" -i ${S}/Client/Build/ARM/makefile
+ LIC_FILES_CHKSUM = "file://docs/LICENSE.txt;md5=a93aa5af7a3bbbb6fb34c8df59efaa5c"
+ 
+ RDEPENDS_${PN}_class-target += " tidl-api tidl-examples "
+ 
+-SRC_URI = "git://git.ti.com/tidl/tidl-utils.git;protocol=git;branch=master"
+-SRCREV = "994d90ae583610673d9d39086ca5e84027a9c56e"
+-
+ PR = "${INC_PR}.0"
+ 
+ S = "${WORKDIR}/git"
+diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
+new file mode 100644
+index 0000000..37ce84d
+--- /dev/null
++++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
+@@ -0,0 +1,2 @@
++SRC_URI = "git://git.ti.com/tidl/tidl-utils.git;protocol=git;branch=master"
++SRCREV = "0021b6f15ee4a1a8919905429a5045fd02afe5b1"
 -- 
-2.7.4
+1.9.1
 
 
