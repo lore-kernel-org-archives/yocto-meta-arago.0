@@ -1,44 +1,44 @@
 Return-Path: <manishalocal@uda0393239>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id DB6B152A18
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 9002852A18
 	for <meta-arago@arago-project.org>;
-	Thu, 13 Dec 2018 20:48:34 +0000 (UTC)
+	Thu, 13 Dec 2018 20:57:09 +0000 (UTC)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id wBDKmN3a120771
-	for <meta-arago@arago-project.org>; Thu, 13 Dec 2018 14:48:23 -0600
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wBDKuvSF094524
+	for <meta-arago@arago-project.org>; Thu, 13 Dec 2018 14:56:57 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1544734103;
-	bh=RxJBgo3mpZp95TxX+63oKk2D0mECGKS+0Z1u8WwB6ds=;
+	s=ti-com-17Q1; t=1544734617;
+	bh=5e3xINRJvaXVXrclt9F7ZzLOIaBXzQPPEMY4QGYdDC8=;
 	h=From:To:CC:Subject:Date;
-	b=xqx+pD0BHNjGq/oqDglvtWWCxBXT547owUC4zhvqqA3mdHjBXcybUsyOSB8PtKsZz
-	vVgnNq7dBzQpcQAv+7tnFbZHqW23XqZlag3XwkDEDVNZgKnVnYur+UVHT3ng3lBbFy
-	Anhwp5Oh/l1noQF5+o9bafM1W+/9WvcKdkTLWOIQ=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wBDKmNnR002705
+	b=kLklh9MCx9PnOg8SS39xVbuZz5YTb3GBZtYVqsSmY9SCR0R7z4OyAJdq/nDGIlabU
+	8ubZOUpejMcTx7yR565e5wECQSibHdNwJaqjyPransGa2Qk0QW4/GcBpS9+6i611fj
+	0edWXeR+S9+V/xPuD65jPJDommZ7Xe92WSOpFtAM=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wBDKuvUo009934
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 13 Dec 2018 14:48:23 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 13 Dec 2018 14:56:57 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Thu, 13 Dec 2018 14:48:23 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 13 Dec 2018 14:56:56 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Thu, 13 Dec 2018 14:48:23 -0600
+	Transport; Thu, 13 Dec 2018 14:56:56 -0600
 Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wBDKmN0e020384;
-	Thu, 13 Dec 2018 14:48:23 -0600
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wBDKuuZY028388;
+	Thu, 13 Dec 2018 14:56:56 -0600
 Received: from manishalocal by uda0393239 with local (Exim 4.82)
 	(envelope-from <manishalocal@uda0393239>)
-	id 1gXXuA-0002Vq-SC; Thu, 13 Dec 2018 14:48:22 -0600
+	id 1gXY2S-0002YM-Kc; Thu, 13 Dec 2018 14:56:56 -0600
 From: Manisha Agrawal <manisha.agrawal@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 13 Dec 2018 14:48:21 -0600
-Message-ID: <20181213204821.9622-1-manisha.agrawal@ti.com>
+Date: Thu, 13 Dec 2018 14:56:54 -0600
+Message-ID: <20181213205654.9778-1-manisha.agrawal@ti.com>
 X-Mailer: git-send-email 2.13.0
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko/master][PATCH v1] arago.conf : add gif to qtbase package
+Subject: [rocko/master][PATCH v1] mmwavegesture-hmi : bump SRCREV for bug fix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,27 +51,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Dec 2018 20:48:35 -0000
+X-List-Received-Date: Thu, 13 Dec 2018 20:57:09 -0000
 Content-Type: text/plain
+
+Bug fix for double free memory corruption and QSocket error seen on
+AM57x devcie.
 
 Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 2 +-
+ .../recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb             | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 77e25aba..dcab8708 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -105,7 +105,7 @@ PACKAGECONFIG_append_pn-systemd = " coredump"
+diff --git a/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb b/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
+index bece51f5..e4ccba48 100644
+--- a/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
++++ b/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
+@@ -10,7 +10,7 @@ PR = "r0"
+ BRANCH = "master"
+ SRC_URI = "git://git.ti.com/sitara-linux/mmwavegesture-hmi.git;protocol=git;branch=${BRANCH}"
  
- # Configure Qt5 flags (GLES is still required for qtdeclarative and qtwebkit)
- PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
--PACKAGECONFIG_DISTRO_pn-qtbase = "icu examples xkbcommon-evdev accessibility"
-+PACKAGECONFIG_DISTRO_pn-qtbase = "icu examples xkbcommon-evdev accessibility gif"
- PACKAGECONFIG_FONTS_pn-qtbase = "fontconfig"
+-SRCREV = "e8ca95ca63d891442d55aba95a01342f0b7bdd63"
++SRCREV = "c6052e1cd1079b09bef78cdcd8e5151133c3b4e1"
  
- # Add gstreamer in package configuration to enable video
+ S = "${WORKDIR}/git"
+ 
 -- 
 2.13.0
 
