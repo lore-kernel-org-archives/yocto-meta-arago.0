@@ -1,44 +1,44 @@
-Return-Path: <manishalocal@uda0393239>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 9002852A18
+Return-Path: <m-radhakrishnan2@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id C015B52A0B
 	for <meta-arago@arago-project.org>;
-	Thu, 13 Dec 2018 20:57:09 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wBDKuvSF094524
-	for <meta-arago@arago-project.org>; Thu, 13 Dec 2018 14:56:57 -0600
+	Fri, 14 Dec 2018 19:35:36 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id wBEJZPM0126484
+	for <meta-arago@arago-project.org>; Fri, 14 Dec 2018 13:35:25 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1544734617;
-	bh=5e3xINRJvaXVXrclt9F7ZzLOIaBXzQPPEMY4QGYdDC8=;
-	h=From:To:CC:Subject:Date;
-	b=kLklh9MCx9PnOg8SS39xVbuZz5YTb3GBZtYVqsSmY9SCR0R7z4OyAJdq/nDGIlabU
-	8ubZOUpejMcTx7yR565e5wECQSibHdNwJaqjyPransGa2Qk0QW4/GcBpS9+6i611fj
-	0edWXeR+S9+V/xPuD65jPJDommZ7Xe92WSOpFtAM=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wBDKuvUo009934
+	s=ti-com-17Q1; t=1544816125;
+	bh=XWfD+eKnlfcVPT+SvWzLSN1i2YOsJJM/UMDvIN1FE3k=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=iPZ+OoqGcyRsxTrPuhQThK/o4zXhE8TBIidZpDHdU94FbbhnMIRyPyNhjUX+I11RL
+	sHWCzOTH27yteEBD49cw/RgmPMMslNQO2+tDmdpljb5D3pm9g5cpDWYutQkHj0T0iJ
+	ssJ2eenqSMISPKCld0gIMnhLNOgs33XfcrtQ8zok=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wBEJZPd0023523
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 13 Dec 2018 14:56:57 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 14 Dec 2018 13:35:25 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Thu, 13 Dec 2018 14:56:56 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 14 Dec 2018 13:35:24 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Thu, 13 Dec 2018 14:56:56 -0600
-Received: from uda0393239 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id wBDKuuZY028388;
-	Thu, 13 Dec 2018 14:56:56 -0600
-Received: from manishalocal by uda0393239 with local (Exim 4.82)
-	(envelope-from <manishalocal@uda0393239>)
-	id 1gXY2S-0002YM-Kc; Thu, 13 Dec 2018 14:56:56 -0600
-From: Manisha Agrawal <manisha.agrawal@ti.com>
+	Transport; Fri, 14 Dec 2018 13:35:25 -0600
+Received: from uda0875154a.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wBEJZONu014701
+	for <meta-arago@arago-project.org>; Fri, 14 Dec 2018 13:35:24 -0600
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 13 Dec 2018 14:56:54 -0600
-Message-ID: <20181213205654.9778-1-manisha.agrawal@ti.com>
-X-Mailer: git-send-email 2.13.0
+Date: Fri, 14 Dec 2018 14:35:22 -0500
+Message-ID: <1544816122-11310-2-git-send-email-m-radhakrishnan2@ti.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1544816122-11310-1-git-send-email-m-radhakrishnan2@ti.com>
+References: <1544816122-11310-1-git-send-email-m-radhakrishnan2@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [rocko/master][PATCH v1] mmwavegesture-hmi : bump SRCREV for bug fix
+Subject: [master][meta-processor-sdk][PATCH] common-csl-ip: Superseeded after update to 03.03.00.13
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,31 +51,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Dec 2018 20:57:09 -0000
+X-List-Received-Date: Fri, 14 Dec 2018 19:35:37 -0000
 Content-Type: text/plain
 
-Bug fix for double free memory corruption and QSocket error seen on
-AM57x devcie.
-
-Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
+Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 ---
- .../recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb             | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_12A.inc  | 5 -----
+ recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend | 1 -
+ recipes-bsp/common-csl-ip/common-csp-ip_git.bbappend      | 1 -
+ 3 files changed, 7 deletions(-)
+ delete mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_12A.inc
+ delete mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
+ delete mode 100644 recipes-bsp/common-csl-ip/common-csp-ip_git.bbappend
 
-diff --git a/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb b/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
-index bece51f5..e4ccba48 100644
---- a/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
-+++ b/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
-@@ -10,7 +10,7 @@ PR = "r0"
- BRANCH = "master"
- SRC_URI = "git://git.ti.com/sitara-linux/mmwavegesture-hmi.git;protocol=git;branch=${BRANCH}"
- 
--SRCREV = "e8ca95ca63d891442d55aba95a01342f0b7bdd63"
-+SRCREV = "c6052e1cd1079b09bef78cdcd8e5151133c3b4e1"
- 
- S = "${WORKDIR}/git"
- 
+diff --git a/recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_12A.inc b/recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_12A.inc
+deleted file mode 100644
+index 24bfd8a..0000000
+--- a/recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_12A.inc
++++ /dev/null
+@@ -1,5 +0,0 @@
+-PV = "03.03.00.12A"
+-INC_PR = "r0"
+-
+-# Below commit ID corresponding to "DEV.CSL_PROCESSOR-SDK.03.03.00.12A"
+-CSL_SRCREV = "852cfe681c766a2096007fee37358c0782194897"
+diff --git a/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend b/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
+deleted file mode 100644
+index f71f851..0000000
+--- a/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
++++ /dev/null
+@@ -1 +0,0 @@
+-require common-csl-ip-03_03_00_12A.inc
+diff --git a/recipes-bsp/common-csl-ip/common-csp-ip_git.bbappend b/recipes-bsp/common-csl-ip/common-csp-ip_git.bbappend
+deleted file mode 100644
+index f71f851..0000000
+--- a/recipes-bsp/common-csl-ip/common-csp-ip_git.bbappend
++++ /dev/null
+@@ -1 +0,0 @@
+-require common-csl-ip-03_03_00_12A.inc
 -- 
-2.13.0
+1.9.1
 
 
