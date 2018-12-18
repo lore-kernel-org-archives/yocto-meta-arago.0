@@ -1,42 +1,44 @@
 Return-Path: <m-radhakrishnan2@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 3244D52ABF
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 4A67E52AC4
 	for <meta-arago@arago-project.org>;
 	Tue, 18 Dec 2018 22:21:15 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id wBIML3Nh035078
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id wBIML3dS004337
 	for <meta-arago@arago-project.org>; Tue, 18 Dec 2018 16:21:03 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1545171663;
-	bh=BFEuCdRrooAz8d/br60iQxAvXbsio2Fa8Mw53kmMpnc=;
-	h=From:To:Subject:Date;
-	b=s3ZZe4pOKpMs41g6kOl5y38cpyf5ytRBAaAFGJ7t8/Dag8aS6TrKCanJk9boffQmx
-	cStW1owxMEh8dOyvhA8qs1imP6UztVASSmOtzMRUWR6oXu8xxHewPWnuQTBpyzfguZ
-	FiB2rd8YL3CDMaQC2oHP/g/SPOb/iMMM6nBYJLk0=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wBIML2ne070373
+	bh=AKz0IJRNhap6IenDznO0lkzh1Du8F4vW57QsoHDusSI=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=bgD6bLIJWm1/0vYYZ0UvpiCFHf7BW4rwSgSLkz+p0PQU+VGm1XgsQcTu+h99mcyYA
+	QtbVdho7aSQLUTYAx2JAg4g5eE+b/F7ro0853zBvPiiCSCLBSQJssg3nOO63YFZK6d
+	5YFHuSoDMJk1VLlQPM0mg6k2eaj9D4fvJNmQy0Os=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id wBIML3dj049595
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@arago-project.org>; Tue, 18 Dec 2018 16:21:03 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Tue, 18 Dec 2018 16:21:01 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 18 Dec 2018 16:21:02 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Tue, 18 Dec 2018 16:21:01 -0600
+	Transport; Tue, 18 Dec 2018 16:21:03 -0600
 Received: from uda0875154a.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wBIML1R8018057
-	for <meta-arago@arago-project.org>; Tue, 18 Dec 2018 16:21:01 -0600
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id wBIML1RC018057
+	for <meta-arago@arago-project.org>; Tue, 18 Dec 2018 16:21:02 -0600
 From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 18 Dec 2018 17:20:52 -0500
-Message-ID: <1545171658-17410-1-git-send-email-m-radhakrishnan2@ti.com>
+Date: Tue, 18 Dec 2018 17:20:56 -0500
+Message-ID: <1545171658-17410-5-git-send-email-m-radhakrishnan2@ti.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1545171658-17410-1-git-send-email-m-radhakrishnan2@ti.com>
+References: <1545171658-17410-1-git-send-email-m-radhakrishnan2@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master][meta-processor-sdk][PATCH 0/6] RTOS 5.2 Patchset 2
+Subject: [master][meta-processor-sdk][PATCH 4/6] emac-lld-rtos: SRCREV update to 01.00.03.13C
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,43 +51,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Dec 2018 22:21:16 -0000
+X-List-Received-Date: Tue, 18 Dec 2018 22:21:17 -0000
 Content-Type: text/plain
 
-This is the patchset-2 for RTOS 5.2 release
-
-Mahesh Radhakrishnan (6):
-  board-rtos: SRCREV update to 01.00.10.03A
-  common-csl-ip: SRCREV update to 03.03.00.13A
-  osal: SRCREV update to 01.00.00.13A
-  emac-lld-rtos: SRCREV update to 01.00.03.13C
-  spi-lld-rtos: SRCREV update to 01.00.00.13A
-  udma-lld-rtos: SRCREV update to 01.00.00.01A
-
- recipes-bsp/board-rtos/board-rtos_git.bbappend            | 5 +++++
- recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_13A.inc  | 5 +++++
- recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend | 1 +
- recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend      | 1 +
- recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend           | 5 +++++
- recipes-bsp/osal/osal-01_00_00_13A.inc                    | 6 ++++++
- recipes-bsp/osal/osal-rtos_git.bbappend                   | 1 +
- recipes-bsp/osal/osal-test_git.bbappend                   | 1 +
- recipes-bsp/osal/osal_git.bbappend                        | 1 +
- recipes-bsp/spi-lld/spi-lld-rtos_git.bbappend             | 6 ++++++
- recipes-bsp/udma-lld/udma-lld-rtos_git.bbappend           | 5 +++++
- 11 files changed, 37 insertions(+)
- create mode 100644 recipes-bsp/board-rtos/board-rtos_git.bbappend
- create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_13A.inc
- create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
- create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
+Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+---
+ recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend | 5 +++++
+ 1 file changed, 5 insertions(+)
  create mode 100644 recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend
- create mode 100644 recipes-bsp/osal/osal-01_00_00_13A.inc
- create mode 100644 recipes-bsp/osal/osal-rtos_git.bbappend
- create mode 100644 recipes-bsp/osal/osal-test_git.bbappend
- create mode 100644 recipes-bsp/osal/osal_git.bbappend
- create mode 100644 recipes-bsp/spi-lld/spi-lld-rtos_git.bbappend
- create mode 100644 recipes-bsp/udma-lld/udma-lld-rtos_git.bbappend
 
+diff --git a/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend b/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend
+new file mode 100644
+index 0000000..d0b20f0
+--- /dev/null
++++ b/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend
+@@ -0,0 +1,5 @@
++# Below commit ID corresponds to "DEV.EMAC_LLD.01.00.03.13C"
++EMAC_LLD_SRCREV = "e37ab39f3fa7ed7c9266e220e584c1097c32fcff"
++
++PV = "01.00.03.13C"
++PR = "r0"
 -- 
 1.9.1
 
