@@ -1,44 +1,42 @@
-Return-Path: <jake@udc0866934>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 47B7C5298A
+Return-Path: <yuanzhao@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 0E0705299F
 	for <meta-arago@arago-project.org>;
-	Wed,  2 Jan 2019 15:46:21 +0000 (UTC)
+	Mon, 14 Jan 2019 22:41:47 +0000 (UTC)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x02Fk8Xi099408
-	for <meta-arago@arago-project.org>; Wed, 2 Jan 2019 09:46:08 -0600
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x0EMfYvw065481
+	for <meta-arago@arago-project.org>; Mon, 14 Jan 2019 16:41:34 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1546443968;
-	bh=iqWcnrc5pQgagKzsTaF9CchtFcTUwBCKN1/M/Zr1PQM=;
+	s=ti-com-17Q1; t=1547505694;
+	bh=aV3eNvV3IK0QiFDTQteLYv4LXrtHE3itkYaJamYqHus=;
 	h=From:To:CC:Subject:Date;
-	b=BmjGSe1va3th9GbD3v4VHiegJw/YvvJZgfYxHtg0G4/eYXv+6gQF0SioHi0LOWAgn
-	LIfAh1Ed1Xw5knB1uBMV+4WCxWceR24/B9fnzrTf+YKfxpfRiXXzxd79Exe2ybgZip
-	85zI4CuO0fM2dKxPikq5gSwSA0LOQOy8DO5/6MLA=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x02Fk830083093
+	b=T93Hkc5B6B08Az1L4/S3HUm9QfJHJZ1qPhy4q9LpyHjtDi5G2y7vn3mQpjsiBPZhy
+	y5/+N6hjT9up/OVKqrVv8MBchESLhmmpYFGibhtzFgT9bFTogBnQWFVYbKYNZ3IUBG
+	nDLapcq2hz5ZJ6CIL1Z1Tu4qCTnhfACHe78ta/6A=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x0EMfYNS112516
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 2 Jan 2019 09:46:08 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 14 Jan 2019 16:41:34 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Wed, 2 Jan 2019 09:46:08 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 14 Jan 2019 16:41:34 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Wed, 2 Jan 2019 09:46:08 -0600
-Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x02Fk8If007925;
-	Wed, 2 Jan 2019 09:46:08 -0600
-Received: from jake by udc0866934 with local (Exim 4.82)
-	(envelope-from <jake@udc0866934>)
-	id 1geiid-0000EJ-Qs; Wed, 02 Jan 2019 10:46:07 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	Transport; Mon, 14 Jan 2019 16:41:34 -0600
+Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x0EMfYOo016623;
+	Mon, 14 Jan 2019 16:41:34 -0600
+From: Yuan Zhao <yuanzhao@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 2 Jan 2019 10:46:04 -0500
-Message-ID: <1546443964-808-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
+Date: Mon, 14 Jan 2019 16:41:29 -0600
+Message-ID: <20190114224129.125351-1-yuanzhao@ti.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [oe-layersetup][PATCH] processor-sdk: add 5.2.0.10 release config
+Subject: [PATCH] ocl: update version to 01.01.17.02
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,38 +49,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jan 2019 15:46:22 -0000
+X-List-Received-Date: Mon, 14 Jan 2019 22:41:48 -0000
 Content-Type: text/plain
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../processor-sdk/processor-sdk-05.02.00.10-config.txt   | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
- create mode 100644 configs/processor-sdk/processor-sdk-05.02.00.10-config.txt
+- minor fixes for OpenCL g++-arm-8 compiling issues
 
-diff --git a/configs/processor-sdk/processor-sdk-05.02.00.10-config.txt b/configs/processor-sdk/processor-sdk-05.02.00.10-config.txt
-new file mode 100644
-index 0000000..8a8a84d
---- /dev/null
-+++ b/configs/processor-sdk/processor-sdk-05.02.00.10-config.txt
-@@ -0,0 +1,16 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,1.36,0c7cf572b8350e7ec1e451d207d67f1f7ce018cb,layers=
-+meta-processor-sdk,http://arago-project.org/git/projects/meta-processor-sdk.git,master,378823175fb71bc7073ff4b745d62ee5b37de7bf,layers=
-+meta-ros,https://github.com/bmwcarit/meta-ros.git,master,e2566402ab108a19634354a934788109422cf409,layers=
-+meta-arago,http://arago-project.org/git/meta-arago.git,rocko,44707eb4de002040aac8444030e0f5feae238e6c,layers=meta-arago-distro:meta-arago-extras
-+meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,rocko,d8b531530fa42b59aa0a5b123d87a30d749cbcc4,layers=
-+meta-virtualization,git://git.yoctoproject.org/meta-virtualization,rocko,b704c689b67639214b9568a3d62e82df27e9434f,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,rocko,eae996301d9c097bcbeb8046f08041dc82bb62f8,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-multimedia:meta-filesystems
-+meta-ti,git://git.yoctoproject.org/meta-ti,rocko,e9b069beb92f00e6947cdd0f503747774b189358,layers=
-+meta-linaro,https://git.linaro.org/openembedded/meta-linaro.git,rocko,75dfb67bbb14a70cd47afda9726e2e1c76731885,layers=meta-linaro-toolchain:meta-optee
-+oe-core,git://git.openembedded.org/openembedded-core,rocko,3638cb32ba9ba32b4d498fc31ab7fdf82f0d2495,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
+Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+---
+ meta-arago-extras/recipes-ti/ocl/ocl.inc | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index 96d1836f..be32b0bc 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,6 +1,6 @@
+ # patch version at the end needs to be in double digits
+-PV = "1.1.17.01"
+-INC_PR = "r1"
++PV = "1.1.17.02"
++INC_PR = "r0"
+ 
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+ 
+@@ -10,7 +10,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
+ 
+-OCL_SRCREV = "61d9dbae3ee40f8023ec624601c2a0cc9e80220f"
++OCL_SRCREV = "fef8ff7679dacfac7b208531be07550fa7e3673e"
+ 
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
 -- 
-1.9.1
+2.14.1
 
 
