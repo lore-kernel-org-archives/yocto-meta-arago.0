@@ -1,42 +1,43 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 3025852968
+Return-Path: <h-gou@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 76AD452968
 	for <meta-arago@arago-project.org>;
-	Wed, 16 Jan 2019 20:49:45 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x0GKnWqW056581
-	for <meta-arago@arago-project.org>; Wed, 16 Jan 2019 14:49:32 -0600
+	Wed, 16 Jan 2019 23:15:17 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x0GNF49s121183
+	for <meta-arago@arago-project.org>; Wed, 16 Jan 2019 17:15:04 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1547671772;
-	bh=L8tuENnnpwGyyVF6CjiihvegmDrewb9i6tbYyraNaaY=;
-	h=From:To:Subject:Date;
-	b=Jp1Z3JvanWULkI0CnW4VDwfXc7iJlLEJVIX/7MFNrNs7exdXqxFjwOV51TrDaZDeJ
-	pumvxZ7xLBmmyTYPDcqTA1adBJJABWjkYNaufQe28Jrpv/eoHUSfBk8VTUsC+pVorj
-	DRcs8rUTlMDeKgeihdZsTdxHhYqcRZ6h41Tm0L9c=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x0GKnWfG086718
+	s=ti-com-17Q1; t=1547680504;
+	bh=4mgN4xUWH4l3ZMRiyxoAFZqC82UyLyFUP3Xy1chIDBQ=;
+	h=From:To:CC:Subject:Date;
+	b=QOxKW907L2GQIeX8/yBJdFHPPFr0ABylXXfaP4OWVYK6tOKPnaJEIMtzeQzrLo+6D
+	K0+QB/mudvXknWvk8jjkCL3FlrALmHC4S3U6p2LGlEUKjLkWPYry6Y2ldGXOdpoHoF
+	AQCEVX/VRPNNtE/CfGhg5PMcnisnhkamWw3Ow0X8=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x0GNF4Yt009525
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 16 Jan 2019 14:49:32 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Wed, 16 Jan 2019 17:15:04 -0600
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Wed, 16 Jan 2019 14:49:31 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
+	Wed, 16 Jan 2019 17:15:04 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Wed, 16 Jan 2019 14:49:32 -0600
-Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Wed, 16 Jan 2019 17:15:04 -0600
+Received: from uda0271529.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x0GKnVTJ018674
-	for <meta-arago@arago-project.org>; Wed, 16 Jan 2019 14:49:31 -0600
-From: Eric Ruei <e-ruei1@ti.com>
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x0GNF3WR014772;
+	Wed, 16 Jan 2019 17:15:03 -0600
+From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 16 Jan 2019 15:49:28 -0500
-Message-ID: <1547671768-3782-1-git-send-email-e-ruei1@ti.com>
+Date: Wed, 16 Jan 2019 18:15:02 -0500
+Message-ID: <1547680502-24553-1-git-send-email-a0271529@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] gstreamer1.0-plugins-bad: update patches for AM654x support
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [meta-processor-sdk] [PATCH] move-base: update the patch to match with lab0008-autonomous-robotics-ros
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,307 +50,316 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jan 2019 20:49:46 -0000
+X-List-Received-Date: Wed, 16 Jan 2019 23:15:18 -0000
 Content-Type: text/plain
 
-- add tidss for AM6/7 support
-- add missing include files for wyalnadsink DRM support
-
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- ...-omapdrm-and-tidss-in-the-list-of-driver-.patch | 166 +++++++++++++++++++++
- ...0005-waylandsink-Add-input-device-support.patch |  23 +--
- .../gstreamer1.0-plugins-bad_1.12.2.bbappend       |   8 +-
- 3 files changed, 183 insertions(+), 14 deletions(-)
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-driver-.patch
+ .../0002-navigation-move-base-mmwave-changes.patch | 280 ++++++++++++++++++++-
+ recipes-ros/navigation/move-base_1.12.14.bbappend  |   2 +-
+ 2 files changed, 280 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-driver-.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-driver-.patch
-new file mode 100644
-index 0000000..e7d9af4
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-driver-.patch
-@@ -0,0 +1,166 @@
-+From e7869b0fd95f906742e4e99dd9046ffd460d91bf Mon Sep 17 00:00:00 2001
-+From: Ramprasad N <x0038811@ti.com>
-+Date: Wed, 16 Jan 2019 14:38:59 -0500
-+Subject: [PATCH 3/5] kmssink: Add omapdrm and tidss in the list of driver
-+ modules
-+
-+In gstreamer-bad v1.12.2 kmssink plugin is available but omapdrm
-+and tidss driver are not added in the list of driver module.
-+
-+DRM and DMABUF are treated differently by gstreamer
-+eventhough they are based on fd allocator.
-+GST1.12 has many changes to dmabuf allocator and
-+hence DRM and DMABUF will be treated differently.
-+
-+Added support for DRM buffer importing. Without
-+this addition, there will be frame-copy happens and
-+slows down the playback.
-+
-+Signed-off-by: Ramprasad N <x0038811@ti.com>
-+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-+---
-+ sys/kms/Makefile.am  |   1 +
-+ sys/kms/gstkmssink.c | 101 ++++++++++++++++++++++++++++++++++++++++++++++++++-
-+ 2 files changed, 101 insertions(+), 1 deletion(-)
-+
-+diff --git a/sys/kms/Makefile.am b/sys/kms/Makefile.am
-+index a97cad1..063f5ef 100644
-+--- a/sys/kms/Makefile.am
-++++ b/sys/kms/Makefile.am
-+@@ -23,6 +23,7 @@ libgstkms_la_LIBADD = 			\
-+ 	$(GST_ALLOCATORS_LIBS)			\
-+ 	$(GST_LIBS) 				\
-+ 	$(KMS_DRM_LIBS) 			\
-++	$(top_builddir)/gst-libs/gst/drm/libgstdrm-$(GST_API_VERSION).la \
-+ 	$(NULL)
+diff --git a/recipes-ros/navigation/files/0002-navigation-move-base-mmwave-changes.patch b/recipes-ros/navigation/files/0002-navigation-move-base-mmwave-changes.patch
+index 0ab97b1..4ff191f 100644
+--- a/recipes-ros/navigation/files/0002-navigation-move-base-mmwave-changes.patch
++++ b/recipes-ros/navigation/files/0002-navigation-move-base-mmwave-changes.patch
+@@ -10,7 +10,285 @@ index c608d37..43e0e8c 100644
+  *  All rights reserved.
+  *
+  *  Redistribution and use in source and binary forms, with or without
+-@@ -662,6 +663,9 @@ namespace move_base {
++@@ -114,24 +115,9 @@
 + 
-+ libgstkms_la_LDFLAGS = 			\
-+diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
-+index d19e19e..24551e4 100644
-+--- a/sys/kms/gstkmssink.c
-++++ b/sys/kms/gstkmssink.c
-+@@ -85,7 +85,8 @@ static int
-+ kms_open (gchar ** driver)
-+ {
-+   static const char *drivers[] = { "i915", "radeon", "nouveau", "vmwgfx",
-+-    "exynos", "amdgpu", "imx-drm", "rockchip", "atmel-hlcdc", "msm"
-++    "exynos", "amdgpu", "imx-drm", "rockchip", "atmel-hlcdc", "msm",
-++    "omapdrm", "tidss"
-+   };
-+   int i, fd = -1;
++     //initialize the global planner
++     try {
++-      //check if a non fully qualified name has potentially been passed in
++-      if(!bgp_loader_.isClassAvailable(global_planner)){
++-        std::vector<std::string> classes = bgp_loader_.getDeclaredClasses();
++-        for(unsigned int i = 0; i < classes.size(); ++i){
++-          if(global_planner == bgp_loader_.getName(classes[i])){
++-            //if we've found a match... we'll get the fully qualified name and break out of the loop
++-            ROS_WARN("Planner specifications should now include the package name. You are using a deprecated API. Please switch from %s to %s in your yaml file.",
++-                global_planner.c_str(), classes[i].c_str());
++-            global_planner = classes[i];
++-            break;
++-          }
++-        }
++-      }
++-
++       planner_ = bgp_loader_.createInstance(global_planner);
++       planner_->initialize(bgp_loader_.getName(global_planner), planner_costmap_ros_);
++-    } catch (const pluginlib::PluginlibException& ex)
++-    {
+++    } catch (const pluginlib::PluginlibException& ex) {
++       ROS_FATAL("Failed to create the %s planner, are you sure it is properly registered and that the containing library is built? Exception: %s", global_planner.c_str(), ex.what());
++       exit(1);
++     }
++@@ -142,25 +128,10 @@
 + 
-+@@ -1041,6 +1042,100 @@ set_cached_kmsmem (GstMemory * mem, GstMemory * kmsmem)
-+ }
++     //create a local planner
++     try {
++-      //check if a non fully qualified name has potentially been passed in
++-      if(!blp_loader_.isClassAvailable(local_planner)){
++-        std::vector<std::string> classes = blp_loader_.getDeclaredClasses();
++-        for(unsigned int i = 0; i < classes.size(); ++i){
++-          if(local_planner == blp_loader_.getName(classes[i])){
++-            //if we've found a match... we'll get the fully qualified name and break out of the loop
++-            ROS_WARN("Planner specifications should now include the package name. You are using a deprecated API. Please switch from %s to %s in your yaml file.",
++-                local_planner.c_str(), classes[i].c_str());
++-            local_planner = classes[i];
++-            break;
++-          }
++-        }
++-      }
++-
++       tc_ = blp_loader_.createInstance(local_planner);
++       ROS_INFO("Created local_planner %s", local_planner.c_str());
++       tc_->initialize(blp_loader_.getName(local_planner), &tf_, controller_costmap_ros_);
++-    } catch (const pluginlib::PluginlibException& ex)
++-    {
+++    } catch (const pluginlib::PluginlibException& ex) {
++       ROS_FATAL("Failed to create the %s planner, are you sure it is properly registered and that the containing library is built? Exception: %s", local_planner.c_str(), ex.what());
++       exit(1);
++     }
++@@ -248,20 +219,6 @@
++       //initialize the global planner
++       ROS_INFO("Loading global planner %s", config.base_global_planner.c_str());
++       try {
++-        //check if a non fully qualified name has potentially been passed in
++-        if(!bgp_loader_.isClassAvailable(config.base_global_planner)){
++-          std::vector<std::string> classes = bgp_loader_.getDeclaredClasses();
++-          for(unsigned int i = 0; i < classes.size(); ++i){
++-            if(config.base_global_planner == bgp_loader_.getName(classes[i])){
++-              //if we've found a match... we'll get the fully qualified name and break out of the loop
++-              ROS_WARN("Planner specifications should now include the package name. You are using a deprecated API. Please switch from %s to %s in your yaml file.",
++-                  config.base_global_planner.c_str(), classes[i].c_str());
++-              config.base_global_planner = classes[i];
++-              break;
++-            }
++-          }
++-        }
++-
++         planner_ = bgp_loader_.createInstance(config.base_global_planner);
 + 
-+ static gboolean
-++gst_kms_sink_import_drmbuf (GstKMSSink * self, GstBuffer * inbuf,
-++    GstBuffer ** outbuf)
-++{
-++  gint prime_fds[GST_VIDEO_MAX_PLANES] = { 0, };
-++  GstVideoMeta *meta;
-++  guint i, n_mem, n_planes;
-++  GstKMSMemory *kmsmem;
-++  guint mems_idx[GST_VIDEO_MAX_PLANES];
-++  gsize mems_skip[GST_VIDEO_MAX_PLANES];
-++  GstMemory *mems[GST_VIDEO_MAX_PLANES];
-++
-++  if (!self->has_prime_import)
-++    return FALSE;
-++
-++  /* This will eliminate most non-dmabuf out there */
-++  if (!gst_is_drm_memory (gst_buffer_peek_memory (inbuf, 0)))
-++    return FALSE;
-++
-++  n_planes = GST_VIDEO_INFO_N_PLANES (&self->vinfo);
-++  n_mem = gst_buffer_n_memory (inbuf);
-++  meta = gst_buffer_get_video_meta (inbuf);
-++
-++  GST_TRACE_OBJECT (self, "Found a drmbuf with %u planes and %u memories",
-++      n_planes, n_mem);
-++
-++  /* We cannot have multiple dmabuf per plane */
-++  if (n_mem > n_planes)
-++    return FALSE;
-++  g_assert (n_planes != 0);
-++
-++  /* Update video info based on video meta */
-++  if (meta) {
-++    GST_VIDEO_INFO_WIDTH (&self->vinfo) = meta->width;
-++    GST_VIDEO_INFO_HEIGHT (&self->vinfo) = meta->height;
-++
-++    for (i = 0; i < meta->n_planes; i++) {
-++      GST_VIDEO_INFO_PLANE_OFFSET (&self->vinfo, i) = meta->offset[i];
-++      GST_VIDEO_INFO_PLANE_STRIDE (&self->vinfo, i) = meta->stride[i];
-++    }
-++  }
-++
-++  /* Find and validate all memories */
-++  for (i = 0; i < n_planes; i++) {
-++    guint length;
-++
-++    if (!gst_buffer_find_memory (inbuf,
-++            GST_VIDEO_INFO_PLANE_OFFSET (&self->vinfo, i), 1,
-++            &mems_idx[i], &length, &mems_skip[i]))
-++      return FALSE;
-++
-++    mems[i] = gst_buffer_peek_memory (inbuf, mems_idx[i]);
-++
-++    /* adjust for memory offset, in case data does not
-++     * start from byte 0 in the dmabuf fd */
-++    mems_skip[i] += mems[i]->offset;
-++
-++    /* And all memory found must be dmabuf */
-++    if (!gst_is_drm_memory (mems[i]))
-++      return FALSE;
-++  }
-++
-++  kmsmem = (GstKMSMemory *) get_cached_kmsmem (mems[0]);
-++  if (kmsmem) {
-++    GST_LOG_OBJECT (self, "found KMS mem %p in DMABuf mem %p with fb id = %d",
-++        kmsmem, mems[0], kmsmem->fb_id);
-++    goto wrap_mem;
-++  }
-++
-++  for (i = 0; i < n_planes; i++)
-++    prime_fds[i] = gst_fd_memory_get_fd (mems[i]);
-++
-++  GST_LOG_OBJECT (self, "found these prime ids: %d, %d, %d, %d", prime_fds[0],
-++      prime_fds[1], prime_fds[2], prime_fds[3]);
-++
-++  kmsmem = gst_kms_allocator_dmabuf_import (self->allocator, prime_fds,
-++      n_planes, mems_skip, &self->vinfo);
-++  if (!kmsmem)
-++    return FALSE;
-++
-++  GST_LOG_OBJECT (self, "setting KMS mem %p to DMABuf mem %p with fb id = %d",
-++      kmsmem, mems[0], kmsmem->fb_id);
-++  set_cached_kmsmem (mems[0], GST_MEMORY_CAST (kmsmem));
-++
-++wrap_mem:
-++  *outbuf = gst_buffer_new ();
-++  if (!*outbuf)
-++    return FALSE;
-++  gst_buffer_append_memory (*outbuf, gst_memory_ref (GST_MEMORY_CAST (kmsmem)));
-++  gst_buffer_add_parent_buffer_meta (*outbuf, inbuf);
-++  gst_buffer_copy_into (*outbuf, inbuf, GST_BUFFER_COPY_METADATA, 0, -1);
-++
-++  return TRUE;
-++}
-++static gboolean
-+ gst_kms_sink_import_dmabuf (GstKMSSink * self, GstBuffer * inbuf,
-+     GstBuffer ** outbuf)
-+ {
-+@@ -1151,6 +1246,10 @@ gst_kms_sink_get_input_buffer (GstKMSSink * self, GstBuffer * inbuf)
-+     return gst_buffer_ref (inbuf);
++         // wait for the current planner to finish planning
++@@ -275,9 +232,9 @@
++         planner_->initialize(bgp_loader_.getName(config.base_global_planner), planner_costmap_ros_);
 + 
-+   buf = NULL;
-++  if (gst_kms_sink_import_drmbuf (self, inbuf, &buf))
-++    return buf;
-++
-++  buf = NULL;
-+   if (gst_kms_sink_import_dmabuf (self, inbuf, &buf))
-+     return buf;
++         lock.unlock();
++-      } catch (const pluginlib::PluginlibException& ex)
++-      {
++-        ROS_FATAL("Failed to create the %s planner, are you sure it is properly registered and that the containing library is built? Exception: %s", config.base_global_planner.c_str(), ex.what());
+++      } catch (const pluginlib::PluginlibException& ex) {
+++        ROS_FATAL("Failed to create the %s planner, are you sure it is properly registered and that the \
+++                   containing library is built? Exception: %s", config.base_global_planner.c_str(), ex.what());
++         planner_ = old_planner;
++         config.base_global_planner = last_config_.base_global_planner;
++       }
++@@ -287,20 +244,6 @@
++       boost::shared_ptr<nav_core::BaseLocalPlanner> old_planner = tc_;
++       //create a local planner
++       try {
++-        //check if a non fully qualified name has potentially been passed in
++-        ROS_INFO("Loading local planner: %s", config.base_local_planner.c_str());
++-        if(!blp_loader_.isClassAvailable(config.base_local_planner)){
++-          std::vector<std::string> classes = blp_loader_.getDeclaredClasses();
++-          for(unsigned int i = 0; i < classes.size(); ++i){
++-            if(config.base_local_planner == blp_loader_.getName(classes[i])){
++-              //if we've found a match... we'll get the fully qualified name and break out of the loop
++-              ROS_WARN("Planner specifications should now include the package name. You are using a deprecated API. Please switch from %s to %s in your yaml file.",
++-                  config.base_local_planner.c_str(), classes[i].c_str());
++-              config.base_local_planner = classes[i];
++-              break;
++-            }
++-          }
++-        }
++         tc_ = blp_loader_.createInstance(config.base_local_planner);
++         // Clean up before initializing the new planner
++         planner_plan_->clear();
++@@ -308,9 +251,9 @@
++         controller_plan_->clear();
++         resetState();
++         tc_->initialize(blp_loader_.getName(config.base_local_planner), &tf_, controller_costmap_ros_);
++-      } catch (const pluginlib::PluginlibException& ex)
++-      {
++-        ROS_FATAL("Failed to create the %s planner, are you sure it is properly registered and that the containing library is built? Exception: %s", config.base_local_planner.c_str(), ex.what());
+++      } catch (const pluginlib::PluginlibException& ex) {
+++        ROS_FATAL("Failed to create the %s planner, are you sure it is properly registered and that the \
+++                   containing library is built? Exception: %s", config.base_local_planner.c_str(), ex.what());
++         tc_ = old_planner;
++         config.base_local_planner = last_config_.base_local_planner;
++       }
++@@ -340,19 +283,19 @@
++     geometry_msgs::Point pt;
 + 
-+-- 
-+1.9.1
-+
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-waylandsink-Add-input-device-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-waylandsink-Add-input-device-support.patch
-index 49a2e04..5f82059 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-waylandsink-Add-input-device-support.patch
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0005-waylandsink-Add-input-device-support.patch
-@@ -1,6 +1,6 @@
--From ca8350db8bcf3179ebe52f54f27209046f62f8c5 Mon Sep 17 00:00:00 2001
-+From df5bc9b78b4a1d6437ce2fab971680fe0a49928a Mon Sep 17 00:00:00 2001
- From: Ramprasad N <x0038811@ti.com>
--Date: Tue, 27 Mar 2018 18:29:45 +0530
-+Date: Wed, 16 Jan 2019 14:47:01 -0500
- Subject: [PATCH 5/5] waylandsink: Add input device support
++     pt.x = x - size_x / 2;
++-    pt.y = y - size_x / 2;
+++    pt.y = y - size_y / 2;
++     clear_poly.push_back(pt);
++ 
++     pt.x = x + size_x / 2;
++-    pt.y = y - size_x / 2;
+++    pt.y = y - size_y / 2;
++     clear_poly.push_back(pt);
++ 
++     pt.x = x + size_x / 2;
++-    pt.y = y + size_x / 2;
+++    pt.y = y + size_y / 2;
++     clear_poly.push_back(pt);
++ 
++     pt.x = x - size_x / 2;
++-    pt.y = y + size_x / 2;
+++    pt.y = y + size_y / 2;
++     clear_poly.push_back(pt);
++ 
++     planner_costmap_ros_->getCostmap()->setConvexPolygonCost(clear_poly, costmap_2d::FREE_SPACE);
++@@ -365,19 +308,19 @@
++     y = global_pose.getOrigin().y();
++ 
++     pt.x = x - size_x / 2;
++-    pt.y = y - size_x / 2;
+++    pt.y = y - size_y / 2;
++     clear_poly.push_back(pt);
++ 
++     pt.x = x + size_x / 2;
++-    pt.y = y - size_x / 2;
+++    pt.y = y - size_y / 2;
++     clear_poly.push_back(pt);
++ 
++     pt.x = x + size_x / 2;
++-    pt.y = y + size_x / 2;
+++    pt.y = y + size_y / 2;
++     clear_poly.push_back(pt);
++ 
++     pt.x = x - size_x / 2;
++-    pt.y = y + size_x / 2;
+++    pt.y = y + size_y / 2;
++     clear_poly.push_back(pt);
++ 
++     controller_costmap_ros_->getCostmap()->setConvexPolygonCost(clear_poly, costmap_2d::FREE_SPACE);
++@@ -625,62 +568,55 @@
++       }
++       ros::Time start_time = ros::Time::now();
++ 
++-      if(state_==PLANNING){
++-        //time to plan! get a copy of the goal and unlock the mutex
++-        geometry_msgs::PoseStamped temp_goal = planner_goal_;
+++      //time to plan! get a copy of the goal and unlock the mutex
+++      geometry_msgs::PoseStamped temp_goal = planner_goal_;
+++      lock.unlock();
+++      ROS_DEBUG_NAMED("move_base_plan_thread","Planning...");
+++
+++      //run planner
+++      planner_plan_->clear();
+++      bool gotPlan = n.ok() && makePlan(temp_goal, *planner_plan_);
+++
+++      if(gotPlan){
+++        ROS_DEBUG_NAMED("move_base_plan_thread","Got Plan with %zu points!", planner_plan_->size());
+++        //pointer swap the plans under mutex (the controller will pull from latest_plan_)
+++        std::vector<geometry_msgs::PoseStamped>* temp_plan = planner_plan_;
+++
+++        lock.lock();
+++        planner_plan_ = latest_plan_;
+++        latest_plan_ = temp_plan;
+++        last_valid_plan_ = ros::Time::now();
+++        planning_retries_ = 0;
+++        new_global_plan_ = true;
+++
+++        ROS_DEBUG_NAMED("move_base_plan_thread","Generated a plan from the base_global_planner");
+++
+++        //make sure we only start the controller if we still haven't reached the goal
+++        if(runPlanner_)
+++          state_ = CONTROLLING;
+++        if(planner_frequency_ <= 0)
+++          runPlanner_ = false;
++         lock.unlock();
++-        ROS_DEBUG_NAMED("move_base_plan_thread","Planning...");
++-
++-        //run planner
++-        planner_plan_->clear();
++-        bool gotPlan = n.ok() && makePlan(temp_goal, *planner_plan_);
++-
++-        if(gotPlan){
++-          ROS_DEBUG_NAMED("move_base_plan_thread","Got Plan with %zu points!", planner_plan_->size());
++-          //pointer swap the plans under mutex (the controller will pull from latest_plan_)
++-          std::vector<geometry_msgs::PoseStamped>* temp_plan = planner_plan_;
++-
++-          lock.lock();
++-          planner_plan_ = latest_plan_;
++-          latest_plan_ = temp_plan;
++-          last_valid_plan_ = ros::Time::now();
++-          planning_retries_ = 0;
++-          new_global_plan_ = true;
++-
++-          ROS_DEBUG_NAMED("move_base_plan_thread","Generated a plan from the base_global_planner");
++-
++-          //make sure we only start the controller if we still haven't reached the goal
++-          if(runPlanner_)
++-            state_ = CONTROLLING;
++-          if(planner_frequency_ <= 0)
++-            runPlanner_ = false;
++-          lock.unlock();
+++      }
+++      //if we didn't get a plan and we are in the planning state (the robot isn't moving)
+++      else if(state_==PLANNING){
+++        ROS_DEBUG_NAMED("move_base_plan_thread","No Plan...");
+++        ros::Time attempt_end = last_valid_plan_ + ros::Duration(planner_patience_);
+++
+++        //check if we've tried to make a plan for over our time limit or our maximum number of retries
+++        //issue #496: we stop planning when one of the conditions is true, but if max_planning_retries_
+++        //is negative (the default), it is just ignored and we have the same behavior as ever
+++        lock.lock();
+++        planning_retries_++;
+++        if(runPlanner_ &&
+++           (ros::Time::now() > attempt_end || planning_retries_ > uint32_t(max_planning_retries_))){
+++          //we'll move into our obstacle clearing mode
+++          state_ = CLEARING;
+++          runPlanner_ = false;  // proper solution for issue #523
+++          publishZeroVelocity();
+++          recovery_trigger_ = PLANNING_R;
++         }
++-        //if we didn't get a plan and we are in the planning state (the robot isn't moving)
++-        else{
++-          ROS_DEBUG_NAMED("move_base_plan_thread","No Plan...");
++-          ros::Time attempt_end = last_valid_plan_ + ros::Duration(planner_patience_);
++-
++-          //check if we've tried to make a plan for over our time limit or our maximum number of retries
++-          //issue #496: we stop planning when one of the conditions is true, but if max_planning_retries_
++-          //is negative (the default), it is just ignored and we have the same behavior as ever
++-          lock.lock();
++-          planning_retries_++;
++-          if(runPlanner_ &&
++-             (ros::Time::now() > attempt_end || planning_retries_ > uint32_t(max_planning_retries_))){
++-            //we'll move into our obstacle clearing mode
++-            state_ = CLEARING;
++-            wait_for_wake = true;
++-            publishZeroVelocity();
++-            recovery_trigger_ = PLANNING_R;
++-          }
++ 
++-          lock.unlock();
++-        }
++-      }
++-      else
++-      {
++-        //not planning, so just unlock the mutex
++         lock.unlock();
++       }
++ 
++@@ -724,6 +660,9 @@
+        controller_costmap_ros_->start();
+      }
+  
+diff --git a/recipes-ros/navigation/move-base_1.12.14.bbappend b/recipes-ros/navigation/move-base_1.12.14.bbappend
+index fd3ef69..b231e17 100644
+--- a/recipes-ros/navigation/move-base_1.12.14.bbappend
++++ b/recipes-ros/navigation/move-base_1.12.14.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = ".tisdk0"
++PR_append = ".tisdk1"
  
- Remove wldispay.h and wlwindow.h to avoid
-@@ -13,14 +13,14 @@ Signed-off-by: Ramprasad N <x0038811@ti.com>
-  ext/wayland/gstwaylandsink.h              |   3 +-
-  ext/wayland/wlbuffer.c                    |   2 +-
-  ext/wayland/wlbuffer.h                    |  67 -------
-- ext/wayland/wldisplay-wlwindow-wlbuffer.h | 227 +++++++++++++++++++++++
-+ ext/wayland/wldisplay-wlwindow-wlbuffer.h | 229 +++++++++++++++++++++++
-  ext/wayland/wldisplay.c                   | 294 +++++++++++++++++++++++++++++-
-  ext/wayland/wldisplay.h                   | 101 ----------
-  ext/wayland/wldrm.c                       |   2 +-
-  ext/wayland/wlshmallocator.h              |   2 +-
-- ext/wayland/wlwindow.c                    |   5 +-
-+ ext/wayland/wlwindow.c                    |   6 +-
-  ext/wayland/wlwindow.h                    |  93 ----------
-- 12 files changed, 526 insertions(+), 275 deletions(-)
-+ 12 files changed, 529 insertions(+), 275 deletions(-)
-  delete mode 100644 ext/wayland/wlbuffer.h
-  create mode 100644 ext/wayland/wldisplay-wlwindow-wlbuffer.h
-  delete mode 100644 ext/wayland/wldisplay.h
-@@ -155,10 +155,10 @@ index cbb50f7..0000000
- -#endif /* __GST_WL_BUFFER_H__ */
- diff --git a/ext/wayland/wldisplay-wlwindow-wlbuffer.h b/ext/wayland/wldisplay-wlwindow-wlbuffer.h
- new file mode 100644
--index 0000000..c5d8ae5
-+index 0000000..a89d0c0
- --- /dev/null
- +++ b/ext/wayland/wldisplay-wlwindow-wlbuffer.h
--@@ -0,0 +1,227 @@
-+@@ -0,0 +1,229 @@
- +/* GStreamer Wayland video sink
- + *
- + * Copyright (C) 2014 Collabora Ltd.
-@@ -186,6 +186,8 @@ index 0000000..c5d8ae5
- +#include <stdlib.h>
- +#include <stdio.h>
- +#include <gst/video/video.h>
-++#include <gst/gstbuffer.h>
-++#include <gst/drm/gstdrmallocator.h>
- +#include <wayland-client.h>
- +#include "viewporter-client-protocol.h"
- +#include "linux-dmabuf-unstable-v1-client-protocol.h"
-@@ -863,10 +865,10 @@ index 07ae17f..2860fc3 100644
-  G_BEGIN_DECLS
-  
- diff --git a/ext/wayland/wlwindow.c b/ext/wayland/wlwindow.c
--index 20ef8bb..116dc55 100644
-+index 20ef8bb..125cc85 100644
- --- a/ext/wayland/wlwindow.c
- +++ b/ext/wayland/wlwindow.c
--@@ -24,9 +24,8 @@
-+@@ -24,9 +24,9 @@
-  #include <config.h>
-  #endif
-  
-@@ -874,10 +876,11 @@ index 20ef8bb..116dc55 100644
- +#include "wldisplay-wlwindow-wlbuffer.h"
-  #include "wlshmallocator.h"
- -#include "wlbuffer.h"
-++#include "wldrm.h"
-  
-  GST_DEBUG_CATEGORY_EXTERN (gstwayland_debug);
-  #define GST_CAT_DEFAULT gstwayland_debug
--@@ -120,6 +119,8 @@ gst_wl_window_new_internal (GstWlDisplay * display, GMutex * render_lock)
-+@@ -120,6 +120,8 @@ gst_wl_window_new_internal (GstWlDisplay * display, GMutex * render_lock)
-  
-    window->area_surface = wl_compositor_create_surface (display->compositor);
-    window->video_surface = wl_compositor_create_surface (display->compositor);
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
-index 0c9263d..fcdb58c 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.12.2.bbappend
-@@ -28,7 +28,7 @@ DEPENDS_append_k3 = " \
- SRC_URI_append_ti43x = " \
-     file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
-     file://0002-parsers-bug-fixes-on-parsers.patch \
--    file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch \
-+    file://0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-driver-.patch \
-     file://0004-waylandsink-Add-drm-support-in-waylandsink.patch \
-     file://0005-waylandsink-Add-input-device-support.patch  \
- "
-@@ -40,7 +40,7 @@ SRC_URI_append_ti33x = " \
- SRC_URI_append_omap-a15 = " \
-     file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
-     file://0002-parsers-bug-fixes-on-parsers.patch \
--    file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch \
-+    file://0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-driver-.patch \
-     file://0004-waylandsink-Add-drm-support-in-waylandsink.patch \
-     file://0005-waylandsink-Add-input-device-support.patch  \
- "
-@@ -48,11 +48,11 @@ SRC_URI_append_omap-a15 = " \
- SRC_URI_append_k3 = " \
-     file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
-     file://0002-parsers-bug-fixes-on-parsers.patch \
--    file://0003-kmssink-Add-omapdrm-in-the-list-of-driver-modules.patch \
-+    file://0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-driver-.patch \
-     file://0004-waylandsink-Add-drm-support-in-waylandsink.patch \
-     file://0005-waylandsink-Add-input-device-support.patch  \
- "
+ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--PR = "r6"
-+PR = "r7"
 -- 
 1.9.1
 
