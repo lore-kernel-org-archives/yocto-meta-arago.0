@@ -1,30 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id D506B529D5
+	by arago-project.org (Postfix) with ESMTPS id EDD18529D6
 	for <meta-arago@arago-project.org>;
 	Tue, 22 Jan 2019 21:19:33 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 97B5740BCB;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id BBBEB40BD3;
 	Tue, 22 Jan 2019 21:19:20 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id dTGkfCXc6ukk; Tue, 22 Jan 2019 21:19:20 +0000 (UTC)
+	with ESMTP id J9ZYYGA7-WU5; Tue, 22 Jan 2019 21:19:20 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
 	[100.15.91.218])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3123940BD3;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 422BA40BD4;
 	Tue, 22 Jan 2019 21:19:19 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 5AFCB1699D3;
+	by mail.denix.org (Postfix) with ESMTP id 75758169B0F;
 	Tue, 22 Jan 2019 16:19:17 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 22 Jan 2019 16:19:14 -0500
-Message-Id: <1548191956-2527-1-git-send-email-denis@denix.org>
+Date: Tue, 22 Jan 2019 16:19:16 -0500
+Message-Id: <1548191956-2527-3-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH 1/3] packagegroups: isolate armnn packages into a var for conditional inclusion
+In-Reply-To: <1548191956-2527-1-git-send-email-denis@denix.org>
+References: <1548191956-2527-1-git-send-email-denis@denix.org>
+Subject: [master][PATCH 3/3] mmwavegesture-hmi: depend on qtdeclarative for QtQuick2
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,165 +39,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jan 2019 21:19:34 -0000
+X-List-Received-Date: Tue, 22 Jan 2019 21:19:35 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroup-arago-tisdk-addons-sdk-target.bb     | 12 +++++++-----
- .../packagegroups/packagegroup-arago-tisdk-addons.bb  | 12 +++++++-----
- .../packagegroups/packagegroup-arago-tisdk-matrix.bb  | 19 ++++++++++---------
- 3 files changed, 24 insertions(+), 19 deletions(-)
+ .../recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb             | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-index b347880..77ddbe1 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
- LICENSE = "MIT"
--PR = "r40"
-+PR = "r41"
+diff --git a/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb b/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
+index cd2ae86..ff6b02a 100644
+--- a/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
++++ b/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
+@@ -14,7 +14,7 @@ SRCREV = "0881fc8bc5b3c3411af7b69c3837a8b3a1fbedc5"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ S = "${WORKDIR}/git"
  
-@@ -153,21 +153,23 @@ EXTRA_LIBS_append_k2e = " libulm-staticdev \
-                               gdbserver-c6x-dev \
- "
+-DEPENDS += "qtbase qtquick1 qtserialport"
++DEPENDS += "qtbase qtdeclarative qtserialport"
  
-+ARMNN_PACKAGES = "armnn-dev"
-+
- EXTRA_PACKAGES = ""
- EXTRA_PACKAGES_append_ti33x = " voxelsdk-dev \
-                                 arm-compute-library-dev \
--                                armnn-dev \
-+                                ${ARMNN_PACKAGES} \
- "
- EXTRA_PACKAGES_append_ti43x = " voxelsdk-dev \
-                                 arm-compute-library-dev \
--                                armnn-dev \
-+                                ${ARMNN_PACKAGES} \
- "
- EXTRA_PACKAGES_append_omap-a15 = " voxelsdk-dev \
-                                 arm-compute-library-dev \
--                                armnn-dev \
-+                                ${ARMNN_PACKAGES} \
- "
- EXTRA_PACKAGES_append_k3 = " arm-compute-library-dev \
--                             armnn-dev \
-+                             ${ARMNN_PACKAGES} \
- "
- 
- IPCDEV = " \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index e394846..11e41f7 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
- LICENSE = "MIT"
--PR = "r71"
-+PR = "r72"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -144,25 +144,27 @@ EXTRA_PACKAGES_omapl138 = " \
-     protobuf \
- "
- 
-+ARMNN_PACKAGES = "armnn"
-+
- EXTRA_PACKAGES_append_ti33x = " voxelsdk \
-                                 arm-compute-library \
--                                armnn \
-+                                ${ARMNN_PACKAGES} \
- "
- 
- EXTRA_PACKAGES_append_ti43x = " voxelsdk \
-                                 arm-compute-library \
--                                armnn \
-+                                ${ARMNN_PACKAGES} \
- "
- 
- EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
-                                    big-data-ipc-demo-linux \
-                                    big-data-ipc-demo-linux-firmware \
-                                    arm-compute-library \
--                                   armnn \
-+                                   ${ARMNN_PACKAGES} \
- "
- 
- EXTRA_PACKAGES_append_k3 = " arm-compute-library \
--                             armnn \
-+                             ${ARMNN_PACKAGES} \
- "
- 
- EXTRA_PACKAGES_append_omap-a15 = " ti-ipc-examples-linux"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 5ddaa9f..530f70c 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to include Matrix v2"
- LICENSE = "MIT"
--PR = "r76"
-+PR = "r77"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -86,6 +86,11 @@ MATRIX_OPENCV_OPENCL_APPS_omap-a15 = " \
-      matrix-machinevision-demo-simplepeopletracking \
- "
- 
-+MATRIX_ARMNN_APPS = " \
-+    matrix-armnn-demo-staticimg     \
-+    matrix-armnn-demo-livecam       \
-+"
-+
- MATRIX_APPS = ""
- 
- MATRIX_APPS_append_ti33x = "        \
-@@ -107,8 +112,7 @@ MATRIX_APPS_append_ti33x = "        \
-                                     \
-     ${MATRIX_OPENCV_ARM_ONLY_APPS}  \
-                                     \
--    matrix-armnn-demo-staticimg     \
--    matrix-armnn-demo-livecam       \
-+    ${MATRIX_ARMNN_APPS}            \
- "
- 
- MATRIX_APPS_append_ti43x = "        \
-@@ -130,8 +134,7 @@ MATRIX_APPS_append_ti43x = "        \
-                                     \
-     ${MATRIX_OPENCV_ARM_ONLY_APPS}  \
-                                     \
--    matrix-armnn-demo-staticimg     \
--    matrix-armnn-demo-livecam       \
-+    ${MATRIX_ARMNN_APPS}            \
- "
- 
- MATRIX_APPS_append_omap-a15 = "     \
-@@ -152,8 +155,7 @@ MATRIX_APPS_append_omap-a15 = "     \
-     matrix-gui-pm-demos-governor    \
-     ${@['','matrix-gui-browser-demos'][bb.utils.contains('MACHINE_FEATURES','sgx',True,False,d) and bb.utils.contains('DISTRO_FEATURES','wayland',True,False,d)]} \
-                                 \
--    matrix-armnn-demo-staticimg \
--    matrix-armnn-demo-livecam   \
-+    ${MATRIX_ARMNN_APPS}            \
- "
- 
- MATRIX_APPS_append_k3 = "           \
-@@ -167,8 +169,7 @@ MATRIX_APPS_append_k3 = "           \
-                                     \
-     ${MATRIX_OPENCV_ARM_ONLY_APPS}  \
-                                     \
--    matrix-armnn-demo-staticimg     \
--    matrix-armnn-demo-livecam       \
-+    ${MATRIX_ARMNN_APPS}            \
- "
- 
- MATRIX_APPS_append_dra7xx += " \
+ do_install() {
+     install -d ${D}${bindir}
 -- 
 2.7.4
 
