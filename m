@@ -1,32 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 6A910529D5
+Return-Path: <sam.nelson@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id F34D35297E
 	for <meta-arago@arago-project.org>;
-	Wed, 23 Jan 2019 04:52:29 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 4599140AB7;
-	Wed, 23 Jan 2019 04:52:16 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id xV_L9LrWTfd3; Wed, 23 Jan 2019 04:52:16 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
-	[100.15.91.218])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 17D7840AD8;
-	Wed, 23 Jan 2019 04:52:14 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 294B8169B49;
-	Tue, 22 Jan 2019 23:52:10 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 22 Jan 2019 23:52:07 -0500
-Message-Id: <1548219129-12459-7-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1548219129-12459-1-git-send-email-denis@denix.org>
-References: <1548219129-12459-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 7/9] packagegroup-*-addons: make gdbc6x and dsptop conditional on 'dsp' machine feature
+	Thu, 24 Jan 2019 11:23:39 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x0OBNPLG025386
+	for <meta-arago@arago-project.org>; Thu, 24 Jan 2019 05:23:25 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1548329005;
+	bh=H5FuRl+oXrd9DRconFbsIcwRrxKgAv+B6KfJd2hwaTw=;
+	h=From:To:CC:Subject:Date;
+	b=r+T3vcK/AOcxK+VKtgZAs0eyY4hZxdUtv+jrdN2sOQ5UKRGAjsjx7INfdhU75c5uK
+	0Mu3bqZAmJHsQbkkrwrqt+z84WR65MOtrJHLdtww+6FPvg9tZAw6sTlRXoeW0Bp0US
+	NdeVabxVMZnHbUC6KBFx95sV+bbcI2kVQTbb2uhY=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x0OBNObJ040948
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Thu, 24 Jan 2019 05:23:25 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
+	Thu, 24 Jan 2019 05:23:24 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
+	Transport; Thu, 24 Jan 2019 05:23:24 -0600
+Received: from uda0862859a.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x0OBNOn4019274;
+	Thu, 24 Jan 2019 05:23:24 -0600
+From: Sam Nelson <sam.nelson@ti.com>
+To: <meta-arago@arago-project.org>, <m-radhakrishnan2@ti.com>
+Date: Thu, 24 Jan 2019 06:23:19 -0500
+Message-ID: <1548328999-29980-1-git-send-email-sam.nelson@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [meta-processor-sdk][master] PATCH] static-analysis: Fix error in handling static analysis enable
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,71 +49,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jan 2019 04:52:32 -0000
+X-List-Received-Date: Thu, 24 Jan 2019 11:23:44 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+Note that the recipe specific STATIC_ANALYSIS_ENABLE variable is set to
+'1' or '0' depending on enable/disable and hence the check should be
+done accordingly.
+Without this fix, recipes in STATIC_ANALYSIS_DISABLE_RECIPE gets enabled
+for static analysis
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-addons.bb   | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+ classes/static-analysis.bbclass | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index b3a5c09..5dc3187 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
- LICENSE = "MIT"
--PR = "r72"
-+PR = "r73"
+diff --git a/classes/static-analysis.bbclass b/classes/static-analysis.bbclass
+index 3903639..5e532c1 100644
+--- a/classes/static-analysis.bbclass
++++ b/classes/static-analysis.bbclass
+@@ -99,7 +99,7 @@ static_analysis_postbuild[dirs] += "${STATIC_ANALYSIS_POSTBUILD_DIRS}"
+ #  calling this script with the static analysis command.
+ #
+ def static_analysis_compile_wrapper(d):
+-    if (d.getVar('STATIC_ANALYSIS_ENABLE', True)):
++    if ((d.getVar('STATIC_ANALYSIS_ENABLE', True)) == '1'):
+         cwd = None
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -36,6 +36,10 @@ UTILS_UBOOT_FW = "u-boot-fw-utils"
- UTILS_UBOOT_FW_keystone = ""
- UTILS_UBOOT_FW_k3 = ""
- 
-+UTILS_DSP = " \
-+    ${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'gdbc6x dsptop', '', d)} \
-+"
-+
- UTILS_append_ti33x = " mmc-utils \
-                        can-utils \
-                        switch-config \
-@@ -75,8 +79,7 @@ UTILS_append_k3 = " mmc-utils \
- UTILS_append_omapl138 = " ti-ipc-rtos-fw"
- 
- UTILS_append_dra7xx = " can-utils \
--                        dsptop \
--                        gdbc6x \
-+                        ${UTILS_DSP} \
-                         glsdk-example-apps \
- "
- 
-@@ -86,18 +89,15 @@ UTILS_append_keystone = " \
- "
- 
- UTILS_append_k2hk = " \
--    gdbc6x \
--    dsptop \
-+    ${UTILS_DSP} \
- "
- 
- UTILS_append_k2l = " \
--    gdbc6x \
--    dsptop \
-+    ${UTILS_DSP} \
- "
- 
- UTILS_append_k2e = " \
--    gdbc6x \
--    dsptop \
-+    ${UTILS_DSP} \
- "
- 
- UTILS_append_k2g = " \
+         # Make a copy of do_compile
 -- 
-2.7.4
+1.9.1
 
 
