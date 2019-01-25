@@ -1,32 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 0868A529E6
+	by arago-project.org (Postfix) with ESMTPS id 33A6D52A14
 	for <meta-arago@arago-project.org>;
-	Fri, 25 Jan 2019 20:03:52 +0000 (UTC)
+	Fri, 25 Jan 2019 20:03:53 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 85E0040B7F;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id DC49D40301;
 	Fri, 25 Jan 2019 20:03:39 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id nxKFwYWOhK0M; Fri, 25 Jan 2019 20:03:39 +0000 (UTC)
+	with ESMTP id ZiQ50Fcb-gVb; Fri, 25 Jan 2019 20:03:39 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
 	[100.15.91.218])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2390D40B5C;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2E63240B5E;
 	Fri, 25 Jan 2019 20:03:37 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 51276169B47;
+	by mail.denix.org (Postfix) with ESMTP id 44B09169B35;
 	Fri, 25 Jan 2019 15:03:36 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 25 Jan 2019 15:03:23 -0500
-Message-Id: <1548446604-5460-2-git-send-email-denis@denix.org>
+Date: Fri, 25 Jan 2019 15:03:22 -0500
+Message-Id: <1548446604-5460-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1548446604-5460-1-git-send-email-denis@denix.org>
-References: <1548446604-5460-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 2/3] meta: use dummy perl dependencies for ASSUME_PROVIDED="nativesdk-perl" to work
+Subject: [master][PATCH 1/3] meta-toolchain-arago-qte: QT_DIR_NAME is now empty in upstream meta-qt5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,67 +41,26 @@ X-List-Received-Date: Fri, 25 Jan 2019 20:03:53 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-ASSUME_PROVIDED only covers build dependencies, while package manager will
-still try to install necessary packages if they are in the dependency chain.
-Since nativesdk-autoconf depends on nativesdk-perl, use dummy provider from
-OE-Core with few extra nativesdk-perl-modules to satisfy package manager.
-
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/meta/meta-toolchain-arago.bb         |  4 +++-
- .../meta/nativesdk-buildtools-perl-dummy.bbappend     | 19 +++++++++++++++++++
- 2 files changed, 22 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-core/meta/nativesdk-buildtools-perl-dummy.bbappend
+ meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-index 3ea63ec..3d827a7 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-@@ -1,16 +1,18 @@
- TOOLCHAIN_HOST_TASK ?= "nativesdk-packagegroup-arago-sdk-host"
-+TOOLCHAIN_HOST_TASK += "nativesdk-buildtools-perl-dummy"
- TOOLCHAIN_HOST_TASK += "packagegroup-arago-cross-canadian-${MACHINE}"
- TOOLCHAIN_TARGET_TASK ?= "packagegroup-arago-standalone-sdk-target"
- TOOLCHAIN_SUFFIX ?= "-sdk"
- TOOLCHAIN_OUTPUTNAME ?= "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}"
- TOOLCHAIN_CLEANUP_PACKAGES ?= ""
- SDKIMAGE_FEATURES = "package-management"
-+SDK_PACKAGE_ARCHS += "buildtools-dummy-${SDKPKGSUFFIX}"
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+index 8cfbcfb..b03b639 100644
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
++++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+@@ -8,8 +8,8 @@ require meta-toolchain-arago.bb
+ PR = "r19"
  
- inherit toolchain-scripts
- 
- require recipes-core/meta/meta-toolchain.bb
- 
--PR = "r34"
-+PR = "r35"
- 
- XZ_COMPRESSION_LEVEL ?= "-e -6"
- XZ_INTEGRITY_CHECK ?= "crc32"
-diff --git a/meta-arago-extras/recipes-core/meta/nativesdk-buildtools-perl-dummy.bbappend b/meta-arago-extras/recipes-core/meta/nativesdk-buildtools-perl-dummy.bbappend
-new file mode 100644
-index 0000000..26d6ddb
---- /dev/null
-+++ b/meta-arago-extras/recipes-core/meta/nativesdk-buildtools-perl-dummy.bbappend
-@@ -0,0 +1,19 @@
-+DUMMYPROVIDES += "\
-+    nativesdk-perl-module-bytes \
-+    nativesdk-perl-module-carp \
-+    nativesdk-perl-module-constant \
-+    nativesdk-perl-module-data-dumper \
-+    nativesdk-perl-module-errno \
-+    nativesdk-perl-module-exporter \
-+    nativesdk-perl-module-file-basename \
-+    nativesdk-perl-module-file-compare \
-+    nativesdk-perl-module-file-copy \
-+    nativesdk-perl-module-file-find \
-+    nativesdk-perl-module-file-glob \
-+    nativesdk-perl-module-file-stat \
-+    nativesdk-perl-module-getopt-long \
-+    nativesdk-perl-module-io-file \
-+    nativesdk-perl-module-posix \
-+    nativesdk-perl-module-thread-queue \
-+    nativesdk-perl-module-threads \
-+"
+ # There could be qt5, qt4e and qt4x11 providers, but we don't support qt4x11 for now
+-QT_DIR_NAME = "${@oe.utils.conditional('QT_PROVIDER', 'qt5', 'qt5', 'qtopia', d)}"
+-QT_BIN_PREFIX = "${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT_DIR_NAME}/", '', d)}"
++QT_DIR_NAME = "${@oe.utils.conditional('QT_PROVIDER', 'qt5', '', 'qtopia', d)}"
++QT_BIN_PREFIX = "${@oe.utils.conditional('QT_PROVIDER', 'qt5', '', '', d)}"
+ QT_BIN_SUFFIX = "${@oe.utils.conditional('QT_PROVIDER', 'qt5', '', '4', d)}"
+ QT_MKSPECS_LOCATION = "${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${libdir}", "${datadir}", d)}"
+ QT_MKSPECS_DIR = "${@oe.utils.conditional('QT_PROVIDER', 'qt5', "linux-oe-g++", "linux-gnueabi-oe-g++", d)}"
 -- 
 2.7.4
 
