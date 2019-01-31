@@ -1,42 +1,30 @@
 Return-Path: <denys@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 3DDDD529A6
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id CB74D52093
 	for <meta-arago@arago-project.org>;
-	Mon, 28 Jan 2019 19:44:47 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x0SJiVUi026574
-	for <meta-arago@arago-project.org>; Mon, 28 Jan 2019 13:44:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1548704671;
-	bh=ZI601ILTFfp+5TS9k4Fw1OFuBU6b90aj7kjBDh/EN+A=;
-	h=From:To:CC:Subject:Date;
-	b=mwAhmrhvlmEMOYkoUArMsqUwkxgPrP2so/w2pds8oKN66H9hyRGLB1P9PzGE0pnP2
-	vp/+Sej/GNH4NeOYxWLyS0g1/wW77Uvt5QAcNlZ/JVQZ72p/NxU/eBPrj6w+PaTc24
-	r4gCvqtCIdbdE4GIAVote29eV2iBQsqVIcEVkYKo=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x0SJiVCO034464
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 28 Jan 2019 13:44:31 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Mon, 28 Jan 2019 13:44:31 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Mon, 28 Jan 2019 13:44:31 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x0SJiV0A025389;
-	Mon, 28 Jan 2019 13:44:31 -0600
+	Thu, 31 Jan 2019 18:27:21 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id BEF3A40B36;
+	Thu, 31 Jan 2019 18:27:07 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 1zs0OaVMboem; Thu, 31 Jan 2019 18:27:07 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
+	[100.15.91.218])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A4F47407FE;
+	Thu, 31 Jan 2019 18:27:06 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 4655016A2BA;
+	Thu, 31 Jan 2019 13:27:06 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 28 Jan 2019 19:36:46 +0000
-Message-ID: <20190128193646.24770-1-denys@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master][PATCH] vtun: depend on openssl10
+To: meta-arago@arago-project.org
+Date: Thu, 31 Jan 2019 13:26:56 -0500
+Message-Id: <1548959216-35829-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH] HACK: FIXME: arago-core-tisdk-image: disable "sdk-host" packagegroups
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,30 +37,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Jan 2019 19:44:49 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 31 Jan 2019 18:27:22 -0000
 
-upstream migrated to OpenSSL 1.1, so depend on openssl10 for now
+Custom-made srcipk packages are foreign to the system and have issues installing
+into SDK. Disable for now, until resolved.
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-core/images/arago-core-tisdk-image.inc | 23 +++++++++++-----------
+ 1 file changed, 12 insertions(+), 11 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb b/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb
-index 4450cc1c..50e4d236 100644
---- a/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb
-+++ b/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb
-@@ -4,7 +4,7 @@ SECTION = "console/network"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://vtun.h;startline=1;endline=17;md5=9ac9e7fefca60c72400239e0de40cde8"
+diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+index 76102a1..da5d44d 100644
+--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
+@@ -55,14 +55,15 @@ IMAGE_INSTALL_QT = "\
+ IMAGE_INSTALL_QT_keystone = ""
+ IMAGE_INSTALL_QT_omapl138 = ""
  
--DEPENDS = "zlib lzo openssl bison-native flex-native"
-+DEPENDS = "zlib lzo openssl10 bison-native flex-native"
- 
- SRC_URI = "http://downloads.sourceforge.net/project/vtun/vtun/${PV}/vtun-${PV}.tar.gz"
- 
+-IMAGE_INSTALL = "\
+-    packagegroup-arago-tisdk-addons-sdk-host \
+-    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-sdk-host','',d)} \
+-    packagegroup-arago-tisdk-crypto-sdk-host \
+-    ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics-sdk-host','',d)} \
+-    packagegroup-arago-tisdk-matrix-sdk-host \
+-    packagegroup-arago-tisdk-multimedia-sdk-host \
+-    packagegroup-arago-tisdk-hmi-sdk-host \
+-    packagegroup-arago-tisdk-amsdk-sdk-host${ARAGO_KERNEL_SUFFIX} \
+-    ${IMAGE_INSTALL_QT} \
+-"
++IMAGE_INSTALL = ""
++# Disable all "sdk-host" packagegroups due to issues installing "srcipk" packages
++#    packagegroup-arago-tisdk-addons-sdk-host \
++#    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-sdk-host','',d)} \
++#    packagegroup-arago-tisdk-crypto-sdk-host \
++#    ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics-sdk-host','',d)} \
++#    packagegroup-arago-tisdk-matrix-sdk-host \
++#    packagegroup-arago-tisdk-multimedia-sdk-host \
++#    packagegroup-arago-tisdk-hmi-sdk-host \
++#    packagegroup-arago-tisdk-amsdk-sdk-host${ARAGO_KERNEL_SUFFIX} \
++#    ${IMAGE_INSTALL_QT} \
++#"
 -- 
-2.17.1
+2.7.4
 
 
