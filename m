@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id D65C3520E5
+	by arago-project.org (Postfix) with ESMTPS id 5C11F5203A
 	for <meta-arago@arago-project.org>;
-	Fri,  8 Feb 2019 00:22:31 +0000 (UTC)
+	Fri,  8 Feb 2019 02:22:05 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 83ADB40B57;
-	Fri,  8 Feb 2019 00:22:17 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 4025840B3E;
+	Fri,  8 Feb 2019 02:21:51 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id YCjVcYCDDXOm; Fri,  8 Feb 2019 00:22:17 +0000 (UTC)
+	with ESMTP id Ab9XZ_8A-E1q; Fri,  8 Feb 2019 02:21:51 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
 	[100.15.91.218])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 644BB40024;
-	Fri,  8 Feb 2019 00:22:16 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 250D740024;
+	Fri,  8 Feb 2019 02:21:50 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 3447D169F71;
-	Thu,  7 Feb 2019 19:22:15 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id 361F5169E80;
+	Thu,  7 Feb 2019 21:21:49 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Thu,  7 Feb 2019 19:22:11 -0500
-Message-Id: <1549585332-54431-1-git-send-email-denys@ti.com>
+Date: Thu,  7 Feb 2019 21:21:48 -0500
+Message-Id: <1549592508-54827-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH 1/2] tisdk-image.bbclass: do not fail when devkit is not specified
+Subject: [master][PATCH] optee-client: update with latest fixes, including fix for gcc8
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,65 +37,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Feb 2019 00:22:33 -0000
+X-List-Received-Date: Fri, 08 Feb 2019 02:22:05 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/classes/tisdk-image.bbclass | 24 ++++++++++++++++++------
- 1 file changed, 18 insertions(+), 6 deletions(-)
+ meta-arago-distro/recipes-security/optee/optee-client.bbappend | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/classes/tisdk-image.bbclass b/meta-arago-distro/classes/tisdk-image.bbclass
-index cb17d7d..40a81a2 100644
---- a/meta-arago-distro/classes/tisdk-image.bbclass
-+++ b/meta-arago-distro/classes/tisdk-image.bbclass
-@@ -643,10 +643,16 @@ EOF
- # Generate the TI SW Manifest for the SDK image
- generate_sw_manifest() {
-     sw_manifest_header
--    sw_manifest_toolchain_host
-+    if [ "${TISDK_TOOLCHAIN}" != "" ]
-+    then
-+        sw_manifest_toolchain_host
-+    fi
-     sw_manifest_target
-     sw_manifest_host
--    sw_manifest_toolchain_target
-+    if [ "${TISDK_TOOLCHAIN}" != "" ]
-+    then
-+        sw_manifest_toolchain_target
-+    fi
-     sw_manifest_footer
- }
+diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+index b71bf0d..0641bde 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = ".arago1"
++PR_append = ".arago2"
  
-@@ -699,10 +705,13 @@ tisdk_image_setup () {
-     mkdir -p ${IMAGE_ROOTFS}/var/lib/opkg
-     mkdir -p ${IMAGE_ROOTFS}/lib
+ SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
+            file://tee-supplicant.service"
+@@ -8,4 +8,4 @@ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=69663ab153298557a59c67a60a743e5b"
+ PV = "3.2.0+git${SRCPV}"
  
--    chmod 755 ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}*.sh
-+    if [ -e ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}.sh ]
-+    then
-+        chmod 755 ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}*.sh
- 
--    # Temporarily extract the toolchain sdk so we can read license information from it.
--    echo "${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}" | ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}*.sh
-+        # Temporarily extract the toolchain sdk so we can read license information from it.
-+        echo "${IMAGE_ROOTFS}/${TISDK_TOOLCHAIN_PATH}" | ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}*.sh
-+    fi
- }
- 
- tisdk_image_build () {
-@@ -867,7 +876,10 @@ tisdk_image_build () {
- 
-     # Copy over the toolchain sdk installer an give it a simple name which
-     # matches the traditional name within the SDK.
--    cp ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}.sh ${IMAGE_ROOTFS}/linux-devkit.sh
-+    if [ -e ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}.sh ]
-+    then
-+        cp ${DEPLOY_DIR}/sdk/${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}.sh ${IMAGE_ROOTFS}/linux-devkit.sh
-+    fi
- 
-     # Copy the opkg.conf used by the image to allow for future updates
-     cp ${WORKDIR}/opkg.conf ${IMAGE_ROOTFS}/etc/
+ BRANCH = "ti_optee_client"
+-SRCREV = "6b4ca04b3a3738f7697597164dc1e055d4e65441"
++SRCREV = "08428734c67fb559e420d87fa52fd74a955ea1bd"
 -- 
 2.7.4
 
