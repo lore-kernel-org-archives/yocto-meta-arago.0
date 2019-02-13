@@ -1,30 +1,44 @@
 Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id A5DBA529EF
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 68AA9529B0
 	for <meta-arago@arago-project.org>;
-	Wed, 13 Feb 2019 01:08:24 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 870DC40B89;
-	Wed, 13 Feb 2019 01:08:10 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id mRuHJ_esqdw0; Wed, 13 Feb 2019 01:08:10 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
-	[100.15.91.218])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6506840A32;
-	Wed, 13 Feb 2019 01:08:09 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 0B88616ABFC;
-	Tue, 12 Feb 2019 20:08:09 -0500 (EST)
+	Wed, 13 Feb 2019 01:48:54 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x1D1mebu087594
+	for <meta-arago@arago-project.org>; Tue, 12 Feb 2019 19:48:40 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1550022520;
+	bh=RsBIcqbNXxaz3fio22on87Xfw3WC2LZm3zJqSUngkCw=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=ErzR9E2MJDRIwy+EiU92q0+WhiWYRdy+mLG3/vAZbOOkO7Ba9Yz5vcrLRp6Tq9HKp
+	wOrB6+zEw9O8gfwD2yaa72H3D1nOXtzZEI8Zdx8EMZ80StSATBv2AO9VxlUSMpyMkC
+	kS/+AKtA60gzipuwCW1YfxkybwyYfVq7ChiAmthQ=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x1D1mefA126843
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 12 Feb 2019 19:48:40 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
+	Tue, 12 Feb 2019 19:48:39 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
+	Transport; Tue, 12 Feb 2019 19:48:39 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x1D1mdYj018247;
+	Tue, 12 Feb 2019 19:48:39 -0600
+Date: Tue, 12 Feb 2019 20:48:39 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Tue, 12 Feb 2019 20:08:07 -0500
-Message-Id: <1550020088-33836-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH 1/2] FIXME: packagegroups, matrix: switch k3 from qtwebkit to qtwebengine
+To: Manisha Agrawal <manisha.agrawal@ti.com>
+Message-ID: <20190213014839.GA4386@beryl>
+References: <20190204174300.13373-1-manisha.agrawal@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <20190204174300.13373-1-manisha.agrawal@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [rocko/master][PATCH v1] matrix-gui-apps: bump SRCREV to get the mmwavegesture-hmi changes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,137 +51,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Feb 2019 01:08:25 -0000
+X-List-Received-Date: Wed, 13 Feb 2019 01:48:54 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-The new Arm toolchain fails to build qtwebkit for now.
-https://bugs.linaro.org/show_bug.cgi?id=4284
+On Mon, Feb 04, 2019 at 11:43:00AM -0600, Manisha Agrawal wrote:
+> Signed-off-by: Manisha Agrawal <manisha.agrawal@ti.com>
+> ---
+>  meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> index d74f889..1781134 100644
+> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> @@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+>  LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+>  
+>  SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+> -SRCREV = "20f1f86c7b8ec9e1ccc52953fb2a9bac74e23efd"
+> +SRCREV = "94e9f17332065fa838d9334efdab8451c8119b8d"
+>  BRANCH = "master"
+> -INC_PR = "r64"
+> -
+> +INC_PR = "r65"
+> +i
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-core/packagegroups/packagegroup-arago-qte.bb | 12 ++++++------
- .../packagegroups/packagegroup-arago-tisdk-matrix.bb     |  8 ++++----
- .../packagegroups/packagegroup-arago-tisdk-qte.bb        | 12 ++++++------
- .../recipes-core/matrix/matrix-gui-browser_2.0.bb        |  6 +++---
- .../packagegroup-arago-qte-toolchain-target.bb           | 16 ++++++++--------
- 5 files changed, 27 insertions(+), 27 deletions(-)
+^^^^ ???
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-index c038a16..992b0b7 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-@@ -46,12 +46,12 @@ QT5_ESSENTIALS = "\
-     qtconnectivity-qmlplugins \
- "
- 
--QT5_ESSENTIALS_append_k3 = "\
--    qtwebkit-qmlplugins \
--"
--QT5_ESSENTIALS_remove_k3 = "\
--    qtwebengine-qmlplugins \
--"
-+#QT5_ESSENTIALS_append_k3 = "\
-+#    qtwebkit-qmlplugins \
-+#"
-+#QT5_ESSENTIALS_remove_k3 = "\
-+#    qtwebengine-qmlplugins \
-+#"
- 
- RDEPENDS_${PN} = "\
-     ${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_ESSENTIALS}", "${QT4_ESSENTIALS}", d)} \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 101fb0b..3db7c3f 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -45,10 +45,10 @@ MATRIX_TOUCH_APPS = " \
- 
- MATRIX_QT_APPS_keystone = ""
- MATRIX_QT_APPS_omapl138 = ""
--MATRIX_QT_APPS_remove_k3 = "matrix-qt5-demo-browser"
--MATRIX_QT_APPS_append_k3 = " \
--    matrix-qt5-demo-webkit-browser \
--"
-+#MATRIX_QT_APPS_remove_k3 = "matrix-qt5-demo-browser"
-+#MATRIX_QT_APPS_append_k3 = " \
-+#    matrix-qt5-demo-webkit-browser \
-+#"
- 
- MATRIX_SGX_DEMOS = " \
-     matrix-3d-demo-chameleon \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-index 43a0d02..36cfca9 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-@@ -28,13 +28,13 @@ QT5_DEMOS = "\
-     qtserialport-examples \
- "
- 
--QT5_DEMOS_append_k3 = " qtwebkit-examples-examples"
-+#QT5_DEMOS_append_k3 = " qtwebkit-examples-examples"
- 
--QT5_DEMOS_remove_k3 = "\
--    qtwebbrowser \
--    qtwebbrowser-examples \
--    qtwebengine-examples \
--"
-+#QT5_DEMOS_remove_k3 = "\
-+#    qtwebbrowser \
-+#    qtwebbrowser-examples \
-+#    qtwebengine-examples \
-+#"
- 
- QT_DEMOS = "\
-     qt-tstat \
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-index 9ceaa56..9635429 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-@@ -10,14 +10,14 @@ inherit qt-provider
- RDEPENDS_${PN} += "${QT_RDEPENDS_FONTS}"
- 
- DEPENDS += "${QT_DEPENDS_WEBENGINE}"
--DEPENDS_k3 += "${QT_DEPENDS_WEBKIT}"
--DEPENDS_remove_k3 = "${QT_DEPENDS_WEBENGINE}"
-+#DEPENDS_k3 += "${QT_DEPENDS_WEBKIT}"
-+#DEPENDS_remove_k3 = "${QT_DEPENDS_WEBENGINE}"
- 
- PR = "r16"
- 
- QT4_SRCREV = "83019b46fb3dec1a12667d251d35ba8682953a79"
- QT5_SRCREV = "d3ecf8d0dff3e4f901d588ea0dfe485733dfc9dc"
--QT5_SRCREV_k3 = "78ad5db716d1abc4c05abfe435f066b6b88454d5"
-+#QT5_SRCREV_k3 = "78ad5db716d1abc4c05abfe435f066b6b88454d5"
- 
- 
- SRCREV = "${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_SRCREV}", "${QT4_SRCREV}", d)}"
-diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-index 2afc974..5add6f9 100644
---- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-+++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-@@ -67,15 +67,15 @@ QT5_DEV = " \
-         qtserialport-dev  \
- "
- 
--QT5_DEV_append_k3 = " \
--        qtwebkit-mkspecs \
--        qtwebkit-dev \
--"
-+#QT5_DEV_append_k3 = " \
-+#        qtwebkit-mkspecs \
-+#        qtwebkit-dev \
-+#"
- 
--QT5_DEV_remove_k3 = " \
--        qtwebengine-mkspecs \
--        qtwebengine-dev \
--"
-+#QT5_DEV_remove_k3 = " \
-+#        qtwebengine-mkspecs \
-+#        qtwebengine-dev \
-+#"
- 
- RDEPENDS_${PN} += " \
-         ${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_DEV}", "${QT4_DEV}", d)} \
--- 
-2.7.4
 
+>  # Pull in the base package for installing matrix applications
+>  require matrix-gui-apps.inc
+> -- 
+> 2.13.0
+> 
 
