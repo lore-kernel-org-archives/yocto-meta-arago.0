@@ -1,30 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 5C11F5203A
+	by arago-project.org (Postfix) with ESMTPS id 9CD50529E1
 	for <meta-arago@arago-project.org>;
-	Fri,  8 Feb 2019 02:22:05 +0000 (UTC)
+	Wed, 13 Feb 2019 01:08:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 4025840B3E;
-	Fri,  8 Feb 2019 02:21:51 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 7FFBB40B8F;
+	Wed, 13 Feb 2019 01:08:10 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id Ab9XZ_8A-E1q; Fri,  8 Feb 2019 02:21:51 +0000 (UTC)
+	with ESMTP id 8vW3AntSS0XD; Wed, 13 Feb 2019 01:08:10 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
 	[100.15.91.218])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 250D740024;
-	Fri,  8 Feb 2019 02:21:50 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 664EF40B89;
+	Wed, 13 Feb 2019 01:08:09 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 361F5169E80;
-	Thu,  7 Feb 2019 21:21:49 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id 18BA716ACB8;
+	Tue, 12 Feb 2019 20:08:09 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Thu,  7 Feb 2019 21:21:48 -0500
-Message-Id: <1549592508-54827-1-git-send-email-denys@ti.com>
+Date: Tue, 12 Feb 2019 20:08:08 -0500
+Message-Id: <1550020088-33836-2-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] optee-client: update with latest fixes, including fix for gcc8
+In-Reply-To: <1550020088-33836-1-git-send-email-denys@ti.com>
+References: <1550020088-33836-1-git-send-email-denys@ti.com>
+Subject: [master][PATCH 2/2] arago.conf: bump distro version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,29 +39,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Feb 2019 02:22:05 -0000
+X-List-Received-Date: Wed, 13 Feb 2019 01:08:25 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-security/optee/optee-client.bbappend | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-index b71bf0d..0641bde 100644
---- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-@@ -1,4 +1,4 @@
--PR_append = ".arago1"
-+PR_append = ".arago2"
- 
- SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
-            file://tee-supplicant.service"
-@@ -8,4 +8,4 @@ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=69663ab153298557a59c67a60a743e5b"
- PV = "3.2.0+git${SRCPV}"
- 
- BRANCH = "ti_optee_client"
--SRCREV = "6b4ca04b3a3738f7697597164dc1e055d4e65441"
-+SRCREV = "08428734c67fb559e420d87fa52fd74a955ea1bd"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index cd56b47..b8240de 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -1,6 +1,6 @@
+ # Name and version of the distribution
+ DISTRO_NAME = "Arago"
+-DISTRO_VERSION = "2018.12"
++DISTRO_VERSION = "2019.02"
+ DISTRO_FEED_URI ?= "http://lcpd.gt.design.ti.com"
+ BUILD_VARIANT = "${@['prod','rt','systest'][int(d.getVar('ARAGO_RT_ENABLE'))+int(d.getVar('ARAGO_SYSTEST_ENABLE'))*2]}"
+ FEEDURIPREFIX ?= "packages/${DISTRO}-master/${BUILD_VARIANT}/"
 -- 
 2.7.4
 
