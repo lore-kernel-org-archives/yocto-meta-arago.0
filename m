@@ -1,30 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id B351A520EA
+Return-Path: <e-ruei1@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 72FFF52978
 	for <meta-arago@arago-project.org>;
-	Fri, 15 Feb 2019 02:02:13 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 68ED340B53;
-	Fri, 15 Feb 2019 02:01:59 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id F-kxijti9_Dq; Fri, 15 Feb 2019 02:01:59 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
-	[100.15.91.218])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4B1B640A2D;
-	Fri, 15 Feb 2019 02:01:58 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 77DAE16AE3E;
-	Thu, 14 Feb 2019 21:01:57 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Thu, 14 Feb 2019 21:01:56 -0500
-Message-Id: <1550196116-3185-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] external-arm-toolchain: remove local fixes - accepted to meta-linaro now
+	Wed, 20 Feb 2019 15:41:34 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x1KFfWYC047911
+	for <meta-arago@arago-project.org>; Wed, 20 Feb 2019 09:41:32 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1550677292;
+	bh=BVXfszgFC9arFRASLpFTfkGzFlrn+na6jTWcm95UqZk=;
+	h=From:To:Subject:Date;
+	b=mnEvwTZl9lAXul54pD5fKGT1OQsokJTMtaMY7Uxpv9sdaCmoZSeFeV9++niV0wTVa
+	VpM4TgIs/mj6ZZELu99awpfJ7iAic4H6RSHsjpu3PcAP/DJbkj3Svwh+K5VQFxy85O
+	3JI4mlezCWswhthT+QIXJWTs2hnES6SwSE73MHpk=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x1KFfWa6006010
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Wed, 20 Feb 2019 09:41:32 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
+	Wed, 20 Feb 2019 09:41:32 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
+	Transport; Wed, 20 Feb 2019 09:41:31 -0600
+Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x1KFfVJD014268
+	for <meta-arago@arago-project.org>; Wed, 20 Feb 2019 09:41:31 -0600
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 20 Feb 2019 10:41:27 -0500
+Message-ID: <1550677287-61590-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [matrix-gui-v2-apps][PATCH] arm_multimedia: add kmssink support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,221 +49,180 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Feb 2019 02:02:14 -0000
+X-List-Received-Date: Wed, 20 Feb 2019 15:41:35 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+- use kmssink as video sink for AM4 and AM6 SoCs
+- cleanup indentations
+
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../meta/external-arm-toolchain.bbappend           | 200 ---------------------
- 1 file changed, 200 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+ .../arm_multimedia_h264dec/runH264Dec.sh           | 15 ++++++-
+ .../arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh   | 52 +++++++++++++---------
+ .../arm_multimedia_mpeg4dec/runMpeg4Dec.sh         | 13 +++++-
+ 3 files changed, 55 insertions(+), 25 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-deleted file mode 100644
-index eff8211..0000000
---- a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-+++ /dev/null
-@@ -1,200 +0,0 @@
--ALLOW_EMPTY_ldd = "1"
--
--LIC_FILES_CHKSUM = "\
--	file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302 \
--	file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420 \
--"
--
--PROVIDES += "\
--	virtual/libc-locale \
--"
--
--do_install() {
--	# Add stubs for files OE-core expects
--	install -d ${S}/nscd/
--	touch  ${S}/nscd/nscd.init
--	touch  ${S}/nscd/nscd.conf
--	touch  ${S}/nscd/nscd.service
--        touch  ${S}/../makedbs.sh 
--
--	install -d ${D}${base_libdir}
--	install -d ${D}${bindir}
--	install -d ${D}${sbindir}
--	install -d ${D}${libdir}
--	install -d ${D}${libexecdir}
--	install -d ${D}${datadir}
--	install -d ${D}${includedir}
--	install -d ${D}/include
--
--	CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
--	cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/${EAT_LIBDIR}/*  ${D}${base_libdir}
--	if [ -d ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/${EAT_LIBDIR}/${EAT_TARGET_SYS} ]; then
--		cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/${EAT_LIBDIR}/${EAT_TARGET_SYS}/*  ${D}${base_libdir}
--	else
--		if [ -f ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/${EAT_LIBDIR}/ld-${EAT_VER_LIBC}.so ]; then
--			cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/${EAT_LIBDIR}/*  ${D}${base_libdir}
--		else
--			cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/usr/${EAT_LIBDIR}/*.so*  ${D}${base_libdir}
--		fi
+diff --git a/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh b/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh
+index f1ea7dd..9a3b47b 100644
+--- a/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh
++++ b/multimedia_apps/arm_multimedia_h264dec/runH264Dec.sh
+@@ -1,7 +1,9 @@
+ #!/bin/sh
+ 
+ machine_type="`cat /etc/hostname`"
++VIDEO_SINK="kmssink"
+ if [ "$machine_type" = "am335x-evm" ] || [ "$machine_type" = "am335x-hs-evm" ]; then
++        VIDEO_SINK="fbdevsink"
+ 	resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+ 	if [ "$resolution" = "480x272" ]; then
+ 		filename="/usr/share/ti/video/TearOfSteel-Short-400x240.264"
+@@ -25,7 +27,8 @@ then
+         fi
+ elif [ "$machine_type" = "am65xx-evm" ]
+ then
+-     filename="/usr/share/ti/video/TearOfSteel-Short-1280x540.h264"
++     VIDEO_SINK="kmssink_am6"
++     filename="/usr/share/ti/video/TearOfSteel-Short-720x406.264"
+ else
+ 	default_display="`cat /sys/devices/platform/omapdss/manager0/display`"
+ 	if [ "$default_display" = "dvi" ]; then
+@@ -50,4 +53,12 @@ echo ""
+ echo "Launch GStreamer pipeline"
+ echo ""
+ echo "Length of video clip: 21 seconds"
+-gst-launch-1.0 filesrc location=$filename ! queue ! h264parse ! avdec_h264 ! videoconvert ! fbdevsink device=/dev/fb0
++if [ "$VIDEO_SINK" = "fbdevsink" ]
++then
++	gst-launch-1.0 filesrc location=$filename ! queue ! h264parse ! avdec_h264 ! videoconvert ! fbdevsink device=/dev/fb0
++elif [ "$VIDEO_SINK" = "kmssink_am6" ]
++then
++	gst-launch-1.0 filesrc location=$filename ! queue ! h264parse ! avdec_h264 ! videoconvert ! 'video/x-raw, format=(string)BGRA' ! kmssink
++else
++	gst-launch-1.0 filesrc location=$filename ! queue ! h264parse ! avdec_h264 ! videoconvert ! kmssink
++fi
+\ No newline at end of file
+diff --git a/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh b/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
+index 18ee0ea..d968435 100644
+--- a/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
++++ b/multimedia_apps/arm_multimedia_mpeg4aacdec/runMpeg4AacDec.sh
+@@ -8,28 +8,34 @@ elif grep -q "no soundcards" /proc/asound/cards; then
+         echo "No sound devices found!"
+ else
+ 	machine_type="`cat /etc/hostname`"
++	VIDEO_SINK="kmssink"
+ 	if [ "$machine_type" = "am335x-evm" ] || [ "$machine_type" = "am335x-hs-evm" ]; then
++		VIDEO_SINK="fbdevsink"
+ 		resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+-		 if [ "$resolution" = "480x272" ]; then
++		if [ "$resolution" = "480x272" ]; then
+ 			filename="/usr/share/ti/video/TearOfSteel-AV-Short-400x240.mp4"
+ 		else
+ 			# Use WVGA for all other resolutions
+ 			filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x420.mp4"
 -	fi
--	if [ -d ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/usr/${EAT_LIBDIR}/${EAT_TARGET_SYS} ]; then
--		cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/usr/${EAT_LIBDIR}/${EAT_TARGET_SYS}/*  ${D}${libdir}
--	else
--		cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/usr/${EAT_LIBDIR}/*  ${D}${libdir}
--		if [ ! -f ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/${EAT_LIBDIR}/ld-${EAT_VER_LIBC}.so ]; then
--			rm -rf ${D}${libdir}/*.so*
--		fi
--	fi
--	cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/usr/share/*  ${D}${datadir}
--	cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/usr/include/*  ${D}${includedir}
--	if [ -d ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/usr/include/${EAT_TARGET_SYS} ]; then
--		cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/usr/include/${EAT_TARGET_SYS}/*  ${D}${includedir}
--		rm -r ${D}${includedir}/${EAT_TARGET_SYS}
--	fi
+-    elif [ "$machine_type" = "dra7xx-evm" ]
+-    then
+-	    filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x420.mp4"
+-    elif [ "$machine_type" = "omap5-evm" ]
+-    then
+-        filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x406.mp4"
+-    elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]|| [ "$machine_type" = "am65xx-evm" ]
+-    then
+-            resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+-            if [ "$resolution" = "480x272" ]; then
+-                filename="/usr/share/ti/video/TearOfSteel-AV-Short-400x240.mp4"
+-            else
+-                filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x406.mp4"
+-            fi
++		fi
++	elif [ "$machine_type" = "dra7xx-evm" ]
++	then
++		filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x420.mp4"
++	elif [ "$machine_type" = "omap5-evm" ]
++	then
++		filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x406.mp4"
++	elif [ "$machine_type" = "am65xx-evm" ]
++	then
++		VIDEO_SINK="kmssink_am6"
++		filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x406.mp4"
++	elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]
++	then
++		resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
++		if [ "$resolution" = "480x272" ]; then
++			filename="/usr/share/ti/video/TearOfSteel-AV-Short-400x240.mp4"
++		else
++			filename="/usr/share/ti/video/TearOfSteel-AV-Short-720x406.mp4"
++		fi
+ 	else
+ 		default_display="`cat /sys/devices/platform/omapdss/manager0/display`"
+ 		if [ "$default_display" = "dvi" ]; then
+@@ -52,14 +58,12 @@ else
+ 		amixer -c 0 set Headset 1+ unmute
+ 	elif [ "$machine_type" = "am335x-evm" ] || [ "$machine_type" = "am335x-hs-evm" ]; then
+ 		amixer cset name='PCM Playback Volume' 127
+-    elif [ "$machine_type" = "omap5-evm" ]; then
++	elif [ "$machine_type" = "omap5-evm" ]; then
+ 		amixer cset name='PCM Playback Volume' 127
+-    elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]; then
 -
--	cp -a ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/include/* ${D}${includedir}
--	ln -sf ../usr/include/c++ ${D}/include/c++
++	elif [ "$machine_type" = "am437x-evm" ] || [ "$machine_type" = "am437x-hs-evm" ] || [ "$machine_type" = "am438x-epos-evm" ]; then
+ 		# EPOS uses a different configuration so check if
+ 		# we are running on that board
+ 		model_name=`cat /proc/device-tree/model | grep -i epos`
 -
--	# fix up the copied symlinks (they are still pointing to the multiarch directory)
--	linker_name="${@bb.utils.contains("TUNE_FEATURES", "aarch64", "ld-linux-aarch64.so.1", bb.utils.contains("TUNE_FEATURES", "callconvention-hard", "ld-linux-armhf.so.3", "ld-linux.so.3",d), d)}"
--	ln -sf ld-${EAT_VER_LIBC}.so ${D}${base_libdir}/${linker_name}
--	ln -sf ../../lib/librt.so.1 ${D}${libdir}/librt.so
--	ln -sf ../../lib/libgcc_s.so.1 ${D}${libdir}/libgcc_s.so
--	ln -sf ../../lib/libcrypt.so.1 ${D}${libdir}/libcrypt.so
--	ln -sf ../../lib/libresolv.so.2 ${D}${libdir}/libresolv.so
--	ln -sf ../../lib/libnss_dns.so.2 ${D}${libdir}/libnss_dns.so
--	ln -sf ../../lib/libnss_hesiod.so.2 ${D}${libdir}/libnss_hesiod.so
--	ln -sf ../../lib/libutil.so.1 ${D}${libdir}/libutil.so
--	ln -sf ../../lib/libnss_files.so.2 ${D}${libdir}/libnss_files.so
--	ln -sf ../../lib/libnss_compat.so.2 ${D}${libdir}/libnss_compat.so
--	ln -sf ../../lib/libBrokenLocale.so.1 ${D}${libdir}/libBrokenLocale.so
--	ln -sf ../../lib/libthread_db.so.1 ${D}${libdir}/libthread_db.so
--	ln -sf ../../lib/libpthread.so.0 ${D}${libdir}/libpthread.so
--	ln -sf ../../lib/libthread_db.so.1 ${D}${libdir}/libthread_db-1.0.so
--	ln -sf ../../lib/libanl.so.1 ${D}${libdir}/libanl.so
--	ln -sf ../../lib/libdl.so.2 ${D}${libdir}/libdl.so
--	ln -sf ../../lib/libnss_db.so.2 ${D}${libdir}/libnss_db.so
--	ln -sf ../../lib/libnss_dns.so.2 ${D}${libdir}/libnss_dns.so
--	ln -sf ../../lib/libnss_files.so.2 ${D}${libdir}/libnss_files.so
--	ln -sf ../../lib/libnss_compat.so.2 ${D}${libdir}/libnss_compat.so
--	ln -sf ../../lib/libm.so.6 ${D}${libdir}/libm.so
--	ln -sf ../../lib/libatomic.so.1 ${D}${libdir}/libatomic.so
--	ln -sf ../../lib/libgomp.so.1 ${D}${libdir}/libgomp.so
--	ln -sf ../../lib/libitm.so.1 ${D}${libdir}/libitm.so
--	ln -sf ../../lib/libssp.so.0 ${D}${libdir}/libssp.so
--	ln -sf ../../lib/libstdc++.so.6 ${D}${libdir}/libstdc++.so
--	ln -sf ../../lib/libubsan.so.1 ${D}${libdir}/libubsan.so
--	ln -sf ../../lib/libasan.so.5 ${D}${libdir}/libasan.so
--	ln -sf ../../lib/libgfortran.so.5 ${D}${libdir}/libgfortran.so
--
--	# remove potential .so duplicates from base_libdir
--	# for all symlinks created above in libdir
--	rm -f ${D}${base_libdir}/librt.so
--	rm -f ${D}${base_libdir}/libcrypt.so
--	rm -f ${D}${base_libdir}/libnss_nis.so
--	rm -f ${D}${base_libdir}/libresolv.so
--	rm -f ${D}${base_libdir}/libnss_dns.so
--	rm -f ${D}${base_libdir}/libnss_hesiod.so
--	rm -f ${D}${base_libdir}/libutil.so
--	rm -f ${D}${base_libdir}/libnss_files.so
--	rm -f ${D}${base_libdir}/libnss_compat.so
--	rm -f ${D}${base_libdir}/libBrokenLocale.so
--	rm -f ${D}${base_libdir}/libthread_db.so
--	rm -f ${D}${base_libdir}/libanl.so
--	rm -f ${D}${base_libdir}/libdl.so
--	rm -f ${D}${base_libdir}/libnss_nisplus.so
--	rm -f ${D}${base_libdir}/libnss_db.so
--	rm -f ${D}${base_libdir}/libm.so
--	rm -f ${D}${base_libdir}/libasan.so
--	rm -f ${D}${base_libdir}/libatomic.so
--	rm -f ${D}${base_libdir}/libgomp.so
--	rm -f ${D}${base_libdir}/libitm.so
--	rm -f ${D}${base_libdir}/libssp.so
--	rm -f ${D}${base_libdir}/libstdc++.so
--	rm -f ${D}${base_libdir}/libgfortran.so
--	rm -f ${D}${base_libdir}/libubsan.so
--
--	# Besides ld-${EAT_VER_LIBC}.so, other libs can have duplicates like lib*-${EAT_VER_LIBC}.so
--	# Only remove them if both are regular files and are identical
--	for i in ${D}${base_libdir}/lib*-${EAT_VER_LIBC}.so; do
--		f=$(echo $i | sed 's/-${EAT_VER_LIBC}//')
--		l=$(ls $f.*)
--		if [ $(readlink -f $i ) = $l ]; then
--			echo "$i is a symlink of $l, keep it"
--		elif [ $(readlink -f $l ) = $i ]; then
--			echo "$l is a symlink of $i, keep it"
--		else
--			cmp -s $i $l
--			if [ $? -eq 0 ]; then
--				echo "$i is a duplicate of $l, remove it"
--				rm $i
--			else
--				echo "$i and $l are different files, keep them both"
--			fi
--		fi
--	done
--
--	if [ -d ${D}${base_libdir}/arm-linux-gnueabi ]; then
--	   rm -rf ${D}${base_libdir}/arm-linux-gnueabi
--	fi
--
--	if [ -d ${D}${base_libdir}/ldscripts ]; then
--	   rm -rf ${D}${base_libdir}/ldscripts
--	fi
--
--	# Provided by libnsl2
--	rm -rf ${D}${includedir}/rpcsvc/yppasswd.*
--	# Provided by quota
--	rm -rf ${D}${includedir}/rpcsvc/rquota.*
--
--       if [ -f ${D}${libdir}/libc.so ];then
--               sed -i -e "s# /${EAT_LIBDIR}/${EAT_TARGET_SYS}# ../../${EAT_LIBDIR}#g" -e "s# /usr/${EAT_LIBDIR}/# /usr/lib/#g" -e "s# /usr/${EAT_LIBDIR}/${EAT_TARGET_SYS}# .#g" -e "s# /${EAT_LIBDIR}/ld-linux# ../../${EAT_LIBDIR}/ld-linux#g" ${D}${libdir}/libc.so
--                sed -i -e "s# /${EAT_LIBDIR}/libc.so.6# /lib/libc.so.6#g" ${D}${libdir}/libc.so
--                # cat kjasdkjasd
--       fi
--
--	if [ -f ${D}${base_libdir}/libc.so ];then
--		sed -i -e "s# /${EAT_LIBDIR}/${EAT_TARGET_SYS}# ../../lib#g" -e "s# /usr/${EAT_LIBDIR}/${EAT_TARGET_SYS}# .#g" "s# /${EAT_LIBDIR}/# /lib/#g" ${D}${base_libdir}/libc.so
--		if [ -f ${D}${base_libdir}/libc.so.6 ]; then
--			sed -i -e "s# /usr/${EAT_LIBDIR}/libc.so.6# /lib/libc.so.6#g" "s# /${EAT_LIBDIR}/libc.so.6# /lib/libc.so.6#g" ${D}${base_libdir}/libc.so.6
--		fi
--	fi
--	if [ -f ${D}${base_libdir}/libpthread.so.0 ]; then
--			sed -i -e "s# /usr/${EAT_LIBDIR}/libpthread.so.0# /lib/libpthread.so.0#g" ${D}${base_libdir}/libpthread.so.0
--	fi
--
--	# Remove if empty
--	rmdir ${D}${bindir} || true
--	rmdir ${D}${sbindir} || true
--}
--
--RPROVIDES_${PN}-staticdev = "glibc-staticdev"
--
--FILES_libgcc = " \
--    ${base_libdir}/libgcc_s.so.1 \
--    ${base_libdir}/libgcc_s.so \
--"
--
--FILES_linux-libc-headers = ""
--FILES_linux-libc-headers-dev = "\
--	${includedir}/asm* \
--	${includedir}/linux \
--	${includedir}/mtd \
--	${includedir}/rdma \
--	${includedir}/scsi \
--	${includedir}/sound \
--	${includedir}/video \
--"
--
--FILES_libstdc++ = "${base_libdir}/libstdc++.so.*"
--FILES_libstdc++-dev = "\
--  /include/c++ \
--  ${includedir}/c++/ \
--  ${base_libdir}/libstdc++.so \
--  ${base_libdir}/libstdc++.la \
--  ${base_libdir}/libsupc++.la"
--FILES_libstdc++-staticdev = "\
--  ${base_libdir}/libstdc++.a \
--  ${base_libdir}/libsupc++.a"
--FILES_libstdc++-dbg = "\
--  ${base_libdir}/debug/libstdc++.*"
+ 		if [ "$?" = '0' ]; then
+ 			amixer cset name='DAC Playback Volume' 127
+ 			amixer cset name='HP Analog Playback Volume' 66
+@@ -72,5 +76,11 @@ else
+ 			amixer cset name='PCM Playback Volume' 127
+ 		fi
+ 	fi
+-	gst-launch-1.0 filesrc location=$filename ! queue ! qtdemux name=demux demux.audio_0 ! queue ! faad ! alsasink demux.video_0 ! queue ! avdec_mpeg4 ! videoconvert ! fbdevsink device=/dev/fb0
++	if [ "$VIDEO_SINK" = "fbdevsink" ]; then
++		gst-launch-1.0 filesrc location=$filename ! queue ! qtdemux name=demux demux.audio_0 ! queue ! faad ! alsasink demux.video_0 ! queue ! avdec_mpeg4 ! videoconvert ! fbdevsink device=/dev/fb0
++	elif [ "$VIDEO_SINK" = "kmssink_am6" ]; then
++		gst-launch-1.0 filesrc location=$filename ! queue ! qtdemux name=demux demux.audio_0 ! queue ! faad ! alsasink demux.video_0 ! queue ! avdec_mpeg4 ! videoconvert ! 'video/x-raw, format=(string)BGRA' ! kmssink
++	else
++		gst-launch-1.0 filesrc location=$filename ! queue ! qtdemux name=demux demux.audio_0 ! queue ! faad ! alsasink demux.video_0 ! queue ! avdec_mpeg4 ! videoconvert ! kmssink
++	fi
+ fi
+diff --git a/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh b/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
+index 82fcb2c..bb565c2 100644
+--- a/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
++++ b/multimedia_apps/arm_multimedia_mpeg4dec/runMpeg4Dec.sh
+@@ -1,7 +1,9 @@
+ #!/bin/sh
+ 
+ machine_type="`cat /etc/hostname`"
++VIDEO_SINK="kmssink"
+ if [ "$machine_type" = "am335x-evm" ] || [ "$machine_type" = "am335x-hs-evm" ]; then
++        VIDEO_SINK="fbdevsink"
+ 	resolution="`fbset | awk '/geometry/ {print $2"x"$3}'`"
+ 	if [ "$resolution" = "480x272" ]; then
+ 		filename="/usr/share/ti/video/TearOfSteel-Short-400x240.m4v"
+@@ -25,7 +27,8 @@ then
+     fi
+ elif [ "$machine_type" = "am65xx-evm" ]
+ then
+-     filename="/usr/share/ti/video/TearOfSteel-Short-1280x540.m4v"
++     VIDEO_SINK="kmssink_am6"
++     filename="/usr/share/ti/video/TearOfSteel-Short-720x406.m4v"
+ else
+ 	default_display="`cat /sys/devices/platform/omapdss/manager0/display`"
+ 	if [ "$default_display" = "dvi" ]; then
+@@ -46,4 +49,10 @@ if [ ! -f $filename ]; then
+         echo "Video clip not found"
+         exit 1
+ fi
+-gst-launch-1.0 playbin uri=file://$filename video-sink=fbdevsink audio-sink=fakesink
++if [ "$VIDEO_SINK" = "fbdevsink" ]; then
++	gst-launch-1.0 playbin uri=file://$filename video-sink=fbdevsink audio-sink=fakesink
++elif [ "$VIDEO_SINK" = "kmssink_am6" ]; then
++	gst-launch-1.0 filesrc location=$filename ! queue ! qtdemux name=demux demux.video_0 ! queue ! avdec_mpeg4 ! videoconvert ! 'video/x-raw, format=(string)BGRA' ! kmssink
++else
++	gst-launch-1.0 filesrc location=$filename ! queue ! qtdemux name=demux demux.video_0 ! queue ! avdec_mpeg4 ! videoconvert ! kmssink
++fi
 -- 
-2.7.4
+1.9.1
 
 
