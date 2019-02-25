@@ -1,44 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 09006529A0
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 7A291529AD
 	for <meta-arago@arago-project.org>;
-	Mon, 25 Feb 2019 18:51:14 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x1PIpBBX080530
-	for <meta-arago@arago-project.org>; Mon, 25 Feb 2019 12:51:11 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1551120671;
-	bh=YEs+89cX7eMmHTfuxpXaIrRSpyeIQLtJln3k1YAGgwE=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=cvi2PXQ0m3+ahEefcPvDgGKX5eiI4JnqR4q1Zwevjk/QYJ9u1a6pBFgyIeq/RftCh
-	hngXOlLt9FM1bGRlY6ZnLz3EnQQaJ6NGYzunX8i2b9PFAHqKRnuU/0fcO4yERCj1sD
-	dT9JwfUgchbtFq4GSOIngwKUuxBHhWQOXvZ8RHXs=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x1PIpBCq087543
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 25 Feb 2019 12:51:11 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Mon, 25 Feb 2019 12:51:10 -0600
-Received: from dflp33.itg.ti.com (10.64.6.16) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Mon, 25 Feb 2019 12:51:10 -0600
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id x1PIpANF032513;
-	Mon, 25 Feb 2019 12:51:10 -0600
-To: Denys Dmytriyenko <denys@ti.com>, <meta-arago@arago-project.org>
-References: <20190115215150.7089-1-denys@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <d5c1eec2-02bf-e84d-5ca3-ef116fe37fb4@ti.com>
-Date: Mon, 25 Feb 2019 13:51:10 -0500
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.5.0
-MIME-Version: 1.0
-In-Reply-To: <20190115215150.7089-1-denys@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [rocko/master][PATCH] nativesdk-packagegroup-*-host: add option for bare devtool w/o TI OCL, CGT tools
+	Mon, 25 Feb 2019 22:28:47 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 86E5940B0A;
+	Mon, 25 Feb 2019 22:28:43 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id NgXOz8lMqzZG; Mon, 25 Feb 2019 22:28:43 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
+	[100.15.91.218])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6D474403F2;
+	Mon, 25 Feb 2019 22:28:42 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 10DA516ACB6;
+	Mon, 25 Feb 2019 17:28:42 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Mon, 25 Feb 2019 17:28:41 -0500
+Message-Id: <1551133721-15338-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [rocko/master][PATCH] meta-toolchain-arago-tisdk-server: fix install of TI OCL, CGT nativesdk tools
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,95 +37,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Feb 2019 18:51:15 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Mon, 25 Feb 2019 22:28:48 -0000
 
-I just realized that this commit effectively removes these TI toolchains 
-from the keystone devkits, "meta-toolchain-arago-tisdk-server".
+Previous commit 01b4c2ef967779e79b9367e439955b8466ccd04f changed meta-toolchain-arago
+to be a bare devkit w/o those tools. Since "server" devkit was not using "qte"
+packagegroup, it accidentally lost those tools as well, affecting K2 platforms.
+Fix it by using the correct "tisdk" packagegroup for TOOLCHAIN_HOST_TASK.
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-On 1/15/2019 4:51 PM, Denys Dmytriyenko wrote:
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> ---
->   ...k-packagegroup-arago-qte-toolchain-host.bb |  2 +-
->   .../nativesdk-packagegroup-arago-sdk-host.bb  | 13 +----------
->   ...nativesdk-packagegroup-arago-tisdk-host.bb | 22 +++++++++++++++++++
->   3 files changed, 24 insertions(+), 13 deletions(-)
->   create mode 100644 meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
->
-> diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb
-> index 25d4f156..88736682 100644
-> --- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb
-> +++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb
-> @@ -5,6 +5,6 @@ LICENSE = "MIT"
->   inherit packagegroup nativesdk qt-vars
->   
->   RDEPENDS_${PN} = "\
-> -    nativesdk-packagegroup-arago-sdk-host \
-> +    nativesdk-packagegroup-arago-tisdk-host \
->       ${QT_RDEPENDS_NATIVESDK_TOOLS} \
->       "
-> diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
-> index af83521a..4199c2eb 100644
-> --- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
-> +++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
-> @@ -1,21 +1,11 @@
->   SUMMARY = "Host packages for a standalone Arago SDK or external toolchain"
-> -PR = "r17"
-> +PR = "r18"
->   LICENSE = "MIT"
->   
->   inherit packagegroup nativesdk
->   
->   PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
->   
-> -EXTRA_TI_TOOLS = " \
-> -    nativesdk-ti-cgt6x \
-> -    nativesdk-ti-cgt-pru \
-> -    nativesdk-clocl \
-> -    nativesdk-clacc \
-> -    nativesdk-open62541-examples \
-> -    nativesdk-open62541-tests \
-> -    nativesdk-tidl-import \
-> -"
-> -
->   RDEPENDS_${PN} = "\
->       nativesdk-pkgconfig \
->       nativesdk-opkg \
-> @@ -28,5 +18,4 @@ RDEPENDS_${PN} = "\
->       nativesdk-git \
->       nativesdk-cmake \
->       nativesdk-mtd-utils-ubifs \
-> -    ${EXTRA_TI_TOOLS} \
->   "
-> diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
-> new file mode 100644
-> index 00000000..cb345918
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
-> @@ -0,0 +1,22 @@
-> +SUMMARY = "Host packages for a standalone Arago SDK with TI tools"
-> +PR = "r0"
-> +LICENSE = "MIT"
-> +
-> +inherit packagegroup nativesdk
-> +
-> +PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
-> +
-> +EXTRA_TI_TOOLS = " \
-> +    nativesdk-ti-cgt6x \
-> +    nativesdk-ti-cgt-pru \
-> +    nativesdk-clocl \
-> +    nativesdk-clacc \
-> +    nativesdk-open62541-examples \
-> +    nativesdk-open62541-tests \
-> +    nativesdk-tidl-import \
-> +"
-> +
-> +RDEPENDS_${PN} = "\
-> +    nativesdk-packagegroup-arago-sdk-host \
-> +    ${EXTRA_TI_TOOLS} \
-> +"
+diff --git a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb b/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb
+index f972eaa..3e781d0 100644
+--- a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb
++++ b/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb
+@@ -1,3 +1,4 @@
++TOOLCHAIN_HOST_TASK ?= "nativesdk-packagegroup-arago-tisdk-host"
+ TOOLCHAIN_SUFFIX ?= "-tisdk-server"
+ 
+ require meta-toolchain-arago-tisdk.inc
+-- 
+2.7.4
+
 
