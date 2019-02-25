@@ -1,43 +1,44 @@
-Return-Path: <h-gou@ti.com>
+Return-Path: <e-ruei1@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id EA6E952974
+	by arago-project.org (Postfix) with ESMTPS id 53F3052974
 	for <meta-arago@arago-project.org>;
-	Mon, 25 Feb 2019 15:13:15 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x1PFDCC0094687
-	for <meta-arago@arago-project.org>; Mon, 25 Feb 2019 09:13:12 -0600
+	Mon, 25 Feb 2019 15:17:21 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x1PFHHBa097277
+	for <meta-arago@arago-project.org>; Mon, 25 Feb 2019 09:17:17 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1551107592;
-	bh=WaZQoES4bDctL1ASg9n+she3yRAlySyffW65/azdDPU=;
+	s=ti-com-17Q1; t=1551107837;
+	bh=0N0O6NLnrOmmQlgUZLIWZPkC8JF01AEh4Z+kgscowLc=;
 	h=From:To:Subject:Date:References:In-Reply-To;
-	b=P1b1lhhhrnhUvWLNvrDCAFnGU6br8F+UTwQGjEdnltpqnofJLevYdF7PZhnX9ZRjR
-	wqF83Ngk+zulppKq4lFvWjJug8KAD94LPfbGEft4cQSYNXOS4SV3BFwHWFX9Fv/Ri5
-	5H6rqOMfYg+tKuDsone4hVOAxsjAmTbHOnqXRn+o=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x1PFDCnd052332
+	b=pxzh20LSRXiVx5xIOs1f3SboGloy69opH0dq6pv2DvfFRFVLCbaTk9z8J+S3yf8N5
+	uhTmsqjgmsQb527CaeiEaSQYBwz8a2HwhXELBSlzNlV0E8xKaLjBLLUjk+CNa1Z9fG
+	WGziu3cfyufyWnulB/Sy2H0NzaS5Qbh1XlN0U1lw=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x1PFHHd1035461
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 25 Feb 2019 09:13:12 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 25 Feb 2019 09:17:17 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Mon, 25 Feb 2019 09:13:11 -0600
-Received: from DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f]) by
-	DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f%18]) with mapi id
-	15.01.1591.008; Mon, 25 Feb 2019 09:13:11 -0600
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "Ruei, Eric" <e-ruei1@ti.com>, "meta-arago@arago-project.org"
+	Mon, 25 Feb 2019 09:17:17 -0600
+Received: from DLEE113.ent.ti.com ([fe80::a10b:711a:6ba7:e455]) by
+	DLEE113.ent.ti.com ([fe80::a10b:711a:6ba7:e455%17]) with mapi id
+	15.01.1591.008; Mon, 25 Feb 2019 09:17:17 -0600
+From: "Ruei, Eric" <e-ruei1@ti.com>
+To: "Gou, Hongmei" <h-gou@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
 Thread-Topic: [EXTERNAL] [meta-arago] [matrix-gui-v2-apps][PATCH]
 	arm_multimedia: add kmssink support
-Thread-Index: AQHUyTLG/19fSV/rW0ig4UanS6Pxx6XwpYgg
-Date: Mon, 25 Feb 2019 15:13:11 +0000
-Message-ID: <07520f85f77445af8f5ceb93a9048814@ti.com>
+Thread-Index: AQHUyTLG/19fSV/rW0ig4UanS6Pxx6XwpYgggAACVaA=
+Date: Mon, 25 Feb 2019 15:17:16 +0000
+Message-ID: <70b40251889b4e2f87c281820f393b0f@ti.com>
 References: <1550677287-61590-1-git-send-email-e-ruei1@ti.com>
-In-Reply-To: <1550677287-61590-1-git-send-email-e-ruei1@ti.com>
+	<07520f85f77445af8f5ceb93a9048814@ti.com>
+In-Reply-To: <07520f85f77445af8f5ceb93a9048814@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.113.170]
+x-originating-ip: [158.218.113.148]
 x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
 Subject: Re: [EXTERNAL] [matrix-gui-v2-apps][PATCH] arm_multimedia: add kmssink support
@@ -53,10 +54,24 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Feb 2019 15:13:16 -0000
+X-List-Received-Date: Mon, 25 Feb 2019 15:17:21 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Any suggest of better variable name?
+
+Best regards,
+
+Eric
+
+
+-----Original Message-----
+From: Gou, Hongmei=20
+Sent: Monday, February 25, 2019 10:13 AM
+To: Ruei, Eric; meta-arago@arago-project.org
+Subject: RE: [EXTERNAL] [meta-arago] [matrix-gui-v2-apps][PATCH] arm_multim=
+edia: add kmssink support
 
 > -----Original Message-----
 > From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
