@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 7A291529AD
+	by arago-project.org (Postfix) with ESMTPS id 9AAAB529AD
 	for <meta-arago@arago-project.org>;
-	Mon, 25 Feb 2019 22:28:47 +0000 (UTC)
+	Mon, 25 Feb 2019 22:31:10 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 86E5940B0A;
-	Mon, 25 Feb 2019 22:28:43 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 90EC540B0A;
+	Mon, 25 Feb 2019 22:31:06 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id NgXOz8lMqzZG; Mon, 25 Feb 2019 22:28:43 +0000 (UTC)
+	with ESMTP id 8q6e8X2_NBiX; Mon, 25 Feb 2019 22:31:06 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
 	[100.15.91.218])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6D474403F2;
-	Mon, 25 Feb 2019 22:28:42 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7B3B9403F2;
+	Mon, 25 Feb 2019 22:31:05 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 10DA516ACB6;
-	Mon, 25 Feb 2019 17:28:42 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id 2FCF116ACB6;
+	Mon, 25 Feb 2019 17:31:05 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Mon, 25 Feb 2019 17:28:41 -0500
-Message-Id: <1551133721-15338-1-git-send-email-denys@ti.com>
+Date: Mon, 25 Feb 2019 17:31:05 -0500
+Message-Id: <1551133865-15645-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [rocko/master][PATCH] meta-toolchain-arago-tisdk-server: fix install of TI OCL, CGT nativesdk tools
+Subject: [master][PATCH] packagegroup-arago-standalone-sdk-target: conditionally install glibc-staticdev for linaro
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,27 +37,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Feb 2019 22:28:48 -0000
-
-Previous commit 01b4c2ef967779e79b9367e439955b8466ccd04f changed meta-toolchain-arago
-to be a bare devkit w/o those tools. Since "server" devkit was not using "qte"
-packagegroup, it accidentally lost those tools as well, affecting K2 platforms.
-Fix it by using the correct "tisdk" packagegroup for TOOLCHAIN_HOST_TASK.
+X-List-Received-Date: Mon, 25 Feb 2019 22:31:11 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb | 1 +
- 1 file changed, 1 insertion(+)
+ .../packagegroups/packagegroup-arago-standalone-sdk-target.bb           | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb b/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb
-index f972eaa..3e781d0 100644
---- a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb
-+++ b/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb
-@@ -1,3 +1,4 @@
-+TOOLCHAIN_HOST_TASK ?= "nativesdk-packagegroup-arago-tisdk-host"
- TOOLCHAIN_SUFFIX ?= "-tisdk-server"
- 
- require meta-toolchain-arago-tisdk.inc
+diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
+index 26cb503..5a33a04 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
+@@ -11,7 +11,7 @@ RDEPENDS_${PN} = "\
+     libgcc-dev \
+     libstdc++-dev \
+     ${LIBC_DEPENDENCIES} \
+-    glibc-staticdev \
++    ${@oe.utils.conditional('TCMODE', 'external-linaro', 'glibc-staticdev', '', d)} \
+     linux-libc-headers-dev \
+     gdbserver \
+     alsa-dev \
 -- 
 2.7.4
 
