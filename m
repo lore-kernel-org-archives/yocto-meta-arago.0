@@ -1,42 +1,32 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id D021852A1E
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 17ED8529D9
 	for <meta-arago@arago-project.org>;
-	Tue, 26 Feb 2019 21:42:19 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x1QLgFcL026754
-	for <meta-arago@arago-project.org>; Tue, 26 Feb 2019 15:42:15 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1551217335;
-	bh=d37DKB5sI0HrPPlIgf3Ct3oNbNqQkwmKwhr6c51K8Vk=;
-	h=From:To:Subject:Date;
-	b=vqBCYSMx1sFqUlwzNXr2fCJDVu7PofmlQwEqMy6opuJu1OrkY5cLVmaMLefutPZQ+
-	Ahj3pJpKc5Oi0X5UzhE8bUQFoMADhk/y7ry+qBsIQB9Ml0QF91QPld2HKXDje80xNA
-	u82wScQ9P9IX+c/InoRZSH67KtDPAQPEK9yUtZyQ=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x1QLgFUP112659
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 26 Feb 2019 15:42:15 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Tue, 26 Feb 2019 15:42:15 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Tue, 26 Feb 2019 15:42:15 -0600
-Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id x1QLgED3023166
-	for <meta-arago@arago-project.org>; Tue, 26 Feb 2019 15:42:15 -0600
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 26 Feb 2019 16:42:12 -0500
-Message-ID: <1551217332-10727-1-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH] linuxptp: bump SRCREV to pick up phc2sys enhancement
+	Wed, 27 Feb 2019 21:50:22 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 53C7440B86;
+	Wed, 27 Feb 2019 21:50:17 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 5Ikn7jVUcdFd; Wed, 27 Feb 2019 21:50:17 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
+	[100.15.91.218])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3802740A3A;
+	Wed, 27 Feb 2019 21:50:16 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id CD1BD16B9DD;
+	Wed, 27 Feb 2019 16:50:09 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Wed, 27 Feb 2019 16:50:07 -0500
+Message-Id: <1551304207-22041-2-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1551304207-22041-1-git-send-email-denys@ti.com>
+References: <1551304207-22041-1-git-send-email-denys@ti.com>
+Subject: [master][PATCH 2/2] optee-test: update to the latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,35 +39,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Feb 2019 21:42:20 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 27 Feb 2019 21:50:23 -0000
 
-phc2sys enhancement: PPS-based BC: add system time synchronization
+Includes gcc8 fixes
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- recipes-connectivity/linuxptp/linuxptp_%.bbappend | 4 ++--
+ meta-arago-distro/recipes-security/optee/optee-test_git.bbappend | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-connectivity/linuxptp/linuxptp_%.bbappend b/recipes-connectivity/linuxptp/linuxptp_%.bbappend
-index 6e9fa7e..c2b96ac 100644
---- a/recipes-connectivity/linuxptp/linuxptp_%.bbappend
-+++ b/recipes-connectivity/linuxptp/linuxptp_%.bbappend
-@@ -1,11 +1,11 @@
--PR_append = ".tisdk9"
-+PR_append = ".tisdk10"
- PV = "1.8+"
+diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+index bbdb8ae..d0a1ac5 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+@@ -1,6 +1,6 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
- BRANCH = "ti-linuxptp-release"
- SRC_URI = "git://git.ti.com/processor-sdk/linuxptp.git;protocol=git;branch=${BRANCH} \
-            file://build-Allow-CC-and-prefix-to-be-overriden.patch"
+-PR_append = ".arago1"
++PR_append = ".arago2"
  
--SRCREV = "f040a92092c044f6ca6c43adc59445609b272639"
-+SRCREV = "308be592614861559690c911132c2aed4e2934d8"
+ SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
  
- S = "${WORKDIR}/git"
+@@ -9,4 +9,4 @@ SRC_URI += "file://0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.pat
+ PV = "3.2.0+git${SRCPV}"
  
+ BRANCH = "ti_optee_test"
+-SRCREV = "36c8eef15437f2280e657be7d296564452e3c427"
++SRCREV = "274d3c55dfa2f4726109dc9773c82fe8d5a44dae"
 -- 
-1.9.1
+2.7.4
 
 
