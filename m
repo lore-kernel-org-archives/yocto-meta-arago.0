@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 0FAE652978
+	by arago-project.org (Postfix) with ESMTPS id 2351F52A1E
 	for <meta-arago@arago-project.org>;
-	Wed, 27 Feb 2019 21:50:21 +0000 (UTC)
+	Thu, 28 Feb 2019 00:58:23 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5548E40B96;
-	Wed, 27 Feb 2019 21:50:17 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 2A8C640AF7;
+	Thu, 28 Feb 2019 00:58:18 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id LDCJ24Ce-eFe; Wed, 27 Feb 2019 21:50:17 +0000 (UTC)
+	with ESMTP id f6cAf4A8S2I6; Thu, 28 Feb 2019 00:58:18 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
 	[100.15.91.218])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3BAE140AFE;
-	Wed, 27 Feb 2019 21:50:16 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 13C9240A2D;
+	Thu, 28 Feb 2019 00:58:17 +0000 (UTC)
 Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id C0FF016A8E4;
-	Wed, 27 Feb 2019 16:50:09 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id 4665916B9E3;
+	Wed, 27 Feb 2019 19:58:16 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Wed, 27 Feb 2019 16:50:06 -0500
-Message-Id: <1551304207-22041-1-git-send-email-denys@ti.com>
+Date: Wed, 27 Feb 2019 19:58:15 -0500
+Message-Id: <1551315495-22592-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH 1/2] optee-os: update to the latest
+Subject: [master][PATCH] branding-bleeding: also AUTOREV optee packages and arm-trusted-firmware
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,37 +37,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Feb 2019 21:50:23 -0000
+X-List-Received-Date: Thu, 28 Feb 2019 00:58:24 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-security/optee/optee-os_git.bbappend | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ meta-arago-distro/conf/distro/include/branding-bleeding.inc | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-index 2204a50..cdf3ef6 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-@@ -1,8 +1,8 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/meta-arago-distro/conf/distro/include/branding-bleeding.inc b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
+index a1913b1..91177f1 100644
+--- a/meta-arago-distro/conf/distro/include/branding-bleeding.inc
++++ b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
+@@ -9,6 +9,10 @@ SRCREV_pn-linux-ti-staging-systest = "${AUTOREV}"
+ SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
+ SRCREV_pn-u-boot-k3-r5 = "${AUTOREV}"
+ SRCREV_pn-ltp-ddt = "${AUTOREV}"
++SRCREV_pn-optee-os = "${AUTOREV}"
++SRCREV_pn-optee-client = "${AUTOREV}"
++SRCREV_pn-optee-test = "${AUTOREV}"
++SRCREV_pn-arm-trusted-firmware = "${AUTOREV}"
  
--PR_append = ".arago0"
-+PR_append = ".arago1"
- 
--PV = "3.2.0+git${SRCPV}"
-+PV = "3.4.0+git${SRCPV}"
- 
- is_armv7 = "1"
- is_armv7_aarch64 = "0"
-@@ -11,7 +11,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
-            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
- "
- BRANCH = "ti_optee_os"
--SRCREV = "48952f9f76d885df4cb65f8479a4cf7dedf0ee54"
-+SRCREV = "b01970c6081fcbbc79ef1d3c417ddd5b05df7656"
- 
- ARMCORE = "CFG_ARM32_core=y ta-targets=ta_arm32"
- ARMCORE_aarch64 = "CFG_ARM64_core=y ta-targets=ta_arm64"
+ # Build and assemble TI-SDK, but don't package it
+ IMAGE_FSTYPES_pn-arago-core-tisdk-image = ""
 -- 
 2.7.4
 
