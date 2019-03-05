@@ -1,30 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id E1FB5529D1
+Return-Path: <yan-liu@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 4263552978
 	for <meta-arago@arago-project.org>;
-	Tue,  5 Mar 2019 20:50:39 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id F35A840BFC;
-	Tue,  5 Mar 2019 20:50:32 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id NkFCmbJjviqg; Tue,  5 Mar 2019 20:50:32 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-91-218.washdc.fios.verizon.net
-	[100.15.91.218])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DAE9D40BFA;
-	Tue,  5 Mar 2019 20:50:31 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 90B7116BDD9;
-	Tue,  5 Mar 2019 15:50:31 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Tue,  5 Mar 2019 15:50:27 -0500
-Message-Id: <1551819028-6530-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [thud][PATCH 1/2] README: indicate dependencies on thud branch of other layers
+	Tue,  5 Mar 2019 21:11:00 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x25LArWn087840
+	for <meta-arago@arago-project.org>; Tue, 5 Mar 2019 15:10:53 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1551820253;
+	bh=CeCLlp7ttTg4edBztU8ioWsBuMSgFNvDmUP6L8A+9HY=;
+	h=From:To:CC:Subject:Date;
+	b=jFkeDI+OYlrtDe5GsqdpxG1A3rEeCLnXnFGyhLgVGdIjOuZEN3Q/xdjHV9gsPTwn8
+	AAInN1xCW0lLKw1yjLCWRAYIL62er0RlSormyC7ZY62kdf3ro431IpWX/aLgyZwy0+
+	ZMvCL2tmE932fQBnWJnVIxbevuhOQ0dCrmhUS8BE=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x25LArnU031795
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 5 Mar 2019 15:10:53 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
+	Tue, 5 Mar 2019 15:10:53 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
+	Transport; Tue, 5 Mar 2019 15:10:53 -0600
+Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x25LAqeV008970;
+	Tue, 5 Mar 2019 15:10:52 -0600
+From: <yan-liu@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 5 Mar 2019 16:15:07 -0500
+Message-ID: <1551820507-11444-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH v2] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,99 +49,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Mar 2019 20:50:40 -0000
+X-List-Received-Date: Tue, 05 Mar 2019 21:11:00 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+From: Yan Liu <yan-liu@ti.com>
+
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- meta-arago-distro/README | 14 +++++++-------
- meta-arago-extras/README | 12 ++++++------
- 2 files changed, 13 insertions(+), 13 deletions(-)
+ .../{ltp-ddt_20180118.bb => ltp-ddt_20190305.bb}   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename meta-arago-extras/recipes-devtools/ltp-ddt/{ltp-ddt_20180118.bb => ltp-ddt_20190305.bb} (97%)
 
-diff --git a/meta-arago-distro/README b/meta-arago-distro/README
-index 03157ae..965e20f 100644
---- a/meta-arago-distro/README
-+++ b/meta-arago-distro/README
-@@ -1,33 +1,33 @@
- meta-arago-distro provides Arago distribution configuration for TI SDK products
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+similarity index 97%
+rename from meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+rename to meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+index 2f491ad..9ff582f 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
  
- This layer works with the latest Yocto Project release (currently 2.2+) and tracks
--the stable/maintenance branches (currently "master") of the corresponding layers:
-+the stable/maintenance branches (currently "thud") of the corresponding layers:
+-PR = "r22"
++PR = "r1"
+ PV_append = "+git${SRCPV}"
  
- URI: git://git.openembedded.org/openembedded-core
--branch: master
-+branch: thud
- revision: HEAD
- layers: meta
+ PROVIDES += "ltp"
+@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
  
- URI: git://git.openembedded.org/meta-openembedded
--branch: master
-+branch: thud
- revision: HEAD
- layers: meta-oe, meta-networking, meta-python
+ inherit autotools-brokensep
  
- URI: git://git.yoctoproject.org/meta-ti
--branch: master
-+branch: thud
- revision: HEAD
+-SRCREV = "cc77bda07ecfc3bc7c42a559ec17d7a7736d1e9f"
++SRCREV = "22e65405811dc47a4254a52aaaf09a5a83387bdd"
+ BRANCH ?= "master"
  
- URI: https://github.com/meta-qt5/meta-qt5
--branch: master
-+branch: thud
- revision: HEAD
- 
- URI: git://arago-project.org/git/meta-arago
--branch: master
-+branch: thud
- revision: HEAD
- layers: meta-arago-extras
- 
- URI: git://git.linaro.org/openembedded/meta-linaro
--branch: master
-+branch: thud
- revision: HEAD
- layers: meta-linaro-toolchain, meta-optee
- 
-diff --git a/meta-arago-extras/README b/meta-arago-extras/README
-index 62416cd..5df5376 100644
---- a/meta-arago-extras/README
-+++ b/meta-arago-extras/README
-@@ -1,28 +1,28 @@
- meta-arago-extras provides additional TI SDK applications that are distro-agnostic
- 
- This layer works with the latest Yocto Project release (currently 2.2+) and tracks
--the stable/maintenance branches (currently "master") of the corresponding layers:
-+the stable/maintenance branches (currently "thud") of the corresponding layers:
- 
- URI: git://git.openembedded.org/openembedded-core
--branch: master
-+branch: thud
- revision: HEAD
- layers: meta
- 
- URI: git://git.openembedded.org/meta-openembedded
--branch: master
-+branch: thud
- revision: HEAD
- layers: meta-oe, meta-networking, meta-python
- 
- URI: git://git.yoctoproject.org/meta-ti
--branch: master
-+branch: thud
- revision: HEAD
- 
- URI: https://github.com/meta-qt5/meta-qt5
--branch: master
-+branch: thud
- revision: HEAD
- 
- URI: git://git.linaro.org/openembedded/meta-linaro
--branch: master
-+branch: thud
- revision: HEAD
- layers: meta-linaro-toolchain
- 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
 -- 
-2.7.4
+1.7.9.5
 
 
