@@ -1,42 +1,42 @@
-Return-Path: <yuanzhao@ti.com>
+Return-Path: <yan-liu@ti.com>
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id F182852976
+	by arago-project.org (Postfix) with ESMTPS id 54CCC529C0
 	for <meta-arago@arago-project.org>;
-	Tue,  5 Mar 2019 01:16:12 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x251G6HW005438
-	for <meta-arago@arago-project.org>; Mon, 4 Mar 2019 19:16:06 -0600
+	Tue,  5 Mar 2019 19:58:01 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x25JvsSq106720
+	for <meta-arago@arago-project.org>; Tue, 5 Mar 2019 13:57:54 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1551748566;
-	bh=S6FcCG0uaMaz3hqVgdwlyCr402rt+BJsZYV14gXsVfI=;
+	s=ti-com-17Q1; t=1551815874;
+	bh=18SfYp0FQ+YFdauVCpG1DNPx4CibtX6iVhPwyiRBrgI=;
 	h=From:To:CC:Subject:Date;
-	b=lhXeMZptNBBY6ncwwJKXHUZqLIenZfmk3iJhmIE1ZNXBYkInLt1d2V0d4G9yh/xQ6
-	gJTear0TC8DZa3uZJkg1GqhMQKBV4d7Egle1461YwvXkFb+Vgya7xrFTaRFtgKAOHB
-	lI/ATUzFG8zi1HkvYcpoUXvjgdxyIOUKpobeNXak=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x251G6jK117355
+	b=aKzVKYtce5RBkMSYvK/9tD7bsukxQmJLYUZjo7VjbWqjaRmfd/J2WYBVdxo4JVpCa
+	FwPL6NZWq5t5QO8TVohmyrrn/tw92cjyC/v4Cxe9LpCNLewRIhQT7nCOLgLczHx9pl
+	ko0kdtA5Fw7SkM9GvaLs7ev3E5+wF3hTeO3aVdGc=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x25Jvscm026446
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 4 Mar 2019 19:16:06 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 5 Mar 2019 13:57:54 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Mon, 4 Mar 2019 19:16:05 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 5 Mar 2019 13:57:54 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Mon, 4 Mar 2019 19:16:06 -0600
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Tue, 5 Mar 2019 13:57:54 -0600
+Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x251G5uL006409;
-	Mon, 4 Mar 2019 19:16:05 -0600
-From: Yuan Zhao <yuanzhao@ti.com>
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id x25JvpZT013413;
+	Tue, 5 Mar 2019 13:57:52 -0600
+From: <yan-liu@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 4 Mar 2019 19:15:58 -0600
-Message-ID: <20190305011558.55639-1-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.14.1
+Date: Tue, 5 Mar 2019 15:01:54 -0500
+Message-ID: <1551816114-11226-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v2] ocl: update version to 01.01.18.00
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,61 +49,220 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Mar 2019 01:16:13 -0000
+X-List-Received-Date: Tue, 05 Mar 2019 19:58:02 -0000
 Content-Type: text/plain
 
-- Runtime support update for TIDL API 01.03.00
-- Update OpenCL TIDL firmware to 01.01.18.00
+From: Yan Liu <yan-liu@ti.com>
 
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- meta-arago-extras/recipes-ti/ocl/ocl.inc               | 4 ++--
- meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb   |   94 --------------------
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb   |   94 ++++++++++++++++++++
+ 2 files changed, 94 insertions(+), 94 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+ create mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-index be32b0bc..21247177 100644
---- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
-+++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-@@ -1,5 +1,5 @@
- # patch version at the end needs to be in double digits
--PV = "1.1.17.02"
-+PV = "1.1.18.00"
- INC_PR = "r0"
- 
- LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
-@@ -10,7 +10,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
- OCL_GIT_PROTOCOL = "git"
- OCL_GIT_BRANCH = "master"
- 
--OCL_SRCREV = "fef8ff7679dacfac7b208531be07550fa7e3673e"
-+OCL_SRCREV = "a50d8b41cc30bdf4faf1998ec3fc7d0a3093b795"
- 
- BRANCH = "${OCL_GIT_BRANCH}"
- SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
-diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-index a47d9128..a9ec413a 100644
---- a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-@@ -3,7 +3,7 @@ SUMMARY = "OpenCL TIDL firmware for AM57xx"
- LICENSE = "TI-TFL"
- LIC_FILES_CHKSUM = "file://LICENSE.ti;md5=082a028431c455252c1e1d3d1021d382"
- 
--PV = "01.01.17.01"
-+PV = "01.01.18.00"
- PR = "r0"
- 
- require recipes-ti/includes/arago-paths.inc
-@@ -15,7 +15,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- GIT_URI      = "git://git.ti.com/opencl/opencl-firmware.git"
- GIT_PROTOCOL = "git"
- BRANCH       = "master"
--SRCREV       = "2f1715affab9ef4debf02769cf113dc1922cf75f"
-+SRCREV       = "3b98f405d98416a66678dec01d8f7ef244f379b6"
- 
- SRC_URI      = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
- 
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
+deleted file mode 100644
+index 2f491ad..0000000
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20180118.bb
++++ /dev/null
+@@ -1,94 +0,0 @@
+-SUMMARY = "Embedded Linux Device Driver Tests based on Linux Test Project"
+-HOMEPAGE = "http://arago-project.org/git/projects/test-automation/ltp-ddt.git"
+-SECTION = "console/utils"
+-LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+-
+-PR = "r22"
+-PV_append = "+git${SRCPV}"
+-
+-PROVIDES += "ltp"
+-DEPENDS = "alsa-lib attr libaio libcap acl openssl zip-native"
+-
+-RDEPENDS_${PN} = "\
+-    acl \
+-    at \
+-    attr \
+-    bash \
+-    cpio \
+-    cronie \
+-    curl \
+-    e2fsprogs-mke2fs \
+-    expect \
+-    gawk \
+-    gzip \
+-    iproute2 \
+-    ldd \
+-    libaio \
+-    logrotate \
+-    perl \
+-    pm-qa \
+-    python-core \
+-    serialcheck \
+-    unzip \
+-    util-linux \
+-    which \
+-    libgcc\
+-    memtester\
+-"
+-
+-inherit autotools-brokensep
+-
+-SRCREV = "cc77bda07ecfc3bc7c42a559ec17d7a7736d1e9f"
+-BRANCH ?= "master"
+-
+-SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+-    file://0003-Add-knob-to-control-tirpc-support.patch \
+-"
+-
+-S = "${WORKDIR}/git"
+-
+-LTPROOT = "/opt/ltp"
+-
+-# disable TI RPC (Transport-Independent RPC) due to missing dependency
+-EXTRA_OECONF += " --without-tirpc"
+-
+-EXTRA_OEMAKE_append = " \
+-    prefix=${LTPROOT} \
+-    CROSS_COMPILE=${HOST_PREFIX} \
+-    SKIP_IDCHECK=1 \
+-    KERNEL_USR_INC=${STAGING_INCDIR} \
+-    ALSA_INCPATH=${STAGING_INCDIR} \
+-    ALSA_LIBPATH=${STAGING_LIBDIR} \
+-    RANLIB=${RANLIB} \
+-    DESTDIR=${D} \
+-    CC='${CC}' \
+-"
+-
+-TARGET_CC_ARCH += "${LDFLAGS}"
+-
+-FILES_${PN}-dbg += " \
+-    ${LTPROOT}/.debug \
+-    ${LTPROOT}/bin/.debug \
+-    ${LTPROOT}/runtest/.debug \
+-    ${LTPROOT}/testcases/bin/.debug \
+-    ${LTPROOT}/testcases/bin/*/bin/.debug \
+-    ${LTPROOT}/testcases/bin/*/test/.debug \
+-    ${LTPROOT}/testcases/bin/ddt/.debug \
+-    ${LTPROOT}/testcases/bin/ddt/*/bin/.debug \
+-    ${LTPROOT}/testcases/bin/ddt/*/test/.debug \
+-    ${LTPROOT}/testcases/realtime/*/*/.debug \
+-"
+-
+-FILES_${PN}-staticdev += "${LTPROOT}/lib ${LTPROOT}/lib/libmem.a ${LTPROOT}/testcases/data/nm01/lib.a"
+-FILES_${PN} += "${LTPROOT}/*"
+-
+-do_install() {
+-    oe_runmake install
+-}
+-
+-# Avoid file dependency scans, as LTP checks for things that may or may not
+-# exist on the running system.  For instance it has specific checks for
+-# csh and ksh which are not typically part of OpenEmbedded systems (but
+-# can be added via additional layers.)
+-SKIP_FILEDEPS_${PN} = '1'
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+new file mode 100644
+index 0000000..9ff582f
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+@@ -0,0 +1,94 @@
++SUMMARY = "Embedded Linux Device Driver Tests based on Linux Test Project"
++HOMEPAGE = "http://arago-project.org/git/projects/test-automation/ltp-ddt.git"
++SECTION = "console/utils"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
++
++PR = "r1"
++PV_append = "+git${SRCPV}"
++
++PROVIDES += "ltp"
++DEPENDS = "alsa-lib attr libaio libcap acl openssl zip-native"
++
++RDEPENDS_${PN} = "\
++    acl \
++    at \
++    attr \
++    bash \
++    cpio \
++    cronie \
++    curl \
++    e2fsprogs-mke2fs \
++    expect \
++    gawk \
++    gzip \
++    iproute2 \
++    ldd \
++    libaio \
++    logrotate \
++    perl \
++    pm-qa \
++    python-core \
++    serialcheck \
++    unzip \
++    util-linux \
++    which \
++    libgcc\
++    memtester\
++"
++
++inherit autotools-brokensep
++
++SRCREV = "22e65405811dc47a4254a52aaaf09a5a83387bdd"
++BRANCH ?= "master"
++
++SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
++    file://0003-Add-knob-to-control-tirpc-support.patch \
++"
++
++S = "${WORKDIR}/git"
++
++LTPROOT = "/opt/ltp"
++
++# disable TI RPC (Transport-Independent RPC) due to missing dependency
++EXTRA_OECONF += " --without-tirpc"
++
++EXTRA_OEMAKE_append = " \
++    prefix=${LTPROOT} \
++    CROSS_COMPILE=${HOST_PREFIX} \
++    SKIP_IDCHECK=1 \
++    KERNEL_USR_INC=${STAGING_INCDIR} \
++    ALSA_INCPATH=${STAGING_INCDIR} \
++    ALSA_LIBPATH=${STAGING_LIBDIR} \
++    RANLIB=${RANLIB} \
++    DESTDIR=${D} \
++    CC='${CC}' \
++"
++
++TARGET_CC_ARCH += "${LDFLAGS}"
++
++FILES_${PN}-dbg += " \
++    ${LTPROOT}/.debug \
++    ${LTPROOT}/bin/.debug \
++    ${LTPROOT}/runtest/.debug \
++    ${LTPROOT}/testcases/bin/.debug \
++    ${LTPROOT}/testcases/bin/*/bin/.debug \
++    ${LTPROOT}/testcases/bin/*/test/.debug \
++    ${LTPROOT}/testcases/bin/ddt/.debug \
++    ${LTPROOT}/testcases/bin/ddt/*/bin/.debug \
++    ${LTPROOT}/testcases/bin/ddt/*/test/.debug \
++    ${LTPROOT}/testcases/realtime/*/*/.debug \
++"
++
++FILES_${PN}-staticdev += "${LTPROOT}/lib ${LTPROOT}/lib/libmem.a ${LTPROOT}/testcases/data/nm01/lib.a"
++FILES_${PN} += "${LTPROOT}/*"
++
++do_install() {
++    oe_runmake install
++}
++
++# Avoid file dependency scans, as LTP checks for things that may or may not
++# exist on the running system.  For instance it has specific checks for
++# csh and ksh which are not typically part of OpenEmbedded systems (but
++# can be added via additional layers.)
++SKIP_FILEDEPS_${PN} = '1'
 -- 
-2.14.1
+1.7.9.5
 
 
