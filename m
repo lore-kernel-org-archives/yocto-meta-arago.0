@@ -1,43 +1,43 @@
-Return-Path: <xuj@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 047FE529C0
+Return-Path: <d-senicic1@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 01A1D52978
 	for <meta-arago@arago-project.org>;
-	Tue,  5 Mar 2019 22:43:43 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x25MhbsU130302
-	for <meta-arago@arago-project.org>; Tue, 5 Mar 2019 16:43:37 -0600
+	Tue,  5 Mar 2019 23:11:59 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x25NBrS0097656
+	for <meta-arago@arago-project.org>; Tue, 5 Mar 2019 17:11:53 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1551825817;
-	bh=HfoQoSXyRBs+9klri8bueYuH567vUHTSaUfpHT3c8HU=;
+	s=ti-com-17Q1; t=1551827513;
+	bh=MTbYlsAYRkywM+DAxnyFywWUeJkBBDCeFy9/jpmwIO0=;
 	h=From:To:CC:Subject:Date;
-	b=k1AGOC66TfvCSgUxtN9JfHqZMJUhUDycIQrNzEibudoKC7+69N9Jn+dMiwV48qcEa
-	+vLQXB9kHSiZ/WBzqPUSaaiWFjIBjCAoq5gsnNN6FXWOOPV9Dg/VMeXOh6na7ds2Gn
-	IV1KzlgJUWQCs1o2it1qBRPZ/J2DhjTGcrYNfquM=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x25MhauS116092
+	b=Rrngs6oOq1KN43Ho1xQjXK2HRoJKQ/g+KY7cCxe5x1oHU6arNPCE74eDwJ6T0s3uv
+	ecqf9yYLvMnyiyGOtgGa45/lFon0RVE4AeNmr97IxsOiMZWz0DR/xLN06V/Ika/sjY
+	2Y9wEhamYo04p34LXdnAF6ma8KaBfgyLD93QzIw8=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x25NBqVb063359
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 5 Mar 2019 16:43:37 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 5 Mar 2019 17:11:52 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Tue, 5 Mar 2019 16:43:36 -0600
-Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_0,
+	Tue, 5 Mar 2019 17:11:52 -0600
+Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Tue, 5 Mar 2019 16:43:36 -0600
-Received: from UDA0869574.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Tue, 5 Mar 2019 17:11:52 -0600
+Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x25MhZig010959;
-	Tue, 5 Mar 2019 16:43:36 -0600
-From: Jianzhong Xu <xuj@ti.com>
+	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id x25NBqk6001153;
+	Tue, 5 Mar 2019 17:11:52 -0600
+From: Djordje Senicic <x0157990@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 5 Mar 2019 17:43:33 -0500
-Message-ID: <1551825813-41508-1-git-send-email-xuj@ti.com>
-X-Mailer: git-send-email 1.9.1
-Signed-off-by: Jianzhong Xu <xuj@ti.com>
+Date: Tue, 5 Mar 2019 13:05:36 -0500
+Message-ID: <20190305180536.23260-1-x0157990@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v2] tidl-utils: add new features; change checksum
+Cc: d-senicic1@ti.com, Djordje Senicic <x0157990@ti.com>
+Subject: [rocko/master][PATCH] matrix-gui:tidl: Add four more demos (objdet and segmentation)
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,58 +50,72 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Mar 2019 22:43:44 -0000
+X-List-Received-Date: Tue, 05 Mar 2019 23:12:00 -0000
 Content-Type: text/plain
 
-diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb b/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
-index 1291f9d..bef2d1a 100644
---- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
-+++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
-@@ -5,10 +5,10 @@ DESCRIPTION = "TIDL import tool is using protobuf to read and parse information
- require ./tidl-utils.inc
+Signed-off-by: Djordje Senicic <x0157990@ti.com>
+---
+ .../matrix/matrix-gui-tidl-demos_2.0.bb       | 32 +++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-tidl-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-tidl-demos_2.0.bb
+index 8062648f..37d730e6 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-tidl-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-tidl-demos_2.0.bb
+@@ -20,6 +20,10 @@ PACKAGES = "matrix-tidl-demo-staticimg \
+             matrix-tidl-demo-pnexamples \
+             matrix-tidl-demo-livecam \
+             matrix-tidl-demo-livecam-lg2 \
++            matrix-tidl-demo-dogbreeds \
++            matrix-tidl-demo-objdet \
++            matrix-tidl-demo-objdet-livecam \
++            matrix-tidl-demo-segment \
+             matrix-armnn-demo-staticimg \
+             matrix-armnn-demo-livecam \
+ "
+@@ -48,6 +52,22 @@ RDEPENDS_matrix-tidl-demo-livecam-lg2 = " \
+     ${TIDLDEMO_RDEPENDS} \
+ "
  
- LICENSE = "BSD-3"
--LIC_FILES_CHKSUM = "file://modules/ti_dl/inc/itidl_ti.h;md5=7baa68fec0aadbac92c3b41b283d26c4"
-+LIC_FILES_CHKSUM = "file://modules/ti_dl/inc/itidl_ti.h;beginline=1;endline=34;md5=cabe1fdaabfa0d85dc5544566b0e2425"
++RDEPENDS_matrix-tidl-demo-dogbreeds = " \
++    ${TIDLDEMO_RDEPENDS} \
++"
++
++RDEPENDS_matrix-tidl-demo-objdet = " \
++    ${TIDLDEMO_RDEPENDS} \
++"
++
++RDEPENDS_matrix-tidl-demo-objdet-livecam = " \
++    ${TIDLDEMO_RDEPENDS} \
++"
++
++RDEPENDS_matrix-tidl-demo-segment = " \
++    ${TIDLDEMO_RDEPENDS} \
++"
++
+ RDEPENDS_matrix-armnn-demo-staticimg = " \
+     ${TIDLDEMO_RDEPENDS} \
+ "
+@@ -74,6 +94,18 @@ FILES_matrix-tidl-demo-livecam   += "${bindir}/runTidlLiveCam.sh"
+ FILES_matrix-tidl-demo-livecam-lg2  = "${MATRIX_APP_DIR}/tidl_demo_livecam_lg2/*"
+ FILES_matrix-tidl-demo-livecam-lg2  += "${bindir}/runTidlLiveCam_lg2.sh"
  
--PV = "01.00.00.00"
--PR = "r1"
-+PV = "01.01.00.00"
-+PR = "r0"
++FILES_matrix-tidl-demo-dogbreeds = "${MATRIX_APP_DIR}/tidl_demo_dogbreeds/*"
++FILES_matrix-tidl-demo-dogbreeds += "${bindir}/runTidlDogBreeds.sh"
++
++FILES_matrix-tidl-demo-objdet   = "${MATRIX_APP_DIR}/tidl_demo_objdet/*"
++FILES_matrix-tidl-demo-objdet   += "${bindir}/runTidlObjdet.sh"
++
++FILES_matrix-tidl-demo-objdet-livecam   = "${MATRIX_APP_DIR}/tidl_demo_objdet_livecam/*"
++FILES_matrix-tidl-demo-objdet-livecam   += "${bindir}/runTidlObjdet_livecam.sh"
++
++FILES_matrix-tidl-demo-segment   = "${MATRIX_APP_DIR}/tidl_demo_segment/*"
++FILES_matrix-tidl-demo-segment   += "${bindir}/runTidlSegment.sh"
++
+ FILES_matrix-armnn-demo-staticimg = "${MATRIX_APP_DIR}/armnn_demo_staticimg/*"
+ FILES_matrix-armnn-demo-staticimg += "${bindir}/runArmnnStaticImg.sh"
  
- S = "${WORKDIR}/git/src/importTool/"
- 
-@@ -21,7 +21,7 @@ EXTRA_OEMAKE += "CORE=eve"
- EXTRA_OEMAKE += "TARGET_BUILD=release"
- EXTRA_OEMAKE += "TARGET_PLATFORM=PC"
- 
--EXTRA_MAKE_ARGS = "PLATFORM_BUILD=x86 LINUX_IMPORT_TOOL=64BIT PROTOBUF_LIB_DIR=${STAGING_DIR_NATIVE}/usr/lib PROTOBUF_INC_DIR=${STAGING_DIR_NATIVE}/usr/include"
-+EXTRA_MAKE_ARGS = "PLATFORM_BUILD=x86 LINUXENV=x86 LINUX_IMPORT_TOOL=64BIT PROTOBUF_LIB_DIR=${STAGING_DIR_NATIVE}/usr/lib PROTOBUF_INC_DIR=${STAGING_DIR_NATIVE}/usr/include"
- EXTRA_MAKE_ARGS_class-target = "LINUX_BUILD_TOOLS=${TOOLCHAIN_PATH}/bin/${TARGET_PREFIX} PROTOBUF_LIB_DIR=${STAGING_LIBDIR} PROTOBUF_INC_DIR=${STAGING_INCDIR} LINUXENV=oearm"
- 
- EXTRA_OEMAKE += "${EXTRA_MAKE_ARGS}"
-diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
-index e065e17..69b6e29 100644
---- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
-+++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
-@@ -5,7 +5,7 @@ LICENSE = "TI-TFL"
- 
- require ./tidl-utils.inc
- 
--PV = "1.0.0.1"
-+PV = "1.0.1.0"
- INC_PR = "r0"
- 
- LIC_FILES_CHKSUM = "file://docs/LICENSE.txt;md5=a93aa5af7a3bbbb6fb34c8df59efaa5c"
-diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-index 37ce84d..9ccabdd 100644
---- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-+++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-@@ -1,2 +1,2 @@
- SRC_URI = "git://git.ti.com/tidl/tidl-utils.git;protocol=git;branch=master"
--SRCREV = "0021b6f15ee4a1a8919905429a5045fd02afe5b1"
-+SRCREV = "057984b05e143a4740ecec3dd28cfa082927b897"
 -- 
-1.9.1
+2.17.1
 
 
