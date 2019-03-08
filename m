@@ -1,44 +1,44 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 5C33552987
+Return-Path: <denys@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 4F54652A43
 	for <meta-arago@arago-project.org>;
-	Fri,  8 Mar 2019 23:02:22 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x28N2EpV126224
-	for <meta-arago@arago-project.org>; Fri, 8 Mar 2019 17:02:14 -0600
+	Fri,  8 Mar 2019 23:13:55 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x28NDl3i019922
+	for <meta-arago@arago-project.org>; Fri, 8 Mar 2019 17:13:47 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1552086134;
-	bh=Wzxs2M05OYvddOCINLBEGOdUVgBvz/Xwug/7FHBVVWg=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=C3wHoV2pVewZIMVBp1BDVr7RFGAeM/8nXgNNjMcqOQX+2Yw4WTw0yXhsr+i8JEovO
-	qeHm2xVbG276k3i7euO7wyOtTvp0W67HrmztwPadHhT2FLY1UhT3oZLvgIBv2Qx0kG
-	p6TRRGxyKa4cdPRpBgYi9Y8oDBQzHIau9zoOwwoE=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x28N2EGm041208
+	s=ti-com-17Q1; t=1552086827;
+	bh=GoCXxs81pQ3rtnNcUk3B2ckSc9gfDtcv7DltxtcHrNA=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=WCLeg5tV3AlG9Hv7Oe63HaqUU2PglBR0zHxrBTswGiVCRTjprMrp0XqGu0GjFdi+s
+	c/9OibN5k+3zQm+LtjpHPXxlCmthJq2IKdemLBd0Z/kxgyANOlHYKhw2FmHvuRtIVF
+	TRP38vnGGcNH++0feu+zu8ls96p6w2GjK0dkN6pQ=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x28NDlI1064941
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 8 Mar 2019 17:02:14 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 8 Mar 2019 17:13:47 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Fri, 8 Mar 2019 17:02:13 -0600
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_0,
+	Fri, 8 Mar 2019 17:13:46 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Fri, 8 Mar 2019 17:02:13 -0600
-Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id x28N2D1G026555
-	for <meta-arago@arago-project.org>; Fri, 8 Mar 2019 17:02:13 -0600
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 8 Mar 2019 18:02:07 -0500
-Message-ID: <1552086127-40979-2-git-send-email-e-ruei1@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1552086127-40979-1-git-send-email-e-ruei1@ti.com>
-References: <1552086127-40979-1-git-send-email-e-ruei1@ti.com>
+	Transport; Fri, 8 Mar 2019 17:13:46 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x28NDkbg021971;
+	Fri, 8 Mar 2019 17:13:46 -0600
+Date: Fri, 8 Mar 2019 18:13:46 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Djordje Senicic <x0157990@ti.com>
+Message-ID: <20190308231346.GE26510@beryl>
+References: <20190305191016.24497-1-x0157990@ti.com>
 MIME-Version: 1.0
+In-Reply-To: <20190305191016.24497-1-x0157990@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master][PATCH 2/2] atbase-config: add eglfs_kms configuration file and change wl shell
+Cc: meta-arago@arago-project.org, d-senicic1@ti.com
+Subject: Re: [rocko/master][PATCH] matrix-gui:bump up SRCREV to include additional TIDL demos
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,92 +51,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Mar 2019 23:02:22 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 08 Mar 2019 23:13:55 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-- add eglfs_kms configuration file
-- switch to wl-shell because xdb-shell-v5 is obsolete
+Should this be merged first, before the other 2 related patches?
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
----
- .../recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json         | 15 +++++++++++++++
- meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh    |  3 ++-
- .../recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh            |  3 ++-
- meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb       | 10 +++++++---
- 4 files changed, 26 insertions(+), 5 deletions(-)
- create mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json
-new file mode 100644
-index 0000000..61b834b
---- /dev/null
-+++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json
-@@ -0,0 +1,15 @@
-+{
-+  "device": "/dev/dri/card0",
-+  "hwcursor": false,
-+  "pbuffers": true,
-+  "outputs": [
-+    {
-+      "name": "VGA1",
-+      "mode": "off"
-+    },
-+    {
-+      "name": "HDMI1",
-+      "mode": "1024x768"
-+    }
-+  ]
-+}
-\ No newline at end of file
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
-index 9701a8e..2014d20 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
-+++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
-@@ -2,5 +2,6 @@
- 
- ### QT Environment Variables ###
- export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
-+export QT_QPA_EGLFS_KMS_CONFIG=/etc/qt5/eglfs_kms_cfg.json
- export QT_QPA_EGLFS_INTEGRATION=none
--export QT_WAYLAND_SHELL_INTEGRATION=xdg-shell-v5
-+export QT_WAYLAND_SHELL_INTEGRATION=wl-shell
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
-index 68ccf04..8ff0508 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
-+++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
-@@ -3,5 +3,6 @@
- ### QT Environment Variables ###
- export QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS="rotate=180"
- export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
-+export QT_QPA_EGLFS_KMS_CONFIG=/etc/qt5/eglfs_kms_cfg.json
- export QT_QPA_EGLFS_INTEGRATION=none
--export QT_WAYLAND_SHELL_INTEGRATION=xdg-shell-v5
-+export QT_WAYLAND_SHELL_INTEGRATION=wl-shell
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb b/meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb
-index b2ad0a8..5c2974e 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb
-+++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb
-@@ -5,12 +5,16 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--SRC_URI = "file://qt_env.sh"
-+SRC_URI = "file://qt_env.sh \
-+           file://eglfs_kms_cfg.json \
-+          "
- 
--# Add custom Arago qtbase Environment script file
-+# Add custom Arago qtbase Environment script and eglfs_kms configuration file
- do_install () {
-     install -d ${D}${sysconfdir}/profile.d
-     install -m 0644 ${WORKDIR}/qt_env.sh ${D}${sysconfdir}/profile.d/
-+    install -d ${D}${sysconfdir}/qt5
-+    install -m 0644 ${WORKDIR}/eglfs_kms_cfg.json ${D}${sysconfdir}/qt5/
- }
- 
--FILES_${PN} += "${sysconfdir}/profile.d/*"
-+FILES_${PN} += "${sysconfdir}/profile.d/* ${sysconfdir}/qt5/*"
--- 
-1.9.1
-
+On Tue, Mar 05, 2019 at 02:10:16PM -0500, Djordje Senicic wrote:
+> Signed-off-by: Djordje Senicic <x0157990@ti.com>
+> ---
+>  meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> index e8fed13a..82882ea4 100644
+> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> @@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+>  LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+>  
+>  SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+> -SRCREV = "22d15489ed9e0fcd0b8734a87cf23db47d13aa46"
+> +SRCREV = "f9fa5cb158902b6a3520fb7e853cc049ea920ae5"
+>  BRANCH = "master"
+> -INC_PR = "r66"
+> +INC_PR = "r67"
+>  
+>  # Pull in the base package for installing matrix applications
+>  require matrix-gui-apps.inc
+> -- 
+> 2.17.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
