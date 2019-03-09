@@ -1,43 +1,42 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 51549529BF
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 0D2F0529A4
 	for <meta-arago@arago-project.org>;
-	Sat,  9 Mar 2019 00:16:56 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x290GmEQ087443
-	for <meta-arago@arago-project.org>; Fri, 8 Mar 2019 18:16:48 -0600
+	Sat,  9 Mar 2019 00:30:25 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x290UHP2037536
+	for <meta-arago@arago-project.org>; Fri, 8 Mar 2019 18:30:17 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1552090608;
-	bh=Z0SJoh+evW+MwZsmY6tJfmYO+tvfZnECCgaiXeqYA2Q=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=ElB4xdlliWTczEHTOA0y55y8XUwUc3CkuwxYA837L2AL6sVZ4mywiGjc8Xy5g6jlR
-	D4Hv1bW/2069UkVwtxp/nfzmH2UbyhIYol1dqddvVXPHiNxENi0kxb2jencMj9wQT3
-	4KYm7shdh7TK2U67RPFjWpVghYIZ2kKvBVIvsu9Q=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x290Gm6G028867
+	s=ti-com-17Q1; t=1552091417;
+	bh=d8CDqhWkCP1qtbivazTYBawSXdWs0k2KuZ7nS7VHsAI=;
+	h=From:To:Subject:Date;
+	b=PzfRlah1zeks598p9CciXebvI7UdD8F8UoSUCWntlnIsc5qL88gJfehNGXf6sm+G7
+	uxwY6NusRQRDVY0C5WRQ9OOcbkd69X2cOWklKVsJOVxqfrF6eKCxCdBwlWrtUO9UPQ
+	4ZgoPg5FTRaR03NDfUR8iiXekIoBLwUgncwU0HYs=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x290UHEd016861
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 8 Mar 2019 18:16:48 -0600
-Received: from [158.218.113.148] (158.218.113.148) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 8 Mar 2019 18:30:17 -0600
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Fri, 8 Mar 2019 18:16:47 -0600
-To: Denys Dmytriyenko <denys@ti.com>, Eric Ruei <e-ruei1@ti.com>
-References: <1552086127-40979-1-git-send-email-e-ruei1@ti.com>
-	<1552086127-40979-2-git-send-email-e-ruei1@ti.com>
-	<20190308234846.GH26510@beryl>
-From: "Ruei, Eric" <a0850410@ti.com>
-Message-ID: <b59f9ef7-e9be-3cc7-2f61-cf021da954cd@ti.com>
-Date: Fri, 8 Mar 2019 19:16:47 -0500
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.5.0
+	Fri, 8 Mar 2019 18:30:17 -0600
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
+	Transport; Fri, 8 Mar 2019 18:30:17 -0600
+Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id x290UHXQ006153
+	for <meta-arago@arago-project.org>; Fri, 8 Mar 2019 18:30:17 -0600
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 8 Mar 2019 19:30:14 -0500
+Message-ID: <1552091414-22536-1-git-send-email-e-ruei1@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <20190308234846.GH26510@beryl>
-X-Originating-IP: [158.218.113.148]
-X-ClientProxiedBy: DLEE100.ent.ti.com (157.170.170.30) To DLEE113.ent.ti.com
-	(157.170.170.24)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [thud/master][PATCH 2/2] atbase-config: add eglfs_kms configuration file and change wl shell
+Subject: [thud/master][PATCH] weston: rebase and remove patches
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,111 +49,179 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Mar 2019 00:16:56 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 09 Mar 2019 00:30:26 -0000
+Content-Type: text/plain
 
-On 3/8/2019 6:48 PM, Denys Dmytriyenko wrote:
->> [PATCH 2/2] atbase-config: add eglfs_kms configuration file and change wl shell
-> 
-> atbase? typo?
-> 
-> 
-Should I change it to wayland?
+- rebase patches to weston 5.0.0
+- remove patches which were backported before
 
-Eric
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+---
+ ...001-ivi-shell-add_screen_remove_layer-API.patch | 87 ----------------------
+ ...virtual-keyboard-display-issue-for-QT5-ap.patch | 15 ++--
+ .../recipes-graphics/wayland/weston_5.0.0.bbappend |  6 +-
+ 3 files changed, 9 insertions(+), 99 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0001-ivi-shell-add_screen_remove_layer-API.patch
 
-
-> On Fri, Mar 08, 2019 at 06:02:07PM -0500, Eric Ruei wrote:
->> - add eglfs_kms configuration file
->> - switch to wl-shell because xdb-shell-v5 is obsolete
->>
->> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
->> ---
->>   .../recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json         | 15 +++++++++++++++
->>   meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh    |  3 ++-
->>   .../recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh            |  3 ++-
->>   meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb       | 10 +++++++---
->>   4 files changed, 26 insertions(+), 5 deletions(-)
->>   create mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json
->>
->> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json
->> new file mode 100644
->> index 0000000..61b834b
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json
->> @@ -0,0 +1,15 @@
->> +{
->> +  "device": "/dev/dri/card0",
->> +  "hwcursor": false,
->> +  "pbuffers": true,
->> +  "outputs": [
->> +    {
->> +      "name": "VGA1",
->> +      "mode": "off"
->> +    },
->> +    {
->> +      "name": "HDMI1",
->> +      "mode": "1024x768"
->> +    }
->> +  ]
->> +}
->> \ No newline at end of file
->> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
->> index 9701a8e..2014d20 100644
->> --- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
->> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
->> @@ -2,5 +2,6 @@
->>   
->>   ### QT Environment Variables ###
->>   export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
->> +export QT_QPA_EGLFS_KMS_CONFIG=/etc/qt5/eglfs_kms_cfg.json
->>   export QT_QPA_EGLFS_INTEGRATION=none
->> -export QT_WAYLAND_SHELL_INTEGRATION=xdg-shell-v5
->> +export QT_WAYLAND_SHELL_INTEGRATION=wl-shell
->> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
->> index 68ccf04..8ff0508 100644
->> --- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
->> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
->> @@ -3,5 +3,6 @@
->>   ### QT Environment Variables ###
->>   export QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS="rotate=180"
->>   export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
->> +export QT_QPA_EGLFS_KMS_CONFIG=/etc/qt5/eglfs_kms_cfg.json
->>   export QT_QPA_EGLFS_INTEGRATION=none
->> -export QT_WAYLAND_SHELL_INTEGRATION=xdg-shell-v5
->> +export QT_WAYLAND_SHELL_INTEGRATION=wl-shell
->> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb b/meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb
->> index b2ad0a8..5c2974e 100644
->> --- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb
->> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf_1.0.bb
->> @@ -5,12 +5,16 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384
->>   
->>   PACKAGE_ARCH = "${MACHINE_ARCH}"
->>   
->> -SRC_URI = "file://qt_env.sh"
->> +SRC_URI = "file://qt_env.sh \
->> +           file://eglfs_kms_cfg.json \
->> +          "
->>   
->> -# Add custom Arago qtbase Environment script file
->> +# Add custom Arago qtbase Environment script and eglfs_kms configuration file
->>   do_install () {
->>       install -d ${D}${sysconfdir}/profile.d
->>       install -m 0644 ${WORKDIR}/qt_env.sh ${D}${sysconfdir}/profile.d/
->> +    install -d ${D}${sysconfdir}/qt5
->> +    install -m 0644 ${WORKDIR}/eglfs_kms_cfg.json ${D}${sysconfdir}/qt5/
->>   }
->>   
->> -FILES_${PN} += "${sysconfdir}/profile.d/*"
->> +FILES_${PN} += "${sysconfdir}/profile.d/* ${sysconfdir}/qt5/*"
->> -- 
->> 1.9.1
->>
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0001-ivi-shell-add_screen_remove_layer-API.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0001-ivi-shell-add_screen_remove_layer-API.patch
+deleted file mode 100644
+index 3e9e54f..0000000
+--- a/meta-arago-distro/recipes-graphics/wayland/weston/0001-ivi-shell-add_screen_remove_layer-API.patch
++++ /dev/null
+@@ -1,87 +0,0 @@
+-From deee858b0b199d8cfa8033a46d7078f30b23725e Mon Sep 17 00:00:00 2001
+-From: "Ucan, Emre (ADITG/SW1)" <eucan@de.adit-jv.com>
+-Date: Thu, 2 Mar 2017 08:47:33 +0000
+-Subject: [PATCH] ivi-shell: add_screen_remove_layer API
+-
+-It is analagous to layer_remove_surface API.
+-The API removes a layer from the render order
+-of the screen.
+-
+-v3:
+-add the new vfunc at the end of
+-the ivi_layout_interface struct.
+-
+-Upstream-Status: Backport
+-
+-Signed-off-by: Emre Ucan <eucan@de.adit-jv.com>
+-Reviewed-by: Eugen Friedrich <friedrix@gmail.com>
+-Reviewed-by: Pekka Paalanen <pekka.paalanen@collabora.co.uk>
+----
+- ivi-shell/ivi-layout-export.h | 10 ++++++++++
+- ivi-shell/ivi-layout.c        | 22 ++++++++++++++++++++++
+- 2 files changed, 32 insertions(+)
+-
+-diff --git a/ivi-shell/ivi-layout-export.h b/ivi-shell/ivi-layout-export.h
+-index 2317d6e..39ffde1 100644
+---- a/ivi-shell/ivi-layout-export.h
+-+++ b/ivi-shell/ivi-layout-export.h
+-@@ -578,6 +578,16 @@ struct ivi_layout_interface {
+- 	 */
+- 	struct ivi_layout_surface *
+- 		(*get_surface)(struct weston_surface *surface);
+-+
+-+	/**
+-+	 * \brief Remove a ivi_layer to a weston_output which is currently managed
+-+	 * by the service
+-+	 *
+-+	 * \return IVI_SUCCEEDED if the method call was successful
+-+	 * \return IVI_FAILED if the method call was failed
+-+	 */
+-+	int32_t (*screen_remove_layer)(struct weston_output *output,
+-+				       struct ivi_layout_layer *removelayer);
+- };
+- 
+- #ifdef __cplusplus
+-diff --git a/ivi-shell/ivi-layout.c b/ivi-shell/ivi-layout.c
+-index 298e18e..8e4280b 100644
+---- a/ivi-shell/ivi-layout.c
+-+++ b/ivi-shell/ivi-layout.c
+-@@ -1664,6 +1664,27 @@ ivi_layout_screen_add_layer(struct weston_output *output,
+- }
+- 
+- static int32_t
+-+ivi_layout_screen_remove_layer(struct weston_output *output,
+-+			    struct ivi_layout_layer *removelayer)
+-+{
+-+	struct ivi_layout_screen *iviscrn;
+-+
+-+	if (output == NULL || removelayer == NULL) {
+-+		weston_log("ivi_layout_screen_remove_layer: invalid argument\n");
+-+		return IVI_FAILED;
+-+	}
+-+
+-+	iviscrn = get_screen_from_output(output);
+-+
+-+	wl_list_remove(&removelayer->pending.link);
+-+	wl_list_init(&removelayer->pending.link);
+-+
+-+	iviscrn->order.dirty = 1;
+-+
+-+	return IVI_SUCCEEDED;
+-+}
+-+
+-+static int32_t
+- ivi_layout_screen_set_render_order(struct weston_output *output,
+- 				   struct ivi_layout_layer **pLayer,
+- 				   const int32_t number)
+-@@ -2088,6 +2109,7 @@ static struct ivi_layout_interface ivi_layout_interface = {
+- 	 */
+- 	.get_screens_under_layer	= ivi_layout_get_screens_under_layer,
+- 	.screen_add_layer		= ivi_layout_screen_add_layer,
+-+	.screen_remove_layer		= ivi_layout_screen_remove_layer,
+- 	.screen_set_render_order	= ivi_layout_screen_set_render_order,
+- 
+- 	/**
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0003-weston-Fix-virtual-keyboard-display-issue-for-QT5-ap.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0003-weston-Fix-virtual-keyboard-display-issue-for-QT5-ap.patch
+index 8d285fa..32901db 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston/0003-weston-Fix-virtual-keyboard-display-issue-for-QT5-ap.patch
++++ b/meta-arago-distro/recipes-graphics/wayland/weston/0003-weston-Fix-virtual-keyboard-display-issue-for-QT5-ap.patch
+@@ -1,7 +1,7 @@
+-From 9c3cf93336b77a1eecc1d72ffec3b113161a822b Mon Sep 17 00:00:00 2001
+-From: Karthik Ramanan <a0393906@ti.com>
+-Date: Mon, 12 Mar 2018 10:54:45 +0530
+-Subject: [PATCH 3/4] weston: Fix virtual keyboard display issue for QT5
++From 8034bc1862bbebb332e91917c6458ef8efb5b54e Mon Sep 17 00:00:00 2001
++From: Eric Ruei <e-ruei1@ti.com>
++Date: Fri, 8 Mar 2019 18:49:07 -0500
++Subject: [PATCH] weston: Fix virtual keyboard display issue for QT5 
+  application
+ 
+ The virtual keyboard does pop up as expected, however, it will never hide
+@@ -20,20 +20,19 @@ becomes visible at the first time.
+ Upstream status: Pending
+ 
+ Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+ ---
+  compositor/text-backend.c | 1 +
+  1 file changed, 1 insertion(+)
+ 
+ diff --git a/compositor/text-backend.c b/compositor/text-backend.c
+-index bf5c45c..d8b0bb1 100644
++index 664c36f..b610dfb 100644
+ --- a/compositor/text-backend.c
+ +++ b/compositor/text-backend.c
+-@@ -340,6 +340,7 @@ text_input_show_input_panel(struct wl_client *client,
++@@ -349,6 +349,7 @@ text_input_show_input_panel(struct wl_client *client,
+  			       text_input->surface);
+  		wl_signal_emit(&ec->update_input_panel_signal,
+  			       &text_input->cursor_rectangle);
+-+		text_input->manager->current_panel = text_input;
+++		text_input->manager->current_text_input = text_input;
+  	}
+  }
+  
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend
+index 82db6d1..68e53cc 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend
+@@ -2,18 +2,16 @@
+ PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
+ PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
+ 
+-PR_append = ".arago29"
++PR_append = ".arago30"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ RDEPENDS_${PN} += "weston-conf"
+ 
+-#        file://0001-ivi-shell-add_screen_remove_layer-API.patch
+-#        file://0003-weston-Fix-virtual-keyboard-display-issue-for-QT5-ap.patch
+-
+ SRC_URI += " \
+ 	file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
+         file://0002-weston-Allow-visual_id-to-be-0.patch \
++	file://0003-weston-Fix-virtual-keyboard-display-issue-for-QT5-ap.patch \
+         file://0004-weston-Fix-touch-screen-crash-issue.patch \
+ "
+ 
+-- 
+1.9.1
 
 
