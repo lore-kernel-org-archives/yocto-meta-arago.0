@@ -1,49 +1,42 @@
-Return-Path: <h-gou@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 2A44752A58
+Return-Path: <xuj@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 8EA4252A62
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Mar 2019 17:32:42 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2BHWXKK122618
-	for <meta-arago@arago-project.org>; Mon, 11 Mar 2019 12:32:33 -0500
+	Mon, 11 Mar 2019 18:00:15 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2BI068h056996
+	for <meta-arago@arago-project.org>; Mon, 11 Mar 2019 13:00:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1552325553;
-	bh=rsIySwuBZCmRWhFR34OLhzF7FS5NkBywDBYX+7knsw8=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=GtCXKHumxZCv0URGFyluF6UABmICwEl8CXlwfMdx890egn6N+cTLez7qGPthQsWTt
-	uEfnIra8QtLVYMdpogkLfsivHRPbospqeKZhkBbmmScG6BfRe+I/EvgW9KgwWaP1ii
-	b+HfOZI3l73SmHavamUGIG+UfECGd17s3N+UDJ3w=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2BHWXx7110023
+	s=ti-com-17Q1; t=1552327206;
+	bh=/EtggQFDiMxwPgb7y7JKC//mQF1DX9I5gGjb+qKeF9k=;
+	h=From:To:CC:Subject:Date;
+	b=TWNem01zvMYV1Y5SRrRTpdGOacak5dHgM03FpJhLZvMIAhfogIVKkDvPuV3KtjBXo
+	HU0JqX6CWHD8CPoY22Jyx9pehbQRTq19HVVfSdZF6X/x6S6JwCEWI9yljEUdLwrwQZ
+	vccbtIK8KeFxbFz5znxPIbfigcHSz54/PvPiVkso=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2BI06Ku098334
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 11 Mar 2019 12:32:33 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 11 Mar 2019 13:00:06 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Mon, 11 Mar 2019 12:32:32 -0500
-Received: from DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f]) by
-	DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f%18]) with mapi id
-	15.01.1591.008; Mon, 11 Mar 2019 12:32:32 -0500
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [rocko/master] [PATCH 1/2] acontis-atemsys: build
-	the kernel module for acontis EtherCAT master
-Thread-Index: AQHU1gZtlID22aluhESk6Mn4AZID0qYGorKwgABlOID//6ywUA==
-Date: Mon, 11 Mar 2019 17:32:32 +0000
-Message-ID: <4c8c8f7e7cdd4881a2ed11c5534eaca6@ti.com>
-References: <1551895171-20664-1-git-send-email-a0271529@ti.com>
-	<20190308232659.GF26510@beryl>
-	<20333d3a8ffb43c7af5c66feda6e651b@ti.com>
-	<579d032b3cb24af68753d4f5675647ee@ti.com>
-In-Reply-To: <579d032b3cb24af68753d4f5675647ee@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.113.170]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Mon, 11 Mar 2019 13:00:05 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
+	Transport; Mon, 11 Mar 2019 13:00:05 -0500
+Received: from UDA0869574.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x2BI059k012316;
+	Mon, 11 Mar 2019 13:00:05 -0500
+From: Jianzhong Xu <xuj@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 11 Mar 2019 14:00:03 -0400
+Message-ID: <1552327203-21779-1-git-send-email-xuj@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [rocko/master] [PATCH 1/2] acontis-atemsys: build the kernel module for acontis EtherCAT master
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH v4] tidl-utils: add new features; change license checksum
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,100 +49,68 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2019 17:32:42 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 11 Mar 2019 18:00:15 -0000
+Content-Type: text/plain
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Monday, March 11, 2019 1:30 PM
-> To: Gou, Hongmei
-> Cc: meta-arago@arago-project.org
-> Subject: RE: [meta-arago] [rocko/master] [PATCH 1/2] acontis-atemsys: bui=
-ld
-> the kernel module for acontis EtherCAT master
->=20
-> > acontis EtherCAT is supported for am335 icev2 and am57xx IDKs only.
->=20
-> Any derivatives of those?
+Signed-off-by: Jianzhong Xu <xuj@ti.com>
+---
+Change from previous version of patch: commit message modification
+---
+---
+ meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb | 8 ++++----
+ meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb      | 2 +-
+ meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc     | 2 +-
+ 3 files changed, 6 insertions(+), 6 deletions(-)
 
-No as far as I know.
+diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb b/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
+index 1291f9d..bef2d1a 100644
+--- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
++++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
+@@ -5,10 +5,10 @@ DESCRIPTION = "TIDL import tool is using protobuf to read and parse information
+ require ./tidl-utils.inc
+ 
+ LICENSE = "BSD-3"
+-LIC_FILES_CHKSUM = "file://modules/ti_dl/inc/itidl_ti.h;md5=7baa68fec0aadbac92c3b41b283d26c4"
++LIC_FILES_CHKSUM = "file://modules/ti_dl/inc/itidl_ti.h;beginline=1;endline=34;md5=cabe1fdaabfa0d85dc5544566b0e2425"
+ 
+-PV = "01.00.00.00"
+-PR = "r1"
++PV = "01.01.00.00"
++PR = "r0"
+ 
+ S = "${WORKDIR}/git/src/importTool/"
+ 
+@@ -21,7 +21,7 @@ EXTRA_OEMAKE += "CORE=eve"
+ EXTRA_OEMAKE += "TARGET_BUILD=release"
+ EXTRA_OEMAKE += "TARGET_PLATFORM=PC"
+ 
+-EXTRA_MAKE_ARGS = "PLATFORM_BUILD=x86 LINUX_IMPORT_TOOL=64BIT PROTOBUF_LIB_DIR=${STAGING_DIR_NATIVE}/usr/lib PROTOBUF_INC_DIR=${STAGING_DIR_NATIVE}/usr/include"
++EXTRA_MAKE_ARGS = "PLATFORM_BUILD=x86 LINUXENV=x86 LINUX_IMPORT_TOOL=64BIT PROTOBUF_LIB_DIR=${STAGING_DIR_NATIVE}/usr/lib PROTOBUF_INC_DIR=${STAGING_DIR_NATIVE}/usr/include"
+ EXTRA_MAKE_ARGS_class-target = "LINUX_BUILD_TOOLS=${TOOLCHAIN_PATH}/bin/${TARGET_PREFIX} PROTOBUF_LIB_DIR=${STAGING_LIBDIR} PROTOBUF_INC_DIR=${STAGING_INCDIR} LINUXENV=oearm"
+ 
+ EXTRA_OEMAKE += "${EXTRA_MAKE_ARGS}"
+diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
+index e065e17..69b6e29 100644
+--- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
++++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
+@@ -5,7 +5,7 @@ LICENSE = "TI-TFL"
+ 
+ require ./tidl-utils.inc
+ 
+-PV = "1.0.0.1"
++PV = "1.0.1.0"
+ INC_PR = "r0"
+ 
+ LIC_FILES_CHKSUM = "file://docs/LICENSE.txt;md5=a93aa5af7a3bbbb6fb34c8df59efaa5c"
+diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
+index 37ce84d..9ccabdd 100644
+--- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
++++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
+@@ -1,2 +1,2 @@
+ SRC_URI = "git://git.ti.com/tidl/tidl-utils.git;protocol=git;branch=master"
+-SRCREV = "0021b6f15ee4a1a8919905429a5045fd02afe5b1"
++SRCREV = "057984b05e143a4740ecec3dd28cfa082927b897"
+-- 
+1.9.1
 
->=20
->=20
-> -----Original Message-----
-> From: Gou, Hongmei
-> Sent: Monday, March 11, 2019 12:30 PM
-> To: Dmytriyenko, Denys
-> Cc: meta-arago@arago-project.org
-> Subject: RE: [meta-arago] [rocko/master] [PATCH 1/2] acontis-atemsys: bui=
-ld
-> the kernel module for acontis EtherCAT master
->=20
-> > -----Original Message-----
-> > From: Dmytriyenko, Denys
-> > Sent: Friday, March 08, 2019 6:27 PM
-> > To: Gou, Hongmei
-> > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [rocko/master] [PATCH 1/2] acontis-atemsys:
-> build
-> > the kernel module for acontis EtherCAT master
-> >
-> > On Wed, Mar 06, 2019 at 12:59:30PM -0500, Hongmei Gou wrote:
-> > > Signed-off-by: Hongmei Gou <a0271529@ti.com>
-> > > ---
-> > >  .../acontis-ethercat-demo/acontis-atemsys_3.0.1.28.bb  | 18
-> > ++++++++++++++++++
-> > >  1 file changed, 18 insertions(+)
-> > >  create mode 100644 meta-arago-extras/recipes-apps/acontis-ethercat-
-> > demo/acontis-atemsys_3.0.1.28.bb
-> > >
-> > > diff --git a/meta-arago-extras/recipes-apps/acontis-ethercat-
-> > demo/acontis-atemsys_3.0.1.28.bb b/meta-arago-extras/recipes-
-> > apps/acontis-ethercat-demo/acontis-atemsys_3.0.1.28.bb
-> > > new file mode 100644
-> > > index 0000000..94e0c56
-> > > --- /dev/null
-> > > +++ b/meta-arago-extras/recipes-apps/acontis-ethercat-demo/acontis-
-> > atemsys_3.0.1.28.bb
-> > > @@ -0,0 +1,18 @@
-> > > +SUMMARY =3D "acontis atemsys kernel module for EtherCAT master"
-> > > +HOMEPAGE =3D "https://www.acontis.com/en/ethercat-for-ti-
-> > processors.html"
-> > > +LICENSE =3D "GPLv2"
-> > > +LIC_FILES_CHKSUM =3D
-> > "file://COPYING;md5=3D65dd37ccb3e888dc57e47d925b80b38a"
-> > > +
-> > > +SRC_URI =3D "https://www.acontis.com/files/support/ethercat/EC-
-> Master-
-> > Atemsys-V${PV}-Linux.tar.gz;subdir=3D${P}"
-> > > +SRC_URI[md5sum] =3D "d8d92ae671c5cf78ae22bc5386d7f44f"
-> > > +SRC_URI[sha256sum] =3D
-> > "dd3d83eb984b17b8378e0a5e5dfae8c77e25c5428a26319f59f44f805aff9e89"
-> > > +
-> > > +COMPATIBLE_MACHINE =3D "am335x-evm|am57xx-evm"
-> >
-> > Why is it so strict? Can it be used on non-EVM devices in AM335x and
-> AM57x
-> > families?
->=20
-> acontis EtherCAT is supported for am335 icev2 and am57xx IDKs only.
->=20
-> >
-> > > +PR =3D "r0"
-> > > +
-> > > +S =3D "${WORKDIR}/${P}/yocto/meta-acontis/recipes-
-> kernel/atemsys/files"
-> > > +
-> > > +inherit module
-> > > +
-> > > +EXTRA_OEMAKE +=3D 'KERNELDIR=3D"${STAGING_KERNEL_DIR}"'
-> > > --
-> > > 1.9.1
-> > >
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
