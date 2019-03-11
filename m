@@ -1,43 +1,44 @@
-Return-Path: <h-gou@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 5ECB452A60
+Return-Path: <denys@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 916A452A58
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Mar 2019 16:30:05 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2BGTu1a101053
-	for <meta-arago@arago-project.org>; Mon, 11 Mar 2019 11:29:56 -0500
+	Mon, 11 Mar 2019 17:30:18 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2BHU9ea128086
+	for <meta-arago@arago-project.org>; Mon, 11 Mar 2019 12:30:09 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1552321796;
-	bh=3XtGTHe+v++HaArKucLy9ioQLMZxpDcV4C9f7nV+T2c=;
+	s=ti-com-17Q1; t=1552325409;
+	bh=+1xZoA0vo1u1TEYgnwRuJ6w2jlLNBtXSHb6NvgXKFmw=;
 	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=W1zXdV1kHmSpD++Js1fHeV5j3uy6+w8JdgZir/Vf305YC5rtxOuqym4ZV95eV7TAw
-	7WF/l2yT8b8k8EJROe0n2B5hA0gEx9F9VxLMC+VV4TF3C8W44aGNHtuEcyozj8PNCU
-	adC9HVtHxR2IC9MN3tHuhqmkWo6O8UhQlQTFC3kI=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2BGTuA2034135
+	b=yy4Nf2GOQM95tm1R0f4O3I3Xa9N14NK/BxQ9SPOBq0QAZCYBSMibNdUbTTDFKrNZ9
+	gPTehjIbVKJkB3JVGc/ZSHaQfENgUavLnbs8z6+cTyX6XWXygnLfrJGwJGXaLmnt17
+	27o+fHbZ7etEXT0XDeDAgOa6uAmNHaOFMQ6xkEYc=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2BHU9GZ015694
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 11 Mar 2019 11:29:56 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 11 Mar 2019 12:30:09 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
-	Mon, 11 Mar 2019 11:29:55 -0500
-Received: from DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f]) by
-	DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f%18]) with mapi id
-	15.01.1591.008; Mon, 11 Mar 2019 11:29:55 -0500
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
+	Mon, 11 Mar 2019 12:30:09 -0500
+Received: from DFLE112.ent.ti.com ([fe80::d4dd:a09e:396d:a895]) by
+	DFLE112.ent.ti.com ([fe80::d4dd:a09e:396d:a895%18]) with mapi id
+	15.01.1591.008; Mon, 11 Mar 2019 12:30:09 -0500
+From: "Dmytriyenko, Denys" <denys@ti.com>
+To: "Gou, Hongmei" <h-gou@ti.com>
 Thread-Topic: [meta-arago] [rocko/master] [PATCH 1/2] acontis-atemsys: build
 	the kernel module for acontis EtherCAT master
-Thread-Index: AQHU1gZtlID22aluhESk6Mn4AZID0qYGorKw
-Date: Mon, 11 Mar 2019 16:29:55 +0000
-Message-ID: <20333d3a8ffb43c7af5c66feda6e651b@ti.com>
+Thread-Index: AQHU1gZtoK/S/+uX7U2n8tVHX7Vy8aYG9xaA//+85QA=
+Date: Mon, 11 Mar 2019 17:30:09 +0000
+Message-ID: <579d032b3cb24af68753d4f5675647ee@ti.com>
 References: <1551895171-20664-1-git-send-email-a0271529@ti.com>
 	<20190308232659.GF26510@beryl>
-In-Reply-To: <20190308232659.GF26510@beryl>
+	<20333d3a8ffb43c7af5c66feda6e651b@ti.com>
+In-Reply-To: <20333d3a8ffb43c7af5c66feda6e651b@ti.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.113.170]
+x-originating-ip: [172.22.118.232]
 x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
@@ -54,10 +55,23 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Mar 2019 16:30:06 -0000
+X-List-Received-Date: Mon, 11 Mar 2019 17:30:19 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+> acontis EtherCAT is supported for am335 icev2 and am57xx IDKs only.
+
+Any derivatives of those?
+
+
+-----Original Message-----
+From: Gou, Hongmei=20
+Sent: Monday, March 11, 2019 12:30 PM
+To: Dmytriyenko, Denys
+Cc: meta-arago@arago-project.org
+Subject: RE: [meta-arago] [rocko/master] [PATCH 1/2] acontis-atemsys: build=
+ the kernel module for acontis EtherCAT master
 
 > -----Original Message-----
 > From: Dmytriyenko, Denys
