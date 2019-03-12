@@ -1,42 +1,42 @@
-Return-Path: <xuj@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id B7EBB520EA
+Return-Path: <e-ruei1@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id B1564520EA
 	for <meta-arago@arago-project.org>;
-	Tue, 12 Mar 2019 22:21:08 +0000 (UTC)
+	Tue, 12 Mar 2019 22:32:39 +0000 (UTC)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2CMKwVt032368
-	for <meta-arago@arago-project.org>; Tue, 12 Mar 2019 17:20:58 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2CMWU7S061725
+	for <meta-arago@arago-project.org>; Tue, 12 Mar 2019 17:32:30 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1552429258;
-	bh=5TrXkhZVSl9KzaWtVNHlKnX9fgMEFI2TAFNCoIniel4=;
-	h=From:To:CC:Subject:Date;
-	b=b6wXo37L+aeRyC+XvH9e08Dgy94jM+T8OGCbo8/cUSgFD/8UyIuFdH4+a0+fPKEqL
-	+3aJBnKrhahFDPvxVHrpaTK9ZJRSBPbyW1YW3Y98f8fQbn/2TJlDK8hH1+lfzCrO1R
-	SsAVFd3emwzjKl3co4CXN/jyzNSQetZqg/nCPvfA=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2CMKwxj068954
+	s=ti-com-17Q1; t=1552429950;
+	bh=hD/Jl7NmVzmU5Eqv9QHxEHlDkSaqEsrkx04EBOy0dL8=;
+	h=From:To:Subject:Date;
+	b=wHPyL4yxtbuRynXt3XxFg6hSV37+/daTDLaFXgNuB9aqbcMrX6tauUdWcNo1QiwXm
+	6nUvLpMQa3FuBuspfkuJcGPnc+DFfvcBSDiYz3M5kVUnB0dm0XacA2U4RNW3wlEyNd
+	XOpkgNjQtAeCJ+uHb6RV0HeSt7H9sEyRIx/gfgSA=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2CMWUcg083513
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 12 Mar 2019 17:20:58 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 12 Mar 2019 17:20:58 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DLEE103.ent.ti.com
+	for <meta-arago@arago-project.org>; Tue, 12 Mar 2019 17:32:30 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1591.10;
+	Tue, 12 Mar 2019 17:32:29 -0500
+Received: from dlep32.itg.ti.com (157.170.170.100) by DLEE103.ent.ti.com
 	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1591.10 via Frontend
-	Transport; Tue, 12 Mar 2019 17:20:58 -0500
-Received: from UDA0869574.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Transport; Tue, 12 Mar 2019 17:32:29 -0500
+Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id x2CMKvY2016432;
-	Tue, 12 Mar 2019 17:20:57 -0500
-From: Jianzhong Xu <xuj@ti.com>
+	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x2CMWTGH024029
+	for <meta-arago@arago-project.org>; Tue, 12 Mar 2019 17:32:29 -0500
+From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 12 Mar 2019 18:20:55 -0400
-Message-ID: <1552429255-28055-1-git-send-email-xuj@ti.com>
+Date: Tue, 12 Mar 2019 18:32:22 -0400
+Message-ID: <1552429943-26165-1-git-send-email-e-ruei1@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v5] tidl-utils: add new features and change license checksum
+Subject: [rocko/master][PATCH v2 1/2] qtbase: enable gbm/kms and fix compiling error
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,74 +49,196 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Mar 2019 22:21:09 -0000
+X-List-Received-Date: Tue, 12 Mar 2019 22:32:41 -0000
 Content-Type: text/plain
 
-1. update to add new features to TIDL import tool
-   - ONNX
-   - Tensorflow 1.7 and above
-   - linking with OpenCV for ARM build
-2. change license checksum by only calculating license header in itidl_ti.h
-   since this file has changed and will likely change in future.
+- enable gbm/kms for eglfs_kms
+- fix compiling error at platform/eglfs_kms
+- remove unused patch which has been upstreamed
 
-Signed-off-by: Jianzhong Xu <xuj@ti.com>
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
-Change from previous version of patch: commit message modification
----
----
- meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb | 8 ++++----
- meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb      | 2 +-
- meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc     | 2 +-
- 3 files changed, 6 insertions(+), 6 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf           |  1 +
+ ...ure-Set-wrap-mode-if-NPOT-textures-are-no.patch | 65 ----------------------
+ ...ins-platforms-eglfs_kms-fix-compiler-erro.patch | 57 +++++++++++++++++++
+ meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend |  5 +-
+ 4 files changed, 60 insertions(+), 68 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0001-QOpenGLTexture-Set-wrap-mode-if-NPOT-textures-are-no.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtbase/0001-qtbase-plugins-platforms-eglfs_kms-fix-compiler-erro.patch
 
-diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb b/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
-index 1291f9d..bef2d1a 100644
---- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
-+++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
-@@ -5,10 +5,10 @@ DESCRIPTION = "TIDL import tool is using protobuf to read and parse information
- require ./tidl-utils.inc
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index f35f580..9b6fe85 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -107,6 +107,7 @@ PACKAGECONFIG_append_pn-systemd = " coredump"
+ PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
+ PACKAGECONFIG_DISTRO_pn-qtbase = "icu examples xkbcommon-evdev accessibility gif"
+ PACKAGECONFIG_FONTS_pn-qtbase = "fontconfig"
++PACKAGECONFIG_append_pn-qtbase = "gbm kms"
  
- LICENSE = "BSD-3"
--LIC_FILES_CHKSUM = "file://modules/ti_dl/inc/itidl_ti.h;md5=7baa68fec0aadbac92c3b41b283d26c4"
-+LIC_FILES_CHKSUM = "file://modules/ti_dl/inc/itidl_ti.h;beginline=1;endline=34;md5=cabe1fdaabfa0d85dc5544566b0e2425"
+ # Add gstreamer in package configuration to enable video
+ PACKAGECONFIG_append_pn-qtmultimedia  = " gstreamer"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-QOpenGLTexture-Set-wrap-mode-if-NPOT-textures-are-no.patch b/meta-arago-distro/recipes-qt/qt5/qtbase/0001-QOpenGLTexture-Set-wrap-mode-if-NPOT-textures-are-no.patch
+deleted file mode 100644
+index 84a0195..0000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-QOpenGLTexture-Set-wrap-mode-if-NPOT-textures-are-no.patch
++++ /dev/null
+@@ -1,65 +0,0 @@
+-From fbb9c0461c14196ac7100c90088c15263d0cccbb Mon Sep 17 00:00:00 2001
+-From: Johan Klokkhammer Helsing <johan.helsing@qt.io>
+-Date: Tue, 3 Apr 2018 14:42:15 +0200
+-Subject: [PATCH] QOpenGLTexture: Set wrap mode if NPOT textures are not fully
+- supported
+-
+-The OpenGL wrap mode defaults to GL_REPEAT although it is not supported for
+-non-power-of-two textures on hardware that only has limited support.
+-
+-I.e. the following would create a texture with an invalid wrap mode:
+-
+-    auto *t = new QOpenGLTexture(QOpenGLTexture::Target2D);
+-    t.setSize(123, 456);
+-
+-This patch adds a check in QOpenGLWindow::setSize to see if it's called with a
+-non-power-of-two size on hardware without full support, and if so sets wrapMode
+-to ClampToEdge (which should work on devices with limited support).
+-
+-Task-number: QTBUG-67418
+-Change-Id: I56e9f4383dbf5430c2bc5e4e9e585712b3603c13
+-Reviewed-by: Laszlo Agocs <laszlo.agocs@qt.io>
+----
+- src/gui/opengl/qopengltexture.cpp | 12 ++++++++++++
+- 1 file changed, 12 insertions(+)
+-
+-diff --git a/src/gui/opengl/qopengltexture.cpp b/src/gui/opengl/qopengltexture.cpp
+-index b825b56..cea4b51 100644
+---- a/src/gui/opengl/qopengltexture.cpp
+-+++ b/src/gui/opengl/qopengltexture.cpp
+-@@ -2800,6 +2800,11 @@ QOpenGLTexture::TextureFormat QOpenGLTexture::format() const
+-     return d->format;
+- }
+- 
+-+static bool isNpot(int width, int height = 1, int depth = 1)
+-+{
+-+    return width & (width-1) || height & (height-1) || depth & (depth-1);
+-+}
+-+
+- /*!
+-     Sets the dimensions of this texture object to \a width,
+-     \a height, and \a depth. The default for each dimension is 1.
+-@@ -2807,6 +2812,10 @@ QOpenGLTexture::TextureFormat QOpenGLTexture::format() const
+-     implementation. Allocating storage for a texture less than the
+-     maximum size can still fail if your system is low on resources.
+- 
+-+    If a non-power-of-two \a width, \a height or \a depth is provided and your
+-+    OpenGL implementation doesn't have support for repeating non-power-of-two
+-+    textures, then the wrap mode is automatically set to ClampToEdge.
+-+
+-     \sa width(), height(), depth()
+- */
+- void QOpenGLTexture::setSize(int width, int height, int depth)
+-@@ -2819,6 +2828,9 @@ void QOpenGLTexture::setSize(int width, int height, int depth)
+-         return;
+-     }
+- 
+-+    if (isNpot(width, height, depth) && !hasFeature(Feature::NPOTTextureRepeat) && d->target != Target::TargetRectangle)
+-+        d->setWrapMode(WrapMode::ClampToEdge);
+-+
+-     switch (d->target) {
+-     case QOpenGLTexture::Target1D:
+-     case QOpenGLTexture::Target1DArray:
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-qtbase-plugins-platforms-eglfs_kms-fix-compiler-erro.patch b/meta-arago-distro/recipes-qt/qt5/qtbase/0001-qtbase-plugins-platforms-eglfs_kms-fix-compiler-erro.patch
+new file mode 100644
+index 0000000..cbedfc0
+--- /dev/null
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase/0001-qtbase-plugins-platforms-eglfs_kms-fix-compiler-erro.patch
+@@ -0,0 +1,57 @@
++From 7e1d01d4dc022f4da117f87a993d03b084134018 Mon Sep 17 00:00:00 2001
++From: Eric Ruei <e-ruei1@ti.com>
++Date: Fri, 8 Mar 2019 17:02:38 -0500
++Subject: [PATCH] qtbase: plugins: platforms: eglfs_kms: fix compiler error
++
++Upstream_Status: Pending
++
++Signed-off-by: Eric Ruei <e-ruei1@ti.com>
++---
++ .../eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.cpp  | 7 +------
++ .../eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.h    | 5 +++++
++ 2 files changed, 6 insertions(+), 6 deletions(-)
++
++diff --git a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.cpp b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.cpp
++index 4023381..eb24175 100644
++--- a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.cpp
+++++ b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.cpp
++@@ -61,11 +61,6 @@ QEglFSKmsGbmIntegration::QEglFSKmsGbmIntegration()
++     qCDebug(qLcEglfsKmsDebug, "New DRM/KMS via GBM integration created");
++ }
++ 
++-#ifndef EGL_EXT_platform_base
++-typedef EGLDisplay (EGLAPIENTRYP PFNEGLGETPLATFORMDISPLAYEXTPROC) (EGLenum platform, void *native_display, const EGLint *attrib_list);
++-typedef EGLSurface (EGLAPIENTRYP PFNEGLCREATEPLATFORMWINDOWSURFACEEXTPROC) (EGLDisplay dpy, EGLConfig config, void *native_window, const EGLint *attrib_list);
++-#endif
++-
++ #ifndef EGL_PLATFORM_GBM_KHR
++ #define EGL_PLATFORM_GBM_KHR 0x31D7
++ #endif
++@@ -83,7 +78,7 @@ EGLDisplay QEglFSKmsGbmIntegration::createDisplay(EGLNativeDisplayType nativeDis
++     }
++ 
++     if (getPlatformDisplay) {
++-        display = getPlatformDisplay(EGL_PLATFORM_GBM_KHR, nativeDisplay, nullptr);
+++        display = getPlatformDisplay(EGL_PLATFORM_GBM_KHR, (void *)nativeDisplay, nullptr);
++     } else {
++         qCDebug(qLcEglfsKmsDebug, "No eglGetPlatformDisplay for GBM, falling back to eglGetDisplay");
++         display = eglGetDisplay(nativeDisplay);
++diff --git a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.h b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.h
++index 71f232a..6467a21 100644
++--- a/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.h
+++++ b/src/plugins/platforms/eglfs/deviceintegration/eglfs_kms/qeglfskmsgbmintegration.h
++@@ -48,6 +48,11 @@
++ 
++ QT_BEGIN_NAMESPACE
++ 
+++#ifndef EGL_EXT_platform_base
+++typedef EGLDisplay (EGLAPIENTRYP PFNEGLGETPLATFORMDISPLAYEXTPROC) (EGLenum platform, void *native_display, const EGLint *attrib_list);
+++typedef EGLSurface (EGLAPIENTRYP PFNEGLCREATEPLATFORMWINDOWSURFACEEXTPROC) (EGLDisplay dpy, EGLConfig config, void *native_window, const EGLint *attrib_list);
+++#endif
+++
++ class QEglFSKmsDevice;
++ 
++ class QEglFSKmsGbmIntegration : public QEglFSKmsIntegration
++-- 
++1.9.1
++
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+index 4cb8f9c..2e67256 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+@@ -4,7 +4,7 @@ GLES_EXTRA_DEPS = "libdrm wayland"
  
--PV = "01.00.00.00"
--PR = "r1"
-+PV = "01.01.00.00"
-+PR = "r0"
+ PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
  
- S = "${WORKDIR}/git/src/importTool/"
+-PR_append = ".arago13"
++PR_append = ".arago14"
  
-@@ -21,7 +21,7 @@ EXTRA_OEMAKE += "CORE=eve"
- EXTRA_OEMAKE += "TARGET_BUILD=release"
- EXTRA_OEMAKE += "TARGET_PLATFORM=PC"
+ QT_CONFIG_FLAGS += "-qpa ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', 'eglfs', d)}"
  
--EXTRA_MAKE_ARGS = "PLATFORM_BUILD=x86 LINUX_IMPORT_TOOL=64BIT PROTOBUF_LIB_DIR=${STAGING_DIR_NATIVE}/usr/lib PROTOBUF_INC_DIR=${STAGING_DIR_NATIVE}/usr/include"
-+EXTRA_MAKE_ARGS = "PLATFORM_BUILD=x86 LINUXENV=x86 LINUX_IMPORT_TOOL=64BIT PROTOBUF_LIB_DIR=${STAGING_DIR_NATIVE}/usr/lib PROTOBUF_INC_DIR=${STAGING_DIR_NATIVE}/usr/include"
- EXTRA_MAKE_ARGS_class-target = "LINUX_BUILD_TOOLS=${TOOLCHAIN_PATH}/bin/${TARGET_PREFIX} PROTOBUF_LIB_DIR=${STAGING_LIBDIR} PROTOBUF_INC_DIR=${STAGING_INCDIR} LINUXENV=oearm"
+@@ -14,12 +14,11 @@ QT_EGLFS_PATCHES = "\
+     file://quit.png \
+ "
  
- EXTRA_OEMAKE += "${EXTRA_MAKE_ARGS}"
-diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
-index e065e17..69b6e29 100644
---- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
-+++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
-@@ -5,7 +5,7 @@ LICENSE = "TI-TFL"
+-#    file://0001-QOpenGLTexture-Set-wrap-mode-if-NPOT-textures-are-no.patch
+-
+ SRC_URI += "\
+     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', '', "${QT_EGLFS_PATCHES}", d)}\
+     file://0001-deform-Fix-how-controls-are-shown.patch \
+     file://0002-deform-disable-opengl-button.patch \
++    file://0001-qtbase-plugins-platforms-eglfs_kms-fix-compiler-erro.patch \
+ "
  
- require ./tidl-utils.inc
- 
--PV = "1.0.0.1"
-+PV = "1.0.1.0"
- INC_PR = "r0"
- 
- LIC_FILES_CHKSUM = "file://docs/LICENSE.txt;md5=a93aa5af7a3bbbb6fb34c8df59efaa5c"
-diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-index 37ce84d..9ccabdd 100644
---- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-+++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-@@ -1,2 +1,2 @@
- SRC_URI = "git://git.ti.com/tidl/tidl-utils.git;protocol=git;branch=master"
--SRCREV = "0021b6f15ee4a1a8919905429a5045fd02afe5b1"
-+SRCREV = "057984b05e143a4740ecec3dd28cfa082927b897"
+ python do_patch_append() {
 -- 
 1.9.1
 
