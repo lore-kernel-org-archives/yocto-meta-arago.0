@@ -1,43 +1,44 @@
-Return-Path: <d-senicic1@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id EDF53529BF
+Return-Path: <denys@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id C839A529EF
 	for <meta-arago@arago-project.org>;
-	Fri, 15 Mar 2019 15:09:56 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2FF9jCp124568
-	for <meta-arago@arago-project.org>; Fri, 15 Mar 2019 10:09:45 -0500
+	Mon, 18 Mar 2019 18:38:37 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2IIcQOK028638
+	for <meta-arago@arago-project.org>; Mon, 18 Mar 2019 13:38:26 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1552662585;
-	bh=GOnFi06+01pMl+DmhcvfCHDUkwpiNPUUCfn/SRHrtpE=;
-	h=From:To:CC:Subject:Date;
-	b=HF9uFu5IKruI/ANvjS9P3qdxPGcl+s7mOUxxnZDK/hSFt8KVW036hnEkjHqlVkpeu
-	BOdyD9fTyGgfjEgokjaQ9bgQb8t/jkRc+dQHDzZynjkwHZq2SlUNnrAdXNRNY/pF6p
-	Pwb42iiit7mz0EqV+HCa/DF9NZOOqNY8NvAawKJI=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2FF9ju7055990
+	s=ti-com-17Q1; t=1552934306;
+	bh=+aZgPaIcbV3s+DlcOIsttZUhA5pHdV9eUxywDY0zY8M=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=iAheGxmdlbpYdC8wyw0pmNBmB4Qh0kPbrHJjFZI4Z69+O0iyleTftIvILWRFcPgKM
+	YeTHiEtHPulqF3qy3Zfc8wPKXMD9t3Ddc0wOxIg4CliB9hHZV3vvXTXVDvyN+lhV+G
+	PyRxMN5rufjrfW1x2syqprkTuyYyeLwSMDhlAybU=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2IIcQkM104992
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 15 Mar 2019 10:09:45 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 18 Mar 2019 13:38:26 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 15 Mar 2019 10:09:45 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_0,
+	Mon, 18 Mar 2019 13:38:26 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1713.5 via Frontend
-	Transport; Fri, 15 Mar 2019 10:09:45 -0500
-Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id x2FF9ieR014409;
-	Fri, 15 Mar 2019 10:09:44 -0500
-From: Djordje Senicic <x0157990@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 15 Mar 2019 06:03:10 -0400
-Message-ID: <20190315100310.20229-1-x0157990@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Transport; Mon, 18 Mar 2019 13:38:26 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x2IIcP2R010699;
+	Mon, 18 Mar 2019 13:38:25 -0500
+Date: Mon, 18 Mar 2019 14:38:25 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Djordje Senicic <x0157990@ti.com>
+Message-ID: <20190318183825.GB3374@beryl>
+References: <20190315100310.20229-1-x0157990@ti.com>
 MIME-Version: 1.0
+In-Reply-To: <20190315100310.20229-1-x0157990@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Djordje Senicic <x0157990@ti.com>
-Subject: [rocko/master][PATCH] [matrix-gui-apps] SRCREV bump for TIDL demo file path fix
+Cc: meta-arago@arago-project.org
+Subject: Re: [rocko/master][PATCH] [matrix-gui-apps] SRCREV bump for TIDL demo file path fix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,31 +51,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Mar 2019 15:09:57 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 18 Mar 2019 18:38:38 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Djordje Senicic <x0157990@ti.com>
----
- meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Is the subject line correct?
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index 82882ea4..8cd90427 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
- 
- SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
--SRCREV = "f9fa5cb158902b6a3520fb7e853cc049ea920ae5"
-+SRCREV = "447330830a22028958c361f3f54020dc26427856"
- BRANCH = "master"
--INC_PR = "r67"
-+INC_PR = "r68"
- 
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
--- 
-2.17.1
-
+On Fri, Mar 15, 2019 at 06:03:10AM -0400, Djordje Senicic wrote:
+> Signed-off-by: Djordje Senicic <x0157990@ti.com>
+> ---
+>  meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> index 82882ea4..8cd90427 100644
+> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+> @@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+>  LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+>  
+>  SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+> -SRCREV = "f9fa5cb158902b6a3520fb7e853cc049ea920ae5"
+> +SRCREV = "447330830a22028958c361f3f54020dc26427856"
+>  BRANCH = "master"
+> -INC_PR = "r67"
+> +INC_PR = "r68"
+>  
+>  # Pull in the base package for installing matrix applications
+>  require matrix-gui-apps.inc
+> -- 
+> 2.17.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
