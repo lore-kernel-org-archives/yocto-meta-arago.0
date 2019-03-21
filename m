@@ -1,44 +1,46 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id CD04D5298B
+Return-Path: <denys@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 44DA852976
 	for <meta-arago@arago-project.org>;
-	Thu, 21 Mar 2019 17:57:06 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2LHus4O048866
-	for <meta-arago@arago-project.org>; Thu, 21 Mar 2019 12:56:54 -0500
+	Thu, 21 Mar 2019 20:17:33 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2LKHKXF013103
+	for <meta-arago@arago-project.org>; Thu, 21 Mar 2019 15:17:20 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1553191014;
-	bh=4/3xexy5I/h1Vg3/dXwF9slbpTw2FGWP1PeczSMfGXI=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=TF9AHSDYG0VwAOc2igrtktEtt38J1Od4vmyIZqDRSDjx3lN/MQ7PXKgIggjQDbMHJ
-	iOQz9Uo4ZyWl64qLFRJouT9aWuh7saMGlsOdQvf/z0E0uZkuQeL81MsL4apE+aEJci
-	bicMlKkS3UZSdJNk8Kvyd8ILh4eNP2V8LKnZ1NnY=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2LHus1R130490
+	s=ti-com-17Q1; t=1553199440;
+	bh=JKEwwHUE6vR8qN7cHpckvJALKyK277jDz8T/sLagqDM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=VNJCoBNL1ITXO9iKWBvJz7jiF/IFEBlD/emncR7mNQ6os70E08f0b0KVuDGHNXsqi
+	pxP3/rdTARJwcOiGUhEbjJ4pfQmutu2q4BHF+0+TquQXnhYP4yxCZWx7AmDz6nbYaZ
+	+ldt2p0A9lyrQYjFXQit+j2p566UZT1uPHvX+l5Q=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2LKHKPU070443
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 21 Mar 2019 12:56:54 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 21 Mar 2019 15:17:20 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 21 Mar 2019 12:56:53 -0500
-Received: from dlep33.itg.ti.com (157.170.170.75) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_0,
+	Thu, 21 Mar 2019 15:17:19 -0500
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_0,
 	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1713.5 via Frontend
-	Transport; Thu, 21 Mar 2019 12:56:53 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by dlep33.itg.ti.com (8.14.3/8.13.8) with ESMTP id x2LHurQG027511;
-	Thu, 21 Mar 2019 12:56:53 -0500
-To: Eric Ruei <e-ruei1@ti.com>, <meta-arago@arago-project.org>
-References: <1553187416-4891-1-git-send-email-e-ruei1@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <27689151-2bbf-e71c-3334-ab72517b1e39@ti.com>
-Date: Thu, 21 Mar 2019 13:56:53 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.5.3
+	Transport; Thu, 21 Mar 2019 15:17:19 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x2LKHJ7V014790;
+	Thu, 21 Mar 2019 15:17:19 -0500
+Date: Thu, 21 Mar 2019 16:17:19 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: "Senicic, Djordje" <d-senicic1@ti.com>
+Message-ID: <20190321201719.GD30002@beryl>
+References: <20190315100310.20229-1-x0157990@ti.com>
+	<20190318183825.GB3374@beryl>
+	<9cb0d7c41bdc469599a9cc1c3e3df2e1@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1553187416-4891-1-git-send-email-e-ruei1@ti.com>
+In-Reply-To: <9cb0d7c41bdc469599a9cc1c3e3df2e1@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [meta-processor-sdk][PATCH] linuxptp: bump SRCREV for bug fix
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [rocko/master][PATCH] [matrix-gui-apps] SRCREV bump for TIDL demo file path fix
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,37 +53,64 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Mar 2019 17:57:07 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Thu, 21 Mar 2019 20:17:33 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Pushed. Thank you!
+It has to follow OpenEmbedded guidelines:
+https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
 
-On 3/21/2019 12:56 PM, Eric Ruei wrote:
-> ti: phc2sys: fix the error/warning messages for -r (REALTIME) option
->
-> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> ---
->   recipes-connectivity/linuxptp/linuxptp_%.bbappend | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/recipes-connectivity/linuxptp/linuxptp_%.bbappend b/recipes-connectivity/linuxptp/linuxptp_%.bbappend
-> index c2b96ac..7cc76f4 100644
-> --- a/recipes-connectivity/linuxptp/linuxptp_%.bbappend
-> +++ b/recipes-connectivity/linuxptp/linuxptp_%.bbappend
-> @@ -1,11 +1,11 @@
-> -PR_append = ".tisdk10"
-> +PR_append = ".tisdk11"
->   PV = "1.8+"
->   
->   BRANCH = "ti-linuxptp-release"
->   SRC_URI = "git://git.ti.com/processor-sdk/linuxptp.git;protocol=git;branch=${BRANCH} \
->              file://build-Allow-CC-and-prefix-to-be-overriden.patch"
->   
-> -SRCREV = "308be592614861559690c911132c2aed4e2934d8"
-> +SRCREV = "2b48bb38da8453df1d57cbe0c58e8bb5551ec83c"
->   
->   S = "${WORKDIR}/git"
->   
+
+On Mon, Mar 18, 2019 at 02:58:43PM -0400, Senicic, Djordje wrote:
+>    Is this one is clearer?
+> 
+>    [meta-arago][rocko/master][PATCH] matrix-gui-apps: SRCREV bump for TIDL
+>    demo file path fix.
+> 
+>    A change in matrix-gui-v2-apps repo need to be included.
+> 
+>      ----------------------------------------------------------------------
+> 
+>    From: Dmytriyenko, Denys
+>    Sent: Monday, March 18, 2019 2:38:25 PM
+>    To: Senicic, Djordje
+>    Cc: meta-arago@arago-project.org
+>    Subject: Re: [meta-arago] [rocko/master][PATCH] [matrix-gui-apps] SRCREV
+>    bump for TIDL demo file path fix
+>     
+>    Is the subject line correct?
+> 
+>    On Fri, Mar 15, 2019 at 06:03:10AM -0400, Djordje Senicic wrote:
+>    > Signed-off-by: Djordje Senicic <x0157990@ti.com>
+>    > ---
+>    >  meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
+>    >  1 file changed, 2 insertions(+), 2 deletions(-)
+>    >
+>    > diff --git
+>    a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+>    b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+>    > index 82882ea4..8cd90427 100644
+>    > --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+>    > +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+>    > @@ -4,9 +4,9 @@ LICENSE_CHECKSUM =
+>    "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+>    >  LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+>    > 
+>    >  SRC_URI =
+>    "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+>    > -SRCREV = "f9fa5cb158902b6a3520fb7e853cc049ea920ae5"
+>    > +SRCREV = "447330830a22028958c361f3f54020dc26427856"
+>    >  BRANCH = "master"
+>    > -INC_PR = "r67"
+>    > +INC_PR = "r68"
+>    > 
+>    >  # Pull in the base package for installing matrix applications
+>    >  require matrix-gui-apps.inc
+>    > --
+>    > 2.17.1
+>    >
+>    > _______________________________________________
+>    > meta-arago mailing list
+>    > meta-arago@arago-project.org
+>    > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
