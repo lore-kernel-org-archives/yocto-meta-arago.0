@@ -1,30 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id D924D5203A
+Return-Path: <j-stiffler@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id A17A5529A4
 	for <meta-arago@arago-project.org>;
-	Fri, 22 Mar 2019 17:10:08 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id F089440B5F;
-	Fri, 22 Mar 2019 17:09:55 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id oBpJgDm1901a; Fri, 22 Mar 2019 17:09:55 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-81-231.washdc.fios.verizon.net
-	[100.15.81.231])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D796140AFE;
-	Fri, 22 Mar 2019 17:09:54 +0000 (UTC)
-Received: from gimli.denix (gimli [192.168.0.6])
-	by mail.denix.org (Postfix) with ESMTP id 316FB16CF9C;
-	Fri, 22 Mar 2019 13:09:54 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Fri, 22 Mar 2019 13:09:53 -0400
-Message-Id: <1553274593-29685-1-git-send-email-denys@ti.com>
+	Fri, 22 Mar 2019 19:09:09 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2MJ8uR1083790
+	for <meta-arago@arago-project.org>; Fri, 22 Mar 2019 14:08:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1553281736;
+	bh=dw3rIlGyUd5kq6xTiyp3TcJg/QcO/PVHvHnm4agihh8=;
+	h=From:To:CC:Subject:Date;
+	b=U2/5WRfuxnVvY+76yseCGXAkhy++8/qV9NwruDB40FfB/twga4DPoD2qZk7Z2pgdj
+	2eCuo2pLYDyKoo/zSCm2MyL500vyKFMYIfrXPxndGzCEq52ozasMkV4JXpEsNnixml
+	cQO03TRMiWt20FEClNU5W5iEOU/ZOWDvpQ5waSy4=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2MJ8umZ028205
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 22 Mar 2019 14:08:56 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Fri, 22 Mar 2019 14:08:55 -0500
+Received: from dflp33.itg.ti.com (10.64.6.16) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_0,
+	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1713.5 via Frontend
+	Transport; Fri, 22 Mar 2019 14:08:55 -0500
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by dflp33.itg.ti.com (8.14.3/8.13.8) with ESMTP id x2MJ8t1h017725;
+	Fri, 22 Mar 2019 14:08:55 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 22 Mar 2019 14:56:43 -0400
+Message-ID: <1553281003-23779-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH] pcitest: update to 4.19
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [meta-processor-sdk][PATCH] fftlib: bump SRCREV to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,36 +49,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Mar 2019 17:10:09 -0000
+X-List-Received-Date: Fri, 22 Mar 2019 19:09:10 -0000
+Content-Type: text/plain
 
-License checksum changed due to SPDX header addition.
+* As the fftlib sources are shared amongst multiple recipes, abstract
+  SRC_URI to simplfy overrides.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-kernel/pcitest/{pcitest_4.9.bb => pcitest_4.19.bb}      | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
- rename meta-arago-extras/recipes-kernel/pcitest/{pcitest_4.9.bb => pcitest_4.19.bb} (72%)
+ recipes-ti/fftlib/fftlib.inc | 17 ++++++++++++-----
+ 1 file changed, 12 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-kernel/pcitest/pcitest_4.9.bb b/meta-arago-extras/recipes-kernel/pcitest/pcitest_4.19.bb
-similarity index 72%
-rename from meta-arago-extras/recipes-kernel/pcitest/pcitest_4.9.bb
-rename to meta-arago-extras/recipes-kernel/pcitest/pcitest_4.19.bb
-index 718dc45..12efeda 100644
---- a/meta-arago-extras/recipes-kernel/pcitest/pcitest_4.9.bb
-+++ b/meta-arago-extras/recipes-kernel/pcitest/pcitest_4.19.bb
-@@ -1,9 +1,9 @@
- SUMMARY = "Linux Kernel PCI test"
- LICENSE = "GPLv2"
--LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
+diff --git a/recipes-ti/fftlib/fftlib.inc b/recipes-ti/fftlib/fftlib.inc
+index 7addb90..ea5215e 100644
+--- a/recipes-ti/fftlib/fftlib.inc
++++ b/recipes-ti/fftlib/fftlib.inc
+@@ -1,10 +1,17 @@
+ PV = "3_1_0_0"
+-INC_PR = "r1"
++INC_PR = "r3"
  
--BRANCH = "ti-lsk-linux-4.9.y"
--SRCREV = "b4aa954ead9260eaf7138755fc9d062a9f4630eb"
-+BRANCH = "ti-linux-4.19.y"
-+SRCREV = "0584082b5f5c815faee33f5fc0a1c8bc3d77ebf7"
- SRC_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git;protocol=git;branch=${BRANCH}"
+ require recipes-ti/includes/tisdk-paths.inc
  
- S = "${WORKDIR}/git"
+-DESTSUFFIX = "${WORKDIR}/git"
+ 
+-BRANCH = "master"
+-SRC_URI = "git://git.ti.com/fftlib/fftlib.git;protocol=git;name=fftlib;destsuffix=${DESTSUFFIX};branch=${BRANCH}"
+-SRCREV = "3d5ebada3cd94096fb798548d68059dc4c34a1ea"
++FFTLIB_GIT_URI = "git://git.ti.com/fftlib/fftlib"
++FFTLIB_GIT_PROTOCOL = "git"
++FFTLIB_GIT_BRANCH = "master"
++FFTLIB_GIT_DESTSUFFIX = "${WORKDIR}/git"
++
++FFTLIB_SRCREV = "54fb858e97235c0a3cd948d24d22329653a7837f"
++
++BRANCH = "${FFTLIB_GIT_BRANCH}"
++SRC_URI = "${FFTLIB_GIT_URI};destsuffix=${FFTLIB_GIT_DESTSUFFIX};protocol=${FFTLIB_GIT_PROTOCOL};branch=${BRANCH}"
++
++SRCREV = "${FFTLIB_SRCREV}"
 -- 
 2.7.4
 
