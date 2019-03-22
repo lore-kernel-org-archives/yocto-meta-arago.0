@@ -1,43 +1,30 @@
-Return-Path: <d-senicic1@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 4031252976
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id D924D5203A
 	for <meta-arago@arago-project.org>;
-	Thu, 21 Mar 2019 21:21:26 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2LLLEjF036884
-	for <meta-arago@arago-project.org>; Thu, 21 Mar 2019 16:21:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1553203274;
-	bh=GOnFi06+01pMl+DmhcvfCHDUkwpiNPUUCfn/SRHrtpE=;
-	h=From:To:CC:Subject:Date;
-	b=Nyqv6cqVwDX4ppUdEtCccmYIkz7ot1/wlOJGkzOIBYxiWhN/ub5zQPPhqOLCgKmE6
-	UKZVH/zZULh0rKmBTYG+Vce0A8ckIFvSYQ96WoQXYrftqQFRbix8M29Qv8n8byzpAG
-	1fvyNhW6GFEv7pZVSwsmFQxNGcCKpzlWOqY5K6/8=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2LLLE1r115039
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 21 Mar 2019 16:21:14 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 21 Mar 2019 16:21:13 -0500
-Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.1.1713.5 via Frontend
-	Transport; Thu, 21 Mar 2019 16:21:13 -0500
-Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id x2LLLD86030302;
-	Thu, 21 Mar 2019 16:21:13 -0500
-From: Djordje Senicic <x0157990@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 21 Mar 2019 12:14:26 -0400
-Message-ID: <20190321161426.4171-1-x0157990@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Djordje Senicic <x0157990@ti.com>
-Subject: [rocko/master][PATCHv2] matrix-gui:bump up SRCREV to include additional TIDL demos
+	Fri, 22 Mar 2019 17:10:08 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id F089440B5F;
+	Fri, 22 Mar 2019 17:09:55 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id oBpJgDm1901a; Fri, 22 Mar 2019 17:09:55 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-81-231.washdc.fios.verizon.net
+	[100.15.81.231])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D796140AFE;
+	Fri, 22 Mar 2019 17:09:54 +0000 (UTC)
+Received: from gimli.denix (gimli [192.168.0.6])
+	by mail.denix.org (Postfix) with ESMTP id 316FB16CF9C;
+	Fri, 22 Mar 2019 13:09:54 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Fri, 22 Mar 2019 13:09:53 -0400
+Message-Id: <1553274593-29685-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [thud/master][PATCH] pcitest: update to 4.19
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,31 +37,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Mar 2019 21:21:28 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 22 Mar 2019 17:10:09 -0000
 
-Signed-off-by: Djordje Senicic <x0157990@ti.com>
+License checksum changed due to SPDX header addition.
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-kernel/pcitest/{pcitest_4.9.bb => pcitest_4.19.bb}      | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+ rename meta-arago-extras/recipes-kernel/pcitest/{pcitest_4.9.bb => pcitest_4.19.bb} (72%)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index 82882ea4..8cd90427 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+diff --git a/meta-arago-extras/recipes-kernel/pcitest/pcitest_4.9.bb b/meta-arago-extras/recipes-kernel/pcitest/pcitest_4.19.bb
+similarity index 72%
+rename from meta-arago-extras/recipes-kernel/pcitest/pcitest_4.9.bb
+rename to meta-arago-extras/recipes-kernel/pcitest/pcitest_4.19.bb
+index 718dc45..12efeda 100644
+--- a/meta-arago-extras/recipes-kernel/pcitest/pcitest_4.9.bb
++++ b/meta-arago-extras/recipes-kernel/pcitest/pcitest_4.19.bb
+@@ -1,9 +1,9 @@
+ SUMMARY = "Linux Kernel PCI test"
+ LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
++LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
  
- SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
--SRCREV = "f9fa5cb158902b6a3520fb7e853cc049ea920ae5"
-+SRCREV = "447330830a22028958c361f3f54020dc26427856"
- BRANCH = "master"
--INC_PR = "r67"
-+INC_PR = "r68"
+-BRANCH = "ti-lsk-linux-4.9.y"
+-SRCREV = "b4aa954ead9260eaf7138755fc9d062a9f4630eb"
++BRANCH = "ti-linux-4.19.y"
++SRCREV = "0584082b5f5c815faee33f5fc0a1c8bc3d77ebf7"
+ SRC_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git;protocol=git;branch=${BRANCH}"
  
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
+ S = "${WORKDIR}/git"
 -- 
-2.17.1
+2.7.4
 
 
