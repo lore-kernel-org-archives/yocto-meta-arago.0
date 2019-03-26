@@ -1,44 +1,44 @@
 Return-Path: <m-radhakrishnan2@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id CF8C7529D3
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id DA06B529D8
 	for <meta-arago@arago-project.org>;
 	Tue, 26 Mar 2019 22:29:15 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2QMT1uu079689
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2QMT1mM016463
 	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 17:29:01 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1553639341;
-	bh=2h2MZhOFQ23sDZHeMBB1QuyNy7/zf9DXSJgvBXTRVLE=;
+	bh=XisMgYTNidsZ73pmlzqJGypvGvyQnVL3px+pSOXI7aM=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=LYgZF05HMKZb0sLs/BEmqleBfecYUfThA+za/oewoS0AAD8qke7LyUXbhWVc4T2UR
-	7QVo2q1lpS1Z7ThsEznh8Ir2ab/+BiI9EJHNQf0oobBGK96H0Lvv45si2x5DYi5KqF
-	WMv5gvSoSzXhBcILmvfFheFKuege06OM+rpVmtZI=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2QMT1Pq043347
+	b=v8Pv5caLWflQ1hAQfG8gVb/Qk6IaxqMHlVbvLFdpwwfXkSZyfcunznJO04cdMre9B
+	YsVnbph/Jl4LsQyhRf7K7GDaWNtS/KXYNy3x+zNJF7fcHeyC/hOuhLrfgI7R4y31Op
+	Gso5l2gwyPe/DpaX/RTROGzpoU02eSYykL6WRm1g=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2QMT1WU117990
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 17:29:01 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 26 Mar 2019 17:29:01 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 26 Mar 2019 17:29:00 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 26 Mar 2019 17:29:01 -0500
+	Frontend Transport; Tue, 26 Mar 2019 17:29:00 -0500
 Received: from uda0875154a.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x2QMT0tG116656
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x2QMT0tF116656
 	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 17:29:00 -0500
 From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 26 Mar 2019 18:28:52 -0400
-Message-ID: <1553639337-36226-3-git-send-email-m-radhakrishnan2@ti.com>
+Date: Tue, 26 Mar 2019 18:28:51 -0400
+Message-ID: <1553639337-36226-2-git-send-email-m-radhakrishnan2@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1553639337-36226-1-git-send-email-m-radhakrishnan2@ti.com>
 References: <1553639337-36226-1-git-send-email-m-radhakrishnan2@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master][meta-processor-sdk][PATCH 2/7] emac-lld-rtos: SRCREV bump to 01.00.03.14B
+Subject: [master][meta-processor-sdk][PATCH 1/7] common-csl-ip: SRCREV bump to 03.03.00.14C
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,21 +56,40 @@ Content-Type: text/plain
 
 Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 ---
- recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend | 5 +++++
- 1 file changed, 5 insertions(+)
- create mode 100644 recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend
+ recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_14C.inc  | 5 +++++
+ recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend | 2 ++
+ recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend      | 1 +
+ 3 files changed, 8 insertions(+)
+ create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_14C.inc
+ create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
+ create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
 
-diff --git a/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend b/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend
+diff --git a/recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_14C.inc b/recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_14C.inc
 new file mode 100644
-index 0000000..9b67337
+index 0000000..c2f85a2
 --- /dev/null
-+++ b/recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend
++++ b/recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_14C.inc
 @@ -0,0 +1,5 @@
-+# Below commit ID corresponds to "DEV.EMAC_LLD.01.00.03.14B"
-+EMAC_LLD_SRCREV = "9ad95cde88aae23aaedf95d2146cab4a388e70d3"
++PV = "03.03.00.14C"
++INC_PR = "r0"
++# Below commit ID corresponding to "DEV.CSL_PROCESSOR-SDK.03.03.00.14C"
++CSL_SRCREV = "e0e88283f3c9c5afd5b1fd93986f2a67186f5b13"
 +
-+PV = "01.00.03.14B"
-+PR = "r0"
+diff --git a/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend b/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
+new file mode 100644
+index 0000000..dcba4fe
+--- /dev/null
++++ b/recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
+@@ -0,0 +1,2 @@
++require common-csl-ip-03_03_00_14C.inc
++
+diff --git a/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend b/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
+new file mode 100644
+index 0000000..d010f03
+--- /dev/null
++++ b/recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
+@@ -0,0 +1 @@
++require common-csl-ip-03_03_00_14C.inc
 -- 
 1.9.1
 
