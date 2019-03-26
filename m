@@ -1,42 +1,42 @@
-Return-Path: <e-ruei1@ti.com>
+Return-Path: <m-radhakrishnan2@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id C19FD529CA
+	by arago-project.org (Postfix) with ESMTPS id 80128529CA
 	for <meta-arago@arago-project.org>;
-	Tue, 26 Mar 2019 17:58:15 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2QHw14Y091878
-	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 12:58:01 -0500
+	Tue, 26 Mar 2019 22:29:15 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2QMT1T9079685
+	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 17:29:01 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1553623081;
-	bh=8QpdvCEpczf0WPjW41Sj7ZIzLgBVYmVXggFtyrpFdlE=;
+	s=ti-com-17Q1; t=1553639341;
+	bh=cWJ/l+GffwH3rt3kTgir0EWxVQDnn83FSzlgEmyNasE=;
 	h=From:To:Subject:Date;
-	b=q3mU3KtETX8AN5iPVioCGB9+MPQB/QReROyIf4JryBEmdO3EKoGAmJgQwYslZbmcB
-	VeF6hamWVTrjHWisXD3m2ngX/pc4dFQpfOIsiaZWHIPVmSvkLkrSkYmRqGx52nuLxx
-	LgR0P9INx6ZtxU8M8MftBO5i3zeLuusRuKB1/Ruc=
+	b=I4lRYRV5BQo7zBQOiVB2Lz6g07kP+KrMpStTacn34Sk5Wz3g1wd5BIeMj8j1kWWMf
+	Gan0X37SnifQgMkjEXq0INfME1uM8fWMOvIpWtkZ5PPeRpJzVy6SxL5KOEuT4YTfpr
+	UjOrJDt6GNMSKFW3VGpKlQ+Ovz4uWunazW5wTVnw=
 Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2QHw1lU117312
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2QMT0dm117974
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 12:58:01 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE104.ent.ti.com
+	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 17:29:00 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE104.ent.ti.com
 	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 26 Mar 2019 12:58:00 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 26 Mar 2019 17:29:00 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 26 Mar 2019 12:58:00 -0500
-Received: from uda0850410.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Tue, 26 Mar 2019 17:29:00 -0500
+Received: from uda0875154a.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x2QHw0C9097505
-	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 12:58:00 -0500
-From: Eric Ruei <e-ruei1@ti.com>
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x2QMT0tE116656
+	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 17:29:00 -0500
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 26 Mar 2019 13:57:55 -0400
-Message-ID: <1553623075-12631-1-git-send-email-e-ruei1@ti.com>
+Date: Tue, 26 Mar 2019 18:28:50 -0400
+Message-ID: <1553639337-36226-1-git-send-email-m-radhakrishnan2@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master][PATCH v2] weston: fix dual display issue
+Subject: [master][meta-processor-sdk][PATCH 0/7] Patchset-2 for RTOS 5.3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,122 +49,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Mar 2019 17:58:16 -0000
+X-List-Received-Date: Tue, 26 Mar 2019 22:29:17 -0000
 Content-Type: text/plain
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
----
- .../0005-weston-drm-fix-dual-display-issue.patch   | 79 ++++++++++++++++++++++
- .../recipes-graphics/wayland/weston_5.0.0.bbappend |  3 +-
- 2 files changed, 81 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0005-weston-drm-fix-dual-display-issue.patch
+RTOS Patchset-2 for 5.3
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0005-weston-drm-fix-dual-display-issue.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0005-weston-drm-fix-dual-display-issue.patch
-new file mode 100644
-index 0000000..9b06b81
---- /dev/null
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston/0005-weston-drm-fix-dual-display-issue.patch
-@@ -0,0 +1,79 @@
-+From db6f5ce008d9b8a4cc7db71659ce1d21d3d7f97f Mon Sep 17 00:00:00 2001
-+From: Eric Ruei <e-ruei1@ti.com>
-+Date: Tue, 26 Mar 2019 13:32:31 -0400
-+Subject: [PATCH 3/3] weston: drm: fix dual display issue
-+
-+This patch fixes the dual display issue by enhancing the primary plane
-+search algorithm to keep the plane which is connected to the crtc of
-+the output because the direct switching of active planes is not allowed.
-+
-+Upstream status: Pending
-+
-+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-+---
-+ libweston/compositor-drm.c | 17 ++++++++++++++++-
-+ 1 file changed, 16 insertions(+), 1 deletion(-)
-+
-+diff --git a/libweston/compositor-drm.c b/libweston/compositor-drm.c
-+index 3891176..fa694c3 100644
-+--- a/libweston/compositor-drm.c
-++++ b/libweston/compositor-drm.c
-+@@ -428,6 +428,7 @@ struct drm_plane {
-+ 
-+ 	uint32_t possible_crtcs;
-+ 	uint32_t plane_id;
-++	uint32_t crtc_id;
-+ 	uint32_t count_formats;
-+ 
-+ 	struct drm_property_info props[WDRM_PLANE__COUNT];
-+@@ -4073,6 +4074,7 @@ drm_plane_create(struct drm_backend *b, const drmModePlane *kplane,
-+ 	if (kplane) {
-+ 		plane->possible_crtcs = kplane->possible_crtcs;
-+ 		plane->plane_id = kplane->plane_id;
-++		plane->crtc_id = kplane->crtc_id;
-+ 
-+ 		props = drmModeObjectGetProperties(b->drm.fd, kplane->plane_id,
-+ 						   DRM_MODE_OBJECT_PLANE);
-+@@ -4097,6 +4099,7 @@ drm_plane_create(struct drm_backend *b, const drmModePlane *kplane,
-+ 	else {
-+ 		plane->possible_crtcs = (1 << output->pipe);
-+ 		plane->plane_id = 0;
-++		plane->crtc_id = 0;
-+ 		plane->count_formats = 1;
-+ 		plane->formats[0].format = format;
-+ 		plane->type = type;
-+@@ -4157,6 +4160,7 @@ drm_output_find_special_plane(struct drm_backend *b, struct drm_output *output,
-+ 			      enum wdrm_plane_type type)
-+ {
-+ 	struct drm_plane *plane;
-++	struct drm_plane *plane2 = NULL; /* secondary plane */
-+ 
-+ 	if (!b->universal_planes) {
-+ 		uint32_t format;
-+@@ -4204,11 +4208,22 @@ drm_output_find_special_plane(struct drm_backend *b, struct drm_output *output,
-+ 		if (found_elsewhere)
-+ 			continue;
-+ 
-++		/* The output should keep the primary plane connected to its
-++		 * crtc since the direct switching of active plane is not
-++		 * allowed. */
-++		if ((type == WDRM_PLANE_TYPE_PRIMARY) &&
-++		    (plane->crtc_id != output->crtc_id)) {
-++			if (plane->crtc_id == 0) {
-++				plane->possible_crtcs = (1 << output->pipe);
-++				plane2 = plane;
-++			}
-++			continue;
-++		}
-+ 		plane->possible_crtcs = (1 << output->pipe);
-+ 		return plane;
-+ 	}
-+ 
-+-	return NULL;
-++	return plane2;
-+ }
-+ 
-+ /**
-+-- 
-+1.9.1
-+
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend
-index 68e53cc..cc456b4 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend
-@@ -2,7 +2,7 @@
- PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
- PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
- 
--PR_append = ".arago30"
-+PR_append = ".arago31"
- 
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
-@@ -13,6 +13,7 @@ SRC_URI += " \
-         file://0002-weston-Allow-visual_id-to-be-0.patch \
- 	file://0003-weston-Fix-virtual-keyboard-display-issue-for-QT5-ap.patch \
-         file://0004-weston-Fix-touch-screen-crash-issue.patch \
-+	file://0005-weston-drm-fix-dual-display-issue.patch \
- "
- 
- INHIBIT_PACKAGE_STRIP = "1"
+Mahesh Radhakrishnan (7):
+  common-csl-ip: SRCREV bump to 03.03.00.14C
+  emac-lld-rtos: SRCREV bump to 01.00.03.14B
+  mmcsd-lld-rtos: SRCREV bump to 01.00.00.15A
+  transport-rtos: SRCREV bump to version 01.00.00.15A
+  ti-pdk-build-rtos: SRCREV bump to version 01.00.00.12A
+  icss-emac-lld: SRCREV bump to 01.00.00.15
+  sciclient-rtos: SRCREV bump to 01.00.00.02B
+
+ recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_14C.inc  | 5 +++++
+ recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend | 2 ++
+ recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend      | 1 +
+ recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend           | 5 +++++
+ recipes-bsp/icss-emac-lld/icss-emac-lld-01_00_00_15A.inc  | 5 +++++
+ recipes-bsp/icss-emac-lld/icss-emac-lld-rtos_git.bbappend | 2 ++
+ recipes-bsp/icss-emac-lld/icss-emac-lld-test_git.bbppend  | 1 +
+ recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend      | 1 +
+ recipes-bsp/mmcsd-lld/mmcsd-lld-rtos_git.bbappend         | 5 +++++
+ recipes-bsp/sciclient/sciclient-rtos_git.bbappend         | 6 ++++++
+ recipes-bsp/transport-rtos/bmet-eth-rtos_git.bbappend     | 1 +
+ recipes-bsp/transport-rtos/nimu-icss-rtos_git.bbappend    | 1 +
+ recipes-bsp/transport-rtos/nimu-rtos_git.bbappend         | 1 +
+ recipes-bsp/transport-rtos/transport-01_00_00_15A.inc     | 5 +++++
+ recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bbappend    | 5 +++++
+ 15 files changed, 46 insertions(+)
+ create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-03_03_00_14C.inc
+ create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip-rtos_git.bbappend
+ create mode 100644 recipes-bsp/common-csl-ip/common-csl-ip_git.bbappend
+ create mode 100644 recipes-bsp/emac-lld/emac-lld-rtos_git.bbappend
+ create mode 100644 recipes-bsp/icss-emac-lld/icss-emac-lld-01_00_00_15A.inc
+ create mode 100644 recipes-bsp/icss-emac-lld/icss-emac-lld-rtos_git.bbappend
+ create mode 100644 recipes-bsp/icss-emac-lld/icss-emac-lld-test_git.bbppend
+ create mode 100644 recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend
+ create mode 100644 recipes-bsp/mmcsd-lld/mmcsd-lld-rtos_git.bbappend
+ create mode 100644 recipes-bsp/transport-rtos/bmet-eth-rtos_git.bbappend
+ create mode 100644 recipes-bsp/transport-rtos/nimu-icss-rtos_git.bbappend
+ create mode 100644 recipes-bsp/transport-rtos/nimu-rtos_git.bbappend
+ create mode 100644 recipes-bsp/transport-rtos/transport-01_00_00_15A.inc
+ create mode 100644 recipes-ti/ti-pdk-build/ti-pdk-build-rtos_git.bbappend
+
 -- 
 1.9.1
 
