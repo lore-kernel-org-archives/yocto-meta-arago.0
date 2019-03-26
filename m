@@ -1,44 +1,44 @@
 Return-Path: <m-radhakrishnan2@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id A8946529D3
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 1FF2C529CA
 	for <meta-arago@arago-project.org>;
-	Tue, 26 Mar 2019 22:29:18 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2QMT4W5012259
-	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 17:29:04 -0500
+	Tue, 26 Mar 2019 22:29:17 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2QMT2jK016488
+	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 17:29:02 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1553639344;
-	bh=b0mIKKJE7j6DHw51dyVZUZ7KbMKc6D8XmMcqktQwhHM=;
+	s=ti-com-17Q1; t=1553639342;
+	bh=cGblf1c7l2uAGP52XZbxX0/mKHhPw04rRM1eQi0k9o4=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=G2fNYFvetq58lLtIJU2zCEn1dz9RzF47X0Q79H3O5zGwXU/bbyFO2mIhRzV9AMPyp
-	6UcI+Fqms5+JlOr1TgNXT//LR7ud+ti79a+Oa2kbKdwhfL58+hqpMymR8lCjRhhxta
-	wI/hmTtOQKhjcUwlitMoPI2aix7CRZji5pk6eCH4=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2QMT3Ij043453
+	b=L1likjxLEjGPInL4uSkE/mJWBpW4dg8OFRPmAThru36iShqZ5HUmfA0GMn7EUYW6U
+	Pvcd4eCS3MHfKyYyiDx8snVXZe6zHlRbhlMfjBp9DLpvHx+62UDHWR9tw27yONBuzI
+	ccY5T5MPxUoOaCy1dYy9D0pbq8M1VKbuWxb92Hu0=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2QMT295032303
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 17:29:04 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 17:29:02 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
 	Tue, 26 Mar 2019 17:29:02 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
 	Frontend Transport; Tue, 26 Mar 2019 17:29:02 -0500
 Received: from uda0875154a.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x2QMT0tL116656
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x2QMT0tK116656
 	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 17:29:02 -0500
 From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 26 Mar 2019 18:28:57 -0400
-Message-ID: <1553639337-36226-8-git-send-email-m-radhakrishnan2@ti.com>
+Date: Tue, 26 Mar 2019 18:28:56 -0400
+Message-ID: <1553639337-36226-7-git-send-email-m-radhakrishnan2@ti.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1553639337-36226-1-git-send-email-m-radhakrishnan2@ti.com>
 References: <1553639337-36226-1-git-send-email-m-radhakrishnan2@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master][meta-processor-sdk][PATCH 7/7] sciclient-rtos: SRCREV bump to 01.00.00.02B
+Subject: [master][meta-processor-sdk][PATCH 6/7] icss-emac-lld: SRCREV bump to 01.00.00.15
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,25 +56,49 @@ Content-Type: text/plain
 
 Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 ---
- recipes-bsp/sciclient/sciclient-rtos_git.bbappend | 6 ++++++
- 1 file changed, 6 insertions(+)
+ recipes-bsp/icss-emac-lld/icss-emac-lld-01_00_00_15A.inc  | 5 +++++
+ recipes-bsp/icss-emac-lld/icss-emac-lld-rtos_git.bbappend | 2 ++
+ recipes-bsp/icss-emac-lld/icss-emac-lld-test_git.bbppend  | 1 +
+ recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend      | 1 +
+ 4 files changed, 9 insertions(+)
+ create mode 100644 recipes-bsp/icss-emac-lld/icss-emac-lld-01_00_00_15A.inc
+ create mode 100644 recipes-bsp/icss-emac-lld/icss-emac-lld-rtos_git.bbappend
+ create mode 100644 recipes-bsp/icss-emac-lld/icss-emac-lld-test_git.bbppend
+ create mode 100644 recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend
 
-diff --git a/recipes-bsp/sciclient/sciclient-rtos_git.bbappend b/recipes-bsp/sciclient/sciclient-rtos_git.bbappend
-index f7438b1..4647e1f 100644
---- a/recipes-bsp/sciclient/sciclient-rtos_git.bbappend
-+++ b/recipes-bsp/sciclient/sciclient-rtos_git.bbappend
-@@ -1,5 +1,11 @@
- PR_append = ".tisdk0"
- 
-+# Below commit ID corresponds to "DEV.SCICLIENT.01.00.00.02B"
-+SCICLIENT_SRCREV = "3b88caad398d2eeca7acf4f02c24aaa993c6b545"
+diff --git a/recipes-bsp/icss-emac-lld/icss-emac-lld-01_00_00_15A.inc b/recipes-bsp/icss-emac-lld/icss-emac-lld-01_00_00_15A.inc
+new file mode 100644
+index 0000000..53482df
+--- /dev/null
++++ b/recipes-bsp/icss-emac-lld/icss-emac-lld-01_00_00_15A.inc
+@@ -0,0 +1,5 @@
++# Below commit ID corresponds to "DEV.ICSS_EMAC_LLD.01.00.00.15A"
++ICSS_EMAC_LLD_SRCREV = "94536e4f3087b87e0787f00637b00878ee085d1d"
 +
-+PV = "01.00.00.02B"
-+PR = "r0"
++PV = "01.00.00.15A"
++INC_PR = "r0"
+diff --git a/recipes-bsp/icss-emac-lld/icss-emac-lld-rtos_git.bbappend b/recipes-bsp/icss-emac-lld/icss-emac-lld-rtos_git.bbappend
+new file mode 100644
+index 0000000..4d26cdc
+--- /dev/null
++++ b/recipes-bsp/icss-emac-lld/icss-emac-lld-rtos_git.bbappend
+@@ -0,0 +1,2 @@
++require icss-emac-lld-01_00_00_15A.inc
 +
- LIMSOCS_am65xx-hs-evm = "am65xx"
- LIMBOARDS_am65xx-hs-evm = "am65xx_evm"
- BOARD_PACKAGE_am65xx-hs-evm = "am65xx_evm"
+diff --git a/recipes-bsp/icss-emac-lld/icss-emac-lld-test_git.bbppend b/recipes-bsp/icss-emac-lld/icss-emac-lld-test_git.bbppend
+new file mode 100644
+index 0000000..626d80f
+--- /dev/null
++++ b/recipes-bsp/icss-emac-lld/icss-emac-lld-test_git.bbppend
+@@ -0,0 +1 @@
++require icss-emac-lld-01_00_00_15A.inc
+diff --git a/recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend b/recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend
+new file mode 100644
+index 0000000..626d80f
+--- /dev/null
++++ b/recipes-bsp/icss-emac-lld/icss-emac-lld_git.bbappend
+@@ -0,0 +1 @@
++require icss-emac-lld-01_00_00_15A.inc
 -- 
 1.9.1
 
