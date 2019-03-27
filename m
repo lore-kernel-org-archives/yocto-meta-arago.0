@@ -1,42 +1,30 @@
-Return-Path: <m-radhakrishnan2@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id A6D3D529D8
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id BFBD852978
 	for <meta-arago@arago-project.org>;
-	Wed, 27 Mar 2019 00:52:20 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x2R0q6dF082568
-	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 19:52:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1553647926;
-	bh=Cr7CC47agprFdTs9qj+QBKDEAfFoKxsi23zI8efDr5M=;
-	h=From:To:Subject:Date;
-	b=bhmcJPURZQWv2FAn54t6/705akP8qtCQWi44ece9erRlbTfnFQlCpy1p1ffTuqW6k
-	wQoCVZ/bKueGVrKpS4q+dtdIl9mDXZrzjEEkerlSTlEMUk3KH5ORxR7qUUCWo22tnX
-	8n436wIHkf49BGxgJ8DCIu7e8ONan9RBuhr3d7MU=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x2R0q5n7101351
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 19:52:05 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 26 Mar 2019 19:52:05 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 26 Mar 2019 19:52:05 -0500
-Received: from uda0875154a.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x2R0q5H0063285
-	for <meta-arago@arago-project.org>; Tue, 26 Mar 2019 19:52:05 -0500
-From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 26 Mar 2019 20:52:01 -0400
-Message-ID: <1553647921-51422-1-git-send-email-m-radhakrishnan2@ti.com>
-X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master][meta-processor-sdk][PATCH v2] board-rtos: SRCREV bump to version 01.00.10.04B
+	Wed, 27 Mar 2019 04:13:28 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id EBB8D40B81;
+	Wed, 27 Mar 2019 04:13:13 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id ov-IAFcywIT9; Wed, 27 Mar 2019 04:13:13 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-81-231.washdc.fios.verizon.net
+	[100.15.81.231])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D2BAB40A55;
+	Wed, 27 Mar 2019 04:13:12 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 2923B16D3C3;
+	Wed, 27 Mar 2019 00:13:12 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Wed, 27 Mar 2019 00:13:12 -0400
+Message-Id: <1553659992-15112-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [thud/master][PATCH] external-arm-toolchain: overlay fixes for bins, libs, stubs and headers
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,30 +37,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Mar 2019 00:52:21 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 27 Mar 2019 04:13:29 -0000
 
-Signed-off-by: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+Patches were submitted upstream to meta-linaro:
+https://lists.linaro.org/pipermail/openembedded/2019-March/000198.html
+
+Until they are merged, overlay changes locally in a .bbappend
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- v2 - SRCREV update further to 01.00.10.04B
+ .../meta/external-arm-toolchain.bbappend           | 29 ++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
 
- recipes-bsp/board-rtos/board-rtos_git.bbappend | 6 ++++++
- 1 file changed, 6 insertions(+)
- create mode 100644 recipes-bsp/board-rtos/board-rtos_git.bbappend
-
-diff --git a/recipes-bsp/board-rtos/board-rtos_git.bbappend b/recipes-bsp/board-rtos/board-rtos_git.bbappend
+diff --git a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
 new file mode 100644
-index 0000000..6142d98
+index 0000000..ab75476
 --- /dev/null
-+++ b/recipes-bsp/board-rtos/board-rtos_git.bbappend
-@@ -0,0 +1,6 @@
-+# Below commit ID corresponds to "DEV.BOARD.01.00.10.04B"
-+BOARD_SRCREV = "f630b9dade989a6c08ebd114f5c938cd668b6d86"
++++ b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+@@ -0,0 +1,29 @@
++PKGV = "${EAT_VER_LIBC}"
 +
-+PV = "01.00.10.04B"
-+PR = "r0"
++RDEPENDS_ldd = "bash"
++RDEPENDS_tzcode = "bash"
 +
++BINV = "${EAT_VER_GCC}"
++TARGET_SYS = "${EAT_TARGET_SYS}"
++
++do_install_append() {
++	install -d ${D}${bindir}
++	install -d ${D}${sbindir}
++	install -d ${D}${libdir}/${EAT_TARGET_SYS}/${EAT_VER_GCC}
++	install -d ${D}${libdir}/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}
++
++	cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/usr/bin/* ${D}${bindir}
++	cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/${EAT_TARGET_SYS}/libc/usr/sbin/* ${D}${sbindir}
++	rm -rf ${D}${bindir}/gdbserver
++	sed -i -e 's#/arm/tools/gnu/bash/4.2/rhe6-x86_64##' ${D}${bindir}/tzselect
++	sed -i -e 's#/arm/tools/gnu/bash/4.2/rhe6-x86_64##' ${D}${bindir}/ldd
++
++	cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/lib/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/crt*.o ${D}${libdir}/${EAT_TARGET_SYS}/${EAT_VER_GCC}/
++	cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/lib/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/libgcc* ${D}${libdir}/${EAT_TARGET_SYS}/${EAT_VER_GCC}/
++	cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/lib/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/libgcov* ${D}${libdir}/${EAT_TARGET_SYS}/${EAT_VER_GCC}/
++
++	cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/lib/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/include ${D}${libdir}/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/
++	cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/lib/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/finclude ${D}${libdir}/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/
++	cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/lib/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/libgfortranbegin.* ${D}${libdir}/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/ || true
++	cp ${CP_ARGS} -H ${EXTERNAL_TOOLCHAIN}/lib/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/libcaf_single* ${D}${libdir}/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/
++}
 -- 
-1.9.1
+2.7.4
 
 
