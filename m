@@ -1,32 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id AADA2529A6
+Return-Path: <m-radhakrishnan2@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 93D0A52992
 	for <meta-arago@arago-project.org>;
-	Fri, 29 Mar 2019 16:59:06 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 2936F40A18;
-	Fri, 29 Mar 2019 16:58:51 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id cvVSqCOj0S6H; Fri, 29 Mar 2019 16:58:51 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-81-231.washdc.fios.verizon.net
-	[100.15.81.231])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 127AB40B88;
-	Fri, 29 Mar 2019 16:58:50 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 2923716D6A9;
-	Fri, 29 Mar 2019 12:58:49 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Fri, 29 Mar 2019 12:58:45 -0400
-Message-Id: <1553878725-54332-2-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1553878725-54332-1-git-send-email-denys@ti.com>
-References: <1553878725-54332-1-git-send-email-denys@ti.com>
-Subject: [thud/master][PATCH 2/2] external-arm-toolchain: overlay libc.so linker script path fix
+	Tue,  2 Apr 2019 19:34:25 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x32JY7L6040309
+	for <meta-arago@arago-project.org>; Tue, 2 Apr 2019 14:34:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1554233647;
+	bh=UfCRoIsZiBwC15ZsSWI2mfGQ+UMfQiL1ejd5CtwSNIA=;
+	h=From:To:Subject:Date;
+	b=Kda9su69n1DSRYMVO6+ozF7n8xxVau7HON6KNEM0RcTaweHrHaRSoR12syBEDor61
+	te10oR/7V4fZJtbdPjDOrKPzXXcaYnvvuNlUKkANKTDwnwCmOstVSZgCmRpc0DAKCE
+	Tmrru7wLZ9CD3egleolpYSXhJCO6f7tYy+LM90Yc=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x32JY7gf042450
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 2 Apr 2019 14:34:07 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Tue, 2 Apr 2019 14:34:07 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Tue, 2 Apr 2019 14:34:07 -0500
+Received: from uda0875154a.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x32JY6Jf110899
+	for <meta-arago@arago-project.org>; Tue, 2 Apr 2019 14:34:07 -0500
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 2 Apr 2019 15:34:04 -0400
+Message-ID: <1554233644-51858-1-git-send-email-m-radhakrishnan2@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [master][meta-processor-sdk][PATCH] jailhouse-examples-rtos: SRCREV bump
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,27 +49,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Mar 2019 16:59:07 -0000
+X-List-Received-Date: Tue, 02 Apr 2019 19:34:27 -0000
+Content-Type: text/plain
 
-Overlay locally until the fix gets into meta-linaro-toolchain.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend | 4 ++++
- 1 file changed, 4 insertions(+)
- create mode 100644 meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+ recipes-support/jailhouse/jailhouse-examples-rtos_git.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-new file mode 100644
-index 0000000..974bc7a
---- /dev/null
-+++ b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-@@ -0,0 +1,4 @@
-+do_install_append() {
-+	# libc.so linker script should use relative path to not clash with host libs
-+	sed -i -e "s# /lib# ../../lib#g" -e "s# /usr/lib# .#g" ${D}${libdir}/libc.so
-+}
+diff --git a/recipes-support/jailhouse/jailhouse-examples-rtos_git.bb b/recipes-support/jailhouse/jailhouse-examples-rtos_git.bb
+index c2d50de..98d0673 100644
+--- a/recipes-support/jailhouse/jailhouse-examples-rtos_git.bb
++++ b/recipes-support/jailhouse/jailhouse-examples-rtos_git.bb
+@@ -6,10 +6,10 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/git/baremetal/soc/am572x/rules.mk;endline=
+ 
+ BRANCH = "master"
+ SRC_URI = "git://git.ti.com/processor-sdk/jailhouse-inmate.git;branch=${BRANCH}"
+-SRCREV = "4b17bc03df92aa8bf55a161d311cc2fccd0bc7ac"
++SRCREV = "ba15a1518104b648cf04a42ac8c40583d441f1c2"
+ 
+ PV = "1.0"
+-PR = "r6"
++PR = "r7"
+ 
+ require recipes-ti/includes/tisdk-paths.inc
+ 
 -- 
-2.7.4
+1.9.1
 
 
