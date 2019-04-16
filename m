@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 9B0CD52A2C
+	by arago-project.org (Postfix) with ESMTPS id DF24A52A2B
 	for <meta-arago@arago-project.org>;
-	Tue, 16 Apr 2019 20:40:46 +0000 (UTC)
+	Tue, 16 Apr 2019 23:45:08 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 0635540BB6;
-	Tue, 16 Apr 2019 20:40:25 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 2398A40BB6;
+	Tue, 16 Apr 2019 23:44:47 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id FUBh5EbOn5n5; Tue, 16 Apr 2019 20:40:24 +0000 (UTC)
+	with ESMTP id 2ZZx0wmz_1z1; Tue, 16 Apr 2019 23:44:47 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D0DA940B0A;
-	Tue, 16 Apr 2019 20:40:23 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 06ABF40A9E;
+	Tue, 16 Apr 2019 23:44:45 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 0C67A16D9CF;
-	Tue, 16 Apr 2019 16:40:13 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 41C22169DEC;
+	Tue, 16 Apr 2019 19:44:45 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Tue, 16 Apr 2019 16:40:12 -0400
-Message-Id: <1555447212-41398-1-git-send-email-denys@ti.com>
+Date: Tue, 16 Apr 2019 19:44:44 -0400
+Message-Id: <1555458284-36885-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH] packagegroups, matrix: re-enable qtwebkit for k3
+Subject: [thud/master][PATCH] linuxptp: overlay newer 2.0 version locally
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,133 +37,126 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Apr 2019 20:40:47 -0000
+X-List-Received-Date: Tue, 16 Apr 2019 23:45:09 -0000
 
-This reverts commit f75e0c1068e18c9ead6f9e39e5cf91800325dbd8.
+Overlayed 2.0 from meta-oe/master, as thud comes with 1.8 that is not sufficient.
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-qte.bb | 12 ++++++------
- .../packagegroups/packagegroup-arago-tisdk-matrix.bb     |  8 ++++----
- .../packagegroups/packagegroup-arago-tisdk-qte.bb        | 12 ++++++------
- .../recipes-core/matrix/matrix-gui-browser_2.0.bb        |  6 +++---
- .../packagegroup-arago-qte-toolchain-target.bb           | 16 ++++++++--------
- 5 files changed, 27 insertions(+), 27 deletions(-)
+ ...build-Allow-CC-and-prefix-to-be-overriden.patch | 37 ++++++++++++++++++++++
+ .../linuxptp/no-incdefs-using-host-headers.patch   | 29 +++++++++++++++++
+ .../recipes-connectivity/linuxptp/linuxptp_2.0.bb  | 22 +++++++++++++
+ 3 files changed, 88 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch
+ create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch
+ create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-index 992b0b7..c038a16 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-@@ -46,12 +46,12 @@ QT5_ESSENTIALS = "\
-     qtconnectivity-qmlplugins \
- "
- 
--#QT5_ESSENTIALS_append_k3 = "\
--#    qtwebkit-qmlplugins \
--#"
--#QT5_ESSENTIALS_remove_k3 = "\
--#    qtwebengine-qmlplugins \
--#"
-+QT5_ESSENTIALS_append_k3 = "\
-+    qtwebkit-qmlplugins \
-+"
-+QT5_ESSENTIALS_remove_k3 = "\
-+    qtwebengine-qmlplugins \
-+"
- 
- RDEPENDS_${PN} = "\
-     ${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_ESSENTIALS}", "${QT4_ESSENTIALS}", d)} \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 02eaa97..1e54361 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -45,10 +45,10 @@ MATRIX_TOUCH_APPS = " \
- 
- MATRIX_QT_APPS_keystone = ""
- MATRIX_QT_APPS_omapl138 = ""
--#MATRIX_QT_APPS_remove_k3 = "matrix-qt5-demo-browser"
--#MATRIX_QT_APPS_append_k3 = " \
--#    matrix-qt5-demo-webkit-browser \
--#"
-+MATRIX_QT_APPS_remove_k3 = "matrix-qt5-demo-browser"
-+MATRIX_QT_APPS_append_k3 = " \
-+    matrix-qt5-demo-webkit-browser \
-+"
- 
- MATRIX_SGX_DEMOS = " \
-     matrix-3d-demo-chameleon \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-index 36cfca9..43a0d02 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-@@ -28,13 +28,13 @@ QT5_DEMOS = "\
-     qtserialport-examples \
- "
- 
--#QT5_DEMOS_append_k3 = " qtwebkit-examples-examples"
-+QT5_DEMOS_append_k3 = " qtwebkit-examples-examples"
- 
--#QT5_DEMOS_remove_k3 = "\
--#    qtwebbrowser \
--#    qtwebbrowser-examples \
--#    qtwebengine-examples \
--#"
-+QT5_DEMOS_remove_k3 = "\
-+    qtwebbrowser \
-+    qtwebbrowser-examples \
-+    qtwebengine-examples \
-+"
- 
- QT_DEMOS = "\
-     qt-tstat \
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-index 9635429..9ceaa56 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-@@ -10,14 +10,14 @@ inherit qt-provider
- RDEPENDS_${PN} += "${QT_RDEPENDS_FONTS}"
- 
- DEPENDS += "${QT_DEPENDS_WEBENGINE}"
--#DEPENDS_k3 += "${QT_DEPENDS_WEBKIT}"
--#DEPENDS_remove_k3 = "${QT_DEPENDS_WEBENGINE}"
-+DEPENDS_k3 += "${QT_DEPENDS_WEBKIT}"
-+DEPENDS_remove_k3 = "${QT_DEPENDS_WEBENGINE}"
- 
- PR = "r16"
- 
- QT4_SRCREV = "83019b46fb3dec1a12667d251d35ba8682953a79"
- QT5_SRCREV = "d3ecf8d0dff3e4f901d588ea0dfe485733dfc9dc"
--#QT5_SRCREV_k3 = "78ad5db716d1abc4c05abfe435f066b6b88454d5"
-+QT5_SRCREV_k3 = "78ad5db716d1abc4c05abfe435f066b6b88454d5"
- 
- 
- SRCREV = "${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_SRCREV}", "${QT4_SRCREV}", d)}"
-diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-index 5add6f9..2afc974 100644
---- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-+++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-@@ -67,15 +67,15 @@ QT5_DEV = " \
-         qtserialport-dev  \
- "
- 
--#QT5_DEV_append_k3 = " \
--#        qtwebkit-mkspecs \
--#        qtwebkit-dev \
--#"
-+QT5_DEV_append_k3 = " \
-+        qtwebkit-mkspecs \
-+        qtwebkit-dev \
-+"
- 
--#QT5_DEV_remove_k3 = " \
--#        qtwebengine-mkspecs \
--#        qtwebengine-dev \
--#"
-+QT5_DEV_remove_k3 = " \
-+        qtwebengine-mkspecs \
-+        qtwebengine-dev \
-+"
- 
- RDEPENDS_${PN} += " \
-         ${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_DEV}", "${QT4_DEV}", d)} \
+diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch
+new file mode 100644
+index 0000000..b1d96ae
+--- /dev/null
++++ b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch
+@@ -0,0 +1,37 @@
++From af485c638c61fa883212ea424e676fbf90bee594 Mon Sep 17 00:00:00 2001
++From: Otavio Salvador <otavio@ossystems.com.br>
++Date: Tue, 1 Jul 2014 17:37:31 -0300
++Subject: [PATCH] build: Allow CC and prefix to be overriden
++
++Upstream-Status: Pending
++
++Signed-off-by: Otavio Salvador <otavio@ossystems.com.br>
++---
++ makefile |    4 ++--
++ 1 file changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/makefile b/makefile
++index 22e7d0d..809cc8f 100644
++--- a/makefile
+++++ b/makefile
++@@ -18,7 +18,7 @@
++ KBUILD_OUTPUT =
++ 
++ DEBUG	=
++-CC	= $(CROSS_COMPILE)gcc
+++CC	?= $(CROSS_COMPILE)gcc
++ VER     = -DVER=$(version)
++ CFLAGS	= -Wall $(VER) $(incdefs) $(DEBUG) $(EXTRA_CFLAGS)
++ LDLIBS	= -lm -lrt $(EXTRA_LDFLAGS)
++@@ -35,7 +35,7 @@ incdefs := $(shell $(srcdir)/incdefs.sh)
++ version := $(shell $(srcdir)/version.sh $(srcdir))
++ VPATH	= $(srcdir)
++ 
++-prefix	= /usr/local
+++prefix	?= /usr/local
++ sbindir	= $(prefix)/sbin
++ mandir	= $(prefix)/man
++ man8dir	= $(mandir)/man8
++-- 
++1.7.10.4
++
+diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch
+new file mode 100644
+index 0000000..02dbb23
+--- /dev/null
++++ b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch
+@@ -0,0 +1,29 @@
++From 8a4cad5e2f2cbb6a34bdc6e877fe499502b8c4c8 Mon Sep 17 00:00:00 2001
++From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
++Date: Fri, 23 Dec 2016 18:12:29 +0100
++Subject: [PATCH] linuxptp: no incdefs using host headers
++
++Avoid using host headers via incdefs.sh shell script.
++
++Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
++---
++
++ makefile | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/makefile b/makefile
++index 8cdbd15..85174b8 100644
++--- a/makefile
+++++ b/makefile
++@@ -33,7 +33,7 @@ OBJECTS	= $(OBJ) hwstamp_ctl.o phc2sys.o phc_ctl.o pmc.o pmc_common.o \
++ SRC	= $(OBJECTS:.o=.c)
++ DEPEND	= $(OBJECTS:.o=.d)
++ srcdir	:= $(dir $(lastword $(MAKEFILE_LIST)))
++-incdefs := $(shell $(srcdir)/incdefs.sh)
+++#incdefs := $(shell $(srcdir)/incdefs.sh)
++ version := $(shell $(srcdir)/version.sh $(srcdir))
++ VPATH	= $(srcdir)
++ 
++-- 
++2.9.3
++
+diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb
+new file mode 100644
+index 0000000..eb262d3
+--- /dev/null
++++ b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb
+@@ -0,0 +1,22 @@
++DESCRIPTION = "Precision Time Protocol (PTP) according to IEEE standard 1588 for Linux"
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
++
++SRC_URI = "http://sourceforge.net/projects/linuxptp/files/v${PV}/linuxptp-${PV}.tgz \
++           file://build-Allow-CC-and-prefix-to-be-overriden.patch \
++           file://no-incdefs-using-host-headers.patch \
++           "
++
++SRC_URI[md5sum] = "d8bb7374943bb747db7786ac26f17f11"
++SRC_URI[sha256sum] = "0a24d9401e87d4af023d201e234d91127d82c350daad93432106284aa9459c7d"
++
++EXTRA_OEMAKE = "ARCH=${TARGET_ARCH} \
++    EXTRA_CFLAGS='-D_GNU_SOURCE -DHAVE_CLOCK_ADJTIME -DHAVE_POSIX_SPAWN -DHAVE_ONESTEP_SYNC ${CFLAGS}'"
++
++do_install () {
++    install -d ${D}/${bindir}
++    install -p ${S}/ptp4l  ${D}/${bindir}
++    install -p ${S}/pmc  ${D}/${bindir}
++    install -p ${S}/phc2sys  ${D}/${bindir}
++    install -p ${S}/hwstamp_ctl  ${D}/${bindir}
++}
 -- 
 2.7.4
 
