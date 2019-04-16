@@ -1,44 +1,42 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id AF0C152A33
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 5F9A452A2E
 	for <meta-arago@arago-project.org>;
-	Mon, 15 Apr 2019 20:41:50 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x3FKfTBn039070
-	for <meta-arago@arago-project.org>; Mon, 15 Apr 2019 15:41:29 -0500
+	Tue, 16 Apr 2019 17:25:47 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x3GHPPXe023634
+	for <meta-arago@arago-project.org>; Tue, 16 Apr 2019 12:25:25 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1555360889;
-	bh=TlT9jqCdZu8qMZzG58oxr+Z2qbKXFbFfPazF8FAajf0=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=xF64f7Ewhqgc4zqc1HFyfkdcQlt8SVvwZ0cNgx57bg1xEhDXz7lZA4ARA9L/r5HM1
-	Yi3wdEFctjANlMrjuLQbuBmLHG4Q6NK3NZq1lneiVaN54hSF4v3EOcgBE2Ydopguam
-	JKuUgg78sCSsN8wdc5RoMzeIN8fDf6ipmtwSx2JU=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x3FKfTbv062928
+	s=ti-com-17Q1; t=1555435525;
+	bh=totBHAuDy84qZbZ0O6NBxWiDMo6cHDRps0ovZa1EWYA=;
+	h=From:To:CC:Subject:Date;
+	b=BHT4U8EoC03wxDu26eMHo09wkvODIgHSF6GZf4/tgnTb3ZKF6KAcfyoSIxwwiSmn3
+	TiiIUodtqRWKZr+cHnoonmeEMFNVmu5ukNDKpRRpKmulcVW8UDzHepWVRBiFruz3RH
+	3nDlOnLXjAePIIwiDKmzcHS03RCWcOPEsV3QLJhw=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x3GHPPOF056995
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 15 Apr 2019 15:41:29 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 16 Apr 2019 12:25:25 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 15 Apr 2019 15:41:29 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 16 Apr 2019 12:25:25 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 15 Apr 2019 15:41:29 -0500
+	Frontend Transport; Tue, 16 Apr 2019 12:25:25 -0500
 Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x3FKfRLT082700;
-	Mon, 15 Apr 2019 15:41:29 -0500
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x3GHPOVD111043;
+	Tue, 16 Apr 2019 12:25:24 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 15 Apr 2019 16:29:16 -0400
-Message-ID: <1555360156-31116-2-git-send-email-j-stiffler@ti.com>
+Date: Tue, 16 Apr 2019 13:13:10 -0400
+Message-ID: <1555434790-6375-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1555360156-31116-1-git-send-email-j-stiffler@ti.com>
-References: <1555360156-31116-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master][PATCH 2/2] arago-source-ipk: u-boot-ti-staging: disable package strip and debug
+Subject: [meta-processor-sdk][PATCH] processor-sdk: disable am571x-idk-pru-excl-uio.dtb
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,39 +49,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Apr 2019 20:41:51 -0000
+X-List-Received-Date: Tue, 16 Apr 2019 17:25:51 -0000
 Content-Type: text/plain
 
-* This is causing problems with the new change to the sourceipk class
+* In kernel v4.19, there is some restructuring of devicetree which
+  currently leaves this broken.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-distro/conf/distro/include/arago-source-ipk.inc | 5 +++++
- 1 file changed, 5 insertions(+)
+ conf/distro/include/branding-processor-sdk.inc | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-index d958268..a709ad7 100644
---- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-@@ -39,6 +39,9 @@ INHERIT += "sourceipk"
- # Disable including README and recipe files in sourceipks for SDK builds.
- SRCIPK_INCLUDE_EXTRAFILES = "0"
+diff --git a/conf/distro/include/branding-processor-sdk.inc b/conf/distro/include/branding-processor-sdk.inc
+index 627a69d..7a05b93 100644
+--- a/conf/distro/include/branding-processor-sdk.inc
++++ b/conf/distro/include/branding-processor-sdk.inc
+@@ -36,6 +36,9 @@ RESERVE_CMEM_keystone = "1"
+ # Enable TI UIO devices
+ ENABLE_TI_UIO_DEVICES = "1"
  
-+# PVExtra is used here, but may not be defined in the recipe
-+PVExtra ?= ""
++# FIXME: temporarily remove broken device tree
++KERNEL_DEVICETREE_remove = "am571x-idk-pru-excl-uio.dtb"
 +
- # Set source ipk packages and install directories
- CREATE_SRCIPK_pn-ti-tisdk-licenses = "1"
- SRCIPK_INSTALL_DIR_pn-ti-tisdk-licenses = "docs/licenses"
-@@ -131,6 +134,8 @@ SRCIPK_INSTALL_DIR_pn-x-load_beagleboard = "board-support/${P}"
- CREATE_SRCIPK_pn-u-boot-ti-staging = "1"
- SRCIPK_INSTALL_DIR_pn-u-boot-ti-staging = "board-support/u-boot-${PV}${UBOOT_LOCALVERSION}"
- SRCIPK_PRESERVE_GIT_pn-u-boot-ti-staging = "true"
-+INHIBIT_PACKAGE_DEBUG_SPLIT_pn-u-boot-ti-staging = "1"
-+INHIBIT_PACKAGE_STRIP_pn-u-boot-ti-staging = "1"
+ # Configure ROS to use python3
+ ROS_USE_PYTHON3 = "yes"
  
- CREATE_SRCIPK_pn-u-boot-keystone = "1"
- SRCIPK_INSTALL_DIR_pn-u-boot-keystone = "board-support/u-boot-${PV}"
 -- 
 2.7.4
 
