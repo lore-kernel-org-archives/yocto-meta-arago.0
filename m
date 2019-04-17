@@ -1,30 +1,30 @@
-Return-Path: <denys@ti.com>
+Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id DF24A52A2B
+	by arago-project.org (Postfix) with ESMTPS id 3718152A2B
 	for <meta-arago@arago-project.org>;
-	Tue, 16 Apr 2019 23:45:08 +0000 (UTC)
+	Wed, 17 Apr 2019 00:26:48 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 2398A40BB6;
-	Tue, 16 Apr 2019 23:44:47 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5C42A40BC1;
+	Wed, 17 Apr 2019 00:26:26 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 2ZZx0wmz_1z1; Tue, 16 Apr 2019 23:44:47 +0000 (UTC)
+	with ESMTP id v6Spn-NzYxQZ; Wed, 17 Apr 2019 00:26:26 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 06ABF40A9E;
-	Tue, 16 Apr 2019 23:44:45 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 44FFB40A2D;
+	Wed, 17 Apr 2019 00:26:25 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 41C22169DEC;
-	Tue, 16 Apr 2019 19:44:45 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
+	by mail.denix.org (Postfix) with ESMTP id 917F5169DEC;
+	Tue, 16 Apr 2019 20:26:19 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue, 16 Apr 2019 19:44:44 -0400
-Message-Id: <1555458284-36885-1-git-send-email-denys@ti.com>
+Date: Tue, 16 Apr 2019 20:26:19 -0400
+Message-Id: <1555460779-51470-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH] linuxptp: overlay newer 2.0 version locally
+Subject: [oe-layersetup][PATCH] arago-thud: add meta-filesystems and meta-virtualization layers
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,126 +37,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Apr 2019 23:45:09 -0000
+X-List-Received-Date: Wed, 17 Apr 2019 00:26:49 -0000
 
-Overlayed 2.0 from meta-oe/master, as thud comes with 1.8 that is not sufficient.
+From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- ...build-Allow-CC-and-prefix-to-be-overriden.patch | 37 ++++++++++++++++++++++
- .../linuxptp/no-incdefs-using-host-headers.patch   | 29 +++++++++++++++++
- .../recipes-connectivity/linuxptp/linuxptp_2.0.bb  | 22 +++++++++++++
- 3 files changed, 88 insertions(+)
- create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch
- create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch
- create mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb
+ configs/arago-thud-config.txt      | 3 ++-
+ configs/arago-thud-next-config.txt | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch
-new file mode 100644
-index 0000000..b1d96ae
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch
-@@ -0,0 +1,37 @@
-+From af485c638c61fa883212ea424e676fbf90bee594 Mon Sep 17 00:00:00 2001
-+From: Otavio Salvador <otavio@ossystems.com.br>
-+Date: Tue, 1 Jul 2014 17:37:31 -0300
-+Subject: [PATCH] build: Allow CC and prefix to be overriden
-+
-+Upstream-Status: Pending
-+
-+Signed-off-by: Otavio Salvador <otavio@ossystems.com.br>
-+---
-+ makefile |    4 ++--
-+ 1 file changed, 2 insertions(+), 2 deletions(-)
-+
-+diff --git a/makefile b/makefile
-+index 22e7d0d..809cc8f 100644
-+--- a/makefile
-++++ b/makefile
-+@@ -18,7 +18,7 @@
-+ KBUILD_OUTPUT =
-+ 
-+ DEBUG	=
-+-CC	= $(CROSS_COMPILE)gcc
-++CC	?= $(CROSS_COMPILE)gcc
-+ VER     = -DVER=$(version)
-+ CFLAGS	= -Wall $(VER) $(incdefs) $(DEBUG) $(EXTRA_CFLAGS)
-+ LDLIBS	= -lm -lrt $(EXTRA_LDFLAGS)
-+@@ -35,7 +35,7 @@ incdefs := $(shell $(srcdir)/incdefs.sh)
-+ version := $(shell $(srcdir)/version.sh $(srcdir))
-+ VPATH	= $(srcdir)
-+ 
-+-prefix	= /usr/local
-++prefix	?= /usr/local
-+ sbindir	= $(prefix)/sbin
-+ mandir	= $(prefix)/man
-+ man8dir	= $(mandir)/man8
-+-- 
-+1.7.10.4
-+
-diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch
-new file mode 100644
-index 0000000..02dbb23
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch
-@@ -0,0 +1,29 @@
-+From 8a4cad5e2f2cbb6a34bdc6e877fe499502b8c4c8 Mon Sep 17 00:00:00 2001
-+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-+Date: Fri, 23 Dec 2016 18:12:29 +0100
-+Subject: [PATCH] linuxptp: no incdefs using host headers
-+
-+Avoid using host headers via incdefs.sh shell script.
-+
-+Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-+---
-+
-+ makefile | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/makefile b/makefile
-+index 8cdbd15..85174b8 100644
-+--- a/makefile
-++++ b/makefile
-+@@ -33,7 +33,7 @@ OBJECTS	= $(OBJ) hwstamp_ctl.o phc2sys.o phc_ctl.o pmc.o pmc_common.o \
-+ SRC	= $(OBJECTS:.o=.c)
-+ DEPEND	= $(OBJECTS:.o=.d)
-+ srcdir	:= $(dir $(lastword $(MAKEFILE_LIST)))
-+-incdefs := $(shell $(srcdir)/incdefs.sh)
-++#incdefs := $(shell $(srcdir)/incdefs.sh)
-+ version := $(shell $(srcdir)/version.sh $(srcdir))
-+ VPATH	= $(srcdir)
-+ 
-+-- 
-+2.9.3
-+
-diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb
-new file mode 100644
-index 0000000..eb262d3
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb
-@@ -0,0 +1,22 @@
-+DESCRIPTION = "Precision Time Protocol (PTP) according to IEEE standard 1588 for Linux"
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
-+
-+SRC_URI = "http://sourceforge.net/projects/linuxptp/files/v${PV}/linuxptp-${PV}.tgz \
-+           file://build-Allow-CC-and-prefix-to-be-overriden.patch \
-+           file://no-incdefs-using-host-headers.patch \
-+           "
-+
-+SRC_URI[md5sum] = "d8bb7374943bb747db7786ac26f17f11"
-+SRC_URI[sha256sum] = "0a24d9401e87d4af023d201e234d91127d82c350daad93432106284aa9459c7d"
-+
-+EXTRA_OEMAKE = "ARCH=${TARGET_ARCH} \
-+    EXTRA_CFLAGS='-D_GNU_SOURCE -DHAVE_CLOCK_ADJTIME -DHAVE_POSIX_SPAWN -DHAVE_ONESTEP_SYNC ${CFLAGS}'"
-+
-+do_install () {
-+    install -d ${D}/${bindir}
-+    install -p ${S}/ptp4l  ${D}/${bindir}
-+    install -p ${S}/pmc  ${D}/${bindir}
-+    install -p ${S}/phc2sys  ${D}/${bindir}
-+    install -p ${S}/hwstamp_ctl  ${D}/${bindir}
-+}
+diff --git a/configs/arago-thud-config.txt b/configs/arago-thud-config.txt
+index a837758..2811b3b 100644
+--- a/configs/arago-thud-config.txt
++++ b/configs/arago-thud-config.txt
+@@ -5,7 +5,8 @@ bitbake,git://git.openembedded.org/bitbake,1.40,HEAD
+ meta-arago,git://arago-project.org/git/meta-arago.git,thud,HEAD,layers=meta-arago-distro:meta-arago-extras
+ meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
+ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,thud,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,thud,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome
++meta-virtualization,git://git.yoctoproject.org/meta-virtualization,thud,HEAD,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,thud,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+ meta-ti,git://git.yoctoproject.org/meta-ti,thud,HEAD,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,thud,HEAD,layers=meta-linaro-toolchain:meta-optee
+ oe-core,git://git.openembedded.org/openembedded-core,thud,HEAD,layers=meta
+diff --git a/configs/arago-thud-next-config.txt b/configs/arago-thud-next-config.txt
+index efa0a4a..1f6cf33 100644
+--- a/configs/arago-thud-next-config.txt
++++ b/configs/arago-thud-next-config.txt
+@@ -5,7 +5,8 @@ bitbake,git://git.openembedded.org/bitbake,1.40,HEAD
+ meta-arago,git://arago-project.org/git/meta-arago.git,thud-next,HEAD,layers=meta-arago-distro:meta-arago-extras
+ meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
+ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,thud,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,thud,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome
++meta-virtualization,git://git.yoctoproject.org/meta-virtualization,thud,HEAD,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,thud,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+ meta-ti,git://git.yoctoproject.org/meta-ti,thud-next,HEAD,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,thud,HEAD,layers=meta-linaro-toolchain:meta-optee
+ oe-core,git://git.openembedded.org/openembedded-core,thud,HEAD,layers=meta
 -- 
 2.7.4
 
