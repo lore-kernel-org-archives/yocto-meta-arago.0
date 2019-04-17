@@ -1,30 +1,30 @@
-Return-Path: <denis@denix.org>
+Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 3718152A2B
+	by arago-project.org (Postfix) with ESMTPS id AA57152A2B
 	for <meta-arago@arago-project.org>;
-	Wed, 17 Apr 2019 00:26:48 +0000 (UTC)
+	Wed, 17 Apr 2019 00:27:41 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5C42A40BC1;
-	Wed, 17 Apr 2019 00:26:26 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 247B640BC1;
+	Wed, 17 Apr 2019 00:27:20 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id v6Spn-NzYxQZ; Wed, 17 Apr 2019 00:26:26 +0000 (UTC)
+	with ESMTP id BgTuWWM0m-lS; Wed, 17 Apr 2019 00:27:20 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 44FFB40A2D;
-	Wed, 17 Apr 2019 00:26:25 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 102F340A2D;
+	Wed, 17 Apr 2019 00:27:19 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 917F5169DEC;
-	Tue, 16 Apr 2019 20:26:19 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
+	by mail.denix.org (Postfix) with ESMTP id C716C169DEC;
+	Tue, 16 Apr 2019 20:27:18 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Tue, 16 Apr 2019 20:26:19 -0400
-Message-Id: <1555460779-51470-1-git-send-email-denis@denix.org>
+Date: Tue, 16 Apr 2019 20:27:18 -0400
+Message-Id: <1555460838-51670-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [oe-layersetup][PATCH] arago-thud: add meta-filesystems and meta-virtualization layers
+Subject: [thud/master][PATCH] packagegroup-arago-tisdk-addons: package irqbalance for k3
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,44 +37,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Apr 2019 00:26:49 -0000
-
-From: Denys Dmytriyenko <denys@ti.com>
+X-List-Received-Date: Wed, 17 Apr 2019 00:27:42 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- configs/arago-thud-config.txt      | 3 ++-
- configs/arago-thud-next-config.txt | 3 ++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb        | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/configs/arago-thud-config.txt b/configs/arago-thud-config.txt
-index a837758..2811b3b 100644
---- a/configs/arago-thud-config.txt
-+++ b/configs/arago-thud-config.txt
-@@ -5,7 +5,8 @@ bitbake,git://git.openembedded.org/bitbake,1.40,HEAD
- meta-arago,git://arago-project.org/git/meta-arago.git,thud,HEAD,layers=meta-arago-distro:meta-arago-extras
- meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
- meta-qt5,git://github.com/meta-qt5/meta-qt5.git,thud,HEAD,layers=
--meta-openembedded,git://git.openembedded.org/meta-openembedded,thud,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome
-+meta-virtualization,git://git.yoctoproject.org/meta-virtualization,thud,HEAD,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,thud,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
- meta-ti,git://git.yoctoproject.org/meta-ti,thud,HEAD,layers=
- meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,thud,HEAD,layers=meta-linaro-toolchain:meta-optee
- oe-core,git://git.openembedded.org/openembedded-core,thud,HEAD,layers=meta
-diff --git a/configs/arago-thud-next-config.txt b/configs/arago-thud-next-config.txt
-index efa0a4a..1f6cf33 100644
---- a/configs/arago-thud-next-config.txt
-+++ b/configs/arago-thud-next-config.txt
-@@ -5,7 +5,8 @@ bitbake,git://git.openembedded.org/bitbake,1.40,HEAD
- meta-arago,git://arago-project.org/git/meta-arago.git,thud-next,HEAD,layers=meta-arago-distro:meta-arago-extras
- meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
- meta-qt5,git://github.com/meta-qt5/meta-qt5.git,thud,HEAD,layers=
--meta-openembedded,git://git.openembedded.org/meta-openembedded,thud,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome
-+meta-virtualization,git://git.yoctoproject.org/meta-virtualization,thud,HEAD,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,thud,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
- meta-ti,git://git.yoctoproject.org/meta-ti,thud-next,HEAD,layers=
- meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,thud,HEAD,layers=meta-linaro-toolchain:meta-optee
- oe-core,git://git.openembedded.org/openembedded-core,thud,HEAD,layers=meta
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 6a642be..abcf6bc 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -74,6 +74,7 @@ UTILS_append_k3 = " mmc-utils \
+                     switch-config \
+                     pru-icss \
+                     ti-ipc-rtos-fw \
++                    irqbalance \
+ "
+ 
+ UTILS_append_omapl138 = " ti-ipc-rtos-fw"
 -- 
 2.7.4
 
