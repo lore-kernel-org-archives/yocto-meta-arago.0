@@ -1,44 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id CD40752093
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 54A7352093
 	for <meta-arago@arago-project.org>;
-	Mon, 22 Apr 2019 12:52:42 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x3MCqJws083493
-	for <meta-arago@arago-project.org>; Mon, 22 Apr 2019 07:52:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1555937539;
-	bh=2E0LKM7Gi5CdhcIBnE9g94Wu59Rmxho0plmnkyl2mG0=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=p3KMYjepe66/9qUgUZeEIChVABhT+W/k12hhSxb8hhzz3ZbEWESUu0tc6Ai+8xdJI
-	jePpMWBJXQAzzA1q9yV98WE6DtnWZYHy/k3EG5/0aybm8q0x9yeqjseXI7s1xf4nz+
-	QOD4vKZfvu4+z/8c2EwrNNsk3LholivATKwnulF0=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x3MCqJ3p012122
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 22 Apr 2019 07:52:19 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 22 Apr 2019 07:52:18 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 22 Apr 2019 07:52:18 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x3MCqIuW105160;
-	Mon, 22 Apr 2019 07:52:18 -0500
-To: Gaurav Mitra <gaurav@ti.com>, <meta-arago@arago-project.org>
-References: <20190418213339.109836-1-gaurav@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <5a62cfc8-7f55-9db3-0306-0a8ae46787df@ti.com>
-Date: Mon, 22 Apr 2019 08:52:18 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190418213339.109836-1-gaurav@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [PATCH] opencl-monitor, opencl-monitor-ipu, opencl-monitor-rtos: compile monitor in do_compile phase instead of do_install
+	Mon, 22 Apr 2019 20:11:17 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id CB65440BD1;
+	Mon, 22 Apr 2019 20:10:53 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id bL05MoQOxPFK; Mon, 22 Apr 2019 20:10:53 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id AC16740BC1;
+	Mon, 22 Apr 2019 20:10:52 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id AA9CC16E4CB;
+	Mon, 22 Apr 2019 16:10:51 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Mon, 22 Apr 2019 16:10:51 -0400
+Message-Id: <1555963851-17767-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [thud/master][PATCH] qtwayland: remove old unused backported patches
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,223 +37,260 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Apr 2019 12:52:43 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Mon, 22 Apr 2019 20:11:17 -0000
 
-I was anticipating that the change for this would come from within the 
-monitor's cmake files. Instead, the build and install instructions from 
-cmake is duplicated here, and thus any future changes will now require 
-two sets of changes.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../qt5/qtwayland/0001-Fix-touch-with-Weston.patch |  74 -------------
+ ...-drag-a-window-by-its-titlebar-using-the-.patch | 118 ---------------------
+ .../0001-Wayland-correct-touch-location.patch      |  31 ------
+ 3 files changed, 223 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Fix-touch-with-Weston.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Wayland-can-drag-a-window-by-its-titlebar-using-the-.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Wayland-correct-touch-location.patch
 
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Fix-touch-with-Weston.patch b/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Fix-touch-with-Weston.patch
+deleted file mode 100644
+index df564bb..0000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Fix-touch-with-Weston.patch
++++ /dev/null
+@@ -1,74 +0,0 @@
+-From 797fd02ed6bb26f30899e117d6ab8119b7a24f95 Mon Sep 17 00:00:00 2001
+-From: Laszlo Agocs <laszlo.agocs@digia.com>
+-Date: Fri, 29 Aug 2014 20:43:20 +0200
+-Subject: [PATCH] Fix touch with Weston
+-
+-Work around the missing touch_frame after the last touch_up.
+-
+-Task-number: QTBUG-36602
+-Change-Id: Iccb03bdc8b430c7cefc097c3c84e50be676c7fe7
+----
+- src/client/qwaylandinputdevice.cpp |   26 +++++++++++++++++++-------
+- 1 file changed, 19 insertions(+), 7 deletions(-)
+-
+-diff --git a/src/client/qwaylandinputdevice.cpp b/src/client/qwaylandinputdevice.cpp
+-index 6c13201..a520c79 100644
+---- a/src/client/qwaylandinputdevice.cpp
+-+++ b/src/client/qwaylandinputdevice.cpp
+-@@ -220,6 +220,8 @@ public:
+-     void touch_frame() Q_DECL_OVERRIDE;
+-     void touch_cancel() Q_DECL_OVERRIDE;
+- 
+-+    bool allTouchPointsReleased();
+-+
+-     QWaylandInputDevice *mParent;
+-     QWaylandWindow *mFocus;
+-     QList<QWindowSystemInterface::TouchPoint> mTouchPoints;
+-@@ -863,6 +865,13 @@ void QWaylandInputDevice::Touch::touch_up(uint32_t serial, uint32_t time, int32_
+-     Q_UNUSED(time);
+-     mFocus = 0;
+-     mParent->handleTouchPoint(id, 0, 0, Qt::TouchPointReleased);
+-+
+-+    // As of Weston 1.5.90 there is no touch_frame after the last touch_up
+-+    // (i.e. when the last finger is released). To accomodate for this, issue a
+-+    // touch_frame. This cannot hurt since it is safe to call the touch_frame
+-+    // handler multiple times when there are no points left.
+-+    if (allTouchPointsReleased())
+-+        touch_frame();
+- }
+- 
+- void QWaylandInputDevice::Touch::touch_motion(uint32_t time, int32_t id, wl_fixed_t x, wl_fixed_t y)
+-@@ -921,6 +930,15 @@ void QWaylandInputDevice::handleTouchPoint(int id, double x, double y, Qt::Touch
+-     mTouch->mTouchPoints.append(tp);
+- }
+- 
+-+bool QWaylandInputDevice::Touch::allTouchPointsReleased()
+-+{
+-+    for (int i = 0; i < mTouchPoints.count(); ++i)
+-+        if (mTouchPoints.at(i).state != Qt::TouchPointReleased)
+-+            return false;
+-+
+-+    return true;
+-+}
+-+
+- void QWaylandInputDevice::Touch::touch_frame()
+- {
+-     // Copy all points, that are in the previous but not in the current list, as stationary.
+-@@ -950,13 +968,7 @@ void QWaylandInputDevice::Touch::touch_frame()
+- 
+-     QWindowSystemInterface::handleTouchEvent(window, mParent->mTouchDevice, mTouchPoints);
+- 
+--    bool allReleased = true;
+--    for (int i = 0; i < mTouchPoints.count(); ++i)
+--        if (mTouchPoints.at(i).state != Qt::TouchPointReleased) {
+--            allReleased = false;
+--            break;
+--        }
+--
+-+    const bool allReleased = allTouchPointsReleased();
+-     mPrevTouchPoints = mTouchPoints;
+-     mTouchPoints.clear();
+- 
+--- 
+-1.7.9.5
+-
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Wayland-can-drag-a-window-by-its-titlebar-using-the-.patch b/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Wayland-can-drag-a-window-by-its-titlebar-using-the-.patch
+deleted file mode 100644
+index 468e519..0000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Wayland-can-drag-a-window-by-its-titlebar-using-the-.patch
++++ /dev/null
+@@ -1,118 +0,0 @@
+-From 3538efae35dcbd4adf1361598deae0d198bbe13f Mon Sep 17 00:00:00 2001
+-From: Shawn Rutledge <shawn.rutledge@digia.com>
+-Date: Mon, 1 Sep 2014 17:04:09 +0200
+-Subject: [PATCH] Wayland: can drag a window by its titlebar using the
+- touchscreen
+-
+-It was already possible to drag it via the mouse but not via touch.
+-
+-Task-number: QTBUG-41085
+-Change-Id: Ia52c7124fb2f1aa0331897bd072fcf09fb78aa1a
+-Reviewed-by: Laszlo Agocs <laszlo.agocs@digia.com>
+----
+- src/client/qwaylanddecoration.cpp  |   13 +++++++++++++
+- src/client/qwaylanddecoration_p.h  |    1 +
+- src/client/qwaylandinputdevice.cpp |   10 ++++++++--
+- src/client/qwaylandwindow.cpp      |    7 +++++++
+- src/client/qwaylandwindow_p.h      |    3 +++
+- 5 files changed, 32 insertions(+), 2 deletions(-)
+-
+-diff --git a/src/client/qwaylanddecoration.cpp b/src/client/qwaylanddecoration.cpp
+-index b288deb..c9ab23c 100644
+---- a/src/client/qwaylanddecoration.cpp
+-+++ b/src/client/qwaylanddecoration.cpp
+-@@ -335,6 +335,19 @@ bool QWaylandDecoration::handleMouse(QWaylandInputDevice *inputDevice, const QPo
+-     return true;
+- }
+- 
+-+bool QWaylandDecoration::handleTouch(QWaylandInputDevice *inputDevice, const QPointF &local, const QPointF &global, Qt::TouchPointState state, Qt::KeyboardModifiers mods)
+-+{
+-+    Q_UNUSED(inputDevice);
+-+    Q_UNUSED(global);
+-+    Q_UNUSED(mods);
+-+
+-+    if (state == Qt::TouchPointPressed && local.y() <= m_margins.top()) {
+-+        m_wayland_window->shellSurface()->move(inputDevice);
+-+        return true;
+-+    }
+-+    return false;
+-+}
+-+
+- bool QWaylandDecoration::inMouseButtonPressedState() const
+- {
+-     return m_mouseButtons & Qt::NoButton;
+-diff --git a/src/client/qwaylanddecoration_p.h b/src/client/qwaylanddecoration_p.h
+-index 14bf4a9..c240b9c 100644
+---- a/src/client/qwaylanddecoration_p.h
+-+++ b/src/client/qwaylanddecoration_p.h
+-@@ -75,6 +75,7 @@ public:
+-     bool isDirty() const;
+- 
+-     bool handleMouse(QWaylandInputDevice *inputDevice, const QPointF &local, const QPointF &global,Qt::MouseButtons b,Qt::KeyboardModifiers mods);
+-+    bool handleTouch(QWaylandInputDevice *inputDevice, const QPointF &local, const QPointF &global, Qt::TouchPointState state, Qt::KeyboardModifiers mods);
+-     bool inMouseButtonPressedState() const;
+- 
+-     void startResize(QWaylandInputDevice *inputDevice,enum wl_shell_surface_resize resize, Qt::MouseButtons buttons);
+-diff --git a/src/client/qwaylandinputdevice.cpp b/src/client/qwaylandinputdevice.cpp
+-index 014303f..5be76d9 100644
+---- a/src/client/qwaylandinputdevice.cpp
+-+++ b/src/client/qwaylandinputdevice.cpp
+-@@ -853,8 +853,8 @@ void QWaylandInputDevice::Touch::touch_down(uint32_t serial,
+-                                      wl_fixed_t x,
+-                                      wl_fixed_t y)
+- {
+--    Q_UNUSED(serial);
+--    Q_UNUSED(time);
+-+    mParent->mTime = time;
+-+    mParent->mSerial = serial;
+-     mFocus = QWaylandWindow::fromWlSurface(surface);
+-     mParent->handleTouchPoint(id, wl_fixed_to_double(x), wl_fixed_to_double(y), Qt::TouchPointPressed);
+- }
+-@@ -966,6 +966,12 @@ void QWaylandInputDevice::Touch::touch_frame()
+- 
+-     QWindow *window = mFocus ? mFocus->window() : 0;
+- 
+-+    if (mFocus) {
+-+        const QWindowSystemInterface::TouchPoint &tp = mTouchPoints.last();
+-+        QPointF localPos(window->mapFromGlobal(tp.area.center().toPoint()));
+-+        if (mFocus->touchDragDecoration(mParent, localPos, tp.area.center(), tp.state, mParent->modifiers()))
+-+            return;
+-+    }
+-     QWindowSystemInterface::handleTouchEvent(window, mParent->mTouchDevice, mTouchPoints);
+- 
+-     const bool allReleased = allTouchPointsReleased();
+-diff --git a/src/client/qwaylandwindow.cpp b/src/client/qwaylandwindow.cpp
+-index fb3095d..278825e 100644
+---- a/src/client/qwaylandwindow.cpp
+-+++ b/src/client/qwaylandwindow.cpp
+-@@ -583,6 +583,13 @@ void QWaylandWindow::handleMouseLeave(QWaylandInputDevice *inputDevice)
+-     restoreMouseCursor(inputDevice);
+- }
+- 
+-+bool QWaylandWindow::touchDragDecoration(QWaylandInputDevice *inputDevice, const QPointF &local, const QPointF &global, Qt::TouchPointState state, Qt::KeyboardModifiers mods)
+-+{
+-+    if (!mWindowDecoration)
+-+        return false;
+-+    return mWindowDecoration->handleTouch(inputDevice, local, global, state, mods);
+-+}
+-+
+- void QWaylandWindow::handleMouseEventWithDecoration(QWaylandInputDevice *inputDevice, ulong timestamp, const QPointF &local, const QPointF &global, Qt::MouseButtons b, Qt::KeyboardModifiers mods)
+- {
+-     if (mWindowDecoration->handleMouse(inputDevice,local,global,b,mods))
+-diff --git a/src/client/qwaylandwindow_p.h b/src/client/qwaylandwindow_p.h
+-index 0d0833e..db0b594 100644
+---- a/src/client/qwaylandwindow_p.h
+-+++ b/src/client/qwaylandwindow_p.h
+-@@ -156,6 +156,9 @@ public:
+-     void handleMouseEnter(QWaylandInputDevice *inputDevice);
+-     void handleMouseLeave(QWaylandInputDevice *inputDevice);
+- 
+-+    bool touchDragDecoration(QWaylandInputDevice *inputDevice, const QPointF &local, const QPointF &global,
+-+                             Qt::TouchPointState state, Qt::KeyboardModifiers mods);
+-+
+-     bool createDecoration();
+- 
+-     inline bool isMaximized() const { return mState == Qt::WindowMaximized; }
+--- 
+-1.7.9.5
+-
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Wayland-correct-touch-location.patch b/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Wayland-correct-touch-location.patch
+deleted file mode 100644
+index caa6dff..0000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Wayland-correct-touch-location.patch
++++ /dev/null
+@@ -1,31 +0,0 @@
+-From ae54be549e6ebeef829d5c1089d5307d00d0b791 Mon Sep 17 00:00:00 2001
+-From: Shawn Rutledge <shawn.rutledge@digia.com>
+-Date: Mon, 1 Sep 2014 15:30:42 +0200
+-Subject: [PATCH] Wayland: correct touch location
+-
+-The window margins were offsetting the touch point in the wrong
+-direction.
+-
+-Task-number: QTBUG-36602
+-Change-Id: Id8b31d2de4051f36d3ff4e088bbc9bd7cc84ca13
+-Reviewed-by: Laszlo Agocs <laszlo.agocs@digia.com>
+----
+- src/client/qwaylandinputdevice.cpp |    2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/src/client/qwaylandinputdevice.cpp b/src/client/qwaylandinputdevice.cpp
+-index 4a100f7..014303f 100644
+---- a/src/client/qwaylandinputdevice.cpp
+-+++ b/src/client/qwaylandinputdevice.cpp
+-@@ -921,7 +921,7 @@ void QWaylandInputDevice::handleTouchPoint(int id, double x, double y, Qt::Touch
+- 
+-         tp.area = QRectF(0, 0, 8, 8);
+-         QMargins margins = win->frameMargins();
+--        tp.area.moveCenter(win->window()->mapToGlobal(QPoint(x+margins.left(), y+margins.top())));
+-+        tp.area.moveCenter(win->window()->mapToGlobal(QPoint(x - margins.left(), y - margins.top())));
+-     }
+- 
+-     tp.state = state;
+--- 
+-1.7.9.5
+-
+-- 
+2.7.4
 
-- Jake
-
-On 4/18/2019 5:33 PM, Gaurav Mitra wrote:
->      - The cmake build of opencl-monitor, opencl-monitor-ipu and
->        opencl-monitor-rtos performs compilation as well as installation of
->        artifacts in the do_install phase
->      - Separate the compilation and installation of the monitor in do_compile
->        and do_install phases respectively using make instead of cmake
->
-> Signed-off-by: Gaurav Mitra <gaurav@ti.com>
-> ---
->   .../recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb | 32 +++++++-----
->   .../recipes-ti/ocl/opencl-monitor-ipu_git.bb       | 24 ++++++---
->   .../recipes-ti/ocl/opencl-monitor_git.bb           | 57 ++++++++++++++++++----
->   3 files changed, 85 insertions(+), 28 deletions(-)
->
-> diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
-> index b0e70165..637b427c 100644
-> --- a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
-> @@ -7,8 +7,6 @@ require recipes-ti/includes/arago-paths.inc
->   
->   PR = "${INC_PR}.0"
->   
-> -inherit cmake
-> -
->   DEPENDS = " ti-llvm3.6-native \
->               common-csl-ip-rtos \
->               ti-xdctools-native \
-> @@ -33,14 +31,6 @@ BUILD_TARGET_omap-a15   = "ARM_AM57"
->   RELEASE_TARGET = ""
->   RELEASE_TARGET_omap-a15 = "am57xx"
->   
-> -EXTRA_OECMAKE += " -DCROSS_COMPILE=TRUE \
-> -                   -DOCL_MONITOR_DIR=${S} \
-> -                   -DBUILD_OUTPUT=all \
-> -                   -DSHARE_PATH=${datadir}/ti \
-> -                   -DBUILD_TARGET=${BUILD_TARGET} \
-> -                   -DBUILD_OS=SYS_BIOS \
-> -"
-> -
->   export TI_OCL_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
->   export PDK_DIR = "${PDK_INSTALL_DIR}"
->   export IPC_DIR = "${IPC_INSTALL_DIR}"
-> @@ -57,9 +47,29 @@ export AET_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/ctoolslib/aet"
->   export X86_LLVM_DIR = "${STAGING_DIR_NATIVE}/usr"
->   export XDCPATH = "${S};${IPC_DIR}/packages;${BIOS_DIR}/packages;${EDMA3LLD_DIR}/packages;${FC_DIR}/packages;${XDAIS_DIR}/packages"
->   export DESTDIR="${D}${OCL_RTOS_INSTALL_DIR_RECIPE}/ti-opencl-rtos-${RELEASE_TARGET}-${PV}/packages/ti/opencl"
-> +export OCL_FPERMS = "664"
-> +export OCL_DPERMS = "775"
-> +export SHARE_PATH="${DESTDIR}${datadir}/ti/opencl"
-> +
-> +EXTRA_OEMAKE += " BUILD_OS=SYS_BIOS \
-> +                  WORKING_DIRECTORY=${S} \
-> +                  BUILD_TARGET=${BUILD_TARGET} \
-> +"
-> +
-> +do_compile() {
-> +  oe_runmake -f Makefile
-> +}
->   
->   do_install() {
-> -    oe_runmake install
-> +    install -m ${OCL_DPERMS} -d ${SHARE_PATH}
-> +    install -m ${OCL_FPERMS} monitor_am57x_rtos/dsp0.syms ${SHARE_PATH}/dsp.syms
-> +    install -m ${OCL_FPERMS} monitor_am57x_rtos/dsp0.syms.obj ${SHARE_PATH}/dsp_syms.obj
-> +    install -m ${OCL_FPERMS} monitor_am57x_rtos/dsp0.out ${SHARE_PATH}
-> +    install -m ${OCL_FPERMS} monitor_am57x_rtos/dsp1.out ${SHARE_PATH}
-> +    install -m ${OCL_FPERMS} libDSPMonitor.ae66 ${SHARE_PATH}
-> +    install -m ${OCL_FPERMS} ../builtins/dsp.lib ${SHARE_PATH}
-> +    install -m ${OCL_FPERMS} ../libm/libm.lib ${SHARE_PATH}
-> +    install -m ${OCL_FPERMS} cmds/monitor.am57x_rtos.cmd ${SHARE_PATH}
->   }
->   
->   FILES_${PN} += "${OCL_RTOS_INSTALL_DIR_RECIPE}"
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> index 72855665..c2552416 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor-ipu_git.bb
-> @@ -7,7 +7,7 @@ require recipes-ti/includes/arago-paths.inc
->   
->   PR = "${INC_PR}.0"
->   
-> -inherit cmake update-alternatives
-> +inherit update-alternatives
->   
->   DEPENDS = " common-csl-ip-rtos \
->               pm-lld-rtos \
-> @@ -25,13 +25,6 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
->   
->   S = "${WORKDIR}/git/monitor_ipu"
->   
-> -BUILD_TARGET = "ARM_AM57"
-> -
-> -EXTRA_OECMAKE += " -DCROSS_COMPILE=TRUE \
-> -                   -DOCL_MONITOR_IPU_DIR=${S} \
-> -                   -DBUILD_OUTPUT=all \
-> -"
-> -
->   export IPC_DIR = "${IPC_INSTALL_DIR}"
->   export BIOS_DIR = "${SYSBIOS_INSTALL_DIR}"
->   export PDK_DIR = "${PDK_INSTALL_DIR}"
-> @@ -40,6 +33,21 @@ export TI_OCL_M4_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/ti-cgt-arm"
->   export CSL_LIB_M4 = "${PDK_DIR}/packages/ti/csl/lib/am572x/m4/release/ti.csl.aem4"
->   export PM_HAL_LIB_M4 = "$(PDK_DIR)/packages/ti/drv/pm/lib/am572x/m4/release/pm_hal.aem4"
->   export OCL_TIDL_FW_DIR = "${OCL_TIDL_FW_INSTALL_DIR}"
-> +export OCL_FPERMS = "664"
-> +export OCL_DPERMS = "775"
-> +
-> +EXTRA_OEMAKE += " BUILD_AM57=1 \
-> +                  WORKING_DIRECTORY=${S} \
-> +"
-> +
-> +do_compile() {
-> +  oe_runmake -f Makefile
-> +}
-> +
-> +do_install() {
-> +    install -m ${OCL_DPERMS} -d ${D}${base_libdir}/firmware
-> +    install -m ${OCL_FPERMS} bin/release/server_ipu1.xem4 ${D}${base_libdir}/firmware/dra7-ipu1-fw.xem4.opencl-monitor
-> +}
->   
->   ALTERNATIVE_${PN} = "dra7-ipu1-fw.xem4"
->   ALTERNATIVE_LINK_NAME[dra7-ipu1-fw.xem4] = "${base_libdir}/firmware/dra7-ipu1-fw.xem4"
-> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> index 3cc6572b..0ab21a1a 100644
-> --- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-> @@ -7,7 +7,7 @@ require recipes-ti/includes/arago-paths.inc
->   
->   PR = "${INC_PR}.0"
->   
-> -inherit cmake update-alternatives
-> +inherit update-alternatives
->   
->   DEPENDS = " ti-llvm3.6-native \
->               common-csl-ip-rtos \
-> @@ -56,13 +56,6 @@ BUILD_TARGET_k2l = "ARM_K2L"
->   BUILD_TARGET_k2e = "ARM_K2E"
->   BUILD_TARGET_k2g = "ARM_K2G"
->   
-> -EXTRA_OECMAKE += " -DCROSS_COMPILE=TRUE \
-> -                   -DOCL_MONITOR_DIR=${S} \
-> -                   -DBUILD_OUTPUT=all \
-> -                   -DSHARE_PATH=${datadir}/ti \
-> -                   -DBUILD_TARGET=${BUILD_TARGET} \
-> -"
-> -
->   export TI_OCL_CGT_INSTALL = "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
->   export PDK_DIR = "${PDK_INSTALL_DIR}"
->   export IPC_DIR = "${IPC_INSTALL_DIR}"
-> @@ -79,9 +72,55 @@ export AET_DIR = "${STAGING_DIR_TARGET}/usr/share/ti/ctoolslib/aet"
->   export X86_LLVM_DIR = "${STAGING_DIR_NATIVE}/usr"
->   export XDCPATH = "${S};${IPC_DIR}/packages;${BIOS_DIR}/packages;${EDMA3LLD_DIR}/packages;${FC_DIR}/packages;${XDAIS_DIR}/packages"
->   export OCL_TIDL_FW_DIR = "${OCL_TIDL_FW_INSTALL_DIR}"
-> +export OCL_FPERMS = "664"
-> +export OCL_DPERMS = "775"
-> +export SHARE_PATH="${D}${datadir}/ti/opencl"
-> +
-> +EXTRA_OEMAKE += " BUILD_OS=linux \
-> +                  WORKING_DIRECTORY=${S} \
-> +                  BUILD_TARGET=${BUILD_TARGET} \
-> +"
-> +do_compile() {
-> +  oe_runmake -f Makefile
-> +}
-> +
-> +do_install() {
-> +    install -m ${OCL_DPERMS} -d ${SHARE_PATH}
-> +}
-> +
-> +install_dsp_objs() {
-> +    install -m ${OCL_FPERMS} monitor_${1}/dsp0.out ${SHARE_PATH}/dsp.out
-> +    install -m ${OCL_FPERMS} monitor_${1}/dsp0.syms.obj ${SHARE_PATH}/dsp_syms.obj
-> +    install -m ${OCL_FPERMS} monitor_${1}/dsp0.syms ${SHARE_PATH}/dsp.syms
-> +}
->   
->   do_install_append_dra7xx() {
-> -	for i in 1 2; do mv ${D}${base_libdir}/firmware/dra7-dsp$i-fw.xe66 ${D}${base_libdir}/firmware/dra7-dsp$i-fw.xe66.${BPN}; done
-> +    install_dsp_objs am57x
-> +    install -m ${OCL_DPERMS} -d ${D}${base_libdir}/firmware
-> +    install -m ${OCL_FPERMS} monitor_am57x/dsp0.out ${D}${base_libdir}/firmware/dra7-dsp1-fw.xe66.${BPN}
-> +    install -m ${OCL_FPERMS} monitor_am57x/dsp1.out ${D}${base_libdir}/firmware/dra7-dsp2-fw.xe66.${BPN}
-> +}
-> +
-> +do_install_append_k2hk() {
-> +    for i in {0..7}; do install -m ${OCL_FPERMS} monitor_evmk2h/dsp${i}.out ${SHARE_PATH}; done
-> +    install_dsp_objs evmk2h
-> +}
-> +
-> +do_install_append_k2l() {
-> +    for i in {0..3}; do install -m ${OCL_FPERMS} monitor_evmk2l/dsp${i}.out ${SHARE_PATH}; done
-> +    install_dsp_objs evmk2l
-> +}
-> +
-> +do_install_append_k2e() {
-> +    install -m ${OCL_FPERMS} monitor_evmk2e/dsp0.out ${SHARE_PATH}
-> +    install_dsp_objs evmk2e
-> +}
-> +
-> +do_install_append_k2g() {
-> +    install -m ${OCL_FPERMS} monitor_evmk2g/dsp0.out ${SHARE_PATH}
-> +    install -m ${OCL_FPERMS} monitor_evmk2g/dsp0.out ${SHARE_PATH}/dsp.out
-> +    install -m ${OCL_FPERMS} monitor_evmk2g/dsp.syms ${SHARE_PATH}
-> +    install -m ${OCL_FPERMS} monitor_evmk2g/dsp_syms.obj ${SHARE_PATH}
->   }
->   
->   ALTERNATIVE_${PN}_dra7xx = "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66"
 
