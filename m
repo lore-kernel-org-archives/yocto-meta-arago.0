@@ -1,45 +1,45 @@
 Return-Path: <denys@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 93CC452985
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 275BC52985
 	for <meta-arago@arago-project.org>;
-	Tue, 23 Apr 2019 21:56:07 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x3NLthKs034879
-	for <meta-arago@arago-project.org>; Tue, 23 Apr 2019 16:55:43 -0500
+	Tue, 23 Apr 2019 21:58:46 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x3NLwMq1077505
+	for <meta-arago@arago-project.org>; Tue, 23 Apr 2019 16:58:22 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1556056543;
-	bh=NkaXM6qLot5b6DU2VGAS+hB8GcGVdJIsaEa486m6yQM=;
+	s=ti-com-17Q1; t=1556056702;
+	bh=Du6A+5+iq1YAraQnaLaSRTGm8hJpErERt1JohI0pzr8=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=WyOv3RxiIxlOlnAWS0oniaqmfIE/BSrqKFzrOwDbdu9Fmlokev43RdGRbqPxG/yVD
-	rp6vMHdeHWsiVNhDN7LUe/mFzoFMcSWyK4Tx5E13zz7voPdCo78wQYreU0JBmvhnoP
-	VC2jHhlVH1MUXWxTgaOwBThdvOL9shjIRQju3soQ=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x3NLthY2026108
+	b=yd984Z+T6YQGypjHfxErMLuXnawHVCPi+/ku05OA17YLe9DMzfLXrUh8VaYBgYVS5
+	aDPKpH1zPjxVR2/pnL1F1+jFFN7WwzI5eaqT0Igz0rgpLPPnm3SFuRDcwyRoI0uw70
+	g88sAb2zlXcuCmH6erIZ4vnRAB0pT7G6VdZgZBa0=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x3NLwM4P052478
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 23 Apr 2019 16:55:43 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 23 Apr 2019 16:58:22 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 23 Apr 2019 16:55:42 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 23 Apr 2019 16:58:21 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 23 Apr 2019 16:55:42 -0500
+	Frontend Transport; Tue, 23 Apr 2019 16:58:21 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x3NLtg0h064046;
-	Tue, 23 Apr 2019 16:55:42 -0500
-Date: Tue, 23 Apr 2019 17:55:42 -0400
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x3NLwLtA114430;
+	Tue, 23 Apr 2019 16:58:21 -0500
+Date: Tue, 23 Apr 2019 17:58:21 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: "Andrew F. Davis" <afd@ti.com>
-Message-ID: <20190423215542.GC6705@beryl>
+To: Dan Murphy <dmurphy@ti.com>
+Message-ID: <20190423215821.GD6705@beryl>
 References: <20190423183835.17911-1-dmurphy@ti.com>
 	<4c8d1973-2b34-77d6-73cd-c49e5a74eb1b@ti.com>
 	<9400ea6c-9b24-ffff-d07e-705f4e8358e1@ti.com>
 	<128ca4ca-f51a-1732-2293-25e000b03a5e@ti.com>
 	<20190423214510.GB6705@beryl>
-	<63f92769-98d6-630a-340c-65c5077be1fc@ti.com>
+	<f3b645a0-4d38-58e2-b92c-13cf3ab41970@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <63f92769-98d6-630a-340c-65c5077be1fc@ti.com>
+In-Reply-To: <f3b645a0-4d38-58e2-b92c-13cf3ab41970@ti.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
@@ -56,38 +56,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Apr 2019 21:56:07 -0000
+X-List-Received-Date: Tue, 23 Apr 2019 21:58:46 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Tue, Apr 23, 2019 at 05:49:31PM -0400, Andrew F. Davis wrote:
-> On 4/23/19 5:45 PM, Denys Dmytriyenko wrote:
+On Tue, Apr 23, 2019 at 04:47:05PM -0500, Dan Murphy wrote:
+> Denys
+> 
+> On 4/23/19 4:45 PM, Denys Dmytriyenko wrote:
 > > ERROR: QA Issue: optee-os: The LIC_FILES_CHKSUM does not match for file://.../optee-os/3.4.0+gitAUTOINC+b38f935200-r0.arago1/git/LICENSE;md5=69663ab153298557a59c67a60a743e5b
 > > optee-os: Check if the license information has changed in .../optee-os/3.4.0+gitAUTOINC+b38f935200-r0.arago1/git/LICENSE to verify that the LICENSE value "BSD" remains valid [license-checksum]
 > > 
 > 
-> LICENSE was changed in Feb, project is still BSD 2-Clause, new md5 is
-> c1f21c4f72f372ef38a5a4aee55ec173
+> Is this a version mismatch then?  Andrew said this was 3.5.0-rc1 but it 
+> appears that this is not what is in the os code.
 > 
-> Andrew
+> Maybe the PV should be 
+> 
+> PV = "3.4.0+git${SRCPV}"
 
-Thanks!
-
-
-Dan,
-
-Would you be able to update the LIC_FILES_CHKSUM entry with the new hash?
-
-Also, you seem to be using the wrong base - are you still on rocko? Should be 
-using thud branch instead. It is already 3.4.0 in there:
-http://arago-project.org/git/?p=meta-arago.git;a=blob;f=meta-arago-distro/recipes-security/optee/optee-os_git.bbappend;hb=refs/heads/thud
-
-Let me know if you'd rather prefer me to update it. Thanks.
-
--- 
-Denys
+Yes, it was already 3.4.0 in thud - looks like you used the old branch as a 
+base for your patch...
 
 
+> Dan
+> 
+> > 
 > > On Tue, Apr 23, 2019 at 01:54:24PM -0500, Dan Murphy wrote:
 > >> Andrew
 > >>
