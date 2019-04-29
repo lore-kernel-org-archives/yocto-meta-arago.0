@@ -1,50 +1,42 @@
-Return-Path: <afd@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 108ED529EF
+Return-Path: <denys@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 0EB82529EF
 	for <meta-arago@arago-project.org>;
-	Mon, 29 Apr 2019 20:21:25 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x3TKKxxN109593
-	for <meta-arago@arago-project.org>; Mon, 29 Apr 2019 15:20:59 -0500
+	Mon, 29 Apr 2019 20:42:13 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x3TKfmbP090192
+	for <meta-arago@arago-project.org>; Mon, 29 Apr 2019 15:41:48 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1556569259;
-	bh=bI5j3/LhG/ZPYipfuKYD5Hl6hQy7LvyZi7moW+fr0Xw=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=RGjTVxYuN+3AWJ3p3mOKAHDlW9Od1XnwZ5isrdof1NSbEGReyFRe1fmGhHwd6oNMT
-	YqpjbTKMQYTOMKdfFUPuoxQOmUBipeslHwG+gpKT84r/wpPgvsZD283I30Q289Vu1n
-	92C1TaOV/Ht/PqTbczbgQotlIiTVvh0BbI9zREGQ=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x3TKKxv4084175
+	s=ti-com-17Q1; t=1556570508;
+	bh=vHcmIzYwolRountJGze31ATibYZH61TMlAs1/S8HneQ=;
+	h=From:To:CC:Subject:Date;
+	b=MY9EPExXCdfBVHkEmRorNLsd6ZPYTS4wqTaECaN6XUnjM7MfIaqWMZlbzg42T8VYJ
+	5F4ubZ8CzyH92mWYt5wiHYHGTbI74aER34+jPvRdt2qrUlw4RbU0eKk8LgnE+eGJ+T
+	jD++/5Du6I3xiXC6mER9PLsA0WYQ0+dUFwJT+6BQ=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x3TKflHu105306
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 29 Apr 2019 15:20:59 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 29 Apr 2019 15:41:48 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 29 Apr 2019 15:20:59 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 29 Apr 2019 15:41:47 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 29 Apr 2019 15:20:59 -0500
-Received: from [10.250.67.168] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x3TKKwng047056;
-	Mon, 29 Apr 2019 15:20:58 -0500
-To: Denys Dmytriyenko <denys@ti.com>
-References: <20190423183835.17911-1-dmurphy@ti.com>
-	<4c8d1973-2b34-77d6-73cd-c49e5a74eb1b@ti.com>
-	<9400ea6c-9b24-ffff-d07e-705f4e8358e1@ti.com>
-	<20190429181337.GD19665@beryl>
-	<3763781f-8243-8e62-0b0d-bc360193fbde@ti.com>
-	<20190429201554.GH19665@beryl>
-From: "Andrew F. Davis" <afd@ti.com>
-Message-ID: <ffd69583-358b-64d3-49c8-614fcc1d4073@ti.com>
-Date: Mon, 29 Apr 2019 16:20:59 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.6.1
+	Frontend Transport; Mon, 29 Apr 2019 15:41:47 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x3TKflgm102719;
+	Mon, 29 Apr 2019 15:41:47 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 29 Apr 2019 20:30:43 +0000
+Message-ID: <20190429203043.23625-1-denys@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20190429201554.GH19665@beryl>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] optee-os: Update OPTEE OS tag to 3.5.0-rc1 and ti2019.01-rc1
+Subject: [PATCH v2] optee: update os/client/test to 3.5.0 final
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -57,72 +49,108 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Apr 2019 20:21:27 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 29 Apr 2019 20:42:14 -0000
+Content-Type: text/plain
 
-On 4/29/19 4:15 PM, Denys Dmytriyenko wrote:
-> On Mon, Apr 29, 2019 at 04:13:21PM -0400, Andrew F. Davis wrote:
->> On 4/29/19 2:13 PM, Denys Dmytriyenko wrote:
->>> On Tue, Apr 23, 2019 at 02:52:20PM -0400, Andrew F. Davis wrote:
->>>> On 4/23/19 2:40 PM, Dan Murphy wrote:
->>>>> +Andrew
->>>>>
->>>>> On 4/23/19 1:38 PM, Dan Murphy wrote:
->>>>>> Signed-off-by: Dan Murphy <dmurphy@ti.com>
->>>>>> ---
->>>>>>  .../recipes-security/optee/optee-os_git.bbappend              | 4 ++--
->>>>>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>>>>>
->>>>>> diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
->>>>>> index 2204a50c..ee87b3c7 100644
->>>>>> --- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
->>>>>> +++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
->>>>>> @@ -2,7 +2,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>>>>>  
->>>>>>  PR_append = ".arago0"
->>>>>>  
->>>>>> -PV = "3.2.0+git${SRCPV}"
->>>>>> +PV = "3.5.0+git${SRCPV}"
->>>
->>>> Might want to do the same for client/test, but they got tagged at 3.4.0,
->>>> I've moved the HEAD forward to 3.5.0, we can wait till then next rc tag
->>>> to move them here, it should not be a problem.
->>>
->>> Andrew,
->>>
->>> It seems there were few more commits that went into the official 3.5.0 
->>> release, which was released 3 days ago. Do you want to re-merge to include 
->>> those?
->>>
->>
->> Merged the extra patches as ti-optee-os (note the '-', not '_'), I want
->> to deprecate out the branch name with underscores if I can, none of the
->> other projects are named like that, so I'd like to start using this
->> branch. Not sure what churn that will cause but hopefully will be easy
->> enough to do now.
-> 
-> Thanks. client and test are still using underscores - plan to change those?
-> 
+optee-client has changed where exported files are deployed, but upstream
+meta-optee hasn't caught up to that, so override do_install() locally.
 
-Done, and test was reset to follow upstream master directly, before we
-had the same content but some stray merges got in at some point, the
-name change seems like a good opportunity to fix that.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Cc: Andrew F. Davis <afd@ti.com>
+Cc: Dan Murphy <dmurphy@ti.com>
+---
+v2 - include optee-os update, fix optee-client do_install()
 
-Andrew
+ .../optee/optee-client.bbappend               | 27 ++++++++++++++++---
+ .../optee/optee-os_git.bbappend               |  6 ++---
+ .../optee/optee-test_git.bbappend             |  8 +++---
+ 3 files changed, 30 insertions(+), 11 deletions(-)
 
-> 
->>>>>>  is_armv7 = "1"
->>>>>>  is_armv7_aarch64 = "0"
->>>>>> @@ -11,7 +11,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
->>>>>>             file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
->>>>>>  "
->>>>>>  BRANCH = "ti_optee_os"
->>>>>> -SRCREV = "48952f9f76d885df4cb65f8479a4cf7dedf0ee54"
->>>>>> +SRCREV = "b38f935200f67f9408d7c5d99fe703e5cc806c65"
->>>>>>  
->>>>>>  ARMCORE = "CFG_ARM32_core=y ta-targets=ta_arm32"
->>>>>>  ARMCORE_aarch64 = "CFG_ARM64_core=y ta-targets=ta_arm64"
->>>>>>
+diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+index 0641bde6..a203bda0 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+@@ -1,11 +1,30 @@
+-PR_append = ".arago2"
++PR_append = ".arago0"
+ 
+ SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
+            file://tee-supplicant.service"
+ 
+ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=69663ab153298557a59c67a60a743e5b"
+ 
+-PV = "3.2.0+git${SRCPV}"
++PV = "3.5.0+git${SRCPV}"
+ 
+-BRANCH = "ti_optee_client"
+-SRCREV = "08428734c67fb559e420d87fa52fd74a955ea1bd"
++BRANCH = "ti-optee-client"
++SRCREV = "1f8f9abe4a31abd7b7490a7ddd9bbe812c92d5af"
++
++do_install() {
++    oe_runmake install
++
++    install -D -p -m0755 ${S}/out/export${sbindir}/tee-supplicant ${D}${sbindir}/tee-supplicant
++
++    install -D -p -m0644 ${S}/out/export${libdir}/libteec.so.1.0 ${D}${libdir}/libteec.so.1.0
++    ln -sf libteec.so.1.0 ${D}${libdir}/libteec.so
++    ln -sf libteec.so.1.0 ${D}${libdir}/libteec.so.1
++
++    install -d ${D}${includedir}
++    install -p -m0644 ${S}/out/export${includedir}/*.h ${D}${includedir}
++
++    sed -i -e s:/etc:${sysconfdir}:g \
++           -e s:/usr/bin:${bindir}:g \
++              ${WORKDIR}/tee-supplicant.service
++
++    install -D -p -m0644 ${WORKDIR}/tee-supplicant.service ${D}${systemd_system_unitdir}/tee-supplicant.service
++}
+diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+index 3b58ac15..dd6c9c62 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+@@ -2,7 +2,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=c1f21c4f72f372ef38a5a4aee55ec173"
+ 
+-PR_append = ".arago1"
++PR_append = ".arago2"
+ 
+ PV = "3.5.0+git${SRCPV}"
+ 
+@@ -12,8 +12,8 @@ is_armv7_aarch64 = "0"
+ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
+            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
+ "
+-BRANCH = "ti_optee_os"
+-SRCREV = "b38f935200f67f9408d7c5d99fe703e5cc806c65"
++BRANCH = "ti-optee-os"
++SRCREV = "251f7c6325856a056e326f368c0b44ce277a5a36"
+ 
+ ARMCORE = "CFG_ARM32_core=y ta-targets=ta_arm32"
+ ARMCORE_aarch64 = "CFG_ARM64_core=y ta-targets=ta_arm64"
+diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+index d0a1ac57..001f04f2 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+@@ -1,12 +1,12 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-PR_append = ".arago2"
++PR_append = ".arago0"
+ 
+ SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
+ 
+ SRC_URI += "file://0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch"
+ 
+-PV = "3.2.0+git${SRCPV}"
++PV = "3.5.0+git${SRCPV}"
+ 
+-BRANCH = "ti_optee_test"
+-SRCREV = "274d3c55dfa2f4726109dc9773c82fe8d5a44dae"
++BRANCH = "ti-optee-test"
++SRCREV = "e4f6f76b4cb5763112f4722981f84a26f4ac7e55"
+-- 
+2.17.1
+
 
