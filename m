@@ -1,42 +1,30 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id E2E4452986
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 96A45529D8
 	for <meta-arago@arago-project.org>;
-	Wed,  8 May 2019 14:30:48 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x48EUK7L015165
-	for <meta-arago@arago-project.org>; Wed, 8 May 2019 09:30:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1557325820;
-	bh=+FfxQ8TsD5Ixn47mFpy1MBYW+PNnPYTa4HSoR+NFCy0=;
-	h=From:To:Subject:Date;
-	b=lAhX6tjHOruHBembkPb+fpZzq6NKVH0PQI4q6lskcDwcA3Kta68INS/NAvHf/JdH0
-	xlvwuwG8AJFhGMH3ITvC+GGE2VAqXWXrPHX5s1qwGctD5fTz7O91VC5lYz/1M1vvC6
-	6kQ4NwJVt1seJFmzPXmP5tmSYZP8IBc5K4lXU+rQ=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x48EUKH0074277
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 8 May 2019 09:30:20 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 8 May 2019 09:30:19 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 8 May 2019 09:30:19 -0500
-Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x48EUHZu129679
-	for <meta-arago@arago-project.org>; Wed, 8 May 2019 09:30:18 -0500
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 8 May 2019 10:30:07 -0400
-Message-ID: <20190508143007.7751-1-e-ruei1@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] qtbase: add symbolic link qt5/examples for backward compatibility
+	Wed,  8 May 2019 18:26:28 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 465D440BA7;
+	Wed,  8 May 2019 18:25:58 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id L6c1a0L-wgUj; Wed,  8 May 2019 18:25:58 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2027640A55;
+	Wed,  8 May 2019 18:25:57 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 6BFB016EA65;
+	Wed,  8 May 2019 14:25:56 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Wed,  8 May 2019 14:25:55 -0400
+Message-Id: <1557339955-23928-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [thud/master][PATCH] ti-sci-fw: update SYSFW to 2019.04a
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,42 +37,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 May 2019 14:30:50 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 08 May 2019 18:26:30 -0000
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ .../ti-sci-fw/{ti-sci-fw_2019.02.bb => ti-sci-fw_2019.04a.bb}         | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename meta-arago-distro/recipes-bsp/ti-sci-fw/{ti-sci-fw_2019.02.bb => ti-sci-fw_2019.04a.bb} (92%)
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
-index 2e672569..90d04014 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
-+++ b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
-@@ -4,7 +4,7 @@ GLES_EXTRA_DEPS = "libdrm wayland"
+diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.02.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.04a.bb
+similarity index 92%
+rename from meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.02.bb
+rename to meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.04a.bb
+index c287a69..0519b56 100644
+--- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.02.bb
++++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.04a.bb
+@@ -11,7 +11,7 @@ COMPATIBLE_MACHINE = "k3"
  
- PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
--PR_append = ".arago14"
-+PR_append = ".arago15"
+-SRCREV = "77bd5534eb33c2f9654ab1b56fcdff4e8b7143e0"
++SRCREV = "b41c4f097ab6f341462645f76059f48f78bbd17e"
  
- QT_CONFIG_FLAGS += "-qpa ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', 'eglfs', d)}"
+ BRANCH ?= "ti-linux-firmware"
  
-@@ -31,4 +31,13 @@ python do_patch_append() {
-         shutil.copy(os.path.join(work_dir,"quit.png"),os.path.join(s,"examples/widgets/animation/animatedtiles/images/"))
- }
+@@ -20,7 +20,7 @@ SRC_URI = " \
+ 	git://git.ti.com/processor-firmware/system-firmware-image-gen.git;protocol=git;branch=master;destsuffix=imggen;name=imggen \
+ "
  
-+# Add symbolic link qt5/examples for backward compatibility
-+do_install_append () {
-+
-+    install -d ${D}${datadir}/qt5
-+    ln -sf ../examples ${D}${datadir}/qt5/examples
-+}
-+
-+FILES_${PN} += "${data}/qt5/*"
-+
- RDEPENDS_${PN} += "${PN}-conf"
+-SRCREV_imggen = "3cbf4003060ead508653e2ec8f25c59bbe813e74"
++SRCREV_imggen = "f68fe913c16f13a7e04f6f340de1c4f6cc561c10"
+ SRCREV_FORMAT = "imggen"
+ 
+ S = "${WORKDIR}/git"
 -- 
-2.17.1
+2.7.4
 
 
