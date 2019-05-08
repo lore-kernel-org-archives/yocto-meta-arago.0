@@ -1,42 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 0A1FA529FA
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 62BF952A05
 	for <meta-arago@arago-project.org>;
-	Mon,  6 May 2019 13:12:29 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x46DC1WJ067520
-	for <meta-arago@arago-project.org>; Mon, 6 May 2019 08:12:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1557148321;
-	bh=ftqEIimyJppVd75//EFjJ3/xsHmYk0Yc22ULxUHgI34=;
-	h=From:To:CC:Subject:Date;
-	b=yA7Nlw4CtNtIHVPD1H+Hl4WJenDJqf4mA1RsuMH4vReHAf2OH7caKsi1XPbK5NDNw
-	Ez3xSdvHJH1cKc9QYaSGH2VPoPUl8x692MrM8cz147+n7rUXjvU1bxfoAIJ3/b0Vlj
-	IRsOfoHvIfB5Kw6lC/suMtQqbpNXV3OSIKkjOkt8=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x46DC1BD041930
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 6 May 2019 08:12:01 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 6 May 2019 08:12:01 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 6 May 2019 08:12:01 -0500
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x46DC1xI030412;
-	Mon, 6 May 2019 08:12:01 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 6 May 2019 08:59:54 -0400
-Message-ID: <1557147594-9972-1-git-send-email-j-stiffler@ti.com>
+	Wed,  8 May 2019 01:58:43 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 11A2B40BA7;
+	Wed,  8 May 2019 01:58:15 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id qmQb9yaey9jx; Wed,  8 May 2019 01:58:15 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id EB0F5407DA;
+	Wed,  8 May 2019 01:58:13 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 3317216E8CC;
+	Tue,  7 May 2019 21:58:13 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue,  7 May 2019 21:58:12 -0400
+Message-Id: <1557280692-49213-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master][PATCH] Revert "HACK: FIXME: arago-core-tisdk-image: disable "sdk-host" packagegroups"
+Subject: [thud/master][PATCH] packagegroup, tisdk-makefile: disable debugss and gdbserverproxy modules
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,47 +37,113 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 May 2019 13:12:30 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 08 May 2019 01:58:43 -0000
 
-This reverts commit 2680dc31f2125f7bbab55d4839721cbad8eb0ef4.
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/images/arago-core-tisdk-image.inc | 23 +++++++++++-----------
- 1 file changed, 11 insertions(+), 12 deletions(-)
+ .../packagegroup-arago-tisdk-addons-sdk-host.bb    | 32 +++++++++++-----------
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     | 16 +++++------
+ 2 files changed, 24 insertions(+), 24 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index da5d44d..76102a1 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -55,15 +55,14 @@ IMAGE_INSTALL_QT = "\
- IMAGE_INSTALL_QT_keystone = ""
- IMAGE_INSTALL_QT_omapl138 = ""
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index e2de61a..f74e357 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -48,10 +48,10 @@ EXTRA_LIBS_append_omap-a15 = " \
+     big-data-ipc-demo-linux-src \
+ "
  
--IMAGE_INSTALL = ""
--# Disable all "sdk-host" packagegroups due to issues installing "srcipk" packages
--#    packagegroup-arago-tisdk-addons-sdk-host \
--#    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-sdk-host','',d)} \
--#    packagegroup-arago-tisdk-crypto-sdk-host \
--#    ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics-sdk-host','',d)} \
--#    packagegroup-arago-tisdk-matrix-sdk-host \
--#    packagegroup-arago-tisdk-multimedia-sdk-host \
--#    packagegroup-arago-tisdk-hmi-sdk-host \
--#    packagegroup-arago-tisdk-amsdk-sdk-host${ARAGO_KERNEL_SUFFIX} \
--#    ${IMAGE_INSTALL_QT} \
--#"
-+IMAGE_INSTALL = "\
-+    packagegroup-arago-tisdk-addons-sdk-host \
-+    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-sdk-host','',d)} \
-+    packagegroup-arago-tisdk-crypto-sdk-host \
-+    ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics-sdk-host','',d)} \
-+    packagegroup-arago-tisdk-matrix-sdk-host \
-+    packagegroup-arago-tisdk-multimedia-sdk-host \
-+    packagegroup-arago-tisdk-hmi-sdk-host \
-+    packagegroup-arago-tisdk-amsdk-sdk-host${ARAGO_KERNEL_SUFFIX} \
-+    ${IMAGE_INSTALL_QT} \
-+"
+-EXTRA_LIBS_append_dra7xx = " \
+-    debugss-module-drv-src \
+-    gdbserverproxy-module-drv-src \
+-"
++#EXTRA_LIBS_append_dra7xx = " \
++#    debugss-module-drv-src \
++#    gdbserverproxy-module-drv-src \
++#"
+ 
+ EXTRA_LIBS_append_ti33x = " \
+     uio-module-drv-src \
+@@ -71,20 +71,20 @@ EXTRA_LIBS_append_keystone = " \
+     uio-module-drv-src \
+ "
+ 
+-EXTRA_LIBS_append_k2hk = " \
+-    debugss-module-drv-src \
+-    gdbserverproxy-module-drv-src \
+-"
++#EXTRA_LIBS_append_k2hk = " \
++#    debugss-module-drv-src \
++#    gdbserverproxy-module-drv-src \
++#"
+ 
+-EXTRA_LIBS_append_k2l = " \
+-    debugss-module-drv-src \
+-    gdbserverproxy-module-drv-src \
+-"
++#EXTRA_LIBS_append_k2l = " \
++#    debugss-module-drv-src \
++#    gdbserverproxy-module-drv-src \
++#"
+ 
+-EXTRA_LIBS_append_k2e = " \
+-    debugss-module-drv-src \
+-    gdbserverproxy-module-drv-src \
+-"
++#EXTRA_LIBS_append_k2e = " \
++#    debugss-module-drv-src \
++#    gdbserverproxy-module-drv-src \
++#"
+ 
+ RDEPENDS_${PN} = "\
+     ${UTILS} \
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index 26490db..7f6f3c8 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -112,9 +112,9 @@ MAKEFILES_append_ti43x = " u-boot-spl \
+ 			   mmwavegesture-hmi \
+ "
+ 
++#                            debugss-module-drv 
++#                            gdbserverproxy-module-drv 
+ MAKEFILES_append_dra7xx = " cryptodev \
+-                            debugss-module-drv \
+-                            gdbserverproxy-module-drv \
+                             opencl-examples \
+                             openmpacc-examples \
+                             qt-opencv-opencl-opengl-multithreaded \
+@@ -149,22 +149,22 @@ MAKEFILES_append_keystone = " u-boot-spl \
+                               barcode-roi \
+ "
+ 
++#                              gdbserverproxy-module-drv 
++#                              debugss-module-drv 
+ MAKEFILES_append_k2hk = " opencl-examples \
+-                              gdbserverproxy-module-drv \
+-                              debugss-module-drv \
+                               openmpacc-examples \
+                               linalg-examples \
+ "
+ 
++#                             gdbserverproxy-module-drv 
++#                             debugss-module-drv 
+ MAKEFILES_append_k2l = " opencl-examples \
+-                             gdbserverproxy-module-drv \
+-                             debugss-module-drv \
+                              openmpacc-examples \
+ "
+ 
++#                             gdbserverproxy-module-drv 
++#                             debugss-module-drv 
+ MAKEFILES_append_k2e = " opencl-examples \
+-                             gdbserverproxy-module-drv \
+-                             debugss-module-drv \
+                              openmpacc-examples \
+ "
+ 
 -- 
 2.7.4
 
