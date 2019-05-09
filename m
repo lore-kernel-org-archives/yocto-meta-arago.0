@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 240A0529ED
+	by arago-project.org (Postfix) with ESMTPS id 29EBF52A20
 	for <meta-arago@arago-project.org>;
 	Thu,  9 May 2019 04:16:05 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 54A8040BAD;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 58C7B40BB2;
 	Thu,  9 May 2019 04:15:36 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id mz6tQJZWAZpp; Thu,  9 May 2019 04:15:36 +0000 (UTC)
+	with ESMTP id gfNAGCrSIgBx; Thu,  9 May 2019 04:15:36 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 25E3A40BBA;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2EAEB40BB3;
 	Thu,  9 May 2019 04:15:35 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id E4F2C16EAF9;
+	by mail.denix.org (Postfix) with ESMTP id F1A2216EAFA;
 	Thu,  9 May 2019 00:15:33 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Thu,  9 May 2019 00:15:30 -0400
-Message-Id: <1557375331-41998-8-git-send-email-denys@ti.com>
+Date: Thu,  9 May 2019 00:15:31 -0400
+Message-Id: <1557375331-41998-9-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1557375331-41998-1-git-send-email-denys@ti.com>
 References: <1557375331-41998-1-git-send-email-denys@ti.com>
-Subject: [thud/master][PATCH 8/9] kernel-fitimage, arago.conf: introduce FITIMAGE_PACK_TEE
+Subject: [thud/master][PATCH 9/9] arago.conf: enable FIT image generation for am65xx-hs-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,69 +39,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2019 04:16:08 -0000
-
-Instead of relying on OPTEEMACHINE and OPTEEFLAVOR, use FITIMAGE_PACK_TEE
-to specify if packing OPTEE into FIT is required.
+X-List-Received-Date: Thu, 09 May 2019 04:16:10 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/classes/kernel-fitimage.bbclass | 7 ++++---
- meta-arago-distro/conf/distro/arago.conf          | 2 ++
- 2 files changed, 6 insertions(+), 3 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-distro/classes/kernel-fitimage.bbclass b/meta-arago-distro/classes/kernel-fitimage.bbclass
-index 9aa7640..34b61d0 100644
---- a/meta-arago-distro/classes/kernel-fitimage.bbclass
-+++ b/meta-arago-distro/classes/kernel-fitimage.bbclass
-@@ -1,6 +1,7 @@
- inherit kernel-uboot uboot-sign
- 
- FITIMAGE_HASH_ALGO ?= "sha1"
-+FITIMAGE_PACK_TEE ?= "0"
- FITIMAGE_DTB_BY_NAME ?= "0"
- FITIMAGE_TEE_BY_NAME ?= "0"
- FITIMAGE_CONF_BY_NAME ?= "0"
-@@ -46,7 +47,7 @@ python __anonymous () {
-             uboot_pn = d.getVar('PREFERRED_PROVIDER_u-boot') or 'u-boot'
-             d.appendVarFlag('do_assemble_fitimage', 'depends', ' %s:do_deploy' % uboot_pn)
- 
--        if d.getVar('OPTEEMACHINE'):
-+        if d.getVar('FITIMAGE_PACK_TEE') == "1":
-             d.appendVarFlag('do_assemble_fitimage', 'depends', ' optee-os:do_deploy')
- }
- 
-@@ -323,7 +324,7 @@ fitimage_emit_section_config() {
- 		setup_line="setup = \"setup@${5}\";"
- 	fi
- 
--	if [ -n "${6}" -a -n "${OPTEEFLAVOR}" ]; then
-+	if [ -n "${6}" -a "x${FITIMAGE_PACK_TEE}" = "x1" ]; then
- 		if [ "x${FITIMAGE_TEE_BY_NAME}" = "x1" ]; then
- 			loadables_line="loadables = \"${6}.optee\";"
- 			loadables_pager_line="loadables = \"${6}-pager.optee\";"
-@@ -530,7 +531,7 @@ fitimage_assemble() {
- 	#
- 	# Step 2a: Prepare OP/TEE image section
- 	#
--	if test -n "${OPTEEFLAVOR}"; then
-+	if [ "x${FITIMAGE_PACK_TEE}" = "x1" ] ; then
- 		mkdir -p ${B}/usr
- 		rm -f ${B}/usr/${OPTEEFLAVOR}.optee
- 		if [ -e "${DEPLOY_DIR_IMAGE}/${OPTEEFLAVOR}.optee" ]; then
 diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 7129202..1a8263d 100644
+index 1a8263d..ee2080f 100644
 --- a/meta-arago-distro/conf/distro/arago.conf
 +++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -38,6 +38,8 @@ IMAGE_FSTYPES += "tar.xz.md5"
- # FIT image for secure devices
- KERNEL_CLASSES += "kernel-fitimage"
- FITIMAGE_HASH_ALGO = ""
-+FITIMAGE_PACK_TEE = "1"
-+FITIMAGE_PACK_TEE_am65xx-hs-evm = "0"
- FITIMAGE_DTB_BY_NAME = "1"
- FITIMAGE_TEE_BY_NAME = "1"
- FITIMAGE_CONF_BY_NAME = "1"
+@@ -48,6 +48,7 @@ KERNEL_IMAGETYPES_dra7xx-hs-evm = "zImage fitImage"
+ KERNEL_IMAGETYPES_am57xx-hs-evm = "zImage fitImage"
+ KERNEL_IMAGETYPES_am437x-hs-evm = "zImage fitImage"
+ KERNEL_IMAGETYPES_am335x-hs-evm = "zImage fitImage"
++KERNEL_IMAGETYPES_am65xx-hs-evm = "Image fitImage"
+ 
+ KERNEL_IMAGETYPES_k2e-hs-evm = "zImage fitImage"
+ INITRAMFS_IMAGE_k2e-hs-evm = "k2-fw-initrd"
 -- 
 2.7.4
 
