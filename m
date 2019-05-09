@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id E6D98529C2
+	by arago-project.org (Postfix) with ESMTPS id EF866529D8
 	for <meta-arago@arago-project.org>;
 	Thu,  9 May 2019 04:16:03 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 099CC40024;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 1578640BAA;
 	Thu,  9 May 2019 04:15:35 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id UU8On-3Vy5-x; Thu,  9 May 2019 04:15:35 +0000 (UTC)
+	with ESMTP id k_TT2IAkX1Rz; Thu,  9 May 2019 04:15:35 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E5D8E40BAD;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0359340BB2;
 	Thu,  9 May 2019 04:15:33 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id A774216EAF4;
+	by mail.denix.org (Postfix) with ESMTP id B42E616EAF5;
 	Thu,  9 May 2019 00:15:33 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Thu,  9 May 2019 00:15:25 -0400
-Message-Id: <1557375331-41998-3-git-send-email-denys@ti.com>
+Date: Thu,  9 May 2019 00:15:26 -0400
+Message-Id: <1557375331-41998-4-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1557375331-41998-1-git-send-email-denys@ti.com>
 References: <1557375331-41998-1-git-send-email-denys@ti.com>
-Subject: [thud/master][PATCH 3/9] arago-core-tisdk-image: make SYSFW GP image specific to am65xx-evm
+Subject: [thud/master][PATCH 4/9] u-boot-k3-r5: specify config for am65xx HS
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,27 +39,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2019 04:16:04 -0000
+X-List-Received-Date: Thu, 09 May 2019 04:16:05 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2019.01.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
-index 529d9de..263c265 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
-@@ -8,7 +8,8 @@ DEPLOY_SPL_NAME_k2e = ""
- DEPLOY_SPL_NAME_k2g-hs-evm = ""
- DEPLOY_SPL_NAME_k3 = "tispl.bin tiboot3.bin"
+diff --git a/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2019.01.bb b/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2019.01.bb
+index cb10ebc..fae3d62 100644
+--- a/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2019.01.bb
++++ b/meta-arago-distro/recipes-bsp/u-boot/u-boot-k3-r5_2019.01.bb
+@@ -12,6 +12,7 @@ CROSS_COMPILE_V7 = "${@['${TARGET_SYS}-','${EAT_TARGET_SYS_ARMV7}-'][d.getVar('T
+ PATH_prepend = "${TOOLCHAIN_PATH_ARMV7}/bin:"
  
--DEPLOY_IMAGES_NAME_k3 = "bl31.bin bl32.bin sysfw.itb ti-sci-firmware-am65x-gp.bin"
-+DEPLOY_IMAGES_NAME_k3 = "bl31.bin bl32.bin sysfw.itb"
-+DEPLOY_IMAGES_NAME_append_am65xx-evm = " ti-sci-firmware-am65x-gp.bin"
+ UBOOT_MACHINE_am65xx-evm = "am65x_evm_r5_defconfig"
++UBOOT_MACHINE_am65xx-hs-evm = "am65x_hs_evm_r5_defconfig"
  
- ARAGO_TISDK_IMAGE ?= "arago-core-tisdk-image"
- export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}"
+ EXTRA_OEMAKE = 'ARCH=arm CROSS_COMPILE=${CROSS_COMPILE_V7} CC="${CROSS_COMPILE_V7}gcc ${TOOLCHAIN_OPTIONS}" V=1'
+ EXTRA_OEMAKE += 'HOSTCC="${BUILD_CC} ${BUILD_CFLAGS} ${BUILD_LDFLAGS}"'
 -- 
 2.7.4
 
