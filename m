@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id D400352986
+	by arago-project.org (Postfix) with ESMTPS id E6D98529C2
 	for <meta-arago@arago-project.org>;
 	Thu,  9 May 2019 04:16:03 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id E9C0740BD0;
-	Thu,  9 May 2019 04:15:34 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 099CC40024;
+	Thu,  9 May 2019 04:15:35 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id V1353rKHfQJJ; Thu,  9 May 2019 04:15:34 +0000 (UTC)
+	with ESMTP id UU8On-3Vy5-x; Thu,  9 May 2019 04:15:35 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D67F140BAA;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E5D8E40BAD;
 	Thu,  9 May 2019 04:15:33 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 9AA9716EAF3;
+	by mail.denix.org (Postfix) with ESMTP id A774216EAF4;
 	Thu,  9 May 2019 00:15:33 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Thu,  9 May 2019 00:15:24 -0400
-Message-Id: <1557375331-41998-2-git-send-email-denys@ti.com>
+Date: Thu,  9 May 2019 00:15:25 -0400
+Message-Id: <1557375331-41998-3-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1557375331-41998-1-git-send-email-denys@ti.com>
 References: <1557375331-41998-1-git-send-email-denys@ti.com>
-Subject: [thud/master][PATCH 2/9] arago-core-tisdk-image: use am65xx SOC family for DTB_FILTER
+Subject: [thud/master][PATCH 3/9] arago-core-tisdk-image: make SYSFW GP image specific to am65xx-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,22 +43,23 @@ X-List-Received-Date: Thu, 09 May 2019 04:16:04 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index da5d44d..e69f8c2 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -28,7 +28,7 @@ DTB_FILTER_k2l = "k2l"
- DTB_FILTER_k2e = "k2e"
- DTB_FILTER_k2g = "k2g"
- DTB_FILTER_omapl138 = "da850"
--DTB_FILTER_am65xx-evm = "am65"
-+DTB_FILTER_am65xx = "am65"
+diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
+index 529d9de..263c265 100644
+--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.bb
+@@ -8,7 +8,8 @@ DEPLOY_SPL_NAME_k2e = ""
+ DEPLOY_SPL_NAME_k2g-hs-evm = ""
+ DEPLOY_SPL_NAME_k3 = "tispl.bin tiboot3.bin"
  
- # List of target side images to build for the SDK
- TARGET_IMAGES = "arago-base-tisdk-image tisdk-rootfs-image arago-tiny-image"
+-DEPLOY_IMAGES_NAME_k3 = "bl31.bin bl32.bin sysfw.itb ti-sci-firmware-am65x-gp.bin"
++DEPLOY_IMAGES_NAME_k3 = "bl31.bin bl32.bin sysfw.itb"
++DEPLOY_IMAGES_NAME_append_am65xx-evm = " ti-sci-firmware-am65x-gp.bin"
+ 
+ ARAGO_TISDK_IMAGE ?= "arago-core-tisdk-image"
+ export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}"
 -- 
 2.7.4
 
