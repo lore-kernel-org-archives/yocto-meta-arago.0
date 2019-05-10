@@ -1,42 +1,44 @@
 Return-Path: <e-ruei1@ti.com>
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id E21CA52987
+	by arago-project.org (Postfix) with ESMTPS id 0885352993
 	for <meta-arago@arago-project.org>;
 	Fri, 10 May 2019 20:35:04 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4AKYZ9S073409
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4AKYZAk073413
 	for <meta-arago@arago-project.org>; Fri, 10 May 2019 15:34:35 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1557520475;
-	bh=npy6vu37hukxn3yA6pDLf5Y28pkeyE0q/1M15oiqJL0=;
-	h=From:To:Subject:Date;
-	b=Nm6MYQOAn3GXuy7oUun//w/8+DuCp4avsyI8ddYrf5d0Ir7mHRS/S4KaX64o3ssJY
-	flrXYP5MbciIRRlTxg9bv4wQE9d3mWWsxbuEwskMIk++K85WevlsOv7WNCGzKm8Hqn
-	IeIp3KIs2cbZoEBaKIRm8ziXDwsJNbTD95ROYvpA=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4AKYZtd122535
+	bh=4wtLQRiDnaxec35NZ3N9+o8Gxe/v2ic5RxSLlpF5YsE=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=VASK51VzeJrumweIbRyqHMJpkjaiIhW9eiH9yJMkKeAaU6F3tu+YrNOjzeJ1/IHKm
+	BRvL5iYBJgwK3fxliE0dYVQK28s9nVWEvES6uikVkbHq2qIX7+5Nh/lj3J/EzPlLu3
+	SBpiMMIZMrOVho7N8fggSSDln/i3sHVjitC07U4Q=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4AKYZTH015494
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@arago-project.org>; Fri, 10 May 2019 15:34:35 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE100.ent.ti.com
+	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
 	Fri, 10 May 2019 15:34:35 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
 	Frontend Transport; Fri, 10 May 2019 15:34:35 -0500
 Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4AKYYem045482
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4AKYYen045482
 	for <meta-arago@arago-project.org>; Fri, 10 May 2019 15:34:35 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 10 May 2019 16:34:22 -0400
-Message-ID: <20190510203423.35367-1-e-ruei1@ti.com>
+Date: Fri, 10 May 2019 16:34:23 -0400
+Message-ID: <20190510203423.35367-2-e-ruei1@ti.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190510203423.35367-1-e-ruei1@ti.com>
+References: <20190510203423.35367-1-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 1/2] qtwebbrowser: update the example src path to be consistent with qt5
+Subject: [PATCH 2/2] qtbase: fix the install path of qt5/examples symbolic link
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,36 +56,31 @@ Content-Type: text/plain
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- meta-arago-extras/recipes-qt/examples/qtwebbrowser_1.0.bb | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-qt/examples/qtwebbrowser_1.0.bb b/meta-arago-extras/recipes-qt/examples/qtwebbrowser_1.0.bb
-index 907dfefe..c32ec22c 100644
---- a/meta-arago-extras/recipes-qt/examples/qtwebbrowser_1.0.bb
-+++ b/meta-arago-extras/recipes-qt/examples/qtwebbrowser_1.0.bb
-@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = " \
- DEPENDS += "qtwebengine"
- PACKAGES += "${PN}-examples"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+index 90d04014..6056b9e5 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
+@@ -4,7 +4,7 @@ GLES_EXTRA_DEPS = "libdrm wayland"
  
--PR = "r0"
-+PR = "r1"
+ PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
  
- BRANCH = "dev"
- SRCREV = "023733af5523a5ad84359926224fa106001215f4"
-@@ -25,10 +25,10 @@ inherit qt-provider
- # Install qtwebbrowser under /usr/bin
- do_install() {
-     install -d ${D}${bindir}
--    install -d ${D}${datadir}/qt5/examples/webengine/webbrowser/src
-+    install -d ${D}${datadir}/examples/webengine/webbrowser/src
-     install -m 0755 src/qtwebbrowser ${D}${bindir}/qtwebbrowser
--    cp -R --no-dereference --preserve=mode,links ${S}/* ${D}${datadir}/qt5/examples/webengine/webbrowser/.
-+    cp -R --no-dereference --preserve=mode,links ${S}/* ${D}${datadir}/examples/webengine/webbrowser/.
+-PR_append = ".arago15"
++PR_append = ".arago16"
+ 
+ QT_CONFIG_FLAGS += "-qpa ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', 'eglfs', d)}"
+ 
+@@ -38,6 +38,7 @@ do_install_append () {
+     ln -sf ../examples ${D}${datadir}/qt5/examples
  }
  
- FILES_${PN} +=  "${bindir}/qtwebbrowser"
--FILES_${PN}-examples +=  "${datadir}/qt5/examples/webengine/webbrowser/*"
-+FILES_${PN}-examples +=  "${datadir}/examples/webengine/webbrowser/*"
+-FILES_${PN} += "${data}/qt5/*"
++FILES_${PN}-examples +=  "${datadir}/qt5/*"
++
+ 
+ RDEPENDS_${PN} += "${PN}-conf"
 -- 
 2.17.1
 
