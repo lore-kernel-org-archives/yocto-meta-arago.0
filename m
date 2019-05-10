@@ -1,43 +1,44 @@
 Return-Path: <j-stiffler@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id B2F5852987
+	by arago-project.org (Postfix) with ESMTPS id 68E3352993
 	for <meta-arago@arago-project.org>;
-	Fri, 10 May 2019 19:17:31 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4AJH2sW082530
-	for <meta-arago@arago-project.org>; Fri, 10 May 2019 14:17:02 -0500
+	Fri, 10 May 2019 19:17:53 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4AJHO7e082600
+	for <meta-arago@arago-project.org>; Fri, 10 May 2019 14:17:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1557515822;
-	bh=lPAdi5qdZVw8tGSiLy4yVsIP+15VrLj6CXm0S6dFDiQ=;
-	h=From:To:CC:Subject:Date;
-	b=Ie+ltSQSYWjD5tMmEa2J6HWDIG/44D6qAXHenSv+axWLs+gHNGgjjnBsbMus+DXX4
-	cJO64bwEo1w5vs071oc4csuUDFJ8LlFT144h1enyoGtyjIvIrrOrcsBXteL/v2AL2O
-	uvsP5kG6Gj3bMSGmExKN8xQ3lhPiAQwj1loPnFMU=
+	s=ti-com-17Q1; t=1557515844;
+	bh=J1Z3iNwHGuAGiEdbSICx/YGbLtUexFAKlNDhSEKyvoY=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=ucasEVX+IGmfoP7QPZlkNuNb61+YFAftMnlIHiN6xu4RHht8KAsJyes12APo8N95b
+	FbGNymmEwHcxHpeoCQdQLbEScNhvVRAjtTj5WDZEdaNglMmI1czEiG95j/NvCN40dR
+	vuA8S2l7vwwFI9IiPJnm2WMsKPLNhi8yFu9YsosQ=
 Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4AJH2OB061303
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4AJHOf9031699
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 10 May 2019 14:17:02 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
+	for <meta-arago@arago-project.org>; Fri, 10 May 2019 14:17:24 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE103.ent.ti.com
 	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 10 May 2019 14:17:01 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 10 May 2019 14:17:23 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
+	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 10 May 2019 14:17:01 -0500
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4AJH1I9120372;
-	Fri, 10 May 2019 14:17:01 -0500
+	Frontend Transport; Fri, 10 May 2019 14:17:23 -0500
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4AJHNG3075326;
+	Fri, 10 May 2019 14:17:23 -0500
+To: Djordje Senicic <x0157990@ti.com>, <meta-arago@arago-project.org>
+References: <20190510130839.31906-1-x0157990@ti.com>
 From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 10 May 2019 15:04:49 -0400
-Message-ID: <1557515089-18833-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
+Message-ID: <4f0a7575-c9cb-a52b-15ac-785a0ad32be0@ti.com>
+Date: Fri, 10 May 2019 15:17:24 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
 MIME-Version: 1.0
+In-Reply-To: <20190510130839.31906-1-x0157990@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: x0157990@ti.com
-Subject: [master/thud][PATCH] qt-opencv-opencl-opengl-multithreaded: bump SRCREV for build fix
+Subject: Re: [EXTERNAL] [qt-opencv-opencl-opengl-multithreaded][PATCH] Fix demo compilation issue
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,36 +51,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 May 2019 19:17:32 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 10 May 2019 19:17:53 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-* migrate to QT 5.11
+Thank you. I have pushed this patch.
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../video-analytics-demo/qt-opencv-opencl-opengl-multithreaded_git.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+- Jake
 
-diff --git a/meta-arago-extras/recipes-apps/video-analytics-demo/qt-opencv-opencl-opengl-multithreaded_git.bb b/meta-arago-extras/recipes-apps/video-analytics-demo/qt-opencv-opencl-opengl-multithreaded_git.bb
-index 6e8093a..2f644f6 100644
---- a/meta-arago-extras/recipes-apps/video-analytics-demo/qt-opencv-opencl-opengl-multithreaded_git.bb
-+++ b/meta-arago-extras/recipes-apps/video-analytics-demo/qt-opencv-opencl-opengl-multithreaded_git.bb
-@@ -9,12 +9,12 @@ DEPENDS += "opencv opencl virtual/egl ti-cgt6x-native clocl-native dsplib-c66x"
- COMPATIBLE_MACHINE = "dra7xx"
- 
- PV = "1.3.3"
--PR = "r2"
-+PR = "r3"
- 
- BRANCH = "master"
- SRC_URI = "git://git.ti.com/apps/qt-opencv-opencl-opengl-multithreaded.git;protocol=git;branch=${BRANCH}"
- 
--SRCREV = "a5dad4fbb470e526f6058095cf08a01f51abb02d"
-+SRCREV = "80051ec8befd921e40cfb74a49234ed045576bbc"
- 
- S = "${WORKDIR}/git"
- 
--- 
-2.7.4
-
+On 5/10/2019 9:08 AM, Djordje Senicic wrote:
+> Signed-off-by: Djordje Senicic <x0157990@ti.com>
+> ---
+>   ImageProcessingSettingsDialog.cpp | 1 +
+>   1 file changed, 1 insertion(+)
+>
+> diff --git a/ImageProcessingSettingsDialog.cpp b/ImageProcessingSettingsDialog.cpp
+> index fa968af..33e65c1 100644
+> --- a/ImageProcessingSettingsDialog.cpp
+> +++ b/ImageProcessingSettingsDialog.cpp
+> @@ -34,6 +34,7 @@
+>   #include "ui_ImageProcessingSettingsDialog.h"
+>   // Qt
+>   #include <QMessageBox>
+> +#include <QRegExpValidator>
+>   
+>   ImageProcessingSettingsDialog::ImageProcessingSettingsDialog(QWidget *parent) :
+>       QDialog(parent),
 
