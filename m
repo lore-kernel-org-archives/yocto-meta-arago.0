@@ -1,44 +1,42 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 0885352993
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 9FE8E529A4
 	for <meta-arago@arago-project.org>;
-	Fri, 10 May 2019 20:35:04 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4AKYZAk073413
-	for <meta-arago@arago-project.org>; Fri, 10 May 2019 15:34:35 -0500
+	Mon, 13 May 2019 21:32:44 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4DLWEXW121096
+	for <meta-arago@arago-project.org>; Mon, 13 May 2019 16:32:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1557520475;
-	bh=4wtLQRiDnaxec35NZ3N9+o8Gxe/v2ic5RxSLlpF5YsE=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=VASK51VzeJrumweIbRyqHMJpkjaiIhW9eiH9yJMkKeAaU6F3tu+YrNOjzeJ1/IHKm
-	BRvL5iYBJgwK3fxliE0dYVQK28s9nVWEvES6uikVkbHq2qIX7+5Nh/lj3J/EzPlLu3
-	SBpiMMIZMrOVho7N8fggSSDln/i3sHVjitC07U4Q=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4AKYZTH015494
+	s=ti-com-17Q1; t=1557783134;
+	bh=eaiDOo+iIXSgg66yvDOy7ocyXF02I7AX92L7niqc3uk=;
+	h=From:To:Subject:Date;
+	b=EziiEiYlU1V2Ta/HGLlD0/RGTQva1x/hDgzhM367bER59CuFjweZW4a7in83YHxZD
+	uNNosfaLOxOrqu6+6ESqgvvEF7JkKCFdNX0CnASXgoDR4aCb3OB8R1Ojs/Xal8Fl8d
+	i191CVtDbXpoot8IH3O6OuP1+mi+5GVCdykmhlDw=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4DLWEWb122490
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 10 May 2019 15:34:35 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 13 May 2019 16:32:14 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 10 May 2019 15:34:35 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 13 May 2019 16:32:13 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 10 May 2019 15:34:35 -0500
+	Frontend Transport; Mon, 13 May 2019 16:32:13 -0500
 Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4AKYYen045482
-	for <meta-arago@arago-project.org>; Fri, 10 May 2019 15:34:35 -0500
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4DLWDej023843
+	for <meta-arago@arago-project.org>; Mon, 13 May 2019 16:32:13 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 10 May 2019 16:34:23 -0400
-Message-ID: <20190510203423.35367-2-e-ruei1@ti.com>
+Date: Mon, 13 May 2019 17:32:05 -0400
+Message-ID: <20190513213205.45955-1-e-ruei1@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190510203423.35367-1-e-ruei1@ti.com>
-References: <20190510203423.35367-1-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 2/2] qtbase: fix the install path of qt5/examples symbolic link
+Subject: [PATCH] qtwebkit: disable bmalloc for AM654x
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,36 +49,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 May 2019 20:35:05 -0000
+X-List-Received-Date: Mon, 13 May 2019 21:32:45 -0000
 Content-Type: text/plain
+
+- bmalloc does not support 64k page size yet and therefore should be
+  disabled.
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
-index 90d04014..6056b9e5 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
-+++ b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
-@@ -4,7 +4,7 @@ GLES_EXTRA_DEPS = "libdrm wayland"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+index 61c099fc..31c929a7 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+@@ -8,6 +8,8 @@ SRC_URI += " \
+ 	file://GraphicsSurfaceGL_NoX.cpp.patch \
+ "
  
- PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
- 
--PR_append = ".arago15"
-+PR_append = ".arago16"
- 
- QT_CONFIG_FLAGS += "-qpa ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', 'eglfs', d)}"
- 
-@@ -38,6 +38,7 @@ do_install_append () {
-     ln -sf ../examples ${D}${datadir}/qt5/examples
- }
- 
--FILES_${PN} += "${data}/qt5/*"
-+FILES_${PN}-examples +=  "${datadir}/qt5/*"
+-PR_append = ".arago5"
++PR_append = ".arago6"
 +
++EXTRA_OECMAKE_append_k3 = " -DUSE_SYSTEM_MALLOC=ON"
  
- RDEPENDS_${PN} += "${PN}-conf"
+ DEPENDS += "flex-native bison-native"
 -- 
 2.17.1
 
