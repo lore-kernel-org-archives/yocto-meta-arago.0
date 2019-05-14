@@ -1,42 +1,44 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 9FE8E529A4
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id AA3C8529E6
 	for <meta-arago@arago-project.org>;
-	Mon, 13 May 2019 21:32:44 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4DLWEXW121096
-	for <meta-arago@arago-project.org>; Mon, 13 May 2019 16:32:14 -0500
+	Tue, 14 May 2019 01:44:59 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4E1iTN9103174
+	for <meta-arago@arago-project.org>; Mon, 13 May 2019 20:44:29 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1557783134;
-	bh=eaiDOo+iIXSgg66yvDOy7ocyXF02I7AX92L7niqc3uk=;
-	h=From:To:Subject:Date;
-	b=EziiEiYlU1V2Ta/HGLlD0/RGTQva1x/hDgzhM367bER59CuFjweZW4a7in83YHxZD
-	uNNosfaLOxOrqu6+6ESqgvvEF7JkKCFdNX0CnASXgoDR4aCb3OB8R1Ojs/Xal8Fl8d
-	i191CVtDbXpoot8IH3O6OuP1+mi+5GVCdykmhlDw=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4DLWEWb122490
+	s=ti-com-17Q1; t=1557798269;
+	bh=HttTzmHJvH54zJLLFEpsKu9zMyKtFf8QDGoAI22mE1w=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=yVG6hOd2jvAfUySwRRHFBG9lUsdHzvufXZlIBQfrlSacUjTMC66pVgFHIbFAlelex
+	aweg6k75b+NDFp4mjGjjpdOIQtuUddQkDieSLIcPU0T+Y3um51Uff1Z/OWl3qdwE9G
+	40anq6EfDuGpanpCLSl7jayd9ZoMqycedlPzHibw=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4E1iTR3044671
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 13 May 2019 16:32:14 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 13 May 2019 20:44:29 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 13 May 2019 16:32:13 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 13 May 2019 20:44:28 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 13 May 2019 16:32:13 -0500
+	Frontend Transport; Mon, 13 May 2019 20:44:28 -0500
 Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4DLWDej023843
-	for <meta-arago@arago-project.org>; Mon, 13 May 2019 16:32:13 -0500
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4E1iSuF064750
+	for <meta-arago@arago-project.org>; Mon, 13 May 2019 20:44:28 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 13 May 2019 17:32:05 -0400
-Message-ID: <20190513213205.45955-1-e-ruei1@ti.com>
+Date: Mon, 13 May 2019 21:44:14 -0400
+Message-ID: <20190514014418.20156-2-e-ruei1@ti.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190514014418.20156-1-e-ruei1@ti.com>
+References: <20190514014418.20156-1-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] qtwebkit: disable bmalloc for AM654x
+Subject: [PATCH 1/5] packagegroup-arago-qte: replace qtwebengine with qtwebkit
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,31 +51,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 May 2019 21:32:45 -0000
+X-List-Received-Date: Tue, 14 May 2019 01:45:01 -0000
 Content-Type: text/plain
 
-- bmalloc does not support 64k page size yet and therefore should be
-  disabled.
+- qtwebengine 5.11.3 does not work, replace it with qtwebkit until the
+  fix is available
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ .../packagegroups/packagegroup-arago-qte.bb      | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
-index 61c099fc..31c929a7 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
-@@ -8,6 +8,8 @@ SRC_URI += " \
- 	file://GraphicsSurfaceGL_NoX.cpp.patch \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+index c038a165..8cfcdfc3 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to add Qt embedded related packages"
+ LICENSE = "MIT"
+-PR = "r14"
++PR = "r15"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -40,18 +40,18 @@ QT5_ESSENTIALS = "\
+     qtgraphicaleffects-qmlplugins \
+     qtvirtualkeyboard-plugins \
+     qtvirtualkeyboard-qmlplugins \
+-    qtwebengine-qmlplugins \
++    qtwebkit-qmlplugins \
+     liberation-fonts \
+     qtconnectivity \
+     qtconnectivity-qmlplugins \
  "
  
--PR_append = ".arago5"
-+PR_append = ".arago6"
-+
-+EXTRA_OECMAKE_append_k3 = " -DUSE_SYSTEM_MALLOC=ON"
+-QT5_ESSENTIALS_append_k3 = "\
+-    qtwebkit-qmlplugins \
+-"
+-QT5_ESSENTIALS_remove_k3 = "\
+-    qtwebengine-qmlplugins \
+-"
++#QT5_ESSENTIALS_append_k3 = "\
++#    qtwebkit-qmlplugins \
++#"
++#QT5_ESSENTIALS_remove_k3 = "\
++#    qtwebengine-qmlplugins \
++#"
  
- DEPENDS += "flex-native bison-native"
+ RDEPENDS_${PN} = "\
+     ${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_ESSENTIALS}", "${QT4_ESSENTIALS}", d)} \
 -- 
 2.17.1
 
