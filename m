@@ -1,44 +1,42 @@
-Return-Path: <x0038811@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 64851529AB
+Return-Path: <denys@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 0CB57529FD
 	for <meta-arago@arago-project.org>;
-	Wed, 15 May 2019 07:58:01 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4F7vUtc069358
-	for <meta-arago@arago-project.org>; Wed, 15 May 2019 02:57:30 -0500
+	Fri, 17 May 2019 00:59:31 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4H0x0Fp042790
+	for <meta-arago@arago-project.org>; Thu, 16 May 2019 19:59:00 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1557907050;
-	bh=gS0LqsNiNsQOzqcBVlmfztb3t5NWWozP8uNLnqCEPTU=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=oMd4reGaYXF0KHMcdQ3fSvL+shXl6cCSUP239zbP6kU2wnD+WD4O75NGa4Swymw0B
-	R/CU+7cXB02P7sOatB7owygk8OSWaVjwGIkF8qjMRqIvterqI6SGGE2D+F0N6/WxCN
-	YTiJlgDdIU/7O7/4u+sYEOKmnHuhEomUJLwnfgkY=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4F7vUHv068966
+	s=ti-com-17Q1; t=1558054740;
+	bh=rfMrcTHjyjHU4cYWnCaynFkHpuItmtcecHdGuwIEGz4=;
+	h=From:To:CC:Subject:Date;
+	b=LOy+R2ir5CniFiYY6RpTi0rscuHqbvaooT9JStMjPrj+fwOC75CVHhfUqoIT0OBcZ
+	oPjvNaDqycF1U+N4QXaiY6fNip8HqppgxVVo1UHoVTC+ZQJMvKJdSjs6PCbuua/eId
+	3y5F93i9tU81EwMfG72JKhGrsPfpUad19eIEUxAc=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4H0x0WE047424
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 15 May 2019 02:57:30 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 16 May 2019 19:59:00 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 15 May 2019 02:57:30 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 16 May 2019 19:59:00 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 15 May 2019 02:57:30 -0500
-Received: from udx0038811.india.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Thu, 16 May 2019 19:59:00 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4F7vRiG067587;
-	Wed, 15 May 2019 02:57:29 -0500
-From: Ramprasad N <x0038811@ti.com>
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4H0x0lX130902;
+	Thu, 16 May 2019 19:59:00 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 15 May 2019 13:27:25 +0530
-Message-ID: <1557907045-23765-2-git-send-email-x0038811@ti.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1557907045-23765-1-git-send-email-x0038811@ti.com>
-References: <1557907045-23765-1-git-send-email-x0038811@ti.com>
+Date: Fri, 17 May 2019 00:47:36 +0000
+Message-ID: <20190517004737.16209-1-denys@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master 1/1] gstreamer1.0-plugins-ducati: Update SRCREV with fixes
+Subject: [PATCH 1/2] point-cloud-viewer: fix QA error regarding rdeps on libstdc++
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,34 +49,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 May 2019 07:58:02 -0000
+X-List-Received-Date: Fri, 17 May 2019 00:59:32 -0000
 Content-Type: text/plain
 
-Follwing issues have been resolved in this update
-* Issue with decoding interlaced streams
-* Repeated video issue with trick-play
-
-Signed-off-by: Ramprasad N <x0038811@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb                 | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb   | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
-index 7c054ef..2a33f7c 100644
---- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
-+++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
-@@ -4,8 +4,8 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
+diff --git a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+index f47623a1..e477448b 100644
+--- a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
++++ b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+@@ -17,7 +17,7 @@ PV = "2.0"
  
- require gstreamer1.0-plugins-ti.inc
+ S = "${WORKDIR}/git"
  
--PR = "${INC_PR}.30"
--SRCREV = "19e911bb45757d8341ffd7819ca783ca04f5e3b1"
-+PR = "${INC_PR}.31"
-+SRCREV = "7e3938f0854be99583f8b204f600907ea9e6471d"
+-RDEPENDS_${PN} = "glfw opencv"
++RDEPENDS_${PN} = "glfw opencv libstdc++"
  
- BRANCH ?= "master"
- 
+ do_install() {
+     install -d ${D}${bindir}
 -- 
-1.9.1
+2.17.1
 
 
