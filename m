@@ -1,44 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id CD5E752A17
+Return-Path: <e-ruei1@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 74E9F529EF
 	for <meta-arago@arago-project.org>;
-	Fri, 17 May 2019 00:59:32 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4H0x1vl100758
-	for <meta-arago@arago-project.org>; Thu, 16 May 2019 19:59:01 -0500
+	Fri, 17 May 2019 19:03:15 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4HJ2h90053317
+	for <meta-arago@arago-project.org>; Fri, 17 May 2019 14:02:43 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1558054741;
-	bh=jPOoqa7k8p8KgyEeYB1uiPQNDl0JFJM1fVrXS2yggAA=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=aV6aHtZdA07dYqM3DUYLqVE4B3ylaugtzgx4jpYaDCCLG3eOwdPQ365PzpcrBJQyK
-	ZlSYrmyV6U482KaaQIITmImi0YXgBteWQ71FbwKdD4ZpqYsOfqMxbyyuZ/Heh/GjZV
-	jiV50g9M1gKgtgwbIlLJ/lxeok92O59ohJ2HoUOY=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4H0x1dQ119815
+	s=ti-com-17Q1; t=1558119763;
+	bh=s/8+NCd3mS9Zfm2ELcG/f1S7tIMvz2wm0Tq5gAuJR5g=;
+	h=From:To:Subject:Date;
+	b=XpdyI5a5wKN10z91/wzCmhz4yD99OjiRm8YaM8G/YJ8AUOod1ewGeiNl9ooC+CiRQ
+	zgm7kVk5bSyuKPeq7Z67SZEPlZooGg+JznykQ6ATeJiE5TF1ZnlRZkdeDRYx4gjGYa
+	Y8WK3liU4GE8t9FWAIxTWa+SDQL/nWcQiKbinWLk=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4HJ2hge002418
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 16 May 2019 19:59:01 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 17 May 2019 14:02:43 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 16 May 2019 19:59:01 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 17 May 2019 14:02:43 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Thu, 16 May 2019 19:59:01 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Fri, 17 May 2019 14:02:43 -0500
+Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4H0x0lY130902;
-	Thu, 16 May 2019 19:59:01 -0500
-From: Denys Dmytriyenko <denys@ti.com>
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4HJ2hWq018491
+	for <meta-arago@arago-project.org>; Fri, 17 May 2019 14:02:43 -0500
+From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 17 May 2019 00:47:37 +0000
-Message-ID: <20190517004737.16209-2-denys@ti.com>
+Date: Fri, 17 May 2019 15:02:32 -0400
+Message-ID: <20190517190232.42112-1-e-ruei1@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190517004737.16209-1-denys@ti.com>
-References: <20190517004737.16209-1-denys@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 2/2] external-arm-toolchain: install ldconfig binary and default ld.so.conf configuration
+Subject: [PATCH] packagegroup-arago-tisdk-qte: fix typo for qtwebkit examples
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,30 +49,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 May 2019 00:59:33 -0000
+X-List-Received-Date: Fri, 17 May 2019 19:03:15 -0000
 Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-core/meta/external-arm-toolchain.bbappend        | 5 +++++
- 1 file changed, 5 insertions(+)
+It should be qtwebkit-examples-examples. This patch can be squashed to
+the previous one if it is possible.
 
-diff --git a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-index 5cbeedfc..34daa032 100644
---- a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-+++ b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-@@ -1,6 +1,11 @@
- ORIG_TARGET_SYS = "${TARGET_ARCH}${TARGET_VENDOR}${@['-' + d.getVar('TARGET_OS'), ''][d.getVar('TARGET_OS') == ('' or 'custom')]}"
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+---
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
+index b2ca56eb..662d3dd3 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
+@@ -22,7 +22,7 @@ QT5_DEMOS = "\
+     qtscript-examples \
+     qtsvg-examples \
+     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-examples', '', d)} \
+-    qtwebkit-examples \
++    qtwebkit-examples-examples \
+     qtserialport-examples \
+ "
  
- do_install_append() {
-+	install -d ${D}${base_sbindir}
-+	cp -a ${TOOLCHAIN_PATH}/${EAT_TARGET_SYS}/libc/${base_sbindir}/ldconfig ${D}${base_sbindir}/
-+	install -d ${D}${sysconfdir}
-+	echo -e "/lib\n/usr/lib" >> ${D}${sysconfdir}/ld.so.conf
-+
- 	if [ ${EAT_TARGET_SYS} != ${ORIG_TARGET_SYS} ]; then
- 		ln -sf ${EAT_TARGET_SYS} ${D}${libdir}/${ORIG_TARGET_SYS}
- 		ln -sf ${EAT_TARGET_SYS} ${D}${includedir}/c++/${EAT_VER_GCC}/${ORIG_TARGET_SYS}
 -- 
 2.17.1
 
