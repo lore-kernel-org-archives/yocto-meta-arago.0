@@ -1,20 +1,20 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 41B0B52993
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 630EE52092
 	for <meta-arago@arago-project.org>;
 	Fri, 31 May 2019 15:22:00 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4VFLO41037363
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x4VFLOTB103200
 	for <meta-arago@arago-project.org>; Fri, 31 May 2019 10:21:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1559316084;
-	bh=ss0BC3C7hoaCsinM724jKFrLw5mFPRYUoKTs2NRBDYg=;
+	bh=UwurqNm3hhK6rXS7QJFUPzni1t5EkTbom1vR3NAPrUg=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=T+oL6Zpq7ypAvCo6KQFLHTva+D3BItAoJrCOO4ps3N8fgo3vpPk4wNnbpRq2AMTJZ
-	L8Kgkq8G8oDUausvRQezIhntT2ycvyIVzIvhc3xTQByG3j8VNBOJZxBE6qrSyj1D8F
-	MIFwLbLy/b6EHBwsA5R/0R5klz+5Xo7HATbknA1U=
+	b=vs5sq4L4qZ0hTCYG/JJOzhH8ohqBj72haWMw4pf5sapzLHNAFauONMRwfnOLLg7J3
+	6PzLQu+9oNhXESd3Nw70yrP9gWfIMZTp0869d8oiWnwVl0zRLyXqQ3PkPOnqdpl5HD
+	2nfYX2vYvBdYuoHZk2bIJcst+jfbIH84W51C6Jmg=
 Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4VFLOhm110623
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x4VFLOMs120454
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@arago-project.org>; Fri, 31 May 2019 10:21:24 -0500
 Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE108.ent.ti.com
@@ -27,18 +27,18 @@ Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
 	Frontend Transport; Fri, 31 May 2019 10:21:24 -0500
 Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4VFLJUr034955
-	for <meta-arago@arago-project.org>; Fri, 31 May 2019 10:21:23 -0500
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x4VFLJUs034955
+	for <meta-arago@arago-project.org>; Fri, 31 May 2019 10:21:24 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 31 May 2019 11:20:58 -0400
-Message-ID: <20190531152100.19757-3-e-ruei1@ti.com>
+Date: Fri, 31 May 2019 11:20:59 -0400
+Message-ID: <20190531152100.19757-4-e-ruei1@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190531152100.19757-1-e-ruei1@ti.com>
 References: <20190531152100.19757-1-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 2/4] packagegroup-arago-tisdk-graphics: add MACHINE FEATURES condition sgx for certain modules
+Subject: [PATCH 3/4] packagegroup-arago-tisdk-matrix: add MACHINE FEATURES condition sgx for certain demos
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,65 +51,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 May 2019 15:22:00 -0000
+X-List-Received-Date: Fri, 31 May 2019 15:22:01 -0000
 Content-Type: text/plain
 
-- The following modules all depend on sgx to be functional:
-  chromium-wayland
-  ti-sgx-ddk-km
-  glmark2
-
-Note: ti-sgx-ddk-um is still needed for build, but the libraries will not
-      be invoked at run-time
+- Both thermostat and touch demos run with QPA eglfs which depends on sgx
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../packagegroup-arago-tisdk-graphics.bb             | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-matrix.bb        | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-index e12c42aa..cb7f68bc 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+index 2b7ee6de..612f66cf 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
 @@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install graphics binaries"
+ DESCRIPTION = "Task to include Matrix v2"
  LICENSE = "MIT"
--PR = "r22"
-+PR = "r23"
+-PR = "r78"
++PR = "r79"
  
- inherit packagegroup
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
-@@ -12,25 +12,25 @@ GRAPHICS_WAYLAND = "\
+@@ -36,11 +36,11 @@ MATRIX_QT_APPS = " \
+     matrix-qt5-demo-webkit-browser \
+     matrix-qt5-demo-calculator \
+     matrix-qt5-demo-deform \
+-    matrix-gui-thermostat-demo \
++    ${@bb.utils.contains('MACHINE_FEATURES','sgx','matrix-gui-thermostat-demo','',d)} \
  "
  
- GRAPHICS_WAYLAND_append_omap-a15 = "\
--    chromium-wayland \
-+    ${@bb.utils.contains('MACHINE_FEATURES','sgx','chromium-wayland','',d)} \
+ MATRIX_TOUCH_APPS = " \
+-    matrix-gui-touch-demos \
++    ${@bb.utils.contains('MACHINE_FEATURES','sgx','matrix-gui-touch-demos','',d)} \
  "
  
- GRAPHICS_WAYLAND_append_k3 = "\
--    chromium-wayland \
-+    ${@bb.utils.contains('MACHINE_FEATURES','sgx','chromium-wayland','',d)} \
- "
- 
- GRAPHICS_RDEPENDS = "\
-     libgbm \
--    ti-sgx-ddk-km \
-+    ${@bb.utils.contains('MACHINE_FEATURES','sgx','ti-sgx-ddk-km','',d)} \
-     ti-sgx-ddk-um \
--    glmark2 \
-+    ${@bb.utils.contains('MACHINE_FEATURES','sgx','glmark2','',d)} \
- "
- 
- GRAPHICS_DISPLAY_UTILS = "\
- "
- 
- GRAPHICS_DISPLAY_UTILS_append_omap-a15  = "\
--    glsdk-util-scripts \
-+    ${@bb.utils.contains('MACHINE_FEATURES','sgx','glsdk-util-scripts','',d)} \
- "
- 
- GRAPHICS_RDEPENDS_append_omap-a15 = "\
+ MATRIX_QT_APPS_keystone = ""
 -- 
 2.17.1
 
