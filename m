@@ -1,44 +1,44 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 8E9F452998
+Return-Path: <h-gou@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 23D3352998
 	for <meta-arago@arago-project.org>;
-	Mon,  3 Jun 2019 16:25:54 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x53GPGeX048222
-	for <meta-arago@arago-project.org>; Mon, 3 Jun 2019 11:25:16 -0500
+	Mon,  3 Jun 2019 19:26:40 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x53JQ16j034353
+	for <meta-arago@arago-project.org>; Mon, 3 Jun 2019 14:26:01 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1559579116;
-	bh=t0YiKfa4yAalRIRKBTgODhfXaZ7fNr6TS8MYYGz42ng=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Zo46hCtuDkNm/tk3ugz+RJBP8bY4ZVnjTjAQCn8ppcGfC9j0whDQuSbvgs8lr/2af
-	UxwFrgHvUnmVVpDGMXm78htD5Jhe3VCs5bu16CMBSb99p/e/VfqSOMOMnqptgjiiDu
-	1lJ5/TmG79ArtJse1ABN6I3thNE3xtXAd3IofsE0=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x53GPGQR022372
+	s=ti-com-17Q1; t=1559589961;
+	bh=jzMvCjYT/v9pN7ZkWHTlaPOG2jmXjJUbaehxgPVcXcQ=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=AcSTIPBWFUQqsl+kFsS0UGx2tTRacKoLhlByPd2N4znmPkY1Uo9KPV4GV1TsQxZh6
+	qqB0iMUV6/5nWg2wvlntT59kAXyzNymiZX/BHtcsHbUWVI0vqDSo8NkhLegiqFiPEG
+	UAF1qvk/xLLq62NmdhpoIQDevm/jEv4/nEdF+Mak=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x53JQ1GK062553
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 3 Jun 2019 11:25:16 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 3 Jun 2019 11:25:15 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+	for <meta-arago@arago-project.org>; Mon, 3 Jun 2019 14:26:01 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE111.ent.ti.com
 	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Mon, 3 Jun 2019 14:26:01 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 3 Jun 2019 11:25:15 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x53GPFd1030227;
-	Mon, 3 Jun 2019 11:25:15 -0500
-Date: Mon, 3 Jun 2019 12:25:15 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Eric Ruei <e-ruei1@ti.com>
-Message-ID: <20190603162515.GD18469@beryl>
-References: <20190531152100.19757-1-e-ruei1@ti.com>
+	Frontend Transport; Mon, 3 Jun 2019 14:26:01 -0500
+Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x53JQ0c7100439;
+	Mon, 3 Jun 2019 14:26:01 -0500
+From: Hongmei Gou <h-gou@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 3 Jun 2019 15:24:20 -0400
+Message-ID: <20190603192424.23922-3-h-gou@ti.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190603192424.23922-1-h-gou@ti.com>
+References: <20190603192424.23922-1-h-gou@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20190531152100.19757-1-e-ruei1@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH 0/4] add MACHINE FEATURES condition sgx for additional modules and demos
+Subject: [thud/master] [PATCH 2/6] packagegroup-arago-qte-toolchain-target: add qtcharts-mkspecs and qtcharts-dev
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,42 +51,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Jun 2019 16:25:57 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 03 Jun 2019 19:26:42 -0000
+Content-Type: text/plain
 
-Probably fine for now. I'm thinking we should group packagegroups slightly 
-differently, so conditions like "sgx" can be done in one place, instead of 
-sprinkling throughout the code...
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
+---
+ .../packagegroups/packagegroup-arago-qte-toolchain-target.bb  | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Denys
+diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
+index 4802acd7..a5ed1bff 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
+@@ -1,7 +1,7 @@
+ DESCRIPTION = "Target packages for Qt Embedded SDK"
+ LICENSE = "MIT"
+ 
+-PR = "r14"
++PR = "r15"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -65,6 +65,8 @@ QT5_DEV = " \
+         qtwebkit-dev \
+         qtserialport-mkspecs \
+         qtserialport-dev  \
++        qtcharts-mkspecs \
++        qtcharts-dev \
+ "
+ 
+ #QT5_DEV_append_k3 = " \
+-- 
+2.17.1
 
-
-On Fri, May 31, 2019 at 11:20:56AM -0400, Eric Ruei wrote:
-> There are more modules and demos should not be included for non-sgx build
-> and therefore MACHINE FATURES condition (sgx) is added.
-> 
-> Eric Ruei (4):
->   packagegroup-arago-tisdk-addons:add MACHINE FEATURES condition sgx for
->     certain modules
->   packagegroup-arago-tisdk-graphics: add MACHINE FEATURES condition sgx
->     for certain modules
->   packagegroup-arago-tisdk-matrix: add MACHINE FEATURES condition sgx
->     for certain demos
->   matrix-gui-machinevision-demos: add MACHINE FEATURES condition sgx for
->     certain demos
-> 
->  .../packagegroups/packagegroup-arago-tisdk-addons.bb |  4 ++--
->  .../packagegroup-arago-tisdk-graphics.bb             | 12 ++++++------
->  .../packagegroups/packagegroup-arago-tisdk-matrix.bb |  6 +++---
->  .../matrix/matrix-gui-machinevision-demos_2.0.bb     |  4 ++--
->  4 files changed, 13 insertions(+), 13 deletions(-)
-> 
-> -- 
-> 2.17.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
