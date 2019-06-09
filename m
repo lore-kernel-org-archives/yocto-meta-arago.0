@@ -1,44 +1,42 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 1F5AF5298B
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
+	[209.85.167.53])
+	by arago-project.org (Postfix) with ESMTPS id 9253052994
 	for <meta-arago@arago-project.org>;
-	Fri,  7 Jun 2019 14:06:04 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x57E5QcR049560
-	for <meta-arago@arago-project.org>; Fri, 7 Jun 2019 09:05:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1559916326;
-	bh=sPSWe1i5Xa68dNdGeC1K/vVp7DJIHInWl5uMK8uwYhE=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=jQR6B9E7hNscRa6UxzWP2z8pFTfDczM5vOhUUQxexNbSeVJcKZ34wy7YOgDQlORov
-	4dmVSAUx3XcH+gckeKuMPKvdjOTIpE3YOqjU8rgLg8qUsCq10b5C4OLs9WfFeFHaB5
-	u3c2PxhAo5egjG2H3QIZ9R+OnyqVFxZ2OenA1E6g=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x57E5Qti085539
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 7 Jun 2019 09:05:26 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 7 Jun 2019 09:05:25 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 7 Jun 2019 09:05:25 -0500
-Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x57E5KXE115509
-	for <meta-arago@arago-project.org>; Fri, 7 Jun 2019 09:05:25 -0500
-From: Eric Ruei <e-ruei1@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 7 Jun 2019 10:05:03 -0400
-Message-ID: <20190607140503.29694-2-e-ruei1@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190607140503.29694-1-e-ruei1@ti.com>
-References: <20190607140503.29694-1-e-ruei1@ti.com>
+	Sun,  9 Jun 2019 20:15:13 +0000 (UTC)
+Received: by mail-lf1-f53.google.com with SMTP id m15so5149793lfh.4
+	for <meta-arago@arago-project.org>;
+	Sun, 09 Jun 2019 13:14:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=GQCXH0cr21rlheqwygzrGazW4AOcxse7N8Ysu0dLtLQ=;
+	b=pjJYqulEQimFNcHcN/fHJ7CAGi5Wc1/pKgZ7oS3MVM7DXflJ3k+aHZB/UR1HHsAVyx
+	2XPZRqSjTj+XXKlQiFXF0IpbJtyCgl1TPPPUPaaECXZDjVXx4myYGpbzh/MfQBNFvNfO
+	5Rtgiv6OPgo106qU8Phif4L6T4wz+6pKrQwRcJBe4zXoNBF+l2u6PCcFwvFmJORL5oum
+	LJubNJ0soht21uuU9Evy1h7AHLIkrxdcVx0gPhFy5vTf4FM+XJOd9h0ggZkBjaHqc5AC
+	TBQE2jV3doaOuP1hk4kVwGAXMVV2tI/hpKePLclD9gRtYx1wItUFSGtkd15tYJWh8q7L
+	52Hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=GQCXH0cr21rlheqwygzrGazW4AOcxse7N8Ysu0dLtLQ=;
+	b=BRNzwdlvovz3NG3fRdB+IDCrR03XIO/njAO9X7z+JmTtGNyDOxwzOWCLDbWjUJgych
+	2gf/3mx+Y9OTcyVQQv1XQMY5CcFMgMevLLPFxUY21xmKelESk+FqvGsxwfRv85SnBoZs
+	SyAQPxyLaGMTIW+nDsfgS/hcDw7RuosTI8QDH/z4u6LAb2OHMIzLpPDaboFlilNiB9HR
+	KYcCc3RAbQE53Gj/1EHLfto8inunJ5qQ/G+YM6u+hszJmm7j5QU80/PM858leZ4h40LP
+	2S9baJo/AsnzkQHr4lVFXkzet/nw8nv7dAWjJ1Ey5mTyXqPfDk/6LYvJMTs0aNjaYLtV
+	uiYA==
+X-Gm-Message-State: APjAAAUnh1adNcxmnvzZg5deJ8A4IasAxlbA97osV51ck+tmqgv+DF8W
+	wbgz5zCT/lL0ICfF5GMLu55EqBrklKkUKbH4qX2MJQ==
+X-Google-Smtp-Source: APXvYqwVpJbRCqQf4YOciCvIspwkFHtnSadFf1lkToiYtuV/oE7kbdA3MCl8fCbedhLtz5RIp81ySrYfLFVtDy5+kW0=
+X-Received: by 2002:ac2:41d7:: with SMTP id d23mr29379310lfi.118.1560111273706;
+	Sun, 09 Jun 2019 13:14:33 -0700 (PDT)
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH 2/2] matrix-gui-apps-git:bump SRCREV to put deform back to full-screen mode
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Date: Mon, 10 Jun 2019 08:14:21 +1200
+Message-ID: <CADySD0Fv+OXf_73cMBEWSr2N0pF4wB=NGESN3987kQ8tLfEUDw@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: Upcoming stable branch
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,34 +49,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Jun 2019 14:06:05 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sun, 09 Jun 2019 20:15:14 -0000
+Content-Type: multipart/alternative; boundary="000000000000478b3a058ae9b6f3"
 
-Restore deform to full-screen mode because the display problem has been
-fixed at Weston 5.0
+--000000000000478b3a058ae9b6f3
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
----
- meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Hi,
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index 1ef1e9b9..487f1544 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
- 
- SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
--SRCREV = "42ccd978004ec75b4e05313466abe92806d14a29"
-+SRCREV = "2b41ee1f8e0dfe6b5f78d56e13a51aab115aaff0"
- BRANCH = "master"
--INC_PR = "r69"
-+INC_PR = "r70"
- 
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
--- 
-2.17.1
+We are planning to upgrade arago distro in our product.
+At this point, I can only see thud branch in meta-arago whereas warrior is
+available in oe-core.
 
+Is there any plan for warrior in meta-arago or is it being skipped?
+What is the difference between thud and thud-next?
 
+Thanks
+Ankur
+
+--000000000000478b3a058ae9b6f3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi,<div dir=3D"auto"><br></div><div dir=3D"auto">We are p=
+lanning to upgrade arago distro in our product.</div><div dir=3D"auto">At t=
+his point, I can only see thud branch in meta-arago whereas warrior is avai=
+lable in oe-core.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Is the=
+re any plan for warrior in meta-arago or is it being skipped?=C2=A0</div><d=
+iv dir=3D"auto">What is the difference between thud and thud-next?</div><di=
+v dir=3D"auto"><br></div><div dir=3D"auto">Thanks</div><div dir=3D"auto">An=
+kur</div></div>
+
+--000000000000478b3a058ae9b6f3--
