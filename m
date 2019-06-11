@@ -1,30 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 1888E52998
+Return-Path: <yuanzhao@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id A81F4529B1
 	for <meta-arago@arago-project.org>;
-	Tue, 11 Jun 2019 19:03:25 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 9C61F40BAE;
-	Tue, 11 Jun 2019 19:02:45 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id Jh-ZqcvUaF7S; Tue, 11 Jun 2019 19:02:45 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 81AD240BAD;
-	Tue, 11 Jun 2019 19:02:44 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 3561216FEF3;
-	Tue, 11 Jun 2019 15:02:44 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Tue, 11 Jun 2019 15:02:43 -0400
-Message-Id: <1560279763-3585-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH] ti-sci-fw: update to unbreak am65xx-hs-evm build
+	Tue, 11 Jun 2019 19:31:14 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5BJUZ5Z081424
+	for <meta-arago@arago-project.org>; Tue, 11 Jun 2019 14:30:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1560281435;
+	bh=hcU3Oj2QHH86RuBdGq1TlQ7MSWoo9SbcFLtYwips1ao=;
+	h=From:To:CC:Subject:Date;
+	b=ULphJN+DPsF34E6+tjDn212cPGfdk+UtihWNr538mkn1Wheq2ZgUqQgp/LE1sdt/8
+	Vjc7KfHzHHmG+7xMRJKsPBuwj3bUU1kU0iCb5RS59jKAhWPNLmuGkatsp2JtxVoj/T
+	l+qNjDIt+iH1ycIJ1gX/wPgBxvmJAd69SivxsTTI=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5BJUZbO033764
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 11 Jun 2019 14:30:35 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Tue, 11 Jun 2019 14:30:34 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Tue, 11 Jun 2019 14:30:34 -0500
+Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5BJUYv8096429;
+	Tue, 11 Jun 2019 14:30:34 -0500
+From: Yuan Zhao <yuanzhao@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 11 Jun 2019 14:30:11 -0500
+Message-ID: <20190611193011.9057-1-yuanzhao@ti.com>
+X-Mailer: git-send-email 2.14.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH] tidl-api: Fix tidl-viewer x86_64 build CXXFLAGS
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,27 +49,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2019 19:03:25 -0000
+X-List-Received-Date: Tue, 11 Jun 2019 19:31:15 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
 ---
- meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.05.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.05.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.05.bb
-index e783f33..ae0c856 100644
---- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.05.bb
-+++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.05.bb
-@@ -16,7 +16,7 @@ export TI_SECURE_DEV_PKG
+diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb b/meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb
+index 9a2cff13..c97b3a3b 100644
+--- a/meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb
++++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb
+@@ -5,7 +5,7 @@ LICENSE = "BSD"
  
- SRCREV = "94a06ceb66aa821b293e8b903f6b65346d33328d"
- BRANCH ?= "ti-linux-firmware"
--SRCREV_imggen = "45a79c0ec817df212296bb148aa55f888d3a7f8b"
-+SRCREV_imggen = "b78f394a997c919cff2733d1cf1d2f3b643ad02f"
- SRCREV_FORMAT = "imggen"
+ include tidl-api.inc
  
- SRC_URI = " \
+-PR = "${INC_PR}.0"
++PR = "${INC_PR}.1"
+ 
+ DEPENDS = "boost boost-native ti-cgt6x-native clocl-native"
+ 
+@@ -15,6 +15,9 @@ TARGET_class-target = "arm"
+ TARGET_class-native = "x86"
+ TARGET_class-nativesdk = "x86"
+ 
++CXXFLAGS_append_class-native    = " -DPLATFORM_64BIT "
++CXXFLAGS_append_class-nativesdk = " -DPLATFORM_64BIT "
++
+ EXTRA_OEMAKE = " -C ${S}/viewer \
+                  TARGET=${TARGET} \
+                  TARGET_ROOTDIR=${STAGING_DIR_HOST} \
 -- 
-2.7.4
+2.14.1
 
 
