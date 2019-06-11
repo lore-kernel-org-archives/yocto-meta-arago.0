@@ -1,43 +1,42 @@
-Return-Path: <d-senicic1@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id CF1BB52998
+Return-Path: <h-gou@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 7B8F7529FD
 	for <meta-arago@arago-project.org>;
-	Tue, 11 Jun 2019 20:13:46 +0000 (UTC)
+	Tue, 11 Jun 2019 22:20:57 +0000 (UTC)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5BKD7Za092808
-	for <meta-arago@arago-project.org>; Tue, 11 Jun 2019 15:13:07 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5BMKHZ7123616
+	for <meta-arago@arago-project.org>; Tue, 11 Jun 2019 17:20:17 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1560283987;
-	bh=98YrpdwXVo46MyXu2qrM0kSZjXECMOFxVbkIwaniM3o=;
+	s=ti-com-17Q1; t=1560291617;
+	bh=mFWToBBnwj2v8RUa0t42zP+E7/iM89xrqK3IQB1Fh84=;
 	h=From:To:CC:Subject:Date;
-	b=EI19g0Frn2Q5I9c9JHttDbeDacCqKHC8nEKKrFcBy0iNkR3uHTpXyVu6sez/vRII+
-	7pP8LVyi38AO/HgCHjr0jDB4U6sqL7xgU3YamylAT2/m5kHqV/QQFAJI8oNgHgP+pl
-	YwhAhhz5acaUm4KvAvhiK5pDMPqN9GKsk3Ct6VfA=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5BKD7wb003766
+	b=uQL3LnINH6VDzVGGq9hSRZxKqjKeXs1eaWVNIIwARfWevnWm0zOxfU2ZBYoBRvvhQ
+	o7H61837kUXZAqcGx57w2xwf1pUPrqVLz9hX/f8s0Y5XjADn78BNq4F8YjqNNTpmkU
+	b+ndbhuv5tz5MOIs6u5fUBSoK/sXWKNUvfJGPh64=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5BMKHuj020203
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 11 Jun 2019 15:13:07 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 11 Jun 2019 17:20:17 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 11 Jun 2019 15:13:07 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 11 Jun 2019 17:20:17 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 11 Jun 2019 15:13:07 -0500
-Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Tue, 11 Jun 2019 17:20:17 -0500
+Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5BKD6D6100905;
-	Tue, 11 Jun 2019 15:13:07 -0500
-From: Djordje Senicic <x0157990@ti.com>
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5BMKHbP062566;
+	Tue, 11 Jun 2019 17:20:17 -0500
+From: Hongmei Gou <h-gou@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 11 Jun 2019 11:03:36 -0400
-Message-ID: <20190611150336.2836-1-x0157990@ti.com>
+Date: Tue, 11 Jun 2019 17:59:40 -0400
+Message-ID: <20190611215940.26526-1-h-gou@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Djordje Senicic <x0157990@ti.com>
-Subject: [meta-processor-sdk][PATCH] tiovx-app-host: Fix pkg-config access
+Subject: [master/thud/ti2019.01] [PATCH] pdm-anomaly-detection: bump SRCREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,26 +49,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2019 20:13:47 -0000
+X-List-Received-Date: Tue, 11 Jun 2019 22:20:59 -0000
 Content-Type: text/plain
 
-Signed-off-by: Djordje Senicic <x0157990@ti.com>
----
- recipes-ti/tiovx/tiovx-app-host.bb | 2 ++
- 1 file changed, 2 insertions(+)
+* Remove the hardcoding on using a single LSTM layer
+* Add console printfs for anomaly detection status and results
 
-diff --git a/recipes-ti/tiovx/tiovx-app-host.bb b/recipes-ti/tiovx/tiovx-app-host.bb
-index 097f045..1097dc5 100644
---- a/recipes-ti/tiovx/tiovx-app-host.bb
-+++ b/recipes-ti/tiovx/tiovx-app-host.bb
-@@ -10,6 +10,8 @@ SRC_URI_append += "\
-      file://setenv.sh \
- "
+Signed-off-by: Hongmei Gou <h-gou@ti.com>
+---
+ .../pdm-anomaly-detection/pdm-anomaly-detection_git.bb        | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb b/meta-arago-extras/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb
+index 4e7b2bc0..3f07013c 100644
+--- a/meta-arago-extras/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb
++++ b/meta-arago-extras/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb
+@@ -5,12 +5,12 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=e88016d2cbc82d0d2efbb0865891e9d6"
+ inherit qt-provider
  
-+inherit pkgconfig
-+
- require recipes-ti/includes/tisdk-paths.inc
- require tiovx-sys.inc
+ PV = "1.0"
+-PR = "r0"
++PR = "r1"
+ 
+ BRANCH = "master"
+ SRC_URI  = "git://git.ti.com/apps/pdm-anomaly-detection.git;protocol=git;branch=${BRANCH}"
+ 
+-SRCREV = "832c4021de19998c7e47e94e1868943c9a145489"
++SRCREV = "01bca39e69cf2e73e17259a16b2465dde7cce6e9"
+ 
+ S = "${WORKDIR}/git"
  
 -- 
 2.17.1
