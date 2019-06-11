@@ -1,44 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 18B6C529B8
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 0093752998
 	for <meta-arago@arago-project.org>;
-	Tue, 11 Jun 2019 16:23:31 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5BGMqks063727
-	for <meta-arago@arago-project.org>; Tue, 11 Jun 2019 11:22:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1560270172;
-	bh=NH/0HqzCnqXcsG/s1+qbt2Q4XJBEO1fE9G6zyMVKJ/k=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=KmyEA6GGsRYhymxpsEWoEESRIX6eb+UKQbMi363iPYYi5/2BbTpY4PG+iCt2HIQAe
-	50Pz90JkZbcqdWlE+xMNIJegBDauleaTBuIz8bh4SSTO56wxFqu6W+3bR42uyMxuby
-	zV5SfYapb01Wk5yGXwjgetqTHsns/03E7VhYLYzE=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5BGMqv6074567
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 11 Jun 2019 11:22:52 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 11 Jun 2019 11:22:51 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 11 Jun 2019 11:22:51 -0500
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5BGMo1A091888;
-	Tue, 11 Jun 2019 11:22:51 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 11 Jun 2019 12:06:50 -0400
-Message-ID: <1560269210-18241-2-git-send-email-j-stiffler@ti.com>
+	Tue, 11 Jun 2019 17:21:15 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 74F4140BAE;
+	Tue, 11 Jun 2019 17:20:36 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id JqbK0_eJkq3e; Tue, 11 Jun 2019 17:20:36 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5D5B840BAB;
+	Tue, 11 Jun 2019 17:20:35 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 0156D16FEDF;
+	Tue, 11 Jun 2019 13:20:34 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 11 Jun 2019 13:20:34 -0400
+Message-Id: <1560273634-17564-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1560269210-18241-1-git-send-email-j-stiffler@ti.com>
-References: <1560269210-18241-1-git-send-email-j-stiffler@ti.com>
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master][PATCH 2/2] tidl-utils: skip file-rdeps check
+Subject: [thud/master][PATCH] packagegroup-*-graphics: add libdrm, wayland, weston to devkit
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,26 +37,64 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2019 16:23:33 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 11 Jun 2019 17:21:17 -0000
 
-* tidl-utils provides pre-built binaries, so skip file-rdeps.
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Also abstract EGL/GLES component to use the corresponding PREFERRED_PROVIDER variable.
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../packagegroup-arago-tisdk-graphics-sdk-target.bb              | 9 ++++++---
+ .../packagegroups/packagegroup-arago-tisdk-graphics.bb           | 5 ++---
+ 2 files changed, 8 insertions(+), 6 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
-index 69b6e29..2d3d7ee 100644
---- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
-+++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
-@@ -36,4 +36,4 @@ FILES_${PN} += "${datadir}/ti/tidl/utils \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
+index 573601b..b7a79da 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
+@@ -1,13 +1,16 @@
+ DESCRIPTION = "Task to install graphics binaries on sdk target"
+ LICENSE = "MIT"
+-PR = "r8"
++PR = "r9"
  
- BBCLASSEXTEND = "native nativesdk"
+ inherit packagegroup
  
--INSANE_SKIP_${PN} += "build-deps ldflags already-stripped"
-+INSANE_SKIP_${PN} += "build-deps ldflags already-stripped file-rdeps"
+ GRAPHICS_RDEPENDS = "\
+     libgbm-dev \
+-    ti-sgx-ddk-um-dev \
+-    "
++    libdrm-dev \
++    wayland-dev \
++    weston-dev \
++    ${PREFERRED_PROVIDER_virtual/egl}-dev \
++"
+ 
+ GRAPHICS_RDEPENDS_append_omap-a15 = "\
+     ti-gc320-libs-dev \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+index cb7f68b..bd1b260 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install graphics binaries"
+ LICENSE = "MIT"
+-PR = "r23"
++PR = "r24"
+ 
+ inherit packagegroup
+ 
+@@ -21,8 +21,7 @@ GRAPHICS_WAYLAND_append_k3 = "\
+ 
+ GRAPHICS_RDEPENDS = "\
+     libgbm \
+-    ${@bb.utils.contains('MACHINE_FEATURES','sgx','ti-sgx-ddk-km','',d)} \
+-    ti-sgx-ddk-um \
++    ${PREFERRED_PROVIDER_virtual/egl} \
+     ${@bb.utils.contains('MACHINE_FEATURES','sgx','glmark2','',d)} \
+ "
+ 
 -- 
 2.7.4
 
