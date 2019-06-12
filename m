@@ -1,44 +1,44 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id B1F3C52A00
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 86B4B52A00
 	for <meta-arago@arago-project.org>;
-	Wed, 12 Jun 2019 11:32:29 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5CBVoX6012761
-	for <meta-arago@arago-project.org>; Wed, 12 Jun 2019 06:31:50 -0500
+	Wed, 12 Jun 2019 11:32:45 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5CBW6XK054051
+	for <meta-arago@arago-project.org>; Wed, 12 Jun 2019 06:32:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1560339110;
-	bh=wb3iTfCj8B1wY6DVTGk3KKFBTyd/ijWkhI8sxnHxb+s=;
+	s=ti-com-17Q1; t=1560339126;
+	bh=Rhh3LLWNGP5/N6XnrKrAZ4edL++BZhy5ABEj1e1R8Bs=;
 	h=Subject:To:References:From:Date:In-Reply-To;
-	b=t8TS6ENA0QEHujK6NI57W+K2Q1N9vrlIbx10GGTKAMwrG0zTLZolJNHrQ+pLLB3HD
-	hHPtXViI1kcS0htPfv8k7eG/j5qwrWGLnvprLYDSnRCO+9C/iHwQBh/e9g8Ic3NZCl
-	X8QualH6kXfDTMEVZ/mW2mzKLDNVBV0X9RpQXQfM=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5CBVoPX108076
+	b=rm5jX7egYar1t85bTAi7h8HBkbaNOnRocAUiH+cJU4GqBBwVJOVjzB8tDdUpbL364
+	nhxWsWf2fpTdWyLnF9CVhQLyoxL1qi4SGVs+Jyuxl+oEy1Hv+ifFVDzNnvlgtCi8g7
+	rllygFoOUEpqxCackISpQM41ym/BweCaQoWoHx1Y=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5CBW6iM022895
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 12 Jun 2019 06:31:50 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Wed, 12 Jun 2019 06:32:06 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 12 Jun 2019 06:31:50 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 12 Jun 2019 06:32:05 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 12 Jun 2019 06:31:50 -0500
+	Frontend Transport; Wed, 12 Jun 2019 06:32:06 -0500
 Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5CBVnHd102846;
-	Wed, 12 Jun 2019 06:31:49 -0500
-To: Hongmei Gou <h-gou@ti.com>, <meta-arago@arago-project.org>
-References: <20190611215940.26526-1-h-gou@ti.com>
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5CBW5pN076602;
+	Wed, 12 Jun 2019 06:32:05 -0500
+To: Djordje Senicic <x0157990@ti.com>, <meta-arago@arago-project.org>
+References: <20190611180913.10651-1-x0157990@ti.com>
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <bb8ccc65-1809-b37d-9814-97244b1d43a3@ti.com>
-Date: Wed, 12 Jun 2019 07:31:48 -0400
+Message-ID: <0e4a6d58-4e17-50fb-4759-063769615a10@ti.com>
+Date: Wed, 12 Jun 2019 07:32:04 -0400
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
 	Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <20190611215940.26526-1-h-gou@ti.com>
+In-Reply-To: <20190611180913.10651-1-x0157990@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [master/thud/ti2019.01] [PATCH] pdm-anomaly-detection: bump SRCREV
+Subject: Re: [EXTERNAL] [thud/master][PATH] point-cloud-viewer: New binary compiled with gcc8 toolchain
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,7 +51,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jun 2019 11:32:30 -0000
+X-List-Received-Date: Wed, 12 Jun 2019 11:32:45 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
@@ -65,31 +65,25 @@ Thank you,
 
 Jake
 
-On 6/11/2019 5:59 PM, Hongmei Gou wrote:
-> * Remove the hardcoding on using a single LSTM layer
-> * Add console printfs for anomaly detection status and results
->
-> Signed-off-by: Hongmei Gou <h-gou@ti.com>
+On 6/11/2019 2:09 PM, Djordje Senicic wrote:
+> Signed-off-by: Djordje Senicic <x0157990@ti.com>
 > ---
->   .../pdm-anomaly-detection/pdm-anomaly-detection_git.bb        | 4 ++--
+>   .../recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb | 4 ++--
 >   1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/meta-arago-extras/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb b/meta-arago-extras/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb
-> index 4e7b2bc0..3f07013c 100644
-> --- a/meta-arago-extras/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb
-> +++ b/meta-arago-extras/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb
-> @@ -5,12 +5,12 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=e88016d2cbc82d0d2efbb0865891e9d6"
->   inherit qt-provider
+> diff --git a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+> index e477448b..9ee4ff0b 100644
+> --- a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+> +++ b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+> @@ -11,9 +11,9 @@ BRANCH = "master"
 >   
->   PV = "1.0"
-> -PR = "r0"
-> +PR = "r1"
+>   SRC_URI = "git://git.ti.com/processor-sdk/point-cloud-viewer.git;protocol=git;branch=${BRANCH}"
 >   
->   BRANCH = "master"
->   SRC_URI  = "git://git.ti.com/apps/pdm-anomaly-detection.git;protocol=git;branch=${BRANCH}"
+> -SRCREV = "ac8f7a8334b6458676810349ab84f718ecd16975"
+> +SRCREV = "c4800b186744e9379c798299c5caa67f6a4468f0"
 >   
-> -SRCREV = "832c4021de19998c7e47e94e1868943c9a145489"
-> +SRCREV = "01bca39e69cf2e73e17259a16b2465dde7cce6e9"
+> -PV = "2.0"
+> +PV = "2.1"
 >   
 >   S = "${WORKDIR}/git"
 >   
