@@ -1,44 +1,44 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 74F39520C0
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 1D3F2520C0
 	for <meta-arago@arago-project.org>;
-	Fri, 14 Jun 2019 17:59:28 +0000 (UTC)
+	Fri, 14 Jun 2019 18:00:04 +0000 (UTC)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5EHwmTV008534
-	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 12:58:48 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5EHxOgb004073
+	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 12:59:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1560535128;
-	bh=Z3MTuXlVXS+AmgAQcalmZFS+FkLr9SJiskJAjp7IcW0=;
+	s=ti-com-17Q1; t=1560535164;
+	bh=Wa8k4BRtSD6/aiAndGn5XObmBRZpF3YvfyrrrRlfL60=;
 	h=Subject:To:References:From:Date:In-Reply-To;
-	b=b/H/klt/ZtAsEGa+4+K6ZlGTEWiN+aNhwFhsVYfdzfjHMu2s549iT7R0WXKSqsTkJ
-	zhEkgrNUZbklK101PXplQoYezPhoKb6aE78dApr+w8M078n3s5+oOi6VKthS32v/DK
-	PFBLkCunFSORjtVz2ugw1fkJPF9CemUmtCIWIAFE=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5EHwmv7047947
+	b=jNAI5a5fDBqLzt7biQu47+Ay5xDC+7u/J6RS0AC/hkJf4d0QDMGq5eyD/Agb4Pk3c
+	G/mjrJfm2EOld9TTytQfgwdnxBpxUklMgo6faywQGYf5VPHVvW7VC/yduwUGdQIGM4
+	WyAfwqTwAKh3wzJAVPYPPpq192ayzrc2xTDKeRhI=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5EHxN25048805
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 12:58:48 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 12:59:24 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 14 Jun 2019 12:58:47 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 14 Jun 2019 12:59:23 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 14 Jun 2019 12:58:47 -0500
+	Frontend Transport; Fri, 14 Jun 2019 12:59:23 -0500
 Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5EHwlC9042590;
-	Fri, 14 Jun 2019 12:58:47 -0500
-To: Jianzhong Xu <xuj@ti.com>, <meta-arago@arago-project.org>
-References: <20190614151128.6908-1-xuj@ti.com>
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5EHxNK3073275
+	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 12:59:23 -0500
+To: <meta-arago@arago-project.org>
+References: <1560519585-14850-1-git-send-email-j-stiffler@ti.com>
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <66b9e66d-fd83-f327-8d0a-bb54d1d98d0d@ti.com>
-Date: Fri, 14 Jun 2019 13:58:47 -0400
+Message-ID: <dc3c2d97-8d49-07f0-8a91-285b6d7b7471@ti.com>
+Date: Fri, 14 Jun 2019 13:59:23 -0400
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
 	Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20190614151128.6908-1-xuj@ti.com>
+In-Reply-To: <1560519585-14850-1-git-send-email-j-stiffler@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [master/thud][PATCH] tidl-utils: bump SRCREV and remove patch
+Subject: Re: [master/thud/ti2019.01][PATCH] point-cloud-viewer: remove glfw from RDEPENDS
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,7 +51,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2019 17:59:28 -0000
+X-List-Received-Date: Fri, 14 Jun 2019 18:00:04 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
@@ -66,88 +66,36 @@ Thank you,
 Jake
 
 
-On 6/14/2019 11:11 AM, Jianzhong Xu wrote:
-> * Pick up tidl related developments for 6.0
-> * Remove tidl-import patch with source fix to disable static linking
-> * Consolidate "PV" and "PR" to tidl-utils.inc
+On 6/14/2019 9:39 AM, Jacob Stiffler wrote:
+> The glfw package does not exist as the glfw recipe only provides a
+> static library and headers. And because it is a static library that is
+> provided, there is no run-time dependency.
 >
-> Signed-off-by: Jianzhong Xu <xuj@ti.com>
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 > ---
->   .../tidl-utils/tidl-import/disable_static.patch  | 16 ----------------
->   .../recipes-ti/tidl-utils/tidl-import_git.bb     |  5 -----
->   .../recipes-ti/tidl-utils/tidl-utils.bb          |  5 -----
->   .../recipes-ti/tidl-utils/tidl-utils.inc         |  6 +++++-
->   4 files changed, 5 insertions(+), 27 deletions(-)
->   delete mode 100644 meta-arago-extras/recipes-ti/tidl-utils/tidl-import/disable_static.patch
+>   .../recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb         | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-import/disable_static.patch b/meta-arago-extras/recipes-ti/tidl-utils/tidl-import/disable_static.patch
-> deleted file mode 100644
-> index 23377af5..00000000
-> --- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-import/disable_static.patch
-> +++ /dev/null
-> @@ -1,16 +0,0 @@
-> -diff --git a/src/importTool/modules/ti_dl/utils/tidlModelImport/makefile b/src/importTool/modules/ti_dl/utils/tidlModelImport/makefile
-> -index 374f862..521f0dc 100644
-> ---- a/src/importTool/modules/ti_dl/utils/tidlModelImport/makefile
-> -+++ b/src/importTool/modules/ti_dl/utils/tidlModelImport/makefile
-> -@@ -103,9 +103,9 @@ ifeq ($(PLATFORM_BUILD), x86)
-> - ifeq ($(LINUX_IMPORT_TOOL), 64BIT)
-> - CFLAGS+= -DPLATFORM_64BIT
-> - endif
-> --LDFLAGS+= -lstdc++ -static
-> -+LDFLAGS+= -lstdc++
-> - else
-> --LDFLAGS+= -lstdc++ -lz -static
-> -+LDFLAGS+= -lstdc++ -lz
-> - endif
-> - endif
-> -
-> diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb b/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
-> index 9f1c5bba..b7c9d7af 100644
-> --- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
-> +++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
-> @@ -7,11 +7,6 @@ require ./tidl-utils.inc
->   LICENSE = "BSD-3"
->   LIC_FILES_CHKSUM = "file://modules/ti_dl/inc/itidl_ti.h;beginline=1;endline=34;md5=cabe1fdaabfa0d85dc5544566b0e2425"
+> diff --git a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+> index 067ead9..c448f50 100644
+> --- a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+> +++ b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+> @@ -3,7 +3,7 @@ HOMEPAGE = "https://git.ti.com/processor-sdk/point-cloud-viewer/"
+>   LICENSE = "TI-TSPA"
+>   LIC_FILES_CHKSUM := "file://PointCloudViewer_manifest.html;md5=7ea694db2dd8d82fd91a18cab8c2c2db"
 >   
-> -PV = "01.01.00.00"
 > -PR = "r1"
-> -
-> -SRC_URI_append = " file://disable_static.patch;pnum=3"
-> -
->   S = "${WORKDIR}/git/src/importTool/"
+> +PR = "r2"
 >   
->   DEPENDS = "protobuf zlib protobuf-native"
-> diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
-> index 69b6e297..554cf09a 100644
-> --- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
-> +++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
-> @@ -5,15 +5,10 @@ LICENSE = "TI-TFL"
+>   COMPATIBLE_MACHINE = "dra7xx"
 >   
->   require ./tidl-utils.inc
+> @@ -17,7 +17,7 @@ PV = "2.1"
 >   
-> -PV = "1.0.1.0"
-> -INC_PR = "r0"
-> -
->   LIC_FILES_CHKSUM = "file://docs/LICENSE.txt;md5=a93aa5af7a3bbbb6fb34c8df59efaa5c"
->   
->   RDEPENDS_${PN}_class-target += "tidl-api tidl-examples"
->   
-> -PR = "${INC_PR}.0"
-> -
 >   S = "${WORKDIR}/git"
 >   
->   TARGET_class-target = "arm"
-> diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-> index 9ccabdd6..2c29fc27 100644
-> --- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-> +++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-> @@ -1,2 +1,6 @@
->   SRC_URI = "git://git.ti.com/tidl/tidl-utils.git;protocol=git;branch=master"
-> -SRCREV = "057984b05e143a4740ecec3dd28cfa082927b897"
-> +SRCREV = "0c52c82a2aed1a27ca2a9b4b11effb426842b6ab"
-> +
-> +PV = "01.01.01.00"
-> +PR = "r0"
-> +
+> -RDEPENDS_${PN} = "glfw opencv libxkbcommon"
+> +RDEPENDS_${PN} = "opencv libxkbcommon"
+>   
+>   do_install() {
+>       install -d ${D}${bindir}
 
