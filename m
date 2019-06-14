@@ -1,44 +1,45 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 1D3F2520C0
+Return-Path: <denys@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id D62B6520C0
 	for <meta-arago@arago-project.org>;
-	Fri, 14 Jun 2019 18:00:04 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5EHxOgb004073
-	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 12:59:24 -0500
+	Fri, 14 Jun 2019 18:18:20 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5EIHeOO081698
+	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 13:17:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1560535164;
-	bh=Wa8k4BRtSD6/aiAndGn5XObmBRZpF3YvfyrrrRlfL60=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=jNAI5a5fDBqLzt7biQu47+Ay5xDC+7u/J6RS0AC/hkJf4d0QDMGq5eyD/Agb4Pk3c
-	G/mjrJfm2EOld9TTytQfgwdnxBpxUklMgo6faywQGYf5VPHVvW7VC/yduwUGdQIGM4
-	WyAfwqTwAKh3wzJAVPYPPpq192ayzrc2xTDKeRhI=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5EHxN25048805
+	s=ti-com-17Q1; t=1560536260;
+	bh=smrgV9LvmnwRsT+7l/NSGOAdi8htjdiHI1WEdMMNQTs=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=i3McNZcl0TnLfrk5t9I32Z7e5VMAI3JAK+LBnXF7QttNq0FuvxTLUmbb1FtAqmFzV
+	+CthucBcLucGsIj6iDqfhfgQkvw0uec06gNI3EgtC6bHxbWOORxye51Pz7thMZzsCl
+	uZmi98VhzZ00rdbzswzwYD7aWiYBu8bdTTRoY/YI=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5EIHeti080954
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 12:59:24 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 13:17:40 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 14 Jun 2019 12:59:23 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 14 Jun 2019 13:17:40 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 14 Jun 2019 12:59:23 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5EHxNK3073275
-	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 12:59:23 -0500
-To: <meta-arago@arago-project.org>
-References: <1560519585-14850-1-git-send-email-j-stiffler@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <dc3c2d97-8d49-07f0-8a91-285b6d7b7471@ti.com>
-Date: Fri, 14 Jun 2019 13:59:23 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.0
+	Frontend Transport; Fri, 14 Jun 2019 13:17:40 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5EIHd8p068310;
+	Fri, 14 Jun 2019 13:17:40 -0500
+Date: Fri, 14 Jun 2019 14:17:39 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20190614181739.GB31986@beryl>
+References: <1560360603-34381-1-git-send-email-denys@ti.com>
+	<713d4409-7cf5-5f69-ae6b-bfd4f6cd86ca@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1560519585-14850-1-git-send-email-j-stiffler@ti.com>
+In-Reply-To: <713d4409-7cf5-5f69-ae6b-bfd4f6cd86ca@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [master/thud/ti2019.01][PATCH] point-cloud-viewer: remove glfw from RDEPENDS
+Cc: meta-arago@arago-project.org
+Subject: Re: [EXTERNAL] [thud/master][PATCH] point-cloud-viewer: add RDEPENDS on libxkbcommon
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,51 +52,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2019 18:00:04 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Fri, 14 Jun 2019 18:18:21 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Denys,
+Still running it throught the next build, but it worked for am57 locally.
 
-Can you backport this to ti2019.01?
-
-
-Thank you,
-
-Jake
-
-
-On 6/14/2019 9:39 AM, Jacob Stiffler wrote:
-> The glfw package does not exist as the glfw recipe only provides a
-> static library and headers. And because it is a static library that is
-> provided, there is no run-time dependency.
->
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->   .../recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb         | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
-> index 067ead9..c448f50 100644
-> --- a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
-> +++ b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
-> @@ -3,7 +3,7 @@ HOMEPAGE = "https://git.ti.com/processor-sdk/point-cloud-viewer/"
->   LICENSE = "TI-TSPA"
->   LIC_FILES_CHKSUM := "file://PointCloudViewer_manifest.html;md5=7ea694db2dd8d82fd91a18cab8c2c2db"
->   
-> -PR = "r1"
-> +PR = "r2"
->   
->   COMPATIBLE_MACHINE = "dra7xx"
->   
-> @@ -17,7 +17,7 @@ PV = "2.1"
->   
->   S = "${WORKDIR}/git"
->   
-> -RDEPENDS_${PN} = "glfw opencv libxkbcommon"
-> +RDEPENDS_${PN} = "opencv libxkbcommon"
->   
->   do_install() {
->       install -d ${D}${bindir}
+On Fri, Jun 14, 2019 at 01:58:10PM -0400, Jacob Stiffler wrote:
+> Denys,
+> 
+> Can you backport this to ti2019.01?
+> 
+> 
+> Thank you,
+> 
+> Jake
+> 
+> 
+> On 6/12/2019 1:30 PM, Denys Dmytriyenko wrote:
+> >Fixes following QA error:
+> >ERROR: point-cloud-viewer-2.1-r1 do_package_qa: QA Issue: /usr/bin/point_cloud_viewer contained in package point-cloud-viewer requires libxkbcommon.so.0, but no providers found in RDEPENDS_point-cloud-viewer? [file-rdeps]
+> >
+> >Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> >---
+> >  .../recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb           | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> >diff --git a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+> >index 9ee4ff0..067ead9 100644
+> >--- a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+> >+++ b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+> >@@ -17,7 +17,7 @@ PV = "2.1"
+> >  S = "${WORKDIR}/git"
+> >-RDEPENDS_${PN} = "glfw opencv libstdc++"
+> >+RDEPENDS_${PN} = "glfw opencv libxkbcommon"
+> >  do_install() {
+> >      install -d ${D}${bindir}
 
