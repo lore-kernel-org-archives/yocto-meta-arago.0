@@ -1,46 +1,43 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id DC7AC52987
+Return-Path: <d-senicic1@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 53B3652987
 	for <meta-arago@arago-project.org>;
-	Fri, 14 Jun 2019 18:19:50 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5EIJAvU012687
-	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 13:19:10 -0500
+	Fri, 14 Jun 2019 18:20:25 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5EIJjlc050533
+	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 13:19:45 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1560536350;
-	bh=Tkzkv46YcDpCK/k1xFmEHljFbbIXLnHzewB7usssKEE=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=kYy/+2FsLOd9xBcDM8xGlbplyEwuBmd3CFEjRu2Uy/syAKQ6kX1oIhttghFD8JADv
-	yJOVAm9jToNSF4NAYfuX358m8C2F7ipxR4Zpe20kqOsgSxYkcj8AjkQWMIYkI528hq
-	hTjilMk0oYpU8GDMWM99aN9axh3o+/9jzkxwubdM=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5EIJAro004029
+	s=ti-com-17Q1; t=1560536385;
+	bh=9PtmO8gNPVYRS6/gXvtARGleRq3ijoHYK0dx4dF/QTI=;
+	h=From:To:CC:Subject:Date;
+	b=EBtvXEXd+FiIhZgT6zXPW/wsnsa2eN16+XDj4etqUmbGBPAFnasHxQN6f3Q1ZeeNE
+	Xy7IcMskiBthFIO3wpqdrHGhubRCQoq0PO0sMxPKZGn6eeMSxg6MLo4/HbkzK5rehP
+	vqNUzP+439LTgxhTneKjHuBol+I12KWhAgetp0wk=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5EIJj8V070424
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 13:19:10 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 14 Jun 2019 13:19:45 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 14 Jun 2019 13:19:10 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 14 Jun 2019 13:19:44 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 14 Jun 2019 13:19:10 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5EIJAit098784;
-	Fri, 14 Jun 2019 13:19:10 -0500
-Date: Fri, 14 Jun 2019 14:19:10 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20190614181910.GC31986@beryl>
-References: <1560360603-34381-1-git-send-email-denys@ti.com>
-	<713d4409-7cf5-5f69-ae6b-bfd4f6cd86ca@ti.com>
-	<20190614181739.GB31986@beryl>
+	Frontend Transport; Fri, 14 Jun 2019 13:19:44 -0500
+Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5EIJik1107716;
+	Fri, 14 Jun 2019 13:19:44 -0500
+From: Djordje Senicic <x0157990@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 14 Jun 2019 09:10:08 -0400
+Message-ID: <20190614131008.9336-1-x0157990@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20190614181739.GB31986@beryl>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [EXTERNAL] [thud/master][PATCH] point-cloud-viewer: add RDEPENDS on libxkbcommon
+Cc: Djordje Senicic <x0157990@ti.com>
+Subject: [thud/master][PATCH] armnn: Fix issue with new version of protobuf 3.6.1, and new toolchain warning settings
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,48 +50,124 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2019 18:19:51 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 14 Jun 2019 18:20:25 -0000
+Content-Type: text/plain
 
-On Fri, Jun 14, 2019 at 02:17:39PM -0400, Denys Dmytriyenko wrote:
-> Still running it throught the next build, but it worked for am57 locally.
+Signed-off-by: Djordje Senicic <x0157990@ti.com>
+---
+ .../recipes-support/armnn/armnn-caffe_git.bb  | 10 +++----
+ .../recipes-support/armnn/armnn-onnx_git.bb   | 10 +++----
+ ...verflow-warning-resulting-in-compila.patch | 27 +++++++++++++++++++
+ .../recipes-support/armnn/armnn_git.bb        |  1 +
+ 4 files changed, 38 insertions(+), 10 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-support/armnn/armnn/0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch
 
-Ah, sorry, not this one, this was already tested. I was referring to glfw fix.
+diff --git a/meta-arago-extras/recipes-support/armnn/armnn-caffe_git.bb b/meta-arago-extras/recipes-support/armnn/armnn-caffe_git.bb
+index 509324bc..a435ed75 100644
+--- a/meta-arago-extras/recipes-support/armnn/armnn-caffe_git.bb
++++ b/meta-arago-extras/recipes-support/armnn/armnn-caffe_git.bb
+@@ -2,20 +2,20 @@ SUMMARY = "Caffe protobuf files - used in ARMNN for Caffe network models"
+ LICENSE = "BSD-2-Clause"
+ LIC_FILES_CHKSUM = "file://caffeImport/LICENSE;md5=91d560803ea3d191c457b12834553991"
+ 
+-SRC_URI = " \
+-    git://git.ti.com/tidl/tidl-utils;branch=${BRANCH} \
+-"
++SRC_URI  = "git://git.ti.com/tidl/tidl-utils;branch=${BRANCH} \
++           "
++
++SRCREV = "0c52c82a2aed1a27ca2a9b4b11effb426842b6ab"
+ 
+ PV = "1.0"
+ 
+ BRANCH = "master"
+-SRCREV = "16030b2e43de6143f371072d54760737ddda0645"
+ 
+ S = "${WORKDIR}/git"
+ 
+ do_install() {
+         install -d ${D}${datadir}/${BPN}/caffe/proto/
+-        for file in ${S}/caffeImport/*
++        for file in ${S}/caffeImport/ver361/*
+         do
+             install -m 0644 $file ${D}${datadir}/${BPN}/caffe/proto/
+         done
+diff --git a/meta-arago-extras/recipes-support/armnn/armnn-onnx_git.bb b/meta-arago-extras/recipes-support/armnn/armnn-onnx_git.bb
+index 80a957b3..d0f0c70d 100644
+--- a/meta-arago-extras/recipes-support/armnn/armnn-onnx_git.bb
++++ b/meta-arago-extras/recipes-support/armnn/armnn-onnx_git.bb
+@@ -2,20 +2,20 @@ SUMMARY = "Onnx protobuf files - used in ARMNN for Onnx network models"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://onnxImport/LICENSE;md5=077ce3eaeaea91462d41c566300d2a02"
+ 
+-SRC_URI = " \
+-    git://git.ti.com/tidl/tidl-utils;branch=${BRANCH} \
+-"
++SRC_URI  = "git://git.ti.com/tidl/tidl-utils;branch=${BRANCH} \
++           "
++
++SRCREV = "0c52c82a2aed1a27ca2a9b4b11effb426842b6ab"
+ 
+ PV = "1.0"
+ 
+ BRANCH = "master"
+-SRCREV = "af39cf346f602bd2aa75db1e9b31636b78d4e31b"
+ 
+ S = "${WORKDIR}/git"
+ 
+ do_install() {
+         install -d ${D}${datadir}/${BPN}/onnx/
+-        for file in ${S}/onnxImport/*
++        for file in ${S}/onnxImport/ver361/*
+         do
+             install -m 0644 $file ${D}${datadir}/${BPN}/onnx/
+         done
+diff --git a/meta-arago-extras/recipes-support/armnn/armnn/0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch b/meta-arago-extras/recipes-support/armnn/armnn/0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch
+new file mode 100644
+index 00000000..b6f11024
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/armnn/armnn/0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch
+@@ -0,0 +1,27 @@
++From 4f5d63b026f225f6499e0a401d9b2769e8ef0a80 Mon Sep 17 00:00:00 2001
++From: Djordje Senicic <x0157990@ti.com>
++Date: Wed, 12 Jun 2019 13:12:09 -0400
++Subject: [PATCH] Avoid stringop-overflow warning resulting in compilation
++ error
++
++Signed-off-by: Djordje Senicic <x0157990@ti.com>
++---
++ src/armnn/LayerSupport.cpp | 2 ++
++ 1 file changed, 2 insertions(+)
++
++diff --git a/src/armnn/LayerSupport.cpp b/src/armnn/LayerSupport.cpp
++index 12b3c403..09c973e5 100644
++--- a/src/armnn/LayerSupport.cpp
+++++ b/src/armnn/LayerSupport.cpp
++@@ -25,6 +25,8 @@ void CopyErrorMessage(char* truncatedString, const char* fullString, size_t maxL
++     if(truncatedString != nullptr)
++     {
++         size_t copyLength = std::min(maxLength, strlen(fullString));
+++        if(copyLength > 255) copyLength = 255; //Put source length independent upper bound
+++       
++         std::strncpy(truncatedString, fullString, copyLength);
++         // Ensure null-terminated string.
++         truncatedString[copyLength] = '\0';
++-- 
++2.17.1
++
+diff --git a/meta-arago-extras/recipes-support/armnn/armnn_git.bb b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+index ff1bfbdd..b5ebd129 100644
+--- a/meta-arago-extras/recipes-support/armnn/armnn_git.bb
++++ b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+@@ -28,6 +28,7 @@ SRC_URI = " \
+     file://0005-add-armnn-mobilenet-test-example.patch \
+     file://0006-armnn-mobilenet-test-example.patch \
+     file://0007-enable-use-of-arm-compute-shared-library.patch \
++    file://0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch \
+     http://download.tensorflow.org/models/mobilenet_v1_2018_02_22/mobilenet_v1_1.0_224.tgz;name=mobilenet;subdir=${WORKDIR}/tfmodel;destsuffix=tfmodel \
+     git://git.ti.com/tidl/tidl-api.git;name=tidl-api;branch=${BRANCH};subdir=${WORKDIR}/tidl-api;destsuffix=tidl-api \
+ "
+-- 
+2.17.1
 
-
-> On Fri, Jun 14, 2019 at 01:58:10PM -0400, Jacob Stiffler wrote:
-> > Denys,
-> > 
-> > Can you backport this to ti2019.01?
-> > 
-> > 
-> > Thank you,
-> > 
-> > Jake
-> > 
-> > 
-> > On 6/12/2019 1:30 PM, Denys Dmytriyenko wrote:
-> > >Fixes following QA error:
-> > >ERROR: point-cloud-viewer-2.1-r1 do_package_qa: QA Issue: /usr/bin/point_cloud_viewer contained in package point-cloud-viewer requires libxkbcommon.so.0, but no providers found in RDEPENDS_point-cloud-viewer? [file-rdeps]
-> > >
-> > >Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > >---
-> > >  .../recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb           | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > >diff --git a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
-> > >index 9ee4ff0..067ead9 100644
-> > >--- a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
-> > >+++ b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
-> > >@@ -17,7 +17,7 @@ PV = "2.1"
-> > >  S = "${WORKDIR}/git"
-> > >-RDEPENDS_${PN} = "glfw opencv libstdc++"
-> > >+RDEPENDS_${PN} = "glfw opencv libxkbcommon"
-> > >  do_install() {
-> > >      install -d ${D}${bindir}
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
