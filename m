@@ -1,45 +1,46 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 388AF52998
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 5E6BF52998
 	for <meta-arago@arago-project.org>;
-	Tue, 18 Jun 2019 12:35:47 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5ICZ6Z9037176
-	for <meta-arago@arago-project.org>; Tue, 18 Jun 2019 07:35:06 -0500
+	Tue, 18 Jun 2019 12:35:54 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5ICZDkI084964
+	for <meta-arago@arago-project.org>; Tue, 18 Jun 2019 07:35:13 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1560861306;
-	bh=VVuWH5qElED1guz0qqX2hQolPlrZLFTgkcfUUkwaYWs=;
+	s=ti-com-17Q1; t=1560861313;
+	bh=XNyEJyms0UTHfS5TPeJ3znct+7SdaELH5HwUkSnq1sA=;
 	h=Subject:From:To:References:Date:In-Reply-To;
-	b=VGNR14Hc7h0aR2jwdGwfGM8dtcfsQguhDC0e/cuw9y61dstil4vRwybQtIOvIbZE2
-	no2Ey8paUGMIfARdx6NFPTqfeTeAAO5U/81VzeMTgU+DRpghqsviDZFaM7fbcU6BSa
-	cL34JWFcZwSuE/NtnbzBdYnSlAaAaF4LuUzOiVxs=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5ICZ5Mw072948
+	b=h+BvL4NKY8+oflH2oOVDPk6ZTKEYup5CiW9bxEwueBWmmtVbflDmZq/xR8Va9nhOj
+	/e8a6qniPfh7n0cRjrg+POwdaUYX9MWvKG0rRvVJnUuflY5AnonN0Yw/Yu2wyMW1EZ
+	Nhz1z/9AZGamAbQWUUqUKnCOS182ZkMZNAvdwYcQ=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5ICZDH4121562
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 18 Jun 2019 07:35:06 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 18 Jun 2019 07:35:13 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 18 Jun 2019 07:35:04 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 18 Jun 2019 07:35:12 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 18 Jun 2019 07:35:04 -0500
+	Frontend Transport; Tue, 18 Jun 2019 07:35:12 -0500
 Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5ICZ4VJ099632;
-	Tue, 18 Jun 2019 07:35:04 -0500
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5ICZC8W116552;
+	Tue, 18 Jun 2019 07:35:12 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: Eric Ruei <e-ruei1@ti.com>, <meta-arago@arago-project.org>
 References: <20190607140503.29694-1-e-ruei1@ti.com>
-	<552df4b0-0d00-e9cc-6c01-8be539a3b286@ti.com>
-Message-ID: <5935582e-1df1-4040-f70c-7d1de2b1f358@ti.com>
-Date: Tue, 18 Jun 2019 08:35:04 -0400
+	<20190607140503.29694-2-e-ruei1@ti.com>
+	<997ffbfd-cd22-f126-6ead-e8608ad4143d@ti.com>
+Message-ID: <a94ace22-bf40-c945-e2f2-8fdf4cc97d60@ti.com>
+Date: Tue, 18 Jun 2019 08:35:12 -0400
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
 	Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <552df4b0-0d00-e9cc-6c01-8be539a3b286@ti.com>
+In-Reply-To: <997ffbfd-cd22-f126-6ead-e8608ad4143d@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [PATCH 1/2] packagegroup-arago-tisdk-matrix: remove matrix-gui browser demo tentatively
+Subject: Re: [EXTERNAL] [PATCH 2/2] matrix-gui-apps-git:bump SRCREV to put deform back to full-screen mode
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,7 +53,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2019 12:35:47 -0000
+X-List-Received-Date: Tue, 18 Jun 2019 12:35:54 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 Content-Language: en-US
@@ -70,49 +71,30 @@ On 6/12/2019 7:30 AM, Jacob Stiffler wrote:
 > Jake
 >
 > On 6/7/2019 10:05 AM, Eric Ruei wrote:
->> Matrix-gui browser demos depend on qtwebengine which has been 
->> disabled for
->> now
->>
+>> Restore deform to full-screen mode because the display problem has been
+>> fixed at Weston 5.0
 >>
 >> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 >> ---
->>   .../packagegroups/packagegroup-arago-tisdk-matrix.bb      | 8 +++++---
->>   1 file changed, 5 insertions(+), 3 deletions(-)
+>>   meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
 >>
 >> diff --git 
->> a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb 
->> b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb 
->>
->> index 100d4070..ad131dca 100644
->> --- 
->> a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
->> +++ 
->> b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
->> @@ -1,6 +1,6 @@
->>   DESCRIPTION = "Task to include Matrix v2"
->>   LICENSE = "MIT"
->> -PR = "r79"
->> +PR = "r80"
->>     PACKAGE_ARCH = "${MACHINE_ARCH}"
->>   @@ -159,12 +159,14 @@ MATRIX_APPS_append_omap-a15 = "     \
->>       matrix-gui-generic-pm           \
->>       matrix-gui-clocks               \
->>       matrix-gui-pm-demos-governor    \
->> - 
->> ${@['','matrix-gui-browser-demos'][bb.utils.contains('MACHINE_FEATURES','sgx',True,False,d) 
->> and bb.utils.contains('DISTRO_FEATURES','wayland',True,False,d)]} \
->> -                                \
->>       ${MATRIX_ARMNN_APPS}            \
->>       matrix-analytics-pdm-anomaly-detection \
->>   "
->>   +# 
->> ${@['','matrix-gui-browser-demos'][bb.utils.contains('MACHINE_FEATURES','sgx',True,False,d) 
->> and bb.utils.contains('DISTRO_FEATURES','wayland',True,False,d)]} \
->> +#                                \
->> +#
->> +
->>   MATRIX_APPS_append_k3 = "           \
->>       matrix-multimedia-demo-aac      \
->>       matrix-multimedia-demo-audiocapture \
+>> a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc 
+>> b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+>> index 1ef1e9b9..487f1544 100644
+>> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+>> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+>> @@ -4,9 +4,9 @@ LICENSE_CHECKSUM = 
+>> "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+>>   LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+>>     SRC_URI = 
+>> "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+>> -SRCREV = "42ccd978004ec75b4e05313466abe92806d14a29"
+>> +SRCREV = "2b41ee1f8e0dfe6b5f78d56e13a51aab115aaff0"
+>>   BRANCH = "master"
+>> -INC_PR = "r69"
+>> +INC_PR = "r70"
+>>     # Pull in the base package for installing matrix applications
+>>   require matrix-gui-apps.inc
 
