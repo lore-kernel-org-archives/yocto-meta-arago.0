@@ -1,42 +1,45 @@
 Return-Path: <j-stiffler@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 26FDB52998
+	by arago-project.org (Postfix) with ESMTPS id 388AF52998
 	for <meta-arago@arago-project.org>;
-	Tue, 18 Jun 2019 12:29:12 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5ICSU5q035187
-	for <meta-arago@arago-project.org>; Tue, 18 Jun 2019 07:28:30 -0500
+	Tue, 18 Jun 2019 12:35:47 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5ICZ6Z9037176
+	for <meta-arago@arago-project.org>; Tue, 18 Jun 2019 07:35:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1560860910;
-	bh=ourb2LtfpiBtHAzxnZ7QclKX3OW8a9zTXffuWpWKMzk=;
-	h=From:To:CC:Subject:Date;
-	b=CHyhYEfGSnnrTQaejXDEwSrBKwMyNnb+/T9xdGsiFTbWrYVaDuSVkRqJ081sVdHl9
-	H0qL8rLc4agskkysCJ7T8rudBOhnBHRXkcM06rCHtIlJOH/BsuWXm4RapVuuD01YM8
-	MtnyEPvABDxOYIyPP1lOX76NfRuH63J10nyNHhb8=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5ICSUSl007888
+	s=ti-com-17Q1; t=1560861306;
+	bh=VVuWH5qElED1guz0qqX2hQolPlrZLFTgkcfUUkwaYWs=;
+	h=Subject:From:To:References:Date:In-Reply-To;
+	b=VGNR14Hc7h0aR2jwdGwfGM8dtcfsQguhDC0e/cuw9y61dstil4vRwybQtIOvIbZE2
+	no2Ey8paUGMIfARdx6NFPTqfeTeAAO5U/81VzeMTgU+DRpghqsviDZFaM7fbcU6BSa
+	cL34JWFcZwSuE/NtnbzBdYnSlAaAaF4LuUzOiVxs=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5ICZ5Mw072948
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 18 Jun 2019 07:28:30 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 18 Jun 2019 07:35:06 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 18 Jun 2019 07:28:30 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 18 Jun 2019 07:35:04 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 18 Jun 2019 07:28:30 -0500
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5ICSUNO089988;
-	Tue, 18 Jun 2019 07:28:30 -0500
+	Frontend Transport; Tue, 18 Jun 2019 07:35:04 -0500
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5ICZ4VJ099632;
+	Tue, 18 Jun 2019 07:35:04 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 18 Jun 2019 08:12:30 -0400
-Message-ID: <1560859950-12071-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
+To: Eric Ruei <e-ruei1@ti.com>, <meta-arago@arago-project.org>
+References: <20190607140503.29694-1-e-ruei1@ti.com>
+	<552df4b0-0d00-e9cc-6c01-8be539a3b286@ti.com>
+Message-ID: <5935582e-1df1-4040-f70c-7d1de2b1f358@ti.com>
+Date: Tue, 18 Jun 2019 08:35:04 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.0
 MIME-Version: 1.0
+In-Reply-To: <552df4b0-0d00-e9cc-6c01-8be539a3b286@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master/thud/ti2019.01][PATCH] tisdk-server-rootfs-image: remove ubi/ubifs freom IMAGE_FSTYPES
+Subject: Re: [EXTERNAL] [PATCH 1/2] packagegroup-arago-tisdk-matrix: remove matrix-gui browser demo tentatively
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,83 +52,67 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2019 12:29:12 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 18 Jun 2019 12:35:47 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-* The tisdk-server-rootfs-image size has exceeded HW limitations so
-  remove ubi/ubifs from IMAGE_FSTYPES.
-* Remove the tisdk-server-extra-rootfs-image as this was the original
-  intent of that image.
+Ping.
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../recipes-core/images/arago-core-tisdk-image.inc          |  6 +++---
- .../recipes-core/images/tisdk-server-extra-rootfs-image.bb  | 13 -------------
- .../recipes-core/images/tisdk-server-rootfs-image.bb        |  8 ++++++++
- 3 files changed, 11 insertions(+), 16 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
-
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index 45a8c1b..0125bb5 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -38,9 +38,9 @@ TARGET_IMAGES = "arago-base-tisdk-image tisdk-rootfs-image arago-tiny-image"
- TARGET_IMAGES_append_dra7xx-evm = " netboot-initrd"
- 
- # Some devices do not support display and use a server image instead
--TARGET_IMAGES_keystone = "arago-base-tisdk-image tisdk-server-rootfs-image tisdk-server-extra-rootfs-image arago-tiny-image"
--TARGET_IMAGES_omapl138 = "arago-base-tisdk-image tisdk-server-rootfs-image tisdk-server-extra-rootfs-image arago-tiny-image"
--TARGET_IMAGES_j7-evm = "arago-base-tisdk-image tisdk-server-rootfs-image tisdk-server-extra-rootfs-image arago-tiny-image"
-+TARGET_IMAGES_keystone = "arago-base-tisdk-image tisdk-server-rootfs-image arago-tiny-image"
-+TARGET_IMAGES_omapl138 = "arago-base-tisdk-image tisdk-server-rootfs-image arago-tiny-image"
-+TARGET_IMAGES_j7-evm = "arago-base-tisdk-image tisdk-server-rootfs-image arago-tiny-image"
- 
- TISDK_TOOLCHAIN = "meta-toolchain-arago-tisdk"
- TOOLCHAIN_SUFFIX = "-tisdk"
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
-deleted file mode 100644
-index 359dc90..0000000
---- a/meta-arago-distro/recipes-core/images/tisdk-server-extra-rootfs-image.bb
-+++ /dev/null
-@@ -1,13 +0,0 @@
--require recipes-core/images/tisdk-server-rootfs-image.bb
--
--IMAGE_INSTALL += "\
--    packagegroup-arago-test-addons \
--    packagegroup-arago-tisdk-addons-extra \
--    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-extra','',d)} \
--    packagegroup-arago-tisdk-multimedia \
--    packagegroup-arago-tisdk-matrix-extra \
--"
--
--export IMAGE_BASENAME = "tisdk-server-extra-rootfs-image"
--
--IMAGE_FSTYPES = "tar.xz"
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-index b64d092..09d9f9d 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-@@ -6,11 +6,19 @@ SPLASH = ""
- 
- IMAGE_INSTALL += "\
-     packagegroup-arago-tisdk-addons \
-+    packagegroup-arago-tisdk-addons-extra \
-     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-extra','',d)} \
-     packagegroup-arago-tisdk-crypto \
-+    packagegroup-arago-tisdk-multimedia \
-     packagegroup-arago-tisdk-matrix \
-+    packagegroup-arago-tisdk-matrix-extra \
-     packagegroup-arago-base-tisdk-server-extra \
-     packagegroup-arago-tisdk-connectivity \
- "
- 
- export IMAGE_BASENAME = "tisdk-server-rootfs-image"
-+
-+# Disable ubi/ubifs as the filesystem requires more space than is
-+# available on the HW.
-+IMAGE_FSTYPES_remove = "ubifs ubi"
--- 
-2.7.4
-
+On 6/12/2019 7:30 AM, Jacob Stiffler wrote:
+> Denys,
+>
+> Can you please backport this to the ti2019.01 branch?
+>
+>
+> Thank you,
+>
+> Jake
+>
+> On 6/7/2019 10:05 AM, Eric Ruei wrote:
+>> Matrix-gui browser demos depend on qtwebengine which has been 
+>> disabled for
+>> now
+>>
+>>
+>> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+>> ---
+>>   .../packagegroups/packagegroup-arago-tisdk-matrix.bb      | 8 +++++---
+>>   1 file changed, 5 insertions(+), 3 deletions(-)
+>>
+>> diff --git 
+>> a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb 
+>> b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb 
+>>
+>> index 100d4070..ad131dca 100644
+>> --- 
+>> a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+>> +++ 
+>> b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
+>> @@ -1,6 +1,6 @@
+>>   DESCRIPTION = "Task to include Matrix v2"
+>>   LICENSE = "MIT"
+>> -PR = "r79"
+>> +PR = "r80"
+>>     PACKAGE_ARCH = "${MACHINE_ARCH}"
+>>   @@ -159,12 +159,14 @@ MATRIX_APPS_append_omap-a15 = "     \
+>>       matrix-gui-generic-pm           \
+>>       matrix-gui-clocks               \
+>>       matrix-gui-pm-demos-governor    \
+>> - 
+>> ${@['','matrix-gui-browser-demos'][bb.utils.contains('MACHINE_FEATURES','sgx',True,False,d) 
+>> and bb.utils.contains('DISTRO_FEATURES','wayland',True,False,d)]} \
+>> -                                \
+>>       ${MATRIX_ARMNN_APPS}            \
+>>       matrix-analytics-pdm-anomaly-detection \
+>>   "
+>>   +# 
+>> ${@['','matrix-gui-browser-demos'][bb.utils.contains('MACHINE_FEATURES','sgx',True,False,d) 
+>> and bb.utils.contains('DISTRO_FEATURES','wayland',True,False,d)]} \
+>> +#                                \
+>> +#
+>> +
+>>   MATRIX_APPS_append_k3 = "           \
+>>       matrix-multimedia-demo-aac      \
+>>       matrix-multimedia-demo-audiocapture \
 
