@@ -1,42 +1,41 @@
-Return-Path: <yuanzhao@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 0563E5297F
+Return-Path: <anandb@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id BFB1F520E1
 	for <meta-arago@arago-project.org>;
-	Wed, 19 Jun 2019 13:57:15 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5JDuYFR067233
-	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 08:56:34 -0500
+	Wed, 19 Jun 2019 15:35:53 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5JFZCV9033009
+	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 10:35:12 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1560952594;
-	bh=OBEjEb5F0CRWdIc8RNZYritSQDTj/AFQc7QRYco25n8=;
+	s=ti-com-17Q1; t=1560958512;
+	bh=a2s8CmrdbLk80OTXzNvWvUb32wd8MoiRIVgWpIZBIFE=;
 	h=From:To:CC:Subject:Date;
-	b=aFblFxyqx16A28TsLzz+Egslhpe0Kpi6JlJ0hijAL9bt0JhbQOlVrcnR0ovdh51zO
-	xdUMlY/tiB0JhyBeJ9CtCbPNBB1gnOlQB4CV6GkL2QHeOpOsGKjixwZ5faU/6n5MeT
-	Ylser2HoW3T6xapsnJ3TeSIF/PR+WUt6qRfvibLU=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5JDuYB7071782
+	b=wDMkMt2s5kVuxB/0dPJVqi9WFlVYeA+ofQzYM4sun8KNnLLOdoweZmJ99VftdsGib
+	Oe8nb7yUOuyZ3AfA8fVXgn3tb/STnSShZ5NbAXJH4rPZIXkoiSZe3pKWwFfbAyPgRL
+	fVFyPGfN1WPF2cvvGEHk5695G6jOs/xAUwL21vhI=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5JFZCDI001144
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 08:56:34 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 10:35:12 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 19 Jun 2019 08:56:34 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 19 Jun 2019 10:35:11 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 19 Jun 2019 08:56:34 -0500
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5JDuYp6010716;
-	Wed, 19 Jun 2019 08:56:34 -0500
-From: Yuan Zhao <yuanzhao@ti.com>
+	Frontend Transport; Wed, 19 Jun 2019 10:35:11 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5JFZAZG117712; 
+	Wed, 19 Jun 2019 10:35:11 -0500
+From: Anand Balagopalakrishnan <anandb@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 19 Jun 2019 08:56:02 -0500
-Message-ID: <20190619135602.98492-1-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.14.1
+Date: Wed, 19 Jun 2019 21:05:04 +0530
+Message-ID: <1560958508-141402-1-git-send-email-anandb@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/ti2019.01][PATCH] ocl: Fix dsp l2 cache size update issue
+Subject: [[thud] PATCH] arago-prefs: specify GLES providers for J7 EVM
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,89 +48,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2019 13:57:16 -0000
+X-List-Received-Date: Wed, 19 Jun 2019 15:35:55 -0000
 Content-Type: text/plain
 
-- Required for TIDL DSP execution
-
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>
 ---
- .../ocl/files/0002-OpenCL_l2_cache_size.patch      | 49 ++++++++++++++++++++++
- .../recipes-ti/ocl/opencl-monitor_git.bb           |  4 +-
- 2 files changed, 52 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-ti/ocl/files/0002-OpenCL_l2_cache_size.patch
+ meta-arago-distro/conf/distro/include/arago-prefs.inc | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/files/0002-OpenCL_l2_cache_size.patch b/meta-arago-extras/recipes-ti/ocl/files/0002-OpenCL_l2_cache_size.patch
-new file mode 100644
-index 00000000..7a81a137
---- /dev/null
-+++ b/meta-arago-extras/recipes-ti/ocl/files/0002-OpenCL_l2_cache_size.patch
-@@ -0,0 +1,49 @@
-+diff --git a/monitor/src/builtins.c b/monitor/src/builtins.c
-+index fbf3bf3..4edf61c 100644
-+--- a/monitor/src/builtins.c
-++++ b/monitor/src/builtins.c
-+@@ -159,7 +159,7 @@ EXPORT int __cache_l2_none()
-+ EXPORT int __cache_l2_32k()
-+ {
-+     int32_t scratch_delta = __cache_l2_size() - (32 << 10);
-+-    uint32_t scratch_size  = kernel_config_l2.L2_scratch_size;
-++    int32_t scratch_size  = kernel_config_l2.L2_scratch_size;
-+     if (-scratch_delta > scratch_size) return 0;
-+     kernel_config_l2.L2_scratch_size += scratch_delta;
-+ 
-+@@ -173,7 +173,7 @@ EXPORT int __cache_l2_32k()
-+ EXPORT int __cache_l2_64k()
-+ {
-+     int32_t scratch_delta = __cache_l2_size() - (64 << 10);
-+-    uint32_t scratch_size  = kernel_config_l2.L2_scratch_size;
-++    int32_t scratch_size  = kernel_config_l2.L2_scratch_size;
-+     if (-scratch_delta > scratch_size) return 0;
-+     kernel_config_l2.L2_scratch_size += scratch_delta;
-+ 
-+@@ -187,7 +187,7 @@ EXPORT int __cache_l2_64k()
-+ EXPORT int __cache_l2_128k()
-+ {
-+     int32_t scratch_delta = __cache_l2_size() - (128 << 10);
-+-    uint32_t scratch_size  = kernel_config_l2.L2_scratch_size;
-++    int32_t scratch_size  = kernel_config_l2.L2_scratch_size;
-+     if (-scratch_delta > scratch_size) return 0;
-+     kernel_config_l2.L2_scratch_size += scratch_delta;
-+ 
-+@@ -205,7 +205,7 @@ EXPORT int __cache_l2_512k() { return 0; }
-+ EXPORT int __cache_l2_256k()
-+ {
-+     int32_t scratch_delta = __cache_l2_size() - (256 << 10);
-+-    uint32_t scratch_size  = kernel_config_l2.L2_scratch_size;
-++    int32_t scratch_size  = kernel_config_l2.L2_scratch_size;
-+     if (-scratch_delta > scratch_size) return 0;
-+     kernel_config_l2.L2_scratch_size += scratch_delta;
-+ 
-+@@ -219,7 +219,7 @@ EXPORT int __cache_l2_256k()
-+ EXPORT int __cache_l2_512k()
-+ {
-+     int32_t scratch_delta = __cache_l2_size() - (512 << 10);
-+-    uint32_t scratch_size  = kernel_config_l2.L2_scratch_size;
-++    int32_t scratch_size  = kernel_config_l2.L2_scratch_size;
-+     if (-scratch_delta > scratch_size) return 0;
-+     kernel_config_l2.L2_scratch_size += scratch_delta;
-+ 
-diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-index 0ab21a1a..00aa773c 100644
---- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
-@@ -5,7 +5,9 @@ LICENSE = "BSD"
- include ocl.inc
- require recipes-ti/includes/arago-paths.inc
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index a96569f..45482d4 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -14,6 +14,11 @@ PREFERRED_PROVIDER_libgbm-dev = "libgbm-dev"
  
--PR = "${INC_PR}.0"
-+SRC_URI += "file://0002-OpenCL_l2_cache_size.patch;patchdir=${WORKDIR}/git"
+ PREFERRED_PROVIDER_virtual/libgl = "mesa-gl"
+ 
++# J7 has a Rogue GPU core
++PREFERRED_PROVIDER_virtual/egl_j7-evm = "ti-img-rogue-umlibs"
++PREFERRED_PROVIDER_virtual/libgles1_j7-evm = "ti-img-rogue-umlibs"
++PREFERRED_PROVIDER_virtual/libgles2_j7-evm = "ti-img-rogue-umlibs"
 +
-+PR = "${INC_PR}.1"
- 
- inherit update-alternatives
- 
+ # This is required when using keystone devices with graphical support
+ # such as Qt5
+ PREFERRED_PROVIDER_virtual/egl_keystone = "mesa"
 -- 
-2.14.1
+1.9.1
 
 
