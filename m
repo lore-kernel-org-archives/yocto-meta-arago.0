@@ -1,45 +1,45 @@
 Return-Path: <d-senicic1@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 8627252972
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 7D93C52972
 	for <meta-arago@arago-project.org>;
-	Wed, 19 Jun 2019 21:00:52 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5JL0B7I062019
-	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 16:00:11 -0500
+	Wed, 19 Jun 2019 21:00:53 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5JL0CYM073784
+	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 16:00:12 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1560978011;
-	bh=PNcjOQDNP2aABcrnbZ260+LOq9hAiS/0XRIymtrimPU=;
+	s=ti-com-17Q1; t=1560978012;
+	bh=hlpialh0F63bTu4s/IRJHTHwYJA+9pT3Gwjgp1PK/Fg=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Ts21utuRnTNkObzstuzGWwNGjFnWgHv/M2IPJJsJkXRPTnri8Pcreq3ldHbLCRvJe
-	10M1AM6gqjKKbKkXBlzVAJlSjAftF1dFcEzVFaRQyXgXYQVp3plIsO7jdVQzSX8X34
-	CFfMtvOUeO/jZXCyJQ3A63WgDIpTFaAGlQVK+pRk=
+	b=WGoP4FKqHXaBonOufvzFtOPyrkDRiY+0yiqe175VlZ60fPhFHgsbsJGauk/Pdqcr/
+	Tmc3SMIOVXBphti6+A6nrjebcEs7YPCInZK0srluOQ5dY13bB1d1gX7W/JLJXwTspL
+	DgKoEttMnv8HtrypNUz97WYei7nTmpza5DidZyy4=
 Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5JL0ABY043968
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5JL0CDX007361
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 16:00:11 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE103.ent.ti.com
+	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 16:00:12 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
 	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 19 Jun 2019 16:00:10 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 19 Jun 2019 16:00:11 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 19 Jun 2019 16:00:10 -0500
+	Frontend Transport; Wed, 19 Jun 2019 16:00:11 -0500
 Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5JL09xI113455;
-	Wed, 19 Jun 2019 16:00:10 -0500
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5JL09xJ113455;
+	Wed, 19 Jun 2019 16:00:11 -0500
 From: Djordje Senicic <x0157990@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 19 Jun 2019 11:50:22 -0400
-Message-ID: <20190619155023.15647-2-x0157990@ti.com>
+Date: Wed, 19 Jun 2019 11:50:23 -0400
+Message-ID: <20190619155023.15647-3-x0157990@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190619155023.15647-1-x0157990@ti.com>
 References: <20190619155023.15647-1-x0157990@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Djordje Senicic <x0157990@ti.com>
-Subject: [thud/master][PATCH 2/3] demo-glow: Add mnist inference demo based on GLOW compiler
+Subject: [thud/master][PATCH 3/3] glow: Add glow to nativesdk pkggrp and demo-glow to target and src pkggrp-s, and example-applications
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,132 +52,139 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2019 21:00:52 -0000
+X-List-Received-Date: Wed, 19 Jun 2019 21:00:54 -0000
 Content-Type: text/plain
 
 Signed-off-by: Djordje Senicic <x0157990@ti.com>
 ---
- .../recipes-apps/demo-glow/demo-glow.bb       | 46 +++++++++++++++++++
- .../files/0001-fix-missing-string.patch       | 10 ++++
- .../demo-glow/files/Makefile.build            | 18 ++++++++
- .../recipes-apps/demo-glow/files/makefile     | 13 ++++++
- 4 files changed, 87 insertions(+)
- create mode 100644 meta-arago-extras/recipes-apps/demo-glow/demo-glow.bb
- create mode 100644 meta-arago-extras/recipes-apps/demo-glow/files/0001-fix-missing-string.patch
- create mode 100644 meta-arago-extras/recipes-apps/demo-glow/files/Makefile.build
- create mode 100644 meta-arago-extras/recipes-apps/demo-glow/files/makefile
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb | 3 +++
+ .../packagegroup-arago-tisdk-addons-sdk-target.bb             | 3 +++
+ .../packagegroups/packagegroup-arago-tisdk-addons.bb          | 3 +++
+ .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb  | 4 ++++
+ .../packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb  | 1 +
+ 5 files changed, 14 insertions(+)
 
-diff --git a/meta-arago-extras/recipes-apps/demo-glow/demo-glow.bb b/meta-arago-extras/recipes-apps/demo-glow/demo-glow.bb
-new file mode 100644
-index 00000000..c7422948
---- /dev/null
-+++ b/meta-arago-extras/recipes-apps/demo-glow/demo-glow.bb
-@@ -0,0 +1,46 @@
-+DESCRIPTION = "Demo application based on pytorch neural network compiler glow, using mnist model" 
-+HOMEPAGE = "https://github.com/pytorch/glow/tree/master/examples/bundles/lenet_mnist"
-+SECTION = "examples" 
-+LICENSE = "Apache-2.0" 
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327"
-+
-+PV = "1.0"
-+PR = "r1" 
-+
-+DEPENDS    = "glow-native libpng"
-+
-+SRC_URI = "https://raw.githubusercontent.com/pytorch/glow/1af031c9c040dd4ff843d9b50f83e71f6e605631/examples/bundles/lenet_mnist/main.cpp;name=lenet_mnist_main;subdir=src \
-+           file://0001-fix-missing-string.patch \
-+           file://makefile;subdir=src \
-+           file://Makefile.build;subdir=src \
-+           http://fb-glow-assets.s3.amazonaws.com/models/lenet_mnist.tar.gz;name=lenet_mnist;subdir=src \
-+           https://raw.githubusercontent.com/pytorch/glow/1af031c9c040dd4ff843d9b50f83e71f6e605631/LICENSE;name=lenet_mnist_license;subdir=src \
-+          "
-+
-+SRC_URI[lenet_mnist.md5sum] = "7aded5f273b3198795683c238492d1a9"
-+SRC_URI[lenet_mnist_main.md5sum] = "e80ec7a97dec86828ff1a51026c237bc"
-+SRC_URI[lenet_mnist_license.md5sum] = "86d3f3a95c324c9479bd8986968f4327"
-+
-+S = "${WORKDIR}/src"
-+
-+do_compile() {
-+   install -d ${WORKDIR}/build
-+   ${STAGING_DIR_NATIVE}/usr/share/glow/bin/image-classifier ${STAGING_DIR_NATIVE}/usr/share/glow/tests/images/mnist/1_1008.png -m=mnist.onnx -image-mode=0to1 -model-input-name=data_0 -emit-bundle ${WORKDIR}/build/ -cpu -target armv7l-unknown-linux-gnueabihf   -network-name="lenet_mnist"
-+   ${CXX} ${S}/main.cpp ${WORKDIR}/build/lenet_mnist.o -lm -lpng -fpack-struct=8 -fpermissive -o ${WORKDIR}/build/infer_mnist
-+}
-+
-+do_install () {
-+   install -d ${D}${datadir}/glow/infer
-+   install -d ${D}${datadir}/glow/tests
-+   cp -Prf --preserve=mode,timestamps ${WORKDIR}/build/*.weights ${D}${datadir}/glow/infer
-+   cp -Prf --preserve=mode,timestamps ${WORKDIR}/build/infer_mnist ${D}${datadir}/glow/infer
-+   cp -Prf --preserve=mode,timestamps ${WORKDIR}/build/lenet_mnist.o ${D}${datadir}/glow/infer
-+   cp -Prf --preserve=mode,timestamps ${WORKDIR}/src/makefile ${D}${datadir}/glow/infer
-+   cp -Prf --preserve=mode,timestamps ${WORKDIR}/src/main.cpp ${D}${datadir}/glow/infer
-+   cp -Prf --preserve=mode,timestamps ${STAGING_DIR_NATIVE}/usr/share/glow/tests/images/mnist/*.png ${D}${datadir}/glow/tests/.
-+}
-+
-+FILES_${PN} += "${datadir}/glow"
-+
-+CREATE_SRCIPK = "1"
-+SRCIPK_INSTALL_DIR = "example-applications/${PN}-${PV}"
-diff --git a/meta-arago-extras/recipes-apps/demo-glow/files/0001-fix-missing-string.patch b/meta-arago-extras/recipes-apps/demo-glow/files/0001-fix-missing-string.patch
-new file mode 100644
-index 00000000..ba0533ab
---- /dev/null
-+++ b/meta-arago-extras/recipes-apps/demo-glow/files/0001-fix-missing-string.patch
-@@ -0,0 +1,10 @@
-+--- ./main.cpp	2019-06-06 13:31:07.485528729 -0400
-++++ ./main_mod.cpp	2019-06-06 13:30:50.333529003 -0400
-+@@ -18,6 +18,7 @@
-+ #include <png.h>
-+ #include <stdio.h>
-+ #include <stdlib.h>
-++#include <string.h>
-+ 
-+ #include <string>
-+ #include <vector>
-diff --git a/meta-arago-extras/recipes-apps/demo-glow/files/Makefile.build b/meta-arago-extras/recipes-apps/demo-glow/files/Makefile.build
-new file mode 100644
-index 00000000..399cc3c0
---- /dev/null
-+++ b/meta-arago-extras/recipes-apps/demo-glow/files/Makefile.build
-@@ -0,0 +1,18 @@
-+-include ../../Rules.make
-+
-+ENV_SETUP ?= ../../linux-devkit/environment-setup
-+DESTDIR ?=
-+
-+all: release
-+
-+lenet_mnist:
-+	${SDK_PATH_NATIVE}/usr/share/glow/bin/image-classifier ${SDK_PATH_NATIVE}/usr/share/glow/tests/images/mnist/1_1008.png -m=mnist.onnx -image-mode=0to1 -model-input-name=data_0 -emit-bundle ./ -cpu -target armv7l-unknown-linux-gnueabihf   -network-name="lenet_mnist"
-+
-+release: lenet_mnist
-+	@. ${ENV_SETUP}; \
-+	make
-+
-+clean:
-+	@. ${ENV_SETUP}; \
-+        make clean
-+	rm lenet_mnist.*
-diff --git a/meta-arago-extras/recipes-apps/demo-glow/files/makefile b/meta-arago-extras/recipes-apps/demo-glow/files/makefile
-new file mode 100644
-index 00000000..01b19c8c
---- /dev/null
-+++ b/meta-arago-extras/recipes-apps/demo-glow/files/makefile
-@@ -0,0 +1,13 @@
-+PHONY: all
-+
-+all: infer_mnist
-+LIBS = -lm -lpng
-+
-+infer_mnist: main.cpp lenet_mnist.o
-+	$(CXX) main.cpp lenet_mnist.o -o infer_mnist $(LIBS) $(CXXFLAGS) -fpack-struct=8 -fpermissive
-+
-+clean:
-+	rm -rf infer_mnist
-+
-+test:
-+	./infer_mnist ../tests/0_1009.png
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index 3b734554..addb4818 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -90,14 +90,17 @@ EXTRA_PACKAGES = ""
+ 
+ EXTRA_PACKAGES_append_omap-a15 = " \
+     pdm-anomaly-detection-src \
++    demo-glow-src \
+ "
+ 
+ EXTRA_PACKAGES_append_ti33x = " \
+     pdm-anomaly-detection-src \
++    demo-glow-src \
+ "
+ 
+ EXTRA_PACKAGES_append_ti43x = " \
+     pdm-anomaly-detection-src \
++    demo-glow-src \
+ "
+ 
+ EXTRA_PACKAGES_append_k3 = " \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index 8bce1756..d998a1eb 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+@@ -161,16 +161,19 @@ EXTRA_PACKAGES_append_ti33x = " voxelsdk-dev \
+                                 arm-compute-library-dev \
+                                 ${ARMNN_PACKAGES} \
+                                 pdm-anomaly-detection-dev \
++                                demo-glow-dev \
+ "
+ EXTRA_PACKAGES_append_ti43x = " voxelsdk-dev \
+                                 arm-compute-library-dev \
+                                 ${ARMNN_PACKAGES} \
+                                 pdm-anomaly-detection-dev \
++                                demo-glow-dev \
+ "
+ EXTRA_PACKAGES_append_omap-a15 = " voxelsdk-dev \
+                                 arm-compute-library-dev \
+                                 ${ARMNN_PACKAGES} \
+                                 pdm-anomaly-detection-dev \
++                                demo-glow-dev \
+ "
+ EXTRA_PACKAGES_append_k3 = " arm-compute-library-dev \
+                              ${ARMNN_PACKAGES} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 6558a21a..38ec3065 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -152,12 +152,14 @@ EXTRA_PACKAGES_append_ti33x = " voxelsdk \
+                                 arm-compute-library \
+                                 ${ARMNN_PACKAGES} \
+                                 pdm-anomaly-detection \
++                                demo-glow \
+ "
+ 
+ EXTRA_PACKAGES_append_ti43x = " voxelsdk \
+                                 arm-compute-library \
+                                 ${ARMNN_PACKAGES} \
+                                 pdm-anomaly-detection \
++                                demo-glow \
+ "
+ 
+ EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
+@@ -166,6 +168,7 @@ EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
+                                    arm-compute-library \
+                                    ${ARMNN_PACKAGES} \
+                                    pdm-anomaly-detection \
++                                   demo-glow \
+ "
+ 
+ EXTRA_PACKAGES_append_k3 = " arm-compute-library \
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index e0d409a2..2200def1 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -52,6 +52,7 @@ SRC_URI = "\
+     file://Makefile_sysfw-image \
+     file://Makefile_mmwavegesture-hmi \
+     file://Makefile_pdm-anomaly-detection \
++    file://Makefile_demo-glow \
+ "
+ 
+ PR = "r95"
+@@ -98,6 +99,7 @@ MAKEFILES_append_ti33x = " u-boot-spl \
+                            uio-module-drv \
+ 			   mmwavegesture-hmi \
+                            pdm-anomaly-detection \
++                           demo-glow \
+ "
+ MAKEFILES_append_ti43x = " u-boot-spl \
+                            ${QUICK_PLAYGROUND} \
+@@ -113,6 +115,7 @@ MAKEFILES_append_ti43x = " u-boot-spl \
+                            uio-module-drv \
+ 			   mmwavegesture-hmi \
+                            pdm-anomaly-detection \
++                           demo-glow \
+ "
+ 
+ #                            debugss-module-drv 
+@@ -136,6 +139,7 @@ MAKEFILES_append_omap-a15 = " u-boot-spl \
+                               uio-module-drv \
+ 			      mmwavegesture-hmi \
+                               pdm-anomaly-detection \
++                              demo-glow \
+ "
+ MAKEFILES_append_omapl138 = " linux-dtbs \
+                               u-boot-spl \
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
+index ef54253d..28d817da 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
+@@ -17,6 +17,7 @@ EXTRA_TI_TOOLS = " \
+     nativesdk-tidl-viewer \
+     nativesdk-tidl-utils \
+     nativesdk-gcc-arm-none-eabi \
++    nativesdk-glow \
+ "
+ 
+ RDEPENDS_${PN} = "\
 -- 
 2.17.1
 
