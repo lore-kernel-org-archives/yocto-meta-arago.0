@@ -1,45 +1,41 @@
-Return-Path: <a0866189@uda0866189>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 4047652998
+Return-Path: <anandb@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id B46445297F
 	for <meta-arago@arago-project.org>;
-	Tue, 18 Jun 2019 22:20:56 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5IMKEp2050120
-	for <meta-arago@arago-project.org>; Tue, 18 Jun 2019 17:20:14 -0500
+	Wed, 19 Jun 2019 12:14:40 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5JCDxjr076824
+	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 07:13:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1560896414;
-	bh=b+IGMmtzl2mad12tzv/lZ4cKUDab7BkcReNLrTIe89Y=;
+	s=ti-com-17Q1; t=1560946439;
+	bh=ylOCsCS9JRw989rhM9jMFhCASChAguqYl+ReaX9LLLg=;
 	h=From:To:CC:Subject:Date;
-	b=tSMFcv11mzZcwK4+ahnd8WVP1oac+xP8jNVvzJdERG3M3O50PE1tzTTimAIUvhbRn
-	cPMSDVcZ4QkmG9fjLd/algOHl6xZU2Dc0okgStqt1uUIRlww40JW2Yi5ucjIIR+wzV
-	AiCZXKO9I4vRJlinRRf9Y7T/SgC8DPUCuycX439I=
+	b=VhHlsJ0air9m/K1ufApnTqYLVz6Ykvs6qMXUH9qmdezmoGT9Q0sH6EgiUijP/xBCi
+	887iTpQpxZ+3tZwInaaAK132bYy8Vb8S+JkAJRJ0psEyfnEVdEHciZ00KoY/dnBcnF
+	24SICdl7Xmv8TLp5NtZVEwAqU64xDb2g+UdyDwBM=
 Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5IMKEpS026487
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5JCDxR8037940
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 18 Jun 2019 17:20:14 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
+	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 07:13:59 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE103.ent.ti.com
 	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 18 Jun 2019 17:20:13 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 19 Jun 2019 07:13:58 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 18 Jun 2019 17:20:13 -0500
-Received: from uda0866189 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5IMKDA6102055;
-	Tue, 18 Jun 2019 17:20:13 -0500
-Received: from a0866189 by uda0866189 with local (Exim 4.82)
-	(envelope-from <a0866189@uda0866189>)
-	id 1hdMSb-0002wL-GG; Tue, 18 Jun 2019 17:20:13 -0500
-From: <angelabaker@ti.com>
+	Frontend Transport; Wed, 19 Jun 2019 07:13:58 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5JCDvDh068817; 
+	Wed, 19 Jun 2019 07:13:58 -0500
+From: Anand Balagopalakrishnan <anandb@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 18 Jun 2019 17:19:37 -0500
-Message-ID: <1560896377-11268-1-git-send-email-angelabaker@ti.com>
+Date: Wed, 19 Jun 2019 17:43:54 +0530
+Message-ID: <1560946434-45648-1-git-send-email-anandb@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: d-huang@ti.com, sunitan@ti.com
-Subject: [thud][PATCH] gstreamer1.0*-good: Add HEVC support for v4l2 decoder plugin
+Subject: [[thud] PATCH] libdrm: add support for sync info
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,740 +48,354 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2019 22:20:57 -0000
+X-List-Received-Date: Wed, 19 Jun 2019 12:14:41 -0000
 Content-Type: text/plain
 
-From: Angela Stegmaier <angelabaker@ti.com>
+Add support functions to provide sync and fence info. These patches are
+needed for Rogue GPU driver which leverages dmabuf fence for synchronization.
 
-HEVC support was added to v4l2 decoder plugin after 1.14.4 release.
-This patch cherry-picks the 2 patches needed for HEVC support
-from upstream to bring the support to 1.14.4.
-
-Signed-off-by: Angela Stegmaier <angelabaker@ti.com>
+Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>
 ---
- ...v4l2-Sync-kernel-header-with-linuxtv-tree.patch | 625 +++++++++++++++++++++
- ...002-v4l2videodec-Add-HEVC-decoder-support.patch |  60 ++
- .../gstreamer1.0-plugins-good_1.14.4.bbappend      |   7 +-
- 3 files changed, 691 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2-Sync-kernel-header-with-linuxtv-tree.patch
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0002-v4l2videodec-Add-HEVC-decoder-support.patch
+ ...-libsync-add-support-for-pre-v4.7-kernels.patch |  92 +++++++++
+ ...0002-Add-sync_fence_info-and-sync_pt_info.patch | 212 +++++++++++++++++++++
+ .../recipes-graphics/drm/libdrm_%.bbappend         |   4 +-
+ 3 files changed, 307 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-distro/recipes-graphics/drm/libdrm/0001-libsync-add-support-for-pre-v4.7-kernels.patch
+ create mode 100644 meta-arago-distro/recipes-graphics/drm/libdrm/0002-Add-sync_fence_info-and-sync_pt_info.patch
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2-Sync-kernel-header-with-linuxtv-tree.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2-Sync-kernel-header-with-linuxtv-tree.patch
+diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm/0001-libsync-add-support-for-pre-v4.7-kernels.patch b/meta-arago-distro/recipes-graphics/drm/libdrm/0001-libsync-add-support-for-pre-v4.7-kernels.patch
 new file mode 100644
-index 0000000..922d20e
+index 0000000..c9fdfed
 --- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2-Sync-kernel-header-with-linuxtv-tree.patch
-@@ -0,0 +1,625 @@
-+From a27d242dd4f92b58e7c04cec3cd5fddcf800ab82 Mon Sep 17 00:00:00 2001
-+From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-+Date: Wed, 12 Sep 2018 21:28:24 -0400
-+Subject: [PATCH 1/2] v4l2: Sync kernel header with linuxtv tree
++++ b/meta-arago-distro/recipes-graphics/drm/libdrm/0001-libsync-add-support-for-pre-v4.7-kernels.patch
+@@ -0,0 +1,92 @@
++From 900afd25d9a35b2b8fd29f8c424aa3c3cd170d6f Mon Sep 17 00:00:00 2001
++From: Brendan King <Brendan.King@imgtec.com>
++Date: Tue, 13 Jun 2017 15:52:44 +0100
++Subject: [PATCH 1/2] libsync: add support for pre-v4.7 kernels
 +
-+This notably add HEVC and FWHT support, and VP8/9 profiles are now an
-+enumeration and their control exposed as a menu.
++Add support for the the sync merge ioctl supported by older kernels.
 +---
-+ sys/v4l2/ext/v4l2-common.h   |   1 +
-+ sys/v4l2/ext/v4l2-controls.h | 210 ++++++++++++++++++++++++++++++++-----------
-+ sys/v4l2/ext/videodev2.h     |  86 ++++++++++++------
-+ 3 files changed, 217 insertions(+), 80 deletions(-)
++ libsync.h | 44 +++++++++++++++++++++++++++++++++++++++++---
++ 1 file changed, 41 insertions(+), 3 deletions(-)
 +
-+diff --git a/sys/v4l2/ext/v4l2-common.h b/sys/v4l2/ext/v4l2-common.h
-+index 2a2c88a..7a2c3d9 100644
-+--- a/sys/v4l2/ext/v4l2-common.h
-++++ b/sys/v4l2/ext/v4l2-common.h
-+@@ -1,3 +1,4 @@
-++/* SPDX-License-Identifier: ((GPL-2.0+ WITH Linux-syscall-note) OR BSD-3-Clause) */
-+ /*
-+  * include/linux/v4l2-common.h
-+  *
-+diff --git a/sys/v4l2/ext/v4l2-controls.h b/sys/v4l2/ext/v4l2-controls.h
-+index 31bfc68..e4ee10e 100644
-+--- a/sys/v4l2/ext/v4l2-controls.h
-++++ b/sys/v4l2/ext/v4l2-controls.h
-+@@ -1,3 +1,4 @@
-++/* SPDX-License-Identifier: ((GPL-2.0+ WITH Linux-syscall-note) OR BSD-3-Clause) */
-+ /*
-+  *  Video for Linux Two controls header file
-+  *
-+@@ -66,8 +67,8 @@
-+ /* User-class control IDs */
-+ 
-+ #define V4L2_CID_BASE			(V4L2_CTRL_CLASS_USER | 0x900)
-+-#define V4L2_CID_USER_BASE 		V4L2_CID_BASE
-+-#define V4L2_CID_USER_CLASS 		(V4L2_CTRL_CLASS_USER | 1)
-++#define V4L2_CID_USER_BASE		V4L2_CID_BASE
-++#define V4L2_CID_USER_CLASS		(V4L2_CTRL_CLASS_USER | 1)
-+ #define V4L2_CID_BRIGHTNESS		(V4L2_CID_BASE+0)
-+ #define V4L2_CID_CONTRAST		(V4L2_CID_BASE+1)
-+ #define V4L2_CID_SATURATION		(V4L2_CID_BASE+2)
-+@@ -101,7 +102,7 @@ enum v4l2_power_line_frequency {
-+ #define V4L2_CID_HUE_AUTO			(V4L2_CID_BASE+25)
-+ #define V4L2_CID_WHITE_BALANCE_TEMPERATURE	(V4L2_CID_BASE+26)
-+ #define V4L2_CID_SHARPNESS			(V4L2_CID_BASE+27)
-+-#define V4L2_CID_BACKLIGHT_COMPENSATION 	(V4L2_CID_BASE+28)
-++#define V4L2_CID_BACKLIGHT_COMPENSATION		(V4L2_CID_BASE+28)
-+ #define V4L2_CID_CHROMA_AGC                     (V4L2_CID_BASE+29)
-+ #define V4L2_CID_COLOR_KILLER                   (V4L2_CID_BASE+30)
-+ #define V4L2_CID_COLORFX			(V4L2_CID_BASE+31)
-+@@ -187,17 +188,17 @@ enum v4l2_colorfx {
-+ 
-+ /* The base for the imx driver controls.
-+  * We reserve 16 controls for this driver. */
-+-#define V4L2_CID_USER_IMX_BASE			(V4L2_CID_USER_BASE + 0x1090)
-++#define V4L2_CID_USER_IMX_BASE			(V4L2_CID_USER_BASE + 0x10b0)
-+ 
-+ /* MPEG-class control IDs */
-+ /* The MPEG controls are applicable to all codec controls
-+  * and the 'MPEG' part of the define is historical */
-+ 
-+-#define V4L2_CID_MPEG_BASE 			(V4L2_CTRL_CLASS_MPEG | 0x900)
-+-#define V4L2_CID_MPEG_CLASS 			(V4L2_CTRL_CLASS_MPEG | 1)
-++#define V4L2_CID_MPEG_BASE			(V4L2_CTRL_CLASS_MPEG | 0x900)
-++#define V4L2_CID_MPEG_CLASS			(V4L2_CTRL_CLASS_MPEG | 1)
-+ 
-+ /*  MPEG streams, specific to multiplexed streams */
-+-#define V4L2_CID_MPEG_STREAM_TYPE 		(V4L2_CID_MPEG_BASE+0)
-++#define V4L2_CID_MPEG_STREAM_TYPE		(V4L2_CID_MPEG_BASE+0)
-+ enum v4l2_mpeg_stream_type {
-+ 	V4L2_MPEG_STREAM_TYPE_MPEG2_PS   = 0, /* MPEG-2 program stream */
-+ 	V4L2_MPEG_STREAM_TYPE_MPEG2_TS   = 1, /* MPEG-2 transport stream */
-+@@ -206,26 +207,26 @@ enum v4l2_mpeg_stream_type {
-+ 	V4L2_MPEG_STREAM_TYPE_MPEG1_VCD  = 4, /* MPEG-1 VCD-compatible stream */
-+ 	V4L2_MPEG_STREAM_TYPE_MPEG2_SVCD = 5, /* MPEG-2 SVCD-compatible stream */
-+ };
-+-#define V4L2_CID_MPEG_STREAM_PID_PMT 		(V4L2_CID_MPEG_BASE+1)
-+-#define V4L2_CID_MPEG_STREAM_PID_AUDIO 		(V4L2_CID_MPEG_BASE+2)
-+-#define V4L2_CID_MPEG_STREAM_PID_VIDEO 		(V4L2_CID_MPEG_BASE+3)
-+-#define V4L2_CID_MPEG_STREAM_PID_PCR 		(V4L2_CID_MPEG_BASE+4)
-+-#define V4L2_CID_MPEG_STREAM_PES_ID_AUDIO 	(V4L2_CID_MPEG_BASE+5)
-+-#define V4L2_CID_MPEG_STREAM_PES_ID_VIDEO 	(V4L2_CID_MPEG_BASE+6)
-+-#define V4L2_CID_MPEG_STREAM_VBI_FMT 		(V4L2_CID_MPEG_BASE+7)
-++#define V4L2_CID_MPEG_STREAM_PID_PMT		(V4L2_CID_MPEG_BASE+1)
-++#define V4L2_CID_MPEG_STREAM_PID_AUDIO		(V4L2_CID_MPEG_BASE+2)
-++#define V4L2_CID_MPEG_STREAM_PID_VIDEO		(V4L2_CID_MPEG_BASE+3)
-++#define V4L2_CID_MPEG_STREAM_PID_PCR		(V4L2_CID_MPEG_BASE+4)
-++#define V4L2_CID_MPEG_STREAM_PES_ID_AUDIO	(V4L2_CID_MPEG_BASE+5)
-++#define V4L2_CID_MPEG_STREAM_PES_ID_VIDEO	(V4L2_CID_MPEG_BASE+6)
-++#define V4L2_CID_MPEG_STREAM_VBI_FMT		(V4L2_CID_MPEG_BASE+7)
-+ enum v4l2_mpeg_stream_vbi_fmt {
-+ 	V4L2_MPEG_STREAM_VBI_FMT_NONE = 0,  /* No VBI in the MPEG stream */
-+ 	V4L2_MPEG_STREAM_VBI_FMT_IVTV = 1,  /* VBI in private packets, IVTV format */
-+ };
-+ 
-+ /*  MPEG audio controls specific to multiplexed streams  */
-+-#define V4L2_CID_MPEG_AUDIO_SAMPLING_FREQ 	(V4L2_CID_MPEG_BASE+100)
-++#define V4L2_CID_MPEG_AUDIO_SAMPLING_FREQ	(V4L2_CID_MPEG_BASE+100)
-+ enum v4l2_mpeg_audio_sampling_freq {
-+ 	V4L2_MPEG_AUDIO_SAMPLING_FREQ_44100 = 0,
-+ 	V4L2_MPEG_AUDIO_SAMPLING_FREQ_48000 = 1,
-+ 	V4L2_MPEG_AUDIO_SAMPLING_FREQ_32000 = 2,
-+ };
-+-#define V4L2_CID_MPEG_AUDIO_ENCODING 		(V4L2_CID_MPEG_BASE+101)
-++#define V4L2_CID_MPEG_AUDIO_ENCODING		(V4L2_CID_MPEG_BASE+101)
-+ enum v4l2_mpeg_audio_encoding {
-+ 	V4L2_MPEG_AUDIO_ENCODING_LAYER_1 = 0,
-+ 	V4L2_MPEG_AUDIO_ENCODING_LAYER_2 = 1,
-+@@ -233,7 +234,7 @@ enum v4l2_mpeg_audio_encoding {
-+ 	V4L2_MPEG_AUDIO_ENCODING_AAC     = 3,
-+ 	V4L2_MPEG_AUDIO_ENCODING_AC3     = 4,
-+ };
-+-#define V4L2_CID_MPEG_AUDIO_L1_BITRATE 		(V4L2_CID_MPEG_BASE+102)
-++#define V4L2_CID_MPEG_AUDIO_L1_BITRATE		(V4L2_CID_MPEG_BASE+102)
-+ enum v4l2_mpeg_audio_l1_bitrate {
-+ 	V4L2_MPEG_AUDIO_L1_BITRATE_32K  = 0,
-+ 	V4L2_MPEG_AUDIO_L1_BITRATE_64K  = 1,
-+@@ -250,7 +251,7 @@ enum v4l2_mpeg_audio_l1_bitrate {
-+ 	V4L2_MPEG_AUDIO_L1_BITRATE_416K = 12,
-+ 	V4L2_MPEG_AUDIO_L1_BITRATE_448K = 13,
-+ };
-+-#define V4L2_CID_MPEG_AUDIO_L2_BITRATE 		(V4L2_CID_MPEG_BASE+103)
-++#define V4L2_CID_MPEG_AUDIO_L2_BITRATE		(V4L2_CID_MPEG_BASE+103)
-+ enum v4l2_mpeg_audio_l2_bitrate {
-+ 	V4L2_MPEG_AUDIO_L2_BITRATE_32K  = 0,
-+ 	V4L2_MPEG_AUDIO_L2_BITRATE_48K  = 1,
-+@@ -267,7 +268,7 @@ enum v4l2_mpeg_audio_l2_bitrate {
-+ 	V4L2_MPEG_AUDIO_L2_BITRATE_320K = 12,
-+ 	V4L2_MPEG_AUDIO_L2_BITRATE_384K = 13,
-+ };
-+-#define V4L2_CID_MPEG_AUDIO_L3_BITRATE 		(V4L2_CID_MPEG_BASE+104)
-++#define V4L2_CID_MPEG_AUDIO_L3_BITRATE		(V4L2_CID_MPEG_BASE+104)
-+ enum v4l2_mpeg_audio_l3_bitrate {
-+ 	V4L2_MPEG_AUDIO_L3_BITRATE_32K  = 0,
-+ 	V4L2_MPEG_AUDIO_L3_BITRATE_40K  = 1,
-+@@ -284,32 +285,32 @@ enum v4l2_mpeg_audio_l3_bitrate {
-+ 	V4L2_MPEG_AUDIO_L3_BITRATE_256K = 12,
-+ 	V4L2_MPEG_AUDIO_L3_BITRATE_320K = 13,
-+ };
-+-#define V4L2_CID_MPEG_AUDIO_MODE 		(V4L2_CID_MPEG_BASE+105)
-++#define V4L2_CID_MPEG_AUDIO_MODE		(V4L2_CID_MPEG_BASE+105)
-+ enum v4l2_mpeg_audio_mode {
-+ 	V4L2_MPEG_AUDIO_MODE_STEREO       = 0,
-+ 	V4L2_MPEG_AUDIO_MODE_JOINT_STEREO = 1,
-+ 	V4L2_MPEG_AUDIO_MODE_DUAL         = 2,
-+ 	V4L2_MPEG_AUDIO_MODE_MONO         = 3,
-+ };
-+-#define V4L2_CID_MPEG_AUDIO_MODE_EXTENSION 	(V4L2_CID_MPEG_BASE+106)
-++#define V4L2_CID_MPEG_AUDIO_MODE_EXTENSION	(V4L2_CID_MPEG_BASE+106)
-+ enum v4l2_mpeg_audio_mode_extension {
-+ 	V4L2_MPEG_AUDIO_MODE_EXTENSION_BOUND_4  = 0,
-+ 	V4L2_MPEG_AUDIO_MODE_EXTENSION_BOUND_8  = 1,
-+ 	V4L2_MPEG_AUDIO_MODE_EXTENSION_BOUND_12 = 2,
-+ 	V4L2_MPEG_AUDIO_MODE_EXTENSION_BOUND_16 = 3,
-+ };
-+-#define V4L2_CID_MPEG_AUDIO_EMPHASIS 		(V4L2_CID_MPEG_BASE+107)
-++#define V4L2_CID_MPEG_AUDIO_EMPHASIS		(V4L2_CID_MPEG_BASE+107)
-+ enum v4l2_mpeg_audio_emphasis {
-+ 	V4L2_MPEG_AUDIO_EMPHASIS_NONE         = 0,
-+ 	V4L2_MPEG_AUDIO_EMPHASIS_50_DIV_15_uS = 1,
-+ 	V4L2_MPEG_AUDIO_EMPHASIS_CCITT_J17    = 2,
-+ };
-+-#define V4L2_CID_MPEG_AUDIO_CRC 		(V4L2_CID_MPEG_BASE+108)
-++#define V4L2_CID_MPEG_AUDIO_CRC			(V4L2_CID_MPEG_BASE+108)
-+ enum v4l2_mpeg_audio_crc {
-+ 	V4L2_MPEG_AUDIO_CRC_NONE  = 0,
-+ 	V4L2_MPEG_AUDIO_CRC_CRC16 = 1,
-+ };
-+-#define V4L2_CID_MPEG_AUDIO_MUTE 		(V4L2_CID_MPEG_BASE+109)
-++#define V4L2_CID_MPEG_AUDIO_MUTE		(V4L2_CID_MPEG_BASE+109)
-+ #define V4L2_CID_MPEG_AUDIO_AAC_BITRATE		(V4L2_CID_MPEG_BASE+110)
-+ #define V4L2_CID_MPEG_AUDIO_AC3_BITRATE		(V4L2_CID_MPEG_BASE+111)
-+ enum v4l2_mpeg_audio_ac3_bitrate {
-+@@ -345,33 +346,33 @@ enum v4l2_mpeg_audio_dec_playback {
-+ #define V4L2_CID_MPEG_AUDIO_DEC_MULTILINGUAL_PLAYBACK (V4L2_CID_MPEG_BASE+113)
-+ 
-+ /*  MPEG video controls specific to multiplexed streams */
-+-#define V4L2_CID_MPEG_VIDEO_ENCODING 		(V4L2_CID_MPEG_BASE+200)
-++#define V4L2_CID_MPEG_VIDEO_ENCODING		(V4L2_CID_MPEG_BASE+200)
-+ enum v4l2_mpeg_video_encoding {
-+ 	V4L2_MPEG_VIDEO_ENCODING_MPEG_1     = 0,
-+ 	V4L2_MPEG_VIDEO_ENCODING_MPEG_2     = 1,
-+ 	V4L2_MPEG_VIDEO_ENCODING_MPEG_4_AVC = 2,
-+ };
-+-#define V4L2_CID_MPEG_VIDEO_ASPECT 		(V4L2_CID_MPEG_BASE+201)
-++#define V4L2_CID_MPEG_VIDEO_ASPECT		(V4L2_CID_MPEG_BASE+201)
-+ enum v4l2_mpeg_video_aspect {
-+ 	V4L2_MPEG_VIDEO_ASPECT_1x1     = 0,
-+ 	V4L2_MPEG_VIDEO_ASPECT_4x3     = 1,
-+ 	V4L2_MPEG_VIDEO_ASPECT_16x9    = 2,
-+ 	V4L2_MPEG_VIDEO_ASPECT_221x100 = 3,
-+ };
-+-#define V4L2_CID_MPEG_VIDEO_B_FRAMES 		(V4L2_CID_MPEG_BASE+202)
-+-#define V4L2_CID_MPEG_VIDEO_GOP_SIZE 		(V4L2_CID_MPEG_BASE+203)
-+-#define V4L2_CID_MPEG_VIDEO_GOP_CLOSURE 	(V4L2_CID_MPEG_BASE+204)
-+-#define V4L2_CID_MPEG_VIDEO_PULLDOWN 		(V4L2_CID_MPEG_BASE+205)
-+-#define V4L2_CID_MPEG_VIDEO_BITRATE_MODE 	(V4L2_CID_MPEG_BASE+206)
-++#define V4L2_CID_MPEG_VIDEO_B_FRAMES		(V4L2_CID_MPEG_BASE+202)
-++#define V4L2_CID_MPEG_VIDEO_GOP_SIZE		(V4L2_CID_MPEG_BASE+203)
-++#define V4L2_CID_MPEG_VIDEO_GOP_CLOSURE		(V4L2_CID_MPEG_BASE+204)
-++#define V4L2_CID_MPEG_VIDEO_PULLDOWN		(V4L2_CID_MPEG_BASE+205)
-++#define V4L2_CID_MPEG_VIDEO_BITRATE_MODE	(V4L2_CID_MPEG_BASE+206)
-+ enum v4l2_mpeg_video_bitrate_mode {
-+ 	V4L2_MPEG_VIDEO_BITRATE_MODE_VBR = 0,
-+ 	V4L2_MPEG_VIDEO_BITRATE_MODE_CBR = 1,
-+ };
-+-#define V4L2_CID_MPEG_VIDEO_BITRATE 		(V4L2_CID_MPEG_BASE+207)
-+-#define V4L2_CID_MPEG_VIDEO_BITRATE_PEAK 	(V4L2_CID_MPEG_BASE+208)
-++#define V4L2_CID_MPEG_VIDEO_BITRATE		(V4L2_CID_MPEG_BASE+207)
-++#define V4L2_CID_MPEG_VIDEO_BITRATE_PEAK	(V4L2_CID_MPEG_BASE+208)
-+ #define V4L2_CID_MPEG_VIDEO_TEMPORAL_DECIMATION (V4L2_CID_MPEG_BASE+209)
-+-#define V4L2_CID_MPEG_VIDEO_MUTE 		(V4L2_CID_MPEG_BASE+210)
-+-#define V4L2_CID_MPEG_VIDEO_MUTE_YUV 		(V4L2_CID_MPEG_BASE+211)
-++#define V4L2_CID_MPEG_VIDEO_MUTE		(V4L2_CID_MPEG_BASE+210)
-++#define V4L2_CID_MPEG_VIDEO_MUTE_YUV		(V4L2_CID_MPEG_BASE+211)
-+ #define V4L2_CID_MPEG_VIDEO_DECODER_SLICE_INTERFACE		(V4L2_CID_MPEG_BASE+212)
-+ #define V4L2_CID_MPEG_VIDEO_DECODER_MPEG4_DEBLOCK_FILTER	(V4L2_CID_MPEG_BASE+213)
-+ #define V4L2_CID_MPEG_VIDEO_CYCLIC_INTRA_REFRESH_MB		(V4L2_CID_MPEG_BASE+214)
-+@@ -586,17 +587,125 @@ enum v4l2_vp8_golden_frame_sel {
-+ #define V4L2_CID_MPEG_VIDEO_VPX_MAX_QP			(V4L2_CID_MPEG_BASE+508)
-+ #define V4L2_CID_MPEG_VIDEO_VPX_I_FRAME_QP		(V4L2_CID_MPEG_BASE+509)
-+ #define V4L2_CID_MPEG_VIDEO_VPX_P_FRAME_QP		(V4L2_CID_MPEG_BASE+510)
-+-#define V4L2_CID_MPEG_VIDEO_VPX_PROFILE			(V4L2_CID_MPEG_BASE+511)
-++
-++#define V4L2_CID_MPEG_VIDEO_VP8_PROFILE			(V4L2_CID_MPEG_BASE+511)
-++enum v4l2_mpeg_video_vp8_profile {
-++	V4L2_MPEG_VIDEO_VP8_PROFILE_0				= 0,
-++	V4L2_MPEG_VIDEO_VP8_PROFILE_1				= 1,
-++	V4L2_MPEG_VIDEO_VP8_PROFILE_2				= 2,
-++	V4L2_MPEG_VIDEO_VP8_PROFILE_3				= 3,
-++};
-++/* Deprecated alias for compatibility reasons. */
-++#define V4L2_CID_MPEG_VIDEO_VPX_PROFILE	V4L2_CID_MPEG_VIDEO_VP8_PROFILE
-++#define V4L2_CID_MPEG_VIDEO_VP9_PROFILE			(V4L2_CID_MPEG_BASE+512)
-++enum v4l2_mpeg_video_vp9_profile {
-++	V4L2_MPEG_VIDEO_VP9_PROFILE_0				= 0,
-++	V4L2_MPEG_VIDEO_VP9_PROFILE_1				= 1,
-++	V4L2_MPEG_VIDEO_VP9_PROFILE_2				= 2,
-++	V4L2_MPEG_VIDEO_VP9_PROFILE_3				= 3,
-++};
-++
-++/* CIDs for HEVC encoding. */
-++
-++#define V4L2_CID_MPEG_VIDEO_HEVC_MIN_QP		(V4L2_CID_MPEG_BASE + 600)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_MAX_QP		(V4L2_CID_MPEG_BASE + 601)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_I_FRAME_QP	(V4L2_CID_MPEG_BASE + 602)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_P_FRAME_QP	(V4L2_CID_MPEG_BASE + 603)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_B_FRAME_QP	(V4L2_CID_MPEG_BASE + 604)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_QP	(V4L2_CID_MPEG_BASE + 605)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_TYPE (V4L2_CID_MPEG_BASE + 606)
-++enum v4l2_mpeg_video_hevc_hier_coding_type {
-++	V4L2_MPEG_VIDEO_HEVC_HIERARCHICAL_CODING_B	= 0,
-++	V4L2_MPEG_VIDEO_HEVC_HIERARCHICAL_CODING_P	= 1,
-++};
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_LAYER	(V4L2_CID_MPEG_BASE + 607)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L0_QP	(V4L2_CID_MPEG_BASE + 608)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L1_QP	(V4L2_CID_MPEG_BASE + 609)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L2_QP	(V4L2_CID_MPEG_BASE + 610)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L3_QP	(V4L2_CID_MPEG_BASE + 611)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L4_QP	(V4L2_CID_MPEG_BASE + 612)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L5_QP	(V4L2_CID_MPEG_BASE + 613)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L6_QP	(V4L2_CID_MPEG_BASE + 614)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_PROFILE	(V4L2_CID_MPEG_BASE + 615)
-++enum v4l2_mpeg_video_hevc_profile {
-++	V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN = 0,
-++	V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE = 1,
-++	V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10 = 2,
-++};
-++#define V4L2_CID_MPEG_VIDEO_HEVC_LEVEL		(V4L2_CID_MPEG_BASE + 616)
-++enum v4l2_mpeg_video_hevc_level {
-++	V4L2_MPEG_VIDEO_HEVC_LEVEL_1	= 0,
-++	V4L2_MPEG_VIDEO_HEVC_LEVEL_2	= 1,
-++	V4L2_MPEG_VIDEO_HEVC_LEVEL_2_1	= 2,
-++	V4L2_MPEG_VIDEO_HEVC_LEVEL_3	= 3,
-++	V4L2_MPEG_VIDEO_HEVC_LEVEL_3_1	= 4,
-++	V4L2_MPEG_VIDEO_HEVC_LEVEL_4	= 5,
-++	V4L2_MPEG_VIDEO_HEVC_LEVEL_4_1	= 6,
-++	V4L2_MPEG_VIDEO_HEVC_LEVEL_5	= 7,
-++	V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1	= 8,
-++	V4L2_MPEG_VIDEO_HEVC_LEVEL_5_2	= 9,
-++	V4L2_MPEG_VIDEO_HEVC_LEVEL_6	= 10,
-++	V4L2_MPEG_VIDEO_HEVC_LEVEL_6_1	= 11,
-++	V4L2_MPEG_VIDEO_HEVC_LEVEL_6_2	= 12,
-++};
-++#define V4L2_CID_MPEG_VIDEO_HEVC_FRAME_RATE_RESOLUTION	(V4L2_CID_MPEG_BASE + 617)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_TIER			(V4L2_CID_MPEG_BASE + 618)
-++enum v4l2_mpeg_video_hevc_tier {
-++	V4L2_MPEG_VIDEO_HEVC_TIER_MAIN = 0,
-++	V4L2_MPEG_VIDEO_HEVC_TIER_HIGH = 1,
-++};
-++#define V4L2_CID_MPEG_VIDEO_HEVC_MAX_PARTITION_DEPTH	(V4L2_CID_MPEG_BASE + 619)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_LOOP_FILTER_MODE	(V4L2_CID_MPEG_BASE + 620)
-++enum v4l2_cid_mpeg_video_hevc_loop_filter_mode {
-++	V4L2_MPEG_VIDEO_HEVC_LOOP_FILTER_MODE_DISABLED			 = 0,
-++	V4L2_MPEG_VIDEO_HEVC_LOOP_FILTER_MODE_ENABLED			 = 1,
-++	V4L2_MPEG_VIDEO_HEVC_LOOP_FILTER_MODE_DISABLED_AT_SLICE_BOUNDARY = 2,
-++};
-++#define V4L2_CID_MPEG_VIDEO_HEVC_LF_BETA_OFFSET_DIV2	(V4L2_CID_MPEG_BASE + 621)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_LF_TC_OFFSET_DIV2	(V4L2_CID_MPEG_BASE + 622)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_REFRESH_TYPE		(V4L2_CID_MPEG_BASE + 623)
-++enum v4l2_cid_mpeg_video_hevc_refresh_type {
-++	V4L2_MPEG_VIDEO_HEVC_REFRESH_NONE		= 0,
-++	V4L2_MPEG_VIDEO_HEVC_REFRESH_CRA		= 1,
-++	V4L2_MPEG_VIDEO_HEVC_REFRESH_IDR		= 2,
-++};
-++#define V4L2_CID_MPEG_VIDEO_HEVC_REFRESH_PERIOD		(V4L2_CID_MPEG_BASE + 624)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_LOSSLESS_CU		(V4L2_CID_MPEG_BASE + 625)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_CONST_INTRA_PRED	(V4L2_CID_MPEG_BASE + 626)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_WAVEFRONT		(V4L2_CID_MPEG_BASE + 627)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_GENERAL_PB		(V4L2_CID_MPEG_BASE + 628)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_TEMPORAL_ID		(V4L2_CID_MPEG_BASE + 629)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_STRONG_SMOOTHING	(V4L2_CID_MPEG_BASE + 630)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_MAX_NUM_MERGE_MV_MINUS1	(V4L2_CID_MPEG_BASE + 631)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_INTRA_PU_SPLIT		(V4L2_CID_MPEG_BASE + 632)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_TMV_PREDICTION		(V4L2_CID_MPEG_BASE + 633)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_WITHOUT_STARTCODE	(V4L2_CID_MPEG_BASE + 634)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_SIZE_OF_LENGTH_FIELD	(V4L2_CID_MPEG_BASE + 635)
-++enum v4l2_cid_mpeg_video_hevc_size_of_length_field {
-++	V4L2_MPEG_VIDEO_HEVC_SIZE_0		= 0,
-++	V4L2_MPEG_VIDEO_HEVC_SIZE_1		= 1,
-++	V4L2_MPEG_VIDEO_HEVC_SIZE_2		= 2,
-++	V4L2_MPEG_VIDEO_HEVC_SIZE_4		= 3,
-++};
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L0_BR	(V4L2_CID_MPEG_BASE + 636)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L1_BR	(V4L2_CID_MPEG_BASE + 637)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L2_BR	(V4L2_CID_MPEG_BASE + 638)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L3_BR	(V4L2_CID_MPEG_BASE + 639)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L4_BR	(V4L2_CID_MPEG_BASE + 640)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L5_BR	(V4L2_CID_MPEG_BASE + 641)
-++#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L6_BR	(V4L2_CID_MPEG_BASE + 642)
-++#define V4L2_CID_MPEG_VIDEO_REF_NUMBER_FOR_PFRAMES	(V4L2_CID_MPEG_BASE + 643)
-++#define V4L2_CID_MPEG_VIDEO_PREPEND_SPSPPS_TO_IDR	(V4L2_CID_MPEG_BASE + 644)
-+ 
-+ /*  MPEG-class control IDs specific to the CX2341x driver as defined by V4L2 */
-+-#define V4L2_CID_MPEG_CX2341X_BASE 				(V4L2_CTRL_CLASS_MPEG | 0x1000)
-+-#define V4L2_CID_MPEG_CX2341X_VIDEO_SPATIAL_FILTER_MODE 	(V4L2_CID_MPEG_CX2341X_BASE+0)
-++#define V4L2_CID_MPEG_CX2341X_BASE				(V4L2_CTRL_CLASS_MPEG | 0x1000)
-++#define V4L2_CID_MPEG_CX2341X_VIDEO_SPATIAL_FILTER_MODE		(V4L2_CID_MPEG_CX2341X_BASE+0)
-+ enum v4l2_mpeg_cx2341x_video_spatial_filter_mode {
-+ 	V4L2_MPEG_CX2341X_VIDEO_SPATIAL_FILTER_MODE_MANUAL = 0,
-+ 	V4L2_MPEG_CX2341X_VIDEO_SPATIAL_FILTER_MODE_AUTO   = 1,
-+ };
-+-#define V4L2_CID_MPEG_CX2341X_VIDEO_SPATIAL_FILTER 		(V4L2_CID_MPEG_CX2341X_BASE+1)
-+-#define V4L2_CID_MPEG_CX2341X_VIDEO_LUMA_SPATIAL_FILTER_TYPE 	(V4L2_CID_MPEG_CX2341X_BASE+2)
-++#define V4L2_CID_MPEG_CX2341X_VIDEO_SPATIAL_FILTER		(V4L2_CID_MPEG_CX2341X_BASE+1)
-++#define V4L2_CID_MPEG_CX2341X_VIDEO_LUMA_SPATIAL_FILTER_TYPE	(V4L2_CID_MPEG_CX2341X_BASE+2)
-+ enum v4l2_mpeg_cx2341x_video_luma_spatial_filter_type {
-+ 	V4L2_MPEG_CX2341X_VIDEO_LUMA_SPATIAL_FILTER_TYPE_OFF                  = 0,
-+ 	V4L2_MPEG_CX2341X_VIDEO_LUMA_SPATIAL_FILTER_TYPE_1D_HOR               = 1,
-+@@ -604,18 +713,18 @@ enum v4l2_mpeg_cx2341x_video_luma_spatial_filter_type {
-+ 	V4L2_MPEG_CX2341X_VIDEO_LUMA_SPATIAL_FILTER_TYPE_2D_HV_SEPARABLE      = 3,
-+ 	V4L2_MPEG_CX2341X_VIDEO_LUMA_SPATIAL_FILTER_TYPE_2D_SYM_NON_SEPARABLE = 4,
-+ };
-+-#define V4L2_CID_MPEG_CX2341X_VIDEO_CHROMA_SPATIAL_FILTER_TYPE 	(V4L2_CID_MPEG_CX2341X_BASE+3)
-++#define V4L2_CID_MPEG_CX2341X_VIDEO_CHROMA_SPATIAL_FILTER_TYPE	(V4L2_CID_MPEG_CX2341X_BASE+3)
-+ enum v4l2_mpeg_cx2341x_video_chroma_spatial_filter_type {
-+ 	V4L2_MPEG_CX2341X_VIDEO_CHROMA_SPATIAL_FILTER_TYPE_OFF    = 0,
-+ 	V4L2_MPEG_CX2341X_VIDEO_CHROMA_SPATIAL_FILTER_TYPE_1D_HOR = 1,
-+ };
-+-#define V4L2_CID_MPEG_CX2341X_VIDEO_TEMPORAL_FILTER_MODE 	(V4L2_CID_MPEG_CX2341X_BASE+4)
-++#define V4L2_CID_MPEG_CX2341X_VIDEO_TEMPORAL_FILTER_MODE	(V4L2_CID_MPEG_CX2341X_BASE+4)
-+ enum v4l2_mpeg_cx2341x_video_temporal_filter_mode {
-+ 	V4L2_MPEG_CX2341X_VIDEO_TEMPORAL_FILTER_MODE_MANUAL = 0,
-+ 	V4L2_MPEG_CX2341X_VIDEO_TEMPORAL_FILTER_MODE_AUTO   = 1,
-+ };
-+-#define V4L2_CID_MPEG_CX2341X_VIDEO_TEMPORAL_FILTER 		(V4L2_CID_MPEG_CX2341X_BASE+5)
-+-#define V4L2_CID_MPEG_CX2341X_VIDEO_MEDIAN_FILTER_TYPE 		(V4L2_CID_MPEG_CX2341X_BASE+6)
-++#define V4L2_CID_MPEG_CX2341X_VIDEO_TEMPORAL_FILTER		(V4L2_CID_MPEG_CX2341X_BASE+5)
-++#define V4L2_CID_MPEG_CX2341X_VIDEO_MEDIAN_FILTER_TYPE		(V4L2_CID_MPEG_CX2341X_BASE+6)
-+ enum v4l2_mpeg_cx2341x_video_median_filter_type {
-+ 	V4L2_MPEG_CX2341X_VIDEO_MEDIAN_FILTER_TYPE_OFF      = 0,
-+ 	V4L2_MPEG_CX2341X_VIDEO_MEDIAN_FILTER_TYPE_HOR      = 1,
-+@@ -623,11 +732,11 @@ enum v4l2_mpeg_cx2341x_video_median_filter_type {
-+ 	V4L2_MPEG_CX2341X_VIDEO_MEDIAN_FILTER_TYPE_HOR_VERT = 3,
-+ 	V4L2_MPEG_CX2341X_VIDEO_MEDIAN_FILTER_TYPE_DIAG     = 4,
-+ };
-+-#define V4L2_CID_MPEG_CX2341X_VIDEO_LUMA_MEDIAN_FILTER_BOTTOM 	(V4L2_CID_MPEG_CX2341X_BASE+7)
-+-#define V4L2_CID_MPEG_CX2341X_VIDEO_LUMA_MEDIAN_FILTER_TOP 	(V4L2_CID_MPEG_CX2341X_BASE+8)
-++#define V4L2_CID_MPEG_CX2341X_VIDEO_LUMA_MEDIAN_FILTER_BOTTOM	(V4L2_CID_MPEG_CX2341X_BASE+7)
-++#define V4L2_CID_MPEG_CX2341X_VIDEO_LUMA_MEDIAN_FILTER_TOP	(V4L2_CID_MPEG_CX2341X_BASE+8)
-+ #define V4L2_CID_MPEG_CX2341X_VIDEO_CHROMA_MEDIAN_FILTER_BOTTOM	(V4L2_CID_MPEG_CX2341X_BASE+9)
-+-#define V4L2_CID_MPEG_CX2341X_VIDEO_CHROMA_MEDIAN_FILTER_TOP 	(V4L2_CID_MPEG_CX2341X_BASE+10)
-+-#define V4L2_CID_MPEG_CX2341X_STREAM_INSERT_NAV_PACKETS 	(V4L2_CID_MPEG_CX2341X_BASE+11)
-++#define V4L2_CID_MPEG_CX2341X_VIDEO_CHROMA_MEDIAN_FILTER_TOP	(V4L2_CID_MPEG_CX2341X_BASE+10)
-++#define V4L2_CID_MPEG_CX2341X_STREAM_INSERT_NAV_PACKETS		(V4L2_CID_MPEG_CX2341X_BASE+11)
-+ 
-+ /*  MPEG-class control IDs specific to the Samsung MFC 5.1 driver as defined by V4L2 */
-+ #define V4L2_CID_MPEG_MFC51_BASE				(V4L2_CTRL_CLASS_MPEG | 0x1100)
-+@@ -656,11 +765,10 @@ enum v4l2_mpeg_mfc51_video_force_frame_type {
-+ #define V4L2_CID_MPEG_MFC51_VIDEO_H264_ADAPTIVE_RC_STATIC		(V4L2_CID_MPEG_MFC51_BASE+53)
-+ #define V4L2_CID_MPEG_MFC51_VIDEO_H264_NUM_REF_PIC_FOR_P		(V4L2_CID_MPEG_MFC51_BASE+54)
-+ 
-+-
-+ /*  Camera class control IDs */
-+ 
-+-#define V4L2_CID_CAMERA_CLASS_BASE 	(V4L2_CTRL_CLASS_CAMERA | 0x900)
-+-#define V4L2_CID_CAMERA_CLASS 		(V4L2_CTRL_CLASS_CAMERA | 1)
-++#define V4L2_CID_CAMERA_CLASS_BASE	(V4L2_CTRL_CLASS_CAMERA | 0x900)
-++#define V4L2_CID_CAMERA_CLASS		(V4L2_CTRL_CLASS_CAMERA | 1)
-+ 
-+ #define V4L2_CID_EXPOSURE_AUTO			(V4L2_CID_CAMERA_CLASS_BASE+1)
-+ enum  v4l2_exposure_auto_type {
-+diff --git a/sys/v4l2/ext/videodev2.h b/sys/v4l2/ext/videodev2.h
-+index 59e1f3d..d478d89 100644
-+--- a/sys/v4l2/ext/videodev2.h
-++++ b/sys/v4l2/ext/videodev2.h
-+@@ -1,3 +1,4 @@
-++/* SPDX-License-Identifier: ((GPL-2.0+ WITH Linux-syscall-note) OR BSD-3-Clause) */
-+ /*
-+  *  Video for Linux Two header file
-+  *
-+@@ -104,14 +105,14 @@ enum v4l2_field {
-+ 					 transmitted first */
-+ };
-+ #define V4L2_FIELD_HAS_TOP(field)	\
-+-	((field) == V4L2_FIELD_TOP 	||\
-++	((field) == V4L2_FIELD_TOP	||\
-+ 	 (field) == V4L2_FIELD_INTERLACED ||\
-+ 	 (field) == V4L2_FIELD_INTERLACED_TB ||\
-+ 	 (field) == V4L2_FIELD_INTERLACED_BT ||\
-+ 	 (field) == V4L2_FIELD_SEQ_TB	||\
-+ 	 (field) == V4L2_FIELD_SEQ_BT)
-+ #define V4L2_FIELD_HAS_BOTTOM(field)	\
-+-	((field) == V4L2_FIELD_BOTTOM 	||\
-++	((field) == V4L2_FIELD_BOTTOM	||\
-+ 	 (field) == V4L2_FIELD_INTERLACED ||\
-+ 	 (field) == V4L2_FIELD_INTERLACED_TB ||\
-+ 	 (field) == V4L2_FIELD_INTERLACED_BT ||\
-+@@ -464,12 +465,12 @@ struct v4l2_capability {
-+  *	V I D E O   I M A G E   F O R M A T
-+  */
-+ struct v4l2_pix_format {
-+-	__u32         		width;
-++	__u32			width;
-+ 	__u32			height;
-+ 	__u32			pixelformat;
-+ 	__u32			field;		/* enum v4l2_field */
-+-	__u32            	bytesperline;	/* for padding, zero if unused */
-+-	__u32          		sizeimage;
-++	__u32			bytesperline;	/* for padding, zero if unused */
-++	__u32			sizeimage;
-+ 	__u32			colorspace;	/* enum v4l2_colorspace */
-+ 	__u32			priv;		/* private data, depends on pixelformat */
-+ 	__u32			flags;		/* format flags (V4L2_PIX_FMT_FLAG_*) */
-+@@ -519,6 +520,7 @@ struct v4l2_pix_format {
-+ 
-+ /* Grey bit-packed formats */
-+ #define V4L2_PIX_FMT_Y10BPACK    v4l2_fourcc('Y', '1', '0', 'B') /* 10  Greyscale bit-packed */
-++#define V4L2_PIX_FMT_Y10P    v4l2_fourcc('Y', '1', '0', 'P') /* 10  Greyscale, MIPI RAW10 packed */
-+ 
-+ /* Palette formats */
-+ #define V4L2_PIX_FMT_PAL8    v4l2_fourcc('P', 'A', 'L', '8') /*  8  8-bit palette */
-+@@ -601,6 +603,16 @@ struct v4l2_pix_format {
-+ #define V4L2_PIX_FMT_SGBRG12 v4l2_fourcc('G', 'B', '1', '2') /* 12  GBGB.. RGRG.. */
-+ #define V4L2_PIX_FMT_SGRBG12 v4l2_fourcc('B', 'A', '1', '2') /* 12  GRGR.. BGBG.. */
-+ #define V4L2_PIX_FMT_SRGGB12 v4l2_fourcc('R', 'G', '1', '2') /* 12  RGRG.. GBGB.. */
-++	/* 12bit raw bayer packed, 6 bytes for every 4 pixels */
-++#define V4L2_PIX_FMT_SBGGR12P v4l2_fourcc('p', 'B', 'C', 'C')
-++#define V4L2_PIX_FMT_SGBRG12P v4l2_fourcc('p', 'G', 'C', 'C')
-++#define V4L2_PIX_FMT_SGRBG12P v4l2_fourcc('p', 'g', 'C', 'C')
-++#define V4L2_PIX_FMT_SRGGB12P v4l2_fourcc('p', 'R', 'C', 'C')
-++	/* 14bit raw bayer packed, 7 bytes for every 4 pixels */
-++#define V4L2_PIX_FMT_SBGGR14P v4l2_fourcc('p', 'B', 'E', 'E')
-++#define V4L2_PIX_FMT_SGBRG14P v4l2_fourcc('p', 'G', 'E', 'E')
-++#define V4L2_PIX_FMT_SGRBG14P v4l2_fourcc('p', 'g', 'E', 'E')
-++#define V4L2_PIX_FMT_SRGGB14P v4l2_fourcc('p', 'R', 'E', 'E')
-+ #define V4L2_PIX_FMT_SBGGR16 v4l2_fourcc('B', 'Y', 'R', '2') /* 16  BGBG.. GRGR.. */
-+ #define V4L2_PIX_FMT_SGBRG16 v4l2_fourcc('G', 'B', '1', '6') /* 16  GBGB.. RGRG.. */
-+ #define V4L2_PIX_FMT_SGRBG16 v4l2_fourcc('G', 'R', '1', '6') /* 16  GRGR.. BGBG.. */
-+@@ -627,6 +639,8 @@ struct v4l2_pix_format {
-+ #define V4L2_PIX_FMT_VC1_ANNEX_L v4l2_fourcc('V', 'C', '1', 'L') /* SMPTE 421M Annex L compliant stream */
-+ #define V4L2_PIX_FMT_VP8      v4l2_fourcc('V', 'P', '8', '0') /* VP8 */
-+ #define V4L2_PIX_FMT_VP9      v4l2_fourcc('V', 'P', '9', '0') /* VP9 */
-++#define V4L2_PIX_FMT_HEVC     v4l2_fourcc('H', 'E', 'V', 'C') /* HEVC aka H.265 */
-++#define V4L2_PIX_FMT_FWHT     v4l2_fourcc('F', 'W', 'H', 'T') /* Fast Walsh Hadamard Transform (vicodec) */
-+ 
-+ /*  Vendor-specific formats   */
-+ #define V4L2_PIX_FMT_CPIA1    v4l2_fourcc('C', 'P', 'I', 'A') /* cpia1 YUV */
-+@@ -661,6 +675,12 @@ struct v4l2_pix_format {
-+ #define V4L2_PIX_FMT_MT21C    v4l2_fourcc('M', 'T', '2', '1') /* Mediatek compressed block mode  */
-+ #define V4L2_PIX_FMT_INZI     v4l2_fourcc('I', 'N', 'Z', 'I') /* Intel Planar Greyscale 10-bit and Depth 16-bit */
-+ 
-++/* 10bit raw bayer packed, 32 bytes for every 25 pixels, last LSB 6 bits unused */
-++#define V4L2_PIX_FMT_IPU3_SBGGR10	v4l2_fourcc('i', 'p', '3', 'b') /* IPU3 packed 10-bit BGGR bayer */
-++#define V4L2_PIX_FMT_IPU3_SGBRG10	v4l2_fourcc('i', 'p', '3', 'g') /* IPU3 packed 10-bit GBRG bayer */
-++#define V4L2_PIX_FMT_IPU3_SGRBG10	v4l2_fourcc('i', 'p', '3', 'G') /* IPU3 packed 10-bit GRBG bayer */
-++#define V4L2_PIX_FMT_IPU3_SRGGB10	v4l2_fourcc('i', 'p', '3', 'r') /* IPU3 packed 10-bit RGGB bayer */
-++
-+ /* SDR formats - used only for Software Defined Radio devices */
-+ #define V4L2_SDR_FMT_CU8          v4l2_fourcc('C', 'U', '0', '8') /* IQ u8 */
-+ #define V4L2_SDR_FMT_CU16LE       v4l2_fourcc('C', 'U', '1', '6') /* IQ u16le */
-+@@ -680,6 +700,8 @@ struct v4l2_pix_format {
-+ /* Meta-data formats */
-+ #define V4L2_META_FMT_VSP1_HGO    v4l2_fourcc('V', 'S', 'P', 'H') /* R-Car VSP1 1-D Histogram */
-+ #define V4L2_META_FMT_VSP1_HGT    v4l2_fourcc('V', 'S', 'P', 'T') /* R-Car VSP1 2-D Histogram */
-++#define V4L2_META_FMT_UVC         v4l2_fourcc('U', 'V', 'C', 'H') /* UVC Payload Header metadata */
-++#define V4L2_META_FMT_D4XX        v4l2_fourcc('D', '4', 'X', 'X') /* D4XX Payload Header metadata */
-+ 
-+ /* priv field value to indicates that subsequent fields are valid. */
-+ #define V4L2_PIX_FMT_PRIV_MAGIC		0xfeedcafe
-+@@ -1158,7 +1180,7 @@ typedef __u64 v4l2_std_id;
-+ 				 V4L2_STD_NTSC_M_JP     |\
-+ 				 V4L2_STD_NTSC_M_KR)
-+ /* Secam macros */
-+-#define V4L2_STD_SECAM_DK      	(V4L2_STD_SECAM_D	|\
-++#define V4L2_STD_SECAM_DK	(V4L2_STD_SECAM_D	|\
-+ 				 V4L2_STD_SECAM_K	|\
-+ 				 V4L2_STD_SECAM_K1)
-+ /* All Secam Standards */
-+@@ -1239,7 +1261,7 @@ struct v4l2_standard {
-+ };
-+ 
-+ /*
-+- *	D V 	B T	T I M I N G S
-++ *	D V	B T	T I M I N G S
-+  */
-+ 
-+ /** struct v4l2_bt_timings - BT.656/BT.1120 timing data
-+@@ -1377,6 +1399,13 @@ struct v4l2_bt_timings {
-+  * InfoFrame).
-+  */
-+ #define V4L2_DV_FL_HAS_HDMI_VIC			(1 << 8)
-++/*
-++ * CEA-861 specific: only valid for video receivers.
-++ * If set, then HW can detect the difference between regular FPS and
-++ * 1000/1001 FPS. Note: This flag is only valid for HDMI VIC codes with
-++ * the V4L2_DV_FL_CAN_REDUCE_FPS flag set.
-++ */
-++#define V4L2_DV_FL_CAN_DETECT_REDUCED_FPS	(1 << 9)
-+ 
-+ /* A few useful defines to calculate the total blanking and frame sizes */
-+ #define V4L2_DV_BT_BLANKING_WIDTH(bt) \
-+@@ -1580,7 +1609,7 @@ struct v4l2_ext_controls {
-+ 	struct v4l2_ext_control *controls;
-+ };
-+ 
-+-#define V4L2_CTRL_ID_MASK      	  (0x0fffffff)
-++#define V4L2_CTRL_ID_MASK	  (0x0fffffff)
-+ #ifndef __KERNEL__
-+ #define V4L2_CTRL_ID2CLASS(id)    ((id) & 0x0fff0000UL)
++diff --git a/libsync.h b/libsync.h
++index f1a2f96d..c3b8a385 100644
++--- a/libsync.h
+++++ b/libsync.h
++@@ -40,6 +40,10 @@
++ extern "C" {
 + #endif
-+@@ -1652,11 +1681,11 @@ struct v4l2_querymenu {
-+ /*  Control flags  */
-+ #define V4L2_CTRL_FLAG_DISABLED		0x0001
-+ #define V4L2_CTRL_FLAG_GRABBED		0x0002
-+-#define V4L2_CTRL_FLAG_READ_ONLY 	0x0004
-+-#define V4L2_CTRL_FLAG_UPDATE 		0x0008
-+-#define V4L2_CTRL_FLAG_INACTIVE 	0x0010
-+-#define V4L2_CTRL_FLAG_SLIDER 		0x0020
-+-#define V4L2_CTRL_FLAG_WRITE_ONLY 	0x0040
-++#define V4L2_CTRL_FLAG_READ_ONLY	0x0004
-++#define V4L2_CTRL_FLAG_UPDATE		0x0008
-++#define V4L2_CTRL_FLAG_INACTIVE		0x0010
-++#define V4L2_CTRL_FLAG_SLIDER		0x0020
-++#define V4L2_CTRL_FLAG_WRITE_ONLY	0x0040
-+ #define V4L2_CTRL_FLAG_VOLATILE		0x0080
-+ #define V4L2_CTRL_FLAG_HAS_PAYLOAD	0x0100
-+ #define V4L2_CTRL_FLAG_EXECUTE_ON_WRITE	0x0200
-+@@ -1770,21 +1799,21 @@ struct v4l2_hw_freq_seek {
-+  */
 + 
-+ struct v4l2_rds_data {
-+-	__u8 	lsb;
-+-	__u8 	msb;
-+-	__u8 	block;
-++	__u8	lsb;
-++	__u8	msb;
-++	__u8	block;
-+ } __attribute__ ((packed));
+++#ifndef SYNC_IOC_MAGIC
+++#define SYNC_IOC_MAGIC		'>'
+++#endif
+++
++ #ifndef SYNC_IOC_MERGE
++ /* duplicated from linux/sync_file.h to avoid build-time dependency
++  * on new (v4.7) kernel headers.  Once distro's are mostly using
++@@ -53,10 +57,22 @@ struct sync_merge_data {
++ 	uint32_t	flags;
++ 	uint32_t	pad;
++ };
++-#define SYNC_IOC_MAGIC		'>'
++ #define SYNC_IOC_MERGE		_IOWR(SYNC_IOC_MAGIC, 3, struct sync_merge_data)
++ #endif
 + 
-+-#define V4L2_RDS_BLOCK_MSK 	 0x7
-+-#define V4L2_RDS_BLOCK_A 	 0
-+-#define V4L2_RDS_BLOCK_B 	 1
-+-#define V4L2_RDS_BLOCK_C 	 2
-+-#define V4L2_RDS_BLOCK_D 	 3
-+-#define V4L2_RDS_BLOCK_C_ALT 	 4
-+-#define V4L2_RDS_BLOCK_INVALID 	 7
-++#define V4L2_RDS_BLOCK_MSK	 0x7
-++#define V4L2_RDS_BLOCK_A	 0
-++#define V4L2_RDS_BLOCK_B	 1
-++#define V4L2_RDS_BLOCK_C	 2
-++#define V4L2_RDS_BLOCK_D	 3
-++#define V4L2_RDS_BLOCK_C_ALT	 4
-++#define V4L2_RDS_BLOCK_INVALID	 7
+++#ifndef SYNC_IOC_LEGACY_MERGE
+++/* the legacy definitions are based on the contents of
+++ * drivers/staging/android/uapi/sync.h in the v4.4 kernel.
+++ */
+++struct sync_legacy_merge_data {
+++	int32_t	fd2;
+++	char	name[32];
+++	int32_t	fence;
+++};
+++
+++#define SYNC_IOC_LEGACY_MERGE	_IOWR(SYNC_IOC_MAGIC, 1, \
+++	struct sync_legacy_merge_data)
+++#endif
 + 
-+ #define V4L2_RDS_BLOCK_CORRECTED 0x40
-+-#define V4L2_RDS_BLOCK_ERROR 	 0x80
-++#define V4L2_RDS_BLOCK_ERROR	 0x80
++ static inline int sync_wait(int fd, int timeout)
++ {
++@@ -83,6 +99,24 @@ static inline int sync_wait(int fd, int timeout)
++ 	return ret;
++ }
 + 
-+ /*
-+  *	A U D I O
-+@@ -2294,7 +2323,6 @@ struct v4l2_create_buffers {
-+  *
-+  */
-+ #define VIDIOC_QUERYCAP		 _IOR('V',  0, struct v4l2_capability)
-+-#define VIDIOC_RESERVED		  _IO('V',  1)
-+ #define VIDIOC_ENUM_FMT         _IOWR('V',  2, struct v4l2_fmtdesc)
-+ #define VIDIOC_G_FMT		_IOWR('V',  4, struct v4l2_format)
-+ #define VIDIOC_S_FMT		_IOWR('V',  5, struct v4l2_format)
-+@@ -2340,8 +2368,8 @@ struct v4l2_create_buffers {
-+ #define VIDIOC_S_CROP		 _IOW('V', 60, struct v4l2_crop)
-+ #define VIDIOC_G_JPEGCOMP	 _IOR('V', 61, struct v4l2_jpegcompression)
-+ #define VIDIOC_S_JPEGCOMP	 _IOW('V', 62, struct v4l2_jpegcompression)
-+-#define VIDIOC_QUERYSTD      	 _IOR('V', 63, v4l2_std_id)
-+-#define VIDIOC_TRY_FMT      	_IOWR('V', 64, struct v4l2_format)
-++#define VIDIOC_QUERYSTD		 _IOR('V', 63, v4l2_std_id)
-++#define VIDIOC_TRY_FMT		_IOWR('V', 64, struct v4l2_format)
-+ #define VIDIOC_ENUMAUDIO	_IOWR('V', 65, struct v4l2_audio)
-+ #define VIDIOC_ENUMAUDOUT	_IOWR('V', 66, struct v4l2_audioout)
-+ #define VIDIOC_G_PRIORITY	 _IOR('V', 67, __u32) /* enum v4l2_priority */
-+@@ -2362,8 +2390,8 @@ struct v4l2_create_buffers {
-+  * Only implemented if CONFIG_VIDEO_ADV_DEBUG is defined.
-+  * You must be root to use these ioctls. Never use these in applications!
-+  */
-+-#define	VIDIOC_DBG_S_REGISTER 	 _IOW('V', 79, struct v4l2_dbg_register)
-+-#define	VIDIOC_DBG_G_REGISTER 	_IOWR('V', 80, struct v4l2_dbg_register)
-++#define	VIDIOC_DBG_S_REGISTER	 _IOW('V', 79, struct v4l2_dbg_register)
-++#define	VIDIOC_DBG_G_REGISTER	_IOWR('V', 80, struct v4l2_dbg_register)
+++static inline int sync_legacy_merge(const char *name, int fd1, int fd2)
+++{
+++	struct sync_legacy_merge_data data;
+++	int ret;
+++
+++	data.fd2 = fd2;
+++	strncpy(data.name, name, sizeof(data.name));
+++
+++	do {
+++		ret = ioctl(fd1, SYNC_IOC_LEGACY_MERGE, &data);
+++	} while (ret == -1 && (errno == EINTR || errno == EAGAIN));
+++
+++	if (ret < 0)
+++		return ret;
+++
+++	return data.fence;
+++}
+++
++ static inline int sync_merge(const char *name, int fd1, int fd2)
++ {
++ 	struct sync_merge_data data = {0};
++@@ -95,8 +129,12 @@ static inline int sync_merge(const char *name, int fd1, int fd2)
++ 		ret = ioctl(fd1, SYNC_IOC_MERGE, &data);
++ 	} while (ret == -1 && (errno == EINTR || errno == EAGAIN));
 + 
-+ #define VIDIOC_S_HW_FREQ_SEEK	 _IOW('V', 82, struct v4l2_hw_freq_seek)
-+ #define	VIDIOC_S_DV_TIMINGS	_IOWR('V', 87, struct v4l2_dv_timings)
++-	if (ret < 0)
++-		return ret;
+++	if (ret < 0) {
+++		if (errno == ENOTTY)
+++			return sync_legacy_merge(name, fd1, fd2);
+++		else
+++			return ret;
+++	}
++ 
++ 	return data.fence;
++ }
 +-- 
-+1.9.1
++2.17.1
 +
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0002-v4l2videodec-Add-HEVC-decoder-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0002-v4l2videodec-Add-HEVC-decoder-support.patch
+diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm/0002-Add-sync_fence_info-and-sync_pt_info.patch b/meta-arago-distro/recipes-graphics/drm/libdrm/0002-Add-sync_fence_info-and-sync_pt_info.patch
 new file mode 100644
-index 0000000..ab6404c
+index 0000000..428def6
 --- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0002-v4l2videodec-Add-HEVC-decoder-support.patch
-@@ -0,0 +1,60 @@
-+From 70982aa13af7c7cb571d253706bc1458336c20a1 Mon Sep 17 00:00:00 2001
-+From: Song Bing <bing.song@nxp.com>
-+Date: Thu, 13 Sep 2018 03:16:32 +0000
-+Subject: [PATCH 2/2] v4l2videodec: Add HEVC decoder support
++++ b/meta-arago-distro/recipes-graphics/drm/libdrm/0002-Add-sync_fence_info-and-sync_pt_info.patch
+@@ -0,0 +1,212 @@
++From 09da458d04e048a80500feb7d167a4faac56f84e Mon Sep 17 00:00:00 2001
++From: Brendan King <Brendan.King@imgtec.com>
++Date: Thu, 24 Aug 2017 13:28:38 +0100
++Subject: [PATCH 2/2] Add sync_fence_info and sync_pt_info
 +
-+https://bugzilla.gnome.org/show_bug.cgi?id=771686
++For pre-4.7 kernels, sync_fence_info returns the data from the
++SYNC_IOC_FENCE_INFO ioctl. For newer kernels, the SYNC_IOC_FILE_INFO
++ioctl is called, and the data converted to SYNC_IOC_FENCE_INFO form.
 +---
-+ sys/v4l2/gstv4l2object.c   | 8 ++++++++
-+ sys/v4l2/gstv4l2videodec.c | 2 ++
-+ 2 files changed, 10 insertions(+)
++ libsync.h | 172 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
++ 1 file changed, 172 insertions(+)
 +
-+diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
-+index 211f835..c32608c 100644
-+--- a/sys/v4l2/gstv4l2object.c
-++++ b/sys/v4l2/gstv4l2object.c
-+@@ -171,6 +171,7 @@ static const GstV4L2FormatDesc gst_v4l2_formats[] = {
-+   {V4L2_PIX_FMT_H264, FALSE, GST_V4L2_CODEC},
-+   {V4L2_PIX_FMT_H264_NO_SC, FALSE, GST_V4L2_CODEC},
-+   {V4L2_PIX_FMT_H264_MVC, FALSE, GST_V4L2_CODEC},
-++  {V4L2_PIX_FMT_HEVC, FALSE, GST_V4L2_CODEC},
-+   {V4L2_PIX_FMT_H263, FALSE, GST_V4L2_CODEC},
-+   {V4L2_PIX_FMT_MPEG1, FALSE, GST_V4L2_CODEC},
-+   {V4L2_PIX_FMT_MPEG2, FALSE, GST_V4L2_CODEC},
-+@@ -1433,6 +1434,11 @@ gst_v4l2_object_v4l2fourcc_to_bare_struct (guint32 fourcc)
-+           "stream-format", G_TYPE_STRING, "avc", "alignment",
-+           G_TYPE_STRING, "au", NULL);
-+       break;
-++    case V4L2_PIX_FMT_HEVC:    /* H.265 */
-++      structure = gst_structure_new ("video/x-h265",
-++          "stream-format", G_TYPE_STRING, "byte-stream", "alignment",
-++          G_TYPE_STRING, "au", NULL);
-++      break;
-+     case V4L2_PIX_FMT_VC1_ANNEX_G:
-+     case V4L2_PIX_FMT_VC1_ANNEX_L:
-+       structure = gst_structure_new ("video/x-wmv",
-+@@ -1809,6 +1815,8 @@ gst_v4l2_object_get_caps_info (GstV4l2Object * v4l2object, GstCaps * caps,
-+         fourcc = V4L2_PIX_FMT_H264_NO_SC;
-+       else
-+         fourcc = V4L2_PIX_FMT_H264;
-++    } else if (g_str_equal (mimetype, "video/x-h265")) {
-++      fourcc = V4L2_PIX_FMT_HEVC;
-+     } else if (g_str_equal (mimetype, "video/x-vp8")) {
-+       fourcc = V4L2_PIX_FMT_VP8;
-+     } else if (g_str_equal (mimetype, "video/x-vp9")) {
-+diff --git a/sys/v4l2/gstv4l2videodec.c b/sys/v4l2/gstv4l2videodec.c
-+index 838ebff..ece20bd 100644
-+--- a/sys/v4l2/gstv4l2videodec.c
-++++ b/sys/v4l2/gstv4l2videodec.c
-+@@ -1083,6 +1083,8 @@ G_STMT_START { \
-+     SET_META ("H263");
-+   } else if (gst_structure_has_name (s, "video/x-h264")) {
-+     SET_META ("H264");
-++  } else if (gst_structure_has_name (s, "video/x-h265")) {
-++    SET_META ("H265");
-+   } else if (gst_structure_has_name (s, "video/x-wmv")) {
-+     SET_META ("VC1");
-+   } else if (gst_structure_has_name (s, "video/x-vp8")) {
++diff --git a/libsync.h b/libsync.h
++index c3b8a385..44f7330d 100644
++--- a/libsync.h
+++++ b/libsync.h
++@@ -31,6 +31,7 @@
++ #include <assert.h>
++ #include <errno.h>
++ #include <stdint.h>
+++#include <stdlib.h>
++ #include <string.h>
++ #include <sys/ioctl.h>
++ #include <sys/poll.h>
++@@ -74,6 +75,54 @@ struct sync_legacy_merge_data {
++ 	struct sync_legacy_merge_data)
++ #endif
++ 
+++#ifndef SYNC_IOC_FILE_INFO
+++/* duplicated from linux/sync_file.h to avoid a build-time dependency
+++ * on new (v4.7) kernel headers.
+++ */
+++struct sync_fence_info {
+++	char		obj_name[32];
+++	char		driver_name[32];
+++	int32_t		status;
+++	uint32_t	flags;
+++	uint64_t	timestamp_ns;
+++};
+++
+++struct sync_file_info {
+++	char		name[32];
+++	int32_t		status;
+++	uint32_t	flags;
+++	uint32_t	num_fences;
+++	uint32_t	pad;
+++	uint64_t	sync_fence_info;
+++};
+++
+++#define SYNC_IOC_FILE_INFO	_IOWR(SYNC_IOC_MAGIC, 4, struct sync_file_info)
+++#endif
+++
+++#ifndef SYNC_IOC_LEGACY_FENCE_INFO
+++/* the legacy definitions are based on the contents of
+++ * drivers/staging/android/uapi/sync.h in the v4.4 kernel.
+++ */
+++struct sync_pt_info {
+++	uint32_t	len;
+++	char		obj_name[32];
+++	char		driver_name[32];
+++	int32_t		status;
+++	uint64_t	timestamp_ns;
+++	uint8_t		driver_data[0];
+++};
+++
+++struct sync_fence_info_data {
+++	uint32_t	len;
+++	char		name[32];
+++	int32_t		status;
+++	uint8_t		pt_info[0];
+++};
+++
+++#define SYNC_IOC_LEGACY_FENCE_INFO	_IOWR(SYNC_IOC_MAGIC, 2, \
+++	struct sync_fence_info_data)
+++#endif
+++
++ static inline int sync_wait(int fd, int timeout)
++ {
++ 	struct pollfd fds = {0};
++@@ -179,6 +228,129 @@ static inline int sync_accumulate(const char *name, int *fd1, int fd2)
++ 	return 0;
++ }
++ 
+++static inline struct sync_pt_info *sync_pt_info(
+++					struct sync_fence_info_data *info,
+++					struct sync_pt_info *pt_info)
+++{
+++	if (!pt_info)
+++		pt_info = (struct sync_pt_info *)info->pt_info;
+++	else
+++		pt_info = (struct sync_pt_info *)((uint8_t *)pt_info +
+++				pt_info->len);
+++
+++	if ((uint32_t)((uint8_t *)pt_info - (uint8_t *)info) >= info->len)
+++		return NULL;
+++
+++	return pt_info;
+++}
+++
+++static inline struct sync_fence_info_data *sync_legacy_fence_info(int fd)
+++{
+++	const uint32_t len = 4096;
+++	struct sync_fence_info_data *info = malloc(len);
+++	int ret;
+++
+++	if (!info)
+++		return NULL;
+++
+++	info->len = len;
+++
+++	do {
+++		ret = ioctl(fd, SYNC_IOC_LEGACY_FENCE_INFO, info);
+++	} while (ret == -1 && (errno == EINTR || errno == EAGAIN));
+++
+++	if (ret < 0) {
+++		free(info);
+++		return NULL;
+++	}
+++
+++	return info;
+++}
+++
+++static inline struct sync_fence_info_data *fence_info_from_file_info(
+++					struct sync_file_info *file_info,
+++					uint32_t num_fences)
+++{
+++	struct sync_fence_info_data *info;
+++	size_t info_len;
+++	struct sync_pt_info *pt_info = NULL;
+++	struct sync_fence_info *fence_info;
+++	uint32_t i;
+++
+++	info_len = sizeof(*info) + num_fences * sizeof(*pt_info);
+++	info = malloc(info_len);
+++	if (!info)
+++		return NULL;
+++
+++	info->len = info_len;
+++	strncpy(info->name, file_info->name, sizeof(info->name));
+++	info->status = file_info->status;
+++
+++	fence_info = (struct sync_fence_info *)(uintptr_t)
+++			file_info->sync_fence_info;
+++	for (i = 0; i < num_fences; i++) {
+++		pt_info = sync_pt_info(info, pt_info);
+++		assert(pt_info);
+++
+++		pt_info->len = sizeof(*pt_info);
+++		strncpy(pt_info->obj_name, fence_info->obj_name,
+++			sizeof(pt_info->obj_name));
+++		strncpy(pt_info->driver_name, fence_info->driver_name,
+++			sizeof(pt_info->driver_name));
+++		pt_info->status = fence_info->status;
+++		pt_info->timestamp_ns = fence_info->timestamp_ns;
+++
+++		fence_info++;
+++	}
+++
+++	return info;
+++}
+++
+++static inline struct sync_fence_info_data *sync_fence_info(int fd)
+++{
+++	struct sync_fence_info_data *info = NULL;
+++	struct sync_file_info initial_info = {""};
+++	struct sync_file_info *file_info;
+++	int ret;
+++
+++	do {
+++		ret = ioctl(fd, SYNC_IOC_FILE_INFO, &initial_info);
+++	} while (ret == -1 && (errno == EINTR || errno == EAGAIN));
+++
+++	if (ret < 0) {
+++		if (errno == ENOTTY)
+++			return sync_legacy_fence_info(fd);
+++		else
+++			return NULL;
+++	}
+++
+++	file_info = calloc(1, sizeof(*file_info) + initial_info.num_fences *
+++				sizeof(struct sync_fence_info));
+++	if (!file_info)
+++		return NULL;
+++
+++	file_info->num_fences = initial_info.num_fences;
+++	file_info->sync_fence_info = (uint64_t)(uintptr_t)(file_info + 1);
+++
+++	do {
+++		ret = ioctl(fd, SYNC_IOC_FILE_INFO, file_info);
+++	} while (ret == -1 && (errno == EINTR || errno == EAGAIN));
+++
+++	if (ret < 0)
+++		goto free_file_info;
+++
+++	info = fence_info_from_file_info(file_info, initial_info.num_fences);
+++
+++free_file_info:
+++	free(file_info);
+++
+++	return info;
+++}
+++
+++static inline void sync_fence_info_free(struct sync_fence_info_data *info)
+++{
+++	free(info);
+++}
++ #if defined(__cplusplus)
++ }
++ #endif
 +-- 
-+1.9.1
++2.17.1
 +
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.14.4.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.14.4.bbappend
-index edffa28..57010c8 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.14.4.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.14.4.bbappend
-@@ -1,4 +1,4 @@
--PR_append = ".arago0"
-+PR_append = ".arago1"
+diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend b/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend
+index 9945149..99d2fa7 100644
+--- a/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend
++++ b/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend
+@@ -4,9 +4,11 @@ SRC_URI += " \
+ file://0001-Add-option-to-run-a-test-indefinitely.patch \
+ file://0001-omap-fix-omap_bo_size-for-tiled-buffers.patch \
+ file://0002-omap-add-OMAP_BO-flags-to-affect-buffer-allocation.patch \
++file://0001-libsync-add-support-for-pre-v4.7-kernels.patch \
++file://0002-Add-sync_fence_info-and-sync_pt_info.patch \
+ "
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-PR_append = ".arago2"
++PR_append = ".arago3"
  
-@@ -6,3 +6,8 @@ SRC_URI += " \
-       file://0001-v4l2src-Increase-minimum-num-buffers-by-3.patch \
-       file://0002-v4l2src-Use-generic-dmabuf-import-in-v4l2src.patch \
-       "
-+
-+SRC_URI_append_j7-evm = " \
-+      file://0001-v4l2-Sync-kernel-header-with-linuxtv-tree.patch \
-+      file://0002-v4l2videodec-Add-HEVC-decoder-support.patch \
-+      "
+ inherit update-alternatives
+ 
 -- 
 1.9.1
 
