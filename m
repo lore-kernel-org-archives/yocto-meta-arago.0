@@ -1,43 +1,30 @@
-Return-Path: <d-senicic1@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 02AE752972
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id D9C94520E1
 	for <meta-arago@arago-project.org>;
-	Wed, 19 Jun 2019 23:26:10 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5JNPSWC107422
-	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 18:25:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1560986728;
-	bh=ra0UYtay7hzXB8c2DTzZhULUofdZ3FFD6RR0DYVxyZ8=;
-	h=From:To:CC:Subject:Date;
-	b=VPoSDJMZeSZizNfkYI5T7FZbT/Z4JRB9AM45A7fIX95KBzQS+VPVJ2MT327K+214Z
-	I4Pq44q/laGJShhd2cv8IyzB7xFHLAoDEOQPB319YyUcqaHmgxCCha4WkOmvWHhjcm
-	j0SHY+L10FYBJMaZyXKnlpKnnDObSnY4ChOSMdI4=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5JNPSmt012110
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 18:25:28 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 19 Jun 2019 18:25:28 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 19 Jun 2019 18:25:28 -0500
-Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5JNPR0u105816;
-	Wed, 19 Jun 2019 18:25:28 -0500
-From: Djordje Senicic <x0157990@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 19 Jun 2019 14:15:41 -0400
-Message-ID: <20190619181541.17550-1-x0157990@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Djordje Senicic <x0157990@ti.com>
-Subject: [meta-processor-sdk][PATCH] tidl: Add tidl-examples, tidl-utils, tidl-import to dra76x build
+	Thu, 20 Jun 2019 00:24:32 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 2EA2140BC7;
+	Thu, 20 Jun 2019 00:23:50 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id dQkoZxJilXq4; Thu, 20 Jun 2019 00:23:50 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1694340A55;
+	Thu, 20 Jun 2019 00:23:49 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 3B95F170519;
+	Wed, 19 Jun 2019 20:23:48 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Wed, 19 Jun 2019 20:23:47 -0400
+Message-Id: <1560990227-25118-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [thud/master][PATCH] arago-prefs: specify GLES providers for J7 EVM
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,46 +37,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2019 23:26:14 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 20 Jun 2019 00:24:37 -0000
 
-Signed-off-by: Djordje Senicic <x0157990@ti.com>
+Also clean up the file and add additional comments.
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroup-arago-tisdk-opencl-sdk-host.bbappend          | 3 ++-
- .../packagegroup-arago-tisdk-opencl-sdk-target.bbappend        | 1 +
- .../packagegroups/packagegroup-arago-tisdk-opencl.bbappend     | 1 +
- 3 files changed, 4 insertions(+), 1 deletion(-)
+ meta-arago-distro/conf/distro/include/arago-prefs.inc | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bbappend
-index 48bef98..387c748 100644
---- a/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bbappend
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bbappend
-@@ -1,4 +1,5 @@
--PR_append = ".tisdk0"
-+PR_append = ".tisdk1"
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index a96569f..25d32d5 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -6,14 +6,24 @@ PREFERRED_PROVIDER_ltp-ddt = "ltp-ddt"
  
- UTILS_append_am57xx-evm = "tidl-examples-src"
- UTILS_append_am57xx-hs-evm = "tidl-examples-src"
-+UTILS_append_dra7xx-evm = "tidl-examples-src"
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bbappend
-index c14398c..4021a13 100644
---- a/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bbappend
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bbappend
-@@ -2,3 +2,4 @@ PR_append = ".tisdk0"
+ PREFERRED_PROVIDER_virtual/gettext = "gettext"
  
- UTILS_append_am57xx-evm = " tidl-examples-dev"
- UTILS_append_am57xx-hs-evm = " tidl-examples-dev"
-+UTILS_append_dra7xx-evm = " tidl-examples-dev"
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bbappend
-index 9bbb4e1..d095c21 100644
---- a/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bbappend
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bbappend
-@@ -4,3 +4,4 @@ TIDL_PKGS = "tidl-examples-dev tidl-viewer tidl-utils tidl-import"
++# OpenGLES/EGL preferences
++# Most of existing TI platforms have SGX GPU core
+ PREFERRED_PROVIDER_virtual/egl = "ti-sgx-ddk-um"
+ PREFERRED_PROVIDER_virtual/libgles1 = "ti-sgx-ddk-um"
+ PREFERRED_PROVIDER_virtual/libgles2 = "ti-sgx-ddk-um"
+-PREFERRED_PROVIDER_libgbm = "libgbm"
+-PREFERRED_PROVIDER_libgbm-dev = "libgbm-dev"
  
- EXTRA_PKGS_append_am57xx-evm = " ${TIDL_PKGS}"
- EXTRA_PKGS_append_am57xx-hs-evm = " ${TIDL_PKGS}"
-+EXTRA_PKGS_append_dra7xx-evm = " ${TIDL_PKGS}"
++# J7 has a Rogue GPU core
++PREFERRED_PROVIDER_virtual/egl_j7-evm = "ti-img-rogue-umlibs"
++PREFERRED_PROVIDER_virtual/libgles1_j7-evm = "ti-img-rogue-umlibs"
++PREFERRED_PROVIDER_virtual/libgles2_j7-evm = "ti-img-rogue-umlibs"
++
++# OpenGL preferences
+ PREFERRED_PROVIDER_virtual/libgl = "mesa-gl"
+ 
++# GBM (Generic Buffer Management) preferences
++PREFERRED_PROVIDER_libgbm = "libgbm"
++PREFERRED_PROVIDER_libgbm-dev = "libgbm-dev"
++
+ # This is required when using keystone devices with graphical support
+ # such as Qt5
+ PREFERRED_PROVIDER_virtual/egl_keystone = "mesa"
 -- 
-2.17.1
+2.7.4
 
 
