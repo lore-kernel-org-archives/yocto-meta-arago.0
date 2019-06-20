@@ -1,42 +1,45 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id A0706529A4
+Return-Path: <a0866189@uda0866189>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 704BA529A4
 	for <meta-arago@arago-project.org>;
-	Thu, 20 Jun 2019 19:44:29 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5KJhlHi112662
-	for <meta-arago@arago-project.org>; Thu, 20 Jun 2019 14:43:47 -0500
+	Thu, 20 Jun 2019 19:52:16 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5KJpY55043123
+	for <meta-arago@arago-project.org>; Thu, 20 Jun 2019 14:51:34 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1561059827;
-	bh=/sLaYstyPZot/HDwjtfYy4OCgUuOvHCaH2xJlhGhlGk=;
-	h=From:To:Subject:Date;
-	b=ct5lak80DQ82VfjpRhC93AWFG6pcMy1hm1QjcFG2gwoB5BNGKBlt9KkExwkdTvakD
-	OvmKxSiHH9OtGmDS2Et1ELLg4REf1OSOoGzbxWeXNtiNG8vPwN/OKMHoylMYrYItxQ
-	eFaX+RMIxVX1GWAQh95lRZMjNqCaGSby4DxOGKX4=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5KJhlVj053401
+	s=ti-com-17Q1; t=1561060294;
+	bh=8BWjCVX8AL/rd/SwH4UGxfXvwTaa/5HHLMkXbOYS3UM=;
+	h=From:To:CC:Subject:Date;
+	b=H5zz/BdRvxGqtV04aeiO+v8cV6A3kMjzm5V2rZQV1C4vUI3XNO0oBfr3kfvpY6rRi
+	K9XmvdHXmiCF/AsvBvrwf2VA8dAluQW6cel1GRhMzC8OhpwQDtXkQTGda16kgK0+h1
+	EbLYQzaQ9AwHLAlDPrWqYcWfItWplt/Ue5a1Xdk0=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5KJpYah012561
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 20 Jun 2019 14:43:47 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 20 Jun 2019 14:51:34 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 20 Jun 2019 14:43:47 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 20 Jun 2019 14:51:34 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Thu, 20 Jun 2019 14:43:47 -0500
-Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5KJhlla058248
-	for <meta-arago@arago-project.org>; Thu, 20 Jun 2019 14:43:47 -0500
-From: Eric Ruei <e-ruei1@ti.com>
+	Frontend Transport; Thu, 20 Jun 2019 14:51:34 -0500
+Received: from uda0866189 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5KJpYsd083493;
+	Thu, 20 Jun 2019 14:51:34 -0500
+Received: from a0866189 by uda0866189 with local (Exim 4.82)
+	(envelope-from <a0866189@uda0866189>)
+	id 1he35q-0004p5-2X; Thu, 20 Jun 2019 14:51:34 -0500
+From: <angelabaker@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 20 Jun 2019 15:42:55 -0400
-Message-ID: <20190620194255.4161-1-e-ruei1@ti.com>
-X-Mailer: git-send-email 2.17.1
+Date: Thu, 20 Jun 2019 14:51:14 -0500
+Message-ID: <1561060275-18482-1-git-send-email-angelabaker@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/ti2019.01][PATCH] arago.conf: add xkbcommon-evdev back to qtbase PACKAGECONFIG
+Cc: d-huang@ti.com, sunitan@ti.com
+Subject: [thud][PATCH 1/2] packagegroup-arago-test: Add viddec-test-app for j7-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,30 +52,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Jun 2019 19:44:30 -0000
+X-List-Received-Date: Thu, 20 Jun 2019 19:52:16 -0000
 Content-Type: text/plain
 
-xkbcommon-evdev is required for keyboard input
+From: Angela Stegmaier <angelabaker@ti.com>
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+The viddec-test-app provides the video decoder test app
+(tidec_decode) for j7-evm.
+
+Signed-off-by: Angela Stegmaier <angelabaker@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-core/packagegroups/packagegroup-arago-test.bb             | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 7fde15de..a7f55f0c 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -99,7 +99,7 @@ PACKAGECONFIG_append_pn-systemd = " coredump"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+index 9c95670..67de045 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+@@ -66,6 +66,10 @@ ARAGO_TI_TEST_append_am65xx = " \
+     ti-ipc-test \
+     "
  
- # Configure Qt5 flags (GLES is still required for qtdeclarative and qtwebkit)
- PACKAGECONFIG_GL_pn-qtbase = "gles2 linuxfb"
--PACKAGECONFIG_DISTRO_pn-qtbase = "icu examples accessibility gif gbm kms libinput"
-+PACKAGECONFIG_DISTRO_pn-qtbase = "icu examples accessibility gif gbm kms libinput xkbcommon-evdev"
- PACKAGECONFIG_FONTS_pn-qtbase = "fontconfig"
- 
- # Add gstreamer in package configuration to enable video
++ARAGO_TI_TEST_append_j7-evm = " \
++    viddec-test-app \
++    "
++
+ ARAGO_TI_TEST_append_keystone = " \
+     ti-ipc-test \
+     "
 -- 
-2.17.1
+1.9.1
 
 
