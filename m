@@ -1,44 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 2EBEF52972
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 07068520E1
 	for <meta-arago@arago-project.org>;
-	Thu, 20 Jun 2019 01:03:03 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5K12LE0096036
-	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 20:02:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1560992541;
-	bh=wYi+QTQg+CdEzblTpAG9CKIhqCYrcOwUZZNhspwKpWY=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=KkviBzNYgkwtfF4OQ27PYrdPR/2oIBqW8aS8a8hkbJWRvqHdLQZNLsYZVd3shNRqv
-	dOlqXYFQ6j69wufcu8LJL+DjxL2Jo4kdjjS6dkLz6Kz32UFoZI0j1QoKBg3WuPMtO1
-	y45F9Bl2L0ImF6bYQAMiwE5NTNjhvIFPpq1Ky2bU=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5K12LTL046092
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 19 Jun 2019 20:02:21 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 19 Jun 2019 20:02:21 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 19 Jun 2019 20:02:21 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5K12LOc053434;
-	Wed, 19 Jun 2019 20:02:21 -0500
-Date: Wed, 19 Jun 2019 21:02:20 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Anand Balagopalakrishnan <anandb@ti.com>
-Message-ID: <20190620010220.GU32001@beryl>
-References: <1560958508-141402-1-git-send-email-anandb@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <1560958508-141402-1-git-send-email-anandb@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [[thud] PATCH] arago-prefs: specify GLES providers for J7 EVM
+	Thu, 20 Jun 2019 02:17:01 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 7C5D940BC7;
+	Thu, 20 Jun 2019 02:16:20 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id TZOV_mdfx3iB; Thu, 20 Jun 2019 02:16:20 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 63EF340B86;
+	Thu, 20 Jun 2019 02:16:19 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 88466170496;
+	Wed, 19 Jun 2019 22:16:18 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 19 Jun 2019 22:16:17 -0400
+Message-Id: <1560996977-17881-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [thud/master][PATCH] packagegroups, ti-tisdk-makefile: make sure ti-sgx-ddk-km is not pulled for j7-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,45 +37,75 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Jun 2019 01:03:03 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 20 Jun 2019 02:17:02 -0000
 
-> [[thud] PATCH] arago-prefs: specify GLES providers for J7 EVM
+From: Denys Dmytriyenko <denys@ti.com>
 
-Please don't use nested brackets - Patchwork doesn't handle those nicely and 
-you end up with "PATCH]" in the commit log...
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb         | 1 +
+ .../packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb       | 1 +
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb     | 1 +
+ .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb            | 2 +-
+ 4 files changed, 4 insertions(+), 1 deletion(-)
 
-Denys
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
+index 96ed27b..d7ac1ef 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
+@@ -7,6 +7,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ inherit packagegroup
+ 
+ GRAPHICS_RDEPENDS = "ti-sgx-ddk-km-src"
++GRAPHICS_RDEPENDS_remove_j7-evm = "ti-sgx-ddk-km-src"
+ 
+ GRAPHICS_RDEPENDS_append_omap-a15 = "\
+     ti-gc320-driver-src \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
+index 7e18d08..c461f9b 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
+@@ -14,6 +14,7 @@ GRAPHICS_RDEPENDS = "\
+     ${PREFERRED_PROVIDER_virtual/egl}-dev \
+     ti-sgx-ddk-km-dev \
+ "
++GRAPHICS_RDEPENDS_remove_j7-evm = "ti-sgx-ddk-km-dev"
+ 
+ GRAPHICS_RDEPENDS_append_omap-a15 = "\
+     ti-gc320-libs-dev \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+index 69cfea5..16be54a 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+@@ -27,6 +27,7 @@ GRAPHICS_RDEPENDS = "\
+     ${@bb.utils.contains('MACHINE_FEATURES','sgx','ti-sgx-ddk-km','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','sgx','glmark2','',d)} \
+ "
++GRAPHICS_RDEPENDS_remove_j7-evm = "ti-sgx-ddk-km"
+ 
+ GRAPHICS_DISPLAY_UTILS = "\
+ "
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index f289a56..25befc0 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -179,7 +179,6 @@ MAKEFILES_append_k3 = " u-boot-spl \
+                         linux-dtbs \
+                         barcode-roi \
+                         cryptodev \
+-                        ti-sgx-ddk-km-k3 \
+                         sysfw-image \
+ 			mmwavegesture-hmi \
+                         pdm-anomaly-detection \
+@@ -187,6 +186,7 @@ MAKEFILES_append_k3 = " u-boot-spl \
+ 
+ MAKEFILES_append_am65xx = " \
+                         pru-icss \
++                        ti-sgx-ddk-km-k3 \
+ "
+ 
+ # Use this to export kernel arch to ARCH
+-- 
+2.7.4
 
-
-On Wed, Jun 19, 2019 at 09:05:04PM +0530, Anand Balagopalakrishnan wrote:
-> Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>
-> ---
->  meta-arago-distro/conf/distro/include/arago-prefs.inc | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> index a96569f..45482d4 100644
-> --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> @@ -14,6 +14,11 @@ PREFERRED_PROVIDER_libgbm-dev = "libgbm-dev"
->  
->  PREFERRED_PROVIDER_virtual/libgl = "mesa-gl"
->  
-> +# J7 has a Rogue GPU core
-> +PREFERRED_PROVIDER_virtual/egl_j7-evm = "ti-img-rogue-umlibs"
-> +PREFERRED_PROVIDER_virtual/libgles1_j7-evm = "ti-img-rogue-umlibs"
-> +PREFERRED_PROVIDER_virtual/libgles2_j7-evm = "ti-img-rogue-umlibs"
-> +
->  # This is required when using keystone devices with graphical support
->  # such as Qt5
->  PREFERRED_PROVIDER_virtual/egl_keystone = "mesa"
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
