@@ -1,43 +1,48 @@
 Return-Path: <d-senicic1@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 91930529F6
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 8D6C6529F6
 	for <meta-arago@arago-project.org>;
-	Fri, 21 Jun 2019 15:44:34 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5LFhq0g059685
-	for <meta-arago@arago-project.org>; Fri, 21 Jun 2019 10:43:52 -0500
+	Fri, 21 Jun 2019 15:45:34 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5LFiqt6010311
+	for <meta-arago@arago-project.org>; Fri, 21 Jun 2019 10:44:52 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1561131832;
-	bh=9FmvDAHzbQUHcKPhkNiCY/dj8l/rpY2suxm9+rZ2xaA=;
-	h=From:To:CC:Subject:Date;
-	b=ufK0omAmiTSdtLPMuHnfcUOdLMlVHWNCV9LrB9iexWQ0lya550pM7aY6x+JDbOz2a
-	dpxf/UEd83dZsZ6KqrNK075ThZ+fTLsOQ/aAtmUIzKCyWddM/CPyeMmSdVgItmw1SL
-	vyDtYSPvjTP4P8TIne18IeLFGfLHdYhWXTDk1GZM=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5LFhqtb065911
+	s=ti-com-17Q1; t=1561131892;
+	bh=sMIPzopf6eY2Y9gbKR0vGAH4huvhS3cCRfVh0KtS6/k=;
+	h=From:To:Subject:Date:References:In-Reply-To;
+	b=S3BBkxEdQny5eaUyCUC1bGTb/QLqpqx8XTWeRXOQB6hKTlk0Eildo46ix2q4t8EFx
+	dcHwwW4WDMZHrhD80TLZitwnTk4uIHZ8RRDjnN/3+rviwIdAKUviYDhugSs6ZSjPD3
+	yf50OIauJAYHq0PMg/iJJTRAKPH7fqvZf8lEx+iU=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5LFiqsA018262
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 21 Jun 2019 10:43:52 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 21 Jun 2019 10:44:52 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 21 Jun 2019 10:43:52 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 21 Jun 2019 10:43:52 -0500
-Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5LFhpgl060505;
-	Fri, 21 Jun 2019 10:43:52 -0500
-From: Djordje Senicic <x0157990@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 21 Jun 2019 06:40:17 -0400
-Message-ID: <20190621104017.31121-1-x0157990@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Fri, 21 Jun 2019 10:44:52 -0500
+Received: from DLEE100.ent.ti.com ([fe80::ad4d:c227:3f85:880d]) by
+	DLEE100.ent.ti.com ([fe80::ad4d:c227:3f85:880d%17]) with mapi id
+	15.01.1713.004; Fri, 21 Jun 2019 10:44:52 -0500
+From: "Senicic, Djordje" <d-senicic1@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [EXTERNAL] [meta-arago] [thud/master][PATCH v2 3/3] glow: Add
+	glow and demo-glow to packagegroups
+Thread-Index: AQHVKEW2tYVPwomY50OWiIaRuFGZF6amP/OA
+Date: Fri, 21 Jun 2019 15:44:51 +0000
+Message-ID: <ce30a86ad08042808fa81e2c406c4f1d@ti.com>
+References: <20190620063815.18898-1-x0157990@ti.com>
+	<20190620063815.18898-3-x0157990@ti.com>
+	<2b82f163-3502-4c5c-d2fe-c109cb9af202@ti.com>
+In-Reply-To: <2b82f163-3502-4c5c-d2fe-c109cb9af202@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.218.103.75]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Djordje Senicic <x0157990@ti.com>
-Subject: [thud/master][PATCH] demo-glow: Add makefile for demo-glow example application
+Subject: Re: [EXTERNAL] [thud/master][PATCH v2 3/3] glow: Add glow and demo-glow to packagegroups
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,41 +55,132 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jun 2019 15:44:34 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 21 Jun 2019 15:45:34 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Signed-off-by: Djordje Senicic <x0157990@ti.com>
----
- .../ti-tisdk-makefile/Makefile_demo-glow      | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
- create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_demo-glow
-
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_demo-glow b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_demo-glow
-new file mode 100644
-index 00000000..96ede6af
---- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_demo-glow
-@@ -0,0 +1,19 @@
-+# barcode-roi build targets
-+
-+demo-glow:
-+	@echo =============================
-+	@echo    Building Demo GLOW
-+	@echo =============================
-+	@cd example-applications; cd `find . -name "*demo-glow*"`; make -f Makefile.build release
-+
-+demo-glow_clean:
-+	@echo =============================
-+	@echo    Cleaning Demo GLOW
-+	@echo =============================
-+	@cd example-applications; cd `find . -name "*demo-glow*"`; make -f Makefile.build clean
-+
-+demo-glow_install:
-+	@echo ================================================
-+	@echo   Installing Demo Glow - Release version
-+	@echo ================================================
-+	@cd example-applications; cd `find . -name "*demo-glow*"`; make -f Makefile.build install
--- 
-2.17.1
-
+aHR0cDovL3BhdGNod29yay5kYWwuZGVzaWduLnRpLmNvbS9wYXRjaC80ODE3OS8NCg0KLS0tLS1P
+cmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IFN0aWZmbGVyLCBKYWNvYiANClNlbnQ6IEZyaWRh
+eSwgSnVuZSAyMSwgMjAxOSAxMToyNyBBTQ0KVG86IFNlbmljaWMsIERqb3JkamU7IG1ldGEtYXJh
+Z29AYXJhZ28tcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbRVhURVJOQUxdIFttZXRhLWFyYWdv
+XSBbdGh1ZC9tYXN0ZXJdW1BBVENIIHYyIDMvM10gZ2xvdzogQWRkIGdsb3cgYW5kIGRlbW8tZ2xv
+dyB0byBwYWNrYWdlZ3JvdXBzDQoNCg0KT24gNi8yMC8yMDE5IDI6MzggQU0sIERqb3JkamUgU2Vu
+aWNpYyB3cm90ZToNCj4gLSBBZGQgZ2xvdyB0byBuYXRpdmVzZGsNCj4gLSBBZGQgZGVtbyB0byB0
+YXJnZXQgYW5kIHNyYyBwYWNrYWdlZ3JvdXBzDQo+IC0gQWxzbyBpbmNsdWRlIGRlbW8tZ2xvdyB0
+byBleGFtcGxlLWFwcGxpY2F0aW9ucw0KPg0KPiBTaWduZWQtb2ZmLWJ5OiBEam9yZGplIFNlbmlj
+aWMgPHgwMTU3OTkwQHRpLmNvbT4NCj4gLS0tDQo+ICAgLi4uL3BhY2thZ2Vncm91cHMvcGFja2Fn
+ZWdyb3VwLWFyYWdvLXRpc2RrLWFkZG9ucy1zZGstaG9zdC5iYiB8IDMgKysrDQo+ICAgLi4uL3Bh
+Y2thZ2Vncm91cC1hcmFnby10aXNkay1hZGRvbnMtc2RrLXRhcmdldC5iYiAgICAgICAgICAgICB8
+IDMgKysrDQo+ICAgLi4uL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLWFk
+ZG9ucy5iYiAgICAgICAgICB8IDMgKysrDQo+ICAgLi4uL3JlY2lwZXMtdGlzZGsvdGktdGlzZGst
+bWFrZWZpbGUvdGktdGlzZGstbWFrZWZpbGVfMS4wLmJiICB8IDQgKysrKw0KPiAgIC4uLi9wYWNr
+YWdlZ3JvdXBzL25hdGl2ZXNkay1wYWNrYWdlZ3JvdXAtYXJhZ28tdGlzZGstaG9zdC5iYiAgfCAx
+ICsNCj4gICA1IGZpbGVzIGNoYW5nZWQsIDE0IGluc2VydGlvbnMoKykNCj4NCj4gZGlmZiAtLWdp
+dCBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29yZS9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vn
+cm91cC1hcmFnby10aXNkay1hZGRvbnMtc2RrLWhvc3QuYmIgYi9tZXRhLWFyYWdvLWRpc3Ryby9y
+ZWNpcGVzLWNvcmUvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtYXJhZ28tdGlzZGstYWRkb25z
+LXNkay1ob3N0LmJiDQo+IGluZGV4IDNiNzM0NTU0Li5hZGRiNDgxOCAxMDA2NDQNCj4gLS0tIGEv
+bWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3Vw
+LWFyYWdvLXRpc2RrLWFkZG9ucy1zZGstaG9zdC5iYg0KPiArKysgYi9tZXRhLWFyYWdvLWRpc3Ry
+by9yZWNpcGVzLWNvcmUvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtYXJhZ28tdGlzZGstYWRk
+b25zLXNkay1ob3N0LmJiDQo+IEBAIC05MCwxNCArOTAsMTcgQEAgRVhUUkFfUEFDS0FHRVMgPSAi
+Ig0KPiAgIA0KPiAgIEVYVFJBX1BBQ0tBR0VTX2FwcGVuZF9vbWFwLWExNSA9ICIgXA0KPiAgICAg
+ICBwZG0tYW5vbWFseS1kZXRlY3Rpb24tc3JjIFwNCj4gKyAgICBkZW1vLWdsb3ctc3JjIFwNCj4g
+ICAiDQo+ICAgDQo+ICAgRVhUUkFfUEFDS0FHRVNfYXBwZW5kX3RpMzN4ID0gIiBcDQo+ICAgICAg
+IHBkbS1hbm9tYWx5LWRldGVjdGlvbi1zcmMgXA0KPiArICAgIGRlbW8tZ2xvdy1zcmMgXA0KPiAg
+ICINCj4gICANCj4gICBFWFRSQV9QQUNLQUdFU19hcHBlbmRfdGk0M3ggPSAiIFwNCj4gICAgICAg
+cGRtLWFub21hbHktZGV0ZWN0aW9uLXNyYyBcDQo+ICsgICAgZGVtby1nbG93LXNyYyBcDQo+ICAg
+Ig0KPiAgIA0KPiAgIEVYVFJBX1BBQ0tBR0VTX2FwcGVuZF9rMyA9ICIgXA0KPiBkaWZmIC0tZ2l0
+IGEvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2FnZWdy
+b3VwLWFyYWdvLXRpc2RrLWFkZG9ucy1zZGstdGFyZ2V0LmJiIGIvbWV0YS1hcmFnby1kaXN0cm8v
+cmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLWFkZG9u
+cy1zZGstdGFyZ2V0LmJiDQo+IGluZGV4IDhiY2UxNzU2Li5kOTk4YTFlYiAxMDA2NDQNCj4gLS0t
+IGEvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2FnZWdy
+b3VwLWFyYWdvLXRpc2RrLWFkZG9ucy1zZGstdGFyZ2V0LmJiDQo+ICsrKyBiL21ldGEtYXJhZ28t
+ZGlzdHJvL3JlY2lwZXMtY29yZS9wYWNrYWdlZ3JvdXBzL3BhY2thZ2Vncm91cC1hcmFnby10aXNk
+ay1hZGRvbnMtc2RrLXRhcmdldC5iYg0KPiBAQCAtMTYxLDE2ICsxNjEsMTkgQEAgRVhUUkFfUEFD
+S0FHRVNfYXBwZW5kX3RpMzN4ID0gIiB2b3hlbHNkay1kZXYgXA0KPiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgYXJtLWNvbXB1dGUtbGlicmFyeS1kZXYgXA0KPiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgJHtBUk1OTl9QQUNLQUdFU30gXA0KPiAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgcGRtLWFub21hbHktZGV0ZWN0aW9uLWRldiBcDQo+ICsg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRlbW8tZ2xvdy1kZXYgXA0KPiAgICINCj4g
+ICBFWFRSQV9QQUNLQUdFU19hcHBlbmRfdGk0M3ggPSAiIHZveGVsc2RrLWRldiBcDQo+ICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhcm0tY29tcHV0ZS1saWJyYXJ5LWRldiBcDQo+
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAke0FSTU5OX1BBQ0tBR0VTfSBcDQo+
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwZG0tYW5vbWFseS1kZXRlY3Rpb24t
+ZGV2IFwNCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZGVtby1nbG93LWRldiBc
+DQo+ICAgIg0KPiAgIEVYVFJBX1BBQ0tBR0VTX2FwcGVuZF9vbWFwLWExNSA9ICIgdm94ZWxzZGst
+ZGV2IFwNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGFybS1jb21wdXRlLWxp
+YnJhcnktZGV2IFwNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICR7QVJNTk5f
+UEFDS0FHRVN9IFwNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBkbS1hbm9t
+YWx5LWRldGVjdGlvbi1kZXYgXA0KPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBk
+ZW1vLWdsb3ctZGV2IFwNCj4gICAiDQo+ICAgRVhUUkFfUEFDS0FHRVNfYXBwZW5kX2szID0gIiBh
+cm0tY29tcHV0ZS1saWJyYXJ5LWRldiBcDQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAke0FSTU5OX1BBQ0tBR0VTfSBcDQo+IGRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWRpc3Ryby9y
+ZWNpcGVzLWNvcmUvcGFja2FnZWdyb3Vwcy9wYWNrYWdlZ3JvdXAtYXJhZ28tdGlzZGstYWRkb25z
+LmJiIGIvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2Fn
+ZWdyb3VwLWFyYWdvLXRpc2RrLWFkZG9ucy5iYg0KPiBpbmRleCA2NTU4YTIxYS4uMzhlYzMwNjUg
+MTAwNjQ0DQo+IC0tLSBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29yZS9wYWNrYWdlZ3Jv
+dXBzL3BhY2thZ2Vncm91cC1hcmFnby10aXNkay1hZGRvbnMuYmINCj4gKysrIGIvbWV0YS1hcmFn
+by1kaXN0cm8vcmVjaXBlcy1jb3JlL3BhY2thZ2Vncm91cHMvcGFja2FnZWdyb3VwLWFyYWdvLXRp
+c2RrLWFkZG9ucy5iYg0KPiBAQCAtMTUyLDEyICsxNTIsMTQgQEAgRVhUUkFfUEFDS0FHRVNfYXBw
+ZW5kX3RpMzN4ID0gIiB2b3hlbHNkayBcDQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBhcm0tY29tcHV0ZS1saWJyYXJ5IFwNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICR7QVJNTk5fUEFDS0FHRVN9IFwNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIHBkbS1hbm9tYWx5LWRldGVjdGlvbiBcDQo+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIGRlbW8tZ2xvdyBcDQo+ICAgIg0KPiAgIA0KPiAgIEVYVFJBX1BBQ0tBR0VTX2Fw
+cGVuZF90aTQzeCA9ICIgdm94ZWxzZGsgXA0KPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgYXJtLWNvbXB1dGUtbGlicmFyeSBcDQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAke0FSTU5OX1BBQ0tBR0VTfSBcDQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICBwZG0tYW5vbWFseS1kZXRlY3Rpb24gXA0KPiArICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBkZW1vLWdsb3cgXA0KPiAgICINCj4gICANCj4gICBFWFRSQV9QQUNLQUdFU19h
+cHBlbmRfb21hcC1hMTUgPSAiIHZveGVsc2RrIFwNCj4gQEAgLTE2Niw2ICsxNjgsNyBAQCBFWFRS
+QV9QQUNLQUdFU19hcHBlbmRfb21hcC1hMTUgPSAiIHZveGVsc2RrIFwNCj4gICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIGFybS1jb21wdXRlLWxpYnJhcnkgXA0KPiAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgJHtBUk1OTl9QQUNLQUdFU30gXA0KPiAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcGRtLWFub21hbHktZGV0ZWN0aW9uIFwN
+Cj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZGVtby1nbG93IFwNCj4gICAi
+DQo+ICAgDQo+ICAgRVhUUkFfUEFDS0FHRVNfYXBwZW5kX2szID0gIiBhcm0tY29tcHV0ZS1saWJy
+YXJ5IFwNCj4gZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtdGlzZGsvdGkt
+dGlzZGstbWFrZWZpbGUvdGktdGlzZGstbWFrZWZpbGVfMS4wLmJiIGIvbWV0YS1hcmFnby1kaXN0
+cm8vcmVjaXBlcy10aXNkay90aS10aXNkay1tYWtlZmlsZS90aS10aXNkay1tYWtlZmlsZV8xLjAu
+YmINCj4gaW5kZXggZTBkNDA5YTIuLjIyMDBkZWYxIDEwMDY0NA0KPiAtLS0gYS9tZXRhLWFyYWdv
+LWRpc3Ryby9yZWNpcGVzLXRpc2RrL3RpLXRpc2RrLW1ha2VmaWxlL3RpLXRpc2RrLW1ha2VmaWxl
+XzEuMC5iYg0KPiArKysgYi9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLXRpc2RrL3RpLXRpc2Rr
+LW1ha2VmaWxlL3RpLXRpc2RrLW1ha2VmaWxlXzEuMC5iYg0KPiBAQCAtNTIsNiArNTIsNyBAQCBT
+UkNfVVJJID0gIlwNCj4gICAgICAgZmlsZTovL01ha2VmaWxlX3N5c2Z3LWltYWdlIFwNCj4gICAg
+ICAgZmlsZTovL01ha2VmaWxlX21td2F2ZWdlc3R1cmUtaG1pIFwNCj4gICAgICAgZmlsZTovL01h
+a2VmaWxlX3BkbS1hbm9tYWx5LWRldGVjdGlvbiBcDQo+ICsgICAgZmlsZTovL01ha2VmaWxlX2Rl
+bW8tZ2xvdyBcDQoNCg0KVGhpcyBmaWxlIGRvZXMgbm90IGFwcGVhciB0byBiZSBhZGRlZC4NCg0K
+DQo+ICAgIg0KPiAgIA0KPiAgIFBSID0gInI5NSINCj4gQEAgLTk4LDYgKzk5LDcgQEAgTUFLRUZJ
+TEVTX2FwcGVuZF90aTMzeCA9ICIgdS1ib290LXNwbCBcDQo+ICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgdWlvLW1vZHVsZS1kcnYgXA0KPiAgIAkJCSAgIG1td2F2ZWdlc3R1cmUtaG1pIFwN
+Cj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwZG0tYW5vbWFseS1kZXRlY3Rpb24gXA0K
+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgZGVtby1nbG93IFwNCj4gICAiDQo+ICAgTUFL
+RUZJTEVTX2FwcGVuZF90aTQzeCA9ICIgdS1ib290LXNwbCBcDQo+ICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgJHtRVUlDS19QTEFZR1JPVU5EfSBcDQo+IEBAIC0xMTMsNiArMTE1LDcgQEAg
+TUFLRUZJTEVTX2FwcGVuZF90aTQzeCA9ICIgdS1ib290LXNwbCBcDQo+ICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgdWlvLW1vZHVsZS1kcnYgXA0KPiAgIAkJCSAgIG1td2F2ZWdlc3R1cmUt
+aG1pIFwNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwZG0tYW5vbWFseS1kZXRlY3Rp
+b24gXA0KPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgZGVtby1nbG93IFwNCj4gICAiDQo+
+ICAgDQo+ICAgIyAgICAgICAgICAgICAgICAgICAgICAgICAgICBkZWJ1Z3NzLW1vZHVsZS1kcnYN
+Cj4gQEAgLTEzNiw2ICsxMzksNyBAQCBNQUtFRklMRVNfYXBwZW5kX29tYXAtYTE1ID0gIiB1LWJv
+b3Qtc3BsIFwNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB1aW8tbW9kdWxlLWRy
+diBcDQo+ICAgCQkJICAgICAgbW13YXZlZ2VzdHVyZS1obWkgXA0KPiAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIHBkbS1hbm9tYWx5LWRldGVjdGlvbiBcDQo+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBkZW1vLWdsb3cgXA0KPiAgICINCj4gICBNQUtFRklMRVNfYXBwZW5k
+X29tYXBsMTM4ID0gIiBsaW51eC1kdGJzIFwNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICB1LWJvb3Qtc3BsIFwNCj4gZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lw
+ZXMtY29yZS9wYWNrYWdlZ3JvdXBzL25hdGl2ZXNkay1wYWNrYWdlZ3JvdXAtYXJhZ28tdGlzZGst
+aG9zdC5iYiBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtY29yZS9wYWNrYWdlZ3JvdXBzL25h
+dGl2ZXNkay1wYWNrYWdlZ3JvdXAtYXJhZ28tdGlzZGstaG9zdC5iYg0KPiBpbmRleCBlZjU0MjUz
+ZC4uMjhkODE3ZGEgMTAwNjQ0DQo+IC0tLSBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtY29y
+ZS9wYWNrYWdlZ3JvdXBzL25hdGl2ZXNkay1wYWNrYWdlZ3JvdXAtYXJhZ28tdGlzZGstaG9zdC5i
+Yg0KPiArKysgYi9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNvcmUvcGFja2FnZWdyb3Vwcy9u
+YXRpdmVzZGstcGFja2FnZWdyb3VwLWFyYWdvLXRpc2RrLWhvc3QuYmINCj4gQEAgLTE3LDYgKzE3
+LDcgQEAgRVhUUkFfVElfVE9PTFMgPSAiIFwNCj4gICAgICAgbmF0aXZlc2RrLXRpZGwtdmlld2Vy
+IFwNCj4gICAgICAgbmF0aXZlc2RrLXRpZGwtdXRpbHMgXA0KPiAgICAgICBuYXRpdmVzZGstZ2Nj
+LWFybS1ub25lLWVhYmkgXA0KPiArICAgIG5hdGl2ZXNkay1nbG93IFwNCj4gICAiDQo+ICAgDQo+
+ICAgUkRFUEVORFNfJHtQTn0gPSAiXA0K
 
