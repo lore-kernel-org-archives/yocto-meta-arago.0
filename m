@@ -1,44 +1,44 @@
-Return-Path: <jake@udc0866934>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 20D8652970
+Return-Path: <denys@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 0454952970
 	for <meta-arago@arago-project.org>;
-	Fri, 21 Jun 2019 14:32:26 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5LEVhoK120871
-	for <meta-arago@arago-project.org>; Fri, 21 Jun 2019 09:31:43 -0500
+	Fri, 21 Jun 2019 15:15:05 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5LFENhf002673
+	for <meta-arago@arago-project.org>; Fri, 21 Jun 2019 10:14:23 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1561127503;
-	bh=f5gjBH9ko019G2LLNnxuXGFHhLMF0EfkdeNvIQCj+0E=;
-	h=From:To:CC:Subject:Date;
-	b=B/way7527tnPZaYDas/iIxQObsnGU2l6OKFXbmxUGP52pFU4JTxIOHxhDXYpIWt+5
-	PbWPLTSVDAYkV23gK9DXAUMGc5W6/7PHe1NfnTHt2QxDFtL9z4FZUG5Qpm4SqAS2qX
-	VDuYEO52PkU1NvOjJSCVsten4b4Z0SseOeZlHozU=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5LEVhuC052138
+	s=ti-com-17Q1; t=1561130063;
+	bh=bYlmF7w2VPKFpuCvXsRc4shgG+bLs6PFDY4PH1tt6og=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=KOcywSqI/YlPG1TRZNrZV1GlcqOR8hI+OifGNslsH2HifurJGi4H/CVRI8MCyaaRw
+	Q8KXrAB7+qcvvS0pv0CId6pdUH4PkffWdE4OVMoa4oDwEyGRTMnUSwslEa+5iiG1qx
+	PbM2yQZJuWseu7LBiF9TdT9TXbcE2fOdTv2s7jHQ=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5LFEN1U028278
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 21 Jun 2019 09:31:43 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 21 Jun 2019 10:14:23 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 21 Jun 2019 09:31:43 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 21 Jun 2019 10:14:23 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 21 Jun 2019 09:31:43 -0500
-Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5LEVhPd029749;
-	Fri, 21 Jun 2019 09:31:43 -0500
-Received: from jake by udc0866934 with local (Exim 4.82)
-	(envelope-from <jake@udc0866934>)
-	id 1heKZr-0006QQ-72; Fri, 21 Jun 2019 10:31:43 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 21 Jun 2019 10:31:38 -0400
-Message-ID: <1561127498-24665-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
+	Frontend Transport; Fri, 21 Jun 2019 10:14:23 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5LFENFN083196;
+	Fri, 21 Jun 2019 10:14:23 -0500
+Date: Fri, 21 Jun 2019 11:14:23 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Anand Balagopalakrishnan <anandb@ti.com>
+Message-ID: <20190621151423.GH4849@beryl>
+References: <1561034412-64937-1-git-send-email-anandb@ti.com>
 MIME-Version: 1.0
+In-Reply-To: <1561034412-64937-1-git-send-email-anandb@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [tisdk-setup-scripts][PATCH] create-sdcard: sort rootfs options by size
+Cc: meta-arago@arago-project.org
+Subject: Re: [thud][PATCH] packagegroup-*-graphics: add virtual provider for GPU driver
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,36 +51,90 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jun 2019 14:32:27 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 21 Jun 2019 15:15:06 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-* List the largest rootfs first based on the assumption that contains
-  the most out-of-box experience.
+Anand,
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- create-sdcard.sh | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Can you please rebase this patch? Thanks.
 
-diff --git a/create-sdcard.sh b/create-sdcard.sh
-index 39d8af1..5c02a12 100644
---- a/create-sdcard.sh
-+++ b/create-sdcard.sh
-@@ -767,11 +767,11 @@ cat << EOM
- ################################################################################
- 
- EOM
--		ls $ROOTFILEPARTH | grep "tisdk.*rootfs" | grep 'tar.xz' | grep -n '' | awk {'print "	" , $1'}
-+		ls --sort=size $ROOTFILEPARTH | grep "tisdk.*rootfs" | grep 'tar.xz' | grep -n '' | awk {'print "	" , $1'}
- 		echo ""
- 		read -p "Enter Number of rootfs Tarball: " TARNUMBER
- 		echo " "
--		FOUNDTARFILENAME=`ls $ROOTFILEPARTH | grep "rootfs" | grep 'tar.xz' | grep -n '' | grep "${TARNUMBER}:" | cut -c3- | awk {'print$1'}`
-+		FOUNDTARFILENAME=`ls --sort=size $ROOTFILEPARTH | grep "rootfs" | grep 'tar.xz' | grep -n '' | grep "${TARNUMBER}:" | cut -c3- | awk {'print$1'}`
- 		ROOTFSTAR=$FOUNDTARFILENAME
- 
- 	else
--- 
-1.9.1
 
+On Thu, Jun 20, 2019 at 06:10:12PM +0530, Anand Balagopalakrishnan wrote:
+> - Add a new virtual provider for GPU driver
+> - Specify Rogue and SGX as GPU driver provider for J7 and other platforms
+> - Replace SGX with virtual GPU provider in package groups
+> 
+> Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>
+> ---
+>  meta-arago-distro/conf/distro/include/arago-prefs.inc                   | 2 ++
+>  .../packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb         | 2 +-
+>  .../packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb       | 2 +-
+>  .../recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb     | 2 +-
+>  4 files changed, 5 insertions(+), 3 deletions(-)
+> 
+> diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> index e9e9177..3f36747 100644
+> --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> @@ -9,11 +9,13 @@ PREFERRED_PROVIDER_virtual/gettext = "gettext"
+>  PREFERRED_PROVIDER_virtual/egl = "ti-sgx-ddk-um"
+>  PREFERRED_PROVIDER_virtual/libgles1 = "ti-sgx-ddk-um"
+>  PREFERRED_PROVIDER_virtual/libgles2 = "ti-sgx-ddk-um"
+> +PREFERRED_PROVIDER_virtual/gpudriver = "ti-sgx-ddk-km"
+>  
+>  # J7 has a Rogue GPU core
+>  PREFERRED_PROVIDER_virtual/egl_j7-evm = "ti-img-rogue-umlibs"
+>  PREFERRED_PROVIDER_virtual/libgles1_j7-evm = "ti-img-rogue-umlibs"
+>  PREFERRED_PROVIDER_virtual/libgles2_j7-evm = "ti-img-rogue-umlibs"
+> +PREFERRED_PROVIDER_virtual/gpudriver_j7-evm = "ti-img-rogue-driver"
+>  
+>  PREFERRED_PROVIDER_libgbm = "libgbm"
+>  PREFERRED_PROVIDER_libgbm-dev = "libgbm-dev"
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
+> index 96ed27b..486d080 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
+> @@ -6,7 +6,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+>  inherit packagegroup
+>  
+> -GRAPHICS_RDEPENDS = "ti-sgx-ddk-km-src"
+> +GRAPHICS_RDEPENDS = "${PREFERRED_PROVIDER_virtual/gpudriver}-src"
+>  
+>  GRAPHICS_RDEPENDS_append_omap-a15 = "\
+>      ti-gc320-driver-src \
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
+> index 7e18d08..3f6485f 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
+> @@ -12,7 +12,7 @@ GRAPHICS_RDEPENDS = "\
+>      wayland-dev \
+>      weston-dev \
+>      ${PREFERRED_PROVIDER_virtual/egl}-dev \
+> -    ti-sgx-ddk-km-dev \
+> +    ${PREFERRED_PROVIDER_virtual/gpudriver}-dev \
+>  "
+>  
+>  GRAPHICS_RDEPENDS_append_omap-a15 = "\
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+> index 69cfea5..de9e8c4 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+> @@ -24,7 +24,7 @@ GRAPHICS_WAYLAND_append_k3 = "\
+>  GRAPHICS_RDEPENDS = "\
+>      libgbm \
+>      ${PREFERRED_PROVIDER_virtual/egl} \
+> -    ${@bb.utils.contains('MACHINE_FEATURES','sgx','ti-sgx-ddk-km','',d)} \
+> +    ${@bb.utils.contains('MACHINE_FEATURES','sgx','${PREFERRED_PROVIDER_virtual/gpudriver}','',d)} \
+>      ${@bb.utils.contains('MACHINE_FEATURES','sgx','glmark2','',d)} \
+>  "
+>  
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
