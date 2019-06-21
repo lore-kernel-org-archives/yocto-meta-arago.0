@@ -1,44 +1,44 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id AFE0052980
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id D33D452980
 	for <meta-arago@arago-project.org>;
-	Fri, 21 Jun 2019 13:00:49 +0000 (UTC)
+	Fri, 21 Jun 2019 13:01:08 +0000 (UTC)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5LD07eP019982
-	for <meta-arago@arago-project.org>; Fri, 21 Jun 2019 08:00:07 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5LD0Qqp097535
+	for <meta-arago@arago-project.org>; Fri, 21 Jun 2019 08:00:26 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1561122007;
-	bh=uB3mFSdh5p16kNDkW6Up7yqW5dJ6dqfVjp36e6lNR5g=;
+	s=ti-com-17Q1; t=1561122026;
+	bh=Jyu7tVOv8XUqcbb9GPc1SBy2FMLEimhONAdCWNgzmqU=;
 	h=Subject:To:References:From:Date:In-Reply-To;
-	b=ZmMnd/kkKWUt3u/8SyCaU7X2VdOlJ7DFHtf3CX8rnPjTtSsyp7USUG8v4WjTMKcL8
-	wrqZOm9E1nhnaueFts+ielrFAuFV3MVF32dV4wUzBXRwzCQb6MA2o2f2tPe92lBPXJ
-	nOU/Nrr3cKwxg2+ePcJ5LrcIjA31pbpV9WeCQtKY=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5LD07G7015190
+	b=Fmd/iaL78C7R38IQCejo7CQXw2OUk7mq5Alv25zzQW/rgzv30lUM1+wQtQOEn5ByJ
+	eDFypWzSU068cx0jhev9oz/LjSLEZmmwjFpSDwJPqE/VQbqT72laOJr+mfw+b9MYje
+	atDsLrrabX+qyvRXIBaie0KEv//GDBEouKdymrl8=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5LD0Qgg015544
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 21 Jun 2019 08:00:07 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 21 Jun 2019 08:00:26 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 21 Jun 2019 08:00:07 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 21 Jun 2019 08:00:26 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 21 Jun 2019 08:00:07 -0500
+	Frontend Transport; Fri, 21 Jun 2019 08:00:26 -0500
 Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5LD06rx013241;
-	Fri, 21 Jun 2019 08:00:07 -0500
-To: Eric Ruei <e-ruei1@ti.com>, <meta-arago@arago-project.org>
-References: <20190619131314.12011-1-e-ruei1@ti.com>
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5LD0QK6035570;
+	Fri, 21 Jun 2019 08:00:26 -0500
+To: Yuan Zhao <yuanzhao@ti.com>, <meta-arago@arago-project.org>
+References: <20190619135602.98492-1-yuanzhao@ti.com>
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <462fdb0a-973c-fb72-a5aa-8ff11579fdca@ti.com>
-Date: Fri, 21 Jun 2019 09:00:06 -0400
+Message-ID: <43d97e9c-c12e-e0db-915b-db82eee13c92@ti.com>
+Date: Fri, 21 Jun 2019 09:00:26 -0400
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
 	Thunderbird/60.7.1
 MIME-Version: 1.0
-In-Reply-To: <20190619131314.12011-1-e-ruei1@ti.com>
+In-Reply-To: <20190619135602.98492-1-yuanzhao@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [thud/ti2019.01][PATCH] matrix-gui-apps-git:bump SRCREV to run video analytic demo over Weston
+Subject: Re: [EXTERNAL] [thud/ti2019.01][PATCH] ocl: Fix dsp l2 cache size update issue
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,7 +51,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jun 2019 13:00:50 -0000
+X-List-Received-Date: Fri, 21 Jun 2019 13:01:09 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
@@ -66,29 +66,84 @@ Thank you,
 Jake
 
 
-On 6/19/2019 9:13 AM, Eric Ruei wrote:
-> Restore the video analytic demo to be run on top of Weston instead of
-> qt-compositor because the display problem has been fixed at Weston 5.0
+On 6/19/2019 9:56 AM, Yuan Zhao wrote:
+> - Required for TIDL DSP execution
 >
-> Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
 > ---
->   meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>   .../ocl/files/0002-OpenCL_l2_cache_size.patch      | 49 ++++++++++++++++++++++
+>   .../recipes-ti/ocl/opencl-monitor_git.bb           |  4 +-
+>   2 files changed, 52 insertions(+), 1 deletion(-)
+>   create mode 100644 meta-arago-extras/recipes-ti/ocl/files/0002-OpenCL_l2_cache_size.patch
 >
-> diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> index 487f1544..f4c095ed 100644
-> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-> @@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
->   LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+> diff --git a/meta-arago-extras/recipes-ti/ocl/files/0002-OpenCL_l2_cache_size.patch b/meta-arago-extras/recipes-ti/ocl/files/0002-OpenCL_l2_cache_size.patch
+> new file mode 100644
+> index 00000000..7a81a137
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-ti/ocl/files/0002-OpenCL_l2_cache_size.patch
+> @@ -0,0 +1,49 @@
+> +diff --git a/monitor/src/builtins.c b/monitor/src/builtins.c
+> +index fbf3bf3..4edf61c 100644
+> +--- a/monitor/src/builtins.c
+> ++++ b/monitor/src/builtins.c
+> +@@ -159,7 +159,7 @@ EXPORT int __cache_l2_none()
+> + EXPORT int __cache_l2_32k()
+> + {
+> +     int32_t scratch_delta = __cache_l2_size() - (32 << 10);
+> +-    uint32_t scratch_size  = kernel_config_l2.L2_scratch_size;
+> ++    int32_t scratch_size  = kernel_config_l2.L2_scratch_size;
+> +     if (-scratch_delta > scratch_size) return 0;
+> +     kernel_config_l2.L2_scratch_size += scratch_delta;
+> +
+> +@@ -173,7 +173,7 @@ EXPORT int __cache_l2_32k()
+> + EXPORT int __cache_l2_64k()
+> + {
+> +     int32_t scratch_delta = __cache_l2_size() - (64 << 10);
+> +-    uint32_t scratch_size  = kernel_config_l2.L2_scratch_size;
+> ++    int32_t scratch_size  = kernel_config_l2.L2_scratch_size;
+> +     if (-scratch_delta > scratch_size) return 0;
+> +     kernel_config_l2.L2_scratch_size += scratch_delta;
+> +
+> +@@ -187,7 +187,7 @@ EXPORT int __cache_l2_64k()
+> + EXPORT int __cache_l2_128k()
+> + {
+> +     int32_t scratch_delta = __cache_l2_size() - (128 << 10);
+> +-    uint32_t scratch_size  = kernel_config_l2.L2_scratch_size;
+> ++    int32_t scratch_size  = kernel_config_l2.L2_scratch_size;
+> +     if (-scratch_delta > scratch_size) return 0;
+> +     kernel_config_l2.L2_scratch_size += scratch_delta;
+> +
+> +@@ -205,7 +205,7 @@ EXPORT int __cache_l2_512k() { return 0; }
+> + EXPORT int __cache_l2_256k()
+> + {
+> +     int32_t scratch_delta = __cache_l2_size() - (256 << 10);
+> +-    uint32_t scratch_size  = kernel_config_l2.L2_scratch_size;
+> ++    int32_t scratch_size  = kernel_config_l2.L2_scratch_size;
+> +     if (-scratch_delta > scratch_size) return 0;
+> +     kernel_config_l2.L2_scratch_size += scratch_delta;
+> +
+> +@@ -219,7 +219,7 @@ EXPORT int __cache_l2_256k()
+> + EXPORT int __cache_l2_512k()
+> + {
+> +     int32_t scratch_delta = __cache_l2_size() - (512 << 10);
+> +-    uint32_t scratch_size  = kernel_config_l2.L2_scratch_size;
+> ++    int32_t scratch_size  = kernel_config_l2.L2_scratch_size;
+> +     if (-scratch_delta > scratch_size) return 0;
+> +     kernel_config_l2.L2_scratch_size += scratch_delta;
+> +
+> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+> index 0ab21a1a..00aa773c 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-monitor_git.bb
+> @@ -5,7 +5,9 @@ LICENSE = "BSD"
+>   include ocl.inc
+>   require recipes-ti/includes/arago-paths.inc
 >   
->   SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
-> -SRCREV = "2b41ee1f8e0dfe6b5f78d56e13a51aab115aaff0"
-> +SRCREV = "c621180046554c0a24998fea165f3abadc75c25e"
->   BRANCH = "master"
-> -INC_PR = "r70"
-> +INC_PR = "r71"
+> -PR = "${INC_PR}.0"
+> +SRC_URI += "file://0002-OpenCL_l2_cache_size.patch;patchdir=${WORKDIR}/git"
+> +
+> +PR = "${INC_PR}.1"
 >   
->   # Pull in the base package for installing matrix applications
->   require matrix-gui-apps.inc
+>   inherit update-alternatives
+>   
 
