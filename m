@@ -1,30 +1,44 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 7D5B152985
+Return-Path: <j-stiffler@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 24CA9520EA
 	for <meta-arago@arago-project.org>;
-	Tue, 25 Jun 2019 02:41:43 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 7AEF840BBF;
-	Tue, 25 Jun 2019 02:41:00 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id ofezwp7XBN8y; Tue, 25 Jun 2019 02:41:00 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6234440B7B;
-	Tue, 25 Jun 2019 02:40:59 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 2A61416B9E5;
-	Mon, 24 Jun 2019 22:40:59 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Mon, 24 Jun 2019 22:40:58 -0400
-Message-Id: <1561430458-14355-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH] recipes: rename "sgx" flag to "gpu" in MACHINE_FEATURES
+	Tue, 25 Jun 2019 19:17:49 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5PJH5ZK059126
+	for <meta-arago@arago-project.org>; Tue, 25 Jun 2019 14:17:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1561490225;
+	bh=jmZFU5eK47azCKDk781JBgltZLLsdScE/k373xTbfzo=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=CR+4Cr72PrE93cVZPpeIRGX4msRRHq2bFC842YDid9Fh9o57+R0C6kntZ5GuW3rU4
+	l/JN90HWUxqOErqSyuOb9s5Dm3KM4h7I23GRd6Jgx70+2z8cQm9yz/xLNGVTjQmmv5
+	tNkDKsgORPhMyGw9bUGt19rUPgvnptFQAtNfkeT0=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5PJH5qR114946
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 25 Jun 2019 14:17:05 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Tue, 25 Jun 2019 14:17:05 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Tue, 25 Jun 2019 14:17:05 -0500
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5PJH5L5045464
+	for <meta-arago@arago-project.org>; Tue, 25 Jun 2019 14:17:05 -0500
+To: <meta-arago@arago-project.org>
+References: <1561393829-28163-1-git-send-email-j-stiffler@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <256fdf49-95f8-fe0d-73fc-d768be45cb5d@ti.com>
+Date: Tue, 25 Jun 2019 15:17:05 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.1
+MIME-Version: 1.0
+In-Reply-To: <1561393829-28163-1-git-send-email-j-stiffler@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: Re: [master/thud/ti2019.01][PATCH] ti-tisdk-setup: bump SRCREV for create-sdcard update
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,181 +51,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2019 02:41:43 -0000
+X-List-Received-Date: Tue, 25 Jun 2019 19:17:49 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-core/images/arago-core-tisdk-image.inc           |  2 +-
- meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb  |  4 ++--
- .../packagegroups/packagegroup-arago-tisdk-addons.bb         |  2 +-
- .../packagegroups/packagegroup-arago-tisdk-graphics.bb       | 10 +++++-----
- .../packagegroups/packagegroup-arago-tisdk-matrix.bb         | 12 ++++++------
- .../packagegroup-arago-toolchain-tisdk-target.bb             |  4 ++--
- .../matrix/matrix-gui-machinevision-demos_2.0.bb             |  2 +-
- 7 files changed, 18 insertions(+), 18 deletions(-)
+Denys,
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index 0125bb5..4b1a338 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -64,7 +64,7 @@ IMAGE_INSTALL = "\
-     packagegroup-arago-tisdk-addons-sdk-host \
-     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-sdk-host','',d)} \
-     packagegroup-arago-tisdk-crypto-sdk-host \
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics-sdk-host','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-graphics-sdk-host','',d)} \
-     packagegroup-arago-tisdk-matrix-sdk-host \
-     packagegroup-arago-tisdk-multimedia-sdk-host \
-     packagegroup-arago-tisdk-hmi-sdk-host \
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-index 8486a8e..bb2515a 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-@@ -8,8 +8,8 @@ IMAGE_INSTALL += "\
-     packagegroup-arago-base-tisdk \
-     packagegroup-arago-test \
-     packagegroup-arago-test-addons \
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics','',d)} \
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-gtk','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-graphics','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-gtk','',d)} \
-     packagegroup-arago-tisdk-qte \
-     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl','',d)} \
-     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-extra','',d)} \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index a7be94a..2521382 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -80,7 +80,7 @@ UTILS_append_omapl138 = " ti-ipc-rtos-fw"
- 
- UTILS_append_dra7xx = " can-utils \
-                         ${UTILS_DSP} \
--                        ${@bb.utils.contains('MACHINE_FEATURES','sgx','glsdk-example-apps','',d)} \
-+                        ${@bb.utils.contains('MACHINE_FEATURES','gpu','glsdk-example-apps','',d)} \
- "
- 
- UTILS_append_keystone = " \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-index aee7c3a..6a60375 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-@@ -14,18 +14,18 @@ GRAPHICS_WAYLAND = "\
- "
- 
- GRAPHICS_WAYLAND_append_omap-a15 = "\
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx','chromium-wayland','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','chromium-wayland','',d)} \
- "
- 
- GRAPHICS_WAYLAND_append_k3 = "\
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx','chromium-wayland','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','chromium-wayland','',d)} \
- "
- 
- GRAPHICS_RDEPENDS = "\
-     libgbm \
-     ${PREFERRED_PROVIDER_virtual/egl} \
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx','${PREFERRED_PROVIDER_virtual/gpudriver}','',d)} \
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx','glmark2','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','${PREFERRED_PROVIDER_virtual/gpudriver}','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','glmark2','',d)} \
- "
- GRAPHICS_RDEPENDS_remove_j7-evm = "ti-sgx-ddk-km"
- 
-@@ -33,7 +33,7 @@ GRAPHICS_DISPLAY_UTILS = "\
- "
- 
- GRAPHICS_DISPLAY_UTILS_append_omap-a15  = "\
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx','glsdk-util-scripts','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','glsdk-util-scripts','',d)} \
- "
- 
- GRAPHICS_RDEPENDS_append_omap-a15 = "\
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 78f9c56..c2c5975 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -37,11 +37,11 @@ MATRIX_QT_APPS = " \
-     matrix-qt5-demo-webkit-browser \
-     matrix-qt5-demo-calculator \
-     matrix-qt5-demo-deform \
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx','matrix-gui-thermostat-demo','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','matrix-gui-thermostat-demo','',d)} \
- "
- 
- MATRIX_TOUCH_APPS = " \
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx','matrix-gui-touch-demos','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','matrix-gui-touch-demos','',d)} \
- "
- 
- MATRIX_QT_APPS_keystone = ""
-@@ -53,7 +53,7 @@ MATRIX_QT_APPS_j7-evm = ""
- #    matrix-qt5-demo-webkit-browser \
- #"
- 
--MATRIX_SGX_DEMOS = " \
-+MATRIX_GPU_DEMOS = " \
-     matrix-3d-demo-chameleon \
-     matrix-3d-demo-coverflow \
-     matrix-3d-demo-navigation \
-@@ -61,7 +61,7 @@ MATRIX_SGX_DEMOS = " \
-     matrix-3d-demo-kmscube \
- "
- 
--MATRIX_SGX_DEMOS_append_omap-a15 = " \
-+MATRIX_GPU_DEMOS_append_omap-a15 = " \
-     matrix-3d-demo-kmscubevideo \
- "
- 
-@@ -165,7 +165,7 @@ MATRIX_APPS_append_omap-a15 = "     \
-     matrix-analytics-pdm-anomaly-detection \
- "
- 
--#    ${@['','matrix-gui-browser-demos'][bb.utils.contains('MACHINE_FEATURES','sgx',True,False,d) and bb.utils.contains('DISTRO_FEATURES','wayland',True,False,d)]} \
-+#    ${@['','matrix-gui-browser-demos'][bb.utils.contains('MACHINE_FEATURES','gpu',True,False,d) and bb.utils.contains('DISTRO_FEATURES','wayland',True,False,d)]} \
- #                                \
- #
- 
-@@ -212,7 +212,7 @@ RDEPENDS_${PN} = "        \
-     ${MATRIX_QT_APPS}     \
-     ${MATRIX_TOUCH_APPS}  \
-     ${MATRIX_APPS}        \
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx',"${MATRIX_SGX_DEMOS}",'',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu',"${MATRIX_GPU_DEMOS}",'',d)} \
-     ${@bb.utils.contains('MACHINE_FEATURES','dsp',"${MATRIX_OPENCL_APPS}",'',d)} \
- "
- 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-index 03c3f47..81299f0 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-toolchain-tisdk-target.bb
-@@ -28,10 +28,10 @@ TISDK_TOOLCHAIN_EXTRA_TARGET_j7-evm = ""
- 
- RDEPENDS_${PN} = "\
-     ${QT_TOOLCHAIN_TARGET} \
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-gtk-sdk-target','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-gtk-sdk-target','',d)} \
-     ${TISDK_TOOLCHAIN_BASE_TARGET} \
-     ${TISDK_TOOLCHAIN_EXTRA_TARGET} \
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx','packagegroup-arago-tisdk-graphics-sdk-target','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-graphics-sdk-target','',d)} \
-     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-sdk-target','',d)} \
-     packagegroup-arago-tisdk-addons-sdk-target \
- "
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
-index c316730..cadfefa 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
-@@ -25,7 +25,7 @@ RDEPENDS_matrix-machinevision-demo-dlp3dscanner = " \
- "
- 
- RDEPENDS_matrix-machinevision-demo-dlp3dscanner_append_dra7xx = " \
--    ${@bb.utils.contains('MACHINE_FEATURES','sgx','point-cloud-viewer','',d)} \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','point-cloud-viewer','',d)} \
- "
- 
- RDEPENDS_matrix-machinevision-demo-barcoderoi = " \
--- 
-2.7.4
+Can you please back-port this to ti2019.01?
 
+
+Thank you,
+
+Jake
+
+On 6/24/2019 12:30 PM, Jacob Stiffler wrote:
+> * sort rootfs images by decreasing size
+>
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+>   meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+> index f0ec287..93b2d6f 100644
+> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+> @@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c
+>   PR = "r42"
+>   
+>   BRANCH ?= "master"
+> -SRCREV = "b33c55bee6591c681e3b3c2ea243bce581b13c31"
+> +SRCREV = "9d048a26007f1c36823d3bfa520c1adf47172cec"
+>   SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
+>   
+>   S = "${WORKDIR}/git/"
 
