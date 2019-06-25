@@ -1,42 +1,30 @@
-Return-Path: <yuanzhao@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 34E8652985
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 78EBC52991
 	for <meta-arago@arago-project.org>;
-	Tue, 25 Jun 2019 01:29:49 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5P1T6YY061406
-	for <meta-arago@arago-project.org>; Mon, 24 Jun 2019 20:29:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1561426146;
-	bh=JkFAx9j+JGU/GIgOERFz78Y+xhXLz6vhhIYDWrMfqz8=;
-	h=From:To:CC:Subject:Date;
-	b=n8b4MI/nH+kZcUqvAQOCWmqxmwxlq1VV/2oZm0fyMwY+iBuxTTpR+eHrRCm/IJRDk
-	NZQ8WUDbep3QWClIYRNhjRMzRAQ7LX5CNGOqRNspD5DjgX9VaDtQtcWBB1wzElMPxo
-	xPofnc8Yywel/gH7bmBnbxS5cvzKSMd2V3ZsVRcQ=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5P1T6eQ024490
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 24 Jun 2019 20:29:06 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 24 Jun 2019 20:29:06 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 24 Jun 2019 20:29:06 -0500
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5P1T5ts091431;
-	Mon, 24 Jun 2019 20:29:05 -0500
-From: Yuan Zhao <yuanzhao@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 24 Jun 2019 20:29:00 -0500
-Message-ID: <20190625012900.73691-1-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.14.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/ti2019.01][PATCH v2] ocl: fix g++8.3 opencl-examples undefined behavior
+	Tue, 25 Jun 2019 02:37:53 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 84E5C40BBF;
+	Tue, 25 Jun 2019 02:37:09 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id RgSfbQMiH1NT; Tue, 25 Jun 2019 02:37:09 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2EB8F40B7B;
+	Tue, 25 Jun 2019 02:37:08 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id DD0D516B9E5;
+	Mon, 24 Jun 2019 22:37:07 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Mon, 24 Jun 2019 22:37:07 -0400
+Message-Id: <1561430227-13864-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [thud/master][PATCH] v4l-utils: switch to git/master to pick up multiplanar and other fixes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,124 +37,79 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2019 01:29:49 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 25 Jun 2019 02:37:57 -0000
 
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- ...g-8.3.0-OpenCL-example-undefined-behavior.patch | 68 ++++++++++++++++++++++
- .../recipes-ti/ocl/opencl-examples_git.bb          | 12 ++--
- 2 files changed, 76 insertions(+), 4 deletions(-)
- create mode 100644 meta-arago-extras/recipes-ti/ocl/files/0003-Fix-g-8.3.0-OpenCL-example-undefined-behavior.patch
+ .../0001-Makefile.am-skip-po-dirs-for-now.patch    | 26 ++++++++++++++++++++++
+ .../v4l2apps/v4l-utils_%.bbappend                  | 25 ++++++++++++++++++---
+ 2 files changed, 48 insertions(+), 3 deletions(-)
+ create mode 100644 meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/0001-Makefile.am-skip-po-dirs-for-now.patch
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/files/0003-Fix-g-8.3.0-OpenCL-example-undefined-behavior.patch b/meta-arago-extras/recipes-ti/ocl/files/0003-Fix-g-8.3.0-OpenCL-example-undefined-behavior.patch
+diff --git a/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/0001-Makefile.am-skip-po-dirs-for-now.patch b/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/0001-Makefile.am-skip-po-dirs-for-now.patch
 new file mode 100644
-index 00000000..b2c40c84
+index 0000000..87f1eef
 --- /dev/null
-+++ b/meta-arago-extras/recipes-ti/ocl/files/0003-Fix-g-8.3.0-OpenCL-example-undefined-behavior.patch
-@@ -0,0 +1,68 @@
-+From 7cf77b704544b6012105f7ed19807b798b6cb242 Mon Sep 17 00:00:00 2001
-+From: Yuan Zhao <yuanzhao@ti.com>
-+Date: Mon, 24 Jun 2019 13:24:11 -0500
-+Subject: [PATCH] Fix g++ 8.3.0 OpenCL example undefined behavior
++++ b/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils/0001-Makefile.am-skip-po-dirs-for-now.patch
+@@ -0,0 +1,26 @@
++From 8c3531847894cc28aa8d0489332f893d69beab1e Mon Sep 17 00:00:00 2001
++From: Denys Dmytriyenko <denys@ti.com>
++Date: Mon, 24 Jun 2019 20:54:18 -0400
++Subject: [PATCH] Makefile.am: skip po dirs for now
 +
-+- Fix undefined behavior of non-void functions with no return statements,
-+  when using g++ 8.3.0.  Change them to void functions.
-+
-+Upstream-Status: Submitted [Remove this patch when next release is out]
-+
-+Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
++Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 +---
-+ examples/persistent_common/host_assist.cpp | 2 +-
-+ examples/persistent_common/host_assist.h   | 2 +-
-+ examples/sgemm/main.cpp                    | 4 ++--
-+ 3 files changed, 4 insertions(+), 4 deletions(-)
++ Makefile.am | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
 +
-+diff --git a/examples/persistent_common/host_assist.cpp b/examples/persistent_common/host_assist.cpp
-+index f1640bc..fd8bb18 100644
-+--- a/examples/persistent_common/host_assist.cpp
-++++ b/examples/persistent_common/host_assist.cpp
-+@@ -34,7 +34,7 @@ void print_completion_code(uint32_t completion_code)
-+ /******************************************************************************
-+ * Given an OpenCL Device, Abort if the device is not part of the AM57x platform
-+ ******************************************************************************/
-+-int assert_am57x(cl::Device &device)
-++void assert_am57x(cl::Device &device)
-+ {
-+     cl::Platform platform;
-+     std::string  platform_name;
-+diff --git a/examples/persistent_common/host_assist.h b/examples/persistent_common/host_assist.h
-+index dec381e..4abf837 100644
-+--- a/examples/persistent_common/host_assist.h
-++++ b/examples/persistent_common/host_assist.h
-+@@ -7,7 +7,7 @@
-+ /*-----------------------------------------------------------------------------
-+ * Prototypes
-+ *----------------------------------------------------------------------------*/
-+-int  assert_am57x         (cl::Device &device);
-++void assert_am57x         (cl::Device &device);
-+ void print_completion_code(uint32_t completion_code);
++diff --git a/Makefile.am b/Makefile.am
++index 8abe4f9..26a4609 100644
++--- a/Makefile.am
+++++ b/Makefile.am
++@@ -1,7 +1,7 @@
++ AUTOMAKE_OPTIONS = foreign
++ ACLOCAL_AMFLAGS = -I m4
 + 
-+ #endif // _HOST_ASSIST_H_
-+diff --git a/examples/sgemm/main.cpp b/examples/sgemm/main.cpp
-+index 85f19ac..dfac651 100644
-+--- a/examples/sgemm/main.cpp
-++++ b/examples/sgemm/main.cpp
-+@@ -96,7 +96,7 @@ int NUMCOMPUNITS                    = 0;
-+ /* ======================================================================== */
-+ void PrintUsageAndExit();
-+ void HandleOptions(int argc, char* argv[]);
-+-bool SetSgemmParams(Device& device);
-++void SetSgemmParams(Device& device);
++-SUBDIRS = v4l-utils-po libdvbv5-po lib
+++SUBDIRS = lib
 + 
-+ /* ======================================================================== */
-+ /*  MAIN                                                                    */
-+@@ -428,7 +428,7 @@ static cl_ulong roundDownPower2(cl_ulong value)
-+ /*-----------------------------------------------------------------------------
-+ * Check platform name, set sgemm blocking/tiling parameters accordingly
-+ *----------------------------------------------------------------------------*/
-+-bool SetSgemmParams(Device& device)
-++void SetSgemmParams(Device& device)
-+ {
-+    int APanelSz        = 8  << 10;
-+    int BPanelSz        = 16 << 10;
++ if WITH_V4LUTILS
++ SUBDIRS += utils contrib
 +-- 
-+2.17.1
++2.7.4
 +
-diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-index cbc35ce5..c562bbf7 100644
---- a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-@@ -5,7 +5,9 @@ LICENSE = "BSD"
- include ocl.inc
- require recipes-ti/includes/ti-paths.inc
+diff --git a/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils_%.bbappend b/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils_%.bbappend
+index 759139a..dd8c9bd 100644
+--- a/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils_%.bbappend
++++ b/meta-arago-extras/recipes-multimedia/v4l2apps/v4l-utils_%.bbappend
+@@ -1,4 +1,23 @@
+-PV = "1.16.5"
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
--PR = "${INC_PR}.0"
-+SRC_URI += "file://0003-Fix-g-8.3.0-OpenCL-example-undefined-behavior.patch;patchdir=.."
+-SRC_URI[md5sum] = "de272817133c0dca000a78a5c8c8ec8b"
+-SRC_URI[sha256sum] = "ed80242510385017a1dc566e17a285a77222bb301f5bc19386badfcc2c19df1b"
++PV = "1.16.99+1.17-rc+git${SRCPV}"
 +
-+PR = "${INC_PR}.1"
- 
- COMPATIBLE_MACHINE = "dra7xx|keystone"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
-@@ -65,12 +67,14 @@ OCL_MPAX_EXAMPLE_LIST = " vecadd_mpax \
- OCL_EXAMPLE_LIST_append_k2hk = " ${OCL_MPAX_EXAMPLE_LIST}"
- 
- python do_unpack_append() {
--    import shutil
-+    s = d.getVar("S")
-+    os.makedirs(s)
++SRCREV = "e30639edd74f12f8f58d8e9cf10d85a1f071a6c3"
++
++SRC_URI = " \
++	git://linuxtv.org/v4l-utils.git \
++	file://0001-Revert-media-ctl-Don-t-install-libmediactl-and-libv4.patch \
++	file://mediactl-pkgconfig.patch \
++	file://export-mediactl-headers.patch \
++	file://0002-contrib-test-Link-mc_nextgen_test-with-libargp-if-ne.patch \
++	file://0003-v4l2-ctl-Do-not-use-getsubopt.patch \
++	file://0001-Makefile.am-skip-po-dirs-for-now.patch \
++"
++
++S = "${WORKDIR}/git"
++B = "${S}"
++
++do_configure() {
++	./bootstrap.sh
++	oe_runconf
 +}
- 
-+python do_patch_append() {
-+    import shutil
-     git_dir = d.expand("${WORKDIR}/git/examples")
-     s = d.getVar("S")
--
--    os.makedirs(s)
-     shutil.copy(os.path.join(git_dir,"Makefile"),s)
-     shutil.copy(os.path.join(git_dir,"make.inc"),s)
-     for example in d.getVar("OCL_EXAMPLE_LIST").split():
 -- 
-2.14.1
+2.7.4
 
 
