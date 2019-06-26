@@ -1,42 +1,42 @@
-Return-Path: <h-gou@ti.com>
+Return-Path: <denys@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 7D5D3520E0
+	by arago-project.org (Postfix) with ESMTPS id A5EB3520E4
 	for <meta-arago@arago-project.org>;
-	Wed, 26 Jun 2019 18:23:04 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5QIMKCf084038
-	for <meta-arago@arago-project.org>; Wed, 26 Jun 2019 13:22:20 -0500
+	Wed, 26 Jun 2019 21:07:42 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5QL6wlX125256
+	for <meta-arago@arago-project.org>; Wed, 26 Jun 2019 16:06:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1561573340;
-	bh=aEeMm0ujmeatcdzdWFlD4N/LJbXFrAJtw7Zdi3UQfC4=;
+	s=ti-com-17Q1; t=1561583219;
+	bh=NDgmaQm0Jn4mE14ZrFcOcn9l6+QE5gl4gzzEJEVEWXw=;
 	h=From:To:CC:Subject:Date;
-	b=Ah+boAYw2K2qCQk0jCSbqFR9c/BXjlTfIHCCgDx400Dtd/0X0rD39QmVXvghCqOVn
-	bkUN3dl/tsPiAOcSi0QiPkvr/AjtY+krlWRZ2Nob/jxMOVgezXHN800ZMe+0KrxUHH
-	4cj9/2b9wOirC97CV3nSsCEa9R9qTrxvWgbVtTY0=
+	b=aVrz5IEZI5Pm2sigFaK3sdQOXSYgLEopTdUOqU7Zzqn7QG0sKz47B9fho+19BPMBq
+	GAFsFnpctj4e6E/39j7cN+lajiaM4Gt3N1v2linHzhmxvL/jbUTMqMgEQfhAVGbpZh
+	vBz5citERnBS5jh91qo0VdNNT/ssAr/Qhkon9SGM=
 Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5QIMK3Q062036
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5QL6wa6104498
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 26 Jun 2019 13:22:20 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
+	for <meta-arago@arago-project.org>; Wed, 26 Jun 2019 16:06:58 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
 	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 26 Jun 2019 13:22:19 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 26 Jun 2019 16:06:58 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 26 Jun 2019 13:22:20 -0500
-Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Wed, 26 Jun 2019 16:06:58 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5QIMJCh101657;
-	Wed, 26 Jun 2019 13:22:19 -0500
-From: Hongmei Gou <h-gou@ti.com>
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5QL6wxq073652;
+	Wed, 26 Jun 2019 16:06:58 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 26 Jun 2019 14:22:18 -0400
-Message-ID: <20190626182218.22446-1-h-gou@ti.com>
+Date: Wed, 26 Jun 2019 20:54:36 +0000
+Message-ID: <20190626205437.32712-1-denys@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk] [PATCH] am335x-pru-uio.dtsi: upstreamed to meta-ti. remove.
+Subject: [thud/master][PATCH 1/2] optee-os: update to ti2019.02-rc1 tag
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,213 +49,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jun 2019 18:23:04 -0000
+X-List-Received-Date: Wed, 26 Jun 2019 21:07:43 -0000
 Content-Type: text/plain
 
-Signed-off-by: Hongmei Gou <h-gou@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../linux/files/ti33x/am335x-pru-uio.dtsi     | 192 ------------------
- 1 file changed, 192 deletions(-)
- delete mode 100644 recipes-kernel/linux/files/ti33x/am335x-pru-uio.dtsi
+ meta-arago-distro/recipes-security/optee/optee-os_git.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-kernel/linux/files/ti33x/am335x-pru-uio.dtsi b/recipes-kernel/linux/files/ti33x/am335x-pru-uio.dtsi
-deleted file mode 100644
-index 714b1d7..0000000
---- a/recipes-kernel/linux/files/ti33x/am335x-pru-uio.dtsi
-+++ /dev/null
-@@ -1,192 +0,0 @@
--&pruss_soc_bus {
--		uio_pruss_mdio: uio_pruss_mdio@32400 {
--			compatible = "ti,davinci_mdio";
--			reg = <0x32400 0x90>;
--			clocks = <&dpll_core_m4_ck>;
--			clock-names = "fck";
--			bus_freq = <1000000>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--			status = "disabled";
--		};
--
--		uio_pruss_mem: uio_pruss_mem {
--			compatible = "ti,uio-module-drv";
--			mem = <0x4a300000 0x2000>,
--			      <0x4a302000 0x2000>,
--			      <0x4a310000 0x3000>,
--			      <0x4a320000 0x2000>,
--			      <0x4a326000 0x2000>,
--			      <0x4a32e000 0x31c>,
--			      <0x4a332000 0x58>;
--			mem-names = "dram0", "dram1", "shrdram2", "intc", "cfg",
--				    "iep", "mii_rt";
--
--			status = "okay";
--		};
--		uio_pruss_mem2: uio_pruss_mem2 {
--			compatible = "ti,uio-module-drv";
--			mem = <0x4a328000 0xd4>,
--			      <0x4a330000 0x174>,
--			      <0x4a332400 0x90>,
--			      <0x40302000 0x0e000>;
--			mem-names = "uart", "ecap", "mdio", "ocmc";
--			status = "okay";
--		};
--
--		uio_pruss_evt0: uio_pruss_evt0 {
--			compatible = "ti,uio-module-drv";
--                        interrupts = <20>;
--			interrupt-mode = <1>;
--			status = "okay";
--		};
--		uio_pruss_evt1: uio_pruss_evt1 {
--			compatible = "ti,uio-module-drv";
--                        interrupts = <21>;
--			interrupt-mode = <1>;
--			status = "okay";
--		};
--		uio_pruss_evt2: uio_pruss_evt2 {
--			compatible = "ti,uio-module-drv";
--                        interrupts = <22>;
--			interrupt-mode = <1>;
--			status = "okay";
--		};
--		uio_pruss_evt3: uio_pruss_evt3 {
--			compatible = "ti,uio-module-drv";
--                        interrupts = <23>;
--			interrupt-mode = <1>;
--			status = "okay";
--		};
--		uio_pruss_evt4: uio_pruss_evt4 {
--			compatible = "ti,uio-module-drv";
--                        interrupts = <24>;
--			interrupt-mode = <1>;
--			status = "okay";
--		};
--		uio_pruss_evt5: uio_pruss_evt5 {
--			compatible = "ti,uio-module-drv";
--                        interrupts = <25>;
--			interrupt-mode = <1>;
--			status = "okay";
--		};
--		uio_pruss_evt6: uio_pruss_evt6 {
--			compatible = "ti,uio-module-drv";
--                        interrupts = <26>;
--			interrupt-mode = <1>;
--			status = "okay";
--		};
--		uio_pruss_evt7: uio_pruss_evt7 {
--			compatible = "ti,uio-module-drv";
--                        interrupts = <27>;
--			interrupt-mode = <1>;
--			status = "okay";
--		};
--
--		uio_pruss_0_mem: uio_pruss_0_mem {
--			compatible = "ti,uio-module-drv";
--			mem = <0x4a334000 0x2000>,
--			      <0x4a322000 0x400>,
--			      <0x4a322400 0x100>;
--			mem-names = "iram", "control", "debug";
--			status = "okay";
--		};
--
--		uio_pruss_1_mem: uio_pruss_1_mem {
--			compatible = "ti,uio-module-drv";
--			mem = <0x4a338000 0x2000>,
--			      <0x4a324000 0x400>,
--			      <0x4a324400 0x100>;
--			mem-names = "iram", "control", "debug";
--			status = "okay";
--		};
--};
--
--&am33xx_pinmux {
--	uio_pruss_mdio_eth_default: uio_pruss_mdio_eht_default {
--		pinctrl-single,pins = <
--			AM33XX_IOPAD(0x88c, (PIN_OUTPUT | MUX_MODE5))           /* gpmc_clk.pr1_mdio_mdclk */
--			AM33XX_IOPAD(0x888, (PIN_INPUT  | MUX_MODE5))           /* gpmc_csn3.pr1_mdio_data */
--			AM33XX_IOPAD(0x89c, (PIN_INPUT_PULLUP | MUX_MODE7))     /* gpmc_ben0_cle.gpio2_5 */
--			/* disable CPSW MDIO */
--			AM33XX_IOPAD(0x948, (PIN_INPUT_PULLUP | MUX_MODE7))     /* mdio_data.gpio0_0 */
--			AM33XX_IOPAD(0x94c, (PIN_INPUT_PULLUP | MUX_MODE7))     /* mdio_clk.gpio0_1 */
--			AM33XX_IOPAD(0x8a0, (PIN_INPUT  | MUX_MODE2))   /* dss_data0.pr1_mii_mt0_clk */
--			AM33XX_IOPAD(0x8b4, (PIN_OUTPUT | MUX_MODE2))   /* dss_data5.pr1_mii0_txd0 */
--			AM33XX_IOPAD(0x8b0, (PIN_OUTPUT | MUX_MODE2))   /* dss_data4.pr1_mii0_txd1 */
--			AM33XX_IOPAD(0x8ac, (PIN_OUTPUT | MUX_MODE2))   /* dss_data3.pr1_mii0_txd2 */
--			AM33XX_IOPAD(0x8a8, (PIN_OUTPUT | MUX_MODE2))   /* dss_data2.pr1_mii0_txd3 */
--			AM33XX_IOPAD(0x8cc, (PIN_INPUT  | MUX_MODE5))   /* dss_data11.pr1_mii0_rxd0 */
--			AM33XX_IOPAD(0x8c8, (PIN_INPUT  | MUX_MODE5))   /* dss_data10.pr1_mii0_rxd1 */
--			AM33XX_IOPAD(0x8c4, (PIN_INPUT  | MUX_MODE5))   /* dss_data9.pr1_mii0_rxd2 */
--			AM33XX_IOPAD(0x8c0, (PIN_INPUT  | MUX_MODE5))   /* dss_data8.pr1_mii0_rxd3 */
--			AM33XX_IOPAD(0x8a4, (PIN_OUTPUT | MUX_MODE2))   /* dss_data1.pr1_mii0_txen */
--			AM33XX_IOPAD(0x8d8, (PIN_INPUT  | MUX_MODE5))   /* dss_data14.pr1_mii_mr0_clk */
--			AM33XX_IOPAD(0x8dc, (PIN_INPUT  | MUX_MODE5))   /* dss_data15.pr1_mii0_rxdv */
--			AM33XX_IOPAD(0x8d4, (PIN_INPUT  | MUX_MODE5))   /* dss_data13.pr1_mii0_rxer */
--			AM33XX_IOPAD(0x8d0, (PIN_INPUT  | MUX_MODE5))   /* dss_data12.pr1_mii0_rxlink */
--			AM33XX_IOPAD(0x8e8, (PIN_INPUT  | MUX_MODE2))   /* dss_pclk.pr1_mii0_crs */
--
--			AM33XX_IOPAD(0x840, (PIN_INPUT  | MUX_MODE5))   /* gpmc_a0.pr1_mii_mt1_clk */
--			AM33XX_IOPAD(0x850, (PIN_OUTPUT | MUX_MODE5))   /* gpmc_a4.pr1_mii1_txd0 */
--			AM33XX_IOPAD(0x84c, (PIN_OUTPUT | MUX_MODE5))   /* gpmc_a3.pr1_mii1_txd1 */
--			AM33XX_IOPAD(0x848, (PIN_OUTPUT | MUX_MODE5))   /* gpmc_a2.pr1_mii1_txd2 */
--			AM33XX_IOPAD(0x844, (PIN_OUTPUT | MUX_MODE5))   /* gpmc_a1.pr1_mii1_txd3 */
--			AM33XX_IOPAD(0x860, (PIN_INPUT  | MUX_MODE5))   /* gpmc_a8.pr1_mii1_rxd0 */
--			AM33XX_IOPAD(0x85c, (PIN_INPUT  | MUX_MODE5))   /* gpmc_a7.pr1_mii1_rxd1 */
--			AM33XX_IOPAD(0x858, (PIN_INPUT  | MUX_MODE5))   /* gpmc_a6.pr1_mii1_rxd2 */
--			AM33XX_IOPAD(0x854, (PIN_INPUT  | MUX_MODE5))   /* gpmc_a5.pr1_mii1_rxd3 */
--			AM33XX_IOPAD(0x874, (PIN_OUTPUT | MUX_MODE5))   /* gpmc_wpn.pr1_mii1_txen */
--			AM33XX_IOPAD(0x864, (PIN_INPUT  | MUX_MODE5))   /* gpmc_a9.pr1_mii_mr1_clk */
--			AM33XX_IOPAD(0x868, (PIN_INPUT  | MUX_MODE5))   /* gpmc_a10.pr1_mii1_rxdv */
--			AM33XX_IOPAD(0x86c, (PIN_INPUT  | MUX_MODE5))   /* gpmc_a11.pr1_mii1_rxer */
--			AM33XX_IOPAD(0x878, (PIN_INPUT  | MUX_MODE5))   /* gpmc_ben1.pr1_mii1_rxlink */
--			AM33XX_IOPAD(0x8ec, (PIN_INPUT  | MUX_MODE2))   /* lcd_ac_bias_en.pr1_mii1_crs */
--			AM33XX_IOPAD(0x870, (PIN_INPUT  | MUX_MODE5))   /* gpmc_wait0.pr1_mii1_col */
--		>;
--	};
--};
--
--&uio_pruss_mdio {
--	pinctrl-0 = <&uio_pruss_mdio_eth_default>;
--	pinctrl-names = "default";
--	reset-gpios = <&gpio2 5 GPIO_ACTIVE_LOW>;
--	reset-delay-us = <2>; /* PHY datasheet states 1uS min */
--	status = "okay";
--
--	uio_pruss_eth0_phy: ethernet-phy@1 {
--		reg = <1>;
--	};
--
--	uio_pruss_eth1_phy: ethernet-phy@3 {
--		reg = <3>;
--	};
--};
--
--&pruss {
--	status = "disabled";
--};
--
--&pru0 {
--	status = "disabled";
--};
--
--&pru1 {
--	status = "disabled";
--};
--
--&pruss_intc {
--	status = "disabled";
--};
--
--&pruss_mdio {
--	status = "disabled";
--};
--
--&pruss_emac0 {
--        status = "disabled";
--};
--
--&pruss_emac1 {
--        status = "disabled";
--};
+diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+index 4b0846aa..ba190355 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+@@ -13,7 +13,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
+            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
+ "
+ BRANCH = "ti-optee-os"
+-SRCREV = "2cf91981a966ae834c517a3ee33138431f6df8be"
++SRCREV = "3a513ceae7706834f9538219503848f40302ff6d"
+ 
+ ARMCORE = "CFG_ARM32_core=y ta-targets=ta_arm32"
+ ARMCORE_aarch64 = "CFG_ARM64_core=y ta-targets=ta_arm64"
 -- 
 2.17.1
 
