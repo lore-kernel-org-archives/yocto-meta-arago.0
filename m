@@ -1,42 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 939A052A48
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id EEF125298F
 	for <meta-arago@arago-project.org>;
-	Thu, 27 Jun 2019 19:08:35 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5RJ7pnR051248
-	for <meta-arago@arago-project.org>; Thu, 27 Jun 2019 14:07:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1561662471;
-	bh=3vrYGInGLmw+6Befle0pdRR1ZBU5yhtSnYS+sSgoSQ8=;
-	h=From:To:CC:Subject:Date;
-	b=Nptjlg+x6RtZ9NbNdqKd6bFWS7vWs0RqnTVFoGLDtWSQ9p2V6LP2nL3KUaVyP/L1x
-	AiuxTmz71Iyv9ZO6H9paCLvoppRhtYt13YouhdZStd2i7JpdvT/R1b2U4+qbjRyCSf
-	3MV5zGCRmF+FRDln4N6kInZIPhYHV1bFThnNoutE=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5RJ7pAs078978
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 27 Jun 2019 14:07:51 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 27 Jun 2019 14:07:51 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Thu, 27 Jun 2019 14:07:51 -0500
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5RJ7pUB013525;
-	Thu, 27 Jun 2019 14:07:51 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 27 Jun 2019 14:51:04 -0400
-Message-ID: <1561661464-8885-1-git-send-email-j-stiffler@ti.com>
+	Thu, 27 Jun 2019 23:47:09 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 195C240BF3;
+	Thu, 27 Jun 2019 23:46:26 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id GMz5kwkN6cw8; Thu, 27 Jun 2019 23:46:26 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 036F240BF2;
+	Thu, 27 Jun 2019 23:46:24 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id B0F7B170A22;
+	Thu, 27 Jun 2019 19:46:24 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Thu, 27 Jun 2019 19:46:23 -0400
+Message-Id: <1561679183-39805-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [ti2019.01][PATCH] HACK: ti-tisdk-makefile: omapconf: disable static linking
+Subject: [thud/master][PATCH] external-arm-toolchain: add extra symlink for ${libdir}/gcc/${TARGET_SYS}
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,52 +37,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2019 19:08:35 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 27 Jun 2019 23:47:11 -0000
 
-* The necesary static libraries are missing from the devkit, so
-  disable static linking for now.
+Allows native gcc to find omp.h from Arm/Linaro libgomp install.
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
+ meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-This is a workaround for a problem with the devkit, so can we only
-take this on the ti2019.01 branch so that we do not forget to revert
-it in the future?
-
-Thanks,
-Jake
-
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_omapconf | 2 +-
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb            | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_omapconf b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_omapconf
-index 9a8e69a..77bc3d3 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_omapconf
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_omapconf
-@@ -3,7 +3,7 @@ omapconf:
- 	@echo =======================
- 	@echo    Building OmapConf
- 	@echo =======================
--	@cd example-applications; cd `find . -name "*omapconf*"`; make CROSS_COMPILE=${CROSS_COMPILE} omapconf
-+	@cd example-applications; cd `find . -name "*omapconf*"`; make CROSS_COMPILE=${CROSS_COMPILE} STATIC_BUILD="" omapconf
+diff --git a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+index 34daa03..af9d6cd 100644
+--- a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
++++ b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+@@ -8,6 +8,7 @@ do_install_append() {
  
- omapconf_clean:
- 	@echo =======================
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index e0d409a..971350a 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -54,7 +54,7 @@ SRC_URI = "\
-     file://Makefile_pdm-anomaly-detection \
- "
+ 	if [ ${EAT_TARGET_SYS} != ${ORIG_TARGET_SYS} ]; then
+ 		ln -sf ${EAT_TARGET_SYS} ${D}${libdir}/${ORIG_TARGET_SYS}
++		ln -sf ${EAT_TARGET_SYS} ${D}${libdir}/gcc/${ORIG_TARGET_SYS}
+ 		ln -sf ${EAT_TARGET_SYS} ${D}${includedir}/c++/${EAT_VER_GCC}/${ORIG_TARGET_SYS}
+ 	fi
  
--PR = "r95"
-+PR = "r96"
- 
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
+@@ -20,3 +21,7 @@ do_install_append() {
+ 	ln -sf libasan.so.5 ${D}${libdir}/libasan.so
+ 	ln -sf libgfortran.so.5 ${D}${libdir}/libgfortran.so
+ }
++
++FILES_libgomp-dev += "\
++    ${libdir}/gcc/${ORIG_TARGET_SYS} \
++"
 -- 
 2.7.4
 
