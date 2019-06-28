@@ -1,32 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 6ABFB52980
+	by arago-project.org (Postfix) with ESMTPS id 73AD452995
 	for <meta-arago@arago-project.org>;
 	Fri, 28 Jun 2019 21:32:40 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 357A440BF6;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 3325940BB6;
 	Fri, 28 Jun 2019 21:31:56 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id WpqWI4BLwuoO; Fri, 28 Jun 2019 21:31:56 +0000 (UTC)
+	with ESMTP id sxMpuOOer9G1; Fri, 28 Jun 2019 21:31:56 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6D60F40BAE;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 69D2240BAC;
 	Fri, 28 Jun 2019 21:31:54 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 32099170A98;
+	by mail.denix.org (Postfix) with ESMTP id 254CF170A91;
 	Fri, 28 Jun 2019 17:31:54 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Fri, 28 Jun 2019 17:31:53 -0400
-Message-Id: <1561757513-47688-2-git-send-email-denys@ti.com>
+Date: Fri, 28 Jun 2019 17:31:52 -0400
+Message-Id: <1561757513-47688-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1561757513-47688-1-git-send-email-denys@ti.com>
-References: <1561757513-47688-1-git-send-email-denys@ti.com>
-Subject: [thud/master][PATCH 2/2] packagegroup-standalone-sdk-target: pull unconditionally libgomp-dev and libc-staticdev
+Subject: [thud/master][PATCH 1/2] external-arm-toolchain: swap symlink for gcc-runtime packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,40 +39,66 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
 X-List-Received-Date: Fri, 28 Jun 2019 21:32:41 -0000
 
+Native gcc already has ${libdir}/gcc/${TARGET_SYS} and expects gcc-runtime to be there.
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroups/packagegroup-arago-standalone-sdk-target.bb     | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ .../meta/external-arm-toolchain.bbappend           | 36 ++++++++++++++++++++--
+ 1 file changed, 33 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
-index 5a33a04..2a1d29b 100644
---- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
-+++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-standalone-sdk-target.bb
-@@ -1,5 +1,5 @@
- DESCRIPTION = "Target packages for the standalone SDK"
--PR = "r12"
-+PR = "r13"
- LICENSE = "MIT"
+diff --git a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+index af9d6cd..a5d6329 100644
+--- a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
++++ b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+@@ -8,8 +8,9 @@ do_install_append() {
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
-@@ -10,8 +10,9 @@ RDEPENDS_${PN} = "\
-     libgcc \
-     libgcc-dev \
-     libstdc++-dev \
-+    libgomp-dev \
-     ${LIBC_DEPENDENCIES} \
--    ${@oe.utils.conditional('TCMODE', 'external-linaro', 'glibc-staticdev', '', d)} \
-+    libc-staticdev \
-     linux-libc-headers-dev \
-     gdbserver \
-     alsa-dev \
-@@ -32,5 +33,4 @@ RDEPENDS_${PN} = "\
-     ncurses-dev \
-     opkg-dev \
-     util-linux-dev \
--    ${@oe.utils.conditional('TCMODE', 'external-linaro', 'libgomp-dev', '', d)} \
--    "
+ 	if [ ${EAT_TARGET_SYS} != ${ORIG_TARGET_SYS} ]; then
+ 		ln -sf ${EAT_TARGET_SYS} ${D}${libdir}/${ORIG_TARGET_SYS}
+-		ln -sf ${EAT_TARGET_SYS} ${D}${libdir}/gcc/${ORIG_TARGET_SYS}
+ 		ln -sf ${EAT_TARGET_SYS} ${D}${includedir}/c++/${EAT_VER_GCC}/${ORIG_TARGET_SYS}
++		mv ${D}${libdir}/gcc/${EAT_TARGET_SYS} ${D}${libdir}/gcc/${ORIG_TARGET_SYS}
++		ln -sf ${ORIG_TARGET_SYS} ${D}${libdir}/gcc/${EAT_TARGET_SYS}
+ 	fi
+ 
+ 	ln -sf libatomic.so.1 ${D}${libdir}/libatomic.so
+@@ -22,6 +23,35 @@ do_install_append() {
+ 	ln -sf libgfortran.so.5 ${D}${libdir}/libgfortran.so
+ }
+ 
+-FILES_libgomp-dev += "\
+-    ${libdir}/gcc/${ORIG_TARGET_SYS} \
++FILES_libgcc-dev += "\
++    ${libdir}/gcc/${TARGET_SYS} \
 +"
++
++FILES_libgfortran-dev = "\
++    ${libdir}/libgfortran*.so \
++    ${libdir}/libgfortran.spec \
++    ${libdir}/libgfortran.la \
++    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/libgfortranbegin.* \
++    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/libcaf_single* \
++    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/finclude/ \
++"
++
++FILES_libssp-dev = "\
++    ${libdir}/libssp*.so \
++    ${libdir}/libssp*_nonshared.a \
++    ${libdir}/libssp*.la \
++    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/include/ssp \
++"
++
++FILES_libquadmath-dev = "\
++    ${libdir}/libquadmath*.so \
++    ${libdir}/libquadmath.la \
++    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/include/quadmath* \
++"
++
++FILES_libgomp-dev = "\
++    ${libdir}/libgomp*${SOLIBSDEV} \
++    ${libdir}/libgomp*.la \
++    ${libdir}/libgomp.spec \
++    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/include/omp.h \
+ "
 -- 
 2.7.4
 
