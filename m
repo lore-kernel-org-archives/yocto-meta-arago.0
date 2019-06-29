@@ -1,48 +1,48 @@
 Return-Path: <g-tammana@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 1A13E529FD
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id A3CE35297E
 	for <meta-arago@arago-project.org>;
-	Sat, 29 Jun 2019 04:39:01 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5T4cHHA087846
-	for <meta-arago@arago-project.org>; Fri, 28 Jun 2019 23:38:17 -0500
+	Sat, 29 Jun 2019 04:39:03 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5T4cJRk111090
+	for <meta-arago@arago-project.org>; Fri, 28 Jun 2019 23:38:19 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1561783097;
-	bh=erguH6nuh0ZQ38pueRTpaNaKLd7KUzL0FEwsblak/GA=;
+	s=ti-com-17Q1; t=1561783099;
+	bh=uc7qn4sKjWUQENEWjceYqbmYNnLYA0U3FfgI7ehW/Cs=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=X0+UylfxV2LtNVzArPdJp1LxnlszyQqY92bWD23WwxaighclWZGBClF0YC4xDAEUz
-	xUtzN82wDNqxEZQPECZfvegTlE6Dsk0G2PSLsU+JXX9t0iKHvLEMxkhELVBVqTUoV2
-	ayvLKOpK21bAcd3ZVfYBPWVJyoanxyrruVM/EJbw=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5T4cGGa089618
+	b=U9xo2Q0zBVyQbgBzo9vYC+GiK1ezCESzx7BLiW8K8YDEY6x7uWrapt+TILr42Tvm+
+	1jlTfur5qGqE0YHtBESBsWBc3JZlCBanridEXJ3gnRW1olHPTkm6ujUpGiz1i56ean
+	7fDIY6Qerd0t4XAGpGbPB7cAotmuRzLQR6QdgRMs=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5T4cIGC060852
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 28 Jun 2019 23:38:16 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 28 Jun 2019 23:38:19 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 28 Jun 2019 23:38:16 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 28 Jun 2019 23:38:18 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 28 Jun 2019 23:38:16 -0500
+	Frontend Transport; Fri, 28 Jun 2019 23:38:18 -0500
 Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
 	[128.247.22.53])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5T4cGWq081432;
-	Fri, 28 Jun 2019 23:38:16 -0500
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5T4cIaU100948;
+	Fri, 28 Jun 2019 23:38:18 -0500
 Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
 	[128.247.77.97])
 	by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id
-	x5T4cGm25487; Fri, 28 Jun 2019 23:38:16 -0500 (CDT)
+	x5T4cIm25528; Fri, 28 Jun 2019 23:38:18 -0500 (CDT)
 From: Gowtham Tammana <g-tammana@ti.com>
 To: <meta-arago@arago-project.org>, Denys Dmytriyenko <denys@ti.com>
-Date: Fri, 28 Jun 2019 23:39:53 -0500
-Message-ID: <20190629043954.7786-2-g-tammana@ti.com>
+Date: Fri, 28 Jun 2019 23:39:54 -0500
+Message-ID: <20190629043954.7786-3-g-tammana@ti.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190629043954.7786-1-g-tammana@ti.com>
 References: <20190629043954.7786-1-g-tammana@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud][PATCH 2/3] weston: Update gbm dependency to virtual
+Subject: [thud][PATCH 3/3] packagegroup-*-graphics: Change gbm to virtual provider
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,33 +55,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 29 Jun 2019 04:39:01 -0000
+X-List-Received-Date: Sat, 29 Jun 2019 04:39:04 -0000
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-gbm providers are different for different EVMs, update dependency to
-virtual provider.
-
 Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
 ---
- .../recipes-graphics/wayland/weston_5.0.0.bbappend            | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../packagegroup-arago-tisdk-graphics-sdk-target.bb             | 2 +-
+ .../packagegroups/packagegroup-arago-tisdk-graphics.bb          | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend
-index cc456b41..f622f670 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend
-@@ -1,8 +1,8 @@
- # When configured for fbdev compositor, make it the default
- PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
--PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev libgbm mtdev"
-+PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev virtual/libgbm mtdev"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
+index bc6215e8..cea4c7a2 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
+@@ -7,7 +7,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ inherit packagegroup
  
--PR_append = ".arago31"
-+PR_append = ".arago32"
+ GRAPHICS_RDEPENDS = "\
+-    libgbm-dev \
++    ${PREFERRED_PROVIDER_virtual/libgbm}-dev \
+     libdrm-dev \
+     wayland-dev \
+     weston-dev \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+index 6a603754..a44d2fc5 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+@@ -22,7 +22,7 @@ GRAPHICS_WAYLAND_append_k3 = "\
+ "
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
+ GRAPHICS_RDEPENDS = "\
+-    libgbm \
++    ${PREFERRED_PROVIDER_virtual/libgbm} \
+     ${PREFERRED_PROVIDER_virtual/egl} \
+     ${@bb.utils.contains('MACHINE_FEATURES','gpu','${PREFERRED_PROVIDER_virtual/gpudriver}','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','gpu','glmark2','',d)} \
 -- 
 2.22.0
 
