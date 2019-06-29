@@ -1,30 +1,46 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 73AD452995
+Return-Path: <g-tammana@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 96B6E5297E
 	for <meta-arago@arago-project.org>;
-	Fri, 28 Jun 2019 21:32:40 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3325940BB6;
-	Fri, 28 Jun 2019 21:31:56 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id sxMpuOOer9G1; Fri, 28 Jun 2019 21:31:56 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 69D2240BAC;
-	Fri, 28 Jun 2019 21:31:54 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 254CF170A91;
-	Fri, 28 Jun 2019 17:31:54 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Fri, 28 Jun 2019 17:31:52 -0400
-Message-Id: <1561757513-47688-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH 1/2] external-arm-toolchain: swap symlink for gcc-runtime packages
+	Sat, 29 Jun 2019 04:38:57 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x5T4cDMX087829
+	for <meta-arago@arago-project.org>; Fri, 28 Jun 2019 23:38:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1561783093;
+	bh=OB163peklx1G0md8t3/BGhN04k629/cG4B+gdW5oD6M=;
+	h=From:To:CC:Subject:Date;
+	b=jxsqfexu78edHpDCk4j/jK7GgSbtNobFt5YE7aOYNW85jh1mB2mguS5VR403JI7cn
+	K8rSssz05+Of1TcjZmuBoLFCAxAzZKkp6iwnTHONi1d3TnazeXMijiohpOIuCEd+Ny
+	vdXvgDcPYsV4b9wH1jWV0lyHmifrrbk99FQ4VfwQ=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x5T4cDA7129554
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 28 Jun 2019 23:38:13 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Fri, 28 Jun 2019 23:38:12 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Fri, 28 Jun 2019 23:38:12 -0500
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
+	[128.247.22.53])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x5T4cCie081330;
+	Fri, 28 Jun 2019 23:38:12 -0500
+Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
+	[128.247.77.97])
+	by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id
+	x5T4cBm25393; Fri, 28 Jun 2019 23:38:11 -0500 (CDT)
+From: Gowtham Tammana <g-tammana@ti.com>
+To: <meta-arago@arago-project.org>, Denys Dmytriyenko <denys@ti.com>
+Date: Fri, 28 Jun 2019 23:39:52 -0500
+Message-ID: <20190629043954.7786-1-g-tammana@ti.com>
+X-Mailer: git-send-email 2.22.0
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [thud][PATCH 1/3] arago-prefs: Specify gbm provider for J7
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,69 +53,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Jun 2019 21:32:41 -0000
+X-List-Received-Date: Sat, 29 Jun 2019 04:38:58 -0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Native gcc already has ${libdir}/gcc/${TARGET_SYS} and expects gcc-runtime to be there.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
 ---
- .../meta/external-arm-toolchain.bbappend           | 36 ++++++++++++++++++++--
- 1 file changed, 33 insertions(+), 3 deletions(-)
+ meta-arago-distro/conf/distro/include/arago-prefs.inc | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-index af9d6cd..a5d6329 100644
---- a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-+++ b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-@@ -8,8 +8,9 @@ do_install_append() {
+diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+index 939569c0..0f961322 100644
+--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
++++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+@@ -23,8 +23,12 @@ PREFERRED_PROVIDER_virtual/gpudriver_j7-evm = "ti-img-rogue-driver"
+ PREFERRED_PROVIDER_virtual/libgl = "mesa-gl"
  
- 	if [ ${EAT_TARGET_SYS} != ${ORIG_TARGET_SYS} ]; then
- 		ln -sf ${EAT_TARGET_SYS} ${D}${libdir}/${ORIG_TARGET_SYS}
--		ln -sf ${EAT_TARGET_SYS} ${D}${libdir}/gcc/${ORIG_TARGET_SYS}
- 		ln -sf ${EAT_TARGET_SYS} ${D}${includedir}/c++/${EAT_VER_GCC}/${ORIG_TARGET_SYS}
-+		mv ${D}${libdir}/gcc/${EAT_TARGET_SYS} ${D}${libdir}/gcc/${ORIG_TARGET_SYS}
-+		ln -sf ${ORIG_TARGET_SYS} ${D}${libdir}/gcc/${EAT_TARGET_SYS}
- 	fi
+ # GBM (Generic Buffer Management) preferences
+-PREFERRED_PROVIDER_libgbm = "libgbm"
+-PREFERRED_PROVIDER_libgbm-dev = "libgbm-dev"
++PREFERRED_PROVIDER_virtual/libgbm = "libgbm"
++PREFERRED_PROVIDER_virtual/libgbm-dev = "libgbm-dev"
++
++# J7 gbm provider
++PREFERRED_PROVIDER_virtual/libgbm_j7-evm = "ti-img-rogue-umlibs"
++PREFERRED_PROVIDER_virtual/libgbm-dev_j7-evm = "ti-img-rogue-umlibs-dev"
  
- 	ln -sf libatomic.so.1 ${D}${libdir}/libatomic.so
-@@ -22,6 +23,35 @@ do_install_append() {
- 	ln -sf libgfortran.so.5 ${D}${libdir}/libgfortran.so
- }
- 
--FILES_libgomp-dev += "\
--    ${libdir}/gcc/${ORIG_TARGET_SYS} \
-+FILES_libgcc-dev += "\
-+    ${libdir}/gcc/${TARGET_SYS} \
-+"
-+
-+FILES_libgfortran-dev = "\
-+    ${libdir}/libgfortran*.so \
-+    ${libdir}/libgfortran.spec \
-+    ${libdir}/libgfortran.la \
-+    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/libgfortranbegin.* \
-+    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/libcaf_single* \
-+    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/finclude/ \
-+"
-+
-+FILES_libssp-dev = "\
-+    ${libdir}/libssp*.so \
-+    ${libdir}/libssp*_nonshared.a \
-+    ${libdir}/libssp*.la \
-+    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/include/ssp \
-+"
-+
-+FILES_libquadmath-dev = "\
-+    ${libdir}/libquadmath*.so \
-+    ${libdir}/libquadmath.la \
-+    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/include/quadmath* \
-+"
-+
-+FILES_libgomp-dev = "\
-+    ${libdir}/libgomp*${SOLIBSDEV} \
-+    ${libdir}/libgomp*.la \
-+    ${libdir}/libgomp.spec \
-+    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/include/omp.h \
- "
+ # This is required when using keystone devices with graphical support
+ # such as Qt5
 -- 
-2.7.4
+2.22.0
 
 
