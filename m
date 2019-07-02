@@ -1,45 +1,48 @@
-Return-Path: <anandb@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id F1C95520E0
+Return-Path: <g-tammana@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id DE613520E0
 	for <meta-arago@arago-project.org>;
-	Tue,  2 Jul 2019 12:57:56 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x62CvBYF057783
-	for <meta-arago@arago-project.org>; Tue, 2 Jul 2019 07:57:11 -0500
+	Tue,  2 Jul 2019 13:10:20 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x62D9Zhj007661
+	for <meta-arago@arago-project.org>; Tue, 2 Jul 2019 08:09:35 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1562072231;
-	bh=7GjeryS0YRDWsD0jkvxdxxgcPsaHDUnGSE8lScj8L6A=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=YY51Z13My4zRnxjyHCqnxxjZu9M2EwEvr3MUXGJp17mAd+ZelYvi+UfBYOAWKJUJz
-	xP3755UkQlGVRVtHesBgv3hgQqAFi8E1qKt016XD519hpa686RUa1Hh5BbYvAYRy5A
-	l3e4gu2QiFxZyGpoI3CpegdadkmPr9reyFpLyaNE=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x62CvBL7042070
+	s=ti-com-17Q1; t=1562072975;
+	bh=bHgIUdUs6aCegKbuNTkHTA5vDzTg3qOBuc18MuV1+mQ=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=n6a6zD33A30Hb3KDDhtO9cu/ogpc50FZim3owNk5tmEZyVbDWshCpG8cjhg+FbYrX
+	J8O/7u0+QKh7cuVqp6YXxqa4DYvpk3tMXuqM1Tz51rk9/FYDz9eGixf7ugw5R5P7Ha
+	W5Ueukfnyr9Ko7TEjmQKt/+3K08C2ZrD97BH9KR8=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x62D9ZAQ101247
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 2 Jul 2019 07:57:11 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 2 Jul 2019 08:09:35 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 2 Jul 2019 07:57:11 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 2 Jul 2019 07:57:11 -0500
-Received: from [172.24.147.151] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x62Cv8vM048117;
-	Tue, 2 Jul 2019 07:57:09 -0500
-To: "Dmytriyenko, Denys" <denys@ti.com>, "Tammana, Gowtham" <g-tammana@ti.com>,
+	Tue, 2 Jul 2019 08:09:34 -0500
+Received: from DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11]) by
+	DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11%17]) with mapi id
+	15.01.1713.004; Tue, 2 Jul 2019 08:09:34 -0500
+From: "Tammana, Gowtham" <g-tammana@ti.com>
+To: "Balagopalakrishnan, Anand" <anandb@ti.com>, "Dmytriyenko, Denys"
+	<denys@ti.com>,
 	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: [meta-arago][thud][PATCH 1/3] arago-prefs: Specify gbm provider
+	for J7
+Thread-Index: AQHVLjR2YJRbOYoWDUeDdcD015LUpKa2gjsAgAEgeYD//6+PsA==
+Date: Tue, 2 Jul 2019 13:09:34 +0000
+Message-ID: <66757a6901794ace8df064dbe5c1cbab@ti.com>
 References: <20190629043954.7786-1-g-tammana@ti.com>
 	<01736aa0fb904ba99ccebbd22ca8d2d5@ti.com>
-From: Anand Balagopalakrishnan <anandb@ti.com>
-Message-ID: <2036ba68-d3a2-8000-6e95-51b08bc64669@ti.com>
-Date: Tue, 2 Jul 2019 18:27:05 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.2
+	<2036ba68-d3a2-8000-6e95-51b08bc64669@ti.com>
+In-Reply-To: <2036ba68-d3a2-8000-6e95-51b08bc64669@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.250.82.84]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-In-Reply-To: <01736aa0fb904ba99ccebbd22ca8d2d5@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Subject: Re: [thud][PATCH 1/3] arago-prefs: Specify gbm provider for J7
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -53,66 +56,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jul 2019 12:57:57 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Tue, 02 Jul 2019 13:10:21 -0000
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-We need to change kmscube, omapdrmtest, weston recipes to change DEPENDS 
-on virtual/libgbm instead of libgbm. Not sure if it has been posted.
-
-Regards,
-Anand
-
-On 02/07/19 1:14 AM, Dmytriyenko, Denys wrote:
-> ERROR: Nothing PROVIDES 'libgbm' (but /OE/arago-thud-next-build/sources/meta-arago/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb DEPENDS on or otherwise requires it)
-> libgbm was skipped: PREFERRED_PROVIDER_virtual/libgbm set to ti-img-rogue-umlibs, not libgbm
-> NOTE: Runtime target 'kmscube' is unbuildable, removing...
-> Missing or unbuildable dependency chain was: ['kmscube', 'libgbm']
-> 
-> 
->> -----Original Message-----
->> From: Tammana, Gowtham
->> Sent: Saturday, June 29, 2019 12:40 AM
->> To: meta-arago@arago-project.org; Dmytriyenko, Denys
->> Cc: Balagopalakrishnan, Anand; Ruei, Eric; Tammana, Gowtham
->> Subject: [meta-arago][thud][PATCH 1/3] arago-prefs: Specify gbm provider for
->> J7
->>
->> Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
->> ---
->>   meta-arago-distro/conf/distro/include/arago-prefs.inc | 8 ++++++--
->>   1 file changed, 6 insertions(+), 2 deletions(-)
->>
->> diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-
->> arago-distro/conf/distro/include/arago-prefs.inc
->> index 939569c0..0f961322 100644
->> --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
->> +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
->> @@ -23,8 +23,12 @@ PREFERRED_PROVIDER_virtual/gpudriver_j7-evm = "ti-
->> img-rogue-driver"
->>   PREFERRED_PROVIDER_virtual/libgl = "mesa-gl"
->>
->>   # GBM (Generic Buffer Management) preferences
->> -PREFERRED_PROVIDER_libgbm = "libgbm"
->> -PREFERRED_PROVIDER_libgbm-dev = "libgbm-dev"
->> +PREFERRED_PROVIDER_virtual/libgbm = "libgbm"
->> +PREFERRED_PROVIDER_virtual/libgbm-dev = "libgbm-dev"
->> +
->> +# J7 gbm provider
->> +PREFERRED_PROVIDER_virtual/libgbm_j7-evm = "ti-img-rogue-umlibs"
->> +PREFERRED_PROVIDER_virtual/libgbm-dev_j7-evm = "ti-img-rogue-umlibs-
->> dev"
->>
->>   # This is required when using keystone devices with graphical support
->>   # such as Qt5
->> --
->> 2.22.0
-> 
-
-
--- 
-
-Regards,
-Anand
+DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IEJhbGFnb3BhbGFrcmlzaG5h
+biwgQW5hbmQNCj5TZW50OiBUdWVzZGF5LCBKdWx5IDAyLCAyMDE5IDc6NTcgQU0NCj5UbzogRG15
+dHJpeWVua28sIERlbnlzOyBUYW1tYW5hLCBHb3d0aGFtOyBtZXRhLWFyYWdvQGFyYWdvLXByb2pl
+Y3Qub3JnDQo+Q2M6IFJ1ZWksIEVyaWMNCj5TdWJqZWN0OiBSZTogW21ldGEtYXJhZ29dW3RodWRd
+W1BBVENIIDEvM10gYXJhZ28tcHJlZnM6IFNwZWNpZnkgZ2JtIHByb3ZpZGVyDQo+Zm9yIEo3DQo+
+DQo+V2UgbmVlZCB0byBjaGFuZ2Uga21zY3ViZSwgb21hcGRybXRlc3QsIHdlc3RvbiByZWNpcGVz
+IHRvIGNoYW5nZSBERVBFTkRTDQo+b24gdmlydHVhbC9saWJnYm0gaW5zdGVhZCBvZiBsaWJnYm0u
+IE5vdCBzdXJlIGlmIGl0IGhhcyBiZWVuIHBvc3RlZC4NCg0KaHR0cDovL2FyYWdvLXByb2plY3Qu
+b3JnL3BpcGVybWFpbC9tZXRhLWFyYWdvLzIwMTktSnVseS8wMTE2MTMuaHRtbA0KDQpUaGFua3Ms
+DQpHb3d0aGFtDQoNCj4NCj5PbiAwMi8wNy8xOSAxOjE0IEFNLCBEbXl0cml5ZW5rbywgRGVueXMg
+d3JvdGU6DQo+PiBFUlJPUjogTm90aGluZyBQUk9WSURFUyAnbGliZ2JtJyAoYnV0IC9PRS9hcmFn
+by10aHVkLW5leHQtDQo+YnVpbGQvc291cmNlcy9tZXRhLWFyYWdvL21ldGEtYXJhZ28tZXh0cmFz
+L3JlY2lwZXMtDQo+Z3JhcGhpY3Mva21zY3ViZS9rbXNjdWJlXzEuMC4wLmJiIERFUEVORFMgb24g
+b3Igb3RoZXJ3aXNlIHJlcXVpcmVzIGl0KQ0KPj4gbGliZ2JtIHdhcyBza2lwcGVkOiBQUkVGRVJS
+RURfUFJPVklERVJfdmlydHVhbC9saWJnYm0gc2V0IHRvIHRpLWltZy1yb2d1ZS0NCj51bWxpYnMs
+IG5vdCBsaWJnYm0NCj4+IE5PVEU6IFJ1bnRpbWUgdGFyZ2V0ICdrbXNjdWJlJyBpcyB1bmJ1aWxk
+YWJsZSwgcmVtb3ZpbmcuLi4NCj4+IE1pc3Npbmcgb3IgdW5idWlsZGFibGUgZGVwZW5kZW5jeSBj
+aGFpbiB3YXM6IFsna21zY3ViZScsICdsaWJnYm0nXQ0KPj4NCj4+DQo+Pj4gLS0tLS1PcmlnaW5h
+bCBNZXNzYWdlLS0tLS0NCj4+PiBGcm9tOiBUYW1tYW5hLCBHb3d0aGFtDQo+Pj4gU2VudDogU2F0
+dXJkYXksIEp1bmUgMjksIDIwMTkgMTI6NDAgQU0NCj4+PiBUbzogbWV0YS1hcmFnb0BhcmFnby1w
+cm9qZWN0Lm9yZzsgRG15dHJpeWVua28sIERlbnlzDQo+Pj4gQ2M6IEJhbGFnb3BhbGFrcmlzaG5h
+biwgQW5hbmQ7IFJ1ZWksIEVyaWM7IFRhbW1hbmEsIEdvd3RoYW0NCj4+PiBTdWJqZWN0OiBbbWV0
+YS1hcmFnb11bdGh1ZF1bUEFUQ0ggMS8zXSBhcmFnby1wcmVmczogU3BlY2lmeSBnYm0gcHJvdmlk
+ZXINCj5mb3INCj4+PiBKNw0KPj4+DQo+Pj4gU2lnbmVkLW9mZi1ieTogR293dGhhbSBUYW1tYW5h
+IDxnLXRhbW1hbmFAdGkuY29tPg0KPj4+IC0tLQ0KPj4+ICAgbWV0YS1hcmFnby1kaXN0cm8vY29u
+Zi9kaXN0cm8vaW5jbHVkZS9hcmFnby1wcmVmcy5pbmMgfCA4ICsrKysrKy0tDQo+Pj4gICAxIGZp
+bGUgY2hhbmdlZCwgNiBpbnNlcnRpb25zKCspLCAyIGRlbGV0aW9ucygtKQ0KPj4+DQo+Pj4gZGlm
+ZiAtLWdpdCBhL21ldGEtYXJhZ28tZGlzdHJvL2NvbmYvZGlzdHJvL2luY2x1ZGUvYXJhZ28tcHJl
+ZnMuaW5jIGIvbWV0YS0NCj4+PiBhcmFnby1kaXN0cm8vY29uZi9kaXN0cm8vaW5jbHVkZS9hcmFn
+by1wcmVmcy5pbmMNCj4+PiBpbmRleCA5Mzk1NjljMC4uMGY5NjEzMjIgMTAwNjQ0DQo+Pj4gLS0t
+IGEvbWV0YS1hcmFnby1kaXN0cm8vY29uZi9kaXN0cm8vaW5jbHVkZS9hcmFnby1wcmVmcy5pbmMN
+Cj4+PiArKysgYi9tZXRhLWFyYWdvLWRpc3Ryby9jb25mL2Rpc3Ryby9pbmNsdWRlL2FyYWdvLXBy
+ZWZzLmluYw0KPj4+IEBAIC0yMyw4ICsyMywxMiBAQCBQUkVGRVJSRURfUFJPVklERVJfdmlydHVh
+bC9ncHVkcml2ZXJfajctZXZtID0gInRpLQ0KPj4+IGltZy1yb2d1ZS1kcml2ZXIiDQo+Pj4gICBQ
+UkVGRVJSRURfUFJPVklERVJfdmlydHVhbC9saWJnbCA9ICJtZXNhLWdsIg0KPj4+DQo+Pj4gICAj
+IEdCTSAoR2VuZXJpYyBCdWZmZXIgTWFuYWdlbWVudCkgcHJlZmVyZW5jZXMNCj4+PiAtUFJFRkVS
+UkVEX1BST1ZJREVSX2xpYmdibSA9ICJsaWJnYm0iDQo+Pj4gLVBSRUZFUlJFRF9QUk9WSURFUl9s
+aWJnYm0tZGV2ID0gImxpYmdibS1kZXYiDQo+Pj4gK1BSRUZFUlJFRF9QUk9WSURFUl92aXJ0dWFs
+L2xpYmdibSA9ICJsaWJnYm0iDQo+Pj4gK1BSRUZFUlJFRF9QUk9WSURFUl92aXJ0dWFsL2xpYmdi
+bS1kZXYgPSAibGliZ2JtLWRldiINCj4+PiArDQo+Pj4gKyMgSjcgZ2JtIHByb3ZpZGVyDQo+Pj4g
+K1BSRUZFUlJFRF9QUk9WSURFUl92aXJ0dWFsL2xpYmdibV9qNy1ldm0gPSAidGktaW1nLXJvZ3Vl
+LXVtbGlicyINCj4+PiArUFJFRkVSUkVEX1BST1ZJREVSX3ZpcnR1YWwvbGliZ2JtLWRldl9qNy1l
+dm0gPSAidGktaW1nLXJvZ3VlLXVtbGlicy0NCj4+PiBkZXYiDQo+Pj4NCj4+PiAgICMgVGhpcyBp
+cyByZXF1aXJlZCB3aGVuIHVzaW5nIGtleXN0b25lIGRldmljZXMgd2l0aCBncmFwaGljYWwgc3Vw
+cG9ydA0KPj4+ICAgIyBzdWNoIGFzIFF0NQ0KPj4+IC0tDQo+Pj4gMi4yMi4wDQo+Pg0KPg0KPg0K
+Pi0tDQo+DQo+UmVnYXJkcywNCj5BbmFuZA0K
 
