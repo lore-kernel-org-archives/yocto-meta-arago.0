@@ -1,46 +1,42 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 505C652998
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 0ED33529C3
 	for <meta-arago@arago-project.org>;
-	Wed,  3 Jul 2019 19:54:00 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x63JrEYM115117
-	for <meta-arago@arago-project.org>; Wed, 3 Jul 2019 14:53:14 -0500
+	Fri,  5 Jul 2019 18:53:12 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x65IqQAC107464
+	for <meta-arago@arago-project.org>; Fri, 5 Jul 2019 13:52:26 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1562183594;
-	bh=ZoZdYR4w3HnY/Ghds/yWYauCJowBIWAWIEpU90/KrH0=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=hAMcWKrdI2wU32D7Z8XTOvjvlwsJsgqQFZI3v/Fs5FbOAzJ4BFxk0fsnPQtolzku3
-	kwHc2ZWiWFFDwWgY5Vb7HIB5xyUGRJrSFnzcMBP1B0TEwYUSUtvKXINbsF2hemdf2M
-	qcfHOfZF6WvC/i6olr6o3jOOrogHm7i/whhr7tUw=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x63JrEa1076878
+	s=ti-com-17Q1; t=1562352746;
+	bh=vK/DKTqbHQgkArOoizDsTo8nym1sFpvQ++XEbo6/Le4=;
+	h=From:To:CC:Subject:Date;
+	b=v8OVyFJNKeXO/o36gc/3WwqCTEPHlD7uDGrzlrNsWowdhoppsxj+6d3DJnm6BSVZ5
+	o7Dt/GxRk4k0LGIJwtRTBp1vu8ZVWo9NN+a0n9sQ92QhZsFnbhvGIovXC4bjSNZEnQ
+	ZcHz55uIlKqN9O0/VQPfc1ChmmmxCCYb9jfsh474=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x65IqQNM016306
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 3 Jul 2019 14:53:14 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 5 Jul 2019 13:52:26 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 3 Jul 2019 14:53:14 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 5 Jul 2019 13:52:26 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 3 Jul 2019 14:53:14 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x63JrDLR117746;
-	Wed, 3 Jul 2019 14:53:14 -0500
-To: Denys Dmytriyenko <denys@ti.com>
-References: <1562175997-5821-1-git-send-email-j-stiffler@ti.com>
-	<20190703194141.GA18265@beryl>
+	Frontend Transport; Fri, 5 Jul 2019 13:52:26 -0500
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x65IqQXd095207;
+	Fri, 5 Jul 2019 13:52:26 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <8776f751-82bc-12e7-f820-1d4c22789e21@ti.com>
-Date: Wed, 3 Jul 2019 15:53:11 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.2
+To: <meta-arago@arago-project.org>
+Date: Fri, 5 Jul 2019 14:35:46 -0400
+Message-ID: <1562351746-27116-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <20190703194141.GA18265@beryl>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [master/thud][PATCH] ti-sdk-makefile: add sysroot option to CC
+Subject: [master/thud/ti2019.01][PATH] ti-tisdk-makefile: correct internal toolchain path
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,118 +49,65 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jul 2019 19:54:00 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Fri, 05 Jul 2019 18:53:13 -0000
+Content-Type: text/plain
 
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../ti-tisdk-makefile/ti-tisdk-makefile/Rules.make            |  2 +-
+ .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb  | 11 ++++++++++-
+ 2 files changed, 11 insertions(+), 2 deletions(-)
 
-On 7/3/2019 3:41 PM, Denys Dmytriyenko wrote:
-> On Wed, Jul 03, 2019 at 01:46:37PM -0400, Jacob Stiffler wrote:
->> * When using the OE toolchain in the devkit, the sysroot option is
->>    required, so add this to the default CC in Rules.make
->> * Also, this does not have any negative impact when the external
->>    toolchain is packaged in the devkit.
->> * Update the fragments which break without the sysroot option.
->>
->> See 31702588e02cdcf466b2b6f153ce9604e3cd105a
->>
->> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
->> ---
->>   .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_am-sysinfo             | 2 +-
->>   .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_arm-benchmarks         | 2 +-
->>   .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_oprofile-example       | 2 +-
->>   .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make        | 2 +-
->>   .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb            | 2 +-
->>   5 files changed, 5 insertions(+), 5 deletions(-)
->>
->> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_am-sysinfo b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_am-sysinfo
->> index 445dd10..e198350 100644
->> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_am-sysinfo
->> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_am-sysinfo
->> @@ -3,7 +3,7 @@ am-sysinfo:
->>   	@echo =============================
->>   	@echo    Building AM Sysinfo
->>   	@echo =============================
->> -	@cd example-applications; cd `find . -name "*am-sysinfo*"`; make
->> +	@cd example-applications; cd `find . -name "*am-sysinfo*"`; make CC="$(CC)"
->>   
->>   am-sysinfo_clean:
->>   	@echo =============================
->> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_arm-benchmarks b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_arm-benchmarks
->> index 0447ea5..9a1f8aa 100644
->> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_arm-benchmarks
->> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_arm-benchmarks
->> @@ -3,7 +3,7 @@ arm-benchmarks:
->>   	@echo =============================
->>   	@echo    Building ARM Benchmarks
->>   	@echo =============================
->> -	@cd example-applications; cd `find . -name "*arm-benchmarks*"`; make
->> +	@cd example-applications; cd `find . -name "*arm-benchmarks*"`; make CC="$(CC)"
->>   
->>   arm-benchmarks_clean:
->>   	@echo =============================
->> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_oprofile-example b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_oprofile-example
->> index c7a4385..1e4793b 100644
->> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_oprofile-example
->> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_oprofile-example
->> @@ -3,7 +3,7 @@ oprofile-example:
->>   	@echo =============================
->>   	@echo    Building OProfile Example
->>   	@echo =============================
->> -	@cd example-applications; cd `find . -name "*oprofile-example*"`; make
->> +	@cd example-applications; cd `find . -name "*oprofile-example*"`; make CC="$(CC)"
->>   
->>   oprofile-example_clean:
->>   	@echo =============================
->> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
->> index fad8045..bfee2fc 100644
->> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
->> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
->> @@ -25,7 +25,7 @@ export CROSS_COMPILE=$(LINUX_DEVKIT_PATH)/sysroots/__SDKMACHINE__-arago-linux/us
->>   
->>   #Default CC value to be used when cross compiling.  This is so that the
->>   #GNU Make default of "cc" is not used to point to the host compiler
->> -export CC=$(CROSS_COMPILE)gcc
->> +export CC=$(CROSS_COMPILE)gcc --sysroot=$(SDK_PATH_TARGET)
-> I see you overwrite CC here - do you use environment-setup script?
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
+index bfee2fc..dcdd75f 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
+@@ -21,7 +21,7 @@ DESTDIR=__DESTDIR__
+ export LINUX_DEVKIT_PATH=$(TI_SDK_PATH)/linux-devkit
+ 
+ #Cross compiler prefix
+-export CROSS_COMPILE=$(LINUX_DEVKIT_PATH)/sysroots/__SDKMACHINE__-arago-linux/usr/bin/__TOOLCHAIN_PREFIX__
++export CROSS_COMPILE=$(LINUX_DEVKIT_PATH)/sysroots/__SDKMACHINE__-arago-linux__TOOLCHAIN_BINDIR__/__TOOLCHAIN_PREFIX__
+ 
+ #Default CC value to be used when cross compiling.  This is so that the
+ #GNU Make default of "cc" is not used to point to the host compiler
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index 2601f80..2d10f4c 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -54,7 +54,7 @@ SRC_URI = "\
+     file://Makefile_pdm-anomaly-detection \
+ "
+ 
+-PR = "r97"
++PR = "r98"
+ 
+ MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
+                         refresh-screen \
+@@ -228,6 +228,9 @@ AMSDK_DEFCONFIG = "singlecore-omap2plus_defconfig"
+ 
+ DEFCONFIG := "${@oe.utils.conditional('ARAGO_BRAND','amsdk','${AMSDK_DEFCONFIG}','${DEFCONFIG}',d)}"
+ 
++EXTERNAL_TOOLCHAIN_BINDIR = "/usr/bin"
++INTERNAL_TOOLCHAIN_BINDIR = "/usr/bin/${TARGET_ARCH}${TARGET_VENDOR}-${TARGET_OS}"
++
+ # This step will stitch together the final Makefile based on the supported
+ # make targets.
+ do_install () {
+@@ -302,6 +305,12 @@ do_install () {
+     sed -i -e "s/__CFLAGS__/${TARGET_CC_ARCH}/" ${D}/Rules.make
+     sed -i -e "s/__SDKMACHINE__/${SDKMACHINE}/" ${D}/Rules.make
+ 
++    if [ "${TOOLCHAIN_TYPE}" = "internal" ]; then
++        sed -i -e "s|__TOOLCHAIN_BINDIR__|${INTERNAL_TOOLCHAIN_BINDIR}|" ${D}/Rules.make
++    else
++        sed -i -e "s|__TOOLCHAIN_BINDIR__|${EXTERNAL_TOOLCHAIN_BINDIR}|" ${D}/Rules.make
++    fi
++
+ }
+ 
+ K3_UBOOT_MACHINE_R5 = ""
+-- 
+2.7.4
 
-
-Some targets do, some do not.
-
-
->>   #Location of environment-setup file
->>   export ENV_SETUP=$(LINUX_DEVKIT_PATH)/environment-setup
-> And it's listed here. Shouldn't CC come from this script instead?
->
-> BTW, defining just CC may not be enough for some cases - CPP, CXX, LD, etc.
-> are also needed and set in there. I wonder if there's too much customization
-> going on in the tisdk-makefile...
-
-
-Yeah, there is a long history here. Originally, I don't think any 
-targets were using the environment-setup script.
-
-
->
->> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
->> index 87f7150..9131a71 100644
->> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
->> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
->> @@ -54,7 +54,7 @@ SRC_URI = "\
->>       file://Makefile_pdm-anomaly-detection \
->>   "
->>   
->> -PR = "r96"
->> +PR = "r97"
->>   
->>   MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
->>                           refresh-screen \
->> -- 
->> 2.7.4
->>
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
