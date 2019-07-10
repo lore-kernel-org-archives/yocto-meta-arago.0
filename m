@@ -1,30 +1,44 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 8DF8152976
+Return-Path: <e-ruei1@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id C169652976
 	for <meta-arago@arago-project.org>;
-	Wed, 10 Jul 2019 15:49:05 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id D28DA40BC9;
-	Wed, 10 Jul 2019 15:48:17 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id uTaHv8O0RTzS; Wed, 10 Jul 2019 15:48:17 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id BC21B40BA5;
-	Wed, 10 Jul 2019 15:48:16 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 76113170E5C;
-	Wed, 10 Jul 2019 11:48:16 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Wed, 10 Jul 2019 11:48:16 -0400
-Message-Id: <1562773696-11754-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH v2] arago-core-tisdk-image, matrix: switch off "server" mode rootfs for J7
+	Wed, 10 Jul 2019 17:57:33 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6AHuk08054907
+	for <meta-arago@arago-project.org>; Wed, 10 Jul 2019 12:56:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1562781406;
+	bh=Dn3MmuvE2uPNwWm6+OULiLuU6vTboWTtc5wXmJdf/rM=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=TdRtCUWYk5+l6YSSlhdW3TZ2Wbjg9BFiCvSRQwDVS4P4IySN688FR/f+aaAYrYEqZ
+	l3naEN8XJaMHMIDytoZzNd15yf//f4NN02ohnDIhMvjqTv6Gw5nYU6M7GztKrAfx6U
+	7RF/1dCUEopQdwTDKWwoxLlpOU/DfjGJcFuUZUz8=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6AHukfS078899
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Wed, 10 Jul 2019 12:56:46 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Wed, 10 Jul 2019 12:56:45 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Wed, 10 Jul 2019 12:56:45 -0500
+Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6AHuiqd090359
+	for <meta-arago@arago-project.org>; Wed, 10 Jul 2019 12:56:45 -0500
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 10 Jul 2019 13:55:45 -0400
+Message-ID: <20190710175545.20003-2-e-ruei1@ti.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190710175545.20003-1-e-ruei1@ti.com>
+References: <20190710175545.20003-1-e-ruei1@ti.com>
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH 2/2] Re-enable wayland-ivi-entension
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,61 +51,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Jul 2019 15:49:05 -0000
+X-List-Received-Date: Wed, 10 Jul 2019 17:57:34 -0000
+Content-Type: text/plain
 
-Now, that display and graphics limitations are resolved, J7 can build full
-rootfs and devkit.
+The wayland-ivi-extension has been upgraded to 2.2.0 to be compatible with
+weston 5.0.0 and therefore can be re-enabled.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
-v2 - fix typo in description
+ .../packagegroups/packagegroup-arago-tisdk-graphics.bb          | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc | 4 ----
- meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb          | 1 -
- 2 files changed, 5 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-index 4b1a338..bff7a55 100644
---- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-image.inc
-@@ -40,7 +40,6 @@ TARGET_IMAGES_append_dra7xx-evm = " netboot-initrd"
- # Some devices do not support display and use a server image instead
- TARGET_IMAGES_keystone = "arago-base-tisdk-image tisdk-server-rootfs-image arago-tiny-image"
- TARGET_IMAGES_omapl138 = "arago-base-tisdk-image tisdk-server-rootfs-image arago-tiny-image"
--TARGET_IMAGES_j7-evm = "arago-base-tisdk-image tisdk-server-rootfs-image arago-tiny-image"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+index cb7f68bc..003a9d9b 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+@@ -4,11 +4,11 @@ PR = "r23"
  
- TISDK_TOOLCHAIN = "meta-toolchain-arago-tisdk"
- TOOLCHAIN_SUFFIX = "-tisdk"
-@@ -49,8 +48,6 @@ TISDK_TOOLCHAIN_keystone = "meta-toolchain-arago-tisdk-server"
- TOOLCHAIN_SUFFIX_keystone = "-tisdk-server"
- TISDK_TOOLCHAIN_omapl138 = "meta-toolchain-arago-tisdk-server"
- TOOLCHAIN_SUFFIX_omapl138 = "-tisdk-server"
--TISDK_TOOLCHAIN_j7-evm = "meta-toolchain-arago-tisdk-server"
--TOOLCHAIN_SUFFIX_j7-evm = "-tisdk-server"
+ inherit packagegroup
  
- IMAGE_INSTALL_QT = "\
-     packagegroup-arago-tisdk-qte-sdk-host \
-@@ -58,7 +55,6 @@ IMAGE_INSTALL_QT = "\
+-#    wayland-ivi-extension
+ GRAPHICS_WAYLAND = "\
+     weston \
+     weston-init \
+     weston-examples \
++    wayland-ivi-extension \
+ "
  
- IMAGE_INSTALL_QT_keystone = ""
- IMAGE_INSTALL_QT_omapl138 = ""
--IMAGE_INSTALL_QT_j7-evm = ""
- 
- IMAGE_INSTALL = "\
-     packagegroup-arago-tisdk-addons-sdk-host \
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-index e14205a..82f9d07 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-@@ -58,7 +58,6 @@ do_install(){
- GUIDEPS = "matrix-gui-browser refresh-screen"
- GUIDEPS_keystone = ""
- GUIDEPS_omapl138 = ""
--GUIDEPS_j7-evm = ""
- 
- RDEPENDS_${PN} += "matrix-lighttpd-config lighttpd lighttpd-module-cgi lighttpd-module-compress lighttpd-module-expire php php-cgi php-cli ${GUIDEPS}"
- 
+ GRAPHICS_WAYLAND_append_omap-a15 = "\
 -- 
-2.7.4
+2.17.1
 
 
