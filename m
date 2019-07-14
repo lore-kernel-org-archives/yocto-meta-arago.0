@@ -1,42 +1,42 @@
 Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
-	[209.85.208.170])
-	by arago-project.org (Postfix) with ESMTPS id 1AFD252972
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
+	[209.85.208.174])
+	by arago-project.org (Postfix) with ESMTPS id 6CE1952092
 	for <meta-arago@arago-project.org>;
-	Sun, 14 Jul 2019 00:08:51 +0000 (UTC)
-Received: by mail-lj1-f170.google.com with SMTP id v24so12712613ljg.13
+	Sun, 14 Jul 2019 00:34:23 +0000 (UTC)
+Received: by mail-lj1-f174.google.com with SMTP id p17so12755774ljg.1
 	for <meta-arago@arago-project.org>;
-	Sat, 13 Jul 2019 17:08:02 -0700 (PDT)
+	Sat, 13 Jul 2019 17:33:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=DEXYll4E0CIHaeTkPuCQA2D3hmc1oTcMwMpCV6LC7GM=;
-	b=UPIadijK7C4Oj78pTdsZ+HzT4mpn0QjEqE3J3KKoiu2t86iPrajxmgYc6+oIOq+fiB
-	yNeBJQFfvmDyvnLYrvTh3hci2iJeKlpwlIRyuofCoGLjX++QBwhYnoDRad290XFjYOk1
-	LIEdd4Zk/+h2F7L/nsvfpszKJAAoYbcsZ6QztgTK72MmWWDX4YpSGQD/hcrIbLjjCpbp
-	vNEYN/SUm1W19cve7tci/Tobey0xzkZk4q45cUAALJNNOpxBCIYMIo89aWgCeT5JFppk
-	W7Qeovr4yvFlx5t54ryi1/KL+83VLvZuU/PQxl2wT/NWS4rGXM4X0Sep2AjBzjrzvHW0
-	EykQ==
+	bh=zb7WLkOYd84C7y/0xyW3uqSeMYO+ta8LGcP6w39jDo0=;
+	b=o7MSnOIS5lZ3LSV1LH/h5vIl1Qh+sCPO9xTPA8pIBW2WRzCU+fjmmGxOpyC+pdUCDo
+	W3OvjC1x3HIUNPOoOzCM4HeOwW65hcnmtmjjFya1+QQdSn2i6SE13N9T1VUSQ9KM9oXx
+	NuJcNrtCAB3AXDF8/dMuBhiGjPzEzoT+lxs6IYH9JgY84zYojNHXwjPJpQdoc65mL948
+	Thw8MMZc5BJB1LZa1SkjGrX8R8vWSwEPSUsYBWJn2JExnW1h/VowFTtHzoUb2XrA7rlN
+	QKhhoQuq3Je2eB0YwXG7H5MSpnrdBHJhtJDoAju0+844vO6g+bo2S0miBZXMd34TPxIa
+	wVQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=DEXYll4E0CIHaeTkPuCQA2D3hmc1oTcMwMpCV6LC7GM=;
-	b=t08OZvJYEFqt/ZLSg33qkNrf/B0ZcqvVpOPfLoqlOAuPgx+AL7VemmQ0hrHx+BPXk2
-	95ZT51DhgsCEwseGyqS0To8tNMwVcj7Oj3fG2Zi/dNAsgd6g+xfGTkH2urjrX+zRHahD
-	YTwOqGjFUy8jvTmVGVEdylPvFNbTMt5TRFWTbnrYrvkbQEOS71Zwjb4tw1mzMJr9rHua
-	lgLuR3HIOIktUyUDuUPoCJJ108Vtu/hlAX2OyLgYheSvB0/g8Z7amFoIkbRRemsDtvhB
-	cagoaQcco8vaKKwaq/3cK0X+8AhSZGGdjeuFNUi161/0EXn09IJTMk6pg+lledtIdM/j
-	20WA==
-X-Gm-Message-State: APjAAAW/I1wKmU2EQhWrIerI6LWV0FodIqDxQp9t/iV2zF8VW/KIuxI2
-	mLPiUpaCin9fn1mc8L6L8po7UbvH1Dtr7oKozw8VFOlq
-X-Google-Smtp-Source: APXvYqwr+1Y19Q4B8aF6TuyRpp13qK8MGlRNhHvk5xTaIhC4oeP6wggL/NDWgNuiXeQK/ahFhWVa17L/M6wX8Meezl4=
-X-Received: by 2002:a2e:96c3:: with SMTP id d3mr9819627ljj.68.1563062881300;
-	Sat, 13 Jul 2019 17:08:01 -0700 (PDT)
+	bh=zb7WLkOYd84C7y/0xyW3uqSeMYO+ta8LGcP6w39jDo0=;
+	b=EwBLX91jfCHmBJarNE5mvisT0aCcb8/nCYtX11LaqIHnAR+IDvVz2396ojRuklEexW
+	VyrPqmdG+rWHKSmLFnlqQRg56g592LiJJlnsMU+fWJcgKd065pdHcLSTHoAhdM4HmM0N
+	5UktAmCfYFQuT/Kx/8V+qSfi7cu5Fd+d14PS1rsSKScLfoyaDGIxs4f/6FDIAD00w7jC
+	GxZlagABRTuNrwk6dad0sSi/DEh+ILhFrsbibV2ev4vfQbiRCMMXCV9VA+A3BdR/8WN/
+	KW8ZXIJUBm4y4oEDvykzIbWU4+1HRmqKrkXMiYq3LA4Uqqb/SvjbJCfNVyU6gAKFIz7d
+	RJ6A==
+X-Gm-Message-State: APjAAAUvCaeXlKXg3qJ77OkCj9/gYUCWXg9VXYFtEx10Nu8g+n09JGez
+	Oa2zvN65n3wAKAd6bTAfSDUrhZNjaJtDV7mroQg=
+X-Google-Smtp-Source: APXvYqxWsY0P+aIxut70ROWrj3EoViGn8/I+PHWih3efFKkxY7tT2phBK2krxs9Mt1rJF8OwK4A9NRaj2M89QdS/GrU=
+X-Received: by 2002:a2e:8613:: with SMTP id a19mr9698645lji.163.1563064413984; 
+	Sat, 13 Jul 2019 17:33:33 -0700 (PDT)
 MIME-Version: 1.0
 From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Sun, 14 Jul 2019 12:07:50 +1200
-Message-ID: <CADySD0F=GohTdO7HQJvOgFhW2zTfChCHrYwR2KRWSRQpU4bZnw@mail.gmail.com>
-To: meta-arago@arago-project.org
-Subject: qtbase patch task warning in thud branch
+Date: Sun, 14 Jul 2019 12:33:22 +1200
+Message-ID: <CADySD0E=Z5Oxk4kTsySokmS+FzakEydwg6eOM8U=tVDt2NCa_g@mail.gmail.com>
+To: meta-ti@yoctoproject.org, meta-arago@arago-project.org
+Subject: Qt configuration for AM335x-EVM
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,39 +49,156 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 14 Jul 2019 00:08:52 -0000
+X-List-Received-Date: Sun, 14 Jul 2019 00:34:24 -0000
 Content-Type: text/plain; charset="UTF-8"
 
 Hi,
 
-When building qtbase for am335x-evm in thud branch, this warning is comes:
+I trying to get my head around correct Qt configuration for am335x-evm
+without support for X11 and Wayland.
 
-WARNING: qtbase-5.11.3+gitAUTOINC+08de243eaa-r0.arago16 do_patch:
-Some of the context lines in patches were ignored. This can lead to
-incorrectly applied patches.
-The context lines in the patches can be updated with devtool:
+I am trying to build a custom image based upon arago distro, thud branch.
 
-    devtool modify <recipe>
-    devtool finish --force-patch-refresh <recipe> <layer_path>
+Below is my qtbase package config:
+bitbake -e qtbase | grep "^PACKAGECONFIG_CONFARGS="
+PACKAGECONFIG_CONFARGS=" -accessibility -no-cups -dbus -no-directfb
+-no-eglfs -evdev -nomake examples -no-fontconfig -qt-freetype -gbm
+-no-feature-getentropy -gif -opengl es2 -eglfs -no-glib -no-gtk
+-qt-harfbuzz -no-ico -no-iconv -no-icu -no-journald -system-libjpeg
+-kms -libinput -system-libpng -no-libproxy -make libs -no-linuxfb
+-no-mtdev -openssl -qt-pcre -release -no-sm -no-sql-db2 -no-sql-ibase
+-no-sql-mysql -no-sql-oci -no-sql-odbc -no-sql-psql -no-sql-sqlite
+-no-sql-sqlite2 -no-sql-tds -shared -nomake tests -make tools
+-no-tslib -libudev -no-widgets -no-xcb -no-xinput2 -no-xkb
+-no-xkbcommon -no-xkbcommon-evdev -system-zlib"
 
-Then the updated patches and the source tree (in devtool's workspace)
-should be reviewed to make sure the patches apply in the correct place
-and don't introduce duplicate lines (which can, and does happen
-when some of the context is ignored). Further information:
-http://lists.openembedded.org/pipermail/openembedded-core/2018-March/148675.html
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=10450
-Details:
-Applying patch 0002-animatedtiles-Add-exit-button-for-non-window-environ.patch
-patching file examples/widgets/animation/animatedtiles/animatedtiles.qrc
-patching file examples/widgets/animation/animatedtiles/main.cpp
-Hunk #1 succeeded at 109 (offset 12 lines).
-Hunk #2 succeeded at 139 with fuzz 2 (offset 12 lines).
-Hunk #3 succeeded at 175 (offset 12 lines).
-Hunk #4 succeeded at 260 with fuzz 1 (offset 12 lines).
+Is this correct? Do I have to add "kms gbm"  even if QPA backend is EGLFS?
 
-Now at patch 0002-animatedtiles-Add-exit-button-for-non-window-environ.patch
+Below is the configuration summary from configure task:
 
-Is there a new patch with a fix?
+Configure summary:
+
+Building on: linux-oe-g++ (arm, CPU features: neon)
+Building for: linux-oe-g++ (arm, CPU features: neon)
+Configuration: cross_compile compile_examples enable_new_dtags
+largefile neon silent shared release c++11 c++14 c++1z concurrent dbus
+reduce_exports stl no-widgets
+Build options:
+  Mode ................................... release
+  Optimize release build for size ........ no
+  Building shared libraries .............. yes
+  Using C++ standard ..................... C++1z
+  Using ccache ........................... no
+  Using gold linker ...................... no
+  Using new DTAGS ........................ yes
+  Using precompiled headers .............. no
+  Using LTCG ............................. no
+  Target compiler supports:
+    NEON ................................. yes
+  Build parts ............................ libs tools
+Qt modules and options:
+  Qt Concurrent .......................... yes
+  Qt D-Bus ............................... yes
+  Qt D-Bus directly linked to libdbus .... yes
+  Qt Gui ................................. yes
+  Qt Network ............................. yes
+  Qt Sql ................................. yes
+  Qt Testlib ............................. yes
+  Qt Widgets ............................. no
+  Qt Xml ................................. yes
+Support enabled for:
+  Using pkg-config ....................... yes
+  udev ................................... yes
+  Using system zlib ...................... yes
+Qt Core:
+  DoubleConversion ....................... yes
+    Using system DoubleConversion ........ no
+  GLib ................................... no
+  iconv .................................. no
+  ICU .................................... no
+  Tracing backend ........................ <none>
+  Logging backends:
+    journald ............................. no
+    syslog ............................... no
+    slog2 ................................ no
+  Using system PCRE2 ..................... no
+Qt Network:
+  getifaddrs() ........................... yes
+  IPv6 ifname ............................ yes
+  libproxy ............................... no
+  Linux AF_NETLINK ....................... yes
+  OpenSSL ................................ yes
+    Qt directly linked to OpenSSL ........ no
+  OpenSSL 1.1 ............................ yes
+  SCTP ................................... no
+  Use system proxies ..................... yes
+Qt Gui:
+  Accessibility .......................... yes
+  FreeType ............................... yes
+    Using system FreeType ................ no
+  HarfBuzz ............................... yes
+    Using system HarfBuzz ................ no
+  Fontconfig ............................. no
+  Image formats:
+    GIF .................................. yes
+    ICO .................................. no
+    JPEG ................................. yes
+      Using system libjpeg ............... yes
+    PNG .................................. yes
+      Using system libpng ................ yes
+  EGL .................................... yes
+  OpenVG ................................. no
+  OpenGL:
+    Desktop OpenGL ....................... no
+    OpenGL ES 2.0 ........................ yes
+    OpenGL ES 3.0 ........................ no
+    OpenGL ES 3.1 ........................ no
+    OpenGL ES 3.2 ........................ no
+  Vulkan ................................. no
+  Session Management ..................... no
+Features used by QPA backends:
+  evdev .................................. yes
+  libinput ............................... yes
+  INTEGRITY HID .......................... no
+  mtdev .................................. no
+  tslib .................................. no
+  xkbcommon-evdev ........................ no
+QPA backends:
+  DirectFB ............................... no
+  EGLFS .................................. yes
+  EGLFS details:
+    EGLFS OpenWFD ........................ no
+    EGLFS i.Mx6 .......................... no
+    EGLFS i.Mx6 Wayland .................. no
+    EGLFS RCAR ........................... no
+    EGLFS EGLDevice ...................... no
+    EGLFS GBM ............................ yes
+    EGLFS VSP2 ........................... no
+    EGLFS Mali ........................... no
+    EGLFS Raspberry Pi ................... no
+    EGL on X11 ........................... no
+  LinuxFB ................................ no
+  VNC .................................... yes
+  Mir client ............................. no
+Qt Widgets:
+  GTK+ ................................... no
+  Styles ................................. Fusion Windows
+Qt PrintSupport:
+  CUPS ................................... no
+Qt Sql:
+  DB2 (IBM) .............................. no
+  InterBase .............................. no
+  MySql .................................. no
+  OCI (Oracle) ........................... no
+  ODBC ................................... no
+  PostgreSQL ............................. no
+  SQLite2 ................................ no
+  SQLite ................................. no
+    Using system provided SQLite ......... no
+  TDS (Sybase) ........................... no
+Qt Testlib:
+  Tester for item models ................. yes
+
 
 Thanks
 Ankur
