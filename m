@@ -1,42 +1,42 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
-	[209.85.208.174])
-	by arago-project.org (Postfix) with ESMTPS id 6CE1952092
+Return-Path: <j-stiffler@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 6A56B52995
 	for <meta-arago@arago-project.org>;
-	Sun, 14 Jul 2019 00:34:23 +0000 (UTC)
-Received: by mail-lj1-f174.google.com with SMTP id p17so12755774ljg.1
-	for <meta-arago@arago-project.org>;
-	Sat, 13 Jul 2019 17:33:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=zb7WLkOYd84C7y/0xyW3uqSeMYO+ta8LGcP6w39jDo0=;
-	b=o7MSnOIS5lZ3LSV1LH/h5vIl1Qh+sCPO9xTPA8pIBW2WRzCU+fjmmGxOpyC+pdUCDo
-	W3OvjC1x3HIUNPOoOzCM4HeOwW65hcnmtmjjFya1+QQdSn2i6SE13N9T1VUSQ9KM9oXx
-	NuJcNrtCAB3AXDF8/dMuBhiGjPzEzoT+lxs6IYH9JgY84zYojNHXwjPJpQdoc65mL948
-	Thw8MMZc5BJB1LZa1SkjGrX8R8vWSwEPSUsYBWJn2JExnW1h/VowFTtHzoUb2XrA7rlN
-	QKhhoQuq3Je2eB0YwXG7H5MSpnrdBHJhtJDoAju0+844vO6g+bo2S0miBZXMd34TPxIa
-	wVQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=zb7WLkOYd84C7y/0xyW3uqSeMYO+ta8LGcP6w39jDo0=;
-	b=EwBLX91jfCHmBJarNE5mvisT0aCcb8/nCYtX11LaqIHnAR+IDvVz2396ojRuklEexW
-	VyrPqmdG+rWHKSmLFnlqQRg56g592LiJJlnsMU+fWJcgKd065pdHcLSTHoAhdM4HmM0N
-	5UktAmCfYFQuT/Kx/8V+qSfi7cu5Fd+d14PS1rsSKScLfoyaDGIxs4f/6FDIAD00w7jC
-	GxZlagABRTuNrwk6dad0sSi/DEh+ILhFrsbibV2ev4vfQbiRCMMXCV9VA+A3BdR/8WN/
-	KW8ZXIJUBm4y4oEDvykzIbWU4+1HRmqKrkXMiYq3LA4Uqqb/SvjbJCfNVyU6gAKFIz7d
-	RJ6A==
-X-Gm-Message-State: APjAAAUvCaeXlKXg3qJ77OkCj9/gYUCWXg9VXYFtEx10Nu8g+n09JGez
-	Oa2zvN65n3wAKAd6bTAfSDUrhZNjaJtDV7mroQg=
-X-Google-Smtp-Source: APXvYqxWsY0P+aIxut70ROWrj3EoViGn8/I+PHWih3efFKkxY7tT2phBK2krxs9Mt1rJF8OwK4A9NRaj2M89QdS/GrU=
-X-Received: by 2002:a2e:8613:: with SMTP id a19mr9698645lji.163.1563064413984; 
-	Sat, 13 Jul 2019 17:33:33 -0700 (PDT)
+	Mon, 15 Jul 2019 15:07:39 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6FF6opN088486
+	for <meta-arago@arago-project.org>; Mon, 15 Jul 2019 10:06:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1563203210;
+	bh=8V43XoEPVxHQaWF53HFZYYBToBp5WbtQNunJl6Na4wM=;
+	h=From:To:CC:Subject:Date;
+	b=uLNyR8tRvM+Z0fS78EYjQAzSVXbmFTLaNHB7UJnBmckwSvcpNpIUlNly9NUOsu4/U
+	EPejax1Dpxdw4dpbjI6pThdOYwBj8YmVmfe3Ilu92CiQ2+MsF5Bmtd2EetYQ4LrIik
+	RwavUK9q5z/4zS/Lq/8E7dq78/XlsFTo++xZXpYg=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6FF6o5s022018
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Mon, 15 Jul 2019 10:06:50 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Mon, 15 Jul 2019 10:06:49 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
+	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Mon, 15 Jul 2019 10:06:49 -0500
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6FF6n5Y059295;
+	Mon, 15 Jul 2019 10:06:49 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 15 Jul 2019 10:50:09 -0400
+Message-ID: <1563202210-19334-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Sun, 14 Jul 2019 12:33:22 +1200
-Message-ID: <CADySD0E=Z5Oxk4kTsySokmS+FzakEydwg6eOM8U=tVDt2NCa_g@mail.gmail.com>
-To: meta-ti@yoctoproject.org, meta-arago@arago-project.org
-Subject: Qt configuration for AM335x-EVM
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [master/thud][PATCH 1/2] mstpd: add Multiple Spanning Tree Protocol Daemon v0.0.7
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,157 +49,135 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 14 Jul 2019 00:34:24 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 15 Jul 2019 15:07:39 -0000
+Content-Type: text/plain
 
-Hi,
+* Patch to workaraound -Werror=stringop-truncation in GCC 8
 
-I trying to get my head around correct Qt configuration for am335x-evm
-without support for X11 and Wayland.
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../0001-gcc8-strncpy-werror-workaround.patch      | 83 ++++++++++++++++++++++
+ .../recipes-support/mstpctl/mstpd_git.bb           | 20 ++++++
+ 2 files changed, 103 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-support/mstpctl/mstpd/0001-gcc8-strncpy-werror-workaround.patch
+ create mode 100644 meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb
 
-I am trying to build a custom image based upon arago distro, thud branch.
+diff --git a/meta-arago-extras/recipes-support/mstpctl/mstpd/0001-gcc8-strncpy-werror-workaround.patch b/meta-arago-extras/recipes-support/mstpctl/mstpd/0001-gcc8-strncpy-werror-workaround.patch
+new file mode 100644
+index 0000000..21f7e7d
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/mstpctl/mstpd/0001-gcc8-strncpy-werror-workaround.patch
+@@ -0,0 +1,83 @@
++From 8a24d984988bcf832d7684b2a4e9d23b643a433d Mon Sep 17 00:00:00 2001
++From: Djordje Senicic <x0157990@ti.com>
++Date: Sun, 14 Apr 2019 05:49:35 -0400
++Subject: [PATCH] gcc8 strncpy werror workaround
++
++Signed-off-by: Djordje Senicic <x0157990@ti.com>
++
++Upstream-Status: Inappropriate [other]
++
++HACK to workaround GCC 8 reported error.
++
++---
++ mstp.c        |  3 +++
++ netif_utils.c | 12 ++++++++++++
++ 2 files changed, 15 insertions(+)
++
++diff --git a/mstp.c b/mstp.c
++index aec5cbb..90044fc 100644
++--- a/mstp.c
+++++ b/mstp.c
++@@ -1591,8 +1591,11 @@ void MSTP_IN_set_mst_config_id(bridge_t *br, __u16 revision, __u8 *name)
++         assign(br->MstConfigId.s.revision_level, valueRevision);
++         memset(br->MstConfigId.s.configuration_name, 0,
++                sizeof(br->MstConfigId.s.configuration_name));
+++#pragma GCC diagnostic push
+++#pragma GCC diagnostic ignored "-Wstringop-truncation"
++         strncpy((char *)br->MstConfigId.s.configuration_name, (char *)name,
++                 sizeof(br->MstConfigId.s.configuration_name));
+++#pragma GCC diagnostic pop
++         br_state_machines_begin(br);
++     }
++ }
++diff --git a/netif_utils.c b/netif_utils.c
++index 7231750..ce2cfb8 100644
++--- a/netif_utils.c
+++++ b/netif_utils.c
++@@ -59,7 +59,10 @@ int get_hwaddr(char *ifname, __u8 *hwaddr)
++ {
++     struct ifreq ifr;
++     memset(&ifr, 0, sizeof(ifr));
+++#pragma GCC diagnostic push
+++#pragma GCC diagnostic ignored "-Wstringop-truncation"
++     strncpy(ifr.ifr_name, ifname, IFNAMSIZ);
+++#pragma GCC diagnostic pop
++     if(0 > ioctl(netsock, SIOCGIFHWADDR, &ifr))
++     {
++         ERROR("%s: get hw address failed: %m", ifname);
++@@ -73,7 +76,10 @@ int get_flags(char *ifname)
++ {
++     struct ifreq ifr;
++     memset(&ifr, 0, sizeof(ifr));
+++#pragma GCC diagnostic push
+++#pragma GCC diagnostic ignored "-Wstringop-truncation"
++     strncpy(ifr.ifr_name, ifname, IFNAMSIZ);
+++#pragma GCC diagnostic pop
++     if(0 > ioctl(netsock, SIOCGIFFLAGS, &ifr))
++     {
++         ERROR("%s: get interface flags failed: %m", ifname);
++@@ -93,7 +99,10 @@ int if_shutdown(char *ifname)
++         return -1;
++     }
++     ifr.ifr_flags &= ~IFF_UP;
+++#pragma GCC diagnostic push
+++#pragma GCC diagnostic ignored "-Wstringop-truncation"
++     strncpy(ifr.ifr_name, ifname, IFNAMSIZ);
+++#pragma GCC diagnostic pop
++     if(0 > ioctl(netsock, SIOCSIFFLAGS, &ifr))
++     {
++         ERROR("%s: set if_down flag failed: %m", ifname);
++@@ -106,7 +115,10 @@ int ethtool_get_speed_duplex(char *ifname, int *speed, int *duplex)
++ {
++     struct ifreq ifr;
++     memset(&ifr, 0, sizeof(ifr));
+++#pragma GCC diagnostic push
+++#pragma GCC diagnostic ignored "-Wstringop-truncation"
++     strncpy(ifr.ifr_name, ifname, IFNAMSIZ);
+++#pragma GCC diagnostic pop
++     struct ethtool_cmd ecmd;
++ 
++     ecmd.cmd = ETHTOOL_GSET;
++-- 
++2.17.1
++
+diff --git a/meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb b/meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb
+new file mode 100644
+index 0000000..eeeeb82
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb
+@@ -0,0 +1,20 @@
++SUMMARY = "Multiple Spanning Tree Protocol Daemon"
++
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=4325afd396febcb659c36b49533135d4 \
++                    file://debian/copyright;md5=332234a99007d25da40f41ee96aa388f"
++
++SRC_URI = "git://github.com/mstpd/mstpd.git;protocol=https \
++           file://0001-gcc8-strncpy-werror-workaround.patch"
++
++PV = "0.0.7+git${SRCPV}"
++SRCREV = "e4f0ba5a48649a3253f8b353c87c965e12aafc50"
++
++S = "${WORKDIR}/git"
++
++DEPENDS = "python"
++RDEPENDS_${PN} = "python-core"
++
++inherit autotools
++
++EXTRA_OECONF = "--sbindir=/sbin"
+-- 
+2.7.4
 
-Below is my qtbase package config:
-bitbake -e qtbase | grep "^PACKAGECONFIG_CONFARGS="
-PACKAGECONFIG_CONFARGS=" -accessibility -no-cups -dbus -no-directfb
--no-eglfs -evdev -nomake examples -no-fontconfig -qt-freetype -gbm
--no-feature-getentropy -gif -opengl es2 -eglfs -no-glib -no-gtk
--qt-harfbuzz -no-ico -no-iconv -no-icu -no-journald -system-libjpeg
--kms -libinput -system-libpng -no-libproxy -make libs -no-linuxfb
--no-mtdev -openssl -qt-pcre -release -no-sm -no-sql-db2 -no-sql-ibase
--no-sql-mysql -no-sql-oci -no-sql-odbc -no-sql-psql -no-sql-sqlite
--no-sql-sqlite2 -no-sql-tds -shared -nomake tests -make tools
--no-tslib -libudev -no-widgets -no-xcb -no-xinput2 -no-xkb
--no-xkbcommon -no-xkbcommon-evdev -system-zlib"
-
-Is this correct? Do I have to add "kms gbm"  even if QPA backend is EGLFS?
-
-Below is the configuration summary from configure task:
-
-Configure summary:
-
-Building on: linux-oe-g++ (arm, CPU features: neon)
-Building for: linux-oe-g++ (arm, CPU features: neon)
-Configuration: cross_compile compile_examples enable_new_dtags
-largefile neon silent shared release c++11 c++14 c++1z concurrent dbus
-reduce_exports stl no-widgets
-Build options:
-  Mode ................................... release
-  Optimize release build for size ........ no
-  Building shared libraries .............. yes
-  Using C++ standard ..................... C++1z
-  Using ccache ........................... no
-  Using gold linker ...................... no
-  Using new DTAGS ........................ yes
-  Using precompiled headers .............. no
-  Using LTCG ............................. no
-  Target compiler supports:
-    NEON ................................. yes
-  Build parts ............................ libs tools
-Qt modules and options:
-  Qt Concurrent .......................... yes
-  Qt D-Bus ............................... yes
-  Qt D-Bus directly linked to libdbus .... yes
-  Qt Gui ................................. yes
-  Qt Network ............................. yes
-  Qt Sql ................................. yes
-  Qt Testlib ............................. yes
-  Qt Widgets ............................. no
-  Qt Xml ................................. yes
-Support enabled for:
-  Using pkg-config ....................... yes
-  udev ................................... yes
-  Using system zlib ...................... yes
-Qt Core:
-  DoubleConversion ....................... yes
-    Using system DoubleConversion ........ no
-  GLib ................................... no
-  iconv .................................. no
-  ICU .................................... no
-  Tracing backend ........................ <none>
-  Logging backends:
-    journald ............................. no
-    syslog ............................... no
-    slog2 ................................ no
-  Using system PCRE2 ..................... no
-Qt Network:
-  getifaddrs() ........................... yes
-  IPv6 ifname ............................ yes
-  libproxy ............................... no
-  Linux AF_NETLINK ....................... yes
-  OpenSSL ................................ yes
-    Qt directly linked to OpenSSL ........ no
-  OpenSSL 1.1 ............................ yes
-  SCTP ................................... no
-  Use system proxies ..................... yes
-Qt Gui:
-  Accessibility .......................... yes
-  FreeType ............................... yes
-    Using system FreeType ................ no
-  HarfBuzz ............................... yes
-    Using system HarfBuzz ................ no
-  Fontconfig ............................. no
-  Image formats:
-    GIF .................................. yes
-    ICO .................................. no
-    JPEG ................................. yes
-      Using system libjpeg ............... yes
-    PNG .................................. yes
-      Using system libpng ................ yes
-  EGL .................................... yes
-  OpenVG ................................. no
-  OpenGL:
-    Desktop OpenGL ....................... no
-    OpenGL ES 2.0 ........................ yes
-    OpenGL ES 3.0 ........................ no
-    OpenGL ES 3.1 ........................ no
-    OpenGL ES 3.2 ........................ no
-  Vulkan ................................. no
-  Session Management ..................... no
-Features used by QPA backends:
-  evdev .................................. yes
-  libinput ............................... yes
-  INTEGRITY HID .......................... no
-  mtdev .................................. no
-  tslib .................................. no
-  xkbcommon-evdev ........................ no
-QPA backends:
-  DirectFB ............................... no
-  EGLFS .................................. yes
-  EGLFS details:
-    EGLFS OpenWFD ........................ no
-    EGLFS i.Mx6 .......................... no
-    EGLFS i.Mx6 Wayland .................. no
-    EGLFS RCAR ........................... no
-    EGLFS EGLDevice ...................... no
-    EGLFS GBM ............................ yes
-    EGLFS VSP2 ........................... no
-    EGLFS Mali ........................... no
-    EGLFS Raspberry Pi ................... no
-    EGL on X11 ........................... no
-  LinuxFB ................................ no
-  VNC .................................... yes
-  Mir client ............................. no
-Qt Widgets:
-  GTK+ ................................... no
-  Styles ................................. Fusion Windows
-Qt PrintSupport:
-  CUPS ................................... no
-Qt Sql:
-  DB2 (IBM) .............................. no
-  InterBase .............................. no
-  MySql .................................. no
-  OCI (Oracle) ........................... no
-  ODBC ................................... no
-  PostgreSQL ............................. no
-  SQLite2 ................................ no
-  SQLite ................................. no
-    Using system provided SQLite ......... no
-  TDS (Sybase) ........................... no
-Qt Testlib:
-  Tester for item models ................. yes
-
-
-Thanks
-Ankur
 
