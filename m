@@ -1,42 +1,47 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id BF5BE5298D
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com
+	[209.85.215.180])
+	by arago-project.org (Postfix) with ESMTPS id 02CFC52975
 	for <meta-arago@arago-project.org>;
-	Wed, 24 Jul 2019 14:22:49 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6OELvw5015532
-	for <meta-arago@arago-project.org>; Wed, 24 Jul 2019 09:21:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1563978117;
-	bh=GZOBQVYrQbYdIBU6GeXqE2LEw2LDL/Ld4nbd+EZmHm8=;
-	h=From:To:CC:Subject:Date;
-	b=R2YALyCHuixBnbg57o10MEU+QPkb2TsePp/u6jdCR359y3Lb/9FnrRdQk4goLVqYP
-	dwk+JIHC6DgIg/z5GIMbLPOIfCc2nTNeX5jkrFV+WSkMAdQttoQsZQU3sLjGfMVLFk
-	3uU418F2r2KmZ/qKpd6uifvVIEpjJP3ruG5Qrvew=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6OELv8u119848
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 24 Jul 2019 09:21:57 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 24 Jul 2019 09:21:57 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 24 Jul 2019 09:21:57 -0500
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6OELvAk079663;
-	Wed, 24 Jul 2019 09:21:57 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 24 Jul 2019 10:05:17 -0400
-Message-ID: <1563977117-3668-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master/thud][PATCH v2] ti-tisdk-makefile: add ti-ipc target
+	Thu, 25 Jul 2019 05:28:23 +0000 (UTC)
+Received: by mail-pg1-f180.google.com with SMTP id o13so22380306pgp.12
+	for <meta-arago@arago-project.org>;
+	Wed, 24 Jul 2019 22:27:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=CJf16YXMkhTzZHs7hL9xjO9tlMlCB33SIn7Y0OlJbM4=;
+	b=cAVgVqNFdBd2vZn2pWp0K+cGAhdCaI4rqeyUTY1xlPqv8BbaiYST2rrUmzHSSgo1zW
+	mqdfq3edu6AGd+UD56/uR+rkjacy/fM6XL/fNd2cc0LCTsDYelGG0FOUlHMRa6ciIAGk
+	X06EtWi3+KJ8vFZup11LpIzIcxC5lmLm5fnQR30mVkCk3jvD2+LHKvBRawajeAblx0wp
+	Jsqlqy0SJYnATPybIFchzZR8bP7sQQsXI4UOY+aDkPppkQlQKs7xcfwcfdCZyuHypmUx
+	jYRazwfR4sTHs6mNB8iHrVrO103cIGsVkIq2S1GIwKMRPHtX7NS68RfGR5pjpk4zRZw5
+	cgQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=CJf16YXMkhTzZHs7hL9xjO9tlMlCB33SIn7Y0OlJbM4=;
+	b=odklmosQEujXLtsQwuTC38TL0+TVka8vWhSdTt8w67Ze0p/6JsSx5iYMSAdz4eqw9+
+	zDE2qDPZJp9YF4jIr+IVquKFa6KQE3TRNJnko2bTzliUmpbo+Sk7Fj1PhvoOH0EBrgro
+	05+R7Y5P5fpe5ZTabeJ0Se7BaGjJLsSzT4CjBpP5gM+RwYVoWK7APe6W3mbQVEOdzvns
+	++3Q0YR2yu3/oreX+h+qOwmYlJN5wkE2EVj+vZhBhjJSzTko49coDuVJHru4UF73UxuO
+	OfIyUvvLrpo7yBB3KbDGxtPcuhXqB+zv0+1uyHVkXod6UjWRrH8sL5exjsgngVmi9G9y
+	UVaA==
+X-Gm-Message-State: APjAAAWT+Qiaojg7movqbBme65JrLZNMcK71u5IjbWYd4BjTcYv/4f/I
+	dG9PQVNSiizQDPydJVIztQSVDron9I8=
+X-Google-Smtp-Source: APXvYqyFJozLWPAdpJtfDyCblyv53hfGxHyeqBGStMBIAgCvXZ3U/gBtZjFT/sIdwRyH9IqOrxYKhw==
+X-Received: by 2002:a63:1:: with SMTP id 1mr20158149pga.162.1564032450821;
+	Wed, 24 Jul 2019 22:27:30 -0700 (PDT)
+Received: from localhost.localdomain ([118.148.231.224])
+	by smtp.gmail.com with ESMTPSA id
+	137sm58978140pfz.112.2019.07.24.22.27.28
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Wed, 24 Jul 2019 22:27:30 -0700 (PDT)
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+To: meta-arago@arago-project.org
+Date: Thu, 25 Jul 2019 17:27:03 +1200
+Message-Id: <20190725052703.11313-1-ankur.tyagi85@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [oe-layersetup][PATCH] oe-layersetup.sh: Fix printf error if repo uri has space
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,251 +54,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2019 14:22:50 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 25 Jul 2019 05:28:27 -0000
 
-* The ti-ipc target will build the IPC libraries and examples for the
-  Linux OS.
-* The TI RTOS SDK provides the sources and it is required to set
-  TI_PRSDK_PATH to the RTOS SDK installation path in the Rules.make in
-  order to enable building the ti-ipc target.
+If repo uri has space, then url will have '%20'
+and script gives follwoing error
+bash: printf: 'M': invalid format character
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Ankur Tyagi <ankur.tyagi85@gmail.com>
 ---
-v2 changes:
-* add EXEC_DIR to Rules.make
+ oe-layertool-setup.sh | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
- .../ti-tisdk-makefile/Makefile_ti-ipc              | 135 +++++++++++++++++++++
- .../ti-tisdk-makefile/ti-tisdk-makefile/Rules.make |   4 +
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  22 ++++
- 3 files changed, 161 insertions(+)
- create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
-
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
-new file mode 100644
-index 0000000..53f9c88
---- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
-@@ -0,0 +1,135 @@
-+TISDK_VERSION=__TISDK_VERSION__
-+
-+PRSDK_VERSION=$(shell echo $(TISDK_VERSION) | sed -e 's|^0||' -e 's|\.|_|g')
-+PRSDK_PLATFORM=$(shell echo $(PLATFORM) | sed -e 's|-evm$$||' | sed -e 's|-lcdk$$||')
-+
-+ifneq ($(TI_RTOS_PATH),)
-+  TI_IPC_TARGETS = ti-ipc-linux
-+
-+  TI_RTOS_PATH_ABS := $(realpath $(TI_RTOS_PATH))
-+
-+  TI_PRSDK_PATH=$(TI_RTOS_PATH_ABS)/processor_sdk_rtos_$(PRSDK_PLATFORM)_$(PRSDK_VERSION)
-+  SDK_INSTALL_PATH=$(TI_RTOS_PATH_ABS)
-+  include $(TI_PRSDK_PATH)/Rules.make
-+
-+  IPC_TOOLS_PATHS=__IPC_TOOLS_PATHS__
-+
-+else
-+  TI_IPC_TARGETS = ti-ipc-rtos-missing
-+endif
-+
-+TI_IPC_CLEAN = $(addsuffix _clean, $(TI_IPC_TARGETS))
-+TI_IPC_INSTALL = $(addsuffix _install, $(TI_IPC_TARGETS))
-+
-+ti-ipc-rtos-missing ti-ipc-rtos-missing_clean ti-ipc-rtos-missing_install:
-+	@echo
-+	@echo ===========================================================
-+	@echo     If you wish to build IPC, please install
-+	@echo     Processor SDK RTOS $(TISDK_VERSION) for $(PLATFORM)
-+	@echo     and set TI_RTOS_PATH in Rules.make
-+	@echo ===========================================================
-+
-+ti-ipc-rtos-path-check:
-+	@if [ ! -d "$(TI_PRSDK_PATH)" ]; \
-+	then \
-+		echo; \
-+		echo "Error: TI_RTOS_PATH ($(TI_RTOS_PATH_ABS)) does not contain"; \
-+		echo "       the corresponding Processor SDK RTOS release!"; \
-+		echo; \
-+		echo "Please install Processor SDK RTOS $(TISDK_VERSION) for $(PLATFORM)."; \
-+		exit 1; \
-+	fi
-+
-+ti-ipc: $(TI_IPC_TARGETS)
-+
-+ti-ipc_clean: $(TI_IPC_CLEAN)
-+
-+ti-ipc_install: $(TI_IPC_INSTALL)
-+
-+ti-ipc-linux-config: ti-ipc-rtos-path-check
-+	@echo =================================
-+	@echo     Configuring IPC
-+	@echo =================================
-+	. $(ENV_SETUP); \
-+	cd $(IPC_INSTALL_PATH); \
-+	./configure $${CONFIGURE_FLAGS} \
-+		CC=$${TOOLCHAIN_PREFIX}gcc \
-+		--prefix=/usr \
-+		PLATFORM=$(IPC_PLATFORM) \
-+		KERNEL_INSTALL_DIR=$(LINUXKERNEL_INSTALL_DIR)
-+
-+
-+ti-ipc-linux: ti-ipc-rtos-path-check linux ti-ipc-linux-config
-+	@echo =================================
-+	@echo     Building IPC
-+	@echo =================================
-+	. $(ENV_SETUP); \
-+	$(MAKE) -j $(MAKE_JOBS) -C $(IPC_INSTALL_PATH)
-+
-+ti-ipc-linux_clean: ti-ipc-rtos-path-check ti-ipc-linux-config
-+	@echo =================================
-+	@echo     Cleaning IPC
-+	@echo =================================
-+	. $(ENV_SETUP); \
-+	$(MAKE) -j $(MAKE_JOBS) -C $(IPC_INSTALL_PATH) clean
-+
-+ti-ipc-linux_install: ti-ipc-rtos-path-check ti-ipc-linux
-+	@echo =================================
-+	@echo     Installing IPC
-+	@echo =================================
-+	@if [ ! -d $(DESTDIR) ] ; then \
-+		echo "The extracted target filesystem directory doesn't exist."; \
-+		echo "Please run setup.sh in the SDK's root directory and then try again."; \
-+		exit 1; \
-+	fi
-+	. $(ENV_SETUP); \
-+	$(MAKE) -j $(MAKE_JOBS) -C $(IPC_INSTALL_PATH) install DESTDIR=$(DESTDIR)
-+
-+ti-ipc-linux-examples: ti-ipc-rtos-path-check
-+	@echo =================================
-+	@echo     Building the IPC Examples
-+	@echo =================================
-+	$(MAKE) -j $(MAKE_JOBS) -C $${IPC_INSTALL_PATH}/examples \
-+		HOSTOS="linux" \
-+		PLATFORM="$(IPC_PLATFORM)" \
-+		KERNEL_INSTALL_DIR="$(LINUXKERNEL_INSTALL_DIR)" \
-+		XDC_INSTALL_DIR="$(XDC_INSTALL_PATH)" \
-+		PDK_INSTALL_DIR="$(PDK_INSTALL_PATH)/.." \
-+		BIOS_INSTALL_DIR="$(BIOS_INSTALL_PATH)" \
-+		IPC_INSTALL_DIR="$(IPC_INSTALL_PATH)" \
-+		TOOLCHAIN_LONGNAME=$${TOOLCHAIN_SYS} \
-+		TOOLCHAIN_INSTALL_DIR=$${SDK_PATH_NATIVE}/usr \
-+		TOOLCHAIN_PREFIX=$(CROSS_COMPILE) \
-+		$(IPC_TOOLS_PATHS)
-+
-+ti-ipc-linux-examples_install: ti-ipc-rtos-path-check ti-ipc-linux-examples
-+	@echo =================================
-+	@echo     Installing the IPC Examples
-+	@echo =================================
-+	@if [ ! -d $(DESTDIR) ] ; then \
-+		echo "The extracted target filesystem directory doesn't exist."; \
-+		echo "Please run setup.sh in the SDK's root directory and then try again."; \
-+		exit 1; \
-+	fi
-+	$(MAKE) -j $(MAKE_JOBS) -C $${IPC_INSTALL_PATH}/examples install \
-+		HOSTOS="linux" \
-+		PLATFORM="$(IPC_PLATFORM)" \
-+		EXEC_DIR="$(EXEC_DIR)"
-+
-+ti-ipc-linux-examples_clean: ti-ipc-rtos-path-check
-+	@echo =================================
-+	@echo     Cleaning the IPC Examples
-+	@echo =================================
-+	. $(ENV_SETUP); \
-+	$(MAKE) -j $(MAKE_JOBS) -C $${IPC_INSTALL_PATH}/examples clean \
-+		HOSTOS="linux" \
-+		PLATFORM="$(IPC_PLATFORM)" \
-+		KERNEL_INSTALL_DIR="$(LINUXKERNEL_INSTALL_DIR)" \
-+		XDC_INSTALL_DIR="$(XDC_INSTALL_PATH)" \
-+		BIOS_INSTALL_DIR="$(BIOS_INSTALL_PATH)" \
-+		IPC_INSTALL_DIR="$(IPC_INSTALL_PATH)" \
-+		TOOLCHAIN_LONGNAME=$${TOOLCHAIN_SYS} \
-+		TOOLCHAIN_INSTALL_DIR=$${SDK_PATH_NATIVE}/usr \
-+		TOOLCHAIN_PREFIX=$(CROSS_COMPILE) \
-+		$(IPC_TOOLS_PATHS)
-+
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-index dcdd75f..96f248a 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-@@ -39,3 +39,7 @@ CFLAGS=__CFLAGS__
- INSTALL_MOD_STRIP=1
+diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
+index 5a0175d..d14ed4f 100755
+--- a/oe-layertool-setup.sh
++++ b/oe-layertool-setup.sh
+@@ -276,12 +276,12 @@ configure_repo() {
  
- SDK_PATH_TARGET=$(TI_SDK_PATH)/__SDK_PATH_TARGET__
-+
-+# Set EXEC_DIR to install example binaries.
-+# This will be configured with the setup.sh script.
-+EXEC_DIR=__EXEC_DIR__
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 7802973..271218f 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -51,6 +51,7 @@ SRC_URI = "\
-     file://Makefile_sysfw-image \
-     file://Makefile_mmwavegesture-hmi \
-     file://Makefile_pdm-anomaly-detection \
-+    file://Makefile_ti-ipc \
- "
+     # Check if the repo with $name was already seen.  Use the , at the end
+     # of the grep to avoid matching similar named repos.
+-    temp=`printf "$output\n" | grep -e "^$name,"`
++    temp=`printf '%s\n' $output | grep -e "^$name,"`
  
- PR = "r100"
-@@ -136,9 +137,11 @@ MAKEFILES_append_omap-a15 = " u-boot-spl \
-                               uio-module-drv \
- 			      mmwavegesture-hmi \
-                               pdm-anomaly-detection \
-+                              ti-ipc \
- "
- MAKEFILES_append_omapl138 = " linux-dtbs \
-                               u-boot-spl \
-+                              ti-ipc \
- "
- 
- MAKEFILES_append_keystone = " u-boot-spl \
-@@ -151,6 +154,7 @@ MAKEFILES_append_keystone = " u-boot-spl \
-                               uio-module-drv \
-                               ipsecmgr-mod \
-                               barcode-roi \
-+                              ti-ipc \
- "
- 
- #                              gdbserverproxy-module-drv 
-@@ -181,6 +185,7 @@ MAKEFILES_append_k3 = " u-boot-spl \
-                         sysfw-image \
- 			mmwavegesture-hmi \
-                         pdm-anomaly-detection \
-+                        ti-ipc \
- "
- 
- MAKEFILES_append_am65xx = " \
-@@ -224,6 +229,21 @@ PRU_ICSS_INSTALL_TARGET_omap-a15 = "pru-icss_install_am572x"
- PRU_ICSS_INSTALL_TARGET_k2g = "pru-icss_install_k2g"
- PRU_ICSS_INSTALL_TARGET_am65xx = "pru-icss_install_am65x"
- 
-+# Path to toolchains for the various cores in TI SOCs
-+#
-+# These are provided by the TI RTOS SDK and used to build firmwares used by the
-+# IPC Linux examples.
-+IPC_TOOLS_PATHS_C66 = "ti.targets.elf.C66="\$\(C6X_GEN_INSTALL_PATH\)""
-+IPC_TOOLS_PATHS_M4  = "ti.targets.arm.elf.M4="\$\(TOOLCHAIN_PATH_M4\)" ti.targets.arm.elf.M4F="\$\(TOOLCHAIN_PATH_M4\)""
-+IPC_TOOLS_PATHS_R5F  = "ti.targets.arm.elf.R5F="\$\(TOOLCHAIN_PATH_R5\)""
-+IPC_TOOLS_PATHS_C674 = "ti.targets.elf.C674="\$\(C6X_GEN_INSTALL_PATH\)""
-+
-+IPC_TOOLS_PATHS = ""
-+IPC_TOOLS_PATHS_append_keystone = " ${IPC_TOOLS_PATHS_C66}"
-+IPC_TOOLS_PATHS_append_omap-a15 = " ${IPC_TOOLS_PATHS_C66} ${IPC_TOOLS_PATHS_M4}"
-+IPC_TOOLS_PATHS_append_omapl138 = " ${IPC_TOOLS_PATHS_C674}"
-+IPC_TOOLS_PATHS_append_k3 = "${IPC_TOOLS_PATHS_R5F}"
-+
- 
- # If it's not defined at all, like for zImage case
- UBOOT_LOADADDRESS ?= "0"
-@@ -289,6 +309,8 @@ do_install () {
-     sed -i -e "s/__PLATFORM_GDBSERVERPROXY__/${PLATFORM_GDBSERVERPROXY}/g" ${D}/Makefile
-     sed -i -e "s/__BOOT_MONITOR_MAKE_TARGET__/${BOOT_MONITOR_MAKE_TARGET}/g" ${D}/Makefile
-     sed -i -e "s/__PRU_ICSS_INSTALL_TARGET__/${PRU_ICSS_INSTALL_TARGET}/g" ${D}/Makefile
-+    sed -i -e "s/__IPC_TOOLS_PATHS__/${IPC_TOOLS_PATHS}/g" ${D}/Makefile
-+    sed -i -e "s/__TISDK_VERSION__/${TISDK_VERSION}/g" ${D}/Makefile
- 
-     cat ${D}/Makefile | grep "__DTB_DEPEND__" > /dev/null
+     if [ "x$temp" != "x" ]
+     then
+         echo "This repository ($name) has already been configured with the following values:"
+-        printf "\t$temp\n"
++        printf '\t%s\n' $temp
+         echo "Skipping configuring duplicate repository"
+         return 1
+     fi
+@@ -928,7 +928,7 @@ then
+     then
+         mkdir -p $dir
+     fi
+-    printf "$output\n" > $outputfile
++    printf '%s\n' $output > $outputfile
+     echo "Output file is $outputfile"
+ fi
  
 -- 
-2.7.4
+2.17.1
 
 
