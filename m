@@ -1,45 +1,42 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com
-	[209.85.208.193])
-	by arago-project.org (Postfix) with ESMTPS id 2104052975
+Return-Path: <j-stiffler@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 7EE3F52976
 	for <meta-arago@arago-project.org>;
-	Sun, 28 Jul 2019 10:22:43 +0000 (UTC)
-Received: by mail-lj1-f193.google.com with SMTP id v18so55568214ljh.6
-	for <meta-arago@arago-project.org>;
-	Sun, 28 Jul 2019 03:21:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=ZkfhJwVDgH2v7Xegadi9oOQdRlfrD7cZlMYh05z7178=;
-	b=L5dAyQ2dMW6uK++TLGKKyN9zOPDiVjR9hYyoZrZBgEolhvzJmBOZWwjtnFaUYLTRNv
-	yF3sbh6VVkpF3DiSOdLhXVX3QX+bzHxhICa3T6zOdDaq+MmHb7IBvzEOGtW12Yfz3NW9
-	BIZrQXbkzHFqMBYvfKVtMcJhnwnsEZMPU86MyrIPSADCP0CEeJCKGbbfyPFzxbjbJq+J
-	P3sEnGCUhUQPylnzYMBWQOOyWqvO1w7w8bPau7HqjDOCSopJtTAXtYDDhN9APFVRwQqa
-	ZSkFQr9Mis1V1oyo9Y3h7iNvcBx7BKxoBg9PXnY2zxF6vWEUSLrobPjVI2awL6sN7ZbW
-	CjUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=ZkfhJwVDgH2v7Xegadi9oOQdRlfrD7cZlMYh05z7178=;
-	b=GeLWbs8853HuyBP95+z8bKPWVE++7wDtaCmLJQjQpsw3NWj+pfMX5n/efJDd8UZRKe
-	AWx3LVpWRzmQwTB2ssxXE/uTENubXOZI4VxpgIqEduqU9tn62Idrpcr2zuoDx1locaBt
-	WoNB5HaTytj6IeKjRCOOTLZyXl7bQlyYno2Lf51KgseXgx7kTnBz00ScdfsiSIP0gV4i
-	VLplgIGqlUFijZfwGsI6XLf0MRiP+FKUOD6AL4rDLaM+NmI1IxIBNAe/kOwtzoaHeof1
-	6Tm8Eu+YGFBl6YMuElNnnAtzj6Do2ngE+dwNNkbGxZgXxAMzfFmXFxmc0VTQganwAXsY
-	o5ZQ==
-X-Gm-Message-State: APjAAAVzXI2rArQquSoG61/ynzPeEkjJBCm/i55YArsjLqdrJ7ANnjHY
-	LI3W+t6/AclaaCWPQ7d8gBFGc2rCMr+w60w3TncCGQ==
-X-Google-Smtp-Source: APXvYqxqxFV1LEja//cB8/gjwro0w9gyI/dBO1xJiFJ/rJrZbrNP2jnL8Nyw+/vIdpYk+tseCQzcNUT9YNbiS56clqg=
-X-Received: by 2002:a2e:a171:: with SMTP id u17mr9343674ljl.209.1564309309138; 
-	Sun, 28 Jul 2019 03:21:49 -0700 (PDT)
+	Tue, 30 Jul 2019 15:00:45 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6UExpSS056404
+	for <meta-arago@arago-project.org>; Tue, 30 Jul 2019 09:59:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1564498791;
+	bh=F+XzoJmebpIYT3Xik9QtpExbrJ//Hk6wWDxYQ+m2CWQ=;
+	h=From:To:CC:Subject:Date;
+	b=qL7oeJ5xsTEmcmbEGphhvd/v6bI5mjGeR7gzAyMUckAs8ux9rWctYANwDtiKmZoLP
+	VVhB9jXrg+4WX4M1umS3JBxIslQL3cXZcxHRJCkGq2yXy+ssHPqm66CvPuc3GgGcWq
+	sgO3pLFeFVhYG2teuNyKlJe4r7Gt3XxpcWXNqQbo=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6UExpRs118381
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 30 Jul 2019 09:59:51 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Tue, 30 Jul 2019 09:59:50 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Tue, 30 Jul 2019 09:59:50 -0500
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6UExoNo111137;
+	Tue, 30 Jul 2019 09:59:50 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 30 Jul 2019 10:43:12 -0400
+Message-ID: <1564497792-11675-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20190725052703.11313-1-ankur.tyagi85@gmail.com>
-In-Reply-To: <20190725052703.11313-1-ankur.tyagi85@gmail.com>
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Sun, 28 Jul 2019 22:21:46 +1200
-Message-ID: <CADySD0F3WVdq=uu9tWLeBTT=0Vc=WMgYLSETJaFbd0Mh79-wjg@mail.gmail.com>
-To: meta-arago@arago-project.org
-Subject: Re: [oe-layersetup][PATCH] oe-layersetup.sh: Fix printf error if repo uri has space
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [master/thud][PATCH] packagegroup-arago-base: enable zeroconf packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,54 +49,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 28 Jul 2019 10:22:44 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 30 Jul 2019 15:00:45 -0000
+Content-Type: text/plain
 
-ping
+* The zerconf packages will be added if "zeroconf" is in the DISTRO_FEATURES
 
-regards
-Ankur
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-On Thu, Jul 25, 2019 at 5:27 PM Ankur Tyagi <ankur.tyagi85@gmail.com> wrote:
->
-> If repo uri has space, then url will have '%20'
-> and script gives follwoing error
-> bash: printf: 'M': invalid format character
->
-> Signed-off-by: Ankur Tyagi <ankur.tyagi85@gmail.com>
-> ---
->  oe-layertool-setup.sh | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
-> index 5a0175d..d14ed4f 100755
-> --- a/oe-layertool-setup.sh
-> +++ b/oe-layertool-setup.sh
-> @@ -276,12 +276,12 @@ configure_repo() {
->
->      # Check if the repo with $name was already seen.  Use the , at the end
->      # of the grep to avoid matching similar named repos.
-> -    temp=`printf "$output\n" | grep -e "^$name,"`
-> +    temp=`printf '%s\n' $output | grep -e "^$name,"`
->
->      if [ "x$temp" != "x" ]
->      then
->          echo "This repository ($name) has already been configured with the following values:"
-> -        printf "\t$temp\n"
-> +        printf '\t%s\n' $temp
->          echo "Skipping configuring duplicate repository"
->          return 1
->      fi
-> @@ -928,7 +928,7 @@ then
->      then
->          mkdir -p $dir
->      fi
-> -    printf "$output\n" > $outputfile
-> +    printf '%s\n' $output > $outputfile
->      echo "Output file is $outputfile"
->  fi
->
-> --
-> 2.17.1
->
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
+index 8d2e0b7..4094d90 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
+@@ -31,6 +31,7 @@ ARAGO_EXTRA = "\
+ 
+ # minimal set of packages - needed to boot
+ RDEPENDS_${PN} = "\
++    ${@bb.utils.contains('DISTRO_FEATURES', 'zeroconf', 'packagegroup-base-zeroconf', '',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'alsa', '${ARAGO_ALSA_BASE}', '',d)} \
+     ${ARAGO_BASE} \
+     ${ARAGO_EXTRA} \
+-- 
+2.7.4
+
 
