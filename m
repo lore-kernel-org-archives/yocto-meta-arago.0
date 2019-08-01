@@ -1,42 +1,32 @@
 Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 20FCE52998
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 4C31D52998
 	for <meta-arago@arago-project.org>;
-	Wed, 31 Jul 2019 21:51:59 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6VLp5R7075680
-	for <meta-arago@arago-project.org>; Wed, 31 Jul 2019 16:51:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1564609865;
-	bh=4QzCB+XMj7mxKLQL7SQlV5s+zk9BlKEViF9Q+RlBfPs=;
-	h=From:To:CC:Subject:Date;
-	b=UMiYIJqabC3RVDh1tUht2NlMBQ5PfYxGV2NVVSu8RfyyftTPao4D6o7XGJ2uXjqhF
-	f0hkhlUacySUfaAc2AG+3xyDiaPkvm4mifXxg7O9OWm6K0AMOgdp+hBuiXHmdbIzU9
-	H76Brlb4Dt/uWq44uhecxad/+jdEJAGvr6AWN+WQ=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6VLp5xX130216
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 31 Jul 2019 16:51:05 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 31 Jul 2019 16:51:05 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 31 Jul 2019 16:51:04 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6VLp4dk031101;
-	Wed, 31 Jul 2019 16:51:04 -0500
+	Thu,  1 Aug 2019 00:54:07 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 799F540BAE;
+	Thu,  1 Aug 2019 00:53:13 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id sXAv9gU3DdL7; Thu,  1 Aug 2019 00:53:13 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 63B4740BC4;
+	Thu,  1 Aug 2019 00:53:12 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 48A3E17121C;
+	Wed, 31 Jul 2019 20:53:11 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 31 Jul 2019 21:37:27 +0000
-Message-ID: <20190731213727.30546-1-denys@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master][PATCH] packagegroup-arago-test: add fio filesystem stress tool
+To: meta-arago@arago-project.org
+Date: Wed, 31 Jul 2019 20:53:10 -0400
+Message-Id: <1564620790-9157-2-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1564620790-9157-1-git-send-email-denys@ti.com>
+References: <1564620790-9157-1-git-send-email-denys@ti.com>
+Subject: [thud/master][PATCH 2/2] arago.conf: disable meta-virtualization sanity check and warning
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,27 +39,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2019 21:51:59 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 01 Aug 2019 00:54:08 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-test.bb        | 1 +
- 1 file changed, 1 insertion(+)
+ meta-arago-distro/conf/distro/arago.conf | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-index 81d0d2a4..a565eb6f 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
-@@ -32,6 +32,7 @@ ARAGO_TEST = "\
-     mtd-utils-ubifs-tests \
-     pcitest \
-     mstpd \
-+    fio \
-     "
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 8c23b9e..ae151a7 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -173,6 +173,9 @@ require conf/distro/include/branding-${ARAGO_BRAND}.inc
+ # Disable polkit's systemd configuration from meta-oe
+ POLKITAUTH = ""
  
- ARAGO_TEST_append_armv7a = " \
++# Disable meta-virtualization sanity check and warning
++SKIP_META_VIRT_SANITY_CHECK = "1"
++
+ # Set ENTERPRISE_DISTRO flag to ensure that recipes that have been flagged
+ # do not attempt to enable features that have potential commercial
+ # licensing issues.
 -- 
-2.17.1
+2.7.4
 
 
