@@ -1,42 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id BE0B4529E2
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 0AE0152A05
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Aug 2019 18:32:17 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x71IVNDD112692
-	for <meta-arago@arago-project.org>; Thu, 1 Aug 2019 13:31:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1564684283;
-	bh=4FsUKEPtp+fgyVpoYzZYGKqULaaxF/GpGEKSgWe4AMs=;
-	h=From:To:CC:Subject:Date;
-	b=Bnm2nDY955ZXfgbn+INR+G6PvXk70vWwPggXl6uaQDhNZEOMpkKaUTHyUdBfEACXO
-	hcNLgfDFDPEsaQ2/EZV1u38jafL1ye3sd8Mqs9qJ00+n5qc0hAqJGI4Bu+W9JshUxH
-	R2A7M5RPCUKUys94goIxtzHj78RpP1qW9NYG1K7k=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x71IVN8v045241
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 1 Aug 2019 13:31:23 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 1 Aug 2019 13:31:23 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Thu, 1 Aug 2019 13:31:23 -0500
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x71IVMIa106295;
-	Thu, 1 Aug 2019 13:31:23 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 1 Aug 2019 14:14:41 -0400
-Message-ID: <1564683281-22803-1-git-send-email-j-stiffler@ti.com>
+	Fri,  2 Aug 2019 15:01:15 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id AD81340BDC;
+	Fri,  2 Aug 2019 15:00:21 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id Nwbe9XI70JUd; Fri,  2 Aug 2019 15:00:21 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7A39A40B7B;
+	Fri,  2 Aug 2019 15:00:20 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id AF453171DC4;
+	Fri,  2 Aug 2019 11:00:19 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri,  2 Aug 2019 11:00:19 -0400
+Message-Id: <1564758019-3194-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master/thud][PATCH v2] packagegroup-arago-console: add avahi-utils
+Subject: [tisdk-build-scripts][PATCH] arago-thud-next: rename arago-core-tisdk-image -> arago-core-tisdk-bundle
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,29 +37,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Aug 2019 18:32:18 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 02 Aug 2019 15:01:16 -0000
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
-v2 changes:
-* add avahi-utils to console packagegroup instead of base packagegroup.
+ configs/farm/arago-thud-next.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
- .../recipes-core/packagegroups/packagegroup-arago-console.bb             | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
-index 92d16f0..9fe17b9 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
-@@ -53,6 +53,7 @@ ARAGO_UTILS = "\
-     i2c-tools \
-     strace \
-     ${@bb.utils.contains('MACHINE_FEATURES', 'pci', 'pciutils', '',d)} \
-+    ${@bb.utils.contains('DISTRO_FEATURES', 'zeroconf', 'avahi-utils', '',d)} \
-     "
+diff --git a/configs/farm/arago-thud-next.txt b/configs/farm/arago-thud-next.txt
+index f98fb01..7dd2690 100644
+--- a/configs/farm/arago-thud-next.txt
++++ b/configs/farm/arago-thud-next.txt
+@@ -98,7 +98,7 @@ FS_IMAGE_TYPE="tar.xz"
+ # This variable contains the "filter" string to look for inside of the
+ # OE build directory to find the SDK image.  Since the image name can
+ # vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
++SDK_FILTER="arago-core-tisdk-bundle-"
  
- # ARAGO_UTILS - ltrace fails with __cxa_demangle for now
+ # This variable indicates the type of SDK images being generated.  By default
+ # this is tar.gz images.  This should match what you set in your recipes
+@@ -245,7 +245,7 @@ PRODUCTIZE_SDK="false"
+ 
+ # This variable contains the command(s) that bitbake should run. Each command
+ # should be seperated by a semicolon.
+-BITBAKE_COMMAND="-k arago-core-tisdk-image"
++BITBAKE_COMMAND="-k arago-core-tisdk-bundle"
+ 
+ # This variable controls whether the build configuration included at the bottom
+ # of the results file includes comments or not. The default is "false" to filter
 -- 
 2.7.4
 
