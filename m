@@ -1,46 +1,30 @@
-Return-Path: <jbergsagel@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id C08B752A36
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 3C5EE52A05
 	for <meta-arago@arago-project.org>;
-	Fri,  2 Aug 2019 17:39:48 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x72Hcsrq091326
-	for <meta-arago@arago-project.org>; Fri, 2 Aug 2019 12:38:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1564767534;
-	bh=NBYLDBVUMv0NENxjpBUlunetZnXt2p3iiLn6Kqmbz50=;
-	h=From:To:CC:Subject:Date;
-	b=dk8SCgwWkzmVhjjmf69pER9cO1lHDXH3qD4AIWW8MucTQD4mOqofdJyOqvAcPfDLB
-	dgp5UIZBdGXWx4qu9gTPFYWPPrBvnwyq4Lb+FErBDMza2ZlL55ZcXuFt2f2f4On9nC
-	v5CkvJkgQSRfDd2F2cX2MxLtN9jPlhAGjTMyK13U=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x72HcscM124240
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 2 Aug 2019 12:38:54 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 2 Aug 2019 12:38:54 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 2 Aug 2019 12:38:54 -0500
-Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
-	[128.247.22.53])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x72HcsPU010262;
-	Fri, 2 Aug 2019 12:38:54 -0500
-Received: from localhost (udc0211050.dhcp.ti.com [128.247.77.185])
-	by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id
-	x72HcrZ24231; Fri, 2 Aug 2019 12:38:53 -0500 (CDT)
-From: Jonathan Bergsagel <jbergsagel@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 2 Aug 2019 12:36:53 -0500
-Message-ID: <20190802173653.23961-1-jbergsagel@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Suman Anna <s-anna@ti.com>
-Subject: [PATCH] packagegroup-arago-tisdk-addons: add ipc-lld-fw-am65x
+	Fri,  2 Aug 2019 19:03:14 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id DF14040BDE;
+	Fri,  2 Aug 2019 19:02:19 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id APyhz9gp2l-A; Fri,  2 Aug 2019 19:02:19 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C644740BDD;
+	Fri,  2 Aug 2019 19:02:18 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 846D6171E39;
+	Fri,  2 Aug 2019 15:02:18 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Fri,  2 Aug 2019 15:02:15 -0400
+Message-Id: <1564772535-7100-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [thud/master][PATCH] branding-core: re-enable dsp machine feature by default
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,30 +37,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Aug 2019 17:39:49 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 02 Aug 2019 19:03:15 -0000
 
-Added IPC echo test binaries for AM65xx
-
-Signed-off-by: Jonathan Bergsagel <jbergsagel@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-addons.bb            | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-distro/conf/distro/include/branding-core.inc | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 21aa7244ba19..a3e9667a2a63 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -75,7 +75,7 @@ UTILS_append_k3 = " mmc-utils \
-                     irqbalance \
- "
+diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
+index 8ed51c4..1a4dee4 100644
+--- a/meta-arago-distro/conf/distro/include/branding-core.inc
++++ b/meta-arago-distro/conf/distro/include/branding-core.inc
+@@ -12,9 +12,5 @@ ALTERNATIVE_PRIORITY_pn-opencl-monitor-ipu = "1"
+ # Raise priority for sample IPC FW images
+ ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
  
--UTILS_append_am65xx = " ti-ipc-rtos-fw pru-icss"
-+UTILS_append_am65xx = " ipc-lld-fw-am65x ti-ipc-rtos-fw pru-icss"
- UTILS_append_j7-evm = " ipc-lld-fw ti-display-sharing-fw jailhouse"
- 
- UTILS_append_omapl138 = " ti-ipc-rtos-fw"
+-# Temporarily disable "dsp" machine feature for all SOCs while building
+-# latest code base, until it is fixed for gdbc6x, qt-openvc-opencl
+-MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('dsp', '')}"
+-
+ # Temporarily disable UBI images for K2 "server" rootfs due to size
+ IMAGE_FSTYPES_remove_pn-tisdk-server-rootfs-image = "ubi ubifs"
 -- 
-2.17.1
+2.7.4
 
 
