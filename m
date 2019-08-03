@@ -1,30 +1,30 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 1DD445297F
+	by arago-project.org (Postfix) with ESMTPS id 4258E52A0C
 	for <meta-arago@arago-project.org>;
-	Sat,  3 Aug 2019 16:42:42 +0000 (UTC)
+	Sat,  3 Aug 2019 17:20:10 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 7D36F40BF9;
-	Sat,  3 Aug 2019 16:41:47 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C4A5040BC4;
+	Sat,  3 Aug 2019 17:19:15 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id FYb62aPyqNrO; Sat,  3 Aug 2019 16:41:47 +0000 (UTC)
+	with ESMTP id 1k0gKVVaCvNd; Sat,  3 Aug 2019 17:19:15 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 63ED440BAF;
-	Sat,  3 Aug 2019 16:41:46 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A1B8040A89;
+	Sat,  3 Aug 2019 17:19:14 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 441AC171F39;
-	Sat,  3 Aug 2019 12:41:45 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 55626171F3C;
+	Sat,  3 Aug 2019 13:19:14 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Sat,  3 Aug 2019 12:41:43 -0400
-Message-Id: <1564850504-22118-1-git-send-email-denys@ti.com>
+Date: Sat,  3 Aug 2019 13:19:14 -0400
+Message-Id: <1564852754-22420-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH 1/2] ufs-tool: add tool to access UFS devices from user space
+Subject: [thud/master][PATCHv2 2/2] packagegroup-arago-test: include ufs-tool for j7
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,42 +37,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 03 Aug 2019 16:42:42 -0000
-
-https://github.com/westerndigitalcorporation/ufs-tool
+X-List-Received-Date: Sat, 03 Aug 2019 17:20:10 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-bsp/ufs/ufs-tool_git.bb | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 meta-arago-extras/recipes-bsp/ufs/ufs-tool_git.bb
+v2 - only include ufs-tool for j7-evm
 
-diff --git a/meta-arago-extras/recipes-bsp/ufs/ufs-tool_git.bb b/meta-arago-extras/recipes-bsp/ufs/ufs-tool_git.bb
-new file mode 100644
-index 0000000..3b780c8
---- /dev/null
-+++ b/meta-arago-extras/recipes-bsp/ufs/ufs-tool_git.bb
-@@ -0,0 +1,20 @@
-+SUMMARY = "Tool to access UFS device from user space"
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552"
-+
-+PV = "1.3"
-+
-+BRANCH ?= "dev"
-+
-+SRCREV = "8b00e33003b57d7071943f63863fcf8cc48d5be9"
-+
-+SRC_URI = "git://github.com/westerndigitalcorporation/ufs-tool.git;protocol=git;branch=${BRANCH}"
-+
-+S = "${WORKDIR}/git"
-+
-+EXTRA_OEMAKE = "CROSS_COMPILE=${TARGET_PREFIX} CC="${CC}""
-+
-+do_install() {
-+	install -d ${D}${bindir}/
-+	install -c -m 755 ${S}/ufs-tool ${D}${bindir}/
-+}
+ meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+index a565eb6..f6535e1 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+@@ -70,6 +70,7 @@ ARAGO_TI_TEST_append_am65xx = " \
+ 
+ ARAGO_TI_TEST_append_j7-evm = " \
+     viddec-test-app \
++    ufs-tool \
+     "
+ 
+ ARAGO_TI_TEST_append_keystone = " \
 -- 
 2.7.4
 
