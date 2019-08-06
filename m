@@ -1,47 +1,42 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 8512D52980
+Return-Path: <m-radhakrishnan2@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id E4EFC52980
 	for <meta-arago@arago-project.org>;
-	Tue,  6 Aug 2019 19:40:04 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x76Jd81Q114429
-	for <meta-arago@arago-project.org>; Tue, 6 Aug 2019 14:39:08 -0500
+	Tue,  6 Aug 2019 19:44:05 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x76JhAM3080434
+	for <meta-arago@arago-project.org>; Tue, 6 Aug 2019 14:43:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1565120348;
-	bh=WIK10XupfT/uKAHPN6LZdc8bEU5snmwMPnpEQEMnhco=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=wdRDnckJ6e7eNrUeVkWuAUJEFvfp/RwSaNI2stZZTD+6sEcIs1wNuMA72KxMxzuA6
-	tJ15Eq6lzejm8u2PDYD/+g5Y/7V1IcdofPzF5xsniH0TVL8SF1qHSD5GvV83jTBHh2
-	ly6QaOmKPXuSKmUY802KdZS38RmA619qiByVY34Q=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x76Jd8XZ084747
+	s=ti-com-17Q1; t=1565120590;
+	bh=G0B2c6Y6y4kHu4NfP0+Q7lUFDdmItS2+rkiLd2583IQ=;
+	h=From:To:Subject:Date;
+	b=bAzrtiUKc8nejwtZrg8QFcj0ceV3JA7GQSmXfGAkt8k37VFZy/YyYiTQIRSVUs2CQ
+	ItjI6pjV748tTrQKc8HxjAwfSb/3h0uAckpqxJzGRBHtJ9rzWeIV+uwPqFS31T1VOE
+	1ODw6dRkvxzQBCEHe/gev64WU5h0AgRA57YAsg9U=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x76JhAUS116131
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 6 Aug 2019 14:39:08 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 6 Aug 2019 14:43:10 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 6 Aug 2019 14:39:08 -0500
-Received: from DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222]) by
-	DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222%18]) with mapi id
-	15.01.1713.004; Tue, 6 Aug 2019 14:39:08 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Radhakrishnan, Mahesh" <m-radhakrishnan2@ti.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [master][meta-processor-sdk][PATCH]
-	fftlib: SRCREV update
-Thread-Index: AQHVTIjU+CjAaOCx8kipdGwus+E0WabuhAwA
-Date: Tue, 6 Aug 2019 19:39:07 +0000
-Message-ID: <d399164245e345a0a93aab9c824d25b2@ti.com>
-References: <1565117853-52717-1-git-send-email-m-radhakrishnan2@ti.com>
-	<1565117853-52717-2-git-send-email-m-radhakrishnan2@ti.com>
-In-Reply-To: <1565117853-52717-2-git-send-email-m-radhakrishnan2@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.113.191]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Tue, 6 Aug 2019 14:43:10 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Tue, 6 Aug 2019 14:43:10 -0500
+Received: from uda0875154a.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x76Jh9i5084537
+	for <meta-arago@arago-project.org>; Tue, 6 Aug 2019 14:43:09 -0500
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 6 Aug 2019 15:43:05 -0400
+Message-ID: <1565120586-55542-1-git-send-email-m-radhakrishnan2@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] [master][meta-processor-sdk][PATCH] fftlib: SRCREV update
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [thud][PATCH] RTOS Patchset for using sysbios 6.76.02.02
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,55 +49,18 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Aug 2019 19:40:05 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 06 Aug 2019 19:44:06 -0000
+Content-Type: text/plain
 
-This will not apply in meta-processor-sdk. Please submit to meta-arago.
+RTOS patchset containing the c6x big endian descope which is needed for using sysbios 6.76.02.02
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Radhakrishnan, Mahesh
-> Sent: Tuesday, August 06, 2019 2:58 PM
-> To: meta-arago@arago-project.org
-> Subject: [EXTERNAL] [meta-arago] [master][meta-processor-sdk][PATCH]
-> fftlib: SRCREV update
->=20
-> SRCREV udpate to include big-endian descope
-> ---
->  meta-arago-extras/recipes-ti/fftlib/fftlib.inc | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/meta-arago-extras/recipes-ti/fftlib/fftlib.inc b/meta-arago-
-> extras/recipes-ti/fftlib/fftlib.inc
-> index ab5baf5..f6d5935 100644
-> --- a/meta-arago-extras/recipes-ti/fftlib/fftlib.inc
-> +++ b/meta-arago-extras/recipes-ti/fftlib/fftlib.inc
-> @@ -1,5 +1,5 @@
->  PV =3D "3_1_0_0"
-> -INC_PR =3D "r3"
-> +INC_PR =3D "r4"
->=20
->  require recipes-ti/includes/arago-paths.inc
->=20
-> @@ -9,7 +9,7 @@ FFTLIB_GIT_PROTOCOL =3D "git"
->  FFTLIB_GIT_BRANCH =3D "master"
->  FFTLIB_GIT_DESTSUFFIX =3D "${WORKDIR}/git"
->=20
-> -FFTLIB_SRCREV =3D "54fb858e97235c0a3cd948d24d22329653a7837f"
-> +FFTLIB_SRCREV =3D "e05426894c73af940ccc26880ebd7f2c9ce21880"
->=20
->  BRANCH =3D "${FFTLIB_GIT_BRANCH}"
->  SRC_URI =3D
-> "${FFTLIB_GIT_URI};destsuffix=3D${FFTLIB_GIT_DESTSUFFIX};protocol=3D${FFT=
-LIB
-> _GIT_PROTOCOL};branch=3D${BRANCH}"
-> --
-> 1.9.1
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Mahesh Radhakrishnan (1):
+  fftlib: SRCREV update
+
+ meta-arago-extras/recipes-ti/fftlib/fftlib.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+-- 
+1.9.1
+
 
