@@ -1,47 +1,42 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-lj1-f196.google.com (mail-lj1-f196.google.com
-	[209.85.208.196])
-	by arago-project.org (Postfix) with ESMTPS id 09E5B5298A
+Return-Path: <m-radhakrishnan2@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id D769652980
 	for <meta-arago@arago-project.org>;
-	Mon,  5 Aug 2019 03:21:42 +0000 (UTC)
-Received: by mail-lj1-f196.google.com with SMTP id z28so23717893ljn.4
-	for <meta-arago@arago-project.org>;
-	Sun, 04 Aug 2019 20:20:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=wEf+LxJ20XJsWcYWatq0VIoDJ9dF1me3+tMK9sUpzxE=;
-	b=KT8UR4ixdPh4t8g3BXlgD99axqRE/eZ1BnY2pAEwVAB9DrzD73+zlnRvpGEBL/RDzB
-	w913ZVy4wlaJqrdMPxhG6Y0acbrezq8XL68ILgOjg/Wozrew8E8u/Kk28eO7aE3lUhmU
-	HAYxpZ0a7bKjLlzVw/30lPcnMMcPGCNwK5pGJO/wqnEQ0t/bjTmydpgi65y6cgJrETYU
-	Uh0nVYWNWd2plyIyQWnf3kkBVOIN1czoh35GpOvnF752Q2DQfPOv9aVi+RgBPQfCC4LU
-	95FyzC03oBpvHKj231w7ea8Mu6yD3W6ombYEIJdEGG5CxiQZkQrV745bFQRgZ02yuRZM
-	l2NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=wEf+LxJ20XJsWcYWatq0VIoDJ9dF1me3+tMK9sUpzxE=;
-	b=jbRJGfg45l+G/SlBEa5b/NfKOciz3b1TPZ+noNgQ6Y0tlH+6aJrqEBtgKjlQelHvab
-	rPwrGJ2tLJ+Mr4NFK6G7RjYaC02C/Wcreo7NOkdoF+TULh7O6+h78RZK3lXBB+7aWyeU
-	CfoSw4PcTFuCr06VcYCTMBeNQrxhE+nE8CTi+X1dnqq/FB9QxTjZ+pbACKukBRgBS29+
-	3sgwv3imEMu4NXGo4YYF9pGePLhLqGjlXTgkO5f/5B0tfCTWQY1yACu6mY7DYgggeiiT
-	2vIGi27PE2AcNCh5Gf04/a8OMBsVJqtgGeJbKvYDdFW/hNcAvCjtDW8j+6DKjr296WuM
-	XZgw==
-X-Gm-Message-State: APjAAAX5ockVp/A5TbCaPvYe3ZZqh3Woetc+P4wdzUdoU1fYkyktLGz0
-	FU0fzs27kEJtbflN8VVFHBcTtT8UO5v4AG3tOgU=
-X-Google-Smtp-Source: APXvYqyih5akB0rYfLpBf4hNccYMrChSBptHSVGwFLsuaj/pVFejnspPgInzu2wfVMilrsgfEy5qt1mV48qeZe/KKLQ=
-X-Received: by 2002:a2e:a171:: with SMTP id u17mr32444650ljl.209.1564975245952;
-	Sun, 04 Aug 2019 20:20:45 -0700 (PDT)
+	Tue,  6 Aug 2019 18:58:30 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x76IvZWC064001
+	for <meta-arago@arago-project.org>; Tue, 6 Aug 2019 13:57:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1565117855;
+	bh=2v5wlWdFMAUCHGUjSaMx4Cvz4yroIuF+6msijX1YwMU=;
+	h=From:To:Subject:Date;
+	b=x42AyW0zF9dLGTuw47VWvHEgr/H5k4DhoTn0rC/95JJoU6fwziHNVQ41SNCRP+kto
+	XAPsuCUm0Upwh4cml85vn24KH4oaDmCkrLWUgpW5d2D8it5Wl3IxrwJ7fkXdM4X5Ng
+	qmAz5/KQEbB3zava8BEj+7jDPN64sQlY9iyWqz3Y=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x76IvZfx066950
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 6 Aug 2019 13:57:35 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Tue, 6 Aug 2019 13:57:35 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Tue, 6 Aug 2019 13:57:35 -0500
+Received: from uda0875154a.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x76IvYkC091355
+	for <meta-arago@arago-project.org>; Tue, 6 Aug 2019 13:57:34 -0500
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 6 Aug 2019 14:57:32 -0400
+Message-ID: <1565117853-52717-1-git-send-email-m-radhakrishnan2@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-References: <CADySD0Hx78etbUEEQJJuNScZU9hp1gHDoxyX_pKiJZt5O-DkWQ@mail.gmail.com>
-	<20190805013631.GA19505@beryl>
-In-Reply-To: <20190805013631.GA19505@beryl>
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Sun, 4 Aug 2019 20:20:33 -0700
-Message-ID: <CADySD0EvEmL-4n-nh=vEVnRWjcGiWPUEfiP1Fg9dMZF9=tA+tw@mail.gmail.com>
-To: Denys Dmytriyenko <denys@ti.com>
-Cc: meta-arago@arago-project.org
-Subject: Re: wpa-supplicant and hostap depends on openssl10
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [master][meta-processor-sdk][PATCH] RTOS patchset to use sysbios 6.76.02.02
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,38 +49,18 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Aug 2019 03:21:47 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 06 Aug 2019 18:58:31 -0000
+Content-Type: text/plain
 
-On Sun, Aug 4, 2019 at 6:36 PM Denys Dmytriyenko <denys@ti.com> wrote:
->
-> On Sun, Aug 04, 2019 at 12:58:48PM +1200, Ankur Tyagi wrote:
-> > Hi,
-> >
-> > When building eSDK for arago based image, I am getting following error:
-> >
-> > "The file /usr/include/openssl/comp.h is installed by both openssl10
-> > and openssl, aborting"
-> >
-> > I checked who depends on openssl10 and only meta-arago wpa-supplicant,
-> > hostap depends whereas upstream depends on openssl.
-> >
-> > Below commits show the change to depend on openssl10:
-> >
-> > commit bc88360b: wpa-supplicant: inherit pkgconfig and depend on openssl10
-> > commit 8c3e159b: hostap: inherit pkgconfig and depend on openssl10
-> >
-> > Any specific reason to still depend on openssl10?
->
-> Compatibility? OpenSSL 1.1 API is not 100% compatible with OpenSSL 1.0
->
+This patchset contains the RTOS patches with c6x big endian support descoped and is needed for use with sysbios 6.76.02.02
 
-But upstream wpa_supplicant is using OpenSSL 1.1. Shouldn't meta-arago
-also switch to the same?
-Even if meta-arago depends on OpenSSL 1.0, then how to fix eSDK error ?
+Mahesh Radhakrishnan (1):
+  fftlib: SRCREV update
 
-regards
-Ankur
-> --
-> Denys
+ meta-arago-extras/recipes-ti/fftlib/fftlib.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+-- 
+1.9.1
+
 
