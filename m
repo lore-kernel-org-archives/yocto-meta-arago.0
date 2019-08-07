@@ -1,30 +1,44 @@
 Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 95F80529A2
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 9E87752A34
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Aug 2019 01:05:45 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 2439140BC0;
-	Wed,  7 Aug 2019 01:04:50 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id BF3z-SBiG5VL; Wed,  7 Aug 2019 01:04:50 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0D20A40B86;
-	Wed,  7 Aug 2019 01:04:49 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id BF6B6172307;
-	Tue,  6 Aug 2019 21:04:48 -0400 (EDT)
+	Wed,  7 Aug 2019 01:14:12 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x771DHIh020891
+	for <meta-arago@arago-project.org>; Tue, 6 Aug 2019 20:13:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1565140397;
+	bh=Rwk2+/WrfU2iEjondHE/3hDNdY897O8Xw9YUI8+eR1I=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=FzPPE2lVW8W0cuWOQwkh7SfhTipVYTQspaZa2dlG6SRvaoNKqB+BFFWUk4zKz0XnW
+	wF9M+asvT/nVpVVEasLQ1/YOvxyQR0X88pptQFIs/rpV1zL7er74Lzt3NHuB64/g2x
+	jk7TsUDQKfuiQMB2A+rnQdIh92mTlhk3lo/CRQnw=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x771DHCE096939
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 6 Aug 2019 20:13:17 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Tue, 6 Aug 2019 20:13:16 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Tue, 6 Aug 2019 20:13:16 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x771DG7b091109;
+	Tue, 6 Aug 2019 20:13:16 -0500
+Date: Tue, 6 Aug 2019 21:13:16 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Tue,  6 Aug 2019 21:04:48 -0400
-Message-Id: <1565139888-51380-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH] packagegroup-tisdk-addons: add pru-swuart-fw for am355x platform
+To: <yan-liu@ti.com>
+Message-ID: <20190807011316.GW19505@beryl>
+References: <1565122120-19222-1-git-send-email-yan-liu@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <1565122120-19222-1-git-send-email-yan-liu@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,26 +51,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Aug 2019 01:05:46 -0000
+X-List-Received-Date: Wed, 07 Aug 2019 01:14:13 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb        | 1 +
- 1 file changed, 1 insertion(+)
+This did not apply - did you forget to rebase?
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index f0307fe..eb39cad 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -44,6 +44,7 @@ UTILS_append_ti33x = " mmc-utils \
-                        can-utils \
-                        switch-config \
-                        pru-icss \
-+                       pru-swuart-fw \
-                        uio-module-drv-test \
-                        uio-test-pruss \
- "
--- 
-2.7.4
-
+On Tue, Aug 06, 2019 at 04:08:40PM -0400, yan-liu@ti.com wrote:
+> From: Yan Liu <yan-liu@ti.com>
+> 
+> Signed-off-by: Yan Liu <yan-liu@ti.com>
+> ---
+>  .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb   |    4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+> index 02b41d6..2d39e30 100644
+> --- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+> +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+> @@ -4,7 +4,7 @@ SECTION = "console/utils"
+>  LICENSE = "GPLv2"
+>  LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+>  
+> -PR = "r8"
+> +PR = "r9"
+>  PV_append = "+git${SRCPV}"
+>  
+>  PROVIDES += "ltp"
+> @@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+>  
+>  inherit autotools-brokensep
+>  
+> -SRCREV = "1053c84e8b0485019ab085b5fb4e3c0e72e701ec"
+> +SRCREV = "95004a59952a9f94dfb3f98f94b58b0bb5db89b4"
+>  BRANCH ?= "master"
+>  
+>  SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+> -- 
+> 1.7.9.5
+> 
 
