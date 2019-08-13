@@ -1,30 +1,44 @@
 Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id E883352987
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 16E0252980
 	for <meta-arago@arago-project.org>;
-	Tue, 13 Aug 2019 22:57:03 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id AB59340BD4;
-	Tue, 13 Aug 2019 22:56:06 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 5d6bb-Sn7f1L; Tue, 13 Aug 2019 22:56:06 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9071D40B66;
-	Tue, 13 Aug 2019 22:56:05 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 43960172A53;
-	Tue, 13 Aug 2019 18:56:05 -0400 (EDT)
+	Tue, 13 Aug 2019 23:14:17 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7DNDJXV007440
+	for <meta-arago@arago-project.org>; Tue, 13 Aug 2019 18:13:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1565737999;
+	bh=J5fTQn5+ei/EvIGo3rb23/JtDlD4hptbVlfaum74XjE=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=OogQm/TkT2sRIsDLOHlI6fr7TGt7CwXsFeerP9soizWDA/Mw3FaKKXImvAdMRnFbG
+	0H9Eccoaq+s+1E4GQXAr52N7p0fbfEwcdJgV/gCosd3vq5lleLS0bwRZFJBbYycePr
+	YPbWcJvWbotLUabMAMAOY95wvBklETck9+yv/ZPI=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7DNDJAN100273
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 13 Aug 2019 18:13:19 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Tue, 13 Aug 2019 18:13:19 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Tue, 13 Aug 2019 18:13:19 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7DNDIoM033960;
+	Tue, 13 Aug 2019 18:13:19 -0500
+Date: Tue, 13 Aug 2019 19:13:18 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Tue, 13 Aug 2019 18:56:04 -0400
-Message-Id: <1565736964-34165-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH] fitimage: add load address for DTB/DTBO, clean DTBO config properties
+To: Jianzhong Xu <xuj@ti.com>
+Message-ID: <20190813231318.GH7130@beryl>
+References: <20190809140758.15280-1-xuj@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <20190809140758.15280-1-xuj@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [thud/master] [PATCH] armnn: add installation of header files
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,179 +51,75 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Aug 2019 22:57:04 -0000
+X-List-Received-Date: Tue, 13 Aug 2019 23:14:17 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/classes/kernel-fitimage.bbclass | 65 ++++++++++++++++++-----
- 1 file changed, 51 insertions(+), 14 deletions(-)
+On Fri, Aug 09, 2019 at 10:07:58AM -0400, Jianzhong Xu wrote:
+> * Install header files that are needed to build tidl-api examples
+> * Rename TESTVECS_INSTALL_DIR to ARMNN_INSTALL_DIR
+> 
+> Signed-off-by: Jianzhong Xu <xuj@ti.com>
+> ---
+>  .../recipes-support/armnn/armnn_git.bb        | 25 +++++++++++++------
+>  1 file changed, 17 insertions(+), 8 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-support/armnn/armnn_git.bb b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+> index 076ea3aa..7ad41d2d 100644
+> --- a/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+> +++ b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+> @@ -65,25 +65,34 @@ EXTRA_OECMAKE=" \
+>      -DGENERIC_LIB_VERSION=${PV} -DGENERIC_LIB_SOVERSION=${PV_MAJOR} \
+>  "
+>  
+> -TESTVECS_INSTALL_DIR = "${datadir}/arm/armnn"
+> +ARMNN_INSTALL_DIR = "${datadir}/arm/armnn"
+>  
+>  do_install_append() {
+>      CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
+>      install -d ${D}${bindir}
+>      find ${WORKDIR}/build/tests -maxdepth 1 -type f -executable -exec cp $CP_ARGS {} ${D}${bindir} \;
+>      cp $CP_ARGS ${WORKDIR}/build/UnitTests  ${D}${bindir}
+> -    install -d ${D}${TESTVECS_INSTALL_DIR}/models
+> -    cp ${WORKDIR}/tfmodel/mobilenet_v1_1.0_224_frozen.pb  ${D}${TESTVECS_INSTALL_DIR}/models
+> -    cp ${WORKDIR}/git/tests/TfMobileNet-Armnn/labels.txt  ${D}${TESTVECS_INSTALL_DIR}/models
+> -    install -d ${D}${TESTVECS_INSTALL_DIR}/testvecs
+> -    cp ${WORKDIR}/tidl-api/examples/classification/clips/*.mp4  ${D}${TESTVECS_INSTALL_DIR}/testvecs
+> -    cp ${WORKDIR}/tidl-api/examples/classification/images/*.jpg  ${D}${TESTVECS_INSTALL_DIR}/testvecs
+> +    install -d ${D}${ARMNN_INSTALL_DIR}/models
+> +    cp ${WORKDIR}/tfmodel/mobilenet_v1_1.0_224_frozen.pb  ${D}${ARMNN_INSTALL_DIR}/models
+> +    cp ${WORKDIR}/git/tests/TfMobileNet-Armnn/labels.txt  ${D}${ARMNN_INSTALL_DIR}/models
+> +    install -d ${D}${ARMNN_INSTALL_DIR}/testvecs
+> +    cp ${WORKDIR}/tidl-api/examples/classification/clips/*.mp4  ${D}${ARMNN_INSTALL_DIR}/testvecs
+> +    cp ${WORKDIR}/tidl-api/examples/classification/images/*.jpg  ${D}${ARMNN_INSTALL_DIR}/testvecs
+> +    cp -r ${WORKDIR}/git/include ${D}${ARMNN_INSTALL_DIR}
+> +    install -d ${D}${ARMNN_INSTALL_DIR}/src/armnn
+> +    cp ${WORKDIR}/git/src/armnn/*.hpp ${D}${ARMNN_INSTALL_DIR}/src/armnn
+> +    install -d ${D}${ARMNN_INSTALL_DIR}/src/armnnUtils
+> +    cp ${WORKDIR}/git/src/armnnUtils/{CsvReader.hpp,HeapProfiling.hpp,Logging.hpp,TensorIOUtils.hpp} ${D}${ARMNN_INSTALL_DIR}/src/armnnUtils
+> +    install -d ${D}${ARMNN_INSTALL_DIR}/src/backends/backendsCommon
+> +    cp ${WORKDIR}/git/src/backends/backendsCommon/BackendRegistry.hpp ${D}${ARMNN_INSTALL_DIR}/src/backends/backendsCommon
+> +    install -d ${D}${ARMNN_INSTALL_DIR}/tests
+> +    cp ${WORKDIR}/git/tests/{InferenceModel.hpp,InferenceTest.hpp,InferenceTest.inl} ${D}${ARMNN_INSTALL_DIR}/tests
 
-diff --git a/meta-arago-distro/classes/kernel-fitimage.bbclass b/meta-arago-distro/classes/kernel-fitimage.bbclass
-index e73c916..516e7fc 100644
---- a/meta-arago-distro/classes/kernel-fitimage.bbclass
-+++ b/meta-arago-distro/classes/kernel-fitimage.bbclass
-@@ -120,7 +120,7 @@ fitimage_emit_section_kernel() {
- 
- 	kernel_csum=${FITIMAGE_HASH_ALGO}
- 
--	ENTRYPOINT=${UBOOT_ENTRYPOINT}
-+	ENTRYPOINT="${UBOOT_ENTRYPOINT}"
- 	if test -n "${UBOOT_ENTRYSYMBOL}"; then
- 		ENTRYPOINT=`${HOST_PREFIX}nm ${S}/vmlinux | \
- 			awk '$4=="${UBOOT_ENTRYSYMBOL}" {print $2}'`
-@@ -155,9 +155,11 @@ EOF
- # $1 ... .its filename
- # $2 ... Image counter/name
- # $3 ... Path to DTB image
-+# $4 ... Load address
- fitimage_emit_section_dtb() {
- 
- 	dtb_csum=${FITIMAGE_HASH_ALGO}
-+	dtb_loadline="${4}"
- 
- 	cat << EOF >> ${1}
-                 ${2} {
-@@ -166,6 +168,7 @@ fitimage_emit_section_dtb() {
-                         type = "flat_dt";
-                         arch = "${UBOOT_ARCH}";
-                         compression = "none";
-+                        ${dtb_loadline}
- EOF
- 	if test -n "${FITIMAGE_HASH_ALGO}"; then
- 		cat << EOF >> ${1}
-@@ -320,22 +323,34 @@ fitimage_emit_section_config() {
- 		conf_sign_keyname="${UBOOT_SIGN_KEYNAME}"
- 	fi
- 
--	conf_desc="Linux kernel"
--	kernel_line="kernel = \"kernel@${2}\";"
-+	sep=""
-+	conf_desc=""
-+	kernel_line=""
-+	fdt_line=""
- 	ramdisk_line=""
-+	setup_line=""
-+	default_line=""
-+
-+	if [ -n "${2}" ]; then
-+		conf_desc="Linux kernel"
-+		sep=", "
-+		kernel_line="kernel = \"kernel@${2}\";"
-+	fi
- 
--	# Test if we have any DTBs at all
- 	if [ -n "${3}" ]; then
--		conf_desc="${conf_desc}, FDT blob"
-+		conf_desc="${conf_desc}${sep}FDT blob"
-+		sep=", "
- 	fi
- 
- 	if [ -n "${4}" ]; then
--		conf_desc="${conf_desc}, ramdisk"
-+		conf_desc="${conf_desc}${sep}ramdisk"
-+		sep=", "
- 		ramdisk_line="ramdisk = \"ramdisk@${4}\";"
- 	fi
- 
- 	if [ -n "${5}" ]; then
--		conf_desc="${conf_desc}, setup"
-+		conf_desc="${conf_desc}${sep}setup"
-+		sep=", "
- 		setup_line="setup = \"setup@${5}\";"
- 	fi
- 
-@@ -348,7 +363,7 @@ fitimage_emit_section_config() {
- 			nextnum=`expr ${6} + 1`
- 			loadables_pager_line="loadables = \"tee@${nextnum}\";"
- 		fi
--		final_conf_desc="${conf_desc}, OPTEE OS Image"
-+		final_conf_desc="${conf_desc}${sep}OPTEE OS Image"
- 	else
- 		loadables_line=""
- 		loadables_pager_line=""
-@@ -358,6 +373,7 @@ fitimage_emit_section_config() {
- 	dtbcount=1
- 	for DTB in ${KERNEL_DEVICETREE}; do
- 		DTB=$(basename "${DTB}")
-+		dtb_ext=${DTB##*.}
- 		if [ "x${FITIMAGE_CONF_BY_NAME}" = "x1" ] ; then
- 			conf_name="${DTB}"
- 		else
-@@ -380,13 +396,16 @@ EOF
- 			cat << EOF >> ${1}
-                 ${conf_name} {
-                         description = "${final_conf_desc}";
--                        ${kernel_line}
-                         ${fdt_line}
-+EOF
-+			if [ "${dtb_ext}" != "dtbo" ]; then
-+			cat << EOF >> ${1}
-+                        ${kernel_line}
-                         ${ramdisk_line}
-                         ${setup_line}
-                         ${loadables_line}
- EOF
--
-+			fi
- 			if test -n "${FITIMAGE_HASH_ALGO}"; then
- 				cat << EOF >> ${1}
-                         hash@1 {
-@@ -438,13 +457,16 @@ EOF
- 			cat << EOF >> ${1}
-                 ${conf_name} {
-                         description = "${final_conf_desc}";
--                        ${kernel_line}
-                         ${fdt_line}
-+EOF
-+			if [ "${dtb_ext}" != "dtbo" ]; then
-+			cat << EOF >> ${1}
-+                        ${kernel_line}
-                         ${ramdisk_line}
-                         ${setup_line}
-                         ${loadables_pager_line}
- EOF
--
-+			fi
- 			if test -n "${FITIMAGE_HASH_ALGO}"; then
- 				cat << EOF >> ${1}
-                         hash@1 {
-@@ -520,6 +542,7 @@ fitimage_assemble() {
- 	#
- 	if test -n "${KERNEL_DEVICETREE}"; then
- 		dtbcount=1
-+		dtboaddress="${UBOOT_DTBO_LOADADDRESS}"
- 		for DTB in ${KERNEL_DEVICETREE}; do
- 			if echo ${DTB} | grep -q '/dts/'; then
- 				bbwarn "${DTB} contains the full path to the the dts file, but only the dtb name should be used."
-@@ -530,11 +553,25 @@ fitimage_assemble() {
- 				DTB_PATH="arch/${ARCH}/boot/${DTB}"
- 			fi
- 			DTB=$(basename "${DTB}")
-+
-+			dtb_ext=${DTB##*.}
-+			if [ "${dtb_ext}" = "dtbo" ]; then
-+				if [ -n "${UBOOT_DTBO_LOADADDRESS}" ]; then
-+					dtb_loadline="load = <${dtboaddress}>;"
-+					num1=`printf "%d\n" ${dtboaddress}`
-+					num2=`printf "%d\n" ${UBOOT_DTBO_OFFSET}`
-+					num3=`expr $num1 + $num2`
-+					dtboaddress=`printf "0x%x\n" $num3`
-+				fi
-+			elif [ -n "${UBOOT_DTB_LOADADDRESS}" ]; then
-+				dtb_loadline="load = <${UBOOT_DTB_LOADADDRESS}>;"
-+			fi
-+
- 			fitimage_ti_secure ${DTB_PATH} ${DTB_PATH}.sec
- 			if [ "x${FITIMAGE_DTB_BY_NAME}" = "x1" ] ; then
--				fitimage_emit_section_dtb ${1} ${DTB} ${DTB_PATH}.sec
-+				fitimage_emit_section_dtb ${1} ${DTB} ${DTB_PATH}.sec "${dtb_loadline}"
- 			else
--				fitimage_emit_section_dtb ${1} "fdt@${dtbcount}" ${DTB_PATH}.sec
-+				fitimage_emit_section_dtb ${1} "fdt@${dtbcount}" ${DTB_PATH}.sec "${dtb_loadline}"
- 			fi
- 			if [ "x${dtbcount}" = "x1" ]; then
- 				dtbref=${DTB}
--- 
-2.7.4
+CP_ARGS is not being used for any of the cp commands.
 
+
+>      chrpath -d ${D}${bindir}/*
+>  }
+>  
+>  CXXFLAGS += "-fopenmp"
+>  LIBS += "-larmpl_lp64_mp"
+>  
+> -FILES_${PN} += "${TESTVECS_INSTALL_DIR}"
+> +FILES_${PN} += "${ARMNN_INSTALL_DIR}"
+>  FILES_${PN}-dev += "{libdir}/cmake/*"
+>  INSANE_SKIP_${PN}-dev = "dev-elf"
+> -- 
+> 2.17.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
