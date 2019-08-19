@@ -1,45 +1,42 @@
-Return-Path: <xuj@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 5DF86529B8
+Return-Path: <yan-liu@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id BA6DE52987
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Aug 2019 15:48:52 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7JFlrBS073792
-	for <meta-arago@arago-project.org>; Mon, 19 Aug 2019 10:47:53 -0500
+	Mon, 19 Aug 2019 18:11:24 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7JIAPID044888
+	for <meta-arago@arago-project.org>; Mon, 19 Aug 2019 13:10:25 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1566229673;
-	bh=JX+OKWHYUt6dWpUdfH1DdgxhF8IK7aXYFMgYbZi6HHc=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=YbXPA/DpPwM8KvaGPm5B1qLQtUtxwHrlDmDHiGFhKduo85kVjgbUcYBMaQNwIsRS4
-	eHOY5lvZkq8/9nI/9LSNwDK2/rJE53RucifQKB9o0Eg+r8iX1gomU4oHlOrCGnRGab
-	FDcxpds6OXJh6uFzy3AR8J6R8Ir1+w4IXeduw7vo=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7JFlrBl123625
+	s=ti-com-17Q1; t=1566238225;
+	bh=jNJMGBnrj3B3dnw7IGw0HQMX96thYFkGLsHskJCrwEw=;
+	h=From:To:CC:Subject:Date;
+	b=eK+An+3Rbl2kPFcZ0n2v1pflV8ZLK3KHhibJvx/fX24S8tJYm5o5ySoop1JhLNMOR
+	SWEak9JyRXTGeeGNPQIgzZbPI9pY9GnpjPb4s+5hOLdrpdHTtmhForuJQDQbRWP63Y
+	JZDwA71YAuF1LFgRQIdxsn7ejuUMY0Pm/PkzFZLI=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7JIAPIN068154
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 19 Aug 2019 10:47:53 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 19 Aug 2019 13:10:25 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 19 Aug 2019 10:47:52 -0500
-Received: from DFLE112.ent.ti.com ([fe80::d4dd:a09e:396d:a895]) by
-	DFLE112.ent.ti.com ([fe80::d4dd:a09e:396d:a895%17]) with mapi id
-	15.01.1713.004; Mon, 19 Aug 2019 10:47:52 -0500
-From: "Xu, Jianzhong" <xuj@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago]  [thud/master] [PATCH] tidl-utils: bump SRCREV
-Thread-Index: AQHVUjH2whtyjnmQSkuXp2lfibuBiKcCojaw
-Date: Mon, 19 Aug 2019 15:47:52 +0000
-Message-ID: <2fbc9fffcb904bc5b2424489bd39ddf8@ti.com>
-References: <20190809194048.63206-1-xuj@ti.com> <20190813235100.GI7130@beryl>
-In-Reply-To: <20190813235100.GI7130@beryl>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.116.215]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Mon, 19 Aug 2019 13:10:25 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Mon, 19 Aug 2019 13:10:25 -0500
+Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7JIAN91000780;
+	Mon, 19 Aug 2019 13:10:24 -0500
+From: <yan-liu@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 19 Aug 2019 14:09:33 -0400
+Message-ID: <1566238173-21629-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [thud/master] [PATCH] tidl-utils: bump SRCREV
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,64 +49,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Aug 2019 15:48:52 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 19 Aug 2019 18:11:25 -0000
+Content-Type: text/plain
 
-Denys,
+From: Yan Liu <yan-liu@ti.com>
 
-I tried "MACHINE=3Dam65xx-evm bitbake nativesdk-tidl-utils" in my local Yoc=
-to and it builds fine.=20
+Signed-off-by: Yan Liu <yan-liu@ti.com>
+---
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Did you try to do "MACHINE=3Dam65xx-evm bitbake tidl-utils" when you saw th=
-e failure? It wouldn't build because am65xx-evm is not in the COMPATIBLE_MA=
-CHINES of tidl-utils.=20
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+index 00c3a53..f863921 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+ 
+-PR = "r10"
++PR = "r11"
+ PV_append = "+git${SRCPV}"
+ 
+ PROVIDES += "ltp"
+@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+ 
+ inherit autotools-brokensep
+ 
+-SRCREV = "fb11e65551abdc1464c504119d9c67cf78a9370d"
++SRCREV = "9a74c87093302f86b0de4202f17339013c2f6913"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+-- 
+1.7.9.5
 
-Thanks,
-Jianzhong
-
------Original Message-----
-From: Dmytriyenko, Denys=20
-Sent: Tuesday, August 13, 2019 7:51 PM
-To: Xu, Jianzhong
-Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago] [thud/master] [PATCH] tidl-utils: bump SRCREV
-
-This update fails on am65x. Does it require armnn changes? If so, should be=
- in=20
-the series, not 2 separate patches.
-
-
-On Fri, Aug 09, 2019 at 03:40:48PM -0400, Jianzhong Xu wrote:
-> * tidl import tool fixes for non-square padding and Caffe data layer form=
-at
->=20
-> Signed-off-by: Jianzhong Xu <xuj@ti.com>
-> ---
->  meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc b/met=
-a-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-> index 2c29fc27..6fdeec48 100644
-> --- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-> +++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-> @@ -1,6 +1,6 @@
->  SRC_URI =3D "git://git.ti.com/tidl/tidl-utils.git;protocol=3Dgit;branch=
-=3Dmaster"
-> -SRCREV =3D "0c52c82a2aed1a27ca2a9b4b11effb426842b6ab"
-> +SRCREV =3D "b2466e02f99d85d8afcbc93edc612da5cc9345de"
-> =20
-> -PV =3D "01.01.01.00"
-> +PV =3D "01.01.02.00"
->  PR =3D "r0"
-> =20
-> --=20
-> 2.17.1
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
