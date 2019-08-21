@@ -1,43 +1,45 @@
 Return-Path: <h-gou@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 27294520DF
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 449EF52960
 	for <meta-arago@arago-project.org>;
 	Wed, 21 Aug 2019 22:59:20 +0000 (UTC)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7LMwK83012161
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7LMwKvB085973
 	for <meta-arago@arago-project.org>; Wed, 21 Aug 2019 17:58:20 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1566428300;
-	bh=YTvn6OW2tnIYI/F7BX1h3Ir6RekF2mHsgbOBj5++ss4=;
-	h=From:To:CC:Subject:Date;
-	b=VmxJm7VFDNOal1pzz/Xbdv6prq9Fb/Z6M6Kh5yvHEHywbHQDi5WfkY55HRrVutsXh
-	vpDhW/bPcup6wDDACnYnhLq3iOBlR2S/eD76wBHk84q4dih8ZzWf2YihLr3STFuGBm
-	SaZahb4KKqq9HDouKZ99fTt2T64xkW1tKQW+XcOU=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7LMwKZu080605
+	bh=1kjm9SnAbxKeNJkApkInDrY7pdj1EboDTpQaam3mugI=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=i8w0SaZ8/6/C8UdirR/EDQFmnjvSmnUAGi5sk/AwX3ESdspYujpZrxlKQeK2pSOUp
+	CsRG3qkdvFo54pbPvlTQYNYqy/2/SZSLGGaGZHmax4mOjnRU8uFaokrSXe+F1HOgJF
+	3pWzqS+SpWVEvx0WGWZb9fJdhGbOq7uzNKZmHfAM=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7LMwKjb080615
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@arago-project.org>; Wed, 21 Aug 2019 17:58:20 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
 	Wed, 21 Aug 2019 17:58:20 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 21 Aug 2019 17:58:19 -0500
+	Frontend Transport; Wed, 21 Aug 2019 17:58:20 -0500
 Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7LMwJCb074536;
-	Wed, 21 Aug 2019 17:58:19 -0500
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7LMwJCc074536;
+	Wed, 21 Aug 2019 17:58:20 -0500
 From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 21 Aug 2019 18:58:00 -0400
-Message-ID: <20190821225807.22947-1-a0271529@ti.com>
+Date: Wed, 21 Aug 2019 18:58:01 -0400
+Message-ID: <20190821225807.22947-2-a0271529@ti.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190821225807.22947-1-a0271529@ti.com>
+References: <20190821225807.22947-1-a0271529@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [PATCH 0/7] Add tensorflow-lite
+Subject: [PATCH 1/7] tensorflow-lite: add version 1.12
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,52 +55,180 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Wed, 21 Aug 2019 22:59:21 -0000
 Content-Type: text/plain
 
-This patch set starts from the baseline recipe at
-https://github.com/nnsuite/meta-neural-network/tree/master/recipes-tensorflow/tensorflow-lite,
+* Source of the recipe: https://github.com/nnsuite/meta-neural-network/tree/master/recipes-tensorflow/tensorflow-lite
+* Updated checksums for NEON2SSE from the baseline
 
-The major changes are listed below:
-1. Ported/created recipes for all the dependencies required for tensorflow-lite 1.12
-2. Installed minimal and benchmark_model binaries which have been built with the original Makefile
-3. Patched Makefile to add label_image and installed the example binary and files
-   (model/image/labels.txt) needed to run the example
-
-Hongmei Gou (7):
-  tensorflow-lite: add version 1.12
-  flatbuffers: add version 1.10.0 needed by tensorflow-lite
-  tensorflow-lite-libeigen: add the version for commit fd6845384b86
-  tensorflow-lite-*: add other dependencies for tensorflow-lite 1.12
-  tensorflow-lite: define dependencies via DEPENDS
-  tensorflow-lite: install minimal and benchmark_model examples, and all
-    .a files
-  tensorflow-lite: add label_image example and install the files to run
-    the example
-
- .../flatbuffers/flatbuffers_1.10.0.bb         | 34 +++++++
- ...the-path-for-the-depedencies-built-v.patch | 50 ++++++++++
- ...002-Makefile-add-label_image-example.patch | 89 ++++++++++++++++++
- ...odification-for-tflite-1.12-to-eigen.patch | 13 +++
- .../files/tensorflow-lite.pc.in               |  6 ++
- .../tensorflow-lite-absl_git.bb               | 16 ++++
- .../tensorflow-lite-farmhash_git.bb           | 14 +++
- .../tensorflow-lite-fft2d_1.0.bb              | 14 +++
- .../tensorflow-lite-gemmlowp_git.bb           | 16 ++++
- .../tensorflow-lite-libeigen_git.bb           | 20 ++++
- .../tensorflow-lite-neon-2-sse_git.bb         | 14 +++
- .../tensorflow-lite/tensorflow-lite_1.12.bb   | 93 +++++++++++++++++++
- 12 files changed, 379 insertions(+)
- create mode 100644 meta-arago-extras/recipes-devtools/flatbuffers/flatbuffers_1.10.0.bb
- create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/0001-Makefile-update-the-path-for-the-depedencies-built-v.patch
- create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/0002-Makefile-add-label_image-example.patch
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
+---
+ ...odification-for-tflite-1.12-to-eigen.patch |  13 ++
+ .../files/tensorflow-lite.pc.in               |   6 +
+ .../tensorflow-lite/tensorflow-lite_1.12.bb   | 124 ++++++++++++++++++
+ 3 files changed, 143 insertions(+)
  create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch
  create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in
- create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-absl_git.bb
- create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-farmhash_git.bb
- create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-fft2d_1.0.bb
- create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-gemmlowp_git.bb
- create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-libeigen_git.bb
- create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-neon-2-sse_git.bb
  create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
 
+diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch b/meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch
+new file mode 100644
+index 00000000..1a8de78b
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch
+@@ -0,0 +1,13 @@
++diff --git a/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h b/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
++index 306a309beb..4527a64c91 100644
++--- a/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
+++++ b/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
++@@ -295,7 +295,7 @@ ptranspose(PacketBlock<Packet2cf,2>& kernel) {
++   static uint64x2_t p2ul_CONJ_XOR = {0x0, 0x8000000000000000};
++ #else
++   const uint64_t  p2ul_conj_XOR_DATA[] = { 0x0, 0x8000000000000000 };
++-  static uint64x2_t p2ul_CONJ_XOR = vld1q_u64( p2ul_conj_XOR_DATA );
+++  static uint64x2_t p2ul_CONJ_XOR;// = vld1q_u64( p2ul_conj_XOR_DATA ); - Removed by script
++ #endif
++ 
++ struct Packet1cd
+diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in b/meta-arago-extras/recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in
+new file mode 100644
+index 00000000..44afd0ee
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in
+@@ -0,0 +1,6 @@
++ Name: tensorflow lite
++ Description: tensorflow lite static library
++ Version: @version@
++ Requires:
++ Libs: -L@libdir@ -ltensorflow-lite
++ Cflags: -I@includedir@
+diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
+new file mode 100644
+index 00000000..5f35fa26
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
+@@ -0,0 +1,124 @@
++DESCRIPTION = "TensorFlow's lightweight solution for mobile and embedded devices"
++AUTHOR = "Google Inc. and Yuan Tang"
++HOMEPAGE = "https://www.tensorflow.org/lite"
++LICENSE = "Apache-2.0"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=01e86893010a1b87e69a213faa753ebd"
++
++MD5SUM_EIGEN = "4c884968ede816a84c70e2cd2c81de8d"
++SHA256SUM_EIGEN = "d956415d784fa4e42b6a2a45c32556d6aec9d0a3d8ef48baee2522ab762556a9"
++MD5SUM_FARMHASH = "f039a65a7f62bdb6c4b4c8a732638d80"
++SHA256SUM_FARMHASH = "6560547c63e4af82b0f202cb710ceabb3f21347a4b996db565a411da5b17aba0"
++MD5SUM_GEMMLOWP = "a90a2161ad8ee4ccf724f56e07637601"
++SHA256SUM_GEMMLOWP = "b87faa7294dfcc5d678f22a59d2c01ca94ea1e2a3b488c38a95a67889ed0a658"
++MD5SUM_GTEST = "16877098823401d1bf2ed7891d7dce36"
++SHA256SUM_GTEST = "58a6f4277ca2bc8565222b3bbd58a177609e9c488e8a72649359ba51450db7d8"
++MD5SUM_ABSLCPP = "7c9945f256d3733a8eade255afcbd072"
++SHA256SUM_ABSLCPP = "7dd09690ae7ca4551de3111d4a86b75b23ec17445f273d3c42bdcdc1c7b02e4e"
++MD5SUM_NEON2SSE = "11fb94c08a43f88a68a9edff317d82d0"
++SHA256SUM_NEON2SSE = "70526166a054f64b254213e9dc227b5877a21b621161e9907931093cc30341dd"
++MD5SUM_FLATBUFFER = "3811552512049fac3af419130904bc55"
++SHA256SUM_FLATBUFFER = "b2bb0311ca40b12ebe36671bdda350b10c7728caf0cfe2d432ea3b6e409016f3"
++MD5SUM_FFT = "4255dd8a74949d123216b1ab91520469"
++SHA256SUM_FFT = "52bb637c70b971958ec79c9c8752b1df5ff0218a4db4510e60826e0cb79b5296"
++
++SRC_URI = "git://github.com/tensorflow/tensorflow.git;branch=r1.12;protocol=https \
++    https://bitbucket.org/eigen/eigen/get/fd6845384b86.tar.gz;md5sum=${MD5SUM_EIGEN};sha256sum=${SHA256SUM_EIGEN} \
++    https://mirror.bazel.build/github.com/google/gemmlowp/archive/38ebac7b059e84692f53e5938f97a9943c120d98.zip;md5sum=${MD5SUM_GEMMLOWP};sha256sum=${SHA256SUM_GEMMLOWP} \
++    https://github.com/google/googletest/archive/release-1.8.0.tar.gz;md5sum=${MD5SUM_GTEST};sha256sum=${SHA256SUM_GTEST} \
++    https://github.com/abseil/abseil-cpp/archive/48cd2c3f351ff188bc85684b84a91b6e6d17d896.tar.gz;md5sum=${MD5SUM_ABSLCPP};sha256sum=${SHA256SUM_ABSLCPP} \
++    https://github.com/intel/ARM_NEON_2_x86_SSE/archive/master.zip;md5sum=${MD5SUM_NEON2SSE};sha256sum=${SHA256SUM_NEON2SSE} \
++    https://mirror.bazel.build/github.com/google/farmhash/archive/816a4ae622e964763ca0862d9dbd19324a1eaf45.tar.gz;md5sum=${MD5SUM_FARMHASH};sha256sum=${SHA256SUM_FARMHASH} \
++    https://github.com/google/flatbuffers/archive/1f5eae5d6a135ff6811724f6c57f911d1f46bb15.tar.gz;md5sum=${MD5SUM_FLATBUFFER};sha256sum=${SHA256SUM_FLATBUFFER} \
++    https://mirror.bazel.build/www.kurims.kyoto-u.ac.jp/~ooura/fft.tgz;md5sum=${MD5SUM_FFT};sha256sum=${SHA256SUM_FFT} \
++    file://apply-modification-for-tflite-1.12-to-eigen.patch \
++    file://tensorflow-lite.pc.in"
++
++SRCREV = "${AUTOREV}"
++
++S = "${WORKDIR}/git"
++
++DEPENDS = "zlib"
++TARGET_CFLAGS_remove = "-O2"
++TARGET_CPPLAGS_remove = "-O2"
++TARGET_CXXLAGS_remove = "-O2"
++CCFLAGS_append = " -O3 -DNDEBUG -fPIC -DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
++    -I${STAGING_INCDIR}"
++CXXFLAGS_append = " -O3 -DNDEBUG -fPIC -DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
++    -I${STAGING_INCDIR}"
++LDFLAGS_remove = "-Wl,-O1"
++CXXFLAGS_append = " -O3 -DNDEBUG -fPIC -DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
++    -I${STAGING_INCDIR}"
++LIBS = "-lstdc++ -lpthread -lm -lz -ldl"
++BUILD_DEPS_DOWNLOAD_DIR_PREFIX = "${S}/tensorflow/contrib/lite/tools/make/downloads/"
++
++do_cp_downloaded_build_deps() {
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}eigen
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}gemmlowp
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}googletest
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}absl
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}farmhash
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}neon_2_sse
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}flatbuffers
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}fft2d
++
++    cp -rf ${WORKDIR}/eigen-eigen-fd6845384b86/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}eigen
++    cp -rf ${WORKDIR}/gemmlowp-38ebac7b059e84692f53e5938f97a9943c120d98/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}gemmlowp
++    cp -rf ${WORKDIR}/googletest-release-1.8.0/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}googletest
++    cp -rf ${WORKDIR}/abseil-cpp-48cd2c3f351ff188bc85684b84a91b6e6d17d896/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}absl
++    cp -rf ${WORKDIR}/farmhash-816a4ae622e964763ca0862d9dbd19324a1eaf45/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}farmhash
++    cp -rf ${WORKDIR}/ARM_NEON_2_x86_SSE-master/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}neon_2_sse
++    cp -rf ${WORKDIR}/flatbuffers-1f5eae5d6a135ff6811724f6c57f911d1f46bb15/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}flatbuffers
++    cp -rf ${WORKDIR}/fft/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}fft2d
++}
++addtask do_cp_downloaded_build_deps after do_unpack before do_patch
++
++EXTRA_OEMAKE = "\
++    'CC=${CC}' \
++    'CXX=${CXX}' \
++    'CPP=${CPP}' \
++    'CFLAGS=${CFLAGS}' \
++    'CPPFLAGS=${CFLAGS}' \
++    'CXXFLAGS=${CXXFLAGS}' \
++    'AR=${AR}' \
++    'LD=${LD}' \
++    'LDFLAGS=${LDFLAGS}' \
++    'LIBS=${LIBS}' \
++    'TARGET=${TARGET_OS}' \
++    'TARGET_ARCH=${TUNE_ARCH}'"
++
++do_configure() {
++    oe_runmake -f tensorflow/contrib/lite/tools/make/Makefile clean
++}
++
++do_compile() {
++    oe_runmake -f tensorflow/contrib/lite/tools/make/Makefile
++}
++
++do_install() {
++    install -d ${D}${libdir}
++    install -m 0644 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/lib/libtensorflow-lite.a ${D}${libdir}/
++    install -d ${D}${includedir}/tensorflow/contrib/lite
++    install -m 0644 ${S}/tensorflow/contrib/lite/*.h ${D}${includedir}/tensorflow/contrib/lite/
++    install -d ${D}${includedir}/tensorflow/contrib/lite/c
++    install -m 0644 ${S}/tensorflow/contrib/lite/c/*.h ${D}${includedir}/tensorflow/contrib/lite/c/
++    install -d ${D}${includedir}/tensorflow/contrib/lite/core/api/
++    install -m 0644 ${S}/tensorflow/contrib/lite/core/api/*.h ${D}${includedir}/tensorflow/contrib/lite/core/api/
++    install -d ${D}${includedir}/tensorflow/contrib/lite/kernels
++    install -m 0644 ${S}/tensorflow/contrib/lite/kernels/*.h ${D}${includedir}/tensorflow/contrib/lite/kernels/
++    install -d  ${D}${includedir}/tensorflow/contrib/lite/profiling/
++    install -m 0644 ${S}/tensorflow/contrib/lite/profiling/*.h ${D}${includedir}/tensorflow/contrib/lite/profiling/
++    install -d ${D}${includedir}/tensorflow/contrib/lite/schema/
++    install -m 0644 ${S}/tensorflow/contrib/lite/schema/*.h ${D}${includedir}/tensorflow/contrib/lite/schema/
++    install -d ${D}${includedir}/tensorflow/contrib/lite/tools/
++    install -m 0644 ${S}/tensorflow/contrib/lite/tools/*.h ${D}${includedir}/tensorflow/contrib/lite/tools/
++    install -d ${D}${libdir}/pkgconfig
++    install -m 0644 ${WORKDIR}/tensorflow-lite.pc.in ${D}${libdir}/pkgconfig/tensorflow-lite.pc
++    sed -i 's:@version@:${PV}:g
++        s:@libdir@:${libdir}:g
++        s:@includedir@:${includedir}:g' ${D}${libdir}/pkgconfig/tensorflow-lite.pc
++    # flatbuffers
++    install -d  ${D}${includedir}/flatbuffers
++    install -m 0644 ${S}/tensorflow/contrib/lite/tools/make/downloads/flatbuffers/include/flatbuffers/*.h ${D}${includedir}/flatbuffers/
++}
++
++ALLOW_EMPTY_${PN} = "1"
 -- 
 2.17.1
 
