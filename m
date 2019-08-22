@@ -1,44 +1,47 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id A1623520E2
+Return-Path: <h-gou@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id C54495298D
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Aug 2019 14:23:20 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7MEMK3J080900
-	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 09:22:20 -0500
+	Thu, 22 Aug 2019 14:37:04 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7MEa4iG105392
+	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 09:36:04 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1566483740;
-	bh=lKLfwDFf32Uk2rwfvzxICDH0eYcdNpprg4DFWuG28L8=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=hmFxAkXpHmBjfCQoabQpYb8SO/7GQzzA+lwGstU9u+dSAbBzFh7rZdTZN+IQz/RYI
-	UihT+6gIuxzR9LKdj8xHY2b3x9nc+GtmopysNVhvrXo2zrFzfR5+1oQ7wfxoMgg3Iu
-	DTkujUvioBAhijBP/k2v0v0l0C2cTM36SNuhn43k=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7MEMKY9032070
+	s=ti-com-17Q1; t=1566484564;
+	bh=Jak9Z5Hko91yJZEdFZaQ1EB+2GTBPUrR6ZZaGQgIkLE=;
+	h=From:To:Subject:Date:References:In-Reply-To;
+	b=D4BvHVVdVD+8rt2vfKlmlQGV1z3Y6dwWzgdAh1nuZsNp8ZTeKtNA0boLMz8GBM+h/
+	nEZxzDM+etzPBwxW4NvpJRJtEzDlc8OpwnvByN7zTFe3HbvQcgJdfgZsc/TLG6xd8N
+	tRUPPTgQYodrtqYthb1uvrx0FKqAZtRQtmKWdjPw=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7MEa470053520
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 09:22:20 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 09:36:04 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 22 Aug 2019 09:22:20 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Thu, 22 Aug 2019 09:22:20 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7MEMJhZ044845;
-	Thu, 22 Aug 2019 09:22:20 -0500
-To: Hongmei Gou <a0271529@ti.com>, <meta-arago@arago-project.org>
+	Thu, 22 Aug 2019 09:36:04 -0500
+Received: from DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f]) by
+	DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f%18]) with mapi id
+	15.01.1713.004; Thu, 22 Aug 2019 09:36:04 -0500
+From: "Gou, Hongmei" <h-gou@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [EXTERNAL] [meta-arago] [PATCH 4/7] tensorflow-lite-*: add other
+	dependencies for tensorflow-lite 1.12
+Thread-Index: AQHVWPUCnswtyFlKqkOHZgHqGdqr+KcHOerw
+Date: Thu, 22 Aug 2019 14:36:04 +0000
+Message-ID: <97690c8628784db4b782175a258fb085@ti.com>
 References: <20190821225807.22947-1-a0271529@ti.com>
 	<20190821225807.22947-5-a0271529@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <7ced5a8f-b9a8-8b01-7fae-5aba1917ea1d@ti.com>
-Date: Thu, 22 Aug 2019 10:22:20 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	<7ced5a8f-b9a8-8b01-7fae-5aba1917ea1d@ti.com>
+In-Reply-To: <7ced5a8f-b9a8-8b01-7fae-5aba1917ea1d@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [158.218.113.170]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-In-Reply-To: <20190821225807.22947-5-a0271529@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Subject: Re: [EXTERNAL] [PATCH 4/7] tensorflow-lite-*: add other dependencies for tensorflow-lite 1.12
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -52,130 +55,128 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Aug 2019 14:23:21 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 22 Aug 2019 14:37:05 -0000
 Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Why do we need to prefix all of these with "tensorflow-lite"?
-
-On 8/21/2019 6:58 PM, Hongmei Gou wrote:
-> Signed-off-by: Hongmei Gou <a0271529@ti.com>
-> ---
->   .../tensorflow-lite/tensorflow-lite-absl_git.bb  | 16 ++++++++++++++++
->   .../tensorflow-lite-farmhash_git.bb              | 14 ++++++++++++++
->   .../tensorflow-lite/tensorflow-lite-fft2d_1.0.bb | 14 ++++++++++++++
->   .../tensorflow-lite-gemmlowp_git.bb              | 16 ++++++++++++++++
->   .../tensorflow-lite-neon-2-sse_git.bb            | 14 ++++++++++++++
->   5 files changed, 74 insertions(+)
->   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-absl_git.bb
->   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-farmhash_git.bb
->   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-fft2d_1.0.bb
->   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-gemmlowp_git.bb
->   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-neon-2-sse_git.bb
->
-> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-absl_git.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-absl_git.bb
-> new file mode 100644
-> index 00000000..8d02958a
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-absl_git.bb
-> @@ -0,0 +1,16 @@
-> +DESCRIPTION = "Abseil C++ Common Libraries"
-> +HOMEPAGE = "https://github.com/abseil/abseil-cpp"
-> +LICENSE = "Apache-2.0"
-> +LIC_FILES_CHKSUM = "file://LICENSE;md5=917cc5763a741e915bf7f2cc55830c17"
-> +
-> +SRC_URI = "git://github.com/abseil/abseil-cpp.git"
-> +SRCREV  = "48cd2c3f351ff188bc85684b84a91b6e6d17d896"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +inherit cmake
-> +
-> +do_install() {
-> +    install -d ${D}${datadir}/absl
-> +    cp -r ${S}/absl ${D}${datadir}/absl
-> +}
-> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-farmhash_git.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-farmhash_git.bb
-> new file mode 100644
-> index 00000000..cd0bb14c
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-farmhash_git.bb
-> @@ -0,0 +1,14 @@
-> +DESCRIPTION = "FarmHash, a family of hash functions"
-> +HOMEPAGE = "https://github.com/google/farmhash"
-> +LICENSE = "MIT"
-> +LIC_FILES_CHKSUM = "file://COPYING;md5=7dfaa79e2b070897e495fec386e3acfc"
-> +
-> +SRC_URI = "git://github.com/google/farmhash.git"
-> +SRCREV  = "816a4ae622e964763ca0862d9dbd19324a1eaf45"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +do_install() {
-> +    install -d ${D}${datadir}/farmhash
-> +    cp -r ${S}/src ${D}${datadir}/farmhash
-> +}
-> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-fft2d_1.0.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-fft2d_1.0.bb
-> new file mode 100644
-> index 00000000..5a01a2b2
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-fft2d_1.0.bb
-> @@ -0,0 +1,14 @@
-> +DESCRIPTION = "General Purpose FFT (Fast Fourier/Cosine/Sine Transform) Package"
-> +LICENSE = "FFT-License"
-> +LIC_FILES_CHKSUM = "file://readme.txt;beginline=140;endline=145;md5=62461d28fdc0c056c098f3fb2f015799"
-> +
-> +SRC_URI = "https://mirror.bazel.build/www.kurims.kyoto-u.ac.jp/~ooura/fft.tgz;downloadfilename=${BP}.tgz"
-> +SRC_URI[md5sum] = "4255dd8a74949d123216b1ab91520469"
-> +SRC_URI[sha256sum] = "52bb637c70b971958ec79c9c8752b1df5ff0218a4db4510e60826e0cb79b5296"
-> +
-> +S = "${WORKDIR}/fft"
-> +
-> +do_install() {
-> +    install -d ${D}${datadir}/fft2d
-> +    cp -r ${S}/* ${D}${datadir}/fft2d
-> +}
-> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-gemmlowp_git.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-gemmlowp_git.bb
-> new file mode 100644
-> index 00000000..9ce38486
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-gemmlowp_git.bb
-> @@ -0,0 +1,16 @@
-> +DESCRIPTION = "gemmlowp: a small self-contained low-precision GEMM library"
-> +HOMEPAGE = "https://github.com/google/gemmlowp"
-> +LICENSE = "Apache-2.0"
-> +LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
-> +
-> +SRC_URI = "git://github.com/google/gemmlowp.git"
-> +SRCREV  = "38ebac7b059e84692f53e5938f97a9943c120d98"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +do_install() {
-> +    install -d ${D}${datadir}/gemmlowp
-> +    cp -r ${S}/* ${D}${datadir}/gemmlowp
-> +}
-> +
-> +INSANE_SKIP_${PN} = "file-rdeps"
-> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-neon-2-sse_git.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-neon-2-sse_git.bb
-> new file mode 100644
-> index 00000000..a93bf1fd
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-neon-2-sse_git.bb
-> @@ -0,0 +1,14 @@
-> +DESCRIPTION = "Header file simplifying ARM->IA32 porting"
-> +HOMEPAGE = "https://github.com/intel/ARM_NEON_2_x86_SSE"
-> +LICENSE = "BSD-3-Clause"
-> +LIC_FILES_CHKSUM = "file://LICENSE;md5=b4fdfcb48f273d192333c498d75fa26f"
-> +
-> +SRC_URI = "git://github.com/intel/ARM_NEON_2_x86_SSE.git"
-> +SRCREV  = "3057bb91b99bae9c7fbdf8710c032d462ca10051"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +do_install() {
-> +    install -d ${D}${datadir}/neon-2-sse
-> +    cp -r ${S}/*.h ${D}${datadir}/neon-2-sse
-> +}
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBTdGlmZmxlciwgSmFjb2INCj4g
+U2VudDogVGh1cnNkYXksIEF1Z3VzdCAyMiwgMjAxOSAxMDoyMiBBTQ0KPiBUbzogR291LCBIb25n
+bWVpOyBtZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbRVhURVJO
+QUxdIFttZXRhLWFyYWdvXSBbUEFUQ0ggNC83XSB0ZW5zb3JmbG93LWxpdGUtKjogYWRkDQo+IG90
+aGVyIGRlcGVuZGVuY2llcyBmb3IgdGVuc29yZmxvdy1saXRlIDEuMTINCj4gDQo+IFdoeSBkbyB3
+ZSBuZWVkIHRvIHByZWZpeCBhbGwgb2YgdGhlc2Ugd2l0aCAidGVuc29yZmxvdy1saXRlIj8NCg0K
+QXMgdGhlc2UgZGVwZW5kZW5jaWVzIGFyZSBzcGVjaWZpYyB0byB0ZW5zb3JmbG93LWxpdGUgdG8g
+Z2V0IHRoZSBzb3VyY2UgcGFja2FnZXMsDQphbmQgdGhlcmVmb3JlLCBJIHB1dCB0aGVtIHVuZGVy
+IHRoZSBzYW1lIGZvbGRlciBvZiAiIHRlbnNvcmZsb3ctbGl0ZSIgd2l0aCB0aGUgcHJlZml4Lg0K
+VGhpcyBpcyBhbHNvIHJlZmVycmluZyB0byB0aGUgbmFtaW5nIGNvbnZlbnRpb24gZm9yIGFybW5u
+IGRlcGVuZGVuY2llczoNCmh0dHA6Ly9hcmFnby1wcm9qZWN0Lm9yZy9naXQvP3A9bWV0YS1hcmFn
+by5naXQ7YT10cmVlO2Y9bWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1zdXBwb3J0L2FybW5uO2g9
+M2U1NmE3NGJjNzgzNjA2ZDA2ZmE0NzhlYTE1MTZkZDRkMjM3NTg1MztoYj1kZGIwODcxNWJmMTFk
+NDU4ODYxMDZlOThlZTgxY2JmMWIzYmRhODAyDQoNCklmIHRoaXMgaXMgbm90IHRoZSBjb21tb24g
+cHJhY3RpY2UsIEkgY2FuIGNyZWF0ZSBzZXBhcmF0ZSBmb2xkZXJzIGZvciB0aGVzZQ0KZGVwZW5k
+ZW5jaWVzIHVuZGVyIHJlY2lwZXMtc3VwcG9ydCwgYW5kIHJlbW92ZSB0aGUgInRlbnNvcmZsb3ct
+bGl0ZSIgcHJlZml4Lg0KDQo+IA0KPiBPbiA4LzIxLzIwMTkgNjo1OCBQTSwgSG9uZ21laSBHb3Ug
+d3JvdGU6DQo+ID4gU2lnbmVkLW9mZi1ieTogSG9uZ21laSBHb3UgPGEwMjcxNTI5QHRpLmNvbT4N
+Cj4gPiAtLS0NCj4gPiAgIC4uLi90ZW5zb3JmbG93LWxpdGUvdGVuc29yZmxvdy1saXRlLWFic2xf
+Z2l0LmJiICB8IDE2ICsrKysrKysrKysrKysrKysNCj4gPiAgIC4uLi90ZW5zb3JmbG93LWxpdGUt
+ZmFybWhhc2hfZ2l0LmJiICAgICAgICAgICAgICB8IDE0ICsrKysrKysrKysrKysrDQo+ID4gICAu
+Li4vdGVuc29yZmxvdy1saXRlL3RlbnNvcmZsb3ctbGl0ZS1mZnQyZF8xLjAuYmIgfCAxNCArKysr
+KysrKysrKysrKw0KPiA+ICAgLi4uL3RlbnNvcmZsb3ctbGl0ZS1nZW1tbG93cF9naXQuYmIgICAg
+ICAgICAgICAgIHwgMTYgKysrKysrKysrKysrKysrKw0KPiA+ICAgLi4uL3RlbnNvcmZsb3ctbGl0
+ZS1uZW9uLTItc3NlX2dpdC5iYiAgICAgICAgICAgIHwgMTQgKysrKysrKysrKysrKysNCj4gPiAg
+IDUgZmlsZXMgY2hhbmdlZCwgNzQgaW5zZXJ0aW9ucygrKQ0KPiA+ICAgY3JlYXRlIG1vZGUgMTAw
+NjQ0IG1ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LQ0KPiBsaXRl
+L3RlbnNvcmZsb3ctbGl0ZS1hYnNsX2dpdC5iYg0KPiA+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IG1l
+dGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LQ0KPiBsaXRlL3RlbnNv
+cmZsb3ctbGl0ZS1mYXJtaGFzaF9naXQuYmINCj4gPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBtZXRh
+LWFyYWdvLWV4dHJhcy9yZWNpcGVzLXN1cHBvcnQvdGVuc29yZmxvdy0NCj4gbGl0ZS90ZW5zb3Jm
+bG93LWxpdGUtZmZ0MmRfMS4wLmJiDQo+ID4gICBjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1hcmFn
+by1leHRyYXMvcmVjaXBlcy1zdXBwb3J0L3RlbnNvcmZsb3ctDQo+IGxpdGUvdGVuc29yZmxvdy1s
+aXRlLWdlbW1sb3dwX2dpdC5iYg0KPiA+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IG1ldGEtYXJhZ28t
+ZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LQ0KPiBsaXRlL3RlbnNvcmZsb3ctbGl0
+ZS1uZW9uLTItc3NlX2dpdC5iYg0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0
+cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LWxpdGUvdGVuc29yZmxvdy0NCj4gbGl0ZS1h
+YnNsX2dpdC5iYiBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93
+LQ0KPiBsaXRlL3RlbnNvcmZsb3ctbGl0ZS1hYnNsX2dpdC5iYg0KPiA+IG5ldyBmaWxlIG1vZGUg
+MTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAuLjhkMDI5NThhDQo+ID4gLS0tIC9kZXYvbnVsbA0K
+PiA+ICsrKyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LWxp
+dGUvdGVuc29yZmxvdy1saXRlLQ0KPiBhYnNsX2dpdC5iYg0KPiA+IEBAIC0wLDAgKzEsMTYgQEAN
+Cj4gPiArREVTQ1JJUFRJT04gPSAiQWJzZWlsIEMrKyBDb21tb24gTGlicmFyaWVzIg0KPiA+ICtI
+T01FUEFHRSA9ICJodHRwczovL2dpdGh1Yi5jb20vYWJzZWlsL2Fic2VpbC1jcHAiDQo+ID4gK0xJ
+Q0VOU0UgPSAiQXBhY2hlLTIuMCINCj4gPiArTElDX0ZJTEVTX0NIS1NVTSA9DQo+ICJmaWxlOi8v
+TElDRU5TRTttZDU9OTE3Y2M1NzYzYTc0MWU5MTViZjdmMmNjNTU4MzBjMTciDQo+ID4gKw0KPiA+
+ICtTUkNfVVJJID0gImdpdDovL2dpdGh1Yi5jb20vYWJzZWlsL2Fic2VpbC1jcHAuZ2l0Ig0KPiA+
+ICtTUkNSRVYgID0gIjQ4Y2QyYzNmMzUxZmYxODhiYzg1Njg0Yjg0YTkxYjZlNmQxN2Q4OTYiDQo+
+ID4gKw0KPiA+ICtTID0gIiR7V09SS0RJUn0vZ2l0Ig0KPiA+ICsNCj4gPiAraW5oZXJpdCBjbWFr
+ZQ0KPiA+ICsNCj4gPiArZG9faW5zdGFsbCgpIHsNCj4gPiArICAgIGluc3RhbGwgLWQgJHtEfSR7
+ZGF0YWRpcn0vYWJzbA0KPiA+ICsgICAgY3AgLXIgJHtTfS9hYnNsICR7RH0ke2RhdGFkaXJ9L2Fi
+c2wNCj4gPiArfQ0KPiA+IGRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLXN1
+cHBvcnQvdGVuc29yZmxvdy1saXRlL3RlbnNvcmZsb3ctDQo+IGxpdGUtZmFybWhhc2hfZ2l0LmJi
+IGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1zdXBwb3J0L3RlbnNvcmZsb3ctDQo+IGxpdGUv
+dGVuc29yZmxvdy1saXRlLWZhcm1oYXNoX2dpdC5iYg0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0
+DQo+ID4gaW5kZXggMDAwMDAwMDAuLmNkMGJiMTRjDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsr
+KyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LWxpdGUvdGVu
+c29yZmxvdy1saXRlLQ0KPiBmYXJtaGFzaF9naXQuYmINCj4gPiBAQCAtMCwwICsxLDE0IEBADQo+
+ID4gK0RFU0NSSVBUSU9OID0gIkZhcm1IYXNoLCBhIGZhbWlseSBvZiBoYXNoIGZ1bmN0aW9ucyIN
+Cj4gPiArSE9NRVBBR0UgPSAiaHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9mYXJtaGFzaCINCj4g
+PiArTElDRU5TRSA9ICJNSVQiDQo+ID4gK0xJQ19GSUxFU19DSEtTVU0gPQ0KPiAiZmlsZTovL0NP
+UFlJTkc7bWQ1PTdkZmFhNzllMmIwNzA4OTdlNDk1ZmVjMzg2ZTNhY2ZjIg0KPiA+ICsNCj4gPiAr
+U1JDX1VSSSA9ICJnaXQ6Ly9naXRodWIuY29tL2dvb2dsZS9mYXJtaGFzaC5naXQiDQo+ID4gK1NS
+Q1JFViAgPSAiODE2YTRhZTYyMmU5NjQ3NjNjYTA4NjJkOWRiZDE5MzI0YTFlYWY0NSINCj4gPiAr
+DQo+ID4gK1MgPSAiJHtXT1JLRElSfS9naXQiDQo+ID4gKw0KPiA+ICtkb19pbnN0YWxsKCkgew0K
+PiA+ICsgICAgaW5zdGFsbCAtZCAke0R9JHtkYXRhZGlyfS9mYXJtaGFzaA0KPiA+ICsgICAgY3Ag
+LXIgJHtTfS9zcmMgJHtEfSR7ZGF0YWRpcn0vZmFybWhhc2gNCj4gPiArfQ0KPiA+IGRpZmYgLS1n
+aXQgYS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLXN1cHBvcnQvdGVuc29yZmxvdy1saXRlL3Rl
+bnNvcmZsb3ctDQo+IGxpdGUtZmZ0MmRfMS4wLmJiIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBl
+cy1zdXBwb3J0L3RlbnNvcmZsb3ctDQo+IGxpdGUvdGVuc29yZmxvdy1saXRlLWZmdDJkXzEuMC5i
+Yg0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAuLjVhMDFhMmIy
+DQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMt
+c3VwcG9ydC90ZW5zb3JmbG93LWxpdGUvdGVuc29yZmxvdy1saXRlLQ0KPiBmZnQyZF8xLjAuYmIN
+Cj4gPiBAQCAtMCwwICsxLDE0IEBADQo+ID4gK0RFU0NSSVBUSU9OID0gIkdlbmVyYWwgUHVycG9z
+ZSBGRlQgKEZhc3QgRm91cmllci9Db3NpbmUvU2luZQ0KPiBUcmFuc2Zvcm0pIFBhY2thZ2UiDQo+
+ID4gK0xJQ0VOU0UgPSAiRkZULUxpY2Vuc2UiDQo+ID4gK0xJQ19GSUxFU19DSEtTVU0gPQ0KPiAi
+ZmlsZTovL3JlYWRtZS50eHQ7YmVnaW5saW5lPTE0MDtlbmRsaW5lPTE0NTttZDU9NjI0NjFkMjhm
+ZGMwYzA1NmMwOThmMw0KPiBmYjJmMDE1Nzk5Ig0KPiA+ICsNCj4gPiArU1JDX1VSSSA9ICJodHRw
+czovL21pcnJvci5iYXplbC5idWlsZC93d3cua3VyaW1zLmt5b3RvLQ0KPiB1LmFjLmpwL35vb3Vy
+YS9mZnQudGd6O2Rvd25sb2FkZmlsZW5hbWU9JHtCUH0udGd6Ig0KPiA+ICtTUkNfVVJJW21kNXN1
+bV0gPSAiNDI1NWRkOGE3NDk0OWQxMjMyMTZiMWFiOTE1MjA0NjkiDQo+ID4gK1NSQ19VUklbc2hh
+MjU2c3VtXSA9DQo+ICI1MmJiNjM3YzcwYjk3MTk1OGVjNzljOWM4NzUyYjFkZjVmZjAyMThhNGRi
+NDUxMGU2MDgyNmUwY2I3OWI1Mjk2Ig0KPiA+ICsNCj4gPiArUyA9ICIke1dPUktESVJ9L2ZmdCIN
+Cj4gPiArDQo+ID4gK2RvX2luc3RhbGwoKSB7DQo+ID4gKyAgICBpbnN0YWxsIC1kICR7RH0ke2Rh
+dGFkaXJ9L2ZmdDJkDQo+ID4gKyAgICBjcCAtciAke1N9LyogJHtEfSR7ZGF0YWRpcn0vZmZ0MmQN
+Cj4gPiArfQ0KPiA+IGRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLXN1cHBv
+cnQvdGVuc29yZmxvdy1saXRlL3RlbnNvcmZsb3ctDQo+IGxpdGUtZ2VtbWxvd3BfZ2l0LmJiIGIv
+bWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1zdXBwb3J0L3RlbnNvcmZsb3ctDQo+IGxpdGUvdGVu
+c29yZmxvdy1saXRlLWdlbW1sb3dwX2dpdC5iYg0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+
+ID4gaW5kZXggMDAwMDAwMDAuLjljZTM4NDg2DQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBi
+L21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LWxpdGUvdGVuc29y
+Zmxvdy1saXRlLQ0KPiBnZW1tbG93cF9naXQuYmINCj4gPiBAQCAtMCwwICsxLDE2IEBADQo+ID4g
+K0RFU0NSSVBUSU9OID0gImdlbW1sb3dwOiBhIHNtYWxsIHNlbGYtY29udGFpbmVkIGxvdy1wcmVj
+aXNpb24gR0VNTQ0KPiBsaWJyYXJ5Ig0KPiA+ICtIT01FUEFHRSA9ICJodHRwczovL2dpdGh1Yi5j
+b20vZ29vZ2xlL2dlbW1sb3dwIg0KPiA+ICtMSUNFTlNFID0gIkFwYWNoZS0yLjAiDQo+ID4gK0xJ
+Q19GSUxFU19DSEtTVU0gPQ0KPiAiZmlsZTovL0xJQ0VOU0U7bWQ1PTNiODNlZjk2Mzg3ZjE0NjU1
+ZmM4NTRkZGMzYzZiZDU3Ig0KPiA+ICsNCj4gPiArU1JDX1VSSSA9ICJnaXQ6Ly9naXRodWIuY29t
+L2dvb2dsZS9nZW1tbG93cC5naXQiDQo+ID4gK1NSQ1JFViAgPSAiMzhlYmFjN2IwNTllODQ2OTJm
+NTNlNTkzOGY5N2E5OTQzYzEyMGQ5OCINCj4gPiArDQo+ID4gK1MgPSAiJHtXT1JLRElSfS9naXQi
+DQo+ID4gKw0KPiA+ICtkb19pbnN0YWxsKCkgew0KPiA+ICsgICAgaW5zdGFsbCAtZCAke0R9JHtk
+YXRhZGlyfS9nZW1tbG93cA0KPiA+ICsgICAgY3AgLXIgJHtTfS8qICR7RH0ke2RhdGFkaXJ9L2dl
+bW1sb3dwDQo+ID4gK30NCj4gPiArDQo+ID4gK0lOU0FORV9TS0lQXyR7UE59ID0gImZpbGUtcmRl
+cHMiDQo+ID4gZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90
+ZW5zb3JmbG93LWxpdGUvdGVuc29yZmxvdy0NCj4gbGl0ZS1uZW9uLTItc3NlX2dpdC5iYiBiL21l
+dGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LQ0KPiBsaXRlL3RlbnNv
+cmZsb3ctbGl0ZS1uZW9uLTItc3NlX2dpdC5iYg0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+
+ID4gaW5kZXggMDAwMDAwMDAuLmE5M2JmMWZkDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBi
+L21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LWxpdGUvdGVuc29y
+Zmxvdy1saXRlLQ0KPiBuZW9uLTItc3NlX2dpdC5iYg0KPiA+IEBAIC0wLDAgKzEsMTQgQEANCj4g
+PiArREVTQ1JJUFRJT04gPSAiSGVhZGVyIGZpbGUgc2ltcGxpZnlpbmcgQVJNLT5JQTMyIHBvcnRp
+bmciDQo+ID4gK0hPTUVQQUdFID0gImh0dHBzOi8vZ2l0aHViLmNvbS9pbnRlbC9BUk1fTkVPTl8y
+X3g4Nl9TU0UiDQo+ID4gK0xJQ0VOU0UgPSAiQlNELTMtQ2xhdXNlIg0KPiA+ICtMSUNfRklMRVNf
+Q0hLU1VNID0NCj4gImZpbGU6Ly9MSUNFTlNFO21kNT1iNGZkZmNiNDhmMjczZDE5MjMzM2M0OThk
+NzVmYTI2ZiINCj4gPiArDQo+ID4gK1NSQ19VUkkgPSAiZ2l0Oi8vZ2l0aHViLmNvbS9pbnRlbC9B
+Uk1fTkVPTl8yX3g4Nl9TU0UuZ2l0Ig0KPiA+ICtTUkNSRVYgID0gIjMwNTdiYjkxYjk5YmFlOWM3
+ZmJkZjg3MTBjMDMyZDQ2MmNhMTAwNTEiDQo+ID4gKw0KPiA+ICtTID0gIiR7V09SS0RJUn0vZ2l0
+Ig0KPiA+ICsNCj4gPiArZG9faW5zdGFsbCgpIHsNCj4gPiArICAgIGluc3RhbGwgLWQgJHtEfSR7
+ZGF0YWRpcn0vbmVvbi0yLXNzZQ0KPiA+ICsgICAgY3AgLXIgJHtTfS8qLmggJHtEfSR7ZGF0YWRp
+cn0vbmVvbi0yLXNzZQ0KPiA+ICt9DQo=
 
