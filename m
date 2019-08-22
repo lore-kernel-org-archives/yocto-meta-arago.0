@@ -1,45 +1,42 @@
-Return-Path: <h-gou@ti.com>
+Return-Path: <xuj@ti.com>
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id B33DC520E2
+	by arago-project.org (Postfix) with ESMTPS id 3D8CE520E2
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Aug 2019 20:46:42 +0000 (UTC)
+	Thu, 22 Aug 2019 21:00:51 +0000 (UTC)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7MKjgYm057858
-	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 15:45:42 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7MKxptU061652
+	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 15:59:51 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1566506742;
-	bh=QP/nqHLqeJsKS6qxHpXESIK0x+Wu9MVERxA5Puh02oo=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=SDSvvd8jsceuWhHXek8vvt/C2ovqmRBn8Oymf51QXbk6BeOKELya+ZdsSr6mPQHpg
-	mP4uFzDZ9cGqRGBrNOfTsu7DwYBQoCP267T4SnZsHWQYjP1G8N4PRkrQbt6Zf6Itzl
-	BTnBCR/UZZQel3/r5GQvv+Kjn/GlNsFI1g1lnH38=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7MKjgaT123997
+	s=ti-com-17Q1; t=1566507591;
+	bh=zkModh/mJBzvKiqEjc5Qf/trbfbDgnmKZ8gWbC8DOKY=;
+	h=From:To:CC:Subject:Date;
+	b=sYyhE3WzKFc6ypYrTxRdTLu0ePBi5bsd6lXNTtLv9FfXtYTlXe0ZHjuy2cknEPKR2
+	/ul9zlYF5kx09T8RHBc/0JMNdlZTF4o77ELeivMKRd69Mj+VWqIbrocwGliCQZ1xh1
+	891awfPM8jxqnrnbdGBNmurJnKEsunDfk7SNZgAI=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7MKxpRe011510
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 15:45:42 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 15:59:51 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 22 Aug 2019 15:45:42 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 22 Aug 2019 15:59:50 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Thu, 22 Aug 2019 15:45:42 -0500
-Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Thu, 22 Aug 2019 15:59:50 -0500
+Received: from UDA0869574A.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7MKjfTD117764;
-	Thu, 22 Aug 2019 15:45:42 -0500
-From: Hongmei Gou <a0271529@ti.com>
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7MKxocE007688;
+	Thu, 22 Aug 2019 15:59:50 -0500
+From: Jianzhong Xu <xuj@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 22 Aug 2019 16:45:39 -0400
-Message-ID: <20190822204539.6115-3-a0271529@ti.com>
+Date: Thu, 22 Aug 2019 16:59:29 -0400
+Message-ID: <20190822205929.13175-1-xuj@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190822204539.6115-1-a0271529@ti.com>
-References: <20190822204539.6115-1-a0271529@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processor-sdk 3/3] tensorflow-lite: add label_image example and install the files to run the example
+Subject: [thud/master] [PATCH v2] armnn: add installation of header files and .so links
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,155 +49,82 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Aug 2019 20:46:43 -0000
+X-List-Received-Date: Thu, 22 Aug 2019 21:00:51 -0000
 Content-Type: text/plain
 
-* Patch Makefile to add the label_image example
-* Install sample model/image/labels.txt to run the example
+* Install header files that are needed to build tidl-api examples
+* Add armnn-dev to packagegroups to include armnn*.so links in file system for building armnn applications on the target
+* Rename TESTVECS_INSTALL_DIR to ARMNN_INSTALL_DIR
 
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
+Signed-off-by: Jianzhong Xu <xuj@ti.com>
 ---
- ...001-Makefile-add-label_image-example.patch | 89 +++++++++++++++++++
- .../tensorflow-lite/tensorflow-lite_1.12.bb   | 15 +++-
- 2 files changed, 100 insertions(+), 4 deletions(-)
- create mode 100644 recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch
+ .../packagegroup-arago-tisdk-addons.bb        |  5 +++-
+ .../recipes-support/armnn/armnn_git.bb        | 25 +++++++++++++------
+ 2 files changed, 21 insertions(+), 9 deletions(-)
 
-diff --git a/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch b/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch
-new file mode 100644
-index 0000000..61f821e
---- /dev/null
-+++ b/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch
-@@ -0,0 +1,89 @@
-+From 87cf7e879640436f19f26e338dce6c343c19bfd8 Mon Sep 17 00:00:00 2001
-+From: Hongmei Gou <a0271529@ti.com>
-+Date: Wed, 21 Aug 2019 18:03:17 -0400
-+Subject: [PATCH] Makefile: add label_image example
-+
-+Upstream-Status: Pending
-+
-+Signed-off-by: Hongmei Gou <a0271529@ti.com>
-+---
-+ tensorflow/contrib/lite/tools/make/Makefile | 21 +++++++++++++++++++--
-+ 1 file changed, 19 insertions(+), 2 deletions(-)
-+
-+diff --git a/tensorflow/contrib/lite/tools/make/Makefile b/tensorflow/contrib/lite/tools/make/Makefile
-+index 16012a3fb1..a5e5cb3fc7 100644
-+--- a/tensorflow/contrib/lite/tools/make/Makefile
-++++ b/tensorflow/contrib/lite/tools/make/Makefile
-+@@ -72,6 +72,11 @@ BENCHMARK_BINARY_NAME := benchmark_model
-+ MINIMAL_SRCS := \
-+ tensorflow/contrib/lite/examples/minimal/minimal.cc
-+ 
-++# label image example
-++LABELIMAGE_SRCS := \
-++tensorflow/contrib/lite/examples/label_image/bitmap_helpers.cc \
-++tensorflow/contrib/lite/examples/label_image/label_image.cc
-++
-+ # What sources we want to compile, must be kept in sync with the main Bazel
-+ # build files.
-+ 
-+@@ -108,7 +113,8 @@ $(wildcard tensorflow/contrib/lite/*/*test.cc) \
-+ $(wildcard tensorflow/contrib/lite/*/*/*test.cc) \
-+ $(wildcard tensorflow/contrib/lite/*/*/*/*test.cc) \
-+ $(wildcard tensorflow/contrib/lite/kernels/test_util.cc) \
-+-$(MINIMAL_SRCS)
-++$(MINIMAL_SRCS) \
-++$(LABELIMAGE_SRCS)
-+ ifeq ($(BUILD_TYPE),micro)
-+ CORE_CC_EXCLUDE_SRCS += \
-+ tensorflow/contrib/lite/mmap_allocation.cc \
-+@@ -135,6 +141,7 @@ include $(wildcard $(MAKEFILE_DIR)/targets/*_makefile.inc)
-+ 
-+ ALL_SRCS := \
-+ 	$(MINIMAL_SRCS) \
-++	$(LABELIMAGE_SRCS) \
-+ 	$(PROFILER_SRCS) \
-+ 	$(PROFILER_SUMMARY_SRCS) \
-+ 	$(TF_LITE_CC_SRCS) \
-+@@ -150,6 +157,7 @@ LIB_PATH := $(LIBDIR)$(LIB_NAME)
-+ BENCHMARK_LIB := $(LIBDIR)$(BENCHMARK_LIB_NAME)
-+ BENCHMARK_BINARY := $(BINDIR)$(BENCHMARK_BINARY_NAME)
-+ MINIMAL_BINARY := $(BINDIR)minimal
-++LABELIMAGE_BINARY := $(BINDIR)label_image
-+ 
-+ CXX := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}g++
-+ CC := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}gcc
-+@@ -158,6 +166,9 @@ AR := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}ar
-+ MINIMAL_OBJS := $(addprefix $(OBJDIR), \
-+ $(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(MINIMAL_SRCS))))
-+ 
-++LABELIMAGE_OBJS := $(addprefix $(OBJDIR), \
-++$(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(LABELIMAGE_SRCS))))
-++
-+ LIB_OBJS := $(addprefix $(OBJDIR), \
-+ $(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(TF_LITE_CC_SRCS))))
-+ 
-+@@ -174,7 +185,7 @@ $(OBJDIR)%.o: %.c
-+ 	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
-+ 
-+ # The target that's compiled if there's no command-line arguments.
-+-all: $(LIB_PATH)  $(MINIMAL_BINARY) $(BENCHMARK_BINARY)
-++all: $(LIB_PATH)  $(MINIMAL_BINARY) $(LABELIMAGE_BINARY) $(BENCHMARK_BINARY)
-+ 
-+ # The target that's compiled for micro-controllers
-+ micro: $(LIB_PATH)
-+@@ -198,6 +209,12 @@ $(BENCHMARK_LIB) : $(LIB_PATH) $(BENCHMARK_OBJS)
-+ 	@mkdir -p $(dir $@)
-+ 	$(AR) $(ARFLAGS) $(BENCHMARK_LIB) $(LIB_OBJS) $(BENCHMARK_OBJS)
-+ 
-++$(LABELIMAGE_BINARY): $(LABELIMAGE_OBJS) $(LIB_PATH)
-++	@mkdir -p $(dir $@)
-++	$(CXX) $(CXXFLAGS) $(INCLUDES) \
-++	-o $(LABELIMAGE_BINARY) $(LABELIMAGE_OBJS) \
-++	$(LIBFLAGS) $(LIB_PATH) $(LDFLAGS) $(LIBS)
-++
-+ benchmark_lib: $(BENCHMARK_LIB)
-+ 
-+ $(BENCHMARK_BINARY) : $(BENCHMARK_LIB)
-+-- 
-+2.17.1
-+
-diff --git a/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb b/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
-index 38df078..b393f7e 100644
---- a/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
-+++ b/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
-@@ -30,12 +30,17 @@ SRC_URI = "git://github.com/tensorflow/tensorflow.git;branch=r1.12;protocol=http
-     https://mirror.bazel.build/github.com/google/farmhash/archive/816a4ae622e964763ca0862d9dbd19324a1eaf45.tar.gz;md5sum=${MD5SUM_FARMHASH};sha256sum=${SHA256SUM_FARMHASH} \
-     https://github.com/google/flatbuffers/archive/1f5eae5d6a135ff6811724f6c57f911d1f46bb15.tar.gz;md5sum=${MD5SUM_FLATBUFFER};sha256sum=${SHA256SUM_FLATBUFFER} \
-     https://mirror.bazel.build/www.kurims.kyoto-u.ac.jp/~ooura/fft.tgz;md5sum=${MD5SUM_FFT};sha256sum=${SHA256SUM_FFT} \
-+    http://download.tensorflow.org/models/mobilenet_v1_2018_08_02/mobilenet_v1_1.0_224_quant.tgz;name=mobilenet_v1_quant;subdir=${WORKDIR}/model;destsuffix=model \
-     file://apply-modification-for-tflite-1.12-to-eigen.patch \
-+    file://0001-Makefile-add-label_image-example.patch \
-     file://tensorflow-lite.pc.in"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index eb39cadf..ac3835bd 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -147,7 +147,10 @@ EXTRA_PACKAGES_omapl138 = " \
+     protobuf \
+ "
  
-+SRC_URI[mobilenet_v1_quant.md5sum] = "36af340c00e60291931cb30ce32d4e86"
-+SRC_URI[mobilenet_v1_quant.sha256sum] = "d32432d28673a936b2d6281ab0600c71cf7226dfe4cdcef3012555f691744166"
-+
- SRCREV = "5b900cfe4b3b848f577315a0dde09a729f770e95"
+-ARMNN_PACKAGES = "armnn"
++ARMNN_PACKAGES = " \
++    armnn \
++    armnn-dev \
++"
  
--PR = "r2"
-+PR = "r3"
+ EXTRA_PACKAGES_append_ti33x = " voxelsdk \
+                                 arm-compute-library \
+diff --git a/meta-arago-extras/recipes-support/armnn/armnn_git.bb b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+index 076ea3aa..76875ee3 100644
+--- a/meta-arago-extras/recipes-support/armnn/armnn_git.bb
++++ b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+@@ -65,25 +65,34 @@ EXTRA_OECMAKE=" \
+     -DGENERIC_LIB_VERSION=${PV} -DGENERIC_LIB_SOVERSION=${PV_MAJOR} \
+ "
  
- S = "${WORKDIR}/git"
+-TESTVECS_INSTALL_DIR = "${datadir}/arm/armnn"
++ARMNN_INSTALL_DIR = "${datadir}/arm/armnn"
  
-@@ -118,12 +123,14 @@ do_install() {
-     install -d ${D}${datadir}/${PN}-${PV}/examples
-     install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/minimal ${D}${datadir}/${PN}-${PV}/examples
-     install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/benchmark_model ${D}${datadir}/${PN}-${PV}/examples
-+    install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/label_image ${D}${datadir}/${PN}-${PV}/examples
-+    install -m 0644 ${S}/tensorflow/contrib/lite/examples/label_image/testdata/grace_hopper.bmp ${D}${datadir}/${PN}-${PV}/examples
-+    install -m 0644 ${S}/tensorflow/contrib/lite/java/ovic/src/testdata/labels.txt ${D}${datadir}/${PN}-${PV}/examples
-+    install -m 0644 ${WORKDIR}/model/mobilenet_v1_1.0_224_quant.tflite ${D}${datadir}/${PN}-${PV}/examples
+ do_install_append() {
+     CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
+     install -d ${D}${bindir}
+     find ${WORKDIR}/build/tests -maxdepth 1 -type f -executable -exec cp $CP_ARGS {} ${D}${bindir} \;
+     cp $CP_ARGS ${WORKDIR}/build/UnitTests  ${D}${bindir}
+-    install -d ${D}${TESTVECS_INSTALL_DIR}/models
+-    cp ${WORKDIR}/tfmodel/mobilenet_v1_1.0_224_frozen.pb  ${D}${TESTVECS_INSTALL_DIR}/models
+-    cp ${WORKDIR}/git/tests/TfMobileNet-Armnn/labels.txt  ${D}${TESTVECS_INSTALL_DIR}/models
+-    install -d ${D}${TESTVECS_INSTALL_DIR}/testvecs
+-    cp ${WORKDIR}/tidl-api/examples/classification/clips/*.mp4  ${D}${TESTVECS_INSTALL_DIR}/testvecs
+-    cp ${WORKDIR}/tidl-api/examples/classification/images/*.jpg  ${D}${TESTVECS_INSTALL_DIR}/testvecs
++    install -d ${D}${ARMNN_INSTALL_DIR}/models
++    cp ${WORKDIR}/tfmodel/mobilenet_v1_1.0_224_frozen.pb  ${D}${ARMNN_INSTALL_DIR}/models
++    cp ${WORKDIR}/git/tests/TfMobileNet-Armnn/labels.txt  ${D}${ARMNN_INSTALL_DIR}/models
++    install -d ${D}${ARMNN_INSTALL_DIR}/testvecs
++    cp ${WORKDIR}/tidl-api/examples/classification/clips/*.mp4  ${D}${ARMNN_INSTALL_DIR}/testvecs
++    cp ${WORKDIR}/tidl-api/examples/classification/images/*.jpg  ${D}${ARMNN_INSTALL_DIR}/testvecs
++    cp $CP_ARGS ${WORKDIR}/git/include ${D}${ARMNN_INSTALL_DIR}
++    install -d ${D}${ARMNN_INSTALL_DIR}/src/armnn
++    cp ${WORKDIR}/git/src/armnn/*.hpp ${D}${ARMNN_INSTALL_DIR}/src/armnn
++    install -d ${D}${ARMNN_INSTALL_DIR}/src/armnnUtils
++    cp ${WORKDIR}/git/src/armnnUtils/{CsvReader.hpp,HeapProfiling.hpp,Logging.hpp,TensorIOUtils.hpp} ${D}${ARMNN_INSTALL_DIR}/src/armnnUtils
++    install -d ${D}${ARMNN_INSTALL_DIR}/src/backends/backendsCommon
++    cp ${WORKDIR}/git/src/backends/backendsCommon/BackendRegistry.hpp ${D}${ARMNN_INSTALL_DIR}/src/backends/backendsCommon
++    install -d ${D}${ARMNN_INSTALL_DIR}/tests
++    cp ${WORKDIR}/git/tests/{InferenceModel.hpp,InferenceTest.hpp,InferenceTest.inl} ${D}${ARMNN_INSTALL_DIR}/tests
+     chrpath -d ${D}${bindir}/*
  }
  
- PACKAGES += "${PN}-examples"
+ CXXFLAGS += "-fopenmp"
+ LIBS += "-larmpl_lp64_mp"
  
--FILES_${PN}-examples = " \
--    ${datadir}/${PN}-${PV}/examples/minimal \
--    ${datadir}/${PN}-${PV}/examples/benchmark_model \ "
-+FILES_${PN}-examples = "${datadir}/${PN}-${PV}/examples"
- 
- ALLOW_EMPTY_${PN} = "1"
+-FILES_${PN} += "${TESTVECS_INSTALL_DIR}"
++FILES_${PN} += "${ARMNN_INSTALL_DIR}"
+ FILES_${PN}-dev += "{libdir}/cmake/*"
+ INSANE_SKIP_${PN}-dev = "dev-elf"
 -- 
 2.17.1
 
