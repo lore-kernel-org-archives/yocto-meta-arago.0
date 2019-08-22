@@ -1,48 +1,43 @@
-Return-Path: <h-gou@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id C54495298D
+Return-Path: <xuj@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 1F1D9520DF
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Aug 2019 14:37:04 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7MEa4iG105392
-	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 09:36:04 -0500
+	Thu, 22 Aug 2019 17:44:51 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7MHhpJk006464
+	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 12:43:51 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1566484564;
-	bh=Jak9Z5Hko91yJZEdFZaQ1EB+2GTBPUrR6ZZaGQgIkLE=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=D4BvHVVdVD+8rt2vfKlmlQGV1z3Y6dwWzgdAh1nuZsNp8ZTeKtNA0boLMz8GBM+h/
-	nEZxzDM+etzPBwxW4NvpJRJtEzDlc8OpwnvByN7zTFe3HbvQcgJdfgZsc/TLG6xd8N
-	tRUPPTgQYodrtqYthb1uvrx0FKqAZtRQtmKWdjPw=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7MEa470053520
+	s=ti-com-17Q1; t=1566495831;
+	bh=b3nyyIFA8u9+Uc5Qyix4P4lD+4Mco+94kaqSaGmMC/k=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=m6r7ocn6u9QaSTKOIVZYCnfUyFXdU49D7VlEoLUxF5hGlVPBNSE1RNc1nEDfa1JeC
+	jDuqp8P/Vn4hi2fIVwyxWauL+45xTybzWGw9I6l4UFw2nhWCYmZLEJqsarQedvgFYw
+	yOgC/Nue0X/hCWrOWJ9GiXXeAwd71Sa3Tn/hRvbw=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7MHhpnv089413
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 09:36:04 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 12:43:51 -0500
+Received: from [158.218.116.215] (158.218.116.215) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 22 Aug 2019 09:36:04 -0500
-Received: from DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f]) by
-	DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f%18]) with mapi id
-	15.01.1713.004; Thu, 22 Aug 2019 09:36:04 -0500
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [PATCH 4/7] tensorflow-lite-*: add other
-	dependencies for tensorflow-lite 1.12
-Thread-Index: AQHVWPUCnswtyFlKqkOHZgHqGdqr+KcHOerw
-Date: Thu, 22 Aug 2019 14:36:04 +0000
-Message-ID: <97690c8628784db4b782175a258fb085@ti.com>
-References: <20190821225807.22947-1-a0271529@ti.com>
-	<20190821225807.22947-5-a0271529@ti.com>
-	<7ced5a8f-b9a8-8b01-7fae-5aba1917ea1d@ti.com>
-In-Reply-To: <7ced5a8f-b9a8-8b01-7fae-5aba1917ea1d@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.113.170]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Thu, 22 Aug 2019 12:43:50 -0500
+To: Denys Dmytriyenko <denys@ti.com>
+References: <20190809140758.15280-1-xuj@ti.com> <20190813231318.GH7130@beryl>
+	<5b8b049068d94a05b2b08b978daea598@ti.com>
+	<20190819190222.GM2365@beryl>
+From: "Xu, Jianzhong" <xuj@ti.com>
+Message-ID: <a6011481-e170-7b72-9ec6-c2c63672544d@ti.com>
+Date: Thu, 22 Aug 2019 13:43:49 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] [PATCH 4/7] tensorflow-lite-*: add other dependencies for tensorflow-lite 1.12
+In-Reply-To: <20190819190222.GM2365@beryl>
+X-Originating-IP: [158.218.116.215]
+X-ClientProxiedBy: DLEE100.ent.ti.com (157.170.170.30) To DFLE112.ent.ti.com
+	(10.64.6.33)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [thud/master] [PATCH] armnn: add installation of header files
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,128 +50,89 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Aug 2019 14:37:05 -0000
+X-List-Received-Date: Thu, 22 Aug 2019 17:44:52 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBTdGlmZmxlciwgSmFjb2INCj4g
-U2VudDogVGh1cnNkYXksIEF1Z3VzdCAyMiwgMjAxOSAxMDoyMiBBTQ0KPiBUbzogR291LCBIb25n
-bWVpOyBtZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbRVhURVJO
-QUxdIFttZXRhLWFyYWdvXSBbUEFUQ0ggNC83XSB0ZW5zb3JmbG93LWxpdGUtKjogYWRkDQo+IG90
-aGVyIGRlcGVuZGVuY2llcyBmb3IgdGVuc29yZmxvdy1saXRlIDEuMTINCj4gDQo+IFdoeSBkbyB3
-ZSBuZWVkIHRvIHByZWZpeCBhbGwgb2YgdGhlc2Ugd2l0aCAidGVuc29yZmxvdy1saXRlIj8NCg0K
-QXMgdGhlc2UgZGVwZW5kZW5jaWVzIGFyZSBzcGVjaWZpYyB0byB0ZW5zb3JmbG93LWxpdGUgdG8g
-Z2V0IHRoZSBzb3VyY2UgcGFja2FnZXMsDQphbmQgdGhlcmVmb3JlLCBJIHB1dCB0aGVtIHVuZGVy
-IHRoZSBzYW1lIGZvbGRlciBvZiAiIHRlbnNvcmZsb3ctbGl0ZSIgd2l0aCB0aGUgcHJlZml4Lg0K
-VGhpcyBpcyBhbHNvIHJlZmVycmluZyB0byB0aGUgbmFtaW5nIGNvbnZlbnRpb24gZm9yIGFybW5u
-IGRlcGVuZGVuY2llczoNCmh0dHA6Ly9hcmFnby1wcm9qZWN0Lm9yZy9naXQvP3A9bWV0YS1hcmFn
-by5naXQ7YT10cmVlO2Y9bWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1zdXBwb3J0L2FybW5uO2g9
-M2U1NmE3NGJjNzgzNjA2ZDA2ZmE0NzhlYTE1MTZkZDRkMjM3NTg1MztoYj1kZGIwODcxNWJmMTFk
-NDU4ODYxMDZlOThlZTgxY2JmMWIzYmRhODAyDQoNCklmIHRoaXMgaXMgbm90IHRoZSBjb21tb24g
-cHJhY3RpY2UsIEkgY2FuIGNyZWF0ZSBzZXBhcmF0ZSBmb2xkZXJzIGZvciB0aGVzZQ0KZGVwZW5k
-ZW5jaWVzIHVuZGVyIHJlY2lwZXMtc3VwcG9ydCwgYW5kIHJlbW92ZSB0aGUgInRlbnNvcmZsb3ct
-bGl0ZSIgcHJlZml4Lg0KDQo+IA0KPiBPbiA4LzIxLzIwMTkgNjo1OCBQTSwgSG9uZ21laSBHb3Ug
-d3JvdGU6DQo+ID4gU2lnbmVkLW9mZi1ieTogSG9uZ21laSBHb3UgPGEwMjcxNTI5QHRpLmNvbT4N
-Cj4gPiAtLS0NCj4gPiAgIC4uLi90ZW5zb3JmbG93LWxpdGUvdGVuc29yZmxvdy1saXRlLWFic2xf
-Z2l0LmJiICB8IDE2ICsrKysrKysrKysrKysrKysNCj4gPiAgIC4uLi90ZW5zb3JmbG93LWxpdGUt
-ZmFybWhhc2hfZ2l0LmJiICAgICAgICAgICAgICB8IDE0ICsrKysrKysrKysrKysrDQo+ID4gICAu
-Li4vdGVuc29yZmxvdy1saXRlL3RlbnNvcmZsb3ctbGl0ZS1mZnQyZF8xLjAuYmIgfCAxNCArKysr
-KysrKysrKysrKw0KPiA+ICAgLi4uL3RlbnNvcmZsb3ctbGl0ZS1nZW1tbG93cF9naXQuYmIgICAg
-ICAgICAgICAgIHwgMTYgKysrKysrKysrKysrKysrKw0KPiA+ICAgLi4uL3RlbnNvcmZsb3ctbGl0
-ZS1uZW9uLTItc3NlX2dpdC5iYiAgICAgICAgICAgIHwgMTQgKysrKysrKysrKysrKysNCj4gPiAg
-IDUgZmlsZXMgY2hhbmdlZCwgNzQgaW5zZXJ0aW9ucygrKQ0KPiA+ICAgY3JlYXRlIG1vZGUgMTAw
-NjQ0IG1ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LQ0KPiBsaXRl
-L3RlbnNvcmZsb3ctbGl0ZS1hYnNsX2dpdC5iYg0KPiA+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IG1l
-dGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LQ0KPiBsaXRlL3RlbnNv
-cmZsb3ctbGl0ZS1mYXJtaGFzaF9naXQuYmINCj4gPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBtZXRh
-LWFyYWdvLWV4dHJhcy9yZWNpcGVzLXN1cHBvcnQvdGVuc29yZmxvdy0NCj4gbGl0ZS90ZW5zb3Jm
-bG93LWxpdGUtZmZ0MmRfMS4wLmJiDQo+ID4gICBjcmVhdGUgbW9kZSAxMDA2NDQgbWV0YS1hcmFn
-by1leHRyYXMvcmVjaXBlcy1zdXBwb3J0L3RlbnNvcmZsb3ctDQo+IGxpdGUvdGVuc29yZmxvdy1s
-aXRlLWdlbW1sb3dwX2dpdC5iYg0KPiA+ICAgY3JlYXRlIG1vZGUgMTAwNjQ0IG1ldGEtYXJhZ28t
-ZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LQ0KPiBsaXRlL3RlbnNvcmZsb3ctbGl0
-ZS1uZW9uLTItc3NlX2dpdC5iYg0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0
-cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LWxpdGUvdGVuc29yZmxvdy0NCj4gbGl0ZS1h
-YnNsX2dpdC5iYiBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93
-LQ0KPiBsaXRlL3RlbnNvcmZsb3ctbGl0ZS1hYnNsX2dpdC5iYg0KPiA+IG5ldyBmaWxlIG1vZGUg
-MTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAuLjhkMDI5NThhDQo+ID4gLS0tIC9kZXYvbnVsbA0K
-PiA+ICsrKyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LWxp
-dGUvdGVuc29yZmxvdy1saXRlLQ0KPiBhYnNsX2dpdC5iYg0KPiA+IEBAIC0wLDAgKzEsMTYgQEAN
-Cj4gPiArREVTQ1JJUFRJT04gPSAiQWJzZWlsIEMrKyBDb21tb24gTGlicmFyaWVzIg0KPiA+ICtI
-T01FUEFHRSA9ICJodHRwczovL2dpdGh1Yi5jb20vYWJzZWlsL2Fic2VpbC1jcHAiDQo+ID4gK0xJ
-Q0VOU0UgPSAiQXBhY2hlLTIuMCINCj4gPiArTElDX0ZJTEVTX0NIS1NVTSA9DQo+ICJmaWxlOi8v
-TElDRU5TRTttZDU9OTE3Y2M1NzYzYTc0MWU5MTViZjdmMmNjNTU4MzBjMTciDQo+ID4gKw0KPiA+
-ICtTUkNfVVJJID0gImdpdDovL2dpdGh1Yi5jb20vYWJzZWlsL2Fic2VpbC1jcHAuZ2l0Ig0KPiA+
-ICtTUkNSRVYgID0gIjQ4Y2QyYzNmMzUxZmYxODhiYzg1Njg0Yjg0YTkxYjZlNmQxN2Q4OTYiDQo+
-ID4gKw0KPiA+ICtTID0gIiR7V09SS0RJUn0vZ2l0Ig0KPiA+ICsNCj4gPiAraW5oZXJpdCBjbWFr
-ZQ0KPiA+ICsNCj4gPiArZG9faW5zdGFsbCgpIHsNCj4gPiArICAgIGluc3RhbGwgLWQgJHtEfSR7
-ZGF0YWRpcn0vYWJzbA0KPiA+ICsgICAgY3AgLXIgJHtTfS9hYnNsICR7RH0ke2RhdGFkaXJ9L2Fi
-c2wNCj4gPiArfQ0KPiA+IGRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLXN1
-cHBvcnQvdGVuc29yZmxvdy1saXRlL3RlbnNvcmZsb3ctDQo+IGxpdGUtZmFybWhhc2hfZ2l0LmJi
-IGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1zdXBwb3J0L3RlbnNvcmZsb3ctDQo+IGxpdGUv
-dGVuc29yZmxvdy1saXRlLWZhcm1oYXNoX2dpdC5iYg0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0
-DQo+ID4gaW5kZXggMDAwMDAwMDAuLmNkMGJiMTRjDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsr
-KyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LWxpdGUvdGVu
-c29yZmxvdy1saXRlLQ0KPiBmYXJtaGFzaF9naXQuYmINCj4gPiBAQCAtMCwwICsxLDE0IEBADQo+
-ID4gK0RFU0NSSVBUSU9OID0gIkZhcm1IYXNoLCBhIGZhbWlseSBvZiBoYXNoIGZ1bmN0aW9ucyIN
-Cj4gPiArSE9NRVBBR0UgPSAiaHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9mYXJtaGFzaCINCj4g
-PiArTElDRU5TRSA9ICJNSVQiDQo+ID4gK0xJQ19GSUxFU19DSEtTVU0gPQ0KPiAiZmlsZTovL0NP
-UFlJTkc7bWQ1PTdkZmFhNzllMmIwNzA4OTdlNDk1ZmVjMzg2ZTNhY2ZjIg0KPiA+ICsNCj4gPiAr
-U1JDX1VSSSA9ICJnaXQ6Ly9naXRodWIuY29tL2dvb2dsZS9mYXJtaGFzaC5naXQiDQo+ID4gK1NS
-Q1JFViAgPSAiODE2YTRhZTYyMmU5NjQ3NjNjYTA4NjJkOWRiZDE5MzI0YTFlYWY0NSINCj4gPiAr
-DQo+ID4gK1MgPSAiJHtXT1JLRElSfS9naXQiDQo+ID4gKw0KPiA+ICtkb19pbnN0YWxsKCkgew0K
-PiA+ICsgICAgaW5zdGFsbCAtZCAke0R9JHtkYXRhZGlyfS9mYXJtaGFzaA0KPiA+ICsgICAgY3Ag
-LXIgJHtTfS9zcmMgJHtEfSR7ZGF0YWRpcn0vZmFybWhhc2gNCj4gPiArfQ0KPiA+IGRpZmYgLS1n
-aXQgYS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLXN1cHBvcnQvdGVuc29yZmxvdy1saXRlL3Rl
-bnNvcmZsb3ctDQo+IGxpdGUtZmZ0MmRfMS4wLmJiIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBl
-cy1zdXBwb3J0L3RlbnNvcmZsb3ctDQo+IGxpdGUvdGVuc29yZmxvdy1saXRlLWZmdDJkXzEuMC5i
-Yg0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAuLjVhMDFhMmIy
-DQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMt
-c3VwcG9ydC90ZW5zb3JmbG93LWxpdGUvdGVuc29yZmxvdy1saXRlLQ0KPiBmZnQyZF8xLjAuYmIN
-Cj4gPiBAQCAtMCwwICsxLDE0IEBADQo+ID4gK0RFU0NSSVBUSU9OID0gIkdlbmVyYWwgUHVycG9z
-ZSBGRlQgKEZhc3QgRm91cmllci9Db3NpbmUvU2luZQ0KPiBUcmFuc2Zvcm0pIFBhY2thZ2UiDQo+
-ID4gK0xJQ0VOU0UgPSAiRkZULUxpY2Vuc2UiDQo+ID4gK0xJQ19GSUxFU19DSEtTVU0gPQ0KPiAi
-ZmlsZTovL3JlYWRtZS50eHQ7YmVnaW5saW5lPTE0MDtlbmRsaW5lPTE0NTttZDU9NjI0NjFkMjhm
-ZGMwYzA1NmMwOThmMw0KPiBmYjJmMDE1Nzk5Ig0KPiA+ICsNCj4gPiArU1JDX1VSSSA9ICJodHRw
-czovL21pcnJvci5iYXplbC5idWlsZC93d3cua3VyaW1zLmt5b3RvLQ0KPiB1LmFjLmpwL35vb3Vy
-YS9mZnQudGd6O2Rvd25sb2FkZmlsZW5hbWU9JHtCUH0udGd6Ig0KPiA+ICtTUkNfVVJJW21kNXN1
-bV0gPSAiNDI1NWRkOGE3NDk0OWQxMjMyMTZiMWFiOTE1MjA0NjkiDQo+ID4gK1NSQ19VUklbc2hh
-MjU2c3VtXSA9DQo+ICI1MmJiNjM3YzcwYjk3MTk1OGVjNzljOWM4NzUyYjFkZjVmZjAyMThhNGRi
-NDUxMGU2MDgyNmUwY2I3OWI1Mjk2Ig0KPiA+ICsNCj4gPiArUyA9ICIke1dPUktESVJ9L2ZmdCIN
-Cj4gPiArDQo+ID4gK2RvX2luc3RhbGwoKSB7DQo+ID4gKyAgICBpbnN0YWxsIC1kICR7RH0ke2Rh
-dGFkaXJ9L2ZmdDJkDQo+ID4gKyAgICBjcCAtciAke1N9LyogJHtEfSR7ZGF0YWRpcn0vZmZ0MmQN
-Cj4gPiArfQ0KPiA+IGRpZmYgLS1naXQgYS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLXN1cHBv
-cnQvdGVuc29yZmxvdy1saXRlL3RlbnNvcmZsb3ctDQo+IGxpdGUtZ2VtbWxvd3BfZ2l0LmJiIGIv
-bWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1zdXBwb3J0L3RlbnNvcmZsb3ctDQo+IGxpdGUvdGVu
-c29yZmxvdy1saXRlLWdlbW1sb3dwX2dpdC5iYg0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+
-ID4gaW5kZXggMDAwMDAwMDAuLjljZTM4NDg2DQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBi
-L21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LWxpdGUvdGVuc29y
-Zmxvdy1saXRlLQ0KPiBnZW1tbG93cF9naXQuYmINCj4gPiBAQCAtMCwwICsxLDE2IEBADQo+ID4g
-K0RFU0NSSVBUSU9OID0gImdlbW1sb3dwOiBhIHNtYWxsIHNlbGYtY29udGFpbmVkIGxvdy1wcmVj
-aXNpb24gR0VNTQ0KPiBsaWJyYXJ5Ig0KPiA+ICtIT01FUEFHRSA9ICJodHRwczovL2dpdGh1Yi5j
-b20vZ29vZ2xlL2dlbW1sb3dwIg0KPiA+ICtMSUNFTlNFID0gIkFwYWNoZS0yLjAiDQo+ID4gK0xJ
-Q19GSUxFU19DSEtTVU0gPQ0KPiAiZmlsZTovL0xJQ0VOU0U7bWQ1PTNiODNlZjk2Mzg3ZjE0NjU1
-ZmM4NTRkZGMzYzZiZDU3Ig0KPiA+ICsNCj4gPiArU1JDX1VSSSA9ICJnaXQ6Ly9naXRodWIuY29t
-L2dvb2dsZS9nZW1tbG93cC5naXQiDQo+ID4gK1NSQ1JFViAgPSAiMzhlYmFjN2IwNTllODQ2OTJm
-NTNlNTkzOGY5N2E5OTQzYzEyMGQ5OCINCj4gPiArDQo+ID4gK1MgPSAiJHtXT1JLRElSfS9naXQi
-DQo+ID4gKw0KPiA+ICtkb19pbnN0YWxsKCkgew0KPiA+ICsgICAgaW5zdGFsbCAtZCAke0R9JHtk
-YXRhZGlyfS9nZW1tbG93cA0KPiA+ICsgICAgY3AgLXIgJHtTfS8qICR7RH0ke2RhdGFkaXJ9L2dl
-bW1sb3dwDQo+ID4gK30NCj4gPiArDQo+ID4gK0lOU0FORV9TS0lQXyR7UE59ID0gImZpbGUtcmRl
-cHMiDQo+ID4gZGlmZiAtLWdpdCBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90
-ZW5zb3JmbG93LWxpdGUvdGVuc29yZmxvdy0NCj4gbGl0ZS1uZW9uLTItc3NlX2dpdC5iYiBiL21l
-dGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LQ0KPiBsaXRlL3RlbnNv
-cmZsb3ctbGl0ZS1uZW9uLTItc3NlX2dpdC5iYg0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+
-ID4gaW5kZXggMDAwMDAwMDAuLmE5M2JmMWZkDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBi
-L21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtc3VwcG9ydC90ZW5zb3JmbG93LWxpdGUvdGVuc29y
-Zmxvdy1saXRlLQ0KPiBuZW9uLTItc3NlX2dpdC5iYg0KPiA+IEBAIC0wLDAgKzEsMTQgQEANCj4g
-PiArREVTQ1JJUFRJT04gPSAiSGVhZGVyIGZpbGUgc2ltcGxpZnlpbmcgQVJNLT5JQTMyIHBvcnRp
-bmciDQo+ID4gK0hPTUVQQUdFID0gImh0dHBzOi8vZ2l0aHViLmNvbS9pbnRlbC9BUk1fTkVPTl8y
-X3g4Nl9TU0UiDQo+ID4gK0xJQ0VOU0UgPSAiQlNELTMtQ2xhdXNlIg0KPiA+ICtMSUNfRklMRVNf
-Q0hLU1VNID0NCj4gImZpbGU6Ly9MSUNFTlNFO21kNT1iNGZkZmNiNDhmMjczZDE5MjMzM2M0OThk
-NzVmYTI2ZiINCj4gPiArDQo+ID4gK1NSQ19VUkkgPSAiZ2l0Oi8vZ2l0aHViLmNvbS9pbnRlbC9B
-Uk1fTkVPTl8yX3g4Nl9TU0UuZ2l0Ig0KPiA+ICtTUkNSRVYgID0gIjMwNTdiYjkxYjk5YmFlOWM3
-ZmJkZjg3MTBjMDMyZDQ2MmNhMTAwNTEiDQo+ID4gKw0KPiA+ICtTID0gIiR7V09SS0RJUn0vZ2l0
-Ig0KPiA+ICsNCj4gPiArZG9faW5zdGFsbCgpIHsNCj4gPiArICAgIGluc3RhbGwgLWQgJHtEfSR7
-ZGF0YWRpcn0vbmVvbi0yLXNzZQ0KPiA+ICsgICAgY3AgLXIgJHtTfS8qLmggJHtEfSR7ZGF0YWRp
-cn0vbmVvbi0yLXNzZQ0KPiA+ICt9DQo=
+
+On 8/19/2019 3:02 PM, Denys Dmytriyenko wrote:
+> On Mon, Aug 19, 2019 at 10:34:34AM -0400, Xu, Jianzhong wrote:
+>>> -----Original Message-----
+>>> From: Dmytriyenko, Denys
+>>> Sent: Tuesday, August 13, 2019 7:13 PM
+>>> To: Xu, Jianzhong
+>>> Cc: meta-arago@arago-project.org
+>>> Subject: Re: [meta-arago] [thud/master] [PATCH] armnn: add installation of header files
+>>>
+>>> On Fri, Aug 09, 2019 at 10:07:58AM -0400, Jianzhong Xu wrote:
+>>>> * Install header files that are needed to build tidl-api examples
+>>>> * Rename TESTVECS_INSTALL_DIR to ARMNN_INSTALL_DIR
+>>>>
+>>>> Signed-off-by: Jianzhong Xu <xuj@ti.com>
+>>>> ---
+>>>>   .../recipes-support/armnn/armnn_git.bb        | 25 +++++++++++++------
+>>>>   1 file changed, 17 insertions(+), 8 deletions(-)
+>>>>
+>>>> diff --git a/meta-arago-extras/recipes-support/armnn/armnn_git.bb b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+>>>> index 076ea3aa..7ad41d2d 100644
+>>>> --- a/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+>>>> +++ b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+>>>> @@ -65,25 +65,34 @@ EXTRA_OECMAKE=" \
+>>>>       -DGENERIC_LIB_VERSION=${PV} -DGENERIC_LIB_SOVERSION=${PV_MAJOR} \
+>>>>   "
+>>>>   
+>>>> -TESTVECS_INSTALL_DIR = "${datadir}/arm/armnn"
+>>>> +ARMNN_INSTALL_DIR = "${datadir}/arm/armnn"
+>>>>   
+>>>>   do_install_append() {
+>>>>       CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
+>>>>       install -d ${D}${bindir}
+>>>>       find ${WORKDIR}/build/tests -maxdepth 1 -type f -executable -exec cp $CP_ARGS {} ${D}${bindir} \;
+>>>>       cp $CP_ARGS ${WORKDIR}/build/UnitTests  ${D}${bindir}
+>>>> -    install -d ${D}${TESTVECS_INSTALL_DIR}/models
+>>>> -    cp ${WORKDIR}/tfmodel/mobilenet_v1_1.0_224_frozen.pb  ${D}${TESTVECS_INSTALL_DIR}/models
+>>>> -    cp ${WORKDIR}/git/tests/TfMobileNet-Armnn/labels.txt  ${D}${TESTVECS_INSTALL_DIR}/models
+>>>> -    install -d ${D}${TESTVECS_INSTALL_DIR}/testvecs
+>>>> -    cp ${WORKDIR}/tidl-api/examples/classification/clips/*.mp4  ${D}${TESTVECS_INSTALL_DIR}/testvecs
+>>>> -    cp ${WORKDIR}/tidl-api/examples/classification/images/*.jpg  ${D}${TESTVECS_INSTALL_DIR}/testvecs
+>>>> +    install -d ${D}${ARMNN_INSTALL_DIR}/models
+>>>> +    cp ${WORKDIR}/tfmodel/mobilenet_v1_1.0_224_frozen.pb  ${D}${ARMNN_INSTALL_DIR}/models
+>>>> +    cp ${WORKDIR}/git/tests/TfMobileNet-Armnn/labels.txt  ${D}${ARMNN_INSTALL_DIR}/models
+>>>> +    install -d ${D}${ARMNN_INSTALL_DIR}/testvecs
+>>>> +    cp ${WORKDIR}/tidl-api/examples/classification/clips/*.mp4  ${D}${ARMNN_INSTALL_DIR}/testvecs
+>>>> +    cp ${WORKDIR}/tidl-api/examples/classification/images/*.jpg  ${D}${ARMNN_INSTALL_DIR}/testvecs
+>>>> +    cp -r ${WORKDIR}/git/include ${D}${ARMNN_INSTALL_DIR}
+>>>> +    install -d ${D}${ARMNN_INSTALL_DIR}/src/armnn
+>>>> +    cp ${WORKDIR}/git/src/armnn/*.hpp ${D}${ARMNN_INSTALL_DIR}/src/armnn
+>>>> +    install -d ${D}${ARMNN_INSTALL_DIR}/src/armnnUtils
+>>>> +    cp ${WORKDIR}/git/src/armnnUtils/{CsvReader.hpp,HeapProfiling.hpp,Logging.hpp,TensorIOUtils.hpp} ${D}${ARMNN_INSTALL_DIR}/src/armnnUtils
+>>>> +    install -d ${D}${ARMNN_INSTALL_DIR}/src/backends/backendsCommon
+>>>> +    cp ${WORKDIR}/git/src/backends/backendsCommon/BackendRegistry.hpp ${D}${ARMNN_INSTALL_DIR}/src/backends/backendsCommon
+>>>> +    install -d ${D}${ARMNN_INSTALL_DIR}/tests
+>>>> +    cp ${WORKDIR}/git/tests/{InferenceModel.hpp,InferenceTest.hpp,InferenceTest.inl} ${D}${ARMNN_INSTALL_DIR}/tests
+>>> CP_ARGS is not being used for any of the cp commands.
+>> CP_ARGS is used in following commands:
+>>        find ${WORKDIR}/build/tests -maxdepth 1 -type f -executable -exec cp $CP_ARGS {} ${D}${bindir} \;
+>>        cp $CP_ARGS ${WORKDIR}/build/UnitTests  ${D}${bindir}
+> What about others?
+Other cp commands do not need CP_ARGS.
+>
+>>>>       chrpath -d ${D}${bindir}/*
+>>>>   }
+>>>>   
+>>>>   CXXFLAGS += "-fopenmp"
+>>>>   LIBS += "-larmpl_lp64_mp"
+>>>>   
+>>>> -FILES_${PN} += "${TESTVECS_INSTALL_DIR}"
+>>>> +FILES_${PN} += "${ARMNN_INSTALL_DIR}"
+>>>>   FILES_${PN}-dev += "{libdir}/cmake/*"
+>>>>   INSANE_SKIP_${PN}-dev = "dev-elf"
+>>>> -- 
+>>>> 2.17.1
+>>>>
+>>>> _______________________________________________
+>>>> meta-arago mailing list
+>>>> meta-arago@arago-project.org
+>>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
