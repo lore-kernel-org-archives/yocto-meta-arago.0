@@ -1,45 +1,45 @@
-Return-Path: <h-gou@ti.com>
+Return-Path: <j-stiffler@ti.com>
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id A9484520DF
+	by arago-project.org (Postfix) with ESMTPS id A1623520E2
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Aug 2019 22:59:21 +0000 (UTC)
+	Thu, 22 Aug 2019 14:23:20 +0000 (UTC)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7LMwMiU085982
-	for <meta-arago@arago-project.org>; Wed, 21 Aug 2019 17:58:22 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7MEMK3J080900
+	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 09:22:20 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1566428302;
-	bh=irRN+5mUWh/9S2wTNCx8qdO0AaLGnWisqsAtm1wZ+ok=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=SZw/DRjtCXL0rX9gmmA+rDxNp7yD3v7JaQpY8wC/TBPFeItqzEEJWevtMqFL7EZHH
-	WgL5GJnSAVruX7Jv3dfyJo2CKP7i/sWe0/QZPRlyE+ogmzopRxMXecAbcekebgEf8a
-	WoajATzhcigylxSrU1gu78V3eiWIgSwCxbbf0iQ4=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7LMwMtC049312
+	s=ti-com-17Q1; t=1566483740;
+	bh=lKLfwDFf32Uk2rwfvzxICDH0eYcdNpprg4DFWuG28L8=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=hmFxAkXpHmBjfCQoabQpYb8SO/7GQzzA+lwGstU9u+dSAbBzFh7rZdTZN+IQz/RYI
+	UihT+6gIuxzR9LKdj8xHY2b3x9nc+GtmopysNVhvrXo2zrFzfR5+1oQ7wfxoMgg3Iu
+	DTkujUvioBAhijBP/k2v0v0l0C2cTM36SNuhn43k=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7MEMKY9032070
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 21 Aug 2019 17:58:22 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 09:22:20 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 21 Aug 2019 17:58:21 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 22 Aug 2019 09:22:20 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 21 Aug 2019 17:58:21 -0500
-Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7LMwJCi074536;
-	Wed, 21 Aug 2019 17:58:21 -0500
-From: Hongmei Gou <a0271529@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 21 Aug 2019 18:58:07 -0400
-Message-ID: <20190821225807.22947-8-a0271529@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190821225807.22947-1-a0271529@ti.com>
+	Frontend Transport; Thu, 22 Aug 2019 09:22:20 -0500
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7MEMJhZ044845;
+	Thu, 22 Aug 2019 09:22:20 -0500
+To: Hongmei Gou <a0271529@ti.com>, <meta-arago@arago-project.org>
 References: <20190821225807.22947-1-a0271529@ti.com>
+	<20190821225807.22947-5-a0271529@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <7ced5a8f-b9a8-8b01-7fae-5aba1917ea1d@ti.com>
+Date: Thu, 22 Aug 2019 10:22:20 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <20190821225807.22947-5-a0271529@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [PATCH 7/7] tensorflow-lite: add label_image example and install the files to run the example
+Subject: Re: [EXTERNAL] [PATCH 4/7] tensorflow-lite-*: add other dependencies for tensorflow-lite 1.12
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,156 +52,130 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2019 22:59:24 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 22 Aug 2019 14:23:21 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-* Patch Makefile to add the label_image example
-* Install sample model/image/labels.txt to run the example
+Why do we need to prefix all of these with "tensorflow-lite"?
 
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
----
- ...002-Makefile-add-label_image-example.patch | 89 +++++++++++++++++++
- .../tensorflow-lite/tensorflow-lite_1.12.bb   | 15 +++-
- 2 files changed, 100 insertions(+), 4 deletions(-)
- create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/0002-Makefile-add-label_image-example.patch
-
-diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/files/0002-Makefile-add-label_image-example.patch b/meta-arago-extras/recipes-support/tensorflow-lite/files/0002-Makefile-add-label_image-example.patch
-new file mode 100644
-index 00000000..d3bd2a05
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/tensorflow-lite/files/0002-Makefile-add-label_image-example.patch
-@@ -0,0 +1,89 @@
-+From eb4148a4b230cee9b4e3c00d8661653c7b29559a Mon Sep 17 00:00:00 2001
-+From: Hongmei Gou <a0271529@ti.com>
-+Date: Wed, 21 Aug 2019 18:03:17 -0400
-+Subject: [PATCH] Makefile: add label_image example
-+
-+Upstream-Status: Pending
-+
-+Signed-off-by: Hongmei Gou <a0271529@ti.com>
-+---
-+ tensorflow/contrib/lite/tools/make/Makefile | 21 +++++++++++++++++++--
-+ 1 file changed, 19 insertions(+), 2 deletions(-)
-+
-+diff --git a/tensorflow/contrib/lite/tools/make/Makefile b/tensorflow/contrib/lite/tools/make/Makefile
-+index 8b1b05b280..1af726e2a3 100644
-+--- a/tensorflow/contrib/lite/tools/make/Makefile
-++++ b/tensorflow/contrib/lite/tools/make/Makefile
-+@@ -71,6 +71,11 @@ BENCHMARK_BINARY_NAME := benchmark_model
-+ MINIMAL_SRCS := \
-+ tensorflow/contrib/lite/examples/minimal/minimal.cc
-+ 
-++# label image example
-++LABELIMAGE_SRCS := \
-++tensorflow/contrib/lite/examples/label_image/bitmap_helpers.cc \
-++tensorflow/contrib/lite/examples/label_image/label_image.cc
-++
-+ # What sources we want to compile, must be kept in sync with the main Bazel
-+ # build files.
-+ 
-+@@ -107,7 +112,8 @@ $(wildcard tensorflow/contrib/lite/*/*test.cc) \
-+ $(wildcard tensorflow/contrib/lite/*/*/*test.cc) \
-+ $(wildcard tensorflow/contrib/lite/*/*/*/*test.cc) \
-+ $(wildcard tensorflow/contrib/lite/kernels/test_util.cc) \
-+-$(MINIMAL_SRCS)
-++$(MINIMAL_SRCS) \
-++$(LABELIMAGE_SRCS)
-+ ifeq ($(BUILD_TYPE),micro)
-+ CORE_CC_EXCLUDE_SRCS += \
-+ tensorflow/contrib/lite/mmap_allocation.cc \
-+@@ -134,6 +140,7 @@ include $(wildcard $(MAKEFILE_DIR)/targets/*_makefile.inc)
-+ 
-+ ALL_SRCS := \
-+ 	$(MINIMAL_SRCS) \
-++	$(LABELIMAGE_SRCS) \
-+ 	$(PROFILER_SRCS) \
-+ 	$(PROFILER_SUMMARY_SRCS) \
-+ 	$(TF_LITE_CC_SRCS) \
-+@@ -149,6 +156,7 @@ LIB_PATH := $(LIBDIR)$(LIB_NAME)
-+ BENCHMARK_LIB := $(LIBDIR)$(BENCHMARK_LIB_NAME)
-+ BENCHMARK_BINARY := $(BINDIR)$(BENCHMARK_BINARY_NAME)
-+ MINIMAL_BINARY := $(BINDIR)minimal
-++LABELIMAGE_BINARY := $(BINDIR)label_image
-+ 
-+ CXX := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}g++
-+ CC := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}gcc
-+@@ -157,6 +165,9 @@ AR := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}ar
-+ MINIMAL_OBJS := $(addprefix $(OBJDIR), \
-+ $(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(MINIMAL_SRCS))))
-+ 
-++LABELIMAGE_OBJS := $(addprefix $(OBJDIR), \
-++$(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(LABELIMAGE_SRCS))))
-++
-+ LIB_OBJS := $(addprefix $(OBJDIR), \
-+ $(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(TF_LITE_CC_SRCS))))
-+ 
-+@@ -173,7 +184,7 @@ $(OBJDIR)%.o: %.c
-+ 	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
-+ 
-+ # The target that's compiled if there's no command-line arguments.
-+-all: $(LIB_PATH)  $(MINIMAL_BINARY) $(BENCHMARK_BINARY)
-++all: $(LIB_PATH)  $(MINIMAL_BINARY) $(LABELIMAGE_BINARY) $(BENCHMARK_BINARY)
-+ 
-+ # The target that's compiled for micro-controllers
-+ micro: $(LIB_PATH)
-+@@ -197,6 +208,12 @@ $(BENCHMARK_LIB) : $(LIB_PATH) $(BENCHMARK_OBJS)
-+ 	@mkdir -p $(dir $@)
-+ 	$(AR) $(ARFLAGS) $(BENCHMARK_LIB) $(LIB_OBJS) $(BENCHMARK_OBJS)
-+ 
-++$(LABELIMAGE_BINARY): $(LABELIMAGE_OBJS) $(LIB_PATH)
-++	@mkdir -p $(dir $@)
-++	$(CXX) $(CXXFLAGS) $(INCLUDES) \
-++	-o $(LABELIMAGE_BINARY) $(LABELIMAGE_OBJS) \
-++	$(LIBFLAGS) $(LIB_PATH) $(LDFLAGS) $(LIBS)
-++
-+ benchmark_lib: $(BENCHMARK_LIB)
-+ 
-+ $(BENCHMARK_BINARY) : $(BENCHMARK_LIB)
-+-- 
-+2.17.1
-+
-diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
-index 20f0ffed..6f0254ef 100644
---- a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
-+++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
-@@ -5,12 +5,17 @@ LICENSE = "Apache-2.0"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=01e86893010a1b87e69a213faa753ebd"
- 
- SRC_URI = "git://github.com/tensorflow/tensorflow.git;branch=r1.12;protocol=https \
-+    http://download.tensorflow.org/models/mobilenet_v1_2018_08_02/mobilenet_v1_1.0_224_quant.tgz;name=mobilenet_v1_quant;subdir=${WORKDIR}/model;destsuffix=model \
-     file://0001-Makefile-update-the-path-for-the-depedencies-built-v.patch \
-+    file://0002-Makefile-add-label_image-example.patch \
-     file://tensorflow-lite.pc.in"
- 
-+SRC_URI[mobilenet_v1_quant.md5sum] = "36af340c00e60291931cb30ce32d4e86"
-+SRC_URI[mobilenet_v1_quant.sha256sum] = "d32432d28673a936b2d6281ab0600c71cf7226dfe4cdcef3012555f691744166"
-+
- SRCREV = "5b900cfe4b3b848f577315a0dde09a729f770e95"
- 
--PR = "r2"
-+PR = "r3"
- 
- S = "${WORKDIR}/git"
- 
-@@ -75,12 +80,14 @@ do_install() {
-     install -d ${D}${datadir}/${PN}-${PV}/examples
-     install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/minimal ${D}${datadir}/${PN}-${PV}/examples
-     install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/benchmark_model ${D}${datadir}/${PN}-${PV}/examples
-+    install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/label_image ${D}${datadir}/${PN}-${PV}/examples
-+    install -m 0644 ${S}/tensorflow/contrib/lite/examples/label_image/testdata/grace_hopper.bmp ${D}${datadir}/${PN}-${PV}/examples
-+    install -m 0644 ${S}/tensorflow/contrib/lite/java/ovic/src/testdata/labels.txt ${D}${datadir}/${PN}-${PV}/examples
-+    install -m 0644 ${WORKDIR}/model/mobilenet_v1_1.0_224_quant.tflite ${D}${datadir}/${PN}-${PV}/examples
- }
- 
- PACKAGES += "${PN}-examples"
- 
--FILES_${PN}-examples = " \
--    ${datadir}/${PN}-${PV}/examples/minimal \
--    ${datadir}/${PN}-${PV}/examples/benchmark_model \ "
-+FILES_${PN}-examples = "${datadir}/${PN}-${PV}/examples"
- 
- ALLOW_EMPTY_${PN} = "1"
--- 
-2.17.1
-
+On 8/21/2019 6:58 PM, Hongmei Gou wrote:
+> Signed-off-by: Hongmei Gou <a0271529@ti.com>
+> ---
+>   .../tensorflow-lite/tensorflow-lite-absl_git.bb  | 16 ++++++++++++++++
+>   .../tensorflow-lite-farmhash_git.bb              | 14 ++++++++++++++
+>   .../tensorflow-lite/tensorflow-lite-fft2d_1.0.bb | 14 ++++++++++++++
+>   .../tensorflow-lite-gemmlowp_git.bb              | 16 ++++++++++++++++
+>   .../tensorflow-lite-neon-2-sse_git.bb            | 14 ++++++++++++++
+>   5 files changed, 74 insertions(+)
+>   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-absl_git.bb
+>   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-farmhash_git.bb
+>   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-fft2d_1.0.bb
+>   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-gemmlowp_git.bb
+>   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-neon-2-sse_git.bb
+>
+> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-absl_git.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-absl_git.bb
+> new file mode 100644
+> index 00000000..8d02958a
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-absl_git.bb
+> @@ -0,0 +1,16 @@
+> +DESCRIPTION = "Abseil C++ Common Libraries"
+> +HOMEPAGE = "https://github.com/abseil/abseil-cpp"
+> +LICENSE = "Apache-2.0"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=917cc5763a741e915bf7f2cc55830c17"
+> +
+> +SRC_URI = "git://github.com/abseil/abseil-cpp.git"
+> +SRCREV  = "48cd2c3f351ff188bc85684b84a91b6e6d17d896"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +inherit cmake
+> +
+> +do_install() {
+> +    install -d ${D}${datadir}/absl
+> +    cp -r ${S}/absl ${D}${datadir}/absl
+> +}
+> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-farmhash_git.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-farmhash_git.bb
+> new file mode 100644
+> index 00000000..cd0bb14c
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-farmhash_git.bb
+> @@ -0,0 +1,14 @@
+> +DESCRIPTION = "FarmHash, a family of hash functions"
+> +HOMEPAGE = "https://github.com/google/farmhash"
+> +LICENSE = "MIT"
+> +LIC_FILES_CHKSUM = "file://COPYING;md5=7dfaa79e2b070897e495fec386e3acfc"
+> +
+> +SRC_URI = "git://github.com/google/farmhash.git"
+> +SRCREV  = "816a4ae622e964763ca0862d9dbd19324a1eaf45"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +do_install() {
+> +    install -d ${D}${datadir}/farmhash
+> +    cp -r ${S}/src ${D}${datadir}/farmhash
+> +}
+> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-fft2d_1.0.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-fft2d_1.0.bb
+> new file mode 100644
+> index 00000000..5a01a2b2
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-fft2d_1.0.bb
+> @@ -0,0 +1,14 @@
+> +DESCRIPTION = "General Purpose FFT (Fast Fourier/Cosine/Sine Transform) Package"
+> +LICENSE = "FFT-License"
+> +LIC_FILES_CHKSUM = "file://readme.txt;beginline=140;endline=145;md5=62461d28fdc0c056c098f3fb2f015799"
+> +
+> +SRC_URI = "https://mirror.bazel.build/www.kurims.kyoto-u.ac.jp/~ooura/fft.tgz;downloadfilename=${BP}.tgz"
+> +SRC_URI[md5sum] = "4255dd8a74949d123216b1ab91520469"
+> +SRC_URI[sha256sum] = "52bb637c70b971958ec79c9c8752b1df5ff0218a4db4510e60826e0cb79b5296"
+> +
+> +S = "${WORKDIR}/fft"
+> +
+> +do_install() {
+> +    install -d ${D}${datadir}/fft2d
+> +    cp -r ${S}/* ${D}${datadir}/fft2d
+> +}
+> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-gemmlowp_git.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-gemmlowp_git.bb
+> new file mode 100644
+> index 00000000..9ce38486
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-gemmlowp_git.bb
+> @@ -0,0 +1,16 @@
+> +DESCRIPTION = "gemmlowp: a small self-contained low-precision GEMM library"
+> +HOMEPAGE = "https://github.com/google/gemmlowp"
+> +LICENSE = "Apache-2.0"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
+> +
+> +SRC_URI = "git://github.com/google/gemmlowp.git"
+> +SRCREV  = "38ebac7b059e84692f53e5938f97a9943c120d98"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +do_install() {
+> +    install -d ${D}${datadir}/gemmlowp
+> +    cp -r ${S}/* ${D}${datadir}/gemmlowp
+> +}
+> +
+> +INSANE_SKIP_${PN} = "file-rdeps"
+> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-neon-2-sse_git.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-neon-2-sse_git.bb
+> new file mode 100644
+> index 00000000..a93bf1fd
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-neon-2-sse_git.bb
+> @@ -0,0 +1,14 @@
+> +DESCRIPTION = "Header file simplifying ARM->IA32 porting"
+> +HOMEPAGE = "https://github.com/intel/ARM_NEON_2_x86_SSE"
+> +LICENSE = "BSD-3-Clause"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=b4fdfcb48f273d192333c498d75fa26f"
+> +
+> +SRC_URI = "git://github.com/intel/ARM_NEON_2_x86_SSE.git"
+> +SRCREV  = "3057bb91b99bae9c7fbdf8710c032d462ca10051"
+> +
+> +S = "${WORKDIR}/git"
+> +
+> +do_install() {
+> +    install -d ${D}${datadir}/neon-2-sse
+> +    cp -r ${S}/*.h ${D}${datadir}/neon-2-sse
+> +}
 
