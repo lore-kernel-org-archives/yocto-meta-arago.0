@@ -1,48 +1,45 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id B490A520DF
+Return-Path: <h-gou@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 779285298D
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Aug 2019 17:52:13 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7MHpDDu058014
-	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 12:51:13 -0500
+	Thu, 22 Aug 2019 20:32:32 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7MKVWnG054003
+	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 15:31:32 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1566496273;
-	bh=gxBFacnPcgi4JX+rT3+pz9JHMslP5OPLJB+oXmwJ1qo=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=ZbUMvJ3BI/qeZhI5AF+69Vp9TMoBnTrL855HZQU49xV0vzf9qC1k8jUcsM2jp7imA
-	9kDkYIJd7IbLAnAPp5B8jJ5mMhEWXtks1dqPkqb0dgv24lhw2/L9v6zAoAlKq0hfeC
-	jjDOXqTC81BRIyZR65mrmEWqpEZXNu8Lg97KKumU=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7MHpDiI033750
+	s=ti-com-17Q1; t=1566505892;
+	bh=u1wVD0v+8+Y5SGGNMk3lbNampJCgfXPtw7baiCgMAt4=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=QyrWXQ8yIehNV9yXgXnVHAnde+I3sWcl3O1FCsEYOBvnbXjzfxSeW3FJ06M+yyrRC
+	kjRvKPinjveOoaR0KY+Lyn+TRZnDLKYjOWE7c3t8si9fwWlndZCDQMl5hz5wyuXSBz
+	fDvs87GZhMGqTJqMHR+4O9fBRFUH5BXmNSEgMJCc=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7MKVWPI106599
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 12:51:13 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 22 Aug 2019 15:31:32 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 22 Aug 2019 12:51:13 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 22 Aug 2019 15:31:32 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Thu, 22 Aug 2019 12:51:13 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7MHpCH1091819;
-	Thu, 22 Aug 2019 12:51:13 -0500
-To: "Xu, Jianzhong" <xuj@ti.com>, Denys Dmytriyenko <denys@ti.com>
-References: <20190809140758.15280-1-xuj@ti.com> <20190813231318.GH7130@beryl>
-	<5b8b049068d94a05b2b08b978daea598@ti.com>
-	<20190819190222.GM2365@beryl>
-	<a6011481-e170-7b72-9ec6-c2c63672544d@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <4cd53098-647f-530d-530b-eb4cbb19c26d@ti.com>
-Date: Thu, 22 Aug 2019 13:51:13 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	Frontend Transport; Thu, 22 Aug 2019 15:31:32 -0500
+Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7MKVVqF015899;
+	Thu, 22 Aug 2019 15:31:31 -0500
+From: Hongmei Gou <a0271529@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 22 Aug 2019 16:31:24 -0400
+Message-ID: <20190822203126.4155-2-a0271529@ti.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190822203126.4155-1-a0271529@ti.com>
+References: <20190822203126.4155-1-a0271529@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <a6011481-e170-7b72-9ec6-c2c63672544d@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [EXTERNAL] Re: [thud/master] [PATCH] armnn: add installation of header files
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [PATCH v2 1/3] tensorflow-lite: add version 1.12
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,118 +52,184 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Aug 2019 17:52:14 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-List-Received-Date: Thu, 22 Aug 2019 20:32:34 -0000
+Content-Type: text/plain
 
+* Source of the recipe:
+  https://github.com/nnsuite/meta-neural-network/tree/master/recipes-tensorflow/tensorflow-lite
+* Further changes from the baseline include:
+  1. Replaced moving master with commit ID for NEON2SSE, and updated the checksum;
+  2. Replaced AUTOREV with the commit ID for tensorflow version 1.12;
+  3. Removed do_configure{} which is not needed;
+  4. Removed installation for flatbuffers.
 
-On 8/22/2019 1:43 PM, Xu, Jianzhong wrote:
->
-> On 8/19/2019 3:02 PM, Denys Dmytriyenko wrote:
->> On Mon, Aug 19, 2019 at 10:34:34AM -0400, Xu, Jianzhong wrote:
->>>> -----Original Message-----
->>>> From: Dmytriyenko, Denys
->>>> Sent: Tuesday, August 13, 2019 7:13 PM
->>>> To: Xu, Jianzhong
->>>> Cc: meta-arago@arago-project.org
->>>> Subject: Re: [meta-arago] [thud/master] [PATCH] armnn: add 
->>>> installation of header files
->>>>
->>>> On Fri, Aug 09, 2019 at 10:07:58AM -0400, Jianzhong Xu wrote:
->>>>> * Install header files that are needed to build tidl-api examples
->>>>> * Rename TESTVECS_INSTALL_DIR to ARMNN_INSTALL_DIR
->>>>>
->>>>> Signed-off-by: Jianzhong Xu <xuj@ti.com>
->>>>> ---
->>>>>   .../recipes-support/armnn/armnn_git.bb        | 25 
->>>>> +++++++++++++------
->>>>>   1 file changed, 17 insertions(+), 8 deletions(-)
->>>>>
->>>>> diff --git a/meta-arago-extras/recipes-support/armnn/armnn_git.bb 
->>>>> b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
->>>>> index 076ea3aa..7ad41d2d 100644
->>>>> --- a/meta-arago-extras/recipes-support/armnn/armnn_git.bb
->>>>> +++ b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
->>>>> @@ -65,25 +65,34 @@ EXTRA_OECMAKE=" \
->>>>>       -DGENERIC_LIB_VERSION=${PV} 
->>>>> -DGENERIC_LIB_SOVERSION=${PV_MAJOR} \
->>>>>   "
->>>>>   -TESTVECS_INSTALL_DIR = "${datadir}/arm/armnn"
->>>>> +ARMNN_INSTALL_DIR = "${datadir}/arm/armnn"
->>>>>     do_install_append() {
->>>>>       CP_ARGS="-Prf --preserve=mode,timestamps 
->>>>> --no-preserve=ownership"
->>>>>       install -d ${D}${bindir}
->>>>>       find ${WORKDIR}/build/tests -maxdepth 1 -type f -executable 
->>>>> -exec cp $CP_ARGS {} ${D}${bindir} \;
->>>>>       cp $CP_ARGS ${WORKDIR}/build/UnitTests ${D}${bindir}
->>>>> -    install -d ${D}${TESTVECS_INSTALL_DIR}/models
->>>>> -    cp ${WORKDIR}/tfmodel/mobilenet_v1_1.0_224_frozen.pb 
->>>>> ${D}${TESTVECS_INSTALL_DIR}/models
->>>>> -    cp ${WORKDIR}/git/tests/TfMobileNet-Armnn/labels.txt 
->>>>> ${D}${TESTVECS_INSTALL_DIR}/models
->>>>> -    install -d ${D}${TESTVECS_INSTALL_DIR}/testvecs
->>>>> -    cp ${WORKDIR}/tidl-api/examples/classification/clips/*.mp4 
->>>>> ${D}${TESTVECS_INSTALL_DIR}/testvecs
->>>>> -    cp ${WORKDIR}/tidl-api/examples/classification/images/*.jpg 
->>>>> ${D}${TESTVECS_INSTALL_DIR}/testvecs
->>>>> +    install -d ${D}${ARMNN_INSTALL_DIR}/models
->>>>> +    cp ${WORKDIR}/tfmodel/mobilenet_v1_1.0_224_frozen.pb 
->>>>> ${D}${ARMNN_INSTALL_DIR}/models
->>>>> +    cp ${WORKDIR}/git/tests/TfMobileNet-Armnn/labels.txt 
->>>>> ${D}${ARMNN_INSTALL_DIR}/models
->>>>> +    install -d ${D}${ARMNN_INSTALL_DIR}/testvecs
->>>>> +    cp ${WORKDIR}/tidl-api/examples/classification/clips/*.mp4 
->>>>> ${D}${ARMNN_INSTALL_DIR}/testvecs
->>>>> +    cp ${WORKDIR}/tidl-api/examples/classification/images/*.jpg 
->>>>> ${D}${ARMNN_INSTALL_DIR}/testvecs
->>>>> +    cp -r ${WORKDIR}/git/include ${D}${ARMNN_INSTALL_DIR}
->>>>> +    install -d ${D}${ARMNN_INSTALL_DIR}/src/armnn
->>>>> +    cp ${WORKDIR}/git/src/armnn/*.hpp 
->>>>> ${D}${ARMNN_INSTALL_DIR}/src/armnn
->>>>> +    install -d ${D}${ARMNN_INSTALL_DIR}/src/armnnUtils
->>>>> +    cp 
->>>>> ${WORKDIR}/git/src/armnnUtils/{CsvReader.hpp,HeapProfiling.hpp,Logging.hpp,TensorIOUtils.hpp} 
->>>>> ${D}${ARMNN_INSTALL_DIR}/src/armnnUtils
->>>>> +    install -d ${D}${ARMNN_INSTALL_DIR}/src/backends/backendsCommon
->>>>> +    cp 
->>>>> ${WORKDIR}/git/src/backends/backendsCommon/BackendRegistry.hpp 
->>>>> ${D}${ARMNN_INSTALL_DIR}/src/backends/backendsCommon
->>>>> +    install -d ${D}${ARMNN_INSTALL_DIR}/tests
->>>>> +    cp 
->>>>> ${WORKDIR}/git/tests/{InferenceModel.hpp,InferenceTest.hpp,InferenceTest.inl} 
->>>>> ${D}${ARMNN_INSTALL_DIR}/tests
->>>> CP_ARGS is not being used for any of the cp commands.
->>> CP_ARGS is used in following commands:
->>>        find ${WORKDIR}/build/tests -maxdepth 1 -type f -executable 
->>> -exec cp $CP_ARGS {} ${D}${bindir} \;
->>>        cp $CP_ARGS ${WORKDIR}/build/UnitTests  ${D}${bindir}
->> What about others?
-> Other cp commands do not need CP_ARGS.
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
+---
+ ...odification-for-tflite-1.12-to-eigen.patch |  13 ++
+ .../files/tensorflow-lite.pc.in               |   6 +
+ .../tensorflow-lite/tensorflow-lite_1.12.bb   | 119 ++++++++++++++++++
+ 3 files changed, 138 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch
+ create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in
+ create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
 
+diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch b/meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch
+new file mode 100644
+index 00000000..1a8de78b
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch
+@@ -0,0 +1,13 @@
++diff --git a/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h b/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
++index 306a309beb..4527a64c91 100644
++--- a/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
+++++ b/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
++@@ -295,7 +295,7 @@ ptranspose(PacketBlock<Packet2cf,2>& kernel) {
++   static uint64x2_t p2ul_CONJ_XOR = {0x0, 0x8000000000000000};
++ #else
++   const uint64_t  p2ul_conj_XOR_DATA[] = { 0x0, 0x8000000000000000 };
++-  static uint64x2_t p2ul_CONJ_XOR = vld1q_u64( p2ul_conj_XOR_DATA );
+++  static uint64x2_t p2ul_CONJ_XOR;// = vld1q_u64( p2ul_conj_XOR_DATA ); - Removed by script
++ #endif
++ 
++ struct Packet1cd
+diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in b/meta-arago-extras/recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in
+new file mode 100644
+index 00000000..44afd0ee
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in
+@@ -0,0 +1,6 @@
++ Name: tensorflow lite
++ Description: tensorflow lite static library
++ Version: @version@
++ Requires:
++ Libs: -L@libdir@ -ltensorflow-lite
++ Cflags: -I@includedir@
+diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
+new file mode 100644
+index 00000000..ebd175e1
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
+@@ -0,0 +1,119 @@
++DESCRIPTION = "TensorFlow's lightweight solution for mobile and embedded devices"
++AUTHOR = "Google Inc. and Yuan Tang"
++HOMEPAGE = "https://www.tensorflow.org/lite"
++LICENSE = "Apache-2.0"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=01e86893010a1b87e69a213faa753ebd"
++
++MD5SUM_EIGEN = "4c884968ede816a84c70e2cd2c81de8d"
++SHA256SUM_EIGEN = "d956415d784fa4e42b6a2a45c32556d6aec9d0a3d8ef48baee2522ab762556a9"
++MD5SUM_FARMHASH = "f039a65a7f62bdb6c4b4c8a732638d80"
++SHA256SUM_FARMHASH = "6560547c63e4af82b0f202cb710ceabb3f21347a4b996db565a411da5b17aba0"
++MD5SUM_GEMMLOWP = "a90a2161ad8ee4ccf724f56e07637601"
++SHA256SUM_GEMMLOWP = "b87faa7294dfcc5d678f22a59d2c01ca94ea1e2a3b488c38a95a67889ed0a658"
++MD5SUM_GTEST = "16877098823401d1bf2ed7891d7dce36"
++SHA256SUM_GTEST = "58a6f4277ca2bc8565222b3bbd58a177609e9c488e8a72649359ba51450db7d8"
++MD5SUM_ABSLCPP = "7c9945f256d3733a8eade255afcbd072"
++SHA256SUM_ABSLCPP = "7dd09690ae7ca4551de3111d4a86b75b23ec17445f273d3c42bdcdc1c7b02e4e"
++MD5SUM_NEON2SSE = "276619db5393450c223b7c4e47e848ce"
++SHA256SUM_NEON2SSE = "8cc98e95c86d362dd6f003b35a9517a9928e3fd387b33188b0442df13245a17b"
++MD5SUM_FLATBUFFER = "3811552512049fac3af419130904bc55"
++SHA256SUM_FLATBUFFER = "b2bb0311ca40b12ebe36671bdda350b10c7728caf0cfe2d432ea3b6e409016f3"
++MD5SUM_FFT = "4255dd8a74949d123216b1ab91520469"
++SHA256SUM_FFT = "52bb637c70b971958ec79c9c8752b1df5ff0218a4db4510e60826e0cb79b5296"
++
++SRC_URI = "git://github.com/tensorflow/tensorflow.git;branch=r1.12;protocol=https \
++    https://bitbucket.org/eigen/eigen/get/fd6845384b86.tar.gz;md5sum=${MD5SUM_EIGEN};sha256sum=${SHA256SUM_EIGEN} \
++    https://mirror.bazel.build/github.com/google/gemmlowp/archive/38ebac7b059e84692f53e5938f97a9943c120d98.zip;md5sum=${MD5SUM_GEMMLOWP};sha256sum=${SHA256SUM_GEMMLOWP} \
++    https://github.com/google/googletest/archive/release-1.8.0.tar.gz;md5sum=${MD5SUM_GTEST};sha256sum=${SHA256SUM_GTEST} \
++    https://github.com/abseil/abseil-cpp/archive/48cd2c3f351ff188bc85684b84a91b6e6d17d896.tar.gz;md5sum=${MD5SUM_ABSLCPP};sha256sum=${SHA256SUM_ABSLCPP} \
++    https://github.com/intel/ARM_NEON_2_x86_SSE/archive/3057bb91b99bae9c7fbdf8710c032d462ca10051.zip;md5sum=${MD5SUM_NEON2SSE};sha256sum=${SHA256SUM_NEON2SSE} \
++    https://mirror.bazel.build/github.com/google/farmhash/archive/816a4ae622e964763ca0862d9dbd19324a1eaf45.tar.gz;md5sum=${MD5SUM_FARMHASH};sha256sum=${SHA256SUM_FARMHASH} \
++    https://github.com/google/flatbuffers/archive/1f5eae5d6a135ff6811724f6c57f911d1f46bb15.tar.gz;md5sum=${MD5SUM_FLATBUFFER};sha256sum=${SHA256SUM_FLATBUFFER} \
++    https://mirror.bazel.build/www.kurims.kyoto-u.ac.jp/~ooura/fft.tgz;md5sum=${MD5SUM_FFT};sha256sum=${SHA256SUM_FFT} \
++    file://apply-modification-for-tflite-1.12-to-eigen.patch \
++    file://tensorflow-lite.pc.in"
++
++SRCREV = "5b900cfe4b3b848f577315a0dde09a729f770e95"
++
++PR = "r1"
++
++S = "${WORKDIR}/git"
++
++DEPENDS = "zlib"
++TARGET_CFLAGS_remove = "-O2"
++TARGET_CPPLAGS_remove = "-O2"
++TARGET_CXXLAGS_remove = "-O2"
++CCFLAGS_append = " -O3 -DNDEBUG -fPIC -DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
++    -I${STAGING_INCDIR}"
++CXXFLAGS_append = " -O3 -DNDEBUG -fPIC -DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
++    -I${STAGING_INCDIR}"
++LDFLAGS_remove = "-Wl,-O1"
++CXXFLAGS_append = " -O3 -DNDEBUG -fPIC -DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
++    -I${STAGING_INCDIR}"
++LIBS = "-lstdc++ -lpthread -lm -lz -ldl"
++BUILD_DEPS_DOWNLOAD_DIR_PREFIX = "${S}/tensorflow/contrib/lite/tools/make/downloads/"
++
++do_cp_downloaded_build_deps() {
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}eigen
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}gemmlowp
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}googletest
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}absl
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}farmhash
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}neon_2_sse
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}flatbuffers
++    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}fft2d
++
++    cp -rf ${WORKDIR}/eigen-eigen-fd6845384b86/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}eigen
++    cp -rf ${WORKDIR}/gemmlowp-38ebac7b059e84692f53e5938f97a9943c120d98/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}gemmlowp
++    cp -rf ${WORKDIR}/googletest-release-1.8.0/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}googletest
++    cp -rf ${WORKDIR}/abseil-cpp-48cd2c3f351ff188bc85684b84a91b6e6d17d896/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}absl
++    cp -rf ${WORKDIR}/farmhash-816a4ae622e964763ca0862d9dbd19324a1eaf45/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}farmhash
++    cp -rf ${WORKDIR}/ARM_NEON_2_x86_SSE-3057bb91b99bae9c7fbdf8710c032d462ca10051/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}neon_2_sse
++    cp -rf ${WORKDIR}/flatbuffers-1f5eae5d6a135ff6811724f6c57f911d1f46bb15/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}flatbuffers
++    cp -rf ${WORKDIR}/fft/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}fft2d
++}
++addtask do_cp_downloaded_build_deps after do_unpack before do_patch
++
++EXTRA_OEMAKE = "\
++    'CC=${CC}' \
++    'CXX=${CXX}' \
++    'CPP=${CPP}' \
++    'CFLAGS=${CFLAGS}' \
++    'CPPFLAGS=${CFLAGS}' \
++    'CXXFLAGS=${CXXFLAGS}' \
++    'AR=${AR}' \
++    'LD=${LD}' \
++    'LDFLAGS=${LDFLAGS}' \
++    'LIBS=${LIBS}' \
++    'TARGET=${TARGET_OS}' \
++    'TARGET_ARCH=${TUNE_ARCH}'"
++
++do_compile() {
++    oe_runmake -f tensorflow/contrib/lite/tools/make/Makefile
++}
++
++do_install() {
++    install -d ${D}${libdir}
++    install -m 0644 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/lib/libtensorflow-lite.a ${D}${libdir}/
++    install -d ${D}${includedir}/tensorflow/contrib/lite
++    install -m 0644 ${S}/tensorflow/contrib/lite/*.h ${D}${includedir}/tensorflow/contrib/lite/
++    install -d ${D}${includedir}/tensorflow/contrib/lite/c
++    install -m 0644 ${S}/tensorflow/contrib/lite/c/*.h ${D}${includedir}/tensorflow/contrib/lite/c/
++    install -d ${D}${includedir}/tensorflow/contrib/lite/core/api/
++    install -m 0644 ${S}/tensorflow/contrib/lite/core/api/*.h ${D}${includedir}/tensorflow/contrib/lite/core/api/
++    install -d ${D}${includedir}/tensorflow/contrib/lite/kernels
++    install -m 0644 ${S}/tensorflow/contrib/lite/kernels/*.h ${D}${includedir}/tensorflow/contrib/lite/kernels/
++    install -d  ${D}${includedir}/tensorflow/contrib/lite/profiling/
++    install -m 0644 ${S}/tensorflow/contrib/lite/profiling/*.h ${D}${includedir}/tensorflow/contrib/lite/profiling/
++    install -d ${D}${includedir}/tensorflow/contrib/lite/schema/
++    install -m 0644 ${S}/tensorflow/contrib/lite/schema/*.h ${D}${includedir}/tensorflow/contrib/lite/schema/
++    install -d ${D}${includedir}/tensorflow/contrib/lite/tools/
++    install -m 0644 ${S}/tensorflow/contrib/lite/tools/*.h ${D}${includedir}/tensorflow/contrib/lite/tools/
++    install -d ${D}${libdir}/pkgconfig
++    install -m 0644 ${WORKDIR}/tensorflow-lite.pc.in ${D}${libdir}/pkgconfig/tensorflow-lite.pc
++    sed -i 's:@version@:${PV}:g
++        s:@libdir@:${libdir}:g
++        s:@includedir@:${includedir}:g' ${D}${libdir}/pkgconfig/tensorflow-lite.pc
++}
++
++ALLOW_EMPTY_${PN} = "1"
+-- 
+2.17.1
 
-Everywhere "cp -r" is used needs to be replaced with "cp $CP_ARGS"
-
-
->>
->>>>>       chrpath -d ${D}${bindir}/*
->>>>>   }
->>>>>     CXXFLAGS += "-fopenmp"
->>>>>   LIBS += "-larmpl_lp64_mp"
->>>>>   -FILES_${PN} += "${TESTVECS_INSTALL_DIR}"
->>>>> +FILES_${PN} += "${ARMNN_INSTALL_DIR}"
->>>>>   FILES_${PN}-dev += "{libdir}/cmake/*"
->>>>>   INSANE_SKIP_${PN}-dev = "dev-elf"
->>>>> -- 
->>>>> 2.17.1
->>>>>
->>>>> _______________________________________________
->>>>> meta-arago mailing list
->>>>> meta-arago@arago-project.org
->>>>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
