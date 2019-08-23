@@ -1,47 +1,51 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 448C052978
+Return-Path: <d-senicic1@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id A6E1A52978
 	for <meta-arago@arago-project.org>;
-	Fri, 23 Aug 2019 18:07:12 +0000 (UTC)
+	Fri, 23 Aug 2019 18:18:51 +0000 (UTC)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7NI6CGj058811
-	for <meta-arago@arago-project.org>; Fri, 23 Aug 2019 13:06:12 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7NIHplR032135
+	for <meta-arago@arago-project.org>; Fri, 23 Aug 2019 13:17:51 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1566583572;
-	bh=lOO/y5MFRaG9HFB4NxW/IWcSnve26ptpPOPgR9EEk+0=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=Q1S8KA+G9I8XJfWhc/F6p+ZZ+2YdqmslbU3ysCuP5ZUz9pxtK+pcWsF5pSiJazMkP
-	fVPjFIdq+RrHecm1YhxXZNPTpcfGXsKI667Ks9uCQVkJFVdV/dqLMWz3vjOLlG4fkw
-	biy55YqIGjMlNby47B+wo2oN5AeKB4fgKAt1a7V4=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7NI6CIE091449
+	s=ti-com-17Q1; t=1566584271;
+	bh=lS/rileELh7UOgp7HkA9cJ7xUAIi3SUFzJksu3iKQRE=;
+	h=From:To:Subject:Date:References:In-Reply-To;
+	b=T+8pX1KNukbFMGGFJJLwREtLIbwx76V2ioX5hAfO0N7HoeB/N5c/RGn2oCO7AyDvC
+	MYk3c5M+CkkmPjGpKdusckjRcLrSX7ZBF3z6LZQkQEReYYl75U+o2bQI+GBldrk6QC
+	VnGUqMgOr0O1Bl9v6Sbkd1tmoA94Oc+9beePpwG4=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7NIHp2H105950
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 23 Aug 2019 13:06:12 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 23 Aug 2019 13:17:51 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 23 Aug 2019 13:06:11 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 23 Aug 2019 13:06:11 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7NI6Amd110617;
-	Fri, 23 Aug 2019 13:06:11 -0500
-To: "Senicic, Djordje" <d-senicic1@ti.com>, "meta-arago@arago-project.org"
+	Fri, 23 Aug 2019 13:17:50 -0500
+Received: from DLEE100.ent.ti.com ([fe80::ad4d:c227:3f85:880d]) by
+	DLEE100.ent.ti.com ([fe80::ad4d:c227:3f85:880d%17]) with mapi id
+	15.01.1713.004; Fri, 23 Aug 2019 13:17:50 -0500
+From: "Senicic, Djordje" <d-senicic1@ti.com>
+To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
 	<meta-arago@arago-project.org>
+Thread-Topic: [EXTERNAL] [meta-arago] [meta-processor-sdk][PATCHv2 1/5] mesa, 
+	llvm,
+	meson: Update llvm to 8.0.1 plus define and use LLVM version
+	globally
+Thread-Index: AQHVWc4Lso015KsnX0KvjE1lvbHB+qcI/TkAgABd4ID//66QIA==
+Date: Fri, 23 Aug 2019 18:17:50 +0000
+Message-ID: <6cc132a1f5a54421aef502352b9d3fbc@ti.com>
 References: <20190823135856.8053-1-x0157990@ti.com>
 	<20190823135856.8053-2-x0157990@ti.com>
 	<edaecc87-906e-1a0d-6a27-846e30dea934@ti.com>
 	<4ddce1776b994ace85c0fb3dc8ac9490@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <0f9c0cc8-4aab-6306-1ae0-f5d6c823bc38@ti.com>
-Date: Fri, 23 Aug 2019 14:06:11 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	<0f9c0cc8-4aab-6306-1ae0-f5d6c823bc38@ti.com>
+In-Reply-To: <0f9c0cc8-4aab-6306-1ae0-f5d6c823bc38@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.250.96.62]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-In-Reply-To: <4ddce1776b994ace85c0fb3dc8ac9490@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Subject: Re: [EXTERNAL] [meta-processor-sdk][PATCHv2 1/5] mesa, llvm, meson: Update llvm to 8.0.1 plus define and use LLVM version globally
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -55,404 +59,313 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Aug 2019 18:07:12 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 23 Aug 2019 18:18:52 -0000
 Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Did you manually add BBCLASSEXTEND to libedit? I do not see it on thud.
-
-On 8/23/2019 1:34 PM, Senicic, Djordje wrote:
-> I could build both nativesdk-libedit and nativesdk-llvm7
-> There is: ./meta-openembedded/meta-oe/recipes-devtools/libedit/libedit_20180525-3.1.bb
->
-> -----Original Message-----
-> From: Stiffler, Jacob
-> Sent: Friday, August 23, 2019 12:16 PM
-> To: Senicic, Djordje; meta-arago@arago-project.org
-> Cc: Senicic, Djordje
-> Subject: Re: [EXTERNAL] [meta-arago] [meta-processor-sdk][PATCHv2 1/5] mesa, llvm, meson: Update llvm to 8.0.1 plus define and use LLVM version globally
->
-> Djordje,
->
-> I get an error with this. Have you tried building nativesdk-llvm8?
->
-> ERROR: Nothing PROVIDES 'nativesdk-libedit' (but
-> virtual:nativesdk:/oe/bld/sources/meta-processor-sdk/recipes-devtools/glow/llvm8_git.bb
-> DEPENDS on or otherwise requires it).
->
->
-> And when using "git send-email", you can use the "--no-signed-off-by-cc"
-> flag to prevent CCing those that have "signed-off" in the commit message.
->
->
-> - Jake
->
->
-> On 8/23/2019 9:58 AM, Djordje Senicic wrote:
->> - Add missing dependency on libedit
->> - Define LLVMVERSION on the same lines as GCCVERSION and other tools
->> - Use LLVMVERSION in mesa and meson.bbclass to get llvm version instead of
->>     hardcoding it
->> - Use llvm patches unmodified from meta-clang, helps in keeping them in
->>     sync
->> - Define PREFERRED_VERSION for llvm, llvm-native, nativesdk-llvm
->>
->> Signed-off-by: Khem Raj <raj.khem@gmail.com>
->> Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
->>
->> The recipe was imported from the OpenEmbedded server
->> http://cgit.openembedded.org/openembedded-core/commit/meta/recipes-devtools/llvm/llvm_git.bb
->> commit_id 3c08b638348abd543fc92baf56c28ca16ae6aac6
->> Currently this is needed for compiling pytorch glow with CPU backend which requires llvm7 or later.
->> To avoid being used globally name before 2020LTS, name of the recipe is not llvm_git but llvm8_git
->>
->> Signed-off-by: Djordje Senicic <x0157990@ti.com>
->> ---
->>    ...ryInfo-Undefine-libc-functions-if-th.patch |  92 +++++++++
->>    ...-llvm-allow-env-override-of-exe-path.patch |  38 ++++
->>    recipes-devtools/glow/llvm-glow_git.bb        | 180 ++++++++++++++++--
->>    3 files changed, 298 insertions(+), 12 deletions(-)
->>    create mode 100644 recipes-devtools/glow/llvm-glow/0006-llvm-TargetLibraryInfo-Undefine-libc-functions-if-th.patch
->>    create mode 100644 recipes-devtools/glow/llvm-glow/0007-llvm-allow-env-override-of-exe-path.patch
->>
->> diff --git a/recipes-devtools/glow/llvm-glow/0006-llvm-TargetLibraryInfo-Undefine-libc-functions-if-th.patch b/recipes-devtools/glow/llvm-glow/0006-llvm-TargetLibraryInfo-Undefine-libc-functions-if-th.patch
->> new file mode 100644
->> index 0000000..789c308
->> --- /dev/null
->> +++ b/recipes-devtools/glow/llvm-glow/0006-llvm-TargetLibraryInfo-Undefine-libc-functions-if-th.patch
->> @@ -0,0 +1,92 @@
->> +From 4c08879d2dfbe7face4e679ac8499dc7bff2dd20 Mon Sep 17 00:00:00 2001
->> +From: Khem Raj <raj.khem@gmail.com>
->> +Date: Sat, 21 May 2016 00:33:20 +0000
->> +Subject: [PATCH 06/19] llvm: TargetLibraryInfo: Undefine libc functions if
->> + they are macros
->> +
->> +musl defines some functions as macros and not inline functions
->> +if this is the case then make sure to undefine them
->> +
->> +Upstream-Status: Pending
->> +Signed-off-by: Khem Raj <raj.khem@gmail.com>
->> +---
->> + .../llvm/Analysis/TargetLibraryInfo.def       | 21 +++++++++++++++++++
->> + 1 file changed, 21 insertions(+)
->> +
->> +diff --git a/llvm/include/llvm/Analysis/TargetLibraryInfo.def b/llvm/include/llvm/Analysis/TargetLibraryInfo.def
->> +index afed404f04c..876888656f2 100644
->> +--- a/llvm/include/llvm/Analysis/TargetLibraryInfo.def
->> ++++ b/llvm/include/llvm/Analysis/TargetLibraryInfo.def
->> +@@ -782,6 +782,9 @@ TLI_DEFINE_STRING_INTERNAL("fmodl")
->> + TLI_DEFINE_ENUM_INTERNAL(fopen)
->> + TLI_DEFINE_STRING_INTERNAL("fopen")
->> + /// FILE *fopen64(const char *filename, const char *opentype)
->> ++#ifdef fopen64
->> ++#undef fopen64
->> ++#endif
->> + TLI_DEFINE_ENUM_INTERNAL(fopen64)
->> + TLI_DEFINE_STRING_INTERNAL("fopen64")
->> + /// int fork();
->> +@@ -829,6 +832,9 @@ TLI_DEFINE_STRING_INTERNAL("fseek")
->> + /// int fseeko(FILE *stream, off_t offset, int whence);
->> + TLI_DEFINE_ENUM_INTERNAL(fseeko)
->> + TLI_DEFINE_STRING_INTERNAL("fseeko")
->> ++#ifdef fseeko64
->> ++#undef fseeko64
->> ++#endif
->> + /// int fseeko64(FILE *stream, off64_t offset, int whence)
->> + TLI_DEFINE_ENUM_INTERNAL(fseeko64)
->> + TLI_DEFINE_STRING_INTERNAL("fseeko64")
->> +@@ -839,6 +845,9 @@ TLI_DEFINE_STRING_INTERNAL("fsetpos")
->> + TLI_DEFINE_ENUM_INTERNAL(fstat)
->> + TLI_DEFINE_STRING_INTERNAL("fstat")
->> + /// int fstat64(int filedes, struct stat64 *buf)
->> ++#ifdef fstat64
->> ++#undef fstat64
->> ++#endif
->> + TLI_DEFINE_ENUM_INTERNAL(fstat64)
->> + TLI_DEFINE_STRING_INTERNAL("fstat64")
->> + /// int fstatvfs(int fildes, struct statvfs *buf);
->> +@@ -854,6 +863,9 @@ TLI_DEFINE_STRING_INTERNAL("ftell")
->> + TLI_DEFINE_ENUM_INTERNAL(ftello)
->> + TLI_DEFINE_STRING_INTERNAL("ftello")
->> + /// off64_t ftello64(FILE *stream)
->> ++#ifdef ftello64
->> ++#undef ftello64
->> ++#endif
->> + TLI_DEFINE_ENUM_INTERNAL(ftello64)
->> + TLI_DEFINE_STRING_INTERNAL("ftello64")
->> + /// int ftrylockfile(FILE *file);
->> +@@ -980,6 +992,9 @@ TLI_DEFINE_STRING_INTERNAL("logl")
->> + TLI_DEFINE_ENUM_INTERNAL(lstat)
->> + TLI_DEFINE_STRING_INTERNAL("lstat")
->> + /// int lstat64(const char *path, struct stat64 *buf);
->> ++#ifdef lstat64
->> ++#undef lstat64
->> ++#endif
->> + TLI_DEFINE_ENUM_INTERNAL(lstat64)
->> + TLI_DEFINE_STRING_INTERNAL("lstat64")
->> + /// void *malloc(size_t size);
->> +@@ -1205,6 +1220,9 @@ TLI_DEFINE_STRING_INTERNAL("sscanf")
->> + TLI_DEFINE_ENUM_INTERNAL(stat)
->> + TLI_DEFINE_STRING_INTERNAL("stat")
->> + /// int stat64(const char *path, struct stat64 *buf);
->> ++#ifdef stat64
->> ++#undef stat64
->> ++#endif
->> + TLI_DEFINE_ENUM_INTERNAL(stat64)
->> + TLI_DEFINE_STRING_INTERNAL("stat64")
->> + /// int statvfs(const char *path, struct statvfs *buf);
->> +@@ -1340,6 +1358,9 @@ TLI_DEFINE_STRING_INTERNAL("times")
->> + TLI_DEFINE_ENUM_INTERNAL(tmpfile)
->> + TLI_DEFINE_STRING_INTERNAL("tmpfile")
->> + /// FILE *tmpfile64(void)
->> ++#ifdef tmpfile64
->> ++#undef tmpfile64
->> ++#endif
->> + TLI_DEFINE_ENUM_INTERNAL(tmpfile64)
->> + TLI_DEFINE_STRING_INTERNAL("tmpfile64")
->> + /// int toascii(int c);
->> +--
->> +2.22.0
->> +
->> diff --git a/recipes-devtools/glow/llvm-glow/0007-llvm-allow-env-override-of-exe-path.patch b/recipes-devtools/glow/llvm-glow/0007-llvm-allow-env-override-of-exe-path.patch
->> new file mode 100644
->> index 0000000..f47080c
->> --- /dev/null
->> +++ b/recipes-devtools/glow/llvm-glow/0007-llvm-allow-env-override-of-exe-path.patch
->> @@ -0,0 +1,38 @@
->> +From b66d6f39a374b8df41e7235351e5dee2e81f440c Mon Sep 17 00:00:00 2001
->> +From: Martin Kelly <mkelly@xevo.com>
->> +Date: Fri, 19 May 2017 00:22:57 -0700
->> +Subject: [PATCH 07/19] llvm: allow env override of exe path
->> +
->> +When using a native llvm-config from inside a sysroot, we need llvm-config to
->> +return the libraries, include directories, etc. from inside the sysroot rather
->> +than from the native sysroot. Thus provide an env override for calling
->> +llvm-config from a target sysroot.
->> +
->> +Upstream-Status: Pending
->> +Signed-off-by: Martin Kelly <mkelly@xevo.com>
->> +Signed-off-by: Khem Raj <raj.khem@gmail.com>
->> +---
->> + llvm/tools/llvm-config/llvm-config.cpp | 7 +++++++
->> + 1 file changed, 7 insertions(+)
->> +
->> +diff --git a/llvm/tools/llvm-config/llvm-config.cpp b/llvm/tools/llvm-config/llvm-config.cpp
->> +index 7ef7c46a262..a4f7ed82c7b 100644
->> +--- a/llvm/tools/llvm-config/llvm-config.cpp
->> ++++ b/llvm/tools/llvm-config/llvm-config.cpp
->> +@@ -225,6 +225,13 @@ Typical components:\n\
->> +
->> + /// Compute the path to the main executable.
->> + std::string GetExecutablePath(const char *Argv0) {
->> ++  // Hack for Yocto: we need to override the root path when we are using
->> ++  // llvm-config from within a target sysroot.
->> ++  const char *Sysroot = std::getenv("YOCTO_ALTERNATE_EXE_PATH");
->> ++  if (Sysroot != nullptr) {
->> ++    return Sysroot;
->> ++  }
->> ++
->> +   // This just needs to be some symbol in the binary; C++ doesn't
->> +   // allow taking the address of ::main however.
->> +   void *P = (void *)(intptr_t)GetExecutablePath;
->> +--
->> +2.22.0
->> +
->> diff --git a/recipes-devtools/glow/llvm-glow_git.bb b/recipes-devtools/glow/llvm-glow_git.bb
->> index 58d392b..d3c2642 100644
->> --- a/recipes-devtools/glow/llvm-glow_git.bb
->> +++ b/recipes-devtools/glow/llvm-glow_git.bb
->> @@ -1,24 +1,180 @@
->> -DESCRIPTION = "LLVM release suggested for pytorch glow neural network compiler"
->> -HOMEPAGE = "https://github.com/llvm-mirror/llvm"
->> +# Copyright (C) 2017 Khem Raj <raj.khem@gmail.com>
->> +# Released under the MIT license (see COPYING.MIT for the terms)
->> +
->> +DESCRIPTION = "The LLVM Compiler Infrastructure"
->> +HOMEPAGE = "http://llvm.org"
->> +LICENSE = "NCSA"
->>    SECTION = "devel"
->> -LICENSE = "Apache-2.0"
->> +
->>    LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=c6b766a4e85dd28301eeed54a6684648"
->> -PV = "8.0"
->> -PR = "r0"
->>    
->> -DEPENDS = "ninja-native protobuf-native libpng-native protobuf-native protobuf-c-native gflags-native glog-native"
->> +DEPENDS = "libffi libxml2 zlib libedit ninja-native llvm8-native"
->>    
->> -SOLIBVER = "1"
->> +RDEPENDS_${PN}_append_class-target = " ncurses-terminfo"
->> +
->> +inherit cmake pkgconfig
->> +
->> +PROVIDES += "llvm${PV}"
->>    
->> -SRC_URI = "git://github.com/llvm-mirror/llvm.git;protocol=https;branch=release_80;rev=5563a6a769b48912b9c8052124520610966eda28;destsuffix=git/llvm \
->> -           git://github.com/llvm-mirror/clang.git;protocol=https;branch=release_80;rev=ccfe04576c13497b9c422ceef0b6efe99077a392;destsuffix=git/clang \
->> -           "
->> +LLVM_RELEASE = "${PV}"
->> +LLVM_DIR = "llvm${LLVM_RELEASE}"
->>    
->> +SRCREV = "19a71f6bdf2dddb10764939e7f0ec2b98dba76c9"
->> +
->> +BRANCH = "release/${MAJOR_VERSION}.x"
->> +MAJOR_VERSION = "8"
->> +MINOR_VERSION = "0"
->> +PATCH_VERSION = "1"
->> +SOLIBVER = "1"
->> +PV = "${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}"
->> +SRC_URI = "git://github.com/llvm/llvm-project.git;branch=${BRANCH} \
->> +           file://0006-llvm-TargetLibraryInfo-Undefine-libc-functions-if-th.patch;striplevel=2 \
->> +           file://0007-llvm-allow-env-override-of-exe-path.patch;striplevel=2 \
->> +          "
->>    
->>    S = "${WORKDIR}/git/llvm"
->>    
->> -EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release -DLLVM_INSTALL_UTILS=ON -DLLVM_ENABLE_PROJECTS=clang"
->> +LLVM_INSTALL_DIR = "${WORKDIR}/llvm-install"
->> +
->> +def get_llvm_arch(bb, d, arch_var):
->> +    import re
->> +    a = d.getVar(arch_var)
->> +    if   re.match(r'(i.86|athlon|x86.64)$', a):         return 'X86'
->> +    elif re.match(r'arm$', a):                          return 'ARM'
->> +    elif re.match(r'armeb$', a):                        return 'ARM'
->> +    elif re.match(r'aarch64$', a):                      return 'AArch64'
->> +    elif re.match(r'aarch64_be$', a):                   return 'AArch64'
->> +    elif re.match(r'mips(isa|)(32|64|)(r6|)(el|)$', a): return 'Mips'
->> +    elif re.match(r'p(pc|owerpc)(|64)', a):             return 'PowerPC'
->> +    else:
->> +        raise bb.parse.SkipRecipe("Cannot map '%s' to a supported LLVM architecture" % a)
->> +
->> +def get_llvm_host_arch(bb, d):
->> +    return get_llvm_arch(bb, d, 'HOST_ARCH')
->> +
->> +#
->> +# Default to build all OE-Core supported target arches (user overridable).
->> +#
->> +LLVM_TARGETS ?= "AMDGPU;${@get_llvm_host_arch(bb, d)}"
->> +
->> +ARM_INSTRUCTION_SET_armv5 = "arm"
->> +ARM_INSTRUCTION_SET_armv4t = "arm"
->> +
->> +EXTRA_OECMAKE += "-DLLVM_ENABLE_ASSERTIONS=OFF \
->> +                  -DLLVM_ENABLE_EXPENSIVE_CHECKS=OFF \
->> +                  -DLLVM_ENABLE_PIC=ON \
->> +                  -DLLVM_BINDINGS_LIST='' \
->> +                  -DLLVM_LINK_LLVM_DYLIB=ON \
->> +                  -DLLVM_ENABLE_FFI=ON \
->> +                  -DLLVM_ENABLE_RTTI=ON \
->> +                  -DFFI_INCLUDE_DIR=$(pkg-config --variable=includedir libffi) \
->> +                  -DLLVM_OPTIMIZED_TABLEGEN=ON \
->> +                  -DLLVM_TARGETS_TO_BUILD='${LLVM_TARGETS}' \
->> +                  -DLLVM_TEMPORARILY_ALLOW_OLD_TOOLCHAIN=ON \
->> +                  -DPYTHON_EXECUTABLE=${HOSTTOOLS_DIR}/python2 \
->> +                  -G Ninja"
->> +
->> +EXTRA_OECMAKE_append_class-target = "\
->> +                  -DCMAKE_CROSSCOMPILING:BOOL=ON \
->> +                  -DLLVM_TABLEGEN=${STAGING_BINDIR_NATIVE}/llvm-tblgen${PV} \
->> +                  -DLLVM_CONFIG_PATH=${STAGING_BINDIR_NATIVE}/llvm-config${PV} \
->> +                 "
->> +
->> +EXTRA_OECMAKE_append_class-nativesdk = "\
->> +                  -DCMAKE_CROSSCOMPILING:BOOL=ON \
->> +                  -DLLVM_TABLEGEN=${STAGING_BINDIR_NATIVE}/llvm-tblgen${PV} \
->> +                  -DLLVM_CONFIG_PATH=${STAGING_BINDIR_NATIVE}/llvm-config${PV} \
->> +                 "
->> +
->> +CXXFLAGS_append_class-target_powerpc = " -mlongcall"
->> +
->> +do_configure_prepend() {
->> +# Fix paths in llvm-config
->> +	sed -i "s|sys::path::parent_path(CurrentPath))\.str()|sys::path::parent_path(sys::path::parent_path(CurrentPath))).str()|g" ${S}/tools/llvm-config/llvm-config.cpp
->> +	sed -ri "s#/(bin|include|lib)(/?\")#/\1/${LLVM_DIR}\2#g" ${S}/tools/llvm-config/llvm-config.cpp
->> +	sed -ri "s#lib/${LLVM_DIR}#${baselib}/${LLVM_DIR}#g" ${S}/tools/llvm-config/llvm-config.cpp
->> +}
->> +
->> +do_compile() {
->> +	ninja -v ${PARALLEL_MAKE}
->> +}
->> +
->> +do_compile_class-native() {
->> +	ninja -v ${PARALLEL_MAKE} llvm-config llvm-tblgen
->> +}
->> +
->> +do_install() {
->> +	DESTDIR=${LLVM_INSTALL_DIR} ninja -v install
->> +	install -D -m 0755 ${B}/bin/llvm-config ${D}${libdir}/${LLVM_DIR}/llvm-config
->> +
->> +	install -d ${D}${bindir}/${LLVM_DIR}
->> +	cp -r ${LLVM_INSTALL_DIR}${bindir}/* ${D}${bindir}/${LLVM_DIR}/
->> +
->> +	install -d ${D}${includedir}/${LLVM_DIR}
->> +	cp -r ${LLVM_INSTALL_DIR}${includedir}/* ${D}${includedir}/${LLVM_DIR}/
->> +
->> +	install -d ${D}${libdir}/${LLVM_DIR}
->> +
->> +	# The LLVM sources have "/lib" embedded and so we cannot completely rely on the ${libdir} variable
->> +	if [ -d ${LLVM_INSTALL_DIR}${libdir}/ ]; then
->> +		cp -r ${LLVM_INSTALL_DIR}${libdir}/* ${D}${libdir}/${LLVM_DIR}/
->> +	elif [ -d ${LLVM_INSTALL_DIR}${prefix}/lib ]; then
->> +		cp -r ${LLVM_INSTALL_DIR}${prefix}/lib/* ${D}${libdir}/${LLVM_DIR}/
->> +	elif [ -d ${LLVM_INSTALL_DIR}${prefix}/lib64 ]; then
->> +		cp -r ${LLVM_INSTALL_DIR}${prefix}/lib64/* ${D}${libdir}/${LLVM_DIR}/
->> +	fi
->> +
->> +	# Remove unnecessary cmake files
->> +	rm -rf ${D}${libdir}/${LLVM_DIR}/cmake
->> +
->> +	ln -s ${LLVM_DIR}/libLLVM-${MAJOR_VERSION}${SOLIBSDEV} ${D}${libdir}/libLLVM-${MAJOR_VERSION}${SOLIBSDEV}
->> +
->> +	# We'll have to delete the libLLVM.so due to multiple reasons...
->> +	rm -rf ${D}${libdir}/${LLVM_DIR}/libLLVM.so
->> +	rm -rf ${D}${libdir}/${LLVM_DIR}/libLTO.so
->> +}
->> +
->> +do_install_class-native() {
->> +	install -D -m 0755 ${B}/bin/llvm-tblgen ${D}${bindir}/llvm-tblgen${PV}
->> +	install -D -m 0755 ${B}/bin/llvm-config ${D}${bindir}/llvm-config${PV}
->> +	install -D -m 0755 ${B}/lib/libLLVM-${MAJOR_VERSION}.so ${D}${libdir}/libLLVM-${MAJOR_VERSION}.so
->> +}
->> +
->> +PACKAGES =+ "${PN}-bugpointpasses ${PN}-llvmhello ${PN}-libllvm ${PN}-liboptremarks ${PN}-liblto"
->> +
->> +RRECOMMENDS_${PN}-dev += "${PN}-bugpointpasses ${PN}-llvmhello ${PN}-liboptremarks"
->> +
->> +FILES_${PN}-bugpointpasses = "\
->> +    ${libdir}/${LLVM_DIR}/BugpointPasses.so \
->> +"
->> +
->> +FILES_${PN}-libllvm = "\
->> +    ${libdir}/${LLVM_DIR}/libLLVM-${MAJOR_VERSION}.so \
->> +    ${libdir}/libLLVM-${MAJOR_VERSION}.so \
->> +"
->> +
->> +FILES_${PN}-liblto += "\
->> +    ${libdir}/${LLVM_DIR}/libLTO.so.* \
->> +"
->> +
->> +FILES_${PN}-liboptremarks += "\
->> +    ${libdir}/${LLVM_DIR}/libOptRemarks.so.* \
->> +"
->> +
->> +FILES_${PN}-llvmhello = "\
->> +    ${libdir}/${LLVM_DIR}/LLVMHello.so \
->> +"
->> +
->> +FILES_${PN}-dev += " \
->> +    ${libdir}/${LLVM_DIR}/llvm-config \
->> +    ${libdir}/${LLVM_DIR}/libOptRemarks.so \
->> +    ${libdir}/${LLVM_DIR}/libLLVM-${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}.so \
->> +"
->> +
->> +FILES_${PN}-staticdev += "\
->> +    ${libdir}/${LLVM_DIR}/*.a \
->> +"
->>    
->> -inherit pkgconfig cmake
->> +INSANE_SKIP_${PN}-libllvm += "dev-so"
->>    
->>    BBCLASSEXTEND = "native nativesdk"
+VGhhdCBpcyBjb3JyZWN0IC0gdGhpcyB3YXMgbWFudWFsbHkgbW9kaWZpZWQgaW5zdGVhZCBvZiBj
+cmVhdGluZyBiYmFwcGVuZCBpbiBtZXRhLXByb2Nlc3Nvci1zZGsuDQpJJ2xsIHN1Ym1pdCBQQVRD
+SHYzIDEvNSwgdG8gYWRkcmVzcyB0aGlzIGdhcCANCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0t
+LS0NCkZyb206IFN0aWZmbGVyLCBKYWNvYiANClNlbnQ6IEZyaWRheSwgQXVndXN0IDIzLCAyMDE5
+IDI6MDYgUE0NClRvOiBTZW5pY2ljLCBEam9yZGplOyBtZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qu
+b3JnDQpTdWJqZWN0OiBSZTogW0VYVEVSTkFMXSBbbWV0YS1hcmFnb10gW21ldGEtcHJvY2Vzc29y
+LXNka11bUEFUQ0h2MiAxLzVdIG1lc2EsIGxsdm0sIG1lc29uOiBVcGRhdGUgbGx2bSB0byA4LjAu
+MSBwbHVzIGRlZmluZSBhbmQgdXNlIExMVk0gdmVyc2lvbiBnbG9iYWxseQ0KDQpEaWQgeW91IG1h
+bnVhbGx5IGFkZCBCQkNMQVNTRVhURU5EIHRvIGxpYmVkaXQ/IEkgZG8gbm90IHNlZSBpdCBvbiB0
+aHVkLg0KDQpPbiA4LzIzLzIwMTkgMTozNCBQTSwgU2VuaWNpYywgRGpvcmRqZSB3cm90ZToNCj4g
+SSBjb3VsZCBidWlsZCBib3RoIG5hdGl2ZXNkay1saWJlZGl0IGFuZCBuYXRpdmVzZGstbGx2bTcN
+Cj4gVGhlcmUgaXM6IC4vbWV0YS1vcGVuZW1iZWRkZWQvbWV0YS1vZS9yZWNpcGVzLWRldnRvb2xz
+L2xpYmVkaXQvbGliZWRpdF8yMDE4MDUyNS0zLjEuYmINCj4NCj4gLS0tLS1PcmlnaW5hbCBNZXNz
+YWdlLS0tLS0NCj4gRnJvbTogU3RpZmZsZXIsIEphY29iDQo+IFNlbnQ6IEZyaWRheSwgQXVndXN0
+IDIzLCAyMDE5IDEyOjE2IFBNDQo+IFRvOiBTZW5pY2ljLCBEam9yZGplOyBtZXRhLWFyYWdvQGFy
+YWdvLXByb2plY3Qub3JnDQo+IENjOiBTZW5pY2ljLCBEam9yZGplDQo+IFN1YmplY3Q6IFJlOiBb
+RVhURVJOQUxdIFttZXRhLWFyYWdvXSBbbWV0YS1wcm9jZXNzb3Itc2RrXVtQQVRDSHYyIDEvNV0g
+bWVzYSwgbGx2bSwgbWVzb246IFVwZGF0ZSBsbHZtIHRvIDguMC4xIHBsdXMgZGVmaW5lIGFuZCB1
+c2UgTExWTSB2ZXJzaW9uIGdsb2JhbGx5DQo+DQo+IERqb3JkamUsDQo+DQo+IEkgZ2V0IGFuIGVy
+cm9yIHdpdGggdGhpcy4gSGF2ZSB5b3UgdHJpZWQgYnVpbGRpbmcgbmF0aXZlc2RrLWxsdm04Pw0K
+Pg0KPiBFUlJPUjogTm90aGluZyBQUk9WSURFUyAnbmF0aXZlc2RrLWxpYmVkaXQnIChidXQNCj4g
+dmlydHVhbDpuYXRpdmVzZGs6L29lL2JsZC9zb3VyY2VzL21ldGEtcHJvY2Vzc29yLXNkay9yZWNp
+cGVzLWRldnRvb2xzL2dsb3cvbGx2bThfZ2l0LmJiDQo+IERFUEVORFMgb24gb3Igb3RoZXJ3aXNl
+IHJlcXVpcmVzIGl0KS4NCj4NCj4NCj4gQW5kIHdoZW4gdXNpbmcgImdpdCBzZW5kLWVtYWlsIiwg
+eW91IGNhbiB1c2UgdGhlICItLW5vLXNpZ25lZC1vZmYtYnktY2MiDQo+IGZsYWcgdG8gcHJldmVu
+dCBDQ2luZyB0aG9zZSB0aGF0IGhhdmUgInNpZ25lZC1vZmYiIGluIHRoZSBjb21taXQgbWVzc2Fn
+ZS4NCj4NCj4NCj4gLSBKYWtlDQo+DQo+DQo+IE9uIDgvMjMvMjAxOSA5OjU4IEFNLCBEam9yZGpl
+IFNlbmljaWMgd3JvdGU6DQo+PiAtIEFkZCBtaXNzaW5nIGRlcGVuZGVuY3kgb24gbGliZWRpdA0K
+Pj4gLSBEZWZpbmUgTExWTVZFUlNJT04gb24gdGhlIHNhbWUgbGluZXMgYXMgR0NDVkVSU0lPTiBh
+bmQgb3RoZXIgdG9vbHMNCj4+IC0gVXNlIExMVk1WRVJTSU9OIGluIG1lc2EgYW5kIG1lc29uLmJi
+Y2xhc3MgdG8gZ2V0IGxsdm0gdmVyc2lvbiBpbnN0ZWFkIG9mDQo+PiAgICAgaGFyZGNvZGluZyBp
+dA0KPj4gLSBVc2UgbGx2bSBwYXRjaGVzIHVubW9kaWZpZWQgZnJvbSBtZXRhLWNsYW5nLCBoZWxw
+cyBpbiBrZWVwaW5nIHRoZW0gaW4NCj4+ICAgICBzeW5jDQo+PiAtIERlZmluZSBQUkVGRVJSRURf
+VkVSU0lPTiBmb3IgbGx2bSwgbGx2bS1uYXRpdmUsIG5hdGl2ZXNkay1sbHZtDQo+Pg0KPj4gU2ln
+bmVkLW9mZi1ieTogS2hlbSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT4NCj4+IFNpZ25lZC1vZmYt
+Ynk6IFJpY2hhcmQgUHVyZGllIDxyaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5kYXRpb24ub3JnPg0K
+Pj4NCj4+IFRoZSByZWNpcGUgd2FzIGltcG9ydGVkIGZyb20gdGhlIE9wZW5FbWJlZGRlZCBzZXJ2
+ZXINCj4+IGh0dHA6Ly9jZ2l0Lm9wZW5lbWJlZGRlZC5vcmcvb3BlbmVtYmVkZGVkLWNvcmUvY29t
+bWl0L21ldGEvcmVjaXBlcy1kZXZ0b29scy9sbHZtL2xsdm1fZ2l0LmJiDQo+PiBjb21taXRfaWQg
+M2MwOGI2MzgzNDhhYmQ1NDNmYzkyYmFmNTZjMjhjYTE2YWU2YWFjNg0KPj4gQ3VycmVudGx5IHRo
+aXMgaXMgbmVlZGVkIGZvciBjb21waWxpbmcgcHl0b3JjaCBnbG93IHdpdGggQ1BVIGJhY2tlbmQg
+d2hpY2ggcmVxdWlyZXMgbGx2bTcgb3IgbGF0ZXIuDQo+PiBUbyBhdm9pZCBiZWluZyB1c2VkIGds
+b2JhbGx5IG5hbWUgYmVmb3JlIDIwMjBMVFMsIG5hbWUgb2YgdGhlIHJlY2lwZSBpcyBub3QgbGx2
+bV9naXQgYnV0IGxsdm04X2dpdA0KPj4NCj4+IFNpZ25lZC1vZmYtYnk6IERqb3JkamUgU2VuaWNp
+YyA8eDAxNTc5OTBAdGkuY29tPg0KPj4gLS0tDQo+PiAgICAuLi5yeUluZm8tVW5kZWZpbmUtbGli
+Yy1mdW5jdGlvbnMtaWYtdGgucGF0Y2ggfCAgOTIgKysrKysrKysrDQo+PiAgICAuLi4tbGx2bS1h
+bGxvdy1lbnYtb3ZlcnJpZGUtb2YtZXhlLXBhdGgucGF0Y2ggfCAgMzggKysrKw0KPj4gICAgcmVj
+aXBlcy1kZXZ0b29scy9nbG93L2xsdm0tZ2xvd19naXQuYmIgICAgICAgIHwgMTgwICsrKysrKysr
+KysrKysrKystLQ0KPj4gICAgMyBmaWxlcyBjaGFuZ2VkLCAyOTggaW5zZXJ0aW9ucygrKSwgMTIg
+ZGVsZXRpb25zKC0pDQo+PiAgICBjcmVhdGUgbW9kZSAxMDA2NDQgcmVjaXBlcy1kZXZ0b29scy9n
+bG93L2xsdm0tZ2xvdy8wMDA2LWxsdm0tVGFyZ2V0TGlicmFyeUluZm8tVW5kZWZpbmUtbGliYy1m
+dW5jdGlvbnMtaWYtdGgucGF0Y2gNCj4+ICAgIGNyZWF0ZSBtb2RlIDEwMDY0NCByZWNpcGVzLWRl
+dnRvb2xzL2dsb3cvbGx2bS1nbG93LzAwMDctbGx2bS1hbGxvdy1lbnYtb3ZlcnJpZGUtb2YtZXhl
+LXBhdGgucGF0Y2gNCj4+DQo+PiBkaWZmIC0tZ2l0IGEvcmVjaXBlcy1kZXZ0b29scy9nbG93L2xs
+dm0tZ2xvdy8wMDA2LWxsdm0tVGFyZ2V0TGlicmFyeUluZm8tVW5kZWZpbmUtbGliYy1mdW5jdGlv
+bnMtaWYtdGgucGF0Y2ggYi9yZWNpcGVzLWRldnRvb2xzL2dsb3cvbGx2bS1nbG93LzAwMDYtbGx2
+bS1UYXJnZXRMaWJyYXJ5SW5mby1VbmRlZmluZS1saWJjLWZ1bmN0aW9ucy1pZi10aC5wYXRjaA0K
+Pj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4+IGluZGV4IDAwMDAwMDAuLjc4OWMzMDgNCj4+IC0t
+LSAvZGV2L251bGwNCj4+ICsrKyBiL3JlY2lwZXMtZGV2dG9vbHMvZ2xvdy9sbHZtLWdsb3cvMDAw
+Ni1sbHZtLVRhcmdldExpYnJhcnlJbmZvLVVuZGVmaW5lLWxpYmMtZnVuY3Rpb25zLWlmLXRoLnBh
+dGNoDQo+PiBAQCAtMCwwICsxLDkyIEBADQo+PiArRnJvbSA0YzA4ODc5ZDJkZmJlN2ZhY2U0ZTY3
+OWFjODQ5OWRjN2JmZjJkZDIwIE1vbiBTZXAgMTcgMDA6MDA6MDAgMjAwMQ0KPj4gK0Zyb206IEto
+ZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+DQo+PiArRGF0ZTogU2F0LCAyMSBNYXkgMjAxNiAw
+MDozMzoyMCArMDAwMA0KPj4gK1N1YmplY3Q6IFtQQVRDSCAwNi8xOV0gbGx2bTogVGFyZ2V0TGli
+cmFyeUluZm86IFVuZGVmaW5lIGxpYmMgZnVuY3Rpb25zIGlmDQo+PiArIHRoZXkgYXJlIG1hY3Jv
+cw0KPj4gKw0KPj4gK211c2wgZGVmaW5lcyBzb21lIGZ1bmN0aW9ucyBhcyBtYWNyb3MgYW5kIG5v
+dCBpbmxpbmUgZnVuY3Rpb25zDQo+PiAraWYgdGhpcyBpcyB0aGUgY2FzZSB0aGVuIG1ha2Ugc3Vy
+ZSB0byB1bmRlZmluZSB0aGVtDQo+PiArDQo+PiArVXBzdHJlYW0tU3RhdHVzOiBQZW5kaW5nDQo+
+PiArU2lnbmVkLW9mZi1ieTogS2hlbSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT4NCj4+ICstLS0N
+Cj4+ICsgLi4uL2xsdm0vQW5hbHlzaXMvVGFyZ2V0TGlicmFyeUluZm8uZGVmICAgICAgIHwgMjEg
+KysrKysrKysrKysrKysrKysrKw0KPj4gKyAxIGZpbGUgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygr
+KQ0KPj4gKw0KPj4gK2RpZmYgLS1naXQgYS9sbHZtL2luY2x1ZGUvbGx2bS9BbmFseXNpcy9UYXJn
+ZXRMaWJyYXJ5SW5mby5kZWYgYi9sbHZtL2luY2x1ZGUvbGx2bS9BbmFseXNpcy9UYXJnZXRMaWJy
+YXJ5SW5mby5kZWYNCj4+ICtpbmRleCBhZmVkNDA0ZjA0Yy4uODc2ODg4NjU2ZjIgMTAwNjQ0DQo+
+PiArLS0tIGEvbGx2bS9pbmNsdWRlL2xsdm0vQW5hbHlzaXMvVGFyZ2V0TGlicmFyeUluZm8uZGVm
+DQo+PiArKysrIGIvbGx2bS9pbmNsdWRlL2xsdm0vQW5hbHlzaXMvVGFyZ2V0TGlicmFyeUluZm8u
+ZGVmDQo+PiArQEAgLTc4Miw2ICs3ODIsOSBAQCBUTElfREVGSU5FX1NUUklOR19JTlRFUk5BTCgi
+Zm1vZGwiKQ0KPj4gKyBUTElfREVGSU5FX0VOVU1fSU5URVJOQUwoZm9wZW4pDQo+PiArIFRMSV9E
+RUZJTkVfU1RSSU5HX0lOVEVSTkFMKCJmb3BlbiIpDQo+PiArIC8vLyBGSUxFICpmb3BlbjY0KGNv
+bnN0IGNoYXIgKmZpbGVuYW1lLCBjb25zdCBjaGFyICpvcGVudHlwZSkNCj4+ICsrI2lmZGVmIGZv
+cGVuNjQNCj4+ICsrI3VuZGVmIGZvcGVuNjQNCj4+ICsrI2VuZGlmDQo+PiArIFRMSV9ERUZJTkVf
+RU5VTV9JTlRFUk5BTChmb3BlbjY0KQ0KPj4gKyBUTElfREVGSU5FX1NUUklOR19JTlRFUk5BTCgi
+Zm9wZW42NCIpDQo+PiArIC8vLyBpbnQgZm9yaygpOw0KPj4gK0BAIC04MjksNiArODMyLDkgQEAg
+VExJX0RFRklORV9TVFJJTkdfSU5URVJOQUwoImZzZWVrIikNCj4+ICsgLy8vIGludCBmc2Vla28o
+RklMRSAqc3RyZWFtLCBvZmZfdCBvZmZzZXQsIGludCB3aGVuY2UpOw0KPj4gKyBUTElfREVGSU5F
+X0VOVU1fSU5URVJOQUwoZnNlZWtvKQ0KPj4gKyBUTElfREVGSU5FX1NUUklOR19JTlRFUk5BTCgi
+ZnNlZWtvIikNCj4+ICsrI2lmZGVmIGZzZWVrbzY0DQo+PiArKyN1bmRlZiBmc2Vla282NA0KPj4g
+KysjZW5kaWYNCj4+ICsgLy8vIGludCBmc2Vla282NChGSUxFICpzdHJlYW0sIG9mZjY0X3Qgb2Zm
+c2V0LCBpbnQgd2hlbmNlKQ0KPj4gKyBUTElfREVGSU5FX0VOVU1fSU5URVJOQUwoZnNlZWtvNjQp
+DQo+PiArIFRMSV9ERUZJTkVfU1RSSU5HX0lOVEVSTkFMKCJmc2Vla282NCIpDQo+PiArQEAgLTgz
+OSw2ICs4NDUsOSBAQCBUTElfREVGSU5FX1NUUklOR19JTlRFUk5BTCgiZnNldHBvcyIpDQo+PiAr
+IFRMSV9ERUZJTkVfRU5VTV9JTlRFUk5BTChmc3RhdCkNCj4+ICsgVExJX0RFRklORV9TVFJJTkdf
+SU5URVJOQUwoImZzdGF0IikNCj4+ICsgLy8vIGludCBmc3RhdDY0KGludCBmaWxlZGVzLCBzdHJ1
+Y3Qgc3RhdDY0ICpidWYpDQo+PiArKyNpZmRlZiBmc3RhdDY0DQo+PiArKyN1bmRlZiBmc3RhdDY0
+DQo+PiArKyNlbmRpZg0KPj4gKyBUTElfREVGSU5FX0VOVU1fSU5URVJOQUwoZnN0YXQ2NCkNCj4+
+ICsgVExJX0RFRklORV9TVFJJTkdfSU5URVJOQUwoImZzdGF0NjQiKQ0KPj4gKyAvLy8gaW50IGZz
+dGF0dmZzKGludCBmaWxkZXMsIHN0cnVjdCBzdGF0dmZzICpidWYpOw0KPj4gK0BAIC04NTQsNiAr
+ODYzLDkgQEAgVExJX0RFRklORV9TVFJJTkdfSU5URVJOQUwoImZ0ZWxsIikNCj4+ICsgVExJX0RF
+RklORV9FTlVNX0lOVEVSTkFMKGZ0ZWxsbykNCj4+ICsgVExJX0RFRklORV9TVFJJTkdfSU5URVJO
+QUwoImZ0ZWxsbyIpDQo+PiArIC8vLyBvZmY2NF90IGZ0ZWxsbzY0KEZJTEUgKnN0cmVhbSkNCj4+
+ICsrI2lmZGVmIGZ0ZWxsbzY0DQo+PiArKyN1bmRlZiBmdGVsbG82NA0KPj4gKysjZW5kaWYNCj4+
+ICsgVExJX0RFRklORV9FTlVNX0lOVEVSTkFMKGZ0ZWxsbzY0KQ0KPj4gKyBUTElfREVGSU5FX1NU
+UklOR19JTlRFUk5BTCgiZnRlbGxvNjQiKQ0KPj4gKyAvLy8gaW50IGZ0cnlsb2NrZmlsZShGSUxF
+ICpmaWxlKTsNCj4+ICtAQCAtOTgwLDYgKzk5Miw5IEBAIFRMSV9ERUZJTkVfU1RSSU5HX0lOVEVS
+TkFMKCJsb2dsIikNCj4+ICsgVExJX0RFRklORV9FTlVNX0lOVEVSTkFMKGxzdGF0KQ0KPj4gKyBU
+TElfREVGSU5FX1NUUklOR19JTlRFUk5BTCgibHN0YXQiKQ0KPj4gKyAvLy8gaW50IGxzdGF0NjQo
+Y29uc3QgY2hhciAqcGF0aCwgc3RydWN0IHN0YXQ2NCAqYnVmKTsNCj4+ICsrI2lmZGVmIGxzdGF0
+NjQNCj4+ICsrI3VuZGVmIGxzdGF0NjQNCj4+ICsrI2VuZGlmDQo+PiArIFRMSV9ERUZJTkVfRU5V
+TV9JTlRFUk5BTChsc3RhdDY0KQ0KPj4gKyBUTElfREVGSU5FX1NUUklOR19JTlRFUk5BTCgibHN0
+YXQ2NCIpDQo+PiArIC8vLyB2b2lkICptYWxsb2Moc2l6ZV90IHNpemUpOw0KPj4gK0BAIC0xMjA1
+LDYgKzEyMjAsOSBAQCBUTElfREVGSU5FX1NUUklOR19JTlRFUk5BTCgic3NjYW5mIikNCj4+ICsg
+VExJX0RFRklORV9FTlVNX0lOVEVSTkFMKHN0YXQpDQo+PiArIFRMSV9ERUZJTkVfU1RSSU5HX0lO
+VEVSTkFMKCJzdGF0IikNCj4+ICsgLy8vIGludCBzdGF0NjQoY29uc3QgY2hhciAqcGF0aCwgc3Ry
+dWN0IHN0YXQ2NCAqYnVmKTsNCj4+ICsrI2lmZGVmIHN0YXQ2NA0KPj4gKysjdW5kZWYgc3RhdDY0
+DQo+PiArKyNlbmRpZg0KPj4gKyBUTElfREVGSU5FX0VOVU1fSU5URVJOQUwoc3RhdDY0KQ0KPj4g
+KyBUTElfREVGSU5FX1NUUklOR19JTlRFUk5BTCgic3RhdDY0IikNCj4+ICsgLy8vIGludCBzdGF0
+dmZzKGNvbnN0IGNoYXIgKnBhdGgsIHN0cnVjdCBzdGF0dmZzICpidWYpOw0KPj4gK0BAIC0xMzQw
+LDYgKzEzNTgsOSBAQCBUTElfREVGSU5FX1NUUklOR19JTlRFUk5BTCgidGltZXMiKQ0KPj4gKyBU
+TElfREVGSU5FX0VOVU1fSU5URVJOQUwodG1wZmlsZSkNCj4+ICsgVExJX0RFRklORV9TVFJJTkdf
+SU5URVJOQUwoInRtcGZpbGUiKQ0KPj4gKyAvLy8gRklMRSAqdG1wZmlsZTY0KHZvaWQpDQo+PiAr
+KyNpZmRlZiB0bXBmaWxlNjQNCj4+ICsrI3VuZGVmIHRtcGZpbGU2NA0KPj4gKysjZW5kaWYNCj4+
+ICsgVExJX0RFRklORV9FTlVNX0lOVEVSTkFMKHRtcGZpbGU2NCkNCj4+ICsgVExJX0RFRklORV9T
+VFJJTkdfSU5URVJOQUwoInRtcGZpbGU2NCIpDQo+PiArIC8vLyBpbnQgdG9hc2NpaShpbnQgYyk7
+DQo+PiArLS0NCj4+ICsyLjIyLjANCj4+ICsNCj4+IGRpZmYgLS1naXQgYS9yZWNpcGVzLWRldnRv
+b2xzL2dsb3cvbGx2bS1nbG93LzAwMDctbGx2bS1hbGxvdy1lbnYtb3ZlcnJpZGUtb2YtZXhlLXBh
+dGgucGF0Y2ggYi9yZWNpcGVzLWRldnRvb2xzL2dsb3cvbGx2bS1nbG93LzAwMDctbGx2bS1hbGxv
+dy1lbnYtb3ZlcnJpZGUtb2YtZXhlLXBhdGgucGF0Y2gNCj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0
+DQo+PiBpbmRleCAwMDAwMDAwLi5mNDcwODBjDQo+PiAtLS0gL2Rldi9udWxsDQo+PiArKysgYi9y
+ZWNpcGVzLWRldnRvb2xzL2dsb3cvbGx2bS1nbG93LzAwMDctbGx2bS1hbGxvdy1lbnYtb3ZlcnJp
+ZGUtb2YtZXhlLXBhdGgucGF0Y2gNCj4+IEBAIC0wLDAgKzEsMzggQEANCj4+ICtGcm9tIGI2NmQ2
+ZjM5YTM3NGI4ZGY0MWU3MjM1MzUxZTVkZWUyZTgxZjQ0MGMgTW9uIFNlcCAxNyAwMDowMDowMCAy
+MDAxDQo+PiArRnJvbTogTWFydGluIEtlbGx5IDxta2VsbHlAeGV2by5jb20+DQo+PiArRGF0ZTog
+RnJpLCAxOSBNYXkgMjAxNyAwMDoyMjo1NyAtMDcwMA0KPj4gK1N1YmplY3Q6IFtQQVRDSCAwNy8x
+OV0gbGx2bTogYWxsb3cgZW52IG92ZXJyaWRlIG9mIGV4ZSBwYXRoDQo+PiArDQo+PiArV2hlbiB1
+c2luZyBhIG5hdGl2ZSBsbHZtLWNvbmZpZyBmcm9tIGluc2lkZSBhIHN5c3Jvb3QsIHdlIG5lZWQg
+bGx2bS1jb25maWcgdG8NCj4+ICtyZXR1cm4gdGhlIGxpYnJhcmllcywgaW5jbHVkZSBkaXJlY3Rv
+cmllcywgZXRjLiBmcm9tIGluc2lkZSB0aGUgc3lzcm9vdCByYXRoZXINCj4+ICt0aGFuIGZyb20g
+dGhlIG5hdGl2ZSBzeXNyb290LiBUaHVzIHByb3ZpZGUgYW4gZW52IG92ZXJyaWRlIGZvciBjYWxs
+aW5nDQo+PiArbGx2bS1jb25maWcgZnJvbSBhIHRhcmdldCBzeXNyb290Lg0KPj4gKw0KPj4gK1Vw
+c3RyZWFtLVN0YXR1czogUGVuZGluZw0KPj4gK1NpZ25lZC1vZmYtYnk6IE1hcnRpbiBLZWxseSA8
+bWtlbGx5QHhldm8uY29tPg0KPj4gK1NpZ25lZC1vZmYtYnk6IEtoZW0gUmFqIDxyYWoua2hlbUBn
+bWFpbC5jb20+DQo+PiArLS0tDQo+PiArIGxsdm0vdG9vbHMvbGx2bS1jb25maWcvbGx2bS1jb25m
+aWcuY3BwIHwgNyArKysrKysrDQo+PiArIDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKykN
+Cj4+ICsNCj4+ICtkaWZmIC0tZ2l0IGEvbGx2bS90b29scy9sbHZtLWNvbmZpZy9sbHZtLWNvbmZp
+Zy5jcHAgYi9sbHZtL3Rvb2xzL2xsdm0tY29uZmlnL2xsdm0tY29uZmlnLmNwcA0KPj4gK2luZGV4
+IDdlZjdjNDZhMjYyLi5hNGY3ZWQ4MmM3YiAxMDA2NDQNCj4+ICstLS0gYS9sbHZtL3Rvb2xzL2xs
+dm0tY29uZmlnL2xsdm0tY29uZmlnLmNwcA0KPj4gKysrKyBiL2xsdm0vdG9vbHMvbGx2bS1jb25m
+aWcvbGx2bS1jb25maWcuY3BwDQo+PiArQEAgLTIyNSw2ICsyMjUsMTMgQEAgVHlwaWNhbCBjb21w
+b25lbnRzOlxuXA0KPj4gKw0KPj4gKyAvLy8gQ29tcHV0ZSB0aGUgcGF0aCB0byB0aGUgbWFpbiBl
+eGVjdXRhYmxlLg0KPj4gKyBzdGQ6OnN0cmluZyBHZXRFeGVjdXRhYmxlUGF0aChjb25zdCBjaGFy
+ICpBcmd2MCkgew0KPj4gKysgIC8vIEhhY2sgZm9yIFlvY3RvOiB3ZSBuZWVkIHRvIG92ZXJyaWRl
+IHRoZSByb290IHBhdGggd2hlbiB3ZSBhcmUgdXNpbmcNCj4+ICsrICAvLyBsbHZtLWNvbmZpZyBm
+cm9tIHdpdGhpbiBhIHRhcmdldCBzeXNyb290Lg0KPj4gKysgIGNvbnN0IGNoYXIgKlN5c3Jvb3Qg
+PSBzdGQ6OmdldGVudigiWU9DVE9fQUxURVJOQVRFX0VYRV9QQVRIIik7DQo+PiArKyAgaWYgKFN5
+c3Jvb3QgIT0gbnVsbHB0cikgew0KPj4gKysgICAgcmV0dXJuIFN5c3Jvb3Q7DQo+PiArKyAgfQ0K
+Pj4gKysNCj4+ICsgICAvLyBUaGlzIGp1c3QgbmVlZHMgdG8gYmUgc29tZSBzeW1ib2wgaW4gdGhl
+IGJpbmFyeTsgQysrIGRvZXNuJ3QNCj4+ICsgICAvLyBhbGxvdyB0YWtpbmcgdGhlIGFkZHJlc3Mg
+b2YgOjptYWluIGhvd2V2ZXIuDQo+PiArICAgdm9pZCAqUCA9ICh2b2lkICopKGludHB0cl90KUdl
+dEV4ZWN1dGFibGVQYXRoOw0KPj4gKy0tDQo+PiArMi4yMi4wDQo+PiArDQo+PiBkaWZmIC0tZ2l0
+IGEvcmVjaXBlcy1kZXZ0b29scy9nbG93L2xsdm0tZ2xvd19naXQuYmIgYi9yZWNpcGVzLWRldnRv
+b2xzL2dsb3cvbGx2bS1nbG93X2dpdC5iYg0KPj4gaW5kZXggNThkMzkyYi4uZDNjMjY0MiAxMDA2
+NDQNCj4+IC0tLSBhL3JlY2lwZXMtZGV2dG9vbHMvZ2xvdy9sbHZtLWdsb3dfZ2l0LmJiDQo+PiAr
+KysgYi9yZWNpcGVzLWRldnRvb2xzL2dsb3cvbGx2bS1nbG93X2dpdC5iYg0KPj4gQEAgLTEsMjQg
+KzEsMTgwIEBADQo+PiAtREVTQ1JJUFRJT04gPSAiTExWTSByZWxlYXNlIHN1Z2dlc3RlZCBmb3Ig
+cHl0b3JjaCBnbG93IG5ldXJhbCBuZXR3b3JrIGNvbXBpbGVyIg0KPj4gLUhPTUVQQUdFID0gImh0
+dHBzOi8vZ2l0aHViLmNvbS9sbHZtLW1pcnJvci9sbHZtIg0KPj4gKyMgQ29weXJpZ2h0IChDKSAy
+MDE3IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+DQo+PiArIyBSZWxlYXNlZCB1bmRlciB0
+aGUgTUlUIGxpY2Vuc2UgKHNlZSBDT1BZSU5HLk1JVCBmb3IgdGhlIHRlcm1zKQ0KPj4gKw0KPj4g
+K0RFU0NSSVBUSU9OID0gIlRoZSBMTFZNIENvbXBpbGVyIEluZnJhc3RydWN0dXJlIg0KPj4gK0hP
+TUVQQUdFID0gImh0dHA6Ly9sbHZtLm9yZyINCj4+ICtMSUNFTlNFID0gIk5DU0EiDQo+PiAgICBT
+RUNUSU9OID0gImRldmVsIg0KPj4gLUxJQ0VOU0UgPSAiQXBhY2hlLTIuMCINCj4+ICsNCj4+ICAg
+IExJQ19GSUxFU19DSEtTVU0gPSAiZmlsZTovL0xJQ0VOU0UuVFhUO21kNT1jNmI3NjZhNGU4NWRk
+MjgzMDFlZWVkNTRhNjY4NDY0OCINCj4+IC1QViA9ICI4LjAiDQo+PiAtUFIgPSAicjAiDQo+PiAg
+ICANCj4+IC1ERVBFTkRTID0gIm5pbmphLW5hdGl2ZSBwcm90b2J1Zi1uYXRpdmUgbGlicG5nLW5h
+dGl2ZSBwcm90b2J1Zi1uYXRpdmUgcHJvdG9idWYtYy1uYXRpdmUgZ2ZsYWdzLW5hdGl2ZSBnbG9n
+LW5hdGl2ZSINCj4+ICtERVBFTkRTID0gImxpYmZmaSBsaWJ4bWwyIHpsaWIgbGliZWRpdCBuaW5q
+YS1uYXRpdmUgbGx2bTgtbmF0aXZlIg0KPj4gICAgDQo+PiAtU09MSUJWRVIgPSAiMSINCj4+ICtS
+REVQRU5EU18ke1BOfV9hcHBlbmRfY2xhc3MtdGFyZ2V0ID0gIiBuY3Vyc2VzLXRlcm1pbmZvIg0K
+Pj4gKw0KPj4gK2luaGVyaXQgY21ha2UgcGtnY29uZmlnDQo+PiArDQo+PiArUFJPVklERVMgKz0g
+Imxsdm0ke1BWfSINCj4+ICAgIA0KPj4gLVNSQ19VUkkgPSAiZ2l0Oi8vZ2l0aHViLmNvbS9sbHZt
+LW1pcnJvci9sbHZtLmdpdDtwcm90b2NvbD1odHRwczticmFuY2g9cmVsZWFzZV84MDtyZXY9NTU2
+M2E2YTc2OWI0ODkxMmI5YzgwNTIxMjQ1MjA2MTA5NjZlZGEyODtkZXN0c3VmZml4PWdpdC9sbHZt
+IFwNCj4+IC0gICAgICAgICAgIGdpdDovL2dpdGh1Yi5jb20vbGx2bS1taXJyb3IvY2xhbmcuZ2l0
+O3Byb3RvY29sPWh0dHBzO2JyYW5jaD1yZWxlYXNlXzgwO3Jldj1jY2ZlMDQ1NzZjMTM0OTdiOWM0
+MjJjZWVmMGI2ZWZlOTkwNzdhMzkyO2Rlc3RzdWZmaXg9Z2l0L2NsYW5nIFwNCj4+IC0gICAgICAg
+ICAgICINCj4+ICtMTFZNX1JFTEVBU0UgPSAiJHtQVn0iDQo+PiArTExWTV9ESVIgPSAibGx2bSR7
+TExWTV9SRUxFQVNFfSINCj4+ICAgIA0KPj4gK1NSQ1JFViA9ICIxOWE3MWY2YmRmMmRkZGIxMDc2
+NDkzOWU3ZjBlYzJiOThkYmE3NmM5Ig0KPj4gKw0KPj4gK0JSQU5DSCA9ICJyZWxlYXNlLyR7TUFK
+T1JfVkVSU0lPTn0ueCINCj4+ICtNQUpPUl9WRVJTSU9OID0gIjgiDQo+PiArTUlOT1JfVkVSU0lP
+TiA9ICIwIg0KPj4gK1BBVENIX1ZFUlNJT04gPSAiMSINCj4+ICtTT0xJQlZFUiA9ICIxIg0KPj4g
+K1BWID0gIiR7TUFKT1JfVkVSU0lPTn0uJHtNSU5PUl9WRVJTSU9OfS4ke1BBVENIX1ZFUlNJT059
+Ig0KPj4gK1NSQ19VUkkgPSAiZ2l0Oi8vZ2l0aHViLmNvbS9sbHZtL2xsdm0tcHJvamVjdC5naXQ7
+YnJhbmNoPSR7QlJBTkNIfSBcDQo+PiArICAgICAgICAgICBmaWxlOi8vMDAwNi1sbHZtLVRhcmdl
+dExpYnJhcnlJbmZvLVVuZGVmaW5lLWxpYmMtZnVuY3Rpb25zLWlmLXRoLnBhdGNoO3N0cmlwbGV2
+ZWw9MiBcDQo+PiArICAgICAgICAgICBmaWxlOi8vMDAwNy1sbHZtLWFsbG93LWVudi1vdmVycmlk
+ZS1vZi1leGUtcGF0aC5wYXRjaDtzdHJpcGxldmVsPTIgXA0KPj4gKyAgICAgICAgICAiDQo+PiAg
+ICANCj4+ICAgIFMgPSAiJHtXT1JLRElSfS9naXQvbGx2bSINCj4+ICAgIA0KPj4gLUVYVFJBX09F
+Q01BS0UgPSAiLURDTUFLRV9CVUlMRF9UWVBFPVJlbGVhc2UgLURMTFZNX0lOU1RBTExfVVRJTFM9
+T04gLURMTFZNX0VOQUJMRV9QUk9KRUNUUz1jbGFuZyINCj4+ICtMTFZNX0lOU1RBTExfRElSID0g
+IiR7V09SS0RJUn0vbGx2bS1pbnN0YWxsIg0KPj4gKw0KPj4gK2RlZiBnZXRfbGx2bV9hcmNoKGJi
+LCBkLCBhcmNoX3Zhcik6DQo+PiArICAgIGltcG9ydCByZQ0KPj4gKyAgICBhID0gZC5nZXRWYXIo
+YXJjaF92YXIpDQo+PiArICAgIGlmICAgcmUubWF0Y2gocicoaS44NnxhdGhsb258eDg2LjY0KSQn
+LCBhKTogICAgICAgICByZXR1cm4gJ1g4NicNCj4+ICsgICAgZWxpZiByZS5tYXRjaChyJ2FybSQn
+LCBhKTogICAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiAnQVJNJw0KPj4gKyAgICBlbGlm
+IHJlLm1hdGNoKHInYXJtZWIkJywgYSk6ICAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuICdB
+Uk0nDQo+PiArICAgIGVsaWYgcmUubWF0Y2gocidhYXJjaDY0JCcsIGEpOiAgICAgICAgICAgICAg
+ICAgICAgICByZXR1cm4gJ0FBcmNoNjQnDQo+PiArICAgIGVsaWYgcmUubWF0Y2gocidhYXJjaDY0
+X2JlJCcsIGEpOiAgICAgICAgICAgICAgICAgICByZXR1cm4gJ0FBcmNoNjQnDQo+PiArICAgIGVs
+aWYgcmUubWF0Y2gocidtaXBzKGlzYXwpKDMyfDY0fCkocjZ8KShlbHwpJCcsIGEpOiByZXR1cm4g
+J01pcHMnDQo+PiArICAgIGVsaWYgcmUubWF0Y2gocidwKHBjfG93ZXJwYykofDY0KScsIGEpOiAg
+ICAgICAgICAgICByZXR1cm4gJ1Bvd2VyUEMnDQo+PiArICAgIGVsc2U6DQo+PiArICAgICAgICBy
+YWlzZSBiYi5wYXJzZS5Ta2lwUmVjaXBlKCJDYW5ub3QgbWFwICclcycgdG8gYSBzdXBwb3J0ZWQg
+TExWTSBhcmNoaXRlY3R1cmUiICUgYSkNCj4+ICsNCj4+ICtkZWYgZ2V0X2xsdm1faG9zdF9hcmNo
+KGJiLCBkKToNCj4+ICsgICAgcmV0dXJuIGdldF9sbHZtX2FyY2goYmIsIGQsICdIT1NUX0FSQ0gn
+KQ0KPj4gKw0KPj4gKyMNCj4+ICsjIERlZmF1bHQgdG8gYnVpbGQgYWxsIE9FLUNvcmUgc3VwcG9y
+dGVkIHRhcmdldCBhcmNoZXMgKHVzZXIgb3ZlcnJpZGFibGUpLg0KPj4gKyMNCj4+ICtMTFZNX1RB
+UkdFVFMgPz0gIkFNREdQVTske0BnZXRfbGx2bV9ob3N0X2FyY2goYmIsIGQpfSINCj4+ICsNCj4+
+ICtBUk1fSU5TVFJVQ1RJT05fU0VUX2FybXY1ID0gImFybSINCj4+ICtBUk1fSU5TVFJVQ1RJT05f
+U0VUX2FybXY0dCA9ICJhcm0iDQo+PiArDQo+PiArRVhUUkFfT0VDTUFLRSArPSAiLURMTFZNX0VO
+QUJMRV9BU1NFUlRJT05TPU9GRiBcDQo+PiArICAgICAgICAgICAgICAgICAgLURMTFZNX0VOQUJM
+RV9FWFBFTlNJVkVfQ0hFQ0tTPU9GRiBcDQo+PiArICAgICAgICAgICAgICAgICAgLURMTFZNX0VO
+QUJMRV9QSUM9T04gXA0KPj4gKyAgICAgICAgICAgICAgICAgIC1ETExWTV9CSU5ESU5HU19MSVNU
+PScnIFwNCj4+ICsgICAgICAgICAgICAgICAgICAtRExMVk1fTElOS19MTFZNX0RZTElCPU9OIFwN
+Cj4+ICsgICAgICAgICAgICAgICAgICAtRExMVk1fRU5BQkxFX0ZGST1PTiBcDQo+PiArICAgICAg
+ICAgICAgICAgICAgLURMTFZNX0VOQUJMRV9SVFRJPU9OIFwNCj4+ICsgICAgICAgICAgICAgICAg
+ICAtREZGSV9JTkNMVURFX0RJUj0kKHBrZy1jb25maWcgLS12YXJpYWJsZT1pbmNsdWRlZGlyIGxp
+YmZmaSkgXA0KPj4gKyAgICAgICAgICAgICAgICAgIC1ETExWTV9PUFRJTUlaRURfVEFCTEVHRU49
+T04gXA0KPj4gKyAgICAgICAgICAgICAgICAgIC1ETExWTV9UQVJHRVRTX1RPX0JVSUxEPScke0xM
+Vk1fVEFSR0VUU30nIFwNCj4+ICsgICAgICAgICAgICAgICAgICAtRExMVk1fVEVNUE9SQVJJTFlf
+QUxMT1dfT0xEX1RPT0xDSEFJTj1PTiBcDQo+PiArICAgICAgICAgICAgICAgICAgLURQWVRIT05f
+RVhFQ1VUQUJMRT0ke0hPU1RUT09MU19ESVJ9L3B5dGhvbjIgXA0KPj4gKyAgICAgICAgICAgICAg
+ICAgIC1HIE5pbmphIg0KPj4gKw0KPj4gK0VYVFJBX09FQ01BS0VfYXBwZW5kX2NsYXNzLXRhcmdl
+dCA9ICJcDQo+PiArICAgICAgICAgICAgICAgICAgLURDTUFLRV9DUk9TU0NPTVBJTElORzpCT09M
+PU9OIFwNCj4+ICsgICAgICAgICAgICAgICAgICAtRExMVk1fVEFCTEVHRU49JHtTVEFHSU5HX0JJ
+TkRJUl9OQVRJVkV9L2xsdm0tdGJsZ2VuJHtQVn0gXA0KPj4gKyAgICAgICAgICAgICAgICAgIC1E
+TExWTV9DT05GSUdfUEFUSD0ke1NUQUdJTkdfQklORElSX05BVElWRX0vbGx2bS1jb25maWcke1BW
+fSBcDQo+PiArICAgICAgICAgICAgICAgICAiDQo+PiArDQo+PiArRVhUUkFfT0VDTUFLRV9hcHBl
+bmRfY2xhc3MtbmF0aXZlc2RrID0gIlwNCj4+ICsgICAgICAgICAgICAgICAgICAtRENNQUtFX0NS
+T1NTQ09NUElMSU5HOkJPT0w9T04gXA0KPj4gKyAgICAgICAgICAgICAgICAgIC1ETExWTV9UQUJM
+RUdFTj0ke1NUQUdJTkdfQklORElSX05BVElWRX0vbGx2bS10YmxnZW4ke1BWfSBcDQo+PiArICAg
+ICAgICAgICAgICAgICAgLURMTFZNX0NPTkZJR19QQVRIPSR7U1RBR0lOR19CSU5ESVJfTkFUSVZF
+fS9sbHZtLWNvbmZpZyR7UFZ9IFwNCj4+ICsgICAgICAgICAgICAgICAgICINCj4+ICsNCj4+ICtD
+WFhGTEFHU19hcHBlbmRfY2xhc3MtdGFyZ2V0X3Bvd2VycGMgPSAiIC1tbG9uZ2NhbGwiDQo+PiAr
+DQo+PiArZG9fY29uZmlndXJlX3ByZXBlbmQoKSB7DQo+PiArIyBGaXggcGF0aHMgaW4gbGx2bS1j
+b25maWcNCj4+ICsJc2VkIC1pICJzfHN5czo6cGF0aDo6cGFyZW50X3BhdGgoQ3VycmVudFBhdGgp
+KVwuc3RyKCl8c3lzOjpwYXRoOjpwYXJlbnRfcGF0aChzeXM6OnBhdGg6OnBhcmVudF9wYXRoKEN1
+cnJlbnRQYXRoKSkpLnN0cigpfGciICR7U30vdG9vbHMvbGx2bS1jb25maWcvbGx2bS1jb25maWcu
+Y3BwDQo+PiArCXNlZCAtcmkgInMjLyhiaW58aW5jbHVkZXxsaWIpKC8/XCIpIy9cMS8ke0xMVk1f
+RElSfVwyI2ciICR7U30vdG9vbHMvbGx2bS1jb25maWcvbGx2bS1jb25maWcuY3BwDQo+PiArCXNl
+ZCAtcmkgInMjbGliLyR7TExWTV9ESVJ9IyR7YmFzZWxpYn0vJHtMTFZNX0RJUn0jZyIgJHtTfS90
+b29scy9sbHZtLWNvbmZpZy9sbHZtLWNvbmZpZy5jcHANCj4+ICt9DQo+PiArDQo+PiArZG9fY29t
+cGlsZSgpIHsNCj4+ICsJbmluamEgLXYgJHtQQVJBTExFTF9NQUtFfQ0KPj4gK30NCj4+ICsNCj4+
+ICtkb19jb21waWxlX2NsYXNzLW5hdGl2ZSgpIHsNCj4+ICsJbmluamEgLXYgJHtQQVJBTExFTF9N
+QUtFfSBsbHZtLWNvbmZpZyBsbHZtLXRibGdlbg0KPj4gK30NCj4+ICsNCj4+ICtkb19pbnN0YWxs
+KCkgew0KPj4gKwlERVNURElSPSR7TExWTV9JTlNUQUxMX0RJUn0gbmluamEgLXYgaW5zdGFsbA0K
+Pj4gKwlpbnN0YWxsIC1EIC1tIDA3NTUgJHtCfS9iaW4vbGx2bS1jb25maWcgJHtEfSR7bGliZGly
+fS8ke0xMVk1fRElSfS9sbHZtLWNvbmZpZw0KPj4gKw0KPj4gKwlpbnN0YWxsIC1kICR7RH0ke2Jp
+bmRpcn0vJHtMTFZNX0RJUn0NCj4+ICsJY3AgLXIgJHtMTFZNX0lOU1RBTExfRElSfSR7YmluZGly
+fS8qICR7RH0ke2JpbmRpcn0vJHtMTFZNX0RJUn0vDQo+PiArDQo+PiArCWluc3RhbGwgLWQgJHtE
+fSR7aW5jbHVkZWRpcn0vJHtMTFZNX0RJUn0NCj4+ICsJY3AgLXIgJHtMTFZNX0lOU1RBTExfRElS
+fSR7aW5jbHVkZWRpcn0vKiAke0R9JHtpbmNsdWRlZGlyfS8ke0xMVk1fRElSfS8NCj4+ICsNCj4+
+ICsJaW5zdGFsbCAtZCAke0R9JHtsaWJkaXJ9LyR7TExWTV9ESVJ9DQo+PiArDQo+PiArCSMgVGhl
+IExMVk0gc291cmNlcyBoYXZlICIvbGliIiBlbWJlZGRlZCBhbmQgc28gd2UgY2Fubm90IGNvbXBs
+ZXRlbHkgcmVseSBvbiB0aGUgJHtsaWJkaXJ9IHZhcmlhYmxlDQo+PiArCWlmIFsgLWQgJHtMTFZN
+X0lOU1RBTExfRElSfSR7bGliZGlyfS8gXTsgdGhlbg0KPj4gKwkJY3AgLXIgJHtMTFZNX0lOU1RB
+TExfRElSfSR7bGliZGlyfS8qICR7RH0ke2xpYmRpcn0vJHtMTFZNX0RJUn0vDQo+PiArCWVsaWYg
+WyAtZCAke0xMVk1fSU5TVEFMTF9ESVJ9JHtwcmVmaXh9L2xpYiBdOyB0aGVuDQo+PiArCQljcCAt
+ciAke0xMVk1fSU5TVEFMTF9ESVJ9JHtwcmVmaXh9L2xpYi8qICR7RH0ke2xpYmRpcn0vJHtMTFZN
+X0RJUn0vDQo+PiArCWVsaWYgWyAtZCAke0xMVk1fSU5TVEFMTF9ESVJ9JHtwcmVmaXh9L2xpYjY0
+IF07IHRoZW4NCj4+ICsJCWNwIC1yICR7TExWTV9JTlNUQUxMX0RJUn0ke3ByZWZpeH0vbGliNjQv
+KiAke0R9JHtsaWJkaXJ9LyR7TExWTV9ESVJ9Lw0KPj4gKwlmaQ0KPj4gKw0KPj4gKwkjIFJlbW92
+ZSB1bm5lY2Vzc2FyeSBjbWFrZSBmaWxlcw0KPj4gKwlybSAtcmYgJHtEfSR7bGliZGlyfS8ke0xM
+Vk1fRElSfS9jbWFrZQ0KPj4gKw0KPj4gKwlsbiAtcyAke0xMVk1fRElSfS9saWJMTFZNLSR7TUFK
+T1JfVkVSU0lPTn0ke1NPTElCU0RFVn0gJHtEfSR7bGliZGlyfS9saWJMTFZNLSR7TUFKT1JfVkVS
+U0lPTn0ke1NPTElCU0RFVn0NCj4+ICsNCj4+ICsJIyBXZSdsbCBoYXZlIHRvIGRlbGV0ZSB0aGUg
+bGliTExWTS5zbyBkdWUgdG8gbXVsdGlwbGUgcmVhc29ucy4uLg0KPj4gKwlybSAtcmYgJHtEfSR7
+bGliZGlyfS8ke0xMVk1fRElSfS9saWJMTFZNLnNvDQo+PiArCXJtIC1yZiAke0R9JHtsaWJkaXJ9
+LyR7TExWTV9ESVJ9L2xpYkxUTy5zbw0KPj4gK30NCj4+ICsNCj4+ICtkb19pbnN0YWxsX2NsYXNz
+LW5hdGl2ZSgpIHsNCj4+ICsJaW5zdGFsbCAtRCAtbSAwNzU1ICR7Qn0vYmluL2xsdm0tdGJsZ2Vu
+ICR7RH0ke2JpbmRpcn0vbGx2bS10YmxnZW4ke1BWfQ0KPj4gKwlpbnN0YWxsIC1EIC1tIDA3NTUg
+JHtCfS9iaW4vbGx2bS1jb25maWcgJHtEfSR7YmluZGlyfS9sbHZtLWNvbmZpZyR7UFZ9DQo+PiAr
+CWluc3RhbGwgLUQgLW0gMDc1NSAke0J9L2xpYi9saWJMTFZNLSR7TUFKT1JfVkVSU0lPTn0uc28g
+JHtEfSR7bGliZGlyfS9saWJMTFZNLSR7TUFKT1JfVkVSU0lPTn0uc28NCj4+ICt9DQo+PiArDQo+
+PiArUEFDS0FHRVMgPSsgIiR7UE59LWJ1Z3BvaW50cGFzc2VzICR7UE59LWxsdm1oZWxsbyAke1BO
+fS1saWJsbHZtICR7UE59LWxpYm9wdHJlbWFya3MgJHtQTn0tbGlibHRvIg0KPj4gKw0KPj4gK1JS
+RUNPTU1FTkRTXyR7UE59LWRldiArPSAiJHtQTn0tYnVncG9pbnRwYXNzZXMgJHtQTn0tbGx2bWhl
+bGxvICR7UE59LWxpYm9wdHJlbWFya3MiDQo+PiArDQo+PiArRklMRVNfJHtQTn0tYnVncG9pbnRw
+YXNzZXMgPSAiXA0KPj4gKyAgICAke2xpYmRpcn0vJHtMTFZNX0RJUn0vQnVncG9pbnRQYXNzZXMu
+c28gXA0KPj4gKyINCj4+ICsNCj4+ICtGSUxFU18ke1BOfS1saWJsbHZtID0gIlwNCj4+ICsgICAg
+JHtsaWJkaXJ9LyR7TExWTV9ESVJ9L2xpYkxMVk0tJHtNQUpPUl9WRVJTSU9OfS5zbyBcDQo+PiAr
+ICAgICR7bGliZGlyfS9saWJMTFZNLSR7TUFKT1JfVkVSU0lPTn0uc28gXA0KPj4gKyINCj4+ICsN
+Cj4+ICtGSUxFU18ke1BOfS1saWJsdG8gKz0gIlwNCj4+ICsgICAgJHtsaWJkaXJ9LyR7TExWTV9E
+SVJ9L2xpYkxUTy5zby4qIFwNCj4+ICsiDQo+PiArDQo+PiArRklMRVNfJHtQTn0tbGlib3B0cmVt
+YXJrcyArPSAiXA0KPj4gKyAgICAke2xpYmRpcn0vJHtMTFZNX0RJUn0vbGliT3B0UmVtYXJrcy5z
+by4qIFwNCj4+ICsiDQo+PiArDQo+PiArRklMRVNfJHtQTn0tbGx2bWhlbGxvID0gIlwNCj4+ICsg
+ICAgJHtsaWJkaXJ9LyR7TExWTV9ESVJ9L0xMVk1IZWxsby5zbyBcDQo+PiArIg0KPj4gKw0KPj4g
+K0ZJTEVTXyR7UE59LWRldiArPSAiIFwNCj4+ICsgICAgJHtsaWJkaXJ9LyR7TExWTV9ESVJ9L2xs
+dm0tY29uZmlnIFwNCj4+ICsgICAgJHtsaWJkaXJ9LyR7TExWTV9ESVJ9L2xpYk9wdFJlbWFya3Mu
+c28gXA0KPj4gKyAgICAke2xpYmRpcn0vJHtMTFZNX0RJUn0vbGliTExWTS0ke01BSk9SX1ZFUlNJ
+T059LiR7TUlOT1JfVkVSU0lPTn0uJHtQQVRDSF9WRVJTSU9OfS5zbyBcDQo+PiArIg0KPj4gKw0K
+Pj4gK0ZJTEVTXyR7UE59LXN0YXRpY2RldiArPSAiXA0KPj4gKyAgICAke2xpYmRpcn0vJHtMTFZN
+X0RJUn0vKi5hIFwNCj4+ICsiDQo+PiAgICANCj4+IC1pbmhlcml0IHBrZ2NvbmZpZyBjbWFrZQ0K
+Pj4gK0lOU0FORV9TS0lQXyR7UE59LWxpYmxsdm0gKz0gImRldi1zbyINCj4+ICAgIA0KPj4gICAg
+QkJDTEFTU0VYVEVORCA9ICJuYXRpdmUgbmF0aXZlc2RrIg0K
 
