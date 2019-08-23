@@ -1,47 +1,43 @@
 Return-Path: <d-senicic1@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 932FD529C6
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id AA84E529E6
 	for <meta-arago@arago-project.org>;
 	Fri, 23 Aug 2019 13:59:59 +0000 (UTC)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7NDwxk8090885;
-	Fri, 23 Aug 2019 08:58:59 -0500
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7NDwxJe093608
+	for <meta-arago@arago-project.org>; Fri, 23 Aug 2019 08:58:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1566568739;
-	bh=1ZcPjEyD+a83XW3FClrFgLK+kveDjTzAdzzftWufYNs=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=h+JwzpJBZ6KSoLfwEb3FKDKRxsz85lgZg9dY+z17AbROI55A0rPfZMFBUjb1hTkEk
-	J7cmA2T6fPCTf2BVf3lOpVWdVgLRsFAJ9E0roUh8Dfa7IWE11jVJJvGTo1pJfMqhiK
-	fLTqEgOJFF64xbWC8RAkb9tk9XXAHV6bk+wGAKhE=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7NDwxpN097958
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 23 Aug 2019 08:58:59 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	bh=E3FLJPmxAIfu6dEBD0itIw80Mf59uoB8hIJcNMdwXhM=;
+	h=From:To:CC:Subject:Date;
+	b=I7J5DiZALN2Qu5xUm78GJewUhs+N6mndP1qyIQmFLPLyS5KcUJF0hYX7cMqNaSoSp
+	17uVWhuNESW3Joyv97+/JHWl8QOAm/Blz5E7DGyLprN2uyiV6MUwR4jMr0pUdlo6qG
+	qvVINprBaGWWFi/CRfPinKyFO3JJWRJNitghhiKQ=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7NDwxrZ097955
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 23 Aug 2019 08:58:59 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 23 Aug 2019 08:58:59 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 23 Aug 2019 08:58:58 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 23 Aug 2019 08:58:59 -0500
+	Frontend Transport; Fri, 23 Aug 2019 08:58:58 -0500
 Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7NDwwUX118791;
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7NDwwUW118791;
 	Fri, 23 Aug 2019 08:58:58 -0500
 From: Djordje Senicic <x0157990@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 23 Aug 2019 09:58:52 -0400
-Message-ID: <20190823135856.8053-2-x0157990@ti.com>
+Date: Fri, 23 Aug 2019 09:58:51 -0400
+Message-ID: <20190823135856.8053-1-x0157990@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190823135856.8053-1-x0157990@ti.com>
-References: <20190823135856.8053-1-x0157990@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: d-senicic1@ti.com, Djordje Senicic <x0157990@ti.com>,
-	Khem Raj <raj.khem@gmail.com>,
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-Subject: [meta-processor-sdk][PATCHv2 1/5] mesa, llvm, meson: Update llvm to 8.0.1 plus define and use LLVM version globally
+Cc: d-senicic1@ti.com, Djordje Senicic <x0157990@ti.com>
+Subject: [meta-processor-sdk][PATCHv2 0/5] Pytorch GLOW AOT tool and demo example
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -57,371 +53,48 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Fri, 23 Aug 2019 14:00:00 -0000
 Content-Type: text/plain
 
-- Add missing dependency on libedit
-- Define LLVMVERSION on the same lines as GCCVERSION and other tools
-- Use LLVMVERSION in mesa and meson.bbclass to get llvm version instead of
-  hardcoding it
-- Use llvm patches unmodified from meta-clang, helps in keeping them in
-  sync
-- Define PREFERRED_VERSION for llvm, llvm-native, nativesdk-llvm
+This is continuation of work from previous release that did not create nativesdk artifacts properly.
+Pytorch GLOW xNN compiler allows Ahead-of-Time compilation of neural network models into CPU object file (for target architecture) using LLVM.
+This requires LLVM compiler version 7 or later. Now, the 2020LTS LLVM candidate from oe-core master branch is imported, to avoid unnecessary future upgrades (LLVM8.0.1 version).
+Also, there are several native tools that are part of GLOW project that need to be compiled using CLANG/LLVM compiler (from branch 8.0), that is separately pulled in for that
+sole purpose (since oe-core does not include CLANG compiler).
+Natively compiled tools are used for further building of nativesdk GLOW package which includes single AOT tool, image-classifier, that is deployed in linux-devkit.
+End user could use this tool to compile its own xNN model into ARMv7 object file and link with its application. An example, demo-glow, is provided in top level Makefile and example-application.
+Small, well known mnist xNN model and several test images, are included in the filesystem.
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-The recipe was imported from the OpenEmbedded server
-http://cgit.openembedded.org/openembedded-core/commit/meta/recipes-devtools/llvm/llvm_git.bb
-commit_id 3c08b638348abd543fc92baf56c28ca16ae6aac6
-Currently this is needed for compiling pytorch glow with CPU backend which requires llvm7 or later.
-To avoid being used globally name before 2020LTS, name of the recipe is not llvm_git but llvm8_git
+Djordje Senicic (5):
+  mesa,llvm,meson: Update llvm to 8.0.1 plus define and use LLVM version
+    globally
+  clang8-native: llvm and clang used only for compilation of native
+    tools for glow compiler
+  glow: Address devkit related RPATH issue to point to devkit shared
+    libraries instead of host native
+  demo-glow: Restore in top-level makefile examples after recipe cleanup
+  packagegroup-arago-tisdk: Include xNN glow based compiler tool into
+    devkit, and demo-glow example
 
-Signed-off-by: Djordje Senicic <x0157990@ti.com>
----
+ recipes-apps/demo-glow/demo-glow.bb           |  16 +-
+ recipes-apps/demo-glow/files/Makefile.build   |   3 +-
+ ...sdk-packagegroup-arago-tisdk-host.bbappend |   4 +
+ ...group-arago-tisdk-addons-sdk-host.bbappend |  11 ++
+ ...oup-arago-tisdk-addons-sdk-target.bbappend |   6 +
+ .../packagegroup-arago-tisdk-addons.bbappend  |   7 +
+ ...{llvm-glow_git.bb => clang8-native_git.bb} |  16 +-
+ ...p-compilation-of-native-helper-tools.patch |  99 ++++++++++
+ recipes-devtools/glow/glow_git.bb             |  62 ++++--
  ...ryInfo-Undefine-libc-functions-if-th.patch |  92 +++++++++
  ...-llvm-allow-env-override-of-exe-path.patch |  38 ++++
- recipes-devtools/glow/llvm-glow_git.bb        | 180 ++++++++++++++++--
- 3 files changed, 298 insertions(+), 12 deletions(-)
- create mode 100644 recipes-devtools/glow/llvm-glow/0006-llvm-TargetLibraryInfo-Undefine-libc-functions-if-th.patch
- create mode 100644 recipes-devtools/glow/llvm-glow/0007-llvm-allow-env-override-of-exe-path.patch
+ recipes-devtools/glow/llvm8_git.bb            | 180 ++++++++++++++++++
+ .../ti-tisdk-makefile_1.0.bbappend            |   4 +
+ 13 files changed, 508 insertions(+), 30 deletions(-)
+ create mode 100644 recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bbappend
+ rename recipes-devtools/glow/{llvm-glow_git.bb => clang8-native_git.bb} (51%)
+ create mode 100644 recipes-devtools/glow/files/0002-Skip-compilation-of-native-helper-tools.patch
+ create mode 100644 recipes-devtools/glow/llvm8/0006-llvm-TargetLibraryInfo-Undefine-libc-functions-if-th.patch
+ create mode 100644 recipes-devtools/glow/llvm8/0007-llvm-allow-env-override-of-exe-path.patch
+ create mode 100644 recipes-devtools/glow/llvm8_git.bb
 
-diff --git a/recipes-devtools/glow/llvm-glow/0006-llvm-TargetLibraryInfo-Undefine-libc-functions-if-th.patch b/recipes-devtools/glow/llvm-glow/0006-llvm-TargetLibraryInfo-Undefine-libc-functions-if-th.patch
-new file mode 100644
-index 0000000..789c308
---- /dev/null
-+++ b/recipes-devtools/glow/llvm-glow/0006-llvm-TargetLibraryInfo-Undefine-libc-functions-if-th.patch
-@@ -0,0 +1,92 @@
-+From 4c08879d2dfbe7face4e679ac8499dc7bff2dd20 Mon Sep 17 00:00:00 2001
-+From: Khem Raj <raj.khem@gmail.com>
-+Date: Sat, 21 May 2016 00:33:20 +0000
-+Subject: [PATCH 06/19] llvm: TargetLibraryInfo: Undefine libc functions if
-+ they are macros
-+
-+musl defines some functions as macros and not inline functions
-+if this is the case then make sure to undefine them
-+
-+Upstream-Status: Pending
-+Signed-off-by: Khem Raj <raj.khem@gmail.com>
-+---
-+ .../llvm/Analysis/TargetLibraryInfo.def       | 21 +++++++++++++++++++
-+ 1 file changed, 21 insertions(+)
-+
-+diff --git a/llvm/include/llvm/Analysis/TargetLibraryInfo.def b/llvm/include/llvm/Analysis/TargetLibraryInfo.def
-+index afed404f04c..876888656f2 100644
-+--- a/llvm/include/llvm/Analysis/TargetLibraryInfo.def
-++++ b/llvm/include/llvm/Analysis/TargetLibraryInfo.def
-+@@ -782,6 +782,9 @@ TLI_DEFINE_STRING_INTERNAL("fmodl")
-+ TLI_DEFINE_ENUM_INTERNAL(fopen)
-+ TLI_DEFINE_STRING_INTERNAL("fopen")
-+ /// FILE *fopen64(const char *filename, const char *opentype)
-++#ifdef fopen64
-++#undef fopen64
-++#endif
-+ TLI_DEFINE_ENUM_INTERNAL(fopen64)
-+ TLI_DEFINE_STRING_INTERNAL("fopen64")
-+ /// int fork();
-+@@ -829,6 +832,9 @@ TLI_DEFINE_STRING_INTERNAL("fseek")
-+ /// int fseeko(FILE *stream, off_t offset, int whence);
-+ TLI_DEFINE_ENUM_INTERNAL(fseeko)
-+ TLI_DEFINE_STRING_INTERNAL("fseeko")
-++#ifdef fseeko64
-++#undef fseeko64
-++#endif
-+ /// int fseeko64(FILE *stream, off64_t offset, int whence)
-+ TLI_DEFINE_ENUM_INTERNAL(fseeko64)
-+ TLI_DEFINE_STRING_INTERNAL("fseeko64")
-+@@ -839,6 +845,9 @@ TLI_DEFINE_STRING_INTERNAL("fsetpos")
-+ TLI_DEFINE_ENUM_INTERNAL(fstat)
-+ TLI_DEFINE_STRING_INTERNAL("fstat")
-+ /// int fstat64(int filedes, struct stat64 *buf)
-++#ifdef fstat64
-++#undef fstat64
-++#endif
-+ TLI_DEFINE_ENUM_INTERNAL(fstat64)
-+ TLI_DEFINE_STRING_INTERNAL("fstat64")
-+ /// int fstatvfs(int fildes, struct statvfs *buf);
-+@@ -854,6 +863,9 @@ TLI_DEFINE_STRING_INTERNAL("ftell")
-+ TLI_DEFINE_ENUM_INTERNAL(ftello)
-+ TLI_DEFINE_STRING_INTERNAL("ftello")
-+ /// off64_t ftello64(FILE *stream)
-++#ifdef ftello64
-++#undef ftello64
-++#endif
-+ TLI_DEFINE_ENUM_INTERNAL(ftello64)
-+ TLI_DEFINE_STRING_INTERNAL("ftello64")
-+ /// int ftrylockfile(FILE *file);
-+@@ -980,6 +992,9 @@ TLI_DEFINE_STRING_INTERNAL("logl")
-+ TLI_DEFINE_ENUM_INTERNAL(lstat)
-+ TLI_DEFINE_STRING_INTERNAL("lstat")
-+ /// int lstat64(const char *path, struct stat64 *buf);
-++#ifdef lstat64
-++#undef lstat64
-++#endif
-+ TLI_DEFINE_ENUM_INTERNAL(lstat64)
-+ TLI_DEFINE_STRING_INTERNAL("lstat64")
-+ /// void *malloc(size_t size);
-+@@ -1205,6 +1220,9 @@ TLI_DEFINE_STRING_INTERNAL("sscanf")
-+ TLI_DEFINE_ENUM_INTERNAL(stat)
-+ TLI_DEFINE_STRING_INTERNAL("stat")
-+ /// int stat64(const char *path, struct stat64 *buf);
-++#ifdef stat64
-++#undef stat64
-++#endif
-+ TLI_DEFINE_ENUM_INTERNAL(stat64)
-+ TLI_DEFINE_STRING_INTERNAL("stat64")
-+ /// int statvfs(const char *path, struct statvfs *buf);
-+@@ -1340,6 +1358,9 @@ TLI_DEFINE_STRING_INTERNAL("times")
-+ TLI_DEFINE_ENUM_INTERNAL(tmpfile)
-+ TLI_DEFINE_STRING_INTERNAL("tmpfile")
-+ /// FILE *tmpfile64(void)
-++#ifdef tmpfile64
-++#undef tmpfile64
-++#endif
-+ TLI_DEFINE_ENUM_INTERNAL(tmpfile64)
-+ TLI_DEFINE_STRING_INTERNAL("tmpfile64")
-+ /// int toascii(int c);
-+-- 
-+2.22.0
-+
-diff --git a/recipes-devtools/glow/llvm-glow/0007-llvm-allow-env-override-of-exe-path.patch b/recipes-devtools/glow/llvm-glow/0007-llvm-allow-env-override-of-exe-path.patch
-new file mode 100644
-index 0000000..f47080c
---- /dev/null
-+++ b/recipes-devtools/glow/llvm-glow/0007-llvm-allow-env-override-of-exe-path.patch
-@@ -0,0 +1,38 @@
-+From b66d6f39a374b8df41e7235351e5dee2e81f440c Mon Sep 17 00:00:00 2001
-+From: Martin Kelly <mkelly@xevo.com>
-+Date: Fri, 19 May 2017 00:22:57 -0700
-+Subject: [PATCH 07/19] llvm: allow env override of exe path
-+
-+When using a native llvm-config from inside a sysroot, we need llvm-config to
-+return the libraries, include directories, etc. from inside the sysroot rather
-+than from the native sysroot. Thus provide an env override for calling
-+llvm-config from a target sysroot.
-+
-+Upstream-Status: Pending
-+Signed-off-by: Martin Kelly <mkelly@xevo.com>
-+Signed-off-by: Khem Raj <raj.khem@gmail.com>
-+---
-+ llvm/tools/llvm-config/llvm-config.cpp | 7 +++++++
-+ 1 file changed, 7 insertions(+)
-+
-+diff --git a/llvm/tools/llvm-config/llvm-config.cpp b/llvm/tools/llvm-config/llvm-config.cpp
-+index 7ef7c46a262..a4f7ed82c7b 100644
-+--- a/llvm/tools/llvm-config/llvm-config.cpp
-++++ b/llvm/tools/llvm-config/llvm-config.cpp
-+@@ -225,6 +225,13 @@ Typical components:\n\
-+ 
-+ /// Compute the path to the main executable.
-+ std::string GetExecutablePath(const char *Argv0) {
-++  // Hack for Yocto: we need to override the root path when we are using
-++  // llvm-config from within a target sysroot.
-++  const char *Sysroot = std::getenv("YOCTO_ALTERNATE_EXE_PATH");
-++  if (Sysroot != nullptr) {
-++    return Sysroot;
-++  }
-++
-+   // This just needs to be some symbol in the binary; C++ doesn't
-+   // allow taking the address of ::main however.
-+   void *P = (void *)(intptr_t)GetExecutablePath;
-+-- 
-+2.22.0
-+
-diff --git a/recipes-devtools/glow/llvm-glow_git.bb b/recipes-devtools/glow/llvm-glow_git.bb
-index 58d392b..d3c2642 100644
---- a/recipes-devtools/glow/llvm-glow_git.bb
-+++ b/recipes-devtools/glow/llvm-glow_git.bb
-@@ -1,24 +1,180 @@
--DESCRIPTION = "LLVM release suggested for pytorch glow neural network compiler"
--HOMEPAGE = "https://github.com/llvm-mirror/llvm"
-+# Copyright (C) 2017 Khem Raj <raj.khem@gmail.com>
-+# Released under the MIT license (see COPYING.MIT for the terms)
-+
-+DESCRIPTION = "The LLVM Compiler Infrastructure"
-+HOMEPAGE = "http://llvm.org"
-+LICENSE = "NCSA"
- SECTION = "devel"
--LICENSE = "Apache-2.0"
-+
- LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=c6b766a4e85dd28301eeed54a6684648"
--PV = "8.0"
--PR = "r0"
- 
--DEPENDS = "ninja-native protobuf-native libpng-native protobuf-native protobuf-c-native gflags-native glog-native"
-+DEPENDS = "libffi libxml2 zlib libedit ninja-native llvm8-native"
- 
--SOLIBVER = "1"
-+RDEPENDS_${PN}_append_class-target = " ncurses-terminfo"
-+
-+inherit cmake pkgconfig
-+
-+PROVIDES += "llvm${PV}"
- 
--SRC_URI = "git://github.com/llvm-mirror/llvm.git;protocol=https;branch=release_80;rev=5563a6a769b48912b9c8052124520610966eda28;destsuffix=git/llvm \
--           git://github.com/llvm-mirror/clang.git;protocol=https;branch=release_80;rev=ccfe04576c13497b9c422ceef0b6efe99077a392;destsuffix=git/clang \
--           "
-+LLVM_RELEASE = "${PV}"
-+LLVM_DIR = "llvm${LLVM_RELEASE}"
- 
-+SRCREV = "19a71f6bdf2dddb10764939e7f0ec2b98dba76c9"
-+
-+BRANCH = "release/${MAJOR_VERSION}.x"
-+MAJOR_VERSION = "8"
-+MINOR_VERSION = "0"
-+PATCH_VERSION = "1"
-+SOLIBVER = "1"
-+PV = "${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}"
-+SRC_URI = "git://github.com/llvm/llvm-project.git;branch=${BRANCH} \
-+           file://0006-llvm-TargetLibraryInfo-Undefine-libc-functions-if-th.patch;striplevel=2 \
-+           file://0007-llvm-allow-env-override-of-exe-path.patch;striplevel=2 \
-+          "
- 
- S = "${WORKDIR}/git/llvm"
- 
--EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release -DLLVM_INSTALL_UTILS=ON -DLLVM_ENABLE_PROJECTS=clang"
-+LLVM_INSTALL_DIR = "${WORKDIR}/llvm-install"
-+
-+def get_llvm_arch(bb, d, arch_var):
-+    import re
-+    a = d.getVar(arch_var)
-+    if   re.match(r'(i.86|athlon|x86.64)$', a):         return 'X86'
-+    elif re.match(r'arm$', a):                          return 'ARM'
-+    elif re.match(r'armeb$', a):                        return 'ARM'
-+    elif re.match(r'aarch64$', a):                      return 'AArch64'
-+    elif re.match(r'aarch64_be$', a):                   return 'AArch64'
-+    elif re.match(r'mips(isa|)(32|64|)(r6|)(el|)$', a): return 'Mips'
-+    elif re.match(r'p(pc|owerpc)(|64)', a):             return 'PowerPC'
-+    else:
-+        raise bb.parse.SkipRecipe("Cannot map '%s' to a supported LLVM architecture" % a)
-+
-+def get_llvm_host_arch(bb, d):
-+    return get_llvm_arch(bb, d, 'HOST_ARCH')
-+
-+#
-+# Default to build all OE-Core supported target arches (user overridable).
-+#
-+LLVM_TARGETS ?= "AMDGPU;${@get_llvm_host_arch(bb, d)}"
-+
-+ARM_INSTRUCTION_SET_armv5 = "arm"
-+ARM_INSTRUCTION_SET_armv4t = "arm"
-+
-+EXTRA_OECMAKE += "-DLLVM_ENABLE_ASSERTIONS=OFF \
-+                  -DLLVM_ENABLE_EXPENSIVE_CHECKS=OFF \
-+                  -DLLVM_ENABLE_PIC=ON \
-+                  -DLLVM_BINDINGS_LIST='' \
-+                  -DLLVM_LINK_LLVM_DYLIB=ON \
-+                  -DLLVM_ENABLE_FFI=ON \
-+                  -DLLVM_ENABLE_RTTI=ON \
-+                  -DFFI_INCLUDE_DIR=$(pkg-config --variable=includedir libffi) \
-+                  -DLLVM_OPTIMIZED_TABLEGEN=ON \
-+                  -DLLVM_TARGETS_TO_BUILD='${LLVM_TARGETS}' \
-+                  -DLLVM_TEMPORARILY_ALLOW_OLD_TOOLCHAIN=ON \
-+                  -DPYTHON_EXECUTABLE=${HOSTTOOLS_DIR}/python2 \
-+                  -G Ninja"
-+
-+EXTRA_OECMAKE_append_class-target = "\
-+                  -DCMAKE_CROSSCOMPILING:BOOL=ON \
-+                  -DLLVM_TABLEGEN=${STAGING_BINDIR_NATIVE}/llvm-tblgen${PV} \
-+                  -DLLVM_CONFIG_PATH=${STAGING_BINDIR_NATIVE}/llvm-config${PV} \
-+                 "
-+
-+EXTRA_OECMAKE_append_class-nativesdk = "\
-+                  -DCMAKE_CROSSCOMPILING:BOOL=ON \
-+                  -DLLVM_TABLEGEN=${STAGING_BINDIR_NATIVE}/llvm-tblgen${PV} \
-+                  -DLLVM_CONFIG_PATH=${STAGING_BINDIR_NATIVE}/llvm-config${PV} \
-+                 "
-+
-+CXXFLAGS_append_class-target_powerpc = " -mlongcall"
-+
-+do_configure_prepend() {
-+# Fix paths in llvm-config
-+	sed -i "s|sys::path::parent_path(CurrentPath))\.str()|sys::path::parent_path(sys::path::parent_path(CurrentPath))).str()|g" ${S}/tools/llvm-config/llvm-config.cpp
-+	sed -ri "s#/(bin|include|lib)(/?\")#/\1/${LLVM_DIR}\2#g" ${S}/tools/llvm-config/llvm-config.cpp
-+	sed -ri "s#lib/${LLVM_DIR}#${baselib}/${LLVM_DIR}#g" ${S}/tools/llvm-config/llvm-config.cpp
-+}
-+
-+do_compile() {
-+	ninja -v ${PARALLEL_MAKE}
-+}
-+
-+do_compile_class-native() {
-+	ninja -v ${PARALLEL_MAKE} llvm-config llvm-tblgen
-+}
-+
-+do_install() {
-+	DESTDIR=${LLVM_INSTALL_DIR} ninja -v install
-+	install -D -m 0755 ${B}/bin/llvm-config ${D}${libdir}/${LLVM_DIR}/llvm-config
-+
-+	install -d ${D}${bindir}/${LLVM_DIR}
-+	cp -r ${LLVM_INSTALL_DIR}${bindir}/* ${D}${bindir}/${LLVM_DIR}/
-+
-+	install -d ${D}${includedir}/${LLVM_DIR}
-+	cp -r ${LLVM_INSTALL_DIR}${includedir}/* ${D}${includedir}/${LLVM_DIR}/
-+
-+	install -d ${D}${libdir}/${LLVM_DIR}
-+
-+	# The LLVM sources have "/lib" embedded and so we cannot completely rely on the ${libdir} variable
-+	if [ -d ${LLVM_INSTALL_DIR}${libdir}/ ]; then
-+		cp -r ${LLVM_INSTALL_DIR}${libdir}/* ${D}${libdir}/${LLVM_DIR}/
-+	elif [ -d ${LLVM_INSTALL_DIR}${prefix}/lib ]; then
-+		cp -r ${LLVM_INSTALL_DIR}${prefix}/lib/* ${D}${libdir}/${LLVM_DIR}/
-+	elif [ -d ${LLVM_INSTALL_DIR}${prefix}/lib64 ]; then
-+		cp -r ${LLVM_INSTALL_DIR}${prefix}/lib64/* ${D}${libdir}/${LLVM_DIR}/
-+	fi
-+
-+	# Remove unnecessary cmake files
-+	rm -rf ${D}${libdir}/${LLVM_DIR}/cmake
-+
-+	ln -s ${LLVM_DIR}/libLLVM-${MAJOR_VERSION}${SOLIBSDEV} ${D}${libdir}/libLLVM-${MAJOR_VERSION}${SOLIBSDEV}
-+
-+	# We'll have to delete the libLLVM.so due to multiple reasons...
-+	rm -rf ${D}${libdir}/${LLVM_DIR}/libLLVM.so
-+	rm -rf ${D}${libdir}/${LLVM_DIR}/libLTO.so
-+}
-+
-+do_install_class-native() {
-+	install -D -m 0755 ${B}/bin/llvm-tblgen ${D}${bindir}/llvm-tblgen${PV}
-+	install -D -m 0755 ${B}/bin/llvm-config ${D}${bindir}/llvm-config${PV}
-+	install -D -m 0755 ${B}/lib/libLLVM-${MAJOR_VERSION}.so ${D}${libdir}/libLLVM-${MAJOR_VERSION}.so
-+}
-+
-+PACKAGES =+ "${PN}-bugpointpasses ${PN}-llvmhello ${PN}-libllvm ${PN}-liboptremarks ${PN}-liblto"
-+
-+RRECOMMENDS_${PN}-dev += "${PN}-bugpointpasses ${PN}-llvmhello ${PN}-liboptremarks"
-+
-+FILES_${PN}-bugpointpasses = "\
-+    ${libdir}/${LLVM_DIR}/BugpointPasses.so \
-+"
-+
-+FILES_${PN}-libllvm = "\
-+    ${libdir}/${LLVM_DIR}/libLLVM-${MAJOR_VERSION}.so \
-+    ${libdir}/libLLVM-${MAJOR_VERSION}.so \
-+"
-+
-+FILES_${PN}-liblto += "\
-+    ${libdir}/${LLVM_DIR}/libLTO.so.* \
-+"
-+
-+FILES_${PN}-liboptremarks += "\
-+    ${libdir}/${LLVM_DIR}/libOptRemarks.so.* \
-+"
-+
-+FILES_${PN}-llvmhello = "\
-+    ${libdir}/${LLVM_DIR}/LLVMHello.so \
-+"
-+
-+FILES_${PN}-dev += " \
-+    ${libdir}/${LLVM_DIR}/llvm-config \
-+    ${libdir}/${LLVM_DIR}/libOptRemarks.so \
-+    ${libdir}/${LLVM_DIR}/libLLVM-${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION}.so \
-+"
-+
-+FILES_${PN}-staticdev += "\
-+    ${libdir}/${LLVM_DIR}/*.a \
-+"
- 
--inherit pkgconfig cmake
-+INSANE_SKIP_${PN}-libllvm += "dev-so"
- 
- BBCLASSEXTEND = "native nativesdk"
 -- 
 2.17.1
 
