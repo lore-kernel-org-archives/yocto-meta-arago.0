@@ -1,40 +1,43 @@
-Return-Path: <xuj@ti.com>
+Return-Path: <d-senicic1@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 94C7A52978
+	by arago-project.org (Postfix) with ESMTPS id 10E0752976
 	for <meta-arago@arago-project.org>;
-	Fri, 23 Aug 2019 21:49:19 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7NLmJ7D119737
-	for <meta-arago@arago-project.org>; Fri, 23 Aug 2019 16:48:19 -0500
+	Sat, 24 Aug 2019 22:39:52 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7OMcqtA075365
+	for <meta-arago@arago-project.org>; Sat, 24 Aug 2019 17:38:52 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1566596899;
-	bh=UuQ3X5liOMzPuiVQ3y2oFembaNaCfX6SzHTOjeNhG9Q=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=QclryW40kyXxlVs8C3kOdj6WiSkrMcpWCV+hSODfYzGqZ2X4PkWrJ8EJ4vCKLPYdZ
-	gpWPP3EV/4gxIEb9R3s3zug5qKK0F+vsLh6jbNNNaSco+V4RMbyctHGYlq6z0affq6
-	3W6zi7bTrGJYggFak4NWCrapM+JxUp+/llgAbpZM=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7NLmJlB079618
+	s=ti-com-17Q1; t=1566686332;
+	bh=JCKQbm+kLz4l5Z41DeRyx2ejX2uS5jvRo0R+mvcgggc=;
+	h=From:To:CC:Subject:Date;
+	b=UUJpynqxIBD0RP3ONJfXNuNYqoq7JqKhKySo3bw1Rs1URufrtmRt923jTK40RZqVq
+	iKky3lB+Oiial8tR/q/97+aVSGmx7jBTYu024hWGsJqkIA5liilrB0mBUSo4VkWVe2
+	OPv1PccDyZwOCi7pX0Sw5yr4laaOTa7DYTmLe3nw=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7OMcqJm079548
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 23 Aug 2019 16:48:19 -0500
-Received: from [158.218.116.215] (158.218.116.215) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Sat, 24 Aug 2019 17:38:52 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 23 Aug 2019 16:48:18 -0500
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-References: <20190822205929.13175-1-xuj@ti.com>
-From: "Xu, Jianzhong" <xuj@ti.com>
-Message-ID: <42b68b57-cab5-117c-776d-9af1d6b18835@ti.com>
-Date: Fri, 23 Aug 2019 17:48:18 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	Sat, 24 Aug 2019 17:38:51 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Sat, 24 Aug 2019 17:38:52 -0500
+Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7OMcpDx091728;
+	Sat, 24 Aug 2019 17:38:51 -0500
+From: Djordje Senicic <x0157990@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Sat, 24 Aug 2019 18:38:50 -0400
+Message-ID: <20190824223850.16328-1-x0157990@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20190822205929.13175-1-xuj@ti.com>
-X-Originating-IP: [158.218.116.215]
-X-ClientProxiedBy: DLEE100.ent.ti.com (157.170.170.30) To DFLE112.ent.ti.com
-	(10.64.6.33)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [thud/master] [PATCH v2] armnn: add installation of header files and .so links
+Cc: Djordje Senicic <x0157990@ti.com>
+Subject: [PATCH] armnn: Allow command line selection of camera port, primarily needed for handling USB cameras
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,87 +50,111 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Aug 2019 21:49:19 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Sat, 24 Aug 2019 22:39:53 -0000
+Content-Type: text/plain
 
-NACK
+- Default camera port is still 1 (/dev/video1), but we now also allow selection of specific port: 0,1,2 or 3
 
-Please discard this patch as development plan has changed.
+Signed-off-by: Djordje Senicic <x0157990@ti.com>
+---
+ ...verflow-warning-resulting-in-compila.patch |  2 +
+ ...ine-options-for-video-port-selection.patch | 60 +++++++++++++++++++
+ .../recipes-support/armnn/armnn_git.bb        |  1 +
+ 3 files changed, 63 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-support/armnn/armnn/0009-command-line-options-for-video-port-selection.patch
 
-On 8/22/2019 4:59 PM, Jianzhong Xu wrote:
-> * Install header files that are needed to build tidl-api examples
-> * Add armnn-dev to packagegroups to include armnn*.so links in file system for building armnn applications on the target
-> * Rename TESTVECS_INSTALL_DIR to ARMNN_INSTALL_DIR
->
-> Signed-off-by: Jianzhong Xu <xuj@ti.com>
-> ---
->   .../packagegroup-arago-tisdk-addons.bb        |  5 +++-
->   .../recipes-support/armnn/armnn_git.bb        | 25 +++++++++++++------
->   2 files changed, 21 insertions(+), 9 deletions(-)
->
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> index eb39cadf..ac3835bd 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> @@ -147,7 +147,10 @@ EXTRA_PACKAGES_omapl138 = " \
->       protobuf \
->   "
->   
-> -ARMNN_PACKAGES = "armnn"
-> +ARMNN_PACKAGES = " \
-> +    armnn \
-> +    armnn-dev \
-> +"
->   
->   EXTRA_PACKAGES_append_ti33x = " voxelsdk \
->                                   arm-compute-library \
-> diff --git a/meta-arago-extras/recipes-support/armnn/armnn_git.bb b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
-> index 076ea3aa..76875ee3 100644
-> --- a/meta-arago-extras/recipes-support/armnn/armnn_git.bb
-> +++ b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
-> @@ -65,25 +65,34 @@ EXTRA_OECMAKE=" \
->       -DGENERIC_LIB_VERSION=${PV} -DGENERIC_LIB_SOVERSION=${PV_MAJOR} \
->   "
->   
-> -TESTVECS_INSTALL_DIR = "${datadir}/arm/armnn"
-> +ARMNN_INSTALL_DIR = "${datadir}/arm/armnn"
->   
->   do_install_append() {
->       CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
->       install -d ${D}${bindir}
->       find ${WORKDIR}/build/tests -maxdepth 1 -type f -executable -exec cp $CP_ARGS {} ${D}${bindir} \;
->       cp $CP_ARGS ${WORKDIR}/build/UnitTests  ${D}${bindir}
-> -    install -d ${D}${TESTVECS_INSTALL_DIR}/models
-> -    cp ${WORKDIR}/tfmodel/mobilenet_v1_1.0_224_frozen.pb  ${D}${TESTVECS_INSTALL_DIR}/models
-> -    cp ${WORKDIR}/git/tests/TfMobileNet-Armnn/labels.txt  ${D}${TESTVECS_INSTALL_DIR}/models
-> -    install -d ${D}${TESTVECS_INSTALL_DIR}/testvecs
-> -    cp ${WORKDIR}/tidl-api/examples/classification/clips/*.mp4  ${D}${TESTVECS_INSTALL_DIR}/testvecs
-> -    cp ${WORKDIR}/tidl-api/examples/classification/images/*.jpg  ${D}${TESTVECS_INSTALL_DIR}/testvecs
-> +    install -d ${D}${ARMNN_INSTALL_DIR}/models
-> +    cp ${WORKDIR}/tfmodel/mobilenet_v1_1.0_224_frozen.pb  ${D}${ARMNN_INSTALL_DIR}/models
-> +    cp ${WORKDIR}/git/tests/TfMobileNet-Armnn/labels.txt  ${D}${ARMNN_INSTALL_DIR}/models
-> +    install -d ${D}${ARMNN_INSTALL_DIR}/testvecs
-> +    cp ${WORKDIR}/tidl-api/examples/classification/clips/*.mp4  ${D}${ARMNN_INSTALL_DIR}/testvecs
-> +    cp ${WORKDIR}/tidl-api/examples/classification/images/*.jpg  ${D}${ARMNN_INSTALL_DIR}/testvecs
-> +    cp $CP_ARGS ${WORKDIR}/git/include ${D}${ARMNN_INSTALL_DIR}
-> +    install -d ${D}${ARMNN_INSTALL_DIR}/src/armnn
-> +    cp ${WORKDIR}/git/src/armnn/*.hpp ${D}${ARMNN_INSTALL_DIR}/src/armnn
-> +    install -d ${D}${ARMNN_INSTALL_DIR}/src/armnnUtils
-> +    cp ${WORKDIR}/git/src/armnnUtils/{CsvReader.hpp,HeapProfiling.hpp,Logging.hpp,TensorIOUtils.hpp} ${D}${ARMNN_INSTALL_DIR}/src/armnnUtils
-> +    install -d ${D}${ARMNN_INSTALL_DIR}/src/backends/backendsCommon
-> +    cp ${WORKDIR}/git/src/backends/backendsCommon/BackendRegistry.hpp ${D}${ARMNN_INSTALL_DIR}/src/backends/backendsCommon
-> +    install -d ${D}${ARMNN_INSTALL_DIR}/tests
-> +    cp ${WORKDIR}/git/tests/{InferenceModel.hpp,InferenceTest.hpp,InferenceTest.inl} ${D}${ARMNN_INSTALL_DIR}/tests
->       chrpath -d ${D}${bindir}/*
->   }
->   
->   CXXFLAGS += "-fopenmp"
->   LIBS += "-larmpl_lp64_mp"
->   
-> -FILES_${PN} += "${TESTVECS_INSTALL_DIR}"
-> +FILES_${PN} += "${ARMNN_INSTALL_DIR}"
->   FILES_${PN}-dev += "{libdir}/cmake/*"
->   INSANE_SKIP_${PN}-dev = "dev-elf"
+diff --git a/meta-arago-extras/recipes-support/armnn/armnn/0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch b/meta-arago-extras/recipes-support/armnn/armnn/0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch
+index b6f11024..023766a4 100644
+--- a/meta-arago-extras/recipes-support/armnn/armnn/0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch
++++ b/meta-arago-extras/recipes-support/armnn/armnn/0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch
+@@ -4,6 +4,8 @@ Date: Wed, 12 Jun 2019 13:12:09 -0400
+ Subject: [PATCH] Avoid stringop-overflow warning resulting in compilation
+  error
+ 
++Upstream-Status: Inappropriate [TI only test code]
++
+ Signed-off-by: Djordje Senicic <x0157990@ti.com>
+ ---
+  src/armnn/LayerSupport.cpp | 2 ++
+diff --git a/meta-arago-extras/recipes-support/armnn/armnn/0009-command-line-options-for-video-port-selection.patch b/meta-arago-extras/recipes-support/armnn/armnn/0009-command-line-options-for-video-port-selection.patch
+new file mode 100644
+index 00000000..d0485a86
+--- /dev/null
++++ b/meta-arago-extras/recipes-support/armnn/armnn/0009-command-line-options-for-video-port-selection.patch
+@@ -0,0 +1,60 @@
++From ee152f3b68f91c5fff336306d011becdcf3a6b17 Mon Sep 17 00:00:00 2001
++From: Djordje Senicic <x0157990@ti.com>
++Date: Sat, 24 Aug 2019 17:58:38 -0400
++Subject: [PATCH] command line options for video port selection
++
++- Add command line selection <0|1|2|3> of video port used for live camera input 
++
++Upstream-Status: Inappropriate [TI only test code]
++
++Signed-off-by: Djordje Senicic <x0157990@ti.com>
++---
++ tests/ArmnnExamples/ArmnnExamples.cpp | 23 ++++++++++++++++++++---
++ 1 file changed, 20 insertions(+), 3 deletions(-)
++
++diff --git a/tests/ArmnnExamples/ArmnnExamples.cpp b/tests/ArmnnExamples/ArmnnExamples.cpp
++index 638fc145..d1526539 100644
++--- a/tests/ArmnnExamples/ArmnnExamples.cpp
+++++ b/tests/ArmnnExamples/ArmnnExamples.cpp
++@@ -316,10 +316,27 @@ int MainImpl(const char* modelPath,
++     int input_type = INPUT_IMAGE;
++     std::string filename = inputTensorDataFilePath;
++ 
++-    size_t i = filename.rfind("camera_live_input", filename.length());
+++    size_t i  = filename.rfind("camera_live_input", filename.length());
++     if (i != string::npos)
++     {
++-      cap = VideoCapture(1);
+++      int vport = 1;
+++      size_t loc_i = filename.rfind("camera_live_input0", filename.length());
+++      if(loc_i != string::npos) vport = 0;
+++      else {
+++         loc_i = filename.rfind("camera_live_input1", filename.length());
+++         if(loc_i != string::npos) vport = 1;
+++         else {
+++           loc_i = filename.rfind("camera_live_input2", filename.length());
+++           if(loc_i != string::npos) vport = 2;
+++           else {
+++             loc_i = filename.rfind("camera_live_input3", filename.length());
+++             if(loc_i != string::npos) vport = 3;
+++             else std::cout << "Setting ports beyond 3 not supported - using default!" << std::endl;
+++           }
+++         }
+++      }
+++      std::cout << "Using video" << vport << std::endl;
+++      cap = VideoCapture(vport);
++       namedWindow("ARMNN MobileNet Example", WINDOW_AUTOSIZE | CV_GUI_NORMAL);
++       input_type = INPUT_CAMERA; //camera input
++     }
++@@ -609,7 +626,7 @@ int main(int argc, const char* argv[])
++        "The shape of the input tensor in the network as a flat array of integers separated by whitespace. "
++        "This parameter is optional, depending on the network.")
++       ("input-tensor-data,d", po::value(&inputTensorDataFilePath),
++-       "Input test file name. It can be image/video clip file name or use 'camera_live_input' to select camera input.")
+++       "Input test file name. It can be image/video clip file name or 'camera_live_input or camera_live_input<0|1|2|3>' to select camera input.")
++       ("output-name,o", po::value(&outputName), "Identifier of the output tensor in the network.")
++       ("event-based-profiling,e", po::bool_switch()->default_value(false),
++        "Enables built in profiler. If unset, defaults to off.")
++-- 
++2.17.1
++
+diff --git a/meta-arago-extras/recipes-support/armnn/armnn_git.bb b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+index 076ea3aa..77921218 100644
+--- a/meta-arago-extras/recipes-support/armnn/armnn_git.bb
++++ b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
+@@ -31,6 +31,7 @@ SRC_URI = " \
+     file://0006-armnn-mobilenet-test-example.patch \
+     file://0007-enable-use-of-arm-compute-shared-library.patch \
+     file://0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch \
++    file://0009-command-line-options-for-video-port-selection.patch \
+     http://download.tensorflow.org/models/mobilenet_v1_2018_02_22/mobilenet_v1_1.0_224.tgz;name=mobilenet;subdir=${WORKDIR}/tfmodel;destsuffix=tfmodel \
+     git://git.ti.com/tidl/tidl-api.git;name=tidl-api;branch=${BRANCH_tidl-api};subdir=${WORKDIR}/tidl-api;destsuffix=tidl-api \
+ "
+-- 
+2.17.1
+
 
