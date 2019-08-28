@@ -1,43 +1,46 @@
-Return-Path: <d-senicic1@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 10E0752976
+Return-Path: <g-tammana@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 33EB0520E4
 	for <meta-arago@arago-project.org>;
-	Sat, 24 Aug 2019 22:39:52 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7OMcqtA075365
-	for <meta-arago@arago-project.org>; Sat, 24 Aug 2019 17:38:52 -0500
+	Wed, 28 Aug 2019 17:06:51 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7SH5nfp038592
+	for <meta-arago@arago-project.org>; Wed, 28 Aug 2019 12:05:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1566686332;
-	bh=JCKQbm+kLz4l5Z41DeRyx2ejX2uS5jvRo0R+mvcgggc=;
+	s=ti-com-17Q1; t=1567011949;
+	bh=QnqvGEFCg7UQtkFFxcSHtdwKRoxlnYj81ulwS/ao+wI=;
 	h=From:To:CC:Subject:Date;
-	b=UUJpynqxIBD0RP3ONJfXNuNYqoq7JqKhKySo3bw1Rs1URufrtmRt923jTK40RZqVq
-	iKky3lB+Oiial8tR/q/97+aVSGmx7jBTYu024hWGsJqkIA5liilrB0mBUSo4VkWVe2
-	OPv1PccDyZwOCi7pX0Sw5yr4laaOTa7DYTmLe3nw=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7OMcqJm079548
+	b=cdENqvTJ1eK9eDswYAnFzb5ETQXOspBpIejEVo64A5FpE5e7Cxs8ojFVBqOr4cD9L
+	gCTGJ/u7Nnn1mS/JvI/e5KYWjAuBhyEirEfd7jdk9DVesMpzepIaovr+sKAOwJbAmc
+	O9OlokWrfZh8RKuvpEBgWn+P5P/iiTA2I47dK7rc=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7SH5ngH042696
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Sat, 24 Aug 2019 17:38:52 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Wed, 28 Aug 2019 12:05:49 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Sat, 24 Aug 2019 17:38:51 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 28 Aug 2019 12:05:49 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Sat, 24 Aug 2019 17:38:52 -0500
-Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7OMcpDx091728;
-	Sat, 24 Aug 2019 17:38:51 -0500
-From: Djordje Senicic <x0157990@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Sat, 24 Aug 2019 18:38:50 -0400
-Message-ID: <20190824223850.16328-1-x0157990@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Frontend Transport; Wed, 28 Aug 2019 12:05:49 -0500
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
+	[128.247.22.53])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7SH5mMf005060;
+	Wed, 28 Aug 2019 12:05:48 -0500
+Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
+	[128.247.77.97])
+	by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id
+	x7SH5mZ09538; Wed, 28 Aug 2019 12:05:48 -0500 (CDT)
+From: Gowtham Tammana <g-tammana@ti.com>
+To: Denys Dmytriyenko <denys@ti.com>, <meta-arago@arago-project.org>
+Date: Wed, 28 Aug 2019 12:07:46 -0500
+Message-ID: <20190828170746.22461-1-g-tammana@ti.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Djordje Senicic <x0157990@ti.com>
-Subject: [PATCH] armnn: Allow command line selection of camera port, primarily needed for handling USB cameras
+Subject: [thud][PATCH] weston: Remove restriction on udev enumeration
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,111 +53,88 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Aug 2019 22:39:53 -0000
+X-List-Received-Date: Wed, 28 Aug 2019 17:06:52 -0000
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-- Default camera port is still 1 (/dev/video1), but we now also allow selection of specific port: 0,1,2 or 3
+The modesetting driver in certain instances could be enumerated later
+than card0. Remove the restriction on search to just card0, as checks
+are now in place to query on the modesetting capabilities on
+enumerated devices.
 
-Signed-off-by: Djordje Senicic <x0157990@ti.com>
+Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
 ---
- ...verflow-warning-resulting-in-compila.patch |  2 +
- ...ine-options-for-video-port-selection.patch | 60 +++++++++++++++++++
- .../recipes-support/armnn/armnn_git.bb        |  1 +
- 3 files changed, 63 insertions(+)
- create mode 100644 meta-arago-extras/recipes-support/armnn/armnn/0009-command-line-options-for-video-port-selection.patch
+ ...t-restrict-udev-enumeration-to-card0.patch | 39 -------------------
+ .../wayland/weston_5.0.0.bbappend             |  3 +-
+ 2 files changed, 1 insertion(+), 41 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0001-udev-seat-restrict-udev-enumeration-to-card0.patch
 
-diff --git a/meta-arago-extras/recipes-support/armnn/armnn/0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch b/meta-arago-extras/recipes-support/armnn/armnn/0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch
-index b6f11024..023766a4 100644
---- a/meta-arago-extras/recipes-support/armnn/armnn/0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch
-+++ b/meta-arago-extras/recipes-support/armnn/armnn/0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch
-@@ -4,6 +4,8 @@ Date: Wed, 12 Jun 2019 13:12:09 -0400
- Subject: [PATCH] Avoid stringop-overflow warning resulting in compilation
-  error
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0001-udev-seat-restrict-udev-enumeration-to-card0.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0001-udev-seat-restrict-udev-enumeration-to-card0.patch
+deleted file mode 100644
+index 5ec9cd77..00000000
+--- a/meta-arago-distro/recipes-graphics/wayland/weston/0001-udev-seat-restrict-udev-enumeration-to-card0.patch
++++ /dev/null
+@@ -1,39 +0,0 @@
+-From e57e9245dcb5d1349467c7fc36d153f3336f6a1a Mon Sep 17 00:00:00 2001
+-From: Karthik Ramanan <a0393906@ti.com>
+-Date: Mon, 12 Mar 2018 10:46:29 +0530
+-Subject: [PATCH 1/4] udev-seat: restrict udev enumeration to card0
+-
+-In case of separate GPU and Display devices as found in embedded systems, we
+-could have modeset node and render node controlled by different drivers.
+-There is a distinct possibility that udev enumeration returns the DRM device
+-corresponding to render node as the primary DRM device.
+-
+-Obviously, modeset operations cannot be done on the GPU DRM device.
+-
+-Restrict the udev enumeration to card0 and ensure that DRM device corresponding
+-to display is returned as the primary DRM device.
+-
+-Upstream-Status: Pending
+-
+-Signed-off-by: Anand Balagopalakrishnan <anandb@ti.com>
+-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+----
+- libweston/compositor-drm.c | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/libweston/compositor-drm.c b/libweston/compositor-drm.c
+-index 1d38f05..649b4f5 100644
+---- a/libweston/compositor-drm.c
+-+++ b/libweston/compositor-drm.c
+-@@ -2957,7 +2957,7 @@ find_primary_gpu(struct drm_backend *b, const char *seat)
+- 
+- 	e = udev_enumerate_new(b->udev);
+- 	udev_enumerate_add_match_subsystem(e, "drm");
+--	udev_enumerate_add_match_sysname(e, "card[0-9]*");
+-+	udev_enumerate_add_match_sysname(e, "card0");
+- 
+- 	udev_enumerate_scan_devices(e);
+- 	drm_device = NULL;
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend
+index 68a928ee..1bdcf7e4 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston_5.0.0.bbappend
+@@ -2,14 +2,13 @@
+ PACKAGECONFIG[fbdev] = "--enable-fbdev-compositor WESTON_NATIVE_BACKEND="fbdev-backend.so",--disable-fbdev-compositor,udev mtdev"
+ PACKAGECONFIG[kms] = "--enable-drm-compositor,--disable-drm-compositor,drm udev virtual/libgbm mtdev"
  
-+Upstream-Status: Inappropriate [TI only test code]
-+
- Signed-off-by: Djordje Senicic <x0157990@ti.com>
- ---
-  src/armnn/LayerSupport.cpp | 2 ++
-diff --git a/meta-arago-extras/recipes-support/armnn/armnn/0009-command-line-options-for-video-port-selection.patch b/meta-arago-extras/recipes-support/armnn/armnn/0009-command-line-options-for-video-port-selection.patch
-new file mode 100644
-index 00000000..d0485a86
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/armnn/armnn/0009-command-line-options-for-video-port-selection.patch
-@@ -0,0 +1,60 @@
-+From ee152f3b68f91c5fff336306d011becdcf3a6b17 Mon Sep 17 00:00:00 2001
-+From: Djordje Senicic <x0157990@ti.com>
-+Date: Sat, 24 Aug 2019 17:58:38 -0400
-+Subject: [PATCH] command line options for video port selection
-+
-+- Add command line selection <0|1|2|3> of video port used for live camera input 
-+
-+Upstream-Status: Inappropriate [TI only test code]
-+
-+Signed-off-by: Djordje Senicic <x0157990@ti.com>
-+---
-+ tests/ArmnnExamples/ArmnnExamples.cpp | 23 ++++++++++++++++++++---
-+ 1 file changed, 20 insertions(+), 3 deletions(-)
-+
-+diff --git a/tests/ArmnnExamples/ArmnnExamples.cpp b/tests/ArmnnExamples/ArmnnExamples.cpp
-+index 638fc145..d1526539 100644
-+--- a/tests/ArmnnExamples/ArmnnExamples.cpp
-++++ b/tests/ArmnnExamples/ArmnnExamples.cpp
-+@@ -316,10 +316,27 @@ int MainImpl(const char* modelPath,
-+     int input_type = INPUT_IMAGE;
-+     std::string filename = inputTensorDataFilePath;
-+ 
-+-    size_t i = filename.rfind("camera_live_input", filename.length());
-++    size_t i  = filename.rfind("camera_live_input", filename.length());
-+     if (i != string::npos)
-+     {
-+-      cap = VideoCapture(1);
-++      int vport = 1;
-++      size_t loc_i = filename.rfind("camera_live_input0", filename.length());
-++      if(loc_i != string::npos) vport = 0;
-++      else {
-++         loc_i = filename.rfind("camera_live_input1", filename.length());
-++         if(loc_i != string::npos) vport = 1;
-++         else {
-++           loc_i = filename.rfind("camera_live_input2", filename.length());
-++           if(loc_i != string::npos) vport = 2;
-++           else {
-++             loc_i = filename.rfind("camera_live_input3", filename.length());
-++             if(loc_i != string::npos) vport = 3;
-++             else std::cout << "Setting ports beyond 3 not supported - using default!" << std::endl;
-++           }
-++         }
-++      }
-++      std::cout << "Using video" << vport << std::endl;
-++      cap = VideoCapture(vport);
-+       namedWindow("ARMNN MobileNet Example", WINDOW_AUTOSIZE | CV_GUI_NORMAL);
-+       input_type = INPUT_CAMERA; //camera input
-+     }
-+@@ -609,7 +626,7 @@ int main(int argc, const char* argv[])
-+        "The shape of the input tensor in the network as a flat array of integers separated by whitespace. "
-+        "This parameter is optional, depending on the network.")
-+       ("input-tensor-data,d", po::value(&inputTensorDataFilePath),
-+-       "Input test file name. It can be image/video clip file name or use 'camera_live_input' to select camera input.")
-++       "Input test file name. It can be image/video clip file name or 'camera_live_input or camera_live_input<0|1|2|3>' to select camera input.")
-+       ("output-name,o", po::value(&outputName), "Identifier of the output tensor in the network.")
-+       ("event-based-profiling,e", po::bool_switch()->default_value(false),
-+        "Enables built in profiler. If unset, defaults to off.")
-+-- 
-+2.17.1
-+
-diff --git a/meta-arago-extras/recipes-support/armnn/armnn_git.bb b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
-index 076ea3aa..77921218 100644
---- a/meta-arago-extras/recipes-support/armnn/armnn_git.bb
-+++ b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
-@@ -31,6 +31,7 @@ SRC_URI = " \
-     file://0006-armnn-mobilenet-test-example.patch \
-     file://0007-enable-use-of-arm-compute-shared-library.patch \
-     file://0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch \
-+    file://0009-command-line-options-for-video-port-selection.patch \
-     http://download.tensorflow.org/models/mobilenet_v1_2018_02_22/mobilenet_v1_1.0_224.tgz;name=mobilenet;subdir=${WORKDIR}/tfmodel;destsuffix=tfmodel \
-     git://git.ti.com/tidl/tidl-api.git;name=tidl-api;branch=${BRANCH_tidl-api};subdir=${WORKDIR}/tidl-api;destsuffix=tidl-api \
- "
+-PR_append = ".arago33"
++PR_append = ".arago34"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ RDEPENDS_${PN} += "weston-conf"
+ 
+ SRC_URI += " \
+-        file://0001-udev-seat-restrict-udev-enumeration-to-card0.patch \
+         file://0002-weston-Allow-visual_id-to-be-0.patch \
+         file://0003-weston-Fix-virtual-keyboard-display-issue-for-QT5-ap.patch \
+         file://0004-weston-Fix-touch-screen-crash-issue.patch \
 -- 
-2.17.1
+2.23.0
 
 
