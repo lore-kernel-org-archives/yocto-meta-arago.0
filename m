@@ -1,46 +1,42 @@
-Return-Path: <g-tammana@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 86543520E2
+Return-Path: <denys@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id A7DD052987
 	for <meta-arago@arago-project.org>;
-	Wed, 28 Aug 2019 20:16:42 +0000 (UTC)
+	Fri, 30 Aug 2019 16:51:45 +0000 (UTC)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7SKFeSF088820
-	for <meta-arago@arago-project.org>; Wed, 28 Aug 2019 15:15:40 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7UGohpx054610
+	for <meta-arago@arago-project.org>; Fri, 30 Aug 2019 11:50:43 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1567023340;
-	bh=3BQnmwODSiBFbh7WoT0cUVeQyE+PH69Ode/5isO2jx4=;
+	s=ti-com-17Q1; t=1567183843;
+	bh=zPwaz9mUMbbel6MiNSjF7GLW330XRwg5D2bVdmvazp8=;
 	h=From:To:CC:Subject:Date;
-	b=aBy+IqjUhdeeWZmMl517hYdcmB2hVyooGTBm/ZqnbNu9MFOFT399BGkYnM+Ofk2SK
-	6wF5wkYLFbFpE4MakkfKdRkJ6FVUYMUaxWd0A13xx1dsvk1PDQxzc1nwhlWaSIit+0
-	ZGlr0S/qaUXNTk0MWClgEdPPXlpHO4kD+Kv9qiJQ=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7SKFeOh000391
+	b=f7/0r+3wg9mKcc2mWh/7tvOts2BGQG94Y2Y/ydXjq91rv/WutInddR+UR80ccEeHU
+	FyeIfPRNH/ZAsomrXJaOerBAnfVplcffwLRZP2O0Wonsu02+sI4X8hcM/TkYoSFV58
+	fc0aNrVf+g/0NmK7LejtiV6kMwBBHt3BLUyKnjeY=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7UGohKE080179
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 28 Aug 2019 15:15:40 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 30 Aug 2019 11:50:43 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 28 Aug 2019 15:15:40 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 30 Aug 2019 11:50:43 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 28 Aug 2019 15:15:39 -0500
-Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
-	[128.247.22.53])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7SKFerB105905;
-	Wed, 28 Aug 2019 15:15:40 -0500
-Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
-	[128.247.77.97])
-	by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id
-	x7SKFdZ07049; Wed, 28 Aug 2019 15:15:39 -0500 (CDT)
-From: Gowtham Tammana <g-tammana@ti.com>
-To: Denys Dmytriyenko <denys@ti.com>, <meta-arago@arago-project.org>
-Date: Wed, 28 Aug 2019 15:17:35 -0500
-Message-ID: <20190828201735.11392-1-g-tammana@ti.com>
-X-Mailer: git-send-email 2.23.0
+	Frontend Transport; Fri, 30 Aug 2019 11:50:42 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7UGog6w119149;
+	Fri, 30 Aug 2019 11:50:42 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 30 Aug 2019 16:36:08 +0000
+Message-ID: <20190830163609.4140-1-denys@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud][PATCH] img-pvr-sdk: Add arm64 wayland demos bins
+Subject: [thud/master][PATCH 1/2] ltp-ddt: update to the latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,83 +49,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Aug 2019 20:16:43 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 30 Aug 2019 16:51:46 -0000
 Content-Type: text/plain
 
-Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../img-pvr-sdk/img-pvr-sdk_3.3.2.bb          | 40 ++++++++++++++-----
- 1 file changed, 31 insertions(+), 9 deletions(-)
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb              | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb b/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
-index 9e189095..2d7676b2 100644
---- a/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
-+++ b/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
-@@ -7,9 +7,9 @@ CLEANBROKEN = "1"
- BRANCH = "master"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+index f8639212..09627aa9 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
  
- SRC_URI = "git://git.ti.com/graphics/img-pvr-sdk.git;protocol=git;branch=${BRANCH}"
--SRCREV = "7af5846a0989a1475548ca05f6984c817fb76adc"
-+SRCREV = "e76ae77b27ef570e7b8494c3d7067fd3d72b5976"
+-PR = "r11"
++PR = "r12"
+ PV_append = "+git${SRCPV}"
  
--PR = "r15"
-+PR = "r16"
+ PROVIDES += "ltp"
+@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
  
- COMPATIBLE_MACHINE = "omap-a15|ti43x|ti33x|k3"
+ inherit autotools-brokensep
  
-@@ -26,14 +26,14 @@ do_install () {
-     install -d ${D}${bindir}/SGX/demos/Raw/
-     install -d ${D}${bindir}/SGX/demos/Wayland/
+-SRCREV = "9a74c87093302f86b0de4202f17339013c2f6913"
++SRCREV = "2a01542a86a76c925f70cf0090350ac2799d4edb"
+ BRANCH ?= "master"
  
--    install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/NullWS/OGLES2ChameleonMan ${D}${bindir}/SGX/demos/Raw/
--    install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/NullWS/OGLES2Coverflow ${D}${bindir}/SGX/demos/Raw/
--    install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/NullWS/OGLES2ExampleUI ${D}${bindir}/SGX/demos/Raw/
--    install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/NullWS/OGLES2Navigation ${D}${bindir}/SGX/demos/Raw/
--    install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/NullWS/OGLES2MagicLantern ${D}${bindir}/SGX/demos/Raw/
--    install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/NullWS/OGLES2FilmTV ${D}${bindir}/SGX/demos/Raw/
-+    if [ ${SRC_DIR} == "arm" ]; then
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/NullWS/OGLES2ChameleonMan ${D}${bindir}/SGX/demos/Raw/
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/NullWS/OGLES2Coverflow ${D}${bindir}/SGX/demos/Raw/
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/NullWS/OGLES2ExampleUI ${D}${bindir}/SGX/demos/Raw/
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/NullWS/OGLES2Navigation ${D}${bindir}/SGX/demos/Raw/
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/NullWS/OGLES2MagicLantern ${D}${bindir}/SGX/demos/Raw/
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/NullWS/OGLES2FilmTV ${D}${bindir}/SGX/demos/Raw/
- 
--    if [ ${SRC_DIR} == "arm" ] ; then
-         install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OGLES2ChameleonMan ${D}${bindir}/SGX/demos/Wayland/
-         install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OGLES2Coverflow ${D}${bindir}/SGX/demos/Wayland/
-         install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OGLES2ExampleUI ${D}${bindir}/SGX/demos/Wayland/
-@@ -41,6 +41,28 @@ do_install () {
-         install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OGLES2MagicLantern ${D}${bindir}/SGX/demos/Wayland/
-         install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OGLES2FilmTV ${D}${bindir}/SGX/demos/Wayland/
-     fi
-+
-+    if [ ${SRC_DIR} == "arm64" ]; then
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OpenGLESDeferredShading ${D}${bindir}/SGX/demos/Wayland/
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OpenGLESGaussianBlur ${D}${bindir}/SGX/demos/Wayland/
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OpenGLESImageBasedLighting ${D}${bindir}/SGX/demos/Wayland/
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OpenGLESIntroducingPVRCamera ${D}${bindir}/SGX/demos/Wayland/
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OpenGLESIntroducingPVRUtils ${D}${bindir}/SGX/demos/Wayland/
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OpenGLESIntroducingUIRenderer ${D}${bindir}/SGX/demos/Wayland/
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OpenGLESNavigation2D ${D}${bindir}/SGX/demos/Wayland/
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OpenGLESNavigation3D ${D}${bindir}/SGX/demos/Wayland/
-+        install -m 755 ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/OpenGLESParticleSystem ${D}${bindir}/SGX/demos/Wayland/
-+
-+        cp -r ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/Assets_OpenGLESDeferredShading ${D}${bindir}/SGX/demos/Wayland/
-+        cp -r ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/Assets_OpenGLESGaussianBlur ${D}${bindir}/SGX/demos/Wayland/
-+        cp -r ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/Assets_OpenGLESImageBasedLighting ${D}${bindir}/SGX/demos/Wayland/
-+        cp -r ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/Assets_OpenGLESIntroducingPVRCamera ${D}${bindir}/SGX/demos/Wayland/
-+        cp -r ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/Assets_OpenGLESIntroducingPVRUtils ${D}${bindir}/SGX/demos/Wayland/
-+        cp -r ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/Assets_OpenGLESIntroducingUIRenderer ${D}${bindir}/SGX/demos/Wayland/
-+        cp -r ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/Assets_OpenGLESNavigation2D ${D}${bindir}/SGX/demos/Wayland/
-+        cp -r ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/Assets_OpenGLESNavigation3D ${D}${bindir}/SGX/demos/Wayland/
-+        cp -r ${S}/targetfs/${SRC_DIR}/Examples/Advanced/Wayland/Assets_OpenGLESParticleSystem ${D}${bindir}/SGX/demos/Wayland/
-+    fi
- }
- 
- RDEPENDS_${PN} = "ti-sgx-ddk-um"
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
 -- 
-2.23.0
+2.17.1
 
 
