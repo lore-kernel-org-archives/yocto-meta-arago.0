@@ -1,44 +1,44 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 205A452987
+Return-Path: <j-stiffler@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 40058529FA
 	for <meta-arago@arago-project.org>;
-	Fri, 30 Aug 2019 16:51:46 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7UGohEt081695
-	for <meta-arago@arago-project.org>; Fri, 30 Aug 2019 11:50:43 -0500
+	Fri, 30 Aug 2019 17:27:12 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7UHQAAn063919
+	for <meta-arago@arago-project.org>; Fri, 30 Aug 2019 12:26:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1567183843;
-	bh=Q13eRtWEpi5hAddQ61csyIQyt7olF7Qb2K9BSeu2Veg=;
+	s=ti-com-17Q1; t=1567185970;
+	bh=X7xyjPGPvKY0N4J0o7vjzDlIQC2PNhJZ7q/+aQSK63M=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=x5p3p+cz6YrFi9jPCZ5bE+/Y6E6tBLRGwEM7lyBUwph9lKe+1z7ii1lcSzGeXeSnt
-	WfUSmW5jfeamqnLSMzbcroaXdHT9H8W98OC8bOm7/LNJWdCrpi5u8m681vC5AvkPEl
-	jbZjMng6X17H6zV9RseoR1ThG6M1tApAf2WGKHS8=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7UGohNq116889
+	b=dFBzsTofZ8ngozXSqCy+qWqAnVHSk2BsG3oENdyukOVPQz1XtGtg71PR6CzsnKi3r
+	WelgRhttT9AxZVHXGZ8Qq5wV0+4Kr2ifSOPis23vJdVla4M0t580drkuX1NG0lU0cp
+	efxI5LMyLhXaFnbOCOSAJ6FzUgQ21MbLHH/rTcjg=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7UHQ9iD124747
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 30 Aug 2019 11:50:43 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 30 Aug 2019 12:26:10 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 30 Aug 2019 11:50:43 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 30 Aug 2019 12:26:09 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 30 Aug 2019 11:50:43 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Fri, 30 Aug 2019 12:26:09 -0500
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7UGog6x119149;
-	Fri, 30 Aug 2019 11:50:43 -0500
-From: Denys Dmytriyenko <denys@ti.com>
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7UHQ9Pk117961;
+	Fri, 30 Aug 2019 12:26:09 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 30 Aug 2019 16:36:09 +0000
-Message-ID: <20190830163609.4140-2-denys@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190830163609.4140-1-denys@ti.com>
-References: <20190830163609.4140-1-denys@ti.com>
+Date: Fri, 30 Aug 2019 13:08:05 -0400
+Message-ID: <1567184885-17326-2-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1567184885-17326-1-git-send-email-j-stiffler@ti.com>
+References: <1567184885-17326-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master][PATCH 2/2] ti-sci-fw: update imggen to ti2019.03-rc4 tag
+Subject: [master/thud][PATCH 2/2] arago-conf: configure ramfs for jailhouse linux-demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,28 +51,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Aug 2019 16:51:46 -0000
+X-List-Received-Date: Fri, 30 Aug 2019 17:27:13 -0000
 Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.07.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-distro/conf/distro/arago.conf | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.07.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.07.bb
-index df911a02..d53e9264 100644
---- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.07.bb
-+++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.07.bb
-@@ -16,7 +16,7 @@ export TI_SECURE_DEV_PKG
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index ae151a7..770683b 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -125,6 +125,9 @@ PACKAGECONFIG_append_pn-u-boot-ti-staging_k3 = " optee"
+ # Enable encryption support in open62541
+ PACKAGECONFIG_append_pn-open62541 = " encrypt"
  
- SRCREV = "3f7c97c9f923f6fbf1b96dcae1da8620a3bab0b3"
- BRANCH ?= "ti-linux-firmware"
--SRCREV_imggen = "1ee2d5d8476bcab79edf04778d5ae5db4ef291e3"
-+SRCREV_imggen = "38a82e00f84efdf381dba001fff75e8411898e99"
- SRCREV_FORMAT = "imggen"
++# Configure RAMFS for jailhouse linux-demo
++JH_RAMFS_IMAGE = "arago-tiny-image"
++
+ EXTRA_IMAGEDEPENDS_append_k3 += " u-boot-k3-r5 ti-sci-fw"
  
- SRC_URI = " \
+ # Enable UI and scripting for perf
 -- 
-2.17.1
+2.7.4
 
 
