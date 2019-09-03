@@ -1,44 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 8F4FF529E4
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 363F952970
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Sep 2019 18:38:25 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x83IbMUJ090422
-	for <meta-arago@arago-project.org>; Tue, 3 Sep 2019 13:37:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1567535842;
-	bh=2t1IxpbDgIm5p++edib9O2WWWYiQYpNln27yMp4m0js=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=EpG5ozGO8OStW/on0SLyTou7AY+Hp7LX+lr0xCmdhw1VQYh6dwEr9LPaw1FJkLS/Q
-	WU/JIR5d6ToyAzt6smwCUysC+fmTNW+GNaMIA8PRqkCytVv82i/5PZ8h1TWYC0kk2m
-	sK1yXxt/0DMGOTHKHpm0dfnKbabNZvXdOY56j+Gk=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x83IbM4f045528
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 3 Sep 2019 13:37:22 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 3 Sep 2019 13:37:21 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 3 Sep 2019 13:37:21 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x83IbLNc130355;
-	Tue, 3 Sep 2019 13:37:21 -0500
-To: Hongmei Gou <a0271529@ti.com>, <meta-arago@arago-project.org>
-References: <20190822203126.4155-1-a0271529@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <8c4e97e7-4fd7-79c5-b862-209fb1e9f7a1@ti.com>
-Date: Tue, 3 Sep 2019 14:37:21 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20190822203126.4155-1-a0271529@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [PATCH v2 0/3] Add tensorflow-lite
+	Tue,  3 Sep 2019 20:21:16 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C5A6E40BC0;
+	Tue,  3 Sep 2019 20:20:12 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id pxwOQ0Xgf1nu; Tue,  3 Sep 2019 20:20:12 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A5B7140BAF;
+	Tue,  3 Sep 2019 20:20:11 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 828E3173C0E;
+	Tue,  3 Sep 2019 16:20:10 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Tue,  3 Sep 2019 16:20:09 -0400
+Message-Id: <1567542009-38879-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [thud/master][PATCH] rng-tools: remove duplicate initscript and wait for module load
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,47 +37,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2019 18:38:26 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Tue, 03 Sep 2019 20:21:16 -0000
 
-ACK
+Since Arago still has a mix of SysVinit iniscripts and systemd unit files, it
+enables both of the DISTRO_FEATURES, resulting in some duplication. It appears
+that rngd currently has a problem handling signals when forked in daemon mode.
+Hence, drop SysVinit initscript in favor of systemd service, as the latter one
+starts rngd in foreground. Also, add udev dependency rule on omap_rng module.
 
-Acked-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-support/rng-tools/rng-tools/rngd.rules          |  1 +
+ .../recipes-support/rng-tools/rng-tools_%.bbappend          | 13 +++++++++++++
+ 2 files changed, 14 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-support/rng-tools/rng-tools/rngd.rules
+ create mode 100644 meta-arago-distro/recipes-support/rng-tools/rng-tools_%.bbappend
 
-On 8/22/2019 4:31 PM, Hongmei Gou wrote:
-> This patch set starts from the baseline recipe at
-> https://github.com/nnsuite/meta-neural-network/tree/master/recipes-tensorflow/tensorflow-lite,
->
-> The major changes are listed below:
->
-> 1. Made some cleanup for the baseline recipes, such as updating NEON2SSE and replacing AUTOREV
->
-> 2. Installed minimal and benchmark_model binaries which have been built with the original Makefile
->
-> 3. Patched Makefile to add label_image and installed the example binary and files
->     (model/image/labels.txt) needed to run the example
->
-> v2 change:
-> Keep the dependencies in the original single recipe, instead of creating separate recipes
-> for all the dependencies
->
-> Hongmei Gou (3):
->    tensorflow-lite: add version 1.12
->    tensorflow-lite: install minimal and benchmark_model examples, and all
->      .a files
->    tensorflow-lite: add label_image example and install the files to run
->      the example
->
->   ...001-Makefile-add-label_image-example.patch |  89 ++++++++++++
->   ...odification-for-tflite-1.12-to-eigen.patch |  13 ++
->   .../files/tensorflow-lite.pc.in               |   6 +
->   .../tensorflow-lite/tensorflow-lite_1.12.bb   | 136 ++++++++++++++++++
->   4 files changed, 244 insertions(+)
->   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch
->   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch
->   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in
->   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
->
+diff --git a/meta-arago-distro/recipes-support/rng-tools/rng-tools/rngd.rules b/meta-arago-distro/recipes-support/rng-tools/rng-tools/rngd.rules
+new file mode 100644
+index 0000000..a21c99b
+--- /dev/null
++++ b/meta-arago-distro/recipes-support/rng-tools/rng-tools/rngd.rules
+@@ -0,0 +1 @@
++ACTION=="add", SUBSYSTEM=="module", KERNEL=="omap_rng", TAG+="systemd", ENV{SYSTEMD_WANTS}+="rngd.service"
+diff --git a/meta-arago-distro/recipes-support/rng-tools/rng-tools_%.bbappend b/meta-arago-distro/recipes-support/rng-tools/rng-tools_%.bbappend
+new file mode 100644
+index 0000000..df84536
+--- /dev/null
++++ b/meta-arago-distro/recipes-support/rng-tools/rng-tools_%.bbappend
+@@ -0,0 +1,13 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++PR_append = ".arago0"
++
++SRC_URI += "file://rngd.rules"
++
++do_install_append() {
++	# remove duplicate initscript
++	rm -f ${D}${sysconfdir}/init.d/rng-tools
++
++	install -d ${D}${sysconfdir}/udev/rules.d/
++	install -m0644 ${WORKDIR}/rngd.rules ${D}${sysconfdir}/udev/rules.d/
++}
+-- 
+2.7.4
+
 
