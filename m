@@ -1,45 +1,43 @@
-Return-Path: <d-senicic1@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id BE1D6529E4
+Return-Path: <h-gou@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 0AF9552970
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Sep 2019 15:53:32 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x83FqQ5c052272
-	for <meta-arago@arago-project.org>; Tue, 3 Sep 2019 10:52:26 -0500
+	Tue,  3 Sep 2019 16:52:12 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x83Gp9Tg113197
+	for <meta-arago@arago-project.org>; Tue, 3 Sep 2019 11:51:09 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1567525946;
-	bh=Nko4AtpI0ccsp55hcLF+ngcpNw0t+gAWZgCQct4l/H8=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=EwpwspW67M0ULeG5e1rtXCjzBZDvN3cyvAKhpy2hmWeFbSHfNTrW3mtVhJONeILm9
-	iM1Gg+yIQKMqLxx4CxBhKtslftTyqadR0uQBVUD3wMHxpd9LY/ESIF0Jua/b6mwCDb
-	SubwYYI7M42M10P9OpTA2Hnt4VwWejzoPK1IkEs0=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x83FqQfx103094
+	s=ti-com-17Q1; t=1567529469;
+	bh=ktAWMOv4DfFpDksftJ95xSLlMJNv7iqPiRpmAJtReaI=;
+	h=From:To:CC:Subject:Date;
+	b=e7V8+7Q4jhT7Ts4wXh6BWQ+38mqC9aWl30cdrIa348g7zDJ6xTH61nlI7XRIItyn4
+	TxL/B7UvgEdk8JNEsquwo+/wTk/GeE5CW1o6RDZaXNyt8m6VQmkAf+lAEmxXom5oM9
+	0UgepAcTH1LKkFosFw7DHd572jq/VF1EKU3qJrJ4=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x83Gp9l8107752
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 3 Sep 2019 10:52:26 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 3 Sep 2019 11:51:09 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 3 Sep 2019 10:52:25 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 3 Sep 2019 11:51:09 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 3 Sep 2019 10:52:25 -0500
-Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Tue, 3 Sep 2019 11:51:09 -0500
+Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x83FqPgf069068;
-	Tue, 3 Sep 2019 10:52:25 -0500
-From: Djordje Senicic <x0157990@ti.com>
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x83Gp8fb104215;
+	Tue, 3 Sep 2019 11:51:09 -0500
+From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 3 Sep 2019 11:52:03 -0400
-Message-ID: <20190903155203.23271-2-x0157990@ti.com>
+Date: Tue, 3 Sep 2019 12:50:41 -0400
+Message-ID: <20190903165041.27620-1-a0271529@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190903155203.23271-1-x0157990@ti.com>
-References: <20190903155203.23271-1-x0157990@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Djordje Senicic <x0157990@ti.com>
-Subject: [PATCH 2/2] armnn: Upgrade to latest release 19.08
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [meta-processor-sdk 3/3] [PATCH v2] tensorflow-lite: add label_image example and install the files to run the example
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,206 +50,159 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2019 15:53:44 -0000
+X-List-Received-Date: Tue, 03 Sep 2019 16:52:14 -0000
 Content-Type: text/plain
 
-- Upgrade to latest release and modify example for new API (19.08 change)
-- Realign patches (no change only context lines) for the new release
+* Patch Makefile to add the label_image example
+* Install sample model/image/labels.txt to run the example
 
-Signed-off-by: Djordje Senicic <x0157990@ti.com>
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- ...2-enable-use-of-boost-shared-library.patch | 36 ++++++++-----------
- .../0004-generate-versioned-library.patch     | 23 ++++++------
- ...mples-update-for-19.08-modifications.patch | 28 +++++++++++++++
- .../recipes-support/armnn/armnn_git.bb        | 10 +++---
- 4 files changed, 60 insertions(+), 37 deletions(-)
- create mode 100644 meta-arago-extras/recipes-support/armnn/armnn/0010-armnnexamples-update-for-19.08-modifications.patch
+v2 change: set INHIBIT_PACKAGE_DEBUG_SPLIT to 1
 
-diff --git a/meta-arago-extras/recipes-support/armnn/armnn/0002-enable-use-of-boost-shared-library.patch b/meta-arago-extras/recipes-support/armnn/armnn/0002-enable-use-of-boost-shared-library.patch
-index 50c2e1da..a436ffda 100644
---- a/meta-arago-extras/recipes-support/armnn/armnn/0002-enable-use-of-boost-shared-library.patch
-+++ b/meta-arago-extras/recipes-support/armnn/armnn/0002-enable-use-of-boost-shared-library.patch
-@@ -1,37 +1,31 @@
--From 34a7ec821b11f7bed3dd644bf341cbaf6023516b Mon Sep 17 00:00:00 2001
--From: Qin Su <qsu@ti.com>
--Date: Tue, 11 Sep 2018 17:11:07 -0400
--Subject: [PATCH] enable use of boost shared library
-+From b46177bb1a59df0130aba88555ec4f81024669a8 Mon Sep 17 00:00:00 2001
-+From: Djordje Senicic <x0157990@ti.com>
-+Date: Tue, 27 Aug 2019 09:40:54 -0400
-+Subject: [PATCH] fix boost lib dependency
- 
- Upstream-Status: Inappropriate [configuration]
--This is a hack to modify hard coded configuration. If anything, it
--should be made configurable.
-+This is a hack to modify hard coded configuration. If anything, it should be made configurable.     
- 
--Signed-off-by: Qin Su <qsu@ti.com>
-+Signed-off-by: Djordje Senicic <x0157990@ti.com>
- ---
-- cmake/GlobalConfig.cmake | 6 ++++--
-- 1 file changed, 4 insertions(+), 2 deletions(-)
-- mode change 100644 => 100755 cmake/GlobalConfig.cmake
-+ cmake/GlobalConfig.cmake | 4 ++--
-+ 1 file changed, 2 insertions(+), 2 deletions(-)
- 
- diff --git a/cmake/GlobalConfig.cmake b/cmake/GlobalConfig.cmake
--old mode 100644
--new mode 100755
--index 2dbeada..a5a1113
-+index f518f809..d94c4e50 100755
- --- a/cmake/GlobalConfig.cmake
- +++ b/cmake/GlobalConfig.cmake
--@@ -96,8 +96,10 @@ endif()
-+@@ -135,8 +135,8 @@ endif()
-  set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules ${CMAKE_MODULE_PATH})
--
-+ 
-  # Boost
- -add_definitions("-DBOOST_ALL_NO_LIB") # Turn off auto-linking as we specify the libs manually
- -set(Boost_USE_STATIC_LIBS ON)
--+#add_definitions("-DBOOST_ALL_NO_LIB") # Turn off auto-linking as we specify the libs manually
--+#set(Boost_USE_STATIC_LIBS ON)
- +add_definitions(-DBOOST_ALL_DYN_LINK) # use shared library
- +set(Boost_USE_STATIC_LIBS OFF)
-  find_package(Boost 1.59 REQUIRED COMPONENTS unit_test_framework system filesystem log program_options)
-- include_directories(SYSTEM "${Boost_INCLUDE_DIR}")
-- link_directories(${Boost_LIBRARY_DIR})
----
--1.9.1
-+ include_directories(SYSTEM "${Boost_INCLUDE_DIRS}")
-+ link_directories(${Boost_LIBRARY_DIRS})
-+-- 
-+2.17.1
- 
-diff --git a/meta-arago-extras/recipes-support/armnn/armnn/0004-generate-versioned-library.patch b/meta-arago-extras/recipes-support/armnn/armnn/0004-generate-versioned-library.patch
-index 06756130..a3c3e21a 100644
---- a/meta-arago-extras/recipes-support/armnn/armnn/0004-generate-versioned-library.patch
-+++ b/meta-arago-extras/recipes-support/armnn/armnn/0004-generate-versioned-library.patch
-@@ -1,19 +1,20 @@
--From ad22150032bda1b1a8d0f0cb4b0b020f80724313 Mon Sep 17 00:00:00 2001
-+From 94bec1c47b8da6350c598827950ef4852e998bd9 Mon Sep 17 00:00:00 2001
- From: Djordje Senicic <x0157990@ti.com>
--Date: Mon, 24 Jun 2019 15:10:04 -0400
--Subject: [PATCH] generate versioned library
-+Date: Mon, 2 Sep 2019 10:16:21 -0400
-+Subject: [PATCH] Generate versioned library
- 
- Upstream-Status: Inappropriate [configuration]
-+
- Signed-off-by: Djordje Senicic <x0157990@ti.com>
- ---
-  CMakeLists.txt | 4 ++++
-  1 file changed, 4 insertions(+)
- 
- diff --git a/CMakeLists.txt b/CMakeLists.txt
--index b6c97761..5c7b13a7 100644
-+index 8bdcd8df..38d1390f 100644
- --- a/CMakeLists.txt
- +++ b/CMakeLists.txt
--@@ -88,6 +88,7 @@ if(BUILD_CAFFE_PARSER)
-+@@ -95,6 +95,7 @@ if(BUILD_CAFFE_PARSER)
-  
-      target_link_libraries(armnnCaffeParser armnn)
-      target_link_libraries(armnnCaffeParser ${PROTOBUF_LIBRARIES})
-@@ -21,7 +22,7 @@ index b6c97761..5c7b13a7 100644
-  
-  endif()
-  
--@@ -112,6 +113,7 @@ if(BUILD_ONNX_PARSER)
-+@@ -119,6 +120,7 @@ if(BUILD_ONNX_PARSER)
-  
-      # Protobuf
-      target_link_libraries(armnnOnnxParser ${PROTOBUF_LIBRARIES})
-@@ -29,18 +30,18 @@ index b6c97761..5c7b13a7 100644
-  endif()
-  
-  if(BUILD_TF_PARSER)
--@@ -135,6 +137,7 @@ if(BUILD_TF_PARSER)
-+@@ -142,6 +144,7 @@ if(BUILD_TF_PARSER)
-  
-      # Protobuf (use the specific version tensorflow wants)
-      target_link_libraries(armnnTfParser ${PROTOBUF_LIBRARIES})
- +    set_target_properties(armnnTfParser PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
-  endif()
-  
-- if(BUILD_ARMNN_QUANTIZER)
--@@ -430,6 +433,7 @@ endif()
-- install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_PREFIX}/include)
-+ if(BUILD_ARMNN_QUANTIZER AND ARMNNREF)
-+@@ -473,6 +476,7 @@ install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-  
-- target_link_libraries(armnn ${Boost_LOG_LIBRARY} ${Boost_THREAD_LIBRARY} ${Boost_SYSTEM_LIBRARY})
-+ target_link_libraries(armnn ${Boost_LOG_LIBRARY} ${Boost_THREAD_LIBRARY}
-+                             ${Boost_SYSTEM_LIBRARY} ${Boost_FILESYSTEM_LIBRARY})
- +set_target_properties(armnn PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
-  
-  if(ARMCOMPUTENEON OR ARMCOMPUTECL)
-diff --git a/meta-arago-extras/recipes-support/armnn/armnn/0010-armnnexamples-update-for-19.08-modifications.patch b/meta-arago-extras/recipes-support/armnn/armnn/0010-armnnexamples-update-for-19.08-modifications.patch
+ ...001-Makefile-add-label_image-example.patch | 89 +++++++++++++++++++
+ .../tensorflow-lite/tensorflow-lite_1.12.bb   | 17 +++-
+ 2 files changed, 102 insertions(+), 4 deletions(-)
+ create mode 100644 recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch
+
+diff --git a/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch b/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch
 new file mode 100644
-index 00000000..f75b1dc4
+index 0000000..61f821e
 --- /dev/null
-+++ b/meta-arago-extras/recipes-support/armnn/armnn/0010-armnnexamples-update-for-19.08-modifications.patch
-@@ -0,0 +1,28 @@
-+From a3e266a2de7c45116428f4e21645a2657534191b Mon Sep 17 00:00:00 2001
-+From: Djordje Senicic <x0157990@ti.com>
-+Date: Mon, 26 Aug 2019 03:51:39 -0400
-+Subject: [PATCH] armnnexamples: update for 19.08 modifications
++++ b/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch
+@@ -0,0 +1,89 @@
++From 87cf7e879640436f19f26e338dce6c343c19bfd8 Mon Sep 17 00:00:00 2001
++From: Hongmei Gou <a0271529@ti.com>
++Date: Wed, 21 Aug 2019 18:03:17 -0400
++Subject: [PATCH] Makefile: add label_image example
 +
-+Upstream-Status: Inappropriate [TI only test code]
++Upstream-Status: Pending
 +
-+Signed-off-by: Djordje Senicic <x0157990@ti.com>
++Signed-off-by: Hongmei Gou <a0271529@ti.com>
 +---
-+ tests/ArmnnExamples/ArmnnExamples.cpp | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
++ tensorflow/contrib/lite/tools/make/Makefile | 21 +++++++++++++++++++--
++ 1 file changed, 19 insertions(+), 2 deletions(-)
 +
-+diff --git a/tests/ArmnnExamples/ArmnnExamples.cpp b/tests/ArmnnExamples/ArmnnExamples.cpp
-+index d1526539..c10a4fc0 100644
-+--- a/tests/ArmnnExamples/ArmnnExamples.cpp
-++++ b/tests/ArmnnExamples/ArmnnExamples.cpp
-+@@ -310,7 +310,7 @@ int MainImpl(const char* modelPath,
-+     params.m_OutputBindings = { outputName };
-+     //params.m_EnableProfiling = enableProfiling;
-+     params.m_SubgraphId = 0;
-+-    InferenceModel<TParser, TDataType> model(params, enableProfiling, runtime);
-++    InferenceModel<TParser, TDataType> model(params, enableProfiling, "", runtime);
++diff --git a/tensorflow/contrib/lite/tools/make/Makefile b/tensorflow/contrib/lite/tools/make/Makefile
++index 16012a3fb1..a5e5cb3fc7 100644
++--- a/tensorflow/contrib/lite/tools/make/Makefile
+++++ b/tensorflow/contrib/lite/tools/make/Makefile
++@@ -72,6 +72,11 @@ BENCHMARK_BINARY_NAME := benchmark_model
++ MINIMAL_SRCS := \
++ tensorflow/contrib/lite/examples/minimal/minimal.cc
 + 
-+     VideoCapture cap;
-+     int input_type = INPUT_IMAGE;
+++# label image example
+++LABELIMAGE_SRCS := \
+++tensorflow/contrib/lite/examples/label_image/bitmap_helpers.cc \
+++tensorflow/contrib/lite/examples/label_image/label_image.cc
+++
++ # What sources we want to compile, must be kept in sync with the main Bazel
++ # build files.
++ 
++@@ -108,7 +113,8 @@ $(wildcard tensorflow/contrib/lite/*/*test.cc) \
++ $(wildcard tensorflow/contrib/lite/*/*/*test.cc) \
++ $(wildcard tensorflow/contrib/lite/*/*/*/*test.cc) \
++ $(wildcard tensorflow/contrib/lite/kernels/test_util.cc) \
++-$(MINIMAL_SRCS)
+++$(MINIMAL_SRCS) \
+++$(LABELIMAGE_SRCS)
++ ifeq ($(BUILD_TYPE),micro)
++ CORE_CC_EXCLUDE_SRCS += \
++ tensorflow/contrib/lite/mmap_allocation.cc \
++@@ -135,6 +141,7 @@ include $(wildcard $(MAKEFILE_DIR)/targets/*_makefile.inc)
++ 
++ ALL_SRCS := \
++ 	$(MINIMAL_SRCS) \
+++	$(LABELIMAGE_SRCS) \
++ 	$(PROFILER_SRCS) \
++ 	$(PROFILER_SUMMARY_SRCS) \
++ 	$(TF_LITE_CC_SRCS) \
++@@ -150,6 +157,7 @@ LIB_PATH := $(LIBDIR)$(LIB_NAME)
++ BENCHMARK_LIB := $(LIBDIR)$(BENCHMARK_LIB_NAME)
++ BENCHMARK_BINARY := $(BINDIR)$(BENCHMARK_BINARY_NAME)
++ MINIMAL_BINARY := $(BINDIR)minimal
+++LABELIMAGE_BINARY := $(BINDIR)label_image
++ 
++ CXX := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}g++
++ CC := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}gcc
++@@ -158,6 +166,9 @@ AR := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}ar
++ MINIMAL_OBJS := $(addprefix $(OBJDIR), \
++ $(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(MINIMAL_SRCS))))
++ 
+++LABELIMAGE_OBJS := $(addprefix $(OBJDIR), \
+++$(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(LABELIMAGE_SRCS))))
+++
++ LIB_OBJS := $(addprefix $(OBJDIR), \
++ $(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(TF_LITE_CC_SRCS))))
++ 
++@@ -174,7 +185,7 @@ $(OBJDIR)%.o: %.c
++ 	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
++ 
++ # The target that's compiled if there's no command-line arguments.
++-all: $(LIB_PATH)  $(MINIMAL_BINARY) $(BENCHMARK_BINARY)
+++all: $(LIB_PATH)  $(MINIMAL_BINARY) $(LABELIMAGE_BINARY) $(BENCHMARK_BINARY)
++ 
++ # The target that's compiled for micro-controllers
++ micro: $(LIB_PATH)
++@@ -198,6 +209,12 @@ $(BENCHMARK_LIB) : $(LIB_PATH) $(BENCHMARK_OBJS)
++ 	@mkdir -p $(dir $@)
++ 	$(AR) $(ARFLAGS) $(BENCHMARK_LIB) $(LIB_OBJS) $(BENCHMARK_OBJS)
++ 
+++$(LABELIMAGE_BINARY): $(LABELIMAGE_OBJS) $(LIB_PATH)
+++	@mkdir -p $(dir $@)
+++	$(CXX) $(CXXFLAGS) $(INCLUDES) \
+++	-o $(LABELIMAGE_BINARY) $(LABELIMAGE_OBJS) \
+++	$(LIBFLAGS) $(LIB_PATH) $(LDFLAGS) $(LIBS)
+++
++ benchmark_lib: $(BENCHMARK_LIB)
++ 
++ $(BENCHMARK_BINARY) : $(BENCHMARK_LIB)
 +-- 
 +2.17.1
 +
-diff --git a/meta-arago-extras/recipes-support/armnn/armnn_git.bb b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
-index 77921218..e8d16944 100644
---- a/meta-arago-extras/recipes-support/armnn/armnn_git.bb
-+++ b/meta-arago-extras/recipes-support/armnn/armnn_git.bb
-@@ -5,12 +5,12 @@ LICENSE = "MIT & Apache-2.0"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=3e14a924c16f7d828b8335a59da64074 \
-                     file://${COMMON_LICENSE_DIR}/Apache-2.0;md5=89aea4e17d99a7cacdbeed46a0096b10"
+diff --git a/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb b/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
+index 38df078..205977c 100644
+--- a/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
++++ b/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
+@@ -30,12 +30,17 @@ SRC_URI = "git://github.com/tensorflow/tensorflow.git;branch=r1.12;protocol=http
+     https://mirror.bazel.build/github.com/google/farmhash/archive/816a4ae622e964763ca0862d9dbd19324a1eaf45.tar.gz;md5sum=${MD5SUM_FARMHASH};sha256sum=${SHA256SUM_FARMHASH} \
+     https://github.com/google/flatbuffers/archive/1f5eae5d6a135ff6811724f6c57f911d1f46bb15.tar.gz;md5sum=${MD5SUM_FLATBUFFER};sha256sum=${SHA256SUM_FLATBUFFER} \
+     https://mirror.bazel.build/www.kurims.kyoto-u.ac.jp/~ooura/fft.tgz;md5sum=${MD5SUM_FFT};sha256sum=${SHA256SUM_FFT} \
++    http://download.tensorflow.org/models/mobilenet_v1_2018_08_02/mobilenet_v1_1.0_224_quant.tgz;name=mobilenet_v1_quant;subdir=${WORKDIR}/model;destsuffix=model \
+     file://apply-modification-for-tflite-1.12-to-eigen.patch \
++    file://0001-Makefile-add-label_image-example.patch \
+     file://tensorflow-lite.pc.in"
  
--PR = "r0"
--PV = "19.05"
-+PR = "r1"
-+PV = "19.08"
- PV_MAJOR = "${@d.getVar('PV',d,1).split('.')[0]}"
++SRC_URI[mobilenet_v1_quant.md5sum] = "36af340c00e60291931cb30ce32d4e86"
++SRC_URI[mobilenet_v1_quant.sha256sum] = "d32432d28673a936b2d6281ab0600c71cf7226dfe4cdcef3012555f691744166"
++
+ SRCREV = "5b900cfe4b3b848f577315a0dde09a729f770e95"
  
--BRANCH = "branches/armnn_19_05"
--SRCREV = "a723ec5d2ac35948efb5dfd0c121a1a89cb977b7"
-+BRANCH = "branches/armnn_19_08"
-+SRCREV = "26052fcf2f8c91f3479c9484354e88e8944d004d"
+-PR = "r2"
++PR = "r3"
  
- SRCREV_tidl-api = "7e9a3942ec38efd64d45e34c10cba2f2938f5618"
- BRANCH_tidl-api = "master"
-@@ -30,8 +30,8 @@ SRC_URI = " \
-     file://0005-add-armnn-mobilenet-test-example.patch \
-     file://0006-armnn-mobilenet-test-example.patch \
-     file://0007-enable-use-of-arm-compute-shared-library.patch \
--    file://0008-Avoid-stringop-overflow-warning-resulting-in-compila.patch \
-     file://0009-command-line-options-for-video-port-selection.patch \
-+    file://0010-armnnexamples-update-for-19.08-modifications.patch \
-     http://download.tensorflow.org/models/mobilenet_v1_2018_02_22/mobilenet_v1_1.0_224.tgz;name=mobilenet;subdir=${WORKDIR}/tfmodel;destsuffix=tfmodel \
-     git://git.ti.com/tidl/tidl-api.git;name=tidl-api;branch=${BRANCH_tidl-api};subdir=${WORKDIR}/tidl-api;destsuffix=tidl-api \
- "
+ S = "${WORKDIR}/git"
+ 
+@@ -118,12 +123,16 @@ do_install() {
+     install -d ${D}${datadir}/${PN}-${PV}/examples
+     install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/minimal ${D}${datadir}/${PN}-${PV}/examples
+     install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/benchmark_model ${D}${datadir}/${PN}-${PV}/examples
++    install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/label_image ${D}${datadir}/${PN}-${PV}/examples
++    install -m 0644 ${S}/tensorflow/contrib/lite/examples/label_image/testdata/grace_hopper.bmp ${D}${datadir}/${PN}-${PV}/examples
++    install -m 0644 ${S}/tensorflow/contrib/lite/java/ovic/src/testdata/labels.txt ${D}${datadir}/${PN}-${PV}/examples
++    install -m 0644 ${WORKDIR}/model/mobilenet_v1_1.0_224_quant.tflite ${D}${datadir}/${PN}-${PV}/examples
+ }
+ 
+ PACKAGES += "${PN}-examples"
+ 
+-FILES_${PN}-examples = " \
+-    ${datadir}/${PN}-${PV}/examples/minimal \
+-    ${datadir}/${PN}-${PV}/examples/benchmark_model \ "
++FILES_${PN}-examples = "${datadir}/${PN}-${PV}/examples"
++
++INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+ 
+ ALLOW_EMPTY_${PN} = "1"
 -- 
 2.17.1
 
