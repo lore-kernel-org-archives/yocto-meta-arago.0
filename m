@@ -1,45 +1,42 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 2392252960
+Return-Path: <xuj@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id CFE1B52970
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Sep 2019 12:58:45 +0000 (UTC)
+	Wed,  4 Sep 2019 14:47:47 +0000 (UTC)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x84CvfJ3029221
-	for <meta-arago@arago-project.org>; Wed, 4 Sep 2019 07:57:41 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x84Eki51118513
+	for <meta-arago@arago-project.org>; Wed, 4 Sep 2019 09:46:44 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1567601861;
-	bh=hLPCEXNqqXbs6tbAJIi7JcA0J9rQyMseuwBU2F5Uolg=;
-	h=Subject:From:To:References:Date:In-Reply-To;
-	b=IT/Ka0B5hP3z9wTTe/9ZnEDv57IR0nPUJgLxAbPOYn0mMHBFeMl6tgnEtuLizQrmT
-	k3o21CpvsOhNNI3O06PJvTPwAPu6Ic4tsmulOgfmJyc+0/Dd85NRK7gH0uLhjguBbV
-	NnznQb2HJTuB6JrtsB0WwPgQpiiAjTJcqXHDsdUA=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x84Cvffx011945
+	s=ti-com-17Q1; t=1567608404;
+	bh=afYU2IGp3QF5c//dUwS781A1yirRluCSV6g3LMoUETs=;
+	h=From:To:CC:Subject:Date;
+	b=rAkYycnkZz0ra5EDdXwOV3d/fNP9LIHhruu0P7wokvEnHd4/h7ojnOzMPzVTxgtJK
+	APTJ/kYif06paVy5szpK+pvUXFYlhWQKuUGiQghcI0cJ33eakgtFgb6Xk4KjE4EFiM
+	BXJLB2SPeqMzvhng07wLG9k2Vqq1w6cTye5R3+S0=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x84Ekihn031522
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 4 Sep 2019 07:57:41 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Wed, 4 Sep 2019 09:46:44 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 4 Sep 2019 07:57:40 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 4 Sep 2019 09:46:43 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 4 Sep 2019 07:57:40 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x84CvdHI051137;
-	Wed, 4 Sep 2019 07:57:40 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: Denys Dmytriyenko <denys@ti.com>, <meta-arago@arago-project.org>
-References: <1567542009-38879-1-git-send-email-denys@ti.com>
-	<afe884c5-d483-0c75-5ed3-d2fe05564a41@ti.com>
-Message-ID: <4cb62567-aed3-f0d3-6967-bd820d241c90@ti.com>
-Date: Wed, 4 Sep 2019 08:57:39 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	Frontend Transport; Wed, 4 Sep 2019 09:46:43 -0500
+Received: from UDA0869574A.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x84Ekh9w100881;
+	Wed, 4 Sep 2019 09:46:43 -0500
+From: Jianzhong Xu <xuj@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 4 Sep 2019 10:46:14 -0400
+Message-ID: <20190904144614.31641-1-xuj@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <afe884c5-d483-0c75-5ed3-d2fe05564a41@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [thud/master][PATCH] rng-tools: remove duplicate initscript and wait for module load
+Subject: [thud/master] [PATCH] tidl-utils: bump SRCREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,81 +49,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Sep 2019 12:58:45 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-List-Received-Date: Wed, 04 Sep 2019 14:47:48 -0000
+Content-Type: text/plain
 
-I now tested this in a build. It fails when creating the rootfs. The 
-update-rc.d pre/post inst is still defined in the package, so package 
-configuration fails because the initscript is not found.
+* bug fixes and config files update in tidl import tool
 
-This can be resolved by setting INHIBIT_UPDATERCD_BBCLASS in the 
-rng-tools bbappend.
+Signed-off-by: Jianzhong Xu <xuj@ti.com>
+---
+ meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
+diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
+index 6fdeec48..64667e59 100644
+--- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
++++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
+@@ -1,6 +1,4 @@
+ SRC_URI = "git://git.ti.com/tidl/tidl-utils.git;protocol=git;branch=master"
+-SRCREV = "b2466e02f99d85d8afcbc93edc612da5cc9345de"
+-
++SRCREV = "23d158e4f18a3391e0d836bb3bd9a7c7c7ada7ee"
+ PV = "01.01.02.00"
+-PR = "r0"
+-
++PR = "r1"
+-- 
+2.17.1
 
-- Jake
-
-On 9/3/2019 5:22 PM, Jacob Stiffler wrote:
-> I manually made these changes to an existing filesystem, rebooted a 
-> few times, and observed the service status. The service was up every 
-> time and there was no delay in the service terminating when rebooting.
->
-> Tested-by: Jacob Stiffler <j-stiffler@ti.com>
->
-> On 9/3/2019 4:20 PM, Denys Dmytriyenko wrote:
->> Since Arago still has a mix of SysVinit iniscripts and systemd unit 
->> files, it
->> enables both of the DISTRO_FEATURES, resulting in some duplication. 
->> It appears
->> that rngd currently has a problem handling signals when forked in 
->> daemon mode.
->> Hence, drop SysVinit initscript in favor of systemd service, as the 
->> latter one
->> starts rngd in foreground. Also, add udev dependency rule on omap_rng 
->> module.
->>
->> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
->> ---
->>   .../recipes-support/rng-tools/rng-tools/rngd.rules          | 1 +
->>   .../recipes-support/rng-tools/rng-tools_%.bbappend          | 13 
->> +++++++++++++
->>   2 files changed, 14 insertions(+)
->>   create mode 100644 
->> meta-arago-distro/recipes-support/rng-tools/rng-tools/rngd.rules
->>   create mode 100644 
->> meta-arago-distro/recipes-support/rng-tools/rng-tools_%.bbappend
->>
->> diff --git 
->> a/meta-arago-distro/recipes-support/rng-tools/rng-tools/rngd.rules 
->> b/meta-arago-distro/recipes-support/rng-tools/rng-tools/rngd.rules
->> new file mode 100644
->> index 0000000..a21c99b
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-support/rng-tools/rng-tools/rngd.rules
->> @@ -0,0 +1 @@
->> +ACTION=="add", SUBSYSTEM=="module", KERNEL=="omap_rng", 
->> TAG+="systemd", ENV{SYSTEMD_WANTS}+="rngd.service"
->> diff --git 
->> a/meta-arago-distro/recipes-support/rng-tools/rng-tools_%.bbappend 
->> b/meta-arago-distro/recipes-support/rng-tools/rng-tools_%.bbappend
->> new file mode 100644
->> index 0000000..df84536
->> --- /dev/null
->> +++ b/meta-arago-distro/recipes-support/rng-tools/rng-tools_%.bbappend
->> @@ -0,0 +1,13 @@
->> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->> +
->> +PR_append = ".arago0"
->> +
->> +SRC_URI += "file://rngd.rules"
->> +
->> +do_install_append() {
->> +    # remove duplicate initscript
->> +    rm -f ${D}${sysconfdir}/init.d/rng-tools
->> +
->> +    install -d ${D}${sysconfdir}/udev/rules.d/
->> +    install -m0644 ${WORKDIR}/rngd.rules 
->> ${D}${sysconfdir}/udev/rules.d/
->> +}
 
