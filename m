@@ -1,30 +1,45 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id CD6BE52960
+Return-Path: <angelabaker@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 40B7A52960
 	for <meta-arago@arago-project.org>;
-	Wed,  4 Sep 2019 17:26:46 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 77A9E40BE5;
-	Wed,  4 Sep 2019 17:25:42 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id n-894pAiDw5w; Wed,  4 Sep 2019 17:25:42 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4BAE940A9E;
-	Wed,  4 Sep 2019 17:25:41 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 81176173A9B;
-	Wed,  4 Sep 2019 13:25:40 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Wed,  4 Sep 2019 13:25:40 -0400
-Message-Id: <1567617940-18452-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH v2] rng-tools: remove duplicate initscript and wait for module load
+	Wed,  4 Sep 2019 18:21:26 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x84IKMvI076795
+	for <meta-arago@arago-project.org>; Wed, 4 Sep 2019 13:20:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1567621222;
+	bh=ZC+oC4QIZ6IztI995CIVBpe7yjLX6DdGS0u90ZA8KpY=;
+	h=From:To:CC:Subject:Date;
+	b=fOMCa37o5KL6+VATT3w2ifsOh+Huw//xD2d181jpdCwcaroDb2bjz+u4aKzVdZKD4
+	6z1AeBpdIb4ELO5hhmU0eg6tidO0FBhc+CWac2oNghwbPo/PTB2KqqJmufzq2FgdjW
+	wfmlscoe8qpxZY8HnPTMVuujZPCGntL/d1xGTcN4=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x84IKM4a045000
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Wed, 4 Sep 2019 13:20:22 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Wed, 4 Sep 2019 13:20:22 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Wed, 4 Sep 2019 13:20:21 -0500
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
+	[128.247.22.53])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x84IKLHJ068697;
+	Wed, 4 Sep 2019 13:20:21 -0500
+Received: from uda0866189.dhcp.ti.com (uda0866189.dhcp.ti.com [128.247.77.48])
+	by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id
+	x84IKLZ16237; Wed, 4 Sep 2019 13:20:21 -0500 (CDT)
+From: Angela Stegmaier <angelabaker@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 4 Sep 2019 13:19:47 -0500
+Message-ID: <1567621187-12852-1-git-send-email-angelabaker@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [thud][PATCH] gstreamer1.0*-good: Add YUV422M support for v4l2 plugin
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,53 +52,104 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Sep 2019 17:26:49 -0000
+X-List-Received-Date: Wed, 04 Sep 2019 18:21:26 -0000
+Content-Type: text/plain
 
-Since Arago still has a mix of SysVinit iniscripts and systemd unit files, it
-enables both of the DISTRO_FEATURES, resulting in some duplication. It appears
-that rngd currently has a problem handling signals when forked in daemon mode.
-Hence, drop SysVinit initscript in favor of systemd service, as the latter one
-starts rngd in foreground. Also, add udev dependency rule on omap_rng module.
+The v4l2 decoder can return YUV422M decoded output. This
+support was missing in the v4l2plugin, however. This patch
+adds the missing support.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Angela Stegmaier <angelabaker@ti.com>
 ---
-v2 - since dropping initscript, disable corresponding update-rc.d processing
+ ...Update-formats-table-to-include-YUV422-mu.patch | 61 ++++++++++++++++++++++
+ .../gstreamer1.0-plugins-good_1.14.4.bbappend      |  3 +-
+ 2 files changed, 63 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2object-Update-formats-table-to-include-YUV422-mu.patch
 
- .../recipes-support/rng-tools/rng-tools/rngd.rules        |  1 +
- .../recipes-support/rng-tools/rng-tools_%.bbappend        | 15 +++++++++++++++
- 2 files changed, 16 insertions(+)
- create mode 100644 meta-arago-distro/recipes-support/rng-tools/rng-tools/rngd.rules
- create mode 100644 meta-arago-distro/recipes-support/rng-tools/rng-tools_%.bbappend
-
-diff --git a/meta-arago-distro/recipes-support/rng-tools/rng-tools/rngd.rules b/meta-arago-distro/recipes-support/rng-tools/rng-tools/rngd.rules
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2object-Update-formats-table-to-include-YUV422-mu.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2object-Update-formats-table-to-include-YUV422-mu.patch
 new file mode 100644
-index 0000000..a21c99b
+index 0000000..c7f7a6f
 --- /dev/null
-+++ b/meta-arago-distro/recipes-support/rng-tools/rng-tools/rngd.rules
-@@ -0,0 +1 @@
-+ACTION=="add", SUBSYSTEM=="module", KERNEL=="omap_rng", TAG+="systemd", ENV{SYSTEMD_WANTS}+="rngd.service"
-diff --git a/meta-arago-distro/recipes-support/rng-tools/rng-tools_%.bbappend b/meta-arago-distro/recipes-support/rng-tools/rng-tools_%.bbappend
-new file mode 100644
-index 0000000..2a7810f
---- /dev/null
-+++ b/meta-arago-distro/recipes-support/rng-tools/rng-tools_%.bbappend
-@@ -0,0 +1,15 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2object-Update-formats-table-to-include-YUV422-mu.patch
+@@ -0,0 +1,61 @@
++From 57370dbe73c970077ad028fa1008cb6303445c21 Mon Sep 17 00:00:00 2001
++From: Angela Stegmaier <angelabaker@ti.com>
++Date: Tue, 20 Aug 2019 15:59:02 -0500
++Subject: [PATCH] v4l2object: Update formats table to include YUV422
++ multiplanar
 +
-+PR_append = ".arago0"
++YUV422 multiplanar is missing from the table. Add the support
++for this format.
 +
-+SRC_URI += "file://rngd.rules"
++Signed-off-by: Angela Stegmaier <angelabaker@ti.com>
++---
++ sys/v4l2/gstv4l2object.c | 5 +++++
++ 1 file changed, 5 insertions(+)
 +
-+do_install_append() {
-+	# remove duplicate initscript
-+	rm -f ${D}${sysconfdir}/init.d/rng-tools
++diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
++index c32608c..87d262f 100644
++--- a/sys/v4l2/gstv4l2object.c
+++++ b/sys/v4l2/gstv4l2object.c
++@@ -129,6 +129,7 @@ static const GstV4L2FormatDesc gst_v4l2_formats[] = {
++   {V4L2_PIX_FMT_UYVY, TRUE, GST_V4L2_RAW},
++   {V4L2_PIX_FMT_VYUY, TRUE, GST_V4L2_RAW},
++   {V4L2_PIX_FMT_YUV422P, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_YUV422M, TRUE, GST_V4L2_RAW},
++   {V4L2_PIX_FMT_YUV411P, TRUE, GST_V4L2_RAW},
++   {V4L2_PIX_FMT_Y41P, TRUE, GST_V4L2_RAW},
++   {V4L2_PIX_FMT_YUV444, TRUE, GST_V4L2_RAW},
++@@ -1088,6 +1089,7 @@ gst_v4l2_object_format_get_rank (const struct v4l2_fmtdesc *fmt)
++       rank = YUV_BASE_RANK + 4;
++       break;
++     case V4L2_PIX_FMT_YUV422P: /* Y42B, 16 bits per pixel */
+++    case V4L2_PIX_FMT_YUV422M:
++       rank = YUV_BASE_RANK + 8;
++       break;
++ 
++@@ -1343,6 +1345,7 @@ gst_v4l2_object_v4l2fourcc_to_video_format (guint32 fourcc)
++       format = GST_VIDEO_FORMAT_Y41B;
++       break;
++     case V4L2_PIX_FMT_YUV422P:
+++    case V4L2_PIX_FMT_YUV422M:
++       format = GST_VIDEO_FORMAT_Y42B;
++       break;
++     case V4L2_PIX_FMT_YVYU:
++@@ -1484,6 +1487,7 @@ gst_v4l2_object_v4l2fourcc_to_bare_struct (guint32 fourcc)
++     case V4L2_PIX_FMT_YVU420:
++     case V4L2_PIX_FMT_UYVY:
++     case V4L2_PIX_FMT_YUV422P:
+++    case V4L2_PIX_FMT_YUV422M:
++     case V4L2_PIX_FMT_YVYU:
++     case V4L2_PIX_FMT_YUV411P:{
++       GstVideoFormat format;
++@@ -1714,6 +1718,7 @@ gst_v4l2_object_get_caps_info (GstV4l2Object * v4l2object, GstCaps * caps,
++         break;
++       case GST_VIDEO_FORMAT_Y42B:
++         fourcc = V4L2_PIX_FMT_YUV422P;
+++        fourcc_nc = V4L2_PIX_FMT_YUV422M;
++         break;
++       case GST_VIDEO_FORMAT_NV12:
++         fourcc = V4L2_PIX_FMT_NV12;
++-- 
++1.9.1
 +
-+	install -d ${D}${sysconfdir}/udev/rules.d/
-+	install -m0644 ${WORKDIR}/rngd.rules ${D}${sysconfdir}/udev/rules.d/
-+}
-+
-+INHIBIT_UPDATERCD_BBCLASS = "1"
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.14.4.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.14.4.bbappend
+index e262424..98b0123 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.14.4.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.14.4.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = ".arago1"
++PR_append = ".arago2"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+@@ -7,4 +7,5 @@ SRC_URI += " \
+       file://0002-v4l2src-Use-generic-dmabuf-import-in-v4l2src.patch \
+       file://0001-v4l2-Sync-kernel-header-with-linuxtv-tree.patch \
+       file://0002-v4l2videodec-Add-HEVC-decoder-support.patch \
++      file://0001-v4l2object-Update-formats-table-to-include-YUV422-mu.patch \
+       "
 -- 
-2.7.4
+1.9.1
 
 
