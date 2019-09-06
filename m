@@ -1,41 +1,41 @@
 Return-Path: <nikhil.nd@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id A02C9520DE
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 33B0E520DE
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Sep 2019 09:05:04 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8694080090780
-	for <meta-arago@arago-project.org>; Fri, 6 Sep 2019 04:04:00 -0500
+	Fri,  6 Sep 2019 09:09:54 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8698nV6078552
+	for <meta-arago@arago-project.org>; Fri, 6 Sep 2019 04:08:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1567760640;
-	bh=cqzX6kGIpHCFzJmHsCblp7OO6LLOBidMwYCVH1xV94k=;
+	s=ti-com-17Q1; t=1567760929;
+	bh=1imnL7BweavEHDBJq7FSVNzC73AcGQkDNTjUl3HNYx8=;
 	h=From:To:CC:Subject:Date;
-	b=gf4WIQrZWZLdweNiRHuUcrUWVjyOBjLlKlhz+AAcmQ/0jg/Fg8Lt1a89WKP9xCQF+
-	vlwbWNpjVUF6sRY656QgmGy7GEWAvsJ8slT5qRe3or+1IAmoEn4UuqOKAjlr+rAk0g
-	wtYddXxfQtjaro/FZXVdKvpxr6SGyJGHK5i3TIm0=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x86940xd064127
+	b=ZoAZgEVzV0nYXhKmAq8JggZuNa3gRkBhpMhnqXJBpMIPLH/5CxPV6XG9eM2ZNsZJV
+	MjRmmBxUgvf7WM8XeVwjQ9yX4qIiVv0DcLUb6XEhnNE5AR6dQFRHXAVT6b76r7WIi/
+	REdjR20TYHDh8MuSSFgRMSEbekmwm8PSFCFIr65E=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8698nZi064259
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 6 Sep 2019 04:04:00 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 6 Sep 2019 04:08:49 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 6 Sep 2019 04:04:00 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 6 Sep 2019 04:08:49 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 6 Sep 2019 04:04:00 -0500
+	Frontend Transport; Fri, 6 Sep 2019 04:08:49 -0500
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8693vVA080117; 
-	Fri, 6 Sep 2019 04:03:58 -0500
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8698lm4002594; 
+	Fri, 6 Sep 2019 04:08:48 -0500
 From: Nikhil Devshatwar <nikhil.nd@ti.com>
-To: <meta-arago@arago-project.org>, <denys@ti.com>, <j-stiffler@ti.com>
-Date: Fri, 6 Sep 2019 14:33:55 +0530
-Message-ID: <1567760635-26943-1-git-send-email-nikhil.nd@ti.com>
+To: <meta-arago@arago-project.org>, <denys@ti.com>
+Date: Fri, 6 Sep 2019 14:38:46 +0530
+Message-ID: <1567760926-52760-1-git-send-email-nikhil.nd@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [ [thud/master] PATCH v1] packagegroup: Add ti-sci-src in addons-sdk-host
+Subject: [ [thud/master] PATCH v1] recipes-devtools: glsdk-util-scripts: update for j7-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,45 +48,52 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Sep 2019 09:05:05 -0000
+X-List-Received-Date: Fri, 06 Sep 2019 09:09:54 -0000
 Content-Type: text/plain
 
-packagegroup-arago-tisdk-addons-sdk-host is for adding sources for components
-packagegroup-arago-tisdk-amsdk-sdk-host is for adding scripts
-
-Move the ti-sci-src packge from amsdk-sdk-host to addons-sdk-host
+update SRCREV and compatible machine for j7-evm
+Install scripts with execute permissions
+Add bash as RDEPENDS
 
 Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb           | 1 +
- .../packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb            | 2 +-
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ .../recipes-devtools/util-scripts/glsdk-util-scripts.bb      | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index ec16713..fbdc735 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -38,6 +38,7 @@ UTILS_append_k2g = " \
+diff --git a/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb b/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb
+index a0ca56a..abe9ad9 100644
+--- a/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb
++++ b/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb
+@@ -3,12 +3,13 @@ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://debug/filter-dmesg-rproc.sh;md5=ce264e7cbc036fd2f37073947c2f0800"
+ PR = "r1"
  
- UTILS_append_k3 = " \
-     jailhouse-src \
-+    ti-sci-fw-src \
- "
+-COMPATIBLE_MACHINE = "omap-a15"
++COMPATIBLE_MACHINE = "omap-a15|j7-evm"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
++RDEPENDS_${PN} += "bash"
  
- UTILS_append_am65xx = " \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-index b73c63b..ebe129b 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-@@ -21,7 +21,7 @@ BOOT_MONITOR_keystone = "boot-monitor-src"
- EXTRA_FILES = ""
- EXTRA_FILES_ti43x = "tisdk-uenv"
- EXTRA_FILES_omap-a15 = "tisdk-readme tisdk-uenv"
--EXTRA_FILES_k3 = "tisdk-readme tisdk-uenv ti-sci-fw-src"
-+EXTRA_FILES_k3 = "tisdk-readme tisdk-uenv"
+ SRC_URI = "git://git.ti.com/glsdk/util-scripts.git"
  
- RDEPENDS_${PN} = "\
-     ti-tisdk-setup \
+-SRCREV = "ecbb9cd13e1728686a82e87e5c1b325c0e806202"
++SRCREV = "df50ca1592cae97ad0c7285686d602926b4f7305"
+ 
+ S = "${WORKDIR}/git"
+ 
+@@ -20,8 +21,11 @@ do_install() {
+     install -d ${D}${datadir}/ti/util-scripts
+     install -d ${D}${datadir}/ti/util-scripts/debug
+     install -d ${D}${datadir}/ti/util-scripts/perf
+-    install -m 0644 ${S}/debug/* ${D}${datadir}/ti/util-scripts/debug/.
+-    install -m 0644 ${S}/perf/* ${D}${datadir}/ti/util-scripts/perf/.
++    install -d ${D}${datadir}/ti/util-scripts/demo
++    install -m 755 ${S}/debug/* ${D}${datadir}/ti/util-scripts/debug/.
++    install -m 755 ${S}/perf/* ${D}${datadir}/ti/util-scripts/perf/.
++    install -m 755 ${S}/demo/* ${D}${datadir}/ti/util-scripts/demo/.
++
+ }
+ 
+ FILES_${PN} += "${datadir}/ti/util-scripts/*"
 -- 
 1.9.1
 
