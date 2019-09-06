@@ -1,30 +1,40 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 08D2A520DE
+Return-Path: <nikhil.nd@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id ACD91520DE
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Sep 2019 06:13:27 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id BCC6340BDE;
-	Fri,  6 Sep 2019 06:12:23 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 1EJ1j_o1IcLO; Fri,  6 Sep 2019 06:12:23 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9199F40A2D;
-	Fri,  6 Sep 2019 06:12:22 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id B62BD173E86;
-	Fri,  6 Sep 2019 02:12:21 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri,  6 Sep 2019 02:12:21 -0400
-Message-Id: <1567750341-2537-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH] external-arm-toolchain, linux-libc-headers: update kernel headers to ti2019.03-rc4
+	Fri,  6 Sep 2019 09:04:12 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x86938iD091192
+	for <meta-arago@arago-project.org>; Fri, 6 Sep 2019 04:03:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1567760588;
+	bh=UN1pul2cnOHOFrtqsNRFQMDAZJ7X/1sXjpOwIdiolwE=;
+	h=From:To:CC:Subject:Date;
+	b=l4jRuYGofSAUIao7Vy39X/utZBWnAnC2yV/T3fbkv1Ms7/GvrzhhtA2/U/hez2lay
+	c4RYLLt/8K1Ngs+MWo6FmPBj+tXsxQHz6Qw0ca4jrJz5Q1WOesIAmHiReZtdIeMZ9i
+	SR3gmhsuc7TVVridQ+3+2SxDXpzCoRxwKIkW1NtM=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x86938vO008789
+	for <meta-arago@arago-project.org>; Fri, 6 Sep 2019 04:03:08 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Fri, 6 Sep 2019 04:03:08 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Fri, 6 Sep 2019 04:03:08 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x86935Vn095402; 
+	Fri, 6 Sep 2019 04:03:06 -0500
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
+To: <meta-arago@arago-project.org>, <denys@ti.com>
+Date: Fri, 6 Sep 2019 14:33:04 +0530
+Message-ID: <1567760584-24235-1-git-send-email-nikhil.nd@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [ [thud/master] PATCH v1] recipes-devtools: libion: New recipe for ion library
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,48 +47,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Sep 2019 06:13:28 -0000
+X-List-Received-Date: Fri, 06 Sep 2019 09:04:13 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
-
-This enables latest needed defines, such as PCITEST_CLEAR_IRQ, etc.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
 ---
- meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend   | 2 +-
- .../recipes-kernel/linux-libc-headers/linux-libc-headers_4.19.bb      | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ meta-arago-extras/recipes-devtools/ion/libion_git.bb | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/ion/libion_git.bb
 
-diff --git a/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend
-index 46c44cb..635b13d 100644
---- a/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend
-+++ b/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend
-@@ -4,7 +4,7 @@
- # duplication of code from corresponding recipe.
- 
- BRANCH = "ti-linux-4.19.y"
--SRCREV = "8de817772462078a064b70d368eeae3b92a31439"
-+SRCREV = "50ceb3c6e7f2d5f54d66d4999e79d3c4e09796df"
- 
- KERNEL_GIT_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git"
- KERNEL_GIT_PROTOCOL = "git"
-diff --git a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.19.bb b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.19.bb
-index 4239437..d62fc06 100644
---- a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.19.bb
-+++ b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_4.19.bb
-@@ -1,9 +1,9 @@
- require recipes-kernel/linux-libc-headers/linux-libc-headers.inc
- 
--PR_append = ".arago0"
-+PR_append = ".arago1"
- 
- BRANCH = "ti-linux-4.19.y"
--SRCREV = "8de817772462078a064b70d368eeae3b92a31439"
-+SRCREV = "50ceb3c6e7f2d5f54d66d4999e79d3c4e09796df"
- 
- KERNEL_GIT_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git"
- KERNEL_GIT_PROTOCOL = "git"
+diff --git a/meta-arago-extras/recipes-devtools/ion/libion_git.bb b/meta-arago-extras/recipes-devtools/ion/libion_git.bb
+new file mode 100644
+index 0000000..7c93ed3
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/ion/libion_git.bb
+@@ -0,0 +1,14 @@
++SUMMARY = "ION Userspace Memory Allocator Library"
++HOMEPAGE = "https://github.com/glneo/libion"
++LICENSE = "Apache-2.0"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327"
++
++PV = "1.0.0"
++
++BRANCH = "master"
++SRC_URI = "git://github.com/glneo/libion.git;protocol=git;branch=${BRANCH}"
++SRCREV = "11dad7977ec3ecba37c013da7ec0408c01413000"
++
++S = "${WORKDIR}/git"
++
++inherit cmake pkgconfig
 -- 
-2.7.4
+1.9.1
 
 
