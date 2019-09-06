@@ -1,44 +1,41 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 7EE58520DE
+Return-Path: <j-stiffler@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 9A0CB520DE
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Sep 2019 13:16:44 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x86DFe5X018174
-	for <meta-arago@arago-project.org>; Fri, 6 Sep 2019 08:15:40 -0500
+	Fri,  6 Sep 2019 17:51:18 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x86HoEeG130842
+	for <meta-arago@arago-project.org>; Fri, 6 Sep 2019 12:50:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1567775740;
-	bh=kMyX6GkfVLJpo9Xz8qgfkNwHO+Fyqf5/5UF7fWFRNxU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=XNqlysjZ+bWLkjzdHKPda8FMKMrp2LzyxUwDrpqfOourZ8qeXx6A/gUStv1zwkkV7
-	od8XT4vtuyJjtBgGeiQ+NdLkQzz7+SPBZeIxvpnLKV/2SYvx1RLAUynR1Mkv9zAB4Q
-	SzSrx4n1Gq7rJFrDpEBh9OaqwG2UHtI8W5aUwaLI=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x86DFewx113484
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 6 Sep 2019 08:15:40 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1567792214;
+	bh=+StQB/gwi/96kcPWV8e5OpM5m85VE81jzUPoUvbwGe0=;
+	h=From:To:CC:Subject:Date;
+	b=YIBiZhObRNPVdVUvyVyDHENMJeZi5W1qrrvxBhuf0xfEGvXfNM6qwChyScwv40SqN
+	l1w24eANQeb6NLKw73Z3vpYlCxUTQBJ+yaWADJrYa4Z7DMsqyPZtL1Sdma9MhbvL64
+	L8lp7GqkS5YnNtXJl90VMy+AYD4OQaDsi5tVgj+o=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x86HoE4P005447
+	for <meta-arago@arago-project.org>; Fri, 6 Sep 2019 12:50:14 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 6 Sep 2019 08:15:39 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 6 Sep 2019 12:50:14 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 6 Sep 2019 08:15:39 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x86DFd27028299;
-	Fri, 6 Sep 2019 08:15:39 -0500
-Date: Fri, 6 Sep 2019 09:15:39 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Nikhil Devshatwar <nikhil.nd@ti.com>
-Message-ID: <20190906131539.GC2400@beryl>
-References: <1567760635-26943-1-git-send-email-nikhil.nd@ti.com>
+	Frontend Transport; Fri, 6 Sep 2019 12:50:14 -0500
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x86HoDWH003584;
+	Fri, 6 Sep 2019 12:50:13 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 6 Sep 2019 13:32:11 -0400
+Message-ID: <1567791131-25912-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <1567760635-26943-1-git-send-email-nikhil.nd@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [ [thud/master] PATCH v1] packagegroup: Add ti-sci-src in addons-sdk-host
+Subject: [master/thud][PATCH] ti-tisdk-makefile: sysfw-image: extend support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,52 +48,74 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Sep 2019 13:16:44 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 06 Sep 2019 17:51:19 -0000
+Content-Type: text/plain
 
-Please rephrase the commit log - state you are moving (not adding) for 
-consistency.
+* extend support to am65xx-hs-evm and j7-evm
 
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../ti-tisdk-makefile/Makefile_sysfw-image         | 28 +++++++++++++++++++++-
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  2 +-
+ 2 files changed, 28 insertions(+), 2 deletions(-)
 
-On Fri, Sep 06, 2019 at 02:33:55PM +0530, Nikhil Devshatwar wrote:
-> packagegroup-arago-tisdk-addons-sdk-host is for adding sources for components
-> packagegroup-arago-tisdk-amsdk-sdk-host is for adding scripts
-> 
-> Move the ti-sci-src packge from amsdk-sdk-host to addons-sdk-host
-> 
-> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
-> ---
->  .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb           | 1 +
->  .../packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb            | 2 +-
->  2 files changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-> index ec16713..fbdc735 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-> @@ -38,6 +38,7 @@ UTILS_append_k2g = " \
->  
->  UTILS_append_k3 = " \
->      jailhouse-src \
-> +    ti-sci-fw-src \
->  "
->  
->  UTILS_append_am65xx = " \
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-> index b73c63b..ebe129b 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
-> @@ -21,7 +21,7 @@ BOOT_MONITOR_keystone = "boot-monitor-src"
->  EXTRA_FILES = ""
->  EXTRA_FILES_ti43x = "tisdk-uenv"
->  EXTRA_FILES_omap-a15 = "tisdk-readme tisdk-uenv"
-> -EXTRA_FILES_k3 = "tisdk-readme tisdk-uenv ti-sci-fw-src"
-> +EXTRA_FILES_k3 = "tisdk-readme tisdk-uenv"
->  
->  RDEPENDS_${PN} = "\
->      ti-tisdk-setup \
-> -- 
-> 1.9.1
-> 
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_sysfw-image b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_sysfw-image
+index f7b8787..94ee40d 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_sysfw-image
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_sysfw-image
+@@ -1,3 +1,29 @@
++# Define the following to support multple platforms
++PLATFORM_TYPE_$(PLATFORM) = gp
++PLATFORM_TYPE_am65xx-hs-evm = hs
++PLATFORM_TYPE = $(PLATFORM_TYPE_$(PLATFORM))
++
++SYSFW_CONFIG = evm
++
++SYSFW_SOC_$(PLATFORM) = NULL
++SYSFW_SOC_am65xx-evm = am65x
++SYSFW_SOC_am65xx-hs-evm = am65x
++SYSFW_SOC_j7-evm = j721e
++SYSFW_SOC = $(SYSFW_SOC_$(PLATFORM))
++
++SYSFW_PREFIX = ti-sci-firmware
++
++SYSFW_BASE = $(SYSFW_PREFIX)-$(SYSFW_SOC)-$(PLATFORM_TYPE)
++
++SYSFW_MAKEARGS_common = SYSFW_DL_URL="" SYSFW_HS_DL_URL="" SYSFW_HS_INNER_CERT_DL_URL="" \
++                        SYSFW_PATH=$(TI_SDK_PATH)/board-support/prebuilt-images/$(SYSFW_BASE).bin \
++                        SOC=$(SYSFW_SOC) CONFIG=$(SYSFW_CONFIG)
++
++SYSFW_MAKEARGS_gp = 
++SYSFW_MAKEARGS_hs = HS=1 SYSFW_HS_PATH=$(TI_SDK_PATH)/board-support/prebuilt-images/$(SYSFW_BASE)-enc.bin \
++                    SYSFW_HS_INNER_CERT_PATH=$(TI_SDK_PATH)/board-support/prebuilt-images/$(SYSFW_BASE)-cert.bin
++
++SYSFW_MAKEARGS = $(SYSFW_MAKEARGS_common) $(SYSFW_MAKEARGS_$(PLATFORM_TYPE))
+ 
+ # Depend on linux-dtbs for the dtc utility
+ sysfw-image: linux-dtbs
+@@ -5,7 +31,7 @@ sysfw-image: linux-dtbs
+ 	@echo    Building SYSFW Image
+ 	@echo =============================
+ 	@cd board-support; cd `find . -maxdepth 1 -type d -name "*system-firmware-image*"`; \
+-		make SYSFW_DL_URL="" SYSFW_PATH=$(TI_SDK_PATH)/board-support/prebuilt-images/ti-sci-firmware-am65x-gp.bin CROSS_COMPILE=$(CROSS_COMPILE_ARMV7) PATH=$(PATH):$(LINUXKERNEL_INSTALL_DIR)/scripts/dtc
++		make $(SYSFW_MAKEARGS) CROSS_COMPILE=$(CROSS_COMPILE_ARMV7) PATH=$(PATH):$(LINUXKERNEL_INSTALL_DIR)/scripts/dtc
+ 
+ sysfw-image_clean:
+ 	@echo =============================
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index 99f6523..417b28b 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -55,7 +55,7 @@ SRC_URI = "\
+     file://Makefile_jailhouse \
+ "
+ 
+-PR = "r100"
++PR = "r101"
+ 
+ MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
+                         refresh-screen \
+-- 
+2.7.4
+
 
