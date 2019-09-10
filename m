@@ -1,43 +1,45 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 5357C5299C
+Return-Path: <angelabaker@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 26216520E3
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Sep 2019 18:15:04 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8AIDx1f098036
-	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 13:13:59 -0500
+	Tue, 10 Sep 2019 21:24:52 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8ALNjfe098357
+	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 16:23:45 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1568139239;
-	bh=AEQmJp4qJUT09dsr0y2G7o6EB6KjFki9dEb44NKrwMo=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=ePfGayMEzWyqW5gS2lyx2MR+k2iT02rRBSUCYhUKT330nr29zmQ7fUy646JQHyere
-	2PVCml8xxmBZKpIwJ7d5vFwAn3460+e2khlk8QpJR0OeWZDTbinRu4BYLYLh8sFSJX
-	VxxLHWOs42PQi3MqqgQXdFX/zVnuuUarDsc7dAv8=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8AIDxVW046519
-	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 13:13:59 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1568150625;
+	bh=tl1zmUy9v4mjU9/WDA20n/7YLAognFHYjGMbIJzs/Go=;
+	h=From:To:CC:Subject:Date;
+	b=VpjWGmt/TtnpisoVSnHzHF8FxY+zKNsoo9hNvJv9+LCcmT2aNfgiwjryJNc/2sush
+	OxLRVD27gJP6+VV+0c7cpM6UDPXmHi49t1m0YUvWhjnpkHvYE+qAq9Pg7T4vigNlBm
+	wGQC1Z6v1f2qkzJY4ozCfKI4LMcpQVVMdBFDSkL4=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8ALNjZG024545
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 16:23:45 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 10 Sep 2019 13:13:58 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 10 Sep 2019 16:23:45 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 10 Sep 2019 13:13:58 -0500
-Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8AIDuo3035961
-	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 13:13:58 -0500
-From: Eric Ruei <e-ruei1@ti.com>
+	Frontend Transport; Tue, 10 Sep 2019 16:23:45 -0500
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
+	[128.247.22.53])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8ALNjnI114286;
+	Tue, 10 Sep 2019 16:23:45 -0500
+Received: from uda0866189.dhcp.ti.com (uda0866189.dhcp.ti.com [128.247.77.48])
+	by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id
+	x8ALNjZ16376; Tue, 10 Sep 2019 16:23:45 -0500 (CDT)
+From: Angela Stegmaier <angelabaker@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 10 Sep 2019 14:11:31 -0400
-Message-ID: <20190910181131.8808-10-e-ruei1@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190910181131.8808-1-e-ruei1@ti.com>
-References: <20190910181131.8808-1-e-ruei1@ti.com>
+Date: Tue, 10 Sep 2019 16:20:50 -0500
+Message-ID: <1568150450-10459-1-git-send-email-angelabaker@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH 9/9] HACK: ti-sgx-ddk-um: take AM5 binaries from mesa-egl based experimental branch
+Subject: [thud][PATCH] gstreamer1.0*-bad: waylandsink updates for k3 for drm buffers
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,46 +52,136 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Sep 2019 18:15:08 -0000
+X-List-Received-Date: Tue, 10 Sep 2019 21:24:53 -0000
 Content-Type: text/plain
 
-Take AM5 binaries from mesa-egl based experimental branch for early
-engineering integration.
+Few changes were needed to support HW decoder (v4l2videodec)
+plugin striding and creation for drm buffers.
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Angela Stegmaier <angelabaker@ti.com>
 ---
- .../ti-sgx-ddk-um_1.17.4948957.bbappend       | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
- create mode 100644 recipes-graphics/libgles/ti-sgx-ddk-um_1.17.4948957.bbappend
+ ...-re-order-buffer-creation-for-drm-buffers.patch | 47 ++++++++++++++++++++++
+ ...ink-Update-wldrm-NV12-offsets-and-strides.patch | 42 +++++++++++++++++++
+ .../gstreamer1.0-plugins-bad_1.14.4.bbappend       |  2 +
+ 3 files changed, 91 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-waylandsink-re-order-buffer-creation-for-drm-buffers.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-waylandsink-Update-wldrm-NV12-offsets-and-strides.patch
 
-diff --git a/recipes-graphics/libgles/ti-sgx-ddk-um_1.17.4948957.bbappend b/recipes-graphics/libgles/ti-sgx-ddk-um_1.17.4948957.bbappend
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-waylandsink-re-order-buffer-creation-for-drm-buffers.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-waylandsink-re-order-buffer-creation-for-drm-buffers.patch
 new file mode 100644
-index 0000000..313f9c4
+index 0000000..d242e72
 --- /dev/null
-+++ b/recipes-graphics/libgles/ti-sgx-ddk-um_1.17.4948957.bbappend
-@@ -0,0 +1,21 @@
-+PR_append = ".tisdk1"
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-waylandsink-re-order-buffer-creation-for-drm-buffers.patch
+@@ -0,0 +1,47 @@
++From aeff52394cddb80acc91ff882e90f4e170646f88 Mon Sep 17 00:00:00 2001
++From: Angela Stegmaier <angelabaker@ti.com>
++Date: Wed, 7 Aug 2019 09:32:16 -0500
++Subject: [PATCH 1/2] waylandsink: re-order buffer creation for drm buffers
 +
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++We should first try to create the wl_buffer using drm api, and
++then only if it fails, try dmabuf and shm apis. This patch fixes
++the ordering so that the redundant creation does not happen.
 +
-+BRANCH = "dev/thud/${PV}-egl-experimental"
-+SRCREV = "0f76ac03750a4f6c09290abf6b9fced696ca192d"
++Signed-off-by: Angela Stegmaier <angelabaker@ti.com>
++---
++ ext/wayland/gstwaylandsink.c | 12 +++++++-----
++ 1 file changed, 7 insertions(+), 5 deletions(-)
 +
-+RPROVIDES_${PN} += "libGLES_CM.so.1"
++diff --git a/ext/wayland/gstwaylandsink.c b/ext/wayland/gstwaylandsink.c
++index 19ecf4d..470e9d2 100644
++--- a/ext/wayland/gstwaylandsink.c
+++++ b/ext/wayland/gstwaylandsink.c
++@@ -772,7 +772,13 @@ gst_wayland_sink_show_frame (GstVideoSink * vsink, GstBuffer * buffer)
++       "display, creating it", buffer);
++ 
++   format = GST_VIDEO_INFO_FORMAT (&sink->video_info);
++-  if (gst_wl_display_check_format_for_dmabuf (sink->display, format)) {
+++
+++  if (gst_is_drm_memory (mem)) {
+++     wbuf = gst_wl_drm_memory_construct_wl_buffer (mem, sink->display,
+++         &sink->video_info);
+++  }
+++
+++  if (!wbuf && gst_wl_display_check_format_for_dmabuf (sink->display, format)) {
++     guint i, nb_dmabuf = 0;
++ 
++     for (i = 0; i < gst_buffer_n_memory (buffer); i++)
++@@ -783,10 +789,6 @@ gst_wayland_sink_show_frame (GstVideoSink * vsink, GstBuffer * buffer)
++       wbuf = gst_wl_linux_dmabuf_construct_wl_buffer (buffer, sink->display,
++           &sink->video_info);
++   }
++-  if (gst_is_drm_memory (mem)) {
++-     wbuf = gst_wl_drm_memory_construct_wl_buffer (mem, sink->display,
++-         &sink->video_info);
++-  }
++ 
++   if (!wbuf && gst_wl_display_check_format_for_shm (sink->display, format)) {
++     if (gst_buffer_n_memory (buffer) == 1 && gst_is_fd_memory (mem))
++-- 
++1.9.1
 +
-+S = "${WORKDIR}/git"
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-waylandsink-Update-wldrm-NV12-offsets-and-strides.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-waylandsink-Update-wldrm-NV12-offsets-and-strides.patch
+new file mode 100644
+index 0000000..38a2829
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-waylandsink-Update-wldrm-NV12-offsets-and-strides.patch
+@@ -0,0 +1,42 @@
++From 76f08c4cd3f1bd35b83b8989bba6a8be31eea89c Mon Sep 17 00:00:00 2001
++From: Angela Stegmaier <angelabaker@ti.com>
++Date: Wed, 7 Aug 2019 09:42:09 -0500
++Subject: [PATCH 2/2] waylandsink: Update wldrm NV12 offsets and strides
 +
-+do_install_append () {
-+    ln -sf libGLESv2.so.2 ${D}${libdir}/libGLESv2.so.1
-+    ln -sf libGLESv1_CM.so ${D}${libdir}/libGLES_CM.so.1
-+    ln -sf libGLESv1_CM.so ${D}${libdir}/libGLES_CM.so
++Stride may not be the same as width, as the wldrm was assuming.
++Update the NV12 offset and stride calculation to use the actual
++values from the video metadata.
 +
-+    rm -rf ${D}${includedir}/GL
-+}
++Signed-off-by: Angela Stegmaier <angelabaker@ti.com>
++---
++ ext/wayland/wldrm.c | 7 +++++--
++ 1 file changed, 5 insertions(+), 2 deletions(-)
 +
-+FILES_${PN}-plugins = "${libdir}/libsrv_init.so ${libdir}/libsrv_um.so ${libdir}/libglslcompiler.so ${libdir}/libPVRScopeServices.so ${libdir}/libGLESv2.so ${libdir}/libEGL.so ${libdir}/libGLESv1_CM.so ${libdir}/libGLES_CM.so ${libdir}/libGLESv1_PVR_MESA.so ${libdir}/libGLESv2_PVR_MESA.so"
++diff --git a/ext/wayland/wldrm.c b/ext/wayland/wldrm.c
++index 9aca9d5..0b72896 100644
++--- a/ext/wayland/wldrm.c
+++++ b/ext/wayland/wldrm.c
++@@ -38,7 +38,10 @@ gst_wl_drm_memory_construct_wl_buffer (GstMemory * mem, GstWlDisplay * display,
++   {
++     /* NV12 */
++     fourcc = GST_MAKE_FOURCC ('N', 'V', '1', '2');
++-    strides[1] = GST_ROUND_UP_4 (video_width);
+++    strides[0] = GST_VIDEO_INFO_PLANE_STRIDE (info, 0);
+++    strides[1] = GST_VIDEO_INFO_PLANE_STRIDE (info, 1);
+++    offsets[0] = GST_VIDEO_INFO_PLANE_OFFSET (info, 0);
+++    offsets[1] = GST_VIDEO_INFO_PLANE_OFFSET (info, 1);
++   }
++   else if(format == GST_VIDEO_FORMAT_I420)
++   {
++@@ -92,7 +95,7 @@ gst_wl_drm_memory_construct_wl_buffer (GstMemory * mem, GstWlDisplay * display,
++     return NULL;
++   }
++ 
++-  req2.handle = req1.handle,
+++  req2.handle = req1.handle;
++ 
++   ret = drmIoctl(display->fd, DRM_IOCTL_GEM_FLINK, &req2);
++   if (ret) {
++-- 
++1.9.1
 +
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.14.4.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.14.4.bbappend
+index 70f5f9b..38f7e63 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.14.4.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.14.4.bbappend
+@@ -51,6 +51,8 @@ SRC_URI_append_k3 = " \
+     file://0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-drivers.patch \
+     file://0004-waylandsink-Add-drm-support-in-waylandsink.patch \
+     file://0005-waylandsink-Add-input-device-support.patch \
++    file://0001-waylandsink-re-order-buffer-creation-for-drm-buffers.patch \
++    file://0002-waylandsink-Update-wldrm-NV12-offsets-and-strides.patch \
+ "
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
 -- 
-2.17.1
+1.9.1
 
 
