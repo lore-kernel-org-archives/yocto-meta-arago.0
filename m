@@ -1,44 +1,44 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id D2F2352A3E
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 16D2352A41
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Sep 2019 18:15:03 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8AIDwZY098031
+	Tue, 10 Sep 2019 18:15:04 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8AIDwWv016266
 	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 13:13:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1568139238;
-	bh=ITwCOnwCC+WdTWNG+y9KVa9LVdPVwlMTXXqUvUt3uYg=;
+	bh=1agjasEgWyMIjD19dsk9jQ3MNor/HmAJpt1DZquO/iU=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=nt+pXzQ6IIvYUpN2sswBfodKfpiwbuCW7BdIIjkgEbwPkFlFmRnZAA0alc9qbrlq4
-	orq0ueg0qb6LEtB8pxL7LRZFmzwo4abe0ojV/nEYGldby4WkM3a2OkwLcvSAYvm+vS
-	VTRgg6KY18Rk7iDDRl/90WLU/Mgp1KCG1mwmm0K4=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8AIDw7p051247
+	b=Hm2g73UCbTGUukEis0lTATG+cQ3rfQDlCD/wg+PvS9P8ZPcF2TGXGomd3Z9v/lzzl
+	V7WJoAu2EGbXQyMXffu+dL0h4Ar1okuqMJ6lz0ERTl6ffL1PGfjO6Whm+Y//ZfukBQ
+	NzI1iNgs9Z3CNvQ/krZpf9k9zfkWqBPaKg6GTwQg=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8AIDwtW060064
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 13:13:58 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 10 Sep 2019 13:13:58 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 10 Sep 2019 13:13:57 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
 	Frontend Transport; Tue, 10 Sep 2019 13:13:57 -0500
 Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8AIDuo0035961
-	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 13:13:58 -0500
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8AIDunx035961
+	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 13:13:57 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 10 Sep 2019 14:11:28 -0400
-Message-ID: <20190910181131.8808-7-e-ruei1@ti.com>
+Date: Tue, 10 Sep 2019 14:11:27 -0400
+Message-ID: <20190910181131.8808-6-e-ruei1@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190910181131.8808-1-e-ruei1@ti.com>
 References: <20190910181131.8808-1-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH 6/9] HACK: qtwebkit: sync up the khrplatform.h under ANGLE/include/KHR with the one provided by mesa-egl
+Subject: [meta-processor-sdk][PATCH 5/9] HACK: weston: undefine HAVE_GBM_MODIFIERS unconditionally
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,71 +51,67 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Sep 2019 18:15:05 -0000
+X-List-Received-Date: Tue, 10 Sep 2019 18:15:06 -0000
 Content-Type: text/plain
 
-Note: This khrplatform.h should not be used, but it is for some include
-path search. Add "#define MESA_EGL_NO_X11_HEADERS" to be consistent with
-the one provided by mesa-egl
+HAVE_GBM_MODIFIERS has not been fully supported by MESA-based egl yet.
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- ...atform.h-add-define-MESA_EGL_NO_X11_.patch | 28 +++++++++++++++++++
- recipes-qt/qt5/qtwebkit_%.bbappend            | 10 +++++++
- 2 files changed, 38 insertions(+)
- create mode 100644 recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
- create mode 100644 recipes-qt/qt5/qtwebkit_%.bbappend
+ ...mposito-drm-undef-HAVE_GBM_MODIFIERS.patch | 29 +++++++++++++++++++
+ .../wayland/weston_5.0.0.bbappend             |  3 +-
+ 2 files changed, 31 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-graphics/wayland/weston/0001-HACK-composito-drm-undef-HAVE_GBM_MODIFIERS.patch
 
-diff --git a/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch b/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
+diff --git a/recipes-graphics/wayland/weston/0001-HACK-composito-drm-undef-HAVE_GBM_MODIFIERS.patch b/recipes-graphics/wayland/weston/0001-HACK-composito-drm-undef-HAVE_GBM_MODIFIERS.patch
 new file mode 100644
-index 0000000..c6022ef
+index 0000000..56a78e4
 --- /dev/null
-+++ b/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
-@@ -0,0 +1,28 @@
-+From c969fa7eedb3bce04c8f48caf469a46361437aa7 Mon Sep 17 00:00:00 2001
++++ b/recipes-graphics/wayland/weston/0001-HACK-composito-drm-undef-HAVE_GBM_MODIFIERS.patch
+@@ -0,0 +1,29 @@
++From e406b4141c23fb762a14a09d565c363ebaccb5a4 Mon Sep 17 00:00:00 2001
 +From: Eric Ruei <e-ruei1@ti.com>
-+Date: Fri, 30 Aug 2019 17:41:13 -0400
-+Subject: [PATCH] HACK: ANGLE/khrplatform.h: add #define
-+ MESA_EGL_NO_X11_HEADERS
++Date: Sun, 1 Sep 2019 08:28:27 -0400
++Subject: [PATCH] HACK: composito-drm: undef HAVE_GBM_MODIFIERS
 +
-+Note: Only the KHR/khrplatform.h at sysroot/usr/include should be used.
-+      This patch is a tentative workaround to make both files compatible
++HAVE_GBM_MODIFIERS is defined, but not fully supported by the gbm module
++yet.
 +
 +Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 +---
-+ Source/ThirdParty/ANGLE/include/KHR/khrplatform.h | 2 ++
++ libweston/compositor-drm.c | 2 ++
 + 1 file changed, 2 insertions(+)
 +
-+diff --git a/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h b/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
-+index c9e6f17d3..4e3ff69a8 100644
-+--- a/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
-++++ b/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
-+@@ -279,4 +279,6 @@ typedef enum {
-+     KHRONOS_BOOLEAN_ENUM_FORCE_SIZE = KHRONOS_MAX_ENUM
-+ } khronos_boolean_enum_t;
++diff --git a/libweston/compositor-drm.c b/libweston/compositor-drm.c
++index d92ecfcd..88f845a8 100644
++--- a/libweston/compositor-drm.c
+++++ b/libweston/compositor-drm.c
++@@ -68,6 +68,8 @@
++ #include "linux-dmabuf-unstable-v1-server-protocol.h"
++ #include "linux-explicit-synchronization.h"
 + 
-++#define MESA_EGL_NO_X11_HEADERS
+++#undef HAVE_GBM_MODIFIERS
 ++
-+ #endif /* __khrplatform_h_ */
++ #ifndef DRM_CLIENT_CAP_ASPECT_RATIO
++ #define DRM_CLIENT_CAP_ASPECT_RATIO	4
++ #endif
 +-- 
 +2.17.1
 +
-diff --git a/recipes-qt/qt5/qtwebkit_%.bbappend b/recipes-qt/qt5/qtwebkit_%.bbappend
-new file mode 100644
-index 0000000..d51ab64
---- /dev/null
-+++ b/recipes-qt/qt5/qtwebkit_%.bbappend
-@@ -0,0 +1,10 @@
-+PR_append = ".tisdk0"
-+
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+
-+SRC_URI += "\
-+    file://0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch \
-+"
-+
-+
+diff --git a/recipes-graphics/wayland/weston_5.0.0.bbappend b/recipes-graphics/wayland/weston_5.0.0.bbappend
+index 379f110..e95f38b 100644
+--- a/recipes-graphics/wayland/weston_5.0.0.bbappend
++++ b/recipes-graphics/wayland/weston_5.0.0.bbappend
+@@ -1,7 +1,8 @@
+-PR_append = ".tisdk0"
++PR_append = ".tisdk1"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ SRC_URI += " \
+ 	file://0001-Add-soc-performance-monitor-utilites.patch \
++	file://0001-HACK-composito-drm-undef-HAVE_GBM_MODIFIERS.patch \
+ "
 -- 
 2.17.1
 
