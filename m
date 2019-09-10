@@ -1,46 +1,40 @@
 Return-Path: <nikhil.nd@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id C71D85299A
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 111605299A
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Sep 2019 06:36:02 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8A6Yvrh055507
-	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 01:34:57 -0500
+	Tue, 10 Sep 2019 06:50:10 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8A6n4Ou009847
+	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 01:49:04 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1568097297;
-	bh=PXNH697Er2scP3XTXF2kIvzaQxc8ypRVpehhm+ZoCXY=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=p0o/EjFXNLuaKKzocaKxCY00W/WatKK9jEL9r4bFFxx+x4BU+zIZHxTaxmM9lyE7N
-	nGovD5c7CtMtycGOR2JL3yXRRh8jvBvI6+3tmo5u9/gCgBu5oY0Rbz2TQODc4cuZ+3
-	bWyfMoaaXLQaqMUoBICtydd4DT9Dhra6Fo/B2pNU=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8A6YvJh095353
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 01:34:57 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1568098144;
+	bh=rIQI/iMK/pyUWWGaT5WGfBoSUd0yuRPzpipN0tygwMs=;
+	h=From:To:CC:Subject:Date;
+	b=BHcUP3iHvnQD/I0R2kqdpKuprtaa1X+9B/eziQkl9GyqGP5XbJv7eaOqZWBbUxCjS
+	PMen/K54JmpFTtzGtd2yyPCtdv3q4DaO8eg1nXX+AlERD71GT2UWWq6KLG/8zl0Gg6
+	C2gxry24ocXc69EFU8GdJXNHGX1Ph3NcmRCT4KOg=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8A6n4N3112747
+	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 01:49:04 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 10 Sep 2019 01:34:57 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 10 Sep 2019 01:49:04 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 10 Sep 2019 01:34:57 -0500
-Received: from [172.24.190.110] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8A6YtVq095356;
-	Tue, 10 Sep 2019 01:34:56 -0500
-To: Denys Dmytriyenko <denys@ti.com>, Nikhil Devshatwar <nikhil.nd@ti.com>
-References: <1567760584-24235-1-git-send-email-nikhil.nd@ti.com>
-	<20190906131219.GB2400@beryl>
-From: Nikhil Devshatwar <a0132237@ti.com>
-Message-ID: <32aef5ef-7ad6-2f53-4d25-6ed6fccb4c1e@ti.com>
-Date: Tue, 10 Sep 2019 12:04:55 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.0
+	Frontend Transport; Tue, 10 Sep 2019 01:49:04 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8A6n2bv046308; 
+	Tue, 10 Sep 2019 01:49:03 -0500
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
+To: <meta-arago@arago-project.org>, <denys@ti.com>
+Date: Tue, 10 Sep 2019 12:18:58 +0530
+Message-ID: <1568098140-193923-1-git-send-email-nikhil.nd@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <20190906131219.GB2400@beryl>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [ [thud/master] PATCH v1] recipes-devtools: libion: New recipe for ion library
+Subject: [thud PATCH v2 1/3] packagegroup: Move ti-sci-src to arago-tisdk-addons-sdk-host
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,47 +47,50 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Sep 2019 06:36:03 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 10 Sep 2019 06:50:10 -0000
+Content-Type: text/plain
 
-On 06/09/19 6:42 PM, Denys Dmytriyenko wrote:
-> Please retain original authorthip.
+packagegroup-arago-tisdk-addons-sdk-host is for adding sources for components
+packagegroup-arago-tisdk-amsdk-sdk-host is for adding scripts
 
-Will resend
-Nikhil D
+Move the ti-sci-src packge from amsdk-sdk-host to addons-sdk-host
 
-> 
-> On Fri, Sep 06, 2019 at 02:33:04PM +0530, Nikhil Devshatwar wrote:
->> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
->> ---
->>   meta-arago-extras/recipes-devtools/ion/libion_git.bb | 14 ++++++++++++++
->>   1 file changed, 14 insertions(+)
->>   create mode 100644 meta-arago-extras/recipes-devtools/ion/libion_git.bb
->>
->> diff --git a/meta-arago-extras/recipes-devtools/ion/libion_git.bb b/meta-arago-extras/recipes-devtools/ion/libion_git.bb
->> new file mode 100644
->> index 0000000..7c93ed3
->> --- /dev/null
->> +++ b/meta-arago-extras/recipes-devtools/ion/libion_git.bb
->> @@ -0,0 +1,14 @@
->> +SUMMARY = "ION Userspace Memory Allocator Library"
->> +HOMEPAGE = "https://github.com/glneo/libion"
->> +LICENSE = "Apache-2.0"
->> +LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327"
->> +
->> +PV = "1.0.0"
->> +
->> +BRANCH = "master"
->> +SRC_URI = "git://github.com/glneo/libion.git;protocol=git;branch=${BRANCH}"
->> +SRCREV = "11dad7977ec3ecba37c013da7ec0408c01413000"
->> +
->> +S = "${WORKDIR}/git"
->> +
->> +inherit cmake pkgconfig
->> -- 
->> 1.9.1
->>
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+---
+
+Changes from v1:
+* Update commit message
+
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb           | 1 +
+ .../packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb            | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index ec16713..fbdc735 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -38,6 +38,7 @@ UTILS_append_k2g = " \
+ 
+ UTILS_append_k3 = " \
+     jailhouse-src \
++    ti-sci-fw-src \
+ "
+ 
+ UTILS_append_am65xx = " \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
+index b73c63b..ebe129b 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-amsdk-sdk-host.bb
+@@ -21,7 +21,7 @@ BOOT_MONITOR_keystone = "boot-monitor-src"
+ EXTRA_FILES = ""
+ EXTRA_FILES_ti43x = "tisdk-uenv"
+ EXTRA_FILES_omap-a15 = "tisdk-readme tisdk-uenv"
+-EXTRA_FILES_k3 = "tisdk-readme tisdk-uenv ti-sci-fw-src"
++EXTRA_FILES_k3 = "tisdk-readme tisdk-uenv"
+ 
+ RDEPENDS_${PN} = "\
+     ti-tisdk-setup \
+-- 
+1.9.1
 
 
