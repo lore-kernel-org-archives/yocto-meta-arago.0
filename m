@@ -1,44 +1,44 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 12A6C52A40
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 3A2A052A42
 	for <meta-arago@arago-project.org>;
 	Tue, 10 Sep 2019 18:15:04 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8AIDwOZ054805
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8AIDwEm016271
 	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 13:13:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1568139238;
-	bh=LuOiLiWt2CphyStil0Jim/GDz/hE5by3gHhHbiXjKbk=;
+	bh=H2wQOfwppqSNuUVsUxPPTNDu5l7MlYQiLcFVEhnn/jQ=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=susQVhTdrs2RpOz+IZLYmaDAXklMaTrTIbg7AZkv2z3oR9IjSY7FLwBlJq6DrEqJV
-	m63UBzV4nh6CwK2yc5WM7GWzgJ4d+AbGytXQ1N/ABerJUtRkmVpdEj54iqtudUHvVy
-	tdK40cHhbRi48X5FiwYSG6cQDzITrmDhvogZ80DE=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8AIDwTO100678
+	b=Knva1hdKDAckfJ9/k/QGg+LddqNaO+MiowI6F9N+zjMGesxJWHQ7m3Q140NfewVEV
+	4ogWeMTFd+04++9LTkOm+eKn1gUzGT/2czdbWicZFvDWrav89Sv2QZNhvWvmHJB04A
+	vF/7UP9N53iH47/b1BrDys/8tt1YIxhApVFGm9jM=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8AIDwG4051254
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 13:13:58 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
 	Tue, 10 Sep 2019 13:13:58 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
 	Frontend Transport; Tue, 10 Sep 2019 13:13:58 -0500
 Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8AIDuo1035961
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8AIDuo2035961
 	for <meta-arago@arago-project.org>; Tue, 10 Sep 2019 13:13:58 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 10 Sep 2019 14:11:29 -0400
-Message-ID: <20190910181131.8808-8-e-ruei1@ti.com>
+Date: Tue, 10 Sep 2019 14:11:30 -0400
+Message-ID: <20190910181131.8808-9-e-ruei1@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190910181131.8808-1-e-ruei1@ti.com>
 References: <20190910181131.8808-1-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH 7/9] HACK: libepoxy: replace local definitions with khrplatform.h at gen_dispatch
+Subject: [meta-processor-sdk][PATCH 8/9] packagegroup-arago-tisdk-graphics: replace chromium-wayland with chromium-ozone-wayland
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,89 +51,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Sep 2019 18:15:06 -0000
+X-List-Received-Date: Tue, 10 Sep 2019 18:15:08 -0000
 Content-Type: text/plain
 
-The local definitions are not consistent with khrplatform.h. Replace them
-with #include <KHR/khrplatform.h"
+chromium-wayland has been renamed to chromium-ozone-wayland at the latest
+meta-browser
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- ...h-use-KHR-khrplatform.h-instead-of-l.patch | 50 +++++++++++++++++++
- .../libepoxy/libepoxy_1.5.2.bbappend          |  7 +++
- 2 files changed, 57 insertions(+)
- create mode 100644 recipes-graphics/libepoxy/libepoxy/0001-HACK-gen_dispatch-use-KHR-khrplatform.h-instead-of-l.patch
- create mode 100644 recipes-graphics/libepoxy/libepoxy_1.5.2.bbappend
+ .../packagegroup-arago-tisdk-graphics.bbappend | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
-diff --git a/recipes-graphics/libepoxy/libepoxy/0001-HACK-gen_dispatch-use-KHR-khrplatform.h-instead-of-l.patch b/recipes-graphics/libepoxy/libepoxy/0001-HACK-gen_dispatch-use-KHR-khrplatform.h-instead-of-l.patch
-new file mode 100644
-index 0000000..08709b7
---- /dev/null
-+++ b/recipes-graphics/libepoxy/libepoxy/0001-HACK-gen_dispatch-use-KHR-khrplatform.h-instead-of-l.patch
-@@ -0,0 +1,50 @@
-+From 5f478733715e1a09b5040fe423e9238085875e8a Mon Sep 17 00:00:00 2001
-+From: Eric Ruei <e-ruei1@ti.com>
-+Date: Fri, 30 Aug 2019 18:06:15 -0400
-+Subject: [PATCH] HACK: gen_dispatch: use <KHR/khrplatform.h> instead of local
-+ definitions
-+
-+The common <KHR/khrplatform.h> should be used instead of local definitions
-+
-+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-+---
-+ src/gen_dispatch.py | 13 +------------
-+ 1 file changed, 1 insertion(+), 12 deletions(-)
-+
-+diff --git a/src/gen_dispatch.py b/src/gen_dispatch.py
-+index 28dad2b..5458414 100755
-+--- a/src/gen_dispatch.py
-++++ b/src/gen_dispatch.py
-+@@ -506,28 +506,17 @@ class Generator(object):
-+             # don't directly include khrplatform.h because it's not
-+             # present on many systems, and coming up with #ifdefs to
-+             # decide when it's not present would be hard.
-+-            self.outln('#define __khrplatform_h_ 1')
-+             self.outln('typedef int8_t khronos_int8_t;')
-+             self.outln('typedef int16_t khronos_int16_t;')
-+-            self.outln('typedef int32_t khronos_int32_t;')
-+-            self.outln('typedef int64_t khronos_int64_t;')
-+             self.outln('typedef uint8_t khronos_uint8_t;')
-+             self.outln('typedef uint16_t khronos_uint16_t;')
-+-            self.outln('typedef uint32_t khronos_uint32_t;')
-+-            self.outln('typedef uint64_t khronos_uint64_t;')
-+             self.outln('typedef float khronos_float_t;')
-+             self.outln('typedef long khronos_intptr_t;')
-+             self.outln('typedef long khronos_ssize_t;')
-+             self.outln('typedef unsigned long khronos_usize_t;')
-+             self.outln('typedef uint64_t khronos_utime_nanoseconds_t;')
-+             self.outln('typedef int64_t khronos_stime_nanoseconds_t;')
-+-            self.outln('#define KHRONOS_MAX_ENUM 0x7FFFFFFF')
-+-            self.outln('typedef enum {')
-+-            self.outln('    KHRONOS_FALSE = 0,')
-+-            self.outln('    KHRONOS_TRUE  = 1,')
-+-            self.outln('    KHRONOS_BOOLEAN_ENUM_FORCE_SIZE = KHRONOS_MAX_ENUM')
-+-            self.outln('} khronos_boolean_enum_t;')
-+-            self.outln('typedef uintptr_t khronos_uintptr_t;')
-++            self.outln('#include <KHR/khrplatform.h>')
-+ 
-+         if self.target == "glx":
-+             self.outln('#include <X11/Xlib.h>')
-+-- 
-+2.17.1
-+
-diff --git a/recipes-graphics/libepoxy/libepoxy_1.5.2.bbappend b/recipes-graphics/libepoxy/libepoxy_1.5.2.bbappend
-new file mode 100644
-index 0000000..c4b82dc
---- /dev/null
-+++ b/recipes-graphics/libepoxy/libepoxy_1.5.2.bbappend
-@@ -0,0 +1,7 @@
-+PR_append = ".tisdk0"
-+
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+SRC_URI += " \
-+	file://0001-HACK-gen_dispatch-use-KHR-khrplatform.h-instead-of-l.patch \
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bbappend
+index ac1f1f5..288233a 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bbappend
+@@ -1,10 +1,26 @@
+-PR_append = ".tisdk10"
++PR_append = ".tisdk11"
+ 
+ GRAPHICS_DEMO = ""
+ GRAPHICS_DEMO_omap-a15 = "\
+     kmscube \
+ "
+ 
++GRAPHICS_WAYLAND_remove_omap-a15 = "\
++    ${@bb.utils.contains('MACHINE_FEATURES','gpu','chromium-wayland','',d)} \
 +"
++
++GRAPHICS_WAYLAND_remove_k3 = "\
++    ${@bb.utils.contains('MACHINE_FEATURES','gpu','chromium-wayland','',d)} \
++"
++
++GRAPHICS_WAYLAND_append_omap-a15 = "\
++    ${@bb.utils.contains('MACHINE_FEATURES','gpu','chromium-ozone-wayland','',d)} \
++"
++
++GRAPHICS_WAYLAND_append_k3 = "\
++    ${@bb.utils.contains('MACHINE_FEATURES','gpu','chromium-ozone-wayland','',d)} \
++"
++
+ GRAPHICS_RDEPENDS_remove = "\
+     ${@bb.utils.contains('MACHINE_FEATURES', 'gpu', '', 'ti-sgx-ddk-km', d)} \
+ "
 -- 
 2.17.1
 
