@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id B3A2652A46
+	by arago-project.org (Postfix) with ESMTPS id D1D0652A47
 	for <meta-arago@arago-project.org>;
 	Thu, 12 Sep 2019 15:39:54 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 784F740C07;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C2A6940BF9;
 	Thu, 12 Sep 2019 15:38:48 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id DJ3vPo92QCnU; Thu, 12 Sep 2019 15:38:48 +0000 (UTC)
+	with ESMTP id 4Rl5DWpvz4fl; Thu, 12 Sep 2019 15:38:48 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 621DD40C0F;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id AA10F40C11;
 	Thu, 12 Sep 2019 15:38:47 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 4B06F17420A;
+	by mail.denix.org (Postfix) with ESMTP id 89861174210;
 	Thu, 12 Sep 2019 11:38:44 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Thu, 12 Sep 2019 11:38:23 -0400
-Message-Id: <1568302717-46518-19-git-send-email-denys@ti.com>
+Date: Thu, 12 Sep 2019 11:38:27 -0400
+Message-Id: <1568302717-46518-23-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1568302717-46518-1-git-send-email-denys@ti.com>
 References: <1568302717-46518-1-git-send-email-denys@ti.com>
-Subject: [master][PATCH 18/32] iproute2: overlay 4.19 locally for now, as upstream moved to 5.2
+Subject: [master][PATCH 22/32] ltp-ddt: backport fixes for glibc >2.28
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,223 +39,249 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2019 15:40:08 -0000
+X-List-Received-Date: Thu, 12 Sep 2019 15:40:09 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-connectivity/iproute2/iproute2.inc     | 54 ++++++++++++++++++++++
- .../iproute2/0001-ip-Remove-unneed-header.patch    | 30 ++++++++++++
- .../0001-libc-compat.h-add-musl-workaround.patch   | 41 ++++++++++++++++
- .../iproute2/iproute2/configure-cross.patch        | 32 +++++++++++++
- .../iproute2/iproute2_4.19.0.bb                    | 14 ++++++
- 5 files changed, 171 insertions(+)
- create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2.inc
- create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-ip-Remove-unneed-header.patch
- create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-libc-compat.h-add-musl-workaround.patch
- create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/configure-cross.patch
- create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.19.0.bb
+ ...re-time-check-for-getdents-getdents64-API.patch | 72 ++++++++++++++++++++++
+ ...name-getcpu-to-avoid-conflict-with-glibc-.patch | 57 +++++++++++++++++
+ ...-check-for-RES_USE_INET6-during-configure.patch | 68 ++++++++++++++++++++
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb   |  3 +
+ 4 files changed, 200 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-Add-configure-time-check-for-getdents-getdents64-API.patch
+ create mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-getcpu01-Rename-getcpu-to-avoid-conflict-with-glibc-.patch
+ create mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0002-check-for-RES_USE_INET6-during-configure.patch
 
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2.inc b/meta-arago-distro/recipes-connectivity/iproute2/iproute2.inc
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-Add-configure-time-check-for-getdents-getdents64-API.patch b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-Add-configure-time-check-for-getdents-getdents64-API.patch
 new file mode 100644
-index 0000000..b283589
+index 0000000..adfe16c
 --- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2.inc
-@@ -0,0 +1,54 @@
-+SUMMARY = "TCP / IP networking and traffic control utilities"
-+DESCRIPTION = "Iproute2 is a collection of utilities for controlling \
-+TCP / IP networking and traffic control in Linux.  Of the utilities ip \
-+and tc are the most important.  ip controls IPv4 and IPv6 \
-+configuration and tc stands for traffic control."
-+HOMEPAGE = "http://www.linuxfoundation.org/collaborate/workgroups/networking/iproute2"
-+SECTION = "base"
-+LICENSE = "GPLv2+"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=eb723b61539feef013de476e68b5c50a \
-+                    file://ip/ip.c;beginline=3;endline=8;md5=689d691d0410a4b64d3899f8d6e31817"
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-Add-configure-time-check-for-getdents-getdents64-API.patch
+@@ -0,0 +1,72 @@
++From 404dfeb4faef213b0450f173b60cd7080edec349 Mon Sep 17 00:00:00 2001
++From: Khem Raj <raj.khem@gmail.com>
++Date: Fri, 26 Jul 2019 10:32:29 -0700
++Subject: [PATCH 1/2] Add configure time check for getdents/getdents64 APIs
 +
-+DEPENDS = "flex-native bison-native iptables elfutils libcap"
++glibc 2.30 has added wrapper for getdents64 this will help in detecting
++right condition to use fallback
 +
-+inherit update-alternatives bash-completion pkgconfig
++Check for getdents API as well while here
 +
-+CLEANBROKEN = "1"
-+
-+PACKAGECONFIG ??= "tipc"
-+PACKAGECONFIG[tipc] = ",,libmnl,"
-+
-+EXTRA_OEMAKE = "CC='${CC}' KERNEL_INCLUDE=${STAGING_INCDIR} DOCDIR=${docdir}/iproute2 SUBDIRS='lib tc ip bridge misc genl ${@bb.utils.contains('PACKAGECONFIG', 'tipc', 'tipc', '', d)}' SBINDIR='${base_sbindir}' LIBDIR='${libdir}'"
-+
-+do_configure_append () {
-+    sh configure ${STAGING_INCDIR}
-+    # Explicitly disable ATM support
-+    sed -i -e '/TC_CONFIG_ATM/d' config.mk
-+}
-+
-+do_install () {
-+    oe_runmake DESTDIR=${D} install
-+    mv ${D}${base_sbindir}/ip ${D}${base_sbindir}/ip.iproute2
-+    install -d ${D}${datadir}
-+    mv ${D}/share/* ${D}${datadir}/ || true
-+    rm ${D}/share -rf || true
-+}
-+
-+# The .so files in iproute2-tc are modules, not traditional libraries
-+INSANE_SKIP_${PN}-tc = "dev-so"
-+
-+PACKAGES =+ "${PN}-tc ${PN}-lnstat ${PN}-ifstat ${PN}-genl ${PN}-rtacct ${PN}-nstat ${PN}-ss ${@bb.utils.contains('PACKAGECONFIG', 'tipc', '${PN}-tipc', '', d)}"
-+FILES_${PN}-tc = "${base_sbindir}/tc* \
-+                  ${libdir}/tc/*.so"
-+FILES_${PN}-lnstat = "${base_sbindir}/lnstat ${base_sbindir}/ctstat ${base_sbindir}/rtstat"
-+FILES_${PN}-ifstat = "${base_sbindir}/ifstat"
-+FILES_${PN}-genl = "${base_sbindir}/genl"
-+FILES_${PN}-rtacct = "${base_sbindir}/rtacct"
-+FILES_${PN}-nstat = "${base_sbindir}/nstat"
-+FILES_${PN}-ss = "${base_sbindir}/ss"
-+FILES_${PN}-tipc = "${base_sbindir}/tipc"
-+
-+ALTERNATIVE_${PN} = "ip"
-+ALTERNATIVE_TARGET[ip] = "${base_sbindir}/ip.${BPN}"
-+ALTERNATIVE_LINK_NAME[ip] = "${base_sbindir}/ip"
-+ALTERNATIVE_PRIORITY = "100"
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-ip-Remove-unneed-header.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-ip-Remove-unneed-header.patch
-new file mode 100644
-index 0000000..a9027c5
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-ip-Remove-unneed-header.patch
-@@ -0,0 +1,30 @@
-+From 02ed10fc5215c4a32e6740b0a0c2439659be6801 Mon Sep 17 00:00:00 2001
-+From: Changhyeok Bae <changhyeok.bae@gmail.com>
-+Date: Mon, 13 Nov 2017 15:59:35 +0000
-+Subject: [PATCH] ip: Remove unneed header
-+
-+Fix redefinition of struct ethhdr with a suitably patched musl libc
-+that suppresses the kernel if_ether.h.
-+
-+Signed-off-by: Changhyeok Bae <changhyeok.bae@gmail.com>
-+
-+Upstream-Status: Pending [netdev@vger.kernel.org]
++Upstream-Status: Submitted [http://lists.linux.it/pipermail/ltp/2019-July/012954.html]
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
 +---
-+ ip/iplink_bridge.c | 1 -
-+ 1 file changed, 1 deletion(-)
++ configure.ac                                  | 2 ++
++ testcases/kernel/syscalls/getdents/getdents.h | 8 ++++++--
++ 2 files changed, 8 insertions(+), 2 deletions(-)
 +
-+diff --git a/ip/iplink_bridge.c b/ip/iplink_bridge.c
-+index cccdec1..f065b22 100644
-+--- a/ip/iplink_bridge.c
-++++ b/ip/iplink_bridge.c
-+@@ -13,7 +13,6 @@
-+ #include <stdlib.h>
++--- a/configure.ac
+++++ b/configure.ac
++@@ -55,6 +55,8 @@ AC_CHECK_HEADERS([ \
++ AC_CHECK_FUNCS([ \
++     profil \
++     ustat \
+++    getdents \
+++    getdents64 \
++ ])
++ 
++ # Tools knobs
++--- a/testcases/kernel/syscalls/getdents/getdents.h
+++++ b/testcases/kernel/syscalls/getdents/getdents.h
++@@ -23,7 +23,7 @@
++ #include <stdint.h>
++ #include "test.h"
++ #include "lapi/syscalls.h"
++-
+++#include "config.h"
++ /*
++  * See fs/compat.c struct compat_linux_dirent
++  */
++@@ -34,12 +34,17 @@ struct linux_dirent {
++ 	char            d_name[];
++ };
++ 
+++#if HAVE_GETDENTS
+++#include <unistd.h>
+++#else
++ static inline int
++ getdents(unsigned int fd, struct linux_dirent *dirp, unsigned int size)
++ {
++ 	return ltp_syscall(__NR_getdents, fd, dirp, size);
++ }
++ 
+++#endif /* HAVE_GETDENTS */
+++
++ struct linux_dirent64 {
++ 	uint64_t	d_ino;
++ 	int64_t		d_off;
++@@ -48,10 +53,13 @@ struct linux_dirent64 {
++ 	char		d_name[];
++ };
++ 
+++#if HAVE_GETDENTS64
+++#include <unistd.h>
+++#else
++ static inline int
++ getdents64(unsigned int fd, struct linux_dirent64 *dirp64, unsigned int size)
++ {
++ 	return ltp_syscall(__NR_getdents64, fd, dirp64, size);
++ }
++-
+++#endif /* HAVE_GETDENTS64 */
++ #endif /* GETDENTS_H */
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-getcpu01-Rename-getcpu-to-avoid-conflict-with-glibc-.patch b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-getcpu01-Rename-getcpu-to-avoid-conflict-with-glibc-.patch
+new file mode 100644
+index 0000000..d0c8477
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-getcpu01-Rename-getcpu-to-avoid-conflict-with-glibc-.patch
+@@ -0,0 +1,57 @@
++From c9edb0eaaca83c18ac7b5ea3330faad8d47d3fd1 Mon Sep 17 00:00:00 2001
++From: Khem Raj <raj.khem@gmail.com>
++Date: Fri, 14 Dec 2018 06:44:02 -0800
++Subject: [PATCH] getcpu01: Rename getcpu to avoid conflict with glibc >= 2.29
++
++glibc has added getcpu() API starting with glibc 2.29 release, this
++makes the static function in conflict and signatures are not same as
++well.
++
++Renaming helps to keep ltp build going
++
++Upstream-Status: Submitted [http://lists.linux.it/pipermail/ltp/2018-December/010321.html]
++
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++---
++ testcases/kernel/syscalls/getcpu/getcpu01.c | 10 +++++-----
++ 1 file changed, 5 insertions(+), 5 deletions(-)
++
++diff --git a/testcases/kernel/syscalls/getcpu/getcpu01.c b/testcases/kernel/syscalls/getcpu/getcpu01.c
++index c927512ca..e850fe844 100644
++--- a/testcases/kernel/syscalls/getcpu/getcpu01.c
+++++ b/testcases/kernel/syscalls/getcpu/getcpu01.c
++@@ -82,7 +82,7 @@ int sys_support = 0;
++ 
++ void cleanup(void);
++ void setup(void);
++-static inline int getcpu(unsigned int *, unsigned int *, void *);
+++static inline int get_cpu(unsigned int *, unsigned int *, void *);
++ unsigned int set_cpu_affinity(void);
++ unsigned int get_nodeid(unsigned int);
++ unsigned int max_cpuid(size_t, cpu_set_t *);
++@@ -124,7 +124,7 @@ int main(int ac, char **av)
++ #ifdef __i386__
++ 		node_set = get_nodeid(cpu_set);
++ #endif
++-		TEST(getcpu(&cpu_id, &node_id, NULL));
+++		TEST(get_cpu(&cpu_id, &node_id, NULL));
++ 		if (TEST_RETURN == 0) {
++ 			if (cpu_id != cpu_set) {
++ 				tst_resm(TFAIL, "getcpu() returned wrong value"
++@@ -157,10 +157,10 @@ int main(int ac, char **av)
++ }
++ 
++ /*
++- * getcpu() - calls the system call
+++ * get_cpu() - calls the system call
++  */
++-static inline int getcpu(unsigned *cpu_id, unsigned *node_id,
++-			 void *cache_struct)
+++static inline int get_cpu(unsigned *cpu_id, unsigned *node_id,
+++			  void *cache_struct)
++ {
++ #if defined(__i386__)
++ 	return syscall(318, cpu_id, node_id, cache_struct);
++-- 
++2.20.0
++
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0002-check-for-RES_USE_INET6-during-configure.patch b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0002-check-for-RES_USE_INET6-during-configure.patch
+new file mode 100644
+index 0000000..12e47eb
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0002-check-for-RES_USE_INET6-during-configure.patch
+@@ -0,0 +1,68 @@
++From 7bc134545b7beb09717a60541530c20a1a5740d3 Mon Sep 17 00:00:00 2001
++From: Khem Raj <raj.khem@gmail.com>
++Date: Fri, 26 Jul 2019 10:55:28 -0700
++Subject: [PATCH 2/2] check for RES_USE_INET6 during configure
++
++glibc 2.30 has remove RES_USE_INET6 define which has been on its way out
++since 2.26 release, this check ensures that we detect it before using it
++
++Upstream-Status: Submitted [http://lists.linux.it/pipermail/ltp/2019-July/012955.html]
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++---
++ configure.ac                                        | 13 +++++++++++++
++ testcases/network/multicast/mc_gethost/mc_gethost.c |  6 ++++++
++ 2 files changed, 19 insertions(+)
++
++diff --git a/configure.ac b/configure.ac
++index 2255b5c181..ed7acccb01 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -91,6 +91,19 @@ AC_CHECK_FUNCS([ \
++     vmsplice \
++ ])
++ 
+++#check defines
+++AC_MSG_CHECKING([for RES_USE_INET6])
+++AC_COMPILE_IFELSE( [AC_LANG_PROGRAM([[#include <resolv.h>]],
+++  [[char dummy[RES_USE_INET6];]])],
+++  [
+++    AC_MSG_RESULT([yes])
+++    AC_DEFINE_UNQUOTED([HAVE_RES_USE_INET6], 1, [Define to 1 if you have the RES_USE_INET6 macro.])
+++  ],
+++  [
+++    AC_MSG_RESULT([no])
+++    AC_DEFINE_UNQUOTED([HAVE_RES_USE_INET6], 0, [Define to 1 if you have the RES_USE_INET6 macro.])
+++  ]
+++)
++ # Tools knobs
++ 
++ # Expect
++diff --git a/testcases/network/multicast/mc_gethost/mc_gethost.c b/testcases/network/multicast/mc_gethost/mc_gethost.c
++index 9cc15d086b..d1cae5441a 100644
++--- a/testcases/network/multicast/mc_gethost/mc_gethost.c
+++++ b/testcases/network/multicast/mc_gethost/mc_gethost.c
++@@ -17,6 +17,8 @@
 + #include <string.h>
-+ #include <netinet/in.h>
-+-#include <netinet/ether.h>
-+ #include <linux/if_link.h>
-+ #include <linux/if_bridge.h>
-+ #include <net/if.h>
++ #include <stdlib.h>
++ 
+++#include "config.h"
+++
++ #ifndef LOG_PERROR
++ #define LOG_PERROR 0
++ #endif
++@@ -50,8 +52,12 @@ usage:
++ 		argv++, argc--;
++ 	}
++ 	if (argc >= 1 && !strcmp(*argv, "-6")) {
+++#if HAVE_RES_USE_INET6
++ 		af = AF_INET6, size = IN6ADDRSZ;
++ 		_res.options |= RES_USE_INET6;
+++#else
+++		af = AF_INET, size = INADDRSZ;
+++#endif
++ 		argv++, argc--;
++ 	}
++ 	if (argc >= 1 && !strcmp(*argv, "-f")) {
 +-- 
-+2.7.4
++2.22.0
 +
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-libc-compat.h-add-musl-workaround.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-libc-compat.h-add-musl-workaround.patch
-new file mode 100644
-index 0000000..50c4bfb
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-libc-compat.h-add-musl-workaround.patch
-@@ -0,0 +1,41 @@
-+From b7d96340c55afb7023ded0041107c63dbd886196 Mon Sep 17 00:00:00 2001
-+From: Baruch Siach <baruch@tkos.co.il>
-+Date: Thu, 22 Dec 2016 15:26:30 +0200
-+Subject: [PATCH] libc-compat.h: add musl workaround
-+
-+The libc-compat.h kernel header uses glibc specific macros (__GLIBC__ and
-+__USE_MISC) to solve conflicts with libc provided headers. This patch makes
-+libc-compat.h work for musl libc as well.
-+
-+Upstream-Status: Pending
-+
-+Taken From:
-+https://git.buildroot.net/buildroot/tree/package/iproute2/0001-Add-the-musl-workaround-to-the-libc-compat.h-copy.patch
-+
-+Signed-off-by: Baruch Siach <baruch@tkos.co.il>
-+Signed-off-by: Maxin B. John <maxin.john@intel.com>
-+---
-+ include/uapi/linux/libc-compat.h | 4 +++-
-+ 1 file changed, 3 insertions(+), 1 deletion(-)
-+
-+diff --git a/include/uapi/linux/libc-compat.h b/include/uapi/linux/libc-compat.h
-+index f38571d..30f0b67 100644
-+--- a/include/uapi/linux/libc-compat.h
-++++ b/include/uapi/linux/libc-compat.h
-+@@ -49,10 +49,12 @@
-+ #define _LIBC_COMPAT_H
-+ 
-+ /* We have included glibc headers... */
-+-#if defined(__GLIBC__)
-++#if 1
-++#define __USE_MISC
-+ 
-+ /* Coordinate with glibc net/if.h header. */
-+ #if defined(_NET_IF_H) && defined(__USE_MISC)
-++#define __UAPI_DEF_IF_NET_DEVICE_FLAGS_LOWER_UP_DORMANT_ECHO 0
-+ 
-+ /* GLIBC headers included first so don't define anything
-+  * that would already be defined. */
-+-- 
-+2.4.0
-+
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/configure-cross.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/configure-cross.patch
-new file mode 100644
-index 0000000..8b75a2a
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/configure-cross.patch
-@@ -0,0 +1,32 @@
-+From 85b0589b4843c03e8e6fd9416d71ea449a73c5c0 Mon Sep 17 00:00:00 2001
-+From: Koen Kooi <koen@dominion.thruhere.net>
-+Date: Thu, 3 Nov 2011 10:46:16 +0100
-+Subject: [PATCH] make configure cross compile safe
-+
-+According to Kevin Tian:
-+Upstream-Status: Pending
-+
-+Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
-+Signed-off-by: Shane Wang <shane.wang@intel.com>
-+
-+Index: iproute2-4.14.1/configure
-+===================================================================
-+--- iproute2-4.14.1.orig/configure
-++++ iproute2-4.14.1/configure
-+@@ -2,6 +2,7 @@
-+ # This is not an autoconf generated configure
-+ #
-+ INCLUDE=${1:-"$PWD/include"}
-++SYSROOT=$1
-+ 
-+ # Output file which is input to Makefile
-+ CONFIG=config.mk
-+@@ -195,7 +196,7 @@ check_ipt_lib_dir()
-+ 		return
-+ 	fi
-+ 
-+-	for dir in /lib /usr/lib /usr/local/lib
-++	for dir in $SYSROOT/lib $SYSROOT/usr/lib $SYSROOT/usr/local/lib
-+ 	do
-+ 		for file in $dir/{xtables,iptables}/lib*t_*so ; do
-+ 			if [ -f $file ]; then
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.19.0.bb b/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.19.0.bb
-new file mode 100644
-index 0000000..6db4062
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.19.0.bb
-@@ -0,0 +1,14 @@
-+require iproute2.inc
-+
-+SRC_URI = "${KERNELORG_MIRROR}/linux/utils/net/${BPN}/${BP}.tar.xz \
-+           file://configure-cross.patch \
-+           file://0001-libc-compat.h-add-musl-workaround.patch \
-+           file://0001-ip-Remove-unneed-header.patch \
-+          "
-+
-+SRC_URI[md5sum] = "67eeebacaac4515cab73dfd2fc796af3"
-+SRC_URI[sha256sum] = "d9ec5ca1f47d8a85416fa26e7dc1cbf5d067640eb60e90bdc1c7e5bdc6a29984"
-+
-+# CFLAGS are computed in Makefile and reference CCOPTS
-+#
-+EXTRA_OEMAKE_append = " CCOPTS='${CFLAGS}'"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+index 09627aa..f4b0c3d 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+@@ -43,7 +43,10 @@ SRCREV = "2a01542a86a76c925f70cf0090350ac2799d4edb"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
++    file://0001-Add-configure-time-check-for-getdents-getdents64-API.patch \
++    file://0002-check-for-RES_USE_INET6-during-configure.patch \
+     file://0003-Add-knob-to-control-tirpc-support.patch \
++    file://0001-getcpu01-Rename-getcpu-to-avoid-conflict-with-glibc-.patch \
+ "
+ 
+ S = "${WORKDIR}/git"
 -- 
 2.7.4
 
