@@ -1,32 +1,44 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id E49E8520DF
+Return-Path: <j-stiffler@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 032E9520DE
 	for <meta-arago@arago-project.org>;
-	Fri, 13 Sep 2019 03:12:37 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 0AB8540BF9;
-	Fri, 13 Sep 2019 03:11:32 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id XtgRCLz86MN3; Fri, 13 Sep 2019 03:11:32 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E6ABD40C04;
-	Fri, 13 Sep 2019 03:11:30 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id A6D9217422D;
-	Thu, 12 Sep 2019 23:11:29 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Thu, 12 Sep 2019 23:11:26 -0400
-Message-Id: <1568344286-30548-6-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1568344286-30548-1-git-send-email-denys@ti.com>
-References: <1568344286-30548-1-git-send-email-denys@ti.com>
-Subject: [master][PATCH 6/6] HACK: recipes: skip wl18xx and crypto examples due to OpenSSL 1.0 deprecation
+	Fri, 13 Sep 2019 13:34:48 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8DDXg02048934
+	for <meta-arago@arago-project.org>; Fri, 13 Sep 2019 08:33:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1568381622;
+	bh=1o6n/7NnONU21iuwIu5JBJEWvlX59yVcCiKfa5ItQhY=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=GI4lraWKzJX/XACuZu/PabOB4A+IsC65/wyDyW0TgKaWQPFEV3Jr2u+KSz/K0ch/t
+	hRg3svqWJlbKXVKOVNXdGJqNeLpM+zeyjZyFkjxGlnRtth8X8R9jEFt0J50dQLVLIY
+	UaJ0iMGJOa+WQTWh1FD6wagLQuOy236aiJiYV16I=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8DDXgYi131005
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 13 Sep 2019 08:33:42 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Fri, 13 Sep 2019 08:33:41 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Fri, 13 Sep 2019 08:33:41 -0500
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8DDXfpq002517
+	for <meta-arago@arago-project.org>; Fri, 13 Sep 2019 08:33:42 -0500
+To: <meta-arago@arago-project.org>
+References: <1567791131-25912-1-git-send-email-j-stiffler@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <1b556f86-0362-ad39-0803-801d578b6d1b@ti.com>
+Date: Fri, 13 Sep 2019 09:33:39 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <1567791131-25912-1-git-send-email-j-stiffler@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: Re: [master/thud][PATCH] ti-tisdk-makefile: sysfw-image: extend support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,201 +51,83 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Sep 2019 03:12:40 -0000
+X-List-Received-Date: Fri, 13 Sep 2019 13:34:49 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/include/arago-prefs.inc  |  6 +++---
- ...packagegroup-arago-tisdk-connectivity-sdk-target.bb |  4 ++--
- .../packagegroup-arago-tisdk-connectivity.bb           |  4 ++--
- .../packagegroup-arago-tisdk-crypto-sdk-host.bb        |  6 +++---
- .../packagegroups/packagegroup-arago-tisdk-crypto.bb   | 11 +++++------
- .../recipes-connectivity/hostap/hostap.inc             |  2 +-
- .../recipes-connectivity/vtun/vtun_3.0.3.bb            |  2 +-
- .../wpa-supplicant/wpa-supplicant.inc                  |  2 +-
- .../recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb | 18 ++++++------------
- .../ti-crypto-examples/ti-crypto-examples_git.bb       |  6 +++++-
- 10 files changed, 29 insertions(+), 32 deletions(-)
+Denys,
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index 3d2ad74..f34fc65 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -49,6 +49,6 @@ PREFERRED_VERSION_obex = "0.34"
- PREFERRED_PROVIDER_libnl-xfrm = "libnl"
- 
- PREFERRED_PROVIDER_wpa-supplicant = "wpa-supplicant"
--PREFERRED_PROVIDER_wpa-supplicant_ti33x = "wpa-supplicant-wl18xx"
--PREFERRED_PROVIDER_wpa-supplicant_ti43x = "wpa-supplicant-wl18xx"
--PREFERRED_PROVIDER_wpa-supplicant_omap-a15 = "wpa-supplicant-wl18xx"
-+#PREFERRED_PROVIDER_wpa-supplicant_ti33x = "wpa-supplicant-wl18xx"
-+#PREFERRED_PROVIDER_wpa-supplicant_ti43x = "wpa-supplicant-wl18xx"
-+#PREFERRED_PROVIDER_wpa-supplicant_omap-a15 = "wpa-supplicant-wl18xx"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-target.bb
-index 3380913..cdf6a62 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity-sdk-target.bb
-@@ -13,12 +13,12 @@ BLUETOOTH_STACK = "\
- CONNECTIVITY_RDEPENDS = ""
- 
- CONNECTIVITY_RDEPENDS_ti33x  = "\
--    wpa-supplicant-wl18xx-dev \
-+    wpa-supplicant-dev \
-     ${BLUETOOTH_STACK} \
- "
- 
- CONNECTIVITY_RDEPENDS_ti43x  = "\
--    wpa-supplicant-wl18xx-dev \
-+    wpa-supplicant-dev \
-     ${BLUETOOTH_STACK} \
- "
- 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-index cc7da73..f3938ac 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-@@ -19,8 +19,8 @@ WLAN_COMMON = "\
- "
- 
- WLAN_TI = "\
--    wpa-supplicant-wl18xx \
--    hostap-daemon-wl18xx \
-+    wpa-supplicant \
-+    hostapd \
-     wl18xx-calibrator \
-     wl18xx-target-scripts \
-     wl18xx-fw \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
-index e87d8c2..14c06e9 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto-sdk-host.bb
-@@ -8,9 +8,9 @@ inherit packagegroup
- 
- CRYPTO_RDEPENDS = ""
- 
--CRYPTO_RDEPENDS_append_ti33x = " ti-crypto-examples-src"
--CRYPTO_RDEPENDS_append_ti43x = " ti-crypto-examples-src"
--CRYPTO_RDEPENDS_append_keystone = " ti-crypto-examples-src"
-+#CRYPTO_RDEPENDS_append_ti33x = " ti-crypto-examples-src"
-+#CRYPTO_RDEPENDS_append_ti43x = " ti-crypto-examples-src"
-+#CRYPTO_RDEPENDS_append_keystone = " ti-crypto-examples-src"
- 
- CRYPTO_RDEPENDS_append_ti33x = " cryptodev-module-src"
- CRYPTO_RDEPENDS_append_ti43x = " cryptodev-module-src"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
-index 4fe7057..50b7e8e 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
-@@ -11,14 +11,13 @@ CRYPTO_SUPPORT = "\
-     openssl-bin \
-     openssl-conf \
-     openssl-engines \
--    openssl10 \
--    openssl10-engines \
- "
- 
--CRYPTO_SUPPORT_append_ti33x = " ti-crypto-examples cryptodev-module cryptodev-tests"
--CRYPTO_SUPPORT_append_ti43x = " ti-crypto-examples cryptodev-module cryptodev-tests"
--CRYPTO_SUPPORT_append_dra7xx = " ti-crypto-examples cryptodev-module cryptodev-tests"
--CRYPTO_SUPPORT_append_keystone = " ti-crypto-examples cryptodev-module cryptodev-tests"
-+#ti-crypto-examples
-+CRYPTO_SUPPORT_append_ti33x = " cryptodev-module cryptodev-tests"
-+CRYPTO_SUPPORT_append_ti43x = " cryptodev-module cryptodev-tests"
-+CRYPTO_SUPPORT_append_dra7xx = " cryptodev-module cryptodev-tests"
-+CRYPTO_SUPPORT_append_keystone = " cryptodev-module cryptodev-tests"
- 
- RDEPENDS_${PN} = "\
-     ${CRYPTO_SUPPORT} \
-diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-index f58a3dc..324de0b 100644
---- a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-+++ b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-@@ -5,7 +5,7 @@ HOMEPAGE = "http://hostap.epitest.fi"
- DESCRIPTION = "User space daemon for extended IEEE 802.11 management"
- SECTION = "kernel/userland"
- 
--DEPENDS = "libnl openssl10"
-+DEPENDS = "libnl openssl"
- 
- # Since this is a TI customized version of hostap-daemon do not make this the
- # default
-diff --git a/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb b/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb
-index 50e4d23..4450cc1 100644
---- a/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb
-+++ b/meta-arago-extras/recipes-connectivity/vtun/vtun_3.0.3.bb
-@@ -4,7 +4,7 @@ SECTION = "console/network"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://vtun.h;startline=1;endline=17;md5=9ac9e7fefca60c72400239e0de40cde8"
- 
--DEPENDS = "zlib lzo openssl10 bison-native flex-native"
-+DEPENDS = "zlib lzo openssl bison-native flex-native"
- 
- SRC_URI = "http://downloads.sourceforge.net/project/vtun/vtun/${PV}/vtun-${PV}.tar.gz"
- 
-diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-index 5fc3e58..6aac06d 100644
---- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-+++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-@@ -9,7 +9,7 @@ LICENSE = "GPLv2 | BSD"
- 
- inherit pkgconfig
- 
--DEPENDS = "gnutls dbus libnl openssl10 libgcrypt"
-+DEPENDS = "gnutls dbus libnl openssl libgcrypt"
- RRECOMMENDS_${PN} = "wpa-supplicant-passphrase wpa-supplicant-cli"
- 
- # To prevent users from accidently picking up this customized version of
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
-index 99cf9c9..5ed3705 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
-@@ -13,18 +13,12 @@ S_ti43x = "${WORKDIR}/git/cryptos_apps_program"
- S_dra7xx = "${WORKDIR}/git/cryptos_apps_program"
- S_keystone = "${WORKDIR}/git/cryptos_apps_program"
- 
--# These scripts HW offloading, so use openssl 1.0
--OPENSSL_BIN = "/usr/bin/openssl10"
--do_configure() {
--    sed -i -e "s|^OPENSSL=.*|OPENSSL=${OPENSSL_BIN}|" ${S}/openssl_perf_scripts/openssl_perf.sh
--}
--
- FILES_${PN} += "${MATRIX_BASE_DIR}/*"
- 
--# Make sure crypto submenu and app images has been installed. Also make sure openssl10 is available
--RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-cryptos openssl10 matrix-gui-helper-scripts"
-+# Make sure crypto submenu and app images has been installed. Also make sure openssl is available
-+RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-cryptos openssl matrix-gui-helper-scripts"
- 
--RDEPENDS_${PN}_append_ti33x = " ti-crypto-examples"
--RDEPENDS_${PN}_append_ti43x = " ti-crypto-examples"
--RDEPENDS_${PN}_append_dra7xx = " ti-crypto-examples"
--RDEPENDS_${PN}_append_keystone = " ti-crypto-examples"
-+#RDEPENDS_${PN}_append_ti33x = " ti-crypto-examples"
-+#RDEPENDS_${PN}_append_ti43x = " ti-crypto-examples"
-+#RDEPENDS_${PN}_append_dra7xx = " ti-crypto-examples"
-+#RDEPENDS_${PN}_append_keystone = " ti-crypto-examples"
-diff --git a/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb b/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
-index 3df6275..3cfa332 100644
---- a/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
-+++ b/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
-@@ -3,7 +3,7 @@ HOMEPAGE = "http://arago-project.org/git/projects/?p=crypto-example-apps.git;a=s
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://AES/aes_256.c;beginline=9;endline=35;md5=8edbb4dee965d2f2eb5ca2822addcae5"
- SECTION = "console"
--DEPENDS += "openssl10"
-+DEPENDS += "openssl"
- 
- PR = "r7"
- 
-@@ -24,3 +24,7 @@ do_compile() {
- do_install() {
-     oe_runmake DESTDIR=${D} install
- }
-+
-+python () {
-+    raise bb.parse.SkipRecipe("skipping ti-crypto-examples")
-+}
--- 
-2.7.4
+Please backport to ti2019.03.
 
+
+Thanks,
+
+Jake
+
+On 9/6/2019 1:32 PM, Jacob Stiffler wrote:
+> * extend support to am65xx-hs-evm and j7-evm
+>
+> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> ---
+>   .../ti-tisdk-makefile/Makefile_sysfw-image         | 28 +++++++++++++++++++++-
+>   .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  2 +-
+>   2 files changed, 28 insertions(+), 2 deletions(-)
+>
+> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_sysfw-image b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_sysfw-image
+> index f7b8787..94ee40d 100644
+> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_sysfw-image
+> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_sysfw-image
+> @@ -1,3 +1,29 @@
+> +# Define the following to support multple platforms
+> +PLATFORM_TYPE_$(PLATFORM) = gp
+> +PLATFORM_TYPE_am65xx-hs-evm = hs
+> +PLATFORM_TYPE = $(PLATFORM_TYPE_$(PLATFORM))
+> +
+> +SYSFW_CONFIG = evm
+> +
+> +SYSFW_SOC_$(PLATFORM) = NULL
+> +SYSFW_SOC_am65xx-evm = am65x
+> +SYSFW_SOC_am65xx-hs-evm = am65x
+> +SYSFW_SOC_j7-evm = j721e
+> +SYSFW_SOC = $(SYSFW_SOC_$(PLATFORM))
+> +
+> +SYSFW_PREFIX = ti-sci-firmware
+> +
+> +SYSFW_BASE = $(SYSFW_PREFIX)-$(SYSFW_SOC)-$(PLATFORM_TYPE)
+> +
+> +SYSFW_MAKEARGS_common = SYSFW_DL_URL="" SYSFW_HS_DL_URL="" SYSFW_HS_INNER_CERT_DL_URL="" \
+> +                        SYSFW_PATH=$(TI_SDK_PATH)/board-support/prebuilt-images/$(SYSFW_BASE).bin \
+> +                        SOC=$(SYSFW_SOC) CONFIG=$(SYSFW_CONFIG)
+> +
+> +SYSFW_MAKEARGS_gp =
+> +SYSFW_MAKEARGS_hs = HS=1 SYSFW_HS_PATH=$(TI_SDK_PATH)/board-support/prebuilt-images/$(SYSFW_BASE)-enc.bin \
+> +                    SYSFW_HS_INNER_CERT_PATH=$(TI_SDK_PATH)/board-support/prebuilt-images/$(SYSFW_BASE)-cert.bin
+> +
+> +SYSFW_MAKEARGS = $(SYSFW_MAKEARGS_common) $(SYSFW_MAKEARGS_$(PLATFORM_TYPE))
+>   
+>   # Depend on linux-dtbs for the dtc utility
+>   sysfw-image: linux-dtbs
+> @@ -5,7 +31,7 @@ sysfw-image: linux-dtbs
+>   	@echo    Building SYSFW Image
+>   	@echo =============================
+>   	@cd board-support; cd `find . -maxdepth 1 -type d -name "*system-firmware-image*"`; \
+> -		make SYSFW_DL_URL="" SYSFW_PATH=$(TI_SDK_PATH)/board-support/prebuilt-images/ti-sci-firmware-am65x-gp.bin CROSS_COMPILE=$(CROSS_COMPILE_ARMV7) PATH=$(PATH):$(LINUXKERNEL_INSTALL_DIR)/scripts/dtc
+> +		make $(SYSFW_MAKEARGS) CROSS_COMPILE=$(CROSS_COMPILE_ARMV7) PATH=$(PATH):$(LINUXKERNEL_INSTALL_DIR)/scripts/dtc
+>   
+>   sysfw-image_clean:
+>   	@echo =============================
+> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+> index 99f6523..417b28b 100644
+> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+> @@ -55,7 +55,7 @@ SRC_URI = "\
+>       file://Makefile_jailhouse \
+>   "
+>   
+> -PR = "r100"
+> +PR = "r101"
+>   
+>   MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
+>                           refresh-screen \
 
