@@ -1,30 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 14DA952990
+	by arago-project.org (Postfix) with ESMTPS id 147FD52970
 	for <meta-arago@arago-project.org>;
 	Fri, 13 Sep 2019 03:12:36 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B603A40C0D;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id E14D340BF9;
 	Fri, 13 Sep 2019 03:11:30 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id o07W2eiGQbBZ; Fri, 13 Sep 2019 03:11:30 +0000 (UTC)
+	with ESMTP id e4yCti4Nj54P; Fri, 13 Sep 2019 03:11:30 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A308540BCF;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id CC26040C04;
 	Fri, 13 Sep 2019 03:11:29 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 68FDE173BBA;
+	by mail.denix.org (Postfix) with ESMTP id 819FC17422A;
 	Thu, 12 Sep 2019 23:11:29 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Thu, 12 Sep 2019 23:11:21 -0400
-Message-Id: <1568344286-30548-1-git-send-email-denys@ti.com>
+Date: Thu, 12 Sep 2019 23:11:23 -0400
+Message-Id: <1568344286-30548-3-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH 1/6] matrix-lighttpd-config: properly defer postinst to run on target
+In-Reply-To: <1568344286-30548-1-git-send-email-denys@ti.com>
+References: <1568344286-30548-1-git-send-email-denys@ti.com>
+Subject: [master][PATCH 3/6] HACK: packagegroup-*-opencl: disable ti-fftw for now
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,22 +43,32 @@ X-List-Received-Date: Fri, 13 Sep 2019 03:12:38 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb     | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
-index f47b0e0..096b5ad 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
-@@ -22,7 +22,7 @@ do_install() {
- FILES_${PN} = "${sysconfdir}/lighttpd.conf.matrix"
- RDEPENDS_${PN} = "lighttpd lighttpd-module-setenv"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb
+index dfd8555..c1ef8ae 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb
+@@ -19,16 +19,16 @@ EXTRA_PKGS = " \
+     python-pyopencl \
+ "
  
--pkg_postinst_${PN} () {
-+pkg_postinst_ontarget_${PN} () {
- if [ -f $D${sysconfdir}/lighttpd.conf ] ; then
- 	cp $D${sysconfdir}/lighttpd.conf.matrix $D${sysconfdir}/lighttpd.conf
- else
++#    ti-fftw-examples
+ EXTRA_PKGS_append_k2hk = " \
+     linalg-examples \
+-    ti-fftw-examples \
+ "
+ 
++#    ti-fftw-examples
+ EXTRA_PKGS_append_dra7xx = " \
+     linalg-examples \
+     opencl-examples \
+     kaldi \
+-    ti-fftw-examples \
+ "
+ 
+ RDEPENDS_${PN} = "\
 -- 
 2.7.4
 
