@@ -1,42 +1,42 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id BD5A3529F4
+Return-Path: <xuj@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id A7C8F529FB
 	for <meta-arago@arago-project.org>;
-	Mon, 16 Sep 2019 16:05:03 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8GG3ukj119526
-	for <meta-arago@arago-project.org>; Mon, 16 Sep 2019 11:03:56 -0500
+	Mon, 16 Sep 2019 17:27:23 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8GHQGoT086720
+	for <meta-arago@arago-project.org>; Mon, 16 Sep 2019 12:26:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1568649836;
-	bh=aDBlwigNEWMVv/YnkxjktqOih4aQchm/x7w9+lR3DDw=;
-	h=From:To:Subject:Date;
-	b=zD45b44pPZeWynzy4mHwbW/wh5dbba76Y/NMU4WMv7KIKQGPf2/zulsWzxhMRSrFY
-	9xF9SA/CGx85GMFLVIU4VcwAbgeJeiWZx2PlRz9NfTh58OzhZGmFk88GraX8Nb/3rR
-	txEFF4DjRt73M8ZU7x0h0FRveLzknrFoBt5heGzc=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8GG3t2q128205
+	s=ti-com-17Q1; t=1568654776;
+	bh=pZulO/weojWV39HQBL5wcy73oR9t25shCQJ/v/t/gdA=;
+	h=From:To:CC:Subject:Date;
+	b=x7F0iR+MfeccMLWJvZUdPJtjdsFPyvBum2PIWPRhF+z0dzNpI0KpORxxS3YdWiQmm
+	opvazGwZUbgAW5r486sNrQ+vJSRfimWUZo/EThkROmswcTOInCT72PEbhKDlHA2/in
+	rd/0OqDD0RgzRBuq+HG0G30PsvB0vyfgwtChrW/M=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8GHQGhF082445
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 16 Sep 2019 11:03:55 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 16 Sep 2019 12:26:16 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 16 Sep 2019 11:03:55 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 16 Sep 2019 12:26:14 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 16 Sep 2019 11:03:55 -0500
-Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Mon, 16 Sep 2019 12:26:13 -0500
+Received: from UDA0869574A.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8GG3qXN097786
-	for <meta-arago@arago-project.org>; Mon, 16 Sep 2019 11:03:54 -0500
-From: Eric Ruei <e-ruei1@ti.com>
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8GHQFf9101246;
+	Mon, 16 Sep 2019 12:26:16 -0500
+From: Jianzhong Xu <xuj@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 16 Sep 2019 12:01:49 -0400
-Message-ID: <20190916160149.12588-1-e-ruei1@ti.com>
+Date: Mon, 16 Sep 2019 13:25:45 -0400
+Message-ID: <20190916172545.24627-1-xuj@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] webkit: make Release build
+Subject: [thud/master] [PATCH] tidl-utils: bump SRCREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,32 +49,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Sep 2019 16:05:04 -0000
+X-List-Received-Date: Mon, 16 Sep 2019 17:27:24 -0000
 Content-Type: text/plain
 
-Note: The debug build causes some unnecessary crashes. Change to
-Release build per advice from QT engineer.
+* add support for mobilenetv2
 
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Jianzhong Xu <xuj@ti.com>
 ---
- meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
-index 31c929a7..75213487 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
-@@ -8,7 +8,9 @@ SRC_URI += " \
- 	file://GraphicsSurfaceGL_NoX.cpp.patch \
- "
- 
--PR_append = ".arago6"
-+PR_append = ".arago7"
-+
-+EXTRA_OECMAKE_append = " -DCMAKE_BUILD_TYPE=Release"
- 
- EXTRA_OECMAKE_append_k3 = " -DUSE_SYSTEM_MALLOC=ON"
- 
+diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
+index 64667e59..1fd3063f 100644
+--- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
++++ b/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
+@@ -1,4 +1,4 @@
+ SRC_URI = "git://git.ti.com/tidl/tidl-utils.git;protocol=git;branch=master"
+-SRCREV = "23d158e4f18a3391e0d836bb3bd9a7c7c7ada7ee"
++SRCREV = "c88b229e70db220ddbf394f3e77c3d5930a0e35a"
+ PV = "01.01.02.00"
+-PR = "r1"
++PR = "r2"
 -- 
 2.17.1
 
