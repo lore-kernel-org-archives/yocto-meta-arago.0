@@ -1,43 +1,30 @@
-Return-Path: <d-senicic1@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 9CF865299C
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id BFA47529F4
 	for <meta-arago@arago-project.org>;
-	Tue, 17 Sep 2019 23:28:54 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8HNRlQ2022973
-	for <meta-arago@arago-project.org>; Tue, 17 Sep 2019 18:27:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1568762867;
-	bh=3BcvgTQybn34eQ9tMuDj0t+Uo+t9cq0qm+RrPjcX69k=;
-	h=From:To:CC:Subject:Date;
-	b=LzABtPrsiiiLDEOjZMNvRu3Y9UuaPEmH/mK5ZNmHQDfbyWviE15Y2OJUjlSQETIlf
-	BKHb7AkoXLHVlU4Sra3/zHj/UrHz5xVVTpm4RDANBaeriMBmxFb+wOT+0JO7YbxMro
-	XkW8y+RlLGYknldp4jchzYlUGrmsTbNgo/5m4mp8=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8HNRllu123477
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 17 Sep 2019 18:27:47 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 17 Sep 2019 18:27:43 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 17 Sep 2019 18:27:46 -0500
-Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8HNRknL067558;
-	Tue, 17 Sep 2019 18:27:46 -0500
-From: Djordje Senicic <x0157990@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 17 Sep 2019 19:26:58 -0400
-Message-ID: <20190917232658.941-1-x0157990@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Djordje Senicic <x0157990@ti.com>
-Subject: [PATCH] opencv: Fix morph.cl related compilation error
+	Tue, 17 Sep 2019 23:58:50 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 48F7D40BE5;
+	Tue, 17 Sep 2019 23:57:43 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id we4CpslfRwWt; Tue, 17 Sep 2019 23:57:43 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 31AD140A9E;
+	Tue, 17 Sep 2019 23:57:42 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 673B217424C;
+	Tue, 17 Sep 2019 19:57:41 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Tue, 17 Sep 2019 19:57:40 -0400
+Message-Id: <1568764660-2369-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [thud/master][PATCH] ti-sci-fw: update to 2019.08
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,72 +37,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Sep 2019 23:28:54 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 17 Sep 2019 23:58:51 -0000
 
-- C6x intrinsic _min2(), _max2() cannot be applied to data types such as uchar3
-
-Signed-off-by: Djordje Senicic <x0157990@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../0001-morph.cl-fix-compilation-error.patch | 35 +++++++++++++++++++
- .../recipes-support/opencv/opencv_3.1.bb      |  1 +
- 2 files changed, 36 insertions(+)
- create mode 100644 meta-arago-extras/recipes-support/opencv/opencv/0001-morph.cl-fix-compilation-error.patch
+ .../ti-sci-fw/{ti-sci-fw_2019.07.bb => ti-sci-fw_2019.08.bb}          | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename meta-arago-distro/recipes-bsp/ti-sci-fw/{ti-sci-fw_2019.07.bb => ti-sci-fw_2019.08.bb} (96%)
 
-diff --git a/meta-arago-extras/recipes-support/opencv/opencv/0001-morph.cl-fix-compilation-error.patch b/meta-arago-extras/recipes-support/opencv/opencv/0001-morph.cl-fix-compilation-error.patch
-new file mode 100644
-index 00000000..5f279f31
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/opencv/opencv/0001-morph.cl-fix-compilation-error.patch
-@@ -0,0 +1,35 @@
-+From c3befabd0420d6665cc61931af5aea00e82977e3 Mon Sep 17 00:00:00 2001
-+From: Djordje Senicic <x0157990@ti.com>
-+Date: Tue, 17 Sep 2019 19:16:00 -0400
-+Subject: [PATCH] morph.cl: fix compilation error
-+
-+Upstream-Status: Inappropriate [other]
-+
-+- TI C6x intrinsic _min2(), _max2() cannot be applied to data types  such as uchar3.
-+
-+Signed-off-by: Djordje Senicic <x0157990@ti.com>
-+---
-+ modules/imgproc/src/opencl/morph.cl | 4 ++--
-+ 1 file changed, 2 insertions(+), 2 deletions(-)
-+
-+diff --git a/modules/imgproc/src/opencl/morph.cl b/modules/imgproc/src/opencl/morph.cl
-+index 8e3ab2fa0..47243ca0c 100644
-+--- a/modules/imgproc/src/opencl/morph.cl
-++++ b/modules/imgproc/src/opencl/morph.cl
-+@@ -90,11 +90,11 @@
-+ #if defined INTEL_DEVICE && defined DEPTH_0
-+ #define MORPH_OP(A, B) ((A) < (B) ? (A) : (B))
-+ #else
-+-#define MORPH_OP(A, B) _min2((A), (B))
-++#define MORPH_OP(A, B) min((A), (B))
-+ #endif
-+ #endif
-+ #ifdef OP_DILATE
-+-#define MORPH_OP(A, B) _max2((A), (B))
-++#define MORPH_OP(A, B) max((A), (B))
-+ #endif
-+ 
-+ #define PROCESS(y, x) \
-+-- 
-+2.17.1
-+
-diff --git a/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb b/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-index acc9d71e..c9670fc6 100644
---- a/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-+++ b/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-@@ -22,6 +22,7 @@ SRC_URI = "git://github.com/opencv/opencv.git;name=opencv \
-     file://0001-3rdparty-ippicv-Use-pre-downloaded-ipp.patch \
-     file://fixgcc60.patch \
-     file://fixpkgconfig.patch \
-+    file://0001-morph.cl-fix-compilation-error.patch \
-     file://0001-Fix-sign-macro-redefinition-compile-time-error.patch;patchdir=../contrib \
- "
+diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.07.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+similarity index 96%
+rename from meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.07.bb
+rename to meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+index d53e926..fab4de4 100644
+--- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.07.bb
++++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+@@ -14,9 +14,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ TI_SECURE_DEV_PKG ?= ""
+ export TI_SECURE_DEV_PKG
  
+-SRCREV = "3f7c97c9f923f6fbf1b96dcae1da8620a3bab0b3"
++SRCREV = "c75bca342d5a8579c3a459515adb6b77d640a245"
+ BRANCH ?= "ti-linux-firmware"
+-SRCREV_imggen = "38a82e00f84efdf381dba001fff75e8411898e99"
++SRCREV_imggen = "92623d82dc683e74225ceaac239b29deac437adf"
+ SRCREV_FORMAT = "imggen"
+ 
+ SRC_URI = " \
 -- 
-2.17.1
+2.7.4
 
 
