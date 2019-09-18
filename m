@@ -1,44 +1,42 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 35BFC5299C
+Return-Path: <h-gou@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id F15E95299C
 	for <meta-arago@arago-project.org>;
-	Wed, 18 Sep 2019 12:36:07 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8ICYxjc046248
-	for <meta-arago@arago-project.org>; Wed, 18 Sep 2019 07:34:59 -0500
+	Wed, 18 Sep 2019 15:59:43 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8IFwajR047392
+	for <meta-arago@arago-project.org>; Wed, 18 Sep 2019 10:58:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1568810099;
-	bh=FD5Ke/JJqvmChVKb4iNLrRpSIjfxULE1ZOsSF1txXwM=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=tq2Wmv5fIJoFp/HCveVY4HJvBjPMPNGY557fwCplIosgli1D7EV61iP0Muz4fCm14
-	4TwTCUoy5cYFd9FGJL8Jr+12PartSVAnZtowjql45paeRDqPCLA/mtNoXdgF8FMIYg
-	LcvX/Xw9b3kJcxzWl+8SZ1NFDcYdtqkb+mHjBO9U=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8ICYxKh065573
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 18 Sep 2019 07:34:59 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1568822316;
+	bh=94sqaH5dysS1SlSjPTL/0289jvpqtrNHeqhLzzur08A=;
+	h=From:To:CC:Subject:Date;
+	b=yt1EGKe0p9rz+E/zfU5xZNKS/XyfVB+eHUrJuzm2t1YQYoJsQ8wd0Ixm2GTODvdkA
+	VApSCIFt3/R1PgXyyLIHgugyZcsTVfaEH6qeB4m37kLcRPTgGy88uKW2XBpS8CNnMs
+	NW8iIWiIyhBSDZ7BOuPYjrrRo0bHBQZVHPzPGIfs=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8IFwaZs113336
+	for <meta-arago@arago-project.org>; Wed, 18 Sep 2019 10:58:36 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 18 Sep 2019 07:34:58 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 18 Sep 2019 10:58:32 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 18 Sep 2019 07:34:59 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8ICYwEm042820;
-	Wed, 18 Sep 2019 07:34:58 -0500
-To: Djordje Senicic <x0157990@ti.com>, <meta-arago@arago-project.org>
-References: <20190917232658.941-1-x0157990@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <16e1b511-f6bb-7b6e-bcb6-e4b4fc32731d@ti.com>
-Date: Wed, 18 Sep 2019 08:34:55 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	Frontend Transport; Wed, 18 Sep 2019 10:58:32 -0500
+Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8IFwXr5003038;
+	Wed, 18 Sep 2019 10:58:35 -0500
+From: Hongmei Gou <a0271529@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 18 Sep 2019 11:57:16 -0400
+Message-ID: <20190918155718.29523-1-a0271529@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20190917232658.941-1-x0157990@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] [PATCH] opencv: Fix morph.cl related compilation error
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [meta-processor-sdk 1/3] flatbuffers: add version 1.10.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,81 +49,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Sep 2019 12:36:07 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Wed, 18 Sep 2019 15:59:44 -0000
+Content-Type: text/plain
 
-Denys,
+* This is back ported from meta-openembedded master/warrior branch
+* This version is required for building armnn with TensorFlow Lite parser
 
-Please backport to ti2019.03.
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
+---
+ .../flatbuffers/flatbuffers_1.10.0.bb         | 34 +++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+ create mode 100644 recipes-devtools/flatbuffers/flatbuffers_1.10.0.bb
 
+diff --git a/recipes-devtools/flatbuffers/flatbuffers_1.10.0.bb b/recipes-devtools/flatbuffers/flatbuffers_1.10.0.bb
+new file mode 100644
+index 0000000..452e1e6
+--- /dev/null
++++ b/recipes-devtools/flatbuffers/flatbuffers_1.10.0.bb
+@@ -0,0 +1,34 @@
++SUMMARY = "Memory Efficient Serialization Library"
++HOMEPAGE = "https://github.com/google/flatbuffers"
++SECTION = "console/tools"
++LICENSE = "Apache-2.0"
++
++PACKAGE_BEFORE_PN = "${PN}-compiler"
++
++RDEPENDS_${PN}-compiler = "${PN}"
++RDEPENDS_${PN}-dev += "${PN}-compiler"
++
++LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=a873c5645c184d51e0f9b34e1d7cf559"
++
++SRCREV = "c0698cc33f1e534bb59c455909b88cc2726089af"
++
++SRC_URI = "git://github.com/google/flatbuffers.git"
++
++# Make sure C++11 is used, required for example for GCC 4.9
++CXXFLAGS += "-std=c++11"
++BUILD_CXXFLAGS += "-std=c++11"
++
++# BUILD_TYPE=Release is required, otherwise flatc is not installed
++EXTRA_OECMAKE += "\
++    -DCMAKE_BUILD_TYPE=Release \
++    -DFLATBUFFERS_BUILD_TESTS=OFF \    
++    -DFLATBUFFERS_BUILD_SHAREDLIB=ON \
++"
++
++inherit cmake
++
++S = "${WORKDIR}/git"
++
++FILES_${PN}-compiler = "${bindir}"
++
++BBCLASSEXTEND = "native nativesdk"
+-- 
+2.17.1
 
-Thanks,
-
-Jake
-
-On 9/17/2019 7:26 PM, Djordje Senicic wrote:
-> - C6x intrinsic _min2(), _max2() cannot be applied to data types such as uchar3
->
-> Signed-off-by: Djordje Senicic <x0157990@ti.com>
-> ---
->   .../0001-morph.cl-fix-compilation-error.patch | 35 +++++++++++++++++++
->   .../recipes-support/opencv/opencv_3.1.bb      |  1 +
->   2 files changed, 36 insertions(+)
->   create mode 100644 meta-arago-extras/recipes-support/opencv/opencv/0001-morph.cl-fix-compilation-error.patch
->
-> diff --git a/meta-arago-extras/recipes-support/opencv/opencv/0001-morph.cl-fix-compilation-error.patch b/meta-arago-extras/recipes-support/opencv/opencv/0001-morph.cl-fix-compilation-error.patch
-> new file mode 100644
-> index 00000000..5f279f31
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-support/opencv/opencv/0001-morph.cl-fix-compilation-error.patch
-> @@ -0,0 +1,35 @@
-> +From c3befabd0420d6665cc61931af5aea00e82977e3 Mon Sep 17 00:00:00 2001
-> +From: Djordje Senicic <x0157990@ti.com>
-> +Date: Tue, 17 Sep 2019 19:16:00 -0400
-> +Subject: [PATCH] morph.cl: fix compilation error
-> +
-> +Upstream-Status: Inappropriate [other]
-> +
-> +- TI C6x intrinsic _min2(), _max2() cannot be applied to data types  such as uchar3.
-> +
-> +Signed-off-by: Djordje Senicic <x0157990@ti.com>
-> +---
-> + modules/imgproc/src/opencl/morph.cl | 4 ++--
-> + 1 file changed, 2 insertions(+), 2 deletions(-)
-> +
-> +diff --git a/modules/imgproc/src/opencl/morph.cl b/modules/imgproc/src/opencl/morph.cl
-> +index 8e3ab2fa0..47243ca0c 100644
-> +--- a/modules/imgproc/src/opencl/morph.cl
-> ++++ b/modules/imgproc/src/opencl/morph.cl
-> +@@ -90,11 +90,11 @@
-> + #if defined INTEL_DEVICE && defined DEPTH_0
-> + #define MORPH_OP(A, B) ((A) < (B) ? (A) : (B))
-> + #else
-> +-#define MORPH_OP(A, B) _min2((A), (B))
-> ++#define MORPH_OP(A, B) min((A), (B))
-> + #endif
-> + #endif
-> + #ifdef OP_DILATE
-> +-#define MORPH_OP(A, B) _max2((A), (B))
-> ++#define MORPH_OP(A, B) max((A), (B))
-> + #endif
-> +
-> + #define PROCESS(y, x) \
-> +--
-> +2.17.1
-> +
-> diff --git a/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb b/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-> index acc9d71e..c9670fc6 100644
-> --- a/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-> +++ b/meta-arago-extras/recipes-support/opencv/opencv_3.1.bb
-> @@ -22,6 +22,7 @@ SRC_URI = "git://github.com/opencv/opencv.git;name=opencv \
->       file://0001-3rdparty-ippicv-Use-pre-downloaded-ipp.patch \
->       file://fixgcc60.patch \
->       file://fixpkgconfig.patch \
-> +    file://0001-morph.cl-fix-compilation-error.patch \
->       file://0001-Fix-sign-macro-redefinition-compile-time-error.patch;patchdir=../contrib \
->   "
->   
 
