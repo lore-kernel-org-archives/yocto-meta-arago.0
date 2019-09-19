@@ -1,45 +1,42 @@
-Return-Path: <h-gou@ti.com>
+Return-Path: <nikhil.nd@ti.com>
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id E572B520DF
+	by arago-project.org (Postfix) with ESMTPS id 34EBA520DE
 	for <meta-arago@arago-project.org>;
-	Wed, 18 Sep 2019 21:54:38 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8ILrV72001200
-	for <meta-arago@arago-project.org>; Wed, 18 Sep 2019 16:53:31 -0500
+	Thu, 19 Sep 2019 10:05:52 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8JA4ii5047311
+	for <meta-arago@arago-project.org>; Thu, 19 Sep 2019 05:04:44 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1568843611;
-	bh=aaN/DI4fmCVXTraC5m9OvA4cM9xB+c7NPL9Pj/JVkA0=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=jKU96GAro1+i6T9AwQ13WSXMoLXNlu/MBGsq7LVkdiEzxXoLGDeNVgjV4X3pOISfd
-	AxAWAs7kXzHIguKxC4SCkIZ1s0tJ+mX4TYGKGR24mq/aQcMO3zfV/V96tlbIR2qAJq
-	La+gJlQPR0daM8G45buTdaH+EFnHim0A0ryq962c=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8ILrVBO127022
+	s=ti-com-17Q1; t=1568887484;
+	bh=gx9Pu2kIEFHdca22jYM6NoVgDDW7bjXm8qUPDU+07XI=;
+	h=From:To:CC:Subject:Date;
+	b=g+e4cIiz8lcNsprLtyKpbCJRBYPbVDUZzgDOQZnklAqHDVMmZXlNDIfUNJQ3k4vA3
+	ixga9wmJVXKXkM/yql+B7rGKKDcG8nSW+JdaRsP5mXaG4NI8ikS7nEQuUSH+gEmQYo
+	IBSKeyWusULUXSGgxI9Aae44y0eg8pJNEBDzli+M=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8JA4i09125268
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 18 Sep 2019 16:53:31 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 19 Sep 2019 05:04:44 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 18 Sep 2019 16:53:27 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 19 Sep 2019 05:04:40 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 18 Sep 2019 16:53:27 -0500
-Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8ILrTd1087816;
-	Wed, 18 Sep 2019 16:53:30 -0500
-From: Hongmei Gou <a0271529@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 18 Sep 2019 17:52:13 -0400
-Message-ID: <20190918215213.12185-4-a0271529@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190918215213.12185-1-a0271529@ti.com>
-References: <20190918215213.12185-1-a0271529@ti.com>
+	Frontend Transport; Thu, 19 Sep 2019 05:04:40 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8JA4f3t035995; 
+	Thu, 19 Sep 2019 05:04:42 -0500
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
+To: <denys@ti.com>
+Date: Thu, 19 Sep 2019 15:34:29 +0530
+Message-ID: <1568887469-57690-1-git-send-email-nikhil.nd@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [master/thud/ti2019.03 4/4] matrix-gui-apps-git.inc: bump SRCREV to update armnn demo scripts to run mobilenetv2 with TFLite parser
+Cc: meta-arago@arago-project.org
+Subject: [thud/master PATCH v1] packagegroup: tisdk-addons-sdk-host: Add src packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,31 +49,81 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Sep 2019 21:54:39 -0000
+X-List-Received-Date: Thu, 19 Sep 2019 10:05:52 -0000
 Content-Type: text/plain
 
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
+Add source packages for ATF and external kernel modules
+Also define the src package proprties for these
 ---
- meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-distro/conf/distro/include/arago-source-ipk.inc | 14 ++++++++++++++
+ .../packagegroup-arago-tisdk-addons-sdk-host.bb            |  7 +++++++
+ 2 files changed, 21 insertions(+)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index f4c095ed..54cb54df 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
- LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
+diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+index 6e56c77..970e3e2 100644
+--- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
++++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+@@ -142,6 +142,10 @@ SRCIPK_PRESERVE_GIT_pn-u-boot-keystone = "true"
+ CREATE_SRCIPK_pn-u-boot-dra7xx = "1"
+ SRCIPK_INSTALL_DIR_pn-u-boot-dra7xx = "board-support/u-boot-${PV}-${PR}"
  
- SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
--SRCREV = "c621180046554c0a24998fea165f3abadc75c25e"
-+SRCREV = "63e4a531807aadf91037fe8bb5ee4395a4d472c0"
- BRANCH = "master"
--INC_PR = "r71"
-+INC_PR = "r72"
++CREATE_SRCIPK_pn-arm-trusted-firmware = "1"
++SRCIPK_INSTALL_DIR_pn-arm-trusted-firmware = "board-support/${PN}-${PV}"
++SRCIPK_PRESERVE_GIT_pn-arm-trusted-firmware = "true"
++
+ CREATE_SRCIPK_pn-linux-ti-staging = "1"
+ SRCIPK_INSTALL_DIR_pn-linux-ti-staging = "board-support/linux-${PV}${KERNEL_LOCALVERSION}"
+ SRCIPK_PRESERVE_GIT_pn-linux-ti-staging = "true"
+@@ -181,6 +185,7 @@ SRCIPK_INSTALL_DIR_pn-linux-omap4 = "board-support/linux-${PV}"
  
- # Pull in the base package for installing matrix applications
- require matrix-gui-apps.inc
+ CREATE_SRCIPK_pn-cryptodev-module = "1"
+ SRCIPK_INSTALL_DIR_pn-cryptodev-module = "board-support/extra-drivers/cryptodev-module-${PV}"
++SRCIPK_PRESERVE_GIT_pn-cryptodev-module = "true"
+ 
+ CREATE_SRCIPK_pn-cmem-mod = "1"
+ SRCIPK_INSTALL_DIR_pn-cmem-mod = "board-support/extra-drivers/${PN}-${PV}"
+@@ -196,6 +201,11 @@ SRCIPK_INSTALL_DIR_pn-ti-sgx-ddk-km = "board-support/extra-drivers/${PN}-${PV}"
+ 
+ CREATE_SRCIPK_pn-ti-img-rogue-driver = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-img-rogue-driver = "board-support/extra-drivers/${PN}-${PV}"
++SRCIPK_PRESERVE_GIT_pn-ti-img-rogue-driver = "true"
++
++CREATE_SRCIPK_pn-ti-img-encode-decode = "1"
++SRCIPK_INSTALL_DIR_pn-ti-img-encode-decode = "board-support/extra-drivers/${PN}-${PV}"
++SRCIPK_PRESERVE_GIT_pn-ti-img-encode-decode = "true"
+ 
+ CREATE_SRCIPK_pn-ti-gc320-driver = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-gc320-driver = "board-support/extra-drivers/${PN}-${PV}"
+@@ -364,6 +374,10 @@ SRCIPK_INSTALL_DIR_pn-hplib-mod = "board-support/extra-drivers/${PN}-${PV}"
+ CREATE_SRCIPK_pn-uio-module-drv = "1"
+ SRCIPK_INSTALL_DIR_pn-uio-module-drv = "board-support/extra-drivers/${PN}-${PV}"
+ 
++CREATE_SRCIPK_pn-ivshmem-uio-driver = "1"
++SRCIPK_INSTALL_DIR_pn-ivshmem-uio-driver = "board-support/extra-drivers/${PN}-${PV}"
++SRCIPK_PRESERVE_GIT_pn-ivshmem-uio-driver = "true"
++
+ CREATE_SRCIPK_pn-ipsecmgr-mod = "1"
+ SRCIPK_INSTALL_DIR_pn-ipsecmgr-mod = "board-support/extra-drivers/${PN}-${PV}"
+ 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index fbdc735..558955c 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -39,6 +39,13 @@ UTILS_append_k2g = " \
+ UTILS_append_k3 = " \
+     jailhouse-src \
+     ti-sci-fw-src \
++    ivshmem-uio-driver-src \
++    arm-trusted-firmware-src \
++"
++
++UTILS_append_j7-evm = " \
++    ti-img-encode-decode-src \
++    ti-img-rogue-driver-src \
+ "
+ 
+ UTILS_append_am65xx = " \
 -- 
-2.17.1
+1.9.1
 
 
