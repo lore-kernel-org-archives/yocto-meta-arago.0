@@ -1,44 +1,44 @@
-Return-Path: <h-gou@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 77E6552974
+Return-Path: <j-stiffler@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 777B6529D3
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Sep 2019 14:58:45 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8KEvbxA112860
-	for <meta-arago@arago-project.org>; Fri, 20 Sep 2019 09:57:37 -0500
+	Fri, 20 Sep 2019 18:06:18 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8KI5AWP022567
+	for <meta-arago@arago-project.org>; Fri, 20 Sep 2019 13:05:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1568991457;
-	bh=5lZ5dOnLI7o1JGBQDvNwPhijBL6hLgJUmPe9bi2G7hc=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=NNZg18FIGXkN2NwNAS3BjLzDlt1QHJ+D2X9umizPtoxw44Q9JlVD7S2D85bvfTIpb
-	Dt+PW9zg+DEgb7NHI46D0lb8rKbXV6lBWqT0t13madB/lfkbO3fZVF9begQNQvpEoh
-	vEt+Ns0mK9ZfgGsDKTkDN0GGLsEQe7pEzeKcsVpQ=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8KEvbrH028497
-	for <meta-arago@arago-project.org>; Fri, 20 Sep 2019 09:57:37 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1569002710;
+	bh=8TJ/mznX3t4ozEX1b+7GNeSMWE3k2ewHGKbh5xsazP0=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=u03Tr6ByY81YYco06OwcVWt2FRejAkWZvXLxk3YFfu6ELut2ILaGQkkHeahr7+qFK
+	TjdiSoqYtC+STP7gZXRvD4zYfwtr1yblcPx5iw3FhHGeiciFxg6t6fuU9U+ug2aQQG
+	q2e7m5u/Gbj9JwSXW//q8wu8M0+6spvxwpVdM050=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8KI59Vu048080
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 20 Sep 2019 13:05:10 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 20 Sep 2019 09:57:32 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 20 Sep 2019 13:05:05 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 20 Sep 2019 09:57:32 -0500
-Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8KEvaIS071947;
-	Fri, 20 Sep 2019 09:57:36 -0500
-From: Hongmei Gou <a0271529@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 20 Sep 2019 10:56:21 -0400
-Message-ID: <20190920145621.1764-2-a0271529@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190920145621.1764-1-a0271529@ti.com>
-References: <20190920145621.1764-1-a0271529@ti.com>
+	Frontend Transport; Fri, 20 Sep 2019 13:05:09 -0500
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8KI59wB102088;
+	Fri, 20 Sep 2019 13:05:09 -0500
+To: Hongmei Gou <a0271529@ti.com>, <meta-arago@arago-project.org>
+References: <20190822203126.4155-1-a0271529@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <c42e7419-76ff-e3ee-cfe3-30291583099f@ti.com>
+Date: Fri, 20 Sep 2019 14:05:05 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <20190822203126.4155-1-a0271529@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [meta-processor-sdk 2/2] packagegroup-arago-tisdk-addons*: remove tensorflow-lite which is now upstreamed.
+Subject: Re: [EXTERNAL] [PATCH v2 0/3] Add tensorflow-lite
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,53 +51,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Sep 2019 14:58:46 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 20 Sep 2019 18:06:19 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
----
- .../packagegroup-arago-tisdk-addons-sdk-target.bbappend  | 7 +------
- .../packagegroup-arago-tisdk-addons.bbappend             | 9 ++++-----
- 2 files changed, 5 insertions(+), 11 deletions(-)
+Denys,
 
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
-index 72f58b1..6cd7f4d 100644
---- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
-@@ -1,4 +1,4 @@
--PR_append = "-tisdk32"
-+PR_append = "-tisdk33"
- 
- UTILS_append_ti33x = " \
-     opencv-dev \
-@@ -76,8 +76,3 @@ EXTRA_LIBS_append_dra7xx = " \
-     tiovx-lib-host-staticdev \
-     tiovx-sys-iface \
- "
--
--EXTRA_PACKAGES_append_ti33x = " tensorflow-lite-dev tensorflow-lite-staticdev"
--EXTRA_PACKAGES_append_ti43x = " tensorflow-lite-dev tensorflow-lite-staticdev"
--EXTRA_PACKAGES_append_omap-a15 = " tensorflow-lite-dev tensorflow-lite-staticdev"
--EXTRA_PACKAGES_append_am65xx = " tensorflow-lite-dev tensorflow-lite-staticdev"
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
-index 90440d8..35c6e7e 100644
---- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
-@@ -1,9 +1,8 @@
--PR_append = "-tisdk57"
-+PR_append = "-tisdk58"
- 
--EXTRA_PACKAGES_append_ti33x = " opencv tensorflow-lite-examples"
--EXTRA_PACKAGES_append_ti43x = " opencv tensorflow-lite-examples"
--EXTRA_PACKAGES_append_omap-a15 = " opencv tensorflow-lite-examples"
--EXTRA_PACKAGES_append_am65xx = " tensorflow-lite-examples"
-+EXTRA_PACKAGES_append_ti33x = " opencv"
-+EXTRA_PACKAGES_append_ti43x = " opencv"
-+EXTRA_PACKAGES_append_omap-a15 = " opencv"
- EXTRA_PACKAGES_append_keystone = " opencv"
- EXTRA_PACKAGES_remove_k2hk-hs-evm = "opencv"
- 
--- 
-2.17.1
+Please backport these to ti2019.03.
 
+
+Thank you,
+
+Jake
+
+
+On 8/22/2019 4:31 PM, Hongmei Gou wrote:
+> This patch set starts from the baseline recipe at
+> https://github.com/nnsuite/meta-neural-network/tree/master/recipes-tensorflow/tensorflow-lite,
+>
+> The major changes are listed below:
+>
+> 1. Made some cleanup for the baseline recipes, such as updating NEON2SSE and replacing AUTOREV
+>
+> 2. Installed minimal and benchmark_model binaries which have been built with the original Makefile
+>
+> 3. Patched Makefile to add label_image and installed the example binary and files
+>     (model/image/labels.txt) needed to run the example
+>
+> v2 change:
+> Keep the dependencies in the original single recipe, instead of creating separate recipes
+> for all the dependencies
+>
+> Hongmei Gou (3):
+>    tensorflow-lite: add version 1.12
+>    tensorflow-lite: install minimal and benchmark_model examples, and all
+>      .a files
+>    tensorflow-lite: add label_image example and install the files to run
+>      the example
+>
+>   ...001-Makefile-add-label_image-example.patch |  89 ++++++++++++
+>   ...odification-for-tflite-1.12-to-eigen.patch |  13 ++
+>   .../files/tensorflow-lite.pc.in               |   6 +
+>   .../tensorflow-lite/tensorflow-lite_1.12.bb   | 136 ++++++++++++++++++
+>   4 files changed, 244 insertions(+)
+>   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch
+>   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch
+>   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in
+>   create mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
+>
 
