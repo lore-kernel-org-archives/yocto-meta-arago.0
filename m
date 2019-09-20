@@ -1,47 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id A8A4E52974
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 9D84852960
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Sep 2019 19:15:57 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8KJEnuI037970
-	for <meta-arago@arago-project.org>; Fri, 20 Sep 2019 14:14:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1569006889;
-	bh=7MvTBdb2KTTD2PJt0GyKoB+W29y6kK5Q0xh5ym5QrzI=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=SjkYYFh2hzuW0j0o31LSxxuVhq6KpxE76oq2IZ4pf5muHppLtBNBQ+hnPWmq/V26I
-	s8vgqNmO9ujXp9XvfaFVnx/tsHLWxlejjJHwOEv6UPOR52zMkjmQoh46iEfHxZ7Fr4
-	WBGr/kaWGtj6kb0hqcp5/h4t6Jl9iNTOISP5r10g=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8KJEniB011478
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 20 Sep 2019 14:14:49 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 20 Sep 2019 14:14:44 -0500
-Received: from DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222]) by
-	DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222%18]) with mapi id
-	15.01.1713.004; Fri, 20 Sep 2019 14:14:44 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [master/thud/ti2019.03][PATCH]
-	meta-toolchain-arago-qte: add quotes to vars
-Thread-Index: AQHVb7gRYKOiufwmTk6ZPTBXw8LVwac1M9WA//+7ioA=
-Date: Fri, 20 Sep 2019 19:14:44 +0000
-Message-ID: <949f3a6c0a8f461f8265218331d91ef4@ti.com>
-References: <1568985365-31665-1-git-send-email-j-stiffler@ti.com>
-	<20190920181757.GI5351@beryl>
-In-Reply-To: <20190920181757.GI5351@beryl>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.113.191]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [master/thud/ti2019.03][PATCH] meta-toolchain-arago-qte: add quotes to vars
+	Fri, 20 Sep 2019 19:54:55 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 588F540BE2;
+	Fri, 20 Sep 2019 19:53:47 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id md45WXZTDOW5; Fri, 20 Sep 2019 19:53:47 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D54DC40A2D;
+	Fri, 20 Sep 2019 19:53:45 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 1A738174268;
+	Fri, 20 Sep 2019 15:53:45 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Fri, 20 Sep 2019 15:53:44 -0400
+Message-Id: <1569009224-37194-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH] systemd: restore use of sysinit.target.wants by pre-creating the dir
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,80 +37,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Sep 2019 19:15:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 20 Sep 2019 19:54:56 -0000
 
-I am not sure what is require for qmake, but this was the effect with bash.=
- If dash is the shell, then there is an error exporting the variable becaus=
-e of the whitespace.
+TODO: convert to use systemd-conf instead of main systemd for machine/distro config
 
-In summary, this causes no change in behavior if bash is the shell.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-core/systemd/systemd_%.bbappend | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> -----Original Message-----
-> From: Dmytriyenko, Denys
-> Sent: Friday, September 20, 2019 2:18 PM
-> To: Stiffler, Jacob
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [master/thud/ti2019.03][PATCH] meta-toolchain-
-> arago-qte: add quotes to vars
->=20
-> BTW, do we also need to pass --sysroot parameter for qmake CC vars, like =
-is
-> done for main CC vars here:
-> http://arago-project.org/git/?p=3Dmeta-
-> arago.git;a=3Dcommitdiff;h=3D4e87564c39e214a61cbf0088ecf1a3f5a3f01bd5
->=20
->=20
-> On Fri, Sep 20, 2019 at 09:16:05AM -0400, Jacob Stiffler wrote:
-> > * Add quotes around values which may contain spaces
-> >
-> > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> > ---
-> >  .../recipes-core/meta/meta-toolchain-arago-qte.bb              | 10 ++=
-+++-----
-> >  1 file changed, 5 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-
-> qte.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-
-> qte.bb
-> > index b03b639..d313939 100644
-> > --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-> > +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-> > @@ -5,7 +5,7 @@ TOOLCHAIN_SUFFIX ?=3D "-qte-sdk"
-> >
-> >  require meta-toolchain-arago.bb
-> >
-> > -PR =3D "r19"
-> > +PR =3D "r20"
-> >
-> >  # There could be qt5, qt4e and qt4x11 providers, but we don't support
-> qt4x11 for now
-> >  QT_DIR_NAME =3D "${@oe.utils.conditional('QT_PROVIDER', 'qt5', '', 'qt=
-opia',
-> d)}"
-> > @@ -19,10 +19,10 @@ toolchain_create_sdk_env_script_append() {
-> >  	echo 'export OE_QMAKE_CFLAGS=3D"$CFLAGS"' >> $script
-> >  	echo 'export OE_QMAKE_CXXFLAGS=3D"$CXXFLAGS"' >> $script
-> >  	echo 'export OE_QMAKE_LDFLAGS=3D"$LDFLAGS"' >> $script
-> > -	echo 'export OE_QMAKE_CC=3D$CC' >> $script
-> > -	echo 'export OE_QMAKE_CXX=3D$CXX' >> $script
-> > -	echo 'export OE_QMAKE_LINK=3D$CXX' >> $script
-> > -	echo 'export OE_QMAKE_AR=3D$AR' >> $script
-> > +	echo 'export OE_QMAKE_CC=3D"$CC"' >> $script
-> > +	echo 'export OE_QMAKE_CXX=3D"$CXX"' >> $script
-> > +	echo 'export OE_QMAKE_LINK=3D"$CXX"' >> $script
-> > +	echo 'export OE_QMAKE_AR=3D"$AR"' >> $script
-> >  	echo 'export OE_QMAKE_PREFIX_QT=3D${prefix}' >> $script
-> >  	echo 'export OE_QMAKE_LIBDIR_QT=3D${libdir}' >> $script
-> >  	echo 'export
-> OE_QMAKE_INCDIR_QT=3D${includedir}/${QT_DIR_NAME}' >> $script
-> > --
-> > 2.7.4
-> >
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend b/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend
+index eb70690..39fe64d 100644
+--- a/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend
++++ b/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend
+@@ -31,9 +31,9 @@ do_install_append() {
+     install -m 0644 ${WORKDIR}/30-wlan.network ${D}${sysconfdir}/systemd/network/
+     install -m 0644 ${WORKDIR}/60-usb.network ${D}${sysconfdir}/systemd/network/
+ 
+-    install -d ${D}${sysconfdir}/systemd/system/
++    install -d ${D}${sysconfdir}/systemd/system/sysinit.target.wants
+     install -m 0644 ${WORKDIR}/sync-clocks.service ${D}${sysconfdir}/systemd/system/
+-    ln -sf ../sync-clocks.service ${D}${sysconfdir}/systemd/system/multi-user.target.wants/sync-clocks.service
++    ln -sf ../sync-clocks.service ${D}${sysconfdir}/systemd/system/sysinit.target.wants/sync-clocks.service
+ 
+     # Allow automount from udev
+     install -m 0644 ${D}${systemd_system_unitdir}/systemd-udevd.service ${D}${sysconfdir}/systemd/system/
+-- 
+2.7.4
+
 
