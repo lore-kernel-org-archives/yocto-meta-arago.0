@@ -1,41 +1,42 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id A88E552960
+Return-Path: <h-gou@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 5AD3852960
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Sep 2019 13:35:15 +0000 (UTC)
+	Fri, 20 Sep 2019 14:58:45 +0000 (UTC)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8KDY7B1114330
-	for <meta-arago@arago-project.org>; Fri, 20 Sep 2019 08:34:07 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8KEvaa4070753
+	for <meta-arago@arago-project.org>; Fri, 20 Sep 2019 09:57:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1568986447;
-	bh=LPYKDnmFVrXULYj9F98R5KTnMuHlX8d67d8ijAS0gDA=;
+	s=ti-com-17Q1; t=1568991456;
+	bh=nyIG3X5gzAjCoXj54d5IMdjejCrVdj27+cu5B6O/iG0=;
 	h=From:To:CC:Subject:Date;
-	b=uXYf3EEGFxjWmD8egwbvMf0DdKzRiW3004EUxDw2dJeZ+oFhJlvhNIufyEV8IJVpt
-	7ZM+ABRQQOc0Tsh5JASG2m7esxcIYyl89CzLF7zMA0KVRX2X37I1W3zg/LkmeGrNZB
-	kEsk3dTTAdzWBmchE4ZlbEOTJQthi9PDHcZpriwA=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8KDY7bs053266
-	for <meta-arago@arago-project.org>; Fri, 20 Sep 2019 08:34:07 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	b=NxOwzKgkft/YnOPUe5qa87kuDXxxEMICON4KaejxHfAHTIy4lgzQYv2LarfDEvKWu
+	dgzRfv9DNTHG0qOgn4AGU7SRiSKqv9yEi9sBT0VAL3a4m9F8KkgVqaYzqXiPbu68D7
+	5bW3XfsYORymDTXeV5JMMsDaDtYJEcIDwFXKsf7M=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8KEvavG028491
+	for <meta-arago@arago-project.org>; Fri, 20 Sep 2019 09:57:36 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 20 Sep 2019 08:34:03 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 20 Sep 2019 09:57:36 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 20 Sep 2019 08:34:07 -0500
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Fri, 20 Sep 2019 09:57:32 -0500
+Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8KDY6ZB077152;
-	Fri, 20 Sep 2019 08:34:06 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8KEvaIR071947;
+	Fri, 20 Sep 2019 09:57:36 -0500
+From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 20 Sep 2019 09:16:05 -0400
-Message-ID: <1568985365-31665-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
+Date: Fri, 20 Sep 2019 10:56:20 -0400
+Message-ID: <20190920145621.1764-1-a0271529@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master/thud/ti2019.03][PATCH] meta-toolchain-arago-qte: add quotes to vars
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [meta-processor-sdk 1/2] tensorflow-lite: upstreamed to meta-arago. remove.
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,45 +49,292 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Sep 2019 13:35:16 -0000
+X-List-Received-Date: Fri, 20 Sep 2019 14:58:45 -0000
 Content-Type: text/plain
 
-* Add quotes around values which may contain spaces
-
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- .../recipes-core/meta/meta-toolchain-arago-qte.bb              | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ ...001-Makefile-add-label_image-example.patch |  89 -----------
+ ...odification-for-tflite-1.12-to-eigen.patch |  13 --
+ .../files/tensorflow-lite.pc.in               |   6 -
+ .../tensorflow-lite/tensorflow-lite_1.12.bb   | 138 ------------------
+ 4 files changed, 246 deletions(-)
+ delete mode 100644 recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch
+ delete mode 100644 recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch
+ delete mode 100644 recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in
+ delete mode 100644 recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
 
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-index b03b639..d313939 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
-@@ -5,7 +5,7 @@ TOOLCHAIN_SUFFIX ?= "-qte-sdk"
- 
- require meta-toolchain-arago.bb
- 
--PR = "r19"
-+PR = "r20"
- 
- # There could be qt5, qt4e and qt4x11 providers, but we don't support qt4x11 for now
- QT_DIR_NAME = "${@oe.utils.conditional('QT_PROVIDER', 'qt5', '', 'qtopia', d)}"
-@@ -19,10 +19,10 @@ toolchain_create_sdk_env_script_append() {
- 	echo 'export OE_QMAKE_CFLAGS="$CFLAGS"' >> $script
- 	echo 'export OE_QMAKE_CXXFLAGS="$CXXFLAGS"' >> $script
- 	echo 'export OE_QMAKE_LDFLAGS="$LDFLAGS"' >> $script
--	echo 'export OE_QMAKE_CC=$CC' >> $script
--	echo 'export OE_QMAKE_CXX=$CXX' >> $script
--	echo 'export OE_QMAKE_LINK=$CXX' >> $script
--	echo 'export OE_QMAKE_AR=$AR' >> $script
-+	echo 'export OE_QMAKE_CC="$CC"' >> $script
-+	echo 'export OE_QMAKE_CXX="$CXX"' >> $script
-+	echo 'export OE_QMAKE_LINK="$CXX"' >> $script
-+	echo 'export OE_QMAKE_AR="$AR"' >> $script
- 	echo 'export OE_QMAKE_PREFIX_QT=${prefix}' >> $script
- 	echo 'export OE_QMAKE_LIBDIR_QT=${libdir}' >> $script
- 	echo 'export OE_QMAKE_INCDIR_QT=${includedir}/${QT_DIR_NAME}' >> $script
+diff --git a/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch b/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch
+deleted file mode 100644
+index 61f821e..0000000
+--- a/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch
++++ /dev/null
+@@ -1,89 +0,0 @@
+-From 87cf7e879640436f19f26e338dce6c343c19bfd8 Mon Sep 17 00:00:00 2001
+-From: Hongmei Gou <a0271529@ti.com>
+-Date: Wed, 21 Aug 2019 18:03:17 -0400
+-Subject: [PATCH] Makefile: add label_image example
+-
+-Upstream-Status: Pending
+-
+-Signed-off-by: Hongmei Gou <a0271529@ti.com>
+----
+- tensorflow/contrib/lite/tools/make/Makefile | 21 +++++++++++++++++++--
+- 1 file changed, 19 insertions(+), 2 deletions(-)
+-
+-diff --git a/tensorflow/contrib/lite/tools/make/Makefile b/tensorflow/contrib/lite/tools/make/Makefile
+-index 16012a3fb1..a5e5cb3fc7 100644
+---- a/tensorflow/contrib/lite/tools/make/Makefile
+-+++ b/tensorflow/contrib/lite/tools/make/Makefile
+-@@ -72,6 +72,11 @@ BENCHMARK_BINARY_NAME := benchmark_model
+- MINIMAL_SRCS := \
+- tensorflow/contrib/lite/examples/minimal/minimal.cc
+- 
+-+# label image example
+-+LABELIMAGE_SRCS := \
+-+tensorflow/contrib/lite/examples/label_image/bitmap_helpers.cc \
+-+tensorflow/contrib/lite/examples/label_image/label_image.cc
+-+
+- # What sources we want to compile, must be kept in sync with the main Bazel
+- # build files.
+- 
+-@@ -108,7 +113,8 @@ $(wildcard tensorflow/contrib/lite/*/*test.cc) \
+- $(wildcard tensorflow/contrib/lite/*/*/*test.cc) \
+- $(wildcard tensorflow/contrib/lite/*/*/*/*test.cc) \
+- $(wildcard tensorflow/contrib/lite/kernels/test_util.cc) \
+--$(MINIMAL_SRCS)
+-+$(MINIMAL_SRCS) \
+-+$(LABELIMAGE_SRCS)
+- ifeq ($(BUILD_TYPE),micro)
+- CORE_CC_EXCLUDE_SRCS += \
+- tensorflow/contrib/lite/mmap_allocation.cc \
+-@@ -135,6 +141,7 @@ include $(wildcard $(MAKEFILE_DIR)/targets/*_makefile.inc)
+- 
+- ALL_SRCS := \
+- 	$(MINIMAL_SRCS) \
+-+	$(LABELIMAGE_SRCS) \
+- 	$(PROFILER_SRCS) \
+- 	$(PROFILER_SUMMARY_SRCS) \
+- 	$(TF_LITE_CC_SRCS) \
+-@@ -150,6 +157,7 @@ LIB_PATH := $(LIBDIR)$(LIB_NAME)
+- BENCHMARK_LIB := $(LIBDIR)$(BENCHMARK_LIB_NAME)
+- BENCHMARK_BINARY := $(BINDIR)$(BENCHMARK_BINARY_NAME)
+- MINIMAL_BINARY := $(BINDIR)minimal
+-+LABELIMAGE_BINARY := $(BINDIR)label_image
+- 
+- CXX := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}g++
+- CC := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}gcc
+-@@ -158,6 +166,9 @@ AR := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}ar
+- MINIMAL_OBJS := $(addprefix $(OBJDIR), \
+- $(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(MINIMAL_SRCS))))
+- 
+-+LABELIMAGE_OBJS := $(addprefix $(OBJDIR), \
+-+$(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(LABELIMAGE_SRCS))))
+-+
+- LIB_OBJS := $(addprefix $(OBJDIR), \
+- $(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(TF_LITE_CC_SRCS))))
+- 
+-@@ -174,7 +185,7 @@ $(OBJDIR)%.o: %.c
+- 	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
+- 
+- # The target that's compiled if there's no command-line arguments.
+--all: $(LIB_PATH)  $(MINIMAL_BINARY) $(BENCHMARK_BINARY)
+-+all: $(LIB_PATH)  $(MINIMAL_BINARY) $(LABELIMAGE_BINARY) $(BENCHMARK_BINARY)
+- 
+- # The target that's compiled for micro-controllers
+- micro: $(LIB_PATH)
+-@@ -198,6 +209,12 @@ $(BENCHMARK_LIB) : $(LIB_PATH) $(BENCHMARK_OBJS)
+- 	@mkdir -p $(dir $@)
+- 	$(AR) $(ARFLAGS) $(BENCHMARK_LIB) $(LIB_OBJS) $(BENCHMARK_OBJS)
+- 
+-+$(LABELIMAGE_BINARY): $(LABELIMAGE_OBJS) $(LIB_PATH)
+-+	@mkdir -p $(dir $@)
+-+	$(CXX) $(CXXFLAGS) $(INCLUDES) \
+-+	-o $(LABELIMAGE_BINARY) $(LABELIMAGE_OBJS) \
+-+	$(LIBFLAGS) $(LIB_PATH) $(LDFLAGS) $(LIBS)
+-+
+- benchmark_lib: $(BENCHMARK_LIB)
+- 
+- $(BENCHMARK_BINARY) : $(BENCHMARK_LIB)
+--- 
+-2.17.1
+-
+diff --git a/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch b/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch
+deleted file mode 100644
+index 1a8de78..0000000
+--- a/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch
++++ /dev/null
+@@ -1,13 +0,0 @@
+-diff --git a/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h b/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
+-index 306a309beb..4527a64c91 100644
+---- a/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
+-+++ b/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
+-@@ -295,7 +295,7 @@ ptranspose(PacketBlock<Packet2cf,2>& kernel) {
+-   static uint64x2_t p2ul_CONJ_XOR = {0x0, 0x8000000000000000};
+- #else
+-   const uint64_t  p2ul_conj_XOR_DATA[] = { 0x0, 0x8000000000000000 };
+--  static uint64x2_t p2ul_CONJ_XOR = vld1q_u64( p2ul_conj_XOR_DATA );
+-+  static uint64x2_t p2ul_CONJ_XOR;// = vld1q_u64( p2ul_conj_XOR_DATA ); - Removed by script
+- #endif
+- 
+- struct Packet1cd
+diff --git a/recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in b/recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in
+deleted file mode 100644
+index 44afd0e..0000000
+--- a/recipes-support/tensorflow-lite/files/tensorflow-lite.pc.in
++++ /dev/null
+@@ -1,6 +0,0 @@
+- Name: tensorflow lite
+- Description: tensorflow lite static library
+- Version: @version@
+- Requires:
+- Libs: -L@libdir@ -ltensorflow-lite
+- Cflags: -I@includedir@
+diff --git a/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb b/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
+deleted file mode 100644
+index 205977c..0000000
+--- a/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
++++ /dev/null
+@@ -1,138 +0,0 @@
+-DESCRIPTION = "TensorFlow's lightweight solution for mobile and embedded devices"
+-AUTHOR = "Google Inc. and Yuan Tang"
+-HOMEPAGE = "https://www.tensorflow.org/lite"
+-LICENSE = "Apache-2.0"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=01e86893010a1b87e69a213faa753ebd"
+-
+-MD5SUM_EIGEN = "4c884968ede816a84c70e2cd2c81de8d"
+-SHA256SUM_EIGEN = "d956415d784fa4e42b6a2a45c32556d6aec9d0a3d8ef48baee2522ab762556a9"
+-MD5SUM_FARMHASH = "f039a65a7f62bdb6c4b4c8a732638d80"
+-SHA256SUM_FARMHASH = "6560547c63e4af82b0f202cb710ceabb3f21347a4b996db565a411da5b17aba0"
+-MD5SUM_GEMMLOWP = "a90a2161ad8ee4ccf724f56e07637601"
+-SHA256SUM_GEMMLOWP = "b87faa7294dfcc5d678f22a59d2c01ca94ea1e2a3b488c38a95a67889ed0a658"
+-MD5SUM_GTEST = "16877098823401d1bf2ed7891d7dce36"
+-SHA256SUM_GTEST = "58a6f4277ca2bc8565222b3bbd58a177609e9c488e8a72649359ba51450db7d8"
+-MD5SUM_ABSLCPP = "7c9945f256d3733a8eade255afcbd072"
+-SHA256SUM_ABSLCPP = "7dd09690ae7ca4551de3111d4a86b75b23ec17445f273d3c42bdcdc1c7b02e4e"
+-MD5SUM_NEON2SSE = "276619db5393450c223b7c4e47e848ce"
+-SHA256SUM_NEON2SSE = "8cc98e95c86d362dd6f003b35a9517a9928e3fd387b33188b0442df13245a17b"
+-MD5SUM_FLATBUFFER = "3811552512049fac3af419130904bc55"
+-SHA256SUM_FLATBUFFER = "b2bb0311ca40b12ebe36671bdda350b10c7728caf0cfe2d432ea3b6e409016f3"
+-MD5SUM_FFT = "4255dd8a74949d123216b1ab91520469"
+-SHA256SUM_FFT = "52bb637c70b971958ec79c9c8752b1df5ff0218a4db4510e60826e0cb79b5296"
+-
+-SRC_URI = "git://github.com/tensorflow/tensorflow.git;branch=r1.12;protocol=https \
+-    https://bitbucket.org/eigen/eigen/get/fd6845384b86.tar.gz;md5sum=${MD5SUM_EIGEN};sha256sum=${SHA256SUM_EIGEN} \
+-    https://mirror.bazel.build/github.com/google/gemmlowp/archive/38ebac7b059e84692f53e5938f97a9943c120d98.zip;md5sum=${MD5SUM_GEMMLOWP};sha256sum=${SHA256SUM_GEMMLOWP} \
+-    https://github.com/google/googletest/archive/release-1.8.0.tar.gz;md5sum=${MD5SUM_GTEST};sha256sum=${SHA256SUM_GTEST} \
+-    https://github.com/abseil/abseil-cpp/archive/48cd2c3f351ff188bc85684b84a91b6e6d17d896.tar.gz;md5sum=${MD5SUM_ABSLCPP};sha256sum=${SHA256SUM_ABSLCPP} \
+-    https://github.com/intel/ARM_NEON_2_x86_SSE/archive/3057bb91b99bae9c7fbdf8710c032d462ca10051.zip;md5sum=${MD5SUM_NEON2SSE};sha256sum=${SHA256SUM_NEON2SSE} \
+-    https://mirror.bazel.build/github.com/google/farmhash/archive/816a4ae622e964763ca0862d9dbd19324a1eaf45.tar.gz;md5sum=${MD5SUM_FARMHASH};sha256sum=${SHA256SUM_FARMHASH} \
+-    https://github.com/google/flatbuffers/archive/1f5eae5d6a135ff6811724f6c57f911d1f46bb15.tar.gz;md5sum=${MD5SUM_FLATBUFFER};sha256sum=${SHA256SUM_FLATBUFFER} \
+-    https://mirror.bazel.build/www.kurims.kyoto-u.ac.jp/~ooura/fft.tgz;md5sum=${MD5SUM_FFT};sha256sum=${SHA256SUM_FFT} \
+-    http://download.tensorflow.org/models/mobilenet_v1_2018_08_02/mobilenet_v1_1.0_224_quant.tgz;name=mobilenet_v1_quant;subdir=${WORKDIR}/model;destsuffix=model \
+-    file://apply-modification-for-tflite-1.12-to-eigen.patch \
+-    file://0001-Makefile-add-label_image-example.patch \
+-    file://tensorflow-lite.pc.in"
+-
+-SRC_URI[mobilenet_v1_quant.md5sum] = "36af340c00e60291931cb30ce32d4e86"
+-SRC_URI[mobilenet_v1_quant.sha256sum] = "d32432d28673a936b2d6281ab0600c71cf7226dfe4cdcef3012555f691744166"
+-
+-SRCREV = "5b900cfe4b3b848f577315a0dde09a729f770e95"
+-
+-PR = "r3"
+-
+-S = "${WORKDIR}/git"
+-
+-DEPENDS = "zlib"
+-TARGET_CFLAGS_remove = "-O2"
+-TARGET_CPPLAGS_remove = "-O2"
+-TARGET_CXXLAGS_remove = "-O2"
+-CCFLAGS_append = " -O3 -DNDEBUG -fPIC -DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
+-    -I${STAGING_INCDIR}"
+-CXXFLAGS_append = " -O3 -DNDEBUG -fPIC -DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
+-    -I${STAGING_INCDIR}"
+-LDFLAGS_remove = "-Wl,-O1"
+-CXXFLAGS_append = " -O3 -DNDEBUG -fPIC -DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
+-    -I${STAGING_INCDIR}"
+-LIBS = "-lstdc++ -lpthread -lm -lz -ldl"
+-BUILD_DEPS_DOWNLOAD_DIR_PREFIX = "${S}/tensorflow/contrib/lite/tools/make/downloads/"
+-
+-do_cp_downloaded_build_deps() {
+-    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}eigen
+-    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}gemmlowp
+-    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}googletest
+-    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}absl
+-    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}farmhash
+-    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}neon_2_sse
+-    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}flatbuffers
+-    mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}fft2d
+-
+-    cp -rf ${WORKDIR}/eigen-eigen-fd6845384b86/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}eigen
+-    cp -rf ${WORKDIR}/gemmlowp-38ebac7b059e84692f53e5938f97a9943c120d98/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}gemmlowp
+-    cp -rf ${WORKDIR}/googletest-release-1.8.0/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}googletest
+-    cp -rf ${WORKDIR}/abseil-cpp-48cd2c3f351ff188bc85684b84a91b6e6d17d896/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}absl
+-    cp -rf ${WORKDIR}/farmhash-816a4ae622e964763ca0862d9dbd19324a1eaf45/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}farmhash
+-    cp -rf ${WORKDIR}/ARM_NEON_2_x86_SSE-3057bb91b99bae9c7fbdf8710c032d462ca10051/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}neon_2_sse
+-    cp -rf ${WORKDIR}/flatbuffers-1f5eae5d6a135ff6811724f6c57f911d1f46bb15/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}flatbuffers
+-    cp -rf ${WORKDIR}/fft/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}fft2d
+-}
+-addtask do_cp_downloaded_build_deps after do_unpack before do_patch
+-
+-EXTRA_OEMAKE = "\
+-    'CC=${CC}' \
+-    'CXX=${CXX}' \
+-    'CPP=${CPP}' \
+-    'CFLAGS=${CFLAGS}' \
+-    'CPPFLAGS=${CFLAGS}' \
+-    'CXXFLAGS=${CXXFLAGS}' \
+-    'AR=${AR}' \
+-    'LD=${LD}' \
+-    'LDFLAGS=${LDFLAGS}' \
+-    'LIBS=${LIBS}' \
+-    'TARGET=${TARGET_OS}' \
+-    'TARGET_ARCH=${TUNE_ARCH}'"
+-
+-do_compile() {
+-    oe_runmake -f tensorflow/contrib/lite/tools/make/Makefile
+-}
+-
+-do_install() {
+-    install -d ${D}${libdir}
+-    install -m 0644 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/lib/*.a ${D}${libdir}/
+-    install -d ${D}${includedir}/tensorflow/contrib/lite
+-    install -m 0644 ${S}/tensorflow/contrib/lite/*.h ${D}${includedir}/tensorflow/contrib/lite/
+-    install -d ${D}${includedir}/tensorflow/contrib/lite/c
+-    install -m 0644 ${S}/tensorflow/contrib/lite/c/*.h ${D}${includedir}/tensorflow/contrib/lite/c/
+-    install -d ${D}${includedir}/tensorflow/contrib/lite/core/api/
+-    install -m 0644 ${S}/tensorflow/contrib/lite/core/api/*.h ${D}${includedir}/tensorflow/contrib/lite/core/api/
+-    install -d ${D}${includedir}/tensorflow/contrib/lite/kernels
+-    install -m 0644 ${S}/tensorflow/contrib/lite/kernels/*.h ${D}${includedir}/tensorflow/contrib/lite/kernels/
+-    install -d  ${D}${includedir}/tensorflow/contrib/lite/profiling/
+-    install -m 0644 ${S}/tensorflow/contrib/lite/profiling/*.h ${D}${includedir}/tensorflow/contrib/lite/profiling/
+-    install -d ${D}${includedir}/tensorflow/contrib/lite/schema/
+-    install -m 0644 ${S}/tensorflow/contrib/lite/schema/*.h ${D}${includedir}/tensorflow/contrib/lite/schema/
+-    install -d ${D}${includedir}/tensorflow/contrib/lite/tools/
+-    install -m 0644 ${S}/tensorflow/contrib/lite/tools/*.h ${D}${includedir}/tensorflow/contrib/lite/tools/
+-    install -d ${D}${libdir}/pkgconfig
+-    install -m 0644 ${WORKDIR}/tensorflow-lite.pc.in ${D}${libdir}/pkgconfig/tensorflow-lite.pc
+-    sed -i 's:@version@:${PV}:g
+-        s:@libdir@:${libdir}:g
+-        s:@includedir@:${includedir}:g' ${D}${libdir}/pkgconfig/tensorflow-lite.pc
+-    # install examples
+-    install -d ${D}${datadir}/${PN}-${PV}/examples
+-    install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/minimal ${D}${datadir}/${PN}-${PV}/examples
+-    install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/benchmark_model ${D}${datadir}/${PN}-${PV}/examples
+-    install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/label_image ${D}${datadir}/${PN}-${PV}/examples
+-    install -m 0644 ${S}/tensorflow/contrib/lite/examples/label_image/testdata/grace_hopper.bmp ${D}${datadir}/${PN}-${PV}/examples
+-    install -m 0644 ${S}/tensorflow/contrib/lite/java/ovic/src/testdata/labels.txt ${D}${datadir}/${PN}-${PV}/examples
+-    install -m 0644 ${WORKDIR}/model/mobilenet_v1_1.0_224_quant.tflite ${D}${datadir}/${PN}-${PV}/examples
+-}
+-
+-PACKAGES += "${PN}-examples"
+-
+-FILES_${PN}-examples = "${datadir}/${PN}-${PV}/examples"
+-
+-INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+-
+-ALLOW_EMPTY_${PN} = "1"
 -- 
-2.7.4
+2.17.1
 
 
