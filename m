@@ -1,43 +1,46 @@
 Return-Path: <h-gou@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id C87CA520E4
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 61812520E4
 	for <meta-arago@arago-project.org>;
-	Mon, 23 Sep 2019 19:24:09 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8NJN0Y1130593
-	for <meta-arago@arago-project.org>; Mon, 23 Sep 2019 14:23:00 -0500
+	Mon, 23 Sep 2019 19:24:14 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8NJN5T4022531
+	for <meta-arago@arago-project.org>; Mon, 23 Sep 2019 14:23:05 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1569266580;
-	bh=bBYfXXqkTcAFY7ykQ5f4VRtt58rKf7gXozTybZPuH7I=;
-	h=From:To:CC:Subject:Date;
-	b=jvVb48RJqKkkwghgg+pn+vrUrL/Kih7ALlq6PW6UQmpAo+03ZaW82LcwUvdUhHFwf
-	DVcNeQo7IjvL18Wnb2R4cNlMdpY2r1+QlvA9GYXZnAZ3C3nixq8CcinGowhzw3BMhD
-	LMK5FUX4cG7suL3rjburVEWtW06eXLYqkZtHyCHg=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8NJN0If127274
-	for <meta-arago@arago-project.org>; Mon, 23 Sep 2019 14:23:00 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1569266585;
+	bh=8T3NXdG0/pbOwMUDaIv2tczAEVxZMwxAqHolcGwcvAk=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=DpsU6a0iuUt6qViTw+5RyU55zC0JELfiQYvl2iizD32sBOmNyFDt+GvGw5XXtVO5F
+	DiEgNqOu1BmAMvZfbx0oHApGr6+aeZfCFuBw6eps76glaiudpzP/eMB3tbcrzu+qgW
+	6JOn/4zpdEv26Jfh3YoQQyK+EVl+HhDE+S+QQZGs=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8NJN5pJ033501
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Mon, 23 Sep 2019 14:23:05 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 23 Sep 2019 14:23:00 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 23 Sep 2019 14:23:04 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 23 Sep 2019 14:22:54 -0500
+	Frontend Transport; Mon, 23 Sep 2019 14:22:58 -0500
 Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8NJMxq7033647;
-	Mon, 23 Sep 2019 14:23:00 -0500
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8NJMxq8033647;
+	Mon, 23 Sep 2019 14:23:04 -0500
 From: Hongmei Gou <a0271529@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 23 Sep 2019 15:21:18 -0400
-Message-ID: <20190923192121.29814-1-a0271529@ti.com>
+Date: Mon, 23 Sep 2019 15:21:19 -0400
+Message-ID: <20190923192121.29814-2-a0271529@ti.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190923192121.29814-1-a0271529@ti.com>
+References: <20190923192121.29814-1-a0271529@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Hongmei Gou <a0271529@ti.com>, d-senicic1@ti.com,
 	Djordje Senicic <x0157990@ti.com>
-Subject: [master/thud/ti2019.03 1/4] tiovx-sys-iface: add interface header files between TIOVX library and IPC implementation
+Subject: [master/thud/ti2019.03 2/4] tiovx-lib-host: add recipe for TI OpenVX library, host side
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,162 +53,205 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Sep 2019 19:24:10 -0000
+X-List-Received-Date: Mon, 23 Sep 2019 19:24:14 -0000
 Content-Type: text/plain
-
-* Use update-alternatives for the firmware
-* Add reload-dsp-fw.sh to enable run-time firmware switch between opencl and tiovx
 
 Signed-off-by: Djordje Senicic <x0157990@ti.com>
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- .../recipes-ti/tiovx/files/reload-dsp-fw.sh   | 66 +++++++++++++++++++
- .../recipes-ti/tiovx/tiovx-sys-iface.bb       | 49 ++++++++++++++
- .../recipes-ti/tiovx/tiovx-sys.inc            |  5 ++
- 3 files changed, 120 insertions(+)
- create mode 100755 meta-arago-extras/recipes-ti/tiovx/files/reload-dsp-fw.sh
- create mode 100644 meta-arago-extras/recipes-ti/tiovx/tiovx-sys-iface.bb
- create mode 100644 meta-arago-extras/recipes-ti/tiovx/tiovx-sys.inc
+ ...r-Yocto-build-and-add-RTOS-build-var.patch | 133 ++++++++++++++++++
+ .../recipes-ti/tiovx/tiovx-lib-host.bb        |  41 ++++++
+ 2 files changed, 174 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-ti/tiovx/files/0001-Fix-paths-for-Yocto-build-and-add-RTOS-build-var.patch
+ create mode 100644 meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
 
-diff --git a/meta-arago-extras/recipes-ti/tiovx/files/reload-dsp-fw.sh b/meta-arago-extras/recipes-ti/tiovx/files/reload-dsp-fw.sh
-new file mode 100755
-index 00000000..198fd60f
---- /dev/null
-+++ b/meta-arago-extras/recipes-ti/tiovx/files/reload-dsp-fw.sh
-@@ -0,0 +1,66 @@
-+#!/bin/sh
-+usage() {
-+    cat << EOF
-+
-+  Usage:
-+         $0 <fw-type: opencl, tiovx>
-+
-+EOF
-+}
-+
-+if [ "$1" ]; then
-+case "$1" in
-+    opencl) echo "Reload opencl firmware to DSP"
-+        ;;
-+    tiovx) echo "Reload tiovx firmware to DSP"
-+        ;;
-+    *) echo "Wrong argument $1"
-+       usage
-+       exit
-+        ;;
-+esac
-+else
-+       usage
-+       exit
-+fi
-+
-+fw="${1}"
-+
-+if [[ ${fw} == opencl ]]; then
-+    #Start OpenCL CMEM memory allocation daemon
-+    if pgrep -x "ti-mctd" > /dev/null
-+    then
-+        echo "ti-mctd is running"
-+    else
-+        echo "Starting ti-mctd..."
-+        ti-mctd
-+    fi
-+    # Link opencl monitor firmware for DSPs
-+    ln -s -f /lib/firmware/dra7-dsp1-fw.xe66.opencl-monitor /lib/firmware/dra7-dsp1-fw.xe66
-+    ln -s -f /lib/firmware/dra7-dsp2-fw.xe66.opencl-monitor /lib/firmware/dra7-dsp2-fw.xe66
-+fi
-+
-+if [[ ${fw} == tiovx ]]; then
-+    # Kill CMEM multi-process daemon. This releases all CMEM memory used by OpenCL memory allocation
-+    pkill ti-mctd
-+
-+    # Link tiovx firmware for DSPs
-+    ln -s -f /lib/firmware/dra7-dsp1-fw.xe66.openvx /lib/firmware/dra7-dsp1-fw.xe66
-+    ln -s -f /lib/firmware/dra7-dsp2-fw.xe66.openvx /lib/firmware/dra7-dsp2-fw.xe66
-+fi
-+
-+cd /sys/bus/platform/drivers/omap-rproc/
-+
-+# release DSPs
-+echo "Releasing DSPs..."
-+echo 40800000.dsp > unbind
-+
-+echo 41000000.dsp > unbind
-+
-+# reload firmware for DSPs
-+echo "Reloading firmware for DSPs..."
-+echo 40800000.dsp > bind
-+
-+echo 41000000.dsp > bind
-+
-+cd ~-
-diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-sys-iface.bb b/meta-arago-extras/recipes-ti/tiovx/tiovx-sys-iface.bb
+diff --git a/meta-arago-extras/recipes-ti/tiovx/files/0001-Fix-paths-for-Yocto-build-and-add-RTOS-build-var.patch b/meta-arago-extras/recipes-ti/tiovx/files/0001-Fix-paths-for-Yocto-build-and-add-RTOS-build-var.patch
 new file mode 100644
-index 00000000..84d2934b
+index 00000000..1e667b87
 --- /dev/null
-+++ b/meta-arago-extras/recipes-ti/tiovx/tiovx-sys-iface.bb
-@@ -0,0 +1,49 @@
-+SUMMARY = "TI OpenVX interface header files between TIOVX library and HOST, DSP IPC side implementation "
-+DESCRIPTION = "Collection of header files needed to defined interface between TIOVX library and HOST and DSP IPC side implementation. In order to maintain source compatibility, directory structure follows VSDK source tree layout."
++++ b/meta-arago-extras/recipes-ti/tiovx/files/0001-Fix-paths-for-Yocto-build-and-add-RTOS-build-var.patch
+@@ -0,0 +1,133 @@
++From 32bd788608034f5a49d9cd4a0163190ef666d9a2 Mon Sep 17 00:00:00 2001
++From: Djordje Senicic <d-senicic1@ti.com>
++Date: Mon, 14 Aug 2017 10:26:39 -0400
++Subject: [PATCH] Fix paths for Yocto build and add RTOS build var
++
++Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
++---
++ Makefile            | 27 +++++++++++++++++++--------
++ psdk_tools_path.mak | 32 ++++++++++++++------------------
++ 2 files changed, 33 insertions(+), 26 deletions(-)
++
++diff --git a/Makefile b/Makefile
++index 0832e07..1be5b0d 100755
++--- a/Makefile
+++++ b/Makefile
++@@ -1,6 +1,6 @@
++ 
++ # Valid values are: vsdk psdk
++-BUILD_SDK=vsdk
+++BUILD_SDK=psdk
++ 
++ include $(BUILD_SDK)_tools_path.mak
++ 
++@@ -8,11 +8,12 @@ BUILD_EMULATION_MODE?=no
++ BUILD_TARGET_MODE?=yes
++ 
++ BUILD_CONFORMANCE_TEST?=yes
++-BUILD_IVISION_KERNELS?=yes
+++BUILD_IVISION_KERNELS?=no
++ BUILD_BAM?=yes
++ BUILD_TUTORIAL?=yes
++ BUILD_LINUX_A15?=yes
++-BUILD_EVE?=yes
+++BUILD_RTOS?=no
+++BUILD_EVE?=no
++ 
++ PROFILE?=all
++ 
++@@ -43,12 +44,17 @@ TARGET_COMBOS :=
++ 
++ ifeq ($(BUILD_TARGET_MODE),yes)
++   ifeq ($(PROFILE), $(filter $(PROFILE), debug all))
++-	TARGET_COMBOS += TDAX:SYSBIOS:M4:1:debug:TIARMCGT
++-	TARGET_COMBOS += TDAX:SYSBIOS:C66:1:debug:CGT6X
+++	ifeq ($(BUILD_RTOS),yes)
+++	  TARGET_COMBOS += TDAX:SYSBIOS:M4:1:debug:TIARMCGT
+++	  TARGET_COMBOS += TDAX:SYSBIOS:C66:1:debug:CGT6X
+++	endif
+++
++ 	ifeq ($(BUILD_EVE),yes)
++ 	TARGET_COMBOS += TDAX:SYSBIOS:EVE:1:debug:ARP32CGT
++ 	endif
+++	ifeq ($(BUILD_RTOS),yes)
++ 	TARGET_COMBOS += TDAX:SYSBIOS:A15:1:debug:GCC
+++	endif
++ 	ifneq ($(OS),Windows_NT)
++ 		ifeq ($(BUILD_LINUX_A15),yes)
++ 		TARGET_COMBOS += TDAX:LINUX:A15:1:debug:GCC_LINARO
++@@ -57,12 +63,17 @@ ifeq ($(BUILD_TARGET_MODE),yes)
++   endif
++ 
++   ifeq ($(PROFILE), $(filter $(PROFILE), release all))
++-	TARGET_COMBOS += TDAX:SYSBIOS:M4:1:release:TIARMCGT
++-	TARGET_COMBOS += TDAX:SYSBIOS:C66:1:release:CGT6X
+++	ifeq ($(BUILD_RTOS),yes)
+++	  TARGET_COMBOS += TDAX:SYSBIOS:M4:1:release:TIARMCGT
+++	  TARGET_COMBOS += TDAX:SYSBIOS:C66:1:release:CGT6X
+++	endif
+++
++ 	ifeq ($(BUILD_EVE),yes)
++ 	TARGET_COMBOS += TDAX:SYSBIOS:EVE:1:release:ARP32CGT
++ 	endif
++-	TARGET_COMBOS += TDAX:SYSBIOS:A15:1:release:GCC
+++	ifeq ($(BUILD_RTOS),yes)
+++	  TARGET_COMBOS += TDAX:SYSBIOS:A15:1:release:GCC
+++	endif
++ 	ifneq ($(OS),Windows_NT)
++ 		ifeq ($(BUILD_LINUX_A15),yes)
++ 		TARGET_COMBOS += TDAX:LINUX:A15:1:release:GCC_LINARO
++diff --git a/psdk_tools_path.mak b/psdk_tools_path.mak
++index 36394f8..8fd468d 100755
++--- a/psdk_tools_path.mak
+++++ b/psdk_tools_path.mak
++@@ -2,7 +2,6 @@
++ TIOVX_PATH = $(abspath .)
++ 
++ PLSDK_PATH := /home/x0157990/ti-processor-sdk-linux-am57xx-evm-04.00.00.04
++-PRSDK_PATH := /home/x0157990/ti-processor-sdk-rtos-am57xx-evm-04-00-00-04
++ 
++ CROSS_COMPILE_LINARO := arm-linux-gnueabihf-
++ CROSS_COMPILE := arm-none-eabi-
++@@ -16,23 +15,20 @@ ifeq ($(BUILD_OS),Windows_NT)
++ GCC_WINDOWS_ROOT ?= C:/CodeBlocks/MinGW
++ endif
++ 
++-XDC_PATH := $(PRSDK_PATH)/xdctools_3_32_01_22_core/
++-TIARMCGT_ROOT := $(PRSDK_PATH)/ti-cgt-arm_16.9.2.LTS
+++XDC_PATH := $(XDC_INSTALL_DIR)
+++TIARMCGT_ROOT :=  $(TIARMCGTPATH)
+++GCC_ROOT_LINARO := $(GCCLINARO)
+++XDIAS_PATH := $(XDAISPATH)
+++BIOS_PATH := $(SYSBIOSPATH)
+++PDK_PATH := $(PDKPATH)
+++SDK_PLATFORM_IF_PATH := $(SDKPLATFORMIFPATH)
++ 
++-GCC_ROOT := $(PRSDK_PATH)/gcc-arm-none-eabi-4_9-2015q3
++-GCC_ROOT_LINARO := /home/x0157990/linaro/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf
++-CGT6X_ROOT := $(PRSDK_PATH)/ti-cgt-c6000_8.1.3/
+++GCC_ROOT ?= $(GCCARMNONEPATH)
+++CGT6X_ROOT := $(TI_CGT_INSTALL)
++ GCC_LINUX_ROOT ?= /usr/
+++VXLIB_PATH ?= $(VXLIBPATH)
+++ARP32CGT_ROOT ?= $(EVETOOLSPATH}
+++DMAUTILS_PATH ?= $(DSPAPPS_PATH)/dmautils
+++ALGFRAMEWORK_PATH ?= $(DSPAPPS_PATH)/algframework
+++EDMA3_LLD_PATH := $(EDMA3LLDPATH)
++ 
++-
++-VXLIB_PATH ?= $(PRSDK_PATH)/vxlib_c66x_1_1_0_0
++-XDIAS_PATH := $(PRSDK_PATH)/xdais_7_24_00_04
++-EDMA3_LLD_PATH := $(PRSDK_PATH)/edma3_lld_2_12_04_28/
++-BIOS_PATH := $(PRSDK_PATH)/bios_6_46_05_55/
++-
++-DMAUTILS_PATH ?= $(PRSDK_PATH)/REL.DMAUTILS.00.08.00.02/dmautils
++-ALGFRAMEWORK_PATH ?= $(PRSDK_PATH)/REL.ALGFRAMEWORK.02.07.00.00/algframework
++-PDK_PATH := $(PRSDK_PATH)/pdk_am57xx_1_0_7
++-CMEM_PATH ?= $(PLSDK_INSTALL_PATH)/board-support/extra-drivers/cmem-mod-4.14.00.00+gitAUTOINC+b514a99ac4/
++-TARGETFS := $(PLSDK_PATH)/linux-devkit/sysroots/armv7ahf-neon-linux-gnueabi/
++-SDK_PLATFORM_IF_PATH ?= /home/x0157990/am57/openvx/ex41_forwardmsg/vx
++\ No newline at end of file
++-- 
++1.9.1
++
+diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb b/meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
+new file mode 100644
+index 00000000..6115b195
+--- /dev/null
++++ b/meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
+@@ -0,0 +1,41 @@
++SUMMARY = "TI OpenVX HOST (Linux A15) side library"
++DESCRIPTION = "TI OpenVX implementation, TIOVX, based on Khronos OpenVX framework implementation including multiple C66 optimized kernels. Khronos defined conformance test is part of this package as well as additional TI specific tests. Few tutorial examples are also included. This package creates necessary libraries and header files for Linux Host side only. "
 +
 +LICENSE = "TI-TSPA"
-+LIC_FILES_CHKSUM = "file://iface/VSDK/docs/TIOVX-SYS-IFACE_1.0.0.0_manifest.html;md5=10904cbdb4f065c025a63ca71ae7de2d"
++LIC_FILES_CHKSUM = "file://docs/manifest/TIOVX_manifest.html;md5=edd4fbfc6c1f01c20d49def4670efac0"
 +
 +require recipes-ti/includes/tisdk-paths.inc
-+require tiovx-sys.inc
-+
-+PR = "r1"
 +
 +COMPATIBLE_MACHINE = "dra7xx"
 +PACKAGE_ARCH = "${MACHINE_ARCH}"
 +
-+inherit update-alternatives
++PV = "01.00.00.00"
++PR = "r1"
 +
-+SRC_URI_append += "\
-+     file://reload-dsp-fw.sh \
-+"
++BRANCH = "master"
++SRC_URI = "git://git.ti.com/processor-sdk/tiovx.git;protocol=git;branch=${BRANCH}"
++SRC_URI += "file://0001-Fix-paths-for-Yocto-build-and-add-RTOS-build-var.patch "
++SRCREV = "2bfa01201804eaf2e675c743e708e88ab612049e"
++
 +
 +S = "${WORKDIR}/git"
 +
++DEPENDS = " tiovx-sys-iface "
++
++EXTRA_OEMAKE += " GCCLINARO=${TOOLCHAIN_PATH} "
++EXTRA_OEMAKE += " SDKPLATFORMIFPATH=${TIOVX_INSTALL_DIR}/sys-iface BUILD_RTOS=no "
++
 +do_install () {
-+#   Install the header files
 +    CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
-+    install -d ${D}${TIOVX_INSTALL_DIR_RECIPE}/sys-iface
-+    cp ${CP_ARGS} ${S}/iface/VSDK/* ${D}${TIOVX_INSTALL_DIR_RECIPE}/sys-iface
-+#   Install the firmware
-+    install -d ${D}/${base_libdir}/firmware
-+    install -m 0644 ${S}/firmware/tiovx_dsp1.xe66 ${D}/${base_libdir}/firmware/dra7-dsp1-fw.xe66.openvx
-+    install -m 0644 ${S}/firmware/tiovx_dsp2.xe66 ${D}/${base_libdir}/firmware/dra7-dsp2-fw.xe66.openvx
-+#   Install the scripts for loading dsp firmware
-+    install -d ${D}${bindir}/
-+    install -m 0755 ${WORKDIR}/reload-dsp-fw.sh ${D}${bindir}
++    install -d ${D}${includedir}/VX
++    install -d ${D}${includedir}/VX/TI
++    install -d ${D}${libdir}
++    cp ${CP_ARGS} ${S}/lib/TDAX/A15/LINUX/release/*.a ${D}${libdir}
++    cp ${CP_ARGS} ${S}/include/VX/* ${D}${includedir}/VX
++    cp ${CP_ARGS} ${S}/include/TI/* ${D}${includedir}/VX/TI
 +}
 +
-+ALTERNATIVE_${PN} = "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66"
-+ALTERNATIVE_LINK_NAME[dra7-dsp1-fw.xe66] = "${base_libdir}/firmware/dra7-dsp1-fw.xe66"
-+ALTERNATIVE_TARGET[dra7-dsp1-fw.xe66] = "${base_libdir}/firmware/dra7-dsp1-fw.xe66.openvx"
-+ALTERNATIVE_LINK_NAME[dra7-dsp2-fw.xe66] = "${base_libdir}/firmware/dra7-dsp2-fw.xe66"
-+ALTERNATIVE_TARGET[dra7-dsp2-fw.xe66] = "${base_libdir}/firmware/dra7-dsp2-fw.xe66.openvx"
-+ALTERNATIVE_PRIORITY = "20"
++FILES_${PN}-staticdev = "${libdir}"
++FILES_${PN}-dev = "${includedir}"
 +
-+FILES_${PN} += "${TIOVX_INSTALL_DIR_RECIPE}/sys-iface/* "
-+PACKAGES =+ "${PN}-firmware"
-+FILES_${PN}-firmware = "${base_libdir}/firmware/*"
-+
-+INSANE_SKIP_${PN}-firmware = "arch"
-+
-diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-sys.inc b/meta-arago-extras/recipes-ti/tiovx/tiovx-sys.inc
-new file mode 100644
-index 00000000..becf0cc1
---- /dev/null
-+++ b/meta-arago-extras/recipes-ti/tiovx/tiovx-sys.inc
-@@ -0,0 +1,5 @@
-+PV = "01.00.01.00"
-+
-+BRANCH="master"
-+SRCREV = "5be60aee8d013907a4d8a6cc8af35a517a33b49e"
-+SRC_URI = "git://git.ti.com/processor-sdk/tiovx-app.git;protocol=git;branch=${BRANCH}"
++ALLOW_EMPTY_${PN} = "1"
 -- 
 2.17.1
 
