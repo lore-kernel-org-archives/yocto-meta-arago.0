@@ -1,42 +1,41 @@
-Return-Path: <yan-liu@ti.com>
+Return-Path: <denys@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 0B507520DF
+	by arago-project.org (Postfix) with ESMTPS id D9209520E2
 	for <meta-arago@arago-project.org>;
-	Tue, 24 Sep 2019 13:52:24 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8ODpFCa019766
-	for <meta-arago@arago-project.org>; Tue, 24 Sep 2019 08:51:15 -0500
+	Tue, 24 Sep 2019 17:55:29 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8OHsKqZ080780
+	for <meta-arago@arago-project.org>; Tue, 24 Sep 2019 12:54:20 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1569333075;
-	bh=zUNsbiWSliSmkDUTgu3wYUnafEiBVdv/l/mEDhQA1ec=;
+	s=ti-com-17Q1; t=1569347660;
+	bh=BsLbGWHZI2BsJoTKXQ0+XmYWSL5F9VQyTEs/rh53QfQ=;
 	h=From:To:CC:Subject:Date;
-	b=QeidBRc9ZTpczfRhlD6QGtvjW43SFn7jbMBfFDglZgVJcf2RvipbV88VQvRBk0Jrq
-	uhJvPMI2El6V0bLvVp06dveXv6iHJgyBRDxA/TkkyYbnPDQ1cjqtm9QHx6mfBiGdJU
-	5yD6uSWIA7nH7xNX6a6KflyHEjUnU49tlNVYuXOY=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8ODpFAx016646
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 24 Sep 2019 08:51:15 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	b=unzuonKAqq8yHhgXaeW9ZiK2Ul8yJDxWDR6Up/wfXErCpidK2piBAqe5XsC4phSqX
+	d9mVzdhX590uq/oX20xs8qJGikdMZbHtLR+q0h7WfVvw9tXdmlA9qpNvYClvv9TF8q
+	UTiiVo0BOHjBrRhTqZ10ji8NKvK5+qtYejleOdX4=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8OHsK8L080146
+	for <meta-arago@arago-project.org>; Tue, 24 Sep 2019 12:54:20 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 24 Sep 2019 08:51:08 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 24 Sep 2019 12:54:14 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 24 Sep 2019 08:51:08 -0500
-Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Tue, 24 Sep 2019 12:54:13 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8ODpEWJ056801;
-	Tue, 24 Sep 2019 08:51:14 -0500
-From: <yan-liu@ti.com>
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8OHsJL0053536;
+	Tue, 24 Sep 2019 12:54:20 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 24 Sep 2019 09:48:51 -0400
-Message-ID: <1569332931-864-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Tue, 24 Sep 2019 17:38:54 +0000
+Message-ID: <20190924173854.509-1-denys@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: [thud/master][PATCH] packagegroup-*-connectivity: meta-ti renamed uim to uim-sysfs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,39 +48,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Sep 2019 13:52:25 -0000
+X-List-Received-Date: Tue, 24 Sep 2019 17:55:30 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
-
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-connectivity.bb      | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-index ce851a2..b46c383 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index cc7da736..b865a9e5 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -43,7 +43,7 @@ BT_COMMON = "\
+ "
  
--PR = "r13"
-+PR = "r14"
- PV_append = "+git${SRCPV}"
- 
- PROVIDES += "ltp"
-@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
- 
- inherit autotools-brokensep
- 
--SRCREV = "5de85580566c91335db4127fc772d51e8c6dc96b"
-+SRCREV = "9b6cd19cedce01e3dfc2209a34129e3f8f8edda6"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+ BT_TI = "\
+-    uim \
++    uim-sysfs \
+     bt-enable \
+     bt-fw \
+ "
 -- 
-1.7.9.5
+2.17.1
 
 
