@@ -1,44 +1,44 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id BC452520E2
+Return-Path: <denys@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 49B8A520E2
 	for <meta-arago@arago-project.org>;
-	Wed, 25 Sep 2019 16:57:39 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8PGuUUq027046
-	for <meta-arago@arago-project.org>; Wed, 25 Sep 2019 11:56:30 -0500
+	Wed, 25 Sep 2019 17:07:11 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8PH61Kc047057
+	for <meta-arago@arago-project.org>; Wed, 25 Sep 2019 12:06:01 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1569430590;
-	bh=LoqSwBGm/+CCUrmeAMRO14rvDJLJ8qrWmhuPmNb6CmY=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=VTWWvQZQ/Y93c1ImLEtoC6uDQHJTY6S5weed00FzJkffWkqjD2C7TSeZxwPjK/vRs
-	vyBe6Y9BQqox2yquFrl0KdFVC7DS82VipxPEoZUPmnaQD6cpkBKgrpire8Y6bRwP3D
-	gQPo0Jn4ri8JPuh0PHRIsJoDR0Hs8JcFlFbA5Sb4=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8PGuTIH087550
+	s=ti-com-17Q1; t=1569431161;
+	bh=rvHfG+6NuiQynPLHyytzxoMkS5jQHjy/o6SwzKkP/7o=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=tWSWj11GHf76KnLsfMUVK8tlzHbgAcMBsc5XuSl1KW7quEqO5yD5T2165QK07xXAN
+	j5YlH+LEv7//lFKuaK1aoxckxfc4BZ/ujYkeMIWRbvLw36kP0hOC51/HUEGyx5wyUK
+	pW74DZN/wSlcY1k2zwqHRuDL6nBNSCobqOSZVjwI=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8PH61YL085545
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 25 Sep 2019 11:56:30 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Wed, 25 Sep 2019 12:06:01 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 25 Sep 2019 11:56:29 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 25 Sep 2019 12:05:54 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 25 Sep 2019 11:56:22 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8PGuTsd094445
-	for <meta-arago@arago-project.org>; Wed, 25 Sep 2019 11:56:29 -0500
-To: <meta-arago@arago-project.org>
-References: <1569429391-8232-1-git-send-email-j-stiffler@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <6cc9e4f2-769f-f08c-3ede-28759bb01458@ti.com>
-Date: Wed, 25 Sep 2019 12:56:28 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.9.0
+	Frontend Transport; Wed, 25 Sep 2019 12:06:01 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8PH614l079337;
+	Wed, 25 Sep 2019 12:06:01 -0500
+Date: Wed, 25 Sep 2019 13:06:00 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Nikhil Devshatwar <nikhil.nd@ti.com>
+Message-ID: <20190925170600.GC4163@beryl>
+References: <1569428332-25738-1-git-send-email-nikhil.nd@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1569429391-8232-1-git-send-email-j-stiffler@ti.com>
+In-Reply-To: <1569428332-25738-1-git-send-email-nikhil.nd@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [PATCH] packagegroup: matrix: remove ethernet submenu
+Cc: meta-arago@arago-project.org
+Subject: Re: [thud/master PATCH v1] recipes-bsp: ti-sci-fw: Enable traces for j7-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,50 +51,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Sep 2019 16:57:40 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Wed, 25 Sep 2019 17:07:11 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-I forgot the branches in the subject. Can you apply this to master, 
-thud, and ti2019.03?
-
-Let me know if I should resubmit.
+Why only J7? Do we want it enabled on AM65x as well?
 
 
-Thanks,
-
-Jake
-
-On 9/25/2019 12:36 PM, Jacob Stiffler wrote:
-> * The ethernet submenu is the only submenu explicitly added to a
->    packagegroup.
-> * submenus are RDEPENDS on the matrix apps, so adding here is
->    unnecessary.
->
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+On Wed, Sep 25, 2019 at 09:48:52PM +0530, Nikhil Devshatwar wrote:
+> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
 > ---
->   .../recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb      | 3 +--
->   1 file changed, 1 insertion(+), 2 deletions(-)
->
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> index c2c5975..1b57798 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-> @@ -1,6 +1,6 @@
->   DESCRIPTION = "Task to include Matrix v2"
->   LICENSE = "MIT"
-> -PR = "r80"
-> +PR = "r81"
->   
->   PACKAGE_ARCH = "${MACHINE_ARCH}"
->   
-> @@ -28,7 +28,6 @@ MATRIX_COMMON_APPS = "              \
->       matrix-gui-oprofile-demos       \
->       matrix-gui-settings-demos       \
->       matrix-gui-usb-demos            \
-> -    matrix-gui-submenus-ethernet    \
->       ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'matrix-gui-weston-terminal-demo', '', d)} \
->   "
->   
+>  meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+> index fab4de4..e7cf1a8 100644
+> --- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+> +++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+> @@ -72,6 +72,9 @@ EXTRA_OEMAKE_append_am65xx-hs-evm = " \
+>      HS=1 SYSFW_HS_PATH="${WORKDIR}/${SYSFW_BASE}-enc.bin" SYSFW_HS_INNER_CERT_PATH="${WORKDIR}/${SYSFW_BASE}-cert.bin" \
+>  "
+>  
+> +EXTRA_OEMAKE_append_j7-evm = " \
+> +    ENABLE_TRACE=1 \
+> +"
+>  do_compile() {
+>  	cd ${WORKDIR}/imggen/
+>  	oe_runmake
+> -- 
+> 1.9.1
+> 
 
