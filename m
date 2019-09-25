@@ -1,40 +1,41 @@
 Return-Path: <nikhil.nd@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 324A7520E2
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 9CD3C520E2
 	for <meta-arago@arago-project.org>;
-	Wed, 25 Sep 2019 14:30:07 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8PESvbq007241
-	for <meta-arago@arago-project.org>; Wed, 25 Sep 2019 09:28:57 -0500
+	Wed, 25 Sep 2019 16:20:08 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8PGIxA2009797
+	for <meta-arago@arago-project.org>; Wed, 25 Sep 2019 11:18:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1569421737;
-	bh=c2dFw/UfDLT3gawxHvOBYKaeFuWxq9MVXxt6Cm8vBvo=;
+	s=ti-com-17Q1; t=1569428339;
+	bh=zByhP32tKPQwGzRUTsjroRuuK5ELgZAfCNpyZTF4nLM=;
 	h=From:To:CC:Subject:Date;
-	b=wqe9nsBARot+68X+86qVtpMIzdENMHYUd1VkMNq1E4KMcjL0v9+JpjfUto4Sf0sm5
-	pAb04CwRzYaE8TiePW/q85bFjXfdiXfUNI9UCrjOGmFUjyebyNz1tPWGYBAHsp9zNf
-	r5k5Jzo8yRTfAorCv6yOAI2paRCicHhN73Jr9pOw=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8PESvb1037138
-	for <meta-arago@arago-project.org>; Wed, 25 Sep 2019 09:28:57 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	b=wInuxwsq0ymTcWnvq/jpfOIJbjSBeIXqPmwEhOHpUAZnn+MRmK0zSKwgZvm2snc2S
+	8w5Q64BVxbxPd6gbiBGmoSepk6HsziP8TbuQGcAdlJvrOwpaFXGkg1wxN/wwvxJI4n
+	plwOmA6aqKeU08uEJ8157NyOwzisZZgi4iwJnkjY=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8PGIwFL039111
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Wed, 25 Sep 2019 11:18:58 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 25 Sep 2019 09:28:50 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+	Wed, 25 Sep 2019 11:18:51 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE102.ent.ti.com
 	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 25 Sep 2019 09:28:57 -0500
+	Frontend Transport; Wed, 25 Sep 2019 11:18:58 -0500
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8PEStXn115659; 
-	Wed, 25 Sep 2019 09:28:55 -0500
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8PGIuA9055562; 
+	Wed, 25 Sep 2019 11:18:57 -0500
 From: Nikhil Devshatwar <nikhil.nd@ti.com>
-To: <meta-arago@arago-project.org>, <denys@ti.com>, <j-stiffler@ti.com>
-Date: Wed, 25 Sep 2019 19:58:49 +0530
-Message-ID: <1569421729-57631-1-git-send-email-nikhil.nd@ti.com>
+To: <meta-arago@arago-project.org>, <denys@ti.com>
+Date: Wed, 25 Sep 2019 21:48:52 +0530
+Message-ID: <1569428332-25738-1-git-send-email-nikhil.nd@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master PATCH v1] recipes-kernel: Add recipe for ivshmem-uio driver
+Subject: [thud/master PATCH v1] recipes-bsp: ti-sci-fw: Enable traces for j7-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,64 +48,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Sep 2019 14:30:07 -0000
+X-List-Received-Date: Wed, 25 Sep 2019 16:20:09 -0000
 Content-Type: text/plain
 
 Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
 ---
- .../conf/distro/include/arago-source-ipk.inc       |  4 ++++
- .../recipes-kernel/uio/ivshmem-uio-driver_git.bb   | 27 ++++++++++++++++++++++
- 2 files changed, 31 insertions(+)
- create mode 100644 meta-arago-distro/recipes-kernel/uio/ivshmem-uio-driver_git.bb
+ meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-index 9e105b8..970e3e2 100644
---- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-@@ -374,6 +374,10 @@ SRCIPK_INSTALL_DIR_pn-hplib-mod = "board-support/extra-drivers/${PN}-${PV}"
- CREATE_SRCIPK_pn-uio-module-drv = "1"
- SRCIPK_INSTALL_DIR_pn-uio-module-drv = "board-support/extra-drivers/${PN}-${PV}"
+diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+index fab4de4..e7cf1a8 100644
+--- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
++++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+@@ -72,6 +72,9 @@ EXTRA_OEMAKE_append_am65xx-hs-evm = " \
+     HS=1 SYSFW_HS_PATH="${WORKDIR}/${SYSFW_BASE}-enc.bin" SYSFW_HS_INNER_CERT_PATH="${WORKDIR}/${SYSFW_BASE}-cert.bin" \
+ "
  
-+CREATE_SRCIPK_pn-ivshmem-uio-driver = "1"
-+SRCIPK_INSTALL_DIR_pn-ivshmem-uio-driver = "board-support/extra-drivers/${PN}-${PV}"
-+SRCIPK_PRESERVE_GIT_pn-ivshmem-uio-driver = "true"
-+
- CREATE_SRCIPK_pn-ipsecmgr-mod = "1"
- SRCIPK_INSTALL_DIR_pn-ipsecmgr-mod = "board-support/extra-drivers/${PN}-${PV}"
- 
-diff --git a/meta-arago-distro/recipes-kernel/uio/ivshmem-uio-driver_git.bb b/meta-arago-distro/recipes-kernel/uio/ivshmem-uio-driver_git.bb
-new file mode 100644
-index 0000000..f41842b
---- /dev/null
-+++ b/meta-arago-distro/recipes-kernel/uio/ivshmem-uio-driver_git.bb
-@@ -0,0 +1,27 @@
-+DESCRIPTION =  "Kernel drivers IVSHMEM UIO driver"
-+HOMEPAGE = "https://github.com/henning-schild-work/ivshmem-guest-code"
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=0546a27aad86c83b75ad4ee6133e9d5e"
-+
-+inherit module
-+
-+RDEPENDS_${PN} = "jailhouse"
-+
-+PROTOCOL = "git"
-+BRANCH = "jailhouse"
-+SRCREV = "f3ad79881bebb6c6068966ee3d265d8034c20492"
-+SRC_URI = "git://github.com/henning-schild-work/ivshmem-guest-code.git;protocol=${PROTOCOL};branch=${BRANCH}"
-+
-+S = "${WORKDIR}/git"
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+EXTRA_OEMAKE += 'KDIR="${STAGING_KERNEL_DIR}"'
-+
-+do_compile_prepend() {
-+    cd ${S}/kernel_module/uio
-+}
-+
-+do_install() {
-+    install -d ${D}/${base_libdir}/modules/${KERNEL_VERSION}/extra
-+    install -m 644 ${S}/kernel_module/uio/uio_ivshmem.ko ${D}/${base_libdir}/modules/${KERNEL_VERSION}/extra
-+}
++EXTRA_OEMAKE_append_j7-evm = " \
++    ENABLE_TRACE=1 \
++"
+ do_compile() {
+ 	cd ${WORKDIR}/imggen/
+ 	oe_runmake
 -- 
 1.9.1
 
