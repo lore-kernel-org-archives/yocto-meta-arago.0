@@ -1,41 +1,40 @@
-Return-Path: <yan-liu@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id B52305299C
+Return-Path: <nikhil.nd@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 362A4520E2
 	for <meta-arago@arago-project.org>;
-	Tue, 24 Sep 2019 18:28:54 +0000 (UTC)
+	Wed, 25 Sep 2019 14:13:31 +0000 (UTC)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8OIRjwi088539
-	for <meta-arago@arago-project.org>; Tue, 24 Sep 2019 13:27:45 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8PECLQ5106429
+	for <meta-arago@arago-project.org>; Wed, 25 Sep 2019 09:12:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1569349665;
-	bh=zzI429CL6Zo65mR1peFfWB5FmnMkaMTwgJP+SaZ3KFA=;
+	s=ti-com-17Q1; t=1569420741;
+	bh=ET71cXmTdI5j9o3zQ63cvWO7Kjh/AUML/EU9YAbe2ac=;
 	h=From:To:CC:Subject:Date;
-	b=ggAv6PZr7jovDTN8M5BbV9/TV0xwqcl3MnZCn6PeMzEPDh05zN/rvWAXUueZ5/zIi
-	g2C58t6cI7+QHMZPVvWAHQ2fCKLpCmvLj9ViFtrmI6q7iRsktYakb+Wd1k/Aeck4Nz
-	o3pPdR000pDIVrQEk4SKHCCsyRFQdCaPClBf4Qk4=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8OIRjtA119736
-	for <meta-arago@arago-project.org>; Tue, 24 Sep 2019 13:27:45 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	b=uHkNhI5Bj9G0VpTI62fLpo/43703GHi9YByEIitesU0qk1cdF03eROl5h4f5iziJV
+	GiJgsPz1798JCqO4tfdOR5BCXiNp6+A7aQRrKJ8VYV4xPYIuPj5iFmiNbmGtMpiKI2
+	BF5g4VsuupR7P4v/H0+1GjUWz5Z6lXhW+fUt71T8=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8PECLoh016175
+	for <meta-arago@arago-project.org>; Wed, 25 Sep 2019 09:12:21 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 24 Sep 2019 13:27:44 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 25 Sep 2019 09:12:13 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 24 Sep 2019 13:27:45 -0500
-Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8OIRijq080780;
-	Tue, 24 Sep 2019 13:27:44 -0500
-From: <yan-liu@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 24 Sep 2019 14:25:26 -0400
-Message-ID: <1569349526-1648-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	Frontend Transport; Wed, 25 Sep 2019 09:12:13 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8PECI4c069612; 
+	Wed, 25 Sep 2019 09:12:19 -0500
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
+To: <meta-arago@arago-project.org>, <denys@ti.com>, <j-stiffler@ti.com>
+Date: Wed, 25 Sep 2019 19:42:17 +0530
+Message-ID: <1569420737-132217-1-git-send-email-nikhil.nd@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v2] ltp-ddt: Update to latest
+Subject: [thud/master PATCH v1] ti-tisdk-makefile: Update Makefiles for am65xx and j7-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,39 +47,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Sep 2019 18:28:55 -0000
+X-List-Received-Date: Wed, 25 Sep 2019 14:13:31 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
+Move following packages from MAKEFILES_append_k3 to MAKEFILES_append_am6xx
+This is to ensure that these won't be packaged into j7-evm bundle.
 
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Also define K3_UBOOT_MACHINE_R5 for j7-evm
+
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb      | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-index ce851a2..841139c 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index 417b28b..d2aad2d 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -181,11 +181,8 @@ MAKEFILES_append_k2g = " pru-icss"
  
--PR = "r13"
-+PR = "r14"
- PV_append = "+git${SRCPV}"
+ MAKEFILES_append_k3 = " u-boot-spl \
+                         linux-dtbs \
+-                        barcode-roi \
+                         cryptodev \
+                         sysfw-image \
+-			mmwavegesture-hmi \
+-                        pdm-anomaly-detection \
+                         ti-ipc \
+                         jailhouse \
+ "
+@@ -193,6 +190,9 @@ MAKEFILES_append_k3 = " u-boot-spl \
+ MAKEFILES_append_am65xx = " \
+                         pru-icss \
+                         ti-sgx-ddk-km \
++                        barcode-roi \
++                        mmwavegesture-hmi \
++                        pdm-anomaly-detection \
+ "
  
- PROVIDES += "ltp"
-@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+ # Use this to export kernel arch to ARCH
+@@ -353,6 +353,8 @@ do_install () {
+ K3_UBOOT_MACHINE_R5 = ""
+ K3_UBOOT_MACHINE_R5_am65xx-evm = "am65x_evm_r5_defconfig"
+ K3_UBOOT_MACHINE_R5_am65xx-hs-evm = "am65x_hs_evm_r5_defconfig"
++K3_UBOOT_MACHINE_R5_j7-evm = "j721e_evm_r5_config"
++
+ do_install_append_k3() {
+     cat >> ${D}/Rules.make << __EOF__
  
- inherit autotools-brokensep
- 
--SRCREV = "5de85580566c91335db4127fc772d51e8c6dc96b"
-+SRCREV = "d89411a3a28a717fbf44a4bc8154a63c6bc908e0"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
 -- 
-1.7.9.5
+1.9.1
 
 
