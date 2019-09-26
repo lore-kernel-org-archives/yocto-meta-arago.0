@@ -1,45 +1,46 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com
-	[209.85.208.175])
-	by arago-project.org (Postfix) with ESMTPS id B7CFF520E2
+Return-Path: <nikhil.nd@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id A3D61520E2
 	for <meta-arago@arago-project.org>;
-	Wed, 25 Sep 2019 19:18:48 +0000 (UTC)
-Received: by mail-lj1-f175.google.com with SMTP id j19so6885169lja.1
-	for <meta-arago@arago-project.org>;
-	Wed, 25 Sep 2019 12:17:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=JNYlgAT9SGhtbxNV22qadlSGYt4vmnyHZdStZsWx4nQ=;
-	b=LPPPgHu5vPpzRPRlhgXyyPCHayi7XlooCqFQPtTAM6dh4TTSHSzJVUqqm6PapTIQ/y
-	PRXM/qngRx/o9YZ8ciKGiu0syAp+SQP01vIRsSUbc0zwXz1UPEzqFQlhIfkGAehCy1O7
-	o5dJA1t0lC9+Ls19wKvzhUeOkj0dVqfjWmMrfV/trYacDyHNRVxL8bFg1siBURK9BMYl
-	hFArljTTvvuCbgUmhwizQWwq5MtE7O2YYvEeVupp4ahFVS3iEAFGS9L5Ti8/eSb+4j9S
-	socqclpN+N5/j3Vw5X8WpperPoS9jR8GQnXlV0n0UKHc1VBC8OimsFYLqs4j5pYlxEh0
-	/svg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=JNYlgAT9SGhtbxNV22qadlSGYt4vmnyHZdStZsWx4nQ=;
-	b=od7K5yicGIZYoOcFZtsT76fp4r+/gUDA+emQ2CxCLguG2cVCyO5uBs3HUrBpCKKHwH
-	lsXbvGfU5H9ZY9dwHnU1iskz1CnysT75u0k6ONB6/hX4XFRbhIV8HyMq+X4GwxkspDd1
-	iFc8yEs6Q1S396JnHljror2MlHtBgwpdDcdsockHMgyIKr4n40H9R3yruzrpvOu3GUPF
-	e3ZyhCBc7aqp1wdO4p32Dfr88SWN3Vpo8ujUw4+ziFEeYW3JxjmVnkr6FbbbuAJac2un
-	W11mF5vdH/Ta81PazeWn6xKicdacAAOiJ/AIWPz9oRA2+5JnNe5p6GF1Ovvf0XUSumr9
-	y30Q==
-X-Gm-Message-State: APjAAAWol0V5/azR2v6ffTgyq9LtHSmOwNCHl9er4+nse+D34eYBy8QL
-	s/oYTsIG7krNMJqmptE4KpAYMfO0h8b+Y4atZSEW9g==
-X-Google-Smtp-Source: APXvYqz66PsGeIHBzhTwtT1mzvjqALCtN9Q0H3s0AngX2amkJLC/CsogKjzGpbC1ovDrxcYkO0xCdwMfraOMTl2FSZ4=
-X-Received: by 2002:a2e:91c7:: with SMTP id u7mr7523749ljg.146.1569439057791; 
-	Wed, 25 Sep 2019 12:17:37 -0700 (PDT)
+	Thu, 26 Sep 2019 12:27:13 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8QCQ3cm039164
+	for <meta-arago@arago-project.org>; Thu, 26 Sep 2019 07:26:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1569500763;
+	bh=CEqPPGrqj55uuwMUDzxHlo4VYR6Kh4PCMxw/+MtR4m4=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=V7QUZHCB3o2EQ7LbpVnYrdwM+CktCVRXfD9XrrPBVujk+KwBVnFiykJcJvCPdHX4D
+	uaPivHY4boeRwNaUY4nPhCqoFTaFYq9/84/lpCTLqJqr2oqjP0xn9nEYRtqJ+WV5GB
+	GNIQaJKR0pVvitzi7CafYj6JDkB8FckmtHBr2M0A=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8QCQ2L4024180
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Thu, 26 Sep 2019 07:26:03 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Thu, 26 Sep 2019 07:25:54 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Thu, 26 Sep 2019 07:26:02 -0500
+Received: from [172.24.190.110] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8QCQ0Nt106988;
+	Thu, 26 Sep 2019 07:26:00 -0500
+To: Denys Dmytriyenko <denys@ti.com>, Nikhil Devshatwar <nikhil.nd@ti.com>
+References: <1569428332-25738-1-git-send-email-nikhil.nd@ti.com>
+	<20190925170600.GC4163@beryl>
+From: Nikhil Devshatwar <a0132237@ti.com>
+Message-ID: <dbc26e54-8791-3e53-9c00-7c59502ef140@ti.com>
+Date: Thu, 26 Sep 2019 17:55:59 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <CADySD0HyRLzXfSfcYTrGZmuX2acoCMi2BE+hy=v+-fKPAvF3Mw@mail.gmail.com>
-In-Reply-To: <CADySD0HyRLzXfSfcYTrGZmuX2acoCMi2BE+hy=v+-fKPAvF3Mw@mail.gmail.com>
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Thu, 26 Sep 2019 07:17:26 +1200
-Message-ID: <CADySD0HKK1MWGXg2qL4PP-SRiyrHGJUpwKgAuCTVsZ0MizCSpg@mail.gmail.com>
-To: meta-arago@arago-project.org
-Subject: Re: do_rootfs error for custom image based upon arago thud branch
+In-Reply-To: <20190925170600.GC4163@beryl>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [thud/master PATCH v1] recipes-bsp: ti-sci-fw: Enable traces for j7-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,169 +53,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Sep 2019 19:18:49 -0000
-Content-Type: multipart/alternative; boundary="000000000000894e08059365815c"
+X-List-Received-Date: Thu, 26 Sep 2019 12:27:14 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
---000000000000894e08059365815c
-Content-Type: text/plain; charset="UTF-8"
+On 25/09/19 10:36 PM, Denys Dmytriyenko wrote:
+> Why only J7? Do we want it enabled on AM65x as well?
+I was told that AM6x has some requirement for faster boot.
+That's why I am keeping it status quo for AM6.
 
-It got resolved after removing tmp directory and rebuilding
+For J7, we were carrying a patch in meta-psdkla to enable traces. Now it can be added easily in the recipe.
 
-On Wed, 25 Sep 2019, 1:23 a.m. Ankur Tyagi, <ankur.tyagi85@gmail.com> wrote:
+Regards,
+Nikhil D
+>
+>
+> On Wed, Sep 25, 2019 at 09:48:52PM +0530, Nikhil Devshatwar wrote:
+>> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+>> ---
+>>   meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+>> index fab4de4..e7cf1a8 100644
+>> --- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+>> +++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+>> @@ -72,6 +72,9 @@ EXTRA_OEMAKE_append_am65xx-hs-evm = " \
+>>       HS=1 SYSFW_HS_PATH="${WORKDIR}/${SYSFW_BASE}-enc.bin" SYSFW_HS_INNER_CERT_PATH="${WORKDIR}/${SYSFW_BASE}-cert.bin" \
+>>   "
+>>   
+>> +EXTRA_OEMAKE_append_j7-evm = " \
+>> +    ENABLE_TRACE=1 \
+>> +"
+>>   do_compile() {
+>>   	cd ${WORKDIR}/imggen/
+>>   	oe_runmake
+>> -- 
+>> 1.9.1
+>>
 
-> Hi,
->
-> I was using "thud" branch to create custom image for my board.
-> Recently updated meta-ti, meta-arago "thud" branch and started
-> receiving following error message during do_rootfs task
->
-> ERROR: ggl-wsl-prod-image-1.0-r0 do_rootfs: Unable to install
-> packages. Command
->
-> '/home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/recipe-sysroot-native/usr/bin/opkg
-> --volatile-cache -f
->
-> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/opkg.conf
-> -t
-> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/temp/ipktemp/
-> -o
-> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/rootfs
->  --force_postinstall    install packagegroup-core-boot
-> packagegroup-ggl-base packagegroup-ggl-connectivity
-> packagegroup-ggl-qt psplash run-postinsts' returned 2:
-> Collected errors:
->  * Solver encountered 2 problem(s):
->  * Problem 1/2:
->  *   - nothing provides u-boot-ti-staging-src >=
-> 2019.01+git0+571bb85860 needed by
-> linux-ti-staging-src-4.19.73+git0+761ba629e9-gamos.wsl
->  *
->  * Solution 1:
->  *   - do not ask to install a package providing packagegroup-ggl-base
->
->  * Problem 2/2:
->  *   - nothing provides u-boot-ti-staging-src >=
-> 2019.01+git0+571bb85860 needed by
-> linux-ti-staging-src-4.19.73+git0+761ba629e9-gamos.wsl
->  *
->  * Solution 1:
->  *   - do not ask to install a package providing packagegroup-ggl-qt
->
->  * opkg_finalize_intercepts: Failed to open dir
->
-> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/temp/ipktemp//opkg-JLB910/opkg-intercept-xOvXqH:
-> No such file or directory.
->  * rm_r: Failed to open dir
->
-> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/temp/ipktemp//opkg-JLB910/opkg-intercept-xOvXqH:
-> No such file or directory.
->  * rm_r: Failed to open dir
->
-> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/temp/ipktemp//opkg-JLB910:
-> No such file or directory.
->
->
->
-> ERROR: ggl-wsl-prod-image-1.0-r0 do_rootfs: Function failed: do_rootfs
-> ERROR: Logfile of failure stored in:
->
-> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/temp/log.do_rootfs.107554
-> ERROR: Task
-> (/home/yocto/ggl-yocto-tools/sources/ggl-yocto/meta-ggl-image/recipes-core/images/ggl-wsl-prod-image.bb:
-> do_rootfs)
-> failed with exit code '1'
->
-> Can you please help:
-> 1) to understand the underlying problem
-> 2) how can I fix it
->
-> thanks
-> Ankur
->
 
---000000000000894e08059365815c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">It got resolved after removing tmp directory and rebuildi=
-ng</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
-">On Wed, 25 Sep 2019, 1:23 a.m. Ankur Tyagi, &lt;<a href=3D"mailto:ankur.t=
-yagi85@gmail.com">ankur.tyagi85@gmail.com</a>&gt; wrote:<br></div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc so=
-lid;padding-left:1ex">Hi,<br>
-<br>
-I was using &quot;thud&quot; branch to create custom image for my board.<br=
->
-Recently updated meta-ti, meta-arago &quot;thud&quot; branch and started<br=
->
-receiving following error message during do_rootfs task<br>
-<br>
-ERROR: ggl-wsl-prod-image-1.0-r0 do_rootfs: Unable to install<br>
-packages. Command<br>
-&#39;/home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-=
-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/recipe-sysroot-native/usr/bin/opkg<=
-br>
---volatile-cache -f<br>
-/home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux=
--gnueabi/ggl-wsl-prod-image/1.0-r0/opkg.conf<br>
--t /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-li=
-nux-gnueabi/ggl-wsl-prod-image/1.0-r0/temp/ipktemp/<br>
--o /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-li=
-nux-gnueabi/ggl-wsl-prod-image/1.0-r0/rootfs<br>
-=C2=A0--force_postinstall=C2=A0 =C2=A0 install packagegroup-core-boot<br>
-packagegroup-ggl-base packagegroup-ggl-connectivity<br>
-packagegroup-ggl-qt psplash run-postinsts&#39; returned 2:<br>
-Collected errors:<br>
-=C2=A0* Solver encountered 2 problem(s):<br>
-=C2=A0* Problem 1/2:<br>
-=C2=A0*=C2=A0 =C2=A0- nothing provides u-boot-ti-staging-src &gt;=3D<br>
-2019.01+git0+571bb85860 needed by<br>
-linux-ti-staging-src-4.19.73+git0+761ba629e9-gamos.wsl<br>
-=C2=A0*<br>
-=C2=A0* Solution 1:<br>
-=C2=A0*=C2=A0 =C2=A0- do not ask to install a package providing packagegrou=
-p-ggl-base<br>
-<br>
-=C2=A0* Problem 2/2:<br>
-=C2=A0*=C2=A0 =C2=A0- nothing provides u-boot-ti-staging-src &gt;=3D<br>
-2019.01+git0+571bb85860 needed by<br>
-linux-ti-staging-src-4.19.73+git0+761ba629e9-gamos.wsl<br>
-=C2=A0*<br>
-=C2=A0* Solution 1:<br>
-=C2=A0*=C2=A0 =C2=A0- do not ask to install a package providing packagegrou=
-p-ggl-qt<br>
-<br>
-=C2=A0* opkg_finalize_intercepts: Failed to open dir<br>
-/home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux=
--gnueabi/ggl-wsl-prod-image/1.0-r0/temp/ipktemp//opkg-JLB910/opkg-intercept=
--xOvXqH:<br>
-No such file or directory.<br>
-=C2=A0* rm_r: Failed to open dir<br>
-/home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux=
--gnueabi/ggl-wsl-prod-image/1.0-r0/temp/ipktemp//opkg-JLB910/opkg-intercept=
--xOvXqH:<br>
-No such file or directory.<br>
-=C2=A0* rm_r: Failed to open dir<br>
-/home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux=
--gnueabi/ggl-wsl-prod-image/1.0-r0/temp/ipktemp//opkg-JLB910:<br>
-No such file or directory.<br>
-<br>
-<br>
-<br>
-ERROR: ggl-wsl-prod-image-1.0-r0 do_rootfs: Function failed: do_rootfs<br>
-ERROR: Logfile of failure stored in:<br>
-/home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux=
--gnueabi/ggl-wsl-prod-image/1.0-r0/temp/log.do_rootfs.107554<br>
-ERROR: Task (/home/yocto/ggl-yocto-tools/sources/ggl-yocto/meta-ggl-image/r=
-ecipes-core/images/ggl-wsl-prod-image.bb:do_rootfs)<br>
-failed with exit code &#39;1&#39;<br>
-<br>
-Can you please help:<br>
-1) to understand the underlying problem<br>
-2) how can I fix it<br>
-<br>
-thanks<br>
-Ankur<br>
-</blockquote></div>
-
---000000000000894e08059365815c--
