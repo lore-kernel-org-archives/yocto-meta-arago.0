@@ -1,44 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id DC8CA52960
+Return-Path: <sjha@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id A382752960
 	for <meta-arago@arago-project.org>;
-	Thu, 26 Sep 2019 17:58:56 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8QHvkrh124954
-	for <meta-arago@arago-project.org>; Thu, 26 Sep 2019 12:57:46 -0500
+	Thu, 26 Sep 2019 18:30:37 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8QITRpj121355
+	for <meta-arago@arago-project.org>; Thu, 26 Sep 2019 13:29:27 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1569520666;
-	bh=GAFO5Sfh7R1Zc6Xq32T8LVRn8cvonjBjjLVj5E84mAc=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=pUW8dyDOahMJ3l3936SrtbcFPsXGztaGilmAQciHVMkdsZLpNuasUKD1NQNbfeAts
-	JhBk20KDfEVQPk/jigiRFrmKEW33R08mkTnf55GRBx8NtK1cH6/KFC2NUgeCxDLSIb
-	R3H7fM5nsZixiEp9X27eskQkA6Gxmw1kFsiLB/Ps=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8QHvkDw001975
+	s=ti-com-17Q1; t=1569522567;
+	bh=LJpoAJ/5GqLZUlenIodMZ8swOJRvUL0qdlxosQ48vAA=;
+	h=From:To:CC:Subject:Date;
+	b=k15NjcPojKJJVtccjK+T8Ykk8OwUuIAed103K4ICj8whlljuH5x8M6sMOzlOFtOa5
+	5g9iIr4X4QXnjVSSO2pu9MUYLmrIcfBtd4xxN5is3OGe60mX8Hc2NIT8zypNCSLaRI
+	SnHBUpePCBTIf5tGfETFQY3ON4tvLzTMKsfhtR8M=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8QITRRu057895
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 26 Sep 2019 12:57:46 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 26 Sep 2019 13:29:27 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 26 Sep 2019 12:57:39 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 26 Sep 2019 13:29:19 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Thu, 26 Sep 2019 12:57:39 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8QHvkNx029977;
-	Thu, 26 Sep 2019 12:57:46 -0500
-Date: Thu, 26 Sep 2019 13:57:46 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Santosh Jha <sjha@ti.com>
-Message-ID: <20190926175746.GC5566@beryl>
-References: <20190923181500.15715-1-sjha@ti.com>
+	Frontend Transport; Thu, 26 Sep 2019 13:29:19 -0500
+Received: from uda0132919.dal.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8QITRRO011316;
+	Thu, 26 Sep 2019 13:29:27 -0500
+From: Santosh Jha <sjha@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 26 Sep 2019 13:28:58 -0500
+Message-ID: <20190926182858.3589-1-sjha@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20190923181500.15715-1-sjha@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [thud/master][PATCH] packagegroup-arago-tisdk-addons: replacing ipc-lld-fw
+Subject: [thud/master][PATCH v2] packagegroup-arago-tisdk-addons: replacing ipc-lld-fw
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,41 +49,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2019 17:58:57 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 26 Sep 2019 18:30:38 -0000
+Content-Type: text/plain
 
-This no longer applies - can you please rebase? Thanks.
+Replacing ipc-lld-fw with ipc-lld-examples-rtos to
+build from source.
 
-On Mon, Sep 23, 2019 at 01:15:00PM -0500, Santosh Jha wrote:
-> Replacing ipc-lld-fw with ipc-lld-examples-rtos to
-> build from source.
-> 
-> Signed-off-by: Santosh Jha <sjha@ti.com>
-> ---
->  .../packagegroups/packagegroup-arago-tisdk-addons.bb          | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> index 21aa7244..ef617793 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> @@ -75,8 +75,8 @@ UTILS_append_k3 = " mmc-utils \
->                      irqbalance \
->  "
->  
-> -UTILS_append_am65xx = " ti-ipc-rtos-fw pru-icss"
-> -UTILS_append_j7-evm = " ipc-lld-fw ti-display-sharing-fw jailhouse"
-> +UTILS_append_am65xx = " ti-ipc-rtos-fw pru-icss ipc-lld-examples-rtos"
-> +UTILS_append_j7-evm = " ipc-lld-examples-rtos ti-display-sharing-fw jailhouse"
->  
->  UTILS_append_omapl138 = " ti-ipc-rtos-fw"
->  
-> -- 
-> 2.17.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Santosh Jha <sjha@ti.com>
+
+---
+Change from previous version of patch:
+- Rebased to latest master
+---
+---
+ .../packagegroups/packagegroup-arago-tisdk-addons.bb          | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index b4da6902..776a58bb 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -77,8 +77,8 @@ UTILS_append_k3 = " mmc-utils \
+                     jailhouse \
+ "
+ 
+-UTILS_append_am65xx = " ipc-lld-fw ti-ipc-rtos-fw pru-icss"
+-UTILS_append_j7-evm = " ipc-lld-fw ti-display-sharing-fw cpsw9g-eth-fw"
++UTILS_append_am65xx = " ipc-lld-examples-rtos ti-ipc-rtos-fw pru-icss"
++UTILS_append_j7-evm = " ipc-lld-examples-rtos ti-display-sharing-fw cpsw9g-eth-fw"
+ 
+ UTILS_append_omapl138 = " ti-ipc-rtos-fw"
+ 
+-- 
+2.17.1
+
 
