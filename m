@@ -1,41 +1,44 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id E1CDD5299E
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 5AB4E5299E
 	for <meta-arago@arago-project.org>;
-	Thu, 26 Sep 2019 14:14:09 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8QECxk3056267
-	for <meta-arago@arago-project.org>; Thu, 26 Sep 2019 09:12:59 -0500
+	Thu, 26 Sep 2019 14:14:10 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8QED0v1068872
+	for <meta-arago@arago-project.org>; Thu, 26 Sep 2019 09:13:00 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1569507179;
-	bh=X/6h9Z3a/GgbR/F8T9TtdXrAY54Fii9zvne4WzJ0DLI=;
-	h=From:To:CC:Subject:Date;
-	b=WN4KOZY665MwNvyYKwXLUDdKD95YUin+eSY/nVowemA66KKmtjTOTtTttBQD2FeYr
-	9yciZhxgMUP9R2brbBqm34vKK3FsYcjVxAEwwBZxVUJxZb+FyJfaYVQPdgT+gENJNp
-	NG9wyGLhOFPRrgMp4eIohC0z2EPuJ8LREPZRFzxI=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8QECxQX087734
-	for <meta-arago@arago-project.org>; Thu, 26 Sep 2019 09:12:59 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1569507180;
+	bh=lPA1CK+Pzp1DwdmDElqvt2/s8FQgknq6hUpz9QS2p9A=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=HlgVACEMH21s7XYFm25DCXW00G9SVwXMEf407cenRJ0Bc6JKN7Ciz+z2+QPaGmsH7
+	iFQj7HXPQY6nULD0Xb6oJc6VTL5URVoUGbZ7bFlDtyl3/9fXdEAaouCynCWwNhXHSY
+	li/J7QU6M4xQx3IQ7m+HVuaGZvBqIZFxujj9yl6g=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8QED0mH042033
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Thu, 26 Sep 2019 09:13:00 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
 	Thu, 26 Sep 2019 09:12:52 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Thu, 26 Sep 2019 09:12:59 -0500
+	Frontend Transport; Thu, 26 Sep 2019 09:12:52 -0500
 Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8QECxBb014227;
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8QECxBc014227;
 	Thu, 26 Sep 2019 09:12:59 -0500
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 26 Sep 2019 09:54:20 -0400
-Message-ID: <1569506061-18169-1-git-send-email-j-stiffler@ti.com>
+Date: Thu, 26 Sep 2019 09:54:21 -0400
+Message-ID: <1569506061-18169-2-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1569506061-18169-1-git-send-email-j-stiffler@ti.com>
+References: <1569506061-18169-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master/thud/ti2019.03][PATCH 1/2] arago: whitelist netperf's non-commercial license
+Subject: [master/thud/ti2019.03][PATCH 2/2] packagegroup-arago-base-tisdk: add netperf
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,22 +56,29 @@ Content-Type: text/plain
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb        | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index beacad7..2891ff5 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -193,7 +193,7 @@ ENTERPRISE_DISTRO = "1"
- # disable by default the codecs in libav that causes issues with shipping an
- # Arago based SDK. No need to prevent gst-ffmpeg from being used since we
- # disable troublesome software.
--LICENSE_FLAGS_WHITELIST = "commercial_gst-ffmpeg commercial_gstreamer1.0-libav commercial_faad2"
-+LICENSE_FLAGS_WHITELIST = "commercial_gst-ffmpeg commercial_gstreamer1.0-libav commercial_faad2 non-commercial_netperf"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
+index 83c0f21..ec0027b 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Additional packages beyond console packages shared by TI SDKs"
+ LICENSE = "MIT"
+-PR = "r21"
++PR = "r22"
  
- # Do not package own copy of perl into devkit, rely on host one
- ASSUME_PROVIDED += "nativesdk-perl"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -20,6 +20,7 @@ RDEPENDS_${PN} = "\
+     iptables \
+     iperf \
+     iperf3 \
++    netperf \
+     arago-gpl-notice \
+     arago-feed-config \
+     nfs-utils-client \
 -- 
 2.7.4
 
