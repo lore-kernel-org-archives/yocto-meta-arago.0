@@ -1,41 +1,40 @@
 Return-Path: <nikhil.nd@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 45ABE52960
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id C9E0252970
 	for <meta-arago@arago-project.org>;
-	Fri, 27 Sep 2019 09:16:13 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8R9F2JO087302
-	for <meta-arago@arago-project.org>; Fri, 27 Sep 2019 04:15:02 -0500
+	Fri, 27 Sep 2019 09:45:58 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8R9impj085834
+	for <meta-arago@arago-project.org>; Fri, 27 Sep 2019 04:44:48 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1569575702;
-	bh=tf/qXUb4EMq787qEG+iWzsmFHSDuMeaqfzFdRtB9FQk=;
+	s=ti-com-17Q1; t=1569577488;
+	bh=SRqCCMwic7cfBSlIafeuS1kEOBb5hgFie1F+D62L1T4=;
 	h=From:To:CC:Subject:Date;
-	b=b96ZxTZLSWZqrfJwQjBwoUDF7m1bzirWPr967xpyXk/KrOZEQlfGjDUaexsvI2280
-	mkq5T2PmZTg4y8sgryfQcJa3oJaUFAm4nAY9rGtqFW0/uoPQ+tB6jNuuwrkZuVZdXx
-	xYPuwf6afMSnBWLoDWXVV61OTcOpNasljrUBp6RY=
+	b=u47Efk7OgftoeRRTZEM1qVEs/JLnKWQP84Gkjw+w14jPgVCDG1ec/IwJFq351sQgU
+	g4LxYcpny1Pc/49XwMxAqVD3jTMShjp0sjZz5+tYi+mO5fGQduZjajk+IZ6rmcdk9I
+	lZkUs847D0YLqj4vvhWC7rRHY+dxjuROl2ZCCMLk=
 Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8R9F2mn122802
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 27 Sep 2019 04:15:02 -0500
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8R9imVr106934
+	for <meta-arago@arago-project.org>; Fri, 27 Sep 2019 04:44:48 -0500
 Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
 	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Fri, 27 Sep 2019 04:14:54 -0500
+	Fri, 27 Sep 2019 04:44:40 -0500
 Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
 	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Fri, 27 Sep 2019 04:14:54 -0500
+	Frontend Transport; Fri, 27 Sep 2019 04:44:40 -0500
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8R9ExU6108724; 
-	Fri, 27 Sep 2019 04:15:00 -0500
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8R9ik5C023237; 
+	Fri, 27 Sep 2019 04:44:47 -0500
 From: Nikhil Devshatwar <nikhil.nd@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 27 Sep 2019 14:44:56 +0530
-Message-ID: <1569575696-11975-1-git-send-email-nikhil.nd@ti.com>
+Date: Fri, 27 Sep 2019 15:14:38 +0530
+Message-ID: <1569577478-68202-1-git-send-email-nikhil.nd@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master PATCH v2] arago-source-ipk: Include source for ivshmem-uio module
+Subject: [thud/master PATCH v1] tisdk-readme: Add separate README for k3 platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,32 +47,81 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Sep 2019 09:16:13 -0000
+X-List-Received-Date: Fri, 27 Sep 2019 09:45:59 -0000
 Content-Type: text/plain
+
+For machines with k3 platforms, install the README_k3 as README
+It describes all the new files needed for booting k3 devices.
 
 Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
 ---
-Changes from v1:
-* Split the recipe for arago-source-ipk separately
+ .../recipes-tisdk/tisdk-readme/tisdk-readme.bb     |  8 +++++--
+ .../tisdk-readme/tisdk-readme/README_k3            | 26 ++++++++++++++++++++++
+ 2 files changed, 32 insertions(+), 2 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme/README_k3
 
- meta-arago-distro/conf/distro/include/arago-source-ipk.inc | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-index 9e105b8..970e3e2 100644
---- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-@@ -374,6 +374,10 @@ SRCIPK_INSTALL_DIR_pn-hplib-mod = "board-support/extra-drivers/${PN}-${PV}"
- CREATE_SRCIPK_pn-uio-module-drv = "1"
- SRCIPK_INSTALL_DIR_pn-uio-module-drv = "board-support/extra-drivers/${PN}-${PV}"
+diff --git a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
+index 6fdcaff..18f8c04 100644
+--- a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
++++ b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme.bb
+@@ -4,19 +4,23 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384
  
-+CREATE_SRCIPK_pn-ivshmem-uio-driver = "1"
-+SRCIPK_INSTALL_DIR_pn-ivshmem-uio-driver = "board-support/extra-drivers/${PN}-${PV}"
-+SRCIPK_PRESERVE_GIT_pn-ivshmem-uio-driver = "true"
+ SRC_URI = "\
+     file://README \
++    file://README_k3 \
+ "
+ 
+-PR = "r0"
++PR = "r1"
+ PV = "1.0"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+ S = "${WORKDIR}"
+ 
++README_FILE = "README"
++README_FILE_k3 = "README_k3"
 +
- CREATE_SRCIPK_pn-ipsecmgr-mod = "1"
- SRCIPK_INSTALL_DIR_pn-ipsecmgr-mod = "board-support/extra-drivers/${PN}-${PV}"
+ do_install () {
+     install -d ${D}/board-support/prebuilt-images
  
+-    install -m 0644 ${S}/README ${D}/board-support/prebuilt-images/
++    install -m 0644 ${S}/${README_FILE} ${D}/board-support/prebuilt-images/README
+ }
+ 
+ FILES_${PN} += "board-support/*"
+diff --git a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme/README_k3 b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme/README_k3
+new file mode 100644
+index 0000000..0eb6dd3
+--- /dev/null
++++ b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme/README_k3
+@@ -0,0 +1,26 @@
++The files contained in this directory represent the images that were built
++as part of the original SDK build and packaging process.  They are meant
++to serve as a restore and starting point for your development.  In order
++to use these images with an SD card they should be placed in the appropriate
++locations.
++
++By default these locations are:
++
+++-------------+-----------------------------------------+
++|    File     |                Location                 |
+++-------------+-----------------------------------------+
++| tiboot3.bin | boot partition                          |
++| tispl.bin   | boot partition                          |
++| u-boot.img  | boot partition                          |
++| sysfw.itb   | boot partition                          |
++| uEnv.txt    | boot partition                          |
+++-------------+-----------------------------------------+
++| Image       | /boot directory of the rootfs partition |
++| *.dtb       | /boot directory of the rootfs partition |
++| *.dtbo      | /boot directory of the rootfs partition |
+++-------------+-----------------------------------------+
++
++By default the boot loaders are read from the first FAT partition, which is
++usually called the "boot" partition.  Then the bootloader will look for the
++Image and .dtb .dtbo files in the /boot directory of the ext4 partition, which is
++usually called the "rootfs" partition.
 -- 
 1.9.1
 
