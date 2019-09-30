@@ -1,42 +1,42 @@
-Return-Path: <yuanzhao@ti.com>
+Return-Path: <denys@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 7B0ED520DF
+	by arago-project.org (Postfix) with ESMTPS id 49439520DF
 	for <meta-arago@arago-project.org>;
-	Mon, 30 Sep 2019 16:08:47 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8UG7a7L038621
-	for <meta-arago@arago-project.org>; Mon, 30 Sep 2019 11:07:36 -0500
+	Mon, 30 Sep 2019 18:16:07 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8UIEuMO067887
+	for <meta-arago@arago-project.org>; Mon, 30 Sep 2019 13:14:56 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1569859656;
-	bh=rHKfTEeIjihJFbTzBpN9qqHs6U+FboJUlPtdVKEtjzs=;
+	s=ti-com-17Q1; t=1569867296;
+	bh=/JxsGyQl7swvwuMhlL5kryRzG7OJl5R8Smyt0kcwBOg=;
 	h=From:To:CC:Subject:Date;
-	b=MithdH47dpzpBvIE7ZcaYbtj/NByrOa9DucgZDaNx9XSKHt0ccHVxcnhdvzPZPST5
-	wmDB4sUn96enuNXPCEzwVQoW/NJs3iwLIbj2utjwxBM836QxKLtIlINNa5jvL/axXr
-	0FYayZ8jafFUhgkgNEUKB4O7qRDDAhWfnLjDUGEk=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8UG7aHI123745
+	b=dAeaW0yagTbFh5OUW9uS2qR++7hhnoU8Ofj3OSPxtqRaJ/IvbhmEc2oZtMXot7C82
+	LGtYg4AINXKB7FOAWZgOLHLWgbtMmScUhWrzYofF0gOy+ifPJB4yqgG1nIeFCzwmty
+	NUXR3Oj4KLk6p7t3AIrvS3T8z7RAx5woyNXjXQjk=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8UIEtXf102974
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 30 Sep 2019 11:07:36 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 30 Sep 2019 13:14:56 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 30 Sep 2019 11:07:36 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 30 Sep 2019 13:14:55 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 30 Sep 2019 11:07:26 -0500
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Mon, 30 Sep 2019 13:14:55 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8UG7aeh119150;
-	Mon, 30 Sep 2019 11:07:36 -0500
-From: Yuan Zhao <yuanzhao@ti.com>
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8UIEta0092458;
+	Mon, 30 Sep 2019 13:14:55 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 30 Sep 2019 11:07:30 -0500
-Message-ID: <20190930160730.84383-1-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.14.1
+Date: Mon, 30 Sep 2019 17:59:10 +0000
+Message-ID: <20190930175910.14000-1-denys@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] tidl-api: update to version 1.3.3
+Subject: [thud/master][PATCH] omapconf: update 1.73 -> 1.74
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,37 +49,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2019 16:08:47 -0000
+X-List-Received-Date: Mon, 30 Sep 2019 18:16:07 -0000
 Content-Type: text/plain
 
-- Revert workaround for allocation bug that is now fixed
-  in OpenCL TIDL firmware 01.01.19.02
-
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-index edfd208f..e3e124d0 100644
---- a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-+++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-@@ -1,4 +1,4 @@
--PV = "1.3.2"
-+PV = "1.3.3"
- INC_PR = "r0"
+diff --git a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
+index 8ae572c4..218fc9ce 100644
+--- a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
++++ b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
+@@ -4,13 +4,12 @@ HOMEPAGE = "https://github.com/omapconf/omapconf"
+ LICENSE = "GPLv2 | BSD"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=205c83c4e2242a765acb923fc766e914"
  
- LIC_FILES_CHKSUM = "file://license.txt;md5=e3daeabffb9fc131a73f16d16cbdb118"
-@@ -8,7 +8,7 @@ GIT_PROTOCOL = "git"
- BRANCH = "master"
+-PV = "1.73"
+-PR = "r1"
++PV = "1.74"
  
- SRC_URI = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
--SRCREV = "b83df643de46c2ae198dfdac859e51f6b4acc1ea"
-+SRCREV = "092a2ed047b02d9668fddebe61d4e5920bfbfb3f"
+ COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|omap4"
  
- # default patchdir is ${S}
- S = "${WORKDIR}/git"
+ BRANCH ?= "master"
+-SRCREV = "a5dac6c5a65c672bd299b42ca495566a7cc137a4"
++SRCREV = "d7a461c0d6c6bcf986f991d4bcee130562b040d6"
+ 
+ SRC_URI = "git://github.com/omapconf/omapconf.git;protocol=git;branch=${BRANCH}"
+ 
 -- 
-2.14.1
+2.17.1
 
 
