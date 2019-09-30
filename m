@@ -1,40 +1,42 @@
-Return-Path: <nikhil.nd@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 5EB46520DE
+Return-Path: <yuanzhao@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 90B86520DF
 	for <meta-arago@arago-project.org>;
-	Mon, 30 Sep 2019 08:43:25 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8U8gEY9100919
-	for <meta-arago@arago-project.org>; Mon, 30 Sep 2019 03:42:14 -0500
+	Mon, 30 Sep 2019 16:08:25 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8UG7EmU061864
+	for <meta-arago@arago-project.org>; Mon, 30 Sep 2019 11:07:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1569832934;
-	bh=mBCh8BRZ2Xe2LSFCc3KhkaVk9C6Fsfz8CXpJjXTWFTk=;
+	s=ti-com-17Q1; t=1569859634;
+	bh=p99Telh2yX+H9V5UIFT5CuDwLZ39RNvlNRKf+dwJGKQ=;
 	h=From:To:CC:Subject:Date;
-	b=ygy7xuUdWxLo0OqKtdOK3tOCW3Uy+Xiu9pXBtWpc9kfkDEkZXLIc8IylNsXVQdZI9
-	63rTb/cZ0d/TFojxSj21UYL1TNEq2etm/w0LdN4nd1nSbl5ZBguwYlm1C2aMz213Gk
-	nnXE9hbVMamsIiC/C++aEOiE/UUQjCMICvzUs/e4=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8U8gEih000563
-	for <meta-arago@arago-project.org>; Mon, 30 Sep 2019 03:42:14 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	b=kv43Nb+grI0FaFJT+6rEHQhpB1gFi3OHqTw4j16wAk6zxs3FcxQsnTnv8BfjYzEmU
+	mnUOtFra8daYQA0N+gbOj7TofIotcsuREZkEOSoB1JhJWU9M9J7MsxCvU8RU2X14r8
+	HAK7ZJZtXAYR/3hvuUfX9NEK48ff4ezd2l1c2uMc=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8UG7EYn109640
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Mon, 30 Sep 2019 11:07:14 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 30 Sep 2019 03:42:04 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 30 Sep 2019 11:07:13 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 30 Sep 2019 03:42:14 -0500
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8U8gCgF088386; 
-	Mon, 30 Sep 2019 03:42:13 -0500
-From: Nikhil Devshatwar <nikhil.nd@ti.com>
+	Frontend Transport; Mon, 30 Sep 2019 11:07:14 -0500
+Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8UG7DU2092296;
+	Mon, 30 Sep 2019 11:07:14 -0500
+From: Yuan Zhao <yuanzhao@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 30 Sep 2019 14:12:07 +0530
-Message-ID: <1569832927-52857-1-git-send-email-nikhil.nd@ti.com>
-X-Mailer: git-send-email 1.9.1
+Date: Mon, 30 Sep 2019 10:57:58 -0500
+Message-ID: <20190930155758.84306-1-yuanzhao@ti.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master PATCH v2] tisdk-readme: Add separate README for k3 platforms
+Subject: [PATCH] ocl: update version to 01.01.19.02
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -47,54 +49,60 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2019 08:43:25 -0000
+X-List-Received-Date: Mon, 30 Sep 2019 16:08:25 -0000
 Content-Type: text/plain
 
-For machines with k3 platforms, install a different README file
-It describes all the new files needed for booting k3 devices.
+- Update OpenCL TIDL firmware to 01.01.19.02
 
-Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
 ---
-Changes from v1:
-* Avoid recipe changes, use machine specific README file
+ meta-arago-extras/recipes-ti/ocl/ocl.inc               | 4 ++--
+ meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
- .../tisdk-readme/tisdk-readme/k3/README            | 26 ++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
- create mode 100644 meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme/k3/README
-
-diff --git a/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme/k3/README b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme/k3/README
-new file mode 100644
-index 0000000..0eb6dd3
---- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/tisdk-readme/tisdk-readme/k3/README
-@@ -0,0 +1,26 @@
-+The files contained in this directory represent the images that were built
-+as part of the original SDK build and packaging process.  They are meant
-+to serve as a restore and starting point for your development.  In order
-+to use these images with an SD card they should be placed in the appropriate
-+locations.
-+
-+By default these locations are:
-+
-++-------------+-----------------------------------------+
-+|    File     |                Location                 |
-++-------------+-----------------------------------------+
-+| tiboot3.bin | boot partition                          |
-+| tispl.bin   | boot partition                          |
-+| u-boot.img  | boot partition                          |
-+| sysfw.itb   | boot partition                          |
-+| uEnv.txt    | boot partition                          |
-++-------------+-----------------------------------------+
-+| Image       | /boot directory of the rootfs partition |
-+| *.dtb       | /boot directory of the rootfs partition |
-+| *.dtbo      | /boot directory of the rootfs partition |
-++-------------+-----------------------------------------+
-+
-+By default the boot loaders are read from the first FAT partition, which is
-+usually called the "boot" partition.  Then the bootloader will look for the
-+Image and .dtb .dtbo files in the /boot directory of the ext4 partition, which is
-+usually called the "rootfs" partition.
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index 1bfb47d2..9193c488 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,5 +1,5 @@
+ # patch version at the end needs to be in double digits
+-PV = "1.1.19.01"
++PV = "1.1.19.02"
+ INC_PR = "r0"
+ 
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -11,7 +11,7 @@ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
+ 
+ 
+-OCL_SRCREV = "517b95417982e001cda8948509fcc75e0a5b2f14"
++OCL_SRCREV = "b178e67080afff815f8f7cccb123176cf6048322"
+ 
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
+index 96901c16..322f9017 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
+@@ -3,7 +3,7 @@ SUMMARY = "OpenCL TIDL firmware for AM57xx"
+ LICENSE = "TI-TFL"
+ LIC_FILES_CHKSUM = "file://LICENSE.ti;md5=082a028431c455252c1e1d3d1021d382"
+ 
+-PV = "01.01.19.01"
++PV = "01.01.19.02"
+ PR = "r0"
+ 
+ require recipes-ti/includes/arago-paths.inc
+@@ -15,7 +15,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ GIT_URI      = "git://git.ti.com/opencl/opencl-firmware.git"
+ GIT_PROTOCOL = "git"
+ BRANCH       = "master"
+-SRCREV       = "6124427f1eb33fa2afb5152442f4eca930ffd10a"
++SRCREV       = "f9402b2b6b06185af7663bae0061c6fad12cff07"
+ 
+ SRC_URI      = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
+ 
 -- 
-1.9.1
+2.14.1
 
 
