@@ -1,42 +1,43 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 36AFF520DF
+Return-Path: <j-stiffler@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 04EA1520DF
 	for <meta-arago@arago-project.org>;
-	Mon, 30 Sep 2019 19:37:49 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8UJacT1087706
-	for <meta-arago@arago-project.org>; Mon, 30 Sep 2019 14:36:38 -0500
+	Tue,  1 Oct 2019 12:38:25 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x91CbE8d111920
+	for <meta-arago@arago-project.org>; Tue, 1 Oct 2019 07:37:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1569872198;
-	bh=DdGGXM0a10kk6svY6joL3AQmSA6jQQxNpdUPYW+Q6Jo=;
-	h=From:To:CC:Subject:Date;
-	b=esRM85T0BuMlYeGktRL12vbUu/w+1DsCT/7nl9cZi3kCLUzogvDwCuw/jGe2HvQGo
-	hYfuQinn4AazW1c4hWYd5VOaLPkmt1ZQCYkmdThOMvL3aq75cbQKGkZxeS3amND728
-	cFKjuSPL69fG58WvL1uK/khhAPZ9n1FMLLRvwhMU=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8UJac1C076744
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 30 Sep 2019 14:36:38 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1569933434;
+	bh=XvJMqgINMHydAbYkqL7RiznHQFTpxWw55T7Ah/+A2ig=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=iOO7jmkb9qrcxyhYOxM+KyzYbE3Bb5gNRtagVVP/A/eb1otvfIP4LYw9XvUmSlSnY
+	necTVt9AZ7lVN4sXLmrJJnWm9VtBKFfUKRVeDOq6VzYPNaHt9o/oNGL/JGKhz1PgC4
+	KX38SkuF+PCBx2OyQJ1S+htA6zUsb3dBwUpTxIv4=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x91CbEUE014215
+	for <meta-arago@arago-project.org>; Tue, 1 Oct 2019 07:37:14 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 30 Sep 2019 14:36:28 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 1 Oct 2019 07:37:04 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 30 Sep 2019 14:36:28 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8UJabwq096877;
-	Mon, 30 Sep 2019 14:36:37 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 30 Sep 2019 19:20:52 +0000
-Message-ID: <20190930192052.15379-1-denys@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Frontend Transport; Tue, 1 Oct 2019 07:37:04 -0500
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x91CbD9M008280;
+	Tue, 1 Oct 2019 07:37:14 -0500
+To: Sam Nelson <sam.nelson@ti.com>, <meta-arago@arago-project.org>
+References: <1569533574-55188-1-git-send-email-sam.nelson@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <4f9685f3-7b0e-c670-bc2c-b29a3d4c63d0@ti.com>
+Date: Tue, 1 Oct 2019 08:37:13 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.9.0
 MIME-Version: 1.0
+In-Reply-To: <1569533574-55188-1-git-send-email-sam.nelson@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master][PATCH] gadget-init: remove
+Subject: Re: [EXTERNAL] [thud/master][PATCH] ti-tisdk-makefile: Update to fix build issue with arm-oe-linux-gnueabi
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,79 +50,50 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2019 19:37:49 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 01 Oct 2019 12:38:26 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-This was sysvinit specific version of gadget-init script. As meta-ti
-provides a systemd specific version, remove this deprecated one.
+Denys,
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-tisdk/gadget-init/gadget-init.bb  | 21 ----------------
- .../gadget-init/gadget-init/init              | 25 -------------------
- 2 files changed, 46 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
- delete mode 100644 meta-arago-distro/recipes-tisdk/gadget-init/gadget-init/init
+Please backport to ti2019.03
 
-diff --git a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
-deleted file mode 100644
-index b13befee..00000000
---- a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init.bb
-+++ /dev/null
-@@ -1,21 +0,0 @@
--# This recipe is based on the recipe by Koen in meta-texasinstruments
--DESCRIPTION = "Scripts to initialize usb gadgets"
--LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690"
--
--PR = "r3"
--
--SRC_URI = "file://init"
--
--INITSCRIPT_NAME = "storage-gadget-init"
--INITSCRIPT_PARAMS = "defaults 98"
--
--inherit update-rc.d
--
--do_install() {
--    install -d ${D}${sysconfdir}/init.d
--    install -m 0755 ${WORKDIR}/init ${D}${sysconfdir}/init.d/storage-gadget-init
--}
--
--FILES_${PN} = "${sysconfdir} ${bindir}"
--RRECOMMENDS_${PN} += "kernel-module-g-ether kernel-module-g-mass-storage"
-diff --git a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init/init b/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init/init
-deleted file mode 100644
-index 872f7f56..00000000
---- a/meta-arago-distro/recipes-tisdk/gadget-init/gadget-init/init
-+++ /dev/null
-@@ -1,25 +0,0 @@
--#!/bin/sh
--
--
--case "$1" in
--    start )
--        # If this is a 3 partition card mount the first and third
--        # partition.  Else only mount the first one.
--        if [ -e /dev/mmcblk0p1 -a -e /dev/mmcblk0p3 ]
--        then
--            modprobe g_mass_storage file=/dev/mmcblk0p1,/dev/mmcblk0p3
--        elif [ -e /dev/mmcblk0p1 ]
--        then
--            modprobe g_mass_storage file=/dev/mmcblk0p1
--        fi
--    ;;
--    stop )
--        lsmod | grep g_mass_storage > /dev/null
--        if [ "$?" == "0" ]
--        then
--            rmmod g_mass_storage
--        fi
--    ;;
--esac
--
--exit 0
--- 
-2.17.1
 
+Thank you,
+
+Jake
+
+
+On 9/26/2019 5:32 PM, Sam Nelson wrote:
+> With arm-oe-linux-gnueabi toolchain, the sysroot path is not picked up
+> by default.
+>
+> This fixes problem with building the ipc examples using top level make,
+> in platforms using arm-oe-linux-gnueabi toolchain
+>
+> Signed-off-by: Sam Nelson <sam.nelson@ti.com>
+> ---
+>   .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc   | 2 ++
+>   1 file changed, 2 insertions(+)
+>
+> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
+> index 53f9c88..682a791 100644
+> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
+> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-ipc
+> @@ -100,6 +100,7 @@ ti-ipc-linux-examples: ti-ipc-rtos-path-check
+>   		TOOLCHAIN_LONGNAME=$${TOOLCHAIN_SYS} \
+>   		TOOLCHAIN_INSTALL_DIR=$${SDK_PATH_NATIVE}/usr \
+>   		TOOLCHAIN_PREFIX=$(CROSS_COMPILE) \
+> +		LINUX_SYSROOT_DIR=$(SDK_PATH_TARGET) \
+>   		$(IPC_TOOLS_PATHS)
+>   
+>   ti-ipc-linux-examples_install: ti-ipc-rtos-path-check ti-ipc-linux-examples
+> @@ -131,5 +132,6 @@ ti-ipc-linux-examples_clean: ti-ipc-rtos-path-check
+>   		TOOLCHAIN_LONGNAME=$${TOOLCHAIN_SYS} \
+>   		TOOLCHAIN_INSTALL_DIR=$${SDK_PATH_NATIVE}/usr \
+>   		TOOLCHAIN_PREFIX=$(CROSS_COMPILE) \
+> +		LINUX_SYSROOT_DIR=$(SDK_PATH_TARGET) \
+>   		$(IPC_TOOLS_PATHS)
+>   
 
