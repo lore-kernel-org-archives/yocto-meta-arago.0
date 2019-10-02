@@ -1,42 +1,41 @@
-Return-Path: <yan-liu@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 9F4C9529D9
+Return-Path: <m-radhakrishnan2@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id AA482520DF
 	for <meta-arago@arago-project.org>;
-	Wed,  2 Oct 2019 18:39:20 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x92Ic8us113186
-	for <meta-arago@arago-project.org>; Wed, 2 Oct 2019 13:38:08 -0500
+	Wed,  2 Oct 2019 19:18:11 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x92JGxX9055685
+	for <meta-arago@arago-project.org>; Wed, 2 Oct 2019 14:16:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1570041488;
-	bh=2pj2oiG8vyQEUz63I3TSYRbvuuAGUEJIY5Cc190kLGo=;
-	h=From:To:CC:Subject:Date;
-	b=nPIrwLYkzjUPKrjtPUcpoznpsaZ1dXa8DG5s/ELyzHl9PyF201cX8k4UKBhzj7PZv
-	O9Wo0Oji3bWSJQNihM0hzAKOXC2JZGzuUhc7qUZyoL73/MXfs4iJEZn5yyIsDd0idb
-	5Bv/IsZRKwCnwmSsX2F4UvEWBzvws+MMxmNO6Jds=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x92Ic8NA066733
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 2 Oct 2019 13:38:08 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1570043819;
+	bh=a7+a2o5CCWxSeeER5JJboRkg5BiODcNoaQ/8e/pZFlg=;
+	h=From:To:Subject:Date;
+	b=RL2omm/ZkIX/Y4wqPYsh532HQf/js3waO1d7NZ5opAd5nRDOhcuoxPeqzkkNoylgt
+	uGvyfZBAsVptYpEL/En86m46C0vdjlt7+KNpPtsblOPdU2q0mH8QATcE6dbCXu8y2a
+	KQX6T6G16GQoW0oA+PX4c4F84D9XmyKNRq34+18M=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x92JGxhR107921
+	for <meta-arago@arago-project.org>; Wed, 2 Oct 2019 14:16:59 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 2 Oct 2019 13:38:08 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 2 Oct 2019 14:16:59 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 2 Oct 2019 13:37:57 -0500
-Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Wed, 2 Oct 2019 14:16:59 -0500
+Received: from uda0875154a.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x92Ic8tk087356;
-	Wed, 2 Oct 2019 13:38:08 -0500
-From: <yan-liu@ti.com>
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x92JGwo9016195
+	for <meta-arago@arago-project.org>; Wed, 2 Oct 2019 14:16:59 -0500
+From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 2 Oct 2019 14:35:15 -0400
-Message-ID: <1570041315-10261-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Wed, 2 Oct 2019 15:16:56 -0400
+Message-ID: <1570043817-9471-1-git-send-email-m-radhakrishnan2@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: [thud/master][PATCH] *** RTOS patches for 6.1 release ***
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,39 +48,18 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Oct 2019 18:39:21 -0000
+X-List-Received-Date: Wed, 02 Oct 2019 19:18:12 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
+*** RTOS Patches for 6.1 release ***
 
-Signed-off-by: Yan Liu <yan-liu@ti.com>
----
- .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Mahesh Radhakrishnan (1):
+  big-data-ipc-demo: SRCREV update to 01.03.00.00
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-index 841139c..7bb0d0b 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
- 
--PR = "r14"
-+PR = "r15"
- PV_append = "+git${SRCPV}"
- 
- PROVIDES += "ltp"
-@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
- 
- inherit autotools-brokensep
- 
--SRCREV = "d89411a3a28a717fbf44a4bc8154a63c6bc908e0"
-+SRCREV = "bceb96751d0086464b4937e1bd04aec6b30d1077"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+ .../recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc            | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
 -- 
-1.7.9.5
+1.9.1
 
 
