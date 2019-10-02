@@ -1,44 +1,44 @@
-Return-Path: <m-radhakrishnan2@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id D4C60520DF
+Return-Path: <jake@udc0866934>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 69FDF520DF
 	for <meta-arago@arago-project.org>;
-	Wed,  2 Oct 2019 19:18:15 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x92JH43J077578
-	for <meta-arago@arago-project.org>; Wed, 2 Oct 2019 14:17:04 -0500
+	Wed,  2 Oct 2019 19:40:52 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x92JdZEH129566
+	for <meta-arago@arago-project.org>; Wed, 2 Oct 2019 14:39:35 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1570043824;
-	bh=gDNrqpXFghXsUFlvuywGSKpI4r04+HqzluLt1ok7kjQ=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=HxlV6kyZwFFdwXe5SjJV+SdmqpVGwrbPci0mRrEk8eJjhjVOpwSjiAqJ3YhU7kNwn
-	B1H3ZB6qkrhNtD8i1RajdxHZhdVjCOhKIDUEUg3ojsdidRQyc5Ok0G50a4Hrny64a/
-	7M0GDRvyU8Z3GZRXQeDg2xLSd5ysH8MF2fdrmDOE=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x92JH4u6117970
+	s=ti-com-17Q1; t=1570045175;
+	bh=hcCczaxFNYEdg27GBtaepwkd5Cg29N8wk/MceqvV4+k=;
+	h=From:To:CC:Subject:Date;
+	b=nrIW8omC6ndvA0leEKwuiCEKn54f/2O53IvvAQ32obf6GaWnv21gTstd7mEi1ckOT
+	UWtrMe2Yd/0OeBcX53FDQxh9E9KjSYWH8iJ8K6HHni/phPG2FpFfS5GHhSOfo8InHY
+	wgXzyRPcDMuRu7ZZw2SUJK2HqQNvaJgZJcc3fk6Y=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x92JdZtn052053
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 2 Oct 2019 14:17:04 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Wed, 2 Oct 2019 14:39:35 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 2 Oct 2019 14:16:53 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 2 Oct 2019 14:39:35 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 2 Oct 2019 14:17:03 -0500
-Received: from uda0875154a.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x92JGwoA016195
-	for <meta-arago@arago-project.org>; Wed, 2 Oct 2019 14:17:03 -0500
-From: Mahesh Radhakrishnan <m-radhakrishnan2@ti.com>
+	Frontend Transport; Wed, 2 Oct 2019 14:39:24 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x92JdZYL050836;
+	Wed, 2 Oct 2019 14:39:35 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)
+	(envelope-from <jake@udc0866934>)
+	id 1iFkTG-0001UQ-OB; Wed, 02 Oct 2019 15:39:34 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 2 Oct 2019 15:16:57 -0400
-Message-ID: <1570043817-9471-2-git-send-email-m-radhakrishnan2@ti.com>
+Date: Wed, 2 Oct 2019 15:39:32 -0400
+Message-ID: <1570045172-5695-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1570043817-9471-1-git-send-email-m-radhakrishnan2@ti.com>
-References: <1570043817-9471-1-git-send-email-m-radhakrishnan2@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master][PATCH] big-data-ipc-demo: SRCREV update to 01.03.00.00
+Subject: [master/thud][PATCH] matrix-gui-apps-git: bump SRCREV to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,35 +51,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Oct 2019 19:18:16 -0000
+X-List-Received-Date: Wed, 02 Oct 2019 19:40:53 -0000
 Content-Type: text/plain
 
----
- .../recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc            | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+* Add sha2 algorithms to openssl_perf
 
-diff --git a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
-index 3e6e5fa..50d721b 100644
---- a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
-+++ b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
-@@ -8,14 +8,14 @@ BIG_DATA_IPC_GIT_URI = "git://git.ti.com/processor-sdk/big-data-ipc-examples.git
- BIG_DATA_IPC_GIT_PROTOCOL = "git"
- BIG_DATA_IPC_GIT_BRANCH = "master"
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+index 54cb54d..c067990 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
+@@ -4,9 +4,9 @@ LICENSE_CHECKSUM = "LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
+ LIC_FILES_CHKSUM := "file://../${LICENSE_CHECKSUM}"
  
--# Below commit ID corresponds to "DEV.BIG_DATA_IPC.01.02.00.00"
--BIG_DATA_IPC_SRCREV = "5ef821453c58e997bba0cf47aa9f54e616097861"
-+# Below commit ID corresponds to "DEV.BIG_DATA_IPC.01.03.00.00"
-+BIG_DATA_IPC_SRCREV = "984edb3c69c8a1f51da02e0abcd2201319650894"
+ SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
+-SRCREV = "63e4a531807aadf91037fe8bb5ee4395a4d472c0"
++SRCREV = "494aa5bf02335d3034a9739584c42bf47c6ba792"
+ BRANCH = "master"
+-INC_PR = "r72"
++INC_PR = "r73"
  
- BRANCH = "${BIG_DATA_IPC_GIT_BRANCH}"
- SRC_URI = "${BIG_DATA_IPC_GIT_URI};protocol=${BIG_DATA_IPC_GIT_PROTOCOL};branch=${BRANCH}"
- 
- SRCREV = "${BIG_DATA_IPC_SRCREV}"
--PV = "01.02.00.00"
-+PV = "01.03.00.00"
- 
- S = "${WORKDIR}/git"
- 
+ # Pull in the base package for installing matrix applications
+ require matrix-gui-apps.inc
 -- 
 1.9.1
 
