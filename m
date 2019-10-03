@@ -1,44 +1,45 @@
 Return-Path: <nikhil.nd@ti.com>
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 9921452980
+	by arago-project.org (Postfix) with ESMTPS id B913852980
 	for <meta-arago@arago-project.org>;
-	Thu,  3 Oct 2019 13:36:10 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x93DYwVD037370
-	for <meta-arago@arago-project.org>; Thu, 3 Oct 2019 08:34:58 -0500
+	Thu,  3 Oct 2019 13:38:44 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x93DbWND038185
+	for <meta-arago@arago-project.org>; Thu, 3 Oct 2019 08:37:32 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1570109698;
-	bh=VrN/s3wgNs3DtMaspt2nwtk9Pg/vHQw4hXl8k4Wc8A8=;
+	s=ti-com-17Q1; t=1570109852;
+	bh=P+MNU5/R53LJ/rqsJjxSoSR7mpKhQscXAf5xhXugQIE=;
 	h=Subject:To:References:From:Date:In-Reply-To;
-	b=jo+Y2nB23bDGiYJy8ZQFmBez3EtFbtdguPfuKgG8R4ZrVmoKU9/SeaDK66x3Scu2h
-	Ipy6TE+AEJmPuixzIx1wWmy4p3bhHyfjRdsU5WwPm7DxXde1KIrPFeRJ6hH/Jf1o51
-	emJd+yAzF+vW01QkBeqAgfX2Yej9zs2V32zYZi6k=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x93DYwge095634
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 3 Oct 2019 08:34:58 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	b=LHWbMfiRczT6suzktEIOR2PuC7Ay1oZAplC+04PeR+oAQKFNryCrKR9pie/yA9V6C
+	1aY1U9vrtgm0YfJMgbTZnO8+fLhKX6pZ9trZlPvDf+ykNnS9wK9iBDneSjpBKhXZf0
+	hKYF94ESu0uSevEV7jfzVImfN3A+/Ot1IeoxMlno=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x93DbWAJ052984
+	for <meta-arago@arago-project.org>; Thu, 3 Oct 2019 08:37:32 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 3 Oct 2019 08:34:47 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 3 Oct 2019 08:37:21 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Thu, 3 Oct 2019 08:34:47 -0500
+	Frontend Transport; Thu, 3 Oct 2019 08:37:21 -0500
 Received: from [172.24.190.110] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x93DYuRS008634;
-	Thu, 3 Oct 2019 08:34:57 -0500
-To: Nikhil Devshatwar <nikhil.nd@ti.com>, <meta-arago@arago-project.org>
-References: <1569940366-184916-1-git-send-email-nikhil.nd@ti.com>
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x93DbUj0067854;
+	Thu, 3 Oct 2019 08:37:31 -0500
+To: Jacob Stiffler <j-stiffler@ti.com>, Nikhil Devshatwar <nikhil.nd@ti.com>, 
+	<meta-arago@arago-project.org>
+References: <1569933857-77302-1-git-send-email-nikhil.nd@ti.com>
+	<af60f4cc-3500-8e8f-54f9-c06c1df1e704@ti.com>
 From: Nikhil Devshatwar <a0132237@ti.com>
-Message-ID: <a686ea51-dae2-f6f5-91a1-9daa08dfb41b@ti.com>
-Date: Thu, 3 Oct 2019 19:04:56 +0530
+Message-ID: <85cae64f-4bad-de7f-1a73-9c074a80a752@ti.com>
+Date: Thu, 3 Oct 2019 19:07:30 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <1569940366-184916-1-git-send-email-nikhil.nd@ti.com>
+In-Reply-To: <af60f4cc-3500-8e8f-54f9-c06c1df1e704@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [tisdk-setup-scripts] [PATCH v1] setup-package-install: Add flex and libssl-dev packages
+Subject: Re: [EXTERNAL] [thud/master PATCH v1] recipes-tisdk: makefile: Move matrix-gui out of common targets
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,37 +52,54 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Oct 2019 13:36:10 -0000
+X-List-Received-Date: Thu, 03 Oct 2019 13:38:45 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Content-Language: en-US
 
-On 01/10/19 8:02 PM, Nikhil Devshatwar wrote:
-> For building kernel binaries, host machine should have flex and
-> libssl-dev packages installed.
->
-> Add these to list of packages.
->
-> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
-ping
+On 01/10/19 8:36 PM, Jacob Stiffler wrote:
+> NAK
+The reason I posted this patch was to avoid the matrix-gui package in the installer.
+Without this, make all fails because I am not including matrix-gui src ipk in the installer bundle.
 
 Nikhil D
-> ---
->   setup-package-install.sh | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/setup-package-install.sh b/setup-package-install.sh
-> index 1e9fedb..922e504 100644
-> --- a/setup-package-install.sh
-> +++ b/setup-package-install.sh
-> @@ -56,7 +56,7 @@ cwd=`dirname $0`
->   
->   entry_header
->   
-> -packages_to_install="xinetd tftpd nfs-kernel-server minicom build-essential libncurses5-dev autoconf automake dos2unix screen lrzsz lzop"
-> +packages_to_install="xinetd tftpd nfs-kernel-server minicom build-essential libncurses5-dev autoconf automake dos2unix screen lrzsz lzop flex libssl-dev"
->   
->   get_major_host_version host_major_version
->   
+>
+> This "matrix-gui" is the html files which provide the gui. They are use on all platforms. Graphics is not needed as you can remotely view matrix from a remote browser.
+>
+> It is the "matrix-gui-browser" which provides to platform QT application.
+>
+>
+> On 10/1/2019 8:44 AM, Nikhil Devshatwar wrote:
+>> Many machines do not support matrix-gui. Remove the Makefile target
+>> matrix-gui from the list of common targets.
+>>
+>> This will ensure that the make all / make install on other machine SDKs
+>> will not cause failures.
+>>
+>> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+>> ---
+>> .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+>> index 28b616d..e99821e 100644
+>> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+>> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+>> @@ -57,7 +57,8 @@ SRC_URI = "\
+>>     PR = "r102"
+>>   -MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
+>> +MAKEFILES_MATRIX_GUI = "matrix-gui \
+>> +                        matrix-gui-browser \
+>>                           refresh-screen \
+>>                           qt-tstat \
+>>   "
+>> @@ -67,7 +68,6 @@ MAKEFILES_MATRIX_GUI_omapl138 = ""
+>>   MAKEFILES_MATRIX_GUI_j7-evm = ""
+>>     MAKEFILES_COMMON = "linux \
+>> -                    matrix-gui \
+>>                       arm-benchmarks \
+>>                       am-sysinfo \
+>>                       oprofile-example \
 
 
