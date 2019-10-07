@@ -1,45 +1,48 @@
 Return-Path: <h-gou@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 6ADDB529F3
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 7447A52A05
 	for <meta-arago@arago-project.org>;
-	Mon,  7 Oct 2019 22:32:47 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x97MVY1j044186
-	for <meta-arago@arago-project.org>; Mon, 7 Oct 2019 17:31:34 -0500
+	Mon,  7 Oct 2019 22:35:47 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x97MYYYw042179
+	for <meta-arago@arago-project.org>; Mon, 7 Oct 2019 17:34:34 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1570487494;
-	bh=HWB0T6qZ7ovMlMQ5FCu2k+H1NBZB4yGSrt8r+e6kB2A=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=UrPJndfbk0t5frGASNYfXVal0JK25pohYITLOeRWm8/eA8KrtBtXEvOw/h6B6lWBn
-	wjfWWEX5Qb4nNZn6hi0Rld3L8dynG1aE4s1i0GENH+SbNrA+0UvPrIW0qwzzO+mh2+
-	vfI8FIng4MMaRD72O0sYukXoZnGffhFvHxdnYH/4=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x97MVY5O079434
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 7 Oct 2019 17:31:34 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1570487674;
+	bh=A+9uedzKcNbz+4IQ7zyZGg6P+fmkgZXOTQXntul96JA=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=bNsRRLVBzE7w9eIwxnGFtbvbWii45kI0ZBI7u+BzkHuRz1Si4cl54cayexIk9YtsL
+	TvMj6QaoYWGlvvcv6a0VGc7EfD7fq2JzFUEdCrD70RxeFYpNmD0eEEBRS1knTjSM3h
+	R42pfpiOvXrSSr01Aw2ur5jEUk46CfeyIb9fMpzQ=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x97MYYqD109375
+	for <meta-arago@arago-project.org>; Mon, 7 Oct 2019 17:34:34 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 7 Oct 2019 17:31:34 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 7 Oct 2019 17:31:31 -0500
-Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x97MVJNw090165;
-	Mon, 7 Oct 2019 17:31:33 -0500
-From: Hongmei Gou <a0271529@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 7 Oct 2019 18:29:20 -0400
-Message-ID: <20191007222920.28206-3-a0271529@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191007222920.28206-1-a0271529@ti.com>
-References: <20191007222920.28206-1-a0271529@ti.com>
+	Mon, 7 Oct 2019 17:34:31 -0500
+Received: from DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f]) by
+	DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f%18]) with mapi id
+	15.01.1713.004; Mon, 7 Oct 2019 17:34:31 -0500
+From: "Gou, Hongmei" <h-gou@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [master/thud/ti2019.03 2/4] tiovx-lib-host: add
+	recipe for TI OpenVX library, host side
+Thread-Index: AQHVfUySTEPjh5DCRE+zz5vQkPbjs6dPw78Q
+Date: Mon, 7 Oct 2019 22:34:31 +0000
+Message-ID: <d3dd16d6835049428bc3fe08bccead4c@ti.com>
+References: <20190923192121.29814-1-a0271529@ti.com>
+	<20190923192121.29814-2-a0271529@ti.com> <20191001200348.GC18229@beryl>
+	<20191007201951.GD2144@beryl>
+In-Reply-To: <20191007201951.GD2144@beryl>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [158.218.113.170]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>, Djordje Senicic <x0157990@ti.com>
-Subject: [master/thud] [PATCH v2 3/4] tiovx-app-host: TI OpenVX IPC HOST implementation and sample applications
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Senicic,
+	Djordje" <d-senicic1@ti.com>
+Subject: Re: [master/thud/ti2019.03 2/4] tiovx-lib-host: add recipe for TI OpenVX library, host side
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,102 +55,121 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Oct 2019 22:32:47 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 07 Oct 2019 22:35:47 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-* The sample applications include running OpenVX conformance tests
-  as well as a Khronos tutorial example
+v2 is now submitted for the first 3 patches of the patch set.
 
-Signed-off-by: Djordje Senicic <x0157990@ti.com>
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
----
-v2 changes:
-Update the recipe to use arago-paths.inc
-
- .../recipes-ti/tiovx/files/setenv.sh          |  8 +++
- .../recipes-ti/tiovx/tiovx-app-host.bb        | 56 +++++++++++++++++++
- 2 files changed, 64 insertions(+)
- create mode 100644 meta-arago-extras/recipes-ti/tiovx/files/setenv.sh
- create mode 100644 meta-arago-extras/recipes-ti/tiovx/tiovx-app-host.bb
-
-diff --git a/meta-arago-extras/recipes-ti/tiovx/files/setenv.sh b/meta-arago-extras/recipes-ti/tiovx/files/setenv.sh
-new file mode 100644
-index 00000000..dc7bcea3
---- /dev/null
-+++ b/meta-arago-extras/recipes-ti/tiovx/files/setenv.sh
-@@ -0,0 +1,8 @@
-+#!/bin/bash
-+
-+export PROC_LIST='host khronos_example'
-+
-+export LINUX_SYSROOT_DIR=/
-+export TIOVXPATH=/usr/include/VX
-+export IPCPATH=/usr/share/ti/ti-ipc-tree
-+export SDKPLATFORMIFPATH=/usr/share/ti/ti-tiovx-lib-tree/sys-iface
-diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-app-host.bb b/meta-arago-extras/recipes-ti/tiovx/tiovx-app-host.bb
-new file mode 100644
-index 00000000..1480d5cb
---- /dev/null
-+++ b/meta-arago-extras/recipes-ti/tiovx/tiovx-app-host.bb
-@@ -0,0 +1,56 @@
-+SUMMARY = "TI OpenVX HOST (Linux A15) conformance verification application, Khronos tutorial example, and Host side IPC implementation "
-+DESCRIPTION = "TI OpenVX implementation, TIOVX, includes Khronos defined conformance test and tutorial example, as well as additional TI specific tests. This package creates application which runs all the conformance tests (7K-8K) and Khronos tutorial exercise1. Same package includes IPC implementation (MessageQ based) needed for communication with DSP firmware (loaded at boot time) "
-+
-+LICENSE = "BSD-3-Clause & MIT"
-+LIC_FILES_CHKSUM = "file://docs/manifest/TIOVX-APP-HOST_01.00.01.00_manifest.html;md5=247d7c56d783f583bf802490d5c93db3"
-+
-+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-+
-+SRC_URI_append += "\
-+     file://setenv.sh \
-+"
-+
-+inherit pkgconfig
-+
-+require recipes-ti/includes/arago-paths.inc
-+require tiovx-sys.inc
-+
-+DEPENDS = " tiovx-sys-iface tiovx-lib-host ti-ipc cmem opencv udev"
-+RDEPENDS_${PN} = " tiovx-sys-iface tiovx-sys-iface-firmware tiovx-lib-host ti-ipc cmem"
-+
-+PR = "r3"
-+
-+COMPATIBLE_MACHINE = "dra7xx"
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+PROCLIST = "host khronos_example"
-+
-+S = "${WORKDIR}/git"
-+
-+EXTRA_OEMAKE += " TARGET_ROOTDIR=${STAGING_DIR_HOST} "
-+EXTRA_OEMAKE += " GCCLINARO=${TOOLCHAIN_PATH} TIOVXPATH=${TIOVX_INSTALL_DIR} IPCPATH=${IPC_INSTALL_DIR} "
-+EXTRA_OEMAKE += " SDKPLATFORMIFPATH=${TIOVX_INSTALL_DIR}/sys-iface "
-+EXTRA_OEMAKE += " PROC_LIST='${PROCLIST}' "
-+
-+do_install () {
-+    install -d ${D}${bindir}/
-+    install -m 0755 ${S}/host/bin/debug/app_host ${D}${bindir}/tiovx-app_host
-+    install -m 0755 ${S}/khronos_example/bin/debug/opticalflow ${D}${bindir}/tiovx-opticalflow
-+
-+    oe_runmake clean
-+    install -d ${D}${datadir}/ti/examples/openvx
-+    install -m 644 ${S}/products.mak ${D}${datadir}/ti/examples/openvx
-+    install -m 644 ${S}/makefile ${D}${datadir}/ti/examples/openvx
-+    install -m 644 ${WORKDIR}/setenv.sh ${D}${datadir}/ti/examples/openvx
-+    cp -r ${S}/host ${D}${datadir}/ti/examples/openvx
-+    cp -r ${S}/khronos_example  ${D}${datadir}/ti/examples/openvx
-+    cp -r ${S}/shared ${D}${datadir}/ti/examples/openvx
-+}
-+
-+PACKAGES += "${PN}-examples"
-+FILES_${PN}-examples = "${datadir}/ti/examples/openvx"
-+RDEPENDS_${PN}-examples = "tiovx-lib-host-staticdev tiovx-lib-host-dev"
-+
-+FILES_${PN} += "${bindir}/*"
-+INSANE_SKIP_${PN} = "ldflags"
-+INSANE_SKIP_${PN}-examples = "dev-deps"
--- 
-2.17.1
-
+> -----Original Message-----
+> From: Dmytriyenko, Denys
+> Sent: Monday, October 07, 2019 4:20 PM
+> To: Gou, Hongmei
+> Cc: meta-arago@arago-project.org; Senicic, Djordje; Senicic, Djordje
+> Subject: Re: [meta-arago] [master/thud/ti2019.03 2/4] tiovx-lib-host: add
+> recipe for TI OpenVX library, host side
+>=20
+> Ping?
+>=20
+> On Tue, Oct 01, 2019 at 04:03:49PM -0400, Denys Dmytriyenko wrote:
+> > On Mon, Sep 23, 2019 at 03:21:19PM -0400, Hongmei Gou wrote:
+> > > Signed-off-by: Djordje Senicic <x0157990@ti.com>
+> > > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+> > > Signed-off-by: Hongmei Gou <a0271529@ti.com>
+> > > ---
+> > >  ...r-Yocto-build-and-add-RTOS-build-var.patch | 133
+> ++++++++++++++++++
+> > >  .../recipes-ti/tiovx/tiovx-lib-host.bb        |  41 ++++++
+> > >  2 files changed, 174 insertions(+)
+> > >  create mode 100644 meta-arago-extras/recipes-ti/tiovx/files/0001-Fix=
+-
+> paths-for-Yocto-build-and-add-RTOS-build-var.patch
+> > >  create mode 100644 meta-arago-extras/recipes-ti/tiovx/tiovx-lib-
+> host.bb
+> >
+> > [...]
+> >
+> >
+> > > diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb b/m=
+eta-
+> arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
+> > > new file mode 100644
+> > > index 00000000..6115b195
+> > > --- /dev/null
+> > > +++ b/meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
+> > > @@ -0,0 +1,41 @@
+> > > +SUMMARY =3D "TI OpenVX HOST (Linux A15) side library"
+> > > +DESCRIPTION =3D "TI OpenVX implementation, TIOVX, based on Khronos
+> OpenVX framework implementation including multiple C66 optimized
+> kernels. Khronos defined conformance test is part of this package as well=
+ as
+> additional TI specific tests. Few tutorial examples are also included. Th=
+is
+> package creates necessary libraries and header files for Linux Host side =
+only.
+> "
+> > > +
+> > > +LICENSE =3D "TI-TSPA"
+> > > +LIC_FILES_CHKSUM =3D
+> "file://docs/manifest/TIOVX_manifest.html;md5=3Dedd4fbfc6c1f01c20d49def4
+> 670efac0"
+> > > +
+> > > +require recipes-ti/includes/tisdk-paths.inc
+> >
+> > ERROR: ParseError at .../meta-arago/meta-arago-extras/recipes-
+> ti/tiovx/tiovx-lib-host.bb:7: Could not include required file recipes-
+> ti/includes/tisdk-paths.inc
+> >
+> >
+> > > +
+> > > +COMPATIBLE_MACHINE =3D "dra7xx"
+> > > +PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+> > > +
+> > > +PV =3D "01.00.00.00"
+> > > +PR =3D "r1"
+> > > +
+> > > +BRANCH =3D "master"
+> > > +SRC_URI =3D "git://git.ti.com/processor-
+> sdk/tiovx.git;protocol=3Dgit;branch=3D${BRANCH}"
+> > > +SRC_URI +=3D "file://0001-Fix-paths-for-Yocto-build-and-add-RTOS-bui=
+ld-
+> var.patch "
+> > > +SRCREV =3D "2bfa01201804eaf2e675c743e708e88ab612049e"
+> > > +
+> > > +
+> > > +S =3D "${WORKDIR}/git"
+> > > +
+> > > +DEPENDS =3D " tiovx-sys-iface "
+> > > +
+> > > +EXTRA_OEMAKE +=3D " GCCLINARO=3D${TOOLCHAIN_PATH} "
+> > > +EXTRA_OEMAKE +=3D "
+> SDKPLATFORMIFPATH=3D${TIOVX_INSTALL_DIR}/sys-iface BUILD_RTOS=3Dno "
+> > > +
+> > > +do_install () {
+> > > +    CP_ARGS=3D"-Prf --preserve=3Dmode,timestamps --no-
+> preserve=3Downership"
+> > > +    install -d ${D}${includedir}/VX
+> > > +    install -d ${D}${includedir}/VX/TI
+> > > +    install -d ${D}${libdir}
+> > > +    cp ${CP_ARGS} ${S}/lib/TDAX/A15/LINUX/release/*.a ${D}${libdir}
+> > > +    cp ${CP_ARGS} ${S}/include/VX/* ${D}${includedir}/VX
+> > > +    cp ${CP_ARGS} ${S}/include/TI/* ${D}${includedir}/VX/TI
+> > > +}
+> > > +
+> > > +FILES_${PN}-staticdev =3D "${libdir}"
+> > > +FILES_${PN}-dev =3D "${includedir}"
+> > > +
+> > > +ALLOW_EMPTY_${PN} =3D "1"
+> > > --
+> > > 2.17.1
+> > >
+> > > _______________________________________________
+> > > meta-arago mailing list
+> > > meta-arago@arago-project.org
+> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
