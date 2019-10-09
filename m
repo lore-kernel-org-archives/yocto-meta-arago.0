@@ -1,42 +1,30 @@
-Return-Path: <xuj@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 51B62529B1
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id C0CB8529B1
 	for <meta-arago@arago-project.org>;
-	Tue,  8 Oct 2019 21:27:28 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x98LQE0Z107410
-	for <meta-arago@arago-project.org>; Tue, 8 Oct 2019 16:26:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1570569974;
-	bh=85s/wSzu9thP4khaqQ3AIvmiSBM12OvuiNLTAiVuePs=;
-	h=From:To:CC:Subject:Date;
-	b=Gp06Ts8L8SRHzeR0keYwMgpCD5bVOLcOg2Jhn6hjzOoN73EGLOzhhlQIEqdVMeR3g
-	/3AhZUdeE2t51+OlJ1O45pHAC/d89hdUOV+8hvC3bYN8oGBGSHWY4nj1iK2wIr+qSk
-	qV/wGkO60ZTpxTKDbmrkcurK8ipO+D7Jbb8M27Zw=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x98LQEAa083034
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 8 Oct 2019 16:26:14 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 8 Oct 2019 16:26:11 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 8 Oct 2019 16:26:11 -0500
-Received: from UDA0869574A.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x98LQEcH005972;
-	Tue, 8 Oct 2019 16:26:14 -0500
-From: Jianzhong Xu <xuj@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 8 Oct 2019 17:26:18 -0400
-Message-ID: <20191008212618.56782-1-xuj@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk] [PATCH] tvm: fix TVM runtime problem
+	Wed,  9 Oct 2019 17:55:44 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D40F440BF3;
+	Wed,  9 Oct 2019 17:54:30 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id NF-pQ6DoULks; Wed,  9 Oct 2019 17:54:30 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B91EE40BE5;
+	Wed,  9 Oct 2019 17:54:29 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id C362D174282;
+	Wed,  9 Oct 2019 13:54:28 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Wed,  9 Oct 2019 13:54:28 -0400
+Message-Id: <1570643668-13431-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [thud/master][PATCH] Revert "recipes-bsp: ti-sci-fw: Enable traces for j7-evm"
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,104 +37,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Oct 2019 21:27:28 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 09 Oct 2019 17:55:45 -0000
 
-* add run-time depends of Python3 decorator
-* use latest code (Mon Oct 7) from master branch
-* update patch file accordingly
-
-Signed-off-by: Jianzhong Xu <xuj@ti.com>
+This reverts commit 708accb8b4e2d615066c4b5280583c2e60eebdd7.
 ---
- .../0001-CMakeLists-install-unit-tests.patch  | 29 ++++++++++---------
- recipes-support/tvm/tvm_git.bb                |  7 +++--
- 2 files changed, 21 insertions(+), 15 deletions(-)
+ meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/recipes-support/tvm/tvm/0001-CMakeLists-install-unit-tests.patch b/recipes-support/tvm/tvm/0001-CMakeLists-install-unit-tests.patch
-index 6582d70..a79856f 100644
---- a/recipes-support/tvm/tvm/0001-CMakeLists-install-unit-tests.patch
-+++ b/recipes-support/tvm/tvm/0001-CMakeLists-install-unit-tests.patch
-@@ -1,26 +1,29 @@
--From 2663c9682e427ce64f5bfa53e1ee389f80133cac Mon Sep 17 00:00:00 2001
--From: Jacob Stiffler <j-stiffler@ti.com>
--Date: Wed, 14 Aug 2019 16:27:51 -0400
--Subject: [PATCH] CMakeLists: install unit tests
-+From 5904aa69d8f022678aa19dd4c1b5569d5fc243ee Mon Sep 17 00:00:00 2001
-+From: Jianzhong Xu <xuj@ti.com>
-+Date: Tue, 8 Oct 2019 16:56:30 -0400
-+Subject: [PATCH] [PATCH] CMakeLists: install unit tests
- 
- * Install the unittests (cpptest) to /usr/share/tvm/cpptest
- * For simplicity, do not exclude cpptest from the default build.
- 
- Upstream-Status: Innappropriate [Configuration]
- 
--Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-+Signed-off-by: Jianzhong Xu <xuj@ti.com>
- ---
-  CMakeLists.txt | 5 +++--
-  1 file changed, 3 insertions(+), 2 deletions(-)
-+ mode change 100644 => 100755 CMakeLists.txt
- 
- diff --git a/CMakeLists.txt b/CMakeLists.txt
--index 494afbd..7e887f6 100644
-+old mode 100644
-+new mode 100755
-+index 10730ac7..ea369a6e
- --- a/CMakeLists.txt
- +++ b/CMakeLists.txt
--@@ -233,10 +233,11 @@ if(GTEST_LIB)
-+@@ -333,10 +333,11 @@ if(GTEST_INCLUDE_DIR AND GTEST_LIB)
-      list(APPEND TEST_EXECS ${__execname})
--     target_link_libraries(${__execname}
--       tvm ${GTEST_LIB} pthread)
-+     target_include_directories(${__execname} PUBLIC ${GTEST_INCLUDE_DIR})
-+     target_link_libraries(${__execname} tvm ${GTEST_LIB} pthread dl)
- -    set_target_properties(${__execname} PROPERTIES EXCLUDE_FROM_ALL 1)
- -    set_target_properties(${__execname} PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD 1)
- +    #set_target_properties(${__execname} PROPERTIES EXCLUDE_FROM_ALL 1)
-@@ -28,9 +31,9 @@ index 494afbd..7e887f6 100644
-    endforeach()
-    add_custom_target(cpptest DEPENDS ${TEST_EXECS})
- +  install(TARGETS ${TEST_EXECS} DESTINATION share/tvm/cpptest)
-- endif()
-- 
-- # Custom targets
-+ elseif(NOT GTEST_INCLUDE_DIR)
-+   add_custom_target(cpptest
-+       COMMAND echo "Missing Google Test headers in include path"
- -- 
--2.7.4
-+2.17.1
- 
-diff --git a/recipes-support/tvm/tvm_git.bb b/recipes-support/tvm/tvm_git.bb
-index 9750726..5bbdd36 100644
---- a/recipes-support/tvm/tvm_git.bb
-+++ b/recipes-support/tvm/tvm_git.bb
-@@ -8,9 +8,12 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=e3fc50a88d0a364313df4b21ef20c29e \
-                     file://3rdparty/HalideIR/LICENSE;md5=9910386e68f0616e1ecf1037479fa97e \
+diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+index e7cf1a8..fab4de4 100644
+--- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
++++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+@@ -72,9 +72,6 @@ EXTRA_OEMAKE_append_am65xx-hs-evm = " \
+     HS=1 SYSFW_HS_PATH="${WORKDIR}/${SYSFW_BASE}-enc.bin" SYSFW_HS_INNER_CERT_PATH="${WORKDIR}/${SYSFW_BASE}-cert.bin" \
  "
  
-+RDEPENDS_${PN} = " python3-decorator \
-+"
-+
- PV = "0.5"
- 
--BRANCH ?= "v${PV}"
-+BRANCH = "master"
- 
- # Main TVM sources plus submodules.
- SRC_URI = "git://github.com/dmlc/tvm;protocol=https;branch=${BRANCH};name=tvm \
-@@ -21,7 +24,7 @@ SRC_URI = "git://github.com/dmlc/tvm;protocol=https;branch=${BRANCH};name=tvm \
-            file://0001-CMakeLists-install-unit-tests.patch \
- "
- 
--SRCREV_tvm = "f08015e7fde92c835907d4c9b7ad6d3f634e94a5"
-+SRCREV_tvm = "76c239269935288e51fbce14f135d75ad9742b2a"
- SRCREV_dmlc-core = "d07fb7a443b5db8a89d65a15a024af6a425615a5"
- SRCREV_halideir = "b257a9221ee1e5180d994b3488ddcc259b0ac157"
- SRCREV_dlpack = "5c792cef3aee54ad8b7000111c9dc1797f327b59"
+-EXTRA_OEMAKE_append_j7-evm = " \
+-    ENABLE_TRACE=1 \
+-"
+ do_compile() {
+ 	cd ${WORKDIR}/imggen/
+ 	oe_runmake
 -- 
-2.17.1
+2.7.4
 
 
