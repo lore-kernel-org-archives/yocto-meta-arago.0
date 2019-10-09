@@ -1,30 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id C0CB8529B1
+Return-Path: <yan-liu@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id B8CAC52986
 	for <meta-arago@arago-project.org>;
-	Wed,  9 Oct 2019 17:55:44 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id D40F440BF3;
-	Wed,  9 Oct 2019 17:54:30 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id NF-pQ6DoULks; Wed,  9 Oct 2019 17:54:30 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B91EE40BE5;
-	Wed,  9 Oct 2019 17:54:29 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id C362D174282;
-	Wed,  9 Oct 2019 13:54:28 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Wed,  9 Oct 2019 13:54:28 -0400
-Message-Id: <1570643668-13431-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH] Revert "recipes-bsp: ti-sci-fw: Enable traces for j7-evm"
+	Wed,  9 Oct 2019 20:28:52 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x99KRc2C079692
+	for <meta-arago@arago-project.org>; Wed, 9 Oct 2019 15:27:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1570652858;
+	bh=ORecnGfqHKmO8IUQ6HiLZlMsn16XRa4TlBol3Q1X+2Y=;
+	h=From:To:CC:Subject:Date;
+	b=NWIXLd0FExHIHAExrHK24ASXGFxuVpIrF3mkwtoQoeZRMnFqDnNeLWoMkOIXQAkXv
+	09ej3/ncMlBHitczvRJqz/ke/7il/QezaZqKBWvxgNub5d23uamaSesZajCKqGxc7d
+	yka8b9JNQo5EPXQLp6RkNclXqnbxCtSpM9BcASBQ=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x99KRcGq126277
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Wed, 9 Oct 2019 15:27:38 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Wed, 9 Oct 2019 15:27:38 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Wed, 9 Oct 2019 15:27:35 -0500
+Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x99KRcwR101970;
+	Wed, 9 Oct 2019 15:27:38 -0500
+From: <yan-liu@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 9 Oct 2019 16:24:30 -0400
+Message-ID: <1570652670-25692-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,28 +49,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Oct 2019 17:55:45 -0000
+X-List-Received-Date: Wed, 09 Oct 2019 20:28:53 -0000
+Content-Type: text/plain
 
-This reverts commit 708accb8b4e2d615066c4b5280583c2e60eebdd7.
+From: Yan Liu <yan-liu@ti.com>
+
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb | 3 ---
- 1 file changed, 3 deletions(-)
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
-index e7cf1a8..fab4de4 100644
---- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
-+++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
-@@ -72,9 +72,6 @@ EXTRA_OEMAKE_append_am65xx-hs-evm = " \
-     HS=1 SYSFW_HS_PATH="${WORKDIR}/${SYSFW_BASE}-enc.bin" SYSFW_HS_INNER_CERT_PATH="${WORKDIR}/${SYSFW_BASE}-cert.bin" \
- "
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+index 7bb0d0b..628d648 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
  
--EXTRA_OEMAKE_append_j7-evm = " \
--    ENABLE_TRACE=1 \
--"
- do_compile() {
- 	cd ${WORKDIR}/imggen/
- 	oe_runmake
+-PR = "r15"
++PR = "r16"
+ PV_append = "+git${SRCPV}"
+ 
+ PROVIDES += "ltp"
+@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+ 
+ inherit autotools-brokensep
+ 
+-SRCREV = "bceb96751d0086464b4937e1bd04aec6b30d1077"
++SRCREV = "5a928ca2829c5efb7c2dc833796f74fb36b279c7"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
 -- 
-2.7.4
+1.7.9.5
 
 
