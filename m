@@ -1,42 +1,30 @@
-Return-Path: <yan-liu@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id B8CAC52986
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id B5479529B9
 	for <meta-arago@arago-project.org>;
-	Wed,  9 Oct 2019 20:28:52 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x99KRc2C079692
-	for <meta-arago@arago-project.org>; Wed, 9 Oct 2019 15:27:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1570652858;
-	bh=ORecnGfqHKmO8IUQ6HiLZlMsn16XRa4TlBol3Q1X+2Y=;
-	h=From:To:CC:Subject:Date;
-	b=NWIXLd0FExHIHAExrHK24ASXGFxuVpIrF3mkwtoQoeZRMnFqDnNeLWoMkOIXQAkXv
-	09ej3/ncMlBHitczvRJqz/ke/7il/QezaZqKBWvxgNub5d23uamaSesZajCKqGxc7d
-	yka8b9JNQo5EPXQLp6RkNclXqnbxCtSpM9BcASBQ=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x99KRcGq126277
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 9 Oct 2019 15:27:38 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 9 Oct 2019 15:27:38 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 9 Oct 2019 15:27:35 -0500
-Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x99KRcwR101970;
-	Wed, 9 Oct 2019 15:27:38 -0500
-From: <yan-liu@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 9 Oct 2019 16:24:30 -0400
-Message-ID: <1570652670-25692-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+	Wed,  9 Oct 2019 23:46:36 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 0A1CD40BE5;
+	Wed,  9 Oct 2019 23:45:23 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id TXkqKj8I0Beu; Wed,  9 Oct 2019 23:45:23 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E63FC40A89;
+	Wed,  9 Oct 2019 23:45:21 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 2847A174282;
+	Wed,  9 Oct 2019 19:45:21 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Wed,  9 Oct 2019 19:45:20 -0400
+Message-Id: <1570664720-26376-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [thud/master][PATCH] ti-sci-fw: update checksums for AM65x HS SYSFW 2019.08
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,39 +37,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Oct 2019 20:28:53 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 09 Oct 2019 23:46:37 -0000
 
-From: Yan Liu <yan-liu@ti.com>
-
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-index 7bb0d0b..628d648 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+index fab4de4..a8fa994 100644
+--- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
++++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+@@ -30,10 +30,10 @@ SRC_URI_append_am65xx-hs-evm = " \
+ 	http://install.source.dir.local/ti-sci-firmware-am65x-hs-enc.bin;name=hs-enc \
+ "
  
--PR = "r15"
-+PR = "r16"
- PV_append = "+git${SRCPV}"
+-SRC_URI[hs-cert.md5sum] = "e36d9d945b4aa20347470c7c53dbc54a"
+-SRC_URI[hs-cert.sha256sum] = "e32182a3b36e5fc9543ca920dafcc2163384e116c88e3c2625399bc1c2ad2f45"
+-SRC_URI[hs-enc.md5sum] = "735128f2ac0dafdd44529f243b60a0c6"
+-SRC_URI[hs-enc.sha256sum] = "46c2870e133058f68d6b25fd4979a0726b7c6e2a100d48431d47e47db4165c75"
++SRC_URI[hs-cert.md5sum] = "b5ad8a9e8d7d0bc2c0d075ce06a15213"
++SRC_URI[hs-cert.sha256sum] = "f79cf2696f4dac4f682a79336e7be86df50bddf764234bd82ac67921565e6129"
++SRC_URI[hs-enc.md5sum] = "dfe6eac6a650b9b3ac2a9a679e5e5678"
++SRC_URI[hs-enc.sha256sum] = "6389d873889b63c32d9aa3aaae7f0ebd21d1e97e32c176a8daf514e99e412d17"
  
- PROVIDES += "ltp"
-@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+ S = "${WORKDIR}/git"
  
- inherit autotools-brokensep
- 
--SRCREV = "bceb96751d0086464b4937e1bd04aec6b30d1077"
-+SRCREV = "5a928ca2829c5efb7c2dc833796f74fb36b279c7"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
 -- 
-1.7.9.5
+2.7.4
 
 
