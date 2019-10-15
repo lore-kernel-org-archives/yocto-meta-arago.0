@@ -1,43 +1,41 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 0ABC4529A9
+Return-Path: <denys@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 46D0E529C7
 	for <meta-arago@arago-project.org>;
-	Tue, 15 Oct 2019 17:15:08 +0000 (UTC)
+	Tue, 15 Oct 2019 21:48:58 +0000 (UTC)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9FHDrXm051335
-	for <meta-arago@arago-project.org>; Tue, 15 Oct 2019 12:13:53 -0500
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9FLlgT4014226
+	for <meta-arago@arago-project.org>; Tue, 15 Oct 2019 16:47:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1571159633;
-	bh=LX0V32p2aCB0gFW+5kHn6sTzzg2tNSjSSddC9ijwnHk=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=s7yV+gc3iIbnaCnFnxPzNl5ZTgw2DbLOGziupjsS/dB+/GSXQEsSyOR2Kkz51hy03
-	zSGFa1KPzz90Flmaskr0R9Zn4hYgHhgTP2NjZ2+OZVdzv2tijfEOhjgzC28krV4I+Z
-	g2LT5q4LPWTx3ZzBq2QujWBbbNVWLdhxfeeycoVw=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9FHDr6t071649
-	for <meta-arago@arago-project.org>; Tue, 15 Oct 2019 12:13:53 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1571176062;
+	bh=zVLfsLWq8++5Y5vGM4iBZAGp3sSddkkPSbSgOFnJCoo=;
+	h=From:To:CC:Subject:Date;
+	b=NbtwOPillKqAMHChJ993RuWDjd4VMtCtkV3AeIn/oKQip7S17o9xlIMNpDX4yLZOV
+	QGzS4Q46GsRDSFl4AobedgueDwDiOfYvmXKHA2Mge+pMHJRAU1NZfZLmGNoSkRPoP+
+	9jTASAc6S+W1Hv2d0rw5FjdDaio6G9GpolOU4pTc=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9FLlgvE068803
+	for <meta-arago@arago-project.org>; Tue, 15 Oct 2019 16:47:42 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 15 Oct 2019 12:13:46 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 15 Oct 2019 16:47:35 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 15 Oct 2019 12:13:46 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9FHDqR0100588
-	for <meta-arago@arago-project.org>; Tue, 15 Oct 2019 12:13:53 -0500
+	Frontend Transport; Tue, 15 Oct 2019 16:47:35 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9FLlgek011914;
+	Tue, 15 Oct 2019 16:47:42 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-References: <1571069457-2314-1-git-send-email-j-stiffler@ti.com>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <e37f3bad-3d93-e2d0-6a77-f5f1bd1a1c56@ti.com>
-Date: Tue, 15 Oct 2019 13:13:46 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.9.0
+Date: Tue, 15 Oct 2019 21:31:23 +0000
+Message-ID: <20191015213123.2919-1-denys@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <1571069457-2314-1-git-send-email-j-stiffler@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [master/thud][PATCH] tisdk-server-rootfs-image: add packagegroup-arago-test-addons
+Subject: [thud/master][PATCH] packagegroup-*-tisdk: add phytool
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,39 +48,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Oct 2019 17:15:09 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Tue, 15 Oct 2019 21:48:58 -0000
+Content-Type: text/plain
 
-Denys,
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb  | 1 +
+ 1 file changed, 1 insertion(+)
 
-Please backport to ti2019.03.
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
+index ec0027be..e0d33bbb 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
+@@ -25,5 +25,6 @@ RDEPENDS_${PN} = "\
+     arago-feed-config \
+     nfs-utils-client \
+     cifs-utils \
++    phytool \
+     ${@bb.utils.contains_any('OPTEEMACHINE', 'ti k3', "${OPTEE_PKGS}", "", d)} \
+ "
+-- 
+2.17.1
 
-
-Thank you,
-
-Jake
-
-On 10/14/2019 12:10 PM, Jacob Stiffler wrote:
-> * This was missed when dropping tisdk-server-extra-rootfs-image.
-> * See 6fd2672b9034d1bc5e4890924a70fdc4d4eb09b8
->
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> ---
->   meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb | 1 +
->   1 file changed, 1 insertion(+)
->
-> diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-> index 09d9f9d..7c52e39 100644
-> --- a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-> +++ b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-> @@ -15,6 +15,7 @@ IMAGE_INSTALL += "\
->       packagegroup-arago-tisdk-matrix-extra \
->       packagegroup-arago-base-tisdk-server-extra \
->       packagegroup-arago-tisdk-connectivity \
-> +    packagegroup-arago-test-addons \
->   "
->   
->   export IMAGE_BASENAME = "tisdk-server-rootfs-image"
 
