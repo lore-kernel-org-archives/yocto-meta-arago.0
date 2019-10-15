@@ -1,44 +1,44 @@
-Return-Path: <jake@udc0866934>
+Return-Path: <denys@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id ED976529A9
+	by arago-project.org (Postfix) with ESMTPS id 162CB529A9
 	for <meta-arago@arago-project.org>;
-	Mon, 14 Oct 2019 16:12:16 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9EGB16l037703
-	for <meta-arago@arago-project.org>; Mon, 14 Oct 2019 11:11:01 -0500
+	Tue, 15 Oct 2019 03:03:40 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9F32OjD067681
+	for <meta-arago@arago-project.org>; Mon, 14 Oct 2019 22:02:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1571069461;
-	bh=UWjGmCpYtB/jnwEv3zx97lUTt+zTyENmCFpt6mmaO0E=;
-	h=From:To:CC:Subject:Date;
-	b=q82LiFNufVoy/L7ITguBI06PC9Q1cP9RYJI8kgk0tC+79OqXTLm/F4cqeYS/0kel+
-	8UM3hzLcRAmZdPLeaNjLxvri98rTOyG0Cp6kkenUGZOTc9MUY0GWGcMC0I+Yw05Gjp
-	OyPZ0tPlM/01vv6XWXWljrtuJk6Tgkhwq8gi6/+M=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9EGB1ts123727
+	s=ti-com-17Q1; t=1571108544;
+	bh=Sql0Wj1HTsrXY9TRlptGncyknSB6V2Q5I5PTxYC9Hgk=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=elKjONOXt8ywrgAwmbF6VAhLJnVnrpMqkuT3JMx0aJKOflaEwSeC41X1E3bCMD8Ay
+	MlP73+42lT8dasxrdCl1GQxbKBWAmlDL+Q3lMUm7V37q/6gofQqJYugmKpuSqt4oYK
+	AWsyfuzm08kFEI7hT3n0J2bjiElEAv791Bdd9Px4=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9F32Ogl066350
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 14 Oct 2019 11:11:01 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 14 Oct 2019 22:02:24 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Mon, 14 Oct 2019 11:11:01 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 14 Oct 2019 22:02:18 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Mon, 14 Oct 2019 11:10:55 -0500
-Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9EGB1F2090761;
-	Mon, 14 Oct 2019 11:11:01 -0500
-Received: from jake by udc0866934 with local (Exim 4.82)
-	(envelope-from <jake@udc0866934>)
-	id 1iK2w0-0000cZ-Ro; Mon, 14 Oct 2019 12:11:00 -0400
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 14 Oct 2019 12:10:57 -0400
-Message-ID: <1571069457-2314-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 1.9.1
+	Frontend Transport; Mon, 14 Oct 2019 22:02:24 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9F32ORQ068623;
+	Mon, 14 Oct 2019 22:02:24 -0500
+Date: Mon, 14 Oct 2019 23:02:24 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Nikhil Devshatwar <a0132237@ti.com>
+Message-ID: <20191015030223.GH14271@beryl>
+References: <1d7507c5-ffa0-eeec-3575-5e42f1d14473@ti.com>
 MIME-Version: 1.0
+In-Reply-To: <1d7507c5-ffa0-eeec-3575-5e42f1d14473@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master/thud][PATCH] tisdk-server-rootfs-image: add packagegroup-arago-test-addons
+Cc: meta-arago@arago-project.org
+Subject: Re: KERNEL_DEVICETREE_append in custom layer does not take effect in ti-tisdk-makefile
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,30 +51,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Oct 2019 16:12:17 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 15 Oct 2019 03:03:40 -0000
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-* This was missed when dropping tisdk-server-extra-rootfs-image.
-* See 6fd2672b9034d1bc5e4890924a70fdc4d4eb09b8
+On Mon, Oct 14, 2019 at 05:58:50PM +0530, Nikhil Devshatwar wrote:
+> Hi Denys/Jacob,
+> 
+> I am appending the KERNEL_DEVICETREE variable in the  meta-psdkla layer 
+> linux-ti-staging_%.bbappend recipe
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb | 1 +
- 1 file changed, 1 insertion(+)
+Nikhil,
 
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-index 09d9f9d..7c52e39 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-server-rootfs-image.bb
-@@ -15,6 +15,7 @@ IMAGE_INSTALL += "\
-     packagegroup-arago-tisdk-matrix-extra \
-     packagegroup-arago-base-tisdk-server-extra \
-     packagegroup-arago-tisdk-connectivity \
-+    packagegroup-arago-test-addons \
- "
- 
- export IMAGE_BASENAME = "tisdk-server-rootfs-image"
+You are appending the variable in a recipe - it will have the scope of that 
+recipe only.
+
+
+> All the additional DTB files get built correctly but the ti-tisdk-makefile 
+> recipe cannot replace the Makefile with the updated variable.
+> 
+> Instead, it replaces the Makefile with old value of KERNEL_DEVICETREE
+> 
+> How is this happening? Can you please help me with how to achieve the same?
+
+In order to change the variable to affect all the recipes, you have to do it 
+in one of the global config files.
+
 -- 
-1.9.1
-
+Denys
 
