@@ -1,42 +1,44 @@
-Return-Path: <e-ruei1@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id ED9E1529DB
+Return-Path: <jake@udc0866934>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id F098252988
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Oct 2019 19:02:47 +0000 (UTC)
+	Mon, 28 Oct 2019 15:24:02 +0000 (UTC)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9OJ1Ter124008
-	for <meta-arago@arago-project.org>; Thu, 24 Oct 2019 14:01:29 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9SFMgBY079376
+	for <meta-arago@arago-project.org>; Mon, 28 Oct 2019 10:22:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1571943689;
-	bh=QoGlBrLvhgfja43/sEF0PW/mUvfALqcIAAK8Su0hlaY=;
-	h=From:To:Subject:Date;
-	b=Y1A8vYtVuezJFYaljjXcmPvK3cR0vIm6xkzunc0r4X+touGjo6MteVclDC/wB8ukQ
-	qb7/wYqXDTP2fdC41jS92wSWh2Sa0OCSkxs+sAF3vwTX4g7zs9pJrxSRs7MABfTpSp
-	AsbbNNNghCEq+aPW361hiNyEtawBnXLfCEVe/lzQ=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9OJ1TaU078119
+	s=ti-com-17Q1; t=1572276162;
+	bh=nkQuXzJROcYPpIy7n/FDHSQkX8vM2dIKpqWrq0E3UcM=;
+	h=From:To:CC:Subject:Date;
+	b=KKVxX+08Ro+umm//siP+b8S/6azln9tpUeAmgRH8aiJSIhon4XqTCqknKWpRQojaK
+	FBeIqWpon4Ybt65K8iIm1yVux7+c+NmDaJd/psujmyVdgvNY/krwp3p9Irw+ofYnOe
+	ccwP4cpFrMwLIxksCjXxdkomKPAj0AahZtkrQUgM=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9SFMgBd051041
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 24 Oct 2019 14:01:29 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 28 Oct 2019 10:22:42 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 24 Oct 2019 14:01:18 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 28 Oct 2019 10:22:30 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Thu, 24 Oct 2019 14:01:18 -0500
-Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9OJ1SeE014911
-	for <meta-arago@arago-project.org>; Thu, 24 Oct 2019 14:01:29 -0500
-From: Eric Ruei <e-ruei1@ti.com>
+	Frontend Transport; Mon, 28 Oct 2019 10:22:30 -0500
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9SFMgjm088388;
+	Mon, 28 Oct 2019 10:22:42 -0500
+Received: from jake by udc0866934 with local (Exim 4.82)
+	(envelope-from <jake@udc0866934>)
+	id 1iP6qv-000441-TH; Mon, 28 Oct 2019 11:22:41 -0400
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 24 Oct 2019 15:01:21 -0400
-Message-ID: <20191024190121.48094-1-e-ruei1@ti.com>
-X-Mailer: git-send-email 2.17.1
+Date: Mon, 28 Oct 2019 11:22:33 -0400
+Message-ID: <1572276153-15590-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [matrix-gui-v2-apps][PATCH] 3d_apps: update the default window mode to full-screen DRM
+Subject: [matrix-gui-v2-apps][PATCH] openssl_perf: add sha2 algorithms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,240 +51,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Oct 2019 19:02:48 -0000
+X-List-Received-Date: Mon, 28 Oct 2019 15:24:03 -0000
 Content-Type: text/plain
 
-The nullWS (Raw) applications are replaced with the DRM ones because the
-Mesa-based EGL does not support nullDRM window system, the GBM(DRM) window
-system should be used instead.
+* Measure performance for sha224, sha256, sha384, and sha512
 
-We also replace X11 with Wayland because X11 is no longer supported and
-is replaced with Wayland.
-
-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- 3d_apps/3d_chameleon/runOGLES2ChameleonMan.sh |  8 ++++----
- 3d_apps/3d_coverflow/runOGLES2Coverflow.sh    |  8 ++++----
- 3d_apps/3d_exampleui/runOGLES2ExampleUI.sh    |  8 ++++----
- 3d_apps/3d_film/runOGLESFilmTV.sh             | 10 +++++-----
- 3d_apps/3d_lantern/runOGLES2MagicLantern.sh   |  8 ++++----
- 3d_apps/3d_navigation/runOGLES2Navigation.sh  |  8 ++++----
- 3d_apps/3d_shaders/runOGLES2Shaders.sh        |  8 ++++----
- 3d_apps/3d_skull/runOGLESEvilSkull.sh         |  8 ++++----
- 3d_apps/3d_vase/runOGLESVase.sh               |  8 ++++----
- 9 files changed, 37 insertions(+), 37 deletions(-)
- mode change 100755 => 100644 3d_apps/3d_film/runOGLESFilmTV.sh
- mode change 100755 => 100644 3d_apps/3d_lantern/runOGLES2MagicLantern.sh
- mode change 100755 => 100644 3d_apps/3d_skull/runOGLESEvilSkull.sh
+ .../openssl_perf_scripts/openssl_perf.sh               | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
-diff --git a/3d_apps/3d_chameleon/runOGLES2ChameleonMan.sh b/3d_apps/3d_chameleon/runOGLES2ChameleonMan.sh
-index 382a884..be3daa2 100644
---- a/3d_apps/3d_chameleon/runOGLES2ChameleonMan.sh
-+++ b/3d_apps/3d_chameleon/runOGLES2ChameleonMan.sh
-@@ -3,13 +3,13 @@
- OGLESDIR=""
- OGLESAPP="OGLES2ChameleonMan"
+diff --git a/cryptos_apps_program/openssl_perf_scripts/openssl_perf.sh b/cryptos_apps_program/openssl_perf_scripts/openssl_perf.sh
+index 5a2a2fd..adf0896 100644
+--- a/cryptos_apps_program/openssl_perf_scripts/openssl_perf.sh
++++ b/cryptos_apps_program/openssl_perf_scripts/openssl_perf.sh
+@@ -20,7 +20,7 @@ fi
  
--#Check if DISPLAY is set.  If so we assume we are running in X11
--#and will call the X11 version of the demos if they exist.
-+#Check if DISPLAY is set.  If so we assume we are running in WAYLAND
-+#and will call the Wayland version of the demos if they exist.
- if [ "$DISPLAY" == "" ]
- then
--    OGLESDIR="/usr/bin/SGX/demos/Raw"
-+    OGLESDIR="/usr/bin/SGX/demos/DRM"
- else
--    OGLESDIR="/usr/bin/SGX/demos/X11"
-+    OGLESDIR="/usr/bin/SGX/demos/Wayland"
- fi
+ echo "################################"
+ echo "Running OpenSSL Speed tests.  "
+-echo "There are 7 tests and each takes 15 seconds..."
++echo "There are 11 tests and each takes 15 seconds..."
+ echo
  
- if [ -e "$OGLESDIR/$OGLESAPP" ]
-diff --git a/3d_apps/3d_coverflow/runOGLES2Coverflow.sh b/3d_apps/3d_coverflow/runOGLES2Coverflow.sh
-index 32d12e9..731545b 100644
---- a/3d_apps/3d_coverflow/runOGLES2Coverflow.sh
-+++ b/3d_apps/3d_coverflow/runOGLES2Coverflow.sh
-@@ -3,13 +3,13 @@
- OGLESDIR=""
- OGLESAPP="OGLES2Coverflow"
+ TEMP=/home/root/temp
+@@ -49,6 +49,22 @@ echo "Running sha1 test.  Please Wait..."
+ time -v $OPENSSL speed -evp sha1 -engine cryptodev -elapsed > $TEMP 2>&1
+ egrep 'Doing|User|System|Percent|Elapsed' $TEMP
  
--#Check if DISPLAY is set.  If so we assume we are running in X11
--#and will call the X11 version of the demos if they exist.
-+#Check if DISPLAY is set.  If so we assume we are running in WAYLAND
-+#and will call the Wayland version of the demos if they exist.
- if [ "$DISPLAY" == "" ]
- then
--    OGLESDIR="/usr/bin/SGX/demos/Raw"
-+    OGLESDIR="/usr/bin/SGX/demos/DRM"
- else
--    OGLESDIR="/usr/bin/SGX/demos/X11"
-+    OGLESDIR="/usr/bin/SGX/demos/Wayland"
- fi
- 
- if [ -e "$OGLESDIR/$OGLESAPP" ]
-diff --git a/3d_apps/3d_exampleui/runOGLES2ExampleUI.sh b/3d_apps/3d_exampleui/runOGLES2ExampleUI.sh
-index 6f7b41c..68869eb 100644
---- a/3d_apps/3d_exampleui/runOGLES2ExampleUI.sh
-+++ b/3d_apps/3d_exampleui/runOGLES2ExampleUI.sh
-@@ -3,13 +3,13 @@
- OGLESDIR=""
- OGLESAPP="OGLES2ExampleUI"
- 
--#Check if DISPLAY is set.  If so we assume we are running in X11
--#and will call the X11 version of the demos if they exist.
-+#Check if DISPLAY is set.  If so we assume we are running in WAYLAND
-+#and will call the Wayland version of the demos if they exist.
- if [ "$DISPLAY" == "" ]
- then
--    OGLESDIR="/usr/bin/SGX/demos/Raw"
-+    OGLESDIR="/usr/bin/SGX/demos/DRM"
- else
--    OGLESDIR="/usr/bin/SGX/demos/X11"
-+    OGLESDIR="/usr/bin/SGX/demos/Wayland"
- fi
- 
- if [ -e "$OGLESDIR/$OGLESAPP" ]
-diff --git a/3d_apps/3d_film/runOGLESFilmTV.sh b/3d_apps/3d_film/runOGLESFilmTV.sh
-old mode 100755
-new mode 100644
-index 4cc6f9e..461eaaa
---- a/3d_apps/3d_film/runOGLESFilmTV.sh
-+++ b/3d_apps/3d_film/runOGLESFilmTV.sh
-@@ -1,15 +1,15 @@
- #!/bin/sh
- 
- OGLESDIR=""
--OGLESAPP="OGLESFilmTV"
-+OGLESAPP="OGLES2FilmTV"
- 
--#Check if DISPLAY is set.  If so we assume we are running in X11
--#and will call the X11 version of the demos if they exist.
-+#Check if DISPLAY is set.  If so we assume we are running in WAYLAND
-+#and will call the Wayland version of the demos if they exist.
- if [ "$DISPLAY" == "" ]
- then
--    OGLESDIR="/usr/bin/SGX/demos/Raw"
-+    OGLESDIR="/usr/bin/SGX/demos/DRM"
- else
--    OGLESDIR="/usr/bin/SGX/demos/X11"
-+    OGLESDIR="/usr/bin/SGX/demos/Wayland"
- fi
- 
- if [ -e "$OGLESDIR/$OGLESAPP" ]
-diff --git a/3d_apps/3d_lantern/runOGLES2MagicLantern.sh b/3d_apps/3d_lantern/runOGLES2MagicLantern.sh
-old mode 100755
-new mode 100644
-index a9e02a8..d0715b9
---- a/3d_apps/3d_lantern/runOGLES2MagicLantern.sh
-+++ b/3d_apps/3d_lantern/runOGLES2MagicLantern.sh
-@@ -3,13 +3,13 @@
- OGLESDIR=""
- OGLESAPP="OGLES2MagicLantern"
- 
--#Check if DISPLAY is set.  If so we assume we are running in X11
--#and will call the X11 version of the demos if they exist.
-+#Check if DISPLAY is set.  If so we assume we are running in WAYLAND
-+#and will call the Wayland version of the demos if they exist.
- if [ "$DISPLAY" == "" ]
- then
--    OGLESDIR="/usr/bin/SGX/demos/Raw"
-+    OGLESDIR="/usr/bin/SGX/demos/DRM"
- else
--    OGLESDIR="/usr/bin/SGX/demos/X11"
-+    OGLESDIR="/usr/bin/SGX/demos/Wayland"
- fi
- 
- if [ -e "$OGLESDIR/$OGLESAPP" ]
-diff --git a/3d_apps/3d_navigation/runOGLES2Navigation.sh b/3d_apps/3d_navigation/runOGLES2Navigation.sh
-index 64b5713..6ddaa68 100644
---- a/3d_apps/3d_navigation/runOGLES2Navigation.sh
-+++ b/3d_apps/3d_navigation/runOGLES2Navigation.sh
-@@ -3,13 +3,13 @@
- OGLESDIR=""
- OGLESAPP="OGLES2Navigation"
- 
--#Check if DISPLAY is set.  If so we assume we are running in X11
--#and will call the X11 version of the demos if they exist.
-+#Check if DISPLAY is set.  If so we assume we are running in WAYLAND
-+#and will call the Wayland version of the demos if they exist.
- if [ "$DISPLAY" == "" ]
- then
--    OGLESDIR="/usr/bin/SGX/demos/Raw"
-+    OGLESDIR="/usr/bin/SGX/demos/DRM"
- else
--    OGLESDIR="/usr/bin/SGX/demos/X11"
-+    OGLESDIR="/usr/bin/SGX/demos/Wayland"
- fi
- 
- if [ -e "$OGLESDIR/$OGLESAPP" ]
-diff --git a/3d_apps/3d_shaders/runOGLES2Shaders.sh b/3d_apps/3d_shaders/runOGLES2Shaders.sh
-index f39a8a3..1a3db61 100644
---- a/3d_apps/3d_shaders/runOGLES2Shaders.sh
-+++ b/3d_apps/3d_shaders/runOGLES2Shaders.sh
-@@ -3,13 +3,13 @@
- OGLESDIR=""
- OGLESAPP="OGLES2Shaders"
- 
--#Check if DISPLAY is set.  If so we assume we are running in X11
--#and will call the X11 version of the demos if they exist.
-+#Check if DISPLAY is set.  If so we assume we are running in WAYLAND
-+#and will call the Wayland version of the demos if they exist.
- if [ "$DISPLAY" == "" ]
- then
--    OGLESDIR="/usr/bin/SGX/demos/Raw"
-+    OGLESDIR="/usr/bin/SGX/demos/DRM"
- else
--    OGLESDIR="/usr/bin/SGX/demos/X11"
-+    OGLESDIR="/usr/bin/SGX/demos/Wayland"
- fi
- 
- if [ -e "$OGLESDIR/$OGLESAPP" ]
-diff --git a/3d_apps/3d_skull/runOGLESEvilSkull.sh b/3d_apps/3d_skull/runOGLESEvilSkull.sh
-old mode 100755
-new mode 100644
-index 4d15b66..df7a3cf
---- a/3d_apps/3d_skull/runOGLESEvilSkull.sh
-+++ b/3d_apps/3d_skull/runOGLESEvilSkull.sh
-@@ -3,13 +3,13 @@
- OGLESDIR=""
- OGLESAPP="OGLESEvilSkull"
- 
--#Check if DISPLAY is set.  If so we assume we are running in X11
--#and will call the X11 version of the demos if they exist.
-+#Check if DISPLAY is set.  If so we assume we are running in WAYLAND
-+#and will call the Wayland version of the demos if they exist.
- if [ "$DISPLAY" == "" ]
- then
--    OGLESDIR="/usr/bin/SGX/demos/Raw"
-+    OGLESDIR="/usr/bin/SGX/demos/DRM"
- else
--    OGLESDIR="/usr/bin/SGX/demos/X11"
-+    OGLESDIR="/usr/bin/SGX/demos/Wayland"
- fi
- 
- if [ -e "$OGLESDIR/$OGLESAPP" ]
-diff --git a/3d_apps/3d_vase/runOGLESVase.sh b/3d_apps/3d_vase/runOGLESVase.sh
-index 6e201fd..2fd1230 100644
---- a/3d_apps/3d_vase/runOGLESVase.sh
-+++ b/3d_apps/3d_vase/runOGLESVase.sh
-@@ -3,13 +3,13 @@
- OGLESDIR=""
- OGLESAPP="OGLESVase"
- 
--#Check if DISPLAY is set.  If so we assume we are running in X11
--#and will call the X11 version of the demos if they exist.
-+#Check if DISPLAY is set.  If so we assume we are running in WAYLAND
-+#and will call the Wayland version of the demos if they exist.
- if [ "$DISPLAY" == "" ]
- then
--    OGLESDIR="/usr/bin/SGX/demos/Raw"
-+    OGLESDIR="/usr/bin/SGX/demos/DRM"
- else
--    OGLESDIR="/usr/bin/SGX/demos/X11"
-+    OGLESDIR="/usr/bin/SGX/demos/Wayland"
- fi
- 
- if [ -e "$OGLESDIR/$OGLESAPP" ]
++echo "Running sha224 test.  Please Wait..."
++time -v $OPENSSL speed -evp sha224 -engine cryptodev > $TEMP 2>&1
++egrep 'Doing|User|System|Percent|Elapsed' $TEMP
++
++echo "Running sha256 test.  Please Wait..."
++time -v $OPENSSL speed -evp sha256 -engine cryptodev > $TEMP 2>&1
++egrep 'Doing|User|System|Percent|Elapsed' $TEMP
++
++echo "Running sha384 test.  Please Wait..."
++time -v $OPENSSL speed -evp sha384 -engine cryptodev > $TEMP 2>&1
++egrep 'Doing|User|System|Percent|Elapsed' $TEMP
++
++echo "Running sha512 test.  Please Wait..."
++time -v $OPENSSL speed -evp sha512 -engine cryptodev > $TEMP 2>&1
++egrep 'Doing|User|System|Percent|Elapsed' $TEMP
++
+ echo "Running md5 test.  Please Wait..."
+ time -v $OPENSSL speed -evp md5 -engine cryptodev -elapsed > $TEMP 2>&1
+ egrep 'Doing|User|System|Percent|Elapsed' $TEMP
 -- 
-2.17.1
+1.9.1
 
 
