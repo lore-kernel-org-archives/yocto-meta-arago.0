@@ -1,44 +1,45 @@
 Return-Path: <denys@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 96561529B7
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 3F4A2529B7
 	for <meta-arago@arago-project.org>;
-	Tue, 29 Oct 2019 21:12:24 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9TLB4Sj003593
-	for <meta-arago@arago-project.org>; Tue, 29 Oct 2019 16:11:04 -0500
+	Tue, 29 Oct 2019 21:14:22 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9TLD2gE129030
+	for <meta-arago@arago-project.org>; Tue, 29 Oct 2019 16:13:02 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1572383464;
-	bh=GgKa1+YzTLe7QvEDvxj59XkpCfddYPH/NPuvYpahmqc=;
+	s=ti-com-17Q1; t=1572383582;
+	bh=3nKW1cfrCY79VRTtJR1oMRGJbd84j8Q3LvxhXpLaTeQ=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=lqcBPpOj+uV2+m5geb2VhdG5wfrypjMVuWu6GLsWscgIP3n0ylO7lXfFCtaNIuT13
-	+6Oa0Zc37Cl2S0Wtz0wrw73C3mdlJBNHFLIGwtcguvEVl5TrYUthoHjb32ErDpDJhD
-	xLm+gW0CXonmxNstrWzEMpLAPuQd1WIwSqDBCjyM=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9TLB3ta000845
+	b=iav1l80peXyTk7CMwehqo/15i/fw9jwGZeJ8i6CWw1L298FeYW65O18u7aQV/AWE9
+	VeRVdo45fZlFZJBN3QFQnGIDVnR44pQuSs7g5hlHnBXnZv8/3W7OJzJVl5KaesHu0g
+	NDi3VhLy0lAkhXWDv4AmZBKW1wZNFD/XRQ8U4Ag0=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9TLD2mU095061
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 29 Oct 2019 16:11:04 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 29 Oct 2019 16:13:02 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 29 Oct 2019 16:10:50 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 29 Oct 2019 16:12:49 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 29 Oct 2019 16:10:50 -0500
+	Frontend Transport; Tue, 29 Oct 2019 16:12:49 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9TLB2Wi121482;
-	Tue, 29 Oct 2019 16:11:03 -0500
-Date: Tue, 29 Oct 2019 17:11:02 -0400
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9TLD1ei047054;
+	Tue, 29 Oct 2019 16:13:01 -0500
+Date: Tue, 29 Oct 2019 17:13:01 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: Eric Ruei <e-ruei1@ti.com>
-Message-ID: <20191029211102.GH7518@beryl>
-References: <20191029135521.42434-1-e-ruei1@ti.com>
+Message-ID: <20191029211300.GI7518@beryl>
+References: <20191029135349.31792-1-e-ruei1@ti.com>
+	<20191029135349.31792-5-e-ruei1@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20191029135521.42434-1-e-ruei1@ti.com>
+In-Reply-To: <20191029135349.31792-5-e-ruei1@ti.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] libepoxy: specify x11 as false explicitly when config option x11 not used
+Subject: Re: [PATCH 4/7] HACK: qtwebkit: define MESA_EGL_NO_X11_HEADERS at ANGLE/khrplatform.h
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,38 +52,75 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2019 21:12:24 -0000
+X-List-Received-Date: Tue, 29 Oct 2019 21:14:22 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Tue, Oct 29, 2019 at 09:55:21AM -0400, Eric Ruei wrote:
-> This is required because the default value of x11 is true if not specified.
+On Tue, Oct 29, 2019 at 09:53:46AM -0400, Eric Ruei wrote:
+> This is a tentative workaround due to unclean qtwebkit build procedure
+> where khrplatform.h under both sysroot/usr/include and 3rdparty/ANGLE
+> is used.
 > 
-> Upstream Status: Accepted
-
-Wrong use of Upstream-Status. What you want to say is that this change is 
-already in upstream master/zeus and is only needed temporarily in thud.
-
-
-> glneo authored and rpurdie committed Sep 13, 2019
-> 
-> Signed-off-by: Andrew F. Davis <afd@ti.com>
-> Signed-off by: Richard Purdie <richard.purdie@linuxfoundation.org>
 > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 > ---
->  .../recipes-graphics/libepoxy/libepoxy_%.bbappend              | 3 +++
->  1 file changed, 3 insertions(+)
->  create mode 100755 meta-arago-distro/recipes-graphics/libepoxy/libepoxy_%.bbappend
+>  ...atform.h-add-define-MESA_EGL_NO_X11_.patch | 28 +++++++++++++++++++
+>  .../recipes-qt/qt5/qtwebkit_%.bbappend        |  3 +-
+>  2 files changed, 30 insertions(+), 1 deletion(-)
+>  create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
 > 
-> diff --git a/meta-arago-distro/recipes-graphics/libepoxy/libepoxy_%.bbappend b/meta-arago-distro/recipes-graphics/libepoxy/libepoxy_%.bbappend
-> new file mode 100755
-> index 00000000..15c373cd
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
+> new file mode 100644
+> index 00000000..c6022ef6
 > --- /dev/null
-> +++ b/meta-arago-distro/recipes-graphics/libepoxy/libepoxy_%.bbappend
-> @@ -0,0 +1,3 @@
-> +PR_append = ".arago0"
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
+> @@ -0,0 +1,28 @@
+> +From c969fa7eedb3bce04c8f48caf469a46361437aa7 Mon Sep 17 00:00:00 2001
+> +From: Eric Ruei <e-ruei1@ti.com>
+> +Date: Fri, 30 Aug 2019 17:41:13 -0400
+> +Subject: [PATCH] HACK: ANGLE/khrplatform.h: add #define
+> + MESA_EGL_NO_X11_HEADERS
 > +
-> +PACKAGECONFIG[x11] = "-Dglx=yes, -Dglx=no -Dx11=false, virtual/libx11 virtual/libgl"
+> +Note: Only the KHR/khrplatform.h at sysroot/usr/include should be used.
+> +      This patch is a tentative workaround to make both files compatible
+
+Upstream-Status: Inappropriate [reason]
+
+
+> +Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> +---
+> + Source/ThirdParty/ANGLE/include/KHR/khrplatform.h | 2 ++
+> + 1 file changed, 2 insertions(+)
+> +
+> +diff --git a/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h b/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
+> +index c9e6f17d3..4e3ff69a8 100644
+> +--- a/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
+> ++++ b/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
+> +@@ -279,4 +279,6 @@ typedef enum {
+> +     KHRONOS_BOOLEAN_ENUM_FORCE_SIZE = KHRONOS_MAX_ENUM
+> + } khronos_boolean_enum_t;
+> + 
+> ++#define MESA_EGL_NO_X11_HEADERS
+> ++
+> + #endif /* __khrplatform_h_ */
+> +-- 
+> +2.17.1
+> +
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+> index 75213487..1dbe40d1 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+> @@ -6,9 +6,10 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>  
+>  SRC_URI += " \
+>  	file://GraphicsSurfaceGL_NoX.cpp.patch \
+> +	file://0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch \
+>  "
+>  
+> -PR_append = ".arago7"
+> +PR_append = ".arago8"
+>  
+>  EXTRA_OECMAKE_append = " -DCMAKE_BUILD_TYPE=Release"
+>  
 > -- 
 > 2.17.1
 > 
