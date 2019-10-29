@@ -1,43 +1,45 @@
 Return-Path: <denys@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 69848529EC
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 72B23529B7
 	for <meta-arago@arago-project.org>;
-	Tue, 29 Oct 2019 21:05:34 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9TL4EEA126190
-	for <meta-arago@arago-project.org>; Tue, 29 Oct 2019 16:04:14 -0500
+	Tue, 29 Oct 2019 21:09:36 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9TL8GWD110520
+	for <meta-arago@arago-project.org>; Tue, 29 Oct 2019 16:08:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1572383054;
-	bh=yORewnbKalotflx5iaof0fR4KObPMdL0Ad/l8zuEW3Q=;
+	s=ti-com-17Q1; t=1572383296;
+	bh=2GTwwiuSz0on5382Nzr5r6h1VkbLgtA/UigNV8bvI7w=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=rJrYPu+vw2WnjmYM7+oIxgokRO5marLLshf9WagjHN73IfLhCxEFtmzop+OZaP+HY
-	xOd0fhex+atr86ppJvRlQDhjeOXeTp+aUH1KZGFB8YgxI7OABwaFfpBU4OIZrqCMff
-	OJ3TVL3tFUKxAJaTR87h5R05DqFkzlY0Uq4FL5Fw=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9TL4Ees030185
-	for <meta-arago@arago-project.org>; Tue, 29 Oct 2019 16:04:14 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	b=iaVzmEc6FX98xS1SGaWaFBef2i37KvDmjFDOcsk1E7UTupgdQL+gkqE7m3sIx2bxd
+	JvK1NuucGUvx8a8n9a88YF/RrVEMbZc8fGIzeFkOIKL+RQRabbeuHpkP2JjcHWV1t4
+	3sftfwSZTOYVjFpyM/U4iWg0MRkjr0qorKt7vB9Y=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9TL8GEQ127537
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 29 Oct 2019 16:08:16 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Tue, 29 Oct 2019 16:04:01 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 29 Oct 2019 16:08:03 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Tue, 29 Oct 2019 16:04:01 -0500
+	Frontend Transport; Tue, 29 Oct 2019 16:08:03 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9TL4DrE033008;
-	Tue, 29 Oct 2019 16:04:13 -0500
-Date: Tue, 29 Oct 2019 17:04:13 -0400
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9TL8FEr126785;
+	Tue, 29 Oct 2019 16:08:15 -0500
+Date: Tue, 29 Oct 2019 17:08:15 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20191029210413.GF7518@beryl>
-References: <1572290030-23878-1-git-send-email-j-stiffler@ti.com>
+To: Hongmei Gou <a0271529@ti.com>
+Message-ID: <20191029210815.GG7518@beryl>
+References: <20191024165813.21958-1-a0271529@ti.com>
+	<20191024165813.21958-3-a0271529@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1572290030-23878-1-git-send-email-j-stiffler@ti.com>
+In-Reply-To: <20191024165813.21958-3-a0271529@ti.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: Re: [master/thud][PATCH] iproute2: soft taprio: add patches for taprio
+Subject: Re: [thud/master] [PATCH 2/3] tensorflow-lite: update to version 1.15
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,1656 +52,344 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2019 21:05:34 -0000
+X-List-Received-Date: Tue, 29 Oct 2019 21:09:36 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-Patches being added should have:
-
-Upstream-Status: Backport
-
--- 
-Denys
-
-
-On Mon, Oct 28, 2019 at 03:13:50PM -0400, Jacob Stiffler wrote:
-> Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+On Thu, Oct 24, 2019 at 12:58:12PM -0400, Hongmei Gou wrote:
+> Signed-off-by: Hongmei Gou <a0271529@ti.com>
 > ---
->  .../iproute2/0001-utils-Implement-get_s64.patch    |  64 +++
->  ...-helper-to-retrieve-a-__s64-from-a-netlin.patch |  39 ++
->  ...Add-helper-for-getting-a-__s32-from-netli.patch |  36 ++
->  ...port-for-configuring-the-taprio-scheduler.patch | 488 +++++++++++++++++++++
->  .../0005-taprio-Add-manpage-for-tc-taprio-8.patch  | 168 +++++++
->  ...taprio-Add-support-for-changing-schedules.patch | 150 +++++++
->  ...support-for-cycle_time-and-cycle_time_ext.patch | 147 +++++++
->  .../iproute2/0008-utils-Fix-get_s64-function.patch |  34 ++
->  ...0009-taprio-Add-support-for-setting-flags.patch |  77 ++++
->  ...prio-add-support-for-setting-txtime_delay.patch |  96 ++++
->  .../0011-tc-taprio-Update-documentation.patch      |  80 ++++
->  ...sync-pkt_sched-header-with-kernel-version.patch | 128 ++++++
->  .../iproute2/iproute2_4.19.0.bbappend              |  14 +-
->  13 files changed, 1520 insertions(+), 1 deletion(-)
->  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-utils-Implement-get_s64.patch
->  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0002-include-Add-helper-to-retrieve-a-__s64-from-a-netlin.patch
->  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0003-libnetlink-Add-helper-for-getting-a-__s32-from-netli.patch
->  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0004-tc-Add-support-for-configuring-the-taprio-scheduler.patch
->  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0005-taprio-Add-manpage-for-tc-taprio-8.patch
->  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0006-taprio-Add-support-for-changing-schedules.patch
->  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0007-taprio-Add-support-for-cycle_time-and-cycle_time_ext.patch
->  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0008-utils-Fix-get_s64-function.patch
->  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0009-taprio-Add-support-for-setting-flags.patch
->  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0010-taprio-add-support-for-setting-txtime_delay.patch
->  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0011-tc-taprio-Update-documentation.patch
->  create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0012-sync-pkt_sched-header-with-kernel-version.patch
+>  ...kefile-add-label_image-example-1.15.patch} | 73 +++++++--------
+>  ...dification-for-tflite-1.15-to-eigen.patch} | 10 +-
+>  ...w-lite_1.12.bb => tensorflow-lite_1.15.bb} | 92 +++++++++----------
+>  3 files changed, 83 insertions(+), 92 deletions(-)
+>  rename meta-arago-extras/recipes-support/tensorflow-lite/files/{0001-Makefile-add-label_image-example.patch => 0001-Makefile-add-label_image-example-1.15.patch} (45%)
+>  rename meta-arago-extras/recipes-support/tensorflow-lite/files/{apply-modification-for-tflite-1.12-to-eigen.patch => apply-modification-for-tflite-1.15-to-eigen.patch} (45%)
+>  rename meta-arago-extras/recipes-support/tensorflow-lite/{tensorflow-lite_1.12.bb => tensorflow-lite_1.15.bb} (51%)
 > 
-> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-utils-Implement-get_s64.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-utils-Implement-get_s64.patch
-> new file mode 100644
-> index 0000000..a0d5a12
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-utils-Implement-get_s64.patch
-> @@ -0,0 +1,64 @@
-> +From 7e4397dff47438be65fdf90dc4e51b763797d201 Mon Sep 17 00:00:00 2001
-> +From: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Date: Fri, 5 Oct 2018 16:25:17 -0700
-> +Subject: [PATCH 01/12] utils: Implement get_s64()
-> +
-> +commit a066bac8a2775bc43d54ae7173057f75f543c44b upstream.
-> +
-> +Add this helper to read signed 64-bit integers from a string.
-> +
-> +Signed-off-by: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Signed-off-by: David Ahern <dsahern@gmail.com>
-> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-> +---
-> + include/utils.h |  1 +
-> + lib/utils.c     | 21 +++++++++++++++++++++
-> + 2 files changed, 22 insertions(+)
-> +
-> +diff --git a/include/utils.h b/include/utils.h
-> +index 8cb4349e..58574a05 100644
-> +--- a/include/utils.h
-> ++++ b/include/utils.h
-> +@@ -139,6 +139,7 @@ int get_time_rtt(unsigned *val, const char *arg, int *raw);
-> + #define get_byte get_u8
-> + #define get_ushort get_u16
-> + #define get_short get_s16
-> ++int get_s64(__s64 *val, const char *arg, int base);
-> + int get_u64(__u64 *val, const char *arg, int base);
-> + int get_u32(__u32 *val, const char *arg, int base);
-> + int get_s32(__s32 *val, const char *arg, int base);
-> +diff --git a/lib/utils.c b/lib/utils.c
-> +index ad27f78c..be29530f 100644
-> +--- a/lib/utils.c
-> ++++ b/lib/utils.c
-> +@@ -384,6 +384,27 @@ int get_u8(__u8 *val, const char *arg, int base)
-> + 	return 0;
-> + }
-> + 
-> ++int get_s64(__s64 *val, const char *arg, int base)
-> ++{
-> ++	long res;
-> ++	char *ptr;
-> ++
-> ++	errno = 0;
-> ++
-> ++	if (!arg || !*arg)
-> ++		return -1;
-> ++	res = strtoll(arg, &ptr, base);
-> ++	if (!ptr || ptr == arg || *ptr)
-> ++		return -1;
-> ++	if ((res == LLONG_MIN || res == LLONG_MAX) && errno == ERANGE)
-> ++		return -1;
-> ++	if (res > INT64_MAX || res < INT64_MIN)
-> ++		return -1;
-> ++
-> ++	*val = res;
-> ++	return 0;
-> ++}
-> ++
-> + int get_s32(__s32 *val, const char *arg, int base)
-> + {
-> + 	long res;
-> +-- 
-> +2.18.1
-> +
-> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0002-include-Add-helper-to-retrieve-a-__s64-from-a-netlin.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0002-include-Add-helper-to-retrieve-a-__s64-from-a-netlin.patch
-> new file mode 100644
-> index 0000000..b01e11d
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0002-include-Add-helper-to-retrieve-a-__s64-from-a-netlin.patch
-> @@ -0,0 +1,39 @@
-> +From 6d0bcdd9d0283768798227f4046414ed7da42047 Mon Sep 17 00:00:00 2001
-> +From: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Date: Fri, 5 Oct 2018 16:25:18 -0700
-> +Subject: [PATCH 02/12] include: Add helper to retrieve a __s64 from a netlink
-> + msg
-> +
-> +commit de63cd90444ac9fdf238f950c16cafe351846691 upstream.
-> +
-> +This allows signed 64-bit integers to be retrieved from a netlink
-> +message.
-> +
-> +Signed-off-by: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Signed-off-by: David Ahern <dsahern@gmail.com>
-> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-> +---
-> + include/libnetlink.h | 7 +++++++
-> + 1 file changed, 7 insertions(+)
-> +
-> +diff --git a/include/libnetlink.h b/include/libnetlink.h
-> +index 9d9249e6..ffc49e56 100644
-> +--- a/include/libnetlink.h
-> ++++ b/include/libnetlink.h
-> +@@ -185,6 +185,13 @@ static inline __u64 rta_getattr_u64(const struct rtattr *rta)
-> + 	memcpy(&tmp, RTA_DATA(rta), sizeof(__u64));
-> + 	return tmp;
-> + }
-> ++static inline __s64 rta_getattr_s64(const struct rtattr *rta)
-> ++{
-> ++	__s64 tmp;
-> ++
-> ++	memcpy(&tmp, RTA_DATA(rta), sizeof(tmp));
-> ++	return tmp;
-> ++}
-> + static inline const char *rta_getattr_str(const struct rtattr *rta)
-> + {
-> + 	return (const char *)RTA_DATA(rta);
-> +-- 
-> +2.18.1
-> +
-> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0003-libnetlink-Add-helper-for-getting-a-__s32-from-netli.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0003-libnetlink-Add-helper-for-getting-a-__s32-from-netli.patch
-> new file mode 100644
-> index 0000000..1718c23
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0003-libnetlink-Add-helper-for-getting-a-__s32-from-netli.patch
-> @@ -0,0 +1,36 @@
-> +From ca37dce0e9c50645a3473dc942a33478eb79378d Mon Sep 17 00:00:00 2001
-> +From: Jesus Sanchez-Palencia <jesus.sanchez-palencia@intel.com>
-> +Date: Fri, 5 Oct 2018 16:25:19 -0700
-> +Subject: [PATCH 03/12] libnetlink: Add helper for getting a __s32 from netlink
-> + msgs
-> +
-> +commit d791f3ad869659da4b151eded060840a88d9656a upstream.
-> +
-> +This function retrieves a signed 32-bit integer from a netlink message
-> +and returns it.
-> +
-> +Signed-off-by: Jesus Sanchez-Palencia <jesus.sanchez-palencia@intel.com>
-> +Signed-off-by: David Ahern <dsahern@gmail.com>
-> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-> +---
-> + include/libnetlink.h | 4 ++++
-> + 1 file changed, 4 insertions(+)
-> +
-> +diff --git a/include/libnetlink.h b/include/libnetlink.h
-> +index ffc49e56..c44c3c72 100644
-> +--- a/include/libnetlink.h
-> ++++ b/include/libnetlink.h
-> +@@ -185,6 +185,10 @@ static inline __u64 rta_getattr_u64(const struct rtattr *rta)
-> + 	memcpy(&tmp, RTA_DATA(rta), sizeof(__u64));
-> + 	return tmp;
-> + }
-> ++static inline __s32 rta_getattr_s32(const struct rtattr *rta)
-> ++{
-> ++	return *(__s32 *)RTA_DATA(rta);
-> ++}
-> + static inline __s64 rta_getattr_s64(const struct rtattr *rta)
-> + {
-> + 	__s64 tmp;
-> +-- 
-> +2.18.1
-> +
-> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0004-tc-Add-support-for-configuring-the-taprio-scheduler.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0004-tc-Add-support-for-configuring-the-taprio-scheduler.patch
-> new file mode 100644
-> index 0000000..7cbf027
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0004-tc-Add-support-for-configuring-the-taprio-scheduler.patch
-> @@ -0,0 +1,488 @@
-> +From b53ed00cc819a9d57983f48a9fe8d02ec3b50fca Mon Sep 17 00:00:00 2001
-> +From: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Date: Fri, 5 Oct 2018 16:25:21 -0700
-> +Subject: [PATCH 04/12] tc: Add support for configuring the taprio scheduler
-> +
-> +commit 0dd16449356f7ba88e5374392b577f0504b3f025 upstream.
-> +
-> +This traffic scheduler allows traffic classes states (transmission
-> +allowed/not allowed, in the simplest case) to be scheduled, according
-> +to a pre-generated time sequence. This is the basis of the IEEE
-> +802.1Qbv specification.
-> +
-> +Example configuration:
-> +
-> +tc qdisc replace dev enp3s0 parent root handle 100 taprio \
-> +          num_tc 3 \
-> +	  map 2 2 1 0 2 2 2 2 2 2 2 2 2 2 2 2 \
-> +	  queues 1@0 1@1 2@2 \
-> +	  base-time 1528743495910289987 \
-> +	  sched-entry S 01 300000 \
-> +	  sched-entry S 02 300000 \
-> +	  sched-entry S 04 300000 \
-> +	  clockid CLOCK_TAI
-> +
-> +The configuration format is similar to mqprio. The main difference is
-> +the presence of a schedule, built by multiple "sched-entry"
-> +definitions, each entry has the following format:
-> +
-> +     sched-entry <CMD> <GATE MASK> <INTERVAL>
-> +
-> +The only supported <CMD> is "S", which means "SetGateStates",
-> +following the IEEE 802.1Qbv-2015 definition (Table 8-6). <GATE MASK>
-> +is a bitmask where each bit is a associated with a traffic class, so
-> +bit 0 (the least significant bit) being "on" means that traffic class
-> +0 is "active" for that schedule entry. <INTERVAL> is a time duration
-> +in nanoseconds that specifies for how long that state defined by <CMD>
-> +and <GATE MASK> should be held before moving to the next entry.
-> +
-> +This schedule is circular, that is, after the last entry is executed
-> +it starts from the first one, indefinitely.
-> +
-> +The other parameters can be defined as follows:
-> +
-> + - base-time: specifies the instant when the schedule starts, if
-> +  'base-time' is a time in the past, the schedule will start at
-> +
-> + 	      base-time + (N * cycle-time)
-> +
-> +   where N is the smallest integer so the resulting time is greater
-> +   than "now", and "cycle-time" is the sum of all the intervals of the
-> +   entries in the schedule;
-> +
-> + - clockid: specifies the reference clock to be used;
-> +
-> +The parameters should be similar to what the IEEE 802.1Q family of
-> +specification defines.
-> +
-> +Signed-off-by: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Signed-off-by: Jesus Sanchez-Palencia <jesus.sanchez-palencia@intel.com>
-> +Signed-off-by: David Ahern <dsahern@gmail.com>
-> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-> +---
-> + tc/Makefile   |   1 +
-> + tc/q_taprio.c | 400 ++++++++++++++++++++++++++++++++++++++++++++++++++
-> + 2 files changed, 401 insertions(+)
-> + create mode 100644 tc/q_taprio.c
-> +
-> +diff --git a/tc/Makefile b/tc/Makefile
-> +index 5a1a7ff9..25a28284 100644
-> +--- a/tc/Makefile
-> ++++ b/tc/Makefile
-> +@@ -74,6 +74,7 @@ TCMODULES += e_bpf.o
-> + TCMODULES += f_matchall.o
-> + TCMODULES += q_cbs.o
-> + TCMODULES += q_etf.o
-> ++TCMODULES += q_taprio.o
-> + 
-> + TCSO :=
-> + ifeq ($(TC_CONFIG_ATM),y)
-> +diff --git a/tc/q_taprio.c b/tc/q_taprio.c
-> +new file mode 100644
-> +index 00000000..562dacb8
-> +--- /dev/null
-> ++++ b/tc/q_taprio.c
-> +@@ -0,0 +1,400 @@
-> ++/*
-> ++ * q_taprio.c	Time Aware Priority Scheduler
-> ++ *
-> ++ *		This program is free software; you can redistribute it and/or
-> ++ *		modify it under the terms of the GNU General Public License
-> ++ *		as published by the Free Software Foundation; either version
-> ++ *		2 of the License, or (at your option) any later version.
-> ++ *
-> ++ * Authors:	Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> ++ * 		Jesus Sanchez-Palencia <jesus.sanchez-palencia@intel.com>
-> ++ */
-> ++
-> ++#include <stdio.h>
-> ++#include <stdlib.h>
-> ++#include <unistd.h>
-> ++#include <syslog.h>
-> ++#include <fcntl.h>
-> ++#include <inttypes.h>
-> ++#include <sys/socket.h>
-> ++#include <netinet/in.h>
-> ++#include <arpa/inet.h>
-> ++#include <string.h>
-> ++
-> ++#include "utils.h"
-> ++#include "tc_util.h"
-> ++#include "list.h"
-> ++
-> ++struct sched_entry {
-> ++	struct list_head list;
-> ++	uint32_t index;
-> ++	uint32_t interval;
-> ++	uint32_t gatemask;
-> ++	uint8_t cmd;
-> ++};
-> ++
-> ++#define CLOCKID_INVALID (-1)
-> ++static const struct static_clockid {
-> ++	const char *name;
-> ++	clockid_t clockid;
-> ++} clockids_sysv[] = {
-> ++	{ "REALTIME", CLOCK_REALTIME },
-> ++	{ "TAI", CLOCK_TAI },
-> ++	{ "BOOTTIME", CLOCK_BOOTTIME },
-> ++	{ "MONOTONIC", CLOCK_MONOTONIC },
-> ++	{ NULL }
-> ++};
-> ++
-> ++static void explain(void)
-> ++{
-> ++	fprintf(stderr, "Usage: ... taprio clockid CLOCKID\n");
-> ++	fprintf(stderr, "                  [num_tc NUMBER] [map P0 P1 ...] ");
-> ++	fprintf(stderr, "                  [queues COUNT@OFFSET COUNT@OFFSET COUNT@OFFSET ...] ");
-> ++	fprintf(stderr, "                  [ [sched-entry index cmd gate-mask interval] ... ] ");
-> ++	fprintf(stderr, "                  [base-time time] ");
-> ++	fprintf(stderr, "\nCLOCKID must be a valid SYS-V id (i.e. CLOCK_TAI)");
-> ++	fprintf(stderr, "\n");
-> ++}
-> ++
-> ++static void explain_clockid(const char *val)
-> ++{
-> ++	fprintf(stderr, "taprio: illegal value for \"clockid\": \"%s\".\n", val);
-> ++	fprintf(stderr, "It must be a valid SYS-V id (i.e. CLOCK_TAI)\n");
-> ++}
-> ++
-> ++static int get_clockid(__s32 *val, const char *arg)
-> ++{
-> ++	const struct static_clockid *c;
-> ++
-> ++	/* Drop the CLOCK_ prefix if that is being used. */
-> ++	if (strcasestr(arg, "CLOCK_") != NULL)
-> ++		arg += sizeof("CLOCK_") - 1;
-> ++
-> ++	for (c = clockids_sysv; c->name; c++) {
-> ++		if (strcasecmp(c->name, arg) == 0) {
-> ++			*val = c->clockid;
-> ++
-> ++			return 0;
-> ++		}
-> ++	}
-> ++
-> ++	return -1;
-> ++}
-> ++
-> ++static const char* get_clock_name(clockid_t clockid)
-> ++{
-> ++	const struct static_clockid *c;
-> ++
-> ++	for (c = clockids_sysv; c->name; c++) {
-> ++		if (clockid == c->clockid)
-> ++			return c->name;
-> ++	}
-> ++
-> ++	return "invalid";
-> ++}
-> ++
-> ++static const char *entry_cmd_to_str(__u8 cmd)
-> ++{
-> ++	switch (cmd) {
-> ++	case TC_TAPRIO_CMD_SET_GATES:
-> ++		return "S";
-> ++	default:
-> ++		return "Invalid";
-> ++	}
-> ++}
-> ++
-> ++static int str_to_entry_cmd(const char *str)
-> ++{
-> ++	if (strcmp(str, "S") == 0)
-> ++		return TC_TAPRIO_CMD_SET_GATES;
-> ++
-> ++	return -1;
-> ++}
-> ++
-> ++static int add_sched_list(struct list_head *sched_entries, struct nlmsghdr *n)
-> ++{
-> ++	struct sched_entry *e;
-> ++
-> ++	list_for_each_entry(e, sched_entries, list) {
-> ++		struct rtattr *a;
-> ++
-> ++		a = addattr_nest(n, 1024, TCA_TAPRIO_SCHED_ENTRY);
-> ++
-> ++		addattr_l(n, 1024, TCA_TAPRIO_SCHED_ENTRY_CMD, &e->cmd, sizeof(e->cmd));
-> ++		addattr_l(n, 1024, TCA_TAPRIO_SCHED_ENTRY_GATE_MASK, &e->gatemask, sizeof(e->gatemask));
-> ++		addattr_l(n, 1024, TCA_TAPRIO_SCHED_ENTRY_INTERVAL, &e->interval, sizeof(e->interval));
-> ++
-> ++		addattr_nest_end(n, a);
-> ++	}
-> ++
-> ++	return 0;
-> ++}
-> ++
-> ++static void explain_sched_entry(void)
-> ++{
-> ++	fprintf(stderr, "Usage: ... taprio ... sched-entry <cmd> <gate mask> <interval>\n");
-> ++}
-> ++
-> ++static struct sched_entry *create_entry(uint32_t gatemask, uint32_t interval, uint8_t cmd)
-> ++{
-> ++	struct sched_entry *e;
-> ++
-> ++	e = calloc(1, sizeof(*e));
-> ++	if (!e)
-> ++		return NULL;
-> ++
-> ++	e->gatemask = gatemask;
-> ++	e->interval = interval;
-> ++	e->cmd = cmd;
-> ++
-> ++	return e;
-> ++}
-> ++
-> ++static int taprio_parse_opt(struct qdisc_util *qu, int argc,
-> ++			    char **argv, struct nlmsghdr *n, const char *dev)
-> ++{
-> ++	__s32 clockid = CLOCKID_INVALID;
-> ++	struct tc_mqprio_qopt opt = { };
-> ++	struct list_head sched_entries;
-> ++	struct rtattr *tail;
-> ++	__s64 base_time = 0;
-> ++	int err, idx;
-> ++
-> ++	INIT_LIST_HEAD(&sched_entries);
-> ++
-> ++	while (argc > 0) {
-> ++		idx = 0;
-> ++		if (strcmp(*argv, "num_tc") == 0) {
-> ++			NEXT_ARG();
-> ++			if (get_u8(&opt.num_tc, *argv, 10)) {
-> ++				fprintf(stderr, "Illegal \"num_tc\"\n");
-> ++				return -1;
-> ++			}
-> ++		} else if (strcmp(*argv, "map") == 0) {
-> ++			while (idx < TC_QOPT_MAX_QUEUE && NEXT_ARG_OK()) {
-> ++				NEXT_ARG();
-> ++				if (get_u8(&opt.prio_tc_map[idx], *argv, 10)) {
-> ++					PREV_ARG();
-> ++					break;
-> ++				}
-> ++				idx++;
-> ++			}
-> ++			for ( ; idx < TC_QOPT_MAX_QUEUE; idx++)
-> ++				opt.prio_tc_map[idx] = 0;
-> ++		} else if (strcmp(*argv, "queues") == 0) {
-> ++			char *tmp, *tok;
-> ++
-> ++			while (idx < TC_QOPT_MAX_QUEUE && NEXT_ARG_OK()) {
-> ++				NEXT_ARG();
-> ++
-> ++				tmp = strdup(*argv);
-> ++				if (!tmp)
-> ++					break;
-> ++
-> ++				tok = strtok(tmp, "@");
-> ++				if (get_u16(&opt.count[idx], tok, 10)) {
-> ++					free(tmp);
-> ++					PREV_ARG();
-> ++					break;
-> ++				}
-> ++				tok = strtok(NULL, "@");
-> ++				if (get_u16(&opt.offset[idx], tok, 10)) {
-> ++					free(tmp);
-> ++					PREV_ARG();
-> ++					break;
-> ++				}
-> ++				free(tmp);
-> ++				idx++;
-> ++			}
-> ++		} else if (strcmp(*argv, "sched-entry") == 0) {
-> ++			uint32_t mask, interval;
-> ++			struct sched_entry *e;
-> ++			uint8_t cmd;
-> ++
-> ++			NEXT_ARG();
-> ++			err = str_to_entry_cmd(*argv);
-> ++			if (err < 0) {
-> ++				explain_sched_entry();
-> ++				return  -1;
-> ++			}
-> ++			cmd = err;
-> ++
-> ++			NEXT_ARG();
-> ++			if (get_u32(&mask, *argv, 16)) {
-> ++				explain_sched_entry();
-> ++				return -1;
-> ++			}
-> ++
-> ++			NEXT_ARG();
-> ++			if (get_u32(&interval, *argv, 0)) {
-> ++				explain_sched_entry();
-> ++				return -1;
-> ++			}
-> ++
-> ++			e = create_entry(mask, interval, cmd);
-> ++			if (!e) {
-> ++				fprintf(stderr, "taprio: not enough memory for new schedule entry\n");
-> ++				return -1;
-> ++			}
-> ++
-> ++			list_add_tail(&e->list, &sched_entries);
-> ++
-> ++		} else if (strcmp(*argv, "base-time") == 0) {
-> ++			NEXT_ARG();
-> ++			if (get_s64(&base_time, *argv, 10)) {
-> ++				PREV_ARG();
-> ++				break;
-> ++			}
-> ++		} else if (strcmp(*argv, "clockid") == 0) {
-> ++			NEXT_ARG();
-> ++			if (clockid != CLOCKID_INVALID) {
-> ++				fprintf(stderr, "taprio: duplicate \"clockid\" specification\n");
-> ++				return -1;
-> ++			}
-> ++			if (get_clockid(&clockid, *argv)) {
-> ++				explain_clockid(*argv);
-> ++				return -1;
-> ++			}
-> ++		} else if (strcmp(*argv, "help") == 0) {
-> ++			explain();
-> ++			return -1;
-> ++		} else {
-> ++			fprintf(stderr, "Unknown argument\n");
-> ++			return -1;
-> ++		}
-> ++		argc--; argv++;
-> ++	}
-> ++
-> ++	tail = NLMSG_TAIL(n);
-> ++	addattr_l(n, 1024, TCA_OPTIONS, NULL, 0);
-> ++
-> ++	if (opt.num_tc > 0)
-> ++		addattr_l(n, 1024, TCA_TAPRIO_ATTR_PRIOMAP, &opt, sizeof(opt));
-> ++
-> ++	if (base_time)
-> ++		addattr_l(n, 1024, TCA_TAPRIO_ATTR_SCHED_BASE_TIME, &base_time, sizeof(base_time));
-> ++
-> ++	addattr_l(n, 1024, TCA_TAPRIO_ATTR_SCHED_CLOCKID, &clockid, sizeof(clockid));
-> ++
-> ++	if (!list_empty(&sched_entries)) {
-> ++		struct rtattr *entry_list;
-> ++		entry_list = addattr_nest(n, 1024, TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST | NLA_F_NESTED);
-> ++
-> ++		err = add_sched_list(&sched_entries, n);
-> ++		if (err < 0) {
-> ++			fprintf(stderr, "Could not add schedule to netlink message\n");
-> ++			return -1;
-> ++		}
-> ++
-> ++		addattr_nest_end(n, entry_list);
-> ++	}
-> ++
-> ++	tail->rta_len = (void *) NLMSG_TAIL(n) - (void *) tail;
-> ++
-> ++	return 0;
-> ++}
-> ++
-> ++static int print_sched_list(FILE *f, struct rtattr *list)
-> ++{
-> ++	struct rtattr *item;
-> ++	int rem;
-> ++
-> ++	if (list == NULL)
-> ++		return 0;
-> ++
-> ++	rem = RTA_PAYLOAD(list);
-> ++
-> ++	open_json_array(PRINT_JSON, "schedule");
-> ++
-> ++	for (item = RTA_DATA(list); RTA_OK(item, rem); item = RTA_NEXT(item, rem)) {
-> ++		struct rtattr *tb[TCA_TAPRIO_SCHED_ENTRY_MAX + 1];
-> ++		__u32 index = 0, gatemask = 0, interval = 0;
-> ++		__u8 command = 0;
-> ++
-> ++		parse_rtattr_nested(tb, TCA_TAPRIO_SCHED_ENTRY_MAX, item);
-> ++
-> ++		if (tb[TCA_TAPRIO_SCHED_ENTRY_INDEX])
-> ++			index = rta_getattr_u32(tb[TCA_TAPRIO_SCHED_ENTRY_INDEX]);
-> ++
-> ++		if (tb[TCA_TAPRIO_SCHED_ENTRY_CMD])
-> ++			command = rta_getattr_u8(tb[TCA_TAPRIO_SCHED_ENTRY_CMD]);
-> ++
-> ++		if (tb[TCA_TAPRIO_SCHED_ENTRY_GATE_MASK])
-> ++			gatemask = rta_getattr_u32(tb[TCA_TAPRIO_SCHED_ENTRY_GATE_MASK]);
-> ++
-> ++		if (tb[TCA_TAPRIO_SCHED_ENTRY_INTERVAL])
-> ++			interval = rta_getattr_u32(tb[TCA_TAPRIO_SCHED_ENTRY_INTERVAL]);
-> ++
-> ++		open_json_object(NULL);
-> ++		print_uint(PRINT_ANY, "index", "\tindex %u", index);
-> ++		print_string(PRINT_ANY, "cmd", " cmd %s", entry_cmd_to_str(command));
-> ++		print_0xhex(PRINT_ANY, "gatemask", " gatemask %#x", gatemask);
-> ++		print_uint(PRINT_ANY, "interval", " interval %u", interval);
-> ++		close_json_object();
-> ++
-> ++		print_string(PRINT_FP, NULL, "%s", _SL_);
-> ++	}
-> ++
-> ++	close_json_array(PRINT_ANY, "");
-> ++
-> ++	return 0;
-> ++}
-> ++
-> ++static int taprio_print_opt(struct qdisc_util *qu, FILE *f, struct rtattr *opt)
-> ++{
-> ++	struct rtattr *tb[TCA_TAPRIO_ATTR_MAX + 1];
-> ++	struct tc_mqprio_qopt *qopt = 0;
-> ++	__s32 clockid = CLOCKID_INVALID;
-> ++	__s64 base_time = 0;
-> ++	int i;
-> ++
-> ++	if (opt == NULL)
-> ++		return 0;
-> ++
-> ++	parse_rtattr_nested(tb, TCA_TAPRIO_ATTR_MAX, opt);
-> ++
-> ++	if (tb[TCA_TAPRIO_ATTR_PRIOMAP] == NULL)
-> ++		return -1;
-> ++
-> ++	qopt = RTA_DATA(tb[TCA_TAPRIO_ATTR_PRIOMAP]);
-> ++
-> ++	print_uint(PRINT_ANY, "tc", "tc %u ", qopt->num_tc);
-> ++
-> ++	open_json_array(PRINT_ANY, "map");
-> ++	for (i = 0; i <= TC_PRIO_MAX; i++)
-> ++		print_uint(PRINT_ANY, NULL, " %u", qopt->prio_tc_map[i]);
-> ++	close_json_array(PRINT_ANY, "");
-> ++
-> ++	print_string(PRINT_FP, NULL, "%s", _SL_);
-> ++
-> ++	open_json_array(PRINT_ANY, "queues");
-> ++	for (i = 0; i < qopt->num_tc; i++) {
-> ++		open_json_object(NULL);
-> ++		print_uint(PRINT_ANY, "offset", " offset %u", qopt->offset[i]);
-> ++		print_uint(PRINT_ANY, "count", " count %u", qopt->count[i]);
-> ++		close_json_object();
-> ++	}
-> ++	close_json_array(PRINT_ANY, "");
-> ++
-> ++	print_string(PRINT_FP, NULL, "%s", _SL_);
-> ++
-> ++	if (tb[TCA_TAPRIO_ATTR_SCHED_BASE_TIME])
-> ++		base_time = rta_getattr_s64(tb[TCA_TAPRIO_ATTR_SCHED_BASE_TIME]);
-> ++
-> ++	if (tb[TCA_TAPRIO_ATTR_SCHED_CLOCKID])
-> ++		clockid = rta_getattr_s32(tb[TCA_TAPRIO_ATTR_SCHED_CLOCKID]);
-> ++
-> ++	print_string(PRINT_ANY, "clockid", "clockid %s", get_clock_name(clockid));
-> ++
-> ++	print_lluint(PRINT_ANY, "base_time", " base-time %lld", base_time);
-> ++
-> ++	print_string(PRINT_FP, NULL, "%s", _SL_);
-> ++
-> ++	return print_sched_list(f, tb[TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST]);
-> ++}
-> ++
-> ++struct qdisc_util taprio_qdisc_util = {
-> ++	.id		= "taprio",
-> ++	.parse_qopt	= taprio_parse_opt,
-> ++	.print_qopt	= taprio_print_opt,
-> ++};
-> +-- 
-> +2.18.1
-> +
-> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0005-taprio-Add-manpage-for-tc-taprio-8.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0005-taprio-Add-manpage-for-tc-taprio-8.patch
-> new file mode 100644
-> index 0000000..a8bbcd0
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0005-taprio-Add-manpage-for-tc-taprio-8.patch
-> @@ -0,0 +1,168 @@
-> +From b21190927e151761f138805cf3c208f8d28e8314 Mon Sep 17 00:00:00 2001
-> +From: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Date: Fri, 5 Oct 2018 16:25:22 -0700
-> +Subject: [PATCH 05/12] taprio: Add manpage for tc-taprio(8)
-> +
-> +commit 579acb4bc52f84c629df5fcd2f9a054f41b48c57 upstream.
-> +
-> +This documents the parameters and provides an example of usage.
-> +
-> +Signed-off-by: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Signed-off-by: David Ahern <dsahern@gmail.com>
-> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-> +---
-> + man/man8/tc-taprio.8 | 142 +++++++++++++++++++++++++++++++++++++++++++
-> + 1 file changed, 142 insertions(+)
-> + create mode 100644 man/man8/tc-taprio.8
-> +
-> +diff --git a/man/man8/tc-taprio.8 b/man/man8/tc-taprio.8
-> +new file mode 100644
-> +index 00000000..92055b43
-> +--- /dev/null
-> ++++ b/man/man8/tc-taprio.8
-> +@@ -0,0 +1,142 @@
-> ++.TH TAPRIO 8 "25 Sept 2018" "iproute2" "Linux"
-> ++.SH NAME
-> ++TAPRIO \- Time Aware Priority Shaper
-> ++.SH SYNOPSIS
-> ++.B tc qdisc ... dev
-> ++dev
-> ++.B parent
-> ++classid
-> ++.B [ handle
-> ++major:
-> ++.B ] taprio num_tc
-> ++tcs
-> ++.ti +8
-> ++.B map
-> ++P0 P1 P2 ...
-> ++.B queues
-> ++count1@offset1 count2@offset2 ...
-> ++.ti +8
-> ++.B base-time
-> ++base-time
-> ++.B clockid
-> ++clockid
-> ++.ti +8
-> ++.B sched-entry
-> ++<command 1> <gate mask 1> <interval 1>
-> ++.ti +8
-> ++.B sched-entry
-> ++<command 2> <gate mask 2> <interval 2>
-> ++.ti +8
-> ++.B sched-entry
-> ++<command 3> <gate mask 3> <interval 3>
-> ++.ti +8
-> ++.B sched-entry
-> ++<command N> <gate mask N> <interval N>
-> ++
-> ++.SH DESCRIPTION
-> ++The TAPRIO qdisc implements a simplified version of the scheduling
-> ++state machine defined by IEEE 802.1Q-2018 Section 8.6.9, which allows
-> ++configuration of a sequence of gate states, where each gate state
-> ++allows outgoing traffic for a subset (potentially empty) of traffic
-> ++classes.
-> ++
-> ++How traffic is mapped to different hardware queues is similar to
-> ++.BR mqprio(8)
-> ++and so the
-> ++.B map
-> ++and
-> ++.Q queues
-> ++parameters have the same meaning.
-> ++
-> ++The other parameters specify the schedule, and at what point in time
-> ++it should start (it can behave as the schedule started in the past).
-> ++
-> ++.SH PARAMETERS
-> ++.TP
-> ++num_tc
-> ++.BR
-> ++Number of traffic classes to use. Up to 16 classes supported.
-> ++
-> ++.TP
-> ++map
-> ++.br
-> ++The priority to traffic class map. Maps priorities 0..15 to a specified
-> ++traffic class. See
-> ++.BR mqprio(8)
-> ++for more details.
-> ++
-> ++.TP
-> ++queues
-> ++.br
-> ++Provide count and offset of queue range for each traffic class. In the
-> ++format,
-> ++.B count@offset.
-> ++Queue ranges for each traffic classes cannot overlap and must be a
-> ++contiguous range of queues.
-> ++
-> ++.TP
-> ++base-time
-> ++.br
-> ++Specifies the instant in nanoseconds, using the reference of
-> ++.B clockid,
-> ++defining the time when the schedule starts. If 'base-time' is a time
-> ++in the past, the schedule will start at
-> ++
-> ++base-time + (N * cycle-time)
-> ++
-> ++where N is the smallest integer so the resulting time is greater than
-> ++"now", and "cycle-time" is the sum of all the intervals of the entries
-> ++in the schedule;
-> ++
-> ++.TP
-> ++clockid
-> ++.br
-> ++Specifies the clock to be used by qdisc's internal timer for measuring
-> ++time and scheduling events.
-> ++
-> ++.TP
-> ++sched-entry
-> ++.br
-> ++There may multiple
-> ++.B sched-entry
-> ++parameters in a single schedule. Each one has the
-> ++
-> ++sched-entry <command> <gatemask> <interval>
-> ++
-> ++format. The only supported <command> is "S", which
-> ++means "SetGateStates", following the IEEE 802.1Q-2018 definition
-> ++(Table 8-7). <gate mask> is a bitmask where each bit is a associated
-> ++with a traffic class, so bit 0 (the least significant bit) being "on"
-> ++means that traffic class 0 is "active" for that schedule entry.
-> ++<interval> is a time duration, in nanoseconds, that specifies for how
-> ++long that state defined by <command> and <gate mask> should be held
-> ++before moving to the next entry.
-> ++
-> ++.SH EXAMPLES
-> ++
-> ++The following example shows how an traffic schedule with three traffic
-> ++classes ("num_tc 3"), which are separated different traffic classes,
-> ++we are going to call these TC 0, TC 1 and TC 2. We could read the
-> ++"map" parameter below as: traffic with priority 3 is classified as TC
-> ++0, priority 2 is classified as TC 1 and the rest is classified as TC
-> ++2.
-> ++
-> ++The schedule will start at instant 1528743495910289987 using the
-> ++reference CLOCK_TAI. The schedule is composed of three entries each of
-> ++300us duration.
-> ++
-> ++.EX
-> ++# tc qdisc replace dev eth0 parent root handle 100 taprio \\
-> ++              num_tc 3 \\
-> ++              map 2 2 1 0 2 2 2 2 2 2 2 2 2 2 2 2 \\
-> ++              queues 1@0 1@1 2@2 \\
-> ++              base-time 1528743495910289987 \\
-> ++              sched-entry S 01 300000 \\
-> ++              sched-entry S 02 300000 \\
-> ++              sched-entry S 04 300000 \\
-> ++              clockid CLOCK_TAI
-> ++.EE
-> ++
-> ++
-> ++.SH AUTHORS
-> ++Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +-- 
-> +2.18.1
-> +
-> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0006-taprio-Add-support-for-changing-schedules.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0006-taprio-Add-support-for-changing-schedules.patch
-> new file mode 100644
-> index 0000000..f0dd3db
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0006-taprio-Add-support-for-changing-schedules.patch
-> @@ -0,0 +1,150 @@
-> +From 3a650c67b63e502989fccdabf8c02a575bdf2116 Mon Sep 17 00:00:00 2001
-> +From: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Date: Mon, 29 Apr 2019 15:52:18 -0700
-> +Subject: [PATCH 06/12] taprio: Add support for changing schedules
-> +
-> +commit 602fae856d80bbaa365fd0421e3f2c2417ea804f upstream.
-> +
-> +This allows for a new schedule to be specified during runtime, without
-> +removing the current one.
-> +
-> +For that, the semantics of the 'tc qdisc change' operation in the
-> +context of taprio is that if "change" is called and there is a running
-> +schedule, a new schedule is created and the base-time (let's call it
-> +X) of this new schedule is used so at instant X, it becomes the
-> +"current" schedule. So, in short, "change" doesn't change the current
-> +schedule, it creates a new one and sets it up to it becomes the
-> +current one at some point.
-> +
-> +In IEEE 802.1Q terms, it means that we have support for the
-> +"Oper" (current and read-only) and "Admin" (future and mutable)
-> +schedules.
-> +
-> +Example of creating the first schedule, then adding a new one:
-> +
-> +(1)
-> +tc qdisc add dev IFACE parent root handle 100 taprio \
-> +      	      num_tc 1 \
-> +	      map 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \
-> +	      queues 1@0 \
-> +	      sched-entry S 0x1 1000000 \
-> +	      sched-entry S 0x0 2000000 \
-> +	      sched-entry S 0x1 3000000 \
-> +	      sched-entry S 0x0 4000000 \
-> +	      base-time 100000000 \
-> +	      clockid CLOCK_TAI
-> +
-> +(2)
-> +tc qdisc change dev IFACE parent root handle 100 taprio \
-> +	      base-time 7500000000000 \
-> +	      sched-entry S 0x0 5000000 \
-> +              sched-entry S 0x1 5000000 \
-> +
-> +It was necessary to fix a bug, so the clockid doesn't need to be
-> +specified when changing the schedule.
-> +
-> +Most of the changes are related to make it easier to reuse the same
-> +function for printing the "admin" and "oper" schedules.
-> +
-> +Signed-off-by: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Signed-off-by: David Ahern <dsahern@gmail.com>
-> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-> +---
-> + tc/q_taprio.c | 42 +++++++++++++++++++++++++++++++++---------
-> + 1 file changed, 33 insertions(+), 9 deletions(-)
-> +
-> +diff --git a/tc/q_taprio.c b/tc/q_taprio.c
-> +index 562dacb8..20804fc2 100644
-> +--- a/tc/q_taprio.c
-> ++++ b/tc/q_taprio.c
-> +@@ -268,14 +268,15 @@ static int taprio_parse_opt(struct qdisc_util *qu, int argc,
-> + 	tail = NLMSG_TAIL(n);
-> + 	addattr_l(n, 1024, TCA_OPTIONS, NULL, 0);
-> + 
-> ++	if (clockid != CLOCKID_INVALID)
-> ++		addattr_l(n, 1024, TCA_TAPRIO_ATTR_SCHED_CLOCKID, &clockid, sizeof(clockid));
-> ++
-> + 	if (opt.num_tc > 0)
-> + 		addattr_l(n, 1024, TCA_TAPRIO_ATTR_PRIOMAP, &opt, sizeof(opt));
-> + 
-> + 	if (base_time)
-> + 		addattr_l(n, 1024, TCA_TAPRIO_ATTR_SCHED_BASE_TIME, &base_time, sizeof(base_time));
-> + 
-> +-	addattr_l(n, 1024, TCA_TAPRIO_ATTR_SCHED_CLOCKID, &clockid, sizeof(clockid));
-> +-
-> + 	if (!list_empty(&sched_entries)) {
-> + 		struct rtattr *entry_list;
-> + 		entry_list = addattr_nest(n, 1024, TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST | NLA_F_NESTED);
-> +@@ -306,6 +307,8 @@ static int print_sched_list(FILE *f, struct rtattr *list)
-> + 
-> + 	open_json_array(PRINT_JSON, "schedule");
-> + 
-> ++	print_string(PRINT_FP, NULL, "%s", _SL_);
-> ++
-> + 	for (item = RTA_DATA(list); RTA_OK(item, rem); item = RTA_NEXT(item, rem)) {
-> + 		struct rtattr *tb[TCA_TAPRIO_SCHED_ENTRY_MAX + 1];
-> + 		__u32 index = 0, gatemask = 0, interval = 0;
-> +@@ -340,12 +343,25 @@ static int print_sched_list(FILE *f, struct rtattr *list)
-> + 	return 0;
-> + }
-> + 
-> ++static int print_schedule(FILE *f, struct rtattr **tb)
-> ++{
-> ++	int64_t base_time = 0;
-> ++
-> ++	if (tb[TCA_TAPRIO_ATTR_SCHED_BASE_TIME])
-> ++		base_time = rta_getattr_s64(tb[TCA_TAPRIO_ATTR_SCHED_BASE_TIME]);
-> ++
-> ++	print_lluint(PRINT_ANY, "base_time", "\tbase-time %lld", base_time);
-> ++
-> ++	print_sched_list(f, tb[TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST]);
-> ++
-> ++	return 0;
-> ++}
-> ++
-> + static int taprio_print_opt(struct qdisc_util *qu, FILE *f, struct rtattr *opt)
-> + {
-> + 	struct rtattr *tb[TCA_TAPRIO_ATTR_MAX + 1];
-> + 	struct tc_mqprio_qopt *qopt = 0;
-> + 	__s32 clockid = CLOCKID_INVALID;
-> +-	__s64 base_time = 0;
-> + 	int i;
-> + 
-> + 	if (opt == NULL)
-> +@@ -378,19 +394,27 @@ static int taprio_print_opt(struct qdisc_util *qu, FILE *f, struct rtattr *opt)
-> + 
-> + 	print_string(PRINT_FP, NULL, "%s", _SL_);
-> + 
-> +-	if (tb[TCA_TAPRIO_ATTR_SCHED_BASE_TIME])
-> +-		base_time = rta_getattr_s64(tb[TCA_TAPRIO_ATTR_SCHED_BASE_TIME]);
-> +-
-> + 	if (tb[TCA_TAPRIO_ATTR_SCHED_CLOCKID])
-> + 		clockid = rta_getattr_s32(tb[TCA_TAPRIO_ATTR_SCHED_CLOCKID]);
-> + 
-> + 	print_string(PRINT_ANY, "clockid", "clockid %s", get_clock_name(clockid));
-> + 
-> +-	print_lluint(PRINT_ANY, "base_time", " base-time %lld", base_time);
-> ++	print_schedule(f, tb);
-> + 
-> +-	print_string(PRINT_FP, NULL, "%s", _SL_);
-> ++	if (tb[TCA_TAPRIO_ATTR_ADMIN_SCHED]) {
-> ++		struct rtattr *t[TCA_TAPRIO_ATTR_MAX + 1];
-> ++
-> ++		parse_rtattr_nested(t, TCA_TAPRIO_ATTR_MAX,
-> ++				    tb[TCA_TAPRIO_ATTR_ADMIN_SCHED]);
-> + 
-> +-	return print_sched_list(f, tb[TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST]);
-> ++		open_json_object(NULL);
-> ++
-> ++		print_schedule(f, t);
-> ++
-> ++		close_json_object();
-> ++	}
-> ++
-> ++	return 0;
-> + }
-> + 
-> + struct qdisc_util taprio_qdisc_util = {
-> +-- 
-> +2.18.1
-> +
-> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0007-taprio-Add-support-for-cycle_time-and-cycle_time_ext.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0007-taprio-Add-support-for-cycle_time-and-cycle_time_ext.patch
-> new file mode 100644
-> index 0000000..6895a6a
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0007-taprio-Add-support-for-cycle_time-and-cycle_time_ext.patch
-> @@ -0,0 +1,147 @@
-> +From 538fe8f7e208c7ed7c9af191c25b3c48adb348c3 Mon Sep 17 00:00:00 2001
-> +From: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Date: Mon, 29 Apr 2019 15:52:19 -0700
-> +Subject: [PATCH 07/12] taprio: Add support for cycle_time and
-> + cycle_time_extension
-> +
-> +commit 92f4b6032e7971d9b0247d7370c08cae2f1c58f9 upstream.
-> +
-> +This allows a cycle-time and a cycle-time-extension to be specified.
-> +
-> +Specifying a cycle-time will truncate that cycle, so when that instant
-> +is reached, the cycle will start from its beginning.
-> +
-> +A cycle-time-extension may cause the last entry of a cycle, just
-> +before the start of a new schedule (the base-time of the "admin"
-> +schedule) to be extended by at maximum "cycle-time-extension"
-> +nanoseconds. The idea of this feauture, as described by the IEEE
-> +802.1Q, is too avoid too narrow gate states.
-> +
-> +Example:
-> +
-> +tc qdisc change dev IFACE parent root handle 100 taprio \
-> +	      sched-entry S 0x1 1000000 \
-> +	      sched-entry S 0x0 2000000 \
-> +	      sched-entry S 0x1 3000000 \
-> +	      sched-entry S 0x0 4000000 \
-> +	      cycle-time-extension 100000 \
-> +	      cycle-time 9000000 \
-> +	      base-time 12345678900000000
-> +
-> +Signed-off-by: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Signed-off-by: David Ahern <dsahern@gmail.com>
-> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-> +---
-> + tc/q_taprio.c | 64 ++++++++++++++++++++++++++++++++++++++++++---------
-> + 1 file changed, 53 insertions(+), 11 deletions(-)
-> +
-> +diff --git a/tc/q_taprio.c b/tc/q_taprio.c
-> +index 20804fc2..9a69b86b 100644
-> +--- a/tc/q_taprio.c
-> ++++ b/tc/q_taprio.c
-> +@@ -155,8 +155,10 @@ static int taprio_parse_opt(struct qdisc_util *qu, int argc,
-> + {
-> + 	__s32 clockid = CLOCKID_INVALID;
-> + 	struct tc_mqprio_qopt opt = { };
-> ++	__s64 cycle_time_extension = 0;
-> + 	struct list_head sched_entries;
-> +-	struct rtattr *tail;
-> ++	struct rtattr *tail, *l;
-> ++	__s64 cycle_time = 0;
-> + 	__s64 base_time = 0;
-> + 	int err, idx;
-> + 
-> +@@ -245,6 +247,29 @@ static int taprio_parse_opt(struct qdisc_util *qu, int argc,
-> + 				PREV_ARG();
-> + 				break;
-> + 			}
-> ++		} else if (strcmp(*argv, "cycle-time") == 0) {
-> ++			NEXT_ARG();
-> ++			if (cycle_time) {
-> ++				fprintf(stderr, "taprio: duplicate \"cycle-time\" specification\n");
-> ++				return -1;
-> ++			}
-> ++
-> ++			if (get_s64(&cycle_time, *argv, 10)) {
-> ++				PREV_ARG();
-> ++				break;
-> ++			}
-> ++
-> ++		} else if (strcmp(*argv, "cycle-time-extension") == 0) {
-> ++			NEXT_ARG();
-> ++			if (cycle_time_extension) {
-> ++				fprintf(stderr, "taprio: duplicate \"cycle-time-extension\" specification\n");
-> ++				return -1;
-> ++			}
-> ++
-> ++			if (get_s64(&cycle_time_extension, *argv, 10)) {
-> ++				PREV_ARG();
-> ++				break;
-> ++			}
-> + 		} else if (strcmp(*argv, "clockid") == 0) {
-> + 			NEXT_ARG();
-> + 			if (clockid != CLOCKID_INVALID) {
-> +@@ -277,19 +302,24 @@ static int taprio_parse_opt(struct qdisc_util *qu, int argc,
-> + 	if (base_time)
-> + 		addattr_l(n, 1024, TCA_TAPRIO_ATTR_SCHED_BASE_TIME, &base_time, sizeof(base_time));
-> + 
-> +-	if (!list_empty(&sched_entries)) {
-> +-		struct rtattr *entry_list;
-> +-		entry_list = addattr_nest(n, 1024, TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST | NLA_F_NESTED);
-> ++	if (cycle_time)
-> ++		addattr_l(n, 1024, TCA_TAPRIO_ATTR_SCHED_CYCLE_TIME,
-> ++			  &cycle_time, sizeof(cycle_time));
-> + 
-> +-		err = add_sched_list(&sched_entries, n);
-> +-		if (err < 0) {
-> +-			fprintf(stderr, "Could not add schedule to netlink message\n");
-> +-			return -1;
-> +-		}
-> ++	if (cycle_time_extension)
-> ++		addattr_l(n, 1024, TCA_TAPRIO_ATTR_SCHED_CYCLE_TIME_EXTENSION,
-> ++			  &cycle_time_extension, sizeof(cycle_time_extension));
-> ++
-> ++	l = addattr_nest(n, 1024, TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST | NLA_F_NESTED);
-> + 
-> +-		addattr_nest_end(n, entry_list);
-> ++	err = add_sched_list(&sched_entries, n);
-> ++	if (err < 0) {
-> ++		fprintf(stderr, "Could not add schedule to netlink message\n");
-> ++		return -1;
-> + 	}
-> + 
-> ++	addattr_nest_end(n, l);
-> ++
-> + 	tail->rta_len = (void *) NLMSG_TAIL(n) - (void *) tail;
-> + 
-> + 	return 0;
-> +@@ -345,13 +375,25 @@ static int print_sched_list(FILE *f, struct rtattr *list)
-> + 
-> + static int print_schedule(FILE *f, struct rtattr **tb)
-> + {
-> +-	int64_t base_time = 0;
-> ++	int64_t base_time = 0, cycle_time = 0, cycle_time_extension = 0;
-> + 
-> + 	if (tb[TCA_TAPRIO_ATTR_SCHED_BASE_TIME])
-> + 		base_time = rta_getattr_s64(tb[TCA_TAPRIO_ATTR_SCHED_BASE_TIME]);
-> + 
-> ++	if (tb[TCA_TAPRIO_ATTR_SCHED_CYCLE_TIME])
-> ++		cycle_time = rta_getattr_s64(tb[TCA_TAPRIO_ATTR_SCHED_CYCLE_TIME]);
-> ++
-> ++	if (tb[TCA_TAPRIO_ATTR_SCHED_CYCLE_TIME_EXTENSION])
-> ++		cycle_time_extension = rta_getattr_s64(
-> ++			tb[TCA_TAPRIO_ATTR_SCHED_CYCLE_TIME_EXTENSION]);
-> ++
-> + 	print_lluint(PRINT_ANY, "base_time", "\tbase-time %lld", base_time);
-> + 
-> ++	print_lluint(PRINT_ANY, "cycle_time", " cycle-time %lld", cycle_time);
-> ++
-> ++	print_lluint(PRINT_ANY, "cycle_time_extension",
-> ++		     " cycle-time-extension %lld", cycle_time_extension);
-> ++
-> + 	print_sched_list(f, tb[TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST]);
-> + 
-> + 	return 0;
-> +-- 
-> +2.18.1
-> +
-> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0008-utils-Fix-get_s64-function.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0008-utils-Fix-get_s64-function.patch
-> new file mode 100644
-> index 0000000..cc265f8
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0008-utils-Fix-get_s64-function.patch
-> @@ -0,0 +1,34 @@
-> +From 0c672a07e1d5a8068f2323e88a72e5349dacbed9 Mon Sep 17 00:00:00 2001
-> +From: Kurt Kanzenbach <kurt@linutronix.de>
-> +Date: Thu, 4 Jul 2019 14:24:27 +0200
-> +Subject: [PATCH 08/12] utils: Fix get_s64() function
-> +
-> +commit c875433b145e33645798ecfe4d99bcb28c80d1e9 upstream.
-> +
-> +get_s64() uses internally strtoll() to parse the value out of a given
-> +string. strtoll() returns a long long. However, the intermediate variable is
-> +long only which might be 32 bit on some systems. So, fix it.
-> +
-> +Signed-off-by: Kurt Kanzenbach <kurt@linutronix.de>
-> +Signed-off-by: Stephen Hemminger <stephen@networkplumber.org>
-> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-> +---
-> + lib/utils.c | 2 +-
-> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> +
-> +diff --git a/lib/utils.c b/lib/utils.c
-> +index be29530f..9c121ce3 100644
-> +--- a/lib/utils.c
-> ++++ b/lib/utils.c
-> +@@ -386,7 +386,7 @@ int get_u8(__u8 *val, const char *arg, int base)
-> + 
-> + int get_s64(__s64 *val, const char *arg, int base)
-> + {
-> +-	long res;
-> ++	long long res;
-> + 	char *ptr;
-> + 
-> + 	errno = 0;
-> +-- 
-> +2.18.1
-> +
-> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0009-taprio-Add-support-for-setting-flags.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0009-taprio-Add-support-for-setting-flags.patch
-> new file mode 100644
-> index 0000000..4f2ffde
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0009-taprio-Add-support-for-setting-flags.patch
-> @@ -0,0 +1,77 @@
-> +From 7e5c69b7a4733f099ca53aecfafa5dac4a3a002d Mon Sep 17 00:00:00 2001
-> +From: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Date: Thu, 18 Jul 2019 12:55:40 -0700
-> +Subject: [PATCH 09/12] taprio: Add support for setting flags
-> +
-> +commit ee000bf217870b6425849c03b309faa64539ff24 upstream.
-> +
-> +This allows a new parameter, flags, to be passed to taprio. Currently, it
-> +only supports enabling the txtime-assist mode. But, we plan to add
-> +different modes for taprio (e.g. hardware offloading) and this parameter
-> +will be useful in enabling those modes.
-> +
-> +Signed-off-by: Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +Signed-off-by: Vedang Patel <vedang.patel@intel.com>
-> +Signed-off-by: David Ahern <dsahern@gmail.com>
-> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-> +---
-> + tc/q_taprio.c | 22 ++++++++++++++++++++++
-> + 1 file changed, 22 insertions(+)
-> +
-> +diff --git a/tc/q_taprio.c b/tc/q_taprio.c
-> +index 9a69b86b..91e3f27b 100644
-> +--- a/tc/q_taprio.c
-> ++++ b/tc/q_taprio.c
-> +@@ -158,6 +158,7 @@ static int taprio_parse_opt(struct qdisc_util *qu, int argc,
-> + 	__s64 cycle_time_extension = 0;
-> + 	struct list_head sched_entries;
-> + 	struct rtattr *tail, *l;
-> ++	__u32 taprio_flags = 0;
-> + 	__s64 cycle_time = 0;
-> + 	__s64 base_time = 0;
-> + 	int err, idx;
-> +@@ -280,6 +281,17 @@ static int taprio_parse_opt(struct qdisc_util *qu, int argc,
-> + 				explain_clockid(*argv);
-> + 				return -1;
-> + 			}
-> ++		} else if (strcmp(*argv, "flags") == 0) {
-> ++			NEXT_ARG();
-> ++			if (taprio_flags) {
-> ++				fprintf(stderr, "taprio: duplicate \"flags\" specification\n");
-> ++				return -1;
-> ++			}
-> ++			if (get_u32(&taprio_flags, *argv, 0)) {
-> ++				PREV_ARG();
-> ++				return -1;
-> ++			}
-> ++
-> + 		} else if (strcmp(*argv, "help") == 0) {
-> + 			explain();
-> + 			return -1;
-> +@@ -296,6 +308,9 @@ static int taprio_parse_opt(struct qdisc_util *qu, int argc,
-> + 	if (clockid != CLOCKID_INVALID)
-> + 		addattr_l(n, 1024, TCA_TAPRIO_ATTR_SCHED_CLOCKID, &clockid, sizeof(clockid));
-> + 
-> ++	if (taprio_flags)
-> ++		addattr_l(n, 1024, TCA_TAPRIO_ATTR_FLAGS, &taprio_flags, sizeof(taprio_flags));
-> ++
-> + 	if (opt.num_tc > 0)
-> + 		addattr_l(n, 1024, TCA_TAPRIO_ATTR_PRIOMAP, &opt, sizeof(opt));
-> + 
-> +@@ -441,6 +456,13 @@ static int taprio_print_opt(struct qdisc_util *qu, FILE *f, struct rtattr *opt)
-> + 
-> + 	print_string(PRINT_ANY, "clockid", "clockid %s", get_clock_name(clockid));
-> + 
-> ++	if (tb[TCA_TAPRIO_ATTR_FLAGS]) {
-> ++		__u32 flags;
-> ++
-> ++		flags = rta_getattr_u32(tb[TCA_TAPRIO_ATTR_FLAGS]);
-> ++		print_0xhex(PRINT_ANY, "flags", " flags %#x", flags);
-> ++	}
-> ++
-> + 	print_schedule(f, tb);
-> + 
-> + 	if (tb[TCA_TAPRIO_ATTR_ADMIN_SCHED]) {
-> +-- 
-> +2.18.1
-> +
-> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0010-taprio-add-support-for-setting-txtime_delay.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0010-taprio-add-support-for-setting-txtime_delay.patch
-> new file mode 100644
-> index 0000000..77c9580
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0010-taprio-add-support-for-setting-txtime_delay.patch
-> @@ -0,0 +1,96 @@
-> +From 1f018de4a624dac26e7c4ea2a6b47a63d1c9c45f Mon Sep 17 00:00:00 2001
-> +From: Vedang Patel <vedang.patel@intel.com>
-> +Date: Thu, 18 Jul 2019 12:55:41 -0700
-> +Subject: [PATCH 10/12] taprio: add support for setting txtime_delay.
-> +
-> +commit a5e6ee3b34226f76c8be4b1e3e3ad82212ea4d50 upstream.
-> +
-> +This adds support for setting the txtime_delay parameter which is useful
-> +for the txtime offload mode of taprio.
-> +
-> +Signed-off-by: Vedang Patel <vedang.patel@intel.com>
-> +Signed-off-by: David Ahern <dsahern@gmail.com>
-> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-> +---
-> + tc/q_taprio.c | 37 ++++++++++++++++++++++++++++++-------
-> + 1 file changed, 30 insertions(+), 7 deletions(-)
-> +
-> +diff --git a/tc/q_taprio.c b/tc/q_taprio.c
-> +index 91e3f27b..5e498489 100644
-> +--- a/tc/q_taprio.c
-> ++++ b/tc/q_taprio.c
-> +@@ -47,13 +47,14 @@ static const struct static_clockid {
-> + 
-> + static void explain(void)
-> + {
-> +-	fprintf(stderr, "Usage: ... taprio clockid CLOCKID\n");
-> +-	fprintf(stderr, "                  [num_tc NUMBER] [map P0 P1 ...] ");
-> +-	fprintf(stderr, "                  [queues COUNT@OFFSET COUNT@OFFSET COUNT@OFFSET ...] ");
-> +-	fprintf(stderr, "                  [ [sched-entry index cmd gate-mask interval] ... ] ");
-> +-	fprintf(stderr, "                  [base-time time] ");
-> +-	fprintf(stderr, "\nCLOCKID must be a valid SYS-V id (i.e. CLOCK_TAI)");
-> +-	fprintf(stderr, "\n");
-> ++	fprintf(stderr,
-> ++		"Usage: ... taprio clockid CLOCKID\n"
-> ++		"		[num_tc NUMBER] [map P0 P1 ...] "
-> ++		"		[queues COUNT@OFFSET COUNT@OFFSET COUNT@OFFSET ...] "
-> ++		"		[ [sched-entry index cmd gate-mask interval] ... ] "
-> ++		"		[base-time time] [txtime-delay delay]"
-> ++		"\n"
-> ++		"CLOCKID must be a valid SYS-V id (i.e. CLOCK_TAI)\n");
-> + }
-> + 
-> + static void explain_clockid(const char *val)
-> +@@ -159,6 +160,7 @@ static int taprio_parse_opt(struct qdisc_util *qu, int argc,
-> + 	struct list_head sched_entries;
-> + 	struct rtattr *tail, *l;
-> + 	__u32 taprio_flags = 0;
-> ++	__u32 txtime_delay = 0;
-> + 	__s64 cycle_time = 0;
-> + 	__s64 base_time = 0;
-> + 	int err, idx;
-> +@@ -292,6 +294,17 @@ static int taprio_parse_opt(struct qdisc_util *qu, int argc,
-> + 				return -1;
-> + 			}
-> + 
-> ++		} else if (strcmp(*argv, "txtime-delay") == 0) {
-> ++			NEXT_ARG();
-> ++			if (txtime_delay != 0) {
-> ++				fprintf(stderr, "taprio: duplicate \"txtime-delay\" specification\n");
-> ++				return -1;
-> ++			}
-> ++			if (get_u32(&txtime_delay, *argv, 0)) {
-> ++				PREV_ARG();
-> ++				return -1;
-> ++			}
-> ++
-> + 		} else if (strcmp(*argv, "help") == 0) {
-> + 			explain();
-> + 			return -1;
-> +@@ -314,6 +327,9 @@ static int taprio_parse_opt(struct qdisc_util *qu, int argc,
-> + 	if (opt.num_tc > 0)
-> + 		addattr_l(n, 1024, TCA_TAPRIO_ATTR_PRIOMAP, &opt, sizeof(opt));
-> + 
-> ++	if (txtime_delay)
-> ++		addattr_l(n, 1024, TCA_TAPRIO_ATTR_TXTIME_DELAY, &txtime_delay, sizeof(txtime_delay));
-> ++
-> + 	if (base_time)
-> + 		addattr_l(n, 1024, TCA_TAPRIO_ATTR_SCHED_BASE_TIME, &base_time, sizeof(base_time));
-> + 
-> +@@ -463,6 +479,13 @@ static int taprio_print_opt(struct qdisc_util *qu, FILE *f, struct rtattr *opt)
-> + 		print_0xhex(PRINT_ANY, "flags", " flags %#x", flags);
-> + 	}
-> + 
-> ++	if (tb[TCA_TAPRIO_ATTR_TXTIME_DELAY]) {
-> ++		__u32 txtime_delay;
-> ++
-> ++		txtime_delay = rta_getattr_s32(tb[TCA_TAPRIO_ATTR_TXTIME_DELAY]);
-> ++		print_uint(PRINT_ANY, "txtime_delay", " txtime delay %d", txtime_delay);
-> ++	}
-> ++
-> + 	print_schedule(f, tb);
-> + 
-> + 	if (tb[TCA_TAPRIO_ATTR_ADMIN_SCHED]) {
-> +-- 
-> +2.18.1
-> +
-> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0011-tc-taprio-Update-documentation.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0011-tc-taprio-Update-documentation.patch
-> new file mode 100644
-> index 0000000..a575e2e
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0011-tc-taprio-Update-documentation.patch
-> @@ -0,0 +1,80 @@
-> +From 5932369560e2ad1deecafa829edd0e89170a3545 Mon Sep 17 00:00:00 2001
-> +From: Vedang Patel <vedang.patel@intel.com>
-> +Date: Thu, 18 Jul 2019 12:55:43 -0700
-> +Subject: [PATCH 11/12] tc: taprio: Update documentation
-> +
-> +commit a794d0523711d5ab4530483b9435ba627e07d28b upstream.
-> +
-> +Add documentation for the latest options, flags and txtime-delay, to the
-> +taprio manpage.
-> +
-> +This also adds an example to run tc in txtime offload mode.
-> +
-> +Signed-off-by: Vedang Patel <vedang.patel@intel.com>
-> +Signed-off-by: David Ahern <dsahern@gmail.com>
-> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-> +---
-> + man/man8/tc-taprio.8 | 40 ++++++++++++++++++++++++++++++++++++++++
-> + 1 file changed, 40 insertions(+)
-> +
-> +diff --git a/man/man8/tc-taprio.8 b/man/man8/tc-taprio.8
-> +index 92055b43..2cb39da3 100644
-> +--- a/man/man8/tc-taprio.8
-> ++++ b/man/man8/tc-taprio.8
-> +@@ -112,6 +112,26 @@ means that traffic class 0 is "active" for that schedule entry.
-> + long that state defined by <command> and <gate mask> should be held
-> + before moving to the next entry.
-> + 
-> ++.TP
-> ++flags
-> ++.br
-> ++Specifies different modes for taprio. Currently, only txtime-assist is
-> ++supported which can be enabled by setting it to 0x1. In this mode, taprio will
-> ++set the transmit timestamp depending on the interval in which the packet needs
-> ++to be transmitted. It will then utililize the
-> ++.BR etf(8)
-> ++qdisc to sort and transmit the packets at the right time. The second example
-> ++can be used as a reference to configure this mode.
-> ++
-> ++.TP
-> ++txtime-delay
-> ++.br
-> ++This parameter is specific to the txtime offload mode. It specifies the maximum
-> ++time a packet might take to reach the network card from the taprio qdisc. The
-> ++value should always be greater than the delta specified in the
-> ++.BR etf(8)
-> ++qdisc.
-> ++
-> + .SH EXAMPLES
-> + 
-> + The following example shows how an traffic schedule with three traffic
-> +@@ -137,6 +157,26 @@ reference CLOCK_TAI. The schedule is composed of three entries each of
-> +               clockid CLOCK_TAI
-> + .EE
-> + 
-> ++Following is an example to enable the txtime offload mode in taprio. See
-> ++.BR etf(8)
-> ++for more information about configuring the ETF qdisc.
-> ++
-> ++.EX
-> ++# tc qdisc replace dev eth0 parent root handle 100 taprio \\
-> ++              num_tc 3 \\
-> ++              map 2 2 1 0 2 2 2 2 2 2 2 2 2 2 2 2 \\
-> ++              queues 1@0 1@0 1@0 \\
-> ++              base-time 1528743495910289987 \\
-> ++              sched-entry S 01 300000 \\
-> ++              sched-entry S 02 300000 \\
-> ++              sched-entry S 04 400000 \\
-> ++              flags 0x1 \\
-> ++              txtime-delay 200000 \\
-> ++              clockid CLOCK_TAI
-> ++
-> ++# tc qdisc replace dev $IFACE parent 100:1 etf skip_skb_check \\
-> ++              offload delta 200000 clockid CLOCK_TAI
-> ++.EE
-> + 
-> + .SH AUTHORS
-> + Vinicius Costa Gomes <vinicius.gomes@intel.com>
-> +-- 
-> +2.18.1
-> +
-> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0012-sync-pkt_sched-header-with-kernel-version.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0012-sync-pkt_sched-header-with-kernel-version.patch
-> new file mode 100644
-> index 0000000..0914b8d
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0012-sync-pkt_sched-header-with-kernel-version.patch
-> @@ -0,0 +1,128 @@
-> +From 3736970b76dc41cd2d76399650709eab6a031807 Mon Sep 17 00:00:00 2001
-> +From: Murali Karicheri <m-karicheri2@ti.com>
-> +Date: Thu, 17 Oct 2019 17:50:18 -0400
-> +Subject: [PATCH 12/12] sync pkt_sched header with kernel version
-> +
-> +For picking taprio specific definitions, sync up the pkt_sched.h with
-> +kernel header.
-> +
-> +Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-> +---
-> + include/uapi/linux/const.h     | 31 ++++++++++++++++
-> + include/uapi/linux/pkt_sched.h | 64 ++++++++++++++++++++++++++++++++++
-> + 2 files changed, 95 insertions(+)
-> + create mode 100644 include/uapi/linux/const.h
-> +
-> +diff --git a/include/uapi/linux/const.h b/include/uapi/linux/const.h
-> +new file mode 100644
-> +index 00000000..fd885c79
-> +--- /dev/null
-> ++++ b/include/uapi/linux/const.h
-> +@@ -0,0 +1,31 @@
-> ++/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
-> ++/* const.h: Macros for dealing with constants.  */
-> ++
-> ++#ifndef _LINUX_CONST_H
-> ++#define _LINUX_CONST_H
-> ++
-> ++/* Some constant macros are used in both assembler and
-> ++ * C code.  Therefore we cannot annotate them always with
-> ++ * 'UL' and other type specifiers unilaterally.  We
-> ++ * use the following macros to deal with this.
-> ++ *
-> ++ * Similarly, _AT() will cast an expression with a type in C, but
-> ++ * leave it unchanged in asm.
-> ++ */
-> ++
-> ++#ifdef __ASSEMBLY__
-> ++#define _AC(X,Y)	X
-> ++#define _AT(T,X)	X
-> ++#else
-> ++#define __AC(X,Y)	(X##Y)
-> ++#define _AC(X,Y)	__AC(X,Y)
-> ++#define _AT(T,X)	((T)(X))
-> ++#endif
-> ++
-> ++#define _UL(x)		(_AC(x, UL))
-> ++#define _ULL(x)		(_AC(x, ULL))
-> ++
-> ++#define _BITUL(x)	(_UL(1) << (x))
-> ++#define _BITULL(x)	(_ULL(1) << (x))
-> ++
-> ++#endif /* _LINUX_CONST_H */
-> +diff --git a/include/uapi/linux/pkt_sched.h b/include/uapi/linux/pkt_sched.h
-> +index 8975fd1a..9408fb43 100644
-> +--- a/include/uapi/linux/pkt_sched.h
-> ++++ b/include/uapi/linux/pkt_sched.h
-> +@@ -1084,4 +1084,68 @@ enum {
-> + 	CAKE_ATM_MAX
-> + };
-> + 
-> ++
-> ++/* TAPRIO */
-> ++enum {
-> ++	TC_TAPRIO_CMD_SET_GATES = 0x00,
-> ++	TC_TAPRIO_CMD_SET_AND_HOLD = 0x01,
-> ++	TC_TAPRIO_CMD_SET_AND_RELEASE = 0x02,
-> ++};
-> ++
-> ++enum {
-> ++	TCA_TAPRIO_SCHED_ENTRY_UNSPEC,
-> ++	TCA_TAPRIO_SCHED_ENTRY_INDEX, /* u32 */
-> ++	TCA_TAPRIO_SCHED_ENTRY_CMD, /* u8 */
-> ++	TCA_TAPRIO_SCHED_ENTRY_GATE_MASK, /* u32 */
-> ++	TCA_TAPRIO_SCHED_ENTRY_INTERVAL, /* u32 */
-> ++	__TCA_TAPRIO_SCHED_ENTRY_MAX,
-> ++};
-> ++#define TCA_TAPRIO_SCHED_ENTRY_MAX (__TCA_TAPRIO_SCHED_ENTRY_MAX - 1)
-> ++
-> ++/* The format for schedule entry list is:
-> ++ * [TCA_TAPRIO_SCHED_ENTRY_LIST]
-> ++ *   [TCA_TAPRIO_SCHED_ENTRY]
-> ++ *     [TCA_TAPRIO_SCHED_ENTRY_CMD]
-> ++ *     [TCA_TAPRIO_SCHED_ENTRY_GATES]
-> ++ *     [TCA_TAPRIO_SCHED_ENTRY_INTERVAL]
-> ++ */
-> ++enum {
-> ++	TCA_TAPRIO_SCHED_UNSPEC,
-> ++	TCA_TAPRIO_SCHED_ENTRY,
-> ++	__TCA_TAPRIO_SCHED_MAX,
-> ++};
-> ++
-> ++#define TCA_TAPRIO_SCHED_MAX (__TCA_TAPRIO_SCHED_MAX - 1)
-> ++
-> ++/* The format for the admin sched (dump only):
-> ++ * [TCA_TAPRIO_SCHED_ADMIN_SCHED]
-> ++ *   [TCA_TAPRIO_ATTR_SCHED_BASE_TIME]
-> ++ *   [TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST]
-> ++ *     [TCA_TAPRIO_ATTR_SCHED_ENTRY]
-> ++ *       [TCA_TAPRIO_ATTR_SCHED_ENTRY_CMD]
-> ++ *       [TCA_TAPRIO_ATTR_SCHED_ENTRY_GATES]
-> ++ *       [TCA_TAPRIO_ATTR_SCHED_ENTRY_INTERVAL]
-> ++ */
-> ++
-> ++#define TCA_TAPRIO_ATTR_FLAG_TXTIME_ASSIST	BIT(0)
-> ++#define TCA_TAPRIO_ATTR_FLAG_FULL_OFFLOAD	BIT(1)
-> ++
-> ++enum {
-> ++	TCA_TAPRIO_ATTR_UNSPEC,
-> ++	TCA_TAPRIO_ATTR_PRIOMAP, /* struct tc_mqprio_qopt */
-> ++	TCA_TAPRIO_ATTR_SCHED_ENTRY_LIST, /* nested of entry */
-> ++	TCA_TAPRIO_ATTR_SCHED_BASE_TIME, /* s64 */
-> ++	TCA_TAPRIO_ATTR_SCHED_SINGLE_ENTRY, /* single entry */
-> ++	TCA_TAPRIO_ATTR_SCHED_CLOCKID, /* s32 */
-> ++	TCA_TAPRIO_PAD,
-> ++	TCA_TAPRIO_ATTR_ADMIN_SCHED, /* The admin sched, only used in dump */
-> ++	TCA_TAPRIO_ATTR_SCHED_CYCLE_TIME, /* s64 */
-> ++	TCA_TAPRIO_ATTR_SCHED_CYCLE_TIME_EXTENSION, /* s64 */
-> ++	TCA_TAPRIO_ATTR_FLAGS, /* u32 */
-> ++	TCA_TAPRIO_ATTR_TXTIME_DELAY, /* u32 */
-> ++	__TCA_TAPRIO_ATTR_MAX,
-> ++};
-> ++
-> ++#define TCA_TAPRIO_ATTR_MAX (__TCA_TAPRIO_ATTR_MAX - 1)
-> ++
-> + #endif
-> +-- 
-> +2.18.1
-> +
-> diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.19.0.bbappend b/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.19.0.bbappend
-> index 2100f49..7fa33f6 100644
-> --- a/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.19.0.bbappend
-> +++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.19.0.bbappend
-> @@ -1,4 +1,4 @@
-> -PR_append = ".arago5"
-> +PR_append = ".arago6"
+> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch b/meta-arago-extras/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example-1.15.patch
+> similarity index 45%
+> rename from meta-arago-extras/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch
+> rename to meta-arago-extras/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example-1.15.patch
+> index 61f821e3..8f4b02c5 100644
+> --- a/meta-arago-extras/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example.patch
+> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/files/0001-Makefile-add-label_image-example-1.15.patch
+> @@ -1,50 +1,39 @@
+> -From 87cf7e879640436f19f26e338dce6c343c19bfd8 Mon Sep 17 00:00:00 2001
+> +From 481c021e98c443195b73484fd0d9d50a2e0ae69a Mon Sep 17 00:00:00 2001
+>  From: Hongmei Gou <a0271529@ti.com>
+> -Date: Wed, 21 Aug 2019 18:03:17 -0400
+> +Date: Wed, 25 Sep 2019 18:07:04 -0400
+>  Subject: [PATCH] Makefile: add label_image example
 >  
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> -Upstream-Status: Pending
+
+Why is it being removed?
+
+
+> -
+>  Signed-off-by: Hongmei Gou <a0271529@ti.com>
+>  ---
+> - tensorflow/contrib/lite/tools/make/Makefile | 21 +++++++++++++++++++--
+> - 1 file changed, 19 insertions(+), 2 deletions(-)
+> + tensorflow/lite/tools/make/Makefile | 21 ++++++++++++++++++++-
+> + 1 file changed, 20 insertions(+), 1 deletion(-)
 >  
-> @@ -7,4 +7,16 @@ SRC_URI_append = " \
->      file://0002-hsr-prp-introduce-common-definitions-for-netlink-int.patch \
->      file://0003-hsr-prp-refactor-common-code.patch \
->      file://0004-hsr-prp-add-support-for-vlan-tagged-supervision-fram.patch \
-> +    file://0001-utils-Implement-get_s64.patch \
-> +    file://0002-include-Add-helper-to-retrieve-a-__s64-from-a-netlin.patch \
-> +    file://0003-libnetlink-Add-helper-for-getting-a-__s32-from-netli.patch \
-> +    file://0004-tc-Add-support-for-configuring-the-taprio-scheduler.patch \
-> +    file://0005-taprio-Add-manpage-for-tc-taprio-8.patch \
-> +    file://0006-taprio-Add-support-for-changing-schedules.patch \
-> +    file://0007-taprio-Add-support-for-cycle_time-and-cycle_time_ext.patch \
-> +    file://0008-utils-Fix-get_s64-function.patch \
-> +    file://0009-taprio-Add-support-for-setting-flags.patch \
-> +    file://0010-taprio-add-support-for-setting-txtime_delay.patch \
-> +    file://0011-tc-taprio-Update-documentation.patch \
-> +    file://0012-sync-pkt_sched-header-with-kernel-version.patch \
->  "
+> -diff --git a/tensorflow/contrib/lite/tools/make/Makefile b/tensorflow/contrib/lite/tools/make/Makefile
+> -index 16012a3fb1..a5e5cb3fc7 100644
+> ---- a/tensorflow/contrib/lite/tools/make/Makefile
+> -+++ b/tensorflow/contrib/lite/tools/make/Makefile
+> -@@ -72,6 +72,11 @@ BENCHMARK_BINARY_NAME := benchmark_model
+> - MINIMAL_SRCS := \
+> - tensorflow/contrib/lite/examples/minimal/minimal.cc
+> +diff --git a/tensorflow/lite/tools/make/Makefile b/tensorflow/lite/tools/make/Makefile
+> +index 73c50d3272..e2f664e1eb 100644
+> +--- a/tensorflow/lite/tools/make/Makefile
+> ++++ b/tensorflow/lite/tools/make/Makefile
+> +@@ -201,6 +201,12 @@ BENCHMARK_SRCS := $(filter-out \
+> + 	$(BENCHMARK_SRCS_DIR)/benchmark_plus_flex_main.cc, \
+> + 	$(BENCHMARK_ALL_SRCS))
+>   
+>  +# label image example
+>  +LABELIMAGE_SRCS := \
+> -+tensorflow/contrib/lite/examples/label_image/bitmap_helpers.cc \
+> -+tensorflow/contrib/lite/examples/label_image/label_image.cc
+> ++	tensorflow/lite/examples/label_image/bitmap_helpers.cc \
+> ++	tensorflow/lite/examples/label_image/label_image.cc \
+> ++	$(EVALUATION_UTILS_SRCS)
+>  +
+> - # What sources we want to compile, must be kept in sync with the main Bazel
+> - # build files.
+> - 
+> -@@ -108,7 +113,8 @@ $(wildcard tensorflow/contrib/lite/*/*test.cc) \
+> - $(wildcard tensorflow/contrib/lite/*/*/*test.cc) \
+> - $(wildcard tensorflow/contrib/lite/*/*/*/*test.cc) \
+> - $(wildcard tensorflow/contrib/lite/kernels/test_util.cc) \
+> --$(MINIMAL_SRCS)
+> -+$(MINIMAL_SRCS) \
+> -+$(LABELIMAGE_SRCS)
+> - ifeq ($(BUILD_TYPE),micro)
+> - CORE_CC_EXCLUDE_SRCS += \
+> - tensorflow/contrib/lite/mmap_allocation.cc \
+> -@@ -135,6 +141,7 @@ include $(wildcard $(MAKEFILE_DIR)/targets/*_makefile.inc)
+> + # These target-specific makefiles should modify or replace options like
+> + # CXXFLAGS or LIBS to work for a specific targetted architecture. All logic
+> + # based on platforms or architectures should happen within these files, to
+> +@@ -209,6 +215,7 @@ include $(wildcard $(MAKEFILE_DIR)/targets/*_makefile.inc)
+>   
+>   ALL_SRCS := \
+>   	$(MINIMAL_SRCS) \
+>  +	$(LABELIMAGE_SRCS) \
+>   	$(PROFILER_SRCS) \
+> - 	$(PROFILER_SUMMARY_SRCS) \
+> + 	$(PROFILER_SUMMARIZER_SRCS) \
+>   	$(TF_LITE_CC_SRCS) \
+> -@@ -150,6 +157,7 @@ LIB_PATH := $(LIBDIR)$(LIB_NAME)
+> +@@ -225,6 +232,7 @@ LIB_PATH := $(LIBDIR)$(LIB_NAME)
+>   BENCHMARK_LIB := $(LIBDIR)$(BENCHMARK_LIB_NAME)
+>   BENCHMARK_BINARY := $(BINDIR)$(BENCHMARK_BINARY_NAME)
+>   MINIMAL_BINARY := $(BINDIR)minimal
+> @@ -52,7 +41,7 @@ index 16012a3fb1..a5e5cb3fc7 100644
+>   
+>   CXX := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}g++
+>   CC := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}gcc
+> -@@ -158,6 +166,9 @@ AR := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}ar
+> +@@ -233,6 +241,9 @@ AR := $(CC_PREFIX)${TARGET_TOOLCHAIN_PREFIX}ar
+>   MINIMAL_OBJS := $(addprefix $(OBJDIR), \
+>   $(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(MINIMAL_SRCS))))
+>   
+> @@ -60,10 +49,10 @@ index 16012a3fb1..a5e5cb3fc7 100644
+>  +$(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(LABELIMAGE_SRCS))))
+>  +
+>   LIB_OBJS := $(addprefix $(OBJDIR), \
+> - $(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(TF_LITE_CC_SRCS))))
+> + $(patsubst %.cc,%.o,$(patsubst %.c,%.o,$(patsubst %.cpp,%.o,$(TF_LITE_CC_SRCS)))))
+>   
+> -@@ -174,7 +185,7 @@ $(OBJDIR)%.o: %.c
+> - 	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
+> +@@ -252,7 +263,7 @@ $(OBJDIR)%.o: %.cpp
+> + 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+>   
+>   # The target that's compiled if there's no command-line arguments.
+>  -all: $(LIB_PATH)  $(MINIMAL_BINARY) $(BENCHMARK_BINARY)
+> @@ -71,9 +60,9 @@ index 16012a3fb1..a5e5cb3fc7 100644
+>   
+>   # The target that's compiled for micro-controllers
+>   micro: $(LIB_PATH)
+> -@@ -198,6 +209,12 @@ $(BENCHMARK_LIB) : $(LIB_PATH) $(BENCHMARK_OBJS)
+> - 	@mkdir -p $(dir $@)
+> - 	$(AR) $(ARFLAGS) $(BENCHMARK_LIB) $(LIB_OBJS) $(BENCHMARK_OBJS)
+> +@@ -276,6 +287,14 @@ $(MINIMAL_BINARY): $(MINIMAL_OBJS) $(LIB_PATH)
+> + 
+> + minimal: $(MINIMAL_BINARY)
+>   
+>  +$(LABELIMAGE_BINARY): $(LABELIMAGE_OBJS) $(LIB_PATH)
+>  +	@mkdir -p $(dir $@)
+> @@ -81,9 +70,11 @@ index 16012a3fb1..a5e5cb3fc7 100644
+>  +	-o $(LABELIMAGE_BINARY) $(LABELIMAGE_OBJS) \
+>  +	$(LIBFLAGS) $(LIB_PATH) $(LDFLAGS) $(LIBS)
+>  +
+> - benchmark_lib: $(BENCHMARK_LIB)
+> - 
+> - $(BENCHMARK_BINARY) : $(BENCHMARK_LIB)
+> ++label_image: $(LABELIMAGE_BINARY)
+> ++
+> + $(BENCHMARK_LIB) : $(LIB_PATH) $(BENCHMARK_OBJS)
+> + 	@mkdir -p $(dir $@)
+> + 	$(AR) $(ARFLAGS) $(BENCHMARK_LIB) $(LIB_OBJS) $(BENCHMARK_OBJS)
+>  -- 
+>  2.17.1
+>  
+> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch b/meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.15-to-eigen.patch
+> similarity index 45%
+> rename from meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch
+> rename to meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.15-to-eigen.patch
+> index 1a8de78b..06c9c63a 100644
+> --- a/meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.12-to-eigen.patch
+> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/files/apply-modification-for-tflite-1.15-to-eigen.patch
+> @@ -1,13 +1,13 @@
+> -diff --git a/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h b/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
+> +diff --git a/tensorflow/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h b/tensorflow/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
+>  index 306a309beb..4527a64c91 100644
+> ---- a/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
+> -+++ b/tensorflow/contrib/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
+> -@@ -295,7 +295,7 @@ ptranspose(PacketBlock<Packet2cf,2>& kernel) {
+> +--- a/tensorflow/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
+> ++++ b/tensorflow/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/NEON/Complex.h
+> +@@ -307,7 +307,7 @@
+>     static uint64x2_t p2ul_CONJ_XOR = {0x0, 0x8000000000000000};
+>   #else
+>     const uint64_t  p2ul_conj_XOR_DATA[] = { 0x0, 0x8000000000000000 };
+>  -  static uint64x2_t p2ul_CONJ_XOR = vld1q_u64( p2ul_conj_XOR_DATA );
+>  +  static uint64x2_t p2ul_CONJ_XOR;// = vld1q_u64( p2ul_conj_XOR_DATA ); - Removed by script
+>   #endif
+> - 
+> +
+>   struct Packet1cd
+> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.15.bb
+> similarity index 51%
+> rename from meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
+> rename to meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.15.bb
+> index ba9f0d4c..419968fd 100644
+> --- a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.12.bb
+> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite_1.15.bb
+> @@ -2,45 +2,45 @@ DESCRIPTION = "TensorFlow's lightweight solution for mobile and embedded devices
+>  AUTHOR = "Google Inc. and Yuan Tang"
+>  HOMEPAGE = "https://www.tensorflow.org/lite"
+>  LICENSE = "Apache-2.0"
+> -LIC_FILES_CHKSUM = "file://LICENSE;md5=01e86893010a1b87e69a213faa753ebd"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=64a34301f8e355f57ec992c2af3e5157"
+>  
+> -MD5SUM_EIGEN = "4c884968ede816a84c70e2cd2c81de8d"
+> -SHA256SUM_EIGEN = "d956415d784fa4e42b6a2a45c32556d6aec9d0a3d8ef48baee2522ab762556a9"
+> +MD5SUM_EIGEN = "a28a728acb3298471b11132ab5c0c3cb"
+> +SHA256SUM_EIGEN = "7e7a57e33c59280a17a66e521396cd8b1a55d0676c9f807078522fda52114b5c"
+>  MD5SUM_FARMHASH = "f039a65a7f62bdb6c4b4c8a732638d80"
+>  SHA256SUM_FARMHASH = "6560547c63e4af82b0f202cb710ceabb3f21347a4b996db565a411da5b17aba0"
+> -MD5SUM_GEMMLOWP = "a90a2161ad8ee4ccf724f56e07637601"
+> -SHA256SUM_GEMMLOWP = "b87faa7294dfcc5d678f22a59d2c01ca94ea1e2a3b488c38a95a67889ed0a658"
+> +MD5SUM_GEMMLOWP = "09cf63d1d388a2753de3323684da70ed"
+> +SHA256SUM_GEMMLOWP = "6678b484d929f2d0d3229d8ac4e3b815a950c86bb9f17851471d143f6d4f7834"
+>  MD5SUM_GTEST = "16877098823401d1bf2ed7891d7dce36"
+>  SHA256SUM_GTEST = "58a6f4277ca2bc8565222b3bbd58a177609e9c488e8a72649359ba51450db7d8"
+> -MD5SUM_ABSLCPP = "7c9945f256d3733a8eade255afcbd072"
+> -SHA256SUM_ABSLCPP = "7dd09690ae7ca4551de3111d4a86b75b23ec17445f273d3c42bdcdc1c7b02e4e"
+> +MD5SUM_ABSLCPP = "7abf3aae8d57874d2eb04c4b92736208"
+> +SHA256SUM_ABSLCPP = "acd93f6baaedc4414ebd08b33bebca7c7a46888916101d8c0b8083573526d070"
+>  MD5SUM_NEON2SSE = "276619db5393450c223b7c4e47e848ce"
+>  SHA256SUM_NEON2SSE = "8cc98e95c86d362dd6f003b35a9517a9928e3fd387b33188b0442df13245a17b"
+> -MD5SUM_FLATBUFFER = "3811552512049fac3af419130904bc55"
+> -SHA256SUM_FLATBUFFER = "b2bb0311ca40b12ebe36671bdda350b10c7728caf0cfe2d432ea3b6e409016f3"
+> +MD5SUM_FLATBUFFER = "02c64880acb89dbd57eebacfd67200d8"
+> +SHA256SUM_FLATBUFFER = "3f4a286642094f45b1b77228656fbd7ea123964f19502f9ecfd29933fd23a50b"
+>  MD5SUM_FFT = "4255dd8a74949d123216b1ab91520469"
+>  SHA256SUM_FFT = "52bb637c70b971958ec79c9c8752b1df5ff0218a4db4510e60826e0cb79b5296"
+>  
+> -SRC_URI = "git://github.com/tensorflow/tensorflow.git;branch=r1.12;protocol=https \
+> -    https://bitbucket.org/eigen/eigen/get/fd6845384b86.tar.gz;md5sum=${MD5SUM_EIGEN};sha256sum=${SHA256SUM_EIGEN} \
+> -    https://mirror.bazel.build/github.com/google/gemmlowp/archive/38ebac7b059e84692f53e5938f97a9943c120d98.zip;md5sum=${MD5SUM_GEMMLOWP};sha256sum=${SHA256SUM_GEMMLOWP} \
+> +SRC_URI = "git://github.com/tensorflow/tensorflow.git;branch=r${PV};protocol=https \
+> +    https://bitbucket.org/eigen/eigen/get/8071cda5714d.tar.gz;md5sum=${MD5SUM_EIGEN};sha256sum=${SHA256SUM_EIGEN} \
+> +    https://mirror.bazel.build/github.com/google/gemmlowp/archive/12fed0cd7cfcd9e169bf1925bc3a7a58725fdcc3.zip;md5sum=${MD5SUM_GEMMLOWP};sha256sum=${SHA256SUM_GEMMLOWP} \
+>      https://github.com/google/googletest/archive/release-1.8.0.tar.gz;md5sum=${MD5SUM_GTEST};sha256sum=${SHA256SUM_GTEST} \
+> -    https://github.com/abseil/abseil-cpp/archive/48cd2c3f351ff188bc85684b84a91b6e6d17d896.tar.gz;md5sum=${MD5SUM_ABSLCPP};sha256sum=${SHA256SUM_ABSLCPP} \
+> +    https://github.com/abseil/abseil-cpp/archive/43ef2148c0936ebf7cb4be6b19927a9d9d145b8f.tar.gz;md5sum=${MD5SUM_ABSLCPP};sha256sum=${SHA256SUM_ABSLCPP} \
+>      https://github.com/intel/ARM_NEON_2_x86_SSE/archive/3057bb91b99bae9c7fbdf8710c032d462ca10051.zip;md5sum=${MD5SUM_NEON2SSE};sha256sum=${SHA256SUM_NEON2SSE} \
+>      https://mirror.bazel.build/github.com/google/farmhash/archive/816a4ae622e964763ca0862d9dbd19324a1eaf45.tar.gz;md5sum=${MD5SUM_FARMHASH};sha256sum=${SHA256SUM_FARMHASH} \
+> -    https://github.com/google/flatbuffers/archive/1f5eae5d6a135ff6811724f6c57f911d1f46bb15.tar.gz;md5sum=${MD5SUM_FLATBUFFER};sha256sum=${SHA256SUM_FLATBUFFER} \
+> +    https://storage.googleapis.com/mirror.tensorflow.org/github.com/google/flatbuffers/archive/v1.11.0.tar.gz;md5sum=${MD5SUM_FLATBUFFER};sha256sum=${SHA256SUM_FLATBUFFER} \
+>      https://mirror.bazel.build/www.kurims.kyoto-u.ac.jp/~ooura/fft.tgz;md5sum=${MD5SUM_FFT};sha256sum=${SHA256SUM_FFT} \
+>      http://download.tensorflow.org/models/mobilenet_v1_2018_08_02/mobilenet_v1_1.0_224_quant.tgz;name=mobilenet_v1_quant;subdir=${WORKDIR}/model;destsuffix=model \
+> -    file://apply-modification-for-tflite-1.12-to-eigen.patch \
+> -    file://0001-Makefile-add-label_image-example.patch \
+> +    file://apply-modification-for-tflite-${PV}-to-eigen.patch \
+> +    file://0001-Makefile-add-label_image-example-${PV}.patch \
+>      file://tensorflow-lite.pc.in"
+>  
+>  SRC_URI[mobilenet_v1_quant.md5sum] = "36af340c00e60291931cb30ce32d4e86"
+>  SRC_URI[mobilenet_v1_quant.sha256sum] = "d32432d28673a936b2d6281ab0600c71cf7226dfe4cdcef3012555f691744166"
+>  
+> -SRCREV = "5b900cfe4b3b848f577315a0dde09a729f770e95"
+> +SRCREV = "590d6eef7e91a6a7392c8ffffb7b58f2e0c8bc6b"
+>  
+> -PR = "r4"
+> +PR = "r0"
+>  
+>  S = "${WORKDIR}/git"
+>  
+> @@ -55,8 +55,8 @@ CXXFLAGS_append = " -O3 -DNDEBUG -fPIC -DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
+>  LDFLAGS_remove = "-Wl,-O1"
+>  CXXFLAGS_append = " -O3 -DNDEBUG -fPIC -DGEMMLOWP_ALLOW_SLOW_SCALAR_FALLBACK \
+>      -I${STAGING_INCDIR}"
+> -LIBS = "-lstdc++ -lpthread -lm -lz -ldl"
+> -BUILD_DEPS_DOWNLOAD_DIR_PREFIX = "${S}/tensorflow/contrib/lite/tools/make/downloads/"
+> +LIBS = "-lstdc++ -lpthread -lm -lz -ldl -lrt"
+> +BUILD_DEPS_DOWNLOAD_DIR_PREFIX = "${S}/tensorflow/lite/tools/make/downloads/"
+>  
+>  do_cp_downloaded_build_deps() {
+>      mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}eigen
+> @@ -68,13 +68,13 @@ do_cp_downloaded_build_deps() {
+>      mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}flatbuffers
+>      mkdir -p ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}fft2d
+>  
+> -    cp -rf ${WORKDIR}/eigen-eigen-fd6845384b86/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}eigen
+> -    cp -rf ${WORKDIR}/gemmlowp-38ebac7b059e84692f53e5938f97a9943c120d98/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}gemmlowp
+> +    cp -rf ${WORKDIR}/eigen-eigen-8071cda5714d/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}eigen
+> +    cp -rf ${WORKDIR}/gemmlowp-12fed0cd7cfcd9e169bf1925bc3a7a58725fdcc3/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}gemmlowp
+>      cp -rf ${WORKDIR}/googletest-release-1.8.0/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}googletest
+> -    cp -rf ${WORKDIR}/abseil-cpp-48cd2c3f351ff188bc85684b84a91b6e6d17d896/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}absl
+> +    cp -rf ${WORKDIR}/abseil-cpp-43ef2148c0936ebf7cb4be6b19927a9d9d145b8f/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}absl
+>      cp -rf ${WORKDIR}/farmhash-816a4ae622e964763ca0862d9dbd19324a1eaf45/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}farmhash
+>      cp -rf ${WORKDIR}/ARM_NEON_2_x86_SSE-3057bb91b99bae9c7fbdf8710c032d462ca10051/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}neon_2_sse
+> -    cp -rf ${WORKDIR}/flatbuffers-1f5eae5d6a135ff6811724f6c57f911d1f46bb15/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}flatbuffers
+> +    cp -rf ${WORKDIR}/flatbuffers-1.11.0/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}flatbuffers
+>      cp -rf ${WORKDIR}/fft/* ${BUILD_DEPS_DOWNLOAD_DIR_PREFIX}fft2d
+>  }
+>  addtask do_cp_downloaded_build_deps after do_unpack before do_patch
+> @@ -94,27 +94,27 @@ EXTRA_OEMAKE = "\
+>      'TARGET_ARCH=${TUNE_ARCH}'"
+>  
+>  do_compile() {
+> -    oe_runmake -f tensorflow/contrib/lite/tools/make/Makefile
+> +    oe_runmake -f tensorflow/lite/tools/make/Makefile
+>  }
+>  
+>  do_install() {
+>      install -d ${D}${libdir}
+> -    install -m 0644 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/lib/*.a ${D}${libdir}/
+> -    install -d ${D}${includedir}/tensorflow/contrib/lite
+> -    install -m 0644 ${S}/tensorflow/contrib/lite/*.h ${D}${includedir}/tensorflow/contrib/lite/
+> -    install -d ${D}${includedir}/tensorflow/contrib/lite/c
+> -    install -m 0644 ${S}/tensorflow/contrib/lite/c/*.h ${D}${includedir}/tensorflow/contrib/lite/c/
+> -    install -d ${D}${includedir}/tensorflow/contrib/lite/core/api/
+> -    install -m 0644 ${S}/tensorflow/contrib/lite/core/api/*.h ${D}${includedir}/tensorflow/contrib/lite/core/api/
+> -    install -d ${D}${includedir}/tensorflow/contrib/lite/kernels
+> -    install -m 0644 ${S}/tensorflow/contrib/lite/kernels/*.h ${D}${includedir}/tensorflow/contrib/lite/kernels/
+> -    install -d  ${D}${includedir}/tensorflow/contrib/lite/profiling/
+> -    install -m 0644 ${S}/tensorflow/contrib/lite/profiling/*.h ${D}${includedir}/tensorflow/contrib/lite/profiling/
+> -    install -d ${D}${includedir}/tensorflow/contrib/lite/schema/
+> -    install -m 0644 ${S}/tensorflow/contrib/lite/schema/*.h ${D}${includedir}/tensorflow/contrib/lite/schema/
+> -    install -m 0644 ${S}/tensorflow/contrib/lite/schema/schema.fbs ${D}${includedir}/tensorflow/contrib/lite/schema/
+> -    install -d ${D}${includedir}/tensorflow/contrib/lite/tools/
+> -    install -m 0644 ${S}/tensorflow/contrib/lite/tools/*.h ${D}${includedir}/tensorflow/contrib/lite/tools/
+> +    install -m 0644 ${S}/tensorflow/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/lib/*.a ${D}${libdir}/
+> +    install -d ${D}${includedir}/tensorflow/lite
+> +    install -m 0644 ${S}/tensorflow/lite/*.h ${D}${includedir}/tensorflow/lite/
+> +    install -d ${D}${includedir}/tensorflow/lite/c
+> +    install -m 0644 ${S}/tensorflow/lite/c/*.h ${D}${includedir}/tensorflow/lite/c/
+> +    install -d ${D}${includedir}/tensorflow/lite/core/api/
+> +    install -m 0644 ${S}/tensorflow/lite/core/api/*.h ${D}${includedir}/tensorflow/lite/core/api/
+> +    install -d ${D}${includedir}/tensorflow/lite/kernels
+> +    install -m 0644 ${S}/tensorflow/lite/kernels/*.h ${D}${includedir}/tensorflow/lite/kernels/
+> +    install -d  ${D}${includedir}/tensorflow/lite/profiling/
+> +    install -m 0644 ${S}/tensorflow/lite/profiling/*.h ${D}${includedir}/tensorflow/lite/profiling/
+> +    install -d ${D}${includedir}/tensorflow/lite/schema/
+> +    install -m 0644 ${S}/tensorflow/lite/schema/*.h ${D}${includedir}/tensorflow/lite/schema/
+> +    install -m 0644 ${S}/tensorflow/lite/schema/schema.fbs ${D}${includedir}/tensorflow/lite/schema/
+> +    install -d ${D}${includedir}/tensorflow/lite/tools/
+> +    install -m 0644 ${S}/tensorflow/lite/tools/*.h ${D}${includedir}/tensorflow/lite/tools/
+>      install -d ${D}${libdir}/pkgconfig
+>      install -m 0644 ${WORKDIR}/tensorflow-lite.pc.in ${D}${libdir}/pkgconfig/tensorflow-lite.pc
+>      sed -i 's:@version@:${PV}:g
+> @@ -122,11 +122,11 @@ do_install() {
+>          s:@includedir@:${includedir}:g' ${D}${libdir}/pkgconfig/tensorflow-lite.pc
+>      # install examples
+>      install -d ${D}${datadir}/${PN}-${PV}/examples
+> -    install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/minimal ${D}${datadir}/${PN}-${PV}/examples
+> -    install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/benchmark_model ${D}${datadir}/${PN}-${PV}/examples
+> -    install -m 0755 ${S}/tensorflow/contrib/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/label_image ${D}${datadir}/${PN}-${PV}/examples
+> -    install -m 0644 ${S}/tensorflow/contrib/lite/examples/label_image/testdata/grace_hopper.bmp ${D}${datadir}/${PN}-${PV}/examples
+> -    install -m 0644 ${S}/tensorflow/contrib/lite/java/ovic/src/testdata/labels.txt ${D}${datadir}/${PN}-${PV}/examples
+> +    install -m 0755 ${S}/tensorflow/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/minimal ${D}${datadir}/${PN}-${PV}/examples
+> +    install -m 0755 ${S}/tensorflow/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/benchmark_model ${D}${datadir}/${PN}-${PV}/examples
+> +    install -m 0755 ${S}/tensorflow/lite/tools/make/gen/${TARGET_OS}_${TUNE_ARCH}/bin/label_image ${D}${datadir}/${PN}-${PV}/examples
+> +    install -m 0644 ${S}/tensorflow/lite/examples/label_image/testdata/grace_hopper.bmp ${D}${datadir}/${PN}-${PV}/examples
+> +    install -m 0644 ${S}/tensorflow/lite/java/ovic/src/testdata/labels.txt ${D}${datadir}/${PN}-${PV}/examples
+>      install -m 0644 ${WORKDIR}/model/mobilenet_v1_1.0_224_quant.tflite ${D}${datadir}/${PN}-${PV}/examples
+>  }
+>  
 > -- 
-> 1.9.1
+> 2.17.1
 > 
 > _______________________________________________
 > meta-arago mailing list
