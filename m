@@ -1,43 +1,43 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 2881752A1C
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 8BE0152A33
 	for <meta-arago@arago-project.org>;
 	Wed, 30 Oct 2019 19:57:18 +0000 (UTC)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9UJtv5j109007
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9UJtvAA089596
 	for <meta-arago@arago-project.org>; Wed, 30 Oct 2019 14:55:57 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1572465357;
-	bh=Zbe1q0oD3e+IqRszOf51xmuWf1v4cEK04Xs5qWmkSiA=;
+	bh=WaFYVlfBE86QqG1dqZgfekSjMUj2slql/a+q880zk7Y=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=tAHdG5CcJP8EKvfbIwSFBj0eI2dVgPSGRKxilh4e5CjqCKa/d+KAPQvO5QfCmozRN
-	wLl3ZwBVeC9rmRn4sL2ShzwK1su4u4KJHz1/GseS2XVZn1qs8Mr1zG2RBD042IHKSB
-	MZeCnOo2tAHHUO9OPw7Ba8qvkZ1PO4/DODgSH/OE=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9UJtvYF031256
+	b=CNIvONxvHkzbipovdeOAqD9YteZ8sZrszZU8HDstYp4atoDfixahtKnxBAnIjTewT
+	lQpeKoFB1EE+/cWxam5yty9+F8X9jDoR1VKlKH+u/gK3rSxA4cPodwRb80x+mteEZ1
+	gr4iXKftZncx3LhCUQaGXX/yGFqH77Nz0b5IQ+K4=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9UJtv5K031264
 	for <meta-arago@arago-project.org>; Wed, 30 Oct 2019 14:55:57 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Wed, 30 Oct 2019 14:55:44 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 30 Oct 2019 14:55:45 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 30 Oct 2019 14:55:44 -0500
+	Frontend Transport; Wed, 30 Oct 2019 14:55:57 -0500
 Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9UJtuwm112935
-	for <meta-arago@arago-project.org>; Wed, 30 Oct 2019 14:55:56 -0500
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9UJtuwp112935
+	for <meta-arago@arago-project.org>; Wed, 30 Oct 2019 14:55:57 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 30 Oct 2019 15:55:44 -0400
-Message-ID: <20191030195550.17767-2-e-ruei1@ti.com>
+Date: Wed, 30 Oct 2019 15:55:47 -0400
+Message-ID: <20191030195550.17767-5-e-ruei1@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191030195550.17767-1-e-ruei1@ti.com>
 References: <20191030195550.17767-1-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master][PATCH v2 1/7] packagegroup-arago-xxx-qte-xxx: re-enable qtwebengine per EGL 1.5 for AM3/4/5
+Subject: [thud/master][PATCH v2 4/7] HACK: qtwebkit: define MESA_EGL_NO_X11_HEADERS at ANGLE/khrplatform.h
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,116 +53,69 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Wed, 30 Oct 2019 19:57:19 -0000
 Content-Type: text/plain
 
-qtwebengine 5.11.3 works well with mesa-based EGL 1.5 on AM3/4/5 although
-there are still some display issues on AM6 (arm64).
+This is a tentative workaround due to unclean qtwebkit build procedure
+where khrplatform.h under both sysroot/usr/include and 3rdparty/ANGLE
+is used.
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- .../packagegroups/packagegroup-arago-qte.bb          |  9 +++++----
- .../packagegroups/packagegroup-arago-tisdk-qte.bb    |  7 +++++--
- .../packagegroup-arago-qte-toolchain-target.bb       | 12 +++++++-----
- 3 files changed, 17 insertions(+), 11 deletions(-)
+ ...atform.h-add-define-MESA_EGL_NO_X11_.patch | 30 +++++++++++++++++++
+ .../recipes-qt/qt5/qtwebkit_%.bbappend        |  3 +-
+ 2 files changed, 32 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-index 8cfcdfc3..b48b8c9f 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to add Qt embedded related packages"
- LICENSE = "MIT"
--PR = "r15"
-+PR = "r16"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
+new file mode 100644
+index 00000000..29521a8e
+--- /dev/null
++++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
+@@ -0,0 +1,30 @@
++From 4a21fcedd886772b7e1bd40861835f1b4f33c7ff Mon Sep 17 00:00:00 2001
++From: Eric Ruei <e-ruei1@ti.com>
++Date: Fri, 30 Aug 2019 17:41:13 -0400
++Subject: [PATCH] HACK: ANGLE/khrplatform.h: add #define
++ MESA_EGL_NO_X11_HEADERS
++
++Note: Only the KHR/khrplatform.h at sysroot/usr/include should be used.
++      This patch is a tentative workaround to make both files compatible
++
++Upstream-Status: Inappropriate [tentative workaround only]
++
++Signed-off-by: Eric Ruei <e-ruei1@ti.com>
++---
++ Source/ThirdParty/ANGLE/include/KHR/khrplatform.h | 2 ++
++ 1 file changed, 2 insertions(+)
++
++diff --git a/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h b/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
++index c9e6f17d3..4e3ff69a8 100644
++--- a/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
+++++ b/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
++@@ -279,4 +279,6 @@ typedef enum {
++     KHRONOS_BOOLEAN_ENUM_FORCE_SIZE = KHRONOS_MAX_ENUM
++ } khronos_boolean_enum_t;
++ 
+++#define MESA_EGL_NO_X11_HEADERS
+++
++ #endif /* __khrplatform_h_ */
++-- 
++2.17.1
++
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+index 75213487..1dbe40d1 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+@@ -6,9 +6,10 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -41,6 +41,7 @@ QT5_ESSENTIALS = "\
-     qtvirtualkeyboard-plugins \
-     qtvirtualkeyboard-qmlplugins \
-     qtwebkit-qmlplugins \
-+    qtwebengine-qmlplugins \
-     liberation-fonts \
-     qtconnectivity \
-     qtconnectivity-qmlplugins \
-@@ -49,9 +50,9 @@ QT5_ESSENTIALS = "\
- #QT5_ESSENTIALS_append_k3 = "\
- #    qtwebkit-qmlplugins \
- #"
--#QT5_ESSENTIALS_remove_k3 = "\
--#    qtwebengine-qmlplugins \
--#"
-+QT5_ESSENTIALS_remove_k3 = "\
-+    qtwebengine-qmlplugins \
-+"
- 
- RDEPENDS_${PN} = "\
-     ${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_ESSENTIALS}", "${QT4_ESSENTIALS}", d)} \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-index 8c73a4be..09516693 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to add Qt embedded related packages"
- LICENSE = "MIT"
--PR = "r21"
-+PR = "r22"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -23,13 +23,16 @@ QT5_DEMOS = "\
-     qtsvg-examples \
-     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-examples', '', d)} \
-     qtwebkit-examples-examples \
-+    qtwebengine-examples \
-     qtserialport-examples \
-     qtcharts-examples \
+ SRC_URI += " \
+ 	file://GraphicsSurfaceGL_NoX.cpp.patch \
++	file://0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch \
  "
  
- #QT5_DEMOS_append_k3 = " qtwebkit-examples-examples"
- #
--#QT5_DEMOS_remove_k3 = "\
-+QT5_DEMOS_remove_k3 = "\
-+    qtwebengine-examples \
-+"
- #    qtwebbrowser \
- #    qtwebbrowser-examples \
- #    qtwebengine-examples \
-diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-index a5ed1bff..a90f56c0 100644
---- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-+++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-@@ -1,7 +1,7 @@
- DESCRIPTION = "Target packages for Qt Embedded SDK"
- LICENSE = "MIT"
+-PR_append = ".arago7"
++PR_append = ".arago8"
  
--PR = "r15"
-+PR = "r16"
+ EXTRA_OECMAKE_append = " -DCMAKE_BUILD_TYPE=Release"
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -63,6 +63,8 @@ QT5_DEV = " \
-         qtxmlpatterns-dev \
-         qtwebkit-mkspecs \
-         qtwebkit-dev \
-+        qtwebengine-mkspecs \
-+        qtwebengine-dev \
-         qtserialport-mkspecs \
-         qtserialport-dev  \
-         qtcharts-mkspecs \
-@@ -74,10 +76,10 @@ QT5_DEV = " \
- #        qtwebkit-dev \
- #"
- #
--#QT5_DEV_remove_k3 = " \
--#        qtwebengine-mkspecs \
--#        qtwebengine-dev \
--#"
-+QT5_DEV_remove_k3 = " \
-+        qtwebengine-mkspecs \
-+        qtwebengine-dev \
-+"
- 
- RDEPENDS_${PN} += " \
-         ${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_DEV}", "${QT4_DEV}", d)} \
 -- 
 2.17.1
 
