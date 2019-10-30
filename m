@@ -1,43 +1,44 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id AD41252A47
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 05132529F3
 	for <meta-arago@arago-project.org>;
 	Wed, 30 Oct 2019 19:57:18 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9UJtwVp122956
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9UJtwKu126922
 	for <meta-arago@arago-project.org>; Wed, 30 Oct 2019 14:55:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1572465358;
-	bh=9FOvb0QpAX9YiKZQ0SuwiFdqB5efRKSA892haUzf0IM=;
+	bh=dvBAtAUPDr1AM7OQG17ccNbBiiBA+WCzmIx14Xim0sQ=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=JZwj77PRtBO1Jr5FqrmTZAJFoh/uy3zgvvGT3LZDxcjSqoiH35a2dyz9pDY1MH473
-	PAHOjotdqvNVD9EJgbQtbBaNuA9jfpqzZQmxSiuCN9bHuaRHWlIaWFwP2r62/8CvC9
-	U9JW6KSVRoZlxbY3snnn6Tx2MwO38DRbzNL1DOMo=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9UJtwMI031271
+	b=r2kovriaec00zlR+V4kDDXrEwJ46VoIejgxldJ7OhKzAwm6qPCE5D5XEpmrvr5hjC
+	EHc/bXvpsFBhV2KGVLKne7rybI3rFSTGX3MtBG75L/kJd91ew3oQ6RPcIi9PFn2+sn
+	vFHT0dpBmLNamK8a5CD0ykODSYKPuaNXlBY2yhgA=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9UJtwNJ026259
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@arago-project.org>; Wed, 30 Oct 2019 14:55:58 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
 	Wed, 30 Oct 2019 14:55:45 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Wed, 30 Oct 2019 14:55:45 -0500
+	Frontend Transport; Wed, 30 Oct 2019 14:55:58 -0500
 Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9UJtuwr112935
-	for <meta-arago@arago-project.org>; Wed, 30 Oct 2019 14:55:57 -0500
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9UJtuws112935
+	for <meta-arago@arago-project.org>; Wed, 30 Oct 2019 14:55:58 -0500
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 30 Oct 2019 15:55:49 -0400
-Message-ID: <20191030195550.17767-7-e-ruei1@ti.com>
+Date: Wed, 30 Oct 2019 15:55:50 -0400
+Message-ID: <20191030195550.17767-8-e-ruei1@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191030195550.17767-1-e-ruei1@ti.com>
 References: <20191030195550.17767-1-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master][PATCH v2 6/7] omapdrmtest: Update LDFLAGS at util/Makefile.am per Mesa-based EGL
+Subject: [thud/master][PATCH v2 7/7] HACK: matrix-gui-machinevision-demos: disable point-cloud-viewer
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,77 +51,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Oct 2019 19:57:21 -0000
+X-List-Received-Date: Wed, 30 Oct 2019 19:57:23 -0000
 Content-Type: text/plain
 
-- Replace pvr_wlegl with wayland_egl in the LDFLAGS string
+Disable RDEPENDS point-cloud-viewer tentatively until the updated binary
+built against the MESA-based EGL is available
 
 Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- ...am-update-LDFLAGS-for-Mesa-based-EGL.patch | 32 +++++++++++++++++++
- .../omapdrmtest/omapdrmtest_1.0.0.bb          |  3 +-
- 2 files changed, 34 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-graphics/omapdrmtest/files/0001-util-Makefile.am-update-LDFLAGS-for-Mesa-based-EGL.patch
+ .../matrix/matrix-gui-machinevision-demos_2.0.bb            | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/files/0001-util-Makefile.am-update-LDFLAGS-for-Mesa-based-EGL.patch b/meta-arago-extras/recipes-graphics/omapdrmtest/files/0001-util-Makefile.am-update-LDFLAGS-for-Mesa-based-EGL.patch
-new file mode 100644
-index 00000000..4774425f
---- /dev/null
-+++ b/meta-arago-extras/recipes-graphics/omapdrmtest/files/0001-util-Makefile.am-update-LDFLAGS-for-Mesa-based-EGL.patch
-@@ -0,0 +1,32 @@
-+From 06b21346d662209f5ea9816f408f9f883b775d60 Mon Sep 17 00:00:00 2001
-+From: Eric Ruei <e-ruei1@ti.com>
-+Date: Mon, 28 Oct 2019 09:43:47 -0400
-+Subject: [PATCH] util: Makefile.am: update LDFLAGS for Mesa-based EGL
-+
-+- replace pvr_wlegl with wayland-egl
-+
-+Upstream-Status: Pending
-+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-+---
-+ util/Makefile.am | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+ mode change 100644 => 100755 util/Makefile.am
-+
-+diff --git a/util/Makefile.am b/util/Makefile.am
-+old mode 100644
-+new mode 100755
-+index 2bfcb5e..fdeb877
-+--- a/util/Makefile.am
-++++ b/util/Makefile.am
-+@@ -37,7 +37,7 @@ endif
-+ if ENABLE_WAYLAND
-+ libutil_la_SOURCES += display-wayland.c wayland-drm-protocol.c viewporter-protocol.c
-+ libutil_la_CFLAGS = @DRM_CFLAGS@
-+-libutil_la_LDFLAGS = -lwayland-client -lwayland-cursor -ldrm -ldrm_omap -lpthread -lpvr_wlegl -lavcodec
-++libutil_la_LDFLAGS = -lwayland-client -lwayland-cursor -ldrm -ldrm_omap -lpthread -lwayland-egl -lavcodec
-+ 
-+ endif
-+ 
-+-- 
-+2.17.1
-+
-diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-index 079663e7..bb166b74 100644
---- a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-+++ b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-@@ -9,7 +9,7 @@ COMPATIBLE_MACHINE = "omap-a15|ti43x"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
+index cadfefac..4337ae9d 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
+@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitorious.org/matrix-gui-v2/matrix-gui-v2-apps"
  
- inherit autotools pkgconfig
+ require recipes-core/matrix/matrix-gui-apps-git.inc
  
--PR = "r28"
-+PR = "r29"
- SRCREV = "20338b9f575ffe9c18c12bbed41c16069d27ccf4"
+-PR = "${INC_PR}.4"
++PR = "${INC_PR}.5"
  
- EXTRA_OEMAKE = "CC="${CC}""
-@@ -17,6 +17,7 @@ TARGET_CC_ARCH += "${LDFLAGS}"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- SRC_URI = "git://git.ti.com/glsdk/omapdrmtest.git;protocol=git \
-         file://0001-Makefile.am-lblah-flags-belong-to-LDADD-not-LDFLAGS.patch \
-+	file://0001-util-Makefile.am-update-LDFLAGS-for-Mesa-based-EGL.patch \
+@@ -25,9 +25,11 @@ RDEPENDS_matrix-machinevision-demo-dlp3dscanner = " \
  "
  
- S = "${WORKDIR}/git"
+ RDEPENDS_matrix-machinevision-demo-dlp3dscanner_append_dra7xx = " \
+-    ${@bb.utils.contains('MACHINE_FEATURES','gpu','point-cloud-viewer','',d)} \
+ "
+ 
++#    ${@bb.utils.contains('MACHINE_FEATURES','gpu','point-cloud-viewer','',d)} \
++#
++
+ RDEPENDS_matrix-machinevision-demo-barcoderoi = " \
+     ${MACHINEVISION_RDEPENDS} \
+     barcode-roi \
 -- 
 2.17.1
 
