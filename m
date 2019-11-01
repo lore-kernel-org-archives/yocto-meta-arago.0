@@ -1,32 +1,44 @@
 Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 268DC529F7
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 44B2F52A00
 	for <meta-arago@arago-project.org>;
-	Fri,  1 Nov 2019 00:54:48 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 9B53B40BCF;
-	Fri,  1 Nov 2019 00:53:27 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 9TaxASsHxgxA; Fri,  1 Nov 2019 00:53:27 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 82F4640BF0;
-	Fri,  1 Nov 2019 00:53:26 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 391EC1742D9;
-	Thu, 31 Oct 2019 20:53:26 -0400 (EDT)
+	Fri,  1 Nov 2019 03:16:47 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xA13FQle025810
+	for <meta-arago@arago-project.org>; Thu, 31 Oct 2019 22:15:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1572578126;
+	bh=tCh14sfcgVaNuPOuIZtadJKjUrL9HOKYyiG1niwsTLA=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=lp8VCBcR02OqxWSsfH27jPcJudrDxiqoDs7twRBpjr1es5xVjCTXrpdCM3dnBjLLB
+	b4VqpBtQrmuw4Au1Qe23NzGBuiS8jGTbBNiqllmvzpgt7IoY0FdxAm9pRQadRWQPtH
+	N4Nd4bQyN63hn1Do9qDa/7FQGyHdjyRRZsBUpcUU=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xA13FQNg022246
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Thu, 31 Oct 2019 22:15:26 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
+	Thu, 31 Oct 2019 22:15:12 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+	Frontend Transport; Thu, 31 Oct 2019 22:15:13 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xA13FPHr119078;
+	Thu, 31 Oct 2019 22:15:26 -0500
+Date: Thu, 31 Oct 2019 23:15:25 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Thu, 31 Oct 2019 20:53:24 -0400
-Message-Id: <1572569604-34682-2-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1572569604-34682-1-git-send-email-denys@ti.com>
-References: <1572569604-34682-1-git-send-email-denys@ti.com>
-Subject: [thud/master][PATCH 2/2] optee: update to 3.7.0
+To: Eric Ruei <e-ruei1@ti.com>
+Message-ID: <20191101031525.GY32214@beryl>
+References: <20191030195550.17767-1-e-ruei1@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <20191030195550.17767-1-e-ruei1@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [thud/master][PATCH v2 0/7] Mesa-based EGL/GLES
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,143 +51,58 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Nov 2019 00:54:48 -0000
+X-List-Received-Date: Fri, 01 Nov 2019 03:16:47 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../recipes-security/optee/optee-client.bbappend   |  4 +-
- .../recipes-security/optee/optee-os_git.bbappend   |  6 +--
- ...Makefile-fix-COMPILE_NS_USER-not-being-se.patch | 52 ----------------------
- .../recipes-security/optee/optee-test_git.bbappend | 10 +++--
- 4 files changed, 11 insertions(+), 61 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-security/optee/optee-test/0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch
+qtwebengine fails with this:
+cannot find -lIMGegl
 
-diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-index a203bda..c653612 100644
---- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-@@ -5,10 +5,10 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
- 
- LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=69663ab153298557a59c67a60a743e5b"
- 
--PV = "3.5.0+git${SRCPV}"
-+PV = "3.7.0+git${SRCPV}"
- 
- BRANCH = "ti-optee-client"
--SRCREV = "1f8f9abe4a31abd7b7490a7ddd9bbe812c92d5af"
-+SRCREV = "2e526f4be1d471706915ba1e0044bcbe7c0b2626"
- 
- do_install() {
-     oe_runmake install
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-index 2cd7a67..f8b329c 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-@@ -4,11 +4,11 @@ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=c1f21c4f72f372ef38a5a4aee55ec173"
- 
- inherit python3native
- 
--DEPENDS += "python3-pyelftools-native"
-+DEPENDS += "python3-pyelftools-native python3-pycrypto-native"
- 
- PR_append = ".arago0"
- 
--PV = "3.6.0+git${SRCPV}"
-+PV = "3.7.0+git${SRCPV}"
- 
- is_armv7 = "1"
- is_armv7_aarch64 = "0"
-@@ -17,7 +17,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
-            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
- "
- BRANCH = "ti-optee-os"
--SRCREV = "e5a8779a6ffa2aa7ad01aed43608bcb9321817c6"
-+SRCREV = "5208e5c1f3743fcde71e150eada2fc9945f749df"
- 
- ARMCORE = "CFG_ARM32_core=y ta-targets=ta_arm32"
- ARMCORE_aarch64 = "CFG_ARM64_core=y ta-targets=ta_arm64"
-diff --git a/meta-arago-distro/recipes-security/optee/optee-test/0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch b/meta-arago-distro/recipes-security/optee/optee-test/0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch
-deleted file mode 100644
-index f7cf97f..0000000
---- a/meta-arago-distro/recipes-security/optee/optee-test/0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch
-+++ /dev/null
-@@ -1,52 +0,0 @@
--From 001c6b560ccd4f66dc4b623e8b2c3f93bd2cab43 Mon Sep 17 00:00:00 2001
--From: Denys Dmytriyenko <denys@ti.com>
--Date: Tue, 19 Jun 2018 14:11:18 -0400
--Subject: [PATCH] host/xtest/Makefile: fix COMPILE_NS_USER not being set by
-- default
--
--The build for TI ARM32 platforms attempts linking with aarch64 libcrypto.a
--and breaks, even when CFG_ARM32_core is set in the optee-os TA devkit.
--
--Fix it by moving setting of COMPILE_NS_USER based on CFG_ARM32_core outside
--of ifdef CFG_GP_PACKAGE_PATH, as it's also needed for CFG_TA_MBEDTLS
--
--Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-----
-- host/xtest/Makefile | 14 +++++++-------
-- 1 file changed, 7 insertions(+), 7 deletions(-)
--
--diff --git a/host/xtest/Makefile b/host/xtest/Makefile
--index 47d24c2..2073cf6 100644
----- a/host/xtest/Makefile
--+++ b/host/xtest/Makefile
--@@ -24,6 +24,13 @@ OBJCOPY		?= $(CROSS_COMPILE)objcopy
-- OBJDUMP		?= $(CROSS_COMPILE)objdump
-- READELF		?= $(CROSS_COMPILE)readelf
-- 
--+# by default, the client application is compiled as the kernel of optee-os
--+ifeq ($(CFG_ARM32_core),y)
--+COMPILE_NS_USER ?= 32
--+else
--+COMPILE_NS_USER ?= 64
--+endif
--+
-- # OpenSSL is used by GP tests series 8500 and Mbed TLS test 8103
-- ifneq (,$(filter y,$(CFG_GP_PACKAGE_PATH) $(CFG_TA_MBEDTLS)))
-- CFLAGS += -I../openssl/include -DOPENSSL_FOUND=1
--@@ -122,13 +129,6 @@ CFLAGS += -I../../ta/GP_TTA_check_OpenSession_with_4_parameters
-- CFLAGS += -I../../ta/GP_TTA_testingClientAPI
-- 
-- 
---# by default, the client application is compiled as the kernel of optee-os
---ifeq ($(CFG_ARM32_core),y)
---COMPILE_NS_USER ?= 32
---else
---COMPILE_NS_USER ?= 64
---endif
---
-- endif
-- 
-- TA_DIR ?= /lib/optee_armtz
---- 
--2.7.4
--
-diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-index 001f04f..42bdadf 100644
---- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-@@ -1,12 +1,14 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
-+inherit python3native
-+
-+DEPENDS += "python3-pycrypto-native"
-+
- PR_append = ".arago0"
- 
- SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
- 
--SRC_URI += "file://0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch"
--
--PV = "3.5.0+git${SRCPV}"
-+PV = "3.7.0+git${SRCPV}"
- 
- BRANCH = "ti-optee-test"
--SRCREV = "e4f6f76b4cb5763112f4722981f84a26f4ac7e55"
-+SRCREV = "7c68d7b098b19363ada3c48b133484b018254fb1"
--- 
-2.7.4
 
+On Wed, Oct 30, 2019 at 03:55:43PM -0400, Eric Ruei wrote:
+> These are the corresponding patches with Mesa-based EGL/GLES including
+> - re-enable qtwebengine for AM3/4/5
+> - several hacks to resolve compiling issues triggered by  mesa-based EGL
+>   header files
+> - Add DRM(GBM)-based 3D demos
+> - Makefile cleanup per Mesa-based EGL library names 
+> 
+> V2 changes:
+> - Add Upstream-Status to Weston and qtWebkit patches
+> 
+> Eric Ruei (7):
+>   packagegroup-arago-xxx-qte-xxx: re-enable qtwebengine per EGL 1.5 for
+>     AM3/4/5
+>   qtbase-conf: set the default EGLFS mode to kms
+>   HACK: weston: undefine HAVE_GBM_MODIFIERS explicitly
+>   HACK: qtwebkit: define MESA_EGL_NO_X11_HEADERS at ANGLE/khrplatform.h
+>   img-pvr-sdk: Add DRM(GBM)-based GPU demos
+>   omapdrmtest: Update LDFLAGS at util/Makefile.am per Mesa-based EGL
+>   HACK: matrix-gui-machinevision-demos: disable point-cloud-viewer
+> 
+>  .../packagegroups/packagegroup-arago-qte.bb   |  9 +--
+>  .../packagegroup-arago-tisdk-qte.bb           |  7 +-
+>  ...rm-undef-HAVE_GBM_MODIFIERS-explicit.patch | 31 ++++++++
+>  .../wayland/weston_5.0.0.bbappend             |  3 +-
+>  .../recipes-qt/qt5/qtbase-conf/qt_env.sh      |  2 +-
+>  .../qt5/qtbase-conf/ti33x/qt_env.sh           |  2 +-
+>  ...atform.h-add-define-MESA_EGL_NO_X11_.patch | 30 ++++++++
+>  .../recipes-qt/qt5/qtwebkit_%.bbappend        |  3 +-
+>  .../matrix-gui-machinevision-demos_2.0.bb     |  6 +-
+>  ...packagegroup-arago-qte-toolchain-target.bb | 12 ++--
+>  .../img-pvr-sdk/img-pvr-sdk_3.3.2.bb          | 71 ++++++++++---------
+>  ...am-update-LDFLAGS-for-Mesa-based-EGL.patch | 32 +++++++++
+>  .../omapdrmtest/omapdrmtest_1.0.0.bb          |  3 +-
+>  13 files changed, 161 insertions(+), 50 deletions(-)
+>  create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0001-HACK-composito-drm-undef-HAVE_GBM_MODIFIERS-explicit.patch
+>  create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
+>  create mode 100644 meta-arago-extras/recipes-graphics/omapdrmtest/files/0001-util-Makefile.am-update-LDFLAGS-for-Mesa-based-EGL.patch
+> 
+> -- 
+> 2.17.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
