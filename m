@@ -1,42 +1,30 @@
-Return-Path: <yan-liu@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 872715299A
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 0DA125299A
 	for <meta-arago@arago-project.org>;
-	Thu, 31 Oct 2019 22:11:57 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9VMAaE9021891
-	for <meta-arago@arago-project.org>; Thu, 31 Oct 2019 17:10:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1572559836;
-	bh=abMabMaSG0GOdIf0ICK11K5xnBVuvatfnWCHKA6zX6A=;
-	h=From:To:CC:Subject:Date;
-	b=Lrt/3o/COTWpwlPKO0N5EdjSOdRx/n3UpEH0c6BMnpOyCRmx/axcm/cT7o7fDbMrj
-	hZr4GbF6pA1DqWtbBflIldC1wAFL1y6xpRMbQ5OCQdgLV6Nni/v6/KrPZyLR17RwUs
-	Vx+yKS24XyYpWY+2LSnuEgcid1ftIL0ZicRa27lQ=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9VMAari047181
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 31 Oct 2019 17:10:36 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 31 Oct 2019 17:10:23 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Thu, 31 Oct 2019 17:10:23 -0500
-Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9VMAa7s044263;
-	Thu, 31 Oct 2019 17:10:36 -0500
-From: <yan-liu@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 31 Oct 2019 18:07:36 -0400
-Message-ID: <1572559657-3340-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+	Fri,  1 Nov 2019 00:54:47 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 78B1A40BFE;
+	Fri,  1 Nov 2019 00:53:27 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id uta1aROO4kv4; Fri,  1 Nov 2019 00:53:27 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6424840BCF;
+	Fri,  1 Nov 2019 00:53:26 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 2CB541742CE;
+	Thu, 31 Oct 2019 20:53:26 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Thu, 31 Oct 2019 20:53:23 -0400
+Message-Id: <1572569604-34682-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [thud/master][PATCH 1/2] ti-sci-fw: update to 2019.09
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,39 +37,70 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Oct 2019 22:11:57 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 01 Nov 2019 00:54:48 -0000
 
-From: Yan Liu <yan-liu@ti.com>
-
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../{ti-sci-fw_2019.08.bb => ti-sci-fw_2019.09.bb}    | 19 ++++---------------
+ 1 file changed, 4 insertions(+), 15 deletions(-)
+ rename meta-arago-distro/recipes-bsp/ti-sci-fw/{ti-sci-fw_2019.08.bb => ti-sci-fw_2019.09.bb} (71%)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-index 628d648..e50eaea 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb
+similarity index 71%
+rename from meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
+rename to meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb
+index a8fa994..24081d6 100644
+--- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
++++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb
+@@ -14,9 +14,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ TI_SECURE_DEV_PKG ?= ""
+ export TI_SECURE_DEV_PKG
  
--PR = "r16"
-+PR = "r17"
- PV_append = "+git${SRCPV}"
+-SRCREV = "c75bca342d5a8579c3a459515adb6b77d640a245"
++SRCREV = "2b292f87e7257d4f9103d4e862a7b1769b13fed7"
+ BRANCH ?= "ti-linux-firmware"
+-SRCREV_imggen = "92623d82dc683e74225ceaac239b29deac437adf"
++SRCREV_imggen = "8e6b34ad71b244f055f3d9a0107f6e905dd53e22"
+ SRCREV_FORMAT = "imggen"
  
- PROVIDES += "ltp"
-@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+ SRC_URI = " \
+@@ -24,17 +24,6 @@ SRC_URI = " \
+ 	git://git.ti.com/processor-firmware/system-firmware-image-gen.git;protocol=git;branch=master;destsuffix=imggen;name=imggen \
+ "
  
- inherit autotools-brokensep
+-# Please note, "install.source.dir.local" is not a real URL, below files need to be pre-downloaded
+-SRC_URI_append_am65xx-hs-evm = " \
+-	http://install.source.dir.local/ti-sci-firmware-am65x-hs-cert.bin;name=hs-cert \
+-	http://install.source.dir.local/ti-sci-firmware-am65x-hs-enc.bin;name=hs-enc \
+-"
+-
+-SRC_URI[hs-cert.md5sum] = "b5ad8a9e8d7d0bc2c0d075ce06a15213"
+-SRC_URI[hs-cert.sha256sum] = "f79cf2696f4dac4f682a79336e7be86df50bddf764234bd82ac67921565e6129"
+-SRC_URI[hs-enc.md5sum] = "dfe6eac6a650b9b3ac2a9a679e5e5678"
+-SRC_URI[hs-enc.sha256sum] = "6389d873889b63c32d9aa3aaae7f0ebd21d1e97e32c176a8daf514e99e412d17"
+-
+ S = "${WORKDIR}/git"
  
--SRCREV = "5a928ca2829c5efb7c2dc833796f74fb36b279c7"
-+SRCREV = "714a81d464bcfd96d0eff11f7af64b41ba51904a"
- BRANCH ?= "master"
+ SYSFW_SOC_am65xx = "am65x"
+@@ -47,7 +36,7 @@ SYSFW_BASE = "${SYSFW_PREFIX}-${SYSFW_SOC}-gp"
+ SYSFW_BASE_am65xx-hs-evm = "${SYSFW_PREFIX}-${SYSFW_SOC}-hs"
  
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+ SYSFW_TISCI = "${S}/ti-sysfw/${SYSFW_BASE}.bin"
+-SYSFW_TISCI_am65xx-hs-evm = "${WORKDIR}/${SYSFW_BASE}-*.bin"
++SYSFW_TISCI_am65xx-hs-evm = "${S}/ti-sysfw/${SYSFW_BASE}-*.bin"
+ 
+ SYSFW_BINARY = "sysfw-${SYSFW_SOC}-${SYSFW_CONFIG}.itb"
+ SYSFW_IMAGE = "sysfw-${PV}.itb"
+@@ -69,7 +58,7 @@ EXTRA_OEMAKE = "\
+     SYSFW_PATH="${SYSFW_TISCI}" SOC=${SYSFW_SOC} CONFIG=${SYSFW_CONFIG} \
+ "
+ EXTRA_OEMAKE_append_am65xx-hs-evm = " \
+-    HS=1 SYSFW_HS_PATH="${WORKDIR}/${SYSFW_BASE}-enc.bin" SYSFW_HS_INNER_CERT_PATH="${WORKDIR}/${SYSFW_BASE}-cert.bin" \
++    HS=1 SYSFW_HS_PATH="${S}/ti-sysfw/${SYSFW_BASE}-enc.bin" SYSFW_HS_INNER_CERT_PATH="${S}/ti-sysfw/${SYSFW_BASE}-cert.bin" \
+ "
+ 
+ do_compile() {
 -- 
-1.7.9.5
+2.7.4
 
 
