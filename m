@@ -1,30 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 0DA125299A
+	by arago-project.org (Postfix) with ESMTPS id 268DC529F7
 	for <meta-arago@arago-project.org>;
-	Fri,  1 Nov 2019 00:54:47 +0000 (UTC)
+	Fri,  1 Nov 2019 00:54:48 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 78B1A40BFE;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 9B53B40BCF;
 	Fri,  1 Nov 2019 00:53:27 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id uta1aROO4kv4; Fri,  1 Nov 2019 00:53:27 +0000 (UTC)
+	with ESMTP id 9TaxASsHxgxA; Fri,  1 Nov 2019 00:53:27 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6424840BCF;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 82F4640BF0;
 	Fri,  1 Nov 2019 00:53:26 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 2CB541742CE;
+	by mail.denix.org (Postfix) with ESMTP id 391EC1742D9;
 	Thu, 31 Oct 2019 20:53:26 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Thu, 31 Oct 2019 20:53:23 -0400
-Message-Id: <1572569604-34682-1-git-send-email-denys@ti.com>
+Date: Thu, 31 Oct 2019 20:53:24 -0400
+Message-Id: <1572569604-34682-2-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH 1/2] ti-sci-fw: update to 2019.09
+In-Reply-To: <1572569604-34682-1-git-send-email-denys@ti.com>
+References: <1572569604-34682-1-git-send-email-denys@ti.com>
+Subject: [thud/master][PATCH 2/2] optee: update to 3.7.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,65 +43,138 @@ X-List-Received-Date: Fri, 01 Nov 2019 00:54:48 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../{ti-sci-fw_2019.08.bb => ti-sci-fw_2019.09.bb}    | 19 ++++---------------
- 1 file changed, 4 insertions(+), 15 deletions(-)
- rename meta-arago-distro/recipes-bsp/ti-sci-fw/{ti-sci-fw_2019.08.bb => ti-sci-fw_2019.09.bb} (71%)
+ .../recipes-security/optee/optee-client.bbappend   |  4 +-
+ .../recipes-security/optee/optee-os_git.bbappend   |  6 +--
+ ...Makefile-fix-COMPILE_NS_USER-not-being-se.patch | 52 ----------------------
+ .../recipes-security/optee/optee-test_git.bbappend | 10 +++--
+ 4 files changed, 11 insertions(+), 61 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-security/optee/optee-test/0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch
 
-diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb
-similarity index 71%
-rename from meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
-rename to meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb
-index a8fa994..24081d6 100644
---- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.08.bb
-+++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb
-@@ -14,9 +14,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- TI_SECURE_DEV_PKG ?= ""
- export TI_SECURE_DEV_PKG
+diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+index a203bda..c653612 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+@@ -5,10 +5,10 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
  
--SRCREV = "c75bca342d5a8579c3a459515adb6b77d640a245"
-+SRCREV = "2b292f87e7257d4f9103d4e862a7b1769b13fed7"
- BRANCH ?= "ti-linux-firmware"
--SRCREV_imggen = "92623d82dc683e74225ceaac239b29deac437adf"
-+SRCREV_imggen = "8e6b34ad71b244f055f3d9a0107f6e905dd53e22"
- SRCREV_FORMAT = "imggen"
+ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=69663ab153298557a59c67a60a743e5b"
  
- SRC_URI = " \
-@@ -24,17 +24,6 @@ SRC_URI = " \
- 	git://git.ti.com/processor-firmware/system-firmware-image-gen.git;protocol=git;branch=master;destsuffix=imggen;name=imggen \
+-PV = "3.5.0+git${SRCPV}"
++PV = "3.7.0+git${SRCPV}"
+ 
+ BRANCH = "ti-optee-client"
+-SRCREV = "1f8f9abe4a31abd7b7490a7ddd9bbe812c92d5af"
++SRCREV = "2e526f4be1d471706915ba1e0044bcbe7c0b2626"
+ 
+ do_install() {
+     oe_runmake install
+diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+index 2cd7a67..f8b329c 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+@@ -4,11 +4,11 @@ LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=c1f21c4f72f372ef38a5a4aee55ec173"
+ 
+ inherit python3native
+ 
+-DEPENDS += "python3-pyelftools-native"
++DEPENDS += "python3-pyelftools-native python3-pycrypto-native"
+ 
+ PR_append = ".arago0"
+ 
+-PV = "3.6.0+git${SRCPV}"
++PV = "3.7.0+git${SRCPV}"
+ 
+ is_armv7 = "1"
+ is_armv7_aarch64 = "0"
+@@ -17,7 +17,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
+            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
  "
+ BRANCH = "ti-optee-os"
+-SRCREV = "e5a8779a6ffa2aa7ad01aed43608bcb9321817c6"
++SRCREV = "5208e5c1f3743fcde71e150eada2fc9945f749df"
  
--# Please note, "install.source.dir.local" is not a real URL, below files need to be pre-downloaded
--SRC_URI_append_am65xx-hs-evm = " \
--	http://install.source.dir.local/ti-sci-firmware-am65x-hs-cert.bin;name=hs-cert \
--	http://install.source.dir.local/ti-sci-firmware-am65x-hs-enc.bin;name=hs-enc \
--"
+ ARMCORE = "CFG_ARM32_core=y ta-targets=ta_arm32"
+ ARMCORE_aarch64 = "CFG_ARM64_core=y ta-targets=ta_arm64"
+diff --git a/meta-arago-distro/recipes-security/optee/optee-test/0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch b/meta-arago-distro/recipes-security/optee/optee-test/0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch
+deleted file mode 100644
+index f7cf97f..0000000
+--- a/meta-arago-distro/recipes-security/optee/optee-test/0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch
++++ /dev/null
+@@ -1,52 +0,0 @@
+-From 001c6b560ccd4f66dc4b623e8b2c3f93bd2cab43 Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Tue, 19 Jun 2018 14:11:18 -0400
+-Subject: [PATCH] host/xtest/Makefile: fix COMPILE_NS_USER not being set by
+- default
 -
--SRC_URI[hs-cert.md5sum] = "b5ad8a9e8d7d0bc2c0d075ce06a15213"
--SRC_URI[hs-cert.sha256sum] = "f79cf2696f4dac4f682a79336e7be86df50bddf764234bd82ac67921565e6129"
--SRC_URI[hs-enc.md5sum] = "dfe6eac6a650b9b3ac2a9a679e5e5678"
--SRC_URI[hs-enc.sha256sum] = "6389d873889b63c32d9aa3aaae7f0ebd21d1e97e32c176a8daf514e99e412d17"
+-The build for TI ARM32 platforms attempts linking with aarch64 libcrypto.a
+-and breaks, even when CFG_ARM32_core is set in the optee-os TA devkit.
 -
- S = "${WORKDIR}/git"
+-Fix it by moving setting of COMPILE_NS_USER based on CFG_ARM32_core outside
+-of ifdef CFG_GP_PACKAGE_PATH, as it's also needed for CFG_TA_MBEDTLS
+-
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- host/xtest/Makefile | 14 +++++++-------
+- 1 file changed, 7 insertions(+), 7 deletions(-)
+-
+-diff --git a/host/xtest/Makefile b/host/xtest/Makefile
+-index 47d24c2..2073cf6 100644
+---- a/host/xtest/Makefile
+-+++ b/host/xtest/Makefile
+-@@ -24,6 +24,13 @@ OBJCOPY		?= $(CROSS_COMPILE)objcopy
+- OBJDUMP		?= $(CROSS_COMPILE)objdump
+- READELF		?= $(CROSS_COMPILE)readelf
+- 
+-+# by default, the client application is compiled as the kernel of optee-os
+-+ifeq ($(CFG_ARM32_core),y)
+-+COMPILE_NS_USER ?= 32
+-+else
+-+COMPILE_NS_USER ?= 64
+-+endif
+-+
+- # OpenSSL is used by GP tests series 8500 and Mbed TLS test 8103
+- ifneq (,$(filter y,$(CFG_GP_PACKAGE_PATH) $(CFG_TA_MBEDTLS)))
+- CFLAGS += -I../openssl/include -DOPENSSL_FOUND=1
+-@@ -122,13 +129,6 @@ CFLAGS += -I../../ta/GP_TTA_check_OpenSession_with_4_parameters
+- CFLAGS += -I../../ta/GP_TTA_testingClientAPI
+- 
+- 
+--# by default, the client application is compiled as the kernel of optee-os
+--ifeq ($(CFG_ARM32_core),y)
+--COMPILE_NS_USER ?= 32
+--else
+--COMPILE_NS_USER ?= 64
+--endif
+--
+- endif
+- 
+- TA_DIR ?= /lib/optee_armtz
+--- 
+-2.7.4
+-
+diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+index 001f04f..42bdadf 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+@@ -1,12 +1,14 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
- SYSFW_SOC_am65xx = "am65x"
-@@ -47,7 +36,7 @@ SYSFW_BASE = "${SYSFW_PREFIX}-${SYSFW_SOC}-gp"
- SYSFW_BASE_am65xx-hs-evm = "${SYSFW_PREFIX}-${SYSFW_SOC}-hs"
++inherit python3native
++
++DEPENDS += "python3-pycrypto-native"
++
+ PR_append = ".arago0"
  
- SYSFW_TISCI = "${S}/ti-sysfw/${SYSFW_BASE}.bin"
--SYSFW_TISCI_am65xx-hs-evm = "${WORKDIR}/${SYSFW_BASE}-*.bin"
-+SYSFW_TISCI_am65xx-hs-evm = "${S}/ti-sysfw/${SYSFW_BASE}-*.bin"
+ SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
  
- SYSFW_BINARY = "sysfw-${SYSFW_SOC}-${SYSFW_CONFIG}.itb"
- SYSFW_IMAGE = "sysfw-${PV}.itb"
-@@ -69,7 +58,7 @@ EXTRA_OEMAKE = "\
-     SYSFW_PATH="${SYSFW_TISCI}" SOC=${SYSFW_SOC} CONFIG=${SYSFW_CONFIG} \
- "
- EXTRA_OEMAKE_append_am65xx-hs-evm = " \
--    HS=1 SYSFW_HS_PATH="${WORKDIR}/${SYSFW_BASE}-enc.bin" SYSFW_HS_INNER_CERT_PATH="${WORKDIR}/${SYSFW_BASE}-cert.bin" \
-+    HS=1 SYSFW_HS_PATH="${S}/ti-sysfw/${SYSFW_BASE}-enc.bin" SYSFW_HS_INNER_CERT_PATH="${S}/ti-sysfw/${SYSFW_BASE}-cert.bin" \
- "
+-SRC_URI += "file://0001-host-xtest-Makefile-fix-COMPILE_NS_USER-not-being-se.patch"
+-
+-PV = "3.5.0+git${SRCPV}"
++PV = "3.7.0+git${SRCPV}"
  
- do_compile() {
+ BRANCH = "ti-optee-test"
+-SRCREV = "e4f6f76b4cb5763112f4722981f84a26f4ac7e55"
++SRCREV = "7c68d7b098b19363ada3c48b133484b018254fb1"
 -- 
 2.7.4
 
