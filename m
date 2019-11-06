@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 51AED529D4
+	by arago-project.org (Postfix) with ESMTPS id 6EB2852A31
 	for <meta-arago@arago-project.org>;
 	Wed,  6 Nov 2019 19:03:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id CF22C40BFD;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id DD1F540BF0;
 	Wed,  6 Nov 2019 19:02:32 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id oH-zsVLzE-dT; Wed,  6 Nov 2019 19:02:32 +0000 (UTC)
+	with ESMTP id tkP_e-uAeayV; Wed,  6 Nov 2019 19:02:32 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id BD69840BF0;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C3B6C40C27;
 	Wed,  6 Nov 2019 19:02:31 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id DD81C1742E2;
-	Wed,  6 Nov 2019 14:02:28 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id 00CC01742E4;
+	Wed,  6 Nov 2019 14:02:29 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Wed,  6 Nov 2019 14:02:20 -0500
-Message-Id: <1573066944-48181-6-git-send-email-denys@ti.com>
+Date: Wed,  6 Nov 2019 14:02:22 -0500
+Message-Id: <1573066944-48181-8-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1573066944-48181-1-git-send-email-denys@ti.com>
 References: <1573066944-48181-1-git-send-email-denys@ti.com>
-Subject: [RFC][PATCH 5/9] arago-test-image: drop unused image recipe
+Subject: [RFC][PATCH 7/9] arago-core-tisdk-bundle: add missing deployment of J7 SYSFW binary
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,35 +43,22 @@ X-List-Received-Date: Wed, 06 Nov 2019 19:03:58 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/images/arago-test-image.bb           | 19 -------------------
- 1 file changed, 19 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-core/images/arago-test-image.bb
+ meta-arago-distro/recipes-core/images/arago-core-tisdk-bundle.bb | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-test-image.bb b/meta-arago-distro/recipes-core/images/arago-test-image.bb
-deleted file mode 100644
-index 1142112..0000000
---- a/meta-arago-distro/recipes-core/images/arago-test-image.bb
-+++ /dev/null
-@@ -1,19 +0,0 @@
--# Arago System Test image
--# gives you test applications
--LICENSE = "MIT"
--
--require arago-image.inc
--
--IMAGE_FSTYPES = "tar.xz"
--
--IMAGE_INSTALL += "\
--    packagegroup-arago-base \
--    packagegroup-arago-console \
--    packagegroup-arago-base-tisdk \
--    packagegroup-arago-tisdk-crypto \
--    packagegroup-arago-tisdk-addons \
--    packagegroup-arago-test \
--    packagegroup-arago-test-addons \
--    "
--
--export IMAGE_BASENAME = "arago-test-image"
+diff --git a/meta-arago-distro/recipes-core/images/arago-core-tisdk-bundle.bb b/meta-arago-distro/recipes-core/images/arago-core-tisdk-bundle.bb
+index 8b8740b..2fffe1a 100644
+--- a/meta-arago-distro/recipes-core/images/arago-core-tisdk-bundle.bb
++++ b/meta-arago-distro/recipes-core/images/arago-core-tisdk-bundle.bb
+@@ -10,6 +10,7 @@ DEPLOY_SPL_NAME_k3 = "tispl.bin tiboot3.bin"
+ 
+ DEPLOY_IMAGES_NAME_k3 = "bl31.bin bl32.bin sysfw.itb"
+ DEPLOY_IMAGES_NAME_append_am65xx-evm = " ti-sci-firmware-am65x-gp.bin"
++DEPLOY_IMAGES_NAME_append_j7-evm = " ti-sci-firmware-j721e-gp.bin"
+ 
+-ARAGO_TISDK_IMAGE ?= "arago-core-tisdk-image"
++ARAGO_TISDK_IMAGE ?= "arago-core-tisdk-bundle"
+ export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}"
 -- 
 2.7.4
 
