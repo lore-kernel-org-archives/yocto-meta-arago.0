@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 1D6AA529DE
+	by arago-project.org (Postfix) with ESMTPS id 31826529E2
 	for <meta-arago@arago-project.org>;
 	Wed,  6 Nov 2019 19:03:54 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 93A5940C0F;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C712040C28;
 	Wed,  6 Nov 2019 19:02:31 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id VBcLI7JsJ5Td; Wed,  6 Nov 2019 19:02:31 +0000 (UTC)
+	with ESMTP id aWK0mc6pME6e; Wed,  6 Nov 2019 19:02:31 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7008740BD2;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A5AC340BF4;
 	Wed,  6 Nov 2019 19:02:30 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id AE488170490;
+	by mail.denix.org (Postfix) with ESMTP id B9FB3170527;
 	Wed,  6 Nov 2019 14:02:28 -0500 (EST)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Wed,  6 Nov 2019 14:02:16 -0500
-Message-Id: <1573066944-48181-2-git-send-email-denys@ti.com>
+Date: Wed,  6 Nov 2019 14:02:17 -0500
+Message-Id: <1573066944-48181-3-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1573066944-48181-1-git-send-email-denys@ti.com>
 References: <1573066944-48181-1-git-send-email-denys@ti.com>
-Subject: [RFC][PATCH 1/9] packagegroup-arago-cross-canadian: deprecate in favor of upstream packagegroup-cross-canadian
+Subject: [RFC][PATCH 2/9] nativesdk-packagegroup-arago-sdk-host: deprecate in favor of upstream nativesdk-packagegroup-sdk-host
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,75 +41,69 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
 X-List-Received-Date: Wed, 06 Nov 2019 19:03:55 -0000
 
-Upstream meta-environment already provides standard site-config and version
-files, keep our own environment-setup for now.
+Upstream nativesdk-packagegroup-sdk-host installs most host tools, but few more
+that we require should be added in nativesdk-packagegroup-arago-tisdk-host
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- ...bbappend => packagegroup-cross-canadian.bbappend} |  0
- .../recipes-core/meta/meta-toolchain-arago.bb        |  8 +-------
- .../packagegroup-arago-cross-canadian.bb             | 20 --------------------
- 3 files changed, 1 insertion(+), 27 deletions(-)
- rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-cross-canadian.bbappend => packagegroup-cross-canadian.bbappend} (100%)
- delete mode 100644 meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bb
+ .../recipes-core/meta/meta-toolchain-arago.bb       |  2 +-
+ .../nativesdk-packagegroup-arago-sdk-host.bb        | 21 ---------------------
+ .../nativesdk-packagegroup-arago-tisdk-host.bb      |  5 ++++-
+ 3 files changed, 5 insertions(+), 23 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bbappend b/meta-arago-distro/recipes-core/packagegroups/packagegroup-cross-canadian.bbappend
-similarity index 100%
-rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bbappend
-rename to meta-arago-distro/recipes-core/packagegroups/packagegroup-cross-canadian.bbappend
 diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-index 065531e..03d18a3 100644
+index 03d18a3..ecd645c 100644
 --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
 +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-@@ -1,6 +1,6 @@
- TOOLCHAIN_HOST_TASK ?= "nativesdk-packagegroup-arago-sdk-host"
+@@ -1,4 +1,4 @@
+-TOOLCHAIN_HOST_TASK ?= "nativesdk-packagegroup-arago-sdk-host"
++TOOLCHAIN_HOST_TASK ?= "nativesdk-packagegroup-sdk-host"
  TOOLCHAIN_HOST_TASK += "nativesdk-buildtools-perl-dummy"
--TOOLCHAIN_HOST_TASK += "packagegroup-arago-cross-canadian-${MACHINE}"
-+TOOLCHAIN_HOST_TASK += "packagegroup-cross-canadian-${MACHINE}"
+ TOOLCHAIN_HOST_TASK += "packagegroup-cross-canadian-${MACHINE}"
  TOOLCHAIN_TARGET_TASK ?= "packagegroup-arago-standalone-sdk-target"
- TOOLCHAIN_SUFFIX ?= "-sdk"
- TOOLCHAIN_OUTPUTNAME ?= "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}"
-@@ -113,14 +113,8 @@ arago_sdk_fixup () {
- }
- 
- fakeroot create_sdk_files() {
--	# Setup site file for external use
--	toolchain_create_sdk_siteconfig ${SDK_OUTPUT}/${SDKPATH}/site-config-${REAL_MULTIMACH_TARGET_SYS}
--
- 	toolchain_create_sdk_env_script ${SDK_OUTPUT}/${SDKPATH}/environment-setup
- 
--	# Add version information
--	toolchain_create_sdk_version ${SDK_OUTPUT}/${SDKPATH}/version-${REAL_MULTIMACH_TARGET_SYS}
--
- 	cp ${COREBASE}/scripts/relocate_sdk.py ${SDK_OUTPUT}/${SDKPATH}/
- 
- 	# Replace the ##DEFAULT_INSTALL_DIR## with the correct pattern.
-diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bb
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
 deleted file mode 100644
-index b89c5d0..0000000
---- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-cross-canadian.bb
+index 4199c2e..0000000
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-sdk-host.bb
 +++ /dev/null
-@@ -1,20 +0,0 @@
--SUMMARY = "Host Arago SDK package for cross canadian toolchain"
--PN = "packagegroup-arago-cross-canadian-${MACHINE}"
--PR = "r7"
+@@ -1,21 +0,0 @@
+-SUMMARY = "Host packages for a standalone Arago SDK or external toolchain"
+-PR = "r18"
+-LICENSE = "MIT"
 -
--inherit cross-canadian packagegroup
+-inherit packagegroup nativesdk
 -
 -PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
 -
--# Use indirection to stop these being expanded prematurely
--BINUTILS = "binutils-cross-canadian-${TRANSLATED_TARGET_ARCH}"
--GCC = "gcc-cross-canadian-${TRANSLATED_TARGET_ARCH}"
--GDB = "gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}"
--
 -RDEPENDS_${PN} = "\
--    ${@all_multilib_tune_values(d, 'BINUTILS')} \
--    ${@all_multilib_tune_values(d, 'GCC')} \
--    ${@all_multilib_tune_values(d, 'GDB')} \
--    "
--
--#    meta-environment-${MACHINE}
+-    nativesdk-pkgconfig \
+-    nativesdk-opkg \
+-    nativesdk-libtool \
+-    nativesdk-autoconf \
+-    nativesdk-automake \
+-    nativesdk-shadow \
+-    nativesdk-makedevs \
+-    nativesdk-python-distutils \
+-    nativesdk-git \
+-    nativesdk-cmake \
+-    nativesdk-mtd-utils-ubifs \
+-"
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
+index ef54253..c24652b 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
+@@ -20,6 +20,9 @@ EXTRA_TI_TOOLS = " \
+ "
+ 
+ RDEPENDS_${PN} = "\
+-    nativesdk-packagegroup-arago-sdk-host \
++    nativesdk-packagegroup-sdk-host \
++    nativesdk-python-distutils \
++    nativesdk-git \
++    nativesdk-mtd-utils-ubifs \
+     ${EXTRA_TI_TOOLS} \
+ "
 -- 
 2.7.4
 
