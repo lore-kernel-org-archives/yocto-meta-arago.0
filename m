@@ -1,44 +1,44 @@
 Return-Path: <e-ruei1@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 594AB52A3E
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 6B49252A44
 	for <meta-arago@arago-project.org>;
 	Fri,  8 Nov 2019 22:44:11 +0000 (UTC)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xA8MglbG114036
-	for <meta-arago@arago-project.org>; Fri, 8 Nov 2019 16:42:47 -0600
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xA8MgmkP012708
+	for <meta-arago@arago-project.org>; Fri, 8 Nov 2019 16:42:48 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1573252967;
-	bh=cofKCmpYt74NgR1W4jLbPqaEnkDQ9rPgyNEas62yATs=;
+	s=ti-com-17Q1; t=1573252968;
+	bh=qIaDuB4DzEi9Ic45JFiuAPGaME+JKW/b1oNv0JjVgEI=;
 	h=From:To:Subject:Date:In-Reply-To:References;
-	b=q5c2YZbLdQ2MGo39APHdP8xui7quIkTryYt+SnW5T/Odj1eTi63axMKXOUoJV6ydM
-	gTAkXHMljrjK3WpniPoovBN8p9jNKL8l6ZYpTW4sYUVrXGyxDRhmd6wXot3MYVO09H
-	TTzA1lkBICh+yBwegYPf+wsvyRMo0f18dHRrgWtQ=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xA8MglP1037258
+	b=OemFQi+/IhRsI46Imb0VkTtGnx//M/fENHN84CC+yJLr74AtPizY11R3KChaXxH0f
+	d6ZqCRluKnlbyEYx6qcVlIpUSI+8J7fY1EzQnkeWG+s72GP9cfjrZ+KF76/EyWnlEZ
+	0OF7rgcIhk+DyjdWMceqUN0iTveu65u68C3f4nek=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xA8Mgmo9037267
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 8 Nov 2019 16:42:47 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 8 Nov 2019 16:42:48 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Fri, 8 Nov 2019 16:42:47 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 8 Nov 2019 16:42:32 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
 	Frontend Transport; Fri, 8 Nov 2019 16:42:31 -0600
 Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xA8MgkmB115946
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xA8MgkmD115946
 	for <meta-arago@arago-project.org>; Fri, 8 Nov 2019 16:42:47 -0600
 From: Eric Ruei <e-ruei1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 8 Nov 2019 17:42:34 -0500
-Message-ID: <20191108224236.50548-3-e-ruei1@ti.com>
+Date: Fri, 8 Nov 2019 17:42:36 -0500
+Message-ID: <20191108224236.50548-5-e-ruei1@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191108224236.50548-1-e-ruei1@ti.com>
 References: <20191108224236.50548-1-e-ruei1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud][PATCH 2/4] Revert "glmark2: add tilcdc and tidss to the list of drm modules for AM3 and AM6 respectively"
+Subject: [thud][PATCH 4/4] glmark2: restrict udev enumeration to card0 only
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,64 +51,73 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Nov 2019 22:44:12 -0000
+X-List-Received-Date: Fri, 08 Nov 2019 22:44:14 -0000
 Content-Type: text/plain
 
-This reverts commit 47c4b0aeb5599fe4937cd6dca43b43b7795b064a.
-Start to use 2017.07 because all required EGL 1.5 extensions are
-supported by Mesa-based EGL now.
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- ...-add-tilcdc-and-tidss-to-drm_modules.patch | 28 -------------------
- .../recipes-benchmark/glmark2/glmark2_git.bb  |  1 -
- 2 files changed, 29 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-benchmark/glmark2/files/0001-native-state-drm-add-tilcdc-and-tidss-to-drm_modules.patch
+ ...-restrict-udev-enumeration-to-card0-.patch | 38 +++++++++++++++++++
+ .../glmark2/glmark2_git.bbappend              |  6 +++
+ 2 files changed, 44 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-benchmark/glmark2/glmark2/0001-native-state-drm-restrict-udev-enumeration-to-card0-.patch
+ create mode 100644 meta-arago-distro/recipes-benchmark/glmark2/glmark2_git.bbappend
 
-diff --git a/meta-arago-extras/recipes-benchmark/glmark2/files/0001-native-state-drm-add-tilcdc-and-tidss-to-drm_modules.patch b/meta-arago-extras/recipes-benchmark/glmark2/files/0001-native-state-drm-add-tilcdc-and-tidss-to-drm_modules.patch
-deleted file mode 100644
-index a66df92d..00000000
---- a/meta-arago-extras/recipes-benchmark/glmark2/files/0001-native-state-drm-add-tilcdc-and-tidss-to-drm_modules.patch
-+++ /dev/null
-@@ -1,28 +0,0 @@
--From b533b3a738b49aa8ca0ad31a3a1ae7e62f0cc883 Mon Sep 17 00:00:00 2001
--From: Eric Ruei <e-ruei1@ti.com>
--Date: Thu, 18 Oct 2018 14:06:24 -0400
--Subject: [PATCH] native-state-drm: add tilcdc and tidss to drm_modules list
--
--Upstream-Status: Pending
--
--Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-----
-- src/native-state-drm.cpp | 2 ++
-- 1 file changed, 2 insertions(+)
--
--diff --git a/src/native-state-drm.cpp b/src/native-state-drm.cpp
--index 5f4699f..ef369b0 100644
----- a/src/native-state-drm.cpp
--+++ b/src/native-state-drm.cpp
--@@ -207,6 +207,8 @@ NativeStateDRM::init()
--         "radeon",
--         "vmgfx",
--         "omapdrm",
--+        "tilcdc",
--+        "tidss",
--         "exynos",
--         "pl111",
--         "vc4",
---- 
--1.9.1
--
-diff --git a/meta-arago-extras/recipes-benchmark/glmark2/glmark2_git.bb b/meta-arago-extras/recipes-benchmark/glmark2/glmark2_git.bb
-index d7744add..85d7bf16 100644
---- a/meta-arago-extras/recipes-benchmark/glmark2/glmark2_git.bb
-+++ b/meta-arago-extras/recipes-benchmark/glmark2/glmark2_git.bb
-@@ -18,7 +18,6 @@ SRC_URI = "git://github.com/glmark2/glmark2.git;protocol=https \
-     file://build-Check-packages-to-be-used-by-the-enabled-flavo.patch \
-     file://0001-Fix-wl_surface-should-be-destoryed-after-the-wl_wind.patch \
-     file://Fix-configure-for-sqrt-check.patch \
--    file://0001-native-state-drm-add-tilcdc-and-tidss-to-drm_modules.patch \
- "
- SRCREV = "9b1070fe9c5cf908f323909d3c8cbed08022abe8"
- 
+diff --git a/meta-arago-distro/recipes-benchmark/glmark2/glmark2/0001-native-state-drm-restrict-udev-enumeration-to-card0-.patch b/meta-arago-distro/recipes-benchmark/glmark2/glmark2/0001-native-state-drm-restrict-udev-enumeration-to-card0-.patch
+new file mode 100644
+index 00000000..48c780cd
+--- /dev/null
++++ b/meta-arago-distro/recipes-benchmark/glmark2/glmark2/0001-native-state-drm-restrict-udev-enumeration-to-card0-.patch
+@@ -0,0 +1,38 @@
++From bdb9181fc9b8ba0e32129e07be0a92a6bce4dc55 Mon Sep 17 00:00:00 2001
++From: Eric Ruei <e-ruei1@ti.com>
++Date: Fri, 8 Nov 2019 11:49:28 -0500
++Subject: [PATCH] native-state-drm: restrict udev enumeration to card0 only
++
++In case of separate GPU and Display devices as found in embedded system,
++there could be modeset node and render node controlled by different
++drivers.  The current udev search algorithm does not verify whether
++the GPU DRM node is able to handle modesetting operation and thus select
++an invalid DRM node and then the DRM initialization will fail.
++
++This patch restricts the udev enumeration to card0 to ensure that the
++DRM device corresponding to dispaly is selected as the primarary DRM
++device.
++
++Upstream-Status: Inappropriate [Tentative workaround only]
++
++Signed-off-by: Eric Ruei <e-ruei1@ti.com>
++---
++ src/native-state-drm.cpp | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/src/native-state-drm.cpp b/src/native-state-drm.cpp
++index dc2b323..cf17d88 100644
++--- a/src/native-state-drm.cpp
+++++ b/src/native-state-drm.cpp
++@@ -280,7 +280,7 @@ static std::string udev_main_gpu_drm_node_path()
++     auto dev_enumeration = udev_enumerate_new(udev);
++ 
++     udev_enumerate_add_match_subsystem(dev_enumeration, "drm");
++-    udev_enumerate_add_match_sysname(dev_enumeration, "card[0-9]*");
+++    udev_enumerate_add_match_sysname(dev_enumeration, "card0");
++     udev_enumerate_scan_devices(dev_enumeration);
++ 
++     Log::debug("Looking for the main GPU DRM node...\n");
++-- 
++2.17.1
++
+diff --git a/meta-arago-distro/recipes-benchmark/glmark2/glmark2_git.bbappend b/meta-arago-distro/recipes-benchmark/glmark2/glmark2_git.bbappend
+new file mode 100644
+index 00000000..9cd8ce77
+--- /dev/null
++++ b/meta-arago-distro/recipes-benchmark/glmark2/glmark2_git.bbappend
+@@ -0,0 +1,6 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++PR_append = ".arago0"
++
++SRC_URI += "file://0001-native-state-drm-restrict-udev-enumeration-to-card0-.patch"
++
 -- 
 2.17.1
 
