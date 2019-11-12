@@ -1,30 +1,41 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id B8C83529D3
+Return-Path: <e-ruei1@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id D2D5C529D3
 	for <meta-arago@arago-project.org>;
-	Mon, 11 Nov 2019 22:00:22 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 81F3340C30;
-	Mon, 11 Nov 2019 21:58:58 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id pUzkMd10aoUi; Mon, 11 Nov 2019 21:58:58 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6B73540C27;
-	Mon, 11 Nov 2019 21:58:57 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 25A9B1742DC;
-	Mon, 11 Nov 2019 16:58:57 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 11 Nov 2019 16:58:56 -0500
-Message-Id: <1573509536-46955-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [tisdk-build-scripts][PATCH] arago-zeus: add initial config for zeus builds
+	Tue, 12 Nov 2019 21:46:14 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xACLioB9085453
+	for <meta-arago@arago-project.org>; Tue, 12 Nov 2019 15:44:50 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1573595090;
+	bh=WggkvIxNVO5zu0Hra5r+cHB3gxnlSEpDgw48PpD+Ifw=;
+	h=From:To:Subject:Date;
+	b=p9eJ3uGnGVa1yktaG4WQqfHyi9FW3y/svX4pguo3mtcN6mPLrE4XaMeZ23xvdnJYd
+	lqzQAguDuXSJ9b1xp8IVOb1Puwgkmno52LgDP+mtNqqiT7dIbfUCOVOIKJkjsjRwnM
+	N7lN9i4aX23Ux3uPIwfC3SSGExL1LC6GqB4IFtYQ=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xACLioXD032878
+	for <meta-arago@arago-project.org>; Tue, 12 Nov 2019 15:44:50 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Tue, 12 Nov 2019 15:44:32 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Tue, 12 Nov 2019 15:44:32 -0600
+Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xACLinA8012152
+	for <meta-arago@arago-project.org>; Tue, 12 Nov 2019 15:44:49 -0600
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 12 Nov 2019 16:44:40 -0500
+Message-ID: <20191112214440.36572-1-e-ruei1@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [thud/master][PATCH] qtbase-conf: add environment variable QT_QPA_EGLFS_ALWAYS_SET_MODE
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,51 +48,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Nov 2019 22:00:23 -0000
+X-List-Received-Date: Tue, 12 Nov 2019 21:46:15 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+Ensure that drmModeSetCrtc() is invoked once prior to drmModePageFlip()
+calls for QPA platform EGLFS_KMS.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- configs/farm/{arago-master.txt => arago-zeus.txt} | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
- copy configs/farm/{arago-master.txt => arago-zeus.txt} (99%)
+ meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh       | 1 +
+ meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh | 1 +
+ 2 files changed, 2 insertions(+)
 
-diff --git a/configs/farm/arago-master.txt b/configs/farm/arago-zeus.txt
-similarity index 99%
-copy from configs/farm/arago-master.txt
-copy to configs/farm/arago-zeus.txt
-index 8d9d8de..8b2518c 100644
---- a/configs/farm/arago-master.txt
-+++ b/configs/farm/arago-zeus.txt
-@@ -11,7 +11,7 @@ MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS NUM_AARCH64_BUILDS
- # This variable holds the SDK version you are building.  This will be picked
- # up in the installer name if you choose to package an installer.  You can
- # also use this in the CONFIG_FILE name below.
--TISDK_VERSION="2019.09"
-+TISDK_VERSION="2019.11"
- 
- # This variable contains the list of machines to build an SDK for
- MACHINES=""
-@@ -62,7 +62,7 @@ SCRIPTS_ROOT="$PWD"
- #       - BUILD_ROOT/arm9-1/arago-tmp
- #       - BUILD_ROOT/cortex-1/arago-tmp
- #       - BUILD_ROOT/cortex-2/arago-tmp
--BUILD_ROOT="/OE/farm-arago-master"
-+BUILD_ROOT="/OE/farm-arago-zeus"
- 
- # This variable points to the base location where files will be extracted for
- # testing purposes.  This should not be confused with the NFS root which
-@@ -126,7 +126,7 @@ CLEAN_ALL="false"
- 
- # This is the configuration file to use in the oe-layertool-setup.sh script
- # to configure the build.
--CONFIG_FILE="${BUILD_ROOT}/configs/arago-master-config.txt"
-+CONFIG_FILE="${BUILD_ROOT}/configs/arago-zeus-config.txt"
- 
- # This directory will contain the log files for the various parts of the build.
- # This includes:
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
+index 2484d82a..146ee07e 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
+@@ -4,4 +4,5 @@
+ export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+ export QT_QPA_EGLFS_KMS_CONFIG=/etc/qt5/eglfs_kms_cfg.json
+ export QT_QPA_EGLFS_INTEGRATION=eglfs_kms
++export QT_QPA_EGLFS_ALWAYS_SET_MODE=1
+ export QT_WAYLAND_SHELL_INTEGRATION=wl-shell
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
+index 76d3804d..29fa2969 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
+@@ -5,4 +5,5 @@ export QT_QPA_EVDEV_TOUCHSCREEN_PARAMETERS="rotate=180"
+ export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+ export QT_QPA_EGLFS_KMS_CONFIG=/etc/qt5/eglfs_kms_cfg.json
+ export QT_QPA_EGLFS_INTEGRATION=eglfs_kms
++export QT_QPA_EGLFS_ALWAYS_SET_MODE=1
+ export QT_WAYLAND_SHELL_INTEGRATION=wl-shell
 -- 
-2.7.4
+2.17.1
 
 
