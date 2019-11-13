@@ -1,30 +1,44 @@
 Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id AE30F52988
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 66759529B1
 	for <meta-arago@arago-project.org>;
-	Wed, 13 Nov 2019 18:19:24 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id BC9BA40BF0;
-	Wed, 13 Nov 2019 18:17:59 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id HwZJiY0eIDSS; Wed, 13 Nov 2019 18:17:59 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A72E540BD4;
-	Wed, 13 Nov 2019 18:17:58 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 36B811742EA;
-	Wed, 13 Nov 2019 13:17:58 -0500 (EST)
+	Wed, 13 Nov 2019 18:36:10 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xADIYjZp025709
+	for <meta-arago@arago-project.org>; Wed, 13 Nov 2019 12:34:45 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1573670085;
+	bh=KVN5GdYWsu4pMSofsOjvfbh+FJqM/zYXGDyYMeHNWq8=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=eRMtq90BmfHHUg9FTfnnLwWl26uydqtyyRqhl36ycUyIUyNDmYMA9AUJBIgxpr4/E
+	tbUhb/l4xj6p1+0ysqr6rHBsz3MeSRulneSnPE5o6lK5lTKeoLE/5MBy7IhRdeJFhu
+	usM+R7O1B8ISjbpn2/8NnDwnQFCz2xZExYfvr8eM=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xADIYj2d077887
+	for <meta-arago@arago-project.org>; Wed, 13 Nov 2019 12:34:45 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Wed, 13 Nov 2019 12:34:44 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Wed, 13 Nov 2019 12:34:44 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xADIYiDu069113;
+	Wed, 13 Nov 2019 12:34:44 -0600
+Date: Wed, 13 Nov 2019 13:34:44 -0500
 From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Wed, 13 Nov 2019 13:17:57 -0500
-Message-Id: <1573669077-45665-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH] ti-sci-fw: bump imggen commit to include HS signing fix
+To: Hongmei Gou <a0271529@ti.com>
+Message-ID: <20191113183444.GA15023@beryl>
+References: <20191113001349.30916-1-a0271529@ti.com>
+	<20191113001349.30916-3-a0271529@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <20191113001349.30916-3-a0271529@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [thud/master] [PATCH 3/3] packagegroup-arago-tisdk-addons: add tensorflow-lite
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,27 +51,69 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Nov 2019 18:19:25 -0000
+X-List-Received-Date: Wed, 13 Nov 2019 18:36:10 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Tue, Nov 12, 2019 at 07:13:49PM -0500, Hongmei Gou wrote:
+> Signed-off-by: Hongmei Gou <a0271529@ti.com>
+> ---
+>  .../packagegroups/packagegroup-arago-tisdk-addons.bb        | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> index 14b2370c..73f3f950 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> @@ -1,6 +1,6 @@
+>  DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+>  LICENSE = "MIT"
+> -PR = "r76"
+> +PR = "r77"
+>  
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+> @@ -154,6 +154,7 @@ EXTRA_PACKAGES_append_ti33x = " voxelsdk \
+>                                  arm-compute-library \
+>                                  ${ARMNN_PACKAGES} \
+>                                  tensorflow-lite-examples \
+> +                                tensorflow-lite \
 
-diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb
-index 24081d6..04aa559 100644
---- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb
-+++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb
-@@ -16,7 +16,7 @@ export TI_SECURE_DEV_PKG
- 
- SRCREV = "2b292f87e7257d4f9103d4e862a7b1769b13fed7"
- BRANCH ?= "ti-linux-firmware"
--SRCREV_imggen = "8e6b34ad71b244f055f3d9a0107f6e905dd53e22"
-+SRCREV_imggen = "70257db6e89f9c05ae2e87281b25169f4d356cf1"
- SRCREV_FORMAT = "imggen"
- 
- SRC_URI = " \
--- 
-2.7.4
+Can you make tensorflow-lite-examples properly RDEPENDS on tensorflow-lite 
+instead?
 
+
+>                                  pdm-anomaly-detection \
+>  "
+>  
+> @@ -161,6 +162,7 @@ EXTRA_PACKAGES_append_ti43x = " voxelsdk \
+>                                  arm-compute-library \
+>                                  ${ARMNN_PACKAGES} \
+>                                  tensorflow-lite-examples \
+> +                                tensorflow-lite \
+>                                  pdm-anomaly-detection \
+>  "
+>  
+> @@ -170,12 +172,14 @@ EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
+>                                     arm-compute-library \
+>                                     ${ARMNN_PACKAGES} \
+>                                     tensorflow-lite-examples \
+> +                                   tensorflow-lite \
+>                                     pdm-anomaly-detection \
+>  "
+>  
+>  EXTRA_PACKAGES_append_am65xx = " arm-compute-library \
+>                               ${ARMNN_PACKAGES} \
+>                               tensorflow-lite-examples \
+> +                             tensorflow-lite \
+>                               pdm-anomaly-detection \
+>  "
+>  
+> -- 
+> 2.17.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
