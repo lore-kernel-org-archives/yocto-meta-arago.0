@@ -1,46 +1,48 @@
-Return-Path: <h-gou@ti.com>
+Return-Path: <denys@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 61B9052988
+	by arago-project.org (Postfix) with ESMTPS id B256052988
 	for <meta-arago@arago-project.org>;
-	Thu, 14 Nov 2019 00:07:48 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAE06N9E119160
-	for <meta-arago@arago-project.org>; Wed, 13 Nov 2019 18:06:23 -0600
+	Thu, 14 Nov 2019 00:21:09 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAE0JiAD123134;
+	Wed, 13 Nov 2019 18:19:44 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1573689983;
-	bh=nl95X757I89GCuerB/sUzZYdzlqDA75Q0h9hsOQT9O0=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=KnYlRRd3HTgqBlQshU4t8IOGNRcqvwKK/pWDN6Kxb7awVGD1Zi6IuqBEIv9Ifh0dw
-	HA9bKP7q6Fed4S6v0V7pKjLHSA+mkDddlxKURs++iHg7ifqoqGwPV5A8WmxxOFbLQe
-	vC3ZB6SlDzCDR97hyeQdaRfuHUkL4sElv22iiWQk=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xAE06NH0033154
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 13 Nov 2019 18:06:23 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1573690784;
+	bh=r3BadgVMuPu+6tXxEptGvA0OclVFoHLYV1Wqe4ooHC8=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=FiF/r27KtaV7M8yyncQOZMbmJ7KkGcn/JbgoqOZ3uqQczJWclGMuhy85o2IvhJl68
+	64MwthXnngQjR0zW8eFpkZlgQWyZKeNHH9gmJAlBsrvlgUVRrZ/utb/VAo9k45jHft
+	62sM2mp7nigGbSnza6us5qO71YuAW448UK+Wn2EE=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xAE0JiZ1041065
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 13 Nov 2019 18:19:44 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Wed, 13 Nov 2019 18:06:05 -0600
-Received: from DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f]) by
-	DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f%18]) with mapi id
-	15.01.1847.003; Wed, 13 Nov 2019 18:06:05 -0600
-From: "Gou, Hongmei" <h-gou@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [thud/master] [PATCH 3/3]
-	packagegroup-arago-tisdk-addons: add tensorflow-lite
-Thread-Index: AQHVmbivvOTPloHXl0Kp5z9DzbF/dqeJyskA
-Date: Thu, 14 Nov 2019 00:06:05 +0000
-Message-ID: <45e458a07f084539a873d37d30b8ccb1@ti.com>
-References: <20191113001349.30916-1-a0271529@ti.com>
-	<20191113001349.30916-3-a0271529@ti.com>
-In-Reply-To: <20191113001349.30916-3-a0271529@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.112.213]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Wed, 13 Nov 2019 18:19:26 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Wed, 13 Nov 2019 18:19:44 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAE0JiqL090508;
+	Wed, 13 Nov 2019 18:19:44 -0600
+Date: Wed, 13 Nov 2019 19:19:44 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Message-ID: <20191114001943.GF15023@beryl>
+References: <CADySD0HyRLzXfSfcYTrGZmuX2acoCMi2BE+hy=v+-fKPAvF3Mw@mail.gmail.com>
+	<CADySD0HKK1MWGXg2qL4PP-SRiyrHGJUpwKgAuCTVsZ0MizCSpg@mail.gmail.com>
+	<20190926162746.GC5386@beryl>
+	<CADySD0H4jZy5YpHudHyEwhsJLhcCLLt3yJ-nX1sdqik561Qt3g@mail.gmail.com>
+	<CADySD0H7NXcvhhV++WNtCu4nsxy=CV7MiH3oMitJS_W5QmBYoA@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Re: [thud/master] [PATCH 3/3] packagegroup-arago-tisdk-addons: add tensorflow-lite
+In-Reply-To: <CADySD0H7NXcvhhV++WNtCu4nsxy=CV7MiH3oMitJS_W5QmBYoA@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: do_rootfs error for custom image based upon arago thud branch
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,75 +55,167 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Nov 2019 00:07:48 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 14 Nov 2019 00:21:10 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-NACK. This patch is no longer needed with the updated patch for tensorflow-=
-lite: http://patchwork.dal.design.ti.com/patch/51102/.
+On Sun, Nov 10, 2019 at 09:52:48PM -0800, Ankur Tyagi wrote:
+> Hi Denys,
+> 
+> I have again encountered the same problem so there is a fundamental issue
+> somewhere.
+> Let me explain when this problem occurs and what is my setup:
+> 
+> 1) Let's assume current u-boot SRCREV in recipe is
+> "4fc3ad1c4d92a32c1e233c524d65836226488912" and linux SRCREV is
+> "634579ce9ee01466fd84524602bd0a262a0add00"
+> 2) I build my image and preserve sstate-cache
+> 3) Change u-boot SRCREV to "b31ea1d6069a3634c696d9fbff86373fd5b0f82d" and
+> linux SRCREV to "d02acfec3d72606798f498c33728f5a0839e6360"
+> 4) Build my image again using the preserved sstate-cache so only u-boot and
+> linux is rebuilt
+> 
+> Then I get following error
+> 
+> ******************************
+> Collected errors:
+>  * Solver encountered 2 problem(s):
+>  * Problem 1/2:
+>  *   - nothing provides u-boot-ti-staging-src >= 2019.01+git0+b31ea1d606
+> needed by linux-ti-staging-src-4.19.73+git0+d02acfec3d-gamos.wsl
 
------Original Message-----
-From: Gou, Hongmei=20
-Sent: Tuesday, November 12, 2019 7:14 PM
-To: meta-arago@arago-project.org
-Cc: Gou, Hongmei
-Subject: [meta-arago] [thud/master] [PATCH 3/3] packagegroup-arago-tisdk-ad=
-dons: add tensorflow-lite
+Not really sure why do you even have any dependency between these 2 -src 
+packages. They should not and they are not dependent here for us.
 
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
----
- .../packagegroups/packagegroup-arago-tisdk-addons.bb        | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arag=
-o-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegro=
-up-arago-tisdk-addons.bb
-index 14b2370c..73f3f950 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk=
--addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk=
--addons.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION =3D "Task to install additional utilities/demos for SDKs"
- LICENSE =3D "MIT"
--PR =3D "r76"
-+PR =3D "r77"
-=20
- PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-=20
-@@ -154,6 +154,7 @@ EXTRA_PACKAGES_append_ti33x =3D " voxelsdk \
-                                 arm-compute-library \
-                                 ${ARMNN_PACKAGES} \
-                                 tensorflow-lite-examples \
-+                                tensorflow-lite \
-                                 pdm-anomaly-detection \
- "
-=20
-@@ -161,6 +162,7 @@ EXTRA_PACKAGES_append_ti43x =3D " voxelsdk \
-                                 arm-compute-library \
-                                 ${ARMNN_PACKAGES} \
-                                 tensorflow-lite-examples \
-+                                tensorflow-lite \
-                                 pdm-anomaly-detection \
- "
-=20
-@@ -170,12 +172,14 @@ EXTRA_PACKAGES_append_omap-a15 =3D " voxelsdk \
-                                    arm-compute-library \
-                                    ${ARMNN_PACKAGES} \
-                                    tensorflow-lite-examples \
-+                                   tensorflow-lite \
-                                    pdm-anomaly-detection \
- "
-=20
- EXTRA_PACKAGES_append_am65xx =3D " arm-compute-library \
-                              ${ARMNN_PACKAGES} \
-                              tensorflow-lite-examples \
-+                             tensorflow-lite \
-                              pdm-anomaly-detection \
- "
-=20
---=20
-2.17.1
-
+>  *
+>  * Solution 1:
+>  *   - do not ask to install a package providing packagegroup-ggl-base
+> 
+>  * Problem 2/2:
+>  *   - nothing provides u-boot-ti-staging-src >= 2019.01+git0+b31ea1d606
+> needed by linux-ti-staging-src-4.19.73+git0+d02acfec3d-gamos.wsl
+>  *
+>  * Solution 1:
+>  *   - do not ask to install a package providing packagegroup-ggl-qt
+> ******************************
+> 
+> Can you please provide me with some pointers on what could be causing it or
+> where should I start investigating it?
+> 
+> Thanks
+> Ankur
+> 
+> 
+> On Fri, 27 Sep 2019, 9:00 a.m. Ankur Tyagi, <ankur.tyagi85@gmail.com> wrote:
+> 
+> > thanks for your response Denys
+> >
+> > On Fri, 27 Sep 2019, 4:27 a.m. Denys Dmytriyenko, <denys@ti.com> wrote:
+> >
+> >> Thanks for following up with the update!
+> >>
+> >> Unfortunately, opkg install issues like this are very specific to your
+> >> build
+> >> environment and harder to debug remotely. You'd need to see why the
+> >> package
+> >> gets one version, while a different one being requested. In some cases it
+> >> can
+> >> be due to a stale package, like here. In others it's more complicated.
+> >>
+> >> Denys
+> >>
+> >>
+> >> On Thu, Sep 26, 2019 at 07:17:26AM +1200, Ankur Tyagi wrote:
+> >> > It got resolved after removing tmp directory and rebuilding
+> >> >
+> >> > On Wed, 25 Sep 2019, 1:23 a.m. Ankur Tyagi, <ankur.tyagi85@gmail.com>
+> >> wrote:
+> >> >
+> >> > > Hi,
+> >> > >
+> >> > > I was using "thud" branch to create custom image for my board.
+> >> > > Recently updated meta-ti, meta-arago "thud" branch and started
+> >> > > receiving following error message during do_rootfs task
+> >> > >
+> >> > > ERROR: ggl-wsl-prod-image-1.0-r0 do_rootfs: Unable to install
+> >> > > packages. Command
+> >> > >
+> >> > >
+> >> '/home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/recipe-sysroot-native/usr/bin/opkg
+> >> > > --volatile-cache -f
+> >> > >
+> >> > >
+> >> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/opkg.conf
+> >> > > -t
+> >> > >
+> >> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/temp/ipktemp/
+> >> > > -o
+> >> > >
+> >> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/rootfs
+> >> > >  --force_postinstall    install packagegroup-core-boot
+> >> > > packagegroup-ggl-base packagegroup-ggl-connectivity
+> >> > > packagegroup-ggl-qt psplash run-postinsts' returned 2:
+> >> > > Collected errors:
+> >> > >  * Solver encountered 2 problem(s):
+> >> > >  * Problem 1/2:
+> >> > >  *   - nothing provides u-boot-ti-staging-src >=
+> >> > > 2019.01+git0+571bb85860 needed by
+> >> > > linux-ti-staging-src-4.19.73+git0+761ba629e9-gamos.wsl
+> >> > >  *
+> >> > >  * Solution 1:
+> >> > >  *   - do not ask to install a package providing packagegroup-ggl-base
+> >> > >
+> >> > >  * Problem 2/2:
+> >> > >  *   - nothing provides u-boot-ti-staging-src >=
+> >> > > 2019.01+git0+571bb85860 needed by
+> >> > > linux-ti-staging-src-4.19.73+git0+761ba629e9-gamos.wsl
+> >> > >  *
+> >> > >  * Solution 1:
+> >> > >  *   - do not ask to install a package providing packagegroup-ggl-qt
+> >> > >
+> >> > >  * opkg_finalize_intercepts: Failed to open dir
+> >> > >
+> >> > >
+> >> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/temp/ipktemp//opkg-JLB910/opkg-intercept-xOvXqH:
+> >> > > No such file or directory.
+> >> > >  * rm_r: Failed to open dir
+> >> > >
+> >> > >
+> >> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/temp/ipktemp//opkg-JLB910/opkg-intercept-xOvXqH:
+> >> > > No such file or directory.
+> >> > >  * rm_r: Failed to open dir
+> >> > >
+> >> > >
+> >> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/temp/ipktemp//opkg-JLB910:
+> >> > > No such file or directory.
+> >> > >
+> >> > >
+> >> > >
+> >> > > ERROR: ggl-wsl-prod-image-1.0-r0 do_rootfs: Function failed: do_rootfs
+> >> > > ERROR: Logfile of failure stored in:
+> >> > >
+> >> > >
+> >> /home/yocto/ggl-yocto-tools/build/tmp-external-arm-toolchain/work/wsl-linux-gnueabi/ggl-wsl-prod-image/1.0-r0/temp/log.do_rootfs.107554
+> >> > > ERROR: Task
+> >> > >
+> >> (/home/yocto/ggl-yocto-tools/sources/ggl-yocto/meta-ggl-image/recipes-core/images/
+> >> ggl-wsl-prod-image.bb:
+> >> > > do_rootfs)
+> >> > > failed with exit code '1'
+> >> > >
+> >> > > Can you please help:
+> >> > > 1) to understand the underlying problem
+> >> > > 2) how can I fix it
+> >> > >
+> >> > > thanks
+> >> > > Ankur
+> >> > >
+> >>
+> >> > _______________________________________________
+> >> > meta-arago mailing list
+> >> > meta-arago@arago-project.org
+> >> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> >>
+> >>
 
