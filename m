@@ -1,30 +1,41 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id E31E2529D4
+Return-Path: <e-ruei1@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 9F4C9529C0
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Nov 2019 16:01:32 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id BA2D840C0C;
-	Tue, 19 Nov 2019 16:00:05 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id HvvDpm0CPvpf; Tue, 19 Nov 2019 16:00:05 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1F97E40BE5;
-	Tue, 19 Nov 2019 16:00:03 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 9D3D6174310;
-	Tue, 19 Nov 2019 11:00:03 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 19 Nov 2019 11:00:03 -0500
-Message-Id: <1574179203-31137-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [RFC][PATCH] packagegroup-ti-world: guard qte and hmi packagegroups by gpu feature
+	Tue, 19 Nov 2019 20:39:48 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAJKcLUf122686
+	for <meta-arago@arago-project.org>; Tue, 19 Nov 2019 14:38:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1574195901;
+	bh=mOuyu98aiA4vPl67IFoAZaxNge9auccDGUnYn8IstJ4=;
+	h=From:To:Subject:Date;
+	b=i/jOFKNMSa5glDHsKhNxpmncatzbbLkKpkAueC0cofKq75hDY+oOTWiHmEOtsb7fm
+	MRvgkQj/kC5WA+3MF+2K4J3EZnuoU/YL9hW+HMfMurxKwRZQwD1MLb2Pjja5cFmK1i
+	f0I++MUeirEj5J7HCGzb9fl1It6qAImuwTO0ubeE=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAJKcLx4011110
+	for <meta-arago@arago-project.org>; Tue, 19 Nov 2019 14:38:21 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Tue, 19 Nov 2019 14:38:18 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Tue, 19 Nov 2019 14:38:18 -0600
+Received: from UDA0850410.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAJKcILa073079
+	for <meta-arago@arago-project.org>; Tue, 19 Nov 2019 14:38:18 -0600
+From: Eric Ruei <e-ruei1@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 19 Nov 2019 15:38:08 -0500
+Message-ID: <20191119203808.8050-1-e-ruei1@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [thud/master][PATCH] packagegroup-arago-*-qte-*: re-enable qtwebengine/webbrowser for AM6/J7
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,37 +48,79 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Nov 2019 16:01:33 -0000
+X-List-Received-Date: Tue, 19 Nov 2019 20:39:49 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+qtwebengine 5.11.3 and qtwebbrowser works on AM6/J7 when the page size
+is set to 4K instead of 64K.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ---
- meta-arago-distro/recipes-core/packagegroups/packagegroup-ti-world.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-core/packagegroups/packagegroup-arago-qte.bb  | 6 +++---
+ .../packagegroups/packagegroup-arago-tisdk-qte.bb         | 6 +++---
+ .../packagegroup-arago-qte-toolchain-target.bb            | 8 ++++----
+ 3 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ti-world.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-ti-world.bb
-index 8457908..6403bf7 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ti-world.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-ti-world.bb
-@@ -22,7 +22,7 @@ RDEPENDS_${PN} = "\
-     packagegroup-arago-test-addons \
-     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-graphics','',d)} \
-     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-gtk','',d)} \
--    packagegroup-arago-tisdk-qte \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-qte','',d)} \
-     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl','',d)} \
-     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-extra','',d)} \
-     packagegroup-arago-tisdk-connectivity \
-@@ -33,6 +33,6 @@ RDEPENDS_${PN} = "\
-     packagegroup-arago-tisdk-amsdk \
-     packagegroup-arago-tisdk-addons \
-     packagegroup-arago-tisdk-addons-extra \
--    packagegroup-arago-tisdk-hmi \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-hmi','packagegroup-arago-base-tisdk-server-extra',d)} \
-     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', "${CHROMIUM}", '', d)} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+index b48b8c9f..5984fee7 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
+@@ -50,9 +50,9 @@ QT5_ESSENTIALS = "\
+ #QT5_ESSENTIALS_append_k3 = "\
+ #    qtwebkit-qmlplugins \
+ #"
+-QT5_ESSENTIALS_remove_k3 = "\
+-    qtwebengine-qmlplugins \
+-"
++#QT5_ESSENTIALS_remove_k3 = "\
++#    qtwebengine-qmlplugins \
++#"
+ 
+ RDEPENDS_${PN} = "\
+     ${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_ESSENTIALS}", "${QT4_ESSENTIALS}", d)} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
+index 09516693..f742c0f7 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
+@@ -24,15 +24,15 @@ QT5_DEMOS = "\
+     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-examples', '', d)} \
+     qtwebkit-examples-examples \
+     qtwebengine-examples \
++    qtwebbrowser \
++    qtwebbrowser-examples \
+     qtserialport-examples \
+     qtcharts-examples \
  "
+ 
+ #QT5_DEMOS_append_k3 = " qtwebkit-examples-examples"
+ #
+-QT5_DEMOS_remove_k3 = "\
+-    qtwebengine-examples \
+-"
++#QT5_DEMOS_remove_k3 = "\
+ #    qtwebbrowser \
+ #    qtwebbrowser-examples \
+ #    qtwebengine-examples \
+diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
+index a90f56c0..ac3c6b13 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
+@@ -76,10 +76,10 @@ QT5_DEV = " \
+ #        qtwebkit-dev \
+ #"
+ #
+-QT5_DEV_remove_k3 = " \
+-        qtwebengine-mkspecs \
+-        qtwebengine-dev \
+-"
++#QT5_DEV_remove_k3 = " \
++#        qtwebengine-mkspecs \
++#        qtwebengine-dev \
++#"
+ 
+ RDEPENDS_${PN} += " \
+         ${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_DEV}", "${QT4_DEV}", d)} \
 -- 
-2.7.4
+2.17.1
 
 
