@@ -1,46 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id D38CF52986
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 25E39529F3
 	for <meta-arago@arago-project.org>;
-	Tue, 19 Nov 2019 21:11:13 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAJL9kbq013550
-	for <meta-arago@arago-project.org>; Tue, 19 Nov 2019 15:09:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1574197786;
-	bh=kA5qzFPUEpeapIprvHOzsni1RNJ27IW110AlMhxu+u0=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Ct+ywND2P2Om839WABqoD+sPI4qhYH0uobPcHq+34tKiVAbkuBDnHLEOQHYVQz2mh
-	NUAvOSLVhlKO2BG4xOWZyWcWepUNphZ5/wX4zsCm/ZWIsX4ALlJFgnX4+30aKrLAmd
-	G8XrilxrvTWBC7lWNjGkxxUFeSnJQXklP9Lzml14=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xAJL9kXC119555
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 19 Nov 2019 15:09:46 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Tue, 19 Nov 2019 15:09:46 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Tue, 19 Nov 2019 15:09:46 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAJL9kTS127281;
-	Tue, 19 Nov 2019 15:09:46 -0600
-Date: Tue, 19 Nov 2019 16:09:45 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Ruei, Eric" <e-ruei1@ti.com>
-Message-ID: <20191119210945.GL27719@beryl>
-References: <20191119203808.8050-1-e-ruei1@ti.com>
-	<20191119205248.GI27719@beryl>
-	<24b757f08cae4cfb90eaff15ff05c66e@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <24b757f08cae4cfb90eaff15ff05c66e@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [thud/master][PATCH] packagegroup-arago-*-qte-*: re-enable qtwebengine/webbrowser for AM6/J7
+	Wed, 20 Nov 2019 00:19:15 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id DA3C040BFE;
+	Wed, 20 Nov 2019 00:17:47 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 8IgZlU1nPdFk; Wed, 20 Nov 2019 00:17:47 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C19B640BCC;
+	Wed, 20 Nov 2019 00:17:46 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 78618174317;
+	Tue, 19 Nov 2019 19:17:45 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 19 Nov 2019 19:17:45 -0500
+Message-Id: <1574209065-24444-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH] packagegroups: disable Keystone secure storage packages based on openssl 1.0
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,108 +37,77 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Nov 2019 21:11:14 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 20 Nov 2019 00:19:15 -0000
 
-Ok, sounds good, I'll take the patch. Thanks.
+From: Denys Dmytriyenko <denys@ti.com>
 
-On Tue, Nov 19, 2019 at 03:59:21PM -0500, Ruei, Eric wrote:
-> Hi, Denys:
-> 
-> We do not force 4K page size. The qtwebengine will be included at the target file system and the  users need to reconfigure and rebuild kernel in order to use it.
-> This qtwebengine issue will be documented as known issue with  workaround. I shall spend some time to figure out whether there is a simple solution for 64K page size.
-> 
-> Best regards,
-> 
-> Eric
->  
-> 
-> -----Original Message-----
-> From: Dmytriyenko, Denys 
-> Sent: Tuesday, November 19, 2019 3:53 PM
-> To: Ruei, Eric
-> Cc: meta-arago@arago-project.org
-> Subject: Re: [meta-arago] [thud/master][PATCH] packagegroup-arago-*-qte-*: re-enable qtwebengine/webbrowser for AM6/J7
-> 
-> So, how are you forcing 4K pages, when 64K is default on Aarch64?
-> 
-> 
-> On Tue, Nov 19, 2019 at 03:38:08PM -0500, Eric Ruei wrote:
-> > qtwebengine 5.11.3 and qtwebbrowser works on AM6/J7 when the page size
-> > is set to 4K instead of 64K.
-> > 
-> > Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> > ---
-> >  .../recipes-core/packagegroups/packagegroup-arago-qte.bb  | 6 +++---
-> >  .../packagegroups/packagegroup-arago-tisdk-qte.bb         | 6 +++---
-> >  .../packagegroup-arago-qte-toolchain-target.bb            | 8 ++++----
-> >  3 files changed, 10 insertions(+), 10 deletions(-)
-> > 
-> > diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-> > index b48b8c9f..5984fee7 100644
-> > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-> > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-qte.bb
-> > @@ -50,9 +50,9 @@ QT5_ESSENTIALS = "\
-> >  #QT5_ESSENTIALS_append_k3 = "\
-> >  #    qtwebkit-qmlplugins \
-> >  #"
-> > -QT5_ESSENTIALS_remove_k3 = "\
-> > -    qtwebengine-qmlplugins \
-> > -"
-> > +#QT5_ESSENTIALS_remove_k3 = "\
-> > +#    qtwebengine-qmlplugins \
-> > +#"
-> >  
-> >  RDEPENDS_${PN} = "\
-> >      ${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_ESSENTIALS}", "${QT4_ESSENTIALS}", d)} \
-> > diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-> > index 09516693..f742c0f7 100644
-> > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-> > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
-> > @@ -24,15 +24,15 @@ QT5_DEMOS = "\
-> >      ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-examples', '', d)} \
-> >      qtwebkit-examples-examples \
-> >      qtwebengine-examples \
-> > +    qtwebbrowser \
-> > +    qtwebbrowser-examples \
-> >      qtserialport-examples \
-> >      qtcharts-examples \
-> >  "
-> >  
-> >  #QT5_DEMOS_append_k3 = " qtwebkit-examples-examples"
-> >  #
-> > -QT5_DEMOS_remove_k3 = "\
-> > -    qtwebengine-examples \
-> > -"
-> > +#QT5_DEMOS_remove_k3 = "\
-> >  #    qtwebbrowser \
-> >  #    qtwebbrowser-examples \
-> >  #    qtwebengine-examples \
-> > diff --git a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-> > index a90f56c0..ac3c6b13 100644
-> > --- a/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-> > +++ b/meta-arago-extras/recipes-core/packagegroups/packagegroup-arago-qte-toolchain-target.bb
-> > @@ -76,10 +76,10 @@ QT5_DEV = " \
-> >  #        qtwebkit-dev \
-> >  #"
-> >  #
-> > -QT5_DEV_remove_k3 = " \
-> > -        qtwebengine-mkspecs \
-> > -        qtwebengine-dev \
-> > -"
-> > +#QT5_DEV_remove_k3 = " \
-> > +#        qtwebengine-mkspecs \
-> > +#        qtwebengine-dev \
-> > +#"
-> >  
-> >  RDEPENDS_${PN} += " \
-> >          ${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_DEV}", "${QT4_DEV}", d)} \
-> > -- 
-> > 2.17.1
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Need to be migrated to openssl 1.1, as 1.0 is deprecated now.
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../packagegroup-arago-base-tisdk-server-extra.bb       | 17 +++++++++--------
+ .../packagegroup-arago-tisdk-addons-sdk-target.bb       | 12 +++++++-----
+ 2 files changed, 16 insertions(+), 13 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+index 564a799..1c68ba9 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+@@ -75,11 +75,13 @@ ARAGO_PYTHON = "\
+     python \
+     "
+ 
+-ARAGO_SECURE_STORAGE = "\
+-    ti-softhsmv2 \
+-    libp11 \
+-    engine-pkcs11 \
+-    "
++ARAGO_SECURE_STORAGE = ""
++# All these secure storage packages need to be
++# migrated to openssl 1.1
++#    ti-softhsmv2 \
++#    libp11 \
++#    engine-pkcs11 \
++#    "
+ 
+ # ipsecmgr has been disabled for a while
+ # disable ipsecmgr-mod,hplib-mod due to K4.14 API changes
+@@ -153,9 +155,8 @@ ARAGO_TI_PKGS_append_k2e = "\
+     hyplnk-lld \
+     "
+ 
+-ARAGO_VTUN = "\
+-    vtun \
+-"
++# vtun does not build against openssl 1.1
++ARAGO_VTUN = ""
+ # vtun does not support aarch64
+ ARAGO_VTUN_aarch64 = ""
+ 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index 2b69b82..088468c 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+@@ -25,11 +25,13 @@ UTILS_append_keystone = "\
+ 	libsdl-dev \
+ 	"
+ 
+-TI_SECURE_STORAGE_DEV = "\
+-	ti-softhsmv2-dev \
+-	libp11-dev \
+-	libp11-staticdev \
+-	"
++TI_SECURE_STORAGE_DEV = ""
++# All these secure storage packages need to be
++# migrated to openssl 1.1
++#	ti-softhsmv2-dev \
++#	libp11-dev \
++#	libp11-staticdev \
++#	"
+ 
+ # Disable ipsecmgr due to libnl and xfrm conflict
+ #	ipsecmgr-dev
+-- 
+2.7.4
+
 
