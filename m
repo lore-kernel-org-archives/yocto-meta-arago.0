@@ -1,42 +1,43 @@
-Return-Path: <yan-liu@ti.com>
+Return-Path: <denys@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 12DFB52986
+	by arago-project.org (Postfix) with ESMTPS id 68E2B529F6
 	for <meta-arago@arago-project.org>;
-	Wed, 20 Nov 2019 19:36:04 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAKJYab7085028
-	for <meta-arago@arago-project.org>; Wed, 20 Nov 2019 13:34:36 -0600
+	Thu, 21 Nov 2019 18:18:26 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xALIGwU9048064
+	for <meta-arago@arago-project.org>; Thu, 21 Nov 2019 12:16:58 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1574278476;
-	bh=1fIpoTUpOq5B5EeGLgVxGvmIlJm+Yig0fRqbk+Kvgnk=;
-	h=From:To:CC:Subject:Date;
-	b=F9sH1OgbLv0gmDbsF38KgwXwCDtbXl9ddThYF3SxUiLErX4GMpsGrM8HG2sNvk+yp
-	iTBSgW39twSUrLbeC4deLQxCFPv7iRqNCvAD1D9OhjI0gBvH5qy89x+qLkZp0KZPGi
-	KQ1Z+iJRcNLX0ZvpRrAMSAbhVE0LahOhEyVa7I58=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xAKJYa96090701
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 20 Nov 2019 13:34:36 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1574360218;
+	bh=XJe/jVr1fvmJJ0LirodDQmwHn+2Fcm+rNbBdWDFFk74=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=DQd5RazPC+LwwHp+xBFEJ/0rD6Hw2ihn+Dnb9M4TYVBTnvcNfNz8FX/e4kUj+GTvo
+	gi6Oco573y9covXB7zZPumA/rmCnuD2fvVjOFvzIl2ciZ5MOzs4n/dIHNI7w7hluEU
+	V3/gTFz8OAMrIb8egGSxKqGt2Z1iC7CCGdBd/yZM=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xALIGwVx005292
+	for <meta-arago@arago-project.org>; Thu, 21 Nov 2019 12:16:58 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Wed, 20 Nov 2019 13:34:36 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 21 Nov 2019 12:16:56 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Wed, 20 Nov 2019 13:34:36 -0600
-Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAKJYZDw101304;
-	Wed, 20 Nov 2019 13:34:35 -0600
-From: <yan-liu@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 20 Nov 2019 14:32:04 -0500
-Message-ID: <1574278324-26721-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	Frontend Transport; Thu, 21 Nov 2019 12:16:55 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xALIGtpa071772;
+	Thu, 21 Nov 2019 12:16:55 -0600
+Date: Thu, 21 Nov 2019 13:16:55 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Nikhil Devshatwar <nikhil.nd@ti.com>
+Message-ID: <20191121181655.GD27719@beryl>
+References: <1574248423-156560-1-git-send-email-nikhil.nd@ti.com>
 MIME-Version: 1.0
+In-Reply-To: <1574248423-156560-1-git-send-email-nikhil.nd@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Cc: meta-arago@arago-project.org, grygorii.strashko@ti.com, nsekhar@ti.com
+Subject: Re: [thud/master] [PATCH] branding: core: Autoload rpmsg_kdrv_switch for j7-evm
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,39 +50,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Nov 2019 19:36:04 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 21 Nov 2019 18:18:26 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Yan Liu <yan-liu@ti.com>
+Nikhil,
 
-Signed-off-by: Yan Liu <yan-liu@ti.com>
----
- .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+This is the wrong place to do it. If rpmsg_kdrv_switch is in-tree module, then 
+simply add this to the kernel recipe:
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-index e58dec1..2f6d432 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
- 
--PR = "r18"
-+PR = "r19"
- PV_append = "+git${SRCPV}"
- 
- PROVIDES += "ltp"
-@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
- 
- inherit autotools-brokensep
- 
--SRCREV = "7726ed8fc8814a63c8cd817ce37ad06dcb8bc711"
-+SRCREV = "b367a6d09b1c9b307a88b8946c309d05825c4b80"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+KERNEL_MODULE_AUTOLOAD_append_j7-evm = " rpmsg_kdrv_switch"
+
 -- 
-1.7.9.5
+Denys
 
+
+On Wed, Nov 20, 2019 at 04:43:43PM +0530, Nikhil Devshatwar wrote:
+> rpmsg_kdrv_switch kernel module is needed for the cpsw9g virtual net
+> driver. Since there is no symbol dependency, rpmsg_kdrv_switch
+> does not get loaded automatically.
+> 
+> Add branding file override for j7-evm to autoload this module.
+> 
+> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+> ---
+> Fixes: LCPD-17113
+> 
+>  meta-arago-distro/conf/distro/include/branding-core.inc | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
+> index cab9831..c70f8d1 100644
+> --- a/meta-arago-distro/conf/distro/include/branding-core.inc
+> +++ b/meta-arago-distro/conf/distro/include/branding-core.inc
+> @@ -11,3 +11,8 @@ ALTERNATIVE_PRIORITY_pn-opencl-monitor-ipu = "1"
+>  
+>  # Raise priority for sample IPC FW images
+>  ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
+> +
+> +# Autoload the kernel module
+> +KERNEL_MODULE_AUTOLOAD_EXTRAS = ""
+> +KERNEL_MODULE_AUTOLOAD_EXTRAS_j7-evm += "rpmsg_kdrv_switch"
+> +KERNEL_MODULE_AUTOLOAD += "${KERNEL_MODULE_AUTOLOAD_EXTRAS}"
+> -- 
+> 1.9.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
