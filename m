@@ -1,44 +1,41 @@
-Return-Path: <xuj@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id B3BA9529C2
+Return-Path: <yan-liu@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 39EA3529C2
 	for <meta-arago@arago-project.org>;
-	Fri, 22 Nov 2019 13:43:24 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAMDfuxG096617
-	for <meta-arago@arago-project.org>; Fri, 22 Nov 2019 07:41:56 -0600
+	Fri, 22 Nov 2019 14:26:34 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAMEP69d035075
+	for <meta-arago@arago-project.org>; Fri, 22 Nov 2019 08:25:06 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1574430116;
-	bh=pAwEIXN3CUJYyP8xQGx2whjE3EcLefQLnTLHDr/1yqc=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=tPkspV7frcyk6qyG48+YzQDt2bOzm8MXpjMNRD1yj00bWmfg9jLqylRGYDNOROtay
-	KoiKJqYDRAeVe/ZUitIHLLk85I0p+XYml79SCxMbhvSKGOFLwfz5nyZn8+M+NxlRAN
-	CKHgnUjRdsJS9B0r4nqM0oRd6AFHs1rHDGS7BZu4=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xAMDfuLF081327
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 22 Nov 2019 07:41:56 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1574432706;
+	bh=+5U56IxcQGEzVd/CAtNpTgjuz25DjMY7Dk256g0Gpxg=;
+	h=From:To:CC:Subject:Date;
+	b=b5x0RsD68XL9RZIi8ZXe8Pk08ZE2UQ4GX7wULfdxWab8ty+j4qa7JweHoL2YSbpxq
+	Xg03unht27ALNuFTxX6scahyqLAs+N/y2uJ7b9yvqQ2MsHTZN8LfRwqROd8kT0a38a
+	qbnGeHKPuozelyJgQ+MzLsfZjoz6R4IATJEtpX4A=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAMEP53o056511
+	for <meta-arago@arago-project.org>; Fri, 22 Nov 2019 08:25:06 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Fri, 22 Nov 2019 07:41:56 -0600
-Received: from DFLE112.ent.ti.com ([fe80::d4dd:a09e:396d:a895]) by
-	DFLE112.ent.ti.com ([fe80::d4dd:a09e:396d:a895%17]) with mapi id
-	15.01.1847.003; Fri, 22 Nov 2019 07:41:56 -0600
-From: "Xu, Jianzhong" <xuj@ti.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-processor-sdk][PATCH] neo-ai-dlr: fix dlr runtime problem
-Thread-Index: AQHVn8NdnBiL4U9UU0SR8GWtJ7DHoqeXNWdA
-Date: Fri, 22 Nov 2019 13:41:56 +0000
-Message-ID: <f83b0084d3104f92b090856e91b702e1@ti.com>
-References: <20191120165422.9897-1-xuj@ti.com>
-In-Reply-To: <20191120165422.9897-1-xuj@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.117.55]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Fri, 22 Nov 2019 08:25:05 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Fri, 22 Nov 2019 08:25:05 -0600
+Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xAMEP5Aa092292;
+	Fri, 22 Nov 2019 08:25:05 -0600
+From: <yan-liu@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 22 Nov 2019 09:22:35 -0500
+Message-ID: <1574432555-25967-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: Re: [meta-processor-sdk][PATCH] neo-ai-dlr: fix dlr runtime problem
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,47 +48,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Nov 2019 13:43:25 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 22 Nov 2019 14:26:34 -0000
+Content-Type: text/plain
 
-Denys,
+From: Yan Liu <yan-liu@ti.com>
 
-Any issue with this patch?
-
-Thanks,
-Jianzhong
-
------Original Message-----
-From: Xu, Jianzhong=20
-Sent: Wednesday, November 20, 2019 11:54 AM
-To: meta-arago@arago-project.org
-Cc: Xu, Jianzhong
-Subject: [meta-processor-sdk][PATCH] neo-ai-dlr: fix dlr runtime problem
-
-* move dlr shared library to python sitepackages dlr folder
-
-Signed-off-by: Jianzhong Xu <xuj@ti.com>
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- recipes-support/neo-ai/neo-ai-dlr_git.bb | 1 +
- 1 file changed, 1 insertion(+)
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-support/neo-ai/neo-ai-dlr_git.bb b/recipes-support/neo=
--ai/neo-ai-dlr_git.bb
-index cbf4447..e81a939 100644
---- a/recipes-support/neo-ai/neo-ai-dlr_git.bb
-+++ b/recipes-support/neo-ai/neo-ai-dlr_git.bb
-@@ -57,6 +57,7 @@ do_install() {
-=20
-     # setup.py install some libs under datadir, but we don't need them, so=
- remove.
-     rm ${D}${datadir}/dlr/*.so
-+    mv ${D}${libdir}/libdlr.so ${D}${PYTHON_SITEPACKAGES_DIR}/dlr
-=20
-     # Now install python test scripts
-     install -d ${D}${datadir}/dlr/tests
---=20
-2.17.1
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+index 2f6d432..6b46e50 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+@@ -4,7 +4,7 @@ SECTION = "console/utils"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+ 
+-PR = "r19"
++PR = "r20"
+ PV_append = "+git${SRCPV}"
+ 
+ PROVIDES += "ltp"
+@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+ 
+ inherit autotools-brokensep
+ 
+-SRCREV = "b367a6d09b1c9b307a88b8946c309d05825c4b80"
++SRCREV = "14e30b4f968a96261af29c39437b0131cb7a4544"
+ BRANCH ?= "master"
+ 
+ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+-- 
+1.7.9.5
 
 
