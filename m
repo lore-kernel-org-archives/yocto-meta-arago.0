@@ -1,43 +1,44 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 68E2B529F6
+Return-Path: <xuj@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id B3BA9529C2
 	for <meta-arago@arago-project.org>;
-	Thu, 21 Nov 2019 18:18:26 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xALIGwU9048064
-	for <meta-arago@arago-project.org>; Thu, 21 Nov 2019 12:16:58 -0600
+	Fri, 22 Nov 2019 13:43:24 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xAMDfuxG096617
+	for <meta-arago@arago-project.org>; Fri, 22 Nov 2019 07:41:56 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1574360218;
-	bh=XJe/jVr1fvmJJ0LirodDQmwHn+2Fcm+rNbBdWDFFk74=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=DQd5RazPC+LwwHp+xBFEJ/0rD6Hw2ihn+Dnb9M4TYVBTnvcNfNz8FX/e4kUj+GTvo
-	gi6Oco573y9covXB7zZPumA/rmCnuD2fvVjOFvzIl2ciZ5MOzs4n/dIHNI7w7hluEU
-	V3/gTFz8OAMrIb8egGSxKqGt2Z1iC7CCGdBd/yZM=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xALIGwVx005292
-	for <meta-arago@arago-project.org>; Thu, 21 Nov 2019 12:16:58 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1574430116;
+	bh=pAwEIXN3CUJYyP8xQGx2whjE3EcLefQLnTLHDr/1yqc=;
+	h=From:To:Subject:Date:References:In-Reply-To;
+	b=tPkspV7frcyk6qyG48+YzQDt2bOzm8MXpjMNRD1yj00bWmfg9jLqylRGYDNOROtay
+	KoiKJqYDRAeVe/ZUitIHLLk85I0p+XYml79SCxMbhvSKGOFLwfz5nyZn8+M+NxlRAN
+	CKHgnUjRdsJS9B0r4nqM0oRd6AFHs1rHDGS7BZu4=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xAMDfuLF081327
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 22 Nov 2019 07:41:56 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Thu, 21 Nov 2019 12:16:56 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Thu, 21 Nov 2019 12:16:55 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xALIGtpa071772;
-	Thu, 21 Nov 2019 12:16:55 -0600
-Date: Thu, 21 Nov 2019 13:16:55 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Nikhil Devshatwar <nikhil.nd@ti.com>
-Message-ID: <20191121181655.GD27719@beryl>
-References: <1574248423-156560-1-git-send-email-nikhil.nd@ti.com>
+	Fri, 22 Nov 2019 07:41:56 -0600
+Received: from DFLE112.ent.ti.com ([fe80::d4dd:a09e:396d:a895]) by
+	DFLE112.ent.ti.com ([fe80::d4dd:a09e:396d:a895%17]) with mapi id
+	15.01.1847.003; Fri, 22 Nov 2019 07:41:56 -0600
+From: "Xu, Jianzhong" <xuj@ti.com>
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Thread-Topic: [meta-processor-sdk][PATCH] neo-ai-dlr: fix dlr runtime problem
+Thread-Index: AQHVn8NdnBiL4U9UU0SR8GWtJ7DHoqeXNWdA
+Date: Fri, 22 Nov 2019 13:41:56 +0000
+Message-ID: <f83b0084d3104f92b090856e91b702e1@ti.com>
+References: <20191120165422.9897-1-xuj@ti.com>
+In-Reply-To: <20191120165422.9897-1-xuj@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [158.218.117.55]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-In-Reply-To: <1574248423-156560-1-git-send-email-nikhil.nd@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org, grygorii.strashko@ti.com, nsekhar@ti.com
-Subject: Re: [thud/master] [PATCH] branding: core: Autoload rpmsg_kdrv_switch for j7-evm
+Subject: Re: [meta-processor-sdk][PATCH] neo-ai-dlr: fix dlr runtime problem
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,53 +51,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Nov 2019 18:18:26 -0000
+X-List-Received-Date: Fri, 22 Nov 2019 13:43:25 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Nikhil,
+Denys,
 
-This is the wrong place to do it. If rpmsg_kdrv_switch is in-tree module, then 
-simply add this to the kernel recipe:
+Any issue with this patch?
 
-KERNEL_MODULE_AUTOLOAD_append_j7-evm = " rpmsg_kdrv_switch"
+Thanks,
+Jianzhong
 
--- 
-Denys
+-----Original Message-----
+From: Xu, Jianzhong=20
+Sent: Wednesday, November 20, 2019 11:54 AM
+To: meta-arago@arago-project.org
+Cc: Xu, Jianzhong
+Subject: [meta-processor-sdk][PATCH] neo-ai-dlr: fix dlr runtime problem
 
+* move dlr shared library to python sitepackages dlr folder
 
-On Wed, Nov 20, 2019 at 04:43:43PM +0530, Nikhil Devshatwar wrote:
-> rpmsg_kdrv_switch kernel module is needed for the cpsw9g virtual net
-> driver. Since there is no symbol dependency, rpmsg_kdrv_switch
-> does not get loaded automatically.
-> 
-> Add branding file override for j7-evm to autoload this module.
-> 
-> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
-> ---
-> Fixes: LCPD-17113
-> 
->  meta-arago-distro/conf/distro/include/branding-core.inc | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
-> index cab9831..c70f8d1 100644
-> --- a/meta-arago-distro/conf/distro/include/branding-core.inc
-> +++ b/meta-arago-distro/conf/distro/include/branding-core.inc
-> @@ -11,3 +11,8 @@ ALTERNATIVE_PRIORITY_pn-opencl-monitor-ipu = "1"
->  
->  # Raise priority for sample IPC FW images
->  ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
-> +
-> +# Autoload the kernel module
-> +KERNEL_MODULE_AUTOLOAD_EXTRAS = ""
-> +KERNEL_MODULE_AUTOLOAD_EXTRAS_j7-evm += "rpmsg_kdrv_switch"
-> +KERNEL_MODULE_AUTOLOAD += "${KERNEL_MODULE_AUTOLOAD_EXTRAS}"
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Jianzhong Xu <xuj@ti.com>
+---
+ recipes-support/neo-ai/neo-ai-dlr_git.bb | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/recipes-support/neo-ai/neo-ai-dlr_git.bb b/recipes-support/neo=
+-ai/neo-ai-dlr_git.bb
+index cbf4447..e81a939 100644
+--- a/recipes-support/neo-ai/neo-ai-dlr_git.bb
++++ b/recipes-support/neo-ai/neo-ai-dlr_git.bb
+@@ -57,6 +57,7 @@ do_install() {
+=20
+     # setup.py install some libs under datadir, but we don't need them, so=
+ remove.
+     rm ${D}${datadir}/dlr/*.so
++    mv ${D}${libdir}/libdlr.so ${D}${PYTHON_SITEPACKAGES_DIR}/dlr
+=20
+     # Now install python test scripts
+     install -d ${D}${datadir}/dlr/tests
+--=20
+2.17.1
+
 
