@@ -1,44 +1,48 @@
-Return-Path: <nikhil.nd@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 960FE529D6
+Return-Path: <hnagalla@gmail.com>
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com
+	[209.85.210.47])
+	by arago-project.org (Postfix) with ESMTPS id D314C529B5
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Dec 2019 14:04:49 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB6E3GIc093310
-	for <meta-arago@arago-project.org>; Fri, 6 Dec 2019 08:03:16 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1575640996;
-	bh=WMaD2wfFuAFi4+05BufACNfkve5yMfZwMJUmcCMty9g=;
-	h=Subject:From:To:References:Date:In-Reply-To;
-	b=UCTecZ5e5re0/Q2fD6+VBRa82dgUzxMlEFMCH4eZhMCweAF0+pBsv3r1HWs1ZquAZ
-	tcRTwUmAnuYv9lKg+K5BdO4ypmnSJZOvZKMdh56BYL8uYJPnIvGoe297OdHZ6PkGq9
-	Op6v2HMXZmgM1BzVyuOQnwNnAdLr+/45p5fkUVKU=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xB6E3GXA071146
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 6 Dec 2019 08:03:16 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Fri, 6 Dec 2019 08:03:16 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Fri, 6 Dec 2019 08:03:16 -0600
-Received: from [172.24.190.110] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB6E3Fxh058179
-	for <meta-arago@arago-project.org>; Fri, 6 Dec 2019 08:03:15 -0600
-From: Nikhil Devshatwar <nikhil.nd@ti.com>
-To: <meta-arago@arago-project.org>
-References: <d69f529f-7780-8279-7a4f-d84cfb655ddc@ti.com>
-Message-ID: <cf5ee0cf-0a5f-9ad2-8f7e-d7826af3491b@ti.com>
-Date: Fri, 6 Dec 2019 19:32:47 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.2.1
-MIME-Version: 1.0
-In-Reply-To: <d69f529f-7780-8279-7a4f-d84cfb655ddc@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: Adding postinst script with dependencies
+	Fri,  6 Dec 2019 20:18:29 +0000 (UTC)
+Received: by mail-ot1-f47.google.com with SMTP id g18so6842525otj.13
+	for <meta-arago@arago-project.org>;
+	Fri, 06 Dec 2019 12:16:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=vkL3H0FlaMRkyJC/TXgGa7/BL7JE+EJ4cGM6yfzO1/o=;
+	b=SRtGAxrE+n1cOAl7YRjhS8SaREdbGvUsK9F9U4q4uF/Bz7boDN+c1HZogEAjyhmfDI
+	1Mzb0Mz6V1aA/clr/YqVchQ+19n5IV23/7Aeq61pZdZzJjenZitTueDd4J6aFCs3NfId
+	FfJ44tjpv8cvoT60p9abJLxMIbE+8o6TOoFttZGASeBN05WiQgPjiZ27WY0sKGVOdgjF
+	a6qDL/Yb38yVcnvhicJgAG9UoERaeMeSm9AfmIrrqyn2+Sc/CL2/p//JZof9DKrJh7YD
+	Qc90U1lsPlPVlC87oNmCwAvYPcn5ldMEBMUwXTRYWgDg7GRFdKxsc5qlNnfX7pR0Oi3I
+	77jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=vkL3H0FlaMRkyJC/TXgGa7/BL7JE+EJ4cGM6yfzO1/o=;
+	b=mS6VMRszuQJGpxSQLO8QHu6hSHuxXa2lk5q29HA8tEY8h3CZIxPbdM50dlTkk5JC5I
+	hWrAGXEiJK/sHvZu/N9b82nuP6B283t0BctaX9cjqjgQsLOkN8NVTQ63uPB43n+Rxpd0
+	QSIjqcZNE2cRj4iqP10LjMGXcl+xOjbAeU2hWC6rJpA2o6OcXJlQKFUmjpwvyeYDB15v
+	7JBPezflAq+LenYQ67tYKapgEE+M+HFDurUp7xBlXbro25f7FOOQW3VecH7zHFGB079q
+	i7j8t6FY1JXMJddVMu768RsYnknkYtuftbXOpZRLoaRMOxkbwRYgqRfZcvYV3vGXPBoa
+	jaeQ==
+X-Gm-Message-State: APjAAAU1NqOvoL8aLo/AKof8BzhYXbhmQkGWjzSebE8mIE7CpSeiovLg
+	5NKtLYRuyAUApwCUwTyWLyzWA6PETRI=
+X-Google-Smtp-Source: APXvYqyqNYM9LPsVhm2S1zhTxd/Ug2eoD+X2sebvkWZlxnBVXr2rsC5nW0L3v86LUn/Q6ZgALxEmuw==
+X-Received: by 2002:a9d:70cb:: with SMTP id w11mr7807907otj.157.1575663416594; 
+	Fri, 06 Dec 2019 12:16:56 -0800 (PST)
+Received: from hari-Latitude-E6430.utdallas.edu
+	(cpe-76-184-237-208.tx.res.rr.com. [76.184.237.208])
+	by smtp.gmail.com with ESMTPSA id
+	f83sm5276155oia.43.2019.12.06.12.16.55
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Fri, 06 Dec 2019 12:16:55 -0800 (PST)
+From: Hari Nagalla <hnagalla@gmail.com>
+To: meta-arago@arago-project.org
+Date: Fri,  6 Dec 2019 14:16:38 -0600
+Message-Id: <20191206201639.18381-1-hnagalla@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [ 1/1] Use wireless-regdb-static for K4.15 and later
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,58 +55,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Dec 2019 14:04:49 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Fri, 06 Dec 2019 20:18:30 -0000
 
+---
+ .../packagegroups/packagegroup-arago-tisdk-connectivity.bb    | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On 06/12/19 1:00 pm, Nikhil Devshatwar wrote:
-> Hi all,
->
-> I was working on a demo package recipe where I want to update files 
-> being installed by other package.
->
-> For this, I went about adding a postinst function
->
-> e.g. oob-demo package DEPENDS on weston-conf
->
-> I have a postinst function in oob-demo which updates a file 
-> (/etc/weston.ini) as part of installation
->
-> This works fine if I install the oob-demo IPK in the existing target.
->
-> However, the yocto build fails when I try to build the 
-> tisdk-rootfs-image.
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index 72b72d6c..a44c4063 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -8,13 +8,13 @@ inherit packagegroup
+ 
+ # WLAN support packages.
+ # These are the packages that all platforms use for WLAN support
+-# add wireless-regdb
++# add wireless-regdb-static
+ WLAN_COMMON = "\
+     iw \
+     softap-udhcpd-config \
+     eventdump \
+     wlconf \
+-    wireless-regdb \
++    wireless-regdb-static \
+     linux-firmware-iwlwifi-8000c \
+     linux-firmware-iwlwifi-8265 \
+     linux-firmware-iwlwifi-3160-17 \
+-- 
+2.17.1
 
-
-Got this working, had to prepend with $D to point to any paths postinst 
-script was using.
-
-This got replaced with the path to rootfs and I could see the file 
-getting patched.
-
-
-Regards,
-
-Nikhil D
-
->
-> I understood that the postinst functions get called alphabetically, 
-> and DEPENDS is not respected there.
->
-> https://www.yoctoproject.org/pipermail/poky/2012-June/007984.html
->
->
-> Is there any better way to achieve this?
->
->
-> Regards,
->
-> Nikhil D
->
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
