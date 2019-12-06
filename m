@@ -1,45 +1,49 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 60AF4529B5
+Return-Path: <hnagalla@gmail.com>
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com
+	[209.85.167.176])
+	by arago-project.org (Postfix) with ESMTPS id A65BC52A21
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Dec 2019 20:50:11 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB6KmcV1077870;
-	Fri, 6 Dec 2019 14:48:38 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1575665318;
-	bh=EHUNvjSNHav+rovzrWk8Wm8LiHHALNQs0R/4tH0cnCQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Kxtmio6haPwF+TE+ST3mVRUrPpO01wbRiGJhQxWXwiQKw1Kspls09cWLEwfW1B1Uh
-	JqdfGIKSh39nXa4wXy8kRUTIcnTFuCg5lkoPlAvUh9gqEFwQzzSTctYW2Wu7yteOxT
-	t31klTLGoiXiCGeSkReW1Sn8/6xdxEelN4LSTIXs=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xB6KmccF072506
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 6 Dec 2019 14:48:38 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Fri, 6 Dec 2019 14:48:37 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Fri, 6 Dec 2019 14:48:37 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB6KmbNM010320;
-	Fri, 6 Dec 2019 14:48:37 -0600
-Date: Fri, 6 Dec 2019 15:48:37 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: hari n <hnagalla@gmail.com>
-Message-ID: <20191206204837.GA24609@beryl>
-References: <20191206201935.GX24609@beryl>
-	<6C895589-06CD-44D1-8FA4-3A9500934474@gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <6C895589-06CD-44D1-8FA4-3A9500934474@gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [ 1/1] Use wireless-regdb-static for K4.15 and later
+	Fri,  6 Dec 2019 21:35:10 +0000 (UTC)
+Received: by mail-oi1-f176.google.com with SMTP id 6so1112132oix.7
+	for <meta-arago@arago-project.org>;
+	Fri, 06 Dec 2019 13:33:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=kr54ShWa4Kdtp976+0tNj04qUlrlFB0G0Ijjj77dPYo=;
+	b=aLzUF47281IPNA2dh2rEqICot1sbkfdtn21TnOG5e7cvjrcKMiq4AuJtojsf0FO7xw
+	2XR0CiyQrzf2iDVwHhLTLUWCFZtw20GrSGOsyVzBMuranxzyg16v5B5K0FpWf5MA3gN/
+	uFIiec9fThJKKasiBOch99bexSCe1dRceXGUjdWwhHGMxwLk3e9PILJTp6FWwm/5/0fB
+	/KHlU5MSY86Ep1v4JNni9fW4spwXhxyjD5Z0jet7l8jSAvnhSAkeNQjxOi0gZZ8xVkux
+	rkfJHkqaDPM/yyRNG+RJ5HmVQ1d9QAjjy/il2on/qo+4eKI5oi7XK7u/4TV9wO53BpwR
+	hXrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=kr54ShWa4Kdtp976+0tNj04qUlrlFB0G0Ijjj77dPYo=;
+	b=CCxYm1qTYcAL5Rt9mHXKkBR8/Dx+xA3tLMla8p1HIJnFoDKvpFCXf0BgSRtmjFBL5f
+	YOP10ysbXy5Znv2dom+VqMWr3iJJ4Fu6y61a414QklvYeQGkWwBe9qKAf6+rLE7YC2oL
+	orl5Fjwe42Sb4LRAYiEexjVKW3obuDWUJYweOgnBAF2KJj5to09TBMTx2kdADqBYMINy
+	yYA/jadcfyCjNRfyJzbnDMN1BDr8HCRXqXfqcAtuwNDNS3brY/4VW6E5k5abYtQkOKMK
+	cu7ZrNYD0DG+JTiAH61RhPJd2uBJVP7eFD00YPH1O94TH1c1VV5gEQDW/O/rkmfy1tgj
+	8PgA==
+X-Gm-Message-State: APjAAAXTVe8UfcztjnHzTeAnOIgrokLgrKxPrc+RKLp+em5iyJbwfoy3
+	Dwkyk9jlQROiu/QHh0q3KsrlIvRDwsc=
+X-Google-Smtp-Source: APXvYqx8dD4Fn5eu14UtP60+BfmwpSaij/0V4hxL7sASLu+TOd3TKb5Zf+NufmQb7hQc/YQwnqdiRQ==
+X-Received: by 2002:aca:aacf:: with SMTP id
+	t198mr14681563oie.135.1575668017167; 
+	Fri, 06 Dec 2019 13:33:37 -0800 (PST)
+Received: from hari-Latitude-E6430.utdallas.edu
+	(cpe-76-184-237-208.tx.res.rr.com. [76.184.237.208])
+	by smtp.gmail.com with ESMTPSA id
+	e21sm5380991oib.16.2019.12.06.13.33.36
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Fri, 06 Dec 2019 13:33:36 -0800 (PST)
+From: Hari Nagalla <hnagalla@gmail.com>
+To: meta-arago@arago-project.org
+Date: Fri,  6 Dec 2019 15:33:17 -0600
+Message-Id: <20191206213318.18971-1-hnagalla@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [ 1/1] Use wireless-regdb-static for K4.15 and later
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,71 +56,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Dec 2019 20:50:11 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 06 Dec 2019 21:35:11 -0000
 
-Hari,
+---
+ .../packagegroups/packagegroup-arago-tisdk-connectivity.bb   | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-Ok, sounds good. Can you please remove "uim-sysfs" from the packagegroup, so I 
-can drop the recipe completely from meta-ti later on? Thanks!
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index 72b72d6c..23f31075 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -8,13 +8,13 @@ inherit packagegroup
+ 
+ # WLAN support packages.
+ # These are the packages that all platforms use for WLAN support
+-# add wireless-regdb
++# add wireless-regdb-static
+ WLAN_COMMON = "\
+     iw \
+     softap-udhcpd-config \
+     eventdump \
+     wlconf \
+-    wireless-regdb \
++    wireless-regdb-static \
+     linux-firmware-iwlwifi-8000c \
+     linux-firmware-iwlwifi-8265 \
+     linux-firmware-iwlwifi-3160-17 \
+@@ -45,7 +45,6 @@ BT_COMMON = "\
+ "
+ 
+ BT_TI = "\
+-    uim-sysfs \
+     bt-enable \
+     bt-fw \
+ "
+-- 
+2.17.1
 
-Denys
-
-
-On Fri, Dec 06, 2019 at 02:29:09PM -0600, hari n wrote:
-> Hi Denys,
-> 
-> It is not needed. We do not need uim, as we moved away from shared 
-> transport.
-> 
-> In v1, I used the tisdk6.1 snapshot repository. This time, I pulled using 
-> the thud configuration.
-> 
-> Thanks
-> Hari
-> 
-> 
-> > On Dec 6, 2019, at 2:19 PM, Denys Dmytriyenko <denys@ti.com> wrote:
-> > 
-> > ﻿So, is "uim" still needed or not? In v1 you tried to remove it, but it got 
-> > renamed to "uim-sysfs" to avoid confusion with other uim package. I'm just 
-> > trying to see if we still need it or can simply drop the recipe from meta-ti.
-> > 
-> > Denys
-> > 
-> > 
-> >> On Fri, Dec 06, 2019 at 02:16:38PM -0600, Hari Nagalla wrote:
-> >> ---
-> >> .../packagegroups/packagegroup-arago-tisdk-connectivity.bb    | 4 ++--
-> >> 1 file changed, 2 insertions(+), 2 deletions(-)
-> >> 
-> >> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> >> index 72b72d6c..a44c4063 100644
-> >> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> >> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> >> @@ -8,13 +8,13 @@ inherit packagegroup
-> >> 
-> >> # WLAN support packages.
-> >> # These are the packages that all platforms use for WLAN support
-> >> -# add wireless-regdb
-> >> +# add wireless-regdb-static
-> >> WLAN_COMMON = "\
-> >>     iw \
-> >>     softap-udhcpd-config \
-> >>     eventdump \
-> >>     wlconf \
-> >> -    wireless-regdb \
-> >> +    wireless-regdb-static \
-> >>     linux-firmware-iwlwifi-8000c \
-> >>     linux-firmware-iwlwifi-8265 \
-> >>     linux-firmware-iwlwifi-3160-17 \
-> >> -- 
-> >> 2.17.1
-> >> 
-> >> _______________________________________________
-> >> meta-arago mailing list
-> >> meta-arago@arago-project.org
-> >> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
