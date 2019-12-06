@@ -1,48 +1,50 @@
 Return-Path: <hnagalla@gmail.com>
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com
-	[209.85.167.176])
-	by arago-project.org (Postfix) with ESMTPS id A65BC52A21
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com
+	[209.85.167.178])
+	by arago-project.org (Postfix) with ESMTPS id 8D4D952A43
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Dec 2019 21:35:10 +0000 (UTC)
-Received: by mail-oi1-f176.google.com with SMTP id 6so1112132oix.7
+	Fri,  6 Dec 2019 21:35:11 +0000 (UTC)
+Received: by mail-oi1-f178.google.com with SMTP id v10so1079564oiv.12
 	for <meta-arago@arago-project.org>;
-	Fri, 06 Dec 2019 13:33:38 -0800 (PST)
+	Fri, 06 Dec 2019 13:33:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
 	bh=kr54ShWa4Kdtp976+0tNj04qUlrlFB0G0Ijjj77dPYo=;
-	b=aLzUF47281IPNA2dh2rEqICot1sbkfdtn21TnOG5e7cvjrcKMiq4AuJtojsf0FO7xw
-	2XR0CiyQrzf2iDVwHhLTLUWCFZtw20GrSGOsyVzBMuranxzyg16v5B5K0FpWf5MA3gN/
-	uFIiec9fThJKKasiBOch99bexSCe1dRceXGUjdWwhHGMxwLk3e9PILJTp6FWwm/5/0fB
-	/KHlU5MSY86Ep1v4JNni9fW4spwXhxyjD5Z0jet7l8jSAvnhSAkeNQjxOi0gZZ8xVkux
-	rkfJHkqaDPM/yyRNG+RJ5HmVQ1d9QAjjy/il2on/qo+4eKI5oi7XK7u/4TV9wO53BpwR
-	hXrg==
+	b=c1KPTaEl/GZ8mOEFCqPnL5xBUhLUv0IqtesFOuz+uRYzYh/YelFnyKUeCv/1zJfdCB
+	d2WK737K80WiLGkGqpEEAZ3Ep8lCQcUmB8v4CMRbMRK1xpldkpmEM64CUGK3r4iixkAX
+	YFHYrZCXFvDBJ0s0yXclgaJPA9TxG8YpFa23NNLvX4RwGnhKq2PmygLaWZsxjsF+S1lm
+	+04BYeVb1n3BKG4zLAOsNzzrtJIsbmqx7j6Dy51P6GVnr/ddnUNj/EDI1h/cE1/sfpyQ
+	8jBk9oW14b71+lWmLY8v01gHGzGaDspppbskmKwKo7MkrtMloPYhnr7hxeu5SbgZnzKK
+	RXzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
 	bh=kr54ShWa4Kdtp976+0tNj04qUlrlFB0G0Ijjj77dPYo=;
-	b=CCxYm1qTYcAL5Rt9mHXKkBR8/Dx+xA3tLMla8p1HIJnFoDKvpFCXf0BgSRtmjFBL5f
-	YOP10ysbXy5Znv2dom+VqMWr3iJJ4Fu6y61a414QklvYeQGkWwBe9qKAf6+rLE7YC2oL
-	orl5Fjwe42Sb4LRAYiEexjVKW3obuDWUJYweOgnBAF2KJj5to09TBMTx2kdADqBYMINy
-	yYA/jadcfyCjNRfyJzbnDMN1BDr8HCRXqXfqcAtuwNDNS3brY/4VW6E5k5abYtQkOKMK
-	cu7ZrNYD0DG+JTiAH61RhPJd2uBJVP7eFD00YPH1O94TH1c1VV5gEQDW/O/rkmfy1tgj
-	8PgA==
-X-Gm-Message-State: APjAAAXTVe8UfcztjnHzTeAnOIgrokLgrKxPrc+RKLp+em5iyJbwfoy3
-	Dwkyk9jlQROiu/QHh0q3KsrlIvRDwsc=
-X-Google-Smtp-Source: APXvYqx8dD4Fn5eu14UtP60+BfmwpSaij/0V4hxL7sASLu+TOd3TKb5Zf+NufmQb7hQc/YQwnqdiRQ==
-X-Received: by 2002:aca:aacf:: with SMTP id
-	t198mr14681563oie.135.1575668017167; 
-	Fri, 06 Dec 2019 13:33:37 -0800 (PST)
+	b=feYLUs68fs/l5YwrYSjYlf5glXKUKdEw00XUbuSs5FDltJKSDs3aizNUwkJ/kN9RSB
+	d9MN6a3ciJdxqBSYIerntOeSB028KT4Spj0Rr8XhCi955cSep12eBiO9vDXfqYo3GGGw
+	SuidrV7Ywx0V5wV1zvvYhiVdj+cjNx1QcO9jd+eo4kFawekDYWFg7hDPWslWjKwpwCkm
+	vQ/6PATbLSiKbACJ9P+g9egv2WTMFxDA7m/Nvzv5kcFgVNeLMvYoRU61GJENtTs9mM/s
+	g+sEmHugasBtGFoEJPPJHRAJ01f6lt5e7xgDNG09Ft0XQvVpxMNuIQa63jS+iRukPkSU
+	NMqA==
+X-Gm-Message-State: APjAAAUfSFBkZm/XMz3QNHbXpFd8m13X66aGAMTblssmqkwTCSu1VCJd
+	g5i6+Y8gTMQKG89w4/Dn/WwyEPm/p2k=
+X-Google-Smtp-Source: APXvYqxHbE5bql+tStEwGGrAGEO+n6PYb0mtgDnJI7H/2luY/CPvFVNuYmnuwiTzK/sdolXSA4JENA==
+X-Received: by 2002:a54:4e94:: with SMTP id c20mr7424868oiy.27.1575668018299; 
+	Fri, 06 Dec 2019 13:33:38 -0800 (PST)
 Received: from hari-Latitude-E6430.utdallas.edu
 	(cpe-76-184-237-208.tx.res.rr.com. [76.184.237.208])
 	by smtp.gmail.com with ESMTPSA id
-	e21sm5380991oib.16.2019.12.06.13.33.36
+	e21sm5380991oib.16.2019.12.06.13.33.37
 	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Fri, 06 Dec 2019 13:33:36 -0800 (PST)
+	Fri, 06 Dec 2019 13:33:37 -0800 (PST)
 From: Hari Nagalla <hnagalla@gmail.com>
 To: meta-arago@arago-project.org
-Date: Fri,  6 Dec 2019 15:33:17 -0600
-Message-Id: <20191206213318.18971-1-hnagalla@gmail.com>
+Date: Fri,  6 Dec 2019 15:33:18 -0600
+Message-Id: <20191206213318.18971-2-hnagalla@gmail.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20191206213318.18971-1-hnagalla@gmail.com>
+References: <20191206213318.18971-1-hnagalla@gmail.com>
 Subject: [ 1/1] Use wireless-regdb-static for K4.15 and later
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -56,7 +58,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Dec 2019 21:35:11 -0000
+X-List-Received-Date: Fri, 06 Dec 2019 21:35:12 -0000
 
 ---
  .../packagegroups/packagegroup-arago-tisdk-connectivity.bb   | 5 ++---
