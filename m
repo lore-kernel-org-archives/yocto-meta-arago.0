@@ -1,44 +1,41 @@
-Return-Path: <x0038811@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 45042520E2
+Return-Path: <nikhil.nd@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id F218252986
 	for <meta-arago@arago-project.org>;
-	Mon,  9 Dec 2019 05:14:23 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB95CnGI126812
-	for <meta-arago@arago-project.org>; Sun, 8 Dec 2019 23:12:49 -0600
+	Mon,  9 Dec 2019 08:16:33 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB98F09D078587
+	for <meta-arago@arago-project.org>; Mon, 9 Dec 2019 02:15:00 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1575868369;
-	bh=PkQ1sRhFhaRlc9pIEu2sTvPylBEtIHsTuAY0qTECVwo=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Brsm5Cb8eQgiUR+bjDMAh1HWpcvyHg8CwGDeByqmSIzZwC05HVUOVObop41A/n1lX
-	BEiAEYy/oMrnptbgZyeLbzNAoShBrC77L5P6e50o/k6vLYaWSByFW2ZDJYBEBtHOLZ
-	wifSb8790jbj2Gb01i+sbu1BbSxAbHQR9Tkn73Lw=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xB95CnJa063320
+	s=ti-com-17Q1; t=1575879300;
+	bh=Go/J7tv6w6aiT5JrIFO5p/wluQY7NKDFVU3Vb50Ko9g=;
+	h=From:To:CC:Subject:Date;
+	b=w5iBzWSFjnI9Wg3+m4HidaHlIppS8VgT4+FfK7kDNahnsQLgJsHT+gkRG/Ij8V9zi
+	+4xJuWOsRz0kuG+18BXRuyfFRKQFwu1biRP1dyLCmxn4a8UwumMDwdCMOI4h6MkauJ
+	4r4xkFiciHAdnNABkpZPVIoxLh1HPRee96lHRLtI=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xB98ExDU094673
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Sun, 8 Dec 2019 23:12:49 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 9 Dec 2019 02:14:59 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Sun, 8 Dec 2019 23:12:49 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 9 Dec 2019 02:14:59 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Sun, 8 Dec 2019 23:12:48 -0600
-Received: from udx0038811.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB95Cjuv121595;
-	Sun, 8 Dec 2019 23:12:48 -0600
-From: Ramprasad N <x0038811@ti.com>
+	Frontend Transport; Mon, 9 Dec 2019 02:14:59 -0600
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB98EwEh100975; 
+	Mon, 9 Dec 2019 02:14:58 -0600
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 9 Dec 2019 10:42:44 +0530
-Message-ID: <1575868364-11275-2-git-send-email-x0038811@ti.com>
+Date: Mon, 9 Dec 2019 13:44:55 +0530
+Message-ID: <1575879295-99580-1-git-send-email-nikhil.nd@ti.com>
 X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1575868364-11275-1-git-send-email-x0038811@ti.com>
-References: <1575868364-11275-1-git-send-email-x0038811@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master 1/1] kmscube: Update SRCREV for connector-ID fix
+Subject: [thud/master][PATCH v1] Rules.make: Allow overwriting DESTDIR
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,35 +48,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Dec 2019 05:14:23 -0000
+X-List-Received-Date: Mon, 09 Dec 2019 08:16:34 -0000
 Content-Type: text/plain
 
-KmsCube executed with connector-id as argument
-resulted in SEgmentation fault due to previous commit's
-one change.
+DESTDIR in the Rules.make points to the path where
+the files should be installed.
 
-Add : after c in argument list as fix
+setup scripts update this to the targetNFS location but
+it cannot be used for installing files in the SD card.
+When DESTDIR is defined conditionally, it allows following
 
-Signed-off-by: Ramprasad N <x0038811@ti.com>
+DESTDIR=/path/to/sd/card make install #custom installation
+make install #NFS installation
+
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
 ---
- meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make        | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-index 2b305e7..782d21a 100644
---- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-+++ b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-@@ -10,8 +10,8 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
+index 96f248a..3382d93 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
+@@ -14,7 +14,7 @@ UBOOT_MACHINE=__UBOOT_MACHINE__
+ export TI_SDK_PATH=__SDK__INSTALL_DIR__
  
- inherit autotools pkgconfig
+ #root of the target file system for installing applications
+-DESTDIR=__DESTDIR__
++DESTDIR ?=__DESTDIR__
  
--PR = "r13"
--SRCREV = "456cabc661caac5c60729751d45efd668faa8e97"
-+PR = "r14"
-+SRCREV = "7bc7ff6c4ead19761003ed4a08d00ce64effe38b"
- 
- SRC_URI = "git://git.ti.com/glsdk/kmscube.git;protocol=git"
- 
+ #Points to the root of the Linux libraries and headers matching the
+ #demo file system.
 -- 
 1.9.1
 
