@@ -1,42 +1,42 @@
-Return-Path: <yuanzhao@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id B78C552993
+Return-Path: <x0038811@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id B4D6C520E2
 	for <meta-arago@arago-project.org>;
-	Sun,  8 Dec 2019 08:30:52 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB88TJ6e063660
-	for <meta-arago@arago-project.org>; Sun, 8 Dec 2019 02:29:19 -0600
+	Mon,  9 Dec 2019 05:14:22 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xB95Cm6t090767
+	for <meta-arago@arago-project.org>; Sun, 8 Dec 2019 23:12:48 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1575793759;
-	bh=6/kXxBeM0+B1AkS0QleIWg3gs1q6ipE9HjDxtfzBDwo=;
+	s=ti-com-17Q1; t=1575868368;
+	bh=6O8xKlrp5fjRSoxXQbScWDqj5DYMOaA59NJPc2FTFhs=;
 	h=From:To:CC:Subject:Date;
-	b=nqvkM15EvByF+c1i8Zx+OWAYoHxvUE1oTlHqcG2TY3FwzdSCdjAi2AMP6GekjN9G0
-	B1WNX+3YQ8jSsF2N2weCHRv3tQ6ipu9QWuaOpODGZag6Cy5V1eqcap2AD3VbIYpA2+
-	HDpjomKlm0LF+n2i7XUsbP2N/tCORdZ6iGmmYbCM=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xB88TJkI018977
+	b=zP6MnycpwPrIE/auzIjGtJLpw2+X5PpkqmkaLzqH4pYnmJX4Ixv8sXsUYR9IEtIbM
+	Nh77f3s3Nfi24uoN9BWBMv5yupkLGM9N4q+L2GbeGpzggyISQGdX0PF5BLi+htnP+c
+	SYAFBTZMYn4kKnT0m9WZy16kdDCB/pEelH83aqj4=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xB95CmPl027158
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Sun, 8 Dec 2019 02:29:19 -0600
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Sun, 8 Dec 2019 23:12:48 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Sun, 8 Dec 2019 02:29:18 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	Sun, 8 Dec 2019 23:12:47 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Sun, 8 Dec 2019 02:29:18 -0600
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Sun, 8 Dec 2019 23:12:47 -0600
+Received: from udx0038811.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB88TIuI021101;
-	Sun, 8 Dec 2019 02:29:18 -0600
-From: Yuan Zhao <yuanzhao@ti.com>
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xB95Cjuu121595;
+	Sun, 8 Dec 2019 23:12:46 -0600
+From: Ramprasad N <x0038811@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Sun, 8 Dec 2019 02:29:02 -0600
-Message-ID: <20191208082902.63426-1-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.14.1
+Date: Mon, 9 Dec 2019 10:42:43 +0530
+Message-ID: <1575868364-11275-1-git-send-email-x0038811@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v2] tidl-api: update to version 1.4.0
+Subject: [thud/master 0/1] kmscube: Update SRCREV
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,53 +49,20 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 08 Dec 2019 08:30:53 -0000
+X-List-Received-Date: Mon, 09 Dec 2019 05:14:23 -0000
 Content-Type: text/plain
 
-- Subgraph execution support.
+Updated SRCREV for kmscube with a fix while using
+connector-id as argument, without this fix, segmentation
+fault is observed
 
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
----
- meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc    | 4 ++--
- meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb | 2 ++
- 2 files changed, 4 insertions(+), 2 deletions(-)
+Ramprasad N (1):
+  kmscube: Update SRCREV for connector-ID fix
 
-diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-index e3e124d0..116928ab 100644
---- a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-+++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-@@ -1,4 +1,4 @@
--PV = "1.3.3"
-+PV = "1.4.0"
- INC_PR = "r0"
- 
- LIC_FILES_CHKSUM = "file://license.txt;md5=e3daeabffb9fc131a73f16d16cbdb118"
-@@ -8,7 +8,7 @@ GIT_PROTOCOL = "git"
- BRANCH = "master"
- 
- SRC_URI = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
--SRCREV = "092a2ed047b02d9668fddebe61d4e5920bfbfb3f"
-+SRCREV = "21faf4b36a0ae9ee5b5c6aaf90d067728ff4f78b"
- 
- # default patchdir is ${S}
- S = "${WORKDIR}/git"
-diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb b/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb
-index 283a18ee..a8829c1b 100644
---- a/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb
-+++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb
-@@ -41,9 +41,11 @@ do_install() {
-     install -d ${D}${TIDL_INSTALL_DIR}
-     install -d ${D}${TIDL_INSTALL_DIR}/tidl_api
-     install -d ${D}${TIDL_INSTALL_DIR}/viewer
-+    install -d ${D}${libdir}
-     cp ${CP_ARGS} ${S}/tidl_api/* ${D}${TIDL_INSTALL_DIR}/tidl_api/
-     cp ${CP_ARGS} ${S}/viewer/* ${D}${TIDL_INSTALL_DIR}/viewer/
-     install ${S}/readme.md ${D}${TIDL_INSTALL_DIR}/
-+    cp ${CP_ARGS} ${S}/tidl_api/libtidl_*.so ${D}${libdir}
- }
- 
- FILES_${PN} += "\
+ meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
 -- 
-2.14.1
+1.9.1
 
 
