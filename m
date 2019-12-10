@@ -1,30 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 8F38C52988
+Return-Path: <gaurav@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 2054152988
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Dec 2019 21:57:15 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 2B12B40C06;
-	Tue, 10 Dec 2019 21:55:41 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 6arpyouVEb1A; Tue, 10 Dec 2019 21:55:41 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1227840BC4;
-	Tue, 10 Dec 2019 21:55:39 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id B311717434E;
-	Tue, 10 Dec 2019 16:55:39 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Tue, 10 Dec 2019 16:55:39 -0500
-Message-Id: <1576014939-30077-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH] netperf, arago.conf: enable netperf intervals/pacing and histogram options
+	Tue, 10 Dec 2019 22:09:24 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBAM7nuc071076
+	for <meta-arago@arago-project.org>; Tue, 10 Dec 2019 16:07:49 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1576015669;
+	bh=5+mI7Q5UWfF6Zjyh5N6t/HB728smOkxTctRZ0IZfMLI=;
+	h=From:To:CC:Subject:Date;
+	b=p0L3eof2Lx+Sze7pmGbKrMUeS7SMu44OrSAhIpqq1we9pGoBO1ir68iv9zQhnIh/t
+	WS9j3H1Jzyp+cacLdHVn20846limWaDbdzRMuvSjD7L8UNBfHmbop/qbRaiwLZagNj
+	VL4cZF5E9vOKVlp1R5Y7zckgFNA50MgdhjlMO2Ng=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBAM7nqw044188
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 10 Dec 2019 16:07:49 -0600
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Tue, 10 Dec 2019 16:07:45 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Tue, 10 Dec 2019 16:07:45 -0600
+Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBAM7jEC028196;
+	Tue, 10 Dec 2019 16:07:45 -0600
+From: Gaurav Mitra <gaurav@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 10 Dec 2019 16:07:30 -0600
+Message-ID: <20191210220730.62498-1-gaurav@ti.com>
+X-Mailer: git-send-email 2.14.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH] openmpacc: update to version 01.05.06.00
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,38 +49,144 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Dec 2019 21:57:15 -0000
+X-List-Received-Date: Tue, 10 Dec 2019 22:09:24 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+    - Changes for openmpacc examples: Removed vecadd_lib, edmabw
+    - Changes for clacc host_cc and host_link_cc parameters: Determine target
+      compiler name directly from CMake
+    - Documentation update regarding no support for variadic functions in
+      target regions
+
+Signed-off-by: Gaurav Mitra <gaurav@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf                       | 3 +++
- meta-arago-distro/recipes-support/netperf/netperf_git.bbappend | 2 ++
- 2 files changed, 5 insertions(+)
- create mode 100644 meta-arago-distro/recipes-support/netperf/netperf_git.bbappend
+ .../recipes-ti/openmpacc/clacc_git.bb              | 28 ++++++++++++++++++----
+ .../recipes-ti/openmpacc/openmpacc-examples_git.bb |  8 +------
+ .../recipes-ti/openmpacc/openmpacc.inc             |  4 ++--
+ .../recipes-ti/openmpacc/openmpacc_git.bb          |  4 ----
+ 4 files changed, 26 insertions(+), 18 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 3ae0065..fde8618 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -125,6 +125,9 @@ PACKAGECONFIG_append_pn-u-boot-ti-staging_k3 = " optee"
- # Enable encryption support in open62541
- PACKAGECONFIG_append_pn-open62541 = " encrypt"
+diff --git a/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb b/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
+index 75ce4628..f69869d8 100644
+--- a/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
++++ b/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
+@@ -18,16 +18,34 @@ export X86_HOST_ROOT = "${STAGING_DIR_HOST}"
  
-+# Enable netperf intervals/pacing and histogram
-+PACKAGECONFIG_append_pn-netperf = "intervals histogram"
+ PARALLEL_MAKE = ""
+ 
++# The variables CLACC_CC and CLACC_CXX are used to point clacc to set its
++# host_cc and host_link_cc variables which were previously hardcoded in clacc.h.
++# This adds support for different toolchain configurations to build clacc by
++# passing in the compiler names at the build stage and removes corresponding
++# string replacement requirements in yocto recipes.
++python __anonymous() {
++    if d.getVar("TOOLCHAIN_PREFIX"):
++        cc_name = d.getVar("TOOLCHAIN_PREFIX") + "gcc"
++        cxx_name = d.getVar("TOOLCHAIN_PREFIX") + "g++"
 +
- # Configure RAMFS for jailhouse linux-demo
- JH_RAMFS_IMAGE = "arago-tiny-image"
++    # Convert to upper case to workaround GCC preprocessor bug where the word
++    # 'linux' is defined to be 1. This results in arm-linux-gnueabihf- being
++    # stringized to arm-1-gnueabihf- by the GCC preprocessor. To workaround this
++    # bug, convert the names to upper case and send through. Clacc will convert
++    # to lower case before usage.
++
++        d.setVar("CLACC_CC_NAME", cc_name.upper())
++        d.setVar("CLACC_CXX_NAME", cxx_name.upper())
++}
++
++
+ EXTRA_OEMAKE = " -C ${S}/clacc \
+                   ${TARGET} \
+                   CXX="${CXX}" \
++                  CLACC_CC="${CLACC_CC_NAME}" \
++                  CLACC_CXX="${CLACC_CXX_NAME}" \
+ "
  
-diff --git a/meta-arago-distro/recipes-support/netperf/netperf_git.bbappend b/meta-arago-distro/recipes-support/netperf/netperf_git.bbappend
-new file mode 100644
-index 0000000..9527f36
---- /dev/null
-+++ b/meta-arago-distro/recipes-support/netperf/netperf_git.bbappend
-@@ -0,0 +1,2 @@
-+PACKAGECONFIG[intervals] = "--enable-intervals,--disable-intervals,,"
-+PACKAGECONFIG[histogram] = "--enable-histogram,--disable-histogram,,"
+-do_configure() {
+-    sed "s|arm-linux-gnueabihf-gcc|${TOOLCHAIN_PREFIX}gcc|g" -i clacc/clacc.h
+-    sed "s|arm-linux-gnueabihf-g++|${TOOLCHAIN_PREFIX}g++|g" -i clacc/clacc.h
+-}
+-
+ do_compile() {
+     oe_runmake
+ }
+diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb b/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
+index b2f4122c..39902f8f 100644
+--- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
++++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
+@@ -21,8 +21,6 @@ OMPACC_EXAMPLE_LIST = " target_update \
+                         local \
+                         null \
+                         dsplib_fft \
+-                        vecadd_lib \
+-                        edmabw \
+                         sub_section \
+ "
+ 
+@@ -35,7 +33,6 @@ python do_unpack_append() {
+     os.makedirs(s)
+     shutil.copy(os.path.join(git_dir,"Makefile"),s)
+     shutil.copy(os.path.join(git_dir,"make.inc"),s)
+-    shutil.copy(os.path.join(git_dir,"ompacc_env.sh"),s)
+     for example in d.getVar("OMPACC_EXAMPLE_LIST").split():
+         shutil.copytree(os.path.join(git_dir,example), os.path.join(s,example))
+ }
+@@ -47,11 +44,9 @@ EXTRA_OEMAKE = " TARGET_ROOTDIR=${STAGING_DIR_HOST} \
+ MKFILELIST = "vecadd/Makefile vecadd_complex/Makefile dsplib_fft/Makefile \
+ null/Makefile dspheap/Makefile target_implicit_map/Makefile printf_debug/Makefile \
+ edmamgr/Makefile vecadd_t/Makefile target_orphan_call/Makefile target_update/Makefile \
+-edmabw/Makefile sub_section/Makefile vecadd_lib/Makefile local/Makefile"
++sub_section/Makefile local/Makefile"
+ 
+ do_configure() {
+-    sed "s|arm-linux-gnueabihf-gcc|${CC}|g" -i make.inc
+-    sed "s|arm-linux-gnueabihf-g++|${CXX}|g" -i make.inc
+     for f in ${MKFILELIST}; do
+         sed "s|-fopenmp|-fopenmp ${TUNE_CCARGS}${TOOLCHAIN_OPTIONS}|g" -i $f
+     done
+@@ -66,7 +61,6 @@ do_install() {
+ 
+     install -m 644 ${B}/Makefile ${D}${datadir}/ti/examples/openmpacc
+     install -m 644 ${B}/make.inc ${D}${datadir}/ti/examples/openmpacc
+-    install -m 644 ${B}/ompacc_env.sh ${D}${datadir}/ti/examples/openmpacc
+ 
+     for ompacc_example in ${OMPACC_EXAMPLE_LIST}; do
+         install -d ${D}${datadir}/ti/examples/openmpacc/${ompacc_example}
+diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
+index ce0236d4..d33a156b 100644
+--- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
++++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
+@@ -2,7 +2,7 @@ SUMMARY = "TI OpenMP Accelerator Model"
+ HOMEPAGE = "http://downloads.ti.com/mctools/esd/docs/openmpacc/"
+ LICENSE = "BSD"
+ 
+-PV = "1.5.4.0"
++PV = "1.5.6.0"
+ INC_PR = "r0"
+ 
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=aaa2a0939d08197132fc382e97b62eb0"
+@@ -13,7 +13,7 @@ OMPACC_GIT_URI = "git://git.ti.com/openmp/ti-openmpacc.git"
+ OMPACC_GIT_PROTOCOL = "git"
+ OMPACC_GIT_BRANCH = "master"
+ 
+-OMPACC_SRCREV = "808cef58b4ed196a9ced2310d419dbaf63dfbeb6"
++OMPACC_SRCREV = "7c4e68a0bf73ec193edff9dfc23ea764ae6ad434"
+ 
+ BRANCH = "${OMPACC_GIT_BRANCH}"
+ SRC_URI = "${OMPACC_GIT_URI};protocol=${OMPACC_GIT_PROTOCOL};branch=${BRANCH}"
+diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb b/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
+index a28a9225..44b59a4f 100644
+--- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
++++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
+@@ -18,7 +18,3 @@ export LINUX_DEVKIT_ROOT = "${STAGING_DIR_HOST}"
+ EXTRA_OECMAKE += "-DVERSION="${PV}" -DBUILD_OUTPUT=lib"
+ 
+ FILES_${PN} += "/usr/share/ti/openmpacc/*"
+-
+-do_configure_prepend() {
+-	sed -i -e 's/-march=armv7-a//' ${S}/libompacc/CMakeLists.txt
+-}
 -- 
-2.7.4
+2.14.1
 
 
