@@ -1,43 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 85DE652986
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id EA9C4529BC
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Dec 2019 01:20:54 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBA1JK9v128883
-	for <meta-arago@arago-project.org>; Mon, 9 Dec 2019 19:19:20 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1575940760;
-	bh=8NplIctUQk+fhGfxj+CLpmQli8zvPuLB4SKBrVv4+2Y=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=I0h7ii5iIcbdIOao7V4EblHkJLOLRJJYkh2JuxBhRSxz3oaBgW8HZeo3K9znkH0jP
-	u4WQ1INDBZ+lp4nSbGUC7LN1DLN/TWBH5Cgru/7kDl1mqlxAa2gXh73+BMiqWGYwX5
-	vl3p4v+4pHTxOFAHuO1WAJ3SV658xEDav+hZNmyc=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBA1JKLi044963
-	for <meta-arago@arago-project.org>; Mon, 9 Dec 2019 19:19:20 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Mon, 9 Dec 2019 19:19:20 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Mon, 9 Dec 2019 19:19:20 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBA1JJPb040966;
-	Mon, 9 Dec 2019 19:19:20 -0600
-Date: Mon, 9 Dec 2019 20:19:19 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Nikhil Devshatwar <nikhil.nd@ti.com>
-Message-ID: <20191210011919.GB11226@beryl>
-References: <1575880358-112711-1-git-send-email-nikhil.nd@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <1575880358-112711-1-git-send-email-nikhil.nd@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [thud/master][PATCH v2] Rules.make: Initialie DESTDIR and EXEC_DIR conditionally
+	Tue, 10 Dec 2019 02:54:48 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id CCA7240BF3;
+	Tue, 10 Dec 2019 02:53:14 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 6TP1KiIBNrVj; Tue, 10 Dec 2019 02:53:14 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B3278409DE;
+	Tue, 10 Dec 2019 02:53:13 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 1CB8A174348;
+	Mon,  9 Dec 2019 21:53:13 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon,  9 Dec 2019 21:53:12 -0500
+Message-Id: <1575946392-15325-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [oe-layersetup][PATCH] arago-zeus: bump meta-browser for chromium 75
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,54 +37,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Dec 2019 01:20:54 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 10 Dec 2019 02:54:49 -0000
 
-This is fine with me, as long as Jake takes the tisdk-setup-scripts patch.
+From: Denys Dmytriyenko <denys@ti.com>
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ configs/arago-zeus-config.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Mon, Dec 09, 2019 at 02:02:38PM +0530, Nikhil Devshatwar wrote:
-> DESTDIR and EXEC_DIR in the Rules.make point to the paths where
-> the files should be installed.
-> 
-> Initialize the conditionally so that command line override is
-> allowed. This is useful when you want to switch between NFS rootfs
-> and SD card rootfs.
-> e.g. Following can be done now from installer.
-> 
-> $> DESTDIR=/path/to/sd/card make install #custom installation
-> $>                          make install #NFS installation
-> 
-> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
-> ---
->  .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make      | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-> index 96f248a..a2b7769 100644
-> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Rules.make
-> @@ -14,7 +14,7 @@ UBOOT_MACHINE=__UBOOT_MACHINE__
->  export TI_SDK_PATH=__SDK__INSTALL_DIR__
->  
->  #root of the target file system for installing applications
-> -DESTDIR=__DESTDIR__
-> +DESTDIR ?=__DESTDIR__
->  
->  #Points to the root of the Linux libraries and headers matching the
->  #demo file system.
-> @@ -42,4 +42,4 @@ SDK_PATH_TARGET=$(TI_SDK_PATH)/__SDK_PATH_TARGET__
->  
->  # Set EXEC_DIR to install example binaries.
->  # This will be configured with the setup.sh script.
-> -EXEC_DIR=__EXEC_DIR__
-> +EXEC_DIR ?=__EXEC_DIR__
-> -- 
-> 1.9.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/configs/arago-zeus-config.txt b/configs/arago-zeus-config.txt
+index 575be34..ac1e20d 100644
+--- a/configs/arago-zeus-config.txt
++++ b/configs/arago-zeus-config.txt
+@@ -3,7 +3,7 @@
+ 
+ bitbake,git://git.openembedded.org/bitbake,1.44,HEAD
+ meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,zeus,HEAD,layers=
+ meta-selinux,git://git.yoctoproject.org/meta-selinux,zeus,HEAD,layers=
+ meta-virtualization,git://git.yoctoproject.org/meta-virtualization,zeus,HEAD,layers=
+-- 
+2.7.4
+
 
