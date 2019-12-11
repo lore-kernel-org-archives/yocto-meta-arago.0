@@ -1,30 +1,45 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id E5DA852988
+Return-Path: <j-stiffler@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 69832529BC
 	for <meta-arago@arago-project.org>;
-	Tue, 10 Dec 2019 22:51:27 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 9B67240C06;
-	Tue, 10 Dec 2019 22:49:53 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 8NpB8uzC-d6T; Tue, 10 Dec 2019 22:49:53 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 831604087C;
-	Tue, 10 Dec 2019 22:49:52 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id DD78417434B;
-	Tue, 10 Dec 2019 17:49:51 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Tue, 10 Dec 2019 17:49:51 -0500
-Message-Id: <1576018191-33660-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH] ti-sci-fw: update to 2019.10
+	Wed, 11 Dec 2019 18:06:19 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBBI4iar117178
+	for <meta-arago@arago-project.org>; Wed, 11 Dec 2019 12:04:44 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1576087484;
+	bh=ik7L4OtoLzhA8UTosW0ICirpEoNIgCcn8sHgTC08ldM=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=RW0Nl8gNW1GNhrT7gmNqjZ+079UtFxmb/6hrsrqSCiMdgoOghfPq+2MOmkvkMQJDT
+	YvtchlsO6BiAYkVCj24feWwVA3NNpKkQT5iZEwzIHye3Y51fRyv4MoaiTvNgGxppm2
+	hNFvL251IZpoUpmNVnYhZ9flwa8Vr8sOWHEMWrF4=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBBI4iSS065463
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Wed, 11 Dec 2019 12:04:44 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Wed, 11 Dec 2019 12:04:44 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Wed, 11 Dec 2019 12:04:44 -0600
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBBI4hSh073863;
+	Wed, 11 Dec 2019 12:04:43 -0600
+To: Denys Dmytriyenko <denys@ti.com>, <meta-arago@arago-project.org>
+References: <1576003858-13746-1-git-send-email-denys@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <e7e1b5d6-944f-b8ce-b2c0-2cbbfcefde7f@ti.com>
+Date: Wed, 11 Dec 2019 13:04:43 -0500
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.9.1
+MIME-Version: 1.0
+In-Reply-To: <1576003858-13746-1-git-send-email-denys@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: Andreas Dannenberg <dannenberg@ti.com>
+Subject: Re: [EXTERNAL] [tisdk-setup-scripts][PATCH] setup-targetfs-nfs: fix cases when group != username
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,34 +52,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Dec 2019 22:51:28 -0000
+X-List-Received-Date: Wed, 11 Dec 2019 18:06:19 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../ti-sci-fw/{ti-sci-fw_2019.09.bb => ti-sci-fw_2019.10.bb}          | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
- rename meta-arago-distro/recipes-bsp/ti-sci-fw/{ti-sci-fw_2019.09.bb => ti-sci-fw_2019.10.bb} (95%)
+Pushed to master.
 
-diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.10.bb
-similarity index 95%
-rename from meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb
-rename to meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.10.bb
-index a61ede3..be57ddb 100644
---- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.09.bb
-+++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.10.bb
-@@ -15,9 +15,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- TI_SECURE_DEV_PKG ?= ""
- export TI_SECURE_DEV_PKG
- 
--SRCREV = "2b292f87e7257d4f9103d4e862a7b1769b13fed7"
-+SRCREV = "1707a289d55d91ca0dc22a12eb7745914858e2d1"
- BRANCH ?= "ti-linux-firmware"
--SRCREV_imggen = "70257db6e89f9c05ae2e87281b25169f4d356cf1"
-+SRCREV_imggen = "d42023032b2e7d5487aa28cdbd04addfc4d372ff"
- SRCREV_FORMAT = "imggen"
- 
- SRC_URI = " \
--- 
-2.7.4
 
+Thank you,
+
+Jake
+
+On 12/10/2019 1:50 PM, Denys Dmytriyenko wrote:
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> Suggested-by: Andreas Dannenberg <dannenberg@ti.com>
+> ---
+>   setup-targetfs-nfs.sh | 7 ++++---
+>   1 file changed, 4 insertions(+), 3 deletions(-)
+>
+> diff --git a/setup-targetfs-nfs.sh b/setup-targetfs-nfs.sh
+> index 60817ca..b6f679f 100644
+> --- a/setup-targetfs-nfs.sh
+> +++ b/setup-targetfs-nfs.sh
+> @@ -80,19 +80,20 @@ extract_fs() {
+>       done
+>   
+>       me=`whoami`
+> +    my_group=`id -gn $me`
+>       sudo mkdir -p $1
+>       check_status
+>       sudo tar xJf $cwd/../filesystem/$fstar -C $1
+>       check_status
+> -    sudo chown $me:$me $1
+> +    sudo chown $me:$my_group $1
+>       check_status
+> -    sudo chown -R $me:$me $1/home $1/usr $1/etc $1/lib $1/boot
+> +    sudo chown -R $me:$my_group $1/home $1/usr $1/etc $1/lib $1/boot
+>       check_status
+>   
+>       # Opt isn't a standard Linux directory. First make sure it exist.
+>       if [ -d $1/opt ];
+>       then
+> -            sudo chown -R $me:$me $1/opt
+> +            sudo chown -R $me:$my_group $1/opt
+>               check_status
+>       fi
+>   
 
