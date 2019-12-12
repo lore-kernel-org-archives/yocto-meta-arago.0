@@ -1,44 +1,43 @@
-Return-Path: <denys@ti.com>
+Return-Path: <h-gou@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 85D6D529C0
+	by arago-project.org (Postfix) with ESMTPS id 7F0AD529A8
 	for <meta-arago@arago-project.org>;
-	Wed, 11 Dec 2019 22:55:50 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBBMsFs8075271
-	for <meta-arago@arago-project.org>; Wed, 11 Dec 2019 16:54:15 -0600
+	Thu, 12 Dec 2019 16:27:14 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBCGPdAk042482
+	for <meta-arago@arago-project.org>; Thu, 12 Dec 2019 10:25:39 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1576104855;
-	bh=SKIucCWPt/sqTwZUsfFPnPMAxzMsfrkBeq61ZZS5tbw=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=dYDMePBhUQD8k5SyW7NsAhkQq9MLcPtirPqd46ZVMLxt/9jfa/+jjUMbrUVx9Z2Cu
-	V3i90Kopya1aA6+KTBWdqY8PWGVUvYxzyLusMl4W/s0Sz8kMxbJwUEPcuz+80EuOA4
-	dfTuT9KzrEn2K/ZEdxspXZn1fJWSXHYU4UfO71vI=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBBMsFgb101995
+	s=ti-com-17Q1; t=1576167939;
+	bh=mnhuVIup1ins6OjpE6DvEM7+ml5uh3j4cnFJcOqW5yk=;
+	h=From:To:CC:Subject:Date;
+	b=hf5OpWl4Sld2yUoSaY7BJnlr3XHDR0/9/Va7lR0UV2jIAOVX758sWpSqhFPM4VuFw
+	StWYdgJalVmS42Wc1cw5BvvobjKyA+kN8FnSNDXGQUnnNbE5zKQC3YUEb0ylt/NSmu
+	lngQwRhOB1OJzpOR7Qqjei8ISk0NMrCXBdijJ5RU=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBCGPdIt035881
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 11 Dec 2019 16:54:15 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 12 Dec 2019 10:25:39 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Wed, 11 Dec 2019 16:54:15 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 12 Dec 2019 10:25:39 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Wed, 11 Dec 2019 16:54:15 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBBMsFEo036265;
-	Wed, 11 Dec 2019 16:54:15 -0600
-Date: Wed, 11 Dec 2019 17:54:15 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Gaurav Mitra <gaurav@ti.com>
-Message-ID: <20191211225414.GD11359@beryl>
-References: <20191210220730.62498-1-gaurav@ti.com>
+	Frontend Transport; Thu, 12 Dec 2019 10:25:38 -0600
+Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBCGPcIb085238;
+	Thu, 12 Dec 2019 10:25:38 -0600
+From: Hongmei Gou <a0271529@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 12 Dec 2019 11:21:00 -0500
+Message-ID: <20191212162100.13167-1-a0271529@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20191210220730.62498-1-gaurav@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] openmpacc: update to version 01.05.06.00
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [matrix-gui-v2-apps] [PATCH] armnn_demo_livecam: set the default video port according to machine type
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,160 +50,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Dec 2019 22:55:50 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 12 Dec 2019 16:27:15 -0000
+Content-Type: text/plain
 
-Thank you for the patch!
+* For AM5, /dev/video0 has been reserved for VPE. Therefore, set the default video port
+  for camera capture as /dev/video1 for AM5, and /dev/video0 for the others.
 
-On Tue, Dec 10, 2019 at 04:07:30PM -0600, Gaurav Mitra wrote:
->     - Changes for openmpacc examples: Removed vecadd_lib, edmabw
->     - Changes for clacc host_cc and host_link_cc parameters: Determine target
->       compiler name directly from CMake
->     - Documentation update regarding no support for variadic functions in
->       target regions
-> 
-> Signed-off-by: Gaurav Mitra <gaurav@ti.com>
-> ---
->  .../recipes-ti/openmpacc/clacc_git.bb              | 28 ++++++++++++++++++----
->  .../recipes-ti/openmpacc/openmpacc-examples_git.bb |  8 +------
->  .../recipes-ti/openmpacc/openmpacc.inc             |  4 ++--
->  .../recipes-ti/openmpacc/openmpacc_git.bb          |  4 ----
->  4 files changed, 26 insertions(+), 18 deletions(-)
-> 
-> diff --git a/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb b/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
-> index 75ce4628..f69869d8 100644
-> --- a/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
-> +++ b/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
-> @@ -18,16 +18,34 @@ export X86_HOST_ROOT = "${STAGING_DIR_HOST}"
->  
->  PARALLEL_MAKE = ""
->  
-> +# The variables CLACC_CC and CLACC_CXX are used to point clacc to set its
-> +# host_cc and host_link_cc variables which were previously hardcoded in clacc.h.
-> +# This adds support for different toolchain configurations to build clacc by
-> +# passing in the compiler names at the build stage and removes corresponding
-> +# string replacement requirements in yocto recipes.
-> +python __anonymous() {
-> +    if d.getVar("TOOLCHAIN_PREFIX"):
-> +        cc_name = d.getVar("TOOLCHAIN_PREFIX") + "gcc"
-> +        cxx_name = d.getVar("TOOLCHAIN_PREFIX") + "g++"
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
+---
+ tidl_apps/armnn_demo_livecam/runArmnnLiveCam.sh | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-What happens when TOOLCHAIN_PREFIX is not defined, CLACC_CC_NAME and 
-CLACC_CXX_NAME below won't be defined as well.
+diff --git a/tidl_apps/armnn_demo_livecam/runArmnnLiveCam.sh b/tidl_apps/armnn_demo_livecam/runArmnnLiveCam.sh
+index 247427e..b01cfa7 100644
+--- a/tidl_apps/armnn_demo_livecam/runArmnnLiveCam.sh
++++ b/tidl_apps/armnn_demo_livecam/runArmnnLiveCam.sh
+@@ -1,3 +1,12 @@
+ cd /usr/bin
+ 
+-./ArmnnExamples -f tflite-binary -i input -s '1 224 224 3' -o MobilenetV2/Predictions/Reshape_1 -d /usr/share/arm/armnn/testvecs/camera_live_input -m /usr/share/arm/armnn/models/mobilenet_v2_1.0_224.tflite -c CpuAcc --number_frame 999
++machine_type="`cat /etc/hostname`"
++video_port=0
++
++if [ "$machine_type" = "am57xx-evm" ] || [ "$machine_type" = "am57xx-hs-evm" ]; then
++    video_port=1
++fi
++
++echo "Camera capture on /dev/video$video_port..."
++
++./ArmnnExamples -f tflite-binary -i input -s '1 224 224 3' -o MobilenetV2/Predictions/Reshape_1 -d /usr/share/arm/armnn/testvecs/camera_live_input$video_port -m /usr/share/arm/armnn/models/mobilenet_v2_1.0_224.tflite -c CpuAcc --number_frame 999
+-- 
+2.17.1
 
-You might want to add else statement to derive them from TARGET_PREFIX 
-instead.
-
-
-> +
-> +    # Convert to upper case to workaround GCC preprocessor bug where the word
-> +    # 'linux' is defined to be 1. This results in arm-linux-gnueabihf- being
-> +    # stringized to arm-1-gnueabihf- by the GCC preprocessor. To workaround this
-> +    # bug, convert the names to upper case and send through. Clacc will convert
-> +    # to lower case before usage.
-> +
-> +        d.setVar("CLACC_CC_NAME", cc_name.upper())
-> +        d.setVar("CLACC_CXX_NAME", cxx_name.upper())
-> +}
-> +
-> +
->  EXTRA_OEMAKE = " -C ${S}/clacc \
->                    ${TARGET} \
->                    CXX="${CXX}" \
-> +                  CLACC_CC="${CLACC_CC_NAME}" \
-> +                  CLACC_CXX="${CLACC_CXX_NAME}" \
->  "
->  
-> -do_configure() {
-> -    sed "s|arm-linux-gnueabihf-gcc|${TOOLCHAIN_PREFIX}gcc|g" -i clacc/clacc.h
-> -    sed "s|arm-linux-gnueabihf-g++|${TOOLCHAIN_PREFIX}g++|g" -i clacc/clacc.h
-> -}
-> -
->  do_compile() {
->      oe_runmake
->  }
-> diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb b/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
-> index b2f4122c..39902f8f 100644
-> --- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
-> +++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
-> @@ -21,8 +21,6 @@ OMPACC_EXAMPLE_LIST = " target_update \
->                          local \
->                          null \
->                          dsplib_fft \
-> -                        vecadd_lib \
-> -                        edmabw \
->                          sub_section \
->  "
->  
-> @@ -35,7 +33,6 @@ python do_unpack_append() {
->      os.makedirs(s)
->      shutil.copy(os.path.join(git_dir,"Makefile"),s)
->      shutil.copy(os.path.join(git_dir,"make.inc"),s)
-> -    shutil.copy(os.path.join(git_dir,"ompacc_env.sh"),s)
->      for example in d.getVar("OMPACC_EXAMPLE_LIST").split():
->          shutil.copytree(os.path.join(git_dir,example), os.path.join(s,example))
->  }
-> @@ -47,11 +44,9 @@ EXTRA_OEMAKE = " TARGET_ROOTDIR=${STAGING_DIR_HOST} \
->  MKFILELIST = "vecadd/Makefile vecadd_complex/Makefile dsplib_fft/Makefile \
->  null/Makefile dspheap/Makefile target_implicit_map/Makefile printf_debug/Makefile \
->  edmamgr/Makefile vecadd_t/Makefile target_orphan_call/Makefile target_update/Makefile \
-> -edmabw/Makefile sub_section/Makefile vecadd_lib/Makefile local/Makefile"
-> +sub_section/Makefile local/Makefile"
->  
->  do_configure() {
-> -    sed "s|arm-linux-gnueabihf-gcc|${CC}|g" -i make.inc
-> -    sed "s|arm-linux-gnueabihf-g++|${CXX}|g" -i make.inc
->      for f in ${MKFILELIST}; do
->          sed "s|-fopenmp|-fopenmp ${TUNE_CCARGS}${TOOLCHAIN_OPTIONS}|g" -i $f
->      done
-> @@ -66,7 +61,6 @@ do_install() {
->  
->      install -m 644 ${B}/Makefile ${D}${datadir}/ti/examples/openmpacc
->      install -m 644 ${B}/make.inc ${D}${datadir}/ti/examples/openmpacc
-> -    install -m 644 ${B}/ompacc_env.sh ${D}${datadir}/ti/examples/openmpacc
->  
->      for ompacc_example in ${OMPACC_EXAMPLE_LIST}; do
->          install -d ${D}${datadir}/ti/examples/openmpacc/${ompacc_example}
-> diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
-> index ce0236d4..d33a156b 100644
-> --- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
-> +++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
-> @@ -2,7 +2,7 @@ SUMMARY = "TI OpenMP Accelerator Model"
->  HOMEPAGE = "http://downloads.ti.com/mctools/esd/docs/openmpacc/"
->  LICENSE = "BSD"
->  
-> -PV = "1.5.4.0"
-> +PV = "1.5.6.0"
->  INC_PR = "r0"
->  
->  LIC_FILES_CHKSUM = "file://../debian/copyright;md5=aaa2a0939d08197132fc382e97b62eb0"
-> @@ -13,7 +13,7 @@ OMPACC_GIT_URI = "git://git.ti.com/openmp/ti-openmpacc.git"
->  OMPACC_GIT_PROTOCOL = "git"
->  OMPACC_GIT_BRANCH = "master"
->  
-> -OMPACC_SRCREV = "808cef58b4ed196a9ced2310d419dbaf63dfbeb6"
-> +OMPACC_SRCREV = "7c4e68a0bf73ec193edff9dfc23ea764ae6ad434"
->  
->  BRANCH = "${OMPACC_GIT_BRANCH}"
->  SRC_URI = "${OMPACC_GIT_URI};protocol=${OMPACC_GIT_PROTOCOL};branch=${BRANCH}"
-> diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb b/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
-> index a28a9225..44b59a4f 100644
-> --- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
-> +++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
-> @@ -18,7 +18,3 @@ export LINUX_DEVKIT_ROOT = "${STAGING_DIR_HOST}"
->  EXTRA_OECMAKE += "-DVERSION="${PV}" -DBUILD_OUTPUT=lib"
->  
->  FILES_${PN} += "/usr/share/ti/openmpacc/*"
-> -
-> -do_configure_prepend() {
-> -	sed -i -e 's/-march=armv7-a//' ${S}/libompacc/CMakeLists.txt
-> -}
-> -- 
-> 2.14.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
