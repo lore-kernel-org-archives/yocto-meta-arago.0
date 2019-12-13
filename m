@@ -1,45 +1,44 @@
 Return-Path: <x0157990@uda0271529a>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 0A7C9529A8
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id E5AB8529A8
 	for <meta-arago@arago-project.org>;
-	Fri, 13 Dec 2019 01:18:25 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBD1Go6q093763
-	for <meta-arago@arago-project.org>; Thu, 12 Dec 2019 19:16:50 -0600
+	Fri, 13 Dec 2019 13:44:59 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBDDhOfi033101
+	for <meta-arago@arago-project.org>; Fri, 13 Dec 2019 07:43:24 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1576199810;
-	bh=EYcurH0Ja7dew8iXgXFdMSt+1EwKVF0cuXSuAMfEy5g=;
+	s=ti-com-17Q1; t=1576244604;
+	bh=lnWf2749I/+1SgEA084FVedhC2Bq9Frk96EtQta9Aos=;
 	h=From:To:CC:Subject:Date;
-	b=Q81iHKmu2HPpAqE90gPIALW2H9H8zuOUJJwZo0QplzvWhDMLns6I4fTi/QoPbpdZy
-	AlGQeTUs1jWYK7adE8ViO7Az/3faTPLYouteCVZ55UuEqNJuPDoSIa0ZGOXHTBK+6k
-	VJgzJwC115gY0o5YPmnbxwa2jiKca8ge6HpjKI9Q=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBD1Goa8120096
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 12 Dec 2019 19:16:50 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	b=piwB0F05vXdtMkZ7bSbO30QEBXxoQUzIwpNLg+zXQBCZiXik8EaXF1EzPtZnebcZG
+	acM42NMldDW/4RnGGKMcJcBTSNreVmYjaN0xF8eUa8fnT0JiQRk+JF3JNNAxxGx3Ik
+	2ZxUvYQbpR2UqcjXrDdQk68ZD3TWgf2XuqM1Xe/E=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBDDhOPt079501
+	for <meta-arago@arago-project.org>; Fri, 13 Dec 2019 07:43:24 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Thu, 12 Dec 2019 19:16:50 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 13 Dec 2019 07:43:24 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Thu, 12 Dec 2019 19:16:50 -0600
+	Frontend Transport; Fri, 13 Dec 2019 07:43:24 -0600
 Received: from uda0271529a (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBD1Govw098613;
-	Thu, 12 Dec 2019 19:16:50 -0600
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBDDhNN8080608;
+	Fri, 13 Dec 2019 07:43:24 -0600
 Received: from x0157990 by uda0271529a with local (Exim 4.90_1)
 	(envelope-from <x0157990@uda0271529a>)
-	id 1ifZXO-0004Fp-7b; Thu, 12 Dec 2019 20:14:34 -0500
+	id 1iflBr-000437-64; Fri, 13 Dec 2019 08:41:07 -0500
 From: Djordje Senicic <d-senicic1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 12 Dec 2019 20:14:27 -0500
-Message-ID: <20191213011427.16311-1-d-senicic1@ti.com>
+Date: Fri, 13 Dec 2019 08:41:05 -0500
+Message-ID: <20191213134105.15525-1-d-senicic1@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Djordje Senicic <d-senicic1@ti.com>
-Subject: [meta-processor-sdk][PATCHv3] neo-ai-dlr: Add TIDL support on top of meta-aws neo-ai-dlr
+Subject: [meta-processor-sdk][PATCHv4] neo-ai-dlr: Add TIDL support on top of meta-aws neo-ai-dlr
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,7 +51,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Dec 2019 01:18:26 -0000
+X-List-Received-Date: Fri, 13 Dec 2019 13:45:00 -0000
 Content-Type: text/plain
 
 - Add support for custom TIDL inference relay node
@@ -63,20 +62,23 @@ Content-Type: text/plain
 
 Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
 ---
- .../neo-ai-dlr.bbappend}                      | 100 ++++++++----------
- ...akeLists-skip-cloning-of-googletests.patch |  54 ----------
- 2 files changed, 46 insertions(+), 108 deletions(-)
- rename recipes-support/{neo-ai/neo-ai-dlr_git.bb => neo-ai-dlr/neo-ai-dlr.bbappend} (30%)
+v4 changes:
+Remove RDEPENDS on tidl-api (neo-ai-dlr can run on ARM only too, but without TIDL)
+
+ .../neo-ai-dlr.bbappend}                      | 99 +++++++++----------
+ ...akeLists-skip-cloning-of-googletests.patch | 54 ----------
+ 2 files changed, 45 insertions(+), 108 deletions(-)
+ rename recipes-support/{neo-ai/neo-ai-dlr_git.bb => neo-ai-dlr/neo-ai-dlr.bbappend} (31%)
  delete mode 100644 recipes-support/neo-ai/files/0001-CMakeLists-skip-cloning-of-googletests.patch
 
 diff --git a/recipes-support/neo-ai/neo-ai-dlr_git.bb b/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-similarity index 30%
+similarity index 31%
 rename from recipes-support/neo-ai/neo-ai-dlr_git.bb
 rename to recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-index 636714a..3cf26c2 100644
+index 636714a..cfa79c0 100644
 --- a/recipes-support/neo-ai/neo-ai-dlr_git.bb
 +++ b/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-@@ -1,77 +1,69 @@
+@@ -1,77 +1,68 @@
 -SUMMARY = "NEO-AI Deep Learning Runtime"
 -DESCRIPTION = "Neo-AI-DLR is a common runtime for machine learning models compiled by AWS SageMaker Neo, TVM, or TreeLite."
 -HOMEPAGE = "https://aws.amazon.com/sagemaker/neo/"
@@ -198,7 +200,6 @@ index 636714a..3cf26c2 100644
 -
 -# Versioned libs are not produced
 -FILES_SOLIBSDEV = ""
-+RDEPENDS_${PN} =+ " tidl-api "
 +FILES_${PN}-tests += "${datadir}/dlr/demos"
 diff --git a/recipes-support/neo-ai/files/0001-CMakeLists-skip-cloning-of-googletests.patch b/recipes-support/neo-ai/files/0001-CMakeLists-skip-cloning-of-googletests.patch
 deleted file mode 100644
