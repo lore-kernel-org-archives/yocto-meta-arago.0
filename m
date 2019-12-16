@@ -1,44 +1,42 @@
-Return-Path: <jake@udc0866934>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id B746C529EC
+Return-Path: <sam.nelson@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 69264529CE
 	for <meta-arago@arago-project.org>;
-	Mon, 16 Dec 2019 20:46:36 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBGKj0Wd025798
-	for <meta-arago@arago-project.org>; Mon, 16 Dec 2019 14:45:00 -0600
+	Mon, 16 Dec 2019 21:38:55 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBGLbIcB022811
+	for <meta-arago@arago-project.org>; Mon, 16 Dec 2019 15:37:18 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1576529100;
-	bh=Trc6gnIs/pxE4pHFESsiWo1u8/z7tqsnG1mX6/J2UQs=;
+	s=ti-com-17Q1; t=1576532238;
+	bh=+ZhMzyLDRcUSmzQ0YnFiKqIYty0xTLb2GYXnQyrM7D0=;
 	h=From:To:CC:Subject:Date;
-	b=y+ltkgFlSs8qLVu8Buqq3ZGEARJLlkLX6jeix0YPrZ8gVPJJ/Cs+ioFXfdNlaFOSj
-	pPIq29UW0sVptSI2YWclGzb/BCglHX7BNccVIYb6+z1scdTSPINGas9jheSwaEauAM
-	SIGkVd889phgj2fuJt96GpEn5DKIzxp6zcAbtnrQ=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBGKj0Qe017619
-	for <meta-arago@arago-project.org>; Mon, 16 Dec 2019 14:45:00 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	b=qGKIsSvdYM3vuKglU4cQD8l3thiSUgyeLnAYqa57R3NsHf8jV6GmtGaFYXlwIg/kS
+	rLfg1YGo6IgV0dTZIPTtmECYhfYEkg4cgjsK5yleMyTsU9amBB/Rw+XivbHvRR5QKz
+	ITsYKtsQVsSfNT1tay5UBVcTFuTqXHddtwZNX1Sc=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBGLbIod044119
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Mon, 16 Dec 2019 15:37:18 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Mon, 16 Dec 2019 14:44:59 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 16 Dec 2019 15:37:18 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Mon, 16 Dec 2019 14:44:59 -0600
-Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBGKixFI075019;
-	Mon, 16 Dec 2019 14:44:59 -0600
-Received: from jake by udc0866934 with local (Exim 4.82)
-	(envelope-from <jake@udc0866934>)
-	id 1igxEh-0000QV-5a; Mon, 16 Dec 2019 15:44:59 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
+	Frontend Transport; Mon, 16 Dec 2019 15:37:18 -0600
+Received: from uda0862859a.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBGLbIUw077622;
+	Mon, 16 Dec 2019 15:37:18 -0600
+From: Sam Nelson <sam.nelson@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Mon, 16 Dec 2019 15:44:56 -0500
-Message-ID: <1576529096-1608-1-git-send-email-j-stiffler@ti.com>
+Date: Mon, 16 Dec 2019 16:37:15 -0500
+Message-ID: <1576532235-40823-1-git-send-email-sam.nelson@ti.com>
 X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: s-anna@ti.com
-Subject: [tisdk-setup-scripts][PATCH] create-sdcard.sh: add support for early boot
+Subject: [thud/master][PATCH] packagegroup-arago-tisdk-addons-sdk-target: Add IPCDEV packages for am65xx
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,90 +49,26 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Dec 2019 20:46:37 -0000
+X-List-Received-Date: Mon, 16 Dec 2019 21:38:55 -0000
 Content-Type: text/plain
 
-For the cores that support early boot, it is expected that the
-firmware is available on the boot partition, for U-Boot, as well as
-on the rootfs partition, for Linux. Therefore copy the default
-firmware image from the rootfs to the boot partition. The boot
-partition format is vfat, so it does not support symlinks. Follow
-symlinks as necessary to get the firmware image into the boot
-partition.
-
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Sam Nelson <sam.nelson@ti.com>
 ---
- create-sdcard.sh | 50 ++++++++++++++++++++++++++++++++++++++++----------
- 1 file changed, 40 insertions(+), 10 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb          | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/create-sdcard.sh b/create-sdcard.sh
-index 5c02a12..c7eb942 100644
---- a/create-sdcard.sh
-+++ b/create-sdcard.sh
-@@ -1097,16 +1097,6 @@ fi
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index 7ba5143..fb12772 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+@@ -192,6 +192,7 @@ IPCDEV = " \
+ EXTRA_PACKAGES_append_omap-a15 = " ${IPCDEV}"
+ EXTRA_PACKAGES_append_keystone = " ${IPCDEV}"
+ EXTRA_PACKAGES_append_omapl138 = " ${IPCDEV}"
++EXTRA_PACKAGES_append_am65xx = " ${IPCDEV}"
  
- echo ""
- echo ""
--echo "Syncing..."
--sync
--sync
--sync
--sync
--sync
--sync
--sync
--sync
--
- if [ "$KERNELFILESOPTION" == "2" ]
- then
- 
-@@ -1138,6 +1128,46 @@ then
- 
- fi
- 
-+
-+# The following firmware are required for early boot, and therefore must be
-+# copied to the boot partition.
-+RPROC_EARLYBOOT_FIRMWARE = " \
-+    dra7-ipu1-fw.xem4 \
-+"
-+
-+for fw in $RPROC_EARLYBOOT_FIRMWARE
-+do
-+	fw_path="$PATH_TO_SDROOTFS/lib/firmware/$fw"
-+
-+	# Handle links specifally as they may be absolute paths with respect to the rootfs
-+	if [ -L "$fw_path" ]
-+	then
-+		fw_link=$(readlink "$fw_path")
-+		if [[ "$fw_link" == /* ]]
-+		then
-+			# Absolute path
-+			fw_path="$(readlink "$fw_path" | sed -e "s|^/|$PATH_TO_SDROOTFS/|")"
-+		else
-+			# Relative path
-+			fw_path="$(dirname "$fw_path")/$fw_link"
-+		fi
-+	fi
-+
-+	# this is a global list of firmwares, so do not fail
-+	cp -f "$fw_path" $PATH_TO_SDBOOT 2> /dev/null || true
-+done
-+
-+echo " "
-+echo "Syncing..."
-+sync
-+sync
-+sync
-+sync
-+sync
-+sync
-+sync
-+sync
-+
- echo " "
- echo "Un-mount the partitions "
- sudo umount -f $PATH_TO_SDBOOT
+ RDEPENDS_${PN} = "\
+     ${UTILS} \
 -- 
 1.9.1
 
