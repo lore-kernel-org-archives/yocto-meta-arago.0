@@ -1,43 +1,42 @@
-Return-Path: <d-senicic1@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id AD7A0529D1
+Return-Path: <yuanzhao@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 407DB529D1
 	for <meta-arago@arago-project.org>;
-	Tue, 17 Dec 2019 18:18:15 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBHIGcrk112930
-	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 12:16:38 -0600
+	Tue, 17 Dec 2019 18:32:02 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBHIUPo9053808
+	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 12:30:25 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1576606599;
-	bh=TaId/ueffMUEY0V+jaUpH13UC7KH7eNwuKJKklawi5w=;
+	s=ti-com-17Q1; t=1576607425;
+	bh=EtcWGrfHXtOYK41o2v00pGcGCTNdXxh9Ybdc1v6soKc=;
 	h=From:To:CC:Subject:Date;
-	b=lFUL6Z+FBVm/FPDrNokcYZ8xxsPtfrAdZwTzVSK+Cz+08+R67ZoXu99uoc9ciepcT
-	am0NsYu4wwCw3NdVdBiFmb+GmGJ5CHXRZR7a8u9EieR3rrZamD98CMzrde0x4upvBz
-	UywmYK8qLJC5o4EtSCR1SWrpv8ovKkaFKn0cK5mA=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBHIGciL021710
+	b=NWFYg0hoEfgjT0TduDUVn3Hl9ecc+FNV7fLJJpeO5vtGKJTrQNoyOnDM3BQgxhrwE
+	I6cHxpNaSjQexm5/eld5VQKQvCYsEO2PZ2Vi6ESIcRZ18FVMVwho10unL8Gg7euktb
+	+Kfxnf9dX8UHlb0tcLzOGosQnHmGqQ8BqXOorxGk=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBHIUPs4124737
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 12:16:38 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 12:30:25 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE100.ent.ti.com
+	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Tue, 17 Dec 2019 12:16:38 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 17 Dec 2019 12:30:24 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Tue, 17 Dec 2019 12:16:38 -0600
-Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Tue, 17 Dec 2019 12:30:24 -0600
+Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBHIGcGu054299;
-	Tue, 17 Dec 2019 12:16:38 -0600
-From: Djordje Senicic <d-senicic1@ti.com>
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBHIUOWa083250;
+	Tue, 17 Dec 2019 12:30:24 -0600
+From: Yuan Zhao <yuanzhao@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 17 Dec 2019 13:14:12 -0500
-Message-ID: <20191217181412.10138-1-d-senicic1@ti.com>
-X-Mailer: git-send-email 2.17.1
+Date: Tue, 17 Dec 2019 12:30:18 -0600
+Message-ID: <20191217183018.68680-1-yuanzhao@ti.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Djordje Senicic <d-senicic1@ti.com>
-Subject: [master/thud/ti2019.05][PATCH] neo-ai-dlr-demo: Add neo-ai-dlr-demo to example-applications
+Subject: [master/thud/ti2019.05][PATCH] ocl: update version to 01.02.00.01
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,123 +49,61 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Dec 2019 18:18:16 -0000
+X-List-Received-Date: Tue, 17 Dec 2019 18:32:02 -0000
 Content-Type: text/plain
 
-- Add reduced size source package of neo-ai-dlr-demo, that is now included in example-applications
-- neo-ai-dlr-demo is based on demos/cv/run_mobilenet_cv_mt.cc
-- Include neo-ai-dlr-dev package, to enable top level makefile demo compilation, and compilation on target
+- Update prebuilt ocl-tidl-fw to work with updated IPC in PSDK 6.2
+- Fix l3_noc message during CoreSDK IPU1 remoteproc boot
 
-Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
+Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
 ---
-Please apply this patch after http://patchwork.dal.design.ti.com/patch/51804/ is accepted.
-Also please backport to ti2019.05.
+ meta-arago-extras/recipes-ti/ocl/ocl.inc               | 4 ++--
+ meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
- .../conf/distro/include/arago-source-ipk.inc  |  3 +++
- ...ackagegroup-arago-tisdk-addons-sdk-host.bb |  1 +
- ...kagegroup-arago-tisdk-addons-sdk-target.bb |  1 +
- .../packagegroup-arago-tisdk-addons.bb        |  1 +
- .../Makefile_neo-ai-dlr-demo                  | 19 +++++++++++++++++++
- .../ti-tisdk-makefile_1.0.bb                  |  2 ++
- 6 files changed, 27 insertions(+)
- create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo
-
-diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-index c479a8c8..64fc5880 100644
---- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-@@ -79,6 +79,9 @@ SRCIPK_INSTALL_DIR_pn-mmwavegesture-hmi = "example-applications/${PN}-${PV}"
- CREATE_SRCIPK_pn-pdm-anomaly-detection = "1"
- SRCIPK_INSTALL_DIR_pn-pdm-anomaly-detection = "example-applications/${PN}-${PV}"
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index 0a6dccc4..cc4ed6d4 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,5 +1,5 @@
+ # patch version at the end needs to be in double digits
+-PV = "1.2.00.00"
++PV = "1.2.00.01"
+ INC_PR = "r0"
  
-+CREATE_SRCIPK_pn-neo-ai-dlr-demo = "1"
-+SRCIPK_INSTALL_DIR_pn-neo-ai-dlr-demo = "example-applications/${PN}-${PV}"
-+
- CREATE_SRCIPK_pn-tiovx-app-host = "1"
- SRCIPK_INSTALL_DIR_pn-tiovx-app-host = "example-applications/${PN}-${PV}"
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -10,7 +10,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
  
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index fc11a175..87bcd279 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -102,6 +102,7 @@ EXTRA_PACKAGES = ""
+-OCL_SRCREV = "301ecd37ac5553a8c94c87a0083b8d929e1d1a1e"
++OCL_SRCREV = "850361c85cd00fcb9df958e016c792936ef4aa2b"
  
- EXTRA_PACKAGES_append_omap-a15 = " \
-     pdm-anomaly-detection-src \
-+    neo-ai-dlr-demo-src \
- "
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
+index 322f9017..0e8b46d6 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
+@@ -3,7 +3,7 @@ SUMMARY = "OpenCL TIDL firmware for AM57xx"
+ LICENSE = "TI-TFL"
+ LIC_FILES_CHKSUM = "file://LICENSE.ti;md5=082a028431c455252c1e1d3d1021d382"
  
- EXTRA_PACKAGES_append_ti33x = " \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-index 7ba5143a..15503541 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-@@ -176,6 +176,7 @@ EXTRA_PACKAGES_append_omap-a15 = " voxelsdk-dev \
-                                 tensorflow-lite-dev \
-                                 tensorflow-lite-staticdev \
-                                 pdm-anomaly-detection-dev \
-+                                neo-ai-dlr-demo-dev \
- "
- EXTRA_PACKAGES_append_am65xx = " arm-compute-library-dev \
-                              ${ARMNN_PACKAGES} \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 14b2370c..75e163bf 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -171,6 +171,7 @@ EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
-                                    ${ARMNN_PACKAGES} \
-                                    tensorflow-lite-examples \
-                                    pdm-anomaly-detection \
-+                                   neo-ai-dlr-demo \
- "
+-PV = "01.01.19.02"
++PV = "01.02.00.01"
+ PR = "r0"
  
- EXTRA_PACKAGES_append_am65xx = " arm-compute-library \
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo
-new file mode 100644
-index 00000000..60445f2a
---- /dev/null
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo
-@@ -0,0 +1,19 @@
-+# neo-ai-dlr-demo build targets
-+neo-ai-dlr-demo:
-+	@echo =============================
-+	@echo    Building NEO-AI-DLR Demo
-+	@echo =============================
-+	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*neo-ai-dlr-demo*"`; make -f Makefile.build
-+
-+neo-ai-dlr-demo_clean:
-+	@echo =============================
-+	@echo    Cleaning NEO-AI-DLR Demo
-+	@echo =============================
-+	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*neo-ai-dlr-demo*"`; make -f Makefile.build clean
-+
-+neo-ai-dlr-demo_install:
-+	@echo ================================================
-+	@echo   Installing NEO-AI-DLR Demo
-+	@echo ================================================
-+	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*neo-ai-dlr-demo*"`; make -f Makefile.build install
-+
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 2468bb45..354cb163 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -54,6 +54,7 @@ SRC_URI = "\
-     file://Makefile_tiovx-app-host \
-     file://Makefile_ti-ipc \
-     file://Makefile_jailhouse \
-+    file://Makefile_neo-ai-dlr-demo \
- "
+ require recipes-ti/includes/arago-paths.inc
+@@ -15,7 +15,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ GIT_URI      = "git://git.ti.com/opencl/opencl-firmware.git"
+ GIT_PROTOCOL = "git"
+ BRANCH       = "master"
+-SRCREV       = "f9402b2b6b06185af7663bae0061c6fad12cff07"
++SRCREV       = "9e3d0b34f604203f275fba4807481a8a763a4f63"
  
- PR = "r102"
-@@ -140,6 +141,7 @@ MAKEFILES_append_omap-a15 = " u-boot-spl \
-                               uio-module-drv \
- 			      mmwavegesture-hmi \
-                               pdm-anomaly-detection \
-+                              neo-ai-dlr-demo \
-                               ti-ipc \
- "
- MAKEFILES_append_omapl138 = " linux-dtbs \
+ SRC_URI      = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
+ 
 -- 
-2.17.1
+2.14.1
 
 
