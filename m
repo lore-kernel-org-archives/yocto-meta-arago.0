@@ -1,43 +1,43 @@
 Return-Path: <d-senicic1@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 0309252993
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id AD7A0529D1
 	for <meta-arago@arago-project.org>;
-	Tue, 17 Dec 2019 18:08:18 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBHI6eVT045718
-	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 12:06:40 -0600
+	Tue, 17 Dec 2019 18:18:15 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBHIGcrk112930
+	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 12:16:38 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1576606000;
-	bh=XdCfYih4MgvZjRvy41xtUbwb8FnrGPHktFAlhpKf17k=;
+	s=ti-com-17Q1; t=1576606599;
+	bh=TaId/ueffMUEY0V+jaUpH13UC7KH7eNwuKJKklawi5w=;
 	h=From:To:CC:Subject:Date;
-	b=jZUMLrImfhpBb2f7c/4Ni3rXEH2X7tW5TiAJh/Se8E8Dmc9jlfV6BruU1rnRAq1yi
-	r7k+ELOFzBK4izADkHDE6S2u2FPTyUi/O2CLshEJX4sXN7BYxqR3DQhpJoTT0K4SIQ
-	su6DH0pcnF/M3TNsoHcxD1RS18oQy3l20evwvycs=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBHI6eM9088773
+	b=lFUL6Z+FBVm/FPDrNokcYZ8xxsPtfrAdZwTzVSK+Cz+08+R67ZoXu99uoc9ciepcT
+	am0NsYu4wwCw3NdVdBiFmb+GmGJ5CHXRZR7a8u9EieR3rrZamD98CMzrde0x4upvBz
+	UywmYK8qLJC5o4EtSCR1SWrpv8ovKkaFKn0cK5mA=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBHIGciL021710
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 12:06:40 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 12:16:38 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Tue, 17 Dec 2019 12:06:39 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 17 Dec 2019 12:16:38 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Tue, 17 Dec 2019 12:06:39 -0600
+	Frontend Transport; Tue, 17 Dec 2019 12:16:38 -0600
 Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBHI6dpb024363;
-	Tue, 17 Dec 2019 12:06:39 -0600
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBHIGcGu054299;
+	Tue, 17 Dec 2019 12:16:38 -0600
 From: Djordje Senicic <d-senicic1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 17 Dec 2019 13:04:13 -0500
-Message-ID: <20191217180413.10073-1-d-senicic1@ti.com>
+Date: Tue, 17 Dec 2019 13:14:12 -0500
+Message-ID: <20191217181412.10138-1-d-senicic1@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Djordje Senicic <d-senicic1@ti.com>
-Subject: [meta-processor-sdk][PATCH] neo-ai-dlr-demo: DL demo using NEO-AI runtime
+Subject: [master/thud/ti2019.05][PATCH] neo-ai-dlr-demo: Add neo-ai-dlr-demo to example-applications
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,299 +50,122 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Dec 2019 18:08:19 -0000
+X-List-Received-Date: Tue, 17 Dec 2019 18:18:16 -0000
 Content-Type: text/plain
 
-- Add live camera (or video clip) demo package
-- Create neo-ai-dlr-dev package
-- Add missing license file (Unlicense)
+- Add reduced size source package of neo-ai-dlr-demo, that is now included in example-applications
+- neo-ai-dlr-demo is based on demos/cv/run_mobilenet_cv_mt.cc
+- Include neo-ai-dlr-dev package, to enable top level makefile demo compilation, and compilation on target
 
 Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
 ---
-note: Additional patch to meta-arago layer will be added soon
+Please apply this patch after http://patchwork.dal.design.ti.com/patch/51804/ is accepted.
+Also please backport to ti2019.05.
 
- conf/layer.conf                               |  1 +
- conf/layer.conf => licenses/Unlicense         | 29 +++++--
- ...oup-arago-tisdk-addons-sdk-target.bbappend |  2 +
- .../packagegroup-arago-tisdk-addons.bbappend  |  2 +-
- .../neo-ai-dlr/files/Makefile.build           | 24 ++++++
- recipes-support/neo-ai-dlr/files/makefile     | 11 +++
- ...ai-dlr.bbappend => neo-ai-dlr-demo_git.bb} | 84 +++++++------------
- .../neo-ai-dlr/neo-ai-dlr.bbappend            | 11 ++-
- 8 files changed, 99 insertions(+), 65 deletions(-)
- copy conf/layer.conf => licenses/Unlicense (3%)
- create mode 100644 recipes-support/neo-ai-dlr/files/Makefile.build
- create mode 100644 recipes-support/neo-ai-dlr/files/makefile
- copy recipes-support/neo-ai-dlr/{neo-ai-dlr.bbappend => neo-ai-dlr-demo_git.bb} (5%)
+ .../conf/distro/include/arago-source-ipk.inc  |  3 +++
+ ...ackagegroup-arago-tisdk-addons-sdk-host.bb |  1 +
+ ...kagegroup-arago-tisdk-addons-sdk-target.bb |  1 +
+ .../packagegroup-arago-tisdk-addons.bb        |  1 +
+ .../Makefile_neo-ai-dlr-demo                  | 19 +++++++++++++++++++
+ .../ti-tisdk-makefile_1.0.bb                  |  2 ++
+ 6 files changed, 27 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 0334463..260a274 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -7,3 +7,4 @@ BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
- BBFILE_COLLECTIONS += "meta-processor-sdk"
- BBFILE_PATTERN_meta-processor-sdk := "^${LAYERDIR}/"
- BBFILE_PRIORITY_meta-processor-sdk = "15"
-+LICENSE_PATH += "${LAYERDIR}/licenses"
-diff --git a/conf/layer.conf b/licenses/Unlicense
-similarity index 3%
-copy from conf/layer.conf
-copy to licenses/Unlicense
-index 0334463..cf1ab25 100644
---- a/conf/layer.conf
-+++ b/licenses/Unlicense
-@@ -1,9 +1,24 @@
--# We have a conf and classes directory, append to BBPATH
--BBPATH .= ":${LAYERDIR}"
-+This is free and unencumbered software released into the public domain.
+diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+index c479a8c8..64fc5880 100644
+--- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
++++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+@@ -79,6 +79,9 @@ SRCIPK_INSTALL_DIR_pn-mmwavegesture-hmi = "example-applications/${PN}-${PV}"
+ CREATE_SRCIPK_pn-pdm-anomaly-detection = "1"
+ SRCIPK_INSTALL_DIR_pn-pdm-anomaly-detection = "example-applications/${PN}-${PV}"
  
--# We have a recipes directory, add to BBFILES
--BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
-+Anyone is free to copy, modify, publish, use, compile, sell, or
-+distribute this software, either in source code form or as a compiled
-+binary, for any purpose, commercial or non-commercial, and by any
-+means.
- 
--BBFILE_COLLECTIONS += "meta-processor-sdk"
--BBFILE_PATTERN_meta-processor-sdk := "^${LAYERDIR}/"
--BBFILE_PRIORITY_meta-processor-sdk = "15"
-+In jurisdictions that recognize copyright laws, the author or authors
-+of this software dedicate any and all copyright interest in the
-+software to the public domain. We make this dedication for the benefit
-+of the public at large and to the detriment of our heirs and
-+successors. We intend this dedication to be an overt act of
-+relinquishment in perpetuity of all present and future rights to this
-+software under copyright law.
++CREATE_SRCIPK_pn-neo-ai-dlr-demo = "1"
++SRCIPK_INSTALL_DIR_pn-neo-ai-dlr-demo = "example-applications/${PN}-${PV}"
 +
-+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+OTHER DEALINGS IN THE SOFTWARE.
-+
-+For more information, please refer to <http://unlicense.org>
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
-index 6cd7f4d..18928fb 100644
---- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
-@@ -10,6 +10,7 @@ UTILS_append_ti43x = " \
+ CREATE_SRCIPK_pn-tiovx-app-host = "1"
+ SRCIPK_INSTALL_DIR_pn-tiovx-app-host = "example-applications/${PN}-${PV}"
  
- UTILS_append_omap-a15 = " \
-     opencv-dev \
-+    neo-ai-dlr-dev \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index fc11a175..87bcd279 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -102,6 +102,7 @@ EXTRA_PACKAGES = ""
+ 
+ EXTRA_PACKAGES_append_omap-a15 = " \
+     pdm-anomaly-detection-src \
++    neo-ai-dlr-demo-src \
  "
  
- UTILS_append_keystone = " \
-@@ -49,6 +50,7 @@ EXTRA_LIBS_append_am57xx-evm = " \
-     pruss-lld-staticdev \
-     icss-emac-lld-dev \
-     icss-emac-lld-staticdev \
-+    neo-ai-dlr-dev \
+ EXTRA_PACKAGES_append_ti33x = " \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index 7ba5143a..15503541 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+@@ -176,6 +176,7 @@ EXTRA_PACKAGES_append_omap-a15 = " voxelsdk-dev \
+                                 tensorflow-lite-dev \
+                                 tensorflow-lite-staticdev \
+                                 pdm-anomaly-detection-dev \
++                                neo-ai-dlr-demo-dev \
+ "
+ EXTRA_PACKAGES_append_am65xx = " arm-compute-library-dev \
+                              ${ARMNN_PACKAGES} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 14b2370c..75e163bf 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -171,6 +171,7 @@ EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
+                                    ${ARMNN_PACKAGES} \
+                                    tensorflow-lite-examples \
+                                    pdm-anomaly-detection \
++                                   neo-ai-dlr-demo \
  "
  
- EXTRA_LIBS_append_am335x-evm = " \
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
-index aa0a182..1424a0c 100644
---- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
-@@ -17,7 +17,7 @@ EXTRA_PACKAGES_append_k3 = " watchdog"
- 
- EXTRA_PACKAGES_append_omapl138 = " ccief-basic"
- 
--NEO_AI_PACKAGES = "neo-ai-dlr neo-ai-dlr-tests"
-+NEO_AI_PACKAGES = "neo-ai-dlr neo-ai-dlr-tests neo-ai-dlr-dev "
- NEO_AI_PACKAGES_armv5 = ""
- 
- EXTRA_PACKAGES_append = " hidapi \
-diff --git a/recipes-support/neo-ai-dlr/files/Makefile.build b/recipes-support/neo-ai-dlr/files/Makefile.build
+ EXTRA_PACKAGES_append_am65xx = " arm-compute-library \
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo
 new file mode 100644
-index 0000000..1a9c19e
+index 00000000..60445f2a
 --- /dev/null
-+++ b/recipes-support/neo-ai-dlr/files/Makefile.build
-@@ -0,0 +1,24 @@
-+-include ../../Rules.make
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo
+@@ -0,0 +1,19 @@
++# neo-ai-dlr-demo build targets
++neo-ai-dlr-demo:
++	@echo =============================
++	@echo    Building NEO-AI-DLR Demo
++	@echo =============================
++	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*neo-ai-dlr-demo*"`; make -f Makefile.build
 +
-+ENV_SETUP ?= ../../linux-devkit/environment-setup
-+DESTDIR ?=
++neo-ai-dlr-demo_clean:
++	@echo =============================
++	@echo    Cleaning NEO-AI-DLR Demo
++	@echo =============================
++	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*neo-ai-dlr-demo*"`; make -f Makefile.build clean
 +
-+all: release
++neo-ai-dlr-demo_install:
++	@echo ================================================
++	@echo   Installing NEO-AI-DLR Demo
++	@echo ================================================
++	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*neo-ai-dlr-demo*"`; make -f Makefile.build install
 +
-+release:
-+	@. ${ENV_SETUP}; \
-+	make
-+
-+clean:
-+	@. ${ENV_SETUP}; \
-+        make clean
-+
-+install:
-+	@if [ ! -d $(DESTDIR) ] ; then \
-+		echo "The extracted target filesystem directory doesn't exist."; \
-+		echo "Please run setup.sh in the SDK's root directory and then try again."; \
-+		exit 1; \
-+	fi
-+	@install -d ${DESTDIR}/usr/share/dlr/demos
-+	@cp -Prf ${DESTDIR}/usr/share/dlr/demos/run_mobilenet_cv_mt ${DESTDIR}/usr/share/dlr/demos/run_mobilenet_cv_mt.dyn
-+	@echo "Dynamically linked run_mobilenet_cv_mt.dyn installed."
-diff --git a/recipes-support/neo-ai-dlr/files/makefile b/recipes-support/neo-ai-dlr/files/makefile
-new file mode 100644
-index 0000000..84461b3
---- /dev/null
-+++ b/recipes-support/neo-ai-dlr/files/makefile
-@@ -0,0 +1,11 @@
-+PHONY: all
-+CXXFLAGS =-funroll-loops -O3 -DNDEBUG 
-+all: neo-ai-dlr-demo
-+LIBS = -ldlr -lpthread -lopencv_highgui -lopencv_imgcodecs -lopencv_videoio -lopencv_imgproc -lopencv_core -lrt -ldl 
-+
-+neo-ai-dlr-demo: run_mobilenet_cv_mt.cc
-+	$(CXX) $(CXXFLAGS) run_mobilenet_cv_mt.cc -o run_mobilenet_cv_mt.dyn $(LIBS)
-+
-+clean:
-+	rm -rf run_mobilenet_cv_mt.dyn
-+
-diff --git a/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend b/recipes-support/neo-ai-dlr/neo-ai-dlr-demo_git.bb
-similarity index 5%
-copy from recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-copy to recipes-support/neo-ai-dlr/neo-ai-dlr-demo_git.bb
-index cfa79c0..4cccf0e 100644
---- a/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-+++ b/recipes-support/neo-ai-dlr/neo-ai-dlr-demo_git.bb
-@@ -1,68 +1,42 @@
--PR_append = ".int0"
-+SUMMARY = "Predictive maintenance demo for anomaly detection using Recurrent Neural Network (RNN)"
-+LICENSE = "Apache-2.0" 
-+LIC_FILES_CHKSUM = "file://../git/LICENSE;md5=34400b68072d710fecd0a2940a0d1658"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index 2468bb45..354cb163 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -54,6 +54,7 @@ SRC_URI = "\
+     file://Makefile_tiovx-app-host \
+     file://Makefile_ti-ipc \
+     file://Makefile_jailhouse \
++    file://Makefile_neo-ai-dlr-demo \
+ "
  
--LICENSE = "Apache-2.0 & BSD-3-Clause & BSD-2-Clause & Zlib & MIT & Unlicense"
--
--LIC_FILES_CHKSUM = "file://LICENSE;md5=34400b68072d710fecd0a2940a0d1658 \
--                    file://3rdparty/tvm/LICENSE;md5=f563935cf80d1c889dd958372e9ea7c4 \
--                    file://3rdparty/tvm/3rdparty/dmlc-core/LICENSE;md5=0ca7d6e8f4af26868cb42025ad83374b \
--                    file://3rdparty/tvm/3rdparty/dlpack/LICENSE;md5=f62d4e85ba68a1574b74d97ab8dea9ab \
--                    file://3rdparty/tvm/3rdparty/rang/LICENSE;md5=911690f51af322440237a253d695d19f \
--                    file://3rdparty/treelite/LICENSE;md5=34400b68072d710fecd0a2940a0d1658 \
--                    file://3rdparty/treelite/dmlc-core/LICENSE;md5=0ca7d6e8f4af26868cb42025ad83374b \
--                    file://3rdparty/treelite/3rdparty/fmt/LICENSE.rst;md5=af88d758f75f3c5c48a967501f24384b \
--                    file://3rdparty/treelite/3rdparty/protobuf/LICENSE;md5=37b5762e07f0af8c74ce80a8bda4266b \
--                    file://3rdparty/treelite/3rdparty/protobuf/third_party/benchmark/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
--                    file://3rdparty/treelite/3rdparty/protobuf/third_party/googletest/LICENSE;md5=cbbd27594afd089daa160d3a16dd515a \
--"
--
--SRC_DISTRIBUTE_LICENSES += "Unlicense"
--
--PV = "1.01"
--
--DEPENDS += " opencv "
-+PV = "1.0"
-+PR = "r1"
- 
- BRANCH-NEO-AI-DLR = "dev"
--BRANCH-NEO-TVM = "dev"
--
--# Main DLR sources plus submodules (and submodules of submodules).
- SRC_URI = "git://github.com/TexasInstruments/neo-ai-dlr;protocol=https;branch=${BRANCH-NEO-AI-DLR};name=neo-ai-dlr \
--           git://github.com/TexasInstruments/tvm;protocol=https;branch=${BRANCH-NEO-TVM};destsuffix=${S}/3rdparty/tvm;name=neo-ai-tvm \
--           git://github.com/dmlc/dmlc-core;protocol=https;branch=master;destsuffix=${S}/3rdparty/tvm/3rdparty/dmlc-core;name=neo-ai-tvm-dmlc-core \
--           git://github.com/dmlc/dlpack;protocol=https;branch=master;destsuffix=${S}/3rdparty/tvm/3rdparty/dlpack;name=neo-ai-tvm-dlpack \
--           git://github.com/agauniyal/rang;protocol=https;branch=master;destsuffix=${S}/3rdparty/tvm/3rdparty/rang;name=neo-ai-tvm-rang \
--           git://github.com/neo-ai/treelite;protocol=https;branch=master;destsuffix=${S}/3rdparty/treelite;name=neo-ai-treelite \
--           git://github.com/dmlc/dmlc-core;protocol=https;branch=master;destsuffix=${S}/3rdparty/treelite/dmlc-core;name=neo-ai-treelite-dmlc-core \
--           git://github.com/fmtlib/fmt;protocol=https;nobranch=1;destsuffix=${S}/3rdparty/treelite/3rdparty/fmt;name=neo-ai-treelite-fmt \
--           git://github.com/google/protobuf;protocol=https;nobranch=1;destsuffix=${S}/3rdparty/treelite/3rdparty/protobuf;name=neo-ai-treelite-protobuf \
--           git://github.com/google/benchmark;protocol=https;nobranch=1;destsuffix=${S}/3rdparty/treelite/3rdparty/protobuf/third_party/benchmark;name=neo-ai-treelite-protobuf-benchmark \
--           git://github.com/google/googletest;protocol=https;nobranch=1;destsuffix=${S}/3rdparty/treelite/3rdparty/protobuf/third_party/googletest;name=neo-ai-treelite-protobuf-googletest \
--"
-+           file://makefile;subdir=demosrc \
-+           file://Makefile.build;subdir=demosrc \
-+          "
- 
- SRCREV_neo-ai-dlr = "40394be2e39eaa6248f9bf0a1143692083c0e3d2"
--SRCREV_neo-ai-tvm = "11f0a9d2349b94a733aae1c8bd652e6055f4b185"
--SRCREV_neo-ai-tvm-dmlc-core = "ca9f9329654dbd42f06988276c6f74eb8bdd5038"
--SRCREV_neo-ai-tvm-dlpack = "b7bd45cdd8b67f4ab2502a8717f2e0926d9b4121"
--SRCREV_neo-ai-tvm-rang = "cabe04d6d6b05356fa8f9741704924788f0dd762"
- 
--SRCREV_neo-ai-treelite = "938af7867641fb09a8c93aadb66587ad9cbed9c2"
--SRCREV_neo-ai-treelite-dmlc-core = "ec147925f1daccee6a33796880935f9cec8541cf"
--SRCREV_neo-ai-treelite-fmt = "9f2e7edaebccf8f271cec5e855cce1223ff3e6d6"
--SRCREV_neo-ai-treelite-protobuf = "6d087c256c8ab04b3a1a9832746e9c3a8d3afd79"
--SRCREV_neo-ai-treelite-protobuf-benchmark = "360e66c1c4777c99402cf8cd535aa510fee16573"
--SRCREV_neo-ai-treelite-protobuf-googletest = "78fdd6c00b8fa5dd67066fbb796affc87ba0e075"
-+S = "${WORKDIR}/demosrc"
- 
--do_compile_append() {
--   ninja demo
--   ninja democv
--}
-+DEPENDS += " opencv neo-ai-dlr "
- 
-+do_patch_extra() {
-+   install -m 644 ${WORKDIR}/git/demo/cv/run_mobilenet_cv_mt.cc ${S}/.
-+   install -m 644 ${WORKDIR}/git/LICENSE ${S}/.
-+}
-+addtask patch_extra after do_patch before do_create_srcipk
- 
--do_install_append() {
-+do_compile() {
-+  cd ${S}
-+  make 
-+}
- 
--    # Now install additional python test scripts, bash scripts and precomputed models
--    install -d ${D}${datadir}/dlr/demos
--    cp -Prf --preserve=mode,timestamps ${S}/examples/tidl/* ${D}${datadir}/dlr/demos
--    install -m 0755 ${B}/bin/* ${D}${datadir}/dlr/demos/.
-+do_install() {
-+   install -d ${D}${datadir}/dlr/demos
-+   install -m 644 ${S}/run_mobilenet_cv_mt.cc ${D}${datadir}/dlr/demos/.
-+   install -m 644 ${S}/makefile ${D}${datadir}/dlr/demos/.
-+   install -m 644 ${S}/Makefile.build ${D}${datadir}/dlr/demos/.
-+   install -m 755 ${S}/run_mobilenet_cv_mt.dyn ${D}${datadir}/dlr/demos/.
- }
- 
--FILES_${PN}-tests += "${datadir}/dlr/demos"
-+CREATE_SRCIPK = "1"
-+SRCIPK_INSTALL_DIR = "example-applications/${PN}-${PV}"
-+
-+FILES_${PN} += " ${datadir}/dlr/demos "
-diff --git a/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend b/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-index cfa79c0..36dc6a1 100644
---- a/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-+++ b/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-@@ -17,7 +17,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=34400b68072d710fecd0a2940a0d1658 \
- 
- SRC_DISTRIBUTE_LICENSES += "Unlicense"
- 
--PV = "1.01"
-+PV = "1.0.1"
- 
- DEPENDS += " opencv "
- 
-@@ -56,13 +56,20 @@ do_compile_append() {
-    ninja democv
- }
- 
-+SOLIBS = ".so"
-+FILES_SOLIBSDEV = ""
- 
- do_install_append() {
--
-     # Now install additional python test scripts, bash scripts and precomputed models
-     install -d ${D}${datadir}/dlr/demos
-     cp -Prf --preserve=mode,timestamps ${S}/examples/tidl/* ${D}${datadir}/dlr/demos
-     install -m 0755 ${B}/bin/* ${D}${datadir}/dlr/demos/.
-+    # oe_soinstall ${B}/lib/libdlr.so.${PV} ${D}${libdir}
-+    install -d ${D}${libdir}
-+    install -m 0755  ${B}/lib/libdlr.so ${D}${libdir}
-+    cp -Prf --preserve=mode,timestamps  ${S}/3rdparty/tvm/3rdparty/dmlc-core/include/dmlc ${D}${includedir}
-+
- }
- 
- FILES_${PN}-tests += "${datadir}/dlr/demos"
-+FILES_${PN} += "${includedir} ${libdir}/libdlr.so* "
+ PR = "r102"
+@@ -140,6 +141,7 @@ MAKEFILES_append_omap-a15 = " u-boot-spl \
+                               uio-module-drv \
+ 			      mmwavegesture-hmi \
+                               pdm-anomaly-detection \
++                              neo-ai-dlr-demo \
+                               ti-ipc \
+ "
+ MAKEFILES_append_omapl138 = " linux-dtbs \
 -- 
 2.17.1
 
