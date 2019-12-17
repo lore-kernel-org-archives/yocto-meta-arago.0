@@ -1,42 +1,41 @@
-Return-Path: <yuanzhao@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 407DB529D1
+Return-Path: <j-stiffler@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id A1C9C529B5
 	for <meta-arago@arago-project.org>;
-	Tue, 17 Dec 2019 18:32:02 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBHIUPo9053808
-	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 12:30:25 -0600
+	Tue, 17 Dec 2019 21:07:35 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBHL5wBX070797
+	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 15:05:58 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1576607425;
-	bh=EtcWGrfHXtOYK41o2v00pGcGCTNdXxh9Ybdc1v6soKc=;
+	s=ti-com-17Q1; t=1576616758;
+	bh=NliLz9HJCDVGhb4dWxSTeIFTeL5pNjCd8MSoDkr08cA=;
 	h=From:To:CC:Subject:Date;
-	b=NWFYg0hoEfgjT0TduDUVn3Hl9ecc+FNV7fLJJpeO5vtGKJTrQNoyOnDM3BQgxhrwE
-	I6cHxpNaSjQexm5/eld5VQKQvCYsEO2PZ2Vi6ESIcRZ18FVMVwho10unL8Gg7euktb
-	+Kfxnf9dX8UHlb0tcLzOGosQnHmGqQ8BqXOorxGk=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBHIUPs4124737
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 12:30:25 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	b=jD3/zLH2vq9HM9J+xDfvR1wqwlakvw16IbL4XNe5gosEq9sAdc4VA8XTPY4eoKYkT
+	94cC/rVrTTuUuxgMs7MZK2mAv+1tuvWnmU+HN9fy4fBCnAoFX5QuXm5K51CI5QhC+W
+	hJih7IpzmA39ZVdtGzry0VzSASVsyOmsDEu/X1Zs=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBHL5wbC008145
+	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 15:05:58 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Tue, 17 Dec 2019 12:30:24 -0600
+	Tue, 17 Dec 2019 15:05:57 -0600
 Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
 	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Tue, 17 Dec 2019 12:30:24 -0600
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Tue, 17 Dec 2019 15:05:57 -0600
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBHIUOWa083250;
-	Tue, 17 Dec 2019 12:30:24 -0600
-From: Yuan Zhao <yuanzhao@ti.com>
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBHL5vX0106214;
+	Tue, 17 Dec 2019 15:05:57 -0600
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 17 Dec 2019 12:30:18 -0600
-Message-ID: <20191217183018.68680-1-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.14.1
+Date: Tue, 17 Dec 2019 15:46:54 -0500
+Message-ID: <1576615614-32467-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master/thud/ti2019.05][PATCH] ocl: update version to 01.02.00.01
+Subject: [master/thud/ti2019.05][PATCH] ti-tisdk-setup: bump SRCREV for early boot support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,61 +48,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Dec 2019 18:32:02 -0000
+X-List-Received-Date: Tue, 17 Dec 2019 21:07:36 -0000
 Content-Type: text/plain
 
-- Update prebuilt ocl-tidl-fw to work with updated IPC in PSDK 6.2
-- Fix l3_noc message during CoreSDK IPU1 remoteproc boot
+* Add early boot support to create-sdcard.sh by installing early boot
+  firmware into boot partition.
 
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- meta-arago-extras/recipes-ti/ocl/ocl.inc               | 4 ++--
- meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-index 0a6dccc4..cc4ed6d4 100644
---- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
-+++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-@@ -1,5 +1,5 @@
- # patch version at the end needs to be in double digits
--PV = "1.2.00.00"
-+PV = "1.2.00.01"
- INC_PR = "r0"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index 9a9368d..5ef9ef8 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
  
- LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
-@@ -10,7 +10,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
- OCL_GIT_PROTOCOL = "git"
- OCL_GIT_BRANCH = "master"
+-PR = "r44"
++PR = "r45"
  
--OCL_SRCREV = "301ecd37ac5553a8c94c87a0083b8d929e1d1a1e"
-+OCL_SRCREV = "850361c85cd00fcb9df958e016c792936ef4aa2b"
+ BRANCH ?= "master"
+-SRCREV = "22654923e4597871ba192e58c01d6fc09a38aae4"
++SRCREV = "42a8379fda829f34c374ddfca0242a479a84d454"
+ SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
  
- BRANCH = "${OCL_GIT_BRANCH}"
- SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
-diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-index 322f9017..0e8b46d6 100644
---- a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-@@ -3,7 +3,7 @@ SUMMARY = "OpenCL TIDL firmware for AM57xx"
- LICENSE = "TI-TFL"
- LIC_FILES_CHKSUM = "file://LICENSE.ti;md5=082a028431c455252c1e1d3d1021d382"
- 
--PV = "01.01.19.02"
-+PV = "01.02.00.01"
- PR = "r0"
- 
- require recipes-ti/includes/arago-paths.inc
-@@ -15,7 +15,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- GIT_URI      = "git://git.ti.com/opencl/opencl-firmware.git"
- GIT_PROTOCOL = "git"
- BRANCH       = "master"
--SRCREV       = "f9402b2b6b06185af7663bae0061c6fad12cff07"
-+SRCREV       = "9e3d0b34f604203f275fba4807481a8a763a4f63"
- 
- SRC_URI      = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
- 
+ S = "${WORKDIR}/git/"
 -- 
-2.14.1
+2.7.4
 
 
