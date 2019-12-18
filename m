@@ -1,46 +1,43 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
-	[209.85.167.67])
-	by arago-project.org (Postfix) with ESMTPS id 33B83529BC
+Return-Path: <j-stiffler@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 5C26D529C0
 	for <meta-arago@arago-project.org>;
-	Wed, 18 Dec 2019 04:45:48 +0000 (UTC)
-Received: by mail-lf1-f67.google.com with SMTP id f15so631539lfl.13
-	for <meta-arago@arago-project.org>;
-	Tue, 17 Dec 2019 20:44:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=XZGo1YMQW67SHwWs7XF2SsoZBRzY16aIGXcTDid/4Bw=;
-	b=jRdxGpg4mHSaDsRcQygTdbn7gl4n/KO5ehhhHA+STKCoeUYvtTyBFrNkctwYKKYt+R
-	qzh0kn3s8h2foMcdVA0rAGDZG1nsNHX89izeBHbDAtZAoz13n/kFjjIPX7H6xWb5CWd5
-	AI3yWR9ecv4/Yg7cPsDNUF2S8CdVIIxDxY2lytvruPTI5luglVWcotv+Y87y1LVeKAF2
-	PB/WUKXkD+tpFLXKKEWKB/CG1Eh7gKrBH6baWFkyH2UvU3hzLovOgNBi6SWWwc/JtThG
-	kdNtuh5xAX6wOQXEjweorD7bW/i4BzHUuct4/ana4BmBTV7BVxcQxGdqehU1A5XpmYQn
-	qKbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=XZGo1YMQW67SHwWs7XF2SsoZBRzY16aIGXcTDid/4Bw=;
-	b=dvwFFweqoQPZzG8zKM10GMEaTbFXr6CzWsmFiEPFwa/Oh0YksEcGSRnUmkfJuAdjAg
-	ir3xvvepC5u9TYaUiz0EviIZNAILhimO3/ODPhj/lgb0ZcZ5Gjn3AKXlVbbv9TjOcsXA
-	lOImB1BQ49sw7uvWFOpPq2pUoa01RvYF3CgdYqYakhUsOrIXN0T4tZf/9ALptHigb3Bj
-	lxfEK/50THtQBuGFhR0hVlVCR5lzyLu0ZfnwIAsIAB85q/+DUHUPQbHFnX+e5BrdNQsh
-	XBs5t/Mk4EFbbs0RwAawCbYJBagcJg96zMeJ8kHvvkWR9j0Kr0Gpf2BDYWncfZmQnixT
-	9cKQ==
-X-Gm-Message-State: APjAAAXXjYL42CFNUw/nQs3HG1BBnVPO+qwSn8526QbOmcJesqrr2eIr
-	4WQphcj3jY2091a6MeEeLQxUgYbjWVkQlpl+Dww=
-X-Google-Smtp-Source: APXvYqzf0QL9NjOmK2+grTZIIj2vlLpsDDJyK+LjxbRgk2BZ4f2hHDxL2tJJ0rmpHRjqO+3IB65rYt4I6R+83TbAbiI=
-X-Received: by 2002:ac2:485c:: with SMTP id 28mr370939lfy.118.1576644250418;
-	Tue, 17 Dec 2019 20:44:10 -0800 (PST)
+	Wed, 18 Dec 2019 16:07:12 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBIG5ZwD123456
+	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 10:05:35 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1576685135;
+	bh=YROX0I/x+Yms1Lh3nzPtsNS3vElDwJOo2n2imuOYy4A=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=OOZNzqgklcaOE4iw1aQ987a99FTEUO9COyBKC2ED7HfT2brb/XCMHgMmKkAYiTFvS
+	8NqDyXs8oHVjZDVLNisJ6wnSd6fst8Xv+VrAPo5si35pL7FkWM/6Qsgolsdx7xlG6V
+	NEyCbgX5lNolQeA3Im4cZNxsaH3d+yfgM9/jAP90=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBIG5ZCl026619
+	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 10:05:35 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Wed, 18 Dec 2019 10:05:34 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Wed, 18 Dec 2019 10:05:34 -0600
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBIG5Y9Z037387;
+	Wed, 18 Dec 2019 10:05:34 -0600
+To: Yuan Zhao <yuanzhao@ti.com>, <meta-arago@arago-project.org>
+References: <20191217144411.19000-1-yuanzhao@ti.com>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <312911db-7c39-5bd8-28e1-5a9c742c8014@ti.com>
+Date: Wed, 18 Dec 2019 11:05:33 -0500
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.9.1
 MIME-Version: 1.0
-References: <20191218022431.11153-1-denys@ti.com>
-In-Reply-To: <20191218022431.11153-1-denys@ti.com>
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Wed, 18 Dec 2019 17:43:59 +1300
-Message-ID: <CADySD0GVPZY0obXjcmmCJ9UjZMXGW_NGY-WVQUAfka44CdGuRw@mail.gmail.com>
-To: Denys Dmytriyenko <denys@ti.com>
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] external-arm-toolchain: strip binaries and libraries normally
+In-Reply-To: <20191217144411.19000-1-yuanzhao@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: Re: [EXTERNAL] [master/thud/ti2019.05][PATCH v3] openmpacc: update version to 01.05.06.00
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,103 +50,167 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Dec 2019 04:45:48 -0000
-Content-Type: multipart/alternative; boundary="0000000000007bc1160599f31851"
+X-List-Received-Date: Wed, 18 Dec 2019 16:07:12 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
---0000000000007bc1160599f31851
-Content-Type: text/plain; charset="UTF-8"
+Denys,
 
-Hi Denys,
+Please backport to ti2019.05.
 
-I have sent a similar patch to meta-linaro (though haven't heard back).
-Shouldn't it be ideally fixed there rather than in bbappends?
 
-regards
-Ankur
+Thank you,
 
-On Wed, 18 Dec 2019, 3:43 p.m. Denys Dmytriyenko, <denys@ti.com> wrote:
+Jake
 
-> Similar to external-linaro-toolchain before:
-> b019da9374256b671a2fb77ccfae7e3f1ef3096b
+On 12/17/2019 9:44 AM, Yuan Zhao wrote:
+> - Changes for openmpacc examples: Removed vecadd_lib, edmabw
+> - Changes for clacc host_cc and host_link_cc parameters: Determine target
+>    compiler name directly from CMake
+> - Documentation update regarding no support for variadic functions in
+>    target regions
 >
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> Signed-off-by: Gaurav Mitra <gaurav@ti.com>
+> Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
 > ---
->  .../recipes-core/meta/external-arm-toolchain.bbappend          | 3 +++
->  1 file changed, 3 insertions(+)
+>   .../recipes-ti/openmpacc/clacc_git.bb              | 34 ++++++++++++++++++----
+>   .../recipes-ti/openmpacc/openmpacc-examples_git.bb |  8 +----
+>   .../recipes-ti/openmpacc/openmpacc.inc             |  4 +--
+>   .../recipes-ti/openmpacc/openmpacc_git.bb          |  4 ---
+>   4 files changed, 31 insertions(+), 19 deletions(-)
 >
-> diff --git
-> a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-> b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-> index a5d63297..b88c337d 100644
-> --- a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-> +++ b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-> @@ -1,3 +1,6 @@
-> +INHIBIT_PACKAGE_STRIP = "0"
-> +INHIBIT_PACKAGE_DEBUG_SPLIT = "0"
+> diff --git a/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb b/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
+> index 75ce4628..cecffa02 100644
+> --- a/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
+> +++ b/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
+> @@ -2,7 +2,7 @@ SUMMARY = "TI OpenMP-Acc C compiler"
+>   
+>   include openmpacc.inc
+>   
+> -PR = "${INC_PR}.1"
+> +PR = "${INC_PR}.0"
+>   
+>   DEPENDS = "boost elfutils"
+>   RDEPENDS_${PN} += "clocl"
+> @@ -18,16 +18,38 @@ export X86_HOST_ROOT = "${STAGING_DIR_HOST}"
+>   
+>   PARALLEL_MAKE = ""
+>   
+> +# The variables CLACC_CC and CLACC_CXX are used to point clacc to set its
+> +# host_cc and host_link_cc variables which were previously hardcoded in clacc.h.
+> +# This adds support for different toolchain configurations to build clacc by
+> +# passing in the compiler names at the build stage and removes corresponding
+> +# string replacement requirements in yocto recipes.
+> +python __anonymous() {
+> +    cc_name = ""
+> +    cxx_name = ""
+> +    if d.getVar("TOOLCHAIN_PREFIX"):
+> +        cc_name = d.getVar("TOOLCHAIN_PREFIX") + "gcc"
+> +        cxx_name = d.getVar("TOOLCHAIN_PREFIX") + "g++"
+> +    else:
+> +        cc_name = d.getVar("TARGET_PREFIX") + "gcc"
+> +        cxx_name = d.getVar("TARGET_PREFIX") + "g++"
 > +
->  ORIG_TARGET_SYS = "${TARGET_ARCH}${TARGET_VENDOR}${@['-' +
-> d.getVar('TARGET_OS'), ''][d.getVar('TARGET_OS') == ('' or 'custom')]}"
->
->  do_install_append() {
-> --
-> 2.17.1
->
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
->
+> +    # Convert to upper case to workaround GCC preprocessor bug where the word
+> +    # 'linux' is defined to be 1. This results in arm-linux-gnueabihf- being
+> +    # stringized to arm-1-gnueabihf- by the GCC preprocessor. To workaround this
+> +    # bug, convert the names to upper case and send through. Clacc will convert
+> +    # to lower case before usage.
+> +    d.setVar("CLACC_CC_NAME", cc_name.upper())
+> +    d.setVar("CLACC_CXX_NAME", cxx_name.upper())
+> +}
+> +
+> +
+>   EXTRA_OEMAKE = " -C ${S}/clacc \
+>                     ${TARGET} \
+>                     CXX="${CXX}" \
+> +                  CLACC_CC="${CLACC_CC_NAME}" \
+> +                  CLACC_CXX="${CLACC_CXX_NAME}" \
+>   "
+>   
+> -do_configure() {
+> -    sed "s|arm-linux-gnueabihf-gcc|${TOOLCHAIN_PREFIX}gcc|g" -i clacc/clacc.h
+> -    sed "s|arm-linux-gnueabihf-g++|${TOOLCHAIN_PREFIX}g++|g" -i clacc/clacc.h
+> -}
+> -
+>   do_compile() {
+>       oe_runmake
+>   }
+> diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb b/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
+> index b2f4122c..39902f8f 100644
+> --- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
+> +++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
+> @@ -21,8 +21,6 @@ OMPACC_EXAMPLE_LIST = " target_update \
+>                           local \
+>                           null \
+>                           dsplib_fft \
+> -                        vecadd_lib \
+> -                        edmabw \
+>                           sub_section \
+>   "
+>   
+> @@ -35,7 +33,6 @@ python do_unpack_append() {
+>       os.makedirs(s)
+>       shutil.copy(os.path.join(git_dir,"Makefile"),s)
+>       shutil.copy(os.path.join(git_dir,"make.inc"),s)
+> -    shutil.copy(os.path.join(git_dir,"ompacc_env.sh"),s)
+>       for example in d.getVar("OMPACC_EXAMPLE_LIST").split():
+>           shutil.copytree(os.path.join(git_dir,example), os.path.join(s,example))
+>   }
+> @@ -47,11 +44,9 @@ EXTRA_OEMAKE = " TARGET_ROOTDIR=${STAGING_DIR_HOST} \
+>   MKFILELIST = "vecadd/Makefile vecadd_complex/Makefile dsplib_fft/Makefile \
+>   null/Makefile dspheap/Makefile target_implicit_map/Makefile printf_debug/Makefile \
+>   edmamgr/Makefile vecadd_t/Makefile target_orphan_call/Makefile target_update/Makefile \
+> -edmabw/Makefile sub_section/Makefile vecadd_lib/Makefile local/Makefile"
+> +sub_section/Makefile local/Makefile"
+>   
+>   do_configure() {
+> -    sed "s|arm-linux-gnueabihf-gcc|${CC}|g" -i make.inc
+> -    sed "s|arm-linux-gnueabihf-g++|${CXX}|g" -i make.inc
+>       for f in ${MKFILELIST}; do
+>           sed "s|-fopenmp|-fopenmp ${TUNE_CCARGS}${TOOLCHAIN_OPTIONS}|g" -i $f
+>       done
+> @@ -66,7 +61,6 @@ do_install() {
+>   
+>       install -m 644 ${B}/Makefile ${D}${datadir}/ti/examples/openmpacc
+>       install -m 644 ${B}/make.inc ${D}${datadir}/ti/examples/openmpacc
+> -    install -m 644 ${B}/ompacc_env.sh ${D}${datadir}/ti/examples/openmpacc
+>   
+>       for ompacc_example in ${OMPACC_EXAMPLE_LIST}; do
+>           install -d ${D}${datadir}/ti/examples/openmpacc/${ompacc_example}
+> diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
+> index ce0236d4..d33a156b 100644
+> --- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
+> +++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
+> @@ -2,7 +2,7 @@ SUMMARY = "TI OpenMP Accelerator Model"
+>   HOMEPAGE = "http://downloads.ti.com/mctools/esd/docs/openmpacc/"
+>   LICENSE = "BSD"
+>   
+> -PV = "1.5.4.0"
+> +PV = "1.5.6.0"
+>   INC_PR = "r0"
+>   
+>   LIC_FILES_CHKSUM = "file://../debian/copyright;md5=aaa2a0939d08197132fc382e97b62eb0"
+> @@ -13,7 +13,7 @@ OMPACC_GIT_URI = "git://git.ti.com/openmp/ti-openmpacc.git"
+>   OMPACC_GIT_PROTOCOL = "git"
+>   OMPACC_GIT_BRANCH = "master"
+>   
+> -OMPACC_SRCREV = "808cef58b4ed196a9ced2310d419dbaf63dfbeb6"
+> +OMPACC_SRCREV = "7c4e68a0bf73ec193edff9dfc23ea764ae6ad434"
+>   
+>   BRANCH = "${OMPACC_GIT_BRANCH}"
+>   SRC_URI = "${OMPACC_GIT_URI};protocol=${OMPACC_GIT_PROTOCOL};branch=${BRANCH}"
+> diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb b/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
+> index a28a9225..44b59a4f 100644
+> --- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
+> +++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
+> @@ -18,7 +18,3 @@ export LINUX_DEVKIT_ROOT = "${STAGING_DIR_HOST}"
+>   EXTRA_OECMAKE += "-DVERSION="${PV}" -DBUILD_OUTPUT=lib"
+>   
+>   FILES_${PN} += "/usr/share/ti/openmpacc/*"
+> -
+> -do_configure_prepend() {
+> -	sed -i -e 's/-march=armv7-a//' ${S}/libompacc/CMakeLists.txt
+> -}
 
---0000000000007bc1160599f31851
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">Hi Denys,<div dir=3D"auto"><br></div><div dir=3D"auto">I =
-have sent a similar patch to meta-linaro (though haven&#39;t heard back).</=
-div><div dir=3D"auto">Shouldn&#39;t it be ideally fixed there rather than i=
-n bbappends?</div><div dir=3D"auto"><br></div><div dir=3D"auto">regards</di=
-v><div dir=3D"auto">Ankur</div></div><br><div class=3D"gmail_quote"><div di=
-r=3D"ltr" class=3D"gmail_attr">On Wed, 18 Dec 2019, 3:43 p.m. Denys Dmytriy=
-enko, &lt;<a href=3D"mailto:denys@ti.com">denys@ti.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
-t:1px #ccc solid;padding-left:1ex">Similar to external-linaro-toolchain bef=
-ore:<br>
-b019da9374256b671a2fb77ccfae7e3f1ef3096b<br>
-<br>
-Signed-off-by: Denys Dmytriyenko &lt;<a href=3D"mailto:denys@ti.com" target=
-=3D"_blank" rel=3D"noreferrer">denys@ti.com</a>&gt;<br>
----<br>
-=C2=A0.../recipes-core/meta/external-arm-toolchain.bbappend=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 | 3 +++<br>
-=C2=A01 file changed, 3 insertions(+)<br>
-<br>
-diff --git a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bba=
-ppend b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend=
-<br>
-index a5d63297..b88c337d 100644<br>
---- a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend<b=
-r>
-+++ b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend<b=
-r>
-@@ -1,3 +1,6 @@<br>
-+INHIBIT_PACKAGE_STRIP =3D &quot;0&quot;<br>
-+INHIBIT_PACKAGE_DEBUG_SPLIT =3D &quot;0&quot;<br>
-+<br>
-=C2=A0ORIG_TARGET_SYS =3D &quot;${TARGET_ARCH}${TARGET_VENDOR}${@[&#39;-&#3=
-9; + d.getVar(&#39;TARGET_OS&#39;), &#39;&#39;][d.getVar(&#39;TARGET_OS&#39=
-;) =3D=3D (&#39;&#39; or &#39;custom&#39;)]}&quot;<br>
-<br>
-=C2=A0do_install_append() {<br>
--- <br>
-2.17.1<br>
-<br>
-_______________________________________________<br>
-meta-arago mailing list<br>
-<a href=3D"mailto:meta-arago@arago-project.org" target=3D"_blank" rel=3D"no=
-referrer">meta-arago@arago-project.org</a><br>
-<a href=3D"http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago" re=
-l=3D"noreferrer noreferrer" target=3D"_blank">http://arago-project.org/cgi-=
-bin/mailman/listinfo/meta-arago</a><br>
-</blockquote></div>
-
---0000000000007bc1160599f31851--
