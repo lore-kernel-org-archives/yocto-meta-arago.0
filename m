@@ -1,45 +1,45 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id B6866529EC
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id DEA91529ED
 	for <meta-arago@arago-project.org>;
 	Wed, 18 Dec 2019 17:52:02 +0000 (UTC)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoP7k032153
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoPRj068300
 	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 11:50:25 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1576691425;
-	bh=Wh21DixFqyMLq/i2d25DOFiEjnhTvZjDCYYPthAXmh4=;
+	bh=vDxtsRawNYeqN9QHufJPUhgQbFca+4j/KnsF25ZdVO8=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=I+VIO6D47hnq9hk10pu5/E5v0i/yjPOKZbqxYGXoL40CFLZjCllnhYJOHYACC6DSj
-	Ob1tKQJAqey6X2p0GQzKYehVoJcVJ6wiG8y9rYA+DpTKHwZw/jM9Tl8msonWc2qF1o
-	bwYBSVx+g5HFEjRdzvP3Sk1yX/kB/m7hvxnJtt6A=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBIHoP9J110765
+	b=hFh8nnI0DbzcoqmzTlhgMc/R2dRAZxHz++Xvn8JSPayaA7xlH+u2GBjD+M2uoj6bi
+	XKuolNHcrjwZnm3mSrTblkPS0G3sTDoT5z6totb0PuqtVxs4YjG1MRm06CmZKDgPse
+	2JhsVhwVYQ9Oso7/TzNe8pzFGAyCiztvUTyMtASA=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBIHoPsC110777
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 11:50:25 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
 	Wed, 18 Dec 2019 11:50:25 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
 	Frontend Transport; Wed, 18 Dec 2019 11:50:25 -0600
 Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoNfp112296;
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoNfq112296;
 	Wed, 18 Dec 2019 11:50:25 -0600
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 18 Dec 2019 12:31:14 -0500
-Message-ID: <1576690275-13499-4-git-send-email-j-stiffler@ti.com>
+Date: Wed, 18 Dec 2019 12:31:15 -0500
+Message-ID: <1576690275-13499-5-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1576690275-13499-1-git-send-email-j-stiffler@ti.com>
 References: <1576690275-13499-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: d-senicic1@ti.com
-Subject: [meta-processor-sdk][PATCH 4/5] ti-tisdk-makefile: add taret for neo-ai-dlr-demo
+Subject: [meta-processor-sdk][PATCH 5/5] packagegroups: integrate neo-ai-dlr-demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,81 +52,93 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Dec 2019 17:52:04 -0000
+X-List-Received-Date: Wed, 18 Dec 2019 17:52:05 -0000
 Content-Type: text/plain
 
-* Only add for machines with mmip feature.
+* Add neo-ai-dlr-demo to rootfs of machines with mmip feature.
+* Install dev package in devkit.
+* Provide neo-ai-dlr-demo sources in SDK bundle.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../ti-tisdk-makefile/Makefile_neo-ai-dlr-demo        | 19 +++++++++++++++++++
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend  |  9 +++++----
- 2 files changed, 24 insertions(+), 4 deletions(-)
- create mode 100644 recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo
+ .../packagegroup-arago-tisdk-addons-sdk-host.bbappend       |  7 ++++++-
+ .../packagegroup-arago-tisdk-addons-sdk-target.bbappend     |  6 +++++-
+ .../packagegroups/packagegroup-arago-tisdk-addons.bbappend  | 13 ++++++++++---
+ 3 files changed, 21 insertions(+), 5 deletions(-)
 
-diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo
-new file mode 100644
-index 0000000..60445f2
---- /dev/null
-+++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo
-@@ -0,0 +1,19 @@
-+# neo-ai-dlr-demo build targets
-+neo-ai-dlr-demo:
-+	@echo =============================
-+	@echo    Building NEO-AI-DLR Demo
-+	@echo =============================
-+	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*neo-ai-dlr-demo*"`; make -f Makefile.build
-+
-+neo-ai-dlr-demo_clean:
-+	@echo =============================
-+	@echo    Cleaning NEO-AI-DLR Demo
-+	@echo =============================
-+	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*neo-ai-dlr-demo*"`; make -f Makefile.build clean
-+
-+neo-ai-dlr-demo_install:
-+	@echo ================================================
-+	@echo   Installing NEO-AI-DLR Demo
-+	@echo ================================================
-+	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*neo-ai-dlr-demo*"`; make -f Makefile.build install
-+
-diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
-index 4fb8a16..b7d3365 100644
---- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
-+++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bbappend
+index 647fe67..c98d464 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bbappend
 @@ -1,4 +1,4 @@
--PR_append = ".tisdk68"
-+PR_append = ".tisdk69"
+-PR_append = ".tisdk19"
++PR_append = ".tisdk20"
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ EXTRA_LIBS_append_am57xx-evm = " \
+     jailhouse-src \
+@@ -18,3 +18,8 @@ EXTRA_LIBS_append_dra7xx = " \
  
-@@ -9,6 +9,7 @@ SRC_URI_append = "\
-     file://Makefile_tiovx-app-host \
-     file://Makefile_tidl-examples \
-     file://Makefile_pru-adc \
-+    file://Makefile_neo-ai-dlr-demo \
- "
+ UTILS_append_am335x-evm = " pru-adc-src"
  
- SRC_URI_append_omap-a15 = " file://Makefile_big-data-ipc-demo"
-@@ -25,9 +26,7 @@ MAKEFILES_append_omap-a15 = " dual-camera-demo \
-                               image-gallery \
-                               big-data-ipc-demo \
- 			      evse-hmi \
--"
--
--MAKEFILES_append_omap-a15 = " video-graphics-test \
-+                              video-graphics-test \
- "
- 
- MAKEFILES_append_ti43x = " evse-hmi \
-@@ -49,6 +48,8 @@ MAKEFILES_append_am57xx-hs-evm = " tidl-examples"
- 
- MAKEFILES_append_dra7xx = " tiovx-app-host"
- 
-+MAKEFILES_append = " ${@bb.utils.contains('MACHINE_FEATURES','mmip','neo-ai-dlr-demo','',d)}"
++NEO_AI_PACKAGES = " \
++    ${@bb.utils.contains('MACHINE_FEATURES','mmip','neo-ai-dlr-demo-src','',d)} \
++"
 +
- MAKEFILES_remove_ti33x = "${@bb.utils.contains('MACHINE_FEATURES', 'gpu', '', 'ti-sgx-ddk-km', d)}"
- MAKEFILES_remove_ti43x = "${@bb.utils.contains('MACHINE_FEATURES', 'gpu', '', 'ti-sgx-ddk-km', d)}"
++RDEPENDS_${PN}_append = " ${NEO_AI_PACKAGES}"
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
+index 6cd7f4d..83125c5 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = "-tisdk33"
++PR_append = "-tisdk34"
  
+ UTILS_append_ti33x = " \
+     opencv-dev \
+@@ -76,3 +76,7 @@ EXTRA_LIBS_append_dra7xx = " \
+     tiovx-lib-host-staticdev \
+     tiovx-sys-iface \
+ "
++
++NEO_AI_PACKAGES = "neo-ai-dlr-dev"
++
++RDEPENDS_${PN}_append = " ${NEO_AI_PACKAGES}"
+diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
+index aa0a182..eea73e4 100644
+--- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
++++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = "-tisdk58"
++PR_append = "-tisdk59"
+ 
+ EXTRA_PACKAGES_append_ti33x = " opencv"
+ EXTRA_PACKAGES_append_ti43x = " opencv"
+@@ -17,12 +17,17 @@ EXTRA_PACKAGES_append_k3 = " watchdog"
+ 
+ EXTRA_PACKAGES_append_omapl138 = " ccief-basic"
+ 
+-NEO_AI_PACKAGES = "neo-ai-dlr neo-ai-dlr-tests"
++NEO_AI_PACKAGES = " \
++    neo-ai-dlr \
++    neo-ai-dlr-tests \
++    neo-ai-dlr-dev \
++    ${@bb.utils.contains('MACHINE_FEATURES','mmip','neo-ai-dlr-demo','',d)} \
++"
+ NEO_AI_PACKAGES_armv5 = ""
+ 
+ EXTRA_PACKAGES_append = " hidapi \
+                           tvm \
+-                          ${NEO_AI_PACKAGES}"
++"
+ 
+ EXTRA_PACKAGES_append_armv5 = " zbar"
+ EXTRA_PACKAGES_append_armv7a = " zbar"
+@@ -30,3 +35,5 @@ EXTRA_PACKAGES_append_armv7a = " zbar"
+ UTILS_append = " net-snmp net-snmp-server-snmpd"
+ 
+ EXTRA_PACKAGES_append_dra7xx = " tiovx-app-host tiovx-app-host-examples"
++
++RDEPENDS_${PN}-extra_append = " ${NEO_AI_PACKAGES}"
 -- 
 2.7.4
 
