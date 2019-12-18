@@ -1,41 +1,42 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id A1C9C529B5
+Return-Path: <denys@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 66F0D529BC
 	for <meta-arago@arago-project.org>;
-	Tue, 17 Dec 2019 21:07:35 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBHL5wBX070797
-	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 15:05:58 -0600
+	Wed, 18 Dec 2019 02:44:51 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBI2hENl035287
+	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 20:43:14 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1576616758;
-	bh=NliLz9HJCDVGhb4dWxSTeIFTeL5pNjCd8MSoDkr08cA=;
+	s=ti-com-17Q1; t=1576636994;
+	bh=I92hE+PtO5pBhio6sxm7ZB/mifWyKl3+cEXmOWM2CUo=;
 	h=From:To:CC:Subject:Date;
-	b=jD3/zLH2vq9HM9J+xDfvR1wqwlakvw16IbL4XNe5gosEq9sAdc4VA8XTPY4eoKYkT
-	94cC/rVrTTuUuxgMs7MZK2mAv+1tuvWnmU+HN9fy4fBCnAoFX5QuXm5K51CI5QhC+W
-	hJih7IpzmA39ZVdtGzry0VzSASVsyOmsDEu/X1Zs=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBHL5wbC008145
-	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 15:05:58 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	b=HZdicyHkRj0FkGVPmSq2xpydB8K2J0yNk1xladti9DIUM8Z6wOLC7WsNrw8EihrOH
+	y8W4sxzew1pM+8+vZlBPMumkUaTEt4mL348tnusZc7onfJOPuLkCdcSnBT7QsfxFVg
+	4jsVHxUhwYjPPFdwxTn7HEh4DB+NJlHNv55gdCEA=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBI2hEZ6120473
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 17 Dec 2019 20:43:14 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Tue, 17 Dec 2019 15:05:57 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 17 Dec 2019 20:43:14 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Tue, 17 Dec 2019 15:05:57 -0600
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Tue, 17 Dec 2019 20:43:14 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBHL5vX0106214;
-	Tue, 17 Dec 2019 15:05:57 -0600
-From: Jacob Stiffler <j-stiffler@ti.com>
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBI2hB3e047363;
+	Tue, 17 Dec 2019 20:43:12 -0600
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 17 Dec 2019 15:46:54 -0500
-Message-ID: <1576615614-32467-1-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
+Date: Wed, 18 Dec 2019 02:24:31 +0000
+Message-ID: <20191218022431.11153-1-denys@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master/thud/ti2019.05][PATCH] ti-tisdk-setup: bump SRCREV for early boot support
+Subject: [PATCH] external-arm-toolchain: strip binaries and libraries normally
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,35 +49,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Dec 2019 21:07:36 -0000
+X-List-Received-Date: Wed, 18 Dec 2019 02:44:51 -0000
 Content-Type: text/plain
 
-* Add early boot support to create-sdcard.sh by installing early boot
-  firmware into boot partition.
+Similar to external-linaro-toolchain before:
+b019da9374256b671a2fb77ccfae7e3f1ef3096b
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-core/meta/external-arm-toolchain.bbappend          | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-index 9a9368d..5ef9ef8 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
-@@ -2,10 +2,10 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
- LICENSE = "BSD"
- LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
+diff --git a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+index a5d63297..b88c337d 100644
+--- a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
++++ b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+@@ -1,3 +1,6 @@
++INHIBIT_PACKAGE_STRIP = "0"
++INHIBIT_PACKAGE_DEBUG_SPLIT = "0"
++
+ ORIG_TARGET_SYS = "${TARGET_ARCH}${TARGET_VENDOR}${@['-' + d.getVar('TARGET_OS'), ''][d.getVar('TARGET_OS') == ('' or 'custom')]}"
  
--PR = "r44"
-+PR = "r45"
- 
- BRANCH ?= "master"
--SRCREV = "22654923e4597871ba192e58c01d6fc09a38aae4"
-+SRCREV = "42a8379fda829f34c374ddfca0242a479a84d454"
- SRC_URI = "git://arago-project.org/git/projects/tisdk-setup-scripts.git;protocol=git;branch=${BRANCH}"
- 
- S = "${WORKDIR}/git/"
+ do_install_append() {
 -- 
-2.7.4
+2.17.1
 
 
