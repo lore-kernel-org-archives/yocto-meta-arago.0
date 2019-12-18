@@ -1,45 +1,45 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 5698C529D1
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id B6866529EC
 	for <meta-arago@arago-project.org>;
 	Wed, 18 Dec 2019 17:52:02 +0000 (UTC)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoPLn118145
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoP7k032153
 	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 11:50:25 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1576691425;
-	bh=sFq3dIBChJaolL6Ig3ocUWrSOcp1RF3I+X/yUdaPxFM=;
+	bh=Wh21DixFqyMLq/i2d25DOFiEjnhTvZjDCYYPthAXmh4=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=eJTki4IJvZqdoy0loa4s4BXwTOt8z+FkIYMjMRlnEps3WnmGwYQPvcatnEq8mvxMM
-	3Hk5++R0BZHMu44Z3vS8BWhzDod5M+Vef3MlcuTvEKoCpL9TbHsxw7B7m6aiJ14B+e
-	UwVMjLl3NVi39yUiFKf1YwN40USLWI2HabZXC3As=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBIHoPLJ110747
+	b=I+VIO6D47hnq9hk10pu5/E5v0i/yjPOKZbqxYGXoL40CFLZjCllnhYJOHYACC6DSj
+	Ob1tKQJAqey6X2p0GQzKYehVoJcVJ6wiG8y9rYA+DpTKHwZw/jM9Tl8msonWc2qF1o
+	bwYBSVx+g5HFEjRdzvP3Sk1yX/kB/m7hvxnJtt6A=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBIHoP9J110765
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
 	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 11:50:25 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Wed, 18 Dec 2019 11:50:24 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 18 Dec 2019 11:50:25 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Wed, 18 Dec 2019 11:50:24 -0600
+	Frontend Transport; Wed, 18 Dec 2019 11:50:25 -0600
 Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoNfo112296;
-	Wed, 18 Dec 2019 11:50:24 -0600
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoNfp112296;
+	Wed, 18 Dec 2019 11:50:25 -0600
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 18 Dec 2019 12:31:13 -0500
-Message-ID: <1576690275-13499-3-git-send-email-j-stiffler@ti.com>
+Date: Wed, 18 Dec 2019 12:31:14 -0500
+Message-ID: <1576690275-13499-4-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1576690275-13499-1-git-send-email-j-stiffler@ti.com>
 References: <1576690275-13499-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: d-senicic1@ti.com
-Subject: [meta-processor-sdk][PATCH 3/5] neo-ai-dlr-demo: add standalone demo
+Subject: [meta-processor-sdk][PATCH 4/5] ti-tisdk-makefile: add taret for neo-ai-dlr-demo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,114 +55,78 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Wed, 18 Dec 2019 17:52:04 -0000
 Content-Type: text/plain
 
-Show how to build a neo-ai-dlr application by extracting this demo
-out of the neo-ai-dlr sources.
+* Only add for machines with mmip feature.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../neo-ai-dlr/neo-ai-dlr-demo/Makefile.build      | 24 +++++++++++++
- .../neo-ai-dlr/neo-ai-dlr-demo/makefile            | 11 ++++++
- recipes-support/neo-ai-dlr/neo-ai-dlr-demo_git.bb  | 42 ++++++++++++++++++++++
- 3 files changed, 77 insertions(+)
- create mode 100644 recipes-support/neo-ai-dlr/neo-ai-dlr-demo/Makefile.build
- create mode 100644 recipes-support/neo-ai-dlr/neo-ai-dlr-demo/makefile
- create mode 100644 recipes-support/neo-ai-dlr/neo-ai-dlr-demo_git.bb
+ .../ti-tisdk-makefile/Makefile_neo-ai-dlr-demo        | 19 +++++++++++++++++++
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend  |  9 +++++----
+ 2 files changed, 24 insertions(+), 4 deletions(-)
+ create mode 100644 recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo
 
-diff --git a/recipes-support/neo-ai-dlr/neo-ai-dlr-demo/Makefile.build b/recipes-support/neo-ai-dlr/neo-ai-dlr-demo/Makefile.build
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo
 new file mode 100644
-index 0000000..1a9c19e
+index 0000000..60445f2
 --- /dev/null
-+++ b/recipes-support/neo-ai-dlr/neo-ai-dlr-demo/Makefile.build
-@@ -0,0 +1,24 @@
-+-include ../../Rules.make
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_neo-ai-dlr-demo
+@@ -0,0 +1,19 @@
++# neo-ai-dlr-demo build targets
++neo-ai-dlr-demo:
++	@echo =============================
++	@echo    Building NEO-AI-DLR Demo
++	@echo =============================
++	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*neo-ai-dlr-demo*"`; make -f Makefile.build
 +
-+ENV_SETUP ?= ../../linux-devkit/environment-setup
-+DESTDIR ?=
++neo-ai-dlr-demo_clean:
++	@echo =============================
++	@echo    Cleaning NEO-AI-DLR Demo
++	@echo =============================
++	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*neo-ai-dlr-demo*"`; make -f Makefile.build clean
 +
-+all: release
++neo-ai-dlr-demo_install:
++	@echo ================================================
++	@echo   Installing NEO-AI-DLR Demo
++	@echo ================================================
++	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*neo-ai-dlr-demo*"`; make -f Makefile.build install
 +
-+release:
-+	@. ${ENV_SETUP}; \
-+	make
+diff --git a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+index 4fb8a16..b7d3365 100644
+--- a/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
++++ b/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bbappend
+@@ -1,4 +1,4 @@
+-PR_append = ".tisdk68"
++PR_append = ".tisdk69"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+@@ -9,6 +9,7 @@ SRC_URI_append = "\
+     file://Makefile_tiovx-app-host \
+     file://Makefile_tidl-examples \
+     file://Makefile_pru-adc \
++    file://Makefile_neo-ai-dlr-demo \
+ "
+ 
+ SRC_URI_append_omap-a15 = " file://Makefile_big-data-ipc-demo"
+@@ -25,9 +26,7 @@ MAKEFILES_append_omap-a15 = " dual-camera-demo \
+                               image-gallery \
+                               big-data-ipc-demo \
+ 			      evse-hmi \
+-"
+-
+-MAKEFILES_append_omap-a15 = " video-graphics-test \
++                              video-graphics-test \
+ "
+ 
+ MAKEFILES_append_ti43x = " evse-hmi \
+@@ -49,6 +48,8 @@ MAKEFILES_append_am57xx-hs-evm = " tidl-examples"
+ 
+ MAKEFILES_append_dra7xx = " tiovx-app-host"
+ 
++MAKEFILES_append = " ${@bb.utils.contains('MACHINE_FEATURES','mmip','neo-ai-dlr-demo','',d)}"
 +
-+clean:
-+	@. ${ENV_SETUP}; \
-+        make clean
-+
-+install:
-+	@if [ ! -d $(DESTDIR) ] ; then \
-+		echo "The extracted target filesystem directory doesn't exist."; \
-+		echo "Please run setup.sh in the SDK's root directory and then try again."; \
-+		exit 1; \
-+	fi
-+	@install -d ${DESTDIR}/usr/share/dlr/demos
-+	@cp -Prf ${DESTDIR}/usr/share/dlr/demos/run_mobilenet_cv_mt ${DESTDIR}/usr/share/dlr/demos/run_mobilenet_cv_mt.dyn
-+	@echo "Dynamically linked run_mobilenet_cv_mt.dyn installed."
-diff --git a/recipes-support/neo-ai-dlr/neo-ai-dlr-demo/makefile b/recipes-support/neo-ai-dlr/neo-ai-dlr-demo/makefile
-new file mode 100644
-index 0000000..84461b3
---- /dev/null
-+++ b/recipes-support/neo-ai-dlr/neo-ai-dlr-demo/makefile
-@@ -0,0 +1,11 @@
-+PHONY: all
-+CXXFLAGS =-funroll-loops -O3 -DNDEBUG 
-+all: neo-ai-dlr-demo
-+LIBS = -ldlr -lpthread -lopencv_highgui -lopencv_imgcodecs -lopencv_videoio -lopencv_imgproc -lopencv_core -lrt -ldl 
-+
-+neo-ai-dlr-demo: run_mobilenet_cv_mt.cc
-+	$(CXX) $(CXXFLAGS) run_mobilenet_cv_mt.cc -o run_mobilenet_cv_mt.dyn $(LIBS)
-+
-+clean:
-+	rm -rf run_mobilenet_cv_mt.dyn
-+
-diff --git a/recipes-support/neo-ai-dlr/neo-ai-dlr-demo_git.bb b/recipes-support/neo-ai-dlr/neo-ai-dlr-demo_git.bb
-new file mode 100644
-index 0000000..4cccf0e
---- /dev/null
-+++ b/recipes-support/neo-ai-dlr/neo-ai-dlr-demo_git.bb
-@@ -0,0 +1,42 @@
-+SUMMARY = "Predictive maintenance demo for anomaly detection using Recurrent Neural Network (RNN)"
-+LICENSE = "Apache-2.0" 
-+LIC_FILES_CHKSUM = "file://../git/LICENSE;md5=34400b68072d710fecd0a2940a0d1658"
-+
-+PV = "1.0"
-+PR = "r1"
-+
-+BRANCH-NEO-AI-DLR = "dev"
-+SRC_URI = "git://github.com/TexasInstruments/neo-ai-dlr;protocol=https;branch=${BRANCH-NEO-AI-DLR};name=neo-ai-dlr \
-+           file://makefile;subdir=demosrc \
-+           file://Makefile.build;subdir=demosrc \
-+          "
-+
-+SRCREV_neo-ai-dlr = "40394be2e39eaa6248f9bf0a1143692083c0e3d2"
-+
-+S = "${WORKDIR}/demosrc"
-+
-+DEPENDS += " opencv neo-ai-dlr "
-+
-+do_patch_extra() {
-+   install -m 644 ${WORKDIR}/git/demo/cv/run_mobilenet_cv_mt.cc ${S}/.
-+   install -m 644 ${WORKDIR}/git/LICENSE ${S}/.
-+}
-+addtask patch_extra after do_patch before do_create_srcipk
-+
-+do_compile() {
-+  cd ${S}
-+  make 
-+}
-+
-+do_install() {
-+   install -d ${D}${datadir}/dlr/demos
-+   install -m 644 ${S}/run_mobilenet_cv_mt.cc ${D}${datadir}/dlr/demos/.
-+   install -m 644 ${S}/makefile ${D}${datadir}/dlr/demos/.
-+   install -m 644 ${S}/Makefile.build ${D}${datadir}/dlr/demos/.
-+   install -m 755 ${S}/run_mobilenet_cv_mt.dyn ${D}${datadir}/dlr/demos/.
-+}
-+
-+CREATE_SRCIPK = "1"
-+SRCIPK_INSTALL_DIR = "example-applications/${PN}-${PV}"
-+
-+FILES_${PN} += " ${datadir}/dlr/demos "
+ MAKEFILES_remove_ti33x = "${@bb.utils.contains('MACHINE_FEATURES', 'gpu', '', 'ti-sgx-ddk-km', d)}"
+ MAKEFILES_remove_ti43x = "${@bb.utils.contains('MACHINE_FEATURES', 'gpu', '', 'ti-sgx-ddk-km', d)}"
+ 
 -- 
 2.7.4
 
