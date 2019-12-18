@@ -1,45 +1,43 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id DEA91529ED
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 38462529BC
 	for <meta-arago@arago-project.org>;
-	Wed, 18 Dec 2019 17:52:02 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoPRj068300
-	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 11:50:25 -0600
+	Wed, 18 Dec 2019 19:16:03 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBIJEP6I060843
+	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 13:14:25 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1576691425;
-	bh=vDxtsRawNYeqN9QHufJPUhgQbFca+4j/KnsF25ZdVO8=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=hFh8nnI0DbzcoqmzTlhgMc/R2dRAZxHz++Xvn8JSPayaA7xlH+u2GBjD+M2uoj6bi
-	XKuolNHcrjwZnm3mSrTblkPS0G3sTDoT5z6totb0PuqtVxs4YjG1MRm06CmZKDgPse
-	2JhsVhwVYQ9Oso7/TzNe8pzFGAyCiztvUTyMtASA=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBIHoPsC110777
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 11:50:25 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1576696465;
+	bh=A0O1EAtdK1qX+bD/gsWKCXupEeDyQupSIB86ck4q6Gk=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=zNQpO7ZKoJS8RiMoBFh3wImJ9GiU3INCbK7JPSkj+VukXBG6zh/ySwvqurbPxOqUA
+	eAiuUmFsMbXXkSUduxsMJzNcxEtnZvAHlvLjLqIHnUNFQCEphxsjiJDW6nAssg+Zkl
+	9XUIzwoLbncMMgku1WPc/yhPAZ3DEYZtOFEj3DZM=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBIJEPnm071000
+	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 13:14:25 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Wed, 18 Dec 2019 11:50:25 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 18 Dec 2019 13:14:25 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Wed, 18 Dec 2019 11:50:25 -0600
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoNfq112296;
-	Wed, 18 Dec 2019 11:50:25 -0600
+	Frontend Transport; Wed, 18 Dec 2019 13:14:25 -0600
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBIJEOF4122489;
+	Wed, 18 Dec 2019 13:14:25 -0600
+To: Yuan Zhao <yuanzhao@ti.com>, <meta-arago@arago-project.org>
+References: <20191217183018.68680-1-yuanzhao@ti.com>
 From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 18 Dec 2019 12:31:15 -0500
-Message-ID: <1576690275-13499-5-git-send-email-j-stiffler@ti.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1576690275-13499-1-git-send-email-j-stiffler@ti.com>
-References: <1576690275-13499-1-git-send-email-j-stiffler@ti.com>
+Message-ID: <5b7e8c33-6fc5-c13b-4e9a-2e31ffdbd947@ti.com>
+Date: Wed, 18 Dec 2019 14:14:24 -0500
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.9.1
 MIME-Version: 1.0
+In-Reply-To: <20191217183018.68680-1-yuanzhao@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: d-senicic1@ti.com
-Subject: [meta-processor-sdk][PATCH 5/5] packagegroups: integrate neo-ai-dlr-demo
+Subject: Re: [EXTERNAL] [master/thud/ti2019.05][PATCH] ocl: update version to 01.02.00.01
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,94 +50,70 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Dec 2019 17:52:05 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 18 Dec 2019 19:16:03 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-* Add neo-ai-dlr-demo to rootfs of machines with mmip feature.
-* Install dev package in devkit.
-* Provide neo-ai-dlr-demo sources in SDK bundle.
+Denys,
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
----
- .../packagegroup-arago-tisdk-addons-sdk-host.bbappend       |  7 ++++++-
- .../packagegroup-arago-tisdk-addons-sdk-target.bbappend     |  6 +++++-
- .../packagegroups/packagegroup-arago-tisdk-addons.bbappend  | 13 ++++++++++---
- 3 files changed, 21 insertions(+), 5 deletions(-)
+Please backport to ti2019.05.
 
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bbappend
-index 647fe67..c98d464 100644
---- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bbappend
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bbappend
-@@ -1,4 +1,4 @@
--PR_append = ".tisdk19"
-+PR_append = ".tisdk20"
- 
- EXTRA_LIBS_append_am57xx-evm = " \
-     jailhouse-src \
-@@ -18,3 +18,8 @@ EXTRA_LIBS_append_dra7xx = " \
- 
- UTILS_append_am335x-evm = " pru-adc-src"
- 
-+NEO_AI_PACKAGES = " \
-+    ${@bb.utils.contains('MACHINE_FEATURES','mmip','neo-ai-dlr-demo-src','',d)} \
-+"
-+
-+RDEPENDS_${PN}_append = " ${NEO_AI_PACKAGES}"
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
-index 6cd7f4d..83125c5 100644
---- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bbappend
-@@ -1,4 +1,4 @@
--PR_append = "-tisdk33"
-+PR_append = "-tisdk34"
- 
- UTILS_append_ti33x = " \
-     opencv-dev \
-@@ -76,3 +76,7 @@ EXTRA_LIBS_append_dra7xx = " \
-     tiovx-lib-host-staticdev \
-     tiovx-sys-iface \
- "
-+
-+NEO_AI_PACKAGES = "neo-ai-dlr-dev"
-+
-+RDEPENDS_${PN}_append = " ${NEO_AI_PACKAGES}"
-diff --git a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
-index aa0a182..eea73e4 100644
---- a/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
-+++ b/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bbappend
-@@ -1,4 +1,4 @@
--PR_append = "-tisdk58"
-+PR_append = "-tisdk59"
- 
- EXTRA_PACKAGES_append_ti33x = " opencv"
- EXTRA_PACKAGES_append_ti43x = " opencv"
-@@ -17,12 +17,17 @@ EXTRA_PACKAGES_append_k3 = " watchdog"
- 
- EXTRA_PACKAGES_append_omapl138 = " ccief-basic"
- 
--NEO_AI_PACKAGES = "neo-ai-dlr neo-ai-dlr-tests"
-+NEO_AI_PACKAGES = " \
-+    neo-ai-dlr \
-+    neo-ai-dlr-tests \
-+    neo-ai-dlr-dev \
-+    ${@bb.utils.contains('MACHINE_FEATURES','mmip','neo-ai-dlr-demo','',d)} \
-+"
- NEO_AI_PACKAGES_armv5 = ""
- 
- EXTRA_PACKAGES_append = " hidapi \
-                           tvm \
--                          ${NEO_AI_PACKAGES}"
-+"
- 
- EXTRA_PACKAGES_append_armv5 = " zbar"
- EXTRA_PACKAGES_append_armv7a = " zbar"
-@@ -30,3 +35,5 @@ EXTRA_PACKAGES_append_armv7a = " zbar"
- UTILS_append = " net-snmp net-snmp-server-snmpd"
- 
- EXTRA_PACKAGES_append_dra7xx = " tiovx-app-host tiovx-app-host-examples"
-+
-+RDEPENDS_${PN}-extra_append = " ${NEO_AI_PACKAGES}"
--- 
-2.7.4
 
+Thank you,
+
+Jake
+
+On 12/17/2019 1:30 PM, Yuan Zhao wrote:
+> - Update prebuilt ocl-tidl-fw to work with updated IPC in PSDK 6.2
+> - Fix l3_noc message during CoreSDK IPU1 remoteproc boot
+>
+> Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+> ---
+>   meta-arago-extras/recipes-ti/ocl/ocl.inc               | 4 ++--
+>   meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb | 4 ++--
+>   2 files changed, 4 insertions(+), 4 deletions(-)
+>
+> diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+> index 0a6dccc4..cc4ed6d4 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
+> +++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+> @@ -1,5 +1,5 @@
+>   # patch version at the end needs to be in double digits
+> -PV = "1.2.00.00"
+> +PV = "1.2.00.01"
+>   INC_PR = "r0"
+>   
+>   LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+> @@ -10,7 +10,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+>   OCL_GIT_PROTOCOL = "git"
+>   OCL_GIT_BRANCH = "master"
+>   
+> -OCL_SRCREV = "301ecd37ac5553a8c94c87a0083b8d929e1d1a1e"
+> +OCL_SRCREV = "850361c85cd00fcb9df958e016c792936ef4aa2b"
+>   
+>   BRANCH = "${OCL_GIT_BRANCH}"
+>   SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
+> diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
+> index 322f9017..0e8b46d6 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
+> +++ b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
+> @@ -3,7 +3,7 @@ SUMMARY = "OpenCL TIDL firmware for AM57xx"
+>   LICENSE = "TI-TFL"
+>   LIC_FILES_CHKSUM = "file://LICENSE.ti;md5=082a028431c455252c1e1d3d1021d382"
+>   
+> -PV = "01.01.19.02"
+> +PV = "01.02.00.01"
+>   PR = "r0"
+>   
+>   require recipes-ti/includes/arago-paths.inc
+> @@ -15,7 +15,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+>   GIT_URI      = "git://git.ti.com/opencl/opencl-firmware.git"
+>   GIT_PROTOCOL = "git"
+>   BRANCH       = "master"
+> -SRCREV       = "f9402b2b6b06185af7663bae0061c6fad12cff07"
+> +SRCREV       = "9e3d0b34f604203f275fba4807481a8a763a4f63"
+>   
+>   SRC_URI      = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
+>   
 
