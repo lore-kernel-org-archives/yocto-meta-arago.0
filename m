@@ -1,45 +1,43 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 32B02529BC
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 4390C529C0
 	for <meta-arago@arago-project.org>;
 	Wed, 18 Dec 2019 17:52:02 +0000 (UTC)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoPST032145
-	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 11:50:25 -0600
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoOo6118141
+	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 11:50:24 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1576691425;
-	bh=g+OwvQbl6S9BbltQ1+kMIxfPbjNcBD7ZqUJTW2vxTdA=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=wPWLEfR7llmLPkzz9K6FM9XxXCNLOIbPVdpwaymHvLua0Z4qXgA8RWGUOXzFsz2Mv
-	1ZvmMLO0gq9uZsXbcQtciyBZlUYpvT95Kt27b9+YlvFJ5ShptnjBK7sV2vs87AZVaQ
-	v/zeMzgw592qCAmY6Y09cdRqLNiFuMKOAZTvOfZ4=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBIHoOTe035818
+	s=ti-com-17Q1; t=1576691424;
+	bh=UHzDYz4u8iYHtyanx1adMNYyxS7kkrIZmS7nY/xL+YM=;
+	h=From:To:CC:Subject:Date;
+	b=WRj6i+WL1uB4t+04Y4HheewHhjEp8INgf/vbGgQ+Imudaz4sViImNXm/BJuHz26jH
+	WxpfHEOLoSx4bbHV8R2Kl66+8r+ESfZ45pnGlkoiekQm6mjNi4M7YwgkiatL4yvkry
+	o9vXDWjTmnb0aHWnpWcVCG+U/jmKCAHLIiTpKjYg=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBIHoO7e035810
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 11:50:25 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 11:50:24 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
 	Wed, 18 Dec 2019 11:50:24 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
 	Frontend Transport; Wed, 18 Dec 2019 11:50:24 -0600
 Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoNfn112296;
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBIHoNfm112296;
 	Wed, 18 Dec 2019 11:50:24 -0600
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 18 Dec 2019 12:31:12 -0500
-Message-ID: <1576690275-13499-2-git-send-email-j-stiffler@ti.com>
+Date: Wed, 18 Dec 2019 12:31:11 -0500
+Message-ID: <1576690275-13499-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1576690275-13499-1-git-send-email-j-stiffler@ti.com>
-References: <1576690275-13499-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: d-senicic1@ti.com
-Subject: [meta-processor-sdk][PATCH 2/5] neo-ai-dlr: install library to libdir
+Subject: [meta-processor-sdk][PATCH 1/5] licenses: add Unlicense license text file
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,47 +53,54 @@ List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>,
 X-List-Received-Date: Wed, 18 Dec 2019 17:52:03 -0000
 Content-Type: text/plain
 
-* add additional headers to dev package
+* This license is used by neo-ai-dlr
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ conf/layer.conf    |  1 +
+ licenses/Unlicense | 24 ++++++++++++++++++++++++
+ 2 files changed, 25 insertions(+)
+ create mode 100644 licenses/Unlicense
 
-diff --git a/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend b/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-index cfa79c0..c49f2ba 100644
---- a/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-+++ b/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-@@ -17,7 +17,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=34400b68072d710fecd0a2940a0d1658 \
- 
- SRC_DISTRIBUTE_LICENSES += "Unlicense"
- 
--PV = "1.01"
-+PV = "1.0.1"
- 
- DEPENDS += " opencv "
- 
-@@ -56,13 +56,19 @@ do_compile_append() {
-    ninja democv
- }
- 
-+SOLIBS = ".so"
-+FILES_SOLIBSDEV = ""
- 
- do_install_append() {
--
-     # Now install additional python test scripts, bash scripts and precomputed models
-     install -d ${D}${datadir}/dlr/demos
-     cp -Prf --preserve=mode,timestamps ${S}/examples/tidl/* ${D}${datadir}/dlr/demos
-     install -m 0755 ${B}/bin/* ${D}${datadir}/dlr/demos/.
-+    install -d ${D}${libdir}
-+    install -m 0755  ${B}/lib/libdlr.so ${D}${libdir}
-+    cp -Prf --preserve=mode,timestamps  ${S}/3rdparty/tvm/3rdparty/dmlc-core/include/dmlc ${D}${includedir}
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 0334463..260a274 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -7,3 +7,4 @@ BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
+ BBFILE_COLLECTIONS += "meta-processor-sdk"
+ BBFILE_PATTERN_meta-processor-sdk := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-processor-sdk = "15"
++LICENSE_PATH += "${LAYERDIR}/licenses"
+diff --git a/licenses/Unlicense b/licenses/Unlicense
+new file mode 100644
+index 0000000..cf1ab25
+--- /dev/null
++++ b/licenses/Unlicense
+@@ -0,0 +1,24 @@
++This is free and unencumbered software released into the public domain.
 +
- }
- 
- FILES_${PN}-tests += "${datadir}/dlr/demos"
-+FILES_${PN} += "${libdir}/libdlr.so* "
++Anyone is free to copy, modify, publish, use, compile, sell, or
++distribute this software, either in source code form or as a compiled
++binary, for any purpose, commercial or non-commercial, and by any
++means.
++
++In jurisdictions that recognize copyright laws, the author or authors
++of this software dedicate any and all copyright interest in the
++software to the public domain. We make this dedication for the benefit
++of the public at large and to the detriment of our heirs and
++successors. We intend this dedication to be an overt act of
++relinquishment in perpetuity of all present and future rights to this
++software under copyright law.
++
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
++MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
++IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
++OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
++ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++OTHER DEALINGS IN THE SOFTWARE.
++
++For more information, please refer to <http://unlicense.org>
 -- 
 2.7.4
 
