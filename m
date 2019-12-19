@@ -1,48 +1,42 @@
-Return-Path: <denys@ti.com>
+Return-Path: <j-stiffler@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 99556529C0
+	by arago-project.org (Postfix) with ESMTPS id 5611D529C0
 	for <meta-arago@arago-project.org>;
-	Wed, 18 Dec 2019 21:04:35 +0000 (UTC)
+	Thu, 19 Dec 2019 16:51:04 +0000 (UTC)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBIL2wqZ097480
-	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 15:02:58 -0600
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBJGnQdn127334
+	for <meta-arago@arago-project.org>; Thu, 19 Dec 2019 10:49:26 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1576702978;
-	bh=ykm54mAzq3rDQefH1AnMFCB+an5+BC5y6kMDbUZdo0c=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=ZRH6pXv3wg8NayN2UJ6Z1GxO5T9kgVsnb2ci+7XBAdop82Dbml6VIoXod8cYOV4mD
-	ZlrHnZWDAXlPyCLD6gHxMn79lvBpGvtUxc4joXDTkvbjE1wy9XKAzPiTbONutEsdKH
-	5HobmppnxUhWokJF3cLxuUy6uzCca7uQCXF2bMbA=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBIL2wmf058881
+	s=ti-com-17Q1; t=1576774166;
+	bh=mLXsFZnsI0Iw+Bj61hQl6e5RrZQ5lOsIIXhYRXKHE8A=;
+	h=From:To:CC:Subject:Date;
+	b=mX1v0YkRyOq9I+uaCPF5UfHTInHXv/0mTmByO27LjM4zAxj+/+UoxlwBBvG6Mi7rx
+	P03gOEl5oHz4Tf5G5lEoa9gf/YYlbD4mOWDiN9JJS+ks9iAC1KLZNpZz2sjxrW4pi1
+	sc8PJTsrMi6Nv5BTRcBhV05n7PFQ6kiKC2TxdPsY=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBJGnQ1D025810
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 18 Dec 2019 15:02:58 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 19 Dec 2019 10:49:26 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Wed, 18 Dec 2019 15:02:56 -0600
-Received: from DFLE112.ent.ti.com ([fe80::d4dd:a09e:396d:a895]) by
-	DFLE112.ent.ti.com ([fe80::d4dd:a09e:396d:a895%17]) with mapi id
-	15.01.1847.003; Wed, 18 Dec 2019 15:02:56 -0600
-From: "Dmytriyenko, Denys" <denys@ti.com>
-To: "Stiffler, Jacob" <j-stiffler@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [master/thud/ti2019.05][PATCH] ti-tisdk-makefile:
-	update pru-icss target
-Thread-Index: AQHVteX8B1do2jH7ak+uhQhux85B+6fAYQQA
-Date: Wed, 18 Dec 2019 21:02:56 +0000
-Message-ID: <62b4cdfb2b41461d9ab1fe69e5881260@ti.com>
-References: <1576700507-10385-1-git-send-email-j-stiffler@ti.com>
-	<8195ea9c-8a91-39a5-9df4-de8f9cad45ef@ti.com>
-In-Reply-To: <8195ea9c-8a91-39a5-9df4-de8f9cad45ef@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.250.67.211]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Thu, 19 Dec 2019 10:49:25 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Thu, 19 Dec 2019 10:49:26 -0600
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBJGnPZu102518;
+	Thu, 19 Dec 2019 10:49:25 -0600
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 19 Dec 2019 11:30:18 -0500
+Message-ID: <1576773018-27634-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Cc: "Saulnier, Nick" <nsaulnier@ti.com>
-Subject: Re: [master/thud/ti2019.05][PATCH] ti-tisdk-makefile: update pru-icss target
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [master/thud][PATCH] ti-tisdk-setup: only install create-ubifs if args are provided
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,103 +49,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Dec 2019 21:04:35 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 19 Dec 2019 16:51:04 -0000
+Content-Type: text/plain
 
-This should be doable - this won't affect the builds.
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb         | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Stiffler, Jacob
-> Sent: Wednesday, December 18, 2019 3:59 PM
-> To: meta-arago@arago-project.org
-> Cc: Saulnier, Nick
-> Subject: Re: [meta-arago] [master/thud/ti2019.05][PATCH] ti-tisdk-makefil=
-e:
-> update pru-icss target
->=20
-> Denys,
->=20
-> Can you fast-track this into the ti2019.05 branch?
->=20
->=20
-> Thank you,
->=20
-> Jake
->=20
-> On 12/18/2019 3:21 PM, Jacob Stiffler wrote:
-> > * Update for recent changes to the recipe in meta-ti
-> >
-> > Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-> > ---
-> >   .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss            =
- | 4 ++--
-> >   .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb         =
- | 2 +-
-> >   2 files changed, 3 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk=
--
-> makefile/Makefile_pru-icss b/meta-arago-distro/recipes-tisdk/ti-tisdk-
-> makefile/ti-tisdk-makefile/Makefile_pru-icss
-> > index 9431004..10e5bf3 100644
-> > --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
-> makefile/Makefile_pru-icss
-> > +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
-> makefile/Makefile_pru-icss
-> > @@ -7,7 +7,7 @@ pru-icss:
-> >   	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*pru=
--
-> icss*"`; \
-> >   	for dir in examples pru_cape/pru_fw lib/src labs; \
-> >   	do \
-> > -		make -C $$dir
-> PRU_CGT=3D$(LINUX_DEVKIT_PATH)/sysroots/__SDKMACHINE__-arago-
-> linux/usr/share/ti/cgt-pru; \
-> > +		make -C $$dir PRU_SSP=3D$$PWD
-> PRU_CGT=3D$(LINUX_DEVKIT_PATH)/sysroots/__SDKMACHINE__-arago-
-> linux/usr/share/ti/cgt-pru; \
-> >   	done
-> >
-> >   pru-icss_clean:
-> > @@ -17,7 +17,7 @@ pru-icss_clean:
-> >   	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*pru=
--
-> icss*"`; \
-> >   	for dir in examples pru_cape/pru_fw lib/src labs; \
-> >   	do \
-> > -		make -C $$dir clean
-> PRU_CGT=3D$(LINUX_DEVKIT_PATH)/sysroots/__SDKMACHINE__-arago-
-> linux/usr/share/ti/cgt-pru; \
-> > +		make -C $$dir clean PRU_SSP=3D$$PWD
-> PRU_CGT=3D$(LINUX_DEVKIT_PATH)/sysroots/__SDKMACHINE__-arago-
-> linux/usr/share/ti/cgt-pru; \
-> >   	done
-> >
-> >   pru-icss_install: __PRU_ICSS_INSTALL_TARGET__
-> > diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk=
--
-> makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-ti=
-sdk-
-> makefile_1.0.bb
-> > index 2468bb4..89ac752 100644
-> > --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
-> makefile_1.0.bb
-> > +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-
-> makefile_1.0.bb
-> > @@ -56,7 +56,7 @@ SRC_URI =3D "\
-> >       file://Makefile_jailhouse \
-> >   "
-> >
-> > -PR =3D "r102"
-> > +PR =3D "r103"
-> >
-> >   MAKEFILES_MATRIX_GUI =3D "matrix-gui-browser \
-> >                           refresh-screen \
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index 5ef9ef8..886a8b5 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -2,7 +2,7 @@ DESCRIPTION = "Package containing scripts to setup the development host and targ
+ LICENSE = "BSD"
+ LIC_FILES_CHKSUM = "file://setup.sh;beginline=3;endline=31;md5=fc4b04a33df6d892c9f4d4a9d92b945e"
+ 
+-PR = "r45"
++PR = "r46"
+ 
+ BRANCH ?= "master"
+ SRCREV = "42a8379fda829f34c374ddfca0242a479a84d454"
+@@ -51,9 +51,15 @@ do_install () {
+ 
+     install -m 0755 ${S}/${UBOOT_ENV} ${D}/bin/setup-uboot-env.sh
+ 
+-    sed -i -e "s|__MKUBIFS_ARGS__|${MKUBIFS_ARGS}|" \
+-           -e "s|__UBINIZE_ARGS__|${UBINIZE_ARGS}|" \
+-              "${D}/bin/create-ubifs.sh"
++    if [ -z "${MKUBIFS_ARGS}" -o -z "${UBINIZE_ARGS}" ]
++    then
++        # UBIFS not supported
++        rm "${D}/bin/create-ubifs.sh"
++    else
++        sed -i -e "s|__MKUBIFS_ARGS__|${MKUBIFS_ARGS}|" \
++               -e "s|__UBINIZE_ARGS__|${UBINIZE_ARGS}|" \
++                  "${D}/bin/create-ubifs.sh"
++    fi
+ }
+ 
+ FILES_${PN} += "setup.sh"
+-- 
+2.7.4
+
 
