@@ -1,43 +1,42 @@
 Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id AB926529DC
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 47F02529DC
 	for <meta-arago@arago-project.org>;
-	Fri, 20 Dec 2019 20:28:00 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBKKQMvK105665
-	for <meta-arago@arago-project.org>; Fri, 20 Dec 2019 14:26:22 -0600
+	Fri, 20 Dec 2019 20:28:01 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBKKQNAV104577
+	for <meta-arago@arago-project.org>; Fri, 20 Dec 2019 14:26:23 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1576873582;
-	bh=AqzV1imU/XmF2Q3Mrb/7atH/7Y+XvGTXwHqg3JNiRm0=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=L5pDqsgTxk7lNqJiHSHI9c6Hbhi4vyhzaiMcSA8d3c1P0DtOrYsHh6uG7CNwJShPU
-	/vE8aNVEg73TaJq4YtACPzSIHsUnAw7WiZPDZEXuW3jZcNFhi8EsJwOF7cAGmuC1nd
-	VoROpdKwxaeVVlHCn/7wxEDt7vnOB07w7w7jeNoQ=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBKKQMqN125486
-	for <meta-arago@arago-project.org>; Fri, 20 Dec 2019 14:26:22 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1576873583;
+	bh=5eHR74D+Ku0KVp0ZsIvcHQ8k8vIX07IvmOdBS9a7v3k=;
+	h=From:To:CC:Subject:Date;
+	b=EBT/8QXc6B948g1zXdLkIwizr98kUz7xbnjJrZqz55I3DyDxCEQ3sbEg0pg1tkdRW
+	YJCPb/C0RsjEpM1pL06BG6oRfRHbdEUqKVnVBafUuXPVl3vWRi1/tggiWsLaArwQyR
+	7Ab3M9Z7qws0MmrvKzM+3+euKP2/TUrLfJbg8f54=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBKKQNjd112700
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 20 Dec 2019 14:26:23 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Fri, 20 Dec 2019 14:26:22 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 20 Dec 2019 14:26:21 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Fri, 20 Dec 2019 14:26:22 -0600
+	Frontend Transport; Fri, 20 Dec 2019 14:26:21 -0600
 Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBKKQLtS043367;
-	Fri, 20 Dec 2019 14:26:22 -0600
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBKKQLtQ043367;
+	Fri, 20 Dec 2019 14:26:21 -0600
 From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 20 Dec 2019 15:07:18 -0500
-Message-ID: <1576872438-22238-3-git-send-email-j-stiffler@ti.com>
+Date: Fri, 20 Dec 2019 15:07:16 -0500
+Message-ID: <1576872438-22238-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1576872438-22238-1-git-send-email-j-stiffler@ti.com>
-References: <1576872438-22238-1-git-send-email-j-stiffler@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [RFC 3/3] opencl-examples: improve packaging
+Subject: [RFC 1/3] clocl: add ti-cgt6x to RDEPENDS
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,87 +49,24 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Dec 2019 20:28:01 -0000
+X-List-Received-Date: Fri, 20 Dec 2019 20:28:02 -0000
 Content-Type: text/plain
-
-* Split examples into those that require runtime compilation of
-  kernels (opencl-examples-runtime) and those that use prebuilt
-  kernels (opencl-examples-offline).
-* Retain opencl-examples as the package to bring in all examples.
-* Adjust package dependencies accordingly.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-ti/ocl/opencl-examples_git.bb          | 42 +++++++++++++++++++---
- 1 file changed, 37 insertions(+), 5 deletions(-)
+ meta-arago-extras/recipes-ti/ocl/clocl_git.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-index 4732c73..fe09b90 100644
---- a/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl/opencl-examples_git.bb
-@@ -16,12 +16,27 @@ OCL_PERSISTENT_DEPENDS = "ti-xdctools-native ti-ipc-rtos ti-sysbios"
- 
- DEPENDS_append_dra7xx = " ${OCL_PERSISTENT_DEPENDS}"
- 
--RDEPENDS_${PN} += " opencl-runtime"
--RDEPENDS_${PN}-dev += " libgomp-dev"
-+PACKAGES =+ "${PN}-runtime ${PN}-runtime-dbg ${PN}-offline ${PN}-offline-dbg"
-+
-+RDEPENDS_${PN} = "${PN}-runtime ${PN}-offline"
-+RDEPENDS_${PN}-dev += "libgomp-dev"
-+RDEPENDS_${PN}-offline += "opencl"
-+RDEPENDS_${PN}-runtime += "opencl-runtime"
- 
- S = "${WORKDIR}/git/opencl_example_src"
- B = "${S}"
- 
-+OCL_RUNTIME_COMPILE_EXAMPLE_LIST = " \
-+    ccode \
-+    null \
-+    ooo_callback \
-+    simple \
-+    vecadd \
-+    vecadd_openmp \
-+    vecadd_openmp_t \
-+    vecadd_subdevice \
-+"
-+
- OCL_EXAMPLE_LIST = " abort_exit \
-                      buffer \
-                      ccode \
-@@ -100,12 +115,29 @@ do_install() {
-     done
+diff --git a/meta-arago-extras/recipes-ti/ocl/clocl_git.bb b/meta-arago-extras/recipes-ti/ocl/clocl_git.bb
+index c7f467f..df77d7e 100644
+--- a/meta-arago-extras/recipes-ti/ocl/clocl_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/clocl_git.bb
+@@ -31,4 +31,5 @@ do_install() {
+   install -m 755 ${S}/clocl/${TARGET}/clocl ${D}${bindir}
  }
  
--FILES_${PN} += "\
--    ${datadir}/ti/examples/opencl \
-+# First package the examples which require run-time kernel compilation.
-+FILES_${PN}-runtime += "\
-+    ${@' '.join(['${datadir}/ti/examples/opencl/' + example for example in d.getVar('OCL_RUNTIME_COMPILE_EXAMPLE_LIST').split()])} \
-+"
-+
-+FILES_${PN}-runtime-dbg += "\
-+    ${@' '.join(['${datadir}/ti/examples/opencl/' + example + '/.debug' for example in d.getVar('OCL_RUNTIME_COMPILE_EXAMPLE_LIST').split()])} \
-+"
-+
-+# Remaining examples will fall through to the "offline" package.
-+FILES_${PN}-offline += "\
-+    ${datadir}/ti/examples/opencl/ \
- "
- 
--FILES_${PN}-dbg += "\
-+FILES_${PN}-offline-dbg += "\
-     ${datadir}/ti/examples/opencl/*/.debug \
- "
- 
-+# Add makefiles to dev package
-+FILES_${PN}-dev = "${datadir}/ti/examples/opencl/Makefile \
-+                   ${datadir}/ti/examples/opencl/make.inc"
-+
-+ALLOW_EMPTY_${PN} = "1"
- INSANE_SKIP_${PN} = "arch ldflags textrel staticdev"
-+INSANE_SKIP_${PN}-offline = "arch ldflags textrel staticdev"
-+INSANE_SKIP_${PN}-runtime = "arch ldflags textrel staticdev"
++RDEPENDS_${PN} += "ti-cgt6x"
+ BBCLASSEXTEND = "native nativesdk"
 -- 
 2.7.4
 
