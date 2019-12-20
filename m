@@ -1,42 +1,44 @@
 Return-Path: <denys@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id D06A4529DC
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 071A5529EC
 	for <meta-arago@arago-project.org>;
 	Fri, 20 Dec 2019 16:11:36 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBKG9wuW092193
-	for <meta-arago@arago-project.org>; Fri, 20 Dec 2019 10:09:58 -0600
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBKG9x67030852
+	for <meta-arago@arago-project.org>; Fri, 20 Dec 2019 10:09:59 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1576858198;
-	bh=EhkqWrsoHymm+j5CZ7mEJmYPhEHGj1aMO7gtsomPU5g=;
-	h=From:To:CC:Subject:Date;
-	b=FzaJ2UEvNxcnoiuUYpC+M/gcDWiX2k8E6icFPWW7rhZ3/MCQ6qRddaXPSRVXtbqVX
-	3iK49Bx09r782YZ4+Y64VhywdAILdaW9leHQ8kFSKl4o8CuoBgU/YtByQAKi1+G7O/
-	0s9G93fnkp5SMmEj8WK/3dW8sBYl5qNpk0Z3VIgw=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBKG9wDo093478
+	s=ti-com-17Q1; t=1576858199;
+	bh=6O7WvXGeNsasiQcF0LLwN1LMy3zZYJs7U35FbY6UVm8=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=fP1iXkKX6mO/N7uGxq6nNeS4AYdzxRQfcbfZRpyUyCp53Ht1K0RBYoE8scruePHs5
+	GRo0XoHB3Gr4gZubc5TmIWhiNkFM8ZhuRwEKAVK45X0fIX5PWtOkUrI96ZLadOAjGl
+	Ar9NNk3sczN2Xbrig4RwSJ9df+nkoRrgFxUqm4pw=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBKG9xC8001349
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 20 Dec 2019 10:09:58 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 20 Dec 2019 10:09:59 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
 	Fri, 20 Dec 2019 10:09:58 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
 	Frontend Transport; Fri, 20 Dec 2019 10:09:58 -0600
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBKG9wvV114649;
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBKG9wvW114649;
 	Fri, 20 Dec 2019 10:09:58 -0600
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 20 Dec 2019 15:51:10 +0000
-Message-ID: <20191220155111.12841-1-denys@ti.com>
+Date: Fri, 20 Dec 2019 15:51:11 +0000
+Message-ID: <20191220155111.12841-2-denys@ti.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20191220155111.12841-1-denys@ti.com>
+References: <20191220155111.12841-1-denys@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [RFC][PATCH 1/2] packagegroup-*-addons: don't install valgrind in rootfs by default
+Subject: [RFC][PATCH 2/2] packagegroup-*-qte: don't install qt3d-examples in rootfs by default
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,32 +56,35 @@ Content-Type: text/plain
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-addons.bb             | 1 -
- .../recipes-core/packagegroups/packagegroup-ti-world.bb          | 1 +
- 2 files changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb  | 1 -
+ .../recipes-core/packagegroups/packagegroup-ti-world.bb         | 2 +-
+ 2 files changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 86913bd5..967fc5db 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -23,7 +23,6 @@ UTILS = " \
-     libdrm-kms \
-     kms++ \
-     kms++-python \
--    ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
-     stream \
-     strongswan \
-     kexec \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
+index f742c0f7..fbc5f122 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-qte.bb
+@@ -13,7 +13,6 @@ QT4_DEMOS = "\
+ "
+ 
+ QT5_DEMOS = "\
+-    qt3d-examples \
+     qtbase-examples \
+     qtdeclarative-examples \
+     qtdeclarative-tools \
 diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ti-world.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-ti-world.bb
-index 00a97470..efc2b553 100644
+index efc2b553..330ed831 100644
 --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ti-world.bb
 +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-ti-world.bb
-@@ -44,4 +44,5 @@ RDEPENDS_${PN} = "\
-     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', "${CHROMIUM}", '', d)} \
-     ${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'qt-opencv-opencl-opengl-multithreaded-dev', '', d)} \
-     ${DEVTOOLS} \
-+    ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
- "
+@@ -29,7 +29,7 @@ RDEPENDS_${PN} = "\
+     packagegroup-arago-test-addons \
+     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-graphics','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-gtk','',d)} \
+-    ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-qte','',d)} \
++    ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-qte qt3d-examples','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-extra','',d)} \
+     packagegroup-arago-tisdk-connectivity \
 -- 
 2.17.1
 
