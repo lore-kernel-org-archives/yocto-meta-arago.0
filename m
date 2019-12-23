@@ -1,43 +1,42 @@
-Return-Path: <d-senicic1@ti.com>
+Return-Path: <yuanzhao@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 64671520E2
+	by arago-project.org (Postfix) with ESMTPS id 9A07F520E2
 	for <meta-arago@arago-project.org>;
-	Sat, 21 Dec 2019 12:33:02 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBLCVODY069869
-	for <meta-arago@arago-project.org>; Sat, 21 Dec 2019 06:31:24 -0600
+	Mon, 23 Dec 2019 20:16:26 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id xBNKElbt061531
+	for <meta-arago@arago-project.org>; Mon, 23 Dec 2019 14:14:47 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1576931484;
-	bh=Qa7N3rX6MnzyHQzhc/7J6MdlJ6PphpyMfuBIa97o948=;
+	s=ti-com-17Q1; t=1577132087;
+	bh=oJAtWozRICHx87vIA/GnyqgTnlsFzyST1qe9uU7S7jc=;
 	h=From:To:CC:Subject:Date;
-	b=Uvp4Jh7eL6QZJHRPEdqEf4ikxeqQLIn2cL9Eio7QFtdiK8Jg1ZCOljrLiDmLsBbZ/
-	GJUe++VNg8FQS3si1iaDWvHcK2C9Tz2WQ4scWoM1dWUF83nSCtYGyEEwgpz6qgPp2r
-	qG20gXgPEV6pXA64ikwlqsphCdn3bn9MvOcHshJI=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBLCVOKi093742
+	b=V8WjvaNFQyoqi3HFEi3DB+XkuykjKwFz4YemlfT4YfBPYbrLUD1Kuo7DJd9czzBqT
+	FYR4bX8xsXupxgAXWZmsFbjylziAs/Vn5hmHKeh4mui+kXG/Qt6q+DcSudiW5hCuAd
+	szH7GYzXopq/dX2FYIhlTrtMPtYMxv8t+ko6B5AI=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id xBNKElOc033311
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Sat, 21 Dec 2019 06:31:24 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 23 Dec 2019 14:14:47 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Sat, 21 Dec 2019 06:31:22 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 23 Dec 2019 14:14:47 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Sat, 21 Dec 2019 06:31:22 -0600
-Received: from uda0271529a.gt.design.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Mon, 23 Dec 2019 14:14:47 -0600
+Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBLCVMD1070921;
-	Sat, 21 Dec 2019 06:31:22 -0600
-From: Djordje Senicic <d-senicic1@ti.com>
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id xBNKEl6l077279;
+	Mon, 23 Dec 2019 14:14:47 -0600
+From: Yuan Zhao <yuanzhao@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Sat, 21 Dec 2019 07:28:48 -0500
-Message-ID: <20191221122848.6326-1-d-senicic1@ti.com>
-X-Mailer: git-send-email 2.17.1
+Date: Mon, 23 Dec 2019 14:14:37 -0600
+Message-ID: <20191223201437.119128-1-yuanzhao@ti.com>
+X-Mailer: git-send-email 2.14.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Djordje Senicic <d-senicic1@ti.com>
-Subject: [meta-processor-sdk][PATCH] neo-ai-dlr: Update README files and sample inference configuration file, per latest TIDL-API
+Subject: [master/thud/ti2019.05][PATCH] ocl: update version to 01.02.00.02
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,31 +49,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Dec 2019 12:33:02 -0000
+X-List-Received-Date: Mon, 23 Dec 2019 20:16:26 -0000
 Content-Type: text/plain
 
-- subgraph0.cfg used in /usr/share/dlr/demos need to have additional configuration parameters per latest TIDL-API
-- More details included in README files
+- Fix EVE frequency to high during IPU1 early boot
 
-Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
+Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
 ---
- recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-extras/recipes-ti/ocl/ocl.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend b/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-index c49f2ba..7e6236d 100644
---- a/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-+++ b/recipes-support/neo-ai-dlr/neo-ai-dlr.bbappend
-@@ -38,7 +38,7 @@ SRC_URI = "git://github.com/TexasInstruments/neo-ai-dlr;protocol=https;branch=${
-            git://github.com/google/googletest;protocol=https;nobranch=1;destsuffix=${S}/3rdparty/treelite/3rdparty/protobuf/third_party/googletest;name=neo-ai-treelite-protobuf-googletest \
- "
+diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+index cc4ed6d4..c1b475a3 100644
+--- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
++++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
+@@ -1,5 +1,5 @@
+ # patch version at the end needs to be in double digits
+-PV = "1.2.00.01"
++PV = "1.2.00.02"
+ INC_PR = "r0"
  
--SRCREV_neo-ai-dlr = "40394be2e39eaa6248f9bf0a1143692083c0e3d2"
-+SRCREV_neo-ai-dlr = "ac8ed960e8525e26eb271cb8f4402e73a78d81bf"
- SRCREV_neo-ai-tvm = "11f0a9d2349b94a733aae1c8bd652e6055f4b185"
- SRCREV_neo-ai-tvm-dmlc-core = "ca9f9329654dbd42f06988276c6f74eb8bdd5038"
- SRCREV_neo-ai-tvm-dlpack = "b7bd45cdd8b67f4ab2502a8717f2e0926d9b4121"
+ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120dff"
+@@ -10,7 +10,7 @@ OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
+ OCL_GIT_PROTOCOL = "git"
+ OCL_GIT_BRANCH = "master"
+ 
+-OCL_SRCREV = "850361c85cd00fcb9df958e016c792936ef4aa2b"
++OCL_SRCREV = "b1dfed9af21a1236380b9d643c432e4f0c619fce"
+ 
+ BRANCH = "${OCL_GIT_BRANCH}"
+ SRC_URI = "${OCL_GIT_URI};protocol=${OCL_GIT_PROTOCOL};branch=${BRANCH}"
 -- 
-2.17.1
+2.14.1
 
 
