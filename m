@@ -1,42 +1,44 @@
-Return-Path: <yan-liu@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id CB46452975
+Return-Path: <j-stiffler@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 9974752975
 	for <meta-arago@arago-project.org>;
-	Thu,  2 Jan 2020 20:22:33 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 002KKoi1022849
-	for <meta-arago@arago-project.org>; Thu, 2 Jan 2020 14:20:50 -0600
+	Thu,  2 Jan 2020 20:35:54 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 002KYCD2054090
+	for <meta-arago@arago-project.org>; Thu, 2 Jan 2020 14:34:12 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1577996450;
-	bh=2Wfsgfp+5hd/YpUU/OCdx/Yn2ahgTGGhlAB3gXlqDCw=;
-	h=From:To:CC:Subject:Date;
-	b=MgCTKGbu75PoHFn1Vz7GGLF5RNBBPu7vjxVjhw+GbA4h5vUHBWblstEuS5wq7/dBJ
-	yrDd43gXR64wbxpXAspPtsDL8kODfZ5omOOQ1VdIZxtsUpPqXHl3KEgY5ZYWk7bbT4
-	3wMzzBV8j4c5FwyWFoBGgK4h0xjTZuXwCVtzdAEs=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 002KKoMY056485
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 2 Jan 2020 14:20:50 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1577997252;
+	bh=Bt5M5iPxuriXG4J2WfYr5Cq9Ney9dn23LoY1E/6k9dk=;
+	h=From:To:Subject:Date:References:In-Reply-To;
+	b=Y/sv4j6CDTbHX7kyFw8NnO98DRgyBjCC3BsXprCkszPGGznH5Bmvi50UNOgIWNphC
+	4B20TtxByE/nNv4Hl5wsKIag1kBfcwh8RTXO6DLNE/H0mTAixR2mzwBIBXkEIc1uwD
+	r6Mh0VwBkss6bCFf0OCGvTQot72Bu2sFOShrLuBg=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 002KYCK9073294
+	for <meta-arago@arago-project.org>; Thu, 2 Jan 2020 14:34:12 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Thu, 2 Jan 2020 14:20:50 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Thu, 2 Jan 2020 14:20:50 -0600
-Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 002KKn8M029860;
-	Thu, 2 Jan 2020 14:20:49 -0600
-From: <yan-liu@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 2 Jan 2020 15:19:21 -0500
-Message-ID: <1577996361-10105-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+	Thu, 2 Jan 2020 14:34:11 -0600
+Received: from DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222]) by
+	DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222%18]) with mapi id
+	15.01.1847.003; Thu, 2 Jan 2020 14:34:11 -0600
+From: "Stiffler, Jacob" <j-stiffler@ti.com>
+To: "Liu, Yan" <yan-liu@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [EXTERNAL] [meta-arago] [PATCH v1] ltp-ddt: Update to latest
+Thread-Index: AQHVwaolWy+WAnBIJ0OPEZxJCBOGNKfX1JFw
+Date: Thu, 2 Jan 2020 20:34:11 +0000
+Message-ID: <a43896e41bde4413921f2c96802be927@ti.com>
+References: <1577996361-10105-1-git-send-email-yan-liu@ti.com>
+In-Reply-To: <1577996361-10105-1-git-send-email-yan-liu@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.250.87.211]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: Re: [EXTERNAL] [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,8 +51,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Jan 2020 20:22:34 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 02 Jan 2020 20:35:54 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Denys,
+
+Please backport to ti2019.05.
+
+Thank you,
+Jake
+
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org [mailto:meta-arago-bounces@arago=
+-project.org] On Behalf Of Liu, Yan
+Sent: Thursday, January 2, 2020 3:19 PM
+To: meta-arago@arago-project.org
+Subject: [EXTERNAL] [meta-arago] [PATCH v1] ltp-ddt: Update to latest
 
 From: Yan Liu <yan-liu@ti.com>
 
@@ -59,29 +78,36 @@ Signed-off-by: Yan Liu <yan-liu@ti.com>
  .../recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb   |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb=
+ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
 index 4cb8933..8c64c92 100644
 --- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
 +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
- 
--PR = "r21"
-+PR = "r22"
- PV_append = "+git${SRCPV}"
- 
- PROVIDES += "ltp"
-@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
- 
+@@ -4,7 +4,7 @@ SECTION =3D "console/utils"
+ LICENSE =3D "GPLv2"
+ LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Db234ee4d69f5fce4486a80fdaf4a426=
+3"
+=20
+-PR =3D "r21"
++PR =3D "r22"
+ PV_append =3D "+git${SRCPV}"
+=20
+ PROVIDES +=3D "ltp"
+@@ -39,7 +39,7 @@ RDEPENDS_${PN} =3D "\
+=20
  inherit autotools-brokensep
- 
--SRCREV = "f7286a890e6673be8d7f2c3cff17d49805817f53"
-+SRCREV = "95209f3250035e2976224f87605864c0e790504b"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
--- 
+=20
+-SRCREV =3D "f7286a890e6673be8d7f2c3cff17d49805817f53"
++SRCREV =3D "95209f3250035e2976224f87605864c0e790504b"
+ BRANCH ?=3D "master"
+=20
+ SRC_URI =3D "git://arago-project.org/git/projects/test-automation/ltp-ddt.=
+git;branch=3D${BRANCH} \
+--=20
 1.7.9.5
 
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
