@@ -1,42 +1,41 @@
 Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 8470152A39
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id B01FB52994
 	for <meta-arago@arago-project.org>;
-	Fri,  3 Jan 2020 18:58:53 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 003IvAAK031040
-	for <meta-arago@arago-project.org>; Fri, 3 Jan 2020 12:57:10 -0600
+	Tue,  7 Jan 2020 21:18:15 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 007LGV54058998
+	for <meta-arago@arago-project.org>; Tue, 7 Jan 2020 15:16:31 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1578077830;
-	bh=FxDSBzUbzqamyMRc5aQU/c/pzvljz1mQdGyg/pa0xj8=;
+	s=ti-com-17Q1; t=1578431791;
+	bh=YycKRg69m7QRYPKTGBKjmZHWXNKwehGF3txnqlvVhOc=;
 	h=From:To:CC:Subject:Date;
-	b=a93VWiJFSyR1TVzR7x2iJNeAtTsv4Vlptml7TssmZT7oxOVxhIryQ4YL/5L/2mNsm
-	KN7HTcp1y3PNomh6S7mT2ZIfQK78mItShgQeG0am7tbKXqA4Hkah24J1pyFAGItX1h
-	pJ2eBA3WesRjTKRRoUMVEr7Mm4GPvsP4ezDNggPM=
+	b=cvYeJFrke92Hr6P/bymz6QFIcBUAUNQqn9JSLSaPZDNwrn8SHk8+UhlO4r8CtsjrB
+	cM+vJa1UOoMiiTHrjVFyhYchhcyDjNNhkux8PaTVQAQhvqYF6uJRATdTKx1V69Yk6Q
+	RF0t+63RPftHix7xadE/tkO/yIvQ+TBztM8ggKow=
 Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 003IvA3r117855
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 3 Jan 2020 12:57:10 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 007LGVOS063463
+	for <meta-arago@arago-project.org>; Tue, 7 Jan 2020 15:16:31 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE114.ent.ti.com
 	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Fri, 3 Jan 2020 12:57:10 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 7 Jan 2020 15:16:31 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Fri, 3 Jan 2020 12:57:10 -0600
+	Frontend Transport; Tue, 7 Jan 2020 15:16:31 -0600
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 003Iv9er001693;
-	Fri, 3 Jan 2020 12:57:10 -0600
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 007LGUew033898;
+	Tue, 7 Jan 2020 15:16:30 -0600
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 3 Jan 2020 18:37:52 +0000
-Message-ID: <20200103183752.29919-1-denys@ti.com>
+Date: Tue, 7 Jan 2020 20:57:04 +0000
+Message-ID: <20200107205704.13230-1-denys@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [thud/master][PATCH] ti-sci-fw: update to 2019.10a
+Subject: [oe-layersetup][PATCH] arago-thud, arago-thud-next: pin meta-linaro to working commit for now
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,43 +48,41 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Jan 2020 18:58:53 -0000
+X-List-Received-Date: Tue, 07 Jan 2020 21:18:16 -0000
 Content-Type: text/plain
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../{ti-sci-fw_2019.10.bb => ti-sci-fw_2019.10a.bb}         | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
- rename meta-arago-distro/recipes-bsp/ti-sci-fw/{ti-sci-fw_2019.10.bb => ti-sci-fw_2019.10a.bb} (95%)
+ configs/arago-thud-config.txt      | 2 +-
+ configs/arago-thud-next-config.txt | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.10.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.10a.bb
-similarity index 95%
-rename from meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.10.bb
-rename to meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.10a.bb
-index be57ddb2..c20239b9 100644
---- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.10.bb
-+++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.10a.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.ti;md5=b5aebf0668bdf95621259288c4a46d76"
- DEPENDS = "openssl-native u-boot-mkimage-native dtc-native"
- 
- CLEANBROKEN = "1"
--PR = "r1"
-+PR = "r0"
- 
- COMPATIBLE_MACHINE = "k3"
- 
-@@ -15,9 +15,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- TI_SECURE_DEV_PKG ?= ""
- export TI_SECURE_DEV_PKG
- 
--SRCREV = "1707a289d55d91ca0dc22a12eb7745914858e2d1"
-+SRCREV = "299211f4ed0641f4653d0b7b69ff5a85c42a0268"
- BRANCH ?= "ti-linux-firmware"
--SRCREV_imggen = "d42023032b2e7d5487aa28cdbd04addfc4d372ff"
-+SRCREV_imggen = "fa5f6d7d289b53d74ae14394678b32f5932b658b"
- SRCREV_FORMAT = "imggen"
- 
- SRC_URI = " \
+diff --git a/configs/arago-thud-config.txt b/configs/arago-thud-config.txt
+index aff44f2..4b3586b 100644
+--- a/configs/arago-thud-config.txt
++++ b/configs/arago-thud-config.txt
+@@ -8,7 +8,7 @@ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,thud,HEAD,layers=
+ meta-virtualization,git://git.yoctoproject.org/meta-virtualization,thud,HEAD,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,thud,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+ meta-ti,git://git.yoctoproject.org/meta-ti,thud,HEAD,layers=
+-meta-linaro,http://git.linaro.org/openembedded/meta-linaro.git,thud,HEAD,layers=meta-linaro-toolchain:meta-optee
++meta-linaro,http://git.linaro.org/openembedded/meta-linaro.git,thud,615ea7561b844a3867cee4299d83d605c10b02ab,layers=meta-linaro-toolchain:meta-optee
+ oe-core,git://git.openembedded.org/openembedded-core,thud,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/arago-thud-next-config.txt b/configs/arago-thud-next-config.txt
+index d4cc6dd..5c930b1 100644
+--- a/configs/arago-thud-next-config.txt
++++ b/configs/arago-thud-next-config.txt
+@@ -8,7 +8,7 @@ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,thud,HEAD,layers=
+ meta-virtualization,git://git.yoctoproject.org/meta-virtualization,thud,HEAD,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,thud,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+ meta-ti,git://git.yoctoproject.org/meta-ti,thud-next,HEAD,layers=
+-meta-linaro,http://git.linaro.org/openembedded/meta-linaro.git,thud,HEAD,layers=meta-linaro-toolchain:meta-optee
++meta-linaro,http://git.linaro.org/openembedded/meta-linaro.git,thud,615ea7561b844a3867cee4299d83d605c10b02ab,layers=meta-linaro-toolchain:meta-optee
+ oe-core,git://git.openembedded.org/openembedded-core,thud,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64.conf.sample
 -- 
 2.17.1
 
