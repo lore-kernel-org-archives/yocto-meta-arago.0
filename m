@@ -1,47 +1,44 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id DB61A529C0
+Return-Path: <jake@udc0866934>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id C39D852A4F
 	for <meta-arago@arago-project.org>;
-	Fri, 10 Jan 2020 17:38:15 +0000 (UTC)
+	Mon, 13 Jan 2020 14:44:37 +0000 (UTC)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00AHaUdM105732
-	for <meta-arago@arago-project.org>; Fri, 10 Jan 2020 11:36:30 -0600
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00DEgpCs015736
+	for <meta-arago@arago-project.org>; Mon, 13 Jan 2020 08:42:51 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1578677790;
-	bh=oaMtVGbCfAw1UK7aNhlwaJ+01gIn5dQNL+T/o6Uuzfc=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=M0eF7H6ajcWXUq5i/xPSaq54RJdNIbe0y9dX8sNDXjz5tdcZTsFp9t73593NRF1ut
-	smnTOeaYJKzBhlS0bTtdiBCM/BLXl4M58bn3ADqztAMBbdSCKUOYvEss1zvHHNHe4l
-	i3p8HYQMNvo8MK3Pc5btJ2s5lYg58LjXjv2CxEQQ=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00AHaUoC066003
+	s=ti-com-17Q1; t=1578926571;
+	bh=mMQ9SdxgZqe1fZnamyND9N4PT1Nt0sqPtGI1qtj/XzM=;
+	h=From:To:CC:Subject:Date;
+	b=YJu1Jt85rAVKviv1c663lXgIFU98y1BnGC0LFvseCJq8cuBsaxI21ZHct+XrMwxq7
+	bV/OH2NfdTHYPxLbZGhUUtI+IBQ9gQrd8BSgr2Gwy74pM78h3Lc8NYHef4eQENfBjw
+	p6jN0+KIoS3xTZ2mEBdukNcU6DlId11tqdolq1aI=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00DEgpkm084006
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 10 Jan 2020 11:36:30 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 13 Jan 2020 08:42:51 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Fri, 10 Jan 2020 11:36:30 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 13 Jan 2020 08:42:51 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Fri, 10 Jan 2020 11:36:30 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00AHaUq0076510;
-	Fri, 10 Jan 2020 11:36:30 -0600
-Date: Fri, 10 Jan 2020 12:36:29 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Zhao (Compiler), Yuan" <yuanzhao@ti.com>
-Message-ID: <20200110173629.GQ2305@beryl>
-References: <20200108180412.117869-1-yuanzhao@ti.com>
-	<20200109231143.GP2305@beryl>
-	<aaa2988f9bdf4dfd95967cea6d6e6d6a@ti.com>
+	Frontend Transport; Mon, 13 Jan 2020 08:42:51 -0600
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00DEgpZs022252;
+	Mon, 13 Jan 2020 08:42:51 -0600
+Received: from jake by udc0866934 with local (Exim 4.82)
+	(envelope-from <jake@udc0866934>)
+	id 1ir0va-00016Y-SK; Mon, 13 Jan 2020 09:42:50 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 13 Jan 2020 09:42:48 -0500
+Message-ID: <1578926568-4213-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <aaa2988f9bdf4dfd95967cea6d6e6d6a@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Robey,
-	Caleb" <c-robey@ti.com>
-Subject: Re: [PATCH] tidl-api: update BBAI mcbench script
+Subject: [oe-layersetup][PATCH] processor-sdk: add 6.2.0.81 release config
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,96 +51,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Jan 2020 17:38:16 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 13 Jan 2020 14:44:38 -0000
+Content-Type: text/plain
 
-Ok, thanks, I'll take it.
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+---
+ .../processor-sdk/processor-sdk-06.02.00.81-config.txt  | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+ create mode 100644 configs/processor-sdk/processor-sdk-06.02.00.81-config.txt
 
-On Thu, Jan 09, 2020 at 06:18:47PM -0500, Zhao (Compiler), Yuan wrote:
-> No SRCREV bump yet.  The accepted commit stays on our internal develop 
-> branch.  It will be externally visible next time we make a tidl-api release 
-> (this one missed the PSDK 6.2 window).  - Yuan
-> 
-> -----Original Message-----
-> From: Dmytriyenko, Denys 
-> Sent: Thursday, January 9, 2020 5:12 PM
-> To: Zhao (Compiler), Yuan
-> Cc: meta-arago@arago-project.org; Robey, Caleb
-> Subject: Re: [meta-arago] [PATCH] tidl-api: update BBAI mcbench script
-> 
-> On Wed, Jan 08, 2020 at 12:04:12PM -0600, Yuan Zhao wrote:
-> > Signed-off-by: Caleb Robey <a0232989@ti.com>
-> > Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
-> > ---
-> >  ...p-2-group-layer-use-cases-with-1-dsp.patch | 34 +++++++++++++++++++
-> >  .../recipes-ti/tidl-api/tidl-examples_git.bb  |  3 +-
-> >  2 files changed, 36 insertions(+), 1 deletion(-)
-> >  create mode 100644 meta-arago-extras/recipes-ti/tidl-api/files/0002-replace-2-dsp-2-group-layer-use-cases-with-1-dsp.patch
-> > 
-> > diff --git a/meta-arago-extras/recipes-ti/tidl-api/files/0002-replace-2-dsp-2-group-layer-use-cases-with-1-dsp.patch b/meta-arago-extras/recipes-ti/tidl-api/files/0002-replace-2-dsp-2-group-layer-use-cases-with-1-dsp.patch
-> > new file mode 100644
-> > index 00000000..0c78ccf0
-> > --- /dev/null
-> > +++ b/meta-arago-extras/recipes-ti/tidl-api/files/0002-replace-2-dsp-2-group-layer-use-cases-with-1-dsp.patch
-> > @@ -0,0 +1,34 @@
-> > +tidl-api: replace 2 dsp + 2 group layer use cases with 1 dsp
-> > +
-> > +    The BBAI only has enough CMEM for 4 EVEs, 1 DSP, and 2 group
-> > +    layers. In the case of all of our networks, the difference between
-> > +    1 and 2 dsps is essentially nonexistent. (PLSDK-3189)
-> > +
-> > +Upstream-Status: Accepted
-> 
-> Since the patch is marked as "Accepted", shouldn't a simple SRCREV bump be 
-> enough?
-> 
-> 
-> > +Signed-off-by: Caleb Robey <a0232989@ti.com>
-> > +Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
-> > +---
-> > + examples/mcbench/scripts/all_5729.sh | 9 ++++-----
-> > + 1 file changed, 4 insertions(+), 5 deletions(-)
-> > +
-> > +diff --git a/examples/mcbench/scripts/all_5729.sh b/examples/mcbench/scripts/all_5729.sh
-> > +index defec72..0fee8a1 100755
-> > +--- a/examples/mcbench/scripts/all_5729.sh
-> > ++++ b/examples/mcbench/scripts/all_5729.sh
-> > +@@ -7,8 +7,7 @@ export TIDL_NETWORK_HEAP_SIZE_DSP=56623104
-> > + export TIDL_NETWORK_HEAP_SIZE_EVE=67108864
-> > + export TIDL_NETWORK_HEAP_SIZE_DSP=8388608
-> > + ./mcbench -g 2 -d 1 -e 4 -c ../test/testvecs/config/infer/tidl_config_mobileNet1_lg2.txt -f 50 -i ../test/testvecs/input/preproc_2_224x224_multi.y
-> > +-./mcbench -g 2 -d 2 -e 4 -c ../test/testvecs/config/infer/tidl_config_mobileNet1_lg2.txt -f 50 -i ../test/testvecs/input/preproc_2_224x224_multi.y
-> > +-./mcbench -g 2 -d 2 -e 4 -c ../test/testvecs/config/infer/tidl_config_mobileNet2_lg2.txt -f 50 -i ../test/testvecs/input/preproc_2_224x224_multi.y
-> > +-./mcbench -g 2 -d 2 -e 4 -c ../test/testvecs/config/infer/tidl_config_inceptionNetv1_lg2.txt -f 50 -i ../test/testvecs/input/preproc_0_224x224_multi.y
-> > +-./mcbench -g 2 -d 2 -e 4 -c ../test/testvecs/config/infer/tidl_config_j11_v2_lg2.txt -f 50 -i ../test/testvecs/input/preproc_0_224x224_multi.y
-> > +-./mcbench -g 2 -d 2 -e 4 -c ../test/testvecs/config/infer/tidl_config_j11_v2_dense_lg2.txt -f 50 -i ../test/testvecs/input/preproc_0_224x224_multi.y
-> > ++./mcbench -g 2 -d 1 -e 4 -c ../test/testvecs/config/infer/tidl_config_mobileNet2_lg2.txt -f 50 -i ../test/testvecs/input/preproc_2_224x224_multi.y
-> > ++./mcbench -g 2 -d 1 -e 4 -c ../test/testvecs/config/infer/tidl_config_inceptionNetv1_lg2.txt -f 50 -i ../test/testvecs/input/preproc_0_224x224_multi.y
-> > ++./mcbench -g 2 -d 1 -e 4 -c ../test/testvecs/config/infer/tidl_config_j11_v2_lg2.txt -f 50 -i ../test/testvecs/input/preproc_0_224x224_multi.y
-> > ++./mcbench -g 2 -d 1 -e 4 -c ../test/testvecs/config/infer/tidl_config_j11_v2_dense_lg2.txt -f 50 -i ../test/testvecs/input/preproc_0_224x224_multi.y
-> > +-- 
-> > +2.17.1
-> > +
-> > diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb b/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
-> > index c7016ad5..e5afad1c 100644
-> > --- a/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
-> > +++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
-> > @@ -6,7 +6,8 @@ LICENSE = "BSD"
-> >  include tidl-api.inc
-> >  require recipes-ti/includes/ti-paths.inc
-> >  
-> > -PR = "${INC_PR}.0"
-> > +PR = "${INC_PR}.1"
-> > +SRC_URI += "file://0002-replace-2-dsp-2-group-layer-use-cases-with-1-dsp.patch"
-> >  
-> >  COMPATIBLE_MACHINE = "dra7xx"
-> >  PACKAGE_ARCH = "${MACHINE_ARCH}"
-> > -- 
-> > 2.24.1
-> > 
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/configs/processor-sdk/processor-sdk-06.02.00.81-config.txt b/configs/processor-sdk/processor-sdk-06.02.00.81-config.txt
+new file mode 100644
+index 0000000..41d4a34
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-06.02.00.81-config.txt
+@@ -0,0 +1,17 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.40,b690030efc87850951e8e3ecf4ae3c1dd1dc9b63
++meta-processor-sdk,http://arago-project.org/git/projects/meta-processor-sdk.git,master,6a0a2b1a8e6cbbb1bdeb133e6acc6f37eccb3169,layers=
++meta-aws,https://github.com/aws/meta-aws.git,master,b5191c92f6e124f7baaec3513d1338a47fe0caa8,layers=
++meta-ros,https://github.com/bmwcarit/meta-ros.git,master,72068b17e4192b51e09c8dc633805a35edac8701,layers=
++meta-arago,http://arago-project.org/git/meta-arago.git,ti2019.05,d2e8f25e059630f6447c8e41d1c20625f10cdb9d,layers=meta-arago-distro:meta-arago-extras
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,thud,1520d5b2b2beec5e1c3209d3178219e93ef08bca,layers=
++meta-virtualization,git://git.yoctoproject.org/meta-virtualization,thud,7685c7d415e0002c448007960837ae8898cd57a5,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,thud,446bd615fd7cb9bc7a159fe5c2019ed08d1a7a93,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-multimedia:meta-filesystems
++meta-ti,git://git.yoctoproject.org/meta-ti,thud,e5da84ec50a46ca73c2efbdaa376d30183562986,layers=
++meta-linaro,https://git.linaro.org/openembedded/meta-linaro.git,thud,615ea7561b844a3867cee4299d83d605c10b02ab,layers=meta-linaro-toolchain:meta-optee
++oe-core,git://git.openembedded.org/openembedded-core,thud,e68991ceb5933f7d03b96697e8a0ba0829feb320,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
+-- 
+1.9.1
+
 
