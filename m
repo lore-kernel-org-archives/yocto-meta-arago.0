@@ -1,30 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id EA254529F6
+Return-Path: <j-stiffler@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id EBF4F529C9
 	for <meta-arago@arago-project.org>;
-	Fri, 17 Jan 2020 21:05:03 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A9F5E40C2D;
-	Fri, 17 Jan 2020 21:03:16 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id KCruaGnVkGRN; Fri, 17 Jan 2020 21:03:16 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 89D0D40C2B;
-	Fri, 17 Jan 2020 21:03:15 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 49F7817439E;
-	Fri, 17 Jan 2020 16:03:15 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Fri, 17 Jan 2020 16:03:15 -0500
-Message-Id: <1579294995-2988-1-git-send-email-denys@ti.com>
+	Tue, 21 Jan 2020 17:19:32 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00LHHiJi086380
+	for <meta-arago@arago-project.org>; Tue, 21 Jan 2020 11:17:44 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1579627064;
+	bh=i+l3RIwWfZppTR9DEiH7SValOJCpxcmMV6w0hnaL9mw=;
+	h=From:To:CC:Subject:Date;
+	b=jpdqocxe2zsNMhOGZxDGfYhYjXSw3dcMGPHycMIFjZPok//XMzRCMNsjk8vLd6LdM
+	rUonOkI+AUeWnQEkATJ3tp+Bzrh7AEqSrGQA34+qEHFMFvTZuGjqXCxppCfYtnYOob
+	e+Xl2vhm7ugGJT6HdzzApuCBPY4N2o4dStYdiFpA=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00LHHiJw056622
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 21 Jan 2020 11:17:44 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Tue, 21 Jan 2020 11:17:43 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Tue, 21 Jan 2020 11:17:43 -0600
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00LHHhGh064280;
+	Tue, 21 Jan 2020 11:17:43 -0600
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 21 Jan 2020 11:58:42 -0500
+Message-ID: <1579625923-14558-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [thud/master][PATCH] chromium-wayland: remove deprecated chromium-wayland customizations/patches
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [RFC][PATCH 1/2] opkg-bash-completion: add simple completions for opkg
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,142 +49,74 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jan 2020 21:05:04 -0000
+X-List-Received-Date: Tue, 21 Jan 2020 17:19:33 -0000
+Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+This is a simpe start to bash completions for opkg. Initialy, this can
+complete current supported verbs (static) and complete package names
+(dynamic).
+
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- ...t-paths-in-headers-to-include-libva-prefi.patch | 67 ----------------------
- ...-adjust-Mesa-version-to-work-with-TI-SGX-.patch | 27 ---------
- .../chromium/chromium-wayland_%.bbappend           | 12 ----
- 3 files changed, 106 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-libva-adjust-paths-in-headers-to-include-libva-prefi.patch
- delete mode 100644 meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-wayland.gyp-adjust-Mesa-version-to-work-with-TI-SGX-.patch
- delete mode 100644 meta-arago-distro/recipes-browser/chromium/chromium-wayland_%.bbappend
+ .../recipes-devtools/opkg/opkg-bash-completion.bb  | 15 +++++++++++++
+ .../opkg/opkg-bash-completion/opkg-bash-completion | 26 ++++++++++++++++++++++
+ 2 files changed, 41 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion.bb
+ create mode 100644 meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion/opkg-bash-completion
 
-diff --git a/meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-libva-adjust-paths-in-headers-to-include-libva-prefi.patch b/meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-libva-adjust-paths-in-headers-to-include-libva-prefi.patch
-deleted file mode 100644
-index c9013cc..0000000
---- a/meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-libva-adjust-paths-in-headers-to-include-libva-prefi.patch
-+++ /dev/null
-@@ -1,67 +0,0 @@
--From 1d875e3526357f6d2bb66ee07605f4d4271d5710 Mon Sep 17 00:00:00 2001
--From: Denys Dmytriyenko <denys@ti.com>
--Date: Tue, 7 Mar 2017 15:22:41 -0500
--Subject: [PATCH] libva: adjust paths in headers to include libva prefix
--
--Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-----
-- third_party/libva/va/va.h          | 22 +++++++++++-----------
-- third_party/libva/va/va_dec_jpeg.h |  2 +-
-- 2 files changed, 12 insertions(+), 12 deletions(-)
--
--diff --git a/third_party/libva/va/va.h b/third_party/libva/va/va.h
--index 88fde4e..10b2e0b 100644
----- a/third_party/libva/va/va.h
--+++ b/third_party/libva/va/va.h
--@@ -80,7 +80,7 @@
-- 
-- #include <stddef.h>
-- #include <stdint.h>
---#include <va/va_version.h>
--+#include <libva/va/va_version.h>
-- 
-- #ifdef __cplusplus
-- extern "C" {
--@@ -2836,16 +2836,16 @@ typedef struct _VAPictureHEVC
--  */
-- #define VA_PICTURE_HEVC_RPS_LT_CURR             0x00000040
-- 
---#include <va/va_dec_hevc.h>
---#include <va/va_dec_jpeg.h>
---#include <va/va_dec_vp8.h>
---#include <va/va_dec_vp9.h>
---#include <va/va_enc_hevc.h>
---#include <va/va_enc_h264.h>
---#include <va/va_enc_jpeg.h>
---#include <va/va_enc_mpeg2.h>
---#include <va/va_enc_vp8.h>
---#include <va/va_vpp.h>
--+#include <libva/va/va_dec_hevc.h>
--+#include <libva/va/va_dec_jpeg.h>
--+#include <libva/va/va_dec_vp8.h>
--+#include <libva/va/va_dec_vp9.h>
--+#include <libva/va/va_enc_hevc.h>
--+#include <libva/va/va_enc_h264.h>
--+#include <libva/va/va_enc_jpeg.h>
--+#include <libva/va/va_enc_mpeg2.h>
--+#include <libva/va/va_enc_vp8.h>
--+#include <libva/va/va_vpp.h>
-- 
-- /**@}*/
-- 
--diff --git a/third_party/libva/va/va_dec_jpeg.h b/third_party/libva/va/va_dec_jpeg.h
--index 644ce3b..c177aef 100644
----- a/third_party/libva/va/va_dec_jpeg.h
--+++ b/third_party/libva/va/va_dec_jpeg.h
--@@ -36,7 +36,7 @@
-- extern "C" {
-- #endif
-- 
---#include <va/va.h>
--+#include <libva/va/va.h>
-- 
-- /**
--  * \defgroup api_dec_jpeg JPEG decoding API
---- 
--2.7.4
--
-diff --git a/meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-wayland.gyp-adjust-Mesa-version-to-work-with-TI-SGX-.patch b/meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-wayland.gyp-adjust-Mesa-version-to-work-with-TI-SGX-.patch
-deleted file mode 100644
-index 5e8798a..0000000
---- a/meta-arago-distro/recipes-browser/chromium/chromium-wayland/0001-wayland.gyp-adjust-Mesa-version-to-work-with-TI-SGX-.patch
-+++ /dev/null
-@@ -1,27 +0,0 @@
--From 17457ecbe62d174ad5b7e88f5dcdd2497540c0d9 Mon Sep 17 00:00:00 2001
--From: Denys Dmytriyenko <denys@ti.com>
--Date: Mon, 6 Mar 2017 20:15:37 -0500
--Subject: [PATCH] wayland.gyp: adjust Mesa version to work with TI SGX EGL
-- provider
--
--Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-----
-- ozone/wayland/wayland.gyp | 2 +-
-- 1 file changed, 1 insertion(+), 1 deletion(-)
--
--diff --git a/wayland/wayland.gyp b/wayland/wayland.gyp
--index ff2e210..933cbc8 100644
----- a/ozone/wayland/wayland.gyp
--+++ b/ozone/wayland/wayland.gyp
--@@ -24,7 +24,7 @@
--       'type': 'static_library',
--       'variables': {
--         'WAYLAND_VERSION': '1.4.0',
---        'MESA_VERSION': '9.1.3',
--+        'MESA_VERSION': '8.14',
--         'wayland_packages': [
--           'egl >= <(MESA_VERSION)',
--           'wayland-client >= <(WAYLAND_VERSION)',
---- 
--2.7.4
--
-diff --git a/meta-arago-distro/recipes-browser/chromium/chromium-wayland_%.bbappend b/meta-arago-distro/recipes-browser/chromium/chromium-wayland_%.bbappend
-deleted file mode 100644
-index 923db03..0000000
---- a/meta-arago-distro/recipes-browser/chromium/chromium-wayland_%.bbappend
-+++ /dev/null
-@@ -1,12 +0,0 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--OZONE_WAYLAND_EXTRA_PATCHES = " \
--	file://0001-wayland.gyp-adjust-Mesa-version-to-work-with-TI-SGX-.patch \
--	file://0001-libva-adjust-paths-in-headers-to-include-libva-prefi.patch \
--"
--
--USEGOLD = ""
--
--DEPENDS += "gperf-native bison-native"
--
--FULL_OPTIMIZATION = "-O2 -pipe"
+diff --git a/meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion.bb b/meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion.bb
+new file mode 100644
+index 0000000..74e4964
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion.bb
+@@ -0,0 +1,15 @@
++SUMMARY = "bash-completions for opkg"
++LICENSE = "MIT"
++
++LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
++
++SRC_URI = "file://opkg-bash-completion"
++
++do_install() {
++    install -d ${D}${datadir}/bash-completion/completions
++    install -m 0644 ${WORKDIR}/opkg-bash-completion \
++                    ${D}${datadir}/bash-completion/completions/opkg
++}
++
++FILES_${PN} = "${datadir}/bash-completion/completions/opkg"
++RDEPENDS_${PN} = "bash-completion"
+diff --git a/meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion/opkg-bash-completion b/meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion/opkg-bash-completion
+new file mode 100644
+index 0000000..5b0b4e1
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion/opkg-bash-completion
+@@ -0,0 +1,26 @@
++#!/bin/bash
++
++# TBD: parse "opkg --help" to get this list
++OPKG_COMMANDS="update upgrade install configure remove clean flag list list-installed list-upgradable list-changed-conffiles files search find info status download compare-versions print-architecture depends whatdepends whatdependsrec whatrecommends whatsuggests whatprovides whatconflicts whatreplaces"
++
++_opkg_completions() {
++    if [ ${#COMP_WORDS[@]} -eq 2 ]
++    then
++        COMPREPLY=($(compgen -W "${OPKG_COMMANDS}" "${COMP_WORDS[1]}"))
++        return
++    fi
++
++    # TBD: add more cases, support options
++    case "${COMP_WORDS[1]}" in
++        install|files|info|status|download)
++            COMPREPLY=($(compgen -W "$(opkg list | sed -e 's| .*$||')" -- "${COMP_WORDS[$COMP_CWORD]}"));;
++        depends|whatdepends|whatdependsrec|whatrecommends|whatsuggests|whatprovides|whatconflicts|whatreplaces)
++            COMPREPLY=($(compgen -W "-A $(opkg list | sed -e 's| .*$||')" -- "${COMP_WORDS[$COMP_CWORD]}"));;
++        remove)
++            COMPREPLY=($(compgen -W "$(opkg list-installed | sed -e 's| .*$||')" -- "${COMP_WORDS[$COMP_CWORD]}"));;
++        upgrade)
++            COMPREPLY=($(compgen -W "$(opkg list-upgradable | sed -e 's| .*$||')" -- "${COMP_WORDS[$COMP_CWORD]}"));;
++    esac
++}
++
++complete -F _opkg_completions opkg
 -- 
 2.7.4
 
