@@ -1,32 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id B6A7E529C9
+Return-Path: <j-stiffler@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id BF2A35298B
 	for <meta-arago@arago-project.org>;
-	Tue, 21 Jan 2020 21:15:21 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id EDB1D4087B;
-	Tue, 21 Jan 2020 21:13:32 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id gwByCotdgU9m; Tue, 21 Jan 2020 21:13:32 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id CAC7240B37;
-	Tue, 21 Jan 2020 21:13:31 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 741311743A9;
-	Tue, 21 Jan 2020 16:13:30 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 21 Jan 2020 16:13:28 -0500
-Message-Id: <1579641208-15555-3-git-send-email-denis@denix.org>
+	Wed, 22 Jan 2020 14:36:11 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00MEYMql035409
+	for <meta-arago@arago-project.org>; Wed, 22 Jan 2020 08:34:22 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1579703662;
+	bh=QkNlMCVn9GmAO02yU8dVznV28mdM+dTkJQoJ+uXSbho=;
+	h=From:To:CC:Subject:Date;
+	b=dmr/4FcWDoQkXWjV+izKZ1rGfHAzaE3+ByUquFX/DVYYBAtYkhfBg3sG558BouO04
+	N/D5ZRr9JHAl4r+P/XpGy81rEeJ/hzELmzly3wNTQ4JYv8DIaK8slxfGfq2GZb/QZJ
+	bwcBdmfBr9aHoZ63mM5cH6kSEo++AhJ9zZ/2ZiuE=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00MEYMXa025907
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Wed, 22 Jan 2020 08:34:22 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Wed, 22 Jan 2020 08:34:21 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Wed, 22 Jan 2020 08:34:21 -0600
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00MEYLVE129953;
+	Wed, 22 Jan 2020 08:34:21 -0600
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 22 Jan 2020 09:15:22 -0500
+Message-ID: <1579702522-31819-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1579641208-15555-1-git-send-email-denis@denix.org>
-References: <1579641208-15555-1-git-send-email-denis@denix.org>
-Subject: [zeus/master][PATCH 3/3] toolchain-arm: update for 9.2-2019.12 external Arm gcc9 toolchain
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [RFC][PATCH] opencl: fix packaging of library
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,77 +49,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Jan 2020 21:15:22 -0000
+X-List-Received-Date: Wed, 22 Jan 2020 14:36:12 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+* Add daemon conffiles and library to runtime package.
 
-https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../conf/distro/include/toolchain-arm.inc          | 28 +++++++++++-----------
- 1 file changed, 14 insertions(+), 14 deletions(-)
+ meta-arago-extras/recipes-ti/ocl/opencl_git.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-arm.inc b/meta-arago-distro/conf/distro/include/toolchain-arm.inc
-index fca44c5..b9cd55a 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-arm.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-arm.inc
-@@ -2,9 +2,9 @@
- TCMODE = "external-arm"
- TCLIBC = "external-arm-toolchain"
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+index 59cb8ca..502e1cf 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+@@ -4,7 +4,7 @@ LICENSE = "BSD"
  
--EAT_TARGET_SYS_ARMV5 ?= "arm-linux-gnueabi"
--EAT_TARGET_SYS_ARMV7 ?= "arm-linux-gnueabihf"
--EAT_TARGET_SYS_ARMV8 ?= "aarch64-linux-gnu"
-+EAT_TARGET_SYS_ARMV5 ?= "arm-none-linux-gnueabi"
-+EAT_TARGET_SYS_ARMV7 ?= "arm-none-linux-gnueabihf"
-+EAT_TARGET_SYS_ARMV8 ?= "aarch64-none-linux-gnu"
+ include ocl.inc
  
- EAT_TARGET_SYS_arm = "${EAT_TARGET_SYS_ARMV5}"
- EAT_TARGET_SYS_armv7a = "${EAT_TARGET_SYS_ARMV7}"
-@@ -16,9 +16,9 @@ SECONDARY_TARGET_ARCH_k3 = "armv7a"
- TARGET_VENDOR = ""
+-PR = "${INC_PR}.1"
++PR = "${INC_PR}.2"
  
- TOOLCHAIN_BASE ?= "/opt"
--TOOLCHAIN_PATH_ARMV5 ?= "${TOOLCHAIN_BASE}/gcc-arm-8.3-ti2019.01-armv5-x86_64-${EAT_TARGET_SYS_ARMV5}"
--TOOLCHAIN_PATH_ARMV7 ?= "${TOOLCHAIN_BASE}/gcc-arm-8.3-2019.03-x86_64-${EAT_TARGET_SYS_ARMV7}"
--TOOLCHAIN_PATH_ARMV8 ?= "${TOOLCHAIN_BASE}/gcc-arm-8.3-2019.03-x86_64-${EAT_TARGET_SYS_ARMV8}"
-+TOOLCHAIN_PATH_ARMV5 ?= "${TOOLCHAIN_BASE}/gcc-arm-9.2-ti2020.01-armv5-x86_64-${EAT_TARGET_SYS_ARMV5}"
-+TOOLCHAIN_PATH_ARMV7 ?= "${TOOLCHAIN_BASE}/gcc-arm-9.2-2019.12-x86_64-${EAT_TARGET_SYS_ARMV7}"
-+TOOLCHAIN_PATH_ARMV8 ?= "${TOOLCHAIN_BASE}/gcc-arm-9.2-2019.12-x86_64-${EAT_TARGET_SYS_ARMV8}"
+ inherit cmake systemd
  
- DEF_TOOLCHAIN_PATH_arm = "${TOOLCHAIN_PATH_ARMV5}"
- DEF_TOOLCHAIN_PATH_armv7a = "${TOOLCHAIN_PATH_ARMV7}"
-@@ -47,10 +47,10 @@ PREFERRED_PROVIDER_libgcc = "external-arm-toolchain"
- PREFERRED_PROVIDER_gcc-runtime = "external-arm-toolchain"
+@@ -80,7 +80,7 @@ do_install_append() {
+ SYSTEMD_SERVICE_${PN}-runtime = "ti-mct-daemon.service"
+ SYSTEMD_AUTO_ENABLE_${PN}-runtime = "${@oe.utils.conditional("RESERVE_CMEM", "1", "enable", "disable", d)}"
  
- # Set Cross and SDK toolchain preferences
--SDKGCCVERSION ?= "arm-8.3%"
--SDKGDBVERSION ?= "8.2%"
--SDKBINUVERSION ?= "2.31%"
--SDKGLIBCVERSION ?= "2.28%"
-+SDKGCCVERSION ?= "arm-9.2%"
-+SDKGDBVERSION ?= "8.3%"
-+SDKBINUVERSION ?= "2.32%"
-+SDKGLIBCVERSION ?= "2.30%"
- SDKLINUXLIBCVERSION ?= "4.19%"
+-FILES_${PN}-runtime += "${bindir} ${systemd_system_unitdir}"
++FILES_${PN}-runtime += "${bindir} ${systemd_system_unitdir} ${sysconfdir}/ti-mctd ${libdir}/lib*${SOLIBS}"
  
- PREFERRED_VERSION_gcc-crosssdk-${SDK_SYS} ?= "${SDKGCCVERSION}"
-@@ -69,10 +69,10 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
- 
- # Set target toolchain preferences to match Cross/SDK by default
- # Can be overwritten globally, if needed
--GCCVERSION ?= "arm-8.3%"
--GDBVERSION ?= "8.2%"
--BINUVERSION ?= "2.31%"
--GLIBCVERSION ?= "2.28%"
-+GCCVERSION ?= "arm-9.2%"
-+GDBVERSION ?= "8.3%"
-+BINUVERSION ?= "2.32%"
-+GLIBCVERSION ?= "2.30%"
- 
- PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
- PREFERRED_VERSION_gdb ?= "${GDBVERSION}"
+ FILES_${PN} += " \
+     ${datadir}/ti/opencl/* \
 -- 
 2.7.4
 
