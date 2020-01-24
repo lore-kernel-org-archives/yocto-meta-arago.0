@@ -1,30 +1,30 @@
-Return-Path: <denis@denix.org>
+Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id B90D252995
+	by arago-project.org (Postfix) with ESMTPS id 541C452995
 	for <meta-arago@arago-project.org>;
-	Thu, 23 Jan 2020 23:49:06 +0000 (UTC)
+	Fri, 24 Jan 2020 00:19:14 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 659DB409EB;
-	Thu, 23 Jan 2020 23:47:17 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id CBD0840BFC;
+	Fri, 24 Jan 2020 00:17:24 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id ZyhzYdmwQ6_N; Thu, 23 Jan 2020 23:47:17 +0000 (UTC)
+	with ESMTP id hUUKoaLV1Fxp; Fri, 24 Jan 2020 00:17:24 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4CAA4409DE;
-	Thu, 23 Jan 2020 23:47:16 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id AC2F340AB5;
+	Fri, 24 Jan 2020 00:17:23 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id F2A7A1743A7;
-	Thu, 23 Jan 2020 18:47:15 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
+	by mail.denix.org (Postfix) with ESMTP id 54F4A1743A7;
+	Thu, 23 Jan 2020 19:17:23 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Thu, 23 Jan 2020 18:47:15 -0500
-Message-Id: <1579823235-3986-1-git-send-email-denis@denix.org>
+Date: Thu, 23 Jan 2020 19:17:23 -0500
+Message-Id: <1579825043-33779-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [RFC][PATCH] build-essential: add a debian-named alias for OE packagegroup
+Subject: [thud/master][PATCH] ti-sci-fw: update to 2019.12
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,49 +37,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jan 2020 23:49:07 -0000
-
-From: Denys Dmytriyenko <denys@ti.com>
+X-List-Received-Date: Fri, 24 Jan 2020 00:19:14 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-core/packagegroups/build-essential.bb | 7 +++++++
- meta-arago-distro/recipes-core/packagegroups/ti-world.bb        | 4 ++--
- 2 files changed, 9 insertions(+), 2 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/packagegroups/build-essential.bb
+ .../ti-sci-fw/{ti-sci-fw_2019.10a.bb => ti-sci-fw_2019.12.bb}         | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename meta-arago-distro/recipes-bsp/ti-sci-fw/{ti-sci-fw_2019.10a.bb => ti-sci-fw_2019.12.bb} (95%)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/build-essential.bb b/meta-arago-distro/recipes-core/packagegroups/build-essential.bb
-new file mode 100644
-index 0000000..c50053a
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/packagegroups/build-essential.bb
-@@ -0,0 +1,7 @@
-+# This is just an alias between debian and OE names
-+
-+LICENSE = "MIT"
-+
-+inherit packagegroup
-+
-+RDEPENDS_${PN} = "packagegroup-core-buildessential"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-index fb20b89..c1b69ef 100644
---- a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-@@ -1,4 +1,4 @@
--DESCRIPTION = "Task to install graphics packages"
-+SUMMARY = "TI World packagegroup"
- LICENSE = "MIT"
+diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.10a.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.12.bb
+similarity index 95%
+rename from meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.10a.bb
+rename to meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.12.bb
+index c20239b..80f120c 100644
+--- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.10a.bb
++++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.12.bb
+@@ -15,9 +15,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ TI_SECURE_DEV_PKG ?= ""
+ export TI_SECURE_DEV_PKG
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
-@@ -18,7 +18,7 @@ CHROMIUM_append_k3 = "\
+-SRCREV = "299211f4ed0641f4653d0b7b69ff5a85c42a0268"
++SRCREV = "a692931eba713a099ed9ae41ef4a4f7ba145a706"
+ BRANCH ?= "ti-linux-firmware"
+-SRCREV_imggen = "fa5f6d7d289b53d74ae14394678b32f5932b658b"
++SRCREV_imggen = "f91482582808377f850866375d92638ae4c284eb"
+ SRCREV_FORMAT = "imggen"
  
- DEVTOOLS = " \
-     linux-libc-headers-dev \
--    packagegroup-core-buildessential \
-+    build-essential \
-     packagegroup-core-tools-debug \
-     git \
- "
+ SRC_URI = " \
 -- 
 2.7.4
 
