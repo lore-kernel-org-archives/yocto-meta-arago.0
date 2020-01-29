@@ -1,50 +1,44 @@
-Return-Path: <g-tammana@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id A4C3C529D4
+Return-Path: <denys@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id C9D50529D4
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Jan 2020 21:26:03 +0000 (UTC)
+	Wed, 29 Jan 2020 22:01:48 +0000 (UTC)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00TLO9FM092621
-	for <meta-arago@arago-project.org>; Wed, 29 Jan 2020 15:24:09 -0600
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00TLxvxY058673
+	for <meta-arago@arago-project.org>; Wed, 29 Jan 2020 15:59:57 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1580333049;
-	bh=OVNKo4NPRDJh2HjPB8UBEtLdhXZf66z3Di5tpgluH6Y=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=rEjDydxQvFyhBDvwWE7RAjjD5hlUf5g7fBRW6EcW9d5QY89FG7DrFzoa4dK8splYS
-	fD4CseWX2dnzbuZZvGwp80CUU7HaxtaBuvEPBcRPYynCdd/FMQziW4K79OYWezBojx
-	JHc2/iPLVYmAGoOluDibtrFoPyJ9+3GdaWxdBtR0=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00TLO9PD034876
+	s=ti-com-17Q1; t=1580335197;
+	bh=LDzXkQirNHwecu5zjD7JRTTdKWJA+tT3Ll09zss2lqE=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=jCCky9iQN7iorFDUUf2OwCLhpl8rxeQ5PDrD9Ll4BJhg1xj+sfHXzdin9rq+MXoAt
+	w7Z2zDIM+3qP8dKCmUHluc3kwtgxw3IqDwpxYRyHT91U0n/F9G5bqjRh8yHmQ6qzJG
+	2pLr/xK91hoLjYhwmltZti9WhagsOodfiNUVcg8Q=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00TLxvHt089644
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 29 Jan 2020 15:24:09 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Wed, 29 Jan 2020 15:59:57 -0600
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Wed, 29 Jan 2020 15:24:09 -0600
-Received: from DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11]) by
-	DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11%17]) with mapi id
-	15.01.1847.003; Wed, 29 Jan 2020 15:24:09 -0600
-From: "Tammana, Gowtham" <g-tammana@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [EXTERNAL] Re: [thud/zeus/master][PATCH]
-	recipes-graphics: Add recipe for DevIL
-Thread-Index: AQHV1upxCkqyqPL2aUuugIF6CAaWGA==
-Date: Wed, 29 Jan 2020 21:24:09 +0000
-Message-ID: <1e6e0d2d45304335ae39e2cecb18c145@ti.com>
-References: <20200122173626.11984-1-g-tammana@ti.com>
-	<20200128234539.GH3658@beryl> <023358a5926f4910bea382f2a280cfe7@ti.com>
-	<b26a3c1112324c3e81a2b3bda7a67b66@ti.com> <20200129173432.GM3658@beryl>
-	<ff183bdafef445b596f446d82778ee4d@ti.com>
-In-Reply-To: <ff183bdafef445b596f446d82778ee4d@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.247.25.184]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Wed, 29 Jan 2020 15:59:56 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Wed, 29 Jan 2020 15:59:56 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00TLxum4023081;
+	Wed, 29 Jan 2020 15:59:56 -0600
+Date: Wed, 29 Jan 2020 16:59:56 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Gowtham Tammana <g-tammana@ti.com>
+Message-ID: <20200129215956.GP3658@beryl>
+References: <20200129212206.27512-1-g-tammana@ti.com>
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>, "Pothukuchi,
-	Vijay" <vijayp@ti.com>
-Subject: Re: [EXTERNAL] Re: [thud/zeus/master][PATCH] recipes-graphics: Add recipe for DevIL
+In-Reply-To: <20200129212206.27512-1-g-tammana@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org, vijayp@ti.com
+Subject: Re: [thud/zeus/master][PATCH v2] recipes-graphics: Add recipe for DevIL
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -57,139 +51,78 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jan 2020 21:26:04 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 29 Jan 2020 22:01:49 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+
+On Wed, Jan 29, 2020 at 03:22:06PM -0600, Gowtham Tammana wrote:
+> Developers Image Library (DevIL) is a cross-platform image utility
+> library with simple syntax (openil.sourceforge.net). Adding recipe to
+> build from sources.
+
+Thanks! Looks good now - I'll merge it. Next time please don't forget to 
+provide brief summary of changes between patch revisions after --- line.
 
 
-11:36:26AM -0600, Gowtham Tammana wrote:
->>> >>> Developers Image Library (DevIL) is a cross-platfor image utility
->>> >>> library with simple syntax (openil.sourceforge.net). Adding recipe =
-to
->>> >>> build from sources.
->>> >>
->>> >>Where is it coming from? I see there are many copies in other layers =
-- is
->>it
->>> >>based on something or completely done from scratch?
->>> >
->>> >Do you mean the recipe, if so yes its done from scratch.
->>> >
->>> >>
->>> >>> index 00000000..6ba7f34b
->>> >>> --- /dev/null
->>> >>> +++ b/meta-arago-extras/recipes-graphics/devil/devil_1.8.0.bb
->>> >>> @@ -0,0 +1,30 @@
->>> >>> +DESCRIPTION =3D "Developer's Image Library (DevIL) is a cross-plat=
-form
->>image
->>> >>\
->>> >>> +               library utilizing simple syntax to load, save, conv=
-ert,
->>\
->>> >>> +               manipulate, filter and display a variety of images.=
-"
->>> >>
->>> >>Would also need a short SUMMARY set.
->>> >
->>> >Ok, let me add include that.
->>> >
->>> >>
->>> >>> +HOMEPAGE =3D "https://github.com/DentonW/DevIL"
->>> >>> +LICENSE =3D "LGPLv2"
->>> >>> +LIC_FILES_CHKSUM =3D
->>"file://LICENSE;md5=3Dfc178bcd425090939a8b634d1d6a9594"
->>> >>> +
->>> >>> +SRC_URI =3D
->>"git://github.com/dentonw/devil.git;protocol=3Dgit;branch=3Dmaster \
->>> >>> +           file://Remove-ILUT-dependency.patch"
->>> >>> +
->>> >>> +SRCREV =3D "e34284a7e07763769f671a74b4fec718174ad862"
->>> >>> +
->>> >>> +COMPATIBLE_MACHINE =3D "j7-evm"
->>> >>
->>> >>Is it really compatible with j7 only? Looks to me as rather generic..=
-.
->>> >
->>> >Yes, it is generic but haven't had chance to test on other platform. S=
-o
->>> >included for J7 for now.
->>> >
->>> >>
->>> >>> +
->>> >>> +PR =3D "r1"
->>> >>> +S =3D "${WORKDIR}/git"
->>> >>> +
->>> >>> +# Build only DevIL
->>> >>> +OECMAKE_SOURCEPATH =3D "${S}/DevIL"
->>> >>> +
->>> >>> +PACKAGECONFIG ??=3D "png"
->>> >>> +PACKAGECONFIG[png] =3D "-DIL_NO_PNG=3D0,-DIL_NO_PNG=3D1,libpng,"
->>> >>> +
->>> >>> +DEPENDS +=3D "libpng"
->>> >>
->>> >>Dependency on libpng should be taken care by the PACKAGECONFIG above.
->>> >
->>> >I see, will remove it.
->>> >
->>> >>
->>> >>> +inherit pkgconfig cmake
->>> >>> +
->>> >>> +INSANE_SKIP_${PN} +=3D "file-rdeps dev-so"
->>> >>> +FILES_${PN} +=3D "${libdir}/lib*${SOLIBSDEV}"
->>> >>> +FILES_SOLIBSDEV =3D ""
->>> >>
->>> >>Any way to package the libraries properly and not suppress QA checks?
->>> >
->>> >dev-so was needed, else it would complain on the symlinks. File-rdeps =
-I
->>
->>If it produces proper library libfoo.so.X.Y.Z with symlinks libfoo.so.X a=
-nd
->>libfoo.so, then just let the framework package everything automatically b=
-y
->>removing FILES_*.
->>
->>
->>> >couldn't quite resolve without suppressing them.
->>>
->>> ERROR: devil-1.8.0-r2 do_package_qa: QA Issue: /usr/lib/libIL.so.1
->contained
->>in package devil requires libc.so.6(GLIBC_2.17)(64bit), but no providers
->found
->>in RDEPENDS_devil? [file-rdeps]
->>> ERROR: devil-1.8.0-r2 do_package_qa: QA Issue: /usr/lib/libIL.so.1
->contained
->>in package devil requires libstdc++.so.6()(64bit), but no providers found=
- in
->>RDEPENDS_devil? [file-rdeps]
->>>
->>> What does RDEPENDS_devil take the library target name or the recipe nam=
-e.
->>
->>DEPENDS is build-time dependency and takes recipe names.
->>RDEPENDS is run-time dependency and takes package names.
->>
->>But libc and libstdc++ dependencies are normally taken care by the framew=
-ork.
->
->That's my understanding. If I do say RDEPENDS_${PN} =3D "libstdc++6" I see
->"Nothing RPROVIDES 'libstdc++6'", which seems right as there is no explici=
-t
->provider for it.
->
->>The only exception when you would see such errors is when the library was
->>built outside of the framework, i.e. consumed as a binary in the recipe, =
-not
->>built from sources.
->
->Interesting, there are no prebuilt binaries in here, everything should get
->built from source. Let me do a clean build.
-
-It looks like my earlier build was corrupted, doing a clean build didn't sh=
-ow any of the above errors. Pushed a v2.
-
-Thanks,
-Gowtham
+> Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+> ---
+>  .../recipes-graphics/devil/devil_1.8.0.bb     | 25 +++++++++++++++++++
+>  .../devil/files/Remove-ILUT-dependency.patch  | 13 ++++++++++
+>  2 files changed, 38 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-graphics/devil/devil_1.8.0.bb
+>  create mode 100644 meta-arago-extras/recipes-graphics/devil/files/Remove-ILUT-dependency.patch
+> 
+> diff --git a/meta-arago-extras/recipes-graphics/devil/devil_1.8.0.bb b/meta-arago-extras/recipes-graphics/devil/devil_1.8.0.bb
+> new file mode 100644
+> index 00000000..3502ed0c
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-graphics/devil/devil_1.8.0.bb
+> @@ -0,0 +1,25 @@
+> +SUMMARY = "DevIL cross platform image utility library"
+> +DESCRIPTION = "Developer's Image Library (DevIL) is a cross-platform image \
+> +               library utilizing simple syntax to load, save, convert, \
+> +               manipulate, filter and display a variety of images."
+> +HOMEPAGE = "https://github.com/DentonW/DevIL"
+> +LICENSE = "LGPLv2"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=fc178bcd425090939a8b634d1d6a9594"
+> +
+> +SRC_URI = "git://github.com/dentonw/devil.git;protocol=git;branch=master \
+> +           file://Remove-ILUT-dependency.patch"
+> +
+> +SRCREV = "e34284a7e07763769f671a74b4fec718174ad862"
+> +
+> +PR = "r1"
+> +S = "${WORKDIR}/git"
+> +
+> +COMPATIBLE_MACHINE = "j7-evm"
+> +
+> +# Build only DevIL
+> +OECMAKE_SOURCEPATH = "${S}/DevIL"
+> +
+> +PACKAGECONFIG ??= "png"
+> +PACKAGECONFIG[png] = "-DIL_NO_PNG=0,-DIL_NO_PNG=1,libpng,"
+> +
+> +inherit pkgconfig cmake
+> diff --git a/meta-arago-extras/recipes-graphics/devil/files/Remove-ILUT-dependency.patch b/meta-arago-extras/recipes-graphics/devil/files/Remove-ILUT-dependency.patch
+> new file mode 100644
+> index 00000000..4f0f9dfa
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-graphics/devil/files/Remove-ILUT-dependency.patch
+> @@ -0,0 +1,13 @@
+> +diff --git a/DevIL/CMakeLists.txt b/DevIL/CMakeLists.txt
+> +index e342f93d..fae40167 100644
+> +--- a/DevIL/CMakeLists.txt
+> ++++ b/DevIL/CMakeLists.txt
+> +@@ -6,7 +6,7 @@ set (CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
+> + 
+> + add_subdirectory(src-IL)
+> + add_subdirectory(src-ILU)
+> +-add_subdirectory(src-ILUT)
+> ++# add_subdirectory(src-ILUT)
+> + option(IL_TESTS "build DevIL tests" ON)
+> + if (IL_TESTS)
+> +     ENABLE_TESTING()
+> -- 
+> 2.25.0
+> 
 
