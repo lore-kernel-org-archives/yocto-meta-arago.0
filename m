@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 2C7CA52A12
+	by arago-project.org (Postfix) with ESMTPS id 23A1B52A09
 	for <meta-arago@arago-project.org>;
 	Thu, 30 Jan 2020 05:14:48 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5E7F240C0C;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 752BA40C28;
 	Thu, 30 Jan 2020 05:12:56 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id ZxxEUwzeNXlf; Thu, 30 Jan 2020 05:12:56 +0000 (UTC)
+	with ESMTP id RCGgOycexeI1; Thu, 30 Jan 2020 05:12:56 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4A68D40C1D;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 619CF40C1E;
 	Thu, 30 Jan 2020 05:12:55 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 125861711C4;
+	by mail.denix.org (Postfix) with ESMTP id 1DD001711C5;
 	Thu, 30 Jan 2020 00:12:55 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 30 Jan 2020 00:12:48 -0500
-Message-Id: <1580361172-41124-4-git-send-email-denis@denix.org>
+Date: Thu, 30 Jan 2020 00:12:49 -0500
+Message-Id: <1580361172-41124-5-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1580361172-41124-1-git-send-email-denis@denix.org>
 References: <1580361172-41124-1-git-send-email-denis@denix.org>
-Subject: [zeus/master][PATCH 4/8] branding-core: temporarily disable "gpu" machine features due to K5.4
+Subject: [zeus/master][PATCH 5/8] packagegroup-*-addons: disable switch-config, as kernel uapi isn't ready yet
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,22 +45,56 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/branding-core.inc | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
-index a698ac0..e7a32a2 100644
---- a/meta-arago-distro/conf/distro/include/branding-core.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-core.inc
-@@ -12,6 +12,7 @@ ALTERNATIVE_PRIORITY_pn-opencl-monitor-ipu = "1"
- # Raise priority for sample IPC FW images
- ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index b80a770..20d582f 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -40,27 +40,27 @@ UTILS_DSP = " \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'gdbc6x dsptop', '', d)} \
+ "
  
--# Temporarily disable "dsp" and "mmip" machine features for all SOCs
-+# Temporarily disable "dsp", "mmip" and "gpu" machine features for all SOCs
- MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('dsp', '')}"
- MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('mmip', '')}"
-+MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('gpu', '')}"
++# switch-config
+ UTILS_append_ti33x = " mmc-utils \
+                        can-utils \
+-                       switch-config \
+                        pru-icss \
+                        pru-swuart-fw \
+                        uio-module-drv-test \
+                        uio-test-pruss \
+ "
+ 
++# switch-config
+ UTILS_append_ti43x = " mmc-utils \
+                        can-utils \
+-                       switch-config \
+                        libdrm-omap \
+                        pru-icss \
+                        uio-module-drv-test \
+                        uio-test-pruss \
+ "
+ 
++# switch-config
+ UTILS_append_omap-a15 = " mmc-utils \
+                           parted \
+-                          switch-config \
+                           libdrm-omap \
+                           stream-openmp \
+                           pru-icss \
+@@ -69,10 +69,10 @@ UTILS_append_omap-a15 = " mmc-utils \
+                           uio-module-drv-test \
+ "
+ 
++# switch-config
+ UTILS_append_k3 = " mmc-utils \
+                     can-utils \
+                     parted \
+-                    switch-config \
+                     irqbalance \
+                     jailhouse \
+ "
 -- 
 2.7.4
 
