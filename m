@@ -1,32 +1,46 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 17B8452A32
+Return-Path: <>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 6B37552975
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Jan 2020 05:14:50 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 8E13840A52;
-	Thu, 30 Jan 2020 05:12:58 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id AQb___i-TonY; Thu, 30 Jan 2020 05:12:58 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7590C40C06;
-	Thu, 30 Jan 2020 05:12:56 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 358DD1743BD;
-	Thu, 30 Jan 2020 00:12:55 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu, 30 Jan 2020 00:12:51 -0500
-Message-Id: <1580361172-41124-7-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1580361172-41124-1-git-send-email-denis@denix.org>
-References: <1580361172-41124-1-git-send-email-denis@denix.org>
-Subject: [zeus/master][PATCH 7/8] packagegroup-*-addons: disable acontis-atemsys as it breaks against K5.4
+	Thu, 30 Jan 2020 21:39:38 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 00ULbkoD009533
+	for <meta-arago@arago-project.org>; Thu, 30 Jan 2020 15:37:46 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1580420266;
+	bh=gBnqisp3F4jGY5HoCcv7aVH+zniEnOv6u7HdGw9kohI=;
+	h=From:To:CC:Subject:Date;
+	b=ClqRn/KEN0lZnwsIY4Fm4Yc/Gub4WWUIM0kJY9zsQZO6/YFpuDQl4kMFiyvWEI35S
+	TNqROcWdx40YILDF8xKD+Z0oYl4NxwFGYodKyik2VxIxICYIkLH+iAu3jC25q/xQ//
+	OLbW4VuLxf1dT4HpFFbtM/ggifO5pJiyGjEK6+O4=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 00ULbkFs020629
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Thu, 30 Jan 2020 15:37:46 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Thu, 30 Jan 2020 15:37:46 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Thu, 30 Jan 2020 15:37:46 -0600
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com
+	[128.247.22.53])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 00ULbkHd013355;
+	Thu, 30 Jan 2020 15:37:46 -0600
+Received: from localhost ([10.250.70.160])
+	by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id
+	00ULbh318929; Thu, 30 Jan 2020 15:37:44 -0600 (CST)
+From: "Andrew F. Davis" <afd@ti.com>
+To: Denys Dmytriyenko <denys@ti.com>
+Date: Thu, 30 Jan 2020 16:37:43 -0500
+Message-ID: <20200130213743.18487-1-afd@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: [master][PATCH] Revert "HACK: packagegroup-*-console: disable ltrace for now, breaks with latest toolchain"
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,34 +53,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jan 2020 05:14:53 -0000
+X-List-Received-Date: Thu, 30 Jan 2020 21:39:38 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+This reverts commit c193654a0cd6d07c8855afb784cba9387b97a523.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Andrew F. Davis <afd@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb   | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ .../recipes-core/packagegroups/packagegroup-arago-console.bb | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 20d582f..7cfa4c8 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -185,9 +185,11 @@ EXTRA_PACKAGES_append_keystone = " ti-ipc-examples-linux"
- EXTRA_PACKAGES_append_omapl138 = " ti-ipc-examples-linux"
- EXTRA_PACKAGES_append_am65xx = " ti-ipc-examples-linux"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
+index faff560a..4d0bbdde 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-console.bb
+@@ -52,14 +52,11 @@ ARAGO_UTILS = "\
+     usbutils \
+     i2c-tools \
+     strace \
++    ltrace \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'pci', 'pciutils', '',d)} \
+     ${@bb.utils.contains('DISTRO_FEATURES', 'zeroconf', 'avahi-utils', '',d)} \
+     "
  
--EXTRA_PACKAGES_append_am335x-evm = " pruss-lld-apps acontis-atemsys"
-+# acontis-atemsys
-+EXTRA_PACKAGES_append_am335x-evm = " pruss-lld-apps"
- EXTRA_PACKAGES_append_am437x-evm = " pruss-lld-apps"
--EXTRA_PACKAGES_append_am57xx-evm = " pruss-lld-apps acontis-atemsys"
-+# acontis-atemsys
-+EXTRA_PACKAGES_append_am57xx-evm = " pruss-lld-apps"
- EXTRA_PACKAGES_append_k2g-evm  = " pruss-lld-apps"
- 
- RDEPENDS_${PN} = "\
+-# ARAGO_UTILS - ltrace fails with __cxa_demangle for now
+-#    ltrace 
+-
+-
+ ARAGO_SDK_PREREQ = "\
+     zlib \
+     libpng \
 -- 
-2.7.4
+2.17.1
 
 
