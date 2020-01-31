@@ -1,32 +1,30 @@
-Return-Path: <denis@denix.org>
+Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id E71E052A0A
+	by arago-project.org (Postfix) with ESMTPS id 5462852975
 	for <meta-arago@arago-project.org>;
-	Fri, 31 Jan 2020 23:04:45 +0000 (UTC)
+	Fri, 31 Jan 2020 23:23:38 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id BBEC3409E1;
-	Fri, 31 Jan 2020 23:02:53 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 2CD7E40BDA;
+	Fri, 31 Jan 2020 23:21:46 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id foPj2cA4S5hM; Fri, 31 Jan 2020 23:02:53 +0000 (UTC)
+	with ESMTP id hx0QFrpSioC3; Fri, 31 Jan 2020 23:21:46 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id ABA9940BDA;
-	Fri, 31 Jan 2020 23:02:52 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 15C04409E1;
+	Fri, 31 Jan 2020 23:21:45 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 5E7E31743CD;
-	Fri, 31 Jan 2020 18:02:52 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
+	by mail.denix.org (Postfix) with ESMTP id CD4281743CE;
+	Fri, 31 Jan 2020 18:21:44 -0500 (EST)
+From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Fri, 31 Jan 2020 18:02:50 -0500
-Message-Id: <1580511770-38413-2-git-send-email-denis@denix.org>
+Date: Fri, 31 Jan 2020 18:21:44 -0500
+Message-Id: <1580512904-38929-1-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1580511770-38413-1-git-send-email-denis@denix.org>
-References: <1580511770-38413-1-git-send-email-denis@denix.org>
-Subject: [oe-layersetup][PATCH 2/2] poky-zeus-config: add config for poky zeus builds
+Subject: [master][PATCH] arago.conf: simplify DISTRO_FEATURES logic to not rely on oe/lib
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,29 +37,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jan 2020 23:04:46 -0000
-
-From: Denys Dmytriyenko <denys@ti.com>
+X-List-Received-Date: Fri, 31 Jan 2020 23:23:38 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- configs/poky-zeus-config.txt | 7 +++++++
- 1 file changed, 7 insertions(+)
- create mode 100644 configs/poky-zeus-config.txt
+ meta-arago-distro/conf/distro/arago.conf | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/configs/poky-zeus-config.txt b/configs/poky-zeus-config.txt
-new file mode 100644
-index 0000000..d1d944a
---- /dev/null
-+++ b/configs/poky-zeus-config.txt
-@@ -0,0 +1,7 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+bitbake,git://git.openembedded.org/bitbake,1.44,HEAD
-+poky,git://git.yoctoproject.org/poky,zeus,HEAD,layers=meta:meta-poky:meta-yocto-bsp
-+meta-ti,git://git.yoctoproject.org/meta-ti,zeus,HEAD,layers=
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-poky.conf.sample
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 99ba36f..026dae2 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -82,13 +82,13 @@ DISTRO_FEATURES_append = " pam wayland opengl"
+ 
+ # Set global runtime providers for major components
+ ARAGO_SYSVINIT ?= "0"
+-VIRTUAL-RUNTIME_dev_manager = "${@oe.utils.conditional("ARAGO_SYSVINIT", "1", "udev", "systemd", d)}"
+-VIRTUAL-RUNTIME_init_manager = "${@oe.utils.conditional("ARAGO_SYSVINIT", "1", "sysvinit", "systemd", d)}"
+-VIRTUAL-RUNTIME_initscripts = "${@oe.utils.conditional("ARAGO_SYSVINIT", "1", "initscripts", "systemd-compat-units", d)}"
+-VIRTUAL-RUNTIME_initramfs = "${@oe.utils.conditional("ARAGO_SYSVINIT", "1", "sysvinit-initramfs", "systemd-initramfs", d)}"
++VIRTUAL-RUNTIME_dev_manager = "${@["udev", "systemd"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
++VIRTUAL-RUNTIME_init_manager = "${@["sysvinit", "systemd"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
++VIRTUAL-RUNTIME_initscripts = "${@["initscripts", "systemd-compat-units"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
++VIRTUAL-RUNTIME_initramfs = "${@["sysvinit-initramfs", "systemd-initramfs"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
+ VIRTUAL-RUNTIME_login_manager = "busybox shadow"
+ 
+-DISTRO_FEATURES_append = "${@oe.utils.conditional("ARAGO_SYSVINIT", "1", "", " systemd", d)}"
++DISTRO_FEATURES_append = "${@[""," systemd"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
+ 
+ # Set preferred Qt version
+ QT_PROVIDER ?= "qt5"
 -- 
 2.7.4
 
