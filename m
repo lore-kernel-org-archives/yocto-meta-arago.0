@@ -1,30 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id DA88C52975
+	by arago-project.org (Postfix) with ESMTPS id 24DA352A4D
 	for <meta-arago@arago-project.org>;
-	Fri, 31 Jan 2020 23:31:48 +0000 (UTC)
+	Tue,  4 Feb 2020 17:38:17 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B119F40BDA;
-	Fri, 31 Jan 2020 23:29:56 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 9950940C0A;
+	Tue,  4 Feb 2020 17:36:23 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 9CB3tKf5j_6F; Fri, 31 Jan 2020 23:29:56 +0000 (UTC)
+	with ESMTP id yhvojQ-7R1yy; Tue,  4 Feb 2020 17:36:23 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9A8DD409E1;
-	Fri, 31 Jan 2020 23:29:55 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7950640A30;
+	Tue,  4 Feb 2020 17:36:22 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 53DA51743CE;
-	Fri, 31 Jan 2020 18:29:55 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id EB17D1743D1;
+	Tue,  4 Feb 2020 12:36:21 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 31 Jan 2020 18:29:55 -0500
-Message-Id: <1580513395-40306-1-git-send-email-denis@denix.org>
+Date: Tue,  4 Feb 2020 12:36:21 -0500
+Message-Id: <1580837781-4796-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [zeus/master][PATCH] packagegroups: rework inclusion of ti-img-rogue-driver based on "gpu" MACHINE_FEATURES
+Subject: [oe-layersetup][PATCH] arago-zeus-config: switch meta-linaro to zeus branch
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,68 +37,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jan 2020 23:31:49 -0000
+X-List-Received-Date: Tue, 04 Feb 2020 17:38:17 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb           | 1 -
- .../packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb         | 2 +-
- .../packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb       | 2 +-
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb     | 1 -
- 4 files changed, 2 insertions(+), 4 deletions(-)
+ configs/arago-zeus-config.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index 321c396..bfdc61f 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -44,7 +44,6 @@ UTILS_append_k3 = " \
- 
- UTILS_append_j7-evm = " \
-     ti-img-encode-decode-src \
--    ti-img-rogue-driver-src \
-     pru-icss-src \
- "
- 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
-index 486d080..e669765 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb
-@@ -6,7 +6,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
- inherit packagegroup
- 
--GRAPHICS_RDEPENDS = "${PREFERRED_PROVIDER_virtual/gpudriver}-src"
-+GRAPHICS_RDEPENDS = "${@bb.utils.contains('MACHINE_FEATURES','gpu','${PREFERRED_PROVIDER_virtual/gpudriver}-src','',d)}"
- 
- GRAPHICS_RDEPENDS_append_omap-a15 = "\
-     ti-gc320-driver-src \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
-index cea4c7a..f4652d5 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-target.bb
-@@ -12,7 +12,7 @@ GRAPHICS_RDEPENDS = "\
-     wayland-dev \
-     weston-dev \
-     ${PREFERRED_PROVIDER_virtual/egl}-dev \
--    ${PREFERRED_PROVIDER_virtual/gpudriver}-dev \
-+    ${@bb.utils.contains('MACHINE_FEATURES','gpu','${PREFERRED_PROVIDER_virtual/gpudriver}-dev','',d)} \
- "
- GRAPHICS_RDEPENDS_remove_j7-evm = "ti-sgx-ddk-km-dev"
- 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-index 49144e9..72f3efe 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
-@@ -27,7 +27,6 @@ GRAPHICS_RDEPENDS = "\
-     ${@bb.utils.contains('MACHINE_FEATURES','gpu','${PREFERRED_PROVIDER_virtual/gpudriver}','',d)} \
-     ${@bb.utils.contains('MACHINE_FEATURES','gpu','glmark2','',d)} \
- "
--GRAPHICS_RDEPENDS_remove_j7-evm = "ti-sgx-ddk-km"
- 
- GRAPHICS_DISPLAY_UTILS = "\
- "
+diff --git a/configs/arago-zeus-config.txt b/configs/arago-zeus-config.txt
+index bd53149..8f6e2ec 100644
+--- a/configs/arago-zeus-config.txt
++++ b/configs/arago-zeus-config.txt
+@@ -9,7 +9,7 @@ meta-selinux,git://git.yoctoproject.org/meta-selinux,zeus,HEAD,layers=
+ meta-virtualization,git://git.yoctoproject.org/meta-virtualization,zeus,HEAD,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,zeus,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+ meta-ti,git://git.yoctoproject.org/meta-ti,zeus,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,master,HEAD,layers=meta-linaro-toolchain:meta-optee
++meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,zeus,HEAD,layers=meta-linaro-toolchain:meta-optee
+ oe-core,git://git.openembedded.org/openembedded-core,zeus,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64.conf.sample
 -- 
 2.7.4
 
