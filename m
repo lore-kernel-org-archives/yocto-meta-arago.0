@@ -1,47 +1,31 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 90DC3529A5
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 56180529A5
 	for <meta-arago@arago-project.org>;
-	Wed,  5 Feb 2020 16:35:28 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 015GXY5u130053;
-	Wed, 5 Feb 2020 10:33:34 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1580920414;
-	bh=G/BCaImSqXQu/edsiucd/yeCEVGVZ29OyoKD6KxH268=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=hebh9aXdjnl/2JEkHY94ROqOUMVJy4V6UsMZ//h843+HTX8czuIlmzXmnn3UjZe5s
-	Ni1cbuQr9SlX4aSIkvb5daTTMBMaC30m7oRUA7nji1X3xWCb3dfEQii4WHLd2ASVVd
-	KLnuX/apXSiOmEwayiAIzoqo1oANApTcdvlo6JUk=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 015GXY79020770;
-	Wed, 5 Feb 2020 10:33:34 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Wed, 5 Feb 2020 10:33:34 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Wed, 5 Feb 2020 10:33:34 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 015GXYgI076404;
-	Wed, 5 Feb 2020 10:33:34 -0600
-Date: Wed, 5 Feb 2020 11:33:33 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20200205163333.GD4415@beryl>
-References: <1580840296-30685-1-git-send-email-denis@denix.org>
-	<1580840296-30685-2-git-send-email-denis@denix.org>
-	<ffee611a-04fa-5019-9786-7c16cae71e87@ti.com>
-	<20200204202643.GB4415@beryl>
-	<ccaff44e-690c-9ee6-36de-6ac776fb934b@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <ccaff44e-690c-9ee6-36de-6ac776fb934b@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [EXTERNAL] [RFC][PATCH 2/3] packagegroups: create initial ti-analytics and ti-demos packagegroups
+	Wed,  5 Feb 2020 23:11:33 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5EC6740C0A;
+	Wed,  5 Feb 2020 23:09:39 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id e8B-ND5eMnSj; Wed,  5 Feb 2020 23:09:39 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DECBE40A4E;
+	Wed,  5 Feb 2020 23:09:35 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 487ED1743DD;
+	Wed,  5 Feb 2020 18:09:35 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed,  5 Feb 2020 18:09:20 -0500
+Message-Id: <1580944160-32892-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Cc: Scott Murray <scott.murray@konsulko.com>
+Subject: [zeus/master][PATCH] Revert "HACK: weston: revert EGL_KHR_partial_update changes that require EGL 1.5"
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,153 +38,158 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Feb 2020 16:35:28 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 05 Feb 2020 23:11:33 -0000
 
-On Tue, Feb 04, 2020 at 03:33:28PM -0500, Jacob Stiffler wrote:
-> 
-> On 2/4/2020 3:26 PM, Denys Dmytriyenko wrote:
-> >On Tue, Feb 04, 2020 at 03:23:55PM -0500, Jacob Stiffler wrote:
-> >>On 2/4/2020 1:18 PM, Denys Dmytriyenko wrote:
-> >>>From: Denys Dmytriyenko <denys@ti.com>
-> >>>
-> >>>Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> >>>---
-> >>>  .../recipes-core/images/tisdk-rootfs-image.bb      |  2 ++
-> >>>  .../packagegroup-arago-tisdk-addons.bb             | 36 +++-------------------
-> >>>  .../recipes-core/packagegroups/ti-analytics.bb     |  9 ++++++
-> >>>  .../recipes-core/packagegroups/ti-demos.bb         |  9 ++++++
-> >>>  .../recipes-core/packagegroups/ti-world.bb         |  2 ++
-> >>>  5 files changed, 27 insertions(+), 31 deletions(-)
-> >>>  create mode 100644 meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
-> >>>  create mode 100644 meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
-> >>>
-> >>>diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-> >>>index 1b2ffbd..ae026a1 100644
-> >>>--- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-> >>>+++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-> >>>@@ -22,6 +22,8 @@ IMAGE_INSTALL += "\
-> >>>      packagegroup-arago-tisdk-addons \
-> >>>      packagegroup-arago-tisdk-addons-extra \
-> >>>      ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-hmi','packagegroup-arago-base-tisdk-server-extra',d)} \
-> >>>+    ti-analytics \
-> >>>+    ti-demos \
-> >>>  "
-> >>>  export IMAGE_BASENAME = "tisdk-rootfs-image"
-> >>>diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> >>>index 967fc5d..ddf7785 100644
-> >>>--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> >>>+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> >>>@@ -140,42 +140,16 @@ EXTRA_PACKAGES_omapl138 = " \
-> >>>      protobuf \
-> >>>  "
-> >>>-ARMNN_PACKAGES = "armnn"
-> >>>-
-> >>>-EXTRA_PACKAGES_append_ti33x = " voxelsdk \
-> >>>-                                arm-compute-library \
-> >>>-                                ${ARMNN_PACKAGES} \
-> >>>-                                tensorflow-lite-examples \
-> >>>-                                pdm-anomaly-detection \
-> >>>-"
-> >>>-
-> >>>-EXTRA_PACKAGES_append_ti43x = " voxelsdk \
-> >>>-                                arm-compute-library \
-> >>>-                                ${ARMNN_PACKAGES} \
-> >>>-                                tensorflow-lite-examples \
-> >>>-                                pdm-anomaly-detection \
-> >>>-"
-> >>>-
-> >>>-EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
-> >>>-                                   big-data-ipc-demo-linux \
-> >>>-                                   big-data-ipc-demo-linux-firmware \
-> >>>-                                   arm-compute-library \
-> >>>-                                   ${ARMNN_PACKAGES} \
-> >>>-                                   tensorflow-lite-examples \
-> >>>-                                   pdm-anomaly-detection \
-> >>>-"
-> >>>-
-> >>>-EXTRA_PACKAGES_append_am65xx = " arm-compute-library \
-> >>>-                             ${ARMNN_PACKAGES} \
-> >>>-                             tensorflow-lite-examples \
-> >>>-                             pdm-anomaly-detection \
-> >>>-"
-> >>>-
-> >>>  EXTRA_PACKAGES_append_omap-a15 = " ti-ipc-examples-linux"
-> >>>  EXTRA_PACKAGES_append_keystone = " ti-ipc-examples-linux"
-> >>>  EXTRA_PACKAGES_append_omapl138 = " ti-ipc-examples-linux"
-> >>>  EXTRA_PACKAGES_append_am65xx = " ti-ipc-examples-linux"
-> >>>+EXTRA_PACKAGES_append_omap-a15 = " \
-> >>>+    big-data-ipc-demo-linux \
-> >>>+    big-data-ipc-demo-linux-firmware \
-> >>>+"
-> >>>+
-> >>>  EXTRA_PACKAGES_append_am335x-evm = " pruss-lld-apps acontis-atemsys"
-> >>>  EXTRA_PACKAGES_append_am437x-evm = " pruss-lld-apps"
-> >>>  EXTRA_PACKAGES_append_am57xx-evm = " pruss-lld-apps acontis-atemsys"
-> >>>diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
-> >>>new file mode 100644
-> >>>index 0000000..e5a13f6
-> >>>--- /dev/null
-> >>>+++ b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
-> >>>@@ -0,0 +1,9 @@
-> >>>+SUMMARY = "TI World packagegroup"
-> >>>+LICENSE = "MIT"
-> >>>+
-> >>>+inherit packagegroup
-> >>>+
-> >>>+RDEPENDS_${PN} = "\
-> >>>+    armnn \
-> >>>+    tensorflow-lite-examples \
-> >>>+"
-> >>>diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb b/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
-> >>>new file mode 100644
-> >>>index 0000000..20d73b9
-> >>>--- /dev/null
-> >>>+++ b/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
-> >>>@@ -0,0 +1,9 @@
-> >>>+SUMMARY = "TI World packagegroup"
-> >>>+LICENSE = "MIT"
-> >>>+
-> >>>+inherit packagegroup
-> >>>+
-> >>>+RDEPENDS_${PN} = "\
-> >>>+    voxelsdk \
-> >>
-> >>voxelsdk was not marked as compatible with am65xx:
-> >>
-> >>
-> >>ERROR: Nothing RPROVIDES 'voxelsdk' (but /oe/bld/sources/meta-arago-bb/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb RDEPENDS on or otherwise requires it)
-> >>voxelsdk was skipped: incompatible with machine am65xx-evm (not in COMPATIBLE_MACHINE)
-> >Yeah, some of the changes will also break K2, as those are not compatible
-> >either...
-> >Is there anything specific in voxelsdk that it's not compatible with am65xx?
-> >Or is it one of those cases of "hasn't been tested on other platforms"?
-> >
-> 
-> I am not aware of any incompatibilities, but there are some
-> machine-specifics in the recipe.
+From: Denys Dmytriyenko <denys@ti.com>
 
-Will need to revisit this later - we need to reduce the number of 
-machine-specific packages. But for now I sent follow up patches to 
-resolve this.
+Now, that our SGX DDK UM libs support EGL 1.5, these can be dropped.
 
+This reverts commit 5ab873a1b06648286711ec2b9acb849b07a5443c.
 
-> >>>+    pdm-anomaly-detection \
-> >>>+"
-> >>>diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-> >>>index 1aa3a39..164ac63 100644
-> >>>--- a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-> >>>+++ b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-> >>>@@ -53,4 +53,6 @@ RDEPENDS_${PN} = "\
-> >>>      ${DEVTOOLS} \
-> >>>      ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
-> >>>      packagegroup-arago-misc \
-> >>>+    ti-analytics \
-> >>>+    ti-demos \
-> >>>  "
-> >>_______________________________________________
-> >>meta-arago mailing list
-> >>meta-arago@arago-project.org
-> >>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Reported-by: Scott Murray <scott.murray@konsulko.com>
+Cc: Andrew F. Davis <afd@ti.com>
+---
+ ...renderer-Add-EGL_EXT_partial_update-query.patch | 47 --------------------
+ ...l-renderer-Support-EGL_KHR_partial_update.patch | 51 ----------------------
+ .../recipes-graphics/wayland/weston_7.0.0.bbappend |  7 +--
+ 3 files changed, 2 insertions(+), 103 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-gl-renderer-Add-EGL_EXT_partial_update-query.patch
+ delete mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-gl-renderer-Support-EGL_KHR_partial_update.patch
+
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-gl-renderer-Add-EGL_EXT_partial_update-query.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-gl-renderer-Add-EGL_EXT_partial_update-query.patch
+deleted file mode 100644
+index 556440e..0000000
+--- a/meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-gl-renderer-Add-EGL_EXT_partial_update-query.patch
++++ /dev/null
+@@ -1,47 +0,0 @@
+-From e9ce4695a1ea78434b7244705ef3fd2af7b360f7 Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Thu, 12 Sep 2019 21:03:18 -0400
+-Subject: [PATCH] Revert "gl-renderer: Add EGL_EXT_partial_update query"
+-
+-This reverts commit 0a86a81cc251330b15e213fde8434f291e35bf88.
+-
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- libweston/renderer-gl/gl-renderer.c | 7 -------
+- 1 file changed, 7 deletions(-)
+-
+-diff --git a/libweston/renderer-gl/gl-renderer.c b/libweston/renderer-gl/gl-renderer.c
+-index 6c2a56d..590ef09 100644
+---- a/libweston/renderer-gl/gl-renderer.c
+-+++ b/libweston/renderer-gl/gl-renderer.c
+-@@ -233,8 +233,6 @@ struct gl_renderer {
+- 	bool has_egl_image_external;
+- 
+- 	bool has_egl_buffer_age;
+--	bool has_egl_partial_update;
+--	PFNEGLSETDAMAGEREGIONKHRPROC set_damage_region;
+- 
+- 	bool has_configless_context;
+- 
+-@@ -3515,8 +3513,6 @@ gl_renderer_setup_egl_extensions(struct weston_compositor *ec)
+- 		(void *) eglGetProcAddress("eglUnbindWaylandDisplayWL");
+- 	gr->query_buffer =
+- 		(void *) eglGetProcAddress("eglQueryWaylandBufferWL");
+--	gr->set_damage_region =
+--		(void *) eglGetProcAddress("eglSetDamageRegionKHR");
+- 
+- 	extensions =
+- 		(const char *) eglQueryString(gr->egl_display, EGL_EXTENSIONS);
+-@@ -3539,9 +3535,6 @@ gl_renderer_setup_egl_extensions(struct weston_compositor *ec)
+- 	if (weston_check_egl_extension(extensions, "EGL_EXT_buffer_age"))
+- 		gr->has_egl_buffer_age = true;
+- 
+--	if (weston_check_egl_extension(extensions, "EGL_KHR_partial_update"))
+--		gr->has_egl_partial_update = true;
+--
+- 	for (i = 0; i < ARRAY_LENGTH(swap_damage_ext_to_entrypoint); i++) {
+- 		if (weston_check_egl_extension(extensions,
+- 				swap_damage_ext_to_entrypoint[i].extension)) {
+--- 
+-2.7.4
+-
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-gl-renderer-Support-EGL_KHR_partial_update.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-gl-renderer-Support-EGL_KHR_partial_update.patch
+deleted file mode 100644
+index f6fd845..0000000
+--- a/meta-arago-distro/recipes-graphics/wayland/weston/0001-Revert-gl-renderer-Support-EGL_KHR_partial_update.patch
++++ /dev/null
+@@ -1,51 +0,0 @@
+-From c4e7764e9062729a320d2a81f4b4f1a2392454cb Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Thu, 12 Sep 2019 21:20:01 -0400
+-Subject: [PATCH] Revert "gl-renderer: Support EGL_KHR_partial_update"
+-
+-This reverts commit df2095fa35fe84e4ebc30754dd9f25e50bd1aa47.
+-
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- libweston/renderer-gl/gl-renderer.c | 18 ++----------------
+- 1 file changed, 2 insertions(+), 16 deletions(-)
+-
+-diff --git a/libweston/renderer-gl/gl-renderer.c b/libweston/renderer-gl/gl-renderer.c
+-index 590ef09..a95e873 100644
+---- a/libweston/renderer-gl/gl-renderer.c
+-+++ b/libweston/renderer-gl/gl-renderer.c
+-@@ -1531,8 +1531,8 @@ gl_renderer_repaint_output(struct weston_output *output,
+- 
+- 	/* In fan debug mode, redraw everything to make sure that we clear any
+- 	 * fans left over from previous draws on this buffer.
+--	 * This precludes the use of EGL_EXT_swap_buffers_with_damage and
+--	 * EGL_KHR_partial_update, since we damage the whole area. */
+-+	 * This precludes the use of EGL_EXT_swap_buffers_with_damage, since
+-+	 * we damage the whole area. */
+- 	if (gr->fan_debug) {
+- 		pixman_region32_t undamaged;
+- 		pixman_region32_init(&undamaged);
+-@@ -1560,20 +1560,6 @@ gl_renderer_repaint_output(struct weston_output *output,
+- 	pixman_region32_union(&total_damage, &previous_damage, output_damage);
+- 	border_status |= go->border_status;
+- 
+--	if (gr->has_egl_partial_update && !gr->fan_debug) {
+--		int n_egl_rects;
+--		EGLint *egl_rects;
+--
+--		/* For partial_update, we need to pass the region which has
+--		 * changed since we last rendered into this specific buffer;
+--		 * this is total_damage. */
+--		pixman_region_to_egl_y_invert(output, &total_damage,
+--					      &egl_rects, &n_egl_rects);
+--		gr->set_damage_region(gr->egl_display, go->egl_surface,
+--				      egl_rects, n_egl_rects);
+--		free(egl_rects);
+--	}
+--
+- 	repaint_views(output, &total_damage);
+- 
+- 	pixman_region32_fini(&total_damage);
+--- 
+-2.7.4
+-
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_7.0.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_7.0.0.bbappend
+index fc448b4..c2f4ef3 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston_7.0.0.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston_7.0.0.bbappend
+@@ -1,15 +1,12 @@
+ PACKAGECONFIG[kms] = "-Dbackend-drm=true,-Dbackend-drm=false,drm udev virtual/libgbm mtdev"
+ 
+-PR_append = ".arago0"
++PR_append = ".arago1"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ RDEPENDS_${PN} += "weston-conf"
+ 
+-SRC_URI += " \
+-        file://0001-Revert-gl-renderer-Add-EGL_EXT_partial_update-query.patch \
+-        file://0001-Revert-gl-renderer-Support-EGL_KHR_partial_update.patch \
+-"
++#SRC_URI += " \
+ #        file://0002-weston-Allow-visual_id-to-be-0.patch \
+ #        file://0003-weston-Fix-virtual-keyboard-display-issue-for-QT5-ap.patch \
+ #        file://0004-weston-Fix-touch-screen-crash-issue.patch \
+-- 
+2.7.4
+
 
