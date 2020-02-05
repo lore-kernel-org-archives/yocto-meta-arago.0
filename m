@@ -1,30 +1,47 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id BB77E529F7
+Return-Path: <denys@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 90DC3529A5
 	for <meta-arago@arago-project.org>;
-	Wed,  5 Feb 2020 16:26:43 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id DD06C40C13;
-	Wed,  5 Feb 2020 16:24:49 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id KY-wxI6cIhuK; Wed,  5 Feb 2020 16:24:49 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B3A9440A52;
-	Wed,  5 Feb 2020 16:24:48 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 53A3C1743D2;
-	Wed,  5 Feb 2020 11:24:47 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed,  5 Feb 2020 11:24:44 -0500
-Message-Id: <1580919886-43718-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [RFC][PATCH 1/3] ti-analytics: only install packages on compatible platforms
+	Wed,  5 Feb 2020 16:35:28 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 015GXY5u130053;
+	Wed, 5 Feb 2020 10:33:34 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1580920414;
+	bh=G/BCaImSqXQu/edsiucd/yeCEVGVZ29OyoKD6KxH268=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=hebh9aXdjnl/2JEkHY94ROqOUMVJy4V6UsMZ//h843+HTX8czuIlmzXmnn3UjZe5s
+	Ni1cbuQr9SlX4aSIkvb5daTTMBMaC30m7oRUA7nji1X3xWCb3dfEQii4WHLd2ASVVd
+	KLnuX/apXSiOmEwayiAIzoqo1oANApTcdvlo6JUk=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 015GXY79020770;
+	Wed, 5 Feb 2020 10:33:34 -0600
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Wed, 5 Feb 2020 10:33:34 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Wed, 5 Feb 2020 10:33:34 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 015GXYgI076404;
+	Wed, 5 Feb 2020 10:33:34 -0600
+Date: Wed, 5 Feb 2020 11:33:33 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20200205163333.GD4415@beryl>
+References: <1580840296-30685-1-git-send-email-denis@denix.org>
+	<1580840296-30685-2-git-send-email-denis@denix.org>
+	<ffee611a-04fa-5019-9786-7c16cae71e87@ti.com>
+	<20200204202643.GB4415@beryl>
+	<ccaff44e-690c-9ee6-36de-6ac776fb934b@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <ccaff44e-690c-9ee6-36de-6ac776fb934b@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [EXTERNAL] [RFC][PATCH 2/3] packagegroups: create initial ti-analytics and ti-demos packagegroups
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,40 +54,153 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Feb 2020 16:26:44 -0000
+X-List-Received-Date: Wed, 05 Feb 2020 16:35:28 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+On Tue, Feb 04, 2020 at 03:33:28PM -0500, Jacob Stiffler wrote:
+> 
+> On 2/4/2020 3:26 PM, Denys Dmytriyenko wrote:
+> >On Tue, Feb 04, 2020 at 03:23:55PM -0500, Jacob Stiffler wrote:
+> >>On 2/4/2020 1:18 PM, Denys Dmytriyenko wrote:
+> >>>From: Denys Dmytriyenko <denys@ti.com>
+> >>>
+> >>>Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> >>>---
+> >>>  .../recipes-core/images/tisdk-rootfs-image.bb      |  2 ++
+> >>>  .../packagegroup-arago-tisdk-addons.bb             | 36 +++-------------------
+> >>>  .../recipes-core/packagegroups/ti-analytics.bb     |  9 ++++++
+> >>>  .../recipes-core/packagegroups/ti-demos.bb         |  9 ++++++
+> >>>  .../recipes-core/packagegroups/ti-world.bb         |  2 ++
+> >>>  5 files changed, 27 insertions(+), 31 deletions(-)
+> >>>  create mode 100644 meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
+> >>>  create mode 100644 meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
+> >>>
+> >>>diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
+> >>>index 1b2ffbd..ae026a1 100644
+> >>>--- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
+> >>>+++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
+> >>>@@ -22,6 +22,8 @@ IMAGE_INSTALL += "\
+> >>>      packagegroup-arago-tisdk-addons \
+> >>>      packagegroup-arago-tisdk-addons-extra \
+> >>>      ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-hmi','packagegroup-arago-base-tisdk-server-extra',d)} \
+> >>>+    ti-analytics \
+> >>>+    ti-demos \
+> >>>  "
+> >>>  export IMAGE_BASENAME = "tisdk-rootfs-image"
+> >>>diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> >>>index 967fc5d..ddf7785 100644
+> >>>--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> >>>+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> >>>@@ -140,42 +140,16 @@ EXTRA_PACKAGES_omapl138 = " \
+> >>>      protobuf \
+> >>>  "
+> >>>-ARMNN_PACKAGES = "armnn"
+> >>>-
+> >>>-EXTRA_PACKAGES_append_ti33x = " voxelsdk \
+> >>>-                                arm-compute-library \
+> >>>-                                ${ARMNN_PACKAGES} \
+> >>>-                                tensorflow-lite-examples \
+> >>>-                                pdm-anomaly-detection \
+> >>>-"
+> >>>-
+> >>>-EXTRA_PACKAGES_append_ti43x = " voxelsdk \
+> >>>-                                arm-compute-library \
+> >>>-                                ${ARMNN_PACKAGES} \
+> >>>-                                tensorflow-lite-examples \
+> >>>-                                pdm-anomaly-detection \
+> >>>-"
+> >>>-
+> >>>-EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
+> >>>-                                   big-data-ipc-demo-linux \
+> >>>-                                   big-data-ipc-demo-linux-firmware \
+> >>>-                                   arm-compute-library \
+> >>>-                                   ${ARMNN_PACKAGES} \
+> >>>-                                   tensorflow-lite-examples \
+> >>>-                                   pdm-anomaly-detection \
+> >>>-"
+> >>>-
+> >>>-EXTRA_PACKAGES_append_am65xx = " arm-compute-library \
+> >>>-                             ${ARMNN_PACKAGES} \
+> >>>-                             tensorflow-lite-examples \
+> >>>-                             pdm-anomaly-detection \
+> >>>-"
+> >>>-
+> >>>  EXTRA_PACKAGES_append_omap-a15 = " ti-ipc-examples-linux"
+> >>>  EXTRA_PACKAGES_append_keystone = " ti-ipc-examples-linux"
+> >>>  EXTRA_PACKAGES_append_omapl138 = " ti-ipc-examples-linux"
+> >>>  EXTRA_PACKAGES_append_am65xx = " ti-ipc-examples-linux"
+> >>>+EXTRA_PACKAGES_append_omap-a15 = " \
+> >>>+    big-data-ipc-demo-linux \
+> >>>+    big-data-ipc-demo-linux-firmware \
+> >>>+"
+> >>>+
+> >>>  EXTRA_PACKAGES_append_am335x-evm = " pruss-lld-apps acontis-atemsys"
+> >>>  EXTRA_PACKAGES_append_am437x-evm = " pruss-lld-apps"
+> >>>  EXTRA_PACKAGES_append_am57xx-evm = " pruss-lld-apps acontis-atemsys"
+> >>>diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
+> >>>new file mode 100644
+> >>>index 0000000..e5a13f6
+> >>>--- /dev/null
+> >>>+++ b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
+> >>>@@ -0,0 +1,9 @@
+> >>>+SUMMARY = "TI World packagegroup"
+> >>>+LICENSE = "MIT"
+> >>>+
+> >>>+inherit packagegroup
+> >>>+
+> >>>+RDEPENDS_${PN} = "\
+> >>>+    armnn \
+> >>>+    tensorflow-lite-examples \
+> >>>+"
+> >>>diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb b/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
+> >>>new file mode 100644
+> >>>index 0000000..20d73b9
+> >>>--- /dev/null
+> >>>+++ b/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
+> >>>@@ -0,0 +1,9 @@
+> >>>+SUMMARY = "TI World packagegroup"
+> >>>+LICENSE = "MIT"
+> >>>+
+> >>>+inherit packagegroup
+> >>>+
+> >>>+RDEPENDS_${PN} = "\
+> >>>+    voxelsdk \
+> >>
+> >>voxelsdk was not marked as compatible with am65xx:
+> >>
+> >>
+> >>ERROR: Nothing RPROVIDES 'voxelsdk' (but /oe/bld/sources/meta-arago-bb/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb RDEPENDS on or otherwise requires it)
+> >>voxelsdk was skipped: incompatible with machine am65xx-evm (not in COMPATIBLE_MACHINE)
+> >Yeah, some of the changes will also break K2, as those are not compatible
+> >either...
+> >Is there anything specific in voxelsdk that it's not compatible with am65xx?
+> >Or is it one of those cases of "hasn't been tested on other platforms"?
+> >
+> 
+> I am not aware of any incompatibilities, but there are some
+> machine-specifics in the recipe.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+Will need to revisit this later - we need to reduce the number of 
+machine-specific packages. But for now I sent follow up patches to 
+resolve this.
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
-index e5a13f6..116f3ad 100644
---- a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
-@@ -1,9 +1,18 @@
- SUMMARY = "TI World packagegroup"
- LICENSE = "MIT"
- 
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
- inherit packagegroup
- 
--RDEPENDS_${PN} = "\
-+ANALYTICS = "\
-     armnn \
-     tensorflow-lite-examples \
- "
-+ANALYTICS_keystone = ""
-+ANALYTICS_j7-evm = ""
-+ANALYTICS_omapl138 = ""
-+
-+RDEPENDS_${PN} = "\
-+    ${ANALYTICS} \
-+"
--- 
-2.7.4
 
+> >>>+    pdm-anomaly-detection \
+> >>>+"
+> >>>diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
+> >>>index 1aa3a39..164ac63 100644
+> >>>--- a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
+> >>>+++ b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
+> >>>@@ -53,4 +53,6 @@ RDEPENDS_${PN} = "\
+> >>>      ${DEVTOOLS} \
+> >>>      ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
+> >>>      packagegroup-arago-misc \
+> >>>+    ti-analytics \
+> >>>+    ti-demos \
+> >>>  "
+> >>_______________________________________________
+> >>meta-arago mailing list
+> >>meta-arago@arago-project.org
+> >>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
