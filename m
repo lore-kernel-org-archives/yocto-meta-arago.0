@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id A8E2B529A5
+	by arago-project.org (Postfix) with ESMTPS id B3146529DC
 	for <meta-arago@arago-project.org>;
 	Wed,  5 Feb 2020 16:26:43 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id DF3F040C2E;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id E7FB240A52;
 	Wed,  5 Feb 2020 16:24:49 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id PwnYRUhIegiV; Wed,  5 Feb 2020 16:24:49 +0000 (UTC)
+	with ESMTP id fD3c3P6ND4Rk; Wed,  5 Feb 2020 16:24:49 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B56B540C0A;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B886E40C10;
 	Wed,  5 Feb 2020 16:24:48 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 617121743D8;
+	by mail.denix.org (Postfix) with ESMTP id 6E27B1743DA;
 	Wed,  5 Feb 2020 11:24:47 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Wed,  5 Feb 2020 11:24:45 -0500
-Message-Id: <1580919886-43718-2-git-send-email-denis@denix.org>
+Date: Wed,  5 Feb 2020 11:24:46 -0500
+Message-Id: <1580919886-43718-3-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1580919886-43718-1-git-send-email-denis@denix.org>
 References: <1580919886-43718-1-git-send-email-denis@denix.org>
-Subject: [RFC][PATCH 2/3] ti-demos: only install packages on compatible platforms
+Subject: [RFC][PATCH 3/3] ti-opecl: make alias machine-specific and depend on "dsp" feature
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,37 +45,41 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/packagegroups/ti-demos.bb              | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
+ meta-arago-distro/recipes-core/packagegroups/ti-opencl.bb | 2 ++
+ meta-arago-distro/recipes-core/packagegroups/ti-world.bb  | 3 +--
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb b/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
-index 20d73b9..a20ed05 100644
---- a/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
-@@ -1,9 +1,22 @@
- SUMMARY = "TI World packagegroup"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-opencl.bb b/meta-arago-distro/recipes-core/packagegroups/ti-opencl.bb
+index b962779..20abf17 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-opencl.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-opencl.bb
+@@ -2,6 +2,8 @@
+ 
  LICENSE = "MIT"
  
 +PACKAGE_ARCH = "${MACHINE_ARCH}"
 +
  inherit packagegroup
  
-+VOXEL = ""
-+VOXEL_ti33x = "voxelsdk"
-+VOXEL_ti43x = "voxelsdk"
-+VOXEL_omap-a15 = "voxelsdk"
-+
-+PDM_ANOMALY = ""
-+PDM_ANOMALY_ti33x = "pdm-anomaly-detection"
-+PDM_ANOMALY_ti43x = "pdm-anomaly-detection"
-+PDM_ANOMALY_omap-a15 = "pdm-anomaly-detection"
-+PDM_ANOMALY_am65xx = "pdm-anomaly-detection"
-+
- RDEPENDS_${PN} = "\
--    voxelsdk \
--    pdm-anomaly-detection \
-+    ${VOXEL} \
-+    ${PDM_ANOMALY} \
+ PACKAGES += "${PN}-runtime"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
+index c9aad1f..e46a1b4 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
+@@ -36,7 +36,7 @@ RDEPENDS_${PN} = "\
+     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-graphics','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-gtk','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-qte qt3d-examples','',d)} \
+-    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl','',d)} \
++    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl ti-opencl','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-extra','',d)} \
+     packagegroup-arago-tisdk-connectivity \
+     packagegroup-arago-tisdk-crypto \
+@@ -55,5 +55,4 @@ RDEPENDS_${PN} = "\
+     packagegroup-arago-misc \
+     ti-analytics \
+     ti-demos \
+-    ti-opencl \
  "
 -- 
 2.7.4
