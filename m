@@ -1,32 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 0B929529F7
+	by arago-project.org (Postfix) with ESMTPS id 6163452A12
 	for <meta-arago@arago-project.org>;
-	Sat,  8 Feb 2020 00:06:51 +0000 (UTC)
+	Sat,  8 Feb 2020 05:54:54 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id ACC0940B37;
-	Sat,  8 Feb 2020 00:04:56 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D0AE140B9E;
+	Sat,  8 Feb 2020 05:52:59 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id nv-AHzJKCeB2; Sat,  8 Feb 2020 00:04:56 +0000 (UTC)
+	with ESMTP id 5MDe5e9QIDWh; Sat,  8 Feb 2020 05:52:59 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7702740C21;
-	Sat,  8 Feb 2020 00:04:54 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B34D840AD1;
+	Sat,  8 Feb 2020 05:52:58 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 59FA21743E6;
-	Fri,  7 Feb 2020 19:04:53 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id ED1381743E4;
+	Sat,  8 Feb 2020 00:52:57 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri,  7 Feb 2020 19:04:52 -0500
-Message-Id: <1581120292-47024-3-git-send-email-denis@denix.org>
+Date: Sat,  8 Feb 2020 00:52:57 -0500
+Message-Id: <1581141177-42420-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1581120292-47024-1-git-send-email-denis@denix.org>
-References: <1581120292-47024-1-git-send-email-denis@denix.org>
-Subject: [zeus/master][PATCH 3/3] optee-os: update to 3.8.0
+Subject: [zeus/master][PATCH] optee-test: also depend on pycryptodomex, as scripts used from optee-os
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,63 +37,67 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Feb 2020 00:06:51 -0000
+X-List-Received-Date: Sat, 08 Feb 2020 05:54:54 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-Cc: Andrew F. Davis <afd@ti.com>
----
- .../recipes-security/optee/optee-os_git.bbappend             | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+Cleanup optee-os and optee-client, while at it.
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-security/optee/optee-client.bbappend   | 5 -----
+ meta-arago-distro/recipes-security/optee/optee-os_git.bbappend   | 2 --
+ meta-arago-distro/recipes-security/optee/optee-test_git.bbappend | 7 +------
+ 3 files changed, 1 insertion(+), 13 deletions(-)
+
+diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+index c653612..39152f8 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
+@@ -2,11 +2,6 @@ PR_append = ".arago0"
+ 
+ SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
+            file://tee-supplicant.service"
+-
+-LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=69663ab153298557a59c67a60a743e5b"
+-
+-PV = "3.7.0+git${SRCPV}"
+-
+ BRANCH = "ti-optee-client"
+ SRCREV = "2e526f4be1d471706915ba1e0044bcbe7c0b2626"
+ 
 diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-index f8b329c..88af965 100644
+index 88af965..da70fe7 100644
 --- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
 +++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-@@ -2,13 +2,11 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+@@ -1,7 +1,5 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
- LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=c1f21c4f72f372ef38a5a4aee55ec173"
+-LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=c1f21c4f72f372ef38a5a4aee55ec173"
+-
+ DEPENDS += "python3-pycryptodomex-native"
+ 
+ PR_append = ".arago0"
+diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+index 42bdadf..913e8b5 100644
+--- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
++++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
+@@ -1,14 +1,9 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
 -inherit python3native
 -
--DEPENDS += "python3-pyelftools-native python3-pycrypto-native"
+-DEPENDS += "python3-pycrypto-native"
 +DEPENDS += "python3-pycryptodomex-native"
  
  PR_append = ".arago0"
  
+ SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
+-
 -PV = "3.7.0+git${SRCPV}"
-+PV = "3.8.0+git${SRCPV}"
- 
- is_armv7 = "1"
- is_armv7_aarch64 = "0"
-@@ -17,7 +15,7 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
-            file://0001-allow-setting-sysroot-for-libgcc-lookup.patch \
- "
- BRANCH = "ti-optee-os"
--SRCREV = "5208e5c1f3743fcde71e150eada2fc9945f749df"
-+SRCREV = "199fca17b575d4c748c9c435e908a6ec9618c75a"
- 
- ARMCORE = "CFG_ARM32_core=y ta-targets=ta_arm32"
- ARMCORE_aarch64 = "CFG_ARM64_core=y ta-targets=ta_arm64"
-@@ -64,7 +62,7 @@ do_compile() {
- do_compile_aarch64() {
-     oe_runmake all PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=${OPTEEFLAVOR}
-     ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
--        cp tee-pager.bin ${B}/bl32.bin; \
-+        cp tee-pager_v2.bin ${B}/bl32.bin; \
-         cp tee.elf ${B}/bl32.elf; \
-     )
- }
-@@ -73,7 +71,7 @@ do_compile_am65xx-hs-evm() {
-     export TI_SECURE_DEV_PKG=${TI_SECURE_DEV_PKG}
-     oe_runmake all PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=${OPTEEFLAVOR}
-     ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
--        ${TI_SECURE_DEV_PKG}/scripts/secure-binary-image.sh tee-pager.bin tee-pager.bin.signed; \
-+        ${TI_SECURE_DEV_PKG}/scripts/secure-binary-image.sh tee-pager_v2.bin tee-pager.bin.signed; \
-         mv tee-pager.bin.signed ${B}/bl32.bin; \
-         cp tee.elf ${B}/bl32.elf; \
-     )
+-
+ BRANCH = "ti-optee-test"
+ SRCREV = "7c68d7b098b19363ada3c48b133484b018254fb1"
 -- 
 2.7.4
 
