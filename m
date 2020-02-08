@@ -1,30 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 6163452A12
+	by arago-project.org (Postfix) with ESMTPS id 1238D52988
 	for <meta-arago@arago-project.org>;
-	Sat,  8 Feb 2020 05:54:54 +0000 (UTC)
+	Sat,  8 Feb 2020 17:43:59 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id D0AE140B9E;
-	Sat,  8 Feb 2020 05:52:59 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5982140C06;
+	Sat,  8 Feb 2020 17:42:04 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 5MDe5e9QIDWh; Sat,  8 Feb 2020 05:52:59 +0000 (UTC)
+	with ESMTP id HG_H6GR7lPCc; Sat,  8 Feb 2020 17:42:04 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B34D840AD1;
-	Sat,  8 Feb 2020 05:52:58 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 43B1940BEF;
+	Sat,  8 Feb 2020 17:42:02 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id ED1381743E4;
-	Sat,  8 Feb 2020 00:52:57 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id 4E67E1743D9;
+	Sat,  8 Feb 2020 12:42:02 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Sat,  8 Feb 2020 00:52:57 -0500
-Message-Id: <1581141177-42420-1-git-send-email-denis@denix.org>
+Date: Sat,  8 Feb 2020 12:42:02 -0500
+Message-Id: <1581183722-8905-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [zeus/master][PATCH] optee-test: also depend on pycryptodomex, as scripts used from optee-os
+Subject: [zeus/master][PATCH] packagegroups: disable ti-img-encode-decode due to K5.4 incompatibility
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,67 +37,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Feb 2020 05:54:54 -0000
+X-List-Received-Date: Sat, 08 Feb 2020 17:43:59 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Cleanup optee-os and optee-client, while at it.
-
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-security/optee/optee-client.bbappend   | 5 -----
- meta-arago-distro/recipes-security/optee/optee-os_git.bbappend   | 2 --
- meta-arago-distro/recipes-security/optee/optee-test_git.bbappend | 7 +------
- 3 files changed, 1 insertion(+), 13 deletions(-)
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb     | 2 +-
+ .../packagegroups/packagegroup-arago-tisdk-multimedia.bb          | 8 ++++----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-security/optee/optee-client.bbappend b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-index c653612..39152f8 100644
---- a/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-client.bbappend
-@@ -2,11 +2,6 @@ PR_append = ".arago0"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index bfdc61f..701e4a8 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -42,8 +42,8 @@ UTILS_append_k3 = " \
+     arm-trusted-firmware-src \
+ "
  
- SRC_URI = "git://git.ti.com/optee/ti-optee-client.git;branch=${BRANCH} \
-            file://tee-supplicant.service"
--
--LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=69663ab153298557a59c67a60a743e5b"
--
--PV = "3.7.0+git${SRCPV}"
--
- BRANCH = "ti-optee-client"
- SRCREV = "2e526f4be1d471706915ba1e0044bcbe7c0b2626"
++#    ti-img-encode-decode-src
+ UTILS_append_j7-evm = " \
+-    ti-img-encode-decode-src \
+     pru-icss-src \
+ "
  
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-index 88af965..da70fe7 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-@@ -1,7 +1,5 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+index 6f6f1f7..cc824ce 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+@@ -34,10 +34,10 @@ MULTIMEDIA_append_omap5-evm = " \
+     abefw \
+ "
  
--LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=c1f21c4f72f372ef38a5a4aee55ec173"
--
- DEPENDS += "python3-pycryptodomex-native"
+-MULTIMEDIA_append_j7-evm = " \
+-    ti-img-encode-decode \
+-    vxd-dec-fw \
+-"
++#MULTIMEDIA_append_j7-evm = " \
++#    ti-img-encode-decode \
++#    vxd-dec-fw \
++#"
  
- PR_append = ".arago0"
-diff --git a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-index 42bdadf..913e8b5 100644
---- a/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-test_git.bbappend
-@@ -1,14 +1,9 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ ACCEL_FW = ""
  
--inherit python3native
--
--DEPENDS += "python3-pycrypto-native"
-+DEPENDS += "python3-pycryptodomex-native"
- 
- PR_append = ".arago0"
- 
- SRC_URI = "git://git.ti.com/optee/ti-optee-test.git;branch=${BRANCH}"
--
--PV = "3.7.0+git${SRCPV}"
--
- BRANCH = "ti-optee-test"
- SRCREV = "7c68d7b098b19363ada3c48b133484b018254fb1"
 -- 
 2.7.4
 
