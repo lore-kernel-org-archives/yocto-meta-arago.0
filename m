@@ -1,30 +1,44 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 1238D52988
+Return-Path: <jake@udc0866934>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 157BF529B5
 	for <meta-arago@arago-project.org>;
-	Sat,  8 Feb 2020 17:43:59 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5982140C06;
-	Sat,  8 Feb 2020 17:42:04 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id HG_H6GR7lPCc; Sat,  8 Feb 2020 17:42:04 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 43B1940BEF;
-	Sat,  8 Feb 2020 17:42:02 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 4E67E1743D9;
-	Sat,  8 Feb 2020 12:42:02 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Sat,  8 Feb 2020 12:42:02 -0500
-Message-Id: <1581183722-8905-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [zeus/master][PATCH] packagegroups: disable ti-img-encode-decode due to K5.4 incompatibility
+	Mon, 10 Feb 2020 13:03:35 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01AD1duN109439
+	for <meta-arago@arago-project.org>; Mon, 10 Feb 2020 07:01:39 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1581339699;
+	bh=UwnHBFwS5V4CCRX2mkNOpHo7CwayilErKV+SKCU1yg8=;
+	h=From:To:CC:Subject:Date;
+	b=xSfKiLCB3tw5OzXNAMxujJRZAlIGKdXuAOCy6mJa3mf7zO8lTWMpihpH8vo7w7WE3
+	DSL+KPYtqsEn4rq40qsCNSFCicmB9esyGixjbkZsH5PgSI+xrE67pv9ieUqSCJ26WM
+	QPpMLtSeBIWK0FhBETjfFseUdpztUrGhHBzsSlsg=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01AD1dGH126780
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Mon, 10 Feb 2020 07:01:39 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Mon, 10 Feb 2020 07:01:39 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Mon, 10 Feb 2020 07:01:39 -0600
+Received: from udc0866934 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01AD1dB1045905;
+	Mon, 10 Feb 2020 07:01:39 -0600
+Received: from jake by udc0866934 with local (Exim 4.82)
+	(envelope-from <jake@udc0866934>)
+	id 1j18h0-00084i-PC; Mon, 10 Feb 2020 08:01:38 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 10 Feb 2020 08:01:35 -0500
+Message-ID: <1581339695-31008-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [master/zeus/thud][PATCH] docker: install init script if sysvinit
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,50 +51,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Feb 2020 17:43:59 -0000
+X-List-Received-Date: Mon, 10 Feb 2020 13:03:35 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+The docker recipe in meta-virtualization has conflicting logic for
+when to install and when to enable the docker initscript. When both
+systemd and sysvinit are in DISTRO_FEATURES, this causes the docker
+postinst to fail, which now fails the rootfs task.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Here we install the initscript only based on if sysvinit is in the
+DISTRO_FEATURES.
+
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb     | 2 +-
- .../packagegroups/packagegroup-arago-tisdk-multimedia.bb          | 8 ++++----
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ meta-arago-distro/recipes-containers/docker/docker_git.bbappend | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-containers/docker/docker_git.bbappend
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index bfdc61f..701e4a8 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -42,8 +42,8 @@ UTILS_append_k3 = " \
-     arm-trusted-firmware-src \
- "
- 
-+#    ti-img-encode-decode-src
- UTILS_append_j7-evm = " \
--    ti-img-encode-decode-src \
-     pru-icss-src \
- "
- 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-index 6f6f1f7..cc824ce 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-@@ -34,10 +34,10 @@ MULTIMEDIA_append_omap5-evm = " \
-     abefw \
- "
- 
--MULTIMEDIA_append_j7-evm = " \
--    ti-img-encode-decode \
--    vxd-dec-fw \
--"
-+#MULTIMEDIA_append_j7-evm = " \
-+#    ti-img-encode-decode \
-+#    vxd-dec-fw \
-+#"
- 
- ACCEL_FW = ""
- 
+diff --git a/meta-arago-distro/recipes-containers/docker/docker_git.bbappend b/meta-arago-distro/recipes-containers/docker/docker_git.bbappend
+new file mode 100644
+index 0000000..dbb7b04
+--- /dev/null
++++ b/meta-arago-distro/recipes-containers/docker/docker_git.bbappend
+@@ -0,0 +1,8 @@
++PR_append = ".tisdk0"
++
++do_install_append() {
++	if ${@bb.utils.contains('DISTRO_FEATURES','sysvinit','true','false',d)}; then
++		install -d ${D}${sysconfdir}/init.d
++		install -m 0755 ${WORKDIR}/docker.init ${D}${sysconfdir}/init.d/docker.init
++	fi
++}
 -- 
-2.7.4
+1.9.1
 
 
