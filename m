@@ -1,30 +1,46 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id D808F529B5
+Return-Path: <angelabaker@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id A758C5298B
 	for <meta-arago@arago-project.org>;
-	Tue, 11 Feb 2020 19:03:36 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 155B040C11;
-	Tue, 11 Feb 2020 19:01:41 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id QRWrRbIfVJ31; Tue, 11 Feb 2020 19:01:41 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DCF7940BAC;
-	Tue, 11 Feb 2020 19:01:39 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 3D6BB1743F7;
-	Tue, 11 Feb 2020 14:01:39 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 11 Feb 2020 14:01:38 -0500
-Message-Id: <1581447698-7436-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [zeus/master][PATCH] branding-core: re-enable "gpu" flag for graphics
+	Tue, 11 Feb 2020 19:36:43 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01BJYlbv048834
+	for <meta-arago@arago-project.org>; Tue, 11 Feb 2020 13:34:47 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1581449687;
+	bh=FXH0phMpLkiPhKj0HyRsqXv2yiIHTtAC1k4p4eVLmbI=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=CUrsSdbfltdnvyyK13yOd7hNEmGXw3Km2/WPnXnlmkvhLPB8TFtH/01YATKPCpJxM
+	nfvmCpBeYw1T0CZZsoCgYODXX3jgQPdcprP/4DXbFDxCL0T+GXR8TjJ17S6YUieWpm
+	svo7Fm3vy8xPuUpl4Da1OTCbnOp9TizdM8Bfg0SE=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01BJYlJ3095256
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 11 Feb 2020 13:34:47 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Tue, 11 Feb 2020 13:34:47 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Tue, 11 Feb 2020 13:34:47 -0600
+Received: from [128.247.77.48] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01BJYksb088192;
+	Tue, 11 Feb 2020 13:34:47 -0600
+To: Denys Dmytriyenko <denys@ti.com>, Angela Stegmaier <angelabaker@ti.com>
+References: <1581351918-32354-1-git-send-email-angelabaker@ti.com>
+	<20200211043348.GA20281@beryl>
+From: Angela Stegmaier <a0866189@ti.com>
+Message-ID: <36253987-2d6b-ac50-199d-343cd9db96af@ti.com>
+Date: Tue, 11 Feb 2020 13:34:45 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <20200211043348.GA20281@beryl>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [zeus/master][PATCH] packagegroup-arago-tisdk-addons: replacing ipc-lld-fw
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,25 +53,56 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Feb 2020 19:03:37 -0000
+X-List-Received-Date: Tue, 11 Feb 2020 19:36:44 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/include/branding-core.inc | 1 -
- 1 file changed, 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
-index e7a32a2..7ec9fc4 100644
---- a/meta-arago-distro/conf/distro/include/branding-core.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-core.inc
-@@ -15,4 +15,3 @@ ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
- # Temporarily disable "dsp", "mmip" and "gpu" machine features for all SOCs
- MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('dsp', '')}"
- MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('mmip', '')}"
--MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('gpu', '')}"
--- 
-2.7.4
+On 2/10/20 10:33 PM, Denys Dmytriyenko wrote:
+> Have you tried building it?
+> 
 
+I did, but... looks like my setup had older pdk-fetch recipe in meta-ti. 
+After updating all to latest I am seeing a build failure in board-rtos.
+
+Thanks,
+Angela
+
+> 
+> On Mon, Feb 10, 2020 at 10:25:18AM -0600, Angela Stegmaier wrote:
+>> From: Santosh Jha <sjha@ti.com>
+>>
+>> Replacing ipc-lld-fw with ipc-lld-examples-rtos to
+>> build from source.
+>>
+>> Signed-off-by: Santosh Jha <sjha@ti.com>
+>> Signed-off-by: Angela Stegmaier <angelabaker@ti.com>
+>> ---
+>>   .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb     | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+>> index a1b55ee..1612322 100644
+>> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+>> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+>> @@ -77,8 +77,8 @@ UTILS_append_k3 = " mmc-utils \
+>>                       jailhouse \
+>>   "
+>>   
+>> -UTILS_append_am65xx = " ipc-lld-fw ti-ipc-rtos-fw pru-icss pru-pwm-fw"
+>> -UTILS_append_j7-evm = " ipc-lld-fw pru-icss ti-display-sharing-fw cpsw9g-eth-fw"
+>> +UTILS_append_am65xx = " ipc-lld-examples-rtos ti-ipc-rtos-fw pru-icss pru-pwm-fw"
+>> +UTILS_append_j7-evm = " ipc-lld-examples-rtos pru-icss ti-display-sharing-fw cpsw9g-eth-fw"
+>>   
+>>   UTILS_append_omapl138 = " ti-ipc-rtos-fw"
+>>   
+>> -- 
+>> 1.9.1
+>>
+>> _______________________________________________
+>> meta-arago mailing list
+>> meta-arago@arago-project.org
+>> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
