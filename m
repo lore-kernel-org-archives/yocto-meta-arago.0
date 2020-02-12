@@ -1,30 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 52DA25298B
+Return-Path: <denys@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 9FC355298B
 	for <meta-arago@arago-project.org>;
-	Tue, 11 Feb 2020 22:23:29 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 638AA40C1C;
-	Tue, 11 Feb 2020 22:21:33 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id Mh6rcTIUldgQ; Tue, 11 Feb 2020 22:21:33 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4D92040BCC;
-	Tue, 11 Feb 2020 22:21:32 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id DF00F1743F8;
-	Tue, 11 Feb 2020 17:21:31 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 11 Feb 2020 17:21:30 -0500
-Message-Id: <1581459690-29439-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [zeus/master][PATCH] linux-libc-headers, external-arm-toolchain: update to the latest to include remoteproc uapi
+	Wed, 12 Feb 2020 20:14:23 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01CKCR3Y067080
+	for <meta-arago@arago-project.org>; Wed, 12 Feb 2020 14:12:27 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1581538347;
+	bh=WQ0HZuQEkbzUIh0g2cXmsIozkAhdHIOkhkIlk98Rrpo=;
+	h=From:To:CC:Subject:Date;
+	b=ioxWjxgdcsM3IHlSXYOVyM0KZBKNvlk2mI0g5VofBPIcul9aTflwAvekZdGEh1JBE
+	boE59T0T4QiD4cd6ihguo+YprdQwYiKKYR/45za2SXMZtOESGHL+TxtZ0GqMGk7yns
+	a9ijjTf6IkqLoVirBNcghAJGRuaKB4ssYSCpXO4E=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01CKCRGM068914
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Wed, 12 Feb 2020 14:12:27 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Wed, 12 Feb 2020 14:12:26 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Wed, 12 Feb 2020 14:12:26 -0600
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01CKCQcK097619;
+	Wed, 12 Feb 2020 14:12:26 -0600
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Wed, 12 Feb 2020 19:51:38 +0000
+Message-ID: <20200212195138.15694-1-denys@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [zeus/master][PATCH] ti-sci-fw: update to 2019.12b and switch to k3-image-gen
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,43 +49,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Feb 2020 22:23:29 -0000
-
-From: Denys Dmytriyenko <denys@ti.com>
+X-List-Received-Date: Wed, 12 Feb 2020 20:14:24 -0000
+Content-Type: text/plain
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend     | 2 +-
- .../recipes-kernel/linux-libc-headers/linux-libc-headers_5.4.bb         | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ .../ti-sci-fw/{ti-sci-fw_2019.12.bb => ti-sci-fw_2019.12b.bb} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename meta-arago-distro/recipes-bsp/ti-sci-fw/{ti-sci-fw_2019.12.bb => ti-sci-fw_2019.12b.bb} (93%)
 
-diff --git a/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend
-index 4a57fad..0dfb3f5 100644
---- a/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend
-+++ b/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend
-@@ -4,7 +4,7 @@
- # duplication of code from corresponding recipe.
+diff --git a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.12.bb b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.12b.bb
+similarity index 93%
+rename from meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.12.bb
+rename to meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.12b.bb
+index 74a06971..39ee0a59 100644
+--- a/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.12.bb
++++ b/meta-arago-distro/recipes-bsp/ti-sci-fw/ti-sci-fw_2019.12b.bb
+@@ -15,14 +15,14 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ TI_SECURE_DEV_PKG ?= ""
+ export TI_SECURE_DEV_PKG
  
- BRANCH = "ti-linux-5.4.y"
--SRCREV = "c65c87b98f8d1b647c13b5bb36e5ffbad5805ff1"
-+SRCREV = "1661da3fddf4cc3f62796ecfb5c572f1e5361bdf"
+-SRCREV = "a692931eba713a099ed9ae41ef4a4f7ba145a706"
++SRCREV = "6a07e130e7dac6b49c9e516ffc84e33a68155260"
+ BRANCH ?= "ti-linux-firmware"
+ SRCREV_imggen = "642da4e2a01ea5d8a553ae0d674839cd5e0715b9"
+ SRCREV_FORMAT = "imggen"
  
- KERNEL_GIT_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git"
- KERNEL_GIT_PROTOCOL = "git"
-diff --git a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.4.bb b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.4.bb
-index 74b676a..c0a3709 100644
---- a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.4.bb
-+++ b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.4.bb
-@@ -5,7 +5,7 @@ PR_append = ".arago0"
- DEPENDS += "rsync-native"
+ SRC_URI = " \
+ 	git://git.ti.com/processor-firmware/ti-linux-firmware.git;protocol=git;branch=${BRANCH} \
+-	git://git.ti.com/processor-firmware/system-firmware-image-gen.git;protocol=git;branch=master;destsuffix=imggen;name=imggen \
++	git://git.ti.com/k3-image-gen/k3-image-gen.git;protocol=git;branch=master;destsuffix=imggen;name=imggen \
+ "
  
- BRANCH = "ti-linux-5.4.y"
--SRCREV = "c65c87b98f8d1b647c13b5bb36e5ffbad5805ff1"
-+SRCREV = "1661da3fddf4cc3f62796ecfb5c572f1e5361bdf"
- 
- KERNEL_GIT_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git"
- KERNEL_GIT_PROTOCOL = "git"
+ S = "${WORKDIR}/git"
 -- 
-2.7.4
+2.17.1
 
 
