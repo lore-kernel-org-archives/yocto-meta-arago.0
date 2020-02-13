@@ -1,32 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id EF2FD52995
+	by arago-project.org (Postfix) with ESMTPS id E5F355298B
 	for <meta-arago@arago-project.org>;
 	Thu, 13 Feb 2020 22:16:08 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 6F2E640C1C;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 78E4D409E7;
 	Thu, 13 Feb 2020 22:14:12 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id wcDSIUpuutse; Thu, 13 Feb 2020 22:14:12 +0000 (UTC)
+	with ESMTP id BVxGcJKfYYoy; Thu, 13 Feb 2020 22:14:12 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4D5E6409E7;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4F0C740C0A;
 	Thu, 13 Feb 2020 22:14:11 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 57A7B1743FC;
+	by mail.denix.org (Postfix) with ESMTP id 439531743FB;
 	Thu, 13 Feb 2020 17:14:10 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 13 Feb 2020 17:13:21 -0500
-Message-Id: <1581632002-56495-2-git-send-email-denis@denix.org>
+Date: Thu, 13 Feb 2020 17:13:20 -0500
+Message-Id: <1581632002-56495-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1581632002-56495-1-git-send-email-denis@denix.org>
-References: <1581632002-56495-1-git-send-email-denis@denix.org>
-Subject: [zeus/master][PATCH 2/3] gstreamer1.0-plugins-bad: update to 1.16
+Subject: [zeus/master][PATCH 1/3] gstreamer1.0-plugins-good: update to 1.16
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,313 +37,902 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Feb 2020 22:16:09 -0000
+X-List-Received-Date: Thu, 13 Feb 2020 22:16:10 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-* Update applicable patches, especially gst DRM allocator, needed for ti-plugins.
-* Disable all waylandsink patches for now - need to be reworked later.
+* Update applicable patches.
+* Drop upstreamed patches.
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- ...gstdrmallocator-Add-DRM-allocator-support.patch | 30 ++++++++++------------
- .../0002-parsers-bug-fixes-on-parsers.patch        | 20 +++++++--------
- ...-omapdrm-and-tidss-in-the-list-of-drivers.patch | 14 +++++-----
- ...nd => gstreamer1.0-plugins-bad_1.16.%.bbappend} | 24 ++++++++---------
- 4 files changed, 41 insertions(+), 47 deletions(-)
- rename meta-arago-extras/recipes-multimedia/gstreamer/{gstreamer1.0-plugins-bad_1.14.4.bbappend => gstreamer1.0-plugins-bad_1.16.%.bbappend} (69%)
+ ...v4l2-Sync-kernel-header-with-linuxtv-tree.patch | 625 ---------------------
+ ...Update-formats-table-to-include-YUV422-mu.patch |  18 +-
+ ...v4l2src-Increase-minimum-num-buffers-by-3.patch |  10 +-
+ ...2src-Use-generic-dmabuf-import-in-v4l2src.patch |  18 +-
+ ...002-v4l2videodec-Add-HEVC-decoder-support.patch |  60 --
+ ...d => gstreamer1.0-plugins-good_1.16.%.bbappend} |  12 +-
+ 6 files changed, 25 insertions(+), 718 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2-Sync-kernel-header-with-linuxtv-tree.patch
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0002-v4l2videodec-Add-HEVC-decoder-support.patch
+ rename meta-arago-extras/recipes-multimedia/gstreamer/{gstreamer1.0-plugins-good_1.14.4.bbappend => gstreamer1.0-plugins-good_1.16.%.bbappend} (14%)
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrmallocator-Add-DRM-allocator-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrmallocator-Add-DRM-allocator-support.patch
-index af56ee6..7313123 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrmallocator-Add-DRM-allocator-support.patch
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrmallocator-Add-DRM-allocator-support.patch
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2-Sync-kernel-header-with-linuxtv-tree.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2-Sync-kernel-header-with-linuxtv-tree.patch
+deleted file mode 100644
+index 922d20e..0000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2-Sync-kernel-header-with-linuxtv-tree.patch
++++ /dev/null
+@@ -1,625 +0,0 @@
+-From a27d242dd4f92b58e7c04cec3cd5fddcf800ab82 Mon Sep 17 00:00:00 2001
+-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+-Date: Wed, 12 Sep 2018 21:28:24 -0400
+-Subject: [PATCH 1/2] v4l2: Sync kernel header with linuxtv tree
+-
+-This notably add HEVC and FWHT support, and VP8/9 profiles are now an
+-enumeration and their control exposed as a menu.
+----
+- sys/v4l2/ext/v4l2-common.h   |   1 +
+- sys/v4l2/ext/v4l2-controls.h | 210 ++++++++++++++++++++++++++++++++-----------
+- sys/v4l2/ext/videodev2.h     |  86 ++++++++++++------
+- 3 files changed, 217 insertions(+), 80 deletions(-)
+-
+-diff --git a/sys/v4l2/ext/v4l2-common.h b/sys/v4l2/ext/v4l2-common.h
+-index 2a2c88a..7a2c3d9 100644
+---- a/sys/v4l2/ext/v4l2-common.h
+-+++ b/sys/v4l2/ext/v4l2-common.h
+-@@ -1,3 +1,4 @@
+-+/* SPDX-License-Identifier: ((GPL-2.0+ WITH Linux-syscall-note) OR BSD-3-Clause) */
+- /*
+-  * include/linux/v4l2-common.h
+-  *
+-diff --git a/sys/v4l2/ext/v4l2-controls.h b/sys/v4l2/ext/v4l2-controls.h
+-index 31bfc68..e4ee10e 100644
+---- a/sys/v4l2/ext/v4l2-controls.h
+-+++ b/sys/v4l2/ext/v4l2-controls.h
+-@@ -1,3 +1,4 @@
+-+/* SPDX-License-Identifier: ((GPL-2.0+ WITH Linux-syscall-note) OR BSD-3-Clause) */
+- /*
+-  *  Video for Linux Two controls header file
+-  *
+-@@ -66,8 +67,8 @@
+- /* User-class control IDs */
+- 
+- #define V4L2_CID_BASE			(V4L2_CTRL_CLASS_USER | 0x900)
+--#define V4L2_CID_USER_BASE 		V4L2_CID_BASE
+--#define V4L2_CID_USER_CLASS 		(V4L2_CTRL_CLASS_USER | 1)
+-+#define V4L2_CID_USER_BASE		V4L2_CID_BASE
+-+#define V4L2_CID_USER_CLASS		(V4L2_CTRL_CLASS_USER | 1)
+- #define V4L2_CID_BRIGHTNESS		(V4L2_CID_BASE+0)
+- #define V4L2_CID_CONTRAST		(V4L2_CID_BASE+1)
+- #define V4L2_CID_SATURATION		(V4L2_CID_BASE+2)
+-@@ -101,7 +102,7 @@ enum v4l2_power_line_frequency {
+- #define V4L2_CID_HUE_AUTO			(V4L2_CID_BASE+25)
+- #define V4L2_CID_WHITE_BALANCE_TEMPERATURE	(V4L2_CID_BASE+26)
+- #define V4L2_CID_SHARPNESS			(V4L2_CID_BASE+27)
+--#define V4L2_CID_BACKLIGHT_COMPENSATION 	(V4L2_CID_BASE+28)
+-+#define V4L2_CID_BACKLIGHT_COMPENSATION		(V4L2_CID_BASE+28)
+- #define V4L2_CID_CHROMA_AGC                     (V4L2_CID_BASE+29)
+- #define V4L2_CID_COLOR_KILLER                   (V4L2_CID_BASE+30)
+- #define V4L2_CID_COLORFX			(V4L2_CID_BASE+31)
+-@@ -187,17 +188,17 @@ enum v4l2_colorfx {
+- 
+- /* The base for the imx driver controls.
+-  * We reserve 16 controls for this driver. */
+--#define V4L2_CID_USER_IMX_BASE			(V4L2_CID_USER_BASE + 0x1090)
+-+#define V4L2_CID_USER_IMX_BASE			(V4L2_CID_USER_BASE + 0x10b0)
+- 
+- /* MPEG-class control IDs */
+- /* The MPEG controls are applicable to all codec controls
+-  * and the 'MPEG' part of the define is historical */
+- 
+--#define V4L2_CID_MPEG_BASE 			(V4L2_CTRL_CLASS_MPEG | 0x900)
+--#define V4L2_CID_MPEG_CLASS 			(V4L2_CTRL_CLASS_MPEG | 1)
+-+#define V4L2_CID_MPEG_BASE			(V4L2_CTRL_CLASS_MPEG | 0x900)
+-+#define V4L2_CID_MPEG_CLASS			(V4L2_CTRL_CLASS_MPEG | 1)
+- 
+- /*  MPEG streams, specific to multiplexed streams */
+--#define V4L2_CID_MPEG_STREAM_TYPE 		(V4L2_CID_MPEG_BASE+0)
+-+#define V4L2_CID_MPEG_STREAM_TYPE		(V4L2_CID_MPEG_BASE+0)
+- enum v4l2_mpeg_stream_type {
+- 	V4L2_MPEG_STREAM_TYPE_MPEG2_PS   = 0, /* MPEG-2 program stream */
+- 	V4L2_MPEG_STREAM_TYPE_MPEG2_TS   = 1, /* MPEG-2 transport stream */
+-@@ -206,26 +207,26 @@ enum v4l2_mpeg_stream_type {
+- 	V4L2_MPEG_STREAM_TYPE_MPEG1_VCD  = 4, /* MPEG-1 VCD-compatible stream */
+- 	V4L2_MPEG_STREAM_TYPE_MPEG2_SVCD = 5, /* MPEG-2 SVCD-compatible stream */
+- };
+--#define V4L2_CID_MPEG_STREAM_PID_PMT 		(V4L2_CID_MPEG_BASE+1)
+--#define V4L2_CID_MPEG_STREAM_PID_AUDIO 		(V4L2_CID_MPEG_BASE+2)
+--#define V4L2_CID_MPEG_STREAM_PID_VIDEO 		(V4L2_CID_MPEG_BASE+3)
+--#define V4L2_CID_MPEG_STREAM_PID_PCR 		(V4L2_CID_MPEG_BASE+4)
+--#define V4L2_CID_MPEG_STREAM_PES_ID_AUDIO 	(V4L2_CID_MPEG_BASE+5)
+--#define V4L2_CID_MPEG_STREAM_PES_ID_VIDEO 	(V4L2_CID_MPEG_BASE+6)
+--#define V4L2_CID_MPEG_STREAM_VBI_FMT 		(V4L2_CID_MPEG_BASE+7)
+-+#define V4L2_CID_MPEG_STREAM_PID_PMT		(V4L2_CID_MPEG_BASE+1)
+-+#define V4L2_CID_MPEG_STREAM_PID_AUDIO		(V4L2_CID_MPEG_BASE+2)
+-+#define V4L2_CID_MPEG_STREAM_PID_VIDEO		(V4L2_CID_MPEG_BASE+3)
+-+#define V4L2_CID_MPEG_STREAM_PID_PCR		(V4L2_CID_MPEG_BASE+4)
+-+#define V4L2_CID_MPEG_STREAM_PES_ID_AUDIO	(V4L2_CID_MPEG_BASE+5)
+-+#define V4L2_CID_MPEG_STREAM_PES_ID_VIDEO	(V4L2_CID_MPEG_BASE+6)
+-+#define V4L2_CID_MPEG_STREAM_VBI_FMT		(V4L2_CID_MPEG_BASE+7)
+- enum v4l2_mpeg_stream_vbi_fmt {
+- 	V4L2_MPEG_STREAM_VBI_FMT_NONE = 0,  /* No VBI in the MPEG stream */
+- 	V4L2_MPEG_STREAM_VBI_FMT_IVTV = 1,  /* VBI in private packets, IVTV format */
+- };
+- 
+- /*  MPEG audio controls specific to multiplexed streams  */
+--#define V4L2_CID_MPEG_AUDIO_SAMPLING_FREQ 	(V4L2_CID_MPEG_BASE+100)
+-+#define V4L2_CID_MPEG_AUDIO_SAMPLING_FREQ	(V4L2_CID_MPEG_BASE+100)
+- enum v4l2_mpeg_audio_sampling_freq {
+- 	V4L2_MPEG_AUDIO_SAMPLING_FREQ_44100 = 0,
+- 	V4L2_MPEG_AUDIO_SAMPLING_FREQ_48000 = 1,
+- 	V4L2_MPEG_AUDIO_SAMPLING_FREQ_32000 = 2,
+- };
+--#define V4L2_CID_MPEG_AUDIO_ENCODING 		(V4L2_CID_MPEG_BASE+101)
+-+#define V4L2_CID_MPEG_AUDIO_ENCODING		(V4L2_CID_MPEG_BASE+101)
+- enum v4l2_mpeg_audio_encoding {
+- 	V4L2_MPEG_AUDIO_ENCODING_LAYER_1 = 0,
+- 	V4L2_MPEG_AUDIO_ENCODING_LAYER_2 = 1,
+-@@ -233,7 +234,7 @@ enum v4l2_mpeg_audio_encoding {
+- 	V4L2_MPEG_AUDIO_ENCODING_AAC     = 3,
+- 	V4L2_MPEG_AUDIO_ENCODING_AC3     = 4,
+- };
+--#define V4L2_CID_MPEG_AUDIO_L1_BITRATE 		(V4L2_CID_MPEG_BASE+102)
+-+#define V4L2_CID_MPEG_AUDIO_L1_BITRATE		(V4L2_CID_MPEG_BASE+102)
+- enum v4l2_mpeg_audio_l1_bitrate {
+- 	V4L2_MPEG_AUDIO_L1_BITRATE_32K  = 0,
+- 	V4L2_MPEG_AUDIO_L1_BITRATE_64K  = 1,
+-@@ -250,7 +251,7 @@ enum v4l2_mpeg_audio_l1_bitrate {
+- 	V4L2_MPEG_AUDIO_L1_BITRATE_416K = 12,
+- 	V4L2_MPEG_AUDIO_L1_BITRATE_448K = 13,
+- };
+--#define V4L2_CID_MPEG_AUDIO_L2_BITRATE 		(V4L2_CID_MPEG_BASE+103)
+-+#define V4L2_CID_MPEG_AUDIO_L2_BITRATE		(V4L2_CID_MPEG_BASE+103)
+- enum v4l2_mpeg_audio_l2_bitrate {
+- 	V4L2_MPEG_AUDIO_L2_BITRATE_32K  = 0,
+- 	V4L2_MPEG_AUDIO_L2_BITRATE_48K  = 1,
+-@@ -267,7 +268,7 @@ enum v4l2_mpeg_audio_l2_bitrate {
+- 	V4L2_MPEG_AUDIO_L2_BITRATE_320K = 12,
+- 	V4L2_MPEG_AUDIO_L2_BITRATE_384K = 13,
+- };
+--#define V4L2_CID_MPEG_AUDIO_L3_BITRATE 		(V4L2_CID_MPEG_BASE+104)
+-+#define V4L2_CID_MPEG_AUDIO_L3_BITRATE		(V4L2_CID_MPEG_BASE+104)
+- enum v4l2_mpeg_audio_l3_bitrate {
+- 	V4L2_MPEG_AUDIO_L3_BITRATE_32K  = 0,
+- 	V4L2_MPEG_AUDIO_L3_BITRATE_40K  = 1,
+-@@ -284,32 +285,32 @@ enum v4l2_mpeg_audio_l3_bitrate {
+- 	V4L2_MPEG_AUDIO_L3_BITRATE_256K = 12,
+- 	V4L2_MPEG_AUDIO_L3_BITRATE_320K = 13,
+- };
+--#define V4L2_CID_MPEG_AUDIO_MODE 		(V4L2_CID_MPEG_BASE+105)
+-+#define V4L2_CID_MPEG_AUDIO_MODE		(V4L2_CID_MPEG_BASE+105)
+- enum v4l2_mpeg_audio_mode {
+- 	V4L2_MPEG_AUDIO_MODE_STEREO       = 0,
+- 	V4L2_MPEG_AUDIO_MODE_JOINT_STEREO = 1,
+- 	V4L2_MPEG_AUDIO_MODE_DUAL         = 2,
+- 	V4L2_MPEG_AUDIO_MODE_MONO         = 3,
+- };
+--#define V4L2_CID_MPEG_AUDIO_MODE_EXTENSION 	(V4L2_CID_MPEG_BASE+106)
+-+#define V4L2_CID_MPEG_AUDIO_MODE_EXTENSION	(V4L2_CID_MPEG_BASE+106)
+- enum v4l2_mpeg_audio_mode_extension {
+- 	V4L2_MPEG_AUDIO_MODE_EXTENSION_BOUND_4  = 0,
+- 	V4L2_MPEG_AUDIO_MODE_EXTENSION_BOUND_8  = 1,
+- 	V4L2_MPEG_AUDIO_MODE_EXTENSION_BOUND_12 = 2,
+- 	V4L2_MPEG_AUDIO_MODE_EXTENSION_BOUND_16 = 3,
+- };
+--#define V4L2_CID_MPEG_AUDIO_EMPHASIS 		(V4L2_CID_MPEG_BASE+107)
+-+#define V4L2_CID_MPEG_AUDIO_EMPHASIS		(V4L2_CID_MPEG_BASE+107)
+- enum v4l2_mpeg_audio_emphasis {
+- 	V4L2_MPEG_AUDIO_EMPHASIS_NONE         = 0,
+- 	V4L2_MPEG_AUDIO_EMPHASIS_50_DIV_15_uS = 1,
+- 	V4L2_MPEG_AUDIO_EMPHASIS_CCITT_J17    = 2,
+- };
+--#define V4L2_CID_MPEG_AUDIO_CRC 		(V4L2_CID_MPEG_BASE+108)
+-+#define V4L2_CID_MPEG_AUDIO_CRC			(V4L2_CID_MPEG_BASE+108)
+- enum v4l2_mpeg_audio_crc {
+- 	V4L2_MPEG_AUDIO_CRC_NONE  = 0,
+- 	V4L2_MPEG_AUDIO_CRC_CRC16 = 1,
+- };
+--#define V4L2_CID_MPEG_AUDIO_MUTE 		(V4L2_CID_MPEG_BASE+109)
+-+#define V4L2_CID_MPEG_AUDIO_MUTE		(V4L2_CID_MPEG_BASE+109)
+- #define V4L2_CID_MPEG_AUDIO_AAC_BITRATE		(V4L2_CID_MPEG_BASE+110)
+- #define V4L2_CID_MPEG_AUDIO_AC3_BITRATE		(V4L2_CID_MPEG_BASE+111)
+- enum v4l2_mpeg_audio_ac3_bitrate {
+-@@ -345,33 +346,33 @@ enum v4l2_mpeg_audio_dec_playback {
+- #define V4L2_CID_MPEG_AUDIO_DEC_MULTILINGUAL_PLAYBACK (V4L2_CID_MPEG_BASE+113)
+- 
+- /*  MPEG video controls specific to multiplexed streams */
+--#define V4L2_CID_MPEG_VIDEO_ENCODING 		(V4L2_CID_MPEG_BASE+200)
+-+#define V4L2_CID_MPEG_VIDEO_ENCODING		(V4L2_CID_MPEG_BASE+200)
+- enum v4l2_mpeg_video_encoding {
+- 	V4L2_MPEG_VIDEO_ENCODING_MPEG_1     = 0,
+- 	V4L2_MPEG_VIDEO_ENCODING_MPEG_2     = 1,
+- 	V4L2_MPEG_VIDEO_ENCODING_MPEG_4_AVC = 2,
+- };
+--#define V4L2_CID_MPEG_VIDEO_ASPECT 		(V4L2_CID_MPEG_BASE+201)
+-+#define V4L2_CID_MPEG_VIDEO_ASPECT		(V4L2_CID_MPEG_BASE+201)
+- enum v4l2_mpeg_video_aspect {
+- 	V4L2_MPEG_VIDEO_ASPECT_1x1     = 0,
+- 	V4L2_MPEG_VIDEO_ASPECT_4x3     = 1,
+- 	V4L2_MPEG_VIDEO_ASPECT_16x9    = 2,
+- 	V4L2_MPEG_VIDEO_ASPECT_221x100 = 3,
+- };
+--#define V4L2_CID_MPEG_VIDEO_B_FRAMES 		(V4L2_CID_MPEG_BASE+202)
+--#define V4L2_CID_MPEG_VIDEO_GOP_SIZE 		(V4L2_CID_MPEG_BASE+203)
+--#define V4L2_CID_MPEG_VIDEO_GOP_CLOSURE 	(V4L2_CID_MPEG_BASE+204)
+--#define V4L2_CID_MPEG_VIDEO_PULLDOWN 		(V4L2_CID_MPEG_BASE+205)
+--#define V4L2_CID_MPEG_VIDEO_BITRATE_MODE 	(V4L2_CID_MPEG_BASE+206)
+-+#define V4L2_CID_MPEG_VIDEO_B_FRAMES		(V4L2_CID_MPEG_BASE+202)
+-+#define V4L2_CID_MPEG_VIDEO_GOP_SIZE		(V4L2_CID_MPEG_BASE+203)
+-+#define V4L2_CID_MPEG_VIDEO_GOP_CLOSURE		(V4L2_CID_MPEG_BASE+204)
+-+#define V4L2_CID_MPEG_VIDEO_PULLDOWN		(V4L2_CID_MPEG_BASE+205)
+-+#define V4L2_CID_MPEG_VIDEO_BITRATE_MODE	(V4L2_CID_MPEG_BASE+206)
+- enum v4l2_mpeg_video_bitrate_mode {
+- 	V4L2_MPEG_VIDEO_BITRATE_MODE_VBR = 0,
+- 	V4L2_MPEG_VIDEO_BITRATE_MODE_CBR = 1,
+- };
+--#define V4L2_CID_MPEG_VIDEO_BITRATE 		(V4L2_CID_MPEG_BASE+207)
+--#define V4L2_CID_MPEG_VIDEO_BITRATE_PEAK 	(V4L2_CID_MPEG_BASE+208)
+-+#define V4L2_CID_MPEG_VIDEO_BITRATE		(V4L2_CID_MPEG_BASE+207)
+-+#define V4L2_CID_MPEG_VIDEO_BITRATE_PEAK	(V4L2_CID_MPEG_BASE+208)
+- #define V4L2_CID_MPEG_VIDEO_TEMPORAL_DECIMATION (V4L2_CID_MPEG_BASE+209)
+--#define V4L2_CID_MPEG_VIDEO_MUTE 		(V4L2_CID_MPEG_BASE+210)
+--#define V4L2_CID_MPEG_VIDEO_MUTE_YUV 		(V4L2_CID_MPEG_BASE+211)
+-+#define V4L2_CID_MPEG_VIDEO_MUTE		(V4L2_CID_MPEG_BASE+210)
+-+#define V4L2_CID_MPEG_VIDEO_MUTE_YUV		(V4L2_CID_MPEG_BASE+211)
+- #define V4L2_CID_MPEG_VIDEO_DECODER_SLICE_INTERFACE		(V4L2_CID_MPEG_BASE+212)
+- #define V4L2_CID_MPEG_VIDEO_DECODER_MPEG4_DEBLOCK_FILTER	(V4L2_CID_MPEG_BASE+213)
+- #define V4L2_CID_MPEG_VIDEO_CYCLIC_INTRA_REFRESH_MB		(V4L2_CID_MPEG_BASE+214)
+-@@ -586,17 +587,125 @@ enum v4l2_vp8_golden_frame_sel {
+- #define V4L2_CID_MPEG_VIDEO_VPX_MAX_QP			(V4L2_CID_MPEG_BASE+508)
+- #define V4L2_CID_MPEG_VIDEO_VPX_I_FRAME_QP		(V4L2_CID_MPEG_BASE+509)
+- #define V4L2_CID_MPEG_VIDEO_VPX_P_FRAME_QP		(V4L2_CID_MPEG_BASE+510)
+--#define V4L2_CID_MPEG_VIDEO_VPX_PROFILE			(V4L2_CID_MPEG_BASE+511)
+-+
+-+#define V4L2_CID_MPEG_VIDEO_VP8_PROFILE			(V4L2_CID_MPEG_BASE+511)
+-+enum v4l2_mpeg_video_vp8_profile {
+-+	V4L2_MPEG_VIDEO_VP8_PROFILE_0				= 0,
+-+	V4L2_MPEG_VIDEO_VP8_PROFILE_1				= 1,
+-+	V4L2_MPEG_VIDEO_VP8_PROFILE_2				= 2,
+-+	V4L2_MPEG_VIDEO_VP8_PROFILE_3				= 3,
+-+};
+-+/* Deprecated alias for compatibility reasons. */
+-+#define V4L2_CID_MPEG_VIDEO_VPX_PROFILE	V4L2_CID_MPEG_VIDEO_VP8_PROFILE
+-+#define V4L2_CID_MPEG_VIDEO_VP9_PROFILE			(V4L2_CID_MPEG_BASE+512)
+-+enum v4l2_mpeg_video_vp9_profile {
+-+	V4L2_MPEG_VIDEO_VP9_PROFILE_0				= 0,
+-+	V4L2_MPEG_VIDEO_VP9_PROFILE_1				= 1,
+-+	V4L2_MPEG_VIDEO_VP9_PROFILE_2				= 2,
+-+	V4L2_MPEG_VIDEO_VP9_PROFILE_3				= 3,
+-+};
+-+
+-+/* CIDs for HEVC encoding. */
+-+
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_MIN_QP		(V4L2_CID_MPEG_BASE + 600)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_MAX_QP		(V4L2_CID_MPEG_BASE + 601)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_I_FRAME_QP	(V4L2_CID_MPEG_BASE + 602)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_P_FRAME_QP	(V4L2_CID_MPEG_BASE + 603)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_B_FRAME_QP	(V4L2_CID_MPEG_BASE + 604)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_QP	(V4L2_CID_MPEG_BASE + 605)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_TYPE (V4L2_CID_MPEG_BASE + 606)
+-+enum v4l2_mpeg_video_hevc_hier_coding_type {
+-+	V4L2_MPEG_VIDEO_HEVC_HIERARCHICAL_CODING_B	= 0,
+-+	V4L2_MPEG_VIDEO_HEVC_HIERARCHICAL_CODING_P	= 1,
+-+};
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_LAYER	(V4L2_CID_MPEG_BASE + 607)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L0_QP	(V4L2_CID_MPEG_BASE + 608)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L1_QP	(V4L2_CID_MPEG_BASE + 609)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L2_QP	(V4L2_CID_MPEG_BASE + 610)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L3_QP	(V4L2_CID_MPEG_BASE + 611)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L4_QP	(V4L2_CID_MPEG_BASE + 612)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L5_QP	(V4L2_CID_MPEG_BASE + 613)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L6_QP	(V4L2_CID_MPEG_BASE + 614)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_PROFILE	(V4L2_CID_MPEG_BASE + 615)
+-+enum v4l2_mpeg_video_hevc_profile {
+-+	V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN = 0,
+-+	V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE = 1,
+-+	V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10 = 2,
+-+};
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_LEVEL		(V4L2_CID_MPEG_BASE + 616)
+-+enum v4l2_mpeg_video_hevc_level {
+-+	V4L2_MPEG_VIDEO_HEVC_LEVEL_1	= 0,
+-+	V4L2_MPEG_VIDEO_HEVC_LEVEL_2	= 1,
+-+	V4L2_MPEG_VIDEO_HEVC_LEVEL_2_1	= 2,
+-+	V4L2_MPEG_VIDEO_HEVC_LEVEL_3	= 3,
+-+	V4L2_MPEG_VIDEO_HEVC_LEVEL_3_1	= 4,
+-+	V4L2_MPEG_VIDEO_HEVC_LEVEL_4	= 5,
+-+	V4L2_MPEG_VIDEO_HEVC_LEVEL_4_1	= 6,
+-+	V4L2_MPEG_VIDEO_HEVC_LEVEL_5	= 7,
+-+	V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1	= 8,
+-+	V4L2_MPEG_VIDEO_HEVC_LEVEL_5_2	= 9,
+-+	V4L2_MPEG_VIDEO_HEVC_LEVEL_6	= 10,
+-+	V4L2_MPEG_VIDEO_HEVC_LEVEL_6_1	= 11,
+-+	V4L2_MPEG_VIDEO_HEVC_LEVEL_6_2	= 12,
+-+};
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_FRAME_RATE_RESOLUTION	(V4L2_CID_MPEG_BASE + 617)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_TIER			(V4L2_CID_MPEG_BASE + 618)
+-+enum v4l2_mpeg_video_hevc_tier {
+-+	V4L2_MPEG_VIDEO_HEVC_TIER_MAIN = 0,
+-+	V4L2_MPEG_VIDEO_HEVC_TIER_HIGH = 1,
+-+};
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_MAX_PARTITION_DEPTH	(V4L2_CID_MPEG_BASE + 619)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_LOOP_FILTER_MODE	(V4L2_CID_MPEG_BASE + 620)
+-+enum v4l2_cid_mpeg_video_hevc_loop_filter_mode {
+-+	V4L2_MPEG_VIDEO_HEVC_LOOP_FILTER_MODE_DISABLED			 = 0,
+-+	V4L2_MPEG_VIDEO_HEVC_LOOP_FILTER_MODE_ENABLED			 = 1,
+-+	V4L2_MPEG_VIDEO_HEVC_LOOP_FILTER_MODE_DISABLED_AT_SLICE_BOUNDARY = 2,
+-+};
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_LF_BETA_OFFSET_DIV2	(V4L2_CID_MPEG_BASE + 621)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_LF_TC_OFFSET_DIV2	(V4L2_CID_MPEG_BASE + 622)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_REFRESH_TYPE		(V4L2_CID_MPEG_BASE + 623)
+-+enum v4l2_cid_mpeg_video_hevc_refresh_type {
+-+	V4L2_MPEG_VIDEO_HEVC_REFRESH_NONE		= 0,
+-+	V4L2_MPEG_VIDEO_HEVC_REFRESH_CRA		= 1,
+-+	V4L2_MPEG_VIDEO_HEVC_REFRESH_IDR		= 2,
+-+};
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_REFRESH_PERIOD		(V4L2_CID_MPEG_BASE + 624)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_LOSSLESS_CU		(V4L2_CID_MPEG_BASE + 625)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_CONST_INTRA_PRED	(V4L2_CID_MPEG_BASE + 626)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_WAVEFRONT		(V4L2_CID_MPEG_BASE + 627)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_GENERAL_PB		(V4L2_CID_MPEG_BASE + 628)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_TEMPORAL_ID		(V4L2_CID_MPEG_BASE + 629)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_STRONG_SMOOTHING	(V4L2_CID_MPEG_BASE + 630)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_MAX_NUM_MERGE_MV_MINUS1	(V4L2_CID_MPEG_BASE + 631)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_INTRA_PU_SPLIT		(V4L2_CID_MPEG_BASE + 632)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_TMV_PREDICTION		(V4L2_CID_MPEG_BASE + 633)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_WITHOUT_STARTCODE	(V4L2_CID_MPEG_BASE + 634)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_SIZE_OF_LENGTH_FIELD	(V4L2_CID_MPEG_BASE + 635)
+-+enum v4l2_cid_mpeg_video_hevc_size_of_length_field {
+-+	V4L2_MPEG_VIDEO_HEVC_SIZE_0		= 0,
+-+	V4L2_MPEG_VIDEO_HEVC_SIZE_1		= 1,
+-+	V4L2_MPEG_VIDEO_HEVC_SIZE_2		= 2,
+-+	V4L2_MPEG_VIDEO_HEVC_SIZE_4		= 3,
+-+};
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L0_BR	(V4L2_CID_MPEG_BASE + 636)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L1_BR	(V4L2_CID_MPEG_BASE + 637)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L2_BR	(V4L2_CID_MPEG_BASE + 638)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L3_BR	(V4L2_CID_MPEG_BASE + 639)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L4_BR	(V4L2_CID_MPEG_BASE + 640)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L5_BR	(V4L2_CID_MPEG_BASE + 641)
+-+#define V4L2_CID_MPEG_VIDEO_HEVC_HIER_CODING_L6_BR	(V4L2_CID_MPEG_BASE + 642)
+-+#define V4L2_CID_MPEG_VIDEO_REF_NUMBER_FOR_PFRAMES	(V4L2_CID_MPEG_BASE + 643)
+-+#define V4L2_CID_MPEG_VIDEO_PREPEND_SPSPPS_TO_IDR	(V4L2_CID_MPEG_BASE + 644)
+- 
+- /*  MPEG-class control IDs specific to the CX2341x driver as defined by V4L2 */
+--#define V4L2_CID_MPEG_CX2341X_BASE 				(V4L2_CTRL_CLASS_MPEG | 0x1000)
+--#define V4L2_CID_MPEG_CX2341X_VIDEO_SPATIAL_FILTER_MODE 	(V4L2_CID_MPEG_CX2341X_BASE+0)
+-+#define V4L2_CID_MPEG_CX2341X_BASE				(V4L2_CTRL_CLASS_MPEG | 0x1000)
+-+#define V4L2_CID_MPEG_CX2341X_VIDEO_SPATIAL_FILTER_MODE		(V4L2_CID_MPEG_CX2341X_BASE+0)
+- enum v4l2_mpeg_cx2341x_video_spatial_filter_mode {
+- 	V4L2_MPEG_CX2341X_VIDEO_SPATIAL_FILTER_MODE_MANUAL = 0,
+- 	V4L2_MPEG_CX2341X_VIDEO_SPATIAL_FILTER_MODE_AUTO   = 1,
+- };
+--#define V4L2_CID_MPEG_CX2341X_VIDEO_SPATIAL_FILTER 		(V4L2_CID_MPEG_CX2341X_BASE+1)
+--#define V4L2_CID_MPEG_CX2341X_VIDEO_LUMA_SPATIAL_FILTER_TYPE 	(V4L2_CID_MPEG_CX2341X_BASE+2)
+-+#define V4L2_CID_MPEG_CX2341X_VIDEO_SPATIAL_FILTER		(V4L2_CID_MPEG_CX2341X_BASE+1)
+-+#define V4L2_CID_MPEG_CX2341X_VIDEO_LUMA_SPATIAL_FILTER_TYPE	(V4L2_CID_MPEG_CX2341X_BASE+2)
+- enum v4l2_mpeg_cx2341x_video_luma_spatial_filter_type {
+- 	V4L2_MPEG_CX2341X_VIDEO_LUMA_SPATIAL_FILTER_TYPE_OFF                  = 0,
+- 	V4L2_MPEG_CX2341X_VIDEO_LUMA_SPATIAL_FILTER_TYPE_1D_HOR               = 1,
+-@@ -604,18 +713,18 @@ enum v4l2_mpeg_cx2341x_video_luma_spatial_filter_type {
+- 	V4L2_MPEG_CX2341X_VIDEO_LUMA_SPATIAL_FILTER_TYPE_2D_HV_SEPARABLE      = 3,
+- 	V4L2_MPEG_CX2341X_VIDEO_LUMA_SPATIAL_FILTER_TYPE_2D_SYM_NON_SEPARABLE = 4,
+- };
+--#define V4L2_CID_MPEG_CX2341X_VIDEO_CHROMA_SPATIAL_FILTER_TYPE 	(V4L2_CID_MPEG_CX2341X_BASE+3)
+-+#define V4L2_CID_MPEG_CX2341X_VIDEO_CHROMA_SPATIAL_FILTER_TYPE	(V4L2_CID_MPEG_CX2341X_BASE+3)
+- enum v4l2_mpeg_cx2341x_video_chroma_spatial_filter_type {
+- 	V4L2_MPEG_CX2341X_VIDEO_CHROMA_SPATIAL_FILTER_TYPE_OFF    = 0,
+- 	V4L2_MPEG_CX2341X_VIDEO_CHROMA_SPATIAL_FILTER_TYPE_1D_HOR = 1,
+- };
+--#define V4L2_CID_MPEG_CX2341X_VIDEO_TEMPORAL_FILTER_MODE 	(V4L2_CID_MPEG_CX2341X_BASE+4)
+-+#define V4L2_CID_MPEG_CX2341X_VIDEO_TEMPORAL_FILTER_MODE	(V4L2_CID_MPEG_CX2341X_BASE+4)
+- enum v4l2_mpeg_cx2341x_video_temporal_filter_mode {
+- 	V4L2_MPEG_CX2341X_VIDEO_TEMPORAL_FILTER_MODE_MANUAL = 0,
+- 	V4L2_MPEG_CX2341X_VIDEO_TEMPORAL_FILTER_MODE_AUTO   = 1,
+- };
+--#define V4L2_CID_MPEG_CX2341X_VIDEO_TEMPORAL_FILTER 		(V4L2_CID_MPEG_CX2341X_BASE+5)
+--#define V4L2_CID_MPEG_CX2341X_VIDEO_MEDIAN_FILTER_TYPE 		(V4L2_CID_MPEG_CX2341X_BASE+6)
+-+#define V4L2_CID_MPEG_CX2341X_VIDEO_TEMPORAL_FILTER		(V4L2_CID_MPEG_CX2341X_BASE+5)
+-+#define V4L2_CID_MPEG_CX2341X_VIDEO_MEDIAN_FILTER_TYPE		(V4L2_CID_MPEG_CX2341X_BASE+6)
+- enum v4l2_mpeg_cx2341x_video_median_filter_type {
+- 	V4L2_MPEG_CX2341X_VIDEO_MEDIAN_FILTER_TYPE_OFF      = 0,
+- 	V4L2_MPEG_CX2341X_VIDEO_MEDIAN_FILTER_TYPE_HOR      = 1,
+-@@ -623,11 +732,11 @@ enum v4l2_mpeg_cx2341x_video_median_filter_type {
+- 	V4L2_MPEG_CX2341X_VIDEO_MEDIAN_FILTER_TYPE_HOR_VERT = 3,
+- 	V4L2_MPEG_CX2341X_VIDEO_MEDIAN_FILTER_TYPE_DIAG     = 4,
+- };
+--#define V4L2_CID_MPEG_CX2341X_VIDEO_LUMA_MEDIAN_FILTER_BOTTOM 	(V4L2_CID_MPEG_CX2341X_BASE+7)
+--#define V4L2_CID_MPEG_CX2341X_VIDEO_LUMA_MEDIAN_FILTER_TOP 	(V4L2_CID_MPEG_CX2341X_BASE+8)
+-+#define V4L2_CID_MPEG_CX2341X_VIDEO_LUMA_MEDIAN_FILTER_BOTTOM	(V4L2_CID_MPEG_CX2341X_BASE+7)
+-+#define V4L2_CID_MPEG_CX2341X_VIDEO_LUMA_MEDIAN_FILTER_TOP	(V4L2_CID_MPEG_CX2341X_BASE+8)
+- #define V4L2_CID_MPEG_CX2341X_VIDEO_CHROMA_MEDIAN_FILTER_BOTTOM	(V4L2_CID_MPEG_CX2341X_BASE+9)
+--#define V4L2_CID_MPEG_CX2341X_VIDEO_CHROMA_MEDIAN_FILTER_TOP 	(V4L2_CID_MPEG_CX2341X_BASE+10)
+--#define V4L2_CID_MPEG_CX2341X_STREAM_INSERT_NAV_PACKETS 	(V4L2_CID_MPEG_CX2341X_BASE+11)
+-+#define V4L2_CID_MPEG_CX2341X_VIDEO_CHROMA_MEDIAN_FILTER_TOP	(V4L2_CID_MPEG_CX2341X_BASE+10)
+-+#define V4L2_CID_MPEG_CX2341X_STREAM_INSERT_NAV_PACKETS		(V4L2_CID_MPEG_CX2341X_BASE+11)
+- 
+- /*  MPEG-class control IDs specific to the Samsung MFC 5.1 driver as defined by V4L2 */
+- #define V4L2_CID_MPEG_MFC51_BASE				(V4L2_CTRL_CLASS_MPEG | 0x1100)
+-@@ -656,11 +765,10 @@ enum v4l2_mpeg_mfc51_video_force_frame_type {
+- #define V4L2_CID_MPEG_MFC51_VIDEO_H264_ADAPTIVE_RC_STATIC		(V4L2_CID_MPEG_MFC51_BASE+53)
+- #define V4L2_CID_MPEG_MFC51_VIDEO_H264_NUM_REF_PIC_FOR_P		(V4L2_CID_MPEG_MFC51_BASE+54)
+- 
+--
+- /*  Camera class control IDs */
+- 
+--#define V4L2_CID_CAMERA_CLASS_BASE 	(V4L2_CTRL_CLASS_CAMERA | 0x900)
+--#define V4L2_CID_CAMERA_CLASS 		(V4L2_CTRL_CLASS_CAMERA | 1)
+-+#define V4L2_CID_CAMERA_CLASS_BASE	(V4L2_CTRL_CLASS_CAMERA | 0x900)
+-+#define V4L2_CID_CAMERA_CLASS		(V4L2_CTRL_CLASS_CAMERA | 1)
+- 
+- #define V4L2_CID_EXPOSURE_AUTO			(V4L2_CID_CAMERA_CLASS_BASE+1)
+- enum  v4l2_exposure_auto_type {
+-diff --git a/sys/v4l2/ext/videodev2.h b/sys/v4l2/ext/videodev2.h
+-index 59e1f3d..d478d89 100644
+---- a/sys/v4l2/ext/videodev2.h
+-+++ b/sys/v4l2/ext/videodev2.h
+-@@ -1,3 +1,4 @@
+-+/* SPDX-License-Identifier: ((GPL-2.0+ WITH Linux-syscall-note) OR BSD-3-Clause) */
+- /*
+-  *  Video for Linux Two header file
+-  *
+-@@ -104,14 +105,14 @@ enum v4l2_field {
+- 					 transmitted first */
+- };
+- #define V4L2_FIELD_HAS_TOP(field)	\
+--	((field) == V4L2_FIELD_TOP 	||\
+-+	((field) == V4L2_FIELD_TOP	||\
+- 	 (field) == V4L2_FIELD_INTERLACED ||\
+- 	 (field) == V4L2_FIELD_INTERLACED_TB ||\
+- 	 (field) == V4L2_FIELD_INTERLACED_BT ||\
+- 	 (field) == V4L2_FIELD_SEQ_TB	||\
+- 	 (field) == V4L2_FIELD_SEQ_BT)
+- #define V4L2_FIELD_HAS_BOTTOM(field)	\
+--	((field) == V4L2_FIELD_BOTTOM 	||\
+-+	((field) == V4L2_FIELD_BOTTOM	||\
+- 	 (field) == V4L2_FIELD_INTERLACED ||\
+- 	 (field) == V4L2_FIELD_INTERLACED_TB ||\
+- 	 (field) == V4L2_FIELD_INTERLACED_BT ||\
+-@@ -464,12 +465,12 @@ struct v4l2_capability {
+-  *	V I D E O   I M A G E   F O R M A T
+-  */
+- struct v4l2_pix_format {
+--	__u32         		width;
+-+	__u32			width;
+- 	__u32			height;
+- 	__u32			pixelformat;
+- 	__u32			field;		/* enum v4l2_field */
+--	__u32            	bytesperline;	/* for padding, zero if unused */
+--	__u32          		sizeimage;
+-+	__u32			bytesperline;	/* for padding, zero if unused */
+-+	__u32			sizeimage;
+- 	__u32			colorspace;	/* enum v4l2_colorspace */
+- 	__u32			priv;		/* private data, depends on pixelformat */
+- 	__u32			flags;		/* format flags (V4L2_PIX_FMT_FLAG_*) */
+-@@ -519,6 +520,7 @@ struct v4l2_pix_format {
+- 
+- /* Grey bit-packed formats */
+- #define V4L2_PIX_FMT_Y10BPACK    v4l2_fourcc('Y', '1', '0', 'B') /* 10  Greyscale bit-packed */
+-+#define V4L2_PIX_FMT_Y10P    v4l2_fourcc('Y', '1', '0', 'P') /* 10  Greyscale, MIPI RAW10 packed */
+- 
+- /* Palette formats */
+- #define V4L2_PIX_FMT_PAL8    v4l2_fourcc('P', 'A', 'L', '8') /*  8  8-bit palette */
+-@@ -601,6 +603,16 @@ struct v4l2_pix_format {
+- #define V4L2_PIX_FMT_SGBRG12 v4l2_fourcc('G', 'B', '1', '2') /* 12  GBGB.. RGRG.. */
+- #define V4L2_PIX_FMT_SGRBG12 v4l2_fourcc('B', 'A', '1', '2') /* 12  GRGR.. BGBG.. */
+- #define V4L2_PIX_FMT_SRGGB12 v4l2_fourcc('R', 'G', '1', '2') /* 12  RGRG.. GBGB.. */
+-+	/* 12bit raw bayer packed, 6 bytes for every 4 pixels */
+-+#define V4L2_PIX_FMT_SBGGR12P v4l2_fourcc('p', 'B', 'C', 'C')
+-+#define V4L2_PIX_FMT_SGBRG12P v4l2_fourcc('p', 'G', 'C', 'C')
+-+#define V4L2_PIX_FMT_SGRBG12P v4l2_fourcc('p', 'g', 'C', 'C')
+-+#define V4L2_PIX_FMT_SRGGB12P v4l2_fourcc('p', 'R', 'C', 'C')
+-+	/* 14bit raw bayer packed, 7 bytes for every 4 pixels */
+-+#define V4L2_PIX_FMT_SBGGR14P v4l2_fourcc('p', 'B', 'E', 'E')
+-+#define V4L2_PIX_FMT_SGBRG14P v4l2_fourcc('p', 'G', 'E', 'E')
+-+#define V4L2_PIX_FMT_SGRBG14P v4l2_fourcc('p', 'g', 'E', 'E')
+-+#define V4L2_PIX_FMT_SRGGB14P v4l2_fourcc('p', 'R', 'E', 'E')
+- #define V4L2_PIX_FMT_SBGGR16 v4l2_fourcc('B', 'Y', 'R', '2') /* 16  BGBG.. GRGR.. */
+- #define V4L2_PIX_FMT_SGBRG16 v4l2_fourcc('G', 'B', '1', '6') /* 16  GBGB.. RGRG.. */
+- #define V4L2_PIX_FMT_SGRBG16 v4l2_fourcc('G', 'R', '1', '6') /* 16  GRGR.. BGBG.. */
+-@@ -627,6 +639,8 @@ struct v4l2_pix_format {
+- #define V4L2_PIX_FMT_VC1_ANNEX_L v4l2_fourcc('V', 'C', '1', 'L') /* SMPTE 421M Annex L compliant stream */
+- #define V4L2_PIX_FMT_VP8      v4l2_fourcc('V', 'P', '8', '0') /* VP8 */
+- #define V4L2_PIX_FMT_VP9      v4l2_fourcc('V', 'P', '9', '0') /* VP9 */
+-+#define V4L2_PIX_FMT_HEVC     v4l2_fourcc('H', 'E', 'V', 'C') /* HEVC aka H.265 */
+-+#define V4L2_PIX_FMT_FWHT     v4l2_fourcc('F', 'W', 'H', 'T') /* Fast Walsh Hadamard Transform (vicodec) */
+- 
+- /*  Vendor-specific formats   */
+- #define V4L2_PIX_FMT_CPIA1    v4l2_fourcc('C', 'P', 'I', 'A') /* cpia1 YUV */
+-@@ -661,6 +675,12 @@ struct v4l2_pix_format {
+- #define V4L2_PIX_FMT_MT21C    v4l2_fourcc('M', 'T', '2', '1') /* Mediatek compressed block mode  */
+- #define V4L2_PIX_FMT_INZI     v4l2_fourcc('I', 'N', 'Z', 'I') /* Intel Planar Greyscale 10-bit and Depth 16-bit */
+- 
+-+/* 10bit raw bayer packed, 32 bytes for every 25 pixels, last LSB 6 bits unused */
+-+#define V4L2_PIX_FMT_IPU3_SBGGR10	v4l2_fourcc('i', 'p', '3', 'b') /* IPU3 packed 10-bit BGGR bayer */
+-+#define V4L2_PIX_FMT_IPU3_SGBRG10	v4l2_fourcc('i', 'p', '3', 'g') /* IPU3 packed 10-bit GBRG bayer */
+-+#define V4L2_PIX_FMT_IPU3_SGRBG10	v4l2_fourcc('i', 'p', '3', 'G') /* IPU3 packed 10-bit GRBG bayer */
+-+#define V4L2_PIX_FMT_IPU3_SRGGB10	v4l2_fourcc('i', 'p', '3', 'r') /* IPU3 packed 10-bit RGGB bayer */
+-+
+- /* SDR formats - used only for Software Defined Radio devices */
+- #define V4L2_SDR_FMT_CU8          v4l2_fourcc('C', 'U', '0', '8') /* IQ u8 */
+- #define V4L2_SDR_FMT_CU16LE       v4l2_fourcc('C', 'U', '1', '6') /* IQ u16le */
+-@@ -680,6 +700,8 @@ struct v4l2_pix_format {
+- /* Meta-data formats */
+- #define V4L2_META_FMT_VSP1_HGO    v4l2_fourcc('V', 'S', 'P', 'H') /* R-Car VSP1 1-D Histogram */
+- #define V4L2_META_FMT_VSP1_HGT    v4l2_fourcc('V', 'S', 'P', 'T') /* R-Car VSP1 2-D Histogram */
+-+#define V4L2_META_FMT_UVC         v4l2_fourcc('U', 'V', 'C', 'H') /* UVC Payload Header metadata */
+-+#define V4L2_META_FMT_D4XX        v4l2_fourcc('D', '4', 'X', 'X') /* D4XX Payload Header metadata */
+- 
+- /* priv field value to indicates that subsequent fields are valid. */
+- #define V4L2_PIX_FMT_PRIV_MAGIC		0xfeedcafe
+-@@ -1158,7 +1180,7 @@ typedef __u64 v4l2_std_id;
+- 				 V4L2_STD_NTSC_M_JP     |\
+- 				 V4L2_STD_NTSC_M_KR)
+- /* Secam macros */
+--#define V4L2_STD_SECAM_DK      	(V4L2_STD_SECAM_D	|\
+-+#define V4L2_STD_SECAM_DK	(V4L2_STD_SECAM_D	|\
+- 				 V4L2_STD_SECAM_K	|\
+- 				 V4L2_STD_SECAM_K1)
+- /* All Secam Standards */
+-@@ -1239,7 +1261,7 @@ struct v4l2_standard {
+- };
+- 
+- /*
+-- *	D V 	B T	T I M I N G S
+-+ *	D V	B T	T I M I N G S
+-  */
+- 
+- /** struct v4l2_bt_timings - BT.656/BT.1120 timing data
+-@@ -1377,6 +1399,13 @@ struct v4l2_bt_timings {
+-  * InfoFrame).
+-  */
+- #define V4L2_DV_FL_HAS_HDMI_VIC			(1 << 8)
+-+/*
+-+ * CEA-861 specific: only valid for video receivers.
+-+ * If set, then HW can detect the difference between regular FPS and
+-+ * 1000/1001 FPS. Note: This flag is only valid for HDMI VIC codes with
+-+ * the V4L2_DV_FL_CAN_REDUCE_FPS flag set.
+-+ */
+-+#define V4L2_DV_FL_CAN_DETECT_REDUCED_FPS	(1 << 9)
+- 
+- /* A few useful defines to calculate the total blanking and frame sizes */
+- #define V4L2_DV_BT_BLANKING_WIDTH(bt) \
+-@@ -1580,7 +1609,7 @@ struct v4l2_ext_controls {
+- 	struct v4l2_ext_control *controls;
+- };
+- 
+--#define V4L2_CTRL_ID_MASK      	  (0x0fffffff)
+-+#define V4L2_CTRL_ID_MASK	  (0x0fffffff)
+- #ifndef __KERNEL__
+- #define V4L2_CTRL_ID2CLASS(id)    ((id) & 0x0fff0000UL)
+- #endif
+-@@ -1652,11 +1681,11 @@ struct v4l2_querymenu {
+- /*  Control flags  */
+- #define V4L2_CTRL_FLAG_DISABLED		0x0001
+- #define V4L2_CTRL_FLAG_GRABBED		0x0002
+--#define V4L2_CTRL_FLAG_READ_ONLY 	0x0004
+--#define V4L2_CTRL_FLAG_UPDATE 		0x0008
+--#define V4L2_CTRL_FLAG_INACTIVE 	0x0010
+--#define V4L2_CTRL_FLAG_SLIDER 		0x0020
+--#define V4L2_CTRL_FLAG_WRITE_ONLY 	0x0040
+-+#define V4L2_CTRL_FLAG_READ_ONLY	0x0004
+-+#define V4L2_CTRL_FLAG_UPDATE		0x0008
+-+#define V4L2_CTRL_FLAG_INACTIVE		0x0010
+-+#define V4L2_CTRL_FLAG_SLIDER		0x0020
+-+#define V4L2_CTRL_FLAG_WRITE_ONLY	0x0040
+- #define V4L2_CTRL_FLAG_VOLATILE		0x0080
+- #define V4L2_CTRL_FLAG_HAS_PAYLOAD	0x0100
+- #define V4L2_CTRL_FLAG_EXECUTE_ON_WRITE	0x0200
+-@@ -1770,21 +1799,21 @@ struct v4l2_hw_freq_seek {
+-  */
+- 
+- struct v4l2_rds_data {
+--	__u8 	lsb;
+--	__u8 	msb;
+--	__u8 	block;
+-+	__u8	lsb;
+-+	__u8	msb;
+-+	__u8	block;
+- } __attribute__ ((packed));
+- 
+--#define V4L2_RDS_BLOCK_MSK 	 0x7
+--#define V4L2_RDS_BLOCK_A 	 0
+--#define V4L2_RDS_BLOCK_B 	 1
+--#define V4L2_RDS_BLOCK_C 	 2
+--#define V4L2_RDS_BLOCK_D 	 3
+--#define V4L2_RDS_BLOCK_C_ALT 	 4
+--#define V4L2_RDS_BLOCK_INVALID 	 7
+-+#define V4L2_RDS_BLOCK_MSK	 0x7
+-+#define V4L2_RDS_BLOCK_A	 0
+-+#define V4L2_RDS_BLOCK_B	 1
+-+#define V4L2_RDS_BLOCK_C	 2
+-+#define V4L2_RDS_BLOCK_D	 3
+-+#define V4L2_RDS_BLOCK_C_ALT	 4
+-+#define V4L2_RDS_BLOCK_INVALID	 7
+- 
+- #define V4L2_RDS_BLOCK_CORRECTED 0x40
+--#define V4L2_RDS_BLOCK_ERROR 	 0x80
+-+#define V4L2_RDS_BLOCK_ERROR	 0x80
+- 
+- /*
+-  *	A U D I O
+-@@ -2294,7 +2323,6 @@ struct v4l2_create_buffers {
+-  *
+-  */
+- #define VIDIOC_QUERYCAP		 _IOR('V',  0, struct v4l2_capability)
+--#define VIDIOC_RESERVED		  _IO('V',  1)
+- #define VIDIOC_ENUM_FMT         _IOWR('V',  2, struct v4l2_fmtdesc)
+- #define VIDIOC_G_FMT		_IOWR('V',  4, struct v4l2_format)
+- #define VIDIOC_S_FMT		_IOWR('V',  5, struct v4l2_format)
+-@@ -2340,8 +2368,8 @@ struct v4l2_create_buffers {
+- #define VIDIOC_S_CROP		 _IOW('V', 60, struct v4l2_crop)
+- #define VIDIOC_G_JPEGCOMP	 _IOR('V', 61, struct v4l2_jpegcompression)
+- #define VIDIOC_S_JPEGCOMP	 _IOW('V', 62, struct v4l2_jpegcompression)
+--#define VIDIOC_QUERYSTD      	 _IOR('V', 63, v4l2_std_id)
+--#define VIDIOC_TRY_FMT      	_IOWR('V', 64, struct v4l2_format)
+-+#define VIDIOC_QUERYSTD		 _IOR('V', 63, v4l2_std_id)
+-+#define VIDIOC_TRY_FMT		_IOWR('V', 64, struct v4l2_format)
+- #define VIDIOC_ENUMAUDIO	_IOWR('V', 65, struct v4l2_audio)
+- #define VIDIOC_ENUMAUDOUT	_IOWR('V', 66, struct v4l2_audioout)
+- #define VIDIOC_G_PRIORITY	 _IOR('V', 67, __u32) /* enum v4l2_priority */
+-@@ -2362,8 +2390,8 @@ struct v4l2_create_buffers {
+-  * Only implemented if CONFIG_VIDEO_ADV_DEBUG is defined.
+-  * You must be root to use these ioctls. Never use these in applications!
+-  */
+--#define	VIDIOC_DBG_S_REGISTER 	 _IOW('V', 79, struct v4l2_dbg_register)
+--#define	VIDIOC_DBG_G_REGISTER 	_IOWR('V', 80, struct v4l2_dbg_register)
+-+#define	VIDIOC_DBG_S_REGISTER	 _IOW('V', 79, struct v4l2_dbg_register)
+-+#define	VIDIOC_DBG_G_REGISTER	_IOWR('V', 80, struct v4l2_dbg_register)
+- 
+- #define VIDIOC_S_HW_FREQ_SEEK	 _IOW('V', 82, struct v4l2_hw_freq_seek)
+- #define	VIDIOC_S_DV_TIMINGS	_IOWR('V', 87, struct v4l2_dv_timings)
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2object-Update-formats-table-to-include-YUV422-mu.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2object-Update-formats-table-to-include-YUV422-mu.patch
+index c7e77be..bd74dc5 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2object-Update-formats-table-to-include-YUV422-mu.patch
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2object-Update-formats-table-to-include-YUV422-mu.patch
 @@ -1,4 +1,4 @@
--From c76b68075cbee0989ca168a08574f04d71ba61e0 Mon Sep 17 00:00:00 2001
-+From 45f709bcaa243a6b503a11eb2e917f9719ea1cce Mon Sep 17 00:00:00 2001
+-From 46c54daed15b94861569b401c9612a25f615c0f1 Mon Sep 17 00:00:00 2001
++From ab95684623120c3f1a95b9030109bb6afe2280f5 Mon Sep 17 00:00:00 2001
+ From: Angela Stegmaier <angelabaker@ti.com>
+ Date: Tue, 20 Aug 2019 15:59:02 -0500
+ Subject: [PATCH] v4l2object: Update formats table to include YUV422
+@@ -10,15 +10,16 @@ for this format.
+ Upstream-Status: Pending
+ 
+ Signed-off-by: Angela Stegmaier <angelabaker@ti.com>
++
+ ---
+  sys/v4l2/gstv4l2object.c | 5 +++++
+  1 file changed, 5 insertions(+)
+ 
+ diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
+-index c32608c..87d262f 100644
++index 6fd3080..2d401a7 100644
+ --- a/sys/v4l2/gstv4l2object.c
+ +++ b/sys/v4l2/gstv4l2object.c
+-@@ -129,6 +129,7 @@ static const GstV4L2FormatDesc gst_v4l2_formats[] = {
++@@ -130,6 +130,7 @@ static const GstV4L2FormatDesc gst_v4l2_formats[] = {
+    {V4L2_PIX_FMT_UYVY, TRUE, GST_V4L2_RAW},
+    {V4L2_PIX_FMT_VYUY, TRUE, GST_V4L2_RAW},
+    {V4L2_PIX_FMT_YUV422P, TRUE, GST_V4L2_RAW},
+@@ -26,7 +27,7 @@ index c32608c..87d262f 100644
+    {V4L2_PIX_FMT_YUV411P, TRUE, GST_V4L2_RAW},
+    {V4L2_PIX_FMT_Y41P, TRUE, GST_V4L2_RAW},
+    {V4L2_PIX_FMT_YUV444, TRUE, GST_V4L2_RAW},
+-@@ -1088,6 +1089,7 @@ gst_v4l2_object_format_get_rank (const struct v4l2_fmtdesc *fmt)
++@@ -1090,6 +1091,7 @@ gst_v4l2_object_format_get_rank (const struct v4l2_fmtdesc *fmt)
+        rank = YUV_BASE_RANK + 4;
+        break;
+      case V4L2_PIX_FMT_YUV422P: /* Y42B, 16 bits per pixel */
+@@ -34,7 +35,7 @@ index c32608c..87d262f 100644
+        rank = YUV_BASE_RANK + 8;
+        break;
+  
+-@@ -1343,6 +1345,7 @@ gst_v4l2_object_v4l2fourcc_to_video_format (guint32 fourcc)
++@@ -1345,6 +1347,7 @@ gst_v4l2_object_v4l2fourcc_to_video_format (guint32 fourcc)
+        format = GST_VIDEO_FORMAT_Y41B;
+        break;
+      case V4L2_PIX_FMT_YUV422P:
+@@ -42,7 +43,7 @@ index c32608c..87d262f 100644
+        format = GST_VIDEO_FORMAT_Y42B;
+        break;
+      case V4L2_PIX_FMT_YVYU:
+-@@ -1484,6 +1487,7 @@ gst_v4l2_object_v4l2fourcc_to_bare_struct (guint32 fourcc)
++@@ -1493,6 +1496,7 @@ gst_v4l2_object_v4l2fourcc_to_bare_struct (guint32 fourcc)
+      case V4L2_PIX_FMT_YVU420:
+      case V4L2_PIX_FMT_UYVY:
+      case V4L2_PIX_FMT_YUV422P:
+@@ -50,7 +51,7 @@ index c32608c..87d262f 100644
+      case V4L2_PIX_FMT_YVYU:
+      case V4L2_PIX_FMT_YUV411P:{
+        GstVideoFormat format;
+-@@ -1714,6 +1718,7 @@ gst_v4l2_object_get_caps_info (GstV4l2Object * v4l2object, GstCaps * caps,
++@@ -1723,6 +1727,7 @@ gst_v4l2_object_get_caps_info (GstV4l2Object * v4l2object, GstCaps * caps,
+          break;
+        case GST_VIDEO_FORMAT_Y42B:
+          fourcc = V4L2_PIX_FMT_YUV422P;
+@@ -58,6 +59,3 @@ index c32608c..87d262f 100644
+          break;
+        case GST_VIDEO_FORMAT_NV12:
+          fourcc = V4L2_PIX_FMT_NV12;
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2src-Increase-minimum-num-buffers-by-3.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2src-Increase-minimum-num-buffers-by-3.patch
+index b1fd548..9e935f1 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2src-Increase-minimum-num-buffers-by-3.patch
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2src-Increase-minimum-num-buffers-by-3.patch
+@@ -1,4 +1,4 @@
+-From b87857b69e7707e04ce8c0cb97e316d37d7fd297 Mon Sep 17 00:00:00 2001
++From d53f20877fb916e31fc1ecbfdc74bcd09b8481e1 Mon Sep 17 00:00:00 2001
  From: Ramprasad N <x0038811@ti.com>
- Date: Tue, 4 Dec 2018 18:56:52 +0530
- Subject: [PATCH 1/5] gstdrmallocator: Add DRM allocator support
-@@ -12,6 +12,7 @@ The following changes are included :
- 3. Allocate GstMemory objects with mem_type as 'dmabuf'
+ Date: Mon, 28 Jan 2019 13:19:30 +0530
+ Subject: [PATCH 1/2] v4l2src: Increase minimum num buffers by 3
+@@ -9,15 +9,16 @@ four buffers are not sufficient. Increase the
+ number of buffers by 3 more.
  
  Signed-off-by: Ramprasad N <x0038811@ti.com>
 +
  ---
-  configure.ac                              |   5 +
-  gst-libs/gst/Makefile.am                  |   4 +-
-@@ -29,27 +30,27 @@ Signed-off-by: Ramprasad N <x0038811@ti.com>
-  create mode 100644 pkgconfig/gstreamer-drm.pc.in
+  sys/v4l2/gstv4l2object.c | 2 +-
+  1 file changed, 1 insertion(+), 1 deletion(-)
  
- diff --git a/configure.ac b/configure.ac
--index 943412c..cb17bf3 100644
-+index d29cac1..114cd89 100644
- --- a/configure.ac
- +++ b/configure.ac
- @@ -208,6 +208,8 @@ AG_GST_PKG_CHECK_MODULES(GST_PBUTILS, gstreamer-pbutils-[$GST_API_VERSION], [$GS
-- AG_GST_PKG_CHECK_MODULES(GST_GL, gstreamer-gl-[$GST_API_VERSION], [$GST_REQ], no)
-- AG_GST_PKG_CHECK_MODULES(GST_SDP, gstreamer-sdp-[$GST_API_VERSION], [$GST_REQ], yes)
-+ AG_GST_PKG_CHECK_MODULES(GST_GL, gstreamer-gl-[$GST_API_VERSION], [$GSTPB_REQ], no)
-+ AG_GST_PKG_CHECK_MODULES(GST_SDP, gstreamer-sdp-[$GST_API_VERSION], [$GSTPB_REQ], yes)
+ diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
+-index 124c778..211f835 100644
++index dad426a..6fd3080 100644
+ --- a/sys/v4l2/gstv4l2object.c
+ +++ b/sys/v4l2/gstv4l2object.c
+-@@ -4385,7 +4385,7 @@ gst_v4l2_object_decide_allocation (GstV4l2Object * obj, GstQuery * query)
++@@ -4399,7 +4399,7 @@ gst_v4l2_object_decide_allocation (GstV4l2Object * obj, GstQuery * query)
+       * held by the decoder. We account 2 buffers for v4l2 so when one is being
+       * pushed downstream the other one can already be queued for the next
+       * frame. */
+@@ -26,6 +27,3 @@ index 124c778..211f835 100644
   
- +PKG_CHECK_MODULES([DRM], [libdrm libdrm_omap], HAVE_KMS=yes, HAVE_KMS=no)
- +
-  if test "x$HAVE_GST_GL" = "xyes"; then
-  
-    AC_MSG_CHECKING([GStreamer OpenGL window systems ...])
--@@ -2566,6 +2568,7 @@ gst-libs/gst/isoff/Makefile
-- gst-libs/gst/codecparsers/Makefile
-+@@ -2587,6 +2589,7 @@ gst-libs/gst/codecparsers/Makefile
-  gst-libs/gst/mpegts/Makefile
-+ gst-libs/gst/sctp/Makefile
-  gst-libs/gst/uridownloader/Makefile
- +gst-libs/gst/drm/Makefile
-  gst-libs/gst/wayland/Makefile
-  gst-libs/gst/webrtc/Makefile
-  gst-libs/gst/player/Makefile
--@@ -2696,6 +2699,8 @@ pkgconfig/gstreamer-plugins-bad.pc
-+@@ -2712,6 +2715,8 @@ pkgconfig/gstreamer-plugins-bad.pc
-  pkgconfig/gstreamer-plugins-bad-uninstalled.pc
-  pkgconfig/gstreamer-codecparsers.pc
-  pkgconfig/gstreamer-codecparsers-uninstalled.pc
-@@ -59,21 +60,21 @@ index 943412c..cb17bf3 100644
-  pkgconfig/gstreamer-insertbin-uninstalled.pc
-  pkgconfig/gstreamer-mpegts.pc
- diff --git a/gst-libs/gst/Makefile.am b/gst-libs/gst/Makefile.am
--index db67fc8..f1fed2b 100644
-+index a53f26e..7fe6ae7 100644
- --- a/gst-libs/gst/Makefile.am
- +++ b/gst-libs/gst/Makefile.am
- @@ -7,12 +7,12 @@ OPENCV_DIR=opencv
-  endif
-  
-  SUBDIRS = uridownloader adaptivedemux interfaces basecamerabinsrc codecparsers \
---	 insertbin mpegts video audio player isoff webrtc $(WAYLAND_DIR) \
--+	 insertbin mpegts video audio player isoff webrtc drm $(WAYLAND_DIR) \
-+-	 insertbin mpegts audio sctp player isoff webrtc $(WAYLAND_DIR) \
-++	 insertbin mpegts audio sctp player isoff webrtc drm $(WAYLAND_DIR) \
-  	 $(OPENCV_DIR)
-  
-  noinst_HEADERS = gst-i18n-plugin.h gettext.h glib-compat-private.h
-  DIST_SUBDIRS = uridownloader adaptivedemux interfaces basecamerabinsrc \
---	codecparsers insertbin mpegts wayland opencv video audio player isoff webrtc
--+	codecparsers insertbin mpegts drm wayland opencv video audio player isoff webrtc
-+-	codecparsers insertbin mpegts wayland opencv audio player isoff sctp webrtc
-++	codecparsers insertbin mpegts drm wayland opencv audio player isoff sctp webrtc
-  
-  adaptivedemux: uridownloader
-  
-@@ -412,7 +413,7 @@ index 0000000..3199b92
- +
- +#endif /* __GSTDRMALLOCATOR_H__ */
- diff --git a/pkgconfig/Makefile.am b/pkgconfig/Makefile.am
--index 0e69cd1..f511b4c 100644
-+index 8e74a8e..86ee8d6 100644
- --- a/pkgconfig/Makefile.am
- +++ b/pkgconfig/Makefile.am
- @@ -2,6 +2,7 @@
-@@ -466,6 +467,3 @@ index 0000000..d155e80
- +Libs: -L${libdir} -lgstdrm-@GST_MAJORMINOR@
- +Cflags: -I${includedir}
- +
+      /* If no allocation parameters where provided, allow for a little more
+       * buffers and enable copy threshold */
 --- 
 -1.9.1
 -
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-bug-fixes-on-parsers.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-bug-fixes-on-parsers.patch
-index 34ec6b4..b0b637d 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-bug-fixes-on-parsers.patch
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-bug-fixes-on-parsers.patch
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0002-v4l2src-Use-generic-dmabuf-import-in-v4l2src.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0002-v4l2src-Use-generic-dmabuf-import-in-v4l2src.patch
+index eb07e18..e976dec 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0002-v4l2src-Use-generic-dmabuf-import-in-v4l2src.patch
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0002-v4l2src-Use-generic-dmabuf-import-in-v4l2src.patch
 @@ -1,4 +1,4 @@
--From e44c23a75544aa4eea9a151b8d7a5168de86c0da Mon Sep 17 00:00:00 2001
-+From 39013d1e9c42018d1848a9c34538db46230120e2 Mon Sep 17 00:00:00 2001
+-From 4b46918c475040ae4218f2474e564accd953847a Mon Sep 17 00:00:00 2001
++From deaff8caeff753e27bcc796cf4a7d0ad7f324986 Mon Sep 17 00:00:00 2001
  From: Ramprasad N <x0038811@ti.com>
- Date: Thu, 18 Jan 2018 17:01:37 +0530
- Subject: [PATCH 2/5] parsers: Pick bug fixes on different parsers
-@@ -10,6 +10,7 @@ The following bug fixes which were previously identified are picked :
- 
- Signed-off-by: Pooja Prajod <a0132412@ti.com>
- Signed-off-by: Ramprasad N <x0038811@ti.com>
-+
- ---
-  gst/jpegformat/gstjpegformat.c        |  2 +-
-  gst/jpegformat/gstjpegparse.c         |  2 +-
-@@ -33,10 +34,10 @@ index b410466..ecb9311 100644
-      return FALSE;
-    if (!gst_element_register (plugin, "jifmux", GST_RANK_SECONDARY,
- diff --git a/gst/jpegformat/gstjpegparse.c b/gst/jpegformat/gstjpegparse.c
--index dd684d7..2682afb 100644
-+index 17cbec9..a10e9e0 100644
- --- a/gst/jpegformat/gstjpegparse.c
- +++ b/gst/jpegformat/gstjpegparse.c
--@@ -151,7 +151,7 @@ gst_jpeg_parse_class_init (GstJpegParseClass * klass)
-+@@ -113,7 +113,7 @@ gst_jpeg_parse_class_init (GstJpegParseClass * klass)
-  
-    gst_element_class_set_static_metadata (gstelement_class,
-        "JPEG stream parser",
-@@ -46,7 +47,7 @@ index dd684d7..2682afb 100644
-        "Arnout Vandecappelle (Essensium/Mind) <arnout@mind.be>");
-  
- diff --git a/gst/videoparsers/gsth264parse.c b/gst/videoparsers/gsth264parse.c
--index 10543ea..ebea0f9 100644
-+index f4d82e5..6228b98 100644
- --- a/gst/videoparsers/gsth264parse.c
- +++ b/gst/videoparsers/gsth264parse.c
- @@ -161,7 +161,7 @@ static void
-@@ -58,7 +59,7 @@ index 10543ea..ebea0f9 100644
-    GST_PAD_SET_ACCEPT_INTERSECT (GST_BASE_PARSE_SINK_PAD (h264parse));
-    GST_PAD_SET_ACCEPT_TEMPLATE (GST_BASE_PARSE_SINK_PAD (h264parse));
-  
--@@ -1778,13 +1778,8 @@ gst_h264_parse_update_src_caps (GstH264Parse * h264parse, GstCaps * caps)
-+@@ -1901,13 +1901,8 @@ gst_h264_parse_update_src_caps (GstH264Parse * h264parse, GstCaps * caps)
-      gint fps_num, fps_den;
-      gint par_n, par_d;
-  
-@@ -74,7 +75,7 @@ index 10543ea..ebea0f9 100644
-  
-      if (G_UNLIKELY (h264parse->width != crop_width ||
-              h264parse->height != crop_height)) {
--@@ -1819,7 +1814,7 @@ gst_h264_parse_update_src_caps (GstH264Parse * h264parse, GstCaps * caps)
-+@@ -1942,7 +1937,7 @@ gst_h264_parse_update_src_caps (GstH264Parse * h264parse, GstCaps * caps)
-  
-      if (G_UNLIKELY (modified || h264parse->update_caps)) {
-        GstVideoInterlaceMode imode = GST_VIDEO_INTERLACE_MODE_PROGRESSIVE;
-@@ -83,7 +84,7 @@ index 10543ea..ebea0f9 100644
-        GstClockTime latency;
-  
-        const gchar *caps_mview_mode = NULL;
--@@ -1831,16 +1826,13 @@ gst_h264_parse_update_src_caps (GstH264Parse * h264parse, GstCaps * caps)
-+@@ -1956,16 +1951,13 @@ gst_h264_parse_update_src_caps (GstH264Parse * h264parse, GstCaps * caps)
-  
-        caps = gst_caps_copy (sink_caps);
-  
-@@ -117,7 +118,7 @@ index 38e1f45..49434c7 100644
-    GST_PAD_SET_ACCEPT_TEMPLATE (GST_BASE_PARSE_SINK_PAD (parse));
-  }
- diff --git a/gst/videoparsers/gstmpegvideoparse.c b/gst/videoparsers/gstmpegvideoparse.c
--index 6896339..cd87838 100644
-+index eef79bc..e9ddda1 100644
- --- a/gst/videoparsers/gstmpegvideoparse.c
- +++ b/gst/videoparsers/gstmpegvideoparse.c
- @@ -173,7 +173,7 @@ gst_mpegv_parse_init (GstMpegvParse * parse)
-@@ -142,6 +143,3 @@ index 2deddf4..c622b50 100644
-  
-    return ret;
-  }
---- 
--1.9.1
--
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-drivers.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-drivers.patch
-index 1a770ca..66bce91 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-drivers.patch
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-drivers.patch
-@@ -1,4 +1,4 @@
--From 2b80419b8c90523cf4cbe273f71bfc37d5fc2754 Mon Sep 17 00:00:00 2001
-+From 4e36ace0ac217a3c7b0ae5548ad6fa3e31028edb Mon Sep 17 00:00:00 2001
- From: Ramprasad N <x0038811@ti.com>
- Date: Mon, 28 Jan 2019 13:45:08 +0530
- Subject: [PATCH 3/5] kmssink: Add omapdrm and tidss in the list of drivers
-@@ -17,6 +17,7 @@ this addition, there will be frame-copy happens and
- slows down the playback.
+ Date: Thu, 22 Mar 2018 12:02:59 +0530
+ Subject: [PATCH 2/2] v4l2src: Use generic dmabuf import in v4l2src
+@@ -16,15 +16,16 @@ Since both dmabuf and drmallocator are derived from
+ fdallocator, a generic fd mechanism is used in this patch.
  
  Signed-off-by: Ramprasad N <x0038811@ti.com>
 +
  ---
-  sys/kms/Makefile.am  |  1 +
-  sys/kms/gstkmssink.c | 97 +++++++++++++++++++++++++++++++++++++++++++++++++++-
-@@ -35,10 +36,10 @@ index f13ccc5..b4eab3a 100644
+  sys/v4l2/gstv4l2allocator.c | 5 +++--
+  1 file changed, 3 insertions(+), 2 deletions(-)
+ 
+ diff --git a/sys/v4l2/gstv4l2allocator.c b/sys/v4l2/gstv4l2allocator.c
+-index 7e0e7c2..21edd36 100644
++index 05bde3d..e468e3e 100644
+ --- a/sys/v4l2/gstv4l2allocator.c
+ +++ b/sys/v4l2/gstv4l2allocator.c
+-@@ -1073,12 +1073,13 @@ gst_v4l2_allocator_import_dmabuf (GstV4l2Allocator * allocator,
++@@ -1102,12 +1102,13 @@ gst_v4l2_allocator_import_dmabuf (GstV4l2Allocator * allocator,
+      gint dmafd;
+      gsize size, offset, maxsize;
   
-  libgstkms_la_LDFLAGS = 			\
- diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
--index 1331883..f8f5b8a 100644
-+index cdecbf6..f59eb3c 100644
- --- a/sys/kms/gstkmssink.c
- +++ b/sys/kms/gstkmssink.c
--@@ -169,7 +169,7 @@ kms_open (gchar ** driver)
-+@@ -178,7 +178,7 @@ kms_open (gchar ** driver)
-    static const char *drivers[] = { "i915", "radeon", "nouveau", "vmwgfx",
-      "exynos", "amdgpu", "imx-drm", "rockchip", "atmel-hlcdc", "msm",
-      "xlnx", "vc4", "meson", "sun4i-drm", "mxsfb-drm",
-@@ -47,7 +48,7 @@ index 1331883..f8f5b8a 100644
-    };
-    int i, fd = -1;
+@@ -35,11 +36,8 @@ index 7e0e7c2..21edd36 100644
   
--@@ -1201,7 +1201,99 @@ event_failed:
-+@@ -1342,7 +1342,99 @@ event_failed:
-      return FALSE;
-    }
-  }
-@@ -147,7 +148,7 @@ index 1331883..f8f5b8a 100644
-  static gboolean
-  gst_kms_sink_import_dmabuf (GstKMSSink * self, GstBuffer * inbuf,
-      GstBuffer ** outbuf)
--@@ -1375,6 +1467,9 @@ gst_kms_sink_get_input_buffer (GstKMSSink * self, GstBuffer * inbuf)
-+@@ -1516,6 +1608,9 @@ gst_kms_sink_get_input_buffer (GstKMSSink * self, GstBuffer * inbuf)
-    if (gst_is_kms_memory (mem))
-      return gst_buffer_ref (inbuf);
+      size = gst_memory_get_sizes (dma_mem[i], &offset, &maxsize);
   
-@@ -157,6 +158,3 @@ index 1331883..f8f5b8a 100644
-    if (gst_kms_sink_import_dmabuf (self, inbuf, &buf))
-      goto done;
+--    if ((dmafd = dup (gst_dmabuf_memory_get_fd (dma_mem[i]))) < 0)
+-+    if ((dmafd = dup (gst_fd_memory_get_fd (dma_mem[i]))) < 0)
+-       goto dup_failed;
++-    dmafd = gst_dmabuf_memory_get_fd (dma_mem[i]);
+++    dmafd = gst_fd_memory_get_fd (dma_mem[i]);
   
+-     GST_LOG_OBJECT (allocator, "imported DMABUF as fd %i plane %d", dmafd, i);
 --- 
 -1.9.1
 -
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.14.4.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.%.bbappend
-similarity index 69%
-rename from meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.14.4.bbappend
-rename to meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.%.bbappend
-index 38f7e63..4138c31 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.14.4.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.%.bbappend
-@@ -25,36 +25,36 @@ DEPENDS_append_k3 = " \
-     libdrm \
- "
- 
-+#    file://0004-waylandsink-Add-drm-support-in-waylandsink.patch
-+#    file://0005-waylandsink-Add-input-device-support.patch
- SRC_URI_append_ti43x = " \
-     file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
-     file://0002-parsers-bug-fixes-on-parsers.patch \
-     file://0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-drivers.patch \
--    file://0004-waylandsink-Add-drm-support-in-waylandsink.patch \
--    file://0005-waylandsink-Add-input-device-support.patch \
- "
- 
--SRC_URI_append_ti33x = " \
--    file://0001-waylandsink-Add-mouse-drag-and-drop-support.patch \
--"
-+#SRC_URI_append_ti33x = " \
-+#    file://0001-waylandsink-Add-mouse-drag-and-drop-support.patch \
-+#"
- 
-+#    file://0004-waylandsink-Add-drm-support-in-waylandsink.patch
-+#    file://0005-waylandsink-Add-input-device-support.patch
- SRC_URI_append_omap-a15 = " \
-     file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
-     file://0002-parsers-bug-fixes-on-parsers.patch \
-     file://0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-drivers.patch \
--    file://0004-waylandsink-Add-drm-support-in-waylandsink.patch \
--    file://0005-waylandsink-Add-input-device-support.patch \
- "
- 
-+#    file://0004-waylandsink-Add-drm-support-in-waylandsink.patch
-+#    file://0005-waylandsink-Add-input-device-support.patch
-+#    file://0001-waylandsink-re-order-buffer-creation-for-drm-buffers.patch
-+#    file://0002-waylandsink-Update-wldrm-NV12-offsets-and-strides.patch
- SRC_URI_append_k3 = " \
-     file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
-     file://0002-parsers-Pick-bug-fixes-on-different-parsers.patch \
-     file://0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-drivers.patch \
--    file://0004-waylandsink-Add-drm-support-in-waylandsink.patch \
--    file://0005-waylandsink-Add-input-device-support.patch \
--    file://0001-waylandsink-re-order-buffer-creation-for-drm-buffers.patch \
--    file://0002-waylandsink-Update-wldrm-NV12-offsets-and-strides.patch \
- "
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--PR = "r11"
++     GST_LOG_OBJECT (allocator, "[%i] imported DMABUF as fd %i plane %d",
++         group->buffer.index, dmafd, i);
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0002-v4l2videodec-Add-HEVC-decoder-support.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0002-v4l2videodec-Add-HEVC-decoder-support.patch
+deleted file mode 100644
+index ab6404c..0000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0002-v4l2videodec-Add-HEVC-decoder-support.patch
++++ /dev/null
+@@ -1,60 +0,0 @@
+-From 70982aa13af7c7cb571d253706bc1458336c20a1 Mon Sep 17 00:00:00 2001
+-From: Song Bing <bing.song@nxp.com>
+-Date: Thu, 13 Sep 2018 03:16:32 +0000
+-Subject: [PATCH 2/2] v4l2videodec: Add HEVC decoder support
+-
+-https://bugzilla.gnome.org/show_bug.cgi?id=771686
+----
+- sys/v4l2/gstv4l2object.c   | 8 ++++++++
+- sys/v4l2/gstv4l2videodec.c | 2 ++
+- 2 files changed, 10 insertions(+)
+-
+-diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
+-index 211f835..c32608c 100644
+---- a/sys/v4l2/gstv4l2object.c
+-+++ b/sys/v4l2/gstv4l2object.c
+-@@ -171,6 +171,7 @@ static const GstV4L2FormatDesc gst_v4l2_formats[] = {
+-   {V4L2_PIX_FMT_H264, FALSE, GST_V4L2_CODEC},
+-   {V4L2_PIX_FMT_H264_NO_SC, FALSE, GST_V4L2_CODEC},
+-   {V4L2_PIX_FMT_H264_MVC, FALSE, GST_V4L2_CODEC},
+-+  {V4L2_PIX_FMT_HEVC, FALSE, GST_V4L2_CODEC},
+-   {V4L2_PIX_FMT_H263, FALSE, GST_V4L2_CODEC},
+-   {V4L2_PIX_FMT_MPEG1, FALSE, GST_V4L2_CODEC},
+-   {V4L2_PIX_FMT_MPEG2, FALSE, GST_V4L2_CODEC},
+-@@ -1433,6 +1434,11 @@ gst_v4l2_object_v4l2fourcc_to_bare_struct (guint32 fourcc)
+-           "stream-format", G_TYPE_STRING, "avc", "alignment",
+-           G_TYPE_STRING, "au", NULL);
+-       break;
+-+    case V4L2_PIX_FMT_HEVC:    /* H.265 */
+-+      structure = gst_structure_new ("video/x-h265",
+-+          "stream-format", G_TYPE_STRING, "byte-stream", "alignment",
+-+          G_TYPE_STRING, "au", NULL);
+-+      break;
+-     case V4L2_PIX_FMT_VC1_ANNEX_G:
+-     case V4L2_PIX_FMT_VC1_ANNEX_L:
+-       structure = gst_structure_new ("video/x-wmv",
+-@@ -1809,6 +1815,8 @@ gst_v4l2_object_get_caps_info (GstV4l2Object * v4l2object, GstCaps * caps,
+-         fourcc = V4L2_PIX_FMT_H264_NO_SC;
+-       else
+-         fourcc = V4L2_PIX_FMT_H264;
+-+    } else if (g_str_equal (mimetype, "video/x-h265")) {
+-+      fourcc = V4L2_PIX_FMT_HEVC;
+-     } else if (g_str_equal (mimetype, "video/x-vp8")) {
+-       fourcc = V4L2_PIX_FMT_VP8;
+-     } else if (g_str_equal (mimetype, "video/x-vp9")) {
+-diff --git a/sys/v4l2/gstv4l2videodec.c b/sys/v4l2/gstv4l2videodec.c
+-index 838ebff..ece20bd 100644
+---- a/sys/v4l2/gstv4l2videodec.c
+-+++ b/sys/v4l2/gstv4l2videodec.c
+-@@ -1083,6 +1083,8 @@ G_STMT_START { \
+-     SET_META ("H263");
+-   } else if (gst_structure_has_name (s, "video/x-h264")) {
+-     SET_META ("H264");
+-+  } else if (gst_structure_has_name (s, "video/x-h265")) {
+-+    SET_META ("H265");
+-   } else if (gst_structure_has_name (s, "video/x-wmv")) {
+-     SET_META ("VC1");
+-   } else if (gst_structure_has_name (s, "video/x-vp8")) {
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.14.4.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.16.%.bbappend
+similarity index 14%
+rename from meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.14.4.bbappend
+rename to meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.16.%.bbappend
+index 98b0123..59347d9 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.14.4.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.16.%.bbappend
+@@ -1,11 +1,9 @@
+-PR_append = ".arago2"
 +PR_append = ".arago0"
+ 
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ SRC_URI += " \
+-      file://0001-v4l2src-Increase-minimum-num-buffers-by-3.patch \
+-      file://0002-v4l2src-Use-generic-dmabuf-import-in-v4l2src.patch \
+-      file://0001-v4l2-Sync-kernel-header-with-linuxtv-tree.patch \
+-      file://0002-v4l2videodec-Add-HEVC-decoder-support.patch \
+-      file://0001-v4l2object-Update-formats-table-to-include-YUV422-mu.patch \
+-      "
++    file://0001-v4l2src-Increase-minimum-num-buffers-by-3.patch \
++    file://0002-v4l2src-Use-generic-dmabuf-import-in-v4l2src.patch \
++    file://0001-v4l2object-Update-formats-table-to-include-YUV422-mu.patch \
++"
 -- 
 2.7.4
+
 
 
