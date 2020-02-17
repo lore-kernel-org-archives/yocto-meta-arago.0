@@ -1,32 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id B7897529EE
+	by arago-project.org (Postfix) with ESMTPS id 01F9D52A1F
 	for <meta-arago@arago-project.org>;
-	Mon, 17 Feb 2020 17:21:24 +0000 (UTC)
+	Mon, 17 Feb 2020 21:25:49 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id DBAF8400E7;
-	Mon, 17 Feb 2020 17:19:26 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 3E3E440BFD;
+	Mon, 17 Feb 2020 21:23:52 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id I04zSfIkmcpI; Mon, 17 Feb 2020 17:19:26 +0000 (UTC)
+	with ESMTP id 6HTFWT20IZlZ; Mon, 17 Feb 2020 21:23:52 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B82E640BFE;
-	Mon, 17 Feb 2020 17:19:25 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1C69E400E7;
+	Mon, 17 Feb 2020 21:23:51 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 56BDC174409;
-	Mon, 17 Feb 2020 12:19:24 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id C83D8174406;
+	Mon, 17 Feb 2020 16:23:50 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon, 17 Feb 2020 12:19:23 -0500
-Message-Id: <1581959963-41208-3-git-send-email-denis@denix.org>
+Date: Mon, 17 Feb 2020 16:23:50 -0500
+Message-Id: <1581974630-4809-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1581959963-41208-1-git-send-email-denis@denix.org>
-References: <1581959963-41208-1-git-send-email-denis@denix.org>
-Subject: [zeus/master][PATCH 3/3] branding-core: re-enable "dsp" flag for DSP offloading
+Subject: [zeus/master][PATCH] packagegroup-arago-test: add k3conf tool
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,26 +37,82 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Feb 2020 17:21:25 -0000
+X-List-Received-Date: Mon, 17 Feb 2020 21:25:50 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/branding-core.inc | 3 ---
- 1 file changed, 3 deletions(-)
+ .../packagegroups/packagegroup-arago-test.bb       | 24 +++++++++++++---------
+ 1 file changed, 14 insertions(+), 10 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
-index c7291c4..cab9831 100644
---- a/meta-arago-distro/conf/distro/include/branding-core.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-core.inc
-@@ -11,6 +11,3 @@ ALTERNATIVE_PRIORITY_pn-opencl-monitor-ipu = "1"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+index f554153..066bdf8 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+@@ -33,7 +33,7 @@ ARAGO_TEST = "\
+     pcitest \
+     mstpd \
+     fio \
+-    "
++"
  
- # Raise priority for sample IPC FW images
- ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
--
--# Temporarily disable "dsp", "mmip" and "gpu" machine features for all SOCs
--MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('dsp', '')}"
+ ARAGO_TEST_append_armv7a = " \
+     cpuburn-neon \
+@@ -49,40 +49,44 @@ ARAGO_TI_TEST = " \
+     input-utils \
+     cpuloadgen \
+     uvc-gadget \
+-    "
++"
+ 
+ ARAGO_TI_TEST_append_ti33x = " \
+     omapconf \
+-    "
++"
+ 
+ ARAGO_TI_TEST_append_ti43x = " \
+     omapconf \
+-    "
++"
+ 
+ ARAGO_TI_TEST_append_omap-a15 = " \
+     omapconf \
+     ti-ipc-test \
+-    "
++"
++
++ARAGO_TI_TEST_append_k3 = " \
++    k3conf \
++"
+ 
+ ARAGO_TI_TEST_append_am65xx = " \
+     ti-ipc-test \
+-    "
++"
+ 
+ ARAGO_TI_TEST_append_j7-evm = " \
+     viddec-test-app \
+     videnc-test-app \
+     ufs-tool \
+-    "
++"
+ 
+ ARAGO_TI_TEST_append_keystone = " \
+     ti-ipc-test \
+-    "
++"
+ 
+ ARAGO_TI_TEST_append_omapl138 = " \
+     ti-ipc-test \
+-    "
++"
+ 
+ RDEPENDS_${PN} = "\
+     ${ARAGO_TEST} \
+     ${ARAGO_TI_TEST} \
+-    "
++"
 -- 
 2.7.4
 
