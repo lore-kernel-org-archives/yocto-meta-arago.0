@@ -1,41 +1,32 @@
-Return-Path: <yan-liu@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id CF14652994
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id A0774529CE
 	for <meta-arago@arago-project.org>;
-	Mon, 17 Feb 2020 15:09:59 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01HF81W6122634
-	for <meta-arago@arago-project.org>; Mon, 17 Feb 2020 09:08:01 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1581952081;
-	bh=oh4HijxJkXQF1aHhPVUsHrJGDr5W5me0Fw4A8IJROVw=;
-	h=From:To:CC:Subject:Date;
-	b=EITZ/3vYF8wqGYmgmH02HLesxsyrLJwdWYFJz3yE3ln6mOMlUvswErt/ECMWjauD3
-	Qpq8PCcfkX98JEgv2s24qEJgDZnUVhYUK9FONIZFKXuhZYIaQQ2zzS8q4SiQeCHamQ
-	RVSr0N8j15h5gvsyjE3avYgOhysaBd81yD1qWJA8=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01HF81HI126773
-	for <meta-arago@arago-project.org>; Mon, 17 Feb 2020 09:08:01 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Mon, 17 Feb 2020 09:08:01 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Mon, 17 Feb 2020 09:08:01 -0600
-Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01HF80Xu108777;
-	Mon, 17 Feb 2020 09:08:01 -0600
-From: <yan-liu@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 17 Feb 2020 10:05:41 -0500
-Message-ID: <1581951941-16538-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+	Mon, 17 Feb 2020 17:21:24 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D2E4E40C0E;
+	Mon, 17 Feb 2020 17:19:26 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id lc8XkFhsLEgX; Mon, 17 Feb 2020 17:19:26 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B580040BFD;
+	Mon, 17 Feb 2020 17:19:25 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 4AEFE174408;
+	Mon, 17 Feb 2020 12:19:24 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 17 Feb 2020 12:19:22 -0500
+Message-Id: <1581959963-41208-2-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1581959963-41208-1-git-send-email-denis@denix.org>
+References: <1581959963-41208-1-git-send-email-denis@denix.org>
+Subject: [zeus/master][PATCH 2/3] HACK: packagegroups: disable armnn and voxelsdk, require protobuf regeneration
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,43 +39,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Feb 2020 15:10:00 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 17 Feb 2020 17:21:25 -0000
 
-From: Yan Liu <yan-liu@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../{ltp-ddt_20190305.bb => ltp-ddt_20200217.bb}   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
- rename meta-arago-extras/recipes-devtools/ltp-ddt/{ltp-ddt_20190305.bb => ltp-ddt_20200217.bb} (97%)
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb     | 6 ++++--
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb   | 6 ++++--
+ 2 files changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200217.bb
-similarity index 97%
-rename from meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-rename to meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200217.bb
-index 40f979e..959ff79 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20190305.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200217.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index 6eb9b6a..26925f2 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+@@ -155,8 +155,10 @@ EXTRA_LIBS_append_k2e = " libulm-staticdev \
+                               gdbserver-c6x-dev \
+ "
  
--PR = "r25"
-+PR = "r1"
- PV_append = "+git${SRCPV}"
+-ARMNN_PACKAGES = "${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'armnn-dev', '', d)}"
+-VOXEL_PACKAGES = "${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'voxelsdk-dev', '', d)}"
++ARMNN_PACKAGES = ""
++VOXEL_PACKAGES = ""
++#ARMNN_PACKAGES = "${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'armnn-dev', '', d)}"
++#VOXEL_PACKAGES = "${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'voxelsdk-dev', '', d)}"
  
- PROVIDES += "ltp"
-@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
+ EXTRA_PACKAGES = ""
+ EXTRA_PACKAGES_append_ti33x = " ${VOXEL_PACKAGES} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 2c079d6..7845893 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -148,8 +148,10 @@ EXTRA_PACKAGES_omapl138 = " \
+     protobuf \
+ "
  
- inherit autotools-brokensep
+-ARMNN_PACKAGES = "${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'armnn', '', d)}"
+-VOXEL_PACKAGES = "${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'voxelsdk', '', d)}"
++ARMNN_PACKAGES = ""
++VOXEL_PACKAGES = ""
++#ARMNN_PACKAGES = "${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'armnn', '', d)}"
++#VOXEL_PACKAGES = "${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'voxelsdk', '', d)}"
  
--SRCREV = "514a7d8c9f9494b421d2e712cf4bcf926732ce20"
-+SRCREV = "b4f687e9f59f2a4136e2f718817059c265b0cf01"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+ EXTRA_PACKAGES_append_ti33x = " ${VOXEL_PACKAGES} \
+                                 arm-compute-library \
 -- 
-1.7.9.5
+2.7.4
 
 
