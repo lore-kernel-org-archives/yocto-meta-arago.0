@@ -1,30 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id AC96B529DC
+	by arago-project.org (Postfix) with ESMTPS id B7897529EE
 	for <meta-arago@arago-project.org>;
 	Mon, 17 Feb 2020 17:21:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id CEB7840C04;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id DBAF8400E7;
 	Mon, 17 Feb 2020 17:19:26 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 9qKLtVj43lY3; Mon, 17 Feb 2020 17:19:26 +0000 (UTC)
+	with ESMTP id I04zSfIkmcpI; Mon, 17 Feb 2020 17:19:26 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B4626400E7;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B82E640BFE;
 	Mon, 17 Feb 2020 17:19:25 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 3D463174406;
+	by mail.denix.org (Postfix) with ESMTP id 56BDC174409;
 	Mon, 17 Feb 2020 12:19:24 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon, 17 Feb 2020 12:19:21 -0500
-Message-Id: <1581959963-41208-1-git-send-email-denis@denix.org>
+Date: Mon, 17 Feb 2020 12:19:23 -0500
+Message-Id: <1581959963-41208-3-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [zeus/master][PATCH 1/3] HACK: opencv: disable python2 bindings as well for now
+In-Reply-To: <1581959963-41208-1-git-send-email-denis@denix.org>
+References: <1581959963-41208-1-git-send-email-denis@denix.org>
+Subject: [zeus/master][PATCH 3/3] branding-core: re-enable "dsp" flag for DSP offloading
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,22 +45,20 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-distro/conf/distro/include/branding-core.inc | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend b/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
-index 1725d1b..a87e832 100644
---- a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
-+++ b/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
-@@ -25,7 +25,7 @@ PACKAGECONFIG_append = " ${PACKAGECONFIG_QTWAYLAND} \
- "
+diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
+index c7291c4..cab9831 100644
+--- a/meta-arago-distro/conf/distro/include/branding-core.inc
++++ b/meta-arago-distro/conf/distro/include/branding-core.inc
+@@ -11,6 +11,3 @@ ALTERNATIVE_PRIORITY_pn-opencl-monitor-ipu = "1"
  
- PACKAGECONFIG_remove = "python3"
--PACKAGECONFIG_append = " python2"
-+PACKAGECONFIG_remove = "python2"
- 
- inherit cmake_qt5
- 
+ # Raise priority for sample IPC FW images
+ ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
+-
+-# Temporarily disable "dsp", "mmip" and "gpu" machine features for all SOCs
+-MACHINE_FEATURES := "${@d.getVar('MACHINE_FEATURES', True).replace('dsp', '')}"
 -- 
 2.7.4
 
