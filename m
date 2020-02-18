@@ -1,42 +1,44 @@
-Return-Path: <afd@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 7245052994
+Return-Path: <denys@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id D8CCF52994
 	for <meta-arago@arago-project.org>;
-	Tue, 18 Feb 2020 16:39:56 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01IGbweI129974
-	for <meta-arago@arago-project.org>; Tue, 18 Feb 2020 10:37:58 -0600
+	Tue, 18 Feb 2020 18:01:20 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01IHxMog084580;
+	Tue, 18 Feb 2020 11:59:22 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1582043878;
-	bh=gtW0TWGY8cQDh6Z2fflSAxcDr6jMQIbF6PHQRzpNlDE=;
-	h=From:To:CC:Subject:Date;
-	b=MPhkcm5jxCgqlIKLW1P5BLfxLrz+nBNyYwzeBFiE4RLaKwP4YzpYRyh50t++Gneon
-	qcsyRczHopbvGL2V8wIcpvJ5NHKD9bOdyy11a7MuYbjDJGRjosGwMmaDHMIquPe+jL
-	oIg6xGgI2Ahfq0uqz5nn9BVlk/8qDkJ4VhZSSbKA=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01IGbv5N050143
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 18 Feb 2020 10:37:58 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1582048762;
+	bh=MlIY9ichWjCPZS++7Jg8Io3cDGNHSssgF1Xg1VZkCpI=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=wAgCa+DdjqEDtAwazvFF2usGflbBP0WXLToE5yHEhEWagjlMR70lfXpuubLvS6kCP
+	537NImAq91pkDOs9aktBFdGmyZjw2f2dIdIGlN4cbfitdFkel64z5Xs8iVsptKOSBZ
+	o0c+4NsRo2WZtbJdB7y0Dfq7nnPhqAw/izoOn4T0=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01IHxMaE117846
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 18 Feb 2020 11:59:22 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Tue, 18 Feb 2020 10:37:57 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 18 Feb 2020 11:59:22 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Tue, 18 Feb 2020 10:37:57 -0600
-Received: from ula0226330.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01IGbvID112479;
-	Tue, 18 Feb 2020 10:37:57 -0600
-From: "Andrew F. Davis" <afd@ti.com>
-To: Denys Dmytriyenko <denys@ti.com>
-Date: Tue, 18 Feb 2020 11:37:57 -0500
-Message-ID: <20200218163757.17157-1-afd@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Frontend Transport; Tue, 18 Feb 2020 11:59:22 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01IHxMRh106654;
+	Tue, 18 Feb 2020 11:59:22 -0600
+Date: Tue, 18 Feb 2020 12:59:21 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Paul Barker <pbarker@konsulko.com>
+Message-ID: <20200218175921.GK720@beryl>
+References: <CAM9ZRVsu3xHM4AS=8=Ver_j75inMAefZCH3231J6r6d1upg_tA@mail.gmail.com>
 MIME-Version: 1.0
+In-Reply-To: <CAM9ZRVsu3xHM4AS=8=Ver_j75inMAefZCH3231J6r6d1upg_tA@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: [zeus/master][PATCH] kmscube: Drop local kmscube and use latest upstream
+Subject: Re: SDK support in Arago with ARM toolchain
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,45 +51,23 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Feb 2020 16:39:56 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 18 Feb 2020 18:01:21 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Signed-off-by: Andrew F. Davis <afd@ti.com>
----
- .../recipes-graphics/kmscube/kmscube_1.0.0.bb | 23 -------------------
- 1 file changed, 23 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
+On Tue, Feb 18, 2020 at 03:37:54PM +0000, Paul Barker wrote:
+> Hi all,
+> 
+> I'm currently seeing several failures when trying to run `bitbake
+> tisdk-rootfs-image -c populate_sdk` with the Arago distro and the
+> external ARM toolchain enabled. Is this expected to be supported?
 
-diff --git a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb b/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-deleted file mode 100644
-index 782d21a9..00000000
---- a/meta-arago-extras/recipes-graphics/kmscube/kmscube_1.0.0.bb
-+++ /dev/null
-@@ -1,23 +0,0 @@
--DESCRIPTION = "Demo application to showcase 3D graphics on SGX using kms and gbm"
--HOMEPAGE = "http://git.ti.com"
--LICENSE = "BSD"
--LIC_FILES_CHKSUM = "file://kmscube.c;beginline=1;endline=23;md5=e760965096e52da8f3969dd53b6bf158"
--
--DEPENDS = "libdrm virtual/libgbm virtual/egl virtual/libgles2"
--
--COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|k3"
--PACKAGE_ARCH = "${MACHINE_ARCH}"
--
--inherit autotools pkgconfig
--
--PR = "r14"
--SRCREV = "7bc7ff6c4ead19761003ed4a08d00ce64effe38b"
--
--SRC_URI = "git://git.ti.com/glsdk/kmscube.git;protocol=git"
--
--SRC_URI_append = " \
--"
--
--S = "${WORKDIR}/git"
--
--INSANE_SKIP_kmscube += "dev-deps"
+I have this patch pending:
+http://arago-project.org/pipermail/meta-arago/2019-November/012088.html
+
+It was part of a separate internal testing branch, which will be merged to 
+zeus soon.
+
 -- 
-2.17.1
-
+Denys
 
