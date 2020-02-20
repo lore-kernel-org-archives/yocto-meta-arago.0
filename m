@@ -1,44 +1,43 @@
 Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 21D88529DC
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 4BAA752A4C
 	for <meta-arago@arago-project.org>;
 	Thu, 20 Feb 2020 19:18:09 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01KJGACj056297
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01KJGA58129874
 	for <meta-arago@arago-project.org>; Thu, 20 Feb 2020 13:16:10 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1582226170;
-	bh=GPIIA7BELZhNOpfuFyvdoyhEHF+NSsWCIXYk+azOQns=;
+	bh=uUg4i9j7cPhkXkzh1t0WQFm5fAWdr3k5rrTzThnGADM=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=a6mOTn2GtFxGW5TwNaiMjVqQPDy5yGXRRqkD9Wn9e7XDOwM7ecMzzduta2czCvUpW
-	RMaYn3rnOFxUAsAugkmXFHYQqnl5kEnF504LLD/BGzvfvUA3zMTfxhyfZzYbSJhx7g
-	II2iisvkgSAG0INzNvpIRZosb70iJDY6k6h4dVyQ=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01KJGAnm084168
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	b=daQbJjLFpNF95iOCpdYejEWZek3dpkkgAVdPwj9Hrq8beqe84jeV+dYsx7o1jtMOt
+	Rf5xFvsoMsKC7xbXrmgmHF07uF1xNfTHJ/U+ucnFEJo1FF/5HgtpgzrC4wk+CGhSR1
+	SmuCSeYA8Y7NJ2tMv8j5PIl2hoB/3/3SV61EhUOc=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01KJGA8e117869
 	for <meta-arago@arago-project.org>; Thu, 20 Feb 2020 13:16:10 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Thu, 20 Feb 2020 13:16:09 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 20 Feb 2020 13:16:10 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Thu, 20 Feb 2020 13:16:09 -0600
+	Frontend Transport; Thu, 20 Feb 2020 13:16:10 -0600
 Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01KJG7pj017983;
-	Thu, 20 Feb 2020 13:16:09 -0600
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01KJG7pk017983;
+	Thu, 20 Feb 2020 13:16:10 -0600
 From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Thu, 20 Feb 2020 18:54:57 +0000
-Message-ID: <20200220185458.26926-8-denys@ti.com>
+Date: Thu, 20 Feb 2020 18:54:58 +0000
+Message-ID: <20200220185458.26926-9-denys@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200220185458.26926-1-denys@ti.com>
 References: <20200220185458.26926-1-denys@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [zeus/master][PATCH 8/9] arago-tiny-image: simplify by re-using arago-image.inc
+Subject: [zeus/master][PATCH 9/9] arago-image.inc: unbreak populate_sdk task
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,70 +50,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Feb 2020 19:18:11 -0000
+X-List-Received-Date: Thu, 20 Feb 2020 19:18:12 -0000
 Content-Type: text/plain
+
+We chose not to install nativesdk-perl and its modules, hence ensure
+dummy dependencies and archs are configured properly.
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/images/arago-tiny-image.bb   | 35 ++-----------------
- 1 file changed, 3 insertions(+), 32 deletions(-)
+ meta-arago-distro/recipes-core/images/arago-image.inc | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-tiny-image.bb b/meta-arago-distro/recipes-core/images/arago-tiny-image.bb
-index 465d322b..5d1733e2 100644
---- a/meta-arago-distro/recipes-core/images/arago-tiny-image.bb
-+++ b/meta-arago-distro/recipes-core/images/arago-tiny-image.bb
-@@ -1,16 +1,9 @@
--# Common pieces for Arago images
-+ARAGO_SYSVINIT = "1"
+diff --git a/meta-arago-distro/recipes-core/images/arago-image.inc b/meta-arago-distro/recipes-core/images/arago-image.inc
+index 179c81d1..b197dc27 100644
+--- a/meta-arago-distro/recipes-core/images/arago-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-image.inc
+@@ -9,17 +9,18 @@ IMAGE_FEATURES += "package-management splash"
+ # 4KB per 1 inode should be enough
+ EXTRA_IMAGECMD_ext2.gz += "-i 4096"
  
--LICENSE = "MIT"
+-ARAGO_IMAGE_EXTRA_INSTALL ?= ""
 -
--COMPATIBLE_MACHINE = "ti-soc"
--
--IMAGE_FEATURES += "package-management splash"
-+require arago-image.inc
- 
- IMAGE_FSTYPES += "cpio"
- 
--# 4KB per 1 inode should be enough
--EXTRA_IMAGECMD_ext2.gz += "-i 4096"
--
- # Install a small set of utils which can be used for diagnostics
- ARAGO_TINY_IMAGE_EXTRA_INSTALL ?= " \
- 	parted \
-@@ -21,31 +14,9 @@ ARAGO_TINY_IMAGE_EXTRA_INSTALL ?= " \
- 	arago-feed-config \
- "
- 
 -IMAGE_INSTALL += " \
 +IMAGE_INSTALL = " \
- 	packagegroup-arago-sysvinit-boot \
- 	${ARAGO_TINY_IMAGE_EXTRA_INSTALL} \
+ 	packagegroup-core-boot \
+-	${ARAGO_IMAGE_EXTRA_INSTALL} \
++	${CORE_IMAGE_EXTRA_INSTALL} \
  "
  
- export IMAGE_BASENAME = "arago-tiny-image"
--
--IMAGE_LINGUAS = ""
--
--make_bootfiles_symlinks_relative() {
--    for f in "${IMAGE_ROOTFS}/boot"/*
--    do
--        [ -L "$f" ] || continue
--
--        l=$(readlink "$f")
--        if [ "${l:0:6}" == "/boot/" ]
--        then
--            ln -sf "${l##/boot/}" "$f"
--        elif ["${l:0:1}" == "/" ]
--        then
--            ln -sf "..$l" "$f"
--        fi
--    done
--}
--
--ROOTFS_POSTPROCESS_COMMAND += "make_bootfiles_symlinks_relative;"
--
--inherit core-image
+ export IMAGE_BASENAME = "arago-image"
+ 
+ IMAGE_LINGUAS = ""
+ 
++TOOLCHAIN_HOST_TASK += "nativesdk-buildtools-perl-dummy"
++SDK_PACKAGE_ARCHS += "buildtools-dummy-${SDKPKGSUFFIX}"
++
+ make_bootfiles_symlinks_relative() {
+     for f in "${IMAGE_ROOTFS}/boot"/*
+     do
 -- 
 2.17.1
 
