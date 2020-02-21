@@ -1,43 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 4BAA752A4C
+Return-Path: <afd@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 22717529B5
 	for <meta-arago@arago-project.org>;
-	Thu, 20 Feb 2020 19:18:09 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01KJGA58129874
-	for <meta-arago@arago-project.org>; Thu, 20 Feb 2020 13:16:10 -0600
+	Fri, 21 Feb 2020 15:48:26 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01LFkQXO094389
+	for <meta-arago@arago-project.org>; Fri, 21 Feb 2020 09:46:26 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1582226170;
-	bh=uUg4i9j7cPhkXkzh1t0WQFm5fAWdr3k5rrTzThnGADM=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=daQbJjLFpNF95iOCpdYejEWZek3dpkkgAVdPwj9Hrq8beqe84jeV+dYsx7o1jtMOt
-	Rf5xFvsoMsKC7xbXrmgmHF07uF1xNfTHJ/U+ucnFEJo1FF/5HgtpgzrC4wk+CGhSR1
-	SmuCSeYA8Y7NJ2tMv8j5PIl2hoB/3/3SV61EhUOc=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01KJGA8e117869
-	for <meta-arago@arago-project.org>; Thu, 20 Feb 2020 13:16:10 -0600
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1582299986;
+	bh=kpFKZvk3MZgvdjAszO/GxOn5qquTPlWxtgBWMo+Mbhs=;
+	h=From:To:CC:Subject:Date;
+	b=It27KLrAq47aHWepes48tJZ4WQSb4Cxfb+Gyz9eSLbUdmkn2jOY03hGIPS4tU1/nj
+	izcUDkLdeJuOLATXaSigHMNxtG8tfHmBrf9fQDkupBrCrkMMdzPHQZhjZNZ1iFyzDv
+	5NxmMFoBiL4WkXnB7cw2TR4tGdbGLNqPJ988O21k=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01LFkQhn091510
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 21 Feb 2020 09:46:26 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Thu, 20 Feb 2020 13:16:10 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 21 Feb 2020 09:46:26 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Thu, 20 Feb 2020 13:16:10 -0600
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01KJG7pk017983;
-	Thu, 20 Feb 2020 13:16:10 -0600
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 20 Feb 2020 18:54:58 +0000
-Message-ID: <20200220185458.26926-9-denys@ti.com>
+	Frontend Transport; Fri, 21 Feb 2020 09:46:26 -0600
+Received: from ula0226330.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 01LFkQTC071212;
+	Fri, 21 Feb 2020 09:46:26 -0600
+From: "Andrew F. Davis" <afd@ti.com>
+To: Denys Dmytriyenko <denys@ti.com>
+Date: Fri, 21 Feb 2020 10:46:26 -0500
+Message-ID: <20200221154626.10751-1-afd@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200220185458.26926-1-denys@ti.com>
-References: <20200220185458.26926-1-denys@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [zeus/master][PATCH 9/9] arago-image.inc: unbreak populate_sdk task
+Cc: meta-arago@arago-project.org
+Subject: [zeus/master][PATCH] qtwayland: backport decoration blitter fix for GLES2 selection
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,44 +49,67 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Feb 2020 19:18:12 -0000
+X-List-Received-Date: Fri, 21 Feb 2020 15:48:26 -0000
 Content-Type: text/plain
 
-We chose not to install nativesdk-perl and its modules, hence ensure
-dummy dependencies and archs are configured properly.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Andrew F. Davis <afd@ti.com>
 ---
- meta-arago-distro/recipes-core/images/arago-image.inc | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+ ...e-OpenGL-ES-2-API-for-decoration-bli.patch | 32 +++++++++++++++++++
+ .../recipes-qt/qt5/qtwayland_git.bbappend     |  3 +-
+ 2 files changed, 34 insertions(+), 1 deletion(-)
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Client-really-use-OpenGL-ES-2-API-for-decoration-bli.patch
 
-diff --git a/meta-arago-distro/recipes-core/images/arago-image.inc b/meta-arago-distro/recipes-core/images/arago-image.inc
-index 179c81d1..b197dc27 100644
---- a/meta-arago-distro/recipes-core/images/arago-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-image.inc
-@@ -9,17 +9,18 @@ IMAGE_FEATURES += "package-management splash"
- # 4KB per 1 inode should be enough
- EXTRA_IMAGECMD_ext2.gz += "-i 4096"
- 
--ARAGO_IMAGE_EXTRA_INSTALL ?= ""
--
--IMAGE_INSTALL += " \
-+IMAGE_INSTALL = " \
- 	packagegroup-core-boot \
--	${ARAGO_IMAGE_EXTRA_INSTALL} \
-+	${CORE_IMAGE_EXTRA_INSTALL} \
- "
- 
- export IMAGE_BASENAME = "arago-image"
- 
- IMAGE_LINGUAS = ""
- 
-+TOOLCHAIN_HOST_TASK += "nativesdk-buildtools-perl-dummy"
-+SDK_PACKAGE_ARCHS += "buildtools-dummy-${SDKPKGSUFFIX}"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Client-really-use-OpenGL-ES-2-API-for-decoration-bli.patch b/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Client-really-use-OpenGL-ES-2-API-for-decoration-bli.patch
+new file mode 100644
+index 00000000..ae6256f0
+--- /dev/null
++++ b/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-Client-really-use-OpenGL-ES-2-API-for-decoration-bli.patch
+@@ -0,0 +1,32 @@
++From c0303406ccd38063db46e8cfda5e5089ecf948a9 Mon Sep 17 00:00:00 2001
++From: Peter Seiderer <ps.report@gmx.net>
++Date: Tue, 26 Nov 2019 09:39:25 +0100
++Subject: [PATCH] Client: really use OpenGL ES 2 API for decoration blitter
 +
- make_bootfiles_symlinks_relative() {
-     for f in "${IMAGE_ROOTFS}/boot"/*
-     do
++Really use (as the comment states) the OpenGL ES 2 API for
++the decoration blitter.
++
++Task-number: QTBUG-80356
++Change-Id: I4c923343e721a824521fb9b2b36be5d2de984325
++Reviewed-by: Pier Luigi Fiorini <pierluigi.fiorini@liri.io>
++Reviewed-by: Johan Helsing <johan.helsing@qt.io>
++---
++ .../client/wayland-egl/qwaylandglcontext.cpp                    | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/src/hardwareintegration/client/wayland-egl/qwaylandglcontext.cpp b/src/hardwareintegration/client/wayland-egl/qwaylandglcontext.cpp
++index bc1f74af..da147495 100644
++--- a/src/hardwareintegration/client/wayland-egl/qwaylandglcontext.cpp
+++++ b/src/hardwareintegration/client/wayland-egl/qwaylandglcontext.cpp
++@@ -312,7 +312,7 @@ QWaylandGLContext::QWaylandGLContext(EGLDisplay eglDisplay, QWaylandDisplay *dis
++ 
++     // Create an EGL context for the decorations blitter. By using a dedicated context we don't need to make sure to not
++     // change the context state and we also use OpenGL ES 2 API independently to what the app is using to draw.
++-    QVector<EGLint> eglDecorationsContextAttrs = { EGL_CONTEXT_CLIENT_VERSION, 1, EGL_NONE };
+++    QVector<EGLint> eglDecorationsContextAttrs = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL_NONE };
++     m_decorationsContext = eglCreateContext(m_eglDisplay, m_config, m_context, eglDecorationsContextAttrs.constData());
++     if (m_decorationsContext == EGL_NO_CONTEXT)
++         qWarning("QWaylandGLContext: Failed to create the decorations EGLContext. Decorations will not be drawn.");
++-- 
++2.17.1
++
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
+index 82d98e50..9577e1d2 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
++++ b/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
+@@ -1,6 +1,7 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-PR_append = ".arago0"
++PR_append = ".arago1"
+ 
+ SRC_URI += " \
+     file://0001-plugins-decorations-bradient-display-window-icon-onl.patch \
++    file://0001-Client-really-use-OpenGL-ES-2-API-for-decoration-bli.patch \
+ "
 -- 
 2.17.1
 
