@@ -1,30 +1,81 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 61B3F52994
+Return-Path: <Ondrej.Pohl@gallagher.com>
+Received: from AUS01-SY3-obe.outbound.protection.outlook.com
+	(mail-eopbgr1370118.outbound.protection.outlook.com [40.107.137.118])
+	by arago-project.org (Postfix) with ESMTPS id B987852994
 	for <meta-arago@arago-project.org>;
-	Thu, 27 Feb 2020 01:49:59 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 8A85240BFD;
-	Thu, 27 Feb 2020 01:47:58 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 4crByRdzuMSx; Thu, 27 Feb 2020 01:47:58 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7612C40A13;
-	Thu, 27 Feb 2020 01:47:57 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 315B0172FDE;
-	Wed, 26 Feb 2020 20:47:57 -0500 (EST)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Wed, 26 Feb 2020 20:47:57 -0500
-Message-Id: <1582768077-22658-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [zeus/master][PATCH] perf: drop deprecated bbappend
+	Thu, 27 Feb 2020 05:00:46 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+	b=D/nJYCN6q7eMO3YoxQNksJTc3qfd4Crmk8TOf8ufE+GUItBxlwvMThunliPdpCwaIOpsBL9p57pUWi0fhSUdBdK7JtwRYgIlaM/TcjKLcuQDenp4tGazHGxHicK51b9dbUGgl1F9fYYs0qw9HTKdtbTmWyBAHn8EGNMEq1mh9E+V6skp0oZPVpvj1rfSYp9oeyPQEXSa13pyaFr6QP6/j/23XbYDEmxh4rHqBGuUtswYyksonAQiwCDnW6+ilFm3m+Z1qooWarAver9uQrgKHXqkzU4/ACILZF0xNSTrDAhPRXnB6tVqv644Tks/F+mt0BlQkz4tRbXijuMVq6+KXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+	s=arcselector9901;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=Nsna0nvN8L0GkHmWxtVC887NAMnRF2fpiMUw7SeinFI=;
+	b=RvRNfcm5nijTUrX25LMjDca1VN4zRZEagUMGoJWSKwUPUZg3m5/ROQeO9KEQ/oloXYyjJXE7dNpYceCLY1gOKlylay9bxQIOwlRZQrAlhp4dS+3J+Zf/S7EVAZH+AEXSAnmcI4uBePlOSa01k7wtamt8azPHDeMu1Nt/HHA7c75GMd4F76unED53kx6/kYI8FVe7XEZ8zekPHOoGxjbJO9LnKwt9wDJx/dl8j3QJamhL/LZfBRQaLF5sIuaMeu5LUq8uC222j3TBafQlHpcRGiTA4T4EyYQpMye9Glfgv0NE/Oo1BPGj9HoHtREpcogdQ8704sG3cT34xRGHXwaSsg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+	smtp.mailfrom=gallagher.com; dmarc=pass action=none
+	header.from=gallagher.com; dkim=pass header.d=gallagher.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gallagher.com;
+	s=selector1;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=Nsna0nvN8L0GkHmWxtVC887NAMnRF2fpiMUw7SeinFI=;
+	b=mU4AV9v9x1P+4ct5wABiNzrrEqy9E+0hcAIh0/0Qk8DT3R/uA46fIgqHOVXCbapczge4KvhqDUoKW6rfTdyd0WzvafEcS1lfbT7gnk8aNd8DGNC+awtpXJsWBd9CI7oKLDw5hNrlwRf0d9AE+qNz0tD7kdAiZW3ROxo5/Nk7cR8=
+Received: from SY3PR01MB0972.ausprd01.prod.outlook.com (10.169.171.23) by
+	SY3PR01MB1996.ausprd01.prod.outlook.com (10.173.250.16) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.2772.15; Thu, 27 Feb 2020 04:58:43 +0000
+Received: from SY3PR01MB0972.ausprd01.prod.outlook.com
+	([fe80::e4c4:b960:38b7:5841]) by
+	SY3PR01MB0972.ausprd01.prod.outlook.com
+	([fe80::e4c4:b960:38b7:5841%10]) with mapi id 15.20.2750.021;
+	Thu, 27 Feb 2020 04:58:43 +0000
+From: Ondrej Pohl <Ondrej.Pohl@gallagher.com>
+To: Denys Dmytriyenko <denys@ti.com>
+Thread-Topic: [meta-arago] [Thud branch][AM3354]OpenGL/QT font rendering
+	problem - corrupt glyphs
+Thread-Index: AdXga0sggRssNwE8TBucwglUxu+UtAFc1sOAAF4Z1BwACiJqAAFquqKA
+Date: Thu, 27 Feb 2020 04:58:43 +0000
+Message-ID: <SY3PR01MB097231F6A4DD2BFB9C6411B4E7EB0@SY3PR01MB0972.ausprd01.prod.outlook.com>
+References: <MEAPR01MB2567716832C5FA4F6E472CF2E5190@MEAPR01MB2567.ausprd01.prod.outlook.com>
+	<SY2PR01MB2426BC6017DD8E113B166CB6E5160@SY2PR01MB2426.ausprd01.prod.outlook.com>
+	<SY2PR01MB24265CF57E3A14572D8434B7E5100@SY2PR01MB2426.ausprd01.prod.outlook.com>
+	<20200219235206.GX720@beryl>
+In-Reply-To: <20200219235206.GX720@beryl>
+Accept-Language: en-NZ, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=Ondrej.Pohl@gallagher.com; 
+x-originating-ip: [203.167.229.98]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 73b415cf-a692-46ad-9607-08d7bb41b83b
+x-ms-traffictypediagnostic: SY3PR01MB1996:
+x-microsoft-antispam-prvs: <SY3PR01MB1996F8D9C6EF44260E874EBCE7EB0@SY3PR01MB1996.ausprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 03264AEA72
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10001)(10019020)(39850400004)(396003)(346002)(376002)(136003)(366004)(189003)(199004)(66556008)(64756008)(2906002)(66476007)(66446008)(66946007)(76116006)(6916009)(52536014)(53546011)(5660300002)(8676002)(81166006)(81156014)(8936002)(33656002)(55016002)(6506007)(316002)(7696005)(4326008)(9686003)(71200400001)(186003)(966005)(478600001)(26005)(86362001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:SY3PR01MB1996;
+	H:SY3PR01MB0972.ausprd01.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: gallagher.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: jWWWjQdL3LXlCJ3EnhhH5OsiClOA1Qs6wSKvLr4V7sTVy22etzISy7bBgrsrO37fGBbyXvn70Cv2xtPPhM4J4LT+xNmHDKIm5SIRUCT9xvwLlBR5QfNzNF3xhfgEsavfYrbOawJGEcdKVRVFNU3iM11n6/AXr+rIdYwX6lGrzgzC3MI5afn2Qn21DybzdOOI01vqux4o6iW3Ruire26A3tj1OI84njlZWB0wBnNla1zXz0zxvzoB6crhfdvUrMP8mHP6g8Ao+35GJNpS12sU23YGQN8rJXXIC46AWSZ39g+c4LDTtznxwvq9Hfziry2DjAq8oPbKQgbhcZjWL0NZkTBJiJzfhnxndmmA4nwOZqn8Pab9Tcvl+PcJOCMNAuruLYGRJDo60H22kUjOdFEctj63DmNwI/gB6KQS4Vb6oNEDN7dNf0jWW+GUsdI7N3hfbE1iL8yvXj6lKcz50trgt0DTD0EbtPZ5SntpLNWZW2dpY9UT64fd5NtO4zyFqsNmU9tea7O56piLPPFLIM+B5oyE6UhX8PSL/eu3fylHY7KSK4E5KLVGdamEAOvyaJqCC/7WNY7cGsgfNQbW2Kg9UQ==
+x-ms-exchange-antispam-messagedata: N7TIhMAI3clk/rnp3bF3SY8qNHFubN1y7H/Km99YqB8tKwgOrEN5fF6KEQjVKFAKjqp218x5I7rvSWZTu1I0GvDTOfM8ILPuRYfCO7BJI1lxCpW0mLDJuzN30oOV7GkJeeIXKW2Y3HKIaoFiR5Wgfg==
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: gallagher.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73b415cf-a692-46ad-9607-08d7bb41b83b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Feb 2020 04:58:43.3815 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 2156b869-431f-4815-b2ce-b4893b5c9aaa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: MwZsf6Y+9yeX4wR87j08R8oDTGMAc380ZAvEGf7BHyZWAsc/i6kIaLetag3Cja1hJsoCtKIafbUzMzpZHRaSPLjqCYIwoe/hHQYiNmQFlws=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SY3PR01MB1996
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [Thud branch][AM3354]OpenGL/QT font rendering problem - corrupt glyphs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,22 +88,111 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Feb 2020 01:49:59 -0000
+X-List-Received-Date: Thu, 27 Feb 2020 05:00:47 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/recipes-kernel/perf/perf.bbappend | 1 -
- 1 file changed, 1 deletion(-)
- delete mode 100644 meta-arago-distro/recipes-kernel/perf/perf.bbappend
-
-diff --git a/meta-arago-distro/recipes-kernel/perf/perf.bbappend b/meta-arago-distro/recipes-kernel/perf/perf.bbappend
-deleted file mode 100644
-index 73ef203..0000000
---- a/meta-arago-distro/recipes-kernel/perf/perf.bbappend
-+++ /dev/null
-@@ -1 +0,0 @@
--DEPENDS += "bison-native flex-native"
--- 
-2.7.4
-
+SGkgRGVueXMsDQoNClllcywgd2UgYWxzbyBzd2l0Y2hlZCB0byB0aGUgInRodWQiIGJyYW5jaCBv
+ZiB1LWJvb3QgYW5kIGxpbnV4IGtlcm5lbCBmcm9tIG1ldGEtdGkuIEhvd2V2ZXIsIHdlIGRpZCBh
+IGNoZWNrIGxhc3Qgd2VlayB3aGV0aGVyIHRoZXJlIGFyZSBzb21lIHVwZGF0ZXMgaW4gdGhlIHRo
+dWQgYnJhbmNoIHdlIG1pZ2h0IGJlIG1pc3NpbmcsIGFuZCBhZnRlciB0aGF0IHdlIGRpZCBhbiB1
+cGRhdGUgdG8gdGhlIGxhdGVzdCByZXZpc2lvbnMgb2YgbWV0YS10aSwgbWV0YS1hcmFnbywgLi4u
+IHRvIHNlZSB3aGV0aGVyIHRoZXNlIG5ldyBjaGFuZ2VzIGltcHJvdmUgYW55dGhpbmcuDQoNCkFm
+dGVyIHRoZSB1cGRhdGUgd2UgZW5jb3VudGVyZWQgYSBmcmVzaCBlcnJvciB3aGljaCB3ZSBkaWQg
+bm90IHNlZSBiZWZvcmU6IHdoZW4gcnVubmluZyBhbnkgUXQgR1VJIGFwcGxpY2F0aW9uLCBubyBn
+cmFwaGljcyBhcmUgc2hvd24gYW5kIHRoZSBmb2xsb3dpbmcgZXJyb3JzIGFyZSBpbiB0aGUgY29u
+c29sZToNCg0Kcm9vdEBhbTMzNXgtZXZtOn4jICBleHBvcnQgUVRfUVBBX0VHTEZTX0lOVEVHUkFU
+SU9OPWVnbGZzX2ttcw0Kcm9vdEBhbTMzNXgtZXZtOn4jIC9ydW4vbWVkaWEvc2RhL3F0X2V4YW1w
+bGVzL2FuYWxvZ2Nsb2NrDQpGYWlsZWQgdG8gbW92ZSBjdXJzb3Igb24gc2NyZWVuIExWRFMxOiAt
+MTQgQ291bGQgbm90IHF1ZXVlIERSTSBwYWdlIGZsaXAgb24gc2NyZWVuIExWRFMxIChJbnZhbGlk
+IGFyZ3VtZW50KQ0KDQpvcjoNCnJvb3RAYW0zMzV4LWV2bTp+IyBleHBvcnQgUVRfUVBBX0VHTEZT
+X0lOVEVHUkFUSU9OPW5vbmUgcm9vdEBhbTMzNXgtZXZtOn4jIC9ydW4vbWVkaWEvc2RhL3F0X2V4
+YW1wbGVzL2FuYWxvZ2Nsb2NrDQpRU3RhbmRhcmRQYXRoczogWERHX1JVTlRJTUVfRElSIG5vdCBz
+ZXQsIGRlZmF1bHRpbmcgdG8gJy90bXAvcnVudGltZS1yb290Jw0KZXJyb3I6IFhER19SVU5USU1F
+X0RJUiBub3Qgc2V0IGluIHRoZSBlbnZpcm9ubWVudC4NCmVycm9yOiBYREdfUlVOVElNRV9ESVIg
+bm90IHNldCBpbiB0aGUgZW52aXJvbm1lbnQuDQplcnJvcjogWERHX1JVTlRJTUVfRElSIG5vdCBz
+ZXQgaW4gdGhlIGVudmlyb25tZW50Lg0KQ291bGQgbm90IGluaXRpYWxpemUgZWdsIGRpc3BsYXkN
+CkFib3J0ZWQgKGNvcmUgZHVtcGVkKQ0KDQpJIGFsc28gdHJpZWQgc2V0dGluZyB0aGUgL2V0Yy9x
+dDUvZWdsZnNfa21zX2NmZy5qc29uIHRvOg0Kew0KICAiZGV2aWNlIjogIi9kZXYvZHJpL2NhcmQw
+IiwNCiAgImh3Y3Vyc29yIjogZmFsc2UsDQogICJwYnVmZmVycyI6IHRydWUsDQogICJvdXRwdXRz
+IjogWw0KICAgIHsNCiAgICAgICJuYW1lIjogIkxWRFMxIiwNCiAgICAgICJmb3JtYXQiOiAieHJn
+Yjg4ODgiLA0KICAgICAgInByaW1hcnkiOiB0cnVlDQogICAgfQ0KICBdDQp9DQoNCldlIGFyZSBv
+YnZpb3VzbHkgbWlzc2luZyBzb21lIGltcG9ydGFudCBwaWVjZSBvZiB0aGUgcHV6emxlIGhlcmUu
+IEkgdHJpZWQgcnVubmluZyB0aGUgZ2xtYXJrMiBhbmQgaXQgd29ya2VkIGZpbmUuIFRoaXMgaXMg
+aG93IHRoZSBlbnZpcm9ubWVudCBsb29rcyBsaWtlIG5vdzoNClFUX1FQQV9FR0xGU19LTVNfQ09O
+RklHPS9ldGMvcXQ1L2VnbGZzX2ttc19jZmcuanNvbg0KUVRfUVVJQ0tfQ09OVFJPTFNfMV9TVFlM
+RT1GbGF0DQpRVF9RUEFfRU5BQkxFX1RFUk1JTkFMX0tFWUJPQVJEPTENClFUX1FQQV9FR0xGU19B
+TFdBWVNfU0VUX01PREU9MQ0KUVRfUVBBX0VHTEZTX05PX0xJQklOUFVUPTENCg0KSSBkaWQgc29t
+ZSBkaWdnaW5nIGFuZCBJIGZvdW5kIG91dCB0aGF0IHRoZXJlIHdhcyBhIHJlY2VudCBjaGFuZ2Ug
+aW4gInRpLXNneC1kZGstdW0iIHRoYXQgcmVwbGFjZXMgc29tZSBwbHVnaW5zIChsaWJwdnJEUk1X
+U0VHTC5zbywgbGlicHZyR0JNV1NFR0wuc28sIGxpYnB2cndzX1dBWUxBTkQuc28pIHdpdGggdGhl
+aXIgTWVzYSBjb3VudGVycGFydHMgKGxpYkdMRVN2MV9QVlJfTUVTQS5zbywgbGliR0xFU3YyX1BW
+Ul9NRVNBLnNvKS4gTGluayB0byB0aGUgY2hhbmdlOiANCmh0dHA6Ly9naXQueW9jdG9wcm9qZWN0
+Lm9yZy9jZ2l0L2NnaXQuY2dpL21ldGEtdGkvY29tbWl0Lz9oPXRodWQmaWQ9MDVlNDFjMjllMmVh
+YjIzMzdhMDc4MWFjMTM3YTFlNDBhZTQ1YjNlOA0KQ291bGQgdGhpcyBiZSB0aGUgcmVhc29uIHdo
+eSBvdXIgUXQgYXBwbGljYXRpb25zIGFyZSBub3Qgd29ya2luZz8NCg0KS2luZCByZWdhcmRzLA0K
+T25kcmVqDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBtZXRhLWFyYWdvLWJv
+dW5jZXNAYXJhZ28tcHJvamVjdC5vcmcgPG1ldGEtYXJhZ28tYm91bmNlc0BhcmFnby1wcm9qZWN0
+Lm9yZz4gT24gQmVoYWxmIE9mIERlbnlzIERteXRyaXllbmtvDQpTZW50OiBUaHVyc2RheSwgMjAg
+RmVicnVhcnkgMjAyMCAxMjo1Mg0KVG86IEFua3VyIFR5YWdpIDxBbmt1ci5UeWFnaUBnYWxsYWdo
+ZXIuY29tPg0KQ2M6IG1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBb
+bWV0YS1hcmFnb10gW1RodWQgYnJhbmNoXVtBTTMzNTRdT3BlbkdML1FUIGZvbnQgcmVuZGVyaW5n
+IHByb2JsZW0gLSBjb3JydXB0IGdseXBocw0KDQpUaGF0IGlzIHF1aXRlIHN0cmFuZ2UuIFdlIGFy
+ZSB3cmFwcGluZyB1cCBvdXIgVGh1ZCBzdXBwb3J0LiBCdXQgaXQgd2FzIHVzZWQgaW4gb3VyIHBy
+b2R1Y3RzIGZvciBhYm91dCBhIHllYXIgd2l0aCByaWdvcm91cyB0ZXN0aW5nIGFuZCB3ZSBoYXZl
+bid0IHNlZW4gYW55dGhpbmcgbGlrZSB0aGF0IG9uIGFueSBvZiBvdXIgcGxhdGZvcm1zLg0KDQpU
+aGlzIGRvZXMgbG9vayBsaWtlIHNvbWUgbWVtb3J5IGNvcnJ1cHRpb24gLSBhcmUgeW91IHN1cmUg
+eW91IGhhdmUgYWxsIHRoZSB0aW1pbmdzIGNvcnJlY3RseT8gSGF2ZSB5b3UgYWxzbyBzd2l0Y2hl
+ZCBhbnkgb2YgdGhlIGxvdy1sZXZlbCBjb21wb25lbnRzLCBsaWtlIFUtYm9vdCwgTGludXgga2Vy
+bmVsLCBldGMuPw0KDQpEZW55cw0KDQoNCk9uIFdlZCwgRmViIDE5LCAyMDIwIGF0IDA3OjA0OjEy
+UE0gKzAwMDAsIEFua3VyIFR5YWdpIHdyb3RlOg0KPiBIaSwNCj4gDQo+IElzIHRoZXJlIGFueXRo
+aW5nIGNhbiBiZSBkb25lIHRvIGZpeCBpdD8gTGV0IG1lIGtub3cgaWYgc29tZSBtb3JlIGluZm9y
+bWF0aW9uIG5lZWRzIHRvIGJlIHNoYXJlZCBpbiBvcmRlciB0byBoZWxwIHdpdGggZGlhZ25vc2lz
+Lg0KPiANCj4gUmVnYXJkcw0KPiBBbmt1cg0KPiANCj4gDQo+IF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fDQo+IEZyb206IG1ldGEtYXJhZ28tYm91bmNlc0BhcmFnby1wcm9qZWN0Lm9y
+ZyANCj4gPG1ldGEtYXJhZ28tYm91bmNlc0BhcmFnby1wcm9qZWN0Lm9yZz4gb24gYmVoYWxmIG9m
+IEFua3VyIFR5YWdpIA0KPiA8QW5rdXIuVHlhZ2lAZ2FsbGFnaGVyLmNvbT4NCj4gU2VudDogVHVl
+c2RheSwgRmVicnVhcnkgMTgsIDIwMjAsIDExOjExIEFNDQo+IFRvOiBtZXRhLWFyYWdvQGFyYWdv
+LXByb2plY3Qub3JnDQo+IFN1YmplY3Q6IFttZXRhLWFyYWdvXSBbVGh1ZCBicmFuY2hdW0FNMzM1
+NF1PcGVuR0wvUVQgZm9udCByZW5kZXJpbmcgDQo+IHByb2JsZW0gLSBjb3JydXB0IGdseXBocw0K
+PiANCj4gUmVzZW5kaW5nIGl0IGFzIHByZXZpb3VzIG9uZSBkaWRu4oCZdCBtYWRlIGl0IHRvIHRo
+ZSBtYWlsaW5nIGxpc3QNCj4gDQo+IEFuZCB3ZSBhcmUgc3R1Y2sgaW4gcHJvZHVjdGlvbiBhZnRl
+ciB1cGdyYWRlIHRvIHRodWQgYnJhbmNoIGJlY2F1c2Ugb2YgDQo+IHRoaXMgaXNzdWUsIGFueSBo
+ZWxwIGlzIGFwcHJlY2lhdGVkDQo+IA0KPiBSZWdhcmRzDQo+IEFua3VyDQo+IA0KPiBGcm9tOiBB
+bmt1ciBUeWFnaQ0KPiBTZW50OiBUdWVzZGF5LCAxMSBGZWJydWFyeSAyMDIwIDEyOjM5IFBNDQo+
+IFRvOiBtZXRhLWFyYWdvQGFyYWdvLXByb2plY3Qub3JnDQo+IFN1YmplY3Q6IFtUaHVkIGJyYW5j
+aF1bQU0zMzU0XU9wZW5HTC9RVCBmb250IHJlbmRlcmluZyBwcm9ibGVtIC0gDQo+IGNvcnJ1cHQg
+Z2x5cGhzDQo+IA0KPiBHcmVldGluZ3MsDQo+IA0KPiBJIGFtIHVzaW5nIEFNMzM1NCBwcm9jZXNz
+b3IuIEkganVzdCBkaWQgYSBtYWpvciBZb2N0byB1cGdyYWRlIGZyb20gImRhaXN5IiB0byAidGh1
+ZCIgYnJhbmNoLCBhbmQgSSBub3RpY2VkIHRoYXQgc29tZSBjaGFyYWN0ZXJzL2dseXBocyBoYXBw
+ZW4gdG8gYmUgc2xpZ2h0bHkgY29ycnVwdC4NCj4gVGhlIHByb2JsZW0gb2NjdXJzIHJhbmRvbWx5
+LCBidXQgd2hlbiBhIGNvcnJ1cHRlZCBjaGFyYWN0ZXIgaXMgcmVuZGVyZWQgbXVsdGlwbGUgdGlt
+ZXMgb24gdGhlIHNjcmVlbiwgYWxsIG9mIGl0cyBpbnN0YW5jZXMgYXJlIGNvcnJ1cHRlZCB0aGUg
+c2FtZSB3YXkuDQo+IA0KPiBJdCBsb29rcyBsaWtlIHRoaXM6IGh0dHBzOi8vaWJiLmNvL0xZUDRK
+Q3gNCj4gDQo+IEkgdHJpZWQgdXNpbmcgdmFyaW91cyBRVCBlbnZpcm9ubWVudCB2YXJpYWJsZXMs
+IGJ1dCB0aGUgb25seSBvbmUgdGhhdCB3b3JrZWQgd2FzIFFUX1FVSUNLX0JBQ0tFTkQ9c29mdHdh
+cmUuIEhvd2V2ZXIsIHRoaXMgbGVkIHRvIGEgdmVyeSBzaWduaWZpY2FudCBzbG93ZG93biwgc28g
+aXQncyBub3QgYW4gb3B0aW9uLg0KPiANCj4gSSdtIG5vdCB1c2luZyBYMTEgb3Igd2F5bGFuZC4g
+SSdtIG5vdCBtb2RpZnlpbmcgdGhlIGdyYXBoaWNzIGRyaXZlcnMgb3IgdGhlIFFUIGxheWVyIGlu
+IGFueSB3YXkuDQo+IA0KPiBGb2xsb3dpbmcgYXJlIFF0IGVudmlyb25tZW50IHZhcmlhYmxlcyBv
+biB0YXJnZXQ6DQo+IA0KPiBleHBvcnQgUVRfUVBBX0VHTEZTX0lOVEVHUkFUSU9OPW5vbmUNCj4g
+ZXhwb3J0IFFUX1FVSUNLX0NPTlRST0xTXzFfU1RZTEU9RmxhdA0KPiBleHBvcnQgUVRfUVBBX0VH
+TEZTX05PX0xJQklOUFVUPTENCj4gDQo+IEhhcyBhbnlvbmUgZXhwZXJpZW5jZWQgc2ltaWxhciBw
+cm9ibGVtPyBJcyB0aGVyZSBhbnkgY29uZmlndXJhdGlvbiBkZXRhaWwgSSBtaWdodCBiZSBtaXNz
+aW5nPw0KPiANCj4gUmVnYXJkcywNCj4gQW5rdXINCj4gDQo+IF9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fDQo+IFRoaXMgZW1haWwgaXMgY29uZmlkZW50aWFsIGFuZCBtYXkgY29udGFp
+biBpbmZvcm1hdGlvbiBzdWJqZWN0IHRvIGxlZ2FsIHByaXZpbGVnZS4gSWYgeW91IGFyZSBub3Qg
+dGhlIGludGVuZGVkIHJlY2lwaWVudCBwbGVhc2UgYWR2aXNlIHVzIG9mIG91ciBlcnJvciBieSBy
+ZXR1cm4gZS1tYWlsIHRoZW4gZGVsZXRlIHRoaXMgZW1haWwgYW5kIGFueSBhdHRhY2hlZCBmaWxl
+cy4gWW91IG1heSBub3QgY29weSwgZGlzY2xvc2Ugb3IgdXNlIHRoZSBjb250ZW50cyBpbiBhbnkg
+d2F5LiBUaGUgdmlld3MgZXhwcmVzc2VkIGluIHRoaXMgZW1haWwgbWF5IG5vdCBiZSB0aG9zZSBv
+ZiBHYWxsYWdoZXIgR3JvdXAgTHRkIG9yIHN1YnNpZGlhcnkgY29tcGFuaWVzIHRoZXJlb2YuDQo+
+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IA0KDQo+IF9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IG1ldGEtYXJhZ28gbWFpbGluZyBs
+aXN0DQo+IG1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmcNCj4gaHR0cDovL2FyYWdvLXByb2pl
+Y3Qub3JnL2NnaS1iaW4vbWFpbG1hbi9saXN0aW5mby9tZXRhLWFyYWdvDQoNCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQptZXRhLWFyYWdvIG1haWxpbmcg
+bGlzdA0KbWV0YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZw0KaHR0cDovL2FyYWdvLXByb2plY3Qu
+b3JnL2NnaS1iaW4vbWFpbG1hbi9saXN0aW5mby9tZXRhLWFyYWdvDQo=
 
