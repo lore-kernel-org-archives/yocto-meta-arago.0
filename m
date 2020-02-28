@@ -1,42 +1,49 @@
-Return-Path: <yuanzhao@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id A11F152994
+Return-Path: <h-gou@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id BBD7A52A4C
 	for <meta-arago@arago-project.org>;
-	Fri, 28 Feb 2020 17:48:24 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01SHkNin129296
-	for <meta-arago@arago-project.org>; Fri, 28 Feb 2020 11:46:23 -0600
+	Fri, 28 Feb 2020 17:56:08 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 01SHs629035296
+	for <meta-arago@arago-project.org>; Fri, 28 Feb 2020 11:54:06 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1582911983;
-	bh=UGrSuwNtlM8AMAefjVtv/mXi5aTN+LtFzrh4t4H37Q0=;
-	h=From:To:CC:Subject:Date;
-	b=vEdxoNFeNmUQKvSUeNblQtSmc9PxVDlkhEOrHAEZ8Aujl1MmNz5h33V13T+qPqFzV
-	Ejt1a6Y/JBE6goBwb/aXReuLWpFgSxyAOks21ekKJDRpKzzZtd5+Wa8m656yDqJ21L
-	gZ+JcDylZ/2PreV1IgfYFEPQrbLEovQF8Pcxyumc=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01SHkNJY072603
+	s=ti-com-17Q1; t=1582912446;
+	bh=zR5P+V3dkUTVsL7GMEN+oKGtKwenvdynMAZ+BJ1P7uI=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=SjT7HzQZ3+2o+nxT/2rbz3cfPwLpaCrbWo63ErFV/6c21hEi4eUEiuHg/bCLOicdX
+	KOd3EYNgiD9WiaCy6seaD7KBZFgh5Chmpf5PDNidCjCtaa3s+vIuv8ETbF+dLlfTBi
+	Eao3WCefSAs5U0ldn3xjmV7HIMVPAwcm6FYAfmbY=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 01SHs6eU057934
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 28 Feb 2020 11:46:23 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 28 Feb 2020 11:54:06 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Fri, 28 Feb 2020 11:46:22 -0600
-Received: from localhost.localdomain (10.64.41.19) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Fri, 28 Feb 2020 11:46:22 -0600
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 01SHkMK1007375; 
-	Fri, 28 Feb 2020 11:46:22 -0600
-From: Yuan Zhao <yuanzhao@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 28 Feb 2020 11:46:16 -0600
-Message-ID: <20200228174616.97699-1-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.24.1
+	Fri, 28 Feb 2020 11:54:06 -0600
+Received: from DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f]) by
+	DFLE113.ent.ti.com ([fe80::5de1:db32:7f81:772f%18]) with mapi id
+	15.01.1847.007; Fri, 28 Feb 2020 11:54:06 -0600
+From: "Gou, Hongmei" <h-gou@ti.com>
+To: "Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [zeus/master] [PATCH 2/3] tensorflow-lite-demo: add
+	version 01.00.00
+Thread-Index: AQHV7DIf1itPg7MHHkCNJ0gS3xYlCqgwE5wAgADDrWCAAGlPAP//nhnggABloQD//6KyAA==
+Date: Fri, 28 Feb 2020 17:54:06 +0000
+Message-ID: <1b36727beab44a37a482ea9f11a12fac@ti.com>
+References: <20200225231226.24898-1-a0271529@ti.com>
+	<20200225231226.24898-2-a0271529@ti.com> <20200227231450.GA2466@beryl>
+	<dbcf117fd9a74d579503e9c8438d5e0a@ti.com> <20200228171206.GE2466@beryl>
+	<92987f994a9c49c5ae44a75c80dad390@ti.com> <20200228172526.GH2466@beryl>
+In-Reply-To: <20200228172526.GH2466@beryl>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [158.218.112.213]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] tidl-api: update to version 1.5.0
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [zeus/master] [PATCH 2/3] tensorflow-lite-demo: add version 01.00.00
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,181 +56,257 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Feb 2020 17:48:25 -0000
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-List-Received-Date: Fri, 28 Feb 2020 17:56:09 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-- Cleanup config file for subgraph runtime
-- Remove previous patches (now merged)
+> -----Original Message-----
+> From: Dmytriyenko, Denys
+> Sent: Friday, February 28, 2020 12:25 PM
+> To: Gou, Hongmei
+> Cc: meta-arago@arago-project.org
+> Subject: Re: [meta-arago] [zeus/master] [PATCH 2/3] tensorflow-lite-demo:
+> add version 01.00.00
+>=20
+> On Fri, Feb 28, 2020 at 12:22:36PM -0500, Gou, Hongmei wrote:
+> > > -----Original Message-----
+> > > From: Dmytriyenko, Denys
+> > > Sent: Friday, February 28, 2020 12:12 PM
+> > > To: Gou, Hongmei
+> > > Cc: meta-arago@arago-project.org
+> > > Subject: Re: [meta-arago] [zeus/master] [PATCH 2/3] tensorflow-lite-
+> demo:
+> > > add version 01.00.00
+> > >
+> > > On Fri, Feb 28, 2020 at 12:00:46PM -0500, Gou, Hongmei wrote:
+> > > > > -----Original Message-----
+> > > > > From: Dmytriyenko, Denys
+> > > > > Sent: Thursday, February 27, 2020 6:15 PM
+> > > > > To: Gou, Hongmei
+> > > > > Cc: meta-arago@arago-project.org
+> > > > > Subject: Re: [meta-arago] [zeus/master] [PATCH 2/3] tensorflow-li=
+te-
+> > > demo:
+> > > > > add version 01.00.00
+> > > > >
+> > > > > On Tue, Feb 25, 2020 at 06:12:25PM -0500, Hongmei Gou wrote:
+> > > > > > * This supports classification and segmentation demos with
+> tensorflow
+> > > lite
+> > > > > models
+> > > > > >   running on Arm. It demonstrates the whole pipeline from
+> > > > > image/video/camera input,
+> > > > > >   to tensorflow lite inference, to display the
+> classification/segemenation
+> > > > > results.
+> > > > > >
+> > > > > > * OpenCV is used for capturing the input and displaying the res=
+ults.
+> > > > > >
+> > > > > > Signed-off-by: Hongmei Gou <a0271529@ti.com>
+> > > > > > ---
+> > > > > >  .../files/run_classification.sh               |  7 +++
+> > > > > >  .../tensorflow-lite/files/run_segmentation.sh |  8 +++
+> > > > > >  .../tensorflow-lite-demo_git.bb               | 53
+> +++++++++++++++++++
+> > > > > >  3 files changed, 68 insertions(+)
+> > > > > >  create mode 100644 meta-arago-extras/recipes-
+> support/tensorflow-
+> > > > > lite/files/run_classification.sh
+> > > > > >  create mode 100644 meta-arago-extras/recipes-
+> support/tensorflow-
+> > > > > lite/files/run_segmentation.sh
+> > > > > >  create mode 100644 meta-arago-extras/recipes-
+> support/tensorflow-
+> > > > > lite/tensorflow-lite-demo_git.bb
+> > > > > >
+> > > > > > diff --git a/meta-arago-extras/recipes-support/tensorflow-
+> > > > > lite/files/run_classification.sh b/meta-arago-extras/recipes-
+> > > > > support/tensorflow-lite/files/run_classification.sh
+> > > > > > new file mode 100644
+> > > > > > index 00000000..b2ad7fc4
+> > > > > > --- /dev/null
+> > > > > > +++ b/meta-arago-extras/recipes-support/tensorflow-
+> > > > > lite/files/run_classification.sh
+> > > > > > @@ -0,0 +1,7 @@
+> > > > > > +#!/bin/sh
+> > > > > > +
+> > > > > > +cd /usr/share/tensorflow-lite/demos
+> > > > > > +
+> > > > > > +# Run tflite_classification binary with the model, the input i=
+mage,
+> and
+> > > the
+> > > > > label file specified.
+> > > > > > +# Classification label is overlayed with the input image. Righ=
+t click
+> the
+> > > > > image display window to exit.
+> > > > > > +./tflite_classification -m
+> > > ../examples/mobilenet_v1_1.0_224_quant.tflite -
+> > > > > i ../examples/grace_hopper.bmp -l ../examples/labels.txt
+> > > > > > diff --git a/meta-arago-extras/recipes-support/tensorflow-
+> > > > > lite/files/run_segmentation.sh b/meta-arago-extras/recipes-
+> > > > > support/tensorflow-lite/files/run_segmentation.sh
+> > > > > > new file mode 100644
+> > > > > > index 00000000..5caea127
+> > > > > > --- /dev/null
+> > > > > > +++ b/meta-arago-extras/recipes-support/tensorflow-
+> > > > > lite/files/run_segmentation.sh
+> > > > > > @@ -0,0 +1,8 @@
+> > > > > > +#!/bin/sh
+> > > > > > +
+> > > > > > +cd /usr/share/tensorflow-lite/demos
+> > > > > > +
+> > > > > > +# Run tflite_segmentation binary with the model and the input
+> image
+> > > > > specified.
+> > > > > > +# The display window shows the input(resized) image,
+> segmentation
+> > > > > map, overlay
+> > > > > > +# of the former two. Right click the image display window to e=
+xit.
+> > > > > > +./tflite_segmentation -m ./deeplabv3_257_mv_gpu.tflite -i
+> > > > > ./bird_segmentation.bmp
+> > > > > > diff --git a/meta-arago-extras/recipes-support/tensorflow-
+> > > lite/tensorflow-
+> > > > > lite-demo_git.bb b/meta-arago-extras/recipes-support/tensorflow-
+> > > > > lite/tensorflow-lite-demo_git.bb
+> > > > > > new file mode 100644
+> > > > > > index 00000000..9b99b63c
+> > > > > > --- /dev/null
+> > > > > > +++ b/meta-arago-extras/recipes-support/tensorflow-
+> lite/tensorflow-
+> > > lite-
+> > > > > demo_git.bb
+> > > > > > @@ -0,0 +1,53 @@
+> > > > > > +DESCRIPTION =3D "Tensorflow Lite Demo with input and display v=
+ia
+> > > OpenCV
+> > > > > and TIDL acceleration for AM5"
+> > > > >
+> > > > > SUMMARY?
+> > > >
+> > > > Do you mean adding "SUMMARY" or replacing "DESCRIPTION" with
+> > > "SUMMARY"?
+> > >
+> > > Either.
+> >
+> > Thank you! Just submitted a v2 patch to replace "DESCRIPTION" with
+> "SUMMARY".
+>=20
+> SUMMARY is required and is a short one-line.
+> DESCRIPTION is optional and can be a longer, more detailed one.
+>=20
+> BTW, I already merged v1 - can you please submit a separate change?
+> Thanks!
 
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
----
- ...001-Fix-versioning-for-shared-libary.patch | 55 -------------------
- ...p-2-group-layer-use-cases-with-1-dsp.patch | 34 ------------
- .../recipes-ti/tidl-api/tidl-api.inc          |  4 +-
- .../recipes-ti/tidl-api/tidl-api_git.bb       |  3 +-
- .../recipes-ti/tidl-api/tidl-examples_git.bb  |  4 +-
- 5 files changed, 5 insertions(+), 95 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-ti/tidl-api/files/0001-Fix-versioning-for-shared-libary.patch
- delete mode 100644 meta-arago-extras/recipes-ti/tidl-api/files/0002-replace-2-dsp-2-group-layer-use-cases-with-1-dsp.patch
+Sure, I will include this change with my next recipe patch which adds the T=
+IDL offload for AM5.
 
-diff --git a/meta-arago-extras/recipes-ti/tidl-api/files/0001-Fix-versioning-for-shared-libary.patch b/meta-arago-extras/recipes-ti/tidl-api/files/0001-Fix-versioning-for-shared-libary.patch
-deleted file mode 100644
-index d15389b8..00000000
---- a/meta-arago-extras/recipes-ti/tidl-api/files/0001-Fix-versioning-for-shared-libary.patch
-+++ /dev/null
-@@ -1,55 +0,0 @@
--tidl-api: Fix versioning for shared libary
--
--    SONAME needs to be properly set up in the generated shared library.
--
--Upstream-Status: Submitted
--
--Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
-----
-- tidl_api/Makefile | 13 +++++++++++--
-- 1 file changed, 11 insertions(+), 2 deletions(-)
--
--diff --git a/tidl_api/Makefile b/tidl_api/Makefile
--index a04e604..3a5ea69 100644
----- a/tidl_api/Makefile
--+++ b/tidl_api/Makefile
--@@ -37,6 +37,8 @@ all: $(LIB_NAME) $(LIB_IMGUTIL_NAME) $(PY_LIB_NAME) \
-- include make.inc
-- include make.buildid
-- 
--+SO_VER=$(MAJOR_VER).$(MINOR_VER).$(PATCH_VER)
--+
-- RM = rm
-- AR = ar
-- 
--@@ -95,7 +97,10 @@ $(LIB_NAME): $(HOST_OBJ_FILES)
-- 	$(AR) cr $@ $(HOST_OBJ_FILES)
-- 
-- $(SHARED_LIB_NAME): $(HOST_OBJ_FILES)
---	$(CXX) $(CXXFLAGS) -Wl,-Bsymbolic -shared -lOpenCL $(HOST_OBJ_FILES) -o $@
--+	$(CXX) $(CXXFLAGS) -Wl,-Bsymbolic -shared -Wl,-soname,$@.$(MAJOR_VER) \
--+		-lOpenCL $(HOST_OBJ_FILES) -o $@.$(SO_VER)
--+	ln -sf $@.$(SO_VER) $@.$(MAJOR_VER)
--+	ln -sf $@.$(MAJOR_VER) $@
-- 
-- $(PY_LIB_NAME): $(HOST_OBJ_PYBIND_FILES) $(LIB_NAME)
-- 	$(CXX) $(CXXFLAGS) -Wl,-Bsymbolic -shared -lOpenCL -locl_util $^ -o $@
--@@ -104,10 +109,14 @@ $(LIB_IMGUTIL_NAME): $(HOST_OBJ_IMGUTIL_FILES)
-- 	$(AR) cr $@ $(HOST_OBJ_IMGUTIL_FILES)
-- 
-- $(SHARED_LIB_IMGUTIL_NAME): $(HOST_OBJ_IMGUTIL_FILES)
---	$(CXX) $(CXXFLAGS) -Wl,-Bsymbolic -shared $(HOST_OBJ_IMGUTIL_FILES) -o $@
--+	$(CXX) $(CXXFLAGS) -Wl,-Bsymbolic -shared -Wl,-soname,$@.$(MAJOR_VER) \
--+		$(HOST_OBJ_IMGUTIL_FILES) -o $@.$(SO_VER)
--+	ln -sf $@.$(SO_VER) $@.$(MAJOR_VER)
--+	ln -sf $@.$(MAJOR_VER) $@
-- 
-- clean::
-- 	$(RM) -f $(LIB_NAME) $(PY_LIB_NAME)
-- 	$(RM) -f $(LIB_IMGUTIL_NAME)
--+	$(RM) -f $(SHARED_LIB_NAME)* $(SHARED_LIB_IMGUTIL_NAME)*
-- 	$(RM) -rf obj
-- 
---- 
--2.17.1
--
-diff --git a/meta-arago-extras/recipes-ti/tidl-api/files/0002-replace-2-dsp-2-group-layer-use-cases-with-1-dsp.patch b/meta-arago-extras/recipes-ti/tidl-api/files/0002-replace-2-dsp-2-group-layer-use-cases-with-1-dsp.patch
-deleted file mode 100644
-index 0c78ccf0..00000000
---- a/meta-arago-extras/recipes-ti/tidl-api/files/0002-replace-2-dsp-2-group-layer-use-cases-with-1-dsp.patch
-+++ /dev/null
-@@ -1,34 +0,0 @@
--tidl-api: replace 2 dsp + 2 group layer use cases with 1 dsp
--
--    The BBAI only has enough CMEM for 4 EVEs, 1 DSP, and 2 group
--    layers. In the case of all of our networks, the difference between
--    1 and 2 dsps is essentially nonexistent. (PLSDK-3189)
--
--Upstream-Status: Accepted
--
--Signed-off-by: Caleb Robey <a0232989@ti.com>
--Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
-----
-- examples/mcbench/scripts/all_5729.sh | 9 ++++-----
-- 1 file changed, 4 insertions(+), 5 deletions(-)
--
--diff --git a/examples/mcbench/scripts/all_5729.sh b/examples/mcbench/scripts/all_5729.sh
--index defec72..0fee8a1 100755
----- a/examples/mcbench/scripts/all_5729.sh
--+++ b/examples/mcbench/scripts/all_5729.sh
--@@ -7,8 +7,7 @@ export TIDL_NETWORK_HEAP_SIZE_DSP=56623104
-- export TIDL_NETWORK_HEAP_SIZE_EVE=67108864
-- export TIDL_NETWORK_HEAP_SIZE_DSP=8388608
-- ./mcbench -g 2 -d 1 -e 4 -c ../test/testvecs/config/infer/tidl_config_mobileNet1_lg2.txt -f 50 -i ../test/testvecs/input/preproc_2_224x224_multi.y
---./mcbench -g 2 -d 2 -e 4 -c ../test/testvecs/config/infer/tidl_config_mobileNet1_lg2.txt -f 50 -i ../test/testvecs/input/preproc_2_224x224_multi.y
---./mcbench -g 2 -d 2 -e 4 -c ../test/testvecs/config/infer/tidl_config_mobileNet2_lg2.txt -f 50 -i ../test/testvecs/input/preproc_2_224x224_multi.y
---./mcbench -g 2 -d 2 -e 4 -c ../test/testvecs/config/infer/tidl_config_inceptionNetv1_lg2.txt -f 50 -i ../test/testvecs/input/preproc_0_224x224_multi.y
---./mcbench -g 2 -d 2 -e 4 -c ../test/testvecs/config/infer/tidl_config_j11_v2_lg2.txt -f 50 -i ../test/testvecs/input/preproc_0_224x224_multi.y
---./mcbench -g 2 -d 2 -e 4 -c ../test/testvecs/config/infer/tidl_config_j11_v2_dense_lg2.txt -f 50 -i ../test/testvecs/input/preproc_0_224x224_multi.y
--+./mcbench -g 2 -d 1 -e 4 -c ../test/testvecs/config/infer/tidl_config_mobileNet2_lg2.txt -f 50 -i ../test/testvecs/input/preproc_2_224x224_multi.y
--+./mcbench -g 2 -d 1 -e 4 -c ../test/testvecs/config/infer/tidl_config_inceptionNetv1_lg2.txt -f 50 -i ../test/testvecs/input/preproc_0_224x224_multi.y
--+./mcbench -g 2 -d 1 -e 4 -c ../test/testvecs/config/infer/tidl_config_j11_v2_lg2.txt -f 50 -i ../test/testvecs/input/preproc_0_224x224_multi.y
--+./mcbench -g 2 -d 1 -e 4 -c ../test/testvecs/config/infer/tidl_config_j11_v2_dense_lg2.txt -f 50 -i ../test/testvecs/input/preproc_0_224x224_multi.y
---- 
--2.17.1
--
-diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-index 116928ab..c45b33fb 100644
---- a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-+++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-@@ -1,4 +1,4 @@
--PV = "1.4.0"
-+PV = "1.5.0"
- INC_PR = "r0"
- 
- LIC_FILES_CHKSUM = "file://license.txt;md5=e3daeabffb9fc131a73f16d16cbdb118"
-@@ -8,7 +8,7 @@ GIT_PROTOCOL = "git"
- BRANCH = "master"
- 
- SRC_URI = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
--SRCREV = "21faf4b36a0ae9ee5b5c6aaf90d067728ff4f78b"
-+SRCREV = "eeb4c457c8881a81fbf59a60b2ee070d2450a935"
- 
- # default patchdir is ${S}
- S = "${WORKDIR}/git"
-diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb b/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb
-index c96fa337..4dd8c685 100644
---- a/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb
-+++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb
-@@ -6,8 +6,7 @@ LICENSE = "BSD"
- include tidl-api.inc
- require recipes-ti/includes/ti-paths.inc
- 
--PR = "${INC_PR}.1"
--SRC_URI += "file://0001-Fix-versioning-for-shared-libary.patch"
-+PR = "${INC_PR}.0"
- 
- COMPATIBLE_MACHINE = "dra7xx"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
-diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb b/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
-index e5afad1c..d59ee405 100644
---- a/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
-+++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
-@@ -6,8 +6,7 @@ LICENSE = "BSD"
- include tidl-api.inc
- require recipes-ti/includes/ti-paths.inc
- 
--PR = "${INC_PR}.1"
--SRC_URI += "file://0002-replace-2-dsp-2-group-layer-use-cases-with-1-dsp.patch"
-+PR = "${INC_PR}.0"
- 
- COMPATIBLE_MACHINE = "dra7xx"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
-@@ -23,6 +22,7 @@ RDEPENDS_${PN} += "tidl-api \
-                    opencl-runtime \
-                    opencv \
-                    json-c \
-+                   python3-core \
- "
- 
- EXTRA_OEMAKE = " -C ${S}/examples \
--- 
-2.24.1
-
+>=20
+>=20
+> > > > > > +LICENSE =3D "Apache-2.0"
+> > > > > > +LIC_FILES_CHKSUM =3D
+> > > > > "file://LICENSE;md5=3Dd8927f3331d2b3e321b7dd1925166d25"
+> > > > > > +
+> > > > > > +DEPENDS =3D "tensorflow-lite flatbuffers opencv"
+> > > > > > +
+> > > > > > +COMPATIBLE_MACHINE =3D "ti33x|ti43x|omap-a15|am65xx"
+> > > > >
+> > > > > Why ^^^?
+> > > >
+> > > > This demo has dependency on OpenCV for GUI display, which is
+> available
+> > > for the machines above.
+> > >
+> > > Yes, pushed a fix for that - OpenCV was limited to DSP-enabled platfo=
+rms
+> in
+> > > Zeus due to initial integration limitations.
+> > >
+> > >
+> > > > > > +PV =3D "01.00.00"
+> > > > > > +PR =3D "r0"
+> > > > > > +
+> > > > > > +BRANCH =3D "master"
+> > > > > > +SRC_URI  =3D "git://git.ti.com/apps/tensorflow-lite-
+> > > > > examples.git;protocol=3Dgit;branch=3D${BRANCH} \
+> > > > > > +
+> > > > >
+> > >
+> http://storage.googleapis.com/download.tensorflow.org/models/tflite/gpu/
+> > > > >
+> > >
+> deeplabv3_257_mv_gpu.tflite;name=3Ddeeplabv3;subdir=3D${WORKDIR}/model
+> > > > > ;destsuffix=3Dmodel \
+> > > > > > +            http://raw.githubusercontent.com/google-
+> > > > >
+> > >
+> coral/edgetpu/master/test_data/bird_segmentation.bmp;name=3Dbird_segm
+> > > > > entation;subdir=3D${WORKDIR}/test_data;destsuffix=3Dtest_data \
+> > > > > > +            file://run_classification.sh \
+> > > > > > +            file://run_segmentation.sh"
+> > > > > > +
+> > > > > > +SRC_URI[deeplabv3.md5sum] =3D
+> > > "4a24db5a5fb05c47586a1197765e8548"
+> > > > > > +SRC_URI[deeplabv3.sha256sum] =3D
+> > > > >
+> > >
+> "68a539782c2c6a72f8aac3724600124a85ed977162b44e84cbae5db717c933c6"
+> > > > > > +SRC_URI[bird_segmentation.md5sum] =3D
+> > > > > "fc3202ac4e3033b36df3043de6dc32c9"
+> > > > > > +SRC_URI[bird_segmentation.sha256sum] =3D
+> > > > >
+> > >
+> "e43cedd29ab385db787531c8a6cdcb31c5e4292af34f242877ed40611e502670"
+> > > > > > +
+> > > > > > +SRCREV =3D "d84f1d43585c0db2fa6a1c15db9145ab53f859ce"
+> > > > > > +
+> > > > > > +S =3D "${WORKDIR}/git"
+> > > > > > +
+> > > > > > +CXXFLAGS_append =3D " -O3 -DNDEBUG -fPIC -
+> I${STAGING_INCDIR}"
+> > > > > > +LDFLAGS_append =3D " -L${STAGING_LIBDIR}"
+> > > > > > +
+> > > > > > +EXTRA_OEMAKE =3D "\
+> > > > > > +    'CXX=3D${CXX}' \
+> > > > > > +    'CXXFLAGS=3D${CXXFLAGS}' \
+> > > > > > +    'AR=3D${AR}' \
+> > > > > > +    'LD=3D${LD}' \
+> > > > > > +    'LDFLAGS=3D${LDFLAGS}' \
+> > > > > > +    'TARGET=3D${TARGET_OS}' \
+> > > > > > +    'TARGET_ARCH=3D${TARGET_ARCH}'"
+> > > > > > +
+> > > > > > +do_compile() {
+> > > > > > +    oe_runmake -f Makefile
+> > > > > > +}
+> > > > > > +
+> > > > > > +do_install() {
+> > > > > > +    install -d ${D}${datadir}/tensorflow-lite/demos
+> > > > > > +    install -m 0755 ${S}/tflite_classification
+> ${D}${datadir}/tensorflow-
+> > > > > lite/demos
+> > > > > > +    install -m 0755 ${S}/tflite_segmentation
+> ${D}${datadir}/tensorflow-
+> > > > > lite/demos
+> > > > > > +    install -m 0644
+> ${WORKDIR}/model/deeplabv3_257_mv_gpu.tflite
+> > > > > ${D}${datadir}/tensorflow-lite/demos
+> > > > > > +    install -m 0644 ${WORKDIR}/test_data/bird_segmentation.bmp
+> > > > > ${D}${datadir}/tensorflow-lite/demos
+> > > > > > +    install -m 0755 ${WORKDIR}/run*.sh ${D}${datadir}/tensorfl=
+ow-
+> > > > > lite/demos
+> > > > > > +}
+> > > > > > +
+> > > > > > +FILES_${PN} =3D "${datadir}/tensorflow-lite/demos"
+> > > > > > --
+> > > > > > 2.17.1
+> > > > > >
+> > > > > > _______________________________________________
+> > > > > > meta-arago mailing list
+> > > > > > meta-arago@arago-project.org
+> > > > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
