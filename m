@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 6559052A33
+	by arago-project.org (Postfix) with ESMTPS id 8173852A4E
 	for <meta-arago@arago-project.org>;
 	Sat, 29 Feb 2020 16:17:06 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 6CB6540BFE;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6ECBB40C30;
 	Sat, 29 Feb 2020 16:15:04 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id LX2zZPsGC3mv; Sat, 29 Feb 2020 16:15:04 +0000 (UTC)
+	with ESMTP id l8cyDMtC3f-E; Sat, 29 Feb 2020 16:15:04 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4FDB140BCC;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 559DB40C20;
 	Sat, 29 Feb 2020 16:15:02 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 9186417442C;
+	by mail.denix.org (Postfix) with ESMTP id 8385817442B;
 	Sat, 29 Feb 2020 11:14:59 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Sat, 29 Feb 2020 11:14:47 -0500
-Message-Id: <1582992888-3508-8-git-send-email-denis@denix.org>
+Date: Sat, 29 Feb 2020 11:14:46 -0500
+Message-Id: <1582992888-3508-7-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1582992888-3508-1-git-send-email-denis@denix.org>
 References: <1582992888-3508-1-git-send-email-denis@denix.org>
-Subject: [zeus/master][PATCH 8/9] ti-analytics, ti-demos: create initial packagegroups
+Subject: [zeus/master][PATCH 7/9] ti-test: combine and rename arago-test and arago-test-addons
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,156 +43,314 @@ X-List-Received-Date: Sat, 29 Feb 2020 16:17:09 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-For now move armnn, tensorflow, voxelsdk and pdm-anomaly
+Also remove test package from base rootfs
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/images/tisdk-rootfs-image.bb      |  2 ++
- .../packagegroup-arago-tisdk-addons.bb             | 39 +++-------------------
- .../recipes-core/packagegroups/ti-analytics.bb     | 21 ++++++++++++
- .../recipes-core/packagegroups/ti-demos.bb         | 25 ++++++++++++++
- .../recipes-core/packagegroups/ti-world.bb         |  2 ++
- 5 files changed, 55 insertions(+), 34 deletions(-)
- create mode 100644 meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
- create mode 100644 meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
+ .../recipes-core/images/arago-base-tisdk-image.bb  |  1 -
+ .../recipes-core/images/tisdk-rootfs-image.bb      |  3 +-
+ .../packagegroups/packagegroup-arago-test.bb       | 92 --------------------
+ ...ackagegroup-arago-test-addons.bb => ti-test.bb} | 98 +++++++++++++++++++---
+ .../recipes-core/packagegroups/ti-world.bb         |  3 +-
+ 5 files changed, 89 insertions(+), 108 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+ rename meta-arago-distro/recipes-core/packagegroups/{packagegroup-arago-test-addons.bb => ti-test.bb} (61%)
 
+diff --git a/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb b/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
+index e926724..ebb1d42 100644
+--- a/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
++++ b/meta-arago-distro/recipes-core/images/arago-base-tisdk-image.bb
+@@ -10,7 +10,6 @@ IMAGE_INSTALL += "\
+     packagegroup-arago-base \
+     packagegroup-arago-console \
+     packagegroup-arago-base-tisdk \
+-    packagegroup-arago-test \
+     ${VIRTUAL-RUNTIME_initramfs} \
+     "
+ 
 diff --git a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-index fe894d4..7f8b508 100644
+index 3efb578..fe894d4 100644
 --- a/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
 +++ b/meta-arago-distro/recipes-core/images/tisdk-rootfs-image.bb
-@@ -22,6 +22,8 @@ IMAGE_INSTALL += "\
-     packagegroup-arago-tisdk-addons \
-     packagegroup-arago-tisdk-addons-extra \
-     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-hmi','packagegroup-arago-base-tisdk-server-extra',d)} \
-+    ti-analytics \
-+    ti-demos \
- "
+@@ -8,8 +8,7 @@ IMAGE_INSTALL += "\
+     packagegroup-arago-base \
+     packagegroup-arago-console \
+     packagegroup-arago-base-tisdk \
+-    packagegroup-arago-test \
+-    packagegroup-arago-test-addons \
++    ti-test \
+     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-graphics','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-gtk','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-qte','',d)} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
+deleted file mode 100644
+index 066bdf8..0000000
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test.bb
++++ /dev/null
+@@ -1,92 +0,0 @@
+-DESCRIPTION = "Extended task to get System Test specific apps"
+-LICENSE = "MIT"
+-PR = "r50"
+-
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-
+-inherit packagegroup
+-
+-ARAGO_TEST = "\
+-    bonnie++ \
+-    hdparm \
+-    iozone3 \
+-    lmbench \
+-    rt-tests \
+-    evtest \
+-    bc \
+-    memtester \
+-    libdrm-tests \
+-    powertop \
+-    stress \
+-    stress-ng \
+-    yavta \
+-    rng-tools \
+-    perf \
+-    v4l-utils \
+-    smcroute \
+-    rwmem \
+-    pulseaudio-misc \
+-    kselftests \
+-    cpuset \
+-    procps \
+-    mtd-utils-ubifs-tests \
+-    pcitest \
+-    mstpd \
+-    fio \
+-"
+-
+-ARAGO_TEST_append_armv7a = " \
+-    cpuburn-neon \
+-"
+-
+-ARAGO_TEST_append_armv7ve = " \
+-    cpuburn-neon \
+-"
+-
+-# timestamping
+-ARAGO_TI_TEST = " \
+-    ltp-ddt \
+-    input-utils \
+-    cpuloadgen \
+-    uvc-gadget \
+-"
+-
+-ARAGO_TI_TEST_append_ti33x = " \
+-    omapconf \
+-"
+-
+-ARAGO_TI_TEST_append_ti43x = " \
+-    omapconf \
+-"
+-
+-ARAGO_TI_TEST_append_omap-a15 = " \
+-    omapconf \
+-    ti-ipc-test \
+-"
+-
+-ARAGO_TI_TEST_append_k3 = " \
+-    k3conf \
+-"
+-
+-ARAGO_TI_TEST_append_am65xx = " \
+-    ti-ipc-test \
+-"
+-
+-ARAGO_TI_TEST_append_j7-evm = " \
+-    viddec-test-app \
+-    videnc-test-app \
+-    ufs-tool \
+-"
+-
+-ARAGO_TI_TEST_append_keystone = " \
+-    ti-ipc-test \
+-"
+-
+-ARAGO_TI_TEST_append_omapl138 = " \
+-    ti-ipc-test \
+-"
+-
+-RDEPENDS_${PN} = "\
+-    ${ARAGO_TEST} \
+-    ${ARAGO_TI_TEST} \
+-"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+similarity index 61%
+rename from meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
+rename to meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+index 53954f7..500d3a9 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-test-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+@@ -1,28 +1,102 @@
+-DESCRIPTION = "Task to install additional utilities/demos for test image"
++SUMMARY = "TI Testing packagegroup"
+ LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r14"
  
- export IMAGE_BASENAME = "tisdk-rootfs-image"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index af2c254..2913fa1 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -140,45 +140,16 @@ EXTRA_PACKAGES_omapl138 = " \
-     protobuf \
- "
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
--ARMNN_PACKAGES = ""
--VOXEL_PACKAGES = ""
--#ARMNN_PACKAGES = "${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'armnn', '', d)}"
--#VOXEL_PACKAGES = "${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'voxelsdk', '', d)}"
--
--EXTRA_PACKAGES_append_ti33x = " ${VOXEL_PACKAGES} \
--                                arm-compute-library \
--                                ${ARMNN_PACKAGES} \
--                                tensorflow-lite-demo \
--                                pdm-anomaly-detection \
--"
--
--EXTRA_PACKAGES_append_ti43x = " ${VOXEL_PACKAGES} \
--                                arm-compute-library \
--                                ${ARMNN_PACKAGES} \
--                                tensorflow-lite-demo \
--                                pdm-anomaly-detection \
--"
--
--EXTRA_PACKAGES_append_omap-a15 = " ${VOXEL_PACKAGES} \
--                                   big-data-ipc-demo-linux \
--                                   big-data-ipc-demo-linux-firmware \
--                                   arm-compute-library \
--                                   ${ARMNN_PACKAGES} \
--                                   tensorflow-lite-demo \
--                                   pdm-anomaly-detection \
--"
--
--EXTRA_PACKAGES_append_am65xx = " arm-compute-library \
--                             ${ARMNN_PACKAGES} \
--                             tensorflow-lite-demo \
--                             pdm-anomaly-detection \
--"
--
- EXTRA_PACKAGES_append_omap-a15 = " ti-ipc-examples-linux"
- EXTRA_PACKAGES_append_keystone = " ti-ipc-examples-linux"
- EXTRA_PACKAGES_append_omapl138 = " ti-ipc-examples-linux"
- EXTRA_PACKAGES_append_am65xx = " ti-ipc-examples-linux"
+ inherit packagegroup
  
-+EXTRA_PACKAGES_append_omap-a15 = " \
-+    big-data-ipc-demo-linux \
-+    big-data-ipc-demo-linux-firmware \
++ARAGO_TEST = "\
++    bonnie++ \
++    hdparm \
++    iozone3 \
++    lmbench \
++    rt-tests \
++    evtest \
++    bc \
++    memtester \
++    libdrm-tests \
++    powertop \
++    stress \
++    stress-ng \
++    yavta \
++    rng-tools \
++    perf \
++    v4l-utils \
++    smcroute \
++    rwmem \
++    pulseaudio-misc \
++    kselftests \
++    cpuset \
++    procps \
++    mtd-utils-ubifs-tests \
++    pcitest \
++    mstpd \
++    fio \
 +"
 +
- # acontis-atemsys
- EXTRA_PACKAGES_append_am335x-evm = " pruss-lld-apps"
- EXTRA_PACKAGES_append_am437x-evm = " pruss-lld-apps"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
-new file mode 100644
-index 0000000..ffed472
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
-@@ -0,0 +1,21 @@
-+SUMMARY = "TI World packagegroup"
-+LICENSE = "MIT"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+inherit packagegroup
-+
-+ARMNN_PACKAGES = ""
-+#ARMNN_PACKAGES = "${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'armnn', '', d)}"
-+
-+ANALYTICS = "\
-+    ${ARMNN_PACKAGES} \
-+    tensorflow-lite-demo \
++ARAGO_TEST_append_armv7a = " \
++    cpuburn-neon \
 +"
-+ANALYTICS_keystone = ""
-+ANALYTICS_j7-evm = ""
-+ANALYTICS_omapl138 = ""
 +
-+RDEPENDS_${PN} = "\
-+    ${ANALYTICS} \
++ARAGO_TEST_append_armv7ve = " \
++    cpuburn-neon \
 +"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb b/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
-new file mode 100644
-index 0000000..07c0b92
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-demos.bb
-@@ -0,0 +1,25 @@
-+SUMMARY = "TI World packagegroup"
-+LICENSE = "MIT"
 +
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
++#    timestamping
++ARAGO_TI_TEST = " \
++    ltp-ddt \
++    input-utils \
++    cpuloadgen \
++    uvc-gadget \
++"
 +
-+inherit packagegroup
++ARAGO_TI_TEST_append_ti33x = " \
++    omapconf \
++"
 +
-+VOXEL_PKG = ""
-+#VOXEL_PKG = "${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'voxelsdk', '', d)}"
++ARAGO_TI_TEST_append_ti43x = " \
++    omapconf \
++"
 +
-+VOXELSDK = ""
-+VOXELSDK_ti33x = "${VOXEL_PKG}"
-+VOXELSDK_ti43x = "${VOXEL_PKG}"
-+VOXELSDK_omap-a15 = "${VOXEL_PKG}"
++ARAGO_TI_TEST_append_omap-a15 = " \
++    omapconf \
++    ti-ipc-test \
++"
 +
-+PDM_ANOMALY = ""
-+PDM_ANOMALY_ti33x = "pdm-anomaly-detection"
-+PDM_ANOMALY_ti43x = "pdm-anomaly-detection"
-+PDM_ANOMALY_omap-a15 = "pdm-anomaly-detection"
-+PDM_ANOMALY_am65xx = "pdm-anomaly-detection"
++ARAGO_TI_TEST_append_am65xx = " \
++    ti-ipc-test \
++"
 +
-+RDEPENDS_${PN} = "\
-+    ${VOXELSDK} \
-+    ${PDM_ANOMALY} \
++ARAGO_TI_TEST_append_j7-evm = " \
++    viddec-test-app \
++    videnc-test-app \
++    ufs-tool \
++"
++
++ARAGO_TI_TEST_append_keystone = " \
++    ti-ipc-test \
++"
++
++ARAGO_TI_TEST_append_omapl138 = " \
++    ti-ipc-test \
++"
++
+ TEST_ADDONS = " \
+     bridge-utils \
+     linuxptp \
+     openntpd \
+-    "
++"
+ 
+ TEST_ADDONS_TI = ""
+ 
+ TEST_ADDONS_TI_append_ti43x = " \
+     cmem-test \
+-    "
++"
+ 
+ TEST_ADDONS_TI_append_omap-a15 = " \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)} \
+     cmem-test \
+-    "
++"
+ 
+ # Disable ipsecmgr due to libnl and xfrm conflict
+ #    ipsecmgr
+@@ -40,7 +114,7 @@ TEST_ADDONS_TI_append_keystone = " \
+     traceframework-test \
+     udma-test \
+     cmem-test \
+-    "
++"
+ 
+ # The following are not yet ready for k2g-evm
+ #    nwal-lld-test
+@@ -62,7 +136,7 @@ TEST_ADDONS_TI_append_k2hk = " \
+     hyplnk-lld-test \
+     mmap-lld-test \
+     aif2-lld-test \
+-    "
++"
+ 
+ # Disable netapi due to libnl and xfrm conflict
+ #    netapi-test
+@@ -74,7 +148,7 @@ TEST_ADDONS_TI_append_k2l = " \
+     dfe-lld-test \
+     iqn2-lld-test \
+     ipc-transport-qmss-test \
+-    "
++"
+ 
+ # Disable netapi due to libnl and xfrm conflict
+ #    netapi-test
+@@ -86,9 +160,11 @@ TEST_ADDONS_TI_append_k2e = " \
+     mmap-lld-test \
+     hyplnk-lld-test \
+     ipc-transport-qmss-test \
+-    "
++"
+ 
+ RDEPENDS_${PN} = "\
++    ${ARAGO_TEST} \
++    ${ARAGO_TI_TEST} \
+     ${TEST_ADDONS} \
+     ${TEST_ADDONS_TI} \
+-    "
 +"
 diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-index 345a06e..9244d49 100644
+index ce94572..345a06e 100644
 --- a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
 +++ b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-@@ -53,4 +53,6 @@ RDEPENDS_${PN} = "\
-     ${DEVTOOLS} \
-     ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
-     packagegroup-arago-misc \
-+    ti-analytics \
-+    ti-demos \
- "
+@@ -32,8 +32,7 @@ RDEPENDS_${PN} = "\
+     packagegroup-arago-base \
+     packagegroup-arago-console \
+     packagegroup-arago-base-tisdk \
+-    packagegroup-arago-test \
+-    packagegroup-arago-test-addons \
++    ti-test \
+     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-graphics','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-gtk','',d)} \
+     ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-qte qt3d-examples','',d)} \
 -- 
 2.7.4
 
