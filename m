@@ -1,32 +1,44 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 206AB52A81
+Return-Path: <denys@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 35B0652A1F
 	for <meta-arago@arago-project.org>;
-	Sat, 29 Feb 2020 16:17:07 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 7525C40BCC;
-	Sat, 29 Feb 2020 16:15:05 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id hS7Eyl8TZGYG; Sat, 29 Feb 2020 16:15:05 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 529F040C2F;
-	Sat, 29 Feb 2020 16:15:02 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 9E0A317442D;
-	Sat, 29 Feb 2020 11:14:59 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Sat, 29 Feb 2020 11:14:48 -0500
-Message-Id: <1582992888-3508-9-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1582992888-3508-1-git-send-email-denis@denix.org>
-References: <1582992888-3508-1-git-send-email-denis@denix.org>
-Subject: [zeus/master][PATCH 9/9] opkg-bash-completion: add bash-completions for opkg
+	Mon,  2 Mar 2020 19:00:09 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 022Iw6jL031892
+	for <meta-arago@arago-project.org>; Mon, 2 Mar 2020 12:58:06 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1583175486;
+	bh=5scfjiM3tzVy9i4yhMxmgB5MAb/zQNW2trTFV4FDW/E=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=MbqoIOHxMXu1aAjOA3VmKLX4/7hINocqfmMedFv4Rsqq8PKZZfndcebBhCSlDQrLe
+	JfQD7FcFJe+qWaDuI3CL8suyaN1vWmh7uZfC+B56ZRYFbtRFSiTmOCc0nh5Z0Toy8D
+	haNUW/r7O6qDDRYtP2i2H0lKelMjwavnZ0Lp0/Nc=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 022Iw6Vi067226
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Mon, 2 Mar 2020 12:58:06 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Mon, 2 Mar 2020 12:58:05 -0600
+Received: from localhost.localdomain (10.64.41.19) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Mon, 2 Mar 2020 12:58:05 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 022Iw5P2042428; 
+	Mon, 2 Mar 2020 12:58:05 -0600
+Date: Mon, 2 Mar 2020 13:58:05 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Hongmei Gou <a0271529@ti.com>
+Message-ID: <20200302185805.GQ2466@beryl>
+References: <20200228225858.24538-1-a0271529@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <20200228225858.24538-1-a0271529@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [zeus/master] [PATCH] tensorflow-lite-demo: Bump SRCREV and add tidl offload support for AM5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,121 +51,134 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 29 Feb 2020 16:17:11 -0000
+X-List-Received-Date: Mon, 02 Mar 2020 19:00:09 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Jacob Stiffler <j-stiffler@ti.com>
+On Fri, Feb 28, 2020 at 05:58:58PM -0500, Hongmei Gou wrote:
+> * Build the demos with tidl offload option for AM5
+> * Include mobilenet v1 model for demonstrating tidl offload
+> * Remove the demo scripts under the files directory. The scripts are now
+>   maintained in the source repo.
+> * Make adjustments with the updated Makefile
+> 
+> Signed-off-by: Hongmei Gou <a0271529@ti.com>
+> ---
+>  .../files/run_classification.sh               |  7 -----
+>  .../tensorflow-lite/files/run_segmentation.sh |  8 ------
+>  .../tensorflow-lite-demo_git.bb               | 27 +++++++++++--------
+>  3 files changed, 16 insertions(+), 26 deletions(-)
+>  delete mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/run_classification.sh
+>  delete mode 100644 meta-arago-extras/recipes-support/tensorflow-lite/files/run_segmentation.sh
+> 
+> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/files/run_classification.sh b/meta-arago-extras/recipes-support/tensorflow-lite/files/run_classification.sh
+> deleted file mode 100644
+> index b2ad7fc4..00000000
+> --- a/meta-arago-extras/recipes-support/tensorflow-lite/files/run_classification.sh
+> +++ /dev/null
+> @@ -1,7 +0,0 @@
+> -#!/bin/sh
+> -
+> -cd /usr/share/tensorflow-lite/demos
+> -
+> -# Run tflite_classification binary with the model, the input image, and the label file specified.
+> -# Classification label is overlayed with the input image. Right click the image display window to exit.
+> -./tflite_classification -m ../examples/mobilenet_v1_1.0_224_quant.tflite -i ../examples/grace_hopper.bmp -l ../examples/labels.txt
+> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/files/run_segmentation.sh b/meta-arago-extras/recipes-support/tensorflow-lite/files/run_segmentation.sh
+> deleted file mode 100644
+> index 5caea127..00000000
+> --- a/meta-arago-extras/recipes-support/tensorflow-lite/files/run_segmentation.sh
+> +++ /dev/null
+> @@ -1,8 +0,0 @@
+> -#!/bin/sh
+> -
+> -cd /usr/share/tensorflow-lite/demos
+> -
+> -# Run tflite_segmentation binary with the model and the input image specified.
+> -# The display window shows the input(resized) image, segmentation map, overlay
+> -# of the former two. Right click the image display window to exit.
+> -./tflite_segmentation -m ./deeplabv3_257_mv_gpu.tflite -i ./bird_segmentation.bmp
+> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-demo_git.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-demo_git.bb
+> index 9b99b63c..57d6ef20 100644
+> --- a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-demo_git.bb
+> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-demo_git.bb
+> @@ -1,33 +1,33 @@
+> -DESCRIPTION = "Tensorflow Lite Demo with input and display via OpenCV and TIDL acceleration for AM5"
+> +SUMMARY = "Tensorflow Lite Demo with input and display via OpenCV and TIDL acceleration for AM5"
+>  LICENSE = "Apache-2.0"
+>  LIC_FILES_CHKSUM = "file://LICENSE;md5=d8927f3331d2b3e321b7dd1925166d25"
+>  
+>  DEPENDS = "tensorflow-lite flatbuffers opencv"
+> +DEPENDS_append_dra7xx = " tidl-api"
+>  
+>  COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|am65xx"
+> +PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+>  PV = "01.00.00"
+> -PR = "r0"
+> +PR = "r1"
+>  
+>  BRANCH = "master"
+>  SRC_URI  = "git://git.ti.com/apps/tensorflow-lite-examples.git;protocol=git;branch=${BRANCH} \
+>              http://storage.googleapis.com/download.tensorflow.org/models/tflite/gpu/deeplabv3_257_mv_gpu.tflite;name=deeplabv3;subdir=${WORKDIR}/model;destsuffix=model \
+> -            http://raw.githubusercontent.com/google-coral/edgetpu/master/test_data/bird_segmentation.bmp;name=bird_segmentation;subdir=${WORKDIR}/test_data;destsuffix=test_data \
+> -            file://run_classification.sh \
+> -            file://run_segmentation.sh"
+> +            http://storage.googleapis.com/download.tensorflow.org/models/mobilenet_v1_2018_02_22/mobilenet_v1_1.0_224.tgz;name=mobilenetv1;subdir=${WORKDIR}/model;destsuffix=model \
+> +            http://raw.githubusercontent.com/google-coral/edgetpu/master/test_data/bird_segmentation.bmp;name=bird_segmentation;subdir=${WORKDIR}/test_data;destsuffix=test_data"
+>  
+>  SRC_URI[deeplabv3.md5sum] = "4a24db5a5fb05c47586a1197765e8548"
+>  SRC_URI[deeplabv3.sha256sum] = "68a539782c2c6a72f8aac3724600124a85ed977162b44e84cbae5db717c933c6"
+> +SRC_URI[mobilenetv1.md5sum] = "d5f69cef81ad8afb335d9727a17c462a"
+> +SRC_URI[mobilenetv1.sha256sum] = "1ccb74dbd9c5f7aea879120614e91617db9534bdfaa53dfea54b7c14162e126b"
+>  SRC_URI[bird_segmentation.md5sum] = "fc3202ac4e3033b36df3043de6dc32c9"
+>  SRC_URI[bird_segmentation.sha256sum] = "e43cedd29ab385db787531c8a6cdcb31c5e4292af34f242877ed40611e502670"
+>  
+> -SRCREV = "d84f1d43585c0db2fa6a1c15db9145ab53f859ce"
+> +SRCREV = "bd6a429c21f96d5112e0b6dea44a13b748eefd74"
+>  
+>  S = "${WORKDIR}/git"
+>  
+> -CXXFLAGS_append = " -O3 -DNDEBUG -fPIC -I${STAGING_INCDIR}"
+> -LDFLAGS_append = " -L${STAGING_LIBDIR}"
+> -
+>  EXTRA_OEMAKE = "\
+>      'CXX=${CXX}' \
+>      'CXXFLAGS=${CXXFLAGS}' \
+> @@ -37,8 +37,12 @@ EXTRA_OEMAKE = "\
+>      'TARGET=${TARGET_OS}' \
+>      'TARGET_ARCH=${TARGET_ARCH}'"
+>  
+> +EXTRA_OEMAKE += "SYSROOT_INCDIR="${STAGING_INCDIR}" SYSROOT_LIBDIR="${STAGING_LIBDIR}" \
+> +                 TIDL_API_DIR="${STAGING_DATADIR}/ti/tidl""
+> +
+> +TIDL_dra7xx = "yes"
 
-* This is a simpe start to bash completions for opkg. Initialy, this can
-  complete current supported verbs (static) and complete package names
-  (dynamic).
-* Use helpers (e.g. _init_completion, _count_args) to enhance usability
-* Add support for search and flag verbs
+Will TIDL be undefined for other platforms?
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../packagegroups/packagegroup-arago-base.bb       |  1 +
- .../recipes-devtools/opkg/opkg-bash-completion.bb  | 17 +++++++
- .../opkg/opkg-bash-completion/opkg-bash-completion | 53 ++++++++++++++++++++++
- 3 files changed, 71 insertions(+)
- create mode 100644 meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion.bb
- create mode 100644 meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion/opkg-bash-completion
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
-index 4094d90..e3f1916 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
-@@ -20,6 +20,7 @@ ARAGO_BASE = "\
-     ethtool \
-     thermal-init \
-     bash \
-+    opkg-bash-completion \
-     udev-extraconf \
-     "
- 
-diff --git a/meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion.bb b/meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion.bb
-new file mode 100644
-index 0000000..6055507
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion.bb
-@@ -0,0 +1,17 @@
-+SUMMARY = "bash-completions for opkg"
-+LICENSE = "MIT"
-+
-+PR = "r1"
-+
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+
-+SRC_URI = "file://opkg-bash-completion"
-+
-+do_install() {
-+    install -d ${D}${datadir}/bash-completion/completions
-+    install -m 0644 ${WORKDIR}/opkg-bash-completion \
-+                    ${D}${datadir}/bash-completion/completions/opkg
-+}
-+
-+FILES_${PN} = "${datadir}/bash-completion/completions/opkg"
-+RDEPENDS_${PN} = "bash-completion"
-diff --git a/meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion/opkg-bash-completion b/meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion/opkg-bash-completion
-new file mode 100644
-index 0000000..82b6c6f
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/opkg/opkg-bash-completion/opkg-bash-completion
-@@ -0,0 +1,53 @@
-+#!/bin/bash
-+
-+# TBD: parse "opkg --help" to get this list
-+OPKG_COMMANDS="update upgrade install configure remove clean flag list list-installed list-upgradable list-changed-conffiles files search find info status download compare-versions print-architecture depends whatdepends whatdependsrec whatrecommends whatsuggests whatprovides whatconflicts whatreplaces"
-+OPKG_FLAGS="hold noprune user ok installed unpacked"
-+OPKG_LONGOPTS="--help --verbosity --conf --dest --offline-root --add-arch --add-dest --add-exclude --add-ignore-recommends --prefer-arch-to-version --combine --force-depends --force-maintainer --force-reinstall --force-overwrite --force-downgrade --force-space --force-postinstall --force-remove --force-checksum --noaction --size --download-only --nodeps --no-install-recommends --force-removal-of-dependent-packages --autoremove --tmp-dir --lists-dir --cache-dir --host-cache-dir --volatile-cache"
-+
-+_opkg_completions() {
-+    # Use this helpful helper to beautify things and catch vars and redirects
-+    local cur prev words cword
-+    _init_completion -s || return 0
-+
-+    # Catch options first
-+    if [[ "$cur" == -* ]]
-+    then
-+        COMPREPLY=($(compgen -W "${OPKG_LONGOPTS}" -- "$cur"))
-+        return
-+    fi
-+
-+    # Now catch args
-+    # opkg supports a single verb, so that will be the first arg,
-+    local arg args
-+    _get_first_arg
-+    _count_args
-+
-+    case "$arg" in
-+        install|files|info|status|download)
-+            COMPREPLY=($(compgen -W "$(opkg list | sed -e 's| .*$||')" -- "$cur"));;
-+        depends|whatdepends|whatdependsrec|whatrecommends|whatsuggests|whatprovides|whatconflicts|whatreplaces)
-+            COMPREPLY=($(compgen -W "-A $(opkg list | sed -e 's| .*$||')" -- "$cur"));;
-+        remove)
-+            COMPREPLY=($(compgen -W "$(opkg list-installed | sed -e 's| .*$||')" -- "$cur"));;
-+        upgrade)
-+            COMPREPLY=($(compgen -W "$(opkg list-upgradable | sed -e 's| .*$||')" -- "$cur"));;
-+        flag)
-+            if [ $args -eq 2 ]
-+            then
-+                COMPREPLY=($(compgen -W "${OPKG_FLAGS}" "$cur"))
-+            else
-+                COMPREPLY=($(compgen -W "-A $(opkg list | sed -e 's| .*$||')" -- "$cur"))
-+            fi
-+            ;;
-+        search)
-+            # Only search for a single file
-+            [ $args -gt 2 ] || _longopt;;
-+        "")
-+            COMPREPLY=($(compgen -W "${OPKG_COMMANDS}" -- "$cur"));;
-+        *)
-+            COMPREPLY=( "*" "I DONT KNOW WHAT TO DO!!!" )
-+    esac
-+}
-+
-+complete -F _opkg_completions opkg
--- 
-2.7.4
-
+>  do_compile() {
+> -    oe_runmake -f Makefile
+> +    oe_runmake -f Makefile TIDL_ACC=${TIDL}
+>  }
+>  
+>  do_install() {
+> @@ -46,8 +50,9 @@ do_install() {
+>      install -m 0755 ${S}/tflite_classification ${D}${datadir}/tensorflow-lite/demos
+>      install -m 0755 ${S}/tflite_segmentation ${D}${datadir}/tensorflow-lite/demos
+>      install -m 0644 ${WORKDIR}/model/deeplabv3_257_mv_gpu.tflite ${D}${datadir}/tensorflow-lite/demos
+> +    install -m 0644 ${WORKDIR}/model/mobilenet_v1_1.0_224.tflite ${D}${datadir}/tensorflow-lite/demos
+>      install -m 0644 ${WORKDIR}/test_data/bird_segmentation.bmp ${D}${datadir}/tensorflow-lite/demos
+> -    install -m 0755 ${WORKDIR}/run*.sh ${D}${datadir}/tensorflow-lite/demos
+> +    install -m 0755 ${S}/scripts/run*.sh ${D}${datadir}/tensorflow-lite/demos
+>  }
+>  
+>  FILES_${PN} = "${datadir}/tensorflow-lite/demos"
+> -- 
+> 2.17.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
