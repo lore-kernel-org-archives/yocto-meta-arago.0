@@ -1,48 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id E865F52988
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 81942529A5
 	for <meta-arago@arago-project.org>;
-	Mon,  2 Mar 2020 20:45:10 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 022Kh844056965
-	for <meta-arago@arago-project.org>; Mon, 2 Mar 2020 14:43:08 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1583181788;
-	bh=v171IBijiUimP2Ve9dNqhEMpDnrTg1FF2z9fMPRoGqA=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=eMRwdllZummGqAY3Xl2wyyvWjKljRq3OK4Ygh2EuxWafBv7bzQhxbiy1Y7elzS7TX
-	OHb0I+S5iB/ZaIrPrwyqA8REHzM0x4uXimtDLyMQT84m/knWt0RfwzvZPmKyG7ClA9
-	+kBI+D8hkPVE0+r7Uf5usdeQgeMJTkr7GzDVD3sg=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 022Kh8Wf102724
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 2 Mar 2020 14:43:08 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Mon, 2 Mar 2020 14:43:07 -0600
-Received: from localhost.localdomain (10.64.41.19) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Mon, 2 Mar 2020 14:43:07 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 022Kh7pg103730; 
-	Mon, 2 Mar 2020 14:43:07 -0600
-Date: Mon, 2 Mar 2020 15:43:07 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Gou, Hongmei" <h-gou@ti.com>
-Message-ID: <20200302204307.GX2466@beryl>
-References: <20200228225858.24538-1-a0271529@ti.com>
-	<20200302185805.GQ2466@beryl>
-	<e0086f3b8c7a4d69a335dc9b8e24d85d@ti.com>
-	<20200302194008.GU2466@beryl>
-	<a807135320d1457f9c1d207edd87de6a@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <a807135320d1457f9c1d207edd87de6a@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [zeus/master] [PATCH] tensorflow-lite-demo: Bump SRCREV and add tidl offload support for AM5
+	Tue,  3 Mar 2020 15:49:57 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 907AD40C2C;
+	Tue,  3 Mar 2020 15:47:49 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 9Iru2dmgkTpH; Tue,  3 Mar 2020 15:47:49 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2DB8340C1E;
+	Tue,  3 Mar 2020 15:47:41 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 083FA16BA7B;
+	Tue,  3 Mar 2020 10:47:41 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue,  3 Mar 2020 10:47:40 -0500
+Message-Id: <1583250460-54884-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [zeus/master][PATCH] libdrm: rebase testing patch for the latest version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,236 +37,126 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Mar 2020 20:45:11 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 03 Mar 2020 15:49:57 -0000
 
-On Mon, Mar 02, 2020 at 03:25:19PM -0500, Gou, Hongmei wrote:
-> > -----Original Message-----
-> > From: Dmytriyenko, Denys
-> > Sent: Monday, March 2, 2020 2:40 PM
-> > To: Gou, Hongmei
-> > Cc: meta-arago@arago-project.org
-> > Subject: Re: [meta-arago] [zeus/master] [PATCH] tensorflow-lite-demo:
-> > Bump SRCREV and add tidl offload support for AM5
-> > 
-> > On Mon, Mar 02, 2020 at 02:37:48PM -0500, Gou, Hongmei wrote:
-> > > > -----Original Message-----
-> > > > From: Dmytriyenko, Denys
-> > > > Sent: Monday, March 2, 2020 1:58 PM
-> > > > To: Gou, Hongmei
-> > > > Cc: meta-arago@arago-project.org
-> > > > Subject: Re: [meta-arago] [zeus/master] [PATCH] tensorflow-lite-demo:
-> > > > Bump SRCREV and add tidl offload support for AM5
-> > > >
-> > > > On Fri, Feb 28, 2020 at 05:58:58PM -0500, Hongmei Gou wrote:
-> > > > > * Build the demos with tidl offload option for AM5
-> > > > > * Include mobilenet v1 model for demonstrating tidl offload
-> > > > > * Remove the demo scripts under the files directory. The scripts are
-> > now
-> > > > >   maintained in the source repo.
-> > > > > * Make adjustments with the updated Makefile
-> > > > >
-> > > > > Signed-off-by: Hongmei Gou <a0271529@ti.com>
-> > > > > ---
-> > > > >  .../files/run_classification.sh               |  7 -----
-> > > > >  .../tensorflow-lite/files/run_segmentation.sh |  8 ------
-> > > > >  .../tensorflow-lite-demo_git.bb               | 27 +++++++++++--------
-> > > > >  3 files changed, 16 insertions(+), 26 deletions(-)
-> > > > >  delete mode 100644 meta-arago-extras/recipes-support/tensorflow-
-> > > > lite/files/run_classification.sh
-> > > > >  delete mode 100644 meta-arago-extras/recipes-support/tensorflow-
-> > > > lite/files/run_segmentation.sh
-> > > > >
-> > > > > diff --git a/meta-arago-extras/recipes-support/tensorflow-
-> > > > lite/files/run_classification.sh b/meta-arago-extras/recipes-
-> > > > support/tensorflow-lite/files/run_classification.sh
-> > > > > deleted file mode 100644
-> > > > > index b2ad7fc4..00000000
-> > > > > --- a/meta-arago-extras/recipes-support/tensorflow-
-> > > > lite/files/run_classification.sh
-> > > > > +++ /dev/null
-> > > > > @@ -1,7 +0,0 @@
-> > > > > -#!/bin/sh
-> > > > > -
-> > > > > -cd /usr/share/tensorflow-lite/demos
-> > > > > -
-> > > > > -# Run tflite_classification binary with the model, the input image, and
-> > the
-> > > > label file specified.
-> > > > > -# Classification label is overlayed with the input image. Right click the
-> > > > image display window to exit.
-> > > > > -./tflite_classification -m
-> > ../examples/mobilenet_v1_1.0_224_quant.tflite -i
-> > > > ../examples/grace_hopper.bmp -l ../examples/labels.txt
-> > > > > diff --git a/meta-arago-extras/recipes-support/tensorflow-
-> > > > lite/files/run_segmentation.sh b/meta-arago-extras/recipes-
-> > > > support/tensorflow-lite/files/run_segmentation.sh
-> > > > > deleted file mode 100644
-> > > > > index 5caea127..00000000
-> > > > > --- a/meta-arago-extras/recipes-support/tensorflow-
-> > > > lite/files/run_segmentation.sh
-> > > > > +++ /dev/null
-> > > > > @@ -1,8 +0,0 @@
-> > > > > -#!/bin/sh
-> > > > > -
-> > > > > -cd /usr/share/tensorflow-lite/demos
-> > > > > -
-> > > > > -# Run tflite_segmentation binary with the model and the input image
-> > > > specified.
-> > > > > -# The display window shows the input(resized) image, segmentation
-> > map,
-> > > > overlay
-> > > > > -# of the former two. Right click the image display window to exit.
-> > > > > -./tflite_segmentation -m ./deeplabv3_257_mv_gpu.tflite -i
-> > > > ./bird_segmentation.bmp
-> > > > > diff --git a/meta-arago-extras/recipes-support/tensorflow-
-> > lite/tensorflow-
-> > > > lite-demo_git.bb b/meta-arago-extras/recipes-support/tensorflow-
-> > > > lite/tensorflow-lite-demo_git.bb
-> > > > > index 9b99b63c..57d6ef20 100644
-> > > > > --- a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-
-> > lite-
-> > > > demo_git.bb
-> > > > > +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-
-> > lite-
-> > > > demo_git.bb
-> > > > > @@ -1,33 +1,33 @@
-> > > > > -DESCRIPTION = "Tensorflow Lite Demo with input and display via
-> > OpenCV
-> > > > and TIDL acceleration for AM5"
-> > > > > +SUMMARY = "Tensorflow Lite Demo with input and display via
-> > OpenCV
-> > > > and TIDL acceleration for AM5"
-> > > > >  LICENSE = "Apache-2.0"
-> > > > >  LIC_FILES_CHKSUM =
-> > > > "file://LICENSE;md5=d8927f3331d2b3e321b7dd1925166d25"
-> > > > >
-> > > > >  DEPENDS = "tensorflow-lite flatbuffers opencv"
-> > > > > +DEPENDS_append_dra7xx = " tidl-api"
-> > > > >
-> > > > >  COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|am65xx"
-> > > > > +PACKAGE_ARCH = "${MACHINE_ARCH}"
-> > > > >
-> > > > >  PV = "01.00.00"
-> > > > > -PR = "r0"
-> > > > > +PR = "r1"
-> > > > >
-> > > > >  BRANCH = "master"
-> > > > >  SRC_URI  = "git://git.ti.com/apps/tensorflow-lite-
-> > > > examples.git;protocol=git;branch=${BRANCH} \
-> > > > >
-> > > >
-> > http://storage.googleapis.com/download.tensorflow.org/models/tflite/gpu/
-> > > >
-> > deeplabv3_257_mv_gpu.tflite;name=deeplabv3;subdir=${WORKDIR}/model
-> > > > ;destsuffix=model \
-> > > > > -            http://raw.githubusercontent.com/google-
-> > > >
-> > coral/edgetpu/master/test_data/bird_segmentation.bmp;name=bird_segm
-> > > > entation;subdir=${WORKDIR}/test_data;destsuffix=test_data \
-> > > > > -            file://run_classification.sh \
-> > > > > -            file://run_segmentation.sh"
-> > > > > +
-> > > >
-> > http://storage.googleapis.com/download.tensorflow.org/models/mobilenet
-> > > >
-> > _v1_2018_02_22/mobilenet_v1_1.0_224.tgz;name=mobilenetv1;subdir=${W
-> > > > ORKDIR}/model;destsuffix=model \
-> > > > > +            http://raw.githubusercontent.com/google-
-> > > >
-> > coral/edgetpu/master/test_data/bird_segmentation.bmp;name=bird_segm
-> > > > entation;subdir=${WORKDIR}/test_data;destsuffix=test_data"
-> > > > >
-> > > > >  SRC_URI[deeplabv3.md5sum] =
-> > "4a24db5a5fb05c47586a1197765e8548"
-> > > > >  SRC_URI[deeplabv3.sha256sum] =
-> > > >
-> > "68a539782c2c6a72f8aac3724600124a85ed977162b44e84cbae5db717c933c6"
-> > > > > +SRC_URI[mobilenetv1.md5sum] =
-> > "d5f69cef81ad8afb335d9727a17c462a"
-> > > > > +SRC_URI[mobilenetv1.sha256sum] =
-> > > >
-> > "1ccb74dbd9c5f7aea879120614e91617db9534bdfaa53dfea54b7c14162e126b"
-> > > > >  SRC_URI[bird_segmentation.md5sum] =
-> > > > "fc3202ac4e3033b36df3043de6dc32c9"
-> > > > >  SRC_URI[bird_segmentation.sha256sum] =
-> > > >
-> > "e43cedd29ab385db787531c8a6cdcb31c5e4292af34f242877ed40611e502670"
-> > > > >
-> > > > > -SRCREV = "d84f1d43585c0db2fa6a1c15db9145ab53f859ce"
-> > > > > +SRCREV = "bd6a429c21f96d5112e0b6dea44a13b748eefd74"
-> > > > >
-> > > > >  S = "${WORKDIR}/git"
-> > > > >
-> > > > > -CXXFLAGS_append = " -O3 -DNDEBUG -fPIC -I${STAGING_INCDIR}"
-> > > > > -LDFLAGS_append = " -L${STAGING_LIBDIR}"
-> > > > > -
-> > > > >  EXTRA_OEMAKE = "\
-> > > > >      'CXX=${CXX}' \
-> > > > >      'CXXFLAGS=${CXXFLAGS}' \
-> > > > > @@ -37,8 +37,12 @@ EXTRA_OEMAKE = "\
-> > > > >      'TARGET=${TARGET_OS}' \
-> > > > >      'TARGET_ARCH=${TARGET_ARCH}'"
-> > > > >
-> > > > > +EXTRA_OEMAKE += "SYSROOT_INCDIR="${STAGING_INCDIR}"
-> > > > SYSROOT_LIBDIR="${STAGING_LIBDIR}" \
-> > > > > +                 TIDL_API_DIR="${STAGING_DATADIR}/ti/tidl""
-> > > > > +
-> > > > > +TIDL_dra7xx = "yes"
-> > > >
-> > > > Will TIDL be undefined for other platforms?
-> > >
-> > > Yes, TIDL is undefined for other platforms.
-> > >
-> > > >
-> > > >
-> > > > >  do_compile() {
-> > > > > -    oe_runmake -f Makefile
-> > > > > +    oe_runmake -f Makefile TIDL_ACC=${TIDL}
-> > 
-> > This will result in passing undefined variable to Makefile here
-> > 
-> > Make you want to set it to "no" or empty "" for other platforms?
-> 
-> Just submitted a V2 patch to set TIDL to "no" for non-AM5 platforms.
+From: Denys Dmytriyenko <denys@ti.com>
 
-Thanks.
+Cc: Alejandro Hernandez <ajhernandez@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ ...001-Add-option-to-run-a-test-indefinitely.patch | 34 ++++++++++------------
+ .../recipes-graphics/drm/libdrm_%.bbappend         |  3 +-
+ 2 files changed, 17 insertions(+), 20 deletions(-)
 
+diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-to-run-a-test-indefinitely.patch b/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-to-run-a-test-indefinitely.patch
+index 2ebd6d8..e7c8d09 100644
+--- a/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-to-run-a-test-indefinitely.patch
++++ b/meta-arago-distro/recipes-graphics/drm/libdrm/0001-Add-option-to-run-a-test-indefinitely.patch
+@@ -1,6 +1,6 @@
+-From eed389c68118fd673a462d7ac6738a1fe3aec217 Mon Sep 17 00:00:00 2001
++From 6a16a6381082d870037aa4aedffa3f7d01406015 Mon Sep 17 00:00:00 2001
+ From: Alejandro Hernandez <ajhernandez@ti.com>
+-Date: Wed, 15 Mar 2017 14:25:20 -0400
++Date: Tue, 3 Mar 2020 09:52:06 -0500
+ Subject: [PATCH] Add option to run a test indefinitely
+ 
+ This patch adds option -t to the modetest cli. When this option is
+@@ -10,16 +10,15 @@ was not able to run in ltp-ddt because ltp-ddt sends data to stdin
+ when a test is run
+ 
+ Signed-off-by: Alejandro Hernandez <ajhernandez@ti.com>
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+ ---
+- tests/modetest/modetest.c | 13 +++++++++----
+- 1 file changed, 9 insertions(+), 4 deletions(-)
++ tests/modetest/modetest.c | 12 ++++++++----
++ 1 file changed, 8 insertions(+), 4 deletions(-)
+ 
+ diff --git a/tests/modetest/modetest.c b/tests/modetest/modetest.c
+-index 975dcbc..654ce89 100644
++index e66be660..9bd24acd 100644
+ --- a/tests/modetest/modetest.c
+ +++ b/tests/modetest/modetest.c
+-@@ -1501,7 +1501,7 @@ static void clear_cursors(struct device *dev)
++@@ -1563,7 +1563,7 @@ static void clear_cursors(struct device *dev)
+  		bo_destroy(dev->mode.cursor_bo);
+  }
+  
+@@ -28,7 +27,7 @@ index 975dcbc..654ce89 100644
+  {
+  	uint32_t handles[4] = {0}, pitches[4] = {0}, offsets[4] = {0};
+  	unsigned int other_fb_id;
+-@@ -1570,7 +1570,7 @@ static void test_page_flip(struct device *dev, struct pipe_arg *pipes, unsigned
++@@ -1632,7 +1632,7 @@ static void test_page_flip(struct device *dev, struct pipe_arg *pipes, unsigned
+  		fd_set fds;
+  
+  		FD_ZERO(&fds);
+@@ -37,35 +36,34 @@ index 975dcbc..654ce89 100644
+  		FD_SET(dev->fd, &fds);
+  		ret = select(dev->fd + 1, &fds, NULL, NULL, &timeout);
+  
+-@@ -1818,7 +1818,7 @@ static int pipe_resolve_connectors(struct device *dev, struct pipe_arg *pipe)
++@@ -1890,7 +1890,7 @@ static int pipe_resolve_connectors(struct device *dev, struct pipe_arg *pipe)
+  	return 0;
+  }
+  
+--static char optstr[] = "acdD:efM:P:ps:Cvw:";
+-+static char optstr[] = "acdD:efM:P:ps:Cvw:t";
++-static char optstr[] = "acdD:efF:M:P:ps:Cvw:";
+++static char optstr[] = "acdD:efF:M:P:ps:Cvw:t";
+  
+  int main(int argc, char **argv)
+  {
+-@@ -1834,6 +1834,7 @@ int main(int argc, char **argv)
++@@ -1906,6 +1906,7 @@ int main(int argc, char **argv)
+  	char *module = NULL;
+  	unsigned int i;
+  	unsigned int count = 0, plane_count = 0;
+-+	int dont_stop= 0;
+++	int dont_stop = 0;
+  	unsigned int prop_count = 0;
+  	struct pipe_arg *pipe_args = NULL;
+  	struct plane_arg *plane_args = NULL;
+-@@ -1924,6 +1925,10 @@ int main(int argc, char **argv)
++@@ -1999,6 +2000,9 @@ int main(int argc, char **argv)
+  
+  			prop_count++;
+  			break;
+-+                case 't':
+++		case 't':
+ +			dont_stop = 1;
+-+			setvbuf(stdout, (char *)NULL, _IOLBF, 0);
+ +			break;
+  		default:
+  			usage(argv[0]);
+  			break;
+-@@ -2075,7 +2080,7 @@ int main(int argc, char **argv)
++@@ -2150,7 +2154,7 @@ int main(int argc, char **argv)
+  				set_cursors(&dev, pipe_args, count);
+  
+  			if (test_vsync)
+@@ -75,5 +73,5 @@ index 975dcbc..654ce89 100644
+  			if (drop_master)
+  				drmDropMaster(dev.fd);
+ -- 
+-2.7.4
++2.17.1
+ 
+diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend b/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend
+index 2624319..99d2fa7 100644
+--- a/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend
++++ b/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend
+@@ -1,8 +1,7 @@
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+-# file://0001-Add-option-to-run-a-test-indefinitely.patch
+-
+ SRC_URI += " \
++file://0001-Add-option-to-run-a-test-indefinitely.patch \
+ file://0001-omap-fix-omap_bo_size-for-tiled-buffers.patch \
+ file://0002-omap-add-OMAP_BO-flags-to-affect-buffer-allocation.patch \
+ file://0001-libsync-add-support-for-pre-v4.7-kernels.patch \
+-- 
+2.7.4
 
-> In Makefile, TIDL_ACC is set to "no" if it is undefined: "TIDL_ACC ?= no".
-
-Yes, but above line will always redefine it to TIDL_ACC=${TIDL} and TIDL_ACC 
-will never be "no" due to that, unless you set it in the recipe, like you did 
-in v2.
-
-
-> > > > >  }
-> > > > >
-> > > > >  do_install() {
-> > > > > @@ -46,8 +50,9 @@ do_install() {
-> > > > >      install -m 0755 ${S}/tflite_classification ${D}${datadir}/tensorflow-
-> > > > lite/demos
-> > > > >      install -m 0755 ${S}/tflite_segmentation ${D}${datadir}/tensorflow-
-> > > > lite/demos
-> > > > >      install -m 0644 ${WORKDIR}/model/deeplabv3_257_mv_gpu.tflite
-> > > > ${D}${datadir}/tensorflow-lite/demos
-> > > > > +    install -m 0644 ${WORKDIR}/model/mobilenet_v1_1.0_224.tflite
-> > > > ${D}${datadir}/tensorflow-lite/demos
-> > > > >      install -m 0644 ${WORKDIR}/test_data/bird_segmentation.bmp
-> > > > ${D}${datadir}/tensorflow-lite/demos
-> > > > > -    install -m 0755 ${WORKDIR}/run*.sh ${D}${datadir}/tensorflow-
-> > > > lite/demos
-> > > > > +    install -m 0755 ${S}/scripts/run*.sh ${D}${datadir}/tensorflow-
-> > > > lite/demos
-> > > > >  }
-> > > > >
-> > > > >  FILES_${PN} = "${datadir}/tensorflow-lite/demos"
-> > > > > --
-> > > > > 2.17.1
-> > > > >
-> > > > > _______________________________________________
-> > > > > meta-arago mailing list
-> > > > > meta-arago@arago-project.org
-> > > > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
