@@ -1,46 +1,42 @@
-Return-Path: <j-stiffler@ti.com>
+Return-Path: <afd@ti.com>
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 2F7DA52995
+	by arago-project.org (Postfix) with ESMTPS id 3AA41529C3
 	for <meta-arago@arago-project.org>;
-	Thu,  5 Mar 2020 21:51:09 +0000 (UTC)
+	Thu,  5 Mar 2020 23:02:36 +0000 (UTC)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 025Ln53V116658
-	for <meta-arago@arago-project.org>; Thu, 5 Mar 2020 15:49:05 -0600
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 025N0W8q002767
+	for <meta-arago@arago-project.org>; Thu, 5 Mar 2020 17:00:32 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1583444945;
-	bh=hO9E8+SbsDKBcLZsGdpryFovOWGvUL8Krna2H9V4990=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=GlyCtR0jZ2I3O0CLGLLRI9whAt9KWjGwtO0fofuUZIs6I7BhlYdUMSFA9d3foqFoR
-	/D+JU/vWY/gN2dF7jpzls+7oEwCK3bNEPh4XoDiC6oQWJ/p/CifTkyDivgo9n3u45X
-	zBmHfATYdnrUA9I3F8/sDnzSON8r7pm2wdKEDhVE=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 025Ln5oZ083148
+	s=ti-com-17Q1; t=1583449232;
+	bh=jv6WSqfGApA3qDucKYUKQX21fv6lPDcRYJ/StLboQrI=;
+	h=From:To:CC:Subject:Date;
+	b=W+kdRHrIx6jahTqwK+V0IFv7A6nb62ZD3X8BFhxFPYPCewdZGCMjem1QwH6twD9Qs
+	tcyqQ+OnT8yLUbeUqxy9xdBc9Lafi3eNQnbKQ89Nbq9r8+bgkSlVYoUnGn1W8FYque
+	vn+eDmEmjF8bu9ee4c0GTcR1C9vcmYHjOj8FHCBo=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 025N0W5l053214
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 5 Mar 2020 15:49:05 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 5 Mar 2020 17:00:32 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Thu, 5 Mar 2020 15:49:05 -0600
-Received: from localhost.localdomain (10.64.41.19) by DLEE112.ent.ti.com
+	Thu, 5 Mar 2020 17:00:32 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
 	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Thu, 5 Mar 2020 15:49:05 -0600
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 025Ln4pZ045273; 
-	Thu, 5 Mar 2020 15:49:05 -0600
+	Frontend Transport; Thu, 5 Mar 2020 17:00:32 -0600
+Received: from ula0226330.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 025N0VNp058094;
+	Thu, 5 Mar 2020 17:00:31 -0600
+From: "Andrew F. Davis" <afd@ti.com>
 To: Denys Dmytriyenko <denys@ti.com>
-References: <1583358315-5293-1-git-send-email-j-stiffler@ti.com>
-	<20200305212452.GK1628@beryl>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <2a366adf-a32e-a1a2-3d8d-0a206b0f339e@ti.com>
-Date: Thu, 5 Mar 2020 16:49:05 -0500
-User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:68.0) Gecko/20100101
-	Thunderbird/68.4.2
+Date: Thu, 5 Mar 2020 18:00:31 -0500
+Message-ID: <20200305230031.5482-1-afd@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20200305212452.GK1628@beryl>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: Re: [zeus/master][PATCH] open62541: upgrade to version 1.0.1, other fixes
+Subject: [zeus/master][PATCH] dma-heap-tests: add tests for DMA-Heap framework
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,47 +49,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Mar 2020 21:51:09 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-List-Received-Date: Thu, 05 Mar 2020 23:02:36 -0000
+Content-Type: text/plain
 
+Add some tests for the DMA-Heap framework. Based on ion-tests.
 
-On 3/5/2020 4:24 PM, Denys Dmytriyenko wrote:
-> Jake,
->
-> Somehow this update has a really hard time getting built - it failed in the
-> same place with what looks like an our-of-memory error:
->
-> | src_generated/open62541/namespace0_generated.c: In function ‘namespace0_generated’:
-> | src_generated/open62541/namespace0_generated.c:113178:15: note: variable tracking size limit exceeded with ‘-fvar-tracking-assignments’, retrying without
-> | 113178 | UA_StatusCode namespace0_generated(UA_Server *server) {
-> |        |               ^
-> | arm-none-linux-gnueabihf-gcc: fatal error: Killed signal terminated program lto1
-> | compilation terminated.
-> | lto-wrapper: fatal error: /opt/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-gcc returned 1 exit status
-> | compilation terminated.
-> | /opt/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin/../lib/gcc/arm-none-linux-gnueabihf/9.2.1/../../../../arm-none-linux-gnueabihf/bin/ld: error: lto-wrapper failed
->
-> It was not specific to any platform or a build node - all platforms on all
-> build nodes have failed. I had to revert the update for now, as I needed to
-> release rc3 very quickly.
->
-> Has this been tested? Any comments?
+Signed-off-by: Andrew F. Davis <afd@ti.com>
+---
+ .../recipes-devtools/dma-heap/dma-heap-tests.bb  | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
 
-I have built this for both am57xx-evm and am65xx-evm and nativesdk. I 
-have also run-time tested this on x86 and am65x IDK.
-
-I did not ice that it took a significantly longer time to build with 
-this update and noticed "lto1-ltrans" as the top hog of resources. I 
-have only noticed this within OE. I do not notice any performance 
-difference in the standalone build.
-
-I suspect this may be a result of enabling UA_NAMESPACE_ZERO=FULL, but I 
-do not know why this is isolated to OE.
-
-
-- Jake
-
+diff --git a/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb b/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
+new file mode 100644
+index 00000000..9693fe64
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
+@@ -0,0 +1,16 @@
++SUMMARY = "Test cases for DMA-Heap framework"
++HOMEPAGE = "https://github.com/glneo/dma-heap-tests"
++LICENSE = "Apache-2.0"
++LIC_FILES_CHKSUM = "file://src/heap_test_fixture.cpp;beginline=1;endline=15;md5=d16465a9e7dc8f53bfdf997c4bf55540"
++
++PV = "1.0"
++
++BRANCH = "master"
++SRC_URI = "git://github.com/glneo/dma-heap-tests.git;protocol=git;branch=${BRANCH}"
++SRCREV = "bccbfbf24baccefa09439a924f61f04e82b3910a"
++
++DEPENDS = "googletest"
++
++S = "${WORKDIR}/git"
++
++inherit cmake pkgconfig
+-- 
+2.17.1
 
 
