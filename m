@@ -1,43 +1,44 @@
-Return-Path: <h-gou@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 32B0F529A8
+Return-Path: <denys@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 9D41C52A8F
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Mar 2020 17:56:19 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 026HsFL7125113
-	for <meta-arago@arago-project.org>; Fri, 6 Mar 2020 11:54:15 -0600
+	Fri,  6 Mar 2020 18:29:01 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 026IQvsT084439
+	for <meta-arago@arago-project.org>; Fri, 6 Mar 2020 12:26:57 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1583517255;
-	bh=lifccuQPdlxi9vqZHfD4cC+OpL+CFKkgma9PRlB8vVU=;
-	h=From:To:CC:Subject:Date;
-	b=htyDMH+kT+lDw7ieyLmG8qzA0//jzPO43aXqsaWRArf4Mb5fy4J9pIBVZREMyz+P5
-	UwdDHOZa9gbZ5dNQ5IJifmSqzOwTxgCiecySNaX4imsoGHIxw1fbflijW3SzHeCzks
-	E3B0IvsweoXSPNJ6s8MGHKWvdakZDc7EB6fDScO0=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 026HsFaJ020819
+	s=ti-com-17Q1; t=1583519217;
+	bh=0mL2qQubPXGiu9iZtiybEZqRK2fAGiZ3t/PPujAUCj8=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=U91Gwyu1eI5BaVm3VpWpcIR4PYM7QLicMLFWLG/PzLNWC9Lbx62MvWtEmcUGnJA4b
+	0I+JOBmg7VtBITmbDS90uVE5JAtGwO9fUQhAmWsOwFUFyS6k07MSHcAxT09iDqKq96
+	twsmAEop82nAHtkXfnvnFbYXP4cinOc8NeLgEOOg=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 026IQvC2065065
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 6 Mar 2020 11:54:15 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 6 Mar 2020 12:26:57 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Fri, 6 Mar 2020 11:54:14 -0600
-Received: from localhost.localdomain (10.64.41.19) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 6 Mar 2020 12:26:57 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Fri, 6 Mar 2020 11:54:14 -0600
-Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 026HsE8S079113; 
-	Fri, 6 Mar 2020 11:54:14 -0600
-From: Hongmei Gou <a0271529@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Fri, 6 Mar 2020 12:46:25 -0500
-Message-ID: <20200306174625.16312-1-a0271529@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Frontend Transport; Fri, 6 Mar 2020 12:26:56 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 026IQu8p038138;
+	Fri, 6 Mar 2020 12:26:57 -0600
+Date: Fri, 6 Mar 2020 13:26:56 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: Hongmei Gou <a0271529@ti.com>
+Message-ID: <20200306182656.GY1628@beryl>
+References: <20200306174625.16312-1-a0271529@ti.com>
 MIME-Version: 1.0
+In-Reply-To: <20200306174625.16312-1-a0271529@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Hongmei Gou <a0271529@ti.com>
-Subject: [thud] [PATCH] packagegroup-arago-tisdk-addons: add tensorflow-lite
+Cc: meta-arago@arago-project.org
+Subject: Re: [thud] [PATCH] packagegroup-arago-tisdk-addons: add tensorflow-lite
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,67 +51,80 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Mar 2020 17:56:19 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 06 Mar 2020 18:29:02 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-* This is for including the examples built from the tensforflow lite package
-  to the target filesystem at usr/share/tensorflow-lite/examples
+On Fri, Mar 06, 2020 at 12:46:25PM -0500, Hongmei Gou wrote:
+> * This is for including the examples built from the tensforflow lite package
+>   to the target filesystem at usr/share/tensorflow-lite/examples
+> 
+> * As tensorflow-lite is creating static library, tensorflow-lite-demo which
+>   depends on tensorflow-lite will not bring in the examples folder for
+>   tensorflow-lite to the target filesystem
 
-* As tensorflow-lite is creating static library, tensorflow-lite-demo which
-  depends on tensorflow-lite will not bring in the examples folder for
-  tensorflow-lite to the target filesystem
+Not really clear from this description - do you package examples in a separate 
+package? Then you need to list that package in RDEPENDS packagegroup below. 
+Otherwise the standard depency from demo package should be fine.
 
-Signed-off-by: Hongmei Gou <a0271529@ti.com>
----
-This is applicable to thud only, since zeus/master is now using ti-analytics.bb
+Denys
 
- .../packagegroups/packagegroup-arago-tisdk-addons.bb        | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 583d2c0b..ff34ab95 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
- LICENSE = "MIT"
--PR = "r77"
-+PR = "r78"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -153,6 +153,7 @@ ARMNN_PACKAGES = "armnn"
- EXTRA_PACKAGES_append_ti33x = " voxelsdk \
-                                 arm-compute-library \
-                                 ${ARMNN_PACKAGES} \
-+                                tensorflow-lite \
-                                 tensorflow-lite-demo \
-                                 pdm-anomaly-detection \
- "
-@@ -160,6 +161,7 @@ EXTRA_PACKAGES_append_ti33x = " voxelsdk \
- EXTRA_PACKAGES_append_ti43x = " voxelsdk \
-                                 arm-compute-library \
-                                 ${ARMNN_PACKAGES} \
-+                                tensorflow-lite \
-                                 tensorflow-lite-demo \
-                                 pdm-anomaly-detection \
- "
-@@ -169,12 +171,14 @@ EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
-                                    big-data-ipc-demo-linux-firmware \
-                                    arm-compute-library \
-                                    ${ARMNN_PACKAGES} \
-+                                   tensorflow-lite \
-                                    tensorflow-lite-demo \
-                                    pdm-anomaly-detection \
- "
- 
- EXTRA_PACKAGES_append_am65xx = " arm-compute-library \
-                              ${ARMNN_PACKAGES} \
-+                             tensorflow-lite \
-                              tensorflow-lite-demo \
-                              pdm-anomaly-detection \
- "
--- 
-2.17.1
-
+> Signed-off-by: Hongmei Gou <a0271529@ti.com>
+> ---
+> This is applicable to thud only, since zeus/master is now using ti-analytics.bb
+> 
+>  .../packagegroups/packagegroup-arago-tisdk-addons.bb        | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> index 583d2c0b..ff34ab95 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> @@ -1,6 +1,6 @@
+>  DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+>  LICENSE = "MIT"
+> -PR = "r77"
+> +PR = "r78"
+>  
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+> @@ -153,6 +153,7 @@ ARMNN_PACKAGES = "armnn"
+>  EXTRA_PACKAGES_append_ti33x = " voxelsdk \
+>                                  arm-compute-library \
+>                                  ${ARMNN_PACKAGES} \
+> +                                tensorflow-lite \
+>                                  tensorflow-lite-demo \
+>                                  pdm-anomaly-detection \
+>  "
+> @@ -160,6 +161,7 @@ EXTRA_PACKAGES_append_ti33x = " voxelsdk \
+>  EXTRA_PACKAGES_append_ti43x = " voxelsdk \
+>                                  arm-compute-library \
+>                                  ${ARMNN_PACKAGES} \
+> +                                tensorflow-lite \
+>                                  tensorflow-lite-demo \
+>                                  pdm-anomaly-detection \
+>  "
+> @@ -169,12 +171,14 @@ EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
+>                                     big-data-ipc-demo-linux-firmware \
+>                                     arm-compute-library \
+>                                     ${ARMNN_PACKAGES} \
+> +                                   tensorflow-lite \
+>                                     tensorflow-lite-demo \
+>                                     pdm-anomaly-detection \
+>  "
+>  
+>  EXTRA_PACKAGES_append_am65xx = " arm-compute-library \
+>                               ${ARMNN_PACKAGES} \
+> +                             tensorflow-lite \
+>                               tensorflow-lite-demo \
+>                               pdm-anomaly-detection \
+>  "
+> -- 
+> 2.17.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
