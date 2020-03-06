@@ -1,44 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 9D41C52A8F
+Return-Path: <afd@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 9B767529A8
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Mar 2020 18:29:01 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 026IQvsT084439
-	for <meta-arago@arago-project.org>; Fri, 6 Mar 2020 12:26:57 -0600
+	Fri,  6 Mar 2020 18:39:43 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 026Ibdoq004077
+	for <meta-arago@arago-project.org>; Fri, 6 Mar 2020 12:37:39 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1583519217;
-	bh=0mL2qQubPXGiu9iZtiybEZqRK2fAGiZ3t/PPujAUCj8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=U91Gwyu1eI5BaVm3VpWpcIR4PYM7QLicMLFWLG/PzLNWC9Lbx62MvWtEmcUGnJA4b
-	0I+JOBmg7VtBITmbDS90uVE5JAtGwO9fUQhAmWsOwFUFyS6k07MSHcAxT09iDqKq96
-	twsmAEop82nAHtkXfnvnFbYXP4cinOc8NeLgEOOg=
+	s=ti-com-17Q1; t=1583519859;
+	bh=1cqT2XaJccHGmaMJI/RXpdL0UEvAG6xRM3jRbempp7U=;
+	h=From:To:CC:Subject:Date;
+	b=ig8I1t+1t9/7vmZ0g/Fl7qutF/DHzBWQW0Kt9nZ8tNOUIr2FSxXLjUEYEYlyRJgsV
+	Uv78y726AqJ1szebIGjg9qxA6+H1UIJZBBihB/J/xAsqAw4g5BaxTEXzKIcfH2/ifk
+	CY5KE3kvvO32TRIWDJ+wIls8LPmDjOBzmQMGUHhU=
 Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 026IQvC2065065
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 026IbdRp094311
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 6 Mar 2020 12:26:57 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE109.ent.ti.com
+	for <meta-arago@arago-project.org>; Fri, 6 Mar 2020 12:37:39 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE109.ent.ti.com
 	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Fri, 6 Mar 2020 12:26:57 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 6 Mar 2020 12:37:39 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
+	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Fri, 6 Mar 2020 12:26:56 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 026IQu8p038138;
-	Fri, 6 Mar 2020 12:26:57 -0600
-Date: Fri, 6 Mar 2020 13:26:56 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: Hongmei Gou <a0271529@ti.com>
-Message-ID: <20200306182656.GY1628@beryl>
-References: <20200306174625.16312-1-a0271529@ti.com>
+	Frontend Transport; Fri, 6 Mar 2020 12:37:39 -0600
+Received: from ula0226330.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 026Ibc8P127132;
+	Fri, 6 Mar 2020 12:37:39 -0600
+From: "Andrew F. Davis" <afd@ti.com>
+To: Denys Dmytriyenko <denys@ti.com>
+Date: Fri, 6 Mar 2020 13:37:38 -0500
+Message-ID: <20200306183738.27847-1-afd@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20200306174625.16312-1-a0271529@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: Re: [thud] [PATCH] packagegroup-arago-tisdk-addons: add tensorflow-lite
+Subject: [zeus/master][PATCH] weston: Add new fix patch for dual display issue
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,80 +49,195 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Mar 2020 18:29:02 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 06 Mar 2020 18:39:44 -0000
+Content-Type: text/plain
 
-On Fri, Mar 06, 2020 at 12:46:25PM -0500, Hongmei Gou wrote:
-> * This is for including the examples built from the tensforflow lite package
->   to the target filesystem at usr/share/tensorflow-lite/examples
-> 
-> * As tensorflow-lite is creating static library, tensorflow-lite-demo which
->   depends on tensorflow-lite will not bring in the examples folder for
->   tensorflow-lite to the target filesystem
+Signed-off-by: Andrew F. Davis <afd@ti.com>
+---
+ ...ct-plane-based-on-current-attached-C.patch | 69 ++++++++++++++++
+ ...05-weston-drm-fix-dual-display-issue.patch | 79 -------------------
+ .../wayland/weston_7.0.0.bbappend             |  2 +-
+ 3 files changed, 70 insertions(+), 80 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0001-backend-drm-Select-plane-based-on-current-attached-C.patch
+ delete mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0005-weston-drm-fix-dual-display-issue.patch
 
-Not really clear from this description - do you package examples in a separate 
-package? Then you need to list that package in RDEPENDS packagegroup below. 
-Otherwise the standard depency from demo package should be fine.
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0001-backend-drm-Select-plane-based-on-current-attached-C.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0001-backend-drm-Select-plane-based-on-current-attached-C.patch
+new file mode 100644
+index 00000000..ef445797
+--- /dev/null
++++ b/meta-arago-distro/recipes-graphics/wayland/weston/0001-backend-drm-Select-plane-based-on-current-attached-C.patch
+@@ -0,0 +1,69 @@
++From 943323d177ef33494d9d063aeb7f0e9785d9b3c1 Mon Sep 17 00:00:00 2001
++From: "Andrew F. Davis" <afd@ti.com>
++Date: Fri, 6 Mar 2020 13:06:55 -0500
++Subject: [PATCH] backend-drm: Select plane based on current attached CRTC
++
++When doing plane selection for an output CRTC check if the plane
++already has a CRTC attached and if so prefer that plane only for
++the corresponding CRTC.
++
++This prevents changing a CRTC's primary plane when it is active
++which is not allowed by the DRM framework.
++
++Based-on-patch-by: Eric Ruei <e-ruei1@ti.com>
++Signed-off-by: Andrew F. Davis <afd@ti.com>
++---
++ libweston/backend-drm/drm-internal.h |  1 +
++ libweston/backend-drm/drm.c          | 10 ++++++++++
++ 2 files changed, 11 insertions(+)
++
++diff --git a/libweston/backend-drm/drm-internal.h b/libweston/backend-drm/drm-internal.h
++index 6f5a9880..65b7486d 100644
++--- a/libweston/backend-drm/drm-internal.h
+++++ b/libweston/backend-drm/drm-internal.h
++@@ -398,6 +398,7 @@ struct drm_plane {
++ 
++ 	uint32_t possible_crtcs;
++ 	uint32_t plane_id;
+++	uint32_t crtc_id;
++ 	uint32_t count_formats;
++ 
++ 	struct drm_property_info props[WDRM_PLANE__COUNT];
++diff --git a/libweston/backend-drm/drm.c b/libweston/backend-drm/drm.c
++index 041a15a5..544b1aff 100644
++--- a/libweston/backend-drm/drm.c
+++++ b/libweston/backend-drm/drm.c
++@@ -819,6 +819,7 @@ drm_plane_create(struct drm_backend *b, const drmModePlane *kplane,
++ 	if (kplane) {
++ 		plane->possible_crtcs = kplane->possible_crtcs;
++ 		plane->plane_id = kplane->plane_id;
+++		plane->crtc_id = kplane->crtc_id;
++ 
++ 		props = drmModeObjectGetProperties(b->drm.fd, kplane->plane_id,
++ 						   DRM_MODE_OBJECT_PLANE);
++@@ -843,6 +844,7 @@ drm_plane_create(struct drm_backend *b, const drmModePlane *kplane,
++ 	else {
++ 		plane->possible_crtcs = (1 << output->pipe);
++ 		plane->plane_id = 0;
+++		plane->crtc_id = 0;
++ 		plane->count_formats = 1;
++ 		plane->formats[0].format = format;
++ 		plane->type = type;
++@@ -950,6 +952,14 @@ drm_output_find_special_plane(struct drm_backend *b, struct drm_output *output,
++ 		if (found_elsewhere)
++ 			continue;
++ 
+++		/* If a plane already has a CRTC selected and it is not our
+++		 * output's CRTC, then do not select this plane. We cannot
+++		 * switch away a plane from a CTRC when active. */
+++		if ((type == WDRM_PLANE_TYPE_PRIMARY) &&
+++		    (plane->crtc_id != 0) &&
+++		    (plane->crtc_id != output->crtc_id))
+++			continue;
+++
++ 		plane->possible_crtcs = (1 << output->pipe);
++ 		return plane;
++ 	}
++-- 
++2.17.1
++
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0005-weston-drm-fix-dual-display-issue.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0005-weston-drm-fix-dual-display-issue.patch
+deleted file mode 100644
+index 9b06b81b..00000000
+--- a/meta-arago-distro/recipes-graphics/wayland/weston/0005-weston-drm-fix-dual-display-issue.patch
++++ /dev/null
+@@ -1,79 +0,0 @@
+-From db6f5ce008d9b8a4cc7db71659ce1d21d3d7f97f Mon Sep 17 00:00:00 2001
+-From: Eric Ruei <e-ruei1@ti.com>
+-Date: Tue, 26 Mar 2019 13:32:31 -0400
+-Subject: [PATCH 3/3] weston: drm: fix dual display issue
+-
+-This patch fixes the dual display issue by enhancing the primary plane
+-search algorithm to keep the plane which is connected to the crtc of
+-the output because the direct switching of active planes is not allowed.
+-
+-Upstream status: Pending
+-
+-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+----
+- libweston/compositor-drm.c | 17 ++++++++++++++++-
+- 1 file changed, 16 insertions(+), 1 deletion(-)
+-
+-diff --git a/libweston/compositor-drm.c b/libweston/compositor-drm.c
+-index 3891176..fa694c3 100644
+---- a/libweston/compositor-drm.c
+-+++ b/libweston/compositor-drm.c
+-@@ -428,6 +428,7 @@ struct drm_plane {
+- 
+- 	uint32_t possible_crtcs;
+- 	uint32_t plane_id;
+-+	uint32_t crtc_id;
+- 	uint32_t count_formats;
+- 
+- 	struct drm_property_info props[WDRM_PLANE__COUNT];
+-@@ -4073,6 +4074,7 @@ drm_plane_create(struct drm_backend *b, const drmModePlane *kplane,
+- 	if (kplane) {
+- 		plane->possible_crtcs = kplane->possible_crtcs;
+- 		plane->plane_id = kplane->plane_id;
+-+		plane->crtc_id = kplane->crtc_id;
+- 
+- 		props = drmModeObjectGetProperties(b->drm.fd, kplane->plane_id,
+- 						   DRM_MODE_OBJECT_PLANE);
+-@@ -4097,6 +4099,7 @@ drm_plane_create(struct drm_backend *b, const drmModePlane *kplane,
+- 	else {
+- 		plane->possible_crtcs = (1 << output->pipe);
+- 		plane->plane_id = 0;
+-+		plane->crtc_id = 0;
+- 		plane->count_formats = 1;
+- 		plane->formats[0].format = format;
+- 		plane->type = type;
+-@@ -4157,6 +4160,7 @@ drm_output_find_special_plane(struct drm_backend *b, struct drm_output *output,
+- 			      enum wdrm_plane_type type)
+- {
+- 	struct drm_plane *plane;
+-+	struct drm_plane *plane2 = NULL; /* secondary plane */
+- 
+- 	if (!b->universal_planes) {
+- 		uint32_t format;
+-@@ -4204,11 +4208,22 @@ drm_output_find_special_plane(struct drm_backend *b, struct drm_output *output,
+- 		if (found_elsewhere)
+- 			continue;
+- 
+-+		/* The output should keep the primary plane connected to its
+-+		 * crtc since the direct switching of active plane is not
+-+		 * allowed. */
+-+		if ((type == WDRM_PLANE_TYPE_PRIMARY) &&
+-+		    (plane->crtc_id != output->crtc_id)) {
+-+			if (plane->crtc_id == 0) {
+-+				plane->possible_crtcs = (1 << output->pipe);
+-+				plane2 = plane;
+-+			}
+-+			continue;
+-+		}
+- 		plane->possible_crtcs = (1 << output->pipe);
+- 		return plane;
+- 	}
+- 
+--	return NULL;
+-+	return plane2;
+- }
+- 
+- /**
+--- 
+-1.9.1
+-
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_7.0.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_7.0.0.bbappend
+index 92e5570a..7a937f08 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston_7.0.0.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston_7.0.0.bbappend
+@@ -7,10 +7,10 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ RDEPENDS_${PN} += "weston-conf"
+ 
+ #        file://0002-weston-Allow-visual_id-to-be-0.patch
+-#        file://0005-weston-drm-fix-dual-display-issue.patch
+ SRC_URI += " \
+         file://0003-weston-Fix-virtual-keyboard-display-issue-for-QT5-ap.patch \
+         file://0004-weston-Fix-touch-screen-crash-issue.patch \
++        file://0001-backend-drm-Select-plane-based-on-current-attached-C.patch \
+ "
+ 
+ INHIBIT_PACKAGE_STRIP = "1"
+-- 
+2.17.1
 
-Denys
-
-
-> Signed-off-by: Hongmei Gou <a0271529@ti.com>
-> ---
-> This is applicable to thud only, since zeus/master is now using ti-analytics.bb
-> 
->  .../packagegroups/packagegroup-arago-tisdk-addons.bb        | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> index 583d2c0b..ff34ab95 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> @@ -1,6 +1,6 @@
->  DESCRIPTION = "Task to install additional utilities/demos for SDKs"
->  LICENSE = "MIT"
-> -PR = "r77"
-> +PR = "r78"
->  
->  PACKAGE_ARCH = "${MACHINE_ARCH}"
->  
-> @@ -153,6 +153,7 @@ ARMNN_PACKAGES = "armnn"
->  EXTRA_PACKAGES_append_ti33x = " voxelsdk \
->                                  arm-compute-library \
->                                  ${ARMNN_PACKAGES} \
-> +                                tensorflow-lite \
->                                  tensorflow-lite-demo \
->                                  pdm-anomaly-detection \
->  "
-> @@ -160,6 +161,7 @@ EXTRA_PACKAGES_append_ti33x = " voxelsdk \
->  EXTRA_PACKAGES_append_ti43x = " voxelsdk \
->                                  arm-compute-library \
->                                  ${ARMNN_PACKAGES} \
-> +                                tensorflow-lite \
->                                  tensorflow-lite-demo \
->                                  pdm-anomaly-detection \
->  "
-> @@ -169,12 +171,14 @@ EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
->                                     big-data-ipc-demo-linux-firmware \
->                                     arm-compute-library \
->                                     ${ARMNN_PACKAGES} \
-> +                                   tensorflow-lite \
->                                     tensorflow-lite-demo \
->                                     pdm-anomaly-detection \
->  "
->  
->  EXTRA_PACKAGES_append_am65xx = " arm-compute-library \
->                               ${ARMNN_PACKAGES} \
-> +                             tensorflow-lite \
->                               tensorflow-lite-demo \
->                               pdm-anomaly-detection \
->  "
-> -- 
-> 2.17.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
