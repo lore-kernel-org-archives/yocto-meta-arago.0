@@ -1,30 +1,43 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 8C36F529A8
+Return-Path: <h-gou@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 32B0F529A8
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Mar 2020 17:53:56 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B010140C5A;
-	Fri,  6 Mar 2020 17:51:52 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id yXdvRpXwUBaB; Fri,  6 Mar 2020 17:51:52 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 91F0340C59;
-	Fri,  6 Mar 2020 17:51:51 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id E3458172FDE;
-	Fri,  6 Mar 2020 12:51:50 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri,  6 Mar 2020 12:51:50 -0500
-Message-Id: <1583517110-3027-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [zeus/master][PATCH] linuxptp: drop previously overlayed version
+	Fri,  6 Mar 2020 17:56:19 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 026HsFL7125113
+	for <meta-arago@arago-project.org>; Fri, 6 Mar 2020 11:54:15 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1583517255;
+	bh=lifccuQPdlxi9vqZHfD4cC+OpL+CFKkgma9PRlB8vVU=;
+	h=From:To:CC:Subject:Date;
+	b=htyDMH+kT+lDw7ieyLmG8qzA0//jzPO43aXqsaWRArf4Mb5fy4J9pIBVZREMyz+P5
+	UwdDHOZa9gbZ5dNQ5IJifmSqzOwTxgCiecySNaX4imsoGHIxw1fbflijW3SzHeCzks
+	E3B0IvsweoXSPNJ6s8MGHKWvdakZDc7EB6fDScO0=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 026HsFaJ020819
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 6 Mar 2020 11:54:15 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Fri, 6 Mar 2020 11:54:14 -0600
+Received: from localhost.localdomain (10.64.41.19) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Fri, 6 Mar 2020 11:54:14 -0600
+Received: from UDA0271529.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 026HsE8S079113; 
+	Fri, 6 Mar 2020 11:54:14 -0600
+From: Hongmei Gou <a0271529@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 6 Mar 2020 12:46:25 -0500
+Message-ID: <20200306174625.16312-1-a0271529@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: Hongmei Gou <a0271529@ti.com>
+Subject: [thud] [PATCH] packagegroup-arago-tisdk-addons: add tensorflow-lite
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,129 +50,67 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Mar 2020 17:53:57 -0000
+X-List-Received-Date: Fri, 06 Mar 2020 17:56:19 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+* This is for including the examples built from the tensforflow lite package
+  to the target filesystem at usr/share/tensorflow-lite/examples
 
-Version 2.0 is available from meta-oe.
+* As tensorflow-lite is creating static library, tensorflow-lite-demo which
+  depends on tensorflow-lite will not bring in the examples folder for
+  tensorflow-lite to the target filesystem
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Hongmei Gou <a0271529@ti.com>
 ---
- ...build-Allow-CC-and-prefix-to-be-overriden.patch | 37 ----------------------
- .../linuxptp/no-incdefs-using-host-headers.patch   | 29 -----------------
- .../recipes-connectivity/linuxptp/linuxptp_2.0.bb  | 22 -------------
- 3 files changed, 88 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch
- delete mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch
- delete mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb
+This is applicable to thud only, since zeus/master is now using ti-analytics.bb
 
-diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch
-deleted file mode 100644
-index b1d96ae..0000000
---- a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch
-+++ /dev/null
-@@ -1,37 +0,0 @@
--From af485c638c61fa883212ea424e676fbf90bee594 Mon Sep 17 00:00:00 2001
--From: Otavio Salvador <otavio@ossystems.com.br>
--Date: Tue, 1 Jul 2014 17:37:31 -0300
--Subject: [PATCH] build: Allow CC and prefix to be overriden
--
--Upstream-Status: Pending
--
--Signed-off-by: Otavio Salvador <otavio@ossystems.com.br>
-----
-- makefile |    4 ++--
-- 1 file changed, 2 insertions(+), 2 deletions(-)
--
--diff --git a/makefile b/makefile
--index 22e7d0d..809cc8f 100644
----- a/makefile
--+++ b/makefile
--@@ -18,7 +18,7 @@
-- KBUILD_OUTPUT =
-- 
-- DEBUG	=
---CC	= $(CROSS_COMPILE)gcc
--+CC	?= $(CROSS_COMPILE)gcc
-- VER     = -DVER=$(version)
-- CFLAGS	= -Wall $(VER) $(incdefs) $(DEBUG) $(EXTRA_CFLAGS)
-- LDLIBS	= -lm -lrt $(EXTRA_LDFLAGS)
--@@ -35,7 +35,7 @@ incdefs := $(shell $(srcdir)/incdefs.sh)
-- version := $(shell $(srcdir)/version.sh $(srcdir))
-- VPATH	= $(srcdir)
-- 
---prefix	= /usr/local
--+prefix	?= /usr/local
-- sbindir	= $(prefix)/sbin
-- mandir	= $(prefix)/man
-- man8dir	= $(mandir)/man8
---- 
--1.7.10.4
--
-diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch
-deleted file mode 100644
-index 02dbb23..0000000
---- a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch
-+++ /dev/null
-@@ -1,29 +0,0 @@
--From 8a4cad5e2f2cbb6a34bdc6e877fe499502b8c4c8 Mon Sep 17 00:00:00 2001
--From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
--Date: Fri, 23 Dec 2016 18:12:29 +0100
--Subject: [PATCH] linuxptp: no incdefs using host headers
--
--Avoid using host headers via incdefs.sh shell script.
--
--Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-----
--
-- makefile | 2 +-
-- 1 file changed, 1 insertion(+), 1 deletion(-)
--
--diff --git a/makefile b/makefile
--index 8cdbd15..85174b8 100644
----- a/makefile
--+++ b/makefile
--@@ -33,7 +33,7 @@ OBJECTS	= $(OBJ) hwstamp_ctl.o phc2sys.o phc_ctl.o pmc.o pmc_common.o \
-- SRC	= $(OBJECTS:.o=.c)
-- DEPEND	= $(OBJECTS:.o=.d)
-- srcdir	:= $(dir $(lastword $(MAKEFILE_LIST)))
---incdefs := $(shell $(srcdir)/incdefs.sh)
--+#incdefs := $(shell $(srcdir)/incdefs.sh)
-- version := $(shell $(srcdir)/version.sh $(srcdir))
-- VPATH	= $(srcdir)
-- 
---- 
--2.9.3
--
-diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb
-deleted file mode 100644
-index eb262d3..0000000
---- a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb
-+++ /dev/null
-@@ -1,22 +0,0 @@
--DESCRIPTION = "Precision Time Protocol (PTP) according to IEEE standard 1588 for Linux"
--LICENSE = "GPLv2"
--LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
--
--SRC_URI = "http://sourceforge.net/projects/linuxptp/files/v${PV}/linuxptp-${PV}.tgz \
--           file://build-Allow-CC-and-prefix-to-be-overriden.patch \
--           file://no-incdefs-using-host-headers.patch \
--           "
--
--SRC_URI[md5sum] = "d8bb7374943bb747db7786ac26f17f11"
--SRC_URI[sha256sum] = "0a24d9401e87d4af023d201e234d91127d82c350daad93432106284aa9459c7d"
--
--EXTRA_OEMAKE = "ARCH=${TARGET_ARCH} \
--    EXTRA_CFLAGS='-D_GNU_SOURCE -DHAVE_CLOCK_ADJTIME -DHAVE_POSIX_SPAWN -DHAVE_ONESTEP_SYNC ${CFLAGS}'"
--
--do_install () {
--    install -d ${D}/${bindir}
--    install -p ${S}/ptp4l  ${D}/${bindir}
--    install -p ${S}/pmc  ${D}/${bindir}
--    install -p ${S}/phc2sys  ${D}/${bindir}
--    install -p ${S}/hwstamp_ctl  ${D}/${bindir}
--}
+ .../packagegroups/packagegroup-arago-tisdk-addons.bb        | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 583d2c0b..ff34ab95 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r77"
++PR = "r78"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -153,6 +153,7 @@ ARMNN_PACKAGES = "armnn"
+ EXTRA_PACKAGES_append_ti33x = " voxelsdk \
+                                 arm-compute-library \
+                                 ${ARMNN_PACKAGES} \
++                                tensorflow-lite \
+                                 tensorflow-lite-demo \
+                                 pdm-anomaly-detection \
+ "
+@@ -160,6 +161,7 @@ EXTRA_PACKAGES_append_ti33x = " voxelsdk \
+ EXTRA_PACKAGES_append_ti43x = " voxelsdk \
+                                 arm-compute-library \
+                                 ${ARMNN_PACKAGES} \
++                                tensorflow-lite \
+                                 tensorflow-lite-demo \
+                                 pdm-anomaly-detection \
+ "
+@@ -169,12 +171,14 @@ EXTRA_PACKAGES_append_omap-a15 = " voxelsdk \
+                                    big-data-ipc-demo-linux-firmware \
+                                    arm-compute-library \
+                                    ${ARMNN_PACKAGES} \
++                                   tensorflow-lite \
+                                    tensorflow-lite-demo \
+                                    pdm-anomaly-detection \
+ "
+ 
+ EXTRA_PACKAGES_append_am65xx = " arm-compute-library \
+                              ${ARMNN_PACKAGES} \
++                             tensorflow-lite \
+                              tensorflow-lite-demo \
+                              pdm-anomaly-detection \
+ "
 -- 
-2.7.4
+2.17.1
 
 
