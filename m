@@ -1,48 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id A5458529A8
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 8C36F529A8
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Mar 2020 14:55:52 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 026ErmI9031490
-	for <meta-arago@arago-project.org>; Fri, 6 Mar 2020 08:53:48 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1583506428;
-	bh=gXyXXlnD4cqdMFndmrPEUuNQ0SH/ytkqryaivgJtJnY=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=OeRVAAjcM1ZoN2wYRrwVgTf1y+awLdCsSr3vijPFfv86G2yYnN8PlfIl+vAkNClsc
-	LO2dIeV1Eg+tWnxPJro9/n2JQY+1XFQvxYjXuNACICgaVZvFqDKFH+qm8EP5UzSmrB
-	q+CzY0DQnB9G6lxT0tBcJxUH49m0AMhxfLPJnrzc=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 026Ermri077356
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 6 Mar 2020 08:53:48 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Fri, 6 Mar 2020 08:53:48 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Fri, 6 Mar 2020 08:53:48 -0600
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 026Erms2130549;
-	Fri, 6 Mar 2020 08:53:48 -0600
-To: Denys Dmytriyenko <denys@ti.com>
-References: <1583358315-5293-1-git-send-email-j-stiffler@ti.com>
-	<20200305212452.GK1628@beryl>
-	<2a366adf-a32e-a1a2-3d8d-0a206b0f339e@ti.com>
-	<20200306001514.GQ1628@beryl>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <c424aa53-30c1-4f00-f648-e511bbacdc68@ti.com>
-Date: Fri, 6 Mar 2020 09:53:46 -0500
-User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:68.0) Gecko/20100101
-	Thunderbird/68.4.2
-MIME-Version: 1.0
-In-Reply-To: <20200306001514.GQ1628@beryl>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [zeus/master][PATCH] open62541: upgrade to version 1.0.1, other fixes
+	Fri,  6 Mar 2020 17:53:56 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id B010140C5A;
+	Fri,  6 Mar 2020 17:51:52 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id yXdvRpXwUBaB; Fri,  6 Mar 2020 17:51:52 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 91F0340C59;
+	Fri,  6 Mar 2020 17:51:51 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id E3458172FDE;
+	Fri,  6 Mar 2020 12:51:50 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri,  6 Mar 2020 12:51:50 -0500
+Message-Id: <1583517110-3027-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [zeus/master][PATCH] linuxptp: drop previously overlayed version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,55 +37,129 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Mar 2020 14:55:53 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-List-Received-Date: Fri, 06 Mar 2020 17:53:57 -0000
 
+From: Denys Dmytriyenko <denys@ti.com>
 
-On 3/5/2020 7:15 PM, Denys Dmytriyenko wrote:
-> On Thu, Mar 05, 2020 at 04:49:05PM -0500, Jacob Stiffler wrote:
->> On 3/5/2020 4:24 PM, Denys Dmytriyenko wrote:
->>> Jake,
->>>
->>> Somehow this update has a really hard time getting built - it failed in the
->>> same place with what looks like an our-of-memory error:
->>>
->>> | src_generated/open62541/namespace0_generated.c: In function ‘namespace0_generated’:
->>> | src_generated/open62541/namespace0_generated.c:113178:15: note: variable tracking size limit exceeded with ‘-fvar-tracking-assignments’, retrying without
->>> | 113178 | UA_StatusCode namespace0_generated(UA_Server *server) {
->>> |        |               ^
->>> | arm-none-linux-gnueabihf-gcc: fatal error: Killed signal terminated program lto1
->>> | compilation terminated.
->>> | lto-wrapper: fatal error: /opt/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-gcc returned 1 exit status
->>> | compilation terminated.
->>> | /opt/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin/../lib/gcc/arm-none-linux-gnueabihf/9.2.1/../../../../arm-none-linux-gnueabihf/bin/ld: error: lto-wrapper failed
->>>
->>> It was not specific to any platform or a build node - all platforms on all
->>> build nodes have failed. I had to revert the update for now, as I needed to
->>> release rc3 very quickly.
->>>
->>> Has this been tested? Any comments?
->> I have built this for both am57xx-evm and am65xx-evm and nativesdk. I have
->> also run-time tested this on x86 and am65x IDK.
->>
->> I did not ice that it took a significantly longer time to build with this
->> update and noticed "lto1-ltrans" as the top hog of resources. I have only
->> noticed this within OE. I do not notice any performance difference in the
->> standalone build.
->>
->> I suspect this may be a result of enabling UA_NAMESPACE_ZERO=FULL, but I do
->> not know why this is isolated to OE.
-> Thanks. Is it possible to disable UA_NAMESPACE_ZERO=FULL to see if it improves
-> the build resource demands? Is it one of the required features to be enabled?
+Version 2.0 is available from meta-oe.
 
-This is something we want because it is required to make use of other 
-standard model namespaces, such as OpcUaDi (device integration) and 
-others. I can move this to the PACKAGECONFIG so it is more easily 
-configured, but eventually we will need to determine how to make this 
-work in our builds.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ ...build-Allow-CC-and-prefix-to-be-overriden.patch | 37 ----------------------
+ .../linuxptp/no-incdefs-using-host-headers.patch   | 29 -----------------
+ .../recipes-connectivity/linuxptp/linuxptp_2.0.bb  | 22 -------------
+ 3 files changed, 88 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch
+ delete mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch
+ delete mode 100644 meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb
 
-
-- Jake
+diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch
+deleted file mode 100644
+index b1d96ae..0000000
+--- a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/build-Allow-CC-and-prefix-to-be-overriden.patch
++++ /dev/null
+@@ -1,37 +0,0 @@
+-From af485c638c61fa883212ea424e676fbf90bee594 Mon Sep 17 00:00:00 2001
+-From: Otavio Salvador <otavio@ossystems.com.br>
+-Date: Tue, 1 Jul 2014 17:37:31 -0300
+-Subject: [PATCH] build: Allow CC and prefix to be overriden
+-
+-Upstream-Status: Pending
+-
+-Signed-off-by: Otavio Salvador <otavio@ossystems.com.br>
+----
+- makefile |    4 ++--
+- 1 file changed, 2 insertions(+), 2 deletions(-)
+-
+-diff --git a/makefile b/makefile
+-index 22e7d0d..809cc8f 100644
+---- a/makefile
+-+++ b/makefile
+-@@ -18,7 +18,7 @@
+- KBUILD_OUTPUT =
+- 
+- DEBUG	=
+--CC	= $(CROSS_COMPILE)gcc
+-+CC	?= $(CROSS_COMPILE)gcc
+- VER     = -DVER=$(version)
+- CFLAGS	= -Wall $(VER) $(incdefs) $(DEBUG) $(EXTRA_CFLAGS)
+- LDLIBS	= -lm -lrt $(EXTRA_LDFLAGS)
+-@@ -35,7 +35,7 @@ incdefs := $(shell $(srcdir)/incdefs.sh)
+- version := $(shell $(srcdir)/version.sh $(srcdir))
+- VPATH	= $(srcdir)
+- 
+--prefix	= /usr/local
+-+prefix	?= /usr/local
+- sbindir	= $(prefix)/sbin
+- mandir	= $(prefix)/man
+- man8dir	= $(mandir)/man8
+--- 
+-1.7.10.4
+-
+diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch
+deleted file mode 100644
+index 02dbb23..0000000
+--- a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp/no-incdefs-using-host-headers.patch
++++ /dev/null
+@@ -1,29 +0,0 @@
+-From 8a4cad5e2f2cbb6a34bdc6e877fe499502b8c4c8 Mon Sep 17 00:00:00 2001
+-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+-Date: Fri, 23 Dec 2016 18:12:29 +0100
+-Subject: [PATCH] linuxptp: no incdefs using host headers
+-
+-Avoid using host headers via incdefs.sh shell script.
+-
+-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+----
+-
+- makefile | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/makefile b/makefile
+-index 8cdbd15..85174b8 100644
+---- a/makefile
+-+++ b/makefile
+-@@ -33,7 +33,7 @@ OBJECTS	= $(OBJ) hwstamp_ctl.o phc2sys.o phc_ctl.o pmc.o pmc_common.o \
+- SRC	= $(OBJECTS:.o=.c)
+- DEPEND	= $(OBJECTS:.o=.d)
+- srcdir	:= $(dir $(lastword $(MAKEFILE_LIST)))
+--incdefs := $(shell $(srcdir)/incdefs.sh)
+-+#incdefs := $(shell $(srcdir)/incdefs.sh)
+- version := $(shell $(srcdir)/version.sh $(srcdir))
+- VPATH	= $(srcdir)
+- 
+--- 
+-2.9.3
+-
+diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb
+deleted file mode 100644
+index eb262d3..0000000
+--- a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_2.0.bb
++++ /dev/null
+@@ -1,22 +0,0 @@
+-DESCRIPTION = "Precision Time Protocol (PTP) according to IEEE standard 1588 for Linux"
+-LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+-
+-SRC_URI = "http://sourceforge.net/projects/linuxptp/files/v${PV}/linuxptp-${PV}.tgz \
+-           file://build-Allow-CC-and-prefix-to-be-overriden.patch \
+-           file://no-incdefs-using-host-headers.patch \
+-           "
+-
+-SRC_URI[md5sum] = "d8bb7374943bb747db7786ac26f17f11"
+-SRC_URI[sha256sum] = "0a24d9401e87d4af023d201e234d91127d82c350daad93432106284aa9459c7d"
+-
+-EXTRA_OEMAKE = "ARCH=${TARGET_ARCH} \
+-    EXTRA_CFLAGS='-D_GNU_SOURCE -DHAVE_CLOCK_ADJTIME -DHAVE_POSIX_SPAWN -DHAVE_ONESTEP_SYNC ${CFLAGS}'"
+-
+-do_install () {
+-    install -d ${D}/${bindir}
+-    install -p ${S}/ptp4l  ${D}/${bindir}
+-    install -p ${S}/pmc  ${D}/${bindir}
+-    install -p ${S}/phc2sys  ${D}/${bindir}
+-    install -p ${S}/hwstamp_ctl  ${D}/${bindir}
+-}
+-- 
+2.7.4
 
 
