@@ -1,41 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 6DDA8529C3
+Return-Path: <afd@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id EC9BD529A8
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Mar 2020 00:40:25 +0000 (UTC)
+	Fri,  6 Mar 2020 03:01:26 +0000 (UTC)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0260cLub082435
-	for <meta-arago@arago-project.org>; Thu, 5 Mar 2020 18:38:21 -0600
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0262xNQD041555
+	for <meta-arago@arago-project.org>; Thu, 5 Mar 2020 20:59:23 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1583455101;
-	bh=lc6MFfRKzDsCsH4rNm1UWBpF8oFb1UmfPH8oukhn9Ic=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=m2Jc0BjC0W60IbXov6MRltLbowbVvkKLveJhsQxPCnnpNeK0v0UqKo4wDf14dDHw1
-	z1rQnzKbjTOT1Rd5WgCg0tA6s+Q+HOAtIFwib2zs5vQmlVgC+HOAqVF+TTJKjNccmk
-	Yc30M5psH1KxCAGXAM395T+uYCM0214giVVSPJ8E=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0260cLQX062508
+	s=ti-com-17Q1; t=1583463563;
+	bh=dn/bCXdFyb4sPGFn3PZTJCvUber6oISktLpUZCUmu8w=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=en1sGSFJqkNw5kt/Gb6vrka/Vz/Jscy8CWoVx1GDS/lJeEa0pg1I/L6Hm3/ppyjnR
+	NqCR501vThfPBwZ62VJvUP8nkWUDmzvZgr/pviIsyT62R32/UyGIl7Mgmt950FD+FU
+	VBpkykecTTAsMpCV+toLJqajTngcd3yQobkaUEKY=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0262xNJP004939
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 5 Mar 2020 18:38:21 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 5 Mar 2020 20:59:23 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Thu, 5 Mar 2020 18:38:21 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 5 Mar 2020 20:59:22 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Thu, 5 Mar 2020 18:38:21 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0260cLGN019893;
-	Thu, 5 Mar 2020 18:38:21 -0600
-Date: Thu, 5 Mar 2020 19:38:21 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: "Andrew F. Davis" <afd@ti.com>
-Message-ID: <20200306003821.GU1628@beryl>
-References: <20200305230031.5482-1-afd@ti.com>
+	Frontend Transport; Thu, 5 Mar 2020 20:59:22 -0600
+Received: from [10.250.77.18] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0262xMk4067068;
+	Thu, 5 Mar 2020 20:59:22 -0600
+To: Denys Dmytriyenko <denys@ti.com>
+References: <20200305230031.5482-1-afd@ti.com> <20200306003821.GU1628@beryl>
+From: "Andrew F. Davis" <afd@ti.com>
+Message-ID: <04d2ee55-1bc3-8d91-3ff3-83cc3852bf05@ti.com>
+Date: Thu, 5 Mar 2020 21:59:22 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+	Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <20200305230031.5482-1-afd@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <20200306003821.GU1628@beryl>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
 Subject: Re: [zeus/master][PATCH] dma-heap-tests: add tests for DMA-Heap framework
@@ -51,48 +52,61 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Mar 2020 00:40:25 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 06 Mar 2020 03:01:27 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-On Thu, Mar 05, 2020 at 06:00:31PM -0500, Andrew F. Davis wrote:
-> Add some tests for the DMA-Heap framework. Based on ion-tests.
+On 3/5/20 7:38 PM, Denys Dmytriyenko wrote:
+> On Thu, Mar 05, 2020 at 06:00:31PM -0500, Andrew F. Davis wrote:
+>> Add some tests for the DMA-Heap framework. Based on ion-tests.
+>>
+>> Signed-off-by: Andrew F. Davis <afd@ti.com>
+>> ---
+>>  .../recipes-devtools/dma-heap/dma-heap-tests.bb  | 16 ++++++++++++++++
+>>  1 file changed, 16 insertions(+)
+>>  create mode 100644 meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
+>>
+>> diff --git a/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb b/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
+>> new file mode 100644
+>> index 00000000..9693fe64
+>> --- /dev/null
+>> +++ b/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
+>> @@ -0,0 +1,16 @@
+>> +SUMMARY = "Test cases for DMA-Heap framework"
+>> +HOMEPAGE = "https://github.com/glneo/dma-heap-tests"
+>> +LICENSE = "Apache-2.0"
+>> +LIC_FILES_CHKSUM = "file://src/heap_test_fixture.cpp;beginline=1;endline=15;md5=d16465a9e7dc8f53bfdf997c4bf55540"
+>> +
+>> +PV = "1.0"
+>> +
+>> +BRANCH = "master"
+>> +SRC_URI = "git://github.com/glneo/dma-heap-tests.git;protocol=git;branch=${BRANCH}"
+>> +SRCREV = "bccbfbf24baccefa09439a924f61f04e82b3910a"
+>> +
+>> +DEPENDS = "googletest"
 > 
-> Signed-off-by: Andrew F. Davis <afd@ti.com>
-> ---
->  .../recipes-devtools/dma-heap/dma-heap-tests.bb  | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->  create mode 100644 meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
+> Ah, right, almost missed that gtest got renamed to googletest.
 > 
-> diff --git a/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb b/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
-> new file mode 100644
-> index 00000000..9693fe64
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
-> @@ -0,0 +1,16 @@
-> +SUMMARY = "Test cases for DMA-Heap framework"
-> +HOMEPAGE = "https://github.com/glneo/dma-heap-tests"
-> +LICENSE = "Apache-2.0"
-> +LIC_FILES_CHKSUM = "file://src/heap_test_fixture.cpp;beginline=1;endline=15;md5=d16465a9e7dc8f53bfdf997c4bf55540"
-> +
-> +PV = "1.0"
-> +
-> +BRANCH = "master"
-> +SRC_URI = "git://github.com/glneo/dma-heap-tests.git;protocol=git;branch=${BRANCH}"
-> +SRCREV = "bccbfbf24baccefa09439a924f61f04e82b3910a"
-> +
-> +DEPENDS = "googletest"
-
-Ah, right, almost missed that gtest got renamed to googletest.
-
-Since this is based on ion-tests, do you want to place it in "ion" folder or 
-keep it in its own?
-
-
-> +S = "${WORKDIR}/git"
-> +
-> +inherit cmake pkgconfig
-> -- 
-> 2.17.1
+> Since this is based on ion-tests, do you want to place it in "ion" folder or 
+> keep it in its own?
 > 
+
+
+Based on, but not the same, DMA-Heaps is different than Ion. Ion is on
+the way out, it should probably get removed from the kernel here soon
+when we are sure all of its functionality is matched by DMA-Heaps. After
+that the "ion" naming should get dropped from our vocabulary so as not
+to confuse them anymore. Lets go with separate folders.
+
+Andrew
+
+
+> 
+>> +S = "${WORKDIR}/git"
+>> +
+>> +inherit cmake pkgconfig
+>> -- 
+>> 2.17.1
+>>
 
