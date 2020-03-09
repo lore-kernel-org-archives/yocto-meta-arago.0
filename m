@@ -1,81 +1,41 @@
-Return-Path: <mkelly@xevo.com>
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
-	(mail-bn7nam10on2059.outbound.protection.outlook.com [40.107.92.59])
-	by arago-project.org (Postfix) with ESMTPS id 8DA92529AD
+Return-Path: <yuanzhao@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id A9711529AD
 	for <meta-arago@arago-project.org>;
-	Mon,  9 Mar 2020 18:12:53 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
-	b=kZZcEADxk5B4sHuKght2uL+lMlzBHOj9LyU6VRHfVIIANAkAaPAg0GWn6pYBaqwjIkLb301le1pw5bg3l/yEXxxGIgksjoJ2L2U6Kg4lKYA7IQKtX8QWfdkyLdSvRns/YR8EwmyO9DMMnLUGHaeWzhiuC9q4pQgcWmN4AMa+ifO4Vy/8gLyJw6XJjR5wqzvY4tw7yDWbuRwIpZfXWqO5BCt4womTconoA1n3cPOkoLTC0IFYSH2CyI5Nl7xA+br0MjcQdPxAmdZIFFknmibzBYzfKl/CsWDYca1A76Z76hXMEkY87L1/u26u3X+VXPq5umqJTjvGOpcVZ5enanX3bA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
-	s=arcselector9901;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=CncQ0FBAiLblm9eX/da/1xFAvUX3rPd9omfCoPW4SnI=;
-	b=b575ClLpA8jbcga+l1DP7HmA0yHq72oMtzhryM/K3lfQgDOGafMwsbrCMstufzjHe2DsRUYJbtd9cau8Z+GYzzg23VhQPOcLLfB5lV3ttP/RLaDulEZyqVHf8zb/6JY6yrm7voHg3Mf/BDV1pfMtVaaBbAHnQsxE/8lsPjmlAS+wYmWn+IAwkEGteTUKp6jaoZ6bVtBLtWpeRTlpqhAIXEWPwg/JRkQjIAYCT9RDGiXJqLasxqPCC9jfvi8LBkpvy8wo06Tu21FzgfpgwohSfUzcw+7Ykq8nASxe8GDnXewB0qz6S/YDzMCZp4Ejbudbh3mHNKMW/qc+LkmaR5gXXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
-	smtp.mailfrom=xevo.com; dmarc=pass action=none header.from=xevo.com;
-	dkim=pass header.d=xevo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=uievolution.onmicrosoft.com; s=selector2-uievolution-onmicrosoft-com; 
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=CncQ0FBAiLblm9eX/da/1xFAvUX3rPd9omfCoPW4SnI=;
-	b=TUZTG+kOqxTYjeF8xXBO18V9QrSU7XhBYgnhd+aHDOyY5iYAdQelo9Gcyy27mwMW8wocTLlgY70UIg/dhT5ToSPk01B6SD17cPQxw3IkbfQBLSJ28CDJ/ZqAfELieFXD6UDA10y+ZXQqNaC/N6nICCHLNXHlzFZtvlOYJN5W64U=
-Authentication-Results: spf=none (sender IP is )
-	smtp.mailfrom=mkelly@xevo.com; 
-Received: from MW2PR18MB2236.namprd18.prod.outlook.com (2603:10b6:907:7::14)
-	by MW2PR18MB2170.namprd18.prod.outlook.com (2603:10b6:907:2::16) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2793.17;
-	Mon, 9 Mar 2020 18:10:47 +0000
-Received: from MW2PR18MB2236.namprd18.prod.outlook.com
-	([fe80::492:f89:e20a:12b6]) by MW2PR18MB2236.namprd18.prod.outlook.com
-	([fe80::492:f89:e20a:12b6%6]) with mapi id 15.20.2772.019;
-	Mon, 9 Mar 2020 18:10:47 +0000
-From: Martin Kelly <mkelly@xevo.com>
-To: meta-ti@lists.yoctoproject.org
-References: <efd6a31a-15ab-1f2d-9b74-e08b11662c02@xevo.com>
-Message-ID: <0804812e-3894-8f7b-725e-e101e8ba8b94@xevo.com>
-Date: Mon, 9 Mar 2020 11:10:42 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.5.0
-In-Reply-To: <efd6a31a-15ab-1f2d-9b74-e08b11662c02@xevo.com>
-X-ClientProxiedBy: BYAPR11CA0059.namprd11.prod.outlook.com
-	(2603:10b6:a03:80::36) To MW2PR18MB2236.namprd18.prod.outlook.com
-	(2603:10b6:907:7::14)
+	Mon,  9 Mar 2020 19:10:26 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 029J8LU0054545
+	for <meta-arago@arago-project.org>; Mon, 9 Mar 2020 14:08:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1583780901;
+	bh=ZERuPr58NDfBusCUVGNEy3FTdBajlgDFHiE8kqqkG18=;
+	h=From:To:CC:Subject:Date;
+	b=TMus+09duzZPEBFnF+5bLl5hRcs6SuzYYJtY9GhXE5vy7eM8UBE6YC3boWPp5/Bzl
+	stLGZx1UiKo+wI5Cu2gRSvQihaW0awpZbZ/AzPLF5pz95Y4TbS49OE/ILyyHzs8uls
+	lXX/QI8tgLZY03mjT2UNBLbQPEXMuq2nSlD5H0vE=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 029J8L2J083750
+	for <meta-arago@arago-project.org>; Mon, 9 Mar 2020 14:08:21 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Mon, 9 Mar 2020 14:08:21 -0500
+Received: from localhost.localdomain (10.64.41.19) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Mon, 9 Mar 2020 14:08:21 -0500
+Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 029J8L4m002631; 
+	Mon, 9 Mar 2020 14:08:21 -0500
+From: Yuan Zhao <yuanzhao@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 9 Mar 2020 14:08:16 -0500
+Message-ID: <20200309190816.136602-1-yuanzhao@ti.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.254.27] (50.35.85.47) by
-	BYAPR11CA0059.namprd11.prod.outlook.com (2603:10b6:a03:80::36)
-	with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2793.16
-	via Frontend Transport; Mon, 9 Mar 2020 18:10:46 +0000
-X-Originating-IP: [50.35.85.47]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0588c4b0-906b-4efc-c6ab-08d7c455314d
-X-MS-TrafficTypeDiagnostic: MW2PR18MB2170:
-X-Microsoft-Antispam-PRVS: <MW2PR18MB2170C72C05865CCB5291BF57ABFE0@MW2PR18MB2170.namprd18.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-Forefront-PRVS: 0337AFFE9A
-X-Forefront-Antispam-Report: SFV:NSPM;
-	SFS:(10009020)(396003)(136003)(39830400003)(366004)(346002)(376002)(199004)(189003)(16526019)(186003)(26005)(956004)(2616005)(2906002)(16576012)(316002)(66556008)(66476007)(5660300002)(53546011)(478600001)(31686004)(52116002)(6916009)(31696002)(36756003)(4326008)(6486002)(81166006)(8676002)(66946007)(81156014)(8936002)(6666004)(86362001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:MW2PR18MB2170;
-	H:MW2PR18MB2236.namprd18.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-Received-SPF: None (protection.outlook.com: xevo.com does not designate
-	permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JX4JII8vJ9kfPUf6tfgZI26EcrujEfz90AxethRd1FhRF+pIox+T7ZF87/SthWuX4jvWFkl2AenR40n2k/x70MoRN2bTPYVSxffnLiP/GV9FTn6RexkGFJQzSJ71LJUONQBEyyneh0M0gfpBxa0EIT2chIinFXSzjCarMB5IvqG7uVbCq3iw+VU75jStk76U02JuUBH31koKQOjZAxeCKlXRCzIU53qOmqh40ziMIlN6dDSckgkD54fHa7DbvzgPqljaPPDgbjH6+U0G6QzDXfBhZc2+x2xMid8Cq/SjnfH7I8Y1/DKppmwOpYuABgOEqQW/Krm1G+V7h94yAAZ88wY/vr+WXNaN2scmrZESrwTykbgPIpqEwmr/l+xFa7eZbw9Xr2xNz9koGMNfpl2E1mMkWguT9hmumQrHoKUPtrgeWOcOySmWTVkRgQhpljE9
-X-MS-Exchange-AntiSpam-MessageData: OD1D6wa8pjCGbtOOb9A/Gh7LHLkpMhJtCqjfk6expme/zLRPECFoxW0fVHMawlfJ9dT767bU7kVvlgH8Rqap5VYQECxUPpmDNWqvckU7C+WS+U5hTCGyGcdzWng4fDFn7UwpUFH/RPlLqeMcSczfjw==
-X-OriginatorOrg: xevo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0588c4b0-906b-4efc-c6ab-08d7c455314d
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2020 18:10:47.6618 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e0a7ca1f-2458-4cd6-a7c7-d733c07495ab
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YojL2fsGsm1VJJGJ48eaqC5KQyzvPKz5rkaEOZKzPE9MSw1LXphs2qIuhIXhNwDU
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2PR18MB2170
-Cc: meta-arago@arago-project.org
-Subject: Re: Booting a J7 EVM without meta-arago
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH] tidl-api: update to version 1.5.1
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -88,39 +48,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Mar 2020 18:12:54 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 09 Mar 2020 19:10:27 -0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 3/6/20 11:16 AM, Martin Kelly wrote:
-> Hi,
-> 
-> I'm trying to get a basic image running on the J7 EVM using only meta-ti 
-> without meta-arago, as I want to use this board but don't need most of 
-> the TI SDK support.
-> 
-> I'm using the j7-evm MACHINE type, and I get a successful build but no 
-> u-boot output. In contrast, I get fine output with an SDK built with 
-> meta-arago. If I copy the boot partition from the SDK, I can get u-boot 
-> output.
-> 
-> I then noticed the following comment in k3.inc:
-> 
-> # Please note that booting K3 platform also requires
-> # tiboot3.bin and sysfw.itb, which are provided by meta-arago
-> # u-boot-k3-r5 and ti-sci-fw recipes
-> IMAGE_BOOT_FILES ?= "${SPL_BINARY} u-boot.${UBOOT_SUFFIX}"
-> WKS_FILE ?= "sdimage-bootpart.wks"
-> do_image_wic[depends] += "u-boot:do_deploy"
-> 
-> Does this mean it's not actually possible to successfully boot a system 
-> without pulling in meta-arago and all its many dependencies? Is there a 
-> chance we could port these recipes into meta-ti, or will I always have 
-> to use meta-arago?
-> 
-> Thanks,
-> Martin
+- Allow specifying NUM_EVEs used in subgraph runtime
 
-Adding meta-arago to the CC list.
+Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+---
+ meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
+index c45b33fb..c81a97fa 100644
+--- a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
++++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
+@@ -1,4 +1,4 @@
+-PV = "1.5.0"
++PV = "1.5.1"
+ INC_PR = "r0"
+ 
+ LIC_FILES_CHKSUM = "file://license.txt;md5=e3daeabffb9fc131a73f16d16cbdb118"
+@@ -8,7 +8,7 @@ GIT_PROTOCOL = "git"
+ BRANCH = "master"
+ 
+ SRC_URI = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
+-SRCREV = "eeb4c457c8881a81fbf59a60b2ee070d2450a935"
++SRCREV = "4b801ad96b50f53e977b96d8b227ba4bcb26e011"
+ 
+ # default patchdir is ${S}
+ S = "${WORKDIR}/git"
+-- 
+2.24.1
+
 
