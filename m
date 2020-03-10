@@ -1,41 +1,30 @@
-Return-Path: <yuanzhao@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id A9711529AD
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 45D41529AD
 	for <meta-arago@arago-project.org>;
-	Mon,  9 Mar 2020 19:10:26 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 029J8LU0054545
-	for <meta-arago@arago-project.org>; Mon, 9 Mar 2020 14:08:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1583780901;
-	bh=ZERuPr58NDfBusCUVGNEy3FTdBajlgDFHiE8kqqkG18=;
-	h=From:To:CC:Subject:Date;
-	b=TMus+09duzZPEBFnF+5bLl5hRcs6SuzYYJtY9GhXE5vy7eM8UBE6YC3boWPp5/Bzl
-	stLGZx1UiKo+wI5Cu2gRSvQihaW0awpZbZ/AzPLF5pz95Y4TbS49OE/ILyyHzs8uls
-	lXX/QI8tgLZY03mjT2UNBLbQPEXMuq2nSlD5H0vE=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 029J8L2J083750
-	for <meta-arago@arago-project.org>; Mon, 9 Mar 2020 14:08:21 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Mon, 9 Mar 2020 14:08:21 -0500
-Received: from localhost.localdomain (10.64.41.19) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Mon, 9 Mar 2020 14:08:21 -0500
-Received: from sdomc-build0.hou.asp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 029J8L4m002631; 
-	Mon, 9 Mar 2020 14:08:21 -0500
-From: Yuan Zhao <yuanzhao@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 9 Mar 2020 14:08:16 -0500
-Message-ID: <20200309190816.136602-1-yuanzhao@ti.com>
-X-Mailer: git-send-email 2.24.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] tidl-api: update to version 1.5.1
+	Tue, 10 Mar 2020 15:23:44 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 38A4C40BA3;
+	Tue, 10 Mar 2020 15:21:39 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id HpMuV7ZTHj9Y; Tue, 10 Mar 2020 15:21:39 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1B204400E8;
+	Tue, 10 Mar 2020 15:21:38 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 6887E16C451;
+	Tue, 10 Mar 2020 11:21:37 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue, 10 Mar 2020 11:21:34 -0400
+Message-Id: <1583853694-19964-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [zeus/master][PATCH] pcitest: update to 5.4
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,37 +37,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Mar 2020 19:10:27 -0000
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-List-Received-Date: Tue, 10 Mar 2020 15:23:44 -0000
 
-- Allow specifying NUM_EVEs used in subgraph runtime
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Yuan Zhao <yuanzhao@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc | 4 ++--
+ .../recipes-kernel/pcitest/{pcitest_4.19.bb => pcitest_5.4.bb}        | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
+ rename meta-arago-extras/recipes-kernel/pcitest/{pcitest_4.19.bb => pcitest_5.4.bb} (86%)
 
-diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-index c45b33fb..c81a97fa 100644
---- a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-+++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-@@ -1,4 +1,4 @@
--PV = "1.5.0"
-+PV = "1.5.1"
- INC_PR = "r0"
+diff --git a/meta-arago-extras/recipes-kernel/pcitest/pcitest_4.19.bb b/meta-arago-extras/recipes-kernel/pcitest/pcitest_5.4.bb
+similarity index 86%
+rename from meta-arago-extras/recipes-kernel/pcitest/pcitest_4.19.bb
+rename to meta-arago-extras/recipes-kernel/pcitest/pcitest_5.4.bb
+index 6c7aec3..8edbd93 100644
+--- a/meta-arago-extras/recipes-kernel/pcitest/pcitest_4.19.bb
++++ b/meta-arago-extras/recipes-kernel/pcitest/pcitest_5.4.bb
+@@ -2,8 +2,8 @@ SUMMARY = "Linux Kernel PCI test"
+ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
  
- LIC_FILES_CHKSUM = "file://license.txt;md5=e3daeabffb9fc131a73f16d16cbdb118"
-@@ -8,7 +8,7 @@ GIT_PROTOCOL = "git"
- BRANCH = "master"
+-BRANCH = "ti-linux-4.19.y"
+-SRCREV = "50ceb3c6e7f2d5f54d66d4999e79d3c4e09796df"
++BRANCH = "ti-linux-5.4.y"
++SRCREV = "738552d0b0292e148b35d60ec47ca3c8dd6007b4"
+ SRC_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git;protocol=git;branch=${BRANCH}"
  
- SRC_URI = "${GIT_URI};protocol=${GIT_PROTOCOL};branch=${BRANCH}"
--SRCREV = "eeb4c457c8881a81fbf59a60b2ee070d2450a935"
-+SRCREV = "4b801ad96b50f53e977b96d8b227ba4bcb26e011"
- 
- # default patchdir is ${S}
  S = "${WORKDIR}/git"
 -- 
-2.24.1
+2.7.4
 
 
