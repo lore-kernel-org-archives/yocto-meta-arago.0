@@ -1,41 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id F0FBE52995
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 9351E529A5
 	for <meta-arago@arago-project.org>;
-	Wed, 11 Mar 2020 23:19:53 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02BNHmfN024350
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2020 18:17:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1583968668;
-	bh=yR8lpspgDW+4OS3Vwfq47En3j6ah6aT7b+5IpHtCvvs=;
-	h=From:To:CC:Subject:Date;
-	b=QjNPjM2BsT/jpQ1v3kKkgaonCeeD/LMESwQW/m+yVo+iMd1SPdQf+VHNNpMjdBxN1
-	HomIRgdbfayuAmVWoe3fcrru45ikGofiN2mMO1Q5kAxgi6HLmkM2xxfSunYGAMiRER
-	zT+hjXHId26Cyilqpg49WggZ6rMoM7ECOYiQECR0=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02BNHmRR031520
-	for <meta-arago@arago-project.org>; Wed, 11 Mar 2020 18:17:48 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Wed, 11 Mar 2020 18:17:48 -0500
-Received: from localhost.localdomain (10.64.41.19) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Wed, 11 Mar 2020 18:17:48 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by localhost.localdomain (8.15.2/8.15.2) with ESMTP id 02BNHlWc077375; 
-	Wed, 11 Mar 2020 18:17:47 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 11 Mar 2020 22:55:55 +0000
-Message-ID: <20200311225555.29941-1-denys@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [zeus/master][PATCH] ti-test: add git package
+	Fri, 13 Mar 2020 18:55:56 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 8D89440C2B;
+	Fri, 13 Mar 2020 18:53:50 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id N4B7SGzS5XMf; Fri, 13 Mar 2020 18:53:50 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 74397409E7;
+	Fri, 13 Mar 2020 18:53:49 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id D1FFB174446;
+	Fri, 13 Mar 2020 14:53:48 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri, 13 Mar 2020 14:53:48 -0400
+Message-Id: <1584125628-57210-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [zeus/master][PATCH] matrix-lighttpd-config: correct installation of config file
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,27 +37,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Mar 2020 23:19:54 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 13 Mar 2020 18:55:56 -0000
+
+From: Denys Dmytriyenko <denys@ti.com>
+
+1. lighttpd moved its config from /etc to /etc/lighttpd
+2. pkg_postinst_ontarget should not use $D
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-core/packagegroups/ti-test.bb | 1 +
- 1 file changed, 1 insertion(+)
+ .../recipes-core/matrix/matrix-lighttpd-config.bb              | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-index 500d3a97..60db7de5 100644
---- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-@@ -32,6 +32,7 @@ ARAGO_TEST = "\
-     pcitest \
-     mstpd \
-     fio \
-+    git \
- "
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
+index 096b5ad..8a89aa3 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-lighttpd-config.bb
+@@ -15,16 +15,16 @@ SRC_URI += "file://COPYING"
+ S = "${WORKDIR}"
  
- ARAGO_TEST_append_armv7a = " \
+ do_install() {
+-	install -d ${D}${sysconfdir}
+-	install -m 0644 ${WORKDIR}/lighttpd.conf.matrix ${D}${sysconfdir}/lighttpd.conf.matrix
++	install -d ${D}${sysconfdir}/lighttpd
++	install -m 0644 ${WORKDIR}/lighttpd.conf.matrix ${D}${sysconfdir}/lighttpd/lighttpd.conf.matrix
+ }
+ 
+-FILES_${PN} = "${sysconfdir}/lighttpd.conf.matrix"
++FILES_${PN} = "${sysconfdir}/lighttpd/lighttpd.conf.matrix"
+ RDEPENDS_${PN} = "lighttpd lighttpd-module-setenv"
+ 
+ pkg_postinst_ontarget_${PN} () {
+-if [ -f $D${sysconfdir}/lighttpd.conf ] ; then
+-	cp $D${sysconfdir}/lighttpd.conf.matrix $D${sysconfdir}/lighttpd.conf
++if [ -f ${sysconfdir}/lighttpd/lighttpd.conf ] ; then
++	cp ${sysconfdir}/lighttpd/lighttpd.conf.matrix ${sysconfdir}/lighttpd/lighttpd.conf
+ else
+ 	echo "No lighttpd.conf found, aborting"
+ 	exit 1
 -- 
-2.17.1
+2.7.4
 
 
