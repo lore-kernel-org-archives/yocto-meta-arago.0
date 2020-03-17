@@ -1,42 +1,30 @@
-Return-Path: <yan-liu@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 544F952995
+Return-Path: <denys@ti.com>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 7284152995
 	for <meta-arago@arago-project.org>;
-	Tue, 17 Mar 2020 15:05:36 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02HF3S4Q047679
-	for <meta-arago@arago-project.org>; Tue, 17 Mar 2020 10:03:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1584457408;
-	bh=eM5PZWG4kd1YpuNhy7nsbpeOvNdoaBX8Hxi8Isr4U44=;
-	h=From:To:CC:Subject:Date;
-	b=ayvt2F8hasK4mLnJQC6ZPv6j2qgp+0QWjora7tdeq9iS3/Q0HvAdk4gmglgxzWWOB
-	H1R6vLtlA1IgPW0QhDbg79V1JJeZHnqS5ruFsmYtsc0AyNNQ9PHMzd68pqBKghYO/0
-	TircCDEDX33ED7ZF3My1SJf+/Rm/ik7G0qxy/leE=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02HF3Skq090582
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 17 Mar 2020 10:03:28 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Tue, 17 Mar 2020 10:03:28 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Tue, 17 Mar 2020 10:03:28 -0500
-Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02HF3S7X084082;
-	Tue, 17 Mar 2020 10:03:28 -0500
-From: <yan-liu@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 17 Mar 2020 11:01:52 -0400
-Message-ID: <1584457312-21599-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+	Tue, 17 Mar 2020 20:13:54 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id CF43440C2D;
+	Tue, 17 Mar 2020 20:11:46 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 9X-1A6O0H4VQ; Tue, 17 Mar 2020 20:11:46 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B548540A41;
+	Tue, 17 Mar 2020 20:11:45 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id CA8341711B6;
+	Tue, 17 Mar 2020 16:11:44 -0400 (EDT)
+From: Denys Dmytriyenko <denys@ti.com>
+To: meta-arago@arago-project.org
+Date: Tue, 17 Mar 2020 16:11:36 -0400
+Message-Id: <1584475904-3730-1-git-send-email-denys@ti.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH 1/9] cpuset: drop Python2 code
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,39 +37,52 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Mar 2020 15:05:36 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 17 Mar 2020 20:13:55 -0000
 
-From: Yan Liu <yan-liu@ti.com>
+Python2 has been deprecated. If functionality is needed, python-cpuset package
+can be used for a while from meta-python2 layer.
 
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20200217.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-distro/recipes-core/packagegroups/ti-test.bb  |  1 -
+ meta-arago-extras/recipes-support/cpuset/cpuset_1.5.7.bb | 15 ---------------
+ 2 files changed, 16 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-support/cpuset/cpuset_1.5.7.bb
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200217.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200217.bb
-index 539213a..bfa7136 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200217.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200217.bb
-@@ -4,7 +4,7 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
- 
--PR = "r2"
-+PR = "r3"
- PV_append = "+git${SRCPV}"
- 
- PROVIDES += "ltp"
-@@ -39,7 +39,7 @@ RDEPENDS_${PN} = "\
- 
- inherit autotools-brokensep
- 
--SRCREV = "bd16a9e6a9a7f273d400b543713a0d7b2fdaae63"
-+SRCREV = "eac44ee24fd0827fb550a8afafe01f0ea3b4b039"
- BRANCH ?= "master"
- 
- SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+index 60db7de..7dc1fe4 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+@@ -26,7 +26,6 @@ ARAGO_TEST = "\
+     rwmem \
+     pulseaudio-misc \
+     kselftests \
+-    cpuset \
+     procps \
+     mtd-utils-ubifs-tests \
+     pcitest \
+diff --git a/meta-arago-extras/recipes-support/cpuset/cpuset_1.5.7.bb b/meta-arago-extras/recipes-support/cpuset/cpuset_1.5.7.bb
+deleted file mode 100644
+index c3690f0..0000000
+--- a/meta-arago-extras/recipes-support/cpuset/cpuset_1.5.7.bb
++++ /dev/null
+@@ -1,15 +0,0 @@
+-SUMMARY = "Cpuset is a Python application to make using the cpusets facilities in the Linux kernel easier"
+-SECTION = "console/utils"
+-LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
+-
+-SRC_URI = "https://github.com/lpechacek/cpuset/archive/v${PV}.tar.gz"
+-
+-SRC_URI[md5sum] = "6ad79b26ba03f559604d74513cc34392"
+-SRC_URI[sha256sum] = "32334e164415ed5aec83c5ffc3dc01c418406eb02d96d881fdfd495587ff0c01"
+-
+-S = "${WORKDIR}/${P}"
+-
+-CLEANBROKEN = "1"
+-
+-inherit distutils
 -- 
-1.7.9.5
+2.7.4
 
 
