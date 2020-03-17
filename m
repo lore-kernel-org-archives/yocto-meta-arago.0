@@ -1,32 +1,32 @@
 Return-Path: <denys@ti.com>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 13F4F52A10
+	by arago-project.org (Postfix) with ESMTPS id 363E852A29
 	for <meta-arago@arago-project.org>;
 	Tue, 17 Mar 2020 20:13:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A3E0940C0A;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id AE6BD40C1E;
 	Tue, 17 Mar 2020 20:11:47 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id jaMrDO60gE0n; Tue, 17 Mar 2020 20:11:47 +0000 (UTC)
+	with ESMTP id Juvwa5dC4G_l; Tue, 17 Mar 2020 20:11:47 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9158040C1E;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9012540C0E;
 	Tue, 17 Mar 2020 20:11:46 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id E5039171265;
+	by mail.denix.org (Postfix) with ESMTP id F097F171266;
 	Tue, 17 Mar 2020 16:11:44 -0400 (EDT)
 From: Denys Dmytriyenko <denys@ti.com>
 To: meta-arago@arago-project.org
-Date: Tue, 17 Mar 2020 16:11:38 -0400
-Message-Id: <1584475904-3730-3-git-send-email-denys@ti.com>
+Date: Tue, 17 Mar 2020 16:11:39 -0400
+Message-Id: <1584475904-3730-4-git-send-email-denys@ti.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1584475904-3730-1-git-send-email-denys@ti.com>
 References: <1584475904-3730-1-git-send-email-denys@ti.com>
-Subject: [master][PATCH 3/9] openfst: only inherit pythonnative for python PACKAGECONFIG
+Subject: [master][PATCH 4/9] llvm: inherit python3native
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,31 +43,22 @@ X-List-Received-Date: Tue, 17 Mar 2020 20:13:56 -0000
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-support/openfst/openfst_1.6.2.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-extras/recipes-core/llvm/llvm.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-support/openfst/openfst_1.6.2.bb b/meta-arago-extras/recipes-support/openfst/openfst_1.6.2.bb
-index 2f693d2..b2a1f66 100644
---- a/meta-arago-extras/recipes-support/openfst/openfst_1.6.2.bb
-+++ b/meta-arago-extras/recipes-support/openfst/openfst_1.6.2.bb
-@@ -2,7 +2,7 @@ SUMMARY = "OpenFst: library for operating on finite-state transducers"
- DESCRIPTION = "OpenFst: a library for constructing, combining, optimizing, and searching weighted finite-state transducers (FSTs)"
- LICENSE = "Apache-2.0"
- HOMEPAGE = "http://www.openfst.org/twiki/bin/view/FST/WebHome"
--PR ="r0"
-+PR = "r0"
+diff --git a/meta-arago-extras/recipes-core/llvm/llvm.inc b/meta-arago-extras/recipes-core/llvm/llvm.inc
+index f27261f..b1a48f6 100644
+--- a/meta-arago-extras/recipes-core/llvm/llvm.inc
++++ b/meta-arago-extras/recipes-core/llvm/llvm.inc
+@@ -27,7 +27,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=d0a3ef0d3e0e8f5cf59e5ffc273ab1f8"
  
- LIC_FILES_CHKSUM = "file://COPYING;md5=17bdccf7f927b4b2aeac950537db3369"
- SRC_URI = "http://openslr.org/resources/2/openfst-${PV}.tar.gz"
-@@ -12,7 +12,7 @@ S = "${WORKDIR}/openfst-${PV}"
- SRC_URI[md5sum] = "e5b2b8c41a8320a03f3a8bbea63bb0ca"
- SRC_URI[sha256sum] = "3f72e35097fdf1c1c41e15165c16696c223295b40b7b145b5466306db7972578"
+ DEPENDS = "libffi libxml2-native llvm-common"
  
--inherit autotools pythonnative
-+inherit autotools ${@bb.utils.contains("PACKAGECONFIG", "python", "pythonnative", "", d)}
+-inherit perlnative pythonnative autotools
++inherit perlnative python3native autotools
  
- # From the OpenFST documentation:
- #
+ LLVM_RELEASE = "${PV}"
+ LLVM_DIR = "llvm${LLVM_RELEASE}"
 -- 
 2.7.4
 
