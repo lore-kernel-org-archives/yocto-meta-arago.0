@@ -1,44 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 4DC4A52A10
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 34518529EE
 	for <meta-arago@arago-project.org>;
-	Thu, 19 Mar 2020 22:30:25 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02JMSHBH111763
-	for <meta-arago@arago-project.org>; Thu, 19 Mar 2020 17:28:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1584656897;
-	bh=/uThE42mknwwQWLy1Q+nykjn3KMqfB7fhFUtCJc5WH4=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=tlJR12lL/ZhfMIpvYx/vFl4ck5+mfdOtUIdTXuxAfEiJ+7oC0ixct5kydEf+X6PDV
-	mCEfcxCDaMrBvDsraiD/b7W/1CfAAlRoxtMh8sITaEX9UHD7KD4XirDmz47urPd1RE
-	hAuCQqGNZsyIqkZctIX/5WyKY3XGmj0V5Rvq8LyA=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02JMSHK3007331
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 19 Mar 2020 17:28:17 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Thu, 19 Mar 2020 17:28:16 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Thu, 19 Mar 2020 17:28:16 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02JMSGVU026272;
-	Thu, 19 Mar 2020 17:28:16 -0500
-Date: Thu, 19 Mar 2020 18:28:16 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Gowtham Tammana <g-tammana@ti.com>
-Message-ID: <20200319222816.GP17003@beryl>
-References: <20200319222410.7856-1-g-tammana@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <20200319222410.7856-1-g-tammana@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [zeus/master][PATCH v2] wayland-ivi-extension: Update to 2.2.0 version
+	Mon, 23 Mar 2020 19:36:04 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id E627840C4E;
+	Mon, 23 Mar 2020 19:33:54 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id JGQD6O-ZmULp; Mon, 23 Mar 2020 19:33:54 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 49F0D40C48;
+	Mon, 23 Mar 2020 19:33:51 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id E1BE616D8D2;
+	Mon, 23 Mar 2020 15:33:50 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 23 Mar 2020 15:33:50 -0400
+Message-Id: <1584992030-8173-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [oe-layersetup][PATCH] configs: enable overriding meta-browser compatibility with zeus
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,161 +37,98 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Mar 2020 22:30:26 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 23 Mar 2020 19:36:04 -0000
 
-On Thu, Mar 19, 2020 at 05:24:10PM -0500, Gowtham Tammana wrote:
-> Update wayland-ivi-extension to 2.2.0 version.
-> 
-> The version 2.2.0 supports only upto weston-6.0, picking up few patches
-> that enable support for weston-7.0.
-> 
-> Upstream-Status: Submitted
-> [https://github.com/GENIVI/wayland-ivi-extension/pull/110]
+From: Denys Dmytriyenko <denys@ti.com>
 
-Thanks, but wrong place - see my original email for exact placement.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ configs/arago-master-config.txt                |  4 ++--
+ configs/arago-zeus-config.txt                  |  4 ++--
+ configs/arago-zeus-next-config.txt             |  4 ++--
+ sample-files/bblayers-zeus-browser.conf.sample | 12 ++++++++++++
+ 4 files changed, 18 insertions(+), 6 deletions(-)
+ create mode 100644 sample-files/bblayers-zeus-browser.conf.sample
 
+diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.txt
+index c0c1d0c..8aed789 100644
+--- a/configs/arago-master-config.txt
++++ b/configs/arago-master-config.txt
+@@ -3,7 +3,7 @@
+ 
+ bitbake,git://git.openembedded.org/bitbake,master,HEAD
+ meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
+ meta-selinux,git://git.yoctoproject.org/meta-selinux,master,HEAD,layers=
+ meta-virtualization,git://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
+@@ -11,5 +11,5 @@ meta-openembedded,git://git.openembedded.org/meta-openembedded,master,HEAD,layer
+ meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,master,HEAD,layers=meta-linaro-toolchain:meta-optee
+ oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELAYERCONF=./sample-files/bblayers-zeus-browser.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/arago-zeus-config.txt b/configs/arago-zeus-config.txt
+index 8f6e2ec..d33b277 100644
+--- a/configs/arago-zeus-config.txt
++++ b/configs/arago-zeus-config.txt
+@@ -3,7 +3,7 @@
+ 
+ bitbake,git://git.openembedded.org/bitbake,1.44,HEAD
+ meta-arago,git://arago-project.org/git/meta-arago.git,zeus,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,zeus,HEAD,layers=
+ meta-selinux,git://git.yoctoproject.org/meta-selinux,zeus,HEAD,layers=
+ meta-virtualization,git://git.yoctoproject.org/meta-virtualization,zeus,HEAD,layers=
+@@ -11,5 +11,5 @@ meta-openembedded,git://git.openembedded.org/meta-openembedded,zeus,HEAD,layers=
+ meta-ti,git://git.yoctoproject.org/meta-ti,zeus,HEAD,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,zeus,HEAD,layers=meta-linaro-toolchain:meta-optee
+ oe-core,git://git.openembedded.org/openembedded-core,zeus,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELAYERCONF=./sample-files/bblayers-zeus-browser.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/arago-zeus-next-config.txt b/configs/arago-zeus-next-config.txt
+index 8797f13..5377781 100644
+--- a/configs/arago-zeus-next-config.txt
++++ b/configs/arago-zeus-next-config.txt
+@@ -3,7 +3,7 @@
+ 
+ bitbake,git://git.openembedded.org/bitbake,1.44,HEAD
+ meta-arago,git://arago-project.org/git/meta-arago.git,zeus-next,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
++meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,zeus,HEAD,layers=
+ meta-selinux,git://git.yoctoproject.org/meta-selinux,zeus,HEAD,layers=
+ meta-virtualization,git://git.yoctoproject.org/meta-virtualization,zeus,HEAD,layers=
+@@ -11,5 +11,5 @@ meta-openembedded,git://git.openembedded.org/meta-openembedded,zeus,HEAD,layers=
+ meta-ti,git://git.yoctoproject.org/meta-ti,zeus-next,HEAD,layers=
+ meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,zeus,HEAD,layers=meta-linaro-toolchain:meta-optee
+ oe-core,git://git.openembedded.org/openembedded-core,zeus,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELAYERCONF=./sample-files/bblayers-zeus-browser.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/sample-files/bblayers-zeus-browser.conf.sample b/sample-files/bblayers-zeus-browser.conf.sample
+new file mode 100644
+index 0000000..bb83fac
+--- /dev/null
++++ b/sample-files/bblayers-zeus-browser.conf.sample
+@@ -0,0 +1,12 @@
++# This template file was created by taking the oe-core/meta/conf/bblayers.conf
++# file and removing the BBLAYERS section at the end.
++
++# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
++# changes incompatibly
++LCONF_VERSION = "6"
++
++BBPATH = "${TOPDIR}"
++BBFILES ?= ""
++
++OVERRIDES = "forcevariable"
++LAYERSERIES_COMPAT_browser-layer_forcevariable = "zeus"
+-- 
+2.7.4
 
-> Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
-> ---
->  ...-input-controller-update-to-weston-7.patch | 25 +++++++++++++++++
->  ...i-id-agent-update-to-weston-7-header.patch | 27 +++++++++++++++++++
->  ...te-dependencies-to-build-on-weston-7.patch | 25 +++++++++++++++++
->  ....1.0.bb => wayland-ivi-extension_2.2.0.bb} |  8 +++---
->  4 files changed, 82 insertions(+), 3 deletions(-)
->  create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/01-ivi-input-controller-update-to-weston-7.patch
->  create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/02-ivi-id-agent-update-to-weston-7-header.patch
->  create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch
->  rename meta-arago-distro/recipes-graphics/wayland/{wayland-ivi-extension_2.1.0.bb => wayland-ivi-extension_2.2.0.bb} (77%)
-> 
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/01-ivi-input-controller-update-to-weston-7.patch b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/01-ivi-input-controller-update-to-weston-7.patch
-> new file mode 100644
-> index 00000000..bcf94fd4
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/01-ivi-input-controller-update-to-weston-7.patch
-> @@ -0,0 +1,25 @@
-> +From efdd2a85519d4990596194af5bf50636d2610f09 Mon Sep 17 00:00:00 2001
-> +From: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
-> +Date: Mon, 6 Jan 2020 06:41:57 -0500
-> +Subject: [PATCH] ivi-input-controller: update to weston 7 header files
-> +
-> +update the header file path.
-> +
-> +Signed-off-by: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
-> +---
-> + .../ivi-input-controller/src/ivi-input-controller.c             | 2 +-
-> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> +
-> +diff --git a/ivi-input-modules/ivi-input-controller/src/ivi-input-controller.c b/ivi-input-modules/ivi-input-controller/src/ivi-input-controller.c
-> +index a0bfc48..257a1dc 100644
-> +--- a/ivi-input-modules/ivi-input-controller/src/ivi-input-controller.c
-> ++++ b/ivi-input-modules/ivi-input-controller/src/ivi-input-controller.c
-> +@@ -31,7 +31,7 @@
-> + #include <fcntl.h>
-> + #include <unistd.h>
-> + 
-> +-#include "plugin-registry.h"
-> ++#include <libweston/plugin-registry.h>
-> + #include "ilm_types.h"
-> + 
-> + #include "ivi-input-server-protocol.h"
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/02-ivi-id-agent-update-to-weston-7-header.patch b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/02-ivi-id-agent-update-to-weston-7-header.patch
-> new file mode 100644
-> index 00000000..43a3c74a
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/02-ivi-id-agent-update-to-weston-7-header.patch
-> @@ -0,0 +1,27 @@
-> +From 5abb2b497e0153210d41ec3685dc0152587625fa Mon Sep 17 00:00:00 2001
-> +From: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
-> +Date: Mon, 6 Jan 2020 06:45:11 -0500
-> +Subject: [PATCH] ivi-id-agent: update to weston 7 header files
-> +
-> +update the header file path.
-> +
-> +Signed-off-by: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
-> +---
-> + ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c | 4 ++--
-> + 1 file changed, 2 insertions(+), 2 deletions(-)
-> +
-> +diff --git a/ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c b/ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c
-> +index 8f0c199..b80e2a4 100644
-> +--- a/ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c
-> ++++ b/ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c
-> +@@ -26,8 +26,8 @@
-> + #include <limits.h>
-> + 
-> + #include <weston.h>
-> +-#include <libweston-6/libweston-desktop.h>
-> +-#include "config-parser.h"
-> ++#include <libweston-desktop/libweston-desktop.h>
-> ++#include <libweston/config-parser.h>
-> + #include <weston/ivi-layout-export.h>
-> + 
-> + #ifndef INVALID_ID
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch
-> new file mode 100644
-> index 00000000..06d41d22
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch
-> @@ -0,0 +1,25 @@
-> +From b99082adfaf250b15f03345cdf1b433fb1575581 Mon Sep 17 00:00:00 2001
-> +From: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
-> +Date: Mon, 6 Jan 2020 06:45:54 -0500
-> +Subject: [PATCH] ivi-id-agent: update dependencies to build on weston 7
-> +
-> +upgrade libweston-desktop version.
-> +
-> +Signed-off-by: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
-> +---
-> + ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt | 2 +-
-> + 1 file changed, 1 insertion(+), 1 deletion(-)
-> +
-> +diff --git a/ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt b/ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt
-> +index 3e604a5..ff47808 100644
-> +--- a/ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt
-> ++++ b/ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt
-> +@@ -25,7 +25,7 @@ find_package(PkgConfig REQUIRED)
-> + pkg_check_modules(WAYLAND_SERVER wayland-server REQUIRED)
-> + pkg_check_modules(WESTON weston>=6.0.0 REQUIRED)
-> + pkg_check_modules(PIXMAN pixman-1 REQUIRED)
-> +-pkg_check_modules(LIBWESTON_DESKTOP libweston-desktop-6 REQUIRED)
-> ++pkg_check_modules(LIBWESTON_DESKTOP libweston-desktop-7 REQUIRED)
-> + 
-> + find_package(Threads REQUIRED)
-> + 
-> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
-> similarity index 77%
-> rename from meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
-> rename to meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
-> index 7d9faee4..0b20b91b 100644
-> --- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
-> +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
-> @@ -5,10 +5,12 @@ BUGTRACKER = "http://bugs.genivi.org/enter_bug.cgi?product=Wayland%20IVI%20Exten
->  LICENSE = "Apache-2.0"
->  LIC_FILES_CHKSUM = "file://LICENSE;md5=1f1a56bb2dadf5f2be8eb342acf4ed79"
->  
-> -SRCREV = "d2c2e262f3bdc9db33b3014293fcdbcfdc90ab27"
-> +SRCREV = "e9c2fe4c5034a06b159cfd45dbd485755cbaf4c8"
->  
->  SRC_URI = "git://github.com/GENIVI/${BPN}.git;protocol=http \
-> -           file://force-type-conversion.patch \
-> +           file://01-ivi-input-controller-update-to-weston-7.patch \
-> +           file://02-ivi-id-agent-update-to-weston-7-header.patch \
-> +           file://03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch \
->      "
->  
->  S = "${WORKDIR}/git"
-> @@ -25,7 +27,7 @@ FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
->  
->  EXTRA_OECMAKE += "-DLIB_SUFFIX=${@d.getVar('baselib').replace('lib', '')}"
->  
-> -PR = "r1"
-> +PR = "r0"
->  
->  # Need these temporarily to prevent a non-fatal do_package_qa issue
->  INSANE_SKIP_${PN} += "dev-deps"
-> -- 
-> 2.17.1
-> 
 
