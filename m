@@ -1,32 +1,45 @@
 Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id BA58052A54
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 89C8A52988
 	for <meta-arago@arago-project.org>;
-	Wed, 25 Mar 2020 06:05:27 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id C9B9640A35;
-	Wed, 25 Mar 2020 06:03:17 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id EbSBhDv23vy7; Wed, 25 Mar 2020 06:03:17 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A9DCF40AEE;
-	Wed, 25 Mar 2020 06:03:16 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 690DE1718EA;
-	Wed, 25 Mar 2020 02:03:15 -0400 (EDT)
+	Wed, 25 Mar 2020 21:43:02 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02PLeqW4024238
+	for <meta-arago@arago-project.org>; Wed, 25 Mar 2020 16:40:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1585172452;
+	bh=zKNCWf5vMsMeaZMK0jkaMQMy8vlf74eCkA0DoHmG+RU=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=mRrhOp0DWfZfcxKS/Pv6leXQjiAhe5LXTZ4SixQ7GdDBAb36pSqKg5AziISgmx4iU
+	x7kiZ/UEQqi8hA2EJdOeRlABsBjr4eUS7W9M2suDdB8gZuuW/k00thobetwRkh6FlV
+	8mY94aHXowAWq3MAwmFo/hmRzLMDbsveMIF5kdLE=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02PLeqTv048266
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Wed, 25 Mar 2020 16:40:52 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Wed, 25 Mar 2020 16:40:51 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Wed, 25 Mar 2020 16:40:52 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02PLepRB110020;
+	Wed, 25 Mar 2020 16:40:52 -0500
+Date: Wed, 25 Mar 2020 17:40:51 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Wed, 25 Mar 2020 02:03:14 -0400
-Message-Id: <1585116194-34727-3-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1585116194-34727-1-git-send-email-denys@ti.com>
-References: <1585116194-34727-1-git-send-email-denys@ti.com>
-Subject: [master][PATCH 3/3] wayland/weston: cleanup and simplify
+To: Gowtham Tammana <g-tammana@ti.com>
+Message-ID: <20200325214051.GE11867@beryl>
+References: <20200319222410.7856-1-g-tammana@ti.com>
+	<20200319222816.GP17003@beryl>
+MIME-Version: 1.0
+In-Reply-To: <20200319222816.GP17003@beryl>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [zeus/master][PATCH v2] wayland-ivi-extension: Update to 2.2.0 version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,153 +52,170 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Mar 2020 06:05:28 -0000
+X-List-Received-Date: Wed, 25 Mar 2020 21:43:02 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-* Merge weston-config into weston-init
-* Drop local overrides
-* Avoid machine-specific changes
+On Thu, Mar 19, 2020 at 06:28:16PM -0400, Denys Dmytriyenko wrote:
+> On Thu, Mar 19, 2020 at 05:24:10PM -0500, Gowtham Tammana wrote:
+> > Update wayland-ivi-extension to 2.2.0 version.
+> > 
+> > The version 2.2.0 supports only upto weston-6.0, picking up few patches
+> > that enable support for weston-7.0.
+> > 
+> > Upstream-Status: Submitted
+> > [https://github.com/GENIVI/wayland-ivi-extension/pull/110]
+> 
+> Thanks, but wrong place - see my original email for exact placement.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf            |  1 -
- .../recipes-graphics/wayland/weston-conf_8.0.0.bb   | 21 ---------------------
- .../recipes-graphics/wayland/weston-init.bbappend   | 13 +++++++++----
- .../{weston-conf => weston-init}/ti43x/weston.ini   |  0
- .../{weston-conf => weston-init}/wayland_env.sh     |  0
- .../wayland/{weston-conf => weston-init}/weston.ini |  0
- .../recipes-graphics/wayland/weston_8.0.0.bbappend  |  8 +-------
- .../wayland/wayland-protocols_%.bbappend            | 11 +++++------
- 8 files changed, 15 insertions(+), 39 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-conf_8.0.0.bb
- rename meta-arago-distro/recipes-graphics/wayland/{weston-conf => weston-init}/ti43x/weston.ini (100%)
- rename meta-arago-distro/recipes-graphics/wayland/{weston-conf => weston-init}/wayland_env.sh (100%)
- rename meta-arago-distro/recipes-graphics/wayland/{weston-conf => weston-init}/weston.ini (100%)
+Ping. Can you please correct this? Upstream-Status: should be in the patch 
+itself, not commit log that adds the patch. As a reference:
+http://arago-project.org/pipermail/meta-arago/2020-March/012518.html
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index ac20a83..3215fe7 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -95,7 +95,6 @@ DISTRO_FEATURES_append = "${@[""," systemd"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
- QT_PROVIDER ?= "qt5"
- 
- # Distro-specific package configuration
--PACKAGECONFIG_pn-weston = "egl kms launch clients"
- PACKAGECONFIG_append_pn-systemd = " coredump"
- 
- # Configure Qt5 flags (GLES is still required for qtdeclarative and qtwebkit)
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-conf_8.0.0.bb b/meta-arago-distro/recipes-graphics/wayland/weston-conf_8.0.0.bb
-deleted file mode 100644
-index 16cac2b..0000000
---- a/meta-arago-distro/recipes-graphics/wayland/weston-conf_8.0.0.bb
-+++ /dev/null
-@@ -1,21 +0,0 @@
--SUMMARY = "Weston configuration files"
--HOMEPAGE = "http://wayland.freedesktop.org"
--LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
--
--PR = "r2"
--
--PACKAGE_ARCH = "${MACHINE_ARCH}"
--
--SRC_URI = "file://wayland_env.sh \
--           file://weston.ini \
--"
--
--# Add custom Arago Wayland Environment script file
--do_install () {
--    install -d ${D}${sysconfdir}/profile.d
--    install -m 0644 ${WORKDIR}/weston.ini ${D}${sysconfdir}
--    install -m 0644 ${WORKDIR}/wayland_env.sh ${D}${sysconfdir}/profile.d/
--}
--
--FILES_${PN} += "${sysconfdir}/profile.d/* ${sysconfdir}/weston.ini"
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-index cbe0fe3..55b191e 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-@@ -1,15 +1,20 @@
--PR_append = ".arago9"
--
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
-+PR_append = ".arago10"
-+
- SRC_URI_append = " \
-     file://runWeston \
-+    file://wayland_env.sh \
-+    file://weston.ini \
- "
- 
- do_install_append() {
-     install -d ${D}${bindir}
-     install -m 755 ${WORKDIR}/runWeston ${D}${bindir}
--    rm -rf ${D}${systemd_system_unitdir}
-+
-+    install -d ${D}${sysconfdir}/profile.d
-+    install -m 0644 ${WORKDIR}/weston.ini ${D}${sysconfdir}
-+    install -m 0644 ${WORKDIR}/wayland_env.sh ${D}${sysconfdir}/profile.d/
- }
- 
--SYSTEMD_SERVICE_${PN} = ""
-+FILES_${PN} += "${sysconfdir}/profile.d/* ${sysconfdir}/weston.ini"
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-conf/ti43x/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-init/ti43x/weston.ini
-similarity index 100%
-rename from meta-arago-distro/recipes-graphics/wayland/weston-conf/ti43x/weston.ini
-rename to meta-arago-distro/recipes-graphics/wayland/weston-init/ti43x/weston.ini
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-conf/wayland_env.sh b/meta-arago-distro/recipes-graphics/wayland/weston-init/wayland_env.sh
-similarity index 100%
-rename from meta-arago-distro/recipes-graphics/wayland/weston-conf/wayland_env.sh
-rename to meta-arago-distro/recipes-graphics/wayland/weston-init/wayland_env.sh
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-conf/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-init/weston.ini
-similarity index 100%
-rename from meta-arago-distro/recipes-graphics/wayland/weston-conf/weston.ini
-rename to meta-arago-distro/recipes-graphics/wayland/weston-init/weston.ini
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_8.0.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_8.0.0.bbappend
-index 7a937f0..006579b 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston_8.0.0.bbappend
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston_8.0.0.bbappend
-@@ -1,10 +1,6 @@
--PACKAGECONFIG[kms] = "-Dbackend-drm=true,-Dbackend-drm=false,drm udev virtual/libgbm mtdev"
--
--PR_append = ".arago2"
--
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--RDEPENDS_${PN} += "weston-conf"
-+PR_append = ".arago3"
- 
- #        file://0002-weston-Allow-visual_id-to-be-0.patch
- SRC_URI += " \
-@@ -12,5 +8,3 @@ SRC_URI += " \
-         file://0004-weston-Fix-touch-screen-crash-issue.patch \
-         file://0001-backend-drm-Select-plane-based-on-current-attached-C.patch \
- "
--
--INHIBIT_PACKAGE_STRIP = "1"
-diff --git a/meta-arago-extras/recipes-graphics/wayland/wayland-protocols_%.bbappend b/meta-arago-extras/recipes-graphics/wayland/wayland-protocols_%.bbappend
-index 7edd850..c7803c3 100644
---- a/meta-arago-extras/recipes-graphics/wayland/wayland-protocols_%.bbappend
-+++ b/meta-arago-extras/recipes-graphics/wayland/wayland-protocols_%.bbappend
-@@ -1,12 +1,11 @@
--PR_append = ".arago1"
--
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--SRC_URI += " \
--      file://0001-wayland-drm-Add-wayland-drm-protocol-to-stable.patch \
--      "
-+PR_append = ".arago2"
- 
--SRC_URI_append_j7-evm = "file://0002-wayland-drm-Update-to-version-2.patch"
-+SRC_URI += " \
-+    file://0001-wayland-drm-Add-wayland-drm-protocol-to-stable.patch \
-+    file://0002-wayland-drm-Update-to-version-2.patch \
-+"
- 
- do_install_append() {
- 	install -d ${D}${datadir}/wayland-protocols/stable/wayland-drm
--- 
-2.7.4
 
+> > Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+> > ---
+> >  ...-input-controller-update-to-weston-7.patch | 25 +++++++++++++++++
+> >  ...i-id-agent-update-to-weston-7-header.patch | 27 +++++++++++++++++++
+> >  ...te-dependencies-to-build-on-weston-7.patch | 25 +++++++++++++++++
+> >  ....1.0.bb => wayland-ivi-extension_2.2.0.bb} |  8 +++---
+> >  4 files changed, 82 insertions(+), 3 deletions(-)
+> >  create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/01-ivi-input-controller-update-to-weston-7.patch
+> >  create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/02-ivi-id-agent-update-to-weston-7-header.patch
+> >  create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch
+> >  rename meta-arago-distro/recipes-graphics/wayland/{wayland-ivi-extension_2.1.0.bb => wayland-ivi-extension_2.2.0.bb} (77%)
+> > 
+> > diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/01-ivi-input-controller-update-to-weston-7.patch b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/01-ivi-input-controller-update-to-weston-7.patch
+> > new file mode 100644
+> > index 00000000..bcf94fd4
+> > --- /dev/null
+> > +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/01-ivi-input-controller-update-to-weston-7.patch
+> > @@ -0,0 +1,25 @@
+> > +From efdd2a85519d4990596194af5bf50636d2610f09 Mon Sep 17 00:00:00 2001
+> > +From: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
+> > +Date: Mon, 6 Jan 2020 06:41:57 -0500
+> > +Subject: [PATCH] ivi-input-controller: update to weston 7 header files
+> > +
+> > +update the header file path.
+> > +
+> > +Signed-off-by: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
+> > +---
+> > + .../ivi-input-controller/src/ivi-input-controller.c             | 2 +-
+> > + 1 file changed, 1 insertion(+), 1 deletion(-)
+> > +
+> > +diff --git a/ivi-input-modules/ivi-input-controller/src/ivi-input-controller.c b/ivi-input-modules/ivi-input-controller/src/ivi-input-controller.c
+> > +index a0bfc48..257a1dc 100644
+> > +--- a/ivi-input-modules/ivi-input-controller/src/ivi-input-controller.c
+> > ++++ b/ivi-input-modules/ivi-input-controller/src/ivi-input-controller.c
+> > +@@ -31,7 +31,7 @@
+> > + #include <fcntl.h>
+> > + #include <unistd.h>
+> > + 
+> > +-#include "plugin-registry.h"
+> > ++#include <libweston/plugin-registry.h>
+> > + #include "ilm_types.h"
+> > + 
+> > + #include "ivi-input-server-protocol.h"
+> > diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/02-ivi-id-agent-update-to-weston-7-header.patch b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/02-ivi-id-agent-update-to-weston-7-header.patch
+> > new file mode 100644
+> > index 00000000..43a3c74a
+> > --- /dev/null
+> > +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/02-ivi-id-agent-update-to-weston-7-header.patch
+> > @@ -0,0 +1,27 @@
+> > +From 5abb2b497e0153210d41ec3685dc0152587625fa Mon Sep 17 00:00:00 2001
+> > +From: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
+> > +Date: Mon, 6 Jan 2020 06:45:11 -0500
+> > +Subject: [PATCH] ivi-id-agent: update to weston 7 header files
+> > +
+> > +update the header file path.
+> > +
+> > +Signed-off-by: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
+> > +---
+> > + ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c | 4 ++--
+> > + 1 file changed, 2 insertions(+), 2 deletions(-)
+> > +
+> > +diff --git a/ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c b/ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c
+> > +index 8f0c199..b80e2a4 100644
+> > +--- a/ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c
+> > ++++ b/ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c
+> > +@@ -26,8 +26,8 @@
+> > + #include <limits.h>
+> > + 
+> > + #include <weston.h>
+> > +-#include <libweston-6/libweston-desktop.h>
+> > +-#include "config-parser.h"
+> > ++#include <libweston-desktop/libweston-desktop.h>
+> > ++#include <libweston/config-parser.h>
+> > + #include <weston/ivi-layout-export.h>
+> > + 
+> > + #ifndef INVALID_ID
+> > diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch
+> > new file mode 100644
+> > index 00000000..06d41d22
+> > --- /dev/null
+> > +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch
+> > @@ -0,0 +1,25 @@
+> > +From b99082adfaf250b15f03345cdf1b433fb1575581 Mon Sep 17 00:00:00 2001
+> > +From: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
+> > +Date: Mon, 6 Jan 2020 06:45:54 -0500
+> > +Subject: [PATCH] ivi-id-agent: update dependencies to build on weston 7
+> > +
+> > +upgrade libweston-desktop version.
+> > +
+> > +Signed-off-by: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
+> > +---
+> > + ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt | 2 +-
+> > + 1 file changed, 1 insertion(+), 1 deletion(-)
+> > +
+> > +diff --git a/ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt b/ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt
+> > +index 3e604a5..ff47808 100644
+> > +--- a/ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt
+> > ++++ b/ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt
+> > +@@ -25,7 +25,7 @@ find_package(PkgConfig REQUIRED)
+> > + pkg_check_modules(WAYLAND_SERVER wayland-server REQUIRED)
+> > + pkg_check_modules(WESTON weston>=6.0.0 REQUIRED)
+> > + pkg_check_modules(PIXMAN pixman-1 REQUIRED)
+> > +-pkg_check_modules(LIBWESTON_DESKTOP libweston-desktop-6 REQUIRED)
+> > ++pkg_check_modules(LIBWESTON_DESKTOP libweston-desktop-7 REQUIRED)
+> > + 
+> > + find_package(Threads REQUIRED)
+> > + 
+> > diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
+> > similarity index 77%
+> > rename from meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
+> > rename to meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
+> > index 7d9faee4..0b20b91b 100644
+> > --- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
+> > +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
+> > @@ -5,10 +5,12 @@ BUGTRACKER = "http://bugs.genivi.org/enter_bug.cgi?product=Wayland%20IVI%20Exten
+> >  LICENSE = "Apache-2.0"
+> >  LIC_FILES_CHKSUM = "file://LICENSE;md5=1f1a56bb2dadf5f2be8eb342acf4ed79"
+> >  
+> > -SRCREV = "d2c2e262f3bdc9db33b3014293fcdbcfdc90ab27"
+> > +SRCREV = "e9c2fe4c5034a06b159cfd45dbd485755cbaf4c8"
+> >  
+> >  SRC_URI = "git://github.com/GENIVI/${BPN}.git;protocol=http \
+> > -           file://force-type-conversion.patch \
+> > +           file://01-ivi-input-controller-update-to-weston-7.patch \
+> > +           file://02-ivi-id-agent-update-to-weston-7-header.patch \
+> > +           file://03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch \
+> >      "
+> >  
+> >  S = "${WORKDIR}/git"
+> > @@ -25,7 +27,7 @@ FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
+> >  
+> >  EXTRA_OECMAKE += "-DLIB_SUFFIX=${@d.getVar('baselib').replace('lib', '')}"
+> >  
+> > -PR = "r1"
+> > +PR = "r0"
+> >  
+> >  # Need these temporarily to prevent a non-fatal do_package_qa issue
+> >  INSANE_SKIP_${PN} += "dev-deps"
+> > -- 
+> > 2.17.1
+> > 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
