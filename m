@@ -1,30 +1,50 @@
-Return-Path: <denys@ti.com>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 30822529C9
+Return-Path: <j-stiffler@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 59451529C9
 	for <meta-arago@arago-project.org>;
-	Thu, 26 Mar 2020 20:28:09 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id C5A6940BFE;
-	Thu, 26 Mar 2020 20:25:58 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id cbBit1UuaEwb; Thu, 26 Mar 2020 20:25:58 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B0254409DE;
-	Thu, 26 Mar 2020 20:25:57 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 676961718E5;
-	Thu, 26 Mar 2020 16:25:57 -0400 (EDT)
-From: Denys Dmytriyenko <denys@ti.com>
-To: meta-arago@arago-project.org
-Date: Thu, 26 Mar 2020 16:25:57 -0400
-Message-Id: <1585254357-34528-1-git-send-email-denys@ti.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] HACK: packagegroups: disable open62541 for now due to breakage
+	Thu, 26 Mar 2020 20:39:03 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02QKaqGI046069
+	for <meta-arago@arago-project.org>; Thu, 26 Mar 2020 15:36:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1585255012;
+	bh=rQkz4S8h1YaP7SuR4Ov5fdtKZGnKjn1taxGixG2k6fM=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=FzsphWXbQJIRJKS42l47U0BI2EhOU5Kob9f1aDShKBw8vJbemHyPwvbpp7YIffBLD
+	saHf4SEy9eaXWx4dOojUCA/XSify+VcwLog/ercMcdpgEzy8FPeP5yn5ZjLOkqvFZn
+	Ed8mtCDfvBpbZ+CcMTw+t0e1/l8Fbw+1MwdylHog=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02QKaq9R040368
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Thu, 26 Mar 2020 15:36:52 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Thu, 26 Mar 2020 15:36:52 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Thu, 26 Mar 2020 15:36:52 -0500
+Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02QKaqTG068332;
+	Thu, 26 Mar 2020 15:36:52 -0500
+To: Denys Dmytriyenko <denys@ti.com>
+References: <1583358315-5293-1-git-send-email-j-stiffler@ti.com>
+	<20200305212452.GK1628@beryl>
+	<2a366adf-a32e-a1a2-3d8d-0a206b0f339e@ti.com>
+	<20200306001514.GQ1628@beryl>
+	<c424aa53-30c1-4f00-f648-e511bbacdc68@ti.com>
+	<20200326191814.GL11867@beryl>
+From: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <362d34aa-d27d-847e-68e4-f827086a95ba@ti.com>
+Date: Thu, 26 Mar 2020 16:36:52 -0400
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:68.0) Gecko/20100101
+	Thunderbird/68.4.2
+MIME-Version: 1.0
+In-Reply-To: <20200326191814.GL11867@beryl>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [zeus/master][PATCH] open62541: upgrade to version 1.0.1, other fixes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,74 +57,69 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Mar 2020 20:28:09 -0000
+X-List-Received-Date: Thu, 26 Mar 2020 20:39:03 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb       | 4 ++--
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb     | 4 ++--
- .../packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb          | 4 ++--
- 3 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-index 26925f2..9487338 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-@@ -6,9 +6,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
- inherit packagegroup
- 
-+#         open62541-dev
-+#         open62541-staticdev
- UTILS = "libdrm-dev \
--         open62541-dev \
--         open62541-staticdev \
-          "
- 
- UTILS_append_keystone = "\
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index f3ae83e..50c24ae 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -10,6 +10,8 @@ PACKAGES =+ "${PN}-extra"
- 
- #    dt
- 
-+#    open62541-examples
-+#    open62541-tests
- UTILS = " \
-     am-sysinfo \
-     gdbserver \
-@@ -27,8 +29,6 @@ UTILS = " \
-     strongswan \
-     kexec \
-     kdump \
--    open62541-examples \
--    open62541-tests \
- "
- 
- UTILS_UBOOT_FW = "libubootenv-bin"
-diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
-index c24652b..314c025 100644
---- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
-+++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
-@@ -6,13 +6,13 @@ inherit packagegroup nativesdk
- 
- PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
- 
-+#    nativesdk-open62541-examples
-+#    nativesdk-open62541-tests
- EXTRA_TI_TOOLS = " \
-     nativesdk-ti-cgt6x \
-     nativesdk-ti-cgt-pru \
-     nativesdk-clocl \
-     nativesdk-clacc \
--    nativesdk-open62541-examples \
--    nativesdk-open62541-tests \
-     nativesdk-tidl-import \
-     nativesdk-tidl-viewer \
-     nativesdk-tidl-utils \
--- 
-2.7.4
+On 3/26/2020 3:18 PM, Denys Dmytriyenko wrote:
+> On Fri, Mar 06, 2020 at 09:53:46AM -0500, Jacob Stiffler wrote:
+>> On 3/5/2020 7:15 PM, Denys Dmytriyenko wrote:
+>>> On Thu, Mar 05, 2020 at 04:49:05PM -0500, Jacob Stiffler wrote:
+>>>> On 3/5/2020 4:24 PM, Denys Dmytriyenko wrote:
+>>>>> Jake,
+>>>>>
+>>>>> Somehow this update has a really hard time getting built - it failed in the
+>>>>> same place with what looks like an our-of-memory error:
+>>>>>
+>>>>> | src_generated/open62541/namespace0_generated.c: In function ‘namespace0_generated’:
+>>>>> | src_generated/open62541/namespace0_generated.c:113178:15: note: variable tracking size limit exceeded with ‘-fvar-tracking-assignments’, retrying without
+>>>>> | 113178 | UA_StatusCode namespace0_generated(UA_Server *server) {
+>>>>> |        |               ^
+>>>>> | arm-none-linux-gnueabihf-gcc: fatal error: Killed signal terminated program lto1
+>>>>> | compilation terminated.
+>>>>> | lto-wrapper: fatal error: /opt/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-gcc returned 1 exit status
+>>>>> | compilation terminated.
+>>>>> | /opt/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin/../lib/gcc/arm-none-linux-gnueabihf/9.2.1/../../../../arm-none-linux-gnueabihf/bin/ld: error: lto-wrapper failed
+>>>>>
+>>>>> It was not specific to any platform or a build node - all platforms on all
+>>>>> build nodes have failed. I had to revert the update for now, as I needed to
+>>>>> release rc3 very quickly.
+>>>>>
+>>>>> Has this been tested? Any comments?
+>>>> I have built this for both am57xx-evm and am65xx-evm and nativesdk. I have
+>>>> also run-time tested this on x86 and am65x IDK.
+>>>>
+>>>> I did not ice that it took a significantly longer time to build with this
+>>>> update and noticed "lto1-ltrans" as the top hog of resources. I have only
+>>>> noticed this within OE. I do not notice any performance difference in the
+>>>> standalone build.
+>>>>
+>>>> I suspect this may be a result of enabling UA_NAMESPACE_ZERO=FULL, but I do
+>>>> not know why this is isolated to OE.
+>>> Thanks. Is it possible to disable UA_NAMESPACE_ZERO=FULL to see if it improves
+>>> the build resource demands? Is it one of the required features to be enabled?
+>> This is something we want because it is required to make use of other
+>> standard model namespaces, such as OpcUaDi (device integration) and others.
+>> I can move this to the PACKAGECONFIG so it is more easily configured, but
+>> eventually we will need to determine how to make this work in our builds.
+> Jake,
+>
+> Any more updates on this one?
+> Unfortunately, the old version now breaks on master with this error:
+> cc1: error: unrecognized command line option ‘-Wno-static-in-inline’ [-Werror]
+>
+> And I started looking into this update again, but it's taking a very-very long
+> time even when lto is disabled...
+
+
+I was waiting for a response or confirmation on the PACKAGECONFIG 
+approach. I have noticed some variation in the build times, and it seems 
+that it may be related to the toolchain. It seems that nativesdk builds 
+much faster than target, but I haven't experimented enough to be sure. 
+If it sounds OK, I can move the NAMESPACE_ZERO to a PACKAGECONFIG nad 
+leave it disabled by default.
+
 
 
