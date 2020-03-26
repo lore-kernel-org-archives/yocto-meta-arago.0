@@ -1,47 +1,47 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 59451529C9
+Return-Path: <denys@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id B07C6529F6
 	for <meta-arago@arago-project.org>;
-	Thu, 26 Mar 2020 20:39:03 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02QKaqGI046069
-	for <meta-arago@arago-project.org>; Thu, 26 Mar 2020 15:36:52 -0500
+	Thu, 26 Mar 2020 23:59:33 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02QNvNtT019220
+	for <meta-arago@arago-project.org>; Thu, 26 Mar 2020 18:57:23 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1585255012;
-	bh=rQkz4S8h1YaP7SuR4Ov5fdtKZGnKjn1taxGixG2k6fM=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=FzsphWXbQJIRJKS42l47U0BI2EhOU5Kob9f1aDShKBw8vJbemHyPwvbpp7YIffBLD
-	saHf4SEy9eaXWx4dOojUCA/XSify+VcwLog/ercMcdpgEzy8FPeP5yn5ZjLOkqvFZn
-	Ed8mtCDfvBpbZ+CcMTw+t0e1/l8Fbw+1MwdylHog=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02QKaq9R040368
+	s=ti-com-17Q1; t=1585267043;
+	bh=NSY3O9QyrIrirHETRu6Uo4FKCVJ3ryn20gnabkyLGOI=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=dG54mAtl3hyP2BlPhYOBtYgAq1uuAjmY9Edb9A7DQNjGc06RB+yYEcnPtTTyGfn2J
+	ZqgX2UXHqpr4BiTqORWjohpmnddJVMhag/AhwuFOTOUPmlay8qzjhCL/gY1IUbk4WY
+	pbCWlMHFAsuBvN5vpd0F0C9/sXZR6g8F7S2XtC4w=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02QNvNJd081644
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 26 Mar 2020 15:36:52 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 26 Mar 2020 18:57:23 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Thu, 26 Mar 2020 15:36:52 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 26 Mar 2020 18:57:22 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Thu, 26 Mar 2020 15:36:52 -0500
-Received: from [158.218.113.191] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02QKaqTG068332;
-	Thu, 26 Mar 2020 15:36:52 -0500
-To: Denys Dmytriyenko <denys@ti.com>
+	Frontend Transport; Thu, 26 Mar 2020 18:57:22 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02QNvMSl016148;
+	Thu, 26 Mar 2020 18:57:22 -0500
+Date: Thu, 26 Mar 2020 19:57:22 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Jacob Stiffler <j-stiffler@ti.com>
+Message-ID: <20200326235722.GN11867@beryl>
 References: <1583358315-5293-1-git-send-email-j-stiffler@ti.com>
 	<20200305212452.GK1628@beryl>
 	<2a366adf-a32e-a1a2-3d8d-0a206b0f339e@ti.com>
 	<20200306001514.GQ1628@beryl>
 	<c424aa53-30c1-4f00-f648-e511bbacdc68@ti.com>
 	<20200326191814.GL11867@beryl>
-From: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <362d34aa-d27d-847e-68e4-f827086a95ba@ti.com>
-Date: Thu, 26 Mar 2020 16:36:52 -0400
-User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:68.0) Gecko/20100101
-	Thunderbird/68.4.2
+	<362d34aa-d27d-847e-68e4-f827086a95ba@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20200326191814.GL11867@beryl>
+In-Reply-To: <362d34aa-d27d-847e-68e4-f827086a95ba@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
 Subject: Re: [zeus/master][PATCH] open62541: upgrade to version 1.0.1, other fixes
@@ -57,69 +57,72 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Mar 2020 20:39:03 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Thu, 26 Mar 2020 23:59:34 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
 
+On Thu, Mar 26, 2020 at 04:36:52PM -0400, Jacob Stiffler wrote:
+> 
+> On 3/26/2020 3:18 PM, Denys Dmytriyenko wrote:
+> >On Fri, Mar 06, 2020 at 09:53:46AM -0500, Jacob Stiffler wrote:
+> >>On 3/5/2020 7:15 PM, Denys Dmytriyenko wrote:
+> >>>On Thu, Mar 05, 2020 at 04:49:05PM -0500, Jacob Stiffler wrote:
+> >>>>On 3/5/2020 4:24 PM, Denys Dmytriyenko wrote:
+> >>>>>Jake,
+> >>>>>
+> >>>>>Somehow this update has a really hard time getting built - it failed in the
+> >>>>>same place with what looks like an our-of-memory error:
+> >>>>>
+> >>>>>| src_generated/open62541/namespace0_generated.c: In function ‘namespace0_generated’:
+> >>>>>| src_generated/open62541/namespace0_generated.c:113178:15: note: variable tracking size limit exceeded with ‘-fvar-tracking-assignments’, retrying without
+> >>>>>| 113178 | UA_StatusCode namespace0_generated(UA_Server *server) {
+> >>>>>|        |               ^
+> >>>>>| arm-none-linux-gnueabihf-gcc: fatal error: Killed signal terminated program lto1
+> >>>>>| compilation terminated.
+> >>>>>| lto-wrapper: fatal error: /opt/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-gcc returned 1 exit status
+> >>>>>| compilation terminated.
+> >>>>>| /opt/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin/../lib/gcc/arm-none-linux-gnueabihf/9.2.1/../../../../arm-none-linux-gnueabihf/bin/ld: error: lto-wrapper failed
+> >>>>>
+> >>>>>It was not specific to any platform or a build node - all platforms on all
+> >>>>>build nodes have failed. I had to revert the update for now, as I needed to
+> >>>>>release rc3 very quickly.
+> >>>>>
+> >>>>>Has this been tested? Any comments?
+> >>>>I have built this for both am57xx-evm and am65xx-evm and nativesdk. I have
+> >>>>also run-time tested this on x86 and am65x IDK.
+> >>>>
+> >>>>I did not ice that it took a significantly longer time to build with this
+> >>>>update and noticed "lto1-ltrans" as the top hog of resources. I have only
+> >>>>noticed this within OE. I do not notice any performance difference in the
+> >>>>standalone build.
+> >>>>
+> >>>>I suspect this may be a result of enabling UA_NAMESPACE_ZERO=FULL, but I do
+> >>>>not know why this is isolated to OE.
+> >>>Thanks. Is it possible to disable UA_NAMESPACE_ZERO=FULL to see if it improves
+> >>>the build resource demands? Is it one of the required features to be enabled?
+> >>This is something we want because it is required to make use of other
+> >>standard model namespaces, such as OpcUaDi (device integration) and others.
+> >>I can move this to the PACKAGECONFIG so it is more easily configured, but
+> >>eventually we will need to determine how to make this work in our builds.
+> >Jake,
+> >
+> >Any more updates on this one?
+> >Unfortunately, the old version now breaks on master with this error:
+> >cc1: error: unrecognized command line option ‘-Wno-static-in-inline’ [-Werror]
+> >
+> >And I started looking into this update again, but it's taking a very-very long
+> >time even when lto is disabled...
+> 
+> 
+> I was waiting for a response or confirmation on the PACKAGECONFIG approach.
+> I have noticed some variation in the build times, and it seems that it may
+> be related to the toolchain. It seems that nativesdk builds much faster than
+> target, but I haven't experimented enough to be sure. If it sounds OK, I can
+> move the NAMESPACE_ZERO to a PACKAGECONFIG nad leave it disabled by default.
 
-On 3/26/2020 3:18 PM, Denys Dmytriyenko wrote:
-> On Fri, Mar 06, 2020 at 09:53:46AM -0500, Jacob Stiffler wrote:
->> On 3/5/2020 7:15 PM, Denys Dmytriyenko wrote:
->>> On Thu, Mar 05, 2020 at 04:49:05PM -0500, Jacob Stiffler wrote:
->>>> On 3/5/2020 4:24 PM, Denys Dmytriyenko wrote:
->>>>> Jake,
->>>>>
->>>>> Somehow this update has a really hard time getting built - it failed in the
->>>>> same place with what looks like an our-of-memory error:
->>>>>
->>>>> | src_generated/open62541/namespace0_generated.c: In function ‘namespace0_generated’:
->>>>> | src_generated/open62541/namespace0_generated.c:113178:15: note: variable tracking size limit exceeded with ‘-fvar-tracking-assignments’, retrying without
->>>>> | 113178 | UA_StatusCode namespace0_generated(UA_Server *server) {
->>>>> |        |               ^
->>>>> | arm-none-linux-gnueabihf-gcc: fatal error: Killed signal terminated program lto1
->>>>> | compilation terminated.
->>>>> | lto-wrapper: fatal error: /opt/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-gcc returned 1 exit status
->>>>> | compilation terminated.
->>>>> | /opt/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin/../lib/gcc/arm-none-linux-gnueabihf/9.2.1/../../../../arm-none-linux-gnueabihf/bin/ld: error: lto-wrapper failed
->>>>>
->>>>> It was not specific to any platform or a build node - all platforms on all
->>>>> build nodes have failed. I had to revert the update for now, as I needed to
->>>>> release rc3 very quickly.
->>>>>
->>>>> Has this been tested? Any comments?
->>>> I have built this for both am57xx-evm and am65xx-evm and nativesdk. I have
->>>> also run-time tested this on x86 and am65x IDK.
->>>>
->>>> I did not ice that it took a significantly longer time to build with this
->>>> update and noticed "lto1-ltrans" as the top hog of resources. I have only
->>>> noticed this within OE. I do not notice any performance difference in the
->>>> standalone build.
->>>>
->>>> I suspect this may be a result of enabling UA_NAMESPACE_ZERO=FULL, but I do
->>>> not know why this is isolated to OE.
->>> Thanks. Is it possible to disable UA_NAMESPACE_ZERO=FULL to see if it improves
->>> the build resource demands? Is it one of the required features to be enabled?
->> This is something we want because it is required to make use of other
->> standard model namespaces, such as OpcUaDi (device integration) and others.
->> I can move this to the PACKAGECONFIG so it is more easily configured, but
->> eventually we will need to determine how to make this work in our builds.
-> Jake,
->
-> Any more updates on this one?
-> Unfortunately, the old version now breaks on master with this error:
-> cc1: error: unrecognized command line option ‘-Wno-static-in-inline’ [-Werror]
->
-> And I started looking into this update again, but it's taking a very-very long
-> time even when lto is disabled...
+Yes, please, if that fixes the build issues.
 
-
-I was waiting for a response or confirmation on the PACKAGECONFIG 
-approach. I have noticed some variation in the build times, and it seems 
-that it may be related to the toolchain. It seems that nativesdk builds 
-much faster than target, but I haven't experimented enough to be sure. 
-If it sounds OK, I can move the NAMESPACE_ZERO to a PACKAGECONFIG nad 
-leave it disabled by default.
-
-
+-- 
+Denys
 
