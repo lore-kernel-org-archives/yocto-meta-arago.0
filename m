@@ -1,48 +1,45 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 99577529C9
+Return-Path: <g-tammana@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id D9D22529C9
 	for <meta-arago@arago-project.org>;
-	Thu, 26 Mar 2020 19:20:25 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02QJIFmO021160
-	for <meta-arago@arago-project.org>; Thu, 26 Mar 2020 14:18:15 -0500
+	Thu, 26 Mar 2020 20:19:43 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 02QKHXH3041390
+	for <meta-arago@arago-project.org>; Thu, 26 Mar 2020 15:17:33 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1585250295;
-	bh=o0dj76qiua63Tn/suREZHhyMJrbBucyTFyKswvAC+wg=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=oYj2EKqUFoGCbBwTi3m+En+7H4sZi30VJ341hicJUsch5jr1b3E8UEOc+UKj9YlZj
-	jK5hzHPMCOZf8OTIvd/b1/EZlWOTWYQkT8CQPsu3GGdiQiNyaJ/HuBT21rrww4DXVl
-	7vrXfiDh/doB9c/Kcx11BtXAv95Sgzyw4TrqBOj8=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02QJIFF1079415
+	s=ti-com-17Q1; t=1585253853;
+	bh=oLr9zQ4ccNgubvOBwvDo5FShSN+D9nQs1AjCPpf8HAU=;
+	h=From:To:CC:Subject:Date;
+	b=eQ3F531rKN/PM5I59Wx+ac0F1jiwVp6ivlIiF02EDrPkof+Ga1tIA01Y9oyJhNPo2
+	/MNW0g+GgFZmCxuLULdMN7Si5CR+BH3vli/XOGUM4dZxXy8M4HnliOp+hODnS9d3Wz
+	4Bc0lX1RIf685/3nv0/yocDQ68BZmVoaxhewkadI=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 02QKHXK3021867
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 26 Mar 2020 14:18:15 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 26 Mar 2020 15:17:33 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Thu, 26 Mar 2020 14:18:14 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 26 Mar 2020 15:17:33 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Thu, 26 Mar 2020 14:18:14 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02QJIE03062531;
-	Thu, 26 Mar 2020 14:18:14 -0500
-Date: Thu, 26 Mar 2020 15:18:14 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Jacob Stiffler <j-stiffler@ti.com>
-Message-ID: <20200326191814.GL11867@beryl>
-References: <1583358315-5293-1-git-send-email-j-stiffler@ti.com>
-	<20200305212452.GK1628@beryl>
-	<2a366adf-a32e-a1a2-3d8d-0a206b0f339e@ti.com>
-	<20200306001514.GQ1628@beryl>
-	<c424aa53-30c1-4f00-f648-e511bbacdc68@ti.com>
+	Frontend Transport; Thu, 26 Mar 2020 15:17:33 -0500
+Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 02QKHX42086597;
+	Thu, 26 Mar 2020 15:17:33 -0500
+Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
+	[128.247.77.97])
+	by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 02QKHX5c068241;
+	Thu, 26 Mar 2020 15:17:33 -0500
+From: Gowtham Tammana <g-tammana@ti.com>
+To: <meta-arago@arago-project.org>, Denys Dmytriyenko <denys@ti.com>
+Date: Thu, 26 Mar 2020 15:17:32 -0500
+Message-ID: <20200326201732.10236-1-g-tammana@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <c424aa53-30c1-4f00-f648-e511bbacdc68@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [zeus/master][PATCH] open62541: upgrade to version 1.0.1, other fixes
+Subject: [zeus/master][PATCH v3] wayland-ivi-extension: Update to 2.2.0 version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,63 +52,172 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Mar 2020 19:20:25 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 26 Mar 2020 20:19:44 -0000
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Fri, Mar 06, 2020 at 09:53:46AM -0500, Jacob Stiffler wrote:
-> 
-> On 3/5/2020 7:15 PM, Denys Dmytriyenko wrote:
-> >On Thu, Mar 05, 2020 at 04:49:05PM -0500, Jacob Stiffler wrote:
-> >>On 3/5/2020 4:24 PM, Denys Dmytriyenko wrote:
-> >>>Jake,
-> >>>
-> >>>Somehow this update has a really hard time getting built - it failed in the
-> >>>same place with what looks like an our-of-memory error:
-> >>>
-> >>>| src_generated/open62541/namespace0_generated.c: In function ‘namespace0_generated’:
-> >>>| src_generated/open62541/namespace0_generated.c:113178:15: note: variable tracking size limit exceeded with ‘-fvar-tracking-assignments’, retrying without
-> >>>| 113178 | UA_StatusCode namespace0_generated(UA_Server *server) {
-> >>>|        |               ^
-> >>>| arm-none-linux-gnueabihf-gcc: fatal error: Killed signal terminated program lto1
-> >>>| compilation terminated.
-> >>>| lto-wrapper: fatal error: /opt/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-gcc returned 1 exit status
-> >>>| compilation terminated.
-> >>>| /opt/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin/../lib/gcc/arm-none-linux-gnueabihf/9.2.1/../../../../arm-none-linux-gnueabihf/bin/ld: error: lto-wrapper failed
-> >>>
-> >>>It was not specific to any platform or a build node - all platforms on all
-> >>>build nodes have failed. I had to revert the update for now, as I needed to
-> >>>release rc3 very quickly.
-> >>>
-> >>>Has this been tested? Any comments?
-> >>I have built this for both am57xx-evm and am65xx-evm and nativesdk. I have
-> >>also run-time tested this on x86 and am65x IDK.
-> >>
-> >>I did not ice that it took a significantly longer time to build with this
-> >>update and noticed "lto1-ltrans" as the top hog of resources. I have only
-> >>noticed this within OE. I do not notice any performance difference in the
-> >>standalone build.
-> >>
-> >>I suspect this may be a result of enabling UA_NAMESPACE_ZERO=FULL, but I do
-> >>not know why this is isolated to OE.
-> >Thanks. Is it possible to disable UA_NAMESPACE_ZERO=FULL to see if it improves
-> >the build resource demands? Is it one of the required features to be enabled?
-> 
-> This is something we want because it is required to make use of other
-> standard model namespaces, such as OpcUaDi (device integration) and others.
-> I can move this to the PACKAGECONFIG so it is more easily configured, but
-> eventually we will need to determine how to make this work in our builds.
+Update wayland-ivi-extension to 2.2.0 version.
 
-Jake,
+The version 2.2.0 supports only upto weston-6.0, for supporting
+weston-7.0 the following patches were needed
 
-Any more updates on this one?
-Unfortunately, the old version now breaks on master with this error:
-cc1: error: unrecognized command line option ‘-Wno-static-in-inline’ [-Werror]
+[weston-7.0 support PR#110] -- https://github.com/GENIVI/wayland-ivi-extension/pull/110
 
-And I started looking into this update again, but it's taking a very-very long 
-time even when lto is disabled...
+  - 01-ivi-input-controller-update-to-weston-7.patch
+  - 02-ivi-id-agent-update-to-weston-7-header.patch
+  - 03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch
 
+Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+---
+v3:
+  - Added Upstream-Status to the individual patches
+
+ ...-input-controller-update-to-weston-7.patch | 28 +++++++++++++++++
+ ...i-id-agent-update-to-weston-7-header.patch | 30 +++++++++++++++++++
+ ...te-dependencies-to-build-on-weston-7.patch | 28 +++++++++++++++++
+ ....1.0.bb => wayland-ivi-extension_2.2.0.bb} |  8 +++--
+ 4 files changed, 91 insertions(+), 3 deletions(-)
+ create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/01-ivi-input-controller-update-to-weston-7.patch
+ create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/02-ivi-id-agent-update-to-weston-7-header.patch
+ create mode 100644 meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch
+ rename meta-arago-distro/recipes-graphics/wayland/{wayland-ivi-extension_2.1.0.bb => wayland-ivi-extension_2.2.0.bb} (77%)
+
+diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/01-ivi-input-controller-update-to-weston-7.patch b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/01-ivi-input-controller-update-to-weston-7.patch
+new file mode 100644
+index 00000000..70756e53
+--- /dev/null
++++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/01-ivi-input-controller-update-to-weston-7.patch
+@@ -0,0 +1,28 @@
++From efdd2a85519d4990596194af5bf50636d2610f09 Mon Sep 17 00:00:00 2001
++From: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
++Date: Mon, 6 Jan 2020 06:41:57 -0500
++Subject: [PATCH] ivi-input-controller: update to weston 7 header files
++
++update the header file path.
++
++Upstream-Status: Submitted [https://github.com/GENIVI/wayland-ivi-extension/pull/110]
++
++Signed-off-by: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
++Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
++---
++ .../ivi-input-controller/src/ivi-input-controller.c             | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/ivi-input-modules/ivi-input-controller/src/ivi-input-controller.c b/ivi-input-modules/ivi-input-controller/src/ivi-input-controller.c
++index a0bfc48..257a1dc 100644
++--- a/ivi-input-modules/ivi-input-controller/src/ivi-input-controller.c
+++++ b/ivi-input-modules/ivi-input-controller/src/ivi-input-controller.c
++@@ -31,7 +31,7 @@
++ #include <fcntl.h>
++ #include <unistd.h>
++ 
++-#include "plugin-registry.h"
+++#include <libweston/plugin-registry.h>
++ #include "ilm_types.h"
++ 
++ #include "ivi-input-server-protocol.h"
+diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/02-ivi-id-agent-update-to-weston-7-header.patch b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/02-ivi-id-agent-update-to-weston-7-header.patch
+new file mode 100644
+index 00000000..8c7189e2
+--- /dev/null
++++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/02-ivi-id-agent-update-to-weston-7-header.patch
+@@ -0,0 +1,30 @@
++From 5abb2b497e0153210d41ec3685dc0152587625fa Mon Sep 17 00:00:00 2001
++From: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
++Date: Mon, 6 Jan 2020 06:45:11 -0500
++Subject: [PATCH] ivi-id-agent: update to weston 7 header files
++
++update the header file path.
++
++Upstream-Status: Submitted [https://github.com/GENIVI/wayland-ivi-extension/pull/110]
++
++Signed-off-by: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
++Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
++---
++ ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c | 4 ++--
++ 1 file changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c b/ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c
++index 8f0c199..b80e2a4 100644
++--- a/ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c
+++++ b/ivi-id-agent-modules/ivi-id-agent/src/ivi-id-agent.c
++@@ -26,8 +26,8 @@
++ #include <limits.h>
++ 
++ #include <weston.h>
++-#include <libweston-6/libweston-desktop.h>
++-#include "config-parser.h"
+++#include <libweston-desktop/libweston-desktop.h>
+++#include <libweston/config-parser.h>
++ #include <weston/ivi-layout-export.h>
++ 
++ #ifndef INVALID_ID
+diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch
+new file mode 100644
+index 00000000..1b5f64e4
+--- /dev/null
++++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch
+@@ -0,0 +1,28 @@
++From b99082adfaf250b15f03345cdf1b433fb1575581 Mon Sep 17 00:00:00 2001
++From: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
++Date: Mon, 6 Jan 2020 06:45:54 -0500
++Subject: [PATCH] ivi-id-agent: update dependencies to build on weston 7
++
++upgrade libweston-desktop version.
++
++Upstream-Status: Submitted [https://github.com/GENIVI/wayland-ivi-extension/pull/110]
++
++Signed-off-by: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.com>
++Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
++---
++ ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt b/ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt
++index 3e604a5..ff47808 100644
++--- a/ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt
+++++ b/ivi-id-agent-modules/ivi-id-agent/CMakeLists.txt
++@@ -25,7 +25,7 @@ find_package(PkgConfig REQUIRED)
++ pkg_check_modules(WAYLAND_SERVER wayland-server REQUIRED)
++ pkg_check_modules(WESTON weston>=6.0.0 REQUIRED)
++ pkg_check_modules(PIXMAN pixman-1 REQUIRED)
++-pkg_check_modules(LIBWESTON_DESKTOP libweston-desktop-6 REQUIRED)
+++pkg_check_modules(LIBWESTON_DESKTOP libweston-desktop-7 REQUIRED)
++ 
++ find_package(Threads REQUIRED)
++ 
+diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
+similarity index 77%
+rename from meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
+rename to meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
+index 7d9faee4..0b20b91b 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.1.0.bb
++++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
+@@ -5,10 +5,12 @@ BUGTRACKER = "http://bugs.genivi.org/enter_bug.cgi?product=Wayland%20IVI%20Exten
+ LICENSE = "Apache-2.0"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=1f1a56bb2dadf5f2be8eb342acf4ed79"
+ 
+-SRCREV = "d2c2e262f3bdc9db33b3014293fcdbcfdc90ab27"
++SRCREV = "e9c2fe4c5034a06b159cfd45dbd485755cbaf4c8"
+ 
+ SRC_URI = "git://github.com/GENIVI/${BPN}.git;protocol=http \
+-           file://force-type-conversion.patch \
++           file://01-ivi-input-controller-update-to-weston-7.patch \
++           file://02-ivi-id-agent-update-to-weston-7-header.patch \
++           file://03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch \
+     "
+ 
+ S = "${WORKDIR}/git"
+@@ -25,7 +27,7 @@ FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
+ 
+ EXTRA_OECMAKE += "-DLIB_SUFFIX=${@d.getVar('baselib').replace('lib', '')}"
+ 
+-PR = "r1"
++PR = "r0"
+ 
+ # Need these temporarily to prevent a non-fatal do_package_qa issue
+ INSANE_SKIP_${PN} += "dev-deps"
 -- 
-Denys
+2.17.1
+
 
