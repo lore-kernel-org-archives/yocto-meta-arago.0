@@ -1,30 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id A824E52A05
+	by arago-project.org (Postfix) with ESMTPS id D1A0A529A5
 	for <meta-arago@arago-project.org>;
-	Wed,  1 Apr 2020 23:25:18 +0000 (UTC)
+	Thu,  2 Apr 2020 01:35:56 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 6716840B30;
-	Wed,  1 Apr 2020 23:23:06 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 9772E40BCC;
+	Thu,  2 Apr 2020 01:33:44 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 0zLwkN3K8jNM; Wed,  1 Apr 2020 23:23:06 +0000 (UTC)
+	with ESMTP id 9L-mkaIS1mQx; Thu,  2 Apr 2020 01:33:44 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4F3FD409AA;
-	Wed,  1 Apr 2020 23:23:05 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7823540A32;
+	Thu,  2 Apr 2020 01:33:43 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id EB0831718E5;
-	Wed,  1 Apr 2020 19:23:04 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 80C921718E5;
+	Wed,  1 Apr 2020 21:33:42 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Wed,  1 Apr 2020 19:23:04 -0400
-Message-Id: <1585783384-35101-1-git-send-email-denis@denix.org>
+Date: Wed,  1 Apr 2020 21:33:42 -0400
+Message-Id: <1585791222-47370-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] python: remove upstreamed pycryptodomex
+Subject: [master][PATCH] recipes, packages: deprecate openfst and kaldi components
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,61 +37,146 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Apr 2020 23:25:19 -0000
+X-List-Received-Date: Thu, 02 Apr 2020 01:35:57 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../python/python-pycryptodomex.inc                | 29 ----------------------
- .../python/python3-pycryptodomex_3.9.4.bb          |  2 --
- 2 files changed, 31 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-devtools/python/python-pycryptodomex.inc
- delete mode 100644 meta-arago-distro/recipes-devtools/python/python3-pycryptodomex_3.9.4.bb
+ .../packagegroup-arago-tisdk-opencl.bb             |  1 -
+ .../recipes-support/kaldi/kaldi_git.bb             | 47 ------------------
+ .../recipes-support/openfst/openfst_1.6.2.bb       | 56 ----------------------
+ 3 files changed, 104 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-support/kaldi/kaldi_git.bb
+ delete mode 100644 meta-arago-extras/recipes-support/openfst/openfst_1.6.2.bb
 
-diff --git a/meta-arago-distro/recipes-devtools/python/python-pycryptodomex.inc b/meta-arago-distro/recipes-devtools/python/python-pycryptodomex.inc
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb
+index 0217705..4b3e9db 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl.bb
+@@ -23,7 +23,6 @@ EXTRA_PKGS_append_k2hk = " \
+ #    ti-fftw-examples
+ EXTRA_PKGS_append_dra7xx = " \
+     linalg-examples \
+-    kaldi \
+ "
+ 
+ RDEPENDS_${PN} = "\
+diff --git a/meta-arago-extras/recipes-support/kaldi/kaldi_git.bb b/meta-arago-extras/recipes-support/kaldi/kaldi_git.bb
 deleted file mode 100644
-index d00a076..0000000
---- a/meta-arago-distro/recipes-devtools/python/python-pycryptodomex.inc
+index 4c14968..0000000
+--- a/meta-arago-extras/recipes-support/kaldi/kaldi_git.bb
 +++ /dev/null
-@@ -1,29 +0,0 @@
--SUMMARY = "Cryptographic library for Python"
--DESCRIPTION = "PyCryptodome is a self-contained Python package of low-level\
-- cryptographic primitives."
--HOMEPAGE = "http://www.pycryptodome.org"
--LICENSE = "PD & BSD-2-Clause"
--LIC_FILES_CHKSUM = "file://LICENSE.rst;md5=6dc0e2a13d2f25d6f123c434b761faba"
+@@ -1,47 +0,0 @@
+-SUMMARY = "TI KALDI speech recognition toolkit"
+-HOMEPAGE = "http://kaldi-asr.org"
+-LICENSE = "Apache-2.0"
+-LIC_FILES_CHKSUM = "file://COPYING;md5=35439d742a3df991e4f4f0e68e2d634c"
 -
--SRC_URI[md5sum] = "46ba513d95b6e323734074d960a7d57b"
--SRC_URI[sha256sum] = "22d970cee5c096b9123415e183ae03702b2cd4d3ba3f0ced25c4e1aba3967167"
+-PR = "r0"
+-COMPATIBLE_MACHINE = "dra7xx"
 -
--inherit pypi
+-require recipes-ti/includes/arago-paths.inc
 -
--RDEPENDS_${PN} += " \
--    ${PYTHON_PN}-io \
--    ${PYTHON_PN}-math \
+-SRC_URI = "git://git.ti.com/processor-sdk/kaldi.git;protocol=git;branch=${BRANCH}"
+-BRANCH = "kaldi_1-0-0"
+-SRCREV = "a472be2e2f8598a3e360bc7ca87ff4f73afa2d9e"
+-
+-DEPENDS = " \
+-	linalg \
+-	openfst \
 -"
 -
--RDEPENDS_${PN}-tests += " \
--    ${PYTHON_PN}-unittest \
--"
+-S = "${WORKDIR}/git"
 -
--PACKAGES =+ "${PN}-tests"
+-export LINALG_DIR  = "${LINALG_INSTALL_DIR}"
+-export OPENFST_DIR = "${STAGING_DIR_TARGET}${prefix}"
+-export TARGET_ROOTDIR="${STAGING_DIR_TARGET}"
 -
--FILES_${PN}-tests += " \
--    ${PYTHON_SITEPACKAGES_DIR}/Cryptodome/SelfTest/ \
--    ${PYTHON_SITEPACKAGES_DIR}/Cryptodome/SelfTest/__pycache__/ \
--"
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-KALDI_CONF = "--static --use-cuda=no --mathlib=CLAPACK --clapack-root=${LINALG_INSTALL_DIR}/packages/ti/linalg --fst-root=${STAGING_DIR_TARGET}${prefix} --fst-version=1.6.2 --ti-cross-compile --ti-device=AM57"
 -
--BBCLASSEXTEND = "native nativesdk"
-diff --git a/meta-arago-distro/recipes-devtools/python/python3-pycryptodomex_3.9.4.bb b/meta-arago-distro/recipes-devtools/python/python3-pycryptodomex_3.9.4.bb
+-EXTRA_OEMAKE = "-C src"
+-
+-do_configure() {
+-	cd src
+-	chmod +x configure
+-	./configure ${KALDI_CONF}
+-}
+-
+-do_compile() {
+-	oe_runmake online2bin featbin
+-}
+-
+-do_install() {
+-	chmod +x export_kaldi.sh
+-	./export_kaldi.sh --nnet2-online . ${D}${datadir}/ti/examples/kaldi
+-}
+-
+-# to create a package for KALDI
+-FILES_${PN} += "${datadir}/ti/examples/kaldi"
+diff --git a/meta-arago-extras/recipes-support/openfst/openfst_1.6.2.bb b/meta-arago-extras/recipes-support/openfst/openfst_1.6.2.bb
 deleted file mode 100644
-index be66430..0000000
---- a/meta-arago-distro/recipes-devtools/python/python3-pycryptodomex_3.9.4.bb
+index b2a1f66..0000000
+--- a/meta-arago-extras/recipes-support/openfst/openfst_1.6.2.bb
 +++ /dev/null
-@@ -1,2 +0,0 @@
--require python-pycryptodomex.inc
--inherit setuptools3
+@@ -1,56 +0,0 @@
+-SUMMARY = "OpenFst: library for operating on finite-state transducers"
+-DESCRIPTION = "OpenFst: a library for constructing, combining, optimizing, and searching weighted finite-state transducers (FSTs)"
+-LICENSE = "Apache-2.0"
+-HOMEPAGE = "http://www.openfst.org/twiki/bin/view/FST/WebHome"
+-PR = "r0"
+-
+-LIC_FILES_CHKSUM = "file://COPYING;md5=17bdccf7f927b4b2aeac950537db3369"
+-SRC_URI = "http://openslr.org/resources/2/openfst-${PV}.tar.gz"
+-
+-S = "${WORKDIR}/openfst-${PV}"
+-
+-SRC_URI[md5sum] = "e5b2b8c41a8320a03f3a8bbea63bb0ca"
+-SRC_URI[sha256sum] = "3f72e35097fdf1c1c41e15165c16696c223295b40b7b145b5466306db7972578"
+-
+-inherit autotools ${@bb.utils.contains("PACKAGECONFIG", "python", "pythonnative", "", d)}
+-
+-# From the OpenFST documentation:
+-#
+-#Optional features:
+-#
+-#  --enable-bin             Enable fst::script and executables (def: yes)
+-#  --enable-compact-fsts    Enable CompactFst extensions (def: no)
+-#  --enable-compress        Enable compression extension (def: no)
+-#  --enable-const-fsts      Enable ConstFst extensions (def: no)
+-#  --enable-far             Enable FAR extensions (def: no)
+-#  --enable-grm             Enable all dependencies of OpenGrm (def: no)
+-#  --enable-linear-fsts     Enable LinearTagger/ClassifierFst extensions (def: no)
+-#  --enable-lookahead-fsts  Enable LookAheadFst extensions (def: no)
+-#  --enable-mpdt            Enable MPDT extensions (def: no)
+-#  --enable-ngram-fsts      Enable NGramFst extensions (def: no)
+-#  --enable-pdt             Enable PDT extensions (def: no)
+-#  --enable-python          Enable Python extension (def: no)
+-#  --enable-special         Enable special-matcher extensions (def: no)
+-
+-PACKAGECONFIG ??= "bin static-only-libs far ngram-fsts"
+-
+-PACKAGECONFIG[bin] = "--enable-bin,--disable-bin,,"
+-PACKAGECONFIG[static-only-libs] = "--enable-static --disable-shared,--enable-static --enable-shared,,"
+-PACKAGECONFIG[compact-fsts] = "--enable-compact-fsts,--disable-compact-fsts,,"
+-PACKAGECONFIG[compress] = "--enable-compress,--disable-compress,zlib,"
+-PACKAGECONFIG[const-fsts] = "--enable-const-fsts,--disable-const-fsts,,"
+-PACKAGECONFIG[far] = "--enable-far,--disable-far,,"
+-PACKAGECONFIG[grm] = "--enable-grm,--disable-grm,,"
+-PACKAGECONFIG[linear-fsts] = "--enable-linear-fsts,--disable-linear-fsts,,"
+-PACKAGECONFIG[lookahead-fsts] = "--enable-lookahead-fsts,--disable-lookahead-fsts,,"
+-PACKAGECONFIG[mpdt] = "--enable-mpdt,--disable-mpdt,,"
+-PACKAGECONFIG[ngram-fsts] = "--enable-ngram-fsts,--disable-ngram-fsts,,"
+-PACKAGECONFIG[pdt] = "--enable-pdt,--disable-pdt,,"
+-PACKAGECONFIG[python] = "--enable-python,--disable-python,,${PYTHON_PN}"
+-PACKAGECONFIG[special] = "--enable-special,--disable-special,,"
+-
+-FILES_${PN} += "${libdir}/fst/* ${PYTHON_SITEPACKAGES_DIR}/*"
+-FILES_${PN}-dev += "${libdir}/fst/*${SOLIBSDEV} ${libdir}/fst/*.la ${PYTHON_SITEPACKAGES_DIR}/*.la"
+-FILES_${PN}-staticdev += "${libdir}/fst/*.a ${PYTHON_SITEPACKAGES_DIR}/*.a"
+-
+-ALLOW_EMPTY_${PN} = "${@bb.utils.contains("PACKAGECONFIG", "bin", "0", "1", d)}"
 -- 
 2.7.4
 
