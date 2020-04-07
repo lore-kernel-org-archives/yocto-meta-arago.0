@@ -1,30 +1,48 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 425C35298B
+Return-Path: <pbarker@konsulko.com>
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+	[209.85.221.47])
+	by arago-project.org (Postfix) with ESMTPS id DDD7C52A29
 	for <meta-arago@arago-project.org>;
-	Mon,  6 Apr 2020 22:45:27 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 8CC8240BA3;
-	Mon,  6 Apr 2020 22:43:13 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id vUzmJGE00hgN; Mon,  6 Apr 2020 22:43:13 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5663B40027;
-	Mon,  6 Apr 2020 22:43:12 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id AA10A17126C;
-	Mon,  6 Apr 2020 18:43:11 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon,  6 Apr 2020 18:43:11 -0400
-Message-Id: <1586212991-51780-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] ltp-ddt: disable stime syscall due to glibc-2.31 deprecation
+	Tue,  7 Apr 2020 14:05:58 +0000 (UTC)
+Received: by mail-wr1-f47.google.com with SMTP id y44so479227wrd.13
+	for <meta-arago@arago-project.org>;
+	Tue, 07 Apr 2020 07:03:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+	h=date:from:to:subject:message-id:organization:mime-version
+	:content-transfer-encoding;
+	bh=AUKzG6W85ylE3cdVds1I058vhI1U4aArqilFYVfxk0s=;
+	b=hA+8fJXmY2ga+ft2wx/fABf1UJC9XW6o8ULFilDj4jljBwttlGF7PxqnlPNcYAiQUY
+	jSx1nllb67V40Aa43Bd/mqBsMvOBkcvoTCGGwXWz3793jlqLjJDW6ZfdjvD8DB3Ohx67
+	lAYDP7qyLj5WMMVwfAHY1rK/CIy+iDHuNfHa8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:date:from:to:subject:message-id:organization
+	:mime-version:content-transfer-encoding;
+	bh=AUKzG6W85ylE3cdVds1I058vhI1U4aArqilFYVfxk0s=;
+	b=UqQSpmDZT3qjqJiEc0oiaFvV3Kmrcn+iftGRXPDlUP5rb3xV1re2WjqVW1+QUM071/
+	bKgYc+hz8VCWYd4n/NRoJa9V59DItHQ5bmpqc9mVW1osQycF74YCEhZa1jlboyOec6u9
+	Hnu2ciNfTQleMGxgNDdEaYrbKnBk45sZdJjS1b0Hs5w0ElRBfpOWeHC4CeiyfhXveMKM
+	s8hGiIqUf95CZPJr0FZPr2KHpuF9szX9CzgYU0MZOeSe7sdpny7sJr4irQgBA3S6vfTL
+	KaNwEdi5r8TKbMAkF7dmCggJ/qtImHFM/eC2fLerBWaG7dnMoqy0YU8yXebmY9u2//s6
+	+vKw==
+X-Gm-Message-State: AGi0PuZRqmaxhQqowMzpmuJ4HktBkp2NpWeLpWHq2Ysfc60tzTg0OgAh
+	yPqPm9t+ry/Bp0u0Ua0eSXDrsdQ3JR9Z/w==
+X-Google-Smtp-Source: APiQypJxv+qesO9J4pR5Z2fF72lSfK4MGzEri6V1Pqn+CInfyfprYxKEUA/L04gMJSbcMky37WCXSw==
+X-Received: by 2002:adf:fa51:: with SMTP id y17mr3132086wrr.358.1586268224022; 
+	Tue, 07 Apr 2020 07:03:44 -0700 (PDT)
+Received: from ub1910 ([213.48.11.149]) by smtp.gmail.com with ESMTPSA id
+	91sm25884769wrf.79.2020.04.07.07.03.43
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Tue, 07 Apr 2020 07:03:43 -0700 (PDT)
+Date: Tue, 7 Apr 2020 15:03:40 +0100
+From: Paul Barker <pbarker@konsulko.com>
+To: meta-arago@arago-project.org, Hongmei Gou <a0271529@ti.com>, Denys
+	Dmytriyenko <denys@ti.com>
+Message-ID: <20200407150340.5a2dd76f@ub1910>
+Organization: Konsulko Group
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Subject: tensorflow-lite-demo SRC_URI is broken
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,61 +55,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Apr 2020 22:45:27 -0000
+X-List-Received-Date: Tue, 07 Apr 2020 14:05:59 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Denys Dmytriyenko <denys@ti.com>
+Hi,
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- ...ernel-syscalls-disable-stime-due-to-glibc.patch | 25 ++++++++++++++++++++++
- .../recipes-devtools/ltp-ddt/ltp-ddt_20200217.bb   |  1 +
- 2 files changed, 26 insertions(+)
- create mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-testcases-kernel-syscalls-disable-stime-due-to-glibc.patch
+The SRC_URI entry in the recipe for tensorflow-lite-demo is broken, see
+meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-demo_git.bb.
+It points at a file on the master branch in a repo on github using a
+http URL with checksums. When something new was pushed to the
+repository about a week ago the checksums became invalid.
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-testcases-kernel-syscalls-disable-stime-due-to-glibc.patch b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-testcases-kernel-syscalls-disable-stime-due-to-glibc.patch
-new file mode 100644
-index 0000000..dbe4f50
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt/0001-testcases-kernel-syscalls-disable-stime-due-to-glibc.patch
-@@ -0,0 +1,25 @@
-+From a7b8b39581a195e5f7d5bd4185d59ad146d54bce Mon Sep 17 00:00:00 2001
-+From: Denys Dmytriyenko <denys@ti.com>
-+Date: Mon, 6 Apr 2020 18:15:12 -0400
-+Subject: [PATCH] testcases/kernel/syscalls: disable stime due to glibc-2.31
-+ deprecation
-+
-+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-+---
-+ testcases/kernel/syscalls/Makefile | 2 ++
-+ 1 file changed, 2 insertions(+)
-+
-+diff --git a/testcases/kernel/syscalls/Makefile b/testcases/kernel/syscalls/Makefile
-+index 45a00cf..d7b1d3b 100644
-+--- a/testcases/kernel/syscalls/Makefile
-++++ b/testcases/kernel/syscalls/Makefile
-+@@ -45,4 +45,6 @@ FILTER_OUT_DIRS	+= \
-+ 	setdomainname sethostname symlinkat ulimit ustat vfork vhangup vmsplice
-+ endif
-+ 
-++FILTER_OUT_DIRS	+= stime
-++
-+ include $(top_srcdir)/include/mk/generic_trunk_target.mk
-+-- 
-+2.7.4
-+
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200217.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200217.bb
-index 2c50813..9d36d37 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200217.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200217.bb
-@@ -47,6 +47,7 @@ SRC_URI = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;bran
-     file://0002-check-for-RES_USE_INET6-during-configure.patch \
-     file://0003-Add-knob-to-control-tirpc-support.patch \
-     file://0001-getcpu01-Rename-getcpu-to-avoid-conflict-with-glibc-.patch \
-+    file://0001-testcases-kernel-syscalls-disable-stime-due-to-glibc.patch \
- "
- 
- S = "${WORKDIR}/git"
+I can guess why this was done (to avoid downloding the whole repository
+via git) but it's a pretty terrible idea. The best solution may be to
+mirror this file in the TI tensorflow-lite-examples repository
+(https://git.ti.com/cgit/apps/tensorflow-lite-examples/) so there's no
+need to download it from a separate source.
+
+Thanks,
+
 -- 
-2.7.4
-
+Paul Barker
+Konsulko Group
 
