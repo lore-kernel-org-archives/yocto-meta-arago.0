@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 98CBB52A52
+	by arago-project.org (Postfix) with ESMTPS id 383CC52A29
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Apr 2020 00:47:24 +0000 (UTC)
+	Wed,  8 Apr 2020 00:47:25 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 2286A40C34;
-	Wed,  8 Apr 2020 00:45:10 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 3372D40A6E;
+	Wed,  8 Apr 2020 00:45:11 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id fd6cL6Jrjo7k; Wed,  8 Apr 2020 00:45:10 +0000 (UTC)
+	with ESMTP id aYok5x6PSN0d; Wed,  8 Apr 2020 00:45:11 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 07C0440C31;
-	Wed,  8 Apr 2020 00:45:08 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 204F540C1F;
+	Wed,  8 Apr 2020 00:45:10 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id B97B9171900;
+	by mail.denix.org (Postfix) with ESMTP id C5BE5171901;
 	Tue,  7 Apr 2020 20:45:08 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue,  7 Apr 2020 20:44:43 -0400
-Message-Id: <1586306702-7953-5-git-send-email-denis@denix.org>
+Date: Tue,  7 Apr 2020 20:44:44 -0400
+Message-Id: <1586306702-7953-6-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1586306702-7953-1-git-send-email-denis@denix.org>
 References: <1586306702-7953-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 05/24] big-data-ipc-demo-linux: require dsp machine feature
+Subject: [master][PATCH 06/24] point-cloud-viewer: require opencv distro feature
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,39 +45,38 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb     | 3 +--
- .../recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb     | 4 ++++
- 2 files changed, 5 insertions(+), 2 deletions(-)
+ .../recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb         | 4 ++++
+ .../recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb         | 2 +-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 50c24ae..bc2d121 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -144,8 +144,7 @@ EXTRA_PACKAGES_append_omapl138 = " ti-ipc-examples-linux"
- EXTRA_PACKAGES_append_am65xx = " ti-ipc-examples-linux"
- 
- EXTRA_PACKAGES_append_omap-a15 = " \
--    big-data-ipc-demo-linux \
--    big-data-ipc-demo-linux-firmware \
-+    ${@bb.utils.contains('MACHINE_FEATURES','dsp','big-data-ipc-demo-linux big-data-ipc-demo-linux-firmware','',d)} \
- "
- 
- # acontis-atemsys
-diff --git a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
-index 858dc2d..a75b4aa 100644
---- a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
-+++ b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo-linux_git.bb
-@@ -3,6 +3,10 @@ SUMMARY = "TI Big data IPC: Host linux examples"
- require recipes-ti/includes/ti-paths.inc
- require big-data-ipc-demo.inc
+diff --git a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+index baac49e..6e4394b 100644
+--- a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
++++ b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
+@@ -3,6 +3,10 @@ HOMEPAGE = "https://git.ti.com/processor-sdk/point-cloud-viewer/"
+ LICENSE = "TI-TSPA"
+ LIC_FILES_CHKSUM := "file://PointCloudViewer_manifest.html;md5=7ea694db2dd8d82fd91a18cab8c2c2db"
  
 +inherit features_check
 +
-+REQUIRED_MACHINE_FEATURES = "dsp"
++REQUIRED_DISTRO_FEATURES = "opencv"
 +
- DEPENDS = "ti-ipc \
-            ti-xdctools-native \
-            ti-sysbios \
+ PR = "r2"
+ 
+ COMPATIBLE_MACHINE = "dra7xx"
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
+index d164c71..25b1158 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-machinevision-demos_2.0.bb
+@@ -28,7 +28,7 @@ RDEPENDS_matrix-machinevision-demo-dlp3dscanner = " \
+ "
+ 
+ RDEPENDS_matrix-machinevision-demo-dlp3dscanner_append_dra7xx = " \
+-    ${@bb.utils.contains('MACHINE_FEATURES','gpu','point-cloud-viewer','',d)} \
++    ${@['','point-cloud-viewer'][oe.utils.all_distro_features(d, 'opencv', True, False) and bb.utils.contains('MACHINE_FEATURES', 'gpu', True, False, d)]} \
+ "
+ 
+ RDEPENDS_matrix-machinevision-demo-barcoderoi = " \
 -- 
 2.7.4
 
