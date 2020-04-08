@@ -1,30 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id B0A67529AD
+	by arago-project.org (Postfix) with ESMTPS id 55DCA52A29
 	for <meta-arago@arago-project.org>;
-	Tue,  7 Apr 2020 18:31:58 +0000 (UTC)
+	Wed,  8 Apr 2020 00:47:24 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 786F940C18;
-	Tue,  7 Apr 2020 18:29:44 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id ECD4540A6E;
+	Wed,  8 Apr 2020 00:45:09 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id VC1I3ZOQIlsl; Tue,  7 Apr 2020 18:29:44 +0000 (UTC)
+	with ESMTP id trVcvd8iYz8A; Wed,  8 Apr 2020 00:45:09 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4B28940027;
-	Tue,  7 Apr 2020 18:29:43 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D5E0B40C1D;
+	Wed,  8 Apr 2020 00:45:08 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id A256717126C;
-	Tue,  7 Apr 2020 14:29:42 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 94D391718E9;
+	Tue,  7 Apr 2020 20:45:08 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Tue,  7 Apr 2020 14:29:41 -0400
-Message-Id: <1586284181-49163-1-git-send-email-denis@denix.org>
+Date: Tue,  7 Apr 2020 20:44:40 -0400
+Message-Id: <1586306702-7953-2-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] toolchain-gcc: update versions for internal toolchain
+In-Reply-To: <1586306702-7953-1-git-send-email-denis@denix.org>
+References: <1586306702-7953-1-git-send-email-denis@denix.org>
+Subject: [master][PATCH 02/24] tensorflow-lite-demo: require dsp machine feature and opencl, opencv distro features
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,41 +39,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Apr 2020 18:31:59 -0000
+X-List-Received-Date: Wed, 08 Apr 2020 00:47:25 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/toolchain-gcc.inc | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb  | 11 +++++++++--
+ .../tensorflow-lite/tensorflow-lite-demo_git.bb               |  5 +++++
+ 2 files changed, 14 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-index 51ccd9e..587ba94 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-@@ -14,8 +14,8 @@ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-can
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
+index ffed472..994179c 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
+@@ -8,9 +8,16 @@ inherit packagegroup
+ ARMNN_PACKAGES = ""
+ #ARMNN_PACKAGES = "${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'armnn', '', d)}"
  
- # Set Cross and SDK toolchain preferences
- SDKGCCVERSION ?= "9%"
--SDKBINUVERSION ?= "2.32%"
--SDKGLIBCVERSION ?= "2.30%"
-+SDKBINUVERSION ?= "2.34%"
-+SDKGLIBCVERSION ?= "2.31%"
- SDKLINUXLIBCVERSION ?= "5.4%"
+-ANALYTICS = "\
++TENSORFLOW_DEMO = " \
++    ${@oe.utils.all_distro_features(d, 'opencv', 'tensorflow-lite-demo', '')} \
++"
++TENSORFLOW_DEMO_dra7xx = " \
++    ${@['','tensorflow-lite-demo'][oe.utils.all_distro_features(d, 'opencl opencv', True, False) and bb.utils.contains('MACHINE_FEATURES', 'dsp', True, False, d)]} \
++"
++
++ANALYTICS = " \
+     ${ARMNN_PACKAGES} \
+-    tensorflow-lite-demo \
++    ${TENSORFLOW_DEMO} \
+ "
+ ANALYTICS_keystone = ""
+ ANALYTICS_j7-evm = ""
+diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-demo_git.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-demo_git.bb
+index c8417e1..c45acf4 100644
+--- a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-demo_git.bb
++++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-demo_git.bb
+@@ -2,6 +2,11 @@ SUMMARY = "Tensorflow Lite Demo with input and display via OpenCV and TIDL accel
+ LICENSE = "Apache-2.0"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=d8927f3331d2b3e321b7dd1925166d25"
  
- PREFERRED_VERSION_gcc-crosssdk-${SDK_SYS} ?= "${SDKGCCVERSION}"
-@@ -33,8 +33,8 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
- # Set target toolchain preferences to match Cross/SDK by default
- # Can be overwritten globally, if needed
- GCCVERSION ?= "9%"
--BINUVERSION ?= "2.32%"
--GLIBCVERSION ?= "2.30%"
-+BINUVERSION ?= "2.34%"
-+GLIBCVERSION ?= "2.31%"
- LINUXLIBCVERSION ?= "5.4%"
++inherit features_check
++
++REQUIRED_DISTRO_FEATURES = "opencv"
++REQUIRED_DISTRO_FEATURES_append_dra7xx = " opencl"
++
+ DEPENDS = "tensorflow-lite flatbuffers opencv"
+ DEPENDS_append_dra7xx = " tidl-api"
  
- PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
 -- 
 2.7.4
 
