@@ -1,78 +1,45 @@
-Return-Path: <Ankur.Tyagi@gallagher.com>
-Received: from AUS01-ME1-obe.outbound.protection.outlook.com
-	(mail-eopbgr1360119.outbound.protection.outlook.com [40.107.136.119])
-	by arago-project.org (Postfix) with ESMTPS id E2CB0529AD
+Return-Path: <denys@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 65435529E5
 	for <meta-arago@arago-project.org>;
-	Wed,  8 Apr 2020 01:08:03 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
-	b=oHK+OGGyYc646srR66QCo+PkdAKza1dhDB+iJBHkmJIUkGd/xhgWNiHgn7z6q3/nzYMIWcuI9KM379H5ahjQCxCBr90OQyTLC1VT5scjkWfa1TgOUFsxZeSFM84diYxu1MCxgzRL8LHUDZHIEpJI4d9RHiM9egRvEmSEdM+nSc62qreLGFFhzad/Byg5kFAVV9Bs2fyqxfP6Ge2ubobaDg4quzhGAG9kQ9/40SFc5qhRuGHr5lKypoFVIzB7PdRzyoXS5Knvq6Kjcsr7oqfcJMURC9Bytve4JXJIa+saOP4Q0ldYqAeh4S7uuokmrOAa6tys1O7XiTJGkclmIEkXIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
-	s=arcselector9901;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=PR9guo3vFN35iG80d7vWzjd6FvgccbRPoQf7dy5U8Ts=;
-	b=kYB0eXiTCR9kFEGSEIveMG7YK25w260ds5fOigvzpoZEiA2ycIN3CCXBlwK5lDMg3zyd+iNiVX0zEgsPCDV9fVNBGik/14IzWaqWiY6mAEAf5e1XV/h8T/8xv3QgutcgwnOuw00ALDs1DG2l9Y6+Bdwp+evumPRXp02OgWn5MDZsXLL0/ziju6sA/W9ZbKrcjFzNTVgz6JHED+RsKcPyPsIoTmbI0g8Ho+/9gc2ne3nQ2X+3fwK9FHu2Es6qcXJstmSgapYh1/HgXTeTYDhFzZXYHG7Kw6BbBaqEasWe/mVsbdSxNBqBcfxcRJntlxpUntARR2qVj3Qe4G6u7D+cpA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
-	smtp.mailfrom=gallagher.com; dmarc=pass action=none
-	header.from=gallagher.com; dkim=pass header.d=gallagher.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gallagher.com;
-	s=selector1;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=PR9guo3vFN35iG80d7vWzjd6FvgccbRPoQf7dy5U8Ts=;
-	b=mQdDD97EZLRkW008cx9bsxI2C88EEsdMaAU4grfh+m4ipo7rqgbMXQ+B672kgpWzinLVu8I6oKBHyBpzRv6TwN/lChzVfQZm9nt9p+xFpC284fUJ8OXcppwWCsUBPk0IAHLm3KlGDyTYVXvPGO68ivNXLKBsJkXv5EIWgoONXfA=
-Received: from SY2PR01MB2426.ausprd01.prod.outlook.com (52.134.169.12) by
-	SY2PR01MB3018.ausprd01.prod.outlook.com (52.134.188.147) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.2878.17; Wed, 8 Apr 2020 01:05:46 +0000
-Received: from SY2PR01MB2426.ausprd01.prod.outlook.com
-	([fe80::3407:62c6:60f2:878]) by SY2PR01MB2426.ausprd01.prod.outlook.com
-	([fe80::3407:62c6:60f2:878%5]) with mapi id 15.20.2878.021;
-	Wed, 8 Apr 2020 01:05:46 +0000
-From: Ankur Tyagi <Ankur.Tyagi@gallagher.com>
-To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [meta-arago] [master][PATCH] arago.conf,
-	packagegroup-arago-tisdk-qte: enable examples PACKAGECONFIG for
-	qt5	modules
-Thread-Index: AQHWDT/X29s0xnKZ40mM4HA7f1LIT6huZ65w
-Date: Wed, 8 Apr 2020 01:05:46 +0000
-Message-ID: <SY2PR01MB2426FA52445FE2AB9C08818FE5C00@SY2PR01MB2426.ausprd01.prod.outlook.com>
+	Wed,  8 Apr 2020 07:31:26 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0387TBLG012086;
+	Wed, 8 Apr 2020 02:29:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1586330951;
+	bh=T45uME+EVsPZPHydc4fuXu3MPuhw3qArwvFdUgjREPY=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=PECmaF7hFDrD2izPDMQWqpZSI/vjLt77OG7QqX3DjgM4fSnOgSj4VrYvYcGGxm3xr
+	p0GX1LUwqA6Wc5vAkN4m2BEgCfAKpM8bConQhSCcX253WBCt+chPiOGYu0zQq/8a7b
+	+Z99Y0oVcrQoSZWtouIWK4zi5mxP/3FnbC4L/7s4=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0387TBC6040082
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 8 Apr 2020 02:29:11 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
+	Wed, 8 Apr 2020 02:29:11 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
+	Frontend Transport; Wed, 8 Apr 2020 02:29:11 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0387TBnj112255;
+	Wed, 8 Apr 2020 02:29:11 -0500
+Date: Wed, 8 Apr 2020 03:29:11 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Ankur Tyagi <Ankur.Tyagi@gallagher.com>
+Message-ID: <20200408072911.GT24070@beryl>
 References: <1586307071-8916-1-git-send-email-denis@denix.org>
-In-Reply-To: <1586307071-8916-1-git-send-email-denis@denix.org>
-Accept-Language: en-NZ, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=Ankur.Tyagi@gallagher.com; 
-x-originating-ip: [139.180.103.160]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: cf7e118f-454e-4c33-3dcc-08d7db58f86a
-x-ms-traffictypediagnostic: SY2PR01MB3018:
-x-microsoft-antispam-prvs: <SY2PR01MB3018DDC9FF7721204388B453E5C00@SY2PR01MB3018.ausprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4714;
-x-forefront-prvs: 0367A50BB1
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
-	IPV:NLI; SFV:NSPM; H:SY2PR01MB2426.ausprd01.prod.outlook.com;
-	PTR:; CAT:NONE; SFTY:;
-	SFS:(10019020)(366004)(9686003)(55016002)(66556008)(64756008)(66476007)(33656002)(76116006)(66946007)(81166006)(66446008)(8936002)(5660300002)(81156014)(52536014)(498600001)(966005)(71200400001)(110136005)(53546011)(2906002)(26005)(6506007)(186003)(7696005)(86362001);
-	DIR:OUT; SFP:1102; 
-received-spf: None (protection.outlook.com: gallagher.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: CG5b6hPAISuz022e/ui2PMYEo/4yasyU+LyZy72oRBAvftrGQ1NBh9pLb+RagbJXEwDYu/KAuQlCnbnl5K5LyTEt/7leG17SaRtF/IMHnrNYiGOvGh8WztV9KlnHfdvF7wi9U7KFdyphNQIsfCcaMW5k/wUeKBDukvMtP+FfASXYKquxLo1g4zuERv/031iWBxnfRytDzaJGdN01ThWIbPFIId6LOvBuJuJMYV9qnqTqMxbkRJsVs7ntfDEuZofUDa5jqxe7jZHOmkmcCW9G0YnIexmHgrJAH2iMNOiJTqXpugd8YuuXCSp5lsChpCpAuEsdokgF67e0euhxrHRiL2i2Ht9bKcwHrjb1JUkeZ+3ufotEp5dgzS8RBXOm2bilFlnnYG1Ha7lNlhm/Zvhcdrjo+9lnBr6puHo5BaE/WKkLE/8VPoMj/Q/gASSpS11TaC4DeBBRtUWC4azFiVY6Qed6j0QM6F9ZJeY1vzJzpI/Nha8uZWPKb9UjWXZP8zh09TSxp1xft7gmpmDpt1/Zdw==
-x-ms-exchange-antispam-messagedata: zfKCm/kRuiV5UEM3/6OJ64w7Slv5aD4ly4T8Swm8hcoOt7W3vNSu1dzABgMI7laDvfGIaUUlpusJ5EDoMn38Ui6V8LEyRyUEQtsKjr9+AqUkhLXa71fnmr3Fv27gnUYH6A1WrPlhbo074jJRCgHaew==
-x-ms-exchange-transport-forked: True
+	<SY2PR01MB2426FA52445FE2AB9C08818FE5C00@SY2PR01MB2426.ausprd01.prod.outlook.com>
 MIME-Version: 1.0
-X-OriginatorOrg: gallagher.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf7e118f-454e-4c33-3dcc-08d7db58f86a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Apr 2020 01:05:46.6892 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 2156b869-431f-4815-b2ce-b4893b5c9aaa
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wWnavfTbdX1kA7nTedGIj3gw+klLiIjt2vixbbiCx9ILBaaHX8CPRcsV2OM3Hs431IMh3NHWixR85Y6JGzGe8yz+E0a44d4QEGQvLB5yLO0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SY2PR01MB3018
-Subject: Re: [master][PATCH] arago.conf, packagegroup-arago-tisdk-qte: enable examples PACKAGECONFIG for qt5	modules
+In-Reply-To: <SY2PR01MB2426FA52445FE2AB9C08818FE5C00@SY2PR01MB2426.ausprd01.prod.outlook.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [master][PATCH] arago.conf, packagegroup-arago-tisdk-qte: enable examples PACKAGECONFIG for qt5 modules
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -85,94 +52,106 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Apr 2020 01:08:04 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 08 Apr 2020 07:31:26 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Hi Denys
+On Wed, Apr 08, 2020 at 01:05:46AM +0000, Ankur Tyagi wrote:
+> Hi Denys
+> 
+> > -----Original Message-----
+> > From: meta-arago-bounces@arago-project.org <meta-arago-bounces@arago-
+> > project.org> On Behalf Of Denys Dmytriyenko
+> > Sent: Wednesday, 8 April 2020 12:51 PM
+> > To: meta-arago@arago-project.org
+> > Subject: [meta-arago] [master][PATCH] arago.conf, packagegroup-arago-tisdk-
+> > qte: enable examples PACKAGECONFIG for qt5 modules
+> > 
+> > From: Denys Dmytriyenko <denys@ti.com>
+> > 
+> > qtdeclarative-examples is broken for now.
+> > 
+> > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> > ---
+> >  meta-arago-distro/conf/distro/arago.conf                     | 12 +++++++++++-
+> >  .../packagegroups/packagegroup-arago-tisdk-qte.bb            |  2 +-
+> >  2 files changed, 12 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-
+> > distro/conf/distro/arago.conf
+> > index 3215fe7..05201f3 100644
+> > --- a/meta-arago-distro/conf/distro/arago.conf
+> > +++ b/meta-arago-distro/conf/distro/arago.conf
+> > @@ -103,7 +103,17 @@ PACKAGECONFIG_DISTRO_pn-qtbase = "icu examples
+> > accessibility gif gbm kms libinpu  PACKAGECONFIG_FONTS_pn-qtbase =
+> > "fontconfig"
+> > 
+> >  # Add gstreamer in package configuration to enable video -
+> > PACKAGECONFIG_append_pn-qtmultimedia  = " gstreamer"
+> > +PACKAGECONFIG_append_pn-qtmultimedia = " gstreamer"
+> > +
+> > +# Add examples in Qt5 package configurations
+> > +PACKAGECONFIG_append_pn-qtcharts = " examples"
+> > +#PACKAGECONFIG_append_pn-qtdeclarative = " examples"
+> > +PACKAGECONFIG_append_pn-qtlocation = " examples"
+> > +PACKAGECONFIG_append_pn-qtmultimedia = " examples"
+> > +PACKAGECONFIG_append_pn-qtscript = " examples"
+> > +PACKAGECONFIG_append_pn-qtserialport = " examples"
+> > +PACKAGECONFIG_append_pn-qtsvg = " examples"
+> > +PACKAGECONFIG_append_pn-qtwayland = " examples"
+> 
+> That means every image including Qt5 based on arago now have to override these
+> PACKAGECONFIG in bbappends as I don't expect anyone to include examples in their
+> production image.
+> Could this inclusion of examples in PACKAGECONFIG be handled in a better way that doesn't
+> impact other arago users? Somewhere inside packagegroup-arago-tisdk-qte?
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org <meta-arago-bounces@arago-
-> project.org> On Behalf Of Denys Dmytriyenko
-> Sent: Wednesday, 8 April 2020 12:51 PM
-> To: meta-arago@arago-project.org
-> Subject: [meta-arago] [master][PATCH] arago.conf, packagegroup-arago-tisd=
-k-
-> qte: enable examples PACKAGECONFIG for qt5 modules
->=20
-> From: Denys Dmytriyenko <denys@ti.com>
->=20
-> qtdeclarative-examples is broken for now.
->=20
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> ---
->  meta-arago-distro/conf/distro/arago.conf                     | 12 ++++++=
-+++++-
->  .../packagegroups/packagegroup-arago-tisdk-qte.bb            |  2 +-
->  2 files changed, 12 insertions(+), 2 deletions(-)
->=20
-> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-
-> distro/conf/distro/arago.conf
-> index 3215fe7..05201f3 100644
-> --- a/meta-arago-distro/conf/distro/arago.conf
-> +++ b/meta-arago-distro/conf/distro/arago.conf
-> @@ -103,7 +103,17 @@ PACKAGECONFIG_DISTRO_pn-qtbase =3D "icu examples
-> accessibility gif gbm kms libinpu  PACKAGECONFIG_FONTS_pn-qtbase =3D
-> "fontconfig"
->=20
->  # Add gstreamer in package configuration to enable video -
-> PACKAGECONFIG_append_pn-qtmultimedia  =3D " gstreamer"
-> +PACKAGECONFIG_append_pn-qtmultimedia =3D " gstreamer"
-> +
-> +# Add examples in Qt5 package configurations
-> +PACKAGECONFIG_append_pn-qtcharts =3D " examples"
-> +#PACKAGECONFIG_append_pn-qtdeclarative =3D " examples"
-> +PACKAGECONFIG_append_pn-qtlocation =3D " examples"
-> +PACKAGECONFIG_append_pn-qtmultimedia =3D " examples"
-> +PACKAGECONFIG_append_pn-qtscript =3D " examples"
-> +PACKAGECONFIG_append_pn-qtserialport =3D " examples"
-> +PACKAGECONFIG_append_pn-qtsvg =3D " examples"
-> +PACKAGECONFIG_append_pn-qtwayland =3D " examples"
+That's not how it works. PACKAGECONFIG controls what gets built, and not what 
+gets included into the images.
 
-That means every image including Qt5 based on arago now have to override th=
-ese
-PACKAGECONFIG in bbappends as I don't expect anyone to include examples in =
-their
-production image.
-Could this inclusion of examples in PACKAGECONFIG be handled in a better wa=
-y that doesn't
-impact other arago users? Somewhere inside packagegroup-arago-tisdk-qte?
+This patch actually restores existing behavior - meta-qt5 used to enable 
+examples for all qt5 modules, based on qtbase PACKAGECONFIG, which is already 
+set above. Now meta-qt5 requires "examples" PACKAGECONFIG for each individual 
+qt5 module.
 
-Regards
-Ankur
+And packagegroup-arago-tisdk-qte below already had all corresponding examples 
+packages listed to be added into our default image. But you are free not to 
+include such packages into your production image - it's as simple as not 
+listing them in corresponding RDEPENDS on IMAGE_INSTALL...
 
->  # Prefer OpenSSL over GnuTLS for curl due to TSU exemptions
-> PACKAGECONFIG_pn-curl =3D "${@bb.utils.contains("DISTRO_FEATURES", "ipv6"=
-,
-> "ipv6", "", d)} ssl zlib"
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
-> arago-tisdk-qte.bb b/meta-arago-distro/recipes-
-> core/packagegroups/packagegroup-arago-tisdk-qte.bb
-> index f83ac52..a2e3794 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
-> tisdk-qte.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-ti
-> +++ sdk-qte.bb
-> @@ -12,9 +12,9 @@ QT4_DEMOS =3D "\
->      ${@oe.utils.conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles',
-> 'quick-playground', '', d)} \  "
->=20
-> +#    qtdeclarative-examples
->  QT5_DEMOS =3D "\
->      qtbase-examples \
-> -    qtdeclarative-examples \
->      qtdeclarative-tools \
->      qtlocation-examples \
->      qtmultimedia-examples \
-> --
-> 2.7.4
->=20
+-- 
+Denys
+
+
+> >  # Prefer OpenSSL over GnuTLS for curl due to TSU exemptions
+> > PACKAGECONFIG_pn-curl = "${@bb.utils.contains("DISTRO_FEATURES", "ipv6",
+> > "ipv6", "", d)} ssl zlib"
+> > diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-
+> > arago-tisdk-qte.bb b/meta-arago-distro/recipes-
+> > core/packagegroups/packagegroup-arago-tisdk-qte.bb
+> > index f83ac52..a2e3794 100644
+> > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-
+> > tisdk-qte.bb
+> > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-ti
+> > +++ sdk-qte.bb
+> > @@ -12,9 +12,9 @@ QT4_DEMOS = "\
+> >      ${@oe.utils.conditional('ARAGO_QT_PROVIDER', 'qt4-embedded-gles',
+> > 'quick-playground', '', d)} \  "
+> > 
+> > +#    qtdeclarative-examples
+> >  QT5_DEMOS = "\
+> >      qtbase-examples \
+> > -    qtdeclarative-examples \
+> >      qtdeclarative-tools \
+> >      qtlocation-examples \
+> >      qtmultimedia-examples \
+> > --
+> > 2.7.4
+> > 
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 > _______________________________________________
 > meta-arago mailing list
 > meta-arago@arago-project.org
