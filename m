@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 17F7C5298B
+	by arago-project.org (Postfix) with ESMTPS id 3147252A63
 	for <meta-arago@arago-project.org>;
 	Sat, 11 Apr 2020 22:35:10 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id E622140C31;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id F1DF4409DE;
 	Sat, 11 Apr 2020 22:32:54 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 7xrDNuMbPeWL; Sat, 11 Apr 2020 22:32:54 +0000 (UTC)
+	with ESMTP id AAtdMoU_aq1p; Sat, 11 Apr 2020 22:32:54 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D1675409DE;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D473740C34;
 	Sat, 11 Apr 2020 22:32:53 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 9FAC91723CF;
+	by mail.denix.org (Postfix) with ESMTP id AB5EE172478;
 	Sat, 11 Apr 2020 18:32:51 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Sat, 11 Apr 2020 18:32:46 -0400
-Message-Id: <1586644369-16268-7-git-send-email-denis@denix.org>
+Date: Sat, 11 Apr 2020 18:32:47 -0400
+Message-Id: <1586644369-16268-8-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1586644369-16268-1-git-send-email-denis@denix.org>
 References: <1586644369-16268-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 07/10] meta-toolchain-arago: use SDK_XZ_OPTIONS and SDKDEPLOYDIR
+Subject: [master][PATCH 08/10] packagegroup-*-gst-sdk-target: require opencl distro feature for dsp66 gst plugin
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,57 +43,24 @@ X-List-Received-Date: Sat, 11 Apr 2020 22:35:13 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-1. SDK_XZ_OPTIONS is now standard set of xz options set by oe-core
-2. SDKDEPLYDIR used to play nice with shared state
-
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-core/meta/meta-toolchain-arago.bb              | 14 +++++---------
- 1 file changed, 5 insertions(+), 9 deletions(-)
+ .../recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-index 6f55cca..9ef84f0 100644
---- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-+++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-@@ -14,10 +14,6 @@ require recipes-core/meta/meta-toolchain.bb
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
+index c606f70..0d6391d 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst-sdk-target.bb
+@@ -15,7 +15,7 @@ GSTREAMER_DEPS = " \
+ "
  
- PR = "r35"
+ GSTREAMER_DSP = " \
+-    ${@bb.utils.contains('MACHINE_FEATURES', 'dsp', 'gstreamer1.0-plugins-dsp66-dev', '', d)} \
++    ${@['','gstreamer1.0-plugins-dsp66-dev'][oe.utils.all_distro_features(d, 'opencl', True, False) and bb.utils.contains('MACHINE_FEATURES', 'dsp', True, False, d)]} \
+ "
  
--XZ_COMPRESSION_LEVEL ?= "-e -6"
--XZ_INTEGRITY_CHECK ?= "crc32"
--XZ_THREADS ?= "-T 0"
--
- # This function creates an environment-setup-script for use in a deployable SDK
- toolchain_create_sdk_env_script () {
- 	# Create environment setup script
-@@ -145,13 +141,13 @@ cleanup_toolchain_packages() {
- 
- fakeroot archive_sdk() {
- 	# Package it up
--	mkdir -p ${SDK_DEPLOY}
-+	mkdir -p ${SDKDEPLOYDIR}
- 	cd ${SDK_OUTPUT}/${SDKPATH}
--	tar --owner=root --group=root -c . | xz -f -k -c ${XZ_COMPRESSION_LEVEL} ${XZ_THREADS} --check=${XZ_INTEGRITY_CHECK} - > ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.xz
-+	tar --owner=root --group=root -c . | xz ${SDK_XZ_OPTIONS} > ${SDKDEPLOYDIR}/${TOOLCHAIN_OUTPUTNAME}.${SDK_ARCHIVE_TYPE}
- }
- 
- fakeroot create_shar() {
--	cat << "EOF" > ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.sh
-+	cat << "EOF" > ${SDKDEPLOYDIR}/${TOOLCHAIN_OUTPUTNAME}.sh
- #!/bin/bash
- 
- INST_ARCH=$(uname -m | sed -e "s/i[3-6]86/ix86/" -e "s/x86[-_]64/x86_64/")
-@@ -340,8 +336,8 @@ exit 0
- MARKER:
- EOF
- 	# append the SDK tarball
--	cat ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.xz >> ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.sh
-+	cat ${SDKDEPLOYDIR}/${TOOLCHAIN_OUTPUTNAME}.${SDK_ARCHIVE_TYPE} >> ${SDKDEPLOYDIR}/${TOOLCHAIN_OUTPUTNAME}.sh
- 
- 	# delete the old tarball, we don't need it anymore
--	rm ${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.xz
-+	rm ${SDKDEPLOYDIR}/${TOOLCHAIN_OUTPUTNAME}.${SDK_ARCHIVE_TYPE}
- }
+ GSTREAMER_DEPS_append_dra7xx = " \
 -- 
 2.7.4
 
