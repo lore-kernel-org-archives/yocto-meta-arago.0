@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 74677529F6
+	by arago-project.org (Postfix) with ESMTPS id 6A42F529E8
 	for <meta-arago@arago-project.org>;
 	Sat, 11 Apr 2020 22:35:09 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 35ED140C3D;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 33A9440C36;
 	Sat, 11 Apr 2020 22:32:54 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 2rdNYOiBG06w; Sat, 11 Apr 2020 22:32:54 +0000 (UTC)
+	with ESMTP id iUZ_pnqTegfE; Sat, 11 Apr 2020 22:32:54 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 21A6940C30;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1FEFE40C1F;
 	Sat, 11 Apr 2020 22:32:53 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 708C8172127;
+	by mail.denix.org (Postfix) with ESMTP id 88E931722C2;
 	Sat, 11 Apr 2020 18:32:51 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Sat, 11 Apr 2020 18:32:42 -0400
-Message-Id: <1586644369-16268-3-git-send-email-denis@denix.org>
+Date: Sat, 11 Apr 2020 18:32:44 -0400
+Message-Id: <1586644369-16268-5-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1586644369-16268-1-git-send-email-denis@denix.org>
 References: <1586644369-16268-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 03/10] packagegroup-*-opencl-sdk*: require opencl distro feature, plus openmp for openmpacc, linalg
+Subject: [master][PATCH 05/10] openmpacc: do not require dsp machine feature for native and nativesdk packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,71 +45,22 @@ From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bb | 10 ++++++----
- .../packagegroup-arago-tisdk-opencl-sdk-target.bb             | 11 ++++++-----
- 2 files changed, 12 insertions(+), 9 deletions(-)
+ meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bb
-index 321af12..f1accc0 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-host.bb
-@@ -4,19 +4,21 @@ PR = "r1"
+diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
+index c56dee2..1c01f5a 100644
+--- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
++++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
+@@ -5,6 +5,8 @@ LICENSE = "BSD"
+ inherit features_check
  
- PACKAGE_ARCH = "${MACHINE_ARCH}"
+ REQUIRED_MACHINE_FEATURES = "dsp"
++REQUIRED_MACHINE_FEATURES_class-native = ""
++REQUIRED_MACHINE_FEATURES_class-nativesdk = ""
+ REQUIRED_DISTRO_FEATURES = "opencl openmp"
  
--inherit packagegroup
-+inherit packagegroup features_check
-+
-+REQUIRED_DISTRO_FEATURES = "opencl"
- 
- UTILS = " \
-     opencl-examples-src \
--    openmpacc-examples-src \
-+    ${@oe.utils.all_distro_features(d, 'openmp', 'openmpacc-examples-src')} \
- "
- 
- UTILS_append_k2hk = " \
--    linalg-examples-src \
-+    ${@oe.utils.all_distro_features(d, 'openmp', 'linalg-examples-src')} \
- "
- 
- UTILS_append_dra7xx = " \
--    linalg-examples-src \
-+    ${@oe.utils.all_distro_features(d, 'openmp', 'linalg-examples-src')} \
- "
- 
- RDEPENDS_${PN} = "\
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb
-index b103315..550e5b9 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-opencl-sdk-target.bb
-@@ -4,20 +4,21 @@ PR = "r2"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--inherit packagegroup
-+inherit packagegroup features_check
-+
-+REQUIRED_DISTRO_FEATURES = "opencl"
- 
- UTILS = " \
-     opencl-staticdev \
--    openmpacc-dev \
--    python-pyopencl-dev \
-+    ${@oe.utils.all_distro_features(d, 'openmp', 'openmpacc-dev')} \
- "
- 
- UTILS_append_k2hk = " \
--    linalg-dev \
-+    ${@oe.utils.all_distro_features(d, 'openmp', 'linalg-dev')} \
- "
- 
- UTILS_append_dra7xx = " \
--    linalg-dev \
-+    ${@oe.utils.all_distro_features(d, 'openmp', 'linalg-dev')} \
- "
- 
- RDEPENDS_${PN} = "\
+ PV = "1.5.6.0"
 -- 
 2.7.4
 
