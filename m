@@ -1,41 +1,30 @@
-Return-Path: <xuj@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id CCA7A52A3C
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 63C34529BE
 	for <meta-arago@arago-project.org>;
-	Wed, 15 Apr 2020 17:33:56 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 03FHVefO039715
-	for <meta-arago@arago-project.org>; Wed, 15 Apr 2020 12:31:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1586971900;
-	bh=+ZkQvBCXPFUBP9ymnoEe0Gt4brr7UIuRflLCrvhxcOs=;
-	h=From:To:CC:Subject:Date;
-	b=MbhciKN3rX2sYduJj4PVZZRG0Ltc7dn1f85Iszq/EdxyRzzVJ3uq8mXNZIUB1CpYi
-	VIldq3b8Q4ls8RVKXY+KjgKYTw4R39MKkwX+LyE8B/1A5S8h/aoAIIQwZGUPneFGZ/
-	YM6+PF/GPajKi28PaQlJMJN3cAsBKd2b4ThXTeb0=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03FHVeHc067833
-	for <meta-arago@arago-project.org>; Wed, 15 Apr 2020 12:31:40 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3;
-	Wed, 15 Apr 2020 12:31:39 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1847.3 via
-	Frontend Transport; Wed, 15 Apr 2020 12:31:39 -0500
-Received: from UDA0869574.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03FHVdt8116566;
-	Wed, 15 Apr 2020 12:31:39 -0500
-From: Jianzhong Xu <xuj@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 15 Apr 2020 13:31:36 -0400
-Message-ID: <20200415173136.25767-1-xuj@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [meta-processor-sdk][PATCH] neo-ai-dlr-demo: bump up SRCREV
+	Mon, 20 Apr 2020 22:32:30 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 2376C40C1C;
+	Mon, 20 Apr 2020 22:30:12 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id PkeWHoOCn01Q; Mon, 20 Apr 2020 22:30:12 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0352040A32;
+	Mon, 20 Apr 2020 22:30:10 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id B594016E3AC;
+	Mon, 20 Apr 2020 18:30:10 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 20 Apr 2020 18:30:10 -0400
+Message-Id: <1587421810-17904-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH] Revert "HACK: packagegroups: disable open62541 for now due to breakage"
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,27 +37,76 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Apr 2020 17:33:57 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 20 Apr 2020 22:32:30 -0000
 
+From: Denys Dmytriyenko <denys@ti.com>
+
+This reverts commit 188e403122833cbc6292466119b24fc7fe83b38a.
 ---
- recipes-support/neo-ai-dlr/neo-ai-dlr-demo_git.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb       | 4 ++--
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb     | 4 ++--
+ .../packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb          | 4 ++--
+ 3 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/recipes-support/neo-ai-dlr/neo-ai-dlr-demo_git.bb b/recipes-support/neo-ai-dlr/neo-ai-dlr-demo_git.bb
-index 4cccf0e..581cfd2 100644
---- a/recipes-support/neo-ai-dlr/neo-ai-dlr-demo_git.bb
-+++ b/recipes-support/neo-ai-dlr/neo-ai-dlr-demo_git.bb
-@@ -11,7 +11,7 @@ SRC_URI = "git://github.com/TexasInstruments/neo-ai-dlr;protocol=https;branch=${
-            file://Makefile.build;subdir=demosrc \
-           "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index bbdf1d5..dfc3741 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+@@ -6,9 +6,9 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
--SRCREV_neo-ai-dlr = "40394be2e39eaa6248f9bf0a1143692083c0e3d2"
-+SRCREV_neo-ai-dlr = "aefda8ab117ea437ba01b1cc7e54d9e866cabeea"
+ inherit packagegroup
  
- S = "${WORKDIR}/demosrc"
+-#         open62541-dev
+-#         open62541-staticdev
+ UTILS = "libdrm-dev \
++         open62541-dev \
++         open62541-staticdev \
+          "
  
+ UTILS_append_keystone = "\
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index bc2d121..e694765 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -10,8 +10,6 @@ PACKAGES =+ "${PN}-extra"
+ 
+ #    dt
+ 
+-#    open62541-examples
+-#    open62541-tests
+ UTILS = " \
+     am-sysinfo \
+     gdbserver \
+@@ -29,6 +27,8 @@ UTILS = " \
+     strongswan \
+     kexec \
+     kdump \
++    open62541-examples \
++    open62541-tests \
+ "
+ 
+ UTILS_UBOOT_FW = "libubootenv-bin"
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
+index 88af814..ab212fa 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
+@@ -12,13 +12,13 @@ TIDL_TOOLS = " \
+     nativesdk-tidl-utils \
+ "
+ 
+-#    nativesdk-open62541-examples
+-#    nativesdk-open62541-tests
+ EXTRA_TI_TOOLS = " \
+     nativesdk-ti-cgt6x \
+     nativesdk-ti-cgt-pru \
+     nativesdk-clocl \
+     ${@oe.utils.all_distro_features(d, "opencl openmp", "nativesdk-clacc")} \
++    nativesdk-open62541-examples \
++    nativesdk-open62541-tests \
+     nativesdk-gcc-arm-none-eabi \
+     ${@oe.utils.all_distro_features(d, "opencl opencv", "${TIDL_TOOLS}")} \
+ "
 -- 
-2.17.1
+2.7.4
 
 
