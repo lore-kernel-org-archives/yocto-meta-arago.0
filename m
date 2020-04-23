@@ -1,32 +1,32 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 4DB7C52A29
+	by arago-project.org (Postfix) with ESMTPS id 65C9B52A40
 	for <meta-arago@arago-project.org>;
 	Thu, 23 Apr 2020 23:59:41 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id E126640C33;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id E838740C18;
 	Thu, 23 Apr 2020 23:57:21 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id WuFQPy75LfMt; Thu, 23 Apr 2020 23:57:21 +0000 (UTC)
+	with ESMTP id 2Efhp_wP8KqW; Thu, 23 Apr 2020 23:57:21 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id BA6BD40C18;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D3A5540C35;
 	Thu, 23 Apr 2020 23:57:20 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 73DF1172A05;
+	by mail.denix.org (Postfix) with ESMTP id 98087172A08;
 	Thu, 23 Apr 2020 19:57:20 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 23 Apr 2020 19:57:16 -0400
-Message-Id: <1587686239-6605-2-git-send-email-denis@denix.org>
+Date: Thu, 23 Apr 2020 19:57:19 -0400
+Message-Id: <1587686239-6605-5-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1587686239-6605-1-git-send-email-denis@denix.org>
 References: <1587686239-6605-1-git-send-email-denis@denix.org>
-Subject: [master][PATCH 2/5] bash: revert previous overlayed fix for ptest
+Subject: [master][PATCH 5/5] arago.conf, toolchain-arm: drop custom TCLIBC settings in favor of upstream glibc
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,24 +43,87 @@ X-List-Received-Date: Thu, 23 Apr 2020 23:59:42 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Reverts 742186ca7ac250aebdcb916bd850300626f08f3f
+Looks like external-arm-toolchain has broken locale packaging, so disable those
+dependencies for now.
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-extended/bash/bash_%.bbappend | 3 ---
- 1 file changed, 3 deletions(-)
+ meta-arago-distro/conf/distro/arago.conf           |  4 +++
+ .../conf/distro/include/toolchain-arm.inc          |  1 -
+ .../include/tclibc-external-arm-toolchain.inc      | 38 ----------------------
+ 3 files changed, 4 insertions(+), 39 deletions(-)
+ delete mode 100644 meta-arago-extras/conf/distro/include/tclibc-external-arm-toolchain.inc
 
-diff --git a/meta-arago-distro/recipes-extended/bash/bash_%.bbappend b/meta-arago-distro/recipes-extended/bash/bash_%.bbappend
-index bbea260..01e4c85 100644
---- a/meta-arago-distro/recipes-extended/bash/bash_%.bbappend
-+++ b/meta-arago-distro/recipes-extended/bash/bash_%.bbappend
-@@ -1,6 +1,3 @@
- PR_append = ".arago0"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index deaa42b..c5d33e3 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -72,6 +72,10 @@ INITRAMFS_FSTYPES_k2l-hs-evm = "cpio.gz"
+ # Mask any broken recipes (currently none)
+ #BBMASK = ""
  
- EXTRA_OECONF += " --disable-command-timing"
++TMPDIR .= "-${ARMPKGARCH}-${TCMODE}"
++
++LIBC_DEPENDENCIES_remove = "glibc-gconv-cp1252 glibc-gconv-ibm850 glibc-gconv-iso8859-1 glibc-gconv-iso8859-15 glibc-localedata-i18n"
++
+ # Start with default set of distro features
+ DISTRO_FEATURES = "${DISTRO_FEATURES_DEFAULT} ${DISTRO_FEATURES_LIBC}"
+ 
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-arm.inc b/meta-arago-distro/conf/distro/include/toolchain-arm.inc
+index c5520ed..d2c2b2f 100644
+--- a/meta-arago-distro/conf/distro/include/toolchain-arm.inc
++++ b/meta-arago-distro/conf/distro/include/toolchain-arm.inc
+@@ -1,6 +1,5 @@
+ # Select external binary prebuilt Arm toolchain
+ TCMODE = "external-arm"
+-TCLIBC = "external-arm-toolchain"
+ 
+ EAT_TARGET_SYS_ARMV5 ?= "arm-none-linux-gnueabi"
+ EAT_TARGET_SYS_ARMV7 ?= "arm-none-linux-gnueabihf"
+diff --git a/meta-arago-extras/conf/distro/include/tclibc-external-arm-toolchain.inc b/meta-arago-extras/conf/distro/include/tclibc-external-arm-toolchain.inc
+deleted file mode 100644
+index 934b71b..0000000
+--- a/meta-arago-extras/conf/distro/include/tclibc-external-arm-toolchain.inc
++++ /dev/null
+@@ -1,38 +0,0 @@
+-#
+-# external Arm glibc specific configuration
+-#
 -
--DEPENDS_append_libc-glibc = " virtual/libc-locale"
--DEPENDS_remove = "glibc-locale"
+-LIBCEXTENSION = "${@['', '-gnu'][(d.getVar('ABIEXTENSION') or '') != '']}"
+-
+-# Add glibc overrides to the overrides for glibc.
+-LIBCOVERRIDE = ":libc-glibc"
+-OVERRIDES .= "${LIBCOVERRIDE}"
+-
+-PREFERRED_PROVIDER_virtual/libc-locale ?= "external-arm-toolchain"
+-
+-PREFERRED_PROVIDER_virtual/nativesdk-libiconv ?= "nativesdk-glibc"
+-PREFERRED_PROVIDER_virtual/nativesdk-libintl ?= "nativesdk-glibc"
+-PREFERRED_PROVIDER_virtual/nativesdk-libc ?= "nativesdk-glibc"
+-
+-LIBC_DEPENDENCIES = "libsegfault \
+-		     glibc \
+-		     glibc-dbg \
+-		     glibc-dev \
+-		     glibc-utils \
+-		     glibc-thread-db \
+-		     ${@get_libc_locales_dependencies(d)}"
+-
+-LIBC_LOCALE_DEPENDENCIES = "\
+-	glibc-localedata-i18n \
+-	glibc-gconv-ibm850 \
+-	glibc-gconv-cp1252 \
+-	glibc-gconv-iso8859-1 \
+-	glibc-gconv-iso8859-15 \
+-	locale-base-en-us \
+-	locale-base-en-gb"
+-
+-def get_libc_locales_dependencies(d):
+-    if 'libc-locales' in (d.getVar('DISTRO_FEATURES') or '').split() :
+-        return d.getVar('LIBC_LOCALE_DEPENDENCIES') or ''
+-    else:
+-        return ''
 -- 
 2.7.4
 
