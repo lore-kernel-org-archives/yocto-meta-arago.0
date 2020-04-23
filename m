@@ -1,42 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id ED375529E5
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 2CD23529E5
 	for <meta-arago@arago-project.org>;
-	Thu, 23 Apr 2020 23:37:11 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 03NNYqY9071663
-	for <meta-arago@arago-project.org>; Thu, 23 Apr 2020 18:34:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1587684892;
-	bh=HBZXn22ks/Lf4aQRxysG4ZE+M/+w1bRRdLyrgBSoR2M=;
-	h=From:To:CC:Subject:Date;
-	b=RbBARBy9YbXprs5bft4n+AcF7U0mzg0sEzrWae/tcS/fJTlCo2GgtCpjt8lWslKT+
-	730LO1sipRv0WD4KmCcNaoAV3polpGzPriUReqpzyQPZT4ruvsktrnwBjjfo88yKu4
-	OTNAOdk3r2UyN7zqKVRy/tswaLXLmOhYRQQRVIZ8=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 03NNYqFO048771
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 23 Apr 2020 18:34:52 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 23 Apr 2020 18:34:52 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 23 Apr 2020 18:34:52 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03NNYq8R075844;
-	Thu, 23 Apr 2020 18:34:52 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 23 Apr 2020 23:34:51 +0000
-Message-ID: <20200423233451.2477-1-denys@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [tisdk-build-scripts][PATCH] machine-specific-functions: add support for j7-hs-evm
+	Thu, 23 Apr 2020 23:59:41 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id CE73D40C36;
+	Thu, 23 Apr 2020 23:57:21 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id L7Mpt7mAl9xP; Thu, 23 Apr 2020 23:57:21 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id AA66440A6E;
+	Thu, 23 Apr 2020 23:57:20 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 6850C172A04;
+	Thu, 23 Apr 2020 19:57:20 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 23 Apr 2020 19:57:15 -0400
+Message-Id: <1587686239-6605-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH 1/5] ufs-tool: was upstreamed to meta-openembedded/meta-filesystem
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,28 +37,57 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Apr 2020 23:37:12 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 23 Apr 2020 23:59:41 -0000
+
+From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- lib/oesdk/machine-specific-functions | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-core/packagegroups/ti-test.bb            |  2 +-
+ meta-arago-extras/recipes-bsp/ufs/ufs-tool_git.bb    | 20 --------------------
+ 2 files changed, 1 insertion(+), 21 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-bsp/ufs/ufs-tool_git.bb
 
-diff --git a/lib/oesdk/machine-specific-functions b/lib/oesdk/machine-specific-functions
-index 845659f..e40a088 100644
---- a/lib/oesdk/machine-specific-functions
-+++ b/lib/oesdk/machine-specific-functions
-@@ -25,7 +25,7 @@ parse_machines() {
-                 CORTEX_MACHINES="$CORTEX_MACHINES"" $m"
-                 ARCHS="$ARCHS""\n""CORTEX"
-                 ;;
--            am65xx-evm | am65xx-hs-evm | j7-evm )
-+            am65xx-evm | am65xx-hs-evm | j7-evm | j7-hs-evm )
-                 AARCH64_MACHINES="$AARCH64_MACHINES"" $m"
-                 ARCHS="$ARCHS""\n""AARCH64"
-                 ;;
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+index 3e9bbf1..7b5db05 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+@@ -70,7 +70,7 @@ ARAGO_TI_TEST_append_am65xx = " \
+ ARAGO_TI_TEST_append_j7 = " \
+     viddec-test-app \
+     videnc-test-app \
+-    ufs-tool \
++    ufs-utils \
+ "
+ 
+ ARAGO_TI_TEST_append_keystone = " \
+diff --git a/meta-arago-extras/recipes-bsp/ufs/ufs-tool_git.bb b/meta-arago-extras/recipes-bsp/ufs/ufs-tool_git.bb
+deleted file mode 100644
+index 3b780c8..0000000
+--- a/meta-arago-extras/recipes-bsp/ufs/ufs-tool_git.bb
++++ /dev/null
+@@ -1,20 +0,0 @@
+-SUMMARY = "Tool to access UFS device from user space"
+-LICENSE = "GPLv2"
+-LIC_FILES_CHKSUM = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552"
+-
+-PV = "1.3"
+-
+-BRANCH ?= "dev"
+-
+-SRCREV = "8b00e33003b57d7071943f63863fcf8cc48d5be9"
+-
+-SRC_URI = "git://github.com/westerndigitalcorporation/ufs-tool.git;protocol=git;branch=${BRANCH}"
+-
+-S = "${WORKDIR}/git"
+-
+-EXTRA_OEMAKE = "CROSS_COMPILE=${TARGET_PREFIX} CC="${CC}""
+-
+-do_install() {
+-	install -d ${D}${bindir}/
+-	install -c -m 755 ${S}/ufs-tool ${D}${bindir}/
+-}
 -- 
-2.17.1
+2.7.4
 
 
