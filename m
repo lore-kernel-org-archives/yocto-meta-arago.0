@@ -1,30 +1,46 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id AFA5B52A76
+Return-Path: <nikhil.nd@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 142AF529FF
 	for <meta-arago@arago-project.org>;
-	Tue, 28 Apr 2020 23:24:56 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id EE98F40BDF;
-	Tue, 28 Apr 2020 23:22:35 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 4TIzADprUxiS; Tue, 28 Apr 2020 23:22:35 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D35C940AB5;
-	Tue, 28 Apr 2020 23:22:34 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 92D5F16E905;
-	Tue, 28 Apr 2020 19:22:34 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue, 28 Apr 2020 19:22:34 -0400
-Message-Id: <1588116154-42139-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] iproute2: drop previously overlayed 4.19 version
+	Wed, 29 Apr 2020 07:02:37 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 03T70H8s120121
+	for <meta-arago@arago-project.org>; Wed, 29 Apr 2020 02:00:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1588143617;
+	bh=etMa4ozCKGoRc7zixUqP8DR8SFL4+/m+5JiwK7Uz594=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=HqHN5ccyFRwi9wjcLaO2nEjs1pRbaXfrf8IF+6/YD4fy0K/yVTTEmLY7RCaETJmSv
+	GZxUyCSPSf+r78QZfvmyeCLCcsuRFWbGDr+LKi/nD5JQoluUnuowCsH4a4oDNhz8l5
+	TGpdmO+2rd72LgOtiAxhDbS6OYQZQR/ubofwKi98=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 03T70HZo117697
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Wed, 29 Apr 2020 02:00:17 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Wed, 29 Apr 2020 02:00:16 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Wed, 29 Apr 2020 02:00:16 -0500
+Received: from [10.24.69.115] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03T70FYw054517;
+	Wed, 29 Apr 2020 02:00:16 -0500
+To: Denys Dmytriyenko <denys@ti.com>
+References: <20200426174223.8089-1-nikhil.nd@ti.com>
+	<20200426174223.8089-2-nikhil.nd@ti.com> <20200427223706.GC395@beryl>
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
+Message-ID: <19d49725-4c55-296f-7eeb-43cb9c0845a4@ti.com>
+Date: Wed, 29 Apr 2020 12:30:14 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+	Thunderbird/68.7.0
+MIME-Version: 1.0
+In-Reply-To: <20200427223706.GC395@beryl>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [zeus PATCH v1 2/2] recipes-devtools: statcol: New recipe for statistics collector
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,226 +53,180 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Apr 2020 23:24:57 -0000
+X-List-Received-Date: Wed, 29 Apr 2020 07:02:38 -0000
+Content-Type: multipart/alternative;
+	boundary="------------3BB42203DFD7D90E7453658B"
+Content-Language: en-US
 
-From: Denys Dmytriyenko <denys@ti.com>
+--------------3BB42203DFD7D90E7453658B
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+
+
+On 28/04/20 4:07 am, Denys Dmytriyenko wrote:
+> On Sun, Apr 26, 2020 at 11:12:23PM +0530, nikhil.nd@ti.com wrote:
+>> From: Nikhil Devshatwar <nikhil.nd@ti.com>
+>>
+>> Statistics Collector is userspace application which communicates
+>> with remote processors to get the statistics data on target.
+>>
+>> This can be printed command line or sent over network for
+>> host-side visualization.
+>>
+>> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+>> ---
+>>   ...kagegroup-arago-tisdk-addons-sdk-target.bb |  1 +
+>>   .../recipes-devtools/statcol/statcol.bb       | 19 +++++++++++++++++++
+>>   2 files changed, 20 insertions(+)
+>>   create mode 100644 meta-arago-extras/recipes-devtools/statcol/statcol.bb
+>>
+>> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+>> index 54a59022..c6502a1f 100644
+>> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+>> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+>> @@ -135,6 +135,7 @@ UTILS_append_dra7xx = " can-utils-dev \
+>>   UTILS_append_k2g = " can-utils-dev"
+>>   UTILS_append_k3 = " can-utils-dev \
+>>                       websocketd \
+>> +                    statcol \
+>>   "
+>>   
+>>   EXTRA_LIBS = ""
+>> diff --git a/meta-arago-extras/recipes-devtools/statcol/statcol.bb b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
+>> new file mode 100644
+>> index 00000000..b87d940b
+>> --- /dev/null
+>> +++ b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
+>> @@ -0,0 +1,19 @@
+>> +SUMMARY = "Statistics collector application"
+>> +
+>> +LICENSE = "TI-TSPA"
+>> +LIC_FILES_CHKSUM = "file://LICENSE;md5=bb6bc27cd44417c389a180bd62f552a0"
+>> +
+>> +PROTOCOL = "git"
+>> +BRANCH = "master"
+>> +SRCREV = "80bac9aa2d20160197b336ab3c82ce9080091978"
+>> +SRC_URI = "git://git.ti.com/glsdk/statcol.git;protocol=${PROTOCOL};branch=${BRANCH}"
+>> +
+>> +DEPENDS = "rpmsg-char-helper websocketd"
+> Missing dependency on rpmsg-char-helper
+Oh, I thought this has been upstreamed to meta-arago. Since the coresdk 
+has support for rpmsg-char.
+I will post the recipe for rpmsg-char-helper.
+
+Regards,
+Nikhil D
+>
+>
+>> +
+>> +S = "${WORKDIR}/git"
+>> +
+>> +EXTRA_OEMAKE += "SYSROOT=${STAGING_DIR_TARGET} CROSS_COMPILE=${CROSS_COMPILE}"
+>> +
+>> +do_install() {
+>> +	DESTDIR=${D} make install
+>> +}
+>> -- 
+>> 2.17.1
+>>
+
+
+--------------3BB42203DFD7D90E7453658B
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 28/04/20 4:07 am, Denys Dmytriyenko
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:20200427223706.GC395@beryl">
+      <pre class="moz-quote-pre" wrap="">On Sun, Apr 26, 2020 at 11:12:23PM +0530, <a class="moz-txt-link-abbreviated" href="mailto:nikhil.nd@ti.com">nikhil.nd@ti.com</a> wrote:
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">From: Nikhil Devshatwar <a class="moz-txt-link-rfc2396E" href="mailto:nikhil.nd@ti.com">&lt;nikhil.nd@ti.com&gt;</a>
+
+Statistics Collector is userspace application which communicates
+with remote processors to get the statistics data on target.
+
+This can be printed command line or sent over network for
+host-side visualization.
+
+Signed-off-by: Nikhil Devshatwar <a class="moz-txt-link-rfc2396E" href="mailto:nikhil.nd@ti.com">&lt;nikhil.nd@ti.com&gt;</a>
 ---
- .../recipes-connectivity/iproute2/iproute2.inc     | 54 ----------------------
- .../iproute2/0001-ip-Remove-unneed-header.patch    | 30 ------------
- .../0001-libc-compat.h-add-musl-workaround.patch   | 41 ----------------
- .../iproute2/iproute2/configure-cross.patch        | 32 -------------
- .../iproute2/iproute2_4.19.0.bb                    | 14 ------
- 5 files changed, 171 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2.inc
- delete mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-ip-Remove-unneed-header.patch
- delete mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-libc-compat.h-add-musl-workaround.patch
- delete mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/configure-cross.patch
- delete mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.19.0.bb
+ ...kagegroup-arago-tisdk-addons-sdk-target.bb |  1 +
+ .../recipes-devtools/statcol/statcol.bb       | 19 +++++++++++++++++++
+ 2 files changed, 20 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/statcol/statcol.bb
 
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2.inc b/meta-arago-distro/recipes-connectivity/iproute2/iproute2.inc
-deleted file mode 100644
-index b283589..0000000
---- a/meta-arago-distro/recipes-connectivity/iproute2/iproute2.inc
-+++ /dev/null
-@@ -1,54 +0,0 @@
--SUMMARY = "TCP / IP networking and traffic control utilities"
--DESCRIPTION = "Iproute2 is a collection of utilities for controlling \
--TCP / IP networking and traffic control in Linux.  Of the utilities ip \
--and tc are the most important.  ip controls IPv4 and IPv6 \
--configuration and tc stands for traffic control."
--HOMEPAGE = "http://www.linuxfoundation.org/collaborate/workgroups/networking/iproute2"
--SECTION = "base"
--LICENSE = "GPLv2+"
--LIC_FILES_CHKSUM = "file://COPYING;md5=eb723b61539feef013de476e68b5c50a \
--                    file://ip/ip.c;beginline=3;endline=8;md5=689d691d0410a4b64d3899f8d6e31817"
--
--DEPENDS = "flex-native bison-native iptables elfutils libcap"
--
--inherit update-alternatives bash-completion pkgconfig
--
--CLEANBROKEN = "1"
--
--PACKAGECONFIG ??= "tipc"
--PACKAGECONFIG[tipc] = ",,libmnl,"
--
--EXTRA_OEMAKE = "CC='${CC}' KERNEL_INCLUDE=${STAGING_INCDIR} DOCDIR=${docdir}/iproute2 SUBDIRS='lib tc ip bridge misc genl ${@bb.utils.contains('PACKAGECONFIG', 'tipc', 'tipc', '', d)}' SBINDIR='${base_sbindir}' LIBDIR='${libdir}'"
--
--do_configure_append () {
--    sh configure ${STAGING_INCDIR}
--    # Explicitly disable ATM support
--    sed -i -e '/TC_CONFIG_ATM/d' config.mk
--}
--
--do_install () {
--    oe_runmake DESTDIR=${D} install
--    mv ${D}${base_sbindir}/ip ${D}${base_sbindir}/ip.iproute2
--    install -d ${D}${datadir}
--    mv ${D}/share/* ${D}${datadir}/ || true
--    rm ${D}/share -rf || true
--}
--
--# The .so files in iproute2-tc are modules, not traditional libraries
--INSANE_SKIP_${PN}-tc = "dev-so"
--
--PACKAGES =+ "${PN}-tc ${PN}-lnstat ${PN}-ifstat ${PN}-genl ${PN}-rtacct ${PN}-nstat ${PN}-ss ${@bb.utils.contains('PACKAGECONFIG', 'tipc', '${PN}-tipc', '', d)}"
--FILES_${PN}-tc = "${base_sbindir}/tc* \
--                  ${libdir}/tc/*.so"
--FILES_${PN}-lnstat = "${base_sbindir}/lnstat ${base_sbindir}/ctstat ${base_sbindir}/rtstat"
--FILES_${PN}-ifstat = "${base_sbindir}/ifstat"
--FILES_${PN}-genl = "${base_sbindir}/genl"
--FILES_${PN}-rtacct = "${base_sbindir}/rtacct"
--FILES_${PN}-nstat = "${base_sbindir}/nstat"
--FILES_${PN}-ss = "${base_sbindir}/ss"
--FILES_${PN}-tipc = "${base_sbindir}/tipc"
--
--ALTERNATIVE_${PN} = "ip"
--ALTERNATIVE_TARGET[ip] = "${base_sbindir}/ip.${BPN}"
--ALTERNATIVE_LINK_NAME[ip] = "${base_sbindir}/ip"
--ALTERNATIVE_PRIORITY = "100"
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-ip-Remove-unneed-header.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-ip-Remove-unneed-header.patch
-deleted file mode 100644
-index a9027c5..0000000
---- a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-ip-Remove-unneed-header.patch
-+++ /dev/null
-@@ -1,30 +0,0 @@
--From 02ed10fc5215c4a32e6740b0a0c2439659be6801 Mon Sep 17 00:00:00 2001
--From: Changhyeok Bae <changhyeok.bae@gmail.com>
--Date: Mon, 13 Nov 2017 15:59:35 +0000
--Subject: [PATCH] ip: Remove unneed header
--
--Fix redefinition of struct ethhdr with a suitably patched musl libc
--that suppresses the kernel if_ether.h.
--
--Signed-off-by: Changhyeok Bae <changhyeok.bae@gmail.com>
--
--Upstream-Status: Pending [netdev@vger.kernel.org]
-----
-- ip/iplink_bridge.c | 1 -
-- 1 file changed, 1 deletion(-)
--
--diff --git a/ip/iplink_bridge.c b/ip/iplink_bridge.c
--index cccdec1..f065b22 100644
----- a/ip/iplink_bridge.c
--+++ b/ip/iplink_bridge.c
--@@ -13,7 +13,6 @@
-- #include <stdlib.h>
-- #include <string.h>
-- #include <netinet/in.h>
---#include <netinet/ether.h>
-- #include <linux/if_link.h>
-- #include <linux/if_bridge.h>
-- #include <net/if.h>
---- 
--2.7.4
--
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-libc-compat.h-add-musl-workaround.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-libc-compat.h-add-musl-workaround.patch
-deleted file mode 100644
-index 50c4bfb..0000000
---- a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-libc-compat.h-add-musl-workaround.patch
-+++ /dev/null
-@@ -1,41 +0,0 @@
--From b7d96340c55afb7023ded0041107c63dbd886196 Mon Sep 17 00:00:00 2001
--From: Baruch Siach <baruch@tkos.co.il>
--Date: Thu, 22 Dec 2016 15:26:30 +0200
--Subject: [PATCH] libc-compat.h: add musl workaround
--
--The libc-compat.h kernel header uses glibc specific macros (__GLIBC__ and
--__USE_MISC) to solve conflicts with libc provided headers. This patch makes
--libc-compat.h work for musl libc as well.
--
--Upstream-Status: Pending
--
--Taken From:
--https://git.buildroot.net/buildroot/tree/package/iproute2/0001-Add-the-musl-workaround-to-the-libc-compat.h-copy.patch
--
--Signed-off-by: Baruch Siach <baruch@tkos.co.il>
--Signed-off-by: Maxin B. John <maxin.john@intel.com>
-----
-- include/uapi/linux/libc-compat.h | 4 +++-
-- 1 file changed, 3 insertions(+), 1 deletion(-)
--
--diff --git a/include/uapi/linux/libc-compat.h b/include/uapi/linux/libc-compat.h
--index f38571d..30f0b67 100644
----- a/include/uapi/linux/libc-compat.h
--+++ b/include/uapi/linux/libc-compat.h
--@@ -49,10 +49,12 @@
-- #define _LIBC_COMPAT_H
-- 
-- /* We have included glibc headers... */
---#if defined(__GLIBC__)
--+#if 1
--+#define __USE_MISC
-- 
-- /* Coordinate with glibc net/if.h header. */
-- #if defined(_NET_IF_H) && defined(__USE_MISC)
--+#define __UAPI_DEF_IF_NET_DEVICE_FLAGS_LOWER_UP_DORMANT_ECHO 0
-- 
-- /* GLIBC headers included first so don't define anything
--  * that would already be defined. */
---- 
--2.4.0
--
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/configure-cross.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/configure-cross.patch
-deleted file mode 100644
-index 8b75a2a..0000000
---- a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/configure-cross.patch
-+++ /dev/null
-@@ -1,32 +0,0 @@
--From 85b0589b4843c03e8e6fd9416d71ea449a73c5c0 Mon Sep 17 00:00:00 2001
--From: Koen Kooi <koen@dominion.thruhere.net>
--Date: Thu, 3 Nov 2011 10:46:16 +0100
--Subject: [PATCH] make configure cross compile safe
--
--According to Kevin Tian:
--Upstream-Status: Pending
--
--Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
--Signed-off-by: Shane Wang <shane.wang@intel.com>
--
--Index: iproute2-4.14.1/configure
--===================================================================
----- iproute2-4.14.1.orig/configure
--+++ iproute2-4.14.1/configure
--@@ -2,6 +2,7 @@
-- # This is not an autoconf generated configure
-- #
-- INCLUDE=${1:-"$PWD/include"}
--+SYSROOT=$1
-- 
-- # Output file which is input to Makefile
-- CONFIG=config.mk
--@@ -195,7 +196,7 @@ check_ipt_lib_dir()
-- 		return
-- 	fi
-- 
---	for dir in /lib /usr/lib /usr/local/lib
--+	for dir in $SYSROOT/lib $SYSROOT/usr/lib $SYSROOT/usr/local/lib
-- 	do
-- 		for file in $dir/{xtables,iptables}/lib*t_*so ; do
-- 			if [ -f $file ]; then
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.19.0.bb b/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.19.0.bb
-deleted file mode 100644
-index 6db4062..0000000
---- a/meta-arago-distro/recipes-connectivity/iproute2/iproute2_4.19.0.bb
-+++ /dev/null
-@@ -1,14 +0,0 @@
--require iproute2.inc
--
--SRC_URI = "${KERNELORG_MIRROR}/linux/utils/net/${BPN}/${BP}.tar.xz \
--           file://configure-cross.patch \
--           file://0001-libc-compat.h-add-musl-workaround.patch \
--           file://0001-ip-Remove-unneed-header.patch \
--          "
--
--SRC_URI[md5sum] = "67eeebacaac4515cab73dfd2fc796af3"
--SRC_URI[sha256sum] = "d9ec5ca1f47d8a85416fa26e7dc1cbf5d067640eb60e90bdc1c7e5bdc6a29984"
--
--# CFLAGS are computed in Makefile and reference CCOPTS
--#
--EXTRA_OEMAKE_append = " CCOPTS='${CFLAGS}'"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+index 54a59022..c6502a1f 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+@@ -135,6 +135,7 @@ UTILS_append_dra7xx = " can-utils-dev \
+ UTILS_append_k2g = " can-utils-dev"
+ UTILS_append_k3 = " can-utils-dev \
+                     websocketd \
++                    statcol \
+ "
+ 
+ EXTRA_LIBS = ""
+diff --git a/meta-arago-extras/recipes-devtools/statcol/statcol.bb b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
+new file mode 100644
+index 00000000..b87d940b
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
+@@ -0,0 +1,19 @@
++SUMMARY = "Statistics collector application"
++
++LICENSE = "TI-TSPA"
++LIC_FILES_CHKSUM = <a class="moz-txt-link-rfc2396E" href="file://LICENSE;md5=bb6bc27cd44417c389a180bd62f552a0">"file://LICENSE;md5=bb6bc27cd44417c389a180bd62f552a0"</a>
++
++PROTOCOL = "git"
++BRANCH = "master"
++SRCREV = "80bac9aa2d20160197b336ab3c82ce9080091978"
++SRC_URI = "git://git.ti.com/glsdk/statcol.git;protocol=${PROTOCOL};branch=${BRANCH}"
++
++DEPENDS = "rpmsg-char-helper websocketd"
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+Missing dependency on rpmsg-char-helper</pre>
+    </blockquote>
+    Oh, I thought this has been upstreamed to meta-arago. Since the
+    coresdk has support for rpmsg-char.<br>
+    I will post the recipe for rpmsg-char-helper.<br>
+    <br>
+    Regards,<br>
+    Nikhil D<br>
+    <blockquote type="cite" cite="mid:20200427223706.GC395@beryl">
+      <pre class="moz-quote-pre" wrap="">
+
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">+
++S = "${WORKDIR}/git"
++
++EXTRA_OEMAKE += "SYSROOT=${STAGING_DIR_TARGET} CROSS_COMPILE=${CROSS_COMPILE}"
++
++do_install() {
++	DESTDIR=${D} make install
++}
 -- 
-2.7.4
+2.17.1
 
+</pre>
+      </blockquote>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
+--------------3BB42203DFD7D90E7453658B--
