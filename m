@@ -1,30 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id F23BA529E5
+	by arago-project.org (Postfix) with ESMTPS id D6B6C529E5
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Apr 2020 15:12:52 +0000 (UTC)
+	Wed, 29 Apr 2020 15:17:02 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 2087140B6D;
-	Wed, 29 Apr 2020 15:10:32 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 02DE440B6D;
+	Wed, 29 Apr 2020 15:14:42 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id rpVjK5dj9zim; Wed, 29 Apr 2020 15:10:32 +0000 (UTC)
+	with ESMTP id 7S_VoEIcOaAE; Wed, 29 Apr 2020 15:14:41 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DC89C40951;
-	Wed, 29 Apr 2020 15:10:30 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7C71140951;
+	Wed, 29 Apr 2020 15:14:40 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 4E39017272F;
-	Wed, 29 Apr 2020 11:10:30 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 45B08172AD6;
+	Wed, 29 Apr 2020 11:14:40 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Wed, 29 Apr 2020 11:10:29 -0400
-Message-Id: <1588173029-31593-1-git-send-email-denis@denix.org>
+Date: Wed, 29 Apr 2020 11:14:40 -0400
+Message-Id: <1588173280-37815-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] ti-test: restore lost k3conf
+Subject: [master][PATCH] ltp-ddt: set prefix back to /opt/ltp instead of /opt/${PN}
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,34 +37,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2020 15:12:54 -0000
+X-List-Received-Date: Wed, 29 Apr 2020 15:17:03 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Addition of k3conf and migration to ti-test for package feeds was done in
-separate branches and during the merge, k3conf got accidentally missed.
-Restore it now.
+As using /opt/${PN} from upstream ltp recipe would result in /opt/ltp-ddt
+in case of ltp-ddt recipe. Set it back to /opt/ltp explicitly.
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/recipes-core/packagegroups/ti-test.bb | 4 ++++
- 1 file changed, 4 insertions(+)
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-index 7b5db05..c351774 100644
---- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-@@ -63,6 +63,10 @@ ARAGO_TI_TEST_append_omap-a15 = " \
-     ti-ipc-test \
- "
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+index 17d22b5..b403a71 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+@@ -19,6 +19,9 @@ BRANCH ?= "master"
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
+ SRC_URI_prepend = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} "
  
-+ARAGO_TI_TEST_append_k3 = " \
-+    k3conf \
-+"
++export prefix = "/opt/ltp"
++export exec_prefix = "/opt/ltp"
 +
- ARAGO_TI_TEST_append_am65xx = " \
-     ti-ipc-test \
- "
+ EXTRA_OEMAKE_append = " \
+     KERNEL_USR_INC=${STAGING_INCDIR} \
+     ALSA_INCPATH=${STAGING_INCDIR} \
 -- 
 2.7.4
 
