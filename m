@@ -1,46 +1,42 @@
 Return-Path: <nikhil.nd@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 0C480529FF
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 8FE1E529E5
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Apr 2020 07:04:13 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 03T71rVn077441
-	for <meta-arago@arago-project.org>; Wed, 29 Apr 2020 02:01:53 -0500
+	Wed, 29 Apr 2020 07:43:59 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 03T7fcfp130329
+	for <meta-arago@arago-project.org>; Wed, 29 Apr 2020 02:41:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1588143713;
-	bh=QC5S1wnK6oCfolZWSDPou4MCaNqo76p1jh491QY9x54=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=WpCCETDfeZBNgus1ymcaUY/jIMdeLds9vjahoDKt7U0eMAmgfRDXre5cNwIW/iyTH
-	ffCo/vl+ygfyT9AT+XgX3RN1dcEQHsIVGJOO+zwj2J/H1Go7K0U/R1CnCnR/5Pb6VQ
-	qytrg/LQmXcOygSSLJqgBjqEXV/ioLh/EjLFackY=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 03T71j0s120664
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 29 Apr 2020 02:01:51 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1588146098;
+	bh=VeC6x9KkK9tnIuPpzjMz+X8bEvi82uQ9E1rBc7P8vAo=;
+	h=From:To:CC:Subject:Date;
+	b=v/NUXDSGf2RMRS/2ARaZrudW+ONPpw1eZDUVjV0SfaTXkGNbP5BIKpiy7kKhqHz0m
+	VQ1YMiV+zoa8oJ2DoaQKkz81ufCWj1aZcOKrJ4t7U2S4e9cTpz8dhDqemJPHifsDuf
+	mSl5n3CSuBrn05UFf9mIiS883yVyRTS7XZW390mA=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03T7fcOf046411
+	for <meta-arago@arago-project.org>; Wed, 29 Apr 2020 02:41:38 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Wed, 29 Apr 2020 02:01:48 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 29 Apr 2020 02:41:38 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Wed, 29 Apr 2020 02:01:48 -0500
-Received: from [10.24.69.115] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03T71iv0110211;
-	Wed, 29 Apr 2020 02:01:46 -0500
-To: Denys Dmytriyenko <denys@ti.com>
-References: <20200426174223.8089-1-nikhil.nd@ti.com>
-	<20200427223734.GD395@beryl>
-From: Nikhil Devshatwar <nikhil.nd@ti.com>
-Message-ID: <f57d9d3d-c065-6ed6-c52b-c9f9698a51de@ti.com>
-Date: Wed, 29 Apr 2020 12:31:44 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.7.0
+	Frontend Transport; Wed, 29 Apr 2020 02:41:38 -0500
+Received: from swubn03.india.englab.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03T7fa68055004;
+	Wed, 29 Apr 2020 02:41:36 -0500
+From: <nikhil.nd@ti.com>
+To: <denys@ti.com>
+Date: Wed, 29 Apr 2020 13:11:33 +0530
+Message-ID: <20200429074133.6274-1-nikhil.nd@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20200427223734.GD395@beryl>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: Re: [zeus PATCH v1 1/2] recipes-devtools: websocketd: Add new recipe for websocket app
+Subject: [zeus PATCH v1] recipes-devtools: Add rpmsg-char-helper recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,175 +49,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2020 07:04:14 -0000
-Content-Type: multipart/alternative;
-	boundary="------------EDB03D53F6876996D57C9C9E"
-Content-Language: en-US
+X-List-Received-Date: Wed, 29 Apr 2020 07:43:59 -0000
+Content-Type: text/plain
 
---------------EDB03D53F6876996D57C9C9E
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
 
+rpmsg-char-helper library simplifies the userspace
+communication with the remoteproc devices.
 
-
-On 28/04/20 4:07 am, Denys Dmytriyenko wrote:
-> On Sun, Apr 26, 2020 at 11:12:22PM +0530, nikhil.nd@ti.com wrote:
->> From: Nikhil Devshatwar <nikhil.nd@ti.com>
->>
->> websocketd is a userspace application which allows to send
->> data over web sockets. This is used in SDK for visualizing
->> statistics parameters.
->>
->> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
->> ---
->>   ...packagegroup-arago-tisdk-addons-sdk-target.bb |  4 +++-
->>   .../recipes-devtools/websocketd/websocketd.bb    | 16 ++++++++++++++++
->>   2 files changed, 19 insertions(+), 1 deletion(-)
->>   create mode 100644 meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
->>
->> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
->> index 26925f2f..54a59022 100644
->> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
->> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
->> @@ -133,7 +133,9 @@ UTILS_append_dra7xx = " can-utils-dev \
->>                           elfutils-staticdev \
->>   "
->>   UTILS_append_k2g = " can-utils-dev"
->> -UTILS_append_k3 = " can-utils-dev"
->> +UTILS_append_k3 = " can-utils-dev \
->> +                    websocketd \
-> Why are you adding it to the devkit?
-This is an on target utility.
-Please suggest the best place for including this.
-
-
-Regards,
-Nikhil D
->
->> +"
->>   
->>   EXTRA_LIBS = ""
->>   EXTRA_LIBS_append_ti43x = "\
->> diff --git a/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb b/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
->> new file mode 100644
->> index 00000000..44f549ee
->> --- /dev/null
->> +++ b/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
->> @@ -0,0 +1,16 @@
->> +SUMMARY = "Application for routing native applications via websockets"
->> +HOMEPAGE = "http://websocketd.com/"
->> +
->> +LICENSE = "BSD-2-Clause"
->> +LIC_FILES_CHKSUM = "file://LICENSE;md5=a14d7befdbee1290ac5c472cd85d66f2"
->> +
->> +PV = "0.3.0"
->> +SRC_URI = "https://github.com/joewalnes/websocketd/releases/download/v${PV}/websocketd-${PV}-linux_arm64.zip"
->> +SRC_URI[md5sum] = "968c1ce4ed4fe5f86817f2533f5d3004"
->> +
->> +S = "${WORKDIR}"
->> +
->> +do_install() {
->> +	install -d ${D}/${bindir}
->> +	install -m 0755 ${S}/websocketd ${D}${bindir}/
->> +}
->> -- 
->> 2.17.1
->>
-
-
---------------EDB03D53F6876996D57C9C9E
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 28/04/20 4:07 am, Denys Dmytriyenko
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:20200427223734.GD395@beryl">
-      <pre class="moz-quote-pre" wrap="">On Sun, Apr 26, 2020 at 11:12:22PM +0530, <a class="moz-txt-link-abbreviated" href="mailto:nikhil.nd@ti.com">nikhil.nd@ti.com</a> wrote:
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">From: Nikhil Devshatwar <a class="moz-txt-link-rfc2396E" href="mailto:nikhil.nd@ti.com">&lt;nikhil.nd@ti.com&gt;</a>
-
-websocketd is a userspace application which allows to send
-data over web sockets. This is used in SDK for visualizing
-statistics parameters.
-
-Signed-off-by: Nikhil Devshatwar <a class="moz-txt-link-rfc2396E" href="mailto:nikhil.nd@ti.com">&lt;nikhil.nd@ti.com&gt;</a>
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
 ---
- ...packagegroup-arago-tisdk-addons-sdk-target.bb |  4 +++-
- .../recipes-devtools/websocketd/websocketd.bb    | 16 ++++++++++++++++
- 2 files changed, 19 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
+ .../rpmsg-char-helper/rpmsg-char-helper.bb     | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/rpmsg-char-helper/rpmsg-char-helper.bb
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-index 26925f2f..54a59022 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-@@ -133,7 +133,9 @@ UTILS_append_dra7xx = " can-utils-dev \
-                         elfutils-staticdev \
- "
- UTILS_append_k2g = " can-utils-dev"
--UTILS_append_k3 = " can-utils-dev"
-+UTILS_append_k3 = " can-utils-dev \
-+                    websocketd \
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-Why are you adding it to the devkit?
-</pre>
-    </blockquote>
-    This is an on target utility.<br>
-    Please suggest the best place for including this.<br>
-    <br>
-    <br>
-    Regards,<br>
-    Nikhil D<br>
-    <blockquote type="cite" cite="mid:20200427223734.GD395@beryl">
-      <pre class="moz-quote-pre" wrap="">
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">+"
- 
- EXTRA_LIBS = ""
- EXTRA_LIBS_append_ti43x = "\
-diff --git a/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb b/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
+diff --git a/meta-arago-extras/recipes-devtools/rpmsg-char-helper/rpmsg-char-helper.bb b/meta-arago-extras/recipes-devtools/rpmsg-char-helper/rpmsg-char-helper.bb
 new file mode 100644
-index 00000000..44f549ee
+index 00000000..ca008d7a
 --- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
-@@ -0,0 +1,16 @@
-+SUMMARY = "Application for routing native applications via websockets"
-+HOMEPAGE = <a class="moz-txt-link-rfc2396E" href="http://websocketd.com/">"http://websocketd.com/"</a>
++++ b/meta-arago-extras/recipes-devtools/rpmsg-char-helper/rpmsg-char-helper.bb
+@@ -0,0 +1,18 @@
++SUMMARY = "Rpmsg char Helper library recipe"
 +
-+LICENSE = "BSD-2-Clause"
-+LIC_FILES_CHKSUM = <a class="moz-txt-link-rfc2396E" href="file://LICENSE;md5=a14d7befdbee1290ac5c472cd85d66f2">"file://LICENSE;md5=a14d7befdbee1290ac5c472cd85d66f2"</a>
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
++PACKAGE_ARCH = "${MACHINE_ARCH}"
 +
-+PV = "0.3.0"
-+SRC_URI = <a class="moz-txt-link-rfc2396E" href="https://github.com/joewalnes/websocketd/releases/download/v${PV}/websocketd-${PV}-linux_arm64.zip">"https://github.com/joewalnes/websocketd/releases/download/v${PV}/websocketd-${PV}-linux_arm64.zip"</a>
-+SRC_URI[md5sum] = "968c1ce4ed4fe5f86817f2533f5d3004"
++PROTOCOL = "git"
++BRANCH = "master"
++SRCREV = "fba8b83ea02d978eefbbd65a885daafa9c93b479"
++SRC_URI = "git://git.ti.com/glsdk/rpmsg-char-helper.git;protocol=${PROTOCOL};branch=${BRANCH}"
 +
-+S = "${WORKDIR}"
++S = "${WORKDIR}/git"
 +
-+do_install() {
-+	install -d ${D}/${bindir}
-+	install -m 0755 ${S}/websocketd ${D}${bindir}/
-+}
++inherit autotools pkgconfig
++
++EXTRA_OECONF_j7-evm += " \
++	--with-soc=j7 \
++"
 -- 
 2.17.1
 
-</pre>
-      </blockquote>
-    </blockquote>
-    <br>
-  </body>
-</html>
 
---------------EDB03D53F6876996D57C9C9E--
