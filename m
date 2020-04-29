@@ -1,39 +1,30 @@
-Return-Path: <paul.barker@konsulko.com>
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com
-	[209.85.161.43])
-	by arago-project.org (Postfix) with ESMTPS id DBC7552A3C
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id F23BA529E5
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Apr 2020 08:35:53 +0000 (UTC)
-Received: by mail-oo1-f43.google.com with SMTP id q204so251713ooq.1
-	for <meta-arago@arago-project.org>;
-	Wed, 29 Apr 2020 01:33:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=xzbOELf1VBzV90PAeAYqKMeVgA9yaXFX02cCLkbKH5w=;
-	b=Q5v2U8B9JFCD+8H6moLB6P1thV8YVI2NOivJn283DyxcqlMGF2EbTtLMZTz29ChvEi
-	fsnKSTT+fPOSGs2qMfDTnBft0xg3XBlaxg78nW/UwW6sQJERl6NUWPRDuRGIRXmUWQD8
-	HEMDKAoIObOGFCO4hGzU0w/BA6LzqfuXvPsjc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=xzbOELf1VBzV90PAeAYqKMeVgA9yaXFX02cCLkbKH5w=;
-	b=jNEsJgYh+mm7+6hSFmu+IRNVu74Aq4j05mQHrpRjIgiUxd3BJkM494NgIANmmQXSik
-	azVNTOQA+cBaYrROVgJMVFwt2e0PQKtm0zx9GsHVspVAFyVQtZxxHnWUT6hdxBHcTHgw
-	XlKEfpJgVIMa5yfTjd+aeIt4uiqybOYw1KkpuxP1qHSUFnjA7VjgbPogfpmBgTm1PQDd
-	9GO8gd774D02D43DjMEX6MVej9iYFTGCBNRduFk3KR0qXevjfGXXmxPqOq3RBbavHVtA
-	aJHVwLQq/QSktHkBMRbeaygFcjJCq0Zl7AmLgME+wFVG/kM690qeeuh0cAIUyeWYFvcr
-	blXw==
-X-Gm-Message-State: AGi0PuZtdQRJIRtGE3Y0OV8PTFYPpeZMKqATX/7uX/45PslfwR/gw/7C
-	garvyv+hC8+QVVuRQcFDSWFam42W+Rqkin4rF8OkaQ==
-X-Google-Smtp-Source: APiQypLxNt/a3hgXrgSBYLNc+dEL1BXumK8jMM/po/PpbHBieD+zjTf9aCNYggC8NyWSvrpeWLET+TWVxkmfO/wy9J4=
-X-Received: by 2002:a4a:df01:: with SMTP id i1mr26769111oou.5.1588149212865;
-	Wed, 29 Apr 2020 01:33:32 -0700 (PDT)
-MIME-Version: 1.0
-From: Paul Barker <pbarker@konsulko.com>
-Date: Wed, 29 Apr 2020 09:33:22 +0100
-Message-ID: <CAM9ZRVvLaQTzUH29DauqEgSuw21iRrKneGqB8i0SXy3OvW-08g@mail.gmail.com>
-To: meta-ti@lists.yoctoproject.org, meta-arago@arago-project.org
-Subject: Arago & meta-ti support for Yocto Project LTS release
+	Wed, 29 Apr 2020 15:12:52 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 2087140B6D;
+	Wed, 29 Apr 2020 15:10:32 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id rpVjK5dj9zim; Wed, 29 Apr 2020 15:10:32 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DC89C40951;
+	Wed, 29 Apr 2020 15:10:30 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 4E39017272F;
+	Wed, 29 Apr 2020 11:10:30 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 29 Apr 2020 11:10:29 -0400
+Message-Id: <1588173029-31593-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH] ti-test: restore lost k3conf
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -46,20 +37,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2020 08:35:54 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 29 Apr 2020 15:12:54 -0000
 
-Hi folks,
+From: Denys Dmytriyenko <denys@ti.com>
 
-Is there a plan to support the new Yocto Project LTS release (dunfell)
-for Arago distro and meta-ti? I know usually every other Yocto Project
-release is supported, zeus was supported so usually dunfell wouldn't
-be.
+Addition of k3conf and migration to ti-test for package feeds was done in
+separate branches and during the merge, k3conf got accidentally missed.
+Restore it now.
 
-If so, are you planning to support this for the full LTS period of 2 years?
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-core/packagegroups/ti-test.bb | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-I imagine this will be supported but would be good to get confirmation.
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+index 7b5db05..c351774 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+@@ -63,6 +63,10 @@ ARAGO_TI_TEST_append_omap-a15 = " \
+     ti-ipc-test \
+ "
+ 
++ARAGO_TI_TEST_append_k3 = " \
++    k3conf \
++"
++
+ ARAGO_TI_TEST_append_am65xx = " \
+     ti-ipc-test \
+ "
+-- 
+2.7.4
 
-Thanks,
-Paul
 
