@@ -1,42 +1,39 @@
-Return-Path: <nikhil.nd@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 8FE1E529E5
+Return-Path: <paul.barker@konsulko.com>
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com
+	[209.85.161.43])
+	by arago-project.org (Postfix) with ESMTPS id DBC7552A3C
 	for <meta-arago@arago-project.org>;
-	Wed, 29 Apr 2020 07:43:59 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 03T7fcfp130329
-	for <meta-arago@arago-project.org>; Wed, 29 Apr 2020 02:41:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1588146098;
-	bh=VeC6x9KkK9tnIuPpzjMz+X8bEvi82uQ9E1rBc7P8vAo=;
-	h=From:To:CC:Subject:Date;
-	b=v/NUXDSGf2RMRS/2ARaZrudW+ONPpw1eZDUVjV0SfaTXkGNbP5BIKpiy7kKhqHz0m
-	VQ1YMiV+zoa8oJ2DoaQKkz81ufCWj1aZcOKrJ4t7U2S4e9cTpz8dhDqemJPHifsDuf
-	mSl5n3CSuBrn05UFf9mIiS883yVyRTS7XZW390mA=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03T7fcOf046411
-	for <meta-arago@arago-project.org>; Wed, 29 Apr 2020 02:41:38 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Wed, 29 Apr 2020 02:41:38 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Wed, 29 Apr 2020 02:41:38 -0500
-Received: from swubn03.india.englab.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03T7fa68055004;
-	Wed, 29 Apr 2020 02:41:36 -0500
-From: <nikhil.nd@ti.com>
-To: <denys@ti.com>
-Date: Wed, 29 Apr 2020 13:11:33 +0530
-Message-ID: <20200429074133.6274-1-nikhil.nd@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Wed, 29 Apr 2020 08:35:53 +0000 (UTC)
+Received: by mail-oo1-f43.google.com with SMTP id q204so251713ooq.1
+	for <meta-arago@arago-project.org>;
+	Wed, 29 Apr 2020 01:33:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=xzbOELf1VBzV90PAeAYqKMeVgA9yaXFX02cCLkbKH5w=;
+	b=Q5v2U8B9JFCD+8H6moLB6P1thV8YVI2NOivJn283DyxcqlMGF2EbTtLMZTz29ChvEi
+	fsnKSTT+fPOSGs2qMfDTnBft0xg3XBlaxg78nW/UwW6sQJERl6NUWPRDuRGIRXmUWQD8
+	HEMDKAoIObOGFCO4hGzU0w/BA6LzqfuXvPsjc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=xzbOELf1VBzV90PAeAYqKMeVgA9yaXFX02cCLkbKH5w=;
+	b=jNEsJgYh+mm7+6hSFmu+IRNVu74Aq4j05mQHrpRjIgiUxd3BJkM494NgIANmmQXSik
+	azVNTOQA+cBaYrROVgJMVFwt2e0PQKtm0zx9GsHVspVAFyVQtZxxHnWUT6hdxBHcTHgw
+	XlKEfpJgVIMa5yfTjd+aeIt4uiqybOYw1KkpuxP1qHSUFnjA7VjgbPogfpmBgTm1PQDd
+	9GO8gd774D02D43DjMEX6MVej9iYFTGCBNRduFk3KR0qXevjfGXXmxPqOq3RBbavHVtA
+	aJHVwLQq/QSktHkBMRbeaygFcjJCq0Zl7AmLgME+wFVG/kM690qeeuh0cAIUyeWYFvcr
+	blXw==
+X-Gm-Message-State: AGi0PuZtdQRJIRtGE3Y0OV8PTFYPpeZMKqATX/7uX/45PslfwR/gw/7C
+	garvyv+hC8+QVVuRQcFDSWFam42W+Rqkin4rF8OkaQ==
+X-Google-Smtp-Source: APiQypLxNt/a3hgXrgSBYLNc+dEL1BXumK8jMM/po/PpbHBieD+zjTf9aCNYggC8NyWSvrpeWLET+TWVxkmfO/wy9J4=
+X-Received: by 2002:a4a:df01:: with SMTP id i1mr26769111oou.5.1588149212865;
+	Wed, 29 Apr 2020 01:33:32 -0700 (PDT)
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: [zeus PATCH v1] recipes-devtools: Add rpmsg-char-helper recipe
+From: Paul Barker <pbarker@konsulko.com>
+Date: Wed, 29 Apr 2020 09:33:22 +0100
+Message-ID: <CAM9ZRVvLaQTzUH29DauqEgSuw21iRrKneGqB8i0SXy3OvW-08g@mail.gmail.com>
+To: meta-ti@lists.yoctoproject.org, meta-arago@arago-project.org
+Subject: Arago & meta-ti support for Yocto Project LTS release
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,45 +46,20 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2020 07:43:59 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 29 Apr 2020 08:35:54 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-From: Nikhil Devshatwar <nikhil.nd@ti.com>
+Hi folks,
 
-rpmsg-char-helper library simplifies the userspace
-communication with the remoteproc devices.
+Is there a plan to support the new Yocto Project LTS release (dunfell)
+for Arago distro and meta-ti? I know usually every other Yocto Project
+release is supported, zeus was supported so usually dunfell wouldn't
+be.
 
-Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
----
- .../rpmsg-char-helper/rpmsg-char-helper.bb     | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
- create mode 100644 meta-arago-extras/recipes-devtools/rpmsg-char-helper/rpmsg-char-helper.bb
+If so, are you planning to support this for the full LTS period of 2 years?
 
-diff --git a/meta-arago-extras/recipes-devtools/rpmsg-char-helper/rpmsg-char-helper.bb b/meta-arago-extras/recipes-devtools/rpmsg-char-helper/rpmsg-char-helper.bb
-new file mode 100644
-index 00000000..ca008d7a
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/rpmsg-char-helper/rpmsg-char-helper.bb
-@@ -0,0 +1,18 @@
-+SUMMARY = "Rpmsg char Helper library recipe"
-+
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+PROTOCOL = "git"
-+BRANCH = "master"
-+SRCREV = "fba8b83ea02d978eefbbd65a885daafa9c93b479"
-+SRC_URI = "git://git.ti.com/glsdk/rpmsg-char-helper.git;protocol=${PROTOCOL};branch=${BRANCH}"
-+
-+S = "${WORKDIR}/git"
-+
-+inherit autotools pkgconfig
-+
-+EXTRA_OECONF_j7-evm += " \
-+	--with-soc=j7 \
-+"
--- 
-2.17.1
+I imagine this will be supported but would be good to get confirmation.
 
+Thanks,
+Paul
 
