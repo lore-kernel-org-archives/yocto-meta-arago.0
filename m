@@ -1,45 +1,31 @@
-Return-Path: <nikhil.nd@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 0CD0152A65
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 19E54529FC
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Apr 2020 10:38:25 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 03UAa3j7122364
-	for <meta-arago@arago-project.org>; Thu, 30 Apr 2020 05:36:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1588242963;
-	bh=ZeZlJWgKq8ADwFJ5pOoK44EjMPwONHKhYGlM4wtwb34=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=wvB/+lzqPbOX6V+7982mjJ+frf7iSMWH2u77DDZbNBmp7CGfn5uCvhVOuH6rxil2S
-	AGXEWcFmqa9YwTiLkSluYzFl3vKi+FkyOPB/gmZU7LszeR5itp9Al0vpjJRe03WcN6
-	Au/Zc560E5AeqTVthnSAu7CekqFzhbi2NibMnla0=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 03UAa3kL054146
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 30 Apr 2020 05:36:03 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 30 Apr 2020 05:36:03 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 30 Apr 2020 05:36:03 -0500
-Received: from swubn03.india.englab.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03UAa0pg028819;
-	Thu, 30 Apr 2020 05:36:02 -0500
-From: <nikhil.nd@ti.com>
-To: <denys@ti.com>
-Date: Thu, 30 Apr 2020 16:05:58 +0530
-Message-ID: <20200430103558.5797-2-nikhil.nd@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200430103558.5797-1-nikhil.nd@ti.com>
-References: <20200430103558.5797-1-nikhil.nd@ti.com>
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: [zeus PATCH v2 2/2] recipes-devtools: statcol: New recipe for statistics collector
+	Thu, 30 Apr 2020 17:05:01 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id E5A0C40C0F;
+	Thu, 30 Apr 2020 17:02:39 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id m-hqakFiVjgp; Thu, 30 Apr 2020 17:02:39 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 729C5400E7;
+	Thu, 30 Apr 2020 17:02:37 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id DDBBB17272F;
+	Thu, 30 Apr 2020 13:02:36 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 30 Apr 2020 13:02:33 -0400
+Message-Id: <1588266153-49990-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Cc: Benoit Parrot <bparrot@ti.com>
+Subject: [PATCH] gstreamer1.0-plugins-vpe: drop modprobe config for ti-vip and ti-vpe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,68 +38,50 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Apr 2020 10:38:25 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 30 Apr 2020 17:05:01 -0000
 
-From: Nikhil Devshatwar <nikhil.nd@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
 
-Statistics Collector is userspace application which communicates
-with remote processors to get the statistics data on target.
+This reverts commit 167b8838b5c03cb52fdec3610fe987f302d8c635.
 
-This can be printed command line or sent over network for
-host-side visualization.
+Back in 2016 the plugin was updated to use the
+/dev/v4l/by-path/platform-489d0000.vpe-video-index0 which is stable across
+boot regardless of boot order.
 
-Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+See, https://git.ti.com/cgit/glsdk/gst-plugin-vpe/commit/?id=f1d4d67fa7a76f97a49114b1543ee72ecb0192f0
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Cc: Benoit Parrot <bparrot@ti.com>
 ---
+ .../gst-plugins-ti/gstreamer1.0-plugins-vpe/ti-video.conf           | 1 -
+ .../gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb                  | 6 ------
+ 2 files changed, 7 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe/ti-video.conf
 
-Notes:
-    Changes from v1:
-    * Add the package in correct packagegroup
-
- .../packagegroup-arago-tisdk-addons.bb        |  2 +-
- .../recipes-devtools/statcol/statcol.bb       | 19 +++++++++++++++++++
- 2 files changed, 20 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-devtools/statcol/statcol.bb
-
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 2913fa15..c8c445cb 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -77,7 +77,7 @@ UTILS_append_k3 = " mmc-utils \
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe/ti-video.conf b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe/ti-video.conf
+deleted file mode 100644
+index 339a0c1..0000000
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe/ti-video.conf
++++ /dev/null
+@@ -1 +0,0 @@
+-install ti-vip /sbin/modprobe ti-vpe; /sbin/modprobe --ignore-install ti-vip
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
+index 96c678d..841a403 100644
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
++++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
+@@ -13,11 +13,5 @@ PR = "${INC_PR}.20"
+ SRCREV = "b9dba5a8bc7d14d55125abdce04672e3dc30bbdf"
+ 
+ SRC_URI = "git://git.ti.com/glsdk/gst-plugin-vpe.git;protocol=git \
+-           file://ti-video.conf \
+            file://0001-gstvpe-configure.ac-stop-using-export-symbols-regex.patch \
  "
- 
- UTILS_append_am65xx = " ipc-lld-examples-rtos ti-ipc-rtos-fw pru-icss pru-pwm-fw"
--UTILS_append_j7-evm = " ipc-lld-examples-rtos pru-icss ti-display-sharing-fw cpsw9g-eth-fw"
-+UTILS_append_j7-evm = " ipc-lld-examples-rtos pru-icss ti-display-sharing-fw cpsw9g-eth-fw statcol"
- 
- UTILS_append_omapl138 = " ti-ipc-rtos-fw"
- 
-diff --git a/meta-arago-extras/recipes-devtools/statcol/statcol.bb b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
-new file mode 100644
-index 00000000..b87d940b
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
-@@ -0,0 +1,19 @@
-+SUMMARY = "Statistics collector application"
-+
-+LICENSE = "TI-TSPA"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=bb6bc27cd44417c389a180bd62f552a0"
-+
-+PROTOCOL = "git"
-+BRANCH = "master"
-+SRCREV = "80bac9aa2d20160197b336ab3c82ce9080091978"
-+SRC_URI = "git://git.ti.com/glsdk/statcol.git;protocol=${PROTOCOL};branch=${BRANCH}"
-+
-+DEPENDS = "rpmsg-char-helper websocketd"
-+
-+S = "${WORKDIR}/git"
-+
-+EXTRA_OEMAKE += "SYSROOT=${STAGING_DIR_TARGET} CROSS_COMPILE=${CROSS_COMPILE}"
-+
-+do_install() {
-+	DESTDIR=${D} make install
-+}
+-
+-do_install_append() {
+-    install -d ${D}/etc/modprobe.d
+-    install -m 644 ${WORKDIR}/ti-video.conf ${D}/etc/modprobe.d
+-}
 -- 
-2.17.1
+2.7.4
 
 
