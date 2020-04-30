@@ -1,30 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 4B5A5529E5
+Return-Path: <nikhil.nd@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 8709752A65
 	for <meta-arago@arago-project.org>;
-	Thu, 30 Apr 2020 00:43:39 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 4101040C0F;
-	Thu, 30 Apr 2020 00:41:18 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 0zz0Q7kY30Ae; Thu, 30 Apr 2020 00:41:18 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2F92A40A9E;
-	Thu, 30 Apr 2020 00:41:17 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id EC01C17272F;
-	Wed, 29 Apr 2020 20:41:16 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed, 29 Apr 2020 20:41:16 -0400
-Message-Id: <1588207276-23267-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [master][PATCH] arago.conf: adding optee PACKAGECONFIG to u-boot moved to meta-ti
+	Thu, 30 Apr 2020 10:38:24 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 03UAa3Ti122346
+	for <meta-arago@arago-project.org>; Thu, 30 Apr 2020 05:36:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1588242963;
+	bh=qYSu27Tct68histXeDjOXEkmYchybK54586EFda21hk=;
+	h=From:To:CC:Subject:Date;
+	b=ouNgdjZQ/z17ERHMLbfY4o1WPPwotNaVlh30nHCYeUsLQOiD/ybG+/2esle+X1uZO
+	QIstx2eG7vWBYD9en6g3rYb+8wjS9t9J40qaCpRayf8e4VCYx47VsSTxKU6dgQ273e
+	DLKBhfPD1KNh8NfC2az/SWqYMFe5dcNjqVbyOnLY=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03UAa2w7123174
+	for <meta-arago@arago-project.org>; Thu, 30 Apr 2020 05:36:02 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Thu, 30 Apr 2020 05:36:02 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Thu, 30 Apr 2020 05:36:02 -0500
+Received: from swubn03.india.englab.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 03UAa0pf028819;
+	Thu, 30 Apr 2020 05:36:00 -0500
+From: <nikhil.nd@ti.com>
+To: <denys@ti.com>
+Date: Thu, 30 Apr 2020 16:05:57 +0530
+Message-ID: <20200430103558.5797-1-nikhil.nd@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: [zeus PATCH v2 1/2] recipes-devtools: websocketd: Add new recipe for websocket app
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,30 +49,44 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Apr 2020 00:43:39 -0000
+X-List-Received-Date: Thu, 30 Apr 2020 10:38:24 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+websocketd is a userspace application which allows to send
+data over web sockets. This is used in SDK for visualizing
+statistics parameters.
+
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 3 ---
- 1 file changed, 3 deletions(-)
+ .../recipes-devtools/websocketd/websocketd.bb    | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index c5d33e3..1d3312b 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -132,9 +132,6 @@ PACKAGECONFIG_pn-curl = "${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6",
- 
- PACKAGECONFIG_pn-glmark2 = "drm-gles2 wayland-gles2"
- 
--# Enable U-boot OPTEE config for K3
--PACKAGECONFIG_append_pn-u-boot-ti-staging_k3 = " optee"
--
- # Enable encryption support in open62541
- PACKAGECONFIG_append_pn-open62541 = " encrypt"
- 
+diff --git a/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb b/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
+new file mode 100644
+index 00000000..44f549ee
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
+@@ -0,0 +1,16 @@
++SUMMARY = "Application for routing native applications via websockets"
++HOMEPAGE = "http://websocketd.com/"
++
++LICENSE = "BSD-2-Clause"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=a14d7befdbee1290ac5c472cd85d66f2"
++
++PV = "0.3.0"
++SRC_URI = "https://github.com/joewalnes/websocketd/releases/download/v${PV}/websocketd-${PV}-linux_arm64.zip"
++SRC_URI[md5sum] = "968c1ce4ed4fe5f86817f2533f5d3004"
++
++S = "${WORKDIR}"
++
++do_install() {
++	install -d ${D}/${bindir}
++	install -m 0755 ${S}/websocketd ${D}${bindir}/
++}
 -- 
-2.7.4
+2.17.1
 
 
