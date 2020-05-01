@@ -1,43 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 0472652A30
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 8D8DF529FC
 	for <meta-arago@arago-project.org>;
-	Fri,  1 May 2020 01:51:51 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0411nUAD082456;
-	Thu, 30 Apr 2020 20:49:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1588297770;
-	bh=ezW18hgI1tBCBvuTPWMJVnRUPuKmij2uaM4mxXX4sTY=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=RaQg98kgdYtljXm4RJpzWspLTDU0D/OVjYjQxBkqAcBEWrf2qjcdFx0PqF2nLXhaA
-	8DQvI7olpu9WmbevOGy9XDLDyGF0Bn1aWg5aYLZIFuLUz1l3ZswpDpHt+tdTPQ6uHU
-	R3qWdgMNqh5Za5BT55rgnDXrIfjX/utuwl4uf5TQ=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0411nUud104096;
-	Thu, 30 Apr 2020 20:49:30 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 30 Apr 2020 20:49:30 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 30 Apr 2020 20:49:30 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0411nUp0105291;
-	Thu, 30 Apr 2020 20:49:30 -0500
-Date: Thu, 30 Apr 2020 21:49:29 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Paul Barker <pbarker@konsulko.com>
-Message-ID: <20200501014929.GG11212@beryl>
-References: <CAM9ZRVvLaQTzUH29DauqEgSuw21iRrKneGqB8i0SXy3OvW-08g@mail.gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <CAM9ZRVvLaQTzUH29DauqEgSuw21iRrKneGqB8i0SXy3OvW-08g@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org, meta-ti@lists.yoctoproject.org
-Subject: Re: Arago & meta-ti support for Yocto Project LTS release
+	Fri,  1 May 2020 06:00:04 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 4579340C18;
+	Fri,  1 May 2020 05:57:43 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id dnNqBBelHN7f; Fri,  1 May 2020 05:57:43 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2200F40951;
+	Fri,  1 May 2020 05:57:42 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 5F17C172CFE;
+	Fri,  1 May 2020 01:57:41 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri,  1 May 2020 01:57:41 -0400
+Message-Id: <1588312661-56761-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH] ti-world: fix up RDEPENDS on virtual/docker
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,36 +37,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 May 2020 01:51:52 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 01 May 2020 06:00:04 -0000
 
-Hi Paul,
+From: Denys Dmytriyenko <denys@ti.com>
 
-Yes, dunfell will be officially supported. I should be branching off within 
-days - still waiting on all the dependeices.
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/recipes-core/packagegroups/ti-world.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Whether it will be full 2 years support or not - I'm not sure yet.
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
+index fb58457..87f3004 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
+@@ -62,5 +62,5 @@ RDEPENDS_${PN} = "\
+     packagegroup-arago-misc \
+     ti-analytics \
+     ti-demos \
+-    virtual/docker \
++    ${PREFERRED_PROVIDER_virtual/docker} \
+ "
+-- 
+2.7.4
 
-Denys
-
-
-On Wed, Apr 29, 2020 at 09:33:22AM +0100, Paul Barker wrote:
-> Hi folks,
-> 
-> Is there a plan to support the new Yocto Project LTS release (dunfell)
-> for Arago distro and meta-ti? I know usually every other Yocto Project
-> release is supported, zeus was supported so usually dunfell wouldn't
-> be.
-> 
-> If so, are you planning to support this for the full LTS period of 2 years?
-> 
-> I imagine this will be supported but would be good to get confirmation.
-> 
-> Thanks,
-> Paul
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
