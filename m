@@ -1,44 +1,41 @@
-Return-Path: <a0866189local@ula0866189>
+Return-Path: <yan-liu@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 02CE352A15
+	by arago-project.org (Postfix) with ESMTPS id 279C152A05
 	for <meta-arago@arago-project.org>;
-	Wed,  6 May 2020 19:30:30 +0000 (UTC)
+	Wed,  6 May 2020 21:40:52 +0000 (UTC)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 046JS68X070256
-	for <meta-arago@arago-project.org>; Wed, 6 May 2020 14:28:06 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 046LcSUx101447
+	for <meta-arago@arago-project.org>; Wed, 6 May 2020 16:38:28 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1588793286;
-	bh=2hjilu+Z/3cE7GIqbwhdRkwEq9hcz+tb3Q+r02sINLg=;
+	s=ti-com-17Q1; t=1588801108;
+	bh=bEWslmSVy7IoonXxOChF22YP6Zymi1JEfWSzUb1hiVg=;
 	h=From:To:CC:Subject:Date;
-	b=lJAChOsacubm1e98oNCfl1glGtvw9LBLZbkQxFeJ7Eb1/fKx6udUZO2LxFNp4rycr
-	BXSoXGP7ETKVOtVW7Dfj5vaqJxUt0lFTqyGsJcP9yshzWvCureeiAbd3pxTFmnB6lC
-	PqW6g26wdGN9xnryJ1KMfE7dJxT9o3oX5TKlqXN8=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 046JS6BF067579
-	for <meta-arago@arago-project.org>; Wed, 6 May 2020 14:28:06 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	b=nMwQ+Gkhp0mEByYE3QSW4l/V8hbQ0kgDso0JRb2NLtBWMubl2QyMc1ZXvdAVs8n9U
+	N8j+RFpW01wPM5WMHqkHaQLhrpOXcVIOc8ojBGZKecGb42fXL8xHj9EZ2aNQnAWaJ2
+	W9oUt2RLY9vln0Clq9yVrahlCwTEQpwg8HAuPRB0=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 046LcSkr101606
+	for <meta-arago@arago-project.org>; Wed, 6 May 2020 16:38:28 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Wed, 6 May 2020 14:28:06 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
-	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 6 May 2020 16:38:28 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Wed, 6 May 2020 14:28:06 -0500
-Received: from ula0866189 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 046JS63I066969;
-	Wed, 6 May 2020 14:28:06 -0500
-Received: from a0866189local by ula0866189 with local (Exim 4.90_1)
-	(envelope-from <a0866189local@ula0866189>)
-	id 1jWPi9-0007qi-Qq; Wed, 06 May 2020 14:28:05 -0500
-From: Angela Stegmaier <angelabaker@ti.com>
+	Frontend Transport; Wed, 6 May 2020 16:38:28 -0500
+Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 046LcSfc120078;
+	Wed, 6 May 2020 16:38:28 -0500
+From: <yan-liu@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 6 May 2020 14:27:56 -0500
-Message-ID: <20200506192756.30113-1-angelabaker@ti.com>
-X-Mailer: git-send-email 2.17.1
+Date: Wed, 6 May 2020 17:37:48 -0400
+Message-ID: <1588801068-27521-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: s-anna@ti.com
-Subject: [master][PATCH] packagegroup-arago-tisdk-addons: remove ti-ipc build for am65xx
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,67 +48,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 May 2020 19:30:31 -0000
+X-List-Received-Date: Wed, 06 May 2020 21:40:52 -0000
 Content-Type: text/plain
 
-ipc-lld is used for am65xx.
+From: Yan Liu <yan-liu@ti.com>
 
-Signed-off-by: Angela Stegmaier <angelabaker@ti.com>
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- .../packagegroup-arago-tisdk-addons-sdk-target.bb             | 1 -
- .../packagegroups/packagegroup-arago-tisdk-addons.bb          | 3 +--
- meta-arago-distro/recipes-core/packagegroups/ti-test.bb       | 4 ----
- 3 files changed, 1 insertion(+), 7 deletions(-)
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-index dfc37414..083c85f8 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
-@@ -205,7 +205,6 @@ IPCDEV = " \
- EXTRA_PACKAGES_append_omap-a15 = " ${IPCDEV}"
- EXTRA_PACKAGES_append_keystone = " ${IPCDEV}"
- EXTRA_PACKAGES_append_omapl138 = " ${IPCDEV}"
--EXTRA_PACKAGES_append_am65xx = " ${IPCDEV}"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+index b403a71..2488758 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+@@ -10,10 +10,10 @@ PROVIDES += "ltp"
+ DEPENDS += "alsa-lib"
  
- RDEPENDS_${PN} = "\
-     ${UTILS} \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 2c5f7e5e..d69f221a 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -74,7 +74,7 @@ UTILS_append_k3 = " mmc-utils \
-                     jailhouse \
- "
+ PE = "1"
+-PR = "r0"
++PR = "r1"
+ PV_append = "+git${SRCPV}"
  
--UTILS_append_am65xx = " ipc-lld-examples-rtos ti-ipc-rtos-fw pru-icss pru-pwm-fw"
-+UTILS_append_am65xx = " ipc-lld-examples-rtos pru-icss pru-pwm-fw"
- UTILS_append_j7 = " ipc-lld-examples-rtos pru-icss ti-display-sharing-fw cpsw9g-eth-fw"
+-SRCREV = "45830edc6bfe7ad9faef0bbe3e838b95fb9aa33e"
++SRCREV = "0e07446a921e84a0ad22805170938b73f1850cc3"
+ BRANCH ?= "master"
  
- UTILS_append_omapl138 = " ti-ipc-rtos-fw"
-@@ -141,7 +141,6 @@ EXTRA_PACKAGES_omapl138 = " \
- EXTRA_PACKAGES_append_omap-a15 = " ti-ipc-examples-linux"
- EXTRA_PACKAGES_append_keystone = " ti-ipc-examples-linux"
- EXTRA_PACKAGES_append_omapl138 = " ti-ipc-examples-linux"
--EXTRA_PACKAGES_append_am65xx = " ti-ipc-examples-linux"
- 
- EXTRA_PACKAGES_append_omap-a15 = " \
-     ${@bb.utils.contains('MACHINE_FEATURES','dsp','big-data-ipc-demo-linux big-data-ipc-demo-linux-firmware','',d)} \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-index c3517748..2e089cb5 100644
---- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-@@ -67,10 +67,6 @@ ARAGO_TI_TEST_append_k3 = " \
-     k3conf \
- "
- 
--ARAGO_TI_TEST_append_am65xx = " \
--    ti-ipc-test \
--"
--
- ARAGO_TI_TEST_append_j7 = " \
-     viddec-test-app \
-     videnc-test-app \
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
 -- 
-2.17.1
+1.7.9.5
 
 
