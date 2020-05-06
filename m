@@ -1,41 +1,30 @@
-Return-Path: <yan-liu@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 279C152A05
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 02E5A52A15
 	for <meta-arago@arago-project.org>;
-	Wed,  6 May 2020 21:40:52 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 046LcSUx101447
-	for <meta-arago@arago-project.org>; Wed, 6 May 2020 16:38:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1588801108;
-	bh=bEWslmSVy7IoonXxOChF22YP6Zymi1JEfWSzUb1hiVg=;
-	h=From:To:CC:Subject:Date;
-	b=nMwQ+Gkhp0mEByYE3QSW4l/V8hbQ0kgDso0JRb2NLtBWMubl2QyMc1ZXvdAVs8n9U
-	N8j+RFpW01wPM5WMHqkHaQLhrpOXcVIOc8ojBGZKecGb42fXL8xHj9EZ2aNQnAWaJ2
-	W9oUt2RLY9vln0Clq9yVrahlCwTEQpwg8HAuPRB0=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 046LcSkr101606
-	for <meta-arago@arago-project.org>; Wed, 6 May 2020 16:38:28 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Wed, 6 May 2020 16:38:28 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Wed, 6 May 2020 16:38:28 -0500
-Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 046LcSfc120078;
-	Wed, 6 May 2020 16:38:28 -0500
-From: <yan-liu@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 6 May 2020 17:37:48 -0400
-Message-ID: <1588801068-27521-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+	Wed,  6 May 2020 22:38:18 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C67A740C3A;
+	Wed,  6 May 2020 22:35:55 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id Z_Edpgtxq1Mn; Wed,  6 May 2020 22:35:55 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id AEE4B40C2E;
+	Wed,  6 May 2020 22:35:54 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 2D0E616EC83;
+	Wed,  6 May 2020 18:35:53 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed,  6 May 2020 18:35:48 -0400
+Message-Id: <1588804551-10982-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [master][PATCH 1/4] FIXME: packagegroup-*-tisdk-host: disable TIDL due to breakage with OpenCV 4.1
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,34 +37,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 May 2020 21:40:52 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 06 May 2020 22:38:19 -0000
 
-From: Yan Liu <yan-liu@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
 
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb  | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-index b403a71..2488758 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-@@ -10,10 +10,10 @@ PROVIDES += "ltp"
- DEPENDS += "alsa-lib"
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
+index ab212fa..5a453b6 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
+@@ -6,11 +6,12 @@ inherit packagegroup nativesdk
  
- PE = "1"
--PR = "r0"
-+PR = "r1"
- PV_append = "+git${SRCPV}"
+ PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
  
--SRCREV = "45830edc6bfe7ad9faef0bbe3e838b95fb9aa33e"
-+SRCREV = "0e07446a921e84a0ad22805170938b73f1850cc3"
- BRANCH ?= "master"
+-TIDL_TOOLS = " \
+-    nativesdk-tidl-import \
+-    nativesdk-tidl-viewer \
+-    nativesdk-tidl-utils \
+-"
++TIDL_TOOLS = ""
++#TIDL_TOOLS = " \
++#    nativesdk-tidl-import \
++#    nativesdk-tidl-viewer \
++#    nativesdk-tidl-utils \
++#"
  
- SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
+ EXTRA_TI_TOOLS = " \
+     nativesdk-ti-cgt6x \
 -- 
-1.7.9.5
+2.7.4
 
 
