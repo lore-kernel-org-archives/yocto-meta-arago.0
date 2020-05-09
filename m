@@ -1,42 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id D285C52A10
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 4E9C452A3A
 	for <meta-arago@arago-project.org>;
-	Thu,  7 May 2020 17:30:00 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 047HRbxw077360
-	for <meta-arago@arago-project.org>; Thu, 7 May 2020 12:27:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1588872457;
-	bh=LEBAUNI/aavwL2pA9I7v5dMsiwL7VZFWdci8GgH3Da8=;
-	h=From:To:CC:Subject:Date;
-	b=YQhcc5/T5btV/08iG2KylkP2qA24tJU43VbmHDofUngFazjNLS5f5+f14LOhHcG2n
-	XuLwbDZxx4qzaL/oAjJPd0/uNQXjTcWq/T4P/3g8rEGr8R+2US1kLL9Dixb6VUJIcY
-	hOwEQGP1WH2Az3rh50lLBGiND9FmYoN3fYeykrDA=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 047HRbBD130981
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 7 May 2020 12:27:37 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 7 May 2020 12:27:36 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 7 May 2020 12:27:36 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 047HRakI052462;
-	Thu, 7 May 2020 12:27:36 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 7 May 2020 17:27:36 +0000
-Message-ID: <20200507172736.10130-1-denys@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [oe-layersetup][PATCH] arago-dunfell-next: add config for dunfell-next
+	Sat,  9 May 2020 01:01:13 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id A058840C27;
+	Sat,  9 May 2020 00:58:49 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id YTppFsRqwgWK; Sat,  9 May 2020 00:58:49 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7E23D409AA;
+	Sat,  9 May 2020 00:58:48 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 10C4117272F;
+	Fri,  8 May 2020 20:58:48 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri,  8 May 2020 20:58:47 -0400
+Message-Id: <1588985927-14996-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [dunfell/master][PATCH] ti-img-encode-decode: not compatible with K5.4 - remove
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,36 +37,138 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 May 2020 17:30:01 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 09 May 2020 01:01:13 -0000
+
+From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- configs/arago-dunfell-next-config.txt | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
- create mode 100644 configs/arago-dunfell-next-config.txt
+ .../conf/distro/include/arago-source-ipk.inc       |  4 ---
+ .../packagegroup-arago-tisdk-addons-sdk-host.bb    |  1 -
+ .../packagegroup-arago-tisdk-multimedia.bb         |  5 ----
+ .../recipes-core/packagegroups/ti-test.bb          |  2 --
+ .../Makefile_ti-img-encode-decode                  | 34 ----------------------
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  2 --
+ 6 files changed, 48 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-img-encode-decode
 
-diff --git a/configs/arago-dunfell-next-config.txt b/configs/arago-dunfell-next-config.txt
-new file mode 100644
-index 0000000..4f53d41
---- /dev/null
-+++ b/configs/arago-dunfell-next-config.txt
-@@ -0,0 +1,14 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,1.46,HEAD
-+meta-arago,git://arago-project.org/git/meta-arago.git,dunfell-next,HEAD,layers=meta-arago-distro:meta-arago-extras
-+#meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
-+meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,HEAD,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-+meta-ti,git://git.yoctoproject.org/meta-ti,dunfell-next,HEAD,layers=
-+meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-+oe-core,git://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+index c479a8c..39d3be8 100644
+--- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
++++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+@@ -206,10 +206,6 @@ CREATE_SRCIPK_pn-ti-img-rogue-driver = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-img-rogue-driver = "board-support/extra-drivers/${PN}-${PV}"
+ SRCIPK_PRESERVE_GIT_pn-ti-img-rogue-driver = "true"
+ 
+-CREATE_SRCIPK_pn-ti-img-encode-decode = "1"
+-SRCIPK_INSTALL_DIR_pn-ti-img-encode-decode = "board-support/extra-drivers/${PN}-${PV}"
+-SRCIPK_PRESERVE_GIT_pn-ti-img-encode-decode = "true"
+-
+ CREATE_SRCIPK_pn-ti-gc320-driver = "1"
+ SRCIPK_INSTALL_DIR_pn-ti-gc320-driver = "board-support/extra-drivers/${PN}-${PV}"
+ 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index 6dcb253..4bc236f 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -41,7 +41,6 @@ UTILS_append_k3 = " \
+     arm-trusted-firmware-src \
+ "
+ 
+-#    ti-img-encode-decode-src
+ UTILS_append_j7 = " \
+     pru-icss-src \
+ "
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+index 44ab026..36ebd35 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
+@@ -41,11 +41,6 @@ ACCEL_MM_append_omap-a15 = " \
+     ipumm-fw \
+ "
+ 
+-ACCEL_MM_append_j7 = " \
+-    ti-img-encode-decode \
+-    vxd-dec-fw \
+-"
+-
+ RDEPENDS_${PN} = "\
+     packagegroup-arago-gst \
+     ${MULTIMEDIA} \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+index 2e089cb..268c00f 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+@@ -68,8 +68,6 @@ ARAGO_TI_TEST_append_k3 = " \
+ "
+ 
+ ARAGO_TI_TEST_append_j7 = " \
+-    viddec-test-app \
+-    videnc-test-app \
+     ufs-utils \
+ "
+ 
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-img-encode-decode b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-img-encode-decode
+deleted file mode 100644
+index e5e5b31..0000000
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-img-encode-decode
++++ /dev/null
+@@ -1,34 +0,0 @@
+-
+-# ti-img-encode-decode
+-ti-img-encode-decode: linux
+-	@echo =====================================
+-	@echo     Building ti-img-encode-decode
+-	@echo =====================================
+-	@cd board-support/extra-drivers; \
+-	cd `find . -maxdepth 1 -type d -name "ti-img-encode-decode*" -type d`; \
+-	cd linux/decoder; \
+-	make ARCH=__KERNEL_ARCH__ KPATH=${LINUXKERNEL_INSTALL_DIR} all; \
+-	cd ../encoder; \
+-	make ARCH=__KERNEL_ARCH__ KPATH=${LINUXKERNEL_INSTALL_DIR} all
+-
+-ti-img-encode-decode_clean:
+-	@echo ====================================
+-	@echo     Cleaning ti-img-encode-decode
+-	@echo ====================================
+-	@cd board-support/extra-drivers; \
+-	cd `find . -maxdepth 1 -type d -name "ti-img-encode-decode*" -type d`; \
+-	cd linux/decoder; \
+-	make ARCH=__KERNEL_ARCH__ KPATH=${LINUXKERNEL_INSTALL_DIR} clean; \
+-	cd ../encoder; \
+-	make ARCH=__KERNEL_ARCH__ KPATH=${LINUXKERNEL_INSTALL_DIR} clean
+-
+-ti-img-encode-decode_install:
+-	@echo ====================================
+-	@echo     Installing ti-img-encode-decode
+-	@echo ====================================
+-	@cd board-support/extra-drivers; \
+-	cd `find . -maxdepth 1 -type d -name "ti-img-encode-decode*" -type d`; \
+-	cd linux/decoder; \
+-	make -C ${LINUXKERNEL_INSTALL_DIR} INSTALL_MOD_PATH=${DESTDIR} INSTALL_MOD_STRIP=${INSTALL_MOD_STRIP} M=`pwd` modules_install; \
+-	cd ../encoder; \
+-	make -C ${LINUXKERNEL_INSTALL_DIR} INSTALL_MOD_PATH=${DESTDIR} INSTALL_MOD_STRIP=${INSTALL_MOD_STRIP} M=`pwd` modules_install
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index 2a44938..a698dd3 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -55,7 +55,6 @@ SRC_URI = "\
+     file://Makefile_ti-ipc \
+     file://Makefile_jailhouse \
+     file://Makefile_ti-img-rogue-driver \
+-    file://Makefile_ti-img-encode-decode \
+ "
+ 
+ PR = "r104"
+@@ -201,7 +200,6 @@ MAKEFILES_append_am65xx = " \
+ 
+ MAKEFILES_append_j7 = " pru-icss \
+                             ti-img-rogue-driver \
+-                            ti-img-encode-decode \
+ "
+ 
+ # Use this to export kernel arch to ARCH
 -- 
-2.17.1
+2.7.4
 
 
