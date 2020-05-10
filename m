@@ -1,30 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 4E9C452A3A
+	by arago-project.org (Postfix) with ESMTPS id 5283B529A8
 	for <meta-arago@arago-project.org>;
-	Sat,  9 May 2020 01:01:13 +0000 (UTC)
+	Sun, 10 May 2020 02:45:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A058840C27;
-	Sat,  9 May 2020 00:58:49 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5514040B89;
+	Sun, 10 May 2020 02:43:23 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id YTppFsRqwgWK; Sat,  9 May 2020 00:58:49 +0000 (UTC)
+	with ESMTP id Mw8KSmmQcFOw; Sun, 10 May 2020 02:43:23 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7E23D409AA;
-	Sat,  9 May 2020 00:58:48 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3B9A5409AA;
+	Sun, 10 May 2020 02:43:22 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 10C4117272F;
-	Fri,  8 May 2020 20:58:48 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 7C7E5172D0E;
+	Sat,  9 May 2020 22:43:21 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri,  8 May 2020 20:58:47 -0400
-Message-Id: <1588985927-14996-1-git-send-email-denis@denix.org>
+Date: Sat,  9 May 2020 22:43:21 -0400
+Message-Id: <1589078601-28009-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [dunfell/master][PATCH] ti-img-encode-decode: not compatible with K5.4 - remove
+Subject: [dunfell/master][PATCH] python3: skip shebang-size QA check for nativesdk-python3 packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,137 +37,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 May 2020 01:01:13 -0000
+X-List-Received-Date: Sun, 10 May 2020 02:45:47 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../conf/distro/include/arago-source-ipk.inc       |  4 ---
- .../packagegroup-arago-tisdk-addons-sdk-host.bb    |  1 -
- .../packagegroup-arago-tisdk-multimedia.bb         |  5 ----
- .../recipes-core/packagegroups/ti-test.bb          |  2 --
- .../Makefile_ti-img-encode-decode                  | 34 ----------------------
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     |  2 --
- 6 files changed, 48 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-img-encode-decode
+ meta-arago-distro/recipes-devtools/python/python3_%.bbappend | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-devtools/python/python3_%.bbappend
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-index c479a8c..39d3be8 100644
---- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-@@ -206,10 +206,6 @@ CREATE_SRCIPK_pn-ti-img-rogue-driver = "1"
- SRCIPK_INSTALL_DIR_pn-ti-img-rogue-driver = "board-support/extra-drivers/${PN}-${PV}"
- SRCIPK_PRESERVE_GIT_pn-ti-img-rogue-driver = "true"
- 
--CREATE_SRCIPK_pn-ti-img-encode-decode = "1"
--SRCIPK_INSTALL_DIR_pn-ti-img-encode-decode = "board-support/extra-drivers/${PN}-${PV}"
--SRCIPK_PRESERVE_GIT_pn-ti-img-encode-decode = "true"
--
- CREATE_SRCIPK_pn-ti-gc320-driver = "1"
- SRCIPK_INSTALL_DIR_pn-ti-gc320-driver = "board-support/extra-drivers/${PN}-${PV}"
- 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index 6dcb253..4bc236f 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -41,7 +41,6 @@ UTILS_append_k3 = " \
-     arm-trusted-firmware-src \
- "
- 
--#    ti-img-encode-decode-src
- UTILS_append_j7 = " \
-     pru-icss-src \
- "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-index 44ab026..36ebd35 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-@@ -41,11 +41,6 @@ ACCEL_MM_append_omap-a15 = " \
-     ipumm-fw \
- "
- 
--ACCEL_MM_append_j7 = " \
--    ti-img-encode-decode \
--    vxd-dec-fw \
--"
--
- RDEPENDS_${PN} = "\
-     packagegroup-arago-gst \
-     ${MULTIMEDIA} \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-index 2e089cb..268c00f 100644
---- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-@@ -68,8 +68,6 @@ ARAGO_TI_TEST_append_k3 = " \
- "
- 
- ARAGO_TI_TEST_append_j7 = " \
--    viddec-test-app \
--    videnc-test-app \
-     ufs-utils \
- "
- 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-img-encode-decode b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-img-encode-decode
-deleted file mode 100644
-index e5e5b31..0000000
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-img-encode-decode
-+++ /dev/null
-@@ -1,34 +0,0 @@
--
--# ti-img-encode-decode
--ti-img-encode-decode: linux
--	@echo =====================================
--	@echo     Building ti-img-encode-decode
--	@echo =====================================
--	@cd board-support/extra-drivers; \
--	cd `find . -maxdepth 1 -type d -name "ti-img-encode-decode*" -type d`; \
--	cd linux/decoder; \
--	make ARCH=__KERNEL_ARCH__ KPATH=${LINUXKERNEL_INSTALL_DIR} all; \
--	cd ../encoder; \
--	make ARCH=__KERNEL_ARCH__ KPATH=${LINUXKERNEL_INSTALL_DIR} all
--
--ti-img-encode-decode_clean:
--	@echo ====================================
--	@echo     Cleaning ti-img-encode-decode
--	@echo ====================================
--	@cd board-support/extra-drivers; \
--	cd `find . -maxdepth 1 -type d -name "ti-img-encode-decode*" -type d`; \
--	cd linux/decoder; \
--	make ARCH=__KERNEL_ARCH__ KPATH=${LINUXKERNEL_INSTALL_DIR} clean; \
--	cd ../encoder; \
--	make ARCH=__KERNEL_ARCH__ KPATH=${LINUXKERNEL_INSTALL_DIR} clean
--
--ti-img-encode-decode_install:
--	@echo ====================================
--	@echo     Installing ti-img-encode-decode
--	@echo ====================================
--	@cd board-support/extra-drivers; \
--	cd `find . -maxdepth 1 -type d -name "ti-img-encode-decode*" -type d`; \
--	cd linux/decoder; \
--	make -C ${LINUXKERNEL_INSTALL_DIR} INSTALL_MOD_PATH=${DESTDIR} INSTALL_MOD_STRIP=${INSTALL_MOD_STRIP} M=`pwd` modules_install; \
--	cd ../encoder; \
--	make -C ${LINUXKERNEL_INSTALL_DIR} INSTALL_MOD_PATH=${DESTDIR} INSTALL_MOD_STRIP=${INSTALL_MOD_STRIP} M=`pwd` modules_install
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 2a44938..a698dd3 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -55,7 +55,6 @@ SRC_URI = "\
-     file://Makefile_ti-ipc \
-     file://Makefile_jailhouse \
-     file://Makefile_ti-img-rogue-driver \
--    file://Makefile_ti-img-encode-decode \
- "
- 
- PR = "r104"
-@@ -201,7 +200,6 @@ MAKEFILES_append_am65xx = " \
- 
- MAKEFILES_append_j7 = " pru-icss \
-                             ti-img-rogue-driver \
--                            ti-img-encode-decode \
- "
- 
- # Use this to export kernel arch to ARCH
+diff --git a/meta-arago-distro/recipes-devtools/python/python3_%.bbappend b/meta-arago-distro/recipes-devtools/python/python3_%.bbappend
+new file mode 100644
+index 0000000..3e5bb4c
+--- /dev/null
++++ b/meta-arago-distro/recipes-devtools/python/python3_%.bbappend
+@@ -0,0 +1,12 @@
++# In arago.conf, we pre-allocate SDK path very long to reserve enough space in ELF headers
++# and then it gets replaced with a short real path at the time of SDK creation:
++# SDKPATH_REAL = "/usr/local/${SDK_NAME_PREFIX}-${SDK_VERSION}"
++# SDKPATH = "${@"/tmp/"+"x"*96+"/"+"y"*96}"
++# Unfortunately, that triggers the new shebang-size QA check in nativesdk-python3 packages
++
++python() {
++    if d.getVar('CLASSOVERRIDE') == "class-nativesdk":
++        pkgs = d.getVar("PACKAGES").split()
++        for p in pkgs:
++            d.appendVar('INSANE_SKIP_%s' % (p), ' shebang-size')
++}
 -- 
 2.7.4
 
