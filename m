@@ -1,45 +1,47 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 763A5529BE
+Return-Path: <pbarker@konsulko.com>
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
+	[209.85.221.67])
+	by arago-project.org (Postfix) with ESMTPS id AF13B52A8A
 	for <meta-arago@arago-project.org>;
-	Mon, 11 May 2020 11:45:06 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04BBgfq3099168;
-	Mon, 11 May 2020 06:42:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1589197361;
-	bh=3ApQakZRV/jpb1BYkPP8YPIBKLuKatGpVjlBqUiqY/8=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=IJnlYI+LyEGLcS7wThLd7GGgZ0tiRYRXSiVJtAzaCXiXGoEthPW5Fto4WdTS88UdR
-	tePcnf+2+292QXHP0u4HAYQdOhEN8+5F7RSWi7xrL0tkhvbqeUDdBjExgR80NHiTLu
-	SWa+sBRfUZm+qiJoBdLsqsh/Bwd1t1EDM4M649/c=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04BBgfXI047013;
-	Mon, 11 May 2020 06:42:41 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Mon, 11 May 2020 06:42:41 -0500
-Received: from DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222]) by
-	DFLE114.ent.ti.com ([fe80::bc90:ddd:2b87:4222%18]) with mapi id
-	15.01.1979.003; Mon, 11 May 2020 06:42:41 -0500
-From: "Stiffler, Jacob" <j-stiffler@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>
-Thread-Topic: [EXTERNAL] [meta-arago] [dunfell/master][PATCH] python3: skip
-	shebang-size QA check for nativesdk-python3 packages
-Thread-Index: AQHWJnTMtuDF41PHVkSPvYeVyQJAuKiixZ4w
-Date: Mon, 11 May 2020 11:42:41 +0000
-Message-ID: <fe9c46ce660d48ceb4e7a153c73faa31@ti.com>
-References: <1589078601-28009-1-git-send-email-denis@denix.org>
-In-Reply-To: <1589078601-28009-1-git-send-email-denis@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [158.218.113.191]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Tue, 12 May 2020 17:44:24 +0000 (UTC)
+Received: by mail-wr1-f67.google.com with SMTP id y3so16639414wrt.1
+	for <meta-arago@arago-project.org>;
+	Tue, 12 May 2020 10:42:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=I+Ofs2S494WUcepdBVoWK8aBzYwwfkZR6Er72d/o1AQ=;
+	b=qy8Kg3wfWkSTDAKbAxzk36uQhZe0zdgjHS7Z1U++hlkHVV+WOxnx7Fi0Xp/GIEttez
+	pIyDx8tP3xnvCEyxWOR8cz6BQ9h89ueb16wyza0KTAD+dAiTsqYgEllwbRjw/LPGpNHb
+	UQNcNszur0EIJh0SinaeNgOgw0bJwWJ1HH6rM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=I+Ofs2S494WUcepdBVoWK8aBzYwwfkZR6Er72d/o1AQ=;
+	b=GS+Eph4I7mWGCMKKXsnzeuXsf/czBAyTRv4i43aUT7FDAym2x22cT8xTTFdT1kjG9m
+	7MdPEN+ByKGlGASdiurxu3qbB7uNyA7FWn+/g645PeqIgFlsGva09VjtKiWiwUU8uYc2
+	35gq4COO+HS+RkZiF+eTeRF367V1HY9PtEat8W8JtvJkpvfUDOuBQ8yS26+RA0vgGtD3
+	3lMHkxH3yhQ0lozgT4oMVFTQs426idB47HbnzoNT3JnBndNiZ2730o7u2/ehO+byXRBm
+	NU7Q11TFomHXHfOJjlbd+dN2ten4UEFDUj8zOuXZS+8momKyyhWNFSrlv4tRw8dmDaV/
+	G4jg==
+X-Gm-Message-State: AGi0PubOFdKJ+POR0hQRT2ZNir2Mf4dasidq90OgRcWV6jUmklyXBSLA
+	NRXvns7SkZwsjW2MOcnZ8AjiLsBmP8l8fA==
+X-Google-Smtp-Source: APiQypIKyUosatRvMSjYIqYfBbp/1cOgeczkLptPKWcFJmN2JjrsttSYG7sTZ2QdSSFU9Izge0DhGQ==
+X-Received: by 2002:adf:e64c:: with SMTP id b12mr25598960wrn.131.1589305319125;
+	Tue, 12 May 2020 10:41:59 -0700 (PDT)
+Received: from ar2.home.b5net.uk ([213.48.11.149])
+	by smtp.gmail.com with ESMTPSA id
+	j2sm24121843wrp.47.2020.05.12.10.41.58
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Tue, 12 May 2020 10:41:58 -0700 (PDT)
+From: Paul Barker <pbarker@konsulko.com>
+To: meta-arago@arago-project.org
+Date: Tue, 12 May 2020 18:41:50 +0100
+Message-Id: <20200512174150.8377-1-pbarker@konsulko.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] [dunfell/master][PATCH] python3: skip shebang-size QA check for nativesdk-python3 packages
+Subject: [PATCH] arago.conf: Allow TMPDIR path modification to be disabled
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,60 +54,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 May 2020 11:45:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 12 May 2020 17:44:25 -0000
+Content-Transfer-Encoding: 8bit
 
-ACK
+We define and use TCMODEAPPEND in the same way TCLIBCAPPEND is defined
+and used in oe-core. This allows the modification of the TMPDIR path to
+be disabled where needed.
 
-> -----Original Message-----
-> From: meta-arago-bounces@arago-project.org [mailto:meta-arago-
-> bounces@arago-project.org] On Behalf Of Denys Dmytriyenko
-> Sent: Saturday, May 09, 2020 10:43 PM
-> To: meta-arago@arago-project.org
-> Subject: [EXTERNAL] [meta-arago] [dunfell/master][PATCH] python3: skip
-> shebang-size QA check for nativesdk-python3 packages
->=20
-> From: Denys Dmytriyenko <denys@ti.com>
->=20
-> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> ---
->  meta-arago-distro/recipes-devtools/python/python3_%.bbappend | 12
-> ++++++++++++
->  1 file changed, 12 insertions(+)
->  create mode 100644 meta-arago-distro/recipes-
-> devtools/python/python3_%.bbappend
->=20
-> diff --git a/meta-arago-distro/recipes-
-> devtools/python/python3_%.bbappend b/meta-arago-distro/recipes-
-> devtools/python/python3_%.bbappend
-> new file mode 100644
-> index 0000000..3e5bb4c
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-devtools/python/python3_%.bbappend
-> @@ -0,0 +1,12 @@
-> +# In arago.conf, we pre-allocate SDK path very long to reserve enough
-> space in ELF headers
-> +# and then it gets replaced with a short real path at the time of SDK
-> creation:
-> +# SDKPATH_REAL =3D "/usr/local/${SDK_NAME_PREFIX}-${SDK_VERSION}"
-> +# SDKPATH =3D "${@"/tmp/"+"x"*96+"/"+"y"*96}"
-> +# Unfortunately, that triggers the new shebang-size QA check in nativesd=
-k-
-> python3 packages
-> +
-> +python() {
-> +    if d.getVar('CLASSOVERRIDE') =3D=3D "class-nativesdk":
-> +        pkgs =3D d.getVar("PACKAGES").split()
-> +        for p in pkgs:
-> +            d.appendVar('INSANE_SKIP_%s' % (p), ' shebang-size')
-> +}
-> --
-> 2.7.4
->=20
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Signed-off-by: Paul Barker <pbarker@konsulko.com>
+---
+ meta-arago-distro/conf/distro/arago.conf | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 84251d76..6ea41989 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -72,7 +72,8 @@ INITRAMFS_FSTYPES_k2l-hs-evm = "cpio.gz"
+ # Mask any broken recipes (currently none)
+ #BBMASK = ""
+ 
+-TMPDIR .= "-${TCMODE}"
++TCMODEAPPEND ?= "-${TCMODE}"
++TMPDIR .= "${TCMODEAPPEND}"
+ 
+ LIBC_DEPENDENCIES_remove = "glibc-gconv-cp1252 glibc-gconv-ibm850 glibc-gconv-iso8859-1 glibc-gconv-iso8859-15 glibc-localedata-i18n"
+ 
+-- 
+2.26.2
+
 
