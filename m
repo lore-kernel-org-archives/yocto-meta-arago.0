@@ -1,47 +1,42 @@
-Return-Path: <pbarker@konsulko.com>
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
-	[209.85.221.67])
-	by arago-project.org (Postfix) with ESMTPS id AF13B52A8A
+Return-Path: <yan-liu@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id DC4E052A05
 	for <meta-arago@arago-project.org>;
-	Tue, 12 May 2020 17:44:24 +0000 (UTC)
-Received: by mail-wr1-f67.google.com with SMTP id y3so16639414wrt.1
-	for <meta-arago@arago-project.org>;
-	Tue, 12 May 2020 10:42:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=I+Ofs2S494WUcepdBVoWK8aBzYwwfkZR6Er72d/o1AQ=;
-	b=qy8Kg3wfWkSTDAKbAxzk36uQhZe0zdgjHS7Z1U++hlkHVV+WOxnx7Fi0Xp/GIEttez
-	pIyDx8tP3xnvCEyxWOR8cz6BQ9h89ueb16wyza0KTAD+dAiTsqYgEllwbRjw/LPGpNHb
-	UQNcNszur0EIJh0SinaeNgOgw0bJwWJ1HH6rM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=I+Ofs2S494WUcepdBVoWK8aBzYwwfkZR6Er72d/o1AQ=;
-	b=GS+Eph4I7mWGCMKKXsnzeuXsf/czBAyTRv4i43aUT7FDAym2x22cT8xTTFdT1kjG9m
-	7MdPEN+ByKGlGASdiurxu3qbB7uNyA7FWn+/g645PeqIgFlsGva09VjtKiWiwUU8uYc2
-	35gq4COO+HS+RkZiF+eTeRF367V1HY9PtEat8W8JtvJkpvfUDOuBQ8yS26+RA0vgGtD3
-	3lMHkxH3yhQ0lozgT4oMVFTQs426idB47HbnzoNT3JnBndNiZ2730o7u2/ehO+byXRBm
-	NU7Q11TFomHXHfOJjlbd+dN2ten4UEFDUj8zOuXZS+8momKyyhWNFSrlv4tRw8dmDaV/
-	G4jg==
-X-Gm-Message-State: AGi0PubOFdKJ+POR0hQRT2ZNir2Mf4dasidq90OgRcWV6jUmklyXBSLA
-	NRXvns7SkZwsjW2MOcnZ8AjiLsBmP8l8fA==
-X-Google-Smtp-Source: APiQypIKyUosatRvMSjYIqYfBbp/1cOgeczkLptPKWcFJmN2JjrsttSYG7sTZ2QdSSFU9Izge0DhGQ==
-X-Received: by 2002:adf:e64c:: with SMTP id b12mr25598960wrn.131.1589305319125;
-	Tue, 12 May 2020 10:41:59 -0700 (PDT)
-Received: from ar2.home.b5net.uk ([213.48.11.149])
-	by smtp.gmail.com with ESMTPSA id
-	j2sm24121843wrp.47.2020.05.12.10.41.58
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Tue, 12 May 2020 10:41:58 -0700 (PDT)
-From: Paul Barker <pbarker@konsulko.com>
-To: meta-arago@arago-project.org
-Date: Tue, 12 May 2020 18:41:50 +0100
-Message-Id: <20200512174150.8377-1-pbarker@konsulko.com>
-X-Mailer: git-send-email 2.26.2
+	Wed, 13 May 2020 01:38:44 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04D1aJdS077010
+	for <meta-arago@arago-project.org>; Tue, 12 May 2020 20:36:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1589333779;
+	bh=SOwpMun4MBa+EkioMW4KxoF9elr7f0KQJz4CfpdblPM=;
+	h=From:To:CC:Subject:Date;
+	b=kJ8pbbMeOxNeegc9CmjkPnqT0xJXmoZb7nt3ttSudBMEhezqmuRYVIB9hx8GVUbPT
+	n/tvDaVfcdYbB5qQxl8P5TYE0eG6pMpKGTusneWq9Uy2Ova/xIA3rMAzoxHpruJuKz
+	icRPXU3TaZVc/Kra5omadzTkqFD+KUb9RB2gcm48=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04D1aJG9011395
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 12 May 2020 20:36:19 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Tue, 12 May 2020 20:36:19 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Tue, 12 May 2020 20:36:19 -0500
+Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04D1aG1V022341;
+	Tue, 12 May 2020 20:36:17 -0500
+From: <yan-liu@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Tue, 12 May 2020 21:35:59 -0400
+Message-ID: <1589333759-16646-1-git-send-email-yan-liu@ti.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [PATCH] arago.conf: Allow TMPDIR path modification to be disabled
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,33 +49,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 May 2020 17:44:25 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 13 May 2020 01:38:45 -0000
+Content-Type: text/plain
 
-We define and use TCMODEAPPEND in the same way TCLIBCAPPEND is defined
-and used in oe-core. This allows the modification of the TMPDIR path to
-be disabled where needed.
+From: Yan Liu <yan-liu@ti.com>
 
-Signed-off-by: Paul Barker <pbarker@konsulko.com>
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb   |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 84251d76..6ea41989 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -72,7 +72,8 @@ INITRAMFS_FSTYPES_k2l-hs-evm = "cpio.gz"
- # Mask any broken recipes (currently none)
- #BBMASK = ""
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+index 2488758..0808a79 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+@@ -10,10 +10,10 @@ PROVIDES += "ltp"
+ DEPENDS += "alsa-lib"
  
--TMPDIR .= "-${TCMODE}"
-+TCMODEAPPEND ?= "-${TCMODE}"
-+TMPDIR .= "${TCMODEAPPEND}"
+ PE = "1"
+-PR = "r1"
++PR = "r2"
+ PV_append = "+git${SRCPV}"
  
- LIBC_DEPENDENCIES_remove = "glibc-gconv-cp1252 glibc-gconv-ibm850 glibc-gconv-iso8859-1 glibc-gconv-iso8859-15 glibc-localedata-i18n"
+-SRCREV = "0e07446a921e84a0ad22805170938b73f1850cc3"
++SRCREV = "108cab23beb62a474b5a34fb2c6d9f6f5980b3ce"
+ BRANCH ?= "master"
  
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
 -- 
-2.26.2
+1.7.9.5
 
 
