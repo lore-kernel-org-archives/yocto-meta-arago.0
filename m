@@ -1,42 +1,45 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 3F47152A40
+Return-Path: <a0389345@swubn03>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id D6A8C52979
 	for <meta-arago@arago-project.org>;
-	Wed, 13 May 2020 20:23:54 +0000 (UTC)
+	Fri, 15 May 2020 18:47:14 +0000 (UTC)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04DKLSCn019799
-	for <meta-arago@arago-project.org>; Wed, 13 May 2020 15:21:28 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04FIimO9038267
+	for <meta-arago@arago-project.org>; Fri, 15 May 2020 13:44:48 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1589401288;
-	bh=9h0w5btFVjBbByUJK05O6oOD/T4QsW2Vy5jQE51Yg+8=;
+	s=ti-com-17Q1; t=1589568288;
+	bh=3y/fhOug1SlcDGkTFxW5IQqqtXteJI/ofUEgpd+o75g=;
 	h=From:To:CC:Subject:Date;
-	b=yvDK3GXvBv7itF6scQnw3xXndGw+/nn51MPgXsE5PQfM7QthHOO0uKiSK87fD/bZi
-	xiM7nOYe5qAWHmnwb9f/iEfAxiWrjje+shENnE3+wG/4ztYBMrU7gZ7Gq0DiCiwA9E
-	PRqVnoniOe10XzoFMYQw57ORonUyRMdX2SZ8xoIM=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04DKLS86100630
+	b=cjvb9VT8xoiK/ln7Mpco35xSG4Rrf7uJsVjEZXC92ZrwD/PaVPIPw8WYHMR/Qxh4g
+	2Jw/UDPQaOpLmrvgNsJWCqI0BWBVxo17Jot5svoq/f1Lcho7c/Zuqzfbm3ym3KLwFz
+	XMAmRdqtEYF2ut4LdVC1ZS/TlUJ/QyThLhIxIAc0=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04FIimRf103063
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 13 May 2020 15:21:28 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 15 May 2020 13:44:48 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Wed, 13 May 2020 15:21:28 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 15 May 2020 13:44:48 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Wed, 13 May 2020 15:21:28 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04DKLS3N108786;
-	Wed, 13 May 2020 15:21:28 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 13 May 2020 20:21:27 +0000
-Message-ID: <20200513202127.9448-1-denys@ti.com>
+	Frontend Transport; Fri, 15 May 2020 13:44:48 -0500
+Received: from swubn03 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04FIilQ6064079;
+	Fri, 15 May 2020 13:44:48 -0500
+Received: from a0389345 by swubn03 with local (Exim 4.90_1)
+	(envelope-from <a0389345@swubn03>)
+	id 1jZfKB-00017c-2L; Sat, 16 May 2020 00:14:47 +0530
+From: <prao@ti.com>
+To: <denys@ti.com>
+Date: Sat, 16 May 2020 00:14:39 +0530
+Message-ID: <20200515184439.3339-1-prao@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [dunfell/master][PATCH] arago.conf, optee: enable generation of FIT image for j7-hs-evm
+Cc: meta-arago@arago-project.org, Praveen Rao <prao@ti.com>
+Subject: [dunfell/master PATCH] packagegroup: Add ti-sci-fw-src to tisdk-addons-sdk-host
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,48 +52,30 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 May 2020 20:23:54 -0000
+X-List-Received-Date: Fri, 15 May 2020 18:47:15 -0000
 Content-Type: text/plain
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf               |  1 +
- .../recipes-security/optee/optee-os_git.bbappend       | 10 ++++++++++
- 2 files changed, 11 insertions(+)
+From: Praveen Rao <prao@ti.com>
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 6ea41989..bc786a77 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -52,6 +52,7 @@ KERNEL_IMAGETYPES_am57xx-hs-evm = "zImage fitImage"
- KERNEL_IMAGETYPES_am437x-hs-evm = "zImage fitImage"
- KERNEL_IMAGETYPES_am335x-hs-evm = "zImage fitImage"
- KERNEL_IMAGETYPES_am65xx-hs-evm = "Image fitImage"
-+KERNEL_IMAGETYPES_j7-hs-evm = "Image fitImage"
+Add source package for k3 image gen in the tisdk-addons-sdk-host
+
+Signed-off-by: Praveen Rao <prao@ti.com>
+---
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb    | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index 6dcb253c..32d6c98b 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -38,6 +38,7 @@ UTILS_append_k2g = " \
  
- KERNEL_IMAGETYPES_k2e-hs-evm = "zImage fitImage"
- INITRAMFS_IMAGE_k2e-hs-evm = "k2-fw-initrd"
-diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-index 2fb3e279..86945545 100644
---- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-+++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
-@@ -45,6 +45,16 @@ do_compile_am65xx-hs-evm() {
-     )
- }
+ UTILS_append_k3 = " \
+     jailhouse-src \
++    ti-sci-fw-src \
+     arm-trusted-firmware-src \
+ "
  
-+do_compile_j7-hs-evm() {
-+    export TI_SECURE_DEV_PKG=${TI_SECURE_DEV_PKG}
-+    oe_runmake all PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=${OPTEEFLAVOR}
-+    ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
-+        ${TI_SECURE_DEV_PKG}/scripts/secure-binary-image.sh tee-pager_v2.bin tee-pager.bin.signed; \
-+        mv tee-pager.bin.signed ${B}/bl32.bin; \
-+        cp tee.elf ${B}/bl32.elf; \
-+    )
-+}
-+
- do_install() {
-     #install core on boot directory
-     install -d ${D}/boot
 -- 
 2.17.1
 
