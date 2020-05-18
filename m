@@ -1,30 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 8BB2A52A60
+Return-Path: <denys@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 8E77B529AB
 	for <meta-arago@arago-project.org>;
-	Sat, 16 May 2020 02:49:08 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 961D340C20;
-	Sat, 16 May 2020 02:46:42 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id ND6G6wx-TMmG; Sat, 16 May 2020 02:46:42 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7CE0A409E7;
-	Sat, 16 May 2020 02:46:41 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 42D621730D6;
-	Fri, 15 May 2020 22:46:41 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 15 May 2020 22:46:41 -0400
-Message-Id: <1589597201-44616-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [dunfell/master][PATCH] packagegroup-*-sdk-host: add new ti-sci-fw source package to SDK
+	Mon, 18 May 2020 20:36:43 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04IKYGVm063874
+	for <meta-arago@arago-project.org>; Mon, 18 May 2020 15:34:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1589834056;
+	bh=mFMLi5bMxqiW/IbgcoQojMoCE7WzwAXQIeAhTVX4rdU=;
+	h=From:To:CC:Subject:Date;
+	b=qXyRg/n9WEEpJGTYrLbHty8RXtz+Rj7KZAKtrYWo3ZfsyfFHMEWX/i4VkoUGOXkBT
+	g2SfQLdtwmcxAXz0TiSj3iux//QXIGHK8/Gm+FsEZIeiEyKV3281luDs3mVPnbDKFZ
+	7R6OeJnzAjcSSlTHLvl5SYZpSioNNxMuhHbCc/CI=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04IKYG2O009997
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Mon, 18 May 2020 15:34:16 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Mon, 18 May 2020 15:34:16 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Mon, 18 May 2020 15:34:16 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04IKYGqE048969;
+	Mon, 18 May 2020 15:34:16 -0500
+From: Denys Dmytriyenko <denys@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 18 May 2020 20:34:16 +0000
+Message-ID: <20200518203416.24292-1-denys@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH] ltp-ddt: add extra RDEPENDS on top of default ltp
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,43 +49,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 May 2020 02:49:08 -0000
-
-From: Denys Dmytriyenko <denys@ti.com>
+X-List-Received-Date: Mon, 18 May 2020 20:36:43 -0000
+Content-Type: text/plain
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/include/arago-source-ipk.inc            | 4 ----
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb         | 1 +
- 2 files changed, 1 insertion(+), 4 deletions(-)
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb          | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-index 39d3be8..95a27bf 100644
---- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-@@ -398,9 +398,5 @@ SRCIPK_INSTALL_DIR_pn-vlib-c66x = "component-sources/vlib_c66x_${PV}"
- CREATE_SRCIPK_pn-big-data-ipc-demo-linux = "1"
- SRCIPK_INSTALL_DIR_pn-big-data-ipc-demo-linux = "example-applications/${PN}-${PV}"
- 
--CREATE_SRCIPK_pn-ti-sci-fw_k3 = "1"
--SRCIPK_SRC_DIR_pn-ti-sci-fw_k3 = "${WORKDIR}/imggen"
--SRCIPK_INSTALL_DIR_pn-ti-sci-fw_k3 = "board-support/system-firmware-image-gen-${PV}"
--
- CREATE_SRCIPK_pn-jailhouse = "1"
- SRCIPK_INSTALL_DIR_pn-jailhouse = "board-support/extra-drivers/${PN}-${PV}"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index 4bc236f..9336687 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -38,6 +38,7 @@ UTILS_append_k2g = " \
- 
- UTILS_append_k3 = " \
-     jailhouse-src \
-+    ti-sci-fw-source \
-     arm-trusted-firmware-src \
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+index 24887584..c130155b 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+@@ -27,3 +27,11 @@ EXTRA_OEMAKE_append = " \
+     ALSA_INCPATH=${STAGING_INCDIR} \
+     ALSA_LIBPATH=${STAGING_LIBDIR} \
  "
- 
++
++RDEPENDS_${PN} += "\
++    acl \
++    at \
++    pm-qa \
++    serialcheck \
++    memtester \
++"
 -- 
-2.7.4
+2.17.1
 
 
