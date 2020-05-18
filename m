@@ -1,42 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 8E77B529AB
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id A60F35298B
 	for <meta-arago@arago-project.org>;
-	Mon, 18 May 2020 20:36:43 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04IKYGVm063874
-	for <meta-arago@arago-project.org>; Mon, 18 May 2020 15:34:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1589834056;
-	bh=mFMLi5bMxqiW/IbgcoQojMoCE7WzwAXQIeAhTVX4rdU=;
-	h=From:To:CC:Subject:Date;
-	b=qXyRg/n9WEEpJGTYrLbHty8RXtz+Rj7KZAKtrYWo3ZfsyfFHMEWX/i4VkoUGOXkBT
-	g2SfQLdtwmcxAXz0TiSj3iux//QXIGHK8/Gm+FsEZIeiEyKV3281luDs3mVPnbDKFZ
-	7R6OeJnzAjcSSlTHLvl5SYZpSioNNxMuhHbCc/CI=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04IKYG2O009997
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 18 May 2020 15:34:16 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Mon, 18 May 2020 15:34:16 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Mon, 18 May 2020 15:34:16 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04IKYGqE048969;
-	Mon, 18 May 2020 15:34:16 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Mon, 18 May 2020 20:34:16 +0000
-Message-ID: <20200518203416.24292-1-denys@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] ltp-ddt: add extra RDEPENDS on top of default ltp
+	Mon, 18 May 2020 22:56:18 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 213EC40AF3;
+	Mon, 18 May 2020 22:53:52 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id aSZ-LyIDXS6X; Mon, 18 May 2020 22:53:52 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 090FE40A46;
+	Mon, 18 May 2020 22:53:51 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id B9B9D17316D;
+	Mon, 18 May 2020 18:53:50 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 18 May 2020 18:53:50 -0400
+Message-Id: <1589842430-25158-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [oe-layersetup][PATCH] arago-dunfell{-next}: switch meta-arm to dunfell branch
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,31 +37,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 May 2020 20:36:43 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 18 May 2020 22:56:19 -0000
+
+From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb          | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ configs/arago-dunfell-config.txt      | 2 +-
+ configs/arago-dunfell-next-config.txt | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-index 24887584..c130155b 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-@@ -27,3 +27,11 @@ EXTRA_OEMAKE_append = " \
-     ALSA_INCPATH=${STAGING_INCDIR} \
-     ALSA_LIBPATH=${STAGING_LIBDIR} \
- "
-+
-+RDEPENDS_${PN} += "\
-+    acl \
-+    at \
-+    pm-qa \
-+    serialcheck \
-+    memtester \
-+"
+diff --git a/configs/arago-dunfell-config.txt b/configs/arago-dunfell-config.txt
+index eb2987a..e8ad1fa 100644
+--- a/configs/arago-dunfell-config.txt
++++ b/configs/arago-dunfell-config.txt
+@@ -8,7 +8,7 @@ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
+ meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,HEAD,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+ meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,HEAD,layers=
+-meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
++meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,HEAD,layers=meta-arm:meta-arm-toolchain
+ oe-core,git://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/arago-dunfell-next-config.txt b/configs/arago-dunfell-next-config.txt
+index 4f53d41..8820086 100644
+--- a/configs/arago-dunfell-next-config.txt
++++ b/configs/arago-dunfell-next-config.txt
+@@ -8,7 +8,7 @@ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
+ meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,HEAD,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+ meta-ti,git://git.yoctoproject.org/meta-ti,dunfell-next,HEAD,layers=
+-meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
++meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,HEAD,layers=meta-arm:meta-arm-toolchain
+ oe-core,git://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64.conf.sample
 -- 
-2.17.1
+2.7.4
 
 
