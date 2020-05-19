@@ -1,31 +1,31 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 3D14D5298B
+	by arago-project.org (Postfix) with ESMTPS id 4A1E15298B
 	for <meta-arago@arago-project.org>;
-	Tue, 19 May 2020 03:44:12 +0000 (UTC)
+	Tue, 19 May 2020 05:59:41 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 8DF8E40ADE;
-	Tue, 19 May 2020 03:41:45 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 7B66040C06;
+	Tue, 19 May 2020 05:57:14 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id fn2AIP1WFnU6; Tue, 19 May 2020 03:41:45 +0000 (UTC)
+	with ESMTP id XYFoiyLPQoFg; Tue, 19 May 2020 05:57:14 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 49B5D40A9E;
-	Tue, 19 May 2020 03:41:44 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2917940A9E;
+	Tue, 19 May 2020 05:57:13 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 9422216F347;
-	Mon, 18 May 2020 23:41:43 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 6C0F816F347;
+	Tue, 19 May 2020 01:57:12 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Mon, 18 May 2020 23:41:42 -0400
-Message-Id: <1589859702-48924-1-git-send-email-denis@denix.org>
+Date: Tue, 19 May 2020 01:57:11 -0400
+Message-Id: <1589867831-53674-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Subject: [dunfell/master][PATCH] armnn: deprecated, remove
+Subject: [dunfell/master][PATCH v2] armnn: deprecated, remove
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,7 +38,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 May 2020 03:44:12 -0000
+X-List-Received-Date: Tue, 19 May 2020 05:59:41 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
@@ -49,6 +49,7 @@ Signed-off-by: Denys Dmytriyenko <denys@ti.com>
  .../packagegroup-arago-tisdk-addons-sdk-target.bb  |   6 -
  .../packagegroup-arago-tisdk-matrix.bb             |   9 -
  .../recipes-core/packagegroups/ti-analytics.bb     |   4 -
+ .../recipes-support/armnn/armnn_%.bbappend         |   3 -
  .../matrix/matrix-gui-tidl-demos_2.0.bb            |  16 -
  .../recipes-support/armnn/armnn-caffe_git.bb       |  22 -
  .../recipes-support/armnn/armnn-onnx_git.bb        |  22 -
@@ -67,7 +68,8 @@ Signed-off-by: Denys Dmytriyenko <denys@ti.com>
  ...e-Fix-exception-for-help-command-line-opt.patch |  51 --
  ...e-setting-capture-resolution-for-the-came.patch |  48 --
  .../recipes-support/armnn/armnn_git.bb             | 102 ----
- 21 files changed, 1439 deletions(-)
+ 22 files changed, 1442 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-support/armnn/armnn_%.bbappend
  delete mode 100644 meta-arago-extras/recipes-support/armnn/armnn-caffe_git.bb
  delete mode 100644 meta-arago-extras/recipes-support/armnn/armnn-onnx_git.bb
  delete mode 100644 meta-arago-extras/recipes-support/armnn/armnn-tensorflow_git.bb
@@ -196,6 +198,15 @@ index b2d7d3c..09264c2 100644
  #    ${TENSORFLOW_DEMO} \
  #    ${@['','qt-opencv-opencl-opengl-multithreaded'][oe.utils.all_distro_features(d, 'opencv opencl opengl', True, False) and bb.utils.contains('MACHINE_FEATURES', 'gpu dsp', True, False, d)]} \
  #    ${@['','barcode-roi'][oe.utils.all_distro_features(d, 'opencv', True, False) and bb.utils.contains('MACHINE_FEATURES', 'dsp', True, False, d)]} \
+diff --git a/meta-arago-distro/recipes-support/armnn/armnn_%.bbappend b/meta-arago-distro/recipes-support/armnn/armnn_%.bbappend
+deleted file mode 100644
+index 249ddb7..0000000
+--- a/meta-arago-distro/recipes-support/armnn/armnn_%.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-inherit features_check
+-
+-REQUIRED_MACHINE_FEATURES = "dsp"
 diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-tidl-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-tidl-demos_2.0.bb
 index e8ad27e..f05dd4c 100644
 --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-tidl-demos_2.0.bb
