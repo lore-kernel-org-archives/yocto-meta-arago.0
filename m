@@ -1,42 +1,42 @@
-Return-Path: <yan-liu@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id AA86B529FF
+Return-Path: <j-stiffler@ti.com>
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	by arago-project.org (Postfix) with ESMTPS id 3A62E529FF
 	for <meta-arago@arago-project.org>;
-	Wed, 20 May 2020 19:57:36 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04KJt9jT091160
-	for <meta-arago@arago-project.org>; Wed, 20 May 2020 14:55:09 -0500
+	Wed, 20 May 2020 21:55:13 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04KLqjwt086574
+	for <meta-arago@arago-project.org>; Wed, 20 May 2020 16:52:45 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1590004509;
-	bh=RTmE8EqDnYdRpixqfx20VXUuDw7/ys11oizPvOQDiUE=;
+	s=ti-com-17Q1; t=1590011565;
+	bh=BWH7qDKD7KLi2eNJiZO6w3WEnCUOs7zjzwA/khhVDIs=;
 	h=From:To:CC:Subject:Date;
-	b=nGjPZMDIceF2aUwLXbwRho5ivhi4HpVU2cL12d88+YGhXIVfwzdHJbdd++Pso+bKs
-	0SbbxA6sgz5/MJ+JCUv5cBuvVOKRZqXJZzpxrs4GhT7UvOcN1q7lFKBm7YOFff7IQq
-	AFphGX4OV5Lr1j2G9tOheKxOuGdmPosYsi0HyT1Q=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04KJt92Y073179
+	b=noLoXB3nnPDvwPWegSnKtxGv0FdQqEZtr13TuHWIAspkEHhOX0jvvmOh4r+9NmZgH
+	2r7MMeR0BcHHAbeHMY1q0b3pu0ku2yJIAUcjw7W6fGYTg8FXeMTtPkV/L1ad4vuXBb
+	DM2mX9ISAD81C3LCCW0IyWFD+yfMijMMgIy78bHw=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04KLqjwO125076
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 20 May 2020 14:55:09 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Wed, 20 May 2020 16:52:45 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Wed, 20 May 2020 14:55:09 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 20 May 2020 16:52:45 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Wed, 20 May 2020 14:55:08 -0500
-Received: from yan-ubuntu-1204.dhcp.ti.com (ileax41-snat.itg.ti.com
+	Frontend Transport; Wed, 20 May 2020 16:52:45 -0500
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
 	[10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04KJt81r106099;
-	Wed, 20 May 2020 14:55:08 -0500
-From: <yan-liu@ti.com>
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04KLqj0x033341;
+	Wed, 20 May 2020 16:52:45 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Wed, 20 May 2020 15:55:04 -0400
-Message-ID: <1590004504-30728-1-git-send-email-yan-liu@ti.com>
-X-Mailer: git-send-email 1.7.9.5
+Date: Wed, 20 May 2020 17:52:40 -0400
+Message-ID: <1590011560-17361-1-git-send-email-j-stiffler@ti.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH v1] ltp-ddt: Update to latest
+Subject: [master/dunfell][PATCH] tisdk-core-bundle: add both sr1 and sr2 sysfw.itb
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,34 +49,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 May 2020 19:57:37 -0000
+X-List-Received-Date: Wed, 20 May 2020 21:55:13 -0000
 Content-Type: text/plain
 
-From: Yan Liu <yan-liu@ti.com>
-
-Signed-off-by: Yan Liu <yan-liu@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb   |    4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-index 6190e94..9b6d97c 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-@@ -10,10 +10,10 @@ PROVIDES += "ltp"
- DEPENDS += "alsa-lib"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
+index 64ee906..7f5371e 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
+@@ -9,6 +9,7 @@ DEPLOY_SPL_NAME_k2g-hs-evm = ""
+ DEPLOY_SPL_NAME_k3 = "tispl.bin tiboot3.bin"
  
- PE = "1"
--PR = "r2"
-+PR = "r3"
- PV_append = "+git${SRCPV}"
+ DEPLOY_IMAGES_NAME_k3 = "bl31.bin bl32.bin sysfw.itb"
++DEPLOY_IMAGES_NAME_append_am65xx = " sysfw-am65x-evm.itb sysfw-am65x_sr2-evm.itb"
+ DEPLOY_IMAGES_NAME_append_am65xx-evm = " ti-sci-firmware-am65x-gp.bin"
+ DEPLOY_IMAGES_NAME_append_j7-evm = " ti-sci-firmware-j721e-gp.bin"
  
--SRCREV = "108cab23beb62a474b5a34fb2c6d9f6f5980b3ce"
-+SRCREV = "d5b819eb49544358a4824fe75b3b220839568fb7"
- BRANCH ?= "master"
- 
- SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
 -- 
-1.7.9.5
+2.7.4
 
 
