@@ -1,30 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id C7BB2520E2
+Return-Path: <yan-liu@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id F2679520E2
 	for <meta-arago@arago-project.org>;
-	Fri, 29 May 2020 00:42:09 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 8379240B89;
-	Fri, 29 May 2020 00:39:40 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id UJfyplYjRAAU; Fri, 29 May 2020 00:39:40 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 39FE940AB5;
-	Fri, 29 May 2020 00:39:36 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 6041B16FA39;
-	Thu, 28 May 2020 20:39:35 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu, 28 May 2020 20:39:35 -0400
-Message-Id: <1590712775-35974-1-git-send-email-denis@denix.org>
+	Fri, 29 May 2020 18:32:16 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04TITlK6101815
+	for <meta-arago@arago-project.org>; Fri, 29 May 2020 13:29:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1590776987;
+	bh=RrQQkxSaVFZ476p5MA43Qi5Hleq8AKurfT5QP1YS+08=;
+	h=From:To:CC:Subject:Date;
+	b=IsMkKi7KGXyLbzUf1/baI/eP7YIXMjc7pYNECcG+gtH/I3mJpcBQ9QZX3KahGo4CK
+	6n/S7/ZMKoHb61U9NfP5PAebvL6QqhtaaUF0f5pmlgC48eSES6HPMe7DYvf0sN0zJm
+	DSBg6cehOMMxX4Yp1x1sz37pe3LumBuEcMzxvD5E=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04TITlN2085719
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 29 May 2020 13:29:47 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Fri, 29 May 2020 13:29:46 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Fri, 29 May 2020 13:29:46 -0500
+Received: from yan--Ubuntu-16.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04TITk8M064350;
+	Fri, 29 May 2020 13:29:46 -0500
+From: <yan-liu@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 29 May 2020 14:29:44 -0400
+Message-ID: <1590776984-51494-1-git-send-email-yan-liu@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [dunfell/master][PATCH] external-arm-toolchain: un-break target compilation broken by 9.x update
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [PATCH v1] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,34 +49,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 May 2020 00:42:10 -0000
+X-List-Received-Date: Fri, 29 May 2020 18:32:17 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+From: Yan Liu <yan-liu@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Yan Liu <yan-liu@ti.com>
 ---
- meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend | 4 ++++
- 1 file changed, 4 insertions(+)
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-index 795e39c..5a51aaa 100644
---- a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-+++ b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-@@ -21,6 +21,8 @@ do_install_append() {
- 	ln -sf libubsan.so.1 ${D}${libdir}/libubsan.so
- 	ln -sf libasan.so.5 ${D}${libdir}/libasan.so
- 	ln -sf libgfortran.so.5 ${D}${libdir}/libgfortran.so
-+
-+	cp ${CP_ARGS} ${EXTERNAL_TOOLCHAIN}/lib/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/libgcc* ${D}${libdir}/${EAT_TARGET_SYS}/${EAT_VER_GCC}/
- }
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+index 9b6d97c..b0ee737 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+@@ -10,10 +10,10 @@ PROVIDES += "ltp"
+ DEPENDS += "alsa-lib"
  
- # Below FILES_* overrides are due to TARGET_SYS -> ORIG_TARGET_SYS move in ${libdir}/gcc
-@@ -67,3 +69,5 @@ FILES_libgomp-dev = "\
-     ${libdir}/libgomp.spec \
-     ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/include/omp.h \
- "
-+
-+INSANE_SKIP_libgcc-dev += "staticdev"
+ PE = "1"
+-PR = "r3"
++PR = "r4"
+ PV_append = "+git${SRCPV}"
+ 
+-SRCREV = "d5b819eb49544358a4824fe75b3b220839568fb7"
++SRCREV = "f14aa69318414140e4165b8f87469c106a436b0a"
+ BRANCH ?= "master"
+ 
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
 -- 
 2.7.4
 
