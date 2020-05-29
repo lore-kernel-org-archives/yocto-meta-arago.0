@@ -1,42 +1,30 @@
-Return-Path: <j-stiffler@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 6CE4752A35
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id C7BB2520E2
 	for <meta-arago@arago-project.org>;
-	Thu, 21 May 2020 11:58:56 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 04LBuSRm052549
-	for <meta-arago@arago-project.org>; Thu, 21 May 2020 06:56:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1590062188;
-	bh=iXL97nNK22G/T2MLuM0ZTwxkAbYACegqIerayHYKaQY=;
-	h=From:To:CC:Subject:Date;
-	b=NJRlYw/bj2FmVNMm7OPfbuOBzneUBoLfRDS+oBYQRtWNRTNIDYIkvZ1rprpDLDb8P
-	9q/UTCEuHF42qWtQw/AL17M4GJLTtP7ylxdiuSQcZo6vl5uR4ix/euTfgJCMeXb4o5
-	44y4v18D4Snroztz8I9Iw/s7SlTuBn5XDd2pscIM=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 04LBuSx9010027
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 21 May 2020 06:56:28 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 21 May 2020 06:56:28 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 21 May 2020 06:56:28 -0500
-Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 04LBuSl2045452;
-	Thu, 21 May 2020 06:56:28 -0500
-From: Jacob Stiffler <j-stiffler@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 21 May 2020 07:56:26 -0400
-Message-ID: <1590062186-21565-1-git-send-email-j-stiffler@ti.com>
+	Fri, 29 May 2020 00:42:09 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 8379240B89;
+	Fri, 29 May 2020 00:39:40 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id UJfyplYjRAAU; Fri, 29 May 2020 00:39:40 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 39FE940AB5;
+	Fri, 29 May 2020 00:39:36 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 6041B16FA39;
+	Thu, 28 May 2020 20:39:35 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu, 28 May 2020 20:39:35 -0400
+Message-Id: <1590712775-35974-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [master/dunfell][PATCH v2] tisdk-core-bundle: add both sr1 and sr2 sysfw.itb for am65xx-evm
+Subject: [dunfell/master][PATCH] external-arm-toolchain: un-break target compilation broken by 9.x update
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,30 +37,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 May 2020 11:58:56 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 29 May 2020 00:42:10 -0000
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+From: Denys Dmytriyenko <denys@ti.com>
+
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
-v2 changes:
-only add for am65xx-evm
+ meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend | 4 ++++
+ 1 file changed, 4 insertions(+)
 
- meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
-index 64ee906..f618555 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
-@@ -9,7 +9,7 @@ DEPLOY_SPL_NAME_k2g-hs-evm = ""
- DEPLOY_SPL_NAME_k3 = "tispl.bin tiboot3.bin"
+diff --git a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+index 795e39c..5a51aaa 100644
+--- a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
++++ b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+@@ -21,6 +21,8 @@ do_install_append() {
+ 	ln -sf libubsan.so.1 ${D}${libdir}/libubsan.so
+ 	ln -sf libasan.so.5 ${D}${libdir}/libasan.so
+ 	ln -sf libgfortran.so.5 ${D}${libdir}/libgfortran.so
++
++	cp ${CP_ARGS} ${EXTERNAL_TOOLCHAIN}/lib/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/libgcc* ${D}${libdir}/${EAT_TARGET_SYS}/${EAT_VER_GCC}/
+ }
  
- DEPLOY_IMAGES_NAME_k3 = "bl31.bin bl32.bin sysfw.itb"
--DEPLOY_IMAGES_NAME_append_am65xx-evm = " ti-sci-firmware-am65x-gp.bin"
-+DEPLOY_IMAGES_NAME_append_am65xx-evm = " ti-sci-firmware-am65x-gp.bin sysfw-am65x-evm.itb sysfw-am65x_sr2-evm.itb"
- DEPLOY_IMAGES_NAME_append_j7-evm = " ti-sci-firmware-j721e-gp.bin"
- 
- ARAGO_TISDK_IMAGE ?= "tisdk-core-bundle"
+ # Below FILES_* overrides are due to TARGET_SYS -> ORIG_TARGET_SYS move in ${libdir}/gcc
+@@ -67,3 +69,5 @@ FILES_libgomp-dev = "\
+     ${libdir}/libgomp.spec \
+     ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/include/omp.h \
+ "
++
++INSANE_SKIP_libgcc-dev += "staticdev"
 -- 
 2.7.4
 
