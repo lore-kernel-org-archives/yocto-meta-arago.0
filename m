@@ -1,42 +1,47 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id A721C529BC
+Return-Path: <pbarker@konsulko.com>
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
+	[209.85.221.67])
+	by arago-project.org (Postfix) with ESMTPS id 04526529E0
 	for <meta-arago@arago-project.org>;
-	Tue,  9 Jun 2020 00:03:55 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05901N4c068160
-	for <meta-arago@arago-project.org>; Mon, 8 Jun 2020 19:01:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1591660883;
-	bh=k1V+w9JyDG/iXDYVi5vxju2EQMRA87DTzxZMIeJdczo=;
-	h=From:To:CC:Subject:Date;
-	b=jVFJz3kCkeUG2c0cZRgzY35cFIMEiUX5qKJoy4v9tn4fOQZefcUQr0pxOdzzkdb2a
-	tY57ku4G+Q+A4tB6Iie7ddEeOZjar9MKorxabnmTA3NmCaNVgUNSGrAiv6/2EIxzZV
-	8x0ax3yDpEDLNomTglj5kleMzlxonmSf7ySVFcsk=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05901NMt105859
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 8 Jun 2020 19:01:23 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Mon, 8 Jun 2020 19:01:22 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Mon, 8 Jun 2020 19:01:22 -0500
-Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05901MLG125366;
-	Mon, 8 Jun 2020 19:01:22 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Tue, 9 Jun 2020 00:01:19 +0000
-Message-ID: <20200609000119.3276-1-denys@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Tue,  9 Jun 2020 10:30:46 +0000 (UTC)
+Received: by mail-wr1-f67.google.com with SMTP id h5so20685787wrc.7
+	for <meta-arago@arago-project.org>;
+	Tue, 09 Jun 2020 03:28:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=ubP+zxX+3ugqwrjzXi9pWwA0Hhqw0pu0DdIsbUv63sE=;
+	b=RQ/QDwIBseQ2pDQaRK0bTasbeg/ejd0kQp96UpmkExlZNuuP2IqzrtjLEiblbtWOd2
+	VUJBut/qHdh+dYDQM0441doZDd1RGsfCkt+OJmCPJFT+LXqrIT2mKsolVFYilIVUxil7
+	2t+3r05QM5ids/9kPNmXS6A63g3zzPvSxyZQk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=ubP+zxX+3ugqwrjzXi9pWwA0Hhqw0pu0DdIsbUv63sE=;
+	b=YLrXRkL4xW5plKB+Rf3s7Ubp+GZBvqRDGDBucZRdFk3dvQLf+hOsntxZOuQJup51ys
+	TVPS5BuXdRuKfAFajthlRJP5/7sXY4B2v9AMMIHmlKZAzp0bUqpjtuLXXbvuMqrWZjI2
+	cSe+ieOb4QzJVsw61yJ1QxDnEePdPxwwgiXmseVrRVIuBnZJHNZ7mjAulYe5axHOnuAk
+	4TDnUQyXLQl/7idPVhBLVbCxTtAfnasS0nObzZbjFTx14JkUvnx6rnCMm+LCG9LKB76W
+	5MPWFxgKAQPUSyVjrhPGxtebooiVCF3PkxdkMjeb8qq3HDfbNum81aoug/dNC1FJEGZ9
+	h60g==
+X-Gm-Message-State: AOAM533kcL9kK0bNSwzs4htMdAojKdhAOSFNpwDpfjOuaCPHGhodVzTK
+	+F6UP9oiAd/WyaruabyOm2hrtm39dY1LNA==
+X-Google-Smtp-Source: ABdhPJxiZiL22PLSCXAXqzWcSz0MEUI0scxD/QzjId7+xIwGLtVUHlYZVzIK7rhVqaun3fkKGv3C/g==
+X-Received: by 2002:a05:6000:114e:: with SMTP id
+	d14mr3610740wrx.110.1591698493794; 
+	Tue, 09 Jun 2020 03:28:13 -0700 (PDT)
+Received: from ar2.home.b5net.uk ([213.48.11.149])
+	by smtp.gmail.com with ESMTPSA id q4sm2397590wma.47.2020.06.09.03.28.11
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Tue, 09 Jun 2020 03:28:13 -0700 (PDT)
+From: Paul Barker <pbarker@konsulko.com>
+To: meta-arago@arago-project.org
+Date: Tue,  9 Jun 2020 11:28:08 +0100
+Message-Id: <20200609102808.16475-1-pbarker@konsulko.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [PATCH] coresdk-07.00.00-config: add config for CoreSDK 07.00.00 release
+Subject: [master/dunfell][PATCH] packagegroup-arago-sysvinit-boot: Skip recipe if sysvinit is not enabled
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,36 +54,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Jun 2020 00:03:56 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 09 Jun 2020 10:30:47 -0000
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+This change fixes the following error seen at parse time when the
+meta-arago-distro layer is present but sysvinit is not in
+DISTRO_FEATURES:
+
+    ERROR: .../meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb: Please ensure that your setting of VIRTUAL-RUNTIME_init_manager (sysvinit) matches the entries enabled in DISTRO_FEATURES
+    ERROR: Failed to parse recipe: .../meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
+
+Signed-off-by: Paul Barker <pbarker@konsulko.com>
 ---
- configs/coresdk/coresdk-07.00.00-config.txt | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
- create mode 100644 configs/coresdk/coresdk-07.00.00-config.txt
+ .../packagegroups/packagegroup-arago-sysvinit-boot.bb        | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/configs/coresdk/coresdk-07.00.00-config.txt b/configs/coresdk/coresdk-07.00.00-config.txt
-new file mode 100644
-index 0000000..e4fe1c9
---- /dev/null
-+++ b/configs/coresdk/coresdk-07.00.00-config.txt
-@@ -0,0 +1,14 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
+index 2eb2d777..a6e21745 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
+@@ -1,3 +1,8 @@
++python __anonymous() {
++    if not "sysvinit" in d.getVar("DISTRO_FEATURES").split():
++        raise bb.parse.SkipRecipe("sysvinit is not enabled")
++}
 +
-+bitbake,git://git.openembedded.org/bitbake,1.46,6cc09fa33131f71a3fd0e336ff07a4186b41bf8f
-+meta-arago,git://arago-project.org/git/meta-arago.git,dunfell,07.00.00,layers=meta-arago-distro:meta-arago-extras
-+#meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,fdd19517e17240b0b61765bd02fc483a1bde986f,layers=
-+meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,237879d59e11187a49216a88b73a057408e4b3f7,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,e413c1ef621688e69bb7830bb3151ed23b30b73e,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-+meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,07.00.00,layers=
-+meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,f8ea9ac3a06f543bd3dc259ffc1b60eb197a132d,layers=meta-arm:meta-arm-toolchain
-+oe-core,git://git.openembedded.org/openembedded-core,dunfell,c88cf750f26f6786d6ba5b4f1f7e5d4f0c800e6e,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+ require recipes-core/packagegroups/packagegroup-core-boot.bb
+ 
+ PR = "r0"
 -- 
-2.17.1
+2.26.2
 
 
