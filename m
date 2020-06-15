@@ -1,43 +1,44 @@
 Return-Path: <Ankur.Tyagi@gallagher.com>
 Received: from AUS01-ME1-obe.outbound.protection.outlook.com
-	(mail-eopbgr1360118.outbound.protection.outlook.com [40.107.136.118])
-	by arago-project.org (Postfix) with ESMTPS id DC59A529D1
+	(mail-eopbgr1360100.outbound.protection.outlook.com [40.107.136.100])
+	by arago-project.org (Postfix) with ESMTPS id 7257252A35
 	for <meta-arago@arago-project.org>;
-	Thu, 11 Jun 2020 22:52:40 +0000 (UTC)
+	Mon, 15 Jun 2020 19:44:14 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
-	b=UxZZ5dPOCXA0c1OnJuxspVZuL+Qp7Qirk/A5kTJSghh7oGMdwkACGcG6pgVY006y6GTD1JsiwEeaO9Ip4NOiw//vYk3KIAxABjdfO+diD9MDziCk1dw6+miTZQ0QxAeEuIU8cwjC3D8J0fch5ph2H5FYHhNG60q5FtF/f3sqFNKKoJm+MnDgFDMxbOnQv6fjrB5wYrHZyOdgAy9EYtxCQXLv5rtjJp6Cb97c6LDPaVN/bpzWaMcii68TEFNoGWrt17yp18sWvX6Nk0zmKvktI8XwTs3+VMqXTN/Ws+w+qRWy6IW4adDzygdPmZRzwsgaaaTkWr9izXfzpSwgPHg5kQ==
+	b=Z6PKYCtX8Lenaxy3nhV/zkqWkSEdBcJqiryu9RBAmPdQ1OP8TGV8aanw3vcWqJNaI0ySxEV0cBGMRTlve2nHil+jzaKBNOtM9ooogzcio7J4rfo/wOC0rDVwDppQneWhmU6lKTLN0l8LajC8ZjDAExefoj1lE0y3O5eBgelmEBf9IadtmV74+AeSjQc4UdLsDvaHBXs2YzN8U5uS4H1rT6RU65Bj7PStqSa9vxUmS4GQyWOv74BOYBi9ZDlmTqMS4j3+IOs7LiMSc2fH5eOWeqtKyP84E0Ar6Opmlxy6WZKNxQ89SJS8eBv/uC2A65wLtHf9gXy8yGuqOJBEqI3MyQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
 	s=arcselector9901;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=6B/iaj2KfqXNLktKPKX7amrFybWKIVozt9886LdmVm0=;
-	b=nNw5TiEcY7WwgOaB0Aj1RIvrVQNmq2nh3NdX851ZXWXZcJIigcC0tIiq36glDYyBNu8XJNJEvEj7fzi3EPOkD7vJf/7HAoPfMcrdMS2vaLlFtgIsaKqcKub4c4z2KPP8XsKGeHhAYmVUd91rXowWO/KVVwheFWCdwGKuv54/8l2ynpBhIl6SM7tKXLp3uPF2PnxrXGZ7N4eKxguEXW2EC7dbLqgKnxOtFDv0KerP1JKGq3JmGcpz/MPSQsGF5E/iGi9ofvuzEd8ONes3ed5YlwqHEAOa9Br5KpViMu1aX1owiSTMvxdOnqbk/csbAqm0HhloDTrR1ySHTVQXxLyD5g==
+	bh=Ic6SES5NjMlxbqUupgl+e7DrQd8B/+YEDy7MnOUOjGs=;
+	b=Jrie6K5kLBu7CEsKWnK1+6t3yX7MJWXHbkUZ9wgZ3ervPTNf/ewpsSR2ZDW4qXVnp3DMZBcQOYVsrTkPO2KB6IfRNDV3qbYMs8yw/lFQ3Fz9nx3GkSJfKYHTbijD9zRyCDP31/YIgh3tGrO1A4rjG9neangscI9k8V0YYMjh5BFIdvTNFZZuEsG4eYR8hRL0Kj7/jJbMjysQgPQMmWufCDhz5ZplXe6SOzodmd4lPLHlrFsh9NgqIj9xmmsCLlad6N3eI1bhbQn7HjN8VGYeuw16Bw6RD18tqFwMfgNtA2TXMH5CL4ujGrx0JEEfz7MwoEzkqxlM54oQ/pvVrIWt9g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
 	smtp.mailfrom=gallagher.com; dmarc=pass action=none
 	header.from=gallagher.com; dkim=pass header.d=gallagher.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gallagher.com;
 	s=selector1;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=6B/iaj2KfqXNLktKPKX7amrFybWKIVozt9886LdmVm0=;
-	b=GqLNqGhOCGA8Hhm6SlsomxcZT/suKVijfUze+jRwKrU0LKibPzsW6QT475IIMqEnb6a8z7Sj3dMcBP6QuJoQ8TucTHjz0M/9vwQ6PTM0XcQlt21wL2MdsPUFQXnagk3Wvb6mHZV67l1hEYRtnyrrBs9xFkPt/R6lSz3SyE1ZCuQ=
-Received: from SYXPR01MB1088.ausprd01.prod.outlook.com (2603:10c6:0:9::17) by
-	SYXPR01MB1775.ausprd01.prod.outlook.com (2603:10c6:0:26::14) with
+	bh=Ic6SES5NjMlxbqUupgl+e7DrQd8B/+YEDy7MnOUOjGs=;
+	b=U5Pbse56V3vH7POXb7ThUSm5GpqagriJyXN1d2U2SoalBZqclyQNPGkEWohGC0Z4ULPyAw3WlEncQqvJh1mF7Vz1BD2UqzS9XDs111g2IVHTgCIvwwIq3QVKhTVXBi3dQQnS+7vBefjHEl/aNslLEvY8YeKNMwrob3EWqKc6c08=
+Received: from SY3PR01MB0809.ausprd01.prod.outlook.com (2603:10c6:0:6::12) by
+	SY3PR01MB2012.ausprd01.prod.outlook.com (2603:10c6:0:20::18) with
 	Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.3088.24; Thu, 11 Jun 2020 22:50:03 +0000
-Received: from SYXPR01MB1088.ausprd01.prod.outlook.com
-	([fe80::d4bf:2e94:579a:f482]) by
-	SYXPR01MB1088.ausprd01.prod.outlook.com
-	([fe80::d4bf:2e94:579a:f482%2]) with mapi id 15.20.3088.022;
-	Thu, 11 Jun 2020 22:50:03 +0000
+	15.20.3088.26; Mon, 15 Jun 2020 19:41:37 +0000
+Received: from SY3PR01MB0809.ausprd01.prod.outlook.com
+	([fe80::7d3b:74f3:fc8:6fb7]) by SY3PR01MB0809.ausprd01.prod.outlook.com
+	([fe80::7d3b:74f3:fc8:6fb7%9]) with mapi id 15.20.3088.029;
+	Mon, 15 Jun 2020 19:41:37 +0000
 From: Ankur Tyagi <Ankur.Tyagi@gallagher.com>
-To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Thread-Topic: [meta-arago][dunfell/master PATCH] arago-source-ipk.inc: Use
+To: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
+	"Dmytriyenko, Denys" <denys@ti.com>
+Thread-Topic: [meta-arago] [dunfell/master PATCH] arago-source-ipk.inc: Use
 	weak assignment to create source ipk file
-Thread-Index: AQHWQEATsu0KkuE8CU6so/AVB24pwKjUBI0g
-Date: Thu, 11 Jun 2020 22:50:03 +0000
-Message-ID: <SYXPR01MB1088B788FE7E2A6BC89E11F1E5800@SYXPR01MB1088.ausprd01.prod.outlook.com>
+Thread-Index: AQHWQ0z7X9zmWVw4l06C5l8oHVc3XA==
+Date: Mon, 15 Jun 2020 19:41:37 +0000
+Message-ID: <SY3PR01MB08094675F22049EFC5885294E59C0@SY3PR01MB0809.ausprd01.prod.outlook.com>
 References: <20200611223129.58314-1-ankur.tyagi@gallagher.com>
-In-Reply-To: <20200611223129.58314-1-ankur.tyagi@gallagher.com>
+	<SYXPR01MB1088B788FE7E2A6BC89E11F1E5800@SYXPR01MB1088.ausprd01.prod.outlook.com>
+In-Reply-To: <SYXPR01MB1088B788FE7E2A6BC89E11F1E5800@SYXPR01MB1088.ausprd01.prod.outlook.com>
 Accept-Language: en-NZ, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -46,31 +47,31 @@ authentication-results: arago-project.org; dkim=none (message not signed)
 	header.from=gallagher.com;
 x-originating-ip: [139.180.92.147]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: efe4dcbc-af45-4f79-c28f-08d80e59c79e
-x-ms-traffictypediagnostic: SYXPR01MB1775:
-x-microsoft-antispam-prvs: <SYXPR01MB17759EB6A7A02594CDB6EDBDE5800@SYXPR01MB1775.ausprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5516;
-x-forefront-prvs: 0431F981D8
+x-ms-office365-filtering-correlation-id: 636d884f-b743-4dd1-6bd6-08d811641e2e
+x-ms-traffictypediagnostic: SY3PR01MB2012:
+x-microsoft-antispam-prvs: <SY3PR01MB2012C122E7647826680BA3A4E59C0@SY3PR01MB2012.ausprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4941;
+x-forefront-prvs: 04359FAD81
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: GWp4DXcsCAfpk/wETSU2xJTVxRDLqYrgGurItO/SWN1sFNx/RWEqL2vBoqF3s0byjDENgagQN0DzszHFul26m5zchDmiyKtS67jbW2tlnWJ3m47pHkPmkwqRsV5h5s13cp4+Z0gFuL7q98JRjInAalII8VIIYk0vekZmfsm5l1vKFHpwVx1RudLuOv+yHrjoCsjB9ikgUJYcrgy4GcLiI57Y3GWhh+T0LNgu1dBzOqgh8pqVceLV2Pd8hWMEE0VmRU2nHLKLltNMEPFo55CKueb10SHGSCrSWjz+QSTtNeA/vQmcddRV18gYWvSbehxp
+x-microsoft-antispam-message-info: sgLD5FsLhOHju2LFMACrMdPgpKlB/J//z6wsbOkEshVw+7qyAYg7bvX2u+HwVkuoHMTWBhf5rWKxAP8AlNheNaLD0m7/TCWBvZnmlaYljmqlqQPOjxCfh7hv3QwUk7ml8zmNskQG2a1JYCRMF9iApvLKem+HfcDpq1KTMdxBF74AS/VmgJIQ//us7E4VcNDFoRd/K/fDVtWRA5qbYHDZ2FySTbOtP2woaEbbsxR/ZyiVilpX2IgT/jyWnnbEF1nMnYX34xg7ti/wCqL0TwRf0Hm2lQIpwrWKaW0fu1tqtuwma3oxy6/AgbuWkqn8jxzjQUDdzWKQ6vv8BzeWkhVkl+P5irehqs+ENCsMUni9OkKg0MveGKjBF4RiJ8Kj8es3wjims2H8ZPEAbK3GbLM7cQ==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
-	IPV:NLI; SFV:NSPM; H:SYXPR01MB1088.ausprd01.prod.outlook.com;
+	IPV:NLI; SFV:NSPM; H:SY3PR01MB0809.ausprd01.prod.outlook.com;
 	PTR:; CAT:NONE; SFTY:;
-	SFS:(4636009)(376002)(346002)(136003)(39850400004)(396003)(366004)(55016002)(6506007)(186003)(66574014)(71200400001)(8936002)(26005)(83380400001)(316002)(6916009)(9686003)(86362001)(478600001)(52536014)(8676002)(66476007)(66556008)(66946007)(66446008)(64756008)(76116006)(33656002)(5660300002)(2906002)(30864003)(7696005)(579004)(559001);
+	SFS:(4636009)(396003)(366004)(39850400004)(346002)(136003)(376002)(478600001)(5660300002)(2906002)(66946007)(110136005)(66446008)(52536014)(7696005)(76116006)(66556008)(66476007)(316002)(64756008)(83380400001)(8676002)(8936002)(26005)(53546011)(6506007)(71200400001)(30864003)(186003)(966005)(9686003)(66574014)(33656002)(55016002)(86362001)(559001)(579004);
 	DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata: mHNYksJbEvU2yOs04vwc3FuotU5aMI42qBR6Xdm3C/TT/H4jdMbG6JX3zi/psBFqdrAzLtpEMfQGg/20Y3lwpzaR+w5TP3o6woB6cO3pWEdRH5gmIFX+RfzvecG2qCqtynFkXKMOMo1ZfYYH3mVOjie+dK/YFMoSUk6mfwpzY5seNIW149l5uA8TwkdPYQmCw9RdSa3xjiyMXZ5lxDt06dAVf75HQ10TTnpVT4XJ+N++h9jkfKCYOg1Mx7GplhHatUlagRxDmcSGUDUVGYlGKpQDEiIYrceiwm9jGU90dvSexadPF8++quBqpH9Ymrozr/qG3To3qCYJ13ryMpRSUt3GxPJtMrlR5V/KSwBoOadC/CnMaxT+jHapS503eyrzAkYJu7+0ZCYGcxFK+adI984fs1Jk1DlVVSrg7LY2fw0aAUJEBqcTYV9F4i+nntKL+Ed2Aub3NW0ppz40zJXsnnptlMNVm+b32zg+CL0Tug42+s3d7ED0Ht70nFbIOoYi
+x-ms-exchange-antispam-messagedata: Da4LMIrixE3tN+EpQ3jZ3NMTPeChlPDyHKjubPOv1g7e8BkOtMj1J7lK0/IzBTRiVkE60DLM5pwL3SEU01I9O0N8iJwKoo8WQwgb3DmpINotfDjfJLfZB4FMePBsWXrqvckWSHALfDLWIHzXp1BiROV/ZxG+RLdaqZSqlMWXtDIpfI/VALP3ogiGEv7X+wSbRr2sT6DOyqK1FBhmtJzzZTdvsXGU4VlnaLqJZOR0STA4fBi7TGskJPysg0UdicXY/ExDcVJmtzK9fKCgZ/iDMqEZUI65+ggKZ9XW4eIy3raCPFpsaRFD2Gyok3xorW+p9sUGcyMu3SxczxVAxIeZLr2WwLAXjMHZprmCRPfrR9qzK/JjhCntSC9/JecZouivQwZ0nCQScYSWIzvsEVvc+ymWU4YBQnYKA6/e74pRNkM0t4+3t8GovQ1G3E+kPR/AxMqPiCPwHndXMDEIjr7SO+mKePDYCt/VKZ/aAD3LvSN6N2XeEqiwd/0vMR4o3XwP
 x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
 X-OriginatorOrg: gallagher.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: efe4dcbc-af45-4f79-c28f-08d80e59c79e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jun 2020 22:50:03.6014 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 636d884f-b743-4dd1-6bd6-08d811641e2e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jun 2020 19:41:37.2606 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 2156b869-431f-4815-b2ce-b4893b5c9aaa
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jBp8jtg/CFpGl6M8Mdu6voEZ7bNPM+1qAa7+yd6Wm76wS1OQeAdguFeCE5uqXYc8RFfPS0qfDKffIPFXs0oAulJlzIKIc/uVTfgzYvAkYvg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SYXPR01MB1775
-Subject: [dunfell/master PATCH] arago-source-ipk.inc: Use weak assignment to create source ipk file
+X-MS-Exchange-CrossTenant-userprincipalname: IkBczgpDKXm0FCby/JSF8y78GgN1tkUtPtqIuC07e5lLjj6duP2O4+cYbDRtb54owTR+i6JWUpDoq2Vk+Df1VpgX6k4Dhtqkq0EP0SExQAU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SY3PR01MB2012
+Subject: Re: [dunfell/master PATCH] arago-source-ipk.inc: Use weak assignment to create source ipk file
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -83,10 +84,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jun 2020 22:52:42 -0000
+X-List-Received-Date: Mon, 15 Jun 2020 19:44:16 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Hi Denys,
+
+Gentle reminder as this patch has been in mailing list for some time now (h=
+ttp://arago-project.org/pipermail/meta-arago/2020-June/012694.html)
+And I haven't heard anything back.
+
+Regards
+Ankur
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org <meta-arago-bounces@arago-projec=
+t.org> On Behalf Of Ankur Tyagi
+Sent: Friday, 12 June 2020 10:50 AM
+To: meta-arago@arago-project.org
+Subject: [meta-arago] [dunfell/master PATCH] arago-source-ipk.inc: Use weak=
+ assignment to create source ipk file
 
 This is to allow user to override(disable) them in their configuration.
 
@@ -847,4 +865,8 @@ PV}"
 --=20
 2.17.1
 
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
