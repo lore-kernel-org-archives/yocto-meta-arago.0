@@ -1,47 +1,42 @@
-Return-Path: <pbarker@konsulko.com>
-Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com
-	[209.85.221.66])
-	by arago-project.org (Postfix) with ESMTPS id 5251C529D1
+Return-Path: <paul.barker@konsulko.com>
+Received: from mail-ot1-f67.google.com (mail-ot1-f67.google.com
+	[209.85.210.67])
+	by arago-project.org (Postfix) with ESMTPS id 128EA529BC
 	for <meta-arago@arago-project.org>;
-	Sun, 21 Jun 2020 20:46:38 +0000 (UTC)
-Received: by mail-wr1-f66.google.com with SMTP id b6so14645011wrs.11
+	Tue, 23 Jun 2020 08:14:47 +0000 (UTC)
+Received: by mail-ot1-f67.google.com with SMTP id 72so2161068otc.3
 	for <meta-arago@arago-project.org>;
-	Sun, 21 Jun 2020 13:44:03 -0700 (PDT)
+	Tue, 23 Jun 2020 01:12:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=p3Msb6RiJHp2Jkrz2hb6hsFonFYfwhoBsfyMzfZ/+VA=;
-	b=ppnRmKvu4n+VdX/Jj5Tot/eh8kShHm8FggG4vbL/HbrbhWgxaeNcZjVk/iF3W67hsE
-	KPb5ABwSiMugatPQ2A8Gt/k9BL4CGHUqGENiK3yGtwZvSJgnnTyRohVG2/c787jCu/aw
-	oH49JzGe1ZBvRgFRB8XRg7BPtFXpPZg3OJNIo=
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
+	bh=OTrW7B+VmTO8vkN1O6stx489kQdh5tZXOOfpXEWke7E=;
+	b=tWBETkCnPbgq2nPPLtLvf8VEl458lF3tGNEI+yUR/oqCYnrkgIzXBaXgCKiQFa6pNF
+	3hpmsyNjlnj5S57eGVpPXFLGcSSIz/ah57qwAqWZGq6l15ckhXiKrlIPM3fqjOriEaWz
+	nUXC2REX6bcwZGqQ/gU7ipg6bjY7MueRiQ7Kc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=p3Msb6RiJHp2Jkrz2hb6hsFonFYfwhoBsfyMzfZ/+VA=;
-	b=RqBN88yrBSCQplTzt8lVnD4i7HakXsf9FZiilks4d5/EmAS8DB8m+OAAvMjnglnZDU
-	/xYqTOuHsaNiS8JPmlL6xs1x6TyMtIRbCbt5Sg9FigNyLvs0Ay4ZX+SxvsOWW32Qoe8t
-	eOuNHWWJ4qsbjEbKjz81GdG2RXRsadsUGN6cJrRp4oWszigtxmvH+hYBuIlXgneW0Vb3
-	uYU49V/qCBIEuvJIq9A6j2KzrJuKVgQX+7SKJRCWh6b/b2HQTAYaUir601lqyU4ndq4p
-	RvdWIngegYIH/n/XBWi78ruq4hQ/Js/aLPqWUsO0q3WOTmEWFLhk/FVL++w7DJidVZFU
-	2wfw==
-X-Gm-Message-State: AOAM530Nrc7+/FZBfK5a/s023FwPsXL3d2NUEOq98w6P2S1j9hxYT8mD
-	C+Ld4qfN8BexMsVYnDfe2852SiOk/T1sjQ==
-X-Google-Smtp-Source: ABdhPJw9HgoAtY96L0Nyo2erLmanlMdCsGLrxDPd+McN86Vi/mVpJg9zwTwnPYqtaHz1iKm4kpK5eg==
-X-Received: by 2002:adf:fe0e:: with SMTP id n14mr12863265wrr.325.1592772241982;
-	Sun, 21 Jun 2020 13:44:01 -0700 (PDT)
-Received: from ar2.home.b5net.uk ([213.48.11.149])
-	by smtp.gmail.com with ESMTPSA id
-	n204sm14871699wma.5.2020.06.21.13.44.00
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Sun, 21 Jun 2020 13:44:01 -0700 (PDT)
-From: Paul Barker <pbarker@konsulko.com>
-To: meta-arago@arago-project.org
-Date: Sun, 21 Jun 2020 21:43:49 +0100
-Message-Id: <20200621204349.363584-1-pbarker@konsulko.com>
-X-Mailer: git-send-email 2.27.0
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to;
+	bh=OTrW7B+VmTO8vkN1O6stx489kQdh5tZXOOfpXEWke7E=;
+	b=VmTGEX3gbSEhLpBMzVyR3FpG78LR9uOIoAaAsQP/Q6Evw7t5u8PWl7yz6rQxtAzAQY
+	C5AuwLiOz59oi2tK6KV9Qs6h0FWnB20dGIMSBgVvNSnPgHDtWNWDwyYT5G+1dXmDny1r
+	5oDjz9Cvx6uIdXA8JQohKagOwzi+BUdCgrSe7eoVvLacB4qmELhRvjTvoyT9V+Ch/1Nh
+	BDKMeq84p2M7LVlmaGX+eOsBO59aMvAs0MSvtFJBvDQHtnI17J2idUT4oFyRX/+R3tdC
+	v37FAZeOn4YYenU1VueoZPdurELRa5OEaEqkJOwy7TLmNlSJ1DyAHFiOU7CcG5RJGcDO
+	7o7g==
+X-Gm-Message-State: AOAM533WxzSSe772edE4wVEGRRwWoTCgEHZLgmq6o7eJ8Xwrh/j4X6ba
+	McjyO6/ByRmF8IxhXea74knwsRGhfRV6HZ3tjUoQItPk
+X-Google-Smtp-Source: ABdhPJzrGnBi8A9wmxkT8TrSUACrT3AShEHZGRYC66y+oYnuYCLxrQ6lAN7pwSrQ/oTjEO1jQ64rsXwUDROesXknZ4o=
+X-Received: by 2002:a9d:6c02:: with SMTP id f2mr2342015otq.258.1592899930844; 
+	Tue, 23 Jun 2020 01:12:10 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [master/dunfell][PATCH] linux: copy-defconfig: Move do_create_srcipk only if defined
+References: <20200609102808.16475-1-pbarker@konsulko.com>
+In-Reply-To: <20200609102808.16475-1-pbarker@konsulko.com>
+From: Paul Barker <pbarker@konsulko.com>
+Date: Tue, 23 Jun 2020 09:12:00 +0100
+Message-ID: <CAM9ZRVsOEN9Q0jwufihfeGu=pAXbu4fqUUvt8YQC=pnF7DQJ0Q@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: Re: [master/dunfell][PATCH] packagegroup-arago-sysvinit-boot: Skip recipe if sysvinit is not enabled
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,32 +49,43 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sun, 21 Jun 2020 20:46:38 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 23 Jun 2020 08:14:47 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Paul Barker <pbarker@konsulko.com>
----
- .../recipes-kernel/linux/copy-defconfig.inc              | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+On Tue, 9 Jun 2020 at 11:28, Paul Barker <pbarker@konsulko.com> wrote:
+>
+> This change fixes the following error seen at parse time when the
+> meta-arago-distro layer is present but sysvinit is not in
+> DISTRO_FEATURES:
+>
+>     ERROR: .../meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb: Please ensure that your setting of VIRTUAL-RUNTIME_init_manager (sysvinit) matches the entries enabled in DISTRO_FEATURES
+>     ERROR: Failed to parse recipe: .../meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
+>
+> Signed-off-by: Paul Barker <pbarker@konsulko.com>
+> ---
+>  .../packagegroups/packagegroup-arago-sysvinit-boot.bb        | 5 +++++
+>  1 file changed, 5 insertions(+)
+>
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
+> index 2eb2d777..a6e21745 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
+> @@ -1,3 +1,8 @@
+> +python __anonymous() {
+> +    if not "sysvinit" in d.getVar("DISTRO_FEATURES").split():
+> +        raise bb.parse.SkipRecipe("sysvinit is not enabled")
+> +}
+> +
+>  require recipes-core/packagegroups/packagegroup-core-boot.bb
+>
+>  PR = "r0"
+> --
+> 2.26.2
+>
 
-diff --git a/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
-index 10ecf8ea..65b615cb 100644
---- a/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
-+++ b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
-@@ -17,6 +17,9 @@ do_configure_append() {
-     fi
- }
- 
--# Move create_srcipk task so that the release defconfig is included.
--deltask do_create_srcipk
--addtask create_srcipk after do_configure before do_compile
-+python __anonymous() {
-+    # Move create_srcipk task so that the release defconfig is included.
-+    if d.getVarFlag('do_create_srcipk', "task"):
-+        bb.build.deltask('do_create_srcipk', d)
-+        bb.build.addtask('do_create_srcipk', 'do_configure', 'do_compile', d)
-+}
+Ping.
+
 -- 
-2.27.0
-
+Paul Barker
+Konsulko Group
 
