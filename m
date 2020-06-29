@@ -1,45 +1,43 @@
 Return-Path: <denys@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id C2F1752A49
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id EA77F52A49
 	for <meta-arago@arago-project.org>;
-	Mon, 29 Jun 2020 22:45:40 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05TMh3lh042194;
-	Mon, 29 Jun 2020 17:43:03 -0500
+	Mon, 29 Jun 2020 22:46:29 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05TMhqau117316;
+	Mon, 29 Jun 2020 17:43:52 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1593470583;
-	bh=Ufg0BScvVSyMGwG4Iz5eBzwxW3408G9vkFcft5NsQ+w=;
+	s=ti-com-17Q1; t=1593470632;
+	bh=vNDF2VIujrkRRm+lZzXwFIRiSCWR2sgnLg7kWzL/dy8=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=vCghTgCb4EbX6O2RNYsSGlGVhQFWgPWEvC66heWHmuFIG6lk1N+BnkF2mb8pfsXhk
-	hxgQoIvkhpAH5kI2aZTYW9EGdZnblvs/1dyAth7xjFUAwOCI2BsEoYa789q+sql67h
-	CX71/y1qCKOHS0JD7ASvMX0+KiW2kqNXK+UHXkJQ=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05TMh3WE083174
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 29 Jun 2020 17:43:03 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	b=pJFkSQJovP0pmFF4gdkQE3m2r9qq5comIIFD9Alh4ayrKzwX8wAhsIt6X3TEl3dPM
+	Tioe1bLuvA/Gi5z6QFaOGhm/Wj/Zue8hIkwquCGL0L61qghoPiN8ieFelX4hknhx3c
+	Fd0GpMCs4mOr3eNlV4YOCennyLe9ZhV07DZlVzmk=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05TMhqlR004088;
+	Mon, 29 Jun 2020 17:43:52 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Mon, 29 Jun 2020 17:43:02 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 29 Jun 2020 17:43:51 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Mon, 29 Jun 2020 17:43:02 -0500
+	Frontend Transport; Mon, 29 Jun 2020 17:43:51 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05TMh2r6048794;
-	Mon, 29 Jun 2020 17:43:02 -0500
-Date: Mon, 29 Jun 2020 18:43:02 -0400
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05TMhpbu010805;
+	Mon, 29 Jun 2020 17:43:51 -0500
+Date: Mon, 29 Jun 2020 18:43:51 -0400
 From: Denys Dmytriyenko <denys@ti.com>
 To: Paul Barker <pbarker@konsulko.com>
-Message-ID: <20200629224302.GC6525@beryl>
-References: <20200609102808.16475-1-pbarker@konsulko.com>
-	<CAM9ZRVsOEN9Q0jwufihfeGu=pAXbu4fqUUvt8YQC=pnF7DQJ0Q@mail.gmail.com>
+Message-ID: <20200629224351.GD6525@beryl>
+References: <20200621204349.363584-1-pbarker@konsulko.com>
 MIME-Version: 1.0
-In-Reply-To: <CAM9ZRVsOEN9Q0jwufihfeGu=pAXbu4fqUUvt8YQC=pnF7DQJ0Q@mail.gmail.com>
+In-Reply-To: <20200621204349.363584-1-pbarker@konsulko.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: Re: [master/dunfell][PATCH] packagegroup-arago-sysvinit-boot: Skip recipe if sysvinit is not enabled
+Subject: Re: [master/dunfell][PATCH] linux: copy-defconfig: Move do_create_srcipk only if defined
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,46 +50,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Jun 2020 22:45:41 -0000
+X-List-Received-Date: Mon, 29 Jun 2020 22:46:30 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Tue, Jun 23, 2020 at 09:12:00AM +0100, Paul Barker wrote:
-> On Tue, 9 Jun 2020 at 11:28, Paul Barker <pbarker@konsulko.com> wrote:
-> >
-> > This change fixes the following error seen at parse time when the
-> > meta-arago-distro layer is present but sysvinit is not in
-> > DISTRO_FEATURES:
-> >
-> >     ERROR: .../meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb: Please ensure that your setting of VIRTUAL-RUNTIME_init_manager (sysvinit) matches the entries enabled in DISTRO_FEATURES
-> >     ERROR: Failed to parse recipe: .../meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
-> >
-> > Signed-off-by: Paul Barker <pbarker@konsulko.com>
-> > ---
-> >  .../packagegroups/packagegroup-arago-sysvinit-boot.bb        | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
-> > diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
-> > index 2eb2d777..a6e21745 100644
-> > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
-> > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
-> > @@ -1,3 +1,8 @@
-> > +python __anonymous() {
-> > +    if not "sysvinit" in d.getVar("DISTRO_FEATURES").split():
-> > +        raise bb.parse.SkipRecipe("sysvinit is not enabled")
-> > +}
-> > +
-> >  require recipes-core/packagegroups/packagegroup-core-boot.bb
-> >
-> >  PR = "r0"
-> > --
-> > 2.26.2
-> >
+Thanks, will merge it shortly.
+
+On Sun, Jun 21, 2020 at 09:43:49PM +0100, Paul Barker wrote:
+> Signed-off-by: Paul Barker <pbarker@konsulko.com>
+> ---
+>  .../recipes-kernel/linux/copy-defconfig.inc              | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
 > 
-> Ping.
-
-Thanks, I'll merge it shortly.
-
--- 
-Denys
+> diff --git a/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
+> index 10ecf8ea..65b615cb 100644
+> --- a/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
+> +++ b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
+> @@ -17,6 +17,9 @@ do_configure_append() {
+>      fi
+>  }
+>  
+> -# Move create_srcipk task so that the release defconfig is included.
+> -deltask do_create_srcipk
+> -addtask create_srcipk after do_configure before do_compile
+> +python __anonymous() {
+> +    # Move create_srcipk task so that the release defconfig is included.
+> +    if d.getVarFlag('do_create_srcipk', "task"):
+> +        bb.build.deltask('do_create_srcipk', d)
+> +        bb.build.addtask('do_create_srcipk', 'do_configure', 'do_compile', d)
+> +}
+> -- 
+> 2.27.0
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
