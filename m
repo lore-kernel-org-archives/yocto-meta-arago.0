@@ -1,44 +1,45 @@
 Return-Path: <denys@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 77821529E5
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 26F32529E5
 	for <meta-arago@arago-project.org>;
-	Tue, 30 Jun 2020 17:17:57 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05UHFJUv077165
-	for <meta-arago@arago-project.org>; Tue, 30 Jun 2020 12:15:19 -0500
+	Tue, 30 Jun 2020 21:33:20 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05ULUg3m076374;
+	Tue, 30 Jun 2020 16:30:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1593537319;
-	bh=uThGni70Sag8lJnjpOfnzNAzlViPOML/txj5wFjboJ8=;
+	s=ti-com-17Q1; t=1593552642;
+	bh=UXgLCRbfyM4HHH/qKuRIzKBJbarBZ8J/wsnRfiG9Cdg=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=qOLCaP98PyiYeBRsZ198zwHS1LAuwH6Ct5s43dC2CRyi4l0ADlklB6f8KI7HaFnDr
-	6W+HnnLgHvrFxKhsGiYnwAPTBSecjfO8zr9hcB0IY0PRJZC2n/5lzV5SHJltw/J/yc
-	4vc5REG3ghwE7H1WaQSL3k6yEjUM1hE2jb8OkD+Q=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05UHFJAb023590
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 30 Jun 2020 12:15:19 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	b=iWwGMxcQtrmUIXouwsF9R569FXyylQMC7vjBwPlV6bdEZQOdvkmQTY9UZFvpTjl9T
+	1l2Bv3pe00qn9ERxcYCmZjzaZtzgrleXC1VdVEheztQLZ9jrhKHNr7cSnrmrcq71se
+	ZQ0shkGqn2l2ik2e5gaPusB5ZYUc6o+1wA0Opj+E=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05ULUg9A054469
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 30 Jun 2020 16:30:42 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Tue, 30 Jun 2020 12:15:19 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 30 Jun 2020 16:30:42 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Tue, 30 Jun 2020 12:15:19 -0500
+	Frontend Transport; Tue, 30 Jun 2020 16:30:41 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05UHFJkD062149;
-	Tue, 30 Jun 2020 12:15:19 -0500
-Date: Tue, 30 Jun 2020 13:15:19 -0400
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05ULUf0B007156;
+	Tue, 30 Jun 2020 16:30:41 -0500
+Date: Tue, 30 Jun 2020 17:30:41 -0400
 From: Denys Dmytriyenko <denys@ti.com>
-To: <nikhil.nd@ti.com>
-Message-ID: <20200630171518.GJ7211@beryl>
-References: <20200630170717.27124-1-nikhil.nd@ti.com>
+To: Paul Barker <pbarker@konsulko.com>
+Message-ID: <20200630213041.GN7211@beryl>
+References: <20200621204349.363584-1-pbarker@konsulko.com>
+	<20200629224351.GD6525@beryl>
 MIME-Version: 1.0
-In-Reply-To: <20200630170717.27124-1-nikhil.nd@ti.com>
+In-Reply-To: <20200629224351.GD6525@beryl>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org, prao@ti.com
-Subject: Re: [master/dunfell] packagegroup: tisdk-addons-sdk-host: Include gpu driver source based on MACHINE_FEATURES
+Cc: meta-arago@arago-project.org
+Subject: Re: [master/dunfell][PATCH] linux: copy-defconfig: Move do_create_srcipk only if defined
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,38 +52,62 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Jun 2020 17:17:57 -0000
+X-List-Received-Date: Tue, 30 Jun 2020 21:33:21 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Tue, Jun 30, 2020 at 10:37:17PM +0530, nikhil.nd@ti.com wrote:
-> From: Nikhil Devshatwar <nikhil.nd@ti.com>
-> 
-> Check for gpu in MACHINE_FEATURES and include the source package
-> for img rogue driver for j7-evm
+That doesn't work:
 
-This shouldn't be needed:
-http://arago-project.org/git/?p=meta-arago.git;a=blob;f=meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics-sdk-host.bb;hb=HEAD#l12
+ERROR: 351 unbuildable tasks were found.
+These are usually caused by circular dependencies and any circular dependency chains found will be printed below. Increase the debug level to see a list of unbuildable tasks.
+
+Identifying dependency loops (this may take a short while)...
+
+ERROR: 
+Dependency loop #1 found:
+  Task /OE/arago-dunfell/sources/meta-ti/recipes-kernel/linux/linux-ti-staging_5.4.bb:do_compile (dependent Tasks ['linux-ti-staging_5.4.bb:do_configure'])
+  Task /OE/arago-dunfell/sources/meta-ti/recipes-kernel/linux/linux-ti-staging_5.4.bb:do_create_srcipk (dependent Tasks ['external-arm-toolchain.bb:do_patch', 'bc_1.07.1.bb:do_patch', 'bison_3.5.3.bb:do_patch', 'kmod-native_git.bb:do_patch', 'lzop_1.04.bb:do_patch', 'linux-ti-staging_5.4.bb:do_compile'])
+  Task /OE/arago-dunfell/sources/meta-ti/recipes-kernel/linux/linux-ti-staging_5.4.bb:do_configure (dependent Tasks ['linux-ti-staging_5.4.bb:do_prepare_recipe_sysroot', 'linux-ti-staging_5.4.bb:do_patch', 'linux-ti-staging_5.4.bb:do_symlink_kernsrc', 'linux-ti-staging_5.4.bb:do_unpack', 'linux-ti-staging_5.4.bb:do_create_srcipk'])
 
 
-> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
-> ---
->  .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb    | 1 +
->  1 file changed, 1 insertion(+)
+ERROR: Command execution failed: 1
+
+
+On Mon, Jun 29, 2020 at 06:43:51PM -0400, Denys Dmytriyenko wrote:
+> Thanks, will merge it shortly.
 > 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-> index adfcfa3e..7200e9f2 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-> @@ -43,6 +43,7 @@ UTILS_append_k3 = " \
->  "
->  
->  UTILS_append_j7 = " \
-> +    ${@bb.utils.contains('MACHINE_FEATURES', 'gpu', 'ti-img-rogue-driver-src', '', d)} \
->      pru-icss-src \
->  "
->  
-> -- 
-> 2.17.1
-> 
+> On Sun, Jun 21, 2020 at 09:43:49PM +0100, Paul Barker wrote:
+> > Signed-off-by: Paul Barker <pbarker@konsulko.com>
+> > ---
+> >  .../recipes-kernel/linux/copy-defconfig.inc              | 9 ++++++---
+> >  1 file changed, 6 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
+> > index 10ecf8ea..65b615cb 100644
+> > --- a/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
+> > +++ b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
+> > @@ -17,6 +17,9 @@ do_configure_append() {
+> >      fi
+> >  }
+> >  
+> > -# Move create_srcipk task so that the release defconfig is included.
+> > -deltask do_create_srcipk
+> > -addtask create_srcipk after do_configure before do_compile
+> > +python __anonymous() {
+> > +    # Move create_srcipk task so that the release defconfig is included.
+> > +    if d.getVarFlag('do_create_srcipk', "task"):
+> > +        bb.build.deltask('do_create_srcipk', d)
+> > +        bb.build.addtask('do_create_srcipk', 'do_configure', 'do_compile', d)
+> > +}
+> > -- 
+> > 2.27.0
+> > 
+> > _______________________________________________
+> > meta-arago mailing list
+> > meta-arago@arago-project.org
+> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
