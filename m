@@ -1,49 +1,43 @@
-Return-Path: <denys@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id E173F529E5
+Return-Path: <nikhil.nd@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 28A90529E5
 	for <meta-arago@arago-project.org>;
-	Tue, 30 Jun 2020 15:53:27 +0000 (UTC)
+	Tue, 30 Jun 2020 17:09:36 +0000 (UTC)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05UFoocn052111;
-	Tue, 30 Jun 2020 10:50:50 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 05UH6wGh042805
+	for <meta-arago@arago-project.org>; Tue, 30 Jun 2020 12:06:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1593532250;
-	bh=ZXbryYlNYGmv9Y0dFdlHsKORssUZUC+BTEfRCrWIzE8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=dh2yYqevsbBie5SSZlPSCAU683ZVpyfO8ckl1ZznbjBjL5xxJ5IlIGyW5b0gEVtGB
-	oHbBDCy66EMuKUmKSJmykfXiKA3Q8lwvUPAb+Kw28L4DyC5Llmgc63D1uO2uUQxS9i
-	rkcxLQK/o71JBoqMlxqqDMFScFTgtaiiD3cU94Yo=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05UFooLh068663
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 30 Jun 2020 10:50:50 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1593536818;
+	bh=nBXNE7A3wBGbSKI9G3iXZGPPqrahmWFaR9n1x4bcQ0E=;
+	h=From:To:CC:Subject:Date;
+	b=ird7tTlYdtYE/8ZqhLBxVa1Sjlz9a+wsJwcO8sw1Bzkf+6bql0xkhpk8cSObL2Yr6
+	0HQDxbZwto07cbB00eFGzYxVPf4OWqInG529Fx3E9MYk7hjQpu6mgM4i94KPe3v4jJ
+	l9dPzKZi53TCtvEr+Bsxv39L/Oe5AeRosEbj3Pys=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 05UH6wt0055757
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 30 Jun 2020 12:06:58 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Tue, 30 Jun 2020 10:50:49 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 30 Jun 2020 12:06:58 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
+	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Tue, 30 Jun 2020 10:50:49 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05UFonfJ020184;
-	Tue, 30 Jun 2020 10:50:49 -0500
-Date: Tue, 30 Jun 2020 11:50:49 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Paul Barker <pbarker@konsulko.com>
-Message-ID: <20200630155049.GI7211@beryl>
-References: <20200609102808.16475-1-pbarker@konsulko.com>
-	<CAM9ZRVsOEN9Q0jwufihfeGu=pAXbu4fqUUvt8YQC=pnF7DQJ0Q@mail.gmail.com>
-	<20200629224302.GC6525@beryl> <20200630020322.GD7211@beryl>
-	<CAM9ZRVswBOD7ks2yk2CeKiGLZxG9Bbu-paTi8RF+SdM4q2zMqg@mail.gmail.com>
-	<20200630151111.GG7211@beryl>
-	<CAM9ZRVsb5yr0EqFTdgij2r8vZyRX6hxktevbGRh-0s=NgYcCfg@mail.gmail.com>
+	Frontend Transport; Tue, 30 Jun 2020 12:06:57 -0500
+Received: from swubn03.india.englab.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 05UH6tnu032174;
+	Tue, 30 Jun 2020 12:06:56 -0500
+From: <nikhil.nd@ti.com>
+To: <meta-arago@arago-project.org>, <denys@ti.com>
+Date: Tue, 30 Jun 2020 22:36:52 +0530
+Message-ID: <20200630170652.26282-1-nikhil.nd@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <CAM9ZRVsb5yr0EqFTdgij2r8vZyRX6hxktevbGRh-0s=NgYcCfg@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [master/dunfell][PATCH] packagegroup-arago-sysvinit-boot: Skip recipe if sysvinit is not enabled
+Cc: prao@ti.com
+Subject: [master/dunfell] recipes-tisdk: ti-tisdk-makefile: Fix Makefile for Jailhouse
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,79 +50,33 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Jun 2020 15:53:28 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 30 Jun 2020 17:09:36 -0000
+Content-Type: text/plain
 
-On Tue, Jun 30, 2020 at 04:35:21PM +0100, Paul Barker wrote:
-> On Tue, 30 Jun 2020 at 16:11, Denys Dmytriyenko <denys@ti.com> wrote:
-> >
-> > On Tue, Jun 30, 2020 at 02:12:30PM +0100, Paul Barker wrote:
-> > > On Tue, 30 Jun 2020 at 03:03, Denys Dmytriyenko <denys@ti.com> wrote:
-> > > >
-> > > > On Mon, Jun 29, 2020 at 06:43:02PM -0400, Denys Dmytriyenko wrote:
-> > > > > On Tue, Jun 23, 2020 at 09:12:00AM +0100, Paul Barker wrote:
-> > > > > > On Tue, 9 Jun 2020 at 11:28, Paul Barker <pbarker@konsulko.com> wrote:
-> > > > > > >
-> > > > > > > This change fixes the following error seen at parse time when the
-> > > > > > > meta-arago-distro layer is present but sysvinit is not in
-> > > > > > > DISTRO_FEATURES:
-> > > > > > >
-> > > > > > >     ERROR: .../meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb: Please ensure that your setting of VIRTUAL-RUNTIME_init_manager (sysvinit) matches the entries enabled in DISTRO_FEATURES
-> > > > > > >     ERROR: Failed to parse recipe: .../meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
-> > > > > > >
-> > > > > > > Signed-off-by: Paul Barker <pbarker@konsulko.com>
-> > > > > > > ---
-> > > > > > >  .../packagegroups/packagegroup-arago-sysvinit-boot.bb        | 5 +++++
-> > > > > > >  1 file changed, 5 insertions(+)
-> > > > > > >
-> > > > > > > diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
-> > > > > > > index 2eb2d777..a6e21745 100644
-> > > > > > > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
-> > > > > > > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
-> > > > > > > @@ -1,3 +1,8 @@
-> > > > > > > +python __anonymous() {
-> > > > > > > +    if not "sysvinit" in d.getVar("DISTRO_FEATURES").split():
-> > > > > > > +        raise bb.parse.SkipRecipe("sysvinit is not enabled")
-> > > > > > > +}
-> > > > > > > +
-> > > > > > >  require recipes-core/packagegroups/packagegroup-core-boot.bb
-> > > > > > >
-> > > > > > >  PR = "r0"
-> > > > > > > --
-> > > > > > > 2.26.2
-> > > > > > >
-> > > > > >
-> > > > > > Ping.
-> > > > >
-> > > > > Thanks, I'll merge it shortly.
-> > > >
-> > > > Actually, should this simply use REQUIRED_DISTRO_FEATURES from
-> > > > features_check.bbclass?
-> > >
-> > > Actually, yes, that should work. We just need to set
-> > > REQUIRED_DISTRO_FEATURES and inherit features_check before `require
-> > > recipes-core/packagegroups/packagegroup-core-boot.bb` as that's where
-> > > the error is raised.
-> > >
-> > > In an ideal world a packagegroup recipe really should not be changing
-> > > VIRTUAL-RUNTIME values, those should be set at the distro conf level
-> > > or in a multiconfig. I assume there's a good reason for setting these
-> > > in this recipe, maybe it just needs adding in a comment.
-> >
-> > The distro sets them to systemd by default and most images are built with
-> > systemd. But we also need a tiny image with sysvinit built w/o overriding
-> > the defaults.
-> 
-> That sounds like it should be done by an `arago-tiny` distro rather
-> than by image/packagegroup recipes. When building this image you've
-> still got systemd in DISTRO_FEATURES and so some applications may be
-> built in a way that requires systemd.
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
 
-A new distro is not going to work in this case - tiny image is needed along 
-the side of other systemd images and may be packaged and used inside as 
-initramfs and demo rootfs for Jailhouse or other hypervisors.
+Latest Jailhouse does not have the ci files for j7-evm.
+Fix the Makefile to create the header file with right defines.
 
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+---
+ .../ti-tisdk-makefile/ti-tisdk-makefile/Makefile_jailhouse      | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_jailhouse b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_jailhouse
+index f5367c83..8e70fd9d 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_jailhouse
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_jailhouse
+@@ -8,7 +8,7 @@ jailhouse_config:
+ 	@echo =====================================
+ 	@cd board-support/extra-drivers; \
+ 	cd `find . -maxdepth 1 -name "jailhouse*" -type d`; \
+-	cp -v ./ci/jailhouse-config-$(JH_PLATFORM).h ./include/jailhouse/config.h
++	echo "#define CONFIG_TRACE_ERROR    1" >> include/jailhouse/config.h
+ 
+ jailhouse: linux jailhouse_config
+ 	@echo =====================================
 -- 
-Denys
+2.17.1
+
 
