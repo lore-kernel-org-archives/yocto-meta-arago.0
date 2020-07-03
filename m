@@ -1,45 +1,45 @@
 Return-Path: <a0389345@dta0389345ub>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 1E49F52A1C
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 7E2E752A42
 	for <meta-arago@arago-project.org>;
-	Wed,  1 Jul 2020 18:40:29 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 061IbpiO061668
-	for <meta-arago@arago-project.org>; Wed, 1 Jul 2020 13:37:51 -0500
+	Fri,  3 Jul 2020 17:16:17 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 063HDc7V023912
+	for <meta-arago@arago-project.org>; Fri, 3 Jul 2020 12:13:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1593628671;
-	bh=CuUwC1IeUhbbVLedt6iPBoALObahzyU9CRWQ2kJ2WvA=;
+	s=ti-com-17Q1; t=1593796418;
+	bh=ggI+Wnqy94IcVqNbYjPnKB4SZIZIUrLnHa/vxjMVKgc=;
 	h=From:To:CC:Subject:Date;
-	b=JTRyLYy/IP8l+K92gzGyhcFjXvtZznygKFNWyIM3XlF0/xHU+oTaCxaqDS8SeW9cL
-	9/ksWv1OFUqgrsxDIYRBvd3+gFpQrdJNOO1RmKPgMEbrNsx9RLw0APkfFMX+WJeIDA
-	S9pOvnpaBOZUOW/3yB65LkTw8oFqLcQ6QWNBQZas=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 061Ibphp011777
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 1 Jul 2020 13:37:51 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	b=bI1ho7dTBOh2A65A/uELH6Qa2GK5Tcr/+jSgSSZLmU5MTIdwaFFwHLNvGOcIQsdlR
+	LH5flp/dweyol9q3wh3wrEUNITc5avNExd46FYTrzkq4GR4uRc3cTR4wCJtbJYJ+Fk
+	V/bdPDgzYCxmp7ad3sIwR7cjtsLHt7Qi1vTsB5Sk=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 063HDclH117224
+	for <meta-arago@arago-project.org>; Fri, 3 Jul 2020 12:13:38 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Wed, 1 Jul 2020 13:37:50 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 3 Jul 2020 12:13:38 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Wed, 1 Jul 2020 13:37:51 -0500
+	Frontend Transport; Fri, 3 Jul 2020 12:13:38 -0500
 Received: from dta0389345ub (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 061IboIw104712;
-	Wed, 1 Jul 2020 13:37:50 -0500
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 063HDcRs127693;
+	Fri, 3 Jul 2020 12:13:38 -0500
 Received: from a0389345 by dta0389345ub with local (Exim 4.90_1)
 	(envelope-from <a0389345@dta0389345ub>)
-	id 1jqhcE-000D9w-Qa; Wed, 01 Jul 2020 13:37:50 -0500
+	id 1jrPFq-000284-BZ; Fri, 03 Jul 2020 12:13:38 -0500
 From: <prao@ti.com>
-To: <meta-arago@arago-project.org>, <denys@ti.com>
-Date: Wed, 1 Jul 2020 13:37:48 -0500
-Message-ID: <20200701183748.50521-1-prao@ti.com>
+To: <meta-arago@arago-project.org>, <denys@ti.com>, <j-stiffler@ti.com>,
+	<nikhil.nd@ti.com>
+Date: Fri, 3 Jul 2020 12:13:35 -0500
+Message-ID: <20200703171335.8138-1-prao@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Praveen Rao <prao@ti.com>
-Subject: [master/dunfell] ti-tisdk-makefile: update Rules.mk armv7 toolchain for R5 use
+Subject: [tisdk-setup-scripts] setup-targetfs-nfs: Update the rootfs to default
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,31 +52,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Jul 2020 18:40:29 -0000
+X-List-Received-Date: Fri, 03 Jul 2020 17:16:17 -0000
 Content-Type: text/plain
 
 From: Praveen Rao <prao@ti.com>
 
-Update the Rules.make addition for the R5 use of the armv7  toolchain.
+The filesystem has change to tisdk-default-image.tar.xz
 
 Signed-off-by: Praveen Rao <prao@ti.com>
 ---
- .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb    | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ setup-targetfs-nfs.sh | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index a698dd34..a441d4b1 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -368,7 +368,7 @@ do_install_append_k3() {
-     cat >> ${D}/Rules.make << __EOF__
- 
- # Add CROSS_COMPILE and UBOOT_MACHINE for the R5
--export CROSS_COMPILE_ARMV7=\$(LINUX_DEVKIT_PATH)/sysroots/${SDKMACHINE}-arago-linux/usr/bin/arm-linux-gnueabihf-
-+export CROSS_COMPILE_ARMV7=\$(LINUX_DEVKIT_PATH)/sysroots/${SDKMACHINE}-arago-linux/usr/bin/arm-none-linux-gnueabihf-
- UBOOT_MACHINE_R5=${K3_UBOOT_MACHINE_R5}
- __EOF__
- }
+diff --git a/setup-targetfs-nfs.sh b/setup-targetfs-nfs.sh
+index 8f7fbb1..c3062e9 100644
+--- a/setup-targetfs-nfs.sh
++++ b/setup-targetfs-nfs.sh
+@@ -59,19 +59,19 @@ extract_fs() {
+     fstar=""
+     while [ -z "$fstar" ]
+     do
+-        numfs=`ls $cwd/../filesystem | grep "tisdk.*rootfs" | grep 'tar.xz' | grep -n '' | grep '2:' | awk {'print $1'}`
++        numfs=`ls $cwd/../filesystem | grep "tisdk.*default" | grep 'tar.xz' | grep -n '' | grep '2:' | awk {'print $1'}`
+         if [ -n "$numfs" ]
+         then
+             echo
+             echo "Multiple filesystems found."
+-            ls --sort=size $cwd/../filesystem | grep "tisdk.*rootfs" | grep 'tar.xz' | grep -n '' | awk {'print "       " , $1'}
++            ls --sort=size $cwd/../filesystem | grep "tisdk.*default" | grep 'tar.xz' | grep -n '' | awk {'print "       " , $1'}
+             echo
+             read -p "Enter Number of rootfs Tarball: [1] " fsnum
+             [ -n "$fsnum" ] || fsnum=1
+             echo
+-            fstar=`ls --sort=size $cwd/../filesystem | grep "tisdk.*rootfs" | grep 'tar.xz' | grep -n '' | grep "^$fsnum:" | cut -c3- | awk {'print$1'}`
++            fstar=`ls --sort=size $cwd/../filesystem | grep "tisdk.*default" | grep 'tar.xz' | grep -n '' | grep "^$fsnum:" | cut -c3- | awk {'print$1'}`
+         else
+-            fstar=`ls  $cwd/../filesystem | grep "tisdk.*rootfs" | grep 'tar.xz' | awk {'print $1'}`
++            fstar=`ls  $cwd/../filesystem | grep "tisdk.*default" | grep 'tar.xz' | awk {'print $1'}`
+         fi
+         if [ -z "$fstar" ]
+         then
 -- 
 2.17.1
 
