@@ -1,42 +1,42 @@
-Return-Path: <vigneshr@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id 6E7D2529D1
+Return-Path: <denys@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 457FC529D1
 	for <meta-arago@arago-project.org>;
-	Fri, 24 Jul 2020 14:14:10 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06OEBQSA106520
-	for <meta-arago@arago-project.org>; Fri, 24 Jul 2020 09:11:26 -0500
+	Fri, 24 Jul 2020 17:28:35 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 06OHPpPd003147
+	for <meta-arago@arago-project.org>; Fri, 24 Jul 2020 12:25:51 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1595599886;
-	bh=ay+dSwC6wPriDBt1IKI98xN8x3eOpWG3zgEhnWwXudM=;
+	s=ti-com-17Q1; t=1595611551;
+	bh=C4pd+zpbYVP0hluTtNcVRhVoHjG3W1wWLWNQMqpaW18=;
 	h=From:To:CC:Subject:Date;
-	b=DU2ITMMJrLq91sbJkzGZvYLmEs94UNlXA+dOo4dG5ux68VcsxmwOs/DBrOn/MP5Qn
-	dw9QCP3C4q1pxwsxZGbZ/GvxWWL7IbpOXX3BW78MG4d9WLJVqEI9RWxI2RUmd0rGVN
-	oey6le0mkNUOdB+Mi7SSnz5SksA90X5gieeJARCI=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06OEBQxF012785
+	b=Dw2Wc2NQvAPZXgz38SpMaWPlphVL4+GlMCqGmLE/KcC6UR+CfSTjZ2U3H0FlqKCeF
+	yV+SDuCAKjDbbUlI7S3QZr6xnrSNcSEXHQ015LUe0ZL2KwNlpw9aZRrLPvindjwsU9
+	hIJ15Ss18Ythm0gOTR5ClHHupwiezlNkDrW2ixD8=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 06OHPpbW044685
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 24 Jul 2020 09:11:26 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 24 Jul 2020 12:25:51 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Fri, 24 Jul 2020 09:11:26 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 24 Jul 2020 12:25:51 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Fri, 24 Jul 2020 09:11:26 -0500
-Received: from ula0132425.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06OEBOSb002522;
-	Fri, 24 Jul 2020 09:11:24 -0500
-From: Vignesh Raghavendra <vigneshr@ti.com>
+	Frontend Transport; Fri, 24 Jul 2020 12:25:51 -0500
+Received: from puget.gt.design.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 06OHPp3S061651;
+	Fri, 24 Jul 2020 12:25:51 -0500
+From: Denys Dmytriyenko <denys@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Fri, 24 Jul 2020 19:41:19 +0530
-Message-ID: <20200724141119.32341-1-vigneshr@ti.com>
-X-Mailer: git-send-email 2.27.0
+Date: Fri, 24 Jul 2020 17:25:47 +0000
+Message-ID: <20200724172547.18418-1-denys@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Grygorii Strashko <grygorii.strashko@ti.com>, Sekhar Nori <nsekhar@ti.com>
-Subject: [PATCH] switch-config: Update v4.1 branch to the latest version commit
+Subject: [PATCH] ti-sci-fw: update 2020.04a -> 2020.06
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,32 +49,47 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jul 2020 14:14:10 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 24 Jul 2020 17:28:35 -0000
 Content-Type: text/plain
 
-New updates to switch-config repo's v4.1 branch now supports fiddling
-with PRU_ICSS ethernet interfaces. Hence move to the latest.
-
-Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- .../recipes-bsp/switch-config/switch-config_git.bb              | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ ...-sci-fw-source_2020.04a.bb => ti-sci-fw-source_2020.06.bb} | 0
+ .../ti-sci-fw/{ti-sci-fw_2020.04a.bb => ti-sci-fw_2020.06.bb} | 0
+ .../{ti-sci-fw_2020.04a.inc => ti-sci-fw_2020.06.inc}         | 4 ++--
+ 3 files changed, 2 insertions(+), 2 deletions(-)
+ rename recipes-bsp/ti-sci-fw/{ti-sci-fw-source_2020.04a.bb => ti-sci-fw-source_2020.06.bb} (100%)
+ rename recipes-bsp/ti-sci-fw/{ti-sci-fw_2020.04a.bb => ti-sci-fw_2020.06.bb} (100%)
+ rename recipes-bsp/ti-sci-fw/{ti-sci-fw_2020.04a.inc => ti-sci-fw_2020.06.inc} (79%)
 
-diff --git a/meta-arago-extras/recipes-bsp/switch-config/switch-config_git.bb b/meta-arago-extras/recipes-bsp/switch-config/switch-config_git.bb
-index 6b619164..07368461 100644
---- a/meta-arago-extras/recipes-bsp/switch-config/switch-config_git.bb
-+++ b/meta-arago-extras/recipes-bsp/switch-config/switch-config_git.bb
-@@ -8,7 +8,7 @@ PR = "r4"
- BRANCH ?= "v4.1"
- BRANCH_aarch64 ?= "am65x-v1.0"
+diff --git a/recipes-bsp/ti-sci-fw/ti-sci-fw-source_2020.04a.bb b/recipes-bsp/ti-sci-fw/ti-sci-fw-source_2020.06.bb
+similarity index 100%
+rename from recipes-bsp/ti-sci-fw/ti-sci-fw-source_2020.04a.bb
+rename to recipes-bsp/ti-sci-fw/ti-sci-fw-source_2020.06.bb
+diff --git a/recipes-bsp/ti-sci-fw/ti-sci-fw_2020.04a.bb b/recipes-bsp/ti-sci-fw/ti-sci-fw_2020.06.bb
+similarity index 100%
+rename from recipes-bsp/ti-sci-fw/ti-sci-fw_2020.04a.bb
+rename to recipes-bsp/ti-sci-fw/ti-sci-fw_2020.06.bb
+diff --git a/recipes-bsp/ti-sci-fw/ti-sci-fw_2020.04a.inc b/recipes-bsp/ti-sci-fw/ti-sci-fw_2020.06.inc
+similarity index 79%
+rename from recipes-bsp/ti-sci-fw/ti-sci-fw_2020.04a.inc
+rename to recipes-bsp/ti-sci-fw/ti-sci-fw_2020.06.inc
+index e785ce01..db2b6027 100644
+--- a/recipes-bsp/ti-sci-fw/ti-sci-fw_2020.04a.inc
++++ b/recipes-bsp/ti-sci-fw/ti-sci-fw_2020.06.inc
+@@ -3,9 +3,9 @@ SUMMARY = "TI SCI firmware (SYSFW)"
+ LICENSE = "TI-TFL"
+ LIC_FILES_CHKSUM = "file://LICENSE.ti;md5=b5aebf0668bdf95621259288c4a46d76"
  
--SRCREV = "7efabd92177199205808ebd993267b04e8c2fb6a"
-+SRCREV = "15e8be3b1249ac4193031127565eec5b64ecaff1"
- SRCREV_aarch64 = "3b31ce5fe8bd5a3560b89f2a709fb3e3b877326d"
+-SRCREV = "c8decf64be551dfd1244cd1d231a97eb2255fb80"
++SRCREV = "dbd8e8801ff20811981bddbb01203d91dc9f4f44"
+ BRANCH ?= "ti-linux-firmware"
+-SRCREV_imggen = "d9a550b91ec95d06a80f2ccc6dd829815ba35d88"
++SRCREV_imggen = "c0d6e6ebc85d9e7e4e02a7e6364cadf31c6fad0d"
+ SRCREV_FORMAT = "imggen"
  
- SRC_URI = "git://git.ti.com/switch-config/switch-config.git;protocol=git;branch=${BRANCH}"
+ SRC_URI = " \
 -- 
-2.27.0
+2.17.1
 
 
