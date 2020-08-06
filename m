@@ -1,47 +1,30 @@
-Return-Path: <m-karicheri2@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 4EC0552970
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 330EB52970
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Aug 2020 13:48:51 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 076Dk4hM098441
-	for <meta-arago@arago-project.org>; Thu, 6 Aug 2020 08:46:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1596721565;
-	bh=j/CP0OFAtcATjFsUL/ejDPPiHml+EVYEaf1NZ87FJHs=;
-	h=Subject:From:To:CC:References:Date:In-Reply-To;
-	b=KMPugbl3o//HAji64IHHgD+Vx3uV4OhlwsgWGg+Q3e38UVCg4cg9c5HPuyCBnXHOG
-	6wsGViznogp1c0rRAQKa/zGdM8aYyu0CrJG8/34u8e/NbAoVjGv8lXkl9VvucSD/aW
-	/iQLmjy9gWT2d0HZE3n5q8AvRI5RF7icWOOXVTvc=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 076Dk4pS079660
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 6 Aug 2020 08:46:04 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 6 Aug 2020 08:46:04 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 6 Aug 2020 08:46:04 -0500
-Received: from [10.250.53.226] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 076Dk3lh028132;
-	Thu, 6 Aug 2020 08:46:04 -0500
-From: Murali Karicheri <m-karicheri2@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, <meta-arago@arago-project.org>,
-	"Balasubramanian, Aparna" <aparnab@ti.com>
-References: <mailman.5549.1596575976.11489.meta-arago@arago-project.org>
-	<d2bf4b45-c9df-a544-bf4e-06b91a5db4b5@ti.com>
-Message-ID: <940400d8-c939-9ebd-038b-57bae1731401@ti.com>
-Date: Thu, 6 Aug 2020 09:45:58 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <d2bf4b45-c9df-a544-bf4e-06b91a5db4b5@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Sekhar Nori <nsekhar@ti.com>
-Subject: Re: Net-SNMP
+	Thu,  6 Aug 2020 16:19:48 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id E1BE540C21;
+	Thu,  6 Aug 2020 16:17:01 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id YhNFivrupWWe; Thu,  6 Aug 2020 16:17:01 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C970540A9E;
+	Thu,  6 Aug 2020 16:17:00 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 32611170D09;
+	Thu,  6 Aug 2020 12:17:00 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu,  6 Aug 2020 12:16:59 -0400
+Message-Id: <1596730619-55971-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [dunfell/master][PATCH] tisdk-rootfs-image: re-add packages that were previously in the default fs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,81 +37,63 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Aug 2020 13:48:51 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 06 Aug 2020 16:19:48 -0000
 
-Denys,
+From: Denys Dmytriyenko <denys@ti.com>
 
-On 8/6/20 8:46 AM, Murali Karicheri wrote:
-> Hi Denys,
-> 
-> This was a single patch in Processor SDK to add IEC-62439-3 MIB support
-> . This was held up because the size limit is exceeded. I can split in to
-> multiple patches and re-send. Do I need to do anything else?
-> 
-> Also wondering why the base net-snmp is not part of the core SDK. There
-> was a requirement I have added sometime back to have the base Net-SNMP
-> part of the file system. Other than this patch, is there any other
-> update needed (Package group) to include Net-SNMP in the file system.
-> I see 
-> ./meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb 
-> has net-snmp. So does it mean net-snmp is expected
-> to be already part of the SDK 7.1 file system?
-> 
-> As a first step I would like to have interfaces MIB working which list
-> all network interfaces in the system. What should I do it get it
-> enabled?
-> 
-> Aparna, could you help me locate the Net-SNMP requirement? Do you have
-> any info on if net-snmp is part of 7.1?
-Looks like part of the net-snmp packages are available in
-the SDK. For example I see
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../recipes-core/images/tisdk-default-image.bb     | 39 ++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
-root@am57xx-evm:~# snmp
-snmp-bridge-mib  snmpconf         snmpgetnext      snmpps 
-snmptest         snmpusm
-snmpbulkget      snmpdelta        snmpinform       snmpset 
-snmptop          snmpvacm
-snmpbulkwalk     snmpdf           snmpnetstat      snmpstatus 
-snmptranslate    snmpwalk
-snmpcheck        snmpget          snmpping         snmptable 
-snmptrap
-root@am57xx-evm:~# snmpd
--sh: snmpd: command not found
-
-So I am not sure what is the current state of Net-SNMP in the filesystem
-and need help.
-
-Murali
-> 
-> Thanks
-> 
-> Murali
-> On 8/4/20 5:19 PM, meta-arago-bounces@arago-project.org wrote:
->> Your mail to 'meta-arago' with the subject
->>
->>      [PATCH] net-snmp: update recipe for IEC-62439-3 MIB used in
->> HSR/PRP protocols
->>
->> Is being held until the list moderator can review it for approval.
->>
->> The reason it is being held:
->>
->>      Message body is too big: 2843957 bytes with a limit of 100 KB
->>
->> Either the message will get posted to the list, or you will receive
->> notification of the moderator's decision.  If you would like to cancel
->> this posting, please visit the following URL:
->>
->>      
->> http://arago-project.org/cgi-bin/mailman/confirm/meta-arago/4a672f9a16205bed61aa52c9cadc382f58138d79 
->>
->>
-> 
-
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
+index ce4287a..bc77b97 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
+@@ -32,3 +32,42 @@ export IMAGE_BASENAME = "tisdk-default-image"
+ # available on the HW.
+ IMAGE_FSTYPES_remove_keystone = "ubifs ubi"
+ IMAGE_FSTYPES_remove_omapl138 = "ubifs ubi"
++
++# Below is the delta in packages between old fuller and a new smaller default rootfs
++CHROMIUM = ""
++CHROMIUM_append_omap-a15 = "\
++    chromium-ozone-wayland \
++"
++CHROMIUM_append_k3 = "\
++    chromium-ozone-wayland \
++"
++
++EXTRABROWSERS = " \
++    qtwebbrowser-examples \
++    qtwebengine-qmlplugins \
++    qtwebengine-examples \
++"
++
++PYTHON2APPS = " \
++    ${@bb.utils.contains('MACHINE_FEATURES','gpu',"${EXTRABROWSERS}",'',d)} \
++    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', "${CHROMIUM}", '', d)} \
++"
++
++DEVTOOLS = " \
++    linux-libc-headers-dev \
++    build-essential \
++    packagegroup-core-tools-debug \
++    git \
++"
++
++OPENCL = " \
++    ${@bb.utils.contains('MACHINE_FEATURES','dsp','ti-opencl','',d)} \
++    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-tisdk-opencl-extra','',d)} \
++"
++
++IMAGE_INSTALL += "\
++    ${@oe.utils.all_distro_features(d, "opencl", "${OPENCL}")} \
++    ${@bb.utils.contains("BBFILE_COLLECTIONS", "meta-python2", "${PYTHON2APPS}", "", d)} \
++    ${DEVTOOLS} \
++    ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} \
++"
 -- 
-Murali Karicheri
-Texas Instruments
+2.7.4
+
 
