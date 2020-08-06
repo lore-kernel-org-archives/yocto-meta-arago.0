@@ -1,47 +1,42 @@
 Return-Path: <g-tammana@ti.com>
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	by arago-project.org (Postfix) with ESMTPS id ADCBB52960
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 2DC9B52970
 	for <meta-arago@arago-project.org>;
-	Wed,  5 Aug 2020 21:22:06 +0000 (UTC)
+	Thu,  6 Aug 2020 12:00:36 +0000 (UTC)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 075LJKo1109469
-	for <meta-arago@arago-project.org>; Wed, 5 Aug 2020 16:19:20 -0500
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 076BvoEt069473
+	for <meta-arago@arago-project.org>; Thu, 6 Aug 2020 06:57:50 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1596662360;
-	bh=bqcgH8hrHC2y+dH0AB8Z2+0vZPLZlvU9ItyfrxifouE=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=QePfQ+gEeo1w61NlXlCZWjF9+cquBotzN02taipkI6hDfRnIe4D07v7J5/YDi4O6i
-	IYY7Ue99VtkZD9NBRSD6hhV616lmOqCKJXQ2XvdCEIFaC1+JvW/JGE35bCMEUhr3y2
-	jmIgkJ9alrnox/2jlazKxfAY99Vb36YEf9DHzShg=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 075LJKli076213
+	s=ti-com-17Q1; t=1596715070;
+	bh=mzaUYi2f4wTVreIE0fJZIO/Xo8WisO3DnUpBfWs5USM=;
+	h=From:To:CC:Subject:Date;
+	b=C8+DBJH9B2OfsbbWbd0ptEHTydMTe1P6tEs0gJr7895Nh9LfUwa7FBPgztFp8RyJI
+	kEtUnFqkkxylKyCORrQxV/vRyzYW/4V5rmnXgBlpKZNpeMiYaaVEySttZvnD/HrjBx
+	P+SsU6AiXJbEymTmZPzFfmrlYJwa+p1JPiWWnyEU=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 076BvonW045263
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 5 Aug 2020 16:19:20 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 6 Aug 2020 06:57:50 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Wed, 5 Aug 2020 16:19:20 -0500
-Received: from DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11]) by
-	DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11%17]) with mapi id
-	15.01.1979.003; Wed, 5 Aug 2020 16:19:20 -0500
-From: "Tammana, Gowtham" <g-tammana@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [meta-arago] [dunfell][PATCH] wayland-ivi-extension: Update
-	patch to weston-8
-Thread-Index: AQHWa2rhhzZMcxg7Xkux31uEYonOvKkqBQkw
-Date: Wed, 5 Aug 2020 21:19:20 +0000
-Message-ID: <b0b05a239ed74d35b9fb174988e43021@ti.com>
-References: <20200604000622.4119-1-g-tammana@ti.com>
-	<20200710181804.GA12263@beryl> <20200805205623.GV14660@beryl>
-In-Reply-To: <20200805205623.GV14660@beryl>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.247.31.203]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Thu, 6 Aug 2020 06:57:50 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Thu, 6 Aug 2020 06:57:49 -0500
+Received: from lta0271916c.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 076BvnOQ092397;
+	Thu, 6 Aug 2020 06:57:49 -0500
+From: <g-tammana@ti.com>
+To: <meta-arago@arago-project.org>, <denys@ti.com>
+Date: Thu, 6 Aug 2020 06:57:46 -0500
+Message-ID: <20200806115746.6292-1-g-tammana@ti.com>
+X-Mailer: git-send-email 2.16.2.windows.1
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [dunfell][PATCH] wayland-ivi-extension: Update patch to weston-8
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [dunfell/master][PATCH] wayland-ivi-extension: Fix patch file name
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,102 +49,42 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Aug 2020 21:22:07 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 06 Aug 2020 12:00:36 -0000
+Content-Type: text/plain
 
+From: Gowtham Tammana <g-tammana@ti.com>
 
+During the upate to weston-8, one of the patch file name was changed but
+the corresponding change in the append was missing. Fixing it.
 
->-----Original Message-----
->From: Dmytriyenko, Denys
->Sent: Wednesday, August 05, 2020 3:56 PM
->To: Tammana, Gowtham
->Cc: meta-arago@arago-project.org
->Subject: Re: [meta-arago] [dunfell][PATCH] wayland-ivi-extension: Update p=
-atch
->to weston-8
->
->Ping.
+Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+---
+ .../recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb   | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-I missed this. Let me push a new version.
+diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
+index 0b20b91b..a172c1bf 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
++++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
+@@ -10,7 +10,7 @@ SRCREV = "e9c2fe4c5034a06b159cfd45dbd485755cbaf4c8"
+ SRC_URI = "git://github.com/GENIVI/${BPN}.git;protocol=http \
+            file://01-ivi-input-controller-update-to-weston-7.patch \
+            file://02-ivi-id-agent-update-to-weston-7-header.patch \
+-           file://03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch \
++           file://03-ivi-id-agent-update-dependencies-to-build-on-weston-8.patch \
+     "
+ 
+ S = "${WORKDIR}/git"
+@@ -27,7 +27,7 @@ FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
+ 
+ EXTRA_OECMAKE += "-DLIB_SUFFIX=${@d.getVar('baselib').replace('lib', '')}"
+ 
+-PR = "r0"
++PR = "r1"
+ 
+ # Need these temporarily to prevent a non-fatal do_package_qa issue
+ INSANE_SKIP_${PN} += "dev-deps"
+-- 
+2.17.1
 
-Thanks,
-Gowtham
-
->
->On Fri, Jul 10, 2020 at 02:18:04PM -0400, Denys Dmytriyenko wrote:
->> Gowtham,
->>
->> Looks like you renmaed the patch, but didn't update the recipe for the n=
-ew
->> name:
->> http://arago-project.org/git/?p=3Dmeta-arago.git;a=3Dblob;f=3Dmeta-arago=
--
->distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb;hb=3DHEAD
->> It now gives a warning about not being able to locate the patch.
->>
->> Denys
->>
->>
->> On Wed, Jun 03, 2020 at 07:06:22PM -0500, Gowtham Tammana wrote:
->> > dunfell uses weston-8, update the ivi-id-agent dependencies patch to
->> > use libweston-desktop-8.
->> >
->> > Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
->> > ---
->> >  ...i-id-agent-update-dependencies-to-build-on-weston-8.patch} | 4 ++-=
--
->> >  1 file changed, 2 insertions(+), 2 deletions(-)
->> >  rename meta-arago-distro/recipes-graphics/wayland/wayland-ivi-
->extension/{03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch =
-=3D>
->03-ivi-id-agent-update-dependencies-to-build-on-weston-8.patch} (94%)
->> >
->> > diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-
->extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch
->b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/03-ivi-=
-id-
->agent-update-dependencies-to-build-on-weston-8.patch
->> > similarity index 94%
->> > rename from meta-arago-distro/recipes-graphics/wayland/wayland-ivi-
->extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch
->> > rename to meta-arago-distro/recipes-graphics/wayland/wayland-ivi-
->extension/03-ivi-id-agent-update-dependencies-to-build-on-weston-8.patch
->> > index 1b5f64e4..1b18d9bf 100644
->> > --- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension=
-/03-
->ivi-id-agent-update-dependencies-to-build-on-weston-7.patch
->> > +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension=
-/03-
->ivi-id-agent-update-dependencies-to-build-on-weston-8.patch
->> > @@ -1,7 +1,7 @@
->> >  From b99082adfaf250b15f03345cdf1b433fb1575581 Mon Sep 17 00:00:00 200=
-1
->> >  From: Rajendraprasad K J <KarammelJayakumar.Rajendraprasad@in.bosch.c=
-om>
->> >  Date: Mon, 6 Jan 2020 06:45:54 -0500
->> > -Subject: [PATCH] ivi-id-agent: update dependencies to build on weston=
- 7
->> > +Subject: [PATCH] ivi-id-agent: update dependencies to build on weston=
- 8
->> >
->> >  upgrade libweston-desktop version.
->> >
->> > @@ -22,7 +22,7 @@ index 3e604a5..ff47808 100644
->> >   pkg_check_modules(WESTON weston>=3D6.0.0 REQUIRED)
->> >   pkg_check_modules(PIXMAN pixman-1 REQUIRED)
->> >  -pkg_check_modules(LIBWESTON_DESKTOP libweston-desktop-6 REQUIRED)
->> > -+pkg_check_modules(LIBWESTON_DESKTOP libweston-desktop-7 REQUIRED)
->> > ++pkg_check_modules(LIBWESTON_DESKTOP libweston-desktop-8 REQUIRED)
->> >
->> >   find_package(Threads REQUIRED)
->> >
->> > --
->> > 2.26.2
->> >
->> _______________________________________________
->> meta-arago mailing list
->> meta-arago@arago-project.org
->> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
