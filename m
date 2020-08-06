@@ -1,42 +1,46 @@
-Return-Path: <g-tammana@ti.com>
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-	by arago-project.org (Postfix) with ESMTPS id 2DC9B52970
+Return-Path: <m-karicheri2@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 19E6A52970
 	for <meta-arago@arago-project.org>;
-	Thu,  6 Aug 2020 12:00:36 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 076BvoEt069473
-	for <meta-arago@arago-project.org>; Thu, 6 Aug 2020 06:57:50 -0500
+	Thu,  6 Aug 2020 12:48:56 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 076Ck9v3056535
+	for <meta-arago@arago-project.org>; Thu, 6 Aug 2020 07:46:09 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1596715070;
-	bh=mzaUYi2f4wTVreIE0fJZIO/Xo8WisO3DnUpBfWs5USM=;
-	h=From:To:CC:Subject:Date;
-	b=C8+DBJH9B2OfsbbWbd0ptEHTydMTe1P6tEs0gJr7895Nh9LfUwa7FBPgztFp8RyJI
-	kEtUnFqkkxylKyCORrQxV/vRyzYW/4V5rmnXgBlpKZNpeMiYaaVEySttZvnD/HrjBx
-	P+SsU6AiXJbEymTmZPzFfmrlYJwa+p1JPiWWnyEU=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 076BvonW045263
+	s=ti-com-17Q1; t=1596717969;
+	bh=tLuXj3z9dlVmQeGI2qZ1r+NX7WZlbfG1qQ9Lm/7Wdfk=;
+	h=Subject:To:References:From:CC:Date:In-Reply-To;
+	b=ff/Nwv67/VFoN4Z6sCq6lYArpTcdL00Rt0gVxZ6Ywp0AoaTA4vZlrJx8cXehOpAhV
+	/z7WU2XbtrPdMAi++oXvLZFsfezwGhYs4mao2mDo6pFl32ig1hW84R6mNpnIBTl1xx
+	z2SllCvCO3VQPnMP92jaghAjnvq7xeeNOvD8fQec=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 076Ck9xd067211
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 6 Aug 2020 06:57:50 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 6 Aug 2020 06:57:50 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+	for <meta-arago@arago-project.org>; Thu, 6 Aug 2020 07:46:09 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
 	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Thu, 6 Aug 2020 07:46:09 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 6 Aug 2020 06:57:49 -0500
-Received: from lta0271916c.dhcp.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 076BvnOQ092397;
-	Thu, 6 Aug 2020 06:57:49 -0500
-From: <g-tammana@ti.com>
-To: <meta-arago@arago-project.org>, <denys@ti.com>
-Date: Thu, 6 Aug 2020 06:57:46 -0500
-Message-ID: <20200806115746.6292-1-g-tammana@ti.com>
-X-Mailer: git-send-email 2.16.2.windows.1
+	Frontend Transport; Thu, 6 Aug 2020 07:46:09 -0500
+Received: from [10.250.53.226] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 076Ck9JN049697;
+	Thu, 6 Aug 2020 07:46:09 -0500
+To: "Dmytriyenko, Denys" <denys@ti.com>, <meta-arago@arago-project.org>,
+	"Balasubramanian, Aparna" <aparnab@ti.com>
+References: <mailman.5549.1596575976.11489.meta-arago@arago-project.org>
+From: Murali Karicheri <m-karicheri2@ti.com>
+Message-ID: <d2bf4b45-c9df-a544-bf4e-06b91a5db4b5@ti.com>
+Date: Thu, 6 Aug 2020 08:46:03 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+	Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <mailman.5549.1596575976.11489.meta-arago@arago-project.org>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [dunfell/master][PATCH] wayland-ivi-extension: Fix patch file name
+Cc: Sekhar Nori <nsekhar@ti.com>
+Subject: Net-SNMP
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,42 +53,56 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Aug 2020 12:00:36 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 06 Aug 2020 12:48:56 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-From: Gowtham Tammana <g-tammana@ti.com>
+Hi Denys,
 
-During the upate to weston-8, one of the patch file name was changed but
-the corresponding change in the append was missing. Fixing it.
+This was a single patch in Processor SDK to add IEC-62439-3 MIB support
+. This was held up because the size limit is exceeded. I can split in to
+multiple patches and re-send. Do I need to do anything else?
 
-Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
----
- .../recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb   | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Also wondering why the base net-snmp is not part of the core SDK. There
+was a requirement I have added sometime back to have the base Net-SNMP
+part of the file system. Other than this patch, is there any other
+update needed (Package group) to include Net-SNMP in the file system.
+I see 
+./meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb 
+has net-snmp. So does it mean net-snmp is expected
+to be already part of the SDK 7.1 file system?
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
-index 0b20b91b..a172c1bf 100644
---- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
-+++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
-@@ -10,7 +10,7 @@ SRCREV = "e9c2fe4c5034a06b159cfd45dbd485755cbaf4c8"
- SRC_URI = "git://github.com/GENIVI/${BPN}.git;protocol=http \
-            file://01-ivi-input-controller-update-to-weston-7.patch \
-            file://02-ivi-id-agent-update-to-weston-7-header.patch \
--           file://03-ivi-id-agent-update-dependencies-to-build-on-weston-7.patch \
-+           file://03-ivi-id-agent-update-dependencies-to-build-on-weston-8.patch \
-     "
- 
- S = "${WORKDIR}/git"
-@@ -27,7 +27,7 @@ FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
- 
- EXTRA_OECMAKE += "-DLIB_SUFFIX=${@d.getVar('baselib').replace('lib', '')}"
- 
--PR = "r0"
-+PR = "r1"
- 
- # Need these temporarily to prevent a non-fatal do_package_qa issue
- INSANE_SKIP_${PN} += "dev-deps"
+As a first step I would like to have interfaces MIB working which list
+all network interfaces in the system. What should I do it get it
+enabled?
+
+Aparna, could you help me locate the Net-SNMP requirement? Do you have
+any info on if net-snmp is part of 7.1?
+
+Thanks
+
+Murali
+On 8/4/20 5:19 PM, meta-arago-bounces@arago-project.org wrote:
+> Your mail to 'meta-arago' with the subject
+> 
+>      [PATCH] net-snmp: update recipe for IEC-62439-3 MIB used in
+> HSR/PRP protocols
+> 
+> Is being held until the list moderator can review it for approval.
+> 
+> The reason it is being held:
+> 
+>      Message body is too big: 2843957 bytes with a limit of 100 KB
+> 
+> Either the message will get posted to the list, or you will receive
+> notification of the moderator's decision.  If you would like to cancel
+> this posting, please visit the following URL:
+> 
+>      http://arago-project.org/cgi-bin/mailman/confirm/meta-arago/4a672f9a16205bed61aa52c9cadc382f58138d79
+> 
+
 -- 
-2.17.1
-
+Murali Karicheri
+Texas Instruments
 
