@@ -1,30 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id DF4DB52972
+Return-Path: <j-stiffler@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 307845296D
 	for <meta-arago@arago-project.org>;
-	Mon, 17 Aug 2020 22:33:38 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5942240C47;
-	Mon, 17 Aug 2020 22:30:50 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id F3_0Sp--xxBp; Mon, 17 Aug 2020 22:30:50 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3BB3540AB7;
-	Mon, 17 Aug 2020 22:30:49 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 8E8E217341D;
-	Mon, 17 Aug 2020 18:30:48 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 17 Aug 2020 18:30:48 -0400
-Message-Id: <1597703448-12690-1-git-send-email-denis@denix.org>
+	Tue, 18 Aug 2020 13:10:37 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07ID7luo064456
+	for <meta-arago@arago-project.org>; Tue, 18 Aug 2020 08:07:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1597756067;
+	bh=iQwZq3/c+cMLomPJKnMUXN0frqOM6xhUC2zkjBMvnsM=;
+	h=From:To:CC:Subject:Date;
+	b=DkL1driazRAbY1S7ki4045ZeNIZtL5Xi3i62BDCFy+jQyyuomfwy6YlLdO2p832EN
+	Mxplrd2wHxQOk2x81E9iSnnLGxkaLVMniTBptf6kXdBb0pXV8OS8SxvuqVYWKCwnS/
+	5LTqiHJf03DS3hq4EYaWyvbecAKgTDM9OcTxt90k=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07ID7lST044017
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Tue, 18 Aug 2020 08:07:47 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Tue, 18 Aug 2020 08:07:47 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Tue, 18 Aug 2020 08:07:47 -0500
+Received: from udd0866934.dhcp.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07ID7l7B076339;
+	Tue, 18 Aug 2020 08:07:47 -0500
+From: Jacob Stiffler <j-stiffler@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Mon, 17 Aug 2020 14:22:57 -0400
+Message-ID: <1597688579-8793-1-git-send-email-j-stiffler@ti.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [dunfell/master][PATCH] FIXME: packagegroup-arago-tisdk-addons: disable ipc-lld for J7 for now
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [master/dunfell][PATCH 1/3] recipe-data: collect specific recipe data
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,30 +49,125 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Aug 2020 22:33:39 -0000
+X-List-Received-Date: Tue, 18 Aug 2020 13:10:37 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+* This class adds a general method to collect data across recipes.
+* The output is a conf file which can be parsed by the bitbake parser.
+* Basic routines are made available to extract data from the output.
 
-Will be replaced with the new set to include J7200
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb       | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-distro/classes/recipe-data.bbclass | 100 ++++++++++++++++++++++++++
+ 1 file changed, 100 insertions(+)
+ create mode 100644 meta-arago-distro/classes/recipe-data.bbclass
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index d69f221..2060d64 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -75,7 +75,7 @@ UTILS_append_k3 = " mmc-utils \
- "
- 
- UTILS_append_am65xx = " ipc-lld-examples-rtos pru-icss pru-pwm-fw"
--UTILS_append_j7 = " ipc-lld-examples-rtos pru-icss ti-display-sharing-fw cpsw9g-eth-fw"
-+UTILS_append_j7 = " pru-icss ti-display-sharing-fw cpsw9g-eth-fw"
- 
- UTILS_append_omapl138 = " ti-ipc-rtos-fw"
- 
+diff --git a/meta-arago-distro/classes/recipe-data.bbclass b/meta-arago-distro/classes/recipe-data.bbclass
+new file mode 100644
+index 0000000..be1db1f
+--- /dev/null
++++ b/meta-arago-distro/classes/recipe-data.bbclass
+@@ -0,0 +1,100 @@
++# This class will record certain information about dependent recipes to a conf
++# file. This way it can be retrieved by other recipes. For example, this can be
++# used to obtain the SRC_URI for the SDK's SW manifest.
++
++# Configuration file to record the recipe data.
++RECIPE_DATA_FILE ?= "${TMPDIR}/recipe_data.conf"
++
++# Variables to record
++RECIPE_DATA_VARS ?= "PV SRC_URI FILE"
++
++
++# Helper to load the data from the conf file
++def recipe_data_load(d, recipe_data = bb.data.init()):
++    fn = d.getVar('RECIPE_DATA_FILE', True)
++
++    if not fn:
++        bb.fatal('"RECIPE_DATA_FILE" is not defined!')
++
++    if os.path.exists(fn):
++        with bb.utils.fileslocked([fn + '.lock']):
++            try:
++                bb.parse.handle(fn, recipe_data)
++            except Exception as e:
++                bb.warn('ERROR parsing "%s"' % fn)
++                bb.fatal(str(e))
++
++    return recipe_data
++
++
++def recipe_data_get_var(var, pn, d):
++    if var not in (d.getVar('RECIPE_DATA_VARS', True) or '').split():
++        bb.fatal('Variable "%s" was not configured to be recored' % var)
++
++    recipe_data = recipe_data_load(d)
++    return recipe_data.getVar('%s_pn-%s' % (var,pn), True)
++
++# Add a shell variety so that it can work in shell tasks
++# *** In shell tasks, inline python will be executed during parsing, so shell
++# *** variables passed as input.
++recipe_data_get_var_sh() {
++    local pn="$1"
++    local var="$2"
++
++    sed -ne 's|'$var'_pn-'$pn'[ \t]*=[ \t]*"\(.*\)"[ \t]*$|\1|p' ${RECIPE_DATA_FILE}
++}
++
++# Update the conf file with a new data.
++# Variables such as "FILE" and "TOPDIR" are filtered out by default.
++def recipe_data_update(fn, update_data, var_blacklist = ['__.*', 'FILE', 'TOPDIR'], expand = False):
++    import re
++
++    recipe_data = bb.data.init()
++
++    # Create the regex to filter out variables
++    re_blacklist = re.compile('^' + '$|^'.join(var_blacklist) + '$')
++    with bb.utils.fileslocked([fn + '.lock']):
++        try:
++            bb.parse.handle(fn, recipe_data)
++        except:
++            pass
++
++        for var in update_data.keys():
++            recipe_data.setVar(var, update_data.getVar(var,expand))
++
++        # We could use bb.data_smart's built in "emit_var", but that gives
++        # unnecessary comments.
++        with open(fn, "w") as f:
++            for var in recipe_data.keys():
++                if not re_blacklist.match(var):
++                    f.write('%s = "%s"\n' % (var, recipe_data.getVar(var,expand)))
++
++
++addtask emit_recipe_data
++do_emit_recipe_data[nostamp] = "1"
++python do_emit_recipe_data(){
++    recipe_vars = (d.getVar('RECIPE_DATA_VARS', True) or '').split()
++    recipe_data_file = d.getVar('RECIPE_DATA_FILE', True)
++
++    pn = d.getVar('PN', True) or bb.fatal('"PN" is not defined!')
++
++    data = bb.data.init()
++
++    # Set pn-${PN} to the overrides for convenience
++    data.setVar('OVERRIDES', 'pn-${PN}')
++    for var in recipe_vars:
++        val = d.getVar(var, True) or ''
++        data.setVar('%s_pn-%s' % (var, pn), val)
++
++    recipe_data_update(recipe_data_file, data)
++}
++
++# Add empty task to control dependencies
++addtask emit_recipe_data_all after do_emit_recipe_data
++do_emit_recipe_data_all[noexec] = "1"
++do_emit_recipe_data_all[nostamp] = "1"
++do_emit_recipe_data_all[recrdeptask] = "do_emit_recipe_data_all do_emit_recipe_data"
++do_emit_recipe_data_all[recideptask] = "do_${BB_DEFAULT_TASK}"
++do_emit_recipe_data_all() {
++    :
++}
 -- 
 2.7.4
 
