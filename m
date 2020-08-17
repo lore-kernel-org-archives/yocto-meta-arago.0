@@ -1,45 +1,30 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id D66C552986
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 971525296F
 	for <meta-arago@arago-project.org>;
-	Fri, 14 Aug 2020 22:33:43 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07EMUu4g065358;
-	Fri, 14 Aug 2020 17:30:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1597444256;
-	bh=gSItv2z71G1ardaUQqZL15Mv0nU0aps4VSOWTcvLSHU=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=WVRFKWATFmF8G9k0NRhBJSdrzg0FMzW5qAWyA0xOa6VqrJL2xIAVSSeGN/h16RNdg
-	tVpHPyoQB+dW22axEa8DaA+AbVr0zb+zMzrQdkTFFQIvcI+0KgJeKj9v8yUFdFvJmF
-	HN5Um7LMgamTlMZrH2caT0968QuqP171+G9huCHY=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07EMUuC1067037
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 14 Aug 2020 17:30:56 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Fri, 14 Aug 2020 17:30:55 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Fri, 14 Aug 2020 17:30:55 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07EMUt4j108080;
-	Fri, 14 Aug 2020 17:30:55 -0500
-Date: Fri, 14 Aug 2020 18:30:55 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Paul Barker <pbarker@konsulko.com>
-Message-ID: <20200814223055.GQ13081@beryl>
-References: <20200621204349.363584-1-pbarker@konsulko.com>
-	<20200629224351.GD6525@beryl> <20200630213041.GN7211@beryl>
-MIME-Version: 1.0
-In-Reply-To: <20200630213041.GN7211@beryl>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [master/dunfell][PATCH] linux: copy-defconfig: Move do_create_srcipk only if defined
+	Mon, 17 Aug 2020 18:43:42 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 06B3140C36;
+	Mon, 17 Aug 2020 18:40:54 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id cCpN26-2cdWg; Mon, 17 Aug 2020 18:40:54 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E7A8740AB7;
+	Mon, 17 Aug 2020 18:40:52 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 3B80A17341D;
+	Mon, 17 Aug 2020 14:40:52 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Mon, 17 Aug 2020 14:40:51 -0400
+Message-Id: <1597689651-14328-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [dunfell/master][PATCH] gstreamer1.0-plugins-bad: re-structure gstdrm and waylandsink patches
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,73 +37,74 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Aug 2020 22:33:44 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 17 Aug 2020 18:43:43 -0000
 
-Ping.
+From: Denys Dmytriyenko <denys@ti.com>
 
-In case this was missed - the submitted patch was causing a breakage and was 
-not merged. Thanks.
+This helps with applying them only for platforms that have display and skipping
+headless platforms.
 
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ .../gstreamer1.0-plugins-bad_1.16.%.bbappend       | 30 ++++++++++++----------
+ 1 file changed, 16 insertions(+), 14 deletions(-)
 
-On Tue, Jun 30, 2020 at 05:30:41PM -0400, Denys Dmytriyenko wrote:
-> That doesn't work:
-> 
-> ERROR: 351 unbuildable tasks were found.
-> These are usually caused by circular dependencies and any circular dependency chains found will be printed below. Increase the debug level to see a list of unbuildable tasks.
-> 
-> Identifying dependency loops (this may take a short while)...
-> 
-> ERROR: 
-> Dependency loop #1 found:
->   Task /OE/arago-dunfell/sources/meta-ti/recipes-kernel/linux/linux-ti-staging_5.4.bb:do_compile (dependent Tasks ['linux-ti-staging_5.4.bb:do_configure'])
->   Task /OE/arago-dunfell/sources/meta-ti/recipes-kernel/linux/linux-ti-staging_5.4.bb:do_create_srcipk (dependent Tasks ['external-arm-toolchain.bb:do_patch', 'bc_1.07.1.bb:do_patch', 'bison_3.5.3.bb:do_patch', 'kmod-native_git.bb:do_patch', 'lzop_1.04.bb:do_patch', 'linux-ti-staging_5.4.bb:do_compile'])
->   Task /OE/arago-dunfell/sources/meta-ti/recipes-kernel/linux/linux-ti-staging_5.4.bb:do_configure (dependent Tasks ['linux-ti-staging_5.4.bb:do_prepare_recipe_sysroot', 'linux-ti-staging_5.4.bb:do_patch', 'linux-ti-staging_5.4.bb:do_symlink_kernsrc', 'linux-ti-staging_5.4.bb:do_unpack', 'linux-ti-staging_5.4.bb:do_create_srcipk'])
-> 
-> 
-> ERROR: Command execution failed: 1
-> 
-> 
-> On Mon, Jun 29, 2020 at 06:43:51PM -0400, Denys Dmytriyenko wrote:
-> > Thanks, will merge it shortly.
-> > 
-> > On Sun, Jun 21, 2020 at 09:43:49PM +0100, Paul Barker wrote:
-> > > Signed-off-by: Paul Barker <pbarker@konsulko.com>
-> > > ---
-> > >  .../recipes-kernel/linux/copy-defconfig.inc              | 9 ++++++---
-> > >  1 file changed, 6 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
-> > > index 10ecf8ea..65b615cb 100644
-> > > --- a/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
-> > > +++ b/meta-arago-distro/recipes-kernel/linux/copy-defconfig.inc
-> > > @@ -17,6 +17,9 @@ do_configure_append() {
-> > >      fi
-> > >  }
-> > >  
-> > > -# Move create_srcipk task so that the release defconfig is included.
-> > > -deltask do_create_srcipk
-> > > -addtask create_srcipk after do_configure before do_compile
-> > > +python __anonymous() {
-> > > +    # Move create_srcipk task so that the release defconfig is included.
-> > > +    if d.getVarFlag('do_create_srcipk', "task"):
-> > > +        bb.build.deltask('do_create_srcipk', d)
-> > > +        bb.build.addtask('do_create_srcipk', 'do_configure', 'do_compile', d)
-> > > +}
-> > > -- 
-> > > 2.27.0
-> > > 
-> > > _______________________________________________
-> > > meta-arago mailing list
-> > > meta-arago@arago-project.org
-> > > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> > _______________________________________________
-> > meta-arago mailing list
-> > meta-arago@arago-project.org
-> > http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.%.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.%.bbappend
+index 6722fca..0533294 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.%.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.%.bbappend
+@@ -2,7 +2,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+ PACKAGECONFIG_append = " faad kms"
+ 
+-SRC_URI_append_ti43x = " \
++GSTDRM_WAYLANDSINK_PATCHES = " \
+     file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
+     file://0002-parsers-bug-fixes-on-parsers.patch \
+     file://0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-drivers.patch \
+@@ -11,26 +11,28 @@ SRC_URI_append_ti43x = " \
+     file://0001-wayland-drm-kms-add-support-for-meson-build-system.patch \
+ "
+ 
++SRC_URI_append_ti43x = " \
++    ${GSTDRM_WAYLANDSINK_PATCHES} \
++"
++
+ SRC_URI_append_ti33x = " \
+     file://0001-waylandsink-Add-mouse-drag-and-drop-support.patch \
+ "
+ 
+ SRC_URI_append_omap-a15 = " \
+-    file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
+-    file://0002-parsers-bug-fixes-on-parsers.patch \
+-    file://0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-drivers.patch \
+-    file://0004-waylandsink-Add-drm-support-in-waylandsink.patch \
+-    file://0005-waylandsink-Add-input-device-support.patch \
+-    file://0001-wayland-drm-kms-add-support-for-meson-build-system.patch \
++    ${GSTDRM_WAYLANDSINK_PATCHES} \
+ "
+ 
+-SRC_URI_append_k3 = " \
+-    file://0001-gstdrmallocator-Add-DRM-allocator-support.patch \
+-    file://0002-parsers-Pick-bug-fixes-on-different-parsers.patch \
+-    file://0003-kmssink-Add-omapdrm-and-tidss-in-the-list-of-drivers.patch \
+-    file://0004-waylandsink-Add-drm-support-in-waylandsink.patch \
+-    file://0005-waylandsink-Add-input-device-support.patch \
+-    file://0001-wayland-drm-kms-add-support-for-meson-build-system.patch \
++SRC_URI_append_am65xx = " \
++    ${GSTDRM_WAYLANDSINK_PATCHES} \
++"
++
++SRC_URI_append_j7-evm = " \
++    ${GSTDRM_WAYLANDSINK_PATCHES} \
++"
++
++SRC_URI_append_j7-hs-evm = " \
++    ${GSTDRM_WAYLANDSINK_PATCHES} \
+ "
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+-- 
+2.7.4
+
 
