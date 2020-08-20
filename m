@@ -1,32 +1,44 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id D83AB52972
+Return-Path: <a0221627@swubn03>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 5A84B520DF
 	for <meta-arago@arago-project.org>;
-	Thu, 20 Aug 2020 18:05:57 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B7CFA40B2D;
-	Thu, 20 Aug 2020 18:03:08 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id IEYArT388m0G; Thu, 20 Aug 2020 18:03:08 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A402040C26;
-	Thu, 20 Aug 2020 18:03:07 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id D62A1174468;
-	Thu, 20 Aug 2020 14:03:06 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu, 20 Aug 2020 14:03:04 -0400
-Message-Id: <1597946584-11515-2-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1597946584-11515-1-git-send-email-denis@denix.org>
-References: <1597946584-11515-1-git-send-email-denis@denix.org>
-Subject: [dunfell/master][PATCH v2 2/2] branding-bleeding: setup nightly CI builds
+	Thu, 20 Aug 2020 20:55:11 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07KKqLxX048531
+	for <meta-arago@arago-project.org>; Thu, 20 Aug 2020 15:52:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1597956741;
+	bh=bjI39Z6Y1LtI8aoU62kvF2TUIo4IKfwg6h2nJurfe+A=;
+	h=From:To:CC:Subject:Date;
+	b=DsRSriz5ZNEyagiyjoa/US73sEMOwH21a3QUG7TRNyfjUZUsihkGRqRcTD7TVkRE1
+	/oxr8nZKDohL2L4RsHMkdHfEOBcpQoJA21XOKjIwqSEfT9POAX/S4TQTFar9Xk+6O2
+	ObInkya5uULzb9tUNgAhBCw6NcpRFvQosy9xjW3w=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07KKqL5b085333
+	for <meta-arago@arago-project.org>; Thu, 20 Aug 2020 15:52:21 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Thu, 20 Aug 2020 15:52:21 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Thu, 20 Aug 2020 15:52:21 -0500
+Received: from swubn03 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07KKqKDu088302;
+	Thu, 20 Aug 2020 15:52:21 -0500
+Received: from a0221627 by swubn03 with local (Exim 4.90_1)
+	(envelope-from <a0221627@swubn03>)
+	id 1k8rXo-0001ws-03; Fri, 21 Aug 2020 02:22:20 +0530
+From: <l-weaver@ti.com>
+To: <denys@ti.com>
+Date: Fri, 21 Aug 2020 02:22:10 +0530
+Message-ID: <20200820205210.6070-1-l-weaver@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: [dunfell/master PATCH] ti-tisdk-makefile: adding uboot r5 config variable for j7200
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -39,45 +51,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Aug 2020 18:05:58 -0000
+X-List-Received-Date: Thu, 20 Aug 2020 20:55:11 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+From: Lucas Weaver <l-weaver@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
-v2 - cleaup, add comments, use generic prefix/suffix
+ .../recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb     | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../conf/distro/include/branding-bleeding.inc           | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/meta-arago-distro/conf/distro/include/branding-bleeding.inc b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-index 28c6247..a536f77 100644
---- a/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-@@ -14,5 +14,22 @@ SRCREV_pn-optee-os = "${AUTOREV}"
- #SRCREV_pn-optee-test = "${AUTOREV}"
- SRCREV_pn-arm-trusted-firmware = "${AUTOREV}"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index a441d4b1..48ed961e 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -363,6 +363,7 @@ K3_UBOOT_MACHINE_R5_am65xx-evm = "am65x_evm_r5_defconfig"
+ K3_UBOOT_MACHINE_R5_am65xx-hs-evm = "am65x_hs_evm_r5_defconfig"
+ K3_UBOOT_MACHINE_R5_j7-evm = "j721e_evm_r5_config"
+ K3_UBOOT_MACHINE_R5_j7-hs-evm = "j721e_hs_evm_r5_config"
++K3_UBOOT_MACHINE_R5_j7200-evm = "j7200_evm_r5_config"
  
-+# Point to latest nightly metadata
-+#TI_RTOS_METADATA_URI = "git://git.ti.com/processor-sdk/coresdk_rtos_releases.git"
-+#TI_RTOS_METADATA_PROTOCOL = "git"
-+TI_RTOS_METADATA_SRCREV = "${AUTOREV}"
-+TI_RTOS_METADATA_BRANCH = "next"
-+
-+# Switch to internal nightlies, force overriding incorrect metadata values
-+# and ensure parsing won't break w/o metadata file
-+CORESDK_RTOS_WEBLINK_NIGHTLY ?= "file://empty"
-+CORESDK_RTOS_WEBLINK_forcevariable = "${CORESDK_RTOS_WEBLINK_NIGHTLY}"
-+CORESDK_RTOS_FIRMWARE_URL_forcevariable = "${DEFAULT_FIRMWARE_URL}"
-+
-+# Avoid use of old cached nightly file by using timed prefix
-+DATEH := "${@time.strftime('%Y%m%d%H',time.gmtime())}"
-+CORESDK_RTOS_FILE_PREFIX = "${DATEH}-"
-+CORESDK_RTOS_FILE_SUFFIX = ";downloadfilename=${CORESDK_RTOS_FILE_PREFIX}${DEFAULT_FIRMWARE_FILE}"
-+
- # Build and assemble TI-SDK, but don't package it
- IMAGE_FSTYPES_pn-tisdk-core-bundle = ""
+ do_install_append_k3() {
+     cat >> ${D}/Rules.make << __EOF__
 -- 
-2.7.4
+2.17.1
 
 
