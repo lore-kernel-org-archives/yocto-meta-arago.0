@@ -1,30 +1,46 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 00AA5520DE
+Return-Path: <g-tammana@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id C54B4520DE
 	for <meta-arago@arago-project.org>;
-	Tue, 25 Aug 2020 01:05:24 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id CF4CB40C24;
-	Tue, 25 Aug 2020 01:02:34 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id oILq505tz540; Tue, 25 Aug 2020 01:02:34 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B565240020;
-	Tue, 25 Aug 2020 01:02:33 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 7ACAF172DF3;
-	Mon, 24 Aug 2020 21:02:33 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Mon, 24 Aug 2020 21:02:33 -0400
-Message-Id: <1598317353-46128-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [dunfell/master][PATCH] rtos, gcc-arm-none-eabi: rename gcc-arm-none-eabi to gcc-arm-baremetal
+	Thu, 27 Aug 2020 12:47:39 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 07RCimR4041041
+	for <meta-arago@arago-project.org>; Thu, 27 Aug 2020 07:44:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1598532288;
+	bh=02ngQVX500TlesVA5/3iDfJURB2khpxRa0VfsX/pbQM=;
+	h=From:To:CC:Subject:Date;
+	b=xA9GUyIfRyGn/Jw5wzb5Aigz2heL3+FolHGU3ACyw5meod/cyBEIRqqMqCI8IfpcK
+	MKVUg9duyIUvoQ9z0YlvehGz/CWpLnegCZFP+E65qk7+RJSqxm9LpV8uqxSscbT7Lc
+	x9rzTSdLckK2znL1WcpNoJ98otiNMtBa72yrjBOE=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 07RCimcT043012
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Thu, 27 Aug 2020 07:44:48 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Thu, 27 Aug 2020 07:44:48 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Thu, 27 Aug 2020 07:44:48 -0500
+Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com
+	[10.247.120.73])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 07RCimVW122326;
+	Thu, 27 Aug 2020 07:44:48 -0500
+Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
+	[128.247.77.45])
+	by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id
+	07RCimB1051245; Thu, 27 Aug 2020 07:44:48 -0500
+From: Gowtham Tammana <g-tammana@ti.com>
+To: <meta-arago@arago-project.org>, Denys Dmytriyenko <denys@ti.com>
+Date: Thu, 27 Aug 2020 07:44:46 -0500
+Message-ID: <20200827124446.12684-1-g-tammana@ti.com>
+X-Mailer: git-send-email 2.28.0
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [meta-araga][dunfell/master][PATCH] nativesdk-packagegroup-arago-tisdk-host: remove nativesdk-meson
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,102 +53,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Aug 2020 01:05:25 -0000
+X-List-Received-Date: Thu, 27 Aug 2020 12:47:40 -0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+nativesdk-meson creates a wrapper with a predefined cross file. However
+it is picking up some of the dependencies from the host machine causing
+conflicts if there is version mismatch between host and nativesdk
+version. Remove nativesdk-meson from tisdk-host until it is resolved.
 
-Follow a similar rename in meta-ti
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
 ---
- .../packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb          | 4 ++--
- meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos_git.bb               | 4 ++--
- meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb     | 2 +-
- meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb      | 2 +-
- meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb              | 2 +-
- 5 files changed, 7 insertions(+), 7 deletions(-)
+ .../nativesdk-packagegroup-arago-tisdk-host.bb              | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
-index 5a453b6..97ee2cb 100644
+index 1ced42c1..4185f9c1 100644
 --- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
 +++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
 @@ -1,5 +1,5 @@
  SUMMARY = "Host packages for a standalone Arago SDK with TI tools"
--PR = "r0"
-+PR = "r1"
+-PR = "r1"
++PR = "r2"
  LICENSE = "MIT"
  
  inherit packagegroup nativesdk
-@@ -20,7 +20,7 @@ EXTRA_TI_TOOLS = " \
-     ${@oe.utils.all_distro_features(d, "opencl openmp", "nativesdk-clacc")} \
-     nativesdk-open62541-examples \
-     nativesdk-open62541-tests \
--    nativesdk-gcc-arm-none-eabi \
-+    nativesdk-gcc-arm-baremetal \
-     ${@oe.utils.all_distro_features(d, "opencl opencv", "${TIDL_TOOLS}")} \
+@@ -32,3 +32,7 @@ RDEPENDS_${PN} = "\
+     nativesdk-mtd-utils-ubifs \
+     ${EXTRA_TI_TOOLS} \
  "
- 
-diff --git a/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos_git.bb b/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos_git.bb
-index ee4d7f2..5bf1e56 100644
---- a/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos_git.bb
-+++ b/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos_git.bb
-@@ -1,6 +1,6 @@
- SUMMARY = "Bare-metal build of a subset of LLVM 3.6 with support for TI C66x"
- HOMEPAGE = "http://git.ti.com/opencl/llvm"
--DESCRIPTION = "A subset of LLVM 3.6 libraries built using gcc-arm-none-eabi-native. Used in the OpenCL running over a TI-RTOS based host."
-+DESCRIPTION = "A subset of LLVM 3.6 libraries built using gcc-arm-baremetal-native. Used in the OpenCL running over a TI-RTOS based host."
- 
- # 3-clause BSD-like
- # University of Illinois/NCSA Open Source License
-@@ -12,7 +12,7 @@ require recipes-ti/includes/arago-paths.inc
- 
- PR = "${INC_PR}.0"
- 
--DEPENDS = "gcc-arm-none-eabi-native cmake-native"
-+DEPENDS = "gcc-arm-baremetal-native cmake-native"
- 
- COMPATIBLE_MACHINE = "omap-a15"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
-diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb
-index 15ac0af..71685ba 100644
---- a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-examples-rtos_git.bb
-@@ -11,7 +11,7 @@ COMPATIBLE_MACHINE = "omap-a15"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
- DEPENDS = "opencl-rtos ti-cgt6x-native clocl-rtos-native opencl-monitor-rtos \
--           clocl-win gcc-arm-none-eabi-native ti-xdctools-native ti-sysbios \
-+           clocl-win gcc-arm-baremetal-native ti-xdctools-native ti-sysbios \
- "
- 
- S = "${WORKDIR}/git/opencl_example_src"
-diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
-index 637b427..6b96eb4 100644
---- a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-monitor-rtos_git.bb
-@@ -18,7 +18,7 @@ DEPENDS = " ti-llvm3.6-native \
-             ti-framework-components \
-             libaet \
-             openmp-rtos \
--            gcc-arm-none-eabi-native \
-+            gcc-arm-baremetal-native \
- "
- 
- COMPATIBLE_MACHINE = "omap-a15"
-diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb
-index fd7e53c..5e179ec 100644
---- a/meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb
-+++ b/meta-arago-extras/recipes-ti/ocl-rtos/opencl-rtos_git.bb
-@@ -16,7 +16,7 @@ PACKAGES += " ${PN}-runtime"
- DEPENDS = "cmake-native \
-            llvm-rtos \
-            libloki \
--           gcc-arm-none-eabi-native \
-+           gcc-arm-baremetal-native \
-            ti-sysbios \
-            ti-xdctools-native \
-            ti-ipc-rtos  \
++
++RDEPENDS_${PN}_remove = "\
++    nativesdk-meson \
++"
 -- 
-2.7.4
+2.17.1
 
 
