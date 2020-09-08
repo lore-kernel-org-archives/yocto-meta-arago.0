@@ -1,43 +1,42 @@
-Return-Path: <denys@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 4AB925297D
+Return-Path: <ankur.tyagi85@gmail.com>
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
+	[209.85.208.50])
+	by arago-project.org (Postfix) with ESMTPS id E0F16529A4
 	for <meta-arago@arago-project.org>;
-	Tue,  8 Sep 2020 15:41:42 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 088FcmoN065561
-	for <meta-arago@arago-project.org>; Tue, 8 Sep 2020 10:38:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1599579528;
-	bh=J7Tf3cpo4z8zsj9oEE66L+XvrXrmEgRwxaF3JlQP9vQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=RXD4cnCRDZppkw2tTbn3cKpJ7gsAv1x8TqA9r9bhT1tkm3fIO8R1H9VVvZtmYzANU
-	y7MiNQ7gA1IOsckZR3XrkeS25ubd1fubkGrpVNtJSoVEj5p6T7vjTEKT2Rtr+aao50
-	+zf4Ae6jXui3eSHr2UJGHf+Bd7BGt28QUGi4HQWw=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088Fcmfq126653
-	for <meta-arago@arago-project.org>; Tue, 8 Sep 2020 10:38:48 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Tue, 8 Sep 2020 10:38:48 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
-	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Tue, 8 Sep 2020 10:38:48 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 088FclX9004362;
-	Tue, 8 Sep 2020 10:38:48 -0500
-Date: Tue, 8 Sep 2020 11:38:47 -0400
-From: Denys Dmytriyenko <denys@ti.com>
-To: Subhajit Paul <a0132170@ti.com>
-Message-ID: <20200908153847.GB1562@beryl>
-References: <20200907063717.20038-1-a0132170@ti.com>
+	Tue,  8 Sep 2020 21:51:53 +0000 (UTC)
+Received: by mail-ed1-f50.google.com with SMTP id n22so598633edt.4
+	for <meta-arago@arago-project.org>;
+	Tue, 08 Sep 2020 14:49:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=ZKx99aP5C0oDP4msA1WNNlTkYcAOhI6YWPx4jV0xOhs=;
+	b=CvSbeGlsbpgyt8dB2VTcvczwa7CgE39/5+Qn2efh2brHmco1OdO46pHR7+Nga9I+a9
+	7sfrCfBKWtpiU2pU6QTmq+qbkjyLjSeJSLRIka2kYRl5ylhUZHuo/jr0oqla31D6yZhU
+	Y/PJ3fs77EWGDoEoIlctHxE6is4fshk7rLRR+MyYMHqeHNSal1Uu5lOtvNm0cOlT7I2b
+	vFRR4UJIbMiBeJN2kYDsci5T6kW+VkRKpgSFaOQBv5XeabpZCFv2gOrm/3r6DSdAkaPv
+	QVLJMUru5zJd5qzdrkeGIgt0frggGA7kjDVz+7k9MV5qcPGIo3YRsFIsukcmahK3e+4G
+	34BA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=ZKx99aP5C0oDP4msA1WNNlTkYcAOhI6YWPx4jV0xOhs=;
+	b=lNVutdar2pQ3h4fiTia3UeURRGbs+LwTeXoPKd+1j1VqTG9ZmbCipmF4rsJwW8Rbi+
+	r7R6jQL0LQjaBpZFBTCsCEpTRw+qlhdYCvn+8mo2fxt92gFQEJHhRGAGqd0mkyF39gbh
+	ViMtgFB6w8n5qeUup5VFksv604T/l8wpN9F0lkE9B0gA0CZy6bNLJc7FdyDEBKqIWAm7
+	kM2HUet48PJ/nvx51TiG6G+Iqar7mhCEs2v/sVxzIR2u2EVeGTHaKS9q7ivlGHqFg/WL
+	CD0hJK9icHuQX+86pVCLgJBi/tQPBISq+5O3tBWIbrkzmosIceui36zq6SEU+G5Yp4G3
+	PgmQ==
+X-Gm-Message-State: AOAM531a5+k7ZMh9NbSbUhnPHGiq4On1YywXRoBTb33pxNUuoNKX5Xfj
+	/Y0BX+z8FKzHpD7+OGp2E8r62Gd/8QPuC+NbViHUlYLvDDBTN2ye
+X-Google-Smtp-Source: ABdhPJwtv7eP6tUSKh1zUmBfg59yZivLI3bHOE0VJ8eDJNZn5TABlz9IrGGe2GO10LGQLPj3rfF8L/8yKa5m05QxuHQ=
+X-Received: by 2002:a50:f081:: with SMTP id v1mr1122672edl.161.1599601739328; 
+	Tue, 08 Sep 2020 14:48:59 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200907063717.20038-1-a0132170@ti.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [dunfell PATCH] tisdk-default-image: add opencv
+From: Ankur Tyagi <ankur.tyagi85@gmail.com>
+Date: Wed, 9 Sep 2020 09:48:48 +1200
+Message-ID: <CADySD0FjDncw6wnd2c5jWa9Pxy8bAaUtJgXYz3rVzw93EW9ABg@mail.gmail.com>
+To: meta-arago@arago-project.org
+Subject: Arago wiki page is not up to date
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,79 +49,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Sep 2020 15:41:42 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 08 Sep 2020 21:51:54 -0000
+Content-Type: multipart/alternative; boundary="00000000000074752505aed44d38"
 
-NAK!
+--00000000000074752505aed44d38
+Content-Type: text/plain; charset="UTF-8"
 
-This is wrong on so many levels...
-It adds individual packages directly to the image, not a packagegroup.
-It adds those packages to all platforms, regardless of the support.
-It adds development packages to the rootfs, which would bring tons of 
-dependencies, especially to low-level platforms with limited resources.
-If this is needed for a specific Product Line, please add it there, not to 
-CoreSDK.
+Hi,
 
--- 
-Denys
+Arago build environment wiki page refers to the rocko branch whereas the
+current branch is dunfell.
+http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment
 
+Can it please be updated as per the latest setup
 
-On Mon, Sep 07, 2020 at 12:07:17PM +0530, Subhajit Paul wrote:
-> Signed-off-by: Subhajit Paul <a0132170@ti.com>
-> ---
->  .../images/tisdk-default-image.bb             | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
-> 
-> diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-> index ce4287ae..3b3a61b5 100644
-> --- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-> +++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-> @@ -24,6 +24,43 @@ IMAGE_INSTALL += "\
->      ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-hmi','packagegroup-arago-base-tisdk-server-extra',d)} \
->      ti-analytics \
->      ti-demos \
-> +    python3-opencv \
-> +    libopencv-aruco-dev \
-> +    libopencv-bgsegm-dev \
-> +    libopencv-bioinspired-dev \
-> +    libopencv-calib3d-dev \
-> +    libopencv-ccalib-dev \
-> +    libopencv-core-dev \
-> +    libopencv-face-dev \
-> +    libopencv-features2d-dev \
-> +    libopencv-flann-dev \
-> +    libopencv-fuzzy-dev \
-> +    libopencv-hfs-dev \
-> +    libopencv-highgui-dev \
-> +    libopencv-img-hash-dev \
-> +    libopencv-imgcodecs-dev \
-> +    libopencv-imgproc-dev \
-> +    libopencv-line-descriptor-dev \
-> +    libopencv-ml-dev \
-> +    libopencv-objdetect-dev \
-> +    libopencv-optflow-dev \
-> +    libopencv-photo-dev \
-> +    libopencv-plot-dev \
-> +    libopencv-quality-dev \
-> +    libopencv-reg-dev \
-> +    libopencv-rgbd-dev \
-> +    libopencv-saliency-dev \
-> +    libopencv-sfm-dev \
-> +    libopencv-shape-dev \
-> +    libopencv-stitching-dev \
-> +    libopencv-structured-light-dev \
-> +    libopencv-surface-matching-dev \
-> +    libopencv-tracking-dev \
-> +    libopencv-video-dev \
-> +    libopencv-videoio-dev \
-> +    libopencv-xfeatures2d-dev \
-> +    libopencv-ximgproc-dev \
-> +    libopencv-xphoto-dev \
->  "
->  
->  export IMAGE_BASENAME = "tisdk-default-image"
-> -- 
-> 2.17.1
-> 
+regards
+Ankur
 
+--00000000000074752505aed44d38
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
+sans-serif">Hi,</div><div class=3D"gmail_default" style=3D"font-family:verd=
+ana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family=
+:verdana,sans-serif">Arago build environment wiki page refers to the rocko =
+branch whereas the current branch is dunfell.</div><div class=3D"gmail_defa=
+ult" style=3D"font-family:verdana,sans-serif"><a href=3D"http://arago-proje=
+ct.org/wiki/index.php/Setting_Up_Build_Environment">http://arago-project.or=
+g/wiki/index.php/Setting_Up_Build_Environment</a></div><div class=3D"gmail_=
+default" style=3D"font-family:verdana,sans-serif"><br></div><div class=3D"g=
+mail_default" style=3D"font-family:verdana,sans-serif">Can it please be upd=
+ated as per the latest setup</div><div class=3D"gmail_default" style=3D"fon=
+t-family:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=
+=3D"font-family:verdana,sans-serif">regards</div><div class=3D"gmail_defaul=
+t" style=3D"font-family:verdana,sans-serif">Ankur</div></div>
+
+--00000000000074752505aed44d38--
