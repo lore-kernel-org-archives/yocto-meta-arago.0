@@ -1,42 +1,30 @@
-Return-Path: <ankur.tyagi85@gmail.com>
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
-	[209.85.208.50])
-	by arago-project.org (Postfix) with ESMTPS id E0F16529A4
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 56EA85297D
 	for <meta-arago@arago-project.org>;
-	Tue,  8 Sep 2020 21:51:53 +0000 (UTC)
-Received: by mail-ed1-f50.google.com with SMTP id n22so598633edt.4
-	for <meta-arago@arago-project.org>;
-	Tue, 08 Sep 2020 14:49:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=ZKx99aP5C0oDP4msA1WNNlTkYcAOhI6YWPx4jV0xOhs=;
-	b=CvSbeGlsbpgyt8dB2VTcvczwa7CgE39/5+Qn2efh2brHmco1OdO46pHR7+Nga9I+a9
-	7sfrCfBKWtpiU2pU6QTmq+qbkjyLjSeJSLRIka2kYRl5ylhUZHuo/jr0oqla31D6yZhU
-	Y/PJ3fs77EWGDoEoIlctHxE6is4fshk7rLRR+MyYMHqeHNSal1Uu5lOtvNm0cOlT7I2b
-	vFRR4UJIbMiBeJN2kYDsci5T6kW+VkRKpgSFaOQBv5XeabpZCFv2gOrm/3r6DSdAkaPv
-	QVLJMUru5zJd5qzdrkeGIgt0frggGA7kjDVz+7k9MV5qcPGIo3YRsFIsukcmahK3e+4G
-	34BA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=ZKx99aP5C0oDP4msA1WNNlTkYcAOhI6YWPx4jV0xOhs=;
-	b=lNVutdar2pQ3h4fiTia3UeURRGbs+LwTeXoPKd+1j1VqTG9ZmbCipmF4rsJwW8Rbi+
-	r7R6jQL0LQjaBpZFBTCsCEpTRw+qlhdYCvn+8mo2fxt92gFQEJHhRGAGqd0mkyF39gbh
-	ViMtgFB6w8n5qeUup5VFksv604T/l8wpN9F0lkE9B0gA0CZy6bNLJc7FdyDEBKqIWAm7
-	kM2HUet48PJ/nvx51TiG6G+Iqar7mhCEs2v/sVxzIR2u2EVeGTHaKS9q7ivlGHqFg/WL
-	CD0hJK9icHuQX+86pVCLgJBi/tQPBISq+5O3tBWIbrkzmosIceui36zq6SEU+G5Yp4G3
-	PgmQ==
-X-Gm-Message-State: AOAM531a5+k7ZMh9NbSbUhnPHGiq4On1YywXRoBTb33pxNUuoNKX5Xfj
-	/Y0BX+z8FKzHpD7+OGp2E8r62Gd/8QPuC+NbViHUlYLvDDBTN2ye
-X-Google-Smtp-Source: ABdhPJwtv7eP6tUSKh1zUmBfg59yZivLI3bHOE0VJ8eDJNZn5TABlz9IrGGe2GO10LGQLPj3rfF8L/8yKa5m05QxuHQ=
-X-Received: by 2002:a50:f081:: with SMTP id v1mr1122672edl.161.1599601739328; 
-	Tue, 08 Sep 2020 14:48:59 -0700 (PDT)
-MIME-Version: 1.0
-From: Ankur Tyagi <ankur.tyagi85@gmail.com>
-Date: Wed, 9 Sep 2020 09:48:48 +1200
-Message-ID: <CADySD0FjDncw6wnd2c5jWa9Pxy8bAaUtJgXYz3rVzw93EW9ABg@mail.gmail.com>
+	Fri, 11 Sep 2020 21:09:06 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D9C0040C1E;
+	Fri, 11 Sep 2020 21:06:11 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id GNzN8r5RAOTK; Fri, 11 Sep 2020 21:06:11 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2818C40BFD;
+	Fri, 11 Sep 2020 21:06:09 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id C0FD217446E;
+	Fri, 11 Sep 2020 17:06:08 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Subject: Arago wiki page is not up to date
+Date: Fri, 11 Sep 2020 17:06:08 -0400
+Message-Id: <1599858368-1592-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [dunfell/master][PATCH] arago.conf: bump distro version
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,40 +37,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Sep 2020 21:51:54 -0000
-Content-Type: multipart/alternative; boundary="00000000000074752505aed44d38"
+X-List-Received-Date: Fri, 11 Sep 2020 21:09:06 -0000
 
---00000000000074752505aed44d38
-Content-Type: text/plain; charset="UTF-8"
+From: Denys Dmytriyenko <denys@ti.com>
 
-Hi,
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ meta-arago-distro/conf/distro/arago.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Arago build environment wiki page refers to the rocko branch whereas the
-current branch is dunfell.
-http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 70c54fc..3e8f5f3 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -1,6 +1,6 @@
+ # Name and version of the distribution
+ DISTRO_NAME = "Arago"
+-DISTRO_VERSION = "2020.05"
++DISTRO_VERSION = "2020.09"
+ DISTRO_FEED_URI ?= "http://lcpd.gt.design.ti.com"
+ BUILD_VARIANT = "${@['prod','rt','systest'][int(d.getVar('ARAGO_RT_ENABLE'))+int(d.getVar('ARAGO_SYSTEST_ENABLE'))*2]}"
+ TISDK_VERSION ?= "live"
+-- 
+2.7.4
 
-Can it please be updated as per the latest setup
 
-regards
-Ankur
-
---00000000000074752505aed44d38
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:verdana,=
-sans-serif">Hi,</div><div class=3D"gmail_default" style=3D"font-family:verd=
-ana,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family=
-:verdana,sans-serif">Arago build environment wiki page refers to the rocko =
-branch whereas the current branch is dunfell.</div><div class=3D"gmail_defa=
-ult" style=3D"font-family:verdana,sans-serif"><a href=3D"http://arago-proje=
-ct.org/wiki/index.php/Setting_Up_Build_Environment">http://arago-project.or=
-g/wiki/index.php/Setting_Up_Build_Environment</a></div><div class=3D"gmail_=
-default" style=3D"font-family:verdana,sans-serif"><br></div><div class=3D"g=
-mail_default" style=3D"font-family:verdana,sans-serif">Can it please be upd=
-ated as per the latest setup</div><div class=3D"gmail_default" style=3D"fon=
-t-family:verdana,sans-serif"><br></div><div class=3D"gmail_default" style=
-=3D"font-family:verdana,sans-serif">regards</div><div class=3D"gmail_defaul=
-t" style=3D"font-family:verdana,sans-serif">Ankur</div></div>
-
---00000000000074752505aed44d38--
