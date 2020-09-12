@@ -1,30 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 56EA85297D
+	by arago-project.org (Postfix) with ESMTPS id 409CB5297D
 	for <meta-arago@arago-project.org>;
-	Fri, 11 Sep 2020 21:09:06 +0000 (UTC)
+	Sat, 12 Sep 2020 00:55:14 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id D9C0040C1E;
-	Fri, 11 Sep 2020 21:06:11 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id DBAB140C23;
+	Sat, 12 Sep 2020 00:52:19 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id GNzN8r5RAOTK; Fri, 11 Sep 2020 21:06:11 +0000 (UTC)
+	with ESMTP id KPdIuOxYFCUT; Sat, 12 Sep 2020 00:52:19 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2818C40BFD;
-	Fri, 11 Sep 2020 21:06:09 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B83F140A28;
+	Sat, 12 Sep 2020 00:52:18 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id C0FD217446E;
-	Fri, 11 Sep 2020 17:06:08 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 208A217446E;
+	Fri, 11 Sep 2020 20:52:18 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri, 11 Sep 2020 17:06:08 -0400
-Message-Id: <1599858368-1592-1-git-send-email-denis@denix.org>
+Date: Fri, 11 Sep 2020 20:52:17 -0400
+Message-Id: <1599871937-22189-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [dunfell/master][PATCH] arago.conf: bump distro version
+Subject: [dunfell/master][PATCH] packagegroups: only add pru-icss to j7-evm (j721e)
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,27 +37,50 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Sep 2020 21:09:06 -0000
+X-List-Received-Date: Sat, 12 Sep 2020 00:55:14 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
+As j7200-evm is also a member of j7 family, but has no PRU.
+
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb       | 6 +++++-
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb   | 4 +++-
+ 2 files changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 70c54fc..3e8f5f3 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -1,6 +1,6 @@
- # Name and version of the distribution
- DISTRO_NAME = "Arago"
--DISTRO_VERSION = "2020.05"
-+DISTRO_VERSION = "2020.09"
- DISTRO_FEED_URI ?= "http://lcpd.gt.design.ti.com"
- BUILD_VARIANT = "${@['prod','rt','systest'][int(d.getVar('ARAGO_RT_ENABLE'))+int(d.getVar('ARAGO_SYSTEST_ENABLE'))*2]}"
- TISDK_VERSION ?= "live"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index adfcfa3..46817f9 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -42,7 +42,11 @@ UTILS_append_k3 = " \
+     trusted-firmware-a-src \
+ "
+ 
+-UTILS_append_j7 = " \
++UTILS_append_j7-evm = " \
++    pru-icss-src \
++"
++
++UTILS_append_j7-hs-evm = " \
+     pru-icss-src \
+ "
+ 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index f2b29e2..e2c3774 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -75,7 +75,9 @@ UTILS_append_k3 = " mmc-utils \
+ "
+ 
+ UTILS_append_am65xx = " ti-rtos-firmware pru-icss pru-pwm-fw"
+-UTILS_append_j7 = " ti-rtos-firmware pru-icss"
++UTILS_append_j7 = " ti-rtos-firmware"
++UTILS_append_j7-evm = " pru-icss"
++UTILS_append_j7-hs-evm = " pru-icss"
+ 
+ UTILS_append_omapl138 = " ti-ipc-rtos-fw"
+ 
 -- 
 2.7.4
 
