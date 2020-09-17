@@ -1,30 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id B9C5D52979
+	by arago-project.org (Postfix) with ESMTPS id 0C3D952970
 	for <meta-arago@arago-project.org>;
-	Thu, 17 Sep 2020 19:39:19 +0000 (UTC)
+	Thu, 17 Sep 2020 22:43:43 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 22F2840C28;
-	Thu, 17 Sep 2020 19:36:24 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 420F440C28;
+	Thu, 17 Sep 2020 22:40:48 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id JVRS94AEzfij; Thu, 17 Sep 2020 19:36:24 +0000 (UTC)
+	with ESMTP id wPHpW0B3l1ws; Thu, 17 Sep 2020 22:40:48 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1077F40B66;
-	Thu, 17 Sep 2020 19:36:23 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 26A9B40B7B;
+	Thu, 17 Sep 2020 22:40:47 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id C5C1317408E;
-	Thu, 17 Sep 2020 15:36:22 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id D6FDC17446E;
+	Thu, 17 Sep 2020 18:40:46 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 17 Sep 2020 15:36:22 -0400
-Message-Id: <1600371382-54119-1-git-send-email-denis@denix.org>
+Date: Thu, 17 Sep 2020 18:40:46 -0400
+Message-Id: <1600382446-11693-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [dunfell/master][PATCH] meta-toolchain-arago: export few more OE specific variables
+Subject: [dunfell/master][PATCH] meta-toolchain-arago: reinstate python binaries in devkit
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,35 +37,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Sep 2020 19:39:20 -0000
+X-List-Received-Date: Thu, 17 Sep 2020 22:43:44 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
-Those may potentially be used by other nativesdk components in devkit.
+In the past, nativesdk-python was not welcomed in the devkit, as it was
+pulled in by the python modules used directly from gdb.
+
+Times have changed and nativesdk-python can be useful, re-enable it.
+
+This reverts commit a3f404323a3be6bc1902a6e167c2eae288f2eb2e.
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb | 4 ++++
- 1 file changed, 4 insertions(+)
+ meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb | 4 ----
+ 1 file changed, 4 deletions(-)
 
 diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-index bdaf9cc..e59c518 100644
+index e59c518..06d84f5 100644
 --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
 +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
-@@ -62,9 +62,13 @@ toolchain_create_sdk_env_script () {
- 	echo 'export LDFLAGS="${TARGET_LD_ARCH} --sysroot=$SDK_PATH_TARGET"' >> $script
- 	echo 'export OECORE_NATIVE_SYSROOT=$SDK_PATH_NATIVE' >> $script
- 	echo 'export OECORE_TARGET_SYSROOT=$SDK_PATH_TARGET' >> $script
-+	echo 'export SDKTARGETSYSROOT=$SDK_PATH_TARGET' >> $script
- 	echo 'export OECORE_ACLOCAL_OPTS="-I $SDK_PATH_NATIVE/usr/share/aclocal"' >> $script
- 	echo 'export OECORE_DISTRO_VERSION="${DISTRO_VERSION}"' >> $script
- 	echo 'export OECORE_SDK_VERSION="${SDK_VERSION}"' >> $script
-+	echo 'export OECORE_BASELIB="${baselib}"' >> $script
-+	echo 'export OECORE_TARGET_ARCH="${TARGET_ARCH}"' >>$script
-+	echo 'export OECORE_TARGET_OS="${TARGET_OS}"' >>$script
+@@ -98,10 +98,6 @@ arago_sdk_fixup () {
  
-         # Borrowed from oe-core/meta/classes/toolchain-scripts.bbclass
- 	cat >> $script <<EOF
+ 	cleanup_toolchain_packages
+ 
+-	# Remove python binaries
+-	# gdb links with libpython and loads core modules, which bundled with binaries
+-	rm -rf ${SDK_OUTPUT}/${SDKPATHNATIVE}${bindir_nativesdk}/python*
+-
+ 	# Do some extra setup work due to new structure
+ 	mkdir -p "${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/lib/${TARGET_ARCH}${TARGET_VENDOR}-${TARGET_OS}"
+ 	if [ "${TOOLCHAIN_TYPE}" = "internal" ]; then
 -- 
 2.7.4
 
