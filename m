@@ -1,30 +1,45 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 0C03A52970
+Return-Path: <g-tammana@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id C9F0052970
 	for <meta-arago@arago-project.org>;
-	Thu, 17 Sep 2020 18:17:53 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 44E5F40C28;
-	Thu, 17 Sep 2020 18:14:57 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id cl86DSZAN1mF; Thu, 17 Sep 2020 18:14:57 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2952640B66;
-	Thu, 17 Sep 2020 18:14:56 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 6FFC317446E;
-	Thu, 17 Sep 2020 14:14:55 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Thu, 17 Sep 2020 14:14:55 -0400
-Message-Id: <1600366495-13182-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [dunfell/master][PATCH] nativesdk-packagegroup-arago-tisdk-host: add nativesdk-python3-numpy
+	Thu, 17 Sep 2020 18:48:15 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HIjJd4051040
+	for <meta-arago@arago-project.org>; Thu, 17 Sep 2020 13:45:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1600368319;
+	bh=tHIVgf8uRdMk73Kdzc6P1XUWPvjRQm6WXPrE9qc7vGo=;
+	h=From:To:CC:Subject:Date;
+	b=vJsS7Q2B3JwUyzkOEBV1m2GhGhFQFYrIyDF1rWArEJoIoU2ilS8O31RROot8iAt2U
+	qZhoSBWnSvfLjIjWf3LYe1lyaSyM8Sreul6yMDiwmn/reTXUMnBQcOZI/v9Z+un8Ct
+	Ax7IYclzx8vWdfA6mZgDcCMBl9AsrIbTKZtJq538=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HIjJMD081229
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Thu, 17 Sep 2020 13:45:19 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Thu, 17 Sep 2020 13:45:19 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Thu, 17 Sep 2020 13:45:19 -0500
+Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HIjJZC009235;
+	Thu, 17 Sep 2020 13:45:19 -0500
+Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
+	[128.247.77.45])
+	by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 08HIjJep016491;
+	Thu, 17 Sep 2020 13:45:19 -0500
+From: Gowtham Tammana <g-tammana@ti.com>
+To: <meta-arago@arago-project.org>, Denys Dmytriyenko <denys@ti.com>
+Date: Thu, 17 Sep 2020 13:45:14 -0500
+Message-ID: <20200917184514.964-1-g-tammana@ti.com>
+X-Mailer: git-send-email 2.28.0
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [oe-layersetup][PATCH] arago-dunfell: Add meta-python2
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,28 +52,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Sep 2020 18:17:53 -0000
+X-List-Received-Date: Thu, 17 Sep 2020 18:48:16 -0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+qtwebengine has python2 dependency for its build and does not support
+python3.
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+https://doc.qt.io/qt-5.14/qtwebengine-platform-notes.html
+
+Yocto dunfell uses python3 as default, so add meta-python2 layer for
+adding python2 support.
+
+Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
 ---
- .../packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb             | 1 +
+ configs/arago-dunfell-config.txt | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
-index 9b56a1e..904f257 100644
---- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
-+++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
-@@ -28,6 +28,7 @@ RDEPENDS_${PN} = "\
-     nativesdk-packagegroup-sdk-host \
-     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'nativesdk-wayland-dev', '', d)} \
-     nativesdk-python3-distutils \
-+    nativesdk-python3-numpy \
-     nativesdk-git \
-     nativesdk-mtd-utils-ubifs \
-     ${EXTRA_TI_TOOLS} \
+diff --git a/configs/arago-dunfell-config.txt b/configs/arago-dunfell-config.txt
+index c9428d9..cdbb674 100644
+--- a/configs/arago-dunfell-config.txt
++++ b/configs/arago-dunfell-config.txt
+@@ -7,6 +7,7 @@ meta-arago,git://arago-project.org/git/meta-arago.git,dunfell,HEAD,layers=meta-a
+ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
+ meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,HEAD,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
++meta-python2,git://git.openembedded.org/meta-python2,dunfell,HEAD,layers=
+ meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,HEAD,layers=
+ meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,d13eb333bf96282c840c290c396d797da2e5e619,layers=meta-arm:meta-arm-toolchain
+ oe-core,git://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
 -- 
-2.7.4
+2.28.0
 
 
