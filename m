@@ -1,30 +1,45 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 409CB5297D
+Return-Path: <g-tammana@ti.com>
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	by arago-project.org (Postfix) with ESMTPS id 57B0C52970
 	for <meta-arago@arago-project.org>;
-	Sat, 12 Sep 2020 00:55:14 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id DBAB140C23;
-	Sat, 12 Sep 2020 00:52:19 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id KPdIuOxYFCUT; Sat, 12 Sep 2020 00:52:19 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B83F140A28;
-	Sat, 12 Sep 2020 00:52:18 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 208A217446E;
-	Fri, 11 Sep 2020 20:52:18 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri, 11 Sep 2020 20:52:17 -0400
-Message-Id: <1599871937-22189-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [dunfell/master][PATCH] packagegroups: only add pru-icss to j7-evm (j721e)
+	Thu, 17 Sep 2020 15:06:15 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HF3Jbs093889
+	for <meta-arago@arago-project.org>; Thu, 17 Sep 2020 10:03:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1600354999;
+	bh=VaTEzgoaNJA+gXAnmlIdjRfj9Jp3Jkb5CkeDIyA+nbg=;
+	h=From:To:CC:Subject:Date;
+	b=YLSE9ZqxEPbF72KeinR4khhSAhneRWFo9YOpDFuVvhVX780croXPMTcG1ulv+j9Eb
+	Pkg2/t/UFNnGj9763VVy96w/8FQsc54mEf5T6FYwr/UZR9MWMY5AtbJAbDxi9zcIVT
+	hPXeM3GTDflN6vL7huzubiCiZJsl/TizB6LAkzy4=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HF3JH6101100
+	for <meta-arago@arago-project.org>; Thu, 17 Sep 2020 10:03:19 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Thu, 17 Sep 2020 10:03:18 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
+	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Thu, 17 Sep 2020 10:03:18 -0500
+Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com
+	[10.247.120.73])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HF3I33032640;
+	Thu, 17 Sep 2020 10:03:18 -0500
+Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
+	[128.247.77.45])
+	by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id
+	08HF3IuB034703; Thu, 17 Sep 2020 10:03:18 -0500
+From: Gowtham Tammana <g-tammana@ti.com>
+To: <meta-arago@arago-project.org>, Denys Dmytriyenko <denys@ti.com>
+Date: Thu, 17 Sep 2020 10:03:11 -0500
+Message-ID: <20200917150311.22391-1-g-tammana@ti.com>
+X-Mailer: git-send-email 2.28.0
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [dunfell/master][PATCH] meta-toolchain-arago: Add pkgconfig datadir to pkg config path
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,51 +52,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 12 Sep 2020 00:55:14 -0000
+X-List-Received-Date: Thu, 17 Sep 2020 15:06:15 -0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@ti.com>
+Some of the pkgconfig files are installed in the datadir, include that
+in the PKG_CONFIG_PATH setting.
 
-As j7200-evm is also a member of j7 family, but has no PRU.
-
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb       | 6 +++++-
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb   | 4 +++-
- 2 files changed, 8 insertions(+), 2 deletions(-)
+ meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index adfcfa3..46817f9 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -42,7 +42,11 @@ UTILS_append_k3 = " \
-     trusted-firmware-a-src \
- "
- 
--UTILS_append_j7 = " \
-+UTILS_append_j7-evm = " \
-+    pru-icss-src \
-+"
-+
-+UTILS_append_j7-hs-evm = " \
-     pru-icss-src \
- "
- 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index f2b29e2..e2c3774 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -75,7 +75,9 @@ UTILS_append_k3 = " mmc-utils \
- "
- 
- UTILS_append_am65xx = " ti-rtos-firmware pru-icss pru-pwm-fw"
--UTILS_append_j7 = " ti-rtos-firmware pru-icss"
-+UTILS_append_j7 = " ti-rtos-firmware"
-+UTILS_append_j7-evm = " pru-icss"
-+UTILS_append_j7-hs-evm = " pru-icss"
- 
- UTILS_append_omapl138 = " ti-ipc-rtos-fw"
- 
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+index bdaf9ccb..9a236006 100644
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
++++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+@@ -40,7 +40,7 @@ toolchain_create_sdk_env_script () {
+ 	echo 'export PATH=$SDK_PATH_NATIVE${bindir_nativesdk}:$SDK_PATH_NATIVE${bindir_nativesdk}/${TARGET_ARCH}${TARGET_VENDOR}-${TARGET_OS}:$PATH' >> $script
+ 	echo 'export CPATH=$SDK_PATH_TARGET/usr/include:$CPATH' >> $script
+ 	echo 'export PKG_CONFIG_SYSROOT_DIR=$SDK_PATH_TARGET' >> $script
+-	echo 'export PKG_CONFIG_PATH=$SDK_PATH_TARGET${libdir}/pkgconfig' >> $script
++	echo 'export PKG_CONFIG_PATH=$SDK_PATH_TARGET${libdir}/pkgconfig:$SDK_PATH_TARGET${datadir}/pkgconfig' >> $script
+ 	echo 'export PKG_CONFIG_ALLOW_SYSTEM_LIBS=1' >> $script
+ 	echo 'export CONFIG_SITE=$SDK_PATH/site-config-$REAL_MULTIMACH_TARGET_SYS' >> $script
+ 	printf 'export CC="\x24{TOOLCHAIN_PREFIX}gcc --sysroot=$SDK_PATH_TARGET"\n' >> $script
 -- 
-2.7.4
+2.28.0
 
 
