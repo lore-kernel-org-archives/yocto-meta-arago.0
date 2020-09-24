@@ -1,30 +1,30 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 21A5152982
+	by arago-project.org (Postfix) with ESMTPS id B057E529A0
 	for <meta-arago@arago-project.org>;
-	Thu, 24 Sep 2020 01:10:54 +0000 (UTC)
+	Thu, 24 Sep 2020 19:30:33 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 98DD340BD1;
-	Thu, 24 Sep 2020 01:07:56 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id E390140C23;
+	Thu, 24 Sep 2020 19:27:35 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id NacxPW6gTDwN; Thu, 24 Sep 2020 01:07:56 +0000 (UTC)
+	with ESMTP id 9yVLVLjP2pxG; Thu, 24 Sep 2020 19:27:35 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 848FE40B96;
-	Thu, 24 Sep 2020 01:07:55 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 60CFD40A2A;
+	Thu, 24 Sep 2020 19:27:34 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 4CBCB17446E;
-	Wed, 23 Sep 2020 21:07:55 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id BAFEA1741D0;
+	Thu, 24 Sep 2020 15:27:33 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Wed, 23 Sep 2020 21:07:55 -0400
-Message-Id: <1600909675-39661-1-git-send-email-denis@denix.org>
+Date: Thu, 24 Sep 2020 15:27:33 -0400
+Message-Id: <1600975653-43463-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Subject: [dunfell][PATCH] README: fix branch name for dunfell
+Subject: [oe-layersetup][PATCH] oe-layertool-setup: support reset head to avoid conflicts due to rebase
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,101 +37,77 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Sep 2020 01:10:54 -0000
+X-List-Received-Date: Thu, 24 Sep 2020 19:30:34 -0000
 
 From: Denys Dmytriyenko <denys@ti.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ---
- meta-arago-distro/README | 14 +++++++-------
- meta-arago-extras/README | 12 ++++++------
- 2 files changed, 13 insertions(+), 13 deletions(-)
+ oe-layertool-setup.sh | 17 +++++++++++++----
+ 1 file changed, 13 insertions(+), 4 deletions(-)
 
-diff --git a/meta-arago-distro/README b/meta-arago-distro/README
-index 0e09d31..cf37459 100644
---- a/meta-arago-distro/README
-+++ b/meta-arago-distro/README
-@@ -1,33 +1,33 @@
- meta-arago-distro provides Arago distribution configuration for TI SDK products
+diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
+index d14ed4f..aa16042 100755
+--- a/oe-layertool-setup.sh
++++ b/oe-layertool-setup.sh
+@@ -41,6 +41,7 @@ OECORELOCALCONFPATH="" # stores the path of the OECORELOCALCONFPATH variable
+ outputfile="" # file to save output to if -o is used
+ inputfile="" # file containing initial layers if -f is used
+ interactive="n" # flag for interactive mode.  Default is n
++resethead="n" # flag for reset head mode.  Default is n
+ layers="" # variable holding the layers to add to bblayers.conf
+ output="" # variable holding the output to write to outputfile
+ scriptdir=`pwd` # directory of this calling script
+@@ -68,7 +69,7 @@ cat <<EOM
  
- This layer works with the latest Yocto Project release (currently 2.2+) and tracks
--the stable/maintenance branches (currently "master") of the corresponding layers:
-+the stable/maintenance branches (currently "dunfell") of the corresponding layers:
  
- URI: git://git.openembedded.org/openembedded-core
--branch: master
-+branch: dunfell
- revision: HEAD
- layers: meta
+ Usage:
+-    $0 [-i] [-f inputfile] [-o outputfile] [-d dldir] [-b basedir] [-h]
++    $0 [-i] [-f inputfile] [-o outputfile] [-d dldir] [-b basedir] [-h] [-r]
  
- URI: git://git.yoctoproject.org/meta-ti
--branch: master
-+branch: dunfell
- revision: HEAD
+ Parameters:
+     -i: Interactive mode.  This mode will query the user to input information
+@@ -86,6 +87,7 @@ Parameters:
+         where the build will be configured.  The default is the current
+         directory.
+     -h: This message
++    -r: Reset all previous checkouts or local changes to pull remote branches
  
- URI: git://git.yoctoproject.org/meta-arm
--branch: master
-+branch: dunfell
- revision: HEAD
- layers: meta-arm, meta-arm-toolchain
+ Input Files:
+     Input files are expected to have the following format
+@@ -407,11 +409,17 @@ checkout_branch() {
+         git checkout $branch
+     fi
  
- URI: git://git.openembedded.org/meta-openembedded
--branch: master
-+branch: dunfell
- revision: HEAD
- layers: meta-oe, meta-networking, meta-python
+-    # Now that we are on the proper branch merge the remote branch changes if
++    # Now that we are on the proper branch pull the remote branch changes if
+     # any.  In the case of a clean checkout this should be already up to date,
+     # but for an existing checkout this should be the changes that were
+     # fetched earlier.
+-    git merge origin/$branch
++    if [ "x$resethead" = "xy" ]
++    then
++        # Instead of merging, reset to remote branch to avoid conflicts due to rebase
++        git reset --hard origin/$branch
++    else
++        git merge origin/$branch
++    fi
+ }
  
- URI: https://github.com/meta-qt5/meta-qt5
--branch: master
-+branch: dunfell
- revision: HEAD
+ checkout_commit() {
+@@ -844,10 +852,11 @@ build_repo_line() {
+ ###############
  
- URI: git://arago-project.org/git/meta-arago
--branch: master
-+branch: dunfell
- revision: HEAD
- layers: meta-arago-extras
- 
-diff --git a/meta-arago-extras/README b/meta-arago-extras/README
-index 25d564e..b0eb76c 100644
---- a/meta-arago-extras/README
-+++ b/meta-arago-extras/README
-@@ -1,29 +1,29 @@
- meta-arago-extras provides additional TI SDK applications that are distro-agnostic
- 
- This layer works with the latest Yocto Project release (currently 2.2+) and tracks
--the stable/maintenance branches (currently "master") of the corresponding layers:
-+the stable/maintenance branches (currently "dunfell") of the corresponding layers:
- 
- URI: git://git.openembedded.org/openembedded-core
--branch: master
-+branch: dunfell
- revision: HEAD
- layers: meta
- 
- URI: git://git.yoctoproject.org/meta-ti
--branch: master
-+branch: dunfell
- revision: HEAD
- 
- URI: git://git.yoctoproject.org/meta-arm
--branch: master
-+branch: dunfell
- revision: HEAD
- layers: meta-arm, meta-arm-toolchain
- 
- URI: git://git.openembedded.org/meta-openembedded
--branch: master
-+branch: dunfell
- revision: HEAD
- layers: meta-oe, meta-networking, meta-python
- 
- URI: https://github.com/meta-qt5/meta-qt5
--branch: master
-+branch: dunfell
- revision: HEAD
- 
- Send pull requests to meta-arago@arago-project.org
+ # Parse the input options
+-while getopts :if:o:d:b:h arg
++while getopts :irf:o:d:b:h arg
+ do
+     case $arg in
+         i ) interactive="y";;
++        r ) resethead="y";;
+         f ) inputfile="$OPTARG";;
+         o ) outputfile="$OPTARG";;
+         d ) dldir="$OPTARG";;
 -- 
 2.7.4
 
