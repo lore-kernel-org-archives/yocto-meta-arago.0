@@ -1,30 +1,44 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 0E4D7520E5
+Return-Path: <denys@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id A47D1520E5
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Oct 2020 16:09:03 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id DE0C440BD5;
-	Wed,  7 Oct 2020 16:06:01 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 2OgIiHDxzEKV; Wed,  7 Oct 2020 16:06:01 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B7FA540AB7;
-	Wed,  7 Oct 2020 16:06:00 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 04E15174480;
-	Wed,  7 Oct 2020 12:06:00 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed,  7 Oct 2020 12:05:59 -0400
-Message-Id: <1602086759-18443-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Subject: [dunfell/master][PATCH] arago.conf: change the local feed address
+	Wed,  7 Oct 2020 16:10:04 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 097G73wa108481
+	for <meta-arago@arago-project.org>; Wed, 7 Oct 2020 11:07:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1602086823;
+	bh=Df8ibthC5G53iL/Eyrlv9xMpti7kMrITBosb6/pnhJg=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=cTHZRM7JD+GSeqxyc+wzR/cbMUAVqpz4q7deyS7IwO6fmiYPlsd0knYhoXbguCdl3
+	f78K9N/6ZlpuAYhCdOo4c51o5X9tYUprgvcdgviY4v9u+R5R7GzcSzoZt8dKZEPU9e
+	DMpAuDs+LSbyoPZVFoWSk1PiKS2JH93xmuBPinio=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 097G73Gg065842
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Wed, 7 Oct 2020 11:07:03 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Wed, 7 Oct 2020 11:07:02 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Wed, 7 Oct 2020 11:07:03 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 097G72a9024206;
+	Wed, 7 Oct 2020 11:07:02 -0500
+Date: Wed, 7 Oct 2020 12:07:02 -0400
+From: Denys Dmytriyenko <denys@ti.com>
+To: Aparna Balasubramanian <aparnab@ti.com>
+Message-ID: <20201007160701.GG23230@beryl>
+References: <20201007155758.32716-1-aparnab@ti.com>
+MIME-Version: 1.0
+In-Reply-To: <20201007155758.32716-1-aparnab@ti.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [PATCH] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -37,29 +51,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Oct 2020 16:09:03 -0000
+X-List-Received-Date: Wed, 07 Oct 2020 16:10:04 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+On Wed, Oct 07, 2020 at 10:57:58AM -0500, Aparna Balasubramanian wrote:
+> Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Denys Dmytriyenko <denys@ti.com>
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 3e8f5f3..7c70281 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -1,7 +1,7 @@
- # Name and version of the distribution
- DISTRO_NAME = "Arago"
- DISTRO_VERSION = "2020.09"
--DISTRO_FEED_URI ?= "http://lcpd.gt.design.ti.com"
-+DISTRO_FEED_URI ?= "http://lcpd.itg.ti.com"
- BUILD_VARIANT = "${@['prod','rt','systest'][int(d.getVar('ARAGO_RT_ENABLE'))+int(d.getVar('ARAGO_SYSTEST_ENABLE'))*2]}"
- TISDK_VERSION ?= "live"
- FEEDURIPREFIX ?= "packages/${DISTRO}-dunfell/${TISDK_VERSION}/${BUILD_VARIANT}/"
--- 
-2.7.4
 
+> ---
+>  meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+> index 56a644e..fb0382d 100644
+> --- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+> +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+> @@ -11,10 +11,10 @@ PROVIDES += "ltp"
+>  DEPENDS += "alsa-lib"
+>  
+>  PE = "1"
+> -PR = "r5"
+> +PR = "r6"
+>  PV_append = "+git${SRCPV}"
+>  
+> -SRCREV = "9d8d90a7cba25bb1e61b41075ec4eab9bfc19d3d"
+> +SRCREV = "ec5af0cc27ccf2481ccee77dfed5edc21a805b91"
+>  BRANCH ?= "master"
+>  
+>  SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
+> -- 
+> 2.7.4
+> 
 
