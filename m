@@ -1,46 +1,45 @@
-Return-Path: <g-tammana@ti.com>
+Return-Path: <aparnab@aparnab-office>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 06E1C52999
+	by arago-project.org (Postfix) with ESMTPS id 59F1A520E5
 	for <meta-arago@arago-project.org>;
-	Tue,  6 Oct 2020 16:53:55 +0000 (UTC)
+	Wed,  7 Oct 2020 16:01:07 +0000 (UTC)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 096Gosa1112034
-	for <meta-arago@arago-project.org>; Tue, 6 Oct 2020 11:50:54 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 097Fw6Cs103358
+	for <meta-arago@arago-project.org>; Wed, 7 Oct 2020 10:58:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1602003054;
-	bh=DsG2e34VD9MJ4bf+UgvbDoOsATFkpNGcBh2sk2ASNdE=;
+	s=ti-com-17Q1; t=1602086286;
+	bh=Ze7FHP02TDle/p+p6qVkbkqc55L+OgDTomJQoNgiy4o=;
 	h=From:To:CC:Subject:Date;
-	b=qjTHR8Lf6Mcn909NzPbMaaTwKyKi6oT+aijGLmSwx2eofZm5fnUX19xSH1jHl8IHJ
-	HxOTHYUav/n5JRImyK2Uf2pxwCI066+t6M9ErukxUpDQaKxuMAeAFiNxQKZ9qLMr/F
-	G0bxRaHtEOsDqpagaGA0WKGFXuDfovSmxRKZeL5s=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 096GoslW019099
+	b=WuLpkUZAE1bkJjRVnCqVDEcYNKCl514OAIC752ZD3quDQWgxt3nGAsm98bNXvkhh9
+	W/JBzL3k+L0dj21GH/SQWcFIDpVfVZNe1f7qjBVL27H85UbrPe7ClKqCvl2FjoUeRz
+	ZQBIqkm5PZ4haRDlUEZMarohBtpvkRTKICCXfITk=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 097Fw6rF128446
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 6 Oct 2020 11:50:54 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE110.ent.ti.com
-	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Tue, 6 Oct 2020 11:50:54 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+	for <meta-arago@arago-project.org>; Wed, 7 Oct 2020 10:58:06 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE108.ent.ti.com
 	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Wed, 7 Oct 2020 10:58:05 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Tue, 6 Oct 2020 11:50:54 -0500
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com
-	[10.247.120.73])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 096Gosp8011290;
-	Tue, 6 Oct 2020 11:50:54 -0500
-Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
-	[128.247.77.45])
-	by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id
-	096GosA3125315; Tue, 6 Oct 2020 11:50:54 -0500
-From: Gowtham Tammana <g-tammana@ti.com>
-To: <meta-arago@arago-project.org>, Denys Dmytriyenko <denys@ti.com>
-Date: Tue, 6 Oct 2020 11:50:49 -0500
-Message-ID: <20201006165049.30507-1-g-tammana@ti.com>
-X-Mailer: git-send-email 2.28.0
+	Frontend Transport; Wed, 7 Oct 2020 10:58:05 -0500
+Received: from aparnab-office (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 097Fw586007501;
+	Wed, 7 Oct 2020 10:58:05 -0500
+Received: from aparnab by aparnab-office with local (Exim 4.90_1)
+	(envelope-from <aparnab@aparnab-office>)
+	id 1kQBpN-0008WP-LY; Wed, 07 Oct 2020 10:58:05 -0500
+From: Aparna Balasubramanian <aparnab@ti.com>
+To: <meta-arago@arago-project.org>, <denys@ti.com>, <dmurphy@ti.com>
+Date: Wed, 7 Oct 2020 10:57:58 -0500
+Message-ID: <20201007155758.32716-1-aparnab@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [dunfell][PATCH] qtwayland: backport texture-sharing/custom-compositor fix
+Cc: Aparna Balasubramanian <aparnab@ti.com>
+Subject: [PATCH] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,89 +52,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Oct 2020 16:53:56 -0000
-Content-Type: text/plain; charset="y"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 07 Oct 2020 16:01:07 -0000
+Content-Type: text/plain
 
-Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
 ---
- ...land-texture-sharing-custom-composit.patch | 52 +++++++++++++++++++
- .../recipes-qt/qt5/qtwayland_git.bbappend     |  3 +-
- 2 files changed, 54 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwayland/0001-examples-fix-wayland-texture-sharing-custom-composit.patch
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-examples-fix-wayland-texture-sharing-custom-composit.patch b/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-examples-fix-wayland-texture-sharing-custom-composit.patch
-new file mode 100644
-index 00000000..c209dfc4
---- /dev/null
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-examples-fix-wayland-texture-sharing-custom-composit.patch
-@@ -0,0 +1,52 @@
-+From 1d18591d9e7ed9b3580e06c37be23bfde24bc30c Mon Sep 17 00:00:00 2001
-+From: Peter Seiderer <ps.report@gmx.net>
-+Date: Fri, 3 Apr 2020 22:40:29 +0200
-+Subject: [PATCH] examples: fix wayland/texture-sharing/custom-compositor
-+MIME-Version: 1.0
-+Content-Type: text/plain; charset=UTF-8
-+Content-Transfer-Encoding: 8bit
-+
-+Fixes:
-+
-+  main.cpp:83:33: error: ‘GL_RGBA8’ was not declared in this scope; did you mean ‘GL_RGBA4’?
-+     83 |             *glInternalFormat = GL_RGBA8;
-+        |                                 ^~~~~~~~
-+        |                                 GL_RGBA4
-+  main.cpp:120:33: error: ‘GL_RGBA8’ was not declared in this scope; did you mean ‘GL_RGBA4’?
-+    120 |             *glInternalFormat = GL_RGBA8;
-+        |                                 ^~~~~~~~
-+        |                                 GL_RGBA4
-+
-+Task-number: QTBUG-83304
-+Change-Id: I0515f3303b08c405d162986e280e9a7bd35e28f7
-+Reviewed-by: Laszlo Agocs <laszlo.agocs@qt.io>
-+Reviewed-by: Eskil Abrahamsen Blomfeldt <eskil.abrahamsen-blomfeldt@qt.io>
-+
-+Upstream-Status: Backport [1d18591d9e7ed9b3580e06c37be23bfde24bc30c]
-+
-+The patch is backport from upstream commit -
-+1d18591d9e7ed9b3580e06c37be23bfde24bc30c
-+
-+Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
-+---
-+ examples/wayland/texture-sharing/custom-compositor/main.cpp | 4 ++++
-+ 1 file changed, 4 insertions(+)
-+
-+diff --git a/examples/wayland/texture-sharing/custom-compositor/main.cpp b/examples/wayland/texture-sharing/custom-compositor/main.cpp
-+index a39c8c38..af375024 100644
-+--- a/examples/wayland/texture-sharing/custom-compositor/main.cpp
-++++ b/examples/wayland/texture-sharing/custom-compositor/main.cpp
-+@@ -63,6 +63,10 @@
-+ 
-+ #include "QtWaylandCompositor/private/qwltexturesharingextension_p.h"
-+ 
-++#ifndef GL_RGBA8
-++#define GL_RGBA8 0x8058
-++#endif
-++
-+ class CustomSharingExtension : public QWaylandTextureSharingExtension
-+ {
-+     Q_OBJECT
-+-- 
-+2.17.1
-+
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
-index bd529d2e..c602813c 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
-@@ -1,6 +1,7 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--PR_append = ".arago1"
-+PR_append = ".arago2"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+index 56a644e..fb0382d 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+@@ -11,10 +11,10 @@ PROVIDES += "ltp"
+ DEPENDS += "alsa-lib"
  
- SRC_URI += " \
-     file://0001-plugins-decorations-bradient-display-window-icon-onl.patch \
-+    file://0001-examples-fix-wayland-texture-sharing-custom-composit.patch \
- "
+ PE = "1"
+-PR = "r5"
++PR = "r6"
+ PV_append = "+git${SRCPV}"
+ 
+-SRCREV = "9d8d90a7cba25bb1e61b41075ec4eab9bfc19d3d"
++SRCREV = "ec5af0cc27ccf2481ccee77dfed5edc21a805b91"
+ BRANCH ?= "master"
+ 
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
 -- 
-2.17.1
+2.7.4
 
 
