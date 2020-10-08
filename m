@@ -1,47 +1,30 @@
-Return-Path: <dmurphy@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 1A11D520E5
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 4F0D0520E5
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Oct 2020 16:12:53 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 097G9qg9111131
-	for <meta-arago@arago-project.org>; Wed, 7 Oct 2020 11:09:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1602086992;
-	bh=PmJ13AsiyuL0dM4ech+rt54WNPYiSlNIoaNwMWzS3jg=;
-	h=Subject:From:To:CC:References:Date:In-Reply-To;
-	b=wjdazUxhRlsWSKH7Qui+e45wIefmbcK/iZJlH8T+mRDEXXg7E2Pl64Oo26oFr1Mbi
-	kk2qqMVJEOE4rn/T5xkSXk8oUy+BC8sBpbj72Okli+a6kXrHw+O33mio/I9c81Up5r
-	He+fSRIQEEDUUR9u9e/tXwA6rUAJOBfj9xzh/V64=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 097G9qNf016891
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 7 Oct 2020 11:09:52 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Wed, 7 Oct 2020 11:09:51 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Wed, 7 Oct 2020 11:09:51 -0500
-Received: from [10.250.39.105] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 097G9pkM081354;
-	Wed, 7 Oct 2020 11:09:51 -0500
-From: Dan Murphy <dmurphy@ti.com>
-To: Denys Dmytriyenko <denys@ti.com>, Aparna Balasubramanian <aparnab@ti.com>
-References: <20201007155758.32716-1-aparnab@ti.com>
-	<20201007155930.GF23230@beryl>
-	<caaef03a-df12-9bb2-e65b-64d06f1c7971@ti.com>
-Message-ID: <098bd7dc-5d2a-38da-a78f-8e98c7c32a41@ti.com>
-Date: Wed, 7 Oct 2020 11:09:51 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <caaef03a-df12-9bb2-e65b-64d06f1c7971@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] ltp-ddt: Update to latest
+	Thu,  8 Oct 2020 23:49:18 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id EDF5340BD6;
+	Thu,  8 Oct 2020 23:46:16 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id IqGzmg-P3bWy; Thu,  8 Oct 2020 23:46:16 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D2C3140020;
+	Thu,  8 Oct 2020 23:46:15 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 307A5174480;
+	Thu,  8 Oct 2020 19:46:15 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Thu,  8 Oct 2020 19:46:14 -0400
+Message-Id: <1602200774-36217-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Subject: [tisdk-build-scripts][PATCH] distroless/poky: also define TI_SECURE_DEV_PKG variables for HS devices
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,29 +37,83 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Oct 2020 16:12:53 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Thu, 08 Oct 2020 23:49:18 -0000
 
-Aparna
+From: Denys Dmytriyenko <denys@ti.com>
 
-On 10/7/20 11:02 AM, Dan Murphy wrote:
-> Denys
->
-> On 10/7/20 10:59 AM, Denys Dmytriyenko wrote:
->> Looks good, thanks.
-> How about a reviewed-by?
-> ______
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ configs/farm/distroless-dunfell.txt | 5 +++--
+ configs/farm/distroless-master.txt  | 5 +++--
+ configs/farm/poky-dunfell.txt       | 5 +++--
+ configs/farm/poky-master.txt        | 5 +++--
+ 4 files changed, 12 insertions(+), 8 deletions(-)
 
+diff --git a/configs/farm/distroless-dunfell.txt b/configs/farm/distroless-dunfell.txt
+index f60c654..93ce26b 100644
+--- a/configs/farm/distroless-dunfell.txt
++++ b/configs/farm/distroless-dunfell.txt
+@@ -39,8 +39,9 @@ TOOLCHAIN_ROOT_CORTEX=""
+ TOOLCHAIN_ROOT_AARCH64=""
+ 
+ # SECDEV variables for CAT and AUTO
+-#TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-#TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
++TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
++TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
++TI_SECURE_DEV_PKG_K3="/opt/secdev-k3"
+ 
+ # This variable holds the unique ID for the build that will be used to
+ # identify the build.
+diff --git a/configs/farm/distroless-master.txt b/configs/farm/distroless-master.txt
+index be00bf7..ac3e80f 100644
+--- a/configs/farm/distroless-master.txt
++++ b/configs/farm/distroless-master.txt
+@@ -39,8 +39,9 @@ TOOLCHAIN_ROOT_CORTEX=""
+ TOOLCHAIN_ROOT_AARCH64=""
+ 
+ # SECDEV variables for CAT and AUTO
+-#TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-#TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
++TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
++TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
++TI_SECURE_DEV_PKG_K3="/opt/secdev-k3"
+ 
+ # This variable holds the unique ID for the build that will be used to
+ # identify the build.
+diff --git a/configs/farm/poky-dunfell.txt b/configs/farm/poky-dunfell.txt
+index f09f8d2..4ee2ff9 100644
+--- a/configs/farm/poky-dunfell.txt
++++ b/configs/farm/poky-dunfell.txt
+@@ -39,8 +39,9 @@ TOOLCHAIN_ROOT_CORTEX=""
+ TOOLCHAIN_ROOT_AARCH64=""
+ 
+ # SECDEV variables for CAT and AUTO
+-#TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-#TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
++TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
++TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
++TI_SECURE_DEV_PKG_K3="/opt/secdev-k3"
+ 
+ # This variable holds the unique ID for the build that will be used to
+ # identify the build.
+diff --git a/configs/farm/poky-master.txt b/configs/farm/poky-master.txt
+index 760d567..0db3bab 100644
+--- a/configs/farm/poky-master.txt
++++ b/configs/farm/poky-master.txt
+@@ -39,8 +39,9 @@ TOOLCHAIN_ROOT_CORTEX=""
+ TOOLCHAIN_ROOT_AARCH64=""
+ 
+ # SECDEV variables for CAT and AUTO
+-#TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-#TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
++TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
++TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
++TI_SECURE_DEV_PKG_K3="/opt/secdev-k3"
+ 
+ # This variable holds the unique ID for the build that will be used to
+ # identify the build.
+-- 
+2.7.4
 
-applied to -next
-
-Dan
-
-
-> _________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
