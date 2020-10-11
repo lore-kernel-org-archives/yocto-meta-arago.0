@@ -1,45 +1,44 @@
 Return-Path: <dmurphy@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id D8185520E5
+	by arago-project.org (Postfix) with ESMTPS id BF9E95298F
 	for <meta-arago@arago-project.org>;
-	Sat, 10 Oct 2020 16:47:35 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09AGiXpH124408
-	for <meta-arago@arago-project.org>; Sat, 10 Oct 2020 11:44:33 -0500
+	Sun, 11 Oct 2020 15:25:37 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09BFMZP0014123;
+	Sun, 11 Oct 2020 10:22:35 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1602348274;
-	bh=Aue26Al4sJhVl5cr5yWGcxnzPuhNlYwLQFVUiIg9Vts=;
+	s=ti-com-17Q1; t=1602429755;
+	bh=jA7QPr9SquK6w+kOiNjt6U4687D6wwGWdwAf24RZClE=;
 	h=Subject:To:References:From:Date:In-Reply-To;
-	b=FQeTqSVsqZPnhY8CrezstY9ffk1PwFjnWpVuUIqYDpUJWn/qqlmEZ1ZcEAVHW5I7R
-	fJJ+tjfbSVgsHCRujx6gmNrE95t/7c21phC66/arUyjuSwPStNekIVOit+6U2AjszH
-	+D1F2hwdQhyks1KPd1STYaaqWEPoxvQkMYC8rfWQ=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09AGiXZb031500
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Sat, 10 Oct 2020 11:44:33 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	b=Ie0ZMZ00Ru/suiQTs+H9Ajq/xVOEf34elr7kCuyZ4H3dGBLFQIh0uD2w/C+ML7tqe
+	6APj1o9RrsICoPPmTlS/giaYx1wFJrnvC+E8DXzpOnh8uXYIUuVvRNHoQG1UJ9iO23
+	moELYIwVZqomo9H6kmfcT4WMnFwF+VnhzowwyUCo=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09BFMZu8024175
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 11 Oct 2020 10:22:35 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Sat, 10 Oct 2020 11:44:33 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
-	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	Sun, 11 Oct 2020 10:22:35 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Sat, 10 Oct 2020 11:44:33 -0500
+	Frontend Transport; Sun, 11 Oct 2020 10:22:35 -0500
 Received: from [10.250.67.63] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09AGiX2r001502;
-	Sat, 10 Oct 2020 11:44:33 -0500
-To: Denys Dmytriyenko <denys@ti.com>, <meta-arago@arago-project.org>
-References: <1602200997-36918-1-git-send-email-denis@denix.org>
-	<20201009165645.GM23230@beryl>
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09BFMYgS099598;
+	Sun, 11 Oct 2020 10:22:35 -0500
+To: Denys Dmytriyenko <denis@denix.org>, <meta-arago@arago-project.org>
+References: <1602274359-28526-1-git-send-email-denis@denix.org>
 From: Dan Murphy <dmurphy@ti.com>
-Message-ID: <5e95a11d-4e45-adc8-cf20-f625373751c7@ti.com>
-Date: Sat, 10 Oct 2020 11:44:33 -0500
+Message-ID: <ac29d3d9-8776-f455-b334-3116a4d790d8@ti.com>
+Date: Sun, 11 Oct 2020 10:22:34 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
 	Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201009165645.GM23230@beryl>
+In-Reply-To: <1602274359-28526-1-git-send-email-denis@denix.org>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [oe-layersetup][PATCH] arago-dunfell/next: un-pin meta-arm layer
+Subject: Re: [dunfell/master][PATCH] optee-os: drop code that was moved to meta-ti
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,58 +51,105 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 10 Oct 2020 16:47:36 -0000
+X-List-Received-Date: Sun, 11 Oct 2020 15:25:38 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 Denys
 
-On 10/9/20 11:56 AM, Denys Dmytriyenko wrote:
-> BTW, this is meant for oe-layersetup per subject prefix
+On 10/9/20 3:12 PM, Denys Dmytriyenko wrote:
+> From: Denys Dmytriyenko <denys@ti.com>
 >
-> On Thu, Oct 08, 2020 at 07:49:57PM -0400, Denys Dmytriyenko wrote:
->> From: Denys Dmytriyenko <denys@ti.com>
->>
->> It was pinned down some time ago due to baremetal toolchain conflicts, which
->> got resolved since.
->>
->> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
->> ---
->>   configs/arago-dunfell-config.txt      | 2 +-
->>   configs/arago-dunfell-next-config.txt | 2 +-
->>   2 files changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/configs/arago-dunfell-config.txt b/configs/arago-dunfell-config.txt
->> index c9428d9..e8ad1fa 100644
->> --- a/configs/arago-dunfell-config.txt
->> +++ b/configs/arago-dunfell-config.txt
->> @@ -8,7 +8,7 @@ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
->>   meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,HEAD,layers=
->>   meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
->>   meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,HEAD,layers=
->> -meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,d13eb333bf96282c840c290c396d797da2e5e619,layers=meta-arm:meta-arm-toolchain
->> +meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,HEAD,layers=meta-arm:meta-arm-toolchain
->>   oe-core,git://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
->>   OECORELAYERCONF=./sample-files/bblayers.conf.sample
->>   OECORELOCALCONF=./sample-files/local-arago64.conf.sample
->> diff --git a/configs/arago-dunfell-next-config.txt b/configs/arago-dunfell-next-config.txt
->> index 3f225b7..8820086 100644
->> --- a/configs/arago-dunfell-next-config.txt
->> +++ b/configs/arago-dunfell-next-config.txt
->> @@ -8,7 +8,7 @@ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
->>   meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,HEAD,layers=
->>   meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
->>   meta-ti,git://git.yoctoproject.org/meta-ti,dunfell-next,HEAD,layers=
->> -meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,d13eb333bf96282c840c290c396d797da2e5e619,layers=meta-arm:meta-arm-toolchain
->> +meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,HEAD,layers=meta-arm:meta-arm-toolchain
->>   oe-core,git://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
->>   OECORELAYERCONF=./sample-files/bblayers.conf.sample
->>   OECORELOCALCONF=./sample-files/local-arago64.conf.sample
->> -- 
->> 2.7.4
->>
-> _______________________________________________
+> Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+> ---
+>   .../recipes-security/optee/optee-os_git.bbappend   | 76 ----------------------
+>   1 file changed, 76 deletions(-)
+>
+> diff --git a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+> index 8694554..677c6dd 100644
+> --- a/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+> +++ b/meta-arago-distro/recipes-security/optee/optee-os_git.bbappend
+> @@ -5,79 +5,3 @@ SRC_URI = "git://git.ti.com/optee/ti-optee-os.git;branch=${BRANCH} \
+>   "
+>   BRANCH = "ti-optee-os"
+>   SRCREV = "199fca17b575d4c748c9c435e908a6ec9618c75a"
+> -
+> -do_compile() {
+> -    export TI_SECURE_DEV_PKG=${TI_SECURE_DEV_PKG}
+> -    oe_runmake all PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=${OPTEEFLAVOR}
+> -    ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
+> -        ${TI_SECURE_DEV_PKG}/scripts/secure-binary-image.sh tee.bin tee.bin.signed; \
+> -        normfl=`echo ${OPTEEFLAVOR} | tr "_" "-"`
+> -        mv tee.bin.signed ${B}/$normfl.optee; \
+> -    )
+> -
+> -    if [ "${OPTEEPAGER}" = "y" ]; then
+> -#        oe_runmake clean PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=${OPTEEFLAVOR}
+> -        rm -rf out/
+> -        oe_runmake all PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=${OPTEEFLAVOR} CFG_WITH_PAGER=y
+> -        ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
+> -            ${TI_SECURE_DEV_PKG}/scripts/secure-binary-image.sh tee.bin tee.bin.signed; \
+> -            normfl=`echo ${OPTEEFLAVOR} | tr "_" "-"`
+> -            mv tee.bin.signed ${B}/$normfl-pager.optee; \
+> -        )
+> -    fi
+> -}
+> -
+> -do_compile_aarch64() {
+> -    oe_runmake all PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=${OPTEEFLAVOR}
+> -    ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
+> -        cp tee-pager_v2.bin ${B}/bl32.bin; \
+> -        cp tee.elf ${B}/bl32.elf; \
+> -    )
+> -}
+> -
+> -do_compile_am65xx-hs-evm() {
+> -    export TI_SECURE_DEV_PKG=${TI_SECURE_DEV_PKG}
+> -    oe_runmake all PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=${OPTEEFLAVOR}
+> -    ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
+> -        ${TI_SECURE_DEV_PKG}/scripts/secure-binary-image.sh tee-pager_v2.bin tee-pager.bin.signed; \
+> -        mv tee-pager.bin.signed ${B}/bl32.bin; \
+> -        cp tee.elf ${B}/bl32.elf; \
+> -    )
+> -}
+> -
+> -do_compile_j7-hs-evm() {
+> -    export TI_SECURE_DEV_PKG=${TI_SECURE_DEV_PKG}
+> -    oe_runmake all PLATFORM=${OPTEEMACHINE} PLATFORM_FLAVOR=${OPTEEFLAVOR}
+> -    ( cd out/arm-plat-${OPTEEOUTPUTMACHINE}/core/; \
+> -        ${TI_SECURE_DEV_PKG}/scripts/secure-binary-image.sh tee-pager_v2.bin tee-pager.bin.signed; \
+> -        mv tee-pager.bin.signed ${B}/bl32.bin; \
+> -        cp tee.elf ${B}/bl32.elf; \
+> -    )
+> -}
+> -
+> -do_install() {
+> -    #install core on boot directory
+> -    install -d ${D}/boot
+> -    install -m 644 ${B}/*.optee ${D}/boot || true
+> -    install -m 644 ${B}/bl32.bin ${D}/boot || true
+> -    install -m 644 ${B}/bl32.elf ${D}/boot || true
+> -
+> -    #install TA devkit
+> -    install -d ${D}/usr/include/optee/export-user_ta/
+> -    for f in  ${B}/out/arm-plat-${OPTEEOUTPUTMACHINE}/export-ta_${OPTEE_ARCH}/* ; do
+> -        cp -aR $f ${D}/usr/include/optee/export-user_ta/
+> -    done
+> -}
+> -
+> -do_deploy() {
+> -    install -d ${DEPLOYDIR}
+> -    install -m 644 ${B}/*.optee ${DEPLOYDIR} || true
+> -    install -m 644 ${B}/bl32.bin ${DEPLOYDIR} || true
+> -    install -m 644 ${B}/bl32.elf ${DEPLOYDIR} || true
+> -}
+> -
+> -FILES_${PN} = "/boot"
+> -SYSROOT_DIRS += "/boot"
+> -
+> -# This is needed for bl32.elf
+> -INSANE_SKIP_${PN} += "textrel"
 
 Applied
 
