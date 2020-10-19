@@ -1,46 +1,45 @@
-Return-Path: <g-tammana@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id 6210A520EA
+Return-Path: <paul.barker@konsulko.com>
+Received: from mail-oi1-f193.google.com (mail-oi1-f193.google.com
+	[209.85.167.193])
+	by arago-project.org (Postfix) with ESMTPS id 065D452968
 	for <meta-arago@arago-project.org>;
-	Wed, 14 Oct 2020 21:11:17 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09EL8ELX029427
-	for <meta-arago@arago-project.org>; Wed, 14 Oct 2020 16:08:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1602709694;
-	bh=qF2ZJ6bo1JT+t8AQfmYCMVcPsJ5QJ/jss73uqbn7X2Q=;
-	h=From:To:CC:Subject:Date;
-	b=qfliQU8lwGxAk232Un5fF5REMTPGo1HTzW2qcG4vOuBHr5XwskOqMGj8r3Clyy3LM
-	suvQxi4IuU2jNrgzwSss3TNbl/3lPlqI6nyUhum0QdN1+S7isVQ7jXr8cKk5AW+IaW
-	6VtYQi645M80FerA9Q7J+atbzyYF1WLQ6OMZCvHQ=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09EL8Ewq118186
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 14 Oct 2020 16:08:14 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Wed, 14 Oct 2020 16:08:14 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Wed, 14 Oct 2020 16:08:14 -0500
-Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09EL8E0r048191;
-	Wed, 14 Oct 2020 16:08:14 -0500
-Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
-	[128.247.81.246] (may be forged))
-	by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 09EL8D25079827;
-	Wed, 14 Oct 2020 16:08:13 -0500
-From: Gowtham Tammana <g-tammana@ti.com>
-To: <meta-arago@arago-project.org>, Denys Dmytriyenko <denys@ti.com>, Dan
-	Murphy <dmurphy@ti.com>
-Date: Wed, 14 Oct 2020 16:08:12 -0500
-Message-ID: <20201014210812.12609-1-g-tammana@ti.com>
-X-Mailer: git-send-email 2.28.0
+	Mon, 19 Oct 2020 19:15:19 +0000 (UTC)
+Received: by mail-oi1-f193.google.com with SMTP id u127so1151634oib.6
+	for <meta-arago@arago-project.org>;
+	Mon, 19 Oct 2020 12:12:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=yyAo8/YLuqGzWAlXCelvjifPZgl4QiZ/fDDCOlKldIc=;
+	b=oorwOVtF6V2e0itHsy+yRIMUCTMrYCD0VvWP58KK5Sp4fiVF3FQHOUA4CEGhxE3eCF
+	DbUNsDYhOpI4PXNALi+wpqbxW4TwTMX0n+RR91m1I9yPjYIAu/qj3j1KEHZjdL0rtXAz
+	OizJpO5QmqBMOgsqQJONNWWtsR3li1SB2a4VY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=yyAo8/YLuqGzWAlXCelvjifPZgl4QiZ/fDDCOlKldIc=;
+	b=g/73sLE+4fC5MCrj0NrEmJtgtVvdszstuzoT4Q8KGm/4KvYAOYhbszS7BIAG0Eo/yv
+	vZCXezy+KPDP+DKjKXjTPGAjx1UtHs6hYRKGwN90pQ4PWRgz0K3SbhrEXSzOIfOcAmvR
+	r2bq1Adu9jMrwIUMkFUU/jGfCCcSdO+yolzNgjKpPgAfqDoHNled1idv4h7RLq0NQv05
+	zhtvGRgi85t0aJ6+GiJR5Wt9TpT6Icq7m4CQzZYtGb1oYf5MS5Gvl0P5rKoSnkHzcsqB
+	VXtrnWIcS1ngAwUT1vuBnVw2fwSgJJMiQuIp+VbRaFX+uKFd0XzPqghJFMMw5tf2DgqE
+	bm1w==
+X-Gm-Message-State: AOAM533zkFcTeHuSXQIgzWmkd8smkEmf40oxKlNk02nSZn87EhRI3doN
+	djC23EwWweylKY1mlOOxvQLzV9vMBUuCsUrn9+wUzw==
+X-Google-Smtp-Source: ABdhPJyBetEQaBbN1/xQLAMNZPp3zFjUlGXM/c+9Wu6SvRm2zJ99uU84p28ciK6U1/5kHLpt9vVgS01DVAHUALNZWLk=
+X-Received: by 2002:aca:f202:: with SMTP id q2mr610489oih.6.1603134735612;
+	Mon, 19 Oct 2020 12:12:15 -0700 (PDT)
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [dunfell/master][PATCH] img-pvr-sdk: update arm64 wayland bins
+References: <20200621204349.363584-1-pbarker@konsulko.com>
+	<20200629224351.GD6525@beryl>
+	<20200630213041.GN7211@beryl> <20200814223055.GQ13081@beryl>
+In-Reply-To: <20200814223055.GQ13081@beryl>
+From: Paul Barker <pbarker@konsulko.com>
+Date: Mon, 19 Oct 2020 20:12:05 +0100
+Message-ID: <CAM9ZRVuOWAQssvFFPMUWm19nsN5NXXtgivbxecjjmXfGrUEp5w@mail.gmail.com>
+To: Denys Dmytriyenko <denys@ti.com>
+Cc: meta-arago@arago-project.org
+Subject: Re: [master/dunfell][PATCH] linux: copy-defconfig: Move do_create_srcipk only if defined
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,32 +52,46 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Oct 2020 21:11:17 -0000
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-List-Received-Date: Mon, 19 Oct 2020 19:15:20 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
----
- .../recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb         | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Fri, 14 Aug 2020 at 23:30, Denys Dmytriyenko <denys@ti.com> wrote:
+>
+> Ping.
+>
+> In case this was missed - the submitted patch was causing a breakage and was
+> not merged. Thanks.
 
-diff --git a/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb b/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
-index d1f9e059..6c9953d0 100644
---- a/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
-+++ b/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
-@@ -7,9 +7,9 @@ CLEANBROKEN = "1"
- BRANCH = "master"
- 
- SRC_URI = "git://git.ti.com/graphics/img-pvr-sdk.git;protocol=git;branch=${BRANCH}"
--SRCREV = "bb8b74cdd1323e76697b3eb2258f863b15fee287"
-+SRCREV = "e52592c843ad16be31db411b85c4059d82c4a6b9"
- 
--PR = "r18"
-+PR = "r19"
- 
- COMPATIBLE_MACHINE = "omap-a15|ti43x|ti33x|k3"
- 
--- 
-2.17.1
+Hi Denys, I've not had a chance to get back to this one for a long
+time due to illness and other priorities coming up. I've finally taken
+a long look at it to find out why my builds were failing without this
+patch back in June but seem to be fine without it now. I somehow ended
+up with my CI system populating local.conf incorrectly so DISTRO was
+set to poky but all the arago layers were included. The resulting
+error messages were:
 
+ERROR: /w/layers/meta-ti/recipes-kernel/linux/linux-ti-staging_5.4.bb:
+Task do_create_srcipk from
+/w/layers/meta-ti/recipes-kernel/linux/linux-ti-staging_5.4.bb seems
+to be empty?!
+ERROR: /w/layers/meta-ti/recipes-kernel/linux/linux-ti-staging-systest_5.4.bb:
+Task do_create_srcipk from
+/w/layers/meta-ti/recipes-kernel/linux/linux-ti-staging-systest_5.4.bb
+seems to be empty?!
+ERROR: /w/layers/meta-ti/recipes-kernel/linux/linux-ti-staging-rt_5.4.bb:
+Task do_create_srcipk from
+/w/layers/meta-ti/recipes-kernel/linux/linux-ti-staging-rt_5.4.bb
+seems to be empty?!
+
+Should we support the case where the meta-arago-distro layer is
+included but a different DISTRO is chosen? If so I can resubmit this,
+the patch was broken as I mixed up the arguments to bb.build.addtask()
+so it's easy to fix.
+
+Thanks,
+
+
+--
+Paul Barker
+Konsulko Group
 
