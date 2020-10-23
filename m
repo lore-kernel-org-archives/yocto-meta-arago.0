@@ -1,46 +1,45 @@
-Return-Path: <s-anna@ti.com>
+Return-Path: <dmurphy@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id EA5C352999
+	by arago-project.org (Postfix) with ESMTPS id 1CB28520DE
 	for <meta-arago@arago-project.org>;
-	Thu, 22 Oct 2020 16:27:52 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09MGOlta078591
-	for <meta-arago@arago-project.org>; Thu, 22 Oct 2020 11:24:47 -0500
+	Fri, 23 Oct 2020 16:23:37 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09NGKVOl089311
+	for <meta-arago@arago-project.org>; Fri, 23 Oct 2020 11:20:31 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1603383887;
-	bh=K9NVR67e228W+ETAs5OIsy/leXsy6AZW+9tBn27rvbE=;
-	h=From:To:CC:Subject:Date;
-	b=hLA9OsRuC/x5VmSfvCcnRep5LBAlO1InLUDOz4JeiknbV6bqF3FrFjgy6HUzzKT2p
-	FgBFffWUmhJNDNE6+/ER87M1L7hnRismP6ltt7Hz/I3xLtFXLgUWLNU/CQqaRufyZG
-	zdJPK/K1tu3YLdSSK1WGR+P3W7FPB2s6ZvToC09Q=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09MGOleA011549
+	s=ti-com-17Q1; t=1603470031;
+	bh=G34GcVqGR+6X6TCLcxic3vNkhviTjjwa1b0R7kA8AJQ=;
+	h=Subject:To:References:From:Date:In-Reply-To;
+	b=o4poJ7eFItKG0JwU+ABg3LWeDQapH7AgQkv/iC+mhOE0VHsjFDUdZkUunIw9l5g0K
+	ut5/wWF9/jMcfsZSEHvoPkle/uQ1mV5o0sKE1CPBDbMdP8fUHkWnRuMdricZqpaYuf
+	++FBUr+z9Z8d4VLVhSg4nKtQXbvU9jb1lSIKsIV8=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09NGKV3K114060
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 22 Oct 2020 11:24:47 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 23 Oct 2020 11:20:31 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 22 Oct 2020 11:24:47 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 23 Oct 2020 11:20:31 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 22 Oct 2020 11:24:47 -0500
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com
-	[10.247.120.73])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09MGOlac065066;
-	Thu, 22 Oct 2020 11:24:47 -0500
-Received: from localhost ([10.250.39.72])
-	by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id
-	09MGOlO1129064; Thu, 22 Oct 2020 11:24:47 -0500
-From: Suman Anna <s-anna@ti.com>
-To: Denys Dmytriyenko <denys@ti.com>, Dan Murphy <dmurphy@ti.com>
-Date: Thu, 22 Oct 2020 11:24:38 -0500
-Message-ID: <20201022162438.31072-1-s-anna@ti.com>
-X-Mailer: git-send-email 2.28.0
+	Frontend Transport; Fri, 23 Oct 2020 11:20:31 -0500
+Received: from [10.250.39.65] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09NGKVm9078553;
+	Fri, 23 Oct 2020 11:20:31 -0500
+To: Gowtham Tammana <g-tammana@ti.com>, <meta-arago@arago-project.org>, Denys
+	Dmytriyenko <denys@ti.com>
+References: <20201022115052.7711-1-g-tammana@ti.com>
+From: Dan Murphy <dmurphy@ti.com>
+Message-ID: <2ec10b3b-73fc-3bb2-8c26-fbb512665f24@ti.com>
+Date: Fri, 23 Oct 2020 11:20:26 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+	Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20201022115052.7711-1-g-tammana@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: [master/dunfell][PATCH v2] packagegroup-arago-tisdk-addons: add ti-rpmsg-char for all K3 platforms
+Subject: Re: [dunfell/master][PATCH] cairo: enable gles2 support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,46 +52,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Oct 2020 16:27:53 -0000
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-List-Received-Date: Fri, 23 Oct 2020 16:23:37 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-libti_rpmsg_char is a new utility library providing a simple API for
-applications wanting to talk to remote processors over the rpmsg_char
-Linux kernel driver with virtio-rpmsg back-end transport.
+Gowtham
 
-Add this library and examples for all the K3 platforms. It does not
-support legacy SoCs at the moment, but this can be adjusted later on
-when the support for the same is added to the library.
+On 10/22/20 6:50 AM, Gowtham Tammana wrote:
+> add gles2 support for devices which can support it.
+>
+> Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+> ---
+>   meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend | 3 +++
+>   1 file changed, 3 insertions(+)
+>   create mode 100644 meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend
+>
+> diff --git a/meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend b/meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend
+> new file mode 100644
+> index 00000000..3d67bb6a
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend
+> @@ -0,0 +1,3 @@
+> +PR_append = ".arago1"
+> +
+> +PACKAGECONFIG_append = " ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'egl glesv2', '', d)}"
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
----
- .../packagegroups/packagegroup-arago-tisdk-addons.bb          | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+For completeness this patch breaks K2 builds as we discussed off line.
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index e2c3774a287a..adfd45f2af11 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Task to install additional utilities/demos for SDKs"
- LICENSE = "MIT"
--PR = "r77"
-+PR = "r78"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -72,6 +72,8 @@ UTILS_append_k3 = " mmc-utils \
-                     switch-config \
-                     irqbalance \
-                     jailhouse \
-+                    ti-rpmsg-char \
-+                    ti-rpmsg-char-examples \
- "
- 
- UTILS_append_am65xx = " ti-rtos-firmware pru-icss pru-pwm-fw"
--- 
-2.28.0
+Dan
 
 
