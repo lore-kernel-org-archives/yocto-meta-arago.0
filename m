@@ -1,47 +1,45 @@
-Return-Path: <g-tammana@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 8006D520DE
+Return-Path: <aparnab@aparnab-office>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id A3CC452999
 	for <meta-arago@arago-project.org>;
-	Fri, 23 Oct 2020 18:03:48 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09NI0h2H127997
-	for <meta-arago@arago-project.org>; Fri, 23 Oct 2020 13:00:43 -0500
+	Fri, 23 Oct 2020 21:14:52 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09NLBlpL054649
+	for <meta-arago@arago-project.org>; Fri, 23 Oct 2020 16:11:47 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1603476043;
-	bh=OE4ZlKb79J2l5ghyk1ylj/UcW4kQX1v0HpX5EPXmWyA=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=Xv9B45z3knuXJfMwR2XCG+1DQ95jpzndNuiYwNeuLkTWRJkcPELRDoIexybD9lWu/
-	Pdh/vCALMYJbkrEo3Ks3tRVMeZvksoT232/CyzCX/n923LGyvDSJs3ZyfPAb+404w/
-	EYI30AhCBfi22VXrUV133YQRSQkMTZUeB50HyXxc=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09NI0hjp125999
+	s=ti-com-17Q1; t=1603487507;
+	bh=wYvknkXn8qEQwZd3Xdv5zl6XCHU/DJpLMcAwns2EcYU=;
+	h=From:To:CC:Subject:Date;
+	b=uSznaKnOqOFB5JbOt70KkcuiFfHoj5zrjB7/VjEbCNf1NPV0OM146xusdiwCs/iTP
+	Z5eo3ieGj522e/KsAkWtwN6d9uIeYmevc4Uq6pLKQ8q0KPGYipy4kLwSrrKpy1Qne/
+	pUM6V2VOkzd69jBplS1zcRaXrQmKDsoOPgsHK0w8=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09NLBlqV086613
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 23 Oct 2020 13:00:43 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 23 Oct 2020 16:11:47 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Fri, 23 Oct 2020 13:00:43 -0500
-Received: from DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11]) by
-	DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11%17]) with mapi id
-	15.01.1979.003; Fri, 23 Oct 2020 13:00:42 -0500
-From: "Tammana, Gowtham" <g-tammana@ti.com>
-To: "Dmytriyenko, Denys" <denys@ti.com>, "Murphy, Dan" <dmurphy@ti.com>
-Thread-Topic: [meta-arago][dunfell/master][PATCH] cairo: enable gles2 support
-Thread-Index: AQHWqGmYFo0C/71gW0m0E+gojyDuPqmls9MAgAAT14D//7HfcA==
-Date: Fri, 23 Oct 2020 18:00:42 +0000
-Message-ID: <fbb5727455434607bba8e06799095058@ti.com>
-References: <20201022115052.7711-1-g-tammana@ti.com>
-	<2ec10b3b-73fc-3bb2-8c26-fbb512665f24@ti.com>
-	<20201023173127.GQ19741@beryl>
-In-Reply-To: <20201023173127.GQ19741@beryl>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.250.39.41]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Fri, 23 Oct 2020 16:11:47 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Fri, 23 Oct 2020 16:11:47 -0500
+Received: from aparnab-office (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09NLBlfE091173;
+	Fri, 23 Oct 2020 16:11:47 -0500
+Received: from aparnab by aparnab-office with local (Exim 4.90_1)
+	(envelope-from <aparnab@aparnab-office>)
+	id 1kW4Lj-00056P-1h; Fri, 23 Oct 2020 16:11:47 -0500
+From: Aparna Balasubramanian <aparnab@ti.com>
+To: <meta-arago@arago-project.org>, <denys@ti.com>, <dmurphy@ti.com>
+Date: Fri, 23 Oct 2020 16:11:41 -0500
+Message-ID: <20201023211141.19571-1-aparnab@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [dunfell/master][PATCH] cairo: enable gles2 support
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: Aparna Balasubramanian <aparnab@ti.com>
+Subject: [PATCH] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,53 +52,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Oct 2020 18:03:48 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 23 Oct 2020 21:14:53 -0000
+Content-Type: text/plain
 
+Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
+---
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+index fb0382da..bcc8f958 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+@@ -14,7 +14,7 @@ PE = "1"
+ PR = "r6"
+ PV_append = "+git${SRCPV}"
+ 
+-SRCREV = "ec5af0cc27ccf2481ccee77dfed5edc21a805b91"
++SRCREV = "e97fb1c59cbafc944e38de588cdc2565948116ef"
+ BRANCH ?= "master"
+ 
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
+-- 
+2.17.1
 
->-----Original Message-----
->From: Dmytriyenko, Denys
->Sent: Friday, October 23, 2020 12:31 PM
->To: Murphy, Dan <dmurphy@ti.com>
->Cc: Tammana, Gowtham <g-tammana@ti.com>; meta-arago@arago-project.org
->Subject: Re: [meta-arago][dunfell/master][PATCH] cairo: enable gles2
->support
->
->On Fri, Oct 23, 2020 at 11:20:26AM -0500, Dan Murphy wrote:
->> Gowtham
->>
->> On 10/22/20 6:50 AM, Gowtham Tammana wrote:
->> >add gles2 support for devices which can support it.
->> >
->> >Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
->> >---
->> >  meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend | 3 +++
->> >  1 file changed, 3 insertions(+)
->> >  create mode 100644 meta-arago-distro/recipes-
->graphics/cairo/cairo_%.bbappend
->> >
->> >diff --git a/meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend
->b/meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend
->> >new file mode 100644
->> >index 00000000..3d67bb6a
->> >--- /dev/null
->> >+++ b/meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend
->> >@@ -0,0 +1,3 @@
->> >+PR_append =3D ".arago1"
->> >+
->> >+PACKAGECONFIG_append =3D " ${@bb.utils.contains('DISTRO_FEATURES',
->'opengl', 'egl glesv2', '', d)}"
->>
->> For completeness this patch breaks K2 builds as we discussed off line.
->
->Probably also need to check for "gpu" in MACHINE_FEATURES?
-
-This might be a better choice here I think as this should be enabled for gp=
-u enabled device. Will submit a v2.
-
-Thanks,
-Gowtham
 
