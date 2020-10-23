@@ -1,45 +1,46 @@
-Return-Path: <aparnab@aparnab-office>
+Return-Path: <g-tammana@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id A3CC452999
+	by arago-project.org (Postfix) with ESMTPS id 4BE3552999
 	for <meta-arago@arago-project.org>;
-	Fri, 23 Oct 2020 21:14:52 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09NLBlpL054649
-	for <meta-arago@arago-project.org>; Fri, 23 Oct 2020 16:11:47 -0500
+	Fri, 23 Oct 2020 21:38:09 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09NLZ3JN062398
+	for <meta-arago@arago-project.org>; Fri, 23 Oct 2020 16:35:03 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1603487507;
-	bh=wYvknkXn8qEQwZd3Xdv5zl6XCHU/DJpLMcAwns2EcYU=;
+	s=ti-com-17Q1; t=1603488903;
+	bh=G1u7XKrssqqxbuK2Tv7GK2UFQjokL+x1UOnE1FZTgJE=;
 	h=From:To:CC:Subject:Date;
-	b=uSznaKnOqOFB5JbOt70KkcuiFfHoj5zrjB7/VjEbCNf1NPV0OM146xusdiwCs/iTP
-	Z5eo3ieGj522e/KsAkWtwN6d9uIeYmevc4Uq6pLKQ8q0KPGYipy4kLwSrrKpy1Qne/
-	pUM6V2VOkzd69jBplS1zcRaXrQmKDsoOPgsHK0w8=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09NLBlqV086613
+	b=yvrZOwbUQYqCS10ppf5A+WDQ/lRK6DbgbfYQaV7ZOXxmqnxfD+NVtLnN7nDLANmQH
+	nC43BTx3mPBl4y3MOvhiKNbsiUEMOwp35dXQ71oevdRH6rrse6JgG8dFLc7JgTHWm9
+	BjDEBjmkRho07LVLViC8GME36KweExphjlj34Q8w=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09NLZ3Y9061603
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 23 Oct 2020 16:11:47 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Fri, 23 Oct 2020 16:35:03 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Fri, 23 Oct 2020 16:11:47 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 23 Oct 2020 16:35:02 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Fri, 23 Oct 2020 16:11:47 -0500
-Received: from aparnab-office (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09NLBlfE091173;
-	Fri, 23 Oct 2020 16:11:47 -0500
-Received: from aparnab by aparnab-office with local (Exim 4.90_1)
-	(envelope-from <aparnab@aparnab-office>)
-	id 1kW4Lj-00056P-1h; Fri, 23 Oct 2020 16:11:47 -0500
-From: Aparna Balasubramanian <aparnab@ti.com>
-To: <meta-arago@arago-project.org>, <denys@ti.com>, <dmurphy@ti.com>
-Date: Fri, 23 Oct 2020 16:11:41 -0500
-Message-ID: <20201023211141.19571-1-aparnab@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Frontend Transport; Fri, 23 Oct 2020 16:35:02 -0500
+Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09NLZ182004122;
+	Fri, 23 Oct 2020 16:35:01 -0500
+Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
+	[128.247.81.246] (may be forged))
+	by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 09NLZ1pf072421;
+	Fri, 23 Oct 2020 16:35:01 -0500
+From: Gowtham Tammana <g-tammana@ti.com>
+To: <meta-arago@arago-project.org>, Denys Dmytriyenko <denys@ti.com>, Dan
+	Murphy <dmurphy@ti.com>
+Date: Fri, 23 Oct 2020 16:34:57 -0500
+Message-ID: <20201023213457.31630-1-g-tammana@ti.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Aparna Balasubramanian <aparnab@ti.com>
-Subject: [PATCH] ltp-ddt: Update to latest
+Subject: [dunfell/master][PATCH v2] cairo: enable gles2 support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,27 +53,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Oct 2020 21:14:53 -0000
+X-List-Received-Date: Fri, 23 Oct 2020 21:38:09 -0000
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
----
- meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+add gles2 support for devices which can support it.
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-index fb0382da..bcc8f958 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-@@ -14,7 +14,7 @@ PE = "1"
- PR = "r6"
- PV_append = "+git${SRCPV}"
- 
--SRCREV = "ec5af0cc27ccf2481ccee77dfed5edc21a805b91"
-+SRCREV = "e97fb1c59cbafc944e38de588cdc2565948116ef"
- BRANCH ?= "master"
- 
- SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
+Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+---
+v2:
+  - Use of DISTRO_FEATURES is bringing up some stale dependency issues
+    for k2 devices. Changing it to MACHINE_FEATURES, its a valid filter
+    here as well.
+
+ meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend
+
+diff --git a/meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend b/meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend
+new file mode 100644
+index 00000000..6076f370
+--- /dev/null
++++ b/meta-arago-distro/recipes-graphics/cairo/cairo_%.bbappend
+@@ -0,0 +1,3 @@
++PR_append = ".arago1"
++
++PACKAGECONFIG_append = " ${@bb.utils.contains('MACHINE_FEATURES', 'gpu', 'egl glesv2', '', d)}"
 -- 
 2.17.1
 
