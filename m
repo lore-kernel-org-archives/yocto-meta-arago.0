@@ -1,45 +1,45 @@
-Return-Path: <nikhil.nd@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id 204F352999
+Return-Path: <dmurphy@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id 5002B52999
 	for <meta-arago@arago-project.org>;
-	Mon, 26 Oct 2020 15:55:06 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09QFq0UX121944
-	for <meta-arago@arago-project.org>; Mon, 26 Oct 2020 10:52:00 -0500
+	Mon, 26 Oct 2020 16:13:07 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09QGA12s128888
+	for <meta-arago@arago-project.org>; Mon, 26 Oct 2020 11:10:01 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1603727520;
-	bh=pc20uZAT49XeoGEY7opRm/pu+tyMZgAPv2BcuHN1lUQ=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=MJ6Quznb7Tihw68ZQ526e8frnD6KXSzxS0IVYrinbqHphHs81p70nJsD+O30PDpw3
-	i2Ak1xuRxZFZ59rpm3bK2VUj7hSSFXkZ/WQvIKr99IuswgQrWjpeJglNvwaKPDCSg/
-	QOE7xGMzBze6Tx+8zinj6tmPoe+F30kSI9GCqA5M=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09QFq0pW016653
+	s=ti-com-17Q1; t=1603728601;
+	bh=mXtpe5VLHQsJYTWqmVY7MxlAyW7As/uyjJ3u3FdRQxA=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=IjL8TQJ2Ni4JAcSsAGnjMd4NDU/ooZdOZlC82EFOk3vnMHHk1p8phWfN0vrHhtCub
+	q+sd5oKMlSJlT7fD2ebtiutxXSWFFLdBao19ZTKJv7Dk+pCHyE0jrNNJgO9ePWffKg
+	RzjTEVaPoGi3lBznsG0FtplfDsIdeRsLIzqcWGGo=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09QGA1Js014980
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Mon, 26 Oct 2020 10:52:00 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 26 Oct 2020 11:10:01 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Mon, 26 Oct 2020 10:51:59 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
-	(157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 26 Oct 2020 11:10:00 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Mon, 26 Oct 2020 10:51:59 -0500
-Received: from swubn03.india.englab.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09QFpkCT081584;
-	Mon, 26 Oct 2020 10:51:58 -0500
-From: Nikhil Devshatwar <nikhil.nd@ti.com>
-To: <denys@ti.com>, <dmurphy@ti.com>, <aparnab@ti.com>
-Date: Mon, 26 Oct 2020 21:21:25 +0530
-Message-ID: <20201026155125.31513-2-nikhil.nd@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201026155125.31513-1-nikhil.nd@ti.com>
+	Frontend Transport; Mon, 26 Oct 2020 11:10:01 -0500
+Received: from [10.250.70.26] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09QG9xRT059133;
+	Mon, 26 Oct 2020 11:10:00 -0500
+To: Nikhil Devshatwar <nikhil.nd@ti.com>, <denys@ti.com>, <aparnab@ti.com>
 References: <20201026155125.31513-1-nikhil.nd@ti.com>
+From: Dan Murphy <dmurphy@ti.com>
+Message-ID: <1cfdbbf2-80e3-29b6-02f0-c6ef9b332168@ti.com>
+Date: Mon, 26 Oct 2020 11:09:59 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+	Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20201026155125.31513-1-nikhil.nd@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: [dunfell PATCH 2/2] statcol: New recipe for statistics collector application
+Subject: Re: [dunfell PATCH 1/2] websocketd: Add new recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,50 +52,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Oct 2020 15:55:06 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 26 Oct 2020 16:13:07 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-statcol is a statistics collector application which can be used
-to get various statistics data like CPU load, DDR bandwidth,
-network speed, etc from various sources.
+Nikhil
 
-It allows to simply dump the data over command line or it can
-also be used to send to a websocket for visualization on a
-host machine.
+On 10/26/20 10:51 AM, Nikhil Devshatwar wrote:
+> websocketd is an application which allows to redirect output of
+> command line applications via a websocket so that web pages can
+> interact with them.
+>
+> This is very useful for visualizing statistics information on
+> host machine browser.
+>
+> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+> ---
+>   .../recipes-devtools/websocketd/websocketd.bb    | 16 ++++++++++++++++
+>   1 file changed, 16 insertions(+)
+>   create mode 100644 meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
+>
+> diff --git a/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb b/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
+> new file mode 100644
+> index 00000000..44f549ee
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
+> @@ -0,0 +1,16 @@
+> +SUMMARY = "Application for routing native applications via websockets"
+> +HOMEPAGE = "http://websocketd.com/"
+> +
+> +LICENSE = "BSD-2-Clause"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=a14d7befdbee1290ac5c472cd85d66f2"
+> +
+> +PV = "0.3.0"
+0.3.1 is available
+> +SRC_URI = "https://github.com/joewalnes/websocketd/releases/download/v${PV}/websocketd-${PV}-linux_arm64.zip"
 
-Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
----
- .../recipes-devtools/statcol/statcol.bb       | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 meta-arago-extras/recipes-devtools/statcol/statcol.bb
+Is this valid for ARM32? Does this build for am3 or am4?
 
-diff --git a/meta-arago-extras/recipes-devtools/statcol/statcol.bb b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
-new file mode 100644
-index 00000000..8a7c2efb
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
-@@ -0,0 +1,20 @@
-+SUMMARY = "Statistics collector application"
-+
-+LICENSE = "TI-TSPA"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=bb6bc27cd44417c389a180bd62f552a0"
-+
-+PROTOCOL = "git"
-+BRANCH = "master"
-+SRCREV = "6420b4e6d98dc2c6825557d7d6f56ffd52fd230c"
-+SRC_URI = "git://git.ti.com/glsdk/statcol.git;protocol=${PROTOCOL};branch=${BRANCH}"
-+
-+DEPENDS = "ti-rpmsg-char websocketd"
-+RDEPENDS_${PN} = "bash"
-+
-+S = "${WORKDIR}/git"
-+
-+EXTRA_OEMAKE += "SYSROOT=${STAGING_DIR_TARGET} "
-+
-+do_install() {
-+	DESTDIR=${D} make install
-+}
--- 
-2.17.1
+I see websocketd-0.3.1-linux_arm.zip available for 32 bit
 
+> +SRC_URI[md5sum] = "968c1ce4ed4fe5f86817f2533f5d3004"
+> +
+> +S = "${WORKDIR}"
+> +
+> +do_install() {
+> +	install -d ${D}/${bindir}
+> +	install -m 0755 ${S}/websocketd ${D}${bindir}/
+> +}
 
