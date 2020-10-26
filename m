@@ -1,46 +1,43 @@
-Return-Path: <aparnab@ti.com>
+Return-Path: <nikhil.nd@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id D93CE52999
+	by arago-project.org (Postfix) with ESMTPS id 47DDE52999
 	for <meta-arago@arago-project.org>;
-	Sat, 24 Oct 2020 21:40:29 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09OLbOXh095283
-	for <meta-arago@arago-project.org>; Sat, 24 Oct 2020 16:37:24 -0500
+	Mon, 26 Oct 2020 15:54:55 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09QFpngE121743
+	for <meta-arago@arago-project.org>; Mon, 26 Oct 2020 10:51:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1603575444;
-	bh=ncGTsYL2wEKJwGgT70kJaztUBgaeqWsJfAHpAz8CHl0=;
-	h=From:To:Subject:Date:References:In-Reply-To;
-	b=uw/aBQRDTO15N04Qle8wTS/dPc4Hpv/qBIT6O9//5sOfobSgvdYsakWjrIYOmJZMx
-	PwlkTwB+mNW0TF2j83u07/DeKt9xjeNWxttPmscJMZTAFzwzRyepzyc4G3UPkJ1U2Y
-	chrKWEwHayggcY+sltV9tEgPxl+U6+8u/jWVIE4g=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09OLbOAJ080832
+	s=ti-com-17Q1; t=1603727509;
+	bh=gSdObnYVFcC010lhrczoipS+HyMKn5ZZcXTKxsK/tOM=;
+	h=From:To:CC:Subject:Date;
+	b=sPMP/f46M/Fqzrt7VGyoFbu9arQoVlwCF+Crftw3J8E2slYnxuMldhSCZB3rhFS3B
+	alIkyHxGC3rCGnG7tFDYHk9X5FTS3HRntlHfhy3JZ/m3FZbG0cQ1k9vC2kAz5iEbnw
+	JFJX9CNnMeybly3hA9vNhIv2AC/KCJgweHuwxJTs=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09QFpnrg032729
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Sat, 24 Oct 2020 16:37:24 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Mon, 26 Oct 2020 10:51:49 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Sat, 24 Oct 2020 16:37:24 -0500
-Received: from DFLE115.ent.ti.com ([fe80::4af:9649:4629:5ff4]) by
-	DFLE115.ent.ti.com ([fe80::4af:9649:4629:5ff4%18]) with mapi id
-	15.01.1979.003; Sat, 24 Oct 2020 16:37:23 -0500
-From: "Balasubramanian, Aparna" <aparnab@ti.com>
-To: "Murphy, Dan" <dmurphy@ti.com>, "meta-arago@arago-project.org"
-	<meta-arago@arago-project.org>, "Dmytriyenko, Denys" <denys@ti.com>
-Thread-Topic: [PATCH] ltp-ddt: Update to latest
-Thread-Index: AQHWqYEdUGIiK5L/O0amDJOiZsQrdKmnnEuA//+sVEA=
-Date: Sat, 24 Oct 2020 21:37:23 +0000
-Message-ID: <c8801511582e462582f95bcce32a551b@ti.com>
-References: <20201023211141.19571-1-aparnab@ti.com>
-	<ca797022-fbf4-9526-0d1a-415cd28c4cb7@ti.com>
-In-Reply-To: <ca797022-fbf4-9526-0d1a-415cd28c4cb7@ti.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.250.32.205]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Mon, 26 Oct 2020 10:51:49 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Mon, 26 Oct 2020 10:51:49 -0500
+Received: from swubn03.india.englab.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09QFpkCS081584;
+	Mon, 26 Oct 2020 10:51:47 -0500
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
+To: <denys@ti.com>, <dmurphy@ti.com>, <aparnab@ti.com>
+Date: Mon, 26 Oct 2020 21:21:24 +0530
+Message-ID: <20201026155125.31513-1-nikhil.nd@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Subject: Re: [PATCH] ltp-ddt: Update to latest
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: [dunfell PATCH 1/2] websocketd: Add new recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,28 +50,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Oct 2020 21:40:30 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 26 Oct 2020 15:54:55 -0000
+Content-Type: text/plain
 
-U29ycnksIG1pc3NlZCB0aGF0LiBUaGFua3MsIERhbi4NClJlZ2FyZHMsDQpBcGFybmENCg0KLS0t
-LS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IE11cnBoeSwgRGFuIA0KU2VudDogU2F0dXJk
-YXksIE9jdG9iZXIgMjQsIDIwMjAgNDozNyBQTQ0KVG86IEJhbGFzdWJyYW1hbmlhbiwgQXBhcm5h
-IDxhcGFybmFiQHRpLmNvbT47IG1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmc7IERteXRyaXll
-bmtvLCBEZW55cyA8ZGVueXNAdGkuY29tPg0KU3ViamVjdDogUmU6IFtQQVRDSF0gbHRwLWRkdDog
-VXBkYXRlIHRvIGxhdGVzdA0KDQpBcGFybmENCg0KT24gMTAvMjMvMjAgNDoxMSBQTSwgQXBhcm5h
-IEJhbGFzdWJyYW1hbmlhbiB3cm90ZToNCj4gU2lnbmVkLW9mZi1ieTogQXBhcm5hIEJhbGFzdWJy
-YW1hbmlhbiA8YXBhcm5hYkB0aS5jb20+DQo+IC0tLQ0KPiAgIG1ldGEtYXJhZ28tZXh0cmFzL3Jl
-Y2lwZXMtZGV2dG9vbHMvbHRwLWRkdC9sdHAtZGR0XzIwMjAwMTIwLmJiIHwgMiArLQ0KPiAgIDEg
-ZmlsZSBjaGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQ0KPg0KPiBkaWZmIC0t
-Z2l0IGEvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1kZXZ0b29scy9sdHAtZGR0L2x0cC1kZHRf
-MjAyMDAxMjAuYmIgYi9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWRldnRvb2xzL2x0cC1kZHQv
-bHRwLWRkdF8yMDIwMDEyMC5iYg0KPiBpbmRleCBmYjAzODJkYS4uYmNjOGY5NTggMTAwNjQ0DQo+
-IC0tLSBhL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtZGV2dG9vbHMvbHRwLWRkdC9sdHAtZGR0
-XzIwMjAwMTIwLmJiDQo+ICsrKyBiL21ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtZGV2dG9vbHMv
-bHRwLWRkdC9sdHAtZGR0XzIwMjAwMTIwLmJiDQo+IEBAIC0xNCw3ICsxNCw3IEBAIFBFID0gIjEi
-DQo+ICAgUFIgPSAicjYiDQoNCkdlbmVyYWxseSB3aGVuIHlvdSB1cGRhdGUgdGhlIFNIQSB5b3Ug
-c2hvdWxkIHVwZGF0ZSB0aGUgUFIgdmVyc2lvbg0KDQpJIHdpbGwgZml4IGl0IHVwDQoNCkRhbg0K
-DQoNCg==
+websocketd is an application which allows to redirect output of
+command line applications via a websocket so that web pages can
+interact with them.
+
+This is very useful for visualizing statistics information on
+host machine browser.
+
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+---
+ .../recipes-devtools/websocketd/websocketd.bb    | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
+
+diff --git a/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb b/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
+new file mode 100644
+index 00000000..44f549ee
+--- /dev/null
++++ b/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
+@@ -0,0 +1,16 @@
++SUMMARY = "Application for routing native applications via websockets"
++HOMEPAGE = "http://websocketd.com/"
++
++LICENSE = "BSD-2-Clause"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=a14d7befdbee1290ac5c472cd85d66f2"
++
++PV = "0.3.0"
++SRC_URI = "https://github.com/joewalnes/websocketd/releases/download/v${PV}/websocketd-${PV}-linux_arm64.zip"
++SRC_URI[md5sum] = "968c1ce4ed4fe5f86817f2533f5d3004"
++
++S = "${WORKDIR}"
++
++do_install() {
++	install -d ${D}/${bindir}
++	install -m 0755 ${S}/websocketd ${D}${bindir}/
++}
+-- 
+2.17.1
+
 
