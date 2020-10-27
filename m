@@ -1,48 +1,41 @@
-Return-Path: <s-anna@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id ED44852986
+Return-Path: <dmurphy@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 14B4F52986
 	for <meta-arago@arago-project.org>;
-	Tue, 27 Oct 2020 14:40:27 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09REbLnw095711
-	for <meta-arago@arago-project.org>; Tue, 27 Oct 2020 09:37:21 -0500
+	Tue, 27 Oct 2020 18:44:28 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09RIfLKI056344
+	for <meta-arago@arago-project.org>; Tue, 27 Oct 2020 13:41:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1603809441;
-	bh=V5I5RZH0xI+d2OQbSiVBsTvoFDIiTz2tNYiAQ82MPFU=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=FY6OK5b6pVY+4H4ALJ13A52eOHvfl3Hq8LkqmPlQIoHPv7J1SxzJGA3Lh4NtG7Q4o
-	OtKEd9F1YjQM7Mw+sQ0BVhE82MQkZ86LdR9tqeWyQWTE1b1d6gv5y4UBKkV/1uDlLM
-	yce1w/1laFAZz6wOOozMzb24wauGwuau2pwasv6E=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09REbLOu129234
+	s=ti-com-17Q1; t=1603824081;
+	bh=mbAfpal3xxMOK/HyIUOe0cic6uIEcwK8mOoZJhqK8Lg=;
+	h=From:To:CC:Subject:Date;
+	b=trnlihRdHVRx/HidJjNmNchBDPZDNOoF9RIObk6QRsxtKKx2qsIZtEsyAu/4ZWfKc
+	6Uh8zgCiKMkXJM7faoGKZzA2zjYCncBnJyY9zdpOWYekvQeYoqhA5zAVtPCUcVG3lp
+	92P4dSm7YB9BXDroB/4WATeisedLddxZ6mwsVH0g=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09RIfLji105557
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 27 Oct 2020 09:37:21 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 27 Oct 2020 13:41:21 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Tue, 27 Oct 2020 09:37:21 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 27 Oct 2020 13:41:21 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Tue, 27 Oct 2020 09:37:21 -0500
-Received: from [10.250.64.251] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09REbI0H083343;
-	Tue, 27 Oct 2020 09:37:19 -0500
-To: Denys Dmytriyenko <denys@ti.com>
-References: <20201027024112.5330-1-s-anna@ti.com>
-	<20201027024533.GR19741@beryl>
-	<21098998-f191-b9f0-79af-26b1045c6a54@ti.com>
-	<20201027040839.GS19741@beryl>
-From: Suman Anna <s-anna@ti.com>
-Message-ID: <39ea11fd-e4bf-3133-b280-ece903a9b9f8@ti.com>
-Date: Tue, 27 Oct 2020 09:37:18 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.10.0
+	Frontend Transport; Tue, 27 Oct 2020 13:41:21 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09RIfKLB093829;
+	Tue, 27 Oct 2020 13:41:21 -0500
+From: Dan Murphy <dmurphy@ti.com>
+To: <denys@ti.com>, <meta-arago@arago-project.org>
+Date: Tue, 27 Oct 2020 13:41:15 -0500
+Message-ID: <20201027184115.23835-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <20201027040839.GS19741@beryl>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [master/dunfell PATCH] packagegroup-arago-tisdk-addons-sdk-target: Add ti-rpmsg-char dev packages
+Subject: [oe-layersetup][PATCH] oe-layer-setup: Clean up -next configs that are no longer supported
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,70 +48,104 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Oct 2020 14:40:28 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 27 Oct 2020 18:44:28 -0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi Denys,
+From: Dan Murphy <dmurphy@ti.com>
 
-On 10/26/20 11:08 PM, Denys Dmytriyenko wrote:
-> On Mon, Oct 26, 2020 at 09:48:26PM -0500, Suman Anna wrote:
->> On 10/26/20 9:45 PM, Denys Dmytriyenko wrote:
->>> On Mon, Oct 26, 2020 at 09:41:12PM -0500, Suman Anna wrote:
->>>> Add the ti-rpmsg-char dev packages to make the public headers available in
->>>> the target fileystem so that applications can be compiled natively on the
->>>> target.
->>>
->>> -sdk-target is not for the target filesystem!
->>> It is for the target sysroot in the devkit.
->>
->> Hmm, is this supposed to go into a different file or my patch description needs
->> correcting?
-> 
-> It depends on what you actually need.
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ configs/arago-morty-next-config.txt     | 14 --------------
+ configs/arago-morty-next-rel-config.txt | 14 --------------
+ configs/arago-rocko-next-config.txt     | 13 -------------
+ configs/arago-thud-next-config.txt      | 14 --------------
+ 4 files changed, 55 deletions(-)
+ delete mode 100644 configs/arago-morty-next-config.txt
+ delete mode 100644 configs/arago-morty-next-rel-config.txt
+ delete mode 100644 configs/arago-rocko-next-config.txt
+ delete mode 100644 configs/arago-thud-next-config.txt
 
-I want the files from the  ti-rpmsg-char-dev package (the public header files
-and libti_rpmsg_char.so) to be part of the FS tarball.
-
-regards
-Suman
-
-> 
-> 
->>>> Signed-off-by: Suman Anna <s-anna@ti.com>
->>>> ---
->>>>  .../packagegroup-arago-tisdk-addons-sdk-target.bb         | 8 ++++++--
->>>>  1 file changed, 6 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
->>>> index e372dd67744e..b55c79a4d4df 100644
->>>> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
->>>> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
->>>> @@ -1,6 +1,6 @@
->>>>  DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
->>>>  LICENSE = "MIT"
->>>> -PR = "r43"
->>>> +PR = "r44"
->>>>  
->>>>  PACKAGE_ARCH = "${MACHINE_ARCH}"
->>>>  
->>>> @@ -143,7 +143,11 @@ UTILS_append_dra7xx = " can-utils-dev \
->>>>                          elfutils-staticdev \
->>>>  "
->>>>  UTILS_append_k2g = " can-utils-dev"
->>>> -UTILS_append_k3 = " can-utils-dev"
->>>> +UTILS_append_k3 = "\
->>>> +	can-utils-dev \
->>>> +	ti-rpmsg-char-dev \
->>>> +	ti-rpmsg-char-staticdev \
->>>> +"
->>>>  
->>>>  EXTRA_LIBS = ""
->>>>  EXTRA_LIBS_append_ti43x = "\
->>>> -- 
->>>> 2.28.0
->>>>
->>
+diff --git a/configs/arago-morty-next-config.txt b/configs/arago-morty-next-config.txt
+deleted file mode 100644
+index a8553522860d..000000000000
+--- a/configs/arago-morty-next-config.txt
++++ /dev/null
+@@ -1,14 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,1.32,HEAD,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,morty-next,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
+-meta-openamp,git://github.com/OpenAMP/meta-openamp.git,morty,HEAD,layers=
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
+-meta-ti,git://git.yoctoproject.org/meta-ti,morty-next,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,morty,HEAD,layers=meta-linaro-toolchain:meta-optee
+-oe-core,git://git.openembedded.org/openembedded-core,morty,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/arago-morty-next-rel-config.txt b/configs/arago-morty-next-rel-config.txt
+deleted file mode 100644
+index dfd6f473b672..000000000000
+--- a/configs/arago-morty-next-rel-config.txt
++++ /dev/null
+@@ -1,14 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,1.32,HEAD,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,morty-next-rel,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
+-meta-openamp,git://github.com/OpenAMP/meta-openamp.git,morty,HEAD,layers=
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
+-meta-ti,git://git.yoctoproject.org/meta-ti,morty-next-rel,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,morty,HEAD,layers=meta-linaro-toolchain:meta-optee
+-oe-core,git://git.openembedded.org/openembedded-core,morty,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/arago-rocko-next-config.txt b/configs/arago-rocko-next-config.txt
+deleted file mode 100644
+index 01b1c66442ea..000000000000
+--- a/configs/arago-rocko-next-config.txt
++++ /dev/null
+@@ -1,13 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,1.36,HEAD,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,rocko-next,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,rocko,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,rocko,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome
+-meta-ti,git://git.yoctoproject.org/meta-ti,rocko-next,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,rocko,HEAD,layers=meta-linaro-toolchain:meta-optee
+-oe-core,git://git.openembedded.org/openembedded-core,rocko,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/arago-thud-next-config.txt b/configs/arago-thud-next-config.txt
+deleted file mode 100644
+index 5c930b1dab54..000000000000
+--- a/configs/arago-thud-next-config.txt
++++ /dev/null
+@@ -1,14 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,1.40,HEAD
+-meta-arago,git://arago-project.org/git/meta-arago.git,thud-next,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,thud,HEAD,layers=
+-meta-virtualization,git://git.yoctoproject.org/meta-virtualization,thud,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,thud,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+-meta-ti,git://git.yoctoproject.org/meta-ti,thud-next,HEAD,layers=
+-meta-linaro,http://git.linaro.org/openembedded/meta-linaro.git,thud,615ea7561b844a3867cee4299d83d605c10b02ab,layers=meta-linaro-toolchain:meta-optee
+-oe-core,git://git.openembedded.org/openembedded-core,thud,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+-- 
+2.28.0.585.ge1cfff676549
 
 
