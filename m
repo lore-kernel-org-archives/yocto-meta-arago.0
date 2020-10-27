@@ -1,45 +1,48 @@
-Return-Path: <nikhil.nd@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id CBA5A52986
+Return-Path: <s-anna@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id ED44852986
 	for <meta-arago@arago-project.org>;
-	Tue, 27 Oct 2020 10:14:36 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09RABUnO001222
-	for <meta-arago@arago-project.org>; Tue, 27 Oct 2020 05:11:30 -0500
+	Tue, 27 Oct 2020 14:40:27 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09REbLnw095711
+	for <meta-arago@arago-project.org>; Tue, 27 Oct 2020 09:37:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1603793490;
-	bh=1nEmg4PZD9e9kJg2XfFbyzCJKDpDJHTOGkFGgGf5h0E=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=WFCIDDf7Nd+1Skac4RNYIzgIUQjuI1owGNkA3AyWNO+P2S5nd2qI0943y0pMvZcjv
-	o3S8EGLaJrFBXFbq5675cLae7QxwuojGWCJ4Yn0o4kDxtcxvMH8bTqfK8puaDu+2/w
-	MVGOpyYN3etYA/r1jW7XJ/Dop6Oz9uOxLtr05vcA=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09RABUZU113948
+	s=ti-com-17Q1; t=1603809441;
+	bh=V5I5RZH0xI+d2OQbSiVBsTvoFDIiTz2tNYiAQ82MPFU=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=FY6OK5b6pVY+4H4ALJ13A52eOHvfl3Hq8LkqmPlQIoHPv7J1SxzJGA3Lh4NtG7Q4o
+	OtKEd9F1YjQM7Mw+sQ0BVhE82MQkZ86LdR9tqeWyQWTE1b1d6gv5y4UBKkV/1uDlLM
+	yce1w/1laFAZz6wOOozMzb24wauGwuau2pwasv6E=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09REbLOu129234
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 27 Oct 2020 05:11:30 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 27 Oct 2020 09:37:21 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Tue, 27 Oct 2020 05:11:30 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 27 Oct 2020 09:37:21 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Tue, 27 Oct 2020 05:11:30 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09RABSi6058739;
-	Tue, 27 Oct 2020 05:11:29 -0500
-Date: Tue, 27 Oct 2020 15:41:28 +0530
-From: Nikhil Devshatwar <nikhil.nd@ti.com>
-To: Dan Murphy <dmurphy@ti.com>
-Message-ID: <20201027101128.p2ub37j5ycztmzm6@NiksLab>
-References: <20201026155125.31513-1-nikhil.nd@ti.com>
-	<1cfdbbf2-80e3-29b6-02f0-c6ef9b332168@ti.com>
+	Frontend Transport; Tue, 27 Oct 2020 09:37:21 -0500
+Received: from [10.250.64.251] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09REbI0H083343;
+	Tue, 27 Oct 2020 09:37:19 -0500
+To: Denys Dmytriyenko <denys@ti.com>
+References: <20201027024112.5330-1-s-anna@ti.com>
+	<20201027024533.GR19741@beryl>
+	<21098998-f191-b9f0-79af-26b1045c6a54@ti.com>
+	<20201027040839.GS19741@beryl>
+From: Suman Anna <s-anna@ti.com>
+Message-ID: <39ea11fd-e4bf-3133-b280-ece903a9b9f8@ti.com>
+Date: Tue, 27 Oct 2020 09:37:18 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+	Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <1cfdbbf2-80e3-29b6-02f0-c6ef9b332168@ti.com>
-User-Agent: NeoMutt/20171215
+In-Reply-To: <20201027040839.GS19741@beryl>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org, aparnab@ti.com
-Subject: Re: [dunfell PATCH 1/2] websocketd: Add new recipe
+Cc: meta-arago@arago-project.org
+Subject: Re: [master/dunfell PATCH] packagegroup-arago-tisdk-addons-sdk-target: Add ti-rpmsg-char dev packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,57 +55,70 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Oct 2020 10:14:37 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 27 Oct 2020 14:40:28 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-On 11:09-20201026, Dan Murphy wrote:
-> Nikhil
-> 
-> On 10/26/20 10:51 AM, Nikhil Devshatwar wrote:
-> > websocketd is an application which allows to redirect output of
-> > command line applications via a websocket so that web pages can
-> > interact with them.
-> > 
-> > This is very useful for visualizing statistics information on
-> > host machine browser.
-> > 
-> > Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
-> > ---
-> >   .../recipes-devtools/websocketd/websocketd.bb    | 16 ++++++++++++++++
-> >   1 file changed, 16 insertions(+)
-> >   create mode 100644 meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
-> > 
-> > diff --git a/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb b/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
-> > new file mode 100644
-> > index 00000000..44f549ee
-> > --- /dev/null
-> > +++ b/meta-arago-extras/recipes-devtools/websocketd/websocketd.bb
-> > @@ -0,0 +1,16 @@
-> > +SUMMARY = "Application for routing native applications via websockets"
-> > +HOMEPAGE = "http://websocketd.com/"
-> > +
-> > +LICENSE = "BSD-2-Clause"
-> > +LIC_FILES_CHKSUM = "file://LICENSE;md5=a14d7befdbee1290ac5c472cd85d66f2"
-> > +
-> > +PV = "0.3.0"
-> 0.3.1 is available
-> > +SRC_URI = "https://github.com/joewalnes/websocketd/releases/download/v${PV}/websocketd-${PV}-linux_arm64.zip"
-> 
-> Is this valid for ARM32? Does this build for am3 or am4?
-> 
-> I see websocketd-0.3.1-linux_arm.zip available for 32 bit
+Hi Denys,
 
-This is planned to be supported only for K3 platforms.
-I haven't run it on any arm32 platforms.
-Should I add a compatible machine here and in the statcol recipe as well?
+On 10/26/20 11:08 PM, Denys Dmytriyenko wrote:
+> On Mon, Oct 26, 2020 at 09:48:26PM -0500, Suman Anna wrote:
+>> On 10/26/20 9:45 PM, Denys Dmytriyenko wrote:
+>>> On Mon, Oct 26, 2020 at 09:41:12PM -0500, Suman Anna wrote:
+>>>> Add the ti-rpmsg-char dev packages to make the public headers available in
+>>>> the target fileystem so that applications can be compiled natively on the
+>>>> target.
+>>>
+>>> -sdk-target is not for the target filesystem!
+>>> It is for the target sysroot in the devkit.
+>>
+>> Hmm, is this supposed to go into a different file or my patch description needs
+>> correcting?
 > 
-> > +SRC_URI[md5sum] = "968c1ce4ed4fe5f86817f2533f5d3004"
-> > +
-> > +S = "${WORKDIR}"
-> > +
-> > +do_install() {
-> > +	install -d ${D}/${bindir}
-> > +	install -m 0755 ${S}/websocketd ${D}${bindir}/
-> > +}
+> It depends on what you actually need.
+
+I want the files from the  ti-rpmsg-char-dev package (the public header files
+and libti_rpmsg_char.so) to be part of the FS tarball.
+
+regards
+Suman
+
+> 
+> 
+>>>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>>>> ---
+>>>>  .../packagegroup-arago-tisdk-addons-sdk-target.bb         | 8 ++++++--
+>>>>  1 file changed, 6 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+>>>> index e372dd67744e..b55c79a4d4df 100644
+>>>> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+>>>> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+>>>> @@ -1,6 +1,6 @@
+>>>>  DESCRIPTION = "Task to install headers and libraries related to addons into the SDK"
+>>>>  LICENSE = "MIT"
+>>>> -PR = "r43"
+>>>> +PR = "r44"
+>>>>  
+>>>>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>>>>  
+>>>> @@ -143,7 +143,11 @@ UTILS_append_dra7xx = " can-utils-dev \
+>>>>                          elfutils-staticdev \
+>>>>  "
+>>>>  UTILS_append_k2g = " can-utils-dev"
+>>>> -UTILS_append_k3 = " can-utils-dev"
+>>>> +UTILS_append_k3 = "\
+>>>> +	can-utils-dev \
+>>>> +	ti-rpmsg-char-dev \
+>>>> +	ti-rpmsg-char-staticdev \
+>>>> +"
+>>>>  
+>>>>  EXTRA_LIBS = ""
+>>>>  EXTRA_LIBS_append_ti43x = "\
+>>>> -- 
+>>>> 2.28.0
+>>>>
+>>
+
 
