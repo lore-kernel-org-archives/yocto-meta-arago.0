@@ -1,43 +1,43 @@
-Return-Path: <dmurphy@ti.com>
+Return-Path: <nikhil.nd@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id BDE46520EA
+	by arago-project.org (Postfix) with ESMTPS id CA4D4520EA
 	for <meta-arago@arago-project.org>;
-	Thu, 29 Oct 2020 16:39:53 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09TGakv7027242;
-	Thu, 29 Oct 2020 11:36:46 -0500
+	Thu, 29 Oct 2020 16:42:10 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 09TGd4lr028036;
+	Thu, 29 Oct 2020 11:39:04 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1603989406;
-	bh=jrTR4A9MDZPoA+BNqyNGDQUkbaSkn3KxIs75vXIZKEA=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=Qmiu7++hB4uVNameoNmzYvr/fWwaCtG+lF/AaoiLd4B7u3kzK8pivOGmMKPSOw1ZO
-	5KMD54a0U9oxK0O52p3Pbt4WdiXwBaR+IGPIfzPiprRYggBVJNowj53grPPlmchBmt
-	OBOD8acdqRj7gzn2OYxhdQHf7hlZAf4jKiGBohWg=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09TGakrB033802
+	s=ti-com-17Q1; t=1603989544;
+	bh=9LUGit0a+zI1WIWwkwREjBjRwmARTWs3rhXhGFVcCVw=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=gKGdj6wUhrGiBbQhmsq7djTrm2o/4jR8iOfmB70c6SQ+0gSUe2nLQxnV9jPduAj7L
+	c1uMWDknNdUxJe2VA92/+282eUZEfgctm9tDN2Xk+ZRe3JaWigtr6YRkDDjr5KRt1O
+	2p9KP3kkppW3rVxek1F0CUqy7H8N7uUsZ7x3ZUY8=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 09TGd3lZ023612
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 29 Oct 2020 11:36:46 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 29 Oct 2020 11:39:04 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 29 Oct 2020 11:36:46 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 29 Oct 2020 11:39:03 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 29 Oct 2020 11:36:46 -0500
-Received: from [10.250.70.26] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09TGaj1P084260;
-	Thu, 29 Oct 2020 11:36:45 -0500
-To: Denys Dmytriyenko <denis@denix.org>, <meta-arago@arago-project.org>
+	Frontend Transport; Thu, 29 Oct 2020 11:39:03 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 09TGd2nw043328;
+	Thu, 29 Oct 2020 11:39:03 -0500
+Date: Thu, 29 Oct 2020 22:09:01 +0530
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>
+Message-ID: <20201029163901.fhuq3a7pnbjngy4i@NiksLab>
 References: <1603927657-53672-1-git-send-email-denis@denix.org>
-From: Dan Murphy <dmurphy@ti.com>
-Message-ID: <b33249a6-81c7-e308-b609-4e939bb5a8d3@ti.com>
-Date: Thu, 29 Oct 2020 11:36:45 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.10.0
 MIME-Version: 1.0
 In-Reply-To: <1603927657-53672-1-git-send-email-denis@denix.org>
+User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
 Subject: Re: [dunfell/master][PATCH v4] websocketd: Add new recipe
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
@@ -51,32 +51,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Oct 2020 16:39:54 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Thu, 29 Oct 2020 16:42:11 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Nikhil
-
-On 10/28/20 6:27 PM, Denys Dmytriyenko wrote:
+On 19:27-20201028, Denys Dmytriyenko wrote:
 > From: Nikhil Devshatwar <nikhil.nd@ti.com>
->
+> 
 > websocketd is an application which allows to redirect output of
 > command line applications via a websocket so that web pages can
 > interact with them.
->
+> 
 > This is very useful for visualizing statistics information on
 > host machine browser.
->
+> 
 > Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
 > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 > ---
 > v4 - export http_proxy with explanation
->
->   .../recipes-devtools/websocketd/websocketd_0.3.1.bb    | 18 ++++++++++++++++++
->   1 file changed, 18 insertions(+)
->   create mode 100644 meta-arago-extras/recipes-devtools/websocketd/websocketd_0.3.1.bb
->
+
+Thank you.
+Tested-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+
+with am65xx-evm and dra7xx-evm
+
+> 
+>  .../recipes-devtools/websocketd/websocketd_0.3.1.bb    | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-devtools/websocketd/websocketd_0.3.1.bb
+> 
 > diff --git a/meta-arago-extras/recipes-devtools/websocketd/websocketd_0.3.1.bb b/meta-arago-extras/recipes-devtools/websocketd/websocketd_0.3.1.bb
 > new file mode 100644
 > index 0000000..d2f3387
@@ -101,13 +104,7 @@ On 10/28/20 6:27 PM, Denys Dmytriyenko wrote:
 > +
 > +# Development package contains all the examples in different languages
 > +INSANE_SKIP_${PN}-dev = "file-rdeps"
-
-This looks fine to me but I think we should add the version we are 
-checking out.
-
-I mean this repo has not been updated in years but we should add the 
-version so we know it is v0.3.1.
-
-Dan
-
+> -- 
+> 2.7.4
+> 
 
