@@ -1,43 +1,45 @@
-Return-Path: <dmurphy@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id C096D529C9
+Return-Path: <s-anna@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTPS id C243A529C9
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Nov 2020 16:46:55 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A3GhlqY048952
-	for <meta-arago@arago-project.org>; Tue, 3 Nov 2020 10:43:47 -0600
+	Tue,  3 Nov 2020 17:08:45 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A3H5bvv066305
+	for <meta-arago@arago-project.org>; Tue, 3 Nov 2020 11:05:37 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1604421827;
-	bh=5bxFSnu1dVLAYuoSKdrhZ2OUrk/afJXvpxk6Jhdqstk=;
+	s=ti-com-17Q1; t=1604423137;
+	bh=1Hm/eLqqjY6/x7pQz/h+jBOtJ/1gv+tfHbNf9Ce39go=;
 	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=fUCLtq5bacbCyhOUJ0MtE+Q61WY2cd0VyeiyutSq5SZ3SDuwYnNJ0dsfOy/AHHjI5
-	XQKV/LaIC1wGWMKDs8q+RKeWxWWZBm7qa9OEGrZSF6XlQPJf04X+EzEKkJkxSyC6E0
-	VgWtSYWUWVIEzKd6Z6YwGx6EFlqie3ouUprz+7uA=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A3Ghlbs102768
+	b=LSpCfMN4FpCN4GBAesMzpH84B8Iub0SNBFzSK8CdHYPOrBIlgd33LtSU7M5rumZ25
+	7tuDEAKu5Fkuwt6p0pNNCxH2jIVvJ/yc2zhOS4o+o2PjMvFtnpA8YwERLpBsP/asBE
+	aRC6/Gqsp9YER1uPAl9isJWdSsUn+NYLAusIVz0k=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A3H5bOJ033668
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 3 Nov 2020 10:43:47 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 3 Nov 2020 11:05:37 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Tue, 3 Nov 2020 10:43:47 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 3 Nov 2020 11:05:37 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Tue, 3 Nov 2020 10:43:47 -0600
-Received: from [10.250.36.55] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A3GhlFV101267;
-	Tue, 3 Nov 2020 10:43:47 -0600
-To: Nikhil Devshatwar <nikhil.nd@ti.com>, <denys@ti.com>, <aparnab@ti.com>
+	Frontend Transport; Tue, 3 Nov 2020 11:05:37 -0600
+Received: from [10.250.64.255] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A3H5amg121904;
+	Tue, 3 Nov 2020 11:05:36 -0600
+To: Dan Murphy <dmurphy@ti.com>, Nikhil Devshatwar <nikhil.nd@ti.com>,
+	<denys@ti.com>, <aparnab@ti.com>
 References: <20201102143757.12208-1-nikhil.nd@ti.com>
 	<20201103164227.5st3eaqx2f36mmoh@NiksLab>
-From: Dan Murphy <dmurphy@ti.com>
-Message-ID: <b9d31a4f-a3c8-d7db-8239-1383283a6415@ti.com>
-Date: Tue, 3 Nov 2020 10:43:42 -0600
+	<b9d31a4f-a3c8-d7db-8239-1383283a6415@ti.com>
+From: Suman Anna <s-anna@ti.com>
+Message-ID: <dd1ed257-6b69-0203-c9a8-e6b27843e575@ti.com>
+Date: Tue, 3 Nov 2020 11:05:36 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
 	Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201103164227.5st3eaqx2f36mmoh@NiksLab>
+In-Reply-To: <b9d31a4f-a3c8-d7db-8239-1383283a6415@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
 Subject: Re: [dunfell PATCH] packagegroup: arago-tisdk-addons: Include statcol for k3 devices
@@ -53,25 +55,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Nov 2020 16:46:56 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 03 Nov 2020 17:08:46 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Nikhil
+On 11/3/20 10:43 AM, Dan Murphy wrote:
+> Nikhil
+> 
+> On 11/3/20 10:42 AM, Nikhil Devshatwar wrote:
+>> On 20:07-20201102, Nikhil Devshatwar wrote:
+>>> statcol is an application which collects the statistical data from
+>>> various sources and allows to visualize it on the host machine using
+>>> web sockets.
+>>> Include this in the filesystem via arago-tisdk-addons packagegroup.
+>>>
+>>> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+>> Hi Dan, This is required for 7.1 release.
+> 
+> What makes this required for the 7.1 release?
 
-On 11/3/20 10:42 AM, Nikhil Devshatwar wrote:
-> On 20:07-20201102, Nikhil Devshatwar wrote:
->> statcol is an application which collects the statistical data from
->> various sources and allows to visualize it on the host machine using
->> web sockets.
->> Include this in the filesystem via arago-tisdk-addons packagegroup.
->>
->> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
-> Hi Dan, This is required for 7.1 release.
+It is a committed requirement, and was dependent on the ti-rpmsg-char stuff.
 
-What makes this required for the 7.1 release?
-
-Dan
-
+regards
+Suman
 
