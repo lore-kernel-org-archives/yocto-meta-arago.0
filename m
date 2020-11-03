@@ -1,41 +1,43 @@
-Return-Path: <nikhil.nd@ti.com>
+Return-Path: <dmurphy@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTPS id C8185529C9
+	by arago-project.org (Postfix) with ESMTPS id C096D529C9
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Nov 2020 16:45:37 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A3GgTbf048591
-	for <meta-arago@arago-project.org>; Tue, 3 Nov 2020 10:42:29 -0600
+	Tue,  3 Nov 2020 16:46:55 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A3GhlqY048952
+	for <meta-arago@arago-project.org>; Tue, 3 Nov 2020 10:43:47 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1604421749;
-	bh=uQmLv0e37YV6Omqi3Pq9aCZB6K0tDCm0VLr1PoLLpd4=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=cwtMNFSRHR8FS2++Gl2YDLKH0q5UiVY7R3NlzD6gCKhweEEe6f1Z60bSfjzlHJW/0
-	VrTGPyQbOcD+HsehZtNcveIeyIsikAnAiAgn1UKaep8Pwbj9gkefMOTL8CnZggQhCf
-	kuAd+L6k+9V8WuACt8hUsObOe2K0FVR3B3Qh4ua8=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A3GgTXR130328
+	s=ti-com-17Q1; t=1604421827;
+	bh=5bxFSnu1dVLAYuoSKdrhZ2OUrk/afJXvpxk6Jhdqstk=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=fUCLtq5bacbCyhOUJ0MtE+Q61WY2cd0VyeiyutSq5SZ3SDuwYnNJ0dsfOy/AHHjI5
+	XQKV/LaIC1wGWMKDs8q+RKeWxWWZBm7qa9OEGrZSF6XlQPJf04X+EzEKkJkxSyC6E0
+	VgWtSYWUWVIEzKd6Z6YwGx6EFlqie3ouUprz+7uA=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A3Ghlbs102768
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 3 Nov 2020 10:42:29 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 3 Nov 2020 10:43:47 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Tue, 3 Nov 2020 10:42:29 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 3 Nov 2020 10:43:47 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Tue, 3 Nov 2020 10:42:29 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A3GgRAe128558;
-	Tue, 3 Nov 2020 10:42:28 -0600
-Date: Tue, 3 Nov 2020 22:12:27 +0530
-From: Nikhil Devshatwar <nikhil.nd@ti.com>
-To: <denys@ti.com>, <dmurphy@ti.com>, <aparnab@ti.com>
-Message-ID: <20201103164227.5st3eaqx2f36mmoh@NiksLab>
+	Frontend Transport; Tue, 3 Nov 2020 10:43:47 -0600
+Received: from [10.250.36.55] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A3GhlFV101267;
+	Tue, 3 Nov 2020 10:43:47 -0600
+To: Nikhil Devshatwar <nikhil.nd@ti.com>, <denys@ti.com>, <aparnab@ti.com>
 References: <20201102143757.12208-1-nikhil.nd@ti.com>
+	<20201103164227.5st3eaqx2f36mmoh@NiksLab>
+From: Dan Murphy <dmurphy@ti.com>
+Message-ID: <b9d31a4f-a3c8-d7db-8239-1383283a6415@ti.com>
+Date: Tue, 3 Nov 2020 10:43:42 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+	Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201102143757.12208-1-nikhil.nd@ti.com>
-User-Agent: NeoMutt/20171215
+In-Reply-To: <20201103164227.5st3eaqx2f36mmoh@NiksLab>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
 Subject: Re: [dunfell PATCH] packagegroup: arago-tisdk-addons: Include statcol for k3 devices
@@ -51,41 +53,25 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Nov 2020 16:45:38 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 03 Nov 2020 16:46:56 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-On 20:07-20201102, Nikhil Devshatwar wrote:
-> statcol is an application which collects the statistical data from
-> various sources and allows to visualize it on the host machine using
-> web sockets.
-> Include this in the filesystem via arago-tisdk-addons packagegroup.
-> 
-> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+Nikhil
 
-Hi Dan, This is required for 7.1 release.
-Please include this before tagging.
+On 11/3/20 10:42 AM, Nikhil Devshatwar wrote:
+> On 20:07-20201102, Nikhil Devshatwar wrote:
+>> statcol is an application which collects the statistical data from
+>> various sources and allows to visualize it on the host machine using
+>> web sockets.
+>> Include this in the filesystem via arago-tisdk-addons packagegroup.
+>>
+>> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+> Hi Dan, This is required for 7.1 release.
 
-Regards,
-Nikhil D
+What makes this required for the 7.1 release?
 
-> ---
->  .../packagegroups/packagegroup-arago-tisdk-addons.bb             | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> index adfd45f2..c4260c5a 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-> @@ -74,6 +74,7 @@ UTILS_append_k3 = " mmc-utils \
->                      jailhouse \
->                      ti-rpmsg-char \
->                      ti-rpmsg-char-examples \
-> +                    statcol \
->  "
->  
->  UTILS_append_am65xx = " ti-rtos-firmware pru-icss pru-pwm-fw"
-> -- 
-> 2.17.1
-> 
+Dan
+
 
