@@ -1,47 +1,54 @@
-Return-Path: <pbarker@konsulko.com>
-Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com
-	[209.85.221.65])
-	by arago-project.org (Postfix) with ESMTPS id 6FAAC52985
+Return-Path: <l-weaver@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 3105A529D8
 	for <meta-arago@arago-project.org>;
-	Thu,  5 Nov 2020 10:41:55 +0000 (UTC)
-Received: by mail-wr1-f65.google.com with SMTP id g12so1137640wrp.10
-	for <meta-arago@arago-project.org>;
-	Thu, 05 Nov 2020 02:38:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=ms4RZr1Tsab42FbVhR+02OLDsvhbwvq8DFhd8Ytdt4M=;
-	b=OuI5G1u0zj55+ksKE/xKsF/W2dwnvkVJyJyT/L5w4gY0WGVJ8+fJy9WEyJLzzpcAxd
-	A85YCbeGXhVOVK35SXPZ55kUBh2/YsSEabnFbTt5vbcY+rnxtwox+6GPUt2QDLyG+/1J
-	cYEFnCFgJCLbJSMdGodF61aYQjUj6mnQfg/5g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=ms4RZr1Tsab42FbVhR+02OLDsvhbwvq8DFhd8Ytdt4M=;
-	b=CG7XdcxXyL5K06OYCJppjQNU8SP4PEN386EPRVgKBPfn+JGhBNZm55Bp9Q8mwMn29Y
-	GscWpjvQtFjUy/1LdIkBCmwiGnAoM7CY0O3YlQkEzDwK0FXo1VWgcS+3Y4+b10EPxff9
-	+/gUac0vaMyReubE7yUkIEKPUSKp3RKOa0HUddmilfpiT8UlUS8oLlA68ukrIz2Aw7Fo
-	Y5i6a91cxkuXTOqXGKayRkWHifIizb4LU4oM2oPm26znXVElxq2pEYkcXUmPx3MJOZWA
-	UC8YqeQwsMddWrMxg0a9yq4B8/KA00z5FF6KgEP4el6LJ8j3LSA3+v8Wte1TXJTXmBzx
-	dEng==
-X-Gm-Message-State: AOAM532NmKcia0ddLtK1I+ZcQr0X9W2b3AUrqsI8Ge3SoeSfU0mDlE7T
-	fIeqb7DdD1cuNFjPcsp3jVkyZFRBtUkzyQ==
-X-Google-Smtp-Source: ABdhPJxKk5UsfcjTnLtJMB/VaCYl9VKxzbcS/pEQAwMMe27psubSEAb+U9//lKcCd0sSZTWQ00buNw==
-X-Received: by 2002:adf:8bcc:: with SMTP id w12mr2283269wra.157.1604572725976; 
-	Thu, 05 Nov 2020 02:38:45 -0800 (PST)
-Received: from alpha.home.b5net.uk
-	(cpc76132-clif11-2-0-cust249.12-4.cable.virginm.net. [80.7.160.250])
-	by smtp.gmail.com with ESMTPSA id h8sm1787217wro.14.2020.11.05.02.38.45
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Thu, 05 Nov 2020 02:38:45 -0800 (PST)
-From: Paul Barker <pbarker@konsulko.com>
-To: meta-arago@arago-project.org
-Date: Thu,  5 Nov 2020 10:38:16 +0000
-Message-Id: <20201105103816.2865115-1-pbarker@konsulko.com>
-X-Mailer: git-send-email 2.29.2
+	Thu,  5 Nov 2020 18:35:06 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A5IVvO4074271
+	for <meta-arago@arago-project.org>; Thu, 5 Nov 2020 12:31:57 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1604601117;
+	bh=zg5Vck1ONpDhn+cgFtFMrYaW9aI0+iPDdlaWa9Obex4=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=RE/gD6z2USZma0rjmd0gUJuSN8OO50TX+t+chjLlBYWJfMLVwBrrrE38VOJmdHsXi
+	SR61eMgbmnZKiTQ+86oXKYood1bqCaAAPcUMxHlbezo4B4o3A9yWQjiW277iijVWjm
+	muHibO/jalaJPh686OrTUeVk+XRySE24LP/uF1Yg=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A5IVvln073225
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Thu, 5 Nov 2020 12:31:57 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Thu, 5 Nov 2020 12:31:56 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Thu, 5 Nov 2020 12:31:56 -0600
+Received: from [10.250.58.214] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A5IVusj078412;
+	Thu, 5 Nov 2020 12:31:56 -0600
+To: Suman Anna <s-anna@ti.com>, Denys Dmytriyenko <denys@ti.com>
+References: <20201027024112.5330-1-s-anna@ti.com>
+	<20201027024533.GR19741@beryl>
+	<21098998-f191-b9f0-79af-26b1045c6a54@ti.com>
+	<20201027040839.GS19741@beryl>
+	<39ea11fd-e4bf-3133-b280-ece903a9b9f8@ti.com>
+	<20201027191149.GY19741@beryl>
+	<4469fbf2-fe4f-df39-351c-318411f9e7ed@ti.com>
+	<cac59c6e-b76b-6572-f8ad-a84d685a86d0@ti.com>
+	<20201103000508.GA3224@beryl>
+	<451e7d9c-e9a9-7744-680d-59446e8907bb@ti.com>
+From: "Weaver, Lucas" <l-weaver@ti.com>
+Message-ID: <c14ddf42-e574-96ab-0077-044959659b89@ti.com>
+Date: Thu, 5 Nov 2020 12:31:56 -0600
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+	Thunderbird/78.4.0
 MIME-Version: 1.0
-Subject: [master/dunfell PATCH] matrix-gui-pm-demos: Allow empty package
+In-Reply-To: <451e7d9c-e9a9-7744-680d-59446e8907bb@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: Re: [master/dunfell PATCH] packagegroup-arago-tisdk-addons-sdk-target: Add ti-rpmsg-char dev packages
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,32 +61,133 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Nov 2020 10:41:55 -0000
+X-List-Received-Date: Thu, 05 Nov 2020 18:35:06 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 
-The matrix-gui-pm-demos recipe splits its binaries into several
-subpackages leaving the default package empty. The dependencies for the
-default package are set so it makes sense to allow this empty package to
-be created.
 
-Signed-off-by: Paul Barker <pbarker@konsulko.com>
----
- meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb
-index 0116f5ea..a9ebb84f 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb
-@@ -10,6 +10,7 @@ S = "${WORKDIR}/git/power_apps"
- 
- # Make sure power submenu and app images has been installed
- RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-power matrix-gui-generic-pm"
-+ALLOW_EMPTY_${PN} = "1"
- 
- # Break out the individual files into separate packages.  That way only the
- # PM features supported for each device can be installed.  Prepend the list
--- 
-2.29.0
+On 11/2/2020 6:14 PM, Suman Anna wrote:
+> On 11/2/20 6:05 PM, Denys Dmytriyenko wrote:
+>> On Mon, Nov 02, 2020 at 04:53:56PM -0600, Suman Anna wrote:
+>>> Hi Dan,
+>>>
+>>> On 11/2/20 4:18 PM, Dan Murphy wrote:
+>>>> Suman
+>>>>
+>>>> On 10/27/20 2:11 PM, Denys Dmytriyenko wrote:
+>>>>> On Tue, Oct 27, 2020 at 09:37:18AM -0500, Suman Anna wrote:
+>>>>>> Hi Denys,
+>>>>>>
+>>>>>> On 10/26/20 11:08 PM, Denys Dmytriyenko wrote:
+>>>>>>> On Mon, Oct 26, 2020 at 09:48:26PM -0500, Suman Anna wrote:
+>>>>>>>> On 10/26/20 9:45 PM, Denys Dmytriyenko wrote:
+>>>>>>>>> On Mon, Oct 26, 2020 at 09:41:12PM -0500, Suman Anna wrote:
+>>>>>>>>>> Add the ti-rpmsg-char dev packages to make the public headers available in
+>>>>>>>>>> the target fileystem so that applications can be compiled natively on the
+>>>>>>>>>> target.
+>>>>>>>>> -sdk-target is not for the target filesystem!
+>>>>>>>>> It is for the target sysroot in the devkit.
+>>>>>>>> Hmm, is this supposed to go into a different file or my patch description
+>>>>>>>> needs
+>>>>>>>> correcting?
+>>>>>>> It depends on what you actually need.
+>>>>>> I want the files from the  ti-rpmsg-char-dev package (the public header files
+>>>>>> and libti_rpmsg_char.so) to be part of the FS tarball.
+>>>>> Then you need to pull corresponding -dev package into the packagegroup that
+>>>>> builds up the rootfs.
+>>>>>
+>>>>> At least in Arago, I kept the namespace convention that -sdk-target and
+>>>>> -sdk-host suffixes are used to identify packagegroups for the devkit -
+>>>>> cross-compile development environment on the host, target and host sysroots.
+>>>>>
+>>>>>> regards
+>>>>>> Suman
+>>>>>>
+>>>>>>>
+>>>>>>>>>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>>>>>>>>>> ---
+>>>>>>>>>>    .../packagegroup-arago-tisdk-addons-sdk-target.bb         | 8 ++++++--
+>>>>>>>>>>    1 file changed, 6 insertions(+), 2 deletions(-)
+>>>>>>>>>>
+>>>>>>>>>> diff --git
+>>>>>>>>>> a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+>>>>>>>>>> b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+>>>>>>>>>>
+>>>>>>>>>> index e372dd67744e..b55c79a4d4df 100644
+>>>>>>>>>> ---
+>>>>>>>>>> a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+>>>>>>>>>>
+>>>>>>>>>> +++
+>>>>>>>>>> b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-target.bb
+>>>>>>>>>>
+>>>>>>>>>> @@ -1,6 +1,6 @@
+>>>>>>>>>>    DESCRIPTION = "Task to install headers and libraries related to addons
+>>>>>>>>>> into the SDK"
+>>>>>>>>>>    LICENSE = "MIT"
+>>>>>>>>>> -PR = "r43"
+>>>>>>>>>> +PR = "r44"
+>>>>>>>>>>      PACKAGE_ARCH = "${MACHINE_ARCH}"
+>>>>>>>>>>    @@ -143,7 +143,11 @@ UTILS_append_dra7xx = " can-utils-dev \
+>>>>>>>>>>                            elfutils-staticdev \
+>>>>>>>>>>    "
+>>>>>>>>>>    UTILS_append_k2g = " can-utils-dev"
+>>>>>>>>>> -UTILS_append_k3 = " can-utils-dev"
+>>>>>>>>>> +UTILS_append_k3 = "\
+>>>>>>>>>> +    can-utils-dev \
+>>>>>>>>>> +    ti-rpmsg-char-dev \
+>>>>>>>>>> +    ti-rpmsg-char-staticdev \
+>>>>>>>>>> +"
+>>>>>>>>>>      EXTRA_LIBS = ""
+>>>>>>>>>>    EXTRA_LIBS_append_ti43x = "\
+>>>>>>>>>> -- 
+>>>>>>>>>> 2.28.0
+>>>>>>>>>>
+>>>>
+>>>> Does this need to go in or are you going to send in v2?
+>>>
+>>> I am confused by the terminology above, I am not sure if I need to move this to
+>>> the packagegroup-arago-tisdk-addons.bb file, or if this is just a question of
+>>> writing the proper patch description. I cannot verify myself until I fix my OE
+>>> build issues.
+>>
+>> Suman,
+>>
+>> If you do need these development packages on the target rootfs, then you do
+>> need to add them to packagegroup-arago-tisdk-addons.bb
+>>
+>> But if you need them to be part of the devkit (cross-compile development
+>> environment on the host), then you need to add to the corresponding
+>> packagegroup-arago-tisdk-addons-sdk-target.bb
+>>
+>> In other words, do you expect someone to compile natively on the target
+>> against your library and headers? Then it's the first one. But, enabling
+>> native development environment on the target should not be decided lightly.
+>> As a matter of fact, for 7.0 we removed this from the default rootfs,
+>> expecting users to be able to add it optionally from package feeds. Though
+>> public package feeds were not ready and got postponed...
+>>
+>> So, my point is - what are you trying to achieve here? Why do you need -dev
+>> package on the target filesystem? If you are trying to enable other developers
+>> to build apps against your library, could they just write a recipe? Is it
+>> really necessary for the default rootfs? Anyway, hopefully these questions
+>> could guide you towards the proper solution. Please let me know if you still
+>> have questions :)
+>>
+> 
+> Thanks for the explanation Denys. The ask is to be able to compile on the
+> target, believe for some Vision Apps.
+> 
+> Lucas,
+> Can you confirm/clarify the need/usage exactly?
+Suman,
 
+Sorry for the delay.  We need this for cross compiling on the host, so 
+including in the devkit should be sufficient.
+> 
+> regards
+> Suman
+> 
+> 
 
