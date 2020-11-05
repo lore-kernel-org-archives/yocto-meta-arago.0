@@ -1,48 +1,47 @@
-Return-Path: <s-anna@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id C243A529C9
+Return-Path: <pbarker@konsulko.com>
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com
+	[209.85.221.65])
+	by arago-project.org (Postfix) with ESMTPS id 6FAAC52985
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Nov 2020 17:08:45 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A3H5bvv066305
-	for <meta-arago@arago-project.org>; Tue, 3 Nov 2020 11:05:37 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1604423137;
-	bh=1Hm/eLqqjY6/x7pQz/h+jBOtJ/1gv+tfHbNf9Ce39go=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=LSpCfMN4FpCN4GBAesMzpH84B8Iub0SNBFzSK8CdHYPOrBIlgd33LtSU7M5rumZ25
-	7tuDEAKu5Fkuwt6p0pNNCxH2jIVvJ/yc2zhOS4o+o2PjMvFtnpA8YwERLpBsP/asBE
-	aRC6/Gqsp9YER1uPAl9isJWdSsUn+NYLAusIVz0k=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A3H5bOJ033668
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 3 Nov 2020 11:05:37 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Tue, 3 Nov 2020 11:05:37 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Tue, 3 Nov 2020 11:05:37 -0600
-Received: from [10.250.64.255] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A3H5amg121904;
-	Tue, 3 Nov 2020 11:05:36 -0600
-To: Dan Murphy <dmurphy@ti.com>, Nikhil Devshatwar <nikhil.nd@ti.com>,
-	<denys@ti.com>, <aparnab@ti.com>
-References: <20201102143757.12208-1-nikhil.nd@ti.com>
-	<20201103164227.5st3eaqx2f36mmoh@NiksLab>
-	<b9d31a4f-a3c8-d7db-8239-1383283a6415@ti.com>
-From: Suman Anna <s-anna@ti.com>
-Message-ID: <dd1ed257-6b69-0203-c9a8-e6b27843e575@ti.com>
-Date: Tue, 3 Nov 2020 11:05:36 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.10.0
+	Thu,  5 Nov 2020 10:41:55 +0000 (UTC)
+Received: by mail-wr1-f65.google.com with SMTP id g12so1137640wrp.10
+	for <meta-arago@arago-project.org>;
+	Thu, 05 Nov 2020 02:38:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=ms4RZr1Tsab42FbVhR+02OLDsvhbwvq8DFhd8Ytdt4M=;
+	b=OuI5G1u0zj55+ksKE/xKsF/W2dwnvkVJyJyT/L5w4gY0WGVJ8+fJy9WEyJLzzpcAxd
+	A85YCbeGXhVOVK35SXPZ55kUBh2/YsSEabnFbTt5vbcY+rnxtwox+6GPUt2QDLyG+/1J
+	cYEFnCFgJCLbJSMdGodF61aYQjUj6mnQfg/5g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=ms4RZr1Tsab42FbVhR+02OLDsvhbwvq8DFhd8Ytdt4M=;
+	b=CG7XdcxXyL5K06OYCJppjQNU8SP4PEN386EPRVgKBPfn+JGhBNZm55Bp9Q8mwMn29Y
+	GscWpjvQtFjUy/1LdIkBCmwiGnAoM7CY0O3YlQkEzDwK0FXo1VWgcS+3Y4+b10EPxff9
+	+/gUac0vaMyReubE7yUkIEKPUSKp3RKOa0HUddmilfpiT8UlUS8oLlA68ukrIz2Aw7Fo
+	Y5i6a91cxkuXTOqXGKayRkWHifIizb4LU4oM2oPm26znXVElxq2pEYkcXUmPx3MJOZWA
+	UC8YqeQwsMddWrMxg0a9yq4B8/KA00z5FF6KgEP4el6LJ8j3LSA3+v8Wte1TXJTXmBzx
+	dEng==
+X-Gm-Message-State: AOAM532NmKcia0ddLtK1I+ZcQr0X9W2b3AUrqsI8Ge3SoeSfU0mDlE7T
+	fIeqb7DdD1cuNFjPcsp3jVkyZFRBtUkzyQ==
+X-Google-Smtp-Source: ABdhPJxKk5UsfcjTnLtJMB/VaCYl9VKxzbcS/pEQAwMMe27psubSEAb+U9//lKcCd0sSZTWQ00buNw==
+X-Received: by 2002:adf:8bcc:: with SMTP id w12mr2283269wra.157.1604572725976; 
+	Thu, 05 Nov 2020 02:38:45 -0800 (PST)
+Received: from alpha.home.b5net.uk
+	(cpc76132-clif11-2-0-cust249.12-4.cable.virginm.net. [80.7.160.250])
+	by smtp.gmail.com with ESMTPSA id h8sm1787217wro.14.2020.11.05.02.38.45
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Thu, 05 Nov 2020 02:38:45 -0800 (PST)
+From: Paul Barker <pbarker@konsulko.com>
+To: meta-arago@arago-project.org
+Date: Thu,  5 Nov 2020 10:38:16 +0000
+Message-Id: <20201105103816.2865115-1-pbarker@konsulko.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <b9d31a4f-a3c8-d7db-8239-1383283a6415@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [dunfell PATCH] packagegroup: arago-tisdk-addons: Include statcol for k3 devices
+Subject: [master/dunfell PATCH] matrix-gui-pm-demos: Allow empty package
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,28 +54,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Nov 2020 17:08:46 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 05 Nov 2020 10:41:55 -0000
+Content-Transfer-Encoding: 8bit
 
-On 11/3/20 10:43 AM, Dan Murphy wrote:
-> Nikhil
-> 
-> On 11/3/20 10:42 AM, Nikhil Devshatwar wrote:
->> On 20:07-20201102, Nikhil Devshatwar wrote:
->>> statcol is an application which collects the statistical data from
->>> various sources and allows to visualize it on the host machine using
->>> web sockets.
->>> Include this in the filesystem via arago-tisdk-addons packagegroup.
->>>
->>> Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
->> Hi Dan, This is required for 7.1 release.
-> 
-> What makes this required for the 7.1 release?
+The matrix-gui-pm-demos recipe splits its binaries into several
+subpackages leaving the default package empty. The dependencies for the
+default package are set so it makes sense to allow this empty package to
+be created.
 
-It is a committed requirement, and was dependent on the ti-rpmsg-char stuff.
+Signed-off-by: Paul Barker <pbarker@konsulko.com>
+---
+ meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-regards
-Suman
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb
+index 0116f5ea..a9ebb84f 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb
+@@ -10,6 +10,7 @@ S = "${WORKDIR}/git/power_apps"
+ 
+ # Make sure power submenu and app images has been installed
+ RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-power matrix-gui-generic-pm"
++ALLOW_EMPTY_${PN} = "1"
+ 
+ # Break out the individual files into separate packages.  That way only the
+ # PM features supported for each device can be installed.  Prepend the list
+-- 
+2.29.0
+
 
