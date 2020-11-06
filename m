@@ -1,35 +1,41 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id A453A529BD
+Return-Path: <dmurphy@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTPS id 37702529CC
 	for <meta-arago@arago-project.org>;
-	Fri,  6 Nov 2020 19:59:46 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A518440AFF;
-	Fri,  6 Nov 2020 19:56:37 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id mfhCASW3CqFa; Fri,  6 Nov 2020 19:56:37 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 67D1740A89;
-	Fri,  6 Nov 2020 19:56:36 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 2E23E1744E6; Fri,  6 Nov 2020 14:56:36 -0500 (EST)
-Date: Fri, 6 Nov 2020 14:56:36 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: Dan Murphy <dmurphy@ti.com>
-Message-ID: <20201106195636.GK19155@denix.org>
-References: <20201106175807.E7BF2529D8@arago-project.org>
-	<20201106193256.GJ19155@denix.org>
-	<4abef988-e8e1-08bb-e789-2e580ce2ee18@ti.com>
+	Fri,  6 Nov 2020 21:31:27 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A6LSHuj014945
+	for <meta-arago@arago-project.org>; Fri, 6 Nov 2020 15:28:17 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1604698097;
+	bh=5dzPVWILMN3vGcPNXRMu9XIvn/K5C3N2/2z0YdlUEQU=;
+	h=From:To:CC:Subject:Date;
+	b=xwEmvq0q6iXlC+eiTR6hg5OZ5JRFdh/Z8FJUM9ODQbBerSRAH8lFs8W6e/hXSdzK9
+	+lNq+sJa22zxNR7UBuEnG3mqWoYS9h1a99UuzPQ0gxb39zh9akprfypwgnse94QGG9
+	28nJ87/Wrwf3ug+wWa5El1w5UPhEHZqiZRZqZlhU=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A6LSHts044450
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 6 Nov 2020 15:28:17 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Fri, 6 Nov 2020 15:28:17 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Fri, 6 Nov 2020 15:28:17 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A6LSHtl045952;
+	Fri, 6 Nov 2020 15:28:17 -0600
+From: Dan Murphy <dmurphy@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Fri, 6 Nov 2020 15:28:10 -0600
+Message-ID: <20201106212811.26270-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <4abef988-e8e1-08bb-e789-2e580ce2ee18@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [arago-commits] Dan Murphy : ti-sci-fw: Update to 2020.08b system firmware
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [dunfell/master] PATCH 1/2] tisdk-core-bundle: Update sysfw deploy image name from ti-sci->ti-fs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,74 +48,29 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Nov 2020 19:59:47 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+X-List-Received-Date: Fri, 06 Nov 2020 21:31:27 -0000
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Fri, Nov 06, 2020 at 01:35:36PM -0600, Dan Murphy wrote:
-> Denys
-> 
-> On 11/6/20 1:32 PM, Denys Dmytriyenko wrote:
-> >On Fri, Nov 06, 2020 at 05:58:07PM +0000, Arago Project git wrote:
-> >>Module: meta-ti
-> >>Branch: dunfell-next
-> >>Commit: f8979375632b7fc75233aaca5e420bbb37b2fef9
-> >>URL:    http://arago-project.org/git/meta-ti.git?a=commit;h=f8979375632b7fc75233aaca5e420bbb37b2fef9
-> >>
-> >>Author: Dan Murphy <dmurphy@ti.com>
-> >>Date:   Fri Nov  6 09:12:33 2020 -0600
-> >>
-> >>ti-sci-fw: Update to 2020.08b system firmware
-> >>
-> >>Signed-off-by: Dan Murphy <dmurphy@ti.com>
-> >>
-> >>---
-> >>
-> >>  recipes-bsp/ti-sci-fw/ti-sci-fw.inc    |    6 +++---
-> >>  recipes-bsp/ti-sci-fw/ti-sci-fw_git.bb |    2 ++
-> >>  2 files changed, 5 insertions(+), 3 deletions(-)
-> >>
-> >>diff --git a/recipes-bsp/ti-sci-fw/ti-sci-fw.inc b/recipes-bsp/ti-sci-fw/ti-sci-fw.inc
-> >>index 00e6118..24de33d 100644
-> >>--- a/recipes-bsp/ti-sci-fw/ti-sci-fw.inc
-> >>+++ b/recipes-bsp/ti-sci-fw/ti-sci-fw.inc
-> >>@@ -3,11 +3,11 @@ SUMMARY = "TI SCI firmware (SYSFW)"
-> >>  LICENSE = "TI-TFL"
-> >>  LIC_FILES_CHKSUM = "file://LICENSE.ti;md5=b5aebf0668bdf95621259288c4a46d76"
-> >>-PV = "2020.08-rc3"
-> >>+PV = "2020.08b"
-> >>-SRCREV = "8a22979dc944f6f4f867e2ac637c51a317efaacd"
-> >>+SRCREV = "f5685b5980d93709e20466ffa19145ffd83b4ca4"
-> >>  BRANCH ?= "ti-linux-firmware"
-> >>-SRCREV_imggen = "36fe2d183a734f65b9adbd3097e5d51a6f931521"
-> >>+SRCREV_imggen = "7b4fe13d642d69a559724349aede4817891008a7"
-> >>  SRCREV_FORMAT = "imggen"
-> >>  SRC_URI = " \
-> >>diff --git a/recipes-bsp/ti-sci-fw/ti-sci-fw_git.bb b/recipes-bsp/ti-sci-fw/ti-sci-fw_git.bb
-> >>index 1239b27..f9a7cf4 100644
-> >>--- a/recipes-bsp/ti-sci-fw/ti-sci-fw_git.bb
-> >>+++ b/recipes-bsp/ti-sci-fw/ti-sci-fw_git.bb
-> >>@@ -19,6 +19,8 @@ SYSFW_SOC ?= "unknown"
-> >>  SYSFW_CONFIG ?= "unknown"
-> >>  SYSFW_PREFIX = "ti-sci-firmware"
-> >>+SYSFW_PREFIX_j7 = "ti-fs-firmware"
-> >>+SYSFW_PREFIX_j7200-evm = "ti-fs-firmware"
-> >This is not needed - j7200-evm is part of j7 SOC_FAMILY, so the first line
-> >would be enough...
-> 
-> Actually this is not even correct.  This fails to build because the
-> MACHINE is for the k3r5.  Both of these still use the ti-sci prefix.
-> 
-> The working change actually will be
-> 
-> SYSFW_PREFIX_j7-evm-k3r5 = "ti-fs-firmware"
-> SYSFW_PREFIX_j7200-evm-k3r5 = "ti-fs-firmware"
-> 
-> I am testing this now and the builds are now passing
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Ah, right, SYSFW is k3r5 specific.
-
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
+index f11721bfd4ad..253bfbb68657 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
+@@ -13,7 +13,7 @@ DEPLOY_IMAGES_NAME_append_am65xx = " sysfw.itb"
+ DEPLOY_IMAGES_NAME_append_j7-evm = " sysfw.itb"
+ DEPLOY_IMAGES_NAME_append_j7-hs-evm = " sysfw.itb"
+ DEPLOY_IMAGES_NAME_append_am65xx-evm = " ti-sci-firmware-am65x-gp.bin sysfw-am65x-evm.itb sysfw-am65x_sr2-evm.itb"
+-DEPLOY_IMAGES_NAME_append_j7-evm = " ti-sci-firmware-j721e-gp.bin"
++DEPLOY_IMAGES_NAME_append_j7-evm = " ti-fs-firmware-j721e-gp.bin"
+ 
+ ARAGO_TISDK_IMAGE ?= "tisdk-core-bundle"
+ export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}"
 -- 
-Denys
+2.29.2
+
 
