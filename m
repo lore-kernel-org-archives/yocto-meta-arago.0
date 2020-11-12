@@ -1,36 +1,35 @@
-Return-Path: <g-tammana@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTPS id C9C6D529C6
+Return-Path: <paul.barker@konsulko.com>
+Received: from mail-oo1-f66.google.com (mail-oo1-f66.google.com
+	[209.85.161.66])
+	by arago-project.org (Postfix) with ESMTPS id B15F3529EF
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Nov 2020 20:23:19 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0ACKK8s2107926;
-	Thu, 12 Nov 2020 14:20:08 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1605212408;
-	bh=PdB0nWmhRIt6pI/CRDIHkM8kLrthui2pJ7+JgpXfN8M=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=MQHGMygzR2Bh0j0VikbE1YFgSktsi5KjVkeUUQ6Si4Dd2tEjw9T7BZ0puluf5FZof
-	+fTbdz4vuYWIXqqL+ZqOCGBXnRs612GMKy5eP8Re92o6hLLRfhk8mO9jFlJ6S0TEKw
-	0KwHBfDWforGOv6JHAIZuD6srTrpRIWxkrBYhkso=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0ACKK8QI111307
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 12 Nov 2020 14:20:08 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 12 Nov 2020 14:20:08 -0600
-Received: from DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11]) by
-	DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11%17]) with mapi id
-	15.01.1979.003; Thu, 12 Nov 2020 14:20:08 -0600
-From: "Tammana, Gowtham" <g-tammana@ti.com>
-To: Paul Barker <pbarker@konsulko.com>
-Thread-Topic: [EXTERNAL] [meta-arago] [master/dunfell PATCH]
-	matrix-gui-pm-demos: Allow empty package
-Thread-Index: AQHWs1/fJtY5Eu0j7kieBz/loz3GDam6I15AgAEScQCAABXMUIAISWaA//+nxZCAAgQYAP//tY/Q
-Date: Thu, 12 Nov 2020 20:20:08 +0000
-Message-ID: <2f6532709d5a41c3a8f25d11e5a29961@ti.com>
+	Thu, 12 Nov 2020 20:54:11 +0000 (UTC)
+Received: by mail-oo1-f66.google.com with SMTP id h10so77428ooi.10
+	for <meta-arago@arago-project.org>;
+	Thu, 12 Nov 2020 12:51:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=fqsPz0lZwCFRd9UFe/O5vB0wISSiqjbXuJ8n0vNmAy4=;
+	b=Sg9qvIjHxjVrQvwQt6vjZyFqz+QhwtVhJyijrIG+z0JraBr7NII7mfQHOEdILULZhq
+	nA5RVDqkVXtlP0kpwbeGHRUv6b6mOsIMrNifEK0QYLZjy0jFoAq/N1Tialf74G329Fle
+	oIjVFfMzDUjpUaKnEoWn1MOWkD53KptXGPmoo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=fqsPz0lZwCFRd9UFe/O5vB0wISSiqjbXuJ8n0vNmAy4=;
+	b=Qnc5S7Erd4jS3tMPVxELij3gdKAUUv7GXSWZPxUO1yeKaq+sY4o47tzjw+BOZjccAI
+	3OH5suJ+V4TRenSkaRlwFRbKyNfz2o2PGMXjQGMJ3hgFPC14047Klb8+Ous6HS5ieCO0
+	wek7rlGomMiTfeb2ZzgMIaIVrUvr9Zg9If/2/YBVA7uPf1pfxEBrZ3JZ91uupf8iN568
+	3qB6fsdE6JyhCixWKQK9FJGfWATzHXP4IZdReSxT4xgi+Ihx7Jz51qSCP+F5sScdWauR
+	6dIpVOtu61GoH4Lzj2s8XlfuINCtrbnu2I2gsEgz1Tp1xTudkFZG/R9DSBMo+Kr47peu
+	WcNA==
+X-Gm-Message-State: AOAM531Fd6hbJslANk4ImP3Z6FNHJDiuEVH1idKKIeB9lS0HrPdUMD2j
+	nGN0a/u9SVnza9VhHj56Oto0SjxhdZ0WMw12zCTfBQ==
+X-Google-Smtp-Source: ABdhPJyYeW6MtmM0uJj4gPIszJAFaGBdd7Ig0U6inFyY/XZuTqoBMFMio2O5oFt4gmky1gCmjczVGML+0BnW/OiYCrE=
+X-Received: by 2002:a4a:83d7:: with SMTP id r23mr847774oog.5.1605214260805;
+	Thu, 12 Nov 2020 12:51:00 -0800 (PST)
+MIME-Version: 1.0
 References: <20201105103816.2865115-1-pbarker@konsulko.com>
 	<a545abad45834306b42868c6987b11dd@ti.com>
 	<CAM9ZRVsxSA04mVx08eeoMiWQNOCSDPE3bXhJW-Vn9HM43BzfcA@mail.gmail.com>
@@ -38,13 +37,12 @@ References: <20201105103816.2865115-1-pbarker@konsulko.com>
 	<CAM9ZRVt7Y1gZzCtTeO9d1tBnVg05OWY3pNYxyGNucxti-PwUtg@mail.gmail.com>
 	<3a19d70d925149708e184809dbdd83dc@ti.com>
 	<CAM9ZRVuOJ84McAoidNPcEM+ZVq72TtN1c+gyb8LDHJ6KxJ43xA@mail.gmail.com>
-In-Reply-To: <CAM9ZRVuOJ84McAoidNPcEM+ZVq72TtN1c+gyb8LDHJ6KxJ43xA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.250.34.199]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-MIME-Version: 1.0
+	<2f6532709d5a41c3a8f25d11e5a29961@ti.com>
+In-Reply-To: <2f6532709d5a41c3a8f25d11e5a29961@ti.com>
+From: Paul Barker <pbarker@konsulko.com>
+Date: Thu, 12 Nov 2020 20:50:50 +0000
+Message-ID: <CAM9ZRVvLqchFB-xhfQxcebiVgGr6LXsjH-Lb9KV86kbQmyfLAg@mail.gmail.com>
+To: "Tammana, Gowtham" <g-tammana@ti.com>
 Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
 Subject: Re: [EXTERNAL] [master/dunfell PATCH] matrix-gui-pm-demos: Allow empty package
 X-BeenThere: meta-arago@arago-project.org
@@ -59,98 +57,157 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Nov 2020 20:23:20 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 12 Nov 2020 20:54:12 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IFBhdWwgQmFya2VyIDxwYmFy
-a2VyQGtvbnN1bGtvLmNvbT4NCj5TZW50OiBUaHVyc2RheSwgTm92ZW1iZXIgMTIsIDIwMjAgMTI6
-MjggUE0NCj5UbzogVGFtbWFuYSwgR293dGhhbSA8Zy10YW1tYW5hQHRpLmNvbT4NCj5DYzogbWV0
-YS1hcmFnb0BhcmFnby1wcm9qZWN0Lm9yZw0KPlN1YmplY3Q6IFJlOiBbRVhURVJOQUxdIFttZXRh
-LWFyYWdvXSBbbWFzdGVyL2R1bmZlbGwgUEFUQ0hdIG1hdHJpeC1ndWktcG0tDQo+ZGVtb3M6IEFs
-bG93IGVtcHR5IHBhY2thZ2UNCj4NCj5PbiBUaHUsIDEyIE5vdiAyMDIwIGF0IDE3OjQyLCBUYW1t
-YW5hLCBHb3d0aGFtIDxnLXRhbW1hbmFAdGkuY29tPiB3cm90ZToNCj4+DQo+Pg0KPj4NCj4+ID4t
-LS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPj4gPkZyb206IFBhdWwgQmFya2VyIDxwYmFya2Vy
-QGtvbnN1bGtvLmNvbT4NCj4+ID5TZW50OiBXZWRuZXNkYXksIE5vdmVtYmVyIDExLCAyMDIwIDEw
-OjU2IEFNDQo+PiA+VG86IFRhbW1hbmEsIEdvd3RoYW0gPGctdGFtbWFuYUB0aS5jb20+DQo+PiA+
-Q2M6IG1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5vcmcNCj4+ID5TdWJqZWN0OiBSZTogW0VYVEVS
-TkFMXSBbbWV0YS1hcmFnb10gW21hc3Rlci9kdW5mZWxsIFBBVENIXSBtYXRyaXgtZ3VpLQ0KPnBt
-LQ0KPj4gPmRlbW9zOiBBbGxvdyBlbXB0eSBwYWNrYWdlDQo+PiA+DQo+PiA+T24gRnJpLCA2IE5v
-diAyMDIwIGF0IDIyOjQ1LCBUYW1tYW5hLCBHb3d0aGFtIDxnLXRhbW1hbmFAdGkuY29tPiB3cm90
-ZToNCj4+ID4+DQo+PiA+Pg0KPj4gPj4NCj4+ID4+ID4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0t
-LQ0KPj4gPj4gPkZyb206IFBhdWwgQmFya2VyIDxwYmFya2VyQGtvbnN1bGtvLmNvbT4NCj4+ID4+
-ID5TZW50OiBGcmlkYXksIE5vdmVtYmVyIDA2LCAyMDIwIDM6MDYgQU0NCj4+ID4+ID5UbzogVGFt
-bWFuYSwgR293dGhhbSA8Zy10YW1tYW5hQHRpLmNvbT4NCj4+ID4+ID5DYzogbWV0YS1hcmFnb0Bh
-cmFnby1wcm9qZWN0Lm9yZw0KPj4gPj4gPlN1YmplY3Q6IFJlOiBbRVhURVJOQUxdIFttZXRhLWFy
-YWdvXSBbbWFzdGVyL2R1bmZlbGwgUEFUQ0hdIG1hdHJpeC0NCj5ndWktDQo+PiA+cG0tDQo+PiA+
-PiA+ZGVtb3M6IEFsbG93IGVtcHR5IHBhY2thZ2UNCj4+ID4+ID4NCj4+ID4+ID5PbiBUaHUsIDUg
-Tm92IDIwMjAgYXQgMjI6NTQsIFRhbW1hbmEsIEdvd3RoYW0gPGctdGFtbWFuYUB0aS5jb20+DQo+
-d3JvdGU6DQo+PiA+PiA+Pg0KPj4gPj4gPj4gPi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+
-PiA+PiA+PiA+RnJvbTogbWV0YS1hcmFnby1ib3VuY2VzQGFyYWdvLXByb2plY3Qub3JnIDxtZXRh
-LWFyYWdvLQ0KPj4gPmJvdW5jZXNAYXJhZ28tDQo+PiA+PiA+PiA+cHJvamVjdC5vcmc+IE9uIEJl
-aGFsZiBPZiBQYXVsIEJhcmtlcg0KPj4gPj4gPj4gPlNlbnQ6IFRodXJzZGF5LCBOb3ZlbWJlciAw
-NSwgMjAyMCA0OjM4IEFNDQo+PiA+PiA+PiA+VG86IG1ldGEtYXJhZ29AYXJhZ28tcHJvamVjdC5v
-cmcNCj4+ID4+ID4+ID5TdWJqZWN0OiBbRVhURVJOQUxdIFttZXRhLWFyYWdvXSBbbWFzdGVyL2R1
-bmZlbGwgUEFUQ0hdIG1hdHJpeC0NCj5ndWktDQo+PiA+cG0tDQo+PiA+PiA+PiA+ZGVtb3M6IEFs
-bG93IGVtcHR5IHBhY2thZ2UNCj4+ID4+ID4+ID4NCj4+ID4+ID4+ID5UaGUgbWF0cml4LWd1aS1w
-bS1kZW1vcyByZWNpcGUgc3BsaXRzIGl0cyBiaW5hcmllcyBpbnRvIHNldmVyYWwNCj4+ID4+ID4+
-ID5zdWJwYWNrYWdlcyBsZWF2aW5nIHRoZSBkZWZhdWx0IHBhY2thZ2UgZW1wdHkuIFRoZSBkZXBl
-bmRlbmNpZXMNCj5mb3INCj4+ID50aGUNCj4+ID4+ID4+ID5kZWZhdWx0IHBhY2thZ2UgYXJlIHNl
-dCBzbyBpdCBtYWtlcyBzZW5zZSB0byBhbGxvdyB0aGlzIGVtcHR5DQo+PiA+cGFja2FnZQ0KPj4g
-Pj4gPnRvDQo+PiA+PiA+PiA+YmUgY3JlYXRlZC4NCj4+ID4+ID4+ID4NCj4+ID4+ID4+ID5TaWdu
-ZWQtb2ZmLWJ5OiBQYXVsIEJhcmtlciA8cGJhcmtlckBrb25zdWxrby5jb20+DQo+PiA+PiA+PiA+
-LS0tDQo+PiA+PiA+PiA+IG1ldGEtYXJhZ28tZXh0cmFzL3JlY2lwZXMtY29yZS9tYXRyaXgvbWF0
-cml4LWd1aS1wbS1kZW1vc18yLjAuYmINCj58DQo+PiA+MSArDQo+PiA+PiA+PiA+IDEgZmlsZSBj
-aGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPj4gPj4gPj4gPg0KPj4gPj4gPj4gPmRpZmYgLS1naXQg
-YS9tZXRhLWFyYWdvLWV4dHJhcy9yZWNpcGVzLWNvcmUvbWF0cml4L21hdHJpeC1ndWktcG0tDQo+
-PiA+PiA+PiA+ZGVtb3NfMi4wLmJiIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1jb3JlL21h
-dHJpeC9tYXRyaXgtZ3VpLQ0KPnBtLQ0KPj4gPj4gPj4gPmRlbW9zXzIuMC5iYg0KPj4gPj4gPj4g
-PmluZGV4IDAxMTZmNWVhLi5hOWViYjg0ZiAxMDA2NDQNCj4+ID4+ID4+ID4tLS0gYS9tZXRhLWFy
-YWdvLWV4dHJhcy9yZWNpcGVzLWNvcmUvbWF0cml4L21hdHJpeC1ndWktcG0tDQo+PiA+ZGVtb3Nf
-Mi4wLmJiDQo+PiA+PiA+PiA+KysrIGIvbWV0YS1hcmFnby1leHRyYXMvcmVjaXBlcy1jb3JlL21h
-dHJpeC9tYXRyaXgtZ3VpLXBtLQ0KPj4gPmRlbW9zXzIuMC5iYg0KPj4gPj4gPj4gPkBAIC0xMCw2
-ICsxMCw3IEBAIFMgPSAiJHtXT1JLRElSfS9naXQvcG93ZXJfYXBwcyINCj4+ID4+ID4+ID4NCj4+
-ID4+ID4+ID4gIyBNYWtlIHN1cmUgcG93ZXIgc3VibWVudSBhbmQgYXBwIGltYWdlcyBoYXMgYmVl
-biBpbnN0YWxsZWQNCj4+ID4+ID4+ID4gUkRFUEVORFNfJHtQTn0gKz0gIm1hdHJpeC1ndWktYXBw
-cy1pbWFnZXMgbWF0cml4LWd1aS1zdWJtZW51cy0NCj5wb3dlcg0KPj4gPj4gPj4gPm1hdHJpeC1n
-dWktZ2VuZXJpYy1wbSINCj4+ID4+ID4+ID4rQUxMT1dfRU1QVFlfJHtQTn0gPSAiMSINCj4+ID4+
-ID4+DQo+PiA+PiA+PiBKdXN0IGN1cmlvdXMsIEkgYXNzdW1lIHRoYXQgdGhlIGRlcGxveW1lbnQg
-b2YgdGhlIGRlcGVuZGVudA0KPnBhY2thZ2VzDQo+PiA+aXMNCj4+ID4+ID5zdGlsbA0KPj4gPj4g
-Pj4gZW5zdXJlZCBldmVuIHdpdGhvdXQgdGhpcyBjaGFuZ2UuIFRoaXMganVzdCBtYWtlcyBpdCBh
-cHBhcmVudCB0bw0KPnRoZQ0KPj4gPj4gPnVzZXIgdGhhdA0KPj4gPj4gPj4gdGhlIGRlZmF1bHQg
-cGFja2FnZSBpcyBlbXB0eS4gT3IgaXMgaXQgdGhhdCB0aGUgZGVwbG95bWVudCBvZg0KPj4gPmRl
-cGVuZGVudA0KPj4gPj4gPnBhY2thZ2VzDQo+PiA+PiA+PiBpcyBicm9rZW4gd2l0aG91dCB0aGlz
-Lg0KPj4gPj4gPg0KPj4gPj4gPldpdGhvdXQgdGhpcyBjaGFuZ2UgdGhlIG1hdHJpeC1ndWktcG0t
-ZGVtb3MgcGFja2FnZSBpcyBub3QgY3JlYXRlZA0KPmFuZA0KPj4gPj4gPmNhbm5vdCBiZSBpbnN0
-YWxsZWQuDQo+PiA+Pg0KPj4gPj4gWWVzLCBidXQgYXMgdGhlIHBhY2thZ2UgaGVyZSBpcyBlbXB0
-eSB0cnlpbmcgdG8gdW5kZXJzdGFuZCB3aHkgaXQNCj5uZWVkcw0KPj4gPnRvDQo+PiA+PiBiZSBp
-bnN0YWxsZWQgaW4gdGhlIGZpcnN0IHBsYWNlLg0KPj4gPj4NCj4+ID4+IE5vdyB0aGF0IHRoZSBw
-YWNrYWdlIGlzIGNyZWF0ZWQsIHdvbmRlcmluZyBpZiB0aGUgZGVwZW5kZW5jaWVzIHdpdGgNCj50
-aGUNCj4+ID4+IHN1Yi1wYWNrYWdlcyBuZWVkcyB0byBiZSBsaXN0ZWQgYXMgd2VsbCBzb21ldGhp
-bmcgbGlrZQ0KPj4gPj4NCj4+ID4+IFJERVBFTkRTXyR7UE59ICs9ICR7UE59LTxzdWJwYWNrYWdl
-c30gb3INCj4+ID4+DQo+PiA+PiBSREVQRU5EU18ke1BOfS08c3VicGFja2FnZXM+ID0gJHtQTn0N
-Cj4+ID4NCj4+ID5JJ20gbm90IHN1cmUgSSB1bmRlcnN0YW5kIHlvdXIgY29tbWVudCBoZXJlLiBS
-REVQRU5EU18ke1BOfSBpcyBzZXQgb24NCj4+ID50aGUgbGluZSBhYm92ZSBteSBjaGFuZ2UuIFNv
-IGVmZmVjdGl2ZWx5ICR7UE59IGlzIGEgcGFja2FnZWdyb3VwIHdoaWNoDQo+PiA+d2lsbCBpbnN0
-YWxsIHRoZSBsaXN0ZWQgZGVwZW5kZW5jaWVzLiBCdXQgd2l0aG91dCBBTExPV19FTVBUWSBiZWlu
-Zw0KPj4gPnNldCBpdCB3b24ndCBiZSBjcmVhdGVkLg0KPj4gPg0KPj4gPlRoZSBvdGhlciB0aGlu
-ZyB0byBjb25zaWRlciBpcyB0aGF0ICR7UE59IGlzIGEgZGVmYXVsdCBkZXBlbmRlbmN5IG9mDQo+
-PiA+JHtQTn0tZGV2IGFuZCBzbyBub3QgY3JlYXRpbmcgYSAke1BOfSBwYWNrYWdlIGNhbiByZXN1
-bHQgaW4gaW1hZ2UNCj4+ID5mZWF0dXJlcyBsaWtlIGRldi1wa2dzIGJyZWFraW5nLg0KPj4NCj4+
-IFRoZSBjb21tZW50IHdhcyBmb3IgdGhlIGRlcGVuZGVuY2llcyBmb3IgdGhlIHN1Yi1wYWNrYWdl
-cyAke1BOfS1jb3VudA0KPj4gYW5kIG90aGVycyBoZXJlLiBJIGRvbid0IHRoaW5rICR7UE59IGJl
-Y29tZXMgYSBkZWZhdWx0IGRlcGVuZGVuY3kgZm9yDQo+PiBzdWItcGFja2FnZXMuIEF0bGVhc3Qg
-dGhlIGBvcGtnIGluc3RhbGxgIG9uIHN1Yi1wYWNrYWdlcyBpcyBub3QgY2hlY2tpbmcNCj4+IG9u
-IHRoZSAke1BOfSBkZXBlbmRlbmNpZXMuIEdpdmVuIHRoZXkgYXJlIGRlcGVuZGVuY2llcyBJIHJl
-YXNvbmVkIHRoYXQNCj4+IHRoZXkgY2FuIGJlIGFkZGVkIHRvIHRoZSBzdWItcGFja2FnZXMgd2l0
-aA0KPj4NCj4+IFJERVBFTkRTLSR7UE59LWNvdW50ICs9ICR7UE59DQo+Pg0KPj4gc28gdGhhdCAk
-e1BOfSBsaXN0ZWQgZGVwZW5kZW5jaWVzIGFyZSBpbnN0YWxsZWQgb24gaW5zdGFsbGF0aW9uIG9m
-IGFueSBvZg0KPj4gdGhlIHN1Yi1wYWNrYWdlIHdoaWNoIHNlZW1zIHRvIGJlIHdoYXQgdGhlIHJl
-Y2lwZSB3YW50cy4NCj4+DQo+PiBJIHNlZSB0aGF0IHRoaXMgcGF0Y2ggaGFzIGJlZW4gbWVyZ2Vk
-LiBUaGlzIGNhbiBiZSBhIHNlcGFyYXRlIHBhdGNoLiBJDQo+PiBjYW4gcHVzaCB0aGlzIGNoYW5n
-ZSBpZiB5b3Ugd291bGQgbGlrZSBtZSB0by4NCj4NCj5JIGd1ZXNzIHlvdSBhcmUgZGVzY3JpYmlu
-ZyBhIGRpZmZlcmVudCBpc3N1ZSBoZXJlLiBBcmUgdGhlDQo+ZGVwZW5kZW5jaWVzIGxpc3RlZCBp
-biBSREVQRU5EU18ke1BOfSBzdXBwb3NlZCB0byBhcHBseSB0byB0aGUNCj5zdWJwYWNrYWdlcz8N
-Cg0KSSB0aGluayB0aGV5IGFyZSBoZXJlLg0KDQpUaGFua3MsDQpHb3d0aGFtDQoNCg==
+On Thu, 12 Nov 2020 at 20:20, Tammana, Gowtham <g-tammana@ti.com> wrote:
+>
+>
+>
+> >-----Original Message-----
+> >From: Paul Barker <pbarker@konsulko.com>
+> >Sent: Thursday, November 12, 2020 12:28 PM
+> >To: Tammana, Gowtham <g-tammana@ti.com>
+> >Cc: meta-arago@arago-project.org
+> >Subject: Re: [EXTERNAL] [meta-arago] [master/dunfell PATCH] matrix-gui-pm-
+> >demos: Allow empty package
+> >
+> >On Thu, 12 Nov 2020 at 17:42, Tammana, Gowtham <g-tammana@ti.com> wrote:
+> >>
+> >>
+> >>
+> >> >-----Original Message-----
+> >> >From: Paul Barker <pbarker@konsulko.com>
+> >> >Sent: Wednesday, November 11, 2020 10:56 AM
+> >> >To: Tammana, Gowtham <g-tammana@ti.com>
+> >> >Cc: meta-arago@arago-project.org
+> >> >Subject: Re: [EXTERNAL] [meta-arago] [master/dunfell PATCH] matrix-gui-
+> >pm-
+> >> >demos: Allow empty package
+> >> >
+> >> >On Fri, 6 Nov 2020 at 22:45, Tammana, Gowtham <g-tammana@ti.com> wrote:
+> >> >>
+> >> >>
+> >> >>
+> >> >> >-----Original Message-----
+> >> >> >From: Paul Barker <pbarker@konsulko.com>
+> >> >> >Sent: Friday, November 06, 2020 3:06 AM
+> >> >> >To: Tammana, Gowtham <g-tammana@ti.com>
+> >> >> >Cc: meta-arago@arago-project.org
+> >> >> >Subject: Re: [EXTERNAL] [meta-arago] [master/dunfell PATCH] matrix-
+> >gui-
+> >> >pm-
+> >> >> >demos: Allow empty package
+> >> >> >
+> >> >> >On Thu, 5 Nov 2020 at 22:54, Tammana, Gowtham <g-tammana@ti.com>
+> >wrote:
+> >> >> >>
+> >> >> >> >-----Original Message-----
+> >> >> >> >From: meta-arago-bounces@arago-project.org <meta-arago-
+> >> >bounces@arago-
+> >> >> >> >project.org> On Behalf Of Paul Barker
+> >> >> >> >Sent: Thursday, November 05, 2020 4:38 AM
+> >> >> >> >To: meta-arago@arago-project.org
+> >> >> >> >Subject: [EXTERNAL] [meta-arago] [master/dunfell PATCH] matrix-
+> >gui-
+> >> >pm-
+> >> >> >> >demos: Allow empty package
+> >> >> >> >
+> >> >> >> >The matrix-gui-pm-demos recipe splits its binaries into several
+> >> >> >> >subpackages leaving the default package empty. The dependencies
+> >for
+> >> >the
+> >> >> >> >default package are set so it makes sense to allow this empty
+> >> >package
+> >> >> >to
+> >> >> >> >be created.
+> >> >> >> >
+> >> >> >> >Signed-off-by: Paul Barker <pbarker@konsulko.com>
+> >> >> >> >---
+> >> >> >> > meta-arago-extras/recipes-core/matrix/matrix-gui-pm-demos_2.0.bb
+> >|
+> >> >1 +
+> >> >> >> > 1 file changed, 1 insertion(+)
+> >> >> >> >
+> >> >> >> >diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-
+> >> >> >> >demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-
+> >pm-
+> >> >> >> >demos_2.0.bb
+> >> >> >> >index 0116f5ea..a9ebb84f 100644
+> >> >> >> >--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-
+> >> >demos_2.0.bb
+> >> >> >> >+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-pm-
+> >> >demos_2.0.bb
+> >> >> >> >@@ -10,6 +10,7 @@ S = "${WORKDIR}/git/power_apps"
+> >> >> >> >
+> >> >> >> > # Make sure power submenu and app images has been installed
+> >> >> >> > RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-
+> >power
+> >> >> >> >matrix-gui-generic-pm"
+> >> >> >> >+ALLOW_EMPTY_${PN} = "1"
+> >> >> >>
+> >> >> >> Just curious, I assume that the deployment of the dependent
+> >packages
+> >> >is
+> >> >> >still
+> >> >> >> ensured even without this change. This just makes it apparent to
+> >the
+> >> >> >user that
+> >> >> >> the default package is empty. Or is it that the deployment of
+> >> >dependent
+> >> >> >packages
+> >> >> >> is broken without this.
+> >> >> >
+> >> >> >Without this change the matrix-gui-pm-demos package is not created
+> >and
+> >> >> >cannot be installed.
+> >> >>
+> >> >> Yes, but as the package here is empty trying to understand why it
+> >needs
+> >> >to
+> >> >> be installed in the first place.
+> >> >>
+> >> >> Now that the package is created, wondering if the dependencies with
+> >the
+> >> >> sub-packages needs to be listed as well something like
+> >> >>
+> >> >> RDEPENDS_${PN} += ${PN}-<subpackages} or
+> >> >>
+> >> >> RDEPENDS_${PN}-<subpackages> = ${PN}
+> >> >
+> >> >I'm not sure I understand your comment here. RDEPENDS_${PN} is set on
+> >> >the line above my change. So effectively ${PN} is a packagegroup which
+> >> >will install the listed dependencies. But without ALLOW_EMPTY being
+> >> >set it won't be created.
+> >> >
+> >> >The other thing to consider is that ${PN} is a default dependency of
+> >> >${PN}-dev and so not creating a ${PN} package can result in image
+> >> >features like dev-pkgs breaking.
+> >>
+> >> The comment was for the dependencies for the sub-packages ${PN}-count
+> >> and others here. I don't think ${PN} becomes a default dependency for
+> >> sub-packages. Atleast the `opkg install` on sub-packages is not checking
+> >> on the ${PN} dependencies. Given they are dependencies I reasoned that
+> >> they can be added to the sub-packages with
+> >>
+> >> RDEPENDS-${PN}-count += ${PN}
+> >>
+> >> so that ${PN} listed dependencies are installed on installation of any of
+> >> the sub-package which seems to be what the recipe wants.
+> >>
+> >> I see that this patch has been merged. This can be a separate patch. I
+> >> can push this change if you would like me to.
+> >
+> >I guess you are describing a different issue here. Are the
+> >dependencies listed in RDEPENDS_${PN} supposed to apply to the
+> >subpackages?
+>
+> I think they are here.
+
+Ok. That's completely outside my area of knowledge here so I think
+you'll have to send a patch yourself for that.
+
+-- 
+Paul Barker
+Konsulko Group
 
