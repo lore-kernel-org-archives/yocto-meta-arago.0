@@ -1,41 +1,45 @@
-Return-Path: <dmurphy@ti.com>
+Return-Path: <aparnab@aparnab-office>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 2A0CE5296D
+	by arago-project.org (Postfix) with ESMTP id 2886052962
 	for <meta-arago@arago-project.org>;
-	Thu,  7 Jan 2021 19:33:08 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 107JX9pG004899
-	for <meta-arago@arago-project.org>; Thu, 7 Jan 2021 13:33:09 -0600
+	Thu,  7 Jan 2021 19:49:22 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 107JnNVU010449
+	for <meta-arago@arago-project.org>; Thu, 7 Jan 2021 13:49:23 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1610047989;
-	bh=D95Ho+FfA9rOHE11yQNhNsqYW9evkfko9xrmJA0bxD8=;
+	s=ti-com-17Q1; t=1610048963;
+	bh=VFBZb2v6IFHf5gjPBFNa14Yv+9sjkKbyM9GHAPIsowg=;
 	h=From:To:CC:Subject:Date;
-	b=qr07mARCmLQIVeOhKfjVVLb8kswD7pl5KczV8uXL7mR5+9s0dKdZzsFFoWoJ6eeSJ
-	qcMoe5cp/SDjsKllTv9cawpPbwthOMv8kgaDWCAmU5rX/yLS0VcrBEl/6wrjroRPtF
-	UaOyrBIC1N5r1dEZjpPOxSmViRTZkCN5kTwweRiw=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 107JX9Rs042311
+	b=rh/TfYsB4OqUTsRWKeJmPBx39KSmA/NhqffjYuv0SXoFUxhAehduTpNWZpkMmVfN+
+	sz2oLft0dvnKA4BsK0bgURdz0dhgj4BVTlRrYG1toWpo8aFtqO8W341jx6UrS4YXW8
+	CShp+sJAa1VMfMrPD5tRrC0fH0ze+/hDBqfHPYa4=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 107JnNtG121923
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 7 Jan 2021 13:33:09 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 7 Jan 2021 13:49:23 -0600
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 7 Jan 2021 13:33:08 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
-	(157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 7 Jan 2021 13:49:23 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 7 Jan 2021 13:33:09 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 107JX8Re013890;
-	Thu, 7 Jan 2021 13:33:09 -0600
-From: Dan Murphy <dmurphy@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Thu, 7 Jan 2021 13:32:58 -0600
-Message-ID: <20210107193258.25447-1-dmurphy@ti.com>
-X-Mailer: git-send-email 2.27.0
+	Frontend Transport; Thu, 7 Jan 2021 13:49:23 -0600
+Received: from aparnab-office (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 107JnNfU117143;
+	Thu, 7 Jan 2021 13:49:23 -0600
+Received: from aparnab by aparnab-office with local (Exim 4.90_1)
+	(envelope-from <aparnab@aparnab-office>)
+	id 1kxbHe-0005hC-UE; Thu, 07 Jan 2021 13:49:22 -0600
+From: Aparna Balasubramanian <aparnab@ti.com>
+To: <meta-arago@arago-project.org>, <dmurphy@ti.com>
+Date: Thu, 7 Jan 2021 13:49:17 -0600
+Message-ID: <20210107194917.21851-1-aparnab@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [dunfell/master] [PATCH] branding-bleeding: optee-os: Stop auto rev of optee-os
+Cc: Aparna Balasubramanian <aparnab@ti.com>
+Subject: [master/dunfell PATCH] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -48,37 +52,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Jan 2021 19:33:08 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 07 Jan 2021 19:49:22 -0000
 Content-Type: text/plain
 
-Current mainline optee-os has the patches applied and the bleeding
-build fails to apply the patches as they already exist on the current HEAD.
-So optee-os should be pinned to 3.11 with the patches needed to build successfully.
-
-Long term may need a recipe to build mainline HEAD exclusively and for
-non-bleeding builds pin OPTEE-os to a specific version.
-
-From: Dan Murphy <dmurphy@ti.com>
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
+Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
 ---
- meta-arago-distro/conf/distro/include/branding-bleeding.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb              | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-bleeding.inc b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-index a536f777ad59..8b0811db2c87 100644
---- a/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-@@ -9,7 +9,7 @@ SRCREV_pn-linux-ti-staging-systest = "${AUTOREV}"
- SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
- SRCREV_pn-u-boot-k3-r5 = "${AUTOREV}"
- SRCREV_pn-ltp-ddt = "${AUTOREV}"
--SRCREV_pn-optee-os = "${AUTOREV}"
-+#SRCREV_pn-optee-os = "${AUTOREV}"
- #SRCREV_pn-optee-client = "${AUTOREV}"
- #SRCREV_pn-optee-test = "${AUTOREV}"
- SRCREV_pn-arm-trusted-firmware = "${AUTOREV}"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+index fbb671cc..f0824a94 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+@@ -11,10 +11,10 @@ PROVIDES += "ltp"
+ DEPENDS += "alsa-lib"
+ 
+ PE = "1"
+-PR = "r9"
++PR = "r10"
+ PV_append = "+git${SRCPV}"
+ 
+-SRCREV = "ff608b6191a03ff7c0a9a350a017466a5f2bbf01"
++SRCREV = "b0459d9aa364d07699ae6f273280358aae509d56"
+ BRANCH ?= "master"
+ 
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
 -- 
-2.29.2
+2.17.1
 
 
