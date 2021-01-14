@@ -1,35 +1,41 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 1377652975
+Return-Path: <dmurphy@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id 396FF52975
 	for <meta-arago@arago-project.org>;
-	Thu, 14 Jan 2021 18:58:00 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id CA33E40BFF;
-	Thu, 14 Jan 2021 18:58:03 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id kb4CffNhIKOQ; Thu, 14 Jan 2021 18:58:03 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2CECB409AE;
-	Thu, 14 Jan 2021 18:58:02 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id E4BE517451E; Thu, 14 Jan 2021 13:58:01 -0500 (EST)
-Date: Thu, 14 Jan 2021 13:58:01 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: Dan Murphy <dmurphy@ti.com>
-Message-ID: <20210114185801.GI4892@denix.org>
-References: <20210114164743.2340-1-dmurphy@ti.com>
-	<20210114182451.GH4892@denix.org>
-	<ff340441-e184-c004-2628-44d8075a8c49@ti.com>
+	Thu, 14 Jan 2021 18:59:31 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10EIxXgb020819;
+	Thu, 14 Jan 2021 12:59:33 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1610650773;
+	bh=+Brf76E6B9TIx/r2m6Z53Tzu08JNSdOujUadnh+CLW4=;
+	h=From:To:CC:Subject:Date;
+	b=mftUm3oPJGoBBIe2RuN3CYfPwfrqbCc4DKnL8bpd08A5sAzpjoGIJIJ4K8zxHlaDX
+	PuRKzFV/MfUYHLD1c831rGVZQr9ty05LVUxEJKTFq/9G+nebTnvJk57Cn+4EO17KdX
+	HXS9sxIOymVV99weKwUgKpUqab+6OxJl+oZbXiW0=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10EIxXFc075822
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 14 Jan 2021 12:59:33 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
+	Thu, 14 Jan 2021 12:59:33 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+	Frontend Transport; Thu, 14 Jan 2021 12:59:33 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10EIxXka069444;
+	Thu, 14 Jan 2021 12:59:33 -0600
+From: Dan Murphy <dmurphy@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 14 Jan 2021 12:59:27 -0600
+Message-ID: <20210114185927.26817-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <ff340441-e184-c004-2628-44d8075a8c49@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [dunfell/master] [RFC PATCH] branding: Add branding-core-next to aid in migration
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [dunfell/master] [PATCH v2] branding: Add branding-core-next to aid in migration
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,66 +48,60 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Jan 2021 18:58:01 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Thu, 14 Jan 2021 18:59:31 -0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Thu, Jan 14, 2021 at 12:46:01PM -0600, Dan Murphy wrote:
-> Denys
-> 
-> On 1/14/21 12:24 PM, Denys Dmytriyenko wrote:
-> >On Thu, Jan 14, 2021 at 10:47:43AM -0600, Dan Murphy wrote:
-> >>Add a core-next brand branding type to be able to re-direct the recipe
-> >>preferred providers or versions to highest PV'd recipe. The
-> >>branding-core should indicate the current version to build if not the
-> >>highest version.
-> >>
-> >>For the purpose of an example the Arago distribution will be migrating
-> >>from the 5.4 kernel to the 5.10 during the 2021 time frame.  In order to
-> >>assist with a smoother migration the distribution needs to be able to
-> >>build the 5.4 kernel for the core brand and build the 5.10 kernel for
-> >>the core-next.
-> >>
-> >>Once the transition from 5.4->5.10 kernel is done then the
-> >>PREFERRED_VERSION in the branding-core.inc can be removed.
-> >>
-> >>From: Dan Murphy <dmurphy@ti.com>
-> >>Signed-off-by: Dan Murphy <dmurphy@ti.com>
-> >>---
-> >>  .../conf/distro/include/branding-core-next.inc              | 6 ++++++
-> >>  meta-arago-distro/conf/distro/include/branding-core.inc     | 3 +++
-> >>  2 files changed, 9 insertions(+)
-> >>  create mode 100644 meta-arago-distro/conf/distro/include/branding-core-next.inc
-> >>
-> >>diff --git a/meta-arago-distro/conf/distro/include/branding-core-next.inc b/meta-arago-distro/conf/distro/include/branding-core-next.inc
-> >>new file mode 100644
-> >>index 000000000000..d65c5db2f379
-> >>--- /dev/null
-> >>+++ b/meta-arago-distro/conf/distro/include/branding-core-next.inc
-> >>@@ -0,0 +1,6 @@
-> >>+# Special "migration" branding for testing components that are to be updated in LTS migration
-> >>+
-> >>+require branding-core.inc
-> >>+
-> >>+PREFERRED_VERSION_linux-ti-staging = ""
-> >>+PREFERRED_VERSION_u-boot-ti-staging = ""
-> >>diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
-> >>index cab9831be9f9..a0abc6230780 100644
-> >>--- a/meta-arago-distro/conf/distro/include/branding-core.inc
-> >>+++ b/meta-arago-distro/conf/distro/include/branding-core.inc
-> >>@@ -11,3 +11,6 @@ ALTERNATIVE_PRIORITY_pn-opencl-monitor-ipu = "1"
-> >>  # Raise priority for sample IPC FW images
-> >>  ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
-> >>+
-> >>+PREFERRED_VERSION_linux-ti-staging = "5.4%"
-> >Should also include linux-ti-staging-rt and linux-ti-staging-systest
-> >
-> Thanks I will add them in v2
-> 
-> Do you see anything wrong with this approach?
+Add a core-next brand branding type to be able to re-direct the recipe
+preferred providers or versions to highest PV'd recipe. The
+branding-core should indicate the current version to build if not the
+highest version.
 
-In general, looks good to me.
+For the purpose of an example the Arago distribution will be migrating
+from the 5.4 kernel to the 5.10 during the 2021 time frame.  In order to
+assist with a smoother migration the distribution needs to be able to
+build the 5.4 kernel for the core brand and build the 5.10 kernel for
+the core-next.
 
+Once the transition from 5.4->5.10 kernel is done then the
+PREFERRED_VERSION in the branding-core.inc can be removed.
+
+From: Dan Murphy <dmurphy@ti.com>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ .../conf/distro/include/branding-core-next.inc            | 8 ++++++++
+ meta-arago-distro/conf/distro/include/branding-core.inc   | 5 +++++
+ 2 files changed, 13 insertions(+)
+ create mode 100644 meta-arago-distro/conf/distro/include/branding-core-next.inc
+
+diff --git a/meta-arago-distro/conf/distro/include/branding-core-next.inc b/meta-arago-distro/conf/distro/include/branding-core-next.inc
+new file mode 100644
+index 000000000000..3828a8d72593
+--- /dev/null
++++ b/meta-arago-distro/conf/distro/include/branding-core-next.inc
+@@ -0,0 +1,8 @@
++# Special "migration" branding for testing components that are to be updated in LTS migration
++
++require branding-core.inc
++
++PREFERRED_VERSION_linux-ti-staging = ""
++PREFERRED_VERSION_linux-ti-staging-rt = ""
++PREFERRED_VERSION_linux-ti-staging-systest = ""
++PREFERRED_VERSION_u-boot-ti-staging = ""
+diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
+index cab9831be9f9..2e3759ebf4ef 100644
+--- a/meta-arago-distro/conf/distro/include/branding-core.inc
++++ b/meta-arago-distro/conf/distro/include/branding-core.inc
+@@ -11,3 +11,8 @@ ALTERNATIVE_PRIORITY_pn-opencl-monitor-ipu = "1"
+ 
+ # Raise priority for sample IPC FW images
+ ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
++
++PREFERRED_VERSION_linux-ti-staging = "5.4%"
++PREFERRED_VERSION_linux-ti-staging-rt = "5.4%"
++PREFERRED_VERSION_linux-ti-staging-systest = "5.4%"
++PREFERRED_VERSION_u-boot-ti-staging = "2020.01%"
 -- 
-Denys
+2.29.2
+
 
