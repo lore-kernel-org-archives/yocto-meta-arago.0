@@ -1,45 +1,41 @@
-Return-Path: <aparnab@aparnab-office>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 2886052962
+Return-Path: <dmurphy@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id 83380520EA
 	for <meta-arago@arago-project.org>;
-	Thu,  7 Jan 2021 19:49:22 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 107JnNVU010449
-	for <meta-arago@arago-project.org>; Thu, 7 Jan 2021 13:49:23 -0600
+	Thu, 14 Jan 2021 16:47:48 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 10EGlpt3104927;
+	Thu, 14 Jan 2021 10:47:51 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1610048963;
-	bh=VFBZb2v6IFHf5gjPBFNa14Yv+9sjkKbyM9GHAPIsowg=;
+	s=ti-com-17Q1; t=1610642871;
+	bh=q81e6f2kcmrH7w8Gt2/vxjIbV8+cO7EF3uRHEfKunVE=;
 	h=From:To:CC:Subject:Date;
-	b=rh/TfYsB4OqUTsRWKeJmPBx39KSmA/NhqffjYuv0SXoFUxhAehduTpNWZpkMmVfN+
-	sz2oLft0dvnKA4BsK0bgURdz0dhgj4BVTlRrYG1toWpo8aFtqO8W341jx6UrS4YXW8
-	CShp+sJAa1VMfMrPD5tRrC0fH0ze+/hDBqfHPYa4=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 107JnNtG121923
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 7 Jan 2021 13:49:23 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	b=YaMnrAesecQoL2J6GNZjZI2fz81flCPv2tPlUOBd9j+++BPWobqQ2j5mZ5D56ZRCo
+	Fy7oqLwHRXuI8+u5abeoZ1NSi8brL55RbdmJ06Vy89RLUUX+1OXSkAxMal74a6aib9
+	sBeoZGrHatCQwZc3fP9NjZHqlgVbMcLeKn6+l5R8=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 10EGlpwW055611
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 14 Jan 2021 10:47:51 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 7 Jan 2021 13:49:23 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 14 Jan 2021 10:47:50 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 7 Jan 2021 13:49:23 -0600
-Received: from aparnab-office (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 107JnNfU117143;
-	Thu, 7 Jan 2021 13:49:23 -0600
-Received: from aparnab by aparnab-office with local (Exim 4.90_1)
-	(envelope-from <aparnab@aparnab-office>)
-	id 1kxbHe-0005hC-UE; Thu, 07 Jan 2021 13:49:22 -0600
-From: Aparna Balasubramanian <aparnab@ti.com>
-To: <meta-arago@arago-project.org>, <dmurphy@ti.com>
-Date: Thu, 7 Jan 2021 13:49:17 -0600
-Message-ID: <20210107194917.21851-1-aparnab@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Frontend Transport; Thu, 14 Jan 2021 10:47:50 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 10EGloSG055039;
+	Thu, 14 Jan 2021 10:47:50 -0600
+From: Dan Murphy <dmurphy@ti.com>
+To: <meta-arago@arago-project.org>
+Date: Thu, 14 Jan 2021 10:47:43 -0600
+Message-ID: <20210114164743.2340-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Aparna Balasubramanian <aparnab@ti.com>
-Subject: [master/dunfell PATCH] ltp-ddt: Update to latest
+Subject: [dunfell/master] [RFC PATCH] branding: Add branding-core-next to aid in migration
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,32 +48,56 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Jan 2021 19:49:22 -0000
+X-List-Received-Date: Thu, 14 Jan 2021 16:47:48 -0000
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
----
- .../recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb              | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Add a core-next brand branding type to be able to re-direct the recipe
+preferred providers or versions to highest PV'd recipe. The
+branding-core should indicate the current version to build if not the
+highest version.
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-index fbb671cc..f0824a94 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-@@ -11,10 +11,10 @@ PROVIDES += "ltp"
- DEPENDS += "alsa-lib"
+For the purpose of an example the Arago distribution will be migrating
+from the 5.4 kernel to the 5.10 during the 2021 time frame.  In order to
+assist with a smoother migration the distribution needs to be able to
+build the 5.4 kernel for the core brand and build the 5.10 kernel for
+the core-next.
+
+Once the transition from 5.4->5.10 kernel is done then the
+PREFERRED_VERSION in the branding-core.inc can be removed.
+
+From: Dan Murphy <dmurphy@ti.com>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ .../conf/distro/include/branding-core-next.inc              | 6 ++++++
+ meta-arago-distro/conf/distro/include/branding-core.inc     | 3 +++
+ 2 files changed, 9 insertions(+)
+ create mode 100644 meta-arago-distro/conf/distro/include/branding-core-next.inc
+
+diff --git a/meta-arago-distro/conf/distro/include/branding-core-next.inc b/meta-arago-distro/conf/distro/include/branding-core-next.inc
+new file mode 100644
+index 000000000000..d65c5db2f379
+--- /dev/null
++++ b/meta-arago-distro/conf/distro/include/branding-core-next.inc
+@@ -0,0 +1,6 @@
++# Special "migration" branding for testing components that are to be updated in LTS migration
++
++require branding-core.inc
++
++PREFERRED_VERSION_linux-ti-staging = ""
++PREFERRED_VERSION_u-boot-ti-staging = ""
+diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
+index cab9831be9f9..a0abc6230780 100644
+--- a/meta-arago-distro/conf/distro/include/branding-core.inc
++++ b/meta-arago-distro/conf/distro/include/branding-core.inc
+@@ -11,3 +11,6 @@ ALTERNATIVE_PRIORITY_pn-opencl-monitor-ipu = "1"
  
- PE = "1"
--PR = "r9"
-+PR = "r10"
- PV_append = "+git${SRCPV}"
- 
--SRCREV = "ff608b6191a03ff7c0a9a350a017466a5f2bbf01"
-+SRCREV = "b0459d9aa364d07699ae6f273280358aae509d56"
- BRANCH ?= "master"
- 
- SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
+ # Raise priority for sample IPC FW images
+ ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
++
++PREFERRED_VERSION_linux-ti-staging = "5.4%"
++PREFERRED_VERSION_u-boot-ti-staging = "2020.01%"
 -- 
-2.17.1
+2.29.2
 
 
