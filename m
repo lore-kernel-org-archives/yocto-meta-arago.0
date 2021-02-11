@@ -1,45 +1,45 @@
-Return-Path: <dmurphy@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 786EF529D2
+Return-Path: <aparnab@aparnab-office>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTP id B19FB529D2
 	for <meta-arago@arago-project.org>;
-	Thu, 11 Feb 2021 12:39:24 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11BCdXfg072016
-	for <meta-arago@arago-project.org>; Thu, 11 Feb 2021 06:39:33 -0600
+	Thu, 11 Feb 2021 13:00:06 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11BD0FxB101466
+	for <meta-arago@arago-project.org>; Thu, 11 Feb 2021 07:00:15 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1613047173;
-	bh=JCr4gkZoNFHKAzu3OUtt4RQ1gNnPBkPBQ6Hrty1vDfs=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=eDluRegcyot1Rol/2MKAbun8G2zR7iynzqveKP2KBYomOczmlFlTnXLGjbefcqAyi
-	gdzg430ZKeZpvAzRVqQ0McsWtTAjZ5A6ldayP3e6jDW87N95WlNXJR04zdG6xdsk6I
-	qft+Ve5H/2eJqk2oA5zaTO+UJma+mWoPV16IXwxI=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11BCdXGu075991
+	s=ti-com-17Q1; t=1613048415;
+	bh=1IaojeN3BK3wW6ICARMSi6Wy4BybgxZq5c3nM0SxSWc=;
+	h=From:To:CC:Subject:Date;
+	b=s2HrP9qFu88t3Hq43jTJPDRI4pflE+3Ihwg/SikV5F1B+ko/pmPr8S4lzIUyK9owy
+	On/LRlTzuJax/lRjUjoQe7q+qoT35r05Cml/9krIzTGhU8jaNH0t4S4Soo+f+RAe+U
+	gylaGjwqBPn0qTFXnoT+eC/pkrAoRHNF270GHXwI=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11BD0FOW065325
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 11 Feb 2021 06:39:33 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 11 Feb 2021 07:00:15 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 11 Feb 2021 06:39:32 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 11 Feb 2021 07:00:15 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 11 Feb 2021 06:39:32 -0600
-Received: from [10.250.34.61] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11BCdWus089580;
-	Thu, 11 Feb 2021 06:39:32 -0600
-To: Nikhil Devshatwar <nikhil.nd@ti.com>, <meta-arago@arago-project.org>
-References: <20210211110555.25570-1-nikhil.nd@ti.com>
-From: Dan Murphy <dmurphy@ti.com>
-Message-ID: <0756684e-5cfc-699d-d239-f68fdd4dd939@ti.com>
-Date: Thu, 11 Feb 2021 06:39:32 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.10.0
+	Frontend Transport; Thu, 11 Feb 2021 07:00:15 -0600
+Received: from aparnab-office (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11BD0E48123805;
+	Thu, 11 Feb 2021 07:00:15 -0600
+Received: from aparnab by aparnab-office with local (Exim 4.90_1)
+	(envelope-from <aparnab@aparnab-office>)
+	id 1lABZu-00029N-Rv; Thu, 11 Feb 2021 07:00:14 -0600
+From: Aparna Balasubramanian <aparnab@ti.com>
+To: <meta-arago@arago-project.org>, <praneeth@ti.com>, <dmurphy@ti.com>
+Date: Thu, 11 Feb 2021 07:00:03 -0600
+Message-ID: <20210211130003.8210-1-aparnab@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210211110555.25570-1-nikhil.nd@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: lokeshvutla@ti.com, nsekhar@ti.com, kishon@ti.com
-Subject: Re: [meta-ti][dunfell PATCH] packagegroup: tisdk-connectivity: Include wireless firmware for am64xx-sk
+Cc: Aparna Balasubramanian <aparnab@ti.com>
+Subject: [[master/dunfell PATCH] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,21 +52,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Feb 2021 12:39:24 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Thu, 11 Feb 2021 13:00:07 -0000
+Content-Type: text/plain
 
-Nikhil
+Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
+---
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb              | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On 2/11/21 5:05 AM, Nikhil Devshatwar wrote:
-> Use the new recipe to install the wireless firmwares in the
-> filesystem for am64xx-sk
-
-Not a show stopper and no reason to re-submit but $subject says meta-ti 
-this is the meta-arago list.
-
-Dan
-
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+index f0824a94..d8eb5918 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+@@ -11,10 +11,10 @@ PROVIDES += "ltp"
+ DEPENDS += "alsa-lib"
+ 
+ PE = "1"
+-PR = "r10"
++PR = "r11"
+ PV_append = "+git${SRCPV}"
+ 
+-SRCREV = "b0459d9aa364d07699ae6f273280358aae509d56"
++SRCREV = "202913bf46e218e7c4a6d99f9833f4033cc3c17d"
+ BRANCH ?= "master"
+ 
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
+-- 
+2.17.1
 
 
