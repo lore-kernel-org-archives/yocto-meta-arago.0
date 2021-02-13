@@ -1,45 +1,43 @@
-Return-Path: <praneeth@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 3DA19529D2
+Return-Path: <nikhil.nd@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTP id 1EB18529D0
 	for <meta-arago@arago-project.org>;
-	Thu, 11 Feb 2021 18:06:02 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11BI6Asq063797
-	for <meta-arago@arago-project.org>; Thu, 11 Feb 2021 12:06:10 -0600
+	Sat, 13 Feb 2021 06:47:09 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11D6lI5I109629
+	for <meta-arago@arago-project.org>; Sat, 13 Feb 2021 00:47:18 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1613066770;
-	bh=BZ2SS11Qz1dcvE9pJxgW7r96/DkkO7zwbPgtlhbG/8I=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=KEHp34QgSyuwrVUgGn0K8Xl3jZU7VVe9j7ZeE1G9h+POecnIlNfbkJ9vhp/7qmFgg
-	vKUZhTMcq4NtVbP50BJFC7caGhxN2/QC21naMPHl2d+doDM2nrT+tASrBV6MehtJLZ
-	7c103TJsO4h3JEg/LNe/n6ypKgfHvBrFuG1ssr+Y=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11BI6AlW017424
+	s=ti-com-17Q1; t=1613198838;
+	bh=VN167l2uMo5Cpu2FTodN/nRHuqjAR+tVsc8iqiOCQvU=;
+	h=From:To:CC:Subject:Date;
+	b=TxSm5Z4w/4T2s8uVpGggTlk/eiKeBtsdKMtTHe98gfD5vUrzjazXr4uCpAZ8XxO7M
+	WqwIe38tYcFAEmbVs22DT4kZ/2/CslxRGFakm0QJj7FIYPLQt0SMLDuBPbHSF07HmN
+	ug45Lubn2f9JcteX8HPy+L4HBw5GXMcDI71u44Es=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11D6lIrQ007202
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 11 Feb 2021 12:06:10 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Sat, 13 Feb 2021 00:47:18 -0600
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 11 Feb 2021 12:06:10 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	Sat, 13 Feb 2021 00:47:17 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
+	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 11 Feb 2021 12:06:10 -0600
-Received: from [10.250.50.222] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11BI6A2d085461;
-	Thu, 11 Feb 2021 12:06:10 -0600
-To: Aparna Balasubramanian <aparnab@ti.com>, <meta-arago@arago-project.org>,
-	<dmurphy@ti.com>
-References: <20210211130003.8210-1-aparnab@ti.com>
-From: "Bajjuri, Praneeth" <praneeth@ti.com>
-Message-ID: <1c99e4b4-ed84-4bf2-0aec-4efb68ef375a@ti.com>
-Date: Thu, 11 Feb 2021 12:06:10 -0600
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
-	Thunderbird/78.7.0
+	Frontend Transport; Sat, 13 Feb 2021 00:47:17 -0600
+Received: from swubn03.india.englab.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11D6lFoD078287;
+	Sat, 13 Feb 2021 00:47:16 -0600
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
+To: <meta-arago@arago-project.org>, <dmurphy@ti.com>
+Date: Sat, 13 Feb 2021 12:17:04 +0530
+Message-ID: <20210213064704.29454-1-nikhil.nd@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210211130003.8210-1-aparnab@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [[master/dunfell PATCH] ltp-ddt: Update to latest
+Cc: lokeshvutla@ti.com, nsekhar@ti.com, kishon@ti.com
+Subject: [meta-ti][dunfell PATCH v2] recipes-bsp: wl-fw: New recipe for WiLink firmwares
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,39 +50,67 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Feb 2021 18:06:02 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 13 Feb 2021 06:47:09 -0000
+Content-Type: text/plain
 
+Add a new recipe which installs the WiLink firmware from the
+official ti-linux-firmware repo.
 
+This is required for supporting the Wireless functionaliy on
+the am64xx-sk board.
 
-On 2/11/2021 7:00 AM, Aparna Balasubramanian wrote:
-> Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+---
 
-Can you add some description?
-Looks like this patch brings am64xx-sk support.
+Notes:
+    Changes from v1:
+    * Only install files that are required
 
-> ---
->   .../recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb              | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-> index f0824a94..d8eb5918 100644
-> --- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-> +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-> @@ -11,10 +11,10 @@ PROVIDES += "ltp"
->   DEPENDS += "alsa-lib"
->   
->   PE = "1"
-> -PR = "r10"
-> +PR = "r11"
->   PV_append = "+git${SRCPV}"
->   
-> -SRCREV = "b0459d9aa364d07699ae6f273280358aae509d56"
-> +SRCREV = "202913bf46e218e7c4a6d99f9833f4033cc3c17d"
->   BRANCH ?= "master"
->   
->   SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
-> 
+As confirmed with Kishon offline, we only need single firmware binary.
+Others are not required.
+
+ recipes-bsp/wl-fw/wl-fw_git.bb | 31 +++++++++++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
+ create mode 100644 recipes-bsp/wl-fw/wl-fw_git.bb
+
+diff --git a/recipes-bsp/wl-fw/wl-fw_git.bb b/recipes-bsp/wl-fw/wl-fw_git.bb
+new file mode 100644
+index 00000000..2e063af5
+--- /dev/null
++++ b/recipes-bsp/wl-fw/wl-fw_git.bb
+@@ -0,0 +1,31 @@
++DESCRIPTION = "Firmware files for Wilink"
++LICENSE = "TI-TSPA"
++LIC_FILES_CHKSUM = "file://LICENCE.ti-connectivity;md5=c5e02be633f1499c109d1652514d85ec"
++
++PV = "7.3+git${SRCPV}"
++
++SRCREV = "b66ee9ae020c31d7138f0af38518823bb4f5791e"
++BRANCH = "ti-linux-firmware"
++SRC_URI = "git://git.ti.com/processor-firmware/ti-linux-firmware.git;branch=${BRANCH}"
++
++COMPATIBLE_MACHINE = "k3"
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++CLEANBROKEN = "1"
++
++S = "${WORKDIR}/git"
++
++TARGET = "wl18xx-fw-4.bin"
++
++do_compile() {
++    :
++}
++
++do_install() {
++    install -d ${D}${base_libdir}/firmware/ti-connectivity
++	for f in ${TARGET}; do
++		install -m 0644 ${S}/ti-connectivity/$f ${D}${base_libdir}/firmware/ti-connectivity/$f
++	done
++}
++
++FILES_${PN} += "${base_libdir}/firmware/ti-connectivity/*"
+-- 
+2.17.1
+
 
