@@ -1,46 +1,43 @@
-Return-Path: <praneeth@ti.com>
+Return-Path: <nikhil.nd@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id BF4A3529A0
+	by arago-project.org (Postfix) with ESMTP id 605C4529D6
 	for <meta-arago@arago-project.org>;
-	Mon, 22 Feb 2021 03:46:00 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11M3kBhC124927
-	for <meta-arago@arago-project.org>; Sun, 21 Feb 2021 21:46:11 -0600
+	Tue, 23 Feb 2021 15:04:25 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 11NF4a7Z107204
+	for <meta-arago@arago-project.org>; Tue, 23 Feb 2021 09:04:36 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1613965571;
-	bh=5BF+5etAkO+P5eFhOxw/ejiTjS+uy/Z9Fhdd9THHvEo=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=NkPGlXA0sijBowUfYcnDhlwEr9Te/G5MSViO1HeISrsv4HI/PII02hhMEo6wgnr9N
-	KcIsjbKrvh+41YGOynCwA9JJxHn4QnPfKnljbScaEdpU5vk3WFUXm3NyZLLz6UYaiY
-	+SKNoH2TZkeWnWFwfjbXvpTQgc6VWjAj11qYlVaE=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11M3kBM3026605
+	s=ti-com-17Q1; t=1614092676;
+	bh=xMnnBQu2ffgVC/grUKENxdrS4/TwCKR4YrFXE5Y2KwA=;
+	h=From:To:CC:Subject:Date;
+	b=sOm0JAVHbNuSNc2wb3lExcaE11VQ4cvws9pmli8OrWcwvHNZxQCQA29nNz5Icq86O
+	re6ownAzd/quLJ7VMlNacvUKoz/nXJVjf3A1Aaw4R5pr1YQAeHGKJDLQb5eE/YR8D8
+	o2SUpJtnqubLjpPwCY8l+S0YleNYbO+GXMg0CN+s=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 11NF4aB8043949
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Sun, 21 Feb 2021 21:46:11 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Tue, 23 Feb 2021 09:04:36 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Sun, 21 Feb 2021 21:46:11 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 23 Feb 2021 09:04:36 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Sun, 21 Feb 2021 21:46:11 -0600
-Received: from [10.250.73.199] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11M3kBvC010412;
-	Sun, 21 Feb 2021 21:46:11 -0600
-To: "R, Karthik" <karthik.ramanan@ti.com>, "J, KEERTHY" <j-keerthy@ti.com>,
-	"meta-arago@arago-project.org" <meta-arago@arago-project.org>
-References: <20210216145652.16871-1-j-keerthy@ti.com>
-	<e2097e2cdc5f4cd680247439bf3d7290@ti.com>
-From: Praneeth Bajjuri <praneeth@ti.com>
-Message-ID: <f32fee49-791c-ebcd-5bbe-f4a23755763b@ti.com>
-Date: Sun, 21 Feb 2021 21:46:11 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.10.0
+	Frontend Transport; Tue, 23 Feb 2021 09:04:36 -0600
+Received: from swubn03.india.englab.ti.com (ileax41-snat.itg.ti.com
+	[10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 11NF4XQ1009655;
+	Tue, 23 Feb 2021 09:04:34 -0600
+From: Nikhil Devshatwar <nikhil.nd@ti.com>
+To: <meta-arago@arago-project.org>, <praneeth@ti.com>
+Date: Tue, 23 Feb 2021 20:34:12 +0530
+Message-ID: <20210223150412.5124-1-nikhil.nd@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <e2097e2cdc5f4cd680247439bf3d7290@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [PATCH] meta-arago-extras: recipes-devtools: statcol: Add power monitoring support
+Cc: lokeshvutla@ti.com, nsekhar@ti.com, kishon@ti.com
+Subject: [dunfell PATCH] packagegroups: tisdk-connectivity: Include TI wlan packages for k3 platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,62 +50,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Feb 2021 03:46:01 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 23 Feb 2021 15:04:25 -0000
+Content-Type: text/plain
 
+Currently, the K3 platforms do not include the TI wlan related packages.
+Add in the tisdk-connectivity packagegroup.
 
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+---
 
-On 2/21/21 5:01 AM, R, Karthik wrote:
-> ACK
-> 
-> -----Original Message-----
-> From: J, KEERTHY
-> Sent: Tuesday, 16 February, 2021 8:27 PM
-> To: meta-arago@arago-project.org
-> Cc: Weaver, Lucas <l-weaver@ti.com>; J, KEERTHY <j-keerthy@ti.com>; R, Karthik <karthik.ramanan@ti.com>; J, KEERTHY <j-keerthy@ti.com>
-> Subject: [PATCH] meta-arago-extras: recipes-devtools: statcol: Add power monitoring support
+Notes:
+    This way, all the platforms are using the same recipes and we don't
+    have to maintain any new recipe just for the am64xx-sk
+    
+    The firmare is getting picked from the repo
+    git://git.ti.com/wilink8-wlan/wl18xx_fw.git
 
-Assuming the patch is for dunfell and master. Please use in subject all 
-applicable branches.
+ .../packagegroups/packagegroup-arago-tisdk-connectivity.bb       | 1 +
+ 1 file changed, 1 insertion(+)
 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index 11109432..056e0411 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -88,6 +88,7 @@ CONNECTIVITY_RDEPENDS_append_dra7xx = "\
+ 
+ CONNECTIVITY_RDEPENDS_append_k3 = "\
+     ${WLAN_COMMON} \
++    ${WLAN_TI} \
+     ${BT_COMMON} \
+ "
+ 
+-- 
+2.17.1
 
-> 
-> From: Keerthy <a0393675@ti.com>
-
-In future : update the settings to reflect your emailid <same as 
-"signed-off" line >
-
-For now. I am going to manually update it while i pull to dunfell and 
-master branches
-
-> 
-> Add power monitoring support
-> 
-> Signed-off-by: Keerthy <j-keerthy@ti.com>
-> ---
->   meta-arago-extras/recipes-devtools/statcol/statcol.bb | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-extras/recipes-devtools/statcol/statcol.bb b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
-> index bb841d08..12e10bcf 100644
-> --- a/meta-arago-extras/recipes-devtools/statcol/statcol.bb
-> +++ b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
-> @@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=bb6bc27cd44417c389a180bd62f552a0"
->   
->   PROTOCOL = "git"
->   BRANCH = "master"
-> -SRCREV = "6420b4e6d98dc2c6825557d7d6f56ffd52fd230c"
-> +SRCREV = "dd0131eadf3633e8f9d06cb390d3c6c1b074d873"
->   SRC_URI = "git://git.ti.com/glsdk/statcol.git;protocol=${PROTOCOL};branch=${BRANCH}"
->   
->   DEPENDS = "ti-rpmsg-char websocketd"
-> @@ -18,3 +18,5 @@ EXTRA_OEMAKE += "SYSROOT=${STAGING_DIR_TARGET} CROSS_COMPILE=${TARGET_PREFIX}"
->   do_install() {
->   	DESTDIR=${D} make install
->   }
-> +
-> +PR_append = "_3"
-> 
 
