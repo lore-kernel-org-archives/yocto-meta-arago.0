@@ -1,49 +1,50 @@
-Return-Path: <nm@ti.com>
+Return-Path: <hnagalla@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 330BF52A1E
+	by arago-project.org (Postfix) with ESMTP id ACA58529B6
 	for <meta-arago@arago-project.org>;
-	Fri,  5 Mar 2021 02:33:59 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1252YC6x067102;
-	Thu, 4 Mar 2021 20:34:12 -0600
+	Thu,  4 Mar 2021 11:06:22 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 124B6aaV119283
+	for <meta-arago@arago-project.org>; Thu, 4 Mar 2021 05:06:36 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1614911652;
-	bh=iYcvHC3sqcyHdb2qwUHv1eIGYuYA6NgYNRIMjPr/VrQ=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=G3pggoJ7u0JlPr1XX1b8KM92YAooTBjieTOLCqkGaEiZGr1lx+BRsDk/21dj3fPHL
-	AIekyieAAR9BDL76WndMDgl1HcWLf1QLvAIi6yvAb+nTVKpn42bLBDzcPExrj8o3aS
-	yTihbzSiAPqSfcW5TZcs0xrvw8Fco5VHA/ZN5X6s=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1252YCrK012417
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 4 Mar 2021 20:34:12 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1614855996;
+	bh=PV7TV1SnSrjl5wPlLZwv0XnXS9EqDjO+XjrkuDW921c=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=Gkc64nlddr1HK9q9HEW2tsuOH9id3LllwMSf550azJKlMZp4cRl/XyTxP6TU9KVnw
+	I5tkI77pqU52U5BkMCifp69MeR30YKgh0aHco2wi5FMrTm9tEYohpv6pIGVM4pIxIx
+	qIxDzQlBzDhDVvCYQhvdQAIQEfFOgNYU4VkRovRo=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 124B6aUa047151
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Thu, 4 Mar 2021 05:06:36 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Thu, 4 Mar 2021 20:34:12 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Thu, 4 Mar 2021 20:34:12 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1252YCS8026991;
-	Thu, 4 Mar 2021 20:34:12 -0600
-Date: Thu, 4 Mar 2021 20:34:12 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>
-Message-ID: <20210305023412.pmlu4ediu4nkeegk@untaxed>
-References: <20210304065200.15811-1-nm@ti.com>
-	<20210304184811.GF4892@denix.org> <20210304194836.GK4892@denix.org>
-	<20210304231434.qyeopkbutdrvohm7@elliptic>
-	<20210305005810.GP4892@denix.org>
-	<20210305012411.yyebzvq2qrrjbyti@ambiance>
-	<20210305022652.GQ4892@denix.org>
+	Thu, 4 Mar 2021 05:06:35 -0600
+Received: from DFLE100.ent.ti.com ([fe80::f19c:5926:3526:1b30]) by
+	DFLE100.ent.ti.com ([fe80::f19c:5926:3526:1b30%17]) with mapi id
+	15.01.1979.003; Thu, 4 Mar 2021 05:06:35 -0600
+From: "Nagalla, Hari" <hnagalla@ti.com>
+To: "Devshatwar, Nikhil" <nikhil.nd@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>, "Bajjuri, Praneeth" <praneeth@ti.com>
+Thread-Topic: [meta-ti][dunfell/master][PATCH v2] packagegroups:
+	tisdk-connectivity: Include TI wlan packages for k3 platforms
+Thread-Index: AQHXEFoQaQX4VipHTEaNgjdtHRvmQqpzq7EA
+Date: Thu, 4 Mar 2021 11:06:35 +0000
+Message-ID: <d1191c275f81439d9386d8ef084472f7@ti.com>
+References: <20210303182136.31765-1-nikhil.nd@ti.com>
+In-Reply-To: <20210303182136.31765-1-nikhil.nd@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.250.61.169]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-In-Reply-To: <20210305022652.GQ4892@denix.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago <meta-arago@arago-project.org>
-Subject: Re: [PATCH dunfell] cryptodev: Move to 1.12 revision
+X-Mailman-Approved-At: Mon, 08 Mar 2021 03:17:37 +0000
+Cc: "Vutla, Lokesh" <lokeshvutla@ti.com>, "Narang,
+	Saurabh" <saurabhnarang@ti.com>, "Nori, Sekhar" <nsekhar@ti.com>,
+	Kishon Vijay Abraham <kishon@ti.com>
+Subject: Re: [meta-ti][dunfell/master][PATCH v2] packagegroups: tisdk-connectivity: Include TI wlan packages for k3 platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,97 +57,64 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Mar 2021 02:33:59 -0000
+X-List-Received-Date: Thu, 04 Mar 2021 11:06:23 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 21:26-20210304, Denys Dmytriyenko wrote:
-> On Thu, Mar 04, 2021 at 07:24:11PM -0600, Nishanth Menon wrote:
-> > On 19:58-20210304, Denys Dmytriyenko wrote:
-> > > On Thu, Mar 04, 2021 at 05:14:34PM -0600, Nishanth Menon wrote:
-> > > > Thank you, actually you bring out a very good point here. While I know
-> > > > we can create our own internal private fork of arago for upstream
-> > > > component testing, I am starting to wonder if creating either of:
-> > > > 
-> > > > a) meta-ti-mainline that builds on top of meta-ti
-> > > > OR
-> > > > b) meta-arago-mainline on top of meta-arago
-> > > > 
-> > > > is a smarter approach - personally, I prefer (a)? While, I don't want
-> > > > to end up creating too many layers, but your point is valid that I
-> > > > should also be careful to not mess with folks using the meta-arago in
-> > > > production environments having to deal with challenges we are trying
-> > > > to flush out by testing the bleeding edge of kernel - and I'd like to
-> > > > make sure TI ecosystem is able to leverage/contribute as well (an
-> > > > internal fork will not be that useful)..
-> > > 
-> > > First of all, an internal fork was an unintended consequence. But since we are 
-> > > discussing this in a public forum, I won't go into more details. :)
-> > 
-> > :) understood :)
-> > 
-> > > 
-> > > Creating yet another layer is certainly an option. For mainline purposes (a) 
-> > > is definitely a better choice. And I assume that would be public...
-> > 
-> > yes, that is my thought.
-> 
-> Good, anything BSP-specific is meta-ti, hence meta-ti-mainline.
-> 
-> While meta-arago is for anything Apps or Distro-specific. It was also used 
-> as a dumping ground for anything un-upstreamable or with non-standard 
-> dependencies.
-> 
-> As meta-ti used to depend on OE-Core only at first, now it's OE-Core plus 
-> meta-arm. So, if you have a component that depends on anything else, you can't 
-> have it in meta-ti or meta-ti-mainline layers. We can talk about Yocto Project 
-> compatibility requirements separately...
+It looks fine to me..
 
-Thank you for your guidance here.
-> 
-> 
-> > > On the other hand, if you only need this for couple of recipes, you can do 
-> > > this with alternative providers. E.g. instead of altering existing recipes 
-> > > with bbappends (e.g. cryptodev), you can have many providers for the same 
-> > > package (e.g. linux-ti-staging, linux-ti-mainline, even linux-yocto from 
-> > > OE-core all provide the Linux kernel, or virtual/kernel; same with u-boot 
-> > > from OE-core and u-boot-ti-staging plus u-boot-ti-mainline provide U-boot 
-> > > bootloader, like virtual/bootloaader). Those can be switched with a global 
-> > > PREFERRED_PROVIDER_<pkg> variable:
-> > > 
-> > > https://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/tree/conf/machine/include/k3.inc#n13
-> > > 
-> > > In other words, if cryptodev is the only such case right now, it's less 
-> > > involved to create cryptodev-ti-mainline recipes, set those to corresponding 
-> > > PROVIDES, as well as PREFERRED_PROVIDER_ in necessary config files. Let me 
-> > > know if you need help with that.
-> > 
-> > 
-> > Hmm.. Thanks.. yeah, it is cryptodev today, something else tomorrow,
-> > in addition, I need to expand from purely kernel and u-boot upstream
-> > components alone to TF-A, linux-firmware upstream and eventually few
-> > additional packages etc. Mostly as a forward looking layer to uncover
-> > issues ahead of time. My thoughts on this is as follows: While the
-> > provider view can easily fit as well, it is a little less distracting
-> > or in some cases, un-intended usage to keep a "experimental" and
-> > "forward looking" layer away from users of production layer - then the
-> > distinction is very clearcut and risks(essentially "you are on your
-> > own") associated with the same would be clear as well. Who knows, some
-> > day, we might be even be able to delete such a layer since upstream will
-> > be rocksolid (touch wood)..
-> 
-> Ah, that would the most glorious day for sure! :)
-> 
-> Anyway, if you intend to have cryptodev, atf/tf-a, optee, linux-firmware and 
-> such, then sure, a separate mainline-only layer would be the best. BTW, things 
-> like SGX and RGX will also fit there nicely.
-> 
+Thanks
+Hari
 
-Thanks for your feedback. I have to take it internally to get all the
-blessings I need to make things move forward..
+-----Original Message-----
+From: Devshatwar, Nikhil=20
+Sent: Wednesday, March 3, 2021 12:22 PM
+To: meta-arago@arago-project.org; Bajjuri, Praneeth <praneeth@ti.com>
+Cc: Vutla, Lokesh <lokeshvutla@ti.com>; Kishon Vijay Abraham <kishon@ti.com=
+>; Nori, Sekhar <nsekhar@ti.com>; Nagalla, Hari <hnagalla@ti.com>; Narang, =
+Saurabh <saurabhnarang@ti.com>; Devshatwar, Nikhil <nikhil.nd@ti.com>
+Subject: [meta-ti][dunfell/master][PATCH v2] packagegroups: tisdk-connectiv=
+ity: Include TI wlan packages for k3 platforms
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Currently, the K3 platforms do not include the TI wlan related packages.
+Add in the tisdk-connectivity packagegroup.
+
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+Suggested-by: Hari Nagalla <hnagalla@gmail.com>
+Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
+---
+
+Notes:
+    changes from v1:
+   =20
+    * Drop the new recipe and simply include the existing packages for wili=
+nk
+      This way, all the platforms are using the same recipes and we don't
+      have to maintain any new recipe just for the am64xx-sk
+      The firmare will get picked from the repo
+      git://git.ti.com/wilink8-wlan/wl18xx_fw.git
+
+ .../packagegroups/packagegroup-arago-tisdk-connectivity.bb       | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arag=
+o-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/pack=
+agegroup-arago-tisdk-connectivity.bb
+index 11109432..ab632924 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk=
+-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk=
+-connectivity.bb
+@@ -89,6 +89,7 @@ CONNECTIVITY_RDEPENDS_append_dra7xx =3D "\
+ CONNECTIVITY_RDEPENDS_append_k3 =3D "\
+     ${WLAN_COMMON} \
+     ${BT_COMMON} \
++    ${WLAN_TI} \
+ "
+=20
+ RDEPENDS_${PN} =3D "\
+--=20
+2.17.1
+
 
