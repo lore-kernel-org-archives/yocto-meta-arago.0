@@ -1,44 +1,41 @@
-Return-Path: <nikhil.nd@ti.com>
+Return-Path: <nm@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id EAD4052A21
+	by arago-project.org (Postfix) with ESMTP id E945A529A2
 	for <meta-arago@arago-project.org>;
-	Wed,  3 Mar 2021 18:21:30 +0000 (UTC)
+	Thu,  4 Mar 2021 06:51:49 +0000 (UTC)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 123ILhxw129208
-	for <meta-arago@arago-project.org>; Wed, 3 Mar 2021 12:21:43 -0600
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1246q36Y019131
+	for <meta-arago@arago-project.org>; Thu, 4 Mar 2021 00:52:03 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1614795704;
-	bh=cz+Fg0cqqYVHLUpUFaYAYjSB577V5MoLjsvzZJp4lyU=;
+	s=ti-com-17Q1; t=1614840723;
+	bh=UD83iPpGqIjm/FNQOndvhI1M0Wtzfa+BhfPFY2aFNyM=;
 	h=From:To:CC:Subject:Date;
-	b=PlZIt2xJNcxKihnBB2M4uONpFLKpbaY0ZObamDCLIZNDIZ641pRhVM1m25Bs+Wdkc
-	xGgERMHL22t9Tsq6PWdZwYCmBa/VDgpqT+MZerGGRinjNhbj2rWwzsHGtwOIhDNmsP
-	Nt5Q74b3sM5yBUHw01Xva4Fif9vTHd0fxeoa5NIU=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 123ILhtc119747
+	b=uL4gFhNG9tezydGjzJ7PKazuz/EjKMmSlGdOkeo2u6m6bjwgwLCOz28iNKMlORlzA
+	cneO3oo0/3SsWZ5j+AXjC2+4ARHWRsRxZDxGnAHCWYsQ1oYZvkk2vve+m7lfbVqHno
+	LBX/VI7FHjXLCLq5R+c6Gp9e+cyC0vWU38ph7q8k=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1246q3oh014637
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 3 Mar 2021 12:21:43 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@arago-project.org>; Thu, 4 Mar 2021 00:52:03 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3;
-	Wed, 3 Mar 2021 12:21:43 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 4 Mar 2021 00:52:02 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
-	Frontend Transport; Wed, 3 Mar 2021 12:21:43 -0600
-Received: from swubn03.india.englab.ti.com (ileax41-snat.itg.ti.com
-	[10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 123ILeEj054807;
-	Wed, 3 Mar 2021 12:21:41 -0600
-From: Nikhil Devshatwar <nikhil.nd@ti.com>
-To: <meta-arago@arago-project.org>, <praneeth@ti.com>
-Date: Wed, 3 Mar 2021 23:51:36 +0530
-Message-ID: <20210303182136.31765-1-nikhil.nd@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Frontend Transport; Thu, 4 Mar 2021 00:52:03 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1246q2Im004019;
+	Thu, 4 Mar 2021 00:52:02 -0600
+From: Nishanth Menon <nm@ti.com>
+To: meta-arago <meta-arago@arago-project.org>
+Date: Thu, 4 Mar 2021 00:52:00 -0600
+Message-ID: <20210304065200.15811-1-nm@ti.com>
+X-Mailer: git-send-email 2.25.1.377.g2d2118b814c1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: saurabhnarang@ti.com, lokeshvutla@ti.com, nsekhar@ti.com, kishon@ti.com,
-	hnagalla@ti.com
-Subject: [meta-ti][dunfell/master][PATCH v2] packagegroups: tisdk-connectivity: Include TI wlan packages for k3 platforms
+Subject: [PATCH dunfell] cryptodev: Move to 1.12 revision
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,42 +48,93 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Mar 2021 18:21:32 -0000
+X-List-Received-Date: Thu, 04 Mar 2021 06:51:50 -0000
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Currently, the K3 platforms do not include the TI wlan related packages.
-Add in the tisdk-connectivity packagegroup.
+Cryptodev out of kernel module and suite has yet another set of
+challenge with broken API compatibility. However, the complete list of
+patches beteween dunfell's default 1.10 and current latest 1.12 revisions:
+ e0c25e289d6b (tag: cryptodev-linux-1.12) Release version 1.12
+ 55c6315058fc Fix build for Linux 5.11-rc1
+ 2f5e08aebf92 Fix build for Linux 5.9-rc1
+ e8263d2d682b remove VLA usage from authenc.c
+ dafa42cadc86 Fix for change in Kernel 4.4.168
+ f4d3653c8dcb Release version 1.11
+ 9e765068582a Fix build for Linux 5.8-rc1
+ 7e72f6758f2d enabled the support for TLS1.1 - AES128-SHA1 - AES256-SHA1
+ 98b163a23f6b cryptlib.c: fix build on kernel v5.5+
+ a1e738aef624 tests: cipher-aead-srtp: Fix cao->dst alignment
+ f971e0cd4a0e Fix module loading with Linux v5.0-rc5
 
-Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
-Suggested-by: Hari Nagalla <hnagalla@gmail.com>
-Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
+We have the following choices
+1) just cherry-pick minimum set of kernel patches relevant for kernel
+compatibility
+OR
+2) switch to a newer version with richer set of fixups
+
+Attempting to switch to 1.12 version with minimal changes as a better
+option to get a wider swath of kernel compatibility.
+
+Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
 
-Notes:
-    changes from v1:
-    
-    * Drop the new recipe and simply include the existing packages for wilink
-      This way, all the platforms are using the same recipes and we don't
-      have to maintain any new recipe just for the am64xx-sk
-      The firmare will get picked from the repo
-      git://git.ti.com/wilink8-wlan/wl18xx_fw.git
+DISCLAIMER: This is probably a dumb way of switching to 1.12.. open to
+suggestions.
 
- .../packagegroups/packagegroup-arago-tisdk-connectivity.bb       | 1 +
- 1 file changed, 1 insertion(+)
+NOTE:
+a) master is already on 1.12 -> So, I am suggesting this only for dunfell at the
+moment: http://git.openembedded.org/openembedded-core/tree/meta/recipes-kernel/cryptodev?h=master
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-index 11109432..ab632924 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-@@ -89,6 +89,7 @@ CONNECTIVITY_RDEPENDS_append_dra7xx = "\
- CONNECTIVITY_RDEPENDS_append_k3 = "\
-     ${WLAN_COMMON} \
-     ${BT_COMMON} \
-+    ${WLAN_TI} \
- "
+b) gatesgarth is on 1.11 -> we wont get the fixes needed for newer
+kernel, so a variant of this will be needed.. http://git.openembedded.org/openembedded-core/tree/meta/recipes-kernel/cryptodev?h=gatesgarth
+
+c) dunfell is still on 1.10 -> Same story as gatesgarth.. http://git.openembedded.org/openembedded-core/tree/meta/recipes-kernel/cryptodev?h=dunfell
+
+ .../recipes-kernel/cryptodev/cryptodev-linux_%.bbappend     | 5 +++++
+ .../recipes-kernel/cryptodev/cryptodev-module_%.bbappend    | 5 +++++
+ .../recipes-kernel/cryptodev/cryptodev-tests_%.bbappend     | 6 ++++++
+ 3 files changed, 16 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-kernel/cryptodev/cryptodev-linux_%.bbappend
+ create mode 100644 meta-arago-distro/recipes-kernel/cryptodev/cryptodev-tests_%.bbappend
+
+diff --git a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-linux_%.bbappend b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-linux_%.bbappend
+new file mode 100644
+index 000000000000..a3fb634463fd
+--- /dev/null
++++ b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-linux_%.bbappend
+@@ -0,0 +1,5 @@
++# Bring in fixes including https://github.com/cryptodev-linux/cryptodev-linux/pull/55
++# just pull 1.12 revision, everything else remains the same.
++PR = "1.12"
++PR_append = ".arago0"
++SRCREV = "e0c25e289d6baf1d83c2b9cb523d3bc237d0c0c9"
+diff --git a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_%.bbappend b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_%.bbappend
+index f8a35cd73765..602ada0daf3a 100644
+--- a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_%.bbappend
++++ b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-module_%.bbappend
+@@ -1,3 +1,8 @@
++# Bring in fixes including https://github.com/cryptodev-linux/cryptodev-linux/pull/55
++# just pull 1.12 revision, everything else remains the same.
++
++PR = "1.12"
+ PR_append = ".arago0"
++SRCREV = "e0c25e289d6baf1d83c2b9cb523d3bc237d0c0c9"
  
- RDEPENDS_${PN} = "\
+ KERNEL_MODULE_AUTOLOAD += "cryptodev"
+diff --git a/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-tests_%.bbappend b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-tests_%.bbappend
+new file mode 100644
+index 000000000000..dee8f40862cb
+--- /dev/null
++++ b/meta-arago-distro/recipes-kernel/cryptodev/cryptodev-tests_%.bbappend
+@@ -0,0 +1,6 @@
++# Bring in fixes including https://github.com/cryptodev-linux/cryptodev-linux/pull/55
++# just pull 1.12 revision, everything else remains the same.
++
++PR = "1.12"
++PR_append = ".arago0"
++SRCREV = "e0c25e289d6baf1d83c2b9cb523d3bc237d0c0c9"
 -- 
-2.17.1
+2.25.1.377.g2d2118b814c1
 
 
