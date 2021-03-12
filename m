@@ -1,45 +1,48 @@
-Return-Path: <aparnab@aparnab-office>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 048E352AA8
+Return-Path: <aparnab@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id 7A8CC52AA8
 	for <meta-arago@arago-project.org>;
-	Fri, 12 Mar 2021 18:55:02 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12CItIap032606
-	for <meta-arago@arago-project.org>; Fri, 12 Mar 2021 12:55:18 -0600
+	Fri, 12 Mar 2021 18:58:40 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12CIwtFd113268;
+	Fri, 12 Mar 2021 12:58:55 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1615575318;
-	bh=ioQj6xfHRiuEcyv8r3LtnPuQ4Ev13nX+h6AuuhUGpCw=;
-	h=From:To:CC:Subject:Date;
-	b=dLXCFAGa4/yQHM9Wva9cs+1DURv0AJ5Pf5eqa8N+zItYjarOLWgrn6yJebnaTHiA2
-	MK4pef9TyFvV/Yp9I0LBPdUCa3VsLBcmFDSLBj3EYH0zK+VXKyBs+UTm9FkWQNv0Tx
-	E/v81FsCiFrWPxTcAJ05vnPL1ii36r+ZQ0TTcG+0=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12CItIr6107789
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Fri, 12 Mar 2021 12:55:18 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1615575535;
+	bh=sEJ4vnvt9En2HOU8h3YAl+q1eXI7rabtpO/37tl0gVI=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=EfUmHPpK9tQfkRm/VOJxgH/Oz1idtu6T5ezk2UCSZnq/gnpdzc9VsV6QVIrn5hxoQ
+	yyviE6SVw4pnu8JNrlBmEkjFVfuw30UHniWxM3qnfKuNErBU3+3iHa39xD5IBzqnrD
+	2lTJspRGJv44IMxNiKgsjOlhWzBWbvX6eOuCW77U=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12CIwtla007489
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 12 Mar 2021 12:58:55 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Fri, 12 Mar 2021 12:55:18 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 12 Mar 2021 12:58:55 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Fri, 12 Mar 2021 12:55:18 -0600
-Received: from aparnab-office (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12CItIMh110240;
-	Fri, 12 Mar 2021 12:55:18 -0600
-Received: from aparnab by aparnab-office with local (Exim 4.90_1)
-	(envelope-from <aparnab@aparnab-office>)
-	id 1lKmwQ-00018D-4j; Fri, 12 Mar 2021 12:55:18 -0600
+	Frontend Transport; Fri, 12 Mar 2021 12:58:55 -0600
+Received: from [128.247.81.129] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12CIwtOo052286;
+	Fri, 12 Mar 2021 12:58:55 -0600
+To: Denys Dmytriyenko <denis@denix.org>
+References: <20210312161817.2581-1-aparnab@ti.com>
+	<20210312163956.ti7erugzz6hcvx2m@carmaker>
+	<ee3daee0-c656-fc2f-bcd2-e0734af92f22@ti.com>
+	<20210312185409.GZ4892@denix.org>
 From: Aparna Balasubramanian <aparnab@ti.com>
-To: <meta-arago@arago-project.org>, <praneeth@ti.com>
-Date: Fri, 12 Mar 2021 12:55:11 -0600
-Message-ID: <20210312185511.4306-1-aparnab@ti.com>
-X-Mailer: git-send-email 2.17.1
+Message-ID: <0d2d1004-d31f-afae-10bb-644a1089932e@ti.com>
+Date: Fri, 12 Mar 2021 12:58:55 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+	Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20210312185409.GZ4892@denix.org>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Aparna Balasubramanian <aparnab@ti.com>
-Subject: [master/dunfell PATCH v2] ltp-ddt: Update to latest
+Cc: meta-arago@arago-project.org
+Subject: Re: [master/dunfell PATCH] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,34 +55,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Mar 2021 18:55:03 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 12 Mar 2021 18:58:40 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Includes ipc testcase fixes for k3 devices
 
-Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
----
- .../recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb              | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On 3/12/21 12:54 PM, Denys Dmytriyenko wrote:
+> On Fri, Mar 12, 2021 at 12:48:29PM -0600, Aparna Balasubramanian wrote:
+>> Nishanth,
+>>
+>> Sure, will send v2 with change information.
+>>
+>> I will update filename as part of 2021 lts updates.
+> Have you rebased ltp-ddt against newer 2021 ltp version?
+>
+Denys,
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-index d8eb5918..be8bea98 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-@@ -11,10 +11,10 @@ PROVIDES += "ltp"
- DEPENDS += "alsa-lib"
- 
- PE = "1"
--PR = "r11"
-+PR = "r12"
- PV_append = "+git${SRCPV}"
- 
--SRCREV = "202913bf46e218e7c4a6d99f9833f4033cc3c17d"
-+SRCREV = "3543cba63326976b5fb184c88b56158e91b7626a"
- BRANCH ?= "master"
- 
- SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
--- 
-2.17.1
+Not yet.
+
+Regards,
+
+Aparna
 
 
