@@ -1,38 +1,45 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 2650A52A70
+Return-Path: <aparnab@aparnab-office>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id 4AB4D52AA1
 	for <meta-arago@arago-project.org>;
-	Wed, 10 Mar 2021 20:30:40 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 0B9D340BE9;
-	Wed, 10 Mar 2021 20:30:55 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id GWuhzAEZVitY; Wed, 10 Mar 2021 20:30:55 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A563740429;
-	Wed, 10 Mar 2021 20:30:47 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 10862174531; Wed, 10 Mar 2021 15:30:47 -0500 (EST)
-Date: Wed, 10 Mar 2021 15:30:47 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: Nikhil Devshatwar <nikhil.nd@ti.com>
-Message-ID: <20210310203047.GX4892@denix.org>
-References: <20210303182136.31765-1-nikhil.nd@ti.com>
-	<8d2e4f84-1c71-bbf7-8d04-7ccb9725db71@ti.com>
-	<ad817c2c-258c-09e3-57f4-6a30b1862da1@ti.com>
-	<01c2ef99-7972-77f0-04a0-184dfe30b0bc@ti.com>
-	<b00e149b-161c-7d0c-9a0d-a1c09ec4c53c@ti.com>
+	Fri, 12 Mar 2021 16:18:16 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12CGIVxw054053
+	for <meta-arago@arago-project.org>; Fri, 12 Mar 2021 10:18:31 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1615565911;
+	bh=dqKfE0bk+wUBDiqglZ6RkWktoGctaJEurux8VP7usSw=;
+	h=From:To:CC:Subject:Date;
+	b=Wf12S7ShD5xr6HJVM5jRGxU3FOIuCwd2R8FBRbKrErdyxBU7l477pbcX6d++idbQ7
+	NHZfioYyiK3CXQNatRaAmrjhgSnMnBQnBJXVRUysIF6UvOqSH34gNJPpL4RCb3B8C+
+	I91Ee4cLM65mi9eYas6Wz/wgs6Q4vDyOatnLY/uE=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12CGIVC3129285
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 12 Mar 2021 10:18:31 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Fri, 12 Mar 2021 10:18:31 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
+	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+	Frontend Transport; Fri, 12 Mar 2021 10:18:31 -0600
+Received: from aparnab-office (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12CGIVFs069097;
+	Fri, 12 Mar 2021 10:18:31 -0600
+Received: from aparnab by aparnab-office with local (Exim 4.90_1)
+	(envelope-from <aparnab@aparnab-office>)
+	id 1lKkUh-0000gN-8b; Fri, 12 Mar 2021 10:18:31 -0600
+From: Aparna Balasubramanian <aparnab@ti.com>
+To: <meta-arago@arago-project.org>, <praneeth@ti.com>
+Date: Fri, 12 Mar 2021 10:18:17 -0600
+Message-ID: <20210312161817.2581-1-aparnab@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <b00e149b-161c-7d0c-9a0d-a1c09ec4c53c@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: saurabhnarang@ti.com, nsekhar@ti.com, kishon@ti.com, lokeshvutla@ti.com,
-	meta-arago@arago-project.org, hnagalla@ti.com
-Subject: Re: [meta-ti][dunfell/master][PATCH v2] packagegroups: tisdk-connectivity: Include TI wlan packages for k3 platforms
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: Aparna Balasubramanian <aparnab@ti.com>
+Subject: [master/dunfell PATCH] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -45,138 +52,32 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Mar 2021 20:30:40 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 12 Mar 2021 16:18:16 -0000
+Content-Type: text/plain
 
-On Thu, Mar 11, 2021 at 01:15:37AM +0530, Nikhil Devshatwar wrote:
-> 
-> 
-> On 11/03/21 12:20 am, Bajjuri, Praneeth wrote:
-> >
-> >
-> >On 3/10/2021 12:37 PM, Nikhil Devshatwar wrote:
-> >>
-> >>
-> >>On 10/03/21 11:00 pm, Bajjuri, Praneeth wrote:
-> >>>
-> >>>
-> >>>On 3/3/2021 12:21 PM, Nikhil Devshatwar wrote:
-> >>>>Currently, the K3 platforms do not include the TI wlan
-> >>>>related packages.
-> >>>>Add in the tisdk-connectivity packagegroup.
-> >>>>
-> >>>>Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
-> >>>>Suggested-by: Hari Nagalla <hnagalla@gmail.com>
-> >>>>Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
-> >>>>---
-> >>>>
-> >>>>Notes:
-> >>>>     changes from v1:
-> >>>
-> >>>s/meta-ti/meta-arago. Please point to right project next time.
-> >>Sorry about that. Reused last command and missed this.
-> >>
-> >>>
-> >>>>     * Drop the new recipe and simply include the existing
-> >>>>packages for wilink
-> >>>>       This way, all the platforms are using the same
-> >>>>recipes and we don't
-> >>>>       have to maintain any new recipe just for the am64xx-sk
-> >>>>       The firmare will get picked from the repo
-> >>>>       git://git.ti.com/wilink8-wlan/wl18xx_fw.git
-> >>>>
-> >>>> 
-> >>>>.../packagegroups/packagegroup-arago-tisdk-connectivity.bb      
-> >>>>| 1 +
-> >>>>  1 file changed, 1 insertion(+)
-> >>>>
-> >>>>diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> >>>>
-> >>>>index 11109432..ab632924 100644
-> >>>>--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> >>>>
-> >>>>+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> >>>>
-> >>>>@@ -89,6 +89,7 @@ CONNECTIVITY_RDEPENDS_append_dra7xx = "\
-> >>>>  CONNECTIVITY_RDEPENDS_append_k3 = "\
-> >>>>      ${WLAN_COMMON} \
-> >>>>      ${BT_COMMON} \
-> >>>>+    ${WLAN_TI} \
-> >>>>  "
-> >>>
-> >>>Looks like WLAN_TI and WLAN_COMMON is valid for all platforms
-> >>>defined in this packagegroup.
-> >>>
-> >>>why not move both of them under CONNECTIVITY_RDEPENDS without
-> >>>a specific platform append?.
-> >>
-> >>Looking at the history, the following commit split the package
-> >>list into a separate group explicitly:
-> >>
-> >>d24fa63f33 ("packagegroup-*-connectivity: restructure WLAN & BT
-> >>lists and add WLAN to K3")
-> >>
-> >>Where the WLAN_COMMON was added but WLAN_TI was not added.
-> >
-> >Thats correct, But after this patch we have WLAN_TI and
-> >WLAN_COMMON for all platforms now (including K3).
-> >
-> >Why not do something like this.
-> 
-> I am not sure why the packages are split in the first place.
-> If you want it like this, I will send a v3
+Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
+---
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb              | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Because at some point not all platforms supported WiFi and/or BT.
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+index d8eb5918..be8bea98 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+@@ -11,10 +11,10 @@ PROVIDES += "ltp"
+ DEPENDS += "alsa-lib"
+ 
+ PE = "1"
+-PR = "r11"
++PR = "r12"
+ PV_append = "+git${SRCPV}"
+ 
+-SRCREV = "202913bf46e218e7c4a6d99f9833f4033cc3c17d"
++SRCREV = "3543cba63326976b5fb184c88b56158e91b7626a"
+ BRANCH ?= "master"
+ 
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
+-- 
+2.17.1
 
-Denys
-
-
-> >@@ -61,36 +61,25 @@ CONNECTIVITY_RDEPENDS = " \
-> >      iproute2-devlink \
-> >      net-snmp \
-> >      net-snmp-server-snmpd \
-> >-"
-> >-
-> >-CONNECTIVITY_RDEPENDS_append_ti33x = "\
-> >      ${WLAN_COMMON} \
-> >      ${WLAN_TI} \
-> >      ${BT_COMMON} \
-> >+"
-> >+
-> >+CONNECTIVITY_RDEPENDS_append_ti33x = "\
-> >      ${BT_TI} \
-> >      ${DEMO_APPS} \
-> >  "
-> >
-> >  CONNECTIVITY_RDEPENDS_append_ti43x = "\
-> >-    ${WLAN_COMMON} \
-> >-    ${WLAN_TI} \
-> >-    ${BT_COMMON} \
-> >      ${BT_TI} \
-> >      ${DEMO_APPS} \
-> >  "
-> >
-> >  CONNECTIVITY_RDEPENDS_append_dra7xx = "\
-> >-    ${WLAN_COMMON} \
-> >-    ${WLAN_TI} \
-> >-    ${BT_COMMON} \
-> >      ${BT_TI} \
-> >  "
-> >
-> >-CONNECTIVITY_RDEPENDS_append_k3 = "\
-> >-    ${WLAN_COMMON} \
-> >-    ${BT_COMMON} \
-> >-"
-> >-
-> >
-> >
-> >
-> >>
-> >>Regards,
-> >>Nikhil D
-> >>>
-> >>>>  RDEPENDS_${PN} = "\
-> >>>>
 
