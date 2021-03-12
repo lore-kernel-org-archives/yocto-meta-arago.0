@@ -1,33 +1,50 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id E722852AAB
+Return-Path: <hnagalla@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTP id 845DC52A9E
 	for <meta-arago@arago-project.org>;
-	Fri, 12 Mar 2021 22:50:32 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 717BF40BEA;
-	Fri, 12 Mar 2021 22:50:48 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id XZfDsmjCyNC3; Fri, 12 Mar 2021 22:50:48 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4F78B407DA;
-	Fri, 12 Mar 2021 22:50:47 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 1451917453F; Fri, 12 Mar 2021 17:50:47 -0500 (EST)
-Date: Fri, 12 Mar 2021 17:50:47 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: Gowtham Tammana <g-tammana@ti.com>
-Message-ID: <20210312225047.GC4892@denix.org>
-References: <20210312222652.14023-1-g-tammana@ti.com>
+	Fri, 12 Mar 2021 14:11:45 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12CEC0We056197
+	for <meta-arago@arago-project.org>; Fri, 12 Mar 2021 08:12:00 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1615558320;
+	bh=6SQd/KndpQUKzHuPH+klEiuUYXXpS/584teA5DmzOpE=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=Km4Vw602Q6u6hULiNLOPhhlFyPKzZ7Pbfv7aS1sF36DfP0so/jAgpmEIqrlDS6lcZ
+	2REiU52jP3Uzh7Gk6f4GBe+KjN2Q2hbe0h0ccFPIiYGaC25shABMeqgAg0o43p5dtS
+	PKxqOlsB1jbC+lpnYWYV7Ugfe7Q0ZwX52H0xucTk=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12CEC0hk019897
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 12 Mar 2021 08:12:00 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Fri, 12 Mar 2021 08:12:00 -0600
+Received: from DFLE100.ent.ti.com ([fe80::f19c:5926:3526:1b30]) by
+	DFLE100.ent.ti.com ([fe80::f19c:5926:3526:1b30%17]) with mapi id
+	15.01.2176.009; Fri, 12 Mar 2021 08:12:00 -0600
+From: "Nagalla, Hari" <hnagalla@ti.com>
+To: "Devshatwar, Nikhil" <nikhil.nd@ti.com>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>, "Bajjuri, Praneeth" <praneeth@ti.com>
+Thread-Topic: [meta-arago][dunfell][PATCH v3] packagegroups:
+	tisdk-connectivity: Include TI wlan packages for k3 platforms
+Thread-Index: AQHXFegY/kcxjVlDhkaJHA8u8dwfh6qAZnvA
+Date: Fri, 12 Mar 2021 14:12:00 +0000
+Message-ID: <ca820feb23b6466fac63dab322464cb9@ti.com>
+References: <20210310200045.1287-1-nikhil.nd@ti.com>
+In-Reply-To: <20210310200045.1287-1-nikhil.nd@ti.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.250.76.64]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-In-Reply-To: <20210312222652.14023-1-g-tammana@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [PATCH] gstreamer1.0-plugins-good: backport qmlglsink EGL build fix
+X-Mailman-Approved-At: Sat, 13 Mar 2021 15:01:46 +0000
+Cc: "Vutla, Lokesh" <lokeshvutla@ti.com>, "Narang,
+	Saurabh" <saurabhnarang@ti.com>, "Nori, Sekhar" <nsekhar@ti.com>,
+	Kishon Vijay Abraham <kishon@ti.com>
+Subject: Re: [dunfell][PATCH v3] packagegroups: tisdk-connectivity: Include TI wlan packages for k3 platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,95 +57,105 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Mar 2021 22:50:33 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 12 Mar 2021 14:11:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 12, 2021 at 04:26:52PM -0600, Gowtham Tammana wrote:
-> Backport qmlglsink build fix for EGL platform with no X11 headers.
-> 
-> Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
-> ---
->  ...ild-on-EGL-platform-without-X11-head.patch | 36 +++++++++++++++++++
->  .../gstreamer1.0-plugins-good_1.16.%.bbappend |  3 +-
->  2 files changed, 38 insertions(+), 1 deletion(-)
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-qmlglsink-fix-build-on-EGL-platform-without-X11-head.patch
-> 
-> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-qmlglsink-fix-build-on-EGL-platform-without-X11-head.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-qmlglsink-fix-build-on-EGL-platform-without-X11-head.patch
-> new file mode 100644
-> index 00000000..79db0e27
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-qmlglsink-fix-build-on-EGL-platform-without-X11-head.patch
-> @@ -0,0 +1,36 @@
-> +From 85229adbddcd8e7cacd5ebd9467c834352a882d0 Mon Sep 17 00:00:00 2001
-> +From: Philipp Zabel <p.zabel@pengutronix.de>
-> +Date: Tue, 3 Dec 2019 11:36:07 +0100
-> +Subject: [PATCH] qmlglsink: fix build on EGL platform without X11 headers
-> +
-> +If Mesa is built without X11 headers, building against Mesa EGL headers
-> +requires a dependency on egl.pc, to define MESA_EGL_NO_X11_HEADERS.
-> +This fixes a build error when compiling ext/qt/gstqtglutility.cc:
-> +
-> +  In file included from /usr/include/EGL/egl.h:39,
-> +                   from /usr/include/gstreamer-1.0/gst/gl/egl/gstegl.h:44,
-> +                   from ../gst-plugins-good-1.16.1/ext/qt/gstqtglutility.cc:43:
-> +  /usr/include/EGL/eglplatform.h:124:10: fatal error: X11/Xlib.h: No such file or directory
+I believe, you could do the same for 'BT_TI' components. Add it to the CONN=
+ECTIVITY_RDEPENDS variable.
 
-Thanks for the backport! We've seen this issue in the past in other places 
-too, e.g.:
+In the current builds, BT FW is missing.. The above would fix it..
 
-https://github.com/meta-qt5/meta-qt5/commit/41666ddba78ff1f094310589489e0a070e0094d8
-http://arago-project.org/git/meta-arago.git?p=meta-arago.git;a=commitdiff;h=1e83ebf61bd22ca8ad04d5538db044d81330df2c
+Thanks
+Hari
 
+-----Original Message-----
+From: Devshatwar, Nikhil=20
+Sent: Wednesday, March 10, 2021 2:01 PM
+To: meta-arago@arago-project.org; Bajjuri, Praneeth <praneeth@ti.com>
+Cc: Vutla, Lokesh <lokeshvutla@ti.com>; Kishon Vijay Abraham <kishon@ti.com=
+>; Nori, Sekhar <nsekhar@ti.com>; Nagalla, Hari <hnagalla@ti.com>; Narang, =
+Saurabh <saurabhnarang@ti.com>; Devshatwar, Nikhil <nikhil.nd@ti.com>
+Subject: [meta-arago][dunfell][PATCH v3] packagegroups: tisdk-connectivity:=
+ Include TI wlan packages for k3 platforms
 
-> +Upstream-Status: Backport [c47a585052fba6830a2cddd8caa18e2305596ed0]
+Currently, the K3 platforms do not include the TI wlan related packages.
+Add in the tisdk-connectivity packagegroup.
 
-Special thanks for Upstream-Status! :)
+While at it, combine the packages added in all overrides into CONNECTIVITY_=
+RDEPENDS variable and remove from overrides.
 
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+Suggested-by: Hari Nagalla <hnagalla@gmail.com>
+Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
+---
 
-> +Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+Notes:
+    changes from v2:
+    * Combine the common package list into CONNECTIVITY_RDEPENDS
+   =20
+    changes from v1:
+   =20
+    * Drop the new recipe and simply include the existing packages for wili=
+nk
+      This way, all the platforms are using the same recipes and we don't
+      have to maintain any new recipe just for the am64xx-sk
+      The firmare will get picked from the repo
+      git://git.ti.com/wilink8-wlan/wl18xx_fw.git
 
-Reviewed-by: Denys Dmytriyenko <denis@denix.org>
+ .../packagegroup-arago-tisdk-connectivity.bb    | 17 +++--------------
+ 1 file changed, 3 insertions(+), 14 deletions(-)
 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arag=
+o-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/pack=
+agegroup-arago-tisdk-connectivity.bb
+index 11109432..8a8189fe 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk=
+-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-ti
++++ sdk-connectivity.bb
+@@ -61,36 +61,25 @@ CONNECTIVITY_RDEPENDS =3D " \
+     iproute2-devlink \
+     net-snmp \
+     net-snmp-server-snmpd \
+-"
+-
+-CONNECTIVITY_RDEPENDS_append_ti33x =3D "\
+     ${WLAN_COMMON} \
+     ${WLAN_TI} \
+     ${BT_COMMON} \
++"
++
++CONNECTIVITY_RDEPENDS_append_ti33x =3D "\
+     ${BT_TI} \
+     ${DEMO_APPS} \
+ "
+=20
+ CONNECTIVITY_RDEPENDS_append_ti43x =3D "\
+-    ${WLAN_COMMON} \
+-    ${WLAN_TI} \
+-    ${BT_COMMON} \
+     ${BT_TI} \
+     ${DEMO_APPS} \
+ "
+=20
+ CONNECTIVITY_RDEPENDS_append_dra7xx =3D "\
+-    ${WLAN_COMMON} \
+-    ${WLAN_TI} \
+-    ${BT_COMMON} \
+     ${BT_TI} \
+ "
+=20
+-CONNECTIVITY_RDEPENDS_append_k3 =3D "\
+-    ${WLAN_COMMON} \
+-    ${BT_COMMON} \
+-"
+-
+ RDEPENDS_${PN} =3D "\
+     ${CONNECTIVITY_RDEPENDS} \
+ "
+--
+2.17.1
 
-> +---
-> + ext/qt/meson.build | 2 ++
-> + 1 file changed, 2 insertions(+)
-> +
-> +diff --git a/ext/qt/meson.build b/ext/qt/meson.build
-> +index 5f040c844..43ddc6092 100644
-> +--- a/ext/qt/meson.build
-> ++++ b/ext/qt/meson.build
-> +@@ -89,6 +89,8 @@ if have_cxx and build_gstgl
-> +     if gst_gl_have_platform_egl
-> +       # Embedded linux (e.g. i.MX6) with or without windowing support
-> +       qt_defines += ['-DHAVE_QT_EGLFS']
-> ++      egl_dep = dependency('egl', required : false)
-> ++      optional_deps += egl_dep
-> +       have_qt_windowing = true
-> +       if have_qpa_include
-> +         # Wayland windowing
-> +--
-> +2.17.1
-> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.16.%.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.16.%.bbappend
-> index 004a9968..e2ddbc27 100644
-> --- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.16.%.bbappend
-> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.16.%.bbappend
-> @@ -7,6 +7,7 @@ SRC_URI += " \
->      file://0002-v4l2src-Use-generic-dmabuf-import-in-v4l2src.patch \
->      file://0001-v4l2object-Update-formats-table-to-include-YUV422-mu.patch \
->      file://0001-v4l2src-Check-for-drm-memory-support-in-try_import.patch \
-> +    file://0001-qmlglsink-fix-build-on-EGL-platform-without-X11-head.patch \
->  "
->  
-> -PR_append = ".arago2"
-> +PR_append = ".arago3"
-> -- 
-> 2.29.0
-
--- 
-Regards,
-Denys Dmytriyenko <denis@denix.org>
-PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
-Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
 
