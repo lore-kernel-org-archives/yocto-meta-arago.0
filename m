@@ -1,46 +1,35 @@
-Return-Path: <aparnab@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id F030652AA8
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id E6AE152AAB
 	for <meta-arago@arago-project.org>;
-	Fri, 12 Mar 2021 19:00:34 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12CJ0oen035015;
-	Fri, 12 Mar 2021 13:00:50 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1615575650;
-	bh=sEJ4vnvt9En2HOU8h3YAl+q1eXI7rabtpO/37tl0gVI=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=bnytgt1rVw0q6Ey7HnTonnnGqhQANp9d6Vn4BZ/rb9WwK5Txu6oNpO344eU1fFZyX
-	HXMwtVwzxWiTq0h9FFPwvl6GoU7TrL5TNZNvt70Wg8+kQ0kdA2M0uJgl2MTWHvmipw
-	TjOTb+Ss6l6uUdJYob1+ckf31Ms6ve2+81fvXdyo=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12CJ0ofr117367
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 12 Mar 2021 13:00:50 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Fri, 12 Mar 2021 13:00:50 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Fri, 12 Mar 2021 13:00:50 -0600
-Received: from [128.247.81.129] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12CJ0nNR110861;
-	Fri, 12 Mar 2021 13:00:50 -0600
-To: Denys Dmytriyenko <denis@denix.org>
+	Fri, 12 Mar 2021 19:05:41 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 4B90A40BEA;
+	Fri, 12 Mar 2021 19:05:57 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id SRgCDIzqiCPi; Fri, 12 Mar 2021 19:05:57 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2726240B66;
+	Fri, 12 Mar 2021 19:05:55 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id E577B174539; Fri, 12 Mar 2021 14:05:54 -0500 (EST)
+Date: Fri, 12 Mar 2021 14:05:54 -0500
+From: Denys Dmytriyenko <denis@denix.org>
+To: Aparna Balasubramanian <aparnab@ti.com>
+Message-ID: <20210312190554.GA4892@denix.org>
 References: <20210312161817.2581-1-aparnab@ti.com>
 	<20210312163956.ti7erugzz6hcvx2m@carmaker>
 	<ee3daee0-c656-fc2f-bcd2-e0734af92f22@ti.com>
 	<20210312185409.GZ4892@denix.org>
-From: Aparna Balasubramanian <aparnab@ti.com>
-Message-ID: <2bd88fa5-844e-6702-aa80-686984638386@ti.com>
-Date: Fri, 12 Mar 2021 13:00:49 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.10.0
+	<0d2d1004-d31f-afae-10bb-644a1089932e@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20210312185409.GZ4892@denix.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <0d2d1004-d31f-afae-10bb-644a1089932e@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
 Subject: Re: [master/dunfell PATCH] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
@@ -55,27 +44,36 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Mar 2021 19:00:35 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Fri, 12 Mar 2021 19:05:42 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Fri, Mar 12, 2021 at 12:58:55PM -0600, Aparna Balasubramanian wrote:
+> 
+> On 3/12/21 12:54 PM, Denys Dmytriyenko wrote:
+> >On Fri, Mar 12, 2021 at 12:48:29PM -0600, Aparna Balasubramanian wrote:
+> >>Nishanth,
+> >>
+> >>Sure, will send v2 with change information.
+> >>
+> >>I will update filename as part of 2021 lts updates.
+> >Have you rebased ltp-ddt against newer 2021 ltp version?
+> >
+> Denys,
+> 
+> Not yet.
+
+The version of ltp-ddt indicates the version of ltp it is based on.
 
 
-On 3/12/21 12:54 PM, Denys Dmytriyenko wrote:
-> On Fri, Mar 12, 2021 at 12:48:29PM -0600, Aparna Balasubramanian wrote:
->> Nishanth,
->>
->> Sure, will send v2 with change information.
->>
->> I will update filename as part of 2021 lts updates.
-> Have you rebased ltp-ddt against newer 2021 ltp version?
->
-Denys,
+> Regards,
+> 
+> Aparna
+> 
 
-Not yet.
-
+-- 
 Regards,
-
-Aparna
-
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
 
