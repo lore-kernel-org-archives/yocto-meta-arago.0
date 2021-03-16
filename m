@@ -1,44 +1,44 @@
 Return-Path: <nm@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 4D7A452A31
+	by arago-project.org (Postfix) with ESMTP id CCCBA529A2
 	for <meta-arago@arago-project.org>;
-	Tue, 16 Mar 2021 17:08:44 +0000 (UTC)
+	Tue, 16 Mar 2021 17:17:45 +0000 (UTC)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12GH90VU105093;
-	Tue, 16 Mar 2021 12:09:00 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12GHI2WL107923;
+	Tue, 16 Mar 2021 12:18:02 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1615914540;
-	bh=H26+nsaEyvtJG4Bjg7TCxqzsZrpQJNpB4h2XdoHyAQI=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=OpPUuZTcZ5vFKsbmOpH+Nh3hYeu9w07fLZyEq0W1bhW+d/EXm90ATQFiouFC0E7Bu
-	W/2gcSe/IfS0C0BdE6pDveuwkYYSxmBe0/PtRSoKUw/bUAgJcvHuNuYeE1rHiGijdw
-	4ciHf8rTCem358sdxNsK6A/WHRjw6S6K57IT+ZKc=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12GH90YK126168
+	s=ti-com-17Q1; t=1615915082;
+	bh=JfmAfQ12c/M0N3jKgk3wWM5k13UNieRdwcJlJZ/ZrU4=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=MN11CSSEGvlmQ0KhT0eP/KFBjWLbd94boF9KPbiWJ4JWtja/OYu7YV2A8HDn2U60i
+	LQM/G8tlHByXdxkB/aLQkyFBkjLOyLHPBVXO9sNVsyv5ejyJXIQlkXc4JxhxJKjw9O
+	CN9qwtj2Zg4W9QUJvb269Cqy+YzCa6eYaJ6+nZT0=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12GHI2eU010841
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 16 Mar 2021 12:09:00 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 16 Mar 2021 12:18:02 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Tue, 16 Mar 2021 12:08:59 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 16 Mar 2021 12:18:01 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Tue, 16 Mar 2021 12:08:59 -0500
+	Frontend Transport; Tue, 16 Mar 2021 12:18:01 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12GH8xE5068395;
-	Tue, 16 Mar 2021 12:08:59 -0500
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12GHI1sL086167;
+	Tue, 16 Mar 2021 12:18:01 -0500
+Date: Tue, 16 Mar 2021 12:18:01 -0500
 From: Nishanth Menon <nm@ti.com>
 To: <praneeth@ti.com>, <denis@denix.org>
-Date: Tue, 16 Mar 2021 12:08:56 -0500
-Message-ID: <20210316170857.9547-2-nm@ti.com>
-X-Mailer: git-send-email 2.25.1.377.g2d2118b814c1
-In-Reply-To: <20210316170857.9547-1-nm@ti.com>
+Message-ID: <20210316171801.l7ttk4ottbyocpzi@oxidize>
 References: <20210316170857.9547-1-nm@ti.com>
 MIME-Version: 1.0
+In-Reply-To: <20210316170857.9547-1-nm@ti.com>
+User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: [oe-layersetup][PATCH 1/2] Revert "arago-dunfell-next: Temporarily redirect meta-openembedded"
+Subject: Re: [oe-layersetup][PATCH 0/2] arago-dunfell/dunfell-next: Move to
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,35 +51,28 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Mar 2021 17:08:45 -0000
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-List-Received-Date: Tue, 16 Mar 2021 17:17:46 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-This reverts commit 99f72a0bd64e3f7e0d395a0bb5c26017d745a185.
+On 12:08-20210316, Nishanth Menon wrote:
 
-MariaDB issue has been resolved in upstream, no need to use a TI private
-repository for build.
+I have no idea what ate up my $subject -> I intended to add "Move to
+dunfell/dunfell-tip from upstream.
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
- configs/arago-dunfell-next-config.txt | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> This brings arago-config and arago-next-config both in sync with latest
+> dunfell and dunfell-next tips appropriately.
+> 
+> This series obviously will need to be followed up at an appropriate time
+> with a stable commit sha patch to pin things up.
 
-diff --git a/configs/arago-dunfell-next-config.txt b/configs/arago-dunfell-next-config.txt
-index 14e6fa8c9d6a..8d629c4bf42d 100644
---- a/configs/arago-dunfell-next-config.txt
-+++ b/configs/arago-dunfell-next-config.txt
-@@ -6,8 +6,7 @@ meta-arago,git://arago-project.org/git/meta-arago.git,dunfell-next,HEAD,layers=m
- #meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
- meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
- meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,HEAD,layers=
--#meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
--meta-openembedded,ssh://git@bitbucket.itg.ti.com/coresdk_pub/meta-openembedded.git,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
- meta-ti,git://git.yoctoproject.org/meta-ti,dunfell-next,HEAD,layers=
- meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
- oe-core,git://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
+K, I might be missing the motivation here - the pinning may not be
+required given that dunfell is always a rolling config.. and used only
+in the cases of exceptions.. So, please ignore my comment.
+
 -- 
-2.25.1.377.g2d2118b814c1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
