@@ -1,36 +1,31 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id C6AF9529B7
+	by arago-project.org (Postfix) with ESMTPS id C6CA9529A2
 	for <meta-arago@arago-project.org>;
-	Tue, 16 Mar 2021 19:14:57 +0000 (UTC)
+	Tue, 16 Mar 2021 19:57:56 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 074C540C1C;
-	Tue, 16 Mar 2021 19:15:14 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 274E440C1C;
+	Tue, 16 Mar 2021 19:58:13 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id frprGV08onqS; Tue, 16 Mar 2021 19:15:13 +0000 (UTC)
+	with ESMTP id RRUv7KgKdu7k; Tue, 16 Mar 2021 19:58:13 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D4AD640A77;
-	Tue, 16 Mar 2021 19:15:11 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 4564D17454A; Tue, 16 Mar 2021 15:15:11 -0400 (EDT)
-Date: Tue, 16 Mar 2021 15:15:11 -0400
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0B2C840A77;
+	Tue, 16 Mar 2021 19:58:11 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id B3A5E17454B;
+	Tue, 16 Mar 2021 15:58:11 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
-To: "Bajjuri, Praneeth" <praneeth@ti.com>
-Message-ID: <20210316191511.GK18041@denix.org>
-References: <20210316170857.9547-1-nm@ti.com>
-	<20210316171801.l7ttk4ottbyocpzi@oxidize>
-	<20210316184512.GJ18041@denix.org>
-	<a2a1382e-63fc-5d1b-d010-195b7a857679@ti.com>
-MIME-Version: 1.0
-In-Reply-To: <a2a1382e-63fc-5d1b-d010-195b7a857679@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [oe-layersetup][PATCH 0/2] arago-dunfell/dunfell-next: Move to
+To: meta-arago@arago-project.org
+Date: Tue, 16 Mar 2021 15:58:10 -0400
+Message-Id: <1615924690-45022-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [dunfell/master][PATCH] opencv: drop deprecated bbappend for DSP-offloading
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -43,38 +38,69 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Mar 2021 19:14:58 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 16 Mar 2021 19:57:57 -0000
 
-On Tue, Mar 16, 2021 at 02:13:09PM -0500, Bajjuri, Praneeth wrote:
-> 
-> 
-> On 3/16/2021 1:45 PM, Denys Dmytriyenko wrote:
-> >On Tue, Mar 16, 2021 at 12:18:01PM -0500, Nishanth Menon wrote:
-> >>On 12:08-20210316, Nishanth Menon wrote:
-> >>
-> >>I have no idea what ate up my $subject -> I intended to add "Move to
-> >>dunfell/dunfell-tip from upstream.
-> >>
-> >>>
-> >>>This brings arago-config and arago-next-config both in sync with latest
-> >>>dunfell and dunfell-next tips appropriately.
-> >>>
-> >>>This series obviously will need to be followed up at an appropriate time
-> >>>with a stable commit sha patch to pin things up.
-> >>
-> >>K, I might be missing the motivation here - the pinning may not be
-> >>required given that dunfell is always a rolling config.. and used only
-> >>in the cases of exceptions.. So, please ignore my comment.
-> >
-> >Looks good to me.
-> >
-> >Praneeth, I see you only merged one of two patches?
-> 
-> Yes , only pulled the dunfell-next config .. started the build job
-> to check if builds are ok. Will pull the dunfell patch in couple of
-> hrs.
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-Ok, thanks.
+DSP-offloading to OpenCL hasn't been updated for ~3 years [1] and is based
+on version 3.1, which is no longer available. Remove remaining bbappend.
+
+[1] https://git.ti.com/cgit/opencv/tiopencv/log/?h=tiopencvrelease_3.1
+
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+---
+ .../recipes-support/opencv/opencv_3.1.bbappend     | 41 ----------------------
+ 1 file changed, 41 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
+
+diff --git a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend b/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
+deleted file mode 100644
+index a87e832..0000000
+--- a/meta-arago-distro/recipes-support/opencv/opencv_3.1.bbappend
++++ /dev/null
+@@ -1,41 +0,0 @@
+-PR = "r3"
+-
+-BRANCH = "tiopencvrelease_3.1"
+-
+-SRC_URI_remove = "git://github.com/Itseez/opencv.git;name=opencv"
+-SRC_URI_prepend = "git://git.ti.com/opencv/tiopencv.git;protocol=git;branch=${BRANCH};name=opencv"
+-
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-
+-SRC_URI_append += "\
+-     file://setupEnv.sh \
+-"
+-
+-SRCREV_opencv = "102577cf10416ca8180adda88d3fd801eebc6318"
+-
+-DEPENDS_remove_keystone = "qtbase"
+-
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-
+-PACKAGECONFIG_QTWAYLAND = "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "qtwayland", "", d)}"
+-PACKAGECONFIG_QTWAYLAND_keystone = ""
+-
+-PACKAGECONFIG_append = " ${PACKAGECONFIG_QTWAYLAND} \
+-                         ${@bb.utils.contains('MACHINE_FEATURES','dsp','opencl', '', d)} \
+-"
+-
+-PACKAGECONFIG_remove = "python3"
+-PACKAGECONFIG_remove = "python2"
+-
+-inherit cmake_qt5
+-
+-PACKAGECONFIG[opencl] = "-DWITH_OPENCL=ON -DCMAKE_CXX_FLAGS_RELEASE="${CMAKE_CXX_FLAGS_RELEASE} -DCV_TIOPENCL -DCV_TIOPENCL_ENABLE_PROGRAM_COUNT -DMAX_PROGRAM_HASH_SIZE=50" -DCMAKE_C_FLAGS_RELEASE="${CMAKE_C_FLAGS_RELEASE} -DCV_TIOPENCL -DCV_TIOPENCL_ENABLE_PROGRAM_COUNT -DMAX_PROGRAM_HASH_SIZE=50" -DWITH_OPENCLAMDFFT=OFF -DWITH_OPENCLAMDBLAS=OFF,-DWITH_OPENCL=OFF,cmem opencl,"
+-PACKAGECONFIG[qtwayland] = "-DWITH_QT=ON,-DWITH_QT=OFF,qtwayland,"
+-
+-do_install_append() {
+-    install -d ${D}${datadir}/OpenCV/samples/bin/
+-    install -d ${D}${datadir}/OpenCV/titestsuite/
+-    cp -f bin/*_test_* ${D}${datadir}/OpenCV/samples/bin/
+-    cp -f ${S}/titestsuite/* ${D}${datadir}/OpenCV/titestsuite/
+-    cp -f ${WORKDIR}/setupEnv.sh ${D}${datadir}/OpenCV/titestsuite/
+-}
+-- 
+2.7.4
+
 
