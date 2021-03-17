@@ -1,48 +1,49 @@
 Return-Path: <hnagalla@gmail.com>
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com
-	[209.85.210.48])
-	by arago-project.org (Postfix) with ESMTPS id D94DA529C8
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com
+	[209.85.167.180])
+	by arago-project.org (Postfix) with ESMTPS id C1DB952A31
 	for <meta-arago@arago-project.org>;
-	Wed, 17 Mar 2021 09:52:08 +0000 (UTC)
-Received: by mail-ot1-f48.google.com with SMTP id
-	v24-20020a9d69d80000b02901b9aec33371so1199644oto.2
+	Wed, 17 Mar 2021 09:52:10 +0000 (UTC)
+Received: by mail-oi1-f180.google.com with SMTP id w65so41167645oie.7
 	for <meta-arago@arago-project.org>;
-	Wed, 17 Mar 2021 02:52:25 -0700 (PDT)
+	Wed, 17 Mar 2021 02:52:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=c1sc82t2Sfv+7ZWJ73DwR77Cexf3ER9aTTs68AbjO2Y=;
-	b=SLEihiGTNVEWz0JRtd7Sb3XqNxiOLFHBPdLLz3IY40yTuhgF4UcPJ4Osl37d9nA4O1
-	d26tZl4F4ftnOjF+78CSTAgX5S+EXnnxOAaeCh1TUTp2kkuaWIVxNDTEml8EAeH6Xnh4
-	yysUeJIxj6XrGj5+ej3ZhQAWn2LrNzgYx5lcbTA6ePPNDvF5DSLRefvjK+qwsd862zTP
-	era3uAwnt1y0U7qZajoZnDSfHTMFLLCS3INBUnfRDmSep9dTj7ZVD2HOdTHOg2N+dH9R
-	6QQahXo+wZeW9OQa5wx+Ilu0NT7nuYFtazrSqRgdz1JNk8IUe1tAeq0nHwL20cKtQJ0o
-	V2Bw==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=a88scykn70uRSF4+KN9bHmpzPUw37JkmLKI8RCOogsA=;
+	b=X68pfVCXUaKbqADnKW8nqI9TVKJZbiVs5rAua9yf9cNBKVsB8iN6yNWhH5q+DvUj5W
+	Ihgvae4AbPWv1wf7YZvjkL4l6NyCZHm4sSdyynULHXK4zctSWeBCO56bGa4XfY56R6wc
+	qMk4DxMaI0UMDvbl8+SdDNHpIEFtmByAqitF5AtnReXQWXh3q2lelKbsNKCP95GDiMJ5
+	5rLA9TxLWZrkAnu1cBl/zjxUuw2a3hQokHrCJAKik2lU8vriF53HTgT/PNENlsgAht9P
+	j0CiCajFffZYphmzkmf4zw5eV1ioCTO4GVzejgVAd56NlD2Y40DVZ1R2XWk2h9OKpbF0
+	VlYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=c1sc82t2Sfv+7ZWJ73DwR77Cexf3ER9aTTs68AbjO2Y=;
-	b=p7JQrPuVXUTQnm/Dgc7mDPJyjbVR14w75BaleRXQnPryIwSNZljGBrRz3O+J1TAF7+
-	odX/Q+VUaqiZoirLZpZMxuNOU3ydxzkCDeqF9+tXWmRb/77IbYx489cgSdY5lLbLn7vt
-	/apbxk0xiBNajyhbXW0G5xbxJmxX8ogcGFHJ0tdFB1o11pVSAoEGxS6aCjwzVhW16WwW
-	m8BlddElr9uY8J0NGg71bfhOPpcAtOmffdcA2zPzROf2ceoia0sai6P9Cu9W1/fDu7sh
-	HRILERPVKAHKScptSqkQjvkc35mKbjwFnvqTVQDNFOfe42Re1DuNpEV9O0uv6DYx/Se9
-	OtNQ==
-X-Gm-Message-State: AOAM531230TOnaoqAfzKZbHiicuCXDua5u8EAPZhZTj3Sw2UpE2LjpM6
-	Rgb5jHFfMdVXo8vIiEScg7CUxBh7UU6dAA==
-X-Google-Smtp-Source: ABdhPJyTV6UNEEHpkOLkyA5kp7wV5NzK38lYrV3n0DLcDxUMs+53WHVAKNzXXQ6TVfz4IoPOULx4Rg==
-X-Received: by 2002:a05:6830:1644:: with SMTP id
-	h4mr2622255otr.349.1615974744774; 
-	Wed, 17 Mar 2021 02:52:24 -0700 (PDT)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=a88scykn70uRSF4+KN9bHmpzPUw37JkmLKI8RCOogsA=;
+	b=OycjlxVPmexycq9cODdctrSjUPvE2ZA3MHqSFiYYRy3+YSsjT0YGlMmn7+utUB/kQP
+	NBw+5Ft11y6oUr7IztbwEyk9JPBNPwg2QdpNaTgjJzbU3BI9l5jzyK4Ou1Ukzilbq9GI
+	m2D1yIzP++MaUvFUOwC/yq7qc8PKEzsZyJ3Z7rWmInmMi92MsfO0hgmCnrb2xZpDTCWx
+	G+ehKGh0FZzUt4OKd3qA8jKAsShlsAUEKVjgGlJQW7QTUdGW5DzuywPNz9DxfGjs8oIK
+	q/RYXE0J2UZmGLJ+zS3e+Yw56QRzrufuQSZMr7pzaJ9Rk787Zq50j1wBI+XalBgWqnOu
+	QokA==
+X-Gm-Message-State: AOAM532UjrM0mztW2I1zwgBDksnPSDUiQWOBKXrk1z8ivZ2Zw5IFtRnV
+	lPWyxdq+6UxdkOCeHFtI/lFyL5T+6o2ypA==
+X-Google-Smtp-Source: ABdhPJxGSFTECmv/B9AAHZA7G3cxYxwikWdj2waUanG90yt3OteRSDPLgz/5ukS1dmRO7L8Zl8D+QQ==
+X-Received: by 2002:a54:480b:: with SMTP id j11mr2166822oij.116.1615974746827; 
+	Wed, 17 Mar 2021 02:52:26 -0700 (PDT)
 Received: from localhost.localdomain ([24.170.5.142])
-	by smtp.gmail.com with ESMTPSA id x3sm7886061oif.22.2021.03.17.02.52.24
+	by smtp.gmail.com with ESMTPSA id x3sm7886061oif.22.2021.03.17.02.52.26
 	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Wed, 17 Mar 2021 02:52:24 -0700 (PDT)
+	Wed, 17 Mar 2021 02:52:26 -0700 (PDT)
 From: Hari Nagalla <hnagalla@gmail.com>
 To: meta-arago@arago-project.org
-Date: Wed, 17 Mar 2021 04:52:00 -0500
-Message-Id: <20210317095201.7528-1-hnagalla@gmail.com>
+Date: Wed, 17 Mar 2021 04:52:01 -0500
+Message-Id: <20210317095201.7528-2-hnagalla@gmail.com>
 X-Mailer: git-send-email 2.17.1
-Subject: [ 0/1] *** BT_TI moved to CONNECTIVITY_RDEPENDS ***
+In-Reply-To: <20210317095201.7528-1-hnagalla@gmail.com>
+References: <20210317095201.7528-1-hnagalla@gmail.com>
+Subject: [ 1/1] Move BT_TI (BT FW etc) to CONNECTIVITY_RDEPENDS, as it is needed across all platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,17 +56,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Mar 2021 09:52:09 -0000
+X-List-Received-Date: Wed, 17 Mar 2021 09:52:11 -0000
 
-*** BLURB HERE ***
-
-Hari Nagalla (1):
-  Move BT_TI (BT FW etc) to CONNECTIVITY_RDEPENDS, as it is needed
-    across all platforms
-
+Signed-off-by: Hari Nagalla <hnagalla@gmail.com>
+---
  .../packagegroups/packagegroup-arago-tisdk-connectivity.bb    | 4 +---
  1 file changed, 1 insertion(+), 3 deletions(-)
 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index 8a8189fe..5552096d 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -64,20 +64,18 @@ CONNECTIVITY_RDEPENDS = " \
+     ${WLAN_COMMON} \
+     ${WLAN_TI} \
+     ${BT_COMMON} \
++    ${BT_TI} \
+ "
+ 
+ CONNECTIVITY_RDEPENDS_append_ti33x = "\
+-    ${BT_TI} \
+     ${DEMO_APPS} \
+ "
+ 
+ CONNECTIVITY_RDEPENDS_append_ti43x = "\
+-    ${BT_TI} \
+     ${DEMO_APPS} \
+ "
+ 
+ CONNECTIVITY_RDEPENDS_append_dra7xx = "\
+-    ${BT_TI} \
+ "
+ 
+ RDEPENDS_${PN} = "\
 -- 
 2.17.1
 
