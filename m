@@ -1,31 +1,34 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 359B85299C
+	by arago-project.org (Postfix) with ESMTPS id 4EEE95299C
 	for <meta-arago@arago-project.org>;
-	Wed, 17 Mar 2021 16:48:59 +0000 (UTC)
+	Wed, 17 Mar 2021 17:01:07 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A754440C2C;
-	Wed, 17 Mar 2021 16:49:15 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D562A40C2C;
+	Wed, 17 Mar 2021 17:01:23 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id PnZq7xWswx82; Wed, 17 Mar 2021 16:49:15 +0000 (UTC)
+	with ESMTP id 2_Iu8i7tkh1K; Wed, 17 Mar 2021 17:01:23 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8FAB5409AE;
-	Wed, 17 Mar 2021 16:49:14 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id E374B17454D;
-	Wed, 17 Mar 2021 12:49:13 -0400 (EDT)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B95AD40A47;
+	Wed, 17 Mar 2021 17:01:22 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 7B87D17454F; Wed, 17 Mar 2021 13:01:22 -0400 (EDT)
+Date: Wed, 17 Mar 2021 13:01:22 -0400
 From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Wed, 17 Mar 2021 12:49:06 -0400
-Message-Id: <1615999746-23215-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [dunfell/master][PATCH] tisdk-tiny-image: remove packagedata task breaking initramfs packaging
+To: Hari Nagalla <hnagalla@gmail.com>
+Message-ID: <20210317170122.GS18041@denix.org>
+References: <20210317095201.7528-1-hnagalla@gmail.com>
+	<20210317095201.7528-2-hnagalla@gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <20210317095201.7528-2-hnagalla@gmail.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [ 1/1] Move BT_TI (BT FW etc) to CONNECTIVITY_RDEPENDS, as it is needed across all platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,33 +41,62 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Mar 2021 16:48:59 -0000
+X-List-Received-Date: Wed, 17 Mar 2021 17:01:07 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+Hari,
 
-The way initramfs gets included into other packages causes its packagedata
-manifest to be absent in sstate. This used to be a warning and as part of
-cleanup and proper fixing in master, became an error. That was inadvertently
-backported to dunfell, but will be reverted soon. Regardless, fix it by
-removing the unnecessary task in the initramfs image recipe.
+Please follow the OpenEmbedded patch guidelines for commit log and the 
+subject:
 
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
----
- meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb | 2 ++
- 1 file changed, 2 insertions(+)
+https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
 
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb b/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-index 28da0b6..c0ef8f2 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-@@ -13,4 +13,6 @@ IMAGE_INSTALL = " \
- 	${ARAGO_TINY_IMAGE_EXTRA_INSTALL} \
- "
- 
-+deltask do_packagedata
-+
- export IMAGE_BASENAME = "tisdk-tiny-image"
+Thanks.
+
+
+On Wed, Mar 17, 2021 at 04:52:01AM -0500, Hari Nagalla wrote:
+> Signed-off-by: Hari Nagalla <hnagalla@gmail.com>
+> ---
+>  .../packagegroups/packagegroup-arago-tisdk-connectivity.bb    | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+> index 8a8189fe..5552096d 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+> @@ -64,20 +64,18 @@ CONNECTIVITY_RDEPENDS = " \
+>      ${WLAN_COMMON} \
+>      ${WLAN_TI} \
+>      ${BT_COMMON} \
+> +    ${BT_TI} \
+>  "
+>  
+>  CONNECTIVITY_RDEPENDS_append_ti33x = "\
+> -    ${BT_TI} \
+>      ${DEMO_APPS} \
+>  "
+>  
+>  CONNECTIVITY_RDEPENDS_append_ti43x = "\
+> -    ${BT_TI} \
+>      ${DEMO_APPS} \
+>  "
+>  
+>  CONNECTIVITY_RDEPENDS_append_dra7xx = "\
+> -    ${BT_TI} \
+>  "
+
+This append_dra7xx override now becomes empty and can be dropped.
+
+
+>  
+>  RDEPENDS_${PN} = "\
+> -- 
+> 2.17.1
+
 -- 
-2.7.4
-
+Regards,
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
 
