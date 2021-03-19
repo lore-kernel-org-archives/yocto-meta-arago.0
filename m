@@ -1,44 +1,42 @@
-Return-Path: <nm@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 5B18452A22
+Return-Path: <praneeth@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTP id E147A529EC
 	for <meta-arago@arago-project.org>;
-	Thu, 18 Mar 2021 16:26:59 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12IGRFhi107418;
-	Thu, 18 Mar 2021 11:27:15 -0500
+	Fri, 19 Mar 2021 18:12:40 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12JICvgV108493;
+	Fri, 19 Mar 2021 13:12:57 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1616084835;
-	bh=YLvveUEui48evYlY1AjOS+BdNx818JLbIz8ql+yFe0s=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=DjpFLy+Tatu6LRSfAXM/mu9Z834pgfRQehh9vjIK9twP6/ORSSc1RuLwBSVugh8pw
-	flk+6NJ1KR5UjooWy9A/9JMqRcuqX9Qtr3to6QNdkVZnfnThtT7g5NkNn7zhZDozEc
-	pBuGFZRP0UfHxOdK7YgU7l5MD2CyA8m0IELUxEDs=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12IGRFSj040741
+	s=ti-com-17Q1; t=1616177577;
+	bh=3X+OCgVrEkgtXQIlgGQIngSJhcnzC9rKgWBaJsyGegw=;
+	h=From:To:CC:Subject:Date;
+	b=Hnu5b6l0h9+NVH5Yk03gN1r6TsaH0w+HJbGy9iwfRGh6MB2GiyADAZhA45M43kDAC
+	PTahi7u0CNWIad5qN1uvr7f/tH4A091btS1NmkzAXVd0hKbQ7dUrqqKn4eNUKoaBGH
+	EoVShLu7QIgLFp5i30cTPu9QFbTO38z8qeQYD7ik=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12JICvaH118562
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 18 Mar 2021 11:27:15 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 19 Mar 2021 13:12:57 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE107.ent.ti.com
+	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Thu, 18 Mar 2021 11:27:15 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 19 Mar 2021 13:12:57 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Thu, 18 Mar 2021 11:27:15 -0500
+	Frontend Transport; Fri, 19 Mar 2021 13:12:57 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12IGRFcn118729;
-	Thu, 18 Mar 2021 11:27:15 -0500
-Date: Thu, 18 Mar 2021 11:27:15 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>
-Message-ID: <20210318162715.ic7rk7kldf4ivmdq@molehill>
-References: <1616084115-43128-1-git-send-email-denis@denix.org>
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12JICvcp057735;
+	Fri, 19 Mar 2021 13:12:57 -0500
+From: <praneeth@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>, Hari Nagalla <hnagalla@ti.com>
+Date: Fri, 19 Mar 2021 13:12:57 -0500
+Message-ID: <20210319181257.10173-1-praneeth@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <1616084115-43128-1-git-send-email-denis@denix.org>
-User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [tisdk-build-scripts][PATCH] configs/farm: update local mirror address
+Cc: meta-arago@arago-project.org, denys@konsulko.com
+Subject: [dunfell/master PATCH] packagegroups: tisdk-connectivity: Include BT_TI package for all platforms
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,20 +49,50 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Mar 2021 16:26:59 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 19 Mar 2021 18:12:41 -0000
+Content-Type: text/plain
 
-On 12:15-20210318, Denys Dmytriyenko wrote:
-> Only update active configs for dunfell and master.
-> 
+From: Hari Nagalla <hnagalla@ti.com>
 
-Gee, thanks.
+Move BT_TI package (That consists bt_enable,bt_fw) to CONNECTIVITY_RDEPENDS.
+This enables the package across all TI platforms.
 
-Acked-by: Nishanth Menon <nm@ti.com>
+Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+[praneeth@ti.com: addressed review comments from v1]
+Signed-off-by: Praneeth Bajjuri <praneeth@ti.com>
+---
+ .../packagegroups/packagegroup-arago-tisdk-connectivity.bb | 7 +------
+ 1 file changed, 1 insertion(+), 6 deletions(-)
 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index 8a8189fe..1eb0e072 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -64,22 +64,17 @@ CONNECTIVITY_RDEPENDS = " \
+     ${WLAN_COMMON} \
+     ${WLAN_TI} \
+     ${BT_COMMON} \
++    ${BT_TI} \
+ "
+ 
+ CONNECTIVITY_RDEPENDS_append_ti33x = "\
+-    ${BT_TI} \
+     ${DEMO_APPS} \
+ "
+ 
+ CONNECTIVITY_RDEPENDS_append_ti43x = "\
+-    ${BT_TI} \
+     ${DEMO_APPS} \
+ "
+ 
+-CONNECTIVITY_RDEPENDS_append_dra7xx = "\
+-    ${BT_TI} \
+-"
+-
+ RDEPENDS_${PN} = "\
+     ${CONNECTIVITY_RDEPENDS} \
+ "
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.17.1
+
 
