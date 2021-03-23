@@ -1,35 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 34A8E529EC
+Return-Path: <nm@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id 28D8952A25
 	for <meta-arago@arago-project.org>;
-	Fri, 19 Mar 2021 18:32:07 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 424F840BA9;
-	Fri, 19 Mar 2021 18:32:24 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id gPWNxtiuXIi7; Fri, 19 Mar 2021 18:32:24 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1802040BA7;
-	Fri, 19 Mar 2021 18:32:21 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id D4A5B174553; Fri, 19 Mar 2021 14:32:20 -0400 (EDT)
-Date: Fri, 19 Mar 2021 14:32:20 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: "Nagalla, Hari" <hnagalla@ti.com>
-Message-ID: <20210319183220.GY18041@denix.org>
-References: <20210319181257.10173-1-praneeth@ti.com>
-	<49cedfbc80134bdd91b5e35707f82046@ti.com>
+	Tue, 23 Mar 2021 14:51:18 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12NEpZuJ096293;
+	Tue, 23 Mar 2021 09:51:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1616511095;
+	bh=gjTkQAEvhWVXHdTBsoM4i3gieaaynE8QCIR341C4/KI=;
+	h=From:To:CC:Subject:Date;
+	b=xsU1ST8MdNam6tar+0HFEIYnEKkRSyPs70VWiXBuHwT4lheWnQC672YKI6mVoM8IH
+	87qnJZ9TI5G6OJsSinzhRVdy4Qh5bzV7O32ehr3v8y2conFo9+S/Vs++oRtvvV3dzj
+	sIHarIBjjO+Ysq7QAPyE9LrrXoP/ZezwkP5m6uCA=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12NEpZb5050095
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 23 Mar 2021 09:51:35 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Tue, 23 Mar 2021 09:51:35 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+	Frontend Transport; Tue, 23 Mar 2021 09:51:35 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12NEpZmI011471;
+	Tue, 23 Mar 2021 09:51:35 -0500
+From: Nishanth Menon <nm@ti.com>
+To: <denis@denix.org>, <praneeth@ti.com>
+Date: Tue, 23 Mar 2021 09:51:33 -0500
+Message-ID: <20210323145133.9940-1-nm@ti.com>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-In-Reply-To: <49cedfbc80134bdd91b5e35707f82046@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
-	"denys@konsulko.com" <denys@konsulko.com>
-Subject: Re: [dunfell/master PATCH] packagegroups: tisdk-connectivity: Include BT_TI package for all platforms
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: [master][PATCH] layer.conf: Add hardknott to compatible release branches
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,79 +49,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Mar 2021 18:32:07 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 23 Mar 2021 14:51:18 -0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Yes, looks good to me too. Thanks for addressing the comments.
+This follows commit cfe3f78 ("layer.conf: add hardknott to compatible
+release branches") from meta-ti.
 
-On Fri, Mar 19, 2021 at 06:19:27PM +0000, Nagalla, Hari wrote:
-> Thanks Praneeth,
-> 
-> It seems good to me..
-> 
-> Thanks
-> Hari
-> 
-> -----Original Message-----
-> From: Bajjuri, Praneeth 
-> Sent: Friday, March 19, 2021 1:13 PM
-> To: Bajjuri, Praneeth <praneeth@ti.com>; Nagalla, Hari <hnagalla@ti.com>
-> Cc: meta-arago@arago-project.org; denys@konsulko.com
-> Subject: [dunfell/master PATCH] packagegroups: tisdk-connectivity: Include BT_TI package for all platforms
-> 
-> From: Hari Nagalla <hnagalla@ti.com>
-> 
-> Move BT_TI package (That consists bt_enable,bt_fw) to CONNECTIVITY_RDEPENDS.
-> This enables the package across all TI platforms.
-> 
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> [praneeth@ti.com: addressed review comments from v1]
-> Signed-off-by: Praneeth Bajjuri <praneeth@ti.com>
-> ---
->  .../packagegroups/packagegroup-arago-tisdk-connectivity.bb | 7 +------
->  1 file changed, 1 insertion(+), 6 deletions(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> index 8a8189fe..1eb0e072 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
-> @@ -64,22 +64,17 @@ CONNECTIVITY_RDEPENDS = " \
->      ${WLAN_COMMON} \
->      ${WLAN_TI} \
->      ${BT_COMMON} \
-> +    ${BT_TI} \
->  "
->  
->  CONNECTIVITY_RDEPENDS_append_ti33x = "\
-> -    ${BT_TI} \
->      ${DEMO_APPS} \
->  "
->  
->  CONNECTIVITY_RDEPENDS_append_ti43x = "\
-> -    ${BT_TI} \
->      ${DEMO_APPS} \
->  "
->  
-> -CONNECTIVITY_RDEPENDS_append_dra7xx = "\
-> -    ${BT_TI} \
-> -"
-> -
->  RDEPENDS_${PN} = "\
->      ${CONNECTIVITY_RDEPENDS} \
->  "
-> -- 
-> 2.17.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
+While we are at it, remove old releases before dunfell as we no longer
+support the build of such configurations.
 
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+
+WARNING: there is a bunch of work to do to move to gatesgarth /
+hardknott .. https://pastebin.ubuntu.com/p/kKCqXvnDKf/
+
+but this allows us to get started, I think.
+
+ meta-arago-distro/conf/layer.conf | 2 +-
+ meta-arago-extras/conf/layer.conf | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
+index 2931bf9daf4a..1fa61207fe01 100644
+--- a/meta-arago-distro/conf/layer.conf
++++ b/meta-arago-distro/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-distro"
+ BBFILE_PATTERN_meta-arago-distro := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-distro = "10"
+ 
+-LAYERSERIES_COMPAT_meta-arago-distro = "sumo thud warrior zeus dunfell"
++LAYERSERIES_COMPAT_meta-arago-distro = "dunfell gatesgarth hardknott"
+ 
+ LAYERDEPENDS_meta-arago-distro = " \
+     core \
+diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
+index 7e3081b20ba8..d64a80f8890f 100644
+--- a/meta-arago-extras/conf/layer.conf
++++ b/meta-arago-extras/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-extras"
+ BBFILE_PATTERN_meta-arago-extras := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-extras = "10"
+ 
+-LAYERSERIES_COMPAT_meta-arago-extras = "sumo thud warrior zeus dunfell"
++LAYERSERIES_COMPAT_meta-arago-extras = "dunfell gatesgarth hardknott"
+ 
+ # Set a variable to get to the top of the metadata location
+ ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
 -- 
-Regards,
-Denys Dmytriyenko <denis@denix.org>
-PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
-Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
+2.31.0
+
 
