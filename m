@@ -1,33 +1,45 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id AC81B5299C
+Return-Path: <aparnab@aparnab-office>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id BC0AA529C8
 	for <meta-arago@arago-project.org>;
-	Thu, 25 Mar 2021 16:09:38 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3042640C29;
-	Thu, 25 Mar 2021 16:09:57 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id etmXMG7LBEVF; Thu, 25 Mar 2021 16:09:57 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 059E540952;
-	Thu, 25 Mar 2021 16:09:53 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 4AC37174558; Thu, 25 Mar 2021 12:09:53 -0400 (EDT)
-Date: Thu, 25 Mar 2021 12:09:53 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Gowtham Tammana <g-tammana@ti.com>
-Message-ID: <20210325160953.GR18041@denix.org>
-References: <20210324191522.23836-1-g-tammana@ti.com>
+	Fri, 26 Mar 2021 18:04:05 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12QI4OeP018756
+	for <meta-arago@arago-project.org>; Fri, 26 Mar 2021 13:04:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1616781864;
+	bh=Ng563JWD1bM75ckyMzSOnwK751htfOIuMNpkYPF/L2U=;
+	h=From:To:CC:Subject:Date;
+	b=Ivj9iOc0v0nVhSb3bHQqik4CHpu7PiGJ6fGbmVZUAiBWkNWzdcwpfGh8mUiGpG80L
+	ktKDrbsEWQ1xOOnjcGeQgq5XzkIOP+dcwnFDqCgJf3YJ0R8FEG0HGqivy4CxLkxbZh
+	BxOxSZawFq8xWelql+ATtxxu1edk/iWwnFfRRuHU=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12QI4OdZ068209
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Fri, 26 Mar 2021 13:04:24 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Fri, 26 Mar 2021 13:04:24 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+	Frontend Transport; Fri, 26 Mar 2021 13:04:24 -0500
+Received: from aparnab-office (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12QI4OOD042925;
+	Fri, 26 Mar 2021 13:04:24 -0500
+Received: from aparnab by aparnab-office with local (Exim 4.90_1)
+	(envelope-from <aparnab@aparnab-office>)
+	id 1lPqoq-00009N-33; Fri, 26 Mar 2021 13:04:24 -0500
+From: Aparna Balasubramanian <aparnab@ti.com>
+To: <meta-arago@arago-project.org>, <praneeth@ti.com>
+Date: Fri, 26 Mar 2021 13:04:17 -0500
+Message-ID: <20210326180417.534-1-aparnab@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210324191522.23836-1-g-tammana@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org, denys@konsulko.com
-Subject: Re: [dunfell/master][PATCH] arago.conf: enable examples pkg for qtdeclarative
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: Aparna Balasubramanian <aparnab@ti.com>
+Subject: [master/dunfell PATCH] ltp-ddt: Update to latest
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,36 +52,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Mar 2021 16:09:39 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 26 Mar 2021 18:04:06 -0000
+Content-Type: text/plain
 
-On Wed, Mar 24, 2021 at 02:15:22PM -0500, Gowtham Tammana wrote:
-> qtdeclarative-examples package was disabled due to build issues.
-> Reenable it as there are no build issues now.
+Update includes addition of rgx test for 8k texture support and gpio
+pin numbers fix for am64 platforms.
 
-Does it work for you? It still seems to break for me.
-I guess Praneeth can throw it on the build farm to try...
+Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
+---
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb              | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+index be8bea98..7c9d50fd 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
+@@ -11,10 +11,10 @@ PROVIDES += "ltp"
+ DEPENDS += "alsa-lib"
+ 
+ PE = "1"
+-PR = "r12"
++PR = "r13"
+ PV_append = "+git${SRCPV}"
+ 
+-SRCREV = "3543cba63326976b5fb184c88b56158e91b7626a"
++SRCREV = "31f9cfa61ae4102da6fa87f624130096c09d63a2"
+ BRANCH ?= "master"
+ 
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
+-- 
+2.17.1
 
-> Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
-> ---
->  meta-arago-distro/conf/distro/arago.conf | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-> index 7c702814..3c715447 100644
-> --- a/meta-arago-distro/conf/distro/arago.conf
-> +++ b/meta-arago-distro/conf/distro/arago.conf
-> @@ -125,7 +125,7 @@ PACKAGECONFIG_append_pn-qtmultimedia = " gstreamer"
->  
->  # Add examples in Qt5 package configurations
->  PACKAGECONFIG_append_pn-qtcharts = " examples"
-> -#PACKAGECONFIG_append_pn-qtdeclarative = " examples"
-> +PACKAGECONFIG_append_pn-qtdeclarative = " examples"
->  PACKAGECONFIG_append_pn-qtlocation = " examples"
->  PACKAGECONFIG_append_pn-qtmultimedia = " examples"
->  PACKAGECONFIG_append_pn-qtscript = " examples"
-> -- 
-> 2.31.0
 
