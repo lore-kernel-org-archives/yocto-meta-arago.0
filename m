@@ -1,45 +1,45 @@
 Return-Path: <nm@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id E355552CB8
+	by arago-project.org (Postfix) with ESMTP id 6BDB052CB9
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Apr 2021 21:50:23 +0000 (UTC)
+	Thu,  1 Apr 2021 21:50:42 +0000 (UTC)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 131Loij5008486;
-	Thu, 1 Apr 2021 16:50:44 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 131Lp3ak008549;
+	Thu, 1 Apr 2021 16:51:03 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1617313844;
-	bh=yHzixJphbeSVnAksVLR8FBIiyfH7V4fmTEqCvOLH1vU=;
+	s=ti-com-17Q1; t=1617313863;
+	bh=HZVoxd6DpywR8P/iLkA/zE3nMUV4nAFZUdHkBrxfuwc=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=X4n6h9jGy8KF33t8vgQxPHMSFLIKza0qUDPB3MMxjUAVg/a9bUCQECQNb+rJfpgPQ
-	S0HEStqdWgD43OWsLZHz//zc/l/n4H8rm0Cnlwu6Fw+Wjdn/+LUFYs+XG0LqJwixkl
-	7XXYM/+k5WdtwF10iVw9nBPCk73wjMkIBu+XEjJI=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 131LoiNM097688
+	b=Uc9T7rQ87R9DG4f7AE+lYivVEGBgZILJMb8A5VTWhW2En0VJ9oA128SNqujJAAZwt
+	whaRhx6N/FZXDJyKJ5sIPelRYcxe39lC/VELQ8pA0jNy8zMf50GBEz0Sb/ZmsyKUU+
+	B78RTocAgu5R6NEmnekQrPXT3Gsco9iU3c0tyqwc=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 131Lp3SS098037
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 1 Apr 2021 16:50:44 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 1 Apr 2021 16:51:03 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
+	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Thu, 1 Apr 2021 16:50:44 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
-	(157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 1 Apr 2021 16:51:02 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Thu, 1 Apr 2021 16:50:44 -0500
+	Frontend Transport; Thu, 1 Apr 2021 16:51:03 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 131Loisw098445;
-	Thu, 1 Apr 2021 16:50:44 -0500
-Date: Thu, 1 Apr 2021 16:50:44 -0500
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 131Lp2Fm099121;
+	Thu, 1 Apr 2021 16:51:02 -0500
+Date: Thu, 1 Apr 2021 16:51:02 -0500
 From: Nishanth Menon <nm@ti.com>
 To: Denys Dmytriyenko <denis@denix.org>
-Message-ID: <20210401215044.ezdabzzl7t334blj@lasso>
+Message-ID: <20210401215102.o3xej3dlmpijwf3d@qualm>
 References: <1617312217-14991-1-git-send-email-denis@denix.org>
-	<1617312217-14991-3-git-send-email-denis@denix.org>
+	<1617312217-14991-2-git-send-email-denis@denix.org>
 MIME-Version: 1.0
-In-Reply-To: <1617312217-14991-3-git-send-email-denis@denix.org>
+In-Reply-To: <1617312217-14991-2-git-send-email-denis@denix.org>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org, Denys Dmytriyenko <denys@konsulko.com>
-Subject: Re: [dunfell/master][PATCH 2/7] branding-mainline: remove gpu machine feature
+Subject: Re: [dunfell/master][PATCH 1/7] make-mod-scripts: pass CROSS_COMPILE to configure and build
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,37 +52,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Apr 2021 21:50:24 -0000
+X-List-Received-Date: Thu, 01 Apr 2021 21:50:42 -0000
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
 On 17:23-20210401, Denys Dmytriyenko wrote:
 > From: Denys Dmytriyenko <denys@konsulko.com>
 > 
-> GPU support requires out-of-tree SGX and RGX drivers not available in mainline.
+> The fix is submitted upstream to oe-core/master.
+> For now also do it locally in a bbappend, so it also fixed for dunfell.
 > 
 > Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 > ---
->  meta-arago-distro/conf/distro/include/branding-mainline.inc | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../recipes-kernel/make-mod-scripts/make-mod-scripts_1.0.bbappend        | 1 +
+>  1 file changed, 1 insertion(+)
+>  create mode 100644 meta-arago-distro/recipes-kernel/make-mod-scripts/make-mod-scripts_1.0.bbappend
 > 
-> diff --git a/meta-arago-distro/conf/distro/include/branding-mainline.inc b/meta-arago-distro/conf/distro/include/branding-mainline.inc
-> index e6d8574..786508d 100644
-> --- a/meta-arago-distro/conf/distro/include/branding-mainline.inc
-> +++ b/meta-arago-distro/conf/distro/include/branding-mainline.inc
-> @@ -2,3 +2,6 @@ PREFERRED_PROVIDER_virtual/kernel = "linux-ti-mainline"
->  PREFERRED_PROVIDER_virtual/bootloader = "u-boot-ti-mainline"
->  PREFERRED_PROVIDER_u-boot = "u-boot-ti-mainline"
->  SRCREV_ti-upstream-tools_pn-linux-ti-mainline = "${AUTOREV}"
-> +
-> +# GPU support requires out-of-tree SGX and RGX drivers not available in mainline
-> +MACHINE_FEATURES_remove = "gpu"
+> diff --git a/meta-arago-distro/recipes-kernel/make-mod-scripts/make-mod-scripts_1.0.bbappend b/meta-arago-distro/recipes-kernel/make-mod-scripts/make-mod-scripts_1.0.bbappend
+> new file mode 100644
+> index 0000000..b76af9f
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-kernel/make-mod-scripts/make-mod-scripts_1.0.bbappend
+> @@ -0,0 +1 @@
+> +EXTRA_OEMAKE += "CROSS_COMPILE=${TARGET_PREFIX}"
+> -- 
+> 2.7.4
+> 
 
-
-I was wondering if we should pick s/w mesa instead? I'd like display
-testing to be a little more robust... minimal drm tests are'nt playing
-too nicely with our test frameworks..
-
+Aaah, thanks..
 -- 
 Regards,
 Nishanth Menon
