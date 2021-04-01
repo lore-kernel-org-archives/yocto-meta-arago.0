@@ -1,33 +1,33 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id BC84F52CBB
+	by arago-project.org (Postfix) with ESMTPS id EF55452CBC
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Apr 2021 21:23:53 +0000 (UTC)
+	Thu,  1 Apr 2021 21:23:54 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 1F5ED40C92;
-	Thu,  1 Apr 2021 21:24:14 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C2DBA40C56;
+	Thu,  1 Apr 2021 21:24:15 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id Dsx790cJEYw0; Thu,  1 Apr 2021 21:24:14 +0000 (UTC)
+	with ESMTP id lWcCBbsuRUiR; Thu,  1 Apr 2021 21:24:15 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id ED8E740C7F;
-	Thu,  1 Apr 2021 21:24:11 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A668940BA9;
+	Thu,  1 Apr 2021 21:24:13 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 41290174568;
+	by mail.denix.org (Postfix) with ESMTP id 7107D17456C;
 	Thu,  1 Apr 2021 17:24:10 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu,  1 Apr 2021 17:23:31 -0400
-Message-Id: <1617312217-14991-2-git-send-email-denis@denix.org>
+Date: Thu,  1 Apr 2021 17:23:35 -0400
+Message-Id: <1617312217-14991-6-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1617312217-14991-1-git-send-email-denis@denix.org>
 References: <1617312217-14991-1-git-send-email-denis@denix.org>
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [dunfell/master][PATCH 1/7] make-mod-scripts: pass CROSS_COMPILE to configure and build
+Subject: [dunfell/master][PATCH 5/7] packagegroups: move benchmarks to test packagegroup
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,26 +40,54 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Apr 2021 21:23:56 -0000
+X-List-Received-Date: Thu, 01 Apr 2021 21:23:57 -0000
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
-The fix is submitted upstream to oe-core/master.
-For now also do it locally in a bbappend, so it also fixed for dunfell.
-
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- .../recipes-kernel/make-mod-scripts/make-mod-scripts_1.0.bbappend        | 1 +
- 1 file changed, 1 insertion(+)
- create mode 100644 meta-arago-distro/recipes-kernel/make-mod-scripts/make-mod-scripts_1.0.bbappend
+ .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb      | 3 ---
+ meta-arago-distro/recipes-core/packagegroups/ti-test.bb                | 3 +++
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-kernel/make-mod-scripts/make-mod-scripts_1.0.bbappend b/meta-arago-distro/recipes-kernel/make-mod-scripts/make-mod-scripts_1.0.bbappend
-new file mode 100644
-index 0000000..b76af9f
---- /dev/null
-+++ b/meta-arago-distro/recipes-kernel/make-mod-scripts/make-mod-scripts_1.0.bbappend
-@@ -0,0 +1 @@
-+EXTRA_OEMAKE += "CROSS_COMPILE=${TARGET_PREFIX}"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index c5a6a3a..f92367d 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -14,12 +14,9 @@ UTILS = " \
+     am-sysinfo \
+     gdbserver \
+     oprofile \
+-    nbench-byte \
+-    arm-benchmarks \
+     netkit-ftp \
+     ptpd \
+     libdrm-kms \
+-    stream \
+     strongswan \
+     kexec \
+     kdump \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+index f86f1f8..b48aa9e 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+@@ -36,6 +36,8 @@ ARAGO_TEST = "\
+     bridge-utils \
+     linuxptp \
+     openntpd \
++    nbench-byte \
++    stream \
+ "
+ 
+ ARAGO_TEST_append_armv7a = " \
+@@ -52,6 +54,7 @@ ARAGO_TI_TEST = " \
+     input-utils \
+     cpuloadgen \
+     uvc-gadget \
++    arm-benchmarks \
+ "
+ 
+ ARAGO_TI_TEST_append_ti33x = " \
 -- 
 2.7.4
 
