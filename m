@@ -1,42 +1,47 @@
-Return-Path: <nm@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 17CEB52A6B
+Return-Path: <g-tammana@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id BF17D52C9B
 	for <meta-arago@arago-project.org>;
-	Sat, 27 Mar 2021 01:35:55 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 12R1aDFp114847;
-	Fri, 26 Mar 2021 20:36:13 -0500
+	Thu,  1 Apr 2021 16:33:34 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 131GXtPa087459;
+	Thu, 1 Apr 2021 11:33:55 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1616808973;
-	bh=mP+aAt4UW0YXpI4ls/N0h2BjIPql9WVaLKWFdtTFDGo=;
+	s=ti-com-17Q1; t=1617294835;
+	bh=MroDquKRiv7PE1PTU8bKzn2Zik364v4xJ0D6J/215UI=;
 	h=From:To:CC:Subject:Date;
-	b=NJ2SfwOdq6qQL/XFMvguhiQnkE0/AsHJC8PlfwIaSjMuEH+anHdsl1QhvBQBfaUzG
-	dqhXVBvaUsVi5ysA0DxkiOv/VkV7PwNpj1TGfhB+dBttbcgs+xhI9bpWHsNTO8A/ad
-	P/4x/BuvACWP257F6hngYyK8/FNfuF2hhcIc+djw=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 12R1aD92120862
+	b=h9exGlOozIodTN2wuQuL+prWvxAWPP/4mgx+CkmOYSkO2WXw5RUu/Llwj5ZsenJOo
+	T1vDd8jrQGURaf8o49X7GP6fK+gZPBO1HOeyeQkm+PGq3zPvAhwBDD3PQF3aOTuX1H
+	/qG/1vKizt4F0Ik9wsld1LLAzHcSbQ8NIOQSDHdE=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 131GXt4g038769
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 26 Mar 2021 20:36:13 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Fri, 26 Mar 2021 20:36:13 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
+	Thu, 1 Apr 2021 11:33:55 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
 	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Thu, 1 Apr 2021 11:33:55 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Fri, 26 Mar 2021 20:36:13 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 12R1aDI0063308;
-	Fri, 26 Mar 2021 20:36:13 -0500
-From: Nishanth Menon <nm@ti.com>
-To: <praneeth@ti.com>, <denis@denix.org>
-Date: Fri, 26 Mar 2021 20:36:11 -0500
-Message-ID: <20210327013611.4686-1-nm@ti.com>
-X-Mailer: git-send-email 2.31.0
+	Frontend Transport; Thu, 1 Apr 2021 11:33:55 -0500
+Received: from lelv0597.itg.ti.com (lelv0597.itg.ti.com [10.181.64.32])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 131GXs8j018285;
+	Thu, 1 Apr 2021 11:33:55 -0500
+Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
+	[128.247.81.224] (may be forged))
+	by lelv0597.itg.ti.com (8.14.7/8.14.7) with ESMTP id 131GXsVV015613;
+	Thu, 1 Apr 2021 11:33:54 -0500
+From: Gowtham Tammana <g-tammana@ti.com>
+To: <meta-arago@arago-project.org>, Praneeth Bajjuri <praneeth@ti.com>,
+	<denys@konsulko.com>
+Date: Thu, 1 Apr 2021 11:33:37 -0500
+Message-ID: <20210401163340.12248-1-g-tammana@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: [dunfell/master][PATCH] omapconf: Bump to v1.75 release
+Cc: Krunal Bhargav <k-bhargav@ti.com>
+Subject: [dunfell][PATCH 0/3] qtwebkit: Fix no x11 build
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,37 +54,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 Mar 2021 01:35:55 -0000
+X-List-Received-Date: Thu, 01 Apr 2021 16:33:35 -0000
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Lets move to v1.75.. finally..
+qtwebkit build was failing when x11 is enabled for the platform. This was due to
+qtwebkit build not picking up the EGL_NO_X11 flag from the packageconfig. This
+was earlier fixed by enabling the flag directly in the khrplatform header file.
+Fixing up to pass the flag to build environment itself.
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
- meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Also cleaned up some of the old patches.
 
-diff --git a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-index 6d11ce1ed29a..7216f05c4394 100644
---- a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-+++ b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-@@ -4,12 +4,12 @@ HOMEPAGE = "https://github.com/omapconf/omapconf"
- LICENSE = "GPLv2 | BSD"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=205c83c4e2242a765acb923fc766e914"
- 
--PV = "1.74+git${SRCPV}"
-+PV = "1.75+git${SRCPV}"
- 
- COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|omap4"
- 
- BRANCH ?= "master"
--SRCREV = "40ab0a2a57dffcf7e2813fc7a526d6cde3755347"
-+SRCREV = "ff07b6992bacb1e1586c72b7d2be469caee4a347"
- 
- SRC_URI = "git://github.com/omapconf/omapconf.git;protocol=git;branch=${BRANCH}"
- 
+Gowtham Tammana (3):
+  Revert "HACK: qtwebkit: define MESA_EGL_NO_X11_HEADERS at
+    ANGLE/khrplatform.h"
+  qtwebkit: Fix no X11 build
+  qtwebkit: Cleanup old patches
+
+ ...atform.h-add-define-MESA_EGL_NO_X11_.patch | 30 ------------
+ ...e-to-use-GL_NoX-version-of-GraphicsS.patch | 29 ------------
+ ...re-PlatformQt.cmake-Fix-no-x11-build.patch | 46 +++++++++++++++++++
+ .../qt5/qtwebkit/GraphicsSurfaceToken.h.patch | 33 -------------
+ .../recipes-qt/qt5/qtwebkit/WebCore.pri.patch | 17 -------
+ .../recipes-qt/qt5/qtwebkit_%.bbappend        |  8 +---
+ 6 files changed, 48 insertions(+), 115 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-to-use-GL_NoX-version-of-GraphicsS.patch
+ create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-WebCore-PlatformQt.cmake-Fix-no-x11-build.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch
+
 -- 
-2.31.0
+2.31.1
 
 
