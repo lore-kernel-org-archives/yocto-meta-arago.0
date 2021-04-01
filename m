@@ -1,33 +1,33 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id EF55452CBC
+	by arago-project.org (Postfix) with ESMTPS id 4206C52CBD
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Apr 2021 21:23:54 +0000 (UTC)
+	Thu,  1 Apr 2021 21:23:55 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id C2DBA40C56;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D0BA640BA9;
 	Thu,  1 Apr 2021 21:24:15 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id lWcCBbsuRUiR; Thu,  1 Apr 2021 21:24:15 +0000 (UTC)
+	with ESMTP id Xd-BfcTbH6Kh; Thu,  1 Apr 2021 21:24:15 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A668940BA9;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B203840C8E;
 	Thu,  1 Apr 2021 21:24:13 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 7107D17456C;
+	by mail.denix.org (Postfix) with ESMTP id 7CB9C17456D;
 	Thu,  1 Apr 2021 17:24:10 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu,  1 Apr 2021 17:23:35 -0400
-Message-Id: <1617312217-14991-6-git-send-email-denis@denix.org>
+Date: Thu,  1 Apr 2021 17:23:36 -0400
+Message-Id: <1617312217-14991-7-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1617312217-14991-1-git-send-email-denis@denix.org>
 References: <1617312217-14991-1-git-send-email-denis@denix.org>
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [dunfell/master][PATCH 5/7] packagegroups: move benchmarks to test packagegroup
+Subject: [dunfell/master][PATCH 6/7] ti-test: disable cmem, omapdrmtest, ti-ipc, llds for mainline brand
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,50 +44,145 @@ X-List-Received-Date: Thu, 01 Apr 2021 21:23:57 -0000
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
+These components require drivers that are not upstream (cmem, uio, rpmsg...)
+
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- .../recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb      | 3 ---
- meta-arago-distro/recipes-core/packagegroups/ti-test.bb                | 3 +++
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ .../recipes-core/packagegroups/ti-test.bb          | 84 ++++++++++++----------
+ 1 file changed, 47 insertions(+), 37 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index c5a6a3a..f92367d 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -14,12 +14,9 @@ UTILS = " \
-     am-sysinfo \
-     gdbserver \
-     oprofile \
--    nbench-byte \
--    arm-benchmarks \
-     netkit-ftp \
-     ptpd \
-     libdrm-kms \
--    stream \
-     strongswan \
-     kexec \
-     kdump \
 diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-index f86f1f8..b48aa9e 100644
+index b48aa9e..5b04d85 100644
 --- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
 +++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-@@ -36,6 +36,8 @@ ARAGO_TEST = "\
-     bridge-utils \
-     linuxptp \
-     openntpd \
-+    nbench-byte \
-+    stream \
+@@ -63,14 +63,16 @@ ARAGO_TI_TEST_append_ti33x = " \
+ 
+ ARAGO_TI_TEST_append_ti43x = " \
+     omapconf \
+-    cmem-test \
++    ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', '', 'cmem-test', d)} \
  "
  
- ARAGO_TEST_append_armv7a = " \
-@@ -52,6 +54,7 @@ ARAGO_TI_TEST = " \
-     input-utils \
-     cpuloadgen \
-     uvc-gadget \
-+    arm-benchmarks \
+ ARAGO_TI_TEST_append_omap-a15 = " \
+     omapconf \
+-    ti-ipc-test \
+-    ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)} \
+-    cmem-test \
++    ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', '', ' \
++        ti-ipc-test \
++        ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)} \
++        cmem-test \
++    ', d)} \
  "
  
- ARAGO_TI_TEST_append_ti33x = " \
+ ARAGO_TI_TEST_append_k3 = " \
+@@ -82,23 +84,25 @@ ARAGO_TI_TEST_append_j7 = " \
+ "
+ 
+ ARAGO_TI_TEST_append_omapl138 = " \
+-    ti-ipc-test \
++    ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', '', 'ti-ipc-test', d)} \
+ "
+ 
+ # Disable ipsecmgr due to libnl and xfrm conflict
+ #    ipsecmgr
+ ARAGO_TI_TEST_append_keystone = " \
+-    ti-ipc-test \
+-    mpm-transport-test \
+-    multiprocmgr-test \
+-    qmss-lld-test \
+-    cppi-lld-test \
+-    edma3-lld-test \
+-    rm-lld \
+-    rm-lld-test \
+-    traceframework-test \
+-    udma-test \
+-    cmem-test \
++    ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', '', ' \
++        ti-ipc-test \
++        mpm-transport-test \
++        multiprocmgr-test \
++        qmss-lld-test \
++        cppi-lld-test \
++        edma3-lld-test \
++        rm-lld \
++        rm-lld-test \
++        traceframework-test \
++        udma-test \
++        cmem-test \
++    ', d)} \
+ "
+ 
+ # The following are not yet ready for k2g-evm
+@@ -115,15 +119,17 @@ ARAGO_TI_TEST_append_keystone = " \
+ #    nwal-lld-test
+ #    nwal-lld
+ ARAGO_TI_TEST_append_k2hk = " \
+-    srio-lld-test \
+-    ipc-transport-srio-test \
+-    ipc-transport-qmss-test \
+-    hyplnk-lld-test \
+-    mmap-lld-test \
+-    aif2-lld-test \
+-    pa-lld-test \
+-    sa-lld \
+-    sa-lld-test \
++    ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', '', ' \
++        srio-lld-test \
++        ipc-transport-srio-test \
++        ipc-transport-qmss-test \
++        hyplnk-lld-test \
++        mmap-lld-test \
++        aif2-lld-test \
++        pa-lld-test \
++        sa-lld \
++        sa-lld-test \
++    ', d)} \
+ "
+ 
+ # Disable netapi due to libnl and xfrm conflict
+@@ -133,12 +139,14 @@ ARAGO_TI_TEST_append_k2hk = " \
+ #    nwal-lld-test
+ #    nwal-lld
+ ARAGO_TI_TEST_append_k2l = " \
+-    dfe-lld-test \
+-    iqn2-lld-test \
+-    ipc-transport-qmss-test \
+-    pa-lld-test \
+-    sa-lld \
+-    sa-lld-test \
++    ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', '', ' \
++        dfe-lld-test \
++        iqn2-lld-test \
++        ipc-transport-qmss-test \
++        pa-lld-test \
++        sa-lld \
++        sa-lld-test \
++    ', d)} \
+ "
+ 
+ # Disable netapi due to libnl and xfrm conflict
+@@ -148,12 +156,14 @@ ARAGO_TI_TEST_append_k2l = " \
+ #    nwal-lld-test
+ #    nwal-lld
+ ARAGO_TI_TEST_append_k2e = " \
+-    mmap-lld-test \
+-    hyplnk-lld-test \
+-    ipc-transport-qmss-test \
+-    pa-lld-test \
+-    sa-lld \
+-    sa-lld-test \
++    ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', '', ' \
++        mmap-lld-test \
++        hyplnk-lld-test \
++        ipc-transport-qmss-test \
++        pa-lld-test \
++        sa-lld \
++        sa-lld-test \
++    ', d)} \
+ "
+ 
+ RDEPENDS_${PN} = "\
 -- 
 2.7.4
 
