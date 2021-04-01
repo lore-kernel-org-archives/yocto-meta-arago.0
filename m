@@ -1,33 +1,33 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 5CBD752CB8
+	by arago-project.org (Postfix) with ESMTPS id 9832952CBA
 	for <meta-arago@arago-project.org>;
 	Thu,  1 Apr 2021 21:23:53 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 110D940C8F;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 1ECA640C56;
 	Thu,  1 Apr 2021 21:24:14 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id ktUEd0i0wl6Z; Thu,  1 Apr 2021 21:24:14 +0000 (UTC)
+	with ESMTP id baxd91h1pGEZ; Thu,  1 Apr 2021 21:24:14 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E782240C5E;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E496E40C34;
 	Thu,  1 Apr 2021 21:24:11 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 588EB17456A;
+	by mail.denix.org (Postfix) with ESMTP id 6458817456B;
 	Thu,  1 Apr 2021 17:24:10 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu,  1 Apr 2021 17:23:33 -0400
-Message-Id: <1617312217-14991-4-git-send-email-denis@denix.org>
+Date: Thu,  1 Apr 2021 17:23:34 -0400
+Message-Id: <1617312217-14991-5-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1617312217-14991-1-git-send-email-denis@denix.org>
 References: <1617312217-14991-1-git-send-email-denis@denix.org>
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [dunfell/master][PATCH 3/7] ti-test: combine main test and addons lists
+Subject: [dunfell/master][PATCH 4/7] packagegroups: move generic tools to base packagegroup
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,119 +40,126 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Apr 2021 21:23:54 -0000
+X-List-Received-Date: Thu, 01 Apr 2021 21:23:55 -0000
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
-Previously, ti-test packagegroup was combined from arago-test and test-addons
-packagegroups and hence the lists were kept as is. To make it easier maintaining
-and making changes, combine the lists. Still keep TI test tools vs. upstream
-separately for now.
+These tools are useful in the base image and don't increase the size too much.
 
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- .../recipes-core/packagegroups/ti-test.bb          | 38 +++++++---------------
- 1 file changed, 11 insertions(+), 27 deletions(-)
+ .../recipes-core/packagegroups/packagegroup-arago-base.bb  | 14 ++++++++++----
+ .../packagegroups/packagegroup-arago-tisdk-addons.bb       | 12 +-----------
+ 2 files changed, 11 insertions(+), 15 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-index b9a5965..f86f1f8 100644
---- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-@@ -33,6 +33,9 @@ ARAGO_TEST = "\
-     mstpd \
-     fio \
-     git \
-+    bridge-utils \
-+    linuxptp \
-+    openntpd \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
+index 3e2517d..ac87142 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
+@@ -9,7 +9,7 @@ inherit packagegroup
+ ARAGO_ALSA_BASE = "\
+     libasound \
+     alsa-utils-aplay \
+-    "
++"
+ 
+ ARAGO_BASE = "\
+     module-init-tools \
+@@ -22,13 +22,19 @@ ARAGO_BASE = "\
+     bash \
+     opkg-bash-completion \
+     udev-extraconf \
+-    "
++"
+ 
+ # these require meta-openembedded/meta-oe layer
+ ARAGO_EXTRA = "\
+     devmem2 \
+     tcpdump \
+-    "
++    parted \
++    dropbear \
++    openssh-sftp-server \
++    kms++ \
++    kms++-python \
++    can-utils \
++"
+ 
+ ARAGO_EXTRA_append_keystone = "\
+     k2-fw-initrd \
+@@ -40,4 +46,4 @@ RDEPENDS_${PN} = "\
+     ${@bb.utils.contains('MACHINE_FEATURES', 'alsa', '${ARAGO_ALSA_BASE}', '',d)} \
+     ${ARAGO_BASE} \
+     ${ARAGO_EXTRA} \
+-    "
++"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 659f6c1..c5a6a3a 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -16,13 +16,9 @@ UTILS = " \
+     oprofile \
+     nbench-byte \
+     arm-benchmarks \
+-    dropbear \
+-    openssh-sftp-server \
+     netkit-ftp \
+     ptpd \
+     libdrm-kms \
+-    kms++ \
+-    kms++-python \
+     stream \
+     strongswan \
+     kexec \
+@@ -38,7 +34,6 @@ UTILS_DSP = " \
  "
  
- ARAGO_TEST_append_armv7a = " \
-@@ -57,11 +60,14 @@ ARAGO_TI_TEST_append_ti33x = " \
- 
- ARAGO_TI_TEST_append_ti43x = " \
-     omapconf \
-+    cmem-test \
+ UTILS_append_ti33x = " mmc-utils \
+-                       can-utils \
+                        switch-config \
+                        pru-icss \
+                        pru-swuart-fw \
+@@ -47,7 +42,6 @@ UTILS_append_ti33x = " mmc-utils \
  "
  
- ARAGO_TI_TEST_append_omap-a15 = " \
-     omapconf \
-     ti-ipc-test \
-+    ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)} \
-+    cmem-test \
+ UTILS_append_ti43x = " mmc-utils \
+-                       can-utils \
+                        switch-config \
+                        libdrm-omap \
+                        pru-icss \
+@@ -56,7 +50,6 @@ UTILS_append_ti43x = " mmc-utils \
  "
  
- ARAGO_TI_TEST_append_k3 = " \
-@@ -72,34 +78,14 @@ ARAGO_TI_TEST_append_j7 = " \
-     ufs-utils \
+ UTILS_append_omap-a15 = " mmc-utils \
+-                          parted \
+                           switch-config \
+                           libdrm-omap \
+                           stream-openmp \
+@@ -67,8 +60,6 @@ UTILS_append_omap-a15 = " mmc-utils \
  "
  
--ARAGO_TI_TEST_append_keystone = " \
--    ti-ipc-test \
--"
--
- ARAGO_TI_TEST_append_omapl138 = " \
-     ti-ipc-test \
+ UTILS_append_k3 = " mmc-utils \
+-                    can-utils \
+-                    parted \
+                     switch-config \
+                     irqbalance \
+                     jailhouse \
+@@ -85,7 +76,7 @@ UTILS_append_j7-hs-evm = " pru-icss"
+ 
+ UTILS_append_omapl138 = " ti-ipc-rtos-fw"
+ 
+-UTILS_append_dra7xx = " can-utils \
++UTILS_append_dra7xx = " \
+                         ${UTILS_DSP} \
+                         ${@bb.utils.contains('MACHINE_FEATURES','gpu','glsdk-example-apps','',d)} \
+ "
+@@ -108,7 +99,6 @@ UTILS_append_k2e = " \
  "
  
--TEST_ADDONS = " \
--    bridge-utils \
--    linuxptp \
--    openntpd \
--"
--
--TEST_ADDONS_TI = ""
--
--TEST_ADDONS_TI_append_ti43x = " \
--    cmem-test \
--"
--
--TEST_ADDONS_TI_append_omap-a15 = " \
--    ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)} \
--    cmem-test \
--"
--
- # Disable ipsecmgr due to libnl and xfrm conflict
- #    ipsecmgr
--TEST_ADDONS_TI_append_keystone = " \
-+ARAGO_TI_TEST_append_keystone = " \
-+    ti-ipc-test \
-     mpm-transport-test \
-     multiprocmgr-test \
-     qmss-lld-test \
-@@ -125,7 +111,7 @@ TEST_ADDONS_TI_append_keystone = " \
- #    hplib-test
- #    nwal-lld-test
- #    nwal-lld
--TEST_ADDONS_TI_append_k2hk = " \
-+ARAGO_TI_TEST_append_k2hk = " \
-     srio-lld-test \
-     ipc-transport-srio-test \
-     ipc-transport-qmss-test \
-@@ -143,7 +129,7 @@ TEST_ADDONS_TI_append_k2hk = " \
- #    hplib-test
- #    nwal-lld-test
- #    nwal-lld
--TEST_ADDONS_TI_append_k2l = " \
-+ARAGO_TI_TEST_append_k2l = " \
-     dfe-lld-test \
-     iqn2-lld-test \
-     ipc-transport-qmss-test \
-@@ -158,7 +144,7 @@ TEST_ADDONS_TI_append_k2l = " \
- #    hplib-test
- #    nwal-lld-test
- #    nwal-lld
--TEST_ADDONS_TI_append_k2e = " \
-+ARAGO_TI_TEST_append_k2e = " \
-     mmap-lld-test \
-     hyplnk-lld-test \
-     ipc-transport-qmss-test \
-@@ -170,6 +156,4 @@ TEST_ADDONS_TI_append_k2e = " \
- RDEPENDS_${PN} = "\
-     ${ARAGO_TEST} \
-     ${ARAGO_TI_TEST} \
--    ${TEST_ADDONS} \
--    ${TEST_ADDONS_TI} \
+ UTILS_append_k2g = " \
+-    can-utils \
+     pru-icss \
+     uio-test-pruss \
  "
 -- 
 2.7.4
