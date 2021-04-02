@@ -1,45 +1,35 @@
-Return-Path: <nm@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 9ED6B52CB8
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 10885529EF
 	for <meta-arago@arago-project.org>;
-	Thu,  1 Apr 2021 21:53:12 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 131LrXCZ009381;
-	Thu, 1 Apr 2021 16:53:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1617314013;
-	bh=LW+4JpPJmir+M3l9CacI0LToZ1x1heuFtYTzVlQH3CI=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Dtw/j9WFv5fN9WQrSS7R+Fk6YJT58gLsQZ1y5lXW08NfnnhY2VSs8/P6c4/qvXC0b
-	EPqQYL6c+7AUj5HMz8vlWbO5AElMjT6L9gNU+uptDRLYW1EoQ9Dj9s7In9cbSGMZvD
-	xuWicLXCkqAKlcHEiJkvoznRat5Tl3zXzjf8ndbM=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 131LrXjQ049410
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 1 Apr 2021 16:53:33 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Thu, 1 Apr 2021 16:53:33 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Thu, 1 Apr 2021 16:53:33 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 131LrWlj079193;
-	Thu, 1 Apr 2021 16:53:32 -0500
-Date: Thu, 1 Apr 2021 16:53:32 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>
-Message-ID: <20210401215332.of5otxexiw2ekdvw@recycler>
-References: <1617312217-14991-1-git-send-email-denis@denix.org>
-	<1617312217-14991-7-git-send-email-denis@denix.org>
+	Fri,  2 Apr 2021 03:50:33 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C3C5440C32;
+	Fri,  2 Apr 2021 03:50:53 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id JahWHCjX6yd3; Fri,  2 Apr 2021 03:50:53 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8838E40031;
+	Fri,  2 Apr 2021 03:50:49 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id C6031174573; Thu,  1 Apr 2021 23:50:48 -0400 (EDT)
+Date: Thu, 1 Apr 2021 23:50:48 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Gowtham Tammana <g-tammana@ti.com>
+Message-ID: <20210402035048.GT23013@denix.org>
+References: <20210401163340.12248-1-g-tammana@ti.com>
+	<20210401163340.12248-3-g-tammana@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1617312217-14991-7-git-send-email-denis@denix.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org, Denys Dmytriyenko <denys@konsulko.com>
-Subject: Re: [dunfell/master][PATCH 6/7] ti-test: disable cmem, omapdrmtest, ti-ipc, llds for mainline brand
+In-Reply-To: <20210401163340.12248-3-g-tammana@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org, denys@konsulko.com,
+	Krunal Bhargav <k-bhargav@ti.com>
+Subject: Re: [dunfell][PATCH 2/3] qtwebkit: Fix no X11 build
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,23 +42,116 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Apr 2021 21:53:13 -0000
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 02 Apr 2021 03:50:33 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On 17:23-20210401, Denys Dmytriyenko wrote:
-> From: Denys Dmytriyenko <denys@konsulko.com>
+On Thu, Apr 01, 2021 at 11:33:39AM -0500, Gowtham Tammana wrote:
+> qtwebkit build is failing to set EGL_NO_X11 on platforms with no x11
+> support causing below failure.
 > 
-> These components require drivers that are not upstream (cmem, uio, rpmsg...)
+> ```{.package=qtwebkit .version=dunfell}
+> In file included from
+> tisdk/build/arago-tmp-external-arm-glibc/work/aarch64-linux/qtwebkit/5.14.2+gitAUTOINC+ab1bd15209-r0.arago7/recipe-sysroot/usr/include/EGL/egl.h:39,
+>                 from tisdk/build/arago-tmp-external-arm-glibc/work/aarch64-linux/qtwebkit/5.14.2+gitAUTOINC+ab1bd15209-r0.arago7/git/Source/WebCore/platform/graphics/opengl/Extensions3DOpenGLES.cpp:36:
+> tisdk/build/arago-tmp-external-arm-glibc/work/aarch64-linux/qtwebkit/5.14.2+gitAUTOINC+ab1bd15209-r0.arago7/recipe-sysroot/usr/include/EGL/eglplatform.h:134:10: fatal error: X11/Xlib.h: No such file or directory
+>   134 | #include <X11/Xlib.h>
+>       |          ^~~~~~~~~~~~
+> compilation terminated.
+> ```
 > 
-> Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+> Setting up the flag EGL_NO_X11 when X11 target is enabled.
 
-Thanks. we need to revisit the ti-test package group a bit later on...
-for example a ramdisk system and 2G DDR - such as those on am64, kinda
-hard to get the full package group in.. might be something for us to
-chew on later on, I guess..
+Typo? enabled or disabled?
+
+
+> Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+> ---
+>  ...re-PlatformQt.cmake-Fix-no-x11-build.patch | 46 +++++++++++++++++++
+>  .../recipes-qt/qt5/qtwebkit_%.bbappend        |  3 +-
+>  2 files changed, 48 insertions(+), 1 deletion(-)
+>  create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-WebCore-PlatformQt.cmake-Fix-no-x11-build.patch
+> 
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-WebCore-PlatformQt.cmake-Fix-no-x11-build.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-WebCore-PlatformQt.cmake-Fix-no-x11-build.patch
+> new file mode 100644
+> index 00000000..c70b3dc0
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-WebCore-PlatformQt.cmake-Fix-no-x11-build.patch
+> @@ -0,0 +1,46 @@
+> +From 82b7ec12b768ba9de4b7a4ae71500a3de6574bfd Mon Sep 17 00:00:00 2001
+> +From: Gowtham Tammana <g-tammana@ti.com>
+> +Date: Thu, 1 Apr 2021 10:45:13 -0500
+> +Subject: [PATCH] WebCore/PlatformQt.cmake: Fix no x11 build
+> +
+> +For platforms with no x11 support, egl package config sets up EGL_NO_X11
+> +flag. However the build is not picking up this flag at the moment
+> +causing below build failure.
+> +
+> +```{.package=qtwebkit .version=dunfell}
+> +In file included from
+> +tisdk/build/arago-tmp-external-arm-glibc/work/aarch64-linux/qtwebkit/5.14.2+gitAUTOINC+ab1bd15209-r0.arago7/recipe-sysroot/usr/include/EGL/egl.h:39,
+> +                from tisdk/build/arago-tmp-external-arm-glibc/work/aarch64-linux/qtwebkit/5.14.2+gitAUTOINC+ab1bd15209-r0.arago7/git/Source/WebCore/platform/graphics/opengl/Extensions3DOpenGLES.cpp:36:
+> +tisdk/build/arago-tmp-external-arm-glibc/work/aarch64-linux/qtwebkit/5.14.2+gitAUTOINC+ab1bd15209-r0.arago7/recipe-sysroot/usr/include/EGL/eglplatform.h:134:10: fatal error: X11/Xlib.h: No such file or directory
+> +  134 | #include <X11/Xlib.h>
+> +      |          ^~~~~~~~~~~~
+> +compilation terminated.
+> +```
+> +
+> +Set this flag explicitly when there is no X11 target enable.
+> +
+> +Upstream-Status: Pending
+> +
+> +Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+> +---
+> + Source/WebCore/PlatformQt.cmake | 4 ++++
+> + 1 file changed, 4 insertions(+)
+> +
+> +diff --git a/Source/WebCore/PlatformQt.cmake b/Source/WebCore/PlatformQt.cmake
+> +index 99c625dc3..375d28a47 100644
+> +--- a/Source/WebCore/PlatformQt.cmake
+> ++++ b/Source/WebCore/PlatformQt.cmake
+> +@@ -350,6 +350,10 @@ if (ENABLE_OPENGL)
+> +             ${Qt5Gui_EGL_LIBRARIES}
+> +             ${Qt5Gui_OPENGL_LIBRARIES}
+> +         )
+> ++        if (NOT ENABLE_X11_TARGET)
+> ++            # EGL definitions are not getting detected. Add the EGL_NO_X11 flag.
+> ++            add_definitions("-DEGL_NO_X11")
+> ++        endif ()
+> +     else ()
+> +         list(APPEND WebCore_SOURCES
+> +             platform/graphics/opengl/Extensions3DOpenGL.cpp
+> +-- 
+> +2.31.1
+> +
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+> index 75213487..308f3f25 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+> @@ -6,9 +6,10 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>  
+>  SRC_URI += " \
+>  	file://GraphicsSurfaceGL_NoX.cpp.patch \
+> +	file://0001-WebCore-PlatformQt.cmake-Fix-no-x11-build.patch \
+>  "
+>  
+> -PR_append = ".arago7"
+> +PR_append = ".arago8"
+>  
+>  EXTRA_OECMAKE_append = " -DCMAKE_BUILD_TYPE=Release"
+>  
+> -- 
+> 2.31.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+> 
+
 -- 
 Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
 
