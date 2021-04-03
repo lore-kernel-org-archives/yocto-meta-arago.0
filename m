@@ -1,33 +1,33 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 825EB52AA6
+	by arago-project.org (Postfix) with ESMTPS id 8CFF952AAA
 	for <meta-arago@arago-project.org>;
-	Sat,  3 Apr 2021 00:10:49 +0000 (UTC)
+	Sat,  3 Apr 2021 00:10:47 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 240C440C7F;
-	Sat,  3 Apr 2021 00:11:10 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 19C8440C2A;
+	Sat,  3 Apr 2021 00:11:08 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id m2qDuNWO98DC; Sat,  3 Apr 2021 00:11:10 +0000 (UTC)
+	with ESMTP id zGfFbwflQKtI; Sat,  3 Apr 2021 00:11:08 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0402940C94;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id F1F0540C90;
 	Sat,  3 Apr 2021 00:11:02 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 233C417458D;
+	by mail.denix.org (Postfix) with ESMTP id 0222217458A;
 	Fri,  2 Apr 2021 20:11:01 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri,  2 Apr 2021 20:10:36 -0400
-Message-Id: <1617408644-2675-22-git-send-email-denis@denix.org>
+Date: Fri,  2 Apr 2021 20:10:33 -0400
+Message-Id: <1617408644-2675-19-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1617408644-2675-1-git-send-email-denis@denix.org>
 References: <1617408644-2675-1-git-send-email-denis@denix.org>
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master][PATCH 21/29] ti-llvm3.6: suppress installed-vs-shipped QA error
+Subject: [master][PATCH 18/29] packagegroup-*-server-extra: replace dhcp-client with dhcpcd
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -44,26 +44,26 @@ X-List-Received-Date: Sat, 03 Apr 2021 00:11:00 -0000
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
-This used to be a warning and recently became an error.
-Need to be cleaned up later.
+In OE-Core dhcp-client has been replaced with dhcpcd, adjust accordingly.
 
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb | 1 +
- 1 file changed, 1 insertion(+)
+ .../packagegroups/packagegroup-arago-base-tisdk-server-extra.bb         | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-index 16a3269..a6739ef 100644
---- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-+++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-@@ -170,6 +170,7 @@ llvm_sysroot_preprocess_target() {
-     mv ${LLVM_INSTALL_DIR}/llvm-config-host ${SYSROOT_DESTDIR}${bindir_crossscripts}/llvm-config${PV}-ti
- }
- 
-+INSANE_SKIP_${PN} += "installed-vs-shipped"
- INSANE_SKIP_${MLPREFIX}libllvm${LLVM_RELEASE}-llvm-${LLVM_RELEASE}.0 += "dev-so"
- 
- BBCLASSEXTEND = "native nativesdk"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+index 69b6b4a..86bef4c 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk-server-extra.bb
+@@ -111,7 +111,7 @@ RDEPENDS_${PN} = "\
+     syslog-ng \
+     dtc \
+     procps \
+-    dhcp-client \
++    dhcpcd \
+     tzdata \
+     lksctp-tools \
+     lksctp-tools-utils \
 -- 
 2.7.4
 
