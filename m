@@ -1,33 +1,33 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id E238852A50
+	by arago-project.org (Postfix) with ESMTPS id 0293052A5C
 	for <meta-arago@arago-project.org>;
 	Sat,  3 Apr 2021 00:10:41 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id BCF8E40C8F;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id CD3CC40BE9;
 	Sat,  3 Apr 2021 00:11:02 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id cDH68o0daz4l; Sat,  3 Apr 2021 00:11:02 +0000 (UTC)
+	with ESMTP id d0F-8JCurUfb; Sat,  3 Apr 2021 00:11:02 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A90FA40BEC;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B820640C82;
 	Sat,  3 Apr 2021 00:11:01 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 7648A17457F;
+	by mail.denix.org (Postfix) with ESMTP id 9874C174582;
 	Fri,  2 Apr 2021 20:11:00 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Fri,  2 Apr 2021 20:10:22 -0400
-Message-Id: <1617408644-2675-8-git-send-email-denis@denix.org>
+Date: Fri,  2 Apr 2021 20:10:25 -0400
+Message-Id: <1617408644-2675-11-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1617408644-2675-1-git-send-email-denis@denix.org>
 References: <1617408644-2675-1-git-send-email-denis@denix.org>
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master][PATCH 07/29] weston: update bbappend 8.0.0 -> 9.0.0
+Subject: [master][PATCH 10/29] gstreamer1.0-plugins-hevc: suppress gcc10 multiple definitions of buffArray
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,22 +40,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 03 Apr 2021 00:10:48 -0000
+X-List-Received-Date: Sat, 03 Apr 2021 00:10:51 -0000
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
-To match upstream oe-core/master.
+Woraround for the following gcc10 build error:
+.../src/gsth265buf.h:126: multiple definition of `buffArray';
+.libs/libgsth265dec_la-gsth265dec.o:.../src/gsth265buf.h:126: first defined here
+
+Needs to be resolved properly in the code later:
+https://gcc.gnu.org/gcc-10/porting_to.html
 
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- .../wayland/{weston_8.0.0.bbappend => weston_9.0.0.bbappend}              | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- rename meta-arago-distro/recipes-graphics/wayland/{weston_8.0.0.bbappend => weston_9.0.0.bbappend} (100%)
+ .../recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb   | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_8.0.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_9.0.0.bbappend
-similarity index 100%
-rename from meta-arago-distro/recipes-graphics/wayland/weston_8.0.0.bbappend
-rename to meta-arago-distro/recipes-graphics/wayland/weston_9.0.0.bbappend
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
+index 1f9796c..83ef103 100644
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
++++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
+@@ -25,6 +25,7 @@ do_configure() {
+ 
+ EXTRA_OECONF += "--enable-maintainer-mode"
+ EXTRA_OEMAKE += "'ERROR_CFLAGS=-Wno-deprecated-declarations'"
++CFLAGS += "-fcommon"
+ 
+ FILES_${PN} += "${libdir}/gstreamer-1.0/*.so"
+ FILES_${PN}-dbg += "${libdir}/gstreamer-1.0/.debug"
 -- 
 2.7.4
 
