@@ -1,50 +1,34 @@
-Return-Path: <g-tammana@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id BA21952BB8
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 51E9D52BB6
 	for <meta-arago@arago-project.org>;
-	Mon,  5 Apr 2021 20:39:13 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 135KdYKM094704;
-	Mon, 5 Apr 2021 15:39:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1617655174;
-	bh=c6T0sgDB0IENRGIqeXqtnXPkz7U61yiexSUbyKXoEnc=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=R/kx9T40z+xJWsirhCNVIPz58ASn6InGGvSVcBbvanmmtHkhN9mNs7irH790ALfaZ
-	3bLki8dNIpdww5k5fehIxU5c3wZunUWO00UbOrgEj9mKzQcmMvnxr0pyggNks49/8V
-	yPaKghPaCdOx9mq7Pj3ukuCZ+S3O5pTpAVhPV1oQ=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 135KdYGM012859
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 5 Apr 2021 15:39:34 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Mon, 5 Apr 2021 15:39:34 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Mon, 5 Apr 2021 15:39:34 -0500
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com
-	[10.247.120.73])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 135KdYFc057409;
-	Mon, 5 Apr 2021 15:39:34 -0500
-Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
-	[128.247.81.224] (may be forged))
-	by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id
-	135KdV3q031788; Mon, 5 Apr 2021 15:39:34 -0500
-From: Gowtham Tammana <g-tammana@ti.com>
-To: <meta-arago@arago-project.org>, Praneeth Bajjuri <praneeth@ti.com>,
-	<denys@konsulko.com>
-Date: Mon, 5 Apr 2021 15:39:28 -0500
-Message-ID: <20210405203928.7783-4-g-tammana@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210405203928.7783-1-g-tammana@ti.com>
+	Mon,  5 Apr 2021 21:19:32 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D703440BEC;
+	Mon,  5 Apr 2021 21:19:53 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 3sljiqdt4_Fr; Mon,  5 Apr 2021 21:19:53 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A140E40BE9;
+	Mon,  5 Apr 2021 21:19:49 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id E9080174579; Mon,  5 Apr 2021 17:19:48 -0400 (EDT)
+Date: Mon, 5 Apr 2021 17:19:48 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Gowtham Tammana <g-tammana@ti.com>
+Message-ID: <20210405211948.GB15937@denix.org>
 References: <20210405203928.7783-1-g-tammana@ti.com>
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Krunal Bhargav <k-bhargav@ti.com>
-Subject: [dunfell][PATCH v2 3/3] qtwebkit: Cleanup old patches
+In-Reply-To: <20210405203928.7783-1-g-tammana@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org, denys@konsulko.com,
+	Krunal Bhargav <k-bhargav@ti.com>
+Subject: Re: [dunfell][PATCH v2 0/3] qtwebkit: Fix no x11 build
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -57,142 +41,55 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Apr 2021 20:39:15 -0000
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-List-Received-Date: Mon, 05 Apr 2021 21:19:32 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Remove the patches that are no longer needed.
+On Mon, Apr 05, 2021 at 03:39:25PM -0500, Gowtham Tammana wrote:
+> qtwebkit build was failing when x11 is enabled for the platform.
 
-Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
----
- ...e-to-use-GL_NoX-version-of-GraphicsS.patch | 29 ----------------
- .../qt5/qtwebkit/GraphicsSurfaceToken.h.patch | 33 -------------------
- .../recipes-qt/qt5/qtwebkit/WebCore.pri.patch | 17 ----------
- .../recipes-qt/qt5/qtwebkit_%.bbappend        |  6 +---
- 4 files changed, 1 insertion(+), 84 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-to-use-GL_NoX-version-of-GraphicsS.patch
- delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.patch
- delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch
+I guess another typo enabled/disabled here? 
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-to-use-GL_NoX-version-of-GraphicsS.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-to-use-GL_NoX-version-of-GraphicsS.patch
-deleted file mode 100644
-index 55a4c032..00000000
---- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-to-use-GL_NoX-version-of-GraphicsS.patch
-+++ /dev/null
-@@ -1,29 +0,0 @@
--From 90de2ab42bdd51b92dd00f700d6766ca1ffd23c0 Mon Sep 17 00:00:00 2001
--From: Denys Dmytriyenko <denys@ti.com>
--Date: Thu, 17 Jul 2014 16:11:46 -0400
--Subject: [PATCH] Target.pri: update to use GL_NoX version of GraphicsSurface
-- sources
--
--Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-----
-- Source/WebCore/Target.pri | 4 ++++
-- 1 file changed, 4 insertions(+)
--
--diff --git a/Source/WebCore/Target.pri b/Source/WebCore/Target.pri
--index e2044bc..cc9bdd4 100644
----- a/Source/WebCore/Target.pri
--+++ b/Source/WebCore/Target.pri
--@@ -4283,6 +4283,10 @@ use?(GRAPHICS_SURFACE) {
--             platform/graphics/surfaces/glx/X11Helper.cpp \
--             platform/graphics/surfaces/glx/GraphicsSurfaceGLX.cpp
--     }
--+    contains(QT_CONFIG, opengles2) {
--+        SOURCES -= platform/graphics/surfaces/qt/GraphicsSurfaceGLX.cpp
--+        SOURCES += platform/graphics/surfaces/qt/GraphicsSurfaceGL_NoX.cpp
--+    }
-- }
-- 
-- build?(qttestsupport) {
---- 
--2.0.0
--
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.patch
-deleted file mode 100644
-index 722df392..00000000
---- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.patch
-+++ /dev/null
-@@ -1,33 +0,0 @@
----- qtwebkit/Source/WebCore/platform/graphics/surfaces/GraphicsSurfaceToken.h.orig	2013-09-07 13:44:47.906849335 +0530
--+++ qtwebkit/Source/WebCore/platform/graphics/surfaces/GraphicsSurfaceToken.h	2013-09-07 13:46:12.554845618 +0530
--@@ -50,17 +50,30 @@ struct GraphicsSurfaceToken {
--     {
--         return frontBufferHandle != rhs.frontBufferHandle;
--     }
-- 
--     bool isValid() const
--     {
--         return frontBufferHandle;
--     }
--+#elif PLATFORM(QT)
--+    GraphicsSurfaceToken(uint32_t windowID = 0)
--+         : frontBufferHandle(windowID)
--+    { }
--+
--+     bool operator!=(const GraphicsSurfaceToken &rhs) const
--+     {
--+         return frontBufferHandle != rhs.frontBufferHandle;
--+     }
-- 
--+     bool isValid() const
--+     {
--+         return frontBufferHandle;
--+     }
-- #endif
-- 
-- #if OS(DARWIN) || OS(WINDOWS)
--     GraphicsSurfaceToken(BufferHandle frontBuffer = 0, BufferHandle backBuffer = 0)
--         : frontBufferHandle(frontBuffer)
--         , backBufferHandle(backBuffer)
--     { }
-- 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch
-deleted file mode 100644
-index 276b3cf8..00000000
---- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch
-+++ /dev/null
-@@ -1,17 +0,0 @@
--diff --git a/Source/WebCore/WebCore.pri b/Source/WebCore/WebCore.pri
--index 0189394..00f7090 100644
----- a/Source/WebCore/WebCore.pri
--+++ b/Source/WebCore/WebCore.pri
--@@ -227,8 +227,10 @@ use?(3D_GRAPHICS) {
-- use?(GRAPHICS_SURFACE) {
--     mac: LIBS += -framework IOSurface -framework CoreFoundation
--     linux-*: {
---        LIBS += -lXcomposite -lXrender
---        CONFIG *= x11
--+        xlibAvailable() {
--+            LIBS += -lXcomposite -lXrender
--+            CONFIG *= x11
--+        }
--     }
-- }
-- 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
-index 308f3f25..5bcef47f 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
-@@ -1,15 +1,11 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--#	file://GraphicsSurfaceToken.h.patch
--#	file://0001-Target.pri-update-to-use-GL_NoX-version-of-GraphicsS.patch
--#	file://WebCore.pri.patch
--
- SRC_URI += " \
- 	file://GraphicsSurfaceGL_NoX.cpp.patch \
- 	file://0001-WebCore-PlatformQt.cmake-Fix-no-x11-build.patch \
- "
- 
--PR_append = ".arago8"
-+PR_append = ".arago9"
- 
- EXTRA_OECMAKE_append = " -DCMAKE_BUILD_TYPE=Release"
- 
+If so, I don't think it requires another revision, as this is just a cover 
+letter and actual patches seem fine. Thanks.
+
+
+> This was due to
+> qtwebkit build not picking up the EGL_NO_X11 flag from the packageconfig. This
+> was earlier fixed by enabling the flag directly in the khrplatform header file.
+> Fixing up to pass the flag to build environment itself.
+> 
+> Also cleaned up some of the old patches.
+> 
+> v2:
+>   - fixed typo in patch 2/3 (qtwebkit: Fix no X11 build)
+> 
+> Gowtham Tammana (3):
+>   Revert "HACK: qtwebkit: define MESA_EGL_NO_X11_HEADERS at
+>     ANGLE/khrplatform.h"
+>   qtwebkit: Fix no X11 build
+>   qtwebkit: Cleanup old patches
+> 
+>  ...atform.h-add-define-MESA_EGL_NO_X11_.patch | 30 ------------
+>  ...e-to-use-GL_NoX-version-of-GraphicsS.patch | 29 ------------
+>  ...re-PlatformQt.cmake-Fix-no-x11-build.patch | 46 +++++++++++++++++++
+>  .../qt5/qtwebkit/GraphicsSurfaceToken.h.patch | 33 -------------
+>  .../recipes-qt/qt5/qtwebkit/WebCore.pri.patch | 17 -------
+>  .../recipes-qt/qt5/qtwebkit_%.bbappend        |  8 +---
+>  6 files changed, 48 insertions(+), 115 deletions(-)
+>  delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
+>  delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-to-use-GL_NoX-version-of-GraphicsS.patch
+>  create mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-WebCore-PlatformQt.cmake-Fix-no-x11-build.patch
+>  delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.patch
+>  delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch
+> 
+> -- 
+> 2.31.1
+> 
+
 -- 
-2.31.1
-
+Regards,
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
 
