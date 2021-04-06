@@ -1,49 +1,47 @@
-Return-Path: <g-tammana@ti.com>
+Return-Path: <praneeth@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 28BCC52BB8
+	by arago-project.org (Postfix) with ESMTP id 3110652BE0
 	for <meta-arago@arago-project.org>;
-	Mon,  5 Apr 2021 21:37:08 +0000 (UTC)
+	Tue,  6 Apr 2021 04:17:26 +0000 (UTC)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 135LbTFr031340;
-	Mon, 5 Apr 2021 16:37:29 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1364Hl9j060624;
+	Mon, 5 Apr 2021 23:17:47 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1617658649;
-	bh=kardt5ONIsVPS/nCCuqIW/N6usqGFNOmbLeDiPTjtZw=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=n+ZCMAFTKLY5r+pXI9qSEYb28UvkaYl+9AmwGH4Zo+p6Y5xSROH78kqcoc8ksgvkD
-	jP7pC7TigQEGMKBKT3VOfAcSZn5q4mCZdbnUXnsC9SZRdQspxJFXAW0Sus59TQtZ5u
-	zoO1GYr9675KI/lyIO/RhOT93F+8ndeq8uLZi+9U=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 135LbTC9088970
+	s=ti-com-17Q1; t=1617682667;
+	bh=BE5c1cVmwt5VemSDpIYy87Q8qss2dMJRNkJMUOScPY4=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=m/gGjtuenYHdO+3bTkf+4QSxTgXPh4ch8t5sq0XeFnDhAAKCGhbjwTs69pzkFcosB
+	b2ZyI+VGfDNGOhm3CLPbY2xL6Ah8AgjBMO0o9nuIhXd2VVzc9ZGErXZ79YwLC7wLyO
+	kA3MrqhcehGJ+m8oXvKaJhRR2mpYh5QISWGNP1Fo=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1364Hl7D062391
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 5 Apr 2021 16:37:29 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 5 Apr 2021 23:17:47 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Mon, 5 Apr 2021 16:37:29 -0500
-Received: from DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11]) by
-	DLEE111.ent.ti.com ([fe80::a4a2:21d4:3321:ad11%17]) with mapi id
-	15.01.2176.009; Mon, 5 Apr 2021 16:37:29 -0500
-From: "Tammana, Gowtham" <g-tammana@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>
-Thread-Topic: [EXTERNAL] Re: [meta-arago] [dunfell][PATCH v2 0/3] qtwebkit:
-	Fix no x11 build
-Thread-Index: AQHXKmFt6VqKLtaCd0Ow9IsHNmxDz6qmcnbg
-Date: Mon, 5 Apr 2021 21:37:29 +0000
-Message-ID: <cc8f6f696e614ec1a148d138497d9ae2@ti.com>
-References: <20210405203928.7783-1-g-tammana@ti.com>
-	<20210405211948.GB15937@denix.org>
-In-Reply-To: <20210405211948.GB15937@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.250.43.171]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+	Mon, 5 Apr 2021 23:17:47 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+	Frontend Transport; Mon, 5 Apr 2021 23:17:47 -0500
+Received: from [10.250.50.222] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1364HlFY105222;
+	Mon, 5 Apr 2021 23:17:47 -0500
+To: Gowtham Tammana <g-tammana@ti.com>, <meta-arago@arago-project.org>,
+	<denys@konsulko.com>
+References: <20210401163340.12248-1-g-tammana@ti.com>
+	<20210401163340.12248-2-g-tammana@ti.com>
+From: "Bajjuri, Praneeth" <praneeth@ti.com>
+Message-ID: <9e35e9c1-748a-e96e-642f-ec2344fc87a4@ti.com>
+Date: Mon, 5 Apr 2021 23:17:47 -0500
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+	Thunderbird/78.9.0
 MIME-Version: 1.0
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>,
-	"denys@konsulko.com" <denys@konsulko.com>, "Bhargav,
-	Krunal" <k-bhargav@ti.com>
-Subject: Re: [EXTERNAL] Re: [dunfell][PATCH v2 0/3] qtwebkit: Fix no x11 build
+In-Reply-To: <20210401163340.12248-2-g-tammana@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: Krunal Bhargav <k-bhargav@ti.com>
+Subject: Re: [dunfell][PATCH 1/3] Revert "HACK: qtwebkit: define MESA_EGL_NO_X11_HEADERS at ANGLE/khrplatform.h"
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,55 +54,78 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Apr 2021 21:37:08 -0000
+X-List-Received-Date: Tue, 06 Apr 2021 04:17:26 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
 
-DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IERlbnlzIERteXRyaXllbmtv
-IDxkZW5pc0BkZW5peC5vcmc+DQo+U2VudDogTW9uZGF5LCBBcHJpbCAwNSwgMjAyMSA0OjIwIFBN
-DQo+VG86IFRhbW1hbmEsIEdvd3RoYW0gPGctdGFtbWFuYUB0aS5jb20+DQo+Q2M6IG1ldGEtYXJh
-Z29AYXJhZ28tcHJvamVjdC5vcmc7IEJhamp1cmksIFByYW5lZXRoIDxwcmFuZWV0aEB0aS5jb20+
-Ow0KPmRlbnlzQGtvbnN1bGtvLmNvbTsgQmhhcmdhdiwgS3J1bmFsIDxrLWJoYXJnYXZAdGkuY29t
-Pg0KPlN1YmplY3Q6IFtFWFRFUk5BTF0gUmU6IFttZXRhLWFyYWdvXSBbZHVuZmVsbF1bUEFUQ0gg
-djIgMC8zXSBxdHdlYmtpdDogRml4DQo+bm8geDExIGJ1aWxkDQo+DQo+T24gTW9uLCBBcHIgMDUs
-IDIwMjEgYXQgMDM6Mzk6MjVQTSAtMDUwMCwgR293dGhhbSBUYW1tYW5hIHdyb3RlOg0KPj4gcXR3
-ZWJraXQgYnVpbGQgd2FzIGZhaWxpbmcgd2hlbiB4MTEgaXMgZW5hYmxlZCBmb3IgdGhlIHBsYXRm
-b3JtLg0KPg0KPkkgZ3Vlc3MgYW5vdGhlciB0eXBvIGVuYWJsZWQvZGlzYWJsZWQgaGVyZT8NCg0K
-WWVzIGFub3RoZXIgdHlwbyDimLkgc2hvdWxkIGhhdmUgYmVlbiBkaXNhYmxlZC4NCg0KPklmIHNv
-LCBJIGRvbid0IHRoaW5rIGl0IHJlcXVpcmVzIGFub3RoZXIgcmV2aXNpb24sIGFzIHRoaXMgaXMg
-anVzdCBhIGNvdmVyDQo+bGV0dGVyIGFuZCBhY3R1YWwgcGF0Y2hlcyBzZWVtIGZpbmUuIFRoYW5r
-cy4NCg0KVGhhbmtzIGZvciB0aGUgcmV2aWV3Lg0KR293dGhhbQ0KDQo+PiBUaGlzIHdhcyBkdWUg
-dG8NCj4+IHF0d2Via2l0IGJ1aWxkIG5vdCBwaWNraW5nIHVwIHRoZSBFR0xfTk9fWDExIGZsYWcg
-ZnJvbSB0aGUNCj5wYWNrYWdlY29uZmlnLiBUaGlzDQo+PiB3YXMgZWFybGllciBmaXhlZCBieSBl
-bmFibGluZyB0aGUgZmxhZyBkaXJlY3RseSBpbiB0aGUga2hycGxhdGZvcm0NCj5oZWFkZXIgZmls
-ZS4NCj4+IEZpeGluZyB1cCB0byBwYXNzIHRoZSBmbGFnIHRvIGJ1aWxkIGVudmlyb25tZW50IGl0
-c2VsZi4NCj4+DQo+PiBBbHNvIGNsZWFuZWQgdXAgc29tZSBvZiB0aGUgb2xkIHBhdGNoZXMuDQo+
-Pg0KPj4gdjI6DQo+PiAgIC0gZml4ZWQgdHlwbyBpbiBwYXRjaCAyLzMgKHF0d2Via2l0OiBGaXgg
-bm8gWDExIGJ1aWxkKQ0KPj4NCj4+IEdvd3RoYW0gVGFtbWFuYSAoMyk6DQo+PiAgIFJldmVydCAi
-SEFDSzogcXR3ZWJraXQ6IGRlZmluZSBNRVNBX0VHTF9OT19YMTFfSEVBREVSUyBhdA0KPj4gICAg
-IEFOR0xFL2tocnBsYXRmb3JtLmgiDQo+PiAgIHF0d2Via2l0OiBGaXggbm8gWDExIGJ1aWxkDQo+
-PiAgIHF0d2Via2l0OiBDbGVhbnVwIG9sZCBwYXRjaGVzDQo+Pg0KPj4gIC4uLmF0Zm9ybS5oLWFk
-ZC1kZWZpbmUtTUVTQV9FR0xfTk9fWDExXy5wYXRjaCB8IDMwIC0tLS0tLS0tLS0tLQ0KPj4gIC4u
-LmUtdG8tdXNlLUdMX05vWC12ZXJzaW9uLW9mLUdyYXBoaWNzUy5wYXRjaCB8IDI5IC0tLS0tLS0t
-LS0tLQ0KPj4gIC4uLnJlLVBsYXRmb3JtUXQuY21ha2UtRml4LW5vLXgxMS1idWlsZC5wYXRjaCB8
-IDQ2ICsrKysrKysrKysrKysrKysrKysNCj4+ICAuLi4vcXQ1L3F0d2Via2l0L0dyYXBoaWNzU3Vy
-ZmFjZVRva2VuLmgucGF0Y2ggfCAzMyAtLS0tLS0tLS0tLS0tDQo+PiAgLi4uL3JlY2lwZXMtcXQv
-cXQ1L3F0d2Via2l0L1dlYkNvcmUucHJpLnBhdGNoIHwgMTcgLS0tLS0tLQ0KPj4gIC4uLi9yZWNp
-cGVzLXF0L3F0NS9xdHdlYmtpdF8lLmJiYXBwZW5kICAgICAgICB8ICA4ICstLS0NCj4+ICA2IGZp
-bGVzIGNoYW5nZWQsIDQ4IGluc2VydGlvbnMoKyksIDExNSBkZWxldGlvbnMoLSkNCj4+ICBkZWxl
-dGUgbW9kZSAxMDA2NDQgbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1xdC9xdDUvcXR3ZWJraXQv
-MDAwMS1IQUNLLQ0KPkFOR0xFLWtocnBsYXRmb3JtLmgtYWRkLWRlZmluZS1NRVNBX0VHTF9OT19Y
-MTFfLnBhdGNoDQo+PiAgZGVsZXRlIG1vZGUgMTAwNjQ0IG1ldGEtYXJhZ28tZGlzdHJvL3JlY2lw
-ZXMtcXQvcXQ1L3F0d2Via2l0LzAwMDEtDQo+VGFyZ2V0LnByaS11cGRhdGUtdG8tdXNlLUdMX05v
-WC12ZXJzaW9uLW9mLUdyYXBoaWNzUy5wYXRjaA0KPj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBtZXRh
-LWFyYWdvLWRpc3Ryby9yZWNpcGVzLXF0L3F0NS9xdHdlYmtpdC8wMDAxLQ0KPldlYkNvcmUtUGxh
-dGZvcm1RdC5jbWFrZS1GaXgtbm8teDExLWJ1aWxkLnBhdGNoDQo+PiAgZGVsZXRlIG1vZGUgMTAw
-NjQ0IG1ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtDQo+cXQvcXQ1L3F0d2Via2l0L0dyYXBoaWNz
-U3VyZmFjZVRva2VuLmgucGF0Y2gNCj4+ICBkZWxldGUgbW9kZSAxMDA2NDQgbWV0YS1hcmFnby1k
-aXN0cm8vcmVjaXBlcy0NCj5xdC9xdDUvcXR3ZWJraXQvV2ViQ29yZS5wcmkucGF0Y2gNCj4+DQo+
-PiAtLQ0KPj4gMi4zMS4xDQo+Pg0KPg0KPi0tDQo+UmVnYXJkcywNCj5EZW55cyBEbXl0cml5ZW5r
-byA8ZGVuaXNAZGVuaXgub3JnPg0KPlBHUDogMHg0MjA5MDI3MjlBOTJDOTY0IC0gaHR0cHM6Ly9k
-ZW5peC5vcmcvMHg0MjA5MDI3MjlBOTJDOTY0DQo+RmluZ2VycHJpbnQ6IDI1RkMgRTRBNSA4QTcy
-IDJGNjkgMTE4NiAgNkQ3NiA0MjA5IDAyNzIgOUE5MiBDOTY0DQo=
+
+
+On 4/1/2021 11:33 AM, Gowtham Tammana wrote:
+> This reverts commit 1e83ebf61bd22ca8ad04d5538db044d81330df2c. It is no
+> longer needed as it is handled through build dependencies.
+
+no signed-off-by ?
+
+Will append before merging to dunfell
+
+> ---
+>   ...atform.h-add-define-MESA_EGL_NO_X11_.patch | 30 -------------------
+>   .../recipes-qt/qt5/qtwebkit_%.bbappend        |  3 +-
+>   2 files changed, 1 insertion(+), 32 deletions(-)
+>   delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
+> 
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
+> deleted file mode 100644
+> index 29521a8e..00000000
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch
+> +++ /dev/null
+> @@ -1,30 +0,0 @@
+> -From 4a21fcedd886772b7e1bd40861835f1b4f33c7ff Mon Sep 17 00:00:00 2001
+> -From: Eric Ruei <e-ruei1@ti.com>
+> -Date: Fri, 30 Aug 2019 17:41:13 -0400
+> -Subject: [PATCH] HACK: ANGLE/khrplatform.h: add #define
+> - MESA_EGL_NO_X11_HEADERS
+> -
+> -Note: Only the KHR/khrplatform.h at sysroot/usr/include should be used.
+> -      This patch is a tentative workaround to make both files compatible
+> -
+> -Upstream-Status: Inappropriate [tentative workaround only]
+> -
+> -Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+> ----
+> - Source/ThirdParty/ANGLE/include/KHR/khrplatform.h | 2 ++
+> - 1 file changed, 2 insertions(+)
+> -
+> -diff --git a/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h b/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
+> -index c9e6f17d3..4e3ff69a8 100644
+> ---- a/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
+> -+++ b/Source/ThirdParty/ANGLE/include/KHR/khrplatform.h
+> -@@ -279,4 +279,6 @@ typedef enum {
+> -     KHRONOS_BOOLEAN_ENUM_FORCE_SIZE = KHRONOS_MAX_ENUM
+> - } khronos_boolean_enum_t;
+> -
+> -+#define MESA_EGL_NO_X11_HEADERS
+> -+
+> - #endif /* __khrplatform_h_ */
+> ---
+> -2.17.1
+> -
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+> index 1dbe40d1..75213487 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit_%.bbappend
+> @@ -6,10 +6,9 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>   
+>   SRC_URI += " \
+>   	file://GraphicsSurfaceGL_NoX.cpp.patch \
+> -	file://0001-HACK-ANGLE-khrplatform.h-add-define-MESA_EGL_NO_X11_.patch \
+>   "
+>   
+> -PR_append = ".arago8"
+> +PR_append = ".arago7"
+>   
+>   EXTRA_OECMAKE_append = " -DCMAKE_BUILD_TYPE=Release"
+>   
+> 
 
