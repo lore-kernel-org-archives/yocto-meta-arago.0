@@ -1,31 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 858CE52C18
+Return-Path: <praneeth@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id 24EBC52C56
 	for <meta-arago@arago-project.org>;
-	Tue,  6 Apr 2021 16:01:58 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 550BE40C22;
-	Tue,  6 Apr 2021 16:02:20 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id O1Xqx4lwKkUO; Tue,  6 Apr 2021 16:02:20 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3FC16409AE;
-	Tue,  6 Apr 2021 16:02:19 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 052AC1745A6;
-	Tue,  6 Apr 2021 12:02:19 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Tue,  6 Apr 2021 12:02:18 -0400
-Message-Id: <1617724938-49136-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [dunfell/master][PATCH] README: update maintainers
+	Wed,  7 Apr 2021 04:04:52 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13745ElU103241;
+	Tue, 6 Apr 2021 23:05:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1617768314;
+	bh=Uym2PoEY9NuG15SQbi7GigLW8fI2bgVSV3UPS4sH1Ro=;
+	h=From:To:CC:Subject:Date;
+	b=xRaT/dajXaK68QCwRqljydwwKk+bwiNzHoO23b4hthqF5eHGEhaYWiulqzloDZjhZ
+	TWvy/s2iafgl2z2w83/r+KFkYFB7xrwyn/lPvxslLKC08poEX1OePg8+KEPReLojiI
+	hZsiRGwk4ktrFMU2c6I4luKVYN3uoleILfa2ZAr0=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13745EZq052385
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 6 Apr 2021 23:05:14 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Tue, 6 Apr 2021 23:05:13 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+	Frontend Transport; Tue, 6 Apr 2021 23:05:13 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13745DLF124365;
+	Tue, 6 Apr 2021 23:05:13 -0500
+From: <praneeth@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>
+Date: Tue, 6 Apr 2021 23:05:13 -0500
+Message-ID: <20210407040513.2486-1-praneeth@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org, Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master PATCH] coresdk-07.03.00.005-config: add config for CoreSDK 07.03.00.005 release
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,43 +49,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Apr 2021 16:01:59 -0000
+X-List-Received-Date: Wed, 07 Apr 2021 04:04:52 -0000
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+From: Praneeth Bajjuri <praneeth@ti.com>
 
-Noticed maintainers list was outdated.
-
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: Praneeth Bajjuri <praneeth@ti.com>
 ---
- meta-arago-distro/README | 4 ++--
- meta-arago-extras/README | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ configs/coresdk/coresdk-07.03.00.005-config.txt | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 configs/coresdk/coresdk-07.03.00.005-config.txt
 
-diff --git a/meta-arago-distro/README b/meta-arago-distro/README
-index cf37459..39acade 100644
---- a/meta-arago-distro/README
-+++ b/meta-arago-distro/README
-@@ -34,5 +34,5 @@ layers: meta-arago-extras
- Send pull requests to meta-arago@arago-project.org
- 
- Layer maintainers:
--Dan Murphy <dmurphy@ti.com>
--Denys Dmytriyenko <denys@ti.com>
-+Praneeth Bajjuri <praneeth@ti.com>
-+Denys Dmytriyenko <denys@konsulko.com>
-diff --git a/meta-arago-extras/README b/meta-arago-extras/README
-index b0eb76c..91d257e 100644
---- a/meta-arago-extras/README
-+++ b/meta-arago-extras/README
-@@ -29,5 +29,5 @@ revision: HEAD
- Send pull requests to meta-arago@arago-project.org
- 
- Layer maintainers:
--Dan Murphy <dmurphy@ti.com>
--Denys Dmytriyenko <denys@ti.com>
-+Praneeth Bajjuri <praneeth@ti.com>
-+Denys Dmytriyenko <denys@konsulko.com>
+diff --git a/configs/coresdk/coresdk-07.03.00.005-config.txt b/configs/coresdk/coresdk-07.03.00.005-config.txt
+new file mode 100644
+index 0000000..97e540a
+--- /dev/null
++++ b/configs/coresdk/coresdk-07.03.00.005-config.txt
+@@ -0,0 +1,14 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.46,017a39ed05d065bf28fd38f91bcde8a098300551
++meta-arago,git://arago-project.org/git/meta-arago.git,dunfell,07.03.00.005,layers=meta-arago-distro:meta-arago-extras
++#meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
++meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,b4d24d70aca75791902df5cd59a4f4a54aa4a125,layers=
++meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,89abc62b47f6f20db9d00a8ec9b2c1b6b60ac3f9,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,389757a7494221fea1d8437e9a01c6e4fb4700af,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
++meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,07.03.00.005,layers=
++meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
++oe-core,git://git.openembedded.org/openembedded-core,dunfell,707036d4ec12ef1a260adcef78627b26e32e6540,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64.conf.sample
 -- 
-2.7.4
+2.17.1
 
 
