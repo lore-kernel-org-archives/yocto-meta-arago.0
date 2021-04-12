@@ -1,42 +1,45 @@
 Return-Path: <praneeth@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 24EBC52C56
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTP id 68AD552C41
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Apr 2021 04:04:52 +0000 (UTC)
+	Mon, 12 Apr 2021 03:23:01 +0000 (UTC)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13745ElU103241;
-	Tue, 6 Apr 2021 23:05:14 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13C3NOCm026571;
+	Sun, 11 Apr 2021 22:23:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1617768314;
-	bh=Uym2PoEY9NuG15SQbi7GigLW8fI2bgVSV3UPS4sH1Ro=;
-	h=From:To:CC:Subject:Date;
-	b=xRaT/dajXaK68QCwRqljydwwKk+bwiNzHoO23b4hthqF5eHGEhaYWiulqzloDZjhZ
-	TWvy/s2iafgl2z2w83/r+KFkYFB7xrwyn/lPvxslLKC08poEX1OePg8+KEPReLojiI
-	hZsiRGwk4ktrFMU2c6I4luKVYN3uoleILfa2ZAr0=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13745EZq052385
+	s=ti-com-17Q1; t=1618197804;
+	bh=AckmxcP9gRUOhtDEqfNtlZDJ0e48lkrf8X0rXiSh7YE=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=x9WcsVRH4sc8y79EVXA0Iukg+mz7m7ETmnEzmUUoLBePFtaMIKXI9/MgY6BO9ECsF
+	WGfFZA7ve8z69b1y4/TQFnTRDj4yNyw0D64pS2YMwzV8noFwzdFoSvK1zeIL7r+osd
+	oGHxprgJT1By8Gr6lSgkIrvC1BMLN0d6icmxU88I=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13C3NOON015851
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 6 Apr 2021 23:05:14 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	Sun, 11 Apr 2021 22:23:24 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Tue, 6 Apr 2021 23:05:13 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	Sun, 11 Apr 2021 22:23:24 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Tue, 6 Apr 2021 23:05:13 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13745DLF124365;
-	Tue, 6 Apr 2021 23:05:13 -0500
-From: <praneeth@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>
-Date: Tue, 6 Apr 2021 23:05:13 -0500
-Message-ID: <20210407040513.2486-1-praneeth@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Frontend Transport; Sun, 11 Apr 2021 22:23:24 -0500
+Received: from [10.250.34.117] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13C3NOfA074028;
+	Sun, 11 Apr 2021 22:23:24 -0500
+To: Denys Dmytriyenko <denis@denix.org>, <meta-arago@arago-project.org>
+References: <1617408644-2675-1-git-send-email-denis@denix.org>
+From: Praneeth Bajjuri <praneeth@ti.com>
+Message-ID: <5bcb4d91-1f62-b637-fa24-d349fc872a22@ti.com>
+Date: Sun, 11 Apr 2021 22:23:24 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+	Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <1617408644-2675-1-git-send-email-denis@denix.org>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org, Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master PATCH] coresdk-07.03.00.005-config: add config for CoreSDK 07.03.00.005 release
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: Re: [master][PATCH 00/29] hardknott/master fixes
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,38 +52,126 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Apr 2021 04:04:52 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 12 Apr 2021 03:23:01 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-From: Praneeth Bajjuri <praneeth@ti.com>
 
-Signed-off-by: Praneeth Bajjuri <praneeth@ti.com>
----
- configs/coresdk/coresdk-07.03.00.005-config.txt | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
- create mode 100644 configs/coresdk/coresdk-07.03.00.005-config.txt
 
-diff --git a/configs/coresdk/coresdk-07.03.00.005-config.txt b/configs/coresdk/coresdk-07.03.00.005-config.txt
-new file mode 100644
-index 0000000..97e540a
---- /dev/null
-+++ b/configs/coresdk/coresdk-07.03.00.005-config.txt
-@@ -0,0 +1,14 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,1.46,017a39ed05d065bf28fd38f91bcde8a098300551
-+meta-arago,git://arago-project.org/git/meta-arago.git,dunfell,07.03.00.005,layers=meta-arago-distro:meta-arago-extras
-+#meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,b4d24d70aca75791902df5cd59a4f4a54aa4a125,layers=
-+meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,89abc62b47f6f20db9d00a8ec9b2c1b6b60ac3f9,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,389757a7494221fea1d8437e9a01c6e4fb4700af,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-+meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,07.03.00.005,layers=
-+meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
-+oe-core,git://git.openembedded.org/openembedded-core,dunfell,707036d4ec12ef1a260adcef78627b26e32e6540,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago64.conf.sample
--- 
-2.17.1
+On 4/2/21 7:10 PM, Denys Dmytriyenko wrote:
+> From: Denys Dmytriyenko <denys@konsulko.com>
+> 
+> Set of fixes for meta-arago hardknott/master. Uses "internal" gcc10 toolchain
+> (selected with TOOLCHAIN_TYPE=internal) and still requires extra fixes to use
+> external prebuilt Arm toolchain from meta-arm.
+> 
+> gcc10 "multiple definition" errors are currently suppressed. Components with too
+> many non-trivial gcc10 errors are disabled. Proper fixing in code is needed.
+> 
 
+series merged to master
+
+
+> https://gcc.gnu.org/gcc-10/porting_to.html
+> 
+> Denys Dmytriyenko (29):
+>    arago.conf: remove LIBC_DEPENDENCIES mod needed for
+>      external-arm-toolchain
+>    sourceipk,tisdk-bundle,packagegroup-*-sdk-host: rename ${PN}-src to
+>      ${PN}-source
+>    toolchain-gcc: update component versions of internal toolchain
+>    recipes: fix trailing slash in path warning
+>    nativesdk-packagegroup: fix QA warning for inheriting classes after
+>      nativesdk
+>    perl: skip shebang-size QA check for nativesdk-perl packages
+>    weston: update bbappend 8.0.0 -> 9.0.0
+>    gstreamer-plugins: unify removal of GFX options for headless platforms
+>    gstreamer1.0-plugins-good: upgrade 1.16 -> 1.18
+>    gstreamer1.0-plugins-hevc: suppress gcc10 multiple definitions of
+>      buffArray
+>    branding-core: remove mmip, as gstreamer patches need porting to 1.18
+>    libdrm: massage test patch to apply against latest version
+>    lmbench: remove very old SDK optimization that no longer apply
+>    iproute2: drop upstreamed patch for HSR/PRP support
+>    linuxptp: update bbappend against latest upstream
+>    kmscube: pin down version before GL3+ features were merged
+>    netperf: drop upstreamed PACKAGECONFIG, suppress gcc10 multiple
+>      definition
+>    packagegroup-*-server-extra: replace dhcp-client with dhcpcd
+>    meta-toolchain-arago: opkg.conf in SDK now also resides in /etc/opkg/
+>    php: suppress installed-vs-shipped QA error
+>    ti-llvm3.6: suppress installed-vs-shipped QA error
+>    matrix-gui-apps: suppress installed-vs-shipped QA error
+>    matrix-gui: lighttpd-module-compress replaced with
+>      lighttpd-module-deflate
+>    statcol: suppress "ldflags" QA error
+>    kms++: update to the latest
+>    FIXME: packagegroup-addons: disable kms++-python bindings, due to
+>      meson build issues
+>    FIXME: packagegroup-connectivity: disable net-snmp, IEC-62439-3
+>      doesn't build with gcc10
+>    FIXME: ti-test: disable ltp-ddt due to gcc10 build errors
+>    FIXME: arago.conf: disable opencl, as it's broken
+> 
+>   meta-arago-distro/classes/sourceipk.bbclass        |  22 ++---
+>   meta-arago-distro/classes/tisdk-bundle.bbclass     |   2 +-
+>   meta-arago-distro/conf/distro/arago.conf           |   4 +-
+>   .../conf/distro/include/branding-core.inc          |   3 +
+>   .../conf/distro/include/toolchain-gcc.inc          |   8 +-
+>   .../0001-Makefile-Add-TI-SDK-Modifications.patch   |  75 --------------
+>   .../recipes-benchmark/lmbench/lmbench_%.bbappend   |  23 -----
+>   ...add-support-for-creating-PRP-device-simil.patch | 109 ---------------------
+>   .../iproute2/iproute2_%.bbappend                   |   1 -
+>   .../linuxptp/linuxptp_%.bbappend                   |   6 +-
+>   .../packagegroup-arago-base-tisdk-server-extra.bb  |   2 +-
+>   .../packagegroup-arago-tisdk-addons-sdk-host.bb    |  74 +++++++-------
+>   .../packagegroup-arago-tisdk-addons.bb             |   2 +-
+>   .../packagegroup-arago-tisdk-amsdk-sdk-host.bb     |   6 +-
+>   .../packagegroup-arago-tisdk-connectivity.bb       |   4 +-
+>   .../packagegroup-arago-tisdk-crypto-sdk-host.bb    |  16 +--
+>   .../packagegroup-arago-tisdk-graphics-sdk-host.bb  |   4 +-
+>   .../packagegroup-arago-tisdk-hmi-sdk-host.bb       |  18 ++--
+>   .../packagegroup-arago-tisdk-matrix-sdk-host.bb    |   6 +-
+>   ...packagegroup-arago-tisdk-multimedia-sdk-host.bb |  12 +--
+>   .../packagegroup-arago-tisdk-opencl-sdk-host.bb    |   8 +-
+>   .../packagegroup-arago-tisdk-qte-sdk-host.bb       |   4 +-
+>   .../recipes-core/packagegroups/ti-test.bb          |   2 +-
+>   .../recipes-devtools/perl/perl_%.bbappend          |  12 +++
+>   .../recipes-devtools/php/php_%.bbappend            |   2 +
+>   ...001-Add-option-to-run-a-test-indefinitely.patch |  29 +++---
+>   .../recipes-graphics/kmscube/kmscube_%.bbappend    |   6 +-
+>   ...weston_8.0.0.bbappend => weston_9.0.0.bbappend} |   0
+>   ....%.bbappend => gstreamer1.0-plugins-%.bbappend} |   0
+>   .../gstreamer1.0-plugins-bad_1.16.%.bbappend       |   6 --
+>   .../gstreamer1.0-plugins-base_1.16.%.bbappend      |   6 --
+>   .../recipes-support/netperf/netperf_git.bbappend   |   3 +-
+>   .../recipes-tisdk/oe-layersetup/oe-layersetup.bb   |   2 +-
+>   .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |   2 +-
+>   .../image-gallery/image-gallery_git.bb             |   2 +-
+>   .../recipes-apps/thermostat-demo/qt-tstat_2.0.bb   |   2 +-
+>   .../recipes-core/llvm/ti-llvm3.6_3.6.bb            |   1 +
+>   .../recipes-core/matrix/matrix-gui-apps-git.inc    |   2 +
+>   .../recipes-core/matrix/matrix-gui_2.0.bb          |   2 +-
+>   .../recipes-core/meta/meta-toolchain-arago.bb      |   2 +-
+>   ...ivesdk-packagegroup-arago-qte-toolchain-host.bb |   2 +-
+>   .../ti-crypto-examples/ti-crypto-examples_git.bb   |   2 +-
+>   .../recipes-devtools/statcol/statcol.bb            |   2 +
+>   .../recipes-graphics/kms++/kms++_git.bb            |  12 ++-
+>   .../gstreamer1.0-plugins-hevc_git.bb               |   1 +
+>   ...ix-build-on-EGL-platform-without-X11-head.patch |  36 -------
+>   ...d => gstreamer1.0-plugins-good_1.18.%.bbappend} |   1 -
+>   .../recipes-ti/tidl-utils/tidl-import_git.bb       |   2 +-
+>   48 files changed, 159 insertions(+), 389 deletions(-)
+>   delete mode 100644 meta-arago-distro/recipes-benchmark/lmbench/lmbench/0001-Makefile-Add-TI-SDK-Modifications.patch
+>   delete mode 100644 meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappend
+>   delete mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0013-iplink-hsr-add-support-for-creating-PRP-device-simil.patch
+>   create mode 100644 meta-arago-distro/recipes-devtools/perl/perl_%.bbappend
+>   rename meta-arago-distro/recipes-graphics/wayland/{weston_8.0.0.bbappend => weston_9.0.0.bbappend} (100%)
+>   rename meta-arago-distro/recipes-multimedia/gstreamer/{gstreamer1.0-plugins-good_1.16.%.bbappend => gstreamer1.0-plugins-%.bbappend} (100%)
+>   delete mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.%.bbappend
+>   delete mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.16.%.bbappend
+>   delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-qmlglsink-fix-build-on-EGL-platform-without-X11-head.patch
+>   rename meta-arago-extras/recipes-multimedia/gstreamer/{gstreamer1.0-plugins-good_1.16.%.bbappend => gstreamer1.0-plugins-good_1.18.%.bbappend} (84%)
+> 
 
