@@ -1,46 +1,42 @@
 Return-Path: <praneeth@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id EBA2D52C54
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id ECBE452C4D
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Apr 2021 03:24:54 +0000 (UTC)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13C3PIMK027215;
-	Sun, 11 Apr 2021 22:25:18 -0500
+	Mon, 12 Apr 2021 03:45:16 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13C3jeen078834;
+	Sun, 11 Apr 2021 22:45:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1618197918;
-	bh=1ZfMgQmPJ+9G4rWhY+Dk60MEVpT0icOSyCxt91hDjbA=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=W8wHSDF/gdCzqvVwn9+s1SnFRUd+nVoLHyBygxAOwcgUpaTN4mcl2sRBhdrKyEDq/
-	H2zHTLRaVaJjEdFwJ7hruCB6Va04nkEriZCofomx3NdPo7iPec6QrusmK9zq/SoRbg
-	q8LAdTMcWoJDx8jk2WdBUHZoKBi10x1b3KmT3Gao=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13C3PISO019271
+	s=ti-com-17Q1; t=1618199140;
+	bh=sYMwU65pYER9HTdcmOW96TytE8k4Iz5HIGX00fpS3rw=;
+	h=From:To:CC:Subject:Date;
+	b=meK6RclyzD8ZvNUEetbTgWC0s4qlcFMbIP9fXNB7ly+uhIabw0pLrdclzPeFzPEsn
+	8fgK/K54JHAu2CcM0jJ2gIbHzVF0MLfj7o2+U2AT+cv7u3ka9AIsxM5hShI/dYZdnN
+	ue7XzWjqYBfm8I+IfONbyBMBfoxtKxp9+n+tZGHo=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13C3jexO028686
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 11 Apr 2021 22:25:18 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	Sun, 11 Apr 2021 22:45:40 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE112.ent.ti.com
+	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Sun, 11 Apr 2021 22:25:18 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	Sun, 11 Apr 2021 22:45:40 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Sun, 11 Apr 2021 22:25:18 -0500
-Received: from [10.250.34.117] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13C3PIqm086180;
-	Sun, 11 Apr 2021 22:25:18 -0500
-To: Denys Dmytriyenko <denis@denix.org>, "Menon, Nishanth" <nm@ti.com>
-References: <20210323145133.9940-1-nm@ti.com>
-	<20210323164243.GM18041@denix.org> <20210403021443.GY23013@denix.org>
-From: Praneeth Bajjuri <praneeth@ti.com>
-Message-ID: <b172dbda-fac9-db04-fc28-f62bbaaff018@ti.com>
-Date: Sun, 11 Apr 2021 22:25:18 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.10.0
+	Frontend Transport; Sun, 11 Apr 2021 22:45:40 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13C3jee3046188;
+	Sun, 11 Apr 2021 22:45:40 -0500
+From: <praneeth@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>
+Date: Sun, 11 Apr 2021 22:45:40 -0500
+Message-ID: <20210412034540.18980-1-praneeth@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210403021443.GY23013@denix.org>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
-Subject: Re: [master][PATCH] layer.conf: Add hardknott to compatible release branches
+Cc: meta-arago@arago-project.org, Denys Dmytriyenko <denys@konsulko.com>
+Subject: [dunfell/master PATCH] branding-core: Remove PREFERRED_VERSION to pick 2021LTS baseline
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,74 +49,39 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Apr 2021 03:24:55 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 12 Apr 2021 03:45:17 -0000
+Content-Type: text/plain
 
+From: Praneeth Bajjuri <praneeth@ti.com>
 
+commit 400d58becfb5 ("branding: Add branding-core-next to aid in migration")
+added support of PREFERRED_VERSION as 2020LTS kernel and uboot for branding core.
 
-On 4/2/21 9:14 PM, Denys Dmytriyenko wrote:
-> On Tue, Mar 23, 2021 at 12:42:43PM -0400, Denys Dmytriyenko wrote:
->> On Tue, Mar 23, 2021 at 09:51:33AM -0500, Nishanth Menon wrote:
->>> This follows commit cfe3f78 ("layer.conf: add hardknott to compatible
->>> release branches") from meta-ti.
->>>
->>> While we are at it, remove old releases before dunfell as we no longer
->>> support the build of such configurations.
->>>
->>> Signed-off-by: Nishanth Menon <nm@ti.com>
->>> ---
->>>
->>> WARNING: there is a bunch of work to do to move to gatesgarth /
->>> hardknott .. https://pastebin.ubuntu.com/p/kKCqXvnDKf/
->>>
->>> but this allows us to get started, I think.
->>
->> Well, it's kind of premature to mark meta-arago as compatible yet...
->> Unlike meta-ti, which by itself builds fine with latest releases up to
->> master, meta-arago is rather dunfell-specific, unfortunately.
->>
->> Let me dust off my arago/master tree - I had bunch of fixes lined up there.
-> 
-> This can now be pulled in along with my fixes for meta-ti/meta-arago.
+Now that migration to 2021LTS (i.e 5.10 kernel and 2021.01 u-boot) is added,
+removing the PREFERRED_VERSION so that core brand picks the expected
+kernel and uboot baseline.
 
-merged to master
+Signed-off-by: Praneeth Bajjuri <praneeth@ti.com>
+---
+ meta-arago-distro/conf/distro/include/branding-core.inc | 5 -----
+ 1 file changed, 5 deletions(-)
 
-> 
-> 
->>>   meta-arago-distro/conf/layer.conf | 2 +-
->>>   meta-arago-extras/conf/layer.conf | 2 +-
->>>   2 files changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
->>> index 2931bf9daf4a..1fa61207fe01 100644
->>> --- a/meta-arago-distro/conf/layer.conf
->>> +++ b/meta-arago-distro/conf/layer.conf
->>> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-distro"
->>>   BBFILE_PATTERN_meta-arago-distro := "^${LAYERDIR}/"
->>>   BBFILE_PRIORITY_meta-arago-distro = "10"
->>>   
->>> -LAYERSERIES_COMPAT_meta-arago-distro = "sumo thud warrior zeus dunfell"
->>> +LAYERSERIES_COMPAT_meta-arago-distro = "dunfell gatesgarth hardknott"
->>>   
->>>   LAYERDEPENDS_meta-arago-distro = " \
->>>       core \
->>> diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
->>> index 7e3081b20ba8..d64a80f8890f 100644
->>> --- a/meta-arago-extras/conf/layer.conf
->>> +++ b/meta-arago-extras/conf/layer.conf
->>> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-extras"
->>>   BBFILE_PATTERN_meta-arago-extras := "^${LAYERDIR}/"
->>>   BBFILE_PRIORITY_meta-arago-extras = "10"
->>>   
->>> -LAYERSERIES_COMPAT_meta-arago-extras = "sumo thud warrior zeus dunfell"
->>> +LAYERSERIES_COMPAT_meta-arago-extras = "dunfell gatesgarth hardknott"
->>>   
->>>   # Set a variable to get to the top of the metadata location
->>>   ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
->>> -- 
->>> 2.31.0
->>>
-> 
+diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
+index 10853d8b..3d259d2d 100644
+--- a/meta-arago-distro/conf/distro/include/branding-core.inc
++++ b/meta-arago-distro/conf/distro/include/branding-core.inc
+@@ -12,10 +12,5 @@ ALTERNATIVE_PRIORITY_pn-opencl-monitor-ipu = "1"
+ # Raise priority for sample IPC FW images
+ ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
+ 
+-PREFERRED_VERSION_linux-ti-staging = "5.4%"
+-PREFERRED_VERSION_linux-ti-staging-rt = "5.4%"
+-PREFERRED_VERSION_linux-ti-staging-systest = "5.4%"
+-PREFERRED_VERSION_u-boot-ti-staging = "2020.01%"
+-
+ # Remove mmip - DRM allocator, KMS sink, Wayland sink need porting to GST 1.18
+ MACHINE_FEATURES_remove = "mmip"
+-- 
+2.17.1
+
 
