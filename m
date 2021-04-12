@@ -1,45 +1,46 @@
 Return-Path: <praneeth@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 68AD552C41
+	by arago-project.org (Postfix) with ESMTP id EBA2D52C54
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Apr 2021 03:23:01 +0000 (UTC)
+	Mon, 12 Apr 2021 03:24:54 +0000 (UTC)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13C3NOCm026571;
-	Sun, 11 Apr 2021 22:23:24 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13C3PIMK027215;
+	Sun, 11 Apr 2021 22:25:18 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1618197804;
-	bh=AckmxcP9gRUOhtDEqfNtlZDJ0e48lkrf8X0rXiSh7YE=;
+	s=ti-com-17Q1; t=1618197918;
+	bh=1ZfMgQmPJ+9G4rWhY+Dk60MEVpT0icOSyCxt91hDjbA=;
 	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=x9WcsVRH4sc8y79EVXA0Iukg+mz7m7ETmnEzmUUoLBePFtaMIKXI9/MgY6BO9ECsF
-	WGfFZA7ve8z69b1y4/TQFnTRDj4yNyw0D64pS2YMwzV8noFwzdFoSvK1zeIL7r+osd
-	oGHxprgJT1By8Gr6lSgkIrvC1BMLN0d6icmxU88I=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13C3NOON015851
+	b=W8wHSDF/gdCzqvVwn9+s1SnFRUd+nVoLHyBygxAOwcgUpaTN4mcl2sRBhdrKyEDq/
+	H2zHTLRaVaJjEdFwJ7hruCB6Va04nkEriZCofomx3NdPo7iPec6QrusmK9zq/SoRbg
+	q8LAdTMcWoJDx8jk2WdBUHZoKBi10x1b3KmT3Gao=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13C3PISO019271
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 11 Apr 2021 22:23:24 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Sun, 11 Apr 2021 22:25:18 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Sun, 11 Apr 2021 22:23:24 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	Sun, 11 Apr 2021 22:25:18 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Sun, 11 Apr 2021 22:23:24 -0500
+	Frontend Transport; Sun, 11 Apr 2021 22:25:18 -0500
 Received: from [10.250.34.117] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13C3NOfA074028;
-	Sun, 11 Apr 2021 22:23:24 -0500
-To: Denys Dmytriyenko <denis@denix.org>, <meta-arago@arago-project.org>
-References: <1617408644-2675-1-git-send-email-denis@denix.org>
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13C3PIqm086180;
+	Sun, 11 Apr 2021 22:25:18 -0500
+To: Denys Dmytriyenko <denis@denix.org>, "Menon, Nishanth" <nm@ti.com>
+References: <20210323145133.9940-1-nm@ti.com>
+	<20210323164243.GM18041@denix.org> <20210403021443.GY23013@denix.org>
 From: Praneeth Bajjuri <praneeth@ti.com>
-Message-ID: <5bcb4d91-1f62-b637-fa24-d349fc872a22@ti.com>
-Date: Sun, 11 Apr 2021 22:23:24 -0500
+Message-ID: <b172dbda-fac9-db04-fc28-f62bbaaff018@ti.com>
+Date: Sun, 11 Apr 2021 22:25:18 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
 	Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <1617408644-2675-1-git-send-email-denis@denix.org>
+In-Reply-To: <20210403021443.GY23013@denix.org>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: Re: [master][PATCH 00/29] hardknott/master fixes
+Cc: "meta-arago@arago-project.org" <meta-arago@arago-project.org>
+Subject: Re: [master][PATCH] layer.conf: Add hardknott to compatible release branches
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,126 +53,74 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Apr 2021 03:23:01 -0000
+X-List-Received-Date: Mon, 12 Apr 2021 03:24:55 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
 
 
-On 4/2/21 7:10 PM, Denys Dmytriyenko wrote:
-> From: Denys Dmytriyenko <denys@konsulko.com>
+On 4/2/21 9:14 PM, Denys Dmytriyenko wrote:
+> On Tue, Mar 23, 2021 at 12:42:43PM -0400, Denys Dmytriyenko wrote:
+>> On Tue, Mar 23, 2021 at 09:51:33AM -0500, Nishanth Menon wrote:
+>>> This follows commit cfe3f78 ("layer.conf: add hardknott to compatible
+>>> release branches") from meta-ti.
+>>>
+>>> While we are at it, remove old releases before dunfell as we no longer
+>>> support the build of such configurations.
+>>>
+>>> Signed-off-by: Nishanth Menon <nm@ti.com>
+>>> ---
+>>>
+>>> WARNING: there is a bunch of work to do to move to gatesgarth /
+>>> hardknott .. https://pastebin.ubuntu.com/p/kKCqXvnDKf/
+>>>
+>>> but this allows us to get started, I think.
+>>
+>> Well, it's kind of premature to mark meta-arago as compatible yet...
+>> Unlike meta-ti, which by itself builds fine with latest releases up to
+>> master, meta-arago is rather dunfell-specific, unfortunately.
+>>
+>> Let me dust off my arago/master tree - I had bunch of fixes lined up there.
 > 
-> Set of fixes for meta-arago hardknott/master. Uses "internal" gcc10 toolchain
-> (selected with TOOLCHAIN_TYPE=internal) and still requires extra fixes to use
-> external prebuilt Arm toolchain from meta-arm.
-> 
-> gcc10 "multiple definition" errors are currently suppressed. Components with too
-> many non-trivial gcc10 errors are disabled. Proper fixing in code is needed.
-> 
+> This can now be pulled in along with my fixes for meta-ti/meta-arago.
 
-series merged to master
+merged to master
 
-
-> https://gcc.gnu.org/gcc-10/porting_to.html
 > 
-> Denys Dmytriyenko (29):
->    arago.conf: remove LIBC_DEPENDENCIES mod needed for
->      external-arm-toolchain
->    sourceipk,tisdk-bundle,packagegroup-*-sdk-host: rename ${PN}-src to
->      ${PN}-source
->    toolchain-gcc: update component versions of internal toolchain
->    recipes: fix trailing slash in path warning
->    nativesdk-packagegroup: fix QA warning for inheriting classes after
->      nativesdk
->    perl: skip shebang-size QA check for nativesdk-perl packages
->    weston: update bbappend 8.0.0 -> 9.0.0
->    gstreamer-plugins: unify removal of GFX options for headless platforms
->    gstreamer1.0-plugins-good: upgrade 1.16 -> 1.18
->    gstreamer1.0-plugins-hevc: suppress gcc10 multiple definitions of
->      buffArray
->    branding-core: remove mmip, as gstreamer patches need porting to 1.18
->    libdrm: massage test patch to apply against latest version
->    lmbench: remove very old SDK optimization that no longer apply
->    iproute2: drop upstreamed patch for HSR/PRP support
->    linuxptp: update bbappend against latest upstream
->    kmscube: pin down version before GL3+ features were merged
->    netperf: drop upstreamed PACKAGECONFIG, suppress gcc10 multiple
->      definition
->    packagegroup-*-server-extra: replace dhcp-client with dhcpcd
->    meta-toolchain-arago: opkg.conf in SDK now also resides in /etc/opkg/
->    php: suppress installed-vs-shipped QA error
->    ti-llvm3.6: suppress installed-vs-shipped QA error
->    matrix-gui-apps: suppress installed-vs-shipped QA error
->    matrix-gui: lighttpd-module-compress replaced with
->      lighttpd-module-deflate
->    statcol: suppress "ldflags" QA error
->    kms++: update to the latest
->    FIXME: packagegroup-addons: disable kms++-python bindings, due to
->      meson build issues
->    FIXME: packagegroup-connectivity: disable net-snmp, IEC-62439-3
->      doesn't build with gcc10
->    FIXME: ti-test: disable ltp-ddt due to gcc10 build errors
->    FIXME: arago.conf: disable opencl, as it's broken
 > 
->   meta-arago-distro/classes/sourceipk.bbclass        |  22 ++---
->   meta-arago-distro/classes/tisdk-bundle.bbclass     |   2 +-
->   meta-arago-distro/conf/distro/arago.conf           |   4 +-
->   .../conf/distro/include/branding-core.inc          |   3 +
->   .../conf/distro/include/toolchain-gcc.inc          |   8 +-
->   .../0001-Makefile-Add-TI-SDK-Modifications.patch   |  75 --------------
->   .../recipes-benchmark/lmbench/lmbench_%.bbappend   |  23 -----
->   ...add-support-for-creating-PRP-device-simil.patch | 109 ---------------------
->   .../iproute2/iproute2_%.bbappend                   |   1 -
->   .../linuxptp/linuxptp_%.bbappend                   |   6 +-
->   .../packagegroup-arago-base-tisdk-server-extra.bb  |   2 +-
->   .../packagegroup-arago-tisdk-addons-sdk-host.bb    |  74 +++++++-------
->   .../packagegroup-arago-tisdk-addons.bb             |   2 +-
->   .../packagegroup-arago-tisdk-amsdk-sdk-host.bb     |   6 +-
->   .../packagegroup-arago-tisdk-connectivity.bb       |   4 +-
->   .../packagegroup-arago-tisdk-crypto-sdk-host.bb    |  16 +--
->   .../packagegroup-arago-tisdk-graphics-sdk-host.bb  |   4 +-
->   .../packagegroup-arago-tisdk-hmi-sdk-host.bb       |  18 ++--
->   .../packagegroup-arago-tisdk-matrix-sdk-host.bb    |   6 +-
->   ...packagegroup-arago-tisdk-multimedia-sdk-host.bb |  12 +--
->   .../packagegroup-arago-tisdk-opencl-sdk-host.bb    |   8 +-
->   .../packagegroup-arago-tisdk-qte-sdk-host.bb       |   4 +-
->   .../recipes-core/packagegroups/ti-test.bb          |   2 +-
->   .../recipes-devtools/perl/perl_%.bbappend          |  12 +++
->   .../recipes-devtools/php/php_%.bbappend            |   2 +
->   ...001-Add-option-to-run-a-test-indefinitely.patch |  29 +++---
->   .../recipes-graphics/kmscube/kmscube_%.bbappend    |   6 +-
->   ...weston_8.0.0.bbappend => weston_9.0.0.bbappend} |   0
->   ....%.bbappend => gstreamer1.0-plugins-%.bbappend} |   0
->   .../gstreamer1.0-plugins-bad_1.16.%.bbappend       |   6 --
->   .../gstreamer1.0-plugins-base_1.16.%.bbappend      |   6 --
->   .../recipes-support/netperf/netperf_git.bbappend   |   3 +-
->   .../recipes-tisdk/oe-layersetup/oe-layersetup.bb   |   2 +-
->   .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb |   2 +-
->   .../image-gallery/image-gallery_git.bb             |   2 +-
->   .../recipes-apps/thermostat-demo/qt-tstat_2.0.bb   |   2 +-
->   .../recipes-core/llvm/ti-llvm3.6_3.6.bb            |   1 +
->   .../recipes-core/matrix/matrix-gui-apps-git.inc    |   2 +
->   .../recipes-core/matrix/matrix-gui_2.0.bb          |   2 +-
->   .../recipes-core/meta/meta-toolchain-arago.bb      |   2 +-
->   ...ivesdk-packagegroup-arago-qte-toolchain-host.bb |   2 +-
->   .../ti-crypto-examples/ti-crypto-examples_git.bb   |   2 +-
->   .../recipes-devtools/statcol/statcol.bb            |   2 +
->   .../recipes-graphics/kms++/kms++_git.bb            |  12 ++-
->   .../gstreamer1.0-plugins-hevc_git.bb               |   1 +
->   ...ix-build-on-EGL-platform-without-X11-head.patch |  36 -------
->   ...d => gstreamer1.0-plugins-good_1.18.%.bbappend} |   1 -
->   .../recipes-ti/tidl-utils/tidl-import_git.bb       |   2 +-
->   48 files changed, 159 insertions(+), 389 deletions(-)
->   delete mode 100644 meta-arago-distro/recipes-benchmark/lmbench/lmbench/0001-Makefile-Add-TI-SDK-Modifications.patch
->   delete mode 100644 meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappend
->   delete mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0013-iplink-hsr-add-support-for-creating-PRP-device-simil.patch
->   create mode 100644 meta-arago-distro/recipes-devtools/perl/perl_%.bbappend
->   rename meta-arago-distro/recipes-graphics/wayland/{weston_8.0.0.bbappend => weston_9.0.0.bbappend} (100%)
->   rename meta-arago-distro/recipes-multimedia/gstreamer/{gstreamer1.0-plugins-good_1.16.%.bbappend => gstreamer1.0-plugins-%.bbappend} (100%)
->   delete mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.%.bbappend
->   delete mode 100644 meta-arago-distro/recipes-multimedia/gstreamer/gstreamer1.0-plugins-base_1.16.%.bbappend
->   delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-qmlglsink-fix-build-on-EGL-platform-without-X11-head.patch
->   rename meta-arago-extras/recipes-multimedia/gstreamer/{gstreamer1.0-plugins-good_1.16.%.bbappend => gstreamer1.0-plugins-good_1.18.%.bbappend} (84%)
+>>>   meta-arago-distro/conf/layer.conf | 2 +-
+>>>   meta-arago-extras/conf/layer.conf | 2 +-
+>>>   2 files changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
+>>> index 2931bf9daf4a..1fa61207fe01 100644
+>>> --- a/meta-arago-distro/conf/layer.conf
+>>> +++ b/meta-arago-distro/conf/layer.conf
+>>> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-distro"
+>>>   BBFILE_PATTERN_meta-arago-distro := "^${LAYERDIR}/"
+>>>   BBFILE_PRIORITY_meta-arago-distro = "10"
+>>>   
+>>> -LAYERSERIES_COMPAT_meta-arago-distro = "sumo thud warrior zeus dunfell"
+>>> +LAYERSERIES_COMPAT_meta-arago-distro = "dunfell gatesgarth hardknott"
+>>>   
+>>>   LAYERDEPENDS_meta-arago-distro = " \
+>>>       core \
+>>> diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
+>>> index 7e3081b20ba8..d64a80f8890f 100644
+>>> --- a/meta-arago-extras/conf/layer.conf
+>>> +++ b/meta-arago-extras/conf/layer.conf
+>>> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-extras"
+>>>   BBFILE_PATTERN_meta-arago-extras := "^${LAYERDIR}/"
+>>>   BBFILE_PRIORITY_meta-arago-extras = "10"
+>>>   
+>>> -LAYERSERIES_COMPAT_meta-arago-extras = "sumo thud warrior zeus dunfell"
+>>> +LAYERSERIES_COMPAT_meta-arago-extras = "dunfell gatesgarth hardknott"
+>>>   
+>>>   # Set a variable to get to the top of the metadata location
+>>>   ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
+>>> -- 
+>>> 2.31.0
+>>>
 > 
 
