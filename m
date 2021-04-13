@@ -1,33 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 3490052C4D
+Return-Path: <praneeth@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id 52CEF52CA7
 	for <meta-arago@arago-project.org>;
-	Mon, 12 Apr 2021 03:58:35 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id D542140C53;
-	Mon, 12 Apr 2021 03:58:58 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id zhAeHL3ye3pc; Mon, 12 Apr 2021 03:58:58 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A8747409E0;
-	Mon, 12 Apr 2021 03:58:56 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 02E481745A8; Sun, 11 Apr 2021 23:58:55 -0400 (EDT)
-Date: Sun, 11 Apr 2021 23:58:55 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: praneeth@ti.com
-Message-ID: <20210412035855.GJ15937@denix.org>
-References: <20210412034540.18980-1-praneeth@ti.com>
+	Tue, 13 Apr 2021 04:46:48 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13D4lCIL035340;
+	Mon, 12 Apr 2021 23:47:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1618289232;
+	bh=eCZ3mbzzp8QGsCssq1RddZNP+QSDVxRAFgroFIlTuXQ=;
+	h=From:To:CC:Subject:Date;
+	b=GKHAuiuXQ2oSTjh6+Usp3fMTssdjVs8YwHtM4Jo856obWZA9qQKOlTjnMkrdl4CXs
+	e5o55tywxEND/bfbvHCL2oTdhGlhU19xBNsDiAwASI52+POQQeehL9gCBV+QWs6BI+
+	EXObygCNeBaQurMOPS1k5ePF7BEUQyMHrKQdgqI4=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13D4lCnI110289
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 12 Apr 2021 23:47:12 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Mon, 12 Apr 2021 23:47:11 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+	(10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+	Frontend Transport; Mon, 12 Apr 2021 23:47:12 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13D4lBeu075603;
+	Mon, 12 Apr 2021 23:47:11 -0500
+From: <praneeth@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>
+Date: Mon, 12 Apr 2021 23:47:09 -0500
+Message-ID: <20210413044711.12576-1-praneeth@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210412034540.18980-1-praneeth@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org, Denys Dmytriyenko <denys@konsulko.com>
-Subject: Re: [dunfell/master PATCH] branding-core: Remove PREFERRED_VERSION to pick 2021LTS baseline
+Subject: [dunfell/master PATCH 1/3] Revert "branding-core-next: explicitly select latest versions"
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,67 +49,38 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Apr 2021 03:58:35 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 13 Apr 2021 04:46:49 -0000
+Content-Type: text/plain
 
-On Sun, Apr 11, 2021 at 10:45:40PM -0500, praneeth@ti.com wrote:
-> From: Praneeth Bajjuri <praneeth@ti.com>
-> 
-> commit 400d58becfb5 ("branding: Add branding-core-next to aid in migration")
-> added support of PREFERRED_VERSION as 2020LTS kernel and uboot for branding core.
-> 
-> Now that migration to 2021LTS (i.e 5.10 kernel and 2021.01 u-boot) is added,
-> removing the PREFERRED_VERSION so that core brand picks the expected
-> kernel and uboot baseline.
+From: Praneeth Bajjuri <praneeth@ti.com>
 
-I assume everything has been ported to 5.10, including ipc/rpmsg, SGX/RGX, 
-etc. and everything in CoreSDK builds w/o issues in Dunfell?
+This reverts commit 3d919caf87700d348e86d841b8e8b425c165c0e1.
 
+Signed-off-by: Praneeth Bajjuri <praneeth@ti.com>
+---
+ .../conf/distro/include/branding-core-next.inc            | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Probably best to completely remove core-next branding, i.e. reverting:
-http://arago-project.org/git/?p=meta-arago.git;a=commitdiff;h=f90d1bed7e775ac59bf1fcd95e95e9109d0953db
-http://arago-project.org/git/?p=meta-arago.git;a=commitdiff;h=400d58becfb53a62d9cc9ad75ddfcd0933e426f5
-
-Also, revert this in meta-ti:
-https://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/commit/?id=a0e26c1caf7d36953bd41f6a763101f5a65919e2
-
-And when updating the kernel, don't forget to re-add the minor version:
-https://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/commit/?id=efa402ee13689e61b4a5758334e71aae302310c3
-
-
-> Signed-off-by: Praneeth Bajjuri <praneeth@ti.com>
-> ---
->  meta-arago-distro/conf/distro/include/branding-core.inc | 5 -----
->  1 file changed, 5 deletions(-)
-> 
-> diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
-> index 10853d8b..3d259d2d 100644
-> --- a/meta-arago-distro/conf/distro/include/branding-core.inc
-> +++ b/meta-arago-distro/conf/distro/include/branding-core.inc
-> @@ -12,10 +12,5 @@ ALTERNATIVE_PRIORITY_pn-opencl-monitor-ipu = "1"
->  # Raise priority for sample IPC FW images
->  ALTERNATIVE_PRIORITY_pn-ti-ipc-rtos = "15"
->  
-> -PREFERRED_VERSION_linux-ti-staging = "5.4%"
-> -PREFERRED_VERSION_linux-ti-staging-rt = "5.4%"
-> -PREFERRED_VERSION_linux-ti-staging-systest = "5.4%"
-> -PREFERRED_VERSION_u-boot-ti-staging = "2020.01%"
-> -
->  # Remove mmip - DRM allocator, KMS sink, Wayland sink need porting to GST 1.18
->  MACHINE_FEATURES_remove = "mmip"
-> -- 
-> 2.17.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> 
-
+diff --git a/meta-arago-distro/conf/distro/include/branding-core-next.inc b/meta-arago-distro/conf/distro/include/branding-core-next.inc
+index f453b3c6..a2667a70 100644
+--- a/meta-arago-distro/conf/distro/include/branding-core-next.inc
++++ b/meta-arago-distro/conf/distro/include/branding-core-next.inc
+@@ -2,10 +2,10 @@
+ 
+ require branding-core.inc
+ 
+-PREFERRED_VERSION_linux-ti-staging = "5.10%"
+-PREFERRED_VERSION_linux-ti-staging-rt = "5.10%"
+-PREFERRED_VERSION_linux-ti-staging-systest = "5.10%"
+-PREFERRED_VERSION_u-boot-ti-staging = "2021.01%"
++PREFERRED_VERSION_linux-ti-staging = ""
++PREFERRED_VERSION_linux-ti-staging-rt = ""
++PREFERRED_VERSION_linux-ti-staging-systest = ""
++PREFERRED_VERSION_u-boot-ti-staging = ""
+ 
+ # Auto rev important packages to pick up latest
+ SRCREV_pn-linux-ti-staging = "${AUTOREV}"
 -- 
-Regards,
-Denys Dmytriyenko <denis@denix.org>
-PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
-Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
+2.17.1
+
 
