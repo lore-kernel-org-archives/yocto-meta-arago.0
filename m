@@ -1,33 +1,47 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id D2E7752B98
+Return-Path: <g-tammana@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id 8A55052BB9
 	for <meta-arago@arago-project.org>;
-	Fri, 16 Apr 2021 19:45:53 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id E0C3340C81;
-	Fri, 16 Apr 2021 19:46:18 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id b40agtbntk5M; Fri, 16 Apr 2021 19:46:18 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id ABF3C407E5;
-	Fri, 16 Apr 2021 19:46:15 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 0D2441745B6; Fri, 16 Apr 2021 15:46:15 -0400 (EDT)
-Date: Fri, 16 Apr 2021 15:46:14 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Gowtham Tammana <g-tammana@ti.com>
-Message-ID: <20210416194614.GA15937@denix.org>
-References: <20210416193053.31664-1-g-tammana@ti.com>
+	Fri, 16 Apr 2021 20:34:14 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13GKYdaH073740;
+	Fri, 16 Apr 2021 15:34:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1618605279;
+	bh=mj+WNKTqadC4nXURpQe+MUwsH97/uHOETLvYfjhPKu0=;
+	h=From:To:CC:Subject:Date;
+	b=ms2wQ5WJivsCTKtiXij6N8EWmMQTs5BmapuCw9sJGLa8cczv0PxFEgr61NuOWHbC0
+	7bZ8+sf1+F/ue7n3SmG8iXEwiZ3JTvzwOuAxxRikG3XJQZw+9VFkvwWnS+tTYyWYWl
+	VgEzDvWQrIRBVdXrVbfw+igC/MyOJb3j8FxWFaGA=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13GKYdjM100645
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 16 Apr 2021 15:34:39 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Fri, 16 Apr 2021 15:34:39 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+	Frontend Transport; Fri, 16 Apr 2021 15:34:39 -0500
+Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com
+	[10.247.120.73])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13GKYdeZ010610;
+	Fri, 16 Apr 2021 15:34:39 -0500
+Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
+	[128.247.81.224] (may be forged))
+	by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id
+	13GKYdwY077286; Fri, 16 Apr 2021 15:34:39 -0500
+From: Gowtham Tammana <g-tammana@ti.com>
+To: <meta-arago@arago-project.org>, Praneeth Bajjuri <praneeth@ti.com>,
+	<denys@konsulko.com>
+Date: Fri, 16 Apr 2021 15:34:37 -0500
+Message-ID: <20210416203437.7334-1-g-tammana@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20210416193053.31664-1-g-tammana@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org, denys@konsulko.com
-Subject: Re: [dunfell/master][PATCH] ti-test: fix string expansion
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Subject: [dunfell/master][PATCH] oe-layertool-setup: Let user change parallel build options
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,48 +54,202 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Apr 2021 19:45:54 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 16 Apr 2021 20:34:14 -0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Fri, Apr 16, 2021 at 02:30:53PM -0500, Gowtham Tammana wrote:
-> bb conditional util expansion was done in '' causing the below error
-> 
-> ```
-> bb.data_smart.ExpansionError: Failure expanding variable ARAGO_TI_TEST, expression was ... ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)} cmem-test     ', d)}
-> which triggered exception SyntaxError: invalid syntax (Var <ARAGO_TI_TEST>, line 1)
-> ```
-> 
-> fixed the expansion to within "".
+Change BB_NUMBER_THREADS and PARALLEL_MAKE to weak assignment so that
+these can be changed when building recipes. Useful on machines with
+lower resources.
 
-Seems to have no issues in master, but yeah, good catch.
+Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+---
 
+Changing parallel build options is the only way I can build the complete image
+on my system :).
 
-> Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+Thanks,
+Gowtham
 
-Reviewed-by: Denys Dmytriyenko <denys@konsulko.com>
+ oe-layertool-setup.sh                           | 4 ++--
+ sample-files/local-amsdk.conf.sample            | 4 ++--
+ sample-files/local-arago.conf.sample            | 4 ++--
+ sample-files/local-arago64.conf.sample          | 4 ++--
+ sample-files/local-glsdk.conf.sample            | 4 ++--
+ sample-files/local-poky.conf.sample             | 4 ++--
+ sample-files/local-processor-sdk-64.conf.sample | 4 ++--
+ sample-files/local-processor-sdk.conf.sample    | 4 ++--
+ sample-files/local.conf.sample                  | 4 ++--
+ 9 files changed, 18 insertions(+), 18 deletions(-)
 
+diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
+index aa16042..df1523f 100755
+--- a/oe-layertool-setup.sh
++++ b/oe-layertool-setup.sh
+@@ -753,8 +753,8 @@ EOM
+     # set the number of threads
+     threads=`cat /proc/cpuinfo | grep -c processor`
+     tnum=`expr \( ${threads} + 1 \) \* 75 / 100`
+-    sed -i "s/^PARALLEL_MAKE.*/PARALLEL_MAKE = \"-j ${tnum}\"/" $confdir/local.conf
+-    sed -i "s/^BB_NUMBER_THREADS.*/BB_NUMBER_THREADS = \"${tnum}\"/" $confdir/local.conf
++    sed -i "s/^PARALLEL_MAKE.*/PARALLEL_MAKE ?= \"-j ${tnum}\"/" $confdir/local.conf
++    sed -i "s/^BB_NUMBER_THREADS.*/BB_NUMBER_THREADS ?= \"${tnum}\"/" $confdir/local.conf
+ 
+     # Find if old DL_DIR was set
+     if [ -e $confdir/local.conf.bak ]
+diff --git a/sample-files/local-amsdk.conf.sample b/sample-files/local-amsdk.conf.sample
+index 756286d..ac39788 100644
+--- a/sample-files/local-amsdk.conf.sample
++++ b/sample-files/local-amsdk.conf.sample
+@@ -135,12 +135,12 @@ ENABLE_BINARY_LOCALE_GENERATION = "0"
+ # These two options control how much parallelism BitBake should use. The first 
+ # option determines how many tasks bitbake should run in parallel:
+ #
+-BB_NUMBER_THREADS = "1"
++BB_NUMBER_THREADS ?= "1"
+ # 
+ # The second option controls how many processes make should run in parallel when
+ # running compile tasks:
+ #
+-PARALLEL_MAKE = "-j 1"
++PARALLEL_MAKE ?= "-j 1"
+ #
+ # For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
+ # be appropriate for example
+diff --git a/sample-files/local-arago.conf.sample b/sample-files/local-arago.conf.sample
+index 96dfaf9..62f0f92 100644
+--- a/sample-files/local-arago.conf.sample
++++ b/sample-files/local-arago.conf.sample
+@@ -138,12 +138,12 @@ ENABLE_BINARY_LOCALE_GENERATION = "0"
+ # These two options control how much parallelism BitBake should use. The first 
+ # option determines how many tasks bitbake should run in parallel:
+ #
+-BB_NUMBER_THREADS = "1"
++BB_NUMBER_THREADS ?= "1"
+ # 
+ # The second option controls how many processes make should run in parallel when
+ # running compile tasks:
+ #
+-PARALLEL_MAKE = "-j 1"
++PARALLEL_MAKE ?= "-j 1"
+ #
+ # For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
+ # be appropriate for example
+diff --git a/sample-files/local-arago64.conf.sample b/sample-files/local-arago64.conf.sample
+index f48db77..68f0bff 100644
+--- a/sample-files/local-arago64.conf.sample
++++ b/sample-files/local-arago64.conf.sample
+@@ -138,12 +138,12 @@ ENABLE_BINARY_LOCALE_GENERATION = "0"
+ # These two options control how much parallelism BitBake should use. The first 
+ # option determines how many tasks bitbake should run in parallel:
+ #
+-BB_NUMBER_THREADS = "1"
++BB_NUMBER_THREADS ?= "1"
+ # 
+ # The second option controls how many processes make should run in parallel when
+ # running compile tasks:
+ #
+-PARALLEL_MAKE = "-j 1"
++PARALLEL_MAKE ?= "-j 1"
+ #
+ # For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
+ # be appropriate for example
+diff --git a/sample-files/local-glsdk.conf.sample b/sample-files/local-glsdk.conf.sample
+index acd094f..189730a 100644
+--- a/sample-files/local-glsdk.conf.sample
++++ b/sample-files/local-glsdk.conf.sample
+@@ -135,12 +135,12 @@ ENABLE_BINARY_LOCALE_GENERATION = "0"
+ # These two options control how much parallelism BitBake should use. The first 
+ # option determines how many tasks bitbake should run in parallel:
+ #
+-BB_NUMBER_THREADS = "1"
++BB_NUMBER_THREADS ?= "1"
+ # 
+ # The second option controls how many processes make should run in parallel when
+ # running compile tasks:
+ #
+-PARALLEL_MAKE = "-j 1"
++PARALLEL_MAKE ?= "-j 1"
+ #
+ # For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
+ # be appropriate for example
+diff --git a/sample-files/local-poky.conf.sample b/sample-files/local-poky.conf.sample
+index 34b6b10..ba5d4c1 100644
+--- a/sample-files/local-poky.conf.sample
++++ b/sample-files/local-poky.conf.sample
+@@ -135,12 +135,12 @@ PATCHRESOLVE = "noop"
+ # These two options control how much parallelism BitBake should use. The first 
+ # option determines how many tasks bitbake should run in parallel:
+ #
+-BB_NUMBER_THREADS = "1"
++BB_NUMBER_THREADS ?= "1"
+ # 
+ # The second option controls how many processes make should run in parallel when
+ # running compile tasks:
+ #
+-PARALLEL_MAKE = "-j 1"
++PARALLEL_MAKE ?= "-j 1"
+ #
+ # For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
+ # be appropriate for example
+diff --git a/sample-files/local-processor-sdk-64.conf.sample b/sample-files/local-processor-sdk-64.conf.sample
+index 75e59f1..9087be9 100644
+--- a/sample-files/local-processor-sdk-64.conf.sample
++++ b/sample-files/local-processor-sdk-64.conf.sample
+@@ -135,12 +135,12 @@ ENABLE_BINARY_LOCALE_GENERATION = "0"
+ # These two options control how much parallelism BitBake should use. The first 
+ # option determines how many tasks bitbake should run in parallel:
+ #
+-BB_NUMBER_THREADS = "1"
++BB_NUMBER_THREADS ?= "1"
+ # 
+ # The second option controls how many processes make should run in parallel when
+ # running compile tasks:
+ #
+-PARALLEL_MAKE = "-j 1"
++PARALLEL_MAKE ?= "-j 1"
+ #
+ # For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
+ # be appropriate for example
+diff --git a/sample-files/local-processor-sdk.conf.sample b/sample-files/local-processor-sdk.conf.sample
+index d5af93a..59b11e6 100644
+--- a/sample-files/local-processor-sdk.conf.sample
++++ b/sample-files/local-processor-sdk.conf.sample
+@@ -135,12 +135,12 @@ ENABLE_BINARY_LOCALE_GENERATION = "0"
+ # These two options control how much parallelism BitBake should use. The first 
+ # option determines how many tasks bitbake should run in parallel:
+ #
+-BB_NUMBER_THREADS = "1"
++BB_NUMBER_THREADS ?= "1"
+ # 
+ # The second option controls how many processes make should run in parallel when
+ # running compile tasks:
+ #
+-PARALLEL_MAKE = "-j 1"
++PARALLEL_MAKE ?= "-j 1"
+ #
+ # For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
+ # be appropriate for example
+diff --git a/sample-files/local.conf.sample b/sample-files/local.conf.sample
+index d971b97..e60bedc 100644
+--- a/sample-files/local.conf.sample
++++ b/sample-files/local.conf.sample
+@@ -135,12 +135,12 @@ PATCHRESOLVE = "noop"
+ # These two options control how much parallelism BitBake should use. The first 
+ # option determines how many tasks bitbake should run in parallel:
+ #
+-BB_NUMBER_THREADS = "1"
++BB_NUMBER_THREADS ?= "1"
+ # 
+ # The second option controls how many processes make should run in parallel when
+ # running compile tasks:
+ #
+-PARALLEL_MAKE = "-j 1"
++PARALLEL_MAKE ?= "-j 1"
+ #
+ # For a quad-core machine, BB_NUMBER_THREADS = "4", PARALLEL_MAKE = "-j 4" would
+ # be appropriate for example
+-- 
+2.31.1
 
-> ---
->  meta-arago-distro/recipes-core/packagegroups/ti-test.bb | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-> index 5b04d85c..cbc246d5 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-> @@ -68,11 +68,11 @@ ARAGO_TI_TEST_append_ti43x = " \
->  
->  ARAGO_TI_TEST_append_omap-a15 = " \
->      omapconf \
-> -    ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', '', ' \
-> +    ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', '', " \
->          ti-ipc-test \
->          ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)} \
->          cmem-test \
-> -    ', d)} \
-> +    ", d)} \
->  "
->  
->  ARAGO_TI_TEST_append_k3 = " \
 
