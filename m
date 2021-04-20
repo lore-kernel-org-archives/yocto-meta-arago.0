@@ -1,45 +1,74 @@
-Return-Path: <aparnab@aparnab-office>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 0581652B58
+Return-Path: <sinthu.raja@mistralsolutions.com>
+Received: from egress-ip4b.ess.de.barracuda.com
+	(egress-ip4b.ess.de.barracuda.com [18.185.115.208])
+	by arago-project.org (Postfix) with ESMTPS id 6C19C52B59
 	for <meta-arago@arago-project.org>;
-	Tue, 20 Apr 2021 16:46:45 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13KGlCAP041623
-	for <meta-arago@arago-project.org>; Tue, 20 Apr 2021 11:47:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1618937232;
-	bh=eHkKJxPNqwfaak7Q3jbMdj3DkslETb9fhzxDzeR1jgE=;
-	h=From:To:CC:Subject:Date;
-	b=D3cR4bHtN1ftPWr0vKxfACxYvf/8DVUDpK4jx5qlYRLpes7oKi1DkGo6Sc7EM2KRc
-	9DG4ljJQwKt338uVwc4OWiLT/OcVuviAEGNgId5SbsPMl9OeZqqMcHcx00Ey3qdth7
-	sQq4K/WkPBAHopObwBl97+J9BhkW3NlgrAMVKVUQ=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13KGlCEQ096628
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Tue, 20 Apr 2021 11:47:12 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Tue, 20 Apr 2021 11:47:11 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE112.ent.ti.com
-	(157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Tue, 20 Apr 2021 11:47:11 -0500
-Received: from aparnab-office (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13KGlBEM126048;
-	Tue, 20 Apr 2021 11:47:11 -0500
-Received: from aparnab by aparnab-office with local (Exim 4.90_1)
-	(envelope-from <aparnab@aparnab-office>)
-	id 1lYtWp-0000g4-FY; Tue, 20 Apr 2021 11:47:11 -0500
-From: Aparna Balasubramanian <aparnab@ti.com>
-To: <meta-arago@arago-project.org>, <praneeth@ti.com>, <nm@ti.com>
-Date: Tue, 20 Apr 2021 11:47:08 -0500
-Message-ID: <20210420164708.2562-1-aparnab@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Tue, 20 Apr 2021 17:39:02 +0000 (UTC)
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com
+	[209.85.215.200]) by
+	mx-outbound46-177.eu-central-1c.ess.aws.cudaops.com
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NO); Tue, 20 Apr 2021 17:39:27 +0000
+Received: by mail-pg1-f200.google.com with SMTP id
+	c19-20020a631c530000b0290209a37c0a62so2539597pgm.16
+	for <meta-arago@arago-project.org>;
+	Tue, 20 Apr 2021 10:39:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mistralsolutions.com; s=google;
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=qtIrjN7Gg9uyo1GVaNzrmeU6ctRh4GywwfklB5OFcJY=;
+	b=SXeS3H1VXM55uBGSze8btS+G9p0wwNUFB0yNAI0kAN2UmTApfk6nIUrs09izVS/ioZ
+	pyhpfoGtex4jdRQGAvh55iK2wn6+b3b+3VhgdDEQkc6r0qYMJZlxYhMBESG8YNYChZ0b
+	vliRy+aump3dbrTV35PoachPu5UMihXqG6++Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=qtIrjN7Gg9uyo1GVaNzrmeU6ctRh4GywwfklB5OFcJY=;
+	b=sk0/9hPLbGiXSDZCXy1XQ6iJXHTS4kIMJFKsRV9sFkZkhg5UorXhBi3T4jnfYPBpqH
+	GoMluX4PoSZIIBtsq06Aaa0Gd2dMvsg6U8x1BS7BhnOm8T8TW6bq3Ez6sOAxk4joSlov
+	aTVzd+gAHbXxYfikgrKGri9asNX7rhpirQeJtrZKYB27zwKsW9oLeGNf3D9tBfn8Ityq
+	SAxh96hThRPnVoJUFmM4DJIiFa19JvMxU0tn/RV2qRYspW+gTcu9tTwihjGqLv7MxCQv
+	FEMf6XDBDVyzOjrcCx8oMykFNERKMkfIX6c6Ni4ezkj6TaCDWwJLhozM+GgBo2/LU+zv
+	8klA==
+X-Gm-Message-State: AOAM530IPSFA/rGLwqxbB6jTyHgltIMaO9aTV1ir7wyurd/pssKsEyg+
+	yMsszOHSXvL+F047vZvUChKIop91DPUaOUGPlGRZ2yez0IyNh+xSpyDypCIrR72fIerEJOQnK1L
+	g+LCSgl44x0A9OrPhK0HbHuiOkzR/sYtYHZTa/K4HFp3tp4qY1NhasrRQVsSA
+X-Received: by 2002:a62:1401:0:b029:25a:d41c:fb2e with SMTP id
+	1-20020a6214010000b029025ad41cfb2emr19484130pfu.51.1618940365875;
+	Tue, 20 Apr 2021 10:39:25 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxoWOSSHDOexy8ZPK4AMaXrncaw/EP/UwkxuDhkWuyhjT4XrzzHNaBsprg2yD1XHxfMxZy65g==
+X-Received: by 2002:a62:1401:0:b029:25a:d41c:fb2e with SMTP id
+	1-20020a6214010000b029025ad41cfb2emr19484118pfu.51.1618940365693;
+	Tue, 20 Apr 2021 10:39:25 -0700 (PDT)
+Received: from LAP000568.mistral.in ([49.207.198.212])
+	by smtp.gmail.com with ESMTPSA id
+	m206sm7253974pfd.87.2021.04.20.10.39.24
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 20 Apr 2021 10:39:25 -0700 (PDT)
+From: Sinthu Raja <sinthu.raja@mistralsolutions.com>
+X-Google-Original-From: Sinthu Raja <x0257345@ti.com>
+To: meta-arago@arago-project.org
+Date: Tue, 20 Apr 2021 23:09:16 +0530
+Message-Id: <20210420173916.59224-1-x0257345@ti.com>
+X-Mailer: git-send-email 2.19.1.windows.1
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Aparna Balasubramanian <aparnab@ti.com>
-Subject: [master/dunfell PATCH] Rebase to ltp 20210121
+X-BESS-ID: 1618940366-311953-3134-1458-1
+X-BESS-VER: 2019.1_20210420.1639
+X-BESS-Apparent-Source-IP: 209.85.215.200
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2,
+	rules version 3.2.2.231689 [from 
+	cloudscan19-219.eu-central-1b.ess.aws.cudaops.com]
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of
+	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
+Subject: [dunfell/master PATCH 0/1] AM64x EVM and SK unification WIC files creation
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,38 +81,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Apr 2021 16:46:46 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 20 Apr 2021 17:39:02 -0000
+Content-Transfer-Encoding: 8bit
 
-Update ltp to latest ltp tag 20210121
+With respective to generating two WIC files under one MACHINE_NAME, two
+recpies has to be created. Invoking of this recipes should be called
+from the top level bundle recipes which is responsible for creating the
+images.
 
-Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
----
- .../ltp-ddt/{ltp-ddt_20200120.bb => ltp-ddt_20210121.bb}      | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
- rename meta-arago-extras/recipes-devtools/ltp-ddt/{ltp-ddt_20200120.bb => ltp-ddt_20210121.bb} (94%)
+These two recipes responsible for mentioning where the boot images are
+deployed.
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210121.bb
-similarity index 94%
-rename from meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-rename to meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210121.bb
-index 7c9d50fd..db3e6a36 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210121.bb
-@@ -11,10 +11,10 @@ PROVIDES += "ltp"
- DEPENDS += "alsa-lib"
- 
- PE = "1"
--PR = "r13"
-+PR = "r0"
- PV_append = "+git${SRCPV}"
- 
--SRCREV = "31f9cfa61ae4102da6fa87f624130096c09d63a2"
-+SRCREV = "585fd7f640a9bc9fd77eec4991e097ba069908ea"
- BRANCH ?= "master"
- 
- SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
+Sinthu Raja (1):
+  AM64x Unification Add recipes to generate WIC file
+
+ .../images/tisdk-base-image-evm.bb            | 19 +++++++++++++++++
+ .../images/tisdk-base-image-sk.bb             | 21 +++++++++++++++++++
+ 2 files changed, 40 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-core/images/tisdk-base-image-evm.bb
+ create mode 100644 meta-arago-distro/recipes-core/images/tisdk-base-image-sk.bb
+
 -- 
-2.17.1
+2.17.0
 
 
