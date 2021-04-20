@@ -1,49 +1,42 @@
-Return-Path: <g-tammana@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id B221752C90
+Return-Path: <praneeth@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTP id A67DD52B2B
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Apr 2021 21:15:31 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13JLFvKR041710;
-	Mon, 19 Apr 2021 16:15:57 -0500
+	Tue, 20 Apr 2021 03:05:23 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 13K35nEw058702;
+	Mon, 19 Apr 2021 22:05:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1618866957;
-	bh=fGB5HlJVtlr1xbpKEBpyq7URILWFPNmWY3BHwX/M9V4=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=tpPN31LuikjqB4GYoW7IvyjP1JDQlM207U+NKLxieT9Fzq5SFgigcVmOPKFuYWfzW
-	vp0f1POm8LjyiawmmTqK1iJGAdtafyW/nh2wTlWfVZ2CynSkY4JM9VFU4qQASqavhJ
-	NDMm+16PEXK2PhbVFkPJxYdTiJ9951Q3s+DAupJc=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13JLFvIb091001
+	s=ti-com-17Q1; t=1618887949;
+	bh=c3nOcKJMfPT24crTIKu0iY8mgYPFnXQdA/2piJ5UkZ4=;
+	h=From:To:CC:Subject:Date;
+	b=pFAHgOrtiBvy4unwHYpO4FErcKVpWnWqgIzczLwSrffitSOxMFwUL3ekFGrqZnOK7
+	sl0XwFl02+qerMROSO1/9Gyk2/XBNA/vZZRsVlZT7/JumRtrNngfPvtr+e+qGsc3s4
+	FldiC0QmeOR9ruzAmfgyp+ipyvrGIrLvt4aH4z5w=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 13K35nY5076673
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 19 Apr 2021 16:15:57 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 19 Apr 2021 22:05:49 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE113.ent.ti.com
+	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Mon, 19 Apr 2021 16:15:57 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 19 Apr 2021 22:05:49 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Mon, 19 Apr 2021 16:15:57 -0500
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com
-	[10.247.120.73])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13JLFval049169;
-	Mon, 19 Apr 2021 16:15:57 -0500
-Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
-	[128.247.81.224] (may be forged))
-	by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id
-	13JLFuMf015640; Mon, 19 Apr 2021 16:15:57 -0500
-From: Gowtham Tammana <g-tammana@ti.com>
-To: <meta-arago@arago-project.org>, Praneeth Bajjuri <praneeth@ti.com>,
-	<denys@konsulko.com>
-Date: Mon, 19 Apr 2021 16:15:51 -0500
-Message-ID: <20210419211551.15216-2-g-tammana@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210419211551.15216-1-g-tammana@ti.com>
-References: <20210419211551.15216-1-g-tammana@ti.com>
+	Frontend Transport; Mon, 19 Apr 2021 22:05:49 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 13K35nnm018179;
+	Mon, 19 Apr 2021 22:05:49 -0500
+From: <praneeth@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>
+Date: Mon, 19 Apr 2021 22:05:49 -0500
+Message-ID: <20210420030549.16897-1-praneeth@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [dunfell/master][PATCH v2 2/2] ti-tisdk-makefile: remove jailhouse target
+Cc: meta-arago@arago-project.org, Denys Dmytriyenko <denys@konsulko.com>
+Subject: [dunfell/master PATCH] ti-test: omap-a15: split package selection command to avoid build erros
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -56,65 +49,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Apr 2021 21:15:32 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 20 Apr 2021 03:05:23 -0000
 Content-Type: text/plain
 
-jailhouse is not yet ready for kernel 5.10, remove it from the sdk
-makefile targets for now.
+From: Praneeth Bajjuri <praneeth@ti.com>
 
-Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
+Split the package selection option for omap-a15 based machines to avoid
+the build errors like this.
+
+ERROR: Nothing RPROVIDES '${@oe.utils.conditional('ARAGO_BRAND','
+(but <>/packagegroups/ti-test.bb RDEPENDS on or otherwise requires it)
+
+NOTE: Runtime target '${@oe.utils.conditional('ARAGO_BRAND',' is unbuildable, removing...
+Missing or unbuildable dependency chain was: ["${@oe.utils.conditional('ARAGO_BRAND',"]
+
+Signed-off-by: Praneeth Bajjuri <praneeth@ti.com>
 ---
-v2: no change
+ .../recipes-core/packagegroups/ti-test.bb             | 11 +++--------
+ 1 file changed, 3 insertions(+), 8 deletions(-)
 
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb           | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 48ed961e..d2201675 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -53,11 +53,10 @@ SRC_URI = "\
-     file://Makefile_pdm-anomaly-detection \
-     file://Makefile_tiovx-app-host \
-     file://Makefile_ti-ipc \
--    file://Makefile_jailhouse \
-     file://Makefile_ti-img-rogue-driver \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+index cbc246d5..2730c381 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+@@ -66,14 +66,9 @@ ARAGO_TI_TEST_append_ti43x = " \
+     ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', '', 'cmem-test', d)} \
  "
  
--PR = "r104"
-+PR = "r105"
+-ARAGO_TI_TEST_append_omap-a15 = " \
+-    omapconf \
+-    ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', '', " \
+-        ti-ipc-test \
+-        ${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)} \
+-        cmem-test \
+-    ", d)} \
+-"
++ARAGO_TI_TEST_append_omap-a15 = "omapconf ti-ipc-test cmem-test"
++
++ARAGO_TI_TEST_append_omap-a15 = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)}"
  
- MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
-                         refresh-screen \
-@@ -187,7 +186,6 @@ MAKEFILES_append_k3 = " u-boot-spl \
-                         cryptodev \
-                         sysfw-image \
-                         ti-ipc \
--                        jailhouse \
- "
- 
- MAKEFILES_append_am65xx = " \
-@@ -254,10 +252,6 @@ IPC_TOOLS_PATHS_append_omap-a15 = " ${IPC_TOOLS_PATHS_C66} ${IPC_TOOLS_PATHS_M4}
- IPC_TOOLS_PATHS_append_omapl138 = " ${IPC_TOOLS_PATHS_C674}"
- IPC_TOOLS_PATHS_append_k3 = "${IPC_TOOLS_PATHS_R5F}"
- 
--# Populate Jailhouse config header
--JH_PLATFORM = "${MACHINE}"
--JH_PLATFORM_k3 = "k3"
--
- # If it's not defined at all, like for zImage case
- UBOOT_LOADADDRESS ?= "0"
- 
-@@ -323,7 +317,6 @@ do_install () {
-     sed -i -e "s/__BOOT_MONITOR_MAKE_TARGET__/${BOOT_MONITOR_MAKE_TARGET}/g" ${D}/Makefile
-     sed -i -e "s/__PRU_ICSS_INSTALL_TARGET__/${PRU_ICSS_INSTALL_TARGET}/g" ${D}/Makefile
-     sed -i -e "s/__IPC_TOOLS_PATHS__/${IPC_TOOLS_PATHS}/g" ${D}/Makefile
--    sed -i -e "s/__JH_PLATFORM__/${JH_PLATFORM}/" ${D}/Makefile
-     sed -i -e "s/__TISDK_VERSION__/${TISDK_VERSION}/g" ${D}/Makefile
- 
-     cat ${D}/Makefile | grep "__DTB_DEPEND__" > /dev/null
+ ARAGO_TI_TEST_append_k3 = " \
+     k3conf \
 -- 
-2.31.1
+2.17.1
 
 
