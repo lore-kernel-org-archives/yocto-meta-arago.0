@@ -1,33 +1,33 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 615DF52CB3
+	by arago-project.org (Postfix) with ESMTPS id B25E552B55
 	for <meta-arago@arago-project.org>;
-	Tue, 20 Apr 2021 17:49:40 +0000 (UTC)
+	Tue, 20 Apr 2021 17:57:38 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 7AA6040C2A;
-	Tue, 20 Apr 2021 17:50:06 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D4F8D40C2A;
+	Tue, 20 Apr 2021 17:58:04 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id KVF7iNV1D-jI; Tue, 20 Apr 2021 17:50:06 +0000 (UTC)
+	with ESMTP id 3c41JUZx09Sw; Tue, 20 Apr 2021 17:58:04 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 48B7A40B66;
-	Tue, 20 Apr 2021 17:50:03 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B76A840B66;
+	Tue, 20 Apr 2021 17:58:03 +0000 (UTC)
 Received: by mail.denix.org (Postfix, from userid 1000)
-	id AB4311745C5; Tue, 20 Apr 2021 13:50:02 -0400 (EDT)
-Date: Tue, 20 Apr 2021 13:50:02 -0400
+	id 832A31745C5; Tue, 20 Apr 2021 13:58:03 -0400 (EDT)
+Date: Tue, 20 Apr 2021 13:58:03 -0400
 From: Denys Dmytriyenko <denis@denix.org>
-To: Aparna Balasubramanian <aparnab@ti.com>
-Message-ID: <20210420175002.GO15937@denix.org>
-References: <20210420164708.2562-1-aparnab@ti.com>
+To: Sinthu Raja <sinthu.raja@mistralsolutions.com>
+Message-ID: <20210420175803.GP15937@denix.org>
+References: <20210420174155.50628-1-x0257345@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20210420164708.2562-1-aparnab@ti.com>
+In-Reply-To: <20210420174155.50628-1-x0257345@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [master/dunfell PATCH] Rebase to ltp 20210121
+Subject: Re: [dunfell/master PATCH 1/1] AM64x Unification Add recipes to generate WIC file
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,46 +40,85 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Apr 2021 17:49:40 -0000
+X-List-Received-Date: Tue, 20 Apr 2021 17:57:39 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Tue, Apr 20, 2021 at 11:47:08AM -0500, Aparna Balasubramanian wrote:
-> Update ltp to latest ltp tag 20210121
+On Tue, Apr 20, 2021 at 11:11:55PM +0530, Sinthu Raja wrote:
+>   Add two recipies to generate two WIC files for AM64x EVM and SK.
+>   Each recipe has its own path to the deployed boot images and
+>   corresponding WIC file name.
 
-This won't work for dunfell, as it has version 20200120 of ltp. While 
-hardknott/master have version 20210121 of ltp.
+Adding extra and very specialized images would only increase complexity. Just 
+last year we went to extra efforts to simplify this area down to 3 generic 
+images...
 
 
-> Signed-off-by: Aparna Balasubramanian <aparnab@ti.com>
 > ---
->  .../ltp-ddt/{ltp-ddt_20200120.bb => ltp-ddt_20210121.bb}      | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->  rename meta-arago-extras/recipes-devtools/ltp-ddt/{ltp-ddt_20200120.bb => ltp-ddt_20210121.bb} (94%)
+>  .../images/tisdk-base-image-evm.bb            | 19 +++++++++++++++++
+>  .../images/tisdk-base-image-sk.bb             | 21 +++++++++++++++++++
+>  2 files changed, 40 insertions(+)
+>  create mode 100644 meta-arago-distro/recipes-core/images/tisdk-base-image-evm.bb
+>  create mode 100644 meta-arago-distro/recipes-core/images/tisdk-base-image-sk.bb
 > 
-> diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210121.bb
-> similarity index 94%
-> rename from meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-> rename to meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210121.bb
-> index 7c9d50fd..db3e6a36 100644
-> --- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
-> +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210121.bb
-> @@ -11,10 +11,10 @@ PROVIDES += "ltp"
->  DEPENDS += "alsa-lib"
->  
->  PE = "1"
-> -PR = "r13"
-> +PR = "r0"
->  PV_append = "+git${SRCPV}"
->  
-> -SRCREV = "31f9cfa61ae4102da6fa87f624130096c09d63a2"
-> +SRCREV = "585fd7f640a9bc9fd77eec4991e097ba069908ea"
->  BRANCH ?= "master"
->  
->  SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
-> -- 
-> 2.17.1
-> 
+> diff --git a/meta-arago-distro/recipes-core/images/tisdk-base-image-evm.bb b/meta-arago-distro/recipes-core/images/tisdk-base-image-evm.bb
+> new file mode 100644
+> index 00000000..14813bad
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/images/tisdk-base-image-evm.bb
+> @@ -0,0 +1,19 @@
+> +# Arago TI SDK base image with test tools
+> +# Suitable for initramfs
+> +
+> +require recipes-core/images/arago-image.inc
+> +
+> +IMAGE_FSTYPES += "cpio.xz"
+> +IMAGE_FSTYPES_append_dra7xx = " ubifs ubi"
+> +
+> +IMAGE_INSTALL += "\
+> +    packagegroup-arago-base \
+> +    packagegroup-arago-console \
+> +    packagegroup-arago-base-tisdk \
+> +    ${VIRTUAL-RUNTIME_initramfs} \
+> +    ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', 'ti-test', '', d)} \
+> +    "
+> +
+> +export IMAGE_BASENAME = "tisdk-base-image-evm"
+> +export IMAGE_LINK_NAME = "tisdk-base-image-am64xx-evm"
+> +export DEPLOY_DIR_IMAGE="/mnt/4TB-VD1/ti_devm_sdk/devm_linux/am64x_sk/yocto_local_am64x_sk/oe-layersetup/build/arago-tmp-external-arm-glibc/deploy/images/am64xx-evm/evm"
+> diff --git a/meta-arago-distro/recipes-core/images/tisdk-base-image-sk.bb b/meta-arago-distro/recipes-core/images/tisdk-base-image-sk.bb
+> new file mode 100644
+> index 00000000..571e8395
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-core/images/tisdk-base-image-sk.bb
+> @@ -0,0 +1,21 @@
+> +# Arago TI SDK base image with test tools
+> +# Suitable for initramfs
+> +
+> +require  recipes-core/images/arago-image.inc
+> +
+> +IMAGE_FSTYPES += "cpio.xz"
+> +IMAGE_FSTYPES_append_dra7xx = " ubifs ubi"
+> +
+> +IMAGE_INSTALL += "\
+> +    packagegroup-arago-base \
+> +    packagegroup-arago-console \
+> +    packagegroup-arago-base-tisdk \
+> +    ${VIRTUAL-RUNTIME_initramfs} \
+> +    ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', 'ti-test', '', d)} \
+> +    "
+> +
+> +export IMAGE_BASENAME = "tisdk-base-image-sk"
+> +
+> +export IMAGE_BASENAME = "tisdk-base-image-sk"
+
+Duplicate?
+
+
+> +export IMAGE_LINK_NAME = "tisdk-base-image-am64xx-sk"
+> +export DEPLOY_DIR_IMAGE="/mnt/4TB-VD1/ti_devm_sdk/devm_linux/am64x_sk/yocto_local_am64x_sk/oe-layersetup/build/arago-tmp-external-arm-glibc/deploy/images/am64xx-evm/sk"
+
+I don't have "/mnt/4TB-VD1/..." - should not be an absolute path.
 
 -- 
 Regards,
