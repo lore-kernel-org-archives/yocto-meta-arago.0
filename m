@@ -1,35 +1,35 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 679CF52C88
+	by arago-project.org (Postfix) with ESMTPS id 0173852C88
 	for <meta-arago@arago-project.org>;
-	Mon,  3 May 2021 21:32:23 +0000 (UTC)
+	Mon,  3 May 2021 21:36:00 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3016240C56;
-	Mon,  3 May 2021 21:32:53 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 0AE0240C56
+	for <meta-arago@arago-project.org>;
+	Mon,  3 May 2021 21:36:31 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id MvG3zg3peTky; Mon,  3 May 2021 21:32:53 +0000 (UTC)
+	with ESMTP id RVbESRVc-aYR for <meta-arago@arago-project.org>;
+	Mon,  3 May 2021 21:36:31 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0F32040AB7;
-	Mon,  3 May 2021 21:32:52 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id EF8AB40AB7
+	for <meta-arago@arago-project.org>;
+	Mon,  3 May 2021 21:36:30 +0000 (UTC)
 Received: by mail.denix.org (Postfix, from userid 1000)
-	id 37DEA1745D3; Mon,  3 May 2021 17:32:51 -0400 (EDT)
-Date: Mon, 3 May 2021 17:32:51 -0400
+	id A8D061745D3; Mon,  3 May 2021 17:36:30 -0400 (EDT)
+Date: Mon, 3 May 2021 17:36:30 -0400
 From: Denys Dmytriyenko <denis@denix.org>
-To: "Bajjuri, Praneeth" <praneeth@ti.com>
-Message-ID: <20210503213251.GE21867@denix.org>
-References: <1616534107-46438-1-git-send-email-denis@denix.org>
-	<20210503211256.GD21867@denix.org>
-	<ee17cc62-5edd-d830-f109-6cb3179c791e@ti.com>
+To: meta-arago@arago-project.org
+Message-ID: <20210503213630.GF21867@denix.org>
+References: <1611691726-9065-1-git-send-email-denis@denix.org>
 MIME-Version: 1.0
-In-Reply-To: <ee17cc62-5edd-d830-f109-6cb3179c791e@ti.com>
+In-Reply-To: <1611691726-9065-1-git-send-email-denis@denix.org>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org
-Subject: Re: [dunfell/master][PATCH 1/4] chromium: apply bbappend with fix dynamically based on "browser-layer" presence
+Subject: Re: [dunfell/master][PATCH] branding-*: remove remnants of u-boot-k3-r5
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -42,79 +42,50 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 May 2021 21:32:23 -0000
+X-List-Received-Date: Mon, 03 May 2021 21:36:01 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Mon, May 03, 2021 at 04:29:06PM -0500, Bajjuri, Praneeth wrote:
-> 
-> 
-> On 5/3/2021 4:12 PM, Denys Dmytriyenko wrote:
-> >Praneeth,
-> >
-> >Any plans to merge this series?
-> >
-> >Even though the config is disabled by default, it does some recipe cleanup and
-> >establishes dynamic layer dependency framework.
-> 
-> Thanks for the bump, pulled to dunfell-next.
-> 
-> Will sync to -master in  a day once the nightly build is done.
+Praneeth,
 
-Thanks! Might want to pull corresponding oe-layersetup patch as well, even 
-though it only adds extra comments :)
+I noticed this patch has been merged to dunfell, but is missing on master.
+Could you please cherry-pick this to master? Let me know if you need this 
+rebased, as branding-core-next is gone now.
 
 
-> --Praneeth
+On Tue, Jan 26, 2021 at 03:08:46PM -0500, Denys Dmytriyenko wrote:
+> u-boot-k3-r5 was deprecated some time ago by multiconfig support in meta-ti:
+> http://arago-project.org/git/?p=meta-arago.git;a=commitdiff;h=7bd2c5d5fdf8cf0711e52454f76244373ee76d1d
 > 
-> >
-> >
-> >On Tue, Mar 23, 2021 at 05:15:04PM -0400, Denys Dmytriyenko wrote:
-> >>From: Denys Dmytriyenko <denys@konsulko.com>
-> >>
-> >>This solves the dangling bbappend warning when browser-layer is not enabled.
-> >>
-> >>As chromium still requires Python2, corresponding meta-python2 layer is required.
-> >>
-> >>Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
-> >>---
-> >>  meta-arago-distro/conf/layer.conf                                     | 4 ++++
-> >>  .../chromium-ozone-wayland/chromium-75.0.3770.80-SIOCGSTAMP.patch     | 0
-> >>  .../recipes-browser/chromium/chromium-ozone-wayland_%.bbappend        | 0
-> >>  3 files changed, 4 insertions(+)
-> >>  rename meta-arago-distro/{ => dynamic-layers/browser-layer}/recipes-browser/chromium/chromium-ozone-wayland/chromium-75.0.3770.80-SIOCGSTAMP.patch (100%)
-> >>  rename meta-arago-distro/{ => dynamic-layers/browser-layer}/recipes-browser/chromium/chromium-ozone-wayland_%.bbappend (100%)
-> >>
-> >>diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
-> >>index 2931bf9..9014511 100644
-> >>--- a/meta-arago-distro/conf/layer.conf
-> >>+++ b/meta-arago-distro/conf/layer.conf
-> >>@@ -24,6 +24,10 @@ LAYERRECOMMENDS_meta-arago-distro = " \
-> >>      browser-layer \
-> >>  "
-> >>+BBFILES_DYNAMIC += " \
-> >>+    browser-layer:${LAYERDIR}/dynamic-layers/browser-layer/recipes*/*/*.bbappend \
-> >>+"
-> >>+
-> >>  BB_DANGLINGAPPENDS_WARNONLY = "true"
-> >>  SIGGEN_EXCLUDE_SAFE_RECIPE_DEPS += " \
-> >>diff --git a/meta-arago-distro/recipes-browser/chromium/chromium-ozone-wayland/chromium-75.0.3770.80-SIOCGSTAMP.patch b/meta-arago-distro/dynamic-layers/browser-layer/recipes-browser/chromium/chromium-ozone-wayland/chromium-75.0.3770.80-SIOCGSTAMP.patch
-> >>similarity index 100%
-> >>rename from meta-arago-distro/recipes-browser/chromium/chromium-ozone-wayland/chromium-75.0.3770.80-SIOCGSTAMP.patch
-> >>rename to meta-arago-distro/dynamic-layers/browser-layer/recipes-browser/chromium/chromium-ozone-wayland/chromium-75.0.3770.80-SIOCGSTAMP.patch
-> >>diff --git a/meta-arago-distro/recipes-browser/chromium/chromium-ozone-wayland_%.bbappend b/meta-arago-distro/dynamic-layers/browser-layer/recipes-browser/chromium/chromium-ozone-wayland_%.bbappend
-> >>similarity index 100%
-> >>rename from meta-arago-distro/recipes-browser/chromium/chromium-ozone-wayland_%.bbappend
-> >>rename to meta-arago-distro/dynamic-layers/browser-layer/recipes-browser/chromium/chromium-ozone-wayland_%.bbappend
-> >>-- 
-> >>2.7.4
-> >>
-> >>_______________________________________________
-> >>meta-arago mailing list
-> >>meta-arago@arago-project.org
-> >>http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
-> >>
-> >
+> Signed-off-by: Denys Dmytriyenko <denis@denix.org>
+> ---
+>  meta-arago-distro/conf/distro/include/branding-bleeding.inc  | 1 -
+>  meta-arago-distro/conf/distro/include/branding-core-next.inc | 1 -
+>  2 files changed, 2 deletions(-)
+> 
+> diff --git a/meta-arago-distro/conf/distro/include/branding-bleeding.inc b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
+> index 8b0811d..ca2aa9a 100644
+> --- a/meta-arago-distro/conf/distro/include/branding-bleeding.inc
+> +++ b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
+> @@ -7,7 +7,6 @@ SRCREV_pn-linux-ti-staging = "${AUTOREV}"
+>  SRCREV_pn-linux-ti-staging-rt = "${AUTOREV}"
+>  SRCREV_pn-linux-ti-staging-systest = "${AUTOREV}"
+>  SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
+> -SRCREV_pn-u-boot-k3-r5 = "${AUTOREV}"
+>  SRCREV_pn-ltp-ddt = "${AUTOREV}"
+>  #SRCREV_pn-optee-os = "${AUTOREV}"
+>  #SRCREV_pn-optee-client = "${AUTOREV}"
+> diff --git a/meta-arago-distro/conf/distro/include/branding-core-next.inc b/meta-arago-distro/conf/distro/include/branding-core-next.inc
+> index e435e4f..f453b3c 100644
+> --- a/meta-arago-distro/conf/distro/include/branding-core-next.inc
+> +++ b/meta-arago-distro/conf/distro/include/branding-core-next.inc
+> @@ -12,4 +12,3 @@ SRCREV_pn-linux-ti-staging = "${AUTOREV}"
+>  SRCREV_pn-linux-ti-staging-rt = "${AUTOREV}"
+>  SRCREV_pn-linux-ti-staging-systest = "${AUTOREV}"
+>  SRCREV_pn-u-boot-ti-staging = "${AUTOREV}"
+> -SRCREV_pn-u-boot-k3-r5 = "${AUTOREV}"
+> -- 
+> 2.7.4
 > 
 
 -- 
