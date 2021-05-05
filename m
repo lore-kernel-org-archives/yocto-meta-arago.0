@@ -1,47 +1,49 @@
 Return-Path: <g-tammana@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id A94CF52CDF
+	by arago-project.org (Postfix) with ESMTP id 15C0152CF1
 	for <meta-arago@arago-project.org>;
-	Wed,  5 May 2021 14:32:28 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 145EWwL0095846;
-	Wed, 5 May 2021 09:32:58 -0500
+	Wed,  5 May 2021 14:32:29 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 145EWxPw095855;
+	Wed, 5 May 2021 09:32:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1620225179;
-	bh=MZxOBtpxopwHwMBmWQ3o7+GOJevP9tHhkOHOq47Ff1s=;
-	h=From:To:CC:Subject:Date;
-	b=r6Q4SUKXHMWqjDbo7InleqRU4ALzwHC4PiT7bU1dssCQOTDfJSKTCeM0GMKhUfN40
-	Gqg25yFRtckGK9CNa4MYzvozjWO2KGIjinARNzWxuEg8c/hpR6n0xi0EC4jdMOcoli
-	dPK+vt+Xxl3CGb15uBmY3Gs1Fd8hWhMbUyVVIx94=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 145EWwFj011438
+	bh=08DR/3tWwfAlro35brsQ1h1FM+kUtUBtpuidlCEDJ5c=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=WhOxDaPqDua7tFtTx/9dMYFcCssFGZCdV72xqtuZmIUejcNhPaoS1908GZNnljPIU
+	y39OmvHajIqlYXPfkPhC5tbtvYP2I5MZUYft6CmXJxyRZLKj8ai1Aw6hhO3IhOsOtq
+	u4Ij3YN8/N5jCmyCFY8dgJrtQb9AU+4EeS8VJy6Q=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 145EWxrS033475
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 5 May 2021 09:32:58 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 5 May 2021 09:32:59 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE114.ent.ti.com
+	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Wed, 5 May 2021 09:32:58 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
-	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 5 May 2021 09:32:59 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Wed, 5 May 2021 09:32:58 -0500
+	Frontend Transport; Wed, 5 May 2021 09:32:59 -0500
 Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com
 	[10.247.120.73])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 145EWwsC091052;
-	Wed, 5 May 2021 09:32:58 -0500
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 145EWxVC082553;
+	Wed, 5 May 2021 09:32:59 -0500
 Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
 	[128.247.81.224] (may be forged))
 	by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id
-	145EWwEu009501; Wed, 5 May 2021 09:32:58 -0500
+	145EWwEv009501; Wed, 5 May 2021 09:32:59 -0500
 From: Gowtham Tammana <g-tammana@ti.com>
 To: <meta-arago@arago-project.org>, Praneeth Bajjuri <praneeth@ti.com>,
 	<denys@konsulko.com>
-Date: Wed, 5 May 2021 09:32:55 -0500
-Message-ID: <20210505143256.11372-1-g-tammana@ti.com>
+Date: Wed, 5 May 2021 09:32:56 -0500
+Message-ID: <20210505143256.11372-2-g-tammana@ti.com>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20210505143256.11372-1-g-tammana@ti.com>
+References: <20210505143256.11372-1-g-tammana@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [dunfell/master][PATCH 1/2] gstreamer1.0-plugins-bad: Fix gstdrm dependencies
+Subject: [dunfell/master][PATCH 2/2] gstreamer1.0-plugins-bad: Purge unused patch
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -58,71 +60,124 @@ X-List-Received-Date: Wed, 05 May 2021 14:32:29 -0000
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-drmallocator has no wayland dependency remove it as hard dependency.
+0002-parsers-Pick-bug-fixes-on-different-parsers.patch is replaced by a
+newer version 0002-parsers-bug-fixes-on-parsers.patch. It is left
+unused, so purge it.
 
 Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
 ---
- ...emove-wayland-as-required-dependency.patch | 32 +++++++++++++++++++
- .../gstreamer1.0-plugins-bad_1.16.%.bbappend  |  3 +-
- 2 files changed, 34 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrm-Remove-wayland-as-required-dependency.patch
+ ...-Pick-bug-fixes-on-different-parsers.patch | 102 ------------------
+ 1 file changed, 102 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-Pick-bug-fixes-on-different-parsers.patch
 
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrm-Remove-wayland-as-required-dependency.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrm-Remove-wayland-as-required-dependency.patch
-new file mode 100644
-index 00000000..be189619
---- /dev/null
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0001-gstdrm-Remove-wayland-as-required-dependency.patch
-@@ -0,0 +1,32 @@
-+From e613160ef171aaaffb40c0b800b6c6def110ee18 Mon Sep 17 00:00:00 2001
-+From: Gowtham Tammana <g-tammana@ti.com>
-+Date: Tue, 4 May 2021 22:08:25 -0500
-+Subject: [PATCH] gstdrm: Remove wayland as required dependency
-+
-+gstdrmallocator is using dumb buffer api for buffer allocation and as
-+such there is no hard dependency on wayland. Remove it from required.
-+
-+Upstream-Status: Inappropriate [depends on drmallocator patches in
-+meta-argo]
-+
-+Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
-+---
-+ gst-libs/gst/drm/meson.build | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/gst-libs/gst/drm/meson.build b/gst-libs/gst/drm/meson.build
-+index 3310cc6..0700cab 100644
-+--- a/gst-libs/gst/drm/meson.build
-++++ b/gst-libs/gst/drm/meson.build
-+@@ -6,7 +6,7 @@ gstdrm_headers = [
-+ ]
-+ install_headers(gstdrm_headers, subdir : 'gstreamer-1.0/gst/drm')
-+ 
-+-libdrm_dep = dependency('libdrm', version: '>= 2.4.55', required: get_option('wayland'))
-++libdrm_dep = dependency('libdrm', version: '>= 2.4.55')
-+ if libdrm_dep.found()
-+   gstdrm = library('gstdrm-' + api_version,
-+     gstdrm_sources,
-+-- 
-+2.31.1
-+
-diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.%.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.%.bbappend
-index 0533294c..64929729 100644
---- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.%.bbappend
-+++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.16.%.bbappend
-@@ -9,6 +9,7 @@ GSTDRM_WAYLANDSINK_PATCHES = " \
-     file://0004-waylandsink-Add-drm-support-in-waylandsink.patch \
-     file://0005-waylandsink-Add-input-device-support.patch \
-     file://0001-wayland-drm-kms-add-support-for-meson-build-system.patch \
-+    file://0001-gstdrm-Remove-wayland-as-required-dependency.patch \
- "
- 
- SRC_URI_append_ti43x = " \
-@@ -37,4 +38,4 @@ SRC_URI_append_j7-hs-evm = " \
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--PR_append = ".arago3"
-+PR_append = ".arago4"
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-Pick-bug-fixes-on-different-parsers.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-Pick-bug-fixes-on-different-parsers.patch
+deleted file mode 100644
+index 3a2a96e5..00000000
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad/0002-parsers-Pick-bug-fixes-on-different-parsers.patch
++++ /dev/null
+@@ -1,102 +0,0 @@
+-From 39425cc2d98801d2f0f2fed2ba01781e20d978a2 Mon Sep 17 00:00:00 2001
+-From: Ramprasad N <x0038811@ti.com>
+-Date: Thu, 18 Jan 2018 17:01:37 +0530
+-Subject: [PATCH 2/5] parsers: Pick bug fixes on different parsers
+-
+-The following bug fixes which were previously identified are picked :
+-1. Increase rank for vc1parse and jpegparse
+-2. Modify h264 and mpeg4 parsers to interpolate pts
+-
+-Signed-off-by: Pooja Prajod <a0132412@ti.com>
+-Signed-off-by: Ramprasad N <x0038811@ti.com>
+-Signed-off-by: Angela Stegmaier <angelabaker@ti.com>
+----
+- gst/jpegformat/gstjpegformat.c        | 2 +-
+- gst/jpegformat/gstjpegparse.c         | 2 +-
+- gst/videoparsers/gsth264parse.c       | 2 +-
+- gst/videoparsers/gstmpeg4videoparse.c | 2 +-
+- gst/videoparsers/gstmpegvideoparse.c  | 2 +-
+- gst/videoparsers/plugin.c             | 2 +-
+- 6 files changed, 6 insertions(+), 6 deletions(-)
+-
+-diff --git a/gst/jpegformat/gstjpegformat.c b/gst/jpegformat/gstjpegformat.c
+-index b410466..ecb9311 100644
+---- a/gst/jpegformat/gstjpegformat.c
+-+++ b/gst/jpegformat/gstjpegformat.c
+-@@ -30,7 +30,7 @@
+- static gboolean
+- plugin_init (GstPlugin * plugin)
+- {
+--  if (!gst_element_register (plugin, "jpegparse", GST_RANK_NONE,
+-+  if (!gst_element_register (plugin, "jpegparse", GST_RANK_PRIMARY + 2,
+-           GST_TYPE_JPEG_PARSE))
+-     return FALSE;
+-   if (!gst_element_register (plugin, "jifmux", GST_RANK_SECONDARY,
+-diff --git a/gst/jpegformat/gstjpegparse.c b/gst/jpegformat/gstjpegparse.c
+-index 0bfdc80..b7d19b6 100644
+---- a/gst/jpegformat/gstjpegparse.c
+-+++ b/gst/jpegformat/gstjpegparse.c
+-@@ -151,7 +151,7 @@ gst_jpeg_parse_class_init (GstJpegParseClass * klass)
+- 
+-   gst_element_class_set_static_metadata (gstelement_class,
+-       "JPEG stream parser",
+--      "Video/Parser",
+-+      "Codec/Parser/Video",
+-       "Parse JPEG images into single-frame buffers",
+-       "Arnout Vandecappelle (Essensium/Mind) <arnout@mind.be>");
+- 
+-diff --git a/gst/videoparsers/gsth264parse.c b/gst/videoparsers/gsth264parse.c
+-index 7751ea2..5ce9030 100644
+---- a/gst/videoparsers/gsth264parse.c
+-+++ b/gst/videoparsers/gsth264parse.c
+-@@ -161,7 +161,7 @@ static void
+- gst_h264_parse_init (GstH264Parse * h264parse)
+- {
+-   h264parse->frame_out = gst_adapter_new ();
+--  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (h264parse), FALSE);
+-+  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (h264parse), TRUE);
+-   GST_PAD_SET_ACCEPT_INTERSECT (GST_BASE_PARSE_SINK_PAD (h264parse));
+-   GST_PAD_SET_ACCEPT_TEMPLATE (GST_BASE_PARSE_SINK_PAD (h264parse));
+- 
+-diff --git a/gst/videoparsers/gstmpeg4videoparse.c b/gst/videoparsers/gstmpeg4videoparse.c
+-index 38e1f45..49434c7 100644
+---- a/gst/videoparsers/gstmpeg4videoparse.c
+-+++ b/gst/videoparsers/gstmpeg4videoparse.c
+-@@ -183,7 +183,7 @@ gst_mpeg4vparse_init (GstMpeg4VParse * parse)
+-   parse->interval = DEFAULT_CONFIG_INTERVAL;
+-   parse->last_report = GST_CLOCK_TIME_NONE;
+- 
+--  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (parse), FALSE);
+-+  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (parse), TRUE);
+-   GST_PAD_SET_ACCEPT_INTERSECT (GST_BASE_PARSE_SINK_PAD (parse));
+-   GST_PAD_SET_ACCEPT_TEMPLATE (GST_BASE_PARSE_SINK_PAD (parse));
+- }
+-diff --git a/gst/videoparsers/gstmpegvideoparse.c b/gst/videoparsers/gstmpegvideoparse.c
+-index 6896339..cd87838 100644
+---- a/gst/videoparsers/gstmpegvideoparse.c
+-+++ b/gst/videoparsers/gstmpegvideoparse.c
+-@@ -173,7 +173,7 @@ gst_mpegv_parse_init (GstMpegvParse * parse)
+- {
+-   parse->config_flags = FLAG_NONE;
+- 
+--  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (parse), FALSE);
+-+  gst_base_parse_set_pts_interpolation (GST_BASE_PARSE (parse), TRUE);
+-   GST_PAD_SET_ACCEPT_INTERSECT (GST_BASE_PARSE_SINK_PAD (parse));
+-   GST_PAD_SET_ACCEPT_TEMPLATE (GST_BASE_PARSE_SINK_PAD (parse));
+- }
+-diff --git a/gst/videoparsers/plugin.c b/gst/videoparsers/plugin.c
+-index 2deddf4..c622b50 100644
+---- a/gst/videoparsers/plugin.c
+-+++ b/gst/videoparsers/plugin.c
+-@@ -54,7 +54,7 @@ plugin_init (GstPlugin * plugin)
+-   ret |= gst_element_register (plugin, "h265parse",
+-       GST_RANK_SECONDARY, GST_TYPE_H265_PARSE);
+-   ret |= gst_element_register (plugin, "vc1parse",
+--      GST_RANK_NONE, GST_TYPE_VC1_PARSE);
+-+      GST_RANK_PRIMARY + 2, GST_TYPE_VC1_PARSE);
+- 
+-   return ret;
+- }
+--- 
+-1.9.1
+-
 -- 
 2.31.1
 
