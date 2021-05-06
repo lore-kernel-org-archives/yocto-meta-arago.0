@@ -1,50 +1,33 @@
-Return-Path: <g-tammana@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 8867A52D1C
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id A64EA52CF9
 	for <meta-arago@arago-project.org>;
-	Thu,  6 May 2021 02:57:51 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1462wMqr107208;
-	Wed, 5 May 2021 21:58:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1620269902;
-	bh=XaR57y2afqrtsZC33rPQXyul2RlBwrKUXQBOLHKVlBg=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=sYyuL+9VEtHdntWQ/nQFeZu75nIk4zC39DmFKWvvcmorfPddysbkQLcCULDVb4bmF
-	ih8rx+3+bHvmTzXWCgc4f+WnGFpM01GAY80uxP6UtnCPnfkbsNn1/aCF8SvEN9RbTs
-	qLXsGu76x33z2sBUGF5CQjxkl1gzYg8MrY7t6t+g=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1462wMgd113575
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 5 May 2021 21:58:22 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Wed, 5 May 2021 21:58:22 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
-	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Wed, 5 May 2021 21:58:22 -0500
-Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com
-	[10.247.120.73])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1462wM56065626;
-	Wed, 5 May 2021 21:58:22 -0500
-Received: from uda0271916b.dhcp.ti.com (uda0271916b.dhcp.ti.com
-	[128.247.81.224] (may be forged))
-	by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id
-	1462wHRE003287; Wed, 5 May 2021 21:58:22 -0500
-From: Gowtham Tammana <g-tammana@ti.com>
-To: <meta-arago@arago-project.org>, Praneeth Bajjuri <praneeth@ti.com>,
-	<denys@konsulko.com>
-Date: Wed, 5 May 2021 21:58:12 -0500
-Message-ID: <20210506025812.25256-7-g-tammana@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20210506025812.25256-1-g-tammana@ti.com>
+	Thu,  6 May 2021 17:28:42 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 83F5040C86;
+	Thu,  6 May 2021 17:29:13 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id tUpPsCnqw6uS; Thu,  6 May 2021 17:29:13 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6306140C85;
+	Thu,  6 May 2021 17:29:11 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id C900D1745E4; Thu,  6 May 2021 13:29:10 -0400 (EDT)
+Date: Thu, 6 May 2021 13:29:09 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Gowtham Tammana <g-tammana@ti.com>
+Message-ID: <20210506172909.GR21867@denix.org>
 References: <20210506025812.25256-1-g-tammana@ti.com>
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: "Franklin S. Cooper Jr" <fcooper@ti.com>
-Subject: [dunfell/master][PATCH 6/6] packagegroup-arago-tisdk-hmi*: Install them conditionally
+In-Reply-To: <20210506025812.25256-1-g-tammana@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: [dunfell/master][PATCH 0/6] Install qt based demos on machine feature check
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -57,128 +40,56 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 May 2021 02:57:53 -0000
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-List-Received-Date: Thu, 06 May 2021 17:28:43 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-hmi demos have qt dependency, so install them through corresponding
-machine feature condition.
+The series looks good to me.
 
-Signed-off-by: Gowtham Tammana <g-tammana@ti.com>
----
- .../packagegroup-arago-tisdk-hmi-sdk-host.bb  |  4 +++-
- .../packagegroup-arago-tisdk-hmi.bb           |  4 +++-
- .../packagegroup-arago-tisdk-matrix.bb        | 24 +++++++++----------
- 3 files changed, 17 insertions(+), 15 deletions(-)
+On Wed, May 05, 2021 at 09:58:06PM -0500, Gowtham Tammana wrote:
+> The following demo packages are qt based and have a dependency on it, so they
+> have to be installed conditionally on the machine feature gpu presence. This
+> series add those changes to ensure dependencies are populated correctly for
+> different sdk images.
+> 
+>   - pdm-anomaly-detection
+>   - matrix-analytics-pdm-anomaly-detection
+>   - dual-camera-demo
+>   - matrix-gui-apps-dual-camera
+>   - image-gallery
+>   - matrix-gui-apps-image-gallery
+>   - evse-hmi
+>   - matrix-hmi-demo-evse
+>   - matrix-hmi-demo-mmwavegesture
+>   - matrix-hmi-demo-protection-relays
+> 
+> Gowtham Tammana (6):
+>   ti-demos: Add feature check for pdm demos
+>   packagegroup-arago-tisdk*: add feature check for pdm-anomaly-detection
+>   packagegroup-arago-tisdk*: Add feature depenendency for
+>     dual-camera-demo
+>   packagegroups-arago-tisdk*: image-gallery: Add machine feature
+>     conditional
+>   tisdk-core-bundle: Conditionally install the hmi demos
+>   packagegroup-arago-tisdk-hmi*: Install them conditionally
+> 
+>  .../recipes-core/images/tisdk-core-bundle.inc |  2 +-
+>  ...ackagegroup-arago-tisdk-addons-sdk-host.bb | 12 +++--
+>  ...kagegroup-arago-tisdk-addons-sdk-target.bb | 13 +++--
+>  .../packagegroup-arago-tisdk-hmi-sdk-host.bb  |  4 +-
+>  .../packagegroup-arago-tisdk-hmi.bb           |  4 +-
+>  .../packagegroup-arago-tisdk-matrix.bb        | 51 +++++++++++--------
+>  ...gegroup-arago-tisdk-multimedia-sdk-host.bb | 11 ++--
+>  .../packagegroup-arago-tisdk-multimedia.bb    | 11 ++--
+>  .../recipes-core/packagegroups/ti-demos.bb    | 10 ++--
+>  9 files changed, 73 insertions(+), 45 deletions(-)
+> 
+> -- 
+> 2.31.1
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-index 1eb83d18..6c6ce6e0 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi-sdk-host.bb
-@@ -4,7 +4,9 @@ PR = "r1"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--inherit packagegroup
-+inherit packagegroup features_check
-+
-+REQUIRED_MACHINE_FEATURES = "gpu"
- 
- HMI = ""
- 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
-index 10f6d306..6958f08c 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-hmi.bb
-@@ -4,7 +4,9 @@ PR = "r0"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--inherit packagegroup
-+inherit packagegroup features_check
-+
-+REQUIRED_MACHINE_FEATURES = "gpu"
- 
- HMI = " \
- "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-index 74b49898..4675cb80 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-matrix.bb
-@@ -37,20 +37,31 @@ MATRIX_QT_APPS = " \
- 
- MATRIX_QT_APPS_append_omap-a15 = " \
-     matrix-analytics-pdm-anomaly-detection \
-+    matrix-hmi-demo-evse            \
-+    matrix-hmi-demo-mmwavegesture   \
- "
- 
- MATRIX_QT_APPS_append_am65xx = " \
-     matrix-analytics-pdm-anomaly-detection \
-+                                    \
-+    matrix-hmi-demo-evse            \
-+    matrix-hmi-demo-mmwavegesture   \
- "
- 
- MATRIX_QT_APPS_append_ti33x = " \
-     matrix-analytics-pdm-anomaly-detection \
-+    matrix-hmi-demo-evse            \
-+    matrix-hmi-demo-protection-relays \
-+    matrix-hmi-demo-mmwavegesture   \
- "
- 
- MATRIX_QT_APPS_append_ti43x = " \
-     matrix-analytics-pdm-anomaly-detection \
-     matrix-gui-apps-dual-camera     \
-     matrix-gui-apps-image-gallery   \
-+                                    \
-+    matrix-hmi-demo-evse            \
-+    matrix-hmi-demo-mmwavegesture   \
- "
- 
- MATRIX_TOUCH_APPS = " \
-@@ -109,10 +120,6 @@ MATRIX_APPS_append_ti33x = "        \
-                                     \
-     matrix-gui-ethernet-demos       \
-                                     \
--    matrix-hmi-demo-evse            \
--    matrix-hmi-demo-protection-relays \
--    matrix-hmi-demo-mmwavegesture   \
--                                    \
-     ${MATRIX_OPENCV_ARM_ONLY_APPS}  \
- "
- 
-@@ -128,10 +135,6 @@ MATRIX_APPS_append_ti43x = "        \
-     matrix-gui-clocks               \
-     matrix-gui-pm-demos-governor    \
-                                     \
--                                    \
--    matrix-hmi-demo-evse            \
--    matrix-hmi-demo-mmwavegesture   \
--                                    \
-     ${MATRIX_OPENCV_ARM_ONLY_APPS}  \
- "
- 
-@@ -139,8 +142,6 @@ MATRIX_APPS_append_omap-a15 = "     \
-     matrix-multimedia-demo-aac      \
-     matrix-multimedia-demo-audiocapture \
-     matrix-multimedia-demo-h265dec  \
--    matrix-hmi-demo-evse            \
--    matrix-hmi-demo-mmwavegesture   \
-                                     \
-     ${@bb.utils.contains('MACHINE_FEATURES','mmip','matrix-multimedia-demo-ivahdh264dec','matrix-multimedia-demo-h264dec',d)} \
-     ${@bb.utils.contains('MACHINE_FEATURES','mmip','matrix-multimedia-demo-ivahdh264enc','',d)} \
-@@ -165,9 +166,6 @@ MATRIX_APPS_append_am65xx = "           \
-     matrix-multimedia-demo-mpeg4aacdec \
-     matrix-multimedia-demo-mpeg4dec \
-                                     \
--    matrix-hmi-demo-evse            \
--    matrix-hmi-demo-mmwavegesture   \
--                                    \
-     ${MATRIX_OPENCV_ARM_ONLY_APPS}  \
- "
- 
 -- 
-2.31.1
-
+Regards,
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
 
