@@ -1,32 +1,44 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 8BDCC52BDC
+Return-Path: <nm@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTP id A032752BDF
 	for <meta-arago@arago-project.org>;
-	Wed, 19 May 2021 23:06:14 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 3B94540C79;
-	Wed, 19 May 2021 23:06:49 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id VJkcn7iEhVQe; Wed, 19 May 2021 23:06:49 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id EF213400CF;
-	Wed, 19 May 2021 23:06:43 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id B042B1745E4; Wed, 19 May 2021 19:06:43 -0400 (EDT)
-Date: Wed, 19 May 2021 19:06:43 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Nishanth Menon <nm@ti.com>
-Message-ID: <20210519230643.GY1528@denix.org>
+	Wed, 19 May 2021 23:20:05 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14JNKeWB033700;
+	Wed, 19 May 2021 18:20:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1621466440;
+	bh=pXEGmAtG13cKa6k9B2tXI/6B3KCP4/knzuj9P4IjZQM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=L59iSODbFIgmj6D9UkTOIo9dSprwX5ap9sg0OYZuK5I2hMfs+FBSVOf1nuRQI/3P2
+	Hco7cveBqY0eHNod/Pfd6zewAkJvA900VPsSIMbw+Uaytz9eNZSinab1rnoJ2YbFCb
+	6wIHBYIdg1dgBjoOAFoKzSfHbdgHun1hQH1iU4KM=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14JNKeEg123265
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 19 May 2021 18:20:40 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Wed, 19 May 2021 18:20:39 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+	Frontend Transport; Wed, 19 May 2021 18:20:39 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14JNKd9I083911;
+	Wed, 19 May 2021 18:20:39 -0500
+Date: Wed, 19 May 2021 18:20:39 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>
+Message-ID: <20210519232039.i3g2otxheuza3v7q@facsimile>
 References: <20210519124642.21701-1-roopangkumar.patel@ti.com>
 	<20210519223929.n3oidsaag5wikia6@chamber>
+	<20210519230643.GY1528@denix.org>
 MIME-Version: 1.0
-In-Reply-To: <20210519223929.n3oidsaag5wikia6@chamber>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+In-Reply-To: <20210519230643.GY1528@denix.org>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org, prashanth.amai@ti.com,
 	sidraya.bj@pathpartnertech.com, praveen.ap@pathpartnertech.com,
 	roopangkumar.patel@ti.com
@@ -43,89 +55,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 May 2021 23:06:14 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Wed, 19 May 2021 23:20:05 -0000
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-On Wed, May 19, 2021 at 05:39:29PM -0500, Nishanth Menon wrote:
-> On 18:16-20210519, roopangkumar.patel@ti.com wrote:
-> > From: Roopang Patel <roopangkumar.patel@ti.com>
-> > 
-> > Changes:
-> > 1) Given support of v4l2 extra controls such as
-> > bitrate,gopsize and iperiod for H264 encoding and
-> > also added as v4l2 H264 plugin properties to set and
-> > get for dynamic value change.
-> > 
-> > 2) We need to set these extra controls before the gstreamer
-> > pipeline set format API invoke.so, we are setting extra
-> > controls when the pipeline change the state
-> > GST_STATE_CHANGE_READY_TO_PAUSED.
-> 
-> I'd suggest you might want to study how to write a proper commit message
-> https://www.kernel.org/doc/html/v4.10/process/submitting-patches.html#describe-your-changes
-> 
-> is a good reference, so is a bunch of internet articles..
-> 
-> > ---
-> >  sys/v4l2/gstv4l2h264enc.c | 135 +++++++++++++++++++++++++++++++++++++-
-> >  sys/v4l2/gstv4l2h264enc.h |   9 +++
-> >  2 files changed, 142 insertions(+), 2 deletions(-)
-> 
-> 	Ummm.... -ECONFUSED.
-> 
-> How does this patch apply to [1]
-> 
-> [1] http://arago-project.org/git/?p=meta-arago.git;a=tree
-> > 
-> > diff --git a/sys/v4l2/gstv4l2h264enc.c b/sys/v4l2/gstv4l2h264enc.c
-> > index ee160b3a0..169e6ae69 100644
-> > --- a/sys/v4l2/gstv4l2h264enc.c
-> > +++ b/sys/v4l2/gstv4l2h264enc.c
-> > @@ -47,6 +47,9 @@ enum
-> >  {
-> >    PROP_0,
-> >    V4L2_STD_OBJECT_PROPS,
-> > +  PROP_BITRATE,
-> > +  PROP_GOPSIZE,
-> > +  PROP_I_PERIOD,
-> >  /* TODO add H264 controls
-> >   * PROP_I_FRAME_QP,
-> >   * PROP_P_FRAME_QP,
-> > @@ -78,14 +81,46 @@ static void
-> >  gst_v4l2_h264_enc_set_property (GObject * object,
-> >      guint prop_id, const GValue * value, GParamSpec * pspec)
-> >  {
-> > -  /* TODO */
-> > +  GstV4l2H264Enc *self = GST_V4L2_H264_ENC (object);
-> > +
-> > +  switch(prop_id)
-> > +  {
-> > +    case PROP_BITRATE:{
-> > +     self->bitrate = g_value_get_uint (value);
-> > +    }break;
-> > +    case PROP_GOPSIZE:{
-> > +     self->gopsize = g_value_get_uint (value);
-> > +    }break;
-> > +    case PROP_I_PERIOD:{
-> > +     self->iperiod = g_value_get_uint (value);
-> > +    }break;
-> > +    default:{
-> > +     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-> > +    }break;
-> > +  }
-> 
-> If this is a kernel patch, please don't post it in public kernel list
-> with ti.com ID - this is wrong in so many kernel coding style ways.
+On 19:06-20210519, Denys Dmytriyenko wrote:
+[...]
 
-I believe this patch is for gstreamer-plugins-good:
-https://gitlab.freedesktop.org/gstreamer/gst-plugins-good/-/blob/master/sys/v4l2/gstv4l2h264enc.c
+> > > +  }
+> > 
+> > If this is a kernel patch, please don't post it in public kernel list
+> > with ti.com ID - this is wrong in so many kernel coding style ways.
+> 
+> I believe this patch is for gstreamer-plugins-good:
+> https://gitlab.freedesktop.org/gstreamer/gst-plugins-good/-/blob/master/sys/v4l2/gstv4l2h264enc.c
+> 
+> Still, not directly applicable to meta-araqgo...
 
-Still, not directly applicable to meta-araqgo...
+
+Thanks Denys.
+https://gitlab.freedesktop.org/gstreamer/gst-plugins-good/-/merge_requests
+seems to be the path.
+
+https://gitlab.freedesktop.org/gstreamer/gst-plugins-good/-/commits/master/sys/v4l2/gstv4l2h264enc.c
+should give an idea of what the subject line, commit message style and
+code style should be.
 
 -- 
 Regards,
-Denys Dmytriyenko <denis@denix.org>
-PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
-Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
