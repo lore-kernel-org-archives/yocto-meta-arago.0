@@ -1,43 +1,45 @@
 Return-Path: <yogeshs@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id EC66F52B66
+	by arago-project.org (Postfix) with ESMTP id 7E84F52B1F
 	for <meta-arago@arago-project.org>;
-	Wed, 26 May 2021 15:18:28 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14QFJ666130576;
-	Wed, 26 May 2021 10:19:06 -0500
+	Thu, 27 May 2021 07:47:36 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 14R7mDJF124135;
+	Thu, 27 May 2021 02:48:13 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1622042346;
-	bh=FtpXAtrM/cK6tPkYK5xkWpa5TAsXl3O3ARQDkyAnubI=;
-	h=From:To:CC:Subject:Date;
-	b=MZYjNqX3UyjGRt/oEnTbGs3Y27hYa7Lh7O2S5MfNOEsfiZlFB3EDDH2YcBEWdbnDe
-	JA0Qapy6MtsAC1JDpjB7CF5zx17nI+N633Kmt0mthAV7rquBadDnkumXLEhnz4ujNe
-	jcaJUjODnNQ3ZP4P0VqBnH2yXjVe6UzJJ2MEm6GQ=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14QFJ6pe071946
+	s=ti-com-17Q1; t=1622101693;
+	bh=s2mYVP/MQ03tgc39C26A/HJlhtthnD6cotQaYXC4ZBM=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=EtNhX6HRxdXOFadte/U8aEW2lrYabrAM+kp7EsYsBx+dP7jPYDpWz2Nj2kLxXc/5p
+	+Sogao45TOd37N1eZ9VM+eZAEgwiVK/lBVbMiw19B587N4kUkYsMnpgweu+nDRtGIE
+	y6ttjdkpObfOzPr0c01eLf7ICjlgxtSx/G04nMGM=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 14R7mD5u083648
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 26 May 2021 10:19:06 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE108.ent.ti.com
-	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 27 May 2021 02:48:13 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE115.ent.ti.com
+	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Wed, 26 May 2021 10:19:05 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE101.ent.ti.com
-	(10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 27 May 2021 02:48:13 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Wed, 26 May 2021 10:19:05 -0500
+	Frontend Transport; Thu, 27 May 2021 02:48:13 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14QFJ50K049058;
-	Wed, 26 May 2021 10:19:05 -0500
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 14R7mDbG087553;
+	Thu, 27 May 2021 02:48:13 -0500
 From: Yogesh Siraswar <yogeshs@ti.com>
 To: Denys Dmytriyenko <denys@konsulko.com>, Praneeth Bajjuri
 	<praneeth@ti.com>, Nishant Menon <nm@ti.com>
-Date: Wed, 26 May 2021 10:19:05 -0500
-Message-ID: <20210526151905.13389-1-yogeshs@ti.com>
+Date: Thu, 27 May 2021 02:48:13 -0500
+Message-ID: <20210527074813.31042-4-yogeshs@ti.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20210527074813.31042-1-yogeshs@ti.com>
+References: <20210527074813.31042-1-yogeshs@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: [dunfell][PATCH v2] linuxptp: update bbappend against latest upstream
+Subject: [dunfell][PATCH 3/3] strace: update bbappend against 5.10 kernel
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,46 +52,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 May 2021 15:18:29 -0000
+X-List-Received-Date: Thu, 27 May 2021 07:47:37 -0000
 Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+strace 5.5 on dunfell is not compatible with 5.10 kernel. Instead of
+cherry picking the fixes that doesn't apply cleanly, its cleaner to
+use strace 5.10.
 
-Back-porting upstream patch dc1101ed36094749219285378a73f660255e3cbd
-for dunfell. The dunfell linux-ptp is still at 2.0. This forks linuxptp
-to 3.0 to update it for the linux ptp fixes done on meta-openembedded
-
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 Signed-off-by: Yogesh Siraswar <yogeshs@ti.com>
-Cc: Lokesh Vutla <lokeshvutla@ti.com>
 ---
-Re-sending with correct email.
-Fixed the subject to be applicable to only dunfell
+ .../recipes-devtools/strace/strace_5.5.bbappend      | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-devtools/strace/strace_5.5.bbappend
 
- .../recipes-connectivity/linuxptp/linuxptp_%.bbappend       | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_%.bbappend b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_%.bbappend
-index b0552aaf..e4fb109a 100644
---- a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_%.bbappend
-+++ b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_%.bbappend
-@@ -1,13 +1,13 @@
- PR_append = ".arago0"
--PV_append = "+git${SRCPV}"
-+PV = "3.0+git${SRCPV}"
- 
- BRANCH = "ti-linuxptp"
--SRCREV = "a06698a12e828a0372955c2d9c8d6604d8326811"
-+SRCREV = "f155c21283a0421f5e1e0b5e850c8a9a71d72453"
- 
- SRC_URI = " \
-     git://git.ti.com/processor-sdk/linuxptp.git;branch=${BRANCH} \
-     file://build-Allow-CC-and-prefix-to-be-overriden.patch \
--    file://no-incdefs-using-host-headers.patch \
-+    file://Use-cross-cpp-in-incdefs.patch \
- "
- 
- S = "${WORKDIR}/git"
+diff --git a/meta-arago-distro/recipes-devtools/strace/strace_5.5.bbappend b/meta-arago-distro/recipes-devtools/strace/strace_5.5.bbappend
+new file mode 100644
+index 00000000..e1864ec4
+--- /dev/null
++++ b/meta-arago-distro/recipes-devtools/strace/strace_5.5.bbappend
+@@ -0,0 +1,12 @@
++
++PV = "5.10"
++PR = "arago0"
++
++SRC_URI[sha256sum] = "fe3982ea4cd9aeb3b4ba35f6279f0b577a37175d3282be24b9a5537b56b8f01c"
++SRC_URI[md5sum] = "5f9f87f9afa282e7512f67a129287d6c"
++
++EXTRA_OECONF += "--disable-gcc-Werror"
++
++RDEPENDS_${PN}-ptest_append_libc-glibc = "\
++     locale-base-en-us.iso-8859-1 \
++"
 -- 
 2.17.1
 
