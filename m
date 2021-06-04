@@ -1,44 +1,31 @@
-Return-Path: <vigneshr@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 7195352A5D
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id A3ECB5298F
 	for <meta-arago@arago-project.org>;
-	Thu,  3 Jun 2021 08:55:40 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1538uJti104566
-	for <meta-arago@arago-project.org>; Thu, 3 Jun 2021 03:56:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1622710579;
-	bh=v4p5P4J7dsV1QJPW2KzpQPrzrwHxHivOIFR4++TMNlc=;
-	h=Subject:To:References:From:CC:Date:In-Reply-To;
-	b=srGiwAbnMCzYuNVf/8qewGEakxdQK63G6Wgsooss11juAk8+3EWXez8f+WC63IRS8
-	VCN6ZGYMS6xG5JiYCt0oZML6QyAX50p4x9iRaVecybvzVB/bB3pTAjdbfcgalJ0Wep
-	1yUVcp/no2GH00FJWrfZs8N8o9c+yb5EiHlEEJmU=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1538uJmA093237
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Thu, 3 Jun 2021 03:56:19 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE113.ent.ti.com
-	(157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Thu, 3 Jun 2021 03:56:19 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
-	(157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Thu, 3 Jun 2021 03:56:19 -0500
-Received: from [10.250.234.148] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1538uH5Q127239;
-	Thu, 3 Jun 2021 03:56:18 -0500
-To: Aparna M <a-m1@ti.com>, <meta-arago@arago-project.org>
-References: <20210603032020.23448-1-a-m1@ti.com>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <092132a2-c918-b0c6-ca4d-82239523dc6a@ti.com>
-Date: Thu, 3 Jun 2021 14:26:16 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20210603032020.23448-1-a-m1@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [meta-arago PATCH] tisdk-core-bundle: Install sysfw.itb in the prebuilt-images directory
+	Fri,  4 Jun 2021 22:25:24 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D055040BA7;
+	Fri,  4 Jun 2021 22:26:04 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 43ImwSZFuShX; Fri,  4 Jun 2021 22:26:04 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B5FDD40A28;
+	Fri,  4 Jun 2021 22:26:03 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 6C8851745F6;
+	Fri,  4 Jun 2021 18:26:03 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Fri,  4 Jun 2021 18:26:01 -0400
+Message-Id: <1622845561-7712-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [PATCH] netperf: drop upstreamed PACKAGECONFIGs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,39 +38,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jun 2021 08:55:40 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 04 Jun 2021 22:25:24 -0000
 
-+praneeth
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-On 6/3/21 8:50 AM, Aparna M wrote:
-> Install the sysfw.itb file in the prebuilt images directory of the
-> tisdk-core-bundle package.
-> 
+2 new PACKAGECONFIGs were upstreamed to meta-oe and now part of dunfell.
 
-Why do we need to package sysfw.itb given that its already part of
-tiboot3.bin in case of am64x?
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+---
+ meta-arago-distro/recipes-support/netperf/netperf_git.bbappend | 2 --
+ 1 file changed, 2 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-support/netperf/netperf_git.bbappend
 
+diff --git a/meta-arago-distro/recipes-support/netperf/netperf_git.bbappend b/meta-arago-distro/recipes-support/netperf/netperf_git.bbappend
+deleted file mode 100644
+index 9527f36..0000000
+--- a/meta-arago-distro/recipes-support/netperf/netperf_git.bbappend
++++ /dev/null
+@@ -1,2 +0,0 @@
+-PACKAGECONFIG[intervals] = "--enable-intervals,--disable-intervals,,"
+-PACKAGECONFIG[histogram] = "--enable-histogram,--disable-histogram,,"
+-- 
+2.7.4
 
-
-> Signed-off-by: Aparna M <a-m1@ti.com>
-> ---
->  meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
-> index 253bfbb6..d1bfdc55 100644
-> --- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
-> +++ b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
-> @@ -14,6 +14,7 @@ DEPLOY_IMAGES_NAME_append_j7-evm = " sysfw.itb"
->  DEPLOY_IMAGES_NAME_append_j7-hs-evm = " sysfw.itb"
->  DEPLOY_IMAGES_NAME_append_am65xx-evm = " ti-sci-firmware-am65x-gp.bin sysfw-am65x-evm.itb sysfw-am65x_sr2-evm.itb"
->  DEPLOY_IMAGES_NAME_append_j7-evm = " ti-fs-firmware-j721e-gp.bin"
-> +DEPLOY_IMAGES_NAME_append_am64xx-evm = " sysfw.itb"
->  
->  ARAGO_TISDK_IMAGE ?= "tisdk-core-bundle"
->  export IMAGE_BASENAME = "${ARAGO_TISDK_IMAGE}"
-> 
 
