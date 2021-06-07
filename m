@@ -1,74 +1,44 @@
-Return-Path: <priya.ns@mistralsolutions.com>
-Received: from egress-ip33a.ess.de.barracuda.com
-	(egress-ip33a.ess.de.barracuda.com [18.185.115.192])
-	by arago-project.org (Postfix) with ESMTPS id 4527F52B6E
+Return-Path: <nm@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTP id D13A552ACE
 	for <meta-arago@arago-project.org>;
-	Mon,  7 Jun 2021 10:38:52 +0000 (UTC)
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com
-	[209.85.216.72]) by
-	mx-outbound41-238.eu-central-1c.ess.aws.cudaops.com
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NO); Mon, 07 Jun 2021 10:39:31 +0000
-Received: by mail-pj1-f72.google.com with SMTP id
-	x15-20020a17090a46cfb029016dd9f9451bso4981737pjg.2
-	for <meta-arago@arago-project.org>;
-	Mon, 07 Jun 2021 03:39:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mistralsolutions.com; s=google;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding;
-	bh=MtClifK3t9XBSCBD6zby/iUwRDpGxmvoaoMnyecYEfU=;
-	b=bBh3QawI0LiVzJ2r1/TYnqmEC7m+mHo1XdujJ7VO9zVjP330euBtBU7XEuJ2Sedrti
-	33eLTyo7RoZodILdh+4iGNj64Ia44UQ5MZX1YdI1yfZ3AoDH1RoE/aSDLk4C/tq28BSW
-	lBSCHHEkNaYgwflOq2wsduYS+noOplQiQYjT4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=MtClifK3t9XBSCBD6zby/iUwRDpGxmvoaoMnyecYEfU=;
-	b=ZXfVDeF3Ai+kl3pDs7Z1N76UwBS2/a5R8BN/0n4EL1c9SBWvJEfD+vnJc/UInwDTCm
-	eggPXj0atSm11BzV7kNUggbw4B+U+TME4BqQoG9luU+ZJOFYAtIrUGKah3uUGg1mejoB
-	tRMuXWgah2UcVdko0tkioZsZa+Yzh26opNtBMJFGfMmO5HYK2uYKMb0fbWxIPrfVAnAe
-	B8cgMu6pnxYzKUAMZ8yEWZFvCjx2GneGGPhMR6riZOG2Mz3BSel07/cJZ3Q6+eKQ0GtA
-	IAyF5gyvBpYO7z/3Z2ZQkDhxR4vu0o+C+sA7I/gPdjsvAeusDg8TwHIRqChUgrT9+Y5O
-	3WuA==
-X-Gm-Message-State: AOAM5313ASibvg+qlgf1KZYktE1zjUssmsKqrdqL50YL1hpZuKrzTaxX
-	ztLPK4h7aVu630MJamLaEyzAY2U84aDg/aewAVqZJLBUX1STcTAWMcAKIHlxm+pTiDr7Yb4O+O4
-	ElejNvdw0aXvgKa+FPAPu4uhk7mM9g8UXLkVDuwyNmsBpy52Y2ysOOBgeqafb
-X-Received: by 2002:a63:4a49:: with SMTP id j9mr13348927pgl.234.1623062370603; 
-	Mon, 07 Jun 2021 03:39:30 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyNGxO++Yn+5MUMjGS6ZN4IpTnj18vovvtTvoz7F4lFto/1eooBl6HlaaRYQkLUiEc3xjB1ug==
-X-Received: by 2002:a63:4a49:: with SMTP id j9mr13348918pgl.234.1623062370378; 
-	Mon, 07 Jun 2021 03:39:30 -0700 (PDT)
-Received: from LAP000507.mistral.in ([106.51.227.150])
-	by smtp.gmail.com with ESMTPSA id l8sm8508706pgq.49.2021.06.07.03.39.28
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 07 Jun 2021 03:39:30 -0700 (PDT)
-From: Priya N S <priya.ns@mistralsolutions.com>
-To: meta-arago@arago-project.org
-Date: Mon,  7 Jun 2021 16:05:39 +0530
-Message-Id: <20210607103539.72720-4-priya.ns@mistralsolutions.com>
-X-Mailer: git-send-email 2.19.1.windows.1
-In-Reply-To: <20210607103539.72720-1-priya.ns@mistralsolutions.com>
+	Mon,  7 Jun 2021 21:21:21 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 157LM3vv116818;
+	Mon, 7 Jun 2021 16:22:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1623100923;
+	bh=wBpw9t1KhM8vBCOR15Ng48TRLiWR6vkxDvj8bymmg2w=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=Yeye5AlLmteskAZPsFH0xy+EzZYZEB+aJCYYcQg7mG0FIfN3mZGs8l19liWceA1/t
+	7CYA4q3x84lnGDgR4Z+0NguLVKcVHUes5IEn8eA54y4QkDEoFaMTfueQDb/wqCr1P5
+	DOL+meFVA1Smd5oJJ3WdsVjlBbhmrGhBrtTQf53w=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 157LM2GF048222
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 7 Jun 2021 16:22:03 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE108.ent.ti.com
+	(157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Mon, 7 Jun 2021 16:22:02 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
+	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+	Frontend Transport; Mon, 7 Jun 2021 16:22:02 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 157LM2tb071888;
+	Mon, 7 Jun 2021 16:22:02 -0500
+Date: Mon, 7 Jun 2021 16:22:02 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Priya N S <priya.ns@mistralsolutions.com>
+Message-ID: <20210607212139.2n6flly5ek3bb5nh@oyster>
 References: <20210607103539.72720-1-priya.ns@mistralsolutions.com>
 MIME-Version: 1.0
-X-BESS-ID: 1623062371-310734-5412-477-1
-X-BESS-VER: 2019.1_20210603.1645
-X-BESS-Apparent-Source-IP: 209.85.216.72
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2,
-	rules version 3.2.2.232773 [from 
-	cloudscan15-76.eu-central-1a.ess.aws.cudaops.com]
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of
-	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-Cc: M V Pratap Reddy <pratap@ti.com>, Sekhar Nori <nsekhar@ti.com>,
-	Priya N S <priya.ns@ti.com>
-Subject: [master PATCH 3/3] create-sdcard.sh: Stop using cylinder as unit for partition size
+In-Reply-To: <20210607103539.72720-1-priya.ns@mistralsolutions.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org, Sekhar Nori <nsekhar@ti.com>
+Subject: Re: [master PATCH 0/3] create-sdcard: Fix rootfs tarball search and selection
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -81,97 +51,59 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jun 2021 10:38:52 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 07 Jun 2021 21:21:22 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Priya N S <priya.ns@ti.com>
+On 16:05-20210607, Priya N S wrote:
+> From: Priya N S <priya.ns@ti.com>
+> 
+> Hi All,
+> Below are the patches to fix the issues observed in the create-sdcard
+> script.
 
-From: Priya N S <priya.ns@ti.com>
+a) Do these apply to meta-arago?
+b) why not use the wic and bmap files instead?
 
-* Cylinder size of sdcard is manufacturer dependent. To standardize
-  sdcard partitioning remove the use of cylinder (cyl) unit.
-* While at it shift to using fdisk for the partitioning the sdcard.
-  fdisk is already used in the script and this reduces the dependencies
-  of this script on available installed applications.
-* This fixes cases where already partitioned cards were being detected
-  as not partitioned because of size check elsewhere in the script
-  failing.
+> 
+> Issue:
+> 1. The create-sdcard script uses 'rootfs' as a regex keyword to find
+> and list the filesystem tarballs which are available in the SDK
+> package. As in the current SDK packages, the tarball names are in the
+> following format,
+> tisdk-<IMAGE_TYPE>-image-<MACHINE>.tar.xz
+> Which doesn't have the rootfs keyword. This fails to list the tarballs
+> available in the package and crashes the script execution.
+> 2. The create-sdcard script detects a partitioned SD card as not
+> partitioned because of the failure of the size check condition in the
+> script.
+> 
+> Fix:
+> 1. The 'image' is used as the regex keyword to match the tarball names
+> in the SDK packages.
+> 2. The usage of the cylinder size unit for partitioning the SD card is
+> removed since the cylinder size is SD card manufacturer dependent.
+> The parted command is replaced with fdisk since fdisk is an available
+> installed utility.
+> 
+> Priya N S (3):
+>   create-sdcard.sh: fix regex used for rootfs tarball
+>   create-sdcard: Fix wrong rootfs tarball selection
+>   create-sdcard.sh: Stop using cylinder as unit for partition size
+> 
+>  create-sdcard.sh | 75 +++++++++++++++++++++++++++++++++++++-----------
+>  1 file changed, 58 insertions(+), 17 deletions(-)
+> 
+> -- 
+> 2.19.1.windows.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
-Signed-off-by: Priya N S <priya.ns@ti.com>
-Signed-off-by: Sekhar Nori <nsekhar@ti.com>
----
- create-sdcard.sh | 50 +++++++++++++++++++++++++++++++++++++++---------
- 1 file changed, 41 insertions(+), 9 deletions(-)
-
-diff --git a/create-sdcard.sh b/create-sdcard.sh
-index 8f99687..1114f70 100644
---- a/create-sdcard.sh
-+++ b/create-sdcard.sh
-@@ -501,11 +501,29 @@ SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
- 
- echo DISK SIZE - $SIZE bytes
- 
--parted -s $DRIVE mklabel msdos
--parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
--parted -s $DRIVE set 1 boot on
--parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 310
--parted -s $DRIVE unit cyl mkpart primary ext2 -- 310 -2
-+cat << END | fdisk $DRIVE
-+n
-+p
-+1
-+
-++75M
-+n
-+p
-+2
-+
-++2.4G
-+n
-+p
-+3
-+
-+
-+t
-+1
-+c
-+a
-+1
-+w
-+END
- 
- 
- cat << EOM
-@@ -559,10 +577,24 @@ SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
- 
- echo DISK SIZE - $SIZE bytes
- 
--parted -s $DRIVE mklabel msdos
--parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
--parted -s $DRIVE set 1 boot on
--parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 -2
-+cat << END | fdisk $DRIVE
-+n
-+p
-+1
-+
-++75M
-+n
-+p
-+2
-+
-+
-+t
-+1
-+c
-+a
-+1
-+w
-+END
- 
- cat << EOM
- 
 -- 
-2.19.1.windows.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
