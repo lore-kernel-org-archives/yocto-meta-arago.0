@@ -1,44 +1,44 @@
 Return-Path: <nikhil.nd@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 0E3D952B53
+	by arago-project.org (Postfix) with ESMTP id 8004452B53
 	for <meta-arago@arago-project.org>;
-	Wed, 16 Jun 2021 13:19:48 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15GDKX3F055003;
-	Wed, 16 Jun 2021 08:20:33 -0500
+	Wed, 16 Jun 2021 13:19:50 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15GDKZG1055017;
+	Wed, 16 Jun 2021 08:20:35 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1623849633;
-	bh=y6/mWKB7a+xh5kfnYPbIZhanzjQ4yD4vVsjOsDTmScI=;
+	s=ti-com-17Q1; t=1623849635;
+	bh=WSC4ashm2zUUFyuMgyg6CpHpRIO0dgpDpbxFG6dtDGs=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=zSqfjjYfYvHXQ2ile/Bc31mRMHvyl6sI4tQNu1jtFRFFbeL03fD/a9E4OAYU5EFy6
-	gKD3v8DUjd29/1C2nujiVE2xukguen5ePZfWIXP09Mqc85xpwKJUsP4XQhfCOSrlgj
-	EOsWiP3ilnazzT3R0JEWApYJUS8euvsAiNIKrjcA=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15GDKXkn079334
+	b=s7RPhgxC/A9mvFHXhv0DbIXSkML2PvsBTLBErYd4oA73L1+ItgRhzBbeGjmleUjAM
+	Tj0RxgJOALpGuZ4dSyK8PviZj+e8If0gdHQxRK9N0CZQDKeHs6vgCrdXkHNjMIzgR6
+	IN9oRmWVJJX1F4iQk6+pge91TTBnRFgEKZc1bjjA=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15GDKZ1e112456
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 16 Jun 2021 08:20:33 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 16 Jun 2021 08:20:35 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE115.ent.ti.com
+	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Wed, 16 Jun 2021 08:20:32 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 16 Jun 2021 08:20:34 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Wed, 16 Jun 2021 08:20:32 -0500
+	Frontend Transport; Wed, 16 Jun 2021 08:20:35 -0500
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15GDKSnq015027; 
-	Wed, 16 Jun 2021 08:20:31 -0500
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15GDKSnr015027; 
+	Wed, 16 Jun 2021 08:20:33 -0500
 From: Nikhil Devshatwar <nikhil.nd@ti.com>
 To: <praneeth@ti.com>, <denis@denix.org>, <yogeshs@ti.com>
-Date: Wed, 16 Jun 2021 18:50:23 +0530
-Message-ID: <20210616132024.29566-2-nikhil.nd@ti.com>
+Date: Wed, 16 Jun 2021 18:50:24 +0530
+Message-ID: <20210616132024.29566-3-nikhil.nd@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20210616132024.29566-1-nikhil.nd@ti.com>
 References: <20210616132024.29566-1-nikhil.nd@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: [dunfell/master 1/2] recipes-tisdk: tisdk-makefile: Remove Jailhouse snippet
+Subject: [dunfell/master 2/2] conf: arago: Remove jailhouse references
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,68 +51,54 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jun 2021 13:19:50 -0000
+X-List-Received-Date: Wed, 16 Jun 2021 13:19:51 -0000
 Content-Type: text/plain
 
-Jailhouse support is dropped for K3 platforms. This will not be
-packaged in the SDK any more. Drop the Makefile snippet for Jailhouse.
+Jailhouse support for K3 platforms is dropped. Remove the
+refences to Jailhouse and IVSHMEM in the arago conf files.
 
 Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
 ---
- .../ti-tisdk-makefile/Makefile_jailhouse      | 44 -------------------
- 1 file changed, 44 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_jailhouse
+ meta-arago-distro/conf/distro/arago.conf                   | 3 ---
+ meta-arago-distro/conf/distro/include/arago-source-ipk.inc | 7 -------
+ 2 files changed, 10 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_jailhouse b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_jailhouse
-deleted file mode 100644
-index 8e70fd9d..00000000
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_jailhouse
-+++ /dev/null
-@@ -1,44 +0,0 @@
--# jailhouse module
--JH_ARCH = "__KERNEL_ARCH__"
--JH_PLATFORM = "__JH_PLATFORM__"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 206e65ef..508b636d 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -158,9 +158,6 @@ PACKAGECONFIG_append_pn-openssl = " cryptodev-linux"
+ PACKAGECONFIG_remove_pn-alsa-plugins = "pulseaudio"
+ RDEPENDS_pulseaudio-server_remove = "alsa-plugins-pulseaudio-conf"
+ 
+-# Configure RAMFS for jailhouse linux-demo
+-JH_RAMFS_IMAGE = "tisdk-tiny-image"
 -
--jailhouse_config:
--	@echo =====================================
--	@echo      Configuring jailhouse
--	@echo =====================================
--	@cd board-support/extra-drivers; \
--	cd `find . -maxdepth 1 -name "jailhouse*" -type d`; \
--	echo "#define CONFIG_TRACE_ERROR    1" >> include/jailhouse/config.h
+ # Enable UI and scripting for perf
+ PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
+ 
+diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+index 232cd4c3..d4122339 100644
+--- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
++++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+@@ -373,10 +373,6 @@ SRCIPK_INSTALL_DIR_pn-hplib-mod ?= "board-support/extra-drivers/${PN}-${PV}"
+ CREATE_SRCIPK_pn-uio-module-drv ?= "1"
+ SRCIPK_INSTALL_DIR_pn-uio-module-drv ?= "board-support/extra-drivers/${PN}-${PV}"
+ 
+-CREATE_SRCIPK_pn-ivshmem-uio-driver ?= "1"
+-SRCIPK_INSTALL_DIR_pn-ivshmem-uio-driver ?= "board-support/extra-drivers/${PN}-${PV}"
+-SRCIPK_PRESERVE_GIT_pn-ivshmem-uio-driver ?= "true"
 -
--jailhouse: linux jailhouse_config
--	@echo =====================================
--	@echo      Building jailhouse
--	@echo =====================================
--	@cd board-support/extra-drivers; \
--	cd `find . -maxdepth 1 -name "jailhouse*" -type d`; \
--	make ARCH=$(JH_ARCH) KDIR=${LINUXKERNEL_INSTALL_DIR}
+ CREATE_SRCIPK_pn-ipsecmgr-mod ?= "1"
+ SRCIPK_INSTALL_DIR_pn-ipsecmgr-mod ?= "board-support/extra-drivers/${PN}-${PV}"
+ 
+@@ -397,6 +393,3 @@ SRCIPK_INSTALL_DIR_pn-vlib-c66x ?= "component-sources/vlib_c66x_${PV}"
+ 
+ CREATE_SRCIPK_pn-big-data-ipc-demo-linux ?= "1"
+ SRCIPK_INSTALL_DIR_pn-big-data-ipc-demo-linux ?= "example-applications/${PN}-${PV}"
 -
--jailhouse_clean:
--	@echo =====================================
--	@echo      Cleaning jailhouse
--	@echo =====================================
--	@cd board-support/extra-drivers; \
--	cd `find . -maxdepth 1 -name "jailhouse*" -type d`; \
--	make ARCH=$(JH_ARCH) KDIR=${LINUXKERNEL_INSTALL_DIR} clean
--
--jailhouse_distclean: jailhouse_clean
--	@echo =====================================
--	@echo      Distclean jailhouse
--	@echo =====================================
--	@cd board-support/extra-drivers; \
--	cd `find . -maxdepth 1 -name "jailhouse*" -type d`; \
--	rm -vf ./hypervisor/include/jailhouse/config.h
--
--jailhouse_install:
--	@echo ================================
--	@echo      Installing jailhouse
--	@echo ================================
--	@cd board-support/extra-drivers; \
--	cd `find . -maxdepth 1 -name "jailhouse*" -type d`; \
--	make ARCH=$(JH_ARCH) KDIR=${LINUXKERNEL_INSTALL_DIR} DESTDIR=$(DESTDIR) INSTALL_MOD_STRIP=$(INSTALL_MOD_STRIP) prefix=/usr install
--
+-CREATE_SRCIPK_pn-jailhouse ?= "1"
+-SRCIPK_INSTALL_DIR_pn-jailhouse ?= "board-support/extra-drivers/${PN}-${PV}"
 -- 
 2.17.1
 
