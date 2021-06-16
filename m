@@ -1,48 +1,42 @@
 Return-Path: <nikhil.nd@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 7AA4E52A2A
+	by arago-project.org (Postfix) with ESMTP id 8E42452B53
 	for <meta-arago@arago-project.org>;
-	Wed,  9 Jun 2021 12:57:29 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 159CwBFC110481
-	for <meta-arago@arago-project.org>; Wed, 9 Jun 2021 07:58:11 -0500
+	Wed, 16 Jun 2021 13:19:46 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15GDKV7U054985;
+	Wed, 16 Jun 2021 08:20:31 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1623243491;
-	bh=/g4vGGa2fLJ3Gg6TEuQFVombzPvmBhVPYWASb4ME8qw=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=LnjhoR3WrgIsbvjYYYyEEkipxUu5vxPEHLL75CXEy1+407eNWpH2kk/uZ3tAHj4xJ
-	jxeJujiFwU0evLK8Ic+/s0ixnPywfOHgN+m0kouCRWy0WEVb9kBnRmjd7XH9Wwr/gm
-	Se1tAtH2TdRP2SsmxwHYpatU6p4yfHO0euiCCsyk=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 159CwBhg096305
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 9 Jun 2021 07:58:11 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1623849631;
+	bh=qckX10SspztSsI30+LJu23gkeAHi9OIFt3pVTudtuis=;
+	h=From:To:CC:Subject:Date;
+	b=ts4zdBH3KAVKfvneP+Zp77tH4XeeXfLLBVzzFo2Zp8ueQA1njCqZRk0irIhGmFupV
+	9jk/3bIDB8s3fync6iY1qmy67HCVGU0eun+ky1dVEIdwRKXe+htKKYPdVkTAc6rl6S
+	e/8H3i531g4FJt42B201avwlxbnQ/kywNG7bmr8c=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15GDKV12079305
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 16 Jun 2021 08:20:31 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Wed, 9 Jun 2021 07:58:10 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
+	Wed, 16 Jun 2021 08:20:30 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
 	(10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Wed, 9 Jun 2021 07:58:10 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 159Cw9SQ038822;
-	Wed, 9 Jun 2021 07:58:10 -0500
-Date: Wed, 9 Jun 2021 18:28:08 +0530
+	Frontend Transport; Wed, 16 Jun 2021 08:20:30 -0500
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15GDKSnp015027; 
+	Wed, 16 Jun 2021 08:20:29 -0500
 From: Nikhil Devshatwar <nikhil.nd@ti.com>
-To: Nishanth Menon <nm@ti.com>
-Message-ID: <20210609125808.fnpe5oserkq3gydu@NiksLab>
-References: <20210603032020.23448-1-a-m1@ti.com>
-	<092132a2-c918-b0c6-ca4d-82239523dc6a@ti.com>
-	<20210607212327.nejfsndlcwnpogpo@decorator>
-	<20210608134442.wrpvzc6b2272sxrr@NiksLab>
-	<20210608135221.z7gobp75bi64iyxe@dormitory>
+To: <praneeth@ti.com>, <denis@denix.org>, <yogeshs@ti.com>
+Date: Wed, 16 Jun 2021 18:50:22 +0530
+Message-ID: <20210616132024.29566-1-nikhil.nd@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210608135221.z7gobp75bi64iyxe@dormitory>
-User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: Re: [meta-arago PATCH] tisdk-core-bundle: Install sysfw.itb in the prebuilt-images directory
+Subject: [dunfell/master 0/2] Remove Jailhouse support
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,54 +49,23 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Jun 2021 12:57:29 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 16 Jun 2021 13:19:47 -0000
+Content-Type: text/plain
 
-On 08:52-20210608, Nishanth Menon wrote:
-> On 19:14-20210608, Nikhil Devshatwar wrote:
-> > On 16:23-20210607, Nishanth Menon wrote:
-> > > On 14:26-20210603, Vignesh Raghavendra wrote:
-> > > > +praneeth
-> > > > 
-> > > > On 6/3/21 8:50 AM, Aparna M wrote:
-> > > > > Install the sysfw.itb file in the prebuilt images directory of the
-> > > > > tisdk-core-bundle package.
-> > > > > 
-> > > > 
-> > > > Why do we need to package sysfw.itb given that its already part of
-> > > > tiboot3.bin in case of am64x?
-> > Vignesh,
-> > 
-> > This was done for consistency. It's no harm to include this.
-> > It was a feedback on the SDK from the apps team.
-> 
-> The feedback is wrong. putting a random binary in the boot folder which
-> does no function is broken understanding of the boot process - not to
-> mention deployment and upgrade burden that we pitch on customers.
+This series removes the Jailhouse and corresponding recipes from
+meta-arago
 
-I was not aware if there is any case where the ITB would be required.
-From your comment it seems it's not required at all.
+Nikhil Devshatwar (2):
+  recipes-tisdk: tisdk-makefile: Remove Jailhouse snippet
+  conf: arago: Remove jailhouse references
 
-Aparna,
-Let us not add this in the installer. and also update the documentation to
-specifically call out the contents of tiboot3.bin for AM64
+ meta-arago-distro/conf/distro/arago.conf      |  3 --
+ .../conf/distro/include/arago-source-ipk.inc  |  7 ---
+ .../ti-tisdk-makefile/Makefile_jailhouse      | 44 -------------------
+ 3 files changed, 54 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_jailhouse
 
-Regards,
-Nikhil D
+-- 
+2.17.1
 
-> 
-> > > NAK. We are using multi-certificate for am64x.
-> > 
-> > Pardon me for not knowing, What is a multi-certificate?
-> 
-> 
-> multi-certificate x509 boot - where SPL, sysfw etc are packaged as part
-> of tiboot3.bin.
-> 
-> 
-> -- 
-> Regards,
-> Nishanth Menon
-> Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
