@@ -1,44 +1,33 @@
-Return-Path: <nikhil.nd@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 8004452B53
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id BF81952B53
 	for <meta-arago@arago-project.org>;
-	Wed, 16 Jun 2021 13:19:50 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15GDKZG1055017;
-	Wed, 16 Jun 2021 08:20:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1623849635;
-	bh=WSC4ashm2zUUFyuMgyg6CpHpRIO0dgpDpbxFG6dtDGs=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=s7RPhgxC/A9mvFHXhv0DbIXSkML2PvsBTLBErYd4oA73L1+ItgRhzBbeGjmleUjAM
-	Tj0RxgJOALpGuZ4dSyK8PviZj+e8If0gdHQxRK9N0CZQDKeHs6vgCrdXkHNjMIzgR6
-	IN9oRmWVJJX1F4iQk6+pge91TTBnRFgEKZc1bjjA=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15GDKZ1e112456
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 16 Jun 2021 08:20:35 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE115.ent.ti.com
-	(10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Wed, 16 Jun 2021 08:20:34 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
-	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Wed, 16 Jun 2021 08:20:35 -0500
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15GDKSnr015027; 
-	Wed, 16 Jun 2021 08:20:33 -0500
-From: Nikhil Devshatwar <nikhil.nd@ti.com>
-To: <praneeth@ti.com>, <denis@denix.org>, <yogeshs@ti.com>
-Date: Wed, 16 Jun 2021 18:50:24 +0530
-Message-ID: <20210616132024.29566-3-nikhil.nd@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20210616132024.29566-1-nikhil.nd@ti.com>
-References: <20210616132024.29566-1-nikhil.nd@ti.com>
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: [dunfell/master 2/2] conf: arago: Remove jailhouse references
+	Wed, 16 Jun 2021 20:13:34 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 4F80340C1C;
+	Wed, 16 Jun 2021 20:14:19 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id GUJ4eSqFzzHE; Wed, 16 Jun 2021 20:14:19 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 30DF640B66;
+	Wed, 16 Jun 2021 20:14:18 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 0CE1C174603;
+	Wed, 16 Jun 2021 16:14:17 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Wed, 16 Jun 2021 16:14:08 -0400
+Message-Id: <1623874449-31873-2-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1623874449-31873-1-git-send-email-denis@denix.org>
+References: <1623874449-31873-1-git-send-email-denis@denix.org>
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [PATCH 1/2] linux-ti-staging: enable necessary configs for running docker containers
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,55 +40,89 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jun 2021 13:19:51 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 16 Jun 2021 20:13:42 -0000
 
-Jailhouse support for K3 platforms is dropped. Remove the
-refences to Jailhouse and IVSHMEM in the arago conf files.
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- meta-arago-distro/conf/distro/arago.conf                   | 3 ---
- meta-arago-distro/conf/distro/include/arago-source-ipk.inc | 7 -------
- 2 files changed, 10 deletions(-)
+ meta-arago-distro/recipes-kernel/linux/docker.inc    |  2 ++
+ .../linux/linux-ti-staging-rt_%.bbappend             |  1 +
+ .../linux/linux-ti-staging-systest_%.bbappend        |  1 +
+ .../recipes-kernel/linux/linux-ti-staging/docker.cfg | 20 ++++++++++++++++++++
+ .../recipes-kernel/linux/linux-ti-staging_%.bbappend |  1 +
+ 5 files changed, 25 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-kernel/linux/docker.inc
+ create mode 100644 meta-arago-distro/recipes-kernel/linux/linux-ti-staging/docker.cfg
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 206e65ef..508b636d 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -158,9 +158,6 @@ PACKAGECONFIG_append_pn-openssl = " cryptodev-linux"
- PACKAGECONFIG_remove_pn-alsa-plugins = "pulseaudio"
- RDEPENDS_pulseaudio-server_remove = "alsa-plugins-pulseaudio-conf"
+diff --git a/meta-arago-distro/recipes-kernel/linux/docker.inc b/meta-arago-distro/recipes-kernel/linux/docker.inc
+new file mode 100644
+index 0000000..63a01ba
+--- /dev/null
++++ b/meta-arago-distro/recipes-kernel/linux/docker.inc
+@@ -0,0 +1,2 @@
++SRC_URI += "file://docker.cfg"
++KERNEL_CONFIG_FRAGMENTS += "${WORKDIR}/docker.cfg"
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
+index 7d03f8e..165e86f 100644
+--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
++++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
+@@ -3,5 +3,6 @@ MACHINE_KERNEL_PR_append = ".arago1"
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
--# Configure RAMFS for jailhouse linux-demo
--JH_RAMFS_IMAGE = "tisdk-tiny-image"
--
- # Enable UI and scripting for perf
- PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
+ require copy-defconfig.inc
++require docker.inc
  
-diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-index 232cd4c3..d4122339 100644
---- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
-@@ -373,10 +373,6 @@ SRCIPK_INSTALL_DIR_pn-hplib-mod ?= "board-support/extra-drivers/${PN}-${PV}"
- CREATE_SRCIPK_pn-uio-module-drv ?= "1"
- SRCIPK_INSTALL_DIR_pn-uio-module-drv ?= "board-support/extra-drivers/${PN}-${PV}"
+ ALLOW_EMPTY_kernel-devicetree = "1"
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
+index 7d03f8e..165e86f 100644
+--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
++++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
+@@ -3,5 +3,6 @@ MACHINE_KERNEL_PR_append = ".arago1"
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
--CREATE_SRCIPK_pn-ivshmem-uio-driver ?= "1"
--SRCIPK_INSTALL_DIR_pn-ivshmem-uio-driver ?= "board-support/extra-drivers/${PN}-${PV}"
--SRCIPK_PRESERVE_GIT_pn-ivshmem-uio-driver ?= "true"
--
- CREATE_SRCIPK_pn-ipsecmgr-mod ?= "1"
- SRCIPK_INSTALL_DIR_pn-ipsecmgr-mod ?= "board-support/extra-drivers/${PN}-${PV}"
+ require copy-defconfig.inc
++require docker.inc
  
-@@ -397,6 +393,3 @@ SRCIPK_INSTALL_DIR_pn-vlib-c66x ?= "component-sources/vlib_c66x_${PV}"
+ ALLOW_EMPTY_kernel-devicetree = "1"
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging/docker.cfg b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging/docker.cfg
+new file mode 100644
+index 0000000..9ac604b
+--- /dev/null
++++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging/docker.cfg
+@@ -0,0 +1,20 @@
++CONFIG_VETH=m
++CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=m
++CONFIG_NETFILTER_XT_MATCH_CONNTRACK=m
++CONFIG_NETFILTER_XT_MATCH_IPVS=m
++CONFIG_NET_CLS_CGROUP=m
++CONFIG_IP_VS=m
++CONFIG_IP_VS_RR=m
++CONFIG_VXLAN=m
++CONFIG_IPVLAN=m
++CONFIG_MACVLAN=m
++CONFIG_DUMMY=m
++CONFIG_NF_NAT_FTP=m
++CONFIG_NF_CONNTRACK_FTP=m
++CONFIG_NF_NAT_TFTP=m
++CONFIG_NF_CONNTRACK_TFTP=m
++CONFIG_AUFS_FS=m
++CONFIG_BTRFS_FS=m
++CONFIG_BLK_DEV_DM=m
++CONFIG_DM_THIN_PROVISIONING=m
++CONFIG_OVERLAY_FS=m
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
+index 5bddbef..31940e3 100644
+--- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
++++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
+@@ -3,5 +3,6 @@ MACHINE_KERNEL_PR_append = ".arago5"
+ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
  
- CREATE_SRCIPK_pn-big-data-ipc-demo-linux ?= "1"
- SRCIPK_INSTALL_DIR_pn-big-data-ipc-demo-linux ?= "example-applications/${PN}-${PV}"
--
--CREATE_SRCIPK_pn-jailhouse ?= "1"
--SRCIPK_INSTALL_DIR_pn-jailhouse ?= "board-support/extra-drivers/${PN}-${PV}"
+ require copy-defconfig.inc
++require docker.inc
+ 
+ ALLOW_EMPTY_kernel-devicetree = "1"
 -- 
-2.17.1
+2.7.4
 
 
