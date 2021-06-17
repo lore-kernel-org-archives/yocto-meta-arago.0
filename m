@@ -1,42 +1,42 @@
 Return-Path: <yogeshs@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 1511652B61
+	by arago-project.org (Postfix) with ESMTP id 1535552A96
 	for <meta-arago@arago-project.org>;
-	Wed, 16 Jun 2021 23:13:28 +0000 (UTC)
+	Thu, 17 Jun 2021 23:29:55 +0000 (UTC)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15GNE9i4083487;
-	Wed, 16 Jun 2021 18:14:09 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15HNUe4u123492;
+	Thu, 17 Jun 2021 18:30:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1623885249;
-	bh=RiOkkdMONlixBO9nm9VA4lLBuV3MCQaeNWbAoDG3CDA=;
+	s=ti-com-17Q1; t=1623972640;
+	bh=caDbQOEATW3z1CAxX6fCU+gW9AgHPKb8Pz44zzGGq7E=;
 	h=From:To:CC:Subject:Date;
-	b=IMU9hNSczxPn4535uKmcu2dLwqoXFdfX+oGJf9bme/KLCHaTZF5sdsjakhns7+whP
-	ZZEiiYcD+TW8AIwAz0dm2ODVYuTP+Vvwj5orYuy1EPSf+Z4eXkt6E4MuCFwblYG5wi
-	/3y8PHiK5MHraWskImxUJCCM8797CNtSvPeNA3Lk=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15GNE99Q110752
+	b=k0DbLSI0G+OveZHgfFv/DIpCk7ZBLcBDQBEF/2KzqD1IZ4NzwkzPccp6v/hMQ1b6J
+	jijM8moBVSm5edsNCIwS4VoXxlja5l3ixVQKbA4ADpAGwTIJ6+J/2mRmcUZcQrhdzl
+	YoUTwM7bO7vLUCDAP+3M4h3dDgmWq8/rwzvnBT5E=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15HNUe87088470
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 16 Jun 2021 18:14:09 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 17 Jun 2021 18:30:40 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE108.ent.ti.com
+	(10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Wed, 16 Jun 2021 18:14:09 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
-	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 17 Jun 2021 18:30:40 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Wed, 16 Jun 2021 18:14:09 -0500
+	Frontend Transport; Thu, 17 Jun 2021 18:30:40 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15GNE9Ua005930;
-	Wed, 16 Jun 2021 18:14:09 -0500
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15HNUd7c042852;
+	Thu, 17 Jun 2021 18:30:40 -0500
 From: Yogesh Siraswar <yogeshs@ti.com>
 To: Denys Dmytriyenko <denys@konsulko.com>, Praneeth Bajjuri <praneeth@ti.com>
-Date: Wed, 16 Jun 2021 18:14:09 -0500
-Message-ID: <20210616231409.14752-1-yogeshs@ti.com>
+Date: Thu, 17 Jun 2021 18:30:39 -0500
+Message-ID: <20210617233039.14568-1-yogeshs@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: [dunfell][PATCH] ltp-ddt:Update to 20210524
+Subject: [dunfell][PATCH v2] ltp-ddt:Update to 20210524
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,22 +49,27 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jun 2021 23:13:32 -0000
+X-List-Received-Date: Thu, 17 Jun 2021 23:29:55 -0000
 Content-Type: text/plain
 
 Updated ltp to 20210524 on dunfell
 
 Signed-off-by: Yogesh Siraswar <yogeshs@ti.com>
 ---
+Changes from previous version:
+1) Fixed the name of bbappend file
+2) Changed the ltp-ddt repo source from arago-project.org to git.ti.com
+
+---
  ...001-Remove-OOM-tests-from-runtest-mm.patch | 31 +++++++++++++
  .../ltp/ltp/disable_hanging_tests.patch       | 45 +++++++++++++++++++
- .../ltp/ltp_20210524.bbappend                 | 27 +++++++++++
- ...tp-ddt_20200120.bb => ltp-ddt_20210524.bb} |  4 +-
- 4 files changed, 105 insertions(+), 2 deletions(-)
+ .../ltp/ltp_20200120.bbappend                 | 27 +++++++++++
+ ...tp-ddt_20200120.bb => ltp-ddt_20210524.bb} |  6 +--
+ 4 files changed, 106 insertions(+), 3 deletions(-)
  create mode 100644 meta-arago-distro/recipes-extended/ltp/ltp/0001-Remove-OOM-tests-from-runtest-mm.patch
  create mode 100644 meta-arago-distro/recipes-extended/ltp/ltp/disable_hanging_tests.patch
- create mode 100644 meta-arago-distro/recipes-extended/ltp/ltp_20210524.bbappend
- rename meta-arago-extras/recipes-devtools/ltp-ddt/{ltp-ddt_20200120.bb => ltp-ddt_20210524.bb} (94%)
+ create mode 100644 meta-arago-distro/recipes-extended/ltp/ltp_20200120.bbappend
+ rename meta-arago-extras/recipes-devtools/ltp-ddt/{ltp-ddt_20200120.bb => ltp-ddt_20210524.bb} (84%)
 
 diff --git a/meta-arago-distro/recipes-extended/ltp/ltp/0001-Remove-OOM-tests-from-runtest-mm.patch b/meta-arago-distro/recipes-extended/ltp/ltp/0001-Remove-OOM-tests-from-runtest-mm.patch
 new file mode 100644
@@ -154,11 +159,11 @@ index 00000000..113ac0fe
 + read_all_dev read_all -d /dev -p -q -r 3
 + read_all_proc read_all -d /proc -q -r 3
 + read_all_sys read_all -d /sys -q -r 3
-diff --git a/meta-arago-distro/recipes-extended/ltp/ltp_20210524.bbappend b/meta-arago-distro/recipes-extended/ltp/ltp_20210524.bbappend
+diff --git a/meta-arago-distro/recipes-extended/ltp/ltp_20200120.bbappend b/meta-arago-distro/recipes-extended/ltp/ltp_20200120.bbappend
 new file mode 100644
 index 00000000..bfe4ddb0
 --- /dev/null
-+++ b/meta-arago-distro/recipes-extended/ltp/ltp_20210524.bbappend
++++ b/meta-arago-distro/recipes-extended/ltp/ltp_20200120.bbappend
 @@ -0,0 +1,27 @@
 +SRCREV = "0fb171f2beddaf64bd27597577c206c0f892b3cd"
 +
@@ -188,13 +193,13 @@ index 00000000..bfe4ddb0
 +
 +
 diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-similarity index 94%
+similarity index 84%
 rename from meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
 rename to meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-index 67ec1d74..cb4c7944 100644
+index 67ec1d74..3057693a 100644
 --- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20200120.bb
 +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-@@ -10,10 +10,10 @@ PROVIDES += "ltp"
+@@ -10,14 +10,14 @@ PROVIDES += "ltp"
  DEPENDS += "alsa-lib"
  
  PE = "1"
@@ -207,6 +212,11 @@ index 67ec1d74..cb4c7944 100644
  BRANCH ?= "master"
  
  SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
+-SRC_URI_prepend = "git://arago-project.org/git/projects/test-automation/ltp-ddt.git;branch=${BRANCH} "
++SRC_URI_prepend = "git://git.ti.com/test-automation/ltp-ddt.git;branch=${BRANCH} "
+ 
+ export prefix = "/opt/ltp"
+ export exec_prefix = "/opt/ltp"
 -- 
 2.17.1
 
