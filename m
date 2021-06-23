@@ -1,44 +1,42 @@
 Return-Path: <nm@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 82AAD52AB8
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTP id 7AF4752A4F
 	for <meta-arago@arago-project.org>;
 	Wed, 23 Jun 2021 21:43:22 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15NLhMYl065737;
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15NLhMrv018523;
 	Wed, 23 Jun 2021 16:43:22 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1624484602;
-	bh=Y0MHMqLy/hOdFWJX6tk8ydOGGDUjveUT/p67eC5aAlY=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=u76IqWZXEA7dZd7QPJMfUNJScs04w1w5MskybCZQe5T0fH8tSLO26fGkpkwNcvodW
-	G+UC8K+mLtNnpSr3lHmUpfoyXJpD1Rfli/leRyuUQ5S3X1DXmc+H6nlC/N1w4PmiH+
-	3F9AiwlVvaSbZXTfbesL/P1JCNez4P7mvkUw+s0E=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15NLhMKS041496
+	bh=DWF+Z2i89lSLlET6zjdv0bcOCfNePTk4H2B6/hPBEc4=;
+	h=From:To:CC:Subject:Date;
+	b=ZVk6UvU5BU0zAAfi4z2IBsej/QwVukklGhUYuUKl3e4msmbEYTCWG2wk1zz31ltTZ
+	UXERfpSQaIJ4bCTB0CpwnHy2e0514ClzUsYOgauSapggWB7phPq7nxDIiCw0PtHpkN
+	nknwE+mahDA4j8nLcdpp5MzzMx5GowrIhonm9gTk=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15NLhMq5037345
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
 	Wed, 23 Jun 2021 16:43:22 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
-	(10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE111.ent.ti.com
+	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
 	Wed, 23 Jun 2021 16:43:22 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Wed, 23 Jun 2021 16:43:22 -0500
+	Frontend Transport; Wed, 23 Jun 2021 16:43:21 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15NLhM5b030854;
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15NLhMk7030847;
 	Wed, 23 Jun 2021 16:43:22 -0500
 From: Nishanth Menon <nm@ti.com>
 To: <praneeth@ti.com>, <yogeshs@ti.com>, <denis@denix.org>
-Date: Wed, 23 Jun 2021 16:43:20 -0500
-Message-ID: <20210623214320.9645-4-nm@ti.com>
+Date: Wed, 23 Jun 2021 16:43:17 -0500
+Message-ID: <20210623214320.9645-1-nm@ti.com>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20210623214320.9645-1-nm@ti.com>
-References: <20210623214320.9645-1-nm@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: [oe-layersetup PATCH V2 3/3] configs: arago*.txt: Revise meta-arago repo towards yoctoproject.org primary
+Subject: [oe-layersetup PATCH V2 0/3] Lets start sunsetting arago-project.org
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,67 +53,86 @@ X-List-Received-Date: Wed, 23 Jun 2021 21:43:23 -0000
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Now that yoctoproject.org git repo is live, lets move references away
-from arago-project.org.
+Hi All,
 
-This is one of the initial cleanup steps towards eventually sunsetting
-the arago-project.org
+V2 of the series posted [1] - Update is patch #2 is new in the series
+and replaces the previous cleanup by dropping things.
 
-See sample-files/gitconfig.sample for examples of how to redirect
-repository using older urls to new locations
+This is the first patch in the series of patches to various
+repos for us to move away from arago-project.org domain name.
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
-Changes since V1:
-* Patch is now trimmed to just the relevant arago configurations
-* Updated $subject to be more arago focussed.
+NOTE: we will maintain the meta-arago distro, but we move in steps
+towards an integrated ecosystem in yocto project before we attempt to
+close the domain name down.
 
-V1: http://arago-project.org/pipermail/meta-arago/2021-June/013225.html
+NOTE:
+1. I am not modifying release configs since those will need to be
+   handled with a variation of url redirection of which a sample is
+   provided in this series. Further updates are needed.
+3. Existing git repos in arago-project.org are still kept updated, but
+   once all references are redirected, we can mark the git repos in
+   arago-project.org as no longer maintained.
+3. If there are specific additional questions, please pop them out..
+   lets discuss - also note that we will migrate the mailing list to
+   yoctoproject.org once the infrastructural pieces are in place.
 
- configs/arago-dunfell-config.txt      | 2 +-
- configs/arago-dunfell-next-config.txt | 2 +-
- configs/arago-master-config.txt       | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/configs/arago-dunfell-config.txt b/configs/arago-dunfell-config.txt
-index 173499bb3f8e..464b835b7a30 100644
---- a/configs/arago-dunfell-config.txt
-+++ b/configs/arago-dunfell-config.txt
-@@ -2,7 +2,7 @@
- # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
- 
- bitbake,git://git.openembedded.org/bitbake,1.46,HEAD
--meta-arago,git://arago-project.org/git/meta-arago.git,dunfell,HEAD,layers=meta-arago-distro:meta-arago-extras
-+meta-arago,git://git.yoctoproject.org/meta-arago,dunfell,HEAD,layers=meta-arago-distro:meta-arago-extras
- # meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
- # meta-python2,git://git.openembedded.org/meta-python2,dunfell,HEAD,layers=
- meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
-diff --git a/configs/arago-dunfell-next-config.txt b/configs/arago-dunfell-next-config.txt
-index 9f5eeb9a83e7..9657a727fda1 100644
---- a/configs/arago-dunfell-next-config.txt
-+++ b/configs/arago-dunfell-next-config.txt
-@@ -2,7 +2,7 @@
- # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
- 
- bitbake,git://git.openembedded.org/bitbake,1.46,HEAD
--meta-arago,git://arago-project.org/git/meta-arago.git,dunfell-next,HEAD,layers=meta-arago-distro:meta-arago-extras
-+meta-arago,git://git.yoctoproject.org/meta-arago,dunfell-next,HEAD,layers=meta-arago-distro:meta-arago-extras
- # meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
- # meta-python2,git://git.openembedded.org/meta-python2,dunfell,HEAD,layers=
- meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
-diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.txt
-index f989ee125734..07886793a7ab 100644
---- a/configs/arago-master-config.txt
-+++ b/configs/arago-master-config.txt
-@@ -2,7 +2,7 @@
- # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
- 
- bitbake,git://git.openembedded.org/bitbake,master,HEAD
--meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
-+meta-arago,git://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-distro:meta-arago-extras
- #meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
- meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
- meta-virtualization,git://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
+Nishanth Menon (3):
+  sample-files: Add a URL redirection gitconfig sample file
+  configs: Get rid of ancient tracking configs
+  configs: arago*.txt: Revise meta-arago repo towards yoctoproject.org
+    primary
+
+ configs/arago-daisy-config.txt        | 12 ------------
+ configs/arago-danny-config.txt        | 11 -----------
+ configs/arago-denzil-config.txt       | 11 -----------
+ configs/arago-dora-config.txt         | 12 ------------
+ configs/arago-dunfell-config.txt      |  2 +-
+ configs/arago-dunfell-next-config.txt |  2 +-
+ configs/arago-dylan-config.txt        | 12 ------------
+ configs/arago-fido-config.txt         | 12 ------------
+ configs/arago-krogoth-config.txt      | 12 ------------
+ configs/arago-master-config.txt       |  2 +-
+ configs/arago-morty-config.txt        | 14 --------------
+ configs/arago-rocko-config.txt        | 13 -------------
+ configs/arago-thud-config.txt         | 15 ---------------
+ configs/arago-zeus-config.txt         | 15 ---------------
+ configs/arago-zeus-next-config.txt    | 15 ---------------
+ configs/distroless-morty-config.txt   |  7 -------
+ configs/distroless-rocko-config.txt   |  7 -------
+ configs/distroless-thud-config.txt    |  7 -------
+ configs/distroless-zeus-config.txt    |  7 -------
+ configs/latest-all-head-config.txt    | 11 -----------
+ configs/poky-morty-config.txt         |  7 -------
+ configs/poky-rocko-config.txt         |  7 -------
+ configs/poky-thud-config.txt          |  7 -------
+ configs/poky-zeus-config.txt          |  7 -------
+ sample-files/gitconfig.sample         | 16 ++++++++++++++++
+ 25 files changed, 19 insertions(+), 224 deletions(-)
+ delete mode 100644 configs/arago-daisy-config.txt
+ delete mode 100644 configs/arago-danny-config.txt
+ delete mode 100644 configs/arago-denzil-config.txt
+ delete mode 100644 configs/arago-dora-config.txt
+ delete mode 100644 configs/arago-dylan-config.txt
+ delete mode 100644 configs/arago-fido-config.txt
+ delete mode 100644 configs/arago-krogoth-config.txt
+ delete mode 100644 configs/arago-morty-config.txt
+ delete mode 100644 configs/arago-rocko-config.txt
+ delete mode 100644 configs/arago-thud-config.txt
+ delete mode 100644 configs/arago-zeus-config.txt
+ delete mode 100644 configs/arago-zeus-next-config.txt
+ delete mode 100644 configs/distroless-morty-config.txt
+ delete mode 100644 configs/distroless-rocko-config.txt
+ delete mode 100644 configs/distroless-thud-config.txt
+ delete mode 100644 configs/distroless-zeus-config.txt
+ delete mode 100644 configs/latest-all-head-config.txt
+ delete mode 100644 configs/poky-morty-config.txt
+ delete mode 100644 configs/poky-rocko-config.txt
+ delete mode 100644 configs/poky-thud-config.txt
+ delete mode 100644 configs/poky-zeus-config.txt
+ create mode 100644 sample-files/gitconfig.sample
+
+[1] http://arago-project.org/pipermail/meta-arago/2021-June/013222.html
 -- 
 2.32.0
 
