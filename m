@@ -1,42 +1,44 @@
 Return-Path: <nm@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 7AF4752A4F
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id 963C452AD4
 	for <meta-arago@arago-project.org>;
 	Wed, 23 Jun 2021 21:43:22 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15NLhMrv018523;
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 15NLhMtf065733;
 	Wed, 23 Jun 2021 16:43:22 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1624484602;
-	bh=DWF+Z2i89lSLlET6zjdv0bcOCfNePTk4H2B6/hPBEc4=;
-	h=From:To:CC:Subject:Date;
-	b=ZVk6UvU5BU0zAAfi4z2IBsej/QwVukklGhUYuUKl3e4msmbEYTCWG2wk1zz31ltTZ
-	UXERfpSQaIJ4bCTB0CpwnHy2e0514ClzUsYOgauSapggWB7phPq7nxDIiCw0PtHpkN
-	nknwE+mahDA4j8nLcdpp5MzzMx5GowrIhonm9gTk=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15NLhMq5037345
+	bh=86lOVYMEwaF0PbuDI09vk9y3/aDt3JC26zRsoJic2Ic=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=AY02RKMKILG69fpM/sBc6ml0zPxaQzfni5xY0eCyComtu2Q1IB5RG7j4dQYyQ8Yot
+	zMFs0ScTPLxCB0QSCHzTVgPAkZvYCy5AVbVEa98WpkieOzmJl3+/1+KSPWf9VUU3Fc
+	GcMZG0gB0yvngkyv6W6ADw67l/WmTB+sih9JddZ4=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 15NLhMep041493
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
 	Wed, 23 Jun 2021 16:43:22 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
 	Wed, 23 Jun 2021 16:43:22 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
+	(10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Wed, 23 Jun 2021 16:43:21 -0500
+	Frontend Transport; Wed, 23 Jun 2021 16:43:22 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15NLhMk7030847;
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 15NLhMhY097519;
 	Wed, 23 Jun 2021 16:43:22 -0500
 From: Nishanth Menon <nm@ti.com>
 To: <praneeth@ti.com>, <yogeshs@ti.com>, <denis@denix.org>
-Date: Wed, 23 Jun 2021 16:43:17 -0500
-Message-ID: <20210623214320.9645-1-nm@ti.com>
+Date: Wed, 23 Jun 2021 16:43:19 -0500
+Message-ID: <20210623214320.9645-3-nm@ti.com>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20210623214320.9645-1-nm@ti.com>
+References: <20210623214320.9645-1-nm@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: [oe-layersetup PATCH V2 0/3] Lets start sunsetting arago-project.org
+Subject: [oe-layersetup PATCH V2 2/3] configs: Get rid of ancient tracking configs
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,62 +55,45 @@ X-List-Received-Date: Wed, 23 Jun 2021 21:43:23 -0000
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Hi All,
+Lets get rid of older configs that really don't make much sense.
 
-V2 of the series posted [1] - Update is patch #2 is new in the series
-and replaces the previous cleanup by dropping things.
+https://wiki.yoctoproject.org/wiki/Releases
 
-This is the first patch in the series of patches to various
-repos for us to move away from arago-project.org domain name.
+Our current support is attempted on dunfell and master at this point in
+time. Lets keeps things laser focussed by removing older tracking
+configs from the system. If folks do need such a configuration, they
+always have the option of picking it from git history.
 
-NOTE: we will maintain the meta-arago distro, but we move in steps
-towards an integrated ecosystem in yocto project before we attempt to
-close the domain name down.
+While at this, drop the un-maintained latest-all-head-config which is
+redundant since we have master tracking config as well.
 
-NOTE:
-1. I am not modifying release configs since those will need to be
-   handled with a variation of url redirection of which a sample is
-   provided in this series. Further updates are needed.
-3. Existing git repos in arago-project.org are still kept updated, but
-   once all references are redirected, we can mark the git repos in
-   arago-project.org as no longer maintained.
-3. If there are specific additional questions, please pop them out..
-   lets discuss - also note that we will migrate the mailing list to
-   yoctoproject.org once the infrastructural pieces are in place.
+Suggested-by: Denys Dmytriyenko <denis@denix.org>
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+V2: New patch
 
-
-Nishanth Menon (3):
-  sample-files: Add a URL redirection gitconfig sample file
-  configs: Get rid of ancient tracking configs
-  configs: arago*.txt: Revise meta-arago repo towards yoctoproject.org
-    primary
-
- configs/arago-daisy-config.txt        | 12 ------------
- configs/arago-danny-config.txt        | 11 -----------
- configs/arago-denzil-config.txt       | 11 -----------
- configs/arago-dora-config.txt         | 12 ------------
- configs/arago-dunfell-config.txt      |  2 +-
- configs/arago-dunfell-next-config.txt |  2 +-
- configs/arago-dylan-config.txt        | 12 ------------
- configs/arago-fido-config.txt         | 12 ------------
- configs/arago-krogoth-config.txt      | 12 ------------
- configs/arago-master-config.txt       |  2 +-
- configs/arago-morty-config.txt        | 14 --------------
- configs/arago-rocko-config.txt        | 13 -------------
- configs/arago-thud-config.txt         | 15 ---------------
- configs/arago-zeus-config.txt         | 15 ---------------
- configs/arago-zeus-next-config.txt    | 15 ---------------
- configs/distroless-morty-config.txt   |  7 -------
- configs/distroless-rocko-config.txt   |  7 -------
- configs/distroless-thud-config.txt    |  7 -------
- configs/distroless-zeus-config.txt    |  7 -------
- configs/latest-all-head-config.txt    | 11 -----------
- configs/poky-morty-config.txt         |  7 -------
- configs/poky-rocko-config.txt         |  7 -------
- configs/poky-thud-config.txt          |  7 -------
- configs/poky-zeus-config.txt          |  7 -------
- sample-files/gitconfig.sample         | 16 ++++++++++++++++
- 25 files changed, 19 insertions(+), 224 deletions(-)
+ configs/arago-daisy-config.txt      | 12 ------------
+ configs/arago-danny-config.txt      | 11 -----------
+ configs/arago-denzil-config.txt     | 11 -----------
+ configs/arago-dora-config.txt       | 12 ------------
+ configs/arago-dylan-config.txt      | 12 ------------
+ configs/arago-fido-config.txt       | 12 ------------
+ configs/arago-krogoth-config.txt    | 12 ------------
+ configs/arago-morty-config.txt      | 14 --------------
+ configs/arago-rocko-config.txt      | 13 -------------
+ configs/arago-thud-config.txt       | 15 ---------------
+ configs/arago-zeus-config.txt       | 15 ---------------
+ configs/arago-zeus-next-config.txt  | 15 ---------------
+ configs/distroless-morty-config.txt |  7 -------
+ configs/distroless-rocko-config.txt |  7 -------
+ configs/distroless-thud-config.txt  |  7 -------
+ configs/distroless-zeus-config.txt  |  7 -------
+ configs/latest-all-head-config.txt  | 11 -----------
+ configs/poky-morty-config.txt       |  7 -------
+ configs/poky-rocko-config.txt       |  7 -------
+ configs/poky-thud-config.txt        |  7 -------
+ configs/poky-zeus-config.txt        |  7 -------
+ 21 files changed, 221 deletions(-)
  delete mode 100644 configs/arago-daisy-config.txt
  delete mode 100644 configs/arago-danny-config.txt
  delete mode 100644 configs/arago-denzil-config.txt
@@ -130,9 +115,354 @@ Nishanth Menon (3):
  delete mode 100644 configs/poky-rocko-config.txt
  delete mode 100644 configs/poky-thud-config.txt
  delete mode 100644 configs/poky-zeus-config.txt
- create mode 100644 sample-files/gitconfig.sample
 
-[1] http://arago-project.org/pipermail/meta-arago/2021-June/013222.html
+diff --git a/configs/arago-daisy-config.txt b/configs/arago-daisy-config.txt
+deleted file mode 100644
+index 5b5bb841b140..000000000000
+--- a/configs/arago-daisy-config.txt
++++ /dev/null
+@@ -1,12 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,1.26,HEAD,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,daisy,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,17eb158c6d2cd290b054b5bd54311aa44a02d04d,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,daisy,HEAD,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
+-meta-ti,git://arago-project.org/git/meta-ti.git,daisy,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,daisy,HEAD,layers=meta-linaro-toolchain
+-oe-core,git://git.openembedded.org/openembedded-core,daisy,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago.conf.sample
+diff --git a/configs/arago-danny-config.txt b/configs/arago-danny-config.txt
+deleted file mode 100644
+index 88334d244c87..000000000000
+--- a/configs/arago-danny-config.txt
++++ /dev/null
+@@ -1,11 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,master,1.17.0,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,danny,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,danny,HEAD,layers=toolchain-layer:meta-oe
+-meta-ti,git://arago-project.org/git/meta-ti.git,danny,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,danny,HEAD,layers=
+-oe-core,git://git.openembedded.org/openembedded-core,danny,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago.conf.sample
+diff --git a/configs/arago-denzil-config.txt b/configs/arago-denzil-config.txt
+deleted file mode 100644
+index 6a627c45a828..000000000000
+--- a/configs/arago-denzil-config.txt
++++ /dev/null
+@@ -1,11 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,master,1.15.2,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,denzil,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,denzil,HEAD,layers=toolchain-layer:meta-oe
+-meta-ti,git://arago-project.org/git/meta-ti.git,denzil,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,denzil,HEAD,layers=
+-oe-core,git://git.openembedded.org/openembedded-core,denzil,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers-denzil.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago.conf.sample
+diff --git a/configs/arago-dora-config.txt b/configs/arago-dora-config.txt
+deleted file mode 100644
+index 84366c254fbb..000000000000
+--- a/configs/arago-dora-config.txt
++++ /dev/null
+@@ -1,12 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,1.20,HEAD,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,dora,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dora,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,dora,HEAD,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
+-meta-ti,git://arago-project.org/git/meta-ti.git,dora,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dora,HEAD,layers=meta-linaro-toolchain
+-oe-core,git://git.openembedded.org/openembedded-core,dora,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago.conf.sample
+diff --git a/configs/arago-dylan-config.txt b/configs/arago-dylan-config.txt
+deleted file mode 100644
+index 7fcd48dc47ad..000000000000
+--- a/configs/arago-dylan-config.txt
++++ /dev/null
+@@ -1,12 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87379bf629066f6662458,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,dylan,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,HEAD,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
+-meta-ti,git://arago-project.org/git/meta-ti.git,dylan,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,HEAD,layers=meta-linaro-toolchain
+-oe-core,git://git.openembedded.org/openembedded-core,dylan,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago.conf.sample
+diff --git a/configs/arago-fido-config.txt b/configs/arago-fido-config.txt
+deleted file mode 100644
+index 2fe6152ad847..000000000000
+--- a/configs/arago-fido-config.txt
++++ /dev/null
+@@ -1,12 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,1.26,HEAD,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,fido,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,jethro,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,fido,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe
+-meta-ti,git://arago-project.org/git/meta-ti.git,fido,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,fido,HEAD,layers=meta-linaro-toolchain
+-oe-core,git://git.openembedded.org/openembedded-core,fido,12520d7f729fe3d07c2f94b813994718edb2d987,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/arago-krogoth-config.txt b/configs/arago-krogoth-config.txt
+deleted file mode 100644
+index 731a69d3a946..000000000000
+--- a/configs/arago-krogoth-config.txt
++++ /dev/null
+@@ -1,12 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,1.30,HEAD,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,krogoth,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,krogoth,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,krogoth,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe
+-meta-ti,git://git.yoctoproject.org/meta-ti,krogoth,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,krogoth,HEAD,layers=meta-linaro-toolchain:meta-optee
+-oe-core,git://git.openembedded.org/openembedded-core,krogoth,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/arago-morty-config.txt b/configs/arago-morty-config.txt
+deleted file mode 100644
+index f4014fd3a988..000000000000
+--- a/configs/arago-morty-config.txt
++++ /dev/null
+@@ -1,14 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,1.32,HEAD,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,morty,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
+-meta-openamp,git://github.com/OpenAMP/meta-openamp.git,morty,HEAD,layers=
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,morty,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe:meta-gnome
+-meta-ti,git://git.yoctoproject.org/meta-ti,morty,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,morty,HEAD,layers=meta-linaro-toolchain:meta-optee
+-oe-core,git://git.openembedded.org/openembedded-core,morty,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/arago-rocko-config.txt b/configs/arago-rocko-config.txt
+deleted file mode 100644
+index 14038aab407a..000000000000
+--- a/configs/arago-rocko-config.txt
++++ /dev/null
+@@ -1,13 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,1.36,HEAD,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,rocko,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,rocko,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,rocko,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome
+-meta-ti,git://git.yoctoproject.org/meta-ti,rocko,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,rocko,HEAD,layers=meta-linaro-toolchain:meta-optee
+-oe-core,git://git.openembedded.org/openembedded-core,rocko,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/arago-thud-config.txt b/configs/arago-thud-config.txt
+deleted file mode 100644
+index 5df05738172a..000000000000
+--- a/configs/arago-thud-config.txt
++++ /dev/null
+@@ -1,15 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,1.40,HEAD
+-meta-arago,git://arago-project.org/git/meta-arago.git,thud,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,thud,HEAD,layers=
+-meta-virtualization,git://git.yoctoproject.org/meta-virtualization,thud,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,thud,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+-# meta-ti,git://git.yoctoproject.org/meta-ti,thud,HEAD,layers=
+-meta-ti,git://git.yoctoproject.org/meta-ti,thud-next,HEAD,layers=
+-meta-linaro,http://git.linaro.org/openembedded/meta-linaro.git,thud,615ea7561b844a3867cee4299d83d605c10b02ab,layers=meta-linaro-toolchain:meta-optee
+-oe-core,git://git.openembedded.org/openembedded-core,thud,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/arago-zeus-config.txt b/configs/arago-zeus-config.txt
+deleted file mode 100644
+index d33b277c5164..000000000000
+--- a/configs/arago-zeus-config.txt
++++ /dev/null
+@@ -1,15 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,1.44,HEAD
+-meta-arago,git://arago-project.org/git/meta-arago.git,zeus,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,zeus,HEAD,layers=
+-meta-selinux,git://git.yoctoproject.org/meta-selinux,zeus,HEAD,layers=
+-meta-virtualization,git://git.yoctoproject.org/meta-virtualization,zeus,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,zeus,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+-meta-ti,git://git.yoctoproject.org/meta-ti,zeus,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,zeus,HEAD,layers=meta-linaro-toolchain:meta-optee
+-oe-core,git://git.openembedded.org/openembedded-core,zeus,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers-zeus-browser.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/arago-zeus-next-config.txt b/configs/arago-zeus-next-config.txt
+deleted file mode 100644
+index 5377781692ba..000000000000
+--- a/configs/arago-zeus-next-config.txt
++++ /dev/null
+@@ -1,15 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-
+-bitbake,git://git.openembedded.org/bitbake,1.44,HEAD
+-meta-arago,git://arago-project.org/git/meta-arago.git,zeus-next,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+-meta-qt5,git://github.com/meta-qt5/meta-qt5.git,zeus,HEAD,layers=
+-meta-selinux,git://git.yoctoproject.org/meta-selinux,zeus,HEAD,layers=
+-meta-virtualization,git://git.yoctoproject.org/meta-virtualization,zeus,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,zeus,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+-meta-ti,git://git.yoctoproject.org/meta-ti,zeus-next,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,zeus,HEAD,layers=meta-linaro-toolchain:meta-optee
+-oe-core,git://git.openembedded.org/openembedded-core,zeus,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers-zeus-browser.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+diff --git a/configs/distroless-morty-config.txt b/configs/distroless-morty-config.txt
+deleted file mode 100644
+index 7c5938000fb1..000000000000
+--- a/configs/distroless-morty-config.txt
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-bitbake,git://git.openembedded.org/bitbake,1.32,HEAD,layers=
+-meta-ti,git://git.yoctoproject.org/meta-ti,morty,HEAD,layers=
+-oe-core,git://git.openembedded.org/openembedded-core,morty,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local.conf.sample
+diff --git a/configs/distroless-rocko-config.txt b/configs/distroless-rocko-config.txt
+deleted file mode 100644
+index b84add6be5b9..000000000000
+--- a/configs/distroless-rocko-config.txt
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-bitbake,git://git.openembedded.org/bitbake,1.36,HEAD,layers=
+-meta-ti,git://git.yoctoproject.org/meta-ti,rocko,HEAD,layers=
+-oe-core,git://git.openembedded.org/openembedded-core,rocko,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local.conf.sample
+diff --git a/configs/distroless-thud-config.txt b/configs/distroless-thud-config.txt
+deleted file mode 100644
+index cdd484b8bf2c..000000000000
+--- a/configs/distroless-thud-config.txt
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-bitbake,git://git.openembedded.org/bitbake,1.40,HEAD
+-meta-ti,git://git.yoctoproject.org/meta-ti,thud,HEAD,layers=
+-oe-core,git://git.openembedded.org/openembedded-core,thud,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local.conf.sample
+diff --git a/configs/distroless-zeus-config.txt b/configs/distroless-zeus-config.txt
+deleted file mode 100644
+index 724bc2d789c4..000000000000
+--- a/configs/distroless-zeus-config.txt
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-bitbake,git://git.openembedded.org/bitbake,1.44,HEAD
+-meta-ti,git://git.yoctoproject.org/meta-ti,zeus,HEAD,layers=
+-oe-core,git://git.openembedded.org/openembedded-core,zeus,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local.conf.sample
+diff --git a/configs/latest-all-head-config.txt b/configs/latest-all-head-config.txt
+deleted file mode 100644
+index f6f164bd5897..000000000000
+--- a/configs/latest-all-head-config.txt
++++ /dev/null
+@@ -1,11 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-bitbake,git://git.openembedded.org/bitbake,master,HEAD,layers=
+-meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
+-meta-angstrom,git://github.com/Angstrom-distribution/meta-angstrom.git,master,HEAD,layers=
+-meta-openembedded,git://git.openembedded.org/meta-openembedded,master,HEAD,layers=toolchain-layer:meta-oe:meta-gpe:meta-gnome:meta-efl:meta-xfce:meta-systemd:meta-multimedia:meta-initramfs
+-meta-ti,git://arago-project.org/git/meta-ti.git,master,HEAD,layers=
+-meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,master,HEAD,layers=
+-oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local.conf.sample
+diff --git a/configs/poky-morty-config.txt b/configs/poky-morty-config.txt
+deleted file mode 100644
+index 6d7046550c2a..000000000000
+--- a/configs/poky-morty-config.txt
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-bitbake,git://git.openembedded.org/bitbake,1.32,HEAD,layers=
+-poky,git://git.yoctoproject.org/poky,morty,HEAD,layers=meta:meta-poky:meta-yocto-bsp
+-meta-ti,git://git.yoctoproject.org/meta-ti,morty,HEAD,layers=
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-poky.conf.sample
+diff --git a/configs/poky-rocko-config.txt b/configs/poky-rocko-config.txt
+deleted file mode 100644
+index 413a060b7174..000000000000
+--- a/configs/poky-rocko-config.txt
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-bitbake,git://git.openembedded.org/bitbake,1.36,HEAD,layers=
+-poky,git://git.yoctoproject.org/poky,rocko,HEAD,layers=meta:meta-poky:meta-yocto-bsp
+-meta-ti,git://git.yoctoproject.org/meta-ti,rocko,HEAD,layers=
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-poky.conf.sample
+diff --git a/configs/poky-thud-config.txt b/configs/poky-thud-config.txt
+deleted file mode 100644
+index 79d53138450e..000000000000
+--- a/configs/poky-thud-config.txt
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-bitbake,git://git.openembedded.org/bitbake,1.40,HEAD
+-poky,git://git.yoctoproject.org/poky,thud,HEAD,layers=meta:meta-poky:meta-yocto-bsp
+-meta-ti,git://git.yoctoproject.org/meta-ti,thud,HEAD,layers=
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-poky.conf.sample
+diff --git a/configs/poky-zeus-config.txt b/configs/poky-zeus-config.txt
+deleted file mode 100644
+index d1d944a3c414..000000000000
+--- a/configs/poky-zeus-config.txt
++++ /dev/null
+@@ -1,7 +0,0 @@
+-# This file takes repo entries in the format
+-# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+-bitbake,git://git.openembedded.org/bitbake,1.44,HEAD
+-poky,git://git.yoctoproject.org/poky,zeus,HEAD,layers=meta:meta-poky:meta-yocto-bsp
+-meta-ti,git://git.yoctoproject.org/meta-ti,zeus,HEAD,layers=
+-OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-poky.conf.sample
 -- 
 2.32.0
 
