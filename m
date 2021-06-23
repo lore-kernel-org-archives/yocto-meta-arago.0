@@ -1,34 +1,34 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 6A15B52A4B
+	by arago-project.org (Postfix) with ESMTPS id E590752A4B
 	for <meta-arago@arago-project.org>;
-	Wed, 23 Jun 2021 19:09:43 +0000 (UTC)
+	Wed, 23 Jun 2021 19:13:13 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5BFE740C53;
-	Wed, 23 Jun 2021 19:09:43 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 07A4940C53;
+	Wed, 23 Jun 2021 19:13:14 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id GKR5N031o1od; Wed, 23 Jun 2021 19:09:43 +0000 (UTC)
+	with ESMTP id 30A7C50PzEtm; Wed, 23 Jun 2021 19:13:13 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 27DE0409E0;
-	Wed, 23 Jun 2021 19:09:40 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C2E4B409E0;
+	Wed, 23 Jun 2021 19:13:10 +0000 (UTC)
 Received: by mail.denix.org (Postfix, from userid 1000)
-	id D616B174603; Wed, 23 Jun 2021 15:09:39 -0400 (EDT)
-Date: Wed, 23 Jun 2021 15:09:39 -0400
+	id 8048F174603; Wed, 23 Jun 2021 15:13:10 -0400 (EDT)
+Date: Wed, 23 Jun 2021 15:13:10 -0400
 From: Denys Dmytriyenko <denis@denix.org>
 To: Nishanth Menon <nm@ti.com>
-Message-ID: <20210623190939.GH1528@denix.org>
+Message-ID: <20210623191310.GI1528@denix.org>
 References: <20210623023538.32735-1-nm@ti.com>
-	<20210623023538.32735-3-nm@ti.com>
+	<20210623023538.32735-4-nm@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20210623023538.32735-3-nm@ti.com>
+In-Reply-To: <20210623023538.32735-4-nm@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org
-Subject: Re: [oe-layersetup PATCH 2/3] configs: Redirect older meta-ti to yoctoproject primary repo
+Subject: Re: [oe-layersetup PATCH 3/3] configs: *.txt: Revise meta-arago repo towards yoctoproject.org primary
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,137 +41,252 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jun 2021 19:09:43 -0000
+X-List-Received-Date: Wed, 23 Jun 2021 19:13:14 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-I'd suggest moving out such old "legacy" configs up till at least Rocko into a 
-separate folder (if not remove completely):
-
-Rocko
-Pyro
-Morty
-Krogoth
-Jethro
-Fido
-Dizzy
-Daisy
-Dora
-Dylan
-Danny
-Denzil
-
-E.g. "Denzil" was released all the way back in 2012!
-https://wiki.yoctoproject.org/wiki/Releases
+Same comment - may want to consider sunsetting older releases configs and only 
+keeping Thud, Zeus or Dunfell onwards updated.
 
 
-
-On Tue, Jun 22, 2021 at 09:35:37PM -0500, Nishanth Menon wrote:
-> Redirect the older meta-ti references from arago-project to yoctoproject
-> primary repository.
+On Tue, Jun 22, 2021 at 09:35:38PM -0500, Nishanth Menon wrote:
+> Now that yoctoproject.org git repo is live, lets move references away
+> from arago-project.org.
+> 
+> This is one of the initial cleanup steps towards eventually sunsetting
+> the arago-project.org
+> 
+> See sample-files/gitconfig.sample for examples of how to redirect
+> repository using older urls to new locations
 > 
 > Signed-off-by: Nishanth Menon <nm@ti.com>
 > ---
->  configs/arago-daisy-config.txt     | 2 +-
->  configs/arago-danny-config.txt     | 2 +-
->  configs/arago-denzil-config.txt    | 2 +-
->  configs/arago-dora-config.txt      | 2 +-
->  configs/arago-dylan-config.txt     | 2 +-
->  configs/arago-fido-config.txt      | 2 +-
->  configs/latest-all-head-config.txt | 2 +-
->  7 files changed, 7 insertions(+), 7 deletions(-)
+>  configs/arago-daisy-config.txt        | 2 +-
+>  configs/arago-danny-config.txt        | 2 +-
+>  configs/arago-denzil-config.txt       | 2 +-
+>  configs/arago-dora-config.txt         | 2 +-
+>  configs/arago-dunfell-config.txt      | 2 +-
+>  configs/arago-dunfell-next-config.txt | 2 +-
+>  configs/arago-dylan-config.txt        | 2 +-
+>  configs/arago-fido-config.txt         | 2 +-
+>  configs/arago-krogoth-config.txt      | 2 +-
+>  configs/arago-master-config.txt       | 2 +-
+>  configs/arago-morty-config.txt        | 2 +-
+>  configs/arago-rocko-config.txt        | 2 +-
+>  configs/arago-thud-config.txt         | 2 +-
+>  configs/arago-zeus-config.txt         | 2 +-
+>  configs/arago-zeus-next-config.txt    | 2 +-
+>  configs/latest-all-head-config.txt    | 2 +-
+>  16 files changed, 16 insertions(+), 16 deletions(-)
 > 
 > diff --git a/configs/arago-daisy-config.txt b/configs/arago-daisy-config.txt
-> index 5b5bb841b140..944ae3c1dbda 100644
+> index 944ae3c1dbda..e864b6fc36e2 100644
 > --- a/configs/arago-daisy-config.txt
 > +++ b/configs/arago-daisy-config.txt
-> @@ -5,7 +5,7 @@ bitbake,git://git.openembedded.org/bitbake,1.26,HEAD,layers=
->  meta-arago,git://arago-project.org/git/meta-arago.git,daisy,HEAD,layers=meta-arago-distro:meta-arago-extras
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,1.26,HEAD,layers=
+> -meta-arago,git://arago-project.org/git/meta-arago.git,daisy,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,daisy,HEAD,layers=meta-arago-distro:meta-arago-extras
 >  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,17eb158c6d2cd290b054b5bd54311aa44a02d04d,layers=
 >  meta-openembedded,git://git.openembedded.org/meta-openembedded,daisy,HEAD,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
-> -meta-ti,git://arago-project.org/git/meta-ti.git,daisy,HEAD,layers=
-> +meta-ti,git://git.yoctoproject.org/meta-ti,daisy,HEAD,layers=
->  meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,daisy,HEAD,layers=meta-linaro-toolchain
->  oe-core,git://git.openembedded.org/openembedded-core,daisy,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
+>  meta-ti,git://git.yoctoproject.org/meta-ti,daisy,HEAD,layers=
 > diff --git a/configs/arago-danny-config.txt b/configs/arago-danny-config.txt
-> index 88334d244c87..b3efb76348b3 100644
+> index b3efb76348b3..44555004f363 100644
 > --- a/configs/arago-danny-config.txt
 > +++ b/configs/arago-danny-config.txt
-> @@ -4,7 +4,7 @@
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
 >  bitbake,git://git.openembedded.org/bitbake,master,1.17.0,layers=
->  meta-arago,git://arago-project.org/git/meta-arago.git,danny,HEAD,layers=meta-arago-distro:meta-arago-extras
+> -meta-arago,git://arago-project.org/git/meta-arago.git,danny,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,danny,HEAD,layers=meta-arago-distro:meta-arago-extras
 >  meta-openembedded,git://git.openembedded.org/meta-openembedded,danny,HEAD,layers=toolchain-layer:meta-oe
-> -meta-ti,git://arago-project.org/git/meta-ti.git,danny,HEAD,layers=
-> +meta-ti,git://git.yoctoproject.org/meta-ti,danny,HEAD,layers=
+>  meta-ti,git://git.yoctoproject.org/meta-ti,danny,HEAD,layers=
 >  meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,danny,HEAD,layers=
->  oe-core,git://git.openembedded.org/openembedded-core,danny,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
 > diff --git a/configs/arago-denzil-config.txt b/configs/arago-denzil-config.txt
-> index 6a627c45a828..818e4222bea9 100644
+> index 818e4222bea9..079a8862ffb4 100644
 > --- a/configs/arago-denzil-config.txt
 > +++ b/configs/arago-denzil-config.txt
-> @@ -4,7 +4,7 @@
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
 >  bitbake,git://git.openembedded.org/bitbake,master,1.15.2,layers=
->  meta-arago,git://arago-project.org/git/meta-arago.git,denzil,HEAD,layers=meta-arago-distro:meta-arago-extras
+> -meta-arago,git://arago-project.org/git/meta-arago.git,denzil,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,denzil,HEAD,layers=meta-arago-distro:meta-arago-extras
 >  meta-openembedded,git://git.openembedded.org/meta-openembedded,denzil,HEAD,layers=toolchain-layer:meta-oe
-> -meta-ti,git://arago-project.org/git/meta-ti.git,denzil,HEAD,layers=
-> +meta-ti,git://git.yoctoproject.org/meta-ti,denzil,HEAD,layers=
+>  meta-ti,git://git.yoctoproject.org/meta-ti,denzil,HEAD,layers=
 >  meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,denzil,HEAD,layers=
->  oe-core,git://git.openembedded.org/openembedded-core,denzil,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers-denzil.conf.sample
 > diff --git a/configs/arago-dora-config.txt b/configs/arago-dora-config.txt
-> index 84366c254fbb..d4f4de9bf639 100644
+> index d4f4de9bf639..1e8fa5d891bf 100644
 > --- a/configs/arago-dora-config.txt
 > +++ b/configs/arago-dora-config.txt
-> @@ -5,7 +5,7 @@ bitbake,git://git.openembedded.org/bitbake,1.20,HEAD,layers=
->  meta-arago,git://arago-project.org/git/meta-arago.git,dora,HEAD,layers=meta-arago-distro:meta-arago-extras
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,1.20,HEAD,layers=
+> -meta-arago,git://arago-project.org/git/meta-arago.git,dora,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,dora,HEAD,layers=meta-arago-distro:meta-arago-extras
 >  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dora,HEAD,layers=
 >  meta-openembedded,git://git.openembedded.org/meta-openembedded,dora,HEAD,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
-> -meta-ti,git://arago-project.org/git/meta-ti.git,dora,HEAD,layers=
-> +meta-ti,git://git.yoctoproject.org/meta-ti,dora,HEAD,layers=
->  meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dora,HEAD,layers=meta-linaro-toolchain
->  oe-core,git://git.openembedded.org/openembedded-core,dora,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
+>  meta-ti,git://git.yoctoproject.org/meta-ti,dora,HEAD,layers=
+> diff --git a/configs/arago-dunfell-config.txt b/configs/arago-dunfell-config.txt
+> index 173499bb3f8e..464b835b7a30 100644
+> --- a/configs/arago-dunfell-config.txt
+> +++ b/configs/arago-dunfell-config.txt
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,1.46,HEAD
+> -meta-arago,git://arago-project.org/git/meta-arago.git,dunfell,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,dunfell,HEAD,layers=meta-arago-distro:meta-arago-extras
+>  # meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+>  # meta-python2,git://git.openembedded.org/meta-python2,dunfell,HEAD,layers=
+>  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
+> diff --git a/configs/arago-dunfell-next-config.txt b/configs/arago-dunfell-next-config.txt
+> index 9f5eeb9a83e7..9657a727fda1 100644
+> --- a/configs/arago-dunfell-next-config.txt
+> +++ b/configs/arago-dunfell-next-config.txt
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,1.46,HEAD
+> -meta-arago,git://arago-project.org/git/meta-arago.git,dunfell-next,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,dunfell-next,HEAD,layers=meta-arago-distro:meta-arago-extras
+>  # meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+>  # meta-python2,git://git.openembedded.org/meta-python2,dunfell,HEAD,layers=
+>  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
 > diff --git a/configs/arago-dylan-config.txt b/configs/arago-dylan-config.txt
-> index 7fcd48dc47ad..3054a9dd7630 100644
+> index 3054a9dd7630..094ff0972dbf 100644
 > --- a/configs/arago-dylan-config.txt
 > +++ b/configs/arago-dylan-config.txt
-> @@ -5,7 +5,7 @@ bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87379bf6290
->  meta-arago,git://arago-project.org/git/meta-arago.git,dylan,HEAD,layers=meta-arago-distro:meta-arago-extras
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,master,bbb4fa427739912ff3b87379bf629066f6662458,layers=
+> -meta-arago,git://arago-project.org/git/meta-arago.git,dylan,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,dylan,HEAD,layers=meta-arago-distro:meta-arago-extras
 >  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
 >  meta-openembedded,git://git.openembedded.org/meta-openembedded,dylan,HEAD,layers=toolchain-layer:meta-networking:meta-ruby:meta-oe
-> -meta-ti,git://arago-project.org/git/meta-ti.git,dylan,HEAD,layers=
-> +meta-ti,git://git.yoctoproject.org/meta-ti,dylan,HEAD,layers=
->  meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,dylan,HEAD,layers=meta-linaro-toolchain
->  oe-core,git://git.openembedded.org/openembedded-core,dylan,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
+>  meta-ti,git://git.yoctoproject.org/meta-ti,dylan,HEAD,layers=
 > diff --git a/configs/arago-fido-config.txt b/configs/arago-fido-config.txt
-> index 2fe6152ad847..86a40773045e 100644
+> index 86a40773045e..42fd873b46cc 100644
 > --- a/configs/arago-fido-config.txt
 > +++ b/configs/arago-fido-config.txt
-> @@ -5,7 +5,7 @@ bitbake,git://git.openembedded.org/bitbake,1.26,HEAD,layers=
->  meta-arago,git://arago-project.org/git/meta-arago.git,fido,HEAD,layers=meta-arago-distro:meta-arago-extras
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,1.26,HEAD,layers=
+> -meta-arago,git://arago-project.org/git/meta-arago.git,fido,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,fido,HEAD,layers=meta-arago-distro:meta-arago-extras
 >  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,jethro,HEAD,layers=
 >  meta-openembedded,git://git.openembedded.org/meta-openembedded,fido,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe
-> -meta-ti,git://arago-project.org/git/meta-ti.git,fido,HEAD,layers=
-> +meta-ti,git://git.yoctoproject.org/meta-ti,fido,HEAD,layers=
->  meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,fido,HEAD,layers=meta-linaro-toolchain
->  oe-core,git://git.openembedded.org/openembedded-core,fido,12520d7f729fe3d07c2f94b813994718edb2d987,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
+>  meta-ti,git://git.yoctoproject.org/meta-ti,fido,HEAD,layers=
+> diff --git a/configs/arago-krogoth-config.txt b/configs/arago-krogoth-config.txt
+> index 731a69d3a946..731c6ee2009d 100644
+> --- a/configs/arago-krogoth-config.txt
+> +++ b/configs/arago-krogoth-config.txt
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,1.30,HEAD,layers=
+> -meta-arago,git://arago-project.org/git/meta-arago.git,krogoth,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,krogoth,HEAD,layers=meta-arago-distro:meta-arago-extras
+>  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,krogoth,HEAD,layers=
+>  meta-openembedded,git://git.openembedded.org/meta-openembedded,krogoth,HEAD,layers=meta-networking:meta-ruby:meta-python:meta-oe
+>  meta-ti,git://git.yoctoproject.org/meta-ti,krogoth,HEAD,layers=
+> diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.txt
+> index f989ee125734..07886793a7ab 100644
+> --- a/configs/arago-master-config.txt
+> +++ b/configs/arago-master-config.txt
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,master,HEAD
+> -meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-distro:meta-arago-extras
+>  #meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+>  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
+>  meta-virtualization,git://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
+> diff --git a/configs/arago-morty-config.txt b/configs/arago-morty-config.txt
+> index f4014fd3a988..c5b945d92a6e 100644
+> --- a/configs/arago-morty-config.txt
+> +++ b/configs/arago-morty-config.txt
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,1.32,HEAD,layers=
+> -meta-arago,git://arago-project.org/git/meta-arago.git,morty,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,morty,HEAD,layers=meta-arago-distro:meta-arago-extras
+>  meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
+>  meta-openamp,git://github.com/OpenAMP/meta-openamp.git,morty,HEAD,layers=
+>  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,morty,HEAD,layers=
+> diff --git a/configs/arago-rocko-config.txt b/configs/arago-rocko-config.txt
+> index 14038aab407a..660d152599c0 100644
+> --- a/configs/arago-rocko-config.txt
+> +++ b/configs/arago-rocko-config.txt
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,1.36,HEAD,layers=
+> -meta-arago,git://arago-project.org/git/meta-arago.git,rocko,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,rocko,HEAD,layers=meta-arago-distro:meta-arago-extras
+>  meta-browser,git://github.com/OSSystems/meta-browser.git,master,26d50665e2f7223c5f4ad7481a8d2431e7cb55fb,layers=
+>  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,rocko,HEAD,layers=
+>  meta-openembedded,git://git.openembedded.org/meta-openembedded,rocko,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome
+> diff --git a/configs/arago-thud-config.txt b/configs/arago-thud-config.txt
+> index 5df05738172a..8637289501f1 100644
+> --- a/configs/arago-thud-config.txt
+> +++ b/configs/arago-thud-config.txt
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,1.40,HEAD
+> -meta-arago,git://arago-project.org/git/meta-arago.git,thud,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,thud,HEAD,layers=meta-arago-distro:meta-arago-extras
+>  meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+>  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,thud,HEAD,layers=
+>  meta-virtualization,git://git.yoctoproject.org/meta-virtualization,thud,HEAD,layers=
+> diff --git a/configs/arago-zeus-config.txt b/configs/arago-zeus-config.txt
+> index d33b277c5164..56b466788884 100644
+> --- a/configs/arago-zeus-config.txt
+> +++ b/configs/arago-zeus-config.txt
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,1.44,HEAD
+> -meta-arago,git://arago-project.org/git/meta-arago.git,zeus,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,zeus,HEAD,layers=meta-arago-distro:meta-arago-extras
+>  meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+>  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,zeus,HEAD,layers=
+>  meta-selinux,git://git.yoctoproject.org/meta-selinux,zeus,HEAD,layers=
+> diff --git a/configs/arago-zeus-next-config.txt b/configs/arago-zeus-next-config.txt
+> index 5377781692ba..9771c9df831d 100644
+> --- a/configs/arago-zeus-next-config.txt
+> +++ b/configs/arago-zeus-next-config.txt
+> @@ -2,7 +2,7 @@
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  
+>  bitbake,git://git.openembedded.org/bitbake,1.44,HEAD
+> -meta-arago,git://arago-project.org/git/meta-arago.git,zeus-next,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,zeus-next,HEAD,layers=meta-arago-distro:meta-arago-extras
+>  meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+>  meta-qt5,git://github.com/meta-qt5/meta-qt5.git,zeus,HEAD,layers=
+>  meta-selinux,git://git.yoctoproject.org/meta-selinux,zeus,HEAD,layers=
 > diff --git a/configs/latest-all-head-config.txt b/configs/latest-all-head-config.txt
-> index f6f164bd5897..aeb634d07ac0 100644
+> index aeb634d07ac0..0cf6c50130f4 100644
 > --- a/configs/latest-all-head-config.txt
 > +++ b/configs/latest-all-head-config.txt
-> @@ -4,7 +4,7 @@ bitbake,git://git.openembedded.org/bitbake,master,HEAD,layers=
->  meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
+> @@ -1,7 +1,7 @@
+>  # This file takes repo entries in the format
+>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+>  bitbake,git://git.openembedded.org/bitbake,master,HEAD,layers=
+> -meta-arago,git://arago-project.org/git/meta-arago.git,master,HEAD,layers=meta-arago-distro:meta-arago-extras
+> +meta-arago,git://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-distro:meta-arago-extras
 >  meta-angstrom,git://github.com/Angstrom-distribution/meta-angstrom.git,master,HEAD,layers=
 >  meta-openembedded,git://git.openembedded.org/meta-openembedded,master,HEAD,layers=toolchain-layer:meta-oe:meta-gpe:meta-gnome:meta-efl:meta-xfce:meta-systemd:meta-multimedia:meta-initramfs
-> -meta-ti,git://arago-project.org/git/meta-ti.git,master,HEAD,layers=
-> +meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
->  meta-linaro,git://git.linaro.org/openembedded/meta-linaro.git,master,HEAD,layers=
->  oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
+>  meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
 > -- 
 > 2.32.0
 > 
