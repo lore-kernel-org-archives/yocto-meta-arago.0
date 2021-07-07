@@ -1,81 +1,46 @@
-Return-Path: <priya.ns@mistralsolutions.com>
-Received: from egress-ip4b.ess.de.barracuda.com
-	(egress-ip4b.ess.de.barracuda.com [18.185.115.208])
-	by arago-project.org (Postfix) with ESMTPS id EB42A52A72
+Return-Path: <nm@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id 8513152AC6
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Jul 2021 08:44:32 +0000 (UTC)
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com
-	[209.85.215.199]) by
-	mx-outbound42-17.eu-central-1c.ess.aws.cudaops.com
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NO); Wed, 07 Jul 2021 08:44:36 +0000
-Received: by mail-pg1-f199.google.com with SMTP id
-	j13-20020a63594d0000b0290228b387f4a3so1220350pgm.13
-	for <meta-arago@arago-project.org>;
-	Wed, 07 Jul 2021 01:44:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mistralsolutions.com; s=google;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding;
-	bh=mL1und60dY2rxVd/FchYbQbobH256/dJx7+QlljOIMw=;
-	b=MQUwjjucOQg6lDHZ4hb1LpJQlM+/9txyBJm3n2OuquLPkd7E0dVkHY5b182LIrxxrZ
-	Li0Z/+T9wo+B21jzyH1RzWhHCgYfCZud/714VTxlrjwTmhgPckOwVcuS6pKwvOXfSlDF
-	8tmtMh3antEoh832Lw5FiqpmKqzg4mHkai2yI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=mL1und60dY2rxVd/FchYbQbobH256/dJx7+QlljOIMw=;
-	b=q1vCw8BF50+UmTxzXEhm4PE6GTIB6dpqfmHhRYqD3UTSoy9zqQiTWhimJ3OjqvPZIG
-	1ACakWoA4zePE9R7ti9xlkYk0IQ7LktZRpAtjTGRl7q9HGQptyeIAtTtXZS60CV9lKu9
-	9o2VdMWxPSepUTVc5T17EjJkCwifwMg2A8H5hncZ/VAWl7de6Kr1vXi4ScNGj9gbyL4O
-	WIKcVnaSIHN8+z+JnOz/c6zKKG4Qw7/yyiYrWBl7nVAVfLstTNRu2DqgYQL/PSLgvAs1
-	eIp2xgdjQkAEpMGTZgcfeojdMS+f67avdXNCXsiAScrwIxTmfy9I7cM4r+oMDa3Eq0QD
-	MoaA==
-X-Gm-Message-State: AOAM531/hFGdR2osbHgJAYWtnwGX+8xXfi3im/YejBrLV3uBR80nBXpy
-	BTHhP7OCiDkLbxtnZQD0i5nwHfa4TZnw/Wl3Nmu76P7JPCLTzi0DlTiW1FvIjEO5LqVRagHUiJV
-	H1zCJXEvJy4eMj13flmWplxx4PDj2O3Rn1oBucnXWRyawKi26o+pcpigQOkJT
-X-Received: by 2002:a17:902:d20a:b029:129:b7ab:a248 with SMTP id
-	t10-20020a170902d20ab0290129b7aba248mr4540715ply.32.1625647475680;
-	Wed, 07 Jul 2021 01:44:35 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyCphbsRpNE0eHezbAWM7h+FrZ3Yq8K8lYXWwQth36A5TCFsZ1AKJtipDh+WFNHJUjO2YxXUg==
-X-Received: by 2002:a17:902:d20a:b029:129:b7ab:a248 with SMTP id
-	t10-20020a170902d20ab0290129b7aba248mr4540699ply.32.1625647475453;
-	Wed, 07 Jul 2021 01:44:35 -0700 (PDT)
-Received: from LAP000507.mistral.in ([157.51.169.79])
-	by smtp.gmail.com with ESMTPSA id
-	d1sm17126581pju.16.2021.07.07.01.44.33
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 07 Jul 2021 01:44:35 -0700 (PDT)
-From: Priya N S <priya.ns@mistralsolutions.com>
-X-Google-Original-From: Priya N S <priya.ns@ti.com>
-To: meta-arago@arago-project.org
-Date: Wed,  7 Jul 2021 08:44:14 +0530
-Message-Id: <20210707031414.46720-4-priya.ns@ti.com>
-X-Mailer: git-send-email 2.19.1.windows.1
-In-Reply-To: <20210707031414.46720-1-priya.ns@ti.com>
+	Wed,  7 Jul 2021 15:08:42 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 167F8lLx053738;
+	Wed, 7 Jul 2021 10:08:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1625670527;
+	bh=UuLWNVENjED3AENk/t07P0Z59WTtP/syeqV9sPVsqKc=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=Z88G7C8Yv4ZIDsd+m1PrsFOf2B9cxyiWd2ax1RskbsTMHbFVnL63hR6rU+bLAnVio
+	FvCEv23jE1SW9VBRu/05is1ZGtACnp4KIO/AcuTTAmGQYHR1sUXL84F90M4YhJDdzf
+	iZ+C4IYjgVtq/OB8PfoP0pfDlgn7PVkOssyk2Ih4=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 167F8l7T114621
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 7 Jul 2021 10:08:47 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Wed, 7 Jul 2021 10:08:47 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+	Frontend Transport; Wed, 7 Jul 2021 10:08:46 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 167F8kB8072042;
+	Wed, 7 Jul 2021 10:08:47 -0500
+Date: Wed, 7 Jul 2021 10:08:46 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Priya N S <priya.ns@mistralsolutions.com>
+Message-ID: <20210707150846.xbig63m3xffymcnq@overcast>
 References: <20210707031414.46720-1-priya.ns@ti.com>
+	<20210707031414.46720-4-priya.ns@ti.com>
 MIME-Version: 1.0
-X-BESS-ID: 1625647476-310769-23169-14533-1
-X-BESS-VER: 2019.1_20210706.2354
-X-BESS-Apparent-Source-IP: 209.85.215.199
-X-BESS-Outbound-Spam-Score: 1.09
-X-BESS-Outbound-Spam-Report: Code version 3.2,
-	rules version 3.2.2.233441 [from 
-	cloudscan20-223.eu-central-1b.ess.aws.cudaops.com]
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	1.08 DATE_IN_PAST_03_06_2   META:  
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-	0.01 DATE_IN_PAST_03_06 HEADER: Date: is 3 to 6 hours before Received:
-	date 
-X-BESS-Outbound-Spam-Status: SCORE=1.09 using account:ESS91090 scores of
-	KILL_LEVEL=7.0 tests=DATE_IN_PAST_03_06_2, BSF_BESS_OUTBOUND,
-	DATE_IN_PAST_03_06
-X-BESS-BRTS-Status: 1
-Cc: Priya N S <priya.ns@ti.com>, Sekhar Nori <nsekhar@ti.com>
-Subject: [tisdk-setup-scripts] [master] [PATCH-V3 3/3] create-sdcard.sh: Stop using cylinder as unit for partition size
+In-Reply-To: <20210707031414.46720-4-priya.ns@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org, Priya N S <priya.ns@ti.com>,
+	Sekhar Nori <nsekhar@ti.com>
+Subject: Re: [tisdk-setup-scripts] [master] [PATCH-V3 3/3] create-sdcard.sh: Stop using cylinder as unit for partition size
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -88,95 +53,113 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Jul 2021 08:44:34 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 07 Jul 2021 15:08:42 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-From: Priya N S <priya.ns@ti.com>
+On 08:44-20210707, Priya N S wrote:
+> From: Priya N S <priya.ns@ti.com>
+> 
+> * Cylinder size of sdcard is manufacturer dependent. To standardize
+>   sdcard partitioning remove the use of cylinder (cyl) unit.
+> * While at it shift to using fdisk for the partitioning the sdcard.
+>   fdisk is already used in the script and this reduces the dependencies
+>   of this script on available installed applications.
+> * This fixes cases where already partitioned cards were being detected
+>   as not partitioned because of size check elsewhere in the script
+>   failing.
+> 
+> Signed-off-by: Priya N S <priya.ns@ti.com>
+> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
+> ---
+>  create-sdcard.sh | 50 +++++++++++++++++++++++++++++++++++++++---------
+>  1 file changed, 41 insertions(+), 9 deletions(-)
+> 
+> diff --git a/create-sdcard.sh b/create-sdcard.sh
+> index d052312..546588b 100644
+> --- a/create-sdcard.sh
+> +++ b/create-sdcard.sh
+> @@ -501,11 +501,29 @@ SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
+>  
+>  echo DISK SIZE - $SIZE bytes
+>  
+> -parted -s $DRIVE mklabel msdos
+> -parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
+> -parted -s $DRIVE set 1 boot on
+> -parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 310
+> -parted -s $DRIVE unit cyl mkpart primary ext2 -- 310 -2
+> +cat << END | fdisk $DRIVE
+> +n
+> +p
+> +1
+> +
+> ++75M
 
-* Cylinder size of sdcard is manufacturer dependent. To standardize
-  sdcard partitioning remove the use of cylinder (cyl) unit.
-* While at it shift to using fdisk for the partitioning the sdcard.
-  fdisk is already used in the script and this reduces the dependencies
-  of this script on available installed applications.
-* This fixes cases where already partitioned cards were being detected
-  as not partitioned because of size check elsewhere in the script
-  failing.
+https://lists.yoctoproject.org/g/meta-ti/topic/83851299#13855
+Should we make boot partition 128MB as default to make sure it is in
+sync with wic image sizes?
 
-Signed-off-by: Priya N S <priya.ns@ti.com>
-Signed-off-by: Sekhar Nori <nsekhar@ti.com>
----
- create-sdcard.sh | 50 +++++++++++++++++++++++++++++++++++++++---------
- 1 file changed, 41 insertions(+), 9 deletions(-)
+> +n
+> +p
+> +2
+> +
+> ++2.4G
+> +n
+> +p
+> +3
+> +
+> +
+> +t
+> +1
+> +c
+> +a
+> +1
+> +w
+> +END
+>  
+>  
+>  cat << EOM
+> @@ -559,10 +577,24 @@ SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
+>  
+>  echo DISK SIZE - $SIZE bytes
+>  
+> -parted -s $DRIVE mklabel msdos
+> -parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
+> -parted -s $DRIVE set 1 boot on
+> -parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 -2
+> +cat << END | fdisk $DRIVE
+> +n
+> +p
+> +1
+> +
+> ++75M
+same ^^ ?
 
-diff --git a/create-sdcard.sh b/create-sdcard.sh
-index d052312..546588b 100644
---- a/create-sdcard.sh
-+++ b/create-sdcard.sh
-@@ -501,11 +501,29 @@ SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
- 
- echo DISK SIZE - $SIZE bytes
- 
--parted -s $DRIVE mklabel msdos
--parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
--parted -s $DRIVE set 1 boot on
--parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 310
--parted -s $DRIVE unit cyl mkpart primary ext2 -- 310 -2
-+cat << END | fdisk $DRIVE
-+n
-+p
-+1
-+
-++75M
-+n
-+p
-+2
-+
-++2.4G
-+n
-+p
-+3
-+
-+
-+t
-+1
-+c
-+a
-+1
-+w
-+END
- 
- 
- cat << EOM
-@@ -559,10 +577,24 @@ SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
- 
- echo DISK SIZE - $SIZE bytes
- 
--parted -s $DRIVE mklabel msdos
--parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
--parted -s $DRIVE set 1 boot on
--parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 -2
-+cat << END | fdisk $DRIVE
-+n
-+p
-+1
-+
-++75M
-+n
-+p
-+2
-+
-+
-+t
-+1
-+c
-+a
-+1
-+w
-+END
- 
- cat << EOM
- 
+> +n
+> +p
+> +2
+> +
+> +
+> +t
+> +1
+> +c
+> +a
+> +1
+> +w
+> +END
+>  
+>  cat << EOM
+>  
+> -- 
+> 2.19.1.windows.1
+> 
+> _______________________________________________
+> meta-arago mailing list
+> meta-arago@arago-project.org
+> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+
 -- 
-2.19.1.windows.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
