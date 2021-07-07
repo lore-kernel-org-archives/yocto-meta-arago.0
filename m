@@ -1,81 +1,81 @@
 Return-Path: <priya.ns@mistralsolutions.com>
 Received: from egress-ip4a.ess.de.barracuda.com
 	(egress-ip4a.ess.de.barracuda.com [18.184.203.227])
-	by arago-project.org (Postfix) with ESMTPS id 1FF4352ABF
+	by arago-project.org (Postfix) with ESMTPS id B158E52A72
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Jul 2021 08:44:27 +0000 (UTC)
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com
-	[209.85.216.69]) by
+	Wed,  7 Jul 2021 08:44:31 +0000 (UTC)
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com
+	[209.85.215.199]) by
 	mx-outbound14-245.eu-central-1a.ess.aws.cudaops.com
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NO); Wed, 07 Jul 2021 08:44:31 +0000
-Received: by mail-pj1-f69.google.com with SMTP id
-	q9-20020a17090a0649b029016ffc6b9665so3430522pje.1
+	verify=NO); Wed, 07 Jul 2021 08:44:35 +0000
+Received: by mail-pg1-f199.google.com with SMTP id
+	29-20020a63105d0000b029022c245c3492so155061pgq.17
 	for <meta-arago@arago-project.org>;
-	Wed, 07 Jul 2021 01:44:32 -0700 (PDT)
+	Wed, 07 Jul 2021 01:44:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=mistralsolutions.com; s=google;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references
 	:mime-version:content-transfer-encoding;
-	bh=iivYrwPsogYAimuGwTzEF1Zmc1GsdhYiUUGB4RGTRDE=;
-	b=G+gJZwcan6WC+FPvJ9CRTAoqFwQtTPdhHlf5NHkdXwgqnuato1ilDoZehxhDF9ga7N
-	JJg3PRNe4h+cOKFdbNm7Gixqx7tpl1ZN5m1zd06d5O1DuXAK5d1e5zCIM9mkFxCvHawP
-	VejaakTSYe2WrmZSHCJYHXX2IPO29WuslEkHc=
+	bh=sMPTVxOuaYnHaEWmqCaV25XSvV9FVSby8Pvs44szfo8=;
+	b=W6MFkk5MosCTZhjflj34OgMmSUF84Y0UdcDbROBKUM/GzvB0SyrzyM15RpZlxFIMzA
+	tMXy2ywGCinsoSRubYTvLJrB8V6T601PptRC7LwXBx4bcKWtmPM4nTc0IK4eOanTMW88
+	ReyyaJNXj45rxDlIpvGGpX2sGT10IMRZ/qqg0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references:mime-version:content-transfer-encoding;
-	bh=iivYrwPsogYAimuGwTzEF1Zmc1GsdhYiUUGB4RGTRDE=;
-	b=ZNAKxRMRCzQ9YMiQo1kt/MwYedESEB9XpIXDbh0L1ceDDS2QAmisxGwlRt+knOCcz+
-	RcOeJY29YKISyVGsjKfzkEz5FuRp6Aha44C7mL3NbxuylO7kslbBOg78n09gIxichPpK
-	DtIzrl0VV5ly8tEqnPFUAoiQDo251HaQdyRjSeHsY7xd5IsULSaA77Fd2z1/iDTC84+N
-	EJbCAO5OgV4bVAP+Ry4SMaPEZbzfoz9A0fMf8Doh3vLu6lTOoyGNsmb8NT7WXV1QxqxN
-	Rz9iHaEhsFOaQ2OOzDdYKVdrlb6lymo5Bl7yF2WMkippwzx8G7RmqX5vdNcioOCnJYgD
-	DB6g==
-X-Gm-Message-State: AOAM530d08qszhbCEN6hc+69idzRKLAjNrJ9lAjpp7c8i8SMo1o5plVS
-	jvKmIRPgYL7Tp3rPsZoIVR6YVxnf/Pgq2Cc05ucQ0zXr0ASbBK3BHO1jv/5lB5JZkKqywdFN8wT
-	JFlB2boyYANNNA+NJVEXwgAolr8nz7iUv1AC0brNk8yn0/V93wuUN7VEOFrZM
-X-Received: by 2002:a17:90a:3d47:: with SMTP id
-	o7mr5045395pjf.68.1625647470634; 
-	Wed, 07 Jul 2021 01:44:30 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzjHt09M++ij5lPRjas//qQRmYcebJMvvKVZaW/3SzRmILOEx6A2WJ7W39rUDrj189QlE6ECQ==
-X-Received: by 2002:a17:90a:3d47:: with SMTP id
-	o7mr5045375pjf.68.1625647470335; 
-	Wed, 07 Jul 2021 01:44:30 -0700 (PDT)
+	bh=sMPTVxOuaYnHaEWmqCaV25XSvV9FVSby8Pvs44szfo8=;
+	b=P99I/g1myaJOvD3UVCZWJ3ZH7FYggptohjcJh+3cSbZDJXawPPFuK3XjJ5qL648x4t
+	W+o/rlf/JLHhR0NgKFlarmJZb6ymxFpxcywM0hZ731MrDtpK3/sOdnsDBhTijv34/rox
+	0VouoslxX1angnbXc/AGqnmGLjYdxRMFOqT0Cku3apgJbZOQGZor/4iGQRIMsFVwrFHX
+	9vtIFI7OR2HPLk0r5gqCRqp3UvcjAQb7qj+h1gTPPXIguD0dTuBdJVCF9bqosopdRGTa
+	whrvW5PociJVPMPK2GxX2Wbm1q9sz/ycvnxz4Q6cPLf4LL7qHzGRSL0KavPdtE/H8BgF
+	mC5w==
+X-Gm-Message-State: AOAM533fOOXPozeLO+DV0Lqa6K4MzXQ0zvo+sXmXr36NddjOZ/Cqwq3y
+	laDcYtuSMF58+LigQCzCHSC/6abIpiVcycIW8pmr1M7tsnxIEmkyTQOeZ2iTg7AfTG2+XyX+dXg
+	kXZQnqhToQcAK0qeF8U1EVMPQqITmwUjwTMXIhawAU4J7pr8brkEXvc5qtMo8
+X-Received: by 2002:a17:90a:d994:: with SMTP id
+	d20mr7139681pjv.207.1625647473100; 
+	Wed, 07 Jul 2021 01:44:33 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwHKhjHLKags6KdjaPltIMbHw3PBgZyCJaW/MK8ugDNQkWd3z1oICz6fa8oU7ibCXdK3nW2mg==
+X-Received: by 2002:a17:90a:d994:: with SMTP id
+	d20mr7139667pjv.207.1625647472897; 
+	Wed, 07 Jul 2021 01:44:32 -0700 (PDT)
 Received: from LAP000507.mistral.in ([157.51.169.79])
 	by smtp.gmail.com with ESMTPSA id
-	d1sm17126581pju.16.2021.07.07.01.44.28
+	d1sm17126581pju.16.2021.07.07.01.44.30
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 07 Jul 2021 01:44:30 -0700 (PDT)
+	Wed, 07 Jul 2021 01:44:32 -0700 (PDT)
 From: Priya N S <priya.ns@mistralsolutions.com>
 X-Google-Original-From: Priya N S <priya.ns@ti.com>
 To: meta-arago@arago-project.org
-Date: Wed,  7 Jul 2021 08:44:12 +0530
-Message-Id: <20210707031414.46720-2-priya.ns@ti.com>
+Date: Wed,  7 Jul 2021 08:44:13 +0530
+Message-Id: <20210707031414.46720-3-priya.ns@ti.com>
 X-Mailer: git-send-email 2.19.1.windows.1
 In-Reply-To: <20210707031414.46720-1-priya.ns@ti.com>
 References: <20210707031414.46720-1-priya.ns@ti.com>
 MIME-Version: 1.0
-X-BESS-ID: 1625647471-303829-21306-14746-1
+X-BESS-ID: 1625647474-303829-21304-14771-1
 X-BESS-VER: 2019.1_20210706.2354
-X-BESS-Apparent-Source-IP: 209.85.216.69
+X-BESS-Apparent-Source-IP: 209.85.215.199
 X-BESS-Outbound-Spam-Score: 1.09
 X-BESS-Outbound-Spam-Report: Code version 3.2,
 	rules version 3.2.2.233441 [from 
-	cloudscan20-223.eu-central-1b.ess.aws.cudaops.com]
+	cloudscan16-193.eu-central-1b.ess.aws.cudaops.com]
 	Rule breakdown below
 	pts rule name              description
 	---- ---------------------- --------------------------------
 	1.08 DATE_IN_PAST_03_06_2   META:  
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
 	0.01 DATE_IN_PAST_03_06 HEADER: Date: is 3 to 6 hours before Received:
 	date 
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
 X-BESS-Outbound-Spam-Status: SCORE=1.09 using account:ESS91090 scores of
-	KILL_LEVEL=7.0 tests=DATE_IN_PAST_03_06_2, DATE_IN_PAST_03_06,
-	BSF_BESS_OUTBOUND
+	KILL_LEVEL=7.0 tests=DATE_IN_PAST_03_06_2, BSF_BESS_OUTBOUND,
+	DATE_IN_PAST_03_06
 X-BESS-BRTS-Status: 1
 Cc: Priya N S <priya.ns@ti.com>, Sekhar Nori <nsekhar@ti.com>
-Subject: [tisdk-setup-scripts] [master] [PATCH-V3 1/3] create-sdcard.sh: fix regex used for rootfs tarball
+Subject: [tisdk-setup-scripts] [master] [PATCH-V3 2/3] create-sdcard: Fix wrong rootfs tarball selection
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -88,58 +88,49 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Jul 2021 08:44:29 -0000
+X-List-Received-Date: Wed, 07 Jul 2021 08:44:32 -0000
 Content-Transfer-Encoding: 8bit
 
 From: Priya N S <priya.ns@ti.com>
 
-Filesystem tarballs present in SDK are in the format
-tisdk-<IMAGE_TYPE>-image-<MACHINE>.tar.xz. This is different from
-earlier format where 'rootfs' was present in all the filesystem
-tarball names. Update regex used for filesystem tarball search to
-use "image" as the keyword.
+* Validate user input of rootfs tarball selection.
+* This will not allow the user to proceed with wrong rootfs
+  tarball selection.
 
 Signed-off-by: Priya N S <priya.ns@ti.com>
 Signed-off-by: Sekhar Nori <nsekhar@ti.com>
 ---
- create-sdcard.sh | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
+ create-sdcard.sh | 17 +++++++++++++----
+ 1 file changed, 13 insertions(+), 4 deletions(-)
 
 diff --git a/create-sdcard.sh b/create-sdcard.sh
-index 736cd42..264095a 100644
+index 264095a..d052312 100644
 --- a/create-sdcard.sh
 +++ b/create-sdcard.sh
-@@ -752,10 +752,9 @@ if [ $FILEPATHOPTION -eq 1 ] ; then
- 	BOOTUENV=`ls $BOOTFILEPATH | grep uEnv.txt | awk {'print $1'}`
- 	#rootfs
- 	ROOTFILEPARTH="$PARSEPATH/filesystem"
--	#ROOTFSTAR=`ls  $ROOTFILEPARTH | grep tisdk.*rootfs | awk {'print $1'}`
- 
- 	#Make sure there is only 1 tar
--	CHECKNUMOFTAR=`ls $ROOTFILEPARTH | grep "tisdk.*rootfs" | grep 'tar.xz' | grep -n '' | grep '2:' | awk {'print $1'}`
-+	CHECKNUMOFTAR=`ls $ROOTFILEPARTH | grep "tisdk.*image" | grep 'tar.xz' | grep -n '' | grep '2:' | awk {'print $1'}`
- 	if [ -n "$CHECKNUMOFTAR" ]
- 	then
- cat << EOM
-@@ -767,15 +766,15 @@ cat << EOM
+@@ -766,10 +766,19 @@ cat << EOM
  ################################################################################
  
  EOM
--		ls --sort=size $ROOTFILEPARTH | grep "tisdk.*rootfs" | grep 'tar.xz' | grep -n '' | awk {'print "	" , $1'}
-+		ls --sort=size $ROOTFILEPARTH | grep "tisdk.*image" | grep 'tar.xz' | grep -n '' | awk {'print "	" , $1'}
- 		echo ""
- 		read -p "Enter Number of rootfs Tarball: " TARNUMBER
- 		echo " "
--		FOUNDTARFILENAME=`ls --sort=size $ROOTFILEPARTH | grep "rootfs" | grep 'tar.xz' | grep -n '' | grep "${TARNUMBER}:" | cut -c3- | awk {'print$1'}`
-+		FOUNDTARFILENAME=`ls --sort=size $ROOTFILEPARTH | grep "image" | grep 'tar.xz' | grep -n '' | grep "${TARNUMBER}:" | cut -c3- | awk {'print$1'}`
+-		ls --sort=size $ROOTFILEPARTH | grep "tisdk.*image" | grep 'tar.xz' | grep -n '' | awk {'print "	" , $1'}
+-		echo ""
+-		read -p "Enter Number of rootfs Tarball: " TARNUMBER
+-		echo " "
++		COUNT=`ls $ROOTFILEPARTH | grep "tisdk.*image" | grep 'tar.xz' | grep -n '' | awk {'print $1'} | wc -l`
++		while :
++		do
++			ls --sort=size $ROOTFILEPARTH | grep "tisdk.*image" | grep 'tar.xz' | grep -n '' | awk {'print "	" , $1'}
++			read -p "Enter Number of rootfs Tarball: " TARNUMBER
++			echo
++			if [ -z "${TARNUMBER//[1-$COUNT]}" ] && [ -n "$TARNUMBER" ] ; then
++				break
++			else
++				echo "Invalid selection: '$TARNUMBER'. Please use values from 1 to $COUNT"
++			fi
++			echo
++		done
+ 		FOUNDTARFILENAME=`ls --sort=size $ROOTFILEPARTH | grep "image" | grep 'tar.xz' | grep -n '' | grep "${TARNUMBER}:" | cut -c3- | awk {'print$1'}`
  		ROOTFSTAR=$FOUNDTARFILENAME
  
- 	else
--		ROOTFSTAR=`ls  $ROOTFILEPARTH | grep "tisdk.*rootfs" | grep 'tar.xz' | awk {'print $1'}`
-+		ROOTFSTAR=`ls  $ROOTFILEPARTH | grep "tisdk.*image" | grep 'tar.xz' | awk {'print $1'}`
- 	fi
- 
- 	ROOTFSUSERFILEPATH=$ROOTFILEPARTH/$ROOTFSTAR
 -- 
 2.19.1.windows.1
 
