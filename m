@@ -1,33 +1,33 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id C96AA52AB8
+	by arago-project.org (Postfix) with ESMTPS id E79E852ABD
 	for <meta-arago@arago-project.org>;
 	Thu,  8 Jul 2021 17:59:48 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 84C4740C9B;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 93E3F40C88;
 	Thu,  8 Jul 2021 17:59:54 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id 6U8ecF1sMiFN; Thu,  8 Jul 2021 17:59:54 +0000 (UTC)
+	with ESMTP id W0zIdd2l8CSC; Thu,  8 Jul 2021 17:59:54 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6A09A40BEC;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7348840C86;
 	Thu,  8 Jul 2021 17:59:53 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 23730174625;
+	by mail.denix.org (Postfix) with ESMTP id 31554174627;
 	Thu,  8 Jul 2021 13:59:53 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu,  8 Jul 2021 13:59:42 -0400
-Message-Id: <1625767184-49268-2-git-send-email-denis@denix.org>
+Date: Thu,  8 Jul 2021 13:59:44 -0400
+Message-Id: <1625767184-49268-4-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1625767184-49268-1-git-send-email-denis@denix.org>
 References: <1625767184-49268-1-git-send-email-denis@denix.org>
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [dunfell/master][PATCHv2 2/4] linux-libc-headers: update to 5.10 kernel headers
+Subject: [dunfell/master][PATCH 4/4] toolchain-gcc: use 5.10 kernel headers with internal toolchain
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,43 +40,37 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Jul 2021 17:59:50 -0000
+X-List-Received-Date: Thu, 08 Jul 2021 17:59:51 -0000
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
-This recipe is used when building using an internal toolchain. Use the same
-commit ID as for external-arm-toolchain.
-
-Kernel 5.10 had minor updates to the COPYING file, adjust checksum accordingly.
-
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
-v2 - update LIC_FILES_CHKSUM and explain the reason
+ meta-arago-distro/conf/distro/include/toolchain-gcc.inc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
- .../{linux-libc-headers_5.4.bb => linux-libc-headers_5.10.bb}       | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
- rename meta-arago-distro/recipes-kernel/linux-libc-headers/{linux-libc-headers_5.4.bb => linux-libc-headers_5.10.bb} (67%)
-
-diff --git a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.4.bb b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb
-similarity index 67%
-rename from meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.4.bb
-rename to meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb
-index c0a3709..353d8b5 100644
---- a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.4.bb
-+++ b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb
-@@ -4,8 +4,10 @@ PR_append = ".arago0"
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
+index 587ba94..0b2a533 100644
+--- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
++++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
+@@ -16,7 +16,7 @@ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-can
+ SDKGCCVERSION ?= "9%"
+ SDKBINUVERSION ?= "2.34%"
+ SDKGLIBCVERSION ?= "2.31%"
+-SDKLINUXLIBCVERSION ?= "5.4%"
++SDKLINUXLIBCVERSION ?= "5.10%"
  
- DEPENDS += "rsync-native"
+ PREFERRED_VERSION_gcc-crosssdk-${SDK_SYS} ?= "${SDKGCCVERSION}"
+ PREFERRED_VERSION_gcc-crosssdk-initial-${SDK_SYS} ?= "${SDKGCCVERSION}"
+@@ -35,7 +35,7 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
+ GCCVERSION ?= "9%"
+ BINUVERSION ?= "2.34%"
+ GLIBCVERSION ?= "2.31%"
+-LINUXLIBCVERSION ?= "5.4%"
++LINUXLIBCVERSION ?= "5.10%"
  
--BRANCH = "ti-linux-5.4.y"
--SRCREV = "1661da3fddf4cc3f62796ecfb5c572f1e5361bdf"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
-+
-+BRANCH = "ti-linux-5.10.y"
-+SRCREV = "73aa709ca10103b61fba3a07471dbb4dcb56db45"
- 
- KERNEL_GIT_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git"
- KERNEL_GIT_PROTOCOL = "git"
+ PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
+ PREFERRED_VERSION_binutils ?= "${BINUVERSION}"
 -- 
 2.7.4
 
