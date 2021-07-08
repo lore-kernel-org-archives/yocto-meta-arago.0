@@ -1,46 +1,47 @@
-Return-Path: <nm@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 8513152AC6
+Return-Path: <yogeshs@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTP id 78B4352AB8
 	for <meta-arago@arago-project.org>;
-	Wed,  7 Jul 2021 15:08:42 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 167F8lLx053738;
-	Wed, 7 Jul 2021 10:08:47 -0500
+	Thu,  8 Jul 2021 11:18:49 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 168BItwp060257;
+	Thu, 8 Jul 2021 06:18:55 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1625670527;
-	bh=UuLWNVENjED3AENk/t07P0Z59WTtP/syeqV9sPVsqKc=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Z88G7C8Yv4ZIDsd+m1PrsFOf2B9cxyiWd2ax1RskbsTMHbFVnL63hR6rU+bLAnVio
-	FvCEv23jE1SW9VBRu/05is1ZGtACnp4KIO/AcuTTAmGQYHR1sUXL84F90M4YhJDdzf
-	iZ+C4IYjgVtq/OB8PfoP0pfDlgn7PVkOssyk2Ih4=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 167F8l7T114621
+	s=ti-com-17Q1; t=1625743135;
+	bh=nQSniklZ/9Vm35DM9l8TgswHFKMD1q19YO4VII0OSYM=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To;
+	b=jUdJf71l6qHLnAGVDMM+bhnsCZMtBnZBMZBvBUuJHkjtYqaIj3nop3lvuYA2rcxRR
+	jwgEfUWrodlCNQDaspcTTQiUEG7+xi0QEw+HheTbr6vDLDGxa3nNNeZqzD1UT1pNmK
+	11gZ2pwSuj0Gmg6OZPafQQMUHewvEJJ6TuesGozQ=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 168BIsiZ059129
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Jul 2021 10:08:47 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
-	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 8 Jul 2021 06:18:55 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE111.ent.ti.com
+	(10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Wed, 7 Jul 2021 10:08:47 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Wed, 7 Jul 2021 10:08:46 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 167F8kB8072042;
-	Wed, 7 Jul 2021 10:08:47 -0500
-Date: Wed, 7 Jul 2021 10:08:46 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Priya N S <priya.ns@mistralsolutions.com>
-Message-ID: <20210707150846.xbig63m3xffymcnq@overcast>
-References: <20210707031414.46720-1-priya.ns@ti.com>
-	<20210707031414.46720-4-priya.ns@ti.com>
+	Thu, 8 Jul 2021 06:18:54 -0500
+Received: from DFLE110.ent.ti.com ([fe80::c545:bde0:ab70:bae9]) by
+	DFLE110.ent.ti.com ([fe80::c545:bde0:ab70:bae9%19]) with mapi id
+	15.01.2176.012; Thu, 8 Jul 2021 06:18:54 -0500
+From: "Siraswar, Yogesh" <yogeshs@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>, "meta-arago@arago-project.org"
+	<meta-arago@arago-project.org>
+Thread-Topic: [EXTERNAL] [meta-arago] [PATCH][dunfell/master]
+	linux-libc-headers: update to 5.10 kernel headers
+Thread-Index: AQHXcwOMYYgSOWa390Klutk0pfHPF6s45WUQ
+Date: Thu, 8 Jul 2021 11:18:54 +0000
+Message-ID: <776eb5416e414e9cac1fe14d9adda4d4@ti.com>
+References: <1625643698-32948-1-git-send-email-denis@denix.org>
+In-Reply-To: <1625643698-32948-1-git-send-email-denis@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.250.66.214]
+x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 MIME-Version: 1.0
-In-Reply-To: <20210707031414.46720-4-priya.ns@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org, Priya N S <priya.ns@ti.com>,
-	Sekhar Nori <nsekhar@ti.com>
-Subject: Re: [tisdk-setup-scripts] [master] [PATCH-V3 3/3] create-sdcard.sh: Stop using cylinder as unit for partition size
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: Re: [EXTERNAL] [PATCH][dunfell/master] linux-libc-headers: update to 5.10 kernel headers
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -53,113 +54,101 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Jul 2021 15:08:42 -0000
+X-List-Received-Date: Thu, 08 Jul 2021 11:18:49 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 08:44-20210707, Priya N S wrote:
-> From: Priya N S <priya.ns@ti.com>
-> 
-> * Cylinder size of sdcard is manufacturer dependent. To standardize
->   sdcard partitioning remove the use of cylinder (cyl) unit.
-> * While at it shift to using fdisk for the partitioning the sdcard.
->   fdisk is already used in the script and this reduces the dependencies
->   of this script on available installed applications.
-> * This fixes cases where already partitioned cards were being detected
->   as not partitioned because of size check elsewhere in the script
->   failing.
-> 
-> Signed-off-by: Priya N S <priya.ns@ti.com>
-> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
-> ---
->  create-sdcard.sh | 50 +++++++++++++++++++++++++++++++++++++++---------
->  1 file changed, 41 insertions(+), 9 deletions(-)
-> 
-> diff --git a/create-sdcard.sh b/create-sdcard.sh
-> index d052312..546588b 100644
-> --- a/create-sdcard.sh
-> +++ b/create-sdcard.sh
-> @@ -501,11 +501,29 @@ SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
->  
->  echo DISK SIZE - $SIZE bytes
->  
-> -parted -s $DRIVE mklabel msdos
-> -parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
-> -parted -s $DRIVE set 1 boot on
-> -parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 310
-> -parted -s $DRIVE unit cyl mkpart primary ext2 -- 310 -2
-> +cat << END | fdisk $DRIVE
-> +n
-> +p
-> +1
-> +
-> ++75M
+Running into QA issue with this patch:
 
-https://lists.yoctoproject.org/g/meta-ti/topic/83851299#13855
-Should we make boot partition 128MB as default to make sure it is in
-sync with wic image sizes?
+DEBUG: Executing python function populate_lic_qa_checksum
+ERROR: QA Issue: nativesdk-linux-libc-headers: The LIC_FILES_CHKSUM does no=
+t match for file://COPYING;md5=3Dbbea815ee2795b2f4230826c0c6b8814
+nativesdk-linux-libc-headers: The new md5 checksum is 6bc538ed5bd9a7fc93980=
+86aedcd7e46
+nativesdk-linux-libc-headers: Here is the selected license text:
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+The Linux Kernel is provided under:
 
-> +n
-> +p
-> +2
-> +
-> ++2.4G
-> +n
-> +p
-> +3
-> +
-> +
-> +t
-> +1
-> +c
-> +a
-> +1
-> +w
-> +END
->  
->  
->  cat << EOM
-> @@ -559,10 +577,24 @@ SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
->  
->  echo DISK SIZE - $SIZE bytes
->  
-> -parted -s $DRIVE mklabel msdos
-> -parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
-> -parted -s $DRIVE set 1 boot on
-> -parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 -2
-> +cat << END | fdisk $DRIVE
-> +n
-> +p
-> +1
-> +
-> ++75M
-same ^^ ?
+	SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note
 
-> +n
-> +p
-> +2
-> +
-> +
-> +t
-> +1
-> +c
-> +a
-> +1
-> +w
-> +END
->  
->  cat << EOM
->  
-> -- 
-> 2.19.1.windows.1
-> 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
+Being under the terms of the GNU General Public License version 2 only,
+according with:
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D)/Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+	LICENSES/preferred/GPL-2.0
+
+With an explicit syscall exception, as stated at:
+...
+
+	LICENSES/exceptions/Linux-syscall-note
+
+In addition, other licenses may also apply. Please see:
+
+	Documentation/process/license-rules.rst
+
+for more details.
+
+All contributions to the Linux Kernel are subject to this COPYING file.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+nativesdk-linux-libc-headers: Check if the license information has changed =
+in /OE/arago-dunfell-next-build/build-CORTEX_1/arago-tmp-external-arm-glibc=
+/work/x86_64-nativesdk-arago-linux/nativesdk-linux-libc-headers/5.10-r0.ara=
+go0/git/COPYING to verify that the LICENSE value "GPLv2" remains valid [lic=
+ense-checksum]
+ERROR: Fatal QA errors found, failing task.
+DEBUG: Python function populate_lic_qa_checksum finished
+
+-----Original Message-----
+From: meta-arago-bounces@arago-project.org <meta-arago-bounces@arago-projec=
+t.org> On Behalf Of Denys Dmytriyenko
+Sent: Wednesday, July 7, 2021 2:42 AM
+To: meta-arago@arago-project.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [EXTERNAL] [meta-arago] [PATCH][dunfell/master] linux-libc-headers=
+: update to 5.10 kernel headers
+
+From: Denys Dmytriyenko <denys@konsulko.com>
+
+This recipe is used when building using an internal toolchain. Use the same=
+ commit ID as for external-arm-toolchain.
+
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+---
+ .../{linux-libc-headers_5.4.bb =3D> linux-libc-headers_5.10.bb}         | =
+4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)  rename meta-arago-distro/=
+recipes-kernel/linux-libc-headers/{linux-libc-headers_5.4.bb =3D> linux-lib=
+c-headers_5.10.bb} (80%)
+
+diff --git a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc=
+-headers_5.4.bb b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux=
+-libc-headers_5.10.bb
+similarity index 80%
+rename from meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-=
+headers_5.4.bb
+rename to meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-he=
+aders_5.10.bb
+index c0a3709..0dabbfd 100644
+--- a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-header=
+s_5.4.bb
++++ b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-hea
++++ ders_5.10.bb
+@@ -4,8 +4,8 @@ PR_append =3D ".arago0"
+=20
+ DEPENDS +=3D "rsync-native"
+=20
+-BRANCH =3D "ti-linux-5.4.y"
+-SRCREV =3D "1661da3fddf4cc3f62796ecfb5c572f1e5361bdf"
++BRANCH =3D "ti-linux-5.10.y"
++SRCREV =3D "bdfd5b0c1ee5617c9a94bacad0d818920d95b486"
+=20
+ KERNEL_GIT_URI =3D "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git"
+ KERNEL_GIT_PROTOCOL =3D "git"
+--
+2.7.4
+
+_______________________________________________
+meta-arago mailing list
+meta-arago@arago-project.org
+http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
