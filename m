@@ -1,31 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id D375E5299C
+Return-Path: <nm@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id E872452AE5
 	for <meta-arago@arago-project.org>;
-	Fri,  9 Jul 2021 05:10:28 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id CBBC640C88;
-	Fri,  9 Jul 2021 05:10:34 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id UMp2mwiAmL3U; Fri,  9 Jul 2021 05:10:34 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B0B5A40A77;
-	Fri,  9 Jul 2021 05:10:33 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 09F7517462B;
-	Fri,  9 Jul 2021 01:10:33 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Date: Fri,  9 Jul 2021 01:10:32 -0400
-Message-Id: <1625807432-30722-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [dunfell/master][PATCH] linux-libc-headers: handle removal of asm/kvm.h in kernel 5.8+
+	Fri,  9 Jul 2021 18:00:28 +0000 (UTC)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 169I0Ygn049928;
+	Fri, 9 Jul 2021 13:00:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1625853634;
+	bh=pbQ9DgAZhrj5aQuOuk8FJHT0IaSHivW9XN3r9TjupS8=;
+	h=From:To:CC:Subject:Date;
+	b=bDTvQiLwrxoSWdXRKXcxUs3oxMcj0o/rttCLjKEMrV6AJGBxa9D8u//KmCK2FO1Jc
+	bggsiV6yIfY2/NvtSjNOqWHJgAGVrWijDd1oOBOrM58gaj9ATfJLwVJk8nFCjFiROO
+	FdX9Bd4e59Tss5SW8k0Jxu1+aStsPAqdxqea5bRM=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 169I0YcH079835
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 9 Jul 2021 13:00:34 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Fri, 9 Jul 2021 13:00:34 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
+	(10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+	Frontend Transport; Fri, 9 Jul 2021 13:00:34 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 169I0YrQ003696;
+	Fri, 9 Jul 2021 13:00:34 -0500
+From: Nishanth Menon <nm@ti.com>
+To: <denis@denix.org>, <praneeth@ti.com>, <yogeshs@ti.com>
+Date: Fri, 9 Jul 2021 13:00:32 -0500
+Message-ID: <20210709180032.2570-1-nm@ti.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: [tisdk-build-scripts PATCH] generate-report: Switch arago-project git repo to ti git repo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,48 +49,31 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Jul 2021 05:10:29 -0000
+X-List-Received-Date: Fri, 09 Jul 2021 18:00:29 -0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+Arago-project is on the way down, so flip over to git.ti.com repo
 
-Multilib handling is done in linux-libc-headers.inc in oe-core and the version
-in dunfell handles the list for 5.4, while the list for 5.10 has no asm/kvm.h
-due to kernel commit: 541ad0150ca4 [arm: Remove 32bit KVM host support].
-
-Fixes this error on ARM32 platforms when using internal toolchain:
-ERROR: linux-libc-headers-5.10-r0.arago0 do_install: oe_multilib_header: Unable to find header asm/kvm.h.
-
-Also, dependency on rsync-native is now upstream.
-
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
- .../recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb  | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ lib/oesdk/generate-report | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb
-index 353d8b5..7f4343d 100644
---- a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb
-+++ b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb
-@@ -2,8 +2,6 @@ require recipes-kernel/linux-libc-headers/linux-libc-headers.inc
+diff --git a/lib/oesdk/generate-report b/lib/oesdk/generate-report
+index 84fffb4127b9..86813ae0cfd8 100644
+--- a/lib/oesdk/generate-report
++++ b/lib/oesdk/generate-report
+@@ -36,7 +36,7 @@ cat >> $results_file << EOM
+ These builds were performed using the build-oesdk.sh script at:
+ </p>
+ <p>
+-git://arago-project.org/git/projects/tisdk-build-scripts.git
++git://git.ti.com/arago-project/tisdk-build-scripts.git
+ </p>
  
- PR_append = ".arago0"
- 
--DEPENDS += "rsync-native"
--
- LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
- 
- BRANCH = "ti-linux-5.10.y"
-@@ -14,3 +12,9 @@ KERNEL_GIT_PROTOCOL = "git"
- SRC_URI = "${KERNEL_GIT_URI};protocol=${KERNEL_GIT_PROTOCOL};branch=${BRANCH}"
- 
- S = "${WORKDIR}/git"
-+
-+# below overrides the multilib list - can be dropped for the next LTS
-+do_install_armmultilib () {
-+	oe_multilib_header asm/auxvec.h asm/bitsperlong.h asm/byteorder.h asm/fcntl.h asm/hwcap.h asm/ioctls.h asm/kvm_para.h asm/mman.h asm/param.h asm/perf_regs.h asm/bpf_perf_event.h
-+	oe_multilib_header asm/posix_types.h asm/ptrace.h  asm/setup.h  asm/sigcontext.h asm/siginfo.h asm/signal.h asm/stat.h  asm/statfs.h asm/swab.h  asm/types.h asm/unistd.h
-+}
+ <p>
 -- 
-2.7.4
+2.32.0
 
 
