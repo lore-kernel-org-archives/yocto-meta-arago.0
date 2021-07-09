@@ -1,44 +1,44 @@
 Return-Path: <nm@ti.com>
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 90FC752AF6
+	by arago-project.org (Postfix) with ESMTP id B5A1352AF7
 	for <meta-arago@arago-project.org>;
 	Fri,  9 Jul 2021 18:03:58 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 169I44aO107453;
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 169I44tr107461;
 	Fri, 9 Jul 2021 13:04:04 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1625853844;
-	bh=gc/Ddxj2MBgLZLZWnfhyQutsjlpz8/K7qjw14LtmTLY=;
+	bh=F9OGk2ewZZxPplHDXfMbt0wpe1u4IdY46mJh37vi+Yo=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=auuWXQOdTFXdRKM4iWHIfVXtH5W8UyCsfPs9IvdjWSL2FxAP5kBqYZgYIFCK/ztcm
-	CpWRseB0i9ITQUAOML4aj/dsRlT4UR0xUmBMWBv7T6Txdjg+Q94anTqx9hzyxQAWdV
-	t0idYL9so5ne6NHvnncuniK+BdZ4LJbNsuK8fGJk=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 169I439g087113
+	b=rkR604wws4kPmS9xk9dIKnNz1T9Rnb2fx1X8kW29iXqm5D+WZ0dxafs7MAxIzBX6v
+	hyWhqSdpbZCkvTwvqc+m4eBDTR5KmEZDnelYNa0eovcPTbWUT3lc1wFxY2AP7h9V3W
+	i536+pX3+nTOrEOCoJsKnm2+/eAU0FdvShMZ6wxI=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 169I44Q3104497
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
 	Fri, 9 Jul 2021 13:04:04 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE104.ent.ti.com
+	(10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
 	Fri, 9 Jul 2021 13:04:04 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
-	(157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
 	Frontend Transport; Fri, 9 Jul 2021 13:04:04 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 169I4484128601;
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 169I44su128614;
 	Fri, 9 Jul 2021 13:04:04 -0500
 From: Nishanth Menon <nm@ti.com>
 To: <denis@denix.org>, <praneeth@ti.com>, <yogeshs@ti.com>
-Date: Fri, 9 Jul 2021 13:03:58 -0500
-Message-ID: <20210709180401.2977-3-nm@ti.com>
+Date: Fri, 9 Jul 2021 13:04:01 -0500
+Message-ID: <20210709180401.2977-6-nm@ti.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20210709180401.2977-1-nm@ti.com>
 References: <20210709180401.2977-1-nm@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: meta-arago@arago-project.org
-Subject: [tisdk-build-scripts PATCH 2/5] config-build-env: Lets make sure we are really in a build folder
+Subject: [tisdk-build-scripts PATCH 5/5] config-build-env: Switch arago-project git repo to ti git repo
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -55,33 +55,25 @@ X-List-Received-Date: Fri, 09 Jul 2021 18:04:00 -0000
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 
-Lets make sure that we are really in a build folder if for some
-reason we end up at a top layer script issue and we mess up the build
-machine.
+Arago-project is on the way down, so flip over to git.ti.com repo
 
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
- lib/oesdk/config-build-env | 7 +++++++
- 1 file changed, 7 insertions(+)
+ lib/oesdk/config-build-env | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/lib/oesdk/config-build-env b/lib/oesdk/config-build-env
-index 11fab2de6097..058823562693 100644
+index cdfa6830eb51..2514acbe6b38 100644
 --- a/lib/oesdk/config-build-env
 +++ b/lib/oesdk/config-build-env
-@@ -21,6 +21,13 @@ checkout_layer_scripts() {
+@@ -1,6 +1,6 @@
+ #!/bin/bash
  
-     name=`basename $BUILD_ROOT`
+-TI_SDK_OELAYER_SETUP="http://arago-project.org/git/projects/oe-layersetup.git"
++TI_SDK_OELAYER_SETUP="http://git.ti.com/git/arago-project/oe-layersetup.git"
  
-+    # Paranoid check: Am I really a build folder?
-+    amibuild=`echo $BUILD_ROOT|grep "build$"`
-+    if [ -z "$amibuild" ]; then
-+        echo "Something horrible has happened.. BUILD_ROOT=$BUILD_ROOT does'nt end with 'build'. maynot be build folder. Aborting!"
-+        exit 1
-+    fi
-+
-     if [ ! -d $name ]
-     then
-         git clone "$TI_SDK_OELAYER_SETUP" $name
+ # This script is intended to be called only from the top-level build-oesdk.sh
+ # script which parses the configuration file and sets necessary variables.
 -- 
 2.32.0
 
