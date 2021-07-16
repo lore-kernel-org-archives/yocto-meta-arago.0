@@ -1,45 +1,42 @@
-Return-Path: <nm@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 6564A52AAC
+Return-Path: <yogeshs@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTP id 77A49529F0
 	for <meta-arago@arago-project.org>;
-	Tue, 13 Jul 2021 13:29:58 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16DDU6YX082370;
-	Tue, 13 Jul 2021 08:30:06 -0500
+	Fri, 16 Jul 2021 21:01:28 +0000 (UTC)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16GL1bFr054805;
+	Fri, 16 Jul 2021 16:01:37 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1626183006;
-	bh=eAHan7GFfaQEB8vXZlFG93GLGfbT7DXH3fCkVfpwFu8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=jq7kuWFjIGUmcpiw+lyPptkZ9eVPuinArHbnZ6bjSOwUA6bB6gfkmKQpt2QOLcYBp
-	YePROmNZ2vPUOYsR1XDvW1Qq+YUV8IUDdXrhyC0VXEfMjKxMM0fv8CbhuKQOUiVi6v
-	Wu8iOPlNzXprLnUwl8xgTYPeDXIiMLa+jr5w7izc=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16DDU56X123748
+	s=ti-com-17Q1; t=1626469297;
+	bh=kW3iKLe5pGESeCJ4/zPUCTFDw/wbWBu7Bg4DGMRtYj0=;
+	h=From:To:Subject:Date;
+	b=Ghbi0uRRzPItxzYZluYXZmPT6eP8tzIrGP4hOwRcGZ19U5oxJCOz02tDatmxA15bZ
+	O6ZdPhigr2THRYrYeIMbpad2OF0vUabbfxv536gRRID9x79p1rrCQztiQ4mFzxqbnR
+	rqY4ve2icez6aW9nTMTjhUmakYIZOyw8CYMZG9yQ=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16GL1biG021937
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 13 Jul 2021 08:30:05 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
-	(157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 16 Jul 2021 16:01:37 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE110.ent.ti.com
+	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Tue, 13 Jul 2021 08:30:04 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
-	(157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 16 Jul 2021 16:01:37 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Tue, 13 Jul 2021 08:30:04 -0500
+	Frontend Transport; Fri, 16 Jul 2021 16:01:37 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16DDU4vf127613;
-	Tue, 13 Jul 2021 08:30:04 -0500
-Date: Tue, 13 Jul 2021 08:30:03 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>
-Message-ID: <20210713133003.esixjjs6zza37zya@excusably>
-References: <20210709180401.2977-1-nm@ti.com> <20210709180401.2977-6-nm@ti.com>
-	<20210713033248.GU1528@denix.org>
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16GL1a55030762;
+	Fri, 16 Jul 2021 16:01:36 -0500
+From: Yogesh Siraswar <yogeshs@ti.com>
+To: Denys Dmytriyenko <denys@konsulko.com>, Praneeth Bajjuri
+	<praneeth@ti.com>, <meta-arago@arago-project.org>
+Date: Fri, 16 Jul 2021 21:01:36 +0000
+Message-ID: <20210716210136.4430-1-yogeshs@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20210713033248.GU1528@denix.org>
-User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: meta-arago@arago-project.org
-Subject: Re: [tisdk-build-scripts PATCH 5/5] config-build-env: Switch arago-project git repo to ti git repo
+Subject: [dunfell/master][PATCH] ltp-ddt: Update to latest srcrev for 08.00.00.003
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -52,41 +49,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Jul 2021 13:29:58 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 16 Jul 2021 21:01:28 -0000
+Content-Type: text/plain
 
-On 23:32-20210712, Denys Dmytriyenko wrote:
-> On Fri, Jul 09, 2021 at 01:04:01PM -0500, Nishanth Menon wrote:
-> > Arago-project is on the way down, so flip over to git.ti.com repo
-> > 
-> > Signed-off-by: Nishanth Menon <nm@ti.com>
-> > ---
-> >  lib/oesdk/config-build-env | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/lib/oesdk/config-build-env b/lib/oesdk/config-build-env
-> > index cdfa6830eb51..2514acbe6b38 100644
-> > --- a/lib/oesdk/config-build-env
-> > +++ b/lib/oesdk/config-build-env
-> > @@ -1,6 +1,6 @@
-> >  #!/bin/bash
-> >  
-> > -TI_SDK_OELAYER_SETUP="http://arago-project.org/git/projects/oe-layersetup.git"
-> > +TI_SDK_OELAYER_SETUP="http://git.ti.com/git/arago-project/oe-layersetup.git"
-> 
-> What's the preferred clone method on git.ti.com? I see Web UI shows these:
-> 
-> Clone
-> https://git.ti.com/git/arago-project/oe-layersetup.git
-> https://git.ti.com/cgit/arago-project/oe-layersetup
-> git://git.ti.com/arago-project/oe-layersetup.git
-> http://git.ti.com/git/arago-project/oe-layersetup.git
+Update the ltp-ddt to latest for 08.00.00.003 release
 
-Have'nt heard of any specific preference.
+Signed-off-by: Yogesh Siraswar <yogeshs@ti.com>
+---
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb              | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+index 3051b58c..bdc23dd9 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+@@ -11,10 +11,10 @@ PROVIDES += "ltp"
+ DEPENDS += "alsa-lib"
+ 
+ PE = "1"
+-PR = "r1"
++PR = "r2"
+ PV_append = "+git${SRCPV}"
+ 
+-SRCREV = "21b2b2e3ce3d30a685cd64c05cfd5920eca9be21"
++SRCREV = "02f6995cd7df25269a3bb3b67736d19bccaac99f"
+ BRANCH ?= "master"
+ 
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.17.1
+
 
