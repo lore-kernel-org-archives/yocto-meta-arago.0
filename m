@@ -1,42 +1,33 @@
-Return-Path: <yogeshs@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id 77A49529F0
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id D513B52A59
 	for <meta-arago@arago-project.org>;
-	Fri, 16 Jul 2021 21:01:28 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16GL1bFr054805;
-	Fri, 16 Jul 2021 16:01:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1626469297;
-	bh=kW3iKLe5pGESeCJ4/zPUCTFDw/wbWBu7Bg4DGMRtYj0=;
-	h=From:To:Subject:Date;
-	b=Ghbi0uRRzPItxzYZluYXZmPT6eP8tzIrGP4hOwRcGZ19U5oxJCOz02tDatmxA15bZ
-	O6ZdPhigr2THRYrYeIMbpad2OF0vUabbfxv536gRRID9x79p1rrCQztiQ4mFzxqbnR
-	rqY4ve2icez6aW9nTMTjhUmakYIZOyw8CYMZG9yQ=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16GL1biG021937
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 16 Jul 2021 16:01:37 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Fri, 16 Jul 2021 16:01:37 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
-	(157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Fri, 16 Jul 2021 16:01:37 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16GL1a55030762;
-	Fri, 16 Jul 2021 16:01:36 -0500
-From: Yogesh Siraswar <yogeshs@ti.com>
-To: Denys Dmytriyenko <denys@konsulko.com>, Praneeth Bajjuri
-	<praneeth@ti.com>, <meta-arago@arago-project.org>
-Date: Fri, 16 Jul 2021 21:01:36 +0000
-Message-ID: <20210716210136.4430-1-yogeshs@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Mon, 19 Jul 2021 22:01:12 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5DF2040C50;
+	Mon, 19 Jul 2021 22:01:22 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id LNopeJKDkRkM; Mon, 19 Jul 2021 22:01:22 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4626F40A03;
+	Mon, 19 Jul 2021 22:01:21 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 07B4D17463C; Mon, 19 Jul 2021 18:01:21 -0400 (EDT)
+Date: Mon, 19 Jul 2021 18:01:20 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Message-ID: <20210719220120.GE1528@denix.org>
+References: <1623874449-31873-1-git-send-email-denis@denix.org>
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [dunfell/master][PATCH] ltp-ddt: Update to latest srcrev for 08.00.00.003
+In-Reply-To: <1623874449-31873-1-git-send-email-denis@denix.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: Re: [PATCH 0/2] RFC: Add global Docker container runtime
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,34 +40,45 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Jul 2021 21:01:28 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 19 Jul 2021 22:01:13 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Update the ltp-ddt to latest for 08.00.00.003 release
+Hi,
 
-Signed-off-by: Yogesh Siraswar <yogeshs@ti.com>
----
- .../recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb              | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Were there any comments on this series?
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-index 3051b58c..bdc23dd9 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-@@ -11,10 +11,10 @@ PROVIDES += "ltp"
- DEPENDS += "alsa-lib"
- 
- PE = "1"
--PR = "r1"
-+PR = "r2"
- PV_append = "+git${SRCPV}"
- 
--SRCREV = "21b2b2e3ce3d30a685cd64c05cfd5920eca9be21"
-+SRCREV = "02f6995cd7df25269a3bb3b67736d19bccaac99f"
- BRANCH ?= "master"
- 
- SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
+On Wed, Jun 16, 2021 at 04:14:07PM -0400, Denys Dmytriyenko wrote:
+> From: Denys Dmytriyenko <denys@konsulko.com>
+> 
+> This patchset adds Docker container runtime to both base and default rootfs 
+> images for all platforms.
+> 
+> Patch 1 enables necessary kernel configs through docker.cfg config fragment. 
+> This fragment can later be added to ti-linux-kernel/ti_config_fragments.
+> 
+> Denys Dmytriyenko (2):
+>   linux-ti-staging: enable necessary configs for running docker
+>     containers
+>   packagegroup-arago-base: add docker runtime to the base and default
+>     rootfs
+> 
+>  .../packagegroups/packagegroup-arago-base.bb         |  1 +
+>  meta-arago-distro/recipes-kernel/linux/docker.inc    |  2 ++
+>  .../linux/linux-ti-staging-rt_%.bbappend             |  1 +
+>  .../linux/linux-ti-staging-systest_%.bbappend        |  1 +
+>  .../recipes-kernel/linux/linux-ti-staging/docker.cfg | 20 ++++++++++++++++++++
+>  .../recipes-kernel/linux/linux-ti-staging_%.bbappend |  1 +
+>  6 files changed, 26 insertions(+)
+>  create mode 100644 meta-arago-distro/recipes-kernel/linux/docker.inc
+>  create mode 100644 meta-arago-distro/recipes-kernel/linux/linux-ti-staging/docker.cfg
+> 
+> -- 
+> 2.7.4
+
 -- 
-2.17.1
-
+Regards,
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
 
