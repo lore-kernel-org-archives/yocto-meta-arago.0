@@ -1,43 +1,47 @@
-Return-Path: <grygorii.strashko@ti.com>
+Return-Path: <yogeshs@ti.com>
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 3A36452A09
+	by arago-project.org (Postfix) with ESMTP id DB768529A9
 	for <meta-arago@arago-project.org>;
-	Wed, 21 Jul 2021 18:06:58 +0000 (UTC)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16LI79RX011815;
-	Wed, 21 Jul 2021 13:07:09 -0500
+	Wed, 21 Jul 2021 20:41:52 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16LKg3XX075085;
+	Wed, 21 Jul 2021 15:42:03 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1626890829;
-	bh=594BVnu77YHxRHoJ5pyUIY6PA5fxNjVR2r0lYd3yJ94=;
-	h=From:To:CC:Subject:Date;
-	b=e1HRSv2diUMHoeQ2TaMKf10ZNNaA9AuAge2WUhI7VnhBeI8EWzOMLGaOjPtEdTfqW
-	P+95x3c/x3NwHp+I5RHjRNtBQI1YNpYgoxDkrNoUybFHsLh83/W+8IyMvgHTJtMdwy
-	eV1zyN/B8zdg/0Uypylg9lTof5DI9QHoUl0MrWJ8=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16LI79ZV086189
+	s=ti-com-17Q1; t=1626900123;
+	bh=+pqKRNiQyGh7rKjQRRyYvgreVaEfYZAIibyxExZV1Xk=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=b+EpXz4CInl6CR+O1JxyCT0Ygz63iaDwr1qelHl04ABl61geXskOmJlwnj+TbR7yQ
+	hy8WmA5OCgTpIp2owrZHOZkrebkSPGRlggwZMr0nl8kvLjU6OLJ/5tVDYaxY45bWaD
+	LU6ySQdkFyP58KLJtNB+POifMIlCprk3AoX71vQA=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16LKg2kO073817
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 21 Jul 2021 13:07:09 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
-	(10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 21 Jul 2021 15:42:03 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Wed, 21 Jul 2021 13:07:09 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 21 Jul 2021 15:42:02 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Wed, 21 Jul 2021 13:07:09 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16LI78D2104550;
-	Wed, 21 Jul 2021 13:07:08 -0500
-From: Grygorii Strashko <grygorii.strashko@ti.com>
-To: <meta-arago@arago-project.org>, Praneeth Bajjuri <praneeth@ti.com>, Yogesh
-	Siraswar <yogeshs@ti.com>, Denys Dmytriyenko <denis@denix.org>
-Date: Wed, 21 Jul 2021 21:07:05 +0300
-Message-ID: <20210721180705.26132-1-grygorii.strashko@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Frontend Transport; Wed, 21 Jul 2021 15:42:02 -0500
+Received: from [10.250.66.214] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16LKg2ad108613;
+	Wed, 21 Jul 2021 15:42:02 -0500
+To: Grygorii Strashko <grygorii.strashko@ti.com>,
+	<meta-arago@arago-project.org>, Praneeth Bajjuri <praneeth@ti.com>, Denys
+	Dmytriyenko <denis@denix.org>
+References: <20210721180548.26052-1-grygorii.strashko@ti.com>
+From: "Siraswar, Yogesh" <yogeshs@ti.com>
+Message-ID: <271c51ba-aff3-db83-0862-a88a4b44c368@ti.com>
+Date: Wed, 21 Jul 2021 15:42:02 -0500
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+	Thunderbird/78.12.0
 MIME-Version: 1.0
+In-Reply-To: <20210721180548.26052-1-grygorii.strashko@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [dunfell][PATCH v2] iproute2: upgrade to 5.10
+Subject: Re: [dunfell][PATCH v2] ethtool: upgrade to 5.10
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -50,182 +54,114 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Jul 2021 18:06:58 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 21 Jul 2021 20:41:53 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Upgrade iproute2 to 5.10.
+Merged to dunfell-next.
 
-This is being backported from master oe-core, so it can be dropped when
-migrating to the new LTS.
-
-Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
----
- .../iproute2/iproute2.inc                     | 88 +++++++++++++++++++
- ...01-libc-compat.h-add-musl-workaround.patch | 39 ++++++++
- .../iproute2/iproute2_5.10.0.bb               | 12 +++
- 3 files changed, 139 insertions(+)
- create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2.inc
- create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-libc-compat.h-add-musl-workaround.patch
- create mode 100644 meta-arago-distro/recipes-connectivity/iproute2/iproute2_5.10.0.bb
-
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2.inc b/meta-arago-distro/recipes-connectivity/iproute2/iproute2.inc
-new file mode 100644
-index 00000000..6a5dafaa
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2.inc
-@@ -0,0 +1,88 @@
-+SUMMARY = "TCP / IP networking and traffic control utilities"
-+DESCRIPTION = "Iproute2 is a collection of utilities for controlling \
-+TCP / IP networking and traffic control in Linux.  Of the utilities ip \
-+and tc are the most important.  ip controls IPv4 and IPv6 \
-+configuration and tc stands for traffic control."
-+HOMEPAGE = "http://www.linuxfoundation.org/collaborate/workgroups/networking/iproute2"
-+SECTION = "base"
-+LICENSE = "GPLv2+"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=eb723b61539feef013de476e68b5c50a \
-+                    file://ip/ip.c;beginline=3;endline=8;md5=689d691d0410a4b64d3899f8d6e31817"
-+
-+DEPENDS = "flex-native bison-native iptables libcap"
-+
-+inherit update-alternatives bash-completion pkgconfig
-+
-+CLEANBROKEN = "1"
-+
-+PACKAGECONFIG ??= "tipc elf devlink"
-+PACKAGECONFIG[tipc] = ",,libmnl,"
-+PACKAGECONFIG[elf] = ",,elfutils,"
-+PACKAGECONFIG[devlink] = ",,libmnl,"
-+
-+IPROUTE2_MAKE_SUBDIRS = "lib tc ip bridge misc genl ${@bb.utils.filter('PACKAGECONFIG', 'devlink tipc', d)}"
-+
-+EXTRA_OEMAKE = "\
-+    CC='${CC}' \
-+    KERNEL_INCLUDE=${STAGING_INCDIR} \
-+    DOCDIR=${docdir}/iproute2 \
-+    SUBDIRS='${IPROUTE2_MAKE_SUBDIRS}' \
-+    SBINDIR='${base_sbindir}' \
-+    LIBDIR='${libdir}' \
-+"
-+
-+do_configure_append () {
-+    sh configure ${STAGING_INCDIR}
-+    # Explicitly disable ATM support
-+    sed -i -e '/TC_CONFIG_ATM/d' config.mk
-+}
-+
-+do_install () {
-+    oe_runmake DESTDIR=${D} install
-+    mv ${D}${base_sbindir}/ip ${D}${base_sbindir}/ip.iproute2
-+    install -d ${D}${datadir}
-+    mv ${D}/share/* ${D}${datadir}/ || true
-+    rm ${D}/share -rf || true
-+}
-+
-+# The .so files in iproute2-tc are modules, not traditional libraries
-+INSANE_SKIP_${PN}-tc = "dev-so"
-+
-+IPROUTE2_PACKAGES =+ "\
-+    ${PN}-devlink \
-+    ${PN}-genl \
-+    ${PN}-ifstat \
-+    ${PN}-ip \
-+    ${PN}-lnstat \
-+    ${PN}-nstat \
-+    ${PN}-rtacct \
-+    ${PN}-ss \
-+    ${PN}-tc \
-+    ${PN}-tipc \
-+"
-+
-+PACKAGE_BEFORE_PN = "${IPROUTE2_PACKAGES}"
-+RDEPENDS_${PN} += "${PN}-ip"
-+
-+FILES_${PN}-tc = "${base_sbindir}/tc* \
-+                  ${libdir}/tc/*.so"
-+FILES_${PN}-lnstat = "${base_sbindir}/lnstat \
-+                      ${base_sbindir}/ctstat \
-+                      ${base_sbindir}/rtstat"
-+FILES_${PN}-ifstat = "${base_sbindir}/ifstat"
-+FILES_${PN}-ip = "${base_sbindir}/ip.${PN} ${sysconfdir}/iproute2"
-+FILES_${PN}-genl = "${base_sbindir}/genl"
-+FILES_${PN}-rtacct = "${base_sbindir}/rtacct"
-+FILES_${PN}-nstat = "${base_sbindir}/nstat"
-+FILES_${PN}-ss = "${base_sbindir}/ss"
-+FILES_${PN}-tipc = "${base_sbindir}/tipc"
-+FILES_${PN}-devlink = "${base_sbindir}/devlink"
-+
-+ALTERNATIVE_${PN}-ip = "ip"
-+ALTERNATIVE_TARGET[ip] = "${base_sbindir}/ip.${BPN}"
-+ALTERNATIVE_LINK_NAME[ip] = "${base_sbindir}/ip"
-+ALTERNATIVE_PRIORITY = "100"
-+
-+ALTERNATIVE_${PN}-tc = "tc"
-+ALTERNATIVE_LINK_NAME[tc] = "${base_sbindir}/tc"
-+ALTERNATIVE_PRIORITY_${PN}-tc = "100"
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-libc-compat.h-add-musl-workaround.patch b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-libc-compat.h-add-musl-workaround.patch
-new file mode 100644
-index 00000000..74e3de1c
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2/0001-libc-compat.h-add-musl-workaround.patch
-@@ -0,0 +1,39 @@
-+From c25f8d1f7a6203dfeb10b39f80ffd314bb84a58d Mon Sep 17 00:00:00 2001
-+From: Baruch Siach <baruch@tkos.co.il>
-+Date: Thu, 22 Dec 2016 15:26:30 +0200
-+Subject: [PATCH] libc-compat.h: add musl workaround
-+
-+The libc-compat.h kernel header uses glibc specific macros (__GLIBC__ and
-+__USE_MISC) to solve conflicts with libc provided headers. This patch makes
-+libc-compat.h work for musl libc as well.
-+
-+Upstream-Status: Pending
-+
-+Taken From:
-+https://git.buildroot.net/buildroot/tree/package/iproute2/0001-Add-the-musl-workaround-to-the-libc-compat.h-copy.patch
-+
-+Signed-off-by: Baruch Siach <baruch@tkos.co.il>
-+Signed-off-by: Maxin B. John <maxin.john@intel.com>
-+
-+---
-+ include/uapi/linux/libc-compat.h | 4 +++-
-+ 1 file changed, 3 insertions(+), 1 deletion(-)
-+
-+diff --git a/include/uapi/linux/libc-compat.h b/include/uapi/linux/libc-compat.h
-+index a159991..22198fa 100644
-+--- a/include/uapi/linux/libc-compat.h
-++++ b/include/uapi/linux/libc-compat.h
-+@@ -50,10 +50,12 @@
-+ #define _LIBC_COMPAT_H
-+ 
-+ /* We have included glibc headers... */
-+-#if defined(__GLIBC__)
-++#if 1
-++#define __USE_MISC
-+ 
-+ /* Coordinate with glibc net/if.h header. */
-+ #if defined(_NET_IF_H) && defined(__USE_MISC)
-++#define __UAPI_DEF_IF_NET_DEVICE_FLAGS_LOWER_UP_DORMANT_ECHO 0
-+ 
-+ /* GLIBC headers included first so don't define anything
-+  * that would already be defined. */
-diff --git a/meta-arago-distro/recipes-connectivity/iproute2/iproute2_5.10.0.bb b/meta-arago-distro/recipes-connectivity/iproute2/iproute2_5.10.0.bb
-new file mode 100644
-index 00000000..6bdb5907
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/iproute2/iproute2_5.10.0.bb
-@@ -0,0 +1,12 @@
-+require iproute2.inc
-+
-+SRC_URI = "${KERNELORG_MIRROR}/linux/utils/net/${BPN}/${BP}.tar.xz \
-+           file://0001-libc-compat.h-add-musl-workaround.patch \
-+	   file://0014-iplink-hsr-prp-add-support-for-vlan-tagged-supervisi.patch \
-+           "
-+
-+SRC_URI[sha256sum] = "a54a34ae309c0406b2d1fb3a46158613ffb83d33fefd5d4a27f0010237ac53e9"
-+
-+# CFLAGS are computed in Makefile and reference CCOPTS
-+#
-+EXTRA_OEMAKE_append = " CCOPTS='${CFLAGS}'"
--- 
-2.17.1
-
+On 7/21/2021 1:05 PM, Grygorii Strashko wrote:
+> Upgrade ethtool to 5.10
+> 
+> This is being backported from master oe-core, so it can be dropped when
+> migrating to the new LTS.
+> 
+> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+> ---
+>   .../ethtool/avoid_parallel_tests.patch        | 29 +++++++++++++++
+>   .../ethtool/ethtool/run-ptest                 |  2 +
+>   .../ethtool/ethtool_5.10.bb                   | 37 +++++++++++++++++++
+>   3 files changed, 68 insertions(+)
+>   create mode 100644 meta-arago-distro/recipes-connectivity/ethtool/ethtool/avoid_parallel_tests.patch
+>   create mode 100644 meta-arago-distro/recipes-connectivity/ethtool/ethtool/run-ptest
+>   create mode 100644 meta-arago-distro/recipes-connectivity/ethtool/ethtool_5.10.bb
+> 
+> diff --git a/meta-arago-distro/recipes-connectivity/ethtool/ethtool/avoid_parallel_tests.patch b/meta-arago-distro/recipes-connectivity/ethtool/ethtool/avoid_parallel_tests.patch
+> new file mode 100644
+> index 00000000..54aec012
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-connectivity/ethtool/ethtool/avoid_parallel_tests.patch
+> @@ -0,0 +1,29 @@
+> +From b493e2fb472307997576eef33cce784594070f44 Mon Sep 17 00:00:00 2001
+> +From: Tudor Florea <tudor.florea@enea.com>
+> +Date: Wed, 28 May 2014 18:59:54 +0200
+> +Subject: [PATCH] ethtool: use serial-tests config needed by ptest.
+> +
+> +ptest needs buildtest-TESTS and runtest-TESTS targets.
+> +serial-tests is required to generate those targets.
+> +
+> +Signed-off-by: Tudor Florea <tudor.florea@enea.com>
+> +Upstream-Status: Inappropriate
+> +(default automake behavior incompatible with ptest)
+> +
+> +---
+> + configure.ac | 2 +-
+> + 1 file changed, 1 insertion(+), 1 deletion(-)
+> +
+> +diff --git a/configure.ac b/configure.ac
+> +index 13c2bc0..0b6ca1d 100644
+> +--- a/configure.ac
+> ++++ b/configure.ac
+> +@@ -2,7 +2,7 @@ dnl Process this file with autoconf to produce a configure script.
+> + AC_INIT(ethtool, 5.10, netdev@vger.kernel.org)
+> + AC_PREREQ(2.52)
+> + AC_CONFIG_SRCDIR([ethtool.c])
+> +-AM_INIT_AUTOMAKE([gnu subdir-objects])
+> ++AM_INIT_AUTOMAKE([gnu subdir-objects serial-tests])
+> + AC_CONFIG_HEADERS([ethtool-config.h])
+> +
+> + AM_MAINTAINER_MODE
+> diff --git a/meta-arago-distro/recipes-connectivity/ethtool/ethtool/run-ptest b/meta-arago-distro/recipes-connectivity/ethtool/ethtool/run-ptest
+> new file mode 100644
+> index 00000000..1e245da1
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-connectivity/ethtool/ethtool/run-ptest
+> @@ -0,0 +1,2 @@
+> +#!/bin/sh
+> +make -k runtest-TESTS
+> diff --git a/meta-arago-distro/recipes-connectivity/ethtool/ethtool_5.10.bb b/meta-arago-distro/recipes-connectivity/ethtool/ethtool_5.10.bb
+> new file mode 100644
+> index 00000000..5c0df3ac
+> --- /dev/null
+> +++ b/meta-arago-distro/recipes-connectivity/ethtool/ethtool_5.10.bb
+> @@ -0,0 +1,37 @@
+> +SUMMARY = "Display or change ethernet card settings"
+> +DESCRIPTION = "A small utility for examining and tuning the settings of your ethernet-based network interfaces."
+> +HOMEPAGE = "http://www.kernel.org/pub/software/network/ethtool/"
+> +SECTION = "console/network"
+> +LICENSE = "GPLv2+"
+> +LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
+> +                    file://ethtool.c;beginline=4;endline=17;md5=c19b30548c582577fc6b443626fc1216"
+> +
+> +SRC_URI = "${KERNELORG_MIRROR}/software/network/ethtool/ethtool-${PV}.tar.gz \
+> +           file://run-ptest \
+> +           file://avoid_parallel_tests.patch \
+> +           "
+> +
+> +SRC_URI[sha256sum] = "4b86adb3ed913c1ef14a276301981f696ab4ec360c19f0a5b68235c4756abae5"
+> +
+> +UPSTREAM_CHECK_URI = "https://www.kernel.org/pub/software/network/ethtool/"
+> +
+> +inherit autotools ptest bash-completion pkgconfig
+> +
+> +RDEPENDS_${PN}-ptest += "make"
+> +
+> +PACKAGECONFIG ?= "netlink"
+> +PACKAGECONFIG[netlink] = "--enable-netlink,--disable-netlink,libmnl,"
+> +
+> +do_compile_ptest() {
+> +   oe_runmake buildtest-TESTS
+> +}
+> +
+> +do_install_ptest () {
+> +   cp ${B}/Makefile                 ${D}${PTEST_PATH}
+> +   install ${B}/test-cmdline        ${D}${PTEST_PATH}
+> +   if ${@bb.utils.contains('PACKAGECONFIG', 'netlink', 'false', 'true', d)}; then
+> +       install ${B}/test-features       ${D}${PTEST_PATH}
+> +   fi
+> +   install ${B}/ethtool             ${D}${PTEST_PATH}/ethtool
+> +   sed -i 's/^Makefile/_Makefile/'  ${D}${PTEST_PATH}/Makefile
+> +}
+> 
 
