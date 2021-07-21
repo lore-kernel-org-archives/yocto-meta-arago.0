@@ -1,33 +1,42 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id D513B52A59
+Return-Path: <nm@ti.com>
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	by arago-project.org (Postfix) with ESMTP id F34A752A0F
 	for <meta-arago@arago-project.org>;
-	Mon, 19 Jul 2021 22:01:12 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5DF2040C50;
-	Mon, 19 Jul 2021 22:01:22 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id LNopeJKDkRkM; Mon, 19 Jul 2021 22:01:22 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4626F40A03;
-	Mon, 19 Jul 2021 22:01:21 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 07B4D17463C; Mon, 19 Jul 2021 18:01:21 -0400 (EDT)
-Date: Mon, 19 Jul 2021 18:01:20 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@arago-project.org
-Message-ID: <20210719220120.GE1528@denix.org>
-References: <1623874449-31873-1-git-send-email-denis@denix.org>
+	Wed, 21 Jul 2021 14:41:33 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 16LEfioG058010;
+	Wed, 21 Jul 2021 09:41:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1626878504;
+	bh=ggQy6KKLbuY1Zm4wEFRH8ZNE70z9Ddf9DdmzuXLVXfU=;
+	h=From:To:CC:Subject:Date;
+	b=UmTDHztuUG8LQ/pguORjSWwsGslSn6sb+r51Fuu3BbYHNW3ecpAIfKtCMEShL5a/J
+	ALbe7DfL4kqZXZ1olvIiB4pY610UpbWNTQ/UnrilbnuwL/4lqb1/ZXeKkd1F8MCbGF
+	O4BWAaGpHRGq3jQX/1GWj6FP7ZZ9Z8yyRdbrd488=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 16LEfiZ2107047
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 21 Jul 2021 09:41:44 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE112.ent.ti.com
+	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Wed, 21 Jul 2021 09:41:44 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+	(10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+	Frontend Transport; Wed, 21 Jul 2021 09:41:44 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 16LEfiJ9002323;
+	Wed, 21 Jul 2021 09:41:44 -0500
+From: Nishanth Menon <nm@ti.com>
+To: <denis@denix.org>, <praneeth@ti.com>, <yogeshs@ti.com>
+Date: Wed, 21 Jul 2021 09:41:43 -0500
+Message-ID: <20210721144143.4582-1-nm@ti.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <1623874449-31873-1-git-send-email-denis@denix.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: Re: [PATCH 0/2] RFC: Add global Docker container runtime
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Cc: meta-arago@arago-project.org
+Subject: [tisdk-build-scripts PATCH] config-build-env: Fix missing space
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -40,45 +49,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Jul 2021 22:01:13 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 21 Jul 2021 14:41:34 -0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Hi,
+Fix the missing space in the "if" statement else giturl is never
+updated.
 
-Were there any comments on this series?
+This generates:
+./lib/oesdk/config-build-env: line 53: [: missing `]'
 
-On Wed, Jun 16, 2021 at 04:14:07PM -0400, Denys Dmytriyenko wrote:
-> From: Denys Dmytriyenko <denys@konsulko.com>
-> 
-> This patchset adds Docker container runtime to both base and default rootfs 
-> images for all platforms.
-> 
-> Patch 1 enables necessary kernel configs through docker.cfg config fragment. 
-> This fragment can later be added to ti-linux-kernel/ti_config_fragments.
-> 
-> Denys Dmytriyenko (2):
->   linux-ti-staging: enable necessary configs for running docker
->     containers
->   packagegroup-arago-base: add docker runtime to the base and default
->     rootfs
-> 
->  .../packagegroups/packagegroup-arago-base.bb         |  1 +
->  meta-arago-distro/recipes-kernel/linux/docker.inc    |  2 ++
->  .../linux/linux-ti-staging-rt_%.bbappend             |  1 +
->  .../linux/linux-ti-staging-systest_%.bbappend        |  1 +
->  .../recipes-kernel/linux/linux-ti-staging/docker.cfg | 20 ++++++++++++++++++++
->  .../recipes-kernel/linux/linux-ti-staging_%.bbappend |  1 +
->  6 files changed, 26 insertions(+)
->  create mode 100644 meta-arago-distro/recipes-kernel/linux/docker.inc
->  create mode 100644 meta-arago-distro/recipes-kernel/linux/linux-ti-staging/docker.cfg
-> 
-> -- 
-> 2.7.4
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+ lib/oesdk/config-build-env | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/lib/oesdk/config-build-env b/lib/oesdk/config-build-env
+index 2514acbe6b38..7f914bab9984 100644
+--- a/lib/oesdk/config-build-env
++++ b/lib/oesdk/config-build-env
+@@ -50,7 +50,7 @@ checkout_layer_scripts() {
+ 	# In case we have changed the location of our build scripts
+ 	# we should change our git url towards it.
+         mygit='git remote get-url  origin'
+-        if [ "$mygit" != "$TI_SDK_OELAYER_SETUP"]; then
++        if [ "$mygit" != "$TI_SDK_OELAYER_SETUP" ]; then
+             echo "$TI_SDK_OELAYER_SETUP Mismatch in git URL: $mygit vs $TI_SDK_OELAYER_SETUP. Force resetting the origin!"
+             git remote set-url origin $TI_SDK_OELAYER_SETUP
+         fi
 -- 
-Regards,
-Denys Dmytriyenko <denis@denix.org>
-PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
-Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
+2.32.0
+
 
