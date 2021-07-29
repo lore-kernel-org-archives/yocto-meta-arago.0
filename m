@@ -1,66 +1,68 @@
 Return-Path: <priya.ns@mistralsolutions.com>
-Received: from egress-ip33a.ess.de.barracuda.com
-	(egress-ip33a.ess.de.barracuda.com [18.185.115.192])
-	by arago-project.org (Postfix) with ESMTPS id 8D19552AAE
+Received: from egress-ip4a.ess.de.barracuda.com
+	(egress-ip4a.ess.de.barracuda.com [18.184.203.227])
+	by arago-project.org (Postfix) with ESMTPS id 65ABE52AAC
 	for <meta-arago@arago-project.org>;
-	Thu, 29 Jul 2021 12:50:15 +0000 (UTC)
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com
-	[209.85.216.70]) by
-	mx-outbound11-201.eu-central-1a.ess.aws.cudaops.com
+	Thu, 29 Jul 2021 12:50:18 +0000 (UTC)
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
+	[209.85.214.198]) by
+	mx-outbound46-150.eu-central-1c.ess.aws.cudaops.com
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NO); Thu, 29 Jul 2021 12:50:28 +0000
-Received: by mail-pj1-f70.google.com with SMTP id
-	fa13-20020a17090af0cdb02901731757d1a2so6223660pjb.4
+	verify=NO); Thu, 29 Jul 2021 12:50:31 +0000
+Received: by mail-pl1-f198.google.com with SMTP id
+	v6-20020a170902d686b02901019f88b046so4908223ply.21
 	for <meta-arago@arago-project.org>;
-	Thu, 29 Jul 2021 05:50:28 -0700 (PDT)
+	Thu, 29 Jul 2021 05:50:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=mistralsolutions.com; s=google;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references
 	:mime-version:content-transfer-encoding;
-	bh=A4LUlxNLmdntf74LxU1ZOYLaL3iyBawBEgI59M9zc2A=;
-	b=nc3nrfyq3zgbYe1EIcQ1v2qTfXS4RQmqjpzMMBQ4cO+AQgQ7w6MvSujjSjckJcy/h6
-	7U6dCR1VbmvG946n9eChV2PvVXcR6EjGmJTFiDsghNZxFPJoM/j6OfXuB+zwdiLU6aks
-	DWntAuuov/rzfmudu8oNvtIB5NaleaTnLciGg=
+	bh=/zEimQ1wF7uCgeZjVQqTsDmFAyTVhLtyjLnTdHMTypA=;
+	b=irSWb5oBhEamfNlGhcQ5FjTv6It4EBsg5cprKMEpnTsFnxD+p0fEZNEyxOXrJYD7Az
+	+GAyOb4GjOtFmKNREcbbyImmTVBBHvd4Km02Vlw2rs5CX4UQvy8BnVzJJAJ6Iq1xaz7a
+	BMiprExXnfVleR4c2jkVA4SkewWyu2X2aTI7s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references:mime-version:content-transfer-encoding;
-	bh=A4LUlxNLmdntf74LxU1ZOYLaL3iyBawBEgI59M9zc2A=;
-	b=OjRDiVf/uLv8lrsqBOXpY/teL0oONhMkt34kDdNabq6spjsGRtzRlR/QCWY00qFx9E
-	WDJpjJNBIhFeYVt3jsvVVvTV7JQtHykKOpTyHaUHj99YGD+KiZbFlgQAMpzhMNO8DkTW
-	82obTYdfHPYzzMOulC/AccQOSyVgnUknu2T5CpZBUOeRk33PGQZmjlF6zIq5q/A+16eV
-	MRKi+GrboZYmkqVgzTQzIU/2QENb2bE8MJFnC/kxgB+jpdh3YKO5KahP27dNTgvzJ1LE
-	+knbwuMqlDOE8+lc6nEIrCYRCARweXMR8g6PbTGEvQEkAGG5UQyk2RkHsi7uyVC+sxe7
-	vpEw==
-X-Gm-Message-State: AOAM533QsFM5f1xkU9Mq4KGcy2DbiRJwzfGYUcUfCYkDe3KZESRkiVYc
-	iuz+SU06ObS54oEfhWAuf1iumg0qBe/7YAfLqw4/wowAZ4lqk4umLUvXjqVhB+VAgJRJewo2KX2
-	mCLJ/cDSKAkiZfB7t3do/Bfmd/2XTzwN9K4HIrUicLf1CmJDWHOtCd+MY4nlz
-X-Received: by 2002:a63:ef4c:: with SMTP id c12mr3714733pgk.441.1627563026786; 
-	Thu, 29 Jul 2021 05:50:26 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwIXnY8LD1+EOvkQDO7UnXtt3kuM18r/ARbf4yDVxuDd4EGit/H1QZCldeaCBzS0C2PLCxa3Q==
-X-Received: by 2002:a63:ef4c:: with SMTP id c12mr3714720pgk.441.1627563026557; 
-	Thu, 29 Jul 2021 05:50:26 -0700 (PDT)
+	bh=/zEimQ1wF7uCgeZjVQqTsDmFAyTVhLtyjLnTdHMTypA=;
+	b=hX+q90Mqw6YG6CuYqAW5M/sieb+nJjz4mgFgGCnOoV1TeoML6+2OroMe3Ie5c9T6pA
+	Id9qr02FSCVjgRjd7bmf2TmIwYxl2MVt9S4Q6s0YM71XfFCZ4s/GC6eMnHt/g8XFTv17
+	ksaKDcH4Uj3rl1Iv2ziaOndH8pgCJExocuMDLLClURAVXVVlFZldLy0A4PuD8FSwzTs/
+	ezrbuSMSez92mtKzY0619mds7vkC+MtJAWz/gOYwb+dQ8fNi0/yaU0Tjitl75j2nejSt
+	T8ODs7ELZI2n5az1E6DJnWxK55Kn0yPA0VbBHJm4n5wDV/l0hEAyujbhh3wbw1r6IaXA
+	dv0g==
+X-Gm-Message-State: AOAM533fU2TrWkrk+wg/yBlWzeibaQ/2/t17nzCZfjc4CTIMLF+JY6qB
+	lvcpQhGJ9ngzfet4jYJe8ygS0gL1g/UiCT+UJaxAtEM6yDRU5FzE4OBj7Iwu9POyqLtbNsyuCHm
+	N30XLMOh5KVnQx21aXtqBaTzCxaoMlAPcthJcQpDHCI4/d3V4S7F5MWnF8W4e
+X-Received: by 2002:aa7:9ec3:0:b029:32b:4eb5:4bad with SMTP id
+	r3-20020aa79ec30000b029032b4eb54badmr4866479pfq.6.1627563029065;
+	Thu, 29 Jul 2021 05:50:29 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy8o9ipGGWl8lvnpQAa5EIW1e9UNPZ3ZdA7XyrObjMPTxB1KLcRS5g+DvZGyV1Ms62etit+hA==
+X-Received: by 2002:aa7:9ec3:0:b029:32b:4eb5:4bad with SMTP id
+	r3-20020aa79ec30000b029032b4eb54badmr4866461pfq.6.1627563028828;
+	Thu, 29 Jul 2021 05:50:28 -0700 (PDT)
 Received: from LAP000507.mistral.in ([106.51.227.150])
 	by smtp.gmail.com with ESMTPSA id
-	f3sm3705863pfe.123.2021.07.29.05.50.24
+	f3sm3705863pfe.123.2021.07.29.05.50.26
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 29 Jul 2021 05:50:26 -0700 (PDT)
+	Thu, 29 Jul 2021 05:50:28 -0700 (PDT)
 From: Priya N S <priya.ns@mistralsolutions.com>
 X-Google-Original-From: Priya N S <priya.ns@ti.com>
 To: meta-arago@arago-project.org
-Date: Thu, 29 Jul 2021 18:20:10 +0530
-Message-Id: <20210729125011.9120-4-priya.ns@ti.com>
+Date: Thu, 29 Jul 2021 18:20:11 +0530
+Message-Id: <20210729125011.9120-5-priya.ns@ti.com>
 X-Mailer: git-send-email 2.19.1.windows.1
 In-Reply-To: <20210729125011.9120-1-priya.ns@ti.com>
 References: <20210729125011.9120-1-priya.ns@ti.com>
 MIME-Version: 1.0
-X-BESS-ID: 1627563027-303017-5532-72534-1
+X-BESS-ID: 1627563030-311926-31000-69828-1
 X-BESS-VER: 2019.1_20210719.2036
-X-BESS-Apparent-Source-IP: 209.85.216.70
+X-BESS-Apparent-Source-IP: 209.85.214.198
 X-BESS-Outbound-Spam-Score: 0.00
 X-BESS-Outbound-Spam-Report: Code version 3.2,
 	rules version 3.2.2.233794 [from 
-	cloudscan9-243.eu-central-1a.ess.aws.cudaops.com]
+	cloudscan22-191.eu-central-1b.ess.aws.cudaops.com]
 	Rule breakdown below
 	pts rule name              description
 	---- ---------------------- --------------------------------
@@ -69,7 +71,7 @@ X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of
 	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
 X-BESS-BRTS-Status: 1
 Cc: Priya N S <priya.ns@ti.com>, Sekhar Nori <nsekhar@ti.com>
-Subject: [tisdk-setup-scripts] [master] [PATCH-V4 3/4] create-sdcard.sh: Stop using cylinder as unit for partition size
+Subject: [tisdk-setup-scripts] [master] [PATCH-V4 4/4] create-sdcard: Increase boot partition size to 128 MB
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -82,92 +84,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Jul 2021 12:50:16 -0000
+X-List-Received-Date: Thu, 29 Jul 2021 12:50:19 -0000
 Content-Transfer-Encoding: 8bit
 
-* Cylinder size of sdcard is manufacturer dependent. To standardize
-  sdcard partitioning remove the use of cylinder (cyl) unit.
-* While at it shift to using fdisk for the partitioning the sdcard.
-  fdisk is already used in the script and this reduces the dependencies
-  of this script on available installed applications.
-* This fixes cases where already partitioned cards were being detected
-  as not partitioned because of size check elsewhere in the script
-  failing.
+Increase the boot partition size of the SD card to 128 MB so that boot
+partition size is in sync with the WIC image boot partition size.
 
 Signed-off-by: Priya N S <priya.ns@ti.com>
-Signed-off-by: Sekhar Nori <nsekhar@ti.com>
 ---
- create-sdcard.sh | 50 +++++++++++++++++++++++++++++++++++++++---------
- 1 file changed, 41 insertions(+), 9 deletions(-)
+ create-sdcard.sh | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/create-sdcard.sh b/create-sdcard.sh
-index d052312..546588b 100644
+index 546588b..a647ccd 100644
 --- a/create-sdcard.sh
 +++ b/create-sdcard.sh
-@@ -501,11 +501,29 @@ SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
+@@ -382,7 +382,7 @@ done
  
- echo DISK SIZE - $SIZE bytes
+ PARTITION="0"
+ if [ -n "$SIZE1" -a -n "$SIZE2" ] ; then
+-	if  [ "$SIZE1" -gt "72000" -a "$SIZE2" -gt "700000" ]
++	if  [ "$SIZE1" -gt "128000" -a "$SIZE2" -gt "700000" ]
+ 	then
+ 		PARTITION=1
  
--parted -s $DRIVE mklabel msdos
--parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
--parted -s $DRIVE set 1 boot on
--parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 310
--parted -s $DRIVE unit cyl mkpart primary ext2 -- 310 -2
-+cat << END | fdisk $DRIVE
-+n
-+p
-+1
-+
-++75M
-+n
-+p
-+2
-+
-++2.4G
-+n
-+p
-+3
-+
-+
-+t
-+1
-+c
-+a
-+1
-+w
-+END
+@@ -506,7 +506,7 @@ n
+ p
+ 1
  
+-+75M
+++128M
+ n
+ p
+ 2
+@@ -582,7 +582,7 @@ n
+ p
+ 1
  
- cat << EOM
-@@ -559,10 +577,24 @@ SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
- 
- echo DISK SIZE - $SIZE bytes
- 
--parted -s $DRIVE mklabel msdos
--parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
--parted -s $DRIVE set 1 boot on
--parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 -2
-+cat << END | fdisk $DRIVE
-+n
-+p
-+1
-+
-++75M
-+n
-+p
-+2
-+
-+
-+t
-+1
-+c
-+a
-+1
-+w
-+END
- 
- cat << EOM
- 
+-+75M
+++128M
+ n
+ p
+ 2
 -- 
 2.19.1.windows.1
 
