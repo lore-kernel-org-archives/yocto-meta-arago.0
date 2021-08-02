@@ -1,77 +1,45 @@
-Return-Path: <priya.ns@mistralsolutions.com>
-Received: from egress-ip4a.ess.de.barracuda.com
-	(egress-ip4a.ess.de.barracuda.com [18.184.203.227])
-	by arago-project.org (Postfix) with ESMTPS id 65ABE52AAC
+Return-Path: <l-weaver@ti.com>
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTP id 6BF8E529B7
 	for <meta-arago@arago-project.org>;
-	Thu, 29 Jul 2021 12:50:18 +0000 (UTC)
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
-	[209.85.214.198]) by
-	mx-outbound46-150.eu-central-1c.ess.aws.cudaops.com
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NO); Thu, 29 Jul 2021 12:50:31 +0000
-Received: by mail-pl1-f198.google.com with SMTP id
-	v6-20020a170902d686b02901019f88b046so4908223ply.21
-	for <meta-arago@arago-project.org>;
-	Thu, 29 Jul 2021 05:50:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mistralsolutions.com; s=google;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding;
-	bh=/zEimQ1wF7uCgeZjVQqTsDmFAyTVhLtyjLnTdHMTypA=;
-	b=irSWb5oBhEamfNlGhcQ5FjTv6It4EBsg5cprKMEpnTsFnxD+p0fEZNEyxOXrJYD7Az
-	+GAyOb4GjOtFmKNREcbbyImmTVBBHvd4Km02Vlw2rs5CX4UQvy8BnVzJJAJ6Iq1xaz7a
-	BMiprExXnfVleR4c2jkVA4SkewWyu2X2aTI7s=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=/zEimQ1wF7uCgeZjVQqTsDmFAyTVhLtyjLnTdHMTypA=;
-	b=hX+q90Mqw6YG6CuYqAW5M/sieb+nJjz4mgFgGCnOoV1TeoML6+2OroMe3Ie5c9T6pA
-	Id9qr02FSCVjgRjd7bmf2TmIwYxl2MVt9S4Q6s0YM71XfFCZ4s/GC6eMnHt/g8XFTv17
-	ksaKDcH4Uj3rl1Iv2ziaOndH8pgCJExocuMDLLClURAVXVVlFZldLy0A4PuD8FSwzTs/
-	ezrbuSMSez92mtKzY0619mds7vkC+MtJAWz/gOYwb+dQ8fNi0/yaU0Tjitl75j2nejSt
-	T8ODs7ELZI2n5az1E6DJnWxK55Kn0yPA0VbBHJm4n5wDV/l0hEAyujbhh3wbw1r6IaXA
-	dv0g==
-X-Gm-Message-State: AOAM533fU2TrWkrk+wg/yBlWzeibaQ/2/t17nzCZfjc4CTIMLF+JY6qB
-	lvcpQhGJ9ngzfet4jYJe8ygS0gL1g/UiCT+UJaxAtEM6yDRU5FzE4OBj7Iwu9POyqLtbNsyuCHm
-	N30XLMOh5KVnQx21aXtqBaTzCxaoMlAPcthJcQpDHCI4/d3V4S7F5MWnF8W4e
-X-Received: by 2002:aa7:9ec3:0:b029:32b:4eb5:4bad with SMTP id
-	r3-20020aa79ec30000b029032b4eb54badmr4866479pfq.6.1627563029065;
-	Thu, 29 Jul 2021 05:50:29 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJy8o9ipGGWl8lvnpQAa5EIW1e9UNPZ3ZdA7XyrObjMPTxB1KLcRS5g+DvZGyV1Ms62etit+hA==
-X-Received: by 2002:aa7:9ec3:0:b029:32b:4eb5:4bad with SMTP id
-	r3-20020aa79ec30000b029032b4eb54badmr4866461pfq.6.1627563028828;
-	Thu, 29 Jul 2021 05:50:28 -0700 (PDT)
-Received: from LAP000507.mistral.in ([106.51.227.150])
-	by smtp.gmail.com with ESMTPSA id
-	f3sm3705863pfe.123.2021.07.29.05.50.26
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 29 Jul 2021 05:50:28 -0700 (PDT)
-From: Priya N S <priya.ns@mistralsolutions.com>
-X-Google-Original-From: Priya N S <priya.ns@ti.com>
-To: meta-arago@arago-project.org
-Date: Thu, 29 Jul 2021 18:20:11 +0530
-Message-Id: <20210729125011.9120-5-priya.ns@ti.com>
-X-Mailer: git-send-email 2.19.1.windows.1
-In-Reply-To: <20210729125011.9120-1-priya.ns@ti.com>
+	Mon,  2 Aug 2021 17:54:53 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 172Ht9sv069808;
+	Mon, 2 Aug 2021 12:55:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1627926909;
+	bh=x593kFj8l+RuJyuOlqkmXHihnhUzEJEoSAtNyDfESdI=;
+	h=Subject:To:CC:References:From:Date:In-Reply-To;
+	b=l0uPKoNMtBykDSUkoEAKxekEbbdOFjq7ZWQj7W/Fli0+AV+O4fhlWipbxoBQH/3D7
+	NyC0jgX79zI1bYumxRf1EcMcGpDjXogI7DVeldTqNuN/FvFHK/zo76PMoNlc+J0ncs
+	S3mRp+Be10c6qbUXC/y+ndDrqBntoso31BzWK7ug=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 172Ht97I034046
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 2 Aug 2021 12:55:09 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
+	Mon, 2 Aug 2021 12:55:08 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
+	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
+	Frontend Transport; Mon, 2 Aug 2021 12:55:08 -0500
+Received: from [10.250.67.26] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 172Ht86B092904;
+	Mon, 2 Aug 2021 12:55:08 -0500
+To: Priya N S <priya.ns@mistralsolutions.com>, <meta-arago@arago-project.org>
 References: <20210729125011.9120-1-priya.ns@ti.com>
+From: "Weaver, Lucas" <l-weaver@ti.com>
+Message-ID: <61e6c90f-2c6b-5879-66f6-4d6f8b4c9854@ti.com>
+Date: Mon, 2 Aug 2021 12:55:08 -0500
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+	Thunderbird/78.7.1
 MIME-Version: 1.0
-X-BESS-ID: 1627563030-311926-31000-69828-1
-X-BESS-VER: 2019.1_20210719.2036
-X-BESS-Apparent-Source-IP: 209.85.214.198
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2,
-	rules version 3.2.2.233794 [from 
-	cloudscan22-191.eu-central-1b.ess.aws.cudaops.com]
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of
-	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
+In-Reply-To: <20210729125011.9120-1-priya.ns@ti.com>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Cc: Priya N S <priya.ns@ti.com>, Sekhar Nori <nsekhar@ti.com>
-Subject: [tisdk-setup-scripts] [master] [PATCH-V4 4/4] create-sdcard: Increase boot partition size to 128 MB
+Subject: Re: [EXTERNAL] [tisdk-setup-scripts] [master] [PATCH-V4 0/4] create-sdcard: Fix rootfs tarball search and selection
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -84,49 +52,40 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Jul 2021 12:50:19 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 02 Aug 2021 17:54:53 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Increase the boot partition size of the SD card to 128 MB so that boot
-partition size is in sync with the WIC image boot partition size.
 
-Signed-off-by: Priya N S <priya.ns@ti.com>
----
- create-sdcard.sh | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/create-sdcard.sh b/create-sdcard.sh
-index 546588b..a647ccd 100644
---- a/create-sdcard.sh
-+++ b/create-sdcard.sh
-@@ -382,7 +382,7 @@ done
- 
- PARTITION="0"
- if [ -n "$SIZE1" -a -n "$SIZE2" ] ; then
--	if  [ "$SIZE1" -gt "72000" -a "$SIZE2" -gt "700000" ]
-+	if  [ "$SIZE1" -gt "128000" -a "$SIZE2" -gt "700000" ]
- 	then
- 		PARTITION=1
- 
-@@ -506,7 +506,7 @@ n
- p
- 1
- 
--+75M
-++128M
- n
- p
- 2
-@@ -582,7 +582,7 @@ n
- p
- 1
- 
--+75M
-++128M
- n
- p
- 2
--- 
-2.19.1.windows.1
-
+On 7/29/2021 7:50 AM, Priya N S wrote:
+> Hi All,
+> 
+> This series of patches fix the issues observed in the create-sdcard
+> script.
+> 
+> Changes in V4:
+> The patch #4 is new in the series. This patch increases the boot
+> partition size to 128 MB in order to sync with WIC image boot
+> partition size.
+> 
+> v3:
+> http://arago-project.org/pipermail/meta-arago/2021-July/013245.html
+> v2:
+> http://arago-project.org/pipermail/meta-arago/2021-June/013218.html
+> v1:
+> http://arago-project.org/pipermail/meta-arago/2021-June/013197.html
+> 
+> 
+> Priya N S (4):
+>    create-sdcard.sh: fix regex used for rootfs tarball
+>    create-sdcard: Fix wrong rootfs tarball selection
+>    create-sdcard.sh: Stop using cylinder as unit for partition size
+>    create-sdcard: Increase boot partition size to 128 MB
+> 
+>   create-sdcard.sh | 76 ++++++++++++++++++++++++++++++++++++------------
+>   1 file changed, 58 insertions(+), 18 deletions(-)
+> 
+Reviewed-by: Lucas Weaver <l-weaver@ti.com>
 
