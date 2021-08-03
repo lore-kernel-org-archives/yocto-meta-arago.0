@@ -1,47 +1,31 @@
-Return-Path: <yogeshs@ti.com>
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by arago-project.org (Postfix) with ESMTP id B665852A58
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id B8BEF529F0
 	for <meta-arago@arago-project.org>;
-	Mon,  2 Aug 2021 18:13:12 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 172IDSOR076495;
-	Mon, 2 Aug 2021 13:13:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1627928008;
-	bh=o2I6rNwud42B7ZJIEmWKBC+P/eRH3o3wov+n7RNA1rQ=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=xZGtw2oWU/C8XUFkdaD3KlMts6ZCKeiadfz7QS8L5AhqKq1KzaeY1oE+sut2Dl8YO
-	8bFsc04J7HiAXxHDxp8duu/4QvYvUoBExahhL9ryfxXceShsnTWbFDIrYmGtJ0QxlA
-	+Bz5scdquih/W2FLXt0ix9BDmLLVFs/25khwN1Nw=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 172IDSM1059086
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 2 Aug 2021 13:13:28 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE109.ent.ti.com
-	(157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Mon, 2 Aug 2021 13:13:28 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
-	(157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Mon, 2 Aug 2021 13:13:28 -0500
-Received: from [10.250.69.185] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 172IDRL8058167;
-	Mon, 2 Aug 2021 13:13:27 -0500
-To: "Weaver, Lucas" <l-weaver@ti.com>, Priya N S
-	<priya.ns@mistralsolutions.com>, <meta-arago@arago-project.org>
-References: <20210729125011.9120-1-priya.ns@ti.com>
-	<61e6c90f-2c6b-5879-66f6-4d6f8b4c9854@ti.com>
-From: "Siraswar, Yogesh" <yogeshs@ti.com>
-Message-ID: <653f3b06-276c-d923-0d0f-70c52ee421d2@ti.com>
-Date: Mon, 2 Aug 2021 13:13:27 -0500
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
-	Thunderbird/78.12.0
-MIME-Version: 1.0
-In-Reply-To: <61e6c90f-2c6b-5879-66f6-4d6f8b4c9854@ti.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: Priya N S <priya.ns@ti.com>, Sekhar Nori <nsekhar@ti.com>
-Subject: Re: [EXTERNAL] [tisdk-setup-scripts] [master] [PATCH-V4 0/4] create-sdcard: Fix rootfs tarball search and selection
+	Tue,  3 Aug 2021 19:42:09 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id EF59E40C8E;
+	Tue,  3 Aug 2021 19:42:25 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id ram1ZlwmyNlg; Tue,  3 Aug 2021 19:42:25 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id CFCDA40BE8;
+	Tue,  3 Aug 2021 19:42:24 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id 18E6617464D;
+	Tue,  3 Aug 2021 15:42:24 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@arago-project.org
+Date: Tue,  3 Aug 2021 15:42:17 -0400
+Message-Id: <1628019737-50909-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [oe-layersetup][PATCH] configs, local.conf: update to version 2 due to new override syntax
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -54,50 +38,140 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Aug 2021 18:13:13 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 03 Aug 2021 19:42:10 -0000
 
-Thanks. Applied series to master.
+From: Denys Dmytriyenko <denys@konsulko.com>
 
+Also image-mklibs class has been deprecated, so remove it from local.conf
 
-On 8/2/2021 12:55 PM, Weaver, Lucas wrote:
-> 
-> 
-> On 7/29/2021 7:50 AM, Priya N S wrote:
->> Hi All,
->>
->> This series of patches fix the issues observed in the create-sdcard
->> script.
->>
->> Changes in V4:
->> The patch #4 is new in the series. This patch increases the boot
->> partition size to 128 MB in order to sync with WIC image boot
->> partition size.
->>
->> v3:
->> http://arago-project.org/pipermail/meta-arago/2021-July/013245.html
->> v2:
->> http://arago-project.org/pipermail/meta-arago/2021-June/013218.html
->> v1:
->> http://arago-project.org/pipermail/meta-arago/2021-June/013197.html
->>
->>
->> Priya N S (4):
->>    create-sdcard.sh: fix regex used for rootfs tarball
->>    create-sdcard: Fix wrong rootfs tarball selection
->>    create-sdcard.sh: Stop using cylinder as unit for partition size
->>    create-sdcard: Increase boot partition size to 128 MB
->>
->>   create-sdcard.sh | 76 ++++++++++++++++++++++++++++++++++++------------
->>   1 file changed, 58 insertions(+), 18 deletions(-)
->>
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+---
+ configs/arago-master-config.txt                                      | 2 +-
+ configs/distroless-master-config.txt                                 | 2 +-
+ configs/poky-master-config.txt                                       | 2 +-
+ .../{local-arago64.conf.sample => local-arago64-v2.conf.sample}      | 5 ++---
+ sample-files/{local-poky.conf.sample => local-poky-v2.conf.sample}   | 5 ++---
+ sample-files/{local.conf.sample => local-v2.conf.sample}             | 5 ++---
+ 6 files changed, 9 insertions(+), 12 deletions(-)
+ copy sample-files/{local-arago64.conf.sample => local-arago64-v2.conf.sample} (97%)
+ copy sample-files/{local-poky.conf.sample => local-poky-v2.conf.sample} (97%)
+ copy sample-files/{local.conf.sample => local-v2.conf.sample} (97%)
 
-> Reviewed-by: Lucas Weaver <l-weaver@ti.com>
+diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.txt
+index 0788679..e4c6d7f 100644
+--- a/configs/arago-master-config.txt
++++ b/configs/arago-master-config.txt
+@@ -11,4 +11,4 @@ meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
+ meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
+ oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-arago64.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
+diff --git a/configs/distroless-master-config.txt b/configs/distroless-master-config.txt
+index c8c400c..8211bd5 100644
+--- a/configs/distroless-master-config.txt
++++ b/configs/distroless-master-config.txt
+@@ -5,4 +5,4 @@ meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
+ meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
+ oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local.conf.sample
++OECORELOCALCONF=./sample-files/local-v2.conf.sample
+diff --git a/configs/poky-master-config.txt b/configs/poky-master-config.txt
+index 1dc261f..f213411 100644
+--- a/configs/poky-master-config.txt
++++ b/configs/poky-master-config.txt
+@@ -5,4 +5,4 @@ poky,git://git.yoctoproject.org/poky,master,HEAD,layers=meta:meta-poky:meta-yoct
+ meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
+ meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+-OECORELOCALCONF=./sample-files/local-poky.conf.sample
++OECORELOCALCONF=./sample-files/local-poky-v2.conf.sample
+diff --git a/sample-files/local-arago64.conf.sample b/sample-files/local-arago64-v2.conf.sample
+similarity index 97%
+copy from sample-files/local-arago64.conf.sample
+copy to sample-files/local-arago64-v2.conf.sample
+index 68f0bff..9549e8a 100644
+--- a/sample-files/local-arago64.conf.sample
++++ b/sample-files/local-arago64-v2.conf.sample
+@@ -1,5 +1,5 @@
+ # CONF_VERSION is increased each time build/conf/ changes incompatibly
+-CONF_VERSION = "1"
++CONF_VERSION = "2"
+ 
+ #
+ # Where to place downloads
+@@ -112,12 +112,11 @@ EXTRA_IMAGE_FEATURES = "debug-tweaks"
+ # enable extra features. Some available options which can be included in this variable 
+ # are:
+ #   - 'buildstats' collect build statistics
+-#   - 'image-mklibs' to reduce shared library files size for an image
+ #   - 'image-prelink' in order to prelink the filesystem image
+ #   - 'image-swab' to perform host system intrusion detection
+ # NOTE: if listing mklibs & prelink both, then make sure mklibs is before prelink
+ # NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
+-USER_CLASSES ?= "buildstats image-mklibs image-prelink"
++USER_CLASSES ?= "buildstats image-prelink"
+ 
+ # By default disable interactive patch resolution (tasks will just fail instead):
+ PATCHRESOLVE = "noop"
+diff --git a/sample-files/local-poky.conf.sample b/sample-files/local-poky-v2.conf.sample
+similarity index 97%
+copy from sample-files/local-poky.conf.sample
+copy to sample-files/local-poky-v2.conf.sample
+index ba5d4c1..5cbe6ef 100644
+--- a/sample-files/local-poky.conf.sample
++++ b/sample-files/local-poky-v2.conf.sample
+@@ -1,5 +1,5 @@
+ # CONF_VERSION is increased each time build/conf/ changes incompatibly
+-CONF_VERSION = "1"
++CONF_VERSION = "2"
+ 
+ #
+ # Where to place downloads
+@@ -109,12 +109,11 @@ EXTRA_IMAGE_FEATURES = "debug-tweaks"
+ # enable extra features. Some available options which can be included in this variable 
+ # are:
+ #   - 'buildstats' collect build statistics
+-#   - 'image-mklibs' to reduce shared library files size for an image
+ #   - 'image-prelink' in order to prelink the filesystem image
+ #   - 'image-swab' to perform host system intrusion detection
+ # NOTE: if listing mklibs & prelink both, then make sure mklibs is before prelink
+ # NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
+-USER_CLASSES ?= "buildstats image-mklibs image-prelink"
++USER_CLASSES ?= "buildstats image-prelink"
+ 
+ # By default disable interactive patch resolution (tasks will just fail instead):
+ PATCHRESOLVE = "noop"
+diff --git a/sample-files/local.conf.sample b/sample-files/local-v2.conf.sample
+similarity index 97%
+copy from sample-files/local.conf.sample
+copy to sample-files/local-v2.conf.sample
+index e60bedc..e0df8f5 100644
+--- a/sample-files/local.conf.sample
++++ b/sample-files/local-v2.conf.sample
+@@ -1,5 +1,5 @@
+ # CONF_VERSION is increased each time build/conf/ changes incompatibly
+-CONF_VERSION = "1"
++CONF_VERSION = "2"
+ 
+ #
+ # Where to place downloads
+@@ -109,12 +109,11 @@ EXTRA_IMAGE_FEATURES = "debug-tweaks"
+ # enable extra features. Some available options which can be included in this variable 
+ # are:
+ #   - 'buildstats' collect build statistics
+-#   - 'image-mklibs' to reduce shared library files size for an image
+ #   - 'image-prelink' in order to prelink the filesystem image
+ #   - 'image-swab' to perform host system intrusion detection
+ # NOTE: if listing mklibs & prelink both, then make sure mklibs is before prelink
+ # NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
+-USER_CLASSES ?= "buildstats image-mklibs image-prelink"
++USER_CLASSES ?= "buildstats image-prelink"
+ 
+ # By default disable interactive patch resolution (tasks will just fail instead):
+ PATCHRESOLVE = "noop"
+-- 
+2.7.4
 
-> _______________________________________________
-> meta-arago mailing list
-> meta-arago@arago-project.org
-> http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago
 
