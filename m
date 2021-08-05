@@ -1,31 +1,75 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id B8BEF529F0
+Return-Path: <priya.ns@mistralsolutions.com>
+Received: from egress-ip33b.ess.de.barracuda.com
+	(egress-ip33b.ess.de.barracuda.com [18.185.115.237])
+	by arago-project.org (Postfix) with ESMTPS id 9CDE452A23
 	for <meta-arago@arago-project.org>;
-	Tue,  3 Aug 2021 19:42:09 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id EF59E40C8E;
-	Tue,  3 Aug 2021 19:42:25 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id ram1ZlwmyNlg; Tue,  3 Aug 2021 19:42:25 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id CFCDA40BE8;
-	Tue,  3 Aug 2021 19:42:24 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 18E6617464D;
-	Tue,  3 Aug 2021 15:42:24 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
+	Thu,  5 Aug 2021 21:04:00 +0000 (UTC)
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com
+	[209.85.216.71]) by
+	mx-outbound17-161.eu-central-1b.ess.aws.cudaops.com
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NO); Thu, 05 Aug 2021 21:04:15 +0000
+Received: by mail-pj1-f71.google.com with SMTP id
+	o1-20020a17090aac01b029017730151351so1651033pjq.3
+	for <meta-arago@arago-project.org>;
+	Thu, 05 Aug 2021 14:04:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mistralsolutions.com; s=google;
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=RlOyombyaYG8ob3B4IEkk0kquq02q3n0qchjB28Fv2M=;
+	b=ZkVW7vgX/JUv6H9UCeoq0ntRW9+/wTutYg5reuoDM8xzKXw8iO9SkuSv8u0i4GjZKF
+	hgTWshgOsLIYehRs1IHi2oj2DrRQkh5xy+aLK7VrAs7TAkim611f5vxaYVsnIEC2jyiJ
+	A17B/XWIkH7gMofejIuhZ7O6AVNi/mkFG0a3Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=RlOyombyaYG8ob3B4IEkk0kquq02q3n0qchjB28Fv2M=;
+	b=kpU5yMzWpxT6rEHuZKcfjQjOQnrcoNX0XP3x9IoSIAAYgoV/wyEWbcZOqE0hk8qfHa
+	lew/KRd1ULrkMY4DErylcp+I84Pm8fOQZX4bqWKiuSnmOtd/oJ2LuPcceQReeYntUWLN
+	t1WBmtweo/zAlQm2GIbRwvBVqD8Jb9LNGNv1uefrr2T+EIUk2vFGOjq5HsdAGJnuDTbR
+	P64rAcAfLSZ7+S7mmJrlGK3PLpoYkiUSacoSRJHcCAChiw9GQvkD7RYlzW5eXj0X+JTU
+	390tosMfkap3zp3KEbEPmqMoZazF/Pv9Svzxqrg1zvtEQPq7tzfmLh8dfyULVT2NL8/U
+	JZ+Q==
+X-Gm-Message-State: AOAM530RY8ECpGSREpWO9KXIE2nFzA7lIoIkq4CF0VbC1qhlWgMCAuTV
+	HjELQCZje+j1ANcDv3sX0neNH8Nmju6MEgdM6KgEQAhSzG6/2sKd6+xQsdWSLZnAByhjXcUm0sz
+	iD0/Cgd9ZwT9tQHP2/vI1xiZ94Bv+bi0BMSz93+6wESTZUz5iUyGZ9JCPIYLS
+X-Received: by 2002:a17:90a:d3cc:: with SMTP id
+	d12mr6514192pjw.151.1628197452289; 
+	Thu, 05 Aug 2021 14:04:12 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzNGlUfqWrrpCKlSCKGSM2mXyZQ7F+ttn0dKiHsIAjaXs/z3R8eJrvxvQE87xQIL11iMGwDKg==
+X-Received: by 2002:a17:90a:d3cc:: with SMTP id
+	d12mr6514170pjw.151.1628197451876; 
+	Thu, 05 Aug 2021 14:04:11 -0700 (PDT)
+Received: from LAP000507.mistral.in ([122.179.112.161])
+	by smtp.gmail.com with ESMTPSA id a8sm8941938pgd.50.2021.08.05.14.04.09
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 05 Aug 2021 14:04:11 -0700 (PDT)
+From: Priya N S <priya.ns@mistralsolutions.com>
+X-Google-Original-From: Priya N S <priya.ns@ti.com>
 To: meta-arago@arago-project.org
-Date: Tue,  3 Aug 2021 15:42:17 -0400
-Message-Id: <1628019737-50909-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [oe-layersetup][PATCH] configs, local.conf: update to version 2 due to new override syntax
+Date: Fri,  6 Aug 2021 02:33:42 +0530
+Message-Id: <20210805210342.63368-1-priya.ns@ti.com>
+X-Mailer: git-send-email 2.19.1.windows.1
+MIME-Version: 1.0
+X-BESS-ID: 1628197455-304513-5417-72280-1
+X-BESS-VER: 2019.1_20210719.2036
+X-BESS-Apparent-Source-IP: 209.85.216.71
+X-BESS-Outbound-Spam-Score: 0.50
+X-BESS-Outbound-Spam-Report: Code version 3.2,
+	rules version 3.2.2.233881 [from 
+	cloudscan8-113.eu-central-1a.ess.aws.cudaops.com]
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.50 BSF_RULE7568M          META: Custom Rule 7568M 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.50 using account:ESS91090 scores of
+	KILL_LEVEL=7.0 tests=BSF_RULE7568M, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
+Cc: Priya N S <priya.ns@ti.com>, Sekhar Nori <nsekhar@ti.com>
+Subject: [oe-layersetup PATCH] coresdk-07.03.00.005-config: Add missed out meta layers
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,140 +82,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Aug 2021 19:42:10 -0000
+X-List-Received-Date: Thu, 05 Aug 2021 21:04:01 -0000
+Content-Transfer-Encoding: 8bit
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+* Add meta-processor-sdk meta layer required for AM335X, AM437X
+* Add meta-aws meta layer required for AM335X, AM437X
+* Add meta-linaro meta layer required for AM335X, AM437X
+* Update OECORE config file to processor sdk specific config file
 
-Also image-mklibs class has been deprecated, so remove it from local.conf
-
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: Priya N S <priya.ns@ti.com>
 ---
- configs/arago-master-config.txt                                      | 2 +-
- configs/distroless-master-config.txt                                 | 2 +-
- configs/poky-master-config.txt                                       | 2 +-
- .../{local-arago64.conf.sample => local-arago64-v2.conf.sample}      | 5 ++---
- sample-files/{local-poky.conf.sample => local-poky-v2.conf.sample}   | 5 ++---
- sample-files/{local.conf.sample => local-v2.conf.sample}             | 5 ++---
- 6 files changed, 9 insertions(+), 12 deletions(-)
- copy sample-files/{local-arago64.conf.sample => local-arago64-v2.conf.sample} (97%)
- copy sample-files/{local-poky.conf.sample => local-poky-v2.conf.sample} (97%)
- copy sample-files/{local.conf.sample => local-v2.conf.sample} (97%)
 
-diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.txt
-index 0788679..e4c6d7f 100644
---- a/configs/arago-master-config.txt
-+++ b/configs/arago-master-config.txt
-@@ -11,4 +11,4 @@ meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
- meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
- oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
+Hi All,
+This patch adds the meta layers that were missed out in the
+coresdk-07.03.00.005-config file.
+
+Note:
+* The Processor SDK build are verified for am335x-evm and am437x-evm
+  platforms.
+
+ configs/coresdk/coresdk-07.03.00.005-config.txt | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/configs/coresdk/coresdk-07.03.00.005-config.txt b/configs/coresdk/coresdk-07.03.00.005-config.txt
+index 97e540a..afab00e 100644
+--- a/configs/coresdk/coresdk-07.03.00.005-config.txt
++++ b/configs/coresdk/coresdk-07.03.00.005-config.txt
+@@ -2,13 +2,15 @@
+ # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+ 
+ bitbake,git://git.openembedded.org/bitbake,1.46,017a39ed05d065bf28fd38f91bcde8a098300551
++meta-processor-sdk,git://git.ti.com/processor-sdk/meta-processor-sdk.git,dunfell,c467012684e57c914c4070238987e931f329da15,layers=
+ meta-arago,git://arago-project.org/git/meta-arago.git,dunfell,07.03.00.005,layers=meta-arago-distro:meta-arago-extras
+-#meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
++meta-aws,https://github.com/aws/meta-aws.git,dunfell,HEAD,layers=
+ meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,b4d24d70aca75791902df5cd59a4f4a54aa4a125,layers=
+ meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,89abc62b47f6f20db9d00a8ec9b2c1b6b60ac3f9,layers=
+ meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,389757a7494221fea1d8437e9a01c6e4fb4700af,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+ meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,07.03.00.005,layers=
++meta-linaro,https://git.linaro.org/openembedded/meta-linaro.git,dunfell,HEAD,layers=meta-optee
+ meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
+ oe-core,git://git.openembedded.org/openembedded-core,dunfell,707036d4ec12ef1a260adcef78627b26e32e6540,layers=meta
  OECORELAYERCONF=./sample-files/bblayers.conf.sample
 -OECORELOCALCONF=./sample-files/local-arago64.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-diff --git a/configs/distroless-master-config.txt b/configs/distroless-master-config.txt
-index c8c400c..8211bd5 100644
---- a/configs/distroless-master-config.txt
-+++ b/configs/distroless-master-config.txt
-@@ -5,4 +5,4 @@ meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
- meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
- oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
- OECORELAYERCONF=./sample-files/bblayers.conf.sample
--OECORELOCALCONF=./sample-files/local.conf.sample
-+OECORELOCALCONF=./sample-files/local-v2.conf.sample
-diff --git a/configs/poky-master-config.txt b/configs/poky-master-config.txt
-index 1dc261f..f213411 100644
---- a/configs/poky-master-config.txt
-+++ b/configs/poky-master-config.txt
-@@ -5,4 +5,4 @@ poky,git://git.yoctoproject.org/poky,master,HEAD,layers=meta:meta-poky:meta-yoct
- meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
- meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
- OECORELAYERCONF=./sample-files/bblayers.conf.sample
--OECORELOCALCONF=./sample-files/local-poky.conf.sample
-+OECORELOCALCONF=./sample-files/local-poky-v2.conf.sample
-diff --git a/sample-files/local-arago64.conf.sample b/sample-files/local-arago64-v2.conf.sample
-similarity index 97%
-copy from sample-files/local-arago64.conf.sample
-copy to sample-files/local-arago64-v2.conf.sample
-index 68f0bff..9549e8a 100644
---- a/sample-files/local-arago64.conf.sample
-+++ b/sample-files/local-arago64-v2.conf.sample
-@@ -1,5 +1,5 @@
- # CONF_VERSION is increased each time build/conf/ changes incompatibly
--CONF_VERSION = "1"
-+CONF_VERSION = "2"
- 
- #
- # Where to place downloads
-@@ -112,12 +112,11 @@ EXTRA_IMAGE_FEATURES = "debug-tweaks"
- # enable extra features. Some available options which can be included in this variable 
- # are:
- #   - 'buildstats' collect build statistics
--#   - 'image-mklibs' to reduce shared library files size for an image
- #   - 'image-prelink' in order to prelink the filesystem image
- #   - 'image-swab' to perform host system intrusion detection
- # NOTE: if listing mklibs & prelink both, then make sure mklibs is before prelink
- # NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
--USER_CLASSES ?= "buildstats image-mklibs image-prelink"
-+USER_CLASSES ?= "buildstats image-prelink"
- 
- # By default disable interactive patch resolution (tasks will just fail instead):
- PATCHRESOLVE = "noop"
-diff --git a/sample-files/local-poky.conf.sample b/sample-files/local-poky-v2.conf.sample
-similarity index 97%
-copy from sample-files/local-poky.conf.sample
-copy to sample-files/local-poky-v2.conf.sample
-index ba5d4c1..5cbe6ef 100644
---- a/sample-files/local-poky.conf.sample
-+++ b/sample-files/local-poky-v2.conf.sample
-@@ -1,5 +1,5 @@
- # CONF_VERSION is increased each time build/conf/ changes incompatibly
--CONF_VERSION = "1"
-+CONF_VERSION = "2"
- 
- #
- # Where to place downloads
-@@ -109,12 +109,11 @@ EXTRA_IMAGE_FEATURES = "debug-tweaks"
- # enable extra features. Some available options which can be included in this variable 
- # are:
- #   - 'buildstats' collect build statistics
--#   - 'image-mklibs' to reduce shared library files size for an image
- #   - 'image-prelink' in order to prelink the filesystem image
- #   - 'image-swab' to perform host system intrusion detection
- # NOTE: if listing mklibs & prelink both, then make sure mklibs is before prelink
- # NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
--USER_CLASSES ?= "buildstats image-mklibs image-prelink"
-+USER_CLASSES ?= "buildstats image-prelink"
- 
- # By default disable interactive patch resolution (tasks will just fail instead):
- PATCHRESOLVE = "noop"
-diff --git a/sample-files/local.conf.sample b/sample-files/local-v2.conf.sample
-similarity index 97%
-copy from sample-files/local.conf.sample
-copy to sample-files/local-v2.conf.sample
-index e60bedc..e0df8f5 100644
---- a/sample-files/local.conf.sample
-+++ b/sample-files/local-v2.conf.sample
-@@ -1,5 +1,5 @@
- # CONF_VERSION is increased each time build/conf/ changes incompatibly
--CONF_VERSION = "1"
-+CONF_VERSION = "2"
- 
- #
- # Where to place downloads
-@@ -109,12 +109,11 @@ EXTRA_IMAGE_FEATURES = "debug-tweaks"
- # enable extra features. Some available options which can be included in this variable 
- # are:
- #   - 'buildstats' collect build statistics
--#   - 'image-mklibs' to reduce shared library files size for an image
- #   - 'image-prelink' in order to prelink the filesystem image
- #   - 'image-swab' to perform host system intrusion detection
- # NOTE: if listing mklibs & prelink both, then make sure mklibs is before prelink
- # NOTE: mklibs also needs to be explicitly enabled for a given image, see local.conf.extended
--USER_CLASSES ?= "buildstats image-mklibs image-prelink"
-+USER_CLASSES ?= "buildstats image-prelink"
- 
- # By default disable interactive patch resolution (tasks will just fail instead):
- PATCHRESOLVE = "noop"
++OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
 -- 
-2.7.4
+2.19.1.windows.1
 
 
