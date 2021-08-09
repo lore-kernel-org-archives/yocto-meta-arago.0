@@ -1,42 +1,36 @@
-Return-Path: <nikhil.nd@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id E064952ACA
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 9D93D52ACA
 	for <meta-arago@arago-project.org>;
-	Mon,  9 Aug 2021 18:20:58 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 179ILHi6026327;
-	Mon, 9 Aug 2021 13:21:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1628533277;
-	bh=1CiPX2gl0JMvCSQR30rrELIsuPjrSKHUTF5t9LsP2nk=;
-	h=From:To:CC:Subject:Date;
-	b=vzKmAUpPw+cv5NZvRU3Dp1GomfUd+iBmDvDRT7AQkqLMw99tRxij/8FjKOr0UWcXE
-	csuqg8Qywi7OQnUsdygMeLU8aBcjZhhvPeUnIwZ8XPtuL6dYpb2klzzvQq0HLEBQCT
-	NGFjbZJMc8hNDpLYyKxhQvs3a6w2ENhsqwGBMk1w=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 179ILHff005693
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 9 Aug 2021 13:21:17 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Mon, 9 Aug 2021 13:21:17 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
-	(10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Mon, 9 Aug 2021 13:21:17 -0500
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 179ILECf087609; 
-	Mon, 9 Aug 2021 13:21:15 -0500
-From: Nikhil Devshatwar <nikhil.nd@ti.com>
-To: <meta-arago@arago-project.org>, <yogeshs@ti.com>, <praneeth@ti.com>
-Date: Mon, 9 Aug 2021 23:51:07 +0530
-Message-ID: <20210809182107.6899-1-nikhil.nd@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Mon,  9 Aug 2021 18:23:52 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 176E140C1D;
+	Mon,  9 Aug 2021 18:24:11 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id GrAWZHEnF8lG; Mon,  9 Aug 2021 18:24:11 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C255140952;
+	Mon,  9 Aug 2021 18:24:04 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 84472174651; Mon,  9 Aug 2021 14:24:04 -0400 (EDT)
+Date: Mon, 9 Aug 2021 14:24:04 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Nikhil Devshatwar <nikhil.nd@ti.com>
+Message-ID: <20210809182404.GF1528@denix.org>
+References: <20210806114852.60704-1-priya.ns@ti.com>
+	<37141086-c8fc-919a-8a7e-73e7edd96926@ti.com>
+	<20210809181731.c4wnpmmwz7n27b42@NiksLab>
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Cc: nsekhar@ti.com
-Subject: [oe-layersetup PATCH] processor-sdk: Add 08.00.00.21 release config
+In-Reply-To: <20210809181731.c4wnpmmwz7n27b42@NiksLab>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: Sekhar Nori <nsekhar@ti.com>, meta-arago@arago-project.org,
+	Priya N S <priya.ns@ti.com>
+Subject: Re: [oe-layersetup PATCH v2] processor-sdk: Add 07.03.00.005 release config
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -49,38 +43,35 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Aug 2021 18:20:59 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 09 Aug 2021 18:23:53 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Add config file for processor-sdk 08.00.00.21 release
+On Mon, Aug 09, 2021 at 11:47:31PM +0530, Nikhil Devshatwar wrote:
+> On 11:50-20210806, Bajjuri, Praneeth wrote:
+> > > +#meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
+> > > +meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,b4d24d70aca75791902df5cd59a4f4a54aa4a125,layers=
+> > > +meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,89abc62b47f6f20db9d00a8ec9b2c1b6b60ac3f9,layers=
+> > > +meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,389757a7494221fea1d8437e9a01c6e4fb4700af,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+> > > +meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,07.03.00.005,layers=
+> > > +meta-linaro,https://git.linaro.org/openembedded/meta-linaro.git,dunfell,HEAD,layers=meta-optee
+> > 
+> > By the way, why do you even need meta-linaro layer for psdkl builds?
 
-Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
----
- .../processor-sdk-08.00.00.21-config.txt           | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
- create mode 100644 configs/processor-sdk/processor-sdk-08.00.00.21-config.txt
+Looks like it is added for meta-optee, but it has since Dunfell been moved to 
+meta-arm...
 
-diff --git a/configs/processor-sdk/processor-sdk-08.00.00.21-config.txt b/configs/processor-sdk/processor-sdk-08.00.00.21-config.txt
-new file mode 100644
-index 0000000..78a921c
---- /dev/null
-+++ b/configs/processor-sdk/processor-sdk-08.00.00.21-config.txt
-@@ -0,0 +1,14 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,1.46,0e0af15b84e07e6763300dcd092b980086b9b9c4
-+meta-processor-sdk,git://git.ti.com/processor-sdk/meta-processor-sdk.git,dunfell,ea2e8505fdf9948c0e2881af9dacb07e801c9037,layers=
-+meta-arago,git://git.yoctoproject.org/meta-arago,dunfell,08.00.00.004,layers=meta-arago-distro:meta-arago-extras
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,b4d24d70aca75791902df5cd59a4f4a54aa4a125,layers=
-+meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,4d6216a04c2ebe04bf02392c02d9589d35ebf3b4,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,7bd47ef6c98323c95a9e527129dca98c9a65ee08,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-+meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,08.00.00.004,layers=
-+meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
-+oe-core,git://git.openembedded.org/openembedded-core,dunfell,9b83aefa9c4a21d9dc1eea4a6b00af379466a288,layers=meta
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+
+> > > +meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
+> > > +oe-core,git://git.openembedded.org/openembedded-core,dunfell,707036d4ec12ef1a260adcef78627b26e32e6540,layers=meta
+> > > +OECORELAYERCONF=./sample-files/bblayers.conf.sample
+> > > +OECORELOCALCONF=./sample-files/local-processor-sdk-64.conf.sample
+> > > 
+> 
+
 -- 
-2.17.1
-
+Regards,
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
 
