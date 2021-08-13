@@ -1,31 +1,34 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 3737352A5A
+	by arago-project.org (Postfix) with ESMTPS id 12A2252A5A
 	for <meta-arago@arago-project.org>;
-	Thu, 12 Aug 2021 18:22:12 +0000 (UTC)
+	Fri, 13 Aug 2021 02:14:11 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id AE7D240C8E;
-	Thu, 12 Aug 2021 18:22:31 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C058B40C1C
+	for <meta-arago@arago-project.org>;
+	Fri, 13 Aug 2021 02:14:30 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id LxYBZ9m0utyK; Thu, 12 Aug 2021 18:22:31 +0000 (UTC)
+	with ESMTP id GkgEGgCKiRwU for <meta-arago@arago-project.org>;
+	Fri, 13 Aug 2021 02:14:30 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8832740BEC;
-	Thu, 12 Aug 2021 18:22:29 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id ABED040C16
+	for <meta-arago@arago-project.org>;
+	Fri, 13 Aug 2021 02:14:29 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 42633174653;
-	Thu, 12 Aug 2021 14:22:29 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id E5817174655
+	for <meta-arago@arago-project.org>;
+	Thu, 12 Aug 2021 22:14:28 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@arago-project.org
-Date: Thu, 12 Aug 2021 14:22:17 -0400
-Message-Id: <1628792537-4699-1-git-send-email-denis@denix.org>
+Date: Thu, 12 Aug 2021 22:14:28 -0400
+Message-Id: <1628820868-53610-1-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
-Cc: Tom Rini <trini@konsulko.com>, Denys Dmytriyenko <denys@konsulko.com>
-Subject: [dunfell][PATCH] grub and grub-efi break in do_configure() when using external-arm toolchain:
+Subject: [dunfell][PATCH v2] grub: fix do_configure() breakage with external-arm toolchain
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -38,9 +41,11 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Aug 2021 18:22:12 -0000
+X-List-Received-Date: Fri, 13 Aug 2021 02:14:11 -0000
 
 From: Denys Dmytriyenko <denys@konsulko.com>
+
+grub and grub-efi break in do_configure() when using external-arm toolchain:
 
 | checking for aarch64-poky-linux-objcopy... no
 | checking for objcopy... objcopy
@@ -68,6 +73,8 @@ https://lists.yoctoproject.org/g/meta-arm/message/2163
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 Cc: Tom Rini <trini@konsulko.com>
 ---
+v2 - subject line in commit log got lost, fix it, no other changes
+
  meta-arago-distro/recipes-bsp/grub/grub%.bbappend | 9 +++++++++
  1 file changed, 9 insertions(+)
  create mode 100644 meta-arago-distro/recipes-bsp/grub/grub%.bbappend
