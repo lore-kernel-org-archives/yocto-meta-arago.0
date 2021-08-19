@@ -1,44 +1,59 @@
-Return-Path: <lucas@lucas-xps-8930>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 7D08952A2D
+Return-Path: <paul@pbarker.dev>
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com
+	[64.147.123.21])
+	by arago-project.org (Postfix) with ESMTPS id EDCAC52A6A
 	for <meta-arago@arago-project.org>;
-	Wed, 18 Aug 2021 20:36:27 +0000 (UTC)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 17IKanfg052254
-	for <meta-arago@arago-project.org>; Wed, 18 Aug 2021 15:36:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1629319009;
-	bh=Wz7yUHi4yGARMziop4MLjmL6SrsAuQKazMlyUrIcK4o=;
-	h=From:To:CC:Subject:Date;
-	b=LxKwAe/TOF8wkqosOK/BfZ+U0QFEKypF5VPey7p+vX4PYCvGzEm3G40YwC8HcwpQo
-	3hxBEibzgl6qb5D6RApUk0l0ohMtdewYjrAY90FqV73+50zp7VsHIrQDEMc9C2WcQN
-	M6s+XEN26Bmb5cwDtRwhHXjl8+bVrmAY37OsLYro=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 17IKanEG010227
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@arago-project.org>; Wed, 18 Aug 2021 15:36:49 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE114.ent.ti.com
-	(157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2;
-	Wed, 18 Aug 2021 15:36:49 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
-	(157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2 via
-	Frontend Transport; Wed, 18 Aug 2021 15:36:49 -0500
-Received: from lucas-XPS-8930 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 17IKanFq065043;
-	Wed, 18 Aug 2021 15:36:49 -0500
-Received: from lucas by lucas-XPS-8930 with local (Exim 4.90_1)
-	(envelope-from <lucas@lucas-xps-8930>)
-	id 1mGSIq-0001hL-Ez; Wed, 18 Aug 2021 15:36:48 -0500
-From: <l-weaver@ti.com>
-To: <meta-arago@arago-project.org>
-Date: Wed, 18 Aug 2021 15:36:37 -0500
-Message-ID: <20210818203637.6441-1-l-weaver@ti.com>
-X-Mailer: git-send-email 2.17.1
+	Thu, 19 Aug 2021 15:57:48 +0000 (UTC)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+	by mailout.west.internal (Postfix) with ESMTP id A343632009D4;
+	Thu, 19 Aug 2021 11:58:10 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+	by compute6.internal (MEProxy); Thu, 19 Aug 2021 11:58:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pbarker.dev; h=
+	date:from:to:subject:message-id:mime-version:content-type; s=
+	fm1; bh=WbiVpCX9/ngfW4Ow5kV9Yv7qaLaX/sVDeaXNMiAJK/o=; b=WW3hQU/x
+	QDjdX1epnMaxWXqEmK7ZlErc2l4bDDuwHFUfL0di2Vw6ryaXxE4t5UKB7p8j+YKE
+	CsCXRGvjc3Y5Mfn1jcdffdoV4VRHzbrlG3xgNuu7xn3lpnPtOvkan5usfwSIIyoD
+	RxI9+rYYZ9UFWGSrQpULTSwsbe2BK5hR07nTXCSCOznhCtH2U6N14aTrLgj1Cwdq
+	5AAhMXJbByA7ZH0sc9BViIBkVh761AvabsjBuE7sDrz80GDvynfzYYU57Nud8uDb
+	Rff9HrAPFFlG4BllWqKE9ekSHdiEB3OdJv3HLm+GDkI+hhuSHgBsSb/i1KcCQu4/
+	Xo1TAg88/lXOxA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=content-type:date:from:message-id
+	:mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm3; bh=WbiVpCX9/ngfW4Ow5kV9Yv7qaLaX/
+	sVDeaXNMiAJK/o=; b=juHZYCt3dim2GvVas7wyG7rvllpQKU/Jb13BB7N3CQqwt
+	b4AoCl7wH/NPz2dSP5VJI6iTa57ZkNnYi9zdPOGP2kM6I3gqrxmKV9nyP6Dutfbs
+	k3+/tulWBLvK6m4LVMW2ncTjZo57BE024lBMAnhig08S8WRpfJ7llcV/MeueHwk/
+	hxCzNWtBnGCDWlGGdApnK7sKJZOLJESmKLAXGZdaDo21kajD198tCkkBiRtdey+N
+	zYI/Kclstl2YZZQsre89yWVNiysSDGbbxLDVHHnqsBRbV3xOh7tTXLoz597i8VJS
+	LxuYsGhqJopWa3QMDTyHNpX0DHOGQc1sUjSJslN2Q==
+X-ME-Sender: <xms:kX8eYUCqBghRPXlGZAJm55Aan0W8PgYi4s9uwFOmngQMwPK-QgDvsw>
+	<xme:kX8eYWgZwiLv8ulfA1fg2vJAVyYJ9o1HrWY62eYwzPyvCpy0ouc_RSHSxX67CdIMv
+	KNDA6jlPUtD3Y9JHlY>
+X-ME-Received: <xmr:kX8eYXmZuMJyggntd6CJquxTnyFyTXtcgkUDCNgQ0vNUJdNZUhiDJqxGqQiUSPGHTpaeK3csYDUO6lOR4e5Mc7k0GqYlzvxGeK9U4BfWiqAdQn2kddvGBTvoAYw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrleejgdelvdcutefuodetggdotefrodftvf
+	curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+	uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+	fjughrpeffhffvuffkofggtgesghdtreerredtvdenucfhrhhomheprfgruhhluceurghr
+	khgvrhcuoehprghulhesphgsrghrkhgvrhdruggvvheqnecuggftrfgrthhtvghrnhepue
+	fgvefhheeiffetvdfhleeltdduteekleekvdffieekvefhgfdvledugfeivdefnecuffho
+	mhgrihhnpehpsggrrhhkvghrrdguvghvnecuvehluhhsthgvrhfuihiivgeptdenucfrrg
+	hrrghmpehmrghilhhfrhhomhepphgruhhlsehpsggrrhhkvghrrdguvghv
+X-ME-Proxy: <xmx:kX8eYax663BlIe4YhpJxSs7mU7b-UiYBqXCshA6UOYjzuJD0Lj8fHA>
+	<xmx:kX8eYZSHTR-KxQWS9dfysgvc-m0H1j1VDRgsChG57rVoITevhX8dlw>
+	<xmx:kX8eYVZOKNGF69Zx36cynFoNn4oFN-wTVWL1th3fZPZy7Uv69FBieA>
+	<xmx:kn8eYYKvvnl_G2s0PUhHYRPDZetcN0YqUNXoUjocgJwbxba27zz8Mw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+	19 Aug 2021 11:58:09 -0400 (EDT)
+Date: Thu, 19 Aug 2021 16:57:55 +0100
+From: Paul Barker <paul@pbarker.dev>
+To: meta-arago@arago-project.org, Praneeth Bajjuri <praneeth@ti.com>, Yogesh
+	Siraswar <yogeshs@ti.com>
+Message-ID: <20210819165755.6156c40c.paul@pbarker.dev>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; x86_64-suse-linux-gnu)
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: [oe-layersetup][PATCH] processor-sdk-linux: Add 08.00.00 release config
+Subject: Rebase of oe-layersetup?
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -51,43 +66,48 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Aug 2021 20:36:27 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 19 Aug 2021 15:57:49 -0000
+X-Groupsio-MsgNum: 13303
+Content-Type: multipart/signed; boundary="Sig_/JSDC/6pfYEEsC5PvMlmsbkd";
+	protocol="application/pgp-signature"; micalg=pgp-sha256
 
-From: Lucas Weaver <l-weaver@ti.com>
+--Sig_/JSDC/6pfYEEsC5PvMlmsbkd
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Add config file for processor-sdk-linux 08.00.00 release
+Hi folks,
 
-Signed-off-by: Lucas Weaver <l-weaver@ti.com>
----
- .../processor-sdk-linux-08_00_00.txt            | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
- create mode 100644 configs/processor-sdk-linux/processor-sdk-linux-08_00_00.txt
+Was there a force push or rebase of the master branch of the
+oe-layersetup repository?
 
-diff --git a/configs/processor-sdk-linux/processor-sdk-linux-08_00_00.txt b/configs/processor-sdk-linux/processor-sdk-linux-08_00_00.txt
-new file mode 100644
-index 0000000..f46184a
---- /dev/null
-+++ b/configs/processor-sdk-linux/processor-sdk-linux-08_00_00.txt
-@@ -0,0 +1,17 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,git://git.openembedded.org/bitbake,1.46,0e0af15b84e07e6763300dcd092b980086b9b9c4
-+meta-arago,git://git.yoctoproject.org/meta-arago,dunfell,08.00.00.004,layers=meta-arago-distro:meta-arago-extras
-+meta-psdkla,git://git.ti.com/jacinto-linux/meta-psdkla.git,master,3d772074ef93ac47a1a752e22021b0c32207f54b,layers=
-+#meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
-+meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,b4d24d70aca75791902df5cd59a4f4a54aa4a125,layers=
-+meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,4d6216a04c2ebe04bf02392c02d9589d35ebf3b4,layers=
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,7bd47ef6c98323c95a9e527129dca98c9a65ee08,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-+meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,08.00.00.004,layers=
-+meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
-+oe-core,git://git.openembedded.org/openembedded-core,dunfell,9b83aefa9c4a21d9dc1eea4a6b00af379466a288,layers=meta
-+meta-aws,https://github.com/aws/meta-aws.git,dunfell,d3df90635fca4d8267b547dab568058c554014b1,layers=
-+meta-jupyter,https://github.com/Xilinx/meta-jupyter.git,master,82db248e2eca36e52cbeafe599b755dc87720383,layers=
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago64.conf.sample
--- 
-2.17.1
+I previously had commit efa23526343a48255bc0cf566ecd9e4fd625ba89
+"processor-sdk: Add 08.00.00.21 release config". It looks like this has
+been stripped out and instead the HEAD of master is now
+d7c7f2cf567448ef0e2e0bb8d98f819856a96c0d "processor-sdk: Add
+08.00.00.21 release config". Both commits have their parent as
+60df5effd05fbe42fe3b3a5806eb5cac161e51cc "coresdk-08.00.00.004-config:
+add config for CoreSDK 08.00.00.004 release".
 
+This has broken the automatic update of my copy of the oe-layersetup
+repository so I'd like to confirm which commit is the correct HEAD and
+if it did change then why did it change?
 
+Thanks,
+
+--=20
+Paul Barker
+https://pbarker.dev/
+
+--Sig_/JSDC/6pfYEEsC5PvMlmsbkd
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYIAB0WIQSzjPXf5Y1BDWhU2iCrY1Tsnbr0bgUCYR5/gwAKCRCrY1Tsnbr0
+bjHWAQCSscwN273SGk0UEe4i7sCbObD7Kl5D6SjU+1M1h9d59gD/U0hmOwyDbHYL
+KAOnA7d9wyJslUOQCH/MtyL66+9rFAk=
+=Cs8h
+-----END PGP SIGNATURE-----
+
+--Sig_/JSDC/6pfYEEsC5PvMlmsbkd--
