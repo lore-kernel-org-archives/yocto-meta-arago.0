@@ -1,37 +1,37 @@
 Return-Path: <a-m1@ti.com>
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	by arago-project.org (Postfix) with ESMTP id 2612B52E20
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+	by arago-project.org (Postfix) with ESMTP id 6ACDE52E20
 	for <meta-arago@arago-project.org>;
-	Mon,  4 Oct 2021 20:02:27 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 194K37ZP105682;
-	Mon, 4 Oct 2021 15:03:07 -0500
+	Mon,  4 Oct 2021 20:03:50 +0000 (UTC)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 194K4UTm032322
+	for <meta-arago@arago-project.org>; Mon, 4 Oct 2021 15:04:30 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1633377787;
+	s=ti-com-17Q1; t=1633377870;
 	bh=L35AYKpRqXi3xPGX9j40vE0Dqx8Oymc7uKh2ruvmXug=;
 	h=From:To:CC:Subject:Date;
-	b=LF826FvB+wUzJbX/j+nE4KAJ7rx8qQw9PQYh2WrdpjlD8fncSRXV1oDC0Nzchc78I
-	6/GxlmdHhc8dR8v53pytgOpBMJIds2xpIfeDOzG4pzbnLH8choPDw7mc4F7PzKxT0u
-	IVMlsqHCF1Efss0Q6CUIQ5jjYRZ8LC/1xx1WeniA=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 194K37P8109776
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 4 Oct 2021 15:03:07 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	b=OxiGvThShjZIDoOCjcj0OoVN/+NsLo7DpZ3bO5isJe0bxP/DsL8WOQLAmZ2hSRfwl
+	OiSQ1N3esuPHbY72LSkDlOAXYFVMcw9ooaa9S58Ib5QzoF3L9K3iuCLSkj45l4D2mB
+	ac+fW6Ctv76SYMfytxnLwZCTaqTtVXGvXCG+QdVs=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 194K4UvS102483
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@arago-project.org>; Mon, 4 Oct 2021 15:04:30 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE109.ent.ti.com
+	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14;
-	Mon, 4 Oct 2021 15:03:07 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
-	(157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 4 Oct 2021 15:04:30 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+	(10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
 	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
-	Frontend Transport; Mon, 4 Oct 2021 15:03:07 -0500
+	Frontend Transport; Mon, 4 Oct 2021 15:04:30 -0500
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 194K34FA031545; 
-	Mon, 4 Oct 2021 15:03:05 -0500
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 194K4SuQ023399; 
+	Mon, 4 Oct 2021 15:04:29 -0500
 From: Aparna M <a-m1@ti.com>
 To: <meta-arago@arago-project.org>
-Date: Tue, 5 Oct 2021 01:33:00 +0530
-Message-ID: <20211004200300.27348-1-a-m1@ti.com>
+Date: Tue, 5 Oct 2021 01:34:26 +0530
+Message-ID: <20211004200426.28230-1-a-m1@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
@@ -48,7 +48,7 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Oct 2021 20:02:27 -0000
+X-List-Received-Date: Mon, 04 Oct 2021 20:03:50 -0000
 Content-Type: text/plain
 
 Install wificfg file in boot partition of SD card for am64xx-evm.
