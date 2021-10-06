@@ -1,54 +1,33 @@
-Return-Path: <vivien.didelot@gmail.com>
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
-	[209.85.160.169])
-	by arago-project.org (Postfix) with ESMTPS id BA842530AE
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id 2CDC4530B7
 	for <meta-arago@arago-project.org>;
-	Wed,  6 Oct 2021 20:54:17 +0000 (UTC)
-Received: by mail-qt1-f169.google.com with SMTP id e16so4112863qts.4
-	for <meta-arago@arago-project.org>;
-	Wed, 06 Oct 2021 13:54:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=dZI0ySfH8vY5h1ZB7JmKo7yBNmBiygqLeqK60tCXEGY=;
-	b=eAghaCnJxtw0as/tQzOn1ZTMVS6bb4IEGzUXV4iVgYKO33B3TfOtPcb52AFyp7D7jk
-	Bk7F2/fVdyGmM7/3gQHa6Vqnoq4Z/XXLeSiY2y8/6UuRW4gl8ui3ORG44zkqT7jgRhF8
-	bzBdDhaeA3rCNnhl1lVzNPwJUJgB+WpJI67Oxx/6vBXJuwDWPKiHgE7aXGApdv6A7GEf
-	L8w7uGvkOzP3vlARm5K+G5ynj7qMZrzM+hPNEUkhNWDTv+LaIPpLXE2+EaUgxKJmOIl/
-	ghcgkzOpu+5WWN3igug4Bw4Hwa5xgdDrP1GIhm3SXzGlvZqCf6S7kdUsyoaG52jRgZQE
-	waCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20210112;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=dZI0ySfH8vY5h1ZB7JmKo7yBNmBiygqLeqK60tCXEGY=;
-	b=bWYfmv9PCQzZ63Q0V3uJQBFxwAVT9rEXnC2gfu6+wMOj7vpBvFKFBUjGI6HCqutBz1
-	aJ+uJG5osta4jOm9/GGldePVu3FFzY7pAIF9YSv4Yw8nKB7PvQ82zlRfsbWkVwm/ff+I
-	4vbC8FlovQVKqRFdjflTeJRboATuLMs8B3RMvVO7r9rEjbCdMzsvBHLTEvg8lPfqoX61
-	Nr3UssTfVr2TVQcpLHdCeU4P1x9/c5K0y+zG+qFY/6xf0NyVkpToi/P4NHv/5STA2mwB
-	Nglvwacvqp6H/l/V54Td7Fn0sw6zMpFrSk+XmN+Am3UljBUv0Ck3/+y3T9gZydVSNOTW
-	Qw7A==
-X-Gm-Message-State: AOAM5327LuXnQxRBMO7Uwa0HMR5gmVkCKj7R4PNk80iljTJXbHmKe0wM
-	8gSMmtqxXsX0botXapDuQo+wWsrtCSE=
-X-Google-Smtp-Source: ABdhPJy0Vy4DWbSl2qhRmCMBYO/gB4GhO6XASo3Qddgz+zssCzWAvYdMVcwq+Yho9CL81cKF+0H1dw==
-X-Received: by 2002:ac8:764a:: with SMTP id i10mr415521qtr.414.1633553698902; 
-	Wed, 06 Oct 2021 13:54:58 -0700 (PDT)
-Received: from localhost
-	(bras-base-mtrlpq2848w-grc-41-70-53-240-121.dsl.bell.ca.
-	[70.53.240.121]) by smtp.gmail.com with ESMTPSA id
-	k16sm14960085qta.27.2021.10.06.13.54.58
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Wed, 06 Oct 2021 13:54:58 -0700 (PDT)
-From: Vivien Didelot <vivien.didelot@gmail.com>
-X-Google-Original-From: Vivien Didelot <vdidelot@pbsc.com>
-To: meta-arago@arago-project.org
-Date: Wed,  6 Oct 2021 16:54:54 -0400
-Message-Id: <20211006205454.4056166-1-vdidelot@pbsc.com>
-X-Mailer: git-send-email 2.33.0
+	Wed,  6 Oct 2021 23:15:40 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6307740C1E;
+	Wed,  6 Oct 2021 23:16:21 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id dkQz8L9CHzk8; Wed,  6 Oct 2021 23:16:21 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4757340031;
+	Wed,  6 Oct 2021 23:16:20 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 88E5717467A; Wed,  6 Oct 2021 19:16:19 -0400 (EDT)
+Date: Wed, 6 Oct 2021 19:16:19 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: daniel.lehne@amk-drives.bg
+Message-ID: <20211006231619.GM1528@denix.org>
+References: <009401d7b447$0e119530$2a34bf90$@amk-drives.bg>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 06 Oct 2021 22:56:55 +0000
-Cc: Denys Dmytriyenko <denys@konsulko.com>, Eric Ruei <e-ruei1@ti.com>
-Subject: [PATCH] qtwebengine: replace patch with chromium flags
+In-Reply-To: <009401d7b447$0e119530$2a34bf90$@amk-drives.bg>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org
+Subject: Re: Patch external-arm-toolchain on meta-arago-extras fails with gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -61,86 +40,53 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Oct 2021 20:54:18 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 06 Oct 2021 23:15:40 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Instead of maintaining an inappropriate hack on qtwebengine to disable
-seccomp filter sandbox, export the corresponding chromium flag in
-the QTWEBENGINE_CHROMIUM_FLAGS environment variable.
+On Tue, Sep 28, 2021 at 11:58:48AM +0300, daniel.lehne@amk-drives.bg wrote:
+> Hello, 
+> 
+> first, thanks for your great support on meta-arago layer and further
+> enthusiastic developing.
+> 
+> I'm trying to build a project with an external toolchain but failing on the
+> recipe
+> /meta-arm/meta-arm-toolchain/recipes-devtools/external-arm-toolchain/externa
+> l-arm-toolchain.bb:do_install. I'm building in a docker container, with
+> reduced layers using the ./oe-layertool-setup.sh command with following test
+> config file. I've tried first
+> gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf but it fails also, so I
+> downgraded to gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf without
+> success.
 
-Signed-off-by: Vivien Didelot <vdidelot@pbsc.com>
----
- .../qt5/qtbase-conf/ti33x/qt_env.sh           |  5 +++
- ...-disable-SECCOMP-BPF-Sandbox-at-star.patch | 32 -------------------
- .../recipes-qt/qt5/qtwebengine_git.bbappend   |  4 ---
- 3 files changed, 5 insertions(+), 36 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch
+Hi, Daniel,
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
-index 29fa2969..96526393 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
-+++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
-@@ -7,3 +7,8 @@ export QT_QPA_EGLFS_KMS_CONFIG=/etc/qt5/eglfs_kms_cfg.json
- export QT_QPA_EGLFS_INTEGRATION=eglfs_kms
- export QT_QPA_EGLFS_ALWAYS_SET_MODE=1
- export QT_WAYLAND_SHELL_INTEGRATION=wl-shell
-+
-+# SECCOMP-BPF Sandbox does not work due to unexpected FUTEX_UNLOCK_PI call
-+# from the pthread implementation. Disable this feature temporarily until
-+# those issues are resolved.
-+export QTWEBENGINE_CHROMIUM_FLAGS="--disable-seccomp-filter-sandbox"
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch b/meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch
-deleted file mode 100644
-index 09f1870d..00000000
---- a/meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch
-+++ /dev/null
-@@ -1,32 +0,0 @@
--From 77fc6e4391562a1f84d82b58319a73de08242797 Mon Sep 17 00:00:00 2001
--From: Eric Ruei <e-ruei1@ti.com>
--Date: Fri, 8 Mar 2019 18:17:06 -0500
--Subject: [PATCH 3/3] qtwebengine: HACK: disable SECCOMP-BPF Sandbox at startup
--
--SECCOMP-BPF Sandbox does not work due to unexpected FUTEX_UNLOCK_PI call
--from the pthread implementation
--Disable this feature temporarily until those issues are resolved.
--
--Upstream-Status: Inappropriate [HACK]
--
--Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-----
-- src/core/web_engine_context.cpp | 2 ++
-- 1 file changed, 2 insertions(+)
--
--diff --git a/src/core/web_engine_context.cpp b/src/core/web_engine_context.cpp
--index 48e5bc4..9ba3fa4 100644
----- a/src/core/web_engine_context.cpp
--+++ b/src/core/web_engine_context.cpp
--@@ -347,6 +347,8 @@ WebEngineContext::WebEngineContext()
--         parsedCommandLine->AppendSwitch(switches::kNoSandbox);
-- #elif defined(Q_OS_LINUX)
--         parsedCommandLine->AppendSwitch(service_manager::switches::kDisableSetuidSandbox);
--+        // HACK: disable seccomp filter sandbox for now because it does not work
--+        parsedCommandLine->AppendSwitch(service_manager::switches::kDisableSeccompFilterSandbox);
-- #endif
--     } else {
--         parsedCommandLine->AppendSwitch(switches::kNoSandbox);
---- 
--1.9.1
--
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
-index c50b020f..6459bbf7 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
-@@ -1,8 +1,4 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- PR_append = ".arago1"
- 
--SRC_URI += " \
--    file://0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch \
--"
--
- DEPENDS += "bison-native"
+In order to post to the list you need to subscribe first. Otherwise your 
+messages are held in moderation queue along with other spam posts and have 
+very low chance to be seen.
+
+It appears your layer configuration is not exactly correct. Arago Project uses 
+oe-layersetup tool along with config files to setup layers:
+http://arago-project.org/git/projects/?p=oe-layersetup.git;a=summary
+
+If you need to use prebuilt Arm external toolchain with meta-arago/dunfell, 
+then you should use 9.2-2019.12 version, according to this table:
+http://arago-project.org/wiki/index.php/Setting_Up_Build_Environment#Available_Layer_Configurations
+
+Also, you need to pin meta-arm/meta-arm-toolchain layer to commit 
+c4f04f3fb66f8f4365b08b553af8206372e90a63, per the layer config:
+http://arago-project.org/git/projects/?p=oe-layersetup.git;a=blob;f=configs/arago-dunfell-config.txt;hb=HEAD
+
+That is due to some later changes in meta-arm-toolchain backported from master 
+that broke meta-arago. This hasn't been resolved yet.
+
+Alternatively, instead of using prebuilt Arm toolchain, you can build and use 
+the internal toolchain, by setting or passing TOOLCHAIN_TYPE="internal"
+
 -- 
-2.33.0
-
+Regards,
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
 
