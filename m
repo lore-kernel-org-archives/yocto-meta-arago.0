@@ -1,57 +1,33 @@
-Return-Path: <vivien.didelot@gmail.com>
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
-	[209.85.160.182])
-	by arago-project.org (Postfix) with ESMTPS id C647552AA7
+Return-Path: <denis@denix.org>
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by arago-project.org (Postfix) with ESMTPS id A8D3652B5B
 	for <meta-arago@arago-project.org>;
-	Thu,  7 Oct 2021 17:57:30 +0000 (UTC)
-Received: by mail-qt1-f182.google.com with SMTP id m26so7052952qtn.1
-	for <meta-arago@arago-project.org>;
-	Thu, 07 Oct 2021 10:58:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20210112;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding;
-	bh=4ZjewJ0NUIqv3EOcWRI8z9SD3GNhU1Nm3uEFaxtZdNU=;
-	b=ByVdxm85X5/JyyUIXxthe6tzuKXfshRrb7f5IhYtUJSoG7Ww3CKfqrJ8R0ytOmmeoa
-	QYTItSo2FlwQjNBeJE7535ozGvkIP9rq8Jq3lUajWpyQ5DeSQjcBBNYQUQHTtUg1kr1m
-	ufBFCS8BAwajAA5VI6W6etHboFwH4jAuC6o3CZfhcl6fkTez+diZnGyAwBxjqB/KI+ub
-	qBYxAbKWdv2iw9DsT6XG6q0zKARJsolJmBUG5WGL3bkRGGNVeLlNnLSlaES4Hu2y+ac5
-	4zzj2aezjTo550C33W9CWZpgaz/yyakmn+79pJVWBFTWg2j5ObX1GhXcJ9+00CNsOZF0
-	nPZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20210112;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references:mime-version:content-transfer-encoding;
-	bh=4ZjewJ0NUIqv3EOcWRI8z9SD3GNhU1Nm3uEFaxtZdNU=;
-	b=gjXIg1X5g+HzbqsEMJhHXpiaR4aT5LXyTaxjE4uf3ygAfGXF47b5HUd4szC9buh3Vq
-	2MHKTwNPKj0IWyjIxA4Pv511iM/B8dIQOvxzw3MHWdNh4zTm6dBroDc9e1Y8YDxaYvKc
-	U87pNu6Ei0ABTZsEhcBeOHzBGH04+mLAFf02SPOr5u4CvgIjkL/HZ4AoBRKPJxs8KVJz
-	zN9/Lrnfv8kaFWZ7bP26+yi3nRHNnjJnBqURSxFbMVCMM3wgYC/I4qay785r/ywdViTO
-	NYag+FDgzKzqqGsN2FtgbZO97Lnt+mgDf1ZvwBAtdpIS4X9C3MTphax4D409152EMsuO
-	g7uQ==
-X-Gm-Message-State: AOAM532biRy5XIjAxziw4uFeaFHhae9jzaXZSDZaSZwB07taaUA26lBw
-	FyHbVnBWuuEH8zrMByXx4r/1mj/h5LU=
-X-Google-Smtp-Source: ABdhPJzMusykOBAeSbDx/QOzx4v2Gs9BLluLJdEmVbzg6CBsq+ntHwHpNiQj9szrEo+eWsGL702vDA==
-X-Received: by 2002:a05:622a:1793:: with SMTP id
-	s19mr6777468qtk.231.1633629492357; 
-	Thu, 07 Oct 2021 10:58:12 -0700 (PDT)
-Received: from localhost
-	(bras-base-mtrlpq2848w-grc-41-70-53-240-121.dsl.bell.ca.
-	[70.53.240.121])
-	by smtp.gmail.com with ESMTPSA id i11sm91751qki.28.2021.10.07.10.58.10
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Thu, 07 Oct 2021 10:58:10 -0700 (PDT)
-From: Vivien Didelot <vivien.didelot@gmail.com>
-X-Google-Original-From: Vivien Didelot <vdidelot@pbsc.com>
-To: meta-arago@arago-project.org
-Date: Thu,  7 Oct 2021 13:57:30 -0400
-Message-Id: <20211007175730.152202-2-vdidelot@pbsc.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211007175730.152202-1-vdidelot@pbsc.com>
+	Thu,  7 Oct 2021 18:11:31 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6763640CA8;
+	Thu,  7 Oct 2021 18:12:13 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id P3XMr4b-_c_4; Thu,  7 Oct 2021 18:12:13 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+	[100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4529A40CA7;
+	Thu,  7 Oct 2021 18:12:11 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id EB50217467F; Thu,  7 Oct 2021 14:12:10 -0400 (EDT)
+Date: Thu, 7 Oct 2021 14:12:10 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Vivien Didelot <vivien.didelot@gmail.com>
+Message-ID: <20211007181210.GS1528@denix.org>
 References: <20211007175730.152202-1-vdidelot@pbsc.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Thu, 07 Oct 2021 18:09:22 +0000
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [PATCH v2 2/2] qtwebengine: remove seccomp filter sandbox hack
+In-Reply-To: <20211007175730.152202-1-vdidelot@pbsc.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: meta-arago@arago-project.org, Denys Dmytriyenko <denys@konsulko.com>
+Subject: Re: [PATCH v2 1/2] qtbase-conf: disable the seccomp filter sandbox
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -64,72 +40,51 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Oct 2021 17:57:31 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 07 Oct 2021 18:11:32 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Now that qtbase-conf disables the seccomp filter sandbox via an
-environment variable, the hack patch against qtwebengine can be
-dropped.
+On Thu, Oct 07, 2021 at 01:57:29PM -0400, Vivien Didelot wrote:
+> SECCOMP-BPF Sandbox is known to cause runtime issues so set the
+> QTWEBENGINE_CHROMIUM_FLAGS environment variable to disable this
+> feature temporarily until those issues are resolved.
+> 
+> Signed-off-by: Vivien Didelot <vdidelot@pbsc.com>
 
-Signed-off-by: Vivien Didelot <vdidelot@pbsc.com>
----
- ...-disable-SECCOMP-BPF-Sandbox-at-star.patch | 32 -------------------
- .../recipes-qt/qt5/qtwebengine_git.bbappend   |  4 ---
- 2 files changed, 36 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch
+Acked-by: Denys Dmytriyenko <denys@konsulko.com>
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch b/meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch
-deleted file mode 100644
-index 09f1870d..00000000
---- a/meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch
-+++ /dev/null
-@@ -1,32 +0,0 @@
--From 77fc6e4391562a1f84d82b58319a73de08242797 Mon Sep 17 00:00:00 2001
--From: Eric Ruei <e-ruei1@ti.com>
--Date: Fri, 8 Mar 2019 18:17:06 -0500
--Subject: [PATCH 3/3] qtwebengine: HACK: disable SECCOMP-BPF Sandbox at startup
--
--SECCOMP-BPF Sandbox does not work due to unexpected FUTEX_UNLOCK_PI call
--from the pthread implementation
--Disable this feature temporarily until those issues are resolved.
--
--Upstream-Status: Inappropriate [HACK]
--
--Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-----
-- src/core/web_engine_context.cpp | 2 ++
-- 1 file changed, 2 insertions(+)
--
--diff --git a/src/core/web_engine_context.cpp b/src/core/web_engine_context.cpp
--index 48e5bc4..9ba3fa4 100644
----- a/src/core/web_engine_context.cpp
--+++ b/src/core/web_engine_context.cpp
--@@ -347,6 +347,8 @@ WebEngineContext::WebEngineContext()
--         parsedCommandLine->AppendSwitch(switches::kNoSandbox);
-- #elif defined(Q_OS_LINUX)
--         parsedCommandLine->AppendSwitch(service_manager::switches::kDisableSetuidSandbox);
--+        // HACK: disable seccomp filter sandbox for now because it does not work
--+        parsedCommandLine->AppendSwitch(service_manager::switches::kDisableSeccompFilterSandbox);
-- #endif
--     } else {
--         parsedCommandLine->AppendSwitch(switches::kNoSandbox);
---- 
--1.9.1
--
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
-index c50b020f..6459bbf7 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
-@@ -1,8 +1,4 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- PR_append = ".arago1"
- 
--SRC_URI += " \
--    file://0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch \
--"
--
- DEPENDS += "bison-native"
--- 
-2.33.0
 
+> ---
+>  meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh       | 5 +++++
+>  meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh | 5 +++++
+>  2 files changed, 10 insertions(+)
+> 
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
+> index 146ee07e..928e2cc7 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/qt_env.sh
+> @@ -6,3 +6,8 @@ export QT_QPA_EGLFS_KMS_CONFIG=/etc/qt5/eglfs_kms_cfg.json
+>  export QT_QPA_EGLFS_INTEGRATION=eglfs_kms
+>  export QT_QPA_EGLFS_ALWAYS_SET_MODE=1
+>  export QT_WAYLAND_SHELL_INTEGRATION=wl-shell
+> +
+> +# SECCOMP-BPF Sandbox does not work due to unexpected FUTEX_UNLOCK_PI call
+> +# from the pthread implementation. Disable this feature temporarily until
+> +# those issues are resolved.
+> +export QTWEBENGINE_CHROMIUM_FLAGS="--disable-seccomp-filter-sandbox"
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
+> index 29fa2969..96526393 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/ti33x/qt_env.sh
+> @@ -7,3 +7,8 @@ export QT_QPA_EGLFS_KMS_CONFIG=/etc/qt5/eglfs_kms_cfg.json
+>  export QT_QPA_EGLFS_INTEGRATION=eglfs_kms
+>  export QT_QPA_EGLFS_ALWAYS_SET_MODE=1
+>  export QT_WAYLAND_SHELL_INTEGRATION=wl-shell
+> +
+> +# SECCOMP-BPF Sandbox does not work due to unexpected FUTEX_UNLOCK_PI call
+> +# from the pthread implementation. Disable this feature temporarily until
+> +# those issues are resolved.
+> +export QTWEBENGINE_CHROMIUM_FLAGS="--disable-seccomp-filter-sandbox"
+> -- 
+> 2.33.0
 
