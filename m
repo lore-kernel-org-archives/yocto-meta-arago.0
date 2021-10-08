@@ -1,34 +1,73 @@
-Return-Path: <denis@denix.org>
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id C718F52B5B
+Return-Path: <sinthu.raja@mistralsolutions.com>
+Received: from egress-ip4b.ess.de.barracuda.com
+	(egress-ip4b.ess.de.barracuda.com [18.185.115.208])
+	by arago-project.org (Postfix) with ESMTPS id AD64D52C3B
 	for <meta-arago@arago-project.org>;
-	Thu,  7 Oct 2021 18:11:51 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 82BC740CA8;
-	Thu,  7 Oct 2021 18:12:33 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id m_noNOkU1FPR; Thu,  7 Oct 2021 18:12:33 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
-	[100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 68DA140CA7;
-	Thu,  7 Oct 2021 18:12:31 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 2CDE917467F; Thu,  7 Oct 2021 14:12:31 -0400 (EDT)
-Date: Thu, 7 Oct 2021 14:12:31 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Vivien Didelot <vivien.didelot@gmail.com>
-Message-ID: <20211007181231.GT1528@denix.org>
-References: <20211007175730.152202-1-vdidelot@pbsc.com>
-	<20211007175730.152202-2-vdidelot@pbsc.com>
+	Fri,  8 Oct 2021 08:06:24 +0000 (UTC)
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com
+	[209.85.215.200]) by
+	mx-outbound46-181.eu-central-1c.ess.aws.cudaops.com
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NO); Fri, 08 Oct 2021 08:06:54 +0000
+Received: by mail-pg1-f200.google.com with SMTP id
+	u5-20020a63d3450000b029023a5f6e6f9bso1176201pgi.21
+	for <meta-arago@arago-project.org>;
+	Fri, 08 Oct 2021 01:06:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mistralsolutions.com; s=google;
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=Ry0aQvx+TuR2ONc+HAT40BX4JQ6ynqS2BoC9/InHj4U=;
+	b=RJiCuus7PFj0iCuzJ1lFtx1NgI2BcNJbyosHtF6xCBnz3Gn98GFsqEpZRsb3cK4wj0
+	YGIjiD89bTAjOWt6DdEwBuEQQzpkz/qk/ihEXoStQZSui6gYL7P+VvGFqwsvRF/tazvP
+	5KmJ5g+4jrIOoEsjj6X7vYahr8iWD6QnpYwLk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20210112;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=Ry0aQvx+TuR2ONc+HAT40BX4JQ6ynqS2BoC9/InHj4U=;
+	b=N3hYF1EHrNL6ukq2HKhxEKiw5uOcMwBmMgKFTNJi+WFikD6/Qa0j7DAO1NM2H0w9dd
+	9n0MsHrpC5nkRHNcI9IY2LdXT81BVlI+vEAc/1Dnp9g4PEatrFDkjcpGJXLcrz2q2d8x
+	qQgMkHahPH6XxOALg4MAs740WYFu9M1nPgoCp4LW3vT0N8LiRYqCJ/VI29hiProfB+Bf
+	/kymKYNfIrxPqUnCZ7roddDbiE03wJRL3xR9hnYQIXfzqdwlSEyxfnY5VUS1fQYRSI4r
+	5Plv+nb8/Rvc+yXgKy6FVZ1S/KTrLdzr17EwfO+AAHNEulxwB6EBEVDcdo3y2F5gOgwZ
+	9yPA==
+X-Gm-Message-State: AOAM532r1Rm5KQl30bYT7pMiCL96ntNj+TnKavh5k14S1t9IhqCJN3UO
+	F268ioNA1EHPCQkv9ZZyUhgOxtsm6Y/5Nz4I+OYRGa8rXbYMs6rrjA7gd4GR6a/U7Ns4bplUyyd
+	Yh36beR6M/YBTOaG+F/uSuf/i50mut/BG/g3BBmkskLxWXwgQyP7Sua/jjR8e
+X-Received: by 2002:a63:7402:: with SMTP id p2mr3468082pgc.472.1633680412587; 
+	Fri, 08 Oct 2021 01:06:52 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzWdqqRx10O1qRUfEjCmc/Rfujo7dMjfMHHko3ipOfzA44T4Uaq14WekHN2FnkBCGnh72ZQ5w==
+X-Received: by 2002:a63:7402:: with SMTP id p2mr3468064pgc.472.1633680412262; 
+	Fri, 08 Oct 2021 01:06:52 -0700 (PDT)
+Received: from LAP568U.mistral.in ([106.51.227.150])
+	by smtp.gmail.com with ESMTPSA id t2sm10393328pjf.1.2021.10.08.01.06.49
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Fri, 08 Oct 2021 01:06:51 -0700 (PDT)
+From: Sinthu Raja <sinthu.raja@mistralsolutions.com>
+X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
+To: meta-arago@arago-project.org
+Date: Fri,  8 Oct 2021 13:36:30 +0530
+Message-Id: <20211008080632.22629-1-sinthu.raja@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <20211007175730.152202-2-vdidelot@pbsc.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: meta-arago@arago-project.org, Denys Dmytriyenko <denys@konsulko.com>
-Subject: Re: [PATCH v2 2/2] qtwebengine: remove seccomp filter sandbox hack
+X-BESS-ID: 1633680413-311957-5453-2603-1
+X-BESS-VER: 2019.1_20211006.2200
+X-BESS-Apparent-Source-IP: 209.85.215.200
+X-BESS-Outbound-Spam-Score: 0.40
+X-BESS-Outbound-Spam-Report: Code version 3.2,
+	rules version 3.2.2.235005 [from 
+	cloudscan9-102.eu-central-1a.ess.aws.cudaops.com]
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+	0.40 BSF_SC0_SA085b         META: Custom Rule SA085b 
+X-BESS-Outbound-Spam-Status: SCORE=0.40 using account:ESS91090 scores of
+	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_SA085b
+X-BESS-BRTS-Status: 1
+Cc: Sinthu Raja <sinthu.raja@ti.com>
+Subject: [dunfell/master][PATCH V2 0/2] Package intel 9260 WiFi and BT firmware
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,77 +80,34 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Oct 2021 18:11:52 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 08 Oct 2021 08:06:25 -0000
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 07, 2021 at 01:57:30PM -0400, Vivien Didelot wrote:
-> Now that qtbase-conf disables the seccomp filter sandbox via an
-> environment variable, the hack patch against qtwebengine can be
-> dropped.
-> 
-> Signed-off-by: Vivien Didelot <vdidelot@pbsc.com>
+From: Sinthu Raja <sinthu.raja@ti.com>
 
-Acked-by: Denys Dmytriyenko <denys@konsulko.com>
+Hi,
+This patch series adds support to package the intel 9260 linux firmware
+into the J7 EVM SDK. The firmware is already available in the linux firmware
+repository, so updated the linux-firmware recipe to packaging the firmware.
+
+Changes in V2:
+Addressed review comments that includes
+* update the commit messsage
+* removed machine specific changes and made it generic.
+
+V1: https://serenity.dal.design.ti.com/patchwork/project/meta-arago/patch/20211007140939.19819-1-sinthu.raja@ti.com/
 
 
-> ---
->  ...-disable-SECCOMP-BPF-Sandbox-at-star.patch | 32 -------------------
->  .../recipes-qt/qt5/qtwebengine_git.bbappend   |  4 ---
->  2 files changed, 36 deletions(-)
->  delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch
-> 
-> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch b/meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch
-> deleted file mode 100644
-> index 09f1870d..00000000
-> --- a/meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch
-> +++ /dev/null
-> @@ -1,32 +0,0 @@
-> -From 77fc6e4391562a1f84d82b58319a73de08242797 Mon Sep 17 00:00:00 2001
-> -From: Eric Ruei <e-ruei1@ti.com>
-> -Date: Fri, 8 Mar 2019 18:17:06 -0500
-> -Subject: [PATCH 3/3] qtwebengine: HACK: disable SECCOMP-BPF Sandbox at startup
-> -
-> -SECCOMP-BPF Sandbox does not work due to unexpected FUTEX_UNLOCK_PI call
-> -from the pthread implementation
-> -Disable this feature temporarily until those issues are resolved.
-> -
-> -Upstream-Status: Inappropriate [HACK]
-> -
-> -Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-> ----
-> - src/core/web_engine_context.cpp | 2 ++
-> - 1 file changed, 2 insertions(+)
-> -
-> -diff --git a/src/core/web_engine_context.cpp b/src/core/web_engine_context.cpp
-> -index 48e5bc4..9ba3fa4 100644
-> ---- a/src/core/web_engine_context.cpp
-> -+++ b/src/core/web_engine_context.cpp
-> -@@ -347,6 +347,8 @@ WebEngineContext::WebEngineContext()
-> -         parsedCommandLine->AppendSwitch(switches::kNoSandbox);
-> - #elif defined(Q_OS_LINUX)
-> -         parsedCommandLine->AppendSwitch(service_manager::switches::kDisableSetuidSandbox);
-> -+        // HACK: disable seccomp filter sandbox for now because it does not work
-> -+        parsedCommandLine->AppendSwitch(service_manager::switches::kDisableSeccompFilterSandbox);
-> - #endif
-> -     } else {
-> -         parsedCommandLine->AppendSwitch(switches::kNoSandbox);
-> --- 
-> -1.9.1
-> -
-> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
-> index c50b020f..6459bbf7 100644
-> --- a/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
-> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
-> @@ -1,8 +1,4 @@
->  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->  PR_append = ".arago1"
->  
-> -SRC_URI += " \
-> -    file://0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch \
-> -"
-> -
->  DEPENDS += "bison-native"
-> -- 
-> 2.33.0
+Sinthu Raja (2):
+  packagegroups: tisdk-connectivity: package intel-9260 linux firmware
+    images
+  linux-firmware: Package intel 9260 WiFi and BT firmware
+
+ .../packagegroup-arago-tisdk-connectivity.bb       |  4 +++-
+ .../linux-firmware/linux-firmware_%.bbappend       | 14 +++++++++++++-
+ 2 files changed, 16 insertions(+), 2 deletions(-)
+
+-- 
+2.31.1
+
 
