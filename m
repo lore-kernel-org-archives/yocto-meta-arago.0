@@ -1,34 +1,34 @@
 Return-Path: <denis@denix.org>
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by arago-project.org (Postfix) with ESMTPS id 7E02852C72
+	by arago-project.org (Postfix) with ESMTPS id 8B80752C72
 	for <meta-arago@arago-project.org>;
-	Sat,  9 Oct 2021 21:43:39 +0000 (UTC)
+	Sat,  9 Oct 2021 21:46:00 +0000 (UTC)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id E4E1640C50;
-	Sat,  9 Oct 2021 21:44:21 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 0691540C50;
+	Sat,  9 Oct 2021 21:46:43 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id DR-5gScCrpKC; Sat,  9 Oct 2021 21:44:21 +0000 (UTC)
+	with ESMTP id Fayqs4wCVnUC; Sat,  9 Oct 2021 21:46:42 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
 	[100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B3C8B40BEA;
-	Sat,  9 Oct 2021 21:44:17 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id CC50840BEA;
+	Sat,  9 Oct 2021 21:46:38 +0000 (UTC)
 Received: by mail.denix.org (Postfix, from userid 1000)
-	id DE2C3174688; Sat,  9 Oct 2021 17:44:16 -0400 (EDT)
-Date: Sat, 9 Oct 2021 17:44:16 -0400
+	id 8B3A0174688; Sat,  9 Oct 2021 17:46:38 -0400 (EDT)
+Date: Sat, 9 Oct 2021 17:46:38 -0400
 From: Denys Dmytriyenko <denis@denix.org>
 To: Sinthu Raja <sinthu.raja@mistralsolutions.com>
-Message-ID: <20211009214416.GV1528@denix.org>
+Message-ID: <20211009214638.GW1528@denix.org>
 References: <20211008080632.22629-1-sinthu.raja@ti.com>
-	<20211008080632.22629-3-sinthu.raja@ti.com>
+	<20211008080632.22629-2-sinthu.raja@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20211008080632.22629-3-sinthu.raja@ti.com>
+In-Reply-To: <20211008080632.22629-2-sinthu.raja@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Cc: meta-arago@arago-project.org, Sinthu Raja <sinthu.raja@ti.com>
-Subject: Re: [dunfell/master][PATCH V2 2/2] linux-firmware: Package intel 9260 WiFi and BT firmware
+Subject: Re: [dunfell/master][PATCH V2 1/2] packagegroups: tisdk-connectivity: package intel-9260 linux firmware images
 X-BeenThere: meta-arago@arago-project.org
 X-Mailman-Version: 2.1.12
 Precedence: list
@@ -41,55 +41,57 @@ List-Post: <mailto:meta-arago@arago-project.org>
 List-Help: <mailto:meta-arago-request@arago-project.org?subject=help>
 List-Subscribe: <http://arago-project.org/cgi-bin/mailman/listinfo/meta-arago>, 
 	<mailto:meta-arago-request@arago-project.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Oct 2021 21:43:39 -0000
+X-List-Received-Date: Sat, 09 Oct 2021 21:46:00 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Fri, Oct 08, 2021 at 01:36:32PM +0530, Sinthu Raja wrote:
+On Fri, Oct 08, 2021 at 01:36:31PM +0530, Sinthu Raja wrote:
 > From: Sinthu Raja <sinthu.raja@ti.com>
 > 
-> The Intel 9260 WiFi and BT firmware is already part of the linux-firmware
-> repository, so package it to make it available.
+> Package linux-firmware-iwlwifi-9260 and linux-firmware-ibt-18 containing
+> firmware for Intel 9260 (WLAN and BT)
 > 
 > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
 
 Reviewed-by: Denys Dmytriyenko <denys@konsulko.com>
 
+BTW, the patches are in the wrong order, which breaks bisectability. Not sure 
+if this requires resending them again or they can be merged in the correct 
+order.
+
 
 > ---
+>  .../packagegroups/packagegroup-arago-tisdk-connectivity.bb    | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> Changes in V2:
-> Addressed review comments that includes
-> * update the commit messsage
-> * removed machine specific changes and made it generic.
-> 
-> V1: https://serenity.dal.design.ti.com/patchwork/project/meta-arago/patch/20211007140939.19819-3-sinthu.raja@ti.com/
-> 
->  .../linux-firmware/linux-firmware_%.bbappend       | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware_%.bbappend b/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-> index 146596ad..f1420d4c 100644
-> --- a/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-> +++ b/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-> @@ -1,4 +1,16 @@
-> -PR_append = ".arago0"
-> +PR_append = ".arago1"
-> +
-> +PACKAGES_prepend = "${PN}-iwlwifi-9260"
-> +PACKAGES_prepend = "${PN}-ibt-18"
-> +
-> +LICENSE_${PN}-iwlwifi-9260 =+ "Firmware-iwlwifi_firmware"
-> +LICENSE_${PN}-ibt-18 =+ "Firmware-ibt_firmware"
-> +
-> +FILES_${PN}-iwlwifi-9260 =+ "${nonarch_base_libdir}/firmware/iwlwifi-9260-*.ucode"
-> +FILES_${PN}-ibt-18 =+ "${nonarch_base_libdir}/firmware/intel/ibt-18-*.sfi ${nonarch_base_libdir}/firmware/intel/ibt-18-*.ddc"
-> +
-> +RDEPENDS_${PN}-iwlwifi-9260 =+ "${PN}-iwlwifi-license"
-> +RDEPENDS_${PN}-ibt-18 =+ "${PN}-ibt-license"
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+> index 1eb0e072..98a1dacf 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+> @@ -1,6 +1,6 @@
+>  DESCRIPTION = "Task to install wireless packages into the target FS"
+>  LICENSE = "MIT"
+> -PR = "r41"
+> +PR = "r42"
 >  
->  do_install_append() {
->  	rm -rf  ${D}/lib/firmware/ti-connectivity/
+>  PACKAGE_ARCH = "${MACHINE_ARCH}"
+>  
+> @@ -18,6 +18,7 @@ WLAN_COMMON = "\
+>      linux-firmware-iwlwifi-8000c \
+>      linux-firmware-iwlwifi-8265 \
+>      linux-firmware-iwlwifi-3160-17 \
+> +    linux-firmware-iwlwifi-9260 \
+>  "
+>  
+>  WLAN_TI = "\
+> @@ -42,6 +43,7 @@ BT_COMMON = "\
+>      pulseaudio-module-bluez5-discover \
+>      pulseaudio-lib-bluez5-util \
+>      sbc \
+> +    linux-firmware-ibt-18 \
+>  "
+>  
+>  BT_TI = "\
 > -- 
 > 2.31.1
 > 
