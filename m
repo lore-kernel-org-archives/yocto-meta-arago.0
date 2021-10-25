@@ -1,45 +1,45 @@
 Received: from egress-ip4b.ess.de.barracuda.com (egress-ip4b.ess.de.barracuda.com [18.185.115.208])
- by mx.groups.io with SMTP id smtpd.web12.28716.1635144573107878274
+ by mx.groups.io with SMTP id smtpd.web08.29081.1635145445774656706
  for <meta-arago@lists.yoctoproject.org>;
- Sun, 24 Oct 2021 23:49:33 -0700
+ Mon, 25 Oct 2021 00:04:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mistralsolutions.com header.s=google header.b=Hzj7EqFK;
+ dkim=pass header.i=@mistralsolutions.com header.s=google header.b=OUiuxYwZ;
  spf=pass (domain: mistralsolutions.com, ip: 18.185.115.208, mailfrom: sinthu.raja@mistralsolutions.com)
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70]) by mx-outbound16-87.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 25 Oct 2021 06:49:29 +0000
-Received: by mail-pj1-f70.google.com with SMTP id nk11-20020a17090b194b00b001a22ed4a912so773911pjb.3
-        for <meta-arago@lists.yoctoproject.org>; Sun, 24 Oct 2021 23:49:29 -0700 (PDT)
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70]) by mx-outbound42-207.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 25 Oct 2021 07:03:54 +0000
+Received: by mail-pj1-f70.google.com with SMTP id kx11-20020a17090b228b00b001a23c39abfaso1737302pjb.0
+        for <meta-arago@lists.yoctoproject.org>; Mon, 25 Oct 2021 00:03:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=mistralsolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=DjebpbuGr6I8zPjkx2nQweaTtJVC6hWyAM7kD5pPqj8=;
-        b=Hzj7EqFK9+1ORlE7M+P111VOgc6Vn7T7Mdh5gJfY9oCj5XirsAXMnErf2kd8Xh2cXs
-         vdv+7RA7ElqWqAi2+mxsHOThqbGx5IOVZ2A0Mo8Byt3KGq+N72sGJmIlyhdzgsmDk8pQ
-         3ErLuuUgzn/39UgA9NsB1UyqF2daP+pBohx9s=
+        bh=XHKSdWG9y5rIZgROliVhppH4IYPOXzRNdE7g8Ks1RwA=;
+        b=OUiuxYwZUcuEdmNzZx51+D2Z/oac6wAcVjTjvu1k863fl+ohF46iIViGnT0ciGvb61
+         Sbj05RF9Eb+KVJzuwRCpGeymJhhLIOw9uXs+FIuU7sYpaaDyiulBRlRrZPwaKhsPUQAs
+         UC0JFk6rUc84Lfo4jkENaCY+ALD/RGY+a44HY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=DjebpbuGr6I8zPjkx2nQweaTtJVC6hWyAM7kD5pPqj8=;
-        b=Y54yy3UJhCxWYlLPejdCRmjEZU3xr7IoQ04H65+I8MWwmOHjhuLSQ+EW8Lhra7a4Ik
-         2F8dRA0WZznhOKJ26/cCehRH7293wqYpjORaRGT1pi0H51OeYW0wAHRjCd2JckmNlU2e
-         wvZ3aRsjYMmr/YiQ90m11UU0NPj4DwrGBWpQ69jvbzQzjK8OPWwHXoj8GAmdxz0dtx0l
-         F9+zCkZH2GIScz63RvnpA0z+A3W1wXuMYnKlX6GvKfqqL8d4xPC6l++1czZP+k52/YsF
-         AOhaMI2Ye2Yob2Zl/kDU/MY3+q5WnJmJlDMQjd9dYagM0uXJh8njC9538yVIZDdss9HC
-         oRIg==
-X-Gm-Message-State: AOAM533rrEs8OE3aPxhwzzvvgKLp/Q3Q2KfKKVamPO233iy/qUyEuhFN
-	ONfXRF0+M2XLtlvSOtpaF5IL8AvoO7NFpr2ox5EOTFYX69HzsJiD/+3RIrQfYXL6U0PIGO7hT9L
-	2mL7fqLkuFRuO3Gv3HWBrCo08+T5Hrn/OoiU2DFU6vqWtRSgN/m1qfOgkmZIvxRM/+s8=
-X-Received: by 2002:a05:6a00:1794:b0:47b:e4c8:e4f8 with SMTP id s20-20020a056a00179400b0047be4c8e4f8mr7798540pfg.6.1635144568428;
-        Sun, 24 Oct 2021 23:49:28 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzmiyvU60qnLch9OMKS9fNPnGDYUW51kw9xk+kLzT5EPbx2foml5x6RcucNwFQgxImRRfk+UQ==
-X-Received: by 2002:a05:6a00:1794:b0:47b:e4c8:e4f8 with SMTP id s20-20020a056a00179400b0047be4c8e4f8mr7798512pfg.6.1635144568067;
-        Sun, 24 Oct 2021 23:49:28 -0700 (PDT)
+        bh=XHKSdWG9y5rIZgROliVhppH4IYPOXzRNdE7g8Ks1RwA=;
+        b=2tE1E9B5aPy0fVmSOqulxAIo5b/ICrYd095fyaBFdzNoYQ3iddLGzGkLpFaoaMtlhW
+         ewZ7kzvnhtygZGoSWEa8rdncJJ67sa52IQ5d+dd3OXLSjsG6tCbtcrPdG88IJd0wS09K
+         vp5NOgppy3PI7dcfabHtU2UOzsx/lAvrII1Q7T8lvguP0jLwe1YN6sAzbA50PLS8BFC7
+         fPX880IcwCLsw+jDl5JDWoW7b9UdOOTjD+zcK7uhoj0gM5wM8o04hZheZjk63On2eUoF
+         /5l6ZlCua0dhDTxTcR5IoTcfHOatSC+VlkLpCQFDCVVV20gwV1W2ioCiZ+Cmq5Iqn68c
+         Xwtw==
+X-Gm-Message-State: AOAM531Q+v2G9IHQbKheKDRi4NcgpKvmI/q5gb8kRf3lzWNlC2OtToJ0
+	fzHi9lRNN42lxLiSZNllPcevkoeO1qeyoUlbevqm4cHhDG+hjrwzG8AMUW7JJ1fyWUSLnQexhEH
+	d7FfXwO3shXOkjPIkUn/v+zBS49uokQftz00KnEtly4NhUhkBXEBPWQmQl+6SnRLCI3I=
+X-Received: by 2002:a17:90b:1b11:: with SMTP id nu17mr30800891pjb.129.1635145433044;
+        Mon, 25 Oct 2021 00:03:53 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxw/TL8p5gkl7my3tA+wcrGvEqigjdg84Tp59ISFaxhHDaMuCh4BeSguO6h78Qy02yEytHJEA==
+X-Received: by 2002:a17:90b:1b11:: with SMTP id nu17mr30800857pjb.129.1635145432705;
+        Mon, 25 Oct 2021 00:03:52 -0700 (PDT)
 Return-Path: <sinthu.raja@mistralsolutions.com>
 Received: from LAP568U.mistral.in ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id w13sm20473922pjc.29.2021.10.24.23.49.25
+        by smtp.gmail.com with ESMTPSA id i2sm21618474pjt.19.2021.10.25.00.03.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Oct 2021 23:49:27 -0700 (PDT)
+        Mon, 25 Oct 2021 00:03:52 -0700 (PDT)
 From: "Sinthu Raja M" <sinthu.raja@mistralsolutions.com>
 X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
 To: meta-arago@lists.yoctoproject.org
@@ -48,17 +48,17 @@ Cc: Nikhil Devshatwar <nikhil.nd@ti.com>,
 	Denys Dmytriyenko <denis@denix.org>,
 	Minas Hambardzumyan <minas@ti.com>,
 	Sinthu Raja <sinthu.raja@ti.com>
-Subject: [meta-arago][dunfell/master][PATCH] ltp-ddt: Update to latest srcrev for 08.01.00.001
-Date: Mon, 25 Oct 2021 12:17:29 +0530
-Message-Id: <20211025064729.5479-1-sinthu.raja@ti.com>
+Subject: [meta-arago][dunfell/master][PATCH V2] ltp-ddt: Update to latest srcrev for 08.01.00.001
+Date: Mon, 25 Oct 2021 12:33:46 +0530
+Message-Id: <20211025070346.5934-1-sinthu.raja@ti.com>
 X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-X-BESS-ID: 1635144569-304183-5363-1437-1
+X-BESS-ID: 1635145433-310959-5351-1909-1
 X-BESS-VER: 2019.1_20211021.1606
 X-BESS-Apparent-Source-IP: 209.85.216.70
 X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.235391 [from 
-	cloudscan17-227.eu-central-1b.ess.aws.cudaops.com]
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.235392 [from 
+	cloudscan9-1.eu-central-1a.ess.aws.cudaops.com]
 	Rule breakdown below
 	 pts rule name              description
 	---- ---------------------- --------------------------------
@@ -78,15 +78,24 @@ Hi All,
 Bumping the commit ID to the latest. This is required for J7 SK validation
 through Core SDK.
 
- meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in V2:
+Incremented PR value which was missed in the previous version.
+
+V1: https://lists.yoctoproject.org/g/meta-arago/message/13354
+
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb              | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-index bdc23dd9..7a8d1dca 100644
+index bdc23dd9..0b23dbf5 100644
 --- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
 +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-@@ -14,7 +14,7 @@ PE = "1"
- PR = "r2"
+@@ -11,10 +11,10 @@ PROVIDES += "ltp"
+ DEPENDS += "alsa-lib"
+ 
+ PE = "1"
+-PR = "r2"
++PR = "r3"
  PV_append = "+git${SRCPV}"
  
 -SRCREV = "02f6995cd7df25269a3bb3b67736d19bccaac99f"
