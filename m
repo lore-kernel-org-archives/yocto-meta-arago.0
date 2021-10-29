@@ -1,100 +1,133 @@
-Received: from egress-ip33b.ess.de.barracuda.com (egress-ip33b.ess.de.barracuda.com [18.185.115.237])
- by mx.groups.io with SMTP id smtpd.web12.12296.1635255731822489664
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.1483.1635483978939528520
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 26 Oct 2021 06:42:16 -0700
+ Thu, 28 Oct 2021 22:06:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mistralsolutions.com header.s=google header.b=EaBw3Kji;
- spf=pass (domain: mistralsolutions.com, ip: 18.185.115.237, mailfrom: priya.ns@mistralsolutions.com)
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198]) by mx-outbound23-90.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Tue, 26 Oct 2021 13:42:07 +0000
-Received: by mail-pl1-f198.google.com with SMTP id m10-20020a1709026bca00b0013f8e975b31so4961893plt.5
-        for <meta-arago@lists.yoctoproject.org>; Tue, 26 Oct 2021 06:42:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6btz3AzH49JVDJyj0C5DdjYlY6YmECgwl3GuNYft+E8=;
-        b=EaBw3KjiAHH7paTtUAtWOf+ggcTvGnK4L9QMgji9u8iEVyDCTiqccihLOTwM8rKMzp
-         hRNSPa54Nq9NHiNcsJH5WTxMq98x/JXdMcGtG3SADQhWXPDSZfZvGTpozjKPs5STn9Aj
-         mijZADlO/oKe034wIw2BVYclsX9WfXh0lQ4Sw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=6btz3AzH49JVDJyj0C5DdjYlY6YmECgwl3GuNYft+E8=;
-        b=AwyjmmMY1eFfwSaSfSycbqXspznTcwyvtxy4uu8a3/KF2D5iqjg4ecRpQ1w2mi+ufe
-         Iydkf/6hobDC2n3teCDxcq21Q+J5Dc8T2NEY8z+pYTKC3UEW5iSJllVU5tCbpgdAZf7K
-         TTGDRmwgxVLbbZd9qk9lDlVMvKK0cuHc11wVq8mliHaLBLdp40fXMwoThi2ZGmCUVkhE
-         lTQJTrQkR6CA8GEudDO/7XsZmnKrlcWWJTPd5o1rZuhkzS+1pSsacuEh31jjJHI9eQLZ
-         PUmKqE/mAfrzqBWVSY3bX+vbsrAZV6qUr03DA/kt9lS9QvsRkttRf/c2abxWJTADtAhw
-         8NHQ==
-X-Gm-Message-State: AOAM530FINoJAzcrIeRCfcJJMEe2Z+wpgfFatBC3qA8uisoJTN6g3HRR
-	HX0AkmOQAv4q1V2IiJqh3TBV28pFwnjkf7UTlYMhVhg9xiE6MKlgb+ual+Kv5YQ80JkDzC3Q5CS
-	VAliz9yFRbW8d0TdnM7MxKVIO9tvkUr2H/3Lp6HYdczbbGg6w+HaEefE1WAeh+dY/h6k=
-X-Received: by 2002:a17:903:11cc:b0:13f:ecf7:22c7 with SMTP id q12-20020a17090311cc00b0013fecf722c7mr22232886plh.5.1635255725430;
-        Tue, 26 Oct 2021 06:42:05 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxLpi6V5dzPv/2JWott66bUlmImMg+WfZ4fU+kUmV4mh7x2wdbmT2QltNX/O54Y/YRxzR2Rxg==
-X-Received: by 2002:a17:903:11cc:b0:13f:ecf7:22c7 with SMTP id q12-20020a17090311cc00b0013fecf722c7mr22232849plh.5.1635255725031;
-        Tue, 26 Oct 2021 06:42:05 -0700 (PDT)
-Return-Path: <priya.ns@mistralsolutions.com>
-Received: from LAP000507.mistral.in ([106.51.227.150])
-        by smtp.gmail.com with ESMTPSA id k1sm867050pjj.54.2021.10.26.06.42.02
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 26 Oct 2021 06:42:04 -0700 (PDT)
-From: "Priya N S" <priya.ns@mistralsolutions.com>
-X-Google-Original-From: Priya N S <priya.ns@ti.com>
-To: meta-arago@lists.yoctoproject.org
-Cc: Praneeth Bajjuri <praneeth@ti.com>,
-	Sekhar Nori <nsekhar@ti.com>,
-	Priya N S <priya.ns@ti.com>
-Subject: [meta-arago] [dunfell PATCH 0/2] recipes-graphics: Update weston to fix Matrix GUI
-Date: Tue, 26 Oct 2021 19:11:43 +0530
-Message-Id: <20211026134145.57608-1-priya.ns@ti.com>
-X-Mailer: git-send-email 2.19.1.windows.1
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=DBRU6zXL;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: yogeshs@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 19T56HPT092663;
+	Fri, 29 Oct 2021 00:06:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1635483977;
+	bh=3h3QFISWttK5t+QksEUOM4VpIgmC/j7eqGLJZr5ajp4=;
+	h=From:To:Subject:Date;
+	b=DBRU6zXLaGHXw79QHqOnIJfCJN9mECHRvi54g67dnoUXX2Gofd3VZmCDfRfEd03CA
+	 UhX0fkT4BfaHfrVTRxS1ET7Red//yexRkJl5nsjrvwpPrC4SMJEAcv1KAAhmm9acpk
+	 UD0yhDOVl8NAWAQdexOmNjJ+tk16Q87XFnUJbCKs=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 19T56H2u086315
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 29 Oct 2021 00:06:17 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 29
+ Oct 2021 00:06:16 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 29 Oct 2021 00:06:16 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 19T56Gph040785;
+	Fri, 29 Oct 2021 00:06:16 -0500
+From: "Yogesh Siraswar" <yogeshs@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][master/dunfell][PATCH] packagegroups: pru-icss: Add support for am64xx
+Date: Fri, 29 Oct 2021 05:06:16 +0000
+Message-ID: <20211029050616.12440-1-yogeshs@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-BESS-ID: 1635255726-305978-5435-13224-1
-X-BESS-VER: 2019.1_20211021.1606
-X-BESS-Apparent-Source-IP: 209.85.214.198
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.235420 [from 
-	cloudscan21-220.eu-central-1b.ess.aws.cudaops.com]
-	Rule breakdown below
-	 pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
 
-Hi All,
-This series of patches fix the Matrix GUI Issue,
+This patch is in conjuction with meta-ti patch to add pru-icss for
+am64xx: https://lists.yoctoproject.org/g/meta-ti/message/14067
 
-Issue:
-After the target board is booted, by default the Matrix GUI Demo is
-not getting displayed on the display device connected to the target
-board.
-The root cause of the Matrix GUI demo issue is that there are two
-Weston system services running in the filesystem. Below are the two
-services,
-1. Weston systemd service
-2. Weston initscript service
-The Matrix GUI demo runs on top of the Weston service. Since there
-are two Weston services running, it causes the Matrix GUI demo to not
-work properly.
+Signed-off-by: Yogesh Siraswar <yogeshs@ti.com>
+---
+ .../packagegroup-arago-tisdk-addons-sdk-host.bb             | 6 +++++-
+ .../packagegroups/packagegroup-arago-tisdk-addons.bb        | 4 ++--
+ .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb              | 6 +++++-
+ 3 files changed, 12 insertions(+), 4 deletions(-)
 
-Fix:
-Both Weston services (systemd and initscript) which has the same command 
-and does the same job. So, remove the weston systemd services from the
-filesystem. This fix displays the Matrix GUI in the connected display
-device.
-
-Priya N S (2):
-  wayland: weston: Disable weston systemd service
-  weston-init: Update initscript for weston-calibration
-
- .../recipes-graphics/wayland/weston-init.bbappend            | 5 ++++-
- meta-arago-distro/recipes-graphics/wayland/weston-init/init  | 2 +-
- 2 files changed, 5 insertions(+), 2 deletions(-)
-
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+index d42f213d..c44f95ca 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install sources for additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r36"
++PR = "r37"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -53,6 +53,10 @@ UTILS_append_am65xx = " \
+     pru-icss-src \
+ "
+ 
++UTILS_append_am64xx = " \
++    pru-icss-src \
++"
++
+ EXTRA_LIBS = ""
+ 
+ EXTRA_LIBS_append_omap-a15 = " \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 287cba63..099817c3 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install additional utilities/demos for SDKs"
+ LICENSE = "MIT"
+-PR = "r79"
++PR = "r80"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -64,7 +64,7 @@ UTILS_append_k3 = " mmc-utils \
+                     statcol \
+ "
+ 
+-UTILS_append_am64xx = " ti-rtos-firmware"
++UTILS_append_am64xx = " ti-rtos-firmware pru-icss"
+ UTILS_append_am65xx = " ti-rtos-firmware pru-icss pru-pwm-fw"
+ UTILS_append_j7 = " ti-rtos-firmware"
+ UTILS_append_j7-evm = " pru-icss"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index 1320ec50..25aa8c38 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -56,7 +56,7 @@ SRC_URI = "\
+     file://Makefile_ti-img-rogue-driver \
+ "
+ 
+-PR = "r105"
++PR = "r106"
+ 
+ MAKEFILES_MATRIX_GUI = "matrix-gui-browser \
+                         refresh-screen \
+@@ -197,6 +197,9 @@ MAKEFILES_append_am65xx = " \
+ MAKEFILES_append_j7 = " pru-icss \
+                             ti-img-rogue-driver \
+ "
++MAKEFILES_append_am64xx = " \
++                        pru-icss \
++"
+ 
+ # Use this to export kernel arch to ARCH
+ #
+@@ -234,6 +237,7 @@ PRU_ICSS_INSTALL_TARGET_omap-a15 = "pru-icss_install_am572x"
+ PRU_ICSS_INSTALL_TARGET_k2g = "pru-icss_install_k2g"
+ PRU_ICSS_INSTALL_TARGET_am65xx = "pru-icss_install_am65x"
+ PRU_ICSS_INSTALL_TARGET_j7 = "pru-icss_install_j721e"
++PRU_ICSS_INSTALL_TARGET_am64xx = "pru-icss_install_am64x"
+ 
+ # Path to toolchains for the various cores in TI SOCs
+ #
 -- 
-2.19.1.windows.1
+2.17.1
 
