@@ -1,30 +1,30 @@
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.6922.1637640072799085771
+ by mx.groups.io with SMTP id smtpd.web12.6952.1637640073118106722
  for <meta-arago@lists.yoctoproject.org>;
  Mon, 22 Nov 2021 20:01:13 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 443FD40C83;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 8BCCB40C98;
 	Tue, 23 Nov 2021 04:01:12 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 40U4z2JYNyWW; Tue, 23 Nov 2021 04:01:12 +0000 (UTC)
+	with ESMTP id mKq9pKeH77gf; Tue, 23 Nov 2021 04:01:12 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1DD7440CAA;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1C55740CA8;
 	Tue, 23 Nov 2021 04:01:09 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id EFFCB1746E5;
+	by mail.denix.org (Postfix) with ESMTP id 998DE1746E4;
 	Mon, 22 Nov 2021 23:01:05 -0500 (EST)
 From: "Denys Dmytriyenko" <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
 Cc: j-humphreys@ti.com,
 	Denys Dmytriyenko <denys@konsulko.com>
-Subject: [tisdk-build-scripts][PATCH 05/10] Remove support for generating installer SDK
-Date: Mon, 22 Nov 2021 23:00:54 -0500
-Message-Id: <1637640060-31733-18-git-send-email-denis@denix.org>
+Subject: [tisdk-build-scripts][PATCH 04/10] Remove very old build config files
+Date: Mon, 22 Nov 2021 23:00:53 -0500
+Message-Id: <1637640060-31733-17-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1637640060-31733-1-git-send-email-denis@denix.org>
 References: <1637640060-31733-1-git-send-email-denis@denix.org>
@@ -33,747 +33,14621 @@ From: Denys Dmytriyenko <denys@konsulko.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- lib/oesdk/package-sdks           | 496 ---------------------------------------
- lib/oesdk/ti-sdk-host-install.sh | 227 ------------------
- 2 files changed, 723 deletions(-)
- delete mode 100644 lib/oesdk/package-sdks
- delete mode 100755 lib/oesdk/ti-sdk-host-install.sh
+ configs/amsdk/amsdk-config-05.06.00.00.txt         | 288 -----------------
+ configs/amsdk/amsdk-config-05.07.00.00.txt         | 303 ------------------
+ configs/amsdk/amsdk-config-06.00.00.00.txt         | 314 ------------------
+ configs/amsdk/amsdk-config-07.00.00.00.txt         | 314 ------------------
+ configs/amsdk/amsdk-config-07.01.00.00.txt         | 314 ------------------
+ configs/amsdk/amsdk-config-08.00.00.00.txt         | 318 -------------------
+ configs/arago-core-tisdk-daisy-puget.txt           | 333 --------------------
+ configs/arago-core-tisdk-danny-puget.txt           | 315 -------------------
+ configs/arago-core-tisdk-dora-puget.txt            | 315 -------------------
+ configs/arago-core-tisdk-dylan-puget.txt           | 315 -------------------
+ configs/arago-core-tisdk-fido-puget.txt            | 337 --------------------
+ configs/arago-core-tisdk-krogoth-farm.txt          | 340 --------------------
+ configs/arago-core-tisdk-krogoth-puget.txt         | 340 --------------------
+ configs/arago-core-tisdk-master-puget.txt          | 337 --------------------
+ configs/coresdk/arago-core-amsdk-2013.04.01.txt    | 323 -------------------
+ configs/coresdk/arago-core-tisdk-2013.04.00.txt    | 323 -------------------
+ configs/coresdk/arago-core-tisdk-2013.04.01.txt    | 323 -------------------
+ configs/coresdk/arago-core-tisdk-2013.04.02.txt    | 323 -------------------
+ configs/coresdk/arago-core-tisdk-2013.10.00.txt    | 314 ------------------
+ configs/coresdk/arago-core-tisdk-2013.12.00.txt    | 314 ------------------
+ configs/coresdk/arago-core-tisdk-2013.12.01.txt    | 314 ------------------
+ configs/coresdk/arago-core-tisdk-2014.08.00.txt    | 318 -------------------
+ configs/coresdk/arago-core-tisdk-2014.10.01.txt    | 318 -------------------
+ configs/coresdk/arago-core-tisdk-2014.10.02.txt    | 321 -------------------
+ configs/coresdk/arago-core-tisdk-2015.01-puget.txt | 333 --------------------
+ configs/coresdk/arago-core-tisdk-2015.02-puget.txt | 333 --------------------
+ configs/coresdk/arago-core-tisdk-2015.03-puget.txt | 337 --------------------
+ configs/distroless-meta-ti-puget.txt               | 308 ------------------
+ configs/farm/arago-krogoth.txt                     | 344 --------------------
+ configs/farm/arago-morty-next-rel.txt              | 344 --------------------
+ configs/farm/arago-morty-next.txt                  | 344 --------------------
+ configs/farm/arago-morty.txt                       | 344 --------------------
+ configs/farm/arago-rocko-next.txt                  | 346 --------------------
+ configs/farm/arago-rocko.txt                       | 346 --------------------
+ configs/farm/arago-thud-next.txt                   | 349 ---------------------
+ configs/farm/arago-thud.txt                        | 349 ---------------------
+ configs/farm/arago-zeus-next.txt                   | 346 --------------------
+ configs/farm/arago-zeus.txt                        | 346 --------------------
+ configs/farm/distroless-morty.txt                  | 196 ------------
+ configs/farm/distroless-rocko.txt                  | 196 ------------
+ configs/farm/distroless-thud.txt                   | 198 ------------
+ configs/farm/distroless-zeus.txt                   | 198 ------------
+ configs/farm/poky-morty.txt                        | 196 ------------
+ configs/farm/poky-rocko.txt                        | 196 ------------
+ configs/farm/poky-thud.txt                         | 198 ------------
+ configs/farm/poky-zeus.txt                         | 198 ------------
+ configs/target-debconf-selections.txt              | 212 -------------
+ 47 files changed, 14231 deletions(-)
+ delete mode 100644 configs/amsdk/amsdk-config-05.06.00.00.txt
+ delete mode 100644 configs/amsdk/amsdk-config-05.07.00.00.txt
+ delete mode 100644 configs/amsdk/amsdk-config-06.00.00.00.txt
+ delete mode 100644 configs/amsdk/amsdk-config-07.00.00.00.txt
+ delete mode 100644 configs/amsdk/amsdk-config-07.01.00.00.txt
+ delete mode 100644 configs/amsdk/amsdk-config-08.00.00.00.txt
+ delete mode 100644 configs/arago-core-tisdk-daisy-puget.txt
+ delete mode 100644 configs/arago-core-tisdk-danny-puget.txt
+ delete mode 100644 configs/arago-core-tisdk-dora-puget.txt
+ delete mode 100644 configs/arago-core-tisdk-dylan-puget.txt
+ delete mode 100644 configs/arago-core-tisdk-fido-puget.txt
+ delete mode 100644 configs/arago-core-tisdk-krogoth-farm.txt
+ delete mode 100644 configs/arago-core-tisdk-krogoth-puget.txt
+ delete mode 100644 configs/arago-core-tisdk-master-puget.txt
+ delete mode 100644 configs/coresdk/arago-core-amsdk-2013.04.01.txt
+ delete mode 100644 configs/coresdk/arago-core-tisdk-2013.04.00.txt
+ delete mode 100644 configs/coresdk/arago-core-tisdk-2013.04.01.txt
+ delete mode 100644 configs/coresdk/arago-core-tisdk-2013.04.02.txt
+ delete mode 100644 configs/coresdk/arago-core-tisdk-2013.10.00.txt
+ delete mode 100644 configs/coresdk/arago-core-tisdk-2013.12.00.txt
+ delete mode 100644 configs/coresdk/arago-core-tisdk-2013.12.01.txt
+ delete mode 100644 configs/coresdk/arago-core-tisdk-2014.08.00.txt
+ delete mode 100644 configs/coresdk/arago-core-tisdk-2014.10.01.txt
+ delete mode 100644 configs/coresdk/arago-core-tisdk-2014.10.02.txt
+ delete mode 100644 configs/coresdk/arago-core-tisdk-2015.01-puget.txt
+ delete mode 100644 configs/coresdk/arago-core-tisdk-2015.02-puget.txt
+ delete mode 100644 configs/coresdk/arago-core-tisdk-2015.03-puget.txt
+ delete mode 100644 configs/distroless-meta-ti-puget.txt
+ delete mode 100644 configs/farm/arago-krogoth.txt
+ delete mode 100644 configs/farm/arago-morty-next-rel.txt
+ delete mode 100644 configs/farm/arago-morty-next.txt
+ delete mode 100644 configs/farm/arago-morty.txt
+ delete mode 100644 configs/farm/arago-rocko-next.txt
+ delete mode 100644 configs/farm/arago-rocko.txt
+ delete mode 100644 configs/farm/arago-thud-next.txt
+ delete mode 100644 configs/farm/arago-thud.txt
+ delete mode 100644 configs/farm/arago-zeus-next.txt
+ delete mode 100644 configs/farm/arago-zeus.txt
+ delete mode 100644 configs/farm/distroless-morty.txt
+ delete mode 100644 configs/farm/distroless-rocko.txt
+ delete mode 100644 configs/farm/distroless-thud.txt
+ delete mode 100644 configs/farm/distroless-zeus.txt
+ delete mode 100644 configs/farm/poky-morty.txt
+ delete mode 100644 configs/farm/poky-rocko.txt
+ delete mode 100644 configs/farm/poky-thud.txt
+ delete mode 100644 configs/farm/poky-zeus.txt
+ delete mode 100644 configs/target-debconf-selections.txt
 
-diff --git a/lib/oesdk/package-sdks b/lib/oesdk/package-sdks
+diff --git a/configs/amsdk/amsdk-config-05.06.00.00.txt b/configs/amsdk/amsdk-config-05.06.00.00.txt
 deleted file mode 100644
-index 2316d40..0000000
---- a/lib/oesdk/package-sdks
+index 7c6016b..0000000
+--- a/configs/amsdk/amsdk-config-05.06.00.00.txt
 +++ /dev/null
-@@ -1,496 +0,0 @@
--#!/bin/bash
--
--# This script is intended to be called only from the top-level build-oesdk.sh
--# script which parses the configuration file and sets necessary variables.
--# So check if it is being called from any other context and if so exit.
--if [ "`basename $0`" != "build-oesdk.sh" ]
--then
--    log $error_log echo "This is a helper script and should not be run directly"
--    exit 1
--fi
--
--create_sd_card_content() {
--    # Set m for logging purposes
--    m="$1"
--
--    package_root="$PACKAGE_ROOT/$m"
--
--    # Make the machine specific SD card directory
--    sd_card_root="$DEPLOY_ROOT/$m/$BUILD_ID/sd_card_contents"
--
--    if [ -d $sd_card_root ]
--    then
--        rm -rf $sd_card_root
--    fi
--    mkdir -p $sd_card_root
--
--    # Create the boot_partition tarball.  Some of the files such as the
--    # prebuilt images were already staged here during the build/test phase
--    # and just need to be renamed.  Others should be copied from the
--    # SD_CARD_CONTENT directory
--    cd $package_root/boot_partition
--
--    # Rename the pre-built image files
--    if [ -e u-boot-$m.img ]
--    then
--        mv u-boot-$m.img u-boot.img
--    fi
--
--    # For machines that use older u-boots that do not use .img files
--    if [ -e u-boot-$m.bin ]
--    then
--        mv u-boot-$m.bin u-boot.bin
--    fi
--
--    # Remove this binary since it wouldn't be used in the boot partition
--    if [ -e u-boot-spl.bin-$m ]
--    then
--        rm u-boot-spl.bin-$m
--    fi
--
--    # For some devices the uImage/zImage and dtb files are read
--    # from the /boot directory of the rootfs. In this case do
--    # not package the uImage/zImage and device tree files into
--    # the boot partition as it will cause confusion.
--    if [ "$PACKAGE_BOOT_KERNEL_FILES" = "true" ]
--    then
--        if [ -e [uz]Image-$m.bin ]
--        then
--            kernel_image=`ls [uz]Image-$m.bin | grep -o [uz]Image`
--            mv [uz]Image-$m.bin $kernel_image
--        fi
--    else
--        rm -f [uz]Image*
--        rm -f *.dtb
--    fi
--
--    # Copy the MLO if it exists for the device
--    if [ -e MLO-$m ]
--    then
--        mv MLO-$m MLO
--    fi
--
--    # If there are any extra SD card content files for the boot partition
--    # copy them with the -L to resolve symlinks
--    if [ -d "$SD_CARD_CONTENT/$m/boot" ]
--    then
--        cp -rLf $SD_CARD_CONTENT/$m/boot/* .
--    fi
--
--    # Now tar up the boot_partition.tar.xz file
--    tar cJf $sd_card_root/boot_partition.tar.xz *
--
--    if [ "$?" != "0" ]
--    then
--        echo "Could not create boot_partition.tar.xz"
--        echo "FAILED" > $LOG_DIR/$m-build-sdcard.txt
--        return 1
--    fi
--
--    # Move the rootfs tarball we already had to the sd_card_root directory
--    cd $package_root/root_partition
--    mv rootfs_partition.$FS_IMAGE_TYPE $sd_card_root/
--
--    if [ "$?" != "0" ]
--    then
--        echo "Could not mv rootfs_partition.tar.xz"
--        echo "FAILED" > $LOG_DIR/$m-build-sdcard.txt
--        return 1
--    fi
--
--    # Lastly let's package the start_here partition tarball
--    start_here_root="$package_root/start_here_partition"
--    if [ -d "$start_here_root" ]
--    then
--        rm -rf $start_here_root
--    fi
--    mkdir -p $start_here_root
--
--    cd $start_here_root
--
--    # Copy the installer
--    cp $DEPLOY_ROOT/$m/$BUILD_ID/${INSTALLER_PREFIX}-$m* $start_here_root/
--
--    if [ "$?" != "0" ]
--    then
--        echo "Could not copy installer to start_here"
--        echo "FAILED" > $LOG_DIR/$m-build-sdcard.txt
--        return 1
--    fi
--
--    # Copy the rest of the start_here content from the SD_CARD_CONTENT
--    # directory.  This usually contains:
--    #   - CCS installer
--    #   - quickstart guides
--    #   - START_HERE.sh scripts (if needed)
--    if [ -d "$SD_CARD_CONTENT/$m/start_here" ]
--    then
--        cp -rLf $SD_CARD_CONTENT/$m/start_here/* .
--    fi
--
--    # Now tar up the start_here_partition.tar.xz file
--    tar cJf $sd_card_root/start_here_partition.tar.xz *
--
--    if [ "$?" != "0" ]
--    then
--        echo "Could not create start_here_partition.tar.xz"
--        echo "FAILED" > $LOG_DIR/$m-build-sdcard.txt
--        return 1
--    fi
--
--    # Lastly copy the create-sdcard.sh script for the extracted SDK
--    # directory to the sd_card_root
--    cp $TEST_ROOT/$m-test/temp/bin/create-sdcard.sh $sd_card_root/
--    chmod +x $sd_card_root/create-sdcard.sh
--
--    # Mark this step as PASSED since we got here
--    echo "PASSED" > $LOG_DIR/$m-build-sdcard.txt
--}
--
--create_sdk_installer() {
--    # Set m for logging purposes
--    m="$1"
--
--    # Make the machine specific installer root
--    installer_root="$INSTALLER_ROOT/$m"
--
--    if [ -d $installer_root ]
--    then
--        rm -rf $installer_root
--    fi
--    mkdir -p $installer_root
--
--    # Copy the installer components into the proper directory
--    cp $PACKAGE_ROOT/$m/$SDK_FILTER* $installer_root/
--
--    # Get the name of the SDK tarball
--    cd $installer_root
--    sdk_tar="`ls $SDK_FILTER*`"
--    cd -
--
--    ## Custom Install Builder Parameters
--    #   sdk_loc         - Location of SDK tarball
--    #   sdk_tar_nam     - SDK tarball name
--    #   output_dir      - Location to place SDK installer
--    #   platform        - Machine name
--    #   sdk_version         - SDK Version
--    #   sdk_name_prefix - SDK name Prefix.
--    #
--    #   SDK is referred to as ${sdk_name_prefix}-${platform} in the installer
--    #        Ex tisdk-am335x
--    #   SDK installer is named after ${sdk_name_prefix}-${platform}-${sdk_version}-Linux-x86-Install.bin
--    #        Ex ti-sdk-am335x-evm-06.00.00.00-Linux-x86-Install.bin
--
--
--    $INSTALL_BUILDER/builder build $INSTALL_BUILDER_PROJECT linux --setvars \
--        sdk_loc="$installer_root/" \
--        sdk_name_prefix="${INSTALLER_PREFIX}"                  \
--        sdk_tar_name=$sdk_tar                     \
--        output_dir="$deploy_root"                 \
--        platform="$m"                             \
--        sdk_version="$TISDK_VERSION"
--
--    if [ "$?" != "0" ]
--    then
--        echo "FAILED" > $LOG_DIR/$m-build-installer.txt
--        return 1
--    else
--        echo "PASSED" > $LOG_DIR/$m-build-installer.txt
--    fi
--}
--
--package_web_content() {
--    # Set m for logging purposes
--    m="$1"
--
--    # Create the exports content for the web page
--    exports_root="$deploy_root/exports"
--
--    if [ -d $exports_root ]
--    then
--        rm -rf $exports_root
--    fi
--    mkdir -p $exports_root
--
--    # Copy the manifest file if it exists.  Pull it from the extracted
--    # SDK directory from the test step.
--    manifest_file="$TEST_ROOT/$m-test/temp/docs/software_manifest.htm"
--    if [ -e $manifest_file ]
--    then
--        cp $manifest_file $exports_root/
--    else
--        echo "Could not package manifest file"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    # Create the PSP tarballs as well
--    # First the sources tarball
--    cd $TEST_ROOT/$m-test/temp
--
--    tar --exclude=prebuilt-images -cJf $exports_root/$m-sdk-src-$TISDK_VERSION.tar.xz board-support/*
--
--    if [ "$?" != 0 ]
--    then
--        echo "Could not create SDK sources tarball"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    # Now Create the pre-built binaries tarball.  Make a temporary directory
--    # to copy contents to here so that we can get the right extraction name.
--    tmp_dir="$exports_root/${INSTALLER_PREFIX}-$m-bin-${TISDK_VERSION}"
--    tmp_dir_bs="$tmp_dir/board-support"
--    mkdir -p $tmp_dir_bs
--
--    cp -rf board-support/prebuilt-images $tmp_dir_bs
--    if [ "$?" != 0 ]
--    then
--        echo "Could not copy prebuilt-images"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    cp -rf filesystem $tmp_dir/
--    if [ "$?" != 0 ]
--    then
--        echo "Could not copy file system tarballs"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    cp -rf bin $tmp_dir/
--    if [ "$?" != 0 ]
--    then
--        echo "Could not copy bin folder"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    # remove scripts which have dependency on devkit
--    rm  $tmp_dir/bin/unshallow-repositories.sh
--    rm  $tmp_dir/bin/create-ubifs.sh
--
--    # modify create-sdcard.sh to use the tarball extraction directory
--    sed -i -e "s|ti-sdk.*\[0-9\]|${tmp_dir##*/}|g" $tmp_dir/bin/create-sdcard.sh
--
--    # modify setup-target-nfs.sh to get the absolute path when running the scripts
--    # 1. remove the line to set up "SDKinstall" with TI_SDK_PATH
--    sed -i -e '/^SDKinstall/d' $tmp_dir/bin/setup-targetfs-nfs.sh
--
--    # 2. add the lines before setting dstdefault to get the absolute path of the scripts and SDKinstall,
--    #    using the same way as in create-sdcard.sh: PWD=`pwd`; EXE=`echo $0 | sed s=$PWD==`;
--    #    EXEPATH="$PWD"/"$EXE"; SDKinstall=`echo $EXEPATH | grep -o .*ti-sdk.*.[0-9]`
--    sed -i -e '/dstdefault=$SDKinstall\/targetNFS/i\PWD=`pwd`\nEXE=`echo $0 | sed s=$PWD==`\nEXEPATH="$PWD"/"$EXE"\nSDKinstall=`echo $EXEPATH | grep -o '.*ti-sdk.*.[0-9]'`\n' $tmp_dir/bin/setup-targetfs-nfs.sh
--
--    # 3. use the tarball extraction directory for SDKinstall
--    sed -i -e "s|ti-sdk.*\[0-9\]|${tmp_dir##*/}|g" $tmp_dir/bin/setup-targetfs-nfs.sh
--
--    # create Rules.make with variables to be used from the binary package
--    echo "#platform" >> $tmp_dir/Rules.make
--    echo "PLATFORM=$m" >> $tmp_dir/Rules.make
--    echo >> $tmp_dir/Rules.make
--
--    echo "#root of the target file system for installing applications" >> $tmp_dir/Rules.make
--    echo "DESTDIR=__DESTDIR__" >> $tmp_dir/Rules.make
--    echo >> $tmp_dir/Rules.make
--
--    echo "# Set EXEC_DIR to install example binaries" >> $tmp_dir/Rules.make
--    echo "EXEC_DIR=__EXEC_DIR__" >> $tmp_dir/Rules.make
--
--    if [ "$?" != 0 ]
--    then
--        echo "Could not create Rules.make"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    cp -f setup.sh $tmp_dir/
--    if [ "$?" != 0 ]
--    then
--        echo "Could not copy setup.sh"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    cd $exports_root
--    tar cJf $m-sdk-bin-$TISDK_VERSION.tar.xz ${INSTALLER_PREFIX}-$m-bin-${TISDK_VERSION}/*
--    if [ "$?" != 0 ]
--    then
--        echo "Could not create SDK binaries tarball"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    rm -rf ${INSTALLER_PREFIX}-$m-bin-${TISDK_VERSION}
--
--    if [ "$EXPORT_ARAGO_SRC" == "1" ]
--    then
--        tar -C $DL_DIR -cJf $exports_root/$m-sdk-arago-src-$TISDK_VERSION.tar.xz .
--
--        if [ "$?" != 0 ]
--        then
--            echo "Could not create arago source tarball"
--            echo "FAILED" > $LOG_DIR/$m-web-results.txt
--            return 1
--        fi
--    fi
--
--    # Copy any additional web files that are in the WEB_EXTRAS_ROOT
--    # directory.
--    web_extras="$WEB_EXTRAS_ROOT/$m"
--    if [ -d $web_extras ]
--    then
--        cp -rLf $web_extras/* $exports_root/
--    fi
--
--    # Move the installer into the exports directory
--    mv $deploy_root/${INSTALLER_PREFIX}-$m* $exports_root/
--
--    # Create the md5sum file
--    cd $exports_root
--    md5sum * > md5sum.txt
--
--    # If we got here it means everything else passed
--    echo "PASSED" > $LOG_DIR/$m-web-results.txt
--}
--
--generate_webgen_page() {
--    # Set m for logging purposes
--    m="$1"
--
--    
--    webgen_make="$WEBGEN_MAK_ROOT/$m/webgen.mak"
--
--    if [ ! -e $webgen_make ]
--    then
--        echo "Could not find the webgen file for machine $m"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    # Create the ti.com contents directory
--    mkdir -p $deploy_root/ti_com_contents
--
--    # Copy the webgen file to the deploy directory
--    cd $deploy_root
--    cp $webgen_make .
--
--    # Generate the web page
--    $WEBGEN_ROOT/webgen_ext webgen.mak $deploy_root/ti_com_contents exports
--
--    # Cleanup the misc webgen files
--    cleanup_webgen_page $m
--}
--
--# The webgen tool does a couple of things like make a symlink to the exports
--# directory and has a validationinfo file that needs to be removed before
--# copying.  If this is not done then we copy double the files, etc.
--cleanup_webgen_page() {
--    m="$1"
--
--    content_dir="$deploy_root/ti_com_contents/`grep 'PRODUCT_NAME=' $webgen_make | sed -e 's/PRODUCT_NAME=//g'`/`echo $TISDK_VERSION | tr '.' '_'`"
--
--    # Something went wrong here because I can't find the webgen content
--    if [ ! -d $content_dir ]
--    then
--        echo "Could not find the $content_dir"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--    fi
--
--    # Remove the exports symlink and move the real exports directory into its
--    # place
--    rm -rf $content_dir/exports
--    mv $deploy_root/exports $content_dir/
--
--    # Remove the .validationinfo file
--    rm -f $content_dir/.validationinfo
--
--    # Remove the webgen.mak file
--    rm -f $deploy_root/webgen.mak
--}
--
--package_individual_sdk() {
--    # Set m for logging purposes
--    m="$1"
--
--    # Make the machine specific deploy root
--    deploy_root="$DEPLOY_ROOT/$m/$BUILD_ID"
--
--    if [ -d $deploy_root ]
--    then
--        rm -rf $deploy_root
--    fi
--    mkdir -p $deploy_root
--
--    # Create the SDK installer in the deploy directory
--    create_sdk_installer $m
--
--    # Create the SD card tarballs in the deploy directory
--    create_sd_card_content $m
--
--    # Package the SD card and web page contents to get ready for
--    # generating the webgen page and publishing the SDK
--    package_web_content $m
--
--    if [ "$?" == "0" ]
--    then
--        # Since the packaging worked let's generate the ti.com style
--        # web page.
--        generate_webgen_page $m
--    fi
--}
--
--package_sdks(){
--    # Build a list of machines that passed their build and had no
--    # CRITICAL failures.  This can be done by looking for the test
--    # results file for each machine.  If the test file does not
--    # exist then the build failed.  If it does exist and does not
--    # contain the CRITICAL keyword then we can continue with
--    #packaging.
--    machines=""
--
--    for m in $MACHINES
--    do
--        if [ -e $LOG_DIR/$m-build-result.txt ]
--        then
--            # Check if the build failed
--            grep "FAILED" $LOG_DIR/$m-build-result.txt > /dev/null 2>&1
--            if [ "$?" == "0" ]
--            then
--                # The build failed so don't package this device
--                continue
--            fi
--
--            # Check the test results
--            if [ -e $LOG_DIR/$m-test-result.txt ]
--            then
--                # The build at least PASSED
--                # Check if this was a CRITICAL failure
--                grep "CRITICAL" $LOG_DIR/$m-test-result.txt > /dev/null 2>&1
--                if [ "$?" == "0" ]
--                then
--                    # This was a critical failure so return without copying
--                    # the files
--                    continue
--                fi
--
--                # This was a build with a PASSED, SKIPPED, or non-CRITICAL
--                # test result.  Add it to the list of machines to package.
--                machines="$machines""$m "
--            fi
--        fi
--    done
--
--    echo "machines = $machines"
--
--    # Now that the have the list of machines we can call the rest of the
--    # package functions in parallel.
--    for m in $machines
--    do
--        package_individual_sdk $m &
--    done
--
--    # Wait for the subprocesses to all finish
--    wait
--}
-diff --git a/lib/oesdk/ti-sdk-host-install.sh b/lib/oesdk/ti-sdk-host-install.sh
-deleted file mode 100755
-index 0dc1fa2..0000000
---- a/lib/oesdk/ti-sdk-host-install.sh
+@@ -1,288 +0,0 @@
+-################################################################################
+-#                           AMSDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="05.06.00.00"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="2"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/amsdk-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-amsdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-#SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/amsdk/amsdk-05.06.00.00-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-amsdk-image"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="true"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="jenkins@neo.dal.design.ti.com:/var/www/sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/amsdk/amsdk-config-05.07.00.00.txt b/configs/amsdk/amsdk-config-05.07.00.00.txt
+deleted file mode 100644
+index 37b6754..0000000
+--- a/configs/amsdk/amsdk-config-05.07.00.00.txt
 +++ /dev/null
-@@ -1,227 +0,0 @@
--# /usr/bin/env bash
--set -x
--#
--#  (C) Copyright 2010 Texas Instrument Inc.  All rights reserved.
--#
--#  Author: Schuyler Patton, Texas Instrunents Inc.
--#
--#  Script to install TI SDK on User Platform
--#
+@@ -1,303 +0,0 @@
+-################################################################################
+-#                           AMSDK configuration file                           #
+-################################################################################
 -
--VERSION="1.0"
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
 -
--#
--# Display program usage
--#
--usage()
--{
--  echo "
--Usage: `basename $1` [options] --machine <machine_name> <install_dir> <tools_dir_prefix> <dest_dir>
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="05.07.00.00"
 -
--  --help                Print this help message
--"
--  exit 1
--}
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm"
 -
--#
--# Display version 
--#
--version()
--{
--  echo "
--`basename $1`: version $VERSION 
--"
--  exit 1
--}
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/amsdk-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-amsdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-#SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/amsdk/amsdk-05.07.00.00-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="128.247.105.52"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-amsdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="true"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="true"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="jenkins@neo.dal.design.ti.com:/var/www/sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/amsdk/amsdk-config-06.00.00.00.txt b/configs/amsdk/amsdk-config-06.00.00.00.txt
+deleted file mode 100644
+index fd53df1..0000000
+--- a/configs/amsdk/amsdk-config-06.00.00.00.txt
++++ /dev/null
+@@ -1,314 +0,0 @@
+-################################################################################
+-#                           AMSDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="06.00.00.00"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/amsdk-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-amsdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-#SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/amsdk/amsdk-06.00.00.00-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="128.247.105.52"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP=""
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-amsdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="true"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="true"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="jenkins@neo.dal.design.ti.com:/var/www/sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/amsdk/amsdk-config-07.00.00.00.txt b/configs/amsdk/amsdk-config-07.00.00.00.txt
+deleted file mode 100644
+index 09f8731..0000000
+--- a/configs/amsdk/amsdk-config-07.00.00.00.txt
++++ /dev/null
+@@ -1,314 +0,0 @@
+-################################################################################
+-#                           AMSDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="07.00.00.00"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/amsdk-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-amsdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-#SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/amsdk/amsdk-07.00.00.00-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="128.247.105.52"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP=""
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-amsdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="true"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="jenkins@neo.dal.design.ti.com:/var/www/sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/amsdk/amsdk-config-07.01.00.00.txt b/configs/amsdk/amsdk-config-07.01.00.00.txt
+deleted file mode 100644
+index d7b06a3..0000000
+--- a/configs/amsdk/amsdk-config-07.01.00.00.txt
++++ /dev/null
+@@ -1,314 +0,0 @@
+-################################################################################
+-#                           AMSDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="07.01.00.00"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am437x-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/amsdk-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-amsdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-#SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/amsdk/amsdk-07.01.00.00-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="128.247.105.52"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP=""
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-amsdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="true"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="jenkins@neo.dal.design.ti.com:/var/www/sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/amsdk/amsdk-config-08.00.00.00.txt b/configs/amsdk/amsdk-config-08.00.00.00.txt
+deleted file mode 100644
+index 74ad1d0..0000000
+--- a/configs/amsdk/amsdk-config-08.00.00.00.txt
++++ /dev/null
+@@ -1,318 +0,0 @@
+-################################################################################
+-#                           AMSDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="08.00.00.00"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am437x-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/amsdk-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-amsdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-#SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/amsdk/amsdk-08.00.00.00-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP="linux_tid_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="true"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-amsdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="true"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="jenkins@neo.dal.design.ti.com:/var/www/sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/arago-core-tisdk-daisy-puget.txt b/configs/arago-core-tisdk-daisy-puget.txt
+deleted file mode 100644
+index 7a48572..0000000
+--- a/configs/arago-core-tisdk-daisy-puget.txt
++++ /dev/null
+@@ -1,333 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2015.05"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm am57xx-evm beagleboard am180x-evm k2hk-evm k2e-evm k2l-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/home/jenkins/tisdk-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-daisy-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/OE/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="true"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-#WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
+-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/2014.04"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/arago-core-tisdk-danny-puget.txt b/configs/arago-core-tisdk-danny-puget.txt
+deleted file mode 100644
+index 27dda0a..0000000
+--- a/configs/arago-core-tisdk-danny-puget.txt
++++ /dev/null
+@@ -1,315 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2013.10"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/home/jenkins/tisdk-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-danny-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/OE/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="10.218.102.142"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="true"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/arago-core-tisdk-dora-puget.txt b/configs/arago-core-tisdk-dora-puget.txt
+deleted file mode 100644
+index 14b84c2..0000000
+--- a/configs/arago-core-tisdk-dora-puget.txt
++++ /dev/null
+@@ -1,315 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2014.06"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm k2hk-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/home/jenkins/tisdk-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dora-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/OE/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="true"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/arago-core-tisdk-dylan-puget.txt b/configs/arago-core-tisdk-dylan-puget.txt
+deleted file mode 100644
+index d6dcdc0..0000000
+--- a/configs/arago-core-tisdk-dylan-puget.txt
++++ /dev/null
+@@ -1,315 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2013.10"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm beagleboard am180x-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/home/jenkins/tisdk-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/OE/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="true"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/arago-core-tisdk-fido-puget.txt b/configs/arago-core-tisdk-fido-puget.txt
+deleted file mode 100644
+index c9e4a2c..0000000
+--- a/configs/arago-core-tisdk-fido-puget.txt
++++ /dev/null
+@@ -1,337 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2015.10"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm omap5-evm dra7xx-evm am57xx-evm beagleboard am180x-evm k2hk-evm k2e-evm k2g-evm k2l-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"
+-
+-# SECDEV variables for AM4 and DRA7
+-TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"
+-TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/home/jenkins/tisdk-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-fido-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/OE/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="true"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-#WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
+-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/arago-core-tisdk-krogoth-farm.txt b/configs/arago-core-tisdk-krogoth-farm.txt
+deleted file mode 100644
+index abf195e..0000000
+--- a/configs/arago-core-tisdk-krogoth-farm.txt
++++ /dev/null
+@@ -1,340 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2016.07"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="0"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"
+-
+-# SECDEV variables for AM4 and DRA7
+-TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"
+-TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/auto-arago-krogoth"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="true"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-krogoth-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# Pre-configured conf/site_info.xml file for OpenTest client
+-OPENTEST_CONF_SITE_INFO="$SCRIPTS_ROOT/site_info.xml"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="false"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-#WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
+-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/arago-core-tisdk-krogoth-puget.txt b/configs/arago-core-tisdk-krogoth-puget.txt
+deleted file mode 100644
+index 3b20e98..0000000
+--- a/configs/arago-core-tisdk-krogoth-puget.txt
++++ /dev/null
+@@ -1,340 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2016.05"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm am437x-evm am437x-hs-evm dra7xx-evm dra7xx-hs-evm am57xx-evm k2hk-evm k2e-evm k2g-evm k2l-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="0"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"
+-
+-# SECDEV variables for AM4 and DRA7
+-TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"
+-TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/home/jenkins/tisdk-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-krogoth-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/OE/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# Pre-configured conf/site_info.xml file for OpenTest client
+-OPENTEST_CONF_SITE_INFO="$SCRIPTS_ROOT/site_info.xml"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="true"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-#WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
+-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/arago-core-tisdk-master-puget.txt b/configs/arago-core-tisdk-master-puget.txt
+deleted file mode 100644
+index aa1b262..0000000
+--- a/configs/arago-core-tisdk-master-puget.txt
++++ /dev/null
+@@ -1,337 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2016.04"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm am437x-evm am437x-hs-evm dra7xx-evm dra7xx-hs-evm am57xx-evm k2hk-evm k2e-evm k2g-evm k2l-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"
+-
+-# SECDEV variables for AM4 and DRA7
+-TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"
+-TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/home/jenkins/tisdk-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-master-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/OE/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="true"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-#WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
+-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-amsdk-2013.04.01.txt b/configs/coresdk/arago-core-amsdk-2013.04.01.txt
+deleted file mode 100644
+index 931698a..0000000
+--- a/configs/coresdk/arago-core-amsdk-2013.04.01.txt
++++ /dev/null
+@@ -1,323 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2013.04.01"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/nightly-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root/nightly-build"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2013.04.01-amsdk-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
 -
 -
--#
--# execute command
--#
--execute ()
--{
--  #echo "$*"
--  $*
--  if [ $? -ne 0 ]; then
--    echo "ERROR: failed to execute $*"
--    exit 1;
--  fi
--}
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
 -
--#
--# update sdk Rules.make
--#
--update_rules_make()
--{
--  echo "Updating Rules.make"
--  echo "$install_dir"
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP=""
 -
--  echo "$install_dir">rm_id.out
--  echo "$cross_compile">rm_cc.out
--  echo "$cross_compile_dir">rm_ccd.out
--  echo "$dest_dir">rm_dd.out
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP=""
 -
--  sed -i -e s=__SDK__INSTALL_DIR__=$install_dir= $install_dir/Rules.make 
--  sed -i -e s=__CROSS_COMPILE__=$cross_compile_dir/arm-none-linux-gnueabi-= $install_dir/Rules.make
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
 -
--  # Find the linux directory name
--  linux=`find $install_dir/board-support -maxdepth 1 -name "linux*"`
--  linux=`basename $linux`
--  sed -i -e s=__KERNEL_NAME__=$linux= $install_dir/Rules.make
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
 -
--  # Extract toolchain sdk
--  $install_dir/linux-devkit.sh -y -d $install_dir/linux-devkit
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
 -
--  # Remove toolchain SDK
--  rm $install_dir/linux-devkit.sh
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
 -
--# TODO: Unsure about this one here.  This likely should change when the
--#       META_SDK_PATH functionality is put back in.
--  echo "Updating prefix in libtoolize "
--  sed -i -e "s|/arago-2012.10|$install_dir/linux-devkit|g" \
--  $install_dir/linux-devkit/bin/libtoolize
--}
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
 -
--#
--# update example applications CCS project file
--#
--update_ccs_project()
--{
--    cd $install_dir
--
--    # Grab some essential variables from environment-setup
--    TARGET_SYS=`sed -n 's/^export TARGET_SYS=//p' linux-devkit/environment-setup`
--    TOOLCHAIN_SYS=`sed -n 's/^export TOOLCHAIN_SYS=//p' linux-devkit/environment-setup`
--    SDK_SYS=`sed -n 's/^export SDK_SYS=//p' linux-devkit/environment-setup`
--
--    # Grab toolchain's GCC version
--    GCC_VERSION=`ls linux-devkit/sysroots/$SDK_SYS/usr/lib/gcc/$TOOLCHAIN_SYS/`
--
--    TOOLCHAIN_TARGET_INCLUDE_DIR="linux-devkit/sysroots/$TARGET_SYS/usr/include"
--    TOOLCHAIN_INCLUDE_DIR="linux-devkit/sysroots/$SDK_SYS/usr/lib/gcc/$TOOLCHAIN_SYS/$GCC_VERSION/include"
--
--    # Update CCS project files using important paths to headers
--    find ./example-applications -type f -exec sed -i "s|<TOOLCHAIN_TARGET_INCLUDE_DIR>|$TOOLCHAIN_TARGET_INCLUDE_DIR|g" {} \;
--    find ./example-applications -type f -exec sed -i "s|<TOOLCHAIN_INCLUDE_DIR>|$TOOLCHAIN_INCLUDE_DIR|g" {} \;
--    cd -
--}
--
--#
--# prepare installer tools 
--# 
--prepare_install ()
--{
--  echo "Preparing installation ..."
--  cwd=$PWD;
--
--  execute "mkdir -p ${install_dir}"
--  mkdir -p ${dest_dir}
--
--}
--
--#
--# install sdk
--#
--install_sdk ()
--{
--  sdk_dir=$PWD 
--  echo "$sdk_dir">is_sdk_dir.out
--  echo "$install_dir">is_id.out
--  echo "$cross_compile">is_cc.out
--  echo "$cross_compile_dir">is_ccd.out
--  echo "$dest_dir">is_dd.out
--  echo "$sdk_pkg">is_sdk_pkg.out
--
--#  cp -p ti-sdk-ubuntu-env-setup.sh "$install_dir"
--  echo "Untarring top level SDK $sdk_pkg "  
--  tar -xf $sdk_pkg  -C $install_dir
--  echo "Untarring top level package complete "
--
--  # Remove any .svn directories that were packaged by the sourceipks
--  rm -rf `find $install_dir -name ".svn"`
--
--}
--
--install_ccs()
--{ 
--
--# $install_source/CCS/setup*.bin &
--
--echo "install_ccs is $install_ccs">ccs_iccs.out
--
--if [ "$install_ccs" = "yes" ]; then
--   $install_source/ccs_install.sh $install_source & 
--fi
-- 
--}
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
 -
 -
--# Process command line...
--while [ $# -gt 0 ]; do
--  case $1 in
--    --help | -h)
--      usage $0
--      ;;
--    --version | -v)
--      version $0
--      ;;
--    --sdk_pkg)
--      shift;
--      sdk_pkg=$1;
--      ;;
--    --install_dir)
--      shift;
--      install_dir=$1;
--      ;;
--    --install_ccs)
--      shift;
--      install_ccs="yes";
--      ;;
--    --install_source)
--      shift;
--      install_source=$1
--      ;;
--     *)
--      shift;
--      ;;
--  esac
--done
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
 -
--echo " "
--echo " Called with --machine $machine --sdk_pkg $sdk_pkg --install_dir $install_dir --cross_compile_dir $cross_compile_dir --cross_compile $cross_compile ">called-w-param.out
--echo " "
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
 -
--echo "$machine">machid.out
--echo "$install_dir">id.out
--echo "$cross_compile">cc.out
--echo "$cross_compile_dir">ccd.out
--echo "$dest_dir">dd.out
--echo "$install_source">tmp/tmp_iss.out
--echo "$install_source">iss.out
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
 -
--# check if install_dir variable is set.
--test -z $install_dir && usage $0
--execute "mkdir -p $install_dir"
--echo "after mkdir ">oops.out
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
 -
--# prepare installation.
--prepare_install
--echo "after prepare ">oops.out
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
 -
--# install sdk
--install_sdk
--echo "after install_sdk ">oops.out
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
 -
--# install CCS
--test -d $install_source/CCS;install_ccs
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
 -
--# update rules.make
--update_rules_make
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
 -
--# Update example applications CCS project files
--update_ccs_project
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
 -
--echo "Installation completed!"
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/amsdk/$TISDK_VERSION"
 -
--exit 0
-- 
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-# For using the lcpdbld web server the following was added to the
+-# .ssh/config file:
+-#    Host lsblogin01
+-#    Hostname lsblogin01.dal.design.ti.com
+-#    User lcpdbld
+-#    IdentityFile ~/.ssh/id_rsa_lcpdbld
+-# and the lcpdbld user ssh keys were added as id_rsa_lcpdbld
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-tisdk-2013.04.00.txt b/configs/coresdk/arago-core-tisdk-2013.04.00.txt
+deleted file mode 100644
+index e73b80d..0000000
+--- a/configs/coresdk/arago-core-tisdk-2013.04.00.txt
++++ /dev/null
+@@ -1,323 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2013.04.00"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="omap5-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX="/opt/arago-2011.09/armv7a/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/nightly-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root/nightly-build"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2013.04.00-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP=""
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP=""
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="true"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-# For using the lcpdbld web server the following was added to the
+-# .ssh/config file:
+-#    Host lsblogin01
+-#    Hostname lsblogin01.dal.design.ti.com
+-#    User lcpdbld
+-#    IdentityFile ~/.ssh/id_rsa_lcpdbld
+-# and the lcpdbld user ssh keys were added as id_rsa_lcpdbld
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-tisdk-2013.04.01.txt b/configs/coresdk/arago-core-tisdk-2013.04.01.txt
+deleted file mode 100644
+index bff39cb..0000000
+--- a/configs/coresdk/arago-core-tisdk-2013.04.01.txt
++++ /dev/null
+@@ -1,323 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2013.04.01"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/nightly-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root/nightly-build"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2013.04.01-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP=""
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP=""
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-# For using the lcpdbld web server the following was added to the
+-# .ssh/config file:
+-#    Host lsblogin01
+-#    Hostname lsblogin01.dal.design.ti.com
+-#    User lcpdbld
+-#    IdentityFile ~/.ssh/id_rsa_lcpdbld
+-# and the lcpdbld user ssh keys were added as id_rsa_lcpdbld
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-tisdk-2013.04.02.txt b/configs/coresdk/arago-core-tisdk-2013.04.02.txt
+deleted file mode 100644
+index 889014c..0000000
+--- a/configs/coresdk/arago-core-tisdk-2013.04.02.txt
++++ /dev/null
+@@ -1,323 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2013.04.02"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="dra7xx-evm omap5-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="2"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/nightly-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root/nightly-build"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2013.04.02-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP=""
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP=""
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-# For using the lcpdbld web server the following was added to the
+-# .ssh/config file:
+-#    Host lsblogin01
+-#    Hostname lsblogin01.dal.design.ti.com
+-#    User lcpdbld
+-#    IdentityFile ~/.ssh/id_rsa_lcpdbld
+-# and the lcpdbld user ssh keys were added as id_rsa_lcpdbld
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-tisdk-2013.10.00.txt b/configs/coresdk/arago-core-tisdk-2013.10.00.txt
+deleted file mode 100644
+index 601c6a6..0000000
+--- a/configs/coresdk/arago-core-tisdk-2013.10.00.txt
++++ /dev/null
+@@ -1,314 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2013.10.00"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am437x-evm am335x-evm omap5-evm dra7xx-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="2"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/nightly-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root/nightly-build"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-dylan-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP=""
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP=""
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage should be placed in the boot
+-# partition tarball or not.  For newer kernel and u-boot combinations the
+-# uImage is kept in the rootfs partition and placing it in the boot partition
+-# will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-tisdk-2013.12.00.txt b/configs/coresdk/arago-core-tisdk-2013.12.00.txt
+deleted file mode 100644
+index f85ad3d..0000000
+--- a/configs/coresdk/arago-core-tisdk-2013.12.00.txt
++++ /dev/null
+@@ -1,314 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2013.12.00"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am437x-evm am335x-evm omap5-evm dra7xx-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="2"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/nightly-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root/nightly-build"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2013.12.00-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP=""
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP=""
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage should be placed in the boot
+-# partition tarball or not.  For newer kernel and u-boot combinations the
+-# uImage is kept in the rootfs partition and placing it in the boot partition
+-# will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-tisdk-2013.12.01.txt b/configs/coresdk/arago-core-tisdk-2013.12.01.txt
+deleted file mode 100644
+index 33549c4..0000000
+--- a/configs/coresdk/arago-core-tisdk-2013.12.01.txt
++++ /dev/null
+@@ -1,314 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2013.12.01"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am437x-evm am335x-evm omap5-evm dra7xx-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="2"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/nightly-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root/nightly-build"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2013.12.01-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-#BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/opentest_cli_0.7.tar.gz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP=""
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP=""
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage should be placed in the boot
+-# partition tarball or not.  For newer kernel and u-boot combinations the
+-# uImage is kept in the rootfs partition and placing it in the boot partition
+-# will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-tisdk-2014.08.00.txt b/configs/coresdk/arago-core-tisdk-2014.08.00.txt
+deleted file mode 100644
+index e9a4622..0000000
+--- a/configs/coresdk/arago-core-tisdk-2014.08.00.txt
++++ /dev/null
+@@ -1,318 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2014.08.00"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am437x-evm am335x-evm omap5-evm dra7xx-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="2"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/nightly-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root/nightly-build"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2014.08.00-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP="linux_tid_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage should be placed in the boot
+-# partition tarball or not.  For newer kernel and u-boot combinations the
+-# uImage is kept in the rootfs partition and placing it in the boot partition
+-# will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-tisdk-2014.10.01.txt b/configs/coresdk/arago-core-tisdk-2014.10.01.txt
+deleted file mode 100644
+index f181ca8..0000000
+--- a/configs/coresdk/arago-core-tisdk-2014.10.01.txt
++++ /dev/null
+@@ -1,318 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2014.10.01"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am437x-evm am335x-evm omap5-evm dra7xx-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="2"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/nightly-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root/nightly-build"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2014.10.01-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP="linux_tid_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage should be placed in the boot
+-# partition tarball or not.  For newer kernel and u-boot combinations the
+-# uImage is kept in the rootfs partition and placing it in the boot partition
+-# will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-tisdk-2014.10.02.txt b/configs/coresdk/arago-core-tisdk-2014.10.02.txt
+deleted file mode 100644
+index d0b7e7e..0000000
+--- a/configs/coresdk/arago-core-tisdk-2014.10.02.txt
++++ /dev/null
+@@ -1,321 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2014.10.02"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am437x-evm am335x-evm dra7xx-evm am57xx-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="2"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2013.03/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="$SCRIPTS_ROOT/nightly-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root/nightly-build"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2014.10.02-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/home/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE=""
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-OPENTEST_HW_CAP="linux_tid_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage should be placed in the boot
+-# partition tarball or not.  For newer kernel and u-boot combinations the
+-# uImage is kept in the rootfs partition and placing it in the boot partition
+-# will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-tisdk-2015.01-puget.txt b/configs/coresdk/arago-core-tisdk-2015.01-puget.txt
+deleted file mode 100644
+index ee7dec5..0000000
+--- a/configs/coresdk/arago-core-tisdk-2015.01-puget.txt
++++ /dev/null
+@@ -1,333 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2015.01"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm k2hk-evm k2e-evm k2l-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/home/jenkins/tisdk-build-2015.01"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2015.01-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/OE/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage should be placed in the boot
+-# partition tarball or not.  For newer kernel and u-boot combinations the
+-# uImage is kept in the rootfs partition and placing it in the boot partition
+-# will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-#WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
+-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-tisdk-2015.02-puget.txt b/configs/coresdk/arago-core-tisdk-2015.02-puget.txt
+deleted file mode 100644
+index 3f7d32b..0000000
+--- a/configs/coresdk/arago-core-tisdk-2015.02-puget.txt
++++ /dev/null
+@@ -1,333 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2015.02"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm am437x-evm am57xx-evm dra7xx-evm k2hk-evm k2e-evm k2g-evm k2l-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/home/jenkins/tisdk-build-2015.02"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2015.02-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/OE/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage should be placed in the boot
+-# partition tarball or not.  For newer kernel and u-boot combinations the
+-# uImage is kept in the rootfs partition and placing it in the boot partition
+-# will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-#WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
+-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/coresdk/arago-core-tisdk-2015.03-puget.txt b/configs/coresdk/arago-core-tisdk-2015.03-puget.txt
+deleted file mode 100644
+index 32342d9..0000000
+--- a/configs/coresdk/arago-core-tisdk-2015.03-puget.txt
++++ /dev/null
+@@ -1,337 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2015.03"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm am437x-evm am437x-hs-evm am57xx-evm dra7xx-evm dra7xx-hs-evm k2hk-evm k2e-evm k2g-evm k2l-evm"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/arago-2011.09/armv5te/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2015.05/bin/"
+-
+-# SECDEV variables for AM4 and DRA7
+-TI_SECURE_DEV_PKG_AM4="/opt/secdev-am4/am4x"
+-TI_SECURE_DEV_PKG_DRA7="/opt/secdev-dra7"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/home/jenkins/tisdk-build-2015.03"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/coresdk/coresdk-2015.03-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/OE/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="true"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage should be placed in the boot
+-# partition tarball or not.  For newer kernel and u-boot combinations the
+-# uImage is kept in the rootfs partition and placing it in the boot partition
+-# will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-#WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk"
+-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/distroless-meta-ti-puget.txt b/configs/distroless-meta-ti-puget.txt
+deleted file mode 100644
+index 9406fd1..0000000
+--- a/configs/distroless-meta-ti-puget.txt
++++ /dev/null
+@@ -1,308 +0,0 @@
+-################################################################################
+-#                   Distroless meta-ti configuration file                      #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER FS_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2014.06"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES="am335x-evm am437x-evm am37x-evm am3517-evm am180x-evm omap5-evm dra7xx-evm k2hk-evm beagleboard beaglebone pandaboard"
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="2"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/home/jenkins/distroless-build"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="core-image-minimal-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="false"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="false"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/distroless-meta-ti-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/log-files"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="/OE/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-#SOURCE_MIRROR_URL="http://some.web.server/arago-sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="0"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="true"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="core-image-minimal"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="true"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="true"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-minimal"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/arago-krogoth.txt b/configs/farm/arago-krogoth.txt
+deleted file mode 100644
+index c9ffc8a..0000000
+--- a/configs/farm/arago-krogoth.txt
++++ /dev/null
+@@ -1,344 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2016.08"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="0"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.02/bin/"
+-
+-# SECDEV variables for CAT and AUTO
+-TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-arago-krogoth"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.gz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.gz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-krogoth-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# Pre-configured conf/site_info.xml file for OpenTest client
+-OPENTEST_CONF_SITE_INFO="$SCRIPTS_ROOT/site_info.xml"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="false"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-#WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
+-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/arago-morty-next-rel.txt b/configs/farm/arago-morty-next-rel.txt
+deleted file mode 100644
+index b6a9c59..0000000
+--- a/configs/farm/arago-morty-next-rel.txt
++++ /dev/null
+@@ -1,344 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2017.03"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/linaro-2016.11-armv5/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.11/bin/"
+-
+-# SECDEV variables for CAT and AUTO
+-TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-arago-morty-next-rel"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-morty-next-rel-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# Pre-configured conf/site_info.xml file for OpenTest client
+-OPENTEST_CONF_SITE_INFO="$SCRIPTS_ROOT/site_info.xml"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="false"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-#WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
+-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/arago-morty-next.txt b/configs/farm/arago-morty-next.txt
+deleted file mode 100644
+index b0bf691..0000000
+--- a/configs/farm/arago-morty-next.txt
++++ /dev/null
+@@ -1,344 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2017.03"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/linaro-2016.11-armv5/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.11/bin/"
+-
+-# SECDEV variables for CAT and AUTO
+-TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-arago-morty-next"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-morty-next-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# Pre-configured conf/site_info.xml file for OpenTest client
+-OPENTEST_CONF_SITE_INFO="$SCRIPTS_ROOT/site_info.xml"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="false"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-#WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
+-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/arago-morty.txt b/configs/farm/arago-morty.txt
+deleted file mode 100644
+index 3a76a02..0000000
+--- a/configs/farm/arago-morty.txt
++++ /dev/null
+@@ -1,344 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2017.03"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/linaro-2016.11-armv5/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.11/bin/"
+-
+-# SECDEV variables for CAT and AUTO
+-TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-arago-morty"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-morty-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# Pre-configured conf/site_info.xml file for OpenTest client
+-OPENTEST_CONF_SITE_INFO="$SCRIPTS_ROOT/site_info.xml"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="false"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-#WEB_HOST="lcpdbld@lsblogin01.dal.design.ti.com:/web/lcpd/htdocs/core-sdk/nightly"
+-WEB_HOST="/mnt/gtautoftp/lcpd/core-sdk/nightly"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/arago-rocko-next.txt b/configs/farm/arago-rocko-next.txt
+deleted file mode 100644
+index 1f85be9..0000000
+--- a/configs/farm/arago-rocko-next.txt
++++ /dev/null
+@@ -1,346 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2018.00"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/linaro-2016.11-armv5/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.11/bin/"
+-
+-# SECDEV variables for CAT and AUTO
+-TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# SYSFW_FILE variable
+-SYSFW_FILE="/opt/sysfw.bin"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-arago-rocko-next"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-rocko-next-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# Pre-configured conf/site_info.xml file for OpenTest client
+-OPENTEST_CONF_SITE_INFO="$SCRIPTS_ROOT/site_info.xml"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="false"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST=""
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/arago-rocko.txt b/configs/farm/arago-rocko.txt
+deleted file mode 100644
+index 52dcc23..0000000
+--- a/configs/farm/arago-rocko.txt
++++ /dev/null
+@@ -1,346 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2018.00"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9="/opt/linaro-2016.11-armv5/bin/"
+-TOOLCHAIN_ROOT_CORTEX="/opt/linaro-2016.11/bin/"
+-
+-# SECDEV variables for CAT and AUTO
+-TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# SYSFW_FILE variable
+-SYSFW_FILE="/opt/sysfw.bin"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-arago-rocko"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-image-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-rocko-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# Pre-configured conf/site_info.xml file for OpenTest client
+-OPENTEST_CONF_SITE_INFO="$SCRIPTS_ROOT/site_info.xml"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="false"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="arago-core-tisdk-image"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST=""
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/arago-thud-next.txt b/configs/farm/arago-thud-next.txt
+deleted file mode 100644
+index 7dd2690..0000000
+--- a/configs/farm/arago-thud-next.txt
++++ /dev/null
+@@ -1,349 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS NUM_AARCH64_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2019.03"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-NUM_AARCH64_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-TOOLCHAIN_ROOT_AARCH64=""
+-
+-# SECDEV variables for CAT and AUTO
+-TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-TI_SECURE_DEV_PKG_K3="/opt/secdev-k3"
+-
+-# SYSFW_FILE variable
+-#SYSFW_FILE="/opt/sysfw.bin"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-arago-thud-next"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-bundle-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-thud-next-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# Pre-configured conf/site_info.xml file for OpenTest client
+-OPENTEST_CONF_SITE_INFO="$SCRIPTS_ROOT/site_info.xml"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="false"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="-k arago-core-tisdk-bundle"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST=""
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/arago-thud.txt b/configs/farm/arago-thud.txt
+deleted file mode 100644
+index 5696cf6..0000000
+--- a/configs/farm/arago-thud.txt
++++ /dev/null
+@@ -1,349 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS NUM_AARCH64_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2019.05"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-NUM_AARCH64_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-TOOLCHAIN_ROOT_AARCH64=""
+-
+-# SECDEV variables for CAT and AUTO
+-TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-TI_SECURE_DEV_PKG_K3="/opt/secdev-k3"
+-
+-# SYSFW_FILE variable
+-#SYSFW_FILE="/opt/sysfw.bin"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-arago-thud"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-bundle-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-thud-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# Pre-configured conf/site_info.xml file for OpenTest client
+-OPENTEST_CONF_SITE_INFO="$SCRIPTS_ROOT/site_info.xml"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="false"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="-k arago-core-tisdk-bundle"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST=""
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/arago-zeus-next.txt b/configs/farm/arago-zeus-next.txt
+deleted file mode 100644
+index cbb965e..0000000
+--- a/configs/farm/arago-zeus-next.txt
++++ /dev/null
+@@ -1,346 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS NUM_AARCH64_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="live"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-NUM_AARCH64_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-TOOLCHAIN_ROOT_AARCH64=""
+-
+-# SECDEV variables for CAT and AUTO
+-TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-TI_SECURE_DEV_PKG_K3="/opt/secdev-k3"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-arago-zeus-next"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-bundle-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-zeus-next-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# Pre-configured conf/site_info.xml file for OpenTest client
+-OPENTEST_CONF_SITE_INFO="$SCRIPTS_ROOT/site_info.xml"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="false"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="-k arago-core-tisdk-bundle arago-tiny-image ti-world"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST=""
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/arago-zeus.txt b/configs/farm/arago-zeus.txt
+deleted file mode 100644
+index 12a5ce7..0000000
+--- a/configs/farm/arago-zeus.txt
++++ /dev/null
+@@ -1,346 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS NUM_AARCH64_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER SDK_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION INSTALLER_PREFIX"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="live"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-NUM_AARCH64_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-TOOLCHAIN_ROOT_AARCH64=""
+-
+-# SECDEV variables for CAT and AUTO
+-TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-TI_SECURE_DEV_PKG_K3="/opt/secdev-k3"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-arago-zeus"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="tisdk-*rootfs-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER="arago-core-tisdk-bundle-"
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/arago-zeus-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable points to an optional location where additional installer
+-# content can be placed to be packaged inside of any image recipe that
+-# inherits the tisdk-image class.  It is expected that the directory
+-# structure should match the structure as you want it placed in the SDK.
+-# If you are not building an SDK image with external components then this
+-# is not required.
+-INSTALLER_EXTRAS_ROOT="/home/jenkins/extra-files/installer_content"
+-
+-# This variable points to the directory with the test scripts you want to
+-# run.  The entire directory will be copied to make removing the test scripts
+-# easier during cleanup.
+-# NOTE: The assumption is that this directory contains at least the
+-#       following files:
+-#           - opentest.sh // This is called by opentest framework
+-#           - S90-fake-pointercal // This fakes pointer calibration
+-#           - nightly-test.sh // This is called by opentest.sh and does
+-#                                machine specific testing
+-# NOTE: Since the scripts will be copied to TEST_SCRIPTS_TGT
+-#       the opentest.sh script should call the scripts in the new directory.
+-TEST_SCRIPTS="$SCRIPTS_ROOT/test-scripts"
+-
+-# This variable points to the directory within the target filesystem that
+-# the scripts directory in TEST_SCRIPTS will be copied as.
+-TEST_SCRIPTS_TGT="home/root/test-scripts"
+-
+-# This variable may be used to specify the exact network interface used to
+-# communicate with the OpenTest Framework (e.g. eth1), instead of guessing it.
+-# Useful on multi-homed machines with multiple interfaces, when guessing
+-# between eth0 and eth1 is not possible. Leave empty for default behavior.
+-TEST_LOCAL_IFACE="eth1"
+-
+-# This variable contains the tarball name for the opentest CLI which is
+-# required to do target side testing.
+-OPENTEST_CLI="$SCRIPTS_ROOT/linux-devtest.tgz"
+-
+-# Pre-configured conf/site_info.xml file for OpenTest client
+-OPENTEST_CONF_SITE_INFO="$SCRIPTS_ROOT/site_info.xml"
+-
+-# This variable specifies the IP address of the TEE to be used with OpenTest
+-# Defaults to 128.247.105.11 if not set
+-OPENTEST_TEE_IP="none"
+-
+-# This variable specifies the hardware capabilities to be used with OpenTest
+-# Capabilities are separated by underscores, some excamples are here:
+-# http://arago-project.org/wiki/index.php/Opentest-CheatSheet
+-# Defaults to "linux" if not set
+-# Limit the board selection to official TI GT farm, avoiding personal boards
+-OPENTEST_HW_CAP="linux_tigt_farm"
+-
+-# Determine whether SPL/UART and U-boot binaries are passed to OpenTest for
+-# testing. Otherwise uses existing bootloaders on the board (SD, NAND, etc)
+-OPENTEST_BOOTLOADERS="false"
+-
+-# Specify the number of attempts to boot the target (default is 1)
+-OPENTEST_BOOT_ATTEMPTS="3"
+-
+-# Specify timeout in seconds for boot to finish (default is 150 sec)
+-OPENTEST_BOOT_TIMEOUT="300"
+-
+-# This variable will allow control over whether to perform build testing or
+-# skip it.  This should usually be set to true but may be changed for
+-# prototyping.
+-RUN_BUILD_TESTS="false"
+-
+-# This variable points to the STAF installation location which is used
+-# during the build test steps to call into the OpenTest Framework.  This
+-# default value is the default value from the STAF installer
+-STAF_ROOT="/usr/local/staf"
+-
+-# This variable indicates whether to continue the build process for a machine
+-# even when the build testing fails.  This can be useful in the case of
+-# the test system being down to allow the full packaging of the SDK to
+-# continue.
+-SKIP_TEST_FAILURES="false"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="-k arago-core-tisdk-bundle arago-tiny-image ti-world"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-################################################################################
+-# The following variables only need to be set if PRODUCTIZE_SDK is true.
+-# If not you do not need to set these variables.  If you do want to
+-# publish an SDK you will need access to other tools such as webgen that
+-# are not available outside of TI.
+-################################################################################
+-
+-# This points to the location where the InstallBuilder application has
+-# been extracted.
+-INSTALL_BUILDER="/home/jenkins/installbuilder"
+-
+-# This variable points to the root diretory where the installer content will be
+-# staged to build the installer.
+-INSTALLER_ROOT="$BUILD_ROOT/installer"
+-
+-# This variable will point to the InstallBuilder file used to build the SDK
+-# installer
+-INSTALL_BUILDER_PROJECT="$SCRIPTS_ROOT/installer-files/tisdk.xml"
+-
+-# This variable will provide the prefix for the installer filename and default 
+-# installation directory.
+-# NOTE: This prefix should match the installer filename given in the webgen.mak
+-#  
+-# Installer name will have the form: 
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}-Linux-x86-Install.bin
+-# Installation directory will have the form:
+-#   - ${INSTALLER_PREFIX}-${MACHINE}-${TISDK_VERSION}
+-INSTALLER_PREFIX="ti-sdk"
+-
+-# This variable points to a directory where additional SD card content
+-# is located.  In general this directory should have a structure like
+-#   - <machine>/boot - holds extra boot partition content
+-#   - <machine>/start_here - holds the extra start_here partition content
+-# Many times you will want to use symlinks here to save space, so the
+-# build scripts will use the -L option to copy the linked file instead of
+-# the symlink.
+-SD_CARD_CONTENT="/home/jenkins/extra-files/sd_content"
+-
+-# This variable determines whether the uImage and dtb files should be placed in
+-# the boot partition tarball or not.  For newer kernel and u-boot combinations
+-# the uImage and dtb files are kept in the rootfs partition and placing it in
+-# the boot partition will cause confusion.
+-PACKAGE_BOOT_KERNEL_FILES="false"
+-
+-# This variable points to the directory where the webgen tool has been
+-# Installed.
+-WEBGEN_ROOT="/home/jenkins/webgen"
+-
+-# This variable points to the location where additional webgen/webpage files
+-# are located.  Many times you will want to use symlinks here to save space
+-# so the build scripts will use the -L option to copy the linked file instead
+-# of the symlink.
+-WEB_EXTRAS_ROOT="/home/jenkins/extra-files/web_content"
+-
+-# This variable points to the root location where the publish SDK data is
+-# stored.  This data is the webgen.mak files required to build the SDK
+-# ti.com style web pages.
+-# The general assumption is that the directory structure looks like:
+-#   - WEBGEN_MAK_ROOT/<machine>/webgen.mak
+-WEBGEN_MAK_ROOT="$SCRIPTS_ROOT/publish-sdk-data/coresdk/$TISDK_VERSION"
+-
+-# This variable enables the source downloads in "DL_DIR" to be tar'd and copied
+-# to the webgen exports directory. Setting this variable to "1" will override
+-# the "BB_GENERATE_MIRROR_TARBALLS" configuration with a value of "1".
+-EXPORT_ARAGO_SRC="0"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable points to the user@webhost:<basepath> location where the
+-# deploy contents should be placed.  This is best done if you have done a
+-# key exchange between these systems so that your SCP command will not ask
+-# for a password.
+-WEB_HOST=""
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/distroless-morty.txt b/configs/farm/distroless-morty.txt
+deleted file mode 100644
+index 7d2e197..0000000
+--- a/configs/farm/distroless-morty.txt
++++ /dev/null
+@@ -1,196 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2017.05"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-
+-# SECDEV variables for CAT and AUTO
+-#TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-#TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-distroless-morty"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="core-*image-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER=""
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/distroless-morty-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="core-image-base"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/distroless-rocko.txt b/configs/farm/distroless-rocko.txt
+deleted file mode 100644
+index 9049153..0000000
+--- a/configs/farm/distroless-rocko.txt
++++ /dev/null
+@@ -1,196 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2018.02"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-
+-# SECDEV variables for CAT and AUTO
+-#TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-#TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-distroless-rocko"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="core-*image-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER=""
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/distroless-rocko-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="core-image-base"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/distroless-thud.txt b/configs/farm/distroless-thud.txt
+deleted file mode 100644
+index 50300ae..0000000
+--- a/configs/farm/distroless-thud.txt
++++ /dev/null
+@@ -1,198 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2019.03"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-NUM_AARCH64_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-TOOLCHAIN_ROOT_AARCH64=""
+-
+-# SECDEV variables for CAT and AUTO
+-#TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-#TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-distroless-thud"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="core-*image-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER=""
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/distroless-thud-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="core-image-base"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/distroless-zeus.txt b/configs/farm/distroless-zeus.txt
+deleted file mode 100644
+index 6f15fd7..0000000
+--- a/configs/farm/distroless-zeus.txt
++++ /dev/null
+@@ -1,198 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="live"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-NUM_AARCH64_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-TOOLCHAIN_ROOT_AARCH64=""
+-
+-# SECDEV variables for CAT and AUTO
+-#TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-#TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-distroless-zeus"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="core-*image-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER=""
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/distroless-zeus-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="core-image-base"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/poky-morty.txt b/configs/farm/poky-morty.txt
+deleted file mode 100644
+index 255c382..0000000
+--- a/configs/farm/poky-morty.txt
++++ /dev/null
+@@ -1,196 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2017.05"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-
+-# SECDEV variables for CAT and AUTO
+-#TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-#TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-poky-morty"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="core-*image-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER=""
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/poky-morty-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="core-image-base"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/poky-rocko.txt b/configs/farm/poky-rocko.txt
+deleted file mode 100644
+index 2ff46e0..0000000
+--- a/configs/farm/poky-rocko.txt
++++ /dev/null
+@@ -1,196 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2018.02"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-
+-# SECDEV variables for CAT and AUTO
+-#TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-#TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-poky-rocko"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="core-*image-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER=""
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/poky-rocko-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="core-image-base"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/poky-thud.txt b/configs/farm/poky-thud.txt
+deleted file mode 100644
+index 29b2706..0000000
+--- a/configs/farm/poky-thud.txt
++++ /dev/null
+@@ -1,198 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="2019.03"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-NUM_AARCH64_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-TOOLCHAIN_ROOT_AARCH64=""
+-
+-# SECDEV variables for CAT and AUTO
+-#TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-#TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-poky-thud"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="core-*image-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER=""
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/poky-thud-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="core-image-base"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/farm/poky-zeus.txt b/configs/farm/poky-zeus.txt
+deleted file mode 100644
+index 0dac29d..0000000
+--- a/configs/farm/poky-zeus.txt
++++ /dev/null
+@@ -1,198 +0,0 @@
+-################################################################################
+-#                      Core TISDK configuration file                           #
+-################################################################################
+-
+-# This variable contains the list of variables found in this congif file
+-# that MUST be set to a value.  Failure to set these variables could
+-# lead to corruption of the host system or the build script not
+-# executing properly
+-MANDATORY_INPUTS="MACHINES NUM_ARM9_BUILDS NUM_CORTEX_BUILDS BUILD_ID SCRIPTS_ROOT BUILD_ROOT TEST_ROOT PACKAGE_ROOT DEPLOY_ROOT FS_FILTER FS_IMAGE_TYPE SDK_IMAGE_TYPE NFS_ROOT CONFIG_FILE LOG_DIR TISDK_VERSION"
+-
+-# This variable holds the SDK version you are building.  This will be picked
+-# up in the installer name if you choose to package an installer.  You can
+-# also use this in the CONFIG_FILE name below.
+-TISDK_VERSION="live"
+-
+-# This variable contains the list of machines to build an SDK for
+-MACHINES=""
+-
+-# These variables indicate the maximum number of parallel builds that can be
+-# done for each architecture.  Some things to note are:
+-#   1. You should add these values together to get the maximum number of
+-#      parallel builds.  If this is too many for your system then reduce the
+-#      numbers.
+-#   2. The machines will be built spread over the parallel builds and load
+-#      balancing is handled automatically
+-#   3. If there are no machines of a particular architectur then nothing will
+-#      be built for that architecture
+-#   4. In the case of just a couple of machines it may be faster to do only
+-#      one build building both serially rather than two parallel builds
+-#      depending on your system resources
+-NUM_ARM9_BUILDS="1"
+-NUM_CORTEX_BUILDS="1"
+-NUM_AARCH64_BUILDS="1"
+-
+-# These variables contain the location of the bin directory where the toolchain
+-# for each architecture is installed.
+-TOOLCHAIN_ROOT_ARM9=""
+-TOOLCHAIN_ROOT_CORTEX=""
+-TOOLCHAIN_ROOT_AARCH64=""
+-
+-# SECDEV variables for CAT and AUTO
+-#TI_SECURE_DEV_PKG_CAT="/opt/secdev-cat"
+-#TI_SECURE_DEV_PKG_AUTO="/opt/secdev-auto"
+-
+-# This variable holds the unique ID for the build that will be used to
+-# identify the build.
+-BUILD_ID="`date +build-%F_%H-%M-%S`"
+-
+-# This variable contains the script directory where these scripts are running
+-# from.  This is to allow finding other files used during the build later.
+-# You should likely not change this
+-SCRIPTS_ROOT="$PWD"
+-
+-# This variable points to be base of your build where the sources will be
+-# checked out and the tmp build diretories for each architecture will be
+-# created using the oe-layertool-setup.sh script from the repo at:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-# This will be created using the 
+-#   - These directories will look like:
+-#       - BUILD_ROOT/sources
+-#       - BUILD_ROOT/arm9-1/arago-tmp
+-#       - BUILD_ROOT/cortex-1/arago-tmp
+-#       - BUILD_ROOT/cortex-2/arago-tmp
+-BUILD_ROOT="/OE/farm-poky-zeus"
+-
+-# This variable points to the base location where files will be extracted for
+-# testing purposes.  This should not be confused with the NFS root which
+-# will be configured below.
+-# This variable should always be declared AFTER the BUILD_ROOT variable.
+-# The build scripts will create subdirectories such as:
+-#   - TEST_ROOT/am335x-evm-test
+-# You can usually just take the default value
+-TEST_ROOT="$BUILD_ROOT/testing"
+-
+-# This variable points to the directory where files will be placed to allow
+-# for final packaging.
+-# This variable should always be declared AFTER the BUILD_ROOT variable
+-# You can usually just take the default value
+-PACKAGE_ROOT="$BUILD_ROOT/packaging"
+-
+-# This variable points to the base location where the SDK files will
+-# be deployed.  This is essentially the final staging directory
+-DEPLOY_ROOT="$BUILD_ROOT/deploy/$TISDK_VERSION"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# SDK to select which file system to test.  Currently only testing of
+-# one file system is supported.
+-FS_FILTER="core-*image-"
+-
+-# This variable indicates the type of FS images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-FS_IMAGE_TYPE="tar.xz"
+-
+-# This variable contains the "filter" string to look for inside of the
+-# OE build directory to find the SDK image.  Since the image name can
+-# vary based on the recipe settings this string will account for that.
+-SDK_FILTER=""
+-
+-# This variable indicates the type of SDK images being generated.  By default
+-# this is tar.gz images.  This should match what you set in your recipes
+-SDK_IMAGE_TYPE="tar.xz"
+-
+-# This variable points to an NFS share which has been pre-configured.  The
+-# target testing will be done by creating a subdirectory in this NFS_ROOT
+-# for each machine to boot the target board.
+-# This directory should be configured to allow writing by the jenkins user
+-# at a minimum, although allowing writing by anyone is simple.
+-NFS_ROOT="/home/jenkins/nfs-root"
+-
+-# This variable points to the location where the sources will be checked out
+-# using the oe-layertool-setup.sh script from the following repository:
+-#   git clone git://arago-project.org/git/projects/oe-layersetup.git
+-SOURCE_DIR="${BUILD_ROOT}/sources"
+-
+-# This variable indicates whether we should do a clean build which means
+-# Removing the build directories
+-CLEAN_BUILD="true"
+-
+-# This variable indicates whether we should clean shared state (sstate)
+-CLEAN_SSTATE="true"
+-
+-# This variable means that we should clean not only build build directories,
+-# but also the sources as well and do a fully clean build.
+-CLEAN_ALL="false"
+-
+-# This is the configuration file to use in the oe-layertool-setup.sh script
+-# to configure the build.
+-CONFIG_FILE="${BUILD_ROOT}/configs/poky-zeus-config.txt"
+-
+-# This directory will contain the log files for the various parts of the build.
+-# This includes:
+-#   1. Overall build process log (i.e. which machines are in which build dir)
+-#   2. Build logs for individual machines
+-#   3. Test logs for individual machines
+-#   4. Packaging logs for individual machines
+-LOG_DIR="${BUILD_ROOT}/logs"
+-
+-# Setting this variable to "true" will enable logging stdout and stderr of the 
+-# bitbake command to the appropriate machine's build_log.txt.
+-BUILD_LOG_VERBOSE="true"
+-
+-# This is the directory where you want to configure your build to download
+-# files to.  This is best done as a shared directory among the builds to
+-# save download time and space.
+-DL_DIR="${BUILD_ROOT}/downloads"
+-
+-# Setting this variable will configure the builds to attempt to use a mirror to 
+-# obtain the build sources.
+-SOURCE_MIRROR_URL="http://lcpd.gt.design.ti.com/sources/"
+-
+-# Seeting this variable to "1" configures the build to generate mirror tarballs
+-# of the source repos.
+-BB_GENERATE_MIRROR_TARBALLS="1"
+-
+-# This shortcuts the entire testing and packaging portion of the code
+-# and exits right after build step is done
+-EXIT_AFTER_BUILD="true"
+-
+-# This variable indicates whether to productize the build by packaging
+-# it into an installer and web content.  This will require that
+-# InstallBuilder be installed on your host system and that you have
+-# and project file created to package it.  If not then you can use
+-# the simple SDK tarball that was created during the build as your
+-# SDK.
+-PRODUCTIZE_SDK="false"
+-
+-# This variable contains the command(s) that bitbake should run. Each command
+-# should be seperated by a semicolon.
+-BITBAKE_COMMAND="core-image-base"
+-
+-# This variable controls whether the build configuration included at the bottom
+-# of the results file includes comments or not. The default is "false" to filter
+-# comments out.
+-RESULTS_CONFIG_COMMENTS="false"
+-
+-# This variable specifies whether or not to copy the build contents to
+-# a remote web hosting server.
+-COPY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the deploy contents to a
+-# remote web hosting server. These are unprocessed intermediate artifacts,
+-# such as images, IPK feeds etc, so may not be distributed publicly as is.
+-COPY_DEPLOY_TO_WEB="false"
+-
+-# This variable specifies whether or not to copy the "golden" contents to a
+-# remote web hosting server. These are images that passed run-time tests.
+-COPY_GOLDEN_TO_WEB="false"
+-
+-# This variable determines whether the DEPLOY_ROOT will be cleaned after
+-# the remote copy.  The reason for this is that if the files already exist
+-# on the remote system there is no need to keep them on the local system.
+-CLEAN_AFTER_COPY="true"
+-
+-# This variable determines if the results directory should be copied before
+-# the deploy directory is cleaned.  If this value is set then the results
+-# will be copied to the given directory.  If not then they will not be
+-# copied and will be cleaned if CLEAN_AFTER_COPY is true.
+-BACKUP_RESULTS=""
+diff --git a/configs/target-debconf-selections.txt b/configs/target-debconf-selections.txt
+deleted file mode 100644
+index 4ebef00..0000000
+--- a/configs/target-debconf-selections.txt
++++ /dev/null
+@@ -1,212 +0,0 @@
+-# System default wordlist:
+-# Choices: english (Webster's Second International English wordlist), Manual symlink setting
+-dictionaries-common	dictionaries-common/default-wordlist	select	english (Webster's Second International English wordlist)
+-# Time zone:
+-# Choices: Adelaide, Brisbane, Broken Hill, Canberra, Currie, Darwin, Eucla, Hobart, Lindeman, Lord Howe, Melbourne, Perth, Sydney, Yancowinna
+-tzdata	tzdata/Zones/Australia	select	
+-# Do you want system-wide readable home directories?
+-adduser	adduser/homedir-permission	boolean	true
+-# What do you want to do about modified configuration file ?
+-# Choices: install the package maintainer's version, keep the local version currently installed, show the differences between the versions, show a side-by-side difference between the versions, start a new shell to examine the situation
+-ucf	ucf/changeprompt	select	keep_current
+-# Time zone:
+-# Choices: Alaska, Aleutian, Arizona, Central, Eastern, Hawaii, Indiana-Starke, Michigan, Mountain, Pacific, Pacific-New, Samoa
+-tzdata	tzdata/Zones/US	select	
+-# Override local changes to /etc/pam.d/common-*?
+-libpam-runtime	libpam-runtime/override	boolean	false
+-# Use Control+Alt+Backspace to terminate the X server?
+-keyboard-configuration	keyboard-configuration/ctrl_alt_bksp	boolean	false
+-# Services to restart for PAM library upgrade:
+-libpam0g:armhf	libpam0g/restart-services	string	
+-# An invalid debconf value [] has been found
+-dictionaries-common	dictionaries-common/invalid_debconf_value	note	
+-# Services to restart for GNU libc library upgrade:
+-libc6	glibc/restart-services	string	
+-libc6:armhf	glibc/restart-services	string	
+-# Time zone:
+-# Choices: Aden, Almaty, Amman, Anadyr, Aqtau, Aqtobe, Ashgabat, Baghdad, Bahrain, Baku, Bangkok, Beirut, Bishkek, Brunei, Choibalsan, Chongqing, Colombo, Damascus, Dhaka, Dili, Dubai, Dushanbe, Gaza, Harbin, Hebron, Ho_Chi_Minh, Hong_Kong, Hovd, Irkutsk, Istanbul, Jakarta, Jayapura, Jerusalem, Kabul, Kamchatka, Karachi, Kashgar, Kathmandu, Kolkata, Krasnoyarsk, Kuala_Lumpur, Kuching, Kuwait, Macau, Magadan, Makassar, Manila, Muscat, Nicosia, Novokuznetsk, Novosibirsk, Omsk, Oral, Phnom_Penh, Pontianak, Pyongyang, Qatar, Qyzylorda, Rangoon, Riyadh, Riyadh87, Riyadh88, Riyadh89, Sakhalin, Samarkand, Seoul, Shanghai, Singapore, Taipei, Tashkent, Tbilisi, Tehran, Tel_Aviv, Thimphu, Tokyo, Ujung_Pandang, Ulaanbaatar, Urumqi, Vientiane, Vladivostok, Yakutsk, Yekaterinburg, Yerevan
+-tzdata	tzdata/Zones/Asia	select	
+-# PAM profiles to enable:
+-# Choices: Unix authentication, ConsoleKit Session Management
+-libpam-runtime	libpam-runtime/profiles	multiselect	unix, consolekit
+-# Restart services during package upgrades without asking?
+-libc6	libraries/restart-without-asking	boolean	false
+-libc6:armhf	libraries/restart-without-asking	boolean	false
+-libpam0g:armhf	libraries/restart-without-asking	boolean	false
+-# Character set to support:
+-# Choices: . Arabic, # Armenian, # Cyrillic - KOI8-R and KOI8-U, # Cyrillic - non-Slavic languages, # Cyrillic - Slavic languages (also Bosnian and Serbian Latin), . Ethiopic, # Georgian, # Greek, # Hebrew, # Lao, # Latin1 and Latin5 - western Europe and Turkic languages, # Latin2 - central Europe and Romanian, # Latin3 and Latin8 - Chichewa; Esperanto; Irish; Maltese and Welsh, # Latin7 - Lithuanian; Latvian; Maori and Marshallese, . Latin - Vietnamese, # Thai, . Combined - Latin; Slavic Cyrillic; Hebrew; basic Arabic, . Combined - Latin; Slavic Cyrillic; Greek, . Combined - Latin; Slavic and non-Slavic Cyrillic
+-console-setup	console-setup/codeset47	select	# Latin1 and Latin5 - western Europe and Turkic languages
+-# Interface to use:
+-# Choices: Dialog, Readline, Gnome, Kde, Editor, Noninteractive
+-debconf	debconf/frontend	select	Dialog
+-# Unable to migrate to dependency-based boot system
+-sysv-rc	sysv-rc/unable-to-convert	note	
+-# Time zone:
+-# Choices: GMT, GMT+0, GMT+1, GMT+10, GMT+11, GMT+12, GMT+2, GMT+3, GMT+4, GMT+5, GMT+6, GMT+7, GMT+8, GMT+9, GMT-0, GMT-1, GMT-10, GMT-11, GMT-12, GMT-13, GMT-14, GMT-2, GMT-3, GMT-4, GMT-5, GMT-6, GMT-7, GMT-8, GMT-9, GMT0, Greenwich, UCT, UTC, Universal, Zulu
+-tzdata	tzdata/Zones/Etc	select	UTC
+-# for internal use
+-x11-common	x11-common/xwrapper/actual_allowed_users	string	console
+-# for internal use
+-console-setup	console-setup/codesetcode	string	Lat15
+-# Migrate legacy boot sequencing to dependency-based sequencing?
+-sysv-rc	sysv-rc/convert-legacy	boolean	true
+-# Time zone:
+-# Choices: AST4, AST4ADT, CST6, CST6CDT, EST5, EST5EDT, HST10, MST7, MST7MDT, PST8, PST8PDT, YST9, YST9YDT
+-tzdata	tzdata/Zones/SystemV	select	
+-# Failure restarting some services for OpenSSL upgrade
+-libssl1.0.0:armhf	libssl1.0.0/restart-failed	error	
+-# xscreensaver and xlockmore must be restarted before upgrading
+-libc6	glibc/disable-screensaver	error	
+-libc6:armhf	glibc/disable-screensaver	error	
+-# Time zone:
+-# Choices: Abidjan, Accra, Addis_Ababa, Algiers, Asmara, Bamako, Bangui, Banjul, Bissau, Blantyre, Brazzaville, Bujumbura, Cairo, Casablanca, Ceuta, Conakry, Dakar, Dar_es_Salaam, Djibouti, Douala, El_Aaiun, Freetown, Gaborone, Harare, Johannesburg, Juba, Kampala, Khartoum, Kigali, Kinshasa, Lagos, Libreville, Lome, Luanda, Lubumbashi, Lusaka, Malabo, Maputo, Maseru, Mbabane, Mogadishu, Monrovia, Nairobi, Ndjamena, Niamey, Nouakchott, Ouagadougou, Porto-Novo, Sao_Tome, Timbuktu, Tripoli, Tunis, Windhoek
+-tzdata	tzdata/Zones/Africa	select	
+-# for internal use
+-keyboard-configuration	keyboard-configuration/modelcode	string	pc105
+-# Conflicts found in three-way merge
+-ucf	ucf/conflicts_found	error	
+-# Keep default keyboard layout ()?
+-keyboard-configuration	keyboard-configuration/unsupported_layout	boolean	true
+-# Keep current keyboard options in the configuration file?
+-keyboard-configuration	keyboard-configuration/unsupported_config_options	boolean	true
+-# Time zone:
+-# Choices: Adak, Anchorage, Anguilla, Antigua, Araguaina, Argentina/Buenos_Aires, Argentina/Catamarca, Argentina/Cordoba, Argentina/Jujuy, Argentina/La_Rioja, Argentina/Mendoza, Argentina/Rio_Gallegos, Argentina/Salta, Argentina/San_Juan, Argentina/San_Luis, Argentina/Tucuman, Argentina/Ushuaia, Aruba, Asuncion, Atikokan, Atka, Bahia, Bahia_Banderas, Barbados, Belem, Belize, Blanc-Sablon, Boa_Vista, Bogota, Boise, Cambridge_Bay, Campo_Grande, Cancun, Caracas, Cayenne, Cayman, Chicago, Chihuahua, Coral_Harbour, Costa_Rica, Creston, Cuiaba, Curacao, Danmarkshavn, Dawson, Dawson_Creek, Denver, Detroit, Dominica, Edmonton, Eirunepe, El_Salvador, Ensenada, Fortaleza, Glace_Bay, Godthab, Goose_Bay, Grand_Turk, Grenada, Guadeloupe, Guatemala, Guayaquil, Guyana, Halifax, Havana, Hermosillo, Indiana/Indianapolis, Indiana/Knox, Indiana/Marengo, Indiana/Petersburg, Indiana/Tell_City, Indiana/Vevay, Indiana/Vincennes, Indiana/Winamac, Inuvik, Iqaluit, Jamaica, Juneau, Kentucky/Louisvill
+ e, Kentucky/Monticello, Kralendijk, La_Paz, Lima, Los_Angeles, Lower_Princes, Maceio, Managua, Manaus, Marigot, Martinique, Matamoros, Mazatlan, Menominee, Merida, Metlakatla, Mexico_City, Miquelon, Moncton, Monterrey, Montevideo, Montreal, Montserrat, Nassau, New_York, Nipigon, Nome, Noronha, North_Dakota/Beulah, North_Dakota/Center, North_Dakota/New_Salem, Ojinaga, Panama, Pangnirtung, Paramaribo, Phoenix, Port-au-Prince, Port_of_Spain, Porto_Acre, Porto_Velho, Puerto_Rico, Rainy_River, Rankin_Inlet, Recife, Regina, Resolute, Rio_Branco, Santa_Isabel, Santarem, Santiago, Santo_Domingo, Sao_Paulo, Scoresbysund, Shiprock, Sitka, St_Barthelemy, St_Johns, St_Kitts, St_Lucia, St_Thomas, St_Vincent, Swift_Current, Tegucigalpa, Thule, Thunder_Bay, Tijuana, Toronto, Tortola, Vancouver, Virgin, Whitehorse, Winnipeg, Yakutat, Yellowknife
+-tzdata	tzdata/Zones/America	select	
+-# Remove inetd entries?
+-update-inetd	update-inetd/ask-remove-entries	boolean	false
+-# for internal use
+-keyboard-configuration	keyboard-configuration/variantcode	string	
+-# Font for the console:
+-# Choices: Fixed, Terminus, TerminusBold, TerminusBoldVGA, VGA, Do not change the boot/kernel font
+-console-setup	console-setup/fontface47	select	VGA
+-# Problems rebuilding an  hash file ()
+-dictionaries-common	dictionaries-common/ispell-autobuildhash-message	note	
+-# Keep the current keyboard layout in the configuration file?
+-keyboard-configuration	keyboard-configuration/unsupported_config_layout	boolean	true
+-# Default values for ispell dictionary/wordlist are not set here
+-dictionaries-common	dictionaries-common/selecting_ispell_wordlist_default	note	
+-# Method for toggling between national and Latin mode:
+-# Choices: Caps Lock, Right Alt (AltGr), Right Control, Right Shift, Right Logo key, Menu key, Alt+Shift, Control+Shift, Control+Alt, Alt+Caps Lock, Left Control+Left Shift, Left Alt, Left Control, Left Shift, Left Logo key, Scroll Lock key, No toggling
+-keyboard-configuration	keyboard-configuration/toggle	select	No toggling
+-# Font size:
+-# Choices: 
+-console-setup	console-setup/fontsize-text47	select	16
+-# Display manager must be restarted manually
+-libpam0g:armhf	libpam0g/xdm-needs-restart	error	
+-# Keyboard model:
+-# Choices: A4Tech KB-21, A4Tech KBS-8, A4Tech Wireless Desktop RFKB-23, Acer AirKey V, Acer C300, Acer Ferrari 4000, Acer Laptop, Advance Scorpius KI, Amiga, Apple, Apple Aluminium Keyboard (ANSI), Apple Aluminium Keyboard (ISO), Apple Aluminium Keyboard (JIS), Apple Laptop, Asus Laptop, Atari TT, Azona RF2300 wireless Internet Keyboard, BTC 5090, BTC 5113RF Multimedia, BTC 5126T, BTC 6301URF, BTC 9000, BTC 9000A, BTC 9001AH, BTC 9019U, BTC 9116U Mini Wireless Internet and Gaming, BenQ X-Touch, BenQ X-Touch 730, BenQ X-Touch 800, Brother Internet Keyboard, Cherry B.UNLIMITED, Cherry Blue Line CyBo@rd, Cherry Blue Line CyBo@rd (alternate option), Cherry CyBo@rd USB-Hub, Cherry CyMotion Expert, Cherry CyMotion Master Linux, Cherry CyMotion Master XPress, Chicony Internet Keyboard, Chicony KB-9885, Chicony KU-0108, Chicony KU-0420, Classmate PC, Compaq Easy Access Keyboard, Compaq Internet Keyboard (13 keys), Compaq Internet Keyboard (18 keys), Compaq Internet Keyboard (7 keys)
+ , Compaq iPaq Keyboard, Creative Desktop Wireless 7000, DTK2000, Dell, Dell 101-key PC, Dell Laptop/notebook Inspiron 6xxx/8xxx, Dell Laptop/notebook Precision M series, Dell Latitude series laptop, Dell Precision M65, Dell SK-8125, Dell SK-8135, Dell USB Multimedia Keyboard, Dexxa Wireless Desktop Keyboard, Diamond 9801 / 9802 series, Do not configure keyboard; keep kernel keymap, Ennyah DKB-1008, Everex STEPnote, FL90, Fujitsu-Siemens Computers AMILO laptop, Generic 101-key PC, Generic 102-key (Intl) PC, Generic 104-key PC, Generic 105-key (Intl) PC, Genius Comfy KB-12e, Genius Comfy KB-16M / Genius MM Keyboard KWD-910, Genius Comfy KB-21e-Scroll, Genius KB-19e NB, Genius KKB-2050HS, Gyration, HTC Dream, Happy Hacking Keyboard, Happy Hacking Keyboard for Mac, Hewlett-Packard Internet Keyboard, Hewlett-Packard Mini 110 Notebook, Hewlett-Packard Omnibook 500 FA, Hewlett-Packard Omnibook 5xx, Hewlett-Packard Omnibook 6000/6100, Hewlett-Packard Omnibook XE3 GC, Hewlett-Packard
+  Omnibook XE3 GF, Hewlett-Packard Omnibook XT1000, Hewlett-Packard Pavilion ZT11xx, Hewlett-Packard Pavilion dv5, Hewlett-Packard SK-250x Multimedia Keyboard, Hewlett-Packard nx9020, Honeywell Euroboard, Htc Dream phone, IBM Rapid Access, IBM Rapid Access II, IBM Space Saver, IBM ThinkPad 560Z/600/600E/A22E, IBM ThinkPad R60/T60/R61/T61, IBM ThinkPad Z60m/Z60t/Z61m/Z61t, Intelligent Keyboard K04, Keytronic FlexPro, Kinesis, Laptop/notebook Compaq (eg. Armada) Laptop Keyboard, Laptop/notebook Compaq (eg. Presario) Internet Keyboard, Laptop/notebook eMachines m68xx, Logitech Access Keyboard, Logitech Cordless Desktop, Logitech Cordless Desktop (alternate option), Logitech Cordless Desktop EX110, Logitech Cordless Desktop LX-300, Logitech Cordless Desktop Navigator, Logitech Cordless Desktop Optical, Logitech Cordless Desktop Pro (alternate option 2), Logitech Cordless Desktop iTouch, Logitech Cordless Freedom/Desktop Navigator, Logitech G15 extra keys via G15daemon, Logitech G
+ eneric Keyboard, Logitech Internet 350 Keyboard, Logitech Internet Keyboard, Logitech Internet Navigator Keyboard, Logitech Media Elite Keyboard, Logitech Ultra-X Cordless Media Desktop Keyboard, Logitech Ultra-X Keyboard, Logitech diNovo Edge Keyboard, Logitech diNovo Keyboard, Logitech iTouch, Logitech iTouch Cordless Keyboard (model Y-RB6), Logitech iTouch Internet Navigator Keyboard SE, Logitech iTouch Internet Navigator Keyboard SE (USB), MacBook/MacBook Pro, MacBook/MacBook Pro (Intl), Macintosh, Macintosh Old, Memorex MX1998, Memorex MX2500 EZ-Access Keyboard, Memorex MX2750, Microsoft Comfort Curve Keyboard 2000, Microsoft Internet Keyboard, Microsoft Internet Keyboard Pro\, Swedish, Microsoft Natural, Microsoft Natural Keyboard Elite, Microsoft Natural Keyboard Pro / Microsoft Internet Keyboard Pro, Microsoft Natural Keyboard Pro OEM, Microsoft Natural Keyboard Pro USB / Microsoft Internet Keyboard Pro, Microsoft Natural Wireless Ergonomic Keyboard 4000, Microsoft N
+ atural Wireless Ergonomic Keyboard 7000, Microsoft Office Keyboard, Microsoft Wireless Multimedia Keyboard 1.0A, Northgate OmniKey 101, OLPC, Ortek MCK-800 MM/Internet keyboard, PC-98xx Series, Propeller Voyager (KTEZ-1000), QTronix Scorpius 98N+, SILVERCREST Multimedia Wireless Keyboard, SK-1300, SK-2500, SK-6200, SK-7100, SVEN Ergonomic 2500, SVEN Slim 303, Samsung SDM 4500P, Samsung SDM 4510P, Sanwa Supply SKB-KG3, Sun Type 4, Sun Type 5, Sun Type 5/6, Super Power Multimedia Keyboard, Symplon PaceBook (tablet PC), Targa Visionary 811, Toshiba Satellite S3000, Trust Direct Access Keyboard, Trust Slimline, Trust Wireless Keyboard Classic, TypeMatrix EZ-Reach 2020, TypeMatrix EZ-Reach 2030 PS2, TypeMatrix EZ-Reach 2030 USB, TypeMatrix EZ-Reach 2030 USB (102/105:EU mode), TypeMatrix EZ-Reach 2030 USB (106:JP mode), Unitek KB-1925, ViewSonic KU-306 Internet Keyboard, Winbook Model XP5, Yahoo! Internet Keyboard
+-keyboard-configuration	keyboard-configuration/model	select	Generic 105-key (Intl) PC
+-# Users allowed to start the X server:
+-# Choices: Root Only, Console Users Only, Anybody
+-x11-common	x11-common/xwrapper/allowed_users	select	Console Users Only
+-# Failure restarting some services for GNU libc upgrade
+-libc6	glibc/restart-failed	error	
+-libc6:armhf	glibc/restart-failed	error	
+-# Detect keyboard layout?
+-keyboard-configuration	console-setup/ask_detect	boolean	false
+-# Compose key:
+-# Choices: No compose key, Right Alt (AltGr), Right Control, Right Logo key, Menu key, Left Logo key, Caps Lock
+-keyboard-configuration	keyboard-configuration/compose	select	No compose key
+-# Line by line differences between versions
+-ucf	ucf/show_diff	note	
+-# Country of origin for the keyboard:
+-# Choices: Afghani, Albanian, Amharic, Arabic, Arabic (Morocco), Arabic (Syria), Armenian, Azerbaijani, Bambara, Belarusian, Belgian, Bengali, Bosnian, Braille, Bulgarian, Burmese, Catalan, Chinese, Croatian, Czech, Danish, Dhivehi, Dutch, Dzongkha, English (Cameroon), English (Ghana), English (Nigeria), English (South Africa), English (UK), English (US), Esperanto, Estonian, Faroese, Filipino, Finnish, French, French (Canada), French (Democratic Republic of the Congo), French (Guinea), Georgian, German, German (Austria), German (Switzerland), Greek, Hebrew, Hungarian, Icelandic, Indian, Iraqi, Irish, Italian, Japanese, Japanese (PC-98xx Series), Kazakh, Khmer (Cambodia), Korean, Kyrgyz, Lao, Latvian, Lithuanian, Macedonian, Maltese, Maori, Mongolian, Montenegrin, Nepali, Norwegian, Persian, Polish, Portuguese, Portuguese (Brazil), Romanian, Russian, Serbian (Cyrillic), Sinhala (phonetic), Slovak, Slovenian, Spanish, Spanish (Latin American), Swahili (Kenya), Swahili (Tanzan
+ ia), Swedish, Taiwanese, Tajik, Thai, Tswana, Turkish, Turkmen, Ukrainian, Urdu (Pakistan), Uzbek, Vietnamese, Wolof
+-keyboard-configuration	keyboard-configuration/layout	select	English (US)
+-# Time zone:
+-# Choices: Longyearbyen
+-tzdata	tzdata/Zones/Arctic	select	
+-# Use dash as the default system shell (/bin/sh)?
+-dash	dash/sh	boolean	true
+-# Move non-FHS stuff under /usr/dict to /usr/dict-pre-FHS?
+-dictionaries-common	dictionaries-common/move_old_usr_dict	boolean	true
+-# Should NTFS-3G be installed "setuid root"?
+-ntfs-3g	ntfs-3g/setuid-root	boolean	false
+-# Keymap to use:
+-# Choices: American English, Belarusian, Belgian, Brazilian (ABNT2 layout), Brazilian (EUA layout), British English, Bulgarian, Bulgarian (phonetic layout), Canadian French, Canadian Multilingual, Croatian, Czech, Danish, Dutch, Dvorak, Estonian, Finnish, French, German, Greek, Hebrew, Hungarian, Icelandic, Italian, Japanese, Kirghiz, Latin American, Latvian, Lithuanian, Macedonian, Norwegian, Polish, Portuguese, Romanian, Russian, Serbian (Cyrillic), Slovakian, Slovene, Spanish, Swedish, Swiss French, Swiss German, Thai, Turkish (F layout), Turkish (Q layout), Ukrainian
+-keyboard-configuration	keyboard-configuration/xkb-keymap	select	us
+-# for internal use
+-keyboard-configuration	keyboard-configuration/layoutcode	string	us
+-# Keyboard layout:
+-# Choices: English (US), English (US) - Cherokee, English (US) - English (Colemak), English (US) - English (Dvorak alternative international no dead keys), English (US) - English (Dvorak international with dead keys), English (US) - English (Dvorak), English (US) - English (Macintosh), English (US) - English (US\, alternative international), English (US) - English (US\, international with dead keys), English (US) - English (US\, with euro on 5), English (US) - English (classic Dvorak), English (US) - English (international AltGr dead keys), English (US) - English (layout toggle on multiply/divide key), English (US) - English (left handed Dvorak), English (US) - English (programmer Dvorak), English (US) - English (right handed Dvorak), English (US) - Russian (US\, phonetic), English (US) - Serbo-Croatian (US)
+-keyboard-configuration	keyboard-configuration/variant	select	English (US)
+-# Failure restarting some services for PAM upgrade
+-libpam0g:armhf	libpam0g/restart-failed	error	
+-# Services to restart to make them use the new libraries:
+-libssl1.0.0:armhf	libssl1.0.0/restart-services	string	
+-# Time zone:
+-# Choices: Apia, Auckland, Chatham, Chuuk, Easter, Efate, Enderbury, Fakaofo, Fiji, Funafuti, Galapagos, Gambier, Guadalcanal, Guam, Honolulu, Johnston, Kiritimati, Kosrae, Kwajalein, Majuro, Marquesas, Midway, Nauru, Niue, Norfolk, Noumea, Pago_Pago, Palau, Pitcairn, Pohnpei, Ponape, Port_Moresby, Rarotonga, Saipan, Samoa, Tahiti, Tarawa, Tongatapu, Truk, Wake, Wallis, Yap
+-tzdata	tzdata/Zones/Pacific	select	
+-# Geographic area:
+-# Choices: Africa, America, Antarctica, Australia, Arctic, Asia, Atlantic, Europe, Indian, Pacific, SystemV, US, Etc
+-tzdata	tzdata/Areas	select	Etc
+-# Method for temporarily toggling between national and Latin input:
+-# Choices: No temporary switch, Both Logo keys, Right Alt (AltGr), Right Logo key, Left Alt, Left Logo key
+-keyboard-configuration	keyboard-configuration/switch	select	No temporary switch
+-# Leave existing entry and continue without changes?
+-update-inetd	update-inetd/ask-entry-present	boolean	true
+-# for internal use
+-console-setup	console-setup/store_defaults_in_debconf_db	boolean	true
+-# System default ispell dictionary:
+-# Choices: , Manual symlink setting
+-dictionaries-common	dictionaries-common/default-ispell	select	
+-# Encoding to use on the console:
+-# Choices: ARMSCII-8, CP1251, CP1255, CP1256, GEORGIAN-ACADEMY, GEORGIAN-PS, IBM1133, ISIRI-3342, ISO-8859-1, ISO-8859-10, ISO-8859-11, ISO-8859-13, ISO-8859-14, ISO-8859-15, ISO-8859-16, ISO-8859-2, ISO-8859-3, ISO-8859-4, ISO-8859-5, ISO-8859-6, ISO-8859-7, ISO-8859-8, ISO-8859-9, KOI8-R, KOI8-U, TIS-620, UTF-8, VISCII
+-console-setup	console-setup/charmap47	select	UTF-8
+-# Sound system to use:
+-# Choices: ALSA, OSS, default
+-linux-sound-base	linux-sound-base/sound_system	select	ALSA
+-# Disable inetd entries?
+-update-inetd	update-inetd/ask-disable-entries	boolean	false
+-# Time zone:
+-# Choices: Casey, Davis, DumontDUrville, Macquarie, Mawson, McMurdo, Palmer, Rothera, Syowa, Vostok
+-tzdata	tzdata/Zones/Antarctica	select	
+-# Do you want to upgrade glibc now?
+-libc6	glibc/upgrade	boolean	true
+-libc6:armhf	glibc/upgrade	boolean	true
+-# Keep default keyboard options ()?
+-keyboard-configuration	keyboard-configuration/unsupported_options	boolean	true
+-# Font size:
+-# Choices: 8, 14, 16, 28x16, 32x16
+-console-setup	console-setup/fontsize-fb47	select	16
+-# for internal use
+-keyboard-configuration	keyboard-configuration/store_defaults_in_debconf_db	boolean	true
+-# Ignore questions with a priority less than:
+-# Choices: critical, high, medium, low
+-debconf	debconf/priority	select	high
+-# Detecting your keyboard layout
+-keyboard-configuration	console-setup/detect	detect-keyboard	
+-# Keyboard layout detection complete
+-keyboard-configuration	console-setup/detected	note	
+-# Time zone:
+-# Choices: Azores, Bermuda, Canary, Cape Verde, Faroe, Jan Mayen, Madeira, Reykjavik, South Georgia, St. Helena, Stanley
+-tzdata	tzdata/Zones/Atlantic	select	
+-# Remove obsolete /etc/dictionary link?
+-dictionaries-common	dictionaries-common/old_wordlist_link	boolean	true
+-# Key to function as AltGr:
+-# Choices: The default for the keyboard layout, No AltGr key, Right Alt (AltGr), Right Control, Right Logo key, Menu key, Left Alt, Left Logo key, Keypad Enter key, Both Logo keys, Both Alt keys
+-keyboard-configuration	keyboard-configuration/altgr	select	The default for the keyboard layout
+-# Should NTFS-3G be included in initramfs?
+-ntfs-3g	ntfs-3g/initramfs	boolean	true
+-# What do you want to do about modified configuration file ?
+-# Choices: install the package maintainer's version, keep the local version currently installed, show the differences between the versions, show a side-by-side difference between the versions, show a 3-way difference between available versions, do a 3-way merge between available versions (experimental), start a new shell to examine the situation
+-ucf	ucf/changeprompt_threeway	select	keep_current
+-# xscreensaver and xlockmore must be restarted before upgrading
+-libpam-modules	libpam-modules/disable-screensaver	error	
+-# Remove obsolete /usr/dict symlink?
+-dictionaries-common	dictionaries-common/remove_old_usr_dict_link	boolean	false
+-# for internal use
+-keyboard-configuration	keyboard-configuration/optionscode	string	
+-# Incompatible PAM profiles selected.
+-libpam-runtime	libpam-runtime/conflicts	error	
+-# Ignore multiple entries and continue without changes?
+-update-inetd	update-inetd/ask-several-entries	boolean	true
+-# for internal use
+-console-setup	console-setup/fontsize	string	16
+-# Time zone:
+-# Choices: Amsterdam, Andorra, Athens, Belfast, Belgrade, Berlin, Bratislava, Brussels, Bucharest, Budapest, Chisinau, Copenhagen, Dublin, Gibraltar, Guernsey, Helsinki, Isle of Man, Istanbul, Jersey, Kaliningrad, Kiev, Lisbon, Ljubljana, London, Luxembourg, Madrid, Malta, Mariehamn, Minsk, Monaco, Moscow, Nicosia, Oslo, Paris, Podgorica, Prague, Riga, Rome, Samara, San Marino, Sarajevo, Simferopol, Skopje, Sofia, Stockholm, Tallinn, Tirane, Tiraspol, Uzhgorod, Vaduz, Vatican, Vienna, Vilnius, Volgograd, Warsaw, Zagreb, Zaporozhye, Zurich
+-tzdata	tzdata/Zones/Europe	select	
+-# No PAM profiles have been selected.
+-libpam-runtime	libpam-runtime/no_profiles_chosen	error	
+-# Time zone:
+-# Choices: Antananarivo, Chagos, Christmas, Cocos, Comoro, Kerguelen, Mahe, Maldives, Mauritius, Mayotte, Reunion
+-tzdata	tzdata/Zones/Indian	select	
 -- 
 2.7.4
 
