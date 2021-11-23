@@ -1,30 +1,30 @@
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.6838.1637640069598293314
+ by mx.groups.io with SMTP id smtpd.web12.6950.1637640069626256480
  for <meta-arago@lists.yoctoproject.org>;
  Mon, 22 Nov 2021 20:01:09 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 121E940C90;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 15D2040BEC;
 	Tue, 23 Nov 2021 04:01:09 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id AQ82HFHAWMv3; Tue, 23 Nov 2021 04:01:09 +0000 (UTC)
+	with ESMTP id yM7Sa7kW3H5p; Tue, 23 Nov 2021 04:01:09 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E2E1D40BEC;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E2A6740B05;
 	Tue, 23 Nov 2021 04:01:06 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 80AF31746D9;
+	by mail.denix.org (Postfix) with ESMTP id 8F1451746DA;
 	Mon, 22 Nov 2021 23:01:04 -0500 (EST)
 From: "Denys Dmytriyenko" <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
 Cc: j-humphreys@ti.com,
 	Denys Dmytriyenko <denys@konsulko.com>
-Subject: [tisdk-build-scripts][PATCH 05/10] Remove support for generating installer SDK
-Date: Mon, 22 Nov 2021 23:00:42 -0500
-Message-Id: <1637640060-31733-6-git-send-email-denis@denix.org>
+Subject: [tisdk-build-scripts][PATCH 06/10] Remove code that extracts and repackages SDK for runtime testing
+Date: Mon, 22 Nov 2021 23:00:43 -0500
+Message-Id: <1637640060-31733-7-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1637640060-31733-1-git-send-email-denis@denix.org>
 References: <1637640060-31733-1-git-send-email-denis@denix.org>
@@ -33,747 +33,408 @@ From: Denys Dmytriyenko <denys@konsulko.com>
 
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- lib/oesdk/package-sdks           | 496 ---------------------------------------
- lib/oesdk/ti-sdk-host-install.sh | 227 ------------------
- 2 files changed, 723 deletions(-)
- delete mode 100644 lib/oesdk/package-sdks
- delete mode 100755 lib/oesdk/ti-sdk-host-install.sh
+ lib/oesdk/bitbake-test-sdk-image | 381 ---------------------------------------
+ 1 file changed, 381 deletions(-)
 
-diff --git a/lib/oesdk/package-sdks b/lib/oesdk/package-sdks
-deleted file mode 100644
-index 2316d40..0000000
---- a/lib/oesdk/package-sdks
-+++ /dev/null
-@@ -1,496 +0,0 @@
--#!/bin/bash
--
--# This script is intended to be called only from the top-level build-oesdk.sh
--# script which parses the configuration file and sets necessary variables.
--# So check if it is being called from any other context and if so exit.
--if [ "`basename $0`" != "build-oesdk.sh" ]
--then
--    log $error_log echo "This is a helper script and should not be run directly"
--    exit 1
--fi
--
--create_sd_card_content() {
+diff --git a/lib/oesdk/bitbake-test-sdk-image b/lib/oesdk/bitbake-test-sdk-image
+index 51796a6..35110aa 100644
+--- a/lib/oesdk/bitbake-test-sdk-image
++++ b/lib/oesdk/bitbake-test-sdk-image
+@@ -10,374 +10,6 @@ then
+ fi
+ 
+ 
+-package_tested_rootfs() {
 -    # Set m for logging purposes
 -    m="$1"
 -
--    package_root="$PACKAGE_ROOT/$m"
+-    nfs_dir="$NFS_ROOT/$m-test"
 -
--    # Make the machine specific SD card directory
--    sd_card_root="$DEPLOY_ROOT/$m/$BUILD_ID/sd_card_contents"
+-    # Find the target file system
+-    filesys_path="temp/filesystem"
+-    filesys=`find ./$filesys_path -name "$FS_FILTER*$FS_IMAGE_TYPE" | xargs basename`
 -
--    if [ -d $sd_card_root ]
+-    # Check if the nfs_dir is available.  If it is not available then
+-    # this must mean that we exited the test because it could not be
+-    # created.  So don't try to re-package the tested NFS file system.
+-    if [ -e "$nfs_dir" ]
 -    then
--        rm -rf $sd_card_root
--    fi
--    mkdir -p $sd_card_root
+-        log $machine_build_log echo "packaging tested rootfs for machine $m"
+-        # Since opentest run passed let's do some cleanup of the filesystem
+-        # and then repackage it and the SDK tarball so that the SDK will ship
+-        # with a pre-booted file system, which reduces out-of-the-box boot
+-        # time.
+-        sudo rm -rf $nfs_dir/$TEST_SCRIPTS_TGT
+-        sudo rm -rf $nfs_dir/etc/pointercal
+-        sudo rm -rf $nfs_dir/etc/rc5.d/S90-fake-pointercal
+-        sudo rm -rf $nfs_dir/etc/rc5.d/S08-fake-weston-calibrate
+-        sudo rm -rf $nfs_dir/etc/dropbear/dropbear_rsa_*
 -
--    # Create the boot_partition tarball.  Some of the files such as the
--    # prebuilt images were already staged here during the build/test phase
--    # and just need to be renamed.  Others should be copied from the
--    # SD_CARD_CONTENT directory
--    cd $package_root/boot_partition
--
--    # Rename the pre-built image files
--    if [ -e u-boot-$m.img ]
--    then
--        mv u-boot-$m.img u-boot.img
--    fi
--
--    # For machines that use older u-boots that do not use .img files
--    if [ -e u-boot-$m.bin ]
--    then
--        mv u-boot-$m.bin u-boot.bin
--    fi
--
--    # Remove this binary since it wouldn't be used in the boot partition
--    if [ -e u-boot-spl.bin-$m ]
--    then
--        rm u-boot-spl.bin-$m
--    fi
--
--    # For some devices the uImage/zImage and dtb files are read
--    # from the /boot directory of the rootfs. In this case do
--    # not package the uImage/zImage and device tree files into
--    # the boot partition as it will cause confusion.
--    if [ "$PACKAGE_BOOT_KERNEL_FILES" = "true" ]
--    then
--        if [ -e [uz]Image-$m.bin ]
+-        if [ "$(ls -A $nfs_dir/home/root/)" ]
 -        then
--            kernel_image=`ls [uz]Image-$m.bin | grep -o [uz]Image`
--            mv [uz]Image-$m.bin $kernel_image
+-            sudo rm -rf $nfs_dir/home/root/*
 -        fi
--    else
--        rm -f [uz]Image*
--        rm -f *.dtb
--    fi
 -
--    # Copy the MLO if it exists for the device
--    if [ -e MLO-$m ]
--    then
--        mv MLO-$m MLO
--    fi
+-        # Don't forget to remove the original file system tarball
+-        sudo rm -rf $nfs_dir/$filesys
 -
--    # If there are any extra SD card content files for the boot partition
--    # copy them with the -L to resolve symlinks
--    if [ -d "$SD_CARD_CONTENT/$m/boot" ]
--    then
--        cp -rLf $SD_CARD_CONTENT/$m/boot/* .
--    fi
+-        # Tar up the booted file system
+-        rm $test_dir/$filesys_path/$filesys
+-        cd $nfs_dir
 -
--    # Now tar up the boot_partition.tar.xz file
--    tar cJf $sd_card_root/boot_partition.tar.xz *
--
--    if [ "$?" != "0" ]
--    then
--        echo "Could not create boot_partition.tar.xz"
--        echo "FAILED" > $LOG_DIR/$m-build-sdcard.txt
--        return 1
--    fi
--
--    # Move the rootfs tarball we already had to the sd_card_root directory
--    cd $package_root/root_partition
--    mv rootfs_partition.$FS_IMAGE_TYPE $sd_card_root/
--
--    if [ "$?" != "0" ]
--    then
--        echo "Could not mv rootfs_partition.tar.xz"
--        echo "FAILED" > $LOG_DIR/$m-build-sdcard.txt
--        return 1
--    fi
--
--    # Lastly let's package the start_here partition tarball
--    start_here_root="$package_root/start_here_partition"
--    if [ -d "$start_here_root" ]
--    then
--        rm -rf $start_here_root
--    fi
--    mkdir -p $start_here_root
--
--    cd $start_here_root
--
--    # Copy the installer
--    cp $DEPLOY_ROOT/$m/$BUILD_ID/${INSTALLER_PREFIX}-$m* $start_here_root/
--
--    if [ "$?" != "0" ]
--    then
--        echo "Could not copy installer to start_here"
--        echo "FAILED" > $LOG_DIR/$m-build-sdcard.txt
--        return 1
--    fi
--
--    # Copy the rest of the start_here content from the SD_CARD_CONTENT
--    # directory.  This usually contains:
--    #   - CCS installer
--    #   - quickstart guides
--    #   - START_HERE.sh scripts (if needed)
--    if [ -d "$SD_CARD_CONTENT/$m/start_here" ]
--    then
--        cp -rLf $SD_CARD_CONTENT/$m/start_here/* .
--    fi
--
--    # Now tar up the start_here_partition.tar.xz file
--    tar cJf $sd_card_root/start_here_partition.tar.xz *
--
--    if [ "$?" != "0" ]
--    then
--        echo "Could not create start_here_partition.tar.xz"
--        echo "FAILED" > $LOG_DIR/$m-build-sdcard.txt
--        return 1
--    fi
--
--    # Lastly copy the create-sdcard.sh script for the extracted SDK
--    # directory to the sd_card_root
--    cp $TEST_ROOT/$m-test/temp/bin/create-sdcard.sh $sd_card_root/
--    chmod +x $sd_card_root/create-sdcard.sh
--
--    # Mark this step as PASSED since we got here
--    echo "PASSED" > $LOG_DIR/$m-build-sdcard.txt
--}
--
--create_sdk_installer() {
--    # Set m for logging purposes
--    m="$1"
--
--    # Make the machine specific installer root
--    installer_root="$INSTALLER_ROOT/$m"
--
--    if [ -d $installer_root ]
--    then
--        rm -rf $installer_root
--    fi
--    mkdir -p $installer_root
--
--    # Copy the installer components into the proper directory
--    cp $PACKAGE_ROOT/$m/$SDK_FILTER* $installer_root/
--
--    # Get the name of the SDK tarball
--    cd $installer_root
--    sdk_tar="`ls $SDK_FILTER*`"
--    cd -
--
--    ## Custom Install Builder Parameters
--    #   sdk_loc         - Location of SDK tarball
--    #   sdk_tar_nam     - SDK tarball name
--    #   output_dir      - Location to place SDK installer
--    #   platform        - Machine name
--    #   sdk_version         - SDK Version
--    #   sdk_name_prefix - SDK name Prefix.
--    #
--    #   SDK is referred to as ${sdk_name_prefix}-${platform} in the installer
--    #        Ex tisdk-am335x
--    #   SDK installer is named after ${sdk_name_prefix}-${platform}-${sdk_version}-Linux-x86-Install.bin
--    #        Ex ti-sdk-am335x-evm-06.00.00.00-Linux-x86-Install.bin
--
--
--    $INSTALL_BUILDER/builder build $INSTALL_BUILDER_PROJECT linux --setvars \
--        sdk_loc="$installer_root/" \
--        sdk_name_prefix="${INSTALLER_PREFIX}"                  \
--        sdk_tar_name=$sdk_tar                     \
--        output_dir="$deploy_root"                 \
--        platform="$m"                             \
--        sdk_version="$TISDK_VERSION"
--
--    if [ "$?" != "0" ]
--    then
--        echo "FAILED" > $LOG_DIR/$m-build-installer.txt
--        return 1
--    else
--        echo "PASSED" > $LOG_DIR/$m-build-installer.txt
--    fi
--}
--
--package_web_content() {
--    # Set m for logging purposes
--    m="$1"
--
--    # Create the exports content for the web page
--    exports_root="$deploy_root/exports"
--
--    if [ -d $exports_root ]
--    then
--        rm -rf $exports_root
--    fi
--    mkdir -p $exports_root
--
--    # Copy the manifest file if it exists.  Pull it from the extracted
--    # SDK directory from the test step.
--    manifest_file="$TEST_ROOT/$m-test/temp/docs/software_manifest.htm"
--    if [ -e $manifest_file ]
--    then
--        cp $manifest_file $exports_root/
--    else
--        echo "Could not package manifest file"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    # Create the PSP tarballs as well
--    # First the sources tarball
--    cd $TEST_ROOT/$m-test/temp
--
--    tar --exclude=prebuilt-images -cJf $exports_root/$m-sdk-src-$TISDK_VERSION.tar.xz board-support/*
--
--    if [ "$?" != 0 ]
--    then
--        echo "Could not create SDK sources tarball"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    # Now Create the pre-built binaries tarball.  Make a temporary directory
--    # to copy contents to here so that we can get the right extraction name.
--    tmp_dir="$exports_root/${INSTALLER_PREFIX}-$m-bin-${TISDK_VERSION}"
--    tmp_dir_bs="$tmp_dir/board-support"
--    mkdir -p $tmp_dir_bs
--
--    cp -rf board-support/prebuilt-images $tmp_dir_bs
--    if [ "$?" != 0 ]
--    then
--        echo "Could not copy prebuilt-images"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    cp -rf filesystem $tmp_dir/
--    if [ "$?" != 0 ]
--    then
--        echo "Could not copy file system tarballs"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    cp -rf bin $tmp_dir/
--    if [ "$?" != 0 ]
--    then
--        echo "Could not copy bin folder"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    # remove scripts which have dependency on devkit
--    rm  $tmp_dir/bin/unshallow-repositories.sh
--    rm  $tmp_dir/bin/create-ubifs.sh
--
--    # modify create-sdcard.sh to use the tarball extraction directory
--    sed -i -e "s|ti-sdk.*\[0-9\]|${tmp_dir##*/}|g" $tmp_dir/bin/create-sdcard.sh
--
--    # modify setup-target-nfs.sh to get the absolute path when running the scripts
--    # 1. remove the line to set up "SDKinstall" with TI_SDK_PATH
--    sed -i -e '/^SDKinstall/d' $tmp_dir/bin/setup-targetfs-nfs.sh
--
--    # 2. add the lines before setting dstdefault to get the absolute path of the scripts and SDKinstall,
--    #    using the same way as in create-sdcard.sh: PWD=`pwd`; EXE=`echo $0 | sed s=$PWD==`;
--    #    EXEPATH="$PWD"/"$EXE"; SDKinstall=`echo $EXEPATH | grep -o .*ti-sdk.*.[0-9]`
--    sed -i -e '/dstdefault=$SDKinstall\/targetNFS/i\PWD=`pwd`\nEXE=`echo $0 | sed s=$PWD==`\nEXEPATH="$PWD"/"$EXE"\nSDKinstall=`echo $EXEPATH | grep -o '.*ti-sdk.*.[0-9]'`\n' $tmp_dir/bin/setup-targetfs-nfs.sh
--
--    # 3. use the tarball extraction directory for SDKinstall
--    sed -i -e "s|ti-sdk.*\[0-9\]|${tmp_dir##*/}|g" $tmp_dir/bin/setup-targetfs-nfs.sh
--
--    # create Rules.make with variables to be used from the binary package
--    echo "#platform" >> $tmp_dir/Rules.make
--    echo "PLATFORM=$m" >> $tmp_dir/Rules.make
--    echo >> $tmp_dir/Rules.make
--
--    echo "#root of the target file system for installing applications" >> $tmp_dir/Rules.make
--    echo "DESTDIR=__DESTDIR__" >> $tmp_dir/Rules.make
--    echo >> $tmp_dir/Rules.make
--
--    echo "# Set EXEC_DIR to install example binaries" >> $tmp_dir/Rules.make
--    echo "EXEC_DIR=__EXEC_DIR__" >> $tmp_dir/Rules.make
--
--    if [ "$?" != 0 ]
--    then
--        echo "Could not create Rules.make"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    cp -f setup.sh $tmp_dir/
--    if [ "$?" != 0 ]
--    then
--        echo "Could not copy setup.sh"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    cd $exports_root
--    tar cJf $m-sdk-bin-$TISDK_VERSION.tar.xz ${INSTALLER_PREFIX}-$m-bin-${TISDK_VERSION}/*
--    if [ "$?" != 0 ]
--    then
--        echo "Could not create SDK binaries tarball"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
--        return 1
--    fi
--
--    rm -rf ${INSTALLER_PREFIX}-$m-bin-${TISDK_VERSION}
--
--    if [ "$EXPORT_ARAGO_SRC" == "1" ]
--    then
--        tar -C $DL_DIR -cJf $exports_root/$m-sdk-arago-src-$TISDK_VERSION.tar.xz .
--
--        if [ "$?" != 0 ]
+-        # Set the tar options based on FS_IMAGE_TYPE
+-        if [ "$FS_IMAGE_TYPE" == "tar.gz" ]
 -        then
--            echo "Could not create arago source tarball"
--            echo "FAILED" > $LOG_DIR/$m-web-results.txt
+-            fs_tar_opts="czf"
+-        elif [ "$FS_IMAGE_TYPE" == "tar.bz2" ]
+-        then
+-            fs_tar_opts="cjf"
+-        else
+-            # default to tar.gz
+-            fs_tar_opts="czf"
+-        fi
+-
+-        sudo tar $fs_tar_opts $test_dir/$filesys_path/$filesys *
+-        cd $test_dir
+-    else
+-        log $machine_build_log echo "packaging existing rootfs for machine $m"
+-    fi
+-
+-    if [ ! -z $SDK_FILTER ]
+-    then
+-        # Re-Tar the SDK
+-        rm $test_dir/$sdk_image
+-        cd temp
+-
+-        # Set the tar options based on SDK_IMAGE_TYPE
+-        if [ "$SDK_IMAGE_TYPE" == "tar.gz" ]
+-        then
+-            sdk_tar_opts="czf"
+-        elif [ "$SDK_IMAGE_TYPE" == "tar.bz2" ]
+-        then
+-            sdk_tar_opts="cjf"
+-        else
+-            # default to tar.gz
+-            sdk_tar_opts="czf"
+-        fi
+-
+-        tar $sdk_tar_opts $test_dir/$sdk_image *
+-        cd $test_dir
+-    fi
+-
+-    # return back to the build directory
+-    cd $build_dir
+-
+-    return 0
+-}
+-
+-# This function will extract the SDK image.  It is always called because
+-# even when we don't do target side testing we still want to extract the
+-# image to allow packaging the contents.
+-extract_sdk_image() {
+-    # Set m for logging purposes
+-    m=$1
+-
+-################################################################################
+-# Look inside of the arago-tmp directory in the build directory for this
+-# list and find the SDK image tarball for this machine.  Copy the tarball
+-# to the test directory
+-# First find the arago-tmp directory.  Since the Toolchain becomes part
+-# of the name we need to search for it.
+-# NOTE: This means that if you switch toolchains you need to do a
+-#       CLEAN_BUILD
+-# NOTE: The assumption here is that we are still in the directory where
+-#       the arago-tmp directory is located
+-################################################################################
+-    arago_tmp=`ls | grep "arago-tmp-*"`
+-
+-    # This is a critical failure and will not be able to be skipped
+-    if [ "$arago_tmp" == "" ]
+-    then
+-        echo "Could not find the arago-tmp directory"
+-        echo "FAILED: CRITICAL" > $LOG_DIR/$m-test-result.txt
+-        return 1
+-    fi
+-
+-    sdk_path="$arago_tmp/deploy/images"
+-
+-    # check that the sdk_path exists
+-    if [ ! -d $sdk_path ]
+-    then
+-        echo "Images directory is missing from arago-tmp"
+-        echo "FAILED: CRITICAL" > $LOG_DIR/$m-test-result.txt
+-        return 1
+-    fi
+-
+-    # prefer sdk_path/m, if exists - Dora and up
+-    if [ -d $sdk_path/$m ]
+-    then
+-        sdk_path="$sdk_path/$m"
+-    fi
+-
+-################################################################################
+-# SDK_FILTER variable is used to specify the SDK image produced by the build,
+-# that includes bootloaders, kernel, rootfs, devkit and host tools.
+-# When SDK_FILTER is not set, it is assumed the individual piecess needed for
+-# testing are built and deployed - bootloaders, kernel and (minimal) rootfs
+-#
+-# NOTE: For SDK-less builds, we need to re-create the same layout with directory
+-#       structure following the extracted SDK image, placing the individual
+-#       components in their corresponding locations ($test_dir/temp/filesystem
+-#       and $test_dir/temp/board-support/prebuilt-images, so the rest of the
+-#       test scripts can find them and work for both SDK and non-SDK cases.
+-################################################################################
+-    if [ ! -z $SDK_FILTER ]
+-    then
+-        # This filter is used to get the simple image name instead of the
+-        # image name with the date and time added.
+-        sdk_image=`find ./$sdk_path -name "$SDK_FILTER*$m.$SDK_IMAGE_TYPE" | xargs basename`
+-        # This is a critical failure and will not be able to be skipped
+-        if [ "$sdk_image" == "" ]
+-        then
+-            echo "Could not find the SDK image"
+-            echo "FAILED: CRITICAL" > $LOG_DIR/$m-test-result.txt
 -            return 1
 -        fi
+-
+-        cp $sdk_path/$sdk_image $test_dir
+-
+-        # cd into the test dir and extract the SDK image into a temp directory
+-        mkdir -p $test_dir/temp
+-        cd $test_dir/temp
+-        tar xf $test_dir/$sdk_image
+-        cd $test_dir
+-    else
+-        # Special case of non-SDK build, when SDK_FILTER is not specified
+-        mkdir -p $test_dir/temp/filesystem
+-        mkdir -p $test_dir/temp/board-support/prebuilt-images
+-
+-        # Find the target file system
+-        filesys=`find ./$sdk_path -name "$FS_FILTER*$m.$FS_IMAGE_TYPE" | xargs basename`
+-        # This is a critical failure and will not be able to be skipped
+-        if [ -z "$filesys" ]
+-        then
+-            echo "Could not find the target filesystem image"
+-            echo "FAILED: CRITICAL" > $LOG_DIR/$m-test-result.txt
+-            return 1
+-        fi
+-        cp $sdk_path/$filesys $test_dir/temp/filesystem
+-
+-        # Find the kernel image
+-        kernel=`find ./$sdk_path -name "[uz]Image-$m.bin" | xargs basename`
+-        # This is a critical failure and will not be able to be skipped
+-        if [ -z "$kernel" ]
+-        then
+-            echo "Could not find the kernel image"
+-            echo "FAILED: CRITICAL" > $LOG_DIR/$m-test-result.txt
+-            return 1
+-        fi
+-        cp $sdk_path/$kernel $test_dir/temp/board-support/prebuilt-images
+-
+-        # Find the u-boot image
+-        uboot=`find ./$sdk_path -name "u-boot-$m.*" | xargs basename`
+-        # This is a critical failure and will not be able to be skipped
+-        if [ -z "$uboot" ]
+-        then
+-            echo "Could not find the u-boot image"
+-            echo "FAILED: CRITICAL" > $LOG_DIR/$m-test-result.txt
+-            return 1
+-        fi
+-        cp $sdk_path/$uboot $test_dir/temp/board-support/prebuilt-images
+-
+-        # This is NOT a critical failure
+-        # Find the mlo image
+-        mlo=`find ./$sdk_path -name "MLO-$m" | xargs basename`
+-        if [ ! -z "$mlo" ]
+-        then
+-            cp $sdk_path/$mlo $test_dir/temp/board-support/prebuilt-images
+-        else
+-            # Find the skern image (special case for Keystone)
+-            skern=`find ./$sdk_path -name "skern-$m.bin" | xargs basename`
+-            if [ ! -z "$skern" ]
+-            then
+-                cp $sdk_path/$skern $test_dir/temp/board-support/prebuilt-images
+-            else
+-                echo "Could not find the MLO/skern image, ignoring"
+-            fi
+-        fi
+-
+-        # This is NOT a critical failure
+-        # Find the spl/uart image
+-        spl=`find ./$sdk_path -name "u-boot-spl.bin-$m" | xargs basename`
+-        if [ ! -z "$spl" ]
+-        then
+-            cp $sdk_path/$spl $test_dir/temp/board-support/prebuilt-images
+-        else
+-            echo "Could not find the SPL/UART image, ignoring"
+-        fi
+-
+-        cd $test_dir
 -    fi
 -
--    # Copy any additional web files that are in the WEB_EXTRAS_ROOT
--    # directory.
--    web_extras="$WEB_EXTRAS_ROOT/$m"
--    if [ -d $web_extras ]
--    then
--        cp -rLf $web_extras/* $exports_root/
--    fi
--
--    # Move the installer into the exports directory
--    mv $deploy_root/${INSTALLER_PREFIX}-$m* $exports_root/
--
--    # Create the md5sum file
--    cd $exports_root
--    md5sum * > md5sum.txt
--
--    # If we got here it means everything else passed
--    echo "PASSED" > $LOG_DIR/$m-web-results.txt
+-    return 0
 -}
 -
--generate_webgen_page() {
+-# This function will copy the SDK image to the PACKAGE_ROOT
+-# This image may be the original image depending on whether the
+-# test failed with a critical failure or not.  If it was a critical failure
+-# then the packaging step will not find the SDK image and will therefore
+-# not run.
+-copy_files_to_package_root() {
 -    # Set m for logging purposes
--    m="$1"
+-    m=$1
 -
--    
--    webgen_make="$WEBGEN_MAK_ROOT/$m/webgen.mak"
+-    # Make the machine specific package root
+-    package_root="$PACKAGE_ROOT/$m"
 -
--    if [ ! -e $webgen_make ]
+-    if [ -d $package_root ]
 -    then
--        echo "Could not find the webgen file for machine $m"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
+-        rm -rf $package_root
+-    fi
+-    mkdir -p $package_root
+-
+-    # Copy the SDK tarball
+-    cp $test_dir/$SDK_FILTER* $package_root
+-
+-    # Since the SDK is still extracted in the "temp" directory go
+-    # ahead and copy the pre-built images and file system files
+-    # for the SD card contents.  The rest of the contents will be
+-    # packaged in a later step.
+-    # Create the boot tarball contents
+-    boot_partition="$package_root/boot_partition"
+-    mkdir -p $boot_partition
+-    cp $test_dir/temp/board-support/prebuilt-images/* $boot_partition/
+-
+-    # Create the rootfs tarball contents
+-    root_partition="$package_root/root_partition"
+-    mkdir -p $root_partition
+-    cp $test_dir/temp/filesystem/$FS_FILTER*.$FS_IMAGE_TYPE $root_partition/rootfs_partition.$FS_IMAGE_TYPE
+-}
+-
+-copy_golden_image() {
+-    # Set m for logging purposes
+-    m=$1
+-
+-    arago_tmp=`ls | grep "arago-tmp-*"`
+-
+-    # This is a critical failure and will not be able to be skipped
+-    if [ "$arago_tmp" == "" ]
+-    then
+-        echo "Could not find the arago-tmp directory"
 -        return 1
 -    fi
 -
--    # Create the ti.com contents directory
--    mkdir -p $deploy_root/ti_com_contents
+-    img_path="$arago_tmp/deploy/images/$m"
 -
--    # Copy the webgen file to the deploy directory
--    cd $deploy_root
--    cp $webgen_make .
--
--    # Generate the web page
--    $WEBGEN_ROOT/webgen_ext webgen.mak $deploy_root/ti_com_contents exports
--
--    # Cleanup the misc webgen files
--    cleanup_webgen_page $m
--}
--
--# The webgen tool does a couple of things like make a symlink to the exports
--# directory and has a validationinfo file that needs to be removed before
--# copying.  If this is not done then we copy double the files, etc.
--cleanup_webgen_page() {
--    m="$1"
--
--    content_dir="$deploy_root/ti_com_contents/`grep 'PRODUCT_NAME=' $webgen_make | sed -e 's/PRODUCT_NAME=//g'`/`echo $TISDK_VERSION | tr '.' '_'`"
--
--    # Something went wrong here because I can't find the webgen content
--    if [ ! -d $content_dir ]
+-    # check that the img_path exists
+-    if [ ! -d $img_path ]
 -    then
--        echo "Could not find the $content_dir"
--        echo "FAILED" > $LOG_DIR/$m-web-results.txt
+-        echo "Images directory for machine $m is missing from arago-tmp"
+-        return 1
 -    fi
 -
--    # Remove the exports symlink and move the real exports directory into its
--    # place
--    rm -rf $content_dir/exports
--    mv $deploy_root/exports $content_dir/
+-    dest_path="golden/"
+-    rm -rf $dest_path/$m
 -
--    # Remove the .validationinfo file
--    rm -f $content_dir/.validationinfo
--
--    # Remove the webgen.mak file
--    rm -f $deploy_root/webgen.mak
+-    mkdir $dest_path/$m
+-    cp -a $img_path $dest_path
 -}
 -
--package_individual_sdk() {
+-test_sdk_image() {
 -    # Set m for logging purposes
 -    m="$1"
+-    test_passed="false"
 -
--    # Make the machine specific deploy root
--    deploy_root="$DEPLOY_ROOT/$m/$BUILD_ID"
+-    # Create a temporary directory to extract the build files to for
+-    # testing.  If the directory already exists then delete the old
+-    # contents first.
+-    test_dir="$TEST_ROOT/$m-test"
 -
--    if [ -d $deploy_root ]
+-    if [ -d $test_dir ]
 -    then
--        rm -rf $deploy_root
+-        rm -rf $test_dir
 -    fi
--    mkdir -p $deploy_root
+-    mkdir -p $test_dir
 -
--    # Create the SDK installer in the deploy directory
--    create_sdk_installer $m
--
--    # Create the SD card tarballs in the deploy directory
--    create_sd_card_content $m
--
--    # Package the SD card and web page contents to get ready for
--    # generating the webgen page and publishing the SDK
--    package_web_content $m
--
--    if [ "$?" == "0" ]
+-    # Always extract the SDK so we can package the internal contents,
+-    # even if we don't do testing and re-package the tested files.
+-    extract_sdk_image $m
+-    if [ "$?" != "0" ]
 -    then
--        # Since the packaging worked let's generate the ti.com style
--        # web page.
--        generate_webgen_page $m
+-        return 1
 -    fi
--}
 -
--package_sdks(){
--    # Build a list of machines that passed their build and had no
--    # CRITICAL failures.  This can be done by looking for the test
--    # results file for each machine.  If the test file does not
--    # exist then the build failed.  If it does exist and does not
--    # contain the CRITICAL keyword then we can continue with
--    #packaging.
--    machines=""
+-    # Delete old rootfs test directory
+-    nfs_dir="$NFS_ROOT/$m-test"
+-    if [ -d $nfs_dir ]
+-    then
+-        # Clean the old directory
+-        sudo rm -rf $nfs_dir
+-    fi
 -
--    for m in $MACHINES
--    do
--        if [ -e $LOG_DIR/$m-build-result.txt ]
+-    # Only run the build testing if the config file says to do so
+-    if [ "$RUN_BUILD_TESTS" == "true" ]
+-    then
+-        run_target_side_test $m
+-
+-        if [ "$?" != "0" ]
 -        then
--            # Check if the build failed
--            grep "FAILED" $LOG_DIR/$m-build-result.txt > /dev/null 2>&1
--            if [ "$?" == "0" ]
+-            # Check if this was a CRITICAL failure
+-            grep "CRITICAL" $LOG_DIR/$m-test-result.txt > /dev/null 2>&1
+-            if [ "$?" == "0" -a "$SKIP_TEST_FAILURES" == "false" ]
 -            then
--                # The build failed so don't package this device
--                continue
+-                # This was a critical failure so return without copying
+-                # the files
+-                return 1
 -            fi
--
--            # Check the test results
--            if [ -e $LOG_DIR/$m-test-result.txt ]
--            then
--                # The build at least PASSED
--                # Check if this was a CRITICAL failure
--                grep "CRITICAL" $LOG_DIR/$m-test-result.txt > /dev/null 2>&1
--                if [ "$?" == "0" ]
--                then
--                    # This was a critical failure so return without copying
--                    # the files
--                    continue
--                fi
--
--                # This was a build with a PASSED, SKIPPED, or non-CRITICAL
--                # test result.  Add it to the list of machines to package.
--                machines="$machines""$m "
--            fi
+-        else
+-            echo "PASSED" > $LOG_DIR/$m-test-result.txt
+-            test_passed="true"
 -        fi
--    done
 -
--    echo "machines = $machines"
+-    else
+-        echo "SKIPPED" > $LOG_DIR/$m-test-result.txt
+-    fi
 -
--    # Now that the have the list of machines we can call the rest of the
--    # package functions in parallel.
--    for m in $machines
--    do
--        package_individual_sdk $m &
--    done
+-    # Getting here means that either
+-    #   1. The test passed
+-    #   2. The test failed with a non-CRITICAL error and SKIP_TEST_FAILURES
+-    #      was set to true.
+-    package_tested_rootfs $m
+-    if [ ! -z $SDK_FILTER ]
+-    then
+-        copy_files_to_package_root $m
+-    fi
 -
--    # Wait for the subprocesses to all finish
--    wait
--}
-diff --git a/lib/oesdk/ti-sdk-host-install.sh b/lib/oesdk/ti-sdk-host-install.sh
-deleted file mode 100755
-index 0dc1fa2..0000000
---- a/lib/oesdk/ti-sdk-host-install.sh
-+++ /dev/null
-@@ -1,227 +0,0 @@
--# /usr/bin/env bash
--set -x
--#
--#  (C) Copyright 2010 Texas Instrument Inc.  All rights reserved.
--#
--#  Author: Schuyler Patton, Texas Instrunents Inc.
--#
--#  Script to install TI SDK on User Platform
--#
--
--VERSION="1.0"
--
--#
--# Display program usage
--#
--usage()
--{
--  echo "
--Usage: `basename $1` [options] --machine <machine_name> <install_dir> <tools_dir_prefix> <dest_dir>
--
--  --help                Print this help message
--"
--  exit 1
+-    if [ "$test_passed" == "true" -a $COPY_GOLDEN_TO_WEB == "true" ]
+-    then
+-        copy_golden_image $m
+-    fi
 -}
 -
--#
--# Display version 
--#
--version()
--{
--  echo "
--`basename $1`: version $VERSION 
--"
--  exit 1
--}
+ # This function receives a comma separated list of machines to build and test.
+ # The flow is to do the bitbake operations to generate the images and SDK
+ # content, then call to the opentest system (if so desired) while starting the
+@@ -478,19 +110,6 @@ bitbake_sdk_images(){
+         # If it does not exist, then there is not much we can do, so inhibit the
+         # error code.
+         mv $build_dir/bitbake-cookerdaemon.log $LOG_DIR/$m-bitbake-cookerdaemon.log || true
 -
--
--#
--# execute command
--#
--execute ()
--{
--  #echo "$*"
--  $*
--  if [ $? -ne 0 ]; then
--    echo "ERROR: failed to execute $*"
--    exit 1;
--  fi
--}
--
--#
--# update sdk Rules.make
--#
--update_rules_make()
--{
--  echo "Updating Rules.make"
--  echo "$install_dir"
--
--  echo "$install_dir">rm_id.out
--  echo "$cross_compile">rm_cc.out
--  echo "$cross_compile_dir">rm_ccd.out
--  echo "$dest_dir">rm_dd.out
--
--  sed -i -e s=__SDK__INSTALL_DIR__=$install_dir= $install_dir/Rules.make 
--  sed -i -e s=__CROSS_COMPILE__=$cross_compile_dir/arm-none-linux-gnueabi-= $install_dir/Rules.make
--
--  # Find the linux directory name
--  linux=`find $install_dir/board-support -maxdepth 1 -name "linux*"`
--  linux=`basename $linux`
--  sed -i -e s=__KERNEL_NAME__=$linux= $install_dir/Rules.make
--
--  # Extract toolchain sdk
--  $install_dir/linux-devkit.sh -y -d $install_dir/linux-devkit
--
--  # Remove toolchain SDK
--  rm $install_dir/linux-devkit.sh
--
--# TODO: Unsure about this one here.  This likely should change when the
--#       META_SDK_PATH functionality is put back in.
--  echo "Updating prefix in libtoolize "
--  sed -i -e "s|/arago-2012.10|$install_dir/linux-devkit|g" \
--  $install_dir/linux-devkit/bin/libtoolize
--}
--
--#
--# update example applications CCS project file
--#
--update_ccs_project()
--{
--    cd $install_dir
--
--    # Grab some essential variables from environment-setup
--    TARGET_SYS=`sed -n 's/^export TARGET_SYS=//p' linux-devkit/environment-setup`
--    TOOLCHAIN_SYS=`sed -n 's/^export TOOLCHAIN_SYS=//p' linux-devkit/environment-setup`
--    SDK_SYS=`sed -n 's/^export SDK_SYS=//p' linux-devkit/environment-setup`
--
--    # Grab toolchain's GCC version
--    GCC_VERSION=`ls linux-devkit/sysroots/$SDK_SYS/usr/lib/gcc/$TOOLCHAIN_SYS/`
--
--    TOOLCHAIN_TARGET_INCLUDE_DIR="linux-devkit/sysroots/$TARGET_SYS/usr/include"
--    TOOLCHAIN_INCLUDE_DIR="linux-devkit/sysroots/$SDK_SYS/usr/lib/gcc/$TOOLCHAIN_SYS/$GCC_VERSION/include"
--
--    # Update CCS project files using important paths to headers
--    find ./example-applications -type f -exec sed -i "s|<TOOLCHAIN_TARGET_INCLUDE_DIR>|$TOOLCHAIN_TARGET_INCLUDE_DIR|g" {} \;
--    find ./example-applications -type f -exec sed -i "s|<TOOLCHAIN_INCLUDE_DIR>|$TOOLCHAIN_INCLUDE_DIR|g" {} \;
--    cd -
--}
--
--#
--# prepare installer tools 
--# 
--prepare_install ()
--{
--  echo "Preparing installation ..."
--  cwd=$PWD;
--
--  execute "mkdir -p ${install_dir}"
--  mkdir -p ${dest_dir}
--
--}
--
--#
--# install sdk
--#
--install_sdk ()
--{
--  sdk_dir=$PWD 
--  echo "$sdk_dir">is_sdk_dir.out
--  echo "$install_dir">is_id.out
--  echo "$cross_compile">is_cc.out
--  echo "$cross_compile_dir">is_ccd.out
--  echo "$dest_dir">is_dd.out
--  echo "$sdk_pkg">is_sdk_pkg.out
--
--#  cp -p ti-sdk-ubuntu-env-setup.sh "$install_dir"
--  echo "Untarring top level SDK $sdk_pkg "  
--  tar -xf $sdk_pkg  -C $install_dir
--  echo "Untarring top level package complete "
--
--  # Remove any .svn directories that were packaged by the sourceipks
--  rm -rf `find $install_dir -name ".svn"`
--
--}
--
--install_ccs()
--{ 
--
--# $install_source/CCS/setup*.bin &
--
--echo "install_ccs is $install_ccs">ccs_iccs.out
--
--if [ "$install_ccs" = "yes" ]; then
--   $install_source/ccs_install.sh $install_source & 
--fi
-- 
--}
--
--
--# Process command line...
--while [ $# -gt 0 ]; do
--  case $1 in
--    --help | -h)
--      usage $0
--      ;;
--    --version | -v)
--      version $0
--      ;;
--    --sdk_pkg)
--      shift;
--      sdk_pkg=$1;
--      ;;
--    --install_dir)
--      shift;
--      install_dir=$1;
--      ;;
--    --install_ccs)
--      shift;
--      install_ccs="yes";
--      ;;
--    --install_source)
--      shift;
--      install_source=$1
--      ;;
--     *)
--      shift;
--      ;;
--  esac
--done
--
--echo " "
--echo " Called with --machine $machine --sdk_pkg $sdk_pkg --install_dir $install_dir --cross_compile_dir $cross_compile_dir --cross_compile $cross_compile ">called-w-param.out
--echo " "
--
--echo "$machine">machid.out
--echo "$install_dir">id.out
--echo "$cross_compile">cc.out
--echo "$cross_compile_dir">ccd.out
--echo "$dest_dir">dd.out
--echo "$install_source">tmp/tmp_iss.out
--echo "$install_source">iss.out
--
--# check if install_dir variable is set.
--test -z $install_dir && usage $0
--execute "mkdir -p $install_dir"
--echo "after mkdir ">oops.out
--
--# prepare installation.
--prepare_install
--echo "after prepare ">oops.out
--
--# install sdk
--install_sdk
--echo "after install_sdk ">oops.out
--
--# install CCS
--test -d $install_source/CCS;install_ccs
--
--# update rules.make
--update_rules_make
--
--# Update example applications CCS project files
--update_ccs_project
--
--echo "Installation completed!"
--
--exit 0
-- 
+-        # Only run the build testing if the status of the above builds
+-        # was "pass"
+-        if [ "$build_status" == "pass" ]
+-        then
+-            if [ ! "$EXIT_AFTER_BUILD" = "true" ]; then
+-                test_sdk_image $m &
+-            else
+-                echo "SKIPPED" > $LOG_DIR/$m-test-result.txt
+-            fi
+-        else
+-            echo "SKIPPED" > $LOG_DIR/$m-test-result.txt
+-        fi
+     done
+ 
+     # Wait for all build/test processes to finish before exiting
 -- 
 2.7.4
 
