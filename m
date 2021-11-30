@@ -1,44 +1,44 @@
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
- by mx.groups.io with SMTP id smtpd.web10.80883.1638296034531822739
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+ by mx.groups.io with SMTP id smtpd.web09.80810.1638296448234641624
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 30 Nov 2021 10:13:54 -0800
+ Tue, 30 Nov 2021 10:20:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@pathpartnertech.com header.s=google header.b=LOufu5oV;
- spf=pass (domain: pathpartnertech.com, ip: 209.85.221.53, mailfrom: sidraya.bj@pathpartnertech.com)
-Received: by mail-wr1-f53.google.com with SMTP id q3so23502344wru.5
-        for <meta-arago@lists.yoctoproject.org>; Tue, 30 Nov 2021 10:13:54 -0800 (PST)
+ dkim=pass header.i=@pathpartnertech.com header.s=google header.b=RkA9Rag4;
+ spf=pass (domain: pathpartnertech.com, ip: 209.85.221.45, mailfrom: sidraya.bj@pathpartnertech.com)
+Received: by mail-wr1-f45.google.com with SMTP id v11so46395742wrw.10
+        for <meta-arago@lists.yoctoproject.org>; Tue, 30 Nov 2021 10:20:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=pathpartnertech.com; s=google;
         h=mime-version:from:to:cc:subject:date:message-id;
-        bh=zdxa4DTKJjS+FnTkR5lVMw/YlIL5XV1Ci19Xwe/woeQ=;
-        b=LOufu5oViTu73ODWiZE6QY9a0ADh8VEdpSLUvbwAc7AD6c/Hgo/lcCn3MAYKTrQ/3Y
-         1JToruxqpyG54xREeWnSAH/ran9Fw6vaQ9JLiAvE8QtxhUAxSe200NKU1M51vZN27vGd
-         4Us56cFQhCMBDwqVwXhWnC0uW4Yzp0x2f5acQMBTnNIGfQSw/cVyxXzaWjC5XnWhOmGN
-         TxguaANliwu3QDLGty3dIVir0pw3b1x6QWSRu2yMkVUM9mZfAvu7n53O+cPDHAqiW1Bp
-         bcJUj9RXMGCCpEgMhIHfNpWg8eAQ2hG99d4U6xRGsZXdPOSujRd40qLi9HKFZw5nwGlA
-         pEqg==
+        bh=xJ02KhJ1D2lzJRxXLiLv6/tKTA3+xZv5oNGak1S1jGY=;
+        b=RkA9Rag4wOdHNQa9wwVmrWQZgid+e25QD//Eh8YWQmuTLSunJqAHQQf23VeKFEFpEm
+         h6NTtZ996prNMAyw9CswOlSOSB6pYVfdadcpP6f3d7LT3CNjWgjn3PZVgBeOiQiakFPU
+         YZkj/Ogfa7vqf/zDZ3tQlHtnBGgrzyO7pzMuJV1Yff8giX8MK2aVH8XgQewDh8IIKgWX
+         Mq1wUpMNBeA6q3e/aQ+Tgxff3jrXU1QKO2H2QzlXY/AEn9Z4RLSEbo0j41M7NySV64xW
+         MFB8XfkTINdyuEAjYT4KPhox777RMjtBvmWYextMo/DFHqHsHsDtOE7QychIOfZ+I7/X
+         Byjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=mime-version:x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=zdxa4DTKJjS+FnTkR5lVMw/YlIL5XV1Ci19Xwe/woeQ=;
-        b=JoIGx1AyBmJhW4reYt7BMIeZxh2B+ltWXXco5DnhJCw+aOsUwLWC//mg/oNVmbPZtH
-         KR9rvAuaefWLuhDR/VtD3PWdpBe7tNzLfsdDb1j+lT5Opknc51ae94h4KoOFbvQtnt3W
-         wRVZ7jEuN3UUEdkLwSMnTbqcgTtX6sAxA6Ry9eyCCSzmtb0+KSq4zZ3hCNfPIxJu94bF
-         PkLlEVq1VpsIt1/Pk/eoiUo45MsPBNVDSh6UkeY4dqzTzwNftf7QZK445kI9l6xCm/e+
-         4Nt2OnQPl16WNeZf92C9SIAm2Tu3HXh8vsTjlRDxtaYu9bwRbu+Wc6GTYpY73Csju8Im
-         qPOQ==
+        bh=xJ02KhJ1D2lzJRxXLiLv6/tKTA3+xZv5oNGak1S1jGY=;
+        b=RjnXV1IU8mf0f93DhFu4CBdm4Jav6HhWgULcSNihMA+Eu7EcLsOhnWFDpjQJZC1J9p
+         AsQca1MbLlOQx4c9ozOexGXDULLyhEB3ULEVmsKUnJkTd+3r7IAEa+Obq411t0CpSNA0
+         3g3HFGqI5neJJi4Duxh+HglD8U2uEIq/cXNGnHSo3ISR3L+O3SlKTN01K1XWzA/nyDfx
+         7KqoKqPJTeRJEiX3Rxf2RBcYti1a/5ZHlJxJpi+LpdMqtpVbf/D8FZxrnSfnKgf/Zzxy
+         XC+Xbk/x3Xw3f+YaHT3IekjZQAlV/H+2YAiPzKAAexjox0vhka5Jga4yR4KjCNY8+mmv
+         r5Pg==
 MIME-Version: 1.0
-X-Gm-Message-State: AOAM531JT0C2Joi54Pcftbu1lUMH3pIwNSFICGNOmsyMW//kczD6ZQUH
-	HK51aFlGjFEmLs+rqnf8YEUgG2o/I3TkKzqu5YoQypjTK9i+eIdQG78zhLRse5iAw5OX+FdxApk
-	KaObFZBaj9iQXaSRfpcOK98kU7GsN0lEx
-X-Google-Smtp-Source: ABdhPJyAcnD8pGL5xeplSSQiabBHCGQr1MKxf+HCdkl87ggGUVP0M0SJUhddTjrZdlTcfYN89SQWAA==
-X-Received: by 2002:a5d:58ed:: with SMTP id f13mr559442wrd.373.1638296032683;
-        Tue, 30 Nov 2021 10:13:52 -0800 (PST)
+X-Gm-Message-State: AOAM533BhNCTorx1fk1Wpf0vT8h2dUKJMJVg25A7Yww7eYZpN3L/Y0hg
+	W+ojChQov4WoK2XKKYTgpBbPZh3YmFwx9LJ1LanR8wIFQSeRZbRaelWRdY7t7rDBjlyk7LPUQca
+	RzFY6/mZXCATctDzE5ZqZP9Tw47KjKDuB
+X-Google-Smtp-Source: ABdhPJyeQa3jklKmDy5x3cpMP3SgYI3gIG7vCPRG7tV8tw1DMyaj1vSfBim3tTKAIECB3ubrBAseoQ==
+X-Received: by 2002:a05:6000:1a43:: with SMTP id t3mr590533wry.555.1638296446482;
+        Tue, 30 Nov 2021 10:20:46 -0800 (PST)
 Return-Path: <sidraya.bj@pathpartnertech.com>
 Received: from sidraya-laptopU.ent.ti.com ([2401:4900:2502:ea12:860:6195:a98f:fb6e])
-        by smtp.gmail.com with ESMTPSA id g13sm23238504wrd.57.2021.11.30.10.13.44
+        by smtp.gmail.com with ESMTPSA id c4sm17088461wrr.37.2021.11.30.10.20.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 10:13:52 -0800 (PST)
+        Tue, 30 Nov 2021 10:20:46 -0800 (PST)
 From: "Sidraya Jayagond" <sidraya.bj@pathpartnertech.com>
 To: meta-arago@lists.yoctoproject.org
 Cc: yogeshs@ti.com,
@@ -47,34 +47,33 @@ Cc: yogeshs@ti.com,
 	prashanth.ka@pathpartnertech.com,
 	praveen.ap@pathpartnertech.com,
 	denis@denix.org,
-	Sidraya <sidraya.bj@pathpartnertech.com>,
-	Angela Stegmaier <angelabaker@ti.com>
-Subject: [dunfell/master][PATCH] ti-test: Add viddec-test-app for j7-evm
-Date: Tue, 30 Nov 2021 23:43:27 +0530
-Message-Id: <20211130181327.3178-1-sidraya.bj@pathpartnertech.com>
+	Sidraya <sidraya.bj@pathpartnertech.com>
+Subject: [PATCH] ti-test: Add videnc-test-app for j7-evm
+Date: Tue, 30 Nov 2021 23:50:29 +0530
+Message-Id: <20211130182029.3691-1-sidraya.bj@pathpartnertech.com>
 X-Mailer: git-send-email 2.17.1
 Content-Type: text/plain; charset="US-ASCII"
 
 From: Sidraya <sidraya.bj@pathpartnertech.com>
 
-The viddec-test-app provides the video decoder test app
-(tidec_decode) for j7-evm.
+The videnc-test-app provides the video encoder test app
+(tienc_encode) for j7-evm.
 
-Signed-off-by: Angela Stegmaier <angelabaker@ti.com>
+Signed-off-by: David Huang <d-huang@ti.com>
 Signed-off-by: Sidraya <sidraya.bj@pathpartnertech.com>
 ---
  meta-arago-distro/recipes-core/packagegroups/ti-test.bb | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-index 219b43b6..7b2bda5e 100644
+index 7b2bda5e..434ed559 100644
 --- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
 +++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-@@ -83,6 +83,7 @@ ARAGO_TI_TEST_append_k3 = " \
- 
+@@ -84,6 +84,7 @@ ARAGO_TI_TEST_append_k3 = " \
  ARAGO_TI_TEST_append_j7 = " \
      ufs-utils \
-+    viddec-test-app \
+     viddec-test-app \
++    videnc-test-app \
  "
  
  ARAGO_TI_TEST_append_omapl138 = " \
