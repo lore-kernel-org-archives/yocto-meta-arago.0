@@ -1,110 +1,83 @@
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
- by mx.groups.io with SMTP id smtpd.web09.80810.1638296448234641624
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web10.18956.1638574202412258478
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 30 Nov 2021 10:20:48 -0800
+ Fri, 03 Dec 2021 15:30:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@pathpartnertech.com header.s=google header.b=RkA9Rag4;
- spf=pass (domain: pathpartnertech.com, ip: 209.85.221.45, mailfrom: sidraya.bj@pathpartnertech.com)
-Received: by mail-wr1-f45.google.com with SMTP id v11so46395742wrw.10
-        for <meta-arago@lists.yoctoproject.org>; Tue, 30 Nov 2021 10:20:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pathpartnertech.com; s=google;
-        h=mime-version:from:to:cc:subject:date:message-id;
-        bh=xJ02KhJ1D2lzJRxXLiLv6/tKTA3+xZv5oNGak1S1jGY=;
-        b=RkA9Rag4wOdHNQa9wwVmrWQZgid+e25QD//Eh8YWQmuTLSunJqAHQQf23VeKFEFpEm
-         h6NTtZ996prNMAyw9CswOlSOSB6pYVfdadcpP6f3d7LT3CNjWgjn3PZVgBeOiQiakFPU
-         YZkj/Ogfa7vqf/zDZ3tQlHtnBGgrzyO7pzMuJV1Yff8giX8MK2aVH8XgQewDh8IIKgWX
-         Mq1wUpMNBeA6q3e/aQ+Tgxff3jrXU1QKO2H2QzlXY/AEn9Z4RLSEbo0j41M7NySV64xW
-         MFB8XfkTINdyuEAjYT4KPhox777RMjtBvmWYextMo/DFHqHsHsDtOE7QychIOfZ+I7/X
-         Byjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=mime-version:x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=xJ02KhJ1D2lzJRxXLiLv6/tKTA3+xZv5oNGak1S1jGY=;
-        b=RjnXV1IU8mf0f93DhFu4CBdm4Jav6HhWgULcSNihMA+Eu7EcLsOhnWFDpjQJZC1J9p
-         AsQca1MbLlOQx4c9ozOexGXDULLyhEB3ULEVmsKUnJkTd+3r7IAEa+Obq411t0CpSNA0
-         3g3HFGqI5neJJi4Duxh+HglD8U2uEIq/cXNGnHSo3ISR3L+O3SlKTN01K1XWzA/nyDfx
-         7KqoKqPJTeRJEiX3Rxf2RBcYti1a/5ZHlJxJpi+LpdMqtpVbf/D8FZxrnSfnKgf/Zzxy
-         XC+Xbk/x3Xw3f+YaHT3IekjZQAlV/H+2YAiPzKAAexjox0vhka5Jga4yR4KjCNY8+mmv
-         r5Pg==
-MIME-Version: 1.0
-X-Gm-Message-State: AOAM533BhNCTorx1fk1Wpf0vT8h2dUKJMJVg25A7Yww7eYZpN3L/Y0hg
-	W+ojChQov4WoK2XKKYTgpBbPZh3YmFwx9LJ1LanR8wIFQSeRZbRaelWRdY7t7rDBjlyk7LPUQca
-	RzFY6/mZXCATctDzE5ZqZP9Tw47KjKDuB
-X-Google-Smtp-Source: ABdhPJyeQa3jklKmDy5x3cpMP3SgYI3gIG7vCPRG7tV8tw1DMyaj1vSfBim3tTKAIECB3ubrBAseoQ==
-X-Received: by 2002:a05:6000:1a43:: with SMTP id t3mr590533wry.555.1638296446482;
-        Tue, 30 Nov 2021 10:20:46 -0800 (PST)
-Return-Path: <sidraya.bj@pathpartnertech.com>
-Received: from sidraya-laptopU.ent.ti.com ([2401:4900:2502:ea12:860:6195:a98f:fb6e])
-        by smtp.gmail.com with ESMTPSA id c4sm17088461wrr.37.2021.11.30.10.20.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 10:20:46 -0800 (PST)
-From: "Sidraya Jayagond" <sidraya.bj@pathpartnertech.com>
-To: meta-arago@lists.yoctoproject.org
-Cc: yogeshs@ti.com,
-	praneeth@ti.com,
-	d-huang@ti.com,
-	prashanth.ka@pathpartnertech.com,
-	praveen.ap@pathpartnertech.com,
-	denis@denix.org,
-	Sidraya <sidraya.bj@pathpartnertech.com>
-Subject: [PATCH] ti-test: Add videnc-test-app for j7-evm
-Date: Tue, 30 Nov 2021 23:50:29 +0530
-Message-Id: <20211130182029.3691-1-sidraya.bj@pathpartnertech.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=FMdw7p7A;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: praneeth@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B3NTu92061869;
+	Fri, 3 Dec 2021 17:29:56 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1638574196;
+	bh=btk9732iesERVxVn2TvUtk2dCyyhgnuNVKibxQpHunA=;
+	h=From:To:CC:Subject:Date;
+	b=FMdw7p7AXVv95zje2wz6auwusnjBkbSNXLjMwSQIoEEuSp2CauIOG9WHOkR3RSBKT
+	 w1Knkld4Fl+2xZWMtvOmCv9tlQHaNu9GeDJLJFVPP60u4B2XxXDBOhzlwiZqymYnWr
+	 NFSqHWV/SVBh1s0Et+hpFudr2EyGvpOzZZcxWdSg=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B3NTuOJ064602
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 3 Dec 2021 17:29:56 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 3
+ Dec 2021 17:29:56 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 3 Dec 2021 17:29:56 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B3NTuVO034210;
+	Fri, 3 Dec 2021 17:29:56 -0600
+From: "praneeth" <praneeth@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko <denys@konsulko.com>
+CC: <denis@denix.org>, <meta-arago@lists.yoctoproject.org>
+Subject: [dunfell/master PATCH] ltp-ddt: Update to latest srcrev for 08.01.00.005
+Date: Fri, 3 Dec 2021 17:29:56 -0600
+Message-ID: <20211203232956.16907-1-praneeth@ti.com>
 X-Mailer: git-send-email 2.17.1
-Content-Type: text/plain; charset="US-ASCII"
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
 
-From: Sidraya <sidraya.bj@pathpartnertech.com>
+From: Praneeth Bajjuri <praneeth@ti.com>
 
-The videnc-test-app provides the video encoder test app
-(tienc_encode) for j7-evm.
+Update the ltp-ddt to latest for 08.01.00.005
 
-Signed-off-by: David Huang <d-huang@ti.com>
-Signed-off-by: Sidraya <sidraya.bj@pathpartnertech.com>
+This has the following test fixes
+
+b57f35f47 testcases: ipc: Add support for PRU_ECHO test to be run on AM65 and AM64
+31ee44622 Crypto: change logic for interrupt grep for different platforms
+87afb0add testcases:ddt:scripts:common:get_active_eth_interfaces.sh
+19775282c ti_codecs: modprobe fails to locate the modules
+15a7adca3 Crypto: add more channel in arr for interrupt grep
+3a5456b1d Add platform name for j721e to get max width
+b3fcb8346 ipc: runtest/ddt/ipc_rpmsg_char: add m4f remote proc tests
+ff06ec671 runtest/ddt/eth_icssg: add speed/duplex tests
+
+Signed-off-by: Praneeth Bajjuri <praneeth@ti.com>
 ---
- meta-arago-distro/recipes-core/packagegroups/ti-test.bb | 1 +
- 1 file changed, 1 insertion(+)
+ .../recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb              | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-index 7b2bda5e..434ed559 100644
---- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-@@ -84,6 +84,7 @@ ARAGO_TI_TEST_append_k3 = " \
- ARAGO_TI_TEST_append_j7 = " \
-     ufs-utils \
-     viddec-test-app \
-+    videnc-test-app \
- "
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+index 4a1f8d74..8a86f139 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+@@ -11,10 +11,10 @@ PROVIDES += "ltp"
+ DEPENDS += "alsa-lib"
  
- ARAGO_TI_TEST_append_omapl138 = " \
+ PE = "1"
+-PR = "r4"
++PR = "r5"
+ PV_append = "+git${SRCPV}"
+ 
+-SRCREV = "b6c5b174837a9ba0a743addbe58735ce6cf56b4a"
++SRCREV = "cfff0a2c889f29c03b9a3ee547a147b1c6727e2c"
+ BRANCH ?= "master"
+ 
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
 -- 
 2.17.1
 
-
--- 
-
-
-
-
-
-
-This
-message contains confidential information and is intended only 
-for the
-individual(s) named. If you are not the intended
-recipient, you are 
-notified that disclosing, copying, distributing or taking any
-action in 
-reliance on the contents of this mail and attached file/s is strictly
-prohibited. Please notify the
-sender immediately and delete this e-mail 
-from your system. E-mail transmission
-cannot be guaranteed to be secured or 
-error-free as information could be
-intercepted, corrupted, lost, destroyed, 
-arrive late or incomplete, or contain
-viruses. The sender therefore does 
-not accept liability for any errors or
-omissions in the contents of this 
-message, which arise as a result of e-mail
-transmission.
