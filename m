@@ -1,82 +1,82 @@
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web08.19069.1638575125790955966
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web10.9883.1638953923550049245
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 03 Dec 2021 15:45:26 -0800
+ Wed, 08 Dec 2021 00:58:44 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=hWH/VlbN;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: praneeth@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B3NjKNB055231;
-	Fri, 3 Dec 2021 17:45:20 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=v+m8jppA;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: yogeshs@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B88wfNa117557;
+	Wed, 8 Dec 2021 02:58:41 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1638575120;
-	bh=m/HbH4X+FNDIlw1xzOokjTOtX4gf2eoTvAVXox+Si2I=;
-	h=From:To:CC:Subject:Date;
-	b=hWH/VlbNerdN6C4oJcc0IM7XB7xWZoqr+dRToVXzx7YFprM94rctC50nfSSgFYhIG
-	 qdhPbavshNg5PVVUtoH58lrVvnKu4dGQAD0wVWLNfQ6VDBy1Jv1EyIeL8vPxDXtZth
-	 N3Om+juQ7QC4QXUDubRrG/ATfFUSba3fvQowGORs=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B3NjKWn130468
+	s=ti-com-17Q1; t=1638953921;
+	bh=h3/Glz+cTuvy3fefZQTzKWd59Of3YKpkbaKlkr3ciC4=;
+	h=From:To:Subject:Date;
+	b=v+m8jppAqukhFxQR7FqaiElQT/p3LV2WnBNJRKMGKEBfLmdoCz9vwYBip0TMCduMx
+	 IUfEfzHgFWjop0s+lScQs+fCm1VyjVsIZmIkrGLZQF+UBhVT569A3egR0KSXGIx7bo
+	 i9FkC8DynwQ+n75XiAS+6zv+6bObZ/mMiz6uyyPc=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B88wfco112082
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 3 Dec 2021 17:45:20 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 3
- Dec 2021 17:45:20 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 8 Dec 2021 02:58:41 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 8
+ Dec 2021 02:58:41 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 3 Dec 2021 17:45:20 -0600
+ Frontend Transport; Wed, 8 Dec 2021 02:58:41 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B3NjKJG061550;
-	Fri, 3 Dec 2021 17:45:20 -0600
-From: "praneeth" <praneeth@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko <denys@konsulko.com>
-CC: <denis@denix.org>, <meta-arago@lists.yoctoproject.org>
-Subject: [dunfell/master PATCHv2] Update the ltp-ddt to latest
-Date: Fri, 3 Dec 2021 17:45:20 -0600
-Message-ID: <20211203234520.17790-1-praneeth@ti.com>
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B88wfFo006676;
+	Wed, 8 Dec 2021 02:58:41 -0600
+From: "Yogesh Siraswar" <yogeshs@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [tisdk-build-scripts][PATCH] secdev: Add script to update k3 secdev package
+Date: Wed, 8 Dec 2021 08:58:41 +0000
+Message-ID: <20211208085841.45926-1-yogeshs@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Content-Type: text/plain
 
-From: Praneeth Bajjuri <praneeth@ti.com>
-
-This has the following test fixes from ltp-ddt project
-
-b57f35f47 testcases: ipc: Add support for PRU_ECHO test to be run on AM65 and AM64
-31ee44622 Crypto: change logic for interrupt grep for different platforms
-87afb0add testcases:ddt:scripts:common:get_active_eth_interfaces.sh
-19775282c ti_codecs: modprobe fails to locate the modules
-15a7adca3 Crypto: add more channel in arr for interrupt grep
-
-Signed-off-by: Praneeth Bajjuri <praneeth@ti.com>
+Signed-off-by: Yogesh Siraswar <yogeshs@ti.com>
 ---
+ build-oesdk.sh             | 3 +++
+ lib/oesdk/update_secdev.sh | 7 +++++++
+ 2 files changed, 10 insertions(+)
+ create mode 100755 lib/oesdk/update_secdev.sh
 
-Changes in V2: rebased the patch to dunfell HEAD and updated commitmsg
-to point the difference in the fixes between commits
-
- .../recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb              | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-index 1b52f327..e9431796 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-@@ -11,10 +11,10 @@ PROVIDES += "ltp"
- DEPENDS += "alsa-lib"
+diff --git a/build-oesdk.sh b/build-oesdk.sh
+index 038a7ab..3d32fb2 100755
+--- a/build-oesdk.sh
++++ b/build-oesdk.sh
+@@ -14,6 +14,9 @@ source ./lib/oesdk/machine-specific-functions
+ source ./lib/oesdk/package-sdks
+ source ./lib/oesdk/generate-report
  
- PE = "1"
--PR = "r4"
-+PR = "r5"
- PV_append = "+git${SRCPV}"
- 
--SRCREV = "7e4a343637c217f20b39e9862af6d5c4f696bae2"
-+SRCREV = "cfff0a2c889f29c03b9a3ee547a147b1c6727e2c"
- BRANCH ?= "master"
- 
- SRC_URI_remove = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master"
++# Update secdev package
++./lib/oesdk/update_secdev.sh
++
+ # This variable holds the architectures that are being built based
+ # on the machines.
+ ARCHS=""
+diff --git a/lib/oesdk/update_secdev.sh b/lib/oesdk/update_secdev.sh
+new file mode 100755
+index 0000000..1f0a409
+--- /dev/null
++++ b/lib/oesdk/update_secdev.sh
+@@ -0,0 +1,7 @@
++#!/bin/bash
++
++cd $TI_SECURE_DEV_PKG_K3
++git pull origin master
++if [ $? != 0 ]; then
++        echo "Updating the secdev failed"
++fi
 -- 
 2.17.1
 
