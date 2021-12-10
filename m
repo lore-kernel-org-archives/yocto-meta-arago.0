@@ -1,82 +1,416 @@
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web10.1141.1639098370572318852
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web12.11766.1639163391148266236
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 09 Dec 2021 17:06:10 -0800
+ Fri, 10 Dec 2021 11:09:51 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=popRRNve;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: yogeshs@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BA165tR020668;
-	Thu, 9 Dec 2021 19:06:05 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=tFScAzpO;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BAJ9l28001282;
+	Fri, 10 Dec 2021 13:09:47 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1639098365;
-	bh=hvzeeDRJI5oAMQJNTtvFrunXtlowvARkNuF5dGmrXks=;
+	s=ti-com-17Q1; t=1639163387;
+	bh=P272bPRyJqwPJYtVtlPEo9pc1yFFN7/kiJ/vjkkZKeg=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=popRRNveaZXE4jY7mw/FPgYcsNS6ExVqWzUnj/pRPEQbUedSAFbZABjMNxlBO4SlF
-	 CwDtk5a0+XY1jCvN+QAGepwLqt9WfT1NQbMZxDN3UTd9mzJrqtXZzze7W1Moe589LC
-	 UqU4NXP6DgD9NbdKAZiiYa3bxOubtlsn5l4z+Z18=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BA165XC055438
+	b=tFScAzpOBBtd5wyiF8Uy743kzBZ+1H3ALnc8aJ9KUYLGH0bzLxZ0z69H2HRYSJpjY
+	 WnwgVj2vlxZ6Bx78hQhEuP4c1O9/pCpZLldhhBJzvEKh+sAzlbcTnWtxfIGFcqjdu9
+	 5p6posyeXojf+KlvTfH0n3LyZEwB1HmKjimdlLiY=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BAJ9lLa088437
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 9 Dec 2021 19:06:05 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 9
- Dec 2021 19:06:04 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 10 Dec 2021 13:09:47 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 10
+ Dec 2021 13:09:46 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 9 Dec 2021 19:06:04 -0600
-Received: from [10.249.36.229] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BA164A0030148;
-	Thu, 9 Dec 2021 19:06:04 -0600
-Message-ID: <957e0aa8-f37c-a475-ab46-13b726f61855@ti.com>
-Date: Thu, 9 Dec 2021 19:06:04 -0600
+ Frontend Transport; Fri, 10 Dec 2021 13:09:46 -0600
+Received: from [10.249.39.29] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BAJ9kvl049169;
+	Fri, 10 Dec 2021 13:09:46 -0600
+Message-ID: <e0b10366-6972-e7f9-883f-e9b8d831e7f2@ti.com>
+Date: Fri, 10 Dec 2021 13:09:46 -0600
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.2
-Subject: Re: [meta-arago] [meta-ti][master/dunfell][PATCH] conf: j7200-hs: fix the wrong machine configuration included
-To: Denys Dmytriyenko <denis@denix.org>
-CC: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-References: <20211210004321.23793-1-yogeshs@ti.com>
- <20211210004635.GC18191@denix.org>
-From: "Yogesh Siraswar" <yogeshs@ti.com>
-In-Reply-To: <20211210004635.GC18191@denix.org>
+Subject: Re: [EXTERNAL] [meta-arago] [tisdk-build-scripts][PATCH 00/10] Build scripts simplification/cleanup pass #1
+To: Denys Dmytriyenko <denis@denix.org>, <meta-arago@lists.yoctoproject.org>
+CC: <j-humphreys@ti.com>, Denys Dmytriyenko <denys@konsulko.com>
+References: <1637640060-31733-1-git-send-email-denis@denix.org>
+ <1637640060-31733-13-git-send-email-denis@denix.org>
+From: "Ryan Eatmon" <reatmon@ti.com>
+In-Reply-To: <1637640060-31733-13-git-send-email-denis@denix.org>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Content-Language: en-US
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 
+Denys, I got two errors while trying to applying this patch series.  The 
+error are inline below.  Can you correct the patches and resubmit them?
 
 
-On 12/9/2021 6:46 PM, Denys Dmytriyenko wrote:
-> Wrong list?
+On 11/22/2021 22:00, Denys Dmytriyenko wrote:
+> From: Denys Dmytriyenko <denys@konsulko.com>
 > 
-Used wrong alias. Please ignore
+> tisdk-build-scripts project has started almost 10 years ago and initially
+> was envisioned as a dedicated CI vehicle, supporting OpenEmbedded and
+> Debian/Ubuntu, handling parallel and serial multi-machine builds, runtime
+> target testing, SDK installer packaging, detailed reporting tool, etc.
+> 
+> Over the years, a lot of that functionality has migrated to dedicated
+> facilities and frameworks (Jenkins build farm, OpenTest testing farm,
+> Django reporting portal, etc), so it is time to clean it up and simplify
+> a lot of things to make the code easy to read, understand and maintain.
+> 
+> Denys Dmytriyenko (10):
+>    Remove very old debian/ubuntu build scripts and configs
+>    Remove old webgen makefiles for very old AMSDK and CoreSDK releases
 
-> On Fri, Dec 10, 2021 at 12:43:21AM +0000, Yogesh Siraswar via lists.yoctoproject.org wrote:
->> j7-evm instead of j7200-evm was included causing boot failure
->>
->> Signed-off-by: Yogesh Siraswar <yogeshs@ti.com>
->> ---
->>   conf/machine/j7200-hs-evm.conf | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/conf/machine/j7200-hs-evm.conf b/conf/machine/j7200-hs-evm.conf
->> index c55be005..a5bd637e 100644
->> --- a/conf/machine/j7200-hs-evm.conf
->> +++ b/conf/machine/j7200-hs-evm.conf
->> @@ -2,7 +2,7 @@
->>   #@NAME: J7200 HS EVM
->>   #@DESCRIPTION: Machine configuration for the TI J7200 HS EVM
->>   
->> -require conf/machine/j7-evm.conf
->> +require conf/machine/j7200-evm.conf
->>   
->>   UBOOT_MACHINE = "j7200_hs_evm_a72_defconfig"
->>   
->> -- 
->> 2.17.1
+Applying: Remove old webgen makefiles for very old AMSDK and CoreSDK 
+releases
+error: corrupt patch at line 803
+Patch failed at 0002 Remove old webgen makefiles for very old AMSDK and 
+CoreSDK releases
+
+
+>    Remove rudimentary target testing with OpenTest CLI
+>    Remove very old build config files
+
+Applying: Remove very old build config files
+error: corrupt patch at line 14619
+Patch failed at 0004 Remove very old build config files
+
+
+>    Remove support for generating installer SDK
+>    Remove code that extracts and repackages SDK for runtime testing
+>    Remove ability to generate build/test report per machine
+>    Remove calls to packaging, reporting, testing and copying
+>      functionality
+>    If no configs specified, initialize LOG_DIR correctly
+>    Adjust default BUILD_DIR to be relative to SCRIPTS_DIR
+> 
+>   build-oesdk.sh                                     |  52 +--
+>   build-ubuntu-environment.sh                        | 194 --------
+>   configs/amsdk/amsdk-config-05.06.00.00.txt         | 288 ------------
+>   configs/amsdk/amsdk-config-05.07.00.00.txt         | 303 -------------
+>   configs/amsdk/amsdk-config-06.00.00.00.txt         | 314 -------------
+>   configs/amsdk/amsdk-config-07.00.00.00.txt         | 314 -------------
+>   configs/amsdk/amsdk-config-07.01.00.00.txt         | 314 -------------
+>   configs/amsdk/amsdk-config-08.00.00.00.txt         | 318 -------------
+>   configs/arago-core-tisdk-daisy-puget.txt           | 333 --------------
+>   configs/arago-core-tisdk-danny-puget.txt           | 315 -------------
+>   configs/arago-core-tisdk-dora-puget.txt            | 315 -------------
+>   configs/arago-core-tisdk-dylan-puget.txt           | 315 -------------
+>   configs/arago-core-tisdk-fido-puget.txt            | 337 --------------
+>   configs/arago-core-tisdk-krogoth-farm.txt          | 340 --------------
+>   configs/arago-core-tisdk-krogoth-puget.txt         | 340 --------------
+>   configs/arago-core-tisdk-master-puget.txt          | 337 --------------
+>   configs/coresdk/arago-core-amsdk-2013.04.01.txt    | 323 --------------
+>   configs/coresdk/arago-core-tisdk-2013.04.00.txt    | 323 --------------
+>   configs/coresdk/arago-core-tisdk-2013.04.01.txt    | 323 --------------
+>   configs/coresdk/arago-core-tisdk-2013.04.02.txt    | 323 --------------
+>   configs/coresdk/arago-core-tisdk-2013.10.00.txt    | 314 -------------
+>   configs/coresdk/arago-core-tisdk-2013.12.00.txt    | 314 -------------
+>   configs/coresdk/arago-core-tisdk-2013.12.01.txt    | 314 -------------
+>   configs/coresdk/arago-core-tisdk-2014.08.00.txt    | 318 -------------
+>   configs/coresdk/arago-core-tisdk-2014.10.01.txt    | 318 -------------
+>   configs/coresdk/arago-core-tisdk-2014.10.02.txt    | 321 -------------
+>   configs/coresdk/arago-core-tisdk-2015.01-puget.txt | 333 --------------
+>   configs/coresdk/arago-core-tisdk-2015.02-puget.txt | 333 --------------
+>   configs/coresdk/arago-core-tisdk-2015.03-puget.txt | 337 --------------
+>   configs/distroless-meta-ti-puget.txt               | 308 -------------
+>   configs/farm/arago-dunfell-next.txt                |   2 +-
+>   configs/farm/arago-dunfell.txt                     |   2 +-
+>   configs/farm/arago-krogoth.txt                     | 344 --------------
+>   configs/farm/arago-master.txt                      |   2 +-
+>   configs/farm/arago-morty-next-rel.txt              | 344 --------------
+>   configs/farm/arago-morty-next.txt                  | 344 --------------
+>   configs/farm/arago-morty.txt                       | 344 --------------
+>   configs/farm/arago-rocko-next.txt                  | 346 --------------
+>   configs/farm/arago-rocko.txt                       | 346 --------------
+>   configs/farm/arago-thud-next.txt                   | 349 ---------------
+>   configs/farm/arago-thud.txt                        | 349 ---------------
+>   configs/farm/arago-zeus-next.txt                   | 346 --------------
+>   configs/farm/arago-zeus.txt                        | 346 --------------
+>   configs/farm/distroless-dunfell.txt                |   2 +-
+>   configs/farm/distroless-master.txt                 |   2 +-
+>   configs/farm/distroless-morty.txt                  | 196 --------
+>   configs/farm/distroless-rocko.txt                  | 196 --------
+>   configs/farm/distroless-thud.txt                   | 198 --------
+>   configs/farm/distroless-zeus.txt                   | 198 --------
+>   configs/farm/poky-dunfell.txt                      |   2 +-
+>   configs/farm/poky-master.txt                       |   2 +-
+>   configs/farm/poky-morty.txt                        | 196 --------
+>   configs/farm/poky-rocko.txt                        | 196 --------
+>   configs/farm/poky-thud.txt                         | 198 --------
+>   configs/farm/poky-zeus.txt                         | 198 --------
+>   configs/target-debconf-selections.txt              | 212 ---------
+>   configs/ubuntu-environment-creation.conf           | 162 -------
+>   installer-files/tisdk.xml                          | 220 ---------
+>   lib/oesdk/bitbake-test-sdk-image                   | 381 ----------------
+>   lib/oesdk/generate-report                          | 295 ------------
+>   lib/oesdk/package-sdks                             | 496 ---------------------
+>   lib/oesdk/ti-sdk-host-install.sh                   | 227 ----------
+>   lib/run-opentest                                   | 375 ----------------
+>   lib/ubuntu/apt-helper-functions                    |  20 -
+>   lib/ubuntu/create-target-files                     |  51 ---
+>   lib/ubuntu/create-ubuntu-host-chroot.sh            |  77 ----
+>   lib/ubuntu/do-bind-mounts.sh                       |  22 -
+>   lib/ubuntu/kernel-build.sh                         |  46 --
+>   lib/ubuntu/run-opentest-on-target-image            |  35 --
+>   lib/ubuntu/sudo-check                              |   5 -
+>   lib/ubuntu/use-armhf-pbuilder.sh                   | 117 -----
+>   linux-devtest.tgz                                  | Bin 775952 -> 0 bytes
+>   opentest_cli_0.7.tar.gz                            | Bin 482035 -> 0 bytes
+>   .../amsdk/05.06.00.00/am335x-evm/webgen.mak        |  33 --
+>   .../amsdk/05.07.00.00/am180x-evm/webgen.mak        |  29 --
+>   .../amsdk/05.07.00.00/am335x-evm/webgen.mak        |  32 --
+>   .../amsdk/05.07.00.00/am3517-evm/webgen.mak        |  31 --
+>   .../amsdk/05.07.00.00/am37x-evm/webgen.mak         |  31 --
+>   .../amsdk/05.07.00.00/beagleboard/webgen.mak       |  29 --
+>   .../amsdk/06.00.00.00/am180x-evm/webgen.mak        |  29 --
+>   .../amsdk/06.00.00.00/am335x-evm/webgen.mak        |  34 --
+>   .../amsdk/06.00.00.00/am3517-evm/webgen.mak        |  31 --
+>   .../amsdk/06.00.00.00/am37x-evm/webgen.mak         |  31 --
+>   .../amsdk/06.00.00.00/beagleboard/webgen.mak       |  29 --
+>   .../amsdk/07.00.00.00/am335x-evm/webgen.mak        |  39 --
+>   .../amsdk/07.00.00.00/am437x-evm/webgen.mak        |  36 --
+>   .../amsdk/07.01.00.00/am437x-evm/webgen.mak        |  38 --
+>   .../amsdk/08.00.00.00/am335x-evm/webgen.mak        |  39 --
+>   .../amsdk/08.00.00.00/am437x-evm/webgen.mak        |  40 --
+>   .../amsdk/08.00.00.00/am57xx-evm/webgen.mak        |  38 --
+>   .../coresdk/2013.04.00/am335x-evm/webgen.mak       |  29 --
+>   .../coresdk/2013.04.00/dra7xx-evm/webgen.mak       |  27 --
+>   .../coresdk/2013.04.00/omap5-evm/webgen.mak        |  26 --
+>   .../coresdk/2013.04.01/am335x-evm/webgen.mak       |  29 --
+>   .../coresdk/2013.04.02/dra7xx-evm/webgen.mak       |  27 --
+>   .../coresdk/2013.04.02/omap5-evm/webgen.mak        |  26 --
+>   .../coresdk/2013.10.00/am335x-evm/webgen.mak       |  29 --
+>   .../coresdk/2013.10.00/am437x-evm/webgen.mak       |  29 --
+>   .../coresdk/2013.10.00/dra7xx-evm/webgen.mak       |  29 --
+>   .../coresdk/2013.10.00/omap5-evm/webgen.mak        |  28 --
+>   .../coresdk/2013.12.00/am335x-evm/webgen.mak       |  29 --
+>   .../coresdk/2013.12.00/am437x-evm/webgen.mak       |  29 --
+>   .../coresdk/2013.12.00/dra7xx-evm/webgen.mak       |  29 --
+>   .../coresdk/2013.12.00/omap5-evm/webgen.mak        |  28 --
+>   .../coresdk/2013.12.01/am335x-evm/webgen.mak       |  29 --
+>   .../coresdk/2013.12.01/am437x-evm/webgen.mak       |  29 --
+>   .../coresdk/2013.12.01/dra7xx-evm/webgen.mak       |  29 --
+>   .../coresdk/2013.12.01/omap5-evm/webgen.mak        |  28 --
+>   .../coresdk/2014.08.00/am335x-evm/webgen.mak       |  28 --
+>   .../coresdk/2014.08.00/am437x-evm/webgen.mak       |  28 --
+>   .../coresdk/2014.08.00/am57xx-evm/webgen.mak       |  28 --
+>   .../coresdk/2014.08.00/dra7xx-evm/webgen.mak       |  28 --
+>   .../coresdk/2014.08.00/k2hk-evm/webgen.mak         |  28 --
+>   .../coresdk/2014.10.01/am335x-evm/webgen.mak       |  28 --
+>   .../coresdk/2014.10.01/am437x-evm/webgen.mak       |  28 --
+>   .../coresdk/2014.10.01/am57xx-evm/webgen.mak       |  28 --
+>   .../coresdk/2014.10.01/dra7xx-evm/webgen.mak       |  28 --
+>   .../coresdk/2014.10.01/k2hk-evm/webgen.mak         |  28 --
+>   .../coresdk/2015.01/am335x-evm/webgen.mak          |  28 --
+>   .../coresdk/2015.01/am437x-evm/webgen.mak          |  28 --
+>   .../coresdk/2015.01/am57xx-evm/webgen.mak          |  28 --
+>   .../coresdk/2015.01/dra7xx-evm/webgen.mak          |  28 --
+>   .../coresdk/2015.01/k2e-evm/webgen.mak             |  28 --
+>   .../coresdk/2015.01/k2hk-evm/webgen.mak            |  28 --
+>   .../coresdk/2015.01/k2l-evm/webgen.mak             |  28 --
+>   .../coresdk/2015.02/am335x-evm/webgen.mak          |  28 --
+>   .../coresdk/2015.02/am437x-evm/webgen.mak          |  28 --
+>   .../coresdk/2015.02/am57xx-evm/webgen.mak          |  28 --
+>   .../coresdk/2015.02/dra7xx-evm/webgen.mak          |  28 --
+>   .../coresdk/2015.02/k2e-evm/webgen.mak             |  28 --
+>   .../coresdk/2015.02/k2g-evm/webgen.mak             |  28 --
+>   .../coresdk/2015.02/k2hk-evm/webgen.mak            |  28 --
+>   .../coresdk/2015.02/k2l-evm/webgen.mak             |  28 --
+>   test-scripts/S08-fake-weston-calibrate             |   6 -
+>   test-scripts/S90-fake-pointercal                   |  12 -
+>   test-scripts/boottest.sh                           |   3 -
+>   test-scripts/check-dhrystone-perf.sh               |  25 --
+>   test-scripts/check-kernel-version.sh               |  12 -
+>   test-scripts/check-launch.sh                       | 121 -----
+>   test-scripts/check-linpack-perf.sh                 |  31 --
+>   test-scripts/check-matrix-gui.sh                   |  12 -
+>   test-scripts/check-psp-version.sh                  |  12 -
+>   test-scripts/check-whetstone-perf.sh               |  30 --
+>   test-scripts/check_app.sh                          |  94 ----
+>   test-scripts/common.sh                             |  88 ----
+>   test-scripts/nightly-test.sh                       |  93 ----
+>   test-scripts/opentest.sh                           |   3 -
+>   test-scripts/st_log.sh                             | 120 -----
+>   test-scripts/test-files/mandatory-common.txt       |   1 -
+>   .../test-files/mandatory-oesdk-am180x-evm.txt      |   1 -
+>   .../test-files/mandatory-oesdk-am3517-evm.txt      |   1 -
+>   .../test-files/mandatory-oesdk-am37x-evm.txt       |   1 -
+>   test-scripts/test-files/mandatory-oesdk-armv7a.txt |   1 -
+>   .../test-files/mandatory-oesdk-beagleboard.txt     |   1 -
+>   test-scripts/test-files/mandatory-oesdk.txt        |   7 -
+>   .../test-files/optional-oesdk-am180x-evm.txt       |   2 -
+>   .../test-files/optional-oesdk-am3517-evm.txt       |   2 -
+>   .../test-files/optional-oesdk-am37x-evm.txt        |   2 -
+>   test-scripts/test-files/optional-oesdk-armv7a.txt  |   4 -
+>   .../test-files/optional-oesdk-beagleboard.txt      |   1 -
+>   .../test-files/optional-oesdk-dra7xx-evm.txt       |   1 -
+>   .../test-files/optional-oesdk-omap5-evm.txt        |   1 -
+>   test-scripts/test-files/optional-oesdk.txt         |  11 -
+>   163 files changed, 12 insertions(+), 19485 deletions(-)
+>   delete mode 100755 build-ubuntu-environment.sh
+>   delete mode 100644 configs/amsdk/amsdk-config-05.06.00.00.txt
+>   delete mode 100644 configs/amsdk/amsdk-config-05.07.00.00.txt
+>   delete mode 100644 configs/amsdk/amsdk-config-06.00.00.00.txt
+>   delete mode 100644 configs/amsdk/amsdk-config-07.00.00.00.txt
+>   delete mode 100644 configs/amsdk/amsdk-config-07.01.00.00.txt
+>   delete mode 100644 configs/amsdk/amsdk-config-08.00.00.00.txt
+>   delete mode 100644 configs/arago-core-tisdk-daisy-puget.txt
+>   delete mode 100644 configs/arago-core-tisdk-danny-puget.txt
+>   delete mode 100644 configs/arago-core-tisdk-dora-puget.txt
+>   delete mode 100644 configs/arago-core-tisdk-dylan-puget.txt
+>   delete mode 100644 configs/arago-core-tisdk-fido-puget.txt
+>   delete mode 100644 configs/arago-core-tisdk-krogoth-farm.txt
+>   delete mode 100644 configs/arago-core-tisdk-krogoth-puget.txt
+>   delete mode 100644 configs/arago-core-tisdk-master-puget.txt
+>   delete mode 100644 configs/coresdk/arago-core-amsdk-2013.04.01.txt
+>   delete mode 100644 configs/coresdk/arago-core-tisdk-2013.04.00.txt
+>   delete mode 100644 configs/coresdk/arago-core-tisdk-2013.04.01.txt
+>   delete mode 100644 configs/coresdk/arago-core-tisdk-2013.04.02.txt
+>   delete mode 100644 configs/coresdk/arago-core-tisdk-2013.10.00.txt
+>   delete mode 100644 configs/coresdk/arago-core-tisdk-2013.12.00.txt
+>   delete mode 100644 configs/coresdk/arago-core-tisdk-2013.12.01.txt
+>   delete mode 100644 configs/coresdk/arago-core-tisdk-2014.08.00.txt
+>   delete mode 100644 configs/coresdk/arago-core-tisdk-2014.10.01.txt
+>   delete mode 100644 configs/coresdk/arago-core-tisdk-2014.10.02.txt
+>   delete mode 100644 configs/coresdk/arago-core-tisdk-2015.01-puget.txt
+>   delete mode 100644 configs/coresdk/arago-core-tisdk-2015.02-puget.txt
+>   delete mode 100644 configs/coresdk/arago-core-tisdk-2015.03-puget.txt
+>   delete mode 100644 configs/distroless-meta-ti-puget.txt
+>   delete mode 100644 configs/farm/arago-krogoth.txt
+>   delete mode 100644 configs/farm/arago-morty-next-rel.txt
+>   delete mode 100644 configs/farm/arago-morty-next.txt
+>   delete mode 100644 configs/farm/arago-morty.txt
+>   delete mode 100644 configs/farm/arago-rocko-next.txt
+>   delete mode 100644 configs/farm/arago-rocko.txt
+>   delete mode 100644 configs/farm/arago-thud-next.txt
+>   delete mode 100644 configs/farm/arago-thud.txt
+>   delete mode 100644 configs/farm/arago-zeus-next.txt
+>   delete mode 100644 configs/farm/arago-zeus.txt
+>   delete mode 100644 configs/farm/distroless-morty.txt
+>   delete mode 100644 configs/farm/distroless-rocko.txt
+>   delete mode 100644 configs/farm/distroless-thud.txt
+>   delete mode 100644 configs/farm/distroless-zeus.txt
+>   delete mode 100644 configs/farm/poky-morty.txt
+>   delete mode 100644 configs/farm/poky-rocko.txt
+>   delete mode 100644 configs/farm/poky-thud.txt
+>   delete mode 100644 configs/farm/poky-zeus.txt
+>   delete mode 100644 configs/target-debconf-selections.txt
+>   delete mode 100644 configs/ubuntu-environment-creation.conf
+>   delete mode 100644 installer-files/tisdk.xml
+>   delete mode 100644 lib/oesdk/generate-report
+>   delete mode 100644 lib/oesdk/package-sdks
+>   delete mode 100755 lib/oesdk/ti-sdk-host-install.sh
+>   delete mode 100644 lib/run-opentest
+>   delete mode 100644 lib/ubuntu/apt-helper-functions
+>   delete mode 100644 lib/ubuntu/create-target-files
+>   delete mode 100755 lib/ubuntu/create-ubuntu-host-chroot.sh
+>   delete mode 100755 lib/ubuntu/do-bind-mounts.sh
+>   delete mode 100755 lib/ubuntu/kernel-build.sh
+>   delete mode 100644 lib/ubuntu/run-opentest-on-target-image
+>   delete mode 100644 lib/ubuntu/sudo-check
+>   delete mode 100755 lib/ubuntu/use-armhf-pbuilder.sh
+>   delete mode 100644 linux-devtest.tgz
+>   delete mode 100644 opentest_cli_0.7.tar.gz
+>   delete mode 100644 publish-sdk-data/amsdk/05.06.00.00/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/05.07.00.00/am180x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/05.07.00.00/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/05.07.00.00/am3517-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/05.07.00.00/am37x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/05.07.00.00/beagleboard/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/06.00.00.00/am180x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/06.00.00.00/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/06.00.00.00/am3517-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/06.00.00.00/am37x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/06.00.00.00/beagleboard/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/07.00.00.00/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/07.00.00.00/am437x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/07.01.00.00/am437x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/08.00.00.00/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/08.00.00.00/am437x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/amsdk/08.00.00.00/am57xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.04.00/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.04.00/dra7xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.04.00/omap5-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.04.01/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.04.02/dra7xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.04.02/omap5-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.10.00/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.10.00/am437x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.10.00/dra7xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.10.00/omap5-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.12.00/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.12.00/am437x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.12.00/dra7xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.12.00/omap5-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.12.01/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.12.01/am437x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.12.01/dra7xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2013.12.01/omap5-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2014.08.00/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2014.08.00/am437x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2014.08.00/am57xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2014.08.00/dra7xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2014.08.00/k2hk-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2014.10.01/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2014.10.01/am437x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2014.10.01/am57xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2014.10.01/dra7xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2014.10.01/k2hk-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.01/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.01/am437x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.01/am57xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.01/dra7xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.01/k2e-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.01/k2hk-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.01/k2l-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.02/am335x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.02/am437x-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.02/am57xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.02/dra7xx-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.02/k2e-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.02/k2g-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.02/k2hk-evm/webgen.mak
+>   delete mode 100644 publish-sdk-data/coresdk/2015.02/k2l-evm/webgen.mak
+>   delete mode 100755 test-scripts/S08-fake-weston-calibrate
+>   delete mode 100755 test-scripts/S90-fake-pointercal
+>   delete mode 100755 test-scripts/boottest.sh
+>   delete mode 100755 test-scripts/check-dhrystone-perf.sh
+>   delete mode 100755 test-scripts/check-kernel-version.sh
+>   delete mode 100755 test-scripts/check-launch.sh
+>   delete mode 100755 test-scripts/check-linpack-perf.sh
+>   delete mode 100755 test-scripts/check-matrix-gui.sh
+>   delete mode 100755 test-scripts/check-psp-version.sh
+>   delete mode 100755 test-scripts/check-whetstone-perf.sh
+>   delete mode 100755 test-scripts/check_app.sh
+>   delete mode 100755 test-scripts/common.sh
+>   delete mode 100755 test-scripts/nightly-test.sh
+>   delete mode 100755 test-scripts/opentest.sh
+>   delete mode 100755 test-scripts/st_log.sh
+>   delete mode 100644 test-scripts/test-files/mandatory-common.txt
+>   delete mode 100644 test-scripts/test-files/mandatory-oesdk-am180x-evm.txt
+>   delete mode 100644 test-scripts/test-files/mandatory-oesdk-am3517-evm.txt
+>   delete mode 100644 test-scripts/test-files/mandatory-oesdk-am37x-evm.txt
+>   delete mode 100644 test-scripts/test-files/mandatory-oesdk-armv7a.txt
+>   delete mode 100644 test-scripts/test-files/mandatory-oesdk-beagleboard.txt
+>   delete mode 100644 test-scripts/test-files/mandatory-oesdk.txt
+>   delete mode 100644 test-scripts/test-files/optional-oesdk-am180x-evm.txt
+>   delete mode 100644 test-scripts/test-files/optional-oesdk-am3517-evm.txt
+>   delete mode 100644 test-scripts/test-files/optional-oesdk-am37x-evm.txt
+>   delete mode 100644 test-scripts/test-files/optional-oesdk-armv7a.txt
+>   delete mode 100644 test-scripts/test-files/optional-oesdk-beagleboard.txt
+>   delete mode 100644 test-scripts/test-files/optional-oesdk-dra7xx-evm.txt
+>   delete mode 100644 test-scripts/test-files/optional-oesdk-omap5-evm.txt
+>   delete mode 100644 test-scripts/test-files/optional-oesdk.txt
+> 
+
+-- 
+Ryan Eatmon
+reatmon@ti.com
