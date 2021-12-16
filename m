@@ -1,71 +1,56 @@
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web09.509.1639585734410267303
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web12.64.1639687853135052604
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 15 Dec 2021 08:28:54 -0800
+ Thu, 16 Dec 2021 12:50:53 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=fQHDWR6Y;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1BFGSqGm122000;
-	Wed, 15 Dec 2021 10:28:52 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1639585732;
-	bh=c3NTSHRRzQmckL3ChK7QrHzUbGiqsXD6qO6G4Ixkmr4=;
-	h=From:To:Subject:Date;
-	b=fQHDWR6Y5qinmXNhRxEF4/MIrQ1D00R6gzRi7sNlmZpN2khbGa6qJxpnRWGm2+ZeD
-	 xY9T1IZ/fPFK+fOvtSdFOx2+29iMAsw0tdR/I1uvQDd5Gk7lqDuvayD33BmH8k4lKd
-	 G6RhJHl4M+bdZJ5B2v5EgixvIe3QfZLNfTsXnqLM=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1BFGSq10009544
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 15 Dec 2021 10:28:52 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 15
- Dec 2021 10:28:52 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 15 Dec 2021 10:28:52 -0600
-Received: from uda0214219 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1BFGSqZG118665;
-	Wed, 15 Dec 2021 10:28:52 -0600
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1mxX9A-0001nQ-C9; Wed, 15 Dec 2021 10:28:52 -0600
-From: "Ryan Eatmon" <reatmon@ti.com>
-To: Yogesh Siraswar <yogeshs@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [oe-layersetup][PATCH] Moving to latest BitBake 1.46 commit.
-Date: Wed, 15 Dec 2021 10:28:52 -0600
-Message-ID: <20211215162852.6862-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
-MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 9E7D440C4E;
+	Thu, 16 Dec 2021 20:50:51 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 5ey0aozSVb5f; Thu, 16 Dec 2021 20:50:51 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8541640B05;
+	Thu, 16 Dec 2021 20:50:50 +0000 (UTC)
+Received: from gimli.denix (unknown [192.168.30.6])
+	by mail.denix.org (Postfix) with ESMTP id E6B36174715;
+	Thu, 16 Dec 2021 15:50:49 -0500 (EST)
+From: "Denys Dmytriyenko" <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [dunfell/master][PATCH] linux-ti-staging: move docker.cfg to be accessible by rt/systest variants
+Date: Thu, 16 Dec 2021 15:50:46 -0500
+Message-Id: <1639687846-43304-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 2.7.4
 
-Moving to the latest commit for the BitBake v1.46 line to fix a compile
-error with the 08.01.00.006 release.
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+Move docker.cfg config fragment to common files/ directory to be accessible by
+rt/systest variants of the linux-ti-staging kernel.
+
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- configs/coresdk/coresdk-08.01.00.006-config.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-distro/recipes-kernel/linux/docker.inc                       | 2 ++
+ .../recipes-kernel/linux/{linux-ti-staging => files}/docker.cfg         | 0
+ 2 files changed, 2 insertions(+)
+ rename meta-arago-distro/recipes-kernel/linux/{linux-ti-staging => files}/docker.cfg (100%)
 
-diff --git a/configs/coresdk/coresdk-08.01.00.006-config.txt b/configs/coresdk/coresdk-08.01.00.006-config.txt
-index 78d8bf7..8995410 100644
---- a/configs/coresdk/coresdk-08.01.00.006-config.txt
-+++ b/configs/coresdk/coresdk-08.01.00.006-config.txt
-@@ -1,7 +1,7 @@
- # This file takes repo entries in the format
- # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
- 
--bitbake,git://git.openembedded.org/bitbake,1.46,0e0af15b84e07e6763300dcd092b980086b9b9c4
-+bitbake,git://git.openembedded.org/bitbake,1.46,f18b65d0b9a6b983d53bde491e1bf2ca56949444
- meta-arago,git://git.yoctoproject.org/meta-arago,dunfell,08.01.00.006,layers=meta-arago-distro:meta-arago-extras
- #meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
- meta-qt5,git://github.com/meta-qt5/meta-qt5.git,dunfell,b4d24d70aca75791902df5cd59a4f4a54aa4a125,layers=
+diff --git a/meta-arago-distro/recipes-kernel/linux/docker.inc b/meta-arago-distro/recipes-kernel/linux/docker.inc
+index 63a01ba..51eaf8d 100644
+--- a/meta-arago-distro/recipes-kernel/linux/docker.inc
++++ b/meta-arago-distro/recipes-kernel/linux/docker.inc
+@@ -1,2 +1,4 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++
+ SRC_URI += "file://docker.cfg"
+ KERNEL_CONFIG_FRAGMENTS += "${WORKDIR}/docker.cfg"
+diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging/docker.cfg b/meta-arago-distro/recipes-kernel/linux/files/docker.cfg
+similarity index 100%
+rename from meta-arago-distro/recipes-kernel/linux/linux-ti-staging/docker.cfg
+rename to meta-arago-distro/recipes-kernel/linux/files/docker.cfg
 -- 
-2.17.1
+2.7.4
 
