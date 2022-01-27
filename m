@@ -1,58 +1,57 @@
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web08.21599.1643242929326918826
+ by mx.groups.io with SMTP id smtpd.web10.22182.1643242929976997710
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 26 Jan 2022 16:22:09 -0800
+ Wed, 26 Jan 2022 16:22:10 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id BAE9C40CD0
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D85D040CBF
 	for <meta-arago@lists.yoctoproject.org>; Thu, 27 Jan 2022 00:22:08 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ek7ahaL4YCpK for <meta-arago@lists.yoctoproject.org>;
+	with ESMTP id 1YPh4Ja3CgxH for <meta-arago@lists.yoctoproject.org>;
 	Thu, 27 Jan 2022 00:22:08 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A24B440C82
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B7A5340CCA
 	for <meta-arago@lists.yoctoproject.org>; Thu, 27 Jan 2022 00:22:07 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 90BC5174735
+	by mail.denix.org (Postfix) with ESMTP id BC860174739
 	for <meta-arago@lists.yoctoproject.org>; Wed, 26 Jan 2022 19:22:05 -0500 (EST)
 From: "Denys Dmytriyenko" <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
-Subject: [master][PATCH 13/23] branding-bleeding: Add AUTOREV for K3 Image Gen
-Date: Wed, 26 Jan 2022 19:21:54 -0500
-Message-Id: <1643242924-25090-14-git-send-email-denis@denix.org>
+Subject: [master][PATCH 17/23] ti-test: Add viddec-test-app for j7-evm
+Date: Wed, 26 Jan 2022 19:21:58 -0500
+Message-Id: <1643242924-25090-18-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1643242924-25090-1-git-send-email-denis@denix.org>
 References: <1643242924-25090-1-git-send-email-denis@denix.org>
 
-From: Yogesh Siraswar <yogeshs@ti.com>
+From: Sidraya <sidraya.bj@pathpartnertech.com>
 
-This patch adds AUTOREV support for K3 Image gen to be in consistent
-with ti-linux-fw
+The viddec-test-app provides the video decoder test app
+(tidec_decode) for j7-evm.
 
-Signed-off-by: Yogesh Siraswar <yogeshs@ti.com>
+Signed-off-by: Angela Stegmaier <angelabaker@ti.com>
+Signed-off-by: Sidraya <sidraya.bj@pathpartnertech.com>
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- meta-arago-distro/conf/distro/include/branding-bleeding.inc | 3 +++
- 1 file changed, 3 insertions(+)
+ meta-arago-distro/recipes-core/packagegroups/ti-test.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-bleeding.inc b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-index f1e0bc5..71b09f7 100644
---- a/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-@@ -16,6 +16,9 @@ SRCREV_pn-arm-trusted-firmware = "${AUTOREV}"
- # Point to the latest ti linux firmware
- TI_LINUX_FW_SRCREV = "${AUTOREV}"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+index 81498c8..11b4539 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+@@ -83,6 +83,7 @@ ARAGO_TI_TEST_append_k3 = " \
  
-+# Point to the latest ti k3 image gen
-+K3_IMAGE_GEN_SRCREV = "${AUTOREV}"
-+
- # Point to latest nightly metadata
- #TI_RTOS_METADATA_URI = "git://git.ti.com/processor-sdk/coresdk_rtos_releases.git"
- #TI_RTOS_METADATA_PROTOCOL = "git"
+ ARAGO_TI_TEST_append_j7 = " \
+     ufs-utils \
++    viddec-test-app \
+ "
+ 
+ ARAGO_TI_TEST_append_omapl138 = " \
 -- 
 2.7.4
 
