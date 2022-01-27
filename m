@@ -1,100 +1,74 @@
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.22084.1643242928218669625
+ by mx.groups.io with SMTP id smtpd.web08.21597.1643242929031734880
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 26 Jan 2022 16:22:08 -0800
+ Wed, 26 Jan 2022 16:22:09 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 9C2FD40CC9
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C9D7340CCB
 	for <meta-arago@lists.yoctoproject.org>; Thu, 27 Jan 2022 00:22:07 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id eH5vQsmFs200 for <meta-arago@lists.yoctoproject.org>;
+	with ESMTP id r-ipMzCqbtfy for <meta-arago@lists.yoctoproject.org>;
 	Thu, 27 Jan 2022 00:22:07 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7EDB740C2E
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 95E1D40CC3
 	for <meta-arago@lists.yoctoproject.org>; Thu, 27 Jan 2022 00:22:07 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 3C11717472B
+	by mail.denix.org (Postfix) with ESMTP id 69C57174730
 	for <meta-arago@lists.yoctoproject.org>; Wed, 26 Jan 2022 19:22:05 -0500 (EST)
 From: "Denys Dmytriyenko" <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
-Subject: [master][PATCH 03/23] qtwebengine: remove seccomp filter sandbox hack
-Date: Wed, 26 Jan 2022 19:21:44 -0500
-Message-Id: <1643242924-25090-4-git-send-email-denis@denix.org>
+Subject: [master][PATCH 08/23] packagegroups: tisdk-connectivity: package intel-9260 linux firmware images
+Date: Wed, 26 Jan 2022 19:21:49 -0500
+Message-Id: <1643242924-25090-9-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1643242924-25090-1-git-send-email-denis@denix.org>
 References: <1643242924-25090-1-git-send-email-denis@denix.org>
 
-From: Vivien Didelot <vivien.didelot@gmail.com>
+From: Sinthu Raja <sinthu.raja@ti.com>
 
-Now that qtbase-conf disables the seccomp filter sandbox via an
-environment variable, the hack patch against qtwebengine can be
-dropped.
+Package linux-firmware-iwlwifi-9260 and linux-firmware-ibt-18 containing
+firmware for Intel 9260 (WLAN and BT)
 
-Signed-off-by: Vivien Didelot <vdidelot@pbsc.com>
-Acked-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+Reviewed-by: Denys Dmytriyenko <denys@konsulko.com>
 Signed-off-by: Yogesh Siraswar <yogeshs@ti.com>
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- ...-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch | 32 ----------------------
- .../recipes-qt/qt5/qtwebengine_git.bbappend        |  4 ---
- 2 files changed, 36 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch
+ .../packagegroups/packagegroup-arago-tisdk-connectivity.bb            | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch b/meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch
-deleted file mode 100644
-index 09f1870..0000000
---- a/meta-arago-distro/recipes-qt/qt5/qtwebengine/0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch
-+++ /dev/null
-@@ -1,32 +0,0 @@
--From 77fc6e4391562a1f84d82b58319a73de08242797 Mon Sep 17 00:00:00 2001
--From: Eric Ruei <e-ruei1@ti.com>
--Date: Fri, 8 Mar 2019 18:17:06 -0500
--Subject: [PATCH 3/3] qtwebengine: HACK: disable SECCOMP-BPF Sandbox at startup
--
--SECCOMP-BPF Sandbox does not work due to unexpected FUTEX_UNLOCK_PI call
--from the pthread implementation
--Disable this feature temporarily until those issues are resolved.
--
--Upstream-Status: Inappropriate [HACK]
--
--Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-----
-- src/core/web_engine_context.cpp | 2 ++
-- 1 file changed, 2 insertions(+)
--
--diff --git a/src/core/web_engine_context.cpp b/src/core/web_engine_context.cpp
--index 48e5bc4..9ba3fa4 100644
----- a/src/core/web_engine_context.cpp
--+++ b/src/core/web_engine_context.cpp
--@@ -347,6 +347,8 @@ WebEngineContext::WebEngineContext()
--         parsedCommandLine->AppendSwitch(switches::kNoSandbox);
-- #elif defined(Q_OS_LINUX)
--         parsedCommandLine->AppendSwitch(service_manager::switches::kDisableSetuidSandbox);
--+        // HACK: disable seccomp filter sandbox for now because it does not work
--+        parsedCommandLine->AppendSwitch(service_manager::switches::kDisableSeccompFilterSandbox);
-- #endif
--     } else {
--         parsedCommandLine->AppendSwitch(switches::kNoSandbox);
---- 
--1.9.1
--
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
-index c50b020..6459bbf 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwebengine_git.bbappend
-@@ -1,8 +1,4 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- PR_append = ".arago1"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+index 913795a..707c1ba 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-connectivity.bb
+@@ -1,6 +1,6 @@
+ DESCRIPTION = "Task to install wireless packages into the target FS"
+ LICENSE = "MIT"
+-PR = "r41"
++PR = "r42"
  
--SRC_URI += " \
--    file://0003-qtwebengine-HACK-disable-SECCOMP-BPF-Sandbox-at-star.patch \
--"
--
- DEPENDS += "bison-native"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+@@ -18,6 +18,7 @@ WLAN_COMMON = "\
+     linux-firmware-iwlwifi-8000c \
+     linux-firmware-iwlwifi-8265 \
+     linux-firmware-iwlwifi-3160-17 \
++    linux-firmware-iwlwifi-9260 \
+ "
+ 
+ WLAN_TI = "\
+@@ -42,6 +43,7 @@ BT_COMMON = "\
+     pulseaudio-module-bluez5-discover \
+     pulseaudio-lib-bluez5-util \
+     sbc \
++    linux-firmware-ibt-18 \
+ "
+ 
+ BT_TI = "\
 -- 
 2.7.4
 
