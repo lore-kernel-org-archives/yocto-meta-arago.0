@@ -1,115 +1,66 @@
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.22181.1643242929970035472
+ by mx.groups.io with SMTP id smtpd.web12.21534.1643242930104591663
  for <meta-arago@lists.yoctoproject.org>;
  Wed, 26 Jan 2022 16:22:10 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id D089E40CC2
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D99C440CD2
 	for <meta-arago@lists.yoctoproject.org>; Thu, 27 Jan 2022 00:22:08 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id t9CRwn4a5N8B for <meta-arago@lists.yoctoproject.org>;
+	with ESMTP id dRvieSIN9fcG for <meta-arago@lists.yoctoproject.org>;
 	Thu, 27 Jan 2022 00:22:08 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B2F5240CBF
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B76C840CC9
 	for <meta-arago@lists.yoctoproject.org>; Thu, 27 Jan 2022 00:22:07 +0000 (UTC)
 Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id DF6AD17473C
+	by mail.denix.org (Postfix) with ESMTP id D3BD117473B
 	for <meta-arago@lists.yoctoproject.org>; Wed, 26 Jan 2022 19:22:05 -0500 (EST)
 From: "Denys Dmytriyenko" <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
-Subject: [master][PATCH 20/23] linux-ti-staging: enable necessary configs for running docker containers
-Date: Wed, 26 Jan 2022 19:22:01 -0500
-Message-Id: <1643242924-25090-21-git-send-email-denis@denix.org>
+Subject: [master][PATCH 19/23] Update the ltp-ddt to latest
+Date: Wed, 26 Jan 2022 19:22:00 -0500
+Message-Id: <1643242924-25090-20-git-send-email-denis@denix.org>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1643242924-25090-1-git-send-email-denis@denix.org>
 References: <1643242924-25090-1-git-send-email-denis@denix.org>
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+From: Praneeth Bajjuri <praneeth@ti.com>
 
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+This has the following test fixes from ltp-ddt project
+
+b57f35f47 testcases: ipc: Add support for PRU_ECHO test to be run on AM65 and AM64
+31ee44622 Crypto: change logic for interrupt grep for different platforms
+87afb0add testcases:ddt:scripts:common:get_active_eth_interfaces.sh
+19775282c ti_codecs: modprobe fails to locate the modules
+15a7adca3 Crypto: add more channel in arr for interrupt grep
+
+Signed-off-by: Praneeth Bajjuri <praneeth@ti.com>
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- meta-arago-distro/recipes-kernel/linux/docker.inc    |  2 ++
- .../linux/linux-ti-staging-rt_%.bbappend             |  1 +
- .../linux/linux-ti-staging-systest_%.bbappend        |  1 +
- .../recipes-kernel/linux/linux-ti-staging/docker.cfg | 20 ++++++++++++++++++++
- .../recipes-kernel/linux/linux-ti-staging_%.bbappend |  1 +
- 5 files changed, 25 insertions(+)
- create mode 100644 meta-arago-distro/recipes-kernel/linux/docker.inc
- create mode 100644 meta-arago-distro/recipes-kernel/linux/linux-ti-staging/docker.cfg
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-kernel/linux/docker.inc b/meta-arago-distro/recipes-kernel/linux/docker.inc
-new file mode 100644
-index 0000000..63a01ba
---- /dev/null
-+++ b/meta-arago-distro/recipes-kernel/linux/docker.inc
-@@ -0,0 +1,2 @@
-+SRC_URI += "file://docker.cfg"
-+KERNEL_CONFIG_FRAGMENTS += "${WORKDIR}/docker.cfg"
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
-index 7d03f8e..165e86f 100644
---- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
-+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-rt_%.bbappend
-@@ -3,5 +3,6 @@ MACHINE_KERNEL_PR_append = ".arago1"
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+index 1b52f32..e943179 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+@@ -11,10 +11,10 @@ PROVIDES += "ltp"
+ DEPENDS += "alsa-lib"
  
- require copy-defconfig.inc
-+require docker.inc
+ PE = "1"
+-PR = "r4"
++PR = "r5"
+ PV_append = "+git${SRCPV}"
  
- ALLOW_EMPTY_kernel-devicetree = "1"
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
-index 7d03f8e..165e86f 100644
---- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
-+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging-systest_%.bbappend
-@@ -3,5 +3,6 @@ MACHINE_KERNEL_PR_append = ".arago1"
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-SRCREV = "7e4a343637c217f20b39e9862af6d5c4f696bae2"
++SRCREV = "cfff0a2c889f29c03b9a3ee547a147b1c6727e2c"
+ BRANCH ?= "master"
  
- require copy-defconfig.inc
-+require docker.inc
- 
- ALLOW_EMPTY_kernel-devicetree = "1"
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging/docker.cfg b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging/docker.cfg
-new file mode 100644
-index 0000000..9ac604b
---- /dev/null
-+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging/docker.cfg
-@@ -0,0 +1,20 @@
-+CONFIG_VETH=m
-+CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=m
-+CONFIG_NETFILTER_XT_MATCH_CONNTRACK=m
-+CONFIG_NETFILTER_XT_MATCH_IPVS=m
-+CONFIG_NET_CLS_CGROUP=m
-+CONFIG_IP_VS=m
-+CONFIG_IP_VS_RR=m
-+CONFIG_VXLAN=m
-+CONFIG_IPVLAN=m
-+CONFIG_MACVLAN=m
-+CONFIG_DUMMY=m
-+CONFIG_NF_NAT_FTP=m
-+CONFIG_NF_CONNTRACK_FTP=m
-+CONFIG_NF_NAT_TFTP=m
-+CONFIG_NF_CONNTRACK_TFTP=m
-+CONFIG_AUFS_FS=m
-+CONFIG_BTRFS_FS=m
-+CONFIG_BLK_DEV_DM=m
-+CONFIG_DM_THIN_PROVISIONING=m
-+CONFIG_OVERLAY_FS=m
-diff --git a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
-index 5bddbef..31940e3 100644
---- a/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
-+++ b/meta-arago-distro/recipes-kernel/linux/linux-ti-staging_%.bbappend
-@@ -3,5 +3,6 @@ MACHINE_KERNEL_PR_append = ".arago5"
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
- require copy-defconfig.inc
-+require docker.inc
- 
- ALLOW_EMPTY_kernel-devicetree = "1"
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master"
 -- 
 2.7.4
 
