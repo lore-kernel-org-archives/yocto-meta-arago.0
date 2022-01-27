@@ -1,244 +1,116 @@
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.22187.1643242935469826703
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web12.4166.1643317882950367448
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 26 Jan 2022 16:22:15 -0800
+ Thu, 27 Jan 2022 13:11:23 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id E283340CBF
-	for <meta-arago@lists.yoctoproject.org>; Thu, 27 Jan 2022 00:22:14 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Ffy270eb2_YR for <meta-arago@lists.yoctoproject.org>;
-	Thu, 27 Jan 2022 00:22:14 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C0FA640C82
-	for <meta-arago@lists.yoctoproject.org>; Thu, 27 Jan 2022 00:22:07 +0000 (UTC)
-Received: from gimli.denix (unknown [192.168.30.6])
-	by mail.denix.org (Postfix) with ESMTP id 83F64174734
-	for <meta-arago@lists.yoctoproject.org>; Wed, 26 Jan 2022 19:22:05 -0500 (EST)
-From: "Denys Dmytriyenko" <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Subject: [master][PATCH 12/23] recipes: update github SRC_URIs
-Date: Wed, 26 Jan 2022 19:21:53 -0500
-Message-Id: <1643242924-25090-13-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1643242924-25090-1-git-send-email-denis@denix.org>
-References: <1643242924-25090-1-git-send-email-denis@denix.org>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=aOW1LJkp;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 20RLBLom127278;
+	Thu, 27 Jan 2022 15:11:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1643317881;
+	bh=hQHbFz4KcJR/QpzS/Z1vSn7RAZRijwuBiG/WxaKDRZ0=;
+	h=From:To:Subject:Date;
+	b=aOW1LJkpAHw0v3jgoFHiUM5DQUPCDijJKv5hOSKV7K0UXgYdU+zYJ4N1V9bydeMyW
+	 FHFKWyusQgFpvMLILmIC8Trd1pimpQfcnoHyFmITzjrWRsU6FO13spZHmnlbvZEGDo
+	 BF6OjNTuY6W50iz0NRAhxnOyqO4H4iqAb21p5g64=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 20RLBLe7044190
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 27 Jan 2022 15:11:21 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 27
+ Jan 2022 15:11:20 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 27 Jan 2022 15:11:20 -0600
+Received: from uda0214219 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 20RLBKZY101277;
+	Thu, 27 Jan 2022 15:11:20 -0600
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1nDC36-0006C7-M8; Thu, 27 Jan 2022 15:11:20 -0600
+From: "Ryan Eatmon" <reatmon@ti.com>
+To: Yogesh Siraswar <yogeshs@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [oe-layersetup][master][PATCH] Add git_retry.sh wrapper around git
+Date: Thu, 27 Jan 2022 15:11:20 -0600
+Message-ID: <20220127211120.23772-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+We are seeing a sporadic failure in our nightly builds
+due to the git clone/fetch calls timing out and erroring.
+These events are usually resolved by just trying the git
+call again, but in a scripted flow it causes a failure
+in that run.  The git_retry.sh script solves that by
+allowing the git command to be retried a few times while
+sleeping in between.
 
-https://github.blog/2021-09-01-improving-git-protocol-security-github/
-
-GitHub is deprecating unauthenticated protocols, including git:// so update
-SRC_URIs with protocol=https
-
-Explicitly pass branch=master where omitted, as bitbake now requires it.
-
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
-Signed-off-by: Yogesh Siraswar <yogeshs@ti.com>
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- .../recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb             | 2 +-
- meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb         | 2 +-
- meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb           | 2 +-
- meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb           | 2 +-
- meta-arago-extras/recipes-devtools/ion/ion-tests_git.bb                 | 2 +-
- meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb          | 2 +-
- meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb             | 2 +-
- meta-arago-extras/recipes-devtools/websocketd/websocketd_0.4.1.bb       | 2 +-
- meta-arago-extras/recipes-extended/ltp/ltp_20210524.bb                  | 2 +-
- meta-arago-extras/recipes-graphics/devil/devil_1.8.0.bb                 | 2 +-
- meta-arago-extras/recipes-graphics/glfw/glfw_git.bb                     | 2 +-
- meta-arago-extras/recipes-graphics/kms++/kms++_git.bb                   | 2 +-
- meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb                  | 2 +-
- meta-arago-extras/recipes-support/stb/stb_git.bb                        | 2 +-
- 14 files changed, 14 insertions(+), 14 deletions(-)
+ git_retry.sh          | 29 +++++++++++++++++++++++++++++
+ oe-layertool-setup.sh |  4 ++--
+ 2 files changed, 31 insertions(+), 2 deletions(-)
+ create mode 100755 git_retry.sh
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
-index a172c1b..cd330f5 100644
---- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
-+++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension_2.2.0.bb
-@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=1f1a56bb2dadf5f2be8eb342acf4ed79"
- 
- SRCREV = "e9c2fe4c5034a06b159cfd45dbd485755cbaf4c8"
- 
--SRC_URI = "git://github.com/GENIVI/${BPN}.git;protocol=http \
-+SRC_URI = "git://github.com/GENIVI/${BPN}.git;protocol=https;branch=master \
-            file://01-ivi-input-controller-update-to-weston-7.patch \
-            file://02-ivi-id-agent-update-to-weston-7-header.patch \
-            file://03-ivi-id-agent-update-dependencies-to-build-on-weston-8.patch \
-diff --git a/meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb b/meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb
-index a792060..9f61ee5 100644
---- a/meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb
-+++ b/meta-arago-extras/recipes-devtools/cpuloadgen/cpuloadgen_git.bb
-@@ -10,7 +10,7 @@ PR = "r1"
- BRANCH ?= "master"
- SRCREV ?= "301d69899d6f4d84f143e0ed86957eea416a27a6"
- 
--SRC_URI = "git://github.com/ptitiano/cpuloadgen.git;protocol=git;branch=${BRANCH}"
-+SRC_URI = "git://github.com/ptitiano/cpuloadgen.git;protocol=https;branch=${BRANCH}"
- 
- S = "${WORKDIR}/git"
- 
-diff --git a/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb b/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
-index 9693fe6..fab2b4a 100644
---- a/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
-+++ b/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://src/heap_test_fixture.cpp;beginline=1;endline=15;md5=
- PV = "1.0"
- 
- BRANCH = "master"
--SRC_URI = "git://github.com/glneo/dma-heap-tests.git;protocol=git;branch=${BRANCH}"
-+SRC_URI = "git://github.com/glneo/dma-heap-tests.git;protocol=https;branch=${BRANCH}"
- SRCREV = "bccbfbf24baccefa09439a924f61f04e82b3910a"
- 
- DEPENDS = "googletest"
-diff --git a/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb b/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb
-index d01833b..3cd0b8e 100644
---- a/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb
-+++ b/meta-arago-extras/recipes-devtools/eventdump/eventdump_git.bb
-@@ -7,7 +7,7 @@ PV = "1.0+git${SRCPV}"
- 
- SRCREV = "5db45a36a05a78ea44a4cb25312ed5ee3c2bd76d"
- 
--SRC_URI = "git://github.com/TI-ECS/eventdump.git;protocol=git"
-+SRC_URI = "git://github.com/TI-ECS/eventdump.git;protocol=https;branch=master"
- 
- S = "${WORKDIR}/git"
- 
-diff --git a/meta-arago-extras/recipes-devtools/ion/ion-tests_git.bb b/meta-arago-extras/recipes-devtools/ion/ion-tests_git.bb
-index 52346f1..d30d069 100644
---- a/meta-arago-extras/recipes-devtools/ion/ion-tests_git.bb
-+++ b/meta-arago-extras/recipes-devtools/ion/ion-tests_git.bb
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://src/ion_test.c;beginline=1;endline=15;md5=b225db90086
- PV = "1.0"
- 
- BRANCH = "master"
--SRC_URI = "git://github.com/glneo/ion-tests.git;protocol=git;branch=${BRANCH} \
-+SRC_URI = "git://github.com/glneo/ion-tests.git;protocol=https;branch=${BRANCH} \
- 	file://0001-CMakeLists.txt-disable-phys-addr-for-now.patch \
- 	file://0001-map_test-Replace-PAGE_SIZE-with-local-variable-name.patch \
- "
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-index 9033a3f..434624a 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-@@ -17,7 +17,7 @@ PV_append = "+git${SRCPV}"
- SRCREV = "4548c131f8fcbe240746c6114aa0a12b61e6166b"
- BRANCH ?= "master"
- 
--SRC_URI_remove = "git://github.com/linux-test-project/ltp.git"
-+SRC_URI_remove = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master"
- SRC_URI_prepend = "git://git.ti.com/test-automation/ltp-ddt.git;branch=${BRANCH} "
- 
- export prefix = "/opt/ltp"
-diff --git a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-index 7216f05..7f63db3 100644
---- a/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-+++ b/meta-arago-extras/recipes-devtools/omapconf/omapconf_git.bb
-@@ -11,7 +11,7 @@ COMPATIBLE_MACHINE = "ti33x|ti43x|omap-a15|omap4"
- BRANCH ?= "master"
- SRCREV = "ff07b6992bacb1e1586c72b7d2be469caee4a347"
- 
--SRC_URI = "git://github.com/omapconf/omapconf.git;protocol=git;branch=${BRANCH}"
-+SRC_URI = "git://github.com/omapconf/omapconf.git;protocol=https;branch=${BRANCH}"
- 
- S = "${WORKDIR}/git"
- 
-diff --git a/meta-arago-extras/recipes-devtools/websocketd/websocketd_0.4.1.bb b/meta-arago-extras/recipes-devtools/websocketd/websocketd_0.4.1.bb
-index f17f9d6..39e180d 100644
---- a/meta-arago-extras/recipes-devtools/websocketd/websocketd_0.4.1.bb
-+++ b/meta-arago-extras/recipes-devtools/websocketd/websocketd_0.4.1.bb
-@@ -7,7 +7,7 @@ inherit go-mod
- 
- GO_IMPORT = "github.com/joewalnes/websocketd"
- 
--SRC_URI = "git://${GO_IMPORT}"
-+SRC_URI = "git://${GO_IMPORT};protocol=https;branch=master"
- SRCREV = "035c18cc3e6962dabd5ea2ad8845260726a4a99e"
- 
- # bitbake only exports proxy variables during fetching, but go handles
-diff --git a/meta-arago-extras/recipes-extended/ltp/ltp_20210524.bb b/meta-arago-extras/recipes-extended/ltp/ltp_20210524.bb
-index 3f6594f..4cc9742 100644
---- a/meta-arago-extras/recipes-extended/ltp/ltp_20210524.bb
-+++ b/meta-arago-extras/recipes-extended/ltp/ltp_20210524.bb
-@@ -29,7 +29,7 @@ CFLAGS_append_powerpc64 = " -D__SANE_USERSPACE_TYPES__"
- CFLAGS_append_mipsarchn64 = " -D__SANE_USERSPACE_TYPES__"
- SRCREV = "0fb171f2beddaf64bd27597577c206c0f892b3cd"
- 
--SRC_URI = "git://github.com/linux-test-project/ltp.git \
-+SRC_URI = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master \
-            file://0001-Remove-OOM-tests-from-runtest-mm.patch \
-            "
- 
-diff --git a/meta-arago-extras/recipes-graphics/devil/devil_1.8.0.bb b/meta-arago-extras/recipes-graphics/devil/devil_1.8.0.bb
-index 6a7796c..923af61 100644
---- a/meta-arago-extras/recipes-graphics/devil/devil_1.8.0.bb
-+++ b/meta-arago-extras/recipes-graphics/devil/devil_1.8.0.bb
-@@ -6,7 +6,7 @@ HOMEPAGE = "https://github.com/DentonW/DevIL"
- LICENSE = "LGPLv2"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=fc178bcd425090939a8b634d1d6a9594"
- 
--SRC_URI = "git://github.com/dentonw/devil.git;protocol=git;branch=master \
-+SRC_URI = "git://github.com/dentonw/devil.git;protocol=https;branch=master \
-            file://Remove-ILUT-dependency.patch"
- 
- SRCREV = "e34284a7e07763769f671a74b4fec718174ad862"
-diff --git a/meta-arago-extras/recipes-graphics/glfw/glfw_git.bb b/meta-arago-extras/recipes-graphics/glfw/glfw_git.bb
-index 6c1206c..c4ff59f 100644
---- a/meta-arago-extras/recipes-graphics/glfw/glfw_git.bb
-+++ b/meta-arago-extras/recipes-graphics/glfw/glfw_git.bb
-@@ -8,7 +8,7 @@ PV = "3.2.1+git${SRCPV}"
- PR = "r0"
- 
- BRANCH = "master"
--SRC_URI = "git://github.com/glfw/glfw.git;branch=${BRANCH}"
-+SRC_URI = "git://github.com/glfw/glfw.git;protocol=https;branch=${BRANCH}"
- SRCREV = "0a3c4f5d80b041ee1a12c8da3503653d98bd1a15"
- 
- SRC_URI += "file://0001-HACK-CMakeList.txt-remove-check-for-Wayland-Egl-prov.patch"
-diff --git a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
-index e126df9..b10aa5d 100644
---- a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
-+++ b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
-@@ -7,7 +7,7 @@ PV = "2.1"
- PR = "r1"
- 
- BRANCH = "master"
--SRC_URI = "git://github.com/tomba/kmsxx.git;protocol=git;branch=${BRANCH}"
-+SRC_URI = "git://github.com/tomba/kmsxx.git;protocol=https;branch=${BRANCH}"
- SRCREV = "5afc8d918f2c084acd65027604868dfde43395cf"
- 
- DEPENDS = "drm fmt"
-diff --git a/meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb b/meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb
-index 2bac72f..02d4931 100644
---- a/meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb
-+++ b/meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb
-@@ -4,7 +4,7 @@ LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=4325afd396febcb659c36b49533135d4 \
-                     file://debian/copyright;md5=332234a99007d25da40f41ee96aa388f"
- 
--SRC_URI = "git://github.com/mstpd/mstpd.git;protocol=https \
-+SRC_URI = "git://github.com/mstpd/mstpd.git;protocol=https;branch=master \
-            file://0001-gcc8-strncpy-werror-workaround.patch"
- 
- PV = "0.0.7+git${SRCPV}"
-diff --git a/meta-arago-extras/recipes-support/stb/stb_git.bb b/meta-arago-extras/recipes-support/stb/stb_git.bb
-index 4181007..7b0b645 100644
---- a/meta-arago-extras/recipes-support/stb/stb_git.bb
-+++ b/meta-arago-extras/recipes-support/stb/stb_git.bb
-@@ -8,7 +8,7 @@ BRANCH = "master"
- SRCREV = "e6afb9cbae4064da8c3e69af3ff5c4629579c1d2"
- 
- SRC_URI = " \
--    git://github.com/nothings/stb.git;branch=${BRANCH} \
-+    git://github.com/nothings/stb.git;protocol=https;branch=${BRANCH} \
- "
- 
- S = "${WORKDIR}/git"
+diff --git a/git_retry.sh b/git_retry.sh
+new file mode 100755
+index 0000000..e5ed5bb
+--- /dev/null
++++ b/git_retry.sh
+@@ -0,0 +1,29 @@
++#!/bin/bash
++
++let glRetries=5
++let glDelay=15
++let glExitCode=0
++
++while [ $glRetries -gt 0 ]; do
++
++    git "$@"
++
++    glExitCode=$?
++
++    if [ $glExitCode -eq 0 ]; then
++        exit
++    fi
++
++    let glRetries=$glRetries-1
++
++    if [ $glRetries -gt 0 ]; then
++        echo "git failed... remaining attempts: $glRetries"
++        sleep $glDelay
++    fi
++
++done
++
++echo "git failed... giving up..."
++
++exit $glExitCode
++
+diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
+index df1523f..932ec49 100755
+--- a/oe-layertool-setup.sh
++++ b/oe-layertool-setup.sh
+@@ -336,9 +336,9 @@ clone_repo() {
+     if [ -d $sourcedir/$name ]
+     then
+         cd $sourcedir/$name
+-        git fetch --all
++        $oebase/git_retry.sh fetch --all
+     else
+-        git clone $uri $sourcedir/$name
++        $oebase/git_retry.sh clone $uri $sourcedir/$name
+         if [ "$?" != "0" ]
+         then
+             echo "ERROR: Could not clone repository at $uri"
 -- 
-2.7.4
+2.17.1
 
