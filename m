@@ -1,79 +1,92 @@
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web11.2189.1643826393438505828
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web10.2221.1643826393509124391
  for <meta-arago@lists.yoctoproject.org>;
  Wed, 02 Feb 2022 10:26:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=wDQd5sFH;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 212IQVL3102059;
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=UgbRxaRa;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 212IQVmN089065;
 	Wed, 2 Feb 2022 12:26:31 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1643826391;
-	bh=k7Kg3oOL6j/43dns0YdBiL/Q/5nJbZieb3dhvuRPbD8=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=wDQd5sFHq3TKCVpN2Rv0PWOEJEm51IW2Ag23kuHiVTdBHXweZ+sKnmGcI+ofisTYW
-	 OvzFuuF1VActZWkTIJwtxHZIis0dsFjzt2gH+3qcaUQMXctuM9C8nMRUs4w7uNNIkX
-	 kcq+gYtR8lV0K498QHdWaJMUc/ib1IeTL1M6gW5s=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 212IQVFV122831
+	bh=l5477F7XiBUzLsnrHIce3eKaIgfpI1R/xmQEkpqDRLM=;
+	h=From:To:Subject:Date;
+	b=UgbRxaRa3PP9M6R8TkF/qlV3eY2nTltZgoxMW/R74jcAFak4hZocAVhrnC4M+BbfU
+	 gYCMKgoKgpg2tetU/pBJSwNqcQXO3FC6GVSyng5nDX4RIEGNBG4RtQHkF42J6ZhglH
+	 CRTvxSGnGmNYP0MUSt+GUC0jtsPEtDFFaLoD9+DM=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 212IQVVg018403
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
 	Wed, 2 Feb 2022 12:26:31 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 2
  Feb 2022 12:26:30 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 2 Feb 2022 12:26:31 -0600
+ Frontend Transport; Wed, 2 Feb 2022 12:26:30 -0600
 Received: from uda0214219 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 212IQUqF117262;
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 212IQUdh078977;
 	Wed, 2 Feb 2022 12:26:30 -0600
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1nFKKs-0007Xd-Lp; Wed, 02 Feb 2022 12:26:30 -0600
+	id 1nFKKs-0007XY-8Q; Wed, 02 Feb 2022 12:26:30 -0600
 From: "Ryan Eatmon" <reatmon@ti.com>
 To: Yogesh Siraswar <yogeshs@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko <denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-ti][dunfell][PATCH v2 02/12] optee-os: Add support for alternate console
-Date: Wed, 2 Feb 2022 12:26:20 -0600
-Message-ID: <20220202182630.28943-3-reatmon@ti.com>
+Subject: [meta-ti][dunfell][PATCH v2 00/12] Adding support for j721s2
+Date: Wed, 2 Feb 2022 12:26:18 -0600
+Message-ID: <20220202182630.28943-1-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220202182630.28943-1-reatmon@ti.com>
-References: <20220202182630.28943-1-reatmon@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Content-Type: text/plain
 
-From: Nishanth Menon <nm@ti.com>
+*** BLURB HERE ***
 
-Actual systems may choose to use a different console from the default
-Allow the machine configurations to describe the same.
+Hari Nagalla (1):
+  recipes-ti/ti-rtos-bin: Fix unavailable binary path
 
-Since the option provided is custom to TI K3, make this a k3 product
-override capability.
+Nishanth Menon (8):
+  machine: Add j721s2 evm configuration
+  optee-os: Add support for alternate console
+  trusted-firmware-a: Add support for alternate console
+  recipes-bsp/ti-rtos: Use target_c7x_0 instead of just c7x
+  ti-rtos-bin: Add j721s2
+  recipes-bsp/ti-rtos: Define the TARGET and ALTERNATE_TARGET as well.
+  recipies-ti: ti-rtos-firmware: Fixup typo for rtos firmware
+  recipes-bsp: Add cnm-wave-fw firmware recipe
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
----
- recipes-security/optee/optee-os_%.bbappend | 2 ++
- 1 file changed, 2 insertions(+)
+Praneeth Bajjuri (2):
+  ti-linux-fw: Bump up TIFS and DM to v2022.01
+  Revert "ti-sci-fw: Fix for k3-image-gen issue for combined boot
+    images"
 
-diff --git a/recipes-security/optee/optee-os_%.bbappend b/recipes-security/optee/optee-os_%.bbappend
-index 9bd0b933..4e01ea74 100644
---- a/recipes-security/optee/optee-os_%.bbappend
-+++ b/recipes-security/optee/optee-os_%.bbappend
-@@ -10,6 +10,8 @@ SRC_URI_ti-soc = " \
-     file://0007-allow-setting-sysroot-for-clang.patch \
- "
- 
-+EXTRA_OEMAKE_append_k3 = "${@ 'CFG_CONSOLE_UART='+ d.getVar('OPTEE_K3_USART') if d.getVar('OPTEE_K3_USART') else ''}"
-+
- do_compile_prepend_ti-soc() {
-     export TI_SECURE_DEV_PKG=${TI_SECURE_DEV_PKG}
- }
+Ryan Eatmon (1):
+  cnm-wave-fw: Fix name of firmware for j721s2
+
+ conf/machine/j721s2-evm-k3r5.conf             | 11 ++++
+ conf/machine/j721s2-evm.conf                  | 22 +++++++
+ recipes-bsp/cnm-wave-fw/cnm-wave-fw_git.bb    | 42 ++++++++++++
+ .../ipc-lld/ipc-lld-examples-rtos_git.bb      |  4 +-
+ recipes-bsp/ipc-lld/ipc-lld-fw_git.bb         |  4 +-
+ recipes-bsp/ti-linux-fw/ti-linux-fw.inc       |  9 +--
+ ...gning-of-binaries-for-combined-boot-.patch | 64 -------------------
+ recipes-bsp/ti-sci-fw/ti-sci-fw_git.bb        | 28 ++++++--
+ .../trusted-firmware-a_%.bbappend             |  2 +
+ recipes-bsp/u-boot/u-boot-ti.inc              |  6 ++
+ recipes-kernel/linux/kernel-rdepends.inc      |  3 +
+ recipes-security/optee/optee-os_%.bbappend    |  2 +
+ recipes-ti/ti-rtos-bin/ti-rtos-firmware.bb    | 59 ++++++++++++++++-
+ 13 files changed, 175 insertions(+), 81 deletions(-)
+ create mode 100644 conf/machine/j721s2-evm-k3r5.conf
+ create mode 100644 conf/machine/j721s2-evm.conf
+ create mode 100644 recipes-bsp/cnm-wave-fw/cnm-wave-fw_git.bb
+ delete mode 100644 recipes-bsp/ti-sci-fw/files/0001-Makefile-Skip-signing-of-binaries-for-combined-boot-.patch
+
 -- 
 2.17.1
 
