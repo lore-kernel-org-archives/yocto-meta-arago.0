@@ -1,136 +1,99 @@
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web11.2195.1643826395772768744
+ by mx.groups.io with SMTP id smtpd.web09.2361.1643826777928661121
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 02 Feb 2022 10:26:36 -0800
+ Wed, 02 Feb 2022 10:32:58 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=Z3tgFqHV;
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=lHfrOPDJ;
  spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 212IQXNr089103;
-	Wed, 2 Feb 2022 12:26:33 -0600
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 212IWtDf091946;
+	Wed, 2 Feb 2022 12:32:55 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1643826393;
-	bh=IsFq+HMf2mvJptJhhWGkGfhin27ldpXdbfXTmXFYogU=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=Z3tgFqHVWxvms9wqzL0+T1wqPYA8422eWF9/9gnm5OuivmDjKn9yjN3Sqq/PHN1w9
-	 mSseLjfXi907j19qBhngXqsx4/4U6xHrF+6TvpNotvbrTQ26G/OQLMN6/3FcJlFMtl
-	 EVUNfoFRj+uKfZaO9+7Hhqx5ir0/fqYuHBFJvuak=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 212IQXBA055739
+	s=ti-com-17Q1; t=1643826775;
+	bh=6/XQj/7pGk7VEURARkJGFxCNiDjN24OIv5PuAzrMxkw=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=lHfrOPDJNRWp/Phg4lfr7x2Aipbner9DxJJSP8/w320DvHbHQdFpJQBfj9E4U+Ltr
+	 2rP5EuCm7fryi4L/mxSNbv6c6NO+Kisp0p6G5G1DshQcyBkqEwkjXGlzZBfGC9nBmq
+	 LIdEwc02+sSdcIcLt8RKFZA4Qxudw5hVM7q+QprE=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 212IWtWu001440
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 2 Feb 2022 12:26:33 -0600
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 2 Feb 2022 12:32:55 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 2
- Feb 2022 12:26:31 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2022 12:32:55 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 2 Feb 2022 12:26:31 -0600
-Received: from uda0214219 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 212IQVcO078986;
-	Wed, 2 Feb 2022 12:26:31 -0600
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1nFKKt-0007YP-GQ; Wed, 02 Feb 2022 12:26:31 -0600
-From: "Ryan Eatmon" <reatmon@ti.com>
+ Frontend Transport; Wed, 2 Feb 2022 12:32:55 -0600
+Received: from [10.249.37.55] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 212IWtIM121581;
+	Wed, 2 Feb 2022 12:32:55 -0600
+Message-ID: <5c041db0-1b8e-7048-6e3b-b8b040f21ee2@ti.com>
+Date: Wed, 2 Feb 2022 12:32:55 -0600
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [EXTERNAL] [meta-arago] [meta-ti][dunfell][PATCH v2 00/12] Adding support for j721s2
 To: Yogesh Siraswar <yogeshs@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko <denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-ti][dunfell][PATCH v2 08/12] recipes-bsp: Add cnm-wave-fw firmware recipe
-Date: Wed, 2 Feb 2022 12:26:26 -0600
-Message-ID: <20220202182630.28943-9-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220202182630.28943-1-reatmon@ti.com>
-References: <20220202182630.28943-1-reatmon@ti.com>
-MIME-Version: 1.0
+References: <16D00B6558BF5602.20712@lists.yoctoproject.org>
+From: "Ryan Eatmon" <reatmon@ti.com>
+In-Reply-To: <16D00B6558BF5602.20712@lists.yoctoproject.org>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain
+Content-Language: en-US
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Nishanth Menon <nm@ti.com>
+Ignore this patch.  I sent this to the wrong list.
 
-Add firmware recipe to add the Wave521cl firmware pieces in for j7
-platform.
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
----
- recipes-bsp/cnm-wave-fw/cnm-wave-fw_git.bb | 41 ++++++++++++++++++++++
- recipes-bsp/ti-linux-fw/ti-linux-fw.inc    |  1 +
- recipes-kernel/linux/kernel-rdepends.inc   |  3 ++
- 3 files changed, 45 insertions(+)
- create mode 100644 recipes-bsp/cnm-wave-fw/cnm-wave-fw_git.bb
+On 2/2/2022 12:26, Ryan Eatmon via lists.yoctoproject.org wrote:
+> *** BLURB HERE ***
+> 
+> Hari Nagalla (1):
+>    recipes-ti/ti-rtos-bin: Fix unavailable binary path
+> 
+> Nishanth Menon (8):
+>    machine: Add j721s2 evm configuration
+>    optee-os: Add support for alternate console
+>    trusted-firmware-a: Add support for alternate console
+>    recipes-bsp/ti-rtos: Use target_c7x_0 instead of just c7x
+>    ti-rtos-bin: Add j721s2
+>    recipes-bsp/ti-rtos: Define the TARGET and ALTERNATE_TARGET as well.
+>    recipies-ti: ti-rtos-firmware: Fixup typo for rtos firmware
+>    recipes-bsp: Add cnm-wave-fw firmware recipe
+> 
+> Praneeth Bajjuri (2):
+>    ti-linux-fw: Bump up TIFS and DM to v2022.01
+>    Revert "ti-sci-fw: Fix for k3-image-gen issue for combined boot
+>      images"
+> 
+> Ryan Eatmon (1):
+>    cnm-wave-fw: Fix name of firmware for j721s2
+> 
+>   conf/machine/j721s2-evm-k3r5.conf             | 11 ++++
+>   conf/machine/j721s2-evm.conf                  | 22 +++++++
+>   recipes-bsp/cnm-wave-fw/cnm-wave-fw_git.bb    | 42 ++++++++++++
+>   .../ipc-lld/ipc-lld-examples-rtos_git.bb      |  4 +-
+>   recipes-bsp/ipc-lld/ipc-lld-fw_git.bb         |  4 +-
+>   recipes-bsp/ti-linux-fw/ti-linux-fw.inc       |  9 +--
+>   ...gning-of-binaries-for-combined-boot-.patch | 64 -------------------
+>   recipes-bsp/ti-sci-fw/ti-sci-fw_git.bb        | 28 ++++++--
+>   .../trusted-firmware-a_%.bbappend             |  2 +
+>   recipes-bsp/u-boot/u-boot-ti.inc              |  6 ++
+>   recipes-kernel/linux/kernel-rdepends.inc      |  3 +
+>   recipes-security/optee/optee-os_%.bbappend    |  2 +
+>   recipes-ti/ti-rtos-bin/ti-rtos-firmware.bb    | 59 ++++++++++++++++-
+>   13 files changed, 175 insertions(+), 81 deletions(-)
+>   create mode 100644 conf/machine/j721s2-evm-k3r5.conf
+>   create mode 100644 conf/machine/j721s2-evm.conf
+>   create mode 100644 recipes-bsp/cnm-wave-fw/cnm-wave-fw_git.bb
+>   delete mode 100644 recipes-bsp/ti-sci-fw/files/0001-Makefile-Skip-signing-of-binaries-for-combined-boot-.patch
+> 
 
-diff --git a/recipes-bsp/cnm-wave-fw/cnm-wave-fw_git.bb b/recipes-bsp/cnm-wave-fw/cnm-wave-fw_git.bb
-new file mode 100644
-index 00000000..6a36d733
---- /dev/null
-+++ b/recipes-bsp/cnm-wave-fw/cnm-wave-fw_git.bb
-@@ -0,0 +1,41 @@
-+SUMMARY = "Chips&Media codec firmware files"
-+
-+require recipes-bsp/ti-linux-fw/ti-linux-fw.inc
-+
-+inherit deploy
-+inherit update-alternatives
-+
-+LICENSE = "BSD-3-Clause"
-+LIC_FILES_CHKSUM = "file://LICENCE.cnm;md5=93b67e6bac7f8fec22b96b8ad0a1a9d0"
-+
-+PV = "${CNM_WAVE521_FW_VERSION}"
-+PR = "${INC_PR}.0"
-+
-+CLEANBROKEN = "1"
-+
-+COMPATIBLE_MACHINE = "j7"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+S = "${WORKDIR}/git"
-+TARGET_WAVE215C = "wave521c_codec_fw.bin"
-+
-+ALTERNATIVE_LINK_NAME[wave521c_codec_fw.bin] = "${base_libdir}/firmware/${TARGET_WAVE215C}"
-+ALTERNATIVE_TARGET[wave521c_codec_fw.bin] = "${base_libdir}/firmware/cnm/${TARGET_WAVE215C}"
-+ALTERNATIVE_PRIORITY = "10"
-+
-+# Set up names for the firmwares
-+ALTERNATIVE_${PN}_j7 = "\
-+                    wave521c_codec_fw.bin"
-+
-+do_install() {
-+	install -d ${D}${base_libdir}/firmware/cnm
-+	install -m 0644 ${S}/cnm/${TARGET_WAVE215C} ${D}${base_libdir}/firmware/cnm/${TARGET_WAVE215C}
-+}
-+
-+# make sure that lib/firmware, and all its contents are part of the package
-+FILES_${PN} = "${base_libdir}/firmware"
-+
-+# we don't want to configure and build the source code
-+do_compile[noexec] = "1"
-+do_configure[noexec] = "1"
-diff --git a/recipes-bsp/ti-linux-fw/ti-linux-fw.inc b/recipes-bsp/ti-linux-fw/ti-linux-fw.inc
-index f1607686..9bd2d0a8 100644
---- a/recipes-bsp/ti-linux-fw/ti-linux-fw.inc
-+++ b/recipes-bsp/ti-linux-fw/ti-linux-fw.inc
-@@ -17,6 +17,7 @@ PRUETH_FW_AM65X_SR2_VERSION = "02.02.09.07"
- GOODIX_FW_VERSION = "1.0.0.0"
- CADENCE_MHDP_FW_VERSION = "1.2.17"
- IMG_DEC_FW_VERSION = "1.0"
-+CNM_WAVE521_FW_VERSION = "1.0.00"
- 
- TI_LINUX_FW_SRCREV ?= "c96a734a059889e571dcf30c0638157c690a6e6e"
- SRCREV = "${TI_LINUX_FW_SRCREV}"
-diff --git a/recipes-kernel/linux/kernel-rdepends.inc b/recipes-kernel/linux/kernel-rdepends.inc
-index 76b7a508..2a6302af 100644
---- a/recipes-kernel/linux/kernel-rdepends.inc
-+++ b/recipes-kernel/linux/kernel-rdepends.inc
-@@ -42,3 +42,6 @@ RDEPENDS_${KERNEL_PACKAGE_NAME}-base_append_j7 = " cadence-mhdp-fw"
- 
- # Add run-time dependency for Video Decoding firmware to the rootfs
- RDEPENDS_${KERNEL_PACKAGE_NAME}-base_append_j7 = " vxd-dec-fw"
-+
-+# Add run-time dependency for Chips&Media Wave521 firmware to the rootfs
-+RDEPENDS_${KERNEL_PACKAGE_NAME}-base_append_j7 = " cnm-wave-fw"
 -- 
-2.17.1
-
+Ryan Eatmon
+reatmon@ti.com
