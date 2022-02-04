@@ -1,51 +1,51 @@
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
- by mx.groups.io with SMTP id smtpd.web12.9252.1643982482036150671
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+ by mx.groups.io with SMTP id smtpd.web09.6981.1643967102817484079
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 04 Feb 2022 05:48:02 -0800
+ Fri, 04 Feb 2022 01:31:43 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baylibre-com.20210112.gappssmtp.com header.s=20210112 header.b=hPZwWyz/;
- spf=pass (domain: baylibre.com, ip: 209.85.128.46, mailfrom: clabbe@baylibre.com)
-Received: by mail-wm1-f46.google.com with SMTP id n8so4538674wmk.3
-        for <meta-arago@lists.yoctoproject.org>; Fri, 04 Feb 2022 05:48:01 -0800 (PST)
+ dkim=pass header.i=@baylibre-com.20210112.gappssmtp.com header.s=20210112 header.b=BXC2L0G+;
+ spf=pass (domain: baylibre.com, ip: 209.85.221.53, mailfrom: clabbe@baylibre.com)
+Received: by mail-wr1-f53.google.com with SMTP id s18so10130063wrv.7
+        for <meta-arago@lists.yoctoproject.org>; Fri, 04 Feb 2022 01:31:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=Kp5NKV58QgnaXJzTlWUsE8ZbwRRkEeaMUselT9GMmXI=;
-        b=hPZwWyz/aIYNbdYsxrGYcBU3r8SoTXFXHO3LL605uk1EFilgbZNcltJuWpowLrXrhL
-         Ihh2dk/K1VjN6EStj553PMhyW9mP7oVlWtA+iZONuL9kSjQGsXpWayFZSGGn+i4Wkw+2
-         nUM5frMtYv8F+R+JxWBVY+mgUZ6db6/u55Ht4srLR9c7IneuFVP2zn5KarDqTNS2W31j
-         yiwG7C20ePX7qtpoVY/rb6Ltn1enh/GVax41LgzXJjz/VLXqHIeVPnMBlEikdFtuUzBQ
-         /DAAEjukIVcIo3BO4xb81twXi7VIkEfgcQSzBc7vcCr091klopvdrHEcxyMR3OcKBpjr
-         7F+g==
+        b=BXC2L0G+OIzTZxMb8wVO69dGVYfRYx6OUb+ac7f6fvTJp/N/NLJvfm3pkvGivatV4B
+         Q0A9k7a9rO2og5mUiYeL1Fjin6WUNvReSOZDsRA3pdbFPLszg8LslIWuqvGgdx1NyLIu
+         s/c/AYXxf2DYXH65lUwI5dcB+jSyPghp89MfSO+tqO8CHF8LfFnav38nb+AxSgXNU0hb
+         V3wUwwKmCoyUOyUQ4dmRAIJUt2hhZMDCj7dCLHkm6KvCtGJHYaZvttcbgmiweGPVjgyn
+         zfeVmoCyNVTLVYqNIXZhjuWTY9MvyK8cK1uOhdmRk5OsYvEF7xUzbNbcg1Tzsw6KYfzc
+         VaAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=Kp5NKV58QgnaXJzTlWUsE8ZbwRRkEeaMUselT9GMmXI=;
-        b=YZROXWu4IMaMUobkGobXZb6g0m6aIwyd1K9hLT4+1YKEgs0c5rlzlCmf9ap25PIKIc
-         PHpKdeX/aTnX9dwdma6V5RuWT2+ZA2bNPZg6lcwpb/U8+BQpMyfFZzvQ6JQkvp9ztoim
-         gaJrmD0XUGmEminWu1MKuLK3Nd6epSwpgYCgNUMC7rWDz5aVsPbElfbak7ifhnlanioO
-         Ay+D9D3OxMjw/19Dlv/8YJ3yO6N98C1nIb8qYVPK49kTdNBXkxjvfd8NGqrC8q8Blobf
-         lrBuO4q755DzL5DJ87rqsMAqlzS1pCwUX8hieTsqJbT/1OtrZhb5VcQVE9JeTo2Xcx0/
-         kxyg==
-X-Gm-Message-State: AOAM532bqj3pHypm0I2YzWZjzabRvDRcaTzvkJf+f1hANIPD7mBNMnjC
-	SLZK1i53fNogwxnWovK5SsVESB/umkIb3g==
-X-Google-Smtp-Source: ABdhPJxjOh8JQxauaLAuQZprjg9MHNHpxk8SJD7yZiRdjp7F4EhG+cYNNq474AspwGwaGFcMLDJLTw==
-X-Received: by 2002:a05:600c:27ca:: with SMTP id l10mr2354308wmb.105.1643982480214;
-        Fri, 04 Feb 2022 05:48:00 -0800 (PST)
+        b=xGRm1hxAdRhQOYIB1KzyzC5GFR8Ni3pGLypoty3sAEc4ISrRjJYTZcmRsf9u11SjlN
+         K6Gt3J+wlYXWr7KnwrFymQcSK16FXkXQ0480IIEe2MsqqlogM1WvkAgfung0zJc3OWLi
+         IES0ZyUizppiYrZ8IcdNdcI6yvyVmQKfH+YUD1AoJeR3Sbk5cEcq+yBAqrVOg6qET2hl
+         T3fwUuiB2ZZ9ueNSdRn1YFqhDtRklsRX9I/zwwkgCU12ZT4VSi8Nj1A4pXlyJk7hqUx8
+         J5IjBK7NQfiW5C22lYzRhKsUkQ9p9BTyeOLwy4kELmTYrfUH/Q11wkTTD0Iag9yAU/oZ
+         9+iQ==
+X-Gm-Message-State: AOAM533LXFrUhlWPrnFnSAMazGzt1qYIQYYdfbBJwFpInLhjCM1D3UH/
+	F9B9YT3TaLUCSa93D8JXI5ejTzvX0FKi+w==
+X-Google-Smtp-Source: ABdhPJye82i/+j4ghJJiJMqoUfLhlg6awLPkV3K5faflKrRCiy6BsQ/dsoQSBVQvAH02PiNAbCzM3w==
+X-Received: by 2002:a5d:6c61:: with SMTP id r1mr1754363wrz.414.1643967101324;
+        Fri, 04 Feb 2022 01:31:41 -0800 (PST)
 Return-Path: <clabbe@baylibre.com>
 Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id o14sm2253486wry.104.2022.02.04.05.47.59
+        by smtp.googlemail.com with ESMTPSA id p14sm1558725wrr.7.2022.02.04.01.31.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Feb 2022 05:47:59 -0800 (PST)
-From: "Corentin Labbe" <clabbe@baylibre.com>
+        Fri, 04 Feb 2022 01:31:40 -0800 (PST)
+From: Corentin LABBE <clabbe@baylibre.com>
 To: meta-arago@lists.yoctoproject.org
 Cc: khilman@baylibre.com,
 	Corentin Labbe <clabbe@baylibre.com>
 Subject: [EXTERNAL,dunfell PATCH] Use crypto_apps_script instead of crypto_apps_program
-Date: Fri,  4 Feb 2022 13:47:53 +0000
-Message-Id: <20220204134753.2119251-1-clabbe@baylibre.com>
+Date: Fri,  4 Feb 2022 09:31:18 +0000
+Message-Id: <20220204093118.3724551-1-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
