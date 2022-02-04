@@ -1,99 +1,90 @@
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web09.2361.1643826777928661121
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+ by mx.groups.io with SMTP id smtpd.web12.9252.1643982482036150671
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 02 Feb 2022 10:32:58 -0800
+ Fri, 04 Feb 2022 05:48:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=lHfrOPDJ;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 212IWtDf091946;
-	Wed, 2 Feb 2022 12:32:55 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1643826775;
-	bh=6/XQj/7pGk7VEURARkJGFxCNiDjN24OIv5PuAzrMxkw=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=lHfrOPDJNRWp/Phg4lfr7x2Aipbner9DxJJSP8/w320DvHbHQdFpJQBfj9E4U+Ltr
-	 2rP5EuCm7fryi4L/mxSNbv6c6NO+Kisp0p6G5G1DshQcyBkqEwkjXGlzZBfGC9nBmq
-	 LIdEwc02+sSdcIcLt8RKFZA4Qxudw5hVM7q+QprE=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 212IWtWu001440
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 2 Feb 2022 12:32:55 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 2
- Feb 2022 12:32:55 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 2 Feb 2022 12:32:55 -0600
-Received: from [10.249.37.55] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 212IWtIM121581;
-	Wed, 2 Feb 2022 12:32:55 -0600
-Message-ID: <5c041db0-1b8e-7048-6e3b-b8b040f21ee2@ti.com>
-Date: Wed, 2 Feb 2022 12:32:55 -0600
+ dkim=pass header.i=@baylibre-com.20210112.gappssmtp.com header.s=20210112 header.b=hPZwWyz/;
+ spf=pass (domain: baylibre.com, ip: 209.85.128.46, mailfrom: clabbe@baylibre.com)
+Received: by mail-wm1-f46.google.com with SMTP id n8so4538674wmk.3
+        for <meta-arago@lists.yoctoproject.org>; Fri, 04 Feb 2022 05:48:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Kp5NKV58QgnaXJzTlWUsE8ZbwRRkEeaMUselT9GMmXI=;
+        b=hPZwWyz/aIYNbdYsxrGYcBU3r8SoTXFXHO3LL605uk1EFilgbZNcltJuWpowLrXrhL
+         Ihh2dk/K1VjN6EStj553PMhyW9mP7oVlWtA+iZONuL9kSjQGsXpWayFZSGGn+i4Wkw+2
+         nUM5frMtYv8F+R+JxWBVY+mgUZ6db6/u55Ht4srLR9c7IneuFVP2zn5KarDqTNS2W31j
+         yiwG7C20ePX7qtpoVY/rb6Ltn1enh/GVax41LgzXJjz/VLXqHIeVPnMBlEikdFtuUzBQ
+         /DAAEjukIVcIo3BO4xb81twXi7VIkEfgcQSzBc7vcCr091klopvdrHEcxyMR3OcKBpjr
+         7F+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Kp5NKV58QgnaXJzTlWUsE8ZbwRRkEeaMUselT9GMmXI=;
+        b=YZROXWu4IMaMUobkGobXZb6g0m6aIwyd1K9hLT4+1YKEgs0c5rlzlCmf9ap25PIKIc
+         PHpKdeX/aTnX9dwdma6V5RuWT2+ZA2bNPZg6lcwpb/U8+BQpMyfFZzvQ6JQkvp9ztoim
+         gaJrmD0XUGmEminWu1MKuLK3Nd6epSwpgYCgNUMC7rWDz5aVsPbElfbak7ifhnlanioO
+         Ay+D9D3OxMjw/19Dlv/8YJ3yO6N98C1nIb8qYVPK49kTdNBXkxjvfd8NGqrC8q8Blobf
+         lrBuO4q755DzL5DJ87rqsMAqlzS1pCwUX8hieTsqJbT/1OtrZhb5VcQVE9JeTo2Xcx0/
+         kxyg==
+X-Gm-Message-State: AOAM532bqj3pHypm0I2YzWZjzabRvDRcaTzvkJf+f1hANIPD7mBNMnjC
+	SLZK1i53fNogwxnWovK5SsVESB/umkIb3g==
+X-Google-Smtp-Source: ABdhPJxjOh8JQxauaLAuQZprjg9MHNHpxk8SJD7yZiRdjp7F4EhG+cYNNq474AspwGwaGFcMLDJLTw==
+X-Received: by 2002:a05:600c:27ca:: with SMTP id l10mr2354308wmb.105.1643982480214;
+        Fri, 04 Feb 2022 05:48:00 -0800 (PST)
+Return-Path: <clabbe@baylibre.com>
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id o14sm2253486wry.104.2022.02.04.05.47.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Feb 2022 05:47:59 -0800 (PST)
+From: "Corentin Labbe" <clabbe@baylibre.com>
+To: meta-arago@lists.yoctoproject.org
+Cc: khilman@baylibre.com,
+	Corentin Labbe <clabbe@baylibre.com>
+Subject: [EXTERNAL,dunfell PATCH] Use crypto_apps_script instead of crypto_apps_program
+Date: Fri,  4 Feb 2022 13:47:53 +0000
+Message-Id: <20220204134753.2119251-1-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [EXTERNAL] [meta-arago] [meta-ti][dunfell][PATCH v2 00/12] Adding support for j721s2
-To: Yogesh Siraswar <yogeshs@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-References: <16D00B6558BF5602.20712@lists.yoctoproject.org>
-From: "Ryan Eatmon" <reatmon@ti.com>
-In-Reply-To: <16D00B6558BF5602.20712@lists.yoctoproject.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Language: en-US
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Ignore this patch.  I sent this to the wrong list.
+From: Corentin Labbe <clabbe@baylibre.com>
 
+crypto_apps_program depended on ti-crypto-examples which is disabled since 2 years now.
+So let's fallback to original crypto_apps_script
 
-On 2/2/2022 12:26, Ryan Eatmon via lists.yoctoproject.org wrote:
-> *** BLURB HERE ***
-> 
-> Hari Nagalla (1):
->    recipes-ti/ti-rtos-bin: Fix unavailable binary path
-> 
-> Nishanth Menon (8):
->    machine: Add j721s2 evm configuration
->    optee-os: Add support for alternate console
->    trusted-firmware-a: Add support for alternate console
->    recipes-bsp/ti-rtos: Use target_c7x_0 instead of just c7x
->    ti-rtos-bin: Add j721s2
->    recipes-bsp/ti-rtos: Define the TARGET and ALTERNATE_TARGET as well.
->    recipies-ti: ti-rtos-firmware: Fixup typo for rtos firmware
->    recipes-bsp: Add cnm-wave-fw firmware recipe
-> 
-> Praneeth Bajjuri (2):
->    ti-linux-fw: Bump up TIFS and DM to v2022.01
->    Revert "ti-sci-fw: Fix for k3-image-gen issue for combined boot
->      images"
-> 
-> Ryan Eatmon (1):
->    cnm-wave-fw: Fix name of firmware for j721s2
-> 
->   conf/machine/j721s2-evm-k3r5.conf             | 11 ++++
->   conf/machine/j721s2-evm.conf                  | 22 +++++++
->   recipes-bsp/cnm-wave-fw/cnm-wave-fw_git.bb    | 42 ++++++++++++
->   .../ipc-lld/ipc-lld-examples-rtos_git.bb      |  4 +-
->   recipes-bsp/ipc-lld/ipc-lld-fw_git.bb         |  4 +-
->   recipes-bsp/ti-linux-fw/ti-linux-fw.inc       |  9 +--
->   ...gning-of-binaries-for-combined-boot-.patch | 64 -------------------
->   recipes-bsp/ti-sci-fw/ti-sci-fw_git.bb        | 28 ++++++--
->   .../trusted-firmware-a_%.bbappend             |  2 +
->   recipes-bsp/u-boot/u-boot-ti.inc              |  6 ++
->   recipes-kernel/linux/kernel-rdepends.inc      |  3 +
->   recipes-security/optee/optee-os_%.bbappend    |  2 +
->   recipes-ti/ti-rtos-bin/ti-rtos-firmware.bb    | 59 ++++++++++++++++-
->   13 files changed, 175 insertions(+), 81 deletions(-)
->   create mode 100644 conf/machine/j721s2-evm-k3r5.conf
->   create mode 100644 conf/machine/j721s2-evm.conf
->   create mode 100644 recipes-bsp/cnm-wave-fw/cnm-wave-fw_git.bb
->   delete mode 100644 recipes-bsp/ti-sci-fw/files/0001-Makefile-Skip-signing-of-binaries-for-combined-boot-.patch
-> 
+close: LCPD-24598
 
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+Signed-off-by: Corentin LABBE <clabbe@baylibre.com>
+---
+ .../recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb   | 9 ---------
+ 1 file changed, 9 deletions(-)
+
+diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
+index 7029df53..8afd79c7 100644
+--- a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
++++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
+@@ -7,17 +7,8 @@ PR = "${INC_PR}.12"
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
+ S = "${WORKDIR}/git/cryptos_apps_scripts"
+-S_ti33x = "${WORKDIR}/git/cryptos_apps_program"
+-S_ti43x = "${WORKDIR}/git/cryptos_apps_program"
+-S_dra7xx = "${WORKDIR}/git/cryptos_apps_program"
+-S_keystone = "${WORKDIR}/git/cryptos_apps_program"
+ 
+ FILES_${PN} += "${MATRIX_BASE_DIR}/*"
+ 
+ # Make sure crypto submenu and app images has been installed. Also make sure openssl is available
+ RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-cryptos openssl matrix-gui-helper-scripts"
+-
+-#RDEPENDS_${PN}_append_ti33x = " ti-crypto-examples"
+-#RDEPENDS_${PN}_append_ti43x = " ti-crypto-examples"
+-#RDEPENDS_${PN}_append_dra7xx = " ti-crypto-examples"
+-#RDEPENDS_${PN}_append_keystone = " ti-crypto-examples"
 -- 
-Ryan Eatmon
-reatmon@ti.com
+2.25.1
+
