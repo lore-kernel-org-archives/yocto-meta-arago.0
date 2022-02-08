@@ -1,95 +1,82 @@
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
- by mx.groups.io with SMTP id smtpd.web08.9112.1644312407087124483
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+ by mx.groups.io with SMTP id smtpd.web09.9199.1644312516364435152
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 08 Feb 2022 01:26:47 -0800
+ Tue, 08 Feb 2022 01:28:37 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baylibre-com.20210112.gappssmtp.com header.s=20210112 header.b=TfEp8ONc;
- spf=pass (domain: baylibre.com, ip: 209.85.221.44, mailfrom: clabbe@baylibre.com)
-Received: by mail-wr1-f44.google.com with SMTP id d27so1242717wrc.6
-        for <meta-arago@lists.yoctoproject.org>; Tue, 08 Feb 2022 01:26:46 -0800 (PST)
+ dkim=pass header.i=@baylibre-com.20210112.gappssmtp.com header.s=20210112 header.b=xxOHsRo2;
+ spf=pass (domain: baylibre.com, ip: 209.85.221.52, mailfrom: clabbe@baylibre.com)
+Received: by mail-wr1-f52.google.com with SMTP id i15so7138165wrb.3
+        for <meta-arago@lists.yoctoproject.org>; Tue, 08 Feb 2022 01:28:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7MFebNYGN/cEjYQRdo08gv3IIahyHHRfHLTqb14vBrA=;
-        b=TfEp8ONcwRyfDvBHAUu9H48cDsFOuo1BXg/qgh9TC0dsSogPsgoBoinpIjBJPRQPqk
-         Sdn+xtfjhWbKhe4AzEJGBWJiWPpK+TAw9YsjFypARPCki026KE9M7zyxF7C2AiwmH8e1
-         /LzUxyLw5Y+D1j1s36vSYWIvq+LStqDYs6k6ZDayyluNH+6BYuAsBsCcqeVZMsBecwOH
-         H3KDU7QAzFqKFqk7L5cCg17aqGjT0JhdrQ98YCp3+Un6Pmol6ph1qbQyeoCRleS+hCSq
-         IS7DqOwLOFkMDn7usn1FO3H/vMbL6T9DMtCfAsYedfdQ5FcTaZ82bc7bxCen+iVqdwAu
-         Ghjg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=a7xrdM1yAK4ys8qgnus/FUf0OUUhLSxpTCEDO4tsIyo=;
+        b=xxOHsRo2XqsZ29QXS4CVsgTGhQlZDf4s108qL4SLPzl5OhBqKovcKf7tiir8pVag0x
+         x+uFr1JOcMrdKis3vX6UHcaB4k3EzJJPgX+exOyvmyw0byt+PClYrlET/patWHR2nRsd
+         /26SNkRjdTnzoJXeIqnF30WIlMfSCn5N5uFG11rE3IqceuDYoxlMKaCy27NN5/t6CXsU
+         MOumeUOGccGCeaWYzKFwy4ug2suFq5r+znm4RwAILAmy9zw7OGVE/vHKWffqCJAdSLJZ
+         ZOr72KQdyFyH7kOlg4rPGClrSQ068bnFsOleAD4B8Xy0bklYGJBMVo6FM4Nj8BytQeY7
+         mVIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7MFebNYGN/cEjYQRdo08gv3IIahyHHRfHLTqb14vBrA=;
-        b=ZqYdY6qB8zM22j5NKdrVhOQdbDg4VreVCJZFoqd2xAfIp4WYLcEL6Rf+eKsqWj1QNp
-         XrbJFGuuwxdUSPlv4t+lSnnIhAHFgj3hkCXh6M/8F4nZwt3uk7ttHXzJxzb3tIr8qP0Q
-         6crkEiiHt0aqpxo9UAMCncMkzJnGh4ba0vfB+OdvJsA5gaJYglPVxpyDyFmYRHK4icS9
-         2B1uFpEhf/9nHo0gT5dqyDuFkyTHaxIdHw3SU6Jx/dMuq4gh62itTFpzaAhyqPAt3LFN
-         iexGHEWoV663LN7R4Ag7RxjUuCRHnlSIocFdJXhj2QQQ5Ghv016GSol9qijwn3RYp5ke
-         KMjA==
-X-Gm-Message-State: AOAM5310y/oiw9lTaJT+OpRSJvQFeU90Zmy+HB7AzKp7owMo693ggBgm
-	CYeeL0ZjBcAM7Aa+IGXWmOgGCTLNEbZq2g==
-X-Google-Smtp-Source: ABdhPJyWro9QW2J/yWjs94kiiQeIxZ8R/UQsCutHs7wT7cv6QUk97NJ+dv7zGcckS/mbFlAX/xHimg==
-X-Received: by 2002:a5d:6d03:: with SMTP id e3mr1587083wrq.110.1644312405136;
-        Tue, 08 Feb 2022 01:26:45 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=a7xrdM1yAK4ys8qgnus/FUf0OUUhLSxpTCEDO4tsIyo=;
+        b=Vg0U2cG1P/dODGSwOla/bSTNERE4SrIaE+ehc8lktElBA1IIdPOJW0gnpL2YLb2WOG
+         xewe9GYEj1SjhYFn83Zi3wTrEM5HnAZRnW2Z04IlLaan4UDgzCFgevnGjyA+JkhjWK8o
+         tc1DCfHc4r0e07wgnGyx/mY3zau98qGNtSgzYnY9rUolDFz3NkpxICmnds3hfnICWcoV
+         /pbhM7YMLSyr2o8fLAD2W/KCAgoZ9TV/EcK6Mv5wIlcFX8laEO0Xv4JLdYxb7Fv0IU9d
+         A+hCFjJfcSzCPimhgMRGWQ+fIt+88kFBeLJ8686Ie9C91V86urw1Oscw2Ca94IDEkfht
+         WKKg==
+X-Gm-Message-State: AOAM530MsjNZon86MqnC12jE+XH0r772sWpf/fhi71aLtoGP7DEazJT8
+	FurK+MkrkmeORJ6WIPAIExoTuA==
+X-Google-Smtp-Source: ABdhPJyaR/7MgXxy/uIClTl/xOTMlS6jBe7ekIJ2U8i6unekpJ7UDkFSpWwsbdoU1vIutVy/aFKD/A==
+X-Received: by 2002:a5d:47a9:: with SMTP id 9mr2849522wrb.31.1644312514797;
+        Tue, 08 Feb 2022 01:28:34 -0800 (PST)
 Return-Path: <clabbe@baylibre.com>
-Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id r17sm1747234wmq.33.2022.02.08.01.26.44
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id z17sm1569755wml.38.2022.02.08.01.28.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Feb 2022 01:26:44 -0800 (PST)
+        Tue, 08 Feb 2022 01:28:34 -0800 (PST)
+Date: Tue, 8 Feb 2022 10:28:32 +0100
 From: "Corentin Labbe" <clabbe@baylibre.com>
-To: meta-arago@lists.yoctoproject.org
-Cc: khilman@baylibre.com,
-	Corentin Labbe <clabbe@baylibre.com>
-Subject: [EXTERNAL,dunfell PATCH v3] matrix-gui-crypto-demos: Use crypto_apps_script instead of crypto_apps_program
-Date: Tue,  8 Feb 2022 09:26:35 +0000
-Message-Id: <20220208092635.350297-1-clabbe@baylibre.com>
-X-Mailer: git-send-email 2.25.1
+To: Denys Dmytriyenko <denis@denix.org>
+Cc: meta-arago@lists.yoctoproject.org, khilman@baylibre.com
+Subject: Re: [meta-arago] [EXTERNAL,dunfell PATCH v2] Use crypto_apps_script instead of crypto_apps_program
+Message-ID: <YgI3wC7g7iiS6efH@Red>
+References: <20220207084331.4147148-1-clabbe@baylibre.com>
+ <20220207171924.GS26229@denix.org>
 MIME-Version: 1.0
+In-Reply-To: <20220207171924.GS26229@denix.org>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 
-From: Corentin Labbe <clabbe@baylibre.com>
+Le Mon, Feb 07, 2022 at 12:19:24PM -0500, Denys Dmytriyenko a écrit :
+> It's recommended to indicate the recipe or general area of the change in the 
+> beginning of the shortlog/subject, e.g. "matrix-gui-crypto-demos: ..."
+> 
+> https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
+> 
+> 
+> On Mon, Feb 07, 2022 at 08:43:31AM +0000, Corentin Labbe wrote:
+> > From: Corentin Labbe <clabbe@baylibre.com>
+> > 
+> > crypto_apps_program depended on ti-crypto-examples which is disabled since 2 years now.
+> > So let's fallback to original crypto_apps_script
+> > 
+> > Signed-off-by: Corentin LABBE <clabbe@baylibre.com>
+> > ---
+> 
+> Also, the changes in PATCH v2 since v1 go in here.
+> 
+> 
 
-In the current situation all crypto tests (like openssl_aes256_encdec.sh) are not copied in final images.
-There were present in both crypto_apps_program and crypto_apps_script.
-But crypto_apps_program depended on ti-crypto-examples which is disabled since 2 years now.
-So let's fallback to original crypto_apps_script.
+Hello
 
-Signed-off-by: Corentin LABBE <clabbe@baylibre.com>
----
-Change since v1:
-- Removed private ticket number
-Change since v2:
-- added more precise subject
-- added more precise commitlog
+I will fix thoses in v3.
 
- .../recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb   | 9 ---------
- 1 file changed, 9 deletions(-)
-
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
-index 7029df53..8afd79c7 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-crypto-demos_2.0.bb
-@@ -7,17 +7,8 @@ PR = "${INC_PR}.12"
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
- S = "${WORKDIR}/git/cryptos_apps_scripts"
--S_ti33x = "${WORKDIR}/git/cryptos_apps_program"
--S_ti43x = "${WORKDIR}/git/cryptos_apps_program"
--S_dra7xx = "${WORKDIR}/git/cryptos_apps_program"
--S_keystone = "${WORKDIR}/git/cryptos_apps_program"
- 
- FILES_${PN} += "${MATRIX_BASE_DIR}/*"
- 
- # Make sure crypto submenu and app images has been installed. Also make sure openssl is available
- RDEPENDS_${PN} += "matrix-gui-apps-images matrix-gui-submenus-cryptos openssl matrix-gui-helper-scripts"
--
--#RDEPENDS_${PN}_append_ti33x = " ti-crypto-examples"
--#RDEPENDS_${PN}_append_ti43x = " ti-crypto-examples"
--#RDEPENDS_${PN}_append_dra7xx = " ti-crypto-examples"
--#RDEPENDS_${PN}_append_keystone = " ti-crypto-examples"
--- 
-2.25.1
-
+Thanks
+Regards
