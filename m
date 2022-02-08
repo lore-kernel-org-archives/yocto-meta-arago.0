@@ -1,82 +1,74 @@
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
- by mx.groups.io with SMTP id smtpd.web09.9199.1644312516364435152
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web09.11030.1644326436418792289
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 08 Feb 2022 01:28:37 -0800
+ Tue, 08 Feb 2022 05:20:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baylibre-com.20210112.gappssmtp.com header.s=20210112 header.b=xxOHsRo2;
- spf=pass (domain: baylibre.com, ip: 209.85.221.52, mailfrom: clabbe@baylibre.com)
-Received: by mail-wr1-f52.google.com with SMTP id i15so7138165wrb.3
-        for <meta-arago@lists.yoctoproject.org>; Tue, 08 Feb 2022 01:28:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=a7xrdM1yAK4ys8qgnus/FUf0OUUhLSxpTCEDO4tsIyo=;
-        b=xxOHsRo2XqsZ29QXS4CVsgTGhQlZDf4s108qL4SLPzl5OhBqKovcKf7tiir8pVag0x
-         x+uFr1JOcMrdKis3vX6UHcaB4k3EzJJPgX+exOyvmyw0byt+PClYrlET/patWHR2nRsd
-         /26SNkRjdTnzoJXeIqnF30WIlMfSCn5N5uFG11rE3IqceuDYoxlMKaCy27NN5/t6CXsU
-         MOumeUOGccGCeaWYzKFwy4ug2suFq5r+znm4RwAILAmy9zw7OGVE/vHKWffqCJAdSLJZ
-         ZOr72KQdyFyH7kOlg4rPGClrSQ068bnFsOleAD4B8Xy0bklYGJBMVo6FM4Nj8BytQeY7
-         mVIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=a7xrdM1yAK4ys8qgnus/FUf0OUUhLSxpTCEDO4tsIyo=;
-        b=Vg0U2cG1P/dODGSwOla/bSTNERE4SrIaE+ehc8lktElBA1IIdPOJW0gnpL2YLb2WOG
-         xewe9GYEj1SjhYFn83Zi3wTrEM5HnAZRnW2Z04IlLaan4UDgzCFgevnGjyA+JkhjWK8o
-         tc1DCfHc4r0e07wgnGyx/mY3zau98qGNtSgzYnY9rUolDFz3NkpxICmnds3hfnICWcoV
-         /pbhM7YMLSyr2o8fLAD2W/KCAgoZ9TV/EcK6Mv5wIlcFX8laEO0Xv4JLdYxb7Fv0IU9d
-         A+hCFjJfcSzCPimhgMRGWQ+fIt+88kFBeLJ8686Ie9C91V86urw1Oscw2Ca94IDEkfht
-         WKKg==
-X-Gm-Message-State: AOAM530MsjNZon86MqnC12jE+XH0r772sWpf/fhi71aLtoGP7DEazJT8
-	FurK+MkrkmeORJ6WIPAIExoTuA==
-X-Google-Smtp-Source: ABdhPJyaR/7MgXxy/uIClTl/xOTMlS6jBe7ekIJ2U8i6unekpJ7UDkFSpWwsbdoU1vIutVy/aFKD/A==
-X-Received: by 2002:a5d:47a9:: with SMTP id 9mr2849522wrb.31.1644312514797;
-        Tue, 08 Feb 2022 01:28:34 -0800 (PST)
-Return-Path: <clabbe@baylibre.com>
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id z17sm1569755wml.38.2022.02.08.01.28.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Feb 2022 01:28:34 -0800 (PST)
-Date: Tue, 8 Feb 2022 10:28:32 +0100
-From: "Corentin Labbe" <clabbe@baylibre.com>
-To: Denys Dmytriyenko <denis@denix.org>
-Cc: meta-arago@lists.yoctoproject.org, khilman@baylibre.com
-Subject: Re: [meta-arago] [EXTERNAL,dunfell PATCH v2] Use crypto_apps_script instead of crypto_apps_program
-Message-ID: <YgI3wC7g7iiS6efH@Red>
-References: <20220207084331.4147148-1-clabbe@baylibre.com>
- <20220207171924.GS26229@denix.org>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=PI4L0PNL;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 218DKY5i046812;
+	Tue, 8 Feb 2022 07:20:34 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1644326434;
+	bh=CYWJoYO/KCMwfgCZjM9Uy45S387d38eQjwFsR3r1/cg=;
+	h=From:To:Subject:Date;
+	b=PI4L0PNLyabDKeswN3xOK1TwQoFzJpMWRuDkdoZUrHdSa38YvmTAnSmPNEnF/7cuh
+	 Df/kwQ28lO7phO5h8qo6Fhp4yFM9icINj4qpnEAG45oFunYesLji/HGyu2tA7TsY2l
+	 Ew4C4M0QaHNKsrnNh8YjwSnpsTLtMfnOONJz1eQw=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 218DKY3p011299
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 8 Feb 2022 07:20:34 -0600
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 8
+ Feb 2022 07:20:34 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 8 Feb 2022 07:20:34 -0600
+Received: from uda0214219 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 218DKYb6127795;
+	Tue, 8 Feb 2022 07:20:34 -0600
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1nHQQ6-0001tK-6d; Tue, 08 Feb 2022 07:20:34 -0600
+From: "Ryan Eatmon" <reatmon@ti.com>
+To: Yogesh Siraswar <yogeshs@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [oe-layersetup][master][PATCH] Fix calling path to git_retry.sh
+Date: Tue, 8 Feb 2022 07:20:34 -0600
+Message-ID: <20220208132034.7231-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20220207171924.GS26229@denix.org>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
 
-Le Mon, Feb 07, 2022 at 12:19:24PM -0500, Denys Dmytriyenko a écrit :
-> It's recommended to indicate the recipe or general area of the change in the 
-> beginning of the shortlog/subject, e.g. "matrix-gui-crypto-demos: ..."
-> 
-> https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
-> 
-> 
-> On Mon, Feb 07, 2022 at 08:43:31AM +0000, Corentin Labbe wrote:
-> > From: Corentin Labbe <clabbe@baylibre.com>
-> > 
-> > crypto_apps_program depended on ti-crypto-examples which is disabled since 2 years now.
-> > So let's fallback to original crypto_apps_script
-> > 
-> > Signed-off-by: Corentin LABBE <clabbe@baylibre.com>
-> > ---
-> 
-> Also, the changes in PATCH v2 since v1 go in here.
-> 
-> 
+Fix the variable that is used to find git_retry.sh.  This fixes
+an issue with -b <dir> not working.
 
-Hello
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ oe-layertool-setup.sh | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-I will fix thoses in v3.
+diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
+index 932ec49..85be8b0 100755
+--- a/oe-layertool-setup.sh
++++ b/oe-layertool-setup.sh
+@@ -336,9 +336,9 @@ clone_repo() {
+     if [ -d $sourcedir/$name ]
+     then
+         cd $sourcedir/$name
+-        $oebase/git_retry.sh fetch --all
++        $scriptdir/git_retry.sh fetch --all
+     else
+-        $oebase/git_retry.sh clone $uri $sourcedir/$name
++        $scriptdir/git_retry.sh clone $uri $sourcedir/$name
+         if [ "$?" != "0" ]
+         then
+             echo "ERROR: Could not clone repository at $uri"
+-- 
+2.17.1
 
-Thanks
-Regards
