@@ -1,65 +1,70 @@
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web09.10541.1645009532598935516
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web09.2066.1645032256296144831
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 16 Feb 2022 03:05:33 -0800
+ Wed, 16 Feb 2022 09:24:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=gIjkMSG1;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: a-m1@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21GB5W46035977
-	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 05:05:32 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=YcXchUxa;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: a-m1@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21GHOFJ7073502
+	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 11:24:15 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1645009532;
-	bh=FNdGxv1EF+9i0T1mQ5a3re4jbYwAHOwtyxjetcBzWtQ=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=gIjkMSG1AI5nJMExm3GM/8Mva1kYoCc4H5E12QfrRooHDNcUGJSjwmQFuurI2O/GN
-	 rAAzlcFCI/DSOPjPEavnKM63thSwm/hf5ZXMz7SHOQV0jhvQX6Rap1vn3rbMA6kKOo
-	 IXQBLfipp+1/WMRNK58avXN1z4Hs/AWvTTSKPU60=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21GB5VCP120257
+	s=ti-com-17Q1; t=1645032255;
+	bh=DGZEx1Vl9nrGWs64UyLNVuupDIFH+FF8vCmne25Odrc=;
+	h=From:To:CC:Subject:Date;
+	b=YcXchUxa6wJ4mbEt2pF9e/KH1wO1v4XzAezkF/5LBS62RSroc86jc3lh6qa+2flMm
+	 s00sgZ9NEm6t9Qs8mqkMx/JmbzNL4IhEf506sYSYOXJmY8MJaLrFslDyTBGG+rwdOt
+	 es9W36J3jsEZhacJN8Z5YzhiSS1WGOqVl3StprSA=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21GHOFib104170
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 05:05:31 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 11:24:15 -0600
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 16
- Feb 2022 05:05:31 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2022 11:24:14 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 16 Feb 2022 05:05:31 -0600
+ Frontend Transport; Wed, 16 Feb 2022 11:24:14 -0600
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21GB47oI084540;
-	Wed, 16 Feb 2022 05:05:30 -0600
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21GHOCDf091532;
+	Wed, 16 Feb 2022 11:24:12 -0600
 From: "Aparna M" <a-m1@ti.com>
-To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>
+To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>, <yogeshs@ti.com>
 CC: <nikhil.nd@ti.com>, <nsekhar@ti.com>
-Subject: [meta-arago][tisdk-setup-scripts][master][PATCH v3 4/4] setup-uboot-env-keystone-hs: Add u-boot env setup support for keystone hs devices
-Date: Wed, 16 Feb 2022 16:34:01 +0530
-Message-ID: <20220216110401.9082-5-a-m1@ti.com>
+Subject: [meta-arago][tisdk-setup-scripts][master][PATCH] create-sdcard-omapl138: Add custom script to create SD card
+Date: Wed, 16 Feb 2022 22:54:09 +0530
+Message-ID: <20220216172409.2865-1-a-m1@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220216110401.9082-1-a-m1@ti.com>
-References: <20220216110401.9082-1-a-m1@ti.com>
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Content-Type: text/plain
 
-Add u-boot setup support for keystone hs devices
+The omapl138 requires a AIS U-Boot image format to be flashed to the
+SD card. Add a custom script to create SD card for the device.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 
 Signed-off-by: Aparna M <a-m1@ti.com>
 ---
- setup-uboot-env-keystone-hs.sh | 449 +++++++++++++++++++++++++++++++++
- 1 file changed, 449 insertions(+)
- create mode 100755 setup-uboot-env-keystone-hs.sh
+ create-sdcard-omapl138.sh | 1131 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 1131 insertions(+)
+ create mode 100644 create-sdcard-omapl138.sh
 
-diff --git a/setup-uboot-env-keystone-hs.sh b/setup-uboot-env-keystone-hs.sh
-new file mode 100755
-index 0000000..0c47ab2
+diff --git a/create-sdcard-omapl138.sh b/create-sdcard-omapl138.sh
+new file mode 100644
+index 0000000..b039b8c
 --- /dev/null
-+++ b/setup-uboot-env-keystone-hs.sh
-@@ -0,0 +1,449 @@
-+#!/bin/sh
++++ b/create-sdcard-omapl138.sh
+@@ -0,0 +1,1131 @@
++#!/bin/bash
++# Authors:
++#    LT Thomas <ltjr@ti.com>
++#    Chase Maupin
++#    Franklin Cooper Jr.
++#
++# create-sdcard.sh v0.3
 +
 +# This distribution contains contributions or derivatives under copyright
 +# as follows:
@@ -91,423 +96,1099 @@ index 0000000..0c47ab2
 +# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 +# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 +
-+cwd=`dirname $0`
-+. $cwd/common.sh
++# Force locale language to be set to English. This avoids issues when doing
++# text and string processing.
++export LANG=C
 +
-+do_expect() {
-+    local expect_str="$1"
-+    local command="$2"
++# Determine the absolute path to the executable
++# EXE will have the PWD removed so we can concatenate with the PWD safely
++PWD=`pwd`
++EXE=`echo $0 | sed s=$PWD==`
++EXEPATH="$PWD"/"$EXE"
++clear
++cat << EOM
 +
-+    shift; shift
++################################################################################
 +
-+    while [ $# -gt 0 ]
-+    do
-+        echo "expect {" >> "$1"
-+        check_status
-+        echo "    $expect_str" >> "$1"
-+        check_status
-+        echo "    timeout 600 goto end" >> "$1"
-+        echo "}" >> "$1"
-+        check_status
-+        echo $command >> "$1"
-+        check_status
-+        echo >> "$1"
++This script will create a bootable SD card from custom or pre-built binaries.
 +
-+        shift
-+    done
++The script must be run with root permissions and from the bin directory of
++the SDK
++
++Example:
++ $ sudo ./create-sdcard.sh
++
++Formatting can be skipped if the SD card is already formatted and
++partitioned properly.
++
++################################################################################
++
++EOM
++
++AMIROOT=`whoami | awk {'print $1'}`
++if [ "$AMIROOT" != "root" ] ; then
++
++	echo "	**** Error *** must run script with sudo"
++	echo ""
++	exit
++fi
++
++THEPWD=$EXEPATH
++PARSEPATH=`echo $THEPWD | grep -o '.*ti-sdk.*.[0-9]/'`
++
++if [ "$PARSEPATH" != "" ] ; then
++PATHVALID=1
++else
++PATHVALID=0
++fi
++
++#Precentage function
++untar_progress ()
++{
++    TARBALL=$1;
++    DIRECTPATH=$2;
++    BLOCKING_FACTOR=$(($(xz --robot --list ${TARBALL} | grep 'totals' | awk '{print $5}') / 51200 + 1));
++    tar --blocking-factor=${BLOCKING_FACTOR} --checkpoint=1 --checkpoint-action='ttyout=Written %u%  \r' -Jxf ${TARBALL} -C ${DIRECTPATH}
 +}
 +
-+prompt_feedback() {
-+    # Usage: prompt_feedback <prompt> [variable] [default_value] [valid_opt1] [valid_opt2]...
-+    local prompt="$1"
-+    local var=""
-+    local default=""
-+
-+    local opt_str=""
-+
-+    local response=""
-+    local good_response=""
-+
-+    shift
-+    [ $# -eq 0 ] || var="$1"
-+    shift
-+    [ $# -eq 0 ] || default="$1"
-+    shift
-+
-+    if [ $# -gt 0 ]
-+    then
-+        opt_str="($1"
-+        shift
-+
-+        while [ $# -gt 0 ]
-+        do
-+            opt_str="${opt_str}/$1"
-+            shift
-+        done
-+        opt_str="${opt_str})"
-+    fi
-+
-+    echo "$prompt $opt_str"
-+    if [ ! -z "$default" ]
-+    then
-+        read -p "[ $default ] " response
-+    else
-+        read response
-+    fi
-+    echo
-+
-+    [ ! -z "$response" ] || response="$default"
-+
-+    [ -z "$var" ] || eval $var=\"$response\"
++#copy/paste programs
++cp_progress ()
++{
++	CURRENTSIZE=0
++	while [ $CURRENTSIZE -lt $TOTALSIZE ]
++	do
++		TOTALSIZE=$1;
++		TOHERE=$2;
++		CURRENTSIZE=`sudo du -c $TOHERE | grep total | awk {'print $1'}`
++		echo -e -n "$CURRENTSIZE /  $TOTALSIZE copied \r"
++		sleep 1
++	done
 +}
 +
-+copy_to_tftproot() {
-+    files="$1"
-+    for file in $files
-+    do
-+	if [ -f $tftproot/$file ]; then
-+	    echo
-+	    echo "$tftproot/$file already exists. The existing installed file can be renamed and saved under the new name."
-+	    prompt_feedback "(o) overwrite (s) skip copy" exists o
-+	    case "$exists" in
-+	      s) echo "Skipping copy of $file, existing version will be used"
-+		 ;;
-+	      *) sudo cp "$prebuiltimagesdir/$file" $tftproot
-+		 check_status
-+		 echo
-+		 echo "Successfully overwritten $file in tftp root directory $tftproot"
-+		 ;;
-+	    esac
++check_for_sdcards()
++{
++        # find the avaible SD cards
++        ROOTDRIVE=`mount | grep 'on / ' | awk {'print $1'} |  cut -c6-8`
++        PARTITION_TEST=`cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<sd.\>\|\<mmcblk.\>' | grep -n ''`
++        if [ "$PARTITION_TEST" = "" ]; then
++	        echo -e "Please insert a SD card to continue\n"
++	        while [ "$PARTITION_TEST" = "" ]; do
++		        read -p "Type 'y' to re-detect the SD card or 'n' to exit the script: " REPLY
++		        if [ "$REPLY" = 'n' ]; then
++		            exit 1
++		        fi
++		        ROOTDRIVE=`mount | grep 'on / ' | awk {'print $1'} |  cut -c6-8`
++		        PARTITION_TEST=`cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<sd.\>\|\<mmcblk.\>' | grep -n ''`
++	        done
++        fi
++}
++
++populate_3_partitions() {
++    ENTERCORRECTLY="0"
++	while [ $ENTERCORRECTLY -ne 1 ]
++	do
++		read -e -p 'Enter path where SD card tarballs were downloaded : '  TARBALLPATH
++
++		echo ""
++		ENTERCORRECTLY=1
++		if [ -d $TARBALLPATH ]
++		then
++			echo "Directory exists"
++			echo ""
++			echo "This directory contains:"
++			ls $TARBALLPATH
++			echo ""
++			read -p 'Is this correct? [y/n] : ' ISRIGHTPATH
++				case $ISRIGHTPATH in
++				"y" | "Y") ;;
++				"n" | "N" ) ENTERCORRECTLY=0;continue;;
++				*)  echo "Please enter y or n";ENTERCORRECTLY=0;continue;;
++				esac
++		else
++			echo "Invalid path make sure to include complete path"
++			ENTERCORRECTLY=0
++            continue
++		fi
++        # Check that tarballs were found
++        if [ ! -e "$TARBALLPATH""/boot_partition.tar.xz" ]
++        then
++            echo "Could not find boot_partition.tar.xz as expected.  Please"
++            echo "point to the directory containing the boot_partition.tar.xz"
++            ENTERCORRECTLY=0
++            continue
++        fi
++
++        if [ ! -e "$TARBALLPATH""/rootfs_partition.tar.xz" ]
++        then
++            echo "Could not find rootfs_partition.tar.xz as expected.  Please"
++            echo "point to the directory containing the rootfs_partition.tar.xz"
++            ENTERCORRECTLY=0
++            continue
++        fi
++
++        if [ ! -e "$TARBALLPATH""/start_here_partition.tar.xz" ]
++        then
++            echo "Could not find start_here_partition.tar.xz as expected.  Please"
++            echo "point to the directory containing the start_here_partition.tar.xz"
++            ENTERCORRECTLY=0
++            continue
++        fi
++	done
++
++        # Make temporary directories and untar mount the partitions
++        mkdir $PWD/boot
++        mkdir $PWD/rootfs
++        mkdir $PWD/start_here
++        mkdir $PWD/tmp
++
++        mount -t vfat ${DRIVE}${P}1 boot
++        mount -t ext3 ${DRIVE}${P}2 rootfs
++        mount -t ext3 ${DRIVE}${P}3 start_here
++
++        # Remove any existing content in case the partitions were not
++        # recreated
++        sudo rm -rf boot/*
++        sudo rm -rf rootfs/*
++        sudo rm -rf start_here/*
++
++        # Extract the tarball contents.
++cat << EOM
++
++################################################################################
++        Extracting boot partition tarball
++
++################################################################################
++EOM
++        untar_progress $TARBALLPATH/boot_partition.tar.xz tmp/
++        if [ -e "./tmp/MLO" ]
++        then
++            cp ./tmp/MLO boot/
++        fi
++        cp -rf ./tmp/* boot/
++
++cat << EOM
++
++################################################################################
++        Extracting rootfs partition tarball
++
++################################################################################
++EOM
++        untar_progress $TARBALLPATH/rootfs_partition.tar.xz rootfs/
++
++cat << EOM
++
++################################################################################
++        Extracting start_here partition to temp directory
++
++################################################################################
++EOM
++        rm -rf tmp/*
++        untar_progress $TARBALLPATH/start_here_partition.tar.xz tmp/
++
++cat << EOM
++
++################################################################################
++        Copying Contents to START_HERE
++
++################################################################################
++EOM
++
++        TOTALSIZE=`sudo du -c tmp/* | grep total | awk {'print $1'}`
++        cp -rf tmp/* start_here/ &
++        cp_progress $TOTALSIZE start_here/
++        sync;sync
++        # Fix up the START_HERE partitoin permissions
++        chown nobody -R start_here
++        chgrp nogroup -R start_here
++
++        umount boot rootfs start_here
++        sync;sync
++
++        # Clean up the temp directories
++        rm -rf boot rootfs start_here tmp
++}
++
++
++# find the avaible SD cards
++ROOTDRIVE=`mount | grep 'on / ' | awk {'print $1'} |  cut -c6-9`
++if [ "$ROOTDRIVE" = "root" ]; then
++    ROOTDRIVE=`readlink /dev/root | cut -c1-3`
++else
++    ROOTDRIVE=`echo $ROOTDRIVE | cut -c1-3`
++fi
++
++PARTITION_TEST=`cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<sd.\>\|\<mmcblk.\>' | grep -n ''`
++
++# Check for available mounts
++check_for_sdcards
++
++echo -e "\nAvailable Drives to write images to: \n"
++echo "#  major   minor    size   name "
++cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<sd.\>\|\<mmcblk.\>' | grep -n ''
++echo " "
++
++DEVICEDRIVENUMBER=
++while true;
++do
++	read -p 'Enter Device Number or 'n' to exit: ' DEVICEDRIVENUMBER
++	echo " "
++        if [ "$DEVICEDRIVENUMBER" = 'n' ]; then
++                exit 1
++        fi
++
++        if [ "$DEVICEDRIVENUMBER" = "" ]; then
++                # Check to see if there are any changes
++                check_for_sdcards
++                echo -e "These are the Drives available to write images to:"
++                echo "#  major   minor    size   name "
++                cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<sd.\>\|\<mmcblk.\>' | grep -n ''
++                echo " "
++               continue
++        fi
++
++	DEVICEDRIVENAME=`cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<sd.\>\|\<mmcblk.\>' | grep -n '' | grep "${DEVICEDRIVENUMBER}:" | awk '{print $5}'`
++	if [ -n "$DEVICEDRIVENAME" ]
++	then
++	        DRIVE=/dev/$DEVICEDRIVENAME
++	        DEVICESIZE=`cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<sd.\>\|\<mmcblk.\>' | grep -n '' | grep "${DEVICEDRIVENUMBER}:" | awk '{print $4}'`
++		break
 +	else
-+	    sudo cp "$prebuiltimagesdir/$file" $tftproot
-+	    check_status
-+	    echo
-+	    echo "Successfully copied $file to tftp root directory $tftproot"
++		echo -e "Invalid selection!"
++                # Check to see if there are any changes
++                check_for_sdcards
++                echo -e "These are the only Drives available to write images to: \n"
++                echo "#  major   minor    size   name "
++                cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<sd.\>\|\<mmcblk.\>' | grep -n ''
++                echo " "
 +	fi
-+    done
-+}
-+
-+# Create the BMC scripts. These require no configuration from the user.
-+create_bmc_scripts() {
-+    ( echo "timeout 300"; echo; ) > $cwd/bmcUartBoot.minicom
-+    ( echo "timeout 300"; echo; ) > $cwd/bmcNandBoot.minicom
-+
-+    # Allow time for XMODEM transfer to begin
-+    echo "! sleep 1" >> $cwd/bmcUartBoot.minicom
-+
-+    ( echo "send \" \""; echo; ) >> $cwd/bmcUartBoot.minicom
-+    ( echo "send \" \""; echo; ) >> $cwd/bmcNandBoot.minicom
-+
-+    do_expect "\"BMC>\"" "send \"bootmode #4\"" $cwd/bmcUartBoot.minicom
-+    do_expect "\"BMC>\"" "send \"bootmode #0\"" $cwd/bmcNandBoot.minicom
-+
-+    do_expect "\"BMC>\"" "send \"reboot\"" $cwd/bmcUartBoot.minicom $cwd/bmcNandBoot.minicom
-+
-+    echo "end:" >> $cwd/bmcUartBoot.minicom
-+    echo "end:" >> $cwd/bmcNandBoot.minicom
-+
-+    # bmcUartboot.minicom will be killed by the updateUboot.minicom script
-+    echo "! killall -s SIGHUP minicom" >> $cwd/bmcNandBoot.minicom
-+}
-+
-+echo
-+echo "--------------------------------------------------------------------------------"
-+echo "This step will set up the u-boot variables for booting the EVM."
-+echo "--------------------------------------------------------------------------------"
-+
-+ipdefault=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'`
-+platform=`grep PLATFORM= $cwd/../Rules.make | cut -d= -f2`
-+
-+# Configure prompt for U-Boot 2016.05
-+prompt="=>"
-+
-+prompt_feedback "Autodetected the following ip address of your host, correct it if necessary" ip "$(echo $ipdefault | sed -e 's| .*||')" $ipdefault
-+
-+if [ -f $cwd/../.tftproot ]; then
-+    tftproot=`cat $cwd/../.tftproot`
-+else
-+    prompt_feedback "Where is your tftp root directory?" tftproot "/tftpboot"
-+fi
-+
-+if [ -f $cwd/../.targetfs ]; then
-+    rootpath=`cat $cwd/../.targetfs`
-+else
-+    prompt_feedback "Where is your target filesystem extracted?" rootpath "${HOME}/targetNFS"
-+fi
-+
-+
-+fitimage="fitImage-linux.bin-"$platform".itb"
-+fitimagesrc=`ls -1 $cwd/../board-support/prebuilt-images/$fitimage`
-+fitimagedefault=`basename $fitimagesrc`
-+
-+ubootimage="u-boot_HS_MLO-${platform}"
-+ubootimagesrc=`readlink -m $cwd/../board-support/prebuilt-images/$ubootimage`
-+
-+echo "--------------------------------------------------------------------------------"
-+prompt_feedback "Would you like to update U-boot on the board?" ubootupdate y y n
-+
-+echo
-+echo "Available fit images in /tftproot:"
-+for file in /tftpboot/*.itb; do
-+    basefile=`basename $file`
-+    echo "    $basefile"
 +done
-+echo
-+echo "Which fit image do you want to boot from TFTP?"
-+read -p "[ $fitimagedefault ] " fitimage
 +
-+if [ ! -n "$fitimage" ]; then
-+    fitimage=$fitimagedefault
++echo "$DEVICEDRIVENAME was selected"
++#Check the size of disk to make sure its under 16GB
++if [ $DEVICESIZE -gt 17000000 ] ; then
++cat << EOM
++
++################################################################################
++
++		**********WARNING**********
++
++	Selected Device is greater then 16GB
++	Continuing past this point will erase data from device
++	Double check that this is the correct SD Card
++
++################################################################################
++
++EOM
++	ENTERCORRECTLY=0
++	while [ $ENTERCORRECTLY -ne 1 ]
++	do
++		read -p 'Would you like to continue [y/n] : ' SIZECHECK
++		echo ""
++		echo " "
++		ENTERCORRECTLY=1
++		case $SIZECHECK in
++		"y")  ;;
++		"n")  exit;;
++		*)  echo "Please enter y or n";ENTERCORRECTLY=0;;
++		esac
++		echo ""
++	done
++
++fi
++echo ""
++
++DRIVE=/dev/$DEVICEDRIVENAME
++NUM_OF_DRIVES=`df | grep -c $DEVICEDRIVENAME`
++
++# This if statement will determine if we have a mounted sdX or mmcblkX device.
++# If it is mmcblkX, then we need to set an extra char in the partition names, 'p',
++# to account for /dev/mmcblkXpY labled partitions.
++if [[ ${DEVICEDRIVENAME} =~ ^sd. ]]; then
++	echo "$DRIVE is an sdx device"
++	P=''
++else
++	echo "$DRIVE is an mmcblkx device"
++	P='p'
 +fi
 +
-+board="unknown"
-+check_for_board() {
-+    case $platform in
-+        "k2hk-evm")
-+            lsusb -vv -d 0403:6010 > /dev/null 2>&1
-+
-+            if [ "$?" = "0" ]
-+            then
-+                board="k2evm"
-+                board_vendor="0403"
-+                board_product="6010"
-+                num_port="2"
-+                uart_port_idx="1"
-+                bmc_port_idx="2"
-+            fi
-+        ;;
-+
-+        "k2l-evm"|"k2e-evm")
-+            lsusb -vv -d 10c4:ea70 > /dev/null 2>&1
-+
-+            if [ "$?" = "0" ]
-+            then
-+                board="k2evm"
-+                board_vendor="10c4"
-+                board_product="ea70"
-+                num_port="2"
-+                uart_port_idx="1"
-+                bmc_port_idx="2"
-+            fi
-+        ;;
-+    esac
-+}
-+
-+echo "timeout 1800" > $cwd/setupBoard.minicom
-+echo "timeout 1800" > $cwd/updateBoard.minicom
-+echo "verbose on" >> $cwd/setupBoard.minicom
-+echo "verbose on" >> $cwd/updateBoard.minicom
-+
-+do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
-+
-+# If U-Boot was not updated, refuse to proceed.
-+cat >> $cwd/setupBoard.minicom << __EOF__
-+expect {
-+    "$prompt"
-+    "# " goto uboot_update_required
-+    timeout 60 goto end
-+}
-+send " "
-+__EOF__
-+
-+# Reset to the default environment
-+do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
-+
-+do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+
-+# Reset incase any variables are set when u-boot initializes
-+do_expect "\"$prompt\"" "send \"reset\"" $cwd/setupBoard.minicom
-+do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
-+
-+# Set up the U-Boot environment
-+do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv tftp_root '$tftproot'\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv nfs_root '$rootpath'\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv name_uboot $ubootimage\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv fit_bootfile $fitimage\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
-+do_expect "\"$prompt\"" "send \"setenv boot net\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
-+
-+
-+# Create command to fetch and flash u-boot and ubi
-+#
-+# TBD: Save minicom output to a log and use these strings to determine the
-+#      update status on the host machine.
-+#
-+update_uboot_status="U-Boot update:"
-+update_ubi_status="UBI update:"
-+
-+do_expect "\"$prompt\"" "send \"setenv update_uboot 'if run get_uboot_net burn_uboot_nand; then echo $update_uboot_status SUCCESS; else echo $update_uboot_status FAILED; fi'\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
-+
-+do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
-+do_expect "\"$prompt\"" "send \"printenv\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
-+
-+if [ "$ubootupdate" = "y" ]; then
-+    do_expect "\"$prompt\"" "send \"run run_mon_hs\"" $cwd/updateBoard.minicom
-+    do_expect "\"$prompt\"" "send \"run update_uboot\"" $cwd/updateBoard.minicom
-+fi
-+
-+do_expect "\"$prompt\"" "send \" \"" $cwd/updateBoard.minicom
-+do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
-+
-+cat >> $cwd/setupBoard.minicom << __EOF__
-+goto end
-+uboot_update_required:
-+send echo; echo "*** U-boot is require to be updated before proceeding!"; echo "*** The automatic upgrade of this version of U-boot is currently disabled."; echo "*** Please follow the wiki instructions to manually upgrade U-boot."; echo
-+end:
-+__EOF__
-+
-+cat >> $cwd/updateBoard.minicom << __EOF__
-+goto end
-+uboot_update_required:
-+send echo; echo "*** U-boot is require to be updated before proceeding!"; echo "*** The automatic upgrade of this version of U-boot is currently disabled."; echo "*** Please follow the wiki instructions to manually upgrade U-boot."; echo
-+end:
-+__EOF__
-+echo "! killall -s SIGHUP minicom" >> $cwd/updateBoard.minicom
-+
-+echo "--------------------------------------------------------------------------------"
-+prompt_feedback "Would you like to create a minicom script with the above parameters?" minicom y y n
-+
-+if [ "$minicom" = "y" ]; then
-+
-+    echo -n "Successfully wrote "
-+    readlink -m $cwd/setupBoard.minicom
-+
-+    while [ yes ]
-+    do
-+        check_for_board
-+
-+        if [ "$board" = "k2evm" ]
-+        then
-+            break
-+        else
-+            echo ""
-+            prompt_feedback "Board could not be detected. Please connect the board to the PC." temp "Press any key to try checking again"
-+
-+            # Set to default board to allow user to specify the correct ports.
-+            board=k2evm
-+        fi
-+    done
-+
-+    if [ "$board" != "unknown" ]
-+    then
-+        ftdiInstalled=`lsmod | grep ftdi_sio`
-+        if [ -z "$ftdiInstalled" ]
-+        then
-+            sudo modprobe -q ftdi_sio
-+        fi
-+
-+        while [ yes ]
++if [ "$NUM_OF_DRIVES" != "0" ]; then
++        echo "Unmounting the $DEVICEDRIVENAME drives"
++        for ((c=1; c<="$NUM_OF_DRIVES"; c++ ))
 +        do
-+            echo ""
-+            echo "--------------------------------------------------------------------------------"
-+            echo
-+            echo -n "Detecting connection to board... "
-+            loopCount=0
-+            usb_id=`dmesg | grep "idVendor=${board_vendor}" | grep "idProduct=${board_product}" | tail -1 | sed -e 's|.*usb \(.*\):.*|\1|'`
-+            uart_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${uart_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
-+            bmc_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${bmc_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
-+            while [ -z "$uart_port" ] && [ "$loopCount" -ne "10" ]
-+            do
-+                #count to 10 and timeout if no connection is found
-+                loopCount=$((loopCount+1))
-+
-+                sleep 1
-+                usb_id=`dmesg | grep "idVendor=${board_vendor}" | grep "idProduct=${board_product}" | tail -1 | sed -e 's|.*usb \(.*\):.*|\1|'`
-+                uart_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${uart_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
-+                bmc_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${bmc_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
-+            done
-+
-+            #check to see if we actually found a port
-+            if [ -n "$uart_port" ]; then
-+                echo "${platform} (UART) autodetected at /dev/$uart_port"
-+                echo
-+                prompt_feedback "Please verify that this is correct or manually enter the correct port:" dev_uart_port "/dev/$uart_port"
-+
-+                echo "${platform} (BMC) autodetected at /dev/$bmc_port"
-+                echo
-+                prompt_feedback "Please verify that this is correct or manually enter the correct port:" dev_bmc_port "/dev/$bmc_port"
-+
-+                if [ ! -e "${dev_uart_port}" ]; then
-+                    echo; echo "ERROR: ${dev_uart_port} does not exist!"
-+                    dev_uart_port=""
++                unmounted=`df | grep '\<'$DEVICEDRIVENAME$P$c'\>' | awk '{print $1}'`
++                if [ -n "$unmounted" ]
++                then
++                     echo " unmounted ${DRIVE}$P$c"
++                     sudo umount -f ${DRIVE}$P$c
 +                fi
 +
-+                if [ ! -e "${dev_bmc_port}" ]; then
-+                    echo; echo "ERROR: ${dev_bmc_port} does not exist!"
-+                    dev_bmc_port=""
-+                fi
-+
-+                if [ "$dev_uart_port" = "$dev_bmc_port" ]; then
-+                    echo; echo "ERROR: UART and BMC cannot be the same port: $dev_uart_port!"
-+                    dev_uart_port=""
-+                fi
-+
-+                if [ -n "$dev_uart_port" ] && [ -n "$dev_bmc_port" ]; then
-+                    break
-+                fi
-+            fi
-+
-+            #if we didn't find a port and reached the timeout limit then ask to reconnect
-+            if [ -z "$uart_port" ] && [ "$loopCount" = "10" ]; then
-+                echo ""
-+                echo "Unable to detect which port the board is connected to."
-+                echo "Please reconnect your board."
-+                prompt_feedback "Press 'y' to attempt to detect your board again or press 'n' to continue..." retryBoardDetection y
-+            fi
-+
-+            #if they choose not to retry, ask user to reboot manually and exit
-+            if [ "$retryBoardDetection" = "n" ]; then
-+                echo ""
-+                echo "Please reboot your board manually and connect using minicom."
-+                exit;
-+            fi
 +        done
++fi
 +
-+        sed -i -e "s|^pu port.*$|pu port             $dev_uart_port|g" ${HOME}/.minirc.dfl
-+    fi
++# Refresh this variable as the device may not be mounted at script instantiation time
++# This will always return one more then needed
++NUM_OF_PARTS=`cat /proc/partitions | grep -v $ROOTDRIVE | grep -c $DEVICEDRIVENAME`
++for ((c=1; c<"$NUM_OF_PARTS"; c++ ))
++do
++        SIZE=`cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<'$DEVICEDRIVENAME$P$c'\>'  | awk '{print $3}'`
++        echo "Current size of $DEVICEDRIVENAME$P$c $SIZE bytes"
++done
 +
-+    echo
-+    echo "--------------------------------------------------------------------------------"
-+    echo "Would you like to run the setup script now (y/n)?"
-+    echo
-+    echo "Please connect the ethernet cable as described in the Quick Start Guide."
-+    echo "Once answering 'y' on the prompt below, the script will proceed with"
-+    echo "automatically booting and configuring the board based on the responses"
-+    echo "provided."
-+    echo
-+    echo "After successfully executing this script, your EVM will be set up. You will be "
-+    echo "able to connect to it by executing 'minicom -w' or if you prefer a windows host"
-+    echo "you can set up Tera Term as explained in the Software Developer's Guide."
-+    echo "If you connect minicom or Tera Term and power cycle the board Linux will boot."
++# check to see if the device is already partitioned
++for ((  c=1; c<5; c++ ))
++do
++	eval "SIZE$c=`cat /proc/partitions | grep -v $ROOTDRIVE | grep '\<'$DEVICEDRIVENAME$P$c'\>'  | awk '{print $3}'`"
++done
 +
-+    prompt_feedback "" minicomsetup y
++PARTITION="0"
++if [ -n "$SIZE1" -a -n "$SIZE2" ] ; then
++	if  [ "$SIZE1" -gt "72000" -a "$SIZE2" -gt "700000" ]
++	then
++		PARTITION=1
 +
-+    if [ "$minicomsetup" = "y" ]; then
-+      create_bmc_scripts
++		if [ -z "$SIZE3" -a -z "$SIZE4" ]
++		then
++			#Detected 2 partitions
++			PARTS=2
 +
-+      cd $cwd
++		elif [ "$SIZE3" -gt "1000" -a -z "$SIZE4" ]
++		then
++			#Detected 3 partitions
++			PARTS=3
 +
-+      # Configuring bootmode to UART boot via BMC
-+      screen -dmS minicom_${platform}_bmc minicom -D "$dev_bmc_port" -S bmcUartBoot.minicom -C bmcUartBoot.log
++		else
++			echo "SD Card is not correctly partitioned"
++			PARTITION=0
++		fi
++	fi
++else
++	echo "SD Card is not correctly partitioned"
++	PARTITION=0
++	PARTS=0
++fi
 +
-+      # Transfering uboot.bin using XMODEM protocol
-+      sx -kb "$ubootimagesrc" < "$dev_uart_port" > "$dev_uart_port"
 +
-+      # Configure U-Boot environment and optionally flash board
-+      minicom -D "$dev_uart_port" -S updateBoard.minicom -C updateBoard.log
++#Partition is found
++if [ "$PARTITION" -eq "1" ]
++then
++cat << EOM
 +
-+      # Configuring bootmode to NAND boot via BMC
-+      minicom -D "$dev_bmc_port" -S bmcNandBoot.minicom -C bmcNandBoot.log
++################################################################################
 +
-+      # Running terminal to board (UART)
-+      minicom -w -D "$dev_uart_port" -C bootBoard.log
-+      cd -
-+    fi
++   Detected device has $PARTS partitions already
 +
-+    echo "You can manually run minicom in the future with this setup script using: minicom -S $cwd/setupBoard.minicom"
-+    echo "--------------------------------------------------------------------------------"
++   Re-partitioning will allow the choice of 2 or 3 partitions
++
++################################################################################
++
++EOM
++
++	ENTERCORRECTLY=0
++	while [ $ENTERCORRECTLY -ne 1 ]
++	do
++		read -p 'Would you like to re-partition the drive anyways [y/n] : ' CASEPARTITION
++		echo ""
++		echo " "
++		ENTERCORRECTLY=1
++		case $CASEPARTITION in
++		"y")  echo "Now partitioning $DEVICEDRIVENAME ...";PARTITION=0;;
++		"n")  echo "Skipping partitioning";;
++		*)  echo "Please enter y or n";ENTERCORRECTLY=0;;
++		esac
++		echo ""
++	done
 +
 +fi
++
++#Partition is not found, choose to partition 2 or 3 segments
++if [ "$PARTITION" -eq "0" ]
++then
++cat << EOM
++
++################################################################################
++
++	Select 2 partitions if only need boot and rootfs (most users).
++	Select 3 partitions if need SDK & other content on SD card.  This is
++        usually used by device manufacturers with access to partition tarballs.
++
++	****WARNING**** continuing will erase all data on $DEVICEDRIVENAME
++
++################################################################################
++
++EOM
++	ENTERCORRECTLY=0
++	while [ $ENTERCORRECTLY -ne 1 ]
++	do
++
++		read -p 'Number of partitions needed [2/3] : ' CASEPARTITIONNUMBER
++		echo ""
++		echo " "
++		ENTERCORRECTLY=1
++		case $CASEPARTITIONNUMBER in
++		"2")  echo "Now partitioning $DEVICEDRIVENAME with 2 partitions...";PARTITION=2;;
++		"3")  echo "Now partitioning $DEVICEDRIVENAME with 3 partitions...";PARTITION=3;;
++		"n")  exit;;
++		*)  echo "Please enter 2 or 3";ENTERCORRECTLY=0;;
++		esac
++		echo " "
++	done
++fi
++
++
++
++#Section for partitioning the drive
++
++#create 3 partitions
++if [ "$PARTITION" -eq "3" ]
++then
++
++# set the PARTS value as well
++PARTS=3
++
++cat << EOM
++
++################################################################################
++
++		Now making 3 partitions
++
++################################################################################
++
++EOM
++
++dd if=/dev/zero of=$DRIVE bs=1024 count=1024
++
++SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
++
++echo DISK SIZE - $SIZE bytes
++
++parted -s $DRIVE mklabel msdos
++parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
++parted -s $DRIVE set 1 boot on
++parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 310
++parted -s $DRIVE unit cyl mkpart primary ext2 -- 310 -2
++
++
++cat << EOM
++
++################################################################################
++
++		Partitioning Boot
++
++################################################################################
++EOM
++	mkfs.vfat -F 32 -n "boot" ${DRIVE}${P}1
++cat << EOM
++
++################################################################################
++
++		Partitioning Rootfs
++
++################################################################################
++EOM
++	mkfs.ext3 -L "rootfs" ${DRIVE}${P}2
++cat << EOM
++
++################################################################################
++
++		Partitioning START_HERE
++
++################################################################################
++EOM
++	mkfs.ext3 -L "START_HERE" ${DRIVE}${P}3
++	sync
++	sync
++
++#create only 2 partitions
++elif [ "$PARTITION" -eq "2" ]
++then
++
++# Set the PARTS value as well
++PARTS=2
++cat << EOM
++
++################################################################################
++
++		Now making 2 partitions
++
++################################################################################
++
++EOM
++dd if=/dev/zero of=$DRIVE bs=1024 count=1024
++
++SIZE=`fdisk -l $DRIVE | grep Disk | awk '{print $5}'`
++
++echo DISK SIZE - $SIZE bytes
++
++parted -s $DRIVE mklabel msdos
++parted -s $DRIVE unit cyl mkpart primary fat32 -- 0 9
++parted -s $DRIVE set 1 boot on
++parted -s $DRIVE unit cyl mkpart primary ext2 -- 9 -2
++
++cat << EOM
++
++################################################################################
++
++		Partitioning Boot
++
++################################################################################
++EOM
++	mkfs.vfat -F 32 -n "boot" ${DRIVE}${P}1
++cat << EOM
++
++################################################################################
++
++		Partitioning rootfs
++
++################################################################################
++EOM
++	mkfs.ext3 -L "rootfs" ${DRIVE}${P}2
++	sync
++	sync
++	INSTALLSTARTHERE=n
++fi
++
++
++
++#Break between partitioning and installing file system
++cat << EOM
++
++
++################################################################################
++
++   Partitioning is now done
++   Continue to install filesystem or select 'n' to safe exit
++
++   **Warning** Continuing will erase files any files in the partitions
++
++################################################################################
++
++
++EOM
++ENTERCORRECTLY=0
++while [ $ENTERCORRECTLY -ne 1 ]
++do
++	read -p 'Would you like to continue? [y/n] : ' EXITQ
++	echo ""
++	echo " "
++	ENTERCORRECTLY=1
++	case $EXITQ in
++	"y") ;;
++	"n") exit;;
++	*)  echo "Please enter y or n";ENTERCORRECTLY=0;;
++	esac
++done
++
++# If this is a three partition card then we will jump to a function to
++# populate the three partitions and then exit the script.  If not we
++# go on to prompt the user for input on the two partitions
++if [ "$PARTS" -eq "3" ]
++then
++    populate_3_partitions
++    exit 0
++fi
++
++#Add directories for images
++export START_DIR=$PWD
++mkdir $START_DIR/tmp
++export PATH_TO_SDBOOT=boot
++export PATH_TO_SDROOTFS=rootfs
++export PATH_TO_TMP_DIR=$START_DIR/tmp
++
++
++echo " "
++echo "Mount the partitions "
++mkdir $PATH_TO_SDBOOT
++mkdir $PATH_TO_SDROOTFS
++
++sudo mount -t vfat ${DRIVE}${P}1 boot/
++sudo mount -t ext3 ${DRIVE}${P}2 rootfs/
++
++
++
++echo " "
++echo "Emptying partitions "
++echo " "
++sudo rm -rf  $PATH_TO_SDBOOT/*
++sudo rm -rf  $PATH_TO_SDROOTFS/*
++
++echo ""
++echo "Syncing...."
++echo ""
++sync
++sync
++sync
++
++cat << EOM
++################################################################################
++
++	Choose file path to install from
++
++	1 ) Install pre-built images from SDK
++	2 ) Enter in custom boot and rootfs file paths
++
++################################################################################
++
++EOM
++ENTERCORRECTLY=0
++while [ $ENTERCORRECTLY -ne 1 ]
++do
++	read -p 'Choose now [1/2] : ' FILEPATHOPTION
++	echo ""
++	echo " "
++	ENTERCORRECTLY=1
++	case $FILEPATHOPTION in
++	"1") echo "Will now install from SDK pre-built images";;
++	"2") echo "";;
++	*)  echo "Please enter 1 or 2";ENTERCORRECTLY=0;;
++	esac
++done
++
++# SDK DEFAULTS
++if [ $FILEPATHOPTION -eq 1 ] ; then
++
++	#check that in the right directory
++
++	THEEVMSDK=`echo $PARSEPATH | grep -o 'ti-sdk-.*[0-9]'`
++
++	if [ $PATHVALID -eq 1 ]; then
++	echo "now installing:  $THEEVMSDK"
++	else
++	echo "no SDK PATH found"
++	ENTERCORRECTLY=0
++		while [ $ENTERCORRECTLY -ne 1 ]
++		do
++			read -e -p 'Enter path to SDK : '  SDKFILEPATH
++
++			echo ""
++			ENTERCORRECTLY=1
++			if [ -d $SDKFILEPATH ]
++			then
++				echo "Directory exists"
++				echo ""
++				PARSEPATH=`echo $SDKFILEPATH | grep -o '.*ti-sdk.*.[0-9]/'`
++				#echo $PARSEPATH
++
++				if [ "$PARSEPATH" != "" ] ; then
++				PATHVALID=1
++				else
++				PATHVALID=0
++				fi
++				#echo $PATHVALID
++				if [ $PATHVALID -eq 1 ] ; then
++
++				THEEVMSDK=`echo $SDKFILEPATH | grep -o 'ti-sdk-.*[0-9]'`
++				echo "Is this the correct SDK: $THEEVMSDK"
++				echo ""
++				read -p 'Is this correct? [y/n] : ' ISRIGHTPATH
++					case $ISRIGHTPATH in
++					"y") ;;
++					"n") ENTERCORRECTLY=0;;
++					*)  echo "Please enter y or n";ENTERCORRECTLY=0;;
++					esac
++				else
++				echo "Invalid SDK path make sure to include ti-sdk-xxxx"
++				ENTERCORRECTLY=0
++				fi
++
++			else
++				echo "Invalid path make sure to include complete path"
++
++				ENTERCORRECTLY=0
++			fi
++		done
++	fi
++
++
++
++	#check that files are in SDK
++	BOOTFILEPATH="$PARSEPATH/board-support/prebuilt-images"
++	MLO=`ls $BOOTFILEPATH | grep MLO | awk {'print $1'}`
++	KERNELIMAGE=`ls $BOOTFILEPATH | grep [uz]Image | awk {'print $1'}`
++	BOOTIMG=`ls $BOOTFILEPATH | grep u-boot | grep .img | awk {'print $1'}`
++	BOOTBIN=`ls $BOOTFILEPATH | grep u-boot | grep .bin | awk {'print $1'}`
++	BOOTAIS=`ls $BOOTFILEPATH | grep u-boot | grep .ais | awk {'print $1'}`
++	BOOTUENV=`ls $BOOTFILEPATH | grep uEnv.txt | awk {'print $1'}`
++	#rootfs
++	ROOTFILEPARTH="$PARSEPATH/filesystem"
++	#ROOTFSTAR=`ls  $ROOTFILEPARTH | grep tisdk.*rootfs | awk {'print $1'}`
++
++	#Make sure there is only 1 tar
++	CHECKNUMOFTAR=`ls $ROOTFILEPARTH | grep "tisdk.*rootfs" | grep 'tar.xz' | grep -n '' | grep '2:' | awk {'print $1'}`
++	if [ -n "$CHECKNUMOFTAR" ]
++	then
++cat << EOM
++
++################################################################################
++
++   Multiple rootfs Tarballs found
++
++################################################################################
++
++EOM
++		ls $ROOTFILEPARTH | grep "tisdk.*rootfs" | grep 'tar.xz' | grep -n '' | awk {'print "	" , $1'}
++		echo ""
++		read -p "Enter Number of rootfs Tarball: " TARNUMBER
++		echo " "
++		FOUNDTARFILENAME=`ls $ROOTFILEPARTH | grep "rootfs" | grep 'tar.xz' | grep -n '' | grep "${TARNUMBER}:" | cut -c3- | awk {'print$1'}`
++		ROOTFSTAR=$FOUNDTARFILENAME
++
++	else
++		ROOTFSTAR=`ls  $ROOTFILEPARTH | grep "tisdk.*rootfs" | grep 'tar.xz' | awk {'print $1'}`
++	fi
++
++	ROOTFSUSERFILEPATH=$ROOTFILEPARTH/$ROOTFSTAR
++	BOOTPATHOPTION=1
++	ROOTFSPATHOPTION=2
++
++elif [ $FILEPATHOPTION -eq 2  ] ; then
++cat << EOM
++################################################################################
++
++  For U-boot and MLO
++
++  If files are located in Tarball write complete path including the file name.
++      e.x. $:  /home/user/MyCustomTars/boot.tar.xz
++
++  If files are located in a directory write the directory path
++      e.x. $: /ti-sdk/board-support/prebuilt-images/
++
++  NOTE: Not all platforms will have an MLO file and this file can
++        be ignored for platforms that do not support an MLO.
++
++  Update: The proper location for the kernel image and device tree
++          files have moved from the boot partition to the root filesystem.
++
++################################################################################
++
++EOM
++	ENTERCORRECTLY=0
++	while [ $ENTERCORRECTLY -ne 1 ]
++	do
++		read -e -p 'Enter path for Boot Partition : '  BOOTUSERFILEPATH
++
++		echo ""
++		ENTERCORRECTLY=1
++		if [ -f $BOOTUSERFILEPATH ]
++		then
++			echo "File exists"
++			echo ""
++		elif [ -d $BOOTUSERFILEPATH ]
++		then
++			echo "Directory exists"
++			echo ""
++			echo "This directory contains:"
++			ls $BOOTUSERFILEPATH
++			echo ""
++			read -p 'Is this correct? [y/n] : ' ISRIGHTPATH
++				case $ISRIGHTPATH in
++				"y") ;;
++				"n") ENTERCORRECTLY=0;;
++				*)  echo "Please enter y or n";ENTERCORRECTLY=0;;
++				esac
++		else
++			echo "Invalid path make sure to include complete path"
++
++			ENTERCORRECTLY=0
++		fi
++	done
++
++
++cat << EOM
++
++
++################################################################################
++
++   For Kernel Image and Device Trees files
++
++    What would you like to do?
++     1) Reuse kernel image and device tree files found in the selected rootfs.
++     2) Provide a directory that contains the kernel image and device tree files
++        to be used.
++
++################################################################################
++
++EOM
++
++ENTERCORRECTLY=0
++while [ $ENTERCORRECTLY -ne 1 ]
++do
++
++	read -p 'Choose option 1 or 2 : ' CASEOPTION
++	echo ""
++	echo " "
++	ENTERCORRECTLY=1
++	case $CASEOPTION in
++		"1")  echo "Reusing kernel and dt files from the rootfs's boot directory";KERNELFILESOPTION=1;;
++		"2")  echo "Choosing a directory that contains the kernel files to be used";KERNELFILESOPTION=2;;
++		"n")  exit;;
++		*)  echo "Please enter 1 or 2";ENTERCORRECTLY=0;;
++	esac
++	echo " "
++done
++
++if [ $KERNELFILESOPTION == 2 ]
++then
++
++cat << EOM
++################################################################################
++
++  For Kernel Image and Device Trees files
++
++  The kernel image name should contain the image type uImage or zImage depending
++  on which format is used.
++
++  The device tree files must end with .dtb
++      e.g    am335x-evm.dtb am43x-gp-evm.dtb
++
++
++################################################################################
++
++EOM
++	ENTERCORRECTLY=0
++	while [ $ENTERCORRECTLY -ne 1 ]
++	do
++		read -e -p 'Enter path for kernel image and device tree files : '  KERNELUSERFILEPATH
++
++		echo ""
++		ENTERCORRECTLY=1
++
++		if [ -d $KERNELUSERFILEPATH ]
++		then
++			echo "Directory exists"
++			echo ""
++			echo "This directory contains:"
++			ls $KERNELUSERFILEPATH
++			echo ""
++			read -p 'Is this correct? [y/n] : ' ISRIGHTPATH
++			case $ISRIGHTPATH in
++				"y") ;;
++				"n") ENTERCORRECTLY=0;;
++				*)  echo "Please enter y or n";ENTERCORRECTLY=0;;
++				esac
++		else
++			echo "Invalid path make sure to include complete path"
++			ENTERCORRECTLY=0
++		fi
++	done
++fi
++
++cat << EOM
++
++
++################################################################################
++
++   For Rootfs partition
++
++   If files are located in Tarball write complete path including the file name.
++      e.x. $:  /home/user/MyCustomTars/rootfs.tar.xz
++
++  If files are located in a directory write the directory path
++      e.x. $: /ti-sdk/targetNFS/
++
++################################################################################
++
++EOM
++	ENTERCORRECTLY=0
++	while [ $ENTERCORRECTLY -ne 1 ]
++	do
++		read -e -p 'Enter path for Rootfs Partition : ' ROOTFSUSERFILEPATH
++		echo ""
++		ENTERCORRECTLY=1
++		if [ -f $ROOTFSUSERFILEPATH ]
++		then
++			echo "File exists"
++			echo ""
++		elif [ -d $ROOTFSUSERFILEPATH ]
++		then
++			echo "This directory contains:"
++			ls $ROOTFSUSERFILEPATH
++			echo ""
++			read -p 'Is this correct? [y/n] : ' ISRIGHTPATH
++				case $ISRIGHTPATH in
++				"y") ;;
++				"n") ENTERCORRECTLY=0;;
++				*)  echo "Please enter y or n";ENTERCORRECTLY=0;;
++				esac
++
++		else
++			echo "Invalid path make sure to include complete path"
++
++			ENTERCORRECTLY=0
++		fi
++	done
++	echo ""
++
++
++	# Check if user entered a tar or not for Boot
++	ISBOOTTAR=`ls $BOOTUSERFILEPATH | grep .tar.xz | awk {'print $1'}`
++	if [ -n "$ISBOOTTAR" ]
++	then
++		BOOTPATHOPTION=2
++	else
++		BOOTPATHOPTION=1
++		BOOTFILEPATH=$BOOTUSERFILEPATH
++		MLO=`ls $BOOTFILEPATH | grep MLO | awk {'print $1'}`
++		BOOTIMG=`ls $BOOTFILEPATH | grep u-boot | grep .img | awk {'print $1'}`
++		BOOTBIN=`ls $BOOTFILEPATH | grep u-boot | grep .bin | awk {'print $1'}`
++		BOOTAIS=`ls $BOOTFILEPATH | grep u-boot | grep .ais | awk {'print $1'}`
++		BOOTUENV=`ls $BOOTFILEPATH | grep uEnv.txt | awk {'print $1'}`
++	fi
++
++
++	if [ "$KERNELFILESOPTION" == "2" ]
++	then
++		KERNELIMAGE=`ls $KERNELUSERFILEPATH | grep [uz]Image | awk {'print $1'}`
++		DTFILES=`ls $KERNELUSERFILEPATH | grep .dtb$ | awk {'print $1'}`
++	fi
++
++
++	#Check if user entered a tar or not for Rootfs
++	ISROOTFSTAR=`ls $ROOTFSUSERFILEPATH | grep .tar.xz | awk {'print $1'}`
++	if [ -n "$ISROOTFSTAR" ]
++	then
++		ROOTFSPATHOPTION=2
++	else
++		ROOTFSPATHOPTION=1
++		ROOTFSFILEPATH=$ROOTFSUSERFILEPATH
++	fi
++fi
++
++cat << EOM
++################################################################################
++
++	Copying files now... will take minutes
++
++################################################################################
++
++Copying boot partition
++EOM
++
++
++if [ $BOOTPATHOPTION -eq 1 ] ; then
++
++	echo ""
++	#copy boot files out of board support
++	if [ "$MLO" != "" ] ; then
++		cp $BOOTFILEPATH/$MLO $PATH_TO_SDBOOT/MLO
++		echo "MLO copied"
++	else
++		echo "MLO file not found"
++	fi
++
++	echo ""
++
++	echo ""
++
++	if [ "$BOOTIMG" != "" ] ; then
++		cp $BOOTFILEPATH/$BOOTIMG $PATH_TO_SDBOOT/u-boot.img
++		echo "u-boot.img copied"
++	elif [ "$BOOTBIN" != "" ] ; then
++		cp $BOOTFILEPATH/$BOOTBIN $PATH_TO_SDBOOT/u-boot.bin
++		echo "u-boot.bin copied"
++	else
++		echo "No U-Boot file found"
++	fi
++
++	echo ""
++
++	if [ "$BOOTUENV" != "" ] ; then
++		cp $BOOTFILEPATH/$BOOTUENV $PATH_TO_SDBOOT/uEnv.txt
++		echo "uEnv.txt copied"
++	fi
++
++elif [ $BOOTPATHOPTION -eq 2  ] ; then
++	untar_progress $BOOTUSERFILEPATH $PATH_TO_TMP_DIR
++	cp -rf $PATH_TO_TMP_DIR/* $PATH_TO_SDBOOT
++
++	# Get path to AIS image
++	BOOTAIS=`ls $PATH_TO_TMP_DIR | grep u-boot | grep .ais | awk {'print $1'}`
++
++	echo ""
++
++fi
++
++echo ""
++sync
++
++echo "Copying rootfs System partition"
++if [ $ROOTFSPATHOPTION -eq 1 ] ; then
++	TOTALSIZE=`sudo du -c $ROOTFSUSERFILEPATH/* | grep total | awk {'print $1'}`
++	sudo cp -r $ROOTFSUSERFILEPATH/* $PATH_TO_SDROOTFS & cp_progress $TOTALSIZE $PATH_TO_SDROOTFS
++
++elif [ $ROOTFSPATHOPTION -eq 2  ] ; then
++	untar_progress $ROOTFSUSERFILEPATH $PATH_TO_SDROOTFS
++fi
++
++echo ""
++echo ""
++echo "Syncing..."
++sync
++sync
++sync
++sync
++sync
++sync
++sync
++sync
++
++if [ "$KERNELFILESOPTION" == "2" ]
++then
++
++	mkdir -p $PATH_TO_SDROOTFS/boot
++
++	if [ "$KERNELIMAGE" != "" ] ; then
++
++		CLEANKERNELNAME=`ls "$BOOTFILEPATH/$KERNELIMAGE" | grep -o [uz]Image`
++		cp -f $KERNELUSERFILEPATH/$KERNELIMAGE $PATH_TO_SDROOTFS/boot/$CLEANKERNELNAME
++		echo "Kernel image copied"
++	else
++		echo "$KERNELIMAGE file not found"
++	fi
++
++	COPYINGDTB="false"
++	for dtb in $DTFILES
++	do
++		if [ -f "$KERNELUSERFILEPATH/$dtb" ] ; then
++			cp -f $KERNELUSERFILEPATH/$dtb $PATH_TO_SDROOTFS/boot
++			echo "$dtb copied"
++			COPYINGDTB="true"
++		fi
++	done
++
++	if [ "$COPYINGDTB" == "false" ]
++	then
++		echo "No device tree files found"
++	fi
++
++fi
++
++echo " "
++echo "Un-mount the partitions "
++sudo umount -f $PATH_TO_SDBOOT
++sudo umount -f $PATH_TO_SDROOTFS
++
++echo ""
++if [ "$BOOTAIS" != "" ] ; then
++	if [ $BOOTPATHOPTION -eq 1  ] ; then
++		dd if=$BOOTFILEPATH/$BOOTAIS of=${DRIVE} seek=117 bs=512 conv=fsync
++	elif [ $BOOTPATHOPTION -eq 2  ] ; then
++		dd if=$PATH_TO_TMP_DIR/$BOOTAIS of=${DRIVE} seek=117 bs=512 conv=fsync
++	fi
++	echo "u-boot.ais copied"
++else
++	echo "No U-Boot AIS file found"
++fi
++
++echo " "
++echo "Remove created temp directories "
++sudo rm -rf $PATH_TO_TMP_DIR
++sudo rm -rf $PATH_TO_SDROOTFS
++sudo rm -rf $PATH_TO_SDBOOT
++
++
++echo " "
++echo "Operation Finished"
++echo " "
 -- 
 2.17.1
 
