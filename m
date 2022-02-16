@@ -1,218 +1,98 @@
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web11.2210.1645032811215976686
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web08.1918.1645048391804999487
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 16 Feb 2022 09:33:31 -0800
+ Wed, 16 Feb 2022 13:53:12 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=f4fEp2O/;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: a-m1@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21GHXT9w025358
-	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 11:33:29 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1645032809;
-	bh=GXmcxlgN5j/vaSTLs87M0BYczIM0pL37X8K61G7MUjY=;
-	h=From:To:CC:Subject:Date;
-	b=f4fEp2O/9VreB7ubEZictYs8vPkP8G/sAUZTYGVT18KAPdGWke1MlrvOu6HBD8H/U
-	 x9cQogvEIrBEfKQnM3nDjnfPFf7vZlu6YGVY7OZCw7etCROm3ci4gXgsHiIeOPvjmw
-	 WYBIKaptKKMM0da9HdGLUwmoisW78BuOVhbpGggE=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21GHXTvL117166
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 11:33:29 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 16
- Feb 2022 11:33:28 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 16 Feb 2022 11:33:28 -0600
-Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21GHXQoH007459;
-	Wed, 16 Feb 2022 11:33:26 -0600
-From: "Aparna M" <a-m1@ti.com>
-To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>, <yogeshs@ti.com>
-CC: <nikhil.nd@ti.com>, <nsekhar@ti.com>
-Subject: [meta-arago][tisdk-setup-scripts][master][PATCH v2] setup-tftp-fit: Add support for HS EVMs
-Date: Wed, 16 Feb 2022 23:03:23 +0530
-Message-ID: <20220216173323.8588-1-a-m1@ti.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 7AB8540C2A;
+	Wed, 16 Feb 2022 21:53:10 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id N_qeY1qVDf0T; Wed, 16 Feb 2022 21:53:10 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4604F40B05;
+	Wed, 16 Feb 2022 21:53:05 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id D8C4F17475F; Wed, 16 Feb 2022 16:53:04 -0500 (EST)
+Date: Wed, 16 Feb 2022 16:53:04 -0500
+From: "Denys Dmytriyenko" <denis@denix.org>
+To: Etheridge@denix.org, Darren <detheridge@ti.com>,
+	Ryan Eatmon <reatmon@ti.com>
+Cc: meta-arago@lists.yoctoproject.org, Praneeth Bajjuri <praneeth@ti.com>,
+	Sekhar Nori <nsekhar@ti.com>, Priya N S <priya.ns@ti.com>
+Subject: Re: [meta-arago] [dunfell PATCH 0/2] recipes-graphics: Update weston to fix Matrix GUI
+Message-ID: <20220216215304.GR26229@denix.org>
+References: <16B1986DA8DE72E9.11657@lists.yoctoproject.org>
+ <CAHFpNO9qO3N+jBQfi6GZHL_EjwW33_P=1NNAshbvjKNz2ts4Sw@mail.gmail.com>
+ <16BAA88B2E614BBE.14741@lists.yoctoproject.org>
 MIME-Version: 1.0
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain
+In-Reply-To: <16BAA88B2E614BBE.14741@lists.yoctoproject.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Add tftp setup support for HS EVMs.
+Darren, Ryan,
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+These 2 patch have never been applied to Dunfell!
+https://lists.yoctoproject.org/g/meta-arago/topic/86602755#13358
+https://lists.yoctoproject.org/g/meta-arago/message/13356
+https://lists.yoctoproject.org/g/meta-arago/message/13357
 
-Signed-off-by: Aparna M <a-m1@ti.com>
----
 
-Changes from v1:
+On Wed, Nov 24, 2021 at 09:18:42PM -0500, Denys Dmytriyenko wrote:
+> On Tue, Nov 16, 2021 at 02:53:19PM +0530, Priya N S via lists.yoctoproject.org wrote:
+> > Hi Denys,
+> > 
+> > On Tue, Oct 26, 2021 at 7:12 PM Priya N S via lists.yoctoproject.org
+> > <priya.ns=mistralsolutions.com@lists.yoctoproject.org> wrote:
+> > >
+> > > Hi All,
+> > > This series of patches fix the Matrix GUI Issue,
+> > >
+> > Did you get a chance to review this patch series?
+> 
+> Patches look reasonable to me. Thanks.
+> 
+> 
+> > Warm Regards,
+> > Vigna Raja Priya N S
+> > 
+> > 
+> > > Issue:
+> > > After the target board is booted, by default the Matrix GUI Demo is
+> > > not getting displayed on the display device connected to the target
+> > > board.
+> > > The root cause of the Matrix GUI demo issue is that there are two
+> > > Weston system services running in the filesystem. Below are the two
+> > > services,
+> > > 1. Weston systemd service
+> > > 2. Weston initscript service
+> > > The Matrix GUI demo runs on top of the Weston service. Since there
+> > > are two Weston services running, it causes the Matrix GUI demo to not
+> > > work properly.
+> > >
+> > > Fix:
+> > > Both Weston services (systemd and initscript) which has the same command
+> > > and does the same job. So, remove the weston systemd services from the
+> > > filesystem. This fix displays the Matrix GUI in the connected display
+> > > device.
+> > >
+> > > Priya N S (2):
+> > >   wayland: weston: Disable weston systemd service
+> > >   weston-init: Update initscript for weston-calibration
+> > >
+> > >  .../recipes-graphics/wayland/weston-init.bbappend            | 5 ++++-
+> > >  meta-arago-distro/recipes-graphics/wayland/weston-init/init  | 2 +-
+> > >  2 files changed, 5 insertions(+), 2 deletions(-)
+> > >
+> > > --
+> > > 2.19.1.windows.1
 
-* Copy firmware for k2g hs
-
- setup-tftp-fit.sh | 151 ++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 151 insertions(+)
- create mode 100644 setup-tftp-fit.sh
-
-diff --git a/setup-tftp-fit.sh b/setup-tftp-fit.sh
-new file mode 100644
-index 0000000..c95bc09
---- /dev/null
-+++ b/setup-tftp-fit.sh
-@@ -0,0 +1,151 @@
-+#!/bin/sh
-+
-+# This distribution contains contributions or derivatives under copyright
-+# as follows:
-+#
-+# Copyright (c) 2010, Texas Instruments Incorporated
-+# All rights reserved.
-+#
-+# Redistribution and use in source and binary forms, with or without
-+# modification, are permitted provided that the following conditions
-+# are met:
-+# - Redistributions of source code must retain the above copyright notice,
-+#   this list of conditions and the following disclaimer.
-+# - Redistributions in binary form must reproduce the above copyright
-+#   notice, this list of conditions and the following disclaimer in the
-+#   documentation and/or other materials provided with the distribution.
-+# - Neither the name of Texas Instruments nor the names of its
-+#   contributors may be used to endorse or promote products derived
-+#   from this software without specific prior written permission.
-+#
-+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
-+# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-+# PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-+# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-+# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-+# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
-+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-+
-+cwd=`dirname $0`
-+. $cwd/common.sh
-+
-+tftpcfg=/etc/xinetd.d/tftp
-+tftprootdefault=/tftpboot
-+
-+tftp() {
-+    echo "
-+service tftp
-+{
-+protocol = udp
-+port = 69
-+socket_type = dgram
-+wait = yes
-+user = nobody
-+server = /usr/sbin/in.tftpd
-+server_args = $tftproot
-+disable = no
-+}
-+" | sudo tee $tftpcfg > /dev/null
-+     check_status
-+     echo
-+     echo "$tftpcfg successfully created"
-+}
-+
-+prebuiltimagesdir=`cd $cwd/../board-support/prebuilt-images/ ; echo $PWD`
-+copy_to_tftproot() {
-+    files="$1"
-+    for file in $files
-+    do
-+	if [ -f $tftproot/$file ]; then
-+	    echo
-+	    echo "$tftproot/$file already exists. The existing installed file can be renamed and saved under the new name."
-+	    echo "(o) overwrite (s) skip copy "
-+	    read -p "[o] " exists
-+	    case "$exists" in
-+	      s) echo "Skipping copy of $file, existing version will be used"
-+		 ;;
-+	      *) sudo cp "$prebuiltimagesdir/$file" $tftproot
-+		 check_status
-+		 echo
-+		 echo "Successfully overwritten $file in tftp root directory $tftproot"
-+		 ;;
-+	    esac
-+	else
-+	    sudo cp "$prebuiltimagesdir/$file" $tftproot
-+	    check_status
-+	    echo
-+	    echo "Successfully copied $file to tftp root directory $tftproot"
-+	fi
-+    done
-+}
-+
-+echo "--------------------------------------------------------------------------------"
-+echo "Which directory do you want to be your tftp root directory?(if this directory does not exist it will be created for you)"
-+read -p "[ $tftprootdefault ] " tftproot
-+
-+if [ ! -n "$tftproot" ]; then
-+    tftproot=$tftprootdefault
-+fi
-+echo $tftproot > $cwd/../.tftproot
-+echo "--------------------------------------------------------------------------------"
-+
-+echo
-+echo "--------------------------------------------------------------------------------"
-+echo "This step will set up the tftp server in the $tftproot directory."
-+echo
-+echo "Note! This command requires you to have administrator priviliges (sudo access) "
-+echo "on your host."
-+read -p "Press return to continue" REPLY
-+
-+if [ -d $tftproot ]; then
-+    echo
-+    echo "$tftproot already exists, not creating.."
-+else
-+    sudo mkdir -p $tftproot
-+    check_status
-+    sudo chmod 777 $tftproot
-+    check_status
-+    sudo chown nobody $tftproot
-+    check_status
-+fi
-+
-+platform=`cat $cwd/../Rules.make | grep -e "^PLATFORM=" | cut -d= -f2`
-+itbfiles=`cd $prebuiltimagesdir;ls -1 *.itb`
-+copy_to_tftproot "$itbfiles"
-+
-+uboot_files=`cd $prebuiltimagesdir;ls -1 u-boot_HS_MLO* 2> /dev/null`
-+copy_to_tftproot "$uboot_files"
-+
-+fw_files=`cd $prebuiltimagesdir;ls -1 *firmware*.bin 2> /dev/null`
-+copy_to_tftproot "$fw_files"
-+
-+echo
-+if [ -f $tftpcfg ]; then
-+    echo "$tftpcfg already exists.."
-+
-+    #Use = instead of == for POSIX and dash shell compliance
-+    if [ "`cat $tftpcfg | grep server_args | cut -d= -f2 | sed 's/^[ ]*//'`" \
-+          = "$tftproot" ]; then
-+        echo "$tftproot already exported for TFTP, skipping.."
-+    else
-+        echo "Copying old $tftpcfg to $tftpcfg.old"
-+        sudo cp $tftpcfg $tftpcfg.old
-+        check_status
-+        tftp
-+    fi
-+else
-+    tftp
-+fi
-+
-+echo
-+echo "Restarting tftp server"
-+sudo /etc/init.d/xinetd stop
-+check_status
-+sleep 1
-+sudo /etc/init.d/xinetd start
-+check_status
-+echo "--------------------------------------------------------------------------------"
 -- 
-2.17.1
-
+Regards,
+Denys Dmytriyenko <denis@denix.org>
+PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
+Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
