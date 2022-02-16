@@ -1,210 +1,70 @@
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web09.9582.1645000512106889221
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web12.9830.1645004065975504148
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 16 Feb 2022 00:35:12 -0800
+ Wed, 16 Feb 2022 01:34:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=oP2tpCHQ;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: a-m1@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21G8ZB0j026760
-	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 02:35:11 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=Pnjj8kCC;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: a-m1@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21G9YOcG011141
+	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 03:34:24 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1645000511;
-	bh=o7p9c1NKIXO1G7WjCFFXcF1RjIZSCcbLKXGFFbIJju0=;
+	s=ti-com-17Q1; t=1645004064;
+	bh=7icV+O3dI6ZwaBSH+HTaw6e7bW04RHURXdf0GMuIh34=;
 	h=From:To:CC:Subject:Date;
-	b=oP2tpCHQaif/dKFrxWjDsBsjADv5aj2c8PlVAsLk9+d6ourcx4eQPmqzwFFa2Rg2Z
-	 +wMAI0Fl3R9JRasnjDAFG9Hy09UzpobjwGH9d3udsfwkE6P5FIlVLMU8gFfbdBhEIw
-	 sX7a5bGihxZ6vqI8P8uw2J9y97SROqcFyFZIb2oo=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21G8ZB9d093499
+	b=Pnjj8kCCwHSU8sNkIyujfzCjXPvTwVirzh/7ljKflXEtH94/K6oMQes35wf7r5rLV
+	 CLWubPrNUhPwC1yOSGvmXDoItcD+d2CzzF7aTUmFmjAw9kJdd2ldxcmucnIp0rxl7v
+	 QijFIXzjlSbCiv0f/yN58H4w2V53WJ0NzNXCW/Ng=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21G9YOQE118506
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 02:35:11 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 03:34:24 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 16
- Feb 2022 02:35:10 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2022 03:34:24 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 16 Feb 2022 02:35:10 -0600
+ Frontend Transport; Wed, 16 Feb 2022 03:34:23 -0600
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21G8Z8xQ045047;
-	Wed, 16 Feb 2022 02:35:09 -0600
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21G9YLmF120916;
+	Wed, 16 Feb 2022 03:34:22 -0600
 From: "Aparna M" <a-m1@ti.com>
 To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>
 CC: <nikhil.nd@ti.com>, <nsekhar@ti.com>
-Subject: [meta-arago][tisdk-setup-scripts][master][PATCH] setup-tftp-fit: Add support for HS EVMs
-Date: Wed, 16 Feb 2022 14:05:03 +0530
-Message-ID: <20220216083503.16632-1-a-m1@ti.com>
+Subject: [meta-arago][tisdk-setup-scripts][master][PATCH 0/4] setup-uboot-env: Add u-boot env setup for HS devices
+Date: Wed, 16 Feb 2022 15:04:10 +0530
+Message-ID: <20220216093414.5085-1-a-m1@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Content-Type: text/plain
 
-Add tftp setup support for HS EVMs.
+Hi all,
 
-Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+This is a series of patches to add support for u-boot env setup for
+am335x, am43x, am57xx and keystone HS devices.
 
-Signed-off-by: Aparna M <a-m1@ti.com>
----
- setup-tftp-fit.sh | 148 ++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 148 insertions(+)
- create mode 100644 setup-tftp-fit.sh
 
-diff --git a/setup-tftp-fit.sh b/setup-tftp-fit.sh
-new file mode 100644
-index 0000000..a0cc07d
---- /dev/null
-+++ b/setup-tftp-fit.sh
-@@ -0,0 +1,148 @@
-+#!/bin/sh
-+
-+# This distribution contains contributions or derivatives under copyright
-+# as follows:
-+#
-+# Copyright (c) 2010, Texas Instruments Incorporated
-+# All rights reserved.
-+#
-+# Redistribution and use in source and binary forms, with or without
-+# modification, are permitted provided that the following conditions
-+# are met:
-+# - Redistributions of source code must retain the above copyright notice,
-+#   this list of conditions and the following disclaimer.
-+# - Redistributions in binary form must reproduce the above copyright
-+#   notice, this list of conditions and the following disclaimer in the
-+#   documentation and/or other materials provided with the distribution.
-+# - Neither the name of Texas Instruments nor the names of its
-+#   contributors may be used to endorse or promote products derived
-+#   from this software without specific prior written permission.
-+#
-+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-+# "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
-+# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-+# PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
-+# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-+# PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-+# LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
-+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-+
-+cwd=`dirname $0`
-+. $cwd/common.sh
-+
-+tftpcfg=/etc/xinetd.d/tftp
-+tftprootdefault=/tftpboot
-+
-+tftp() {
-+    echo "
-+service tftp
-+{
-+protocol = udp
-+port = 69
-+socket_type = dgram
-+wait = yes
-+user = nobody
-+server = /usr/sbin/in.tftpd
-+server_args = $tftproot
-+disable = no
-+}
-+" | sudo tee $tftpcfg > /dev/null
-+     check_status
-+     echo
-+     echo "$tftpcfg successfully created"
-+}
-+
-+prebuiltimagesdir=`cd $cwd/../board-support/prebuilt-images/ ; echo $PWD`
-+copy_to_tftproot() {
-+    files="$1"
-+    for file in $files
-+    do
-+	if [ -f $tftproot/$file ]; then
-+	    echo
-+	    echo "$tftproot/$file already exists. The existing installed file can be renamed and saved under the new name."
-+	    echo "(o) overwrite (s) skip copy "
-+	    read -p "[o] " exists
-+	    case "$exists" in
-+	      s) echo "Skipping copy of $file, existing version will be used"
-+		 ;;
-+	      *) sudo cp "$prebuiltimagesdir/$file" $tftproot
-+		 check_status
-+		 echo
-+		 echo "Successfully overwritten $file in tftp root directory $tftproot"
-+		 ;;
-+	    esac
-+	else
-+	    sudo cp "$prebuiltimagesdir/$file" $tftproot
-+	    check_status
-+	    echo
-+	    echo "Successfully copied $file to tftp root directory $tftproot"
-+	fi
-+    done
-+}
-+
-+echo "--------------------------------------------------------------------------------"
-+echo "Which directory do you want to be your tftp root directory?(if this directory does not exist it will be created for you)"
-+read -p "[ $tftprootdefault ] " tftproot
-+
-+if [ ! -n "$tftproot" ]; then
-+    tftproot=$tftprootdefault
-+fi
-+echo $tftproot > $cwd/../.tftproot
-+echo "--------------------------------------------------------------------------------"
-+
-+echo
-+echo "--------------------------------------------------------------------------------"
-+echo "This step will set up the tftp server in the $tftproot directory."
-+echo
-+echo "Note! This command requires you to have administrator priviliges (sudo access) "
-+echo "on your host."
-+read -p "Press return to continue" REPLY
-+
-+if [ -d $tftproot ]; then
-+    echo
-+    echo "$tftproot already exists, not creating.."
-+else
-+    sudo mkdir -p $tftproot
-+    check_status
-+    sudo chmod 777 $tftproot
-+    check_status
-+    sudo chown nobody $tftproot
-+    check_status
-+fi
-+
-+platform=`cat $cwd/../Rules.make | grep -e "^PLATFORM=" | cut -d= -f2`
-+itbfiles=`cd $prebuiltimagesdir;ls -1 *.itb`
-+copy_to_tftproot "$itbfiles"
-+
-+uboot_files=`cd $prebuiltimagesdir;ls -1 u-boot_HS_MLO* 2> /dev/null`
-+copy_to_tftproot "$uboot_files"
-+
-+echo
-+if [ -f $tftpcfg ]; then
-+    echo "$tftpcfg already exists.."
-+
-+    #Use = instead of == for POSIX and dash shell compliance
-+    if [ "`cat $tftpcfg | grep server_args | cut -d= -f2 | sed 's/^[ ]*//'`" \
-+          = "$tftproot" ]; then
-+        echo "$tftproot already exported for TFTP, skipping.."
-+    else
-+        echo "Copying old $tftpcfg to $tftpcfg.old"
-+        sudo cp $tftpcfg $tftpcfg.old
-+        check_status
-+        tftp
-+    fi
-+else
-+    tftp
-+fi
-+
-+echo
-+echo "Restarting tftp server"
-+sudo /etc/init.d/xinetd stop
-+check_status
-+sleep 1
-+sudo /etc/init.d/xinetd start
-+check_status
-+echo "--------------------------------------------------------------------------------"
+Aparna M (4):
+  setup-uboot-env-am43x-hs: Add u-boot env setup support for am43x-hs
+  setup-uboot-env-am335x-hs: Add u-boot env setup support for am335x-hs
+  setup-uboot-env-am57xx-hs-evm: Add u-boot env setup support for
+    am57xx-hs
+  setup-uboot-env-keystone-hs: Add u-boot env setup support for keystone
+    hs devices
+
+ setup-uboot-env-am335x-hs.sh     | 339 +++++++++++++++++++++++
+ setup-uboot-env-am43x-hs.sh      | 165 +++++++++++
+ setup-uboot-env-am57xx-hs-evm.sh | 242 ++++++++++++++++
+ setup-uboot-env-keystone-hs.sh   | 456 +++++++++++++++++++++++++++++++
+ 4 files changed, 1202 insertions(+)
+ create mode 100644 setup-uboot-env-am335x-hs.sh
+ create mode 100644 setup-uboot-env-am43x-hs.sh
+ create mode 100644 setup-uboot-env-am57xx-hs-evm.sh
+ create mode 100755 setup-uboot-env-keystone-hs.sh
+
 -- 
 2.17.1
 
