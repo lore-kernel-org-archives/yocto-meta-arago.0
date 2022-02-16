@@ -1,41 +1,41 @@
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web11.10391.1645009461250811177
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web09.10529.1645009492325060910
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 16 Feb 2022 03:04:21 -0800
+ Wed, 16 Feb 2022 03:04:52 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=oTydz0Qc;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: a-m1@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21GB4KBm094896
-	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 05:04:20 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=kjQdP+CE;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: a-m1@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21GB4pJa069038
+	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 05:04:51 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1645009460;
-	bh=xv4a/UpXWwrWgt5fXTrCYkoMTBwnzKD9tNS4jv9HOFI=;
+	s=ti-com-17Q1; t=1645009491;
+	bh=GGVh1sq6GWEzPyn6Vi/AX7WxMJKYuUKpeLYmZwBhq0g=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=oTydz0QcvKE46MHdW8YnvQUbSksJXOua5DpQVNgDmOllYaE1AIejUkTR3fup8hykK
-	 TfYeAMbkU5ddnh4F78K7spysebVLxf2HZo3A3FUrAV3zJkn7eFBHdvvcKKGJITFxwX
-	 u1d1vHKJJAumccb2vkCXHqONdR/NYrUl541FeAO8=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21GB4K5G044313
+	b=kjQdP+CEmJOBQs605WSNEeHJ+O7ZO83Sf4166d0IGmHvbCATo9zilfsBHnMD3LDGY
+	 eG9HvwqOKzaxn+H41ioIzAxxauB8ivzQZrrSgch0B1pfCiB4xAtJmFIhLZpnNtnxNw
+	 H5rYv+uR69zOSaeK8EQ913x5y2MVz45khjlcxWKc=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21GB4pV7119867
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 05:04:20 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 05:04:51 -0600
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 16
- Feb 2022 05:04:19 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2022 05:04:50 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 16 Feb 2022 05:04:19 -0600
+ Frontend Transport; Wed, 16 Feb 2022 05:04:50 -0600
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21GB47oF084540;
-	Wed, 16 Feb 2022 05:04:18 -0600
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21GB47oG084540;
+	Wed, 16 Feb 2022 05:04:49 -0600
 From: "Aparna M" <a-m1@ti.com>
 To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>
 CC: <nikhil.nd@ti.com>, <nsekhar@ti.com>
-Subject: [meta-arago][tisdk-setup-scripts][master][PATCH v3 1/4] setup-uboot-env-am43x-hs: Add u-boot env setup support for am43x-hs
-Date: Wed, 16 Feb 2022 16:33:58 +0530
-Message-ID: <20220216110401.9082-2-a-m1@ti.com>
+Subject: [meta-arago][tisdk-setup-scripts][master][PATCH v3 2/4] setup-uboot-env-am335x-hs: Add u-boot env setup support for am335x-hs
+Date: Wed, 16 Feb 2022 16:33:59 +0530
+Message-ID: <20220216110401.9082-3-a-m1@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20220216110401.9082-1-a-m1@ti.com>
 References: <20220216110401.9082-1-a-m1@ti.com>
@@ -43,28 +43,28 @@ MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Content-Type: text/plain
 
-Add u-boot env setup support for am43x-hs
+Add u-boot setup support for am335x-hs
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 
 Signed-off-by: Aparna M <a-m1@ti.com>
 ---
- setup-uboot-env-am43x-hs.sh | 230 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 230 insertions(+)
- create mode 100644 setup-uboot-env-am43x-hs.sh
+ setup-uboot-env-am335x-hs.sh | 401 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 401 insertions(+)
+ create mode 100644 setup-uboot-env-am335x-hs.sh
 
-diff --git a/setup-uboot-env-am43x-hs.sh b/setup-uboot-env-am43x-hs.sh
+diff --git a/setup-uboot-env-am335x-hs.sh b/setup-uboot-env-am335x-hs.sh
 new file mode 100644
-index 0000000..ccb0f93
+index 0000000..89e9284
 --- /dev/null
-+++ b/setup-uboot-env-am43x-hs.sh
-@@ -0,0 +1,230 @@
++++ b/setup-uboot-env-am335x-hs.sh
+@@ -0,0 +1,401 @@
 +#!/bin/sh
 +
 +# This distribution contains contributions or derivatives under copyright
 +# as follows:
 +#
-+# Copyright (c) 2014, Texas Instruments Incorporated
++# Copyright (c) 2010, Texas Instruments Incorporated
 +# All rights reserved.
 +#
 +# Redistribution and use in source and binary forms, with or without
@@ -109,7 +109,7 @@ index 0000000..ccb0f93
 +
 +echo
 +echo "--------------------------------------------------------------------------------"
-+echo "This step will set up the u-boot variables for booting the EVM."
++echo "This step will set up the U-Boot variables for booting the EVM."
 +echo
 +
 +ipdefault=`ifconfig | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1 }'`
@@ -183,17 +183,63 @@ index 0000000..ccb0f93
 +    fi
 +fi
 +
++isBB="n"
++isBBBlack="n"
++isBBrevA3="n"
++configBB="n"
 +
-+#This is an AM437x GP/EPOS EVM and thus has a NAND. Flash information to NAND.
++check_for_beaglebone() {
++    # First check if there is a rev A3 board which uses the custom VID/PID
++    # combination
++    lsusb -d 0403:a6d0 > /dev/null
 +
++    if [ "$?" = "0" ]
++    then
++        # We found a beaglebone
++        isBB="y"
++        isBBrevA3="y"
++        return
++    fi
++
++    # Now let's check for a standard VID/PID like newer BeagleBones have
++    sudo lsusb -vv -d 0403:6010 | grep "Product" | grep "BeagleBone" > /dev/null
++
++    if [ "$?" = "0" ]
++    then
++        isBB="y"
++        return
++    fi
++
++    # Now let's check for EVM-SK
++    sudo lsusb -vv -d 0403:6010 | grep "Product" | grep "EVM-SK" > /dev/null
++
++    if [ "$?" = "0" ]
++    then
++        isBB="y"
++        return
++    fi
++
++
++    # Now let's check for BeagleBone Black
++    sudo lsusb -vv -d 0403:6001 > /dev/null
++
++    if [ "$?" = "0" ]
++    then
++        isBB="y"
++        isBBBlack="y"
++        return
++     fi
++
++}
 +
 +echo "timeout 300" > $cwd/setupBoard.minicom
 +echo "verbose on" >> $cwd/setupBoard.minicom
-+do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
++
++do_expect "\"stop autoboot\"" "send \" \"" $cwd/setupBoard.minicom
 +do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
 +do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
 +do_expect "\"$prompt\"" "send \"reset\"" $cwd/setupBoard.minicom
-+do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
++do_expect "\"stop autoboot\"" "send \" \"" $cwd/setupBoard.minicom
 +
 +do_expect "\"$prompt\"" "send \"run update_to_fit\"" $cwd/setupBoard.minicom
 +if [ "$fit" -eq "1" ]; then
@@ -204,8 +250,7 @@ index 0000000..ccb0f93
 +		do_expect "\"$prompt\"" "send \"setenv fit_bootfile $fitimage\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
++		do_expect "\"$prompt\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no;dhcp ;tftp \${fit_loadaddr} $fitimage; run netargs; bootm \${fit_loadaddr}#\${fdtfile}'" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
@@ -214,8 +259,7 @@ index 0000000..ccb0f93
 +		do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"setenv fit_bootfile $fitimage\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
++		do_expect "\"$prompt\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run getuenv; setenv autoload no; dhcp ; tftp \${fit_loadaddr} $fitimage; run args_mmc; bootm \${fit_loadaddr}#\${fdtfile}'" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
@@ -228,8 +272,7 @@ index 0000000..ccb0f93
 +		do_expect "\"$prompt\"" "send \"setenv fit_bootfile fitImage\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"setenv ip_method dhcp\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"setenv nfsopts 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
++		do_expect "\"$prompt\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send setenv bootcmd 'setenv autoload no; mmc rescan; run findfdt; run getuenv; setenv devtype mmc; run loadimage; run netargs; bootm \${fit_loadaddr}#\${fdtfile}'" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
@@ -237,8 +280,7 @@ index 0000000..ccb0f93
 +		#SD and SD boot.
 +		do_expect "\"$prompt\"" "send \"setenv ip_method none\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"setenv fit_bootfile fitImage\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv devtype mmc\"" $cwd/setupBoard.minicom
-+		do_expect "\"$prompt\"" "send \"setenv getuenv 'setenv devnum \${mmcdev}; if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
++		do_expect "\"$prompt\"" "send \"setenv getuenv 'if mmc rescan; then if run loadbootenv; then run importbootenv; fi; fi;'\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send setenv bootcmd 'mmc rescan; run findfdt; run getuenv; setenv devtype mmc; run loadimage; run args_mmc; bootm \${fit_loadaddr}#\${fdtfile}'" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
 +		do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
@@ -260,35 +302,164 @@ index 0000000..ccb0f93
 +
 +    echo -n "Successfully wrote "
 +    readlink -m $cwd/setupBoard.minicom
-+
-+    echo "Would you like to run the setup script now (y/n)? This requires you to connect"
-+    echo "the RS-232 cable between your host and EVM as well as your ethernet cable as"
-+    echo "described in the Quick Start Guide. Once answering 'y' on the prompt below"
-+    echo "you will have 300 seconds to connect the board and power cycle it"
-+    echo "before the setup times out"
-+    echo
-+    echo "After successfully executing this script, your EVM will be set up. You will be "
-+    echo "able to connect to it by executing 'minicom -w' or if you prefer a windows host"
-+    echo "you can set up Tera Term as explained in the Software Developer's Guide."
-+    echo "If you connect minicom or Tera Term and power cycle the board Linux will boot."
-+    echo
-+    read -p "[ y ] " minicomsetup
-+
-+    if [ ! -n "$minicomsetup" ]; then
-+       minicomsetup="y"
-+    fi
-+
-+    if [ "$minicomsetup" = "y" ]; then
-+      cd $cwd
-+      sudo minicom -w -S setupBoard.minicom
-+      cd -
-+    fi
-+
-+    echo "You can manually run minicom in the future with this setup script using: minicom -S $cwd/setupBoard.minicom"
-+    echo "--------------------------------------------------------------------------------"
-+
 +fi
 +
++while [ yes ]
++do
++	check_for_beaglebone
++
++	if [ "$isBB" = "y" ]
++	then
++		echo ""
++		echo "A BeagleBone (Black) or StarterKit board has been detected"
++		echo "Do you want to configure U-Boot for one of the boards mentioned"
++		echo "above? An answer of 'n' will configure U-Boot for the"
++		echo "General Purpose EVM instead"
++		read -p "(y/n) " configBB
++		echo
++
++		if [ "$configBB" = "y" ] || [ "$configBB" = "n" ]
++		then
++			break
++		else
++			echo "Invalid response"
++			echo
++			continue
++		fi
++	else
++		echo ""
++		echo "No BeagleBone (Black) or StarterKit detected. Assuming"
++		echo "general purpose evm is being used. Is this correct?"
++		read -p "(y/n) " validevm
++		echo ""
++		if [ "$validevm" = "y" ]
++		then
++			configBB="n"
++			break
++		else
++			if [ "$validevm" != "n" ]
++			then
++				echo "Invalid response"
++				echo
++				continue
++			fi
++
++			echo "Please connect the Beaglebone (Black) or StarterKit to the PC"
++			echo "If your using the StarterKit board make sure it is turned on"
++			read -p "Press any key to try checking again." temp
++		fi
++	fi
++done
++
++if [ "$configBB" = "y" ]
++then
++    ftdiInstalled=`lsmod | grep ftdi_sio`
++    if [ -z "$ftdiInstalled" ]; then
++    #Add the ability to regconize the BeagleBone as two serial ports
++        if [ "$isBBrevA3" = "y" ]
++        then
++            echo "Finishing install by adding drivers for Beagle Bone..."
++            sudo modprobe -q ftdi_sio vendor=0x0403 product=0xa6d0
++
++            #Create uDev rule
++            echo "# Load ftdi_sio driver including support for XDS100v2." > $cwd/99-custom.rules
++            echo "SYSFS{idVendor}=="0403", SYSFS{idProduct}=="a6d0", \\" >>  $cwd/99-custom.rules
++            echo "RUN+=\"/sbin/modprobe -q ftdi_sio vendor=0x0403 product=0xa6d0\"" >> $cwd/99-custom.rules
++            sudo cp $cwd/99-custom.rules /etc/udev/rules.d/
++            rm $cwd/99-custom.rules
++        else
++            sudo modprobe -q ftdi_sio
++        fi
++    fi
++
++    #infinite loop to look for board unless user asks to stop
++    while [ yes ]
++    do
++	    echo "Detecting connection to board..."
++	    loopCount=0
++	    port=`dmesg | grep FTDI | grep "tty" | tail -1 | grep "attached" |  awk '{ print $NF }'`
++	    while [ -z "$port" ] && [ "$loopCount" -ne "10" ]
++	    do
++		    #count to 10 and timeout if no connection is found
++		    loopCount=$((loopCount+1))
++
++		    sleep 1
++		    port=`dmesg  | grep FTDI | grep "tty" | tail -1 | grep "attached" |  awk '{ print $NF }'`
++	    done
++
++	    #check to see if we actually found a port
++	    if [ -n "$port" ]; then
++		    break;
++	    fi
++
++	    #if we didn't find a port and reached the timeout limit then ask to reconnect
++	    if [ -z "$port" ] && [ "$loopCount" = "10" ]; then
++		    echo ""
++		    echo "Unable to detect which port the board is connected to."
++		    echo "Please reconnect your board."
++		    echo "Press 'y' to attempt to detect your board again or press 'n' to continue..."
++		    read -p "(y/n)" retryBoardDetection
++	    fi
++
++	    #if they choose not to retry, ask user to reboot manually and exit
++	    if [ "$retryBoardDetection" = "n" ]; then
++		    echo ""
++		    echo "Please reboot your board manually and connect using minicom."
++		    exit;
++	    fi
++    done
++
++    #Change minicom to accurately reflect the bone
++    minicomcfg=${HOME}/.minirc.dfl
++    echo "pu port             /dev/$port
++    pu baudrate         115200
++    pu bits             8
++    pu parity           N
++    pu stopbits         1
++    pu minit
++    pu mreset
++    pu mdialpre
++    pu mdialsuf
++    pu mdialpre2
++    pu mdialsuf2
++    pu mdialpre3
++    pu mdialsuf3
++    pu mconnect
++    pu mnocon1          NO CARRIER
++    pu mnocon2          BUSY
++    pu mnocon3          NO DIALTONE
++    pu mnocon4          VOICE
++    pu rtscts           No" | tee $minicomcfg > /dev/null
++    check_status
++fi
++
++echo "Would you like to run the setup script now (y/n)? For the general purpose evm "
++echo "you must now connect the RS-232 cable to your evm now. For the Beaglebone (Black)"
++echo "or StarterKit this step should of already have been done. Also connect the ethernet"
++echo "cable as described in the Quick Start Guide."
++echo "**Important**"
++echo "Once answering 'y' on the prompt below you will have 300 seconds to turn on the"
++echo "board or if it was already on reboot the board before the setup times out"
++echo
++echo "After successfully executing this script, your board will be set up. You will be "
++echo "able to connect to it by executing 'minicom -w' or if you prefer a windows host"
++echo "you can set up Tera Term as explained in the Software Developer's Guide."
++echo "If you connect minicom or Tera Term and power cycle the board Linux will boot."
++echo
++read -p "[ y ] " minicomsetup
++
++if [ ! -n "$minicomsetup" ]; then
++minicomsetup="y"
++fi
++
++if [ "$minicomsetup" = "y" ]; then
++cd $cwd
++sudo minicom -w -S setupBoard.minicom
++cd -
++fi
++
++echo "You can manually run minicom in the future with this setup script using: minicom -S $cwd/setupBoard.minicom"
++echo "--------------------------------------------------------------------------------"
 -- 
 2.17.1
 
