@@ -1,41 +1,41 @@
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web11.9812.1645004074614134685
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web11.9813.1645004077371220167
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 16 Feb 2022 01:34:34 -0800
+ Wed, 16 Feb 2022 01:34:37 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=D112e7gy;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: a-m1@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=FuJYdyFz;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: a-m1@ti.com)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21G9YXHN047102
-	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 03:34:33 -0600
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21G9Ya3m119457
+	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 03:34:36 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1645004073;
-	bh=6or7hQThWl6Bj3mNcs9jwEqtzDLUcS9GdaXt97gqXc4=;
+	s=ti-com-17Q1; t=1645004076;
+	bh=7uPz7YLRVnK3OZIapNQgh8vlTJX0m7r4I5Fov0uZcY4=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=D112e7gy1/xfw5NytXhPn+IZDEzbzLrJXeaa88QwYl7T6NhvBvvtFCf5O8UtDkZ8D
-	 5PE+5lj//cbCFM4FtFxIi0T4z5H9lyexAlez3kas791gm30hXa2tr/nWZQDRV/Behy
-	 jxqf1NBtTGwVYiARUjdRaWVcuyuxgOHfS2lpJtrU=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21G9YXNi051737
+	b=FuJYdyFzofaAfwLFiyVKP9WmZ2o644eAxiqsVZHs6k/1wziltGwPouMhql4u07iXN
+	 lXEV5Nma/2Lf06UoU+P9gdH27kdapa92a6mG0k0juaWAYvOKRMQaq9Ru+4z90/7UHu
+	 cyDVPdYG+DILZTe+F1hKF/+12Z3ZutnFZ9KWlRGU=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21G9Yak7051809
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 03:34:33 -0600
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Wed, 16 Feb 2022 03:34:36 -0600
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 16
- Feb 2022 03:34:33 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2022 03:34:36 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 16 Feb 2022 03:34:32 -0600
+ Frontend Transport; Wed, 16 Feb 2022 03:34:36 -0600
 Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21G9YLmI120916;
-	Wed, 16 Feb 2022 03:34:31 -0600
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21G9YLmJ120916;
+	Wed, 16 Feb 2022 03:34:35 -0600
 From: "Aparna M" <a-m1@ti.com>
 To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>
 CC: <nikhil.nd@ti.com>, <nsekhar@ti.com>
-Subject: [meta-arago][tisdk-setup-scripts][master][PATCH 3/4] setup-uboot-env-am57xx-hs-evm: Add u-boot env setup support for am57xx-hs
-Date: Wed, 16 Feb 2022 15:04:13 +0530
-Message-ID: <20220216093414.5085-4-a-m1@ti.com>
+Subject: [meta-arago][tisdk-setup-scripts][master][PATCH 4/4] setup-uboot-env-keystone-hs: Add u-boot env setup support for keystone hs devices
+Date: Wed, 16 Feb 2022 15:04:14 +0530
+Message-ID: <20220216093414.5085-5-a-m1@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20220216093414.5085-1-a-m1@ti.com>
 References: <20220216093414.5085-1-a-m1@ti.com>
@@ -43,22 +43,22 @@ MIME-Version: 1.0
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Content-Type: text/plain
 
-Add u-boot env setup support for am57xx-hs
+Add u-boot env setup support for keystone hs devices.
 
 Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
 
 Signed-off-by: Aparna M <a-m1@ti.com>
 ---
- setup-uboot-env-am57xx-hs-evm.sh | 242 +++++++++++++++++++++++++++++++
- 1 file changed, 242 insertions(+)
- create mode 100644 setup-uboot-env-am57xx-hs-evm.sh
+ setup-uboot-env-keystone-hs.sh | 456 +++++++++++++++++++++++++++++++++
+ 1 file changed, 456 insertions(+)
+ create mode 100755 setup-uboot-env-keystone-hs.sh
 
-diff --git a/setup-uboot-env-am57xx-hs-evm.sh b/setup-uboot-env-am57xx-hs-evm.sh
-new file mode 100644
-index 0000000..c3192b5
+diff --git a/setup-uboot-env-keystone-hs.sh b/setup-uboot-env-keystone-hs.sh
+new file mode 100755
+index 0000000..9eff80f
 --- /dev/null
-+++ b/setup-uboot-env-am57xx-hs-evm.sh
-@@ -0,0 +1,242 @@
++++ b/setup-uboot-env-keystone-hs.sh
+@@ -0,0 +1,456 @@
 +#!/bin/sh
 +
 +# This distribution contains contributions or derivatives under copyright
@@ -95,17 +95,120 @@ index 0000000..c3192b5
 +. $cwd/common.sh
 +
 +do_expect() {
-+    echo "expect {" >> $3
-+    check_status
-+    echo "    $1" >> $3
-+    check_status
-+    echo "}" >> $3
-+    check_status
-+    echo $2 >> $3
-+    check_status
-+    echo >> $3
++    local expect_str="$1"
++    local command="$2"
++
++    shift; shift
++
++    while [ $# -gt 0 ]
++    do
++        echo "expect {" >> "$1"
++        check_status
++        echo "    $expect_str" >> "$1"
++        check_status
++        echo "    timeout 600 goto end" >> "$1"
++        echo "}" >> "$1"
++        check_status
++        echo $command >> "$1"
++        check_status
++        echo >> "$1"
++
++        shift
++    done
 +}
 +
++prompt_feedback() {
++    # Usage: prompt_feedback <prompt> [variable] [default_value] [valid_opt1] [valid_opt2]...
++    local prompt="$1"
++    local var=""
++    local default=""
++
++    local opt_str=""
++
++    local response=""
++    local good_response=""
++
++    shift
++    [ $# -eq 0 ] || var="$1"
++    shift
++    [ $# -eq 0 ] || default="$1"
++    shift
++
++    if [ $# -gt 0 ]
++    then
++        opt_str="($1"
++        shift
++
++        while [ $# -gt 0 ]
++        do
++            opt_str="${opt_str}/$1"
++            shift
++        done
++        opt_str="${opt_str})"
++    fi
++
++    echo "$prompt $opt_str"
++    if [ ! -z "$default" ]
++    then
++        read -p "[ $default ] " response
++    else
++        read response
++    fi
++    echo
++
++    [ ! -z "$response" ] || response="$default"
++
++    [ -z "$var" ] || eval $var=\"$response\"
++}
++
++copy_to_tftproot() {
++    files="$1"
++    for file in $files
++    do
++	if [ -f $tftproot/$file ]; then
++	    echo
++	    echo "$tftproot/$file already exists. The existing installed file can be renamed and saved under the new name."
++	    prompt_feedback "(o) overwrite (s) skip copy" exists o
++	    case "$exists" in
++	      s) echo "Skipping copy of $file, existing version will be used"
++		 ;;
++	      *) sudo cp "$prebuiltimagesdir/$file" $tftproot
++		 check_status
++		 echo
++		 echo "Successfully overwritten $file in tftp root directory $tftproot"
++		 ;;
++	    esac
++	else
++	    sudo cp "$prebuiltimagesdir/$file" $tftproot
++	    check_status
++	    echo
++	    echo "Successfully copied $file to tftp root directory $tftproot"
++	fi
++    done
++}
++
++# Create the BMC scripts. These require no configuration from the user.
++create_bmc_scripts() {
++    ( echo "timeout 300"; echo; ) > $cwd/bmcUartBoot.minicom
++    ( echo "timeout 300"; echo; ) > $cwd/bmcNandBoot.minicom
++
++    # Allow time for XMODEM transfer to begin
++    echo "! sleep 1" >> $cwd/bmcUartBoot.minicom
++
++    ( echo "send \" \""; echo; ) >> $cwd/bmcUartBoot.minicom
++    ( echo "send \" \""; echo; ) >> $cwd/bmcNandBoot.minicom
++
++    do_expect "\"BMC>\"" "send \"bootmode #4\"" $cwd/bmcUartBoot.minicom
++    do_expect "\"BMC>\"" "send \"bootmode #0\"" $cwd/bmcNandBoot.minicom
++
++    do_expect "\"BMC>\"" "send \"reboot\"" $cwd/bmcUartBoot.minicom $cwd/bmcNandBoot.minicom
++
++    echo "end:" >> $cwd/bmcUartBoot.minicom
++    echo "end:" >> $cwd/bmcNandBoot.minicom
++
++    # bmcUartboot.minicom will be killed by the updateUboot.minicom script
++    echo "! killall -s SIGHUP minicom" >> $cwd/bmcNandBoot.minicom
++}
 +
 +echo
 +echo "--------------------------------------------------------------------------------"
@@ -118,91 +221,157 @@ index 0000000..c3192b5
 +# Configure prompt for U-Boot 2016.05
 +prompt="=>"
 +
++prompt_feedback "Autodetected the following ip address of your host, correct it if necessary" ip "$(echo $ipdefault | sed -e 's| .*||')" $ipdefault
 +
-+echo "Autodetected the following ip address of your host, correct it if necessary"
-+read -p "[ $ipdefault ] " ip
-+echo
-+
-+if [ ! -n "$ip" ]; then
-+    ip=$ipdefault
++if [ -f $cwd/../.tftproot ]; then
++    tftproot=`cat $cwd/../.tftproot`
++else
++    prompt_feedback "Where is your tftp root directory?" tftproot "/tftpboot"
 +fi
++
++if [ -f $cwd/../.targetfs ]; then
++    rootpath=`cat $cwd/../.targetfs`
++else
++    prompt_feedback "Where is your target filesystem extracted?" rootpath "${HOME}/targetNFS"
++fi
++
 +
 +fitimage="fitImage-arago-base-tisdk-image-"$platform".itb"
 +fitimagesrc=`ls -1 $cwd/../board-support/prebuilt-images/$fitimage`
 +fitimagedefault=`basename $fitimagesrc`
 +
++ubootimage="u-boot_HS_MLO-${platform}"
++ubootimagesrc=`readlink -m $cwd/../board-support/prebuilt-images/$ubootimage`
 +
-+echo "Select fit image location:"
-+echo " 1: TFTP"
-+echo " 2: SD card"
++echo "--------------------------------------------------------------------------------"
++prompt_feedback "Would you like to update U-boot on the board?" ubootupdate y y n
++
 +echo
-+read -p "[ 1 ] " fit
++echo "Available fit images in /tftproot:"
++for file in /tftpboot/*.itb; do
++    basefile=`basename $file`
++    echo "    $basefile"
++done
++echo
++echo "Which fit image do you want to boot from TFTP?"
++read -p "[ $fitimagedefault ] " fitimage
 +
 +if [ ! -n "$fitimage" ]; then
-+    fit="1"
-+fi
-+
-+
-+if [ "$fit" -eq "1" ]; then
-+    echo
-+    echo "Available fit images in /tftproot:"
-+    for file in /tftpboot/*.itb; do
-+	basefile=`basename $file`
-+	echo "    $basefile"
-+    done
-+    echo
-+    echo "Which fit image do you want to boot from TFTP?"
-+    read -p "[ $fitimagedefault ] " fitimage
-+
-+    if [ ! -n "$fitimage" ]; then
-+	fitimage=$fitimagedefault
-+    fi
++    fitimage=$fitimagedefault
 +fi
 +
 +board="unknown"
 +check_for_board() {
-+    lsusb -vv -d 0403:6001 > /dev/null 2>&1
++    case $platform in
++        "k2hk-evm")
++            lsusb -vv -d 0403:6010 > /dev/null 2>&1
 +
-+    if [ "$?" = "0" ]
-+    then
-+        board="x15"
-+    fi
++            if [ "$?" = "0" ]
++            then
++                board="k2evm"
++                board_vendor="0403"
++                board_product="6010"
++                num_port="2"
++                uart_port_idx="1"
++                bmc_port_idx="2"
++            fi
++        ;;
 +
-+    lsusb -vv -d 0403:6010 > /dev/null 2>&1
++        "k2l-evm"|"k2e-evm")
++            lsusb -vv -d 10c4:ea70 > /dev/null 2>&1
 +
-+    if [ "$?" = "0" ]
-+    then
-+        board="am5-idk"
-+    fi
++            if [ "$?" = "0" ]
++            then
++                board="k2evm"
++                board_vendor="10c4"
++                board_product="ea70"
++                num_port="2"
++                uart_port_idx="1"
++                bmc_port_idx="2"
++            fi
++        ;;
++    esac
 +}
 +
-+echo "timeout 300" > $cwd/setupBoard.minicom
++echo "timeout 1800" > $cwd/setupBoard.minicom
++echo "timeout 1800" > $cwd/updateBoard.minicom
 +echo "verbose on" >> $cwd/setupBoard.minicom
-+do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
-+do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom
++echo "verbose on" >> $cwd/updateBoard.minicom
++
++do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++
++# If U-Boot was not updated, refuse to proceed.
++cat >> $cwd/setupBoard.minicom << __EOF__
++expect {
++    "$prompt"
++    "# " goto uboot_update_required
++    timeout 60 goto end
++}
++send " "
++__EOF__
++
++# Reset to the default environment
++do_expect "\"$prompt\"" "send \"env default -f -a\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++
 +do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
++
++# Reset incase any variables are set when u-boot initializes
 +do_expect "\"$prompt\"" "send \"reset\"" $cwd/setupBoard.minicom
 +do_expect "\"stop autoboot:\"" "send \" \"" $cwd/setupBoard.minicom
 +
-+if [ "$fit" -eq "1" ]; then
-+	do_expect "\"$prompt\"" "send setenv serverip $ip" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send setenv fit_bootfile $fitimage" $cwd/setupBoard.minicom
-+        do_expect "\"$prompt\"" "send setenv bootcmd 'run findfdt; run init_console; run envboot; setenv autoload no; dhcp; tftp \${fit_loadaddr} \${fit_bootfile}; run args_fit; bootm \${fit_loadaddr}#\${fdtfile}'" $cwd/setupBoard.minicom
-+	do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom
-+fi
-+# Default U-Boot environment will boot our default SD card image.
++# Set up the U-Boot environment
++do_expect "\"$prompt\"" "send \"setenv serverip $ip\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv tftp_root '$tftproot'\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv name_uboot $ubootimage\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv fit_bootfile $fitimage\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv fit_loadaddr 0xc0000000\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv addr_mon 0xc08000\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv addr_mon_mkimg 0xc07ffc0\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv mon_size 0x1210\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv addr_mon 0xc08000\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv sec_bm_install 'go \${addr_mon}4 0xc084000 \${mon_size}; mon_install \${addr_mon_mkimg}'\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv loadimage 'dhcp \${fit_loadaddr} \${tftp_root}/\${fit_bootfile}'\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv bootcmd 'run sec_bm_install; run loadimage; bootm \${fit_loadaddr}#\${name_fdt}'\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
 +
++
++# Create command to fetch and flash u-boot and ubi
++#
++# TBD: Save minicom output to a log and use these strings to determine the
++#      update status on the host machine.
++#
++update_uboot_status="U-Boot update:"
++update_ubi_status="UBI update:"
++
++do_expect "\"$prompt\"" "send \"setenv update_uboot 'if run get_uboot_net burn_uboot_nand; then echo $update_uboot_status SUCCESS; else echo $update_uboot_status FAILED; fi'\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++
++do_expect "\"$prompt\"" "send \"saveenv\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++do_expect "\"$prompt\"" "send \"printenv\"" $cwd/setupBoard.minicom $cwd/updateBoard.minicom
++
++if [ "$ubootupdate" = "y" ]; then
++    do_expect "\"$prompt\"" "send \"run sec_bm_install\"" $cwd/updateBoard.minicom
++    do_expect "\"$prompt\"" "send \"run update_uboot\"" $cwd/updateBoard.minicom
++fi
++
++do_expect "\"$prompt\"" "send \" \"" $cwd/updateBoard.minicom
 +do_expect "\"$prompt\"" "send \"boot\"" $cwd/setupBoard.minicom
-+echo "! killall -s SIGHUP minicom" >> $cwd/setupBoard.minicom
++
++cat >> $cwd/setupBoard.minicom << __EOF__
++goto end
++uboot_update_required:
++send echo; echo "*** U-boot is require to be updated before proceeding!"; echo "*** The automatic upgrade of this version of U-boot is currently disabled."; echo "*** Please follow the wiki instructions to manually upgrade U-boot."; echo
++end:
++__EOF__
++
++cat >> $cwd/updateBoard.minicom << __EOF__
++goto end
++uboot_update_required:
++send echo; echo "*** U-boot is require to be updated before proceeding!"; echo "*** The automatic upgrade of this version of U-boot is currently disabled."; echo "*** Please follow the wiki instructions to manually upgrade U-boot."; echo
++end:
++__EOF__
++echo "! killall -s SIGHUP minicom" >> $cwd/updateBoard.minicom
 +
 +echo "--------------------------------------------------------------------------------"
-+echo "Would you like to create a minicom script with the above parameters (y/n)?"
-+read -p "[ y ] " minicom
-+echo
-+
-+if [ ! -n "$minicom" ]; then
-+    minicom="y"
-+fi
++prompt_feedback "Would you like to create a minicom script with the above parameters?" minicom y y n
 +
 +if [ "$minicom" = "y" ]; then
 +
@@ -213,13 +382,15 @@ index 0000000..c3192b5
 +    do
 +        check_for_board
 +
-+        if [ "$board" != "unknown" ]
++        if [ "$board" = "k2evm" ]
 +        then
 +            break
 +        else
 +            echo ""
-+            echo "Board could not be detected. Please connect the board to the PC."
-+            read -p "Press any key to try checking again." temp
++            prompt_feedback "Board could not be detected. Please connect the board to the PC." temp "Press any key to try checking again"
++
++            # Set to default board to allow user to specify the correct ports.
++            board=k2evm
 +        fi
 +    done
 +
@@ -234,31 +405,60 @@ index 0000000..c3192b5
 +        while [ yes ]
 +        do
 +            echo ""
++            echo "--------------------------------------------------------------------------------"
++            echo
 +            echo -n "Detecting connection to board... "
 +            loopCount=0
-+            port=`dmesg | grep FTDI | grep "tty" | tail -1 | grep "attached" |  awk '{ print $NF }'`
-+            while [ -z "$port" ] && [ "$loopCount" -ne "10" ]
++            usb_id=`dmesg | grep "idVendor=${board_vendor}" | grep "idProduct=${board_product}" | tail -1 | sed -e 's|.*usb \(.*\):.*|\1|'`
++            uart_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${uart_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
++            bmc_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${bmc_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
++            while [ -z "$uart_port" ] && [ "$loopCount" -ne "10" ]
 +            do
 +                #count to 10 and timeout if no connection is found
 +                loopCount=$((loopCount+1))
 +
 +                sleep 1
-+                port=`dmesg  | grep FTDI | grep "tty" | tail -1 | grep "attached" |  awk '{ print $NF }'`
++                usb_id=`dmesg | grep "idVendor=${board_vendor}" | grep "idProduct=${board_product}" | tail -1 | sed -e 's|.*usb \(.*\):.*|\1|'`
++                uart_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${uart_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
++                bmc_port=`dmesg | grep "usb $usb_id" | grep "tty" | tail -${num_port} | head -${bmc_port_idx} | tail -1 | grep "attached" |  awk '{ print $NF }'`
 +            done
 +
 +            #check to see if we actually found a port
-+            if [ -n "$port" ]; then
-+                echo "/dev/$port"
-+                break;
++            if [ -n "$uart_port" ]; then
++                echo "${platform} (UART) autodetected at /dev/$uart_port"
++                echo
++                prompt_feedback "Please verify that this is correct or manually enter the correct port:" dev_uart_port "/dev/$uart_port"
++
++                echo "${platform} (BMC) autodetected at /dev/$bmc_port"
++                echo
++                prompt_feedback "Please verify that this is correct or manually enter the correct port:" dev_bmc_port "/dev/$bmc_port"
++
++                if [ ! -e "${dev_uart_port}" ]; then
++                    echo; echo "ERROR: ${dev_uart_port} does not exist!"
++                    dev_uart_port=""
++                fi
++
++                if [ ! -e "${dev_bmc_port}" ]; then
++                    echo; echo "ERROR: ${dev_bmc_port} does not exist!"
++                    dev_bmc_port=""
++                fi
++
++                if [ "$dev_uart_port" = "$dev_bmc_port" ]; then
++                    echo; echo "ERROR: UART and BMC cannot be the same port: $dev_uart_port!"
++                    dev_uart_port=""
++                fi
++
++                if [ -n "$dev_uart_port" ] && [ -n "$dev_bmc_port" ]; then
++                    break
++                fi
 +            fi
 +
 +            #if we didn't find a port and reached the timeout limit then ask to reconnect
-+            if [ -z "$port" ] && [ "$loopCount" = "10" ]; then
++            if [ -z "$uart_port" ] && [ "$loopCount" = "10" ]; then
 +                echo ""
 +                echo "Unable to detect which port the board is connected to."
 +                echo "Please reconnect your board."
-+                echo "Press 'y' to attempt to detect your board again or press 'n' to continue..."
-+                read -p "(y/n)" retryBoardDetection
++                prompt_feedback "Press 'y' to attempt to detect your board again or press 'n' to continue..." retryBoardDetection y
 +            fi
 +
 +            #if they choose not to retry, ask user to reboot manually and exit
@@ -269,7 +469,7 @@ index 0000000..c3192b5
 +            fi
 +        done
 +
-+        sed -i -e "s|^pu port.*$|pu port             /dev/$port|g" ${HOME}/.minirc.dfl
++        sed -i -e "s|^pu port.*$|pu port             $dev_uart_port|g" ${HOME}/.minirc.dfl
 +    fi
 +
 +    echo
@@ -277,23 +477,37 @@ index 0000000..c3192b5
 +    echo "Would you like to run the setup script now (y/n)?"
 +    echo
 +    echo "Please connect the ethernet cable as described in the Quick Start Guide."
-+    echo "Once answering 'y' on the prompt below, you will have 300 seconds to connect"
-+    echo "the board and power cycle it before the setup times out"
++    echo "Once answering 'y' on the prompt below, the script will proceed with"
++    echo "automatically booting and configuring the board based on the responses"
++    echo "provided."
 +    echo
 +    echo "After successfully executing this script, your EVM will be set up. You will be "
 +    echo "able to connect to it by executing 'minicom -w' or if you prefer a windows host"
 +    echo "you can set up Tera Term as explained in the Software Developer's Guide."
 +    echo "If you connect minicom or Tera Term and power cycle the board Linux will boot."
-+    echo
-+    read -p "[ y ] " minicomsetup
 +
-+    if [ ! -n "$minicomsetup" ]; then
-+       minicomsetup="y"
-+    fi
++    prompt_feedback "" minicomsetup y
 +
 +    if [ "$minicomsetup" = "y" ]; then
++      create_bmc_scripts
++
 +      cd $cwd
-+      sudo minicom -w -S setupBoard.minicom
++
++      # Configuring bootmode to UART boot via BMC
++      screen -dmS minicom_${platform}_bmc minicom -D "$dev_bmc_port" -S bmcUartBoot.minicom -C bmcUartBoot.log
++
++      # Transfering uboot.bin using XMODEM protocol
++      sx -kb "$ubootimagesrc" < "$dev_uart_port" > "$dev_uart_port"
++
++      # Configure U-Boot environment and optionally flash board
++      minicom -D "$dev_uart_port" -S updateBoard.minicom -C updateBoard.log
++      rm "$tmp_fifo"
++
++      # Configuring bootmode to NAND boot via BMC
++      minicom -D "$dev_bmc_port" -S bmcNandBoot.minicom -C bmcNandBoot.log
++
++      # Running terminal to board (UART)
++      minicom -w -D "$dev_uart_port" -C bootBoard.log
 +      cd -
 +    fi
 +
