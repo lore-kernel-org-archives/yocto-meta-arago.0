@@ -1,81 +1,210 @@
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.9853.1645511825953261994
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+ by mx.groups.io with SMTP id smtpd.web12.9735.1645512093013160950
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 21 Feb 2022 22:37:06 -0800
+ Mon, 21 Feb 2022 22:41:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id BF9D840C24;
-	Tue, 22 Feb 2022 06:37:04 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id VrjIH1Jge80Z; Tue, 22 Feb 2022 06:37:04 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7D9D340A28;
-	Tue, 22 Feb 2022 06:36:57 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id AC51817476C; Tue, 22 Feb 2022 01:36:56 -0500 (EST)
-Date: Tue, 22 Feb 2022 01:36:56 -0500
-From: "Denys Dmytriyenko" <denis@denix.org>
-To: devarsht@ti.com
-Cc: meta-arago@lists.yoctoproject.org, nikhil.nd@ti.com, nsekhar@ti.com,
-	vigneshr@ti.com, praneeth@ti.com, Ryan Eatmon <reatmon@ti.com>,
-	a-m1@ti.com
-Subject: Re: [meta-arago][dunfell][PATCH] external-arm-toolchain: Remove EAT_TOOL_CHAIN symlinks
-Message-ID: <20220222063656.GP26229@denix.org>
-References: <20220222062027.6390-1-devarsht@ti.com>
+ dkim=pass header.i=@pathpartnertech.com header.s=google header.b=RhLZrf75;
+ spf=pass (domain: pathpartnertech.com, ip: 209.85.216.43, mailfrom: sidraya.bj@pathpartnertech.com)
+Received: by mail-pj1-f43.google.com with SMTP id ck4-20020a17090afe0400b001bc64ee7d3cso1573543pjb.4
+        for <meta-arago@lists.yoctoproject.org>; Mon, 21 Feb 2022 22:41:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pathpartnertech.com; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :in-reply-to:user-agent:content-disposition
+         :content-transfer-encoding;
+        bh=c3PSrFO5NyDTX0w1PmhZ0ZLkwdsuJYiOk+NekHUaWsE=;
+        b=RhLZrf75jQtG9U2htrRGFIYCAsY4kJX6QazGuB0HUu3XZJJXn6VGsTULuu2RG2Mxao
+         aueJGJ3RCxbTlRlLPjwCXtJEbCWDV3ZKOt7UkUH0RQHzbJZXN8qLb8CO9a9Oyg5mW1EL
+         jYxzjbTiUxxtfH6SelQtc+Q7o3Fejkq6lzkSJphOcc3+taLZG9HD1GdJwgjPHwiUH1RG
+         d/6K7DSIUpB8DJeEkAZT0KSYC5CSpv0776kjleQc/ugZYzzdXFJW62qIY63EY766uGhm
+         cqPpFyLnCoNKNL9HGilImhfwdmImMWaEJ+2BJuA2HkVoVTFSQt39shgztrwv/Hb2tATB
+         XpYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:in-reply-to:user-agent:content-disposition
+         :content-transfer-encoding;
+        bh=c3PSrFO5NyDTX0w1PmhZ0ZLkwdsuJYiOk+NekHUaWsE=;
+        b=vMGweH0Ts9QWnqFrL+J65WfhbAVKMxKoG7/9xNr4kcXrpIsBq7lH1cF6wJG1yDZ1qL
+         hx9voBG3UilfKURLtAj9RDdZbP1PyXUT69ThRfventOtTwk1X+9E0xZM1IA4hJsW/IWo
+         adtPV0t3hE/jpQvuHhH2hQUwTXXtF0JztQtzM+X51Gq0cjnCgrOCSMACbUsFa/Z/weRe
+         Fj2ND0tPEOX0PrfBsuTV3xxbhLp0VpYzfcqZXDbq/rROW6RIUfZACUVR0BibB0vJKKOf
+         JtCBbPOzwUqt41y/d8Ow9A2U/66ZGOAOW/dBDh30p7cQ/jJQpS8Ue83HOXyeJoabnYAW
+         sE4Q==
+X-Gm-Message-State: AOAM533iPe8oxFviuzQSbyLkhWJXZJFeadxxA89jXeSwjA83F29x5KUp
+	mIoYBm5b/zqMvf4GFL9/MiKb57zruD25wAElxR/TAMFEkpt7soeeCm1xMG0LQfjsWgJuUfueZuj
+	NdYuuPAdM0TScvBl9QBhnIDWlgv7QNWDvikc=
+X-Google-Smtp-Source: ABdhPJyPNcRSzPJ8ONiHXKNe3qYN88Gld2czfOFBksHM0r16R4ekYWwpMdhwrgyahvf8ACufIWYp/Q==
+X-Received: by 2002:a17:902:bf04:b0:149:c5a5:5323 with SMTP id bi4-20020a170902bf0400b00149c5a55323mr22292981plb.97.1645512092038;
+        Mon, 21 Feb 2022 22:41:32 -0800 (PST)
+Return-Path: <sidraya.bj@pathpartnertech.com>
+Received: from sidraya-laptopU ([103.117.236.138])
+        by smtp.gmail.com with ESMTPSA id h6sm1298782pjs.30.2022.02.21.22.41.29
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 21 Feb 2022 22:41:31 -0800 (PST)
+Date: Tue, 22 Feb 2022 12:11:26 +0530
+From: "Sidraya Jayagond" <sidraya.bj@pathpartnertech.com>
+To: meta-arago@lists.yoctoproject.org
+Cc: praneeth@ti.com, d-huang@ti.com, detheridge@ti.com,
+	Sidraya <sidraya.bj@pathpartnertech.com>
+Subject: Re: [PATCH] gstreamer1.0-plugins-good: v4l2bufferpool: Set Video Meta to Imported Buffers
+Message-ID: <20220222064125.aoxq5ln577lqy6fx@sidraya-laptopU>
+References: <20220222063139.7503-1-sidraya.bj@pathpartnertech.com>
 MIME-Version: 1.0
-In-Reply-To: <20220222062027.6390-1-devarsht@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Content-Type: text/plain; charset=us-ascii
+In-Reply-To: <20220222063139.7503-1-sidraya.bj@pathpartnertech.com>
+User-Agent: NeoMutt/20171215
+Content-Type: text/plain; charset="US-ASCII"
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-NAK.
-
-On Tue, Feb 22, 2022 at 11:50:27AM +0530, Devarsh Thakkar via lists.yoctoproject.org wrote:
-> As per below commit in https://git.yoctoproject.org/meta-arm/log/?h=dunfell,
-> 
-> "1644922 external-arm-toolchain: Align glibc packaging to OE TARGET_SYS"
-> 
-> the upstream recipe external-arm-toolchain.bb doesn't use EAT_TARGET_SYS for
-> installing toolchain anymore and the recipe is directly using TARGET_SYS
-> for copying.
-> 
-> So remove EAT_TARGET_SYS symlinks as they are not required anymore and instead
-> copy directly to ORIG_TARGET_SYS.
-> 
-> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+On Tue, Feb 22, 2022 at 12:01:39PM +0530, sidraya.bj@pathpartnertech.com wr=
+ote:
+> From: Sidraya <sidraya.bj@pathpartnertech.com>
+>=20
+> When importing dmabufs, the video meta is set on the dest
+> buffer, but not on the src buffer. In this case, the src
+> buffer is not made aware of the stride of the video buffer,
+> which is needed to properly display the buffer.
+>=20
+> This is a result of the v4l2 plugin creating it's own
+> empty dmabuf pool of GstBuffers, and then assigning the
+> memory from the downstream GstBuffer. We then update the
+> video meta of the buffer in our pool, but not the downstream
+> pool.
+>=20
+> The downstream pool buffer should be updated as well.
+>=20
+> Signed-off-by: Sidraya <sidraya.bj@pathpartnertech.com>
 > ---
->  .../recipes-core/meta/external-arm-toolchain.bbappend     | 8 +-------
->  1 file changed, 1 insertion(+), 7 deletions(-)
-> 
-> diff --git a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-> index 5a51aaa0..ea4df2ff 100644
-> --- a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-> +++ b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
-> @@ -6,12 +6,6 @@ do_install_append() {
->  	install -d ${D}${sysconfdir}
->  	echo -e "/lib\n/usr/lib" >> ${D}${sysconfdir}/ld.so.conf
->  
-> -	if [ ${EAT_TARGET_SYS} != ${ORIG_TARGET_SYS} ]; then
-> -		ln -sf ${EAT_TARGET_SYS} ${D}${libdir}/${ORIG_TARGET_SYS}
-> -		ln -sf ${EAT_TARGET_SYS} ${D}${includedir}/c++/${EAT_VER_GCC}/${ORIG_TARGET_SYS}
-> -		mv ${D}${libdir}/gcc/${EAT_TARGET_SYS} ${D}${libdir}/gcc/${ORIG_TARGET_SYS}
-> -		ln -sf ${ORIG_TARGET_SYS} ${D}${libdir}/gcc/${EAT_TARGET_SYS}
-> -	fi
->  
->  	ln -sf libatomic.so.1 ${D}${libdir}/libatomic.so
->  	ln -sf libgomp.so.1 ${D}${libdir}/libgomp.so
-> @@ -22,7 +16,7 @@ do_install_append() {
->  	ln -sf libasan.so.5 ${D}${libdir}/libasan.so
->  	ln -sf libgfortran.so.5 ${D}${libdir}/libgfortran.so
->  
-> -	cp ${CP_ARGS} ${EXTERNAL_TOOLCHAIN}/lib/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/libgcc* ${D}${libdir}/${EAT_TARGET_SYS}/${EAT_VER_GCC}/
-> +	cp ${CP_ARGS} ${EXTERNAL_TOOLCHAIN}/lib/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/libgcc* ${D}${libdir}/${ORIG_TARGET_SYS}/${EAT_VER_GCC}/
->  }
->  
->  # Below FILES_* overrides are due to TARGET_SYS -> ORIG_TARGET_SYS move in ${libdir}/gcc
-> -- 
+> changes in v2: Add upstreme link
+>=20
+>  ...l-Set-Video-Meta-to-Imported-Buffers.patch | 58 +++++++++++++++++++
+>  .../gstreamer1.0-plugins-good_1.16.%.bbappend |  1 +
+>  2 files changed, 59 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstrea=
+mer1.0-plugins-good/0001-v4l2bufferpool-Set-Video-Meta-to-Imported-Buffers.=
+patch
+>=20
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-=
+plugins-good/0001-v4l2bufferpool-Set-Video-Meta-to-Imported-Buffers.patch b=
+/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0=
+001-v4l2bufferpool-Set-Video-Meta-to-Imported-Buffers.patch
+> new file mode 100644
+> index 00000000..59d9080c
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins=
+-good/0001-v4l2bufferpool-Set-Video-Meta-to-Imported-Buffers.patch
+> @@ -0,0 +1,58 @@
+> +From e677028494081f93558d24b1f72da9e6835ef954 Mon Sep 17 00:00:00 2001
+> +From: Sidraya <sidraya.bj@pathpartnertech.com>
+> +Date: Mon, 18 Oct 2021 13:35:09 +0530
+> +Subject: [PATCH] v4l2bufferpool: Set Video Meta to Imported Buffers
+> +
+> +When importing dmabufs, the video meta is set on the dest
+> +buffer, but not on the src buffer. In this case, the src
+> +buffer is not made aware of the stride of the video buffer,
+> +which is needed to properly display the buffer.
+> +
+> +This is a result of the v4l2 plugin creating it's own
+> +empty dmabuf pool of GstBuffers, and then assigning the
+> +memory from the downstream GstBuffer. We then update the
+> +video meta of the buffer in our pool, but not the downstream
+> +pool.
+> +
+> +The downstream pool buffer should be updated as well.
+> +
+> +Upstream-Status: Submitted
+> +https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/1723=
+#note_1266433
+> +
+> +Signed-off-by: Sidraya <sidraya.bj@pathpartnertech.com>
+> +---
+> + sys/v4l2/gstv4l2bufferpool.c | 11 +++++++++++
+> + 1 file changed, 11 insertions(+)
+> +
+> +diff --git a/sys/v4l2/gstv4l2bufferpool.c b/sys/v4l2/gstv4l2bufferpool.c
+> +index 49f222b6e..f4d964b9e 100644
+> +--- a/sys/v4l2/gstv4l2bufferpool.c
+> ++++ b/sys/v4l2/gstv4l2bufferpool.c
+> +@@ -330,6 +330,10 @@ gst_v4l2_buffer_pool_import_dmabuf (GstV4l2BufferPo=
+ol * pool,
+> +   GstMemory *dma_mem[GST_VIDEO_MAX_PLANES] =3D { 0 };
+> +   guint n_mem =3D gst_buffer_n_memory (src);
+> +   gint i;
+> ++  GstV4l2Object *obj;
+> ++  GstVideoInfo *info;
+> ++  obj =3D pool->obj;
+> ++  info =3D &obj->info;
+> +=20
+> +   GST_LOG_OBJECT (pool, "importing dmabuf");
+> +=20
+> +@@ -346,6 +350,13 @@ gst_v4l2_buffer_pool_import_dmabuf (GstV4l2BufferPo=
+ol * pool,
+> +           dma_mem))
+> +     goto import_failed;
+> +=20
+> ++  /* add metadata to raw video buffers */
+> ++  if (pool->add_videometa)
+> ++    gst_buffer_add_video_meta_full (src, GST_VIDEO_FRAME_FLAG_NONE,
+> ++        GST_VIDEO_INFO_FORMAT (info), GST_VIDEO_INFO_WIDTH (info),
+> ++        GST_VIDEO_INFO_HEIGHT (info), GST_VIDEO_INFO_N_PLANES (info),
+> ++        info->offset, info->stride);
+> ++
+> +   gst_mini_object_set_qdata (GST_MINI_OBJECT (dest), GST_V4L2_IMPORT_QU=
+ARK,
+> +       gst_buffer_ref (src), (GDestroyNotify) gst_buffer_unref);
+> +=20
+> +--=20
+> +2.17.1
+> +
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-=
+plugins-good_1.16.%.bbappend b/meta-arago-extras/recipes-multimedia/gstream=
+er/gstreamer1.0-plugins-good_1.16.%.bbappend
+> index 11513f2f..07cd08a7 100644
+> --- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins=
+-good_1.16.%.bbappend
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins=
+-good_1.16.%.bbappend
+> @@ -10,6 +10,7 @@ SRC_URI +=3D " \
+>      file://0001-qmlglsink-fix-build-on-EGL-platform-without-X11-head.pat=
+ch \
+>      file://0001-gst-plugins-good-1.16.3-v4l2h264enc-Add-Extended-con.pat=
+ch \
+>      file://0001-Avoiding-Failure-to-allocate-required-memory.patch \
+> +    file://0001-v4l2bufferpool-Set-Video-Meta-to-Imported-Buffers.patch =
+\
+>  "
+> =20
+>  PR_append =3D ".arago3"
+> --=20
 > 2.17.1
+>=20
+Please ignore this patch, I will be sending a v2 of this patch.
+
+--=20
+
+
+
+
+
+
+This
+message contains confidential information and is intended only=20
+for the
+individual(s) named. If you are not the intended
+recipient, you are=20
+notified that disclosing, copying, distributing or taking any
+action in=20
+reliance on the contents of this mail and attached file/s is strictly
+prohibited. Please notify the
+sender immediately and delete this e-mail=20
+from your system. E-mail transmission
+cannot be guaranteed to be secured or=20
+error-free as information could be
+intercepted, corrupted, lost, destroyed,=20
+arrive late or incomplete, or contain
+viruses. The sender therefore does=20
+not accept liability for any errors or
+omissions in the contents of this=20
+message, which arise as a result of e-mail
+transmission.
