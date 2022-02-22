@@ -1,143 +1,65 @@
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.228.1645569636769684132
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web09.592.1645571163711553138
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 22 Feb 2022 14:40:37 -0800
+ Tue, 22 Feb 2022 15:06:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 1E79840C2E;
-	Tue, 22 Feb 2022 22:40:36 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 7Krf7r-OhwUP; Tue, 22 Feb 2022 22:40:36 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D93A240A77;
-	Tue, 22 Feb 2022 22:40:31 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 9C9C4174784; Tue, 22 Feb 2022 17:40:31 -0500 (EST)
-Date: Tue, 22 Feb 2022 17:40:31 -0500
-From: "Denys Dmytriyenko" <denis@denix.org>
-To: sidraya.bj@pathpartnertech.com
-Cc: meta-arago@lists.yoctoproject.org, praneeth@ti.com, d-huang@ti.com,
-	detheridge@ti.com
-Subject: Re: [meta-arago] [dunfell PATCH v2] gstreamer1.0-plugins-good: v4l2bufferpool: Set Video Meta to Imported Buffers
-Message-ID: <20220222224031.GT26229@denix.org>
-References: <20220222064145.8043-1-sidraya.bj@pathpartnertech.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=MWXELP6O;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: nm@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21MN6081036591;
+	Tue, 22 Feb 2022 17:06:00 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1645571160;
+	bh=+nClHBKp+jMy3M0M2yrNj0KrabKs+qB1b5K/bUY/CvU=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=MWXELP6O85hcx5X3kOOnFWnNp4X7cU1SAi/3L0nh+EQOZS2iZEqcDwYjcHVBFcdmb
+	 s4xNvKzMOKwO6eMlxNXnsgGNtk3L7wGTYWn6wNQeoE+/V6wlGezLdxcoKEbDdkJpb7
+	 I51iK6Ggjh1LkiXhYlPagocHMngXNIhYNq8YT24Y=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21MN60oT101978
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 22 Feb 2022 17:06:00 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 22
+ Feb 2022 17:06:00 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 22 Feb 2022 17:06:00 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21MN6021110579;
+	Tue, 22 Feb 2022 17:06:00 -0600
+Date: Tue, 22 Feb 2022 17:06:00 -0600
+From: "Nishanth Menon" <nm@ti.com>
+To: <reatmon@ti.com>
+CC: Yogesh Siraswar <yogeshs@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: Re: [meta-arago][dunfell][PATCH 3/3] Revert "linux-ti-staging: enable necessary configs for running docker containers"
+Message-ID: <20220222230600.ovnwm5smk7hwr7jo@unbaked>
+References: <20220211123814.12258-1-reatmon@ti.com>
+ <20220211123814.12258-4-reatmon@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20220222064145.8043-1-sidraya.bj@pathpartnertech.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Content-Type: text/plain; charset=us-ascii
+In-Reply-To: <20220211123814.12258-4-reatmon@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
 
-Thanks. From OE/meta-arago perspective this patch now looks good. But from 
-gstreamer perspective I cannot judge the change as I don't have enough 
-expertise there. Can you please follow up on your submission to upstream 
-gstreamer, as the maintainer there has some questions? Thanks!
+On 06:38-20220211, Ryan Eatmon via lists.yoctoproject.org wrote:
+> This reverts commit 628e99b8811678b4305b1175580e70ad00ec933f.
+> 
+> These patches add to the size of the base image.  We have plans on
+> reworking the images and will reapply this patch at that time.
+
+
+NAK. we should'nt be dropping docker completely.
+
+
+Also please signed-off-by your patches?
 
 -- 
-Denys
-
-
-On Tue, Feb 22, 2022 at 12:11:45PM +0530, Sidraya Jayagond via lists.yoctoproject.org wrote:
-> From: Sidraya <sidraya.bj@pathpartnertech.com>
-> 
-> When importing dmabufs, the video meta is set on the dest
-> buffer, but not on the src buffer. In this case, the src
-> buffer is not made aware of the stride of the video buffer,
-> which is needed to properly display the buffer.
-> 
-> This is a result of the v4l2 plugin creating it's own
-> empty dmabuf pool of GstBuffers, and then assigning the
-> memory from the downstream GstBuffer. We then update the
-> video meta of the buffer in our pool, but not the downstream
-> pool.
-> 
-> The downstream pool buffer should be updated as well.
-> 
-> Signed-off-by: Sidraya <sidraya.bj@pathpartnertech.com>
-> ---
->  ...l-Set-Video-Meta-to-Imported-Buffers.patch | 58 +++++++++++++++++++
->  .../gstreamer1.0-plugins-good_1.16.%.bbappend |  1 +
->  2 files changed, 59 insertions(+)
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2bufferpool-Set-Video-Meta-to-Imported-Buffers.patch
-> 
-> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2bufferpool-Set-Video-Meta-to-Imported-Buffers.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2bufferpool-Set-Video-Meta-to-Imported-Buffers.patch
-> new file mode 100644
-> index 00000000..59d9080c
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2bufferpool-Set-Video-Meta-to-Imported-Buffers.patch
-> @@ -0,0 +1,58 @@
-> +From e677028494081f93558d24b1f72da9e6835ef954 Mon Sep 17 00:00:00 2001
-> +From: Sidraya <sidraya.bj@pathpartnertech.com>
-> +Date: Mon, 18 Oct 2021 13:35:09 +0530
-> +Subject: [PATCH] v4l2bufferpool: Set Video Meta to Imported Buffers
-> +
-> +When importing dmabufs, the video meta is set on the dest
-> +buffer, but not on the src buffer. In this case, the src
-> +buffer is not made aware of the stride of the video buffer,
-> +which is needed to properly display the buffer.
-> +
-> +This is a result of the v4l2 plugin creating it's own
-> +empty dmabuf pool of GstBuffers, and then assigning the
-> +memory from the downstream GstBuffer. We then update the
-> +video meta of the buffer in our pool, but not the downstream
-> +pool.
-> +
-> +The downstream pool buffer should be updated as well.
-> +
-> +Upstream-Status: Submitted
-> +https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/1723#note_1266433
-> +
-> +Signed-off-by: Sidraya <sidraya.bj@pathpartnertech.com>
-> +---
-> + sys/v4l2/gstv4l2bufferpool.c | 11 +++++++++++
-> + 1 file changed, 11 insertions(+)
-> +
-> +diff --git a/sys/v4l2/gstv4l2bufferpool.c b/sys/v4l2/gstv4l2bufferpool.c
-> +index 49f222b6e..f4d964b9e 100644
-> +--- a/sys/v4l2/gstv4l2bufferpool.c
-> ++++ b/sys/v4l2/gstv4l2bufferpool.c
-> +@@ -330,6 +330,10 @@ gst_v4l2_buffer_pool_import_dmabuf (GstV4l2BufferPool * pool,
-> +   GstMemory *dma_mem[GST_VIDEO_MAX_PLANES] = { 0 };
-> +   guint n_mem = gst_buffer_n_memory (src);
-> +   gint i;
-> ++  GstV4l2Object *obj;
-> ++  GstVideoInfo *info;
-> ++  obj = pool->obj;
-> ++  info = &obj->info;
-> + 
-> +   GST_LOG_OBJECT (pool, "importing dmabuf");
-> + 
-> +@@ -346,6 +350,13 @@ gst_v4l2_buffer_pool_import_dmabuf (GstV4l2BufferPool * pool,
-> +           dma_mem))
-> +     goto import_failed;
-> + 
-> ++  /* add metadata to raw video buffers */
-> ++  if (pool->add_videometa)
-> ++    gst_buffer_add_video_meta_full (src, GST_VIDEO_FRAME_FLAG_NONE,
-> ++        GST_VIDEO_INFO_FORMAT (info), GST_VIDEO_INFO_WIDTH (info),
-> ++        GST_VIDEO_INFO_HEIGHT (info), GST_VIDEO_INFO_N_PLANES (info),
-> ++        info->offset, info->stride);
-> ++
-> +   gst_mini_object_set_qdata (GST_MINI_OBJECT (dest), GST_V4L2_IMPORT_QUARK,
-> +       gst_buffer_ref (src), (GDestroyNotify) gst_buffer_unref);
-> + 
-> +-- 
-> +2.17.1
-> +
-> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.16.%.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.16.%.bbappend
-> index 11513f2f..07cd08a7 100644
-> --- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.16.%.bbappend
-> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.16.%.bbappend
-> @@ -10,6 +10,7 @@ SRC_URI += " \
->      file://0001-qmlglsink-fix-build-on-EGL-platform-without-X11-head.patch \
->      file://0001-gst-plugins-good-1.16.3-v4l2h264enc-Add-Extended-con.patch \
->      file://0001-Avoiding-Failure-to-allocate-required-memory.patch \
-> +    file://0001-v4l2bufferpool-Set-Video-Meta-to-Imported-Buffers.patch \
->  "
->  
->  PR_append = ".arago3"
-> -- 
-> 2.17.1
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
