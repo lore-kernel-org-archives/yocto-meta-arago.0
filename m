@@ -1,91 +1,60 @@
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web09.680.1645571536579188171
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web12.1052.1645573756080144984
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 22 Feb 2022 15:12:17 -0800
+ Tue, 22 Feb 2022 15:49:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=dhqMeW/Q;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: j-humphreys@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21MNCEkt038181;
-	Tue, 22 Feb 2022 17:12:14 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1645571534;
-	bh=OBiku4e7ZWhXYSD75huxcDBQ2M+MTD/7IQ2lTLREwAc=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=dhqMeW/QhOocwq1+XCV2eqCiX3ddwFcnbvhrcPUToBJ5awk9o2RJ2i/PbhU0Cu5Oy
-	 4EIOGG5p8KQPpbhN93bmPH0YyeeYqUZOO+br8wpq6+DXMmFUKmyouwTFuPZL1f/KVM
-	 xF7A1DNXqpp5RLgBUgbZC4U2zg6rNEQLIp3/t1ac=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21MNCExg032338
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 22 Feb 2022 17:12:14 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 22
- Feb 2022 17:12:14 -0600
-Received: from DLEE113.ent.ti.com ([fe80::a10b:711a:6ba7:e455]) by
- DLEE113.ent.ti.com ([fe80::a10b:711a:6ba7:e455%17]) with mapi id
- 15.01.2308.014; Tue, 22 Feb 2022 17:12:13 -0600
-From: "Jonathan Humphreys" <j-humphreys@ti.com>
-To: "Menon, Nishanth" <nm@ti.com>, "Eatmon, Ryan" <reatmon@ti.com>
-CC: "Siraswar, Yogesh" <yogeshs@ti.com>,
-        "Bajjuri, Praneeth"
-	<praneeth@ti.com>,
-        Denys Dmytriyenko <denys@konsulko.com>,
-        "meta-arago@lists.yoctoproject.org" <meta-arago@lists.yoctoproject.org>
-Subject: Re: [meta-arago][dunfell][PATCH 3/3] Revert "linux-ti-staging: enable necessary configs for running docker containers"
-Thread-Topic: [meta-arago][dunfell][PATCH 3/3] Revert "linux-ti-staging:
- enable necessary configs for running docker containers"
-Thread-Index: AQHYH0RgEbhUY/D9wEmr8W6d4nzjFKygp48A//+c9aA=
-Date: Tue, 22 Feb 2022 23:12:13 +0000
-Message-ID: <a5f41b267b9440269fc1fefc2fda7bb0@ti.com>
-References: <20220211123814.12258-1-reatmon@ti.com>
- <20220211123814.12258-4-reatmon@ti.com>
- <20220222230600.ovnwm5smk7hwr7jo@unbaked>
-In-Reply-To: <20220222230600.ovnwm5smk7hwr7jo@unbaked>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.247.29.157]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id BFE0C40A77;
+	Tue, 22 Feb 2022 23:49:14 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id sryuY2QYOzC0; Tue, 22 Feb 2022 23:49:14 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A729140C2E;
+	Tue, 22 Feb 2022 23:49:13 +0000 (UTC)
+Received: from thorin.denix (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 7B0D317478A;
+	Tue, 22 Feb 2022 18:49:12 -0500 (EST)
+From: "Denys Dmytriyenko" <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master][PATCH 2/2] arago.conf: bump distro version
+Date: Tue, 22 Feb 2022 23:49:10 +0000
+Message-Id: <20220222234910.614211-2-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220222234910.614211-1-denis@denix.org>
+References: <20220222234910.614211-1-denis@denix.org>
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-+ Minas
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-Minas, are we seeing docker container failures in testing?
+A lot of incompatible change have been merged recently, so it's a good ti=
+me
+to bump the distro version. It is 2/22/22 after all!
 
------Original Message-----
-From: meta-arago@lists.yoctoproject.org <meta-arago@lists.yoctoproject.org>=
- On Behalf Of Nishanth Menon via lists.yoctoproject.org
-Sent: Tuesday, February 22, 2022 5:06 PM
-To: Eatmon, Ryan <reatmon@ti.com>
-Cc: Siraswar, Yogesh <yogeshs@ti.com>; Bajjuri, Praneeth <praneeth@ti.com>;=
- Denys Dmytriyenko <denys@konsulko.com>; meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][dunfell][PATCH 3/3] Revert "linux-ti-staging: ena=
-ble necessary configs for running docker containers"
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+---
+ meta-arago-distro/conf/distro/arago.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 06:38-20220211, Ryan Eatmon via lists.yoctoproject.org wrote:
-> This reverts commit 628e99b8811678b4305b1175580e70ad00ec933f.
->=20
-> These patches add to the size of the base image.  We have plans on=20
-> reworking the images and will reapply this patch at that time.
-
-
-NAK. we should'nt be dropping docker completely.
-
-
-Also please signed-off-by your patches?
-
---
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5=
- 849D 1736 249D
-
-
-
-
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro=
+/conf/distro/arago.conf
+index b0482e5c..d3f03f2e 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -1,6 +1,6 @@
+ # Name and version of the distribution
+ DISTRO_NAME =3D "Arago"
+-DISTRO_VERSION =3D "2021.09"
++DISTRO_VERSION =3D "2022.02"
+ DISTRO_FEED_URI ?=3D "http://lcpd.itg.ti.com"
+ BUILD_VARIANT =3D "${@['prod','rt','systest'][int(d.getVar('ARAGO_RT_ENA=
+BLE'))+int(d.getVar('ARAGO_SYSTEST_ENABLE'))*2]}"
+ TISDK_VERSION ?=3D "live"
+--=20
+2.25.1
 
