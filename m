@@ -1,60 +1,108 @@
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web08.10770.1646760844911039451
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web08.233.1646782031444847904
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 08 Mar 2022 09:34:05 -0800
+ Tue, 08 Mar 2022 15:27:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 6656640C76;
-	Tue,  8 Mar 2022 17:34:03 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id lMWN3JVasoXb; Tue,  8 Mar 2022 17:34:03 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4FFF0407E5;
-	Tue,  8 Mar 2022 17:34:02 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 8D236169C33; Tue,  8 Mar 2022 12:34:01 -0500 (EST)
-Date: Tue, 8 Mar 2022 12:34:01 -0500
-From: "Denys Dmytriyenko" <denis@denix.org>
-To: j-humphreys@ti.com
-Cc: meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago] [dunfell/master PATCH] recipes-core: images: Add tisdk-thinlinux-image
-Message-ID: <20220308173401.GW1766@denix.org>
-References: <20220308144637.19732-1-nm@ti.com>
- <8158.1646759842608715128@lists.yoctoproject.org>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=p8dMmdNc;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: nm@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 228NR83h003805;
+	Tue, 8 Mar 2022 17:27:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1646782028;
+	bh=9yaPxI3HoER4oS8lwusN2JQ8Rdel1QtWGEhlGqdT9vQ=;
+	h=From:To:CC:Subject:Date;
+	b=p8dMmdNccgB/i1L5tAJGLtw/jTitzi+Lwrp/9sLr0IOQkIsaZHItSHWA1gSBhirUl
+	 hQvZqkdDEK2MlSsenNWDginpzm68vgKwt4HejlW67RNpntOK6QgpPixtnKabCPoJkm
+	 zyjitgcgZK7b0Y4ruYbTsN8AvV6iVxR4SgEVUWX4=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 228NR8jt082987
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 8 Mar 2022 17:27:08 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 8
+ Mar 2022 17:27:07 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 8 Mar 2022 17:27:07 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 228NR7Hj040301;
+	Tue, 8 Mar 2022 17:27:07 -0600
+From: "Nishanth Menon" <nm@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>, Ryan Eatmon <reatmon@ti.com>
+CC: Dave Gerlach <d-gerlach@ti.com>,
+        "Humphreys, Jonathan"
+	<j-humphreys@ti.com>, <praneeth@ti.com>,
+        <minas@ti.com>, "Hilman, Kevin"
+	<khilman@ti.com>,
+        <meta-arago@lists.yoctoproject.org>, Nishanth Menon
+	<nm@ti.com>
+Subject: [dunfell/master PATCH V2] recipes-core: images: Add tisdk-thinlinux-image
+Date: Tue, 8 Mar 2022 17:27:07 -0600
+Message-ID: <20220308232707.3312-1-nm@ti.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-In-Reply-To: <8158.1646759842608715128@lists.yoctoproject.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Tue, Mar 08, 2022 at 09:17:22AM -0800, Jonathan Humphreys via lists.yo=
-ctoproject.org wrote:
-> >=20
-> > +# Allow users to tack on additional packages as interesting.
-> >=20
->=20
-> >=20
-> > +ARAGO_THIN_IMAGE_EXTRA_INSTALL ?=3D ""
-> >=20
->=20
-> Is this standard practice?=A0 I would have thought that a user would cr=
-eate a=20
-> bbappend from their layer.
+Currently we have tisdk-tiny-image tisdk-base-image and
+tisdk-default-image which serve certain purpose for the users.
 
-It's one of the supported ways. E.g. OE-Core has CORE_IMAGE_EXTRA_INSTALL=
- for=20
-core images to support this (see section 7.2.1):
+However, These are either too heavy or too pointed towards validation.
 
-https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#us=
-ingpoky-extend-customimage
+Hence, let us introduce a basic thinlinux image that has the basic
+system configured for out of box container usage without changing the
+meaning of existing image content definitions.
 
---=20
-Regards,
-Denys Dmytriyenko <denis@denix.org>
-PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
-Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+
+Changes since V1:
+* Fixed mistake in the output image name
+
+V1: https://lists.yoctoproject.org/g/meta-arago/message/13604
+
+NOTE: we decided to drop the kernel.cfg application from yocto and
+should pick the patch up in the kernel. this will allow us to enable the
+kernel for more than a single distro.
+ .../images/tisdk-thinlinux-image.bb           | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb
+
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb b/meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb
+new file mode 100644
+index 00000000..aa732df6
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/images/tisdk-thinlinux-image.bb
+@@ -0,0 +1,25 @@
++# Arago TI Thin Linux image
++# Minimal bootable image with container to start the next complex system up.
++
++require arago-image.inc
++
++SPLASH = "${@bb.utils.contains('MACHINE_FEATURES','gpu','psplash','',d)}"
++
++# Allow users to tack on additional packages as interesting.
++ARAGO_THIN_IMAGE_EXTRA_INSTALL ?= ""
++
++IMAGE_INSTALL += "\
++    packagegroup-arago-base \
++    packagegroup-arago-console \
++    packagegroup-arago-base-tisdk \
++    ${@bb.utils.contains('MACHINE_FEATURES','gpu','packagegroup-arago-tisdk-graphics','',d)} \
++    docker \
++    ${ARAGO_THIN_IMAGE_EXTRA_INSTALL} \
++"
++
++export IMAGE_BASENAME = "tisdk-thinlinux-image"
++
++# Disable ubi/ubifs as the filesystem requires more space than is
++# available on the HW.
++IMAGE_FSTYPES_remove_keystone = "ubifs ubi"
++IMAGE_FSTYPES_remove_omapl138 = "ubifs ubi"
+-- 
+2.17.1
+
