@@ -1,129 +1,98 @@
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.8362.1647020600072466496
+ by mx.groups.io with SMTP id smtpd.web09.8494.1647021229616533290
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 11 Mar 2022 09:43:20 -0800
+ Fri, 11 Mar 2022 09:53:49 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 20B9240C46;
-	Fri, 11 Mar 2022 17:43:19 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 9D15D40C46;
+	Fri, 11 Mar 2022 17:53:48 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id HVDfCfIKQh-v; Fri, 11 Mar 2022 17:43:19 +0000 (UTC)
+	with ESMTP id YDznvv8lc7s3; Fri, 11 Mar 2022 17:53:48 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id CC08A40A03;
-	Fri, 11 Mar 2022 17:43:09 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 558F640A03;
+	Fri, 11 Mar 2022 17:53:39 +0000 (UTC)
 Received: by mail.denix.org (Postfix, from userid 1000)
-	id 9086F16E6AD; Fri, 11 Mar 2022 12:43:09 -0500 (EST)
-Date: Fri, 11 Mar 2022 12:43:09 -0500
+	id 1345F16E6AD; Fri, 11 Mar 2022 12:53:39 -0500 (EST)
+Date: Fri, 11 Mar 2022 12:53:38 -0500
 From: "Denys Dmytriyenko" <denis@denix.org>
-To: nm@ti.com
+To: Nishanth Menon <nm@ti.com>
 Cc: Ryan Eatmon <reatmon@ti.com>, Dave Gerlach <d-gerlach@ti.com>,
 	"Humphreys, Jonathan" <j-humphreys@ti.com>, praneeth@ti.com,
 	minas@ti.com, "Hilman, Kevin" <khilman@ti.com>,
 	"Patton, Schuyler" <spatton@ti.com>,
 	"Devshatwar, Nikhil" <nikhil.nd@ti.com>,
 	meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago] [dunfell/master PATCH 3/6] packagegroups: Add a new bootstrap package group
-Message-ID: <20220311174309.GC1766@denix.org>
+Subject: Re: [dunfell/master PATCH 4/6] recipes-core: images: Add a basic bootstrap base image
+Message-ID: <20220311175338.GD1766@denix.org>
 References: <20220309021316.28370-1-nm@ti.com>
- <20220309021316.28370-4-nm@ti.com>
+ <20220309021316.28370-5-nm@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20220309021316.28370-4-nm@ti.com>
+In-Reply-To: <20220309021316.28370-5-nm@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Tue, Mar 08, 2022 at 08:13:13PM -0600, Nishanth Menon via lists.yoctoproject.org wrote:
-> Lets try and create a minimal package group for board bringup. Lets
-> call this basic system necessary for board bringup as "bootstrap".
+On Tue, Mar 08, 2022 at 08:13:14PM -0600, Nishanth Menon wrote:
+> Since we do not wish to modify the tiny-image from anything but really
+> tiny, lets use that infrastructure and add the bootstrap package group
+> to create initramfs (not exactly a completely usable system) which can
+> be used for basic board bringup.
+> 
+> This generates cpio around 36-40MB which should be usually fine for
+> even smaller systems (Ofcourse, this is much larger than tiny-image
+> which is around 6MB size). The packages are organized per size to
+> allow easier customization if desired.
+> 
+> This image follows the Bring Your Own Kernel model from
+> tisdk-tiny-image.
 > 
 > Signed-off-by: Nishanth Menon <nm@ti.com>
 > ---
->  .../packagegroup-arago-bootstrap.bb           | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-bootstrap.bb
+>  .../images/tisdk-bootstrap-base-image.bb      | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>  create mode 100644 meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
 > 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-bootstrap.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-bootstrap.bb
+> diff --git a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb b/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
 > new file mode 100644
-> index 000000000000..e5b670a16b73
+> index 000000000000..a18f39602286
 > --- /dev/null
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-bootstrap.bb
-> @@ -0,0 +1,55 @@
-> +DESCRIPTION = "Task to install additional utilities for initial board bringup"
+> +++ b/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
+> @@ -0,0 +1,20 @@
+> +# Arago TI SDK bootstrap base image for initramfs
+> +# This will not get a completely usable image since kernel will be missing
 
-Need to start setting SUMMARY by default, not DESCRIPTION. DESCRIPTION is an 
-alternative longer explanation for the package, otherwise it's the same as 
-SUMMARY. Yes, I know many recipes still use the old convention, but need to be 
-fixed.
+Same comment as for earlier patch.
 
 
-> +LICENSE = "MIT"
-> +PR = "r0"
+> +# intent for this image is to build as basic a system with enough basic
+> +# Board bringup utilities that can then be used for additions as needed.
 > +
-> +PACKAGE_ARCH = "${MACHINE_ARCH}"
+> +require arago-tiny-image.inc
 > +
-> +inherit packagegroup
+> +IMAGE_FSTYPES += "cpio cpio.xz"
 > +
-> +PACKAGES =+ "${PN}-extra"
+> +ARAGO_BOOTSTRAP_IMAGE_EXTRA_INSTALL ?= ""
+> +
+> +IMAGE_INSTALL += " \
+> +	packagegroup-arago-bootstrap \
+> +	${ARAGO_BOOTSTRAP_IMAGE_EXTRA_INSTALL} \
+> +"
+> +
+> +# We do not need kernel Image, dtbs and modules in the initrd
+> +deltask do_packagedata
 
-I don't see ${PN}-extra being used/populated anywhere here.
+Huh? Not sure what you are trying to do here, but it certainly isn't right...
+You are trying to partially disable generating of IPK packages for the image, 
+but images by default have no packages to produce.
 
 
-> +UTILS = " \
-> +	 arm-benchmarks \
-> +	 evtest \
-> +	 memtester \
-> +	 nbench-byte \
-> +	 pcitest \
-> +	 serialcheck \
-> +	 yavta \
-> +	 hdparm \
-> +	 i2c-tools \
-> +	 libdrm-tests \
-> +	 rt-tests \
-> +	 iozone3 \
-> +	 mtd-utils-ubifs-tests \
-> +	 net-tools \
-> +	 ethtool  \
-> +	 pciutils \
-> +	 rng-tools \
-> +	 stress-ng \
-> +	 iperf \
-> +	 lmbench \
-> +	 usbutils \
-> +	 devmem2 \
-> +	 phytool \
-> +"
-> +
-> +UTILS_append_ti33x = " \
-> +    omapconf \
-> +"
-> +
-> +UTILS_append_ti43x = " \
-> +    omapconf \
-> +"
-> +
-> +UTILS_append_omap-a15 = " \
-> +    omapconf \
-> +"
-> +
-> +UTILS_append_k3 = " \
-> +    k3conf \
-> +"
-> +
-> +RDEPENDS_${PN} = "\
-> +    ${UTILS} \
-> +"
+> +export IMAGE_BASENAME = "tisdk-bootstrap-base-image"
 > -- 
 > 2.31.1
-> 
-> 
-> 
-> 
-> 
 > 
 
 -- 
