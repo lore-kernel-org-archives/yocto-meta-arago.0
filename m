@@ -2,40 +2,40 @@ Return-Path: <nm@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 19C3EC4332F
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 361FBC433FE
 	for <webhook@archiver.kernel.org>; Fri, 18 Mar 2022 18:40:51 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web12.13381.1647628849627292597
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web09.13584.1647628850006110891
  for <meta-arago@lists.yoctoproject.org>;
  Fri, 18 Mar 2022 11:40:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=Mg2ZngpW;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: nm@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22IIekub101170;
-	Fri, 18 Mar 2022 13:40:46 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=slTZ1TRS;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: nm@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22IIelVa105262;
+	Fri, 18 Mar 2022 13:40:47 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1647628846;
-	bh=5hS96PRVzWFzzimenmxAHH7IioPtpr5zFKHzCfgMhl4=;
-	h=From:To:CC:Subject:Date;
-	b=Mg2ZngpWQ9sCGM0z5az2eB9RJ8LkaiYtxXzdwhiZIJV2r6QYW7jVWzyeb1keSbXjy
-	 1h6j/yx4hVB0NaIxF9XssML1yrE8QQv3kbFZjVdpNO108DDHWVO72Dm62UlnoYiSkT
-	 pB4cZqkG9xau0KEK0+5C+hqS/4XqXPi1rgNX93MI=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22IIekco108915
+	s=ti-com-17Q1; t=1647628847;
+	bh=EtMeJwVI7bMaFn+iQoyme0qT/g9D5b2SGgVHeRqZcVU=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=slTZ1TRSsmm8rL2ScUHilG8xQtAWanzJjBdtgkcCD2SeMQ9AMKYt8ahMjP5OF/lYz
+	 nK3+36efgPzMVkPCuNVgnTcwhirAazpRHWj5y2+CTNahQXcGbrQB91O0mLd04E6SVK
+	 UJHdxtRFbzJ/rtsZPEjyZGaEejnRY3hvEbNeQm3Y=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22IIeleE024215
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 18 Mar 2022 13:40:46 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 18 Mar 2022 13:40:47 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 18
- Mar 2022 13:40:46 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2022 13:40:47 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 18 Mar 2022 13:40:46 -0500
+ Frontend Transport; Fri, 18 Mar 2022 13:40:47 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22IIek8Q008751;
-	Fri, 18 Mar 2022 13:40:46 -0500
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22IIelqa006937;
+	Fri, 18 Mar 2022 13:40:47 -0500
 From: Nishanth Menon <nm@ti.com>
 To: Denys Dmytriyenko <denis@denix.org>, Ryan Eatmon <reatmon@ti.com>
 CC: Dave Gerlach <d-gerlach@ti.com>,
@@ -45,11 +45,13 @@ CC: Dave Gerlach <d-gerlach@ti.com>,
         "Hilman, Kevin" <khilman@ti.com>, "Patton, Schuyler" <spatton@ti.com>,
         "Devshatwar, Nikhil" <nikhil.nd@ti.com>,
         <meta-arago@lists.yoctoproject.org>, Nishanth Menon <nm@ti.com>
-Subject: [dunfell/master PATCH V3 00/12] recipes-core: Add a bootstrap Linux
- image
-Date: Fri, 18 Mar 2022 13:40:33 -0500
-Message-ID: <20220318184045.11246-1-nm@ti.com>
+Subject: [dunfell/master PATCH V3 10/12] recipes-bsp: Create a
+ bootstrap-initrd package
+Date: Fri, 18 Mar 2022 13:40:43 -0500
+Message-ID: <20220318184045.11246-11-nm@ti.com>
 X-Mailer: git-send-email 2.31.1
+In-Reply-To: <20220318184045.11246-1-nm@ti.com>
+References: <20220318184045.11246-1-nm@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -58,65 +60,48 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Fri, 18 Mar 2022 18:40:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13660
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13669
 
+Lets create an bootstrap-initrd package that installs the cpio
+generated in the correct locations.
 
-Board bringups are typically painful. however, over the years, folks
-know of minimal debug tools that are pretty effective in helping debug
-basic peripherals. Lets create a reusable packagegroup balancing the
-tools from wisdom from various folks vs the size of the resultant
-package.
+Signed-off-by: Nishanth Menon <nm@ti.com>
+---
+no changes since V2
+V2: https://lore.kernel.org/all/20220318143735.17642-10-nm@ti.com/
 
-We would like to base such a system on more simplistic sysvinit (no
-offence systemd, you are still our fav), as it has a much smaller
-footprint.
-
-The board startup is best done with a minimal u-boot and kernel device
-tree configurations.
-
-Dependency (for patch #12, depends on https://lore.kernel.org/all/20220314202840.18904-1-reatmon@ti.com/ )
-
-Changes since V2:
-* image bb files documentation uses standard SUMMARY and DESCRIPTION
-* This helps tie up with the patch for oe-layersetup
-  https://lore.kernel.org/yocto-meta-arago/20220318182805.6734-1-nm@ti.com/T/#u
-
-V2: https://lore.kernel.org/all/20220318143735.17642-1-nm@ti.com/
-V1: https://lore.kernel.org/all/20220309021316.28370-1-nm@ti.com/
-
-Nishanth Menon (12):
-  Revert "tisdk-tiny-image: remove packagedata task breaking initramfs
-    packaging"
-  tisdk-tiny-image: Split common components into include file
-  tisdk-tiny-image: Add some usability notes
-  tisdk-base-image: Reformat documentation and clarify usage
-  tisdk-default-image: Reformat documentation and clarify usage
-  tisdk-thinlinux-image: Reformat documentation
-  tisdk-core-bundle: Add documentation to clarify usage
-  packagegroups: Add a new bootstrap package group
-  recipes-core: images: Add a basic bootstrap base image
-  recipes-bsp: Create a bootstrap-initrd package
-  recipes-core: images: Introduce tisdk-bootstrap-image
-  images: Build tisdk-bootstrap-image with tisdk-core-bundle
-
- .../bootstrap-initrd/bootstrap-initrd_1.0.bb  | 22 ++++++++
- .../recipes-core/images/arago-tiny-image.inc  |  9 ++++
- .../recipes-core/images/tisdk-base-image.bb   |  6 ++-
- .../images/tisdk-bootstrap-base-image.bb      | 22 ++++++++
- .../images/tisdk-bootstrap-image.bb           | 22 ++++++++
- .../recipes-core/images/tisdk-core-bundle.bb  |  7 +++
- .../recipes-core/images/tisdk-core-bundle.inc |  2 +-
- .../images/tisdk-default-image.bb             |  5 +-
- .../images/tisdk-thinlinux-image.bb           |  6 ++-
- .../recipes-core/images/tisdk-tiny-image.bb   | 21 ++++----
- .../packagegroup-arago-bootstrap.bb           | 53 +++++++++++++++++++
- 11 files changed, 160 insertions(+), 15 deletions(-)
+ .../bootstrap-initrd/bootstrap-initrd_1.0.bb  | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
  create mode 100644 meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
- create mode 100644 meta-arago-distro/recipes-core/images/arago-tiny-image.inc
- create mode 100644 meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
- create mode 100644 meta-arago-distro/recipes-core/images/tisdk-bootstrap-image.bb
- create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-bootstrap.bb
 
+diff --git a/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
+new file mode 100644
+index 000000000000..2a53efcd9062
+--- /dev/null
++++ b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
+@@ -0,0 +1,22 @@
++SUMMARY = "Prebuilt initramfs with apps for bootstraping new board"
++
++LICENSE = "GPLv2"
++
++CLEANBROKEN = "1"
++
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++S = "${WORKDIR}"
++
++BOOSTRAP_IMAGE="tisdk-bootstrap-base-image"
++
++TARGET = "bootstrap-rootfs-${MACHINE}.cpio"
++
++do_install() {
++	install -d ${D}/boot
++	install -m 0644 ${DEPLOY_DIR_IMAGE}/${BOOSTRAP_IMAGE}-${MACHINE}.cpio  ${D}/boot/${TARGET}
++}
++
++FILES_${PN} = "/boot"
++
++do_install[depends] = "${BOOSTRAP_IMAGE}:do_image_complete"
 -- 
 2.17.1
 
