@@ -2,41 +2,41 @@ Return-Path: <nm@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CFA6FC433EF
-	for <webhook@archiver.kernel.org>; Fri, 18 Mar 2022 12:38:47 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web08.8976.1647607126869864898
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D545EC433F5
+	for <webhook@archiver.kernel.org>; Fri, 18 Mar 2022 12:39:17 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web11.9261.1647607156615020622
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 18 Mar 2022 05:38:47 -0700
+ Fri, 18 Mar 2022 05:39:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=AnNCbRKE;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: nm@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22ICcimT003348;
-	Fri, 18 Mar 2022 07:38:44 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=lvtiGSwn;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: nm@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22ICdEBe018299;
+	Fri, 18 Mar 2022 07:39:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1647607124;
-	bh=tKlQ3fLjzH9tx8ACe6OIY72FlzTpERkzUpOhz0C78Yk=;
+	s=ti-com-17Q1; t=1647607154;
+	bh=7S9bOc0ykavYoZ0JYUf1n+uTDK3BhTcqQWyqvBQrip0=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=AnNCbRKEJ7WOhmyq/4PXYprP8xHrbQs2alblm9QUhPgZoeT0NGoqSUhYiTQf/X8or
-	 7rVSBx0aYiHWTWR5KBYAc2kp7lHCdX6yV4w4q86Bg+xpkRCDjdvz3+ik2lDWelGzfQ
-	 IqVF4Do3tDwI+DSvUGOG+Aldf2CVzTjzVrfaVgco=
+	b=lvtiGSwnlogboApqyvQ7HViu5BOozwGKozDSkIjgE+9Mp1FUzW6RCTJQioTukro2J
+	 UNA+zFe20csBHRGs5eqIJFpYe5pomKF5PM8sp3uvvVRCE3stQfWwwigsoSFmfuWGju
+	 SgXqkfJwNvSGyjAC85FhhZh9nZ/mccjTMUUeObbE=
 Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22ICcits101301
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22ICdEcB130657
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 18 Mar 2022 07:38:44 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
+	Fri, 18 Mar 2022 07:39:14 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE105.ent.ti.com
  (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 18
- Mar 2022 07:38:44 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2022 07:39:14 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 18 Mar 2022 07:38:44 -0500
+ Frontend Transport; Fri, 18 Mar 2022 07:39:14 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22ICci7t001485;
-	Fri, 18 Mar 2022 07:38:44 -0500
-Date: Fri, 18 Mar 2022 07:38:44 -0500
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22ICdEqE108161;
+	Fri, 18 Mar 2022 07:39:14 -0500
+Date: Fri, 18 Mar 2022 07:39:14 -0500
 From: Nishanth Menon <nm@ti.com>
 To: Denys Dmytriyenko <denis@denix.org>
 CC: Ryan Eatmon <reatmon@ti.com>, Dave Gerlach <d-gerlach@ti.com>,
@@ -48,42 +48,36 @@ CC: Ryan Eatmon <reatmon@ti.com>, Dave Gerlach <d-gerlach@ti.com>,
         "Devshatwar,
  Nikhil" <nikhil.nd@ti.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: Re: [meta-arago] [dunfell/master PATCH 4/6] recipes-core: images:
- Add a basic bootstrap base image
-Message-ID: <20220318123844.6fohv26gtfagqqcr@implode>
+Subject: Re: [meta-arago] [dunfell/master PATCH 6/6] recipes-core: images:
+ Introduce tisdk-bootstrap-image
+Message-ID: <20220318123914.w5d4vd54vlnmq5hw@paycheck>
 References: <20220309021316.28370-1-nm@ti.com>
- <20220309021316.28370-5-nm@ti.com>
- <16DB65153852778E.24530@lists.yoctoproject.org>
- <20220311181811.GF1766@denix.org>
+ <20220309021316.28370-7-nm@ti.com>
+ <20220311213430.GG1766@denix.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20220311181811.GF1766@denix.org>
+In-Reply-To: <20220311213430.GG1766@denix.org>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 18 Mar 2022 12:38:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13634
+ <meta-arago@lists.yoctoproject.org>; Fri, 18 Mar 2022 12:39:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13635
 
-On 13:18-20220311, Denys Dmytriyenko wrote:
+On 16:34-20220311, Denys Dmytriyenko wrote:
 [...]
 
-> > > +
-> > > +# We do not need kernel Image, dtbs and modules in the initrd
-> > > +deltask do_packagedata
-> > 
-> > Huh? Not sure what you are trying to do here, but it certainly isn't right...
-> > You are trying to partially disable generating of IPK packages for the image, 
-> > but images by default have no packages to produce.
+> > +
+> > +IMAGE_INSTALL += " \
+> > +	packagegroup-arago-bootstrap \
+> > +	kernel \
 > 
-> I think you stepped on this workaround, that is no longer needed:
-> https://git.yoctoproject.org/meta-arago/commit/?id=a75e468a372d4f5c2c32a179d4d2219899b5190c
-> 
+> This should probably be kernel-base. There's no package called just kernel, 
+> but rather kernel-<version> which is kernel-base in disguise :)
 
-
-Aaah.. Thanks. will drop and retest.
+Woops.. thanks a bunch. will fix.
 
 -- 
 Regards,
