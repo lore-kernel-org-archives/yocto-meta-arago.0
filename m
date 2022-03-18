@@ -2,39 +2,39 @@ Return-Path: <nm@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 60D6BC4332F
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F08DC43217
 	for <webhook@archiver.kernel.org>; Fri, 18 Mar 2022 14:37:43 +0000 (UTC)
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web12.10318.1647614262327750126
+ by mx.groups.io with SMTP id smtpd.web09.10529.1647614261383778135
  for <meta-arago@lists.yoctoproject.org>;
  Fri, 18 Mar 2022 07:37:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=Gt4MJK6S;
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=AeEi4yG3;
  spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: nm@ti.com)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22IEbbJT028470;
-	Fri, 18 Mar 2022 09:37:37 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22IEbcY8028479;
+	Fri, 18 Mar 2022 09:37:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1647614257;
-	bh=Lqf+P2HVFTu26paZ6z7/7yb3xXBT4z62LjCH/b6rG2k=;
+	s=ti-com-17Q1; t=1647614258;
+	bh=u/n3qm71NFhhUc8Db/BsFX65h0L48QBEy/kOPdo6eDs=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Gt4MJK6SykuzPSy+jUUPgRzDuO1ndSfKrWgOimnO9A1vhl0t2eEYg1l2TfV94m4KF
-	 eVEhQhSoVC1i/9+vTQx0z9ZmukgD83u0s83VSxnc3plN+vLZPcu6//cYHVHBLH/GTB
-	 6nG+WEBpAZgHV4bZeWhoZ2miRt7UY8YAAXKKHT6k=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22IEbbts007717
+	b=AeEi4yG33zU7Toj24X/tUkn1/mMUwNjWvTUEcTrMPctJ04d9dx02LmJ93JYR0Xtu1
+	 wBhOjx6A3v+N7DfSPlw4faT19xGSHOWftQw3YuVWI9Hz8jqDFMJOFQk+GpkGR7G7Qc
+	 etgONUQfJ/DtAoIimBwKxUjMnxbOatdFaFI9VNNU=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22IEbchr007729
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 18 Mar 2022 09:37:37 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 18 Mar 2022 09:37:38 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 18
  Mar 2022 09:37:37 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
  Frontend Transport; Fri, 18 Mar 2022 09:37:37 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22IEbbpv065659;
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22IEbbLk025906;
 	Fri, 18 Mar 2022 09:37:37 -0500
 From: Nishanth Menon <nm@ti.com>
 To: Denys Dmytriyenko <denis@denix.org>, Ryan Eatmon <reatmon@ti.com>
@@ -45,10 +45,10 @@ CC: Dave Gerlach <d-gerlach@ti.com>,
         "Hilman, Kevin" <khilman@ti.com>, "Patton, Schuyler" <spatton@ti.com>,
         "Devshatwar, Nikhil" <nikhil.nd@ti.com>,
         <meta-arago@lists.yoctoproject.org>, Nishanth Menon <nm@ti.com>
-Subject: [dunfell/master PATCH V2 02/12] tisdk-tiny-image: Split common
- components into include file
-Date: Fri, 18 Mar 2022 09:37:25 -0500
-Message-ID: <20220318143735.17642-3-nm@ti.com>
+Subject: [dunfell/master PATCH V2 09/12] recipes-bsp: Create a
+ bootstrap-initrd package
+Date: Fri, 18 Mar 2022 09:37:32 -0500
+Message-ID: <20220318143735.17642-10-nm@ti.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20220318143735.17642-1-nm@ti.com>
 References: <20220318143735.17642-1-nm@ti.com>
@@ -60,68 +60,50 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Fri, 18 Mar 2022 14:37:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13646
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13639
 
-Lets split the common pieces for creating a tiny image into an include
-file. This can then be used to incrementally build additional images
-as well.
+Lets create an bootstrap-initrd package that installs the cpio
+generated in the correct locations.
 
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
 Changes since v1:
-* No change (just rebase)
+* renamed to bootstrap-initrd since this has nothing specific to do with k3.
+* review comments ^^
 
-V1: https://lore.kernel.org/all/20220309021316.28370-2-nm@ti.com/
+V1: https://lore.kernel.org/all/20220309021316.28370-6-nm@ti.com/
+ .../bootstrap-initrd/bootstrap-initrd_1.0.bb  | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
 
- .../{tisdk-tiny-image.bb => arago-tiny-image.inc}     |  7 -------
- .../recipes-core/images/tisdk-tiny-image.bb           | 11 +++--------
- 2 files changed, 3 insertions(+), 15 deletions(-)
- copy meta-arago-distro/recipes-core/images/{tisdk-tiny-image.bb => arago-tiny-image.inc} (50%)
-
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb b/meta-arago-distro/recipes-core/images/arago-tiny-image.inc
-similarity index 50%
-copy from meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-copy to meta-arago-distro/recipes-core/images/arago-tiny-image.inc
-index 28da0b60cc35..79c8f6075911 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-+++ b/meta-arago-distro/recipes-core/images/arago-tiny-image.inc
-@@ -4,13 +4,6 @@ require arago-image.inc
- 
- IMAGE_FEATURES_remove = "package-management splash"
- 
--IMAGE_FSTYPES += "cpio cpio.xz"
--
--ARAGO_TINY_IMAGE_EXTRA_INSTALL ?= ""
--
- IMAGE_INSTALL = " \
- 	packagegroup-arago-sysvinit-boot \
--	${ARAGO_TINY_IMAGE_EXTRA_INSTALL} \
- "
--
--export IMAGE_BASENAME = "tisdk-tiny-image"
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb b/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-index 28da0b60cc35..85ae3728e86e 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-@@ -1,15 +1,10 @@
--ARAGO_SYSVINIT = "1"
--
--require arago-image.inc
-+ARAGO_TINY_IMAGE_EXTRA_INSTALL ?= ""
- 
--IMAGE_FEATURES_remove = "package-management splash"
-+require arago-tiny-image.inc
- 
- IMAGE_FSTYPES += "cpio cpio.xz"
- 
--ARAGO_TINY_IMAGE_EXTRA_INSTALL ?= ""
--
--IMAGE_INSTALL = " \
--	packagegroup-arago-sysvinit-boot \
-+IMAGE_INSTALL += " \
- 	${ARAGO_TINY_IMAGE_EXTRA_INSTALL} \
- "
- 
+diff --git a/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
+new file mode 100644
+index 000000000000..452f88a35346
+--- /dev/null
++++ b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
+@@ -0,0 +1,22 @@
++DESCRIPTION = "Prebuilt initramfs with apps for bootstraping new board"
++
++LICENSE = "GPLv2"
++
++CLEANBROKEN = "1"
++
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++S = "${WORKDIR}"
++
++BOOSTRAP_IMAGE="tisdk-bootstrap-base-image"
++
++TARGET = "bootstrap-rootfs-${MACHINE}.cpio"
++
++do_install() {
++	install -d ${D}/boot
++	install -m 0644 ${DEPLOY_DIR_IMAGE}/${BOOSTRAP_IMAGE}-${MACHINE}.cpio  ${D}/boot/${TARGET}
++}
++
++FILES_${PN} = "/boot"
++
++do_install[depends] = "${BOOSTRAP_IMAGE}:do_image_complete"
 -- 
 2.31.1
 
