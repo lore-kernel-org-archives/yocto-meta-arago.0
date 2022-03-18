@@ -2,39 +2,39 @@ Return-Path: <nm@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 361FBC433FE
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 10664C433EF
 	for <webhook@archiver.kernel.org>; Fri, 18 Mar 2022 18:40:51 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web09.13584.1647628850006110891
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web08.13299.1647628850124482056
  for <meta-arago@lists.yoctoproject.org>;
  Fri, 18 Mar 2022 11:40:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=slTZ1TRS;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: nm@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22IIelVa105262;
-	Fri, 18 Mar 2022 13:40:47 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=piM0dw8y;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: nm@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22IIemR2086944;
+	Fri, 18 Mar 2022 13:40:48 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1647628847;
-	bh=EtMeJwVI7bMaFn+iQoyme0qT/g9D5b2SGgVHeRqZcVU=;
+	s=ti-com-17Q1; t=1647628848;
+	bh=GQ0Q8CCR8aZUpdIMNDIBS6w5QGxpwZKC/PKKmERMBH4=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=slTZ1TRSsmm8rL2ScUHilG8xQtAWanzJjBdtgkcCD2SeMQ9AMKYt8ahMjP5OF/lYz
-	 nK3+36efgPzMVkPCuNVgnTcwhirAazpRHWj5y2+CTNahQXcGbrQB91O0mLd04E6SVK
-	 UJHdxtRFbzJ/rtsZPEjyZGaEejnRY3hvEbNeQm3Y=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22IIeleE024215
+	b=piM0dw8yLssT+PDquvNVxUN5aE6QAJZD9cokUuxshvUDhvJGemv3MzvZJJc/RqiYE
+	 T/dneoAtC5irQJmhzIpYGGWUmVSYUDy53Bl6h5jMG8Gxnq55yCef2Bpf0b8sGi2ynX
+	 GZ19To6BKF59/8fQoBCdCU3t9v1bgN7ZJwzx+5dY=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22IIemhl002675
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 18 Mar 2022 13:40:47 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 18 Mar 2022 13:40:48 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 18
- Mar 2022 13:40:47 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2022 13:40:48 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
  Frontend Transport; Fri, 18 Mar 2022 13:40:47 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22IIelqa006937;
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22IIelT7110489;
 	Fri, 18 Mar 2022 13:40:47 -0500
 From: Nishanth Menon <nm@ti.com>
 To: Denys Dmytriyenko <denis@denix.org>, Ryan Eatmon <reatmon@ti.com>
@@ -45,10 +45,10 @@ CC: Dave Gerlach <d-gerlach@ti.com>,
         "Hilman, Kevin" <khilman@ti.com>, "Patton, Schuyler" <spatton@ti.com>,
         "Devshatwar, Nikhil" <nikhil.nd@ti.com>,
         <meta-arago@lists.yoctoproject.org>, Nishanth Menon <nm@ti.com>
-Subject: [dunfell/master PATCH V3 10/12] recipes-bsp: Create a
- bootstrap-initrd package
-Date: Fri, 18 Mar 2022 13:40:43 -0500
-Message-ID: <20220318184045.11246-11-nm@ti.com>
+Subject: [dunfell/master PATCH V3 09/12] recipes-core: images: Add a basic
+ bootstrap base image
+Date: Fri, 18 Mar 2022 13:40:42 -0500
+Message-ID: <20220318184045.11246-10-nm@ti.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20220318184045.11246-1-nm@ti.com>
 References: <20220318184045.11246-1-nm@ti.com>
@@ -60,48 +60,55 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Fri, 18 Mar 2022 18:40:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13669
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13672
 
-Lets create an bootstrap-initrd package that installs the cpio
-generated in the correct locations.
+Since we do not wish to modify the tiny-image from anything but really
+tiny, lets use that infrastructure and add the bootstrap package group
+to create initramfs (not exactly a completely usable system) which can
+be used for basic board bringup.
+
+This generates cpio around 36-40MB which should be usually fine for
+even smaller systems (Ofcourse, this is much larger than tiny-image
+which is around 6MB size). The packages are organized per size to
+allow easier customization if desired.
 
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
 no changes since V2
-V2: https://lore.kernel.org/all/20220318143735.17642-10-nm@ti.com/
+V2: https://lore.kernel.org/all/20220318143735.17642-9-nm@ti.com/
 
- .../bootstrap-initrd/bootstrap-initrd_1.0.bb  | 22 +++++++++++++++++++
+ .../images/tisdk-bootstrap-base-image.bb      | 22 +++++++++++++++++++
  1 file changed, 22 insertions(+)
- create mode 100644 meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
+ create mode 100644 meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
 
-diff --git a/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb b/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
 new file mode 100644
-index 000000000000..2a53efcd9062
+index 000000000000..8b7f10c9f343
 --- /dev/null
-+++ b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-bootstrap-base-image.bb
 @@ -0,0 +1,22 @@
-+SUMMARY = "Prebuilt initramfs with apps for bootstraping new board"
++SUMMARY = "Arago TI SDK bootstrap base image for initramfs"
 +
-+LICENSE = "GPLv2"
++DESCRIPTION = "Image meant for basic system verification of linux kernel.\
++ Intended as basic test system, this image does not package the kernel\
++ in the standard /boot folder in rootfs. Instead, it provides a base\
++ rootfs with enough basic board bringup utilities allowing kernel to be\
++ deployed elsewhere (tftp/separate boot partition/jtag log etc..) and\
++ maybe used for basic platform bringup (bootstrap) activities.\
++"
 +
-+CLEANBROKEN = "1"
++require arago-tiny-image.inc
 +
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
++IMAGE_FSTYPES += "cpio cpio.xz"
 +
-+S = "${WORKDIR}"
++ARAGO_BOOTSTRAP_IMAGE_EXTRA_INSTALL ?= ""
 +
-+BOOSTRAP_IMAGE="tisdk-bootstrap-base-image"
++IMAGE_INSTALL += " \
++	packagegroup-arago-bootstrap \
++	${ARAGO_BOOTSTRAP_IMAGE_EXTRA_INSTALL} \
++"
 +
-+TARGET = "bootstrap-rootfs-${MACHINE}.cpio"
-+
-+do_install() {
-+	install -d ${D}/boot
-+	install -m 0644 ${DEPLOY_DIR_IMAGE}/${BOOSTRAP_IMAGE}-${MACHINE}.cpio  ${D}/boot/${TARGET}
-+}
-+
-+FILES_${PN} = "/boot"
-+
-+do_install[depends] = "${BOOSTRAP_IMAGE}:do_image_complete"
++export IMAGE_BASENAME = "tisdk-bootstrap-base-image"
 -- 
 2.17.1
 
