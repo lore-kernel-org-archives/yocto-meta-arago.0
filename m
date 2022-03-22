@@ -1,95 +1,87 @@
-Return-Path: <nm@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 00C7CC4167E
-	for <webhook@archiver.kernel.org>; Tue, 22 Mar 2022 17:48:22 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web09.13300.1647971299622110211
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 973B4C433FE
+	for <webhook@archiver.kernel.org>; Tue, 22 Mar 2022 19:35:57 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web12.14695.1647977756934213233
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 22 Mar 2022 10:48:19 -0700
+ Tue, 22 Mar 2022 12:35:57 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=Drr3lxls;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: nm@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22MHmASt060093;
-	Tue, 22 Mar 2022 12:48:10 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=d7CLGI4c;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22MJZtgs119066;
+	Tue, 22 Mar 2022 14:35:55 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1647971290;
-	bh=o9LzCvIyr5qy0VgTsepBOLZGcYPJbn8iMakv9tpnsjo=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Drr3lxls4Cae6Lgrxchj9jK6EP2L6Wnt3nPtP1HT7l4TfWAxUuyJ9Ul2ksNwKXH9A
-	 pvo4gKfx5VoqNA7zrFvFxiWWaWvDyqGM+SxpT4o2wZsO0bFi4NNpWI9ZJVYgl1R0eS
-	 SKIEn1rLKPcw3fSj7LAg0KliIk8NBgqpryQcGceI=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22MHmAwE025000
+	s=ti-com-17Q1; t=1647977755;
+	bh=IIuGJ+HasIJZRhg2ZbuBjPLacMIZmkj7gO6MNxmfNO4=;
+	h=From:To:Subject:Date:In-Reply-To:References;
+	b=d7CLGI4cP/kjbWL9uRod8cLezW2V9fl7s8W3OtMRF7oRVqSsQbOWMTDtzUFKJPwwZ
+	 QzKA0q69teGkv1PJuMMRjKbmnwhdJMVUpIxKKynrp8t9GP4cxCokPI8hm5ZMvu9wDQ
+	 TK7j5ZBzZ/NLK9otpwobOWGxSCRrBqci1ubOOjik=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22MJZtD9076933
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 22 Mar 2022 12:48:10 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 22 Mar 2022 14:35:55 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 22
- Mar 2022 12:48:10 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2022 14:35:55 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 22 Mar 2022 12:48:10 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22MHmAlR113952;
-	Tue, 22 Mar 2022 12:48:10 -0500
-From: Nishanth Menon <nm@ti.com>
-To: <denis@denix.org>, <reatmon@ti.com>
-CC: <d-gerlach@ti.com>, <j-humphreys@ti.com>, <khilman@ti.com>,
-        <meta-arago@lists.yoctoproject.org>, <minas@ti.com>,
-        <nikhil.nd@ti.com>, <praneeth@ti.com>, <spatton@ti.com>,
-        Nishanth Menon <nm@ti.com>
-Subject: [master/dunfell PATCH V5 03/12] tisdk-tiny-image: Add some usability
- notes
-Date: Tue, 22 Mar 2022 12:47:59 -0500
-Message-ID: <20220322174808.16341-4-nm@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220322174808.16341-1-nm@ti.com>
-References: <20220322174808.16341-1-nm@ti.com>
+ Frontend Transport; Tue, 22 Mar 2022 14:35:55 -0500
+Received: from uda0214219 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22MJZtGZ042273;
+	Tue, 22 Mar 2022 14:35:55 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1nWkIN-0006Md-4L; Tue, 22 Mar 2022 14:35:55 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Yogesh Siraswar <yogeshs@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][dunfell][PATCH 3/3] busybox: Enable rtcwake
+Date: Tue, 22 Mar 2022 14:35:54 -0500
+Message-ID: <20220322193554.24404-4-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220322193554.24404-1-reatmon@ti.com>
+References: <20220322193554.24404-1-reatmon@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 22 Mar 2022 17:48:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13705
+ <meta-arago@lists.yoctoproject.org>; Tue, 22 Mar 2022 19:35:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13710
 
-Lets clarify the usage of tiny image as something meant as a building
-block and not something that folks can directly use.
+From: Nishanth Menon <nm@ti.com>
+
+This is esp useful for testing low power states with a minimal system.
 
 Signed-off-by: Nishanth Menon <nm@ti.com>
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
-Changes since V4: None
+ meta-arago-distro/recipes-core/busybox/busybox/defconfig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-V4: https://lore.kernel.org/yocto-meta-arago/20220319123310.8546-4-nm@ti.com/
-
- .../recipes-core/images/tisdk-tiny-image.bb            | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb b/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-index 0500964695a8..528efa2746b4 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-tiny-image.bb
-@@ -1,3 +1,13 @@
-+SUMMARY = "Arago TI SDK super minimal base image for initramfs"
-+
-+DESCRIPTION = "Image meant for basic boot of linux kernel. Intended as\
-+ bare system, this image does not package the kernel in the\
-+ standard /boot folder in rootfs. Instead, it provides a base\
-+ rootfs allowing kernel to be deployed elsewhere\
-+ (tftp/separate boot partition/jtag log etc..) and boot\
-+ the image.\
-+"
-+
- ARAGO_TINY_IMAGE_EXTRA_INSTALL ?= ""
- 
- require arago-tiny-image.inc
+diff --git a/meta-arago-distro/recipes-core/busybox/busybox/defconfig b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+index 65470bc7..351b80d4 100644
+--- a/meta-arago-distro/recipes-core/busybox/busybox/defconfig
++++ b/meta-arago-distro/recipes-core/busybox/busybox/defconfig
+@@ -583,7 +583,7 @@ CONFIG_PIVOT_ROOT=y
+ CONFIG_RDATE=y
+ # CONFIG_RDEV is not set
+ # CONFIG_READPROFILE is not set
+-# CONFIG_RTCWAKE is not set
++CONFIG_RTCWAKE=y
+ # CONFIG_SCRIPT is not set
+ # CONFIG_SCRIPTREPLAY is not set
+ # CONFIG_SETARCH is not set
 -- 
-2.31.1
+2.17.1
 
 
