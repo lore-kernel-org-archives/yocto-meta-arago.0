@@ -2,106 +2,126 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2039CC433F5
-	for <webhook@archiver.kernel.org>; Tue, 22 Mar 2022 22:22:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F036C433F5
+	for <webhook@archiver.kernel.org>; Tue, 22 Mar 2022 22:27:11 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web12.1901.1647987724564888998
+ by mx.groups.io with SMTP id smtpd.web09.2076.1647988029837075537
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 22 Mar 2022 15:22:05 -0700
+ Tue, 22 Mar 2022 15:27:10 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing;
  spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
  mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id ED04940C3E;
-	Tue, 22 Mar 2022 22:22:03 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 2D30040C3E;
+	Tue, 22 Mar 2022 22:27:09 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id R-I6G1_1NVUs; Tue, 22 Mar 2022 22:22:03 +0000 (UTC)
+	with ESMTP id yTrWmA8y_hnK; Tue, 22 Mar 2022 22:27:09 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
  [100.15.86.127])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A0FF040B13;
-	Tue, 22 Mar 2022 22:21:54 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id EB23140B13;
+	Tue, 22 Mar 2022 22:27:02 +0000 (UTC)
 Received: by mail.denix.org (Postfix, from userid 1000)
-	id 66B78174837; Tue, 22 Mar 2022 18:21:54 -0400 (EDT)
-Date: Tue, 22 Mar 2022 18:21:54 -0400
+	id B24CE174837; Tue, 22 Mar 2022 18:27:02 -0400 (EDT)
+Date: Tue, 22 Mar 2022 18:27:02 -0400
 From: Denys Dmytriyenko <denis@denix.org>
-To: Nishanth Menon <nm@ti.com>
-Cc: reatmon@ti.com, d-gerlach@ti.com, j-humphreys@ti.com, khilman@ti.com,
-	meta-arago@lists.yoctoproject.org, minas@ti.com, nikhil.nd@ti.com,
-	praneeth@ti.com, spatton@ti.com
-Subject: Re: [master/dunfell PATCH V5 10/12] recipes-bsp: Create a
- bootstrap-initrd package
-Message-ID: <20220322222154.GU23554@denix.org>
-References: <20220322174808.16341-1-nm@ti.com>
- <20220322174808.16341-11-nm@ti.com>
+To: "Etheridge, Darren" <detheridge@ti.com>
+Cc: nm@ti.com, reatmon@ti.com, Yogesh Siraswar <yogeshs@ti.com>,
+	Praneeth Bajjuri <praneeth@ti.com>,
+	Denys Dmytriyenko <denys@konsulko.com>,
+	meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][dunfell][PATCH 2/3] packagegroup-*-graphics: add
+ virtual provider for AM62x GPU driver v2
+Message-ID: <20220322222702.GV23554@denix.org>
+References: <20220322193554.24404-1-reatmon@ti.com>
+ <20220322193554.24404-3-reatmon@ti.com>
+ <20220322204955.kj74x5e6lx4qtghr@borrowing>
+ <4adcaba5-e45d-451a-75a5-3cc8d52ce8fc@ti.com>
+ <20220322221338.GT23554@denix.org>
+ <cd27dea1-9d16-38b8-611e-24a554700dbf@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220322174808.16341-11-nm@ti.com>
+In-Reply-To: <cd27dea1-9d16-38b8-611e-24a554700dbf@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 22 Mar 2022 22:22:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13720
+ <meta-arago@lists.yoctoproject.org>; Tue, 22 Mar 2022 22:27:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13721
 
-On Tue, Mar 22, 2022 at 12:48:06PM -0500, Nishanth Menon wrote:
-> Lets create an bootstrap-initrd package that installs the cpio
-> generated in the correct locations.
+On Tue, Mar 22, 2022 at 05:16:20PM -0500, Etheridge, Darren wrote:
 > 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
-> Changes since V4: None
 > 
-> V4: https://lore.kernel.org/yocto-meta-arago/20220319123310.8546-11-nm@ti.com/
+> On 3/22/2022 5:13 PM, Denys Dmytriyenko wrote:
+> >On Tue, Mar 22, 2022 at 03:58:04PM -0500, Etheridge, Darren via lists.yoctoproject.org wrote:
+> >>
+> >>
+> >>On 3/22/2022 3:49 PM, Nishanth Menon via lists.yoctoproject.org wrote:
+> >>>On 14:35-20220322, Ryan Eatmon via lists.yoctoproject.org wrote:
+> >>>>From: Krunal Bhargav <k-bhargav@ti.com>
+> >>>>
+> >>>>Signed-off-by: Krunal Bhargav <k-bhargav@ti.com>
+> >>>>Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+> >>>>---
+> >>>>  .../conf/distro/include/arago-prefs.inc              | 12 ++++++------
+> >>>>  1 file changed, 6 insertions(+), 6 deletions(-)
+> >>>>
+> >>>>diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> >>>>index a356c76c..7bc2ba52 100644
+> >>>>--- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> >>>>+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> >>>>@@ -14,12 +14,12 @@ PREFERRED_PROVIDER_virtual/libgles2 = "ti-sgx-ddk-um"
+> >>>>  PREFERRED_PROVIDER_virtual/libgbm = "ti-sgx-ddk-um"
+> >>>>  PREFERRED_PROVIDER_virtual/gpudriver = "ti-sgx-ddk-km"
+> >>>>-# J7 has a Rogue GPU core
+> >>>>-PREFERRED_PROVIDER_virtual/egl_j7 = "ti-img-rogue-umlibs"
+> >>>>-PREFERRED_PROVIDER_virtual/libgles1_j7 = "ti-img-rogue-umlibs"
+> >>>>-PREFERRED_PROVIDER_virtual/libgles2_j7 = "ti-img-rogue-umlibs"
+> >>>>-PREFERRED_PROVIDER_virtual/libgbm_j7 = "ti-img-rogue-umlibs"
+> >>>>-PREFERRED_PROVIDER_virtual/gpudriver_j7 = "ti-img-rogue-driver"
+> >>>>+# K3 TI Platforms has a Rogue GPU core
+> >>>>+PREFERRED_PROVIDER_virtual/egl = "ti-img-rogue-umlibs"
+> >>>>+PREFERRED_PROVIDER_virtual/libgles1 = "ti-img-rogue-umlibs"
+> >>>>+PREFERRED_PROVIDER_virtual/libgles2 = "ti-img-rogue-umlibs"
+> >>>>+PREFERRED_PROVIDER_virtual/libgbm = "ti-img-rogue-umlibs"
+> >>>>+PREFERRED_PROVIDER_virtual/gpudriver = "ti-img-rogue-driver"
+> >>>
+> >>>How does this apply to k3 and leave non-k3 alone? Also, am65x for example is
+> >>>sgx.
+> >>>
+> >>
+> >>That is a very good point.  This will mess up SGX platforms.   I
+> >>wish we had k3_ as the prefix for the name here for all the k3
+> >>platforms.
+> >
+> >There is "k3" defined and you can do _k3 override to address all K3 platforms,
+> >but again, some are SGX and some are RGX...
+> >
+> >
+> >>So I guess the only solution is leave all the _j7 as they were
+> >>
+> >>and add:
+> >>+PREFERRED_PROVIDER_virtual/egl_am62 = "ti-img-rogue-umlibs"
+> >>+PREFERRED_PROVIDER_virtual/libgles1_am62 = "ti-img-rogue-umlibs"
+> >>+PREFERRED_PROVIDER_virtual/libgles2_am62 = "ti-img-rogue-umlibs"
+> >>+PREFERRED_PROVIDER_virtual/libgbm_am62 = "ti-img-rogue-umlibs"
+> >>+PREFERRED_PROVIDER_virtual/gpudriver_am62 = "ti-img-rogue-driver"
+> >
+> >And there's no "am62" defined, but "am62xx" :)
+> >
 > 
->  .../bootstrap-initrd/bootstrap-initrd_1.0.bb  | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
->  create mode 100644 meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
-> 
-> diff --git a/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
-> new file mode 100644
-> index 000000000000..2a53efcd9062
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
-> @@ -0,0 +1,22 @@
-> +SUMMARY = "Prebuilt initramfs with apps for bootstraping new board"
-> +
-> +LICENSE = "GPLv2"
+> Isn't it a partial pattern match?   If it is not the _j7 won't work
+> for j721s2 either.
 
-I was wondering about the same question I raised in another thread about the 
-license[1]:
-
-Default license for OpenEmbedded metadata is MIT, not GPLv2. Any specific 
-reason for the change?
-
-[1] https://patchwork.yoctoproject.org/project/ti/patch/20220322162528.15298-7-reatmon@ti.com/
-
-
-> +CLEANBROKEN = "1"
-> +
-> +PACKAGE_ARCH = "${MACHINE_ARCH}"
-> +
-> +S = "${WORKDIR}"
-> +
-> +BOOSTRAP_IMAGE="tisdk-bootstrap-base-image"
-> +
-> +TARGET = "bootstrap-rootfs-${MACHINE}.cpio"
-> +
-> +do_install() {
-> +	install -d ${D}/boot
-> +	install -m 0644 ${DEPLOY_DIR_IMAGE}/${BOOSTRAP_IMAGE}-${MACHINE}.cpio  ${D}/boot/${TARGET}
-> +}
-> +
-> +FILES_${PN} = "/boot"
-> +
-> +do_install[depends] = "${BOOSTRAP_IMAGE}:do_image_complete"
-> -- 
-> 2.31.1
-> 
+No, it's not a partial pattern match. Overrides use exact matches only, so 
+those have to be defined. Specifically these overrides come from SOC_FAMILY 
+variable and there are definitions for "k3", "j7", but there's no "j721s2" 
+SOC_FAMILY defined, so you cannot use _j721s2, nor _j7 will match it.
+https://git.yoctoproject.org/meta-ti/tree/conf/machine/include?h=dunfell
 
 -- 
 Regards,
