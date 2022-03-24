@@ -1,137 +1,109 @@
-Return-Path: <nm@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D2FC2C433EF
-	for <webhook@archiver.kernel.org>; Thu, 24 Mar 2022 13:25:34 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web09.10612.1648128331185793757
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 39ECBC433F5
+	for <webhook@archiver.kernel.org>; Thu, 24 Mar 2022 14:58:44 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web11.11970.1648133923349921336
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 24 Mar 2022 06:25:31 -0700
+ Thu, 24 Mar 2022 07:58:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=kZ4q0jWx;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: nm@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=WU23qlUJ;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22ODPSH3011817;
-	Thu, 24 Mar 2022 08:25:28 -0500
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22OEwfM1126341;
+	Thu, 24 Mar 2022 09:58:41 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1648128328;
-	bh=llVHTJJedLb53Eyukyn9H3+76YA1+Ys6xDC7BiQ6ivE=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=kZ4q0jWxRbS0QmMW8VFwasl1g8FFFwRtJx3S6gNvbZUkGAczVtbOsA1VYo8SYiyZs
-	 zvw+hxKGkUHpGTaa0EgJ0wqz4Ud9Nf/+8zefK6EK0jPWy1F2BnIO03lBjK/PdJb9Ha
-	 e4gHv/eMShp1ln/CYUSw+L0EJpQOV0Bp3G1wq+YA=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22ODPSl0016952
+	s=ti-com-17Q1; t=1648133921;
+	bh=/bMsDd3RTu3A+jrRWV9gGoGTf9aHqmKAXeJALE3EKaM=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=WU23qlUJm5TeB4y9wIhaNrSuCRtQBhERO2X4LM/JMMBOee6Vb+G1+8tBA426a2Vd2
+	 Y3eFTGaTwyXXmM1dXfCcz3hMsaQ8Z4XztIBP0/TAL/jNeJNp3K0yjfT9qjyLoNesAy
+	 eoKfrWzUi9AlyR5sOa+vw1IbTdoTWKajmq9ddMyo=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22OEwfSH024393
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 24 Mar 2022 08:25:28 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 24 Mar 2022 09:58:41 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 24
- Mar 2022 08:25:28 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2022 09:58:41 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 24 Mar 2022 08:25:28 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22ODPSZY007812;
-	Thu, 24 Mar 2022 08:25:28 -0500
-From: Nishanth Menon <nm@ti.com>
-To: <denis@denix.org>, <reatmon@ti.com>
-CC: <d-gerlach@ti.com>, <j-humphreys@ti.com>, <khilman@ti.com>,
-        <meta-arago@lists.yoctoproject.org>, <minas@ti.com>,
-        <nikhil.nd@ti.com>, <praneeth@ti.com>, <spatton@ti.com>,
-        Nishanth Menon <nm@ti.com>
-Subject: [master/dunfell PATCH V6 08/12] packagegroups: Add a new bootstrap
- package group
-Date: Thu, 24 Mar 2022 08:25:22 -0500
-Message-ID: <20220324132526.26497-9-nm@ti.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20220324132526.26497-1-nm@ti.com>
-References: <20220324132526.26497-1-nm@ti.com>
+ Frontend Transport; Thu, 24 Mar 2022 09:58:40 -0500
+Received: from [10.249.37.177] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22OEweoS111775;
+	Thu, 24 Mar 2022 09:58:40 -0500
+Message-ID: <15d14c52-85ea-f296-2322-eaea7d34ca5d@ti.com>
+Date: Thu, 24 Mar 2022 09:58:40 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [meta-arago][master/dunfell][PATCH v2] images: Build
+ tisdk-thinlinux-image with tisdk-core-bundle
+Content-Language: en-US
+To: Nishanth Menon <nm@ti.com>
+CC: Yogesh Siraswar <yogeshs@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+References: <20220323153451.15543-1-reatmon@ti.com>
+ <20220324131645.gihsiax25ecqvu45@washbowl>
+From: Ryan Eatmon <reatmon@ti.com>
+In-Reply-To: <20220324131645.gihsiax25ecqvu45@washbowl>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 24 Mar 2022 13:25:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13743
+ <meta-arago@lists.yoctoproject.org>; Thu, 24 Mar 2022 14:58:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13750
 
-Lets try and create a minimal package group for board bringup. Lets
-call this basic system necessary for board bringup as "bootstrap".
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
-Changes since V5: None
 
-V5: https://lore.kernel.org/all/20220322174808.16341-9-nm@ti.com/
+On 3/24/2022 8:16, Nishanth Menon wrote:
+> On 10:34-20220323, Ryan Eatmon via lists.yoctoproject.org wrote:
+>> Add tisdk-thinlinux-image to the list of TARGET_IMAGES for
+>> tisdk-core-bundle.
+>>
+>> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+>>
+>> -
+>> v2 - Fix typos in commit message.
+> 
+> you want to move this to diffstat section (below the cut line: ---)
 
- .../packagegroup-arago-bootstrap.bb           | 53 +++++++++++++++++++
- 1 file changed, 53 insertions(+)
- create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-bootstrap.bb
+I'll send a v3 with that change.
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-bootstrap.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-bootstrap.bb
-new file mode 100644
-index 000000000000..9d961c282c5d
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-bootstrap.bb
-@@ -0,0 +1,53 @@
-+SUMMARY = "Task to install additional utilities for initial board bringup"
-+LICENSE = "MIT"
-+PR = "r0"
-+
-+PACKAGE_ARCH = "${MACHINE_ARCH}"
-+
-+inherit packagegroup
-+
-+UTILS = " \
-+	 arm-benchmarks \
-+	 evtest \
-+	 memtester \
-+	 nbench-byte \
-+	 pcitest \
-+	 serialcheck \
-+	 yavta \
-+	 hdparm \
-+	 i2c-tools \
-+	 libdrm-tests \
-+	 rt-tests \
-+	 iozone3 \
-+	 mtd-utils-ubifs-tests \
-+	 net-tools \
-+	 ethtool  \
-+	 pciutils \
-+	 rng-tools \
-+	 stress-ng \
-+	 iperf \
-+	 lmbench \
-+	 usbutils \
-+	 devmem2 \
-+	 phytool \
-+"
-+
-+UTILS_append_ti33x = " \
-+    omapconf \
-+"
-+
-+UTILS_append_ti43x = " \
-+    omapconf \
-+"
-+
-+UTILS_append_omap-a15 = " \
-+    omapconf \
-+"
-+
-+UTILS_append_k3 = " \
-+    k3conf \
-+"
-+
-+RDEPENDS_${PN} = "\
-+    ${UTILS} \
-+"
+> Otherwise:
+> 
+> Reviewed-by: Nishanth Menon <nm@ti.com>
+> 
+>>
+>> ---
+>>   meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
+>> index 9f0e65db..5ce688ef 100644
+>> --- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
+>> +++ b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
+>> @@ -32,7 +32,7 @@ DTB_FILTER_am65xx = "am65"
+>>   DTB_FILTER_j7 = "j721e"
+>>   
+>>   # List of target side images to build for the SDK
+>> -TARGET_IMAGES = "tisdk-base-image tisdk-default-image"
+>> +TARGET_IMAGES = "tisdk-base-image tisdk-default-image tisdk-thinlinux-image"
+>>   
+>>   # dra71 lcard requires an initramfs with modules for NFS boot
+>>   TARGET_IMAGES_append_dra7xx-evm = " netboot-initrd"
+>> -- 
+>> 2.17.1
+> 
+
 -- 
-2.31.1
-
+Ryan Eatmon
+reatmon@ti.com
 
