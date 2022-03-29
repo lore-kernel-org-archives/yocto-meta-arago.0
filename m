@@ -1,95 +1,64 @@
-Return-Path: <afd@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C462C433F5
-	for <webhook@archiver.kernel.org>; Fri, 25 Mar 2022 18:46:22 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web11.627.1648233978144042664
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9FE95C433F5
+	for <webhook@archiver.kernel.org>; Tue, 29 Mar 2022 04:51:18 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.3062.1648529477476035052
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 25 Mar 2022 11:46:19 -0700
+ Mon, 28 Mar 2022 21:51:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=gxXZkHLJ;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: afd@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22PIkHaF104147;
-	Fri, 25 Mar 2022 13:46:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1648233977;
-	bh=KPkPMnefSg1szX4Cwr3cN9QHvMCkMSS5w/EFKTXIugI=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=gxXZkHLJT+fJhjq4Toxb15k4pCqIa2uu/zS4a5bF9ZtFVqVRvGyWkHrI6cfxzOCTn
-	 6YNnQqnrCuT4sNmPvg1mZKNhE4erCYCxCf/x/NQoOgCmZA1GrTPHbh5l8FHgDYMBqN
-	 xiA2Rxou1DMi6ySMkB80hlGFoQuUEz1AvGkDvHSc=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22PIkHsO037988
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 25 Mar 2022 13:46:17 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 25
- Mar 2022 13:46:16 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 25 Mar 2022 13:46:16 -0500
-Received: from ula0226330.dal.design.ti.com (ileax41-snat.itg.ti.com
- [10.172.224.153])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22PIkFGa031373;
-	Fri, 25 Mar 2022 13:46:16 -0500
-From: Andrew Davis <afd@ti.com>
-To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
-        Darren Etheridge <detheridge@ti.com>,
-        <meta-arago@lists.yoctoproject.org>
-CC: "Andrew F . Davis" <afd@ti.com>
-Subject: [meta-arago][master][PATCH 2/2] arago-prefs: only the j721e SoC is
- currently supported
-Date: Fri, 25 Mar 2022 13:46:15 -0500
-Message-ID: <20220325184615.17398-2-afd@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220325184615.17398-1-afd@ti.com>
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
+ mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id C5A8840C1E;
+	Tue, 29 Mar 2022 04:51:16 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id gjE648q3REsl; Tue, 29 Mar 2022 04:51:16 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+ [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 9EF4540952;
+	Tue, 29 Mar 2022 04:51:12 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 6E6D61748B6; Tue, 29 Mar 2022 00:51:12 -0400 (EDT)
+Date: Tue, 29 Mar 2022 00:51:12 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: afd@ti.com
+Cc: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
+	Darren Etheridge <detheridge@ti.com>,
+	meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][master][PATCH 1/2] meta-arago: rename j7-evm to
+ j721e-evm
+Message-ID: <20220329045112.GR23554@denix.org>
 References: <20220325184615.17398-1-afd@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220325184615.17398-1-afd@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 25 Mar 2022 18:46:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13756
+ <meta-arago@lists.yoctoproject.org>; Tue, 29 Mar 2022 04:51:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13757
 
-There are now three SoCs in the J7 family, but only the j721e variant
-is currently supported. Be specific here.
+On Fri, Mar 25, 2022 at 01:46:14PM -0500, Andrew F. Davis via lists.yoctoproject.org wrote:
+> In many places we use "j7" the family when we should be using a
+> specific SoC or EVM and vice-versa. For instance when including
+> graphics drivers we add for all "j7" family, but what we really
+> want is only for some specific j7 SoC.
+> 
+> First step in untangling this is to make it clear that there is
+> no SoC called j7. There is a SoC called j721e with a j721e-evm.
+> 
+> Fix up this naming here.
+> 
+> Signed-off-by: Andrew Davis <afd@ti.com>
 
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- .../conf/distro/include/arago-prefs.inc              | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
-
-diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-index 9c4a533c..65ce2a96 100644
---- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-+++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-@@ -14,12 +14,12 @@ PREFERRED_PROVIDER_virtual/libgles2 = "ti-sgx-ddk-um"
- PREFERRED_PROVIDER_virtual/libgbm = "ti-sgx-ddk-um"
- PREFERRED_PROVIDER_virtual/gpudriver = "ti-sgx-ddk-km"
- 
--# J7 has a Rogue GPU core
--PREFERRED_PROVIDER_virtual/egl:j7 = "ti-img-rogue-umlibs"
--PREFERRED_PROVIDER_virtual/libgles1:j7 = "ti-img-rogue-umlibs"
--PREFERRED_PROVIDER_virtual/libgles2:j7 = "ti-img-rogue-umlibs"
--PREFERRED_PROVIDER_virtual/libgbm:j7 = "ti-img-rogue-umlibs"
--PREFERRED_PROVIDER_virtual/gpudriver:j7 = "ti-img-rogue-driver"
-+# J721e has a Rogue GPU core
-+PREFERRED_PROVIDER_virtual/egl:j721e = "ti-img-rogue-umlibs"
-+PREFERRED_PROVIDER_virtual/libgles1:j721e = "ti-img-rogue-umlibs"
-+PREFERRED_PROVIDER_virtual/libgles2:j721e = "ti-img-rogue-umlibs"
-+PREFERRED_PROVIDER_virtual/libgbm:j721e = "ti-img-rogue-umlibs"
-+PREFERRED_PROVIDER_virtual/gpudriver:j721e = "ti-img-rogue-driver"
- 
- PREFERRED_PROVIDER_virtual/kernel = "linux-ti-staging${ARAGO_KERNEL_SUFFIX}"
- 
--- 
-2.17.1
-
+Tested-by: Denys Dmytriyenko <denys@konsulko.com>
 
