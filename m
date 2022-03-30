@@ -1,149 +1,80 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F387C433FE
-	for <webhook@archiver.kernel.org>; Wed, 30 Mar 2022 12:54:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 56423C433EF
+	for <webhook@archiver.kernel.org>; Wed, 30 Mar 2022 14:30:23 +0000 (UTC)
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web08.6772.1648644839602132725
+ by mx.groups.io with SMTP id smtpd.web11.7996.1648650619741742771
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 30 Mar 2022 05:54:00 -0700
+ Wed, 30 Mar 2022 07:30:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=GuIu5YwU;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22UCrvG5088566;
-	Wed, 30 Mar 2022 07:53:57 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=bjbhyXc2;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: afd@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 22UE8ljl117504;
+	Wed, 30 Mar 2022 09:08:47 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1648644837;
-	bh=IiBUS75CR/4rep5qO9TVDEDTyo2E2p4egyZVZpZyUZg=;
-	h=From:To:Subject:Date;
-	b=GuIu5YwUUqVfhwdZZ6AT5Y5l3QpkOv0eLoFqbEV4t7FkHhxPqXqCOGf/wJPOfJQx7
-	 P5TEnwqBJf3rNQ7fLofx6zUGjYwECjYqXvEAonuso6kyRnSfVsWMrsT/XmP01WwvHV
-	 XXRKpZCc0pa2zQJ3WreAJ1NLrgU1leGherUzbGdY=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22UCrvBT108654
+	s=ti-com-17Q1; t=1648649327;
+	bh=Ld2yGVlr2ZCdk5o/aZZ+qwiQWwHvdw0ybBUi38f5DZ8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=bjbhyXc2YfBW0Lx7gAAVNbPxEuqSnQa9Nz/fmprzS/0xj1tU8bb5Zv2fi9SEixAJ8
+	 LM1LUYoHzzU1uyOC9wjokR9rjRDGHhwQp+bkB9GeYCRYnSvjjJPdLWOROMKhxP53FM
+	 xS2zKyj/4THvCpUEJb2Dq2WXRAQQrw2rnEHHdppY=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 22UE8lQR012603
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 30 Mar 2022 07:53:57 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 30 Mar 2022 09:08:47 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 30
- Mar 2022 07:53:57 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2022 09:08:47 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Wed, 30 Mar 2022 07:53:57 -0500
-Received: from uda0214219 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22UCrvg9032536;
-	Wed, 30 Mar 2022 07:53:57 -0500
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1nZXpk-0008Sm-SW; Wed, 30 Mar 2022 07:53:56 -0500
-From: Ryan Eatmon <reatmon@ti.com>
-To: Yogesh Siraswar <yogeshs@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master/dunfell][PATCH v3 1/2] meta-arago-distro: add
- initial support for am62xx
-Date: Wed, 30 Mar 2022 07:53:55 -0500
-Message-ID: <20220330125356.32492-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+ Frontend Transport; Wed, 30 Mar 2022 09:08:47 -0500
+Received: from [10.247.20.171] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 22UE8lmQ000989;
+	Wed, 30 Mar 2022 09:08:47 -0500
+Message-ID: <3e66c7fa-e32a-c3c4-17db-93a2e0e8b3a2@ti.com>
+Date: Wed, 30 Mar 2022 09:08:47 -0500
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [meta-arago] [master][PATCH] DONOTMERGE: weston: overlay version
+ 9.0.0 locally
+Content-Language: en-US
+To: Denys Dmytriyenko <denis@denix.org>, <meta-arago@lists.yoctoproject.org>
+CC: Denys Dmytriyenko <denys@konsulko.com>
+References: <20220329053703.2367559-1-denis@denix.org>
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20220329053703.2367559-1-denis@denix.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 30 Mar 2022 12:54:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13766
+ <meta-arago@lists.yoctoproject.org>; Wed, 30 Mar 2022 14:30:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13767
 
-From: Nishanth Menon <nm@ti.com>
+On 3/29/22 12:37 AM, Denys Dmytriyenko wrote:
+> From: Denys Dmytriyenko <denys@konsulko.com>
+> 
+> OE-Core has upgraded weston to 10.0.0, that requires some new Mesa/GBM APIs,
+> which currently breaks with SGX and RGX DDK versions provided by meta-ti.
+> Until DDKs are upgraded in meta-ti, overlay older weston 9.0.0 directly from
+> OE-Core before the upgrade, in order to get graphics stack built.
+> 
 
-lets add support for the latest of TI SoC.
 
-ti-tisdk-makefile: adding uboot r5 config variable for am62xx
-packagegroup-arago-tisdk-addons: Add needed am62xx entries
+If this is so we can continue to build-test all the graphics stack components
+before our GPU driver support the needed APIs, would it be better to patch
+the GPU driver stack with the needed Mesa/GBM APIs as dummies? (just enough
+to make the build test work)
 
-Signed-off-by: Nishanth Menon <nm@ti.com>
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
----
- .../packagegroup-arago-tisdk-addons-sdk-host.bb             | 4 ++++
- .../packagegroups/packagegroup-arago-tisdk-addons.bb        | 1 +
- .../ti-tisdk-makefile/Makefile_sysfw-image                  | 1 +
- .../ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb              | 6 ++++++
- 4 files changed, 12 insertions(+)
+Otherwise, building out Weston 9 and all the components on top of that, doesn't
+prove out much if we still have to switch to Weston 10 when it's time for kirkstone..
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index c44f95ca..062948d0 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -57,6 +57,10 @@ UTILS_append_am64xx = " \
-     pru-icss-src \
- "
- 
-+UTILS_append_am62xx = " \
-+    pru-icss-src \
-+"
-+
- EXTRA_LIBS = ""
- 
- EXTRA_LIBS_append_omap-a15 = " \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 099817c3..094c47a2 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -65,6 +65,7 @@ UTILS_append_k3 = " mmc-utils \
- "
- 
- UTILS_append_am64xx = " ti-rtos-firmware pru-icss"
-+UTILS_append_am62xx = " ti-rtos-firmware pru-icss"
- UTILS_append_am65xx = " ti-rtos-firmware pru-icss pru-pwm-fw"
- UTILS_append_j7 = " ti-rtos-firmware"
- UTILS_append_j7-evm = " pru-icss"
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_sysfw-image b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_sysfw-image
-index aaf1f112..316483df 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_sysfw-image
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_sysfw-image
-@@ -12,6 +12,7 @@ SYSFW_SOC_am65xx-evm = am65x
- SYSFW_SOC_am65xx-hs-evm = am65x
- SYSFW_SOC_am64xx-evm = am64x
- SYSFW_SOC_am64xx-hs-evm = am64x
-+SYSFW_SOC_am62xx-evm = am62x
- SYSFW_SOC_j7-evm = j721e
- SYSFW_SOC_j7-hs-evm = j721e
- SYSFW_SOC = $(SYSFW_SOC_$(PLATFORM))
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 7bda8eed..f0a044f7 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -202,6 +202,10 @@ MAKEFILES_append_am64xx = " \
-                         pru-icss \
- "
- 
-+MAKEFILES_append_am62xx = " \
-+                        pru-icss \
-+"
-+
- # Use this to export kernel arch to ARCH
- #
- # We need to be very careful here. This class will also overwrite UBOOT_ARCH
-@@ -239,6 +243,7 @@ PRU_ICSS_INSTALL_TARGET_k2g = "pru-icss_install_k2g"
- PRU_ICSS_INSTALL_TARGET_am65xx = "pru-icss_install_am65x"
- PRU_ICSS_INSTALL_TARGET_j7 = "pru-icss_install_j721e"
- PRU_ICSS_INSTALL_TARGET_am64xx = "pru-icss_install_am64x"
-+PRU_ICSS_INSTALL_TARGET_am62xx = "pru-icss_install_am62x"
- 
- # Path to toolchains for the various cores in TI SOCs
- #
-@@ -363,6 +368,7 @@ K3_UBOOT_MACHINE_R5_j7-evm = "j721e_evm_r5_config"
- K3_UBOOT_MACHINE_R5_j7-hs-evm = "j721e_hs_evm_r5_config"
- K3_UBOOT_MACHINE_R5_j7200-evm = "j7200_evm_r5_config"
- K3_UBOOT_MACHINE_R5_j721s2-evm = "j721s2_evm_r5_config"
-+K3_UBOOT_MACHINE_R5_am62xx-evm = "am62xx_evm_r5_config"
- 
- do_install_append_k3() {
-     cat >> ${D}/Rules.make << __EOF__
--- 
-2.17.1
-
+Andrew
 
