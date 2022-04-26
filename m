@@ -1,128 +1,81 @@
-Return-Path: <afd@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1A56CC433F5
-	for <webhook@archiver.kernel.org>; Tue, 26 Apr 2022 14:36:00 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web09.7498.1650983757475109331
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A872FC433F5
+	for <webhook@archiver.kernel.org>; Tue, 26 Apr 2022 16:03:20 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.8864.1650988998968823930
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 26 Apr 2022 07:35:57 -0700
+ Tue, 26 Apr 2022 09:03:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=iTAPJvJu;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: afd@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23QEZr95053659;
-	Tue, 26 Apr 2022 09:35:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1650983753;
-	bh=lUlN881+aDPeYzZD+aj2wBRIRfHS3XlqR66LB29h9Gw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=iTAPJvJuZmJ5a6aV2c0rWdkeI+Cs2Mg5YaZbqCb0ydOIo4wU69XGS4/ncoueOHl+n
-	 ZRIasO8Qaf6LwHen/S9Uc/T5UZ0fMFINpPSXLtkYWEaq1oIA0X1XPqoI0LYOFkdFSA
-	 ZCAJtAIFAJKjUwSDMJTeZxHkOWLC0M2PbQUEgLIE=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23QEZrmr038173
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 26 Apr 2022 09:35:53 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 26
- Apr 2022 09:35:52 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 26 Apr 2022 09:35:52 -0500
-Received: from [10.250.34.159] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23QEZqhG044463;
-	Tue, 26 Apr 2022 09:35:52 -0500
-Message-ID: <06b88161-bfc8-ea5d-be90-63533e472c48@ti.com>
-Date: Tue, 26 Apr 2022 09:35:52 -0500
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
+ mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id BF9ED40C24;
+	Tue, 26 Apr 2022 16:03:17 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 7euGGNSLKxhD; Tue, 26 Apr 2022 16:03:17 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+ [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A9C90406B7;
+	Tue, 26 Apr 2022 16:03:16 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id E21371748DC; Tue, 26 Apr 2022 12:03:15 -0400 (EDT)
+Date: Tue, 26 Apr 2022 12:03:15 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: a0393906@ti.com
+Cc: meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][dunfell][PATCH] statcol: Update to latest for VTM
+ driver scripts
+Message-ID: <20220426160315.GA9834@denix.org>
+References: <20220422164104.20009-1-a0393906@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [meta-arago] [oe-layersetup PATCH] oe-layer-setup.sh: Stop
- claiming generic sh support
-Content-Language: en-US
-To: <nm@ti.com>, Denys Dmytriyenko <denis@denix.org>,
-        Ryan Eatmon
-	<reatmon@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>
-References: <20220426142651.22361-1-nm@ti.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20220426142651.22361-1-nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220422164104.20009-1-a0393906@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 26 Apr 2022 14:36:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13788
+ <meta-arago@lists.yoctoproject.org>; Tue, 26 Apr 2022 16:03:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13790
 
-On 4/26/22 9:26 AM, Nishanth Menon via lists.yoctoproject.org wrote:
-> Lets be clear that we work with bash and not variants such as dash.
-> 
-> Signed-off-by: Nishanth Menon <nm@ti.com>
+On Fri, Apr 22, 2022 at 10:11:04PM +0530, Karthik Ramanan via lists.yoctoproject.org wrote:
+> Signed-off-by: Karthik Ramanan <a0393906@ti.com>
 > ---
+>  meta-arago-extras/recipes-devtools/statcol/statcol.bb | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> There has been a bit of bashism that has crept into various checks,
-> which is fine as long as folks use bash ;) OR we can start cleaning up
-> in a manner to support dash and variants of that form.
-> 
+> diff --git a/meta-arago-extras/recipes-devtools/statcol/statcol.bb b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
+> index ee2b12d2..bda532eb 100644
+> --- a/meta-arago-extras/recipes-devtools/statcol/statcol.bb
+> +++ b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
+> @@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=bb6bc27cd44417c389a180bd62f552a0"
+>  
+>  PROTOCOL = "git"
+>  BRANCH = "master"
+> -SRCREV = "dd0131eadf3633e8f9d06cb390d3c6c1b074d873"
+> +SRCREV = "2dac74a233dd489d9bb48a50153c4a1360361b62"
+>  SRC_URI = "git://git.ti.com/glsdk/statcol.git;protocol=${PROTOCOL};branch=${BRANCH}"
+>  
+>  DEPENDS = "ti-rpmsg-char websocketd"
+> @@ -19,6 +19,6 @@ do_install() {
+>  	DESTDIR=${D} make install
+>  }
+>  
+> -PR:append = "_3"
+> +PR:append = "_4"
+
+Again, the patch doesn't seem to be against dunfell, but is against master 
+instead, unlike what the subject says.
 
 
-I'd rather just fix the bashisms, this fixes us at least enough
-to get dash back working:
-
-
- From 4e46cf04046aee084b4e83cef28d4500d1d3dc56 Mon Sep 17 00:00:00 2001
-From: Andrew Davis <afd@ti.com>
-Date: Mon, 25 Apr 2022 16:31:35 -0500
-Subject: [PATCH] Fix non-standard shell usage
-
-Signed-off-by: Andrew Davis <afd@ti.com>
----
-  oe-layertool-setup.sh | 4 ++--
-  1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
-index f171f94..e05737b 100755
---- a/oe-layertool-setup.sh
-+++ b/oe-layertool-setup.sh
-@@ -780,7 +780,7 @@ print_image_names() {
-      for FOLDER in ${FOLDERS}
-      do
-          RECO=""
--        if [ "${FOLDER}" == "meta-arago" ]; then
-+        if [ "${FOLDER}" = "meta-arago" ]; then
-              RECO="[recommended]"
-          fi
-          echo "From ${FOLDER}${RECO}:"
-@@ -796,7 +796,7 @@ print_image_names() {
-                      if [ -z "${summary}" ]; then
-                          summary="No Summary available"
-                      fi
--                    echo -e "\t${name}: ${summary}"
-+                    echo "    ${name}: ${summary}"
-                  done
-              fi
-          done
--- 
-2.17.1
-
-
->   oe-layertool-setup.sh | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
-> index f171f94cf0fc..6654869ac061 100755
-> --- a/oe-layertool-setup.sh
-> +++ b/oe-layertool-setup.sh
-> @@ -1,4 +1,4 @@
-> -#!/bin/sh
-> +#!/bin/bash
->   
->   # OE Build Enviroment Setup Script
->   #
+>  INSANE_SKIP:${PN} = "ldflags"
+> -- 
+> 2.17.1
 
