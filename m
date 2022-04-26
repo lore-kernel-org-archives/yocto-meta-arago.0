@@ -1,100 +1,129 @@
-Return-Path: <afd@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8185BC433EF
-	for <webhook@archiver.kernel.org>; Tue, 26 Apr 2022 21:25:28 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web08.721.1651008323643757608
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A3F7C433F5
+	for <webhook@archiver.kernel.org>; Tue, 26 Apr 2022 21:27:58 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web08.752.1651008472858463987
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 26 Apr 2022 14:25:24 -0700
+ Tue, 26 Apr 2022 14:27:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=JjF3gEua;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: afd@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23QLPLT2071338;
-	Tue, 26 Apr 2022 16:25:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1651008321;
-	bh=rbTq+XkeDg12cFByN2AI51wIE0IMFRpK/yvOyJ6jg+k=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=JjF3gEuaX+4+Jm2WAnxj7Z4P9btwzJH1fw2ZX5T0ozCmZTVL4Lqib7hbI3LzKT3eK
-	 lS/4NnWRt6zLATkDwE9WBBj01h06b0bFY+dQwLrNh1kcmdjHxx8lwEAfvm6ZJbdVnu
-	 gLDNOBaHqSgeX2aslLw1JZ+ABiYBaekz5eQY5eAs=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23QLPLAs041752
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 26 Apr 2022 16:25:21 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 26
- Apr 2022 16:25:21 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 26 Apr 2022 16:25:21 -0500
-Received: from [10.250.34.159] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23QLPKVp030934;
-	Tue, 26 Apr 2022 16:25:20 -0500
-Message-ID: <595ed774-3623-9853-4874-de5c809648df@ti.com>
-Date: Tue, 26 Apr 2022 16:25:20 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [meta-arago][oe-layersetup PATCH 5/6] Build Poky in a directory
- named poky-tmp vs arago-tmp
-Content-Language: en-US
-To: Denys Dmytriyenko <denis@denix.org>
-CC: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
-        <meta-arago@lists.yoctoproject.org>
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
+ mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id ED65440C24;
+	Tue, 26 Apr 2022 21:27:51 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id vfOwv0xkPkso; Tue, 26 Apr 2022 21:27:51 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+ [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id CCC7440A03;
+	Tue, 26 Apr 2022 21:27:49 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 927FA1748E1; Tue, 26 Apr 2022 17:27:49 -0400 (EDT)
+Date: Tue, 26 Apr 2022 17:27:49 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Andrew Davis <afd@ti.com>
+Cc: Ryan Eatmon <reatmon@ti.com>, meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][oe-layersetup PATCH 2/6] Add layers for split
+ meta-ti master branch
+Message-ID: <20220426212749.GH9834@denix.org>
 References: <20220426200251.19417-1-afd@ti.com>
- <20220426200251.19417-5-afd@ti.com> <20220426211423.GF9834@denix.org>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20220426211423.GF9834@denix.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+ <20220426200251.19417-2-afd@ti.com>
+ <20220426210924.GD9834@denix.org>
+ <7e090a33-d9e9-111d-026d-ce31688dc013@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7e090a33-d9e9-111d-026d-ce31688dc013@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 26 Apr 2022 21:25:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13810
+ <meta-arago@lists.yoctoproject.org>; Tue, 26 Apr 2022 21:27:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13811
 
-On 4/26/22 4:14 PM, Denys Dmytriyenko wrote:
-> On Tue, Apr 26, 2022 at 03:02:50PM -0500, Andrew F. Davis via lists.yoctoproject.org wrote:
->> This also allows us to keep version of both should we need.
+On Tue, Apr 26, 2022 at 04:18:18PM -0500, Andrew Davis wrote:
+> On 4/26/22 4:09 PM, Denys Dmytriyenko wrote:
+> >On Tue, Apr 26, 2022 at 03:02:47PM -0500, Andrew F. Davis via lists.yoctoproject.org wrote:
+> >>The latest master meta-ti split into two layers, add new layers here.
+> >
+> >Can you swap the order of layers in meta-ti?
+> >Other repos usually have the main repo listed first.
 > 
-> I'm fine with the change, although it's really a NOOP, as TMPDIR gets replaced
-> by tisdk-build-scripts, Jenkins jobs and even a distro config... But for
-> consistency, it's fine.
 > 
+> That changes the order they go into to bblayers, don't we want
+> meta-ti-bsp to be the bottom layer?
+
+Right, the order of entries in bblayers.conf affects the way "shadowed" config 
+files are parsed/visible.
+
+So, if you eventually want a same-named config file from meta-ti-extras to 
+override the same config file from meta-ti-bsp, then this order is correct. 
+But I'd be very cautious overriding each other config files from layers in the 
+same repo...
+
+Anyway, I retract my comment:
+
+Reviewed-by: Denys Dmytriyenko <denys@konsulko.com>
+
+-- 
+Denys
 
 
-I'm not a build script nor a Jenkins job :) so this *does* change the behavior
-for me building on my local desktop. (Poky doesn't change this in distro config).
-
-Andrew
-
-
+> >
+> >>Signed-off-by: Andrew Davis <afd@ti.com>
+> >>---
+> >>  configs/arago-master-config.txt      | 2 +-
+> >>  configs/distroless-master-config.txt | 2 +-
+> >>  configs/poky-master-config.txt       | 2 +-
+> >>  3 files changed, 3 insertions(+), 3 deletions(-)
+> >>
+> >>diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.txt
+> >>index bd0ccec..532a145 100644
+> >>--- a/configs/arago-master-config.txt
+> >>+++ b/configs/arago-master-config.txt
+> >>@@ -7,7 +7,7 @@ meta-arago,git://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-d
+> >>  meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
+> >>  meta-virtualization,git://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
+> >>  meta-openembedded,git://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
+> >>-meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
+> >>+meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=meta-ti-extras:meta-ti-bsp
+> >>  meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
+> >>  oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
+> >>  OECORELAYERCONF=./sample-files/bblayers.conf.sample
+> >>diff --git a/configs/distroless-master-config.txt b/configs/distroless-master-config.txt
+> >>index 8211bd5..5c55459 100644
+> >>--- a/configs/distroless-master-config.txt
+> >>+++ b/configs/distroless-master-config.txt
+> >>@@ -1,7 +1,7 @@
+> >>  # This file takes repo entries in the format
+> >>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+> >>  bitbake,git://git.openembedded.org/bitbake,master,HEAD
+> >>-meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
+> >>+meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=meta-ti-extras:meta-ti-bsp
+> >>  meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
+> >>  oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
+> >>  OECORELAYERCONF=./sample-files/bblayers.conf.sample
+> >>diff --git a/configs/poky-master-config.txt b/configs/poky-master-config.txt
+> >>index f213411..b395ff8 100644
+> >>--- a/configs/poky-master-config.txt
+> >>+++ b/configs/poky-master-config.txt
+> >>@@ -2,7 +2,7 @@
+> >>  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
+> >>  bitbake,git://git.openembedded.org/bitbake,master,HEAD
+> >>  poky,git://git.yoctoproject.org/poky,master,HEAD,layers=meta:meta-poky:meta-yocto-bsp
+> >>-meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=
+> >>+meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=meta-ti-extras:meta-ti-bsp
+> >>  meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
+> >>  OECORELAYERCONF=./sample-files/bblayers.conf.sample
+> >>  OECORELOCALCONF=./sample-files/local-poky-v2.conf.sample
+> >>-- 
+> >>2.17.1
 > 
->> Signed-off-by: Andrew Davis <afd@ti.com>
->> ---
->>   sample-files/local-poky-v2.conf.sample | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/sample-files/local-poky-v2.conf.sample b/sample-files/local-poky-v2.conf.sample
->> index a958055..4bd0563 100644
->> --- a/sample-files/local-poky-v2.conf.sample
->> +++ b/sample-files/local-poky-v2.conf.sample
->> @@ -48,7 +48,7 @@ SSTATE_DIR = "${OEBASE}/build/sstate-cache"
->>   # where BitBake should place its temporary files and output. Keep in mind that
->>   # this includes the extraction and compilation of many applications and the toolchain
->>   # which can use Gigabytes of hard disk space.
->> -TMPDIR = "${OEBASE}/build/arago-tmp"
->> +TMPDIR = "${OEBASE}/build/poky-tmp"
->>   
->>   #
->>   # Machine Selection
->> -- 
->> 2.17.1
 
