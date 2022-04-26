@@ -1,137 +1,83 @@
-Return-Path: <nm@ti.com>
+Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 682D4C433FE
-	for <webhook@archiver.kernel.org>; Tue, 26 Apr 2022 18:26:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B8E2C433FE
+	for <webhook@archiver.kernel.org>; Tue, 26 Apr 2022 20:02:57 +0000 (UTC)
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web08.1050.1650997563802444147
+ by mx.groups.io with SMTP id smtpd.web08.2290.1651003375224493424
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 26 Apr 2022 11:26:04 -0700
+ Tue, 26 Apr 2022 13:02:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=gWSndzXH;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: nm@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23QIPwRp079447;
-	Tue, 26 Apr 2022 13:25:58 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=cIKvf9TG;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: afd@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 23QK2saE007869;
+	Tue, 26 Apr 2022 15:02:54 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1650997558;
-	bh=rmylMf8tco0yLjfBY+H0GFEXXb/T3n54WwQzAMuK7n8=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=gWSndzXHrg+YZZf87+gdbLiZjvuZhIFihmafe0zIRQb8mqXMIrFvMvIvXqUmoy5Dn
-	 /E7l4Ol9tgTBO3KEK0g6hmhC+GcI/tVlUhJ6NBGUdcK0M+klbHP0utS4WjyzDcUPw0
-	 w2rcLuL9bgd0zPDRSUMi7Z1S0XN5JNhlj8fi/NT4=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23QIPw3S046910
+	s=ti-com-17Q1; t=1651003374;
+	bh=krBCIARbSRAgBHKvg/5RFpwWdYGRA37CILIGJ46M23o=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=cIKvf9TGkcDCRYw6sndB92Z2dHxqk2ANd4eSSqd8YTSVvLklOqvsnk/PWvJxssaBd
+	 zl8L1Bf/HqUNFMaBDDSIa7ylxgxUcUZpAaRUTF+ZbzyvIQ8WhDtxeZVpFHItlXwnTX
+	 0VUyCtZyOquzd2dL+rZUKGqAwUmyN7DEy6QRYpnI=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 23QK2sqf048172
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 26 Apr 2022 13:25:58 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 26 Apr 2022 15:02:54 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 26
- Apr 2022 13:25:58 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2022 15:02:53 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 26 Apr 2022 13:25:58 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23QIPwVb023429;
-	Tue, 26 Apr 2022 13:25:58 -0500
-Date: Tue, 26 Apr 2022 13:25:58 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Andrew Davis <afd@ti.com>
-CC: Denys Dmytriyenko <denis@denix.org>, Ryan Eatmon <reatmon@ti.com>,
+ Frontend Transport; Tue, 26 Apr 2022 15:02:53 -0500
+Received: from ula0226330.dal.design.ti.com (ileax41-snat.itg.ti.com
+ [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 23QK2pgb099348;
+	Tue, 26 Apr 2022 15:02:53 -0500
+From: Andrew Davis <afd@ti.com>
+To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: Re: [meta-arago] [oe-layersetup PATCH] oe-layer-setup.sh: Stop
- claiming generic sh support
-Message-ID: <20220426182558.yyxcxitwqarjbemc@sandworm>
-References: <20220426142651.22361-1-nm@ti.com>
- <06b88161-bfc8-ea5d-be90-63533e472c48@ti.com>
+CC: Andrew Davis <afd@ti.com>
+Subject: [meta-arago][oe-layersetup PATCH 5/6] Build Poky in a directory named
+ poky-tmp vs arago-tmp
+Date: Tue, 26 Apr 2022 15:02:50 -0500
+Message-ID: <20220426200251.19417-5-afd@ti.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20220426200251.19417-1-afd@ti.com>
+References: <20220426200251.19417-1-afd@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <06b88161-bfc8-ea5d-be90-63533e472c48@ti.com>
-User-Agent: NeoMutt/20171215
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 26 Apr 2022 18:26:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13792
+ <meta-arago@lists.yoctoproject.org>; Tue, 26 Apr 2022 20:02:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13795
 
-On 09:35-20220426, Andrew Davis wrote:
-> On 4/26/22 9:26 AM, Nishanth Menon via lists.yoctoproject.org wrote:
-> > Lets be clear that we work with bash and not variants such as dash.
-> > 
-> > Signed-off-by: Nishanth Menon <nm@ti.com>
-> > ---
-> > 
-> > There has been a bit of bashism that has crept into various checks,
-> > which is fine as long as folks use bash ;) OR we can start cleaning up
-> > in a manner to support dash and variants of that form.
-> > 
-> 
-> 
-> I'd rather just fix the bashisms, this fixes us at least enough
-> to get dash back working:
+This also allows us to keep version of both should we need.
 
-> 
-> 
-> From 4e46cf04046aee084b4e83cef28d4500d1d3dc56 Mon Sep 17 00:00:00 2001
-> From: Andrew Davis <afd@ti.com>
-> Date: Mon, 25 Apr 2022 16:31:35 -0500
-> Subject: [PATCH] Fix non-standard shell usage
-> 
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->  oe-layertool-setup.sh | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
-> index f171f94..e05737b 100755
-> --- a/oe-layertool-setup.sh
-> +++ b/oe-layertool-setup.sh
-> @@ -780,7 +780,7 @@ print_image_names() {
->      for FOLDER in ${FOLDERS}
->      do
->          RECO=""
-> -        if [ "${FOLDER}" == "meta-arago" ]; then
-> +        if [ "${FOLDER}" = "meta-arago" ]; then
->              RECO="[recommended]"
->          fi
->          echo "From ${FOLDER}${RECO}:"
-> @@ -796,7 +796,7 @@ print_image_names() {
->                      if [ -z "${summary}" ]; then
->                          summary="No Summary available"
->                      fi
-> -                    echo -e "\t${name}: ${summary}"
-> +                    echo "    ${name}: ${summary}"
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ sample-files/local-poky-v2.conf.sample | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
-Yep, fair enough - I am still not a dash fan. could you post this as an
-formal patch?
-
->                  done
->              fi
->          done
-> -- 
-> 2.17.1
-> 
-> 
-> >   oe-layertool-setup.sh | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
-> > index f171f94cf0fc..6654869ac061 100755
-> > --- a/oe-layertool-setup.sh
-> > +++ b/oe-layertool-setup.sh
-> > @@ -1,4 +1,4 @@
-> > -#!/bin/sh
-> > +#!/bin/bash
-> >   # OE Build Enviroment Setup Script
-> >   #
-
+diff --git a/sample-files/local-poky-v2.conf.sample b/sample-files/local-poky-v2.conf.sample
+index a958055..4bd0563 100644
+--- a/sample-files/local-poky-v2.conf.sample
++++ b/sample-files/local-poky-v2.conf.sample
+@@ -48,7 +48,7 @@ SSTATE_DIR = "${OEBASE}/build/sstate-cache"
+ # where BitBake should place its temporary files and output. Keep in mind that
+ # this includes the extraction and compilation of many applications and the toolchain
+ # which can use Gigabytes of hard disk space.
+-TMPDIR = "${OEBASE}/build/arago-tmp"
++TMPDIR = "${OEBASE}/build/poky-tmp"
+ 
+ #
+ # Machine Selection
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.17.1
+
 
