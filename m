@@ -1,138 +1,100 @@
-Return-Path: <denis@denix.org>
+Return-Path: <detheridge@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 205D9C433EF
-	for <webhook@archiver.kernel.org>; Mon,  2 May 2022 19:50:58 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web09.2094.1651521050609279013
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B366C433EF
+	for <webhook@archiver.kernel.org>; Mon,  2 May 2022 21:36:18 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web10.3302.1651527371510101050
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 02 May 2022 12:50:51 -0700
+ Mon, 02 May 2022 14:36:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
- mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5253A40C2A;
-	Mon,  2 May 2022 19:50:49 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id QC4EEvk9YCaA; Mon,  2 May 2022 19:50:49 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
- [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 38E1A40B86;
-	Mon,  2 May 2022 19:50:48 +0000 (UTC)
-Received: from thorin.denix (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 61E02174913;
-	Mon,  2 May 2022 15:50:47 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [oe-layersetup][PATCH] configs: add Kirkstone configs for arago,
- poky and distroless
-Date: Mon,  2 May 2022 19:50:46 +0000
-Message-Id: <20220502195046.728435-1-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=iyvLfbm5;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: detheridge@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 242La90p082249;
+	Mon, 2 May 2022 16:36:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1651527369;
+	bh=ewskTbTcLM9MQI0l8LDl6H/Ge8G7CPWzVD47d+x4u54=;
+	h=From:To:Subject:Date;
+	b=iyvLfbm5pNOKwYuQspou1GlgTj0+8gilrXHwcSOl74dS/Fh3aQeqed3bgrfh/W85X
+	 R+NijdWG5fKkrz63I6SFlfYK2kk/eb8MelbgK5txd1SOtsUMaCM/C3ueFNrfM7DaqK
+	 lN7Soz+p+WpAlCvrdep2N1hUdc49+o5l6nSrBRcY=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 242La9PE075933
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 2 May 2022 16:36:09 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 2
+ May 2022 16:36:08 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 2 May 2022 16:36:08 -0500
+Received: from uda0867391.dal.design.ti.com (ileax41-snat.itg.ti.com
+ [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 242La8gj048921;
+	Mon, 2 May 2022 16:36:08 -0500
+From: Darren Etheridge <detheridge@ti.com>
+To: <nm@ti.com>, <denys@konsulko.com>, <reatmon@ti.com>, <k-bhargav@ti.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][dunfell][PATCH] weston-init: fix killproc for thinlinux
+ so that it doesn't kill itself
+Date: Mon, 2 May 2022 16:35:24 -0500
+Message-ID: <20220502213524.23063-1-detheridge@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 02 May 2022 19:50:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13830
+ <meta-arago@lists.yoctoproject.org>; Mon, 02 May 2022 21:36:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13831
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+busybox pidof doesn't omit the current pid
+as this script is called weston on the target
+in thinlinux with a busybox based utility load
+later killproc operations end up killing this
+script, which leads to the script not actually
+starting weston.
 
-The following layers have not branched off yet and will be updated later:
-
-meta-virtualization
-meta-ti
-meta-arago
-
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: Darren Etheridge <detheridge@ti.com>
 ---
- configs/arago-kirkstone-config.txt      | 14 ++++++++++++++
- configs/distroless-kirkstone-config.txt |  8 ++++++++
- configs/poky-kirkstone-config.txt       | 10 ++++++++++
- 3 files changed, 32 insertions(+)
- create mode 100644 configs/arago-kirkstone-config.txt
- create mode 100644 configs/distroless-kirkstone-config.txt
- create mode 100644 configs/poky-kirkstone-config.txt
+ .../recipes-graphics/wayland/weston-init/init   | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
 
-diff --git a/configs/arago-kirkstone-config.txt b/configs/arago-kirkstone=
--config.txt
-new file mode 100644
-index 0000000..00c96d6
---- /dev/null
-+++ b/configs/arago-kirkstone-config.txt
-@@ -0,0 +1,14 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=3Dlayer1:layer2...:=
-layern]
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/init b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
+index 461b0787..1f55ab76 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston-init/init
++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
+@@ -9,8 +9,21 @@
+ ### END INIT INFO
+ 
+ killproc() {
+-        pid=`/bin/pidof $1`
+-        [ "$pid" != "" ] && kill $pid
++	all_pids=`/bin/pidof $1`
 +
-+bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
-+meta-arago,git://git.yoctoproject.org/meta-arago,master,HEAD,layers=3Dme=
-ta-arago-distro:meta-arago-extras
-+#meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365=
-ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=3D
-+meta-qt5,https://github.com/meta-qt5/meta-qt5.git,kirkstone,HEAD,layers=3D
-+meta-virtualization,git://git.yoctoproject.org/meta-virtualization,maste=
-r,HEAD,layers=3D
-+meta-openembedded,git://git.openembedded.org/meta-openembedded,kirkstone=
-,HEAD,layers=3Dmeta-networking:meta-python:meta-oe:meta-gnome:meta-filesy=
-stems
-+meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=3Dmeta-ti-=
-extras:meta-ti-bsp
-+meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=3Dmet=
-a-arm:meta-arm-toolchain
-+oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,laye=
-rs=3Dmeta
-+OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=3D./sample-files/local-arago64-v2.conf.sample
-diff --git a/configs/distroless-kirkstone-config.txt b/configs/distroless=
--kirkstone-config.txt
-new file mode 100644
-index 0000000..dc9c088
---- /dev/null
-+++ b/configs/distroless-kirkstone-config.txt
-@@ -0,0 +1,8 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=3Dlayer1:layer2...:=
-layern]
-+bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
-+meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=3Dmeta-ti-=
-extras:meta-ti-bsp
-+meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=3Dmet=
-a-arm:meta-arm-toolchain
-+oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,laye=
-rs=3Dmeta
-+OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=3D./sample-files/local-v2.conf.sample
-diff --git a/configs/poky-kirkstone-config.txt b/configs/poky-kirkstone-c=
-onfig.txt
-new file mode 100644
-index 0000000..024e1c6
---- /dev/null
-+++ b/configs/poky-kirkstone-config.txt
-@@ -0,0 +1,10 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=3Dlayer1:layer2...:=
-layern]
++	# busybox pidof doesn't ommit the current pid
++	# as this script is called weston on the target
++	# in thinlinux with a busybox based utility load
++	# later killproc operations end up killing this
++	# script.
++	for pid in $all_pids
++	do
++		if [ "$pid" != "$$" ]; then
++			kill_pids+=$pid
++		fi
++	done
 +
-+bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
-+meta-yocto,git://git.yoctoproject.org/meta-yocto,kirkstone,HEAD,layers=3D=
-meta-poky:meta-yocto-bsp
-+meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=3Dmeta-ti-=
-extras:meta-ti-bsp
-+meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=3Dmet=
-a-arm:meta-arm-toolchain
-+oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,laye=
-rs=3Dmeta
-+OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
-+OECORELOCALCONF=3D./sample-files/local-poky-v2.conf.sample
---=20
-2.25.1
++	[ "$kill_pids" != "" ] && kill $kill_pids
+ }
+ 
+ read CMDLINE < /proc/cmdline
+-- 
+2.17.1
 
 
