@@ -1,96 +1,138 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 96DB9C433F5
-	for <webhook@archiver.kernel.org>; Mon,  2 May 2022 13:46:59 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web12.10647.1651499215224638473
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 205D9C433EF
+	for <webhook@archiver.kernel.org>; Mon,  2 May 2022 19:50:58 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web09.2094.1651521050609279013
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 02 May 2022 06:46:55 -0700
+ Mon, 02 May 2022 12:50:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=be01k3rl;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 242Dkruw038433;
-	Mon, 2 May 2022 08:46:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1651499213;
-	bh=tH1NjT6GzAlFyG8jEUxD4++fcSB0kTx34IKxJzo7qvE=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=be01k3rlxxUcozdnTej2MBoe4anAUpeb4J3XKNZmldspMzSEOilzFP6TWUZmNOz7V
-	 aX2NUTuifd8ZmSEEZMR5zp5Wx80Yzo0wQzFBZbT+3l30PjLVTMauB+Sf1soTitAPBM
-	 fDgpiZFCO4EayEwjF9ceagFtLwS17WUEnegCftaQ=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 242DkrdR029916
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 2 May 2022 08:46:53 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 2
- May 2022 08:46:52 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 2 May 2022 08:46:52 -0500
-Received: from [10.249.39.108] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 242Dkq15102879;
-	Mon, 2 May 2022 08:46:52 -0500
-Message-ID: <c7960913-ae3d-f694-e872-387c34995d2d@ti.com>
-Date: Mon, 2 May 2022 08:48:17 -0500
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
+ mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5253A40C2A;
+	Mon,  2 May 2022 19:50:49 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id QC4EEvk9YCaA; Mon,  2 May 2022 19:50:49 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+ [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 38E1A40B86;
+	Mon,  2 May 2022 19:50:48 +0000 (UTC)
+Received: from thorin.denix (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 61E02174913;
+	Mon,  2 May 2022 15:50:47 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [oe-layersetup][PATCH] configs: add Kirkstone configs for arago,
+ poky and distroless
+Date: Mon,  2 May 2022 19:50:46 +0000
+Message-Id: <20220502195046.728435-1-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.1
-Subject: Re: [meta-arago][oe-layersetup PATCH v2 1/5] Remove unused
- sample-file bblayers-zeus-browser.conf.sample
-Content-Language: en-US
-To: Andrew Davis <afd@ti.com>, Denys Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-References: <20220428171851.19270-1-afd@ti.com>
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <20220428171851.19270-1-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 02 May 2022 13:46:59 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13829
+ <meta-arago@lists.yoctoproject.org>; Mon, 02 May 2022 19:50:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13830
 
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-Series applied to master.
+The following layers have not branched off yet and will be updated later:
 
+meta-virtualization
+meta-ti
+meta-arago
 
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+---
+ configs/arago-kirkstone-config.txt      | 14 ++++++++++++++
+ configs/distroless-kirkstone-config.txt |  8 ++++++++
+ configs/poky-kirkstone-config.txt       | 10 ++++++++++
+ 3 files changed, 32 insertions(+)
+ create mode 100644 configs/arago-kirkstone-config.txt
+ create mode 100644 configs/distroless-kirkstone-config.txt
+ create mode 100644 configs/poky-kirkstone-config.txt
 
-On 4/28/2022 12:18, Andrew Davis wrote:
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->   sample-files/bblayers-zeus-browser.conf.sample | 12 ------------
->   1 file changed, 12 deletions(-)
->   delete mode 100644 sample-files/bblayers-zeus-browser.conf.sample
-> 
-> diff --git a/sample-files/bblayers-zeus-browser.conf.sample b/sample-files/bblayers-zeus-browser.conf.sample
-> deleted file mode 100644
-> index bb83fac..0000000
-> --- a/sample-files/bblayers-zeus-browser.conf.sample
-> +++ /dev/null
-> @@ -1,12 +0,0 @@
-> -# This template file was created by taking the oe-core/meta/conf/bblayers.conf
-> -# file and removing the BBLAYERS section at the end.
-> -
-> -# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
-> -# changes incompatibly
-> -LCONF_VERSION = "6"
-> -
-> -BBPATH = "${TOPDIR}"
-> -BBFILES ?= ""
-> -
-> -OVERRIDES = "forcevariable"
-> -LAYERSERIES_COMPAT_browser-layer_forcevariable = "zeus"
+diff --git a/configs/arago-kirkstone-config.txt b/configs/arago-kirkstone=
+-config.txt
+new file mode 100644
+index 0000000..00c96d6
+--- /dev/null
++++ b/configs/arago-kirkstone-config.txt
+@@ -0,0 +1,14 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=3Dlayer1:layer2...:=
+layern]
++
++bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
++meta-arago,git://git.yoctoproject.org/meta-arago,master,HEAD,layers=3Dme=
+ta-arago-distro:meta-arago-extras
++#meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365=
+ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=3D
++meta-qt5,https://github.com/meta-qt5/meta-qt5.git,kirkstone,HEAD,layers=3D
++meta-virtualization,git://git.yoctoproject.org/meta-virtualization,maste=
+r,HEAD,layers=3D
++meta-openembedded,git://git.openembedded.org/meta-openembedded,kirkstone=
+,HEAD,layers=3Dmeta-networking:meta-python:meta-oe:meta-gnome:meta-filesy=
+stems
++meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=3Dmeta-ti-=
+extras:meta-ti-bsp
++meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=3Dmet=
+a-arm:meta-arm-toolchain
++oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,laye=
+rs=3Dmeta
++OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
++OECORELOCALCONF=3D./sample-files/local-arago64-v2.conf.sample
+diff --git a/configs/distroless-kirkstone-config.txt b/configs/distroless=
+-kirkstone-config.txt
+new file mode 100644
+index 0000000..dc9c088
+--- /dev/null
++++ b/configs/distroless-kirkstone-config.txt
+@@ -0,0 +1,8 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=3Dlayer1:layer2...:=
+layern]
++bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
++meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=3Dmeta-ti-=
+extras:meta-ti-bsp
++meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=3Dmet=
+a-arm:meta-arm-toolchain
++oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,laye=
+rs=3Dmeta
++OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
++OECORELOCALCONF=3D./sample-files/local-v2.conf.sample
+diff --git a/configs/poky-kirkstone-config.txt b/configs/poky-kirkstone-c=
+onfig.txt
+new file mode 100644
+index 0000000..024e1c6
+--- /dev/null
++++ b/configs/poky-kirkstone-config.txt
+@@ -0,0 +1,10 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=3Dlayer1:layer2...:=
+layern]
++
++bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
++meta-yocto,git://git.yoctoproject.org/meta-yocto,kirkstone,HEAD,layers=3D=
+meta-poky:meta-yocto-bsp
++meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=3Dmeta-ti-=
+extras:meta-ti-bsp
++meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=3Dmet=
+a-arm:meta-arm-toolchain
++oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,laye=
+rs=3Dmeta
++OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
++OECORELOCALCONF=3D./sample-files/local-poky-v2.conf.sample
+--=20
+2.25.1
 
--- 
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
 
