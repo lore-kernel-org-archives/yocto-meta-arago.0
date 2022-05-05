@@ -1,178 +1,75 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0DCB6C433EF
-	for <webhook@archiver.kernel.org>; Thu,  5 May 2022 12:24:17 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web10.10227.1651753452836421571
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 24125C433EF
+	for <webhook@archiver.kernel.org>; Thu,  5 May 2022 22:04:11 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.2646.1651788240960070116
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 05 May 2022 05:24:13 -0700
+ Thu, 05 May 2022 15:04:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=h+dW3nKa;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 245CO91r003699;
-	Thu, 5 May 2022 07:24:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1651753449;
-	bh=RdHxJqH4ugeTA7yipM2VnHc87Tq15KHtj56kJvoSZpY=;
-	h=From:To:Subject:Date;
-	b=h+dW3nKadc00pwxCU+xasCR8b/ZqdxY1OpAlRCoeDEimuJ+BMfeUhNp+NuHg+Levh
-	 w7M2VyrgB3ZXFGVLpAzeLbe+qTBU9d0+MRISUaZctUsEvXQ9/Rhvdhhu9FWWenbKjM
-	 38iVF6t+xDdZ19SfcC53nCWGllTiyEasPcBWLZj4=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 245CO9Vs031378
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 5 May 2022 07:24:09 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 5
- May 2022 07:24:09 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 5 May 2022 07:24:09 -0500
-Received: from uda0214219 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 245CO9qH001037;
-	Thu, 5 May 2022 07:24:09 -0500
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1nmaWf-0002bj-2Q; Thu, 05 May 2022 07:24:09 -0500
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][dunfell][PATCH] packagegroups,ti-tisdk-makefile: am62xx
- dd pru-icss
-Date: Thu, 5 May 2022 07:24:09 -0500
-Message-ID: <20220505122409.9984-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
+ mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 0080640C81;
+	Thu,  5 May 2022 22:04:00 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id X6CRLE6wyh8m; Thu,  5 May 2022 22:03:59 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+ [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D95E640BE9;
+	Thu,  5 May 2022 22:03:58 +0000 (UTC)
+Received: from thorin.denix (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 87B0E17491C;
+	Thu,  5 May 2022 18:03:58 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master][PATCH 1/2] packagegroup-arago-tisdk-addons: add RTOS FW
+ images for am62xx
+Date: Thu,  5 May 2022 22:03:56 +0000
+Message-Id: <20220505220357.343789-1-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 05 May 2022 12:24:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13837
+ <meta-arago@lists.yoctoproject.org>; Thu, 05 May 2022 22:04:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13839
 
-Now that the recipe for pru-icss supports am62xx we
-need to also turn on the dependencies that pull pru-icss
-into the images.
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+Pull standard RTOS FW images for am62xx. This matches similar change in d=
+unfell.
+
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- ...ackagegroup-arago-tisdk-addons-sdk-host.bb |  4 ++
- .../packagegroup-arago-tisdk-addons.bb        |  2 +-
- .../ti-tisdk-makefile/Makefile_pru-icss       | 40 +++++++++++++++++++
- .../ti-tisdk-makefile_1.0.bb                  |  5 +++
- 4 files changed, 50 insertions(+), 1 deletion(-)
+ .../packagegroups/packagegroup-arago-tisdk-addons.bb             | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-index c44f95ca..062948d0 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons-sdk-host.bb
-@@ -57,6 +57,10 @@ UTILS_append_am64xx = " \
-     pru-icss-src \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
+ago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packag=
+egroup-arago-tisdk-addons.bb
+index 363602b5..46182c9d 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
+dk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
+dk-addons.bb
+@@ -65,6 +65,7 @@ UTILS:append:k3 =3D " mmc-utils \
  "
- 
-+UTILS_append_am62xx = " \
-+    pru-icss-src \
-+"
-+
- EXTRA_LIBS = ""
- 
- EXTRA_LIBS_append_omap-a15 = " \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 71b737e7..094c47a2 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -65,7 +65,7 @@ UTILS_append_k3 = " mmc-utils \
- "
- 
- UTILS_append_am64xx = " ti-rtos-firmware pru-icss"
--UTILS_append_am62xx = " ti-rtos-firmware"
-+UTILS_append_am62xx = " ti-rtos-firmware pru-icss"
- UTILS_append_am65xx = " ti-rtos-firmware pru-icss pru-pwm-fw"
- UTILS_append_j7 = " ti-rtos-firmware"
- UTILS_append_j7-evm = " pru-icss"
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss
-index 10e5bf3f..46642e64 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_pru-icss
-@@ -107,6 +107,46 @@ pru-icss_install_am65x: pru-icss_install_common
- 		done; \
- 	done
- 
-+pru-icss_install_am64x: pru-icss_install_common
-+	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*pru-icss*"`; \
-+	for i in 0 1; \
-+	do \
-+		install -m 0644 ./examples/am64x/PRU_Halt/gen/PRU$${i}/PRU_Halt_$${i}.out \
-+			$(DESTDIR)/lib/firmware/pru; \
-+		install -m 644 ./examples/am64x/RTU_Halt/gen/RTU$${i}/RTU_Halt_$${i}.out \
-+			$(DESTDIR)/lib/firmware/pru; \
-+	done; \
-+	for i in 0 1 2; \
-+	do \
-+		for j in 0 1; \
-+		do \
-+			install -m 0644 ./examples/am64x/PRU_RPMsg_Echo_Interrupt$${j}/gen/icssg$${i}/PRU_RPMsg_Echo_Interrupt$${i}_$${j}.out \
-+				$(DESTDIR)/lib/firmware/pru; \
-+			install -m 0644 ./examples/am64x/RTU_RPMsg_Echo_Interrupt$${j}/gen/icssg$${i}/RTU_RPMsg_Echo_Interrupt$${i}_$${j}.out \
-+				$(DESTDIR)/lib/firmware/pru; \
-+		done; \
-+	done
-+
-+pru-icss_install_am62x: pru-icss_install_common
-+	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*pru-icss*"`; \
-+	for i in 0 1; \
-+	do \
-+		install -m 0644 ./examples/am62x/PRU_Halt/gen/PRU$${i}/PRU_Halt_$${i}.out \
-+			$(DESTDIR)/lib/firmware/pru; \
-+		install -m 644 ./examples/am62x/RTU_Halt/gen/RTU$${i}/RTU_Halt_$${i}.out \
-+			$(DESTDIR)/lib/firmware/pru; \
-+	done; \
-+	for i in 0 1 2; \
-+	do \
-+		for j in 0 1; \
-+		do \
-+			install -m 0644 ./examples/am62x/PRU_RPMsg_Echo_Interrupt$${j}/gen/icssg$${i}/PRU_RPMsg_Echo_Interrupt$${i}_$${j}.out \
-+				$(DESTDIR)/lib/firmware/pru; \
-+			install -m 0644 ./examples/am62x/RTU_RPMsg_Echo_Interrupt$${j}/gen/icssg$${i}/RTU_RPMsg_Echo_Interrupt$${i}_$${j}.out \
-+				$(DESTDIR)/lib/firmware/pru; \
-+		done; \
-+	done
-+
- pru-icss_install_j721e: pru-icss_install_common
- 	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*pru-icss*"`; \
- 	for i in 0 1; \
-diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-index 7fb47bbb..f0a044f7 100644
---- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-+++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
-@@ -202,6 +202,10 @@ MAKEFILES_append_am64xx = " \
-                         pru-icss \
- "
- 
-+MAKEFILES_append_am62xx = " \
-+                        pru-icss \
-+"
-+
- # Use this to export kernel arch to ARCH
- #
- # We need to be very careful here. This class will also overwrite UBOOT_ARCH
-@@ -239,6 +243,7 @@ PRU_ICSS_INSTALL_TARGET_k2g = "pru-icss_install_k2g"
- PRU_ICSS_INSTALL_TARGET_am65xx = "pru-icss_install_am65x"
- PRU_ICSS_INSTALL_TARGET_j7 = "pru-icss_install_j721e"
- PRU_ICSS_INSTALL_TARGET_am64xx = "pru-icss_install_am64x"
-+PRU_ICSS_INSTALL_TARGET_am62xx = "pru-icss_install_am62x"
- 
- # Path to toolchains for the various cores in TI SOCs
- #
--- 
-2.17.1
+=20
+ UTILS:append:am64xx =3D " ti-rtos-firmware pru-icss"
++UTILS:append:am62xx =3D " ti-rtos-firmware"
+ #UTILS:append:am65xx =3D " ti-rtos-firmware pru-icss pru-pwm-fw"
+ UTILS:append:am65xx =3D " ti-rtos-firmware pru-icss"
+ UTILS:append:j7 =3D " ti-rtos-firmware"
+--=20
+2.25.1
 
 
