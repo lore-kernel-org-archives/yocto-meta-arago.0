@@ -1,89 +1,95 @@
-Return-Path: <gadiyar@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 68B22C433EF
-	for <webhook@archiver.kernel.org>; Mon,  9 May 2022 14:13:45 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web10.32294.1652105617379878343
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A0628C433EF
+	for <webhook@archiver.kernel.org>; Mon,  9 May 2022 18:00:53 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web08.626.1652119252823579737
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 09 May 2022 07:13:37 -0700
+ Mon, 09 May 2022 11:00:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=GlrqKlfr;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: gadiyar@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 249EDZ5u061754;
-	Mon, 9 May 2022 09:13:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1652105615;
-	bh=Ly3kRPlyS4g7RpV8gUkCxtxRXZIY9kiWNiYGsIoLzes=;
-	h=From:To:Subject:Date;
-	b=GlrqKlfrdINUfRF29XoqWOalVySnb68zisz9PrXxkVf4i+0JvXyuA7PjqAUvL+bpf
-	 tbspCKNGwZ+WMBwSJJkTWG8X298cZuRkTmQh4otZueg2N2FA8Rdpp3lRMLMq7DjJ1w
-	 auys+Y93kUuMRBX4/lo/GgKBwHKsH+KEJFSlfBW0=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 249EDZ0b032395
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 9 May 2022 09:13:35 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 9
- May 2022 09:13:35 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 9 May 2022 09:13:35 -0500
-Received: from uda0393673 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 249EDZTZ073995;
-	Mon, 9 May 2022 09:13:35 -0500
-Received: from a0393673 by uda0393673 with local (Exim 4.90_1)
-	(envelope-from <gadiyar@ti.com>)
-	id 1no48l-0000J6-Dj; Mon, 09 May 2022 09:13:35 -0500
-From: Anand Gadiyar <gadiyar@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [dunfell/master] [PATCH] meta-arago-distro: drop custom PACKAGECONFIG
- option for curl
-Date: Mon, 9 May 2022 09:13:35 -0500
-Message-ID: <20220509141335.1130-1-gadiyar@ti.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
+ mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 269A640BC4
+	for <meta-arago@lists.yoctoproject.org>;
+ Mon,  9 May 2022 18:00:52 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id RUMBC4yiLBns for <meta-arago@lists.yoctoproject.org>;
+	Mon,  9 May 2022 18:00:52 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
+ [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1BC3440C60
+	for <meta-arago@lists.yoctoproject.org>;
+ Mon,  9 May 2022 18:00:52 +0000 (UTC)
+Received: from thorin.denix (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id D8F1A174923
+	for <meta-arago@lists.yoctoproject.org>;
+ Mon,  9 May 2022 14:00:51 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Subject: [master][PATCH 3/3] gstreamer1.0-plugins-hevc_git: specify branch
+Date: Mon,  9 May 2022 18:00:51 +0000
+Message-Id: <20220509180051.2146987-3-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220509180051.2146987-1-denis@denix.org>
+References: <20220509180051.2146987-1-denis@denix.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 09 May 2022 14:13:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13841
+ <meta-arago@lists.yoctoproject.org>; Mon, 09 May 2022 18:00:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13844
 
-These options have the unfortunate side effect of disabling proxy
-support and verbose debug. This affects git clone while behind a proxy.
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-There's probably no need to have these options any more and we can use
-the default yocto recipe.
+Fixes these warnings:
 
-Signed-off-by: Anand Gadiyar <gadiyar@ti.com>
+| WARNING: gstreamer1.0-plugins-hevc-git-r5.0 do_fetch: URL: git://git.ti=
+.com/processor-sdk/gst-plugin-hevc.git;protocol=3Dgit
+| does not set any branch parameter. The future default branch used by to=
+ols and repositories
+| is uncertain and we will therefore soon require this is set in all git =
+urls.
+| WARNING: gstreamer1.0-plugins-hevc-git-r5.0 do_unpack: URL: git://git.t=
+i.com/processor-sdk/gst-plugin-hevc.git;protocol=3Dgit
+| does not set any branch parameter. The future default branch used by to=
+ols and repositories
+| is uncertain and we will therefore soon require this is set in all git =
+urls.
+
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 3 ---
- 1 file changed, 3 deletions(-)
+ .../gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb             | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 67468cc0..36a527e3 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -136,9 +136,6 @@ PACKAGECONFIG_append_pn-qtsvg = " examples"
- PACKAGECONFIG_append_pn-qtwayland = " examples"
- PACKAGECONFIG_append_pn-qtwebengine = " examples"
- 
--# Prefer OpenSSL over GnuTLS for curl due to TSU exemptions
--PACKAGECONFIG_pn-curl = "${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6", "", d)} ssl zlib"
--
- PACKAGECONFIG_pn-glmark2 = "drm-gles2 wayland-gles2"
- 
- # Enable encryption support in open62541
--- 
-2.17.1
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreame=
+r1.0-plugins-hevc_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugi=
+ns-ti/gstreamer1.0-plugins-hevc_git.bb
+index 33537f6e..0125c245 100644
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-pl=
+ugins-hevc_git.bb
++++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-pl=
+ugins-hevc_git.bb
+@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D2827f94fc0a1ad=
+eff4d9702e97ce2979"
+=20
+ COMPATIBLE_MACHINE =3D "dra7xx"
+=20
+-SRC_URI =3D "git://git.ti.com/processor-sdk/gst-plugin-hevc.git;protocol=
+=3Dgit \
++SRC_URI =3D "git://git.ti.com/processor-sdk/gst-plugin-hevc.git;protocol=
+=3Dgit;branch=3Dmaster \
+ 	file://0001-configure.ac-stop-using-export-symbols-regex.patch"
+ SRCREV =3D "e4ea007d0ddeb95ae01742293454ef3c87a6e84c"
+=20
+--=20
+2.25.1
 
 
