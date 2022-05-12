@@ -1,134 +1,85 @@
-Return-Path: <denis@denix.org>
+Return-Path: <s-adivi@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B8249C433F5
-	for <webhook@archiver.kernel.org>; Tue, 10 May 2022 22:09:15 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.3541.1652220552873377555
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CB2DBC433EF
+	for <webhook@archiver.kernel.org>; Thu, 12 May 2022 10:01:52 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web12.2343.1652349708359148949
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 10 May 2022 15:09:13 -0700
+ Thu, 12 May 2022 03:01:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
- mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B341D40C2C
-	for <meta-arago@lists.yoctoproject.org>;
- Tue, 10 May 2022 22:09:11 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 11qmYhTU1TPT for <meta-arago@lists.yoctoproject.org>;
-	Tue, 10 May 2022 22:09:11 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net
- [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A3C74400CF
-	for <meta-arago@lists.yoctoproject.org>;
- Tue, 10 May 2022 22:09:11 +0000 (UTC)
-Received: from thorin.denix (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 6B6BC174925;
-	Tue, 10 May 2022 18:09:11 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denis@denix.org>
-Subject: [oe-layersetup][PATCH] configs: update kirkstone configs with more
- layers
-Date: Tue, 10 May 2022 22:09:08 +0000
-Message-Id: <20220510220908.994694-1-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=BUABzeIt;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: s-adivi@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24CA1lsD118257
+	for <meta-arago@lists.yoctoproject.org>; Thu, 12 May 2022 05:01:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1652349707;
+	bh=f707eOQ62yQ+hfq7MkiOMryRrzpO36n7TO/1VExbxtg=;
+	h=From:To:CC:Subject:Date;
+	b=BUABzeItvAbmXk8Pny6hzeazxZWUy1ANcIkDI2Y7RXdvkUFgKPTctZzfMOkQrcm1p
+	 aTmP+WFHSnDJv5yN0bAaIBWNMQzhyHahpij9Yw64RgS+oW7l2PYp/tteq7A00wZ5Kr
+	 k2BIeJktGNApiUuqBSAspjUEvGcMkxHCBd6/4zsw=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24CA1ldN060965
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Thu, 12 May 2022 05:01:47 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 12
+ May 2022 05:01:46 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 12 May 2022 05:01:46 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24CA1k08054071;
+	Thu, 12 May 2022 05:01:46 -0500
+From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>, <reatmon@ti.com>
+CC: <devarsht@ti.com>, <a-m1@ti.com>
+Subject: [meta-arago][dunfell][PATCH] qtbase-conf: Unset fixed HDMI mode
+Date: Thu, 12 May 2022 15:31:43 +0530
+Message-ID: <20220512100143.12268-1-s-adivi@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 10 May 2022 22:09:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13846
+ <meta-arago@lists.yoctoproject.org>; Thu, 12 May 2022 10:01:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13847
 
-Now that meta-virtualization, meta-ti and meta-arago got their kirkstone =
-branches,
-switch to using them in corresponding configs.
+HDMI mode is set to 1024x768 in eglfs_kms_cfg.json. This needs to be
+unset since not all devices use the same resolution display.
 
-Signed-off-by: Denys Dmytriyenko <denis@denix.org>
+When mode is not defined, the system's preferred mode is chosen.
+Ref: https://doc.qt.io/qt-5/embedded-linux.html#display-output
+
+Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 ---
- configs/arago-kirkstone-config.txt      | 6 +++---
- configs/distroless-kirkstone-config.txt | 2 +-
- configs/poky-kirkstone-config.txt       | 2 +-
- 3 files changed, 5 insertions(+), 5 deletions(-)
+ .../recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json            | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/configs/arago-kirkstone-config.txt b/configs/arago-kirkstone=
--config.txt
-index 00c96d6..0f3c001 100644
---- a/configs/arago-kirkstone-config.txt
-+++ b/configs/arago-kirkstone-config.txt
-@@ -2,12 +2,12 @@
- # repo name,repo uri,repo branch,repo commit[,layers=3Dlayer1:layer2...:=
-layern]
-=20
- bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
--meta-arago,git://git.yoctoproject.org/meta-arago,master,HEAD,layers=3Dme=
-ta-arago-distro:meta-arago-extras
-+meta-arago,git://git.yoctoproject.org/meta-arago,kirkstone,HEAD,layers=3D=
-meta-arago-distro:meta-arago-extras
- #meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365=
-ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=3D
- meta-qt5,https://github.com/meta-qt5/meta-qt5.git,kirkstone,HEAD,layers=3D
--meta-virtualization,git://git.yoctoproject.org/meta-virtualization,maste=
-r,HEAD,layers=3D
-+meta-virtualization,git://git.yoctoproject.org/meta-virtualization,kirks=
-tone,HEAD,layers=3D
- meta-openembedded,git://git.openembedded.org/meta-openembedded,kirkstone=
-,HEAD,layers=3Dmeta-networking:meta-python:meta-oe:meta-gnome:meta-filesy=
-stems
--meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=3Dmeta-ti-=
-extras:meta-ti-bsp
-+meta-ti,git://git.yoctoproject.org/meta-ti,kirkstone,HEAD,layers=3Dmeta-=
-ti-extras:meta-ti-bsp
- meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=3Dmet=
-a-arm:meta-arm-toolchain
- oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,laye=
-rs=3Dmeta
- OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
-diff --git a/configs/distroless-kirkstone-config.txt b/configs/distroless=
--kirkstone-config.txt
-index dc9c088..3b33992 100644
---- a/configs/distroless-kirkstone-config.txt
-+++ b/configs/distroless-kirkstone-config.txt
-@@ -1,7 +1,7 @@
- # This file takes repo entries in the format
- # repo name,repo uri,repo branch,repo commit[,layers=3Dlayer1:layer2...:=
-layern]
- bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
--meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=3Dmeta-ti-=
-extras:meta-ti-bsp
-+meta-ti,git://git.yoctoproject.org/meta-ti,kirkstone,HEAD,layers=3Dmeta-=
-ti-extras:meta-ti-bsp
- meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=3Dmet=
-a-arm:meta-arm-toolchain
- oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,laye=
-rs=3Dmeta
- OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
-diff --git a/configs/poky-kirkstone-config.txt b/configs/poky-kirkstone-c=
-onfig.txt
-index 024e1c6..0e57c64 100644
---- a/configs/poky-kirkstone-config.txt
-+++ b/configs/poky-kirkstone-config.txt
-@@ -3,7 +3,7 @@
-=20
- bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
- meta-yocto,git://git.yoctoproject.org/meta-yocto,kirkstone,HEAD,layers=3D=
-meta-poky:meta-yocto-bsp
--meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=3Dmeta-ti-=
-extras:meta-ti-bsp
-+meta-ti,git://git.yoctoproject.org/meta-ti,kirkstone,HEAD,layers=3Dmeta-=
-ti-extras:meta-ti-bsp
- meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=3Dmet=
-a-arm:meta-arm-toolchain
- oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,laye=
-rs=3Dmeta
- OECORELAYERCONF=3D./sample-files/bblayers.conf.sample
---=20
-2.25.1
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json
+index 61b834be..ac19b8ec 100644
+--- a/meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json
++++ b/meta-arago-distro/recipes-qt/qt5/qtbase-conf/eglfs_kms_cfg.json
+@@ -8,8 +8,7 @@
+       "mode": "off"
+     },
+     {
+-      "name": "HDMI1",
+-      "mode": "1024x768"
++      "name": "HDMI1"
+     }
+   ]
+-}
+\ No newline at end of file
++}
+-- 
+2.17.1
 
 
