@@ -2,47 +2,47 @@ Return-Path: <nm@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BE6D8C433EF
-	for <webhook@archiver.kernel.org>; Tue, 24 May 2022 18:25:58 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web10.13029.1653416748044997882
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B95B7C433EF
+	for <webhook@archiver.kernel.org>; Tue, 24 May 2022 18:26:48 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web08.13156.1653416798342410877
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 24 May 2022 11:25:50 -0700
+ Tue, 24 May 2022 11:26:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=vdtKvxqu;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: nm@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24OIPjaM091563;
-	Tue, 24 May 2022 13:25:45 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=y4A9/XPd;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: nm@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24OIQaIX050081;
+	Tue, 24 May 2022 13:26:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1653416745;
-	bh=57k03Tu/me7eiXbJ/Xqk0OHMnkwzVlXsz/0mFW0W17A=;
+	s=ti-com-17Q1; t=1653416796;
+	bh=xSxvLe+7NjKJpJCyIuY4Nowb4/2T9XjD2PenR5/8pkw=;
 	h=From:To:CC:Subject:Date;
-	b=vdtKvxquEdAudnZK1S50tcMlPE5y/81WVsUznU3RTd4wFb0LJRalg0asGTZN7abyS
-	 4HC9ri70dTV4a4Wb1QBV4jX9j5gIN/RKCE+9mwPPy/LsSsToRERhhNokcWwuD0XvnZ
-	 JVotzvvWdrvVX0bWq6X/ZvXFwKxTCgn1RjS7nHys=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24OIPjwF023606
+	b=y4A9/XPdItsYohi7nMFZUD4UN0PXgh92o9xwAWH+NAHJONBLyYPIsfqzSsh+ADrjq
+	 P4duG0Fs9eW4ThKQEnc60Y5zVHk83Lb6sMfiYRoTQc7/TXVPvaWDsCAGDCirpu6srE
+	 aXqIicqq15HxrlNBac7vfsFild+ErfnyGitF8Xmg=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24OIQa0j071407
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 24 May 2022 13:25:45 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 24 May 2022 13:26:36 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 24
- May 2022 13:25:45 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ May 2022 13:26:35 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 24 May 2022 13:25:45 -0500
+ Frontend Transport; Tue, 24 May 2022 13:26:35 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24OIPjV4090747;
-	Tue, 24 May 2022 13:25:45 -0500
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24OIQZJa091318;
+	Tue, 24 May 2022 13:26:35 -0500
 From: Nishanth Menon <nm@ti.com>
 To: Ryan Eatmon <reatmon@ti.com>, Denys Dmytriyenko <denis@denix.org>
 CC: Praneeth Bajjuri <praneeth@ti.com>, <meta-arago@lists.yoctoproject.org>,
         Nishanth Menon <nm@ti.com>
-Subject: [master PATCH] all: Stop using git://git.ti.com
-Date: Tue, 24 May 2022 13:25:44 -0500
-Message-ID: <20220524182544.12421-1-nm@ti.com>
+Subject: [dunfell PATCH] all: Stop using git://git.ti.com
+Date: Tue, 24 May 2022 13:26:34 -0500
+Message-ID: <20220524182634.12514-1-nm@ti.com>
 X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -51,8 +51,8 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 24 May 2022 18:25:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13876
+ <meta-arago@lists.yoctoproject.org>; Tue, 24 May 2022 18:26:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13877
 
 Stop using un-encrypted git:// protocol to access TI repositories.
 
@@ -65,13 +65,15 @@ git grep "git://git.ti.com" .|cut -d ':' -f1|sort -u|xargs sed -i -e "s/git:\/\/
 
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
-based on
-master       fe0d3770c8f5 gstreamer1.0-plugins-hevc_git: specify branch
+
+based on:
+dunfell      aa5fd0df1e03 ti-tisdk-setup: Bump to 08.03.00.005 release
 
  meta-arago-distro/conf/distro/include/branding-bleeding.inc   | 2 +-
- .../recipes-connectivity/linuxptp/linuxptp_3.0.bbappend       | 2 +-
+ .../recipes-connectivity/linuxptp/linuxptp_%.bbappend         | 2 +-
  .../recipes-core/meta/external-arm-toolchain.bbappend         | 2 +-
  .../linux-libc-headers/linux-libc-headers_5.10.bb             | 2 +-
+ .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb            | 2 +-
  .../recipes-apps/barcode-demo/barcode-roi_git.bb              | 2 +-
  .../recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc      | 2 +-
  meta-arago-extras/recipes-apps/evse-hmi/evse-hmi_git.bb       | 2 +-
@@ -79,6 +81,7 @@ master       fe0d3770c8f5 gstreamer1.0-plugins-hevc_git: specify branch
  .../recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb   | 2 +-
  .../pdm-anomaly-detection/pdm-anomaly-detection_git.bb        | 2 +-
  .../recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb | 2 +-
+ .../recipes-apps/posix-smp-demo/posix-smp-demo.inc            | 2 +-
  .../protection-relays-hmi/protection-relays-hmi_git.bb        | 2 +-
  .../recipes-apps/thermostat-demo/qt-tstat_2.0.bb              | 2 +-
  .../qt-opencv-opencl-opengl-multithreaded_git.bb              | 2 +-
@@ -101,8 +104,11 @@ master       fe0d3770c8f5 gstreamer1.0-plugins-hevc_git: specify branch
  .../recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb         | 2 +-
  .../recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb         | 2 +-
  .../ti-gc320-tests/ti-gc320-tests_5.0.11.p7.bb                | 2 +-
- meta-arago-extras/recipes-kernel/pcitest/pcitest_5.4.bb       | 2 +-
+ meta-arago-extras/recipes-kernel/pcitest/pcitest_5.10.bb      | 2 +-
+ .../recipes-kernel/recovery-kernel/recovery-kernel_1.0.bb     | 2 +-
  .../recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb   | 2 +-
+ .../recipes-multimedia/av-examples/av-examples_1.0.bb         | 2 +-
+ .../recipes-multimedia/demo-image-proc/demo-image-proc_git.bb | 2 +-
  .../dual-camera-demo/dual-camera-demo_1.0.bb                  | 2 +-
  .../gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb          | 2 +-
  .../gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb         | 2 +-
@@ -115,6 +121,7 @@ master       fe0d3770c8f5 gstreamer1.0-plugins-hevc_git: specify branch
  meta-arago-extras/recipes-ti/libarch/libarch.inc              | 2 +-
  meta-arago-extras/recipes-ti/linalg/linalg.inc                | 4 ++--
  meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos.inc          | 2 +-
+ meta-arago-extras/recipes-ti/netapi/netapi.inc                | 2 +-
  meta-arago-extras/recipes-ti/ocl-rtos/clocl-win_git.bb        | 2 +-
  meta-arago-extras/recipes-ti/ocl/ocl.inc                      | 2 +-
  meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb        | 2 +-
@@ -123,10 +130,10 @@ master       fe0d3770c8f5 gstreamer1.0-plugins-hevc_git: specify branch
  meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc        | 2 +-
  meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb          | 2 +-
  meta-arago-extras/recipes-ti/tiovx/tiovx-sys.inc              | 2 +-
- 55 files changed, 57 insertions(+), 57 deletions(-)
+ 61 files changed, 63 insertions(+), 63 deletions(-)
 
 diff --git a/meta-arago-distro/conf/distro/include/branding-bleeding.inc b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
-index 4054c5af5e39..91789b27d264 100644
+index 71b09f71a1b1..c3234c9fd496 100644
 --- a/meta-arago-distro/conf/distro/include/branding-bleeding.inc
 +++ b/meta-arago-distro/conf/distro/include/branding-bleeding.inc
 @@ -20,7 +20,7 @@ TI_LINUX_FW_SRCREV = "${AUTOREV}"
@@ -138,10 +145,10 @@ index 4054c5af5e39..91789b27d264 100644
  #TI_RTOS_METADATA_PROTOCOL = "git"
  TI_RTOS_METADATA_SRCREV = "${AUTOREV}"
  TI_RTOS_METADATA_BRANCH = "next"
-diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_3.0.bbappend b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_3.0.bbappend
-index 06329b6e587c..d3b391bb9425 100644
---- a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_3.0.bbappend
-+++ b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_3.0.bbappend
+diff --git a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_%.bbappend b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_%.bbappend
+index e4fb109a5b1d..439f7a2eb39e 100644
+--- a/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_%.bbappend
++++ b/meta-arago-distro/recipes-connectivity/linuxptp/linuxptp_%.bbappend
 @@ -5,7 +5,7 @@ BRANCH = "ti-linuxptp"
  SRCREV = "f155c21283a0421f5e1e0b5e850c8a9a71d72453"
  
@@ -152,12 +159,12 @@ index 06329b6e587c..d3b391bb9425 100644
      file://Use-cross-cpp-in-incdefs.patch \
  "
 diff --git a/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend
-index ddf37ee20364..b824c3c317fe 100644
+index 1ceb80f90830..c99e0f87ea97 100644
 --- a/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend
 +++ b/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend
 @@ -6,7 +6,7 @@
  BRANCH = "ti-linux-5.10.y"
- SRCREV = "bdfd5b0c1ee5617c9a94bacad0d818920d95b486"
+ SRCREV = "73aa709ca10103b61fba3a07471dbb4dcb56db45"
  
 -KERNEL_GIT_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git"
 +KERNEL_GIT_URI = "https://git.ti.com/git/ti-linux-kernel/ti-linux-kernel.git"
@@ -165,7 +172,7 @@ index ddf37ee20364..b824c3c317fe 100644
  SRC_URI += "${KERNEL_GIT_URI};protocol=${KERNEL_GIT_PROTOCOL};branch=${BRANCH}"
  
 diff --git a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb
-index 4cd0ee1b84d3..083add6718de 100644
+index 7f4343d77ea9..e73966810826 100644
 --- a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb
 +++ b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb
 @@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
@@ -177,8 +184,21 @@ index 4cd0ee1b84d3..083add6718de 100644
  KERNEL_GIT_PROTOCOL = "git"
  SRC_URI = "${KERNEL_GIT_URI};protocol=${KERNEL_GIT_PROTOCOL};branch=${BRANCH}"
  
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index 67c57f39497b..d7e5f1cde00e 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -6,7 +6,7 @@ PR = "r47"
+ 
+ BRANCH ?= "master"
+ SRCREV = "eae21af9be4e7a0028045cc3e4038fe2157a266d"
+-SRC_URI = "git://git.ti.com/arago-project/tisdk-setup-scripts.git;branch=${BRANCH}"
++SRC_URI = "https://git.ti.com/git/arago-project/tisdk-setup-scripts.git;branch=${BRANCH}"
+ 
+ S = "${WORKDIR}/git/"
+ 
 diff --git a/meta-arago-extras/recipes-apps/barcode-demo/barcode-roi_git.bb b/meta-arago-extras/recipes-apps/barcode-demo/barcode-roi_git.bb
-index 7d82b0eca54c..e6302cd5ec54 100644
+index 0673c0a42b7e..a6439d7d2cd3 100644
 --- a/meta-arago-extras/recipes-apps/barcode-demo/barcode-roi_git.bb
 +++ b/meta-arago-extras/recipes-apps/barcode-demo/barcode-roi_git.bb
 @@ -13,7 +13,7 @@ PV = "01.00.00"
@@ -191,11 +211,11 @@ index 7d82b0eca54c..e6302cd5ec54 100644
  SRCREV = "50fa051f66012ebaa10eba1cb289287c4c5e7432"
  
 diff --git a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
-index 32ead99c6331..b4bb9aa778ab 100644
+index 50d721b33408..789fbabfc615 100644
 --- a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
 +++ b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo.inc
 @@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://makefile;beginline=1;endline=31;md5=2f2ea348b98d5cc78
- COMPATIBLE_MACHINE = "omap-a15"
+ COMPATIBLE_MACHINE = "omap-a15|keystone"
  PACKAGE_ARCH = "${MACHINE_ARCH}"
  
 -BIG_DATA_IPC_GIT_URI = "git://git.ti.com/processor-sdk/big-data-ipc-examples.git"
@@ -204,7 +224,7 @@ index 32ead99c6331..b4bb9aa778ab 100644
  BIG_DATA_IPC_GIT_BRANCH = "master"
  
 diff --git a/meta-arago-extras/recipes-apps/evse-hmi/evse-hmi_git.bb b/meta-arago-extras/recipes-apps/evse-hmi/evse-hmi_git.bb
-index a50839991643..761a0b0c10e0 100644
+index e2d7b882c03a..11aa29823f28 100644
 --- a/meta-arago-extras/recipes-apps/evse-hmi/evse-hmi_git.bb
 +++ b/meta-arago-extras/recipes-apps/evse-hmi/evse-hmi_git.bb
 @@ -8,7 +8,7 @@ PV = "1.0"
@@ -217,7 +237,7 @@ index a50839991643..761a0b0c10e0 100644
  SRCREV = "d8c309d2832735f8df84db9993a01d861fdc02d7"
  
 diff --git a/meta-arago-extras/recipes-apps/image-gallery/image-gallery_git.bb b/meta-arago-extras/recipes-apps/image-gallery/image-gallery_git.bb
-index 9625084bd486..1c39842054d1 100644
+index 7bbfa320de56..e9b41d79a4fb 100644
 --- a/meta-arago-extras/recipes-apps/image-gallery/image-gallery_git.bb
 +++ b/meta-arago-extras/recipes-apps/image-gallery/image-gallery_git.bb
 @@ -13,7 +13,7 @@ PR = "r5"
@@ -227,10 +247,10 @@ index 9625084bd486..1c39842054d1 100644
 -SRC_URI = "git://git.ti.com/matrix-gui-v2/image-gallery.git;protocol=git;branch=${BRANCH}"
 +SRC_URI = "https://git.ti.com/git/matrix-gui-v2/image-gallery.git;protocol=git;branch=${BRANCH}"
  
- S = "${WORKDIR}/git"
+ S = "${WORKDIR}/git/"
  
 diff --git a/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb b/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
-index d5f9e43c72e5..142bd1c7001b 100644
+index ff6b02a8fc02..5288a8599d55 100644
 --- a/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
 +++ b/meta-arago-extras/recipes-apps/mmwavegesture-hmi/mmwavegesture-hmi_git.bb
 @@ -8,7 +8,7 @@ PV = "1.0"
@@ -243,7 +263,7 @@ index d5f9e43c72e5..142bd1c7001b 100644
  SRCREV = "0881fc8bc5b3c3411af7b69c3837a8b3a1fbedc5"
  
 diff --git a/meta-arago-extras/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb b/meta-arago-extras/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb
-index 933174860dce..b715c64099b8 100644
+index 266cabd9d1ce..724969eab0ac 100644
 --- a/meta-arago-extras/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb
 +++ b/meta-arago-extras/recipes-apps/pdm-anomaly-detection/pdm-anomaly-detection_git.bb
 @@ -8,7 +8,7 @@ PV = "1.0"
@@ -256,7 +276,7 @@ index 933174860dce..b715c64099b8 100644
  SRCREV = "2ccf0e5e5aaac73166d52374650a25652bd6aed2"
  
 diff --git a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
-index bbc2558ea716..4689fcfaa203 100644
+index 6e4394b66b6f..6ef39e803352 100644
 --- a/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
 +++ b/meta-arago-extras/recipes-apps/point-cloud-viewer/point-cloud-viewer_git.bb
 @@ -13,7 +13,7 @@ COMPATIBLE_MACHINE = "dra7xx"
@@ -268,8 +288,21 @@ index bbc2558ea716..4689fcfaa203 100644
  
  SRCREV = "f0af54e63a6c802b4f8f0657873e74f1cb486e86"
  
+diff --git a/meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc b/meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc
+index 77b61ac8c275..8c7aebdc1be5 100644
+--- a/meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc
++++ b/meta-arago-extras/recipes-apps/posix-smp-demo/posix-smp-demo.inc
+@@ -3,7 +3,7 @@ SUMMARY = "This recipe creates a posix-smp-demo binaries."
+ LICENSE = "BSD-3-Clause"
+ LIC_FILES_CHKSUM = "file://dhry.h;beginline=1;endline=377;md5=8f2fbe6e071d9ea4afeca73cfd656ec8"
+ 
+-POSIX_SMP_GIT_URI = "git://git.ti.com/keystone-demos/posix-smp.git"
++POSIX_SMP_GIT_URI = "https://git.ti.com/git/keystone-demos/posix-smp.git"
+ POSIX_SMP_GIT_PROTOCOL = "git"
+ POSIX_SMP_GIT_BRANCH = "master"
+ 
 diff --git a/meta-arago-extras/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb b/meta-arago-extras/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
-index 018859e05688..90f02f66964c 100644
+index a0c7321f75f6..00f6ff6302a6 100755
 --- a/meta-arago-extras/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
 +++ b/meta-arago-extras/recipes-apps/protection-relays-hmi/protection-relays-hmi_git.bb
 @@ -8,7 +8,7 @@ PV = "1.0"
@@ -282,20 +315,20 @@ index 018859e05688..90f02f66964c 100644
  SRCREV = "b116b5628a68ba3b6db88435023cf034504655d3"
  
 diff --git a/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat_2.0.bb b/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat_2.0.bb
-index 84ef96eaf4b1..3f015a80761d 100644
+index 22c0023be32d..65abaca558a0 100644
 --- a/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat_2.0.bb
 +++ b/meta-arago-extras/recipes-apps/thermostat-demo/qt-tstat_2.0.bb
-@@ -19,7 +19,7 @@ DEPENDS += "qtsvg qtscript"
+@@ -19,7 +19,7 @@ DEPENDS += "${QT_DEPENDS_SVG} ${QT_DEPENDS_SCRIPT}"
  BRANCH ?= "master"
  SRCREV = "665bff9a7bc0dbf82f9d6a58ff2778c03fe04fd1"
  
 -SRC_URI = "git://git.ti.com/apps/thermostat-demo.git;protocol=git;branch=${BRANCH}"
 +SRC_URI = "https://git.ti.com/git/apps/thermostat-demo.git;protocol=git;branch=${BRANCH}"
  
- S = "${WORKDIR}/git"
+ S = "${WORKDIR}/git/"
  
 diff --git a/meta-arago-extras/recipes-apps/video-analytics-demo/qt-opencv-opencl-opengl-multithreaded_git.bb b/meta-arago-extras/recipes-apps/video-analytics-demo/qt-opencv-opencl-opengl-multithreaded_git.bb
-index 5b0856412a35..23751c286802 100644
+index 7d2fb51cda0f..aa969f41a544 100644
 --- a/meta-arago-extras/recipes-apps/video-analytics-demo/qt-opencv-opencl-opengl-multithreaded_git.bb
 +++ b/meta-arago-extras/recipes-apps/video-analytics-demo/qt-opencv-opencl-opengl-multithreaded_git.bb
 @@ -17,7 +17,7 @@ PV = "1.3.3"
@@ -308,12 +341,12 @@ index 5b0856412a35..23751c286802 100644
  SRCREV = "80051ec8befd921e40cfb74a49234ed045576bbc"
  
 diff --git a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
-index e0f826e9879c..032b6fd1099d 100644
+index 528f5a6e0e5a..7a9a71bbc9a7 100644
 --- a/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
 +++ b/meta-arago-extras/recipes-benchmark/arm-benchmarks/arm-benchmarks_1.3.bb
 @@ -9,7 +9,7 @@ PR = "r13"
  BRANCH ?= "master"
- SRCREV = "a3126fd88edd911fff33ace5b813652397bf4cfe"
+ SRCREV = "fefaf9bdd6f36ab0cebaab8dbf34e5beb50f471c"
  
 -SRC_URI = "git://git.ti.com/apps/arm_benchmarks.git;protocol=git;branch=${BRANCH}"
 +SRC_URI = "https://git.ti.com/git/apps/arm_benchmarks.git;protocol=git;branch=${BRANCH}"
@@ -321,7 +354,7 @@ index e0f826e9879c..032b6fd1099d 100644
  S = "${WORKDIR}/git"
  
 diff --git a/meta-arago-extras/recipes-benchmark/stream/stream_5.10.bb b/meta-arago-extras/recipes-benchmark/stream/stream_5.10.bb
-index a3657b58ecf1..e92340e717bf 100644
+index 7661722483cb..864bb53f9b38 100644
 --- a/meta-arago-extras/recipes-benchmark/stream/stream_5.10.bb
 +++ b/meta-arago-extras/recipes-benchmark/stream/stream_5.10.bb
 @@ -9,7 +9,7 @@ PR = "r0"
@@ -334,12 +367,12 @@ index a3657b58ecf1..e92340e717bf 100644
  S = "${WORKDIR}/git"
  
 diff --git a/meta-arago-extras/recipes-bsp/switch-config/switch-config_git.bb b/meta-arago-extras/recipes-bsp/switch-config/switch-config_git.bb
-index 77fd3eccfb8c..12896e8b80d7 100644
+index dca4bfe1ff84..cd269da6ac51 100644
 --- a/meta-arago-extras/recipes-bsp/switch-config/switch-config_git.bb
 +++ b/meta-arago-extras/recipes-bsp/switch-config/switch-config_git.bb
-@@ -11,7 +11,7 @@ BRANCH:aarch64 ?= "am65x-v1.0"
+@@ -11,7 +11,7 @@ BRANCH_aarch64 ?= "am65x-v1.0"
  SRCREV = "412dce4e65cfe5af729be38fd1b4c1d59e9a8828"
- SRCREV:aarch64 = "0f52dcb3c4e3678e96427d546d6c2e1fabc2ad91"
+ SRCREV_aarch64 = "0f52dcb3c4e3678e96427d546d6c2e1fabc2ad91"
  
 -SRC_URI = "git://git.ti.com/switch-config/switch-config.git;protocol=git;branch=${BRANCH}"
 +SRC_URI = "https://git.ti.com/git/switch-config/switch-config.git;protocol=git;branch=${BRANCH}"
@@ -347,12 +380,12 @@ index 77fd3eccfb8c..12896e8b80d7 100644
  S = "${WORKDIR}/git"
  
 diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
-index 72cdc4b116b6..28f91b2bc7fa 100644
+index 324de0be6490..9a4a4ecff296 100644
 --- a/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
 +++ b/meta-arago-extras/recipes-connectivity/hostap/hostap.inc
 @@ -18,7 +18,7 @@ INITSCRIPT_NAME="hostapd"
  
- CONFFILES:${PN} += "${sysconfdir}/hostapd.conf"
+ CONFFILES_${PN} += "${sysconfdir}/hostapd.conf"
  
 -SRC_URI = "git://git.ti.com/wilink8-wlan/hostap.git;protocol=git;branch=${BRANCH} \
 +SRC_URI = "https://git.ti.com/git/wilink8-wlan/hostap.git;protocol=git;branch=${BRANCH} \
@@ -360,7 +393,7 @@ index 72cdc4b116b6..28f91b2bc7fa 100644
  	       file://init"
  
 diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
-index 53354375b0e4..46d0099cbf32 100644
+index 65693270792a..428753d60c71 100644
 --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
 +++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplicant.inc
 @@ -18,7 +18,7 @@ DEFAULT_PREFERENCE = "-1"
@@ -373,7 +406,7 @@ index 53354375b0e4..46d0099cbf32 100644
             file://wpa-supplicant.sh \
             file://wpa_supplicant.conf \
 diff --git a/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb b/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb
-index 6f38b7502c72..16c7e46e3f82 100644
+index 4df536fd343c..698188417b53 100644
 --- a/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb
 +++ b/meta-arago-extras/recipes-core/am-sysinfo/am-sysinfo_git.bb
 @@ -10,7 +10,7 @@ PR = "r10"
@@ -386,10 +419,10 @@ index 6f38b7502c72..16c7e46e3f82 100644
  S = "${WORKDIR}/git"
  
 diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-index 05c71a1d7d58..08f44437740e 100644
+index 16a3269b3770..e2877d20eba2 100644
 --- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
 +++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-@@ -23,14 +23,14 @@ DEPENDS:append:class-target = " valgrind"
+@@ -23,14 +23,14 @@ DEPENDS_append_class-target = " valgrind"
  LLVM_DIR = "ti-llvm${PV}"
  
  LLVM_GIT_NAME = "llvm"
@@ -407,7 +440,7 @@ index 05c71a1d7d58..08f44437740e 100644
  CLANG_GIT_BRANCH = "release_36_ti"
  CLANG_GIT_DESTSUFFIX = "${LLVM_GIT_DESTSUFFIX}/tools/clang"
 diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
-index fb61b3409de0..196d5a36230a 100644
+index d61cf7487f32..cae6fabb899a 100644
 --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
 +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps-git.inc
 @@ -3,7 +3,7 @@ LICENSE = "CC-BY-SA-3.0"
@@ -416,15 +449,15 @@ index fb61b3409de0..196d5a36230a 100644
  
 -SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
 +SRC_URI = "https://git.ti.com/git/matrix-gui-v2/matrix-gui-v2-apps.git;protocol=git;branch=${BRANCH}"
- SRCREV = "976e775a1275198d3391018ce8115a66d00120a2"
+ SRCREV = "cad105b0c2b75a90f4def523b4fdbd0b6aa2fe8e"
  BRANCH = "master"
  INC_PR = "r76"
 diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-index 578cff50d358..33b8b1ef9b46 100644
+index 44f66d0d9ec2..f4a3207b7a7e 100644
 --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
 +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-browser_2.0.bb
-@@ -13,7 +13,7 @@ SRCREV = "78ad5db716d1abc4c05abfe435f066b6b88454d5"
- 
+@@ -23,7 +23,7 @@ QT5_SRCREV = "78ad5db716d1abc4c05abfe435f066b6b88454d5"
+ SRCREV = "${@oe.utils.conditional('QT_PROVIDER', 'qt5', "${QT5_SRCREV}", "${QT4_SRCREV}", d)}"
  BRANCH ?= "master"
  
 -SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix_browser.git;protocol=git;branch=${BRANCH}"
@@ -433,12 +466,12 @@ index 578cff50d358..33b8b1ef9b46 100644
  S = "${WORKDIR}/git"
  
 diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-index c09e8d35ba50..06d6265bc2dc 100644
+index 4cbd71745c51..365c3261ed7b 100644
 --- a/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
 +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui_2.0.bb
-@@ -18,7 +18,7 @@ SRCREV = "9a2d12590102fefc5c29fc9e8d346ce6b0198468"
+@@ -20,7 +20,7 @@ SRCREV = "9a2d12590102fefc5c29fc9e8d346ce6b0198468"
  
- MATRIX_INITSCRIPT = "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'init', 'init.eglfs', d)}"
+ MATRIX_INITSCRIPT = "${@oe.utils.conditional('QT_PROVIDER', 'qt5', bb.utils.contains('DISTRO_FEATURES', 'wayland', 'init', 'init.eglfs', d), 'init', d)}"
  
 -SRC_URI = "git://git.ti.com/matrix-gui-v2/matrix-gui-v2.git;protocol=git;branch=${BRANCH} \
 +SRC_URI = "https://git.ti.com/git/matrix-gui-v2/matrix-gui-v2.git;protocol=git;branch=${BRANCH} \
@@ -446,10 +479,10 @@ index c09e8d35ba50..06d6265bc2dc 100644
             file://php.ini \
             file://matrix-gui-2.0.service \
 diff --git a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-index 4cc9859abd21..dc43e365b623 100644
+index 9e214f42245e..225c33a50fba 100644
 --- a/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
 +++ b/meta-arago-extras/recipes-core/matrix/refresh-screen_2.0.bb
-@@ -10,7 +10,7 @@ PR = "r9"
+@@ -13,7 +13,7 @@ PR = "r9"
  SRCREV = "4c8817e28ceed2dd886761e3ec1971b11436ba33"
  BRANCH ?= "master"
  
@@ -459,7 +492,7 @@ index 4cc9859abd21..dc43e365b623 100644
  S = "${WORKDIR}/git"
  
 diff --git a/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb b/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
-index ff0347d6abfe..834b64adae5a 100644
+index dd013c87af02..7a59111d8441 100644
 --- a/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
 +++ b/meta-arago-extras/recipes-core/oprofile-example/oprofile-example_git.bb
 @@ -13,7 +13,7 @@ PR = "r4"
@@ -472,20 +505,20 @@ index ff0347d6abfe..834b64adae5a 100644
  S = "${WORKDIR}/git"
  
 diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-index f3fcdad3ec49..ec2dd45e1390 100644
+index b39f4a75c491..102a95af89bf 100644
 --- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
 +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-@@ -18,7 +18,7 @@ SRCREV = "cfff0a2c889f29c03b9a3ee547a147b1c6727e2c"
+@@ -18,7 +18,7 @@ SRCREV = "b9a158a36b39437c08335c14c33c708df11e5fb5"
  BRANCH ?= "master"
  
- SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master"
--SRC_URI:prepend = "git://git.ti.com/test-automation/ltp-ddt.git;branch=${BRANCH} "
-+SRC_URI:prepend = "https://git.ti.com/git/test-automation/ltp-ddt.git;branch=${BRANCH} "
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master"
+-SRC_URI_prepend = "git://git.ti.com/test-automation/ltp-ddt.git;branch=${BRANCH} "
++SRC_URI_prepend = "https://git.ti.com/git/test-automation/ltp-ddt.git;branch=${BRANCH} "
  
  export prefix = "/opt/ltp"
  export exec_prefix = "/opt/ltp"
 diff --git a/meta-arago-extras/recipes-devtools/statcol/statcol.bb b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
-index ee2b12d22987..06943bc3f28c 100644
+index 12e10bcfa2c1..0ff0f4976a8b 100644
 --- a/meta-arago-extras/recipes-devtools/statcol/statcol.bb
 +++ b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
 @@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=bb6bc27cd44417c389a180bd62f552a0"
@@ -496,35 +529,35 @@ index ee2b12d22987..06943bc3f28c 100644
 +SRC_URI = "https://git.ti.com/git/glsdk/statcol.git;protocol=${PROTOCOL};branch=${BRANCH}"
  
  DEPENDS = "ti-rpmsg-char websocketd"
- RDEPENDS:${PN} = "bash"
+ RDEPENDS_${PN} = "bash"
 diff --git a/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb b/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb
-index 5ed4e03424a4..131f8f23abbf 100644
+index 9dd2cd39ee5f..5e9b189a874e 100644
 --- a/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb
 +++ b/meta-arago-extras/recipes-devtools/util-scripts/glsdk-util-scripts.bb
-@@ -6,7 +6,7 @@ COMPATIBLE_MACHINE = "omap-a15|j7"
+@@ -7,7 +7,7 @@ COMPATIBLE_MACHINE = "omap-a15|j7"
  PACKAGE_ARCH = "${MACHINE_ARCH}"
- RDEPENDS:${PN} += "bash"
+ RDEPENDS_${PN} += "bash"
  
--SRC_URI = "git://git.ti.com/glsdk/util-scripts.git;branch=master"
-+SRC_URI = "https://git.ti.com/git/glsdk/util-scripts.git;branch=master"
+-SRC_URI = "git://git.ti.com/glsdk/util-scripts.git"
++SRC_URI = "https://git.ti.com/git/glsdk/util-scripts.git"
  
- SRCREV = "5a3f8eca444a5c4bf8855705a3018d482e3e19cd"
+ SRCREV = "df50ca1592cae97ad0c7285686d602926b4f7305"
  
 diff --git a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-index de725c077f66..50d76dd3d851 100644
+index 3e2452f45b04..67048fa3fc94 100644
 --- a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
 +++ b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
 @@ -11,7 +11,7 @@ S = "${WORKDIR}/git"
  
  inherit autotools pkgconfig
  
--SRC_URI = "git://git.ti.com/glsdk/example-applications.git;protocol=git;branch=master \
-+SRC_URI = "https://git.ti.com/git/glsdk/example-applications.git;protocol=git;branch=master \
+-SRC_URI = "git://git.ti.com/glsdk/example-applications.git;protocol=git \
++SRC_URI = "https://git.ti.com/git/glsdk/example-applications.git;protocol=git \
  "
  
  SRCREV="52466430609c402a9f1c0667ccf727d096336d0d"
 diff --git a/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb b/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
-index d855d1919d77..837a6a9bb49a 100644
+index 6c9953d07fe2..b4bf6d8fa79f 100644
 --- a/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
 +++ b/meta-arago-extras/recipes-graphics/img-pvr-sdk/img-pvr-sdk_3.3.2.bb
 @@ -6,7 +6,7 @@ CLEANBROKEN = "1"
@@ -537,7 +570,7 @@ index d855d1919d77..837a6a9bb49a 100644
  
  PR = "r19"
 diff --git a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
-index 8804544f98cf..c53d9e6498f0 100644
+index 68a8efe75f37..cb05ea3eedf3 100644
 --- a/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
 +++ b/meta-arago-extras/recipes-graphics/omapdrmtest/omapdrmtest_1.0.0.bb
 @@ -15,7 +15,7 @@ SRCREV = "1fceb3ac4b0e7ed014000a10dfe6ca8729f9cd8d"
@@ -550,7 +583,7 @@ index 8804544f98cf..c53d9e6498f0 100644
  "
  
 diff --git a/meta-arago-extras/recipes-graphics/ti-gc320-tests/ti-gc320-tests_5.0.11.p7.bb b/meta-arago-extras/recipes-graphics/ti-gc320-tests/ti-gc320-tests_5.0.11.p7.bb
-index e84195ffbaa7..1a3480318032 100644
+index 9138f27f844f..53fae1c801ce 100644
 --- a/meta-arago-extras/recipes-graphics/ti-gc320-tests/ti-gc320-tests_5.0.11.p7.bb
 +++ b/meta-arago-extras/recipes-graphics/ti-gc320-tests/ti-gc320-tests_5.0.11.p7.bb
 @@ -7,7 +7,7 @@ DEPENDS = "ti-gc320-libs"
@@ -562,24 +595,37 @@ index e84195ffbaa7..1a3480318032 100644
  file://0001-makefile.linux.def-relax-assignment-of-CC-and-other-.patch \
  "
  SRCREV = "53207f8e360a3336276b62066a1d8a9e923de17e"
-diff --git a/meta-arago-extras/recipes-kernel/pcitest/pcitest_5.4.bb b/meta-arago-extras/recipes-kernel/pcitest/pcitest_5.4.bb
-index 2d7f370f2622..d4c9253f7515 100644
---- a/meta-arago-extras/recipes-kernel/pcitest/pcitest_5.4.bb
-+++ b/meta-arago-extras/recipes-kernel/pcitest/pcitest_5.4.bb
-@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
+diff --git a/meta-arago-extras/recipes-kernel/pcitest/pcitest_5.10.bb b/meta-arago-extras/recipes-kernel/pcitest/pcitest_5.10.bb
+index 733f3ba452da..6e8e52224aa6 100644
+--- a/meta-arago-extras/recipes-kernel/pcitest/pcitest_5.10.bb
++++ b/meta-arago-extras/recipes-kernel/pcitest/pcitest_5.10.bb
+@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
  
- BRANCH = "ti-linux-5.4.y"
- SRCREV = "738552d0b0292e148b35d60ec47ca3c8dd6007b4"
+ BRANCH = "ti-linux-5.10.y"
+ SRCREV = "73aa709ca10103b61fba3a07471dbb4dcb56db45"
 -SRC_URI = "git://git.ti.com/ti-linux-kernel/ti-linux-kernel.git;protocol=git;branch=${BRANCH}"
 +SRC_URI = "https://git.ti.com/git/ti-linux-kernel/ti-linux-kernel.git;protocol=git;branch=${BRANCH}"
  
  S = "${WORKDIR}/git"
  
+diff --git a/meta-arago-extras/recipes-kernel/recovery-kernel/recovery-kernel_1.0.bb b/meta-arago-extras/recipes-kernel/recovery-kernel/recovery-kernel_1.0.bb
+index 3fc631b5bd0b..17088824bf6f 100644
+--- a/meta-arago-extras/recipes-kernel/recovery-kernel/recovery-kernel_1.0.bb
++++ b/meta-arago-extras/recipes-kernel/recovery-kernel/recovery-kernel_1.0.bb
+@@ -8,7 +8,7 @@ PR = "r4"
+ COMPATIBLE_MACHINE = "keystone"
+ BRANCH = "v3.10.72/master"
+ SRCREV = "b9bad8fccc5f9c6bcd78363982b3249a15f193fb"
+-SRC_URI = "git://git.ti.com/keystone-linux/linux.git;protocol=git;branch=${BRANCH}"
++SRC_URI = "https://git.ti.com/git/keystone-linux/linux.git;protocol=git;branch=${BRANCH}"
+ S = "${WORKDIR}/git"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+ 
 diff --git a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb
-index 2d9f41b02d42..dd56fc82e7b0 100644
+index 2f570d435dcc..29ffc2be11a2 100644
 --- a/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb
 +++ b/meta-arago-extras/recipes-multimedia/amsdk-av-files/amsdk-av-files_1.4.bb
-@@ -20,7 +20,7 @@ VIDEO_FILES:append:k3          = "video_720p"
+@@ -25,7 +25,7 @@ VIDEO_FILES_keystone = "video_720p "
  
  BRANCH = "master"
  
@@ -588,8 +634,34 @@ index 2d9f41b02d42..dd56fc82e7b0 100644
  SRCREV = "1b73009090265328ebaf1b6c880dfeccae5a8f19"
  
  S = "${WORKDIR}/git"
+diff --git a/meta-arago-extras/recipes-multimedia/av-examples/av-examples_1.0.bb b/meta-arago-extras/recipes-multimedia/av-examples/av-examples_1.0.bb
+index 65ff4f3b69e8..2266ea0abd3a 100644
+--- a/meta-arago-extras/recipes-multimedia/av-examples/av-examples_1.0.bb
++++ b/meta-arago-extras/recipes-multimedia/av-examples/av-examples_1.0.bb
+@@ -14,7 +14,7 @@ COMPATIBLE_MACHINE = "(omap3)"
+ BRANCH ?= "master"
+ SRCREV = "b67b11011a8a54a7598eed383f3a106c32b47c6d"
+ 
+-SRC_URI = "git://git.ti.com/apps/av_examples.git;protocol=git;branch=${BRANCH}"
++SRC_URI = "https://git.ti.com/git/apps/av_examples.git;protocol=git;branch=${BRANCH}"
+ 
+ S = "${WORKDIR}/git"
+ 
+diff --git a/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb b/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
+index 29d87eaf7529..73d24d8db735 100644
+--- a/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
++++ b/meta-arago-extras/recipes-multimedia/demo-image-proc/demo-image-proc_git.bb
+@@ -8,7 +8,7 @@ COMPATIBLE_MACHINE = "keystone"
+ DEPENDS = "ti-ipc"
+ 
+ BRANCH = "master"
+-SRC_URI = "git://git.ti.com/keystone-demos/image-proc.git;protocol=git;branch=${BRANCH}"
++SRC_URI = "https://git.ti.com/git/keystone-demos/image-proc.git;protocol=git;branch=${BRANCH}"
+ #Commit corresponds to DEV.DEMO_IMAGE_PROC-01.00.00.03
+ SRCREV = "d1f4014d28ecedf34dbd20f04d4277eb1c4b8ae0"
+ PV = "1.0.0.3"
 diff --git a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
-index c7d5a817488c..a3b56be5f9f3 100644
+index 66746793da5b..80d7d8482b19 100644
 --- a/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
 +++ b/meta-arago-extras/recipes-multimedia/dual-camera-demo/dual-camera-demo_1.0.bb
 @@ -12,7 +12,7 @@ PR = "r20"
@@ -602,7 +674,7 @@ index c7d5a817488c..a3b56be5f9f3 100644
             file://dual_camera_qt5.sh \
             file://dual_camera_qt4.sh \
 diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb
-index c95056523210..1b46fd5c0ce9 100644
+index 617fdc9528ef..741996005752 100644
 --- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb
 +++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-dsp66_git.bb
 @@ -3,7 +3,7 @@ HOMEPAGE = "https://git.ti.com/processor-sdk/gst-plugin-dsp66"
@@ -615,7 +687,7 @@ index c95056523210..1b46fd5c0ce9 100644
  	file://0001-configure.ac-stop-using-export-symbols-regex.patch \
  "
 diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
-index ff0e87fd1524..7c4087721d95 100644
+index ccf0fd55e31d..7884c7d0b3ac 100644
 --- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
 +++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-ducati_git.bb
 @@ -14,7 +14,7 @@ SRCREV = "7e3938f0854be99583f8b204f600907ea9e6471d"
@@ -628,20 +700,20 @@ index ff0e87fd1524..7c4087721d95 100644
  "
  
 diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
-index 0125c245c20e..7911a102cce2 100644
+index 1f9796c295df..5005781f138c 100644
 --- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
 +++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-hevc_git.bb
 @@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=2827f94fc0a1adeff4d9702e97ce2979"
  
- COMPATIBLE_MACHINE = "dra7xx"
+ COMPATIBLE_MACHINE = "dra7xx|keystone"
  
--SRC_URI = "git://git.ti.com/processor-sdk/gst-plugin-hevc.git;protocol=git;branch=master \
-+SRC_URI = "https://git.ti.com/git/processor-sdk/gst-plugin-hevc.git;protocol=git;branch=master \
+-SRC_URI = "git://git.ti.com/processor-sdk/gst-plugin-hevc.git;protocol=git \
++SRC_URI = "https://git.ti.com/git/processor-sdk/gst-plugin-hevc.git;protocol=git \
  	file://0001-configure.ac-stop-using-export-symbols-regex.patch"
  SRCREV = "e4ea007d0ddeb95ae01742293454ef3c87a6e84c"
  
 diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
-index a6f024f5cde5..c39e399ac568 100644
+index 841a403f77a1..73c9c69c75cb 100644
 --- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
 +++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plugins-vpe_git.bb
 @@ -12,6 +12,6 @@ REQUIRED_MACHINE_FEATURES = "mmip"
@@ -653,10 +725,10 @@ index a6f024f5cde5..c39e399ac568 100644
             file://0001-gstvpe-configure.ac-stop-using-export-symbols-regex.patch \
  "
 diff --git a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb
-index 997ed4513d51..c34daa572796 100644
+index 069e83973570..b7dc5ce671e4 100644
 --- a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb
 +++ b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb
-@@ -8,7 +8,7 @@ COMPATIBLE_MACHINE = "dra7xx"
+@@ -8,7 +8,7 @@ COMPATIBLE_MACHINE = "dra7xx|keystone"
  
  BRANCH = "master"
  
@@ -666,7 +738,7 @@ index 997ed4513d51..c34daa572796 100644
  "
  
 diff --git a/meta-arago-extras/recipes-support/cclink/ccief-basic_git.bb b/meta-arago-extras/recipes-support/cclink/ccief-basic_git.bb
-index 083eaf3920e9..f7fb17936546 100644
+index 21d59b0e5019..b982daa12faf 100644
 --- a/meta-arago-extras/recipes-support/cclink/ccief-basic_git.bb
 +++ b/meta-arago-extras/recipes-support/cclink/ccief-basic_git.bb
 @@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://CCIEF-BASIC_Master/library/include/SLMP.h;beginline=1
@@ -679,7 +751,7 @@ index 083eaf3920e9..f7fb17936546 100644
  CCIEF-BASIC_GIT_BRANCH = "master"
  
 diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-demo_git.bb b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-demo_git.bb
-index c1e47def1f47..a3cf8578010b 100644
+index c45acf4fb133..912cdb2154a6 100644
 --- a/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-demo_git.bb
 +++ b/meta-arago-extras/recipes-support/tensorflow-lite/tensorflow-lite-demo_git.bb
 @@ -17,7 +17,7 @@ PV = "01.00.00"
@@ -705,7 +777,7 @@ index f6d5935a3225..3ded59e214da 100644
  FFTLIB_GIT_BRANCH = "master"
  FFTLIB_GIT_DESTSUFFIX = "${WORKDIR}/git"
 diff --git a/meta-arago-extras/recipes-ti/libarch/libarch.inc b/meta-arago-extras/recipes-ti/libarch/libarch.inc
-index 1985a6b484c7..5b7c6d59c390 100644
+index b7a7af6c0819..07d32f6ec36e 100644
 --- a/meta-arago-extras/recipes-ti/libarch/libarch.inc
 +++ b/meta-arago-extras/recipes-ti/libarch/libarch.inc
 @@ -14,7 +14,7 @@ REQUIRED_DISTRO_FEATURES = "opencl"
@@ -716,9 +788,9 @@ index 1985a6b484c7..5b7c6d59c390 100644
 +SRC_URI = "https://git.ti.com/git/library-architecture/libarch.git;protocol=git;branch=${BRANCH}"
  SRCREV = "cb6d785e95cd390c6388853a4f1e99a302e5a58f"
  
- COMPATIBLE_MACHINE = "dra7xx"
+ COMPATIBLE_MACHINE = "k2hk|dra7xx"
 diff --git a/meta-arago-extras/recipes-ti/linalg/linalg.inc b/meta-arago-extras/recipes-ti/linalg/linalg.inc
-index 7cf16c9fcca9..ceba864d21ae 100644
+index 6883b99036be..e0f5345254c0 100644
 --- a/meta-arago-extras/recipes-ti/linalg/linalg.inc
 +++ b/meta-arago-extras/recipes-ti/linalg/linalg.inc
 @@ -1,4 +1,4 @@
@@ -749,8 +821,21 @@ index 20fb132cc846..3a1f958f24a9 100644
  LLVM_GIT_PROTOCOL = "git"
  LLVM_GIT_BRANCH = "release_36_ti"
  LLVM_GIT_DESTSUFFIX = "git"
+diff --git a/meta-arago-extras/recipes-ti/netapi/netapi.inc b/meta-arago-extras/recipes-ti/netapi/netapi.inc
+index ef4607f5c94a..f6c0481e3a52 100644
+--- a/meta-arago-extras/recipes-ti/netapi/netapi.inc
++++ b/meta-arago-extras/recipes-ti/netapi/netapi.inc
+@@ -9,7 +9,7 @@ DEBIAN_NOAUTONAME_${PN}-dev = "1"
+ DEBIAN_NOAUTONAME_${PN}-dbg = "1"
+ DEBIAN_NOAUTONAME_${PN}-staticdev = "1"
+ 
+-NETAPI_GIT_URI = "git://git.ti.com/keystone-rtos/netapi.git"
++NETAPI_GIT_URI = "https://git.ti.com/git/keystone-rtos/netapi.git"
+ NETAPI_GIT_PROTOCOL = "git"
+ NETAPI_GIT_BRANCH = "master"
+ 
 diff --git a/meta-arago-extras/recipes-ti/ocl-rtos/clocl-win_git.bb b/meta-arago-extras/recipes-ti/ocl-rtos/clocl-win_git.bb
-index d1fffae2ca97..ca6982519099 100644
+index 230c34aa08a5..8218d7679eba 100644
 --- a/meta-arago-extras/recipes-ti/ocl-rtos/clocl-win_git.bb
 +++ b/meta-arago-extras/recipes-ti/ocl-rtos/clocl-win_git.bb
 @@ -7,7 +7,7 @@ require recipes-ti/includes/arago-paths.inc
@@ -763,12 +848,12 @@ index d1fffae2ca97..ca6982519099 100644
  CLOCL_WIN_SRCREV = "eac7ac7cc2e64a9ff05e4238e44dff3f9a9fcf6b"
  
 diff --git a/meta-arago-extras/recipes-ti/ocl/ocl.inc b/meta-arago-extras/recipes-ti/ocl/ocl.inc
-index b03d204024fd..0dc73d4f9258 100644
+index c1b475a3e7fe..170b2baaf82d 100644
 --- a/meta-arago-extras/recipes-ti/ocl/ocl.inc
 +++ b/meta-arago-extras/recipes-ti/ocl/ocl.inc
 @@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=2e3965a73a8a49c23836467266120
  
- FILESEXTRAPATHS:prepend := "${THISDIR}/ocl:"
+ FILESEXTRAPATHS_prepend := "${THISDIR}/ocl:"
  
 -OCL_GIT_URI = "git://git.ti.com/opencl/ti-opencl.git"
 +OCL_GIT_URI = "https://git.ti.com/git/opencl/ti-opencl.git"
@@ -776,7 +861,7 @@ index b03d204024fd..0dc73d4f9258 100644
  OCL_GIT_BRANCH = "master"
  
 diff --git a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
-index 67d1769ad916..e5f6a5965468 100644
+index 0e8b46d685ea..8d23da66ce43 100644
 --- a/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
 +++ b/meta-arago-extras/recipes-ti/ocl/opencl-tidl-fw_git.bb
 @@ -12,7 +12,7 @@ COMPATIBLE_MACHINE = "dra7xx"
@@ -789,12 +874,12 @@ index 67d1769ad916..e5f6a5965468 100644
  BRANCH       = "master"
  SRCREV       = "9e3d0b34f604203f275fba4807481a8a763a4f63"
 diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
-index f87748102a0b..69908ae28f93 100644
+index 1c01f5ac4dca..5da92c3986e3 100644
 --- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
 +++ b/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
 @@ -16,7 +16,7 @@ LIC_FILES_CHKSUM = "file://../debian/copyright;md5=aaa2a0939d08197132fc382e97b62
  
- FILESEXTRAPATHS:prepend := "${THISDIR}/openmpacc:"
+ FILESEXTRAPATHS_prepend := "${THISDIR}/openmpacc:"
  
 -OMPACC_GIT_URI = "git://git.ti.com/openmp/ti-openmpacc.git"
 +OMPACC_GIT_URI = "https://git.ti.com/git/openmp/ti-openmpacc.git"
@@ -802,7 +887,7 @@ index f87748102a0b..69908ae28f93 100644
  OMPACC_GIT_BRANCH = "master"
  
 diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
-index 1f6bb4425192..d7fd04ee1647 100644
+index c70ff8a86529..04da217aa4d7 100644
 --- a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
 +++ b/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
 @@ -3,7 +3,7 @@ INC_PR = "r0"
@@ -825,7 +910,7 @@ index 5ba5ffd88170..6a3e8ace0d27 100644
  PV = "01.01.03.02"
  PR = "r1"
 diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb b/meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
-index 71b85d406695..a8528777310b 100644
+index 16f23398d554..e3636e5dd4d8 100644
 --- a/meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
 +++ b/meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
 @@ -15,7 +15,7 @@ PV = "01.00.00.00"
