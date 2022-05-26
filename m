@@ -1,76 +1,125 @@
-Return-Path: <nm@ti.com>
+Return-Path: <priya.ns@mistralsolutions.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B256C433F5
-	for <webhook@archiver.kernel.org>; Tue, 24 May 2022 21:22:09 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web12.15324.1653427324754866681
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 66F09C433F5
+	for <webhook@archiver.kernel.org>; Thu, 26 May 2022 13:54:03 +0000 (UTC)
+Received: from egress-ip33b.ess.de.barracuda.com
+ (egress-ip33b.ess.de.barracuda.com [18.185.115.237])
+ by mx.groups.io with SMTP id smtpd.web12.20068.1653573233255370881
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 24 May 2022 14:22:05 -0700
+ Thu, 26 May 2022 06:53:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=GUhADtJW;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: nm@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 24OLM008039739;
-	Tue, 24 May 2022 16:22:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1653427320;
-	bh=z/ZVrqer8YejiN88idFoHzMhmdBfsBHetCFE8f6qQu4=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=GUhADtJWc12gAca6srw0OnGdQ4KN0zAizujXT/Asklx0dQNqmr4RBqmG99GZU1w/G
-	 1kx3ltbM1OTBKUWZO6H7UsxS7YxuJGCGeFyks09FvDTUCjxeUR/HJ9V5rSjzie1k1K
-	 7oHpofqm2+32lPz/Xa7BDd+PtDd0C+3FxPhJQKUY=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 24OLM0wZ032392
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 24 May 2022 16:22:00 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 24
- May 2022 16:21:59 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 24 May 2022 16:22:00 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 24OLLxi3023166;
-	Tue, 24 May 2022 16:21:59 -0500
-Date: Tue, 24 May 2022 16:21:59 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Denys Dmytriyenko <denis@denix.org>
-CC: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: Re: [meta-arago] [dunfell PATCH] all: Stop using git://git.ti.com
-Message-ID: <20220524212159.c3cxplnlacvrjpfz@panorama>
-References: <20220524182634.12514-1-nm@ti.com>
- <20220524185847.GR9834@denix.org>
+ dkim=pass header.i=@mistralsolutions.com header.s=google header.b=QcIZxhrh;
+ spf=pass (domain: mistralsolutions.com, ip: 18.185.115.237,
+ mailfrom: priya.ns@mistralsolutions.com)
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com
+ [209.85.215.198]) by mx-outbound47-49.eu-central-1c.ess.aws.cudaops.com
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+ Thu, 26 May 2022 13:53:50 +0000
+Received: by mail-pg1-f198.google.com with SMTP id
+ d125-20020a636883000000b003db5e24db27so877830pgc.13
+        for <meta-arago@lists.yoctoproject.org>;
+ Thu, 26 May 2022 06:53:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=mistralsolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LBva88Ok45yuHAgFPf91qJAffgfXHKNtFwxTcBmiIXk=;
+        b=QcIZxhrh/GoFv1EIBZmNbLVU5ba30/wVunE62ia/Qi4sUJZ5xi0yK81JHGgbrAzOod
+         WLrAoPnDV+nlGKsK3cy1bzi9sB1L99/vkucoLQFZWcl0Qa0oHW0/yguKfGR+UE0SWuvj
+         gbozzSNWH2LIRpeRAXGCF+uVv0U4boyA/9k4k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LBva88Ok45yuHAgFPf91qJAffgfXHKNtFwxTcBmiIXk=;
+        b=0Qvc4Y4Hm0D/4zHDZX3aF76E+aMGpBL6oPPAldJ0JD6iRKcWgt6jm20tXYK9PYn+I5
+         PUQy773X6Q3iiL0KKrOF5kVUrX8lE2iCi2AkCEQesShCKYQYSM05fnpBjAd6QKFkhedI
+         B+VgYnlX56ef92HXcadnWSDW5nBbksYlsp1Uh0H5ox5WQ0I749vi/LsTvL9v5aC4v5DF
+         2s1SXZNGITKzKZIToefx12c0DMf+BH0lV/84Q7M277iHcoa3M+af4UbxaoaqzkKFQRmO
+         NVGRmw+q8tv1BcNPNCXp4gmFMyuu1DSVwpCuyVZaJ7eo2xDXaqzE/g6qNBBYnc6HtqHs
+         l23g==
+X-Gm-Message-State: AOAM530blsXdDYstCJTM/DCZ+IVbiwy/qSrP1Z7clMFS+9FWhXJKw4Zn
+	2fNeuH1dKU8vcrkHFZo3PasQ8UuauCq9wMSRUbw9RheKlmzLYS9WAZSDbGfrId2BMm5beX6QP8H
+	AQMh88K/n7K1i6d6gBHg0JJfXWMa+TfMPN1aH7jIJdDvx9Isr354FgyV7o4cddSCG5s0=
+X-Received: by 2002:a17:90a:d3c7:b0:1e0:d55e:35eb with SMTP id
+ d7-20020a17090ad3c700b001e0d55e35ebmr2773829pjw.105.1653573228762;
+        Thu, 26 May 2022 06:53:48 -0700 (PDT)
+X-Google-Smtp-Source: 
+ ABdhPJx3GT9WGUGN6IQ+vjS0kS3+QKys2JzmXRA33tlLjau9crSgrBEalzcomVRHQZ3DOOo89Tzmvw==
+X-Received: by 2002:a17:90a:d3c7:b0:1e0:d55e:35eb with SMTP id
+ d7-20020a17090ad3c700b001e0d55e35ebmr2773795pjw.105.1653573228342;
+        Thu, 26 May 2022 06:53:48 -0700 (PDT)
+Received: from LAP000507.mistral.in ([144.48.49.113])
+        by smtp.gmail.com with ESMTPSA id
+ l12-20020a170902d34c00b0015e8d4eb2b8sm1575719plk.258.2022.05.26.06.53.44
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 26 May 2022 06:53:46 -0700 (PDT)
+From: Priya N S <priya.ns@mistralsolutions.com>
+X-Google-Original-From: Priya N S <priya.ns@ti.com>
+To: meta-arago@lists.yoctoproject.org
+Cc: Praneeth Bajjuri <praneeth@ti.com>,
+	Sekhar Nori <nsekhar@ti.com>,
+	Sinthu Raja <sinthu.raja@ti.com>,
+	Priya N S <priya.ns@ti.com>
+Subject: [meta-arago][oe-layersetup][master][PATCH] configs: processor-sdk:
+ Add AM335x 8.2 config file
+Date: Thu, 26 May 2022 19:23:44 +0530
+Message-Id: <20220526135345.20464-1-priya.ns@ti.com>
+X-Mailer: git-send-email 2.19.1.windows.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220524185847.GR9834@denix.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
+X-BESS-ID: 1653573229-312081-5532-52082-1
+X-BESS-VER: 2019.1_20220523.1816
+X-BESS-Apparent-Source-IP: 209.85.215.198
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2,
+ rules version 3.2.2.240238 [from
+	cloudscan21-102.eu-central-1b.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of
+ KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 24 May 2022 21:22:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13880
+ <meta-arago@lists.yoctoproject.org>; Thu, 26 May 2022 13:54:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13881
 
-On 14:58-20220524, Denys Dmytriyenko wrote:
-> And NAK here as well.
+Add 08.02 release config file for AM335x.
 
+Signed-off-by: Priya N S <priya.ns@ti.com>
+---
+ .../processor-sdk-08.02.00.24-config.txt          | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 configs/processor-sdk/processor-sdk-08.02.00.24-config.txt
 
-Uggh.. you are right. I did'nt test beyond the basic pull, but i can fix
-them up for protocol and test before the next version being posted.
-
-
-Thanks for calling me out.
-
-[...]
-
+diff --git a/configs/processor-sdk/processor-sdk-08.02.00.24-config.txt b/configs/processor-sdk/processor-sdk-08.02.00.24-config.txt
+new file mode 100644
+index 0000000..5768254
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-08.02.00.24-config.txt
+@@ -0,0 +1,15 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.46,d22cc1e
++meta-processor-sdk,git://git.ti.com/processor-sdk/meta-processor-sdk.git,dunfell,716008bc1003478d2e6c3e0c741f0fd80dcee5fb,layers=
++meta-arago,git://git.yoctoproject.org/meta-arago,dunfell,08.02.00.006,layers=meta-arago-distro:meta-arago-extras
++#meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
++meta-qt5,https://github.com/meta-qt5/meta-qt5.git,dunfell,6bfe29d,layers=
++meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,c5f61e5,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,0722ff6,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
++meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,08.02.00.006,layers=
++meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,c4f04f3,layers=meta-arm:meta-arm-toolchain
++oe-core,git://git.openembedded.org/openembedded-core,dunfell,51844f2,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64.conf.sample
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.19.1.windows.1
+
 
