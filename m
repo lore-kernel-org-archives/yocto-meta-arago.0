@@ -1,155 +1,95 @@
-Return-Path: <denis@denix.org>
+Return-Path: <a-limaye@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 789E5C433EF
-	for <webhook@archiver.kernel.org>; Mon, 27 Jun 2022 23:52:31 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web12.49537.1656373950067252746
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3EDDEC433EF
+	for <webhook@archiver.kernel.org>; Tue, 28 Jun 2022 16:04:48 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web12.113.1656432283340314224
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 27 Jun 2022 16:52:30 -0700
+ Tue, 28 Jun 2022 09:04:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
- mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 28BFE40C7F;
-	Mon, 27 Jun 2022 23:52:29 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id CgqKZPwBQjFR; Mon, 27 Jun 2022 23:52:29 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-80-88.washdc.fios.verizon.net
- [100.15.80.88])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0956240C5D;
-	Mon, 27 Jun 2022 23:52:26 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id BCCC7174981; Mon, 27 Jun 2022 19:52:26 -0400 (EDT)
-Date: Mon, 27 Jun 2022 19:52:26 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: reatmon@ti.com
-Cc: "Humphreys, Jonathan" <j-humphreys@ti.com>,
-	"meta-arago@lists.yoctoproject.org" <meta-arago@lists.yoctoproject.org>
-Subject: Re: [meta-arago] [dunfell/master][PATCH v2] tisdk-uenv: remove
- uEnv.txt for k3
-Message-ID: <20220627235226.GO18692@denix.org>
-References: <20220609170520.31162-1-afd@ti.com>
- <16989.1655137101944524297@lists.yoctoproject.org>
- <ae85101ccf564b72adcd54a83965af3a@ti.com>
- <e2701861-a955-dee9-3234-2ec160fecd8c@ti.com>
- <ab8c4f5585f144a680686130e65010bf@ti.com>
- <9da0eb07-d8c4-d3c5-572c-db4e57436de8@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=Z0ZaaPX8;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: a-limaye@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25SG4glR054899
+	for <meta-arago@lists.yoctoproject.org>; Tue, 28 Jun 2022 11:04:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1656432282;
+	bh=KI8sO2iNt9wCmj+pLNGkcBpSIlMnW0ir/Mldu6SWyoo=;
+	h=From:To:CC:Subject:Date;
+	b=Z0ZaaPX85x3Dn5RKp1z77s4730QdAPZI2hSwHqOqZ/VSq4xJ9Xu2Fv5ZDACSZ+7Yl
+	 7derSNepBx3/KKxsW/R7BuGVCKP5p784wg/mzeXyTv8EViEsavLYbimVSNxmqSzeQU
+	 747ArYFrHVzxcZ32+pQpTu+2JNtgi+MtBUFYAQJo=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25SG4g1n004201
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Tue, 28 Jun 2022 11:04:42 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 28
+ Jun 2022 11:04:42 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 28 Jun 2022 11:04:42 -0500
+Received: from edgeaipc1 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25SG4fGH098619;
+	Tue, 28 Jun 2022 11:04:41 -0500
+Received: from a0485100 by edgeaipc1 with local (Exim 4.90_1)
+	(envelope-from <a-limaye@ti.com>)
+	id 1o6Dhg-00065S-1C; Tue, 28 Jun 2022 21:34:40 +0530
+From: <a-limaye@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: <l-weaver@ti.com>, <yogeshs@ti.com>, <praneeth@ti.com>, <a-limaye@ti.com>,
+        <reatmon@ti.com>, Sinthu Raja <sinthu.raja@ti.com>
+Subject: [meta-arago][oe-layersetup][PATCH] processor-sdk-linux: Add
+ 08.02.01.00 release config
+Date: Tue, 28 Jun 2022 21:34:13 +0530
+Message-ID: <20220628160413.22705-1-a-limaye@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9da0eb07-d8c4-d3c5-572c-db4e57436de8@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 27 Jun 2022 23:52:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13919
+ <meta-arago@lists.yoctoproject.org>; Tue, 28 Jun 2022 16:04:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13920
 
-Jon,
+From: Sinthu Raja <sinthu.raja@ti.com>
 
-This particular change is rather trivial, indeed.
+Add config file for processor-sdk-linux 08.02.01.00 release
 
-Other changes are more involved due to override syntax change and meta-ti 
-restructure. I am collecting recent changes in Dunfell and will do another 
-sync with Kirkstone/master soon.
+Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
+---
+ .../processor-sdk-linux-08_02_01_00.txt          | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 configs/processor-sdk-linux/processor-sdk-linux-08_02_01_00.txt
 
+diff --git a/configs/processor-sdk-linux/processor-sdk-linux-08_02_01_00.txt b/configs/processor-sdk-linux/processor-sdk-linux-08_02_01_00.txt
+new file mode 100644
+index 0000000..806181a
+--- /dev/null
++++ b/configs/processor-sdk-linux/processor-sdk-linux-08_02_01_00.txt
+@@ -0,0 +1,16 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,git://git.openembedded.org/bitbake,1.46,d22cc1e587c650fd5f90cda32f5720f8a3105aac
++meta-arago,git://git.yoctoproject.org/meta-arago,dunfell,08.02.00.006,layers=meta-arago-distro:meta-arago-extras
++#meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
++meta-qt5,https://github.com/meta-qt5/meta-qt5.git,dunfell,6bfe29d9e8fdd5c2fd17c736814b6df859b3af50,layers=
++meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,c5f61e547b90aa8058cf816f00902afed9c96f72,layers=
++meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,0722ff6f021df91542b5efa1ff5b5f6269f66add,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
++meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,08.02.00.006,layers=
++meta-arm,git://git.yoctoproject.org/meta-arm,HEAD,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
++oe-core,git://git.openembedded.org/openembedded-core,dunfell,51844f2d60d77fb8cb46ffe460402f76ae216ca5,layers=meta
++meta-psdkla,https://git.ti.com/git/jacinto-linux/meta-psdkla.git,am57xx_8.x,PSDKLA-AM57XX-08_02_01_00,layers=
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64.conf.sample
++
 -- 
-Denys
+2.17.1
 
-
-On Mon, Jun 27, 2022 at 11:07:17AM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
-> 
-> Not this one, but there are a number of other patches in line before
-> it that might be.
-> 
-> 
-> On 6/27/2022 11:02, Humphreys, Jonathan wrote:
-> >I don't think the layer changes will have any impact on it.
-> >
-> >+Denys
-> >
-> >
-> >-----Original Message-----
-> >From: Eatmon, Ryan <reatmon@ti.com>
-> >Sent: Monday, June 27, 2022 11:00 AM
-> >To: Humphreys, Jonathan <j-humphreys@ti.com>; meta-arago@lists.yoctoproject.org
-> >Subject: Re: [meta-arago] [dunfell/master][PATCH v2] tisdk-uenv: remove uEnv.txt for k3
-> >
-> >
-> >It is not applied in master yet.  I have not had time to keep it in sync with dunfell given all of the layer changes.  I believe Denys will be doing another sync up soon.
-> >
-> >
-> >
-> >On 6/26/2022 15:18, Humphreys, Jonathan wrote:
-> >>Ryan, I do not see this patch applied to master.  Can you check?
-> >>
-> >>Thanks
-> >>Jon
-> >>
-> >>-----Original Message-----
-> >>From: meta-arago@lists.yoctoproject.org
-> >><meta-arago@lists.yoctoproject.org> On Behalf Of Jonathan Humphreys
-> >>via lists.yoctoproject.org
-> >>Sent: Monday, June 13, 2022 11:18 AM
-> >>To: meta-arago@lists.yoctoproject.org
-> >>Subject: Re: [meta-arago] [dunfell/master][PATCH v2] tisdk-uenv:
-> >>remove uEnv.txt for k3
-> >>
-> >>On Thu, Jun  9, 2022 at 10:05 AM, Andrew Davis wrote:
-> >>
-> >>>
-> >>>This fixup should have been done in u-boot and not in a uEnv.txt file.
-> >>>It is not correct for all K3 anymore either. Remove it.
-> >>>
-> >>>Signed-off-by: Andrew Davis <afd@ti.com>
-> >>>---
-> >>>
-> >>>Changes from v1:
-> >>>   - Subject s/tiusdk-uenv/tisdk-uenv
-> >>>
-> >>>   .../tisdk-uenv/tisdk-uenv/k3/uEnv.txt         | 19 -------------------
-> >>>   1 file changed, 19 deletions(-)
-> >>>   delete mode 100644
-> >>>meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/k3/uEnv.txt
-> >>>
-> >>>diff --git
-> >>>a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/k3/uEnv.txt
-> >>>b/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/k3/uEnv.txt
-> >>>deleted file mode 100644
-> >>>index 80ea34f5..00000000
-> >>>---
-> >>>a/meta-arago-distro/recipes-tisdk/tisdk-uenv/tisdk-uenv/k3/uEnv.txt
-> >>>+++ /dev/null
-> >>>@@ -1,19 +0,0 @@
-> >>>-# This uEnv.txt file can contain additional environment settings
-> >>>that you -# want to set in U-Boot at boot time.  This can be simple
-> >>>variables such -# as the serverip or custom variables.  The format of this file is:
-> >>>-#    variable=value
-> >>>-# NOTE: This file will be evaluated after the bootcmd is run and the
-> >>>-#       bootcmd must be set to load this file if it exists (this is the
-> >>>-#       default on all newer U-Boot images.  This also means that some
-> >>>-#       variables such as bootdelay cannot be changed by this file since
-> >>>-#       it is not evaluated until the bootcmd is run.
-> >>>-
-> >>
-> >>Shouldn't we keep the above, as this is generic information about how to use uEnv.txt and when it is invoked?
-> >>
-> >>>-# The specific board is not able to be automatically detected. The
-> >>>below is a -# workaround to set a sane default incase the user has
-> >>>not manually configured -# a specific board.
-> >>>-def_board_name="am65x"
-> >>>-
-> >>>-# Check if using default board_name when name_overlays is not set
-> >>>-check_for_board=if test $name_overlays; then echo "Using board_name
-> >>>= $board_name"; else setenv board_name $def_board_name; fi
-> >>>-
-> >>>-uenvcmd=run check_for_board; run findfdt
-> >>>--
-> >>>2.36.1
 
