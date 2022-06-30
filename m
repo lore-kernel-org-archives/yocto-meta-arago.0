@@ -1,142 +1,131 @@
-Return-Path: <sinthu.raja@mistralsolutions.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D2C9C43334
-	for <webhook@archiver.kernel.org>; Thu, 30 Jun 2022 17:42:32 +0000 (UTC)
-Received: from egress-ip4b.ess.de.barracuda.com
- (egress-ip4b.ess.de.barracuda.com [18.185.115.208])
- by mx.groups.io with SMTP id smtpd.web10.28232.1656610942920528553
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B6C37C43334
+	for <webhook@archiver.kernel.org>; Thu, 30 Jun 2022 21:15:13 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.30610.1656623708304868025
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 30 Jun 2022 10:42:23 -0700
+ Thu, 30 Jun 2022 14:15:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mistralsolutions.com header.s=google header.b=kCEgOC66;
- spf=pass (domain: mistralsolutions.com, ip: 18.185.115.208,
- mailfrom: sinthu.raja@mistralsolutions.com)
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by mx-outbound16-241.eu-central-1b.ess.aws.cudaops.com
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
- Thu, 30 Jun 2022 17:42:17 +0000
-Received: by mail-wm1-f71.google.com with SMTP id
- c185-20020a1c35c2000000b0039db3e56c39so1714362wma.5
-        for <meta-arago@lists.yoctoproject.org>;
- Thu, 30 Jun 2022 10:42:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LoVK5OuSzaEVzNedfw6OSHt17/jJ6CXarSQdrF7nGYs=;
-        b=kCEgOC66vA0DwAGjOsDOsuwCw32HhOdyWyVAzJ3pVlBBP2hM2s9KjV4mUxNu4mioBw
-         ksBWlVeLvWjk2G29xeDUGMGcFrAglTMiqjC67pyr/uuQTa2MwZ0FSp8Y5ff+eUlZ2xZX
-         A18GuSexAGPxM/2ss5ZY8FZhn0GC2NSPtPZGU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LoVK5OuSzaEVzNedfw6OSHt17/jJ6CXarSQdrF7nGYs=;
-        b=P6Qm+oJ0e5A3gDMLRQlnV0yZ1IV+PEUDA7kKbiB0+5XgypSQrMq0wPxVa4Voa68/xQ
-         3SM2pJ/m1yfJynCGZtmvSJrMiDHE792M+la9gV6e2rMSdTqCOXbopHDFRk8hSyE1v2HV
-         xDiVquHoOsSK2UPGA5vS8NGSjNBCBkl5b1+vLMGfxC/J2jGC2UVHQ04UjRHcwPH7auV/
-         WUOVkxMzPyMUxHpEgA0qpp64wIfc/mt0fPOOcNT4ou/AlDVicf7awXD8bzh7Ey2bc+D9
-         dZGhSmynAgm+/aq9vyklpu6gQc2Jx//JT5TAo/xGqtYWq87ywJhKpcEixZJsRVQKNm5B
-         3YtA==
-X-Gm-Message-State: AJIora/yjJF1F7AEWWNjqcxd9OTC+vuq5vK+yiC81S8ndRWBmUjet0jl
-	jsiACIBJ3ckf6YcTKZO/UUsqzY3Mac+TggjQGRC/FlWzNuvVLR6dI1JoK8Xw+5IOga/lU2++8DD
-	mdQ17hIxxmfZ8cPLMHUuqfuZu/ypre4+7/9ShzMNlqoIbkJsRFV6ctkWAES73xKJ2ATbQ2G+98f
-	588NlJ/dk=
-X-Received: by 2002:a5d:4891:0:b0:21b:88c9:69ae with SMTP id
- g17-20020a5d4891000000b0021b88c969aemr9717996wrq.84.1656610936929;
-        Thu, 30 Jun 2022 10:42:16 -0700 (PDT)
-X-Google-Smtp-Source: 
- AGRyM1sw9LueqJXiGYh9vTZRm/vXbhn6V7fx4QOYPiOwyxToa0ohTzY1DxjM+EBFPMSCoTmBt1FK+7eOwMNshYmfaCI=
-X-Received: by 2002:a5d:4891:0:b0:21b:88c9:69ae with SMTP id
- g17-20020a5d4891000000b0021b88c969aemr9717973wrq.84.1656610936674; Thu, 30
- Jun 2022 10:42:16 -0700 (PDT)
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=P/CNtSFQ;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 25ULF3Hs053590;
+	Thu, 30 Jun 2022 16:15:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1656623703;
+	bh=cPYARoE5jmZ11JI3k7buGBF8txaH64Slc16Z+smdx/Y=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=P/CNtSFQTRvkfVtG/zh9x4gu+M+mQ+32YAIbcEnl/3GFGAqJssytYOncIJh2YTS5t
+	 cRCq8is9ItGv6ZFmAukBal54MyI/4dIIAT1BHBCEyf1gGxBust89VWsTYE+AKGAobp
+	 GCF0hub15i0McM92VfwKuwzlhSu1RtYqnZRf9iY4=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 25ULF37Z030427
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 30 Jun 2022 16:15:03 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 30
+ Jun 2022 16:15:02 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 30 Jun 2022 16:15:02 -0500
+Received: from [10.250.37.187] (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 25ULF2Gk060878;
+	Thu, 30 Jun 2022 16:15:02 -0500
+Message-ID: <faf3ba53-a4ca-1826-bac7-eac13540a81e@ti.com>
+Date: Thu, 30 Jun 2022 16:15:02 -0500
 MIME-Version: 1.0
-References: <20220630173642.4084-1-sinthu.raja@ti.com>
-In-Reply-To: <20220630173642.4084-1-sinthu.raja@ti.com>
-From: Sinthu Raja M <sinthu.raja@mistralsolutions.com>
-Date: Thu, 30 Jun 2022 23:12:05 +0530
-Message-ID: 
- <CAEd-yTRDYA9EtJg=VfE9mvL1Lo70qn_gEnm-mCQkF4jfhCfcgQ@mail.gmail.com>
-Subject: Re: [meta-arago][oe-layersetup][PATCH V2] processor-sdk-linux: Add
- 08.02.01.00 release config
-To: meta-arago@lists.yoctoproject.org
-Cc: Lucas Weaver <l-weaver@ti.com>, Yogesh Siraswar <yogeshs@ti.com>,
-	"Bajjuri, Praneeth" <praneeth@ti.com>, "Limaye, Aniket" <a-limaye@ti.com>,
- reatmon@ti.com,
-	Sinthu Raja <sinthu.raja@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-X-BESS-ID: 1656610937-304337-5409-27176-1
-X-BESS-VER: 2019.1_20220627.1822
-X-BESS-Apparent-Source-IP: 209.85.128.71
-X-BESS-Outbound-Spam-Score: 0.50
-X-BESS-Outbound-Spam-Report: Code version 3.2,
- rules version 3.2.2.241048 [from
-	cloudscan20-180.eu-central-1b.ess.aws.cudaops.com]
-	Rule breakdown below
-	 pts rule name              description
-	---- ---------------------- --------------------------------
-	0.50 BSF_RULE7568M          META: Custom Rule 7568M
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound
-X-BESS-Outbound-Spam-Status: SCORE=0.50 using account:ESS91090 scores of
- KILL_LEVEL=7.0 tests=BSF_RULE7568M, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.10.0
+Subject: Re: [meta-arago][dunfell][PATCH] gstreamer: Adding tracer-hooks build
+ flag to enable GST_TRACERS
+Content-Language: en-US
+To: Denys Dmytriyenko <denis@denix.org>, <a-limaye@ti.com>
+CC: "Bajjuri, Praneeth" <praneeth@ti.com>,
+        "meta-arago@lists.yoctoproject.org"
+	<meta-arago@lists.yoctoproject.org>,
+        "Mantena, Prasanth" <p-mantena@ti.com>,
+        "prashanth.ka@pathpartnertech.com" <prashanth.ka@pathpartnertech.com>,
+        "R,
+ Karthik" <karthik.ramanan@ti.com>,
+        "Weaver, Lucas" <l-weaver@ti.com>
+References: <20220629105304.15355-1-a-limaye@ti.com>
+ <2ff910d2-0865-4418-3d66-6bcf8a2efb12@ti.com>
+ <3188ef5fecbe458d8d04c4b2348147c2@ti.com> <20220630172553.GX18692@denix.org>
+From: Ryan Eatmon <reatmon@ti.com>
+In-Reply-To: <20220630172553.GX18692@denix.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 30 Jun 2022 17:42:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13930
+ <meta-arago@lists.yoctoproject.org>; Thu, 30 Jun 2022 21:15:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13931
 
-On Thu, Jun 30, 2022 at 11:07 PM Sinthu Raja
-<sinthu.raja@mistralsolutions.com> wrote:
->
-> From: Sinthu Raja <sinthu.raja@ti.com>
->
-> Add config file for processor-sdk-linux 08.02.01.00 release
->
-> Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
-> ---
-> Change in V2:
-> ------------
-> 1.Addressed the following review comments
->   Updated url from git:// to https://
 
-Adding Patch V1 path
-Patch V1: https://lists.yoctoproject.org/g/meta-arago/message/13920
->
->  .../processor-sdk-linux-08_02_01_00.txt          | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->  create mode 100644 configs/processor-sdk-linux/processor-sdk-linux-08_02_01_00.txt
->
-> diff --git a/configs/processor-sdk-linux/processor-sdk-linux-08_02_01_00.txt b/configs/processor-sdk-linux/processor-sdk-linux-08_02_01_00.txt
-> new file mode 100644
-> index 0000000..b42f802
-> --- /dev/null
-> +++ b/configs/processor-sdk-linux/processor-sdk-linux-08_02_01_00.txt
-> @@ -0,0 +1,16 @@
-> +# This file takes repo entries in the format
-> +# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-> +
-> +bitbake,https://git.openembedded.org/bitbake,1.46,d22cc1e587c650fd5f90cda32f5720f8a3105aac
-> +meta-arago,git://git.yoctoproject.org/meta-arago,dunfell,08.02.00.006,layers=meta-arago-distro:meta-arago-extras
-> +#meta-browser,git://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
-> +meta-qt5,https://github.com/meta-qt5/meta-qt5.git,dunfell,6bfe29d9e8fdd5c2fd17c736814b6df859b3af50,layers=
-> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,dunfell,c5f61e547b90aa8058cf816f00902afed9c96f72,layers=
-> +meta-openembedded,https://git.openembedded.org/meta-openembedded,dunfell,0722ff6f021df91542b5efa1ff5b5f6269f66add,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> +meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,08.02.00.006,layers=
-> +meta-arm,https://git.yoctoproject.org/meta-arm,HEAD,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,dunfell,51844f2d60d77fb8cb46ffe460402f76ae216ca5,layers=meta
-> +meta-psdkla,https://git.ti.com/git/jacinto-linux/meta-psdkla.git,am57xx_8.x,PSDKLA-AM57XX-08_02_01_00,layers=
-> +OECORELAYERCONF=./sample-files/bblayers.conf.sample
-> +OECORELOCALCONF=./sample-files/local-arago64.conf.sample
-> +
-> --
-> 2.36.1
->
+So you're saying it should be in meta-arago-distro?
 
+
+
+On 6/30/2022 12:25, Denys Dmytriyenko wrote:
+> This is distro-specific configuration and should not be done in distro-agnostic meta-arago-extras layer.
+> 
+> 
+> On Thu, Jun 30, 2022 at 11:58:09AM +0000, Aniket Limaye via lists.yoctoproject.org wrote:
+>> +Karthik
+>>
+>> Praneeth,
+>>
+>> This is not specific to codec. This can be used for profiling latencies and such for any GStreamer elements.
+>> It should not impact performance either. It just prints latency logs if an environment variable is set, similar to GST_DEBUG.
+>>
+>>
+>> -----Original Message-----
+>> From: Bajjuri, Praneeth <praneeth@ti.com>
+>> Sent: Thursday, June 30, 2022 3:29 PM
+>> To: Limaye, Aniket <a-limaye@ti.com>; meta-arago@lists.yoctoproject.org; Mantena, Prasanth <p-mantena@ti.com>; prashanth.ka@pathpartnertech.com
+>> Cc: Eatmon, Ryan <reatmon@ti.com>; Weaver, Lucas <l-weaver@ti.com>
+>> Subject: Re: [meta-arago][dunfell][PATCH] gstreamer: Adding tracer-hooks build flag to enable GST_TRACERS
+>>
+>> Prashanth,Prasanth,
+>>
+>> Please review.
+>>
+>> On 6/29/2022 4:23 PM, Aniket Limaye wrote:
+>>> Enables GST_TRACERS : an optional utility for profiling gstreamer applications
+>>
+>> Aniket,
+>>
+>> 1. What is the impact of this with codec performance?
+>> 2. Why is this optional utility need to enabled?
+>>
+>>
+>>>
+>>> Signed-off-by: Aniket Limaye <a-limaye@ti.com>
+>>> ---
+>>>    .../gstreamer/gstreamer1.0_1.16.%.bbappend                   | 5 +++++
+>>>    1 file changed, 5 insertions(+)
+>>>    create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0_1.16.%.bbappend
+>>>
+>>> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0_1.16.%.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0_1.16.%.bbappend
+>>> new file mode 100644
+>>> index 00000000..d7bdaa04
+>>> --- /dev/null
+>>> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0_1.16.%.bbappend
+>>> @@ -0,0 +1,5 @@
+>>> +
+>>> +PACKAGECONFIG_append = " tracer-hooks"
+>>> +
+>>> +PR_append = ".arago0"
+>>> +
 
 -- 
-With Regards
-Sinthu Raja
+Ryan Eatmon                reatmon@ti.com
+-----------------------------------------
+Texas Instruments, Inc.  -  LCPD  -  MGTS
 
