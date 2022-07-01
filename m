@@ -1,52 +1,53 @@
-Return-Path: <a-limaye@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A2632C43334
-	for <webhook@archiver.kernel.org>; Fri,  1 Jul 2022 07:47:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8B4F1C433EF
+	for <webhook@archiver.kernel.org>; Fri,  1 Jul 2022 16:12:40 +0000 (UTC)
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web09.35760.1656661636834836918
+ by mx.groups.io with SMTP id smtpd.web11.40320.1656691959902917493
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 01 Jul 2022 00:47:17 -0700
+ Fri, 01 Jul 2022 09:12:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=N6W1/tY8;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: a-limaye@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=pB19Fx1J;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2617lCmQ059354;
-	Fri, 1 Jul 2022 02:47:12 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 261GCbXT053145;
+	Fri, 1 Jul 2022 11:12:37 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1656661632;
-	bh=2lnvYoqltmpGGMCgW2raPif+RNoUy/Z06p9L3d144KY=;
-	h=From:To:CC:Subject:Date;
-	b=N6W1/tY8ODrlRwdPAJTAv5RkiyWPSeu1N8LWudvPxMj7C8Rw9w61kFKzvLjBmQUZe
-	 Fqk6SuoALFXNKnvrMD1kZ4MnmhuVwxyiwZkHVFy4mP/WmOTYBAVlNhR50FOsom/Ko3
-	 xT8ESNk2fwYGsOl5hNq65E0DDahqAV5Dba5oo/e0=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2617lCZW021509
+	s=ti-com-17Q1; t=1656691957;
+	bh=OQ9ObaajeeSg2n4KYyj7TcJ1a7FKc7yaHjNyflG4bZA=;
+	h=From:To:Subject:Date;
+	b=pB19Fx1JUwxkv5H02lAC3IRjWfe2A/tHgl3IMdsbNoTo7K9ml4J6beuV9aM0FspGu
+	 n1bDBDRRuDL7SyzLmQa1WQ8Y5mcV+2YvqQFaiSUElX+2yuFR5nqKb6UuwUZbNeKrNt
+	 bpVlxIDG1b6hEru3+lvMKcJEPmNu5DAwBvR5ovM4=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 261GCbdk019942
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 1 Jul 2022 02:47:12 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 1 Jul 2022 11:12:37 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 1
- Jul 2022 02:47:12 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2022 11:12:37 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 1 Jul 2022 02:47:12 -0500
-Received: from edgeaipc1 (ileax41-snat.itg.ti.com [10.172.224.153])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2617lBeO105274;
-	Fri, 1 Jul 2022 02:47:11 -0500
-Received: from a0485100 by edgeaipc1 with local (Exim 4.90_1)
-	(envelope-from <a-limaye@ti.com>)
-	id 1o7BMr-00022j-TV; Fri, 01 Jul 2022 13:17:09 +0530
-From: Aniket Limaye <a-limaye@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-CC: <praneeth@ti.com>, <denis@denix.org>, <reatmon@ti.com>, <l-weaver@ti.com>,
-        Aniket Limaye <a-limaye@ti.com>
-Subject: [meta-arago][dunfell][PATCH v2] conf: arago: Adding tracer-hooks
- build flag to gstreamer1.0
-Date: Fri, 1 Jul 2022 13:17:05 +0530
-Message-ID: <20220701074705.7408-1-a-limaye@ti.com>
+ Frontend Transport; Fri, 1 Jul 2022 11:12:37 -0500
+Received: from uda0214219 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 261GCb3I123538;
+	Fri, 1 Jul 2022 11:12:37 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1o7JG1-0002k2-2z; Fri, 01 Jul 2022 11:12:37 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][master/dunfell][PATCH] conf: machine: j721s2: add new
+ dtb for GESI
+Date: Fri, 1 Jul 2022 11:12:37 -0500
+Message-ID: <20220701161237.10497-1-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
@@ -54,30 +55,32 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 01 Jul 2022 07:47:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13934
+ <meta-arago@lists.yoctoproject.org>; Fri, 01 Jul 2022 16:12:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13935
 
-Enables GST_TRACERS : an optional utility for profiling gstreamer applications
+The following commits in ti-linux-5.10.y kernel has introduced a new dtb.
 
-Signed-off-by: Aniket Limaye <a-limaye@ti.com>
+commit: 9b05b2a89ff ("arm64: dts: ti: Add overlay for GESI to enable main CPSW2G in J721S2")
+
+This patch on j721s2 conf is to include the new dtb.
+
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 3 +++
- 1 file changed, 3 insertions(+)
+ conf/machine/j721s2-evm.conf | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 0e2f7ef1..61ae3c83 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -157,6 +157,9 @@ PACKAGECONFIG_append_pn-libsdl2 = " kmsdrm"
- # Enable cryptodev/devcrypto engine in OpenSSL 1.1
- PACKAGECONFIG_append_pn-openssl = " cryptodev-linux"
+diff --git a/conf/machine/j721s2-evm.conf b/conf/machine/j721s2-evm.conf
+index e5ed0b73..b224ce7b 100644
+--- a/conf/machine/j721s2-evm.conf
++++ b/conf/machine/j721s2-evm.conf
+@@ -13,6 +13,7 @@ OPTEE_K3_USART = "0x8"
  
-+# Enable GST_TRACER logging in gstreamer
-+PACKAGECONFIG_append_pn-gstreamer1.0 = " tracer-hooks"
-+
- # Disable pulseaudio routing in alsa by default
- PACKAGECONFIG_remove_pn-alsa-plugins = "pulseaudio"
- RDEPENDS_pulseaudio-server_remove = "alsa-plugins-pulseaudio-conf"
+ KERNEL_DEVICETREE = " \
+     ti/k3-j721s2-common-proc-board.dtb \
++    ti/k3-j721s2-gesi-exp-board.dtb \
+ "
+ 
+ UBOOT_MACHINE = "j721s2_evm_a72_defconfig"
 -- 
 2.17.1
 
