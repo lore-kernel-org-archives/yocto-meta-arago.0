@@ -1,55 +1,249 @@
-Return-Path: <denis@denix.org>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 80FEFC43334
-	for <webhook@archiver.kernel.org>; Thu, 14 Jul 2022 17:37:53 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.10560.1657820264696353613
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 97848C43334
+	for <webhook@archiver.kernel.org>; Wed, 20 Jul 2022 20:20:54 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web10.2166.1658348451619943096
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 14 Jul 2022 10:37:45 -0700
+ Wed, 20 Jul 2022 13:20:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing;
- spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
- mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 0970040C8E;
-	Thu, 14 Jul 2022 17:37:44 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id NmJWzWVjZXZC; Thu, 14 Jul 2022 17:37:44 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-80-88.washdc.fios.verizon.net
- [100.15.80.88])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D0BC840C67;
-	Thu, 14 Jul 2022 17:37:40 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id C51821749AB; Thu, 14 Jul 2022 13:37:39 -0400 (EDT)
-Date: Thu, 14 Jul 2022 13:37:39 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: afd@ti.com
-Cc: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
-	meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][kirkstone/master][PATCH 1/3] ti-crypto-examples:
- Remove ti-crypto-examples
-Message-ID: <20220714173739.GQ18692@denix.org>
-References: <20220711164933.21445-1-afd@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=OkY1eKFB;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 26KKKoEB095885;
+	Wed, 20 Jul 2022 15:20:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1658348450;
+	bh=aSTEoFb1ayFCemw7cPJGt7l7IqCdUcVRlm//DQ9DDmk=;
+	h=From:To:Subject:Date;
+	b=OkY1eKFBvlufFRTlxCIqWiwuKlQfKnABdo04n61EgpUVoJvSGQoZ20KtdhjXRedtv
+	 2EuDkwm5pNCG85AV9r6WWSbDw8yPixonzwtVQ66wxhDHtKw5u4O7C2B+Qf6gRhbbcn
+	 VHWeqbHBHhcKv89D1Fy1i3MJ0wFGaevXuAQbKXVM=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 26KKKoK3010943
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 20 Jul 2022 15:20:50 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 20
+ Jul 2022 15:20:50 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 20 Jul 2022 15:20:50 -0500
+Received: from uda0214219 (ileax41-snat.itg.ti.com [10.172.224.153])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 26KKKoqY012556;
+	Wed, 20 Jul 2022 15:20:50 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1oEGBe-00056w-5t; Wed, 20 Jul 2022 15:20:50 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [oe-layersetup][master][PATCH] oe-layersetup: Add config option for
+ inclusive vars
+Date: Wed, 20 Jul 2022 15:20:50 -0500
+Message-ID: <20220720202050.19606-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220711164933.21445-1-afd@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 14 Jul 2022 17:37:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13952
+ <meta-arago@lists.yoctoproject.org>; Wed, 20 Jul 2022 20:20:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13953
 
-This series looks good to me, thanks!
+Part of the transition to kirkstone was to rename some variables
+to align with community standards.  Since oe-layersetup needs to
+work with both dunfell and kirkstone, we need a way to control
+which branch we are pointing to so that we can put the correct
+variables in the conf/setenv file.
 
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ configs/arago-dunfell-config.txt        |  1 +
+ configs/arago-dunfell-next-config.txt   |  1 +
+ configs/arago-dunfell-wip-config.txt    |  1 +
+ configs/arago-kirkstone-config.txt      |  1 +
+ configs/arago-master-config.txt         |  1 +
+ configs/distroless-dunfell-config.txt   |  1 +
+ configs/distroless-kirkstone-config.txt |  1 +
+ configs/distroless-master-config.txt    |  1 +
+ configs/poky-dunfell-config.txt         |  1 +
+ configs/poky-kirkstone-config.txt       |  1 +
+ configs/poky-master-config.txt          |  1 +
+ oe-layertool-setup.sh                   | 27 +++++++++++++++++++++++--
+ 12 files changed, 36 insertions(+), 2 deletions(-)
 
-On Mon, Jul 11, 2022 at 11:49:31AM -0500, Andrew Davis via lists.yoctoproject.org wrote:
-> These examples have not been updated in a long time and are arguably not
-> correct anymore. Remove this.
+diff --git a/configs/arago-dunfell-config.txt b/configs/arago-dunfell-config.txt
+index 60cc72a..c5084a0 100644
+--- a/configs/arago-dunfell-config.txt
++++ b/configs/arago-dunfell-config.txt
+@@ -16,3 +16,4 @@ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ # use below for OECORELAYERCONF to mark it compatible with dunfell
+ #OECORELAYERCONF=./sample-files/bblayers-dunfell-browser.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64.conf.sample
++BITBAKE_INCLUSIVE_VARS=no
+diff --git a/configs/arago-dunfell-next-config.txt b/configs/arago-dunfell-next-config.txt
+index e2eb202..7ad9f92 100644
+--- a/configs/arago-dunfell-next-config.txt
++++ b/configs/arago-dunfell-next-config.txt
+@@ -16,3 +16,4 @@ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ # use below for OECORELAYERCONF to mark it compatible with dunfell
+ #OECORELAYERCONF=./sample-files/bblayers-dunfell-browser.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64.conf.sample
++BITBAKE_INCLUSIVE_VARS=no
+diff --git a/configs/arago-dunfell-wip-config.txt b/configs/arago-dunfell-wip-config.txt
+index 60f9f0d..b8c9cce 100644
+--- a/configs/arago-dunfell-wip-config.txt
++++ b/configs/arago-dunfell-wip-config.txt
+@@ -16,3 +16,4 @@ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ # use below for OECORELAYERCONF to mark it compatible with dunfell
+ #OECORELAYERCONF=./sample-files/bblayers-dunfell-browser.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64.conf.sample
++BITBAKE_INCLUSIVE_VARS=no
+diff --git a/configs/arago-kirkstone-config.txt b/configs/arago-kirkstone-config.txt
+index 0f3c001..ebe130a 100644
+--- a/configs/arago-kirkstone-config.txt
++++ b/configs/arago-kirkstone-config.txt
+@@ -12,3 +12,4 @@ meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta
+ oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
+diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.txt
+index 532a145..93d93b5 100644
+--- a/configs/arago-master-config.txt
++++ b/configs/arago-master-config.txt
+@@ -12,3 +12,4 @@ meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-ar
+ oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
+diff --git a/configs/distroless-dunfell-config.txt b/configs/distroless-dunfell-config.txt
+index 0d2ab28..bb03ac7 100644
+--- a/configs/distroless-dunfell-config.txt
++++ b/configs/distroless-dunfell-config.txt
+@@ -6,3 +6,4 @@ meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,HEAD,layers=meta-arm:meta-a
+ oe-core,git://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local.conf.sample
++BITBAKE_INCLUSIVE_VARS=no
+diff --git a/configs/distroless-kirkstone-config.txt b/configs/distroless-kirkstone-config.txt
+index 3b33992..4cafca7 100644
+--- a/configs/distroless-kirkstone-config.txt
++++ b/configs/distroless-kirkstone-config.txt
+@@ -6,3 +6,4 @@ meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta
+ oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
+diff --git a/configs/distroless-master-config.txt b/configs/distroless-master-config.txt
+index 5c55459..e67f916 100644
+--- a/configs/distroless-master-config.txt
++++ b/configs/distroless-master-config.txt
+@@ -6,3 +6,4 @@ meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-ar
+ oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
+diff --git a/configs/poky-dunfell-config.txt b/configs/poky-dunfell-config.txt
+index 6c768e7..5f6c45b 100644
+--- a/configs/poky-dunfell-config.txt
++++ b/configs/poky-dunfell-config.txt
+@@ -6,3 +6,4 @@ meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,HEAD,layers=meta-arm:meta-a
+ meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,HEAD,layers=
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local-poky.conf.sample
++BITBAKE_INCLUSIVE_VARS=no
+diff --git a/configs/poky-kirkstone-config.txt b/configs/poky-kirkstone-config.txt
+index 0e57c64..815cabf 100644
+--- a/configs/poky-kirkstone-config.txt
++++ b/configs/poky-kirkstone-config.txt
+@@ -8,3 +8,4 @@ meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta
+ oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local-poky-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
+diff --git a/configs/poky-master-config.txt b/configs/poky-master-config.txt
+index a541501..272a14b 100644
+--- a/configs/poky-master-config.txt
++++ b/configs/poky-master-config.txt
+@@ -8,3 +8,4 @@ meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-ar
+ oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
+ OECORELAYERCONF=./sample-files/bblayers.conf.sample
+ OECORELOCALCONF=./sample-files/local-poky-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
+diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
+index e05737b..56f6507 100755
+--- a/oe-layertool-setup.sh
++++ b/oe-layertool-setup.sh
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!/bin/bash
+ 
+ # OE Build Enviroment Setup Script
+ #
+@@ -38,6 +38,7 @@ OECORELAYERCONF="" # sample configuration file used for bblayers.conf
+ OECORELAYERCONFPATH="" # stores the path of the OECORELAYERCONFPATH variable
+ OECORELOCALCONF="" # sample configuration file used for local.conf
+ OECORELOCALCONFPATH="" # stores the path of the OECORELOCALCONFPATH variable
++BITBAKE_INCLUSIVE_VARS="no"
+ outputfile="" # file to save output to if -o is used
+ inputfile="" # file containing initial layers if -f is used
+ interactive="n" # flag for interactive mode.  Default is n
+@@ -158,6 +159,14 @@ parse_oecore_line() {
+     eval $var=$val
+ }
+ 
++# Input is a line of the form BITBAKE.*=value
++parse_bitbake_line() {
++    var=`echo $1 | cut -d= -f1`
++    val=`echo $1 | cut -d= -f2`
++    eval $var=$val
++}
++
++
+ 
+ # Input is a repository description line as detailed in the usage section
+ # There is a second optional input that can be passed to prefix the variable
+@@ -243,6 +252,15 @@ parse_input_file() {
+             continue
+         fi
+ 
++        # If the line starts with OECORE then parse the OECORE setting
++        echo $line | grep -e "^BITBAKE.*=" > /dev/null
++        if [ "$?" = "0" ]
++        then
++            parse_bitbake_line $line
++            output="$output""$line\n"
++            continue
++        fi
++
+         # Since the line is not a comment or an OECORE setting let's assume
+         # it is a repository information line and parse it
+         parse_repo_line $line
+@@ -853,8 +871,13 @@ unset BITBAKEDIR
+ unset SCRIPTS
+ export PATH
+ export BUILDDIR=${builddir}
+-export BB_ENV_EXTRAWHITE="MACHINE DISTRO TCMODE TCLIBC http_proxy ftp_proxy https_proxy all_proxy ALL_PROXY no_proxy SSH_AGENT_PID SSH_AUTH_SOCK BB_SRCREV_POLICY SDKMACHINE BB_NUMBER_THREADS PARALLEL_MAKE GIT_PROXY_COMMAND GIT_PROXY_IGNORE SOCKS5_PASSWD SOCKS5_USER OEBASE META_SDK_PATH TOOLCHAIN_TYPE TOOLCHAIN_BRAND TOOLCHAIN_BASE TOOLCHAIN_PATH TOOLCHAIN_PATH_ARMV5 TOOLCHAIN_PATH_ARMV7 TOOLCHAIN_PATH_ARMV8 EXTRA_TISDK_FILES TISDK_VERSION ARAGO_BRAND ARAGO_RT_ENABLE ARAGO_SYSTEST_ENABLE ARAGO_KERNEL_SUFFIX TI_SECURE_DEV_PKG_CAT TI_SECURE_DEV_PKG_AUTO TI_SECURE_DEV_PKG_K3 ARAGO_SYSVINIT SYSFW_FILE"
+ EOM
++
++    if [ "$BITBAKE_INCLUSIVE_VARS" == "no" ]; then
++        echo "export BB_ENV_EXTRAWHITE=\"MACHINE DISTRO TCMODE TCLIBC http_proxy ftp_proxy https_proxy all_proxy ALL_PROXY no_proxy SSH_AGENT_PID SSH_AUTH_SOCK BB_SRCREV_POLICY SDKMACHINE BB_NUMBER_THREADS PARALLEL_MAKE GIT_PROXY_COMMAND GIT_PROXY_IGNORE SOCKS5_PASSWD SOCKS5_USER OEBASE META_SDK_PATH TOOLCHAIN_TYPE TOOLCHAIN_BRAND TOOLCHAIN_BASE TOOLCHAIN_PATH TOOLCHAIN_PATH_ARMV5 TOOLCHAIN_PATH_ARMV7 TOOLCHAIN_PATH_ARMV8 EXTRA_TISDK_FILES TISDK_VERSION ARAGO_BRAND ARAGO_RT_ENABLE ARAGO_SYSTEST_ENABLE ARAGO_KERNEL_SUFFIX TI_SECURE_DEV_PKG_CAT TI_SECURE_DEV_PKG_AUTO TI_SECURE_DEV_PKG_K3 ARAGO_SYSVINIT SYSFW_FILE\"" >> $confdir/setenv
++    else
++        echo "export BB_ENV_PASSTHROUGH_ADDITIONS=\"MACHINE DISTRO TCMODE TCLIBC http_proxy ftp_proxy https_proxy all_proxy ALL_PROXY no_proxy SSH_AGENT_PID SSH_AUTH_SOCK BB_SRCREV_POLICY SDKMACHINE BB_NUMBER_THREADS PARALLEL_MAKE GIT_PROXY_COMMAND GIT_PROXY_IGNORE SOCKS5_PASSWD SOCKS5_USER OEBASE META_SDK_PATH TOOLCHAIN_TYPE TOOLCHAIN_BRAND TOOLCHAIN_BASE TOOLCHAIN_PATH TOOLCHAIN_PATH_ARMV5 TOOLCHAIN_PATH_ARMV7 TOOLCHAIN_PATH_ARMV8 EXTRA_TISDK_FILES TISDK_VERSION ARAGO_BRAND ARAGO_RT_ENABLE ARAGO_SYSTEST_ENABLE ARAGO_KERNEL_SUFFIX TI_SECURE_DEV_PKG_CAT TI_SECURE_DEV_PKG_AUTO TI_SECURE_DEV_PKG_K3 ARAGO_SYSVINIT SYSFW_FILE\"" >> $confdir/setenv
++    fi
+ }
+ 
+ 
+-- 
+2.17.1
+
 
