@@ -2,41 +2,40 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C3F5DC6FD23
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B9588C6FD1E
 	for <webhook@archiver.kernel.org>; Tue, 13 Sep 2022 04:02:56 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web12.887.1663041767718604582
+ by mx.groups.io with SMTP id smtpd.web08.891.1663041768923537296
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 12 Sep 2022 21:02:48 -0700
+ Mon, 12 Sep 2022 21:02:49 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing;
  spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
  mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 2C32040D68
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 59CFC40D7D
 	for <meta-arago@lists.yoctoproject.org>;
  Tue, 13 Sep 2022 04:02:47 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id r0Qm2Tbhi_5L for <meta-arago@lists.yoctoproject.org>;
+	with ESMTP id SnE8yMA1FKDA for <meta-arago@lists.yoctoproject.org>;
 	Tue, 13 Sep 2022 04:02:47 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-80-88.washdc.fios.verizon.net
  [100.15.80.88])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1146B40D6E
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4D7A540D73
 	for <meta-arago@lists.yoctoproject.org>;
- Tue, 13 Sep 2022 04:02:46 +0000 (UTC)
+ Tue, 13 Sep 2022 04:02:47 +0000 (UTC)
 Received: from thorin.denix (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 54FA91749CF
+	by mail.denix.org (Postfix) with ESMTP id 7B7A41749D4
 	for <meta-arago@lists.yoctoproject.org>;
  Tue, 13 Sep 2022 00:02:45 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
-Subject: [master/kirkstone][PATCH 03/52] weston-init: Update initscript for
- weston-calibration
-Date: Tue, 13 Sep 2022 04:01:57 +0000
-Message-Id: <20220913040246.2365077-4-denis@denix.org>
+Subject: [master/kirkstone][PATCH 08/52] ti-tisdk-setup: Fixup to bump up PR
+Date: Tue, 13 Sep 2022 04:02:02 +0000
+Message-Id: <20220913040246.2365077-9-denis@denix.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220913040246.2365077-1-denis@denix.org>
 References: <20220913040246.2365077-1-denis@denix.org>
@@ -46,52 +45,35 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Tue, 13 Sep 2022 04:02:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13985
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/13991
 
-From: Priya N S <priya.ns@ti.com>
+From: Aparna M <a-m1@ti.com>
 
-Increase the sleep time before starting the weston-calibrator.
-It takes some time for the completion of the runWeston script.
-If the weston-calibration is started before the completion of
-the runWeston script, the weston-calibrator will fail.
+Bump up PR corresponding to latest SRCREV update
 
-Signed-off-by: Priya N S <priya.ns@ti.com>
+Signed-off-by: Aparna M <a-m1@ti.com>
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend | 2 +-
- meta-arago-distro/recipes-graphics/wayland/weston-init/init     | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ .../recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb              | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbapp=
-end b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-index 1a32f196..28e7ae39 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
-@@ -1,6 +1,6 @@
- FILESEXTRAPATHS:prepend :=3D "${THISDIR}/${PN}:"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setu=
+p.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+index d312c59d..6b3b85d5 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-setup/ti-tisdk-setup.bb
+@@ -2,7 +2,7 @@ DESCRIPTION =3D "Package containing scripts to setup the =
+development host and targ
+ LICENSE =3D "BSD-3-Clause"
+ LIC_FILES_CHKSUM =3D "file://setup.sh;beginline=3D3;endline=3D31;md5=3Df=
+c4b04a33df6d892c9f4d4a9d92b945e"
 =20
--PR:append =3D ".arago11"
-+PR:append =3D ".arago12"
+-PR =3D "r46"
++PR =3D "r47"
 =20
- SRC_URI:append =3D " \
-     file://runWeston \
-diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/init =
-b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
-index 461b0787..7a80238b 100644
---- a/meta-arago-distro/recipes-graphics/wayland/weston-init/init
-+++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/init
-@@ -79,7 +79,7 @@ case "$1" in
-             echo
-             echo    "*** To continue, please complete the touchscreen ca=
-libration"
-             echo -n "*** by touching the crosshairs on the LCD screen"
--            sleep 1
-+            sleep 2
-             CAL_VALUES=3D`weston-calibrator|cut -c21-`
-             echo 'SUBSYSTEM=3D=3D"input", ENV{WL_CALIBRATION}=3D"'$CAL_V=
-ALUES'"' > $WS_CALUDEV_FILE
-             echo "."
+ BRANCH ?=3D "master"
+ SRCREV =3D "22f4e5af1894a60d9e7d04caf83f26a556c14eca"
 --=20
 2.25.1
 
