@@ -1,95 +1,222 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <p-bhagat@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E1D52ECAAA1
-	for <webhook@archiver.kernel.org>; Fri, 16 Sep 2022 22:08:55 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web12.52.1663366131680283138
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D891ECAAD3
+	for <webhook@archiver.kernel.org>; Mon, 19 Sep 2022 11:15:17 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web12.18471.1663586107839284858
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 16 Sep 2022 15:08:52 -0700
+ Mon, 19 Sep 2022 04:15:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=aw8VK//F;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28GM8mYm087358;
-	Fri, 16 Sep 2022 17:08:48 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=yoSGikYQ;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: p-bhagat@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 28JBF68S014667
+	for <meta-arago@lists.yoctoproject.org>; Mon, 19 Sep 2022 06:15:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1663366128;
-	bh=QRA5haSoyOmrTN2/YPEau/msHvxGP4SRdYnij9+DPSU=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=aw8VK//FP3i5k7LIy00k6qYDJ/RKNkfb2ZZYhZqDSLzolQlVMNhri3z8t1eECd3Ha
-	 4tY+YPV+SkOYDtvaB6v7adeAfWPZ9UzzvLAQejMosxt+yI6CO8814gFccvpjWNYGZA
-	 hSMmRwhh9K+Pn0tGItGFA8QcH/+AxmHWBJoyDly4=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28GM8mDL009428
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 16 Sep 2022 17:08:48 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Fri, 16
- Sep 2022 17:08:48 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1663586106;
+	bh=3PQShrApELBWRbCAxhMkmjixaKBhyEY7jAo0cb4qanE=;
+	h=From:To:CC:Subject:Date;
+	b=yoSGikYQW7EVoqKlvSoTrX+F0UI1uPWgGI5wtkD1if00fXBU8JGFu/Wx3MFvIXn7G
+	 jVgGg7aQ+0chjvvKte9o7AtDiZ/8jTxSfJO5SgDneGSNvvbadSHM9TIcwGJbx9RB0P
+	 djEbKP8X26er8j29OzmMUH1E8WBSUcY1mwT94F9M=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 28JBF6Ra007950
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Mon, 19 Sep 2022 06:15:06 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Mon, 19
+ Sep 2022 06:15:06 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Fri, 16 Sep 2022 17:08:48 -0500
-Received: from [10.249.39.108] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28GM8m4t046800;
-	Fri, 16 Sep 2022 17:08:48 -0500
-Message-ID: <a42313a1-8da4-c69e-f578-b98d5e17d528@ti.com>
-Date: Fri, 16 Sep 2022 17:08:47 -0500
+ Frontend Transport; Mon, 19 Sep 2022 06:15:06 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 28JBF5ow050950;
+	Mon, 19 Sep 2022 06:15:06 -0500
+From: Paresh Bhagat <p-bhagat@ti.com>
+To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>, <reatmon@ti.com>
+CC: <c-shilwant@ti.com>, <s-adivi@ti.com>
+Subject: [[meta-arago][tisdk-setup-scripts][master][PATCH]] setup.sh : Make
+ Linux SDK setup script interactive
+Date: Mon, 19 Sep 2022 16:44:46 +0530
+Message-ID: <20220919111446.21263-1-p-bhagat@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.0
-Subject: Re: [meta-arago][dunfell][PATCH] ltp-ddt: RC Auto-Merger:
- 08.04.01.004
-Content-Language: en-US
-To: LCPD Automation Script <lcpdbld@list.ti.com>,
-        Praneeth Bajjuri
-	<praneeth@ti.com>,
-        Denys Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-References: <1663348276-6237-1-git-send-email-lcpdbld@list.ti.com>
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <1663348276-6237-1-git-send-email-lcpdbld@list.ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 16 Sep 2022 22:08:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14038
+ <meta-arago@lists.yoctoproject.org>; Mon, 19 Sep 2022 11:15:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14039
 
+- Add functionality to tell what setup.sh is about to run and give option to either select or skip that step.
+- Jira - https://jira.itg.ti.com/browse/SITREQ-795
 
-Ignore this patch.  There were issues with the script and this patch is 
-incomplete.
+Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
+---
+ setup.sh | 133 ++++++++++++++++++++++++++++++++++++++++---------------
+ 1 file changed, 98 insertions(+), 35 deletions(-)
 
-On 9/16/2022 12:11, LCPD Automation Script wrote:
-> Updated the value(s) for:
->    SRCREV
-> 
-> Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
-> ---
->   meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-> index bad1d7f..62818cb 100644
-> --- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-> +++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-> @@ -14,7 +14,7 @@ PE = "1"
->   PR = "r7"
->   PV_append = "+git${SRCPV}"
->   
-> -SRCREV = "b79e1ec3e4f5501891fdf307548a9d6616b00bd0"
-> +SRCREV = "aadce9266cafe526e815c5c11f9a04eeb9d9fedf"
->   BRANCH ?= "master"
->   
->   SRC_URI_remove = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master"
-
+diff --git a/setup.sh b/setup.sh
+index fc4c6c7..f002e72 100644
+--- a/setup.sh
++++ b/setup.sh
+@@ -50,6 +50,58 @@ how to develop software on the EVM
+ EOF
+ }
+ 
++
++
++run_package_install() {
++	if [ -f $cwd/bin/setup-package-install.sh ]; then
++     		$cwd/bin/setup-package-install.sh
++     		check_status
++	else
++    		echo "setup-package-install.sh does not exist in the bin directory"
++    		exit 1
++	fi
++}
++
++run_target_nfs() {
++	if [ -f $cwd/bin/setup-targetfs-nfs.sh ]; then
++    		$cwd/bin/setup-targetfs-nfs.sh
++    		check_status
++	else
++    		echo "setup-targetfs-nfs.sh does not exist in the bin directory"
++    		exit 1
++	fi
++}
++
++run_tftp() {
++	if [ -f $cwd/bin/setup-tftp.sh ]; then
++    		$cwd/bin/setup-tftp.sh
++    		check_status
++	else
++    		echo "setup-tftp.sh does not exist in the bin directory"
++    		exit 1
++	fi
++}
++
++run_minicom() {
++	if [ -f $cwd/bin/setup-minicom.sh ]; then
++    		$cwd/bin/setup-minicom.sh
++    		check_status
++	else
++    		echo "setup-minicom.sh does not exist in the bin directory"
++    		exit 1
++	fi
++}
++
++run_uboot() {
++	if [ -f $cwd/bin/setup-uboot-env.sh ]; then
++    		$cwd/bin/setup-uboot-env.sh
++    		check_status
++	else
++    		echo "setup-uboot-env.sh does not exist in the bin directory"
++    		exit 1
++	fi
++}
++
+ cwd=`dirname $0`
+ # Minimum major Linux version for running add-to-group script
+ min_ver_upper=12
+@@ -86,45 +138,56 @@ if [ "$host_upper" -gt "$min_ver_upper" -o "$host_upper" -eq "$min_ver_upper" ];
+     fi
+ fi
+ 
+-if [ -f $cwd/bin/setup-package-install.sh ]; then
+-     $cwd/bin/setup-package-install.sh
+-     check_status
+-else
+-    echo "setup-package-install.sh does not exist in the bin directory"
+-    exit 1
+-fi
+ 
+-if [ -f $cwd/bin/setup-targetfs-nfs.sh ]; then
+-    $cwd/bin/setup-targetfs-nfs.sh
+-    check_status
+-else
+-    echo "setup-targetfs-nfs.sh does not exist in the bin directory"
+-    exit 1
+-fi
++while true; do
++    read -p "Do you wish to install required host packages (Press (Y) to run, (n) to skip)? " -r response
++    case $response in
++        [Yy]* ) run_package_install; break;;
++        [Nn]* ) echo "host packages installation skipped"; break;;
++	   "" ) run_package_install; break;; 
++	    * )  echo "Enter Y/n";;
++    esac
++done
+ 
+-if [ -f $cwd/bin/setup-tftp.sh ]; then
+-    $cwd/bin/setup-tftp.sh
+-    check_status
+-else
+-    echo "setup-tftp.sh does not exist in the bin directory"
+-    exit 1
+-fi
++while true; do
++    read -p "Do you wish to run nfs setup (Press (Y) to run, (n) to skip) ? " -r response
++    case $response in
++        [Yy]* ) run_target_nfs; break;;
++        [Nn]* ) echo "nfs setup skipped"; break;;
++	   "" ) run_target_nfs; break;;
++	    * )  echo "Enter Y/n";;
++    esac
++done
+ 
+-if [ -f $cwd/bin/setup-minicom.sh ]; then
+-    $cwd/bin/setup-minicom.sh
+-    check_status
+-else
+-    echo "setup-minicom.sh does not exist in the bin directory"
+-    exit 1
+-fi
++while true; do
++    read -p "Do you wish to run tftp setup (Press (Y) to run, (n) to skip) ? " -r response
++    case $response in
++        [Yy]* ) run_tftp; break;;
++        [Nn]* ) echo "tftp setup skipped"; break;;
++	   "" ) run_tftp; break;;
++	    * )  echo "Enter Y/n";;
++    esac
++done
+ 
+-if [ -f $cwd/bin/setup-uboot-env.sh ]; then
+-    $cwd/bin/setup-uboot-env.sh
+-    check_status
+-else
+-    echo "setup-uboot-env.sh does not exist in the bin directory"
+-    exit 1
+-fi
++while true; do
++    read -p "Do you wish to run minicom setup (Press (Y) to run, (n) to skip) ? " -r response
++    case $response in
++        [Yy]* ) run_minicom; break;;
++        [Nn]* ) echo "minicom setup skipped"; break;;
++	   "" ) run_minicom; break;;
++	    * )  echo "Enter Y/n";;
++    esac
++done
++
++while true; do
++    read -p "Do you wish to run uboot setup (Press (Y) to run, (n) to skip) ? " -r response
++    case $response in
++        [Yy]* ) run_uboot; break;;
++        [Nn]* ) echo "uboot setup skipped"; break;;
++	   "" ) run_uboot; break;;
++	    * )  echo "Enter Y/n";;
++    esac
++done
+ 
+ # Publish the TISDK exit header
+ exit_footer
 -- 
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
+2.17.1
+
 
