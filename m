@@ -1,100 +1,154 @@
-Return-Path: <bgvmysore@gmail.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 105FFC433FE
-	for <webhook@archiver.kernel.org>; Fri,  7 Oct 2022 16:54:26 +0000 (UTC)
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com
- [209.85.215.171])
- by mx.groups.io with SMTP id smtpd.web10.6969.1665161660236059096
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B934CC433F5
+	for <webhook@archiver.kernel.org>; Fri,  7 Oct 2022 20:47:44 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web09.698.1665175655268004707
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 07 Oct 2022 09:54:20 -0700
+ Fri, 07 Oct 2022 13:47:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20210112 header.b=nzggR1IM;
- spf=pass (domain: gmail.com, ip: 209.85.215.171,
- mailfrom: bgvmysore@gmail.com)
-Received: by mail-pg1-f171.google.com with SMTP id e129so5136406pgc.9
-        for <meta-arago@lists.yoctoproject.org>;
- Fri, 07 Oct 2022 09:54:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ff/x6zJvDM/00xKI+qTGoRcv6M4ve2xFDtkQ8ZpSPO8=;
-        b=nzggR1IM7ttPBYcTZODoNeCujbx2wYY+h+JDslyefOppx2QK/lRNWq7wF7z5xrCth9
-         latoUIcnazz0adPq1GnKD+zFLBRwl7IF0ITXLpdKBX6ev6NvPUJBL0kivlOyD8/594mE
-         5Rxt1iuQuBYCCk0Hnm55xZOGZ3X8ZGcMulkihzQFdKetJ3aVt/AIpNjmONQEv2+16HBh
-         rtHAaB+UA5bWx1mHUFXqTigjw5R+tpXwWDnO5PaFYuLAnmOLAYXeH9V1b0CB0RNZK4x+
-         hux8/n+794Rdp+hQ9h+ckYeFPfFwdA2CpMIaaDoQIwBdao3SFDxGNfnKkk+7z54FYWRH
-         B8Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ff/x6zJvDM/00xKI+qTGoRcv6M4ve2xFDtkQ8ZpSPO8=;
-        b=iTraKBXEjIYC3QNeoaPyY51+c3xcMugARI4wxXRm1FJU8alzLW1xJhVk+l//gzdNc9
-         QOy3lrMrz4yTSYErZdDPuXSqHSSbg4h54FwSeuIHqePr6EkVdc2HcrriK5/UfPPiNOkB
-         0tMz4MxJhftDH2BS1qhdSw2Ek7oSLsrNSnnXK60ea6dsn+YOZ2xsjT9LS9oe3NWJWic6
-         x3zxQVjdsSg3lGVahlkL0riTuxbq8fkqcoHQfbbwPmQLRJweNvYQSZIoc3iq62nssmuC
-         55Wx2rZkTrcF5I3DG2M3A7nhkww+0e0fA1No57tVLq/lAkGRyBaUYNvzSuc94+y+59Nd
-         fbdw==
-X-Gm-Message-State: ACrzQf2pq50glZ/gCOEPzQy6xf6f5Ivuu0mbHqZaYgmDEa3pTKg3YIJ1
-	s7nFFEGi5UucZT2HppojOQFxFAeQHNDpow==
-X-Google-Smtp-Source: 
- AMsMyM5KAqHJH17gEaxfhON0BrjpuXKSJRN1OVPKPiH6954lclSQHtTBHf71rjacM5AymdZvziST+g==
-X-Received: by 2002:a05:6a00:4085:b0:562:527f:d80e with SMTP id
- bw5-20020a056a00408500b00562527fd80emr6201038pfb.86.1665161659097;
-        Fri, 07 Oct 2022 09:54:19 -0700 (PDT)
-Received: from bgvpc.www.tendawifi.com ([103.2.235.212])
-        by smtp.gmail.com with ESMTPSA id
- f69-20020a623848000000b0053ae018a91esm1894731pfa.173.2022.10.07.09.54.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Oct 2022 09:54:17 -0700 (PDT)
-From: Bhargav R <bgvmysore@gmail.com>
-To: meta-arago@lists.yoctoproject.org
-Cc: reatmon@ti.com,
-	denys@konsulko.com,
-	Bhargav R <bgvmysore@gmail.com>
-Subject: [meta-arago] [dunfell][PATCH]: Fix hardcoded filename containing
- .rootfs to use IMAGE_NAME_SUFFIX
-Date: Fri,  7 Oct 2022 22:23:58 +0530
-Message-Id: <20221007165358.16733-1-bgvmysore@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ dkim=missing;
+ spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64,
+ mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5846840DC0;
+	Fri,  7 Oct 2022 20:10:20 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id P00j0aKLHVG9; Fri,  7 Oct 2022 20:10:20 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-80-88.washdc.fios.verizon.net
+ [100.15.80.88])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2EC7840DBF;
+	Fri,  7 Oct 2022 20:10:17 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id CD3C1174A18; Fri,  7 Oct 2022 16:10:14 -0400 (EDT)
+Date: Fri, 7 Oct 2022 16:10:14 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: afd@ti.com
+Cc: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
+	meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][master/kirkstone][PATCH 7/7] meta-arago: Use new
+ J7 SoC names over specific board names
+Message-ID: <20221007201014.GA30861@denix.org>
+References: <20221006150628.17044-1-afd@ti.com>
+ <20221006150628.17044-7-afd@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20221006150628.17044-7-afd@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 07 Oct 2022 16:54:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14059
+ <meta-arago@lists.yoctoproject.org>; Fri, 07 Oct 2022 20:47:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14060
 
-In meta-arago-distro/classes/image_types_md5.bbclass, the filename for md5sum is is hardcoded with .rootfs as suffix.
-The build fails in do_image_tar if IMAGE_NAME_SUFFIX is set to a different value.
-Changing '.rootfs' to ${IMAGE_NAME_SUFFIX} to fix this issue.
+On Thu, Oct 06, 2022 at 10:06:28AM -0500, Andrew Davis via lists.yoctoproject.org wrote:
+> Now that we have SoC names, we can avoid adding features based on the
+> board name. We expect folks to create their own boards based on these
+> SoCs, and so using the TI made EVM board name everywhere adds extra churn
+> when adding a new board. Plus it is more correct for most of these
+> features as they depend on the SoC, not on the EVM board.
+> 
+> One other thing we do here is to not use the generic "j7" name,
+> the current and future J7 devices are far to feature diverse
+> to group at this level. Grouping like that will lead to the wrong
+> things getting enabled as new J7 SoCs are added.
 
-Signed-off-by: Bhargav Raviprakash <bgvmysore@gmail.com>
----
- meta-arago-distro/classes/image_types_md5.bbclass | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Hmm, this second part is rather backwards (IMO) in some places, see below.
 
-diff --git a/meta-arago-distro/classes/image_types_md5.bbclass b/meta-arago-distro/classes/image_types_md5.bbclass
-index 9e2c04fa..4712e1a1 100644
---- a/meta-arago-distro/classes/image_types_md5.bbclass
-+++ b/meta-arago-distro/classes/image_types_md5.bbclass
-@@ -1,9 +1,9 @@
- inherit image_types
- 
- COMPRESSIONTYPES += "gz.md5"
--COMPRESS_CMD_gz.md5 = "${COMPRESS_CMD_gz}; md5sum ${IMAGE_NAME}.rootfs.${type}.gz > ${IMAGE_NAME}.rootfs.${type}.gz.md5"
-+COMPRESS_CMD_gz.md5 = "${COMPRESS_CMD_gz}; md5sum ${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.${type}.gz > ${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.${type}.gz.md5"
- IMAGE_TYPES += "tar.gz.md5"
- 
- COMPRESSIONTYPES += "xz.md5"
--COMPRESS_CMD_xz.md5 = "${COMPRESS_CMD_xz}; md5sum ${IMAGE_NAME}.rootfs.${type}.xz > ${IMAGE_NAME}.rootfs.${type}.xz.md5"
-+COMPRESS_CMD_xz.md5 = "${COMPRESS_CMD_xz}; md5sum ${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.${type}.xz > ${IMAGE_NAME}${IMAGE_NAME_SUFFIX}.${type}.xz.md5"
- IMAGE_TYPES += "tar.xz.md5"
+
+> diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
+> index 3c31ba18..296eef7a 100644
+> --- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
+> +++ b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
+> @@ -24,7 +24,9 @@ DTB_FILTER:am57xx-hs-evm = "${DTB_FILTER:am57xx-evm}"
+>  DTB_FILTER:ti43x = "am43"
+>  DTB_FILTER:omapl138 = "da850"
+>  DTB_FILTER:am65xx = "am65"
+> -DTB_FILTER:j7 = "j721e"
+> +DTB_FILTER:j721e = "j721e"
+> +DTB_FILTER:j7200 = "j7200"
+> +DTB_FILTER:j721s2 = "j721s2"
+
+Yes, here it does make perfect sense.
+
+
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> index f4e72a89..c01e9497 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> @@ -61,9 +61,9 @@ UTILS:append:am64xx = " ti-rtos-firmware pru-icss"
+>  UTILS:append:am62xx = " ti-rtos-firmware"
+>  #UTILS:append:am65xx = " ti-rtos-firmware pru-icss pru-pwm-fw"
+>  UTILS:append:am65xx = " ti-rtos-firmware pru-icss"
+> -UTILS:append:j7 = " ti-rtos-firmware"
+> -UTILS:append:j721e-evm = " pru-icss"
+> -UTILS:append:j721e-hs-evm = " pru-icss"
+> +UTILS:append:j721e = " ti-rtos-firmware pru-icss"
+> +UTILS:append:j7200 = " ti-rtos-firmware"
+> +UTILS:append:j721s2 = " ti-rtos-firmware"
+
+Here - not so much. ti-rtos-firmware is applicable to all j7. So, I'd leave 
+that line alone and only replace adding pru-icss to specific EVMs to adding it 
+to j721e SoC family.
+
+Or go even further - ti-rtos-firmware is common to all k3 platforms, so all 
+the individual am65xx, am64xx and am62xx, along with j7, could be replaced 
+with one line:
+
+UTILS:append:k3 = " ti-rtos-firmware"
+
+And then add pri-icss or other extra FW to specific SoC families only.
+
+
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
+> index e16e4d51..e6e0b915 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
+> @@ -19,7 +19,9 @@ ANALYTICS = ""
+>  #    ${@['','qt-opencv-opencl-opengl-multithreaded'][oe.utils.all_distro_features(d, 'opencv opencl opengl', True, False) and bb.utils.contains('MACHINE_FEATURES', 'gpu dsp', True, False, d)]} \
+>  #    ${@['','barcode-roi'][oe.utils.all_distro_features(d, 'opencv', True, False) and bb.utils.contains('MACHINE_FEATURES', 'dsp', True, False, d)]} \
+>  #"
+> -ANALYTICS:j7 = ""
+> +ANALYTICS:j721e = ""
+> +ANALYTICS:j7200 = ""
+> +ANALYTICS:j721s2 = ""
+
+Well, this is probably completely wrong by now, anyway.
+
+
+>  ANALYTICS:omapl138 = ""
+>  
+>  RDEPENDS:${PN} = "\
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+> index 99a6cc82..5f56f8be 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+> @@ -78,7 +78,15 @@ ARAGO_TI_TEST:append:k3 = " \
+>      k3conf \
+>  "
+>  
+> -ARAGO_TI_TEST:append:j7 = " \
+> +ARAGO_TI_TEST:append:j721e = " \
+> +    ufs-utils \
+> +"
+> +
+> +ARAGO_TI_TEST:append:j7200 = " \
+> +    ufs-utils \
+> +"
+> +
+> +ARAGO_TI_TEST:append:j721s2 = " \
+>      ufs-utils \
+>  "
+
+ufs-utils is quite generic and should probably be added to k3 or maybe even 
+all platforms...
+
 -- 
-2.34.1
-
+Denys
 
