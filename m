@@ -2,201 +2,197 @@ Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2CEF8C433FE
-	for <webhook@archiver.kernel.org>; Tue, 11 Oct 2022 17:34:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 48B43C433FE
+	for <webhook@archiver.kernel.org>; Tue, 11 Oct 2022 17:53:32 +0000 (UTC)
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web09.10641.1665509654674221180
+ by mx.groups.io with SMTP id smtpd.web12.10716.1665510806371715253
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 11 Oct 2022 10:34:15 -0700
+ Tue, 11 Oct 2022 10:53:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=f8dRhk9x;
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=R0r70pjG;
  spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: afd@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29BHY4RQ060540;
-	Tue, 11 Oct 2022 12:34:04 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29BHrL89064637;
+	Tue, 11 Oct 2022 12:53:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1665509644;
-	bh=cjyVuHfmT4ebYyzFeSogFcfH8GVfSmf5wxARfS4Ht7g=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=f8dRhk9xLIW4g2YTVfs/rExOh5HHCrRdhNGGgV/FzSJGPqUlt27KOyfDtfQqnEYJ/
-	 KVt+YI0AcE/6/4nw54kwjs1Cqp0+OJnJ7kUpaP2tdDjT6oAIm1Li2fec/ft2MaKN70
-	 V0x+/6GoO4i+NgRmB13eorRfS8K7Zb8hE2wIuIMk=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29BHY4YV021711
+	s=ti-com-17Q1; t=1665510801;
+	bh=6fpTj9UjCWBaP4YxksNAUdM+ITWRjg45B773PdFnzAA=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=R0r70pjG+T+K3t/jVGqMGbcIV8h0pDKP/BC0o7jayKWknSI0maAUaHh2mGYGt/hoC
+	 vlSOi8O3nO5Gs/EY0+K1KMSh9O0RTZsYzagRhlNSnTeJAurEmTlKEoHyhP4YczvfPu
+	 UMOkEGnxMsJkKjkHumvtuPveccgYXKCod4rH3s6o=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29BHrL4g080811
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 11 Oct 2022 12:34:04 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 11 Oct 2022 12:53:21 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 11
- Oct 2022 12:34:05 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2022 12:53:21 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 11 Oct 2022 12:34:04 -0500
-Received: from [10.250.35.37] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29BHY4SR017362;
-	Tue, 11 Oct 2022 12:34:04 -0500
-Message-ID: <17c22760-c873-ff4c-093f-6ea77f0bb9c7@ti.com>
-Date: Tue, 11 Oct 2022 12:34:04 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.2
-Subject: Re: [meta-arago][master/kirkstone][PATCH 7/7] meta-arago: Use new J7
- SoC names over specific board names
-Content-Language: en-US
-To: Denys Dmytriyenko <denis@denix.org>
-CC: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
-        <meta-arago@lists.yoctoproject.org>
-References: <20221006150628.17044-1-afd@ti.com>
- <20221006150628.17044-7-afd@ti.com> <20221007201014.GA30861@denix.org>
- <e6d2ae4c-9684-98b1-c8a6-ad28ecc4f49d@ti.com>
- <20221011013533.GE30861@denix.org>
+ Frontend Transport; Tue, 11 Oct 2022 12:53:21 -0500
+Received: from ula0226330.dal.design.ti.com (ileaxei01-snat2.itg.ti.com
+ [10.180.69.6])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29BHrKFE089061;
+	Tue, 11 Oct 2022 12:53:21 -0500
 From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20221011013533.GE30861@denix.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
+        <meta-arago@lists.yoctoproject.org>
+CC: Andrew Davis <afd@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH v2 1/6] ti-crypto-examples:
+ Remove ti-crypto-examples
+Date: Tue, 11 Oct 2022 12:53:15 -0500
+Message-ID: <20221011175320.26843-2-afd@ti.com>
+X-Mailer: git-send-email 2.37.3
+In-Reply-To: <20221011175320.26843-1-afd@ti.com>
+References: <20221011175320.26843-1-afd@ti.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 11 Oct 2022 17:34:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14068
+ <meta-arago@lists.yoctoproject.org>; Tue, 11 Oct 2022 17:53:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14072
 
-On 10/10/22 8:35 PM, Denys Dmytriyenko wrote:
-> On Mon, Oct 10, 2022 at 08:26:26AM -0500, Andrew Davis wrote:
->> On 10/7/22 3:10 PM, Denys Dmytriyenko wrote:
->>> On Thu, Oct 06, 2022 at 10:06:28AM -0500, Andrew Davis via lists.yoctoproject.org wrote:
->>>> Now that we have SoC names, we can avoid adding features based on the
->>>> board name. We expect folks to create their own boards based on these
->>>> SoCs, and so using the TI made EVM board name everywhere adds extra churn
->>>> when adding a new board. Plus it is more correct for most of these
->>>> features as they depend on the SoC, not on the EVM board.
->>>>
->>>> One other thing we do here is to not use the generic "j7" name,
->>>> the current and future J7 devices are far to feature diverse
->>>> to group at this level. Grouping like that will lead to the wrong
->>>> things getting enabled as new J7 SoCs are added.
->>>
->>> Hmm, this second part is rather backwards (IMO) in some places, see below.
->>>
->>>
->>>> diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
->>>> index 3c31ba18..296eef7a 100644
->>>> --- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
->>>> +++ b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.inc
->>>> @@ -24,7 +24,9 @@ DTB_FILTER:am57xx-hs-evm = "${DTB_FILTER:am57xx-evm}"
->>>>   DTB_FILTER:ti43x = "am43"
->>>>   DTB_FILTER:omapl138 = "da850"
->>>>   DTB_FILTER:am65xx = "am65"
->>>> -DTB_FILTER:j7 = "j721e"
->>>> +DTB_FILTER:j721e = "j721e"
->>>> +DTB_FILTER:j7200 = "j7200"
->>>> +DTB_FILTER:j721s2 = "j721s2"
->>>
->>> Yes, here it does make perfect sense.
->>>
->>>
->>>> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
->>>> index f4e72a89..c01e9497 100644
->>>> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
->>>> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
->>>> @@ -61,9 +61,9 @@ UTILS:append:am64xx = " ti-rtos-firmware pru-icss"
->>>>   UTILS:append:am62xx = " ti-rtos-firmware"
->>>>   #UTILS:append:am65xx = " ti-rtos-firmware pru-icss pru-pwm-fw"
->>>>   UTILS:append:am65xx = " ti-rtos-firmware pru-icss"
->>>> -UTILS:append:j7 = " ti-rtos-firmware"
->>>> -UTILS:append:j721e-evm = " pru-icss"
->>>> -UTILS:append:j721e-hs-evm = " pru-icss"
->>>> +UTILS:append:j721e = " ti-rtos-firmware pru-icss"
->>>> +UTILS:append:j7200 = " ti-rtos-firmware"
->>>> +UTILS:append:j721s2 = " ti-rtos-firmware"
->>>
->>> Here - not so much. ti-rtos-firmware is applicable to all j7. So, I'd leave
->>> that line alone and only replace adding pru-icss to specific EVMs to adding it
->>> to j721e SoC family.
->>>
->>> Or go even further - ti-rtos-firmware is common to all k3 platforms, so all
->>> the individual am65xx, am64xx and am62xx, along with j7, could be replaced
->>> with one line:
->>>
->>> UTILS:append:k3 = " ti-rtos-firmware"
->>>
->>> And then add pri-icss or other extra FW to specific SoC families only.
->>>
->>
->> If you want I can make this re-arrangement in a follow up patch.
->>
->>>
->>>> diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
->>>> index e16e4d51..e6e0b915 100644
->>>> --- a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
->>>> +++ b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
->>>> @@ -19,7 +19,9 @@ ANALYTICS = ""
->>>>   #    ${@['','qt-opencv-opencl-opengl-multithreaded'][oe.utils.all_distro_features(d, 'opencv opencl opengl', True, False) and bb.utils.contains('MACHINE_FEATURES', 'gpu dsp', True, False, d)]} \
->>>>   #    ${@['','barcode-roi'][oe.utils.all_distro_features(d, 'opencv', True, False) and bb.utils.contains('MACHINE_FEATURES', 'dsp', True, False, d)]} \
->>>>   #"
->>>> -ANALYTICS:j7 = ""
->>>> +ANALYTICS:j721e = ""
->>>> +ANALYTICS:j7200 = ""
->>>> +ANALYTICS:j721s2 = ""
->>>
->>> Well, this is probably completely wrong by now, anyway.
->>>
->>
->> Yes it probably is, but then my point in this patch was to
->> not make any changes to functionality (or as few as possible).
->> So if it is broken now, it was broken just the same before.
->>
->>>
->>>>   ANALYTICS:omapl138 = ""
->>>>   RDEPENDS:${PN} = "\
->>>> diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
->>>> index 99a6cc82..5f56f8be 100644
->>>> --- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
->>>> +++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
->>>> @@ -78,7 +78,15 @@ ARAGO_TI_TEST:append:k3 = " \
->>>>       k3conf \
->>>>   "
->>>> -ARAGO_TI_TEST:append:j7 = " \
->>>> +ARAGO_TI_TEST:append:j721e = " \
->>>> +    ufs-utils \
->>>> +"
->>>> +
->>>> +ARAGO_TI_TEST:append:j7200 = " \
->>>> +    ufs-utils \
->>>> +"
->>>> +
->>>> +ARAGO_TI_TEST:append:j721s2 = " \
->>>>       ufs-utils \
->>>>   "
->>>
->>> ufs-utils is quite generic and should probably be added to k3 or maybe even
->>> all platforms...
->>>
+These examples have not been updated in a long time and are not
+correct anymore. Remove this.
 
-Looks like UFS is only supported on J721e today, so when "j7" was
-used above, they only meant "j721e". Will fix.
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ .../conf/distro/include/arago-source-ipk.inc  |  3 --
+ .../packagegroup-arago-tisdk-crypto.bb        |  1 -
+ .../Makefile_ti-crypto-examples               | 24 ---------------
+ .../ti-tisdk-makefile_1.0.bb                  |  3 --
+ .../ti-crypto-examples_git.bb                 | 30 -------------------
+ 5 files changed, 61 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples
+ delete mode 100644 meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
 
->>
->> Same as above, would you like this done in a follow up patch? This patch only
->> fans out the name keeping the same functionality as before. If that exposes
->> existing issues or opportunities for cleanup, then I can make those next.
-> 
-> It would have been fine to do further cleanup/optimization/collapsing of the
-> code in a followup patch, if you weren't first expanding it here...
-> 
-> In other words, it seems replacing "j7" override with more specific
-> "j721e/j7200/j721s2" overrides only makes sense for DTB_FILTER case and
-> should be left alone in other 3 places.
-> 
+diff --git a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+index c03d5383..75355710 100644
+--- a/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
++++ b/meta-arago-distro/conf/distro/include/arago-source-ipk.inc
+@@ -46,9 +46,6 @@ SRCIPK_INSTALL_DIR:pn-ti-tisdk-licenses ?= "docs/licenses"
+ CREATE_SRCIPK:pn-matrix-gui ?= "1"
+ SRCIPK_INSTALL_DIR:pn-matrix-gui ?= "example-applications/${PN}-${PV}"
+ 
+-CREATE_SRCIPK:pn-ti-crypto-examples ?= "1"
+-SRCIPK_INSTALL_DIR:pn-ti-crypto-examples ?= "example-applications/${PN}-${PV}"
+-
+ CREATE_SRCIPK:pn-qml-carinfo ?= "1"
+ SRCIPK_INSTALL_DIR:pn-qml-carinfo ?= "example-applications/${PN}-${PV}"
+ 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
+index f217f7d8..d2189a50 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-crypto.bb
+@@ -13,7 +13,6 @@ CRYPTO_SUPPORT = "\
+     openssl-engines \
+ "
+ 
+-#ti-crypto-examples
+ CRYPTO_SUPPORT:append:ti33x = " cryptodev-module cryptodev-tests"
+ CRYPTO_SUPPORT:append:ti43x = " cryptodev-module cryptodev-tests"
+ CRYPTO_SUPPORT:append:dra7xx = " cryptodev-module cryptodev-tests"
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples
+deleted file mode 100644
+index 6ad07e9a..00000000
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/Makefile_ti-crypto-examples
++++ /dev/null
+@@ -1,24 +0,0 @@
+-# ti-crypto-examples build targets
+-ti-crypto-examples:
+-	@echo =================================
+-	@echo    Building TI Crypto Examples
+-	@echo =================================
+-	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*ti-crypto-examples*"`; make release
+-
+-ti-crypto-examples_clean:
+-	@echo =================================
+-	@echo    Cleaning TI Crypto Examples
+-	@echo =================================
+-	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*ti-crypto-examples*"`; make clean
+-
+-ti-crypto-examples_install:
+-	@echo ===================================================
+-	@echo   Installing TI Crypto Examples - Release version
+-	@echo ===================================================
+-	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*ti-crypto-examples*"`; make install
+-
+-ti-crypto-examples_install_debug:
+-	@echo =================================================
+-	@echo   Installing TI Crypto Examples - Debug Version
+-	@echo =================================================
+-	@cd example-applications; cd `find . -maxdepth 1 -type d -name "*ti-crypto-examples*"`; make install_debug
+diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+index b991351f..c47ae172 100644
+--- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
++++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile_1.0.bb
+@@ -18,7 +18,6 @@ SRC_URI = "\
+     file://Makefile_u-boot-legacy \
+     file://Makefile_matrix-gui \
+     file://Makefile_arm-benchmarks \
+-    file://Makefile_ti-crypto-examples \
+     file://Makefile_am-sysinfo \
+     file://Makefile_av-examples \
+     file://Makefile_u-boot-spl \
+@@ -76,7 +75,6 @@ MAKEFILES = ""
+ # Add device specific make targets
+ 
+ MAKEFILES:append:ti33x = " u-boot-spl \
+-                           ti-crypto-examples \
+                            linux-dtbs \
+                            cryptodev \
+                            ti-sgx-ddk-km \
+@@ -86,7 +84,6 @@ MAKEFILES:append:ti33x = " u-boot-spl \
+                            pdm-anomaly-detection \
+ "
+ MAKEFILES:append:ti43x = " u-boot-spl \
+-                           ti-crypto-examples \
+                            linux-dtbs \
+                            cryptodev \
+                            dual-camera-demo \
+diff --git a/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb b/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
+deleted file mode 100644
+index 10f14478..00000000
+--- a/meta-arago-extras/recipes-core/ti-crypto-examples/ti-crypto-examples_git.bb
++++ /dev/null
+@@ -1,30 +0,0 @@
+-DESCRIPTION = "TI Cryptography Example Applications"
+-HOMEPAGE = "https://git.ti.com/cgit/arago-project-org/crypto-example-apps/"
+-LICENSE = "BSD-3-Clause"
+-LIC_FILES_CHKSUM = "file://AES/aes_256.c;beginline=9;endline=35;md5=8edbb4dee965d2f2eb5ca2822addcae5"
+-SECTION = "console"
+-DEPENDS += "openssl"
+-
+-PR = "r7"
+-
+-BRANCH ?= "master"
+-SRCREV = "6f4b09fffe970bb6b448369875874e798ef282f6"
+-
+-SRC_URI = "git://git.ti.com/git/git/arago-project-org/crypto-example-apps.git;protocol=https;branch=${BRANCH}"
+-
+-S = "${WORKDIR}/git"
+-
+-do_compile() {
+-    export CROSS_COMPILE=${TARGET_PREFIX}
+-    export CFLAGS='${TARGET_CC_ARCH}'
+-    # build the release version
+-    oe_runmake release
+-}
+-
+-do_install() {
+-    oe_runmake DESTDIR=${D} install
+-}
+-
+-python () {
+-    raise bb.parse.SkipRecipe("skipping ti-crypto-examples")
+-}
+-- 
+2.37.3
 
-I'll break the other ones out into patches fixing as suggested.
-
-The goal is to remove the name "j7" everywhere, grouping for
-the "J7" family is not useful, there is nothing common today
-to all J7 devices that is not also common to all K3. It is
-an unneeded level of grouping that is now causing issues and
-mistakes when adding new platforms.
-
-Andrew
 
