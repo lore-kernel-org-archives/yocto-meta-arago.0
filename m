@@ -1,79 +1,80 @@
-Return-Path: <p-bhagat@ti.com>
+Return-Path: <vigneshr@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F23EC433FE
-	for <webhook@archiver.kernel.org>; Tue, 11 Oct 2022 12:11:10 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web10.6384.1665490265639893446
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E0B17C433FE
+	for <webhook@archiver.kernel.org>; Tue, 11 Oct 2022 14:08:50 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web11.7763.1665497324672008056
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 11 Oct 2022 05:11:06 -0700
+ Tue, 11 Oct 2022 07:08:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=VZ8EnDOg;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: p-bhagat@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29BCB4og131058
-	for <meta-arago@lists.yoctoproject.org>; Tue, 11 Oct 2022 07:11:04 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=ivxHiJB6;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: vigneshr@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29BE8hRf038940;
+	Tue, 11 Oct 2022 09:08:43 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1665490264;
-	bh=dVoI6Ao7legehae6mI1zzmKY8RjSI4TzxwKG5lUg0UI=;
+	s=ti-com-17Q1; t=1665497323;
+	bh=MDfF0Nbgxrfwj7sNEY7WPW0AHD5U6//IqW5969rdqAQ=;
 	h=From:To:CC:Subject:Date;
-	b=VZ8EnDOgXHj9wdN/YTh7kS3VKMb+w2jbyXoCw05DvpUrNj+kwVs2u/fOorb9lvD3z
-	 7KRFInyITPl9bDYq2I5Jq37HQRwf1XPKbrBTDzoY/rhgKm/lUkp6SKj3L+r2NNDgTW
-	 0D77BVJ0H3QdgDyVAfU5BMVLtzdSJYZDOb/CAGdU=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29BCB4sJ105129
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Tue, 11 Oct 2022 07:11:04 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	b=ivxHiJB6CnM+GrpzgjUxHpUya3ddQAlASrra+0c+xaiEFtgczs5v/oAESkskhu+pW
+	 hovxJskN8Zvr3eWzEjQqqo2SNTEAo4DJXG7oZV2qhkUWHDRpO0s3x3751KEpnZ0RR/
+	 Pc/FyuS9ZwvaFCvhR25uxkJ4ix/fV8umrZjroV+0=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29BE8huq016992
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 11 Oct 2022 09:08:43 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Tue, 11
- Oct 2022 07:11:04 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2022 09:08:43 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
- Frontend Transport; Tue, 11 Oct 2022 07:11:04 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29BCB3vs007199;
-	Tue, 11 Oct 2022 07:11:03 -0500
-From: Paresh Bhagat <p-bhagat@ti.com>
-To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>, <reatmon@ti.com>
-CC: <c-shilwant@ti.com>, <s-adivi@ti.com>
-Subject: [tisdk-setup-scripts][master][PATCH v2] create-sdcard : Correct if
- condition which checks for boot images
-Date: Tue, 11 Oct 2022 17:40:27 +0530
-Message-ID: <20221011121027.6841-1-p-bhagat@ti.com>
-X-Mailer: git-send-email 2.17.1
+ Frontend Transport; Tue, 11 Oct 2022 09:08:43 -0500
+Received: from uda0132425.dhcp.ti.com (ileaxei01-snat2.itg.ti.com
+ [10.180.69.6])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29BE8fBp122392;
+	Tue, 11 Oct 2022 09:08:42 -0500
+From: Vignesh Raghavendra <vigneshr@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: <reatmon@ti.com>, <denys@konsulko.com>
+Subject: [meta-arago][PATCH dunfell] irqbalance: Update to v1.8.0
+Date: Tue, 11 Oct 2022 19:38:17 +0530
+Message-ID: <20221011140817.2257359-1-vigneshr@ti.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 11 Oct 2022 12:11:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14066
+ <meta-arago@lists.yoctoproject.org>; Tue, 11 Oct 2022 14:08:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14067
 
-The if condition which checks for boot binaries for am65xx and j7 devices has no spaces which shows error while running create-sdcard.sh.Add the required spaces in if condition.
+irqbalance has fixes for ARM64 systems especially for when CONFIG_NUMA
+is disabled, hence upgrade to v1.8.0 to take advantage of IRQ load
+balancing on K3 SoCs
 
-Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
+Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
 ---
- create-sdcard.sh | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-extended/irqbalance/irqbalance_git.bbappend       | 4 ++++
+ 1 file changed, 4 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-extended/irqbalance/irqbalance_git.bbappend
 
-diff --git a/create-sdcard.sh b/create-sdcard.sh
-index 4af6c94..5c3490a 100644
---- a/create-sdcard.sh
-+++ b/create-sdcard.sh
-@@ -1057,7 +1057,7 @@ if [ $BOOTPATHOPTION -eq 1 ] ; then
- 
- 	echo ""
- 	#copy boot files out of board support
--        if ["$TARDEVICENAME" == "am65xx"] || ["$TARDEVICENAME" == "j7"]; then
-+        if [ "$TARDEVICENAME" == "am65xx" ] || [ "$TARDEVICENAME" == "j7" ]; then
- 		if [ "$MLO" == "" ] && ( [ "$SPL_R5" == "" ] || [ "$SPL_A53" == "" ] || [ "$SYSFW" == "" ] ); then
- 			echo "Boot image not found"
- 		fi
+diff --git a/meta-arago-distro/recipes-extended/irqbalance/irqbalance_git.bbappend b/meta-arago-distro/recipes-extended/irqbalance/irqbalance_git.bbappend
+new file mode 100644
+index 000000000000..e87a65d65f47
+--- /dev/null
++++ b/meta-arago-distro/recipes-extended/irqbalance/irqbalance_git.bbappend
+@@ -0,0 +1,4 @@
++SRCREV = "99ae256d02b35778b406e598beedc8d827cdac18"
++PV = "1.8.0"
++
++PR_append = ".arago3"
 -- 
-2.17.1
+2.38.0
 
 
