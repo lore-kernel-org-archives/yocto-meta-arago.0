@@ -1,86 +1,98 @@
-Return-Path: <denis@denix.org>
+Return-Path: <dannenberg@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BD64CC4332F
-	for <webhook@archiver.kernel.org>; Wed, 12 Oct 2022 20:42:41 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.2296.1665607358506782745
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B7069C4332F
+	for <webhook@archiver.kernel.org>; Thu, 13 Oct 2022 11:41:22 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web11.6345.1665661277590356507
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 12 Oct 2022 13:42:39 -0700
+ Thu, 13 Oct 2022 04:41:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id D5CA540DBB;
-	Wed, 12 Oct 2022 20:42:37 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Jx9J3yxqHnbJ; Wed, 12 Oct 2022 20:42:37 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-80-88.washdc.fios.verizon.net [100.15.80.88])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id AC7BF40DBA;
-	Wed, 12 Oct 2022 20:42:34 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id F3723174A38; Wed, 12 Oct 2022 16:42:31 -0400 (EDT)
-Date: Wed, 12 Oct 2022 16:42:31 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: reatmon@ti.com
-Cc: Praneeth Bajjuri <praneeth@ti.com>,
-	Denys Dmytriyenko <denys@konsulko.com>,
-	meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][master/kirkstone][PATCH] layers: Add langdale to
- LAYERSERIES_COMPAT
-Message-ID: <20221012204231.GI22689@denix.org>
-References: <20221012201543.4794-1-reatmon@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=YOM0uDlA;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: dannenberg@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 29DBfCMn093195;
+	Thu, 13 Oct 2022 06:41:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1665661272;
+	bh=MzOSixuVgi7LDPFfY7EOUs0wvhJ+wotoAP5WF9jOy9k=;
+	h=From:To:CC:Subject:Date;
+	b=YOM0uDlAAYaYxjketRn2LxcDym8SNxwYggmkBsYnncU2En2qOUZALaKMJ4tgVyngy
+	 1YCSOaHI8pfkK0FCdIQw8SC0a6BBr/F9w3bfDazKh1ooznQw0aL6FMNaxncuFRJXSh
+	 IJRHBWiZ4n6jdzpbshy6wxAsmb8kumQacahuaIQQ=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 29DBfChm118266
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 13 Oct 2022 06:41:12 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6; Thu, 13
+ Oct 2022 06:41:12 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.6 via
+ Frontend Transport; Thu, 13 Oct 2022 06:41:12 -0500
+Received: from dasso.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 29DBfCV0031315;
+	Thu, 13 Oct 2022 06:41:12 -0500
+From: Andreas Dannenberg <dannenberg@ti.com>
+To: <denys@konsulko.com>, <reatmon@ti.com>, <praneeth@ti.com>,
+        <meta-arago@lists.yoctoproject.org>
+CC: Andreas Dannenberg <dannenberg@ti.com>
+Subject: [master/kirkstone/dunfell][PATCH] meta-toolchain-arago: update executable fixup for Ubuntu 20.04+ compatibility
+Date: Thu, 13 Oct 2022 06:41:04 -0500
+Message-ID: <20221013114104.144903-1-dannenberg@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20221012201543.4794-1-reatmon@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 12 Oct 2022 20:42:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14082
+ <meta-arago@lists.yoctoproject.org>; Thu, 13 Oct 2022 11:41:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14083
 
-Do you want to merge this to kirkstone as well? Should be master only, I 
-think.
+The linux devkit installer patches up the cross toolchain executables'
+dynamic library dependencies after installation to reflect the actual
+installation location. This is done through the 'file' tool which
+starting with Ubuntu 20.04 returns a new link type called 'static-pie
+ linked' for files that will need to be patched. To accomodate this
+change update the command that is used to identify executables requiring
+patching with this new link type.
 
+This fixes dynamic loader errors with cross toolchain tools like flex,
+qmake, and others similar to the below:
 
-On Wed, Oct 12, 2022 at 03:15:43PM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
-> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
-> ---
->  meta-arago-distro/conf/layer.conf | 2 +-
->  meta-arago-extras/conf/layer.conf | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
-> index 4e21a517..5de46fc9 100644
-> --- a/meta-arago-distro/conf/layer.conf
-> +++ b/meta-arago-distro/conf/layer.conf
-> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-distro"
->  BBFILE_PATTERN_meta-arago-distro := "^${LAYERDIR}/"
->  BBFILE_PRIORITY_meta-arago-distro = "10"
->  
-> -LAYERSERIES_COMPAT_meta-arago-distro = "kirkstone"
-> +LAYERSERIES_COMPAT_meta-arago-distro = "kirkstone langdale"
->  
->  LAYERDEPENDS_meta-arago-distro = " \
->      core \
-> diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
-> index 2132ca18..e2c8119f 100644
-> --- a/meta-arago-extras/conf/layer.conf
-> +++ b/meta-arago-extras/conf/layer.conf
-> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-extras"
->  BBFILE_PATTERN_meta-arago-extras := "^${LAYERDIR}/"
->  BBFILE_PRIORITY_meta-arago-extras = "10"
->  
-> -LAYERSERIES_COMPAT_meta-arago-extras = "kirkstone"
-> +LAYERSERIES_COMPAT_meta-arago-extras = "kirkstone langdale"
->  
->  # Set a variable to get to the top of the metadata location
->  ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
-> -- 
-> 2.17.1
+$ make ti_sdk_arm64_release_defconfig
+  LEX     scripts/kconfig/lexer.lex.c
+/home/user/ti/processor-sdk-linux-am62axx-evm-08.04.00.20/linux-devkit/sysroots/x86_64-arago-linux/usr/bin/flex: error while loading shared libraries: libm.so.6: cannot open shared object file: No such file or directory
+make[1]: *** [scripts/Makefile.host:9: scripts/kconfig/lexer.lex.c] Error 127
+
+Signed-off-by: Andreas Dannenberg <dannenberg@ti.com>
+---
+I propose this patch to go into all current branches including
+'dunfell', even though we don't officially support Ubunut 22.04 yet for
+example. Enough folks try and use it. This patch makes it actually work.
+
+ meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+index 95ed3ffa..8fed34f5 100644
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
++++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+@@ -303,7 +303,7 @@ if [ "$dl_path" = "" ] ; then
+ 	echo "SDK could not be set up. Relocate script unable to find ld-linux.so. Abort!"
+ 	exit 1
+ fi
+-executable_files=$($SUDO_EXEC find $native_sysroot -type f -perm /111 -exec file '{}' \;| grep "\(executable\|dynamically linked\)" | cut -f 1 -d ':')
++executable_files=$($SUDO_EXEC find $native_sysroot -type f -perm /111 -exec file '{}' \;| grep "\(executable\|dynamically linked\|static-pie linked\)" | cut -f 1 -d ':')
+ 
+ tdir=`mktemp -d`
+ if [ x$tdir = x ] ; then
+-- 
+2.34.1
+
 
