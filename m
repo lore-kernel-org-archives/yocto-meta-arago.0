@@ -1,89 +1,88 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BA73DC4321E
-	for <webhook@archiver.kernel.org>; Wed, 30 Nov 2022 22:17:26 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web10.26683.1669846644716349525
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E3A78C4321E
+	for <webhook@archiver.kernel.org>; Wed, 30 Nov 2022 22:38:56 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.27278.1669847936178757682
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 30 Nov 2022 14:17:24 -0800
+ Wed, 30 Nov 2022 14:38:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=FAfn6Dex;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 2AUMHN0o081398;
-	Wed, 30 Nov 2022 16:17:23 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1669846643;
-	bh=y3Tc1m/Mn4DmlOA+MlHIz46oDD2KFyDNSwb8ArFrHuM=;
-	h=From:To:Subject:Date;
-	b=FAfn6DexNp6VpoUPSKKAC27lP7yT7RrGz4ET1iO5xRcFR9rJtOd1WqzrWpEWSjBGO
-	 iEm28FtE5ijWw7kbUFxMcM85J3B1dj4jg/Yrd62RpiwMP/Ms2eNhyTodmDdmvqO8qy
-	 FsobuDGhC4yRwADOfHhVestYKrU2YL3k8GVUy44A=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 2AUMHN6i036862
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 30 Nov 2022 16:17:23 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 30
- Nov 2022 16:17:23 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 30 Nov 2022 16:17:23 -0600
-Received: from uda0214219 (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 2AUMHN5O074541;
-	Wed, 30 Nov 2022 16:17:23 -0600
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1p0VON-0002MC-Fq; Wed, 30 Nov 2022 16:17:23 -0600
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH] qtwayland: Bump version to v5.15.7-lts-lgpl
-Date: Wed, 30 Nov 2022 16:17:23 -0600
-Message-ID: <20221130221723.9018-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 9EBFA40AC9;
+	Wed, 30 Nov 2022 22:38:55 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id m_iv3O98xI_j; Wed, 30 Nov 2022 22:38:55 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 8A0EC400CF;
+	Wed, 30 Nov 2022 22:38:54 +0000 (UTC)
+Received: from thorin.denix (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 604C9163689;
+	Wed, 30 Nov 2022 17:38:47 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master][PATCH] toolchain-gcc: update toolchain preferences
+Date: Wed, 30 Nov 2022 22:38:52 +0000
+Message-Id: <20221130223852.330495-1-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 30 Nov 2022 22:17:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14124
+ <meta-arago@lists.yoctoproject.org>; Wed, 30 Nov 2022 22:38:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14125
 
-There is a build error with the v5.15.4-lts-lgpl version and
-xkbcommon. The bug was fixed in the next LTS, so go ahead and
-move to the latest version available.
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-This haas been sent to meta-qt5 as a pull request.  When they
-move to a version that does not have this build issue we will
-revert this change.
+Update toolchain preferences to the latest available in master.
 
-Upstream-Status: Pending
-
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend | 3 +++
- 1 file changed, 3 insertions(+)
+ .../conf/distro/include/toolchain-gcc.inc            | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
-index 23a2f907..f6d6ceec 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
-@@ -5,3 +5,6 @@ SRC_URI += " \
-     file://0001-plugins-decorations-bradient-display-window-icon-onl.patch \
-     file://0001-examples-fix-wayland-texture-sharing-custom-composit.patch \
- "
-+
-+SRCREV = "533fff12f7c4beb177b56b766c71b1c7384e6229"
-+
--- 
-2.17.1
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/me=
+ta-arago-distro/conf/distro/include/toolchain-gcc.inc
+index 5570594d..87569e10 100644
+--- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
++++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
+@@ -13,9 +13,9 @@ PREFERRED_PROVIDER_binutils-cross-canadian-${TRANSLATED=
+_TARGET_ARCH} ?=3D "binutil
+ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} =3D "gdb=
+-cross-canadian-${TRANSLATED_TARGET_ARCH}"
+=20
+ # Set Cross and SDK toolchain preferences
+-SDKGCCVERSION ?=3D "11%"
+-SDKBINUVERSION ?=3D "2.38%"
+-SDKGLIBCVERSION ?=3D "2.35%"
++SDKGCCVERSION ?=3D "12%"
++SDKBINUVERSION ?=3D "2.39%"
++SDKGLIBCVERSION ?=3D "2.36%"
+ SDKLINUXLIBCVERSION ?=3D "5.10%"
+=20
+ PREFERRED_VERSION_gcc-crosssdk-${SDK_SYS} ?=3D "${SDKGCCVERSION}"
+@@ -32,9 +32,9 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?=3D "${SDKGL=
+IBCVERSION}"
+=20
+ # Set target toolchain preferences to match Cross/SDK by default
+ # Can be overwritten globally, if needed
+-GCCVERSION ?=3D "11%"
+-BINUVERSION ?=3D "2.38%"
+-GLIBCVERSION ?=3D "2.35%"
++GCCVERSION ?=3D "12%"
++BINUVERSION ?=3D "2.39%"
++GLIBCVERSION ?=3D "2.36%"
+ LINUXLIBCVERSION ?=3D "5.10%"
+=20
+ PREFERRED_VERSION_gcc ?=3D "${GCCVERSION}"
+--=20
+2.25.1
 
 
