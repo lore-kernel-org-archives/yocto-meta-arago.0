@@ -1,75 +1,83 @@
-Return-Path: <denis@denix.org>
+Return-Path: <j-choudhary@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F0546C4708D
-	for <webhook@archiver.kernel.org>; Wed,  4 Jan 2023 02:35:48 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.2590.1672799744689896274
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8FEF6C46467
+	for <webhook@archiver.kernel.org>; Wed,  4 Jan 2023 14:12:03 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web11.12861.1672841514973847232
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 03 Jan 2023 18:35:44 -0800
+ Wed, 04 Jan 2023 06:11:55 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 0FAC840AC9;
-	Wed,  4 Jan 2023 02:35:44 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id bzL7DgYpwCva; Wed,  4 Jan 2023 02:35:44 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E93E4409B0;
-	Wed,  4 Jan 2023 02:35:42 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 468C61636B7; Tue,  3 Jan 2023 21:35:27 -0500 (EST)
-Date: Tue, 3 Jan 2023 21:35:27 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: Bernd Sprenger <bernd@sprenger.org>
-Cc: "meta-arago@lists.yoctoproject.org" <meta-arago@lists.yoctoproject.org>
-Subject: Re: [meta-arago] Patch to enable overriding linux-ti-staging kernel
-Message-ID: <20230104023527.GF22689@denix.org>
-References: <GVAP278MB0117A08C96137519825B1E57DBF49@GVAP278MB0117.CHEP278.PROD.OUTLOOK.COM>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=r4ldxCwu;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: j-choudhary@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 304EBrH7018744
+	for <meta-arago@lists.yoctoproject.org>; Wed, 4 Jan 2023 08:11:53 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1672841513;
+	bh=88PIvETS27Ext/Olnf0BLRE+I2k+ob8MR0nHm+xJNPM=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=r4ldxCwubOG2uDarsR4hSCGvODtnBsFdwI+bGP6KQzsVVMP7NQcoIoroZZVpS2At/
+	 KzcNsoG11rKVodOGHf/HiWfVRlPr8YkwxbpfFT3QNLpND6Tby7RmokL9gkHp0aJ4Zq
+	 H5sBctNrGSYKymezpvE+3Gh4mpvNIIAkBKzhjJjI=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 304EBrUm012628
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Wed, 4 Jan 2023 08:11:53 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 4
+ Jan 2023 08:11:53 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Wed, 4 Jan 2023 08:11:53 -0600
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 304EBqJ8099667;
+	Wed, 4 Jan 2023 08:11:53 -0600
+From: Jayesh Choudhary <j-choudhary@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: <reatmon@ti.com>, <praneeth@ti.com>, <j-choudhary@ti.com>
+Subject: [meta-arago][master/dunfell][PATCH 1/2] systemd: fix the local rule to load modules when new hardware is added
+Date: Wed, 4 Jan 2023 19:41:49 +0530
+Message-ID: <20230104141150.186773-2-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230104141150.186773-1-j-choudhary@ti.com>
+References: <20230104141150.186773-1-j-choudhary@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <GVAP278MB0117A08C96137519825B1E57DBF49@GVAP278MB0117.CHEP278.PROD.OUTLOOK.COM>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 04 Jan 2023 02:35:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14146
+ <meta-arago@lists.yoctoproject.org>; Wed, 04 Jan 2023 14:12:03 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14148
 
-On Tue, Jan 03, 2023 at 02:02:14PM +0000, Bernd Sprenger wrote:
-> Hello,
-> 
-> for my projects I use another kernel than the linux-ti-staging. I had to 
-> patch the meta-arago to achieve this. In my opinion this is a nice feature 
-> and is achieved by the small patch below for tag 08.04.00.005. Maybe you 
-> could integrate this into the next releases...
+Using modprobe causes the rule to fail when the module is builtin in kernel
+and it is logged in journalctl. So use the builtin command 'kmod' instead.
+This makes the journalctl logs clean and significantly easier to read.
 
-Well, if you want to use Arago but replace the kernel, this is probably fine. 
-But please post it as a proper patch. Thanks.
+Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+---
+ meta-arago-distro/recipes-core/systemd/systemd/local.rules | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/meta-arago-distro/recipes-core/systemd/systemd/local.rules b/meta-arago-distro/recipes-core/systemd/systemd/local.rules
+index b0e9f84f..4829ca14 100644
+--- a/meta-arago-distro/recipes-core/systemd/systemd/local.rules
++++ b/meta-arago-distro/recipes-core/systemd/systemd/local.rules
+@@ -14,7 +14,7 @@
+ #
+ 
+ # Try and modprobe for drivers for new hardware
+-ACTION=="add", DEVPATH=="/devices/*", ENV{MODALIAS}=="?*", RUN+="/sbin/modprobe $env{MODALIAS}"
++ACTION=="add", DEVPATH=="/devices/*", ENV{MODALIAS}=="?*", RUN{builtin}+="kmod load $env{MODALIAS}"
+ 
+ # Create a symlink to any touchscreen input device
+ SUBSYSTEM=="input", KERNEL=="event[0-9]*", ENV{ID_INPUT_TOUCHSCREEN}=="1", SYMLINK+="input/touchscreen0"
 -- 
-Denys
+2.25.1
 
-
-> Thanks a lot,
-> have a nice day,
-> Bernd
-> 
-> 
-> diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> index f9fab020..dc55bfec 100644
-> --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
-> @@ -37,7 +37,7 @@ PREFERRED_PROVIDER_virtual/libgbm_keystone = "mesa"
-> PREFERRED_PROVIDER_virtual/libgl_keystone = "mesa"
-> PREFERRED_PROVIDER_virtual/mesa_keystone = "mesa"
-> -PREFERRED_PROVIDER_virtual/kernel = "linux-ti-staging${ARAGO_KERNEL_SUFFIX}"
-> +PREFERRED_PROVIDER_virtual/kernel ?= "linux-ti-staging${ARAGO_KERNEL_SUFFIX}"
->  # For TI devices with only baremetal/TI RTOS support
-> PREFERRED_PROVIDER_virtual/kernel_c66x = "linux-dummy"
 
