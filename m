@@ -1,140 +1,81 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63DF0C3DA7D
-	for <webhook@archiver.kernel.org>; Thu,  5 Jan 2023 16:13:12 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web11.16810.1672935185163708264
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BD229C3DA7D
+	for <webhook@archiver.kernel.org>; Thu,  5 Jan 2023 21:26:16 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.1950.1672953972057181225
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 05 Jan 2023 08:13:05 -0800
+ Thu, 05 Jan 2023 13:26:12 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=lWSGWT7b;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 305GD05S082904;
-	Thu, 5 Jan 2023 10:13:00 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1672935180;
-	bh=vQrA6/sAogbDcitvZzzPK5oO85t2MomL+NOqrTf8kfg=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=lWSGWT7bZUawvY8CyIdI3JGXafJxwOahWWVM3yck+GiMWFaq3Pc4GwgzMAeLC16XA
-	 kBeUvo+eFqV0wSIoheu5+IT0CmzTc/RptYJO6jv2qT1+nmUetvNdxGPISYgXhBCXAQ
-	 JWJq/PznGhgAeLo+oesRVNdipQZ2ovT2CcHoFwc8=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 305GD0BT090776
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 5 Jan 2023 10:13:00 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 5
- Jan 2023 10:13:00 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Thu, 5 Jan 2023 10:13:00 -0600
-Received: from [10.249.38.163] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 305GCxcM026074;
-	Thu, 5 Jan 2023 10:13:00 -0600
-Message-ID: <1eb78db5-b5ac-5893-8f24-405e40a76c2a@ti.com>
-Date: Thu, 5 Jan 2023 10:12:59 -0600
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id F3B50409AE;
+	Thu,  5 Jan 2023 21:26:10 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id s7NESBlKBJJZ; Thu,  5 Jan 2023 21:26:10 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DA0D640027;
+	Thu,  5 Jan 2023 21:26:09 +0000 (UTC)
+Received: from thorin.denix (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 605581636C0;
+	Thu,  5 Jan 2023 16:25:53 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master/kirkstone][PATCH] libdrm: remove alternative setup for kmstest
+Date: Thu,  5 Jan 2023 21:26:08 +0000
+Message-Id: <20230105212608.2105546-1-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.6.0
-Subject: Re: [meta-arago][master][PATCH] layer.conf: Update LAYERSERIES_COMPAT
- for mickledore
-Content-Language: en-US
-To: Denys Dmytriyenko <denis@denix.org>
-CC: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-References: <20230104211711.10615-1-reatmon@ti.com>
- <20230104220048.GM22689@denix.org>
- <abba098c-8ecb-f1e0-fbac-b95d097d3f31@ti.com>
- <20230104224422.GN22689@denix.org>
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <20230104224422.GN22689@denix.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 05 Jan 2023 16:13:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14158
+ <meta-arago@lists.yoctoproject.org>; Thu, 05 Jan 2023 21:26:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14159
 
+From: Denys Dmytriyenko <denys@konsulko.com>
 
+libdrm no longer provides kms driver and tests for it.
 
-On 1/4/2023 16:44, Denys Dmytriyenko wrote:
-> On Wed, Jan 04, 2023 at 04:15:48PM -0600, Ryan Eatmon wrote:
->>
->>
->> On 1/4/2023 4:00 PM, Denys Dmytriyenko wrote:
->>> On Wed, Jan 04, 2023 at 03:17:11PM -0600, Ryan Eatmon via lists.yoctoproject.org wrote:
->>>> oe-core switched to mickedore [1]
->>>>
->>>> [1] https://git.openembedded.org/openembedded-core/commit/?id=57239d66b933c4313cf331d35d13ec2d0661c38f
->>>>
->>>> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
->>>> ---
->>>>   meta-arago-distro/conf/layer.conf | 2 +-
->>>>   meta-arago-extras/conf/layer.conf | 2 +-
->>>>   2 files changed, 2 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
->>>> index 5de46fc9..1ffcd2fb 100644
->>>> --- a/meta-arago-distro/conf/layer.conf
->>>> +++ b/meta-arago-distro/conf/layer.conf
->>>> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-distro"
->>>>   BBFILE_PATTERN_meta-arago-distro := "^${LAYERDIR}/"
->>>>   BBFILE_PRIORITY_meta-arago-distro = "10"
->>>> -LAYERSERIES_COMPAT_meta-arago-distro = "kirkstone langdale"
->>>> +LAYERSERIES_COMPAT_meta-arago-distro = "mickledore"
->>>
->>> Do you want to keep existing compatibility around for a bit longer?
->>
->> Is it worth keeping it around?  All of our testing is being done
->> with master for everything.  How many people do you think are using
->> an older version of bitbake with the latest master of
->> meta-ti/meta-arago?  I would think they are likely pointing to
->> latest of everything if they are doing anything.
-> 
-> You have to provide *some* branch that is compatible with langdale for people
-> who has their products based on langdale release and wanting to use meta-ti
-> and/or meta-arago. It could be master, or it could be a separately langdale
-> branch, if you are willing to do that instead.
-> 
-> I see you already merged Khem's v1 patch to meta-ti, which means there's
-> currently NO branches compatible with langdale! Even though TI does not
-> officially test and support langdale, you should not actively prevent people
-> from using it in their products with meta-ti, per the earlier message:
-> https://lists.yoctoproject.org/g/meta-ti/message/15137
+Fixes:
 
+WARNING: libdrm-2.4.114-r0.arago3 do_package: libdrm: alternative target =
+(/usr/bin/kmstest or /usr/bin/kmstest.libdrm) does not exist, skipping...
+WARNING: libdrm-2.4.114-r0.arago3 do_package: libdrm: NOT adding alternat=
+ive provide /usr/bin/kmstest: /usr/bin/kmstest.libdrm does not exist
+WARNING: libdrm-2.4.114-r0.arago3 do_package: libdrm: alt_link =3D=3D alt=
+_target: /usr/bin/kmstest =3D=3D /usr/bin/kmstest
 
-Ok.  I see what you are saying and we should support both of them.  I'll 
-get that fixed.
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+---
+ meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
 
+diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend b/m=
+eta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend
+index 85152b5f..ea8b5ca1 100644
+--- a/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend
++++ b/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend
+@@ -8,10 +8,4 @@ file://0001-libsync-add-support-for-pre-v4.7-kernels.pat=
+ch \
+ file://0002-Add-sync_fence_info-and-sync_pt_info.patch \
+ "
+=20
+-PR:append =3D ".arago3"
+-
+-inherit update-alternatives
+-
+-ALTERNATIVE_PRIORITY =3D "10"
+-ALTERNATIVE:${PN} =3D "kmstest"
+-ALTERNATIVE_LINK_NAME[kmstest] =3D "${bindir}/kmstest"
++PR:append =3D ".arago4"
+--=20
+2.25.1
 
-> 
->>>>   LAYERDEPENDS_meta-arago-distro = " \
->>>>       core \
->>>> diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
->>>> index e2c8119f..9cdfcb32 100644
->>>> --- a/meta-arago-extras/conf/layer.conf
->>>> +++ b/meta-arago-extras/conf/layer.conf
->>>> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-extras"
->>>>   BBFILE_PATTERN_meta-arago-extras := "^${LAYERDIR}/"
->>>>   BBFILE_PRIORITY_meta-arago-extras = "10"
->>>> -LAYERSERIES_COMPAT_meta-arago-extras = "kirkstone langdale"
->>>> +LAYERSERIES_COMPAT_meta-arago-extras = "mickledore"
->>>>   # Set a variable to get to the top of the metadata location
->>>>   ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
->>>> -- 
->>>> 2.17.1
-
--- 
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
 
