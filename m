@@ -1,81 +1,75 @@
-Return-Path: <denis@denix.org>
+Return-Path: <lcpdbld@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BD229C3DA7D
-	for <webhook@archiver.kernel.org>; Thu,  5 Jan 2023 21:26:16 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.1950.1672953972057181225
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0049FC63797
+	for <webhook@archiver.kernel.org>; Sun,  8 Jan 2023 01:41:57 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web10.36133.1673142116782504971
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 05 Jan 2023 13:26:12 -0800
+ Sat, 07 Jan 2023 17:41:57 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id F3B50409AE;
-	Thu,  5 Jan 2023 21:26:10 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id s7NESBlKBJJZ; Thu,  5 Jan 2023 21:26:10 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DA0D640027;
-	Thu,  5 Jan 2023 21:26:09 +0000 (UTC)
-Received: from thorin.denix (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 605581636C0;
-	Thu,  5 Jan 2023 16:25:53 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master/kirkstone][PATCH] libdrm: remove alternative setup for kmstest
-Date: Thu,  5 Jan 2023 21:26:08 +0000
-Message-Id: <20230105212608.2105546-1-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
+ dkim=missing; spf=pass (domain: list.ti.com, ip: 198.47.23.248, mailfrom: lcpdbld@list.ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3081ftgJ077216;
+	Sat, 7 Jan 2023 19:41:55 -0600
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3081ftpi023330
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sat, 7 Jan 2023 19:41:55 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sat, 7
+ Jan 2023 19:41:55 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Sat, 7 Jan 2023 19:41:54 -0600
+Received: from fllvdckhpci039.itg.ti.com (fllvdckhpci039.itg.ti.com [10.248.132.250])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3081fsHZ017414;
+	Sat, 7 Jan 2023 19:41:54 -0600
+Received: by fllvdckhpci039.itg.ti.com (Postfix, from userid 60899)
+	id E5736112303A; Sat,  7 Jan 2023 19:41:54 -0600 (CST)
+From: LCPD Automation Script <lcpdbld@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][dunfell][PATCH] ltp-ddt: CI/CD Auto-Merger: cicd.2023.01.07.13:47:28
+Date: Sat, 7 Jan 2023 19:41:54 -0600
+Message-ID: <1673142114-50495-1-git-send-email-lcpdbld@list.ti.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 05 Jan 2023 21:26:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14159
+ <meta-arago@lists.yoctoproject.org>; Sun, 08 Jan 2023 01:41:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14160
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+Updated the value(s) for:
+  SRCREV
 
-libdrm no longer provides kms driver and tests for it.
-
-Fixes:
-
-WARNING: libdrm-2.4.114-r0.arago3 do_package: libdrm: alternative target =
-(/usr/bin/kmstest or /usr/bin/kmstest.libdrm) does not exist, skipping...
-WARNING: libdrm-2.4.114-r0.arago3 do_package: libdrm: NOT adding alternat=
-ive provide /usr/bin/kmstest: /usr/bin/kmstest.libdrm does not exist
-WARNING: libdrm-2.4.114-r0.arago3 do_package: libdrm: alt_link =3D=3D alt=
-_target: /usr/bin/kmstest =3D=3D /usr/bin/kmstest
-
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
 ---
- meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend | 8 +-------
- 1 file changed, 1 insertion(+), 7 deletions(-)
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend b/m=
-eta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend
-index 85152b5f..ea8b5ca1 100644
---- a/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend
-+++ b/meta-arago-distro/recipes-graphics/drm/libdrm_%.bbappend
-@@ -8,10 +8,4 @@ file://0001-libsync-add-support-for-pre-v4.7-kernels.pat=
-ch \
- file://0002-Add-sync_fence_info-and-sync_pt_info.patch \
- "
-=20
--PR:append =3D ".arago3"
--
--inherit update-alternatives
--
--ALTERNATIVE_PRIORITY =3D "10"
--ALTERNATIVE:${PN} =3D "kmstest"
--ALTERNATIVE_LINK_NAME[kmstest] =3D "${bindir}/kmstest"
-+PR:append =3D ".arago4"
---=20
-2.25.1
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+index 8bbb607..3230cd7 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+@@ -14,7 +14,7 @@ PE = "1"
+ PR = "r7"
+ PV_append = "+git${SRCPV}"
+ 
+-SRCREV = "4ad7a655f87bac48e1aaa6a5491687c43881409e"
++SRCREV = "dc3a52f24b9872cc73bc42535f630b7a8924710f"
+ BRANCH ?= "master"
+ 
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master"
+-- 
+1.8.3.1
 
 
