@@ -1,119 +1,101 @@
-Return-Path: <denis@denix.org>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C4F42C5479D
-	for <webhook@archiver.kernel.org>; Mon,  9 Jan 2023 17:07:19 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.78042.1673284032103639853
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AC900C5479D
+	for <webhook@archiver.kernel.org>; Mon,  9 Jan 2023 20:42:00 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.85114.1673296913190683837
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 09 Jan 2023 09:07:12 -0800
+ Mon, 09 Jan 2023 12:41:53 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5D9A640C50;
-	Mon,  9 Jan 2023 17:07:11 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id aFf2jAhELyx0; Mon,  9 Jan 2023 17:07:11 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3F8ED406B7;
-	Mon,  9 Jan 2023 17:07:09 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 796521636C1; Mon,  9 Jan 2023 12:06:52 -0500 (EST)
-Date: Mon, 9 Jan 2023 12:06:52 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: reatmon@ti.com
-Cc: Praneeth Bajjuri <praneeth@ti.com>, meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][master][PATCH] layer.conf: Update
- LAYERSERIES_COMPAT for mickledore
-Message-ID: <20230109170652.GS22689@denix.org>
-References: <20230104211711.10615-1-reatmon@ti.com>
- <20230104220048.GM22689@denix.org>
- <abba098c-8ecb-f1e0-fbac-b95d097d3f31@ti.com>
- <20230104224422.GN22689@denix.org>
- <1eb78db5-b5ac-5893-8f24-405e40a76c2a@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=QO1Kz1YF;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 309KfoVP126531;
+	Mon, 9 Jan 2023 14:41:50 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1673296910;
+	bh=SKD7bMq/5FaSMKSnTeBPagC96WNHxjGPUzr/hRsnphI=;
+	h=From:To:Subject:Date;
+	b=QO1Kz1YFObJVt09T3TFV+3FaRJ2u0km2V2zZyrA++yo7OK36GsCGQaziIHzjZXeuG
+	 hPF2HVJ1HKiYbTElDO4/vJ60Pgi+JHWl/6/CS0/FeIZcxZ8kx8+3kqqgLhR+nGMaoj
+	 yMedaCniLXTMmMpWtw8ZePZJaJD7liu6P7kMVMCc=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 309Kfo8M001854
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 9 Jan 2023 14:41:50 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 9
+ Jan 2023 14:41:50 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 9 Jan 2023 14:41:50 -0600
+Received: from uda0214219 (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 309Kfo8f100565;
+	Mon, 9 Jan 2023 14:41:50 -0600
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1pEyxq-0002fZ-4C; Mon, 09 Jan 2023 14:41:50 -0600
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][master][PATCH v2] layer.conf: Update LAYERSERIES_COMPAT for mickledore
+Date: Mon, 9 Jan 2023 14:41:50 -0600
+Message-ID: <20230109204150.10222-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1eb78db5-b5ac-5893-8f24-405e40a76c2a@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 09 Jan 2023 17:07:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14162
+ <meta-arago@lists.yoctoproject.org>; Mon, 09 Jan 2023 20:42:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14163
 
-On Thu, Jan 05, 2023 at 10:12:59AM -0600, Ryan Eatmon via lists.yoctoproject.org wrote:
-> 
-> 
-> On 1/4/2023 16:44, Denys Dmytriyenko wrote:
-> >On Wed, Jan 04, 2023 at 04:15:48PM -0600, Ryan Eatmon wrote:
-> >>
-> >>
-> >>On 1/4/2023 4:00 PM, Denys Dmytriyenko wrote:
-> >>>On Wed, Jan 04, 2023 at 03:17:11PM -0600, Ryan Eatmon via lists.yoctoproject.org wrote:
-> >>>>oe-core switched to mickedore [1]
-> >>>>
-> >>>>[1] https://git.openembedded.org/openembedded-core/commit/?id=57239d66b933c4313cf331d35d13ec2d0661c38f
-> >>>>
-> >>>>Signed-off-by: Ryan Eatmon <reatmon@ti.com>
-> >>>>---
-> >>>>  meta-arago-distro/conf/layer.conf | 2 +-
-> >>>>  meta-arago-extras/conf/layer.conf | 2 +-
-> >>>>  2 files changed, 2 insertions(+), 2 deletions(-)
-> >>>>
-> >>>>diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
-> >>>>index 5de46fc9..1ffcd2fb 100644
-> >>>>--- a/meta-arago-distro/conf/layer.conf
-> >>>>+++ b/meta-arago-distro/conf/layer.conf
-> >>>>@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-distro"
-> >>>>  BBFILE_PATTERN_meta-arago-distro := "^${LAYERDIR}/"
-> >>>>  BBFILE_PRIORITY_meta-arago-distro = "10"
-> >>>>-LAYERSERIES_COMPAT_meta-arago-distro = "kirkstone langdale"
-> >>>>+LAYERSERIES_COMPAT_meta-arago-distro = "mickledore"
-> >>>
-> >>>Do you want to keep existing compatibility around for a bit longer?
-> >>
-> >>Is it worth keeping it around?  All of our testing is being done
-> >>with master for everything.  How many people do you think are using
-> >>an older version of bitbake with the latest master of
-> >>meta-ti/meta-arago?  I would think they are likely pointing to
-> >>latest of everything if they are doing anything.
-> >
-> >You have to provide *some* branch that is compatible with langdale for people
-> >who has their products based on langdale release and wanting to use meta-ti
-> >and/or meta-arago. It could be master, or it could be a separately langdale
-> >branch, if you are willing to do that instead.
-> >
-> >I see you already merged Khem's v1 patch to meta-ti, which means there's
-> >currently NO branches compatible with langdale! Even though TI does not
-> >officially test and support langdale, you should not actively prevent people
-> >from using it in their products with meta-ti, per the earlier message:
-> >https://lists.yoctoproject.org/g/meta-ti/message/15137
-> 
-> 
-> Ok.  I see what you are saying and we should support both of them.
-> I'll get that fixed.
+oe-core switched to mickedore [1]
 
-Ping. meta-ti has been failing on YP Autobuilder for almost a week now!
+[1] https://git.openembedded.org/openembedded-core/commit/?id=57239d66b933c4313cf331d35d13ec2d0661c38f
 
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+v2: Add kirkstone and langdale back in.
 
-> >>>>  LAYERDEPENDS_meta-arago-distro = " \
-> >>>>      core \
-> >>>>diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
-> >>>>index e2c8119f..9cdfcb32 100644
-> >>>>--- a/meta-arago-extras/conf/layer.conf
-> >>>>+++ b/meta-arago-extras/conf/layer.conf
-> >>>>@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-extras"
-> >>>>  BBFILE_PATTERN_meta-arago-extras := "^${LAYERDIR}/"
-> >>>>  BBFILE_PRIORITY_meta-arago-extras = "10"
-> >>>>-LAYERSERIES_COMPAT_meta-arago-extras = "kirkstone langdale"
-> >>>>+LAYERSERIES_COMPAT_meta-arago-extras = "mickledore"
-> >>>>  # Set a variable to get to the top of the metadata location
-> >>>>  ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
-> >>>>-- 
-> >>>>2.17.1
+ meta-arago-distro/conf/layer.conf | 2 +-
+ meta-arago-extras/conf/layer.conf | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
+index 5de46fc9..fd9e99d0 100644
+--- a/meta-arago-distro/conf/layer.conf
++++ b/meta-arago-distro/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-distro"
+ BBFILE_PATTERN_meta-arago-distro := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-distro = "10"
+ 
+-LAYERSERIES_COMPAT_meta-arago-distro = "kirkstone langdale"
++LAYERSERIES_COMPAT_meta-arago-distro = "kirkstone langdale mickledore"
+ 
+ LAYERDEPENDS_meta-arago-distro = " \
+     core \
+diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
+index e2c8119f..d5d11661 100644
+--- a/meta-arago-extras/conf/layer.conf
++++ b/meta-arago-extras/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-extras"
+ BBFILE_PATTERN_meta-arago-extras := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-extras = "10"
+ 
+-LAYERSERIES_COMPAT_meta-arago-extras = "kirkstone langdale"
++LAYERSERIES_COMPAT_meta-arago-extras = "kirkstone langdale mickledore"
+ 
+ # Set a variable to get to the top of the metadata location
+ ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
+-- 
+2.17.1
+
 
