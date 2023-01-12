@@ -2,84 +2,74 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3575CC54EBD
-	for <webhook@archiver.kernel.org>; Thu, 12 Jan 2023 16:20:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2AB3EC54EBC
+	for <webhook@archiver.kernel.org>; Thu, 12 Jan 2023 16:22:19 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.59780.1673540437637426375
+ by mx.groups.io with SMTP id smtpd.web10.59653.1673540528736099141
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 12 Jan 2023 08:20:37 -0800
+ Thu, 12 Jan 2023 08:22:09 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 6574A40C2B;
-	Thu, 12 Jan 2023 16:20:36 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 16DDC40C2B;
+	Thu, 12 Jan 2023 16:22:08 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id soj32n2wU0tc; Thu, 12 Jan 2023 16:20:36 +0000 (UTC)
+	with ESMTP id EFARh0Swa3Se; Thu, 12 Jan 2023 16:22:08 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3974540429;
-	Thu, 12 Jan 2023 16:20:32 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C9EBD40429;
+	Thu, 12 Jan 2023 16:22:01 +0000 (UTC)
 Received: by mail.denix.org (Postfix, from userid 1000)
-	id 41DDE1636F6; Thu, 12 Jan 2023 11:20:14 -0500 (EST)
-Date: Thu, 12 Jan 2023 11:20:14 -0500
+	id 7CD731636F6; Thu, 12 Jan 2023 11:21:44 -0500 (EST)
+Date: Thu, 12 Jan 2023 11:21:44 -0500
 From: Denys Dmytriyenko <denis@denix.org>
-To: afd@ti.com
-Cc: j-choudhary@ti.com, meta-arago@lists.yoctoproject.org, reatmon@ti.com,
-	praneeth@ti.com
-Subject: Re: [meta-arago][master/dunfell][PATCH 1/2] systemd: fix the local
- rule to load modules when new hardware is added
-Message-ID: <20230112162014.GX22689@denix.org>
-References: <20230104141150.186773-1-j-choudhary@ti.com>
- <20230104141150.186773-2-j-choudhary@ti.com>
- <4e1c65ab-2028-a556-a539-a6ead6cab8ab@ti.com>
+To: Chirag Shilwant <c-shilwant@ti.com>
+Cc: Praneeth Bajjuri <praneeth@ti.com>, Ryan Eatmon <reatmon@ti.com>,
+	meta-arago@lists.yoctoproject.org,
+	Sai Sree Kartheek Adivi <s-adivi@ti.com>,
+	Paresh Bhagat <p-bhagat@ti.com>, Gyan Gupta <g-gupta@ti.com>
+Subject: Re: [meta-arago][dunfell][PATCH] ti-tisdk-makefile: k3:
+ u-boot-spl: Remove UBOOT_SYSFW
+Message-ID: <20230112162144.GY22689@denix.org>
+References: <20230109160247.26719-1-c-shilwant@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <4e1c65ab-2028-a556-a539-a6ead6cab8ab@ti.com>
+In-Reply-To: <20230109160247.26719-1-c-shilwant@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 12 Jan 2023 16:20:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14167
+ <meta-arago@lists.yoctoproject.org>; Thu, 12 Jan 2023 16:22:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14168
 
-On Wed, Jan 04, 2023 at 10:12:42AM -0600, Andrew Davis via lists.yoctoproject.org wrote:
-> On 1/4/23 8:11 AM, Jayesh Choudhary via lists.yoctoproject.org wrote:
-> >Using modprobe causes the rule to fail when the module is builtin in kernel
-> >and it is logged in journalctl. So use the builtin command 'kmod' instead.
-> >This makes the journalctl logs clean and significantly easier to read.
-> >
-> >Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> >---
-> >  meta-arago-distro/recipes-core/systemd/systemd/local.rules | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> >diff --git a/meta-arago-distro/recipes-core/systemd/systemd/local.rules b/meta-arago-distro/recipes-core/systemd/systemd/local.rules
-> >index b0e9f84f..4829ca14 100644
-> >--- a/meta-arago-distro/recipes-core/systemd/systemd/local.rules
-> >+++ b/meta-arago-distro/recipes-core/systemd/systemd/local.rules
-> >@@ -14,7 +14,7 @@
-> >  #
-> >  # Try and modprobe for drivers for new hardware
-> >-ACTION=="add", DEVPATH=="/devices/*", ENV{MODALIAS}=="?*", RUN+="/sbin/modprobe $env{MODALIAS}"
-> >+ACTION=="add", DEVPATH=="/devices/*", ENV{MODALIAS}=="?*", RUN{builtin}+="kmod load $env{MODALIAS}"
-> 
-> Is the builtin version as full featured? Does this work in non-systemd systems? Is this just
-> masking all errors or do real errors still get logged somewhere? If this is just a way
-> to mask errors then --quiet might be more portable.
-> 
-> (BTW I ran into this same issue of having no good way to know if a module was builtin or just
-> missing when adding dynamic kernel module support for Android [0])
-> 
-> Andrew
-> 
-> [0] https://android.googlesource.com/platform/system/core/+/9963847419f41c76ca008cf0c09e986c79f04e4c
+On Mon, Jan 09, 2023 at 09:32:47PM +0530, Chirag Shilwant wrote:
+> Remove UBOOT_SYSFW as sysfw is no longer used in building u-boot-r5.
 
-Ping! I haven't seen any answers to the above questions, but the patch 
-unfortunately already got merged...
+What about AM65x and J721e?
 
--- 
-Denys
+
+> Ref - dce21d6d3bd5b9014994a45c22b9ee8d13faa07b
+> 
+> Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
+> ---
+>  .../ti-tisdk-makefile/ti-tisdk-makefile/k3/Makefile_u-boot-spl   | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/k3/Makefile_u-boot-spl b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/k3/Makefile_u-boot-spl
+> index f0bd16df..45ebce40 100644
+> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/k3/Makefile_u-boot-spl
+> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/k3/Makefile_u-boot-spl
+> @@ -9,7 +9,6 @@ UBOOT_R5_BUILD_DIR=$(TI_SDK_PATH)/board-support/u-boot_build/r5
+>  
+>  UBOOT_ATF=$(TI_SDK_PATH)/board-support/prebuilt-images/bl31.bin
+>  UBOOT_TEE=$(TI_SDK_PATH)/board-support/prebuilt-images/bl32.bin
+> -UBOOT_SYSFW=$(TI_SDK_PATH)/board-support/prebuilt-images/sysfw.bin
+>  UBOOT_DMFW=$(TI_SDK_PATH)/board-support/prebuilt-images/ipc_echo_testb_mcu1_0_release_strip.xer5f
+>  
+>  u-boot: u-boot-a53 u-boot-r5
+> -- 
+> 2.17.1
 
