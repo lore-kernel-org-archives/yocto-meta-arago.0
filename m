@@ -1,75 +1,101 @@
-Return-Path: <lcpdbld@list.ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A8AE0C54EBE
-	for <webhook@archiver.kernel.org>; Fri, 13 Jan 2023 16:18:06 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web10.91775.1673626677057492075
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E7F2CC6379F
+	for <webhook@archiver.kernel.org>; Fri, 13 Jan 2023 20:37:57 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.100172.1673642276143977766
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 13 Jan 2023 08:17:57 -0800
+ Fri, 13 Jan 2023 12:37:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: list.ti.com, ip: 198.47.19.141, mailfrom: lcpdbld@list.ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30DGHsmN075261;
-	Fri, 13 Jan 2023 10:17:54 -0600
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30DGHsYb007743
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 13 Jan 2023 10:17:54 -0600
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 13
- Jan 2023 10:17:54 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 13 Jan 2023 10:17:54 -0600
-Received: from fllvdckhpci039.itg.ti.com (fllvdckhpci039.itg.ti.com [10.248.132.250])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30DGHs4f014751;
-	Fri, 13 Jan 2023 10:17:54 -0600
-Received: by fllvdckhpci039.itg.ti.com (Postfix, from userid 60899)
-	id 2ECA711225B2; Fri, 13 Jan 2023 10:17:54 -0600 (CST)
-From: LCPD Automation Script <lcpdbld@list.ti.com>
-To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Denys
- Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][dunfell][PATCH] ltp-ddt: CI/CD Auto-Merger: cicd.dunfell.202301130746
-Date: Fri, 13 Jan 2023 10:17:54 -0600
-Message-ID: <1673626674-54965-1-git-send-email-lcpdbld@list.ti.com>
-X-Mailer: git-send-email 1.8.3.1
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 2C2F140C50;
+	Fri, 13 Jan 2023 20:37:55 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id mByHvG7OxIyB; Fri, 13 Jan 2023 20:37:55 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1172340429;
+	Fri, 13 Jan 2023 20:37:54 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 84E401636F8; Fri, 13 Jan 2023 15:37:36 -0500 (EST)
+Date: Fri, 13 Jan 2023 15:37:36 -0500
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: Re: [meta-arago] [dunfell][PATCH 1/4] meta-toolchain-arago: fix
+ bashisms
+Message-ID: <20230113203736.GB22689@denix.org>
+References: <17333D2A2627CE10.12545@lists.yoctoproject.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <17333D2A2627CE10.12545@lists.yoctoproject.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 13 Jan 2023 16:18:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14169
+ <meta-arago@lists.yoctoproject.org>; Fri, 13 Jan 2023 20:37:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14170
 
-Updated the value(s) for:
-  SRCREV
+Any comments on this series?
 
-Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
----
- meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-index 3e80d70..eebef2a 100644
---- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
-@@ -14,7 +14,7 @@ PE = "1"
- PR = "r7"
- PV_append = "+git${SRCPV}"
- 
--SRCREV = "98137d256babf91cbf13143f8215dd27c8b2b672"
-+SRCREV = "4e613987b8dab09e64841631307123858ea44460"
- BRANCH ?= "master"
- 
- SRC_URI_remove = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master"
--- 
-1.8.3.1
-
+On Thu, Dec 22, 2022 at 10:12:02PM +0000, Denys Dmytriyenko wrote:
+> From: Denys Dmytriyenko <denys@konsulko.com>
+> 
+> Fix bashisms - helps with making builds in vanilla Ubuntu containers.
+> 
+> Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+> ---
+>  .../recipes-core/meta/meta-toolchain-arago.bb | 21 +++++++++++++------
+>  1 file changed, 15 insertions(+), 6 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+> index 8fed34f5..d2479ad1 100644
+> --- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+> +++ b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+> @@ -106,13 +106,22 @@ arago_sdk_fixup () {
+>  		lexec="${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/libexec/gcc/${TOOLCHAIN_SYS}"
+>  	fi
+>  	tcv=`ls -1 $lexec|head -1`
+> -	[ -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/$tcv ] || ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/$tcv
+> -	[ -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/$tcv ] || ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/$tcv
+> -	[ -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/${TOOLCHAIN_SYS} ] || ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/${TOOLCHAIN_SYS}
+> -	[ -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/${TOOLCHAIN_SYS} ] || ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/${TOOLCHAIN_SYS}
+> +	if [ ! -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/$tcv ]; then
+> +		ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/$tcv
+> +	fi
+> +	if [ ! -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/$tcv ]; then
+> +		ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/$tcv
+> +	fi
+> +	if [ ! -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/${TOOLCHAIN_SYS} ]; then
+> +		ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/${TOOLCHAIN_SYS}
+> +	fi
+> +	if [ ! -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/${TOOLCHAIN_SYS} ]; then
+> +		ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/${TOOLCHAIN_SYS}
+> +	fi
+>  	tcpath="${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/${TOOLCHAIN_SYS}"
+>  	mkdir -p $tcpath
+> -	pushd $tcpath
+> +	curdir=$(pwd)
+> +	cd $tcpath
+>  	ln -s ${SDKTARGETSYSROOT}/include include
+>  	if [ "${TOOLCHAIN_BRAND}" != "arago" ]; then
+>  		mkdir -p libc
+> @@ -122,7 +131,7 @@ arago_sdk_fixup () {
+>  	ln -s ${SDKTARGETSYSROOT}/lib lib
+>  	ln -s ${SDKTARGETSYSROOT}/usr/lib usr/lib
+>  	ln -s ${SDKTARGETSYSROOT}/usr/include usr/include
+> -	popd
+> +	cd $curdir
+>  }
+>  
+>  fakeroot create_sdk_files() {
+> -- 
+> 2.25.1
 
