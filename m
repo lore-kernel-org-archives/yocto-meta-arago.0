@@ -1,75 +1,75 @@
-Return-Path: <denis@denix.org>
+Return-Path: <lcpdbld@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2AB3EC54EBC
-	for <webhook@archiver.kernel.org>; Thu, 12 Jan 2023 16:22:19 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.59653.1673540528736099141
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A8AE0C54EBE
+	for <webhook@archiver.kernel.org>; Fri, 13 Jan 2023 16:18:06 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web10.91775.1673626677057492075
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 12 Jan 2023 08:22:09 -0800
+ Fri, 13 Jan 2023 08:17:57 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 16DDC40C2B;
-	Thu, 12 Jan 2023 16:22:08 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id EFARh0Swa3Se; Thu, 12 Jan 2023 16:22:08 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C9EBD40429;
-	Thu, 12 Jan 2023 16:22:01 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 7CD731636F6; Thu, 12 Jan 2023 11:21:44 -0500 (EST)
-Date: Thu, 12 Jan 2023 11:21:44 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: Chirag Shilwant <c-shilwant@ti.com>
-Cc: Praneeth Bajjuri <praneeth@ti.com>, Ryan Eatmon <reatmon@ti.com>,
-	meta-arago@lists.yoctoproject.org,
-	Sai Sree Kartheek Adivi <s-adivi@ti.com>,
-	Paresh Bhagat <p-bhagat@ti.com>, Gyan Gupta <g-gupta@ti.com>
-Subject: Re: [meta-arago][dunfell][PATCH] ti-tisdk-makefile: k3:
- u-boot-spl: Remove UBOOT_SYSFW
-Message-ID: <20230112162144.GY22689@denix.org>
-References: <20230109160247.26719-1-c-shilwant@ti.com>
+ dkim=missing; spf=pass (domain: list.ti.com, ip: 198.47.19.141, mailfrom: lcpdbld@list.ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 30DGHsmN075261;
+	Fri, 13 Jan 2023 10:17:54 -0600
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 30DGHsYb007743
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 13 Jan 2023 10:17:54 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 13
+ Jan 2023 10:17:54 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Fri, 13 Jan 2023 10:17:54 -0600
+Received: from fllvdckhpci039.itg.ti.com (fllvdckhpci039.itg.ti.com [10.248.132.250])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 30DGHs4f014751;
+	Fri, 13 Jan 2023 10:17:54 -0600
+Received: by fllvdckhpci039.itg.ti.com (Postfix, from userid 60899)
+	id 2ECA711225B2; Fri, 13 Jan 2023 10:17:54 -0600 (CST)
+From: LCPD Automation Script <lcpdbld@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][dunfell][PATCH] ltp-ddt: CI/CD Auto-Merger: cicd.dunfell.202301130746
+Date: Fri, 13 Jan 2023 10:17:54 -0600
+Message-ID: <1673626674-54965-1-git-send-email-lcpdbld@list.ti.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230109160247.26719-1-c-shilwant@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 12 Jan 2023 16:22:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14168
+ <meta-arago@lists.yoctoproject.org>; Fri, 13 Jan 2023 16:18:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14169
 
-On Mon, Jan 09, 2023 at 09:32:47PM +0530, Chirag Shilwant wrote:
-> Remove UBOOT_SYSFW as sysfw is no longer used in building u-boot-r5.
+Updated the value(s) for:
+  SRCREV
 
-What about AM65x and J721e?
+Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
+---
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+index 3e80d70..eebef2a 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+@@ -14,7 +14,7 @@ PE = "1"
+ PR = "r7"
+ PV_append = "+git${SRCPV}"
+ 
+-SRCREV = "98137d256babf91cbf13143f8215dd27c8b2b672"
++SRCREV = "4e613987b8dab09e64841631307123858ea44460"
+ BRANCH ?= "master"
+ 
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master"
+-- 
+1.8.3.1
 
-> Ref - dce21d6d3bd5b9014994a45c22b9ee8d13faa07b
-> 
-> Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
-> ---
->  .../ti-tisdk-makefile/ti-tisdk-makefile/k3/Makefile_u-boot-spl   | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/k3/Makefile_u-boot-spl b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/k3/Makefile_u-boot-spl
-> index f0bd16df..45ebce40 100644
-> --- a/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/k3/Makefile_u-boot-spl
-> +++ b/meta-arago-distro/recipes-tisdk/ti-tisdk-makefile/ti-tisdk-makefile/k3/Makefile_u-boot-spl
-> @@ -9,7 +9,6 @@ UBOOT_R5_BUILD_DIR=$(TI_SDK_PATH)/board-support/u-boot_build/r5
->  
->  UBOOT_ATF=$(TI_SDK_PATH)/board-support/prebuilt-images/bl31.bin
->  UBOOT_TEE=$(TI_SDK_PATH)/board-support/prebuilt-images/bl32.bin
-> -UBOOT_SYSFW=$(TI_SDK_PATH)/board-support/prebuilt-images/sysfw.bin
->  UBOOT_DMFW=$(TI_SDK_PATH)/board-support/prebuilt-images/ipc_echo_testb_mcu1_0_release_strip.xer5f
->  
->  u-boot: u-boot-a53 u-boot-r5
-> -- 
-> 2.17.1
 
