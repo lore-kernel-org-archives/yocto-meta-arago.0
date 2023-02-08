@@ -2,47 +2,47 @@ Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BFECBC05027
-	for <webhook@archiver.kernel.org>; Wed,  8 Feb 2023 23:35:57 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web11.1112.1675899350646257640
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E6E39C05027
+	for <webhook@archiver.kernel.org>; Wed,  8 Feb 2023 23:39:37 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.1188.1675899574831686713
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 08 Feb 2023 15:35:50 -0800
+ Wed, 08 Feb 2023 15:39:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=A1ny+jTc;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: afd@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 318NZnVw087029;
-	Wed, 8 Feb 2023 17:35:49 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=rRUdi+Gp;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: afd@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 318NdWJ8053675;
+	Wed, 8 Feb 2023 17:39:32 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1675899349;
-	bh=F7vswcaQkcRlz1mgbJoA4G92mzX4EYOTePDoKYVAARU=;
+	s=ti-com-17Q1; t=1675899572;
+	bh=nP+394Vbq2IUFtfZwZMPcrSya9k5ofxrquGmx/kuRmc=;
 	h=From:To:CC:Subject:Date;
-	b=A1ny+jTcCzT8VGLGJQI1ZbTmGtL/yGM7YkWDHWEhMQ6PGnM7cm+avCARxay04xF7h
-	 CY44gpNmf32OBTtLqx8qjuv+oUas5BJkNn7ZZUvbaE7rJ/hwMy76i3JZn2zy7XaehM
-	 mFmY0v/f09NZoOCC+TM5m+RH9Vod0ovvf3czVe9M=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 318NZnTf042981
+	b=rRUdi+GpUXW/e38Dk06z3dFzlE9jLfJrdqzHMkbzEAi5L0fJ1Ox/M0NV504yJlU26
+	 jtAFXex8yT95g6nXT4qJnMSGaGYNLcPLVFllz63YhI6M9PtZEvCfgW87ATj3VUXCBN
+	 53FRu6+njcxejil2TEXC79TnGQFYsbMcIArKoZJE=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 318NdWji088892
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 8 Feb 2023 17:35:49 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 8 Feb 2023 17:39:32 -0600
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 8
- Feb 2023 17:35:49 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2023 17:39:32 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Wed, 8 Feb 2023 17:35:49 -0600
-Received: from ula0226330.dal.design.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 318NZmcd003598;
-	Wed, 8 Feb 2023 17:35:48 -0600
+ Frontend Transport; Wed, 8 Feb 2023 17:39:32 -0600
+Received: from ula0226330.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 318NdVZr005760;
+	Wed, 8 Feb 2023 17:39:32 -0600
 From: Andrew Davis <afd@ti.com>
 To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
         <meta-arago@lists.yoctoproject.org>
 CC: Andrew Davis <afd@ti.com>
-Subject: [meta-arago][kirkstone/master][PATCH] glsdk-example-apps: Fix build when x11 is not available
-Date: Wed, 8 Feb 2023 17:35:48 -0600
-Message-ID: <20230208233548.19880-1-afd@ti.com>
+Subject: [meta-arago][kirkstone/master][PATCH] meta-arago: Remove some leftover srcipk bits
+Date: Wed, 8 Feb 2023 17:39:31 -0600
+Message-ID: <20230208233931.20169-1-afd@ti.com>
 X-Mailer: git-send-email 2.39.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -51,34 +51,58 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 08 Feb 2023 23:35:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14212
+ <meta-arago@lists.yoctoproject.org>; Wed, 08 Feb 2023 23:39:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14213
 
-When the graphics driver is not built with x11 support the pkg-config
-file will include a cflag that causes the correct non-x11 headers to
-be included. This package does not correctly check pkg-config and
-so misses this cflag. Add it manually.
+With srcipk class gone these are no longer functional. Remove them.
 
 Signed-off-by: Andrew Davis <afd@ti.com>
 ---
- .../recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ .../arm-benchmarks/arm-benchmarks_%.bbappend               | 3 ---
+ .../ocl-rtos/opencl-examples-rtos_git.bbappend             | 7 -------
+ .../big-data-ipc-demo/big-data-ipc-demo_git.bb             | 4 ----
+ 3 files changed, 14 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-benchmark/arm-benchmarks/arm-benchmarks_%.bbappend
 
-diff --git a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-index 6827ed31..7b0bc3c4 100644
---- a/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-+++ b/meta-arago-extras/recipes-graphics/glsdk-example-apps/glsdk-example-apps.bb
-@@ -16,7 +16,9 @@ SRC_URI = "git://git.ti.com/git/glsdk/example-applications.git;protocol=https;br
+diff --git a/meta-arago-distro/recipes-benchmark/arm-benchmarks/arm-benchmarks_%.bbappend b/meta-arago-distro/recipes-benchmark/arm-benchmarks/arm-benchmarks_%.bbappend
+deleted file mode 100644
+index a281f4dd..00000000
+--- a/meta-arago-distro/recipes-benchmark/arm-benchmarks/arm-benchmarks_%.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-PR:append = ".arago0"
+-
+-SRCIPK_SRC_DIR = "${S}/${PLATFORM_ARCH}"
+diff --git a/meta-arago-distro/recipes-tisdk/ocl-rtos/opencl-examples-rtos_git.bbappend b/meta-arago-distro/recipes-tisdk/ocl-rtos/opencl-examples-rtos_git.bbappend
+index a0e3d084..f7acb63b 100644
+--- a/meta-arago-distro/recipes-tisdk/ocl-rtos/opencl-examples-rtos_git.bbappend
++++ b/meta-arago-distro/recipes-tisdk/ocl-rtos/opencl-examples-rtos_git.bbappend
+@@ -4,10 +4,3 @@ CM_NAME = "OpenCL"
+ CM_VERSION = "${PV}"
+ CM_ROOT_DIR = "opencl_rtos_${RELEASE_TARGET}_${@'${PV}'.replace('.', '_')}"
+ CM_DESCRIPTION = "OpenCL is a framework for writing programs that execute across heterogeneous systems"
+-
+-deltask do_create_srcipk
+-addtask create_srcipk after do_install before do_package
+-
+-CREATE_SRCIPK = "1"
+-SRCIPK_SRC_DIR = "${DESTDIR}"
+-SRCIPK_INSTALL_DIR = "${CM_ROOT_DIR}"
+diff --git a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo_git.bb b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo_git.bb
+index 779cef7f..439fac14 100644
+--- a/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo_git.bb
++++ b/meta-arago-extras/recipes-apps/big-data-ipc-demo/big-data-ipc-demo_git.bb
+@@ -39,10 +39,6 @@ EXTRA_OEMAKE = "\
+     ti.targets.arm.elf.M4="${M4_TOOLCHAIN_INSTALL_DIR}" \
+ "
  
- SRCREV="52466430609c402a9f1c0667ccf727d096336d0d"
- 
--PR = "r52"
-+PR = "r53"
-+
-+CFLAGS += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '', '-DEGL_NO_X11',d)}"
- 
- do_install:append () {
-     install -d ${D}${sysconfdir}/glsdkstatcoll
+-do_create_srcipk:prepend() {
+-    rm -rf host_bios
+-}
+-
+ do_compile() {
+     oe_runmake host_linux
+ }
 -- 
 2.39.1
 
