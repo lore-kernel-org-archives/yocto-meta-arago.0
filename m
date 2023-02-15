@@ -1,132 +1,75 @@
-Return-Path: <afd@ti.com>
+Return-Path: <lcpdbld@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E5061C636CC
-	for <webhook@archiver.kernel.org>; Mon, 13 Feb 2023 19:22:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 16FC8C636D4
+	for <webhook@archiver.kernel.org>; Wed, 15 Feb 2023 20:42:43 +0000 (UTC)
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.24647.1676316148800458351
+ by mx.groups.io with SMTP id smtpd.web11.4455.1676493760773785445
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 13 Feb 2023 11:22:29 -0800
+ Wed, 15 Feb 2023 12:42:41 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=RdIpZnvx;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: afd@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31DJMRGk092349;
-	Mon, 13 Feb 2023 13:22:27 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1676316147;
-	bh=/q0sDGTqAo71CenLo2T9Rv+Du1iEKu6iH9HI2lPiLwA=;
-	h=From:To:CC:Subject:Date;
-	b=RdIpZnvx9TF8L59S00JLU/LS3hWQh2j5Nd+0aUBt+0mQWt1C2FEwtdOmgQzxM+PUO
-	 /Xp8YTYY8SUL15GGVxtZwLzVaH+KFQKrauATLpj41N6m4e5vVYcyvSclveMGElNuSF
-	 eyuQHp8fNxcUrQ6lqtDUOX2ySxmWI6QqRuV2ESG8=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31DJMR3r023677
+ dkim=missing; spf=pass (domain: list.ti.com, ip: 198.47.23.249, mailfrom: lcpdbld@list.ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31FKgdDM109901;
+	Wed, 15 Feb 2023 14:42:39 -0600
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31FKgdiM055262
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 13 Feb 2023 13:22:27 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 13
- Feb 2023 13:22:26 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 15 Feb 2023 14:42:39 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Wed, 15
+ Feb 2023 14:42:39 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 13 Feb 2023 13:22:27 -0600
-Received: from ula0226330.dal.design.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31DJMQqA052501;
-	Mon, 13 Feb 2023 13:22:26 -0600
-From: Andrew Davis <afd@ti.com>
-To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
+ Frontend Transport; Wed, 15 Feb 2023 14:42:39 -0600
+Received: from fllvdckhpci039.itg.ti.com (fllvdckhpci039.itg.ti.com [10.248.132.250])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31FKgdn7011357;
+	Wed, 15 Feb 2023 14:42:39 -0600
+Received: by fllvdckhpci039.itg.ti.com (Postfix, from userid 60899)
+	id 2783711221B5; Wed, 15 Feb 2023 14:42:39 -0600 (CST)
+From: LCPD Automation Script <lcpdbld@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-CC: Andrew Davis <afd@ti.com>
-Subject: [meta-arago][kirkstone/master][PATCH] libloki: fix C++ compile errors with gcc-11
-Date: Mon, 13 Feb 2023 13:22:26 -0600
-Message-ID: <20230213192226.26228-1-afd@ti.com>
-X-Mailer: git-send-email 2.39.1
+Subject: [meta-arago][dunfell][PATCH] ltp-ddt: CI/CD Auto-Merger: cicd.dunfell.202302151242
+Date: Wed, 15 Feb 2023 14:42:39 -0600
+Message-ID: <1676493759-27515-1-git-send-email-lcpdbld@list.ti.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 13 Feb 2023 19:22:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14219
+ <meta-arago@lists.yoctoproject.org>; Wed, 15 Feb 2023 20:42:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14220
 
-Signed-off-by: Andrew Davis <afd@ti.com>
+Updated the value(s) for:
+  SRCREV
+
+Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
 ---
- ...llObj.h-ISO-C-17-does-not-allow-dyna.patch | 44 +++++++++++++++++++
- .../recipes-support/loki/libloki_0.1.7.bb     |  4 +-
- 2 files changed, 47 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-support/loki/libloki/0001-include-loki-SmallObj.h-ISO-C-17-does-not-allow-dyna.patch
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-support/loki/libloki/0001-include-loki-SmallObj.h-ISO-C-17-does-not-allow-dyna.patch b/meta-arago-extras/recipes-support/loki/libloki/0001-include-loki-SmallObj.h-ISO-C-17-does-not-allow-dyna.patch
-new file mode 100644
-index 00000000..96c487a4
---- /dev/null
-+++ b/meta-arago-extras/recipes-support/loki/libloki/0001-include-loki-SmallObj.h-ISO-C-17-does-not-allow-dyna.patch
-@@ -0,0 +1,44 @@
-+From 9e36399573fd075d9607b3a89c4358dc18b065d7 Mon Sep 17 00:00:00 2001
-+From: Andrew Davis <afd@ti.com>
-+Date: Mon, 13 Feb 2023 13:11:16 -0600
-+Subject: [PATCH] include/loki/SmallObj.h: ISO C++17 does not allow dynamic
-+ exception specifications
-+
-+Signed-off-by: Andrew Davis <afd@ti.com>
-+---
-+ include/loki/SmallObj.h | 15 ++-------------
-+ 1 file changed, 2 insertions(+), 13 deletions(-)
-+
-+diff --git a/include/loki/SmallObj.h b/include/loki/SmallObj.h
-+index 65828bf..b5d1857 100644
-+--- a/include/loki/SmallObj.h
-++++ b/include/loki/SmallObj.h
-+@@ -455,12 +455,7 @@ namespace Loki
-+     public:
-+ 
-+         /// Throwing single-object new throws bad_alloc when allocation fails.
-+-#ifdef _MSC_VER
-+-        /// @note MSVC complains about non-empty exception specification lists.
-+-        static void * operator new ( std::size_t size )
-+-#else
-+-        static void * operator new ( std::size_t size ) throw ( std::bad_alloc )
-+-#endif
-++        static void * operator new ( std::size_t size ) throw ()
-+         {
-+             typename MyThreadingModel::Lock lock;
-+             (void)lock; // get rid of warning
-+@@ -508,13 +503,7 @@ namespace Loki
-+ #ifdef LOKI_SMALL_OBJECT_USE_NEW_ARRAY
-+ 
-+         /// Throwing array-object new throws bad_alloc when allocation fails.
-+-#ifdef _MSC_VER
-+-        /// @note MSVC complains about non-empty exception specification lists.
-+-        static void * operator new [] ( std::size_t size )
-+-#else
-+-        static void * operator new [] ( std::size_t size )
-+-            throw ( std::bad_alloc )
-+-#endif
-++        static void * operator new [] ( std::size_t size ) throw ()
-+         {
-+             typename MyThreadingModel::Lock lock;
-+             (void)lock; // get rid of warning
-diff --git a/meta-arago-extras/recipes-support/loki/libloki_0.1.7.bb b/meta-arago-extras/recipes-support/loki/libloki_0.1.7.bb
-index 07aaa2f5..7eda512b 100644
---- a/meta-arago-extras/recipes-support/loki/libloki_0.1.7.bb
-+++ b/meta-arago-extras/recipes-support/loki/libloki_0.1.7.bb
-@@ -6,7 +6,9 @@ LIC_FILES_CHKSUM = "file://README;md5=5f7c1a2bebe34fc290234984d5845b03"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+index 96cfc4d..7015efc 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+@@ -14,7 +14,7 @@ PE = "1"
+ PR = "r7"
+ PV_append = "+git${SRCPV}"
  
- SRC_URI = "http://libloki.sourcearchive.com/downloads/${PV}-3/${BPN}_${PV}.orig.tar.gz \
-            file://0001-include-loki-Threads.h-return-statement-with-a-value.patch \
--           file://0002-test-Function-FunctionTest.cpp-reference-to-bad_func.patch"
-+           file://0002-test-Function-FunctionTest.cpp-reference-to-bad_func.patch \
-+           file://0001-include-loki-SmallObj.h-ISO-C-17-does-not-allow-dyna.patch \
-+"
+-SRCREV = "ae34d8e8edbad6f31d43a4ca569556ad099cda1f"
++SRCREV = "805d7b3b9e4a43d52c3d3ef20174ddf7647b1775"
+ BRANCH ?= "master"
  
- SRC_URI[md5sum] = "af532c24a7f2e12d0829be8201934d92"
- SRC_URI[sha256sum] = "0c2094ce916b106731c8be61c32f538a22e1c0f8398bd5d6295b13d08e0c41a3"
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master"
 -- 
-2.39.1
+1.8.3.1
 
 
