@@ -1,117 +1,90 @@
-Return-Path: <denis@denix.org>
+Return-Path: <s-adivi@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 99D02C6FA8E
-	for <webhook@archiver.kernel.org>; Sun, 26 Feb 2023 07:33:03 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.61845.1677396776053173284
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 65634C64ED6
+	for <webhook@archiver.kernel.org>; Sun, 26 Feb 2023 12:50:45 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web10.64656.1677415835203807071
  for <meta-arago@lists.yoctoproject.org>;
- Sat, 25 Feb 2023 23:32:56 -0800
+ Sun, 26 Feb 2023 04:50:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 9C57340C37;
-	Sun, 26 Feb 2023 07:32:54 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 21BB_8lZvven; Sun, 26 Feb 2023 07:32:54 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7D28040C06;
-	Sun, 26 Feb 2023 07:32:53 +0000 (UTC)
-Received: from thorin.denix (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 63F5F16375B;
-	Sun, 26 Feb 2023 02:32:27 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master/kirkstone][PATCH] all: unbreak populate_sdk task (again)
-Date: Sun, 26 Feb 2023 07:32:51 +0000
-Message-Id: <20230226073251.231699-1-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=AorlArIQ;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: s-adivi@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 31QCoTDb002873;
+	Sun, 26 Feb 2023 06:50:29 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1677415829;
+	bh=l1b36WC3hpNcGpGfMvjslBOTXGU5GkU+yCi8G1+4VpU=;
+	h=From:To:CC:Subject:Date;
+	b=AorlArIQ/rLTYS1LYo0WO2VU70xbll47BHKdfxuXMyje5DQG6vFUsHw6oplIhNAmQ
+	 NcXfldVsGfvmLjL9sPHHZZT2lfgFSAsfW2ReM5odV+NLrvEdzk6rbPswNgG+vOmVO/
+	 nGCvNczaaNmySLfJvBnf3ANpIQ7V6oD3kcsrt3CU=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 31QCoTPc130408
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Sun, 26 Feb 2023 06:50:29 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Sun, 26
+ Feb 2023 06:50:29 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Sun, 26 Feb 2023 06:50:28 -0600
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 31QCoS2X074460;
+	Sun, 26 Feb 2023 06:50:28 -0600
+From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>, <denis@denix.org>,
+        <reatmon@ti.com>
+CC: <g-gupta@ti.com>, <c-shilwant@ti.com>, <khasim@ti.com>, <p-bhagat@ti.com>
+Subject: [oe-layersetup][master][PATCH] configs: processor-sdk: add processor-sdk-08.06.00-config.txt
+Date: Sun, 26 Feb 2023 18:20:26 +0530
+Message-ID: <20230226125026.2234000-1-s-adivi@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Sun, 26 Feb 2023 07:33:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14234
+ <meta-arago@lists.yoctoproject.org>; Sun, 26 Feb 2023 12:50:45 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14235
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+- Add processor-sdk-08.06.00-config.txt for AM62A, AM62x, AM62Q & AM64x
 
-Being able to run populate_sdk task against minimal and base images
-has always been supported by Arago, though needed to get fixed once
-in a while, e.g.:
-https://git.yoctoproject.org/meta-arago/commit/?id=3Dd47710c8219e036cb700=
-5bc0a22099e63c5e1901
-
-This time around the issue is due to upstream packages lmbench and
-mbedtls both installing /usr/bin/hello binary and causing a conflict
-when the files collide in the sysroot.
-
-The fix has been submitted upstream to meta-oe and meta-networking
-layers of the meta-openembedded repo:
-https://patchwork.yoctoproject.org/project/oe/list/?series=3D10748
-
-For now add local bbappends with the same fix, which can be removed
-when the fix is merged upstream and backported to kirkstone.
-
-While at it, also look into the conflict caused by matrix launcher
-packaging function being reused by multiple subpackages, resulting
-in lots of file conflicts between them. There's a lot of rework
-required for the matrix (and it might get moved to another layer
-altogether), but for now just cutoff the reverse dependency from
-development -dev packages.
-
-With this simple change it is now possible to run populate_sdk task
-even against the default full/graphics tisdk-default-image.
-
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 ---
- .../recipes-benchmark/lmbench/lmbench_%.bbappend              | 2 ++
- .../recipes-connectivity/mbedtls/mbedtls_%.bbappend           | 4 ++++
- meta-arago-extras/recipes-core/matrix/matrix-gui-apps.inc     | 3 +++
- 3 files changed, 9 insertions(+)
- create mode 100644 meta-arago-distro/recipes-benchmark/lmbench/lmbench_%=
-.bbappend
- create mode 100644 meta-arago-distro/recipes-connectivity/mbedtls/mbedtl=
-s_%.bbappend
+ .../processor-sdk-08.06.00-config.txt            | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 configs/processor-sdk/processor-sdk-08.06.00-config.txt
 
-diff --git a/meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappe=
-nd b/meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappend
+diff --git a/configs/processor-sdk/processor-sdk-08.06.00-config.txt b/configs/processor-sdk/processor-sdk-08.06.00-config.txt
 new file mode 100644
-index 00000000..96dd2010
+index 0000000..5c08730
 --- /dev/null
-+++ b/meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappend
-@@ -0,0 +1,2 @@
-+ALTERNATIVE:${PN} +=3D "hello"
-+ALTERNATIVE_LINK_NAME[hello] =3D "${bindir}/hello"
-diff --git a/meta-arago-distro/recipes-connectivity/mbedtls/mbedtls_%.bba=
-ppend b/meta-arago-distro/recipes-connectivity/mbedtls/mbedtls_%.bbappend
-new file mode 100644
-index 00000000..f3c16796
---- /dev/null
-+++ b/meta-arago-distro/recipes-connectivity/mbedtls/mbedtls_%.bbappend
-@@ -0,0 +1,4 @@
-+inherit update-alternatives
++++ b/configs/processor-sdk/processor-sdk-08.06.00-config.txt
+@@ -0,0 +1,16 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
 +
-+ALTERNATIVE:${PN}-programs +=3D "hello"
-+ALTERNATIVE_LINK_NAME[hello] =3D "${bindir}/hello"
-diff --git a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps.inc b/=
-meta-arago-extras/recipes-core/matrix/matrix-gui-apps.inc
-index 2bcc908b..adb998e1 100644
---- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps.inc
-+++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps.inc
-@@ -38,3 +38,6 @@ do_install:append(){
-     # other appends.
-     cd -
- }
-+
-+RDEPENDS:${PN}-dev =3D ""
-+RRECOMMENDS:${PN}-dev =3D ""
---=20
-2.25.1
++bitbake,https://git.openembedded.org/bitbake,1.46,0784db7
++meta-processor-sdk,https://git.ti.com/cgit/processor-sdk/meta-processor-sdk,dunfell,08.06.00,layers=
++meta-arago,https://git.yoctoproject.org/meta-arago,dunfell,08.06.00.007,layers=meta-arago-distro:meta-arago-extras
++meta-qt5,https://github.com/meta-qt5/meta-qt5.git,dunfell,5ef3a0f,layers=
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,dunfell,beea119eb529b4a11f266004aee8b548427aea39,layers=
++meta-openembedded,https://git.openembedded.org/meta-openembedded,dunfell,87571345059f82fb7599e3aa82e6fdcfbd361098,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
++meta-ti,https://git.yoctoproject.org/meta-ti,dunfell,08.06.00.007,layers=
++meta-arm,https://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
++oe-core,https://git.openembedded.org/openembedded-core,dunfell,daaee6fcb0d201f041678af433d8e1cd6f924d09,layers=meta
++meta-sysrepo,https://github.com/sartura/meta-sysrepo.git,master,8bcc6151897c0e67c2931c78340477bf3a12d8cb,layers=
++meta-jupyter,https://github.com/Xilinx/meta-jupyter.git,master,82db248e2eca36e52cbeafe599b755dc87720383,layers=
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64.conf.sample
+-- 
+2.34.1
 
 
