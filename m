@@ -1,91 +1,75 @@
-Return-Path: <denis@denix.org>
+Return-Path: <lcpdbld@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E3F47C7EE23
-	for <webhook@archiver.kernel.org>; Wed,  1 Mar 2023 23:13:55 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.885.1677712434006824045
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F8FFC7EE3A
+	for <webhook@archiver.kernel.org>; Fri,  3 Mar 2023 02:17:23 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web10.13274.1677809838292676929
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 01 Mar 2023 15:13:54 -0800
+ Thu, 02 Mar 2023 18:17:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 1CCD540CA5;
-	Wed,  1 Mar 2023 23:13:53 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id lp5ydt6iYpNC; Wed,  1 Mar 2023 23:13:53 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id D4F6D40C22;
-	Wed,  1 Mar 2023 23:13:48 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 4F001163799; Wed,  1 Mar 2023 18:13:22 -0500 (EST)
-Date: Wed, 1 Mar 2023 18:13:22 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: reatmon@ti.com
-Cc: meta-arago@lists.yoctoproject.org, denys@konsulko.com, afd@ti.com,
-	dannenberg@ti.com
-Subject: Re: [meta-arago][kirkstone/master] ti-rtos-firmware: use
- nonarch_base_libdir for firmware installations
-Message-ID: <20230301231322.GS22689@denix.org>
-References: <20230301225047.15898-1-dannenberg@ti.com>
- <17486DA46A7E8A1F.31014@lists.yoctoproject.org>
+ dkim=missing; spf=pass (domain: list.ti.com, ip: 198.47.19.141, mailfrom: lcpdbld@list.ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3232HFQx104235;
+	Thu, 2 Mar 2023 20:17:15 -0600
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3232HFfY020501
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 2 Mar 2023 20:17:15 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Thu, 2
+ Mar 2023 20:17:15 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Thu, 2 Mar 2023 20:17:15 -0600
+Received: from fllvdckhpci039.itg.ti.com (fllvdckhpci039.itg.ti.com [10.248.132.250])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3232HFOB109430;
+	Thu, 2 Mar 2023 20:17:15 -0600
+Received: by fllvdckhpci039.itg.ti.com (Postfix, from userid 60899)
+	id 502DD10FE253; Thu,  2 Mar 2023 20:17:15 -0600 (CST)
+From: LCPD Automation Script <lcpdbld@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][dunfell][PATCH] ltp-ddt: CI/CD Auto-Merger: cicd.dunfell.202303021800
+Date: Thu, 2 Mar 2023 20:17:15 -0600
+Message-ID: <1677809835-108076-1-git-send-email-lcpdbld@list.ti.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <17486DA46A7E8A1F.31014@lists.yoctoproject.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 01 Mar 2023 23:13:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14246
+ <meta-arago@lists.yoctoproject.org>; Fri, 03 Mar 2023 02:17:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14247
 
-On Wed, Mar 01, 2023 at 05:56:20PM -0500, Denys Dmytriyenko wrote:
-> On Wed, Mar 01, 2023 at 04:50:47PM -0600, Andreas Dannenberg via lists.yoctoproject.org wrote:
-> > It was previously established that we should only use nonarch_base_libdir
-> > for firmware installations, see
-> > 
-> > fa8035fc263 ("meta-ti: use nonarch_base_libdir for firmware installations")
-> > 
-> > However there have been some regressions on this endeavour with some
-> > additional changes that were since committed to ti-rtos-firmware. Go ahead
-> > and fix those to prevent this from biting us later, for example during
-> > multilib builds.
-> 
-> 1. wrong list
-> 
-> 2. see this:
-> https://patchwork.yoctoproject.org/project/ti/patch/20230215193355.9676-15-afd@ti.com/
-> 
-> It is now in WIP branches going through the testing.
-> 
-> 
-> > Signed-off-by: Andreas Dannenberg <dannenberg@ti.com>
-> > ---
-> > 
-> > I see there are other instances of ${base_libdir} being used probably
-> > incorrectly such as in...
-> > 
-> > meta-ti-extras/recipes-ti/beagleboard/beaglebone-capes.bb
-> > meta-ti-extras/recipes-ti/beagleboard/gadget-init.bb
-> 
-> Those are severely outdated and probably should be removed instead...
-> 
-> 
-> BTW, Ryan, I see you didn't pick up these patches from the Patchwork for some 
-> reason.
+Updated the value(s) for:
+  SRCREV
 
-Oops, this comment to Ryan was related to the patchwork link above regarding 
-the patches in WIP - they are missing Tested-by tag...
+Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
+---
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+index 5c309d1..2b3b035 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20210524.bb
+@@ -14,7 +14,7 @@ PE = "1"
+ PR = "r7"
+ PV_append = "+git${SRCPV}"
+ 
+-SRCREV = "58c567cb0ed4941f0b4c42b2a2c3ca02816a1964"
++SRCREV = "e4c3824590cd1f417e20b64119a920d0680302c0"
+ BRANCH ?= "master"
+ 
+ SRC_URI_remove = "git://github.com/linux-test-project/ltp.git;protocol=https;branch=master"
+-- 
+1.8.3.1
 
-> > ...related to systemd but since I'm not 100% sure about those and can't
-> > test those changes at the moment I'm not including them here.
-> 
-> -- 
-> Denys
 
