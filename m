@@ -2,168 +2,148 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 185D4C678D5
-	for <webhook@archiver.kernel.org>; Tue,  7 Mar 2023 14:04:35 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web11.15869.1678197867581014758
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AF78AC678D5
+	for <webhook@archiver.kernel.org>; Wed,  8 Mar 2023 00:38:06 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.11248.1678235880130879949
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 07 Mar 2023 06:04:27 -0800
+ Tue, 07 Mar 2023 16:38:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@ti.com header.s=ti-com-17q1 header.b=DqkCX0GL;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=DloXBDMK;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 327E4Naq087559;
-	Tue, 7 Mar 2023 08:04:23 -0600
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3280buon061240;
+	Tue, 7 Mar 2023 18:37:56 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1678197863;
-	bh=j5MY63zCU2u2euQ0iCmfn6x3MqBa02RZBcrUbuoK1RM=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=DqkCX0GLpiWx3Lpc1z4c68YychSU7tFRJQ6PxCkty+vyBYoJfJWF9ZW//DtxdsbUg
-	 sIUpAgbCZ+pXjn0ZBUrBxpNaHcfBTrME+1RjAdo4Yq5pjA0IWot5vPZRkqBB1frUsa
-	 QC3BPR5wBt4SWa1QviR9+kxrkPuPS0RwC3j/75Zw=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 327E4N1A095947
+	s=ti-com-17Q1; t=1678235876;
+	bh=vOk5U9eHwb6p9k01Nlh6eb7GluoMMN9/8EkQ5IfgLPU=;
+	h=From:To:Subject:Date;
+	b=DloXBDMKpeXMtBe6uRc617Nj4KN8oBUpCzaIv/jtKv0FoJoKqY1t2WqiG3jrs0RK8
+	 n58tTUyjgAWyJX5S8pMbkXwp2+XxnCEL623WrgqBkv7xAHUaqvPUOkR8TTjgAOH9Cz
+	 cC/xi88Gnvku7vEyb1ILoRXwhvbCNkkO59n8l5Nw=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3280buHP067587
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 7 Mar 2023 08:04:23 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 7
- Mar 2023 08:04:23 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
+	Tue, 7 Mar 2023 18:37:56 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE108.ent.ti.com
  (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 7
+ Mar 2023 18:37:56 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Tue, 7 Mar 2023 08:04:23 -0600
-Received: from [10.249.33.79] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 327E4Ms3099231;
-	Tue, 7 Mar 2023 08:04:23 -0600
-Message-ID: <3b02b958-3584-adc7-351f-5c54fb13ed08@ti.com>
-Date: Tue, 7 Mar 2023 08:04:22 -0600
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [meta-arago] [master/kirkstone][PATCH] all: unbreak populate_sdk
- task (again)
-Content-Language: en-US
-To: Denys Dmytriyenko <denis@denix.org>, <meta-arago@lists.yoctoproject.org>
-References: <17474F7B5189B28F.29542@lists.yoctoproject.org>
- <20230306210233.GV22689@denix.org>
- <1749F28D254109F2.1452@lists.yoctoproject.org>
+ Frontend Transport; Tue, 7 Mar 2023 18:37:56 -0600
+Received: from uda0214219 (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3280buYf039740;
+	Tue, 7 Mar 2023 18:37:56 -0600
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1pZhoa-0006zp-39; Tue, 07 Mar 2023 18:37:56 -0600
 From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <1749F28D254109F2.1452@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [oe-layersetup][master][PATCH] oe-layertool-setup.sh: local.conf settings in config file
+Date: Tue, 7 Mar 2023 18:37:56 -0600
+Message-ID: <20230308003756.26853-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by lelv0143.ext.ti.com id 327E4Naq087559
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 07 Mar 2023 14:04:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14253
+ <meta-arago@lists.yoctoproject.org>; Wed, 08 Mar 2023 00:38:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14254
 
+For some layersetup scenarios, it might be advantageous to allow for
+settings that should go into the local.conf file for a given set of
+layers.  To that end, any line starting with LOCALCONF: will be appended
+to the end of the local.conf.
 
-Merged in.
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ oe-layertool-setup.sh | 37 ++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 36 insertions(+), 1 deletion(-)
 
+diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
+index df1b675..4e66093 100755
+--- a/oe-layertool-setup.sh
++++ b/oe-layertool-setup.sh
+@@ -166,6 +166,13 @@ parse_bitbake_line() {
+     eval $var=$val
+ }
+ 
++# Input is a line of the form LOCALCONF:.*=value
++parse_localconf_line() {
++    localconf=`echo "$1" | cut -d: -f2`
++    echo "$localconf" >> $oebase/tmp_append_local.conf
++}
++
++
+ 
+ 
+ # Input is a repository description line as detailed in the usage section
+@@ -221,6 +228,11 @@ parse_repo_line() {
+ 
+ 
+ parse_input_file() {
++    if [ -e $oebase/tmp_append_local.conf ]
++    then
++        rm $oebase/tmp_append_local.conf
++    fi
++
+     while read line
+     do
+         # clean the parsing variables for each run
+@@ -252,7 +264,7 @@ parse_input_file() {
+             continue
+         fi
+ 
+-        # If the line starts with OECORE then parse the OECORE setting
++        # If the line starts with BITBAKE then parse the BITBAKE setting
+         echo $line | grep -e "^BITBAKE.*=" > /dev/null
+         if [ "$?" = "0" ]
+         then
+@@ -261,6 +273,14 @@ parse_input_file() {
+             continue
+         fi
+ 
++        # If the line starts with LOCALCONF: then parse the LOCALCONF: setting
++        echo $line | grep -e "^LOCALCONF:.*" > /dev/null
++        if [ "$?" = "0" ]
++        then
++            parse_localconf_line "$line"
++            output="$output""$line\n"
++            continue
++        fi
+         # Since the line is not a comment or an OECORE setting let's assume
+         # it is a repository information line and parse it
+         parse_repo_line $line
+@@ -783,6 +803,21 @@ EOM
+     fi
+ 
+     sed -i "s|^DL_DIR.*|DL_DIR = \"${dldir}\"|" $confdir/local.conf
++
++    if [ -e $oebase/tmp_append_local.conf ]
++    then
++        echo "" >> $confdir/local.conf
++        echo "#====================================================================" >> $confdir/local.conf
++        echo "# LOCALCONF: settings from config file:" >> $confdir/local.conf
++        echo "#   $inputfile" >> $confdir/local.conf
++        echo "#" >> $confdir/local.conf
++        echo "# Do not remove." >> $confdir/local.conf
++        echo "#--------------------------------------------------------------------" >> $confdir/local.conf
++        cat $oebase/tmp_append_local.conf >> $confdir/local.conf
++        echo "#====================================================================" >> $confdir/local.conf
++        echo "" >>  $confdir/local.conf
++        rm $oebase/tmp_append_local.conf
++    fi
+ }
+ 
+ print_image_names() {
+-- 
+2.17.1
 
-On 3/6/2023 15:43, Ryan Eatmon via lists.yoctoproject.org wrote:
->=20
-> Checking now.
->=20
->=20
-> On 3/6/2023 15:02, Denys Dmytriyenko wrote:
->> Ping.
->>
->>
->> On Sun, Feb 26, 2023 at 07:32:51AM +0000, Denys Dmytriyenko wrote:
->>> From: Denys Dmytriyenko <denys@konsulko.com>
->>>
->>> Being able to run populate_sdk task against minimal and base images
->>> has always been supported by Arago, though needed to get fixed once
->>> in a while, e.g.:
->>> https://git.yoctoproject.org/meta-arago/commit/?id=3Dd47710c8219e036c=
-b7005bc0a22099e63c5e1901
->>>
->>> This time around the issue is due to upstream packages lmbench and
->>> mbedtls both installing /usr/bin/hello binary and causing a conflict
->>> when the files collide in the sysroot.
->>>
->>> The fix has been submitted upstream to meta-oe and meta-networking
->>> layers of the meta-openembedded repo:
->>> https://patchwork.yoctoproject.org/project/oe/list/?series=3D10748
->>>
->>> For now add local bbappends with the same fix, which can be removed
->>> when the fix is merged upstream and backported to kirkstone.
->>>
->>> While at it, also look into the conflict caused by matrix launcher
->>> packaging function being reused by multiple subpackages, resulting
->>> in lots of file conflicts between them. There's a lot of rework
->>> required for the matrix (and it might get moved to another layer
->>> altogether), but for now just cutoff the reverse dependency from
->>> development -dev packages.
->>>
->>> With this simple change it is now possible to run populate_sdk task
->>> even against the default full/graphics tisdk-default-image.
->>>
->>> Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
->>> ---
->>> =C2=A0 .../recipes-benchmark/lmbench/lmbench_%.bbappend=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 2 ++
->>> =C2=A0 .../recipes-connectivity/mbedtls/mbedtls_%.bbappend=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 4 ++++
->>> =C2=A0 meta-arago-extras/recipes-core/matrix/matrix-gui-apps.inc=C2=A0=
-=C2=A0=C2=A0=C2=A0 | 3 +++
->>> =C2=A0 3 files changed, 9 insertions(+)
->>> =C2=A0 create mode 100644=20
->>> meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappend
->>> =C2=A0 create mode 100644=20
->>> meta-arago-distro/recipes-connectivity/mbedtls/mbedtls_%.bbappend
->>>
->>> diff --git=20
->>> a/meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappend=20
->>> b/meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappend
->>> new file mode 100644
->>> index 00000000..96dd2010
->>> --- /dev/null
->>> +++ b/meta-arago-distro/recipes-benchmark/lmbench/lmbench_%.bbappend
->>> @@ -0,0 +1,2 @@
->>> +ALTERNATIVE:${PN} +=3D "hello"
->>> +ALTERNATIVE_LINK_NAME[hello] =3D "${bindir}/hello"
->>> diff --git=20
->>> a/meta-arago-distro/recipes-connectivity/mbedtls/mbedtls_%.bbappend=20
->>> b/meta-arago-distro/recipes-connectivity/mbedtls/mbedtls_%.bbappend
->>> new file mode 100644
->>> index 00000000..f3c16796
->>> --- /dev/null
->>> +++ b/meta-arago-distro/recipes-connectivity/mbedtls/mbedtls_%.bbappe=
-nd
->>> @@ -0,0 +1,4 @@
->>> +inherit update-alternatives
->>> +
->>> +ALTERNATIVE:${PN}-programs +=3D "hello"
->>> +ALTERNATIVE_LINK_NAME[hello] =3D "${bindir}/hello"
->>> diff --git=20
->>> a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps.inc=20
->>> b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps.inc
->>> index 2bcc908b..adb998e1 100644
->>> --- a/meta-arago-extras/recipes-core/matrix/matrix-gui-apps.inc
->>> +++ b/meta-arago-extras/recipes-core/matrix/matrix-gui-apps.inc
->>> @@ -38,3 +38,6 @@ do_install:append(){
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # other appends.
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cd -
->>> =C2=A0 }
->>> +
->>> +RDEPENDS:${PN}-dev =3D ""
->>> +RRECOMMENDS:${PN}-dev =3D ""
->>> --=20
->>> 2.25.1
->>
->>
->>
->>
->>
->=20
-
---=20
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
 
