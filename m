@@ -1,95 +1,92 @@
-Return-Path: <denis@denix.org>
+Return-Path: <dannenberg@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6374C6FD1D
-	for <webhook@archiver.kernel.org>; Fri, 17 Mar 2023 18:13:19 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.27000.1679076793322404742
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 03A08C7619A
+	for <webhook@archiver.kernel.org>; Mon, 20 Mar 2023 16:44:16 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web10.19798.1679330646990999175
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 17 Mar 2023 11:13:13 -0700
+ Mon, 20 Mar 2023 09:44:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 2268B40C8E;
-	Fri, 17 Mar 2023 18:13:12 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id HELo3m_t7MsL; Fri, 17 Mar 2023 18:13:12 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id DA5C9409B0;
-	Fri, 17 Mar 2023 18:13:07 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id ED9241637C3; Fri, 17 Mar 2023 14:12:35 -0400 (EDT)
-Date: Fri, 17 Mar 2023 14:12:35 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: afd@ti.com
-Cc: reatmon@ti.com, Praneeth Bajjuri <praneeth@ti.com>,
-	Denys Dmytriyenko <denys@konsulko.com>,
-	meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][master/kirkstone][PATCH v2] branding-ltsprep: LTS
- migration brand
-Message-ID: <20230317181235.GF18050@denix.org>
-References: <20230317161550.17946-1-reatmon@ti.com>
- <97a18261-4c62-5cc1-b7b2-4f00befadfd3@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=sZl/OjVN;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: dannenberg@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32KGi6HC019474
+	for <meta-arago@lists.yoctoproject.org>; Mon, 20 Mar 2023 11:44:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1679330646;
+	bh=YRrpTB7IwrUqXtrhtkZr6xds1OmFDCFihTY4btKUS0Q=;
+	h=From:To:CC:Subject:Date;
+	b=sZl/OjVNLLYdsEycLhCO9Do3m8zQBQG/zHYzpN+QCUlijsY6RZ0el6Cz+RJizVten
+	 SwJZw9H9QZvR8mGnichZ+3r/kRIIcVxi7leusQuAap1jdMGQx+8UqtP6zfJubdFvV1
+	 k5T5379UPcAy8pSkJmq1uXQRra5tEZXe9nwZhjJ8=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32KGi6EI029580
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Mon, 20 Mar 2023 11:44:06 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 20
+ Mar 2023 11:44:05 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 20 Mar 2023 11:44:05 -0500
+Received: from dasso.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32KGi5hd032229;
+	Mon, 20 Mar 2023 11:44:05 -0500
+From: Andreas Dannenberg <dannenberg@ti.com>
+To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>, <reatmon@ti.com>
+CC: Andreas Dannenberg <dannenberg@ti.com>, <c-shilwant@ti.com>,
+        <s-adivi@ti.com>
+Subject: [meta-arago][tisdk-setup-scripts][master] setup-uboot-env-am65x: Fix/update overlay ENV variable in get_overlay_net
+Date: Mon, 20 Mar 2023 11:44:04 -0500
+Message-ID: <20230320164404.1033686-1-dannenberg@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <97a18261-4c62-5cc1-b7b2-4f00befadfd3@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 17 Mar 2023 18:13:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14262
+ <meta-arago@lists.yoctoproject.org>; Mon, 20 Mar 2023 16:44:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14263
 
-On Fri, Mar 17, 2023 at 12:15:01PM -0500, Andrew Davis via lists.yoctoproject.org wrote:
-> On 3/17/23 11:15 AM, Ryan Eatmon via lists.yoctoproject.org wrote:
-> >Add a new brand to control picking the next LTS version of kernel and
-> >u-boot while they are under development.
-> >
-> >Signed-off-by: Ryan Eatmon <reatmon@ti.com>
-> >---
-> >v2: Make the versions wildcarded so that they actually match...
-> >
-> >  .../conf/distro/include/branding-ltsprep.inc          | 11 +++++++++++
-> >  1 file changed, 11 insertions(+)
-> >  create mode 100644 meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-> >
-> >diff --git a/meta-arago-distro/conf/distro/include/branding-ltsprep.inc b/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-> >new file mode 100644
-> >index 00000000..0238327c
-> >--- /dev/null
-> >+++ b/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-> >@@ -0,0 +1,11 @@
-> >+
-> >+PREFERRED_VERSION_linux-ti-staging = "6.1%"
-> >+PREFERRED_VERSION_linux-ti-staging-rt = "6.1%"
-> >+PREFERRED_VERSION_linux-ti-staging-systest = "6.1%"
-> >+PREFERRED_VERSION_u-boot-ti-staging = "2023.01%"
-> >+
-> >+# GPU support requires out-of-tree SGX and RGX drivers not available in until
-> >+# LTS prep is complete.  fall back to software rendering
-> >+MACHINE_FEATURES:remove = "gpu"
-> 
-> We can leave the MACHINE_FEATURES as is, that way we still build the GUI bits,
-> only the below line is needed to switch to software rendering.
+The U-Boot ENV variable containing a list of DTB overlays to be applied
+has since changed to 'name_overlays'. Update the AM65x specific ENV
+setup script to account for that.
 
-There's at least one demo in Arago that requires HW accelerated graphics and 
-doesn't make sense with software rendering, hence it still checks for "gpu" 
-machine feature.
+Signed-off-by: Andreas Dannenberg <dannenberg@ti.com>
+---
+
+Sai,
+this fixes an issue reported on the E2E [1] actually quite a while ago.
+We should try to get this into the upcoming AM65x SDK v8.x build.
+Thanks.
+
+[1] https://e2e.ti.com/support/processors-group/processors/f/processors-forum/1074355/tmdx654idkevm-network-boot-do-not-apply-overlays
 
 
-> Otherwise, I would have preferred this patch the other way, have a new branding
-> to use the old unsupported kernel. Either way this seems reasonable for now.
 
-I guess we could switch Arago to default to 6.1, as long as we keep meta-ti on 
-5.10 for the migration phase.
+ setup-uboot-env-am65x.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/setup-uboot-env-am65x.sh b/setup-uboot-env-am65x.sh
+index b6e043b..049a254 100644
+--- a/setup-uboot-env-am65x.sh
++++ b/setup-uboot-env-am65x.sh
+@@ -155,7 +155,7 @@ do_expect "\"$prompt\"" "send \"setenv init_net 'run args_all args_net; setenv a
+ do_expect "\"$prompt\"" "send \"setenv args_net 'setenv bootargs console=\${console} \${optargs} rootfstype=nfs root=/dev/nfs rw nfsroot=\${serverip}:\${nfs_root},\${nfs_options} ip=dhcp'\"" $cwd/setupBoard.minicom
+ do_expect "\"$prompt\"" "send \"setenv get_kern_net 'tftp \${loadaddr} \${name_kern}'\"" $cwd/setupBoard.minicom
+ do_expect "\"$prompt\"" "send \"setenv get_fdt_net 'tftp \${fdtaddr} \${name_fdt}'\"" $cwd/setupBoard.minicom
+-do_expect "\"$prompt\"" "send \"setenv get_overlay_net 'fdt address \${fdtaddr};fdt resize 0x100000;for overlay in \${overlay_files};do;tftp \${overlayaddr} \${overlay};fdt apply \${overlayaddr}; done'\"" $cwd/setupBoard.minicom
++do_expect "\"$prompt\"" "send \"setenv get_overlay_net 'fdt address \${fdtaddr};fdt resize 0x100000;for overlay in \${name_overlays};do;tftp \${overlayaddr} \${overlay};fdt apply \${overlayaddr}; done'\"" $cwd/setupBoard.minicom
+ 
+ do_expect "\"$prompt\"" "send \"setenv nfs_options 'nolock,v3,tcp,rsize=4096,wsize=4096'\"" $cwd/setupBoard.minicom
+ do_expect "\"$prompt\"" "send \"setenv setup_mmc ''\"" $cwd/setupBoard.minicom
+-- 
+2.34.1
 
-> Acked-by: Andrew Davis <afd@ti.com>
-> 
-> >+PREFERRED_PROVIDER_virtual/gpudriver = ""
 
