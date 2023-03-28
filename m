@@ -1,476 +1,91 @@
-Return-Path: <denis@denix.org>
+Return-Path: <s-adivi@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 562C7C6FD1C
-	for <webhook@archiver.kernel.org>; Thu, 23 Mar 2023 16:47:21 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.78108.1679590038357330666
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 08AF6C6FD1D
+	for <webhook@archiver.kernel.org>; Tue, 28 Mar 2023 01:01:43 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web10.55492.1679965294026924864
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 23 Mar 2023 09:47:18 -0700
+ Mon, 27 Mar 2023 18:01:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A037940C60;
-	Thu, 23 Mar 2023 16:47:17 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id yHFwzTQJ_C-s; Thu, 23 Mar 2023 16:47:17 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 78A2640A0B;
-	Thu, 23 Mar 2023 16:47:16 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 3F9C41637DC; Thu, 23 Mar 2023 12:46:43 -0400 (EDT)
-Date: Thu, 23 Mar 2023 12:46:43 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: nm@ti.com
-Cc: meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago] [oe-layersetup][master][PATCH V2 2/2] configs:
- Stop using git:// urls
-Message-ID: <20230323164643.GQ18050@denix.org>
-References: <20230323135026.1842186-1-nm@ti.com>
- <20230323135026.1842186-3-nm@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=xRm9ST09;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: s-adivi@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 32S11QH0106575;
+	Mon, 27 Mar 2023 20:01:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1679965286;
+	bh=INNTP2CByUQ0XxmVfdC3qaLJQs8W/bHRnaDf1EJxg2k=;
+	h=From:To:CC:Subject:Date;
+	b=xRm9ST093Gb+D8ixVfE2zWkPTKAOapcXL7gX1geh+6M3KdvJMREUwhWlC5gOfDMVn
+	 wMcsOeYx6CkWOKUy8P46Ou/l+HlSmcRXBnDgARgtVVKrV4FUGObjAb8TYJJxSrvj/6
+	 VMk9LN18DdWnQaAWLQsm+PdLEjjx+aXn84KspIao=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 32S11QXu015061
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 27 Mar 2023 20:01:26 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 27
+ Mar 2023 20:01:25 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
+ Frontend Transport; Mon, 27 Mar 2023 20:01:26 -0500
+Received: from SHIELD01.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 32S11NFZ009259;
+	Mon, 27 Mar 2023 20:01:24 -0500
+From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>, <denis@denix.org>,
+        <reatmon@ti.com>
+CC: <g-gupta@ti.com>, <c-shilwant@ti.com>, <khasim@ti.com>, <p-bhagat@ti.com>
+Subject: [oe-layersetup][master][PATCH] configs: Add new oeconfig file for AM65x 08.06 Release
+Date: Tue, 28 Mar 2023 06:31:18 +0530
+Message-ID: <20230328010118.3930255-1-s-adivi@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230323135026.1842186-3-nm@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 23 Mar 2023 16:47:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14280
+ <meta-arago@lists.yoctoproject.org>; Tue, 28 Mar 2023 01:01:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14281
 
-On Thu, Mar 23, 2023 at 08:50:26AM -0500, Nishanth Menon via lists.yoctoproject.org wrote:
-> From: Randolph Sapp <rs@ti.com>
-> 
-> We did this in meta-ti and meta-arago but I didn't propagate back into
-> oe-layersetup yet so I'll give it a go. git:// is no longer functional
-> proxies over on latest git versions (example: poky crops container for
-> ubuntu 22.04), also git:// is highly susceptible to man-in-the-middle
-> attacks[1]. Dump git:// in favor of https.
-> 
-> NOTE: We leave the current release configurations as they are, and
-> we depend on the recommended git-config example to do the re-routing
+Add new oeconfig file processor-sdk-08.06.00-am65xx-config.txt for
+am65xx-evm and am65xx-hs-evm
 
-Nice way to use automatic rewrite rule to handle old legacy releases.
+Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+---
+ .../processor-sdk-08.06.00-am65xx-config.txt     | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+ create mode 100644 configs/processor-sdk/processor-sdk-08.06.00-am65xx-config.txt
 
-
-> [1] https://github.blog/2021-09-01-improving-git-protocol-security-github/
-> 
-> Signed-off-by: Randolph Sapp <rs@ti.com>
-> [nm@ti.com: Updates to commit message and subject to indicate improvements]
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-
-Reviewed-by: Denys Dmytriyenko <denys@konsulko.com>
-
-
-> ---
-> Changes since v1:
-> * Drop the changes to release config files
-> * Update commit message to indicate we are already broken atm.
-> 
-> V1: https://lore.kernel.org/yocto-meta-arago/20230309190858.395668-1-rs@ti.com/
->  configs/arago-dunfell-config.txt        | 16 ++++++++--------
->  configs/arago-dunfell-next-config.txt   | 16 ++++++++--------
->  configs/arago-dunfell-wip-config.txt    | 16 ++++++++--------
->  configs/arago-kirkstone-config.txt      | 14 +++++++-------
->  configs/arago-kirkstone-next-config.txt | 14 +++++++-------
->  configs/arago-kirkstone-wip-config.txt  | 14 +++++++-------
->  configs/arago-master-config.txt         | 14 +++++++-------
->  configs/arago-master-wip-config.txt     | 14 +++++++-------
->  configs/distroless-dunfell-config.txt   |  8 ++++----
->  configs/distroless-kirkstone-config.txt |  8 ++++----
->  configs/distroless-master-config.txt    |  8 ++++----
->  configs/poky-dunfell-config.txt         |  8 ++++----
->  configs/poky-kirkstone-config.txt       | 12 ++++++------
->  configs/poky-master-config.txt          | 12 ++++++------
->  configs/poky-master-wip-config.txt      | 12 ++++++------
->  15 files changed, 93 insertions(+), 93 deletions(-)
-> 
-> diff --git a/configs/arago-dunfell-config.txt b/configs/arago-dunfell-config.txt
-> index c5084a069562..bff059dd2811 100644
-> --- a/configs/arago-dunfell-config.txt
-> +++ b/configs/arago-dunfell-config.txt
-> @@ -1,16 +1,16 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
->  
-> -bitbake,git://git.openembedded.org/bitbake,1.46,HEAD
-> -meta-arago,git://git.yoctoproject.org/meta-arago,dunfell,HEAD,layers=meta-arago-distro:meta-arago-extras
-> +bitbake,https://git.openembedded.org/bitbake,1.46,HEAD
-> +meta-arago,https://git.yoctoproject.org/meta-arago,dunfell,HEAD,layers=meta-arago-distro:meta-arago-extras
->  # meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
-> -# meta-python2,git://git.openembedded.org/meta-python2,dunfell,HEAD,layers=
-> +# meta-python2,https://git.openembedded.org/meta-python2,dunfell,HEAD,layers=
->  meta-qt5,https://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
-> -meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,HEAD,layers=
-> -meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> -meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,HEAD,layers=
-> -meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
-> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,dunfell,HEAD,layers=
-> +meta-openembedded,https://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> +meta-ti,https://git.yoctoproject.org/meta-ti,dunfell,HEAD,layers=
-> +meta-arm,https://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  # if meta-browser/5f365ef0f842ba4651efe88787cf9c63bc8b6cb3 above is enabled,
->  # use below for OECORELAYERCONF to mark it compatible with dunfell
-> diff --git a/configs/arago-dunfell-next-config.txt b/configs/arago-dunfell-next-config.txt
-> index 7ad9f923059b..3c0c3f47d0bb 100644
-> --- a/configs/arago-dunfell-next-config.txt
-> +++ b/configs/arago-dunfell-next-config.txt
-> @@ -1,16 +1,16 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
->  
-> -bitbake,git://git.openembedded.org/bitbake,1.46,HEAD
-> -meta-arago,git://git.yoctoproject.org/meta-arago,dunfell-next,HEAD,layers=meta-arago-distro:meta-arago-extras
-> +bitbake,https://git.openembedded.org/bitbake,1.46,HEAD
-> +meta-arago,https://git.yoctoproject.org/meta-arago,dunfell-next,HEAD,layers=meta-arago-distro:meta-arago-extras
->  # meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
-> -# meta-python2,git://git.openembedded.org/meta-python2,dunfell,HEAD,layers=
-> +# meta-python2,https://git.openembedded.org/meta-python2,dunfell,HEAD,layers=
->  meta-qt5,https://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
-> -meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,HEAD,layers=
-> -meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> -meta-ti,git://git.yoctoproject.org/meta-ti,dunfell-next,HEAD,layers=
-> -meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
-> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,dunfell,HEAD,layers=
-> +meta-openembedded,https://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> +meta-ti,https://git.yoctoproject.org/meta-ti,dunfell-next,HEAD,layers=
-> +meta-arm,https://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  # if meta-browser/5f365ef0f842ba4651efe88787cf9c63bc8b6cb3 above is enabled,
->  # use below for OECORELAYERCONF to mark it compatible with dunfell
-> diff --git a/configs/arago-dunfell-wip-config.txt b/configs/arago-dunfell-wip-config.txt
-> index b8c9cce6404e..7bdc0cd42d61 100644
-> --- a/configs/arago-dunfell-wip-config.txt
-> +++ b/configs/arago-dunfell-wip-config.txt
-> @@ -1,16 +1,16 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
->  
-> -bitbake,git://git.openembedded.org/bitbake,1.46,HEAD
-> -meta-arago,git://git.yoctoproject.org/meta-arago,dunfell-wip,HEAD,layers=meta-arago-distro:meta-arago-extras
-> +bitbake,https://git.openembedded.org/bitbake,1.46,HEAD
-> +meta-arago,https://git.yoctoproject.org/meta-arago,dunfell-wip,HEAD,layers=meta-arago-distro:meta-arago-extras
->  # meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
-> -# meta-python2,git://git.openembedded.org/meta-python2,dunfell,HEAD,layers=
-> +# meta-python2,https://git.openembedded.org/meta-python2,dunfell,HEAD,layers=
->  meta-qt5,https://github.com/meta-qt5/meta-qt5.git,dunfell,HEAD,layers=
-> -meta-virtualization,git://git.yoctoproject.org/meta-virtualization,dunfell,HEAD,layers=
-> -meta-openembedded,git://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> -meta-ti,git://git.yoctoproject.org/meta-ti,dunfell-wip,HEAD,layers=
-> -meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
-> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,dunfell,HEAD,layers=
-> +meta-openembedded,https://git.openembedded.org/meta-openembedded,dunfell,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> +meta-ti,https://git.yoctoproject.org/meta-ti,dunfell-wip,HEAD,layers=
-> +meta-arm,https://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  # if meta-browser/5f365ef0f842ba4651efe88787cf9c63bc8b6cb3 above is enabled,
->  # use below for OECORELAYERCONF to mark it compatible with dunfell
-> diff --git a/configs/arago-kirkstone-config.txt b/configs/arago-kirkstone-config.txt
-> index ebe130a154f4..890076f856a0 100644
-> --- a/configs/arago-kirkstone-config.txt
-> +++ b/configs/arago-kirkstone-config.txt
-> @@ -1,15 +1,15 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
->  
-> -bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
-> -meta-arago,git://git.yoctoproject.org/meta-arago,kirkstone,HEAD,layers=meta-arago-distro:meta-arago-extras
-> +bitbake,https://git.openembedded.org/bitbake,2.0,HEAD
-> +meta-arago,https://git.yoctoproject.org/meta-arago,kirkstone,HEAD,layers=meta-arago-distro:meta-arago-extras
->  #meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
->  meta-qt5,https://github.com/meta-qt5/meta-qt5.git,kirkstone,HEAD,layers=
-> -meta-virtualization,git://git.yoctoproject.org/meta-virtualization,kirkstone,HEAD,layers=
-> -meta-openembedded,git://git.openembedded.org/meta-openembedded,kirkstone,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> -meta-ti,git://git.yoctoproject.org/meta-ti,kirkstone,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> -meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
-> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,kirkstone,HEAD,layers=
-> +meta-openembedded,https://git.openembedded.org/meta-openembedded,kirkstone,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> +meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
->  BITBAKE_INCLUSIVE_VARS=yes
-> diff --git a/configs/arago-kirkstone-next-config.txt b/configs/arago-kirkstone-next-config.txt
-> index 4d5844584bd1..52143025b2d7 100644
-> --- a/configs/arago-kirkstone-next-config.txt
-> +++ b/configs/arago-kirkstone-next-config.txt
-> @@ -1,15 +1,15 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
->  
-> -bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
-> -meta-arago,git://git.yoctoproject.org/meta-arago,kirkstone-next,HEAD,layers=meta-arago-distro:meta-arago-extras
-> +bitbake,https://git.openembedded.org/bitbake,2.0,HEAD
-> +meta-arago,https://git.yoctoproject.org/meta-arago,kirkstone-next,HEAD,layers=meta-arago-distro:meta-arago-extras
->  #meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
->  meta-qt5,https://github.com/meta-qt5/meta-qt5.git,kirkstone,HEAD,layers=
-> -meta-virtualization,git://git.yoctoproject.org/meta-virtualization,kirkstone,HEAD,layers=
-> -meta-openembedded,git://git.openembedded.org/meta-openembedded,kirkstone,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> -meta-ti,git://git.yoctoproject.org/meta-ti,kirkstone-next,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> -meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
-> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,kirkstone,HEAD,layers=
-> +meta-openembedded,https://git.openembedded.org/meta-openembedded,kirkstone,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> +meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone-next,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
->  BITBAKE_INCLUSIVE_VARS=yes
-> diff --git a/configs/arago-kirkstone-wip-config.txt b/configs/arago-kirkstone-wip-config.txt
-> index b293632f4cfb..9f0b0c2723b7 100644
-> --- a/configs/arago-kirkstone-wip-config.txt
-> +++ b/configs/arago-kirkstone-wip-config.txt
-> @@ -1,15 +1,15 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
->  
-> -bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
-> -meta-arago,git://git.yoctoproject.org/meta-arago,kirkstone-wip,HEAD,layers=meta-arago-distro:meta-arago-extras
-> +bitbake,https://git.openembedded.org/bitbake,2.0,HEAD
-> +meta-arago,https://git.yoctoproject.org/meta-arago,kirkstone-wip,HEAD,layers=meta-arago-distro:meta-arago-extras
->  #meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
->  meta-qt5,https://github.com/meta-qt5/meta-qt5.git,kirkstone,HEAD,layers=
-> -meta-virtualization,git://git.yoctoproject.org/meta-virtualization,kirkstone,HEAD,layers=
-> -meta-openembedded,git://git.openembedded.org/meta-openembedded,kirkstone,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> -meta-ti,git://git.yoctoproject.org/meta-ti,kirkstone-wip,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> -meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
-> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,kirkstone,HEAD,layers=
-> +meta-openembedded,https://git.openembedded.org/meta-openembedded,kirkstone,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> +meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone-wip,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
->  BITBAKE_INCLUSIVE_VARS=yes
-> diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.txt
-> index 93d93b559dfe..d5fc21feb01f 100644
-> --- a/configs/arago-master-config.txt
-> +++ b/configs/arago-master-config.txt
-> @@ -1,15 +1,15 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
->  
-> -bitbake,git://git.openembedded.org/bitbake,master,HEAD
-> -meta-arago,git://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-distro:meta-arago-extras
-> +bitbake,https://git.openembedded.org/bitbake,master,HEAD
-> +meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-distro:meta-arago-extras
->  #meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
->  meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
-> -meta-virtualization,git://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
-> -meta-openembedded,git://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> -meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> -meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
-> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
-> +meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> +meta-ti,https://git.yoctoproject.org/meta-ti,master,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
->  BITBAKE_INCLUSIVE_VARS=yes
-> diff --git a/configs/arago-master-wip-config.txt b/configs/arago-master-wip-config.txt
-> index 55c883b91802..54fed42ebcb3 100644
-> --- a/configs/arago-master-wip-config.txt
-> +++ b/configs/arago-master-wip-config.txt
-> @@ -1,15 +1,15 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
->  
-> -bitbake,git://git.openembedded.org/bitbake,master,HEAD
-> -meta-arago,git://git.yoctoproject.org/meta-arago,master-wip,HEAD,layers=meta-arago-distro:meta-arago-extras
-> +bitbake,https://git.openembedded.org/bitbake,master,HEAD
-> +meta-arago,https://git.yoctoproject.org/meta-arago,master-wip,HEAD,layers=meta-arago-distro:meta-arago-extras
->  #meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
->  meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
-> -meta-virtualization,git://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
-> -meta-openembedded,git://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> -meta-ti,git://git.yoctoproject.org/meta-ti,master-wip,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> -meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
-> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
-> +meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-> +meta-ti,https://git.yoctoproject.org/meta-ti,master-wip,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
->  BITBAKE_INCLUSIVE_VARS=yes
-> diff --git a/configs/distroless-dunfell-config.txt b/configs/distroless-dunfell-config.txt
-> index bb03ac78f5c3..8f15d398fd33 100644
-> --- a/configs/distroless-dunfell-config.txt
-> +++ b/configs/distroless-dunfell-config.txt
-> @@ -1,9 +1,9 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-> -bitbake,git://git.openembedded.org/bitbake,1.46,HEAD
-> -meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,HEAD,layers=
-> -meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,HEAD,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
-> +bitbake,https://git.openembedded.org/bitbake,1.46,HEAD
-> +meta-ti,https://git.yoctoproject.org/meta-ti,dunfell,HEAD,layers=
-> +meta-arm,https://git.yoctoproject.org/meta-arm,dunfell,HEAD,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,dunfell,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  OECORELOCALCONF=./sample-files/local.conf.sample
->  BITBAKE_INCLUSIVE_VARS=no
-> diff --git a/configs/distroless-kirkstone-config.txt b/configs/distroless-kirkstone-config.txt
-> index 4cafca73b9ab..bbd7a62b76e1 100644
-> --- a/configs/distroless-kirkstone-config.txt
-> +++ b/configs/distroless-kirkstone-config.txt
-> @@ -1,9 +1,9 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-> -bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
-> -meta-ti,git://git.yoctoproject.org/meta-ti,kirkstone,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> -meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
-> +bitbake,https://git.openembedded.org/bitbake,2.0,HEAD
-> +meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  OECORELOCALCONF=./sample-files/local-v2.conf.sample
->  BITBAKE_INCLUSIVE_VARS=yes
-> diff --git a/configs/distroless-master-config.txt b/configs/distroless-master-config.txt
-> index e67f9169176b..b938035deacb 100644
-> --- a/configs/distroless-master-config.txt
-> +++ b/configs/distroless-master-config.txt
-> @@ -1,9 +1,9 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-> -bitbake,git://git.openembedded.org/bitbake,master,HEAD
-> -meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> -meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
-> +bitbake,https://git.openembedded.org/bitbake,master,HEAD
-> +meta-ti,https://git.yoctoproject.org/meta-ti,master,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  OECORELOCALCONF=./sample-files/local-v2.conf.sample
->  BITBAKE_INCLUSIVE_VARS=yes
-> diff --git a/configs/poky-dunfell-config.txt b/configs/poky-dunfell-config.txt
-> index 5f6c45b7453f..72facf28c630 100644
-> --- a/configs/poky-dunfell-config.txt
-> +++ b/configs/poky-dunfell-config.txt
-> @@ -1,9 +1,9 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-> -bitbake,git://git.openembedded.org/bitbake,1.46,HEAD
-> -poky,git://git.yoctoproject.org/poky,dunfell,HEAD,layers=meta:meta-poky:meta-yocto-bsp
-> -meta-arm,git://git.yoctoproject.org/meta-arm,dunfell,HEAD,layers=meta-arm:meta-arm-toolchain
-> -meta-ti,git://git.yoctoproject.org/meta-ti,dunfell,HEAD,layers=
-> +bitbake,https://git.openembedded.org/bitbake,1.46,HEAD
-> +poky,https://git.yoctoproject.org/poky,dunfell,HEAD,layers=meta:meta-poky:meta-yocto-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,dunfell,HEAD,layers=meta-arm:meta-arm-toolchain
-> +meta-ti,https://git.yoctoproject.org/meta-ti,dunfell,HEAD,layers=
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  OECORELOCALCONF=./sample-files/local-poky.conf.sample
->  BITBAKE_INCLUSIVE_VARS=no
-> diff --git a/configs/poky-kirkstone-config.txt b/configs/poky-kirkstone-config.txt
-> index 5f72081d672b..dc94b1d01c76 100644
-> --- a/configs/poky-kirkstone-config.txt
-> +++ b/configs/poky-kirkstone-config.txt
-> @@ -1,12 +1,12 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
->  
-> -bitbake,git://git.openembedded.org/bitbake,2.0,HEAD
-> -meta-yocto,git://git.yoctoproject.org/meta-yocto,kirkstone,HEAD,layers=meta-poky:meta-yocto-bsp
-> -meta-ti,git://git.yoctoproject.org/meta-ti,kirkstone,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> -meta-arm,git://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
-> -meta-arago,git://git.yoctoproject.org/meta-arago,kirkstone,HEAD,layers=meta-arago-extras
-> +bitbake,https://git.openembedded.org/bitbake,2.0,HEAD
-> +meta-yocto,https://git.yoctoproject.org/meta-yocto,kirkstone,HEAD,layers=meta-poky:meta-yocto-bsp
-> +meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
-> +meta-arago,https://git.yoctoproject.org/meta-arago,kirkstone,HEAD,layers=meta-arago-extras
->  
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  OECORELOCALCONF=./sample-files/local-poky-v2.conf.sample
-> diff --git a/configs/poky-master-config.txt b/configs/poky-master-config.txt
-> index be2201879464..5cb0383b1960 100644
-> --- a/configs/poky-master-config.txt
-> +++ b/configs/poky-master-config.txt
-> @@ -1,12 +1,12 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
->  
-> -bitbake,git://git.openembedded.org/bitbake,master,HEAD
-> -meta-yocto,git://git.yoctoproject.org/meta-yocto,master,HEAD,layers=meta-poky:meta-yocto-bsp
-> -meta-ti,git://git.yoctoproject.org/meta-ti,master,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> -meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
-> -meta-arago,git://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-extras
-> +bitbake,https://git.openembedded.org/bitbake,master,HEAD
-> +meta-yocto,https://git.yoctoproject.org/meta-yocto,master,HEAD,layers=meta-poky:meta-yocto-bsp
-> +meta-ti,https://git.yoctoproject.org/meta-ti,master,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
-> +meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-extras
->  
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  OECORELOCALCONF=./sample-files/local-poky-v2.conf.sample
-> diff --git a/configs/poky-master-wip-config.txt b/configs/poky-master-wip-config.txt
-> index 657dcb8d9e50..3fa74bfc1722 100644
-> --- a/configs/poky-master-wip-config.txt
-> +++ b/configs/poky-master-wip-config.txt
-> @@ -1,12 +1,12 @@
->  # This file takes repo entries in the format
->  # repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
->  
-> -bitbake,git://git.openembedded.org/bitbake,master,HEAD
-> -meta-yocto,git://git.yoctoproject.org/meta-yocto,master,HEAD,layers=meta-poky:meta-yocto-bsp
-> -meta-ti,git://git.yoctoproject.org/meta-ti,master-wip,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> -meta-arm,git://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> -oe-core,git://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
-> -meta-arago,git://git.yoctoproject.org/meta-arago,master-wip,HEAD,layers=meta-arago-extras
-> +bitbake,https://git.openembedded.org/bitbake,master,HEAD
-> +meta-yocto,https://git.yoctoproject.org/meta-yocto,master,HEAD,layers=meta-poky:meta-yocto-bsp
-> +meta-ti,https://git.yoctoproject.org/meta-ti,master-wip,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> +oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
-> +meta-arago,https://git.yoctoproject.org/meta-arago,master-wip,HEAD,layers=meta-arago-extras
->  
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  OECORELOCALCONF=./sample-files/local-poky-v2.conf.sample
-> -- 
-> 2.40.0
-> 
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#14275): https://lists.yoctoproject.org/g/meta-arago/message/14275
-> Mute This Topic: https://lists.yoctoproject.org/mt/97800956/3617104
-> Group Owner: meta-arago+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/meta-arago/leave/10763302/3617104/52533840/xyzzy [denis@denix.org]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
-> 
-
+diff --git a/configs/processor-sdk/processor-sdk-08.06.00-am65xx-config.txt b/configs/processor-sdk/processor-sdk-08.06.00-am65xx-config.txt
+new file mode 100644
+index 0000000..ef7287f
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-08.06.00-am65xx-config.txt
+@@ -0,0 +1,16 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,https://git.openembedded.org/bitbake,1.46,0784db7
++meta-processor-sdk,https://git.ti.com/cgit/processor-sdk/meta-processor-sdk,dunfell,01876dc32daf5a31a643d26f7935d6cd35187d08,layers=
++meta-arago,https://git.yoctoproject.org/meta-arago,dunfell,cicd.dunfell.202303090400,layers=meta-arago-distro:meta-arago-extras
++meta-qt5,https://github.com/meta-qt5/meta-qt5.git,dunfell,5ef3a0f,layers=
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,dunfell,beea119eb529b4a11f266004aee8b548427aea39,layers=
++meta-openembedded,https://git.openembedded.org/meta-openembedded,dunfell,87571345059f82fb7599e3aa82e6fdcfbd361098,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
++meta-ti,https://git.yoctoproject.org/meta-ti,dunfell,cicd.dunfell.202303090400,layers=
++meta-arm,https://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
++oe-core,https://git.openembedded.org/openembedded-core,dunfell,efb1a73a13907bed3acac8e06053aef3e2ef57f5,layers=meta
++meta-sysrepo,https://github.com/sartura/meta-sysrepo.git,master,8bcc6151897c0e67c2931c78340477bf3a12d8cb,layers=
++meta-jupyter,https://github.com/Xilinx/meta-jupyter.git,master,82db248e2eca36e52cbeafe599b755dc87720383,layers=
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64.conf.sample
 -- 
-Regards,
-Denys Dmytriyenko <denis@denix.org>
-PGP: 0x420902729A92C964 - https://denix.org/0x420902729A92C964
-Fingerprint: 25FC E4A5 8A72 2F69 1186  6D76 4209 0272 9A92 C964
+2.34.1
+
 
