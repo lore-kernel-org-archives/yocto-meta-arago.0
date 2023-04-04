@@ -1,77 +1,3966 @@
-Return-Path: <rs@ti.com>
+Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 61A14C76196
-	for <webhook@archiver.kernel.org>; Sat,  1 Apr 2023 03:08:15 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.13766.1680318488532718665
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A504C761A6
+	for <webhook@archiver.kernel.org>; Tue,  4 Apr 2023 14:54:42 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web10.103831.1680620079839080607
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 31 Mar 2023 20:08:08 -0700
+ Tue, 04 Apr 2023 07:54:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=tkMxoqy5;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: rs@ti.com)
+ dkim=fail reason="body hash did not verify" header.i=@ti.com header.s=ti-com-17q1 header.b=rIkzzqFY;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: afd@ti.com)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 331387WY092140;
-	Fri, 31 Mar 2023 22:08:07 -0500
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 334EscHB032399;
+	Tue, 4 Apr 2023 09:54:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1680318487;
-	bh=jTfBh25Q8Nt24fUuGE8ZhY0XxgNn5iy+CVRja+6N/vQ=;
+	s=ti-com-17Q1; t=1680620078;
+	bh=Awp3eCK4F4Kw7S0zXbImmMWwLMBRILMB9saNEjRqkXI=;
 	h=From:To:CC:Subject:Date;
-	b=tkMxoqy5c0VJP3mm6+FA9j93xqWoB/v+UmXYOIFIiLhPJIPRqD3JTp6woVDDgyCWa
-	 bN+MjVmq9i4876V5Er4o/Mq1MKuB8Igcbi25dQqD02PB32xtgKLHe5efs1/etz+QYG
-	 OBB0hbdeyERACwdWebMpesIZQW5PGG8Vc2MUouVM=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 331387JJ010407
+	b=rIkzzqFYbSlitSb4s50RUFyg4ykt0//pkLlb7EWDURC5Q7aCUCk3rWrP0t3L05N8J
+	 D/WLd3kJoXbcc6luPO+7CEFbkDRJGvu/WS4BYpd7auXUmaj7/HyIOWNo8RKGfnsRBD
+	 QX003gnx5jh0gkuR7Lma+YzX+0AOMDL7CGXAD6a0=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 334EscR2108411
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 31 Mar 2023 22:08:07 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Fri, 31
- Mar 2023 22:08:07 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 4 Apr 2023 09:54:38 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 4
+ Apr 2023 09:54:38 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Fri, 31 Mar 2023 22:08:07 -0500
-Received: from rs-desk.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 331387Us026190;
-	Fri, 31 Mar 2023 22:08:07 -0500
-From: Randolph Sapp <rs@ti.com>
-To: <reatmon@ti.com>, <denys@konsulko.com>, <andrewd@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, Randolph Sapp <rs@ti.com>
-Subject: [kirkstone/master][PATCH] meta-arago-distro: linux-firmware: remove cadence firmware
-Date: Fri, 31 Mar 2023 22:08:01 -0500
-Message-ID: <20230401030801.1972533-1-rs@ti.com>
+ Frontend Transport; Tue, 4 Apr 2023 09:54:38 -0500
+Received: from ula0226330.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 334EsbId011681;
+	Tue, 4 Apr 2023 09:54:37 -0500
+From: Andrew Davis <afd@ti.com>
+To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
+        <meta-arago@lists.yoctoproject.org>
+CC: Andrew Davis <afd@ti.com>
+Subject: [meta-arago][kirkstone/master][PATCH 1/2] weston: soc-performance-monitor: Remove this broken patch
+Date: Tue, 4 Apr 2023 09:54:35 -0500
+Message-ID: <20230404145436.5756-1-afd@ti.com>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="UTF-8"
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by lelv0143.ext.ti.com id 334EscHB032399
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Sat, 01 Apr 2023 03:08:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14291
+ <meta-arago@lists.yoctoproject.org>; Tue, 04 Apr 2023 14:54:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14292
 
-Cadence firmware is already being conditionally packaged in meta-ti
-as cadence-mhdp-fw. Remove cadence firmware from this package.
+This does not build against any recent Weston. Tools like this should be
+added to their own repo and made into their own package, not added onto
+existing tools.
 
-Signed-off-by: Randolph Sapp <rs@ti.com>
+Remove this patch.
+
+Signed-off-by: Andrew Davis <afd@ti.com>
 ---
- .../recipes-kernel/linux-firmware/linux-firmware_%.bbappend      | 1 +
- 1 file changed, 1 insertion(+)
+ ...Add-soc-performance-monitor-utilites.patch | 3570 -----------------
+ 1 file changed, 3570 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/000=
+1-Add-soc-performance-monitor-utilites.patch
 
-diff --git a/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware_%.bbappend b/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-index 8742c7bf..d4f3e679 100644
---- a/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-+++ b/meta-arago-distro/recipes-kernel/linux-firmware/linux-firmware_%.bbappend
-@@ -14,4 +14,5 @@ RDEPENDS:${PN}-ibt-18 += "${PN}-ibt-license"
- 
- do_install:append() {
- 	rm -rf  ${D}/lib/firmware/ti-connectivity/
-+	rm -rf  ${D}/lib/firmware/cadence/
- }
--- 
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0001-Add-s=
+oc-performance-monitor-utilites.patch b/meta-arago-distro/recipes-graphic=
+s/wayland/weston/0001-Add-soc-performance-monitor-utilites.patch
+deleted file mode 100644
+index 4268b7dc..00000000
+--- a/meta-arago-distro/recipes-graphics/wayland/weston/0001-Add-soc-perf=
+ormance-monitor-utilites.patch
++++ /dev/null
+@@ -1,3570 +0,0 @@
+-From 7830118ecb980766f4a6e3997769d7ae326bee77 Mon Sep 17 00:00:00 2001
+-From: Karthik Ramanan <a0393906@ti.com>
+-Date: Fri, 3 Jun 2016 18:32:50 +0530
+-Subject: [PATCH] Add soc performance monitor utilites
+-
+-Signed-off-by: Karthik Ramanan <a0393906@ti.com>
+----
+- Makefile.am                       |   17 +-
+- clients/Dra7xx_ddrstat_speed.c    |  494 +++++++++++++
+- clients/soc_performance_monitor.c |  630 ++++++++++++++++
+- clients/soc_performance_monitor.h |   40 ++
+- clients/statcoll.c                | 1433 ++++++++++++++++++++++++++++++=
++++++++
+- clients/statcoll.h                |  152 ++++
+- clients/statcoll_gui.h            |  101 +++
+- clients/time_bar_graph.c          |  515 +++++++++++++
+- clients/time_bar_graph.h          |   93 +++
+- 10 files changed, 4873 insertions(+), 1 deletion(-)
+- create mode 100644 clients/Dra7xx_ddrstat_speed.c
+- create mode 100644 clients/soc_performance_monitor.c
+- create mode 100644 clients/soc_performance_monitor.h
+- create mode 100644 clients/statcoll.c
+- create mode 100644 clients/statcoll.h
+- create mode 100644 clients/statcoll_gui.h
+- create mode 100644 clients/time_bar_graph.c
+- create mode 100644 clients/time_bar_graph.h
+-
+-diff --git a/Makefile.am b/Makefile.am
+-index 62719c9..55aed6d 100644
+---- a/Makefile.am
+-+++ b/Makefile.am
+-@@ -432,7 +432,9 @@ demo_clients =3D					\
+- 	weston-fullscreen			\
+- 	weston-stacking				\
+- 	weston-calibrator			\
+--	weston-scaler
+-+	weston-scaler				\
+-+	soc-performance-monitor			\
+-+	soc-ddr-bw-visualizer
+-=20
+- if INSTALL_DEMO_CLIENTS
+- bin_PROGRAMS +=3D $(demo_clients)
+-@@ -570,6 +572,19 @@ weston_image_SOURCES =3D clients/image.c
+- weston_image_LDADD =3D libtoytoolkit.la
+- weston_image_CFLAGS =3D $(AM_CFLAGS) $(CLIENT_CFLAGS)
+-=20
+-+noinst_LTLIBRARIES +=3D libtimebargraph.la
+-+libtimebargraph_la_SOURCES =3D clients/time_bar_graph.c clients/time_ba=
+r_graph.h
+-+libtimebargraph_la_LIBADD =3D libtoytoolkit.la
+-+libtimebargraph_la_CFLAGS =3D $(AM_CFLAGS) $(CLIENT_CFLAGS) $(CAIRO_CFL=
+AGS) $(CAIRO_EGL_CFLAGS)
+-+
+-+soc_performance_monitor_SOURCES =3D clients/soc_performance_monitor.c c=
+lients/soc_performance_monitor.h=20
+-+soc_performance_monitor_LDADD =3D libtoytoolkit.la libtimebargraph.la
+-+soc_performance__CFLAGS =3D $(AM_CFLAGS) $(CLIENT_CFLAGS)
+-+
+-+soc_ddr_bw_visualizer_SOURCES =3D clients/statcoll.c clients/Dra7xx_ddr=
+stat_speed.c  clients/statcoll.h clients/statcoll_gui.h=20
+-+soc_ddr_bw_visualizer_LDADD =3D libtoytoolkit.la libtimebargraph.la=20
+-+soc_ddr_bw_visualizer__CFLAGS =3D $(AM_CFLAGS) $(CLIENT_CFLAGS)
+-+
+- weston_cliptest_SOURCES =3D				\
+- 	clients/cliptest.c				\
+- 	src/vertex-clipping.c				\
+-diff --git a/clients/Dra7xx_ddrstat_speed.c b/clients/Dra7xx_ddrstat_spe=
+ed.c
+-new file mode 100644
+-index 0000000..af06733
+---- /dev/null
+-+++ b/clients/Dra7xx_ddrstat_speed.c
+-@@ -0,0 +1,494 @@
+-+/*
+-+ * Copyright (C) 2015 Texas Instruments
+-+ * Author: Karthik Ramanan <karthik.ramanan@ti.com>
+-+ *
+-+ * This program is free software; you can redistribute it and/or modify=
+ it
+-+ * under the terms of the GNU General Public License version 2 as publi=
+shed by
+-+ * the Free Software Foundation.
+-+ *
+-+ * This program is distributed in the hope that it will be useful, but =
+WITHOUT
+-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY o=
+r
+-+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licens=
+e for
+-+ * more details.
+-+ *
+-+ * You should have received a copy of the GNU General Public License al=
+ong with
+-+ * this program.  If not, see <http://www.gnu.org/licenses/>.
+-+ */
+-+
+-+#include <stdio.h>
+-+#include <stdlib.h>
+-+#include <stdint.h>
+-+#include <string.h>
+-+#include <sys/mman.h>
+-+#include <sys/time.h>
+-+#include <unistd.h>
+-+#include <fcntl.h>
+-+#include "statcoll.h"
+-+
+-+#define PAGE_SIZE 4096
+-+
+-+#define EMIF1_BASE 0x4c000000
+-+#define EMIF2_BASE 0x4d000000
+-+
+-+#define EMIF_PERF_CNT_1     0x80
+-+#define EMIF_PERF_CNT_2     0x84
+-+#define EMIF_PERF_CNT_CFG   0x88
+-+#define EMIF_PERF_CNT_TIM   0x90
+-+
+-+static unsigned
+-+tv_diff(struct timeval *tv1, struct timeval *tv2)
+-+{
+-+    return (tv2->tv_sec - tv1->tv_sec) * 1000000 +
+-+        (tv2->tv_usec - tv1->tv_usec);
+-+}
+-+
+-+
+-+struct emif_perf {
+-+    int code;
+-+    const char *name;
+-+};
+-+
+-+static const struct emif_perf emif_perf_tab[] =3D {
+-+    {  0, "access"     },
+-+    {  1, "activate"   },
+-+    {  2, "read"       },
+-+    {  3, "write"      },
+-+    {  4, "fifo_cmd"   },
+-+    {  5, "fifo_write" },
+-+    {  6, "fifo_read"  },
+-+    {  7, "fifo_ret"   },
+-+    {  8, "prio"       },
+-+    {  9, "cmd_pend"   },
+-+    { 10, "data"       },
+-+};
+-+
+-+static void *emif1, *emif2;
+-+static int BANDWIDTH=3D0;
+-+static int DELAY =3D 1;
+-+static int EMIF_PERF_CFG1 =3D 9;
+-+static int EMIF_PERF_CFG2 =3D 10;
+-+
+-+
+-+static int STATCOLL=3D0;
+-+static int TOTAL_TIME;
+-+static int INTERVAL_US;
+-+
+-+struct timeval t1, t2;
+-+
+-+FILE* outfile;
+-+struct emif_stats {
+-+    uint32_t cycles;
+-+    uint32_t cnt1;
+-+    uint32_t cnt2;
+-+};
+-+
+-+static struct emif_stats emif1_start, emif1_end;
+-+static struct emif_stats emif2_start, emif2_end;
+-+
+-+static void *emif_init(int fd, unsigned base)
+-+{
+-+    void *mem =3D
+-+        mmap(NULL, PAGE_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED, fd, bas=
+e);
+-+    volatile uint32_t *emif =3D mem,temp;
+-+   =20
+-+   if (mem =3D=3D MAP_FAILED){
+-+        return NULL;
+-+    }
+-+
+-+    emif[EMIF_PERF_CNT_CFG>>2] =3D EMIF_PERF_CFG2 << 16 | EMIF_PERF_CFG=
+1;
+-+  =20
+-+    return mem;
+-+}
+-+
+-+static void emif_read(volatile uint32_t *emif, struct emif_stats *st)
+-+{
+-+    st->cycles =3D emif[EMIF_PERF_CNT_TIM>>2];
+-+    st->cnt1   =3D emif[EMIF_PERF_CNT_1>>2];
+-+    st->cnt2   =3D emif[EMIF_PERF_CNT_2>>2];
+-+}
+-+
+-+static void emif_print(const char *tag, struct emif_stats *st1,
+-+                       struct emif_stats *st2)
+-+{
+-+    uint32_t cycles =3D st2->cycles - st1->cycles;
+-+    uint32_t cnt1   =3D st2->cnt1   - st1->cnt1;
+-+    uint32_t cnt2   =3D st2->cnt2   - st1->cnt2;
+-+    printf("%s %s %2llu%% %s %2llu%%", tag,
+-+           emif_perf_tab[EMIF_PERF_CFG1].name, 100ull*cnt1/cycles,
+-+           emif_perf_tab[EMIF_PERF_CFG2].name, 100ull*cnt2/cycles);
+-+    fprintf(outfile,"%s%s=3D %2llu,%s%s=3D %2llu,",=20
+-+           tag, emif_perf_tab[EMIF_PERF_CFG1].name, 100ull*cnt1/cycles,
+-+           tag, emif_perf_tab[EMIF_PERF_CFG2].name, 100ull*cnt2/cycles)=
+;
+-+}
+-+
+-+static int perf_init(void)
+-+{
+-+    int fd =3D open("/dev/mem", O_RDWR);
+-+    int err =3D 0;
+-+
+-+    if (fd =3D=3D -1){
+-+       printf("error fd=3Dopen() \n");    =20
+-+       return -1;
+-+    }
+-+    emif1 =3D emif_init(fd, EMIF1_BASE);
+-+    emif2 =3D emif_init(fd, EMIF2_BASE);
+-+
+-+    if (!emif1 || !emif2){
+-+         printf("error if (!emif1 || !emif2) \n");      =20
+-+         err =3D -1;
+-+    }
+-+
+-+    close(fd);
+-+    return err;
+-+}
+-+
+-+static void perf_start(void)
+-+{
+-+    if (emif1) {
+-+        emif_read(emif1, &emif1_start);
+-+        emif_read(emif2, &emif2_start);
+-+    }
+-+}
+-+
+-+static void perf_stop(void)
+-+{
+-+    if (emif1) {
+-+        emif_read(emif1, &emif1_end);
+-+        emif_read(emif2, &emif2_end);
+-+    }
+-+}
+-+
+-+static void perf_print(void)
+-+{
+-+    if (emif1) {
+-+        emif_print("EMIF1", &emif1_start, &emif1_end);
+-+        printf("\t");
+-+        emif_print("EMIF2", &emif2_start, &emif2_end);
+-+        printf("\r");
+-+	fprintf(outfile, "\n");
+-+	fflush(outfile);
+-+	fflush(stdout);
+-+    }
+-+}
+-+
+-+static void perf_close(void)
+-+{
+-+    if (emif1) munmap(emif1, PAGE_SIZE);
+-+    if (emif2) munmap(emif2, PAGE_SIZE);
+-+}
+-+
+-+static int get_cfg(const char *name, int def)
+-+{
+-+    char *end;
+-+    int n =3D strtol(name, &end, 0);
+-+    int i;
+-+
+-+    if (!*end)
+-+        return n;
+-+
+-+    for (i =3D 0; i < sizeof(emif_perf_tab)/sizeof(emif_perf_tab[0]); i=
+++)
+-+        if (!strcmp(name, emif_perf_tab[i].name))
+-+            return emif_perf_tab[i].code;
+-+
+-+    return def;
+-+}
+-+
+-+
+-+unsigned int emif_freq()
+-+{
+-+    volatile unsigned *tim1;
+-+    unsigned v1, v2;
+-+    int fd;
+-+   =20
+-+    /*calculation EMIF frequency=20
+-+      EMIF_PERF_CNT_TIM =3D \n32-bit counter that=20
+-+      continuously counts number for=20
+-+      EMIF_FCLK clock cycles elapsed=20
+-+      after EMIFis brought out of reset*/
+-+
+-+    fd =3D open("/dev/mem", O_RDONLY);
+-+    if (fd =3D=3D -1) {
+-+        perror("/dev/mem");
+-+        return 1;
+-+    }
+-+
+-+    void *mem =3D
+-+    mem =3D mmap(NULL, PAGE_SIZE, PROT_READ, MAP_SHARED, fd, EMIF1_BASE=
+);
+-+    if (mem =3D=3D MAP_FAILED) {
+-+        perror("mmap");
+-+        exit(1);
+-+    }
+-+
+-+    tim1 =3D (unsigned *)((char*)mem + EMIF_PERF_CNT_TIM);
+-+
+-+    v1 =3D *tim1;
+-+    gettimeofday(&t1, NULL);
+-+    sleep(2);
+-+    v2 =3D *tim1;
+-+    gettimeofday(&t2, NULL);
+-+   =20
+-+    munmap(mem, PAGE_SIZE);
+-+    close(fd);
+-+
+-+    return (v2 - v1) / tv_diff(&t1, &t2);
+-+
+-+}
+-+
+-+
+-+char config_file_path[100];
+-+char keylist[][50] =3D {
+-+	"DELAY",
+-+	"EMIF_PERF_CFG1",
+-+	"EMIF_PERF_CFG2",
+-+	"BANDWIDTH",
+-+	"STATCOLL",
+-+	"TOTAL_TIME",
+-+	"INTERVAL_US",
+-+	"INITIATORS",
+-+};
+-+
+-+char line[512], *p;
+-+char tokens[6][512];
+-+int temp, flag =3D 0;
+-+char *keyvalue, *pair;
+-+char key[100];
+-+int linecount=3D0;
+-+
+-+
+-+int debug=3D0;
+-+
+-+void print_valid_options(void)
+-+{
+-+   int i;
+-+        printf("Invalid key found\n");
+-+	printf("Supported keys are :\n");
+-+	for(i=3D0; i<sizeof(keylist)/sizeof(keylist[0]); i++)
+-+		printf("\t\t %s\n", keylist[i]);
+-+
+-+}
+-+int validatekey(char *ptr)
+-+{
+-+	int i;
+-+	for(i=3D0; i<sizeof(keylist)/sizeof(keylist[0]); i++)
+-+		if(strcmp(ptr, keylist[i]) =3D=3D 0)
+-+			return 0;
+-+
+-+	return 1;
+-+}
+-+
+-+void add_key_value(char *key, int value)
+-+{
+-+	printd("%s", "Inside add_key_value\n");
+-+=09
+-+	if(strcmp(key, "BANDWIDTH") =3D=3D 0) {
+-+		BANDWIDTH =3D value;
+-+		return;
+-+	}
+-+	if(strcmp(key, "STATCOLL") =3D=3D 0) {
+-+		STATCOLL =3D value;
+-+		return;
+-+	}
+-+	else
+-+		printd("%s", "********** UNKNOWN**********");
+-+
+-+	if(BANDWIDTH =3D=3D 1) {
+-+		if(strcmp(key, "DELAY") =3D=3D 0)
+-+			DELAY =3D value;
+-+		else if(strcmp(key, "EMIF_PERF_CFG1") =3D=3D 0)
+-+			EMIF_PERF_CFG1 =3D value;
+-+		else if(strcmp(key, "EMIF_PERF_CFG2") =3D=3D 0)
+-+			EMIF_PERF_CFG2 =3D value;
+-+	}
+-+	else
+-+		printf("NOTE: BANDWIDTH is not enabled, ignoring %s\n", key);
+-+
+-+
+-+        if(STATCOLL =3D=3D 1) {
+-+		if(strcmp(key, "INTERVAL_US") =3D=3D 0)
+-+			INTERVAL_US =3D value;
+-+		else if(strcmp(key, "TOTAL_TIME") =3D=3D 0)
+-+			TOTAL_TIME =3D value;
+-+        }
+-+	else
+-+		printf("NOTE: STATCOLL is not enabled, ignoring %s\n", key);
+-+}
+-+
+-+void bandwidth_usage() {
+-+
+-+    printf("#########################################################\n=
+##\n"
+-+
+-+           "##  usage    : ./Dra7xx_ddrstat   <DELAY>  <EMIF_PERF_CFG1>=
+  <EMIF_PERF_CFG2> \n"
+-+           "##  default  :                    DELAY=3D1  EMIF_PERF_CFG1=
+=3D9  EMIF_PERF_CFG2=3D10\n"=09
+-+           "##  option   : for EMIF_PERF_CFG1 and EMIF_PERF_CFG2\n"
+-+           "##             0  -> access,\n" =20
+-+           "##             1  -> activate,\n"
+-+           "##             2  -> read,\n"
+-+           "##             3  -> write,\n"
+-+           "##             4  -> fifo_cmd,\n"
+-+           "##             5  -> fifo_write,\n"
+-+           "##             6  -> fifo_read,\n"
+-+           "##             7  -> fifo_ret,\n"
+-+           "##             8  -> prio,\n"
+-+           "##             9  -> cmd_pend,\n"
+-+           "##             10 -> data    \n##\n"
+-+
+-+           "##  EMIF frq : %d MHz\n\n", emif_freq() );
+-+}
+-+
+-+
+-+int main(int argc, char **argv)
+-+{
+-+    int option;
+-+    FILE *fp;
+-+    int i;
+-+    int xpos =3D 600, ypos =3D 40;
+-+   =20
+-+   =20
+-+    /* Read config file */
+-+    /* Initialize this to turn off verbosity of getopt */
+-+    opterr =3D 0;
+-+
+-+//    while ((option =3D getopt (argc, argv, "df:")) !=3D -1)
+-+    while ((option =3D getopt (argc, argv, "dx:y:")) !=3D -1)
+-+    {
+-+	    switch(option)
+-+	    {
+-+#if 0
+-+		    case 'f':
+-+			    strcpy(config_file_path, optarg);
+-+			    break;
+-+#endif
+-+		    case 'd':
+-+			    debug=3D1;
+-+			    break;
+-+		    case 'x':
+-+			    xpos=3Datoi(optarg);
+-+			    break;
+-+		    case 'y':
+-+			    ypos=3Datoi(optarg);
+-+			    break;
+-+		   =20
+-+		    default:
+-+			    printf("Invalid option.. Exiting\n");
+-+			    exit(0);
+-+	    }
+-+    }
+-+
+-+    printf("xpos =3D %d, ypos =3D %d\n", xpos, ypos);
+-+
+-+    strcpy(config_file_path,"config.ini");
+-+    fp =3D fopen(config_file_path, "r");
+-+    if (fp =3D=3D NULL) {
+-+	    fprintf(stderr, "couldn't open the specified file\n");
+-+	    return -1;
+-+    }
+-+
+-+    while (fgets(line, sizeof line, fp)) {
+-+	    printd("Line is =3D %s", line);
+-+
+-+	    if (line[0] =3D=3D '#' || line[0] =3D=3D '\n') {
+-+		    continue;
+-+	    }
+-+
+-+	    memset(tokens, 0, sizeof(tokens));
+-+	    i =3D 0;
+-+
+-+	    pair =3D strtok (line," ,");
+-+	    while (pair !=3D NULL)
+-+	    {
+-+		    printd ("\tPair is =3D %s\n",pair);
+-+		    strcpy(tokens[i++], pair);
+-+		    pair =3D strtok (NULL, " ,.-");
+-+	    }
+-+
+-+	    for(temp=3D0; temp< i; temp++)
+-+	    {
+-+		    printd("Line %d: %s\n", temp, tokens[temp]);
+-+
+-+		    keyvalue =3D strtok (tokens[temp]," =3D");
+-+		    while (keyvalue !=3D NULL)
+-+		    {
+-+			    if(flag =3D=3D 0)
+-+			    {
+-+				    if(validatekey(keyvalue))
+-+				    {
+-+                                            print_valid_options();
+-+					    exit(0);
+-+				    }
+-+				    strcpy(key, keyvalue);
+-+				    printd ("\tKey is =3D %s\n",key);
+-+				    flag++;
+-+			    }
+-+			    else
+-+			    {
+-+				    printd ("\tValue is =3D %s",keyvalue);
+-+				    printd (" (%d)\n", atoi(keyvalue));
+-+				    add_key_value(key, atoi(keyvalue));
+-+				    flag =3D 0;
+-+			    }
+-+			    keyvalue =3D strtok (NULL, " =3D");
+-+		    }
+-+	    }
+-+
+-+
+-+
+-+	    linecount++;
+-+	    printd("%s", "------------------- \n");
+-+
+-+    }
+-+
+-+    fclose(fp);
+-+
+-+    printf("\n\nCOMPLETED: Parsing of the user specified parameters.. \=
+n \
+-+                \nConfiguring device now.. \n\n");
+-+    if(BANDWIDTH =3D=3D 1) {
+-+	    bandwidth_usage();
+-+	    if (DELAY <=3D 0)
+-+		    DELAY =3D 1;
+-+
+-+	    if (perf_init()){
+-+		    printf("perf_init return non zero \n");
+-+		    return 1;
+-+	    }
+-+
+-+	    outfile =3D fopen("emif-performance.csv", "w+");
+-+	    if (!outfile) {
+-+		    printf("\n Error opening file");
+-+	    }
+-+	    for (;;) {
+-+		    perf_start();
+-+		    sleep(DELAY);
+-+		    perf_stop();
+-+		    perf_print();
+-+	    }
+-+
+-+	    fclose(outfile);
+-+	    perf_close();
+-+	    return 0;
+-+    }
+-+
+-+    if(STATCOLL =3D=3D 1) {
+-+	    printf("STATISTICS COLLECTOR option chosen\n");
+-+            printf("------------------------------------------------\n\=
+n");
+-+	    fp =3D fopen("initiators.cfg", "r");
+-+	    if (fp =3D=3D NULL) {
+-+		    fprintf(stderr, "couldn't open the specified file initiators.cfg'=
+\n");
+-+		    return -1;
+-+	    }
+-+
+-+	    int i=3D0;
+-+            char list[100][50];
+-+	    memset(list, sizeof(list), 0);
+-+	    while (fgets(line, sizeof line, fp)) {
+-+	 	    printf("Line is =3D %s", line);
+-+		    /* Slightly strange way to chop off the \n character */
+-+		    strtok(line, "\n");
+-+		    strcpy(list[i++], line);
+-+	    }
+-+	    fclose(fp);
+-+
+-+	    statcoll_start(TOTAL_TIME, INTERVAL_US, list, xpos, ypos);
+-+    }
+-+
+-+}
+-+
+-diff --git a/clients/soc_performance_monitor.c b/clients/soc_performance=
+_monitor.c
+-new file mode 100644
+-index 0000000..5d1db32
+---- /dev/null
+-+++ b/clients/soc_performance_monitor.c
+-@@ -0,0 +1,630 @@
+-+/*
+-+ * Copyright (C) 2016 Texas Instruments
+-+ * Author: Karthik Ramanan <karthik.ramanan@ti.com>
+-+ *
+-+ * This program is free software; you can redistribute it and/or modify=
+ it
+-+ * under the terms of the GNU General Public License version 2 as publi=
+shed by
+-+ * the Free Software Foundation.
+-+ *
+-+ * This program is distributed in the hope that it will be useful, but =
+WITHOUT
+-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY o=
+r
+-+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licens=
+e for
+-+ * more details.
+-+ *
+-+ * You should have received a copy of the GNU General Public License al=
+ong with
+-+ * this program.  If not, see <http://www.gnu.org/licenses/>.
+-+ */
+-+
+-+#include <stdint.h>
+-+#include <stdio.h>
+-+#include <stdlib.h>
+-+#include <string.h>
+-+#include <stdint.h>
+-+#include <signal.h>
+-+#include <time.h>
+-+#include <math.h>
+-+#include <unistd.h>
+-+#include <sys/time.h>
+-+#include <pthread.h>
+-+#include <errno.h>
+-+#include <unistd.h>
+-+#include <fcntl.h>
+-+#include <sys/stat.h>
+-+
+-+#include "time_bar_graph.h"
+-+
+-+#include "soc_performance_monitor.h"
+-+
+-+static int debug=3D0;
+-+
+-+static char readfifo[100];=20
+-+static int MAX_WIDTH=3D1920;
+-+static int MAX_HEIGHT=3D1080;
+-+static int x_pos=3D0;
+-+static int y_pos=3D40;
+-+
+-+void *ctx;
+-+struct time_graph_create_params tg_p;
+-+struct bar_graph_create_params bg_p;
+-+
+-+static int cpu_load_offset =3D 0;
+-+static int total_cpu_load_items =3D 0;
+-+static int total_elements =3D 0;
+-+
+-+struct _bar_graph_y_config *y_cfg;
+-+struct _text_config *t_cfg;
+-+char *tg_text[100];=20
+-+char *bg_text[100];=20
+-+
+-+
+-+int command_handler(int command, double *y, char **text)
+-+{
+-+	static int fd;
+-+	char buf[MAX_BUF];
+-+	int i, bytes, offset;
+-+
+-+	switch(command)
+-+	{
+-+		case OPEN:
+-+			fd =3D open(readfifo, O_RDONLY|O_NONBLOCK);
+-+			break;
+-+
+-+		case READ:
+-+
+-+			/* open, read, and display the message from the FIFO */
+-+			bytes=3Dread(fd, buf, MAX_BUF);
+-+                       buf[bytes]=3D'\0';
+-+			if(bytes > 0)=20
+-+			{
+-+				char command[100];
+-+				char string[100];
+-+				sscanf(buf, "%s %s", command, string);
+-+				printd("Received %s\n", buf);
+-+				if(strcmp(command, "TABLE:") =3D=3D 0)=20
+-+				{
+-+					char field[100], value[100], unit[100];
+-+					sscanf(buf, "%s %s %s %s", command, field, value, unit);
+-+					for(i=3D0; i<cpu_load_offset; i++) {
+-+						if(strcmp(text[i*2], field) =3D=3D 0) {
+-+							printd("Updating value(%s), unit(%s)\n", value, unit);
+-+							sprintf(text[i*2+1], "%s %s", value, unit);
+-+						}
+-+					}
+-+				}
+-+				else if(strcmp(command, "CPULOAD:") =3D=3D 0)=20
+-+				{
+-+					char field[100], value[100];
+-+
+-+					sscanf(buf, "%s %s %s", command, field, value);
+-+
+-+					for(i=3Dcpu_load_offset; i<cpu_load_offset+total_cpu_load_items; i=
+++) {
+-+						if(strcmp(text[i*2], field) =3D=3D 0) {
+-+							if(strlen(value) <=3D 2) {
+-+								y[i*2+1] =3D atoi(value)/100.0;
+-+								sprintf(text[i*2+1], " %02s%s", value,"%");
+-+								printd("CPULOAD: Updating %s with %s\n", field, value);
+-+							}
+-+							else {
+-+								printf("Ignoring value: %s\n", value);
+-+							}
+-+						}
+-+					}
+-+				}
+-+				else if(strcmp(command, "MOVE:") =3D=3D 0)=20
+-+				{
+-+					char value[100];
+-+					printd("Received MOVE command : %s\n", buf);
+-+					sscanf(string, "%s", value);
+-+					sprintf(tg_p.title, "CPU Usage[@position-req=3D%sx%d]", value, y_p=
+os);
+-+					move_graph(ctx, &tg_p);
+-+				}
+-+				else
+-+				{
+-+					printf("ERROR: Received unexpected data from FIFO - \" %s \" \n", =
+buf);
+-+				}
+-+				memset(buf, 0x0, sizeof(buf));
+-+			}
+-+
+-+			break;
+-+
+-+		case CLOSE:
+-+			close(fd);
+-+			break;
+-+	}
+-+	return bytes;
+-+}
+-+
+-+volatile sig_atomic_t sigtermed =3D 0;
+-+
+-+void my_signal_handler(int signum)
+-+{
+-+	if (signum =3D=3D SIGTERM || signum =3D=3D SIGINT) {
+-+		sigtermed =3D 1;
+-+	}
+-+}
+-+
+-+int get_strings_in_section(char *string, char **output)
+-+{
+-+	FILE *fd;
+-+	char line[512];
+-+	int total_strings =3D 0;
+-+=09
+-+	fd =3D fopen("soc_performance_monitor.cfg", "r");
+-+	if(fd =3D=3D NULL) {
+-+		fprintf(stderr, "ERROR: Unable to open file soc_performance_monitor.c=
+fg\n");
+-+		fprintf(stderr, "       Please copy the file from /etc/visualization_=
+scripts into current directory\n");
+-+		exit(0);
+-+	}
+-+=09
+-+	while(fgets(line, sizeof line, fd)) {
+-+	    if(strstr(line, string)) {
+-+		printf("\n-------------------------------------------------\n");
+-+		printf("CONFIG FILE PARSE: Found section %s in line : %s\n", string, =
+line);
+-+		break;
+-+	    }
+-+	}
+-+
+-+	while(fgets(line, sizeof line, fd)) {
+-+	    printd("Line is =3D %s", line);
+-+
+-+	    if (line[0] =3D=3D '#' || line[0] =3D=3D '\n' || line[0] =3D=3D '[=
+') {
+-+		    break;
+-+	    }
+-+
+-+	    line[strlen(line) - 1] =3D '\0';
+-+	    strcpy(output[total_strings++], line);
+-+	   =20
+-+	}
+-+	fclose(fd);
+-+
+-+	return total_strings;
+-+}
+-+
+-+
+-+void fill_cpu_load_details(int start_offset, int end_offset, char **out=
+put, struct table_configuration *table_config)
+-+{
+-+	int i;
+-+
+-+	const int BL_START_X =3D table_config->BL_START_X;
+-+	const int BL_START_Y =3D table_config->BL_START_Y;
+-+	const int BAR_GAP =3D table_config->BAR_GAP;
+-+	const int BAR_HEIGHT =3D table_config->BAR_HEIGHT;
+-+	const int BAR_WIDTH =3D table_config->BAR_WIDTH;
+-+	const int TR_START_X =3D table_config->TR_START_X;
+-+	const int TR_START_Y =3D table_config->TR_START_Y;
+-+	const int FONT_SIZE =3D table_config->FONT_SIZE;
+-+	printf("Filling from %d to %d\n", start_offset, end_offset);
+-+	cpu_load_offset =3D start_offset;
+-+
+-+	for(i=3Dstart_offset; i< end_offset-1; i++) {
+-+		y_cfg[i*2].region.bottom_left.x =3D BL_START_X + (i-start_offset) * (=
+BAR_GAP + BAR_WIDTH);
+-+		y_cfg[i*2].region.bottom_left.y =3D BL_START_Y;
+-+		y_cfg[i*2].region.top_right.x =3D TR_START_X + (i-start_offset) * (BA=
+R_GAP + BAR_WIDTH);
+-+		y_cfg[i*2].region.top_right.y =3D TR_START_Y;
+-+		y_cfg[i*2].line_color.r =3D 1.0;
+-+		y_cfg[i*2].line_color.g =3D 1.0;
+-+		y_cfg[i*2].line_color.b =3D 1.0;
+-+		y_cfg[i*2].line_color.a =3D 1.0;
+-+		y_cfg[i*2].fill_color.r =3D 0.0;
+-+		y_cfg[i*2].fill_color.g =3D 0.0;
+-+		y_cfg[i*2].fill_color.b =3D 1.0;
+-+		y_cfg[i*2].fill_color.a =3D 0.7;
+-+
+-+		y_cfg[i*2+1].region.bottom_left.x =3D BL_START_X +(i-start_offset) * =
+(BAR_GAP + BAR_WIDTH);
+-+		y_cfg[i*2+1].region.bottom_left.y =3D BL_START_Y;
+-+		y_cfg[i*2+1].region.top_right.x =3D TR_START_X + (i-start_offset) * (=
+BAR_GAP + BAR_WIDTH);
+-+		y_cfg[i*2+1].region.top_right.y =3D TR_START_Y;
+-+		y_cfg[i*2+1].line_color.r =3D 1.0;
+-+		y_cfg[i*2+1].line_color.g =3D 1.0;
+-+		y_cfg[i*2+1].line_color.b =3D 1.0;
+-+		y_cfg[i*2+1].line_color.a =3D 1.0;
+-+		y_cfg[i*2+1].fill_color.r =3D 1.0;
+-+		y_cfg[i*2+1].fill_color.g =3D 0.0;
+-+		y_cfg[i*2+1].fill_color.b =3D 0.0;
+-+		y_cfg[i*2+1].fill_color.a =3D 1.0;
+-+
+-+=09
+-+		t_cfg[i*2].color.r =3D 1.0;
+-+		t_cfg[i*2].color.g =3D 1.0;
+-+		t_cfg[i*2].color.b =3D 1.0;
+-+		t_cfg[i*2].color.a =3D 1.0;
+-+		t_cfg[i*2].at.x =3D BL_START_X + (i-start_offset) * (BAR_GAP + BAR_WI=
+DTH);
+-+		t_cfg[i*2].at.y =3D BL_START_Y + FONT_SIZE;
+-+		t_cfg[i*2].fontsize =3D FONT_SIZE;
+-+
+-+		t_cfg[i*2+1].color.r =3D 1.0;
+-+		t_cfg[i*2+1].color.g =3D 1.0;
+-+		t_cfg[i*2+1].color.b =3D 1.0;
+-+		t_cfg[i*2+1].color.a =3D 1.0;
+-+		t_cfg[i*2+1].at.x =3D BL_START_X + (i-start_offset) * (BAR_GAP + BAR_=
+WIDTH);
+-+		t_cfg[i*2+1].at.y =3D BL_START_Y - BAR_HEIGHT -  FONT_SIZE;
+-+		t_cfg[i*2+1].fontsize =3D FONT_SIZE;
+-+
+-+		strcpy(bg_text[i*2], output[i - start_offset]);
+-+		strcpy(bg_text[i*2+1], "0%");
+-+	}
+-+
+-+	t_cfg[(end_offset-1)*2].color.r =3D 0.0;
+-+	t_cfg[(end_offset-1)*2].color.g =3D 1.0;
+-+	t_cfg[(end_offset-1)*2].color.b =3D 1.0;
+-+	t_cfg[(end_offset-1)*2].color.a =3D 1.0;
+-+	t_cfg[(end_offset-1)*2].at.x =3D BL_START_X + 80;
+-+	t_cfg[(end_offset-1)*2].at.y =3D TR_START_Y - 40;
+-+	t_cfg[(end_offset-1)*2].fontsize =3D FONT_SIZE + 3;
+-+
+-+	printd("Copying title string %s\n", output[end_offset - start_offset -=
+1]);
+-+	strcpy(bg_text[(end_offset-1)*2], output[end_offset - start_offset-1])=
+;
+-+}
+-+
+-+void fill_table_details(int start_offset, int end_offset, char **output=
+, struct table_configuration *table_config)
+-+{
+-+	int i;
+-+
+-+	const int BL_START_X =3D table_config->BL_START_X;
+-+	const int BL_START_Y =3D table_config->BL_START_Y;
+-+	const int BAR_GAP =3D table_config->BAR_GAP;
+-+	const int BAR_HEIGHT =3D table_config->BAR_HEIGHT;
+-+	const int BAR_WIDTH =3D table_config->BAR_WIDTH;
+-+	const int TR_START_X =3D table_config->TR_START_X;
+-+	const int TR_START_Y =3D table_config->TR_START_Y;
+-+	const int FONT_SIZE =3D table_config->FONT_SIZE;
+-+	printf("Filling from %d to %d\n", start_offset, end_offset);
+-+
+-+      =20
+-+        char tokenize[200];
+-+	char tokens[10][100];
+-+	char *pair, *key, *value;
+-+	int k=3D0;
+-+	char title[100], unit[100];
+-+
+-+	strcpy(tokenize, output[end_offset - start_offset - 1]);
+-+	memset(tokens, 0, sizeof(tokens));
+-+
+-+	k=3D0;
+-+	pair =3D strtok (tokenize,",");
+-+	while (pair !=3D NULL) {
+-+		strcpy(tokens[k++], pair);
+-+		pair =3D strtok (NULL, ",");
+-+	}
+-+
+-+	i=3D0;
+-+	memset(title, 0, sizeof(title));
+-+	memset(unit, 0, sizeof(unit));
+-+	while(i < k) {
+-+		key=3Dstrtok(tokens[i], "=3D");
+-+		if(key !=3D NULL) {
+-+			if(strcmp(key,"TITLE") =3D=3D 0) {
+-+				value =3D strtok(NULL, "=3D");
+-+				if(value !=3D NULL) {
+-+					strcpy(title, value);
+-+				}
+-+			}
+-+			if(strcmp(key,"UNIT") =3D=3D 0) {
+-+				value =3D strtok(NULL, "=3D");
+-+				if(value !=3D NULL) {
+-+					strcpy(unit, value);
+-+				}
+-+			}
+-+		}
+-+		i++;
+-+	}
+-+
+-+	for(i=3Dstart_offset; i< end_offset-1; i++) {
+-+		y_cfg[i*2].region.bottom_left.x =3D BL_START_X;
+-+		y_cfg[i*2].region.bottom_left.y =3D BL_START_Y + (i - start_offset) *=
+ (BAR_GAP + BAR_HEIGHT);
+-+		y_cfg[i*2].region.top_right.x =3D TR_START_X;=20
+-+		y_cfg[i*2].region.top_right.y =3D TR_START_Y + (i - start_offset) * (=
+BAR_GAP + BAR_HEIGHT);
+-+		y_cfg[i*2].line_color.r =3D 1.0;
+-+		y_cfg[i*2].line_color.g =3D 1.0;
+-+		y_cfg[i*2].line_color.b =3D 1.0;
+-+		y_cfg[i*2].line_color.a =3D 1.0;
+-+		y_cfg[i*2].fill_color.r =3D 0.0;
+-+		y_cfg[i*2].fill_color.g =3D 0.3;
+-+		y_cfg[i*2].fill_color.b =3D 0.0;
+-+		y_cfg[i*2].fill_color.a =3D 0.7;
+-+
+-+		y_cfg[i*2+1].region.bottom_left.x =3D TR_START_X;
+-+		y_cfg[i*2+1].region.bottom_left.y =3D BL_START_Y + (i - start_offset)=
+ * (BAR_GAP + BAR_HEIGHT);
+-+		y_cfg[i*2+1].region.top_right.x =3D TR_START_X + (BAR_WIDTH); //+ 1 *=
+ BL_START_X;
+-+		y_cfg[i*2+1].region.top_right.y =3D TR_START_Y + (i - start_offset) *=
+ (BAR_GAP + BAR_HEIGHT);;
+-+		y_cfg[i*2+1].line_color.r =3D 1.0;
+-+		y_cfg[i*2+1].line_color.g =3D 1.0;
+-+		y_cfg[i*2+1].line_color.b =3D 1.0;
+-+		y_cfg[i*2+1].line_color.a =3D 1.0;
+-+		y_cfg[i*2+1].fill_color.r =3D 0.3;
+-+		y_cfg[i*2+1].fill_color.g =3D 0.0;
+-+		y_cfg[i*2+1].fill_color.b =3D 0.0;
+-+		y_cfg[i*2+1].fill_color.a =3D 0.7;
+-+
+-+=09
+-+		t_cfg[i*2].color.r =3D 1.0;
+-+		t_cfg[i*2].color.g =3D 1.0;
+-+		t_cfg[i*2].color.b =3D 1.0;
+-+		t_cfg[i*2].color.a =3D 1.0;
+-+		t_cfg[i*2].at.x =3D BL_START_X + 5;
+-+		t_cfg[i*2].at.y =3D BL_START_Y + (i - start_offset) * (BAR_GAP+BAR_HE=
+IGHT) -5;
+-+		t_cfg[i*2].fontsize =3D FONT_SIZE;
+-+
+-+		t_cfg[i*2+1].color.r =3D 1.0;
+-+		t_cfg[i*2+1].color.g =3D 1.0;
+-+		t_cfg[i*2+1].color.b =3D 1.0;
+-+		t_cfg[i*2+1].color.a =3D 1.0;
+-+		t_cfg[i*2+1].at.x =3D TR_START_X + 50;//BAR_WIDTH + TR_START_X;
+-+		t_cfg[i*2+1].at.y =3D BL_START_Y + (i - start_offset) * (BAR_GAP + BA=
+R_HEIGHT) -5;
+-+		t_cfg[i*2+1].fontsize =3D FONT_SIZE;
+-+
+-+		printd("Copying string %s at %d\n", output[i-start_offset], i);
+-+		strcpy(bg_text[i*2], output[i-start_offset]);
+-+		printd("Setting text 0  %s at %d\n", unit, i*2+1);
+-+		sprintf(bg_text[i*2+1], "0 %s", unit);
+-+	}
+-+	for(i=3Dstart_offset; i< end_offset*2; i++) {
+-+		printd("%d - (%d, %d) to (%d, %d)\n", i, y_cfg[i].region.bottom_left.=
+x,  y_cfg[i].region.bottom_left.y,  y_cfg[i].region.top_right.x,  y_cfg[i=
+].region.top_right.y);
+-+	}
+-+
+-+	t_cfg[(end_offset-1)*2].color.r =3D 0.0;
+-+	t_cfg[(end_offset-1)*2].color.g =3D 1.0;
+-+	t_cfg[(end_offset-1)*2].color.b =3D 1.0;
+-+	t_cfg[(end_offset-1)*2].color.a =3D 1.0;
+-+	t_cfg[(end_offset-1)*2].at.x =3D BL_START_X + 80;
+-+	t_cfg[(end_offset-1)*2].at.y =3D BL_START_Y - 40;
+-+	t_cfg[(end_offset-1)*2].fontsize =3D FONT_SIZE + 3;
+-+
+-+	printd("Copying title string %s\n", title);
+-+	strcpy(bg_text[(end_offset-1)*2], title);
+-+
+-+}
+-+=09
+-+
+-+int get_key_value_from_string(char *string, char *limiter, char *key, c=
+har *value)
+-+{
+-+	char *mykey, *myvalue;
+-+
+-+	mykey=3Dstrtok(string, limiter);
+-+	if(mykey !=3D NULL) {
+-+		myvalue =3D strtok(NULL, "=3D");
+-+		strtok(myvalue, "\n");
+-+		if(myvalue =3D=3D NULL) {
+-+			return -1;
+-+		}
+-+	}
+-+	else {
+-+		return -1;
+-+	}
+-+	printd("Key is %s\n", mykey);
+-+	printd("Value is %s\n", myvalue);
+-+	strcpy(key, mykey);
+-+	strcpy(value, myvalue);
+-+	return 0;
+-+
+-+}
+-+
+-+void populate_table_configuration(struct table_configuration *tbl_cfg, =
+int cur_items, char **item_list)
+-+{
+-+	static int total_items =3D 0;
+-+	static int total_tables =3D 0;
+-+=09
+-+	tbl_cfg->BAR_HEIGHT =3D 25;
+-+	tbl_cfg->BAR_WIDTH =3D 150;
+-+	tbl_cfg->BL_START_X =3D 40;
+-+	tbl_cfg->BL_START_Y =3D 80 + (total_items + total_tables) * tbl_cfg->B=
+AR_HEIGHT;
+-+	tbl_cfg->BAR_GAP =3D 0;
+-+	tbl_cfg->TR_START_X =3D tbl_cfg->BL_START_X + tbl_cfg->BAR_WIDTH;
+-+	tbl_cfg->TR_START_Y =3D tbl_cfg->BL_START_Y - tbl_cfg->BAR_HEIGHT;
+-+	tbl_cfg->FONT_SIZE =3D 15;
+-+
+-+	printf("Proceeding with filling out details...\n");
+-+	if(cur_items > 0)
+-+		fill_table_details(total_items, total_items+cur_items, item_list, tbl=
+_cfg);
+-+
+-+	total_items +=3D cur_items;
+-+	if(cur_items > 0)
+-+		total_tables++;
+-+
+-+	printf("total_items =3D %d, total_tables =3D %d\n", total_items, total=
+_tables);
+-+	return;
+-+}
+-+
+-+int fill_list_from_section(char **section_list, char *section_name)
+-+{
+-+	int total_items, j;
+-+
+-+	for(j=3D0; j<20; j++) {
+-+		section_list[j] =3D malloc(100);
+-+	}
+-+
+-+	total_items =3D get_strings_in_section(section_name, section_list);
+-+	printf("\tThe total values in the section %s are %d\n", section_name, =
+total_items);
+-+	for(j=3D0; j<total_items; j++) {
+-+		printf("\t\tThe returned strings for BOOT_TIME are %s\n", section_lis=
+t[j]);
+-+	}
+-+
+-+	total_elements +=3D total_items;
+-+
+-+	return total_items;
+-+}
+-+
+-+int main(int argc, char *argv[])
+-+{
+-+	double *bg_y;
+-+	double *tg_y;
+-+	int i,j;
+-+	int refresh_rate;
+-+
+-+	if (SIG_ERR =3D=3D signal(SIGPIPE,SIG_IGN))
+-+		exit(1);
+-+
+-+	if (SIG_ERR =3D=3D signal(SIGINT,my_signal_handler))
+-+		exit(1);
+-+
+-+	if (SIG_ERR =3D=3D signal(SIGTERM,my_signal_handler))
+-+		exit(1);
+-+
+-+	if(argc =3D=3D 2) {
+-+		printf("Enabling debug\n");
+-+		debug =3D atoi(argv[1]);
+-+	}
+-+	else {
+-+		printf("Debug is disabled\n");
+-+		debug =3D 0;
+-+	}
+-+
+-+	char *output[20];
+-+	int total =3D fill_list_from_section(output, "GLOBAL");
+-+	for(j=3D0; j<total; j++) {
+-+		char key[100], value[100];
+-+		int ret =3D get_key_value_from_string(output[j], "=3D", key, value);
+-+		if(ret =3D=3D 0) {
+-+			if(strcmp(key, "FIFO") =3D=3D 0) {
+-+				strcpy(readfifo, value);
+-+			}
+-+			if(strcmp(key, "REFRESH_RATE_USEC") =3D=3D 0) {
+-+				refresh_rate =3D atoi(value);
+-+			}
+-+			if(strcmp(key, "MAX_WIDTH") =3D=3D 0) {
+-+				MAX_WIDTH =3D atoi(value);
+-+			}
+-+			if(strcmp(key, "MAX_HEIGHT") =3D=3D 0) {
+-+				MAX_HEIGHT =3D atoi(value);
+-+			}
+-+			if(strcmp(key, "X_POS") =3D=3D 0) {
+-+				x_pos =3D atoi(value);
+-+			}
+-+			if(strcmp(key, "Y_POS") =3D=3D 0) {
+-+				y_pos =3D atoi(value);
+-+			}
+-+		}
+-+			=09
+-+	}
+-+
+-+	printf("\n-------------------------------------------------\n");
+-+	printf("Configured REFRESH_RATE is %d\n", refresh_rate);
+-+	printf("Configured FIFO is %s\n", readfifo);
+-+	printf("Configured MAX_WIDTH is %d\n", MAX_WIDTH);
+-+	printf("Configured MAX_HEIGHT is %d\n", MAX_HEIGHT);
+-+	printf("Configured starting location is (%d, %d)\n", x_pos, y_pos);
+-+	printf("\n-------------------------------------------------\n");
+-+
+-+	int fd =3D open(readfifo, O_RDONLY|O_NONBLOCK);
+-+	if (fd !=3D -1) {
+-+		printf("SUCCESS: Configured FIFO exists\n");
+-+		close(fd);
+-+	}
+-+	else {
+-+		printf("ERROR: %s not found\nPlease create the fifo by executing mkfi=
+fo %s before running the application\n", readfifo, readfifo);
+-+		exit(0);
+-+	}
+-+	=09
+-+
+-+	bg_p.title =3D malloc(100);
+-+	sprintf(bg_p.title, "CPU Usage[@position-req=3D%dx%d]", x_pos, y_pos);
+-+
+-+	/* -------------------------------------------------------------------=
+-----*/
+-+	/* Section for populating all lists from cfg sections*/
+-+	/* -------------------------------------------------------------------=
+-----*/
+-+	char *boot_list[20];
+-+	int total_boot_items =3D fill_list_from_section(boot_list, "BOOT_TIME"=
+);
+-+
+-+	char *temperature_list[20];
+-+	int total_temperature_items =3D fill_list_from_section(temperature_lis=
+t, "TEMPERATURE");
+-+
+-+	char *cpu_load_list[20];
+-+	total_cpu_load_items =3D fill_list_from_section(cpu_load_list, "CPU_LO=
+AD");
+-+
+-+	char *voltage_list[20];
+-+	int total_voltage_items =3D fill_list_from_section(voltage_list, "VOLT=
+AGE");
+-+
+-+	char *frequency_list[20];
+-+	int total_frequency_items =3D fill_list_from_section(frequency_list, "=
+FREQUENCY");
+-+	/* -------------------------------------------------------------------=
+-----*/
+-+	/* total_elements will be updated inside the fill_list_from_section fu=
+nction */
+-+
+-+	t_cfg =3D malloc(sizeof(struct _text_config) * (total_elements*2 + 1))=
+;
+-+	y_cfg =3D malloc(sizeof(struct _bar_graph_y_config) * total_elements*2=
+);
+-+	bg_p.num_of_y_items =3D total_elements*2;
+-+	bg_p.y_config_array =3D y_cfg;
+-+	bg_p.num_of_text_items =3D total_elements*2 + 1;
+-+	bg_p.text_config_array =3D t_cfg;
+-+
+-+	bg_y =3D malloc(sizeof(double) * total_elements * 2);
+-+	for(i=3D0; i< (total_elements*2+1); i++) {
+-+		bg_text[i] =3D malloc(150);
+-+		bg_y[i] =3D 1.0;
+-+	}
+-+
+-+	tg_y =3D malloc(sizeof(double) * total_elements * 2);
+-+	for(i=3D0; i< (total_elements*2+1); i++) {
+-+		tg_text[i] =3D malloc(150);
+-+		tg_y[i] =3D 0.1 * i;
+-+	}
+-+
+-+	struct table_configuration boot_table_config;=20
+-+        populate_table_configuration(&boot_table_config, total_boot_ite=
+ms, boot_list);
+-+
+-+	struct table_configuration temp_table_config;=20
+-+        populate_table_configuration(&temp_table_config, total_temperat=
+ure_items, temperature_list);
+-+
+-+	struct table_configuration voltage_table_config;=20
+-+        populate_table_configuration(&voltage_table_config, total_volta=
+ge_items, voltage_list);
+-+
+-+	struct table_configuration frequency_table_config;=20
+-+        populate_table_configuration(&frequency_table_config, total_fre=
+quency_items, frequency_list);
+-+
+-+	struct table_configuration cpu_load_config;=20
+-+	cpu_load_config.BL_START_X =3D 40;
+-+	cpu_load_config.BL_START_Y =3D 80 + (total_boot_items + total_temperat=
+ure_items + total_voltage_items + total_frequency_items+ 4) * boot_table_=
+config.BAR_HEIGHT + 80 /*cpu_load_config.BAR_HEIGHT */;
+-+	cpu_load_config.BAR_GAP =3D 20;
+-+	cpu_load_config.BAR_HEIGHT =3D 80;
+-+	cpu_load_config.BAR_WIDTH =3D 40;
+-+	cpu_load_config.TR_START_X =3D cpu_load_config.BL_START_X + cpu_load_c=
+onfig.BAR_WIDTH;
+-+	cpu_load_config.TR_START_Y =3D cpu_load_config.BL_START_Y - cpu_load_c=
+onfig.BAR_HEIGHT;
+-+	cpu_load_config.FONT_SIZE =3D 15;
+-+	if(total_cpu_load_items > 0) {
+-+		fill_cpu_load_details(total_boot_items+total_temperature_items+total_=
+voltage_items+total_frequency_items, total_boot_items+total_temperature_i=
+tems+total_voltage_items+total_frequency_items+total_cpu_load_items, cpu_=
+load_list, &cpu_load_config);
+-+	}
+-+	else {
+-+		cpu_load_offset =3D total_boot_items + total_temperature_items + tota=
+l_voltage_items + total_frequency_items;
+-+	}
+-+
+-+	tg_p.title=3D(char *)malloc(100);
+-+	sprintf(tg_p.title, "CPU Usage[@position-req=3D%dx%d]", x_pos, y_pos);
+-+	tg_p.height =3D MAX_HEIGHT;
+-+	tg_p.width =3D MAX_WIDTH;
+-+
+-+	struct _y_config *tg_y_cfg =3D malloc(tg_p.num_of_y_items * sizeof(str=
+uct _y_config));
+-+	tg_p.y_config_array =3D tg_y_cfg;
+-+	tg_p.text_config_array =3D t_cfg;
+-+
+-+        printf("Proceeding to create starting visualization...\n");
+-+	ctx =3D time_graph_create(argc, argv, &tg_p);
+-+	if (!ctx) {
+-+		printf("Unable to create time_graph... \n");
+-+		exit(0);
+-+	}
+-+
+-+	ctx =3D bar_graph_create(argc, argv, &bg_p);
+-+	if (!ctx) {
+-+		printf("Error creating context\n");
+-+		exit(0);
+-+	}
+-+
+-+	command_handler(OPEN, NULL, NULL);
+-+
+-+	/* Plot the graph first time */
+-+	time_graph_plot(ctx, tg_y, (const char **)tg_text);
+-+	bar_graph_plot(ctx, bg_y, (const char **)bg_text);
+-+
+-+	while (!sigtermed)
+-+	{
+-+		usleep(refresh_rate);
+-+		int bytes_read =3D command_handler(READ, bg_y, bg_text);
+-+		if(bytes_read > 0) {
+-+			time_graph_plot(ctx, tg_y, (const char **)tg_text);
+-+			bar_graph_plot(ctx, bg_y, (const char **)bg_text);
+-+		}
+-+	}
+-+
+-+	bar_graph_destroy(ctx);
+-+	command_handler(CLOSE, NULL, NULL);
+-+	return 0;
+-+}
+-diff --git a/clients/soc_performance_monitor.h b/clients/soc_performance=
+_monitor.h
+-new file mode 100644
+-index 0000000..861c8c7
+---- /dev/null
+-+++ b/clients/soc_performance_monitor.h
+-@@ -0,0 +1,40 @@
+-+#define __SLEEP  usleep(1000000)
+-+
+-+#define MAX_BUF 1024
+-+#define OPEN 1
+-+#define READ 2
+-+#define CLOSE 3
+-+
+-+#define MAX_COLORS 12
+-+
+-+#define printd(fmt, ...) \
+-+	do { if (debug) fprintf(stderr, fmt, __VA_ARGS__); } while (0)
+-+
+-+
+-+struct _rgba pallette[MAX_COLORS] =3D=20
+-+{
+-+	{ 1.0, 0.0, 0.0, 1.0 },
+-+	{ 0.0, 0.5, 0.0, 1.0 },
+-+	{ 0.0, 0.0, 1.0, 1.0 },
+-+	{ 0.0, 0.0, 0.0, 1.0 },
+-+	{ 0.0, 0.5, 1.0, 1.0 },
+-+	{ 1.0, 0.0, 1.0, 1.0 },
+-+	{ 0.5, 0.5, 1.0, 1.0 },
+-+	{ 1.0, 0.5, 0.0, 1.0 },
+-+	{ 0.5, 0.5, 0.25, 1.0 },
+-+	{ 0.5, 0.0, 0.0, 1.0 },
+-+	{ 1.0, 0.5, 0.5, 1.0 },
+-+	{ 0.0, 0.0, 0.20, 1.0 }
+-+};
+-+
+-+struct table_configuration {
+-+	int BL_START_X;
+-+	int BL_START_Y;
+-+	int BAR_GAP;
+-+	int BAR_HEIGHT;
+-+	int BAR_WIDTH;
+-+	int TR_START_X;
+-+	int TR_START_Y;
+-+	int FONT_SIZE;
+-+};
+-+
+-diff --git a/clients/statcoll.c b/clients/statcoll.c
+-new file mode 100644
+-index 0000000..5d5cae7
+---- /dev/null
+-+++ b/clients/statcoll.c
+-@@ -0,0 +1,1433 @@
+-+/*
+-+ * Copyright (C) 2015 Texas Instruments
+-+ * created by prash@ti.com on 16 Jan 2013
+-+ * Adapted to Linux with changes in framework: Karthik R <karthik.raman=
+an@ti.com>
+-+ *
+-+ * This program is free software; you can redistribute it and/or modify=
+ it
+-+ * under the terms of the GNU General Public License version 2 as publi=
+shed by
+-+ * the Free Software Foundation.
+-+ *
+-+ * This program is distributed in the hope that it will be useful, but =
+WITHOUT
+-+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY o=
+r
+-+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licens=
+e for
+-+ * more details.
+-+ *
+-+ * You should have received a copy of the GNU General Public License al=
+ong with
+-+ * this program.  If not, see <http://www.gnu.org/licenses/>.
+-+ */
+-+
+-+#include <stdio.h>
+-+#include <stdlib.h>
+-+#include <string.h>
+-+#include <sys/mman.h>
+-+#include <fcntl.h>
+-+#include <signal.h>
+-+#include <unistd.h>
+-+#include <sys/time.h>
+-+
+-+#include "statcoll.h"
+-+#include "statcoll_gui.h"
+-+#include "time_bar_graph.h"
+-+
+-+#define ENABLE_MODE      0x0
+-+#define READ_STATUS_MODE 0x1
+-+
+-+
+-+
+-+#define OPEN 1
+-+#define READ 2
+-+#define CLOSE 3
+-+
+-+
+-+#if 1
+-+#define __SLEEP  sleep(1)
+-+#else
+-+#define __SLEEP  usleep(100000)
+-+#endif
+-+//#define DUMMY_MODE
+-+
+-+#define MAX_COLORS 12
+-+
+-+struct _rgba pallette[MAX_COLORS] =3D=20
+-+{
+-+	{ 1.0, 0.0, 0.0, 1.0 },
+-+	{ 0.0, 0.5, 0.0, 1.0 },
+-+	{ 0.0, 0.0, 1.0, 1.0 },
+-+	{ 0.0, 0.0, 0.0, 1.0 },
+-+	{ 0.0, 0.5, 1.0, 1.0 },
+-+	{ 1.0, 0.0, 1.0, 1.0 },
+-+	{ 0.5, 0.5, 1.0, 1.0 },
+-+	{ 1.0, 0.5, 0.0, 1.0 },
+-+	{ 0.5, 0.5, 0.25, 1.0 },
+-+	{ 0.5, 0.0, 0.0, 1.0 },
+-+	{ 1.0, 0.5, 0.5, 1.0 },
+-+	{ 0.0, 0.0, 0.20, 1.0 }
+-+};
+-+
+-+const struct list_of_initiators initiators[STATCOL_MAX] =3D
+-+{
+-+    { STATCOL_EMIF1_SYS, "STATCOL_EMIF1_SYS" },
+-+    { STATCOL_EMIF2_SYS,"STATCOL_EMIF2_SYS" },
+-+    { STATCOL_MA_MPU_P1,"STATCOL_MPU_P1" },
+-+    { STATCOL_MA_MPU_P2,"STATCOL_MPU_P2" },
+-+    { STATCOL_MPU1,"STATCOL_MPU1" },
+-+    { STATCOL_MMU1,"STATCOL_MMU1" },
+-+    { STATCOL_TPTC_RD1,"STATCOL_TPTC_RD1" },
+-+    { STATCOL_TPTC_WR1,"STATCOL_TPTC_WR1" },
+-+    { STATCOL_TPTC_RD2,"STATCOL_TPTC_RD2" },
+-+    { STATCOL_TPTC_WR2,"STATCOL_TPTC_WR2" },
+-+    { STATCOL_VIP1_P1,"STATCOL_VIP1_P1" },
+-+    { STATCOL_VIP1_P2,"STATCOL_VIP1_P2" },
+-+    { STATCOL_VIP2_P1,"STATCOL_VIP2_P1" },
+-+    { STATCOL_VIP2_P2,"STATCOL_VIP2_P2" },
+-+    { STATCOL_VIP3_P1,"STATCOL_VIP3_P1" },
+-+    { STATCOL_VIP3_P2,"STATCOL_VIP3_P2" },
+-+    { STATCOL_VPE_P1,"STATCOL_VPE_P1" },
+-+    { STATCOL_VPE_P2,"STATCOL_VPE_P2" },
+-+    { STATCOL_EVE1_TC0,"STATCOL_EVE1_TC0" },
+-+    { STATCOL_EVE1_TC1,"STATCOL_EVE1_TC1" },
+-+    { STATCOL_EVE2_TC0,"STATCOL_EVE2_TC0" },
+-+    { STATCOL_EVE2_TC1,"STATCOL_EVE2_TC1" },
+-+    { STATCOL_EVE3_TC0,"STATCOL_EVE3_TC0" },
+-+    { STATCOL_EVE3_TC1,"STATCOL_EVE3_TC1" },
+-+    { STATCOL_EVE4_TC0,"STATCOL_EVE4_TC0" },
+-+    { STATCOL_EVE4_TC1,"STATCOL_EVE4_TC1" },
+-+    { STATCOL_DSP1_MDMA,"STATCOL_DSP1_MDMA" },
+-+    { STATCOL_DSP1_EDMA,"STATCOL_DSP1_EDMA" },
+-+    { STATCOL_DSP2_MDMA,"STATCOL_DSP2_MDMA" },
+-+    { STATCOL_DSP2_EDMA,"STATCOL_DSP2_EDMA" },
+-+    { STATCOL_IVA,"STATCOL_IVA" },
+-+    { STATCOL_GPU_P1,"STATCOL_GPU_P1" },
+-+    { STATCOL_GPU_P2,"STATCOL_GPU_P2" },
+-+    { STATCOL_BB2D_P1,"STATCOL_BB2D_P1" },
+-+    { STATCOL_DSS,"STATCOL_DSS" },
+-+    { STATCOL_CSI2_2,"STATCOL_CSI2_2" },
+-+    { STATCOL_MMU2,"STATCOL_MMU2" },
+-+    { STATCOL_IPU1,"STATCOL_IPU1" },
+-+    { STATCOL_IPU2,"STATCOL_IPU2" },
+-+    { STATCOL_DMA_SYSTEM_RD,"STATCOL_DMA_SYSTEM_RD" },
+-+    { STATCOL_DMA_SYSTEM_WR,"STATCOL_DMA_SYSTEM_WR" },
+-+    { STATCOL_CSI2_1,"STATCOL_CSI2_1" },
+-+    { STATCOL_USB3_SS,"STATCOL_USB3_SS" },
+-+    { STATCOL_USB2_SS,"STATCOL_USB2_SS" },
+-+    { STATCOL_USB2_ULPI_SS1,"STATCOL_USB2_ULPI_SS1" },
+-+    { STATCOL_USB2_ULPI_SS2,"STATCOL_USB2_ULPI_SS2" },
+-+    { STATCOL_PCIE_SS1,"STATCOL_PCIE_SS1" },
+-+    { STATCOL_PCIE_SS2,"STATCOL_PCIE_SS2" },
+-+    { STATCOL_DSP1_CFG,"STATCOL_DSP1_CFG" },
+-+    { STATCOL_DSP2_CFG,"STATCOL_DSP2_CFG" },
+-+    { STATCOL_GMAC_SW,"STATCOL_GMAC_SW" },
+-+    { STATCOL_PRUSS1_P1,"STATCOL_PRUSS1_P1" },
+-+    { STATCOL_PRUSS1_P2,"STATCOL_PRUSS1_P2" },
+-+    { STATCOL_PRUSS2_P1,"STATCOL_PRUSS2_P1" },
+-+    { STATCOL_PRUSS2_P2,"STATCOL_PRUSS2_P2" },
+-+    { STATCOL_DMA_CRYPTO_RD,"STATCOL_DMA_CRYPTO_RD" },
+-+    { STATCOL_DMA_CRYPTO_WR,"STATCOL_DMA_CRYPTO_WR" },
+-+    { STATCOL_MPU2,"STATCOL_MPU2" },
+-+    { STATCOL_MMC1,"STATCOL_MMC1" },
+-+    { STATCOL_MMC2,"STATCOL_MMC2" },
+-+    { STATCOL_SATA,"STATCOL_SATA" },
+-+    { STATCOL_MLBSS,"STATCOL_MLBSS" },
+-+    { STATCOL_BB2D_P2,"STATCOL_BB2D_P2" },
+-+    { STATCOL_IEEE1500,"STATCOL_IEEE1500" },
+-+    { STATCOL_DBG,"STATCOL_DBG" },
+-+    { STATCOL_VCP1,"STATCOL_VCP1" },
+-+    { STATCOL_OCMC_RAM1,"STATCOL_OCMC_RAM1" },
+-+    { STATCOL_OCMC_RAM2,"STATCOL_OCMC_RAM2" },
+-+    { STATCOL_OCMC_RAM3,"STATCOL_OCMC_RAM3" },
+-+    { STATCOL_GPMC,"STATCOL_GPMC" },
+-+    { STATCOL_MCASP1,"STATCOL_MCASP1" },
+-+    { STATCOL_MCASP2,"STATCOL_MCASP2" },
+-+    { STATCOL_MCASP3,"STATCOL_MCASP3" },
+-+    { STATCOL_VCP2,  "STATCOL_VCP2" }
+-+};=20
+-+
+-+StatCollectorObj gStatColState;
+-+
+-+static void *statcoll_base_mem;
+-+static int *l3_3_clkctrl;
+-+
+-+static UInt32 *statCountDSS =3D NULL;
+-+static UInt32 *statCountIVA =3D NULL;
+-+static UInt32 *statCountBB2DP1 =3D NULL;
+-+static UInt32 *statCountBB2DP2 =3D NULL;
+-+static UInt32 *statCountUSB4 =3D NULL;
+-+static UInt32 *statCountSata =3D NULL;
+-+static UInt32 *statCountEmif1 =3D NULL;
+-+static UInt32 *statCountEmif2 =3D NULL;
+-+
+-+
+-+static statcoll_initiators_object global_object[STATCOL_MAX];
+-+UInt32 statCountIdx =3D 0;
+-+UInt32 TRACE_SZ =3D 0;
+-+
+-+void create_overall_box(struct _bar_graph_y_config *y_cfg, struct _text=
+_config *t_cfg, char *text[])
+-+{
+-+        int i=3D0;
+-+
+-+        memset(y_cfg, 0x0, sizeof(struct _y_config)*25);
+-+        memset(t_cfg, 0x0, sizeof(struct _text_config)*25);
+-+
+-+
+-+        for(i=3D0; i<TOTAL_Y_PARAMETERS; i++) {
+-+                (y_cfg+i)->line_color.r =3D 1.0;
+-+                (y_cfg+i)->line_color.g =3D 1.0;
+-+                (y_cfg+i)->line_color.b =3D 1.0;
+-+                (y_cfg+i)->line_color.a =3D 0.7;
+-+                (y_cfg+i)->fill_color.r =3D 0.0;
+-+                (y_cfg+i)->fill_color.g =3D 0.0;
+-+                (y_cfg+i)->fill_color.b =3D 0.0;
+-+                (y_cfg+i)->fill_color.a =3D 0.1;
+-+        }
+-+
+-+        (y_cfg+0)->region.bottom_left.x =3D 0;
+-+        (y_cfg+0)->region.bottom_left.y =3D MAX_HEIGHT - HEIGHT_EMIF_AR=
+EA;
+-+        (y_cfg+0)->region.top_right.x =3D MAX_WIDTH;
+-+        (y_cfg+0)->region.top_right.y =3D 0;
+-+
+-+        (t_cfg+0)->at.x =3D MAX_WIDTH/2 - 8*FONT_SIZE - 50;
+-+        (t_cfg+0)->at.y =3D BORDER - FONT_SIZE + 6;
+-+        strcpy(text[0], string_list[0]);
+-+
+-+        (y_cfg+1)->region.bottom_left.x =3D TIME_GRAPH_AREA_BL_X;
+-+        (y_cfg+1)->region.bottom_left.y =3D TIME_GRAPH_AREA_BL_Y;
+-+        (y_cfg+1)->region.top_right.x =3D TIME_GRAPH_AREA_TR_X;
+-+        (y_cfg+1)->region.top_right.y =3D TIME_GRAPH_AREA_TR_Y;
+-+
+-+        (t_cfg+1)->at.x =3D TIME_GRAPH_AREA_BL_X - 2*FONT_SIZE;
+-+        (t_cfg+1)->at.y =3D TIME_GRAPH_AREA_TR_Y;
+-+        strcpy(text[1],string_list[1]);
+-+
+-+        for(i=3D2; i<7; i++)
+-+        {
+-+                (y_cfg+i)->region.bottom_left.x =3D TIME_GRAPH_AREA_BL_=
+X;
+-+                (y_cfg+i)->region.bottom_left.y =3D TIME_GRAPH_AREA_BL_=
+Y;// - (i-2) * (30);
+-+                (y_cfg+i)->region.top_right.x =3D TIME_GRAPH_AREA_TR_X;
+-+                (y_cfg+i)->region.top_right.y =3D TIME_GRAPH_AREA_TR_Y =
++ (i-1) * ((TIME_GRAPH_AREA_BL_Y - TIME_GRAPH_AREA_TR_Y)/5);
+-+                (t_cfg+i)->at.x =3D TIME_GRAPH_AREA_BL_X - 2*FONT_SIZE;
+-+                (t_cfg+i)->at.y =3D TIME_GRAPH_AREA_TR_Y + (i-1) * ((TI=
+ME_GRAPH_AREA_BL_Y - TIME_GRAPH_AREA_TR_Y)/5);//TIME_GRAPH_AREA_TR_Y;
+-+                strcpy(text[i],string_list[i]);
+-+        }
+-+
+-+#if 1
+-+        (y_cfg+7)->region.bottom_left.x =3D EMIF_AREA_BL_X;
+-+        (y_cfg+7)->region.bottom_left.y =3D EMIF_AREA_BL_Y;
+-+        (y_cfg+7)->region.top_right.x =3D EMIF_AREA_TR_X;
+-+        (y_cfg+7)->region.top_right.y =3D EMIF_AREA_TR_Y;
+-+
+-+        (t_cfg+7)->at.x =3D WIDTH_EMIF_AREA/2 - 2*FONT_SIZE;
+-+        (t_cfg+7)->at.y =3D EMIF_AREA_TR_Y + FONT_SIZE;
+-+        strcpy(text[7],string_list[7]);
+-+
+-+        for(i=3D8; i<12; i=3Di+2)
+-+        {
+-+                (y_cfg+i)->region.bottom_left.x =3D EMIF_AREA_BL_X + BO=
+RDER + (i-8)*(BAR_WIDTH+BAR_GAP)/2;
+-+                (y_cfg+i)->region.bottom_left.y =3D EMIF_AREA_BL_Y - BO=
+RDER/2;// - (i-2) * (30);
+-+                (y_cfg+i)->region.top_right.x =3D EMIF_AREA_BL_X + BORD=
+ER + BAR_WIDTH + (i-8) * (BAR_WIDTH + BAR_GAP)/2;
+-+                (y_cfg+i)->region.top_right.y =3D EMIF_AREA_TR_Y + BORD=
+ER * 1.2;
+-+
+-+                (y_cfg+i)->fill_color.r =3D 1.0;
+-+                (y_cfg+i)->fill_color.g =3D 0.0;
+-+                (y_cfg+i)->fill_color.b =3D 0.0;
+-+                (y_cfg+i)->fill_color.a =3D 0.1;
+-+
+-+                (y_cfg+i+1)->region.bottom_left.x =3D EMIF_AREA_BL_X + =
+BORDER + (i-8) * (BAR_WIDTH + BAR_GAP)/2;
+-+                (y_cfg+i+1)->region.bottom_left.y =3D EMIF_AREA_BL_Y - =
+BORDER/2;
+-+                (y_cfg+i+1)->region.top_right.x =3D EMIF_AREA_BL_X + BO=
+RDER + BAR_WIDTH + (i-8) * (BAR_WIDTH + BAR_GAP)/2;
+-+                (y_cfg+i+1)->region.top_right.y =3D EMIF_AREA_TR_Y + BO=
+RDER*1.2;
+-+
+-+                (y_cfg+i+1)->fill_color.r =3D 0.0;
+-+                (y_cfg+i+1)->fill_color.g =3D 1.0;
+-+                (y_cfg+i+1)->fill_color.b =3D 0.0;
+-+                (y_cfg+i+1)->fill_color.a =3D 1.0;
+-+
+-+                (t_cfg+i)->at.x =3D EMIF_AREA_BL_X + BAR_WIDTH + BORDER=
+ + (i-8) * (BAR_WIDTH + BAR_GAP)/2- 2.2*FONT_SIZE;
+-+                (t_cfg+i)->at.y =3D EMIF_AREA_TR_Y + BORDER*1.2 -5;
+-+
+-+                /* Fixed strings */
+-+                (t_cfg+i+1)->at.x =3D EMIF_AREA_BL_X + BORDER + (i-8) *=
+ (BAR_WIDTH + BAR_GAP)/2;
+-+                (t_cfg+i+1)->at.y =3D EMIF_AREA_BL_Y;// - BORDER + FONT=
+_SIZE;
+-+
+-+                strcpy(text[i],string_list[i]);
+-+                strcpy(text[i+1],string_list[i+1]);
+-+        }
+-+
+-+        (y_cfg+12)->region.bottom_left.x =3D INITIATORS_AREA_BL_X;
+-+        (y_cfg+12)->region.bottom_left.y =3D INITIATORS_AREA_BL_Y;
+-+        (y_cfg+12)->region.top_right.x =3D INITIATORS_AREA_TR_X;
+-+        (y_cfg+12)->region.top_right.y =3D INITIATORS_AREA_TR_Y;
+-+
+-+        (t_cfg+12)->at.x =3D EMIF_AREA_TR_X + (INITIATORS_AREA_TR_X - I=
+NITIATORS_AREA_BL_X)/2 - 4 * FONT_SIZE;
+-+        (t_cfg+12)->at.y =3D INITIATORS_AREA_TR_Y + FONT_SIZE;
+-+        strcpy(text[12],string_list[12]);
+-+
+-+        for(i=3D13; i<25; i=3Di+2)
+-+        {
+-+                (y_cfg+i)->region.bottom_left.x =3D INITIATORS_AREA_BL_=
+X + BORDER + (i-13)*(BAR_WIDTH+BAR_GAP)/2;
+-+                (y_cfg+i)->region.bottom_left.y =3D INITIATORS_AREA_BL_=
+Y - BORDER/2;// - (i-2) * (30);
+-+                (y_cfg+i)->region.top_right.x =3D INITIATORS_AREA_BL_X =
++ BORDER + BAR_WIDTH + (i-13) * (BAR_WIDTH + BAR_GAP)/2;
+-+                (y_cfg+i)->region.top_right.y =3D INITIATORS_AREA_TR_Y =
++ BORDER*1.2;
+-+
+-+                (y_cfg+i)->fill_color.r =3D 1.0;
+-+                (y_cfg+i)->fill_color.g =3D 0.0;
+-+                (y_cfg+i)->fill_color.b =3D 0.0;
+-+                (y_cfg+i)->fill_color.a =3D 0.1;
+-+
+-+                (y_cfg+i+1)->region.bottom_left.x =3D INITIATORS_AREA_B=
+L_X + BORDER + (i-13) * (BAR_WIDTH + BAR_GAP)/2;
+-+                (y_cfg+i+1)->region.bottom_left.y =3D INITIATORS_AREA_B=
+L_Y - BORDER/2;// - (i-2) * (30);
+-+                (y_cfg+i+1)->region.top_right.x =3D INITIATORS_AREA_BL_=
+X + BORDER + BAR_WIDTH + (i-13) * (BAR_WIDTH + BAR_GAP)/2;
+-+                (y_cfg+i+1)->region.top_right.y =3D INITIATORS_AREA_TR_=
+Y + BORDER* 1.2;
+-+
+-+                (y_cfg+i+1)->fill_color.r =3D 0.0;
+-+                (y_cfg+i+1)->fill_color.g =3D 1.0;
+-+                (y_cfg+i+1)->fill_color.b =3D 0.0;
+-+                (y_cfg+i+1)->fill_color.a =3D 1.0;
+-+
+-+                (t_cfg+i)->at.x =3D INITIATORS_AREA_BL_X + BORDER + BAR=
+_WIDTH + (i-13) * (BAR_WIDTH + BAR_GAP)/2 - 2.2* FONT_SIZE;
+-+                (t_cfg+i)->at.y =3D INITIATORS_AREA_TR_Y + BORDER*1.2 -=
+5;
+-+
+-+                (t_cfg+i+1)->at.x =3D INITIATORS_AREA_BL_X + BORDER + (=
+i-13)*(BAR_WIDTH+BAR_GAP)/2;
+-+                (t_cfg+i+1)->at.y =3D INITIATORS_AREA_BL_Y;
+-+
+-+                strcpy(text[i],string_list[i]);
+-+                strcpy(text[i+1],string_list[i+1]);
+-+        }
+-+#endif
+-+
+-+#if 0
+-+        for(i=3D0; i<25; i++)
+-+                printf("(%d, %d) to (%d, %d)\n", (y_cfg +i)->region.bot=
+tom_left.x,(y_cfg +i)->region.bottom_left.y,(y_cfg +i)->region.top_right.=
+x, (y_cfg +i)->region.top_right.y);
+-+#endif
+-+
+-+
+-+
+-+        for(i=3D0; i<25; i++) {
+-+                (t_cfg+i)->color.r =3D 0.0;
+-+                (t_cfg+i)->color.g =3D 1.0;
+-+                (t_cfg+i)->color.b =3D 1.0;
+-+                (t_cfg+i)->color.a =3D 1.0;
+-+                (t_cfg+i)->fontsize =3D FONT_SIZE;
+-+        }
+-+                (t_cfg+0)->fontsize =3D 20;
+-+
+-+
+-+}
+-+
+-+
+-+void statCollectorInit()
+-+{
+-+    int index;
+-+
+-+    gStatColState.stat0_filter_cnt =3D 0;
+-+    gStatColState.stat1_filter_cnt =3D 0;
+-+    gStatColState.stat2_filter_cnt =3D 0;
+-+    gStatColState.stat3_filter_cnt =3D 0;
+-+    gStatColState.stat4_filter_cnt =3D 0;
+-+    gStatColState.stat5_filter_cnt =3D 0;
+-+    gStatColState.stat6_filter_cnt =3D 0;
+-+    gStatColState.stat7_filter_cnt =3D 0;
+-+    gStatColState.stat8_filter_cnt =3D 0;
+-+    gStatColState.stat9_filter_cnt =3D 0;
+-+
+-+    for(index=3DSTATCOL_EMIF1_SYS; index < STATCOL_MAX; index++)
+-+    {
+-+	global_object[index].b_enabled =3D 0;
+-+
+-+	strcpy(global_object[index].name, initiators[index].name);=20
+-+
+-+	global_object[index].readings =3D malloc(TRACE_SZ * sizeof(UInt32));
+-+    	memset(global_object[index].readings, 0, TRACE_SZ * sizeof(UInt32)=
+);
+-+
+-+	global_object[index].timestamp =3D NULL;
+-+
+-+	global_object[index].group_id =3D 0xFF;
+-+	global_object[index].counter_id =3D 0;
+-+	global_object[index].base_address =3D 0;
+-+	global_object[index].mux_req =3D 0;
+-+    }
+-+
+-+}
+-+
+-+void wr_stat_reg(UInt32 address, UInt32 data)
+-+{
+-+    UInt32 *mymem =3D statcoll_base_mem;
+-+    UInt32 delta =3D (address - STATCOLL_BASE) / 4;
+-+#ifndef DUMMY_MODE
+-+    mymem[delta] =3D data;
+-+#else
+-+    printf("WRITE: Address =3D 0x%x, Data =3D 0x%x\n", address, data);
+-+#endif
+-+}
+-+
+-+UInt32 rd_stat_reg(UInt32 address)
+-+{
+-+#ifndef DUMMY_MODE
+-+    UInt32 *mymem =3D statcoll_base_mem;
+-+    UInt32 data;
+-+    UInt32 delta =3D (address - STATCOLL_BASE) / 4;
+-+    data =3D mymem[delta];
+-+    return data;
+-+#else
+-+    printf("READ: Address =3D 0x%x\n", address);
+-+#endif
+-+}
+-+
+-+UInt32 statCollectorControlInitialize(UInt32 instance_id)
+-+{
+-+    UInt32 cur_base_address =3D 0;
+-+    UInt32 cur_event_mux_req;
+-+    UInt32 cur_event_mux_resp;
+-+    UInt32 cur_stat_filter_cnt;
+-+
+-+    switch (instance_id)
+-+    {
+-+    case STATCOL_EMIF1_SYS:
+-+        cur_base_address =3D stat_coll0_base_address;
+-+        cur_event_mux_req =3D 0;
+-+        cur_event_mux_resp =3D 1;
+-+        gStatColState.stat0_filter_cnt =3D gStatColState.stat0_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat0_filter_cnt;
+-+	global_object[instance_id].group_id =3D 0;
+-+        break;
+-+    case STATCOL_EMIF2_SYS:
+-+        cur_base_address =3D stat_coll0_base_address;
+-+        cur_event_mux_req =3D 2;
+-+        cur_event_mux_resp =3D 3;
+-+        gStatColState.stat0_filter_cnt =3D gStatColState.stat0_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat0_filter_cnt;
+-+	global_object[instance_id].group_id =3D 0;
+-+        break;
+-+    case STATCOL_MA_MPU_P1:
+-+        cur_base_address =3D stat_coll0_base_address;
+-+        cur_event_mux_req =3D 4;
+-+        cur_event_mux_resp =3D 5;
+-+        gStatColState.stat0_filter_cnt =3D gStatColState.stat0_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat0_filter_cnt;
+-+	global_object[instance_id].group_id =3D 0;
+-+        break;
+-+    case STATCOL_MA_MPU_P2:
+-+        cur_base_address =3D stat_coll0_base_address;
+-+        cur_event_mux_req =3D 6;
+-+        cur_event_mux_resp =3D 7;
+-+        gStatColState.stat0_filter_cnt =3D gStatColState.stat0_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat0_filter_cnt;
+-+	global_object[instance_id].group_id =3D 0;
+-+        break;
+-+    case STATCOL_MPU1:
+-+        cur_base_address =3D stat_coll1_base_address;
+-+        cur_event_mux_req =3D 0;
+-+        cur_event_mux_resp =3D 1;
+-+        gStatColState.stat1_filter_cnt =3D gStatColState.stat1_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat1_filter_cnt;
+-+	global_object[instance_id].group_id =3D 1;
+-+        break;
+-+    case STATCOL_MMU1:
+-+        cur_base_address =3D stat_coll1_base_address;
+-+        cur_event_mux_req =3D 2;
+-+        cur_event_mux_resp =3D 3;
+-+        gStatColState.stat1_filter_cnt =3D gStatColState.stat1_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat1_filter_cnt;
+-+	global_object[instance_id].group_id =3D 1;
+-+        break;
+-+    case STATCOL_TPTC_RD1:
+-+        cur_base_address =3D stat_coll1_base_address;
+-+        cur_event_mux_req =3D 4;
+-+        cur_event_mux_resp =3D 5;
+-+        gStatColState.stat1_filter_cnt =3D gStatColState.stat1_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat1_filter_cnt;
+-+	global_object[instance_id].group_id =3D 1;
+-+        break;
+-+    case STATCOL_TPTC_WR1:
+-+        cur_base_address =3D stat_coll1_base_address;
+-+        cur_event_mux_req =3D 6;
+-+        cur_event_mux_resp =3D 7;
+-+        gStatColState.stat1_filter_cnt =3D gStatColState.stat1_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat1_filter_cnt;
+-+	global_object[instance_id].group_id =3D 1;
+-+        break;
+-+    case STATCOL_TPTC_RD2:
+-+        cur_base_address =3D stat_coll1_base_address;
+-+        cur_event_mux_req =3D 8;
+-+        cur_event_mux_resp =3D 9;
+-+        gStatColState.stat1_filter_cnt =3D gStatColState.stat1_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat1_filter_cnt;
+-+	global_object[instance_id].group_id =3D 1;
+-+        break;
+-+    case STATCOL_TPTC_WR2:
+-+        cur_base_address =3D stat_coll1_base_address;
+-+        cur_event_mux_req =3D 10;
+-+        cur_event_mux_resp =3D 11;
+-+        gStatColState.stat1_filter_cnt =3D gStatColState.stat1_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat1_filter_cnt;
+-+	global_object[instance_id].group_id =3D 1;
+-+        break;
+-+    case STATCOL_VIP1_P1:
+-+        cur_base_address =3D stat_coll2_base_address;
+-+        cur_event_mux_req =3D 0;
+-+        cur_event_mux_resp =3D 1;
+-+        gStatColState.stat2_filter_cnt =3D gStatColState.stat2_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat2_filter_cnt;
+-+	global_object[instance_id].group_id =3D 2;
+-+        break;
+-+    case STATCOL_VIP1_P2:
+-+        cur_base_address =3D stat_coll2_base_address;
+-+        cur_event_mux_req =3D 2;
+-+        cur_event_mux_resp =3D 3;
+-+        gStatColState.stat2_filter_cnt =3D gStatColState.stat2_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat2_filter_cnt;
+-+	global_object[instance_id].group_id =3D 2;
+-+        break;
+-+    case STATCOL_VIP2_P1:
+-+        cur_base_address =3D stat_coll2_base_address;
+-+        cur_event_mux_req =3D 4;
+-+        cur_event_mux_resp =3D 5;
+-+        gStatColState.stat2_filter_cnt =3D gStatColState.stat2_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat2_filter_cnt;
+-+	global_object[instance_id].group_id =3D 2;
+-+        break;
+-+    case STATCOL_VIP2_P2:
+-+        cur_base_address =3D stat_coll2_base_address;
+-+        cur_event_mux_req =3D 6;
+-+        cur_event_mux_resp =3D 7;
+-+        gStatColState.stat2_filter_cnt =3D gStatColState.stat2_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat2_filter_cnt;
+-+	global_object[instance_id].group_id =3D 2;
+-+        break;
+-+    case STATCOL_VIP3_P1:
+-+        cur_base_address =3D stat_coll2_base_address;
+-+        cur_event_mux_req =3D 8;
+-+        cur_event_mux_resp =3D 9;
+-+        gStatColState.stat2_filter_cnt =3D gStatColState.stat2_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat2_filter_cnt;
+-+	global_object[instance_id].group_id =3D 2;
+-+        break;
+-+    case STATCOL_VIP3_P2:
+-+        cur_base_address =3D stat_coll2_base_address;
+-+        cur_event_mux_req =3D 10;
+-+        cur_event_mux_resp =3D 11;
+-+        gStatColState.stat2_filter_cnt =3D gStatColState.stat2_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat2_filter_cnt;
+-+	global_object[instance_id].group_id =3D 2;
+-+        break;
+-+    case STATCOL_VPE_P1:
+-+        cur_base_address =3D stat_coll2_base_address;
+-+        cur_event_mux_req =3D 12;
+-+        cur_event_mux_resp =3D 13;
+-+        gStatColState.stat2_filter_cnt =3D gStatColState.stat2_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat2_filter_cnt;
+-+	global_object[instance_id].group_id =3D 2;
+-+        break;
+-+    case STATCOL_VPE_P2:
+-+        cur_base_address =3D stat_coll2_base_address;
+-+        cur_event_mux_req =3D 14;
+-+        cur_event_mux_resp =3D 15;
+-+        gStatColState.stat2_filter_cnt =3D gStatColState.stat2_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat2_filter_cnt;
+-+	global_object[instance_id].group_id =3D 2;
+-+        break;
+-+    case STATCOL_EVE1_TC0:
+-+        cur_base_address =3D stat_coll3_base_address;
+-+        cur_event_mux_req =3D 0;
+-+        cur_event_mux_resp =3D 1;
+-+        gStatColState.stat3_filter_cnt =3D gStatColState.stat3_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat3_filter_cnt;
+-+	global_object[instance_id].group_id =3D 3;
+-+        break;
+-+    case STATCOL_EVE1_TC1:
+-+        cur_base_address =3D stat_coll3_base_address;
+-+        cur_event_mux_req =3D 2;
+-+        cur_event_mux_resp =3D 3;
+-+        gStatColState.stat3_filter_cnt =3D gStatColState.stat3_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat3_filter_cnt;
+-+	global_object[instance_id].group_id =3D 3;
+-+        break;
+-+    case STATCOL_EVE2_TC0:
+-+        cur_base_address =3D stat_coll3_base_address;
+-+        cur_event_mux_req =3D 4;
+-+        cur_event_mux_resp =3D 5;
+-+        gStatColState.stat3_filter_cnt =3D gStatColState.stat3_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat3_filter_cnt;
+-+	global_object[instance_id].group_id =3D 3;
+-+        break;
+-+    case STATCOL_EVE2_TC1:
+-+        cur_base_address =3D stat_coll3_base_address;
+-+        cur_event_mux_req =3D 6;
+-+        cur_event_mux_resp =3D 7;
+-+        gStatColState.stat3_filter_cnt =3D gStatColState.stat3_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat3_filter_cnt;
+-+	global_object[instance_id].group_id =3D 3;
+-+        break;
+-+    case STATCOL_EVE3_TC0:
+-+        cur_base_address =3D stat_coll3_base_address;
+-+        cur_event_mux_req =3D 8;
+-+        cur_event_mux_resp =3D 9;
+-+        gStatColState.stat3_filter_cnt =3D gStatColState.stat3_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat3_filter_cnt;
+-+	global_object[instance_id].group_id =3D 3;
+-+        break;
+-+    case STATCOL_EVE3_TC1:
+-+        cur_base_address =3D stat_coll3_base_address;
+-+        cur_event_mux_req =3D 10;
+-+        cur_event_mux_resp =3D 11;
+-+        gStatColState.stat3_filter_cnt =3D gStatColState.stat3_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat3_filter_cnt;
+-+	global_object[instance_id].group_id =3D 3;
+-+        break;
+-+    case STATCOL_EVE4_TC0:
+-+        cur_base_address =3D stat_coll3_base_address;
+-+        cur_event_mux_req =3D 12;
+-+        cur_event_mux_resp =3D 13;
+-+        gStatColState.stat3_filter_cnt =3D gStatColState.stat3_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat3_filter_cnt;
+-+	global_object[instance_id].group_id =3D 3;
+-+        break;
+-+    case STATCOL_EVE4_TC1:
+-+        cur_base_address =3D stat_coll3_base_address;
+-+        cur_event_mux_req =3D 14;
+-+        cur_event_mux_resp =3D 15;
+-+        gStatColState.stat3_filter_cnt =3D gStatColState.stat3_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat3_filter_cnt;
+-+	global_object[instance_id].group_id =3D 3;
+-+        break;
+-+    case STATCOL_DSP1_MDMA:
+-+        cur_base_address =3D stat_coll4_base_address;
+-+        cur_event_mux_req =3D 0;
+-+        cur_event_mux_resp =3D 1;
+-+        gStatColState.stat4_filter_cnt =3D gStatColState.stat4_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat4_filter_cnt;
+-+	global_object[instance_id].group_id =3D 4;
+-+        break;
+-+    case STATCOL_DSP1_EDMA:
+-+        cur_base_address =3D stat_coll4_base_address;
+-+        cur_event_mux_req =3D 2;
+-+        cur_event_mux_resp =3D 3;
+-+        gStatColState.stat4_filter_cnt =3D gStatColState.stat4_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat4_filter_cnt;
+-+	global_object[instance_id].group_id =3D 4;
+-+        break;
+-+    case STATCOL_DSP2_MDMA:
+-+        cur_base_address =3D stat_coll4_base_address;
+-+        cur_event_mux_req =3D 4;
+-+        cur_event_mux_resp =3D 5;
+-+        gStatColState.stat4_filter_cnt =3D gStatColState.stat4_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat4_filter_cnt;
+-+	global_object[instance_id].group_id =3D 4;
+-+        break;
+-+    case STATCOL_DSP2_EDMA:
+-+        cur_base_address =3D stat_coll4_base_address;
+-+        cur_event_mux_req =3D 6;
+-+        cur_event_mux_resp =3D 7;
+-+        gStatColState.stat4_filter_cnt =3D gStatColState.stat4_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat4_filter_cnt;
+-+	global_object[instance_id].group_id =3D 4;
+-+        break;
+-+    case STATCOL_IVA:
+-+        cur_base_address =3D stat_coll4_base_address;
+-+        cur_event_mux_req =3D 8;
+-+        cur_event_mux_resp =3D 9;
+-+        gStatColState.stat4_filter_cnt =3D gStatColState.stat4_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat4_filter_cnt;
+-+	global_object[instance_id].group_id =3D 4;
+-+        break;
+-+    case STATCOL_GPU_P1:
+-+        cur_base_address =3D stat_coll4_base_address;
+-+        cur_event_mux_req =3D 10;
+-+        cur_event_mux_resp =3D 11;
+-+        gStatColState.stat4_filter_cnt =3D gStatColState.stat4_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat4_filter_cnt;
+-+	global_object[instance_id].group_id =3D 4;
+-+        break;
+-+    case STATCOL_GPU_P2:
+-+        cur_base_address =3D stat_coll4_base_address;
+-+        cur_event_mux_req =3D 12;
+-+        cur_event_mux_resp =3D 13;
+-+        gStatColState.stat4_filter_cnt =3D gStatColState.stat4_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat4_filter_cnt;
+-+	global_object[instance_id].group_id =3D 4;
+-+        break;
+-+    case STATCOL_BB2D_P1:
+-+        cur_base_address =3D stat_coll4_base_address;
+-+        cur_event_mux_req =3D 14;
+-+        cur_event_mux_resp =3D 15;
+-+        gStatColState.stat4_filter_cnt =3D gStatColState.stat4_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat4_filter_cnt;
+-+	global_object[instance_id].group_id =3D 4;
+-+        break;
+-+    case STATCOL_DSS:
+-+        cur_base_address =3D stat_coll5_base_address;
+-+        cur_event_mux_req =3D 0;
+-+        cur_event_mux_resp =3D 1;
+-+        gStatColState.stat5_filter_cnt =3D gStatColState.stat5_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat5_filter_cnt;
+-+	global_object[instance_id].group_id =3D 5;
+-+        break;
+-+    case STATCOL_CSI2_2:
+-+        cur_base_address =3D stat_coll5_base_address;
+-+        cur_event_mux_req =3D 2;
+-+        cur_event_mux_resp =3D 3;
+-+        gStatColState.stat5_filter_cnt =3D gStatColState.stat5_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat5_filter_cnt;
+-+	global_object[instance_id].group_id =3D 5;
+-+        break;
+-+    case STATCOL_MMU2:
+-+        cur_base_address =3D stat_coll5_base_address;
+-+        cur_event_mux_req =3D 4;
+-+        cur_event_mux_resp =3D 5;
+-+        gStatColState.stat5_filter_cnt =3D gStatColState.stat5_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat5_filter_cnt;
+-+	global_object[instance_id].group_id =3D 5;
+-+        break;
+-+    case STATCOL_IPU1:
+-+        cur_base_address =3D stat_coll5_base_address;
+-+        cur_event_mux_req =3D 6;
+-+        cur_event_mux_resp =3D 7;
+-+        gStatColState.stat5_filter_cnt =3D gStatColState.stat5_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat5_filter_cnt;
+-+	global_object[instance_id].group_id =3D 5;
+-+        break;
+-+    case STATCOL_IPU2:
+-+        cur_base_address =3D stat_coll5_base_address;
+-+        cur_event_mux_req =3D 8;
+-+        cur_event_mux_resp =3D 9;
+-+        gStatColState.stat5_filter_cnt =3D gStatColState.stat5_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat5_filter_cnt;
+-+	global_object[instance_id].group_id =3D 5;
+-+        break;
+-+    case STATCOL_DMA_SYSTEM_RD:
+-+        cur_base_address =3D stat_coll5_base_address;
+-+        cur_event_mux_req =3D 10;
+-+        cur_event_mux_resp =3D 11;
+-+        gStatColState.stat5_filter_cnt =3D gStatColState.stat5_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat5_filter_cnt;
+-+	global_object[instance_id].group_id =3D 5;
+-+        break;
+-+    case STATCOL_DMA_SYSTEM_WR:
+-+        cur_base_address =3D stat_coll5_base_address;
+-+        cur_event_mux_req =3D 12;
+-+        cur_event_mux_resp =3D 13;
+-+        gStatColState.stat5_filter_cnt =3D gStatColState.stat5_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat5_filter_cnt;
+-+	global_object[instance_id].group_id =3D 5;
+-+        break;
+-+    case STATCOL_CSI2_1:
+-+        cur_base_address =3D stat_coll5_base_address;
+-+        cur_event_mux_req =3D 14;
+-+        cur_event_mux_resp =3D 15;
+-+        gStatColState.stat5_filter_cnt =3D gStatColState.stat5_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat5_filter_cnt;
+-+	global_object[instance_id].group_id =3D 5;
+-+        break;
+-+    case STATCOL_USB3_SS:
+-+        cur_base_address =3D stat_coll6_base_address;
+-+        cur_event_mux_req =3D 0;
+-+        cur_event_mux_resp =3D 1;
+-+        gStatColState.stat6_filter_cnt =3D gStatColState.stat6_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat6_filter_cnt;
+-+	global_object[instance_id].group_id =3D 6;
+-+        break;
+-+    case STATCOL_USB2_SS:
+-+        cur_base_address =3D stat_coll6_base_address;
+-+        cur_event_mux_req =3D 2;
+-+        cur_event_mux_resp =3D 3;
+-+        gStatColState.stat6_filter_cnt =3D gStatColState.stat6_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat6_filter_cnt;
+-+	global_object[instance_id].group_id =3D 6;
+-+        break;
+-+    case STATCOL_USB2_ULPI_SS1:
+-+        cur_base_address =3D stat_coll6_base_address;
+-+        cur_event_mux_req =3D 4;
+-+        cur_event_mux_resp =3D 5;
+-+        gStatColState.stat6_filter_cnt =3D gStatColState.stat6_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat6_filter_cnt;
+-+	global_object[instance_id].group_id =3D 6;
+-+        break;
+-+    case STATCOL_USB2_ULPI_SS2:
+-+        cur_base_address =3D stat_coll6_base_address;
+-+        cur_event_mux_req =3D 6;
+-+        cur_event_mux_resp =3D 7;
+-+        gStatColState.stat6_filter_cnt =3D gStatColState.stat6_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat6_filter_cnt;
+-+	global_object[instance_id].group_id =3D 6;
+-+        break;
+-+    case STATCOL_PCIE_SS1:
+-+        cur_base_address =3D stat_coll6_base_address;
+-+        cur_event_mux_req =3D 8;
+-+        cur_event_mux_resp =3D 9;
+-+        gStatColState.stat6_filter_cnt =3D gStatColState.stat6_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat6_filter_cnt;
+-+	global_object[instance_id].group_id =3D 6;
+-+        break;
+-+    case STATCOL_PCIE_SS2:
+-+        cur_base_address =3D stat_coll6_base_address;
+-+        cur_event_mux_req =3D 10;
+-+        cur_event_mux_resp =3D 11;
+-+        gStatColState.stat6_filter_cnt =3D gStatColState.stat6_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat6_filter_cnt;
+-+	global_object[instance_id].group_id =3D 6;
+-+        break;
+-+    case STATCOL_DSP1_CFG:
+-+        cur_base_address =3D stat_coll6_base_address;
+-+        cur_event_mux_req =3D 12;
+-+        cur_event_mux_resp =3D 13;
+-+        gStatColState.stat6_filter_cnt =3D gStatColState.stat6_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat6_filter_cnt;
+-+	global_object[instance_id].group_id =3D 6;
+-+        break;
+-+    case STATCOL_DSP2_CFG:
+-+        cur_base_address =3D stat_coll6_base_address;
+-+        cur_event_mux_req =3D 14;
+-+        cur_event_mux_resp =3D 15;
+-+        gStatColState.stat6_filter_cnt =3D gStatColState.stat6_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat6_filter_cnt;
+-+	global_object[instance_id].group_id =3D 6;
+-+        break;
+-+    case STATCOL_GMAC_SW:
+-+        cur_base_address =3D stat_coll7_base_address;
+-+        cur_event_mux_req =3D 0;
+-+        cur_event_mux_resp =3D 1;
+-+        gStatColState.stat7_filter_cnt =3D gStatColState.stat7_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat7_filter_cnt;
+-+	global_object[instance_id].group_id =3D 7;
+-+        break;
+-+    case STATCOL_PRUSS1_P1:
+-+        cur_base_address =3D stat_coll7_base_address;
+-+        cur_event_mux_req =3D 2;
+-+        cur_event_mux_resp =3D 3;
+-+        gStatColState.stat7_filter_cnt =3D gStatColState.stat7_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat7_filter_cnt;
+-+	global_object[instance_id].group_id =3D 7;
+-+        break;
+-+    case STATCOL_PRUSS1_P2:
+-+        cur_base_address =3D stat_coll7_base_address;
+-+        cur_event_mux_req =3D 4;
+-+        cur_event_mux_resp =3D 5;
+-+        gStatColState.stat7_filter_cnt =3D gStatColState.stat7_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat7_filter_cnt;
+-+	global_object[instance_id].group_id =3D 7;
+-+        break;
+-+    case STATCOL_PRUSS2_P1:
+-+        cur_base_address =3D stat_coll7_base_address;
+-+        cur_event_mux_req =3D 6;
+-+        cur_event_mux_resp =3D 7;
+-+        gStatColState.stat7_filter_cnt =3D gStatColState.stat7_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat7_filter_cnt;
+-+	global_object[instance_id].group_id =3D 7;
+-+        break;
+-+    case STATCOL_PRUSS2_P2:
+-+        cur_base_address =3D stat_coll7_base_address;
+-+        cur_event_mux_req =3D 8;
+-+        cur_event_mux_resp =3D 9;
+-+        gStatColState.stat7_filter_cnt =3D gStatColState.stat7_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat7_filter_cnt;
+-+	global_object[instance_id].group_id =3D 7;
+-+        break;
+-+    case STATCOL_DMA_CRYPTO_RD:
+-+        cur_base_address =3D stat_coll7_base_address;
+-+        cur_event_mux_req =3D 10;
+-+        cur_event_mux_resp =3D 11;
+-+        gStatColState.stat7_filter_cnt =3D gStatColState.stat7_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat7_filter_cnt;
+-+	global_object[instance_id].group_id =3D 7;
+-+        break;
+-+    case STATCOL_DMA_CRYPTO_WR:
+-+        cur_base_address =3D stat_coll7_base_address;
+-+        cur_event_mux_req =3D 12;
+-+        cur_event_mux_resp =3D 13;
+-+        gStatColState.stat7_filter_cnt =3D gStatColState.stat7_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat7_filter_cnt;
+-+	global_object[instance_id].group_id =3D 7;
+-+        break;
+-+    case STATCOL_MPU2:
+-+        cur_base_address =3D stat_coll7_base_address;
+-+        cur_event_mux_req =3D 14;
+-+        cur_event_mux_resp =3D 15;
+-+        gStatColState.stat7_filter_cnt =3D gStatColState.stat7_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat7_filter_cnt;
+-+	global_object[instance_id].group_id =3D 7;
+-+        break;
+-+    case STATCOL_MMC1:
+-+        cur_base_address =3D stat_coll8_base_address;
+-+        cur_event_mux_req =3D 0;
+-+        cur_event_mux_resp =3D 1;
+-+        gStatColState.stat8_filter_cnt =3D gStatColState.stat8_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat8_filter_cnt;
+-+	global_object[instance_id].group_id =3D 8;
+-+        break;
+-+    case STATCOL_MMC2:
+-+        cur_base_address =3D stat_coll8_base_address;
+-+        cur_event_mux_req =3D 2;
+-+        cur_event_mux_resp =3D 3;
+-+        gStatColState.stat8_filter_cnt =3D gStatColState.stat8_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat8_filter_cnt;
+-+	global_object[instance_id].group_id =3D 8;
+-+        break;
+-+    case STATCOL_SATA:
+-+        cur_base_address =3D stat_coll8_base_address;
+-+        cur_event_mux_req =3D 4;
+-+        cur_event_mux_resp =3D 5;
+-+        gStatColState.stat8_filter_cnt =3D gStatColState.stat8_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat8_filter_cnt;
+-+	global_object[instance_id].group_id =3D 8;
+-+        break;
+-+    case STATCOL_MLBSS:
+-+        cur_base_address =3D stat_coll8_base_address;
+-+        cur_event_mux_req =3D 6;
+-+        cur_event_mux_resp =3D 7;
+-+        gStatColState.stat8_filter_cnt =3D gStatColState.stat8_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat8_filter_cnt;
+-+	global_object[instance_id].group_id =3D 8;
+-+        break;
+-+    case STATCOL_BB2D_P2:
+-+        cur_base_address =3D stat_coll8_base_address;
+-+        cur_event_mux_req =3D 8;
+-+        cur_event_mux_resp =3D 9;
+-+        gStatColState.stat8_filter_cnt =3D gStatColState.stat8_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat8_filter_cnt;
+-+	global_object[instance_id].group_id =3D 8;
+-+        break;
+-+    case STATCOL_IEEE1500:
+-+        cur_base_address =3D stat_coll8_base_address;
+-+        cur_event_mux_req =3D 10;
+-+        cur_event_mux_resp =3D 11;
+-+        gStatColState.stat8_filter_cnt =3D gStatColState.stat8_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat8_filter_cnt;
+-+	global_object[instance_id].group_id =3D 8;
+-+        break;
+-+    case STATCOL_DBG:
+-+        cur_base_address =3D stat_coll8_base_address;
+-+        cur_event_mux_req =3D 12;
+-+        cur_event_mux_resp =3D 13;
+-+        gStatColState.stat8_filter_cnt =3D gStatColState.stat8_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat8_filter_cnt;
+-+	global_object[instance_id].group_id =3D 8;
+-+        break;
+-+    case STATCOL_VCP1:
+-+        cur_base_address =3D stat_coll8_base_address;
+-+        cur_event_mux_req =3D 14;
+-+        cur_event_mux_resp =3D 15;
+-+        gStatColState.stat8_filter_cnt =3D gStatColState.stat8_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat8_filter_cnt;
+-+	global_object[instance_id].group_id =3D 8;
+-+        break;
+-+    case STATCOL_OCMC_RAM1:
+-+        cur_base_address =3D stat_coll9_base_address;
+-+        cur_event_mux_req =3D 0;
+-+        cur_event_mux_resp =3D 1;
+-+        gStatColState.stat9_filter_cnt =3D gStatColState.stat9_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat9_filter_cnt;
+-+	global_object[instance_id].group_id =3D 9;
+-+        break;
+-+    case STATCOL_OCMC_RAM2:
+-+        cur_base_address =3D stat_coll9_base_address;
+-+        cur_event_mux_req =3D 2;
+-+        cur_event_mux_resp =3D 3;
+-+        gStatColState.stat9_filter_cnt =3D gStatColState.stat9_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat9_filter_cnt;
+-+	global_object[instance_id].group_id =3D 9;
+-+        break;
+-+    case STATCOL_OCMC_RAM3:
+-+        cur_base_address =3D stat_coll9_base_address;
+-+        cur_event_mux_req =3D 4;
+-+        cur_event_mux_resp =3D 5;
+-+        gStatColState.stat9_filter_cnt =3D gStatColState.stat9_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat9_filter_cnt;
+-+	global_object[instance_id].group_id =3D 9;
+-+        break;
+-+    case STATCOL_GPMC:
+-+        cur_base_address =3D stat_coll9_base_address;
+-+        cur_event_mux_req =3D 6;
+-+        cur_event_mux_resp =3D 7;
+-+        gStatColState.stat9_filter_cnt =3D gStatColState.stat9_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat9_filter_cnt;
+-+	global_object[instance_id].group_id =3D 9;
+-+        break;
+-+    case STATCOL_MCASP1:
+-+        cur_base_address =3D stat_coll9_base_address;
+-+        cur_event_mux_req =3D 8;
+-+        cur_event_mux_resp =3D 9;
+-+        gStatColState.stat9_filter_cnt =3D gStatColState.stat9_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat9_filter_cnt;
+-+	global_object[instance_id].group_id =3D 9;
+-+        break;
+-+    case STATCOL_MCASP2:
+-+        cur_base_address =3D stat_coll9_base_address;
+-+        cur_event_mux_req =3D 10;
+-+        cur_event_mux_resp =3D 11;
+-+        gStatColState.stat9_filter_cnt =3D gStatColState.stat9_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat9_filter_cnt;
+-+	global_object[instance_id].group_id =3D 9;
+-+        break;
+-+    case STATCOL_MCASP3:
+-+        cur_base_address =3D stat_coll9_base_address;
+-+        cur_event_mux_req =3D 12;
+-+        cur_event_mux_resp =3D 13;
+-+        gStatColState.stat9_filter_cnt =3D gStatColState.stat9_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat9_filter_cnt;
+-+	global_object[instance_id].group_id =3D 9;
+-+        break;
+-+    case STATCOL_VCP2:
+-+        cur_base_address =3D stat_coll9_base_address;
+-+        cur_event_mux_req =3D 14;
+-+        cur_event_mux_resp =3D 15;
+-+        gStatColState.stat9_filter_cnt =3D gStatColState.stat9_filter_c=
+nt + 1;
+-+        cur_stat_filter_cnt =3D gStatColState.stat9_filter_cnt;
+-+	global_object[instance_id].group_id =3D 9;
+-+        break;
+-+    default:
+-+       printf("ERROR: Unknown initiator %d\n", instance_id);
+-+       exit(0);
+-+    };
+-+
+-+    {
+-+        if ( cur_stat_filter_cnt > 4 )
+-+        {
+-+            printf("WARNING: We have exhausted filters/counters.....\n"=
+);
+-+            return 0;
+-+        }
+-+        // Global Enable Stat Collector
+-+        wr_stat_reg(cur_base_address+0x8,0x1);
+-+
+-+        // Soft Enable Stat Collector
+-+        wr_stat_reg(cur_base_address+0xC,0x1);
+-+
+-+        wr_stat_reg(cur_base_address+0x18,0x5);
+-+        // Operation of Stat Collector / RespEvt =3D> Packet
+-+        wr_stat_reg(cur_base_address+0x1C,0x5);
+-+
+-+
+-+        // Event Sel
+-+        wr_stat_reg(cur_base_address+0x20+4*(cur_stat_filter_cnt-1),cur=
+_event_mux_req);
+-+
+-+        // Op is EventInfo
+-+        wr_stat_reg(cur_base_address+0x1FC+(0x158*(cur_stat_filter_cnt-=
+1)),2);
+-+
+-+        // Event Info Sel Op -> packet length
+-+        wr_stat_reg(cur_base_address+0x1F8+(0x158*(cur_stat_filter_cnt-=
+1)),0);
+-+
+-+        // Filter Global Enable
+-+        wr_stat_reg(cur_base_address+0xAC+(0x158*(cur_stat_filter_cnt-1=
+)),0x1);
+-+
+-+        // Filter Enable
+-+        wr_stat_reg(cur_base_address+0xBC+(0x158*(cur_stat_filter_cnt-1=
+)),0x1);
+-+
+-+        // Manual dump
+-+        wr_stat_reg(cur_base_address+0x54,0x1);
+-+        // use send register to reset counters
+-+
+-+    }
+-+
+-+    global_object[instance_id].mux_req =3D cur_event_mux_req;
+-+    global_object[instance_id].base_address =3D cur_base_address;
+-+    global_object[instance_id].counter_id =3D cur_stat_filter_cnt;
+-+    global_object[instance_id].b_enabled =3D 1;
+-+
+-+    return cur_stat_filter_cnt;
+-+}
+-+
+-+
+-+
+-+void statCollectorReadGroup(UInt32 group_id)
+-+{
+-+    int i=3D0;
+-+    UInt32 cur_base_address =3D 0x45001000 + ((group_id - 1) * 0x1000);
+-+
+-+    wr_stat_reg(cur_base_address+0xC,0x0);
+-+
+-+    for(i=3D0; i < STATCOL_MAX; i++)
+-+    {
+-+	if(global_object[i].group_id =3D=3D (group_id - 1) &&=20
+-+	   global_object[i].b_enabled =3D=3D 1)
+-+	{
+-+	    UInt32 cur_stat_filter_cnt =3D global_object[i].counter_id;
+-+
+-+    	    global_object[i].readings[statCountIdx] =3D rd_stat_reg(cur_ba=
+se_address+0x8C+((cur_stat_filter_cnt-1)*4));
+-+        }
+-+    }
+-+
+-+    wr_stat_reg(cur_base_address+0xC,0x1);
+-+}
+-+
+-+
+-+volatile sig_atomic_t sigtermed =3D 0;
+-+
+-+void my_signal_handler(int signum)
+-+{
+-+	if (signum =3D=3D SIGTERM || signum =3D=3D SIGINT) {
+-+		sigtermed =3D 1;
+-+	}
+-+}
+-+
+-+struct sort
+-+{
+-+	int pos;
+-+	double value;
+-+};
+-+
+-+
+-+void *ctx;
+-+struct time_graph_create_params p;
+-+char xpos_string[100], ypos_string[100];
+-+
+-+void mpu_handler(int command)
+-+{
+-+#if 1
+-+        static int fd;
+-+        char buf[1000];
+-+        char * tabledata=3D "/tmp/statcollfifo";
+-+        int i;
+-+        int bytes;
+-+        static int offset =3D 13;
+-+
+-+        switch(command)
+-+        {
+-+                case OPEN:
+-+                        fd =3D open(tabledata, O_RDONLY|O_NONBLOCK);
+-+                        break;
+-+
+-+                case READ:
+-+
+-+                        /* open, read, and display the message from the=
+ FIFO */
+-+                        bytes=3Dread(fd, buf, 1000);
+-+                        if(bytes > 0)
+-+                        {
+-+                                char str[100];
+-+                                char value[100];
+-+                                sscanf(buf, "%s %s", str, value);
+-+                                if(strcmp(str, "MOVE:") =3D=3D 0)
+-+                                {
+-+                                        printf("Received MOVE command :=
+ %s\n", buf);
+-+                                        sprintf(p.title, "CPU Usage[@po=
+sition-req=3D%sx%s]", value, ypos_string);
+-+                                        move_graph(ctx, &p);
+-+                                }
+-+                                else
+-+                                {
+-+                                        printf("ERROR: Received unexpec=
+ted data from FIFO - \" %s \" \n", buf);
+-+                                }
+-+                                memset(buf, 0x0, sizeof(buf));
+-+                        }
+-+
+-+                        break;
+-+
+-+                case CLOSE:
+-+                        close(fd);
+-+                        break;
+-+        }
+-+#endif
+-+        return;
+-+}
+-+
+-+
+-+UInt32 statcoll_start(UInt32 TOTAL_TIME, UInt32 INTERVAL_US, char list[=
+][50], UInt32 xpos, UInt32 ypos)
+-+{
+-+    int i, fd, index;
+-+    UInt32 counterIdDss, counterIdIva, counterIdBB2dP1, counterIdBB2dP2=
+, counterIdUsb4, counterIdSata, counterIdEmif1, counterIdEmif2;
+-+
+-+    if (SIG_ERR =3D=3D signal(SIGPIPE,SIG_IGN))
+-+	    exit(1);
+-+
+-+    if (SIG_ERR =3D=3D signal(SIGINT,my_signal_handler))
+-+	    exit(1);
+-+
+-+    if (SIG_ERR =3D=3D signal(SIGTERM,my_signal_handler))
+-+	    exit(1);
+-+
+-+ =20
+-+    struct timeval tv1, tv2;
+-+    gettimeofday(&tv1, NULL);
+-+    printf("------------------------------------------------\n");
+-+    printf("Compile time =3D %s %s\n",__DATE__,  __TIME__);
+-+    printf("------------------------------------------------\n\n");
+-+    //printd("Start time =3D %d\n", time(NULL));
+-+    //printd("Time seconds =3D %d, usecs =3D %d\n", tv.tv_sec, tv.tv_us=
+ec);
+-+
+-+    statcoll_params params;
+-+    memset(&params, sizeof(params), 0);
+-+    params.INTERVAL_US =3D INTERVAL_US;
+-+    params.TOTAL_TIME =3D TOTAL_TIME;
+-+
+-+    i=3D0;
+-+    index=3D0;
+-+
+-+    while(list[i][0] !=3D 0)
+-+    {
+-+	for(index=3D0; index< STATCOL_MAX; index++) {
+-+		if(strcmp(list[i], initiators[index].name) =3D=3D 0)
+-+		{
+-+			strcpy(params.user_config_list[params.no_of_initiators].name, list[i=
+]);
+-+			params.user_config_list[params.no_of_initiators++].id =3D initiators=
+[index].id;
+-+			break;
+-+		}
+-+	}
+-+
+-+	if(index =3D=3D STATCOL_MAX) {
+-+		printf("ERROR: Unknown initiator.%d.. .%s. \n", i, list[i]);
+-+		//exit(0);
+-+	}
+-+        i++;
+-+    }
+-+
+-+	struct bar_graph_create_params bg_p;
+-+	struct _y_config *y_cfg;
+-+	struct _text_config *t_cfg;
+-+	double *y;
+-+	double *bg_y;
+-+        char *text_list[STATCOL_MAX];
+-+
+-+        struct _bar_graph_y_config *bg_y_cfg;
+-+        struct _text_config *bg_t_cfg;
+-+	char *bg_text_list[STATCOL_MAX];
+-+=09
+-+	sprintf(xpos_string, "%d", xpos);
+-+	sprintf(ypos_string, "%d", ypos);
+-+	p.title=3D(char *)malloc(100);
+-+	sprintf(p.title, "CPU Usage[@position-req=3D%sx%s]", xpos_string, ypos=
+_string);
+-+	//p.height =3D MAX_HEIGHT - HEIGHT_EMIF_AREA;
+-+	p.height =3D MAX_HEIGHT;// - HEIGHT_EMIF_AREA;
+-+	p.width =3D MAX_WIDTH;
+-+	p.draw_area.bottom_left.x =3D TIME_GRAPH_AREA_BL_X;
+-+	p.draw_area.bottom_left.y =3D TIME_GRAPH_AREA_BL_Y;
+-+	p.draw_area.top_right.x =3D TIME_GRAPH_AREA_TR_X;
+-+	p.draw_area.top_right.y =3D TIME_GRAPH_AREA_TR_Y;
+-+	p.time_span =3D 120000; // 120 seconds
+-+	p.num_of_y_items =3D params.no_of_initiators+1;
+-+	p.num_of_text_items =3D 0;//params.no_of_initiators;
+-+
+-+
+-+	y_cfg =3D malloc((params.no_of_initiators+1) * sizeof(struct _y_config=
+));
+-+	t_cfg =3D malloc(params.no_of_initiators * sizeof(struct _text_config)=
+);
+-+	y =3D malloc((params.no_of_initiators+1) * sizeof(double));
+-+	p.y_config_array =3D y_cfg;
+-+	p.text_config_array =3D t_cfg;
+-+
+-+	bg_y_cfg =3D malloc(TOTAL_Y_PARAMETERS * sizeof(struct _bar_graph_y_co=
+nfig));
+-+	bg_t_cfg =3D malloc(TOTAL_Y_PARAMETERS * sizeof(struct _text_config));
+-+	bg_y =3D malloc(TOTAL_Y_PARAMETERS * sizeof(double));
+-+
+-+       for(i=3D0; i<TOTAL_Y_PARAMETERS; i++)
+-+       {
+-+               bg_text_list[i] =3D malloc(100);
+-+               strcpy(bg_text_list[i],"test");
+-+       }
+-+
+-+       create_overall_box(bg_y_cfg, bg_t_cfg, bg_text_list);
+-+
+-+
+-+	i=3D0;
+-+	while(i < params.no_of_initiators)
+-+	{
+-+		text_list[i] =3D malloc(100 * sizeof(char));
+-+		memset(text_list[i], 0x0, 100);
+-+
+-+		((struct _y_config *)y_cfg+i)->line_color.r =3D pallette[i%MAX_COLORS=
+].r;
+-+		((struct _y_config *)y_cfg+i)->line_color.g =3D pallette[i%MAX_COLORS=
+].g;
+-+		((struct _y_config *)y_cfg+i)->line_color.b =3D pallette[i%MAX_COLORS=
+].b;
+-+		((struct _y_config *)y_cfg+i)->line_color.a =3D 0.0;//pallette[i%MAX_=
+COLORS].a;
+-+	=09
+-+		((struct _y_config *)y_cfg+i)->fill_color.r =3D 0.0;
+-+		((struct _y_config *)y_cfg+i)->fill_color.g =3D 1.0;
+-+		((struct _y_config *)y_cfg+i)->fill_color.b =3D 0.0;
+-+		((struct _y_config *)y_cfg+i)->fill_color.a =3D 0.5;
+-+	=09
+-+		i++;
+-+	}
+-+
+-+	((struct _y_config *)y_cfg+i)->line_color.r =3D 0.0;
+-+	((struct _y_config *)y_cfg+i)->line_color.g =3D 0.0;
+-+	((struct _y_config *)y_cfg+i)->line_color.b =3D 0.0;
+-+	((struct _y_config *)y_cfg+i)->line_color.a =3D 0.5;
+-+	((struct _y_config *)y_cfg+i)->fill_color.r =3D 0.1;
+-+	((struct _y_config *)y_cfg+i)->fill_color.g =3D 0.9;
+-+	((struct _y_config *)y_cfg+i)->fill_color.b =3D 0.5;
+-+	((struct _y_config *)y_cfg+i)->fill_color.a =3D 1.0;
+-+
+-+        bg_p.title =3D "CPU Usage";
+-+=09
+-+        bg_p.num_of_y_items =3D TOTAL_Y_PARAMETERS;
+-+        bg_p.y_config_array =3D bg_y_cfg;
+-+        bg_p.num_of_text_items =3D TOTAL_Y_PARAMETERS;
+-+        bg_p.text_config_array =3D bg_t_cfg;
+-+
+-+
+-+	int argc;
+-+	char *argv[10];
+-+	ctx =3D time_graph_create(argc, argv, &p);
+-+	if (!ctx) {
+-+		printf("Error creating context\n");
+-+		exit(0);
+-+	}
+-+
+-+	printf("\n Context after time_graph_create =3D 0x%x\n", ctx);
+-+	ctx =3D bar_graph_create(argc, argv, &bg_p);
+-+	if (!ctx) {
+-+		printf("Error creating context\n");
+-+		exit(0);
+-+	}
+-+
+-+	printf("\n Context after bar_graph_create=3D 0x%x\n", ctx);
+-+
+-+    printf("Total configured initiators =3D %d\n", params.no_of_initiat=
+ors);
+-+=09
+-+
+-+    fd =3D open("/dev/mem", O_RDWR);
+-+    if (fd =3D=3D -1){
+-+       printf("error fd=3Dopen() \n");    =20
+-+       return -1;
+-+    }
+-+    statcoll_base_mem =3D mmap(NULL, STATCOLL_SIZE, PROT_READ|PROT_WRIT=
+E, MAP_SHARED, fd, STATCOLL_BASE);
+-+   =20
+-+   if (statcoll_base_mem =3D=3D MAP_FAILED){
+-+        printf("ERROR: mmap failed \n");
+-+        return;
+-+    }
+-+    close(fd);
+-+
+-+    fd =3D open("/dev/mem", O_RDWR);
+-+    if (fd =3D=3D -1){
+-+       printf("error fd=3Dopen() \n");    =20
+-+       return -1;
+-+    }
+-+    l3_3_clkctrl =3D mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_SHARED,=
+ fd, CM_L3INSTR_REGISTER_BASE);
+-+    if (l3_3_clkctrl =3D=3D MAP_FAILED){
+-+        printf("ERROR: mmap failed for CM_L3INSTR_REGISTER_BASE\n");
+-+        return;
+-+    }
+-+    close(fd);
+-+
+-+    printf("SUCCESS: Mapped 0x%x to user space address 0x%x\n", STATCOL=
+L_BASE, statcoll_base_mem);
+-+    printf("INTERVAL =3D %d usecs\n", INTERVAL_US);
+-+    printf("TOTAL TIME =3D %d seconds\n", TOTAL_TIME);
+-+    TRACE_SZ =3D (TOTAL_TIME * 1000000)/INTERVAL_US;
+-+    printf("TRACE SIZE =3D %d samples\n", TRACE_SZ);
+-+
+-+    printf("**************************************\n");
+-+    printf("Going to initialize the L3 clocks \n");=20
+-+    l3_3_clkctrl[CM_L3INSTR_L3INSTR_CLKSTCTRL_OFFSET >> 2] =3D 0x2;
+-+    l3_3_clkctrl[CM_L3INSTR_L3_MAIN_2_CLKCTRL_OFFSET >> 2] =3D 0x1;
+-+    printf("**************************************\n");
+-+
+-+    while( (l3_3_clkctrl[CM_L3INSTR_L3_MAIN_2_CLKCTRL_OFFSET >> 2] & 0x=
+30000) !=3D 0x0)=20
+-+    {
+-+	printf("Waiting on module to be functional\n");
+-+    }
+-+
+-+    statCollectorInit();
+-+
+-+    printf("SUCCESS: Initialized STAT COLLECTOR\n");
+-+    /* Initialize all enabled initiators */
+-+    for(index =3D0; index < params.no_of_initiators; index++) {
+-+        printf("\t\t Initialized %s\n", params.user_config_list[index].=
+name);
+-+        statCollectorControlInitialize(params.user_config_list[index].i=
+d);
+-+    }
+-+
+-+	const char *bg_text =3D "CPU Utilization";
+-+
+-+    int second_counter=3D0;
+-+    memset(y, 0x0, sizeof(double)* (params.no_of_initiators+1));
+-+
+-+
+-+
+-+
+-+    mpu_handler(OPEN);
+-+
+-+
+-+    while(statCountIdx !=3D (TRACE_SZ - 1))
+-+    {
+-+        usleep(INTERVAL_US);
+-+        int group;
+-+	for(group =3D 1; group<11; group++)
+-+		statCollectorReadGroup(group);
+-+
+-+        mpu_handler(READ);
+-+
+-+	if(statCountIdx !=3D 0 )=20
+-+	for(i=3D0; i<params.no_of_initiators; i++) {
+-+		y[i] +=3D (double)(global_object[params.user_config_list[i].id].readi=
+ngs[statCountIdx])/ (8000000000);
+-+	}
+-+	second_counter++;
+-+
+-+	if(second_counter % 30 =3D=3D 0)
+-+	{
+-+	=09
+-+		for(i=3D0; i<TOTAL_Y_PARAMETERS; i++) {
+-+			bg_y[i] =3D 1.0;
+-+		}
+-+
+-+		//HACK
+-+		bg_y[9]=3Dy[0]*2;
+-+		bg_y[11]=3Dy[1]*2;
+-+		sprintf(bg_text_list[8], "%02.1f%s", y[0]*100, "%");
+-+		sprintf(bg_text_list[10], "%02.1f%s", y[1]*100, "%");
+-+
+-+		struct sort sort_array[STATCOL_MAX];
+-+		memset(sort_array, 0x0, sizeof(struct sort) * STATCOL_MAX);
+-+		/* Sort here */
+-+		for(i=3D2; i<params.no_of_initiators; i++) {
+-+			sort_array[i-2].value =3D y[i];
+-+			sort_array[i-2].pos =3D i;
+-+		}
+-+
+-+		int j;
+-+		double tempdouble;
+-+		int tempint;
+-+		for(i=3D0; i<params.no_of_initiators-2; i++) {
+-+			for(j=3Di+1; j<params.no_of_initiators-2; j++) {=20
+-+				if(sort_array[i].value < sort_array[j].value) {
+-+					tempdouble =3D sort_array[j].value;
+-+					tempint =3D sort_array[j].pos;
+-+=20
+-+					sort_array[j].value  =3D sort_array[i].value;
+-+					sort_array[j].pos    =3D sort_array[i].pos;
+-+
+-+					sort_array[i].value =3D tempdouble;
+-+					sort_array[i].pos   =3D tempint;
+-+				}
+-+			}
+-+		}
+-+
+-+		for(i=3D0; i<6; i++)
+-+		{
+-+			//HACK
+-+			bg_y[14+i*2] =3D sort_array[i].value*2;
+-+			sprintf(bg_text_list[13+i*2], "%02.1f%s", sort_array[i].value*100, "=
+%");
+-+			sprintf(bg_text_list[14+i*2], "%s", (params.user_config_list[sort_ar=
+ray[i].pos].name)+8);
+-+		}
+-+
+-+                bar_graph_plot(ctx, bg_y, (const char **)bg_text_list);
+-+
+-+		y[params.no_of_initiators]=3Dy[0]+y[1];
+-+		time_graph_plot(ctx, y, (const char **)text_list);
+-+		//printf("Plotting the time_graph\n");
+-+    		memset(y, 0x0, sizeof(double)* (params.no_of_initiators+1));
+-+	}
+-+	statCountIdx++;
+-+
+-+    }
+-+   =20
+-+    mpu_handler(CLOSE);
+-+
+-+    printf("------------------------------------------------\n\n");
+-+    printf("SUCCESS: Stat collection completed... Writing into file now=
+\n");
+-+    FILE *outfile =3D fopen("statcollector.csv", "w+");
+-+    if (!outfile) {
+-+        printf("\n ERROR: Error opening file");
+-+    }
+-+
+-+    /* Ignore the first index at 0 */
+-+    for(index=3D1; index<statCountIdx; index++) {
+-+	    for(i=3D0; i<params.no_of_initiators; i++) {
+-+		    fprintf(outfile,"%s =3D %d,", params.user_config_list[i].name, gl=
+obal_object[params.user_config_list[i].id].readings[index]);
+-+	    }
+-+	    fprintf(outfile,"\n");=20
+-+    }
+-+    fclose(outfile);
+-+
+-+	time_graph_destroy(ctx);
+-+    gettimeofday(&tv2, NULL);
+-+    //printf("End time =3D %d\n", time(NULL));
+-+    //printf("Time seconds =3D %d, usecs =3D %d\n", tv.tv_sec, tv.tv_us=
+ec);
+-+    printf("Total execution time =3D %d secs, %d usecs\n\n", (tv2.tv_se=
+c - tv1.tv_sec), (tv2.tv_usec - tv2.tv_usec));
+-+
+-+    return 0;
+-+}
+-+
+-+
+-diff --git a/clients/statcoll.h b/clients/statcoll.h
+-new file mode 100644
+-index 0000000..fa92753
+---- /dev/null
+-+++ b/clients/statcoll.h
+-@@ -0,0 +1,152 @@
+-+#ifndef __STATCOLL_H=20
+-+#define __STATCOLL_H
+-+=20
+-+
+-+#define CM_L3INSTR_REGISTER_BASE           (0x4A008000)
+-+
+-+#define CM_L3INSTR_L3INSTR_CLKSTCTRL_OFFSET     (0xE00)
+-+#define CM_L3INSTR_L3_MAIN_2_CLKCTRL_OFFSET     (0xE20)
+-+
+-+#define STATCOLL_SIZE 40960
+-+#define STATCOLL_BASE (0x45001000)
+-+
+-+#define stat_coll0_base_address (0x45001000)
+-+#define stat_coll1_base_address (0x45002000)
+-+#define stat_coll2_base_address (0x45003000)
+-+#define stat_coll3_base_address (0x45004000)
+-+#define stat_coll4_base_address (0x45005000)
+-+#define stat_coll5_base_address (0x45006000)
+-+#define stat_coll6_base_address (0x45007000)
+-+#define stat_coll7_base_address (0x45008000)
+-+#define stat_coll8_base_address (0x45009000)
+-+#define stat_coll9_base_address (0x4500a000)
+-+
+-+#define printd(fmt, ...) \
+-+	do { if (debug) fprintf(stderr, fmt, __VA_ARGS__); } while (0)
+-+
+-+typedef unsigned int UInt32;
+-+
+-+
+-+typedef enum
+-+{
+-+    STATCOL_EMIF1_SYS,
+-+    STATCOL_EMIF2_SYS,
+-+    STATCOL_MA_MPU_P1,
+-+    STATCOL_MA_MPU_P2,
+-+    STATCOL_MPU1,
+-+    STATCOL_MMU1,
+-+    STATCOL_TPTC_RD1,
+-+    STATCOL_TPTC_WR1,
+-+    STATCOL_TPTC_RD2,
+-+    STATCOL_TPTC_WR2,
+-+    STATCOL_VIP1_P1,
+-+    STATCOL_VIP1_P2,
+-+    STATCOL_VIP2_P1,
+-+    STATCOL_VIP2_P2,
+-+    STATCOL_VIP3_P1,
+-+    STATCOL_VIP3_P2,
+-+    STATCOL_VPE_P1,
+-+    STATCOL_VPE_P2,
+-+    STATCOL_EVE1_TC0,
+-+    STATCOL_EVE1_TC1,
+-+    STATCOL_EVE2_TC0,
+-+    STATCOL_EVE2_TC1,
+-+    STATCOL_EVE3_TC0,
+-+    STATCOL_EVE3_TC1,
+-+    STATCOL_EVE4_TC0,
+-+    STATCOL_EVE4_TC1,
+-+    STATCOL_DSP1_MDMA,
+-+    STATCOL_DSP1_EDMA,
+-+    STATCOL_DSP2_MDMA,
+-+    STATCOL_DSP2_EDMA,
+-+    STATCOL_IVA,
+-+    STATCOL_GPU_P1,
+-+    STATCOL_GPU_P2,
+-+    STATCOL_BB2D_P1,
+-+    STATCOL_DSS,
+-+    STATCOL_CSI2_2,
+-+    STATCOL_MMU2,
+-+    STATCOL_IPU1,
+-+    STATCOL_IPU2,
+-+    STATCOL_DMA_SYSTEM_RD,
+-+    STATCOL_DMA_SYSTEM_WR,
+-+    STATCOL_CSI2_1,
+-+    STATCOL_USB3_SS,
+-+    STATCOL_USB2_SS,
+-+    STATCOL_USB2_ULPI_SS1,
+-+    STATCOL_USB2_ULPI_SS2,
+-+    STATCOL_PCIE_SS1,
+-+    STATCOL_PCIE_SS2,
+-+    STATCOL_DSP1_CFG,
+-+    STATCOL_DSP2_CFG,
+-+    STATCOL_GMAC_SW,
+-+    STATCOL_PRUSS1_P1,
+-+    STATCOL_PRUSS1_P2,
+-+    STATCOL_PRUSS2_P1,
+-+    STATCOL_PRUSS2_P2,
+-+    STATCOL_DMA_CRYPTO_RD,
+-+    STATCOL_DMA_CRYPTO_WR,
+-+    STATCOL_MPU2,
+-+    STATCOL_MMC1,
+-+    STATCOL_MMC2,
+-+    STATCOL_SATA,
+-+    STATCOL_MLBSS,
+-+    STATCOL_BB2D_P2,
+-+    STATCOL_IEEE1500,
+-+    STATCOL_DBG,
+-+    STATCOL_VCP1,
+-+    STATCOL_OCMC_RAM1,
+-+    STATCOL_OCMC_RAM2,
+-+    STATCOL_OCMC_RAM3,
+-+    STATCOL_GPMC,
+-+    STATCOL_MCASP1,
+-+    STATCOL_MCASP2,
+-+    STATCOL_MCASP3,
+-+    STATCOL_VCP2,
+-+    STATCOL_MAX
+-+} STATCOL_ID;
+-+
+-+
+-+
+-+typedef struct
+-+{
+-+    UInt32 stat0_filter_cnt;
+-+    UInt32 stat1_filter_cnt;
+-+    UInt32 stat2_filter_cnt;
+-+    UInt32 stat3_filter_cnt;
+-+    UInt32 stat4_filter_cnt;
+-+    UInt32 stat5_filter_cnt;
+-+    UInt32 stat6_filter_cnt;
+-+    UInt32 stat7_filter_cnt;
+-+    UInt32 stat8_filter_cnt;
+-+    UInt32 stat9_filter_cnt;
+-+} StatCollectorObj;
+-+=20
+-+struct list_of_initiators
+-+{
+-+   STATCOL_ID id;
+-+   char name[50];   =20
+-+};
+-+
+-+typedef struct=20
+-+{
+-+    UInt32 INTERVAL_US;
+-+    UInt32 TOTAL_TIME;
+-+    UInt32 no_of_initiators;
+-+    struct list_of_initiators user_config_list[STATCOL_MAX];
+-+} statcoll_params;
+-+
+-+typedef struct
+-+{
+-+    UInt32 b_enabled;
+-+    char name[100];
+-+    UInt32 *readings;
+-+    UInt32 *timestamp;
+-+    UInt32 group_id;
+-+    UInt32 counter_id;
+-+    UInt32 base_address;
+-+    UInt32 mux_req;
+-+}statcoll_initiators_object;
+-+
+-+
+-+#endif
+-diff --git a/clients/statcoll_gui.h b/clients/statcoll_gui.h
+-new file mode 100644
+-index 0000000..7362bde
+---- /dev/null
+-+++ b/clients/statcoll_gui.h
+-@@ -0,0 +1,101 @@
+-+
+-+/*
+-+
+-+ ---------------------------------------------
+-+ |                                            |
+-+ |  ---------------------------------------   |
+-+ |                                            |
+-+ |                                            |
+-+ |                                            |
+-+ |                                            |
+-+ |                                            |
+-+ |                                            |
+-+ |                                            |
+-+ |                                            |
+-+ |                                            |
+-+ |                                            |
+-+ |                                            |
+-+ |                                            |
+-+ |                                            |
+-+ |                                            |
+-+ |                                            |
+-+ ---------------------------------------------
+-+ |           |                                |
+-+ |           |                                |
+-+ |           |                                |
+-+ |           |                                |
+-+ |           |                                |
+-+ |           |                                |
+-+ ---------------------------------------------
+-+
+-+
+-+
+-+
+-+*/
+-+#define POSITION_X 2800
+-+#define POSITION_Y 40
+-+
+-+#define MAX_WIDTH  900
+-+//#define MAX_WIDTH  528
+-+#define MAX_HEIGHT 900
+-+
+-+/* Derived parameters */
+-+#define BAR_GAP    (MAX_WIDTH/25)
+-+#define BAR_WIDTH  (MAX_WIDTH/16)
+-+
+-+#define BAR_HEIGHT ((MX_HEIGHT/40) * 6)
+-+
+-+#define BORDER     (MAX_WIDTH/15)
+-+
+-+#define HEIGHT_EMIF_AREA (MAX_HEIGHT/4)
+-+
+-+#define FONT_SIZE (MAX_WIDTH/40)
+-+
+-+#define WIDTH_EMIF_AREA (MAX_WIDTH / 4)
+-+
+-+#define TOTAL_Y_PARAMETERS (25)
+-+
+-+#define TIME_GRAPH_AREA_BL_X (BORDER)
+-+#define TIME_GRAPH_AREA_BL_Y (MAX_HEIGHT - HEIGHT_EMIF_AREA - BORDER)
+-+#define TIME_GRAPH_AREA_TR_X (MAX_WIDTH - BORDER)
+-+#define TIME_GRAPH_AREA_TR_Y (BORDER)
+-+
+-+#define EMIF_AREA_BL_X (0)
+-+#define EMIF_AREA_BL_Y (MAX_HEIGHT)
+-+#define EMIF_AREA_TR_X (WIDTH_EMIF_AREA)
+-+#define EMIF_AREA_TR_Y (MAX_HEIGHT - HEIGHT_EMIF_AREA)
+-+
+-+#define INITIATORS_AREA_BL_X (WIDTH_EMIF_AREA)
+-+#define INITIATORS_AREA_BL_Y (MAX_HEIGHT)
+-+#define INITIATORS_AREA_TR_X (MAX_WIDTH)
+-+#define INITIATORS_AREA_TR_Y (MAX_HEIGHT - HEIGHT_EMIF_AREA)
+-+
+-+
+-+const char *string_list[TOTAL_Y_PARAMETERS] =3D {
+-+        "----DDR BANDWIDTH PLOT----",
+-+        "8 GBPS",
+-+        "6.4 ",
+-+        "4.8",
+-+        "3.2",
+-+        "1.6",
+-+        "0",
+-+        "EMIF Plot",
+-+        "test",
+-+        "EMIF1",
+-+        "test",
+-+        "EMIF2",
+-+        "TOP 6 INITIATORS",
+-+        "test",
+-+        "MPU",
+-+        "test",
+-+        "DSS",
+-+        "test",
+-+        "DSP",
+-+        "test",
+-+        "IVA",
+-+        "test",
+-+        "GPU",
+-+        "test",
+-+        "BB2D",
+-+};
+-+
+-diff --git a/clients/time_bar_graph.c b/clients/time_bar_graph.c
+-new file mode 100644
+-index 0000000..9fa9c12
+---- /dev/null
+-+++ b/clients/time_bar_graph.c
+-@@ -0,0 +1,515 @@
+-+/*
+-+ * Copyright =C2=A9 2008 Kristian H=C3=B8gsberg
+-+ *
+-+ * Permission to use, copy, modify, distribute, and sell this software =
+and its
+-+ * documentation for any purpose is hereby granted without fee, provide=
+d that
+-+ * the above copyright notice appear in all copies and that both that c=
+opyright
+-+ * notice and this permission notice appear in supporting documentation=
+, and
+-+ * that the name of the copyright holders not be used in advertising or
+-+ * publicity pertaining to distribution of the software without specifi=
+c,
+-+ * written prior permission.  The copyright holders make no representat=
+ions
+-+ * about the suitability of this software for any purpose.  It is provi=
+ded "as
+-+ * is" without express or implied warranty.
+-+ *
+-+ * THE COPYRIGHT HOLDERS DISCLAIM ALL WARRANTIES WITH REGARD TO THIS SO=
+FTWARE,
+-+ * INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN =
+NO
+-+ * EVENT SHALL THE COPYRIGHT HOLDERS BE LIABLE FOR ANY SPECIAL, INDIREC=
+T OR
+-+ * CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS =
+OF USE,
+-+ * DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTH=
+ER
+-+ * TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PER=
+FORMANCE
+-+ * OF THIS SOFTWARE.
+-+ */
+-+
+-+#include <stdint.h>
+-+#include <stdio.h>
+-+#include <stdlib.h>
+-+#include <string.h>
+-+#include <stdint.h>
+-+#include <signal.h>
+-+#include <time.h>
+-+#include <math.h>
+-+#include <cairo.h>
+-+#include <sys/time.h>
+-+#include <pthread.h>
+-+#include <errno.h>
+-+#include <unistd.h>
+-+#include <sys/eventfd.h>
+-+#include <sys/epoll.h>
+-+
+-+#include <linux/input.h>
+-+#include <wayland-client.h>
+-+#include "window.h"
+-+#include "../shared/cairo-util.h"
+-+#include "time_bar_graph.h"
+-+
+-+//#define DEBUG 1
+-+#ifdef DEBUG=20
+-+#define DBG(x...) printf(x)
+-+#else
+-+#define DBG(x...) // printf(x)
+-+#endif
+-+
+-+#define MAX_ITEMS        180
+-+#define MAX_TEXT_SIZE    128
+-+
+-+struct graph_dataset_point {
+-+	int next_index;
+-+	double y_values[MAX_ITEMS];
+-+};
+-+
+-+struct graph_data {
+-+	int dataset_size;
+-+	int first_index, last_index, num_elems;
+-+	uint64_t last_time;
+-+	struct graph_dataset_point dataset[1];
+-+};
+-+
+-+struct graph {
+-+	struct display *display;
+-+	struct window *window;
+-+	struct widget *widget;
+-+	int width, height;
+-+	struct time_graph_create_params params;
+-+	struct bar_graph_create_params bar_graph_params;
+-+	struct _y_config y_config_array[MAX_ITEMS];
+-+	struct _text_config text_config_array[MAX_ITEMS];
+-+
+-+	/* Bar graph parameters */
+-+	struct _bar_graph_y_config bar_graph_y_config_array[MAX_ITEMS];
+-+	struct _text_config bar_graph_text_config_array[MAX_ITEMS];
+-+
+-+	pthread_t thr;
+-+	int eventfd;
+-+	struct task task;
+-+	double x_scaling_factor;
+-+	pthread_mutex_t mtx;
+-+	double time_graph_y_values[MAX_ITEMS];
+-+	char text_values[MAX_ITEMS][MAX_TEXT_SIZE];
+-+
+-+	double bar_graph_y_values[MAX_ITEMS];
+-+	char bar_graph_text_values[MAX_ITEMS][MAX_TEXT_SIZE];
+-+
+-+	uint64_t time_now;
+-+	time_t start_time_tv_sec;
+-+	struct graph_data *data;
+-+};
+-+
+-+struct graph *global_graph=3DNULL;
+-+static void
+-+draw_stuff(struct graph *g, cairo_surface_t *surface)
+-+{
+-+	cairo_t *cr;
+-+	int i, j, n_elems;
+-+	double c_x, c_y, d_x, d_y;
+-+
+-+	cr =3D cairo_create(surface);
+-+	cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
+-+	cairo_set_source_rgba(cr, 0.0, 0.0, 0.0, 0.5);
+-+	cairo_paint(cr);
+-+	cairo_select_font_face(cr, "mono",
+-+			CAIRO_FONT_SLANT_NORMAL,
+-+			CAIRO_FONT_WEIGHT_BOLD);
+-+	cairo_set_line_width (cr, 1.0);
+-+	cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
+-+	pthread_mutex_lock(&g->mtx);
+-+	for (j=3D0; g->data->num_elems > 0 && j<g->params.num_of_y_items; j++)=
+ {
+-+		n_elems =3D g->data->num_elems;
+-+		DBG("first_index: %d, last_index: %d\n", g->data->first_index, g->dat=
+a->last_index);
+-+		if (g->y_config_array[j].fill_color.a !=3D 0.0)
+-+			cairo_move_to(cr, (double)g->params.draw_area.bottom_left.x, (double=
+)g->params.draw_area.bottom_left.y);
+-+		c_x =3D (double)g->params.draw_area.bottom_left.x;
+-+		c_y =3D (double)g->params.draw_area.bottom_left.y;
+-+		d_x =3D 0;
+-+		i =3D g->data->first_index;
+-+		while (n_elems) {
+-+			DBG("index: %d, x: %f, y: %f, next_index: %d\n", i, c_x,
+-+				g->data->dataset[i].y_values[j], g->data->dataset[i].next_index);
+-+			d_y =3D g->data->dataset[i].y_values[j] - c_y;
+-+			c_y =3D g->data->dataset[i].y_values[j];
+-+			c_x =3D c_x + d_x;
+-+			if (g->y_config_array[j].fill_color.a =3D=3D 0.0 && n_elems =3D=3D g=
+->data->num_elems) {
+-+				cairo_move_to(cr, c_x, c_y);
+-+			} else {
+-+				cairo_curve_to(cr, c_x - (d_x * 0.75), c_y - (d_y * 0.92), c_x - (d=
+_x * 0.25), c_y - (d_y * 0.08), c_x, c_y);
+-+			}
+-+			if (g->data->dataset[i].next_index > i) {
+-+				d_x =3D (g->data->dataset[i].next_index - i);
+-+			} else {
+-+				d_x =3D (g->data->dataset_size + g->data->dataset[i].next_index - i=
+);
+-+			}
+-+			i =3D g->data->dataset[i].next_index;
+-+			n_elems--;
+-+		}
+-+		if (g->y_config_array[j].fill_color.a !=3D 0.0) {
+-+			cairo_line_to(cr, c_x, (double)g->params.draw_area.bottom_left.y);
+-+			cairo_line_to(cr, (double)g->params.draw_area.bottom_left.x, (double=
+)g->params.draw_area.bottom_left.y);
+-+			cairo_close_path(cr);
+-+			cairo_set_source_rgba(cr, g->y_config_array[j].fill_color.r, g->y_co=
+nfig_array[j].fill_color.g,=20
+-+					g->y_config_array[j].fill_color.b, g->y_config_array[j].fill_color=
+.a);
+-+			cairo_fill_preserve(cr);
+-+		}
+-+		cairo_set_source_rgba(cr, g->y_config_array[j].line_color.r, g->y_con=
+fig_array[j].line_color.g,=20
+-+			g->y_config_array[j].line_color.b, g->y_config_array[j].line_color.a=
+);
+-+		cairo_stroke(cr);
+-+	}
+-+
+-+	for (j=3D0; j<g->params.num_of_text_items; j++) {
+-+		cairo_move_to(cr, (double)g->text_config_array[j].at.x, (double)g->te=
+xt_config_array[j].at.y);
+-+		cairo_set_font_size(cr, g->text_config_array[j].fontsize);
+-+		cairo_set_source_rgba(cr, g->text_config_array[j].color.r, g->text_co=
+nfig_array[j].color.g,=20
+-+				g->text_config_array[j].color.b, g->text_config_array[j].color.a);
+-+		cairo_show_text(cr, g->text_values[j]);
+-+	}
+-+
+-+=09
+-+	for (j=3D0; j<g->bar_graph_params.num_of_y_items; j++) {
+-+		cairo_move_to(cr, (double)g->bar_graph_params.y_config_array[j].regio=
+n.bottom_left.x,
+-+			(double)g->bar_graph_params.y_config_array[j].region.bottom_left.y);
+-+		c_y =3D (double)g->bar_graph_params.y_config_array[j].region.bottom_l=
+eft.y -
+-+		    (g->bar_graph_y_values[j] * (double)(g->bar_graph_params.y_config=
+_array[j].region.bottom_left.y -
+-+			g->bar_graph_params.y_config_array[j].region.top_right.y));
+-+		cairo_line_to(cr, (double)g->bar_graph_params.y_config_array[j].regio=
+n.bottom_left.x, c_y);
+-+		cairo_line_to(cr, (double)g->bar_graph_params.y_config_array[j].regio=
+n.top_right.x, c_y);
+-+		cairo_line_to(cr, (double)g->bar_graph_params.y_config_array[j].regio=
+n.top_right.x,
+-+			(double)g->bar_graph_params.y_config_array[j].region.bottom_left.y);
+-+		cairo_line_to(cr, (double)g->bar_graph_params.y_config_array[j].regio=
+n.bottom_left.x,
+-+			(double)g->bar_graph_params.y_config_array[j].region.bottom_left.y);
+-+		cairo_close_path(cr);
+-+		cairo_set_source_rgba(cr, g->bar_graph_y_config_array[j].fill_color.r=
+, g->bar_graph_y_config_array[j].fill_color.g,=20
+-+				g->bar_graph_y_config_array[j].fill_color.b, g->bar_graph_y_config_=
+array[j].fill_color.a);
+-+		cairo_fill_preserve(cr);
+-+		cairo_set_source_rgba(cr, g->bar_graph_y_config_array[j].line_color.r=
+, g->bar_graph_y_config_array[j].line_color.g,=20
+-+			g->bar_graph_y_config_array[j].line_color.b, g->bar_graph_y_config_a=
+rray[j].line_color.a);
+-+		cairo_stroke(cr);
+-+	}
+-+	for (j=3D0; j<g->bar_graph_params.num_of_text_items; j++) {
+-+		cairo_move_to(cr, (double)g->bar_graph_text_config_array[j].at.x, (do=
+uble)g->bar_graph_text_config_array[j].at.y);
+-+		cairo_set_font_size(cr, g->bar_graph_text_config_array[j].fontsize);
+-+		cairo_set_source_rgba(cr, g->bar_graph_text_config_array[j].color.r, =
+g->bar_graph_text_config_array[j].color.g,=20
+-+				g->bar_graph_text_config_array[j].color.b, g->bar_graph_text_config=
+_array[j].color.a);
+-+                cairo_save (cr);
+-+		//cairo_rotate(cr, 2*3.14*21/24);
+-+		cairo_show_text(cr, g->bar_graph_text_values[j]);
+-+		cairo_restore(cr);
+-+	}
+-+	pthread_mutex_unlock(&g->mtx);
+-+	cairo_destroy(cr);
+-+}
+-+
+-+static void
+-+resize_handler(struct widget *widget,
+-+	       int32_t width, int32_t height, void *data)
+-+{
+-+	struct graph *g =3D data;
+-+
+-+	/* Dont resize me */
+-+	widget_set_size(g->widget, g->width, g->height);
+-+}
+-+
+-+static void
+-+redraw_handler(struct widget *widget, void *data)
+-+{
+-+	struct graph *g =3D data;
+-+	cairo_surface_t *surface;
+-+
+-+	surface =3D window_get_surface(g->window);
+-+	if (surface =3D=3D NULL ||
+-+	    cairo_surface_status(surface) !=3D CAIRO_STATUS_SUCCESS) {
+-+		fprintf(stderr, "failed to create cairo egl surface\n");
+-+		return;
+-+	}
+-+
+-+	draw_stuff(g, surface);
+-+	cairo_surface_destroy(surface);
+-+}
+-+
+-+static void
+-+button_handler(struct widget *widget,
+-+	       struct input *input, uint32_t time,
+-+	       uint32_t button, enum wl_pointer_button_state state, void *data=
+)
+-+{
+-+	struct graph *g =3D data;
+-+
+-+	switch (button) {
+-+	case BTN_LEFT:
+-+		if (state =3D=3D WL_POINTER_BUTTON_STATE_PRESSED)
+-+			window_move(g->window, input,
+-+				    display_get_serial(g->display));
+-+		break;
+-+	case BTN_MIDDLE:
+-+		if (state =3D=3D WL_POINTER_BUTTON_STATE_PRESSED)
+-+			widget_schedule_redraw(widget);
+-+		break;
+-+	case BTN_RIGHT:
+-+		if (state =3D=3D WL_POINTER_BUTTON_STATE_PRESSED)
+-+			window_show_frame_menu(g->window, input, time);
+-+		break;
+-+	}
+-+}
+-+
+-+static void
+-+touch_down_handler(struct widget *widget, struct input *input,=20
+-+		   uint32_t serial, uint32_t time, int32_t id,=20
+-+		   float x, float y, void *data)
+-+{
+-+	struct graph *g =3D data;
+-+	window_move(g->window, input, display_get_serial(g->display));
+-+}
+-+
+-+static void task_run(struct task *task, uint32_t events)
+-+{
+-+	eventfd_t e;
+-+	struct graph *g =3D (struct graph *)(task->link.prev);
+-+	uint64_t time_diff;
+-+	int elems, tmp, incr, i;
+-+	double y;
+-+
+-+	eventfd_read(g->eventfd, &e);
+-+	if(e =3D=3D 1) {
+-+		pthread_mutex_lock(&g->mtx);
+-+		/* Process new data */
+-+		DBG("time_now: %llu, last_time: %llu\n", g->time_now, g->data->last_t=
+ime);
+-+		if (g->time_now > g->data->last_time) {
+-+			time_diff =3D g->time_now - g->data->last_time;
+-+			y =3D (double)time_diff * g->x_scaling_factor;
+-+			incr =3D (int)y;
+-+			DBG("incr: %d\n", incr);
+-+
+-+			if (g->data->last_index >=3D g->data->first_index) elems =3D g->data=
+->last_index - g->data->first_index + 1;
+-+			else elems =3D g->data->dataset_size - g->data->first_index + g->dat=
+a->last_index + 1;
+-+			/* Move first index to make room for new element */
+-+			while (g->data->dataset_size > 0 && (elems + incr) > g->data->datase=
+t_size) {
+-+				tmp =3D g->data->dataset[g->data->first_index].next_index - g->data=
+->first_index;
+-+				if (tmp < 0) tmp =3D g->data->dataset_size + tmp;
+-+				g->data->first_index =3D g->data->dataset[g->data->first_index].nex=
+t_index;
+-+				elems -=3D tmp;
+-+				g->data->num_elems--;
+-+			}
+-+			for (i=3D0; i<g->params.num_of_y_items; i++) {
+-+				/* Scale Y */
+-+				y =3D g->time_graph_y_values[i] * (double)(g->params.draw_area.bott=
+om_left.y-g->params.draw_area.top_right.y);
+-+				y =3D (double)g->params.draw_area.bottom_left.y - y;
+-+				g->data->dataset[g->data->last_index].y_values[i] =3D y;
+-+			}
+-+			g->data->dataset[g->data->last_index].next_index =3D g->data->last_i=
+ndex + incr;
+-+			if (g->data->dataset[g->data->last_index].next_index >=3D g->data->d=
+ataset_size)=20
+-+				g->data->dataset[g->data->last_index].next_index -=3D g->data->data=
+set_size;
+-+			g->data->num_elems++;
+-+			g->data->last_index =3D g->data->dataset[g->data->last_index].next_i=
+ndex;
+-+			g->data->last_time =3D g->time_now;
+-+		}
+-+		pthread_mutex_unlock(&g->mtx);
+-+	}
+-+	widget_schedule_redraw(g->widget);
+-+	DBG("event task ran...\n");
+-+}
+-+
+-+void *time_graph_create(int argc, char *argv[], struct time_graph_creat=
+e_params *cp)
+-+{
+-+	struct graph *g;
+-+	struct display *d;
+-+	int dataset_size;
+-+	struct timeval tv;
+-+
+-+	if (cp->num_of_y_items > MAX_ITEMS) return NULL;
+-+	if (cp->num_of_text_items > MAX_ITEMS) return NULL;
+-+
+-+	g =3D (struct graph*)malloc(sizeof(struct graph));
+-+	if (g =3D=3D NULL) {
+-+		fprintf(stderr, "failed to allocate memory\n");
+-+		return NULL;
+-+	}
+-+	global_graph =3D g;
+-+	g->params =3D *cp;
+-+	if (cp->num_of_y_items)
+-+		memcpy(&g->y_config_array[0], cp->y_config_array,
+-+			sizeof(struct _y_config) * cp->num_of_y_items);
+-+	if (cp->num_of_text_items)
+-+		memcpy(&g->text_config_array[0], cp->text_config_array,
+-+			sizeof(struct _text_config) * cp->num_of_text_items);
+-+	d =3D display_create(&argc, argv);
+-+	if (d =3D=3D NULL) {
+-+		fprintf(stderr, "failed to create display: %m\n");
+-+		return NULL;
+-+	}
+-+	g->display =3D d;
+-+	//g->bg_image =3D load_cairo_surface(cp->bg_image);
+-+	g->width =3D cp->width; //cairo_image_surface_get_width(g->bg_image);
+-+	g->height =3D cp->height; //cairo_image_surface_get_height(g->bg_image=
+);
+-+	dataset_size =3D cp->draw_area.top_right.x - cp->draw_area.bottom_left=
+.x;
+-+	g->data =3D (struct graph_data *)malloc(sizeof(struct graph_data) +
+-+		(dataset_size * sizeof(struct graph_dataset_point)));
+-+	if (!g->data) {
+-+		fprintf(stderr, "failed to allocate memory\n");
+-+		display_destroy(g->display);
+-+		//cairo_surface_destroy(g->bg_image);
+-+		free(g);
+-+		return NULL;
+-+	}
+-+	g->data->first_index =3D 0;
+-+	g->data->last_index =3D 0;
+-+	g->data->num_elems =3D 0;
+-+	g->data->dataset_size =3D dataset_size;
+-+	g->x_scaling_factor =3D (double)dataset_size / (double)cp->time_span;
+-+	g->window =3D window_create(d);
+-+	g->widget =3D window_add_widget(g->window, g);
+-+	window_set_title(g->window, cp->title);
+-+	widget_set_resize_handler(g->widget, resize_handler);
+-+	widget_set_redraw_handler(g->widget, redraw_handler);
+-+	widget_set_button_handler(g->widget, button_handler);
+-+	widget_set_default_cursor(g->widget, CURSOR_HAND1);
+-+	widget_set_touch_down_handler(g->widget, touch_down_handler);
+-+	window_schedule_resize(g->window, g->width, g->height);
+-+	g->eventfd =3D eventfd(0, 0);
+-+	g->task.run =3D task_run;
+-+	g->task.link.prev =3D (struct wl_list*)g;
+-+	g->task.link.next =3D NULL;
+-+	display_watch_fd(d, g->eventfd, EPOLLIN, &g->task);
+-+	pthread_mutex_init(&g->mtx, NULL);
+-+
+-+	if (0 !=3D pthread_create(&g->thr, NULL, (void *(*)(void *))display_ru=
+n, (void *)d)) {
+-+		fprintf(stderr, "pthread_create failed: %m\n");
+-+		widget_destroy(g->widget);
+-+		window_destroy(g->window);
+-+		display_destroy(g->display);
+-+		//cairo_surface_destroy(g->bg_image);
+-+		free(g->data);
+-+		close(g->eventfd);
+-+		free(g);
+-+		return NULL;
+-+	}
+-+	gettimeofday(&tv, NULL);
+-+	g->start_time_tv_sec =3D tv.tv_sec;
+-+	g->data->last_time =3D 0;
+-+	return (void*)g;
+-+}
+-+
+-+void move_graph(void *ctx, struct time_graph_create_params *cp)
+-+{
+-+	struct graph *g =3D ctx;
+-+	window_set_title(g->window, cp->title);
+-+}
+-+
+-+void time_graph_plot(void *ctx, double *y_values, const char *text_valu=
+es[])
+-+{
+-+	struct timeval tv;
+-+	struct graph *g =3D ctx;
+-+	int i;
+-+	pthread_mutex_lock(&g->mtx);
+-+	gettimeofday(&tv, NULL);
+-+	g->time_now =3D ((tv.tv_sec - g->start_time_tv_sec) * 1000) + (tv.tv_u=
+sec / 1000);
+-+	memcpy(g->time_graph_y_values, y_values, g->params.num_of_y_items * si=
+zeof(double));
+-+	for (i=3D0;i<g->params.num_of_text_items; i++) {
+-+		strncpy(g->text_values[i], text_values[i], MAX_TEXT_SIZE);
+-+		g->text_values[i][MAX_TEXT_SIZE-1] =3D '\0';
+-+	}
+-+	pthread_mutex_unlock(&g->mtx);
+-+	eventfd_write(g->eventfd, (eventfd_t)1);
+-+}
+-+
+-+void time_graph_destroy(void *ctx)
+-+{
+-+	struct graph *g =3D (struct graph *)ctx;
+-+	display_exit(g->display);
+-+	eventfd_write(g->eventfd, (eventfd_t)1);
+-+	pthread_join(g->thr, NULL);
+-+	widget_destroy(g->widget);
+-+	window_destroy(g->window);
+-+	display_destroy(g->display);
+-+	free(g->data);
+-+	close(g->eventfd);
+-+	free(g);
+-+	global_graph=3DNULL;
+-+}
+-+
+-+void util_get_cpu_usage(double *cpu_usage)
+-+{
+-+	static FILE *fp =3D NULL;
+-+	char buf[256];
+-+	uint64_t tot;
+-+	uint64_t u, n, s, i, w, x, y, z;
+-+	static uint64_t last_i =3D 0, last_total =3D 0;
+-+
+-+
+-+	if (!fp) {
+-+		if (!(fp =3D fopen("/proc/stat", "r")))
+-+			fprintf(stderr, "Failed /proc/stat open: %s", strerror(errno));
+-+	}
+-+	if (fp) {
+-+		while (1) {
+-+			rewind(fp);
+-+			fflush(fp);
+-+			if (!fgets(buf, sizeof(buf), fp)) {
+-+				fprintf(stderr, "failed /proc/stat read\n");
+-+			} else {
+-+				sscanf(buf, "cpu %Lu %Lu %Lu %Lu %Lu %Lu %Lu %Lu",
+-+						&u,
+-+						&n,
+-+						&s,
+-+						&i,
+-+						&w,
+-+						&x,
+-+						&y,
+-+						&z
+-+					  );
+-+				if (last_total =3D=3D 0) {
+-+					last_total =3D u+n+s+i+w+x+y+z;
+-+					last_i =3D i;
+-+					usleep(100000);
+-+				} else {
+-+					tot =3D u+n+s+i+w+x+y+z;
+-+					*cpu_usage =3D (1.0 - ((double)(i-last_i)/(double)(tot-last_total)=
+));
+-+					last_i =3D i;
+-+					last_total =3D tot;
+-+					break;
+-+				}
+-+			}
+-+		}
+-+	}
+-+}
+-+
+-+void *bar_graph_create(int argc, char *argv[], struct bar_graph_create_=
+params *cp)
+-+{
+-+	struct graph *g;
+-+	struct display *d;
+-+	struct timeval tv;
+-+
+-+	if (cp->num_of_y_items > MAX_ITEMS) return NULL;
+-+	if (cp->num_of_text_items > MAX_ITEMS) return NULL;
+-+
+-+	if (global_graph =3D=3D NULL) {
+-+		fprintf(stderr, "graph not initialized invoke time_graph_create first=
+\n");
+-+		return NULL;
+-+	}
+-+	g=3Dglobal_graph;
+-+	g->bar_graph_params =3D *cp;
+-+	if (cp->num_of_y_items)
+-+		memcpy(&g->bar_graph_y_config_array[0], cp->y_config_array,
+-+			sizeof(struct _bar_graph_y_config) * cp->num_of_y_items);
+-+	if (cp->num_of_text_items)
+-+		memcpy(&g->bar_graph_text_config_array[0], cp->text_config_array,
+-+			sizeof(struct _text_config) * cp->num_of_text_items);
+-+
+-+	return g;
+-+}
+-+
+-+void bar_graph_plot(void *ctx, double *y_values, const char *text_value=
+s[])
+-+{
+-+	struct graph *g =3D ctx;
+-+	int i;
+-+	pthread_mutex_lock(&g->mtx);
+-+	memcpy(g->bar_graph_y_values, y_values, g->bar_graph_params.num_of_y_i=
+tems * sizeof(double));
+-+	for (i=3D0;i<g->bar_graph_params.num_of_text_items; i++) {
+-+		strncpy(g->bar_graph_text_values[i], text_values[i], MAX_TEXT_SIZE);
+-+		g->bar_graph_text_values[i][MAX_TEXT_SIZE-1] =3D '\0';
+-+	}
+-+	pthread_mutex_unlock(&g->mtx);
+-+	//eventfd_write(g->eventfd, (eventfd_t)2);
+-+}
+-+
+-+void bar_graph_destroy(void *ctx)
+-+{
+-+	printf("Nothing to be done for this call\n");
+-+	return;
+-+}
+-+
+-diff --git a/clients/time_bar_graph.h b/clients/time_bar_graph.h
+-new file mode 100644
+-index 0000000..97ac05a
+---- /dev/null
+-+++ b/clients/time_bar_graph.h
+-@@ -0,0 +1,93 @@
+-+
+-+#ifndef _BAR_GRAPH_H_
+-+#define _BAR_GRAPH_H_
+-+
+-+#include <stdint.h>
+-+
+-+struct _rgba {
+-+	double r, g, b, a; // Values between 0 and 1
+-+};
+-+
+-+struct _coordinate {
+-+	uint32_t x, y; // Co-ordinates relative to top-left of the window
+-+};
+-+
+-+struct _rect {
+-+	struct _coordinate bottom_left, top_right;
+-+};
+-+
+-+struct _y_config {
+-+	struct _rgba line_color; // Line color
+-+	struct _rgba fill_color; // Fill color, 0 alpha =3D> no fill
+-+};
+-+
+-+struct _text_config {
+-+	struct _rgba color; // Color for drawing the text, RGBA
+-+	struct _coordinate at; // where to draw the text
+-+	int fontsize;         // Font size
+-+};
+-+
+-+struct time_graph_create_params {
+-+	char *title;
+-+	//const char *bg_image;
+-+	uint32_t width;
+-+	uint32_t height;
+-+	struct _rect draw_area;
+-+	uint32_t time_span; // Amount of time the graph has to span in millise=
+conds
+-+	uint32_t num_of_y_items;
+-+	struct _y_config *y_config_array;
+-+	uint32_t num_of_text_items;
+-+	struct _text_config *text_config_array;
+-+};
+-+
+-+
+-+struct _bar_graph_y_config {
+-+	struct _rect region;     // Region for the bar graph
+-+	struct _rgba line_color; // Color for drawing the line, RGBA
+-+	struct _rgba fill_color; // Fill under the line with color RGBA, 0 =3D=
+> no fill
+-+};
+-+
+-+struct bar_graph_create_params {
+-+	char *title;
+-+	//const char *bg_image;
+-+	uint32_t num_of_y_items;
+-+	struct _bar_graph_y_config *y_config_array;
+-+	uint32_t num_of_text_items;
+-+	struct _text_config *text_config_array;
+-+};
+-+
+-+/* Creates a time graph using create parameters */
+-+void *bar_graph_create(int argc, char *argv[], struct bar_graph_create_=
+params *cp);
+-+
+-+void move_graph(void *ctx, struct time_graph_create_params *cp);
+-+
+-+/* Plots a new set of y-values from the values in the array y_values.=20
+-+   The number of values must be equal to "num_of_y_items" from create p=
+arams=20
+-+   y_values must be normalized between 0.0 to 1.0
+-+*/
+-+void bar_graph_plot(void *ctx, double *y_values, const char *text_value=
+s[]);
+-+
+-+/* Destroy the graph */
+-+void bar_graph_destroy(void *ctx);
+-+
+-+
+-+/* Creates a time graph using create parameters */
+-+void *time_graph_create(int argc, char *argv[], struct time_graph_creat=
+e_params *cp);
+-+
+-+/*=20
+-+ * Plots a new set of points from the values in the array y_values.=20
+-+ * The number of values in the array y_values must be equal to "num_of_=
+y_items"
+-+ * from create params=20
+-+ * y_values must be normalized between 0.0 to 1.0
+-+
+-+ * The number of values in the array text_values must be equal to "num_=
+of_text_items"
+-+ * from create params=20
+-+*/
+-+void time_graph_plot(void *ctx, double *y_values, const char *text_valu=
+es[]);
+-+
+-+/* Destroy the graph */
+-+void time_graph_destroy(void *ctx);
+-+
+-+void util_get_cpu_usage(double *cpu_usage);
+-+
+-+#endif /* _BAR_GRAPH_H_ */
+---=20
+-1.9.1
+-
+--=20
 2.39.2
 
 
