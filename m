@@ -2,47 +2,47 @@ Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27689C76196
-	for <webhook@archiver.kernel.org>; Mon, 10 Apr 2023 20:49:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 51246C76196
+	for <webhook@archiver.kernel.org>; Tue, 11 Apr 2023 18:00:23 +0000 (UTC)
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web10.57097.1681159741658904112
+ by mx.groups.io with SMTP id smtpd.web10.21598.1681236018919124506
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 10 Apr 2023 13:49:01 -0700
+ Tue, 11 Apr 2023 11:00:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=rAY1xwX2;
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=MzZcA6VO;
  spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: afd@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33AKn05B053375;
-	Mon, 10 Apr 2023 15:49:00 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33BI0H27069810;
+	Tue, 11 Apr 2023 13:00:17 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1681159740;
-	bh=SBvrHf14c/RN4mTFG84GHzFw1xamlOUNqCpkaOK483I=;
+	s=ti-com-17Q1; t=1681236017;
+	bh=2HEJp3FG1R0N59bvaoctSPHKr4loE/t0TRkgqukj0vE=;
 	h=From:To:CC:Subject:Date;
-	b=rAY1xwX2mO2yV+vl4CZvNKRRxLygVmbBCB9505ZDpt/coQ2xOy/qcNrbgmLHE4EU2
-	 IUcw6MwonnAWDwuR5dnWlFZFxcf3Q81vEPc0ya/Itpj6YtF/FrLOcAj8Ui7xvVBspE
-	 /J5EtI8RgH+B5AMKTDiTBCerZUjut0RC1sOubVLw=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33AKn0nA059024
+	b=MzZcA6VOOfQNn5wVd37y+lDIsDASoMiyqj7u0TblvmdE3ofYAIohx3BgnIbAUm49q
+	 HecxjLUy5pBV3XEwW/Aca/soDaR7Jcb/cvl2kx37pRyWwwWNpb6ZRVuAZ9khlI9z02
+	 DB7I9s5V783o/BEnfPzMHM7/CV/0fL/ryZo75Qks=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33BI0HnT118396
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 10 Apr 2023 15:49:00 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
+	Tue, 11 Apr 2023 13:00:17 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Tue, 11
+ Apr 2023 13:00:16 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
  (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16; Mon, 10
- Apr 2023 15:49:00 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.16 via
- Frontend Transport; Mon, 10 Apr 2023 15:49:00 -0500
-Received: from ula0226330.dal.design.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33AKmxSv033246;
-	Mon, 10 Apr 2023 15:49:00 -0500
+ Frontend Transport; Tue, 11 Apr 2023 13:00:16 -0500
+Received: from ula0226330.dal.design.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33BI0G4h099198;
+	Tue, 11 Apr 2023 13:00:16 -0500
 From: Andrew Davis <afd@ti.com>
 To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
         <meta-arago@lists.yoctoproject.org>
 CC: Andrew Davis <afd@ti.com>
-Subject: [meta-arago][master/kirkstone][PATCH] linux-libc-headers: Remove custom Linux libc headers
-Date: Mon, 10 Apr 2023 15:48:59 -0500
-Message-ID: <20230410204859.30707-1-afd@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH] branding: Remove old AM/GL/MC SDKs
+Date: Tue, 11 Apr 2023 13:00:16 -0500
+Message-ID: <20230411180016.14341-1-afd@ti.com>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -51,88 +51,100 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 10 Apr 2023 20:49:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14304
+ <meta-arago@lists.yoctoproject.org>; Tue, 11 Apr 2023 18:00:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14305
 
-We do not need nor want a custom libc as the base for our packages.
-Using our own Linux UAPI includes creates this situation and will
-cause issues for packages that make use of the custom kernel headers
-when moving from kernel to kernel.
-
-If we do have some package that does need some custom header then
-it should be listed in the package itself so this dependency can
-be tracked correct. This is all described in the base recipe here[0].
-
-As recommended, let's not create a custom linux-libc-headers. Remove
-this recipe and references to specific versions.
-
-[0] https://cgit.openembedded.org/openembedded-core/tree/meta/recipes-kernel/linux-libc-headers/linux-libc-headers.inc#n7
+These have not been used nor updated in a long time. They point
+to old and/or non-existent versions of packages. Drop them.
 
 Signed-off-by: Andrew Davis <afd@ti.com>
 ---
- .../conf/distro/include/toolchain-gcc.inc     |  4 ----
- .../linux-libc-headers_5.10.bb                | 20 -------------------
- 2 files changed, 24 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb
+ .../conf/distro/include/branding-amsdk.inc    | 31 -------------------
+ .../conf/distro/include/branding-glsdk.inc    | 11 -------
+ .../conf/distro/include/branding-mcsdk.inc    | 18 -----------
+ 3 files changed, 60 deletions(-)
+ delete mode 100644 meta-arago-distro/conf/distro/include/branding-amsdk.inc
+ delete mode 100644 meta-arago-distro/conf/distro/include/branding-glsdk.inc
+ delete mode 100644 meta-arago-distro/conf/distro/include/branding-mcsdk.inc
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-index 5570594d..1c059a6f 100644
---- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-+++ b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
-@@ -16,7 +16,6 @@ PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-can
- SDKGCCVERSION ?= "11%"
- SDKBINUVERSION ?= "2.38%"
- SDKGLIBCVERSION ?= "2.35%"
--SDKLINUXLIBCVERSION ?= "5.10%"
- 
- PREFERRED_VERSION_gcc-crosssdk-${SDK_SYS} ?= "${SDKGCCVERSION}"
- PREFERRED_VERSION_gcc-crosssdk-initial-${SDK_SYS} ?= "${SDKGCCVERSION}"
-@@ -25,7 +24,6 @@ PREFERRED_VERSION_binutils-crosssdk-${SDK_SYS} ?= "${SDKBINUVERSION}"
- PREFERRED_VERSION_nativesdk-gcc-runtime ?= "${SDKGCCVERSION}"
- PREFERRED_VERSION_nativesdk-libgcc ?= "${SDKGCCVERSION}"
- PREFERRED_VERSION_nativesdk-libgcc-initial ?= "${SDKGCCVERSION}"
--PREFERRED_VERSION_nativesdk-linux-libc-headers ?= "${SDKLINUXLIBCVERSION}"
- PREFERRED_VERSION_nativesdk-glibc ?= "${SDKGLIBCVERSION}"
- PREFERRED_VERSION_nativesdk-glibc-locale ?= "${SDKGLIBCVERSION}"
- PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
-@@ -35,11 +33,9 @@ PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
- GCCVERSION ?= "11%"
- BINUVERSION ?= "2.38%"
- GLIBCVERSION ?= "2.35%"
--LINUXLIBCVERSION ?= "5.10%"
- 
- PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
- PREFERRED_VERSION_binutils ?= "${BINUVERSION}"
--PREFERRED_VERSION_linux-libc-headers ?= "${LINUXLIBCVERSION}"
- PREFERRED_VERSION_glibc ?= "${GLIBCVERSION}"
- PREFERRED_VERSION_glibc-locale ?= "${GLIBCVERSION}"
- PREFERRED_VERSION_glibc-initial ?= "${GLIBCVERSION}"
-diff --git a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb b/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb
+diff --git a/meta-arago-distro/conf/distro/include/branding-amsdk.inc b/meta-arago-distro/conf/distro/include/branding-amsdk.inc
 deleted file mode 100644
-index 43493570..00000000
---- a/meta-arago-distro/recipes-kernel/linux-libc-headers/linux-libc-headers_5.10.bb
+index 96df5660..00000000
+--- a/meta-arago-distro/conf/distro/include/branding-amsdk.inc
 +++ /dev/null
-@@ -1,20 +0,0 @@
--require recipes-kernel/linux-libc-headers/linux-libc-headers.inc
+@@ -1,31 +0,0 @@
+-ARAGO_TISDK_IMAGE = "arago-amsdk-image"
 -
--PR:append = ".arago0"
+-PREFERRED_PROVIDER_virtual/kernel:am335x-evm = "sitara-linux-ti-staging"
+-PREFERRED_PROVIDER_virtual/kernel:am437x-evm = "sitara-linux-ti-staging"
+-PREFERRED_VERSION_sitara-linux-ti-staging = "3.14%"
 -
--LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
+-# To create newlines in the message \n is used and the slash must be escaped
+-# to function properly
 -
--BRANCH = "ti-linux-5.10.y"
--SRCREV = "73aa709ca10103b61fba3a07471dbb4dcb56db45"
+-SRCIPK_GIT_COMMIT_MESSAGE = "\
+-Create local branch\\n\
+-\\n\
+-The below commit is used for this local branch and is the one used by\\n\
+-this sdk:\\n\
+-${SRCREV}."
 -
--KERNEL_GIT_URI = "git://git.ti.com/git/ti-linux-kernel/ti-linux-kernel.git"
--KERNEL_GIT_PROTOCOL = "https"
--SRC_URI = "${KERNEL_GIT_URI};protocol=${KERNEL_GIT_PROTOCOL};branch=${BRANCH}"
+-SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE ="${SRCIPK_GIT_COMMIT_MESSAGE}\\n\\n\
+-To reduce the size of the SDK installer only a portion of the git commit\\n\
+-history has been preserved. Also links to remote branches and tags do\\n\
+-not exist in this copy of the repository.\\n\
+-To fix this please run the unshallow-repositories.sh\\n\
+-script located in the sdk\'s bin directory\\n\
+-\\n\
+-The script may take several minutes but you will then have a full copy of\\n\
+-the git repository including its entire git history.\\n"
 -
--S = "${WORKDIR}/git"
+-SRCIPK_CUSTOM_GIT_BRANCH:pn-sitara-linux-ti-staging = "amsdk-8.0"
+-SRCIPK_CUSTOM_GIT_MESSAGE:pn-sitara-linux-ti-staging = "${SRCIPK_SHALLOW_GIT_COMMIT_MESSAGE}"
 -
--# below overrides the multilib list - can be dropped for the next LTS
--do_install_armmultilib () {
--	oe_multilib_header asm/auxvec.h asm/bitsperlong.h asm/byteorder.h asm/fcntl.h asm/hwcap.h asm/ioctls.h asm/kvm_para.h asm/mman.h asm/param.h asm/perf_regs.h asm/bpf_perf_event.h
--	oe_multilib_header asm/posix_types.h asm/ptrace.h  asm/setup.h  asm/sigcontext.h asm/siginfo.h asm/signal.h asm/stat.h  asm/statfs.h asm/swab.h  asm/types.h asm/unistd.h
--}
+-SRCIPK_CUSTOM_GIT_BRANCH:pn-u-boot-ti-staging = "amsdk-8.0"
+-SRCIPK_CUSTOM_GIT_MESSAGE:pn-u-boot-ti-staging = "${SRCIPK_GIT_COMMIT_MESSAGE}"
+diff --git a/meta-arago-distro/conf/distro/include/branding-glsdk.inc b/meta-arago-distro/conf/distro/include/branding-glsdk.inc
+deleted file mode 100644
+index 0abd73cc..00000000
+--- a/meta-arago-distro/conf/distro/include/branding-glsdk.inc
++++ /dev/null
+@@ -1,11 +0,0 @@
+-# GLSDK branding configuration
+-
+-# Use the SDK supported kernel and kernel version
+-PREFERRED_PROVIDER_virtual/kernel = "linux-ti-glsdk"
+-
+-PREFERRED_PROVIDER_virtual/bootloader:omap-a15 = "u-boot-ti-staging"
+-PREFERRED_PROVIDER_u-boot:omap-a15 = "u-boot-ti-staging"
+-
+-# Set the PREFERRED_VERSION of libdrm to the glsdk version for the 
+-# glsdk branded builds
+-PREFERRED_VERSION_libdrm = "2.4.41"
+diff --git a/meta-arago-distro/conf/distro/include/branding-mcsdk.inc b/meta-arago-distro/conf/distro/include/branding-mcsdk.inc
+deleted file mode 100644
+index 7dbffd3a..00000000
+--- a/meta-arago-distro/conf/distro/include/branding-mcsdk.inc
++++ /dev/null
+@@ -1,18 +0,0 @@
+-# MCSDK branding configuration
+-
+-# Use the MCSDK supported versions
+-PREFERRED_VERSION_libnl = "3.2.24"
+-
+-DISTRO_FEATURES += "x11"
+-
+-# Java preferences.
+-PREFERRED_VERSION_icedtea7-native = "2.1.3"
+-PREFERRED_PROVIDER_openjdk-7-jre = "openjdk-7-jre"
+-
+-PREFERRED_PROVIDER_virtual/java-initial = "cacao-initial"
+-
+-PREFERRED_PROVIDER_virtual/java-native = "jamvm-native"
+-PREFERRED_PROVIDER_virtual/javac-native = "ecj-bootstrap-native"
+-
+-PREFERRED_PROVIDER_jpeg-native = "jpeg-native"
+-PREFERRED_PROVIDER_glibc-gconv-iso8859-1 = "glibc-locale"
 -- 
 2.39.2
 
