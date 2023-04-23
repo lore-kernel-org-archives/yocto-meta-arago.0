@@ -2,112 +2,101 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B2D0C77B60
-	for <webhook@archiver.kernel.org>; Sun, 23 Apr 2023 20:27:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 60501C6FD18
+	for <webhook@archiver.kernel.org>; Sun, 23 Apr 2023 20:31:57 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.35901.1682281644564828174
+ by mx.groups.io with SMTP id smtpd.web11.35693.1682281914187428801
  for <meta-arago@lists.yoctoproject.org>;
- Sun, 23 Apr 2023 13:27:25 -0700
+ Sun, 23 Apr 2023 13:31:54 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 7781E40C37;
-	Sun, 23 Apr 2023 20:27:23 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 72D9B40C37;
+	Sun, 23 Apr 2023 20:31:53 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id hcSbeek-qmY9; Sun, 23 Apr 2023 20:27:23 +0000 (UTC)
+	with ESMTP id GGloYoLuCr-k; Sun, 23 Apr 2023 20:31:53 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4DBF340C24;
-	Sun, 23 Apr 2023 20:27:21 +0000 (UTC)
-Received: from thorin.denix (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 02F1D163829;
-	Sun, 23 Apr 2023 16:26:40 -0400 (EDT)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 41C0B40C24;
+	Sun, 23 Apr 2023 20:31:50 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id A102416383C; Sun, 23 Apr 2023 16:31:10 -0400 (EDT)
+Date: Sun, 23 Apr 2023 16:31:10 -0400
 From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>,
-	Ryan Eatmon <reatmon@ti.com>
-Subject: [master/kirkstone][PATCH] input-utils: fix bashisms
-Date: Sun, 23 Apr 2023 20:27:19 +0000
-Message-Id: <20230423202719.1921984-1-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
+To: Ryan Eatmon <reatmon@ti.com>
+Cc: Praneeth Bajjuri <praneeth@ti.com>,
+	Denys Dmytriyenko <denys@konsulko.com>,
+	meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][master/kirkstone][PATCH v3 0/2] Add support for
+ ltp-ddt_20230127
+Message-ID: <20230423203110.GG9226@denix.org>
+References: <20230422225555.12772-1-reatmon@ti.com>
+ <20230423000832.GF9226@denix.org>
+ <0d1c1491-a9fe-b0a3-ad2b-bc6c859d402a@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0d1c1491-a9fe-b0a3-ad2b-bc6c859d402a@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Sun, 23 Apr 2023 20:27:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14342
+ <meta-arago@lists.yoctoproject.org>; Sun, 23 Apr 2023 20:31:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14343
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+On Sun, Apr 23, 2023 at 01:48:49PM -0500, Ryan Eatmon wrote:
+> 
+> Yes.  The patch to the 2021 version is already on Kirkstone.  But we
+> are planning on removing that version completely once we get our LTS
+> migration finished.  The 2023 version is what will live long term on
+> kirkstone/master.
+> 
+> So, I had already merged the "bad" patch with the missing space to
+> kirkstone for 2021.  I did that so that I could pick up Andrew's
+> patch about removing the libc headers.
+> 
+> If the space is something that causes any down stream problems
+> before we get to removing the ltp-ddt 2021 version then we can patch
+> it. Otherwise, my testing did not show an issue with the patch as it
+> is.
 
-Add patch from Debian that fixes bashism in the Makefile.
+Nah, input-utils was breaking for me, but it felt familiar... A bit of digging 
+revealed it was only merged to Dunfell, so I sent a cherry-pick to the list.
 
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 
-[cherry-pick from Dunfell, add Upstream-Status tag]
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
----
- .../input-utils/fix-ftbfs-echo.patch          | 21 +++++++++++++++++++
- .../input-utils/input-utils_1.0.bb            |  3 ++-
- 2 files changed, 23 insertions(+), 1 deletion(-)
- create mode 100644 meta-arago-extras/recipes-devtools/input-utils/input-=
-utils/fix-ftbfs-echo.patch
-
-diff --git a/meta-arago-extras/recipes-devtools/input-utils/input-utils/f=
-ix-ftbfs-echo.patch b/meta-arago-extras/recipes-devtools/input-utils/inpu=
-t-utils/fix-ftbfs-echo.patch
-new file mode 100644
-index 00000000..e6631003
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/input-utils/input-utils/fix-ftbf=
-s-echo.patch
-@@ -0,0 +1,21 @@
-+Description: Fix FTBFS due to -e leaking into Make.config
-+ If /bin/sh is configured to point to dash, echo does not support -e swi=
-tch
-+ which is used by mk/Autoconf.mk file to generate Make.config. Use 'env =
-echo'
-+ instead.
-+Author: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
-+Bug-Debian: http://bugs.debian.org/750265
-+Forwarded: no
-+Last-Update: 2014-07-09
-+Upstream-Status: Inactive-Upstream [lastrelease: 2008-2012]
-+
-+--- input-utils-1.0.orig/mk/Autoconf.mk
-++++ input-utils-1.0/mk/Autoconf.mk
-+@@ -162,7 +162,7 @@ config: Make.config
-+	@true
-+
-+ Make.config: $(srcdir)/GNUmakefile
-+-	@echo -e "$(make-config-q)" > $@
-++	@env echo -e "$(make-config-q)" > $@
-+	@echo
-+	@echo "Make.config written, edit if needed"
-+	@echo
-diff --git a/meta-arago-extras/recipes-devtools/input-utils/input-utils_1=
-.0.bb b/meta-arago-extras/recipes-devtools/input-utils/input-utils_1.0.bb
-index 064a6faa..ea3d1df1 100644
---- a/meta-arago-extras/recipes-devtools/input-utils/input-utils_1.0.bb
-+++ b/meta-arago-extras/recipes-devtools/input-utils/input-utils_1.0.bb
-@@ -7,7 +7,8 @@ LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D8ca43cbc842c23=
-36e835926c2166c28b"
- PV =3D "1.0"
- PR =3D "r0"
-=20
--SRC_URI =3D "http://ftp.de.debian.org/debian/pool/main/i/input-utils/inp=
-ut-utils_1.0.orig.tar.gz"
-+SRC_URI =3D "http://ftp.de.debian.org/debian/pool/main/i/input-utils/inp=
-ut-utils_1.0.orig.tar.gz \
-+	file://fix-ftbfs-echo.patch"
- SRC_URI:append:arm =3D " file://0001-autoconf-fix-for-cross-compilation-=
-for-ARM.patch"
-=20
- SRC_URI[md5sum] =3D "3e58772e8647093b1de2f2c90bfb9ee8"
---=20
-2.25.1
-
+> On 4/22/2023 19:08, Denys Dmytriyenko wrote:
+> >I'm a bit confused - I see the original patch is already merged to kirkstone
+> >and master:
+> >
+> >https://git.yoctoproject.org/meta-arago/log/
+> >https://git.yoctoproject.org/meta-arago/log/?h=kirkstone
+> >
+> >
+> >On Sat, Apr 22, 2023 at 05:55:53PM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
+> >>The internal testing team would like to move to this version as the
+> >>basis for our internal ltp-ddt.  So we need to capture the recipe
+> >>settings for this version from oe-core master and provide a new version
+> >>for us to overload.
+> >>
+> >>v3: Put the space in the correct place...
+> >>v2: Add missing space to :append line in ltp-ddt_20230127.bb
+> >>
+> >>Ryan Eatmon (2):
+> >>   ltp: Add version 20230127 from oe_core master
+> >>   ltp-ddt: Add support for version 20230127
+> >>
+> >>  .../ltp-ddt/ltp-ddt_20230127.bb               |  47 ++++++
+> >>  ...002-Remove-OOM-tests-from-runtest-mm.patch |  35 +++++
+> >>  .../ltp/ltp/disable_hanging_tests.patch       |  27 ++++
+> >>  .../recipes-extended/ltp/ltp_20230127.bb      | 140 ++++++++++++++++++
+> >>  4 files changed, 249 insertions(+)
+> >>  create mode 100644 meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
+> >>  create mode 100644 meta-arago-extras/recipes-extended/ltp/ltp/0002-Remove-OOM-tests-from-runtest-mm.patch
+> >>  create mode 100644 meta-arago-extras/recipes-extended/ltp/ltp/disable_hanging_tests.patch
+> >>  create mode 100644 meta-arago-extras/recipes-extended/ltp/ltp_20230127.bb
+> >>
+> >>-- 
+> >>2.17.1
 
