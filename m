@@ -2,46 +2,46 @@ Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 386A0C77B7F
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 40BECC7EE21
 	for <webhook@archiver.kernel.org>; Thu, 27 Apr 2023 21:30:14 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web11.4602.1682631012421422543
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web10.4672.1682631012401576898
  for <meta-arago@lists.yoctoproject.org>;
  Thu, 27 Apr 2023 14:30:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=LrfyQrJv;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: rs@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=ycJG88bv;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: rs@ti.com)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33RLU9rW001692;
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33RLU9cF074827;
 	Thu, 27 Apr 2023 16:30:09 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1682631009;
-	bh=iViSV0GGJIuQ49+lHXA6k78zfGgZaMTmpHc9n976D78=;
+	bh=t4+ALw3pnCSu8KdAZQYV2f7y0QhcScaDgzvq4M6trGw=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=LrfyQrJv32Ap1j3NwZn4JpnXKBbJRMUcfmeHJt+Ee7g76NshagZ/yfPxzisjqoljG
-	 aw2NXRVx8auMGlYXKCpHBpE2NRYDcppeJlU3IfPPw/NHx9wXOQSVr8uLcjBw25kfA/
-	 NaprqgecIY0GX7j0fZGivaU02moyAKU+yIU3yNBE=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33RLU8V1069834
+	b=ycJG88bvsXS3Roq/wtzamuJ3Ezc5zMJgMho7ExeUHynyU5gvX20d5ZckI3ZjdZapH
+	 ae+/STa92uIIpupV9Kon1f+4/VAwPDrGX50yA9zid9dWdesR/tH9VqCbs7dsmOn0KI
+	 qRZFtZgjT9jPZ3GBSFAoPblH0DP1hal5L9lO4NHA=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33RLU9Kb069916
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
 	Thu, 27 Apr 2023 16:30:09 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
  Apr 2023 16:30:08 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Thu, 27 Apr 2023 16:30:08 -0500
 Received: from rs-desk.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33RLU808128870;
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33RLU807128870;
 	Thu, 27 Apr 2023 16:30:08 -0500
 From: <rs@ti.com>
 To: <afd@ti.com>, <detheridge@ti.com>, <reatmon@ti.com>, <denis@denix.org>
 CC: Randolph Sapp <rs@ti.com>, <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][kirkstone][PATCHv3 5/5] glfw: convert to append and drop patches
-Date: Thu, 27 Apr 2023 16:30:00 -0500
-Message-ID: <20230427213000.1923507-6-rs@ti.com>
+Subject: [meta-arago][kirkstone][PATCHv3 4/5] qtwayland: drop the plugins-decorations patch
+Date: Thu, 27 Apr 2023 16:29:59 -0500
+Message-ID: <20230427213000.1923507-5-rs@ti.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230427213000.1923507-1-rs@ti.com>
 References: <20230427213000.1923507-1-rs@ti.com>
@@ -53,104 +53,100 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Thu, 27 Apr 2023 21:30:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14376
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14373
 
 From: Randolph Sapp <rs@ti.com>
 
-A reasonable version of glfw is now provided by meta-oe. Also the EGL
-version this package needs to build a against can be satisfied by Mesa
-EGL so this old patch isn't required anymore.
+This seems like it was a needless patch to guard against garbage from
+being shown if the window icon request failed to return any useful icon.
+Not necessary.
 
-Add a PACKAGECONFIG variable for wayland and use it. This append will
-need to be adjusted again when meta-oe glfw patches settle.
+This bbappend has no reason to exist. Move the PACKAGECONFIG
+modifications to select wayland over x11 into the distro config.
 
 Signed-off-by: Randolph Sapp <rs@ti.com>
 ---
- ...xt-remove-check-for-Wayland-Egl-prov.patch | 27 -------------------
- .../recipes-graphics/glfw/glfw_%.bbappend     |  8 ++++++
- .../recipes-graphics/glfw/glfw_git.bb         | 24 -----------------
- 3 files changed, 8 insertions(+), 51 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-graphics/glfw/glfw/0001-HACK-CMakeList.txt-remove-check-for-Wayland-Egl-prov.patch
- create mode 100644 meta-arago-extras/recipes-graphics/glfw/glfw_%.bbappend
- delete mode 100644 meta-arago-extras/recipes-graphics/glfw/glfw_git.bb
+ meta-arago-distro/conf/distro/arago.conf      |  1 +
+ ...ons-bradient-display-window-icon-onl.patch | 42 -------------------
+ .../recipes-qt/qt5/qtwayland_git.bbappend     |  8 ----
+ 3 files changed, 1 insertion(+), 50 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwayland/0001-plugins-decorations-bradient-display-window-icon-onl.patch
+ delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
 
-diff --git a/meta-arago-extras/recipes-graphics/glfw/glfw/0001-HACK-CMakeList.txt-remove-check-for-Wayland-Egl-prov.patch b/meta-arago-extras/recipes-graphics/glfw/glfw/0001-HACK-CMakeList.txt-remove-check-for-Wayland-Egl-prov.patch
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 58841051..bf54eb2a 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -74,6 +74,7 @@ PACKAGECONFIG:append:pn-systemd = " coredump"
+ PACKAGECONFIG_GL:pn-qtbase = "gles2 linuxfb"
+ PACKAGECONFIG_DISTRO:pn-qtbase = "icu examples accessibility gif gbm kms libinput"
+ PACKAGECONFIG_FONTS:pn-qtbase = "fontconfig"
++PACKAGECONFIG:remove:pn-qtwayland = "xcomposite-egl xcomposite-glx"
+ 
+ # Add gstreamer in package configuration to enable video
+ PACKAGECONFIG:append:pn-qtmultimedia = " gstreamer"
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-plugins-decorations-bradient-display-window-icon-onl.patch b/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-plugins-decorations-bradient-display-window-icon-onl.patch
 deleted file mode 100644
-index 6116fc12..00000000
---- a/meta-arago-extras/recipes-graphics/glfw/glfw/0001-HACK-CMakeList.txt-remove-check-for-Wayland-Egl-prov.patch
+index 33f28390..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-plugins-decorations-bradient-display-window-icon-onl.patch
 +++ /dev/null
-@@ -1,27 +0,0 @@
--From c6e30af80018f7a6fc7b8b0e810718f4bd646cf6 Mon Sep 17 00:00:00 2001
--From: Denys Dmytriyenko <denys@ti.com>
--Date: Thu, 12 Apr 2018 12:29:39 -0400
--Subject: [PATCH] HACK: CMakeList.txt: remove check for Wayland-Egl, provided
-- by SGX libs
+@@ -1,42 +0,0 @@
+-From 547fd678ba55025c3578f021b40c96b1e91b839e Mon Sep 17 00:00:00 2001
+-From: Eric Ruei <e-ruei1@ti.com>
+-Date: Fri, 9 Sep 2016 16:54:02 -0400
+-Subject: [PATCH] plugins/decorations/bradient: display window icon only if
+- icon.pixmap not null
 -
--Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+-Signed-off-by: Eric Ruei <e-ruei1@ti.com>
 ----
-- CMakeLists.txt | 2 +-
-- 1 file changed, 1 insertion(+), 1 deletion(-)
+- src/plugins/decorations/bradient/main.cpp | 17 ++++++++++-------
+- 1 file changed, 10 insertions(+), 7 deletions(-)
 -
--diff --git a/CMakeLists.txt b/CMakeLists.txt
--index 1f5d6ef..eaf780f 100644
----- a/CMakeLists.txt
--+++ b/CMakeLists.txt
--@@ -266,7 +266,7 @@ if (_GLFW_WAYLAND)
--     find_package(ECM REQUIRED NO_MODULE)
--     list(APPEND CMAKE_MODULE_PATH "${ECM_MODULE_PATH}")
+-diff --git a/src/plugins/decorations/bradient/main.cpp b/src/plugins/decorations/bradient/main.cpp
+-index ea29869..279bff1 100644
+---- a/src/plugins/decorations/bradient/main.cpp
+-+++ b/src/plugins/decorations/bradient/main.cpp
+-@@ -222,13 +222,16 @@ void QWaylandBradientDecoration::paint(QPaintDevice *device)
+-     // Window icon
+-     QIcon icon = waylandWindow()->windowIcon();
+-     if (!icon.isNull()) {
+--        QPixmap pixmap = icon.pixmap(QSize(128, 128));
+--        QPixmap scaled = pixmap.scaled(22, 22, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+--
+--        QRectF iconRect(0, 0, 22, 22);
+--        p.drawPixmap(iconRect.adjusted(margins().left() + BUTTON_SPACING, 4,
+--                                       margins().left() + BUTTON_SPACING, 4),
+--                     scaled, iconRect);
+-+        QPixmap pixmap = icon.pixmap(QSize(128, 128));
+-+        if(!pixmap.isNull())
+-+        {
+-+            QPixmap scaled = pixmap.scaled(22, 22, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+-+
+-+            QRectF iconRect(0, 0, 22, 22);
+-+            p.drawPixmap(iconRect.adjusted(margins().left() + BUTTON_SPACING, 4,
+-+                                           margins().left() + BUTTON_SPACING, 4),
+-+                         scaled, iconRect);
+-+        }
+-     }
 - 
---    find_package(Wayland REQUIRED Client Cursor Egl)
--+    find_package(Wayland REQUIRED Client Cursor)
--     find_package(WaylandScanner REQUIRED)
--     find_package(WaylandProtocols 1.12 REQUIRED)
-- 
+-     // Window title
 --- 
--2.7.4
+-1.9.1
 -
-diff --git a/meta-arago-extras/recipes-graphics/glfw/glfw_%.bbappend b/meta-arago-extras/recipes-graphics/glfw/glfw_%.bbappend
-new file mode 100644
-index 00000000..8352a866
---- /dev/null
-+++ b/meta-arago-extras/recipes-graphics/glfw/glfw_%.bbappend
-@@ -0,0 +1,8 @@
-+# Add some wayland configuration options until meta-oe adds some good
-+# PACKAGECONFIGS
-+
-+PR:append = ".arago1"
-+
-+PACKAGECONFIG[wayland] = "-DGLFW_USE_WAYLAND=ON,,wayland wayland-native wayland-protocols extra-cmake-modules libxkbcommon"
-+
-+PACKAGECONFIG += " wayland"
-diff --git a/meta-arago-extras/recipes-graphics/glfw/glfw_git.bb b/meta-arago-extras/recipes-graphics/glfw/glfw_git.bb
+diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
 deleted file mode 100644
-index 0e83979f..00000000
---- a/meta-arago-extras/recipes-graphics/glfw/glfw_git.bb
+index df8b5eff..00000000
+--- a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
 +++ /dev/null
-@@ -1,24 +0,0 @@
--SUMMARY = "GLFW cross platform graphics framework"
--DESCRIPTION = "A multi-platform library for OpenGL and OpenGLES, window and input"
--HOMEPAGE = "http://glfw.org/"
--LICENSE = "Zlib & Libpng"
--LIC_FILES_CHKSUM = "file://LICENSE.md;md5=90c6dd54408744b0f8a55f2a6c7ad870"
+@@ -1,8 +0,0 @@
+-FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+-PR:append = ".arago2"
 -
--PV = "3.2.1+git${SRCPV}"
--PR = "r0"
+-SRC_URI += " \
+-    file://0001-plugins-decorations-bradient-display-window-icon-onl.patch \
+-"
 -
--BRANCH = "master"
--SRC_URI = "git://github.com/glfw/glfw.git;protocol=https;branch=${BRANCH}"
--SRCREV = "0a3c4f5d80b041ee1a12c8da3503653d98bd1a15"
--
--SRC_URI += "file://0001-HACK-CMakeList.txt-remove-check-for-Wayland-Egl-prov.patch"
--
--DEPENDS = "extra-cmake-modules glib-2.0 virtual/libgles2 virtual/egl weston wayland wayland-native wayland-protocols"
--
--S = "${WORKDIR}/git"
--
--inherit cmake pkgconfig
--
--EXTRA_OECMAKE += "-DGLFW_USE_WAYLAND=ON -DGLFW_BUILD_EXAMPLES=OFF -DGLFW_BUILD_TESTS=OFF"
--
--FILES:${PN}-dev += "${libdir}/cmake"
+-PACKAGECONFIG:remove = "xcomposite-egl xcomposite-glx"
 -- 
 2.40.0
 
