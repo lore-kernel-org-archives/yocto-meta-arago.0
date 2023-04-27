@@ -1,141 +1,102 @@
-Return-Path: <rs@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 345A6C7EE25
-	for <webhook@archiver.kernel.org>; Thu, 27 Apr 2023 17:20:54 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web11.27080.1682616049121015249
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E4D7C77B73
+	for <webhook@archiver.kernel.org>; Thu, 27 Apr 2023 18:46:33 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.74.1682621186717178112
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 27 Apr 2023 10:20:49 -0700
+ Thu, 27 Apr 2023 11:46:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=YTKjeNYF;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: rs@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 33RHKj5a113456;
-	Thu, 27 Apr 2023 12:20:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1682616045;
-	bh=7Jcq7Wr2o8YwR/3MSx4fChYrM7ZZvxusum2P2Go3g9Q=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=YTKjeNYFowp9BplHhTz1hpK6xeylsCbJZ8EKYvWnCaydLvW0y69xRGnkQc7lweXef
-	 NvNfkQ4UiPaZHQ0iAxteCsxFHHe9IMcz4KQPgAQAOMEbfPMJ9DtewBJkm2QRsbh0IJ
-	 +he6iu3tH+MCgtKv0bFCz7nsS94gTPL9DYvSkIGs=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 33RHKjsL017492
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 27 Apr 2023 12:20:45 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 27
- Apr 2023 12:20:45 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 27 Apr 2023 12:20:45 -0500
-Received: from rs-desk.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 33RHKj8j110570;
-	Thu, 27 Apr 2023 12:20:45 -0500
-From: <rs@ti.com>
-To: <afd@ti.com>, <detheridge@ti.com>, <reatmon@ti.com>, <denis@denix.org>
-CC: <meta-arago@lists.yoctoproject.org>, Randolph Sapp <rs@ti.com>
-Subject: [meta-arago][kirkstone][PATCHv2 4/5] qtwayland: drop the plugins-decorations patch
-Date: Thu, 27 Apr 2023 12:20:35 -0500
-Message-ID: <20230427172036.863789-5-rs@ti.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230427172036.863789-1-rs@ti.com>
-References: <20230427172036.863789-1-rs@ti.com>
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 9612440C76;
+	Thu, 27 Apr 2023 18:46:25 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 5rxeOG_lsdNM; Thu, 27 Apr 2023 18:46:25 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4279D409B0;
+	Thu, 27 Apr 2023 18:46:18 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id E4544163842; Thu, 27 Apr 2023 14:45:36 -0400 (EDT)
+Date: Thu, 27 Apr 2023 14:45:36 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: p-bhagat@ti.com
+Cc: meta-arago@lists.yoctoproject.org, praneeth@ti.com, reatmon@ti.com,
+	c-shilwant@ti.com, s-adivi@ti.com, g-gupta@ti.com,
+	dannenberg@ti.com
+Subject: Re: [meta-arago] [kirkstone][PATCH v3] meta-arago-distro: Add
+ Jailhouse support for am62xx
+Message-ID: <20230427184536.GL9226@denix.org>
+References: <20230427095536.5959-1-p-bhagat@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230427095536.5959-1-p-bhagat@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 27 Apr 2023 17:20:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14366
+ <meta-arago@lists.yoctoproject.org>; Thu, 27 Apr 2023 18:46:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14369
 
-From: Randolph Sapp <rs@ti.com>
+On Thu, Apr 27, 2023 at 03:25:36PM +0530, Paresh Bhagat via lists.yoctoproject.org wrote:
+> Update arago conf to add support for jailhouse in am62xx.
+> Update package group to add support for jailhouse for am62xx.
+> 
+> Signed-off-by: Andreas Dannenberg <dannenberg@ti.com>
+> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
+> ---
+>  meta-arago-distro/conf/distro/arago.conf                       | 3 +++
+>  meta-arago-distro/conf/distro/include/arago-prefs.inc          | 3 +++
+>  .../packagegroups/packagegroup-arago-tisdk-addons.bb           | 1 +
+>  3 files changed, 7 insertions(+)
+> 
+> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+> index 094e67da..3e4c4644 100644
+> --- a/meta-arago-distro/conf/distro/arago.conf
+> +++ b/meta-arago-distro/conf/distro/arago.conf
+> @@ -121,6 +121,9 @@ PACKAGECONFIG:append:pn-cairo = " egl glesv2"
+>  PACKAGECONFIG:remove:pn-alsa-plugins = "pulseaudio"
+>  RDEPENDS:pulseaudio-server:remove = "alsa-plugins-pulseaudio-conf"
+>  
+> +# Configure RAMFS for jailhouse linux-demo
+> +JH_RAMFS_IMAGE = "tisdk-tiny-image"
+> +
+>  # Enable UI and scripting for perf
+>  PERF_FEATURES_ENABLE ?= "perf-scripting perf-tui"
+>  
+> diff --git a/meta-arago-distro/conf/distro/include/arago-prefs.inc b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> index 34c3c539..c632e111 100644
+> --- a/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> +++ b/meta-arago-distro/conf/distro/include/arago-prefs.inc
+> @@ -19,3 +19,6 @@ PREFERRED_PROVIDER_wpa-supplicant = "wpa-supplicant"
+>  #PREFERRED_PROVIDER_wpa-supplicant:ti33x = "wpa-supplicant-wl18xx"
+>  #PREFERRED_PROVIDER_wpa-supplicant:ti43x = "wpa-supplicant-wl18xx"
+>  #PREFERRED_PROVIDER_wpa-supplicant:omap-a15 = "wpa-supplicant-wl18xx"
+> +
+> +CREATE_SRCIPK:pn-jailhouse ?= "1"
+> +SRCIPK_INSTALL_DIR:pn-jailhouse ?= "board-support/extra-drivers/${PN}-${PV}"
 
-This seems like it was a needless patch to guard against garbage from
-being shown if the window icon request failed to return any useful icon.
-Not necessary.
+There's no SRCIPK any longer. Also, this was never in arago-prefs.inc
 
-Add some info about why this bbappend still exists. It's to prefer
-wayland over x11 and remove some unoptimized components.
 
-Signed-off-by: Randolph Sapp <rs@ti.com>
----
- ...ons-bradient-display-window-icon-onl.patch | 42 -------------------
- .../recipes-qt/qt5/qtwayland_git.bbappend     |  8 ++--
- 2 files changed, 3 insertions(+), 47 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-qt/qt5/qtwayland/0001-plugins-decorations-bradient-display-window-icon-onl.patch
-
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-plugins-decorations-bradient-display-window-icon-onl.patch b/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-plugins-decorations-bradient-display-window-icon-onl.patch
-deleted file mode 100644
-index 33f28390..00000000
---- a/meta-arago-distro/recipes-qt/qt5/qtwayland/0001-plugins-decorations-bradient-display-window-icon-onl.patch
-+++ /dev/null
-@@ -1,42 +0,0 @@
--From 547fd678ba55025c3578f021b40c96b1e91b839e Mon Sep 17 00:00:00 2001
--From: Eric Ruei <e-ruei1@ti.com>
--Date: Fri, 9 Sep 2016 16:54:02 -0400
--Subject: [PATCH] plugins/decorations/bradient: display window icon only if
-- icon.pixmap not null
--
--Signed-off-by: Eric Ruei <e-ruei1@ti.com>
-----
-- src/plugins/decorations/bradient/main.cpp | 17 ++++++++++-------
-- 1 file changed, 10 insertions(+), 7 deletions(-)
--
--diff --git a/src/plugins/decorations/bradient/main.cpp b/src/plugins/decorations/bradient/main.cpp
--index ea29869..279bff1 100644
----- a/src/plugins/decorations/bradient/main.cpp
--+++ b/src/plugins/decorations/bradient/main.cpp
--@@ -222,13 +222,16 @@ void QWaylandBradientDecoration::paint(QPaintDevice *device)
--     // Window icon
--     QIcon icon = waylandWindow()->windowIcon();
--     if (!icon.isNull()) {
---        QPixmap pixmap = icon.pixmap(QSize(128, 128));
---        QPixmap scaled = pixmap.scaled(22, 22, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
---
---        QRectF iconRect(0, 0, 22, 22);
---        p.drawPixmap(iconRect.adjusted(margins().left() + BUTTON_SPACING, 4,
---                                       margins().left() + BUTTON_SPACING, 4),
---                     scaled, iconRect);
--+        QPixmap pixmap = icon.pixmap(QSize(128, 128));
--+        if(!pixmap.isNull())
--+        {
--+            QPixmap scaled = pixmap.scaled(22, 22, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
--+
--+            QRectF iconRect(0, 0, 22, 22);
--+            p.drawPixmap(iconRect.adjusted(margins().left() + BUTTON_SPACING, 4,
--+                                           margins().left() + BUTTON_SPACING, 4),
--+                         scaled, iconRect);
--+        }
--     }
-- 
--     // Window title
---- 
--1.9.1
--
-diff --git a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend b/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
-index df8b5eff..11d8e2ce 100644
---- a/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
-+++ b/meta-arago-distro/recipes-qt/qt5/qtwayland_git.bbappend
-@@ -1,8 +1,6 @@
--FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
--PR:append = ".arago2"
-+# This append exists to modify the PACKAGECONFIG such that the wayland backend
-+# is preferred over x11 and unoptimized components are removed.
- 
--SRC_URI += " \
--    file://0001-plugins-decorations-bradient-display-window-icon-onl.patch \
--"
-+PR:append = ".arago3"
- 
- PACKAGECONFIG:remove = "xcomposite-egl xcomposite-glx"
--- 
-2.40.0
-
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> index 8d8a36f6..66fa6451 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+> @@ -59,6 +59,7 @@ UTILS:append:k3 = " mmc-utils \
+>  
+>  UTILS:append:k3 = " ti-rtos-firmware"
+>  UTILS:append:am64xx = " pru-icss"
+> +UTILS:append:am62xx = " pru-icss jailhouse"
+>  UTILS:append:am65xx = " pru-icss"
+>  UTILS:append:j721e = " pru-icss"
+>  
+> -- 
+> 2.17.1
 
