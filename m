@@ -1,112 +1,141 @@
-Return-Path: <denis@denix.org>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7CF93C77B73
-	for <webhook@archiver.kernel.org>; Mon,  1 May 2023 19:11:00 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.103586.1682968253597740243
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7420AC7EE24
+	for <webhook@archiver.kernel.org>; Mon,  1 May 2023 19:14:40 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web10.104106.1682968478069040664
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 01 May 2023 12:10:53 -0700
+ Mon, 01 May 2023 12:14:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 77A0040C1C;
-	Mon,  1 May 2023 19:10:52 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 7U8i-eAk1ICX; Mon,  1 May 2023 19:10:52 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4632640C13;
-	Mon,  1 May 2023 19:10:49 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 1970816387C; Mon,  1 May 2023 15:10:08 -0400 (EDT)
-Date: Mon, 1 May 2023 15:10:08 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Ryan Eatmon <reatmon@ti.com>
-Cc: Praneeth Bajjuri <praneeth@ti.com>,
-	Denys Dmytriyenko <denys@konsulko.com>,
-	meta-arago@lists.yoctoproject.org
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=JNC79wbE;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 341JEXkr009344;
+	Mon, 1 May 2023 14:14:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1682968473;
+	bh=uFiQ0S1FwidzAJjxQR1q1OQG+DfikXr/2XAgjeBPtg8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=JNC79wbEAKQuzqHlTfhFG8MY2aqTP6P7GWrMf6HS59u2kOIJ2UMl9MftMa64ZsALP
+	 tePavwoog8n7TE7IQs7QrUkIUTLsFFUlgTCMSTVNvfEpyjCc72WB9Xr6QpwlcDY6Qc
+	 tf7fdZ9aYf3TDM+J4Cbi6DAoZCMt0JMA8WCkygRQ=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 341JEXmC015043
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 1 May 2023 14:14:33 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
+ May 2023 14:14:33 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 1 May 2023 14:14:33 -0500
+Received: from [10.249.32.181] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 341JEWUm014324;
+	Mon, 1 May 2023 14:14:32 -0500
+Message-ID: <cc104e61-3e01-27a6-04a3-2b0a0f9512fd@ti.com>
+Date: Mon, 1 May 2023 14:14:32 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.1
 Subject: Re: [meta-arago][master/kirkstone][PATCH] packagegroup-arago-gst:
  Disable vpe and ducati plugins
-Message-ID: <20230501191008.GX9226@denix.org>
+Content-Language: en-US
+To: Denys Dmytriyenko <denis@denix.org>
+CC: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
 References: <20230501163915.10612-1-reatmon@ti.com>
  <20230501165551.GV9226@denix.org>
  <3c531a0e-7c07-16ce-5fce-084c66cdb5c6@ti.com>
  <20230501184934.GW9226@denix.org>
  <696be171-120c-87eb-d987-251a3afb9d8e@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <696be171-120c-87eb-d987-251a3afb9d8e@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+ <20230501191008.GX9226@denix.org>
+From: Ryan Eatmon <reatmon@ti.com>
+In-Reply-To: <20230501191008.GX9226@denix.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 01 May 2023 19:11:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14385
+ <meta-arago@lists.yoctoproject.org>; Mon, 01 May 2023 19:14:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14386
 
-On Mon, May 01, 2023 at 02:08:40PM -0500, Ryan Eatmon wrote:
+
+
+On 5/1/2023 14:10, Denys Dmytriyenko wrote:
+> On Mon, May 01, 2023 at 02:08:40PM -0500, Ryan Eatmon wrote:
+>>
+>>
+>> On 5/1/2023 13:49, Denys Dmytriyenko wrote:
+>>> On Mon, May 01, 2023 at 01:39:12PM -0500, Ryan Eatmon wrote:
+>>>>
+>>>>
+>>>> On 5/1/2023 11:55, Denys Dmytriyenko wrote:
+>>>>> On Mon, May 01, 2023 at 11:39:15AM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
+>>>>>> The code for the plugins uses dma allocation code that we add in with a
+>>>>>> patch.  Theoretically we no longer need that code and can use some
+>>>>>> upstreamed dma buffer allocation code.  The work to rewrite these
+>>>>>> plugins to support the newer gstreamer versions needs to be scheduled.
+>>>>>
+>>>>> I'm guessing you are missing this in "ltsprep" and other brandings:
+>>>>> https://git.yoctoproject.org/meta-arago/tree/meta-arago-distro/conf/distro/include/branding-core.inc#n15
+>>>>>
+>>>>> But it is a more broader approach, so maybe surgically disabling individual
+>>>>> components and re-enabling "mmip" machine feature in "core" is better...
+>>>>
+>>>> It's not that I missed it, but evn running ltsprep the recipes were
+>>>> being included and they fail to build.  So something else must be
+>>>> going on to make them be included.  Let me look into it.
+>>>>
+>>>> I still need to understand why we did not see these build failures
+>>>> in kirkstone-wip.  Because these errors are related to the version
+>>>> of gstreamer and the bbappends not being applied.  And the only time
+>>>> these tests were turned off was under ltsprep...  Odd.
+>>>
+>>> I think you got it in reverse: "mmip" is being completely disabled for default
+>>> "core" builds, but not for "ltsprep" ones, hence you see the breakage there.
+>>
+>> Ahhhh... gotcha... Yes.  That is what is missing.  I'll remove this
+>> patch and add that to the ltsprep brand file.
 > 
+> What about this one:
+> https://patchwork.yoctoproject.org/project/arago/patch/20230429144445.32401-1-reatmon@ti.com/
+
+Yes.  It falls into the same bucket.  Turning off mmip in ltsprep will 
+mean that patch can be removed as well.
+
 > 
-> On 5/1/2023 13:49, Denys Dmytriyenko wrote:
-> >On Mon, May 01, 2023 at 01:39:12PM -0500, Ryan Eatmon wrote:
-> >>
-> >>
-> >>On 5/1/2023 11:55, Denys Dmytriyenko wrote:
-> >>>On Mon, May 01, 2023 at 11:39:15AM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
-> >>>>The code for the plugins uses dma allocation code that we add in with a
-> >>>>patch.  Theoretically we no longer need that code and can use some
-> >>>>upstreamed dma buffer allocation code.  The work to rewrite these
-> >>>>plugins to support the newer gstreamer versions needs to be scheduled.
-> >>>
-> >>>I'm guessing you are missing this in "ltsprep" and other brandings:
-> >>>https://git.yoctoproject.org/meta-arago/tree/meta-arago-distro/conf/distro/include/branding-core.inc#n15
-> >>>
-> >>>But it is a more broader approach, so maybe surgically disabling individual
-> >>>components and re-enabling "mmip" machine feature in "core" is better...
-> >>
-> >>It's not that I missed it, but evn running ltsprep the recipes were
-> >>being included and they fail to build.  So something else must be
-> >>going on to make them be included.  Let me look into it.
-> >>
-> >>I still need to understand why we did not see these build failures
-> >>in kirkstone-wip.  Because these errors are related to the version
-> >>of gstreamer and the bbappends not being applied.  And the only time
-> >>these tests were turned off was under ltsprep...  Odd.
-> >
-> >I think you got it in reverse: "mmip" is being completely disabled for default
-> >"core" builds, but not for "ltsprep" ones, hence you see the breakage there.
-> 
-> Ahhhh... gotcha... Yes.  That is what is missing.  I'll remove this
-> patch and add that to the ltsprep brand file.
+>>>>>> In the meantime, disable using these plugins that cause build errors.
+>>>>>>
+>>>>>> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+>>>>>> ---
+>>>>>>   .../recipes-core/packagegroups/packagegroup-arago-gst.bb      | 4 ++--
+>>>>>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>>>>>
+>>>>>> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
+>>>>>> index e8a639bd..2184ab58 100644
+>>>>>> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
+>>>>>> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
+>>>>>> @@ -27,8 +27,8 @@ GSTREAMER_DEPS:append:dra7xx = " \
+>>>>>>   "
+>>>>>>   GSTREAMER_ACCEL_MM = ""
+>>>>>> -GSTREAMER_ACCEL_MM:omap-a15 = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', "gstreamer1.0-plugins-ducati", '', d)}"
+>>>>>> -GSTREAMER_ACCEL_MM:append:dra7xx = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', " gstreamer1.0-plugins-vpe", '', d)}"
+>>>>>> +#GSTREAMER_ACCEL_MM:omap-a15 = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', "gstreamer1.0-plugins-ducati", '', d)}"
+>>>>>> +#GSTREAMER_ACCEL_MM:append:dra7xx = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', " gstreamer1.0-plugins-vpe", '', d)}"
+>>>>>>   RDEPENDS:${PN} = "\
+>>>>>>       ${GSTREAMER_DEPS} \
+>>>>>> -- 
+>>>>>> 2.17.1
 
-What about this one:
-https://patchwork.yoctoproject.org/project/arago/patch/20230429144445.32401-1-reatmon@ti.com/
-
-
-> >>>>In the meantime, disable using these plugins that cause build errors.
-> >>>>
-> >>>>Signed-off-by: Ryan Eatmon <reatmon@ti.com>
-> >>>>---
-> >>>>  .../recipes-core/packagegroups/packagegroup-arago-gst.bb      | 4 ++--
-> >>>>  1 file changed, 2 insertions(+), 2 deletions(-)
-> >>>>
-> >>>>diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-> >>>>index e8a639bd..2184ab58 100644
-> >>>>--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-> >>>>+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
-> >>>>@@ -27,8 +27,8 @@ GSTREAMER_DEPS:append:dra7xx = " \
-> >>>>  "
-> >>>>  GSTREAMER_ACCEL_MM = ""
-> >>>>-GSTREAMER_ACCEL_MM:omap-a15 = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', "gstreamer1.0-plugins-ducati", '', d)}"
-> >>>>-GSTREAMER_ACCEL_MM:append:dra7xx = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', " gstreamer1.0-plugins-vpe", '', d)}"
-> >>>>+#GSTREAMER_ACCEL_MM:omap-a15 = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', "gstreamer1.0-plugins-ducati", '', d)}"
-> >>>>+#GSTREAMER_ACCEL_MM:append:dra7xx = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', " gstreamer1.0-plugins-vpe", '', d)}"
-> >>>>  RDEPENDS:${PN} = "\
-> >>>>      ${GSTREAMER_DEPS} \
-> >>>>-- 
-> >>>>2.17.1
+-- 
+Ryan Eatmon                reatmon@ti.com
+-----------------------------------------
+Texas Instruments, Inc.  -  LCPD  -  MGTS
 
