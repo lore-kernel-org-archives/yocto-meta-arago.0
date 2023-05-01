@@ -1,85 +1,73 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 75196C77B73
-	for <webhook@archiver.kernel.org>; Mon,  1 May 2023 19:23:00 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.103879.1682968970256347392
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C98DC77B73
+	for <webhook@archiver.kernel.org>; Mon,  1 May 2023 19:45:50 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.105043.1682970344799528050
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 01 May 2023 12:22:50 -0700
+ Mon, 01 May 2023 12:45:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=B6kPEZmj;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 341JMnrH108947;
-	Mon, 1 May 2023 14:22:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1682968969;
-	bh=cai8ITVQ8BrLeuzS0WLGlawIJr52Viv7fHyCvFNebro=;
-	h=From:To:Subject:Date;
-	b=B6kPEZmj6D6fyWFT4+vLxolCBHfqsjIJ0enyigyEobrgjIH/PZWCQRKvV1iTszqrF
-	 wzqB/WVjZnCXR1LXvOSiPqQgnWAK86Of+g0VLDzBTDXYlQ9uT2jDbAgxfCQh+iilJ4
-	 H7seSVvj8OzyrOxE3xQuaAJaL2eUuVg8hsGIv65g=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 341JMm0E020072
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 1 May 2023 14:22:49 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
- May 2023 14:22:48 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 1 May 2023 14:22:48 -0500
-Received: from uda0214219 (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 341JMm4e021706;
-	Mon, 1 May 2023 14:22:48 -0500
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1ptZ6m-0002q0-JO; Mon, 01 May 2023 14:22:48 -0500
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master/kirkstone][PATCH] branding-ltsprep: Disable mmip
-Date: Mon, 1 May 2023 14:22:48 -0500
-Message-ID: <20230501192248.10869-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id B008F40C1C;
+	Mon,  1 May 2023 19:45:43 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id M8qy-iYBSeuI; Mon,  1 May 2023 19:45:43 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 94A8C40C13;
+	Mon,  1 May 2023 19:45:42 +0000 (UTC)
+Received: from thorin.denix (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id E44F916387A;
+	Mon,  1 May 2023 15:45:00 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master/kirkstone][PATCH] arago.conf: bump distro version
+Date: Mon,  1 May 2023 19:45:41 +0000
+Message-Id: <20230501194541.1823840-1-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 01 May 2023 19:23:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14387
+ <meta-arago@lists.yoctoproject.org>; Mon, 01 May 2023 19:45:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14388
 
-We were already disabling the MACHINE_FEATURES for mmip in
-branding-core.  We just missed adding it to ltsprep as well.
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+There are some relatively major changes coming to meta-ti in the form
+of kernel 6.1 LTS, 2023 U-boot with binman and reworking GP/HS machine
+configs and firmware handling, as well as slight layer restructuring
+in meta-arago itself. Arago distro version hasn't been bumped for a
+while and it is a good time to do so now while things are considerably
+stable.
+
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- meta-arago-distro/conf/distro/include/branding-ltsprep.inc | 3 +++
- 1 file changed, 3 insertions(+)
+ meta-arago-distro/conf/distro/arago.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-ltsprep.inc b/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-index ee8761f9..0f0b6472 100644
---- a/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-@@ -9,6 +9,9 @@ PREFERRED_VERSION_u-boot-ti-staging = "2023.04%"
- MACHINE_FEATURES:remove = "gpu"
- PREFERRED_PROVIDER_virtual/gpudriver = ""
- 
-+# Remove mmip - DRM allocator, KMS sink, Wayland sink need porting to GST 1.18
-+MACHINE_FEATURES:remove = "mmip"
-+
- # GC320 support requires out-of-tree drivers not available in until LTS prep is
- # complete. Disable for now.
- MACHINE_FEATURES:remove = "gc320"
--- 
-2.17.1
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro=
+/conf/distro/arago.conf
+index 094e67da..07cff76b 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -1,6 +1,6 @@
+ # Name and version of the distribution
+ DISTRO_NAME =3D "Arago"
+-DISTRO_VERSION =3D "2022.02"
++DISTRO_VERSION =3D "2023.04"
+ DISTRO_FEED_URI ?=3D "http://lcpd.itg.ti.com"
+ BUILD_VARIANT =3D "${@['prod','rt','systest'][int(d.getVar('ARAGO_RT_ENA=
+BLE'))+int(d.getVar('ARAGO_SYSTEST_ENABLE'))*2]}"
+ TISDK_VERSION ?=3D "live"
+--=20
+2.25.1
 
 
