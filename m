@@ -2,140 +2,84 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7420AC7EE24
-	for <webhook@archiver.kernel.org>; Mon,  1 May 2023 19:14:40 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web10.104106.1682968478069040664
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 75196C77B73
+	for <webhook@archiver.kernel.org>; Mon,  1 May 2023 19:23:00 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web11.103879.1682968970256347392
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 01 May 2023 12:14:38 -0700
+ Mon, 01 May 2023 12:22:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=JNC79wbE;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=B6kPEZmj;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 341JEXkr009344;
-	Mon, 1 May 2023 14:14:33 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 341JMnrH108947;
+	Mon, 1 May 2023 14:22:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1682968473;
-	bh=uFiQ0S1FwidzAJjxQR1q1OQG+DfikXr/2XAgjeBPtg8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=JNC79wbEAKQuzqHlTfhFG8MY2aqTP6P7GWrMf6HS59u2kOIJ2UMl9MftMa64ZsALP
-	 tePavwoog8n7TE7IQs7QrUkIUTLsFFUlgTCMSTVNvfEpyjCc72WB9Xr6QpwlcDY6Qc
-	 tf7fdZ9aYf3TDM+J4Cbi6DAoZCMt0JMA8WCkygRQ=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 341JEXmC015043
+	s=ti-com-17Q1; t=1682968969;
+	bh=cai8ITVQ8BrLeuzS0WLGlawIJr52Viv7fHyCvFNebro=;
+	h=From:To:Subject:Date;
+	b=B6kPEZmj6D6fyWFT4+vLxolCBHfqsjIJ0enyigyEobrgjIH/PZWCQRKvV1iTszqrF
+	 wzqB/WVjZnCXR1LXvOSiPqQgnWAK86Of+g0VLDzBTDXYlQ9uT2jDbAgxfCQh+iilJ4
+	 H7seSVvj8OzyrOxE3xQuaAJaL2eUuVg8hsGIv65g=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 341JMm0E020072
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 1 May 2023 14:14:33 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 1 May 2023 14:22:49 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
- May 2023 14:14:33 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ May 2023 14:22:48 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 1 May 2023 14:14:33 -0500
-Received: from [10.249.32.181] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 341JEWUm014324;
-	Mon, 1 May 2023 14:14:32 -0500
-Message-ID: <cc104e61-3e01-27a6-04a3-2b0a0f9512fd@ti.com>
-Date: Mon, 1 May 2023 14:14:32 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [meta-arago][master/kirkstone][PATCH] packagegroup-arago-gst:
- Disable vpe and ducati plugins
-Content-Language: en-US
-To: Denys Dmytriyenko <denis@denix.org>
-CC: Praneeth Bajjuri <praneeth@ti.com>,
+ Frontend Transport; Mon, 1 May 2023 14:22:48 -0500
+Received: from uda0214219 (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 341JMm4e021706;
+	Mon, 1 May 2023 14:22:48 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1ptZ6m-0002q0-JO; Mon, 01 May 2023 14:22:48 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-References: <20230501163915.10612-1-reatmon@ti.com>
- <20230501165551.GV9226@denix.org>
- <3c531a0e-7c07-16ce-5fce-084c66cdb5c6@ti.com>
- <20230501184934.GW9226@denix.org>
- <696be171-120c-87eb-d987-251a3afb9d8e@ti.com>
- <20230501191008.GX9226@denix.org>
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <20230501191008.GX9226@denix.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: [meta-arago][master/kirkstone][PATCH] branding-ltsprep: Disable mmip
+Date: Mon, 1 May 2023 14:22:48 -0500
+Message-ID: <20230501192248.10869-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 01 May 2023 19:14:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14386
+ <meta-arago@lists.yoctoproject.org>; Mon, 01 May 2023 19:23:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14387
 
+We were already disabling the MACHINE_FEATURES for mmip in
+branding-core.  We just missed adding it to ltsprep as well.
 
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ meta-arago-distro/conf/distro/include/branding-ltsprep.inc | 3 +++
+ 1 file changed, 3 insertions(+)
 
-On 5/1/2023 14:10, Denys Dmytriyenko wrote:
-> On Mon, May 01, 2023 at 02:08:40PM -0500, Ryan Eatmon wrote:
->>
->>
->> On 5/1/2023 13:49, Denys Dmytriyenko wrote:
->>> On Mon, May 01, 2023 at 01:39:12PM -0500, Ryan Eatmon wrote:
->>>>
->>>>
->>>> On 5/1/2023 11:55, Denys Dmytriyenko wrote:
->>>>> On Mon, May 01, 2023 at 11:39:15AM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
->>>>>> The code for the plugins uses dma allocation code that we add in with a
->>>>>> patch.  Theoretically we no longer need that code and can use some
->>>>>> upstreamed dma buffer allocation code.  The work to rewrite these
->>>>>> plugins to support the newer gstreamer versions needs to be scheduled.
->>>>>
->>>>> I'm guessing you are missing this in "ltsprep" and other brandings:
->>>>> https://git.yoctoproject.org/meta-arago/tree/meta-arago-distro/conf/distro/include/branding-core.inc#n15
->>>>>
->>>>> But it is a more broader approach, so maybe surgically disabling individual
->>>>> components and re-enabling "mmip" machine feature in "core" is better...
->>>>
->>>> It's not that I missed it, but evn running ltsprep the recipes were
->>>> being included and they fail to build.  So something else must be
->>>> going on to make them be included.  Let me look into it.
->>>>
->>>> I still need to understand why we did not see these build failures
->>>> in kirkstone-wip.  Because these errors are related to the version
->>>> of gstreamer and the bbappends not being applied.  And the only time
->>>> these tests were turned off was under ltsprep...  Odd.
->>>
->>> I think you got it in reverse: "mmip" is being completely disabled for default
->>> "core" builds, but not for "ltsprep" ones, hence you see the breakage there.
->>
->> Ahhhh... gotcha... Yes.  That is what is missing.  I'll remove this
->> patch and add that to the ltsprep brand file.
-> 
-> What about this one:
-> https://patchwork.yoctoproject.org/project/arago/patch/20230429144445.32401-1-reatmon@ti.com/
-
-Yes.  It falls into the same bucket.  Turning off mmip in ltsprep will 
-mean that patch can be removed as well.
-
-> 
->>>>>> In the meantime, disable using these plugins that cause build errors.
->>>>>>
->>>>>> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
->>>>>> ---
->>>>>>   .../recipes-core/packagegroups/packagegroup-arago-gst.bb      | 4 ++--
->>>>>>   1 file changed, 2 insertions(+), 2 deletions(-)
->>>>>>
->>>>>> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
->>>>>> index e8a639bd..2184ab58 100644
->>>>>> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
->>>>>> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst.bb
->>>>>> @@ -27,8 +27,8 @@ GSTREAMER_DEPS:append:dra7xx = " \
->>>>>>   "
->>>>>>   GSTREAMER_ACCEL_MM = ""
->>>>>> -GSTREAMER_ACCEL_MM:omap-a15 = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', "gstreamer1.0-plugins-ducati", '', d)}"
->>>>>> -GSTREAMER_ACCEL_MM:append:dra7xx = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', " gstreamer1.0-plugins-vpe", '', d)}"
->>>>>> +#GSTREAMER_ACCEL_MM:omap-a15 = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', "gstreamer1.0-plugins-ducati", '', d)}"
->>>>>> +#GSTREAMER_ACCEL_MM:append:dra7xx = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', " gstreamer1.0-plugins-vpe", '', d)}"
->>>>>>   RDEPENDS:${PN} = "\
->>>>>>       ${GSTREAMER_DEPS} \
->>>>>> -- 
->>>>>> 2.17.1
-
+diff --git a/meta-arago-distro/conf/distro/include/branding-ltsprep.inc b/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
+index ee8761f9..0f0b6472 100644
+--- a/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
++++ b/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
+@@ -9,6 +9,9 @@ PREFERRED_VERSION_u-boot-ti-staging = "2023.04%"
+ MACHINE_FEATURES:remove = "gpu"
+ PREFERRED_PROVIDER_virtual/gpudriver = ""
+ 
++# Remove mmip - DRM allocator, KMS sink, Wayland sink need porting to GST 1.18
++MACHINE_FEATURES:remove = "mmip"
++
+ # GC320 support requires out-of-tree drivers not available in until LTS prep is
+ # complete. Disable for now.
+ MACHINE_FEATURES:remove = "gc320"
 -- 
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
+2.17.1
+
 
