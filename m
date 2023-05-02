@@ -1,73 +1,83 @@
-Return-Path: <denis@denix.org>
+Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C98DC77B73
-	for <webhook@archiver.kernel.org>; Mon,  1 May 2023 19:45:50 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.105043.1682970344799528050
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7AF6BC77B78
+	for <webhook@archiver.kernel.org>; Tue,  2 May 2023 20:14:25 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.1068.1683058455492937524
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 01 May 2023 12:45:45 -0700
+ Tue, 02 May 2023 13:14:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B008F40C1C;
-	Mon,  1 May 2023 19:45:43 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id M8qy-iYBSeuI; Mon,  1 May 2023 19:45:43 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 94A8C40C13;
-	Mon,  1 May 2023 19:45:42 +0000 (UTC)
-Received: from thorin.denix (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id E44F916387A;
-	Mon,  1 May 2023 15:45:00 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master/kirkstone][PATCH] arago.conf: bump distro version
-Date: Mon,  1 May 2023 19:45:41 +0000
-Message-Id: <20230501194541.1823840-1-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=CHyaqQdS;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: rs@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 342KEB9V058985;
+	Tue, 2 May 2023 15:14:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1683058451;
+	bh=veBxSkN6Wkw+LpR7FDWnzscJtZhM8uKY+yOFhuS+8Gs=;
+	h=From:To:CC:Subject:Date;
+	b=CHyaqQdSJorICxovlm8uzwFao12hhjPbcA7N04TjLrrO1QbfuJBAoyx3cUQMzKy9Q
+	 k9dS6dPmQ0DvedNNHq0Y03oHw06t9n3UtAXmbxBKPuecXSEuVTs0p4r3DQjNosiQ7k
+	 V5kVtIJLNL+/i6x8bcowDicrImhQsEeuXVVk5jTE=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 342KEBqZ030014
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 2 May 2023 15:14:11 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 2
+ May 2023 15:14:11 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 2 May 2023 15:14:11 -0500
+Received: from rs-desk.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 342KEBHE031512;
+	Tue, 2 May 2023 15:14:11 -0500
+From: <rs@ti.com>
+To: <afd@ti.com>, <reatmon@ti.com>, <denis@denix.org>
+CC: <meta-arago@lists.yoctoproject.org>, Randolph Sapp <rs@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH] packagegroup-arago-base-tisdk: replace dbus with dbus-broker
+Date: Tue, 2 May 2023 15:14:09 -0500
+Message-ID: <20230502201409.1750017-1-rs@ti.com>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 01 May 2023 19:45:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14388
+ <meta-arago@lists.yoctoproject.org>; Tue, 02 May 2023 20:14:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14389
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+From: Randolph Sapp <rs@ti.com>
 
-There are some relatively major changes coming to meta-ti in the form
-of kernel 6.1 LTS, 2023 U-boot with binman and reworking GP/HS machine
-configs and firmware handling, as well as slight layer restructuring
-in meta-arago itself. Arago distro version hasn't been bumped for a
-while and it is a good time to do so now while things are considerably
-stable.
+Replace dbus with the faster and more favorable drop-in replacement,
+dbus-broker. A handful of distros have made this change. Fedora being a
+notable one.
 
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: Randolph Sapp <rs@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 2 +-
+ .../recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro=
-/conf/distro/arago.conf
-index 094e67da..07cff76b 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -1,6 +1,6 @@
- # Name and version of the distribution
- DISTRO_NAME =3D "Arago"
--DISTRO_VERSION =3D "2022.02"
-+DISTRO_VERSION =3D "2023.04"
- DISTRO_FEED_URI ?=3D "http://lcpd.itg.ti.com"
- BUILD_VARIANT =3D "${@['prod','rt','systest'][int(d.getVar('ARAGO_RT_ENA=
-BLE'))+int(d.getVar('ARAGO_SYSTEST_ENABLE'))*2]}"
- TISDK_VERSION ?=3D "live"
---=20
-2.25.1
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
+index 6a21bdd7..03e5a5f9 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
+@@ -13,7 +13,7 @@ OPTEE_PKGS = " \
+ "
+ 
+ RDEPENDS:${PN} = "\
+-    dbus \
++    dbus-broker \
+     expat \
+     glib-2.0 \
+     libxml2 \
+-- 
+2.40.0
 
 
