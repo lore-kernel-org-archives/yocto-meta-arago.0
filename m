@@ -1,126 +1,96 @@
-Return-Path: <denis@denix.org>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B1A2C77B7A
-	for <webhook@archiver.kernel.org>; Tue, 16 May 2023 17:17:44 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.27913.1684257463591702004
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 51486C77B75
+	for <webhook@archiver.kernel.org>; Tue, 16 May 2023 17:59:24 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web10.28986.1684259957185120346
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 16 May 2023 10:17:43 -0700
+ Tue, 16 May 2023 10:59:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 4810F40C2B;
-	Tue, 16 May 2023 17:17:42 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id zEgCt5xkd81T; Tue, 16 May 2023 17:17:42 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 1DB56409B0;
-	Tue, 16 May 2023 17:17:39 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 7C0031638CB; Tue, 16 May 2023 13:16:55 -0400 (EDT)
-Date: Tue, 16 May 2023 13:16:55 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Ryan Eatmon <reatmon@ti.com>
-Cc: Praneeth Bajjuri <praneeth@ti.com>,
-	Denys Dmytriyenko <denys@konsulko.com>,
-	meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][master/kirkstone][PATCH 1/2] ltp-ddt: Intial LTS
- migration version
-Message-ID: <20230516171655.GO9226@denix.org>
-References: <20230516143156.1961-1-reatmon@ti.com>
- <20230516160251.GL9226@denix.org>
- <93027b9f-da82-550c-1672-020772a701e9@ti.com>
- <20230516162326.GM9226@denix.org>
- <d6be5787-045e-915b-dd8f-5330e5f0d3b8@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=wA0BGEqH;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34GHxEB6083180;
+	Tue, 16 May 2023 12:59:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1684259954;
+	bh=tMghMSQSiBPQ9zGKqdtycz5ibDNfQfK3d9EZYPDKYF8=;
+	h=From:To:Subject:Date;
+	b=wA0BGEqHTU5bQyHatXfRvPGc2uYQTqdRDnYur4RGbY6NYPxBrPYeaJZ1KulID+xld
+	 Wd5TxwBvAaa2bRlCo2Mssex1t+4tc/DF7/NGC3RmleYSvsWFDkkCB+GvsVyOyV5lyl
+	 k53P9kMN4ZuknXaG47sjvELZEgnSSM5wedE3WWDo=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34GHxE89028094
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 16 May 2023 12:59:14 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
+ May 2023 12:59:13 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 16 May 2023 12:59:13 -0500
+Received: from uda0214219 (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34GHxDKP113703;
+	Tue, 16 May 2023 12:59:13 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1pyyx7-00010d-HX; Tue, 16 May 2023 12:59:13 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][master/kirkstone][PATCH] opencl: stop using "virtual/" in RPROVIDES and RDEPENDS
+Date: Tue, 16 May 2023 12:59:13 -0500
+Message-ID: <20230516175913.3829-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d6be5787-045e-915b-dd8f-5330e5f0d3b8@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 16 May 2023 17:17:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14413
+ <meta-arago@lists.yoctoproject.org>; Tue, 16 May 2023 17:59:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14414
 
-Thanks! The repost is very helpful.
+Recipes shouldn't use the "virtual/" string in RPROVIDES and RDEPENDS.
 
-I guess what threw me off is that meta-ti pieces were already merged, but not 
-enabled by default. While meta-arago changes were still missing (kept in wip) 
-instead of doing the same as meta-ti...
+That's confusing because "virtual/" has no special meaning in
+RPROVIDES and RDEPENDS (unlike in PROVIDES and DEPENDS).
 
+Instead, using "virtual-" instead of "virtual/"
+as already done in the glibc recipe.
 
-On Tue, May 16, 2023 at 11:38:08AM -0500, Ryan Eatmon wrote:
-> 
-> I can do that.  I'll resend a new series with a cover letter.
-> 
-> 
-> On 5/16/2023 11:23 AM, Denys Dmytriyenko wrote:
-> >On Tue, May 16, 2023 at 11:19:29AM -0500, Ryan Eatmon wrote:
-> >>
-> >>
-> >>On 5/16/2023 11:02 AM, Denys Dmytriyenko wrote:
-> >>>1. There's no 20231017 version of ltp-ddt in meta-arago:
-> >>>
-> >>>https://git.yoctoproject.org/meta-arago/tree/meta-arago-extras/recipes-devtools/ltp-ddt
-> >>
-> >>There is on wip/next which after a forced CICD is about to make it
-> >>visiable to kirkstone.
-> >>
-> >>All of these patches build on previous patches that are "Under
-> >>Review" on the next branches.
-> >>
-> >>I'm just sending out the patches so that as soon as CICD promotes it
-> >>all I can get the patches applied to master as well.
-> >
-> >Right. I wonder if those need to be re-sent again, since it's been a long time
-> >they came across. Or maybe post links here to corresponding base commits on
-> >wip branch for a refresher?
-> >
-> >
-> >>>2. ltp-ddt is based on upstream ltp - while OE-Core/master has version
-> >>>20231017 of ltp, kirkstone has an older 20220121 version:
-> >>>
-> >>>https://git.openembedded.org/openembedded-core/tree/meta/recipes-extended/ltp
-> >>>
-> >>>So you'd need to overlay ltp 20231017 here:
-> >>>
-> >>>https://git.yoctoproject.org/meta-arago/tree/meta-arago-extras/recipes-extended/ltp
-> >>>
-> >>>3. Once the upgrade is done, you can remove the old overlayed 20200120 and
-> >>>20210524 versions of ltp
-> >>>
-> >>>
-> >>>On Tue, May 16, 2023 at 09:31:55AM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
-> >>>>From: LCPD Automation Script <lcpdbld@list.ti.com>
-> >>>>
-> >>>>As part of the initial LTS migration, move to the latest commits for the
-> >>>>various repos.
-> >>>>  - ltp-ddt_20230127
-> >>>>
-> >>>>Going forward all updates will come from the CICD flow.
-> >>>>
-> >>>>Signed-off-by: Ryan Eatmon <reatmon@ti.com>
-> >>>>---
-> >>>>  meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb | 2 +-
-> >>>>  1 file changed, 1 insertion(+), 1 deletion(-)
-> >>>>
-> >>>>diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
-> >>>>index d56c5b7b..c14ddba7 100644
-> >>>>--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
-> >>>>+++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
-> >>>>@@ -14,7 +14,7 @@ PE = "1"
-> >>>>  PR = "r7"
-> >>>>  PV:append = "+git${SRCPV}"
-> >>>>-SRCREV = "7f2fc4b7c972f2f188836c739a7175fad2f2b288"
-> >>>>+SRCREV = "41e97da730b9064d9fc5337afb515a8b6f752099"
-> >>>>  BRANCH ?= "master"
-> >>>>  SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
-> >>>>-- 
-> >>>>2.17.1
+This is inspired by a bug report on oe-core [1], and implemented in a
+patch to that repo [2].
+
+[1] https://bugzilla.yoctoproject.org/show_bug.cgi?id=14538
+[2] https://git.openembedded.org/openembedded-core/commit/meta/recipes-bsp/grub/grub-bootconf_1.00.bb?id=93ac180d8c389f16964bce8bd5538d9389e970e6
+
+Signed-off-by: Randolph Sapp <rs@ti.com>
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ meta-arago-extras/recipes-ti/ocl/opencl_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+index 7a3819c2..0bdbed7e 100644
+--- a/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
++++ b/meta-arago-extras/recipes-ti/ocl/opencl_git.bb
+@@ -40,7 +40,7 @@ DEPENDS = " virtual/libgl \
+ DEPENDS:append:dra7xx = " ti-ipc virtual/kernel"
+ 
+ RDEPENDS:${PN}-runtime += "bash ${MONITORS}"
+-RDEPENDS:${PN}-dev += "virtual/libgl-dev"
++RDEPENDS:${PN}-dev += "virtual-libgl-dev"
+ RDEPENDS:${PN} += "${PN}-runtime clocl bash"
+ 
+ # Use main package to pull in full support
+-- 
+2.17.1
+
 
