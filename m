@@ -1,80 +1,83 @@
-Return-Path: <r-ravikumar@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4216AC77B7A
-	for <webhook@archiver.kernel.org>; Thu, 18 May 2023 13:26:47 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web10.17317.1684416400989560322
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 249E2C7EE23
+	for <webhook@archiver.kernel.org>; Thu, 18 May 2023 17:56:05 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.2429.1684432559224061877
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 18 May 2023 06:26:41 -0700
+ Thu, 18 May 2023 10:55:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=MGB5UXki;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: r-ravikumar@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34IDQeW6125432
-	for <meta-arago@lists.yoctoproject.org>; Thu, 18 May 2023 08:26:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1684416400;
-	bh=IMNcw+C72W4dkYaZl6NFT+kGlXL2Q9AxVufhR0/P8Rs=;
-	h=From:To:CC:Subject:Date;
-	b=MGB5UXki09bc5k7WyAfeDIjvOzghjvhPqhx4vMdGQOZLTGjzYTE5cmuudr8G6hPF3
-	 FiSgFTeUMdqtGN9pQsG/ejr1SQBQN4ZNjaA+CAF3YNYbFO7jGy9tAatmYVwtnVrXgN
-	 n0aOszDk48rEnGqZ56oNYM6EO1Ep++vxUXbFYDmc=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34IDQepi053954
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Thu, 18 May 2023 08:26:40 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 18
- May 2023 08:26:40 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 18 May 2023 08:26:40 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34IDQcZt006060;
-	Thu, 18 May 2023 08:26:39 -0500
-From: Rahul T R <r-ravikumar@ti.com>
-To: <meta-arago@lists.yoctoproject.org>, Ryan Eatmon <reatmon@ti.com>
-CC: <j-choudhary@ti.com>, <a-bhatia1@ti.com>, <b-brnich@ti.com>,
-        <devarsht@ti.com>, <r-ravikumar@ti.com>
-Subject: [meta-arago][master/kirkstone][PATCH] conf: arago: Add flag to enable kmssink plugin
-Date: Thu, 18 May 2023 18:56:36 +0530
-Message-ID: <20230518132636.17398-1-r-ravikumar@ti.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 7AB2D40C5D;
+	Thu, 18 May 2023 17:55:58 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id baVjY79vy0hM; Thu, 18 May 2023 17:55:58 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3C2B140C21;
+	Thu, 18 May 2023 17:55:54 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 411EA1638E4; Thu, 18 May 2023 13:55:10 -0400 (EDT)
+Date: Thu, 18 May 2023 13:55:10 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: r-ravikumar@ti.com
+Cc: meta-arago@lists.yoctoproject.org, Ryan Eatmon <reatmon@ti.com>,
+	vigneshr@ti.com, praneeth@ti.com
+Subject: Re: [meta-arago][master/kirkstone][PATCH] meta-arago-extras:
+ recipes-devtools: statcol: Bump SRCREV to fix rpmsg_char APIs
+Message-ID: <20230518175510.GR9226@denix.org>
+References: <20230518132044.17273-1-r-ravikumar@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230518132044.17273-1-r-ravikumar@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 18 May 2023 13:26:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14418
+ <meta-arago@lists.yoctoproject.org>; Thu, 18 May 2023 17:56:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14419
 
-Enable building kmssink plugin in gstreamer1.0-plugins-bad
+On Thu, May 18, 2023 at 06:50:44PM +0530, Rahul T R via lists.yoctoproject.org wrote:
+> There has been some update in ti-rpmsg-char library APIs, New commits aligns
+> with this update
+> 
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> ---
+>  Requires: https://lists.yoctoproject.org/g/meta-ti/message/16556
+> 
+>  meta-arago-extras/recipes-devtools/statcol/statcol.bb | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-devtools/statcol/statcol.bb b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
+> index 5cae05d7..2968ac83 100644
+> --- a/meta-arago-extras/recipes-devtools/statcol/statcol.bb
+> +++ b/meta-arago-extras/recipes-devtools/statcol/statcol.bb
+> @@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=bb6bc27cd44417c389a180bd62f552a0"
+>  
+>  PROTOCOL = "https"
+>  BRANCH = "master"
+> -SRCREV = "dd0131eadf3633e8f9d06cb390d3c6c1b074d873"
+> +SRCREV = "279bf455bc3dec69f374d46a8225687935f4323a"
+>  SRC_URI = "git://git.ti.com/git/glsdk/statcol.git;protocol=${PROTOCOL};branch=${BRANCH}"
+>  
+>  DEPENDS = "ti-rpmsg-char websocketd"
+> @@ -19,6 +19,6 @@ do_install() {
+>  	DESTDIR=${D} make install
+>  }
+>  
+> -PR:append = "_3"
+> +PR:append = "_4"
 
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf | 3 +++
- 1 file changed, 3 insertions(+)
+This is a standalone recipe, should set PV instead.
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 379b1d44..e32259a9 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -113,6 +113,9 @@ PACKAGECONFIG:append:pn-openssl = " cryptodev-linux"
- # Enable GST_TRACER logging in gstreamer
- PACKAGECONFIG:append:pn-gstreamer1.0 = " tracer-hooks"
- 
-+# Enable kmssink in gstreamer
-+PACKAGECONFIG:append:pn-gstreamer1.0-plugins-bad = " kms"
-+
- # Disable pulseaudio routing in alsa by default
- PACKAGECONFIG:remove:pn-alsa-plugins = "pulseaudio"
- RDEPENDS:pulseaudio-server:remove = "alsa-plugins-pulseaudio-conf"
--- 
-2.17.1
 
+>  INSANE_SKIP:${PN} = "ldflags"
+> -- 
+> 2.17.1
 
