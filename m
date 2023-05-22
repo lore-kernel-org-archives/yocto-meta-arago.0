@@ -2,46 +2,46 @@ Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 11325C7EE2E
-	for <webhook@archiver.kernel.org>; Mon, 22 May 2023 18:38:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F10CDC7EE23
+	for <webhook@archiver.kernel.org>; Mon, 22 May 2023 18:38:55 +0000 (UTC)
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web10.3157.1684780734191994412
+ by mx.groups.io with SMTP id smtpd.web10.3155.1684780733645592973
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 22 May 2023 11:38:54 -0700
+ Mon, 22 May 2023 11:38:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=rjOxsS0B;
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=Fcv+2H7T;
  spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: rs@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34MIcpNL117417;
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34MIcpwC117421;
 	Mon, 22 May 2023 13:38:51 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1684780731;
-	bh=zfuwQYf534XMwY9riEJ9Q1/5Svma1ivLvg9G0UspbPA=;
+	bh=quZ3yH1D9f/gmdLSszH3rew4b0y8hTjg1zLKmppBGHA=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=rjOxsS0BlBHg6QCXWX1+WP+O01rXV8oLjZs5lsyNiqq7558jerE+8zYVPXxBh1fjU
-	 YuRArpcmcAZw6uP6JJaaZmAHV1S7i4Unn8/DrpVZ0HGIDU4WYhZ52sEnLuLtDMSv5b
-	 Eg4ed5VeBrAqfjsq3q4h9JLp6oyODZlsfSZGCO8k=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34MIcpZ0116878
+	b=Fcv+2H7TsMWieqvyU4N3Zl8vrlacjh8380VYvInL9mjzPAwjArb3N6HQCczm0kQQR
+	 MpWXhz92IoB78m1depoBupNUfM/V7KO9P1TWSxFkLtxuvHNtwUuISz4DlWG+JE0yBf
+	 BuIUXs7wtT7JOi0uHusfeWf5HftRSZzj0e4OMW+k=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34MIcpNt115278
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
 	Mon, 22 May 2023 13:38:51 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 22
  May 2023 13:38:51 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 22 May 2023 13:38:51 -0500
+ Frontend Transport; Mon, 22 May 2023 13:38:50 -0500
 Received: from rs-desk.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34MIcnoD092240;
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34MIcnoE092240;
 	Mon, 22 May 2023 13:38:51 -0500
 From: <rs@ti.com>
 To: <denis@denix.org>, <reatmon@ti.com>, <afd@ti.com>
 CC: <meta-arago@lists.yoctoproject.org>, Randolph Sapp <rs@ti.com>
-Subject: [meta-arago][master][PATCH 1/3] all: remove all external toolchain stuff
-Date: Mon, 22 May 2023 13:38:45 -0500
-Message-ID: <20230522183847.3663294-2-rs@ti.com>
+Subject: [meta-arago][master][PATCH 2/3] all: remove all external toolchain logic
+Date: Mon, 22 May 2023 13:38:46 -0500
+Message-ID: <20230522183847.3663294-3-rs@ti.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230522183847.3663294-1-rs@ti.com>
 References: <20230522183847.3663294-1-rs@ti.com>
@@ -52,461 +52,660 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 22 May 2023 18:38:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14431
+ <meta-arago@lists.yoctoproject.org>; Mon, 22 May 2023 18:38:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14430
 
 From: Randolph Sapp <rs@ti.com>
 
-Drop all of the external toolchain stuff. We don't need it anymore now
-that everything can use the internal yocto compiler and multiarch has
-been configured properly in meta-ti.
+Remove all legacy external toolchain logic, packages, groups, etc. All
+of this was required for the Arago SDK build target and is not necessary
+moving forward. This build target can and should be replaced by the
+Yocto Standard SDK build target:
 
-In addition to this, it squelches a warning that's been bothering me.
-One of these files attempts to dynamically set it's package name and
-bitbake wasn't expanding one of the required variables soon enough,
-result in some garbage package with an unexpanded
-'${SECONDARY_TARGET_ARCH}' in it's name.
+	bitbake tisdk-default-image -c populate_sdk
 
 Signed-off-by: Randolph Sapp <rs@ti.com>
 ---
- .../conf/distro/include/toolchain-arm.inc     | 118 ----------------
- .../external-arm-secondary-sdk-toolchain.bb   |   4 -
- .../meta/external-arm-toolchain.bbappend      |  36 -----
- .../packagegroup-cross-canadian.bbappend      |  10 --
- .../meta/external-arm-bfd-version.inc         |   8 --
- .../meta/external-arm-sdk-toolchain.bb        | 131 ------------------
- .../meta/external-arm-toolchain.bbappend      |  73 ----------
- 7 files changed, 380 deletions(-)
- delete mode 100644 meta-arago-distro/conf/distro/include/toolchain-arm.inc
- delete mode 100644 meta-arago-distro/recipes-core/meta/external-arm-secondary-sdk-toolchain.bb
- delete mode 100644 meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend
- delete mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-cross-canadian.bbappend
- delete mode 100644 meta-arago-extras/recipes-core/meta/external-arm-bfd-version.inc
- delete mode 100644 meta-arago-extras/recipes-core/meta/external-arm-sdk-toolchain.bb
- delete mode 100644 meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+ meta-arago-distro/conf/distro/arago.conf      |  13 -
+ .../distro/include/branding-processor-sdk.inc |   2 -
+ .../distro/include/toolchain-external.inc     |   4 -
+ .../conf/distro/include/toolchain-gcc.inc     |  41 --
+ .../distro/include/toolchain-internal.inc     |   4 -
+ .../meta/meta-toolchain-arago-tisdk-server.bb |   7 -
+ .../meta/meta-toolchain-arago-tisdk.bb        |   6 -
+ .../meta/meta-toolchain-arago-tisdk.inc       |   8 -
+ .../meta/meta-toolchain-arago-qte.bb          |  54 ---
+ .../recipes-core/meta/meta-toolchain-arago.bb | 360 ------------------
+ .../nativesdk-buildtools-perl-dummy.bbappend  |  23 --
+ ...k-packagegroup-arago-qte-toolchain-host.bb |  11 -
+ 12 files changed, 533 deletions(-)
+ delete mode 100644 meta-arago-distro/conf/distro/include/toolchain-external.inc
+ delete mode 100644 meta-arago-distro/conf/distro/include/toolchain-gcc.inc
+ delete mode 100644 meta-arago-distro/conf/distro/include/toolchain-internal.inc
+ delete mode 100644 meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb
+ delete mode 100644 meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb
+ delete mode 100644 meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.inc
+ delete mode 100644 meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
+ delete mode 100644 meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+ delete mode 100644 meta-arago-extras/recipes-core/meta/nativesdk-buildtools-perl-dummy.bbappend
+ delete mode 100644 meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb
 
-diff --git a/meta-arago-distro/conf/distro/include/toolchain-arm.inc b/meta-arago-distro/conf/distro/include/toolchain-arm.inc
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 379b1d44..ed04602e 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -137,16 +137,6 @@ ARAGO_SYSTEST_ENABLE ?= "0"
+ ARAGO_KERNEL_SUFFIX:append = "${@oe.utils.conditional("ARAGO_SYSTEST_ENABLE", "1", "-systest", "", d)}"
+ IMAGE_FSTYPES:remove = "${@['','ubi ubifs'][d.getVar('ARAGO_SYSTEST_ENABLE') == '1']}"
+ 
+-# Toolchain should be selected by setting TOOLCHAIN_BRAND in local.conf
+-# Set some sane defaults, in case someone forgets to set them in local.conf
+-TC_SANE_DEFAULT ?= "arm"
+-TOOLCHAIN_TYPE ?= "internal"
+-TOOLCHAIN_TYPE:omapl138 = "internal"
+-TOOLCHAIN_BRAND ?= "${@[d.getVar('TC_SANE_DEFAULT'),'gcc'][d.getVar('TOOLCHAIN_TYPE') == 'internal']}"
+-
+-require conf/distro/include/toolchain-${TOOLCHAIN_BRAND}.inc
+-require conf/distro/include/toolchain-${TOOLCHAIN_TYPE}.inc
+-
+ # Enable basic stack and buffer overflow protections
+ #TARGET_CPPFLAGS += "-fstack-protector -D_FORTIFY_SOURCE=1"
+ #TARGET_CPPFLAGS += "-fstack-protector"
+@@ -179,6 +169,3 @@ ENTERPRISE_DISTRO = "1"
+ # Arago based SDK. No need to prevent gst-ffmpeg from being used since we
+ # disable troublesome software.
+ LICENSE_FLAGS_ACCEPTED = "commercial_gst-ffmpeg commercial_gstreamer1.0-libav commercial_faad2 non-commercial_netperf"
+-
+-# Do not package own copy of perl into devkit, rely on host one
+-ASSUME_PROVIDED += "nativesdk-perl"
+diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+index 25bb1b8c..f581dd93 100644
+--- a/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
++++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk.inc
+@@ -1,5 +1,3 @@
+-ARAGO_TISDK_IMAGE = "processor-sdk-linux-image"
+-
+ # Set CMEM reserved memory region
+ RESERVE_CMEM = "${@bb.utils.contains('MACHINE_FEATURES','dsp','1','0',d)}"
+ CMEM_BASE:omap-a15 ?= "a0000000"
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-external.inc b/meta-arago-distro/conf/distro/include/toolchain-external.inc
 deleted file mode 100644
-index 9b76917d..00000000
---- a/meta-arago-distro/conf/distro/include/toolchain-arm.inc
+index c48b09d4..00000000
+--- a/meta-arago-distro/conf/distro/include/toolchain-external.inc
 +++ /dev/null
-@@ -1,118 +0,0 @@
--# Select external binary prebuilt Arm toolchain
--TCMODE = "external-arm"
+@@ -1,4 +0,0 @@
+-# Set some default toolchain location variables
+-TOOLCHAIN_PATH ??= "/usr/local/sdk"
+-TOOLCHAIN_SYSPATH = "${TOOLCHAIN_PATH}/${TOOLCHAIN_SYS}"
+-EXTERNAL_TOOLCHAIN = "${TOOLCHAIN_PATH}"
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc b/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
+deleted file mode 100644
+index 78957364..00000000
+--- a/meta-arago-distro/conf/distro/include/toolchain-gcc.inc
++++ /dev/null
+@@ -1,41 +0,0 @@
+-# Select internal gcc toolchain to be built from sources
+-TCMODE = "default"
+-TCLIBC = "glibc"
 -
--EAT_TARGET_SYS_ARMV5 ?= "arm-none-linux-gnueabi"
--EAT_TARGET_SYS_ARMV7 ?= "arm-none-linux-gnueabihf"
--EAT_TARGET_SYS_ARMV8 ?= "aarch64-none-linux-gnu"
+-LIBCEXTENSION = "${@['', '-gnu'][(d.getVar('ABIEXTENSION') or '') != '']}"
 -
--EAT_TARGET_SYS:arm = "${EAT_TARGET_SYS_ARMV5}"
--EAT_TARGET_SYS:armv7a = "${EAT_TARGET_SYS_ARMV7}"
--EAT_TARGET_SYS:aarch64 = "${EAT_TARGET_SYS_ARMV8}"
+-# Match some of the external vars
+-TOOLCHAIN_SYS := "${TARGET_SYS}"
+-TOOLCHAIN_PREFIX := "${TARGET_PREFIX}"
 -
--SECONDARY_TARGET_ARCH = "invalid"
--SECONDARY_TARGET_ARCH:k3 = "armv7a"
--
--TARGET_VENDOR = ""
--
--TOOLCHAIN_BASE ?= "/opt"
--TOOLCHAIN_PATH_ARMV5 ?= "${TOOLCHAIN_BASE}/gcc-arm-9.2-ti2020.01-armv5-x86_64-${EAT_TARGET_SYS_ARMV5}"
--TOOLCHAIN_PATH_ARMV7 ?= "${TOOLCHAIN_BASE}/gcc-arm-9.2-2019.12-x86_64-${EAT_TARGET_SYS_ARMV7}"
--TOOLCHAIN_PATH_ARMV8 ?= "${TOOLCHAIN_BASE}/gcc-arm-9.2-2019.12-x86_64-${EAT_TARGET_SYS_ARMV8}"
--
--DEF_TOOLCHAIN_PATH:arm = "${TOOLCHAIN_PATH_ARMV5}"
--DEF_TOOLCHAIN_PATH:armv7a = "${TOOLCHAIN_PATH_ARMV7}"
--DEF_TOOLCHAIN_PATH:aarch64 = "${TOOLCHAIN_PATH_ARMV8}"
--
--TOOLCHAIN_PATH ?= "${DEF_TOOLCHAIN_PATH}"
--
--TOOLCHAIN_SYS := "${EAT_TARGET_SYS}"
--TOOLCHAIN_PREFIX := "${TOOLCHAIN_SYS}-"
--
--PREFERRED_PROVIDER_virtual/${TARGET_PREFIX}gcc-intermediate = "external-arm-toolchain"
--
--PREFERRED_PROVIDER_gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "external-arm-sdk-toolchain-${TRANSLATED_TARGET_ARCH}"
--PREFERRED_PROVIDER_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "external-arm-sdk-toolchain-${TRANSLATED_TARGET_ARCH}"
--#PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "external-arm-sdk-toolchain-${TRANSLATED_TARGET_ARCH}"
--
--PREFERRED_PROVIDER_gcc-cross-canadian-${SECONDARY_TARGET_ARCH} ?= "external-arm-secondary-sdk-toolchain-${SECONDARY_TARGET_ARCH}"
--PREFERRED_PROVIDER_binutils-cross-canadian-${SECONDARY_TARGET_ARCH} ?= "external-arm-secondary-sdk-toolchain-${SECONDARY_TARGET_ARCH}"
--
--# Special case for gdb to be built as part of canadian-cross-sdk, instead of packaged from external toolchain
--bindir:pn-gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${exec_prefix}/bin"
+-PREFERRED_PROVIDER_gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "gcc-cross-canadian-${TRANSLATED_TARGET_ARCH}"
+-PREFERRED_PROVIDER_binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "binutils-cross-canadian-${TRANSLATED_TARGET_ARCH}"
 -PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}"
 -
--# Set up runtime preferences
--PREFERRED_PROVIDER_libgcc = "external-arm-toolchain"
--PREFERRED_PROVIDER_gcc-runtime = "external-arm-toolchain"
--
 -# Set Cross and SDK toolchain preferences
--SDKGCCVERSION ?= "arm-9.2%"
--SDKGDBVERSION ?= "9.2%"
--SDKBINUVERSION ?= "2.35%"
--SDKGLIBCVERSION ?= "2.32%"
--SDKLINUXLIBCVERSION ?= "5.10%"
+-SDKGCCVERSION ?= "12%"
+-SDKBINUVERSION ?= "2.40%"
+-SDKGLIBCVERSION ?= "2.37%"
 -
 -PREFERRED_VERSION_gcc-crosssdk-${SDK_SYS} ?= "${SDKGCCVERSION}"
 -PREFERRED_VERSION_gcc-crosssdk-initial-${SDK_SYS} ?= "${SDKGCCVERSION}"
--PREFERRED_VERSION_gdb-crosssdk-${SDK_SYS} ?= "${SDKGDBVERSION}"
--PREFERRED_VERSION_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} ?= "${SDKGDBVERSION}"
 -PREFERRED_VERSION_binutils-crosssdk-${SDK_SYS} ?= "${SDKBINUVERSION}"
 -
 -PREFERRED_VERSION_nativesdk-gcc-runtime ?= "${SDKGCCVERSION}"
 -PREFERRED_VERSION_nativesdk-libgcc ?= "${SDKGCCVERSION}"
 -PREFERRED_VERSION_nativesdk-libgcc-initial ?= "${SDKGCCVERSION}"
--PREFERRED_VERSION_nativesdk-linux-libc-headers ?= "${SDKLINUXLIBCVERSION}"
 -PREFERRED_VERSION_nativesdk-glibc ?= "${SDKGLIBCVERSION}"
 -PREFERRED_VERSION_nativesdk-glibc-locale ?= "${SDKGLIBCVERSION}"
 -PREFERRED_VERSION_nativesdk-glibc-initial ?= "${SDKGLIBCVERSION}"
 -
 -# Set target toolchain preferences to match Cross/SDK by default
 -# Can be overwritten globally, if needed
--GCCVERSION ?= "arm-9.2%"
--GDBVERSION ?= "9.2%"
--BINUVERSION ?= "2.35%"
--GLIBCVERSION ?= "2.32%"
+-GCCVERSION ?= "12%"
+-BINUVERSION ?= "2.40%"
+-GLIBCVERSION ?= "2.37%"
 -
 -PREFERRED_VERSION_gcc ?= "${GCCVERSION}"
--PREFERRED_VERSION_gdb ?= "${GDBVERSION}"
 -PREFERRED_VERSION_binutils ?= "${BINUVERSION}"
 -PREFERRED_VERSION_glibc ?= "${GLIBCVERSION}"
 -PREFERRED_VERSION_glibc-locale ?= "${GLIBCVERSION}"
 -PREFERRED_VERSION_glibc-initial ?= "${GLIBCVERSION}"
--
--# Licenses set for main components of the toolchain:
--# (g)libc is always LGPL version 2 (or later)
--# gcc has switched from GPL version 2 (or later) to version 3 (or later) after 4.2.1,
--#    see this announcement - http://gcc.gnu.org/ml/gcc-announce/2007/msg00003.html
--# libgcc and libstdc++ always had exceptions to GPL called Runtime Library Exception, but
--#    it was based on GPL version 2 (or later), until new GPL version 3 (or later) exception
--#    was introduced on 27 Jan 2009 - http://gcc.gnu.org/ml/gcc-announce/2009/msg00000.html
--#    and http://www.gnu.org/licenses/gcc-exception.html, which was several days after
--#    gcc 4.3.3 was released - http://gcc.gnu.org/releases.html
--# gdb/gdbserver version 6.6 was the last one under GPL version 2 (or later), according
--#    to the release schedule - http://www.gnu.org/software/gdb/schedule/
--# binutils version 2.17 was the last one under GPL version 2 (or later), according
--#    to the published releases - http://ftp.gnu.org/gnu/binutils/
--
--python external_arm_toolchain_license_handler () {
--    if not isinstance(e, bb.event.ConfigParsed):
--        return
--    d = e.data
--    ld = d.createCopy()
--    ld.finalize()
--
--    lc_libc = "LGPL-2.1"
--    lc_gcc = ["GPL-3.0", "GPL-2.0"][eat_get_gcc_version(ld) <= "4.2.1"]
--    lc_rle = ["GPL-3.0-with-GCC-exception", "GPL-2.0-with-GCC-exception"][eat_get_gcc_version(ld) <= "4.3.3"]
--    lc_gdb = ["GPL-3.0", "GPL-2.0"][eat_get_gdb_version(ld) <= "6.6"]
--#    lc_bfd = ["GPL-3.0", "GPL-2.0"][eat_get_bfd_version(ld) <= "2.17"]
--
--    d.setVar('EAT_LIC_LIBC', lc_libc)
--    d.setVar('EAT_LIC_GCC', lc_gcc)
--    d.setVar('EAT_LIC_RLE', lc_rle)
--    d.setVar('EAT_LIC_GDB', lc_gdb)
--#    d.setVar('EAT_LIC_BFD', lc_bfd)
--
--    d.setVar('EAT_LICENSE', "%s&%s&%s&%s" % (lc_libc, lc_gcc, lc_rle, lc_gdb))
--}
--addhandler external_arm_toolchain_license_handler
-diff --git a/meta-arago-distro/recipes-core/meta/external-arm-secondary-sdk-toolchain.bb b/meta-arago-distro/recipes-core/meta/external-arm-secondary-sdk-toolchain.bb
+diff --git a/meta-arago-distro/conf/distro/include/toolchain-internal.inc b/meta-arago-distro/conf/distro/include/toolchain-internal.inc
 deleted file mode 100644
-index 22a8aa0a..00000000
---- a/meta-arago-distro/recipes-core/meta/external-arm-secondary-sdk-toolchain.bb
+index cbc3b53d..00000000
+--- a/meta-arago-distro/conf/distro/include/toolchain-internal.inc
 +++ /dev/null
 @@ -1,4 +0,0 @@
--TARGET_ARCH := "${SECONDARY_TARGET_ARCH}"
--MACHINEOVERRIDES := "${SECONDARY_TARGET_ARCH}"
--
--require recipes-core/meta/external-arm-sdk-toolchain.bb
-diff --git a/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend
+-# No special handling is required for locating the internal toolchain, just re-use existing vars
+-TOOLCHAIN_PATH ?= "${STAGING_BINDIR_TOOLCHAIN}"
+-TOOLCHAIN_SYSPATH ?= "${TOOLCHAIN_PATH}/${TARGET_SYS}"
+-EXTERNAL_TOOLCHAIN = "${TOOLCHAIN_PATH}"
+diff --git a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb b/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb
 deleted file mode 100644
-index ce22c453..00000000
---- a/meta-arago-distro/recipes-core/meta/external-arm-toolchain.bbappend
+index 3e781d06..00000000
+--- a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk-server.bb
 +++ /dev/null
-@@ -1,36 +0,0 @@
--# This is a rather hacky way to install custom linux-libc-headers
--# on top of the external-arm-toolchain, since simply depending
--# on linux-libc-headers creates circular dependencies now. Mostly
--# duplication of code from corresponding recipe.
+@@ -1,7 +0,0 @@
+-TOOLCHAIN_HOST_TASK ?= "nativesdk-packagegroup-arago-tisdk-host"
+-TOOLCHAIN_SUFFIX ?= "-tisdk-server"
 -
--BRANCH = "ti-linux-5.10.y"
--SRCREV = "bdfd5b0c1ee5617c9a94bacad0d818920d95b486"
+-require meta-toolchain-arago-tisdk.inc
+-require recipes-core/meta/meta-toolchain-arago.bb
 -
--KERNEL_GIT_URI = "git://git.ti.com/git/ti-linux-kernel/ti-linux-kernel.git"
--KERNEL_GIT_PROTOCOL = "https"
--SRC_URI += "${KERNEL_GIT_URI};protocol=${KERNEL_GIT_PROTOCOL};branch=${BRANCH}"
--
--PKGV:linux-libc-headers-dev = "5.10"
--PKGV:linux-libc-headers = "5.10"
--
--inherit kernel-arch pkgconfig multilib_header
--
--EXTRA_OEMAKE = " HOSTCC="${BUILD_CC}" HOSTCPP="${BUILD_CPP}""
--
--DEPENDS += "bison-native rsync-native"
--
--do_configure:append() {
--	cd ${WORKDIR}/git
--	oe_runmake allnoconfig
--}
--
--do_install:append() {
--	cd ${WORKDIR}/git
--	oe_runmake headers_install INSTALL_HDR_PATH=${B}${exec_prefix}
--
--	CP_ARGS="-Prf --preserve=mode,timestamps --no-preserve=ownership"
--	cp ${CP_ARGS} ${B}${includedir} ${D}${exec_prefix}
--
--	# The ..install.cmd conflicts between various configure runs
--	find ${D}${exec_prefix} -name ..install.cmd | xargs rm -f
--}
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-cross-canadian.bbappend b/meta-arago-distro/recipes-core/packagegroups/packagegroup-cross-canadian.bbappend
+-PR = "${INC_PR}.0"
+diff --git a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb b/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb
 deleted file mode 100644
-index 46df17f9..00000000
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-cross-canadian.bbappend
+index 4f272a52..00000000
+--- a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.bb
 +++ /dev/null
-@@ -1,10 +0,0 @@
--PR:append = ".arago0"
+@@ -1,6 +0,0 @@
+-TOOLCHAIN_SUFFIX ?= "-tisdk"
 -
--SECONDARY_TARGET_ARCH ?= "invalid"
+-require meta-toolchain-arago-tisdk.inc
+-require recipes-core/meta/meta-toolchain-arago-qte.bb
 -
--SECONDARY_TOOLCHAIN = "gcc-cross-canadian-${SECONDARY_TARGET_ARCH} \
--                       binutils-cross-canadian-${SECONDARY_TARGET_ARCH}"
--
--RDEPENDS:${PN}:append = " \
--    ${@oe.utils.conditional('SECONDARY_TARGET_ARCH', 'invalid', '', '${SECONDARY_TOOLCHAIN}', d)} \
--"
-diff --git a/meta-arago-extras/recipes-core/meta/external-arm-bfd-version.inc b/meta-arago-extras/recipes-core/meta/external-arm-bfd-version.inc
+-PR = "${INC_PR}.0"
+diff --git a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.inc b/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.inc
 deleted file mode 100644
-index 1d8eed17..00000000
---- a/meta-arago-extras/recipes-core/meta/external-arm-bfd-version.inc
+index e8d389c5..00000000
+--- a/meta-arago-distro/recipes-core/meta/meta-toolchain-arago-tisdk.inc
 +++ /dev/null
 @@ -1,8 +0,0 @@
--TOOLCHAIN_PATH ??= "${STAGING_BINDIR_TOOLCHAIN}"
+-TOOLCHAIN_TARGET_TASK ?= "packagegroup-arago-toolchain-tisdk-target"
+-TOOLCHAIN_CLEANUP_PACKAGES ?= "libgnutls-dev libgnutls-extra26 libgnutls-openssl27 libtasn1-dev coreutils"
 -
--def eat_get_bfd_version(d):
--    import subprocess,os,bb
--    if os.path.exists(d.getVar('TOOLCHAIN_PATH')+'/bin/'+d.getVar('TARGET_PREFIX')+'as'):
--        return subprocess.Popen([d.getVar('TOOLCHAIN_PATH')+'/bin/'+d.getVar('TARGET_PREFIX')+'as', '-v', '--version'], stderr=subprocess.STDOUT,stdout=subprocess.PIPE).communicate()[0].splitlines()[0].split()[3]
+-INC_PR = "r5"
 -
--EAT_VER_BFD := "${@eat_get_bfd_version(d)}"
-diff --git a/meta-arago-extras/recipes-core/meta/external-arm-sdk-toolchain.bb b/meta-arago-extras/recipes-core/meta/external-arm-sdk-toolchain.bb
-deleted file mode 100644
-index bbae8622..00000000
---- a/meta-arago-extras/recipes-core/meta/external-arm-sdk-toolchain.bb
-+++ /dev/null
-@@ -1,131 +0,0 @@
--inherit cross-canadian
--
--require external-arm-bfd-version.inc
--
--PR = "r9"
--
--PN = "external-arm-sdk-toolchain-${TARGET_ARCH}"
--BPN = "external-arm-sdk-toolchain"
--
--INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
--INHIBIT_PACKAGE_STRIP = "1"
--INHIBIT_SYSROOT_STRIP = "1"
--INHIBIT_DEFAULT_DEPS = "1"
--EXCLUDE_FROM_SHLIBS = "1"
--
--# License applies to this recipe code, not the toolchain itself
--LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
--
--INSANE_SKIP:gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} = "dev-so staticdev file-rdeps"
--INSANE_SKIP:gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "dev-so file-rdeps"
--INSANE_SKIP:binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} = "dev-so file-rdeps"
--
--PROVIDES = "\
--	gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} \
--	${@oe.utils.conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-arm-sdk-toolchain', 'gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', '', d)} \
--	binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} \
--"
--
--PACKAGES = "\
--	gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} \
--	${@oe.utils.conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-arm-sdk-toolchain', 'gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', '', d)} \
--	binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} \
--"
--
--# Don't need the extra target triplet in the new SDK dir structure
--bindir = "${exec_prefix}/bin"
--libdir = "${exec_prefix}/lib"
--libexecdir = "${exec_prefix}/libexec"
--datadir = "${exec_prefix}/share"
--gcclibdir = "${libdir}/gcc"
--
--FILES:gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} = "\
--	${prefix}/${EAT_TARGET_SYS}/lib/libstdc++.* \
--	${prefix}/${EAT_TARGET_SYS}/lib/libgcc_s.* \
--	${prefix}/${EAT_TARGET_SYS}/lib/libsupc++.* \
--	${gcclibdir}/${EAT_TARGET_SYS}/${EAT_VER_GCC}/* \
--	${bindir}/${TARGET_PREFIX}gcov \
--	${bindir}/${TARGET_PREFIX}gcc* \
--	${bindir}/${TARGET_PREFIX}g++ \
--	${bindir}/${TARGET_PREFIX}cpp \
--	${libexecdir}/* \
--"
--
--FILES:gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "\
--	${bindir}/${TARGET_PREFIX}gdb \
--	${bindir}/${TARGET_PREFIX}gdbtui \
--	${datadir}/gdb/* \
--	${datadir}/info/* \
--	${datadir}/man/man1/${TARGET_PREFIX}* \
--"
--
--FILES:binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} = "\
--	${prefix}/${EAT_TARGET_SYS}/bin/ld* \
--	${prefix}/${EAT_TARGET_SYS}/bin/objcopy \
--	${prefix}/${EAT_TARGET_SYS}/bin/strip \
--	${prefix}/${EAT_TARGET_SYS}/bin/nm \
--	${prefix}/${EAT_TARGET_SYS}/bin/ranlib \
--	${prefix}/${EAT_TARGET_SYS}/bin/as \
--	${prefix}/${EAT_TARGET_SYS}/bin/ar \
--	${prefix}/${EAT_TARGET_SYS}/bin/objdump \
--	${prefix}/${EAT_TARGET_SYS}/lib/ldscripts/* \
--	${bindir}/${TARGET_PREFIX}ld* \
--	${bindir}/${TARGET_PREFIX}addr2line \
--	${bindir}/${TARGET_PREFIX}objcopy \
--	${bindir}/${TARGET_PREFIX}readelf \
--	${bindir}/${TARGET_PREFIX}strip \
--	${bindir}/${TARGET_PREFIX}nm \
--	${bindir}/${TARGET_PREFIX}ranlib \
--	${bindir}/${TARGET_PREFIX}gprof \
--	${bindir}/${TARGET_PREFIX}as \
--	${bindir}/${TARGET_PREFIX}c++filt \
--	${bindir}/${TARGET_PREFIX}ar \
--	${bindir}/${TARGET_PREFIX}strings \
--	${bindir}/${TARGET_PREFIX}objdump \
--	${bindir}/${TARGET_PREFIX}size \
--"
--
--DESCRIPTION:gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} = "The GNU cc and gcc C compilers"
--DESCRIPTION:gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "gdb - GNU debugger"
--DESCRIPTION:binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} = "A GNU collection of binary utilities"
--
--#LICENSE = "${ARG_LIC_LIBC}"
--#LICENSE:gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${ARG_LIC_GCC}"
--#LICENSE:gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${ARG_LIC_GDB}"
--#LICENSE:binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${ARG_LIC_BFD}"
--
--PKGV = "${EAT_VER_MAIN}"
--PKGV:gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${EAT_VER_GCC}"
--PKGV:gdb-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${EAT_VER_GDB}"
--PKGV:binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} = "${EAT_VER_BFD}"
--
--LIBDIR = "lib"
--LIBDIR:aarch64 = "lib64"
--
--do_install() {
--	install -d ${D}${prefix}/${EAT_TARGET_SYS}/bin
--	install -d ${D}${prefix}/${EAT_TARGET_SYS}/lib
--	install -d ${D}${bindir}
--	install -d ${D}${libdir}
--	install -d ${D}${prefix}/${EAT_TARGET_SYS}/lib/ldscripts
--	install -d ${D}${libexecdir}
--	${@oe.utils.conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-arm-sdk-toolchain', 'install -d ${D}${datadir}/gdb', '', d)}
--	${@oe.utils.conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-arm-sdk-toolchain', 'install -d ${D}${datadir}/info', '', d)}
--	${@oe.utils.conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-arm-sdk-toolchain', 'install -d ${D}${datadir}/man/man1', '', d)}
--	install -d ${D}${gcclibdir}/${EAT_TARGET_SYS}/${EAT_VER_GCC}/include
--
--	cp -a ${TOOLCHAIN_PATH}/${EAT_TARGET_SYS}/${LIBDIR}/{libstdc++.*,libgcc_s.*,libsupc++.*} ${D}${prefix}/${EAT_TARGET_SYS}/lib
--	cp -a ${TOOLCHAIN_PATH}/lib/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/* ${D}${gcclibdir}/${EAT_TARGET_SYS}/${EAT_VER_GCC}
--	cp -a ${TOOLCHAIN_PATH}/bin/${TARGET_PREFIX}{gcov,gcc*,g++,cpp} ${D}${bindir}
--	cp -a ${TOOLCHAIN_PATH}/libexec/* ${D}${libexecdir}
--
--	${@oe.utils.conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-arm-sdk-toolchain', 'cp -a ${TOOLCHAIN_PATH}/bin/${TARGET_PREFIX}gdb* ${D}${bindir}', '', d)}
--	${@oe.utils.conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-arm-sdk-toolchain', 'cp -a ${TOOLCHAIN_PATH}/share/gdb/* ${D}${datadir}/gdb/', '', d)}
--	${@oe.utils.conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-arm-sdk-toolchain', 'cp -a ${TOOLCHAIN_PATH}/share/info/* ${D}${datadir}/info/', '', d)}
--	${@oe.utils.conditional('PREFERRED_PROVIDER_gdb-cross-canadian-${TRANSLATED_TARGET_ARCH}', 'external-arm-sdk-toolchain', 'cp -a ${TOOLCHAIN_PATH}/share/man/man1/${TARGET_PREFIX}* ${D}${datadir}/man/man1/', '', d)}
--
--	cp -a ${TOOLCHAIN_PATH}/${EAT_TARGET_SYS}/bin/{ld*,objcopy,strip,nm,ranlib,as,ar,objdump} ${D}${prefix}/${EAT_TARGET_SYS}/bin
--	cp -a ${TOOLCHAIN_PATH}/${EAT_TARGET_SYS}/lib/ldscripts/* ${D}${prefix}/${EAT_TARGET_SYS}/lib/ldscripts
--	cp -a ${TOOLCHAIN_PATH}/bin/${TARGET_PREFIX}{ld*,addr2line,objcopy,readelf,strip,nm,ranlib,gprof,as,c++filt,ar,strings,objdump,size} ${D}${bindir}
+-toolchain_create_sdk_env_script:append() {
+-    echo -e 'export PS1="\[\\e[32;1m\][linux-devkit]\[\\e[0m\]:\w> "' >> $script
 -}
-diff --git a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend b/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
 deleted file mode 100644
-index 478ba2ba..00000000
---- a/meta-arago-extras/recipes-core/meta/external-arm-toolchain.bbappend
+index 41dff492..00000000
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago-qte.bb
 +++ /dev/null
-@@ -1,73 +0,0 @@
--ORIG_TARGET_SYS = "${TARGET_ARCH}${TARGET_VENDOR}${@['-' + d.getVar('TARGET_OS'), ''][d.getVar('TARGET_OS') == ('' or 'custom')]}"
+@@ -1,54 +0,0 @@
+-# Qt Embedded toolchain
+-TOOLCHAIN_HOST_TASK ?= "nativesdk-packagegroup-arago-qte-toolchain-host"
+-TOOLCHAIN_TARGET_TASK ?= "packagegroup-arago-qte-toolchain-target"
+-TOOLCHAIN_SUFFIX ?= "-qte-sdk"
 -
--do_install:append() {
--	install -d ${D}${base_sbindir}
--	cp -a ${TOOLCHAIN_PATH}/${EAT_TARGET_SYS}/libc/${base_sbindir}/ldconfig ${D}${base_sbindir}/
--	install -d ${D}${sysconfdir}
--	echo -e "/lib\n/usr/lib" >> ${D}${sysconfdir}/ld.so.conf
+-require meta-toolchain-arago.bb
 -
--	if [ ${EAT_TARGET_SYS} != ${ORIG_TARGET_SYS} ]; then
--		ln -sf ${EAT_TARGET_SYS} ${D}${libdir}/${ORIG_TARGET_SYS}
--		ln -sf ${EAT_TARGET_SYS} ${D}${includedir}/c++/${EAT_VER_GCC}/${ORIG_TARGET_SYS}
--		mv ${D}${libdir}/gcc/${EAT_TARGET_SYS} ${D}${libdir}/gcc/${ORIG_TARGET_SYS}
--		ln -sf ${ORIG_TARGET_SYS} ${D}${libdir}/gcc/${EAT_TARGET_SYS}
+-PR = "r20"
+-
+-QT_MKSPECS_LOCATION = "${libdir}"
+-QT_MKSPECS_DIR = "linux-oe-g++"
+-
+-toolchain_create_sdk_env_script:append() {
+-	echo 'export PATH=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_DIR_NAME}:$PATH' >> $script
+-	echo 'export OE_QMAKE_CFLAGS="$CFLAGS"' >> $script
+-	echo 'export OE_QMAKE_CXXFLAGS="$CXXFLAGS"' >> $script
+-	echo 'export OE_QMAKE_LDFLAGS="$LDFLAGS"' >> $script
+-	echo 'export OE_QMAKE_CC="$CC"' >> $script
+-	echo 'export OE_QMAKE_CXX="$CXX"' >> $script
+-	echo 'export OE_QMAKE_LINK="$CXX"' >> $script
+-	echo 'export OE_QMAKE_AR="$AR"' >> $script
+-	echo 'export OE_QMAKE_PREFIX_QT=${prefix}' >> $script
+-	echo 'export OE_QMAKE_LIBDIR_QT=${libdir}' >> $script
+-	echo 'export OE_QMAKE_INCDIR_QT=${includedir}/${QT_DIR_NAME}' >> $script
+-	echo 'export OE_QMAKE_HOST_BINDIR_QT=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}' >> $script
+-	echo 'export OE_QMAKE_MOC=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}moc${QT_BIN_SUFFIX}' >> $script
+-	echo 'export OE_QMAKE_UIC=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}uic${QT_BIN_SUFFIX}' >> $script
+-	echo 'export OE_QMAKE_UIC3=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}uic3${QT_BIN_SUFFIX}' >> $script
+-	echo 'export OE_QMAKE_RCC=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}rcc${QT_BIN_SUFFIX}' >> $script
+-	echo 'export OE_QMAKE_QDBUSCPP2XML=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}qdbuscpp2xml${QT_BIN_SUFFIX}' >> $script
+-	echo 'export OE_QMAKE_QDBUSXML2CPP=$SDK_PATH_NATIVE${bindir_nativesdk}/${QT_BIN_PREFIX}qdbusxml2cpp${QT_BIN_SUFFIX}' >> $script
+-	echo 'export OE_QMAKE_QT_CONFIG=$SDK_PATH_TARGET${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs/qconfig.pri' >> $script
+-	echo 'export OE_QMAKE_STRIP="echo"' >> $script
+-	echo 'export QMAKESPEC=$SDK_PATH_TARGET${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs/${QT_MKSPECS_DIR}' >> $script
+-	echo 'export QMAKE_DEFAULT_LIBDIRS=${QT_QMAKE_LIBDIR_QT}' >> $script
+-	echo 'export QMAKE_DEFAULT_INCDIRS=${QT_QMAKE_INCDIR_QT}' >> $script
+-
+-	#Adds qt.conf file that points qmake to properly locate Qt library and header files.
+-	#This enables Qt Creator to work properly
+-
+-	qt_conf="${SDK_OUTPUT}/${SDKPATHNATIVE}${bindir_nativesdk}/${QT_BIN_PREFIX}qt.conf"
+-	touch $qt_conf
+-	echo '[Paths]' >> $qt_conf
+-	echo 'Prefix = $(OE_QMAKE_PREFIX_QT)' >> $qt_conf
+-	echo 'Libraries = $(OE_QMAKE_LIBDIR_QT)' >> $qt_conf
+-	echo 'Headers = $(OE_QMAKE_INCDIR_QT)' >> $qt_conf
+-	echo 'HostPrefix = $(SDK_PATH_NATIVE)' >> $qt_conf
+-	echo 'HostBinaries = $(OE_QMAKE_HOST_BINDIR_QT)' >> $qt_conf
+-	echo 'Sysroot = $(SDK_PATH_TARGET)' >> $qt_conf
+-
+-	# make a symbolic link to mkspecs for compatibility with Qt SDK and QTCreator
+-	(cd ${SDK_OUTPUT}/${SDKTARGETSYSROOT}; ln -sf .${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs mkspecs;)
+-	(cd ${SDK_OUTPUT}/${SDKPATHNATIVE}; ln -sf ../${REAL_MULTIMACH_TARGET_SYS}${QT_MKSPECS_LOCATION}/${QT_DIR_NAME}/mkspecs mkspecs;)
+-}
+diff --git a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb b/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
+deleted file mode 100644
+index 5c1c3ad0..00000000
+--- a/meta-arago-extras/recipes-core/meta/meta-toolchain-arago.bb
++++ /dev/null
+@@ -1,360 +0,0 @@
+-TOOLCHAIN_HOST_TASK ?= "nativesdk-packagegroup-sdk-host"
+-TOOLCHAIN_HOST_TASK:append = " nativesdk-buildtools-perl-dummy"
+-TOOLCHAIN_HOST_TASK:append = " packagegroup-cross-canadian-${MACHINE}"
+-TOOLCHAIN_TARGET_TASK ?= "packagegroup-arago-standalone-sdk-target"
+-TOOLCHAIN_SUFFIX ?= "-sdk"
+-TOOLCHAIN_OUTPUTNAME ?= "${SDK_NAME}-${ARMPKGARCH}-${TARGET_OS}${TOOLCHAIN_SUFFIX}"
+-TOOLCHAIN_CLEANUP_PACKAGES ?= ""
+-SDKIMAGE_FEATURES = "package-management"
+-SDK_PACKAGE_ARCHS += "buildtools-dummy-${SDKPKGSUFFIX}"
+-
+-inherit toolchain-scripts
+-
+-require recipes-core/meta/meta-toolchain.bb
+-
+-PR = "r35"
+-
+-# This function creates an environment-setup-script for use in a deployable SDK
+-toolchain_create_sdk_env_script () {
+-	# Create environment setup script
+-	script=${SDK_OUTPUT}/${SDKPATH}/environment-setup
+-	rm -f $script
+-	touch $script
+-	echo 'SDK_PATH="${SDKPATH}"' >> $script
+-	echo 'if [ -z "$ZSH_NAME" ] && [ "x$0" = "x./environment-setup" ]; then' >> $script
+-	echo '    echo "Error: This script needs to be sourced. Please run as \". ./environment-setup\""' >> $script
+-	echo '    exit 1' >> $script
+-	echo 'else' >> $script
+-	echo '    if [ -n "$BASH_SOURCE" ]; then' >> $script
+-	echo '        SDK_PATH="`dirname $BASH_SOURCE`"' >> $script
+-	echo '    fi' >> $script
+-	echo '    SDK_PATH=`readlink -f "$SDK_PATH"`' >> $script
+-	echo '    export SDK_PATH' >> $script
+-	echo 'fi' >> $script
+-	echo 'export SDK_SYS=${SDK_SYS}' >> $script
+-	echo 'export REAL_MULTIMACH_TARGET_SYS=${REAL_MULTIMACH_TARGET_SYS}' >> $script
+-	echo 'export TOOLCHAIN_SYS=${TOOLCHAIN_SYS}' >> $script
+-	echo 'export TOOLCHAIN_PREFIX=$TOOLCHAIN_SYS-' >> $script
+-	echo 'export SDK_PATH_NATIVE=$SDK_PATH/sysroots/$SDK_SYS' >> $script
+-	echo 'export SDK_PATH_TARGET=$SDK_PATH/sysroots/$REAL_MULTIMACH_TARGET_SYS' >> $script
+-	echo 'export PATH=$SDK_PATH_NATIVE${bindir_nativesdk}:$SDK_PATH_NATIVE${bindir_nativesdk}/${TARGET_ARCH}${TARGET_VENDOR}-${TARGET_OS}:$PATH' >> $script
+-	echo 'export CPATH=$SDK_PATH_TARGET/usr/include:$CPATH' >> $script
+-	echo 'export PKG_CONFIG_SYSROOT_DIR=$SDK_PATH_TARGET' >> $script
+-	echo 'export PKG_CONFIG_PATH=$SDK_PATH_TARGET${libdir}/pkgconfig:$SDK_PATH_TARGET${datadir}/pkgconfig' >> $script
+-	echo 'export PKG_CONFIG_ALLOW_SYSTEM_LIBS=1' >> $script
+-	echo 'export CONFIG_SITE=$SDK_PATH/site-config-$REAL_MULTIMACH_TARGET_SYS' >> $script
+-	printf 'export CC="\x24{TOOLCHAIN_PREFIX}gcc --sysroot=$SDK_PATH_TARGET"\n' >> $script
+-	printf 'export CXX="\x24{TOOLCHAIN_PREFIX}g++ --sysroot=$SDK_PATH_TARGET"\n' >> $script
+-	printf 'export GDB=\x24{TOOLCHAIN_PREFIX}gdb\n' >> $script
+-	printf 'export CPP="\x24{TOOLCHAIN_PREFIX}gcc -E --sysroot=$SDK_PATH_TARGET"\n' >> $script
+-	printf 'export LD="\x24{TOOLCHAIN_PREFIX}ld --sysroot=$SDK_PATH_TARGET"\n' >> $script
+-	printf 'export NM=\x24{TOOLCHAIN_PREFIX}nm\n' >> $script
+-	printf 'export AS=\x24{TOOLCHAIN_PREFIX}as\n' >> $script
+-	printf 'export AR=\x24{TOOLCHAIN_PREFIX}ar\n' >> $script
+-	printf 'export RANLIB=\x24{TOOLCHAIN_PREFIX}ranlib\n' >> $script
+-	printf 'export OBJCOPY=\x24{TOOLCHAIN_PREFIX}objcopy\n' >> $script
+-	printf 'export OBJDUMP=\x24{TOOLCHAIN_PREFIX}objdump\n' >> $script
+-	printf 'export STRIP=\x24{TOOLCHAIN_PREFIX}strip\n' >> $script
+-	echo 'export CONFIGURE_FLAGS="--target=${TARGET_SYS} --host=${TARGET_SYS} --build=${SDK_ARCH}-linux --with-libtool-sysroot=$SDK_PATH_TARGET"' >> $script
+-	echo 'export CPPFLAGS="${TARGET_CC_ARCH} --sysroot=$SDK_PATH_TARGET"' >> $script
+-	echo 'export CFLAGS="$CPPFLAGS"' >> $script
+-	echo 'export CXXFLAGS="$CPPFLAGS"' >> $script
+-	echo 'export LDFLAGS="${TARGET_LD_ARCH} --sysroot=$SDK_PATH_TARGET"' >> $script
+-	echo 'export OECORE_NATIVE_SYSROOT=$SDK_PATH_NATIVE' >> $script
+-	echo 'export OECORE_TARGET_SYSROOT=$SDK_PATH_TARGET' >> $script
+-	echo 'export SDKTARGETSYSROOT=$SDK_PATH_TARGET' >> $script
+-	echo 'export OECORE_ACLOCAL_OPTS="-I $SDK_PATH_NATIVE/usr/share/aclocal"' >> $script
+-	echo 'export OECORE_DISTRO_VERSION="${DISTRO_VERSION}"' >> $script
+-	echo 'export OECORE_SDK_VERSION="${SDK_VERSION}"' >> $script
+-	echo 'export OECORE_BASELIB="${baselib}"' >> $script
+-	echo 'export OECORE_TARGET_ARCH="${TARGET_ARCH}"' >>$script
+-	echo 'export OECORE_TARGET_OS="${TARGET_OS}"' >>$script
+-
+-        # Borrowed from oe-core/meta/classes/toolchain-scripts.bbclass
+-	cat >> $script <<EOF
+-
+-# Append environment subscripts
+-if [ -d "\$OECORE_TARGET_SYSROOT/environment-setup.d" ]; then
+-    for envfile in \$OECORE_TARGET_SYSROOT/environment-setup.d/*.sh; do
+-	    . \$envfile
+-    done
+-fi
+-if [ -d "\$OECORE_NATIVE_SYSROOT/environment-setup.d" ]; then
+-    for envfile in \$OECORE_NATIVE_SYSROOT/environment-setup.d/*.sh; do
+-	    . \$envfile
+-    done
+-fi
+-EOF
+-
+-}
+-
+-SDK_POSTPROCESS_COMMAND:prepend = "arago_sdk_fixup; "
+-
+-arago_sdk_fixup () {
+-	# Remove broken .la files
+-	for i in `find ${SDK_OUTPUT}/${SDKPATH} -name \*.la`; do
+-		rm -f $i
+-	done
+-
+-	cleanup_toolchain_packages
+-
+-	# Do some extra setup work due to new structure
+-	mkdir -p "${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/lib/${TARGET_ARCH}${TARGET_VENDOR}-${TARGET_OS}"
+-	if [ "${TOOLCHAIN_TYPE}" = "internal" ]; then
+-		lexec="${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/libexec/${TARGET_ARCH}${TARGET_VENDOR}-${TARGET_OS}/gcc/${TOOLCHAIN_SYS}"
+-	else
+-		lexec="${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/libexec/gcc/${TOOLCHAIN_SYS}"
+-	fi
+-	tcv=`ls -1 $lexec|head -1`
+-	[ -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/$tcv ] || ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/$tcv
+-	[ -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/$tcv ] || ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/$tcv
+-	[ -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/${TOOLCHAIN_SYS} ] || ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/lib/${TOOLCHAIN_SYS}
+-	[ -e ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/${TOOLCHAIN_SYS} ] || ln -s . ${SDK_OUTPUT}/${SDKTARGETSYSROOT}/usr/lib/${TOOLCHAIN_SYS}
+-	tcpath="${SDK_OUTPUT}/${SDKPATHNATIVE}${prefix_nativesdk}/${TOOLCHAIN_SYS}"
+-	mkdir -p $tcpath
+-	( cd $tcpath; \
+-		ln -s ${SDKTARGETSYSROOT}/include include; \
+-		if [ "${TOOLCHAIN_BRAND}" != "arago" ]; then \
+-			mkdir -p libc; \
+-			cd libc; \
+-		fi; \
+-		mkdir -p usr; \
+-		ln -s ${SDKTARGETSYSROOT}/lib lib; \
+-		ln -s ${SDKTARGETSYSROOT}/usr/lib usr/lib; \
+-		ln -s ${SDKTARGETSYSROOT}/usr/include usr/include; \
+-	)
+-}
+-
+-fakeroot create_sdk_files() {
+-	toolchain_create_sdk_env_script ${SDK_OUTPUT}/${SDKPATH}/environment-setup
+-
+-	cp ${COREBASE}/scripts/relocate_sdk.py ${SDK_OUTPUT}/${SDKPATH}/
+-
+-	# Replace the ##DEFAULT_INSTALL_DIR## with the correct pattern.
+-	# Escape special characters like '+' and '.' in the SDKPATH
+-	escaped_sdkpath=$(echo ${SDKPATH} |sed -e "s:[\+\.]:\\\\\\\\\0:g")
+-	sed -i -e "s:##DEFAULT_INSTALL_DIR##:$escaped_sdkpath:" ${SDK_OUTPUT}/${SDKPATH}/relocate_sdk.py
+-}
+-
+-# Remove undesired packages that may be pulled into the toolchain by -dev
+-# package dependencies.  This is usually GPLv3 components.
+-cleanup_toolchain_packages() {
+-	if [ "${TOOLCHAIN_CLEANUP_PACKAGES}" != "" ]
+-	then
+-		# Clean up the native side of the toolchain
+-		opkg_dir="${SDK_OUTPUT}/${SDKPATHNATIVE}"
+-		opkg_conf="${SDK_OUTPUT}/etc/opkg-sdk.conf"
+-		opkg -o $opkg_dir -f $opkg_conf --force-depends remove ${TOOLCHAIN_CLEANUP_PACKAGES}
+-
+-		# Clean up the target side of the toolchain
+-		opkg_dir="${SDK_OUTPUT}/${SDKTARGETSYSROOT}"
+-		opkg_conf="${opkg_dir}/etc/opkg/opkg.conf"
+-		opkg -o $opkg_dir -f $opkg_conf --force-depends remove ${TOOLCHAIN_CLEANUP_PACKAGES}
+-
+-		# Clean up empty directories from cleaned up packages
+-		find ${SDK_OUTPUT} -depth -type d -empty -print0 | xargs -r0 /bin/rmdir
+-	fi
+-}
+-
+-fakeroot archive_sdk() {
+-	# Package it up
+-	mkdir -p ${SDKDEPLOYDIR}
+-	cd ${SDK_OUTPUT}/${SDKPATH}
+-	tar --owner=root --group=root -c . | xz ${SDK_XZ_OPTIONS} > ${SDKDEPLOYDIR}/${TOOLCHAIN_OUTPUTNAME}.${SDK_ARCHIVE_TYPE}
+-}
+-
+-fakeroot create_shar() {
+-	cat << "EOF" > ${SDKDEPLOYDIR}/${TOOLCHAIN_OUTPUTNAME}.sh
+-#!/bin/bash
+-
+-INST_ARCH=$(uname -m | sed -e "s/i[3-6]86/ix86/" -e "s/x86[-_]64/x86_64/")
+-SDK_ARCH=$(echo ${SDK_ARCH} | sed -e "s/i[3-6]86/ix86/" -e "s/x86[-_]64/x86_64/")
+-
+-if [ "$INST_ARCH" != "$SDK_ARCH" ]; then
+-	# Allow for installation of ix86 SDK on x86_64 host
+-	if [ "$INST_ARCH" != x86_64 -o "$SDK_ARCH" != ix86 ]; then
+-		echo "Error: Installation machine not supported!"
+-		exit 1
+-	fi
+-fi
+-
+-DEFAULT_INSTALL_DIR="${SDKPATHINSTALL}"
+-TMPSDKPATH="${SDKPATH}"
+-SUDO_EXEC=""
+-target_sdk_dir=""
+-answer=""
+-relocate=1
+-savescripts=0
+-verbose=0
+-while getopts ":yd:DRS" OPT; do
+-	case $OPT in
+-	y)
+-		answer="Y"
+-		[ "$target_sdk_dir" = "" ] && target_sdk_dir=$DEFAULT_INSTALL_DIR
+-		;;
+-	d)
+-		target_sdk_dir=$OPTARG
+-		;;
+-	D)
+-		verbose=1
+-		;;
+-	R)
+-		relocate=0
+-		savescripts=1
+-		;;
+-	S)
+-		savescripts=1
+-		;;
+-	*)
+-		echo "Usage: $(basename $0) [-y] [-d <dir>]"
+-		echo "  -y         Automatic yes to all prompts"
+-		echo "  -d <dir>   Install the SDK to <dir>"
+-		echo "======== Advanced DEBUGGING ONLY OPTIONS ========"
+-		echo "  -S         Save relocation scripts"
+-		echo "  -R         Do not relocate executables"
+-		echo "  -D         use set -x to see what is going on"
+-		exit 1
+-		;;
+-	esac
+-done
+-
+-if [ $verbose = 1 ] ; then
+-	set -x
+-fi
+-
+-printf "Enter target directory for SDK (default: $DEFAULT_INSTALL_DIR): "
+-if [ "$target_sdk_dir" = "" ]; then
+-	read target_sdk_dir
+-	[ "$target_sdk_dir" = "" ] && target_sdk_dir=$DEFAULT_INSTALL_DIR
+-else
+-	echo "$target_sdk_dir"
+-fi
+-
+-eval target_sdk_dir=$(echo "$target_sdk_dir"|sed 's/ /\\ /g')
+-if [ -d "$target_sdk_dir" ]; then
+-	target_sdk_dir=$(cd "$target_sdk_dir"; pwd)
+-else
+-	target_sdk_dir=$(readlink -m "$target_sdk_dir")
+-fi
+-
+-if [ -n "$(echo $target_sdk_dir|grep ' ')" ]; then
+-	echo "The target directory path ($target_sdk_dir) contains spaces. Abort!"
+-	exit 1
+-fi
+-
+-if [ -e "$target_sdk_dir/environment-setup*" ]; then
+-	echo "The directory \"$target_sdk_dir\" already contains a SDK for this architecture."
+-	printf "If you continue, existing files will be overwritten! Proceed[y/N]?"
+-
+-	default_answer="n"
+-else
+-	printf "You are about to install the SDK to \"$target_sdk_dir\". Proceed[Y/n]?"
+-
+-	default_answer="y"
+-fi
+-
+-if [ "$answer" = "" ]; then
+-	read answer
+-	[ "$answer" = "" ] && answer="$default_answer"
+-else
+-	echo $answer
+-fi
+-
+-if [ "$answer" != "Y" -a "$answer" != "y" ]; then
+-	echo "Installation aborted!"
+-	exit 1
+-fi
+-
+-# Try to create the directory (this will not succeed if user doesn't have rights)
+-mkdir -p $target_sdk_dir >/dev/null 2>&1
+-
+-# if don't have the right to access dir, gain by sudo 
+-if [ ! -x $target_sdk_dir -o ! -w $target_sdk_dir -o ! -r $target_sdk_dir ]; then 
+-	SUDO_EXEC=$(which "sudo")
+-	if [ -z $SUDO_EXEC ]; then
+-		echo "No command 'sudo' found, please install sudo first. Abort!"
+-		exit 1
 -	fi
 -
--	ln -sf libatomic.so.1 ${D}${libdir}/libatomic.so
--	ln -sf libgomp.so.1 ${D}${libdir}/libgomp.so
--	ln -sf libitm.so.1 ${D}${libdir}/libitm.so
--	ln -sf libssp.so.0 ${D}${libdir}/libssp.so
--	ln -sf libstdc++.so.6 ${D}${libdir}/libstdc++.so
--	ln -sf libubsan.so.1 ${D}${libdir}/libubsan.so
--	ln -sf libasan.so.5 ${D}${libdir}/libasan.so
--	ln -sf libgfortran.so.5 ${D}${libdir}/libgfortran.so
+-	# test sudo could gain root right
+-	$SUDO_EXEC pwd >/dev/null 2>&1
+-	[ $? -ne 0 ] && echo "Sorry, you are not allowed to execute as root." && exit 1
 -
--	cp ${CP_ARGS} ${EXTERNAL_TOOLCHAIN}/lib/gcc/${EAT_TARGET_SYS}/${EAT_VER_GCC}/libgcc* ${D}${libdir}/${EAT_TARGET_SYS}/${EAT_VER_GCC}/
+-	# now that we have sudo rights, create the directory
+-	$SUDO_EXEC mkdir -p $target_sdk_dir >/dev/null 2>&1
+-fi
+-
+-payload_offset=$(($(grep -na -m1 "^MARKER:$" $0|cut -d':' -f1) + 1))
+-
+-printf "Extracting SDK..."
+-tail -n +$payload_offset $0| $SUDO_EXEC tar xJ -C $target_sdk_dir
+-echo "done"
+-
+-printf "Setting it up..."
+-# fix environment paths
+-for env_setup_script in `ls $target_sdk_dir/environment-setup*`; do
+-	$SUDO_EXEC sed -e "s:$TMPSDKPATH:$target_sdk_dir:g" -i $env_setup_script
+-done
+-
+-# fix dynamic loader paths in all ELF SDK binaries
+-native_sysroot=$target_sdk_dir/sysroots/${SDK_SYS}
+-dl_path=$($SUDO_EXEC find $native_sysroot/lib -name "ld-linux*")
+-if [ "$dl_path" = "" ] ; then
+-	echo "SDK could not be set up. Relocate script unable to find ld-linux.so. Abort!"
+-	exit 1
+-fi
+-executable_files=$($SUDO_EXEC find $native_sysroot -type f -perm /111 -exec file '{}' \;| grep "\(executable\|dynamically linked\|static-pie linked\)" | cut -f 1 -d ':')
+-
+-tdir=`mktemp -d`
+-if [ x$tdir = x ] ; then
+-	echo "SDK relocate failed, could not create a temporary directory"
+-	exit 1
+-fi
+-echo "#!/bin/bash" > $tdir/relocate_sdk.sh
+-echo exec ${env_setup_script%/*}/relocate_sdk.py $target_sdk_dir $dl_path $executable_files >> $tdir/relocate_sdk.sh
+-$SUDO_EXEC mv $tdir/relocate_sdk.sh ${env_setup_script%/*}/relocate_sdk.sh
+-$SUDO_EXEC chmod 755 ${env_setup_script%/*}/relocate_sdk.sh
+-rm -rf $tdir
+-if [ $relocate = 1 ] ; then
+-	$SUDO_EXEC ${env_setup_script%/*}/relocate_sdk.sh
+-	if [ $? -ne 0 ]; then
+-		echo "SDK could not be set up. Relocate script failed. Abort!"
+-		exit 1
+-	fi
+-fi
+-
+-# replace ${SDKPATH} with the new prefix in all text files: configs/scripts/etc
+-$SUDO_EXEC find $native_sysroot -type f -exec file '{}' \;|grep ":.*\(ASCII\|script\|source\).*text"|awk -F":" '{print "\""$1"\""}'|$SUDO_EXEC xargs sed -i -e "s:$TMPSDKPATH:$target_sdk_dir:g"
+-
+-# change all symlinks pointing to ${SDKPATH}
+-for l in $($SUDO_EXEC find $native_sysroot -type l); do
+-	$SUDO_EXEC ln -sfn $(readlink $l|$SUDO_EXEC sed -e "s:$TMPSDKPATH:$target_sdk_dir:") $l
+-done
+-
+-# find out all perl scripts in $native_sysroot and modify them replacing the
+-# host perl with SDK perl.
+-for perl_script in $($SUDO_EXEC find $native_sysroot -type f -exec grep "^#!.*perl" -l '{}' \;); do
+-	$SUDO_EXEC sed -i -e "s:^#! */usr/bin/perl.*:#! /usr/bin/env perl:g" -e \
+-		"s: /usr/bin/perl: /usr/bin/env perl:g" $perl_script
+-done
+-
+-echo done
+-
+-# delete the relocating script, so that user is forced to re-run the installer
+-# if he/she wants another location for the sdk
+-if [ $savescripts = 0 ] ; then
+-	$SUDO_EXEC rm ${env_setup_script%/*}/relocate_sdk.py ${env_setup_script%/*}/relocate_sdk.sh
+-fi
+-
+-echo "SDK has been successfully set up and is ready to be used."
+-
+-exit 0
+-
+-MARKER:
+-EOF
+-	# append the SDK tarball
+-	cat ${SDKDEPLOYDIR}/${TOOLCHAIN_OUTPUTNAME}.${SDK_ARCHIVE_TYPE} >> ${SDKDEPLOYDIR}/${TOOLCHAIN_OUTPUTNAME}.sh
+-
+-	# delete the old tarball, we don't need it anymore
+-	rm ${SDKDEPLOYDIR}/${TOOLCHAIN_OUTPUTNAME}.${SDK_ARCHIVE_TYPE}
 -}
--
--# Below FILES:* overrides are due to TARGET_SYS -> ORIG_TARGET_SYS move in ${libdir}/gcc
--# to enable native compile on the target
--FILES:libgcov-staticdev = "${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/libgcov.a"
--
--FILES:libgfortran-dev = "\
--    ${libdir}/libgfortran*.so \
--    ${libdir}/libgfortran.spec \
--    ${libdir}/libgfortran.la \
--    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/libgfortranbegin.* \
--    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/libcaf_single* \
--    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/finclude/ \
+diff --git a/meta-arago-extras/recipes-core/meta/nativesdk-buildtools-perl-dummy.bbappend b/meta-arago-extras/recipes-core/meta/nativesdk-buildtools-perl-dummy.bbappend
+deleted file mode 100644
+index b83e4e35..00000000
+--- a/meta-arago-extras/recipes-core/meta/nativesdk-buildtools-perl-dummy.bbappend
++++ /dev/null
+@@ -1,23 +0,0 @@
+-DUMMYPROVIDES += "\
+-    nativesdk-perl-module-bytes \
+-    nativesdk-perl-module-carp \
+-    nativesdk-perl-module-constant \
+-    nativesdk-perl-module-data-dumper \
+-    nativesdk-perl-module-errno \
+-    nativesdk-perl-module-exporter \
+-    nativesdk-perl-module-file-basename \
+-    nativesdk-perl-module-file-compare \
+-    nativesdk-perl-module-file-copy \
+-    nativesdk-perl-module-file-find \
+-    nativesdk-perl-module-file-glob \
+-    nativesdk-perl-module-file-spec \
+-    nativesdk-perl-module-file-spec-unix \
+-    nativesdk-perl-module-file-stat \
+-    nativesdk-perl-module-getopt-long \
+-    nativesdk-perl-module-io-file \
+-    nativesdk-perl-module-overloading \
+-    nativesdk-perl-module-posix \
+-    nativesdk-perl-module-symbol \
+-    nativesdk-perl-module-thread-queue \
+-    nativesdk-perl-module-threads \
 -"
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb
+deleted file mode 100644
+index 4d2a98ad..00000000
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb
++++ /dev/null
+@@ -1,11 +0,0 @@
+-DESCRIPTION = "Host packages for Qt Embedded SDK"
+-PR = "r10"
+-LICENSE = "MIT"
 -
--FILES:gcc-sanitizers = "${libdir}/*.spec ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/include/sanitizer/*.h"
+-inherit packagegroup nativesdk
 -
--# This is provided by gcc:
--#    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/include
--FILES:libgcc-dev = "\
--    ${base_libdir}/libgcc*.so \
--    ${@oe.utils.conditional('BASETARGET_SYS', '${ORIG_TARGET_SYS}', '', '${libdir}/${BASETARGET_SYS}', d)} \
--    ${libdir}/${TARGET_SYS}/${BINV}* \
--    ${libdir}/${TARGET_ARCH}${TARGET_VENDOR}* \
--    ${libdir}/gcc/${TARGET_SYS} \
--"
--
--FILES:libssp-dev = "\
--    ${libdir}/libssp*.so \
--    ${libdir}/libssp*_nonshared.a \
--    ${libdir}/libssp*.la \
--    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/include/ssp \
--"
--
--FILES:libquadmath-dev = "\
--    ${libdir}/libquadmath*.so \
--    ${libdir}/libquadmath.la \
--    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/include/quadmath* \
--"
--
--FILES:libgomp-dev = "\
--    ${libdir}/libgomp*${SOLIBSDEV} \
--    ${libdir}/libgomp*.la \
--    ${libdir}/libgomp.spec \
--    ${libdir}/gcc/${ORIG_TARGET_SYS}/${BINV}/include/omp.h \
--"
--
--INSANE_SKIP:libgcc-dev += "staticdev"
+-RDEPENDS:${PN} = "\
+-    nativesdk-packagegroup-arago-tisdk-host \
+-    nativesdk-qtbase \
+-    nativesdk-qttools \
+-    "
 -- 
 2.40.1
 
