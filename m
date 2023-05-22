@@ -1,91 +1,91 @@
-Return-Path: <rs@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D04CC77B73
-	for <webhook@archiver.kernel.org>; Mon, 22 May 2023 20:07:45 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web11.2201.1684786063999808574
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C1B77C7EE29
+	for <webhook@archiver.kernel.org>; Mon, 22 May 2023 22:34:25 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.5631.1684794859172869384
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 22 May 2023 13:07:44 -0700
+ Mon, 22 May 2023 15:34:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=Qhw1YmQE;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: rs@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34MK7ZA5050176;
-	Mon, 22 May 2023 15:07:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1684786055;
-	bh=06AAS0o377Kr1NPT06YanC0A3Bx7E5VptiFI5j78QrM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Qhw1YmQEdUUaVdd0QR2jxKJ7AvKtbx88FS/0h3+uHQvKLusWY6EloN6lN15k2VKVT
-	 ZVVN7D0UvXqgmtkqR+W+XHO/3IJMtV5VBfbNty6jLpUrYAkrKzDxkuBR7xJN4ObZtA
-	 wr+h4XFzqAoiPr/Z7tu/X4JGN5uHlicjgWJ4/e0M=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34MK7Ytp091364
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 22 May 2023 15:07:35 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 22
- May 2023 15:07:34 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 22 May 2023 15:07:34 -0500
-Received: from [128.247.81.144] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34MK7YTU114847;
-	Mon, 22 May 2023 15:07:34 -0500
-Message-ID: <df445046-78fa-340e-d0e5-ed96055a1121@ti.com>
-Date: Mon, 22 May 2023 15:07:34 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [meta-arago][master][PATCH 1/3] all: remove all external
- toolchain stuff
-Content-Language: en-US, en-US-large
-To: Andrew Davis <afd@ti.com>, <denis@denix.org>, <reatmon@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>
+ dkim=missing; spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 1BC2D40C37;
+	Mon, 22 May 2023 22:34:18 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id IWeB0XE0_hxZ; Mon, 22 May 2023 22:34:18 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E288440429;
+	Mon, 22 May 2023 22:34:14 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 659D31638FB; Mon, 22 May 2023 18:33:29 -0400 (EDT)
+Date: Mon, 22 May 2023 18:33:29 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Andrew Davis <afd@ti.com>
+Cc: rs@ti.com, reatmon@ti.com, meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][master][PATCH 3/3] all: remove all legacy
+ arago-sdk build recipes
+Message-ID: <20230522223329.GX9226@denix.org>
 References: <20230522183847.3663294-1-rs@ti.com>
- <20230522183847.3663294-2-rs@ti.com>
- <039f06e5-23c3-488a-995b-711575a73814@ti.com>
-From: Randolph Sapp <rs@ti.com>
-In-Reply-To: <039f06e5-23c3-488a-995b-711575a73814@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+ <20230522183847.3663294-4-rs@ti.com>
+ <14e59972-1f38-b1e8-e3ac-da4c05ede009@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <14e59972-1f38-b1e8-e3ac-da4c05ede009@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 22 May 2023 20:07:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14439
+ <meta-arago@lists.yoctoproject.org>; Mon, 22 May 2023 22:34:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14440
 
-On 5/22/23 14:31, Andrew Davis wrote:
+On Mon, May 22, 2023 at 02:38:15PM -0500, Andrew Davis wrote:
 > On 5/22/23 1:38 PM, rs@ti.com wrote:
->> From: Randolph Sapp <rs@ti.com>
->>
->> Drop all of the external toolchain stuff. We don't need it anymore now
->> that everything can use the internal yocto compiler and multiarch has
->> been configured properly in meta-ti.
->>
+> >From: Randolph Sapp <rs@ti.com>
+> >
+> >Remove all the legacy arago-sdk build recipies, groups, targets, etc.
+> >All of this can be replaced by using the Yocto Standard SDK build
+> >target:
+> >
+> >	bitbake tisdk-default-image -c populate_sdk
+> >
+> >For more info about the SDK build targets see:
+> >https://docs.yoctoproject.org/sdk-manual/appendix-obtain.html#building-an-sdk-installer
+> >
+> >There's probably still more that can be cleaned up, but I'll leave that
+> >to the more experienced.
+> >
 > 
-> Another reason was for speeding builds on build farms which could avoid
-> re-builing the toolchain each time.
-> 
-> These days it is probably not worth the uncertaintay around mismatched
-> build tools, but at the time this was all neato stuff:
-> 
-> https://elinux.org/images/c/c8/ExternalToolchainsInYocto.pdf
-> 
-> Oh well,
-> 
-> Acked-by: Andrew Davis <afd@ti.com>
+> Some documentation around this will need cleaned up next cycle. Plus there are
+> parts of the Processor/Auto/EdgeAI SDK layers that live on top of this layer
+> that use some of this, they will have to switch to the Yocto Standard SDK now.
 
-Cool, but excessive and a source for issues where clients are using 
-build tools different from ours... Ultimately this needed to be culled 
-in favor of the yocto standard anyway.
+1. This cleanup was already in the pipeline, but was planned after the product 
+SDKs (Processor/Auto/EdgeAI) adopttion of Kirkstone baseline with 9.x release.
 
-Also, speeding up builds should be a moot point. Sstate cache still 
-applies to these host tools so long as the host env doesn't change too 
-much, and build containers should prevent that.
+2. Please stop calling something "the Yocto Standard SDK" - both flows are 
+quite standard. While meta-toolchain was there earlier, it's still a supported 
+and very standard flow. In some cases it is still necessary and preferred. 
+Sure, "populate_sdk" is easier for a single image, as the SDK then matches 
+that image. But if you need an SDK that doesn't depend on an image, or need 
+to cover multiple images, then meta-toolchain is still the way to go. Even 
+OE-Core has meta-toolchain for backward compatibility - it just builds the SDK 
+with the toolchain in it. And meta-qt5 extends that to build its SDK/toolchain 
+with Qt tools. Then AGL defines whole bunch of *-crosssdk recipes that are 
+basically meta-toolchain variants for different purposes with different 
+content. And so on - many layers still use the old flow and it's still very 
+standard. But don't get me wrong - I'm all for simplifying it and removing all 
+the customization cruft that got accumulated in 15 years of Arago! Maybe a bit 
+more surgical and gradual and with a proper description though? :)
+
+3. Have you tested the new SDK and ensured that all use cases are working as 
+expected? Specifically with multiconfig and multiple architectures?
+
+-- 
+Denys
 
