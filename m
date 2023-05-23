@@ -1,385 +1,189 @@
-Return-Path: <devarsht@ti.com>
+Return-Path: <j-luthra@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ACB66C7EE23
-	for <webhook@archiver.kernel.org>; Tue, 23 May 2023 11:48:49 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web10.19990.1684842526051908289
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1BB10C77B75
+	for <webhook@archiver.kernel.org>; Tue, 23 May 2023 13:19:10 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web11.22068.1684847943830001536
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 23 May 2023 04:48:46 -0700
+ Tue, 23 May 2023 06:19:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=yJ9zMeNj;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: devarsht@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34NBmhQh010422;
-	Tue, 23 May 2023 06:48:43 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=KIRlSS8E;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: j-luthra@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34NDJ2jE103138;
+	Tue, 23 May 2023 08:19:02 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1684842523;
-	bh=g/5rLLSWMGpQ62AhJhutjjltuVQh18qnwhAVdBQPzto=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=yJ9zMeNjSPGkM7Llj/CFZIPWGRDS1yGKBiv2UVuTvdyxEowkiJO8n0+0qIrXcLfl8
-	 JU8qDP1PL5sSZI+v8IOaIn2jpc6+ZPCovWu9Thw/ekpCFngeb67lSWd1xTGQF3PvwP
-	 6j13niAPTqz8hONWhPbayQXCj0rinZk8zfx4Ni6E=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34NBmhPJ008760
+	s=ti-com-17Q1; t=1684847942;
+	bh=ArF/gzOrZNWPSdoZImPTd05PNgMfZ2+DW3zPmFhtfqk=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=KIRlSS8ESAYTgM2xwHXYRkZdS5T36wwxUI7Ws1Agnt6DoOfBGblzRggIc9f24+oZL
+	 bEL+qNjBnjuUiNgfxwIrDoTDpDa6Y91r9X7yUyUokVwRaU880vDPkmrOYt3cYz0u3P
+	 ly3wXTgtYkr+brimQ5eY+dZlrlnLd7xXUycN7cFI=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34NDJ2x9003800
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 23 May 2023 06:48:43 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 23 May 2023 08:19:02 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 23
- May 2023 06:48:43 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ May 2023 08:19:02 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 23 May 2023 06:48:43 -0500
-Received: from [172.24.145.199] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34NBmdnN016637;
-	Tue, 23 May 2023 06:48:40 -0500
-Message-ID: <80f116aa-3863-2990-f582-40f5d7a5b9b4@ti.com>
-Date: Tue, 23 May 2023 17:18:39 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
+ Frontend Transport; Tue, 23 May 2023 08:19:02 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34NDJ1BG120070;
+	Tue, 23 May 2023 08:19:01 -0500
+Date: Tue, 23 May 2023 18:48:58 +0530
+From: Jai Luthra <j-luthra@ti.com>
+To: Devarsh Thakkar <devarsht@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>, Ryan Eatmon <reatmon@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>, Gyan Gupta <g-gupta@ti.com>,
+        Sai Sree
+ Kartheek Adivi <s-adivi@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>, "Bajjuri,
+ Praneeth" <praneeth@ti.com>,
+        "Raghavendra, Vignesh" <vigneshr@ti.com>,
+        "Bhatia, Aradhya" <a-bhatia1@ti.com>, "Nori, Sekhar" <nsekhar@ti.com>,
+        "Khasim, Syed Mohammed" <khasim@ti.com>
 Subject: Re: [master/kirkstone][RESEND PATCH 1/2] v4l-utils: Add recipe for
  v1.23.0
-Content-Language: en-US
-To: Jai Luthra <j-luthra@ti.com>, <meta-arago@lists.yoctoproject.org>
-CC: Ryan Eatmon <reatmon@ti.com>, Denys Dmytriyenko <denys@konsulko.com>,
-        Gyan
- Gupta <g-gupta@ti.com>, Sai Sree Kartheek Adivi <s-adivi@ti.com>,
-        Rahul T R
-	<r-ravikumar@ti.com>, "Bajjuri, Praneeth" <praneeth@ti.com>,
-        "Raghavendra,
- Vignesh" <vigneshr@ti.com>,
-        "Bhatia, Aradhya" <a-bhatia1@ti.com>, "Nori,
- Sekhar" <nsekhar@ti.com>,
-        "Khasim, Syed Mohammed" <khasim@ti.com>
+Message-ID: <2r6t4wth4jin5dizz4z3gt2shaobtj5eg74u5axirsztkdgzlv@5dw6m2omaixu>
 References: <20230523094422.1633390-1-j-luthra@ti.com>
-From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <20230523094422.1633390-1-j-luthra@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+ <80f116aa-3863-2990-f582-40f5d7a5b9b4@ti.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="5xuuy4277uldkfqe"
+Content-Disposition: inline
+In-Reply-To: <80f116aa-3863-2990-f582-40f5d7a5b9b4@ti.com>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 23 May 2023 11:48:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14448
+ <meta-arago@lists.yoctoproject.org>; Tue, 23 May 2023 13:19:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14449
 
-Hi Jai,
+--5xuuy4277uldkfqe
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks for the patch.
+Hi Devarsh,
 
-On 23/05/23 15:14, Jai Luthra wrote:
-> An older recipe (v1.22.0) is present in the meta-openembedded/meta-oe
-> layer for kirkstone.
-> 
-> TI's 6.1 based kernel has backported multistream routing APIs [1] from
-> upstream kernel, which requires a few patches to v4l-utils [2] that only
-> apply cleanly on top of v1.23.0.
-> 
-> Thus we override the recipe in this layer to the latest (v1.23.0) found
-> from meta-oe master.
-> 
-> Link: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/log/?h=ca55d70b41e [1]
-> Link: https://lore.kernel.org/all/20230210115546.199809-1-tomi.valkeinen@ideasonboard.com/ [2]
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> ---
->  ...-Don-t-install-libmediactl-and-libv4.patch | 44 ++++++++++
->  ...02-original-patch-mediactl-pkgconfig.patch | 21 +++++
->  ...iginal-patch-export-mediactl-headers.patch | 24 +++++
->  .../v4l-utils/0004-Do-not-use-getsubopt.patch | 60 +++++++++++++
->  .../v4l-utils/v4l-utils_1.23.0.bb             | 87 +++++++++++++++++++
+Thanks for the review,
 
-As per my opinion, not a good idea to bump up package version than default
-package version shipped by kirkstone i.e. 1.22.1
-(meta-oe/recipes-multimedia/v4l2apps/v4l-utils_1.22.1.bb)
+On May 23, 2023 at 17:18:39 +0530, Devarsh Thakkar wrote:
+> Hi Jai,
+>=20
+> Thanks for the patch.
+>=20
+> On 23/05/23 15:14, Jai Luthra wrote:
+> > An older recipe (v1.22.0) is present in the meta-openembedded/meta-oe
+> > layer for kirkstone.
+> >=20
+> > TI's 6.1 based kernel has backported multistream routing APIs [1] from
+> > upstream kernel, which requires a few patches to v4l-utils [2] that only
+> > apply cleanly on top of v1.23.0.
+> >=20
+> > Thus we override the recipe in this layer to the latest (v1.23.0) found
+> > from meta-oe master.
+> >=20
+> > Link: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/log/?h=3D=
+ca55d70b41e [1]
+> > Link: https://lore.kernel.org/all/20230210115546.199809-1-tomi.valkeine=
+n@ideasonboard.com/ [2]
+> > Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> > ---
+> >  ...-Don-t-install-libmediactl-and-libv4.patch | 44 ++++++++++
+> >  ...02-original-patch-mediactl-pkgconfig.patch | 21 +++++
+> >  ...iginal-patch-export-mediactl-headers.patch | 24 +++++
+> >  .../v4l-utils/0004-Do-not-use-getsubopt.patch | 60 +++++++++++++
+> >  .../v4l-utils/v4l-utils_1.23.0.bb             | 87 +++++++++++++++++++
+>=20
+> As per my opinion, not a good idea to bump up package version than default
+> package version shipped by kirkstone i.e. 1.22.1
+> (meta-oe/recipes-multimedia/v4l2apps/v4l-utils_1.22.1.bb)
+>=20
+> As a general rule of thumb, there could be other layers (for e.g. added by
+> vendors) having bbappends assuming shipped package version same as in
+> kirkstone and also build time and runtime dependencies w.r.t other packag=
+es
+> are guaranted if all packages stay with same version as shipped by kirkst=
+one
+> and with this new recipe I believe we are kind of deviating from that
+> protection and so my suggestion is to rebase on top of existing package
+> version i.e. 1.22.1
 
-As a general rule of thumb, there could be other layers (for e.g. added by
-vendors) having bbappends assuming shipped package version same as in
-kirkstone and also build time and runtime dependencies w.r.t other packages
-are guaranted if all packages stay with same version as shipped by kirkstone
-and with this new recipe I believe we are kind of deviating from that
-protection and so my suggestion is to rebase on top of existing package
-version i.e. 1.22.1
+I agree that it makes sense to keep packages pinned to a version for a=20
+particular release (dunfell/kirkstone) for stability and compatibility=20
+with other dependencies.
 
-Regards
-Devarsh
+The only issue here is multi-stream support requires a large chunk of=20
+changes to v4l2 userspace APIs, affecting the most commonly used tools=20
+for setting up the camera pipeline (media-ctl) and capturing frames=20
+(v4l2-ctl).
 
->  5 files changed, 236 insertions(+)
->  create mode 100644 meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0001-Revert-media-ctl-Don-t-install-libmediactl-and-libv4.patch
->  create mode 100644 meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0002-original-patch-mediactl-pkgconfig.patch
->  create mode 100644 meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0003-original-patch-export-mediactl-headers.patch
->  create mode 100644 meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0004-Do-not-use-getsubopt.patch
->  create mode 100644 meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils_1.23.0.bb
+While these changes are merged in linux upstream and backported to TI's=20
+6.1 branch, the corresponding v4l-utils changes are still under review=20
+upstream.
+
+There are two options I see here:
 
 
-> 
-> diff --git a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0001-Revert-media-ctl-Don-t-install-libmediactl-and-libv4.patch b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0001-Revert-media-ctl-Don-t-install-libmediactl-and-libv4.patch
-> new file mode 100644
-> index 00000000..8ac8fbe1
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0001-Revert-media-ctl-Don-t-install-libmediactl-and-libv4.patch
-> @@ -0,0 +1,44 @@
-> +From 0d5c0e9a75eca43667b0e29155b635e50622b66a Mon Sep 17 00:00:00 2001
-> +From: Khem Raj <raj.khem@gmail.com>
-> +Date: Fri, 27 Feb 2015 21:55:36 +0000
-> +Subject: [PATCH] Revert "media-ctl: Don't install libmediactl and
-> +
-> + libv4l2subdev"
-> +
-> +This reverts commit 0911dce53b08b0df3066be2c75f67e8a314d8729.
-> +
-> +Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> +
-> +Conflicts:
-> +	utils/media-ctl/Makefile.am
-> +
-> +---
-> + utils/media-ctl/Makefile.am | 10 +++-------
-> + 1 file changed, 3 insertions(+), 7 deletions(-)
-> +
-> +diff --git a/utils/media-ctl/Makefile.am b/utils/media-ctl/Makefile.am
-> +index c48c8d6..e255e16 100644
-> +--- a/utils/media-ctl/Makefile.am
-> ++++ b/utils/media-ctl/Makefile.am
-> +@@ -1,8 +1,7 @@
-> +-noinst_LTLIBRARIES = libmediactl.la libv4l2subdev.la
-> +-
-> ++lib_LTLIBRARIES = libmediactl.la libv4l2subdev.la
-> + libmediactl_la_SOURCES = libmediactl.c mediactl-priv.h
-> +-libmediactl_la_CFLAGS = -static $(LIBUDEV_CFLAGS)
-> +-libmediactl_la_LDFLAGS = -static $(LIBUDEV_LIBS)
-> ++libmediactl_la_CFLAGS = $(LIBUDEV_CFLAGS)
-> ++libmediactl_la_LDFLAGS = $(LIBUDEV_LIBS)
-> + 
-> + media-bus-format-names.h: ../../include/linux/media-bus-format.h
-> + 	$(AM_V_GEN) sed -e '/#define MEDIA_BUS_FMT/ ! d; s/.*FMT_//; /FIXED/ d; s/\t.*//; s/.*/{ \"&\", MEDIA_BUS_FMT_& },/;' \
-> +@@ -18,9 +17,6 @@ CLEANFILES = $(BUILT_SOURCES)
-> + nodist_libv4l2subdev_la_SOURCES = $(BUILT_SOURCES)
-> + libv4l2subdev_la_SOURCES = libv4l2subdev.c
-> + libv4l2subdev_la_LIBADD = libmediactl.la
-> +-libv4l2subdev_la_CFLAGS = -static
-> +-libv4l2subdev_la_LDFLAGS = -static
-> +-
-> + mediactl_includedir=$(includedir)/mediactl
-> + noinst_HEADERS = mediactl.h v4l2subdev.h
-> + 
-> diff --git a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0002-original-patch-mediactl-pkgconfig.patch b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0002-original-patch-mediactl-pkgconfig.patch
-> new file mode 100644
-> index 00000000..52fc2d7a
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0002-original-patch-mediactl-pkgconfig.patch
-> @@ -0,0 +1,21 @@
-> +From 320b8378ee30eb5e0fe83a8b397f822f2f88a4c1 Mon Sep 17 00:00:00 2001
-> +From: Khem Raj <raj.khem@gmail.com>
-> +Date: Sun, 1 Mar 2015 22:25:07 +0000
-> +Subject: [PATCH] %% original patch: mediactl-pkgconfig.patch
-> +
-> +---
-> + utils/media-ctl/Makefile.am | 1 +
-> + 1 file changed, 1 insertion(+)
-> +
-> +diff --git a/utils/media-ctl/Makefile.am b/utils/media-ctl/Makefile.am
-> +index e255e16..ff7b417 100644
-> +--- a/utils/media-ctl/Makefile.am
-> ++++ b/utils/media-ctl/Makefile.am
-> +@@ -20,6 +20,7 @@ libv4l2subdev_la_LIBADD = libmediactl.la
-> + mediactl_includedir=$(includedir)/mediactl
-> + noinst_HEADERS = mediactl.h v4l2subdev.h
-> + 
-> ++pkgconfig_DATA = libmediactl.pc
-> + bin_PROGRAMS = media-ctl
-> + media_ctl_SOURCES = media-ctl.c options.c options.h tools.h
-> + media_ctl_LDADD = libmediactl.la libv4l2subdev.la
-> diff --git a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0003-original-patch-export-mediactl-headers.patch b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0003-original-patch-export-mediactl-headers.patch
-> new file mode 100644
-> index 00000000..39dc3383
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0003-original-patch-export-mediactl-headers.patch
-> @@ -0,0 +1,24 @@
-> +From f7109d6b2fcb291824d795071c04a492d9fbc45b Mon Sep 17 00:00:00 2001
-> +From: Khem Raj <raj.khem@gmail.com>
-> +Date: Sun, 1 Mar 2015 22:25:07 +0000
-> +Subject: [PATCH] %% original patch: export-mediactl-headers.patch
-> +
-> +---
-> + utils/media-ctl/Makefile.am | 4 ++--
-> + 1 file changed, 2 insertions(+), 2 deletions(-)
-> +
-> +diff --git a/utils/media-ctl/Makefile.am b/utils/media-ctl/Makefile.am
-> +index ff7b417..6ce656f 100644
-> +--- a/utils/media-ctl/Makefile.am
-> ++++ b/utils/media-ctl/Makefile.am
-> +@@ -17,8 +17,8 @@ CLEANFILES = $(BUILT_SOURCES)
-> + nodist_libv4l2subdev_la_SOURCES = $(BUILT_SOURCES)
-> + libv4l2subdev_la_SOURCES = libv4l2subdev.c
-> + libv4l2subdev_la_LIBADD = libmediactl.la
-> +-mediactl_includedir=$(includedir)/mediactl
-> +-noinst_HEADERS = mediactl.h v4l2subdev.h
-> ++otherincludedir = $(includedir)/mediactl
-> ++otherinclude_HEADERS = mediactl.h v4l2subdev.h
-> + 
-> + pkgconfig_DATA = libmediactl.pc
-> + bin_PROGRAMS = media-ctl
-> diff --git a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0004-Do-not-use-getsubopt.patch b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0004-Do-not-use-getsubopt.patch
-> new file mode 100644
-> index 00000000..fb844acb
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0004-Do-not-use-getsubopt.patch
-> @@ -0,0 +1,60 @@
-> +From 6e7e52de7afe29597016952a7317faf9c3ea3268 Mon Sep 17 00:00:00 2001
-> +From: Khem Raj <raj.khem@gmail.com>
-> +Date: Sat, 30 Nov 2019 18:50:34 -0800
-> +Subject: [PATCH] Do not use getsubopt
-> +
-> +POSIX says that behavior when subopts list is empty is undefined.
-> +musl libs will set value to NULL which leads to crash.
-> +
-> +Simply avoid getsubopt, since we cannot rely on it.
-> +
-> +Imported from Alpine Linux
-> +
-> +Upstream-Status: Pending
-> +
-> +Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> +
-> +Adapt patch to 1.23.0.
-> +
-> +(v4l-utils rev fd544473800d02e90bc289434cc44e5aa8fadd0f).
-> +
-> +%% original patch: 0007-Do-not-use-getsubopt.patch
-> +
-> +Signed-off-by: Daniel Gomez <daniel@qtec.com>
-> +---
-> + utils/v4l2-ctl/v4l2-ctl-common.cpp | 18 ++++++++++--------
-> + 1 file changed, 10 insertions(+), 8 deletions(-)
-> +
-> +diff --git a/utils/v4l2-ctl/v4l2-ctl-common.cpp b/utils/v4l2-ctl/v4l2-ctl-common.cpp
-> +index d77f7104..838c297d 100644
-> +--- a/utils/v4l2-ctl/v4l2-ctl-common.cpp
-> ++++ b/utils/v4l2-ctl/v4l2-ctl-common.cpp
-> +@@ -994,15 +994,17 @@ static bool parse_subset(char *optarg)
-> + 
-> + static bool parse_next_subopt(char **subs, char **value)
-> + {
-> +-	static char *const subopts[] = {
-> +-	    nullptr
-> +-	};
-> +-	int opt = v4l_getsubopt(subs, subopts, value);
-> ++	char *p = *subs;
-> ++	*value = *subs;
-> + 
-> +-	if (opt < 0 || *value)
-> +-		return false;
-> +-	fprintf(stderr, "Missing suboption value\n");
-> +-	return true;
-> ++	while (*p && *p != ',')
-> ++		p++;
-> ++
-> ++	if (*p)
-> ++		*p++ = '\0';
-> ++
-> ++	*subs = p;
-> ++	return false;
-> + }
-> + 
-> + void common_cmd(const std::string &media_bus_info, int ch, char *optarg)
-> +-- 
-> +2.35.1
-> +
-> diff --git a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils_1.23.0.bb b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils_1.23.0.bb
-> new file mode 100644
-> index 00000000..21a08022
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils_1.23.0.bb
-> @@ -0,0 +1,87 @@
-> +SUMMARY = "v4l2 and IR applications"
-> +LICENSE = "GPL-2.0-only & LGPL-2.1-only"
-> +LIC_FILES_CHKSUM = "file://COPYING;md5=48da9957849056017dc568bbc43d8975 \
-> +                    file://COPYING.libv4l;md5=d749e86a105281d7a44c2328acebc4b0"
-> +PROVIDES = "libv4l media-ctl"
-> +
-> +DEPENDS = "jpeg \
-> +           ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'virtual/libx11', '', d)} \
-> +           ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)} \
-> +           ${@bb.utils.contains('DISTRO_FEATURES', 'alsa', 'alsa-lib', '', d)} \
-> +           ${@bb.utils.contains_any('PACKAGECONFIG', 'qv4l2 qvidcap', 'qtbase qtbase-native', '', d)}"
-> +
-> +DEPENDS:append:libc-musl = " argp-standalone"
-> +DEPENDS:append:class-target = " udev"
-> +LDFLAGS:append = " -pthread"
-> +# v4l2 explicitly sets _FILE_OFFSET_BITS=32 to get access to
-> +# both 32 and 64 bit file APIs.  But it does not handle the time side?
-> +# Needs further investigation
-> +GLIBC_64BIT_TIME_FLAGS = ""
-> +
-> +inherit autotools gettext pkgconfig
-> +
-> +PACKAGECONFIG ??= "media-ctl"
-> +PACKAGECONFIG[media-ctl] = "--enable-v4l-utils,--disable-v4l-utils,,"
-> +PACKAGECONFIG[qv4l2] = ",--disable-qv4l2"
-> +PACKAGECONFIG[qvidcap] = ",--disable-qvidcap"
-> +
-> +SRC_URI = "\
-> +    git://git.linuxtv.org/v4l-utils.git;protocol=https;branch=master \
-> +    file://0001-Revert-media-ctl-Don-t-install-libmediactl-and-libv4.patch \
-> +    file://0002-original-patch-mediactl-pkgconfig.patch \
-> +    file://0003-original-patch-export-mediactl-headers.patch \
-> +    file://0004-Do-not-use-getsubopt.patch \
-> +"
-> +
-> +SRCREV = "9431e4b26b4842d1401e80ada9f14593dca3a94c"
-> +
-> +PV .= "+git${SRCPV}"
-> +
-> +S = "${WORKDIR}/git"
-> +
-> +do_configure:prepend() {
-> +    cd ${S}; ./bootstrap.sh; cd -
-> +}
-> +
-> +EXTRA_OECONF = "--enable-shared --with-udevdir=${base_libdir}/udev \
-> +                --disable-v4l2-compliance-32 --disable-v4l2-ctl-32"
-> +
-> +VIRTUAL-RUNTIME_ir-keytable-keymaps ?= "rc-keymaps"
-> +
-> +PACKAGES =+ "media-ctl ir-keytable rc-keymaps libv4l libv4l-dev qv4l2 qvidcap"
-> +
-> +RPROVIDES:${PN}-dbg += "libv4l-dbg"
-> +
-> +FILES:media-ctl = "${bindir}/media-ctl ${libdir}/libmediactl.so.*"
-> +FILES:qv4l2 = "\
-> +    ${bindir}/qv4l2 \
-> +    ${datadir}/applications/qv4l2.desktop \
-> +    ${datadir}/icons/hicolor/*/apps/qv4l2.* \
-> +"
-> +FILES:qvidcap = "\
-> +    ${bindir}/qvidcap \
-> +    ${datadir}/applications/qvidcap.desktop \
-> +    ${datadir}/icons/hicolor/*/apps/qvidcap.* \
-> +"
-> +
-> +FILES:ir-keytable = "${bindir}/ir-keytable ${base_libdir}/udev/rules.d/*-infrared.rules"
-> +RDEPENDS:ir-keytable += "${VIRTUAL-RUNTIME_ir-keytable-keymaps}"
-> +RDEPENDS:qv4l2 += "\
-> +    ${@bb.utils.contains('PACKAGECONFIG', 'qv4l2', 'qtbase', '', d)}"
-> +RDEPENDS:qvidcap += "\
-> +    ${@bb.utils.contains('PACKAGECONFIG', 'qvidcap', 'qtbase', '', d)}"
-> +
-> +FILES:rc-keymaps = "${sysconfdir}/rc* ${base_libdir}/udev/rc*"
-> +
-> +FILES:${PN} = "${bindir} ${sbindir}"
-> +
-> +FILES:libv4l += "${libdir}/libv4l*${SOLIBS} ${libdir}/libv4l/*.so ${libdir}/libv4l/plugins/*.so \
-> +                 ${libdir}/libdvbv5*${SOLIBS} \
-> +                 ${libdir}/libv4l/*-decomp"
-> +
-> +FILES:libv4l-dev += "${includedir} ${libdir}/pkgconfig \
-> +                     ${libdir}/libv4l*${SOLIBSDEV} ${libdir}/*.la \
-> +                     ${libdir}/v4l*${SOLIBSDEV} ${libdir}/libv4l/*.la ${libdir}/libv4l/plugins/*.la"
-> +
-> +PARALLEL_MAKE:class-native = ""
-> +BBCLASSEXTEND = "native"
+    1. We bump up the v4l-utils recipe in our distribution to a=20
+    relatively recent git commit (v1.23.0-9431e4b26b) which is in sync=20
+    with TI baseline kernel, and apply only the patches for the extra=20
+    features TI uses on top.
+
+    We also ensure it works well with the dependencies (mainly libc)=20
+    provided by rest of the kirkstone layers (so far no issues seen in=20
+    my tests)
+
+
+    2. We backport these patches to v1.22.1, which was tagged almost=20
+    **two years ago** in Oct 2021; while the kernel is on 6.1 (Jan 2023)=20
+    and using multistream APIs from 6.3/6.4/still-under-review.
+
+    We will also have to sync with the latest kernel headers and=20
+    extensively test that we don't break some ioctl or are missing=20
+    bugfixes to v4l-utils from the past two years, as the kernel=20
+    developer(s) for the newer features would not have tested against=20
+    the old release.
+
+
+That's why I chose option 1 in the current series as an exception to the=20
+thumb rule. Let me know if it is a complete no-go to override a recipe=20
+here.
+
+>=20
+> Regards
+> Devarsh
+
+Thanks,
+Jai
+
+--5xuuy4277uldkfqe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEETeDYGOXVdejUWq/FQ96R+SSacUUFAmRsvT8ACgkQQ96R+SSa
+cUVc5hAAi03f3n/PTZfgYuYy8ymo/vN3N/QjoFSfa+W9FzBOyKikSgdqhm1+E1rg
+Mx0zIivsGhFBzhcgitoSrstNOMwhrRIktGHiWx4j46rxG8EAl23qMTBaIoWWSb4Y
+WIBYrzqPTTJgSMw8pj/h8LyMGb8V1AK9lj//sQVGj5qMYyt1H48cFPwaqLWNThPX
+Yvm2WvIO/Yn9EsW1WSy2g71WQss2uCV807yn/hrLS8aIIzkBRNOfHHDF7C3sxC6o
+3Vr/WKVYAkUF3+vcnt5XNyH2IXCyorR9coZwEGjAsc+TJO/aJREPW3GJvIpGZMUR
+7yebPqtf2IvsgyEDmnjD1vWeRmfbhDow737kDGr56FJfYprEfNXF3dgACQ03H9oD
+8WOsYFUB63YpTzZlRGjlrqHpBkF6bGhQB7wHl+advtnZnbY7Vz3bygMiERu8SLgG
+vQHhdRZvimlkZYnJYmi1DdNNetYLituBsTxsK/MbqHIfpbEqb1xMzDmdz5aRSC/M
+JyCen3I61Pb/jcmImAC6kcftwl+EZXeRckwWJ2jXFWPIiWP3F3rsFOJwQ28WyBr8
+8oHkAB/oCOw19iCKfxVyU9XL73w0IZCDcZpy9kDOPWEzIsWiL5OtfnoXbTGEOCPI
+9ptXs0892pI7I9Fas4RY9ECdZE7QKS9EvvqE0jX48DH/iTJVoRc=
+=gsRt
+-----END PGP SIGNATURE-----
+
+--5xuuy4277uldkfqe--
 
