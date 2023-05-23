@@ -2,42 +2,42 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8399FC77B75
-	for <webhook@archiver.kernel.org>; Tue, 23 May 2023 18:05:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 41F79C7EE23
+	for <webhook@archiver.kernel.org>; Tue, 23 May 2023 18:05:12 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.787.1684865095244378332
+ by mx.groups.io with SMTP id smtpd.web10.793.1684865103174645684
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 23 May 2023 11:04:56 -0700
+ Tue, 23 May 2023 11:05:03 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 1C9E740C30;
-	Tue, 23 May 2023 18:04:54 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 8195540A46;
+	Tue, 23 May 2023 18:05:02 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id vcHXDSF3lM6Z; Tue, 23 May 2023 18:04:54 +0000 (UTC)
+	with ESMTP id jFQ3FZfkwO_s; Tue, 23 May 2023 18:05:02 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E37B8400CF;
-	Tue, 23 May 2023 18:04:52 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5314F400CF;
+	Tue, 23 May 2023 18:05:01 +0000 (UTC)
 Received: from thorin.denix (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 0F3A1163902;
-	Tue, 23 May 2023 14:04:08 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 829CC163902;
+	Tue, 23 May 2023 14:04:16 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [kirkstone][PATCH] meta-arago-demos: extract demo applications into own layer
-Date: Tue, 23 May 2023 18:04:51 +0000
-Message-Id: <20230523180451.3514220-1-denis@denix.org>
+Subject: [master][PATCH] meta-arago-demos: extract demo applications into own layer
+Date: Tue, 23 May 2023 18:05:00 +0000
+Message-Id: <20230523180500.3514284-1-denis@denix.org>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 23 May 2023 18:05:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14453
+ <meta-arago@lists.yoctoproject.org>; Tue, 23 May 2023 18:05:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14454
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
@@ -278,7 +278,7 @@ yer.conf
 similarity index 69%
 copy from meta-arago-extras/conf/layer.conf
 copy to meta-arago-demos/conf/layer.conf
-index 6df62162..0ffd3849 100644
+index a650e9b4..3d452d6f 100644
 --- a/meta-arago-extras/conf/layer.conf
 +++ b/meta-arago-demos/conf/layer.conf
 @@ -4,18 +4,13 @@ BBPATH .=3D ":${LAYERDIR}"
@@ -293,8 +293,8 @@ end"
 +BBFILE_PATTERN_meta-arago-demos :=3D "^${LAYERDIR}/"
 +BBFILE_PRIORITY_meta-arago-demos =3D "10"
 =20
--LAYERSERIES_COMPAT_meta-arago-extras =3D "kirkstone langdale"
-+LAYERSERIES_COMPAT_meta-arago-demos =3D "kirkstone langdale"
+-LAYERSERIES_COMPAT_meta-arago-extras =3D "kirkstone langdale mickledore"
++LAYERSERIES_COMPAT_meta-arago-demos =3D "kirkstone langdale mickledore"
 =20
 -# Set a variable to get to the top of the metadata location
 -ARAGOBASE :=3D '${@os.path.normpath("${LAYERDIR}/../")}'
@@ -786,7 +786,7 @@ rename from meta-arago-extras/recipes-qt/examples/qtwebbrowser_5.15.1.bb
 rename to meta-arago-demos/recipes-qt/examples/qtwebbrowser_5.15.1.bb
 diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/l=
 ayer.conf
-index 6df62162..8c4b474e 100644
+index a650e9b4..15074dad 100644
 --- a/meta-arago-extras/conf/layer.conf
 +++ b/meta-arago-extras/conf/layer.conf
 @@ -20,22 +20,6 @@ LAYERDEPENDS_meta-arago-extras =3D " \
