@@ -1,49 +1,50 @@
-Return-Path: <afd@ti.com>
+Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4DBB1C77B7A
-	for <webhook@archiver.kernel.org>; Tue, 30 May 2023 15:59:18 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web11.1107.1685462354169076073
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 655A7C77B73
+	for <webhook@archiver.kernel.org>; Tue, 30 May 2023 21:48:16 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web11.1348.1685483286118697145
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 30 May 2023 08:59:14 -0700
+ Tue, 30 May 2023 14:48:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=EQ7Zhe2b;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: afd@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=gkbRPyTA;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: rs@ti.com)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34UFxBdW048910;
-	Tue, 30 May 2023 10:59:11 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34ULm3pV009381;
+	Tue, 30 May 2023 16:48:03 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1685462351;
-	bh=0daTEVs1Xd1+3zqMqwBth5qzYjyBHmsQIp4UkzTeCMk=;
-	h=From:To:CC:Subject:Date;
-	b=EQ7Zhe2b2nFh0mMQQ5kd0uBkK806d2h2xBxhyIz5jNnIrjPtrCeMjnKxnBZwnmLZ6
-	 bTmrBSnvAneZN8kQbZImDrH56S4qALZCL0H+5NXCocg31VNab0DVRCALPkZqhUZ9dG
-	 C/wFDb2VJO57xbCBnk5gUxJ1JI+6zg0QD9icbIQw=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34UFxB0d042276
+	s=ti-com-17Q1; t=1685483283;
+	bh=TcPhCskTwmuvADFlrKYfDIRSvN+CGo96h3hvOSRt42s=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=gkbRPyTAeQcAJZIqXPkzaThplJjdsXI2Wl6nFTjMRdlWnOPGUAiw/+SX0cRnAhaU8
+	 tnsSGqUR+XG0FU5shCzXw0JG13GamUj7TXZGcm+CX5hfdrLYBm1IC+mjniaU5P6R2t
+	 Pn0tng1cfC/urn6c67YWG7bg91Nnp5klyIE6Pszc=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34ULm3x7062436
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 30 May 2023 10:59:11 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 30 May 2023 16:48:03 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
- May 2023 10:59:11 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ May 2023 16:48:03 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 30 May 2023 10:59:11 -0500
-Received: from lelv0326.itg.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34UFxBY3038506;
-	Tue, 30 May 2023 10:59:11 -0500
-From: Andrew Davis <afd@ti.com>
-To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
-        <meta-arago@lists.yoctoproject.org>
-CC: Andrew Davis <afd@ti.com>
-Subject: [meta-arago][master/kirkstone][PATCH] tisdk-core-bundle: Do not try to deploy unsigned TF-A or OP-TEE images
-Date: Tue, 30 May 2023 10:59:10 -0500
-Message-ID: <20230530155910.35663-1-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
+ Frontend Transport; Tue, 30 May 2023 16:48:03 -0500
+Received: from rs-desk.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34ULm2rL026159;
+	Tue, 30 May 2023 16:48:03 -0500
+From: <rs@ti.com>
+To: <denis@denix.org>, <reatmon@ti.com>, <detheridge@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>, Randolph Sapp <rs@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH 2/2] ti-test: add piglit to ARAGO_TEST
+Date: Tue, 30 May 2023 16:47:57 -0500
+Message-ID: <20230530214757.3693099-3-rs@ti.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230530214757.3693099-1-rs@ti.com>
+References: <20230530214757.3693099-1-rs@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -51,31 +52,50 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 30 May 2023 15:59:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14478
+ <meta-arago@lists.yoctoproject.org>; Tue, 30 May 2023 21:48:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14480
 
-These images are signed as part of U-Boot binman build now, so the base
-images are unsigned and the .unsigned version are not created anymore.
+From: Randolph Sapp <rs@ti.com>
 
-Signed-off-by: Andrew Davis <afd@ti.com>
+Piglit is an OpenGL test suite and test-suite runner with support for
+OpenGLES, Vulkan, OpenCL compliance tests. This in particular is very
+nice in tracking feature regressions and driver conformance.
+
+Signed-off-by: Randolph Sapp <rs@ti.com>
 ---
- meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta-arago-distro/conf/distro/arago.conf                | 3 +++
+ meta-arago-distro/recipes-core/packagegroups/ti-test.bb | 3 +++
+ 2 files changed, 6 insertions(+)
 
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
-index e412849c..20a9f3a7 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
-@@ -10,7 +10,7 @@ require tisdk-core-bundle.inc
- DEPLOY_SPL_NAME:omapl138 = ""
- DEPLOY_SPL_NAME:k3 = "tispl.bin tiboot3.bin"
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index a6425fae..9164657c 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -95,6 +95,9 @@ PACKAGECONFIG:pn-curl = "${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6",
  
--DEPLOY_IMAGES_NAME:k3 = "bl31.bin bl32.bin bl31.bin.unsigned bl32.bin.unsigned"
-+DEPLOY_IMAGES_NAME:k3 = "bl31.bin bl32.bin"
- DEPLOY_IMAGES_NAME:append:am65xx = " sysfw.itb"
- DEPLOY_IMAGES_NAME:append:j721e = " sysfw.itb"
- DEPLOY_IMAGES_NAME:append:am65xx-evm = " sysfw-am65x-gp-evm.itb"
+ PACKAGECONFIG:pn-glmark2 = "drm-gles2 wayland-gles2"
+ 
++# Enable testing for opencl and vulkan with piglit
++PACKAGECONFIG:append:pn-piglit = " opencl vulkan"
++
+ # Enable encryption support in open62541
+ PACKAGECONFIG:append:pn-open62541 = " encrypt"
+ 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+index 0b6e1eed..24fc937b 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+@@ -39,6 +39,9 @@ ARAGO_TEST = "\
+     nbench-byte \
+     stream \
+     cryptodev-tests \
++    piglit \
++    opengl-es-cts \
++    vulkan-cts \
+ "
+ 
+ ARAGO_TEST:append:armv7a = " \
 -- 
-2.39.2
+2.40.1
 
 
