@@ -1,50 +1,49 @@
-Return-Path: <rs@ti.com>
+Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 67C0DC7EE2F
-	for <webhook@archiver.kernel.org>; Tue, 30 May 2023 21:48:16 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.1349.1685483286328136835
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B4A5C7EE23
+	for <webhook@archiver.kernel.org>; Wed, 31 May 2023 15:29:54 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web11.17572.1685546989142031667
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 30 May 2023 14:48:06 -0700
+ Wed, 31 May 2023 08:29:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=SRt6ghme;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: rs@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=xVMKd2iL;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: afd@ti.com)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34ULm3C0055282;
-	Tue, 30 May 2023 16:48:03 -0500
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 34VFTmQB021490;
+	Wed, 31 May 2023 10:29:48 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1685483283;
-	bh=G1oHHlLi+h4BmMr63n2kZ+DkmRPsMvgCESIx4zii7rg=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=SRt6ghmeNNbvBpLNFCR9Trc1tpuEW5szEigHqYW6/xZ14YkeFTfoA3SN0OPy+W0jR
-	 3qpHtzchRKHlI04p6T9F6JKqg/Mgohw8Zdq7v3FrzIVskMvZCzBUjedLbzt5Ln7fMh
-	 /9bQyyY8XWGyH6Alegx34b2KfrY4p6A8wiMI53IY=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34ULm34i020348
+	s=ti-com-17Q1; t=1685546988;
+	bh=4eddSbUXuf4dLL/i82wJaZWskiIpZtfb5TJ2e+C8u08=;
+	h=From:To:CC:Subject:Date;
+	b=xVMKd2iLixorlQG+eyGMvYARy1eaRBTK87XR6SKpdT7/B/PJJekUrUhDxXaZje1iN
+	 ddYsHGBPTg01W3rvpYdjEWCNFFXsras1eQIL7zB/9G9209rA+fmPpc7f0XAFfM0ruE
+	 p0ksBlX5P1oDBQr19R8CVFZ0MlAeSCgCw4kCsdiE=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 34VFTmQA025576
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 30 May 2023 16:48:03 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
- May 2023 16:48:03 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 31 May 2023 10:29:48 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 31
+ May 2023 10:29:47 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 30 May 2023 16:48:03 -0500
-Received: from rs-desk.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34ULm2rK026159;
-	Tue, 30 May 2023 16:48:03 -0500
-From: <rs@ti.com>
-To: <denis@denix.org>, <reatmon@ti.com>, <detheridge@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, Randolph Sapp <rs@ti.com>
-Subject: [meta-arago][master/kirkstone][PATCH 1/2] arago.conf: add opencl as a distro feature
-Date: Tue, 30 May 2023 16:47:56 -0500
-Message-ID: <20230530214757.3693099-2-rs@ti.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230530214757.3693099-1-rs@ti.com>
-References: <20230530214757.3693099-1-rs@ti.com>
+ Frontend Transport; Wed, 31 May 2023 10:29:47 -0500
+Received: from lelv0327.itg.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 34VFTlj8015881;
+	Wed, 31 May 2023 10:29:47 -0500
+From: Andrew Davis <afd@ti.com>
+To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
+        <meta-arago@lists.yoctoproject.org>
+CC: Andrew Davis <afd@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH] tisdk-core-bundle: Update GP to SR2 firmware
+Date: Wed, 31 May 2023 10:29:46 -0500
+Message-ID: <20230531152946.149716-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -52,33 +51,30 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 30 May 2023 21:48:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14481
+ <meta-arago@lists.yoctoproject.org>; Wed, 31 May 2023 15:29:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14482
 
-From: Randolph Sapp <rs@ti.com>
+SR2.0 firmware binaries should be used here as SR1.0 has been descoped.
 
-Rogue devices now have limited support for opencl. Further testing is
-required but this is safe to enable now.
-
-Signed-off-by: Randolph Sapp <rs@ti.com>
+Signed-off-by: Andrew Davis <afd@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf | 2 +-
+ meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 379b1d44..a6425fae 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -47,7 +47,7 @@ DISTRO_FEATURES = "${DISTRO_FEATURES_DEFAULT} ${DISTRO_FEATURES_LIBC}"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
+index 20a9f3a7..9adb4f93 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-core-bundle.bb
+@@ -13,7 +13,7 @@ DEPLOY_SPL_NAME:k3 = "tispl.bin tiboot3.bin"
+ DEPLOY_IMAGES_NAME:k3 = "bl31.bin bl32.bin"
+ DEPLOY_IMAGES_NAME:append:am65xx = " sysfw.itb"
+ DEPLOY_IMAGES_NAME:append:j721e = " sysfw.itb"
+-DEPLOY_IMAGES_NAME:append:am65xx-evm = " sysfw-am65x-gp-evm.itb"
++DEPLOY_IMAGES_NAME:append:am65xx-evm = " sysfw-am65x_sr2-gp-evm.itb"
+ DEPLOY_IMAGES_NAME:append:am65xx-hs-evm = " sysfw-am65x_sr2-hs-evm.itb"
  
- # Add additional distro features
- DISTRO_FEATURES:append = " pam wayland opengl"
--#DISTRO_FEATURES:append = " opencl"
-+DISTRO_FEATURES:append = " opencl"
- DISTRO_FEATURES:append = " vulkan"
- DISTRO_FEATURES:append = " opencv"
- DISTRO_FEATURES:append = " openmp"
+ ARAGO_TISDK_IMAGE ?= "tisdk-core-bundle"
 -- 
-2.40.1
+2.39.2
 
 
