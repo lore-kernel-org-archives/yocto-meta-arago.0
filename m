@@ -1,97 +1,84 @@
-Return-Path: <a-limaye@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F650C7EE2E
-	for <webhook@archiver.kernel.org>; Thu,  1 Jun 2023 14:41:51 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web11.33618.1685630505428157325
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C87EC7EE23
+	for <webhook@archiver.kernel.org>; Thu,  1 Jun 2023 16:18:47 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web11.3.1685636325181055473
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 01 Jun 2023 07:41:45 -0700
+ Thu, 01 Jun 2023 09:18:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=WaD6mnR5;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: a-limaye@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 351EfimU052265
-	for <meta-arago@lists.yoctoproject.org>; Thu, 1 Jun 2023 09:41:44 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=e952wb4C;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 351GIhA2087309;
+	Thu, 1 Jun 2023 11:18:43 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1685630504;
-	bh=X9a5iSyqGHm0fMyBuRMclFknXS4GCieOI1fDY0Wu6Go=;
-	h=From:To:CC:Subject:Date;
-	b=WaD6mnR5pVXPMMpLqagizNnIEQeoaBm6Jy24uTtRsY2vbofbB1RE2ywZgOCwvhAL9
-	 7+t9iI17Iff/NkkRuyOF5L+N4g2/mocTXRrA/Y6Bp1Tuu/RAwNN62qeohN2D8eWDuo
-	 e9xqjRrKjKoglLO87VPGTDkkSnQXBzZajNNgL7xA=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 351Efimh010745
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Thu, 1 Jun 2023 09:41:44 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1685636323;
+	bh=h6iqroGRN7OEOulGjnEDlNG2dIqch0LKIQAuZmYjUsY=;
+	h=From:To:Subject:Date;
+	b=e952wb4C96lcYvJMOnaF2D72fMCpPiCx8gSzA1tvyJ96Gu8VqTAEzxrR3KuzMnSLr
+	 CCLEkcBc7fk6vviOheY9IUMNkDXjRwgLDbcl7LKy443v9vmhR0JJLYBCP3EyoLA86r
+	 jmWVQc7Zt6wo2ri3a9kgxycY77jSUDMBQuC+Nqkw=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 351GIhKa019822
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 1 Jun 2023 11:18:43 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 1
- Jun 2023 09:41:44 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 11:18:43 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 1 Jun 2023 09:41:44 -0500
-Received: from PSDKL-Workstation0.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 351Efgwm012715;
-	Thu, 1 Jun 2023 09:41:43 -0500
-From: <a-limaye@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-CC: <l-weaver@ti.com>, <a-limaye@ti.com>, <reatmon@ti.com>
-Subject: [meta-arago][oe-layersetup][PATCH] processor-sdk-linux: Add 08.06.01.03 release config
-Date: Thu, 1 Jun 2023 20:11:40 +0530
-Message-ID: <20230601144140.3629148-1-a-limaye@ti.com>
-X-Mailer: git-send-email 2.34.1
+ Frontend Transport; Thu, 1 Jun 2023 11:18:43 -0500
+Received: from uda0214219 (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 351GIhEQ107054;
+	Thu, 1 Jun 2023 11:18:43 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1q4l0d-0004C9-B0; Thu, 01 Jun 2023 11:18:43 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][kirkstone][PATCH] conf: distro: arago.conf: Change FEEDURIPREFIX
+Date: Thu, 1 Jun 2023 11:18:43 -0500
+Message-ID: <20230601161843.15364-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 01 Jun 2023 14:41:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14486
+ <meta-arago@lists.yoctoproject.org>; Thu, 01 Jun 2023 16:18:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14487
 
-From: Aniket Limaye <a-limaye@ti.com>
+We are changing around where we store our internal build opkg packages,
+so the FEEDURIPREFIX needs to be updated to match the new location.
 
-Add config file for processor-sdk-linux 08.06.01.03 release
-
-Signed-off-by: Aniket Limaye <a-limaye@ti.com>
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- .../processor-sdk-linux-08_06_01_03.txt       | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
- create mode 100644 configs/processor-sdk-linux/processor-sdk-linux-08_06_01_03.txt
+ meta-arago-distro/conf/distro/arago.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/configs/processor-sdk-linux/processor-sdk-linux-08_06_01_03.txt b/configs/processor-sdk-linux/processor-sdk-linux-08_06_01_03.txt
-new file mode 100644
-index 0000000..ac714a7
---- /dev/null
-+++ b/configs/processor-sdk-linux/processor-sdk-linux-08_06_01_03.txt
-@@ -0,0 +1,22 @@
-+# This file takes repo entries in the format
-+# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-+
-+bitbake,https://git.openembedded.org/bitbake,1.46,c527976e28165de9606497c48d834872fe68372e
-+meta-arago,https://git.yoctoproject.org/meta-arago,dunfell,08.06.00.006,layers=meta-arago-distro:meta-arago-extras
-+meta-psdkla,https://git.ti.com/git/jacinto-linux/meta-psdkla.git,master,REL.PSDK.JACINTO.08.06.01.03,layers=
-+# meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
-+# meta-python2,git://git.openembedded.org/meta-python2,dunfell,HEAD,layers=
-+meta-qt5,https://github.com/meta-qt5/meta-qt5.git,dunfell,5ef3a0ffd3324937252790266e2b2e64d33ef34f,layers=
-+meta-virtualization,https://git.yoctoproject.org/meta-virtualization,dunfell,beea119eb529b4a11f266004aee8b548427aea39,layers=
-+meta-openembedded,https://git.openembedded.org/meta-openembedded,dunfell,e707e9b7cf5c62bff4fee029965a87b22dd4ccba,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
-+meta-ti,https://git.yoctoproject.org/meta-ti,dunfell,08.06.00.006,layers=
-+meta-arm,https://git.yoctoproject.org/meta-arm,dunfell,c4f04f3fb66f8f4365b08b553af8206372e90a63,layers=meta-arm:meta-arm-toolchain
-+oe-core,https://git.openembedded.org/openembedded-core,dunfell,daaee6fcb0d201f041678af433d8e1cd6f924d09,layers=meta
-+meta-aws,https://github.com/aws/meta-aws.git,dunfell,64455aec341f8bef4d29dbc6638b2e44db36e38d,layers=
-+meta-jupyter,https://github.com/Xilinx/meta-jupyter.git,master,82db248e2eca36e52cbeafe599b755dc87720383,layers=
-+OECORELAYERCONF=./sample-files/bblayers.conf.sample
-+# if meta-browser/5f365ef0f842ba4651efe88787cf9c63bc8b6cb3 above is enabled,
-+# use below for OECORELAYERCONF to mark it compatible with dunfell
-+#OECORELAYERCONF=./sample-files/bblayers-dunfell-browser.conf.sample
-+OECORELOCALCONF=./sample-files/local-arago64.conf.sample
-+BITBAKE_INCLUSIVE_VARS=no
+diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+index 379b1d44..59ee9926 100644
+--- a/meta-arago-distro/conf/distro/arago.conf
++++ b/meta-arago-distro/conf/distro/arago.conf
+@@ -4,7 +4,7 @@ DISTRO_VERSION = "2023.04"
+ DISTRO_FEED_URI ?= "http://lcpd.itg.ti.com"
+ BUILD_VARIANT = "${@['prod','rt','systest'][int(d.getVar('ARAGO_RT_ENABLE'))+int(d.getVar('ARAGO_SYSTEST_ENABLE'))*2]}"
+ TISDK_VERSION ?= "live"
+-FEEDURIPREFIX ?= "packages/${DISTRO}-dunfell/${TISDK_VERSION}/${BUILD_VARIANT}/"
++FEEDURIPREFIX ?= "builds/${DISTRO}-kirkstone/${BUILD_VARIANT}/${MACHINE}/latest/packages/"
+ 
+ OPKG_ARGS:remove = "--prefer-arch-to-version"
+ 
 -- 
-2.34.1
+2.17.1
 
 
