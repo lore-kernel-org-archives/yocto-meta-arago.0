@@ -2,107 +2,104 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B1B0CC7EE2F
-	for <webhook@archiver.kernel.org>; Tue,  6 Jun 2023 22:57:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B5221C7EE37
+	for <webhook@archiver.kernel.org>; Tue,  6 Jun 2023 23:03:26 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.1082.1686092220773979668
+ by mx.groups.io with SMTP id smtpd.web11.1200.1686092597228561935
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 06 Jun 2023 15:57:01 -0700
+ Tue, 06 Jun 2023 16:03:17 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id E618F40C37;
-	Tue,  6 Jun 2023 22:56:59 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 95BE040C37;
+	Tue,  6 Jun 2023 23:03:16 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id QznNtyym41ma; Tue,  6 Jun 2023 22:56:59 +0000 (UTC)
+	with ESMTP id XDGGhFR0MRMX; Tue,  6 Jun 2023 23:03:16 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B42E340AE9;
-	Tue,  6 Jun 2023 22:56:56 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5E30940AE9;
+	Tue,  6 Jun 2023 23:03:12 +0000 (UTC)
 Received: by mail.denix.org (Postfix, from userid 1000)
-	id 62A35163953; Tue,  6 Jun 2023 18:56:09 -0400 (EDT)
-Date: Tue, 6 Jun 2023 18:56:09 -0400
+	id 9A290163956; Tue,  6 Jun 2023 19:02:24 -0400 (EDT)
+Date: Tue, 6 Jun 2023 19:02:24 -0400
 From: Denys Dmytriyenko <denis@denix.org>
-To: reatmon@ti.com
-Cc: rs@ti.com, detheridge@ti.com, meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][master/kirkstone][PATCH 1/2] arago.conf: add
- opencl as a distro feature
-Message-ID: <20230606225609.GW9226@denix.org>
-References: <20230530214757.3693099-1-rs@ti.com>
- <20230530214757.3693099-2-rs@ti.com>
- <f237479f-5cca-11df-60dd-eb0bfc66da79@ti.com>
+To: rs@ti.com
+Cc: reatmon@ti.com, afd@ti.com, detheridge@ti.com,
+	meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][master/kirkstone][PATCHv2] ti-test: add piglit to
+ ARAGO_TEST
+Message-ID: <20230606230224.GX9226@denix.org>
+References: <20230606195101.1611396-1-rs@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f237479f-5cca-11df-60dd-eb0bfc66da79@ti.com>
+In-Reply-To: <20230606195101.1611396-1-rs@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 06 Jun 2023 22:57:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14507
+ <meta-arago@lists.yoctoproject.org>; Tue, 06 Jun 2023 23:03:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14508
 
-On Mon, Jun 05, 2023 at 11:57:51AM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
+On Tue, Jun 06, 2023 at 02:51:01PM -0500, rs@ti.com wrote:
+> From: Randolph Sapp <rs@ti.com>
 > 
+> Piglit is an OpenGL test suite and test-suite runner with support for
+> OpenGLES, Vulkan, OpenCL compliance tests. This in particular is very
+> nice in tracking feature regressions and driver conformance.
 > 
-> On 5/30/2023 4:47 PM, rs@ti.com wrote:
-> >From: Randolph Sapp <rs@ti.com>
-> >
-> >Rogue devices now have limited support for opencl. Further testing is
-> >required but this is safe to enable now.
-> >
-> >Signed-off-by: Randolph Sapp <rs@ti.com>
-> >---
-> >  meta-arago-distro/conf/distro/arago.conf | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> >diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-> >index 379b1d44..a6425fae 100644
-> >--- a/meta-arago-distro/conf/distro/arago.conf
-> >+++ b/meta-arago-distro/conf/distro/arago.conf
-> >@@ -47,7 +47,7 @@ DISTRO_FEATURES = "${DISTRO_FEATURES_DEFAULT} ${DISTRO_FEATURES_LIBC}"
-> >  # Add additional distro features
-> >  DISTRO_FEATURES:append = " pam wayland opengl"
-> >-#DISTRO_FEATURES:append = " opencl"
-> >+DISTRO_FEATURES:append = " opencl"
+> Signed-off-by: Randolph Sapp <rs@ti.com>
+> ---
 > 
-> This change has opened a can of worms.  A lot of build failures.
-> Some of the dependent recipes were not migrated over from dunfell to
-> kirkstone and those dependencies were hidden behind this feature
-> being turned off.
-> 
-> If you want to recreate the build failures you can run:
-> 
-> MACHINE=am57xx-evm bitbake -k tisdk-core-bundle tisdk-tiny-image ti-world
-> 
-> 
-> We need to either prune out some more older recipes that are
-> depending on the missing packages, restore the missing packages and
-> clean them up per the kirkstone rules and machine renames, or option
-> C (yet to be thought of).
-> 
-> Needless to say, no quick fix for this one.  So I'm holding off
-> accepting this patch series.
-> 
-> 
-> >  DISTRO_FEATURES:append = " vulkan"
-> >  DISTRO_FEATURES:append = " opencv"
-> >  DISTRO_FEATURES:append = " openmp"
+> Ugh. I love how yocto will arbitrarily pad certain fields with
+> whitespace and simultaneously expect you to pad others manually.
 
-There are several old components in meta-arago-extras that are keyed off of 
-"opencl" distro feature, that were doing task offloading to DSPs and EVEs on 
-older platforms, like K2 and AM57x. Those are TI forks of OpenCL, OpenMP, 
-OpenVX to work with old version of TIDL for EdgeAI back in the day:
-https://www.cnx-software.com/2019/02/28/ti-am5729-beaglebone-ai-dsp-eve/
+Sections 3.1.8, 3.1.9 and 3.1.10 of Bitbake manual:
 
-And when meta-ti was being restructured for Kirkstone and lower level 
-dependencies were deprecated couple years ago, the fate of these components 
-wasn't decided yet. If there are no downstream consumers of these pieces now, 
-I guess they can be removed:
-https://git.yoctoproject.org/meta-arago/tree/meta-arago-extras/recipes-ti
+3.1.8 Appending (+=) and prepending (=+) With Spaces
+3.1.9 Appending (.=) and Prepending (=.) Without Spaces
+3.1.10 Appending and Prepending (:append Override Style Syntax)
 
--- 
-Denys
+https://docs.yoctoproject.org/bitbake/2.4/bitbake-user-manual/bitbake-user-manual-metadata.html#appending-and-prepending-with-spaces
+https://docs.yoctoproject.org/bitbake/2.4/bitbake-user-manual/bitbake-user-manual-metadata.html#appending-and-prepending-without-spaces
+https://docs.yoctoproject.org/bitbake/2.4/bitbake-user-manual/bitbake-user-manual-metadata.html#appending-and-prepending-override-style-syntax
+
+
+>  meta-arago-distro/conf/distro/arago.conf                | 3 +++
+>  meta-arago-distro/recipes-core/packagegroups/ti-test.bb | 3 +++
+>  2 files changed, 6 insertions(+)
+> 
+> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+> index a6425fae..2f81f118 100644
+> --- a/meta-arago-distro/conf/distro/arago.conf
+> +++ b/meta-arago-distro/conf/distro/arago.conf
+> @@ -95,6 +95,9 @@ PACKAGECONFIG:pn-curl = "${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6",
+>  
+>  PACKAGECONFIG:pn-glmark2 = "drm-gles2 wayland-gles2"
+>  
+> +# Enable testing for opencl and vulkan with piglit
+> +PACKAGECONFIG:append:pn-piglit = " ${@bb.utils.filter("DISTRO_FEATURES", "opencl vulkan", d)}"
+> +
+>  # Enable encryption support in open62541
+>  PACKAGECONFIG:append:pn-open62541 = " encrypt"
+>  
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+> index 0b6e1eed..929d63c7 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+> @@ -39,6 +39,9 @@ ARAGO_TEST = "\
+>      nbench-byte \
+>      stream \
+>      cryptodev-tests \
+> +    piglit \
+> +    ${@bb.utils.contains("DISTRO_FEATURES", "opengl", "opengl-es-cts", "", d)} \
+> +    ${@bb.utils.contains("DISTRO_FEATURES", "vulkan", "vulkan-cts", "", d)} \
+>  "
+>  
+>  ARAGO_TEST:append:armv7a = " \
+> -- 
+> 2.40.1
+> 
 
