@@ -2,140 +2,186 @@ Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B7F8FC77B7A
-	for <webhook@archiver.kernel.org>; Tue,  6 Jun 2023 23:15:46 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web10.1392.1686093337384764767
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D06A9C7EE45
+	for <webhook@archiver.kernel.org>; Tue,  6 Jun 2023 23:18:56 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web10.1450.1686093529714263534
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 06 Jun 2023 16:15:37 -0700
+ Tue, 06 Jun 2023 16:18:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=SXarVNGa;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: rs@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356NFY6Y104984;
-	Tue, 6 Jun 2023 18:15:34 -0500
+ dkim=fail reason="body hash did not verify" header.i=@ti.com header.s=ti-com-17q1 header.b=ebN8VDCk;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: rs@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356NImUq002085
+	for <meta-arago@lists.yoctoproject.org>; Tue, 6 Jun 2023 18:18:48 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1686093334;
-	bh=iDfXvqOycfw4JY9GW5r+DVfyrrZeyD1dAN/VT9UewvA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=SXarVNGaMEqz0F13YJhqL/FSZ4htW95QXj8PV3+aHPfQNrwPHKDJKMRRTXbOpB/60
-	 ajBZNO3Ll2wmhAYllQvXOYNzw8GWk+J6Mk5/mTYVdBDDhAwvSjrA0mCFeRRpyAfKbl
-	 e+6jJr8PLZS3CjPGrHZ+38Ci/kgrYBb+6ShVhG60=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356NFYsb003348
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 6 Jun 2023 18:15:34 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1686093528;
+	bh=19HkJ31wl6gf9v0h0uztoS09ecM+zxwb35w9tRWEZdY=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=ebN8VDCknMF/CffHLwbDYmSP4WnteGzzCvCcxrZEp8dE2ofsltwcoFOQj2/abftK9
+	 ejNALm1C00Aqm6Uy56sCxvu8lf3yIdEhlpYPepRHPEGExLXUCjZYbmeDKsRFZpYrs1
+	 oo1WvnbdpOGZxF6HD6FaGiApVZu5kMUb1lL0tiJk=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356NImNn048184
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Tue, 6 Jun 2023 18:18:48 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
- Jun 2023 18:15:34 -0500
+ Jun 2023 18:18:48 -0500
 Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE108.ent.ti.com
  (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 6 Jun 2023 18:15:34 -0500
+ Frontend Transport; Tue, 6 Jun 2023 18:18:48 -0500
 Received: from [128.247.81.144] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356NFY3m056030;
-	Tue, 6 Jun 2023 18:15:34 -0500
-Message-ID: <c4200cdc-0cb5-71de-3113-09958b7eec72@ti.com>
-Date: Tue, 6 Jun 2023 18:15:34 -0500
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356NImvs058386
+	for <meta-arago@lists.yoctoproject.org>; Tue, 6 Jun 2023 18:18:48 -0500
+Message-ID: <9d92d007-57d1-d2fd-69ed-8aa260ef4590@ti.com>
+Date: Tue, 6 Jun 2023 18:18:48 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
 Subject: Re: [EXTERNAL] Re: [meta-arago][master/kirkstone][PATCH] arago.conf:
  make things more readable and fix the virtuals
 Content-Language: en-US, en-US-large
-To: Denys Dmytriyenko <denis@denix.org>
-CC: <detheridge@ti.com>, <reatmon@ti.com>, <afd@ti.com>,
-        <meta-arago@lists.yoctoproject.org>
+To: <meta-arago@lists.yoctoproject.org>
 References: <20230606191019.702649-1-rs@ti.com>
  <20230606221554.GT9226@denix.org>
+ <176634F5169028F6.23186@lists.yoctoproject.org>
 From: Randolph Sapp <rs@ti.com>
-In-Reply-To: <20230606221554.GT9226@denix.org>
+In-Reply-To: <176634F5169028F6.23186@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by lelv0142.ext.ti.com id 356NImUq002085
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 06 Jun 2023 23:15:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14510
+ <meta-arago@lists.yoctoproject.org>; Tue, 06 Jun 2023 23:18:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14511
 
-On 6/6/23 17:15, Denys Dmytriyenko wrote:
-> On Tue, Jun 06, 2023 at 02:10:19PM -0500, rs@ti.com wrote:
->> From: Randolph Sapp <rs@ti.com>
+On 6/6/23 18:15, Randolph Sapp via lists.yoctoproject.org wrote:
+> On 6/6/23 17:15, Denys Dmytriyenko wrote:
+>> On Tue, Jun 06, 2023 at 02:10:19PM -0500, rs@ti.com wrote:
+>>> From: Randolph Sapp <rs@ti.com>
+>>>
+>>> Make things more readable and reliable by useing the built in boolean
+>>> check instead of python's type casting. Drop the array indexing in fa=
+vor
+>>> of a more direct if else statememnt.
 >>
->> Make things more readable and reliable by useing the built in boolean
->> check instead of python's type casting. Drop the array indexing in favor
->> of a more direct if else statememnt.
-> 
-> Heh, it's just a matter of personal preference :) Array indexing conditionals
-> is how OE used to do things from the early days and I'm well used to that. But
-> these days using Python if/else directly gained lots of traction, so why not?
-> 
-> 
->> Also fix the virtual provider for login manager. There should only be 1
->> login provider and it should be shadow-base for systemd *or* busybox for
->> sysVinit systemd.
+>> Heh, it's just a matter of personal preference :) Array indexing=20
+>> conditionals
+>> is how OE used to do things from the early days and I'm well used to=20
+>> that. But
+>> these days using Python if/else directly gained lots of traction, so=20
+>> why not?
 >>
->> Also explicitly remove the sysvinit distro feature if ARAGO_SYSVINIT
->> isn't set, because whatever arago inherits expects sysvinit for some
->> reason. This should fix the duplicate init.d and systemd service files
->> we've been seeing.
-> 
-> How much testing have you done with this change?
-> 
-> The reason it was done this way is because many packages only provided
-> sysvinit rc scripts and not systemd unit files and we were relying on
-> systemd-sysv-generator to handle those, which has dependency on "sysvinit"
-> PACKAGECONFIG and DISTRO_FEATURES. There were fixes to handle duplications
-> when both sysvinit rc script and systemd unit file are provided by a package
-> and install only one of them. It was better than not having any startup script
-> for a package at all.
-> 
-
-Everything in the layers below us provides both from everything I've 
-seen. The only incompliant layers are meta-arago and maybe something in 
-meta-ti still expecting sysVinit scripts.
-
-If you set both sysVinit and systemd as a distro feature it actually 
-*confuses* core packages and they end up shipping both, which clash. 
-Systemd typically just resolves this by forcing everything with a 
-sysvinit script into the sysvinit compatibility stage leading to 
-increased boot time because that's all still serialized.
-
-> 
->> Signed-off-by: Randolph Sapp <rs@ti.com>
->> ---
->>   meta-arago-distro/conf/distro/arago.conf | 15 ++++++++-------
->>   1 file changed, 8 insertions(+), 7 deletions(-)
 >>
->> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
->> index 9164657c..6390a916 100644
->> --- a/meta-arago-distro/conf/distro/arago.conf
->> +++ b/meta-arago-distro/conf/distro/arago.conf
->> @@ -59,13 +59,14 @@ DISTRO_FEATURES_FILTER_NATIVESDK:append = " opencl opencv openmp"
->>   
->>   # Set global runtime providers for major components
->>   ARAGO_SYSVINIT ?= "0"
->> -VIRTUAL-RUNTIME_dev_manager = "${@["udev", "systemd"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
->> -VIRTUAL-RUNTIME_init_manager = "${@["sysvinit", "systemd"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
->> -VIRTUAL-RUNTIME_initscripts = "${@["initscripts", "systemd-compat-units"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
->> -VIRTUAL-RUNTIME_initramfs = "${@["sysvinit-initramfs", "systemd-initramfs"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
->> -VIRTUAL-RUNTIME_login_manager = "busybox shadow"
->> -
->> -DISTRO_FEATURES:append = "${@[""," systemd"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
->> +VIRTUAL-RUNTIME_dev_manager = "${@ 'udev' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'systemd'}"
->> +VIRTUAL-RUNTIME_init_manager = "${@ 'sysvinit' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'systemd'}"
->> +VIRTUAL-RUNTIME_initscripts = "${@ 'initscripts' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'systemd-compat-units'}"
->> +VIRTUAL-RUNTIME_initramfs = "${@ 'sysvinit-initramfs' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'systemd-initramfs'}"
->> +VIRTUAL-RUNTIME_login_manager = "${@ 'busybox' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'shadow-base'}"
->> +
->> +DISTRO_FEATURES:append = "${@ '' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else ' systemd'}"
->> +DISTRO_FEATURES:remove = "${@ '' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else ' sysvinit'}"
->>   
->>   # Distro-specific package configuration
->>   PACKAGECONFIG:append:pn-systemd = " coredump"
->> -- 
->> 2.40.1
+>>> Also fix the virtual provider for login manager. There should only be=
+ 1
+>>> login provider and it should be shadow-base for systemd *or* busybox =
+for
+>>> sysVinit systemd.
+>>>
+>>> Also explicitly remove the sysvinit distro feature if ARAGO_SYSVINIT
+>>> isn't set, because whatever arago inherits expects sysvinit for some
+>>> reason. This should fix the duplicate init.d and systemd service file=
+s
+>>> we've been seeing.
+>>
+>> How much testing have you done with this change?
+>>
+>> The reason it was done this way is because many packages only provided
+>> sysvinit rc scripts and not systemd unit files and we were relying on
+>> systemd-sysv-generator to handle those, which has dependency on=20
+>> "sysvinit"
+>> PACKAGECONFIG and DISTRO_FEATURES. There were fixes to handle=20
+>> duplications
+>> when both sysvinit rc script and systemd unit file are provided by a=20
+>> package
+>> and install only one of them. It was better than not having any=20
+>> startup script
+>> for a package at all.
+>>
+>=20
+> Everything in the layers below us provides both from everything I've=20
+> seen. The only incompliant layers are meta-arago and maybe something in=
+=20
+> meta-ti still expecting sysVinit scripts.
+>=20
+> If you set both sysVinit and systemd as a distro feature it actually=20
+> *confuses* core packages and they end up shipping both, which clash.=20
+> Systemd typically just resolves this by forcing everything with a=20
+> sysvinit script into the sysvinit compatibility stage leading to=20
+> increased boot time because that's all still serialized.
+>=20
+
+If there are any packages still not compliant that you can find, tell me=20
+and I will fix them myself. Seeing mix-matched sysVinit and systemd=20
+scripts in the same target makes me irrationally angry.
+
+>>
+>>> Signed-off-by: Randolph Sapp <rs@ti.com>
+>>> ---
+>>> =C2=A0 meta-arago-distro/conf/distro/arago.conf | 15 ++++++++-------
+>>> =C2=A0 1 file changed, 8 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/meta-arago-distro/conf/distro/arago.conf=20
+>>> b/meta-arago-distro/conf/distro/arago.conf
+>>> index 9164657c..6390a916 100644
+>>> --- a/meta-arago-distro/conf/distro/arago.conf
+>>> +++ b/meta-arago-distro/conf/distro/arago.conf
+>>> @@ -59,13 +59,14 @@ DISTRO_FEATURES_FILTER_NATIVESDK:append =3D "=20
+>>> opencl opencv openmp"
+>>> =C2=A0 # Set global runtime providers for major components
+>>> =C2=A0 ARAGO_SYSVINIT ?=3D "0"
+>>> -VIRTUAL-RUNTIME_dev_manager =3D "${@["udev",=20
+>>> "systemd"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
+>>> -VIRTUAL-RUNTIME_init_manager =3D "${@["sysvinit",=20
+>>> "systemd"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
+>>> -VIRTUAL-RUNTIME_initscripts =3D "${@["initscripts",=20
+>>> "systemd-compat-units"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
+>>> -VIRTUAL-RUNTIME_initramfs =3D "${@["sysvinit-initramfs",=20
+>>> "systemd-initramfs"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
+>>> -VIRTUAL-RUNTIME_login_manager =3D "busybox shadow"
+>>> -
+>>> -DISTRO_FEATURES:append =3D "${@["","=20
+>>> systemd"][bool(d.getVar("ARAGO_SYSVINIT"))]}"
+>>> +VIRTUAL-RUNTIME_dev_manager =3D "${@ 'udev' if=20
+>>> oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'systemd'}"
+>>> +VIRTUAL-RUNTIME_init_manager =3D "${@ 'sysvinit' if=20
+>>> oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'systemd'}"
+>>> +VIRTUAL-RUNTIME_initscripts =3D "${@ 'initscripts' if=20
+>>> oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else=20
+>>> 'systemd-compat-units'}"
+>>> +VIRTUAL-RUNTIME_initramfs =3D "${@ 'sysvinit-initramfs' if=20
+>>> oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'systemd-initramfs'=
+}"
+>>> +VIRTUAL-RUNTIME_login_manager =3D "${@ 'busybox' if=20
+>>> oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'shadow-base'}"
+>>> +
+>>> +DISTRO_FEATURES:append =3D "${@ '' if=20
+>>> oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else ' systemd'}"
+>>> +DISTRO_FEATURES:remove =3D "${@ '' if=20
+>>> oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else ' sysvinit'}"
+>>> =C2=A0 # Distro-specific package configuration
+>>> =C2=A0 PACKAGECONFIG:append:pn-systemd =3D " coredump"
+>>> --=20
+>>> 2.40.1
+>=20
+>=20
+>=20
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#14510):=20
+> https://lists.yoctoproject.org/g/meta-arago/message/14510
+> Mute This Topic: https://lists.yoctoproject.org/mt/99370291/7094281
+> Group Owner: meta-arago+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/meta-arago/unsub [rs@ti.c=
+om]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>=20
+>=20
 
 
