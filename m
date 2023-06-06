@@ -1,105 +1,91 @@
-Return-Path: <denis@denix.org>
+Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B5221C7EE37
-	for <webhook@archiver.kernel.org>; Tue,  6 Jun 2023 23:03:26 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.1200.1686092597228561935
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 988A9C7EE37
+	for <webhook@archiver.kernel.org>; Tue,  6 Jun 2023 23:03:36 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web11.1206.1686092612378229447
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 06 Jun 2023 16:03:17 -0700
+ Tue, 06 Jun 2023 16:03:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 95BE040C37;
-	Tue,  6 Jun 2023 23:03:16 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id XDGGhFR0MRMX; Tue,  6 Jun 2023 23:03:16 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5E30940AE9;
-	Tue,  6 Jun 2023 23:03:12 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 9A290163956; Tue,  6 Jun 2023 19:02:24 -0400 (EDT)
-Date: Tue, 6 Jun 2023 19:02:24 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: rs@ti.com
-Cc: reatmon@ti.com, afd@ti.com, detheridge@ti.com,
-	meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][master/kirkstone][PATCHv2] ti-test: add piglit to
- ARAGO_TEST
-Message-ID: <20230606230224.GX9226@denix.org>
-References: <20230606195101.1611396-1-rs@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=maBhsvKe;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: rs@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 356N3T2f102615;
+	Tue, 6 Jun 2023 18:03:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1686092609;
+	bh=keHALI805bnQ2l/OZQ3AnDKuURkAslE/sZs8WdwIndM=;
+	h=From:To:CC:Subject:Date;
+	b=maBhsvKecx1S4YIk1jWtAA/F9Ef2zd3KFWCpGAxVcixz7Y6R3cydhuG+yHmaug9BD
+	 S4K9wKCLiiQ80maCQ/9qrfwUGRRrV6A6WJPorfxEG0pDXBc0cYztGbYh7JHhwHMJNy
+	 v4yf0uwrcwGHG8bajkPL31owdBiwrqkjkTZ5cYDM=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 356N3TaB045797
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 6 Jun 2023 18:03:29 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
+ Jun 2023 18:03:29 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 6 Jun 2023 18:03:28 -0500
+Received: from rs-desk.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 356N3S7N023822;
+	Tue, 6 Jun 2023 18:03:28 -0500
+From: <rs@ti.com>
+To: <reatmon@ti.com>, <denis@denix.org>, <afd@ti.com>, <detheridge@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>, Randolph Sapp <rs@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH] arago-image.inc: fix the default systemd target
+Date: Tue, 6 Jun 2023 18:03:20 -0500
+Message-ID: <20230606230320.2678321-1-rs@ti.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230606195101.1611396-1-rs@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 06 Jun 2023 23:03:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14508
+ <meta-arago@lists.yoctoproject.org>; Tue, 06 Jun 2023 23:03:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14509
 
-On Tue, Jun 06, 2023 at 02:51:01PM -0500, rs@ti.com wrote:
-> From: Randolph Sapp <rs@ti.com>
-> 
-> Piglit is an OpenGL test suite and test-suite runner with support for
-> OpenGLES, Vulkan, OpenCL compliance tests. This in particular is very
-> nice in tracking feature regressions and driver conformance.
-> 
-> Signed-off-by: Randolph Sapp <rs@ti.com>
-> ---
-> 
-> Ugh. I love how yocto will arbitrarily pad certain fields with
-> whitespace and simultaneously expect you to pad others manually.
+From: Randolph Sapp <rs@ti.com>
 
-Sections 3.1.8, 3.1.9 and 3.1.10 of Bitbake manual:
+SYSTEMD_DEFAULT_TARGET is dynamically set based on the contents of
+IMAGE_FEATURES. Would you like to know what doesn't get updated when we
+use a bunch of package groups to dictate what is present in the image?
 
-3.1.8 Appending (+=) and prepending (=+) With Spaces
-3.1.9 Appending (.=) and Prepending (=.) Without Spaces
-3.1.10 Appending and Prepending (:append Override Style Syntax)
+This makes systemd actually start graphical applications if the opengl
+distro feature is set. It assumes the distro is using weston though. I'm
+sure that will eventually be invalid when the package group contents
+drift.
 
-https://docs.yoctoproject.org/bitbake/2.4/bitbake-user-manual/bitbake-user-manual-metadata.html#appending-and-prepending-with-spaces
-https://docs.yoctoproject.org/bitbake/2.4/bitbake-user-manual/bitbake-user-manual-metadata.html#appending-and-prepending-without-spaces
-https://docs.yoctoproject.org/bitbake/2.4/bitbake-user-manual/bitbake-user-manual-metadata.html#appending-and-prepending-override-style-syntax
+Signed-off-by: Randolph Sapp <rs@ti.com>
+---
+ meta-arago-distro/recipes-core/images/arago-image.inc | 5 +++++
+ 1 file changed, 5 insertions(+)
 
+diff --git a/meta-arago-distro/recipes-core/images/arago-image.inc b/meta-arago-distro/recipes-core/images/arago-image.inc
+index d00c1f70..7104d87c 100644
+--- a/meta-arago-distro/recipes-core/images/arago-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-image.inc
+@@ -6,6 +6,11 @@ COMPATIBLE_MACHINE = "ti-soc"
+ 
+ IMAGE_FEATURES += "package-management splash"
+ 
++# this is required to make sure the proper systemd default target gets set
++IMAGE_FEATURES += " \
++	${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'weston', '',d)} \
++"
++
+ # 4KB per 1 inode should be enough
+ EXTRA_IMAGECMD:ext2.gz += "-i 4096"
+ 
+-- 
+2.40.1
 
->  meta-arago-distro/conf/distro/arago.conf                | 3 +++
->  meta-arago-distro/recipes-core/packagegroups/ti-test.bb | 3 +++
->  2 files changed, 6 insertions(+)
-> 
-> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-> index a6425fae..2f81f118 100644
-> --- a/meta-arago-distro/conf/distro/arago.conf
-> +++ b/meta-arago-distro/conf/distro/arago.conf
-> @@ -95,6 +95,9 @@ PACKAGECONFIG:pn-curl = "${@bb.utils.contains("DISTRO_FEATURES", "ipv6", "ipv6",
->  
->  PACKAGECONFIG:pn-glmark2 = "drm-gles2 wayland-gles2"
->  
-> +# Enable testing for opencl and vulkan with piglit
-> +PACKAGECONFIG:append:pn-piglit = " ${@bb.utils.filter("DISTRO_FEATURES", "opencl vulkan", d)}"
-> +
->  # Enable encryption support in open62541
->  PACKAGECONFIG:append:pn-open62541 = " encrypt"
->  
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-> index 0b6e1eed..929d63c7 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-> @@ -39,6 +39,9 @@ ARAGO_TEST = "\
->      nbench-byte \
->      stream \
->      cryptodev-tests \
-> +    piglit \
-> +    ${@bb.utils.contains("DISTRO_FEATURES", "opengl", "opengl-es-cts", "", d)} \
-> +    ${@bb.utils.contains("DISTRO_FEATURES", "vulkan", "vulkan-cts", "", d)} \
->  "
->  
->  ARAGO_TEST:append:armv7a = " \
-> -- 
-> 2.40.1
-> 
 
