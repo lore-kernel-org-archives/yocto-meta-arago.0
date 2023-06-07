@@ -2,47 +2,51 @@ Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 06189C7EE2E
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 13DF1C7EE43
 	for <webhook@archiver.kernel.org>; Wed,  7 Jun 2023 20:05:17 +0000 (UTC)
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.8426.1686168314288155112
+ by mx.groups.io with SMTP id smtpd.web10.8314.1686168314604781058
  for <meta-arago@lists.yoctoproject.org>;
  Wed, 07 Jun 2023 13:05:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=vFBdTCSM;
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=PN5XzeV5;
  spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: rs@ti.com)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 357K5Avd023381;
-	Wed, 7 Jun 2023 15:05:10 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 357K5BhS023389;
+	Wed, 7 Jun 2023 15:05:11 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1686168310;
-	bh=PPBQuKNbeA1cqODCUlir48xuIkZrakr8kGkyEq1qYpw=;
-	h=From:To:CC:Subject:Date;
-	b=vFBdTCSMUQSP+dqjL7koCl06Ue4M4C9VCyxpl99HNfsqIhJTQJ/ZzATJv1Pb+iawe
-	 mdFvssAFm7vi9iqxwpr4dZSPBEro5uOc9bOtyShYp1X7zOi0BJ7kFZv7jhNoPdNubV
-	 zs9RS2B3nIEjZuVefWsNvGqTyh8BfW04yvHURiGY=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 357K5ArE030607
+	s=ti-com-17Q1; t=1686168311;
+	bh=JJ2EEgLLKfiPCvsfXef5bAYXhpwKDFS7+dzpgJ/APSE=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=PN5XzeV5sW5bGz8vGjjetXntt/r6E0hdlDlj6rdnXMRONKmoH/UqdKUj6DoapPA+v
+	 MDnZa42HZfa7UnSn+7tXJGKxl2V8VByqEKC400oDrw8uXDRDxtR3hvinGAyr4juqwf
+	 MUvPR7WftC9sjnxKD0UxBbnjmXSDwkrXcFVmSrII=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 357K5BGx030614
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 7 Jun 2023 15:05:10 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 7 Jun 2023 15:05:11 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 7
  Jun 2023 15:05:10 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Wed, 7 Jun 2023 15:05:10 -0500
 Received: from rs-desk.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 357K5AKu125548;
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 357K5AKx125548;
 	Wed, 7 Jun 2023 15:05:10 -0500
 From: <rs@ti.com>
 To: <denis@denix.org>, <reatmon@ti.com>, <afd@ti.com>, <nm@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, Randolph Sapp <rs@ti.com>
-Subject: [oe-layersetup][PATCH 00/15] Sacrifice your first born to the linter
-Date: Wed, 7 Jun 2023 15:04:49 -0500
-Message-ID: <20230607200504.3810426-1-rs@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>,
+        StaticRocket
+	<35777938+StaticRocket@users.noreply.github.com>
+Subject: [oe-layersetup][PATCH 03/15] oe-layertool-setup: fix all the printf calls
+Date: Wed, 7 Jun 2023 15:04:52 -0500
+Message-ID: <20230607200504.3810426-4-rs@ti.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230607200504.3810426-1-rs@ti.com>
+References: <20230607200504.3810426-1-rs@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -51,36 +55,106 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Wed, 07 Jun 2023 20:05:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14521
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14526
 
-From: Randolph Sapp <rs@ti.com>
+From: StaticRocket <35777938+StaticRocket@users.noreply.github.com>
 
-Last night someone in the beagle community reported some cryptic errors from
-oe-layersetup so I took the time to address all of the issues reported
-by Shellcheck and add some extra sanity checks.
+You aren't supposed to use a variable in the printf format definition.
+It kinda defeats the purpose of using printf.
 
-I tried to split it into reasonable segments.
+Signed-off-by: StaticRocket <35777938+StaticRocket@users.noreply.github.com>
+---
+ oe-layertool-setup.sh | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-StaticRocket (15):
-  oe-layertool-setup: prefer use of $() notation
-  oe-layertool-setup: replace all x comparisons with -n/-z
-  oe-layertool-setup: fix all the printf calls
-  oe-layertool-setup: fix all quoting, switch eval to export
-  oe-layertool-setup: only invoke read with -r
-  oe-layertool-setup: check exit code directly
-  oe-layertool-setup: guard all cd calls
-  oe-layertool-setup: eliminate useless cat
-  oe-layertool-setup: use subshell execution with redirect
-  oe-layertool-setup: guard against invalid expression in case
-  oe-layertool-setup: replace all calls to echo with printf
-  oe-layertool-setup: drop unused variable
-  oe-layertool-setup: add a path sanity check for oebase
-  oe-layertool-setup: fix multi-line printfs
-  oe-layertool-setup: add sanity check for layer names
-
- oe-layertool-setup.sh | 435 +++++++++++++++++++++---------------------
- 1 file changed, 220 insertions(+), 215 deletions(-)
-
+diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
+index 3faf00c..3e6ac4e 100755
+--- a/oe-layertool-setup.sh
++++ b/oe-layertool-setup.sh
+@@ -338,12 +338,12 @@ configure_repo() {
+ 
+     # Check if the repo with $name was already seen.  Use the , at the end
+     # of the grep to avoid matching similar named repos.
+-    temp=$(printf '%s\n' $output | grep -e "^$name,")
++    temp=$(printf '%s\n' "$output" | grep -e "^$name,")
+ 
+     if [ -n "$temp" ]
+     then
+         echo "This repository ($name) has already been configured with the following values:"
+-        printf '\t%s\n' $temp
++        printf '\t%s\n' "$temp"
+         echo "Skipping configuring duplicate repository"
+         return 1
+     fi
+@@ -422,7 +422,7 @@ get_repo_branch() {
+         do
+             branches="$branches"$(echo $b | sed 's:.*origin/::g')"\n"
+         done
+-        branches=$(printf "$branches\n" | sort | uniq)
++        branches=$(printf '%s\n' "$branches" | sort | uniq)
+ 
+ cat << EOM
+ 
+@@ -503,12 +503,12 @@ EOM
+     tags=$(git tag)
+     if [ -z "$tags" ]
+     then
+-        printf "\tNo tags found\n"
++        printf '\t%s\n' "No tags found"
+     else
+         # Format the tags nicely
+         for t in $tags
+         do
+-            printf "\t* $t\n"
++            printf '\t%s\n' "* $t"
+         done
+     fi
+ cat << EOM
+@@ -597,7 +597,7 @@ EOM
+ 
+     for l in $t_layers
+     do
+-        printf "\t"$(echo $l | sed "s:${name}\/::")"\n"
++        printf '\t%s\n' "$(echo $l | sed "s:${name}\/::")"
+     done
+ 
+ cat << EOM
+@@ -673,7 +673,7 @@ EOM
+ 
+         for f in $confs
+         do
+-            printf "\t$f\n"
++            printf '\t%s\n' "$f"
+         done
+ 
+ cat << EOM
+@@ -728,7 +728,7 @@ EOM
+ 
+         for f in $confs
+         do
+-            printf "\t$f\n"
++            printf '\t%s\n' "$f"
+         done
+ 
+ cat << EOM
+@@ -777,7 +777,7 @@ BBLAYERS += " \\
+ EOM
+     for l in $layers
+     do
+-        printf "\t$l \\%b" "\n" >> $confdir/bblayers.conf
++        printf '\t%s \\\n' "$l" >> $confdir/bblayers.conf
+     done
+     echo "\"" >> $confdir/bblayers.conf
+ }
+@@ -1048,7 +1048,7 @@ then
+     then
+         mkdir -p $dir
+     fi
+-    printf '%s\n' $output > $outputfile
++    printf '%s\n' "$output" > $outputfile
+     echo "Output file is $outputfile"
+ fi
+ 
 -- 
 2.40.1
 
