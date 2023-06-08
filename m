@@ -1,131 +1,76 @@
-Return-Path: <rs@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 482B0C7EE23
-	for <webhook@archiver.kernel.org>; Thu,  8 Jun 2023 18:48:06 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web10.2328.1686250085648337479
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3AA39C7EE25
+	for <webhook@archiver.kernel.org>; Thu,  8 Jun 2023 18:58:16 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.2603.1686250691030981342
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 08 Jun 2023 11:48:05 -0700
+ Thu, 08 Jun 2023 11:58:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@ti.com header.s=ti-com-17q1 header.b=LejCh8Pb;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: rs@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 358Im1TB013720;
-	Thu, 8 Jun 2023 13:48:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1686250081;
-	bh=0KHqy8Kxtxmyyo/XdQLjJKO388Hgg+epqSCceKYe/oM=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=LejCh8PbO6fprCUAVo3KV+bi1CSOJP8POvU7FtS4QaALIV4gddLeRdHO24a57sIAe
-	 4D854mshXFCTRxB3o1EzErLuOyDAzBAJoWw/Iqx+WlGEgOksx2ruFCrL+m0AJM41RM
-	 N0OE1IaJk0np89tanBVQQewa6yPLSCHnp4IJ+X2o=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 358Im1lP113308
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 8 Jun 2023 13:48:01 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
- Jun 2023 13:48:00 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 8 Jun 2023 13:48:01 -0500
-Received: from [128.247.81.144] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 358Im0w8039286;
-	Thu, 8 Jun 2023 13:48:01 -0500
-Message-ID: <e8be16d6-0584-b11c-5bb2-3f3312b34192@ti.com>
-Date: Thu, 8 Jun 2023 13:48:00 -0500
+ dkim=missing; spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id F06C940C93;
+	Thu,  8 Jun 2023 18:58:09 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ufSpYBPbAnqh; Thu,  8 Jun 2023 18:58:09 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C9DE840C90;
+	Thu,  8 Jun 2023 18:58:07 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 848F116396E; Thu,  8 Jun 2023 14:57:19 -0400 (EDT)
+Date: Thu, 8 Jun 2023 14:57:19 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: reatmon@ti.com
+Cc: Praneeth Bajjuri <praneeth@ti.com>, meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][master][PATCH] kms++: Restore pybind11 support
+Message-ID: <20230608185719.GC9226@denix.org>
+References: <20230608183641.30832-1-reatmon@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [EXTERNAL] Re: [oe-layersetup][PATCH 00/15] Sacrifice your first
- born to the linter
-Content-Language: en-US, en-US-large
-To: Andrew Davis <afd@ti.com>, Denys Dmytriyenko <denis@denix.org>
-CC: <reatmon@ti.com>, <nm@ti.com>, <meta-arago@lists.yoctoproject.org>
-References: <20230607200504.3810426-1-rs@ti.com>
- <20230608174829.GA9226@denix.org>
- <f17625d9-96c4-4638-b368-678e59a66dcb@ti.com>
- <2d09ee83-b854-0b75-7d81-e53a00173941@ti.com>
-From: Randolph Sapp <rs@ti.com>
-In-Reply-To: <2d09ee83-b854-0b75-7d81-e53a00173941@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by fllv0016.ext.ti.com id 358Im1TB013720
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230608183641.30832-1-reatmon@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 08 Jun 2023 18:48:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14549
+ <meta-arago@lists.yoctoproject.org>; Thu, 08 Jun 2023 18:58:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14550
 
-On 6/8/23 13:32, Andrew Davis wrote:
-> On 6/8/23 1:13 PM, Randolph Sapp wrote:
->> On 6/8/23 12:48, Denys Dmytriyenko wrote:
->>> Do you need to correct From: and SoB: lines in all the patches?
->>>
->>
->> I don't know, do I? I did this work at home at 5AM with my personal=20
->> machine, hence my personal account being the author, signer, and=20
->> sender. If you need me to change it I can.
->>
->=20
-> Probably fine to use your personal email if you did this completely=20
-> outside the context of work,
-> but also assuming your personal email isn't=20
-> "35777938+StaticRocket@users.noreply.github.com"..
->=20
-> Andrew
+On Thu, Jun 08, 2023 at 01:36:41PM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
+> Having this turned off is causing build errors and the errors that
+> disabling pybind11 solved do not appear to be in master any more.
 
-Nah, I've had a long history of obscuring my personal email. Should=20
-probably make a secondary account for stuff now that I'm actually=20
-participating in mailing list related development. Or just give up the=20
-sentiment of a private email address completely. Eh, whatever.
+Yeah, I already had this change in my local queue for master, but have been 
+fighting other upstream issues...
 
->=20
->>>
->>> On Wed, Jun 07, 2023 at 03:04:49PM -0500, rs@ti.com wrote:
->>>> From: Randolph Sapp <rs@ti.com>
->>>>
->>>> Last night someone in the beagle community reported some cryptic=20
->>>> errors from
->>>> oe-layersetup so I took the time to address all of the issues report=
-ed
->>>> by Shellcheck and add some extra sanity checks.
->>>>
->>>> I tried to split it into reasonable segments.
->>>>
->>>> StaticRocket (15):
->>>> =C2=A0=C2=A0 oe-layertool-setup: prefer use of $() notation
->>>> =C2=A0=C2=A0 oe-layertool-setup: replace all x comparisons with -n/-=
-z
->>>> =C2=A0=C2=A0 oe-layertool-setup: fix all the printf calls
->>>> =C2=A0=C2=A0 oe-layertool-setup: fix all quoting, switch eval to exp=
-ort
->>>> =C2=A0=C2=A0 oe-layertool-setup: only invoke read with -r
->>>> =C2=A0=C2=A0 oe-layertool-setup: check exit code directly
->>>> =C2=A0=C2=A0 oe-layertool-setup: guard all cd calls
->>>> =C2=A0=C2=A0 oe-layertool-setup: eliminate useless cat
->>>> =C2=A0=C2=A0 oe-layertool-setup: use subshell execution with redirec=
-t
->>>> =C2=A0=C2=A0 oe-layertool-setup: guard against invalid expression in=
- case
->>>> =C2=A0=C2=A0 oe-layertool-setup: replace all calls to echo with prin=
-tf
->>>> =C2=A0=C2=A0 oe-layertool-setup: drop unused variable
->>>> =C2=A0=C2=A0 oe-layertool-setup: add a path sanity check for oebase
->>>> =C2=A0=C2=A0 oe-layertool-setup: fix multi-line printfs
->>>> =C2=A0=C2=A0 oe-layertool-setup: add sanity check for layer names
->>>>
->>>> =C2=A0 oe-layertool-setup.sh | 435=20
->>>> +++++++++++++++++++++---------------------
->>>> =C2=A0 1 file changed, 220 insertions(+), 215 deletions(-)
->>>>
->>>> --=20
->>>> 2.40.1
->>
 
+> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+
+Tested-by: Denys Dmytriyenko <denys@konsulko.com>
+
+
+> ---
+>  meta-arago-extras/recipes-graphics/kms++/kms++_git.bb | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+> index eb39736c..56b83c7a 100644
+> --- a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+> +++ b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+> @@ -12,9 +12,8 @@ SRCREV = "5afc8d918f2c084acd65027604868dfde43395cf"
+>  
+>  DEPENDS = "drm fmt"
+>  
+> -# New meson build system fails to find pybind11 in sysroot, disable for now
+> -#DEPENDS += "python3-pybind11"
+> -#EXTRA_OEMESON = "-Dsystem-pybind11=enabled"
+> +DEPENDS += "python3-pybind11"
+> +EXTRA_OEMESON = "-Dsystem-pybind11=enabled"
+>  
+>  PACKAGES =+ "${PN}-python"
 
