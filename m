@@ -1,142 +1,109 @@
-Return-Path: <afd@ti.com>
+Return-Path: <p-bhagat@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 46A0FC7EE23
-	for <webhook@archiver.kernel.org>; Thu,  8 Jun 2023 16:04:10 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web10.13442.1686240245411458644
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C49C5C7EE2E
+	for <webhook@archiver.kernel.org>; Thu,  8 Jun 2023 16:50:17 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web10.103.1686243015372452681
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 08 Jun 2023 09:04:05 -0700
+ Thu, 08 Jun 2023 09:50:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=xkD5o9+b;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: afd@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 358G44Fb103774
-	for <meta-arago@lists.yoctoproject.org>; Thu, 8 Jun 2023 11:04:04 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=hAuLDCTb;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: p-bhagat@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 358GoECC033112
+	for <meta-arago@lists.yoctoproject.org>; Thu, 8 Jun 2023 11:50:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1686240244;
-	bh=ZxUhhdLthhpAMnPCt2NCNAiUDW+57BQHiF+O7mbPmcQ=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=xkD5o9+bjgr7n2b5WVTkTYo5qNW1eZN9h2i6lHazXym4dpZCyoH+QHCD/vQ/xEltZ
-	 9+nvcgbftiynefkMIchBwIPOvwlabIqajL7H5V2y6a9DPt3EOleJz8etKAvL7QDybx
-	 BYXU6dFmIJYm1C93EDF4dU90NPnzI0bzOTzl45yk=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 358G44J3125352
+	s=ti-com-17Q1; t=1686243014;
+	bh=aBgugUVnTacYMbxkJah6RsmgO0NrRoWlSMNDhTG8OiQ=;
+	h=From:To:CC:Subject:Date;
+	b=hAuLDCTbapZVXECTboLzWWmHwglguZYtFsWYZ/jpqsq9Tqg9v4SwW27g99M95EV0k
+	 V40NfJ4vEcWJ7ADEisAtDx4/e5IkZ2r1dyRHbVFZbMzaxDjQLUnS09AdwmMRJiVJ1Q
+	 HhysclBBAghi3Q+e3czIoNUeN1sv1bvrwrjMFSGg=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 358GoEvD040185
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Thu, 8 Jun 2023 11:04:04 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Thu, 8 Jun 2023 11:50:14 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 8
- Jun 2023 11:04:03 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 11:50:13 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 8 Jun 2023 11:04:03 -0500
-Received: from [10.250.37.94] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 358G43F9032279;
-	Thu, 8 Jun 2023 11:04:03 -0500
-Message-ID: <4002a493-fa08-f63e-d826-e60a580f4180@ti.com>
-Date: Thu, 8 Jun 2023 11:04:03 -0500
+ Frontend Transport; Thu, 8 Jun 2023 11:50:13 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 358GoDHi009403;
+	Thu, 8 Jun 2023 11:50:13 -0500
+From: Paresh Bhagat <p-bhagat@ti.com>
+To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>, <reatmon@ti.com>
+CC: <khasim@ti.com>, <c-shilwant@ti.com>, <s-adivi@ti.com>, <g-gupta@ti.com>
+Subject: [kirkstone][PATCH v3] meta-arago-distro: Add recipe for jailhouse image and new branding processor-sdk-extras
+Date: Thu, 8 Jun 2023 22:19:58 +0530
+Message-ID: <20230608164958.357880-1-p-bhagat@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [meta-arago][master/kirkstone][PATCH] receipes-multimedia:
- gstreamer: Add kmssink support
-Content-Language: en-US
-To: "Brnich, Brandon" <b-brnich@ti.com>,
-        "Etheridge, Darren"
-	<detheridge@ti.com>,
-        "meta-arago@lists.yoctoproject.org"
-	<meta-arago@lists.yoctoproject.org>
-CC: "Thakkar, Devarsh" <devarsht@ti.com>
-References: <20230522175821.510236-1-b-brnich@ti.com>
- <1d72f6df-5f49-669d-1a50-d395c7b1c544@ti.com>
- <4eb452df9ea8424592a290145ed9805b@ti.com>
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <4eb452df9ea8424592a290145ed9805b@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 08 Jun 2023 16:04:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14539
+ <meta-arago@lists.yoctoproject.org>; Thu, 08 Jun 2023 16:50:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14540
 
-On 6/6/23 1:52 PM, Brnich, Brandon wrote:
-> Hello Andrew,
-> 
->> -----Original Message-----
->> From: Davis, Andrew <afd@ti.com>
->> Sent: Monday, May 22, 2023 2:22 PM
->> To: Brnich, Brandon <b-brnich@ti.com>; Etheridge, Darren
->> <detheridge@ti.com>; meta-arago@lists.yoctoproject.org
->> Cc: Thakkar, Devarsh <devarsht@ti.com>
->> Subject: Re: [meta-arago][master/kirkstone][PATCH] receipes-multimedia:
->> gstreamer: Add kmssink support
->>
->> On 5/22/23 12:58 PM, Brandon Brnich via lists.yoctoproject.org wrote:
->>> Remove the old bbapend files that dealt with old gstreamer version.
->>> These files applied patches to hack gstreamer to work with our
->>> devices. We are no longer carrying these patches into kirkstone. Our
->>> devices should work with the kirkstone packaged gstreamer.
->>>
->>
->> The important part of these patches was GST DRM Allocator support, quick
->> check I see it used by:
->>
->> gstreamer1.0-plugins-vpe
->> gstreamer1.0-plugins-ducati
->>
->> Would be nice to keep multimedia acceleration working on all the non-K3
->> platforms..
->>
->> I'm guessing these could be converted without too much effort to one of
->> these[0] and if so do you have any timelines for that?
-> 
-> At this point in time, there is no timeline for supporting these old platforms.
-> 
-> Porting these patches are not trivial as gstreamer structure has changed quite
-> significantly since 1.16. For K3 platforms, the GST DRM Allocator is not required.
-> 
-> Not sure what best course of action is. Is it best to not accept these patches and leave
-> the bb append files in the tree where they aren't necessarily hurting anything because
-> the revision number is wrong so none of these patches are being applied?
-> 
-> Should this series be accepted?
-> With this, we are optimistic in that someone will eventually update the patches to enable DRM allocation
-> on these out of date platforms.
-> 
+Add a recipe to build and package jailhouse image for am62xx-evm. new
+image will be named as tisdk-jailhouse-image. jailhouse recipe will
+also package overlay used for jailhouse.
 
-Optimism isn't going to fix gstreamer. No one is going to "eventually" fix this and we
-should just be honest with ourselves about that. Just remove them. Make a new patch for that.
+Add a new branding processor-sdk-extras to change preferred_providers for
+uboot and kernel to u-boot-ti-extras and ti-linux-extras. For jailhouse build
+for am62xx-evm, user will have to add ARAGO_BRAND = "processor-sdk-extras" to
+change preferred_providers and MACHINE_FEATURES:append = " jailhouse" to
+switch to jailhouse branches to local.conf. And then start a jailhouse build
+with MACHINE=am62xx-evm bitbake -k tisdk-jailhouse-image.
 
-Also in a different patch, if you need kmssink, be sure to explain "why" you need it,
-do not just describe what your patch does in the commit message.
+Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
+---
+ .../include/branding-processor-sdk-extras.inc      |  5 +++++
+ .../recipes-core/images/tisdk-jailhouse-image.bb   | 14 ++++++++++++++
+ 2 files changed, 19 insertions(+)
+ create mode 100644 meta-arago-distro/conf/distro/include/branding-processor-sdk-extras.inc
+ create mode 100644 meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
 
-Andrew
+diff --git a/meta-arago-distro/conf/distro/include/branding-processor-sdk-extras.inc b/meta-arago-distro/conf/distro/include/branding-processor-sdk-extras.inc
+new file mode 100644
+index 00000000..a9d9f5be
+--- /dev/null
++++ b/meta-arago-distro/conf/distro/include/branding-processor-sdk-extras.inc
+@@ -0,0 +1,5 @@
++PREFERRED_PROVIDER_virtual/kernel = "linux-ti-extras"
++
++PREFERRED_PROVIDER_virtual/bootloader = "u-boot-ti-extras"
++
++PREFERRED_PROVIDER_u-boot = "u-boot-ti-extras"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
+new file mode 100644
+index 00000000..af880d30
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
+@@ -0,0 +1,14 @@
++# Produces wic image for jailhouse
++
++require recipes-core/images/tisdk-default-image.bb
++
++COMPATIBLE_MACHINE = "am62xx-evm"
++
++IMAGE_INSTALL:append:am62xx-evm = " jailhouse"
++
++# Package overlay for jailhouse
++KERNEL_DEVICETREE:append:am62xx-evm = " ti/k3-am625-base-board-jailhouse.dtbo"
++
++export IMAGE_BASENAME = "tisdk-jailhouse-image"
++
++WIC_CREATE_EXTRA_ARGS:append = " --no-fstab-update"
+-- 
+2.34.1
 
-> If dropping ducati and vpe support is chosen, then [0] should be accepted
-> because kmssink enablement is required on K3 platforms and since nothing else needs to be
-> changed on gst-plugins-bad, arago.conf seems to be the place to do it. Denys also made that remark
-> here [1]. I can send in another series to just delete this bbapend as a whole since enablement is not
-> needed here.
-> 
-> Gst-plugins-good will need to stay because there is a patch that will need to be carried here.
-> 
-> Regardless, this series will need a v2. Just trying to figure out the best way to approach this problem.
-> 
-> [0] https://lists.yoctoproject.org/g/meta-arago/topic/98990987#14426
-> [1] https://lists.yoctoproject.org/g/meta-arago/topic/99070450#14434
-> 
->>
->> [0]
->> https://gstreamer.freedesktop.org/documentation/allocators/index.html?gi
->> -language=c
->>
->> Andrew
-> 
-> Best,
-> Brandon
 
