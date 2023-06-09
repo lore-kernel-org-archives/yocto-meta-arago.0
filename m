@@ -2,47 +2,47 @@ Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D7C48C7EE45
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CCCDBC7EE25
 	for <webhook@archiver.kernel.org>; Fri,  9 Jun 2023 18:54:34 +0000 (UTC)
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web10.2705.1686336866373926517
+ by mx.groups.io with SMTP id smtpd.web10.2704.1686336865961797434
  for <meta-arago@lists.yoctoproject.org>;
  Fri, 09 Jun 2023 11:54:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=FbkTjEwF;
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=WLo8Zuzf;
  spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: afd@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 359IsPtr075177;
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 359IsP7B075173;
 	Fri, 9 Jun 2023 13:54:25 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
 	s=ti-com-17Q1; t=1686336865;
-	bh=feiJs3Jrqpmbc8byWzuudzPgOPPb89L2SCBNpUisRM8=;
+	bh=YHLbDdHuJBHoWoAr2AlGguPRSTyq1ap5n49JznRo5Jc=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=FbkTjEwF2HsyBGEvrMx2XdVzcNZ1AIfbfdpJ+O6FzJ1skFzthdAH/9nAbRazTfyzW
-	 bcTKXVACf5AR8VYVvZihSLmlkBo+EW0h0slJ0KDWZb/LUulPNQoYtVX81M6vgSnRQw
-	 1ZOjQVj1cZ8sE2ClxOBGcgoTRxHtRB0qXwxKX3YM=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 359IsP84042422
+	b=WLo8ZuzfvBjnqasR/GnM0HVnQp79q4A3mxwu8x+Ut17C1lZv1q+kcvnGUHMLUOanZ
+	 IV8BUn3Wo9dNcWNuocmgOs6uirQnTGg4qpcY8eUoqtffEbD0Cp3KdUcksmM4Csm3DW
+	 +aysh/u4r94DmpDV3cIyq6aL9ruZW3RMieRcfz8s=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 359IsPso072607
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
 	Fri, 9 Jun 2023 13:54:25 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 9
- Jun 2023 13:54:25 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 13:54:24 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 9 Jun 2023 13:54:25 -0500
+ Frontend Transport; Fri, 9 Jun 2023 13:54:24 -0500
 Received: from lelv0327.itg.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 359IsNMb035371;
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 359IsNMa035371;
 	Fri, 9 Jun 2023 13:54:24 -0500
 From: Andrew Davis <afd@ti.com>
 To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
         <meta-arago@lists.yoctoproject.org>
 CC: Andrew Davis <afd@ti.com>
-Subject: [meta-arago][master/kirkstone][PATCH 4/4] dt: Remove this broken and unused recipe
-Date: Fri, 9 Jun 2023 13:54:22 -0500
-Message-ID: <20230609185422.132654-4-afd@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH 3/4] llvm-rtos: Remove TI-RTOS hosted LLVM
+Date: Fri, 9 Jun 2023 13:54:21 -0500
+Message-ID: <20230609185422.132654-3-afd@ti.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230609185422.132654-1-afd@ti.com>
 References: <20230609185422.132654-1-afd@ti.com>
@@ -54,92 +54,131 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Fri, 09 Jun 2023 18:54:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14582
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14581
 
-The source for this is not longer available and it hasn't been
-built for years. Remove it.
+We do not build RTOS packages with OE anymore, remove leftover package.
 
 Signed-off-by: Andrew Davis <afd@ti.com>
 ---
- .../packagegroup-arago-tisdk-addons.bb        |  2 --
- .../recipes-devtools/dt/dt/no_aio.patch       | 17 -----------
- .../recipes-devtools/dt/dt_17.07.bb           | 30 -------------------
- 3 files changed, 49 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
- delete mode 100644 meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
+ .../recipes-ti/includes/arago-paths.inc       |  2 -
+ .../recipes-ti/llvm-rtos/llvm-rtos.inc        | 15 -----
+ .../recipes-ti/llvm-rtos/llvm-rtos_git.bb     | 65 -------------------
+ 3 files changed, 82 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos.inc
+ delete mode 100644 meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos_git.bb
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index af701d85..297d8d4d 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -8,8 +8,6 @@ inherit packagegroup
+diff --git a/meta-arago-extras/recipes-ti/includes/arago-paths.inc b/meta-arago-extras/recipes-ti/includes/arago-paths.inc
+index 71295bb5..3c0c3863 100644
+--- a/meta-arago-extras/recipes-ti/includes/arago-paths.inc
++++ b/meta-arago-extras/recipes-ti/includes/arago-paths.inc
+@@ -2,7 +2,6 @@ require recipes-ti/includes/ti-paths.inc
  
- PACKAGES =+ "${PN}-extra"
+ export LIBARCH_INSTALL_DIR_RECIPE    = "${installdir}/ti-libarch-tree"
+ export LINALG_INSTALL_DIR_RECIPE     = "${installdir}/ti-linalg-tree"
+-export LLVM_RTOS_INSTALL_DIR_RECIPE  = "${installdir}/llvm-rtos-tree"
+ export OCL_TIDL_FW_INSTALL_DIR_RECIPE   = "${installdir}/ti-opencl-tidl-fw-tree"
+ export FFTLIB_INSTALL_DIR_RECIPE     = "${installdir}/ti-fftlib-tree"
+ export FFTW_INSTALL_DIR_RECIPE       = "${installdir}/ti-fftw-tree"
+@@ -10,7 +9,6 @@ export TIOVX_INSTALL_DIR_RECIPE      = "${installdir}/ti-tiovx-lib-tree"
  
--#    dt
--
- UTILS = " \
-     gdbserver \
-     oprofile \
-diff --git a/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch b/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
+ export LIBARCH_INSTALL_DIR    = "${STAGING_DIR_TARGET}${LIBARCH_INSTALL_DIR_RECIPE}"
+ export LINALG_INSTALL_DIR     = "${STAGING_DIR_TARGET}${LINALG_INSTALL_DIR_RECIPE}"
+-export LLVM_RTOS_INSTALL_DIR  = "${STAGING_DIR_TARGET}${LLVM_RTOS_INSTALL_DIR_RECIPE}"
+ export OCL_TIDL_FW_INSTALL_DIR   = "${STAGING_DIR_TARGET}${OCL_TIDL_FW_INSTALL_DIR_RECIPE}"
+ export FFTLIB_INSTALL_DIR     = "${STAGING_DIR_TARGET}${FFTLIB_INSTALL_DIR_RECIPE}"
+ export FFTW_INSTALL_DIR       = "${STAGING_DIR_TARGET}${FFTW_INSTALL_DIR_RECIPE}"
+diff --git a/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos.inc b/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos.inc
 deleted file mode 100644
-index 8253e863..00000000
---- a/meta-arago-extras/recipes-devtools/dt/dt/no_aio.patch
+index b2c14dda..00000000
+--- a/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos.inc
 +++ /dev/null
-@@ -1,17 +0,0 @@
-----
-- Makefile.linux |    2 +-
-- 1 file changed, 1 insertion(+), 1 deletion(-)
--
--Index: dt.d-WIP/Makefile.linux
--===================================================================
----- dt.d-WIP/Makefile.linux
--+++ dt.d-WIP/Makefile.linux
--@@ -68,7 +68,7 @@ LINTLIBS=
--
-- PORG      = -O3
--
---CFLAGS= $(PORG) -DAIO -DFIFO -DMMAP -DTTY -D__linux__ -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
--+CFLAGS= $(PORG) -DFIFO -DMMAP -DTTY -D__linux__ -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
-- CPP=	/lib/cpp
-- CPPOPTS= -D__GNUC__ -DFIFO -DMMAP -D__linux__ -D_GNU_SOURCE
-- LDFLAGS=
-diff --git a/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb b/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
-deleted file mode 100644
-index 4ef15f60..00000000
---- a/meta-arago-extras/recipes-devtools/dt/dt_17.07.bb
-+++ /dev/null
-@@ -1,30 +0,0 @@
--HOMEPAGE = "http://home.comcast.net/~SCSIguy/SCSI_FAQ/RMiller_Tools/dt.html"
--DESCRIPTION = "The Data Test Program (dt) is a generic data test program used to verify proper \
--operation of peripherals, file systems, device drivers, or any data stream supported by the \
--operating system."
--
--SECTION = "console/tests"
--
--LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://LICENSE;md5=fb073c94d1f584010fc75867b686d6d3"
--
+@@ -1,15 +0,0 @@
+-PV = "3.6.0"
 -INC_PR = "r0"
 -
--SRC_URI = "http://home.comcast.net/~SCSIguy/SCSI_FAQ/RMiller_Tools/ftp/dt/dt-source.tar.gz"
--S = "${WORKDIR}/dt.d"
+-LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=47e311aa9caedd1b3abf098bd7814d1d"
 -
--TARGET_CC_ARCH += "${LDFLAGS}"
+-LLVM_GIT_NAME = "llvm"
+-LLVM_GIT_URI = "git://git.ti.com/git/opencl/llvm.git"
+-LLVM_GIT_PROTOCOL = "https"
+-LLVM_GIT_BRANCH = "release_36_ti"
+-LLVM_GIT_DESTSUFFIX = "git"
+-LLVM_GIT_SRCREV = "8ff2a35c586a3d3f624712e0943777613a017bc5"
+-
+-SRC_URI = "${LLVM_GIT_URI};protocol=${LLVM_GIT_PROTOCOL};branch=${LLVM_GIT_BRANCH};destsuffix=${LLVM_GIT_DESTSUFFIX};name=${LLVM_GIT_NAME}"
+-
+-SRCREV_${LLVM_GIT_NAME} = "${LLVM_GIT_SRCREV}"
+diff --git a/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos_git.bb b/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos_git.bb
+deleted file mode 100644
+index 2054b1bb..00000000
+--- a/meta-arago-extras/recipes-ti/llvm-rtos/llvm-rtos_git.bb
++++ /dev/null
+@@ -1,65 +0,0 @@
+-SUMMARY = "Bare-metal build of a subset of LLVM 3.6 with support for TI C66x"
+-HOMEPAGE = "http://git.ti.com/opencl/llvm"
+-DESCRIPTION = "A subset of LLVM 3.6 libraries built using gcc-arm-baremetal-native. Used in the OpenCL running over a TI-RTOS based host."
+-
+-# 3-clause BSD-like
+-# University of Illinois/NCSA Open Source License
+-LICENSE = "NCSA"
+-
+-
+-require llvm-rtos.inc
+-require recipes-ti/includes/arago-paths.inc
+-
+-PR = "${INC_PR}.0"
+-
+-DEPENDS = "gcc-arm-baremetal-native cmake-native"
+-
+-COMPATIBLE_MACHINE = "omap-a15"
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-
+-S = "${WORKDIR}/git"
+-RELEASE_TARGET = ""
+-RELEASE_TARGET:omap-a15 = "am57xx"
+-
+-CLEANBROKEN = "1"
+-
+-export LLVM_SRC_DIR="${S}"
+-export LLVM_INSTALL_DIR="${D}${LLVM_RTOS_INSTALL_DIR_RECIPE}"
 -
 -do_compile() {
--	${MAKE} -f Makefile.linux
--}
+-    unset LDFLAGS
+-    unset TARGET_LDFLAGS
 -
--SRC_URI:append:libc-uclibc = " file://no_aio.patch "
+-    # Clean the build directory
+-    rm -rf build.sysbios
+-
+-    mkdir -p build.sysbios/build.native
+-    cd build.sysbios/build.native; CC="${BUILD_CC}" CXX="${BUILD_CXX}" cmake "${S}"; cd ../..
+-    make -C build.sysbios/build.native llvm-tblgen llvm-config ${PARALLEL_MAKE}
+-
+-    cd build.sysbios; cmake -DCMAKE_TOOLCHAIN_FILE="${S}/ToolChain_ARMSysBios.cmake" -Wno-dev "${S}"; cd ..
+-
+-    make -C build.sysbios LLVMSupport LLVMCore LLVMBitReader ${PARALLEL_MAKE}
+-
+-}
 -
 -do_install() {
--	install -d ${D}${bindir}
--	install -m 0755 dt ${D}${bindir}
+-    cd build.sysbios; make -f include/llvm/Makefile install/local; cd ..
+-
+-    install -d ${D}${LLVM_RTOS_INSTALL_DIR_RECIPE}/bin
+-    install -m 755 ${S}/build.sysbios/build.native/bin/llvm-config ${D}${LLVM_RTOS_INSTALL_DIR_RECIPE}/bin/llvm-config-host
+-
+-    install -d ${D}${LLVM_RTOS_INSTALL_DIR_RECIPE}/lib
+-    for libfile in ${S}/build.sysbios/lib/*.a; do
+-        install -m 644 ${libfile} ${D}${LLVM_RTOS_INSTALL_DIR_RECIPE}/lib
+-    done
 -}
 -
--SRC_URI[md5sum] = "fc3373e30868698b90f02cc5fab9aabd"
--SRC_URI[sha256sum] = "6a213b8da2b8907c4f1633c3b90229085ac239e4d43aa5879b0123c21f951cab"
+-FILES:${PN} += "${LLVM_RTOS_INSTALL_DIR_RECIPE}"
+-
+-# This package contains one x86-64 executable and a few static libraries
+-INSANE_SKIP:${PN} = "arch file-rdeps staticdev"
+-
+-INHIBIT_PACKAGE_STRIP = "1"
+-INHIBIT_SYSROOT_STRIP = "1"
+-INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 -- 
 2.39.2
 
