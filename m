@@ -2,102 +2,100 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D6B6C7EE2E
-	for <webhook@archiver.kernel.org>; Sun, 11 Jun 2023 19:56:08 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web11.43408.1686513360105855977
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9D1AAC7EE2F
+	for <webhook@archiver.kernel.org>; Mon, 12 Jun 2023 14:44:13 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web11.61049.1686581051580669466
  for <meta-arago@lists.yoctoproject.org>;
- Sun, 11 Jun 2023 12:56:00 -0700
+ Mon, 12 Jun 2023 07:44:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=xfH6v8l1;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35BJtwTW003485;
-	Sun, 11 Jun 2023 14:55:58 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=N+bMo3ts;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35CEi67w030449;
+	Mon, 12 Jun 2023 09:44:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1686513358;
-	bh=w7NGtGdDPd7pf3+o3pJbEj+crLWpcgIXbVsIRpay9ys=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=xfH6v8l1+ah+1EAgxG5nbjY1BB3wSaa38EAc4PXYsdgqupVpbyfRER7/V4OSnmHgQ
-	 xZE7Ey1CI6KM+pwP1CN9Wi87sl0M86nFRa2jxwtRImDrgxIB4YiRTmHa4DdX1zJP9t
-	 NyGn8amjAl4L+AMxdFKAgiKiDKIhW8D2An0ZtYII=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35BJtwrn118263
+	s=ti-com-17Q1; t=1686581046;
+	bh=oiWCCA7HJ5C8KJlS2TR1x7tOWfv7ZrzlxvML8QO5tf4=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=N+bMo3tsaI+fdxnyjU5cOtsKfUlbbnqAKuFQkuu5HVyS2jMDzrCL72//Cmd/gOz9g
+	 QmB0jve58+ByxZdIi4YWfdw1xcO+FgmvrFB/LmcC3kVRRfP0PuKFRQnW0YwDyJfnc5
+	 yNX4LpeGk972rpWv8C8Iuw5kob+dYZFsCgDnTT4s=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35CEi6ub015412
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 11 Jun 2023 14:55:58 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 11
- Jun 2023 14:55:58 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 12 Jun 2023 09:44:06 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 12
+ Jun 2023 09:44:06 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 11 Jun 2023 14:55:58 -0500
+ Frontend Transport; Mon, 12 Jun 2023 09:44:06 -0500
 Received: from [10.249.33.79] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35BJtwxo031991;
-	Sun, 11 Jun 2023 14:55:58 -0500
-Message-ID: <72003ffd-f35e-fd24-b167-328d6a4b32aa@ti.com>
-Date: Sun, 11 Jun 2023 14:55:58 -0500
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35CEi6gw054151;
+	Mon, 12 Jun 2023 09:44:06 -0500
+Message-ID: <ff2fc4c9-9f1e-2da6-40f5-b0fab349f455@ti.com>
+Date: Mon, 12 Jun 2023 09:44:06 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [meta-arago][master/kirkstone][RFC] meta-arago-distro: Add recipe
- for jailhouse image
+Subject: Re: [meta-arago][master/kirkstone][PATCHv2 0/3] Fix some
+ configuration options for systemd
 Content-Language: en-US
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-References: <1767B2E51299FC86.11286@lists.yoctoproject.org>
+To: <rs@ti.com>, <afd@ti.com>, <denis@denix.org>
+CC: <meta-arago@lists.yoctoproject.org>
+References: <20230609192415.3210941-1-rs@ti.com>
 From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <1767B2E51299FC86.11286@lists.yoctoproject.org>
+In-Reply-To: <20230609192415.3210941-1-rs@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Sun, 11 Jun 2023 19:56:08 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14591
+ <meta-arago@lists.yoctoproject.org>; Mon, 12 Jun 2023 14:44:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14592
 
 
-This is a rework of the previous patch series that is part of the one on 
-meta-ti.  The only big change from the other patch is the removal of the 
-brand.  Please see the patch on meta-ti.
+This patch series does not apply cleanly because it assumes your 
+previous patches were applied.  But we are not accepting those patches 
+until the identified issue is resolved.
+
+If this patch series is independent of that series, then please resubmit 
+this series on top of current kirkstone.
 
 
-On 6/11/2023 2:54 PM, Ryan Eatmon via lists.yoctoproject.org wrote:
-> From: Paresh Bhagat <p-bhagat@ti.com>
+On 6/9/2023 2:24 PM, rs@ti.com wrote:
+> From: Randolph Sapp <rs@ti.com>
 > 
-> Add a recipe to build and package jailhouse image for am62xx-evm. new
-> image will be named as tisdk-jailhouse-image. jailhouse recipe will
-> also package overlay used for jailhouse.
+> Fixing up some systemd stuff. Using the auto getty generator built into
+> systemd instead of the external oe-core getty service.
 > 
-> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
-> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
-> ---
->   .../recipes-core/images/tisdk-jailhouse-image.bb     | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
->   create mode 100644 meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
+> Also drop the duplicate/invalid useradd entries in the systemd append.
 > 
-> diff --git a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
-> new file mode 100644
-> index 00000000..7df2404a
-> --- /dev/null
-> +++ b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
-> @@ -0,0 +1,12 @@
-> +# Produces wic image for jailhouse
-> +
-> +require recipes-core/images/tisdk-default-image.bb
-> +
-> +COMPATIBLE_MACHINE = "am62xx-evm"
-> +
-> +IMAGE_INSTALL:append:am62xx-evm = " jailhouse"
-> +
-> +export IMAGE_BASENAME = "tisdk-jailhouse-image"
-> +
-> +WIC_CREATE_EXTRA_ARGS:append = " --no-fstab-update"
-> +
+> This should be all that's required to squelch the endless serial getty
+> start/stop logs for systemd. There's probably some work required for
+> sysvinit as well. Should just be setting SERIAL_CONSOLES_CHECK =
+> $SERIAL_CONSOLES or something along those lines.
+> 
+> Still not sure how I feel about having inactive serial console
+> definitions in a bsp layer but if we don't define it at all then oe-core
+> will just blindly assume we wanted a console on ttyS0. That's especially
+> problematic for the init systems unable to generate getty scripts
+> automatically. SERIAL_CONSOLES_CHECK at least fixes the sysvinit
+> behavior.
+> 
+> Randolph Sapp (3):
+>    systemd: drop the useradd params
+>    arago.conf: add serial-getty-generator to systemd
+>    systemd: move packageconfig appends to distro config
+> 
+>   meta-arago-distro/conf/distro/arago.conf                  | 2 +-
+>   meta-arago-distro/recipes-core/systemd/systemd_%.bbappend | 4 ----
+>   2 files changed, 1 insertion(+), 5 deletions(-)
+> 
 
 -- 
 Ryan Eatmon                reatmon@ti.com
