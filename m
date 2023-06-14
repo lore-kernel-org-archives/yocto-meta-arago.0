@@ -1,93 +1,89 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B6F6EB64D8
-	for <webhook@archiver.kernel.org>; Wed, 14 Jun 2023 17:37:57 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web10.19139.1686764270214791327
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F3694EB64D8
+	for <webhook@archiver.kernel.org>; Wed, 14 Jun 2023 22:55:46 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.5963.1686783343661291244
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 14 Jun 2023 10:37:50 -0700
+ Wed, 14 Jun 2023 15:55:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=ebzjX0Jt;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35EHbmD0103166;
-	Wed, 14 Jun 2023 12:37:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1686764268;
-	bh=vzSkinDZi6QDNqsWsL7ZEtxkKm5Tt3fZKJpRKH5ZlGI=;
-	h=From:To:Subject:Date;
-	b=ebzjX0Jtb5R6rwZAkLHX4NwswHJfTCNctUu478bO+nTdyqZrVSVesyJcfo2d5pOza
-	 KdZIxu3rTWrAf78JK51qo99fUzW0XaHN+EY5qIVngxL+1Reb21nGucAMV/E6d1X7uA
-	 qxVis5Uc21qI0VcTwDZ0SGrm40qjwQTTacdtpwko=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35EHbmps062610
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 14 Jun 2023 12:37:48 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
- Jun 2023 12:37:48 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 14 Jun 2023 12:37:48 -0500
-Received: from uda0214219 (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35EHbmea034423;
-	Wed, 14 Jun 2023 12:37:48 -0500
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1q9URI-00013h-77; Wed, 14 Jun 2023 12:37:48 -0500
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master/kirkstone][PATCH] meta-arago-distro: Add recipe for jailhouse image
-Date: Wed, 14 Jun 2023 12:37:48 -0500
-Message-ID: <20230614173748.4029-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=missing; spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 79E3D40C30;
+	Wed, 14 Jun 2023 22:55:42 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id TGd2Z1mqkqaY; Wed, 14 Jun 2023 22:55:42 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5CAED40A46;
+	Wed, 14 Jun 2023 22:55:41 +0000 (UTC)
+Received: from thorin.denix (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 5DF89163A68;
+	Wed, 14 Jun 2023 15:40:11 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master][PATCH] matrix: remove setenv and expire lighttpd modules
+Date: Wed, 14 Jun 2023 19:40:58 +0000
+Message-Id: <20230614194058.1201367-1-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 14 Jun 2023 17:37:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14633
+ <meta-arago@lists.yoctoproject.org>; Wed, 14 Jun 2023 22:55:46 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14634
 
-From: Paresh Bhagat <p-bhagat@ti.com>
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-Add a recipe to build and package jailhouse image for am62xx devices. new
-image will be named as tisdk-jailhouse-image. jailhouse recipe will
-also package overlay used for jailhouse.
+New version of lighttpd no longer packages setenv and expire as separate
+modules, as those are now built-in[0], remove corresponding references.
 
-Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+[0] https://www.lighttpd.net/2023/5/10/1.4.70/
+
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- .../recipes-core/images/tisdk-jailhouse-image.bb      | 11 +++++++++++
- 1 file changed, 11 insertions(+)
- create mode 100644 meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
+ meta-arago-demos/recipes-core/matrix/matrix-gui_2.0.bb         | 2 +-
+ meta-arago-demos/recipes-core/matrix/matrix-lighttpd-config.bb | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
-new file mode 100644
-index 00000000..267fcc2d
---- /dev/null
-+++ b/meta-arago-distro/recipes-core/images/tisdk-jailhouse-image.bb
-@@ -0,0 +1,11 @@
-+# Produces wic image for jailhouse
-+
-+require recipes-core/images/tisdk-default-image.bb
-+
-+COMPATIBLE_MACHINE = "am62xx"
-+
-+IMAGE_INSTALL:append:am62xx = " jailhouse"
-+
-+export IMAGE_BASENAME = "tisdk-jailhouse-image"
-+
-+WIC_CREATE_EXTRA_ARGS:append = " --no-fstab-update"
--- 
-2.17.1
+diff --git a/meta-arago-demos/recipes-core/matrix/matrix-gui_2.0.bb b/met=
+a-arago-demos/recipes-core/matrix/matrix-gui_2.0.bb
+index 9299a929..d983bfaf 100644
+--- a/meta-arago-demos/recipes-core/matrix/matrix-gui_2.0.bb
++++ b/meta-arago-demos/recipes-core/matrix/matrix-gui_2.0.bb
+@@ -61,6 +61,6 @@ do_install(){
+ GUIDEPS =3D "${@bb.utils.contains('DISTRO_FEATURES','opengl',"matrix-gui=
+-browser refresh-screen",'',d)}"
+ GUIDEPS:omapl138 =3D ""
+=20
+-RDEPENDS:${PN} +=3D "matrix-lighttpd-config lighttpd lighttpd-module-cgi=
+ lighttpd-module-deflate lighttpd-module-expire php php-cgi php-cli ${GUI=
+DEPS}"
++RDEPENDS:${PN} +=3D "matrix-lighttpd-config lighttpd lighttpd-module-cgi=
+ lighttpd-module-deflate php php-cgi php-cli ${GUIDEPS}"
+=20
+ FILES:${PN} +=3D "${MATRIX_BASE_DIR}/*"
+diff --git a/meta-arago-demos/recipes-core/matrix/matrix-lighttpd-config.=
+bb b/meta-arago-demos/recipes-core/matrix/matrix-lighttpd-config.bb
+index 16d08d1e..c932e67f 100644
+--- a/meta-arago-demos/recipes-core/matrix/matrix-lighttpd-config.bb
++++ b/meta-arago-demos/recipes-core/matrix/matrix-lighttpd-config.bb
+@@ -20,7 +20,7 @@ do_install() {
+ }
+=20
+ FILES:${PN} =3D "${sysconfdir}/lighttpd/lighttpd.conf.matrix"
+-RDEPENDS:${PN} =3D "lighttpd lighttpd-module-setenv"
++RDEPENDS:${PN} =3D "lighttpd"
+=20
+ pkg_postinst_ontarget:${PN} () {
+ if [ -f ${sysconfdir}/lighttpd/lighttpd.conf ] ; then
+--=20
+2.25.1
 
 
