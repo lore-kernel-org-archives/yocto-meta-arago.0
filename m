@@ -2,50 +2,50 @@ Return-Path: <res.sapp@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 13A94C3DA40
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 21C86C001DC
 	for <webhook@archiver.kernel.org>; Wed, 14 Jun 2023 03:45:22 +0000 (UTC)
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
- by mx.groups.io with SMTP id smtpd.web10.3704.1686714318384829340
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+ by mx.groups.io with SMTP id smtpd.web10.3700.1686714313751333922
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 13 Jun 2023 20:45:18 -0700
+ Tue, 13 Jun 2023 20:45:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=M4gC/Cc3;
- spf=pass (domain: gmail.com, ip: 209.85.210.54, mailfrom: res.sapp@gmail.com)
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-6b160f3f384so3859741a34.3
-        for <meta-arago@lists.yoctoproject.org>; Tue, 13 Jun 2023 20:45:18 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20221208 header.b=fK28rwMx;
+ spf=pass (domain: gmail.com, ip: 209.85.160.51, mailfrom: res.sapp@gmail.com)
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-1a670ac3650so3095692fac.1
+        for <meta-arago@lists.yoctoproject.org>; Tue, 13 Jun 2023 20:45:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686714317; x=1689306317;
+        d=gmail.com; s=20221208; t=1686714313; x=1689306313;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xrZFUyPF39feiLJU0iStt3yG+Lb91ZJJpcuH6ua6kBw=;
-        b=M4gC/Cc3/RIBB37KlUPB+X6HMoTi5WnIpx0Bkm1OUfnkT/tmVHLgp2XvkqOYliaPBx
-         shYkwl3eT822DjGJbV5STLQl4k3qVXwAnwxbJmeP15JdrSc0vkKxhqZ2+M8o3zIrxkyb
-         J5EeXUX6SW47VXXjjT8lJDVuqnoNEaOLXuMvHu4sulJD/pBPlBRdK6tLjJNTHW6vSlMa
-         DHORukjgmJ52sVuaZtGgiTSeHx06cbrlmFGKe0X8IqU2vNbblWW2so8VXcvBo0XyyoNX
-         BhEHjSl6u/uj3M+TlCjo71JzbXZqhq/jXSb9MFyj5racDaiJJR7fuakupjyxivJvyqvx
-         xOrw==
+        bh=Dmxd66jqDVCZ3NXk/DY+86MnsaqlVTK1RjUaimdBSn4=;
+        b=fK28rwMxHRXD17mDNnmTJI1YExPQzMWMCSXFT0/5YUynI9Q3uDrgUinM0gfgXj4s7t
+         XnJEdFvuD5Vid5tBRUBXEOHqbU+vuUWfioAcmAQxmAjED4DMkV9OISwi/82zsDQBa2Ch
+         jz9WBv0exUCUxO/qWpfOPtqxmeoSxhhLVKMUpNso1bTMzGcDHUdltCj12y+H6LLovhhW
+         2D8DUw9GAcCOkdPJG2Dtssj4Yfww3A+7ReI0wFUoENl7J223/mAZ1/LEL1pPJ8wpXhIO
+         c6aC2eDabCSkoFPHtcPK6goUG/Oe0LlQaSIA0OZ51Pmp4ejduDYFT1hfYv4xejMeta9L
+         fwfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686714317; x=1689306317;
+        d=1e100.net; s=20221208; t=1686714313; x=1689306313;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xrZFUyPF39feiLJU0iStt3yG+Lb91ZJJpcuH6ua6kBw=;
-        b=LffwMcDaXUkAdKs4ab1Liypzfg+OijmyV/w9SfvYwBkUOdnrSHs6ikOMoYYjJY7z8K
-         5WqkaGYmPgypLij0OuKFOASDTnaH5QH0sqRWRGrgOTHT2ZZweVM8cSyiiyRjGQNqskIE
-         yqnjCbqnjQp4xMzKvMFM8UvSRZ7st2K6GhEMCVzuHvo80Eb71WzDfWAXmhpJMbiIwm/q
-         q8xS27sPGeiCEkkZyUzq1ioutHNhLxLCq0q7W2OpGlltHPu2OOHVUYPwbDdx+3dEVh4H
-         YTHniRJq5qeXs3RoTah0KyV801sFxIipPYtqZEJofmPg4O8DkGtJfKM6uB3Yu6ZQ8GMm
-         JqXg==
-X-Gm-Message-State: AC+VfDxHCZYPYE6BxA431cqoUqb7vN0fr4WpQRfEV5P0JlPunWc6ZpWf
-	hx/db4/2pdYpB+pJlMV5joRsg3w6uUENVtxY
-X-Google-Smtp-Source: ACHHUZ7ughOEy8YOVx2l9oA3dAdCD2t567NZP6J1LL0gvCGnhoJnE42iiAaAzYnq0n/bYjIUc1A2NQ==
-X-Received: by 2002:a05:6830:1119:b0:6af:870c:b71d with SMTP id w25-20020a056830111900b006af870cb71dmr11271154otq.30.1686714317690;
-        Tue, 13 Jun 2023 20:45:17 -0700 (PDT)
+        bh=Dmxd66jqDVCZ3NXk/DY+86MnsaqlVTK1RjUaimdBSn4=;
+        b=DfhlsZMBSTb/AyrqIG+AHN2r7UZ2iF4rJTbqXAOofyWASVDL1ajfKA80Fzl/FtsEOR
+         MOamTgBBhGy7gGV90iMrGt/pSIE3W08gpjCnSJ6A/Y13NlWrB8H/2W9T/7W9HsYmn4Yd
+         WGWEdXhjo1SGpR20iCcUYr65vhyh/4BtoSjGP1HMEMEfP5kJeVq5oD191xuyjLXHx/m0
+         vkRFjaSDxXlCtXi6jvSocF94dRchnJed4BiFd8Zx/IL3kPHYjdgMTR3rmSb+1etGO8Jg
+         78Ah5de0e6bmBETx6iX4s8j2Z7yWxXxTWFmI2MBGg+x/hm5qBqWVlhUCzH/9eZS6KVeB
+         jSZw==
+X-Gm-Message-State: AC+VfDzWO+JPmhML/5PIQzQ9Ey2Pv3q3/fFVXv1UNn2aCCanbWg4AF5s
+	a3hJWD3PJGWQzJD+wJu5coA=
+X-Google-Smtp-Source: ACHHUZ6Bb/RC4LKvS6HQ6O8qvPP5JnpOqC7+OC8A7adjA5UH/LmN0rW8nt725tn87VT7QwcEozXbhg==
+X-Received: by 2002:a05:6870:441:b0:19f:20db:a4d8 with SMTP id i1-20020a056870044100b0019f20dba4d8mr10624682oak.29.1686714313066;
+        Tue, 13 Jun 2023 20:45:13 -0700 (PDT)
 Received: from rig.lan ([104.182.101.14])
-        by smtp.gmail.com with ESMTPSA id s9-20020a9d7589000000b006a662e9f074sm5367538otk.58.2023.06.13.20.45.17
+        by smtp.gmail.com with ESMTPSA id s9-20020a9d7589000000b006a662e9f074sm5367538otk.58.2023.06.13.20.45.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 20:45:17 -0700 (PDT)
+        Tue, 13 Jun 2023 20:45:12 -0700 (PDT)
 From: Randolph Sapp <res.sapp@gmail.com>
 To: denis@denix.org,
 	reatmon@ti.com,
@@ -54,9 +54,9 @@ To: denis@denix.org,
 	rs@ti.com
 Cc: meta-arago@lists.yoctoproject.org,
 	Randolph Sapp <res.sapp@gmail.com>
-Subject: [oe-layersetup][PATCHv2 08/16] oe-layertool-setup: guard all cd calls
-Date: Tue, 13 Jun 2023 22:44:59 -0500
-Message-ID: <20230614034507.598391-9-res.sapp@gmail.com>
+Subject: [oe-layersetup][PATCHv2 01/16] oe-layertool-setup: split logic and/or expressions
+Date: Tue, 13 Jun 2023 22:44:52 -0500
+Message-ID: <20230614034507.598391-2-res.sapp@gmail.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230614034507.598391-1-res.sapp@gmail.com>
 References: <20230614034507.598391-1-res.sapp@gmail.com>
@@ -66,124 +66,39 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Wed, 14 Jun 2023 03:45:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14613
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14606
 
-Make the scrip exit early if any cd calls fail in the main process.
-Return 1 in the case a function fails to cd.
+Shellcheck:
+Prefer [ p ] && [ q ] as [ p -a q ] is not well defined.
+Prefer [ p ] || [ q ] as [ p -o q ] is not well defined.
 
 Signed-off-by: Randolph Sapp <res.sapp@gmail.com>
 ---
- oe-layertool-setup.sh | 25 ++++++++++++-------------
- 1 file changed, 12 insertions(+), 13 deletions(-)
+ oe-layertool-setup.sh | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
-index a87a423..6908fe2 100755
+index 1fca272..ef25ca0 100755
 --- a/oe-layertool-setup.sh
 +++ b/oe-layertool-setup.sh
-@@ -386,9 +386,8 @@ configure_repo() {
- clone_repo() {
-     # check if the repo already exists.  if so then fetch the latest updates,
-     # else clone it
--    if [ -d "$sourcedir/$name" ]
-+    if cd "$sourcedir/$name" 2> /dev/null
+@@ -126,7 +126,7 @@ exit 1
+ 
+ check_input() {
+     # Check that at least -i or -f was used
+-    if [ "$interactive" = "n" -a "x$inputfile" = "x" ]
++    if [ "$interactive" = "n" ] && [ "x$inputfile" = "x" ]
      then
--        cd "$sourcedir/$name"
-         "$scriptdir/git_retry.sh" fetch --all
-     else
-         if ! "$scriptdir/git_retry.sh" clone "$uri" "$sourcedir/$name"
-@@ -405,7 +404,7 @@ get_repo_branch() {
- 
-     while [ "$found" = "0" ]
-     do
--        cd "$sourcedir/$name"
-+        cd "$sourcedir/$name" || return 1
- 
-         # Get a unique list of branches for the user to chose from
-         # Also delete the origin/HEAD line that the -r option returns
-@@ -448,7 +447,7 @@ EOM
- }
- 
- checkout_branch() {
--    cd "$sourcedir/$name"
-+    cd "$sourcedir/$name" || return 1
- 
-     # Check if a local branch already exists to track the remote branch.
-     # If not then create a tracking branch and checkout the branch
-@@ -474,7 +473,7 @@ checkout_branch() {
- }
- 
- checkout_commit() {
--    cd "$sourcedir/$name"
-+    cd "$sourcedir/$name" || return 1
-     if [ "$commit" != "HEAD" ]
-     then
-         git checkout $commit
-@@ -483,7 +482,7 @@ checkout_commit() {
- 
- get_repo_commit() {
-   # prompt for what commit to use with HEAD as default
--    cd "$sourcedir/$name"
-+    cd "$sourcedir/$name" || return 1
- cat << EOM
- 
- 
-@@ -517,7 +516,7 @@ EOM
- }
- 
- verify_layers() {
--    cd "$sourcedir"
-+    cd "$sourcedir" || return 1
-     for l in $repo_layers
-     do
-         if [ ! -f "$sourcedir/$l/conf/layer.conf" ]
-@@ -555,7 +554,7 @@ select_layers() {
-         return
-     fi
- 
--    cd "$sourcedir"
-+    cd "$sourcedir" || return 1
-     # Get a count of how many layers there are
-     count=$(find "$name" -name "layer.conf" | grep -c layer.conf)
- 
-@@ -646,7 +645,7 @@ get_oecorelayerconf() {
-         return
-     fi
- 
--    cd "$sourcedir"
-+    cd "$sourcedir" || return 1
-     confs=$(find . -name "bblayers.conf.sample")
- 
-     done="n"
-@@ -701,7 +700,7 @@ get_oecorelocalconf() {
-         return
-     fi
- 
--    cd "$sourcedir"
-+    cd "$sourcedir" || return 1
-     confs=$(find . -name "local.conf.sample")
- 
-     done="n"
-@@ -970,9 +969,9 @@ mkdir -p "$oebase"
- 
- # retrive the absolute path to the oebase directory incase
- # a relative path is passed in
--cd "$oebase"
-+cd "$oebase" || exit 1
- oebase=$(pwd)
--cd -
-+cd - || exit 1
- 
- # Populate the following variables depending on the value of oebase
- sourcedir="$oebase/sources"
-@@ -1031,7 +1030,7 @@ config_oecorelocalconf
- if [ -n "$outputfile" ]
+         echo "ERROR: You must either use this script with the -i or -f options"
+         usage
+@@ -1000,7 +1000,7 @@ fi
+ if [ "x$interactive" = "xy" ]
  then
-     # make sure that the directory for the output file exists
--    cd "$oebase"
-+    cd "$oebase" || exit 1
-     dir=$(dirname "$outputfile")
-     if [ ! -d "$dir" ]
-     then
+     cont="y"
+-    while [ "x$cont" = "xy" -o "x$cont" = "xY" ]
++    while [ "x$cont" = "xy" ] || [ "x$cont" = "xY" ]
+     do
+         # clean up the variables for each repo
+         name=""
 -- 
 2.41.0
 
