@@ -2,50 +2,50 @@ Return-Path: <res.sapp@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 32F28EB64D8
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3766FEB64DC
 	for <webhook@archiver.kernel.org>; Wed, 14 Jun 2023 03:45:32 +0000 (UTC)
-Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
- by mx.groups.io with SMTP id smtpd.web11.3799.1686714323611521293
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+ by mx.groups.io with SMTP id smtpd.web11.3797.1686714322940308039
  for <meta-arago@lists.yoctoproject.org>;
  Tue, 13 Jun 2023 20:45:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20221208 header.b=DcFnA74v;
- spf=pass (domain: gmail.com, ip: 209.85.161.41, mailfrom: res.sapp@gmail.com)
-Received: by mail-oo1-f41.google.com with SMTP id 006d021491bc7-55b619e0ed1so228753eaf.3
-        for <meta-arago@lists.yoctoproject.org>; Tue, 13 Jun 2023 20:45:23 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@gmail.com header.s=20221208 header.b=nQ5SorTU;
+ spf=pass (domain: gmail.com, ip: 209.85.210.43, mailfrom: res.sapp@gmail.com)
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-6b162127472so3969990a34.0
+        for <meta-arago@lists.yoctoproject.org>; Tue, 13 Jun 2023 20:45:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686714323; x=1689306323;
+        d=gmail.com; s=20221208; t=1686714322; x=1689306322;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Szb/fNuCkckT1a0XEXrN6vyHjFPnYIlFaWgxgd81Itc=;
-        b=DcFnA74vvG7ZGyKuqggEZEr8U6znBhpxp47uA/gllt/r6a/z2uysg3cwgcBY1A7M5u
-         KNtQ1ck1a/q+q1tuT7gMTdlQd2LlQF46vnJlLTf2MHuBr5PPf3XkU4y5a57WmbiXxG5B
-         ahiL2zgsMcXmqNB1klyJJ7VycmBqEFb+5i9YF4O8jziQdUaFcdaTBCuRVL4SqY1xZUxv
-         g54myHN77z6WUH08lbvD65VobnRi7NDRPxtPZObSPGlOoBO9SDMU9n3i46M7Ur8o7RoV
-         IAuW6OUymRQx7pxDKKwyv5Qm+3hWhisBPCtWCe3QhHbfZEzJGQLbAJppZljlvGT3937L
-         sTFA==
+        bh=/5rBXB1yLLKdybwna0F9rG87e6Jw6qyz/t3It+toXjs=;
+        b=nQ5SorTUSTXH0DOaQ12CdMODZ8tiUPHJwXETjP7TcMkw+My6O1lFGs7QGquvLZ/lSQ
+         hBzsSuNPXwe8e31iYKfXllhbOLiOSkzdQT/fDRPeY8fUP8X4AyiKR/IPbJGve/ocU7Cd
+         WEszfgZ5AcL6Ajt35B/JzrCAN2NZyvaXbFsHY3hHba/VDOnl8QxrZm9CJiyweJh6Z71T
+         g6+5/AXLQfXZ0mShujB56GD9/YM0L6z0ANid+0Jr/ojKagfigelEnGBwuZxKJY9mlRMl
+         MiVovBkjO14/KyAIX02wONvLmQMOlTmg37oJnUbshWL6UKRIUCViWcHC2U21cQJOUTQ5
+         lI7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686714323; x=1689306323;
+        d=1e100.net; s=20221208; t=1686714322; x=1689306322;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Szb/fNuCkckT1a0XEXrN6vyHjFPnYIlFaWgxgd81Itc=;
-        b=Fi9OcD710yFy32V8xn2XizaEfoQ7MaZ+H0LNXWmiQwyHnGxrDBxxqNh3XvLcezgyUt
-         /539Lt0JtHg7ftyoFbPM/rTIHaWqcrpec/O3KuABfa6mRdmw7f2pdR3MCy9VLVUP6GWX
-         sgrKLpgqfrwzhwDre4BP/pD77TOBn9/7OZcwgqsP9+TYhHNoEtaVlgs8ljjFf9rWV8ul
-         3YgwZLP5OkG8VaEpSZ/IV9D2lBnSpNDgfA+YRiUkayqN2r8dfVeG6uuTo/vwOaLSsZEk
-         gs4peO7/RevOcKpqpuioHebhsneH2JJuW2lxBTqOtm6kpJBZ2bX8RKrJ3a/9ORZMzI9H
-         KwQw==
-X-Gm-Message-State: AC+VfDw4iMJ0AjF4azGYfATUgjjm1IOILE+Vc0wzGTUaG3c5F0afQ9IW
-	gERDNzwQGXNj/+ck26VyuUM=
-X-Google-Smtp-Source: ACHHUZ6tXth/tECiI53D74HsrUm3PuzgE09f9tWy5SG47riO12c2oWVgc75im2fPRToHqGRxnFDNpA==
-X-Received: by 2002:a4a:e1d6:0:b0:55b:8573:b339 with SMTP id n22-20020a4ae1d6000000b0055b8573b339mr6296884oot.4.1686714322952;
+        bh=/5rBXB1yLLKdybwna0F9rG87e6Jw6qyz/t3It+toXjs=;
+        b=WTQU7bCvQolL+vUsiagwEefeu8762sacxA21bM/9XQKuvr+MqSJfU114MIRb5T5UMM
+         Pu+hk3DNsIS5ObBemngT0w8/xXwXId8Jue0vkhnYjoxfGtnvFXmHOqSZ8C7cRv49uoH7
+         Zx2YA5TGCk9CEq0HRgOXVI2C13HX3uUP9a+PGrtQRCWJPm80nR6+In/o0GwtH96X3xnH
+         6gQqU9mpUXVyqZRlEM7I4MahDlYVJ7YYBAp9jKbakSLSJ5fVlSXD+/zebdBpMWc8y4eb
+         x3svvj2CePzHDT/EFlVpUb6DszK52G7ELFcXZbYUHejZUKD9mzOzjdX2ToDdNP0jG0YU
+         ULfA==
+X-Gm-Message-State: AC+VfDxETW0LgfdFcM7xfn0YD83QAbDpa3n7jpaUqr5g0zRRsM/uU9IU
+	xje6JLaizPV0uDWftO35GwE=
+X-Google-Smtp-Source: ACHHUZ6PamdlNOZA5df1FQ0TlgBhM9ebbvpWO/7MkU8Ej6yod/gLnIL31ufW6MCnOFemp2yFokRTkQ==
+X-Received: by 2002:a9d:6a92:0:b0:6ab:ce:6eac with SMTP id l18-20020a9d6a92000000b006ab00ce6eacmr11211620otq.20.1686714322277;
         Tue, 13 Jun 2023 20:45:22 -0700 (PDT)
 Received: from rig.lan ([104.182.101.14])
-        by smtp.gmail.com with ESMTPSA id s9-20020a9d7589000000b006a662e9f074sm5367538otk.58.2023.06.13.20.45.22
+        by smtp.gmail.com with ESMTPSA id s9-20020a9d7589000000b006a662e9f074sm5367538otk.58.2023.06.13.20.45.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Jun 2023 20:45:22 -0700 (PDT)
+        Tue, 13 Jun 2023 20:45:21 -0700 (PDT)
 From: Randolph Sapp <res.sapp@gmail.com>
 To: denis@denix.org,
 	reatmon@ti.com,
@@ -54,9 +54,9 @@ To: denis@denix.org,
 	rs@ti.com
 Cc: meta-arago@lists.yoctoproject.org,
 	Randolph Sapp <res.sapp@gmail.com>
-Subject: [oe-layersetup][PATCHv2 16/16] oe-layertool-setup: add sanity check for layer names
-Date: Tue, 13 Jun 2023 22:45:07 -0500
-Message-ID: <20230614034507.598391-17-res.sapp@gmail.com>
+Subject: [oe-layersetup][PATCHv2 15/16] oe-layertool-setup: fix multi-line printfs
+Date: Tue, 13 Jun 2023 22:45:06 -0500
+Message-ID: <20230614034507.598391-16-res.sapp@gmail.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230614034507.598391-1-res.sapp@gmail.com>
 References: <20230614034507.598391-1-res.sapp@gmail.com>
@@ -66,35 +66,95 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Wed, 14 Jun 2023 03:45:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14621
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14620
 
-Due to POSIX shell string parsing limitations we currently can't parse
-layer names with spaces. Display an error message and bail out when
-detected.
+Replace multiple printf calls with one call and a good format.
 
 Signed-off-by: Randolph Sapp <res.sapp@gmail.com>
 ---
- oe-layertool-setup.sh | 7 +++++++
- 1 file changed, 7 insertions(+)
+ oe-layertool-setup.sh | 40 ++++++++++++++++++++--------------------
+ 1 file changed, 20 insertions(+), 20 deletions(-)
 
 diff --git a/oe-layertool-setup.sh b/oe-layertool-setup.sh
-index 2b05550..16b7844 100755
+index 8694abd..2b05550 100755
 --- a/oe-layertool-setup.sh
 +++ b/oe-layertool-setup.sh
-@@ -211,6 +211,13 @@ parse_repo_line() {
+@@ -347,10 +347,10 @@ configure_repo() {
+         get_repo_uri
+     fi
+ 
+-    printf '%s\n' ""
+-    printf '%s\n' ""
+-    printf '%s\n' "cloning repo $name"
+-    printf '%s\n' ""
++    printf '%s\n' "" \
++                  "" \
++                  "cloning repo $name" \
++                  "" ;
+ 
+     clone_repo
+ 
+@@ -522,8 +522,8 @@ verify_layers() {
+     do
+         if [ ! -f "$sourcedir/$l/conf/layer.conf" ]
+         then
+-            printf '%s\n' "ERROR: the $l layer in the $name repository could not be"
+-            printf '%s\n' "       found.  Bailing out."
++            printf '%s\n' "ERROR: the $l layer in the $name repository could not be" \
++                          "       found.  Bailing out." ;
+             exit 1
+         fi
+     done
+@@ -793,8 +793,8 @@ EOM
+     
+     if [ -e "$confdir/local.conf" ]
      then
-         temp_layers=""
-         temp=$(printf '%s\n' "$parsed_layers" | cut -d= -f2)
-+        # sanity check for whitespace in layer names string
-+        if printf '%s\n' "$temp" | grep -q '\s'
-+        then
-+            printf '%s\n' "Whitespace character detected in layer names string!" \
-+                          "This is currently unsupported." ;
-+            exit 1
-+        fi
-         # use tr to split the layers since we assume layer names don't have
-         # whitespace characters later anyway
-         for x in $(printf '%s\n' "$temp" | tr ':' ' ')
+-        printf '%s\n' "WARNING: Found existing $confdir/local.conf"
+-        printf '%s\n' "Saving a backup to $confdir/local.conf.bak" 
++        printf '%s\n' "WARNING: Found existing $confdir/local.conf" \
++                      "Saving a backup to $confdir/local.conf.bak";
+         cp -f "$confdir/local.conf" "$confdir/local.conf.bak"
+     fi
+ 
+@@ -820,16 +820,16 @@ EOM
+     if [ -e "$oebase/tmp_append_local.conf" ]
+     then
+         {
+-            printf '%s\n' "";
+-            printf '%s\n' "#====================================================================";
+-            printf '%s\n' "# LOCALCONF: settings from config file:";
+-            printf '%s\n' "#   $inputfile";
+-            printf '%s\n' "#";
+-            printf '%s\n' "# Do not remove.";
+-            printf '%s\n' "#--------------------------------------------------------------------";
++            printf '%s\n' "" \
++                          "#====================================================================" \
++                          "# LOCALCONF: settings from config file:" \
++                          "#   $inputfile" \
++                          "#" \
++                          "# Do not remove." \
++                          "#--------------------------------------------------------------------" ;
+             cat "$oebase/tmp_append_local.conf";
+-            printf '%s\n' "#====================================================================";
+-            printf '%s\n' "";
++            printf '%s\n' "#====================================================================" \
++                          "" ;
+         } >> "$confdir/local.conf"
+         rm "$oebase/tmp_append_local.conf"
+     fi
+@@ -1024,9 +1024,9 @@ then
+ 
+         save_layers
+ 
+-        printf '%s\n' ""
+-        printf '%s\n' ""
+-        printf '%s\n' "Would you like to configure another repository? [y/n] "
++        printf '%s\n' "" \
++                      "" ;
++        printf '%s' "Would you like to configure another repository? [y/n] "
+         read -r cont
+     done
+ fi
 -- 
 2.41.0
 
