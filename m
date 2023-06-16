@@ -1,87 +1,75 @@
-Return-Path: <denis@denix.org>
+Return-Path: <lcpdbld@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A711EB64D8
-	for <webhook@archiver.kernel.org>; Fri, 16 Jun 2023 19:48:50 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.7847.1686944919525685058
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8BABBEB64D7
+	for <webhook@archiver.kernel.org>; Fri, 16 Jun 2023 20:07:50 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web10.8451.1686946063609817824
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 16 Jun 2023 12:48:40 -0700
+ Fri, 16 Jun 2023 13:07:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5D40840A3D;
-	Fri, 16 Jun 2023 19:48:38 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id rWoaCHFW2ARq; Fri, 16 Jun 2023 19:48:38 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2B8F6409AE;
-	Fri, 16 Jun 2023 19:48:35 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 32780163AF5; Fri, 16 Jun 2023 15:48:34 -0400 (EDT)
-Date: Fri, 16 Jun 2023 15:48:34 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Ravi Gunasekaran <r-gunasekaran@ti.com>
-Cc: meta-arago@lists.yoctoproject.org, reatmon@ti.com, g-gupta@ti.com
-Subject: Re: [oe-layersetup PATCH] configs: Update Kirkstone config for
- sysrepo
-Message-ID: <20230616194834.GG1518@denix.org>
-References: <20230616084538.10530-1-r-gunasekaran@ti.com>
+ dkim=missing; spf=pass (domain: list.ti.com, ip: 198.47.23.248, mailfrom: lcpdbld@list.ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35GK7g5r070466;
+	Fri, 16 Jun 2023 15:07:42 -0500
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35GK7grc121866
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 16 Jun 2023 15:07:42 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 16
+ Jun 2023 15:07:42 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 16 Jun 2023 15:07:42 -0500
+Received: from fllvdckhpci039.itg.ti.com (fllvdckhpci039.itg.ti.com [10.248.132.250])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35GK7gW3022932;
+	Fri, 16 Jun 2023 15:07:42 -0500
+Received: by fllvdckhpci039.itg.ti.com (Postfix, from userid 60899)
+	id 4233B10FCF67; Fri, 16 Jun 2023 15:07:42 -0500 (CDT)
+From: LCPD Automation Script <lcpdbld@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][kirkstone][PATCH] ltp-ddt: CI/CD Auto-Merger: cicd.kirkstone.202306161212
+Date: Fri, 16 Jun 2023 15:07:42 -0500
+Message-ID: <1686946062-54924-1-git-send-email-lcpdbld@list.ti.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230616084538.10530-1-r-gunasekaran@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 16 Jun 2023 19:48:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14645
+ <meta-arago@lists.yoctoproject.org>; Fri, 16 Jun 2023 20:07:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14646
 
-On Fri, Jun 16, 2023 at 02:15:38PM +0530, Ravi Gunasekaran wrote:
-> NETCONF/YANG is implemented through netopeer2/sysrepo.
-> A Yocto project for sysrepo is available in public domain[1].
-> 
-> [1] is compatible only with Yocto Honister branch. So update
-> the config with [2] which is fork of [1] for Kirkstone.
-> 
-> [1] - https://github.com/sartura/meta-sysrepo
-> [2] - https://github.com/ravig07/meta-sysrepo
+Updated the value(s) for:
+  SRCREV
 
-So, you are bumping many of the recipes in that layer, plus updating to the 
-new override syntax and setting compatibility with kirkstone. The PR has been 
-setting open since May 4 w/o any comments, so it's probably safe to assume the 
-layer is abandoned. Why not move the recipes to an active layer? At least to 
-meta-arago, or even better work on upstreaming them to meta-openembedded?
+Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
+---
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Regardless, the changes for kirkstone appear to be safe to langdale and 
-mickledore - that would allow including the change in master builds too.
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
+index d63b09f..2685222 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
+@@ -14,7 +14,7 @@ PE = "1"
+ PR = "r7"
+ PV:append = "+git${SRCPV}"
+ 
+-SRCREV = "dc51bfbf1787ddecd885e15b5bbce0d243ebe8b4"
++SRCREV = "f9e59a681eff3cc99b5df7288c7f2d58aa3b0f7a"
+ BRANCH ?= "master"
+ 
+ SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
+-- 
+1.8.3.1
 
-
-> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
-> ---
-> I have sent a Pull Request for [2]. Once it gets merged, then the URI
-> in the config.txt can be replaced with it.
-> 
->  configs/arago-kirkstone-config.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/configs/arago-kirkstone-config.txt b/configs/arago-kirkstone-config.txt
-> index c2524a4..e80ab80 100644
-> --- a/configs/arago-kirkstone-config.txt
-> +++ b/configs/arago-kirkstone-config.txt
-> @@ -10,6 +10,7 @@ meta-openembedded,https://git.openembedded.org/meta-openembedded,kirkstone,HEAD,
->  meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone,HEAD,layers=meta-ti-extras:meta-ti-bsp
->  meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
->  oe-core,https://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
-> +meta-sysrepo,https://github.com/ravig07/meta-sysrepo,kirkstone,HEAD,layers=
->  OECORELAYERCONF=./sample-files/bblayers.conf.sample
->  OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
->  BITBAKE_INCLUSIVE_VARS=yes
-> -- 
-> 2.17.1
 
