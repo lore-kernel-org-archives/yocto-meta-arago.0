@@ -1,88 +1,122 @@
-Return-Path: <r-gunasekaran@ti.com>
+Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C3DBDEB64D7
-	for <webhook@archiver.kernel.org>; Fri, 16 Jun 2023 08:45:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C3D9EB64D7
+	for <webhook@archiver.kernel.org>; Fri, 16 Jun 2023 15:47:49 +0000 (UTC)
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web10.4085.1686905145142728965
+ by mx.groups.io with SMTP id smtpd.web10.2233.1686930460620006765
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 16 Jun 2023 01:45:45 -0700
+ Fri, 16 Jun 2023 08:47:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=HTwZgukv;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: r-gunasekaran@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35G8jf1N089697;
-	Fri, 16 Jun 2023 03:45:41 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=uH41nwT1;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: rs@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35GFlaXf058171;
+	Fri, 16 Jun 2023 10:47:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1686905141;
-	bh=vw+IuUnw4meXh0KjnM2GcL7fapvrV7qvoCAabbw/mOA=;
+	s=ti-com-17Q1; t=1686930456;
+	bh=v//4XOwQPyISB6+oAN5Bv3/PDI7guH7zOOTat7V6AKg=;
 	h=From:To:CC:Subject:Date;
-	b=HTwZgukvkUF4w/4HpIef6oT7gYVFXMIbwvyo5STM/ZxZDXbYWLtWNB/Cxjh8L0OCB
-	 vr9+hICmw8izjJ+etzKlv3nbAuSib5CLMSrY+sAR0NVNxgPXl8V6f53H6x4SvOmx/c
-	 TjS+8lunU5e81clHxauBenfud8j7Atv9JPkHQFwY=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35G8jfb0054460
+	b=uH41nwT17b6Yey/NreTlnzEj3mR5shbKoxcld1T6chHgsLTyGTdhR/A+7ZiaZjQXt
+	 5ru05Qf1aSo+3Mv9fanIWRgrJ7Ul6pTzguGV4obmne3HPK7BFYetmBY+zHarvk2XjT
+	 //jOUu/muf1x+CLicGHTEuIIl+csl41TP4an7tNI=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35GFlagS099068
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 16 Jun 2023 03:45:41 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 16 Jun 2023 10:47:36 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 16
- Jun 2023 03:45:41 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE111.ent.ti.com
+ Jun 2023 10:47:36 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE111.ent.ti.com
  (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 16 Jun 2023 03:45:41 -0500
-Received: from uda0500640.dal.design.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35G8jcmh025843;
-	Fri, 16 Jun 2023 03:45:39 -0500
-From: Ravi Gunasekaran <r-gunasekaran@ti.com>
-To: <meta-arago@lists.yoctoproject.org>
-CC: <denis@denix.org>, <reatmon@ti.com>, <g-gupta@ti.com>,
-        <r-gunasekaran@ti.com>
-Subject: [oe-layersetup PATCH] configs: Update Kirkstone config for sysrepo
-Date: Fri, 16 Jun 2023 14:15:38 +0530
-Message-ID: <20230616084538.10530-1-r-gunasekaran@ti.com>
-X-Mailer: git-send-email 2.17.1
+ Frontend Transport; Fri, 16 Jun 2023 10:47:36 -0500
+Received: from rs-desk.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35GFla7A019435;
+	Fri, 16 Jun 2023 10:47:36 -0500
+From: <rs@ti.com>
+To: <reatmon@ti.com>, <denis@denix.org>
+CC: <meta-arago@lists.yoctoproject.org>, Randolph Sapp <rs@ti.com>
+Subject: [meta-arago][master/kirktone][PATCH] ti-test-extras: merge recipe with ti-test
+Date: Fri, 16 Jun 2023 10:47:27 -0500
+Message-ID: <20230616154727.1329965-1-rs@ti.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 16 Jun 2023 08:45:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14643
+ <meta-arago@lists.yoctoproject.org>; Fri, 16 Jun 2023 15:47:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14644
 
-NETCONF/YANG is implemented through netopeer2/sysrepo.
-A Yocto project for sysrepo is available in public domain[1].
+From: Randolph Sapp <rs@ti.com>
 
-[1] is compatible only with Yocto Honister branch. So update
-the config with [2] which is fork of [1] for Kirkstone.
+Merge the ti-test-extras recipe with ti-test.
 
-[1] - https://github.com/sartura/meta-sysrepo
-[2] - https://github.com/ravig07/meta-sysrepo
+Fixes:
+8b957a07 (ti-test-extras: add package group for large tests, 2023-06-15)
 
-Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+Signed-off-by: Randolph Sapp <rs@ti.com>
 ---
-I have sent a Pull Request for [2]. Once it gets merged, then the URI
-in the config.txt can be replaced with it.
+ .../recipes-core/packagegroups/ti-test-extras.bb | 16 ----------------
+ .../recipes-core/packagegroups/ti-test.bb        | 12 ++++++++++++
+ 2 files changed, 12 insertions(+), 16 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-core/packagegroups/ti-test-extras.bb
 
- configs/arago-kirkstone-config.txt | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/configs/arago-kirkstone-config.txt b/configs/arago-kirkstone-config.txt
-index c2524a4..e80ab80 100644
---- a/configs/arago-kirkstone-config.txt
-+++ b/configs/arago-kirkstone-config.txt
-@@ -10,6 +10,7 @@ meta-openembedded,https://git.openembedded.org/meta-openembedded,kirkstone,HEAD,
- meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone,HEAD,layers=meta-ti-extras:meta-ti-bsp
- meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
- oe-core,https://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
-+meta-sysrepo,https://github.com/ravig07/meta-sysrepo,kirkstone,HEAD,layers=
- OECORELAYERCONF=./sample-files/bblayers.conf.sample
- OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
- BITBAKE_INCLUSIVE_VARS=yes
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test-extras.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test-extras.bb
+deleted file mode 100644
+index 6d69b165..00000000
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-test-extras.bb
++++ /dev/null
+@@ -1,16 +0,0 @@
+-SUMMARY = "TI Testing packagegroup for big tests"
+-LICENSE = "MIT"
+-
+-PACKAGE_ARCH = "${MACHINE_ARCH}"
+-
+-inherit packagegroup
+-
+-ARAGO_TEST_EXTRAS = "\
+-    piglit \
+-    ${@bb.utils.contains("DISTRO_FEATURES", "opengl", "opengl-es-cts", "", d)} \
+-    ${@bb.utils.contains("DISTRO_FEATURES", "vulkan", "vulkan-cts", "", d)} \
+-"
+-
+-RDEPENDS:${PN} = "\
+-    ${ARAGO_TEST_EXTRAS} \
+-"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+index 3e45077b..f97ad756 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
+@@ -40,6 +40,12 @@ ARAGO_TEST = "\
+     cryptodev-tests \
+ "
+ 
++ARAGO_TEST_EXTRAS = " \
++    piglit \
++    ${@bb.utils.contains("DISTRO_FEATURES", "opengl", "opengl-es-cts", "", d)} \
++    ${@bb.utils.contains("DISTRO_FEATURES", "vulkan", "vulkan-cts", "", d)} \
++"
++
+ ARAGO_TEST:append:armv7a = " \
+     cpuburn-neon \
+ "
+@@ -97,3 +103,9 @@ RDEPENDS:${PN} = "\
+     ${ARAGO_TEST} \
+     ${ARAGO_TI_TEST} \
+ "
++
++# Package group for things that should only be present in tisdk-default-image
++PACKAGES += " ${PN}-extras"
++RDEPENDS:${PN}-extras = "\
++    ${ARAGO_TEST_EXTRAS} \
++"
 -- 
-2.17.1
+2.41.0
 
 
