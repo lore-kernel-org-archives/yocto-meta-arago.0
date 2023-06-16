@@ -1,114 +1,98 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7BFB1EB64D7
-	for <webhook@archiver.kernel.org>; Fri, 16 Jun 2023 22:10:14 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web10.403.1686953413158730150
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 28057EB64D7
+	for <webhook@archiver.kernel.org>; Fri, 16 Jun 2023 22:24:32 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.75.1686954265397446648
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 16 Jun 2023 15:10:13 -0700
+ Fri, 16 Jun 2023 15:24:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=IMzgM7/z;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35GMAB29098182;
-	Fri, 16 Jun 2023 17:10:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1686953411;
-	bh=DHtEN66JOGrX26bJ+UEngpZ39NTDpxZx1m3/K4iHbRQ=;
-	h=From:To:Subject:Date;
-	b=IMzgM7/z9GnAZDxCcxD85X2i5fJz+E52vmSdIACeuEDNngRjEpNEwCbJ+8PcMrmGi
-	 DLJAldzvrcmar9utQnhGphkBs9onwe8kHeSMnhYaUxWBLrCz3Ae6zxMHpitXYiDtJY
-	 FyQFrPFkx/SwNUQj69I/14Q2faHiMLFpyRTC2u1A=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35GMAB4c020022
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 16 Jun 2023 17:10:11 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 16
- Jun 2023 17:10:11 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 16 Jun 2023 17:10:11 -0500
-Received: from uda0214219 (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35GMABqa125281;
-	Fri, 16 Jun 2023 17:10:11 -0500
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1qAHdy-0004oR-UC; Fri, 16 Jun 2023 17:10:11 -0500
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][kirkstone][PATCH 1/2] python3-pybind11: Backport from meta-openembedded master
-Date: Fri, 16 Jun 2023 17:10:09 -0500
-Message-ID: <20230616221010.18458-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=missing; spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 48B3B40C3A;
+	Fri, 16 Jun 2023 22:24:24 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id mtWZdJXD33HN; Fri, 16 Jun 2023 22:24:24 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 12CF140AE9;
+	Fri, 16 Jun 2023 22:24:21 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 1628A163AFC; Fri, 16 Jun 2023 18:24:20 -0400 (EDT)
+Date: Fri, 16 Jun 2023 18:24:20 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: reatmon@ti.com
+Cc: Praneeth Bajjuri <praneeth@ti.com>,
+	Denys Dmytriyenko <denys@konsulko.com>,
+	meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][kirkstone][PATCH 2/2] kms++: Renable kms++-python
+Message-ID: <20230616222420.GH1518@denix.org>
+References: <20230616221010.18458-1-reatmon@ti.com>
+ <20230616221010.18458-2-reatmon@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230616221010.18458-2-reatmon@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 16 Jun 2023 22:10:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14647
+ <meta-arago@lists.yoctoproject.org>; Fri, 16 Jun 2023 22:24:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14649
 
-The version of pybind11 in kirkstone seems to have an issue when
-configuring the kms++ package.  Backporting the 2.10.3 verison from
-master fixes that issue.
+Renable?
 
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
----
- .../python/python3-pybind11_2.10.3.bb         | 35 +++++++++++++++++++
- 1 file changed, 35 insertions(+)
- create mode 100644 meta-arago-extras/recipes-devtools/python/python3-pybind11_2.10.3.bb
+Otherwise LGTM
 
-diff --git a/meta-arago-extras/recipes-devtools/python/python3-pybind11_2.10.3.bb b/meta-arago-extras/recipes-devtools/python/python3-pybind11_2.10.3.bb
-new file mode 100644
-index 00000000..bb604982
---- /dev/null
-+++ b/meta-arago-extras/recipes-devtools/python/python3-pybind11_2.10.3.bb
-@@ -0,0 +1,35 @@
-+SUMMARY = "Seamless operability between C++11 and Python"
-+HOMEPAGE = "https://github.com/wjakob/pybind11"
-+LICENSE = "BSD-2-Clause"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=774f65abd8a7fe3124be2cdf766cd06f"
-+
-+DEPENDS = "boost"
-+
-+SRC_URI = "git://github.com/pybind/pybind11.git;branch=stable;protocol=https"
-+
-+SRCREV = "0bd8896a4010f2d91b2340570c24fa08606ec406"
-+
-+S = "${WORKDIR}/git"
-+
-+EXTRA_OECMAKE =  "-DPYBIND11_TEST=OFF"
-+
-+inherit cmake setuptools3 python3native
-+
-+PIP_INSTALL_DIST_PATH = "${S}/dist"
-+PIP_INSTALL_PACKAGE = "pybind11"
-+
-+do_configure() {
-+   cmake_do_configure
-+}
-+
-+do_compile() {
-+   setuptools3_do_compile
-+   cmake_do_compile
-+}
-+
-+do_install() {
-+   setuptools3_do_install
-+   cmake_do_install
-+}
-+
-+BBCLASSEXTEND = "native nativesdk"
--- 
-2.17.1
 
+On Fri, Jun 16, 2023 at 05:10:10PM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
+> With the pybind11 backport, the kms++ package builds correctly.  Turn it
+> back on.
+> 
+> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+> ---
+>  .../recipes-core/packagegroups/packagegroup-arago-base.bb    | 3 +--
+>  meta-arago-extras/recipes-graphics/kms++/kms++_git.bb        | 5 ++---
+>  2 files changed, 3 insertions(+), 5 deletions(-)
+> 
+> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
+> index 31d9ad5b..ff32112a 100644
+> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
+> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base.bb
+> @@ -26,8 +26,6 @@ ARAGO_BASE = "\
+>      libgpiod-tools \
+>  "
+>  
+> -# these require meta-openembedded/meta-oe layer
+> -#    kms++-python is not provided yet
+>  ARAGO_EXTRA = "\
+>      devmem2 \
+>      tcpdump \
+> @@ -35,6 +33,7 @@ ARAGO_EXTRA = "\
+>      dropbear \
+>      openssh-sftp-server \
+>      kms++ \
+> +    kms++-python \
+>      can-utils \
+>      docker \
+>  "
+> diff --git a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+> index eb39736c..2c0abaa7 100644
+> --- a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+> +++ b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+> @@ -12,9 +12,8 @@ SRCREV = "5afc8d918f2c084acd65027604868dfde43395cf"
+>  
+>  DEPENDS = "drm fmt"
+>  
+> -# New meson build system fails to find pybind11 in sysroot, disable for now
+> -#DEPENDS += "python3-pybind11"
+> -#EXTRA_OEMESON = "-Dsystem-pybind11=enabled"
+> +DEPENDS += "libevdev python3-pybind11"
+> +EXTRA_OEMESON = "-Dsystem-pybind11=enabled"
+>  
+>  PACKAGES =+ "${PN}-python"
 
