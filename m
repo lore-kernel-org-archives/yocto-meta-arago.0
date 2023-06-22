@@ -1,72 +1,85 @@
-Return-Path: <afd@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EE980EB64DA
-	for <webhook@archiver.kernel.org>; Thu, 22 Jun 2023 15:01:47 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web10.13682.1687446103253372956
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49328EB64D8
+	for <webhook@archiver.kernel.org>; Thu, 22 Jun 2023 15:56:48 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.15310.1687449397889215450
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 22 Jun 2023 08:01:43 -0700
+ Thu, 22 Jun 2023 08:56:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=e1SHZcDA;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: afd@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35MF1c42042737;
-	Thu, 22 Jun 2023 10:01:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1687446098;
-	bh=kD8Qi2Uh94jLoTuH1VLj6wU9Lc7QjxvaN64xGn+gYJ4=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=e1SHZcDA4Iqu/cXx/x+pfKy3qqoz8B5TgTdCHI3A/5GV8UhgmhmS1o7Zkt4Cu7tbb
-	 6WVNpgsZSNUC00JlK6BXBfAqxW8DgYcukTjAlAHIAELHNlnMQnrnkTgP8uY5qL8YOX
-	 XOl4HHEVllhXv0wZ3tUHP+p1CkkiiRXbKvY8i/YE=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35MF1c2o075269
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 22 Jun 2023 10:01:38 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 22
- Jun 2023 10:01:38 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 22 Jun 2023 10:01:38 -0500
-Received: from [10.250.37.10] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35MF1bek050213;
-	Thu, 22 Jun 2023 10:01:37 -0500
-Message-ID: <50665164-7ac5-18c9-24af-0b92b6186e13@ti.com>
-Date: Thu, 22 Jun 2023 10:01:37 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [meta-arago] [master/kirkstone][PATCH v2 2/3] meta-arago-extras:
- sysrepo: Add meta-sysrepo recipes
-To: <r-gunasekaran@ti.com>, <meta-arago@lists.yoctoproject.org>
-CC: <denis@denix.org>, <reatmon@ti.com>, <g-gupta@ti.com>, <praneeth@ti.com>
+ dkim=missing; spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 94C3E40C52;
+	Thu, 22 Jun 2023 15:56:36 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id Ygm3PQ0Fq-sF; Thu, 22 Jun 2023 15:56:36 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 593E740BD4;
+	Thu, 22 Jun 2023 15:56:32 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 70287163B34; Thu, 22 Jun 2023 11:56:31 -0400 (EDT)
+Date: Thu, 22 Jun 2023 11:56:31 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Ravi Gunasekaran <r-gunasekaran@ti.com>
+Cc: meta-arago@lists.yoctoproject.org, reatmon@ti.com, g-gupta@ti.com,
+	praneeth@ti.com
+Subject: Re: [master/kirkstone][PATCH v2 1/3] meta-arago-extras: sysrepo:
+ Update checksum for nw-configurator
+Message-ID: <20230622155631.GN1518@denix.org>
 References: <20230622103445.31114-1-r-gunasekaran@ti.com>
- <20230622103445.31114-3-r-gunasekaran@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20230622103445.31114-3-r-gunasekaran@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+ <20230622103445.31114-2-r-gunasekaran@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230622103445.31114-2-r-gunasekaran@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 22 Jun 2023 15:01:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14678
+ <meta-arago@lists.yoctoproject.org>; Thu, 22 Jun 2023 15:56:48 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14679
 
-On 6/22/23 5:34 AM, Ravi Gunasekaran via lists.yoctoproject.org wrote:
-> meta-sysrepo recipes are hosted at [1]. But the layer seems to
-> be inactive. So add the recipes to meta-arago-extras.
+On Thu, Jun 22, 2023 at 04:04:43PM +0530, Ravi Gunasekaran wrote:
+> Update the checksum values for nw-configurator
+
+Why?
+
+It is always "why?" question you should answer in the commit log. Everyone 
+can see in the patch itself "what?" you are changing - license checksum - 
+and "where?" you are changing it - in nw-configurator.
+
+Moreover, any license change when the checksum differs should be explicitly 
+explained to track any re-licensing due to legal reasons.
+
+
+> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+> ---
+>  .../recipes-sysrepo/nw-configurator/nw-configurator.bb          | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
+> diff --git a/meta-arago-extras/recipes-sysrepo/nw-configurator/nw-configurator.bb b/meta-arago-extras/recipes-sysrepo/nw-configurator/nw-configurator.bb
+> index 5a152017..b8a93f1c 100644
+> --- a/meta-arago-extras/recipes-sysrepo/nw-configurator/nw-configurator.bb
+> +++ b/meta-arago-extras/recipes-sysrepo/nw-configurator/nw-configurator.bb
+> @@ -1,6 +1,6 @@
+>  LICENSE="GPLv2"
+>  DESCRIPTION = "Sysrepo based repo to configure EST"
+> -LIC_FILES_CHKSUM = "file://nw-configurator.c;md5=a818a6cf4fbeeb21acc8b4e9956c08a4"
+> +LIC_FILES_CHKSUM = "file://nw-configurator.c;md5=f2ec672593c3707bb4fe68307dbf0506"
 
-Add these recipes one at a time, with their own patch explaining why
-it is needed. Several of these recipes have issues and it is hard to
-review large series.
+Since you are using a source file for license checksum, you might want to 
+limit it to the license text only, so code changes won't affect the checksum. 
+Use beginline=x and endline=y, e.g.:
+https://git.yoctoproject.org/meta-ti/tree/meta-ti-bsp/recipes-devtools/k3conf/k3conf_git.bb#n4
 
-Andrew
+
+>  SRC_URI = "file://nw-configurator.c"
+>  
+> -- 
+> 2.17.1
 
