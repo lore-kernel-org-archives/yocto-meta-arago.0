@@ -1,142 +1,112 @@
-Return-Path: <rs@ti.com>
+Return-Path: <r-gunasekaran@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A523EEB64DC
-	for <webhook@archiver.kernel.org>; Thu, 22 Jun 2023 16:50:28 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web10.16853.1687452618467477427
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9CB93EB64DD
+	for <webhook@archiver.kernel.org>; Fri, 23 Jun 2023 04:20:12 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web10.35270.1687494007659100034
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 22 Jun 2023 09:50:18 -0700
+ Thu, 22 Jun 2023 21:20:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=SPjEQcJy;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: rs@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=GHzIAXLA;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: r-gunasekaran@ti.com)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35MGoFY4067930;
-	Thu, 22 Jun 2023 11:50:15 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35N4K3rJ102347;
+	Thu, 22 Jun 2023 23:20:03 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1687452615;
-	bh=b5KoSkcPi+XnGS+TXxHC6tPvaGdL9i/qAdYIgM9z/GU=;
-	h=From:To:CC:Subject:Date;
-	b=SPjEQcJyZpqW4968cswn0MhB8xDznZBfEtfgZEcbXp78MOj/ZQH2OkPGTvJMDT0n5
-	 XCQkg2CDY4qTGbqhPOuD9TaVbwcuaN/SetB7Tp7fXVMHix0OETVoglvWZts/WtA4b+
-	 rRxF93tYY2vKQArz3dEocccoOMjwMbFiqPiVkF3I=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35MGoFMq051691
+	s=ti-com-17Q1; t=1687494003;
+	bh=HcFVGIsWYsbFazIRVwY2Bls7IQxhOBhx0uIdvvrrDac=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=GHzIAXLAUMovYPMo+qqlEHOgW8uHMxIVKtr+5QA3kL3e/e9lRYs25acWNco7/9MSm
+	 PHOZ0P392vPpIGQ70tRWNoXR2EeIaUKuraOhdtm+7vK7czJB2o54SCQOgkJSr3s9Uj
+	 GS4dITo1KKrfEuy07jTLBwkmf8HuLqEkM8KEzR8k=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35N4K3Q9111899
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 22 Jun 2023 11:50:15 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 22 Jun 2023 23:20:03 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 22
- Jun 2023 11:50:15 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 23:20:02 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 22 Jun 2023 11:50:15 -0500
-Received: from rs-desk.dhcp.ti.com (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35MGoFsS011740;
-	Thu, 22 Jun 2023 11:50:15 -0500
-From: <rs@ti.com>
-To: <denis@denix.org>, <reatmon@ti.com>, <afd@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>, Randolph Sapp <rs@ti.com>
-Subject: [meta-arago][master/kirkstone][PATCHv2] piglit: add conditional config to point at deqp bins
-Date: Thu, 22 Jun 2023 11:50:10 -0500
-Message-ID: <20230622165010.2378146-1-rs@ti.com>
-X-Mailer: git-send-email 2.41.0
+ Frontend Transport; Thu, 22 Jun 2023 23:20:02 -0500
+Received: from [10.24.69.79] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35N4K04t027665;
+	Thu, 22 Jun 2023 23:20:01 -0500
+Message-ID: <1fc72339-c170-410b-ac98-fa6d6890b29d@ti.com>
+Date: Fri, 23 Jun 2023 09:49:59 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [master/kirkstone][PATCH v2 1/3] meta-arago-extras: sysrepo:
+ Update checksum for nw-configurator
+Content-Language: en-US
+To: Denys Dmytriyenko <denis@denix.org>
+CC: <meta-arago@lists.yoctoproject.org>, <reatmon@ti.com>, <g-gupta@ti.com>,
+        <praneeth@ti.com>
+References: <20230622103445.31114-1-r-gunasekaran@ti.com>
+ <20230622103445.31114-2-r-gunasekaran@ti.com>
+ <20230622155631.GN1518@denix.org>
+From: Ravi Gunasekaran <r-gunasekaran@ti.com>
+In-Reply-To: <20230622155631.GN1518@denix.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 22 Jun 2023 16:50:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14682
+ <meta-arago@lists.yoctoproject.org>; Fri, 23 Jun 2023 04:20:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14683
 
-From: Randolph Sapp <rs@ti.com>
 
-Add a PACKAGECONFIG to define runtime dependencies on deqp tests and
-conditionally set values for the default config so piglit works out of
-the box.
 
-Adjust the arago.conf accordingly. Drop the explicit requirements for
-individual cts tests in ti-test-extras.
+On 6/22/23 9:26 PM, Denys Dmytriyenko wrote:
+> On Thu, Jun 22, 2023 at 04:04:43PM +0530, Ravi Gunasekaran wrote:
+>> Update the checksum values for nw-configurator
+> 
+> Why?
+> 
+> It is always "why?" question you should answer in the commit log. Everyone 
+> can see in the patch itself "what?" you are changing - license checksum - 
+> and "where?" you are changing it - in nw-configurator.
+> 
+> Moreover, any license change when the checksum differs should be explicitly 
+> explained to track any re-licensing due to legal reasons.
+> 
+> 
+>> Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+>> ---
+>>  .../recipes-sysrepo/nw-configurator/nw-configurator.bb          | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/meta-arago-extras/recipes-sysrepo/nw-configurator/nw-configurator.bb b/meta-arago-extras/recipes-sysrepo/nw-configurator/nw-configurator.bb
+>> index 5a152017..b8a93f1c 100644
+>> --- a/meta-arago-extras/recipes-sysrepo/nw-configurator/nw-configurator.bb
+>> +++ b/meta-arago-extras/recipes-sysrepo/nw-configurator/nw-configurator.bb
+>> @@ -1,6 +1,6 @@
+>>  LICENSE="GPLv2"
+>>  DESCRIPTION = "Sysrepo based repo to configure EST"
+>> -LIC_FILES_CHKSUM = "file://nw-configurator.c;md5=a818a6cf4fbeeb21acc8b4e9956c08a4"
+>> +LIC_FILES_CHKSUM = "file://nw-configurator.c;md5=f2ec672593c3707bb4fe68307dbf0506"
+> 
+> Since you are using a source file for license checksum, you might want to 
+> limit it to the license text only, so code changes won't affect the checksum. 
+> Use beginline=x and endline=y, e.g.:
+> https://git.yoctoproject.org/meta-ti/tree/meta-ti-bsp/recipes-devtools/k3conf/k3conf_git.bb#n4
 
-Signed-off-by: Randolph Sapp <rs@ti.com>
----
- meta-arago-distro/conf/distro/arago.conf      |  6 +++-
- .../recipes-core/packagegroups/ti-test.bb     |  2 --
- .../recipes-graphics/piglit/piglit_%.bbappend | 30 +++++++++++++++++++
- 3 files changed, 35 insertions(+), 3 deletions(-)
- create mode 100644 meta-arago-distro/recipes-graphics/piglit/piglit_%.bbappend
+Thanks for sharing the reference. I will update accordingly
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index f770345c..512bc175 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -99,7 +99,11 @@ PACKAGECONFIG:pn-glmark2 = "drm-gles2 wayland-gles2"
- PACKAGECONFIG:pn-weston-init = ""
- 
- # Enable testing for opencl and vulkan with piglit
--PACKAGECONFIG:append:pn-piglit = " ${@bb.utils.filter("DISTRO_FEATURES", "opencl vulkan", d)}"
-+PACKAGECONFIG:append:pn-piglit = " \
-+    ${@bb.utils.filter("DISTRO_FEATURES", "opencl vulkan", d)} \
-+    ${@bb.utils.contains("DISTRO_FEATURES", "opengl", "deqp-gles", "", d)} \
-+    ${@bb.utils.contains("DISTRO_FEATURES", "vulkan", "deqp-vk", "", d)} \
-+"
- PACKAGECONFIG:pn-opengl-es-cts = "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "wayland", "surfaceless", d)}"
- PACKAGECONFIG:pn-vulkan-cts = "${@bb.utils.contains("DISTRO_FEATURES", "wayland", "wayland", "surfaceless", d)}"
- 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-index 793eb583..11c327a0 100644
---- a/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-test.bb
-@@ -43,8 +43,6 @@ ARAGO_TEST = "\
- ARAGO_TEST_EXTRAS = " \
-     python3-numpy \
-     piglit \
--    ${@bb.utils.contains("DISTRO_FEATURES", "opengl", "opengl-es-cts", "", d)} \
--    ${@bb.utils.contains("DISTRO_FEATURES", "vulkan", "vulkan-cts", "", d)} \
- "
- 
- ARAGO_TEST:append:armv7a = " \
-diff --git a/meta-arago-distro/recipes-graphics/piglit/piglit_%.bbappend b/meta-arago-distro/recipes-graphics/piglit/piglit_%.bbappend
-new file mode 100644
-index 00000000..fb533533
---- /dev/null
-+++ b/meta-arago-distro/recipes-graphics/piglit/piglit_%.bbappend
-@@ -0,0 +1,30 @@
-+# add a config to point piglit at the default install location for deqp tests
-+# if they are selected
-+
-+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
-+
-+PACKAGECONFIG[deqp-gles] = ",,,opengl-es-cts"
-+PACKAGECONFIG[deqp-vk] = ",,,vulkan-cts"
-+
-+do_install:append() {
-+    if ${@bb.utils.contains('PACKAGECONFIG', 'deqp-gles', 'true', 'false', d)}; then
-+        printf "%s\n" \
-+            "[deqp-egl]" \
-+            "bin=/usr/lib/opengl-es-cts/deqp-egl" \
-+            "[deqp-gles2]" \
-+            "bin=/usr/lib/opengl-es-cts/deqp-gles2" \
-+            "[deqp-gles3]" \
-+            "bin=/usr/lib/opengl-es-cts/deqp-gles3" \
-+            "[deqp-gles31]" \
-+            "bin=/usr/lib/opengl-es-cts/deqp-gles31" \
-+            >> ${D}/${libdir}/piglit/piglit.conf
-+    fi
-+    if ${@bb.utils.contains('PACKAGECONFIG', 'deqp-vk', 'true', 'false', d)}; then
-+        printf "%s\n" \
-+            "[deqp-vk]" \
-+            "bin=/usr/lib/vulkan-cts/deqp-vk" \
-+            "[deqp-vksc]" \
-+            "bin=/usr/lib/vulkan-cts/deqp-vksc" \
-+            >> ${D}/${libdir}/piglit/piglit.conf
-+    fi
-+}
+> 
+> 
+>>  SRC_URI = "file://nw-configurator.c"
+>>  
+>> -- 
+>> 2.17.1
+
 -- 
-2.41.0
-
+Regards,
+Ravi
 
