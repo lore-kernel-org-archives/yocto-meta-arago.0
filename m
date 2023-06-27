@@ -1,111 +1,351 @@
-Return-Path: <a-limaye@ti.com>
+Return-Path: <r-ravikumar@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 63B5DEB64D9
-	for <webhook@archiver.kernel.org>; Tue, 27 Jun 2023 05:14:44 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web10.6408.1687842878323140838
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 45F0BEB64D9
+	for <webhook@archiver.kernel.org>; Tue, 27 Jun 2023 07:44:36 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web10.7880.1687851865766124939
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 26 Jun 2023 22:14:38 -0700
+ Tue, 27 Jun 2023 00:44:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=n7v4bek4;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: a-limaye@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35R5Eb2G006079
-	for <meta-arago@lists.yoctoproject.org>; Tue, 27 Jun 2023 00:14:37 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=RfQOFVIA;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: r-ravikumar@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35R7iOEO039759
+	for <meta-arago@lists.yoctoproject.org>; Tue, 27 Jun 2023 02:44:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1687842877;
-	bh=vXLfP9RVUJj/CtFqgxhVhKH21ANE/MsJ56G083z6wtw=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To;
-	b=n7v4bek4ja3lTBEnULqe09bS/vIHw44mkKCmak8Z/gpLfO/1clAgcufQPhxbTlO/D
-	 PTv1J+946P6kTFtPmRoygaKfjpAjoPKRjG5wvuWS2m8DYvP+Y4m4hm/MaaHr3I6xD2
-	 QOHRDtREY6Wus4bF7DT6pQujpzFQT716Q0RzXMH4=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35R5Ebed021135
+	s=ti-com-17Q1; t=1687851864;
+	bh=Ryyuw3yKB/8gm4BTcDj2rkSaLzTFeELsu3PiXtYkh/A=;
+	h=From:To:CC:Subject:Date;
+	b=RfQOFVIArbdTodg1xPCPoRkMvj4Nx4dXe6ETE5eQon6m5KvCqjYEXr9vX1KkJdudU
+	 G5coy5djZ0yczBECOyrHY8VhgLWCTP08A8jSy5aQvIlIDRGYuWfxkevTphdD4/C4Cz
+	 OPoRLB0lbzQBD7f4E0pqOzpnUA/leHX4M4RkQ6/I=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35R7iOOk045697
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Tue, 27 Jun 2023 00:14:37 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Tue, 27 Jun 2023 02:44:24 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 27
- Jun 2023 00:14:36 -0500
-Received: from DLEE113.ent.ti.com ([fe80::a10b:711a:6ba7:e455]) by
- DLEE113.ent.ti.com ([fe80::a10b:711a:6ba7:e455%17]) with mapi id
- 15.01.2507.023; Tue, 27 Jun 2023 00:14:36 -0500
-From: "Limaye, Aniket" <a-limaye@ti.com>
-To: "Eatmon, Ryan" <reatmon@ti.com>,
-        "meta-arago@lists.yoctoproject.org"
-	<meta-arago@lists.yoctoproject.org>
-CC: "Weaver, Lucas" <l-weaver@ti.com>, "Shilwant, Chirag" <c-shilwant@ti.com>
-Subject: RE: [meta-arago][master/kirkstone][PATCH] classes: tisdk-bundle: Move
- the licenses directory out of docs/
-Thread-Topic: [meta-arago][master/kirkstone][PATCH] classes: tisdk-bundle:
- Move the licenses directory out of docs/
-Thread-Index: AQHZqDQ4Rv5gpov41EmKLpwI2Yxoy6+d7F8AgAAvSRA=
-Date: Tue, 27 Jun 2023 05:14:36 +0000
-Message-ID: <409c883e49c5471cb5772f8d12661553@ti.com>
-References: <20230626134336.1169017-1-a-limaye@ti.com>
- <0fc32cbc-e68c-edec-8e19-c7854f576844@ti.com>
-In-Reply-To: <0fc32cbc-e68c-edec-8e19-c7854f576844@ti.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.249.128.249]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ Jun 2023 02:44:24 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 27 Jun 2023 02:44:24 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35R7iNZq119342;
+	Tue, 27 Jun 2023 02:44:23 -0500
+From: Rahul T R <r-ravikumar@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: <devarsht@ti.com>, <j-luthra@ti.com>, <a-limaye@ti.com>,
+        Ryan Eatmon
+	<reatmon@ti.com>, <denys@ti.com>, <r-ravikumar@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH v2] gstreamer1.0-plugins-good: Add patches for raw10/12/16 and IR formats
+Date: Tue, 27 Jun 2023 13:14:20 +0530
+Message-ID: <20230627074420.3228-1-r-ravikumar@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 27 Jun 2023 05:14:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14692
+ <meta-arago@lists.yoctoproject.org>; Tue, 27 Jun 2023 07:44:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14693
 
-T29vcHMgbXkgYmFkLiBTZW50IHRoZSB3cm9uZyBwYXRjaCBhZnRlciBzcXVhc2hpbmcgMiBjb21t
-aXRzLi4uDQpTZW50IHJlY3RpZmllZCB2MiBwYXRjaCBhdCBodHRwczovL2xpc3RzLnlvY3RvcHJv
-amVjdC5vcmcvZy9tZXRhLWFyYWdvL21lc3NhZ2UvMTQ2OTENCg0KLS0tLS1PcmlnaW5hbCBNZXNz
-YWdlLS0tLS0NCkZyb206IEVhdG1vbiwgUnlhbiA8cmVhdG1vbkB0aS5jb20+IA0KU2VudDogVHVl
-c2RheSwgSnVuZSAyNywgMjAyMyAyOjU0IEFNDQpUbzogTGltYXllLCBBbmlrZXQgPGEtbGltYXll
-QHRpLmNvbT47IG1ldGEtYXJhZ29AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KQ2M6IFdlYXZlciwg
-THVjYXMgPGwtd2VhdmVyQHRpLmNvbT47IFNoaWx3YW50LCBDaGlyYWcgPGMtc2hpbHdhbnRAdGku
-Y29tPg0KU3ViamVjdDogUmU6IFttZXRhLWFyYWdvXVttYXN0ZXIva2lya3N0b25lXVtQQVRDSF0g
-Y2xhc3NlczogdGlzZGstYnVuZGxlOiBNb3ZlIHRoZSBsaWNlbnNlcyBkaXJlY3Rvcnkgb3V0IG9m
-IGRvY3MvDQoNCg0KVGhpcyBwYXRjaCBmYWlscyB0byBidWlsZC4gIFdhcyBpdCB0ZXN0ZWQ/DQoN
-Cg0KT24gNi8yNi8yMDIzIDg6NDMgQU0sIEFuaWtldCBMaW1heWUgd3JvdGU6DQo+IFdlIHBsYW4g
-b24gbm90IGhhdmluZyBkb2NzIHBvcHVsYXRlZCBpbiB0aGUgaW50YWxsZXIsIHRvIGFsbG93IGZv
-ciANCj4gZWFzaWVyIGRvYyB1cGRhdGVzIG9uIHRoZSByZWxlYXNlIHBhZ2VzIHdpdGhvdXQgaGF2
-aW5nIHRvIHVwZGF0ZSB0aGUgDQo+IGluc3RhbGxlci4NCj4gU28gbW92ZSB0aGUgbGljZW5zZXMg
-ZGlyZWN0b3J5IG91dCBvZiB0aGUgZG9jcyBkaXJlY3RvcnkNCj4gDQo+IFNpZ25lZC1vZmYtYnk6
-IEFuaWtldCBMaW1heWUgPGEtbGltYXllQHRpLmNvbT4NCj4gLS0tDQo+ICAgbWV0YS1hcmFnby1k
-aXN0cm8vY2xhc3Nlcy90aXNkay1idW5kbGUuYmJjbGFzcyB8IDEwICsrKy0tLS0tLS0NCj4gICAx
-IGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCA3IGRlbGV0aW9ucygtKQ0KPiANCj4gZGlm
-ZiAtLWdpdCBhL21ldGEtYXJhZ28tZGlzdHJvL2NsYXNzZXMvdGlzZGstYnVuZGxlLmJiY2xhc3Mg
-DQo+IGIvbWV0YS1hcmFnby1kaXN0cm8vY2xhc3Nlcy90aXNkay1idW5kbGUuYmJjbGFzcw0KPiBp
-bmRleCBiOTJjYTBjMC4uNGU2MTNjNmYgMTAwNjQ0DQo+IC0tLSBhL21ldGEtYXJhZ28tZGlzdHJv
-L2NsYXNzZXMvdGlzZGstYnVuZGxlLmJiY2xhc3MNCj4gKysrIGIvbWV0YS1hcmFnby1kaXN0cm8v
-Y2xhc3Nlcy90aXNkay1idW5kbGUuYmJjbGFzcw0KPiBAQCAtMjQwLDcgKzI0MCw3IEBAIGVjaG8g
-Ig0KPiAgIDxoMj5DcmVkaXRzPC9oMj4NCj4gICANCj4gICA8aDI+TGljZW5zZXM8L2gyPg0KPiAt
-PHA+TGljZW5zZXMgY2FuIGJlIGZvdW5kIGluIHRoZSBcImRvY3MvbGljZW5zZXNcIiBkaXJlY3Rv
-cnkgb2YgdGhlIA0KPiBTREsgaW5zdGFsbCBkaXJlY3Rvcnk8L3A+DQo+ICs8cD5MaWNlbnNlcyBj
-YW4gYmUgZm91bmQgaW4gdGhlIFwibGljZW5zZXNcIiBkaXJlY3Rvcnkgb2YgdGhlIFNESyANCj4g
-K2luc3RhbGwgZGlyZWN0b3J5PC9wPg0KPiAgIA0KPiAgIDxoMj48dT48Yj5HQ0MgUlVOVElNRSBM
-SUJSQVJZIEVYQ0VQVElPTjwvYj48L3U+PC9oMj4NCj4gICA8cD5WZXJzaW9uIDMuMSwgMzEgTWFy
-Y2ggMjAwOTwvcD4NCj4gQEAgLTI4Nyw3ICsyODcsNyBAQCBjYXQgPj4gJHtTV19NQU5JRkVTVF9U
-RVhUfSA8PCAnRU9GJw0KPiAgIA0KPiAgIDxMaWNlbnNlcz4NCj4gICANCj4gLUxpY2Vuc2VzIGNh
-biBiZSBmb3VuZCBpbiB0aGUgImRvY3MvbGljZW5zZXMiIGRpcmVjdG9yeSBvZiB0aGUgU0RLIA0K
-PiBpbnN0YWxsIGRpcmVjdG9yeQ0KPiArTGljZW5zZXMgY2FuIGJlIGZvdW5kIGluIHRoZSAibGlj
-ZW5zZXMvIiBkaXJlY3Rvcnkgb2YgdGhlIFNESyBpbnN0YWxsIA0KPiArZGlyZWN0b3J5DQo+ICAg
-R0NDIFJVTlRJTUUgTElCUkFSWSBFWENFUFRJT04NCj4gICANCj4gICBWZXJzaW9uIDMuMSwgMzEg
-TWFyY2ggMjAwOQ0KPiBAQCAtODc2LDExICs4NzYsNyBAQCB0aXNka19pbWFnZV9idWlsZCAoKSB7
-DQo+ICAgICAgICMgdGhlIGxpY2Vuc2VzIHRoYXQgd2VyZSB1c2VkIGluIHRoZSBidWlsZC4NCj4g
-ICAgICAgaWYgWyAtZCAke0RFUExPWV9ESVJ9L2xpY2Vuc2VzIF0NCj4gICAgICAgdGhlbg0KPiAt
-ICAgICAgICBpZiBbICEgLWQgJHtJTUFHRV9ST09URlN9L2RvY3MgXQ0KPiAtICAgICAgICB0aGVu
-DQo+IC0gICAgICAgICAgICBta2RpciAtcCAke0lNQUdFX1JPT1RGU30vZG9jcw0KPiAtICAgICAg
-ICBmaQ0KPiAtICAgICAgICBjcCAtcmYgJHtERVBMT1lfRElSfS9saWNlbnNlcyAke0lNQUdFX1JP
-T1RGU30vZG9jcy8NCj4gKyAgICAgICAgY3AgLXJmICR7REVQTE9ZX0RJUn0vbGljZW5zZXMgJHtJ
-TUFHRV9ST09URlN9Lw0KPiAgICAgICBmaQ0KPiAgIA0KPiAgICAgICAjIENyZWF0ZSB0aGUgVEkg
-c29mdHdhcmUgbWFuaWZlc3QNCg0KLS0gDQpSeWFuIEVhdG1vbiAgICAgICAgICAgICAgICByZWF0
-bW9uQHRpLmNvbQ0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NClRl
-eGFzIEluc3RydW1lbnRzLCBJbmMuICAtICBMQ1BEICAtICBNR1RTDQo=
+Add patches to support 10/12/16 bayer formats and bayer formats with
+IR components. This are required to support capture from imx390 and
+ov2312 cameras using gstreamer v4l2src
+
+Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+---
+
+Notes:
+    v2:
+        Dropped first 2 parts in the title
+        Wrapped the commit message to 70 chars
+
+ ...-for-bayer-formats-with-IR-component.patch | 122 +++++++++++++++++
+ ...-raw10-raw12-and-raw16-bayer-formats.patch | 123 ++++++++++++++++++
+ .../gstreamer1.0-plugins-good_1.20.%.bbappend |   5 +
+ 3 files changed, 250 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adding-support-for-bayer-formats-with-IR-component.patch
+ create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adding-support-for-raw10-raw12-and-raw16-bayer-formats.patch
+
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adding-support-for-bayer-formats-with-IR-component.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adding-support-for-bayer-formats-with-IR-component.patch
+new file mode 100644
+index 00000000..f19068f9
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adding-support-for-bayer-formats-with-IR-component.patch
+@@ -0,0 +1,122 @@
++From b495c8a8a2b4c5676d27a0a898d58ca83ba36a87 Mon Sep 17 00:00:00 2001
++From: Rahul T R <r-ravikumar@ti.com>
++Date: Mon, 4 Jul 2022 15:17:21 +0530
++Subject: [PATCH] Adding support for bayer formats with IR component
++
++Add support for bayer formats with IR component.
++this is required for cameras like ov2312 which
++captures both RGB and IR
++
++Signed-off-by: Rahul T R <r-ravikumar@ti.com>
++---
++ sys/v4l2/ext/videodev2.h |  9 +++++++
++ sys/v4l2/gstv4l2object.c | 52 ++++++++++++++++++++++++++++++++++++++++
++ 2 files changed, 61 insertions(+)
++
++diff --git a/sys/v4l2/ext/videodev2.h b/sys/v4l2/ext/videodev2.h
++index dc829f08d..5838bf906 100644
++--- a/sys/v4l2/ext/videodev2.h
+++++ b/sys/v4l2/ext/videodev2.h
++@@ -638,6 +638,15 @@ struct v4l2_pix_format {
++ #define V4L2_PIX_FMT_SGBRG16 v4l2_fourcc('G', 'B', '1', '6') /* 16  GBGB.. RGRG.. */
++ #define V4L2_PIX_FMT_SGRBG16 v4l2_fourcc('G', 'R', '1', '6') /* 16  GRGR.. BGBG.. */
++ #define V4L2_PIX_FMT_SRGGB16 v4l2_fourcc('R', 'G', '1', '6') /* 16  RGRG.. GBGB.. */
+++	/* Bayer formats - with IR component */
+++#define V4L2_PIX_FMT_SRGGI10 v4l2_fourcc('R', 'G', 'I', '0') /* 10 RGBG.. GIrGIr.. */
+++#define V4L2_PIX_FMT_SGRIG10 v4l2_fourcc('G', 'R', 'I', '0') /* 10 GRGB.. IrGIrG.. */
+++#define V4L2_PIX_FMT_SBGGI10 v4l2_fourcc('B', 'G', 'I', '0') /* 10 BGRG.. GIrGIr.. */
+++#define V4L2_PIX_FMT_SGBIG10 v4l2_fourcc('G', 'B', 'I', '0') /* 10 GBGR.. IrGIrG.. */
+++#define V4L2_PIX_FMT_SGIRG10 v4l2_fourcc('G', 'I', 'R', '0') /* 10 GIrGIr.. RGBG.. */
+++#define V4L2_PIX_FMT_SIGGR10 v4l2_fourcc('I', 'G', 'R', '0') /* 10 IrGIrG.. GRGB.. */
+++#define V4L2_PIX_FMT_SGIBG10 v4l2_fourcc('G', 'I', 'B', '0') /* 10 GIrGIr.. BGRG.. */
+++#define V4L2_PIX_FMT_SIGGB10 v4l2_fourcc('I', 'G', 'B', '0') /* 10 IrGIrG.. GBGR.. */
++ 
++ /* HSV formats */
++ #define V4L2_PIX_FMT_HSV24 v4l2_fourcc('H', 'S', 'V', '3')
++diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
++index 97d09774b..74a6c5bf6 100644
++--- a/sys/v4l2/gstv4l2object.c
+++++ b/sys/v4l2/gstv4l2object.c
++@@ -175,6 +175,16 @@ static const GstV4L2FormatDesc gst_v4l2_formats[] = {
++   {V4L2_PIX_FMT_SGRBG16, TRUE, GST_V4L2_RAW},
++   {V4L2_PIX_FMT_SRGGB16, TRUE, GST_V4L2_RAW},
++ 
+++  /* Bayer formats - with IR component */
+++  {V4L2_PIX_FMT_SRGGI10, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SGRIG10, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SBGGI10, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SGBIG10, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SGIRG10, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SIGGR10, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SGIBG10, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SIGGB10, TRUE, GST_V4L2_RAW},
+++
++   /* compressed formats */
++   {V4L2_PIX_FMT_MJPEG, FALSE, GST_V4L2_CODEC},
++   {V4L2_PIX_FMT_JPEG, FALSE, GST_V4L2_CODEC},
++@@ -1129,6 +1139,14 @@ gst_v4l2_object_format_get_rank (const struct v4l2_fmtdesc *fmt)
++     case V4L2_PIX_FMT_SGBRG16:
++     case V4L2_PIX_FMT_SGRBG16:
++     case V4L2_PIX_FMT_SRGGB16:
+++    case V4L2_PIX_FMT_SRGGI10:
+++    case V4L2_PIX_FMT_SGRIG10:
+++    case V4L2_PIX_FMT_SBGGI10:
+++    case V4L2_PIX_FMT_SGBIG10:
+++    case V4L2_PIX_FMT_SGIRG10:
+++    case V4L2_PIX_FMT_SIGGR10:
+++    case V4L2_PIX_FMT_SGIBG10:
+++    case V4L2_PIX_FMT_SIGGB10:
++       rank = BAYER_BASE_RANK;
++       break;
++ 
++@@ -1577,6 +1595,24 @@ gst_v4l2_object_v4l2fourcc_to_bare_struct (guint32 fourcc)
++           fourcc == V4L2_PIX_FMT_SGRBG16 ? "grbg16" :
++           fourcc == V4L2_PIX_FMT_SRGGB16 ? "rggb16" : "rggb16", NULL);
++       break;
+++    case V4L2_PIX_FMT_SRGGI10:
+++    case V4L2_PIX_FMT_SGRIG10:
+++    case V4L2_PIX_FMT_SBGGI10:
+++    case V4L2_PIX_FMT_SGBIG10:
+++    case V4L2_PIX_FMT_SGIRG10:
+++    case V4L2_PIX_FMT_SIGGR10:
+++    case V4L2_PIX_FMT_SGIBG10:
+++    case V4L2_PIX_FMT_SIGGB10:
+++      structure = gst_structure_new ("video/x-bayer", "format", G_TYPE_STRING,
+++          fourcc == V4L2_PIX_FMT_SGRIG10 ? "grig10" :
+++          fourcc == V4L2_PIX_FMT_SBGGI10 ? "bggi10" :
+++          fourcc == V4L2_PIX_FMT_SGBIG10 ? "gbig10" :
+++          fourcc == V4L2_PIX_FMT_SGIRG10 ? "girg10" :
+++          fourcc == V4L2_PIX_FMT_SIGGR10 ? "iggr10" :
+++          fourcc == V4L2_PIX_FMT_SGIBG10 ? "gibg10" :
+++          fourcc == V4L2_PIX_FMT_SIGGB10 ? "iggb10" :
+++          fourcc == V4L2_PIX_FMT_SRGGI10 ? "rggi10" : "bggi10", NULL);
+++      break;
++     case V4L2_PIX_FMT_SN9C10X:
++       structure = gst_structure_new_empty ("video/x-sonix");
++       break;
++@@ -1921,6 +1957,22 @@ gst_v4l2_object_get_caps_info (GstV4l2Object * v4l2object, GstCaps * caps,
++           fourcc = V4L2_PIX_FMT_SGRBG16;
++         else if (!g_ascii_strcasecmp (format, "rggb16"))
++           fourcc = V4L2_PIX_FMT_SRGGB16;
+++        else if (!g_ascii_strcasecmp (format, "rggi10"))
+++          fourcc = V4L2_PIX_FMT_SRGGI10;
+++        else if (!g_ascii_strcasecmp (format, "grig10"))
+++          fourcc = V4L2_PIX_FMT_SGRIG10;
+++        else if (!g_ascii_strcasecmp (format, "bggi10"))
+++          fourcc = V4L2_PIX_FMT_SBGGI10;
+++        else if (!g_ascii_strcasecmp (format, "gbig10"))
+++          fourcc = V4L2_PIX_FMT_SGBIG10;
+++        else if (!g_ascii_strcasecmp (format, "girg10"))
+++          fourcc = V4L2_PIX_FMT_SGIRG10;
+++        else if (!g_ascii_strcasecmp (format, "iggr10"))
+++          fourcc = V4L2_PIX_FMT_SIGGR10;
+++        else if (!g_ascii_strcasecmp (format, "gibg10"))
+++          fourcc = V4L2_PIX_FMT_SGIBG10;
+++        else if (!g_ascii_strcasecmp (format, "iggb10"))
+++          fourcc = V4L2_PIX_FMT_SIGGB10;
++       }
++     } else if (g_str_equal (mimetype, "video/x-sonix")) {
++       fourcc = V4L2_PIX_FMT_SN9C10X;
++-- 
++2.37.0
++
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adding-support-for-raw10-raw12-and-raw16-bayer-formats.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adding-support-for-raw10-raw12-and-raw16-bayer-formats.patch
+new file mode 100644
+index 00000000..a742ed5b
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-Adding-support-for-raw10-raw12-and-raw16-bayer-formats.patch
+@@ -0,0 +1,123 @@
++From: Emmanuel Madrigal <emmanuel.madrigal@ridgerun.com>
++Date: Tue Feb 22 03:50:52 IST 2022
++Subject: Adding support for raw10, raw12 and raw16 bayer formats
++
++Gstreamer 1.16 only supports raw8 bayer by default. This patch enables
++sensors that support raw10, raw12 or raw16 to be used with v4l2src.
++Will need to be carried in meta-psdkla as long as we are using Gstreamer 1.16
++
++Upstream-Status: Pending 
++Signed-off-by: Limaye, Aniket <a-limaye@ti.com>
++
++diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
++index 2c78e2227..a5d2e2de1 100644
++--- a/sys/v4l2/gstv4l2object.c
+++++ b/sys/v4l2/gstv4l2object.c
++@@ -162,6 +162,18 @@ static const GstV4L2FormatDesc gst_v4l2_formats[] = {
++   {V4L2_PIX_FMT_SGBRG8, TRUE, GST_V4L2_RAW},
++   {V4L2_PIX_FMT_SGRBG8, TRUE, GST_V4L2_RAW},
++   {V4L2_PIX_FMT_SRGGB8, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SBGGR10, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SGBRG10, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SGRBG10, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SRGGB10, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SBGGR12, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SGBRG12, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SGRBG12, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SRGGB12, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SBGGR16, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SGBRG16, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SGRBG16, TRUE, GST_V4L2_RAW},
+++  {V4L2_PIX_FMT_SRGGB16, TRUE, GST_V4L2_RAW},
++ 
++   /* compressed formats */
++   {V4L2_PIX_FMT_MJPEG, FALSE, GST_V4L2_CODEC},
++@@ -1105,6 +1117,18 @@ gst_v4l2_object_format_get_rank (const struct v4l2_fmtdesc *fmt)
++     case V4L2_PIX_FMT_SGBRG8:
++     case V4L2_PIX_FMT_SGRBG8:
++     case V4L2_PIX_FMT_SRGGB8:
+++    case V4L2_PIX_FMT_SBGGR10:
+++    case V4L2_PIX_FMT_SGBRG10:
+++    case V4L2_PIX_FMT_SGRBG10:
+++    case V4L2_PIX_FMT_SRGGB10:
+++    case V4L2_PIX_FMT_SBGGR12:
+++    case V4L2_PIX_FMT_SGBRG12:
+++    case V4L2_PIX_FMT_SGRBG12:
+++    case V4L2_PIX_FMT_SRGGB12:
+++    case V4L2_PIX_FMT_SBGGR16:
+++    case V4L2_PIX_FMT_SGBRG16:
+++    case V4L2_PIX_FMT_SGRBG16:
+++    case V4L2_PIX_FMT_SRGGB16:
++       rank = BAYER_BASE_RANK;
++       break;
++ 
++@@ -1521,7 +1545,37 @@ gst_v4l2_object_v4l2fourcc_to_bare_struct (guint32 fourcc)
++           fourcc == V4L2_PIX_FMT_SBGGR8 ? "bggr" :
++           fourcc == V4L2_PIX_FMT_SGBRG8 ? "gbrg" :
++           fourcc == V4L2_PIX_FMT_SGRBG8 ? "grbg" :
++-          /* fourcc == V4L2_PIX_FMT_SRGGB8 ? */ "rggb", NULL);
+++          fourcc == V4L2_PIX_FMT_SRGGB8 ? "rggb" : "rggb", NULL);
+++      break;
+++    case V4L2_PIX_FMT_SBGGR10:
+++    case V4L2_PIX_FMT_SGBRG10:
+++    case V4L2_PIX_FMT_SGRBG10:
+++    case V4L2_PIX_FMT_SRGGB10:
+++      structure = gst_structure_new ("video/x-bayer", "format", G_TYPE_STRING,
+++          fourcc == V4L2_PIX_FMT_SBGGR10 ? "bggr10" :
+++          fourcc == V4L2_PIX_FMT_SGBRG10 ? "gbrg10" :
+++          fourcc == V4L2_PIX_FMT_SGRBG10 ? "grbg10" :
+++          fourcc == V4L2_PIX_FMT_SRGGB10 ? "rggb10" : "rggb10", NULL);
+++      break;
+++    case V4L2_PIX_FMT_SBGGR12:
+++    case V4L2_PIX_FMT_SGBRG12:
+++    case V4L2_PIX_FMT_SGRBG12:
+++    case V4L2_PIX_FMT_SRGGB12:
+++      structure = gst_structure_new ("video/x-bayer", "format", G_TYPE_STRING,
+++          fourcc == V4L2_PIX_FMT_SBGGR12 ? "bggr12" :
+++          fourcc == V4L2_PIX_FMT_SGBRG12 ? "gbrg12" :
+++          fourcc == V4L2_PIX_FMT_SGRBG12 ? "grbg12" :
+++          fourcc == V4L2_PIX_FMT_SRGGB12 ? "rggb12" : "rggb12", NULL);
+++      break;
+++    case V4L2_PIX_FMT_SBGGR16:
+++    case V4L2_PIX_FMT_SGBRG16:
+++    case V4L2_PIX_FMT_SGRBG16:
+++    case V4L2_PIX_FMT_SRGGB16:
+++      structure = gst_structure_new ("video/x-bayer", "format", G_TYPE_STRING,
+++          fourcc == V4L2_PIX_FMT_SBGGR16 ? "bggr16" :
+++          fourcc == V4L2_PIX_FMT_SGBRG16 ? "gbrg16" :
+++          fourcc == V4L2_PIX_FMT_SGRBG16 ? "grbg16" :
+++          fourcc == V4L2_PIX_FMT_SRGGB16 ? "rggb16" : "rggb16", NULL);
++       break;
++     case V4L2_PIX_FMT_SN9C10X:
++       structure = gst_structure_new_empty ("video/x-sonix");
++@@ -1847,6 +1901,30 @@ gst_v4l2_object_get_caps_info (GstV4l2Object * v4l2object, GstCaps * caps,
++           fourcc = V4L2_PIX_FMT_SGRBG8;
++         else if (!g_ascii_strcasecmp (format, "rggb"))
++           fourcc = V4L2_PIX_FMT_SRGGB8;
+++        else if (!g_ascii_strcasecmp (format, "bggr10"))
+++          fourcc = V4L2_PIX_FMT_SBGGR10;
+++        else if (!g_ascii_strcasecmp (format, "gbrg10"))
+++          fourcc = V4L2_PIX_FMT_SGBRG10;
+++        else if (!g_ascii_strcasecmp (format, "grbg10"))
+++          fourcc = V4L2_PIX_FMT_SGRBG10;
+++        else if (!g_ascii_strcasecmp (format, "rggb10"))
+++          fourcc = V4L2_PIX_FMT_SRGGB10;
+++        else if (!g_ascii_strcasecmp (format, "bggr12"))
+++          fourcc = V4L2_PIX_FMT_SBGGR12;
+++        else if (!g_ascii_strcasecmp (format, "gbrg12"))
+++          fourcc = V4L2_PIX_FMT_SGBRG12;
+++        else if (!g_ascii_strcasecmp (format, "grbg12"))
+++          fourcc = V4L2_PIX_FMT_SGRBG12;
+++        else if (!g_ascii_strcasecmp (format, "rggb12"))
+++          fourcc = V4L2_PIX_FMT_SRGGB12;
+++        else if (!g_ascii_strcasecmp (format, "bggr16"))
+++          fourcc = V4L2_PIX_FMT_SBGGR16;
+++        else if (!g_ascii_strcasecmp (format, "gbrg16"))
+++          fourcc = V4L2_PIX_FMT_SGBRG16;
+++        else if (!g_ascii_strcasecmp (format, "grbg16"))
+++          fourcc = V4L2_PIX_FMT_SGRBG16;
+++        else if (!g_ascii_strcasecmp (format, "rggb16"))
+++          fourcc = V4L2_PIX_FMT_SRGGB16;
++       }
++     } else if (g_str_equal (mimetype, "video/x-sonix")) {
++       fourcc = V4L2_PIX_FMT_SN9C10X;
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.20.%.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.20.%.bbappend
+index 1c4c8515..eb0cafe6 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.20.%.bbappend
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.20.%.bbappend
+@@ -1,5 +1,10 @@
+ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+ 
++SRC_URI:append = " \
++    file://0001-Adding-support-for-bayer-formats-with-IR-component.patch \
++    file://0001-Adding-support-for-raw10-raw12-and-raw16-bayer-formats.patch \
++"
++
+ SRC_URI:append:j721s2 = " \
+     file://0001-v4l2-Changes-for-DMA-Buf-import-j721s2.patch \
+     file://0002-v4l2-Give-preference-to-contiguous-format-if-support.patch \
+-- 
+2.17.1
+
 
