@@ -2,73 +2,67 @@ Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C8C15EB64D9
-	for <webhook@archiver.kernel.org>; Tue, 27 Jun 2023 14:56:36 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web10.208.1687877795943618949
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CE664EB64D9
+	for <webhook@archiver.kernel.org>; Tue, 27 Jun 2023 15:02:26 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.373.1687878138205726721
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 27 Jun 2023 07:56:36 -0700
+ Tue, 27 Jun 2023 08:02:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=lp97mGvA;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: afd@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=yUmOCMDR;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: afd@ti.com)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35REuTw3009974;
-	Tue, 27 Jun 2023 09:56:29 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35RF2EB0018671;
+	Tue, 27 Jun 2023 10:02:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1687877789;
-	bh=wrYJcGy/ztfl2IbXNYJFhxpqnbImVBbuMrWmltotagk=;
+	s=ti-com-17Q1; t=1687878134;
+	bh=YbjTQWaAHNY0QRQQLYokCBAp9Jg3LwGWNPmPvT3FbQ4=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=lp97mGvAkKErOhIn7m/YXA77pbgd3t9x6QtVC4GIy0cehi1QPnzsdlr+S6tk4qTru
-	 sSxngz2/zL4VDsixaBGl7mINsh8ANsM/1G5Uv5pes2GgI1IXsCCGE/f4s02nj7yrmP
-	 B1f27/4HPgycSx6PNotNeXUo/NXqD8BpOLXm11ik=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35REuTNW042183
+	b=yUmOCMDRC4O/uMVbFw1ZUpjRxRzSfQ78eCcSkZ7WrvOglzssL1IWccdnX9GQu5kGW
+	 vvZLr7Q6ndOhL6Ixw6663n41OVOlvj7oKwr4acHj6EjprCSSBbAaLXggpTZ/a2Pz98
+	 MNZ1xSMD/Zciz1BJ+9yT3oKkTDSG+AksQLPLfHS8=
+Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35RF2E4L046493
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 27 Jun 2023 09:56:29 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 27 Jun 2023 10:02:14 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 27
- Jun 2023 09:56:29 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 10:02:13 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 27 Jun 2023 09:56:29 -0500
-Received: from [10.250.37.10] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35REuSWJ018729;
-	Tue, 27 Jun 2023 09:56:28 -0500
-Message-ID: <c8e53b03-5d6d-1e74-7d06-880ee1da4f44@ti.com>
-Date: Tue, 27 Jun 2023 09:56:28 -0500
+ Frontend Transport; Tue, 27 Jun 2023 10:02:13 -0500
+Received: from [10.250.37.10] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35RF2DEl025483;
+	Tue, 27 Jun 2023 10:02:13 -0500
+Message-ID: <a8c84035-031b-66d2-4ff9-027015d99f0c@ti.com>
+Date: Tue, 27 Jun 2023 10:02:13 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [master/kirkstone][PATCH v4 2/8] meta-arago-extras: sysrepo: Add
- libssh recipe needed for sysrepo
+Subject: Re: [master/kirkstone][PATCH v4 5/8] meta-arago-extras: sysrepo: Add
+ libredblack needed for sysrepo
+Content-Language: en-US
 To: Ravi Gunasekaran <r-gunasekaran@ti.com>,
         <meta-arago@lists.yoctoproject.org>
 CC: <denis@denix.org>, <reatmon@ti.com>, <g-gupta@ti.com>, <praneeth@ti.com>
 References: <20230627144249.30543-1-r-gunasekaran@ti.com>
- <20230627144249.30543-3-r-gunasekaran@ti.com>
-Content-Language: en-US
+ <20230627144249.30543-6-r-gunasekaran@ti.com>
 From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20230627144249.30543-3-r-gunasekaran@ti.com>
+In-Reply-To: <20230627144249.30543-6-r-gunasekaran@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 27 Jun 2023 14:56:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14715
+ <meta-arago@lists.yoctoproject.org>; Tue, 27 Jun 2023 15:02:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14716
 
 On 6/27/23 9:42 AM, Ravi Gunasekaran wrote:
-> libnetconf2 is needed to build sysrepo. And libnetconf2 depends on
-> libssh. So add receipe for libssh.
+> libredblack is needed to build sysrepo. Add recipe for libredblack.
 > 
-
-What is wrong with the version of libssh already in meta-oe?
-
-Andrew
-
 > The recipe is taken as-is from the commit 09f73e7 ("update for honister")
 > from the public repo [1].
 > 
@@ -85,49 +79,44 @@ Andrew
 > ---------------
 > Newly introduced in this series
 > 
->   .../recipes-sysrepo/libssh/libssh_0.9.5.bb    | 35 +++++++++++++++++++
->   1 file changed, 35 insertions(+)
->   create mode 100644 meta-arago-extras/recipes-sysrepo/libssh/libssh_0.9.5.bb
+>   .../libredblack/libredblack_git.bb            | 21 +++++++++++++++++++
+>   1 file changed, 21 insertions(+)
+>   create mode 100644 meta-arago-extras/recipes-sysrepo/libredblack/libredblack_git.bb
 > 
-> diff --git a/meta-arago-extras/recipes-sysrepo/libssh/libssh_0.9.5.bb b/meta-arago-extras/recipes-sysrepo/libssh/libssh_0.9.5.bb
+> diff --git a/meta-arago-extras/recipes-sysrepo/libredblack/libredblack_git.bb b/meta-arago-extras/recipes-sysrepo/libredblack/libredblack_git.bb
 > new file mode 100644
-> index 00000000..43a6827e
+> index 00000000..ea51b618
 > --- /dev/null
-> +++ b/meta-arago-extras/recipes-sysrepo/libssh/libssh_0.9.5.bb
-> @@ -0,0 +1,35 @@
-> +SUMMARY = "Multiplatform C library implementing the SSHv2 and SSHv1 protocol"
-> +HOMEPAGE = "http://www.libssh.org"
-> +SECTION = "libs"
+> +++ b/meta-arago-extras/recipes-sysrepo/libredblack/libredblack_git.bb
+> @@ -0,0 +1,21 @@
+> +SUMMARY = "Library for handling red-black tree searching algorithm"
+> +DESCRIPTION = "A library to provide the RedBlack balanced tree searching and sorting algorithm."
 > +LICENSE = "LGPLv2.1"
-> +LIC_FILES_CHKSUM = "file://COPYING;md5=dabb4958b830e5df11d2b0ed8ea255a0"
+> +LIC_FILES_CHKSUM = "file://COPYING;md5=de174fb5a92cdbe038c88dc4c4316f99"
 > +
-> +DEPENDS = "zlib openssl"
+> +SRC_URI = "git://github.com/sysrepo/libredblack.git;protocol=https"
 > +
-> +SRC_URI = "git://git.libssh.org/projects/libssh.git;branch=stable-0.9"
-> +SRCREV = "0cceefd49d4d397eb21bd36e314ac87739da51ff"
+> +PV = "1.0+git${SRCPV}"
+> +SRCREV = "a399310d99b61eec4d3c0677573ab5dddcf9395d"
 > +
 > +S = "${WORKDIR}/git"
 > +
-> +inherit cmake
+> +# NOTE: if this software is not capable of being built in a separate build directory
+> +# from the source, you should replace autotools with autotools-brokensep in the
+> +# inherit line
+
+This comment isn't needed.
+
+I understand the 1:1 copy from the original repo, but after you should have another patch
+that comes back and cleans these up. If they are to live in meta-arago they need to be up
+to the standards.
+
+Andrew
+
+> +inherit python3native autotools
 > +
-> +PACKAGECONFIG ??=""
-> +PACKAGECONFIG[gssapi] = "-DWITH_GSSAPI=1, -DWITH_GSSAPI=0, krb5, "
+> +# Specify any options you want to pass to the configure script using EXTRA_OECONF:
+> +EXTRA_OECONF = " --without-rbgen "
 > +
-> +ARM_INSTRUCTION_SET:armv5 = "arm"
-> +
-> +EXTRA_OECMAKE = " \
-> +    -DWITH_GCRYPT=0 \
-> +    -DWITH_PCAP=1 \
-> +    -DWITH_SFTP=1 \
-> +    -DWITH_ZLIB=1 \
-> +    -DLIB_SUFFIX=${@d.getVar('baselib').replace('lib', '')} \
-> +    "
-> +
-> +do_configure:prepend () {
-> +    # Disable building of examples
-> +    sed -i -e '/add_subdirectory(examples)/s/^/#DONOTWANT/' ${S}/CMakeLists.txt \
-> +        || bbfatal "Failed to disable examples"
-> +}
-> +
-> +TOOLCHAIN = "gcc"
+> +BBCLASSEXTEND = "native nativesdk"
 
