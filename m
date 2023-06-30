@@ -1,88 +1,75 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <lcpdbld@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 48B7BEB64D9
-	for <webhook@archiver.kernel.org>; Thu, 29 Jun 2023 20:12:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 30DD6C001DB
+	for <webhook@archiver.kernel.org>; Fri, 30 Jun 2023 02:46:25 +0000 (UTC)
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web10.7260.1688069564831421892
+ by mx.groups.io with SMTP id smtpd.web10.4115.1688093180018472808
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 29 Jun 2023 13:12:45 -0700
+ Thu, 29 Jun 2023 19:46:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=gDiWD2gX;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35TKCeBs119668;
-	Thu, 29 Jun 2023 15:12:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1688069560;
-	bh=0LCsgEmkX+8+1ZY/13MeFGDZdBe9lRPab/etdoee46E=;
-	h=From:To:Subject:Date;
-	b=gDiWD2gXZzKNR28LGU9KUUKebWmSlcctONLmE86Cpz4tH/Esnuo4VlpwLrGJHZGvh
-	 qdGAYIMVtYXItPhcwRM6rmx1gr2joAajw/uiGDSgtRZK03c4mlRUy5CJezaYxsQwao
-	 gNSuuH1hb10eR+cj2QkBaNiaMv09J0Lw0PtLREsQ=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35TKCe1i014357
+ dkim=missing; spf=pass (domain: list.ti.com, ip: 198.47.19.141, mailfrom: lcpdbld@list.ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35U2kFF8077909;
+	Thu, 29 Jun 2023 21:46:15 -0500
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35U2kFcU049638
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 29 Jun 2023 15:12:40 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 29 Jun 2023 21:46:15 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 29
- Jun 2023 15:12:40 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2023 21:46:15 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 29 Jun 2023 15:12:40 -0500
-Received: from uda0214219 (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35TKCeJM013300;
-	Thu, 29 Jun 2023 15:12:40 -0500
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1qEy0O-0005PM-4o; Thu, 29 Jun 2023 15:12:40 -0500
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
+ Frontend Transport; Thu, 29 Jun 2023 21:46:15 -0500
+Received: from fllvdckhpci039.itg.ti.com (fllvdckhpci039.itg.ti.com [10.248.132.250])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35U2kFOd043792;
+	Thu, 29 Jun 2023 21:46:15 -0500
+Received: by fllvdckhpci039.itg.ti.com (Postfix, from userid 60899)
+	id 3E9D610FCF4B; Thu, 29 Jun 2023 21:46:15 -0500 (CDT)
+From: LCPD Automation Script <lcpdbld@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH] bootstrap-initrd: Change name of cpio file to match change in oe-core
-Date: Thu, 29 Jun 2023 15:12:40 -0500
-Message-ID: <20230629201240.20748-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+Subject: [meta-arago][kirkstone][PATCH] ltp-ddt: CI/CD Auto-Merger: cicd.kirkstone.202306291638
+Date: Thu, 29 Jun 2023 21:46:15 -0500
+Message-ID: <1688093175-34972-1-git-send-email-lcpdbld@list.ti.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 29 Jun 2023 20:12:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14740
+ <meta-arago@lists.yoctoproject.org>; Fri, 30 Jun 2023 02:46:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14741
 
-There was a recent commit on oe-core master [1] that changes how the
-names of the images files are built up.  Since we effectively have the
-name of the cpio file somewhat hardcoded in this recipe, we need to
-update it to match what upstream is now producing.
+Updated the value(s) for:
+  SRCREV
 
-[1] https://git.openembedded.org/openembedded-core/commit/?id=26d97acc71379ab6702fa54a23b6542a3f51779c
-
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
 ---
- .../recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb        | 2 +-
+ meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
-index 92822dc3..121cba61 100644
---- a/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
-+++ b/meta-arago-distro/recipes-bsp/bootstrap-initrd/bootstrap-initrd_1.0.bb
-@@ -14,7 +14,7 @@ TARGET = "bootstrap-rootfs-${MACHINE}.cpio"
+diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
+index 7e855c9..11aae12 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
++++ b/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
+@@ -14,7 +14,7 @@ PE = "1"
+ PR = "r7"
+ PV:append = "+git${SRCPV}"
  
- do_install() {
- 	install -d ${D}/boot
--	install -m 0644 ${DEPLOY_DIR_IMAGE}/${BOOSTRAP_IMAGE}-${MACHINE}.cpio ${D}/boot/${TARGET}
-+	install -m 0644 ${DEPLOY_DIR_IMAGE}/${BOOSTRAP_IMAGE}-${MACHINE}.rootfs.cpio ${D}/boot/${TARGET}
- }
+-SRCREV = "846e57b9568a19d4c448de206bf1602072377d6e"
++SRCREV = "3f0f0329c7e8f20464672454bfbfccb11439f74a"
+ BRANCH ?= "master"
  
- FILES:${PN} = "/boot"
+ SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
 -- 
-2.17.1
+1.8.3.1
 
 
