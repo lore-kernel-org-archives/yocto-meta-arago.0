@@ -2,83 +2,112 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 598E4EB64DA
-	for <webhook@archiver.kernel.org>; Wed,  5 Jul 2023 22:42:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 809BFEB64DA
+	for <webhook@archiver.kernel.org>; Wed,  5 Jul 2023 23:15:06 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.8785.1688596924550171728
+ by mx.groups.io with SMTP id smtpd.web11.9460.1688598903859816696
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 05 Jul 2023 15:42:05 -0700
+ Wed, 05 Jul 2023 16:15:04 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 64FE740C50;
-	Wed,  5 Jul 2023 22:42:03 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 8A3B240C50;
+	Wed,  5 Jul 2023 23:15:02 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Jj_4z9Tb25Xy; Wed,  5 Jul 2023 22:42:03 +0000 (UTC)
+	with ESMTP id mYtIm9Fmc8k7; Wed,  5 Jul 2023 23:15:02 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 489F9400CF;
-	Wed,  5 Jul 2023 22:42:02 +0000 (UTC)
-Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 389B2163BC5;
-	Wed,  5 Jul 2023 18:42:01 -0400 (EDT)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 36F0F400CF;
+	Wed,  5 Jul 2023 23:14:55 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id E5ADF163BCA; Wed,  5 Jul 2023 19:14:54 -0400 (EDT)
+Date: Wed, 5 Jul 2023 19:14:54 -0400
 From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master/kirkstone][PATCH] libredblack: fix warnings
-Date: Wed,  5 Jul 2023 22:42:01 +0000
-Message-Id: <20230705224201.675681-1-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
+To: j-luthra@ti.com
+Cc: meta-arago@lists.yoctoproject.org, Ryan Eatmon <reatmon@ti.com>,
+	Denys Dmytriyenko <denys@konsulko.com>, Gyan Gupta <g-gupta@ti.com>,
+	Sai Sree Kartheek Adivi <s-adivi@ti.com>,
+	Chirag Shilwant <c-shilwant@ti.com>,
+	Devarsh Thakkar <devarsht@ti.com>
+Subject: Re: [meta-arago] [master/kirkstone][PATCH 2/3] libcamera: Add
+ support for TI CSI-RX
+Message-ID: <20230705231454.GA1518@denix.org>
+References: <20230705130928.1201894-1-j-luthra@ti.com>
+ <20230705130928.1201894-2-j-luthra@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230705130928.1201894-2-j-luthra@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 05 Jul 2023 22:42:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14752
+ <meta-arago@lists.yoctoproject.org>; Wed, 05 Jul 2023 23:15:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14753
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+On Wed, Jul 05, 2023 at 06:39:27PM +0530, Jai Luthra via lists.yoctoproject.org wrote:
+> TI's CSI-RX driver is not yet upstream, so the libcamera simple pipeline
+> does not recognize it.
+> 
+> Apply a patch to the simple pipeline so that it can recognize the media
+> entity for TI's CSI-RX driver.
+> 
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> ---
+>  .../0001-simple-Support-TI-CSI-RX.patch       | 26 +++++++++++++++++++
+>  .../libcamera/libcamera_0.0.5.bb              |  1 +
+>  2 files changed, 27 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-multimedia/libcamera/libcamera/0001-simple-Support-TI-CSI-RX.patch
+> 
+> diff --git a/meta-arago-extras/recipes-multimedia/libcamera/libcamera/0001-simple-Support-TI-CSI-RX.patch b/meta-arago-extras/recipes-multimedia/libcamera/libcamera/0001-simple-Support-TI-CSI-RX.patch
+> new file mode 100644
+> index 00000000..66b94863
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-multimedia/libcamera/libcamera/0001-simple-Support-TI-CSI-RX.patch
+> @@ -0,0 +1,26 @@
+> +From 2a82bce49ce4098ac17b4a654a9db5f2dee56415 Mon Sep 17 00:00:00 2001
+> +From: Jai Luthra <j-luthra@ti.com>
+> +Date: Thu, 23 Mar 2023 11:38:46 +0530
+> +Subject: [PATCH] simple: Support TI CSI-RX
 
-1. Explicitly specify branch in git URL
-2. Use the correct SPDX license identifier
+Upstream-Status is missing here
 
-Fixes these warnings:
 
-| WARNING: libredblack_git.bb: URL: git://github.com/sysrepo/libredblack.=
-git;protocol=3Dhttps does not set any branch parameter. The future defaul=
-t branch used by tools and repositories is uncertain and we will therefor=
-e soon require this is set in all git urls.
-| WARNING: libredblack-1.0+gitAUTOINC+a399310d99-r0 do_package_qa: QA Iss=
-ue: Recipe LICENSE includes obsolete licenses LGPLv2.1 [obsolete-license]
-
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
----
- .../recipes-sysrepo/libredblack/libredblack_git.bb            | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/meta-arago-extras/recipes-sysrepo/libredblack/libredblack_gi=
-t.bb b/meta-arago-extras/recipes-sysrepo/libredblack/libredblack_git.bb
-index ea51b618..f073aa06 100644
---- a/meta-arago-extras/recipes-sysrepo/libredblack/libredblack_git.bb
-+++ b/meta-arago-extras/recipes-sysrepo/libredblack/libredblack_git.bb
-@@ -1,9 +1,9 @@
- SUMMARY =3D "Library for handling red-black tree searching algorithm"
- DESCRIPTION =3D "A library to provide the RedBlack balanced tree searchi=
-ng and sorting algorithm."
--LICENSE =3D "LGPLv2.1"
-+LICENSE =3D "LGPL-2.1-only"
- LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Dde174fb5a92cdbe038c88dc4c4316=
-f99"
-=20
--SRC_URI =3D "git://github.com/sysrepo/libredblack.git;protocol=3Dhttps"
-+SRC_URI =3D "git://github.com/sysrepo/libredblack.git;protocol=3Dhttps;b=
-ranch=3Dmaster"
-=20
- PV =3D "1.0+git${SRCPV}"
- SRCREV =3D "a399310d99b61eec4d3c0677573ab5dddcf9395d"
---=20
-2.25.1
-
+> +Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> +---
+> + src/libcamera/pipeline/simple/simple.cpp | 2 ++
+> + 1 file changed, 2 insertions(+)
+> +
+> +diff --git a/src/libcamera/pipeline/simple/simple.cpp b/src/libcamera/pipeline/simple/simple.cpp
+> +index e1f8b989..520405a1 100644
+> +--- a/src/libcamera/pipeline/simple/simple.cpp
+> ++++ b/src/libcamera/pipeline/simple/simple.cpp
+> +@@ -194,6 +194,8 @@ static const SimplePipelineInfo supportedDevices[] = {
+> + 	{ "mxc-isi", {} },
+> + 	{ "qcom-camss", {} },
+> + 	{ "sun6i-csi", {} },
+> ++	{ "j721e-csi2rx", {} },
+> ++
+> + };
+> + 
+> + } /* namespace */
+> +-- 
+> +2.41.0
+> +
+> diff --git a/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb b/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb
+> index 6ad376f2..b2eb5fac 100644
+> --- a/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb
+> +++ b/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb
+> @@ -10,6 +10,7 @@ LIC_FILES_CHKSUM = "\
+>  
+>  SRC_URI = " \
+>          git://git.libcamera.org/libcamera/libcamera.git;protocol=https;branch=master \
+> +        file://0001-simple-Support-TI-CSI-RX.patch \
+>  "
+>  
+>  SRCREV = "fb44403f1c5571549ac128c21daee9761eb9249c"
+> -- 
+> 2.41.0
 
