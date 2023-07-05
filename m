@@ -2,40 +2,40 @@ Return-Path: <j-luthra@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 739EDC001DB
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F2A6EB64DA
 	for <webhook@archiver.kernel.org>; Wed,  5 Jul 2023 13:09:46 +0000 (UTC)
 Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web11.16513.1688562578234163618
+ by mx.groups.io with SMTP id smtpd.web10.16339.1688562576051174365
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 05 Jul 2023 06:09:38 -0700
+ Wed, 05 Jul 2023 06:09:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=xTpvyDep;
+ dkim=pass header.i=@ti.com header.s=ti-com-17q1 header.b=hcQvcF60;
  spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: j-luthra@ti.com)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 365D9b8f066243;
-	Wed, 5 Jul 2023 08:09:37 -0500
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 365D9YFH066236;
+	Wed, 5 Jul 2023 08:09:34 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1688562577;
-	bh=pq3NU2HA/LqHtqFhvkvzEXga6B7b6l0LfW7gSfDLk10=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=xTpvyDepXzB90VtbSsyAfDQg1Pu/05W+U2RkJcxatL3scF+tqjGHnx2ajPkUzMSsr
-	 qw41tniBtbZz94FEAYrCDFWBP6kXdP3xDOlpJIbR/f+Qzb2JZEHQ678K91p/C4iNqF
-	 JQHuF22ycAapVcu1joW9m4rwGhWNqOuUR9NgAfAQ=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 365D9bm9108467
+	s=ti-com-17Q1; t=1688562574;
+	bh=qTPFz1sv9ImjOZ2SEq8anu2I6MsnbGpSyjp80+PbaU4=;
+	h=From:To:CC:Subject:Date;
+	b=hcQvcF60n0Ccqnr9tpP3Bev+DYwV9MOxm3KvaFCBotwm5qpAHDMDS+CacCvl3fZwv
+	 QmCwN09p0JxeqBBEaTrDZ2jIn99eo7PCag2IYsI/VM83dImhHc3V1KzX50h3qd8srz
+	 O7NC9cfC77HypzXYB23gQu2tJPzPZSzJR7ct7o5I=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 365D9YCK108432
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 5 Jul 2023 08:09:37 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 5 Jul 2023 08:09:34 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 5
- Jul 2023 08:09:36 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2023 08:09:34 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 5 Jul 2023 08:09:36 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 365D9aRD061396;
-	Wed, 5 Jul 2023 08:09:36 -0500
+ Frontend Transport; Wed, 5 Jul 2023 08:09:34 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 365D9XGh040831;
+	Wed, 5 Jul 2023 08:09:33 -0500
 From: Jai Luthra <j-luthra@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
 CC: Ryan Eatmon <reatmon@ti.com>, Denys Dmytriyenko <denys@konsulko.com>,
@@ -45,14 +45,12 @@ CC: Ryan Eatmon <reatmon@ti.com>, Denys Dmytriyenko <denys@konsulko.com>,
  Shilwant <c-shilwant@ti.com>,
         Devarsh Thakkar <devarsht@ti.com>, Jai Luthra
 	<j-luthra@ti.com>
-Subject: [master/kirkstone][PATCH 3/3] meta-arago-distro: Package libcamera in tisdk
-Date: Wed, 5 Jul 2023 18:39:28 +0530
-Message-ID: <20230705130928.1201894-3-j-luthra@ti.com>
+Subject: [master/kirkstone][PATCH 1/3] libcamera: Add recipe for v0.0.5
+Date: Wed, 5 Jul 2023 18:39:26 +0530
+Message-ID: <20230705130928.1201894-1-j-luthra@ti.com>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230705130928.1201894-1-j-luthra@ti.com>
-References: <20230705130928.1201894-1-j-luthra@ti.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1694; i=j-luthra@ti.com; h=from:subject; bh=teFO1gnM9rHY9eC6D/ad3mGibdqLXx3Fw9fTuQPOe/k=; b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBkpWtfu0A+oDKoGPCKD0uT4tYoJ64OLi71i0CTt 9sL0/cpFzSJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZKVrXwAKCRBD3pH5JJpx RYKwD/9Lccr0CI5LUo1BJuYHemt3MD7sQMqrPn8b4ORvTJK64IqhraVqS7SAzpYVd1vG+Nu8yYD fZ9RwDsRH4tH4fyPLHZnU75HRWMiKay9pZHflYpwOV3bJf7Qlb2l6IN53BpNutNV2iG87w1rakR MRagaSUc0coYBlCX3qN5VhEd7ff165FPb+y6P5y9pgoyFxJrZb+Kiy12d8tNCpFEACQvEam88EE tJ7RNalluVZVZUhz/qE6vmmD9y5WXFfXzkGE2+MGN4GpUzT8hn5I+F7xIZHT+9oB+U5nyQMysJd UFt8vTkixCc1HM8lv8TJxeSYwHXle1xSIEofyIPQyi3mTdsRITzCKv8lCfTODOIjBrcg0k9cU6c FAn4eWw0sW7SucOQULKixMw03zn8RTFZkW0YfDEPU42Ki87zyigcU9gLTC8oIC4IoyLxw1KkYCM 9o3GXjCbnbQB2ILv4Iyovrd6nklui6xrhV77LGdeu+VpB1mFxFDsZS4+Oilz05mroUwzYvSmZQt d/H8lXiW66K662oHbzaXmuDTctmfUGjFzp+VsF8u5c7aHiJPVAHal9grTzo2YKjWWqYzobqEzqo 3a4sZSwlwgeo/9KTafD869+InT2piUGnIfTClomXxXbuLnv+TIgh1/5e907kTobqrDa6jFyXC0R 46VprzSWZZqgCbg!
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3181; i=j-luthra@ti.com; h=from:subject; bh=VRxga/59Cgfuyi60QXlNP52I57SKrGw+K9DM6rpXGNY=; b=owEBbQKS/ZANAwAIAUPekfkkmnFFAcsmYgBkpWtb8pYepr1fmHxFhitMFLoxX68Kj2vXldzg6 zbOF1U2tLOJAjMEAAEIAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCZKVrWwAKCRBD3pH5JJpx Ra4hEAC1xlXSJr8++/bK+K5SHNiY+wFN3B4wwdCbPPZGbDhg9LmRMeLbG9NM2pijB+dtHvbqqiO 6miI720mZVvZOD3w+wCCnRAm1KQiPGVPAcQ7Wl4LkHLpf59uvEuh8W1blM7VCT2XMHgosJq0RQ3 0u4+nhoVGZez5lwUJDEyX3QZBQ+3NUOauAx6mQu8vkSxDIaWSIHpy4NtWXOV/M//f2AIoY5ucvs mSo9lKLSE0OLyXNIa0w8qFgIembRiBPHgQiFpUHPVCe7E0OTzdcxkeaDAjDutLVWa+MTvbyvTwI AWiL9EXbTdVHfjGJV7XlKP0wloUS8BYiE8Hy5+h1R9LNKEy+Th0Tz1cDbp4E/vP8lJoYLJqhWcl RsNrWuQKAnC/ILlk/aFvi4IAKzOMJFO/H2opZdv8qz6MageDDeDo9XeIuyV1Y0+6eHkjLanRH+N XgOPVCsNOBiOTRALmM0qvTGz7M7n2K91ZFFkh5HtbAMZ7g6ukVr/nDftrPcS45n05T62NeOTaF0 Fy2y0pbxUnvyr25j8kDj3D/LOE9hl7Mw+Zq/vCH0891awxsE7UYzDOFSBNr/Zq5iNTa1HVi15rz V2G+8DiJyshFH6/+bFeAJrefl3yv/yPy/NZCoXXdvv/DSlGeVug9Iapn9TCDswHNNXDF7t/Lt7L WoFtxfgjWJuP2XQ!
  ==
 X-Developer-Key: i=j-luthra@ti.com; a=openpgp; fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
 Content-Transfer-Encoding: 8bit
@@ -62,47 +60,101 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Wed, 05 Jul 2023 13:09:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14748
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14747
 
-Libcamera is useful for testing simple camera pipelines, without
-requiring manual configuration of media graph for all v4l2-subdevs.
+For kirkstone, an older recipe is present in meta-oe which is using
+libcamera from December 2021 with many missing features.
 
-Enable it for TISDK images, along with the optional libcamerasrc
-gstreamer plugin package.
+TI's 6.1 based kernel can support the simple pipeline of libcamera, and
+benefit from the latest features in release v0.0.5, so we override the
+recipe here for arago.
+
+The new recipe here is taken as-is from meta-oe master.
 
 Signed-off-by: Jai Luthra <j-luthra@ti.com>
 ---
- meta-arago-distro/conf/distro/arago.conf                       | 3 +++
- .../packagegroups/packagegroup-arago-tisdk-multimedia.bb       | 2 ++
- 2 files changed, 5 insertions(+)
+ .../libcamera/libcamera_0.0.5.bb              | 72 +++++++++++++++++++
+ 1 file changed, 72 insertions(+)
+ create mode 100644 meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index e0087ab7..bb074478 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -128,6 +128,9 @@ PACKAGECONFIG:append:pn-gstreamer1.0 = " tracer-hooks"
- # Enable kmssink in gstreamer
- PACKAGECONFIG:append:pn-gstreamer1.0-plugins-bad = " kms"
- 
-+# Enable gstreamer plugin for libcamera
-+PACKAGECONFIG:append:pn-libcamera = " gst"
+diff --git a/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb b/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb
+new file mode 100644
+index 00000000..6ad376f2
+--- /dev/null
++++ b/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb
+@@ -0,0 +1,72 @@
++SUMMARY = "Linux libcamera framework"
++SECTION = "libs"
 +
- # Disable pulseaudio routing in alsa by default
- PACKAGECONFIG:remove:pn-alsa-plugins = "pulseaudio"
- RDEPENDS:pulseaudio-server:remove = "alsa-plugins-pulseaudio-conf"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-index d06fbb6f..b4148882 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-@@ -8,6 +8,8 @@ inherit packagegroup
- 
- MULTIMEDIA = " \
-     amsdk-av-files \
-+    libcamera \
-+    libcamera-gst \
- "
- 
- MULTIMEDIA:omapl138 = ""
++LICENSE = "GPL-2.0-or-later & LGPL-2.1-or-later"
++
++LIC_FILES_CHKSUM = "\
++    file://LICENSES/GPL-2.0-or-later.txt;md5=fed54355545ffd980b814dab4a3b312c \
++    file://LICENSES/LGPL-2.1-or-later.txt;md5=2a4f4fd2128ea2f65047ee63fbca9f68 \
++"
++
++SRC_URI = " \
++        git://git.libcamera.org/libcamera/libcamera.git;protocol=https;branch=master \
++"
++
++SRCREV = "fb44403f1c5571549ac128c21daee9761eb9249c"
++
++PE = "1"
++
++S = "${WORKDIR}/git"
++
++DEPENDS = "python3-pyyaml-native python3-jinja2-native python3-ply-native python3-jinja2-native udev gnutls chrpath-native libevent libyaml"
++DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'qt', 'qtbase qtbase-native', '', d)}"
++
++PACKAGES =+ "${PN}-gst"
++
++PACKAGECONFIG ??= ""
++PACKAGECONFIG[gst] = "-Dgstreamer=enabled,-Dgstreamer=disabled,gstreamer1.0 gstreamer1.0-plugins-base"
++
++LIBCAMERA_PIPELINES ??= "auto"
++
++EXTRA_OEMESON = " \
++    -Dpipelines=${LIBCAMERA_PIPELINES} \
++    -Dv4l2=true \
++    -Dcam=enabled \
++    -Dlc-compliance=disabled \
++    -Dtest=false \
++    -Ddocumentation=disabled \
++"
++
++RDEPENDS:${PN} = "${@bb.utils.contains('DISTRO_FEATURES', 'wayland qt', 'qtwayland', '', d)}"
++
++inherit meson pkgconfig python3native
++
++do_configure:prepend() {
++    sed -i -e 's|py_compile=True,||' ${S}/utils/ipc/mojo/public/tools/mojom/mojom/generate/template_expander.py
++}
++
++do_install:append() {
++    chrpath -d ${D}${libdir}/libcamera.so
++    chrpath -d ${D}${libdir}/v4l2-compat.so
++}
++
++addtask do_recalculate_ipa_signatures_package after do_package before do_packagedata
++do_recalculate_ipa_signatures_package() {
++    local modules
++    for module in $(find ${PKGD}/usr/lib/libcamera -name "*.so.sign"); do
++        module="${module%.sign}"
++        if [ -f "${module}" ] ; then
++            modules="${modules} ${module}"
++        fi
++    done
++
++    ${S}/src/ipa/ipa-sign-install.sh ${B}/src/ipa-priv-key.pem "${modules}"
++}
++
++FILES:${PN} += " ${libdir}/v4l2-compat.so"
++FILES:${PN}-gst = "${libdir}/gstreamer-1.0"
++
++# libcamera-v4l2 explicitly sets _FILE_OFFSET_BITS=32 to get access to
++# both 32 and 64 bit file APIs.
++GLIBC_64BIT_TIME_FLAGS = ""
++
 -- 
 2.41.0
 
