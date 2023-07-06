@@ -2,107 +2,124 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C9886EB64D9
-	for <webhook@archiver.kernel.org>; Thu,  6 Jul 2023 03:57:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CDCBFEB64D9
+	for <webhook@archiver.kernel.org>; Thu,  6 Jul 2023 04:06:27 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.14163.1688615840261577728
+ by mx.groups.io with SMTP id smtpd.web10.14117.1688616376973657000
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 05 Jul 2023 20:57:21 -0700
+ Wed, 05 Jul 2023 21:06:18 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id D735240C16;
-	Thu,  6 Jul 2023 03:57:18 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 5013140C16;
+	Thu,  6 Jul 2023 04:06:16 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id bfzqq4bNvO9S; Thu,  6 Jul 2023 03:57:18 +0000 (UTC)
+	with ESMTP id tiJwsjMcDfzv; Thu,  6 Jul 2023 04:06:16 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 7E74140C13;
-	Thu,  6 Jul 2023 03:57:11 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id F2A4040C13;
+	Thu,  6 Jul 2023 04:06:08 +0000 (UTC)
 Received: by mail.denix.org (Postfix, from userid 1000)
-	id 8D809163BD2; Wed,  5 Jul 2023 23:57:10 -0400 (EDT)
-Date: Wed, 5 Jul 2023 23:57:10 -0400
+	id B30EC163BD7; Thu,  6 Jul 2023 00:06:08 -0400 (EDT)
+Date: Thu, 6 Jul 2023 00:06:08 -0400
 From: Denys Dmytriyenko <denis@denix.org>
-To: Jai Luthra <j-luthra@ti.com>
+To: j-luthra@ti.com
 Cc: meta-arago@lists.yoctoproject.org, Ryan Eatmon <reatmon@ti.com>,
 	Denys Dmytriyenko <denys@konsulko.com>, Gyan Gupta <g-gupta@ti.com>,
 	Sai Sree Kartheek Adivi <s-adivi@ti.com>,
 	Chirag Shilwant <c-shilwant@ti.com>,
 	Devarsh Thakkar <devarsht@ti.com>
-Subject: Re: [meta-arago] [master/kirkstone][PATCH 3/3] meta-arago-distro:
- Package libcamera in tisdk
-Message-ID: <20230706035710.GC1518@denix.org>
-References: <20230705130928.1201894-1-j-luthra@ti.com>
- <20230705130928.1201894-3-j-luthra@ti.com>
- <20230705231634.GB1518@denix.org>
- <zhdzg4xrynbfkrpjuf5mqm7ikn4n3bnozgaokhhknmkmlsno4l@d72cuqfqabwa>
+Subject: Re: [meta-arago] [master/kirkstone][PATCH v2 2/3] libcamera: Add
+ support for TI CSI-RX
+Message-ID: <20230706040608.GD1518@denix.org>
+References: <20230706035522.1817402-1-j-luthra@ti.com>
+ <20230706035522.1817402-2-j-luthra@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <zhdzg4xrynbfkrpjuf5mqm7ikn4n3bnozgaokhhknmkmlsno4l@d72cuqfqabwa>
+In-Reply-To: <20230706035522.1817402-2-j-luthra@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 06 Jul 2023 03:57:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14761
+ <meta-arago@lists.yoctoproject.org>; Thu, 06 Jul 2023 04:06:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14762
 
-On Thu, Jul 06, 2023 at 09:13:43AM +0530, Jai Luthra wrote:
-> Hi Denys,
+On Thu, Jul 06, 2023 at 09:25:21AM +0530, Jai Luthra via lists.yoctoproject.org wrote:
+> TI's CSI-RX driver is not yet upstream, so the libcamera simple pipeline
+> does not recognize it.
 > 
-> On Jul 05, 2023 at 19:16:34 -0400, Denys Dmytriyenko wrote:
-> > On Wed, Jul 05, 2023 at 06:39:28PM +0530, Jai Luthra via lists.yoctoproject.org wrote:
-> > > Libcamera is useful for testing simple camera pipelines, without
-> > > requiring manual configuration of media graph for all v4l2-subdevs.
-> > > 
-> > > Enable it for TISDK images, along with the optional libcamerasrc
-> > 
-> > typo - libcamersrc?
-> > 
+> Apply a patch to the simple pipeline so that it can recognize the media
+> entity for TI's CSI-RX driver.
 > 
-> The gstreamer element is called "libcamerasrc" 
-> https://github.com/libcamera-org/libcamera/blob/master/src/gstreamer/gstlibcamerasrc.cpp
+> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> ---
+> 
+> v2: Add upstream information in the patch
+> Link to v1: https://lore.kernel.org/all/20230705130928.1201894-2-j-luthra@ti.com/
+> 
+>  .../0001-simple-Support-TI-CSI-RX.patch       | 32 +++++++++++++++++++
+>  .../libcamera/libcamera_0.0.5.bb              |  1 +
+>  2 files changed, 33 insertions(+)
+>  create mode 100644 meta-arago-extras/recipes-multimedia/libcamera/libcamera/0001-simple-Support-TI-CSI-RX.patch
+> 
+> diff --git a/meta-arago-extras/recipes-multimedia/libcamera/libcamera/0001-simple-Support-TI-CSI-RX.patch b/meta-arago-extras/recipes-multimedia/libcamera/libcamera/0001-simple-Support-TI-CSI-RX.patch
+> new file mode 100644
+> index 00000000..f35b3613
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-multimedia/libcamera/libcamera/0001-simple-Support-TI-CSI-RX.patch
+> @@ -0,0 +1,32 @@
+> +From d0e4f4f224671e9fc992d39e7beb9c486303ede1 Mon Sep 17 00:00:00 2001
+> +From: Jai Luthra <j-luthra@ti.com>
+> +Date: Thu, 23 Mar 2023 11:38:46 +0530
+> +Subject: [PATCH] simple: Support TI CSI-RX
+> +
+> +Add support for TI's CSI-RX pixel grabber device for the simple
+> +pipeline.
+> +
+> +The driver is not yet merged, but v7 is posted [1] upstream.
+> +
+> +Link: https://lore.kernel.org/all/20230314115516.667-1-vaishnav.a@ti.com/ [1]
 
-Thanks. Got confused as the gstreamer plugin package is called libcamera-gst.
+No, that is not a required Upstream-Status tag. See here:
+https://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines#Patch_Header_Recommendations:_Upstream-Status
 
 
-> > > gstreamer plugin package.
-> > > 
-> > > Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> > > ---
-> > >  meta-arago-distro/conf/distro/arago.conf                       | 3 +++
-> > >  .../packagegroups/packagegroup-arago-tisdk-multimedia.bb       | 2 ++
-> > >  2 files changed, 5 insertions(+)
-> > > 
-> > > diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-> > > index e0087ab7..bb074478 100644
-> > > --- a/meta-arago-distro/conf/distro/arago.conf
-> > > +++ b/meta-arago-distro/conf/distro/arago.conf
-> > > @@ -128,6 +128,9 @@ PACKAGECONFIG:append:pn-gstreamer1.0 = " tracer-hooks"
-> > >  # Enable kmssink in gstreamer
-> > >  PACKAGECONFIG:append:pn-gstreamer1.0-plugins-bad = " kms"
-> > >  
-> > > +# Enable gstreamer plugin for libcamera
-> > > +PACKAGECONFIG:append:pn-libcamera = " gst"
-> > > +
-> > >  # Disable pulseaudio routing in alsa by default
-> > >  PACKAGECONFIG:remove:pn-alsa-plugins = "pulseaudio"
-> > >  RDEPENDS:pulseaudio-server:remove = "alsa-plugins-pulseaudio-conf"
-> > > diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-> > > index d06fbb6f..b4148882 100644
-> > > --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-> > > +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-> > > @@ -8,6 +8,8 @@ inherit packagegroup
-> > >  
-> > >  MULTIMEDIA = " \
-> > >      amsdk-av-files \
-> > > +    libcamera \
-> > > +    libcamera-gst \
-> > >  "
-> > >  
-> > >  MULTIMEDIA:omapl138 = ""
-> > > -- 
-> > > 2.41.0
+> +Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> +---
+> + src/libcamera/pipeline/simple/simple.cpp | 2 ++
+> + 1 file changed, 2 insertions(+)
+> +
+> +diff --git a/src/libcamera/pipeline/simple/simple.cpp b/src/libcamera/pipeline/simple/simple.cpp
+> +index e1f8b989..520405a1 100644
+> +--- a/src/libcamera/pipeline/simple/simple.cpp
+> ++++ b/src/libcamera/pipeline/simple/simple.cpp
+> +@@ -194,6 +194,8 @@ static const SimplePipelineInfo supportedDevices[] = {
+> + 	{ "mxc-isi", {} },
+> + 	{ "qcom-camss", {} },
+> + 	{ "sun6i-csi", {} },
+> ++	{ "j721e-csi2rx", {} },
+> ++
+> + };
+> + 
+> + } /* namespace */
+> +-- 
+> +2.41.0
+> +
+> diff --git a/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb b/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb
+> index 6ad376f2..b2eb5fac 100644
+> --- a/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb
+> +++ b/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb
+> @@ -10,6 +10,7 @@ LIC_FILES_CHKSUM = "\
+>  
+>  SRC_URI = " \
+>          git://git.libcamera.org/libcamera/libcamera.git;protocol=https;branch=master \
+> +        file://0001-simple-Support-TI-CSI-RX.patch \
+>  "
+>  
+>  SRCREV = "fb44403f1c5571549ac128c21daee9761eb9249c"
+> -- 
+> 2.41.0
 
