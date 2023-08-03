@@ -1,84 +1,137 @@
-Return-Path: <denis@denix.org>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F664C0015E
-	for <webhook@archiver.kernel.org>; Fri, 28 Jul 2023 21:20:39 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.43216.1690579230927877099
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B6C0C00528
+	for <webhook@archiver.kernel.org>; Thu,  3 Aug 2023 20:45:13 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.5110.1691095509540201058
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 28 Jul 2023 14:20:31 -0700
+ Thu, 03 Aug 2023 13:45:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 327E240C98;
-	Fri, 28 Jul 2023 21:20:30 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id n6Rqt3lVQofk; Fri, 28 Jul 2023 21:20:30 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-88-116.washdc.fios.verizon.net [100.15.88.116])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E6EAE40C13;
-	Fri, 28 Jul 2023 21:20:25 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id A7BB9163C11; Fri, 28 Jul 2023 17:20:25 -0400 (EDT)
-Date: Fri, 28 Jul 2023 17:20:25 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: rs@ti.com
-Cc: reatmon@ti.com, afd@ti.com, nm@ti.com,
-	meta-arago@lists.yoctoproject.org
-Subject: Re: [meta-arago][kirkstone/master][PATCH 5/5] arago-tiny-image:
- add packagegroup-arago-boot to IMAGE_INSTALL
-Message-ID: <20230728212025.GV1518@denix.org>
-References: <20230728002032.853330-1-rs@ti.com>
- <20230728002032.853330-6-rs@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=bRpC+8JY;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 373Kj7eF010671;
+	Thu, 3 Aug 2023 15:45:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1691095507;
+	bh=dUCHCyZQz5H4vTDZ8GJGieXdz7/GuN3IRJNEGxU4hJ0=;
+	h=From:To:Subject:Date;
+	b=bRpC+8JYags6jhDDHrIlzMTNkesVdz0/y8fPfkobqczAUVIOCiNWUij16SBjxMHqk
+	 jraXGvXAnRrHQfCp8x+13aA40rykHwMd6iK5Ede83y6X/85A1+gifHR64SJEEfEBwx
+	 hI/tSKku0h0Ip9rF9YzYdwKC4FiS1U6hq4XFjX/w=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 373Kj7kt107903
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 3 Aug 2023 15:45:07 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 3
+ Aug 2023 15:45:07 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 3 Aug 2023 15:45:07 -0500
+Received: from uda0214219 (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 373Kj7aN033599;
+	Thu, 3 Aug 2023 15:45:07 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1qRfBz-0002CG-95; Thu, 03 Aug 2023 15:45:07 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][master/kirkstone][PATCH 1/2] tisdk-tiny-initramfs: Create a smaller dedicated initramfs for tiny
+Date: Thu, 3 Aug 2023 15:45:06 -0500
+Message-ID: <20230803204507.8402-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230728002032.853330-6-rs@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 28 Jul 2023 21:20:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14815
+ <meta-arago@lists.yoctoproject.org>; Thu, 03 Aug 2023 20:45:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14817
 
-On Thu, Jul 27, 2023 at 07:20:32PM -0500, Randolph Sapp via lists.yoctoproject.org wrote:
-> From: Randolph Sapp <rs@ti.com>
-> 
-> This image install override is interesting. Perhaps we should move to
-> the separate build target distro configs like pokey uses [1] to avoid
+The initramfs does not need grub-efi or the /boot directory since it
+does not have to boot the system itself.  So create a version of the
+tiny-image that strips those out and follow the oe-core methodology for
+initramfs.
 
-What's "pokey"? It's Poky - https://elinux.org/Poky
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ .../classes/remove-boot-dir.bbclass           |  9 +++++++
+ .../images/tisdk-tiny-initramfs.bb            | 27 +++++++++++++++++++
+ .../packagegroup-arago-initramfs.bb           |  5 ++++
+ 3 files changed, 41 insertions(+)
+ create mode 100644 meta-arago-distro/classes/remove-boot-dir.bbclass
+ create mode 100644 meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
+ create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-initramfs.bb
 
+diff --git a/meta-arago-distro/classes/remove-boot-dir.bbclass b/meta-arago-distro/classes/remove-boot-dir.bbclass
+new file mode 100644
+index 00000000..61c8f22d
+--- /dev/null
++++ b/meta-arago-distro/classes/remove-boot-dir.bbclass
+@@ -0,0 +1,9 @@
++# Add a ROOTFS_POSTPROCESS_COMMAND that will remove some files from the
++# rootfs for initramfs images.
++
++ROOTFS_POSTPROCESS_COMMAND += "remove_boot_dir;"
++
++remove_boot_dir () {
++    rm -rf ${IMAGE_ROOTFS}/boot
++}
++
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb b/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
+new file mode 100644
+index 00000000..0b8bfba8
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
+@@ -0,0 +1,27 @@
++SUMMARY = "Arago TI SDK super minimal base image for initramfs"
++
++DESCRIPTION = "Image meant for basic boot of linux kernel. Intended as\
++ bare system, this image does not package the kernel in the\
++ standard /boot folder in rootfs. Instead, it provides a base\
++ rootfs allowing kernel to be deployed elsewhere\
++ (tftp/separate boot partition/jtag log etc..) and boot\
++ the image.\
++"
++
++LICENSE = "MIT"
++
++inherit core-image
++inherit remove-boot-dir
++
++IMAGE_FEATURES:remove = "package-management"
++
++INITRAMFS_FSTYPES = "cpio cpio.xz"
++INITRAMFS_MAXSIZE = "65536"
++IMAGE_OVERHEAD_FACTOR = "1"
++
++IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
++
++PACKAGE_INSTALL = "packagegroup-arago-initramfs"
++
++export IMAGE_BASENAME = "tisdk-tiny-initramfs"
++
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-initramfs.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-initramfs.bb
+new file mode 100644
+index 00000000..63e3da01
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-initramfs.bb
+@@ -0,0 +1,5 @@
++
++require recipes-core/packagegroups/packagegroup-core-boot.bb
++
++RDEPENDS:${PN}:remove = "grub-efi kernel"
++
+-- 
+2.17.1
 
-> configuration collisions while still allowing for some base image
-> templating through include files like arago-image.inc
-> 
-> [1] https://git.yoctoproject.org/poky/tree/meta-poky/conf/distro/poky-tiny.conf?h=kirkstone
-
-Either way, the above commit log doesn't seem to have anything to do with the 
-actual change...
-
-
-> Signed-off-by: Randolph Sapp <rs@ti.com>
-> ---
->  meta-arago-distro/recipes-core/images/arago-tiny-image.inc | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/meta-arago-distro/recipes-core/images/arago-tiny-image.inc b/meta-arago-distro/recipes-core/images/arago-tiny-image.inc
-> index 242e763c..77ee9ea2 100644
-> --- a/meta-arago-distro/recipes-core/images/arago-tiny-image.inc
-> +++ b/meta-arago-distro/recipes-core/images/arago-tiny-image.inc
-> @@ -6,4 +6,5 @@ IMAGE_FEATURES:remove = "splash"
->  
->  IMAGE_INSTALL = " \
->  	packagegroup-arago-sysvinit-boot \
-> +	packagegroup-arago-boot \
-
-This include file is shared among tiny and bootstrap images. While addind 
-irqbalance and/or other tools might be useful for bootstrapping (?) it is not 
-so clear for the tiny image. It was meant to be the very bare minimum and also 
-used as initramfs and jailhouse cells.
 
