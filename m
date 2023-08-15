@@ -1,193 +1,86 @@
-Return-Path: <rs@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E8409C0015E
-	for <webhook@archiver.kernel.org>; Tue, 15 Aug 2023 18:17:43 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.141635.1692123461363186763
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DDCEC001B0
+	for <webhook@archiver.kernel.org>; Tue, 15 Aug 2023 20:49:24 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web10.145247.1692132560409776698
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 15 Aug 2023 11:17:41 -0700
+ Tue, 15 Aug 2023 13:49:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=J9KDNeFj;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: rs@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37FIHe5k058484
-	for <meta-arago@lists.yoctoproject.org>; Tue, 15 Aug 2023 13:17:40 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=wDghD3pW;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37FKnIax128525;
+	Tue, 15 Aug 2023 15:49:18 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1692123460;
-	bh=gnuq3Pd1XnjDtWLIpVz+bk+koonjMN+/4O90G9DKKqg=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=J9KDNeFjcs2vUhyxyVe5Pr/UtVpToezGtv1lF+YSgjeqGMRUBy8+g8GA9YE7pileA
-	 bUphcDbA6e6Eu4HGNiBYovGzbsqOEaQ49PcJSssXh9fqQdIb2qLj2wyydfnyvEjfav
-	 4BG/huEQiT0zYgvEjMvGOQt4Yqvz17ZaPfFsak7g=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37FIHeHF027074
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Tue, 15 Aug 2023 13:17:40 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1692132558;
+	bh=loUu2hIzeWr8hKObIvSwV5uYG4Sy84VLntf6ghyASqk=;
+	h=From:To:Subject:Date;
+	b=wDghD3pW8imznQdvmmhM6epokSZ4Rh1OCcWtRWT3RdDrCO6n/R9LOdQCuKx74zglD
+	 Bu0L0dMVpide/eR4ANnMRimfofpkd46f3fg07IG4Lh3QAQGN22VQ6xXTIYdG5EJU9C
+	 WzKCgtIpRrBs9AMWHRw/8UWnUslTc0NkTG2t8Kwc=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37FKnI9S127782
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 15 Aug 2023 15:49:18 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 15
- Aug 2023 13:17:40 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 15:49:18 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 15 Aug 2023 13:17:39 -0500
-Received: from [128.247.81.144] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37FIHdA8052884
-	for <meta-arago@lists.yoctoproject.org>; Tue, 15 Aug 2023 13:17:39 -0500
-Message-ID: <5d82bfb3-4111-495d-9678-e179dd1afcde@ti.com>
-Date: Tue, 15 Aug 2023 13:17:39 -0500
+ Frontend Transport; Tue, 15 Aug 2023 15:49:18 -0500
+Received: from uda0214219 (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37FKnISr051690;
+	Tue, 15 Aug 2023 15:49:18 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1qW0yc-0006SM-8N; Tue, 15 Aug 2023 15:49:18 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][master/kirkstone][PATCH v2] mstpd: Change hard coded /sbin to $base_sbindir
+Date: Tue, 15 Aug 2023 15:49:18 -0500
+Message-ID: <20230815204918.24777-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] [meta-arago] [oe-layersetup][PATCH] configs:
- kirkstone+: add meta-clang preemptively
-Content-Language: en-US, en-US-large
-To: <meta-arago@lists.yoctoproject.org>
-References: <177BA10AF505EDF3.8497@lists.yoctoproject.org>
-From: Randolph Sapp <rs@ti.com>
-In-Reply-To: <177BA10AF505EDF3.8497@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 15 Aug 2023 18:17:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14843
+ <meta-arago@lists.yoctoproject.org>; Tue, 15 Aug 2023 20:49:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14844
 
-On 8/15/23 13:11, Randolph Sapp via lists.yoctoproject.org wrote:
-> From: Randolph Sapp <rs@ti.com>
-> 
-> Preempt some of the layer changes that are coming that will have
-> explicit dependencies on meta-clang.
-> 
-> Signed-off-by: Randolph Sapp <rs@ti.com>
-> ---
->   configs/arago-kirkstone-config.txt      | 1 +
->   configs/arago-kirkstone-next-config.txt | 1 +
->   configs/arago-kirkstone-wip-config.txt  | 1 +
->   configs/arago-master-config.txt         | 1 +
->   configs/arago-master-next-config.txt    | 1 +
->   configs/arago-master-wip-config.txt     | 1 +
->   configs/poky-kirkstone-config.txt       | 1 +
->   configs/poky-master-config.txt          | 1 +
->   configs/poky-master-wip-config.txt      | 1 +
->   9 files changed, 9 insertions(+)
-> 
-> diff --git a/configs/arago-kirkstone-config.txt b/configs/arago-kirkstone-config.txt
-> index c2524a4..39ddeb4 100644
-> --- a/configs/arago-kirkstone-config.txt
-> +++ b/configs/arago-kirkstone-config.txt
-> @@ -9,6 +9,7 @@ meta-virtualization,https://git.yoctoproject.org/meta-virtualization,kirkstone,H
->   meta-openembedded,https://git.openembedded.org/meta-openembedded,kirkstone,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
->   meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone,HEAD,layers=meta-ti-extras:meta-ti-bsp
->   meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> +meta-clang,https://github.com/kraj/meta-clang,kirkstone,HEAD,layers=
->   oe-core,https://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
->   OECORELAYERCONF=./sample-files/bblayers.conf.sample
->   OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-> diff --git a/configs/arago-kirkstone-next-config.txt b/configs/arago-kirkstone-next-config.txt
-> index fe0a97b..bc90869 100644
-> --- a/configs/arago-kirkstone-next-config.txt
-> +++ b/configs/arago-kirkstone-next-config.txt
-> @@ -17,6 +17,7 @@ meta-virtualization,https://git.yoctoproject.org/meta-virtualization,kirkstone,H
->   meta-openembedded,https://git.openembedded.org/meta-openembedded,kirkstone,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
->   meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone-next,HEAD,layers=meta-ti-extras:meta-ti-bsp
->   meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> +meta-clang,https://github.com/kraj/meta-clang,kirkstone,HEAD,layers=
->   oe-core,https://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
->   OECORELAYERCONF=./sample-files/bblayers.conf.sample
->   OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-> diff --git a/configs/arago-kirkstone-wip-config.txt b/configs/arago-kirkstone-wip-config.txt
-> index b8a97f0..a560f41 100644
-> --- a/configs/arago-kirkstone-wip-config.txt
-> +++ b/configs/arago-kirkstone-wip-config.txt
-> @@ -9,6 +9,7 @@ meta-virtualization,https://git.yoctoproject.org/meta-virtualization,kirkstone,H
->   meta-openembedded,https://git.openembedded.org/meta-openembedded,kirkstone,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
->   meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone-wip,HEAD,layers=meta-ti-extras:meta-ti-bsp
->   meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> +meta-clang,https://github.com/kraj/meta-clang,kirkstone,HEAD,layers=
->   oe-core,https://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
->   OECORELAYERCONF=./sample-files/bblayers.conf.sample
->   OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-> diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.txt
-> index 7822511..e5aa236 100644
-> --- a/configs/arago-master-config.txt
-> +++ b/configs/arago-master-config.txt
-> @@ -9,6 +9,7 @@ meta-virtualization,https://git.yoctoproject.org/meta-virtualization,master,HEAD
->   meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
->   meta-ti,https://git.yoctoproject.org/meta-ti,master,HEAD,layers=meta-ti-extras:meta-ti-bsp
->   meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> +meta-clang,https://github.com/kraj/meta-clang,kirkstone,HEAD,layers=
->   oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
->   OECORELAYERCONF=./sample-files/bblayers.conf.sample
->   OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-> diff --git a/configs/arago-master-next-config.txt b/configs/arago-master-next-config.txt
-> index 74e8d78..748b39c 100644
-> --- a/configs/arago-master-next-config.txt
-> +++ b/configs/arago-master-next-config.txt
-> @@ -17,6 +17,7 @@ meta-virtualization,https://git.yoctoproject.org/meta-virtualization,master,HEAD
->   meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
->   meta-ti,https://git.yoctoproject.org/meta-ti,master-next,HEAD,layers=meta-ti-extras:meta-ti-bsp
->   meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> +meta-clang,https://github.com/kraj/meta-clang,master,HEAD,layers=
->   oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
->   OECORELAYERCONF=./sample-files/bblayers.conf.sample
->   OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-> diff --git a/configs/arago-master-wip-config.txt b/configs/arago-master-wip-config.txt
-> index 71ab716..b588c0e 100644
-> --- a/configs/arago-master-wip-config.txt
-> +++ b/configs/arago-master-wip-config.txt
-> @@ -9,6 +9,7 @@ meta-virtualization,https://git.yoctoproject.org/meta-virtualization,master,HEAD
->   meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems
->   meta-ti,https://git.yoctoproject.org/meta-ti,master-wip,HEAD,layers=meta-ti-extras:meta-ti-bsp
->   meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> +meta-clang,https://github.com/kraj/meta-clang,master,HEAD,layers=
->   oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
->   OECORELAYERCONF=./sample-files/bblayers.conf.sample
->   OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-> diff --git a/configs/poky-kirkstone-config.txt b/configs/poky-kirkstone-config.txt
-> index dc94b1d..4d5378d 100644
-> --- a/configs/poky-kirkstone-config.txt
-> +++ b/configs/poky-kirkstone-config.txt
-> @@ -5,6 +5,7 @@ bitbake,https://git.openembedded.org/bitbake,2.0,HEAD
->   meta-yocto,https://git.yoctoproject.org/meta-yocto,kirkstone,HEAD,layers=meta-poky:meta-yocto-bsp
->   meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone,HEAD,layers=meta-ti-extras:meta-ti-bsp
->   meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,HEAD,layers=meta-arm:meta-arm-toolchain
-> +meta-clang,https://github.com/kraj/meta-clang,kirkstone,HEAD,layers=
->   oe-core,https://git.openembedded.org/openembedded-core,kirkstone,HEAD,layers=meta
->   meta-arago,https://git.yoctoproject.org/meta-arago,kirkstone,HEAD,layers=meta-arago-extras
->   
-> diff --git a/configs/poky-master-config.txt b/configs/poky-master-config.txt
-> index 5cb0383..03a3c83 100644
-> --- a/configs/poky-master-config.txt
-> +++ b/configs/poky-master-config.txt
-> @@ -5,6 +5,7 @@ bitbake,https://git.openembedded.org/bitbake,master,HEAD
->   meta-yocto,https://git.yoctoproject.org/meta-yocto,master,HEAD,layers=meta-poky:meta-yocto-bsp
->   meta-ti,https://git.yoctoproject.org/meta-ti,master,HEAD,layers=meta-ti-extras:meta-ti-bsp
->   meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> +meta-clang,https://github.com/kraj/meta-clang,master,HEAD,layers=
->   oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
->   meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-extras
->   
-> diff --git a/configs/poky-master-wip-config.txt b/configs/poky-master-wip-config.txt
-> index 3fa74bf..3766244 100644
-> --- a/configs/poky-master-wip-config.txt
-> +++ b/configs/poky-master-wip-config.txt
-> @@ -5,6 +5,7 @@ bitbake,https://git.openembedded.org/bitbake,master,HEAD
->   meta-yocto,https://git.yoctoproject.org/meta-yocto,master,HEAD,layers=meta-poky:meta-yocto-bsp
->   meta-ti,https://git.yoctoproject.org/meta-ti,master-wip,HEAD,layers=meta-ti-extras:meta-ti-bsp
->   meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> +meta-clang,https://github.com/kraj/meta-clang,master,HEAD,layers=
->   oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
->   meta-arago,https://git.yoctoproject.org/meta-arago,master-wip,HEAD,layers=meta-arago-extras
->   
+Bring this recipe into compliance with the latest standards.  Change
+hardcoded /sbin path to $base_sbindir.
 
-Let me know if I shouldn't touch the poky configs. Just applied this to 
-everything we'll be testing because, while I don't expect any issues 
-with known build targets, I don't want surprises before we get into it.
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+v2: Remove FILES setting as the default is fine once we fix /sbin.
 
-Anything using meta-arago will need clang in the future due to browser 
-requirements and some other tweaks.
+ meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb b/meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb
+index a410f584..6b07889f 100644
+--- a/meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb
++++ b/meta-arago-extras/recipes-support/mstpctl/mstpd_git.bb
+@@ -17,7 +17,7 @@ RDEPENDS:${PN} = "python3-core"
+ 
+ inherit autotools
+ 
+-EXTRA_OECONF = "--sbindir=/sbin"
++EXTRA_OECONF = "--sbindir=${base_sbindir}"
+ 
+ do_configure:prepend() {
+ 	 sed -i -e "s,#!.*python.*,#!${USRBINPATH}/env python3," ${S}/utils/ifquery
+-- 
+2.17.1
+
 
