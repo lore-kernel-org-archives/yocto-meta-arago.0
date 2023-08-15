@@ -2,51 +2,51 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D878EC001B0
-	for <webhook@archiver.kernel.org>; Tue, 15 Aug 2023 21:41:24 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web10.146455.1692135684130802280
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E95C6C001B0
+	for <webhook@archiver.kernel.org>; Tue, 15 Aug 2023 21:48:14 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web10.146771.1692136094396994267
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 15 Aug 2023 14:41:24 -0700
+ Tue, 15 Aug 2023 14:48:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=pKIdy/dy;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=qnJ/0/3v;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37FLfM6R015496;
-	Tue, 15 Aug 2023 16:41:22 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37FLmDDu117536;
+	Tue, 15 Aug 2023 16:48:13 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1692135682;
-	bh=J9QJAWR9p1iot0MnKOcGkN/qmoqI/DUkTEiiXExQpZw=;
+	s=ti-com-17Q1; t=1692136093;
+	bh=ckVrkFNFWA9B5Mxpr5Z8rgSMksff2uyhhonWQ5AkW2o=;
 	h=From:To:Subject:Date;
-	b=pKIdy/dyMJhpEiTgkIy8ot5V4jffZukhKiElU5iWxFyzJJNEgp2Zv0N/An82pCcoT
-	 gnyyNop5NzUohlorYV+GHseaRy7sN/KXuI48FsMAewaRkejiNW498WH4hyXVfsavwR
-	 C7QRnIvbxXi39SpqcYkc8r6qi1p0gew3Jn62BSqw=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37FLfM6Z032401
+	b=qnJ/0/3vgTsoOeR/SiAPP8C8gT8kS20puk4j9rSoNUAqVeGADrfAMPso7+2m0YVzi
+	 4OYdZSIn2eX/qaHPJWidmrhH+u9cVjFMA3wo01Nuvg3hvH8Jh6apcoRHQlN8Vv9LZ9
+	 s+oiBRioMDgfRWVl98FOgFDiIZr/x/7WLQMci0Pc=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37FLmDSQ036112
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 15 Aug 2023 16:41:22 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 15 Aug 2023 16:48:13 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 15
- Aug 2023 16:41:22 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 16:48:13 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 15 Aug 2023 16:41:22 -0500
+ Frontend Transport; Tue, 15 Aug 2023 16:48:13 -0500
 Received: from uda0214219 (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37FLfM1o093675;
-	Tue, 15 Aug 2023 16:41:22 -0500
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37FLmC8E007718;
+	Tue, 15 Aug 2023 16:48:12 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1qW1n0-0004rx-6n; Tue, 15 Aug 2023 16:41:22 -0500
+	id 1qW1tc-00057g-Rq; Tue, 15 Aug 2023 16:48:12 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master/kirkstone][PATCH v5] init-manager-*: Leverage oe-core method of choosing init manager
-Date: Tue, 15 Aug 2023 16:41:22 -0500
-Message-ID: <20230815214122.18678-1-reatmon@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH v4 1/2] tisdk-tiny-initramfs: Create a smaller dedicated initramfs for tiny
+Date: Tue, 15 Aug 2023 16:48:11 -0500
+Message-ID: <20230815214812.19652-1-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
@@ -54,107 +54,75 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 15 Aug 2023 21:41:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14850
+ <meta-arago@lists.yoctoproject.org>; Tue, 15 Aug 2023 21:48:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14851
 
-Change arago over to the oe-core init-manager setup for all images instead
-of a mixture of systemd/sysvinit based on perceived image size.  With the
-migration to a more targeted initramfs we have the space in the image to
-support systemd and not require sysvinit for the smaller images.
-
-We will still support setups that use ARAGO_SYSVINIT, but the preferred
-method will be to set INIT_MANAGER in the local.conf with the default
-being systemd.
+The initramfs does not need grub-efi or the /boot directory since it
+does not have to boot the system itself.  So create a version of the
+tiny-image that strips those out and follow the oe-core methodology for
+initramfs.
 
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
-v5: - Fix leftover reference to old ARAGO_INIT_MANAGER and change it to
-      INIT_MANAGER.
-v4: - Change INIT_MANAGER settings to ?= and not ??=.  Not sure how I
-      missed this fix when putting together v3...
-v3: - Remove our own verisons of init-manager-*.inc and just use the
-      oe-core versions.
-v2: - Add missing .inc in require.
-    - Fix assignment in init-manager-*.inc files.
-    - Remove packagegroup-arago-sysvinit-boot.bb since we stopped using
-      it.
+v4: Remove class for removing boot dir and put the logic in the recipe
+    instead.
 
- meta-arago-distro/conf/distro/arago.conf          | 11 +++--------
- .../recipes-core/images/arago-image.inc           |  2 +-
- .../recipes-core/images/arago-tiny-image.inc      |  4 ----
- .../packagegroup-arago-sysvinit-boot.bb           | 15 ---------------
- 4 files changed, 4 insertions(+), 28 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
+ .../images/tisdk-tiny-initramfs.bb            | 34 +++++++++++++++++++
+ .../packagegroup-arago-initramfs.bb           |  4 +++
+ 2 files changed, 38 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
+ create mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-initramfs.bb
 
-diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 38c42ef8..b91c6c5b 100644
---- a/meta-arago-distro/conf/distro/arago.conf
-+++ b/meta-arago-distro/conf/distro/arago.conf
-@@ -58,14 +58,9 @@ DISTRO_FEATURES_FILTER_NATIVE:append = " opencl opencv openmp"
- DISTRO_FEATURES_FILTER_NATIVESDK:append = " opencl opencv openmp"
- 
- # Set global runtime providers for major components
--ARAGO_SYSVINIT ?= "0"
--VIRTUAL-RUNTIME_dev_manager = "${@'udev' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'systemd'}"
--VIRTUAL-RUNTIME_init_manager = "${@'sysvinit' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'systemd'}"
--VIRTUAL-RUNTIME_initscripts = "${@'initscripts' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'systemd-compat-units'}"
--VIRTUAL-RUNTIME_initramfs = "${@'sysvinit-initramfs' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'systemd-initramfs'}"
--VIRTUAL-RUNTIME_login_manager = "${@'busybox' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else 'shadow-base'}"
--
--DISTRO_FEATURES:append = " ${@'' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else ' systemd'}"
-+ARAGO_SYSVINIT ??= "0"
-+INIT_MANAGER ?= "${@['systemd','sysvinit'][int(d.getVar('ARAGO_SYSVINIT'))]}"
-+require conf/distro/include/init-manager-${INIT_MANAGER}.inc
- 
- # Distro-specific package configuration
- PACKAGECONFIG:append:pn-systemd = " coredump networkd resolved serial-getty-generator"
-diff --git a/meta-arago-distro/recipes-core/images/arago-image.inc b/meta-arago-distro/recipes-core/images/arago-image.inc
-index d00c1f70..d979f61e 100644
---- a/meta-arago-distro/recipes-core/images/arago-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-image.inc
-@@ -30,6 +30,6 @@ BAD_RECOMMENDATIONS += " \
-     coreutils \
-     coreutils-dev \
- "
--BAD_RECOMMENDATIONS += "${@oe.utils.conditional("ARAGO_SYSVINIT", "1", "", "busybox-syslog", d)}"
-+BAD_RECOMMENDATIONS += "${@oe.utils.conditional("INIT_MANAGER", "sysvinit", "", "busybox-syslog", d)}"
- 
- inherit core-image remove-net-rules
-diff --git a/meta-arago-distro/recipes-core/images/arago-tiny-image.inc b/meta-arago-distro/recipes-core/images/arago-tiny-image.inc
-index 242e763c..6c726c4d 100644
---- a/meta-arago-distro/recipes-core/images/arago-tiny-image.inc
-+++ b/meta-arago-distro/recipes-core/images/arago-tiny-image.inc
-@@ -1,9 +1,5 @@
--ARAGO_SYSVINIT = "1"
- 
- require arago-image.inc
- 
- IMAGE_FEATURES:remove = "splash"
- 
--IMAGE_INSTALL = " \
--	packagegroup-arago-sysvinit-boot \
--"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
-deleted file mode 100644
-index df7ff960..00000000
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
-+++ /dev/null
-@@ -1,15 +0,0 @@
--REQUIRED_DISTRO_FEATURES = "sysvinit"
--inherit features_check
--
--require recipes-core/packagegroups/packagegroup-core-boot.bb
--
--PR = "r0"
--
--# Cannot use eudev:
--#   "eudev was skipped: 'systemd' in DISTRO_FEATURES"
--#VIRTUAL-RUNTIME_dev_manager = "eudev"
--VIRTUAL-RUNTIME_dev_manager = ""
--VIRTUAL-RUNTIME_init_manager = "sysvinit"
--VIRTUAL-RUNTIME_initscripts = "initscripts"
--VIRTUAL-RUNTIME_initramfs = "sysvinit-initramfs"
--VIRTUAL-RUNTIME_login_manager = "busybox"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb b/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
+new file mode 100644
+index 00000000..551cf67c
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/images/tisdk-tiny-initramfs.bb
+@@ -0,0 +1,34 @@
++SUMMARY = "Arago TI SDK super minimal base image for initramfs"
++
++DESCRIPTION = "Image meant for basic boot of linux kernel. Intended as\
++ bare system, this image does not package the kernel in the\
++ standard /boot folder in rootfs. Instead, it provides a base\
++ rootfs allowing kernel to be deployed elsewhere\
++ (tftp/separate boot partition/jtag log etc..) and boot\
++ the image.\
++"
++
++LICENSE = "MIT"
++
++inherit core-image
++
++IMAGE_FEATURES:remove = "package-management"
++
++INITRAMFS_FSTYPES = "cpio cpio.xz"
++INITRAMFS_MAXSIZE = "65536"
++IMAGE_OVERHEAD_FACTOR = "1"
++
++IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
++
++PACKAGE_INSTALL = "packagegroup-arago-initramfs"
++
++export IMAGE_BASENAME = "tisdk-tiny-initramfs"
++
++# To further reduce the size of the rootfs, remove the /boot directory from
++# the final image this is usually done by adding RDEPENDS_kernel-base = ""
++# in the configuration file. In our case we can't use this method. Instead we
++# just wipe out the content of "/boot" before creating the image.
++ROOTFS_POSTPROCESS_COMMAND += "empty_boot_dir; "
++empty_boot_dir () {
++	rm -rf ${IMAGE_ROOTFS}/boot/*
++}
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-initramfs.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-initramfs.bb
+new file mode 100644
+index 00000000..380cc0e3
+--- /dev/null
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-initramfs.bb
+@@ -0,0 +1,4 @@
++
++require recipes-core/packagegroups/packagegroup-core-boot.bb
++
++RDEPENDS:${PN}:remove = "grub-efi kernel"
 -- 
 2.17.1
 
