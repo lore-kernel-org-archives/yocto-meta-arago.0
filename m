@@ -2,51 +2,51 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B4A7CC0015E
-	for <webhook@archiver.kernel.org>; Tue, 15 Aug 2023 21:08:14 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web11.145636.1692133688222434140
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B9780C0015E
+	for <webhook@archiver.kernel.org>; Tue, 15 Aug 2023 21:17:14 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web11.145826.1692134228113979644
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 15 Aug 2023 14:08:08 -0700
+ Tue, 15 Aug 2023 14:17:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=JB6y1ddJ;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37FL86ME110184;
-	Tue, 15 Aug 2023 16:08:06 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=JffP8kVC;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37FLH6Pl096083;
+	Tue, 15 Aug 2023 16:17:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1692133686;
-	bh=QvMUpWmdRs3ve5CNEOFGjHmNLhfG/HEprWBYEWqCuJQ=;
+	s=ti-com-17Q1; t=1692134226;
+	bh=y4jT5Qo5d9OB5xHYbo3ZaJ6VFLu+fWAd8IAATlF07jg=;
 	h=From:To:Subject:Date;
-	b=JB6y1ddJcCKxOnkq0/ZfpsJ9aAKOqm2zSGjIz7mNfQ+f5qmTvT+F2Cze2nHgTL3B1
-	 PE/TXVzvdL/2122Z7UfsXHvgtJ/HmPySBdt1EvfxL7rA/qzYniqukzqGvxiJY4Aelw
-	 MAyZtQzr51FMMoYPYk/nvlsnr+m4vWmIaDX+ogco=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37FL86D0124412
+	b=JffP8kVCubZ9Tf3L6NauiES3aQ/n617Q0UhIvM/mWbxSLL37MLwfM0oEVWY8W58+L
+	 T18/UJ8Nhi7/Coo/I275isvLqvGxJcOqNRxnyZAmCP13WyzoyxZM7CrkYtsrsx+VTv
+	 8o10DYAfuEFlAoM8fsvANPzjrwmgqIQrlw7ZEtFc=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37FLH6n5011583
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 15 Aug 2023 16:08:06 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 15 Aug 2023 16:17:06 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 15
- Aug 2023 16:08:06 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 16:17:05 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 15 Aug 2023 16:08:06 -0500
-Received: from uda0214219 (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37FL86wA068572;
-	Tue, 15 Aug 2023 16:08:06 -0500
+ Frontend Transport; Tue, 15 Aug 2023 16:17:04 -0500
+Received: from uda0214219 (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37FLH4lb012868;
+	Tue, 15 Aug 2023 16:17:04 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1qW1Go-0003El-AC; Tue, 15 Aug 2023 16:08:06 -0500
+	id 1qW1PU-0007rF-OR; Tue, 15 Aug 2023 16:17:04 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master/kirkstone][PATCH v3] init-manager-*: Leverage oe-core method of choosing init manager
-Date: Tue, 15 Aug 2023 16:08:06 -0500
-Message-ID: <20230815210806.12404-1-reatmon@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH v4] init-manager-*: Leverage oe-core method of choosing init manager
+Date: Tue, 15 Aug 2023 16:17:04 -0500
+Message-ID: <20230815211704.30166-1-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
@@ -54,8 +54,8 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 15 Aug 2023 21:08:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14846
+ <meta-arago@lists.yoctoproject.org>; Tue, 15 Aug 2023 21:17:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14847
 
 Change arago over to the oe-core init-manager setup for all images instead
 of a mixture of systemd/sysvinit based on perceived image size.  With the
@@ -68,13 +68,15 @@ being systemd.
 
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
+v4: - Change INIT_MANAGER settings to ?= and not ??=.  Not sure how I
+      missed this fix when putting together v3...
 v3: - Remove our own verisons of init-manager-*.inc and just use the
       oe-core versions.
 v2: - Add missing .inc in require.
     - Fix assignment in init-manager-*.inc files.
     - Remove packagegroup-arago-sysvinit-boot.bb since we stopped using
       it.
-
+      
  meta-arago-distro/conf/distro/arago.conf          | 11 +++--------
  .../recipes-core/images/arago-image.inc           |  2 +-
  .../recipes-core/images/arago-tiny-image.inc      |  4 ----
@@ -83,7 +85,7 @@ v2: - Add missing .inc in require.
  delete mode 100644 meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-sysvinit-boot.bb
 
 diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
-index 38c42ef8..abae3724 100644
+index 38c42ef8..b91c6c5b 100644
 --- a/meta-arago-distro/conf/distro/arago.conf
 +++ b/meta-arago-distro/conf/distro/arago.conf
 @@ -58,14 +58,9 @@ DISTRO_FEATURES_FILTER_NATIVE:append = " opencl opencv openmp"
@@ -99,7 +101,7 @@ index 38c42ef8..abae3724 100644
 -
 -DISTRO_FEATURES:append = " ${@'' if oe.types.boolean(d.getVar('ARAGO_SYSVINIT')) else ' systemd'}"
 +ARAGO_SYSVINIT ??= "0"
-+INIT_MANAGER ??= "${@['systemd','sysvinit'][int(d.getVar('ARAGO_SYSVINIT'))]}"
++INIT_MANAGER ?= "${@['systemd','sysvinit'][int(d.getVar('ARAGO_SYSVINIT'))]}"
 +require conf/distro/include/init-manager-${INIT_MANAGER}.inc
  
  # Distro-specific package configuration
