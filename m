@@ -2,47 +2,49 @@ Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 12849EE49AF
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E6D1EE49AB
 	for <webhook@archiver.kernel.org>; Tue, 22 Aug 2023 22:44:37 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web11.9909.1692744274395842962
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web11.9910.1692744274587472258
  for <meta-arago@lists.yoctoproject.org>;
  Tue, 22 Aug 2023 15:44:34 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=zU5svqA6;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: rs@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37MMiVSd097081;
-	Tue, 22 Aug 2023 17:44:31 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=OL1ATkK8;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: rs@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37MMiUO4119763;
+	Tue, 22 Aug 2023 17:44:30 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1692744271;
-	bh=giMtSREfe3oE1afWLmkgtG5Oo+UiEYrzKL5/UKYRoNk=;
-	h=From:To:CC:Subject:Date;
-	b=zU5svqA6bdu8IUrQMZ73EY791EH0aQdYeJ6Y8SScw/06AnSpkXpLbJ2l9vVHFyCKg
-	 9mkVKDZ8c+njXZCNCZIu9SDLV/txAFAFUppflej4YPG2XyKt3w0Wa0ElhG2PoI3lBv
-	 aZSDgd1hCpBogUASnB36hEob8RRjMzMEelGdIxOc=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37MMiVkD048328
+	s=ti-com-17Q1; t=1692744270;
+	bh=rV0S+4DzZoWiWdsFtpCXZ0FWGSvtsZyWo7tncILy/Ak=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=OL1ATkK8+QcK4Dx3WJpHVCw1fb7O2ervUiD6sD3HrFP8oss7bINTdKKsQkmPhkfsf
+	 KRjSL/6i4iaanAYS18tRJZ3sBG0ECwoQm8hHMPwalx73c0prssT/Uopt3nWe4BHpou
+	 drU1pm0fZhaK4S/ffTr8piM6eXUDIiHSozywntHo=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37MMiU7k082845
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 22 Aug 2023 17:44:31 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 22 Aug 2023 17:44:30 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 22
  Aug 2023 17:44:30 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Tue, 22 Aug 2023 17:44:30 -0500
 Received: from rs-desk.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37MMiUqX056368;
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37MMiUqY056368;
 	Tue, 22 Aug 2023 17:44:30 -0500
 From: <rs@ti.com>
 To: <reatmon@ti.com>, <denis@denix.org>
 CC: <meta-arago@lists.yoctoproject.org>, Randolph Sapp <rs@ti.com>
-Subject: [meta-arago][kirkstone/master][PATCHv2 0/3] Packagegroup and irqbalance fixup
-Date: Tue, 22 Aug 2023 17:38:28 -0500
-Message-ID: <20230822224427.1880115-1-rs@ti.com>
+Subject: [meta-arago][kirkstone/master][PATCHv2 1/3]  packagegroup-arago-bootstrap: fix RDEPENDS notation
+Date: Tue, 22 Aug 2023 17:38:29 -0500
+Message-ID: <20230822224427.1880115-2-rs@ti.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230822224427.1880115-1-rs@ti.com>
+References: <20230822224427.1880115-1-rs@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -51,28 +53,30 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Tue, 22 Aug 2023 22:44:37 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14862
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14863
 
 From: Randolph Sapp <rs@ti.com>
 
-Rework of previous series to include feedback and drop the additional
-packagegroup.
+The RDEPENDS for this packagegroup was still using the legacy format so
+it was being evaluated as a do-nothing group. Enable it.
 
-I was previously trying to mold a existing build target into something useful
-for RT applications (where the end user want's to cheat and not properly tune
-the system to their usecase) but that should have be addressed separately with a
-new build target. Maybe someone will revisit that eventually.
+Signed-off-by: Randolph Sapp <rs@ti.com>
+---
+ .../recipes-core/packagegroups/packagegroup-arago-bootstrap.bb  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Randolph Sapp (3):
-  packagegroup-arago-bootstrap: fix RDEPENDS notation
-  packagegroup-arago-base: edit the description to describe current use
-  irqbalance: remove append to install systemd script
-
- .../recipes-core/packagegroups/packagegroup-arago-base.bb   | 2 +-
- .../packagegroups/packagegroup-arago-bootstrap.bb           | 2 +-
- .../recipes-extended/irqbalance/irqbalance_git.bbappend     | 6 +-----
- 3 files changed, 3 insertions(+), 7 deletions(-)
-
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-bootstrap.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-bootstrap.bb
+index b0ec64b0..50f759be 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-bootstrap.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-bootstrap.bb
+@@ -47,6 +47,6 @@ UTILS:append:k3 = " \
+     k3conf \
+ "
+ 
+-RDEPENDS_${PN} = "\
++RDEPENDS:${PN} = "\
+     ${UTILS} \
+ "
 -- 
 2.41.0
 
