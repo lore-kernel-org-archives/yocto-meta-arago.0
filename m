@@ -2,51 +2,51 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 84738C6FA8F
-	for <webhook@archiver.kernel.org>; Tue, 29 Aug 2023 21:58:48 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web10.600.1693346325280515102
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E2CAC71153
+	for <webhook@archiver.kernel.org>; Tue, 29 Aug 2023 23:59:49 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web10.2828.1693353581484518982
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 29 Aug 2023 14:58:45 -0700
+ Tue, 29 Aug 2023 16:59:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=GKjy2g8w;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=rZk7+6Yq;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37TLwh8T063937;
-	Tue, 29 Aug 2023 16:58:43 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37TNxdSc096613;
+	Tue, 29 Aug 2023 18:59:39 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1693346323;
-	bh=fG/Gk+HgaHumS3CA9ZRY2ULAIfBlclB0cGRnuUJiUZs=;
+	s=ti-com-17Q1; t=1693353579;
+	bh=SwjDh+oIHVs5yKKHZD3HE0lZ9tU7pVcPmX87DdX7tEw=;
 	h=From:To:Subject:Date;
-	b=GKjy2g8wLKeoCnYI5AdxSQT2P3xFWvq/+4l3tmuE0y8OSZzTVeFaxTu1+o4zScEHg
-	 6FGqtb73prjbvMAGCVIhYHuNew94MGlQNCR80/9a7PUBc+KfyL4J1mPp37JLTXpaIV
-	 RfUxrlWzTVZqvxs/GTyUjD4j0Xx+baFrVM3Rhkdo=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37TLwhr5053644
+	b=rZk7+6Yq4vadAUGL13sRYbGfLfuRCF4VcyN2ih4jyLzc1LWeuIhOY6D8loaoS3ikg
+	 XJmPI2JPiMikCfEGWq5FZgUvEqAZWYzyEVXK7EqjYCMAzpyfS2N24GrI+8uQCEUbQK
+	 D8SLd5L65hq+DeBdNWnG8phxxmPlWSe9JRE16Dt4=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37TNxdZB014609
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 29 Aug 2023 16:58:43 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 29 Aug 2023 18:59:39 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
- Aug 2023 16:58:43 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 18:59:39 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 29 Aug 2023 16:58:43 -0500
-Received: from uda0214219 (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37TLwhrn063858;
-	Tue, 29 Aug 2023 16:58:43 -0500
+ Frontend Transport; Tue, 29 Aug 2023 18:59:39 -0500
+Received: from uda0214219 (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37TNxddV008121;
+	Tue, 29 Aug 2023 18:59:39 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1qb6jT-0004ZO-0e; Tue, 29 Aug 2023 16:58:43 -0500
+	id 1qb8cV-0004Fm-A5; Tue, 29 Aug 2023 18:59:39 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master/kirkstone][PATCH] meta-arago-test: Collect all of the ti-test recipes into a new layer
-Date: Tue, 29 Aug 2023 16:58:42 -0500
-Message-ID: <20230829215842.17516-1-reatmon@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH v2] meta-arago-test: Collect all of the ti-test recipes into a new layer
+Date: Tue, 29 Aug 2023 18:59:39 -0500
+Message-ID: <20230829235939.16208-1-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
@@ -54,8 +54,8 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 29 Aug 2023 21:58:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14880
+ <meta-arago@lists.yoctoproject.org>; Tue, 29 Aug 2023 23:59:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14881
 
 In preparation for moving all of the ti-test recipes over to meta-ti to
 make it more available outside of Arago, we are collecting all of the
@@ -64,9 +64,11 @@ a little more and testing thoroughly before we make the final move.
 
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
+v2: Missed some required updates in layer.conf and ltp-ddt.
+
  meta-arago-test/COPYING.MIT                   | 17 ++++++++++
  meta-arago-test/README                        | 34 +++++++++++++++++++
- meta-arago-test/conf/layer.conf               | 27 +++++++++++++++
+ meta-arago-test/conf/layer.conf               | 25 ++++++++++++++
  .../licenses/Stream_Benchmark_License         |  0
  .../arm-benchmarks/arm-benchmarks_1.3.bb      |  0
  .../0001-fix-out-of-tree-config.patch         |  0
@@ -81,7 +83,7 @@ Signed-off-by: Ryan Eatmon <reatmon@ti.com>
  .../recipes-core/packagegroups/ti-test.bb     |  0
  .../cpuloadgen/cpuloadgen_git.bb              |  0
  .../dma-heap/dma-heap-tests.bb                |  0
- .../ltp-ddt/ltp-ddt_20230127.bb               |  0
+ .../ltp-ddt/ltp-ddt_20230127.bb               |  2 +-
  .../mtd/mtd-utils_git.bbappend                |  0
  .../recipes-devtools/omapconf/omapconf_git.bb |  0
  .../uvc-gadget/uvc-gadget_git.bb              |  0
@@ -95,7 +97,7 @@ Signed-off-by: Ryan Eatmon <reatmon@ti.com>
  .../recipes-kernel/pcitest/pcitest_5.10.bb    |  0
  .../0001-gcc8-strncpy-werror-workaround.patch |  0
  .../recipes-support/mstpctl/mstpd_git.bb      |  0
- 31 files changed, 78 insertions(+)
+ 31 files changed, 77 insertions(+), 1 deletion(-)
  create mode 100644 meta-arago-test/COPYING.MIT
  create mode 100644 meta-arago-test/README
  create mode 100644 meta-arago-test/conf/layer.conf
@@ -113,7 +115,7 @@ Signed-off-by: Ryan Eatmon <reatmon@ti.com>
  rename {meta-arago-extras => meta-arago-test}/recipes-core/packagegroups/ti-test.bb (100%)
  rename {meta-arago-extras => meta-arago-test}/recipes-devtools/cpuloadgen/cpuloadgen_git.bb (100%)
  rename {meta-arago-extras => meta-arago-test}/recipes-devtools/dma-heap/dma-heap-tests.bb (100%)
- rename {meta-arago-extras => meta-arago-test}/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb (100%)
+ rename {meta-arago-extras => meta-arago-test}/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb (94%)
  rename {meta-arago-extras => meta-arago-test}/recipes-devtools/mtd/mtd-utils_git.bbappend (100%)
  rename {meta-arago-extras => meta-arago-test}/recipes-devtools/omapconf/omapconf_git.bb (100%)
  rename {meta-arago-extras => meta-arago-test}/recipes-devtools/uvc-gadget/uvc-gadget_git.bb (100%)
@@ -193,10 +195,10 @@ index 00000000..6f912472
 +Denys Dmytriyenko <denys@konsulko.com>
 diff --git a/meta-arago-test/conf/layer.conf b/meta-arago-test/conf/layer.conf
 new file mode 100644
-index 00000000..8dc76b77
+index 00000000..daf6bf94
 --- /dev/null
 +++ b/meta-arago-test/conf/layer.conf
-@@ -0,0 +1,27 @@
+@@ -0,0 +1,25 @@
 +# We have a conf and classes directory, append to BBPATH
 +BBPATH .= ":${LAYERDIR}"
 +
@@ -210,20 +212,18 @@ index 00000000..8dc76b77
 +LAYERSERIES_COMPAT_meta-arago-test = "kirkstone langdale mickledore"
 +
 +# Set a variable to get to the top of the metadata location
-+ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
++TITESTBASE := '${@os.path.normpath("${LAYERDIR}/")}'
 +
 +LICENSE_PATH += "${LAYERDIR}/licenses"
 +
 +LAYERDEPENDS_meta-arago-test = " \
 +    core \
-+    meta-ti-bsp \
-+    meta-ti-extras \
 +    openembedded-layer \
++    networking-layer \
++    filesystems-layer \
++    meta-python \
 +"
 +
-+SIGGEN_EXCLUDERECIPES_ABISAFE += " \
-+    gstreamer1.0-plugins-bad \
-+"
 diff --git a/meta-arago-extras/licenses/Stream_Benchmark_License b/meta-arago-test/licenses/Stream_Benchmark_License
 similarity index 100%
 rename from meta-arago-extras/licenses/Stream_Benchmark_License
@@ -281,9 +281,19 @@ similarity index 100%
 rename from meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
 rename to meta-arago-test/recipes-devtools/dma-heap/dma-heap-tests.bb
 diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
-similarity index 100%
+similarity index 94%
 rename from meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
 rename to meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
+index 0e716717..13612519 100644
+--- a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
++++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
+@@ -1,5 +1,5 @@
+ FILESEXTRAPATHS:prepend := "${COREBASE}/meta/recipes-extended/ltp/ltp:"
+-FILESEXTRAPATHS:prepend := "${ARAGOBASE}/meta-arago-extras/recipes-extended/ltp/ltp:"
++FILESEXTRAPATHS:prepend := "${TITESTBASE}/recipes-extended/ltp/ltp:"
+ 
+ require recipes-extended/ltp/ltp_${PV}.bb
+ 
 diff --git a/meta-arago-extras/recipes-devtools/mtd/mtd-utils_git.bbappend b/meta-arago-test/recipes-devtools/mtd/mtd-utils_git.bbappend
 similarity index 100%
 rename from meta-arago-extras/recipes-devtools/mtd/mtd-utils_git.bbappend
