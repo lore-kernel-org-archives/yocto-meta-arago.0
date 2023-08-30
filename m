@@ -2,51 +2,51 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E2CAC71153
-	for <webhook@archiver.kernel.org>; Tue, 29 Aug 2023 23:59:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 092ECC83F01
+	for <webhook@archiver.kernel.org>; Wed, 30 Aug 2023 17:50:50 +0000 (UTC)
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web10.2828.1693353581484518982
+ by mx.groups.io with SMTP id smtpd.web11.1338.1693417842007760166
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 29 Aug 2023 16:59:41 -0700
+ Wed, 30 Aug 2023 10:50:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=rZk7+6Yq;
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=dKUdsM/l;
  spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37TNxdSc096613;
-	Tue, 29 Aug 2023 18:59:39 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37UHoekn011171;
+	Wed, 30 Aug 2023 12:50:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1693353579;
-	bh=SwjDh+oIHVs5yKKHZD3HE0lZ9tU7pVcPmX87DdX7tEw=;
+	s=ti-com-17Q1; t=1693417840;
+	bh=9D74+jETvBfEpAvbFZhZz9sKjcwvzA0SEFzj+haYW+8=;
 	h=From:To:Subject:Date;
-	b=rZk7+6Yq4vadAUGL13sRYbGfLfuRCF4VcyN2ih4jyLzc1LWeuIhOY6D8loaoS3ikg
-	 XJmPI2JPiMikCfEGWq5FZgUvEqAZWYzyEVXK7EqjYCMAzpyfS2N24GrI+8uQCEUbQK
-	 D8SLd5L65hq+DeBdNWnG8phxxmPlWSe9JRE16Dt4=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37TNxdZB014609
+	b=dKUdsM/l3lUnZOtLgNYTYE9dwdyddHVv8rryMONFvxEf8YJ5+zyAKkwPDE68wo987
+	 Tgf+3XMWEOwf9QGxG4QAt+znv+sxB9H2qBPdUYW2WDJUpZDgcK6B/W8EoVYCTEnlJd
+	 2SYVXLEWu87KEKlWinRIeHNvoV4YL2LKMISSoADU=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37UHoe2K002992
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 29 Aug 2023 18:59:39 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 29
- Aug 2023 18:59:39 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 30 Aug 2023 12:50:40 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 30
+ Aug 2023 12:50:40 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 29 Aug 2023 18:59:39 -0500
-Received: from uda0214219 (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37TNxddV008121;
-	Tue, 29 Aug 2023 18:59:39 -0500
+ Frontend Transport; Wed, 30 Aug 2023 12:50:40 -0500
+Received: from uda0214219 (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37UHoex8023349;
+	Wed, 30 Aug 2023 12:50:40 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1qb8cV-0004Fm-A5; Tue, 29 Aug 2023 18:59:39 -0500
+	id 1qbPKy-0003I8-18; Wed, 30 Aug 2023 12:50:40 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master/kirkstone][PATCH v2] meta-arago-test: Collect all of the ti-test recipes into a new layer
-Date: Tue, 29 Aug 2023 18:59:39 -0500
-Message-ID: <20230829235939.16208-1-reatmon@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH v3] meta-arago-test: Collect all of the ti-test recipes into a new layer
+Date: Wed, 30 Aug 2023 12:50:40 -0500
+Message-ID: <20230830175040.12548-1-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
@@ -54,8 +54,8 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 29 Aug 2023 23:59:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14881
+ <meta-arago@lists.yoctoproject.org>; Wed, 30 Aug 2023 17:50:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14882
 
 In preparation for moving all of the ti-test recipes over to meta-ti to
 make it more available outside of Arago, we are collecting all of the
@@ -64,11 +64,12 @@ a little more and testing thoroughly before we make the final move.
 
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
+v3: Testing showed that input-utils needed to be moved as well.
 v2: Missed some required updates in layer.conf and ltp-ddt.
 
  meta-arago-test/COPYING.MIT                   | 17 ++++++++++
  meta-arago-test/README                        | 34 +++++++++++++++++++
- meta-arago-test/conf/layer.conf               | 25 ++++++++++++++
+ meta-arago-test/conf/layer.conf               | 24 +++++++++++++
  .../licenses/Stream_Benchmark_License         |  0
  .../arm-benchmarks/arm-benchmarks_1.3.bb      |  0
  .../0001-fix-out-of-tree-config.patch         |  0
@@ -83,6 +84,9 @@ v2: Missed some required updates in layer.conf and ltp-ddt.
  .../recipes-core/packagegroups/ti-test.bb     |  0
  .../cpuloadgen/cpuloadgen_git.bb              |  0
  .../dma-heap/dma-heap-tests.bb                |  0
+ ...nf-fix-for-cross-compilation-for-ARM.patch |  0
+ .../input-utils/fix-ftbfs-echo.patch          |  0
+ .../input-utils/input-utils_1.0.bb            |  0
  .../ltp-ddt/ltp-ddt_20230127.bb               |  2 +-
  .../mtd/mtd-utils_git.bbappend                |  0
  .../recipes-devtools/omapconf/omapconf_git.bb |  0
@@ -97,7 +101,7 @@ v2: Missed some required updates in layer.conf and ltp-ddt.
  .../recipes-kernel/pcitest/pcitest_5.10.bb    |  0
  .../0001-gcc8-strncpy-werror-workaround.patch |  0
  .../recipes-support/mstpctl/mstpd_git.bb      |  0
- 31 files changed, 77 insertions(+), 1 deletion(-)
+ 34 files changed, 76 insertions(+), 1 deletion(-)
  create mode 100644 meta-arago-test/COPYING.MIT
  create mode 100644 meta-arago-test/README
  create mode 100644 meta-arago-test/conf/layer.conf
@@ -115,6 +119,9 @@ v2: Missed some required updates in layer.conf and ltp-ddt.
  rename {meta-arago-extras => meta-arago-test}/recipes-core/packagegroups/ti-test.bb (100%)
  rename {meta-arago-extras => meta-arago-test}/recipes-devtools/cpuloadgen/cpuloadgen_git.bb (100%)
  rename {meta-arago-extras => meta-arago-test}/recipes-devtools/dma-heap/dma-heap-tests.bb (100%)
+ rename {meta-arago-extras => meta-arago-test}/recipes-devtools/input-utils/input-utils/0001-autoconf-fix-for-cross-compilation-for-ARM.patch (100%)
+ rename {meta-arago-extras => meta-arago-test}/recipes-devtools/input-utils/input-utils/fix-ftbfs-echo.patch (100%)
+ rename {meta-arago-extras => meta-arago-test}/recipes-devtools/input-utils/input-utils_1.0.bb (100%)
  rename {meta-arago-extras => meta-arago-test}/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb (94%)
  rename {meta-arago-extras => meta-arago-test}/recipes-devtools/mtd/mtd-utils_git.bbappend (100%)
  rename {meta-arago-extras => meta-arago-test}/recipes-devtools/omapconf/omapconf_git.bb (100%)
@@ -132,26 +139,26 @@ v2: Missed some required updates in layer.conf and ltp-ddt.
 
 diff --git a/meta-arago-test/COPYING.MIT b/meta-arago-test/COPYING.MIT
 new file mode 100644
-index 00000000..fb950dc6
+index 00000000..89de3547
 --- /dev/null
 +++ b/meta-arago-test/COPYING.MIT
 @@ -0,0 +1,17 @@
-+Permission is hereby granted, free of charge, to any person obtaining a copy 
-+of this software and associated documentation files (the "Software"), to deal 
-+in the Software without restriction, including without limitation the rights 
-+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
-+copies of the Software, and to permit persons to whom the Software is 
++Permission is hereby granted, free of charge, to any person obtaining a copy
++of this software and associated documentation files (the "Software"), to deal
++in the Software without restriction, including without limitation the rights
++to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++copies of the Software, and to permit persons to whom the Software is
 +furnished to do so, subject to the following conditions:
 +
-+The above copyright notice and this permission notice shall be included in 
++The above copyright notice and this permission notice shall be included in
 +all copies or substantial portions of the Software.
 +
-+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
-+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
-+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
++THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 +THE SOFTWARE.
 diff --git a/meta-arago-test/README b/meta-arago-test/README
 new file mode 100644
@@ -195,10 +202,10 @@ index 00000000..6f912472
 +Denys Dmytriyenko <denys@konsulko.com>
 diff --git a/meta-arago-test/conf/layer.conf b/meta-arago-test/conf/layer.conf
 new file mode 100644
-index 00000000..daf6bf94
+index 00000000..b56c3046
 --- /dev/null
 +++ b/meta-arago-test/conf/layer.conf
-@@ -0,0 +1,25 @@
+@@ -0,0 +1,24 @@
 +# We have a conf and classes directory, append to BBPATH
 +BBPATH .= ":${LAYERDIR}"
 +
@@ -223,7 +230,6 @@ index 00000000..daf6bf94
 +    filesystems-layer \
 +    meta-python \
 +"
-+
 diff --git a/meta-arago-extras/licenses/Stream_Benchmark_License b/meta-arago-test/licenses/Stream_Benchmark_License
 similarity index 100%
 rename from meta-arago-extras/licenses/Stream_Benchmark_License
@@ -280,6 +286,18 @@ diff --git a/meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb b/met
 similarity index 100%
 rename from meta-arago-extras/recipes-devtools/dma-heap/dma-heap-tests.bb
 rename to meta-arago-test/recipes-devtools/dma-heap/dma-heap-tests.bb
+diff --git a/meta-arago-extras/recipes-devtools/input-utils/input-utils/0001-autoconf-fix-for-cross-compilation-for-ARM.patch b/meta-arago-test/recipes-devtools/input-utils/input-utils/0001-autoconf-fix-for-cross-compilation-for-ARM.patch
+similarity index 100%
+rename from meta-arago-extras/recipes-devtools/input-utils/input-utils/0001-autoconf-fix-for-cross-compilation-for-ARM.patch
+rename to meta-arago-test/recipes-devtools/input-utils/input-utils/0001-autoconf-fix-for-cross-compilation-for-ARM.patch
+diff --git a/meta-arago-extras/recipes-devtools/input-utils/input-utils/fix-ftbfs-echo.patch b/meta-arago-test/recipes-devtools/input-utils/input-utils/fix-ftbfs-echo.patch
+similarity index 100%
+rename from meta-arago-extras/recipes-devtools/input-utils/input-utils/fix-ftbfs-echo.patch
+rename to meta-arago-test/recipes-devtools/input-utils/input-utils/fix-ftbfs-echo.patch
+diff --git a/meta-arago-extras/recipes-devtools/input-utils/input-utils_1.0.bb b/meta-arago-test/recipes-devtools/input-utils/input-utils_1.0.bb
+similarity index 100%
+rename from meta-arago-extras/recipes-devtools/input-utils/input-utils_1.0.bb
+rename to meta-arago-test/recipes-devtools/input-utils/input-utils_1.0.bb
 diff --git a/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
 similarity index 94%
 rename from meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
