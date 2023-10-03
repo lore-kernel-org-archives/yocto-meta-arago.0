@@ -2,46 +2,46 @@ Return-Path: <r-ravikumar@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 79D97E75435
-	for <webhook@archiver.kernel.org>; Tue,  3 Oct 2023 07:46:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8356FE7AD57
+	for <webhook@archiver.kernel.org>; Tue,  3 Oct 2023 14:05:00 +0000 (UTC)
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web10.103567.1696319194273841217
+ by mx.groups.io with SMTP id smtpd.web11.108810.1696341891087436032
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 03 Oct 2023 00:46:34 -0700
+ Tue, 03 Oct 2023 07:04:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=IEBcoM0L;
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=Afs6QCuB;
  spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: r-ravikumar@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3937kWp4013791
-	for <meta-arago@lists.yoctoproject.org>; Tue, 3 Oct 2023 02:46:32 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 393E4ocF102132
+	for <meta-arago@lists.yoctoproject.org>; Tue, 3 Oct 2023 09:04:50 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696319192;
-	bh=BetNOVx/xT1jfpPurzjkypE1ADO+nzPhaysEs6W50ng=;
+	s=ti-com-17Q1; t=1696341890;
+	bh=EnMaIiPOzBd5R9rT9tModLW0omc6XESCJOgJYafIXQA=;
 	h=From:To:CC:Subject:Date;
-	b=IEBcoM0LYH8PnVV51YZf6IIbGIzODhKvSws2Ri272P52QWgvA3q3KHkPMW8FHc1HH
-	 rjHWGwDysdmFYQ0+tpuGqbVrZuI3YrfjazgDMEcABxK8Cj7pLeaTT75OgrimOs8sG5
-	 8yEtjhb7UhOk/uua2uRevwsVO3z7bF9ZxetWlWV8=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3937kWiq003305
+	b=Afs6QCuBJooZDYyG5yEgJb92wZZadDFRaNP/YIkVlGDmB+/W88TUcLw5sCLUV7EQW
+	 c2RdcUKeZI5vzz0WndQA1ZXue9n8pN3of1p4aKxHvIVAUjJdZmtoDST6IRX8hR/Bjz
+	 0YEg1wuV4oW1Xzezg0isURVCbRevr0vE64W4LRas=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 393E4obb072078
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Tue, 3 Oct 2023 02:46:32 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	for <meta-arago@lists.yoctoproject.org>; Tue, 3 Oct 2023 09:04:50 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 3
- Oct 2023 02:46:31 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2023 09:04:49 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 3 Oct 2023 02:46:31 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3937kVFG123478;
-	Tue, 3 Oct 2023 02:46:31 -0500
+ Frontend Transport; Tue, 3 Oct 2023 09:04:49 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 393E4nK7033236;
+	Tue, 3 Oct 2023 09:04:49 -0500
 From: Rahul T R <r-ravikumar@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
 CC: <reatmon@ti.com>, Rahul T R <r-ravikumar@ti.com>
-Subject: [PATCH] configs: processor-sdk-analytics: Add 9.0.1 release config
-Date: Tue, 3 Oct 2023 13:16:28 +0530
-Message-ID: <20231003074628.2362426-1-r-ravikumar@ti.com>
+Subject: [meta-arago][oe-layersetup][PATCH v2] configs: processor-sdk-analytics: Add 9.0.1 release config
+Date: Tue, 3 Oct 2023 19:34:47 +0530
+Message-ID: <20231003140447.405606-1-r-ravikumar@ti.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -50,18 +50,23 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 03 Oct 2023 07:46:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14910
+ <meta-arago@lists.yoctoproject.org>; Tue, 03 Oct 2023 14:05:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14911
 
 Signed-off-by: Rahul T R <r-ravikumar@ti.com>
 ---
+
+Notes:
+    v2:
+        Fixed the commit for meta-edgeai
+
  .../processor-sdk-analytics-09.00.01-config.txt  | 16 ++++++++++++++++
  1 file changed, 16 insertions(+)
  create mode 100644 configs/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.txt
 
 diff --git a/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.txt b/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.txt
 new file mode 100644
-index 0000000..da54068
+index 0000000..9166190
 --- /dev/null
 +++ b/configs/processor-sdk-analytics/processor-sdk-analytics-09.00.01-config.txt
 @@ -0,0 +1,16 @@
@@ -77,7 +82,7 @@ index 0000000..da54068
 +meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,c39bb4ce3b60b73d35c5fb06af012432e70d6b38,layers=meta-arm:meta-arm-toolchain
 +oe-core,https://git.openembedded.org/openembedded-core,kirkstone,cef730284b8616ba07c1b062c992c36af730580e,layers=meta
 +meta-psdkla,https://git.ti.com/git/jacinto-linux/meta-psdkla.git,kirkstone,9c754ecda6f1019d0126dd4dc163e0ae01772eb0,layers=
-+meta-edgeai,https://git.ti.com/git/edgeai/meta-edgeai.git,kirkstone,fe421b1855e9904eff2f91aae51c6d9430f8e631,layers=
++meta-edgeai,https://git.ti.com/git/edgeai/meta-edgeai.git,kirkstone,5ad5799ae51dfd335b6dc4a87200fb96e8b86d7e,layers=
 +OECORELAYERCONF=./sample-files/bblayers.conf.sample
 +OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
 +BITBAKE_INCLUSIVE_VARS=yes
