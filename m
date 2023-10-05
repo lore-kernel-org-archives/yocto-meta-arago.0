@@ -2,64 +2,62 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 53718E92702
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 51A7FE92705
 	for <webhook@archiver.kernel.org>; Thu,  5 Oct 2023 14:24:09 +0000 (UTC)
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web11.16687.1696515847513625435
+ by mx.groups.io with SMTP id smtpd.web10.16708.1696515847512708146
  for <meta-arago@lists.yoctoproject.org>;
  Thu, 05 Oct 2023 07:24:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=lPoE/xTF;
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=V0f2sEZB;
  spf=none, err=SPF record not found (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 395EO5TA014202;
-	Thu, 5 Oct 2023 09:24:05 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 395EO6Sk014206;
+	Thu, 5 Oct 2023 09:24:06 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1696515845;
-	bh=vd5fxeApVDoCyWQdOaKFRapHQnjFR/yQ2JT3IK8YUkI=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=lPoE/xTFWfQupULmyoSqDSdVXahe45aYAjM2RLO7YdvL9TCI6YM53ngJCrQ5XW1a0
-	 3aNWJc5zZP+SgbvJNmNXAcZg12/X2JYOHoJEqNIoa1V7CULVtSUl3JV/rvg+iiQUbE
-	 cAL8Z9I2IoX6pduspYpsEi1JkdLHi8/JHXti/W/k=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 395EO5nb075204
+	s=ti-com-17Q1; t=1696515846;
+	bh=2jY2jApE34Pm4Zyl3Ng/EjFGYf9QJlsSd+ioiaggKT4=;
+	h=From:To:Subject:Date;
+	b=V0f2sEZBmJpj3OWwXQTZES8fxWrgh2F27lpJbVChIAlYd/3Hojk5tvFbVD5pQAT6U
+	 r6XtMHF2edM127RETshQIXQ+wBb8/y7kGRju20sw2h+KcZh+NGMRhFdw+BB1EmxVhl
+	 ih8WKfVgD8Yt6lIl6tFZA5e9vysa323/d4cmZz7Q=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 395EO62x029496
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 5 Oct 2023 09:24:05 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 5 Oct 2023 09:24:06 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 5
  Oct 2023 09:24:05 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Thu, 5 Oct 2023 09:24:05 -0500
 Received: from uda0214219 (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 395EO5wb000828;
+	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 395EO54h112577;
 	Thu, 5 Oct 2023 09:24:05 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1qoPGn-0006kO-7E; Thu, 05 Oct 2023 09:24:05 -0500
+	id 1qoPGn-0006kM-2J; Thu, 05 Oct 2023 09:24:05 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][kirkstone][PATCH v3] tisdk-sw-manifest: Switch up the TI software manifest creation
-Date: Thu, 5 Oct 2023 09:24:05 -0500
-Message-ID: <20231005142405.25888-2-reatmon@ti.com>
+Subject: [meta-arago][master][PATCH v3] tisdk-sw-manifest: Switch up the TI software manifest creation
+Date: Thu, 5 Oct 2023 09:24:04 -0500
+Message-ID: <20231005142405.25888-1-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20231005142405.25888-1-reatmon@ti.com>
-References: <20231005142405.25888-1-reatmon@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by fllv0016.ext.ti.com id 395EO5TA014202
+X-MIME-Autoconverted: from 8bit to quoted-printable by fllv0016.ext.ti.com id 395EO6Sk014206
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Thu, 05 Oct 2023 14:24:09 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14922
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14921
 
 We have been seeing an odd pseudo bug related to how the TI software
 manifest was being created.  Prior to this change we needed to run the
@@ -86,7 +84,7 @@ v2: Changed globbing in sw_manifest_toolchain_target to support the
 
 diff --git a/meta-arago-distro/classes/tisdk-bundle.bbclass b/meta-arago-=
 distro/classes/tisdk-bundle.bbclass
-index 1ebdb6fb..193181be 100644
+index 5eaffe97..ced4109d 100644
 --- a/meta-arago-distro/classes/tisdk-bundle.bbclass
 +++ b/meta-arago-distro/classes/tisdk-bundle.bbclass
 @@ -1,6 +1,7 @@
@@ -594,15 +592,16 @@ in
 -    for image in ${TARGET_IMAGES}
 -    do
 -        # Only extract tar.gz or tar.bz2 types
--        if [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz ]
+-        if [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.rootfs.ta=
+r.xz ]
 -        then
--            tar xJf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.x=
-z -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
--        elif [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz =
-]
+-            tar xJf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.rootf=
+s.tar.xz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
+-        elif [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.rootfs.=
+tar.gz ]
 -        then
--            tar xzf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.g=
-z -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
+-            tar xzf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.rootf=
+s.tar.gz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
 -        fi
 -    done
 -
@@ -890,7 +889,7 @@ AIN_SUFFIX}.sh ]
 diff --git a/meta-arago-distro/classes/tisdk-sw-manifest.bbclass b/meta-a=
 rago-distro/classes/tisdk-sw-manifest.bbclass
 new file mode 100644
-index 00000000..041d33b6
+index 00000000..cb8d87d8
 --- /dev/null
 +++ b/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
 @@ -0,0 +1,601 @@
@@ -1423,15 +1422,16 @@ in
 +    for image in ${TARGET_IMAGES}
 +    do
 +        # Only extract tar.gz or tar.bz2 types
-+        if [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz ]
++        if [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.rootfs.ta=
+r.xz ]
 +        then
-+            tar xJf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.x=
-z -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
-+        elif [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz =
-]
++            tar xJf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.rootf=
+s.tar.xz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
++        elif [ -e ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.rootfs.=
+tar.gz ]
 +        then
-+            tar xzf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.g=
-z -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
++            tar xzf ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.rootf=
+s.tar.gz -C ${IMAGE_ROOTFS}/filesystem --wildcards *.control
 +        fi
 +    done
 +
