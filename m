@@ -1,49 +1,49 @@
-Return-Path: <afd@ti.com>
+Return-Path: <s-adivi@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DF7C9CDB46E
-	for <webhook@archiver.kernel.org>; Thu, 12 Oct 2023 17:49:43 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.19235.1697132980979481014
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 35070CDB465
+	for <webhook@archiver.kernel.org>; Mon, 16 Oct 2023 05:33:28 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web10.111488.1697434397649461071
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 12 Oct 2023 10:49:41 -0700
+ Sun, 15 Oct 2023 22:33:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=ROSuExXV;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: afd@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39CHndaj023862;
-	Thu, 12 Oct 2023 12:49:39 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=C1VN8XK6;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: s-adivi@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39G5XAua128627;
+	Mon, 16 Oct 2023 00:33:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1697132979;
-	bh=8dZDmWgsXzbV0lTOAZOOWc1ETsdGS+DSm2Znk1R6iII=;
+	s=ti-com-17Q1; t=1697434390;
+	bh=n6DH5MQ+iieBPT2nGU94eARHb9z9DN/BRLQ4vmLU1M8=;
 	h=From:To:CC:Subject:Date;
-	b=ROSuExXVRA4dFZY30MCx/Ya2Hi+JlCwMcUspOKICm5D7nF5Di2F88YLLKOyjbsL/d
-	 4HBe98/+3b30AYvTmx4ER+0g4Tze40CmBSr8mE2LlSvthDww2lPGvhoyLFMwbFFVCR
-	 GPx3Uqf8+vkTfvIXoH+pLbidPicWRGTcGfX9RLmE=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39CHndhf007911
+	b=C1VN8XK67rl5kZxM/GroHzPr4R1BNY+Z3lkpGKLikPc5e3MGc8ztFr9AJlNAAkSLQ
+	 mdEEn1YCZHV5F15jJK8uXiusbX5Q2K+6YSk4ENjrK/Z3+CMRO4KhZmhEj6LJ/2anHn
+	 LWQBWtGec/xFhk+B3RN79HHyhL25bliJxJZ2LI74=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39G5XAOe104046
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 12 Oct 2023 12:49:39 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 12
- Oct 2023 12:49:39 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 16 Oct 2023 00:33:10 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 16
+ Oct 2023 00:33:10 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 12 Oct 2023 12:49:38 -0500
-Received: from fllv0039.itg.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39CHnc5W013359;
-	Thu, 12 Oct 2023 12:49:38 -0500
-From: Andrew Davis <afd@ti.com>
-To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
-        <meta-arago@lists.yoctoproject.org>
-CC: Andrew Davis <afd@ti.com>
-Subject: [meta-arago][master/kirkstone][PATCH 1/2] packagegroups: base-tisdk: Remove iperf from packagegroup
-Date: Thu, 12 Oct 2023 12:49:36 -0500
-Message-ID: <20231012174937.2047374-1-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
+ Frontend Transport; Mon, 16 Oct 2023 00:33:10 -0500
+Received: from SHIELD01.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39G5X7Fa007527;
+	Mon, 16 Oct 2023 00:33:08 -0500
+From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+To: <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>, <denis@denix.org>,
+        <reatmon@ti.com>
+CC: <g-gupta@ti.com>, <c-shilwant@ti.com>, <khasim@ti.com>, <p-bhagat@ti.com>
+Subject: [oe-layersetup][master][PATCH] configs: processor-sdk: Add new config for AM62xSIP
+Date: Mon, 16 Oct 2023 11:03:02 +0530
+Message-ID: <20231016053302.1009493-1-s-adivi@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -51,43 +51,43 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 12 Oct 2023 17:49:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14930
+ <meta-arago@lists.yoctoproject.org>; Mon, 16 Oct 2023 05:33:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14932
 
-We want iperf3 which is already in this list, iperf is the older
-v2.0 that is only needed by some old test scripts. It is already
-included in the test packagegroups.
+Add new config processor-sdk-09.00.00-am62xxsip-config.txt for
+09.00 release of am62xxsip-evm machine
 
-Without this patch we cannot build base or thinlinux images without
-the meta-arago-test layer. That layer is not listed in the LAYERDEPENDS
-and so should be considered optional for meta-arago-distro images.
-
-Signed-off-by: Andrew Davis <afd@ti.com>
+Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
 ---
- .../packagegroups/packagegroup-arago-base-tisdk.bb             | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ ...processor-sdk-09.00.00-am62xxsip-config.txt | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+ create mode 100644 configs/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.txt
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
-index 00f6db61..65fc015b 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-base-tisdk.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "Additional packages beyond console packages shared by TI SDKs"
- LICENSE = "MIT"
--PR = "r23"
-+PR = "r24"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
-@@ -20,7 +20,6 @@ RDEPENDS:${PN} = "\
-     libxml2 \
-     libpcre \
-     iptables \
--    iperf \
-     iperf3 \
-     netperf \
-     arago-gpl-notice \
+diff --git a/configs/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.txt b/configs/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.txt
+new file mode 100644
+index 0000000..220ef8e
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-09.00.00-am62xxsip-config.txt
+@@ -0,0 +1,18 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,https://git.openembedded.org/bitbake,2.0,41b6684489d0261753344956042be2cc4adb0159
++meta-edgeai,https://git.ti.com/git/edgeai/meta-edgeai.git,kirkstone,617ddf642233e7e83a86bb66c5b0edd268b93709,layers=
++meta-processor-sdk,https://git.ti.com/git/processor-sdk/meta-processor-sdk.git,kirkstone,09.00.00.003-AM62SIP,layers=
++meta-arago,https://git.yoctoproject.org/meta-arago,kirkstone,09.00.00.011,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos
++#meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
++meta-qt5,https://github.com/meta-qt5/meta-qt5.git,kirkstone,31930afca79b74e0c788452d71356c1f045e7979,layers=
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,kirkstone,2d8b3cba8ff27c9ec2187a52b6a551fe1dcfaa07,layers=
++meta-openembedded,https://git.openembedded.org/meta-openembedded,kirkstone,9c5541f7e18a1fac3b8dea71e1ebb8398d58e6ff,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
++meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone,09.00.00.011,layers=meta-ti-extras:meta-ti-bsp
++meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,b187fb9232ca0a6b5f8f90b4715958546fc41d73,layers=meta-arm:meta-arm-toolchain
++#meta-clang,https://github.com/kraj/meta-clang,kirkstone,15e5c625ecf2adfdb8d05a7dae606953420d6db2,layers=
++oe-core,https://git.openembedded.org/openembedded-core,kirkstone,be0bca7eaa08948b6c4eabe63e68a6e14d8dad3b,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
 -- 
-2.39.2
+2.34.1
 
 
