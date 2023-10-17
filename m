@@ -2,104 +2,73 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 71CE6CDB474
-	for <webhook@archiver.kernel.org>; Tue, 17 Oct 2023 17:28:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE103CDB486
+	for <webhook@archiver.kernel.org>; Tue, 17 Oct 2023 18:03:50 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.225793.1697563700110514202
+ by mx.groups.io with SMTP id smtpd.web11.227067.1697565825193474520
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 17 Oct 2023 10:28:20 -0700
+ Tue, 17 Oct 2023 11:03:46 -0700
 Authentication-Results: mx.groups.io;
  dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B595240CEF;
-	Tue, 17 Oct 2023 17:28:18 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6691140CEE;
+	Tue, 17 Oct 2023 18:03:44 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 9I11I4QpPA7y; Tue, 17 Oct 2023 17:28:18 +0000 (UTC)
+	with ESMTP id w0T5htXoMpRL; Tue, 17 Oct 2023 18:03:44 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E4AB240CEE;
-	Tue, 17 Oct 2023 17:28:12 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id CFC24406B5;
+	Tue, 17 Oct 2023 18:03:40 +0000 (UTC)
 Received: by mail.denix.org (Postfix, from userid 1000)
-	id 35161163CF5; Tue, 17 Oct 2023 13:28:12 -0400 (EDT)
-Date: Tue, 17 Oct 2023 13:28:12 -0400
+	id 3929E163CF8; Tue, 17 Oct 2023 14:03:40 -0400 (EDT)
+Date: Tue, 17 Oct 2023 14:03:40 -0400
 From: Denys Dmytriyenko <denis@denix.org>
-To: Chirag Shilwant <c-shilwant@ti.com>
-Cc: meta-arago@lists.yoctoproject.org, Ryan Eatmon <reatmon@ti.com>,
-	Andrew Davis <afd@ti.com>, Gyan Gupta <g-gupta@ti.com>,
-	Khasim <khasim@ti.com>
-Subject: Re: [EXTERNAL] [meta-arago][master/kirkstone][PATCH 2/2]
- shadow-securetty: Do not allow root login over telnet
-Message-ID: <20231017172812.GK2408@denix.org>
-References: <20231016211840.23815-1-afd@ti.com>
- <20231016211840.23815-2-afd@ti.com>
- <ecff143a-22fe-4033-97ca-5ee6b884672a@ti.com>
+To: afd@ti.com
+Cc: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
+	meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][master/kirkstone][PATCH] softap-udhcpd-config:
+ Remove this package
+Message-ID: <20231017180340.GL2408@denix.org>
+References: <20231016211708.23682-1-afd@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ecff143a-22fe-4033-97ca-5ee6b884672a@ti.com>
+In-Reply-To: <20231016211708.23682-1-afd@ti.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 17 Oct 2023 17:28:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14942
+ <meta-arago@lists.yoctoproject.org>; Tue, 17 Oct 2023 18:03:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14943
 
-On Tue, Oct 17, 2023 at 02:52:43PM +0530, Chirag Shilwant wrote:
-> 
-> On 17/10/23 02:48, Andrew Davis via lists.yoctoproject.org wrote:
-> >I'm sure I don't have to explain why this was a bad idea..
-> 
-> Still, It will be good to have a commit message explaining it :)
+On Mon, Oct 16, 2023 at 04:17:08PM -0500, Andrew Davis via lists.yoctoproject.org wrote:
 
-It is a very obvious major security weakness and is definitely a very bad 
-idea for an end product!
-
-But, there was never a clear definition of what meta-arago is - is it an 
-end product distribution or simply a test environment for the BSP/SDK.
-
-This was added over 10 years ago as part of AM-SDK for ease of testing. 
-Even though the commit does not explain it [1], we had a discussion and 
-the security implications of sending telnet passwords in clear text were 
-questioned.
-
-The counter-argument here is that we build "debug" images w/o root password 
-anyway by default, so allowing password-less root logins over telnet is 
-rather a moot point, as we already allow the same for ssh.
-
-Mayve instead of completely removing this, it should be conditional and 
-only enabled when "debug-tweaks" is enabled in EXTRA_IMAGE_FEATURES, 
-similar to allowing ssh root logins w/o a password.
-
-[1] https://git.yoctoproject.org/meta-arago/commit/?id=98b6209a3010e32da963a0f6f53fceebbc37f8f9
+BTW, what happened to the "why?" :)
 
 
-> >Signed-off-by: Andrew Davis <afd@ti.com>
-> >---
-> >  .../shadow/shadow-securetty_%.bbappend            | 15 ---------------
-> >  1 file changed, 15 deletions(-)
-> >  delete mode 100644 meta-arago-distro/recipes-extended/shadow/shadow-securetty_%.bbappend
-> >
-> >diff --git a/meta-arago-distro/recipes-extended/shadow/shadow-securetty_%.bbappend b/meta-arago-distro/recipes-extended/shadow/shadow-securetty_%.bbappend
-> >deleted file mode 100644
-> >index 62999d2a..00000000
-> >--- a/meta-arago-distro/recipes-extended/shadow/shadow-securetty_%.bbappend
-> >+++ /dev/null
-> >@@ -1,15 +0,0 @@
-> >-PR:append = ".arago0"
-> >-
-> >-do_install:append () {
-> >-    # Allow telnet sessions to login as root
-> >-    securetty_file=${D}${sysconfdir}/securetty
-> >-
-> >-    echo '' >> $securetty_file
-> >-    echo '# Allow 5 telnet login' >> $securetty_file
-> >-    echo 'pts/0' >> $securetty_file
-> >-    echo 'pts/1' >> $securetty_file
-> >-    echo 'pts/2' >> $securetty_file
-> >-    echo 'pts/3' >> $securetty_file
-> >-    echo 'pts/4' >> $securetty_file
-> >-
-> >-}
+> Signed-off-by: Andrew Davis <afd@ti.com>
+
+This was part of AM/Sitara SDK OOBE to have WiFi AP configured out of the box 
+on supported platforms.
+
+If it's still relevant, may need to be pushed to the corresponding SDK layer.
+
+
+> ---
+>  .../busybox/softap-udhcpd-config/LICENSE      | 348 ------------------
+>  .../softap-udhcpd-config/omap3/udhcpd.conf    | 114 ------
+>  .../softap-udhcpd-config/omapl138/udhcpd.conf | 114 ------
+>  .../softap-udhcpd-config/ti33x/udhcpd.conf    | 114 ------
+>  .../busybox/softap-udhcpd-config/udhcpd.conf  | 113 ------
+>  .../busybox/softap-udhcpd-config_1.0.bb       |  23 --
+>  .../packagegroup-arago-tisdk-connectivity.bb  |   1 -
+>  7 files changed, 827 deletions(-)
+>  delete mode 100644 meta-arago-distro/recipes-core/busybox/softap-udhcpd-config/LICENSE
+>  delete mode 100644 meta-arago-distro/recipes-core/busybox/softap-udhcpd-config/omap3/udhcpd.conf
+>  delete mode 100644 meta-arago-distro/recipes-core/busybox/softap-udhcpd-config/omapl138/udhcpd.conf
+>  delete mode 100644 meta-arago-distro/recipes-core/busybox/softap-udhcpd-config/ti33x/udhcpd.conf
+>  delete mode 100644 meta-arago-distro/recipes-core/busybox/softap-udhcpd-config/udhcpd.conf
+>  delete mode 100644 meta-arago-distro/recipes-core/busybox/softap-udhcpd-config_1.0.bb
 
