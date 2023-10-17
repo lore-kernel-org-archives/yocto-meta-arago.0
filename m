@@ -1,98 +1,102 @@
-Return-Path: <c-shilwant@ti.com>
+Return-Path: <r-ravikumar@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9623ACDB474
-	for <webhook@archiver.kernel.org>; Tue, 17 Oct 2023 09:22:57 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web11.202822.1697534576161894511
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 536C1CDB474
+	for <webhook@archiver.kernel.org>; Tue, 17 Oct 2023 11:51:28 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web10.211544.1697543487103842535
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 17 Oct 2023 02:22:56 -0700
+ Tue, 17 Oct 2023 04:51:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=VXFvlXiV;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: c-shilwant@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39H9MktV118620;
-	Tue, 17 Oct 2023 04:22:46 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=A9lF275R;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: a0123456@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 39HBpQwZ101016
+	for <meta-arago@lists.yoctoproject.org>; Tue, 17 Oct 2023 06:51:26 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1697534566;
-	bh=hxTc1BS1tVgyGu9wSF+B5hlkrtchQG5Z9qzcIR+WSe4=;
-	h=Date:Subject:To:References:CC:From:In-Reply-To;
-	b=VXFvlXiVq2Lvt2KCCDYUgDBAxZgoNqztCBG/wx97b9hCRw6WsTWPzkZ9EmbrEcp8w
-	 QszNkQynXYUw9FRquL21NhEWs9u14UfSWBhtIO6lELKAn7pFCF5rohQ3UoTXuxU124
-	 9nl99oHgoAmJnoWnXuvXLYU3szdQ/DpsbW2ikJA0=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39H9MkN2052407
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 17 Oct 2023 04:22:46 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1697543486;
+	bh=MfwmQOrNWppQdhQpmtLA/4dgoybKe4jHReeZWXpCZ5o=;
+	h=From:To:CC:Subject:Date;
+	b=A9lF275R6VABDX7fhsGkkoyqIUn0XcDLsrTAErJuG9YuG0z4J1l63QxuHPKdWu/TO
+	 /RTj4qcxBl9MiBWtk+3Nk2jY4lrjfh44angBwMgTrx2XYaT/CM8Tt7V1AZL67VH0EN
+	 BMHFl1MQodj1ADoHzWz4q5ImybmRmSUDwKfa4P28=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 39HBpQ5u036525
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Tue, 17 Oct 2023 06:51:26 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 17
- Oct 2023 04:22:45 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ Oct 2023 06:51:25 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 17 Oct 2023 04:22:46 -0500
-Received: from [172.24.227.238] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39H9MhbV004224;
-	Tue, 17 Oct 2023 04:22:44 -0500
-Message-ID: <ecff143a-22fe-4033-97ca-5ee6b884672a@ti.com>
-Date: Tue, 17 Oct 2023 14:52:43 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] [meta-arago][master/kirkstone][PATCH 2/2]
- shadow-securetty: Do not allow root login over telnet
-Content-Language: en-US
+ Frontend Transport; Tue, 17 Oct 2023 06:51:25 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 39HBpOEr012976;
+	Tue, 17 Oct 2023 06:51:25 -0500
+From: Rahul T R <r-ravikumar@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
-References: <20231016211840.23815-1-afd@ti.com>
- <20231016211840.23815-2-afd@ti.com>
-CC: Denys Dmytriyenko <denis@denix.org>, Ryan Eatmon <reatmon@ti.com>,
-        Andrew
- Davis <afd@ti.com>, Gyan Gupta <g-gupta@ti.com>,
-        Khasim <khasim@ti.com>
-From: Chirag Shilwant <c-shilwant@ti.com>
-In-Reply-To: <20231016211840.23815-2-afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+CC: <p-mantena@ti.com>, <devarsht@ti.com>, Ryan Eatmon <reatmon@ti.com>,
+        <denys@ti.com>, <r-ravikumar@ti.com>
+Subject: [meta-arago][master/kirkstone][PATCH] gstreamer1.0-plugins-good: wave5-codec: Set max buffers same as min buffers
+Date: Tue, 17 Oct 2023 17:21:19 +0530
+Message-ID: <20231017115119.306574-1-r-ravikumar@ti.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 17 Oct 2023 09:22:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14940
+ <meta-arago@lists.yoctoproject.org>; Tue, 17 Oct 2023 11:51:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14941
 
+wave5 codec driver can not work with new buffers allocated post stream
+start. To avoid issues because of this set max_buffers same as min
+buffers, so that new buffers are not allocated post stream start
 
-On 17/10/23 02:48, Andrew Davis via lists.yoctoproject.org wrote:
-> I'm sure I don't have to explain why this was a bad idea..
+Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+---
+ .../0001-v4l2-Changes-for-DMA-Buf-import-j721s2.patch      | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-Still, It will be good to have a commit message explaining it :)
+diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2-Changes-for-DMA-Buf-import-j721s2.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2-Changes-for-DMA-Buf-import-j721s2.patch
+index a1471661..bf73e257 100644
+--- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2-Changes-for-DMA-Buf-import-j721s2.patch
++++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0001-v4l2-Changes-for-DMA-Buf-import-j721s2.patch
+@@ -14,9 +14,9 @@ Signed-off-by: Prasanth Babu Mantena <p-mantena@ti.com>
+ ---
+  sys/v4l2/gstv4l2bufferpool.c | 17 ++++++++++++++---
+  sys/v4l2/gstv4l2bufferpool.h |  2 ++
+- sys/v4l2/gstv4l2object.c     | 15 ++++++++++++---
++ sys/v4l2/gstv4l2object.c     | 16 +++++++++++++---
+  sys/v4l2/gstv4l2videodec.c   | 20 ++++++++++++++------
+- 4 files changed, 42 insertions(+), 12 deletions(-)
++ 4 files changed, 43 insertions(+), 12 deletions(-)
+ 
+ diff --git a/sys/v4l2/gstv4l2bufferpool.c b/sys/v4l2/gstv4l2bufferpool.c
+ index d85f036..e6a60dc 100644
+@@ -86,7 +86,7 @@ index ee60540..eff1cf2 100644
+      own_min = MAX (own_min, GST_V4L2_MIN_BUFFERS (obj));
+ 
+      /* for the downstream pool, we keep what downstream wants, though ensure
+-@@ -5049,8 +5053,13 @@ gst_v4l2_object_decide_allocation (GstV4l2Object * obj, GstQuery * query)
++@@ -5049,8 +5053,14 @@ gst_v4l2_object_decide_allocation (GstV4l2Object * obj, GstQuery * query)
+      min = MAX (min, GST_V4L2_MIN_BUFFERS (obj));
+ 
+      /* To import we need the other pool to hold at least own_min */
+@@ -95,6 +95,7 @@ index ee60540..eff1cf2 100644
+ +    if (obj_pool == pool) {
+ +        if (0 == strcmp(obj->vcap.driver, "wave5-dec")) {
+ +            min = own_min;
+++            max = min;
+ +        } else {
+ +            min += own_min;
+ +        }
+-- 
+2.34.1
 
->
-> Signed-off-by: Andrew Davis <afd@ti.com>
-> ---
->   .../shadow/shadow-securetty_%.bbappend            | 15 ---------------
->   1 file changed, 15 deletions(-)
->   delete mode 100644 meta-arago-distro/recipes-extended/shadow/shadow-securetty_%.bbappend
->
-> diff --git a/meta-arago-distro/recipes-extended/shadow/shadow-securetty_%.bbappend b/meta-arago-distro/recipes-extended/shadow/shadow-securetty_%.bbappend
-> deleted file mode 100644
-> index 62999d2a..00000000
-> --- a/meta-arago-distro/recipes-extended/shadow/shadow-securetty_%.bbappend
-> +++ /dev/null
-> @@ -1,15 +0,0 @@
-> -PR:append = ".arago0"
-> -
-> -do_install:append () {
-> -    # Allow telnet sessions to login as root
-> -    securetty_file=${D}${sysconfdir}/securetty
-> -
-> -    echo '' >> $securetty_file
-> -    echo '# Allow 5 telnet login' >> $securetty_file
-> -    echo 'pts/0' >> $securetty_file
-> -    echo 'pts/1' >> $securetty_file
-> -    echo 'pts/2' >> $securetty_file
-> -    echo 'pts/3' >> $securetty_file
-> -    echo 'pts/4' >> $securetty_file
-> -
-> -}
 
