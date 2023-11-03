@@ -1,75 +1,183 @@
-Return-Path: <lcpdbld@list.ti.com>
+Return-Path: <b-liu@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 00C28C4167B
-	for <webhook@archiver.kernel.org>; Fri,  3 Nov 2023 05:19:13 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web11.28829.1698988748934697821
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1E7C2C4332F
+	for <webhook@archiver.kernel.org>; Fri,  3 Nov 2023 14:25:16 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.52714.1699021513350533513
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 02 Nov 2023 22:19:09 -0700
+ Fri, 03 Nov 2023 07:25:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: list.ti.com, ip: 198.47.23.248, mailfrom: lcpdbld@list.ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3A35J7Qg073259;
-	Fri, 3 Nov 2023 00:19:07 -0500
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3A35J7Tj029664
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=Ojiydtzh;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: b-liu@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3A3EP7pR041036;
+	Fri, 3 Nov 2023 09:25:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1699021507;
+	bh=9MxU6dfwa5GG3QxX/8RQu0K0yBayftVWSgJlekVREaM=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=OjiydtzhbpsmihhY+3pXg2d0EvfCdspsu+q9ruZW04mLkz9qQ7tOtKLvsWo5bqFlR
+	 bLpfsvCgSYXKIhLKBW/q/zhbXRozDxmc5d890/2on5F1u+GV2ePOtr+5RFjuRwmaVq
+	 v3WOBC1WCx8M9g45M/0aXjokhRgSDRWJ01oflMns=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3A3EP7DE084273
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 3 Nov 2023 00:19:07 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 3 Nov 2023 09:25:07 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 3
- Nov 2023 00:19:07 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ Nov 2023 09:25:07 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 3 Nov 2023 00:19:07 -0500
-Received: from fllvdckhpci039.itg.ti.com (fllvdckhpci039.itg.ti.com [10.248.132.250])
-	by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3A35J78F028911;
-	Fri, 3 Nov 2023 00:19:07 -0500
-Received: by fllvdckhpci039.itg.ti.com (Postfix, from userid 60899)
-	id 5CA1F10B593F; Fri,  3 Nov 2023 00:19:07 -0500 (CDT)
-From: LCPD Automation Script <lcpdbld@list.ti.com>
-To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Denys
- Dmytriyenko <denys@konsulko.com>,
+ Frontend Transport; Fri, 3 Nov 2023 09:25:07 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3A3EP7B3023617;
+	Fri, 3 Nov 2023 09:25:07 -0500
+Date: Fri, 3 Nov 2023 09:25:07 -0500
+From: Bin Liu <b-liu@ti.com>
+To: Chirag Shilwant <c-shilwant@ti.com>
+CC: <reatmon@ti.com>, Denys Dmytriyenko <denis@denix.org>,
+        Praneeth Bajjuri
+	<praneeth@ti.com>,
+        Denys Dmytriyenko <denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][kirkstone][PATCH] ltp-ddt: CI/CD Auto-Merger: cicd.kirkstone.202311022105
-Date: Fri, 3 Nov 2023 00:19:07 -0500
-Message-ID: <1698988747-59158-1-git-send-email-lcpdbld@list.ti.com>
-X-Mailer: git-send-email 1.8.3.1
+Subject: Re: [EXTERNAL] Re: [meta-arago][master/kirkstone][PATCH 1/2]
+ tisdk-sw-manifest: Add code to not fail on tar error
+Message-ID: <20231103142507.z6mvejh6ktyx3h6w@iaqt7>
+References: <20231031140433.14899-1-reatmon@ti.com>
+ <20231031154434.GF2408@denix.org>
+ <938c557e-e04b-43ed-9668-63620ce6851a@ti.com>
+ <c957a70a-4a46-4afe-9361-697d8f1fab37@ti.com>
+ <20231102203703.gy4myj7fqayadhgw@iaqt7>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+In-Reply-To: <20231102203703.gy4myj7fqayadhgw@iaqt7>
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by fllv0016.ext.ti.com id 3A3EP7pR041036
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 03 Nov 2023 05:19:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14992
+ <meta-arago@lists.yoctoproject.org>; Fri, 03 Nov 2023 14:25:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/14993
 
-Updated the value(s) for:
-  SRCREV
+Resend my response after subscribed to the mailinglist.
+-Bin.
 
-Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
----
- meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
-index b3e6ee3..d98e881 100644
---- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
-+++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
-@@ -14,7 +14,7 @@ PE = "1"
- PR = "r7"
- PV:append = "+git${SRCPV}"
- 
--SRCREV = "1a15dac998f5f7802d466a98f826b91a09149c18"
-+SRCREV = "fc7db811e962536d3f5111c401c31ede8e4ec38e"
- BRANCH ?= "master"
- 
- SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
--- 
-1.8.3.1
-
+On Thu, Nov 02, 2023 at 03:37:03PM -0500, Bin Liu wrote:
+> Hi,
+>=20
+> On Thu, Nov 02, 2023 at 05:18:21PM +0530, Chirag Shilwant wrote:
+> > Hi Ryan,
+> >=20
+> > On 31/10/23 21:29, Ryan Eatmon via lists.yoctoproject.org wrote:
+> > >=20
+> > >=20
+> > > On 10/31/2023 10:44 AM, Denys Dmytriyenko wrote:
+> > > > On Tue, Oct 31, 2023 at 09:04:32AM -0500, Ryan Eatmon via
+> > > > lists.yoctoproject.org wrote:
+> > > > > We want to add an image into the core bundle, but that image do=
+es not
+> > > > > have any opkg .control files.=A0 tar apparently errors out if y=
+ou ask it
+> > > > > to extract out files but the files are not in the archive, and =
+the
+> > > > > recipes are setup that if any of the commands in the shell erro=
+r out,
+> > > > > then the entire recipe fails.
+> > > > >=20
+> > > > > Simple fix, add an || (or) condition to the tar command to prin=
+t a
+> > > > > message that there were not any control files instead of errori=
+ng out.
+> > > >=20
+> > > > So, simply bypassing tar error due to missing *.control files sti=
+ll
+> > > > won't
+> > > > enable you to properly generate the SW manifest. As those *.contr=
+ol
+> > > > files
+> > > > from individual packages are parsed to extract the license inform=
+ation.
+> > > > And they are missing because tiny image specifically disables "pa=
+ckage
+> > > > management" to save on space. Therefore tiny image was not includ=
+ed in
+> > > > the bundle, since it doesn't generate the SW manifest.
+> > >=20
+> > > And this is why I sent the patch in rather than just taking it. Thi=
+s
+> > > patch was a response to Chirag running in the above error when tryi=
+ng to
+> > > add the tiny image into the core bundle in the processor sdk.
+> > >=20
+> > > So, why do we want to add tiny to the bundle?
+> >=20
+> >=20
+> > We got a requirement from Bin Liu to add tiny-image in
+> > /board-support/prebuilt-images/ of the SDK bundle.
+> > I'm not sure about the "why do we want it to the bundle" part. Adding=
+ Bin to
+> > provide more insights on the requirement part.
+>=20
+> The tiny image is very small and uses SysVInit. It has been used in man=
+y
+> use cases, initramfs is the most important one as far as I am aware.
+>=20
+> -Bin.
+>=20
+> >=20
+> > Regards,
+> > Chirag
+> >=20
+> > > =A0 Since tiny should be a subset of the other images, is there any=
+thing
+> > > not covered in the software manifest that should prevent this patch=
+?
+> > >=20
+> > > >=20
+> > > > > Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+> > > > > ---
+> > > > > =A0 meta-arago-distro/classes/tisdk-sw-manifest.bbclass | 4 ++-=
+-
+> > > > > =A0 1 file changed, 2 insertions(+), 2 deletions(-)
+> > > > >=20
+> > > > > diff --git a/meta-arago-distro/classes/tisdk-sw-manifest.bbclas=
+s
+> > > > > b/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
+> > > > > index 14d14f08..b9c63610 100644
+> > > > > --- a/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
+> > > > > +++ b/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
+> > > > > @@ -405,10 +405,10 @@ sw_manifest_target() {
+> > > > > =A0=A0=A0=A0=A0=A0=A0=A0=A0 # Only extract tar.gz or tar.bz2 ty=
+pes
+> > > > > =A0=A0=A0=A0=A0=A0=A0=A0=A0 if [ -e
+> > > > > ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz ]
+> > > > > =A0=A0=A0=A0=A0=A0=A0=A0=A0 then
+> > > > > -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 tar xJf
+> > > > > ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz -C
+> > > > > ${IMAGE_ROOTFS}/filesystem --wildcards *.control
+> > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 tar xJf
+> > > > > ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz -C
+> > > > > ${IMAGE_ROOTFS}/filesystem --wildcards *.control || echo "No
+> > > > > control files found in ${image}"
+> > > > > =A0=A0=A0=A0=A0=A0=A0=A0=A0 elif [ -e
+> > > > > ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz ]
+> > > > > =A0=A0=A0=A0=A0=A0=A0=A0=A0 then
+> > > > > -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 tar xzf
+> > > > > ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz -C
+> > > > > ${IMAGE_ROOTFS}/filesystem --wildcards *.control
+> > > > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 tar xzf
+> > > > > ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz -C
+> > > > > ${IMAGE_ROOTFS}/filesystem --wildcards *.control || echo "No
+> > > > > control files found in ${image}"
+> > > > > =A0=A0=A0=A0=A0=A0=A0=A0=A0 fi
+> > > > > =A0=A0=A0=A0=A0 done
+> > > > > =A0 --
+> > > > > 2.17.1
+> > >=20
 
