@@ -1,208 +1,273 @@
-Return-Path: <sinthu.raja@mistralsolutions.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AD1D7C4332F
-	for <webhook@archiver.kernel.org>; Wed,  8 Nov 2023 13:15:56 +0000 (UTC)
-Received: from egress-ip43b.ess.de.barracuda.com (egress-ip43b.ess.de.barracuda.com [18.185.115.247])
- by mx.groups.io with SMTP id smtpd.web10.13075.1699449351902784956
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 52DE1C4332F
+	for <webhook@archiver.kernel.org>; Wed,  8 Nov 2023 14:12:37 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web11.14605.1699452755777051183
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 08 Nov 2023 05:15:52 -0800
+ Wed, 08 Nov 2023 06:12:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mistralsolutions.com header.s=google header.b=AMwmz0PI;
- spf=pass (domain: mistralsolutions.com, ip: 18.185.115.247, mailfrom: sinthu.raja@mistralsolutions.com)
-Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70]) by mx-outbound45-89.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Wed, 08 Nov 2023 13:15:48 +0000
-Received: by mail-lf1-f70.google.com with SMTP id 2adb3069b0e04-507d0e4eedaso6610918e87.0
-        for <meta-arago@lists.yoctoproject.org>; Wed, 08 Nov 2023 05:15:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google; t=1699449348; x=1700054148; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NlGENOCUYID3t+lZWLBdhY2mtep2wxaG1Q0lBtxMcN8=;
-        b=AMwmz0PIK7zhIJfYh+qKwbCYLNHIQ4tK4KxYSUYIzgiafOBd0pmQzyWXSvq/x5yePx
-         cxTWwY+CaG+krxpt1y2/+1zIDeKEpcuQo/OIOzZ3mqu57yKFR5UkBt5YCqU61i+Xg55X
-         tcKsKX/YembHrsVZY7Uc/lTvXXTeUCU/jjlkI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1699449348; x=1700054148;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NlGENOCUYID3t+lZWLBdhY2mtep2wxaG1Q0lBtxMcN8=;
-        b=ZAZj2pZ65cwJry5ABI8I88I/54H+hK1q3lTVDpSZPSeaFk7ln4isZ39sv6s3KYlreU
-         34Yi+iMd3boC99eBUldYr7oU8pI8nYcJin/YEM7wstwYiKVohX7l9rJfg/uEdqNDsbUA
-         cTAMxWPp1kDXds4sihJMMAq1SY3YQl4NH40FGrUH+mIkiV+bPgN4HCNeUtcMXOUnONms
-         /9QFVA9Q81kDHTW2eR2kw3V+UGlntSa5SIVOghqeYpaRJ7T6kYe4s4g+b4HBixiqDbGZ
-         aAURTR+8IskF+3Mff+fWfmPwk3j1l/8fgZ5zVea6GKC96BTVHqPTICPb+3XFYRfgFidy
-         IbJA==
-X-Gm-Message-State: AOJu0Yza5e+WFAcbHvxDuoeJWsg4T17REunByfgFpbhMA5Kv6Anx/N0k
-	BbJBsLWY87DgEbVCmk6lGy35+itCuIB5bUOns3fCG+/Q9s6m0TL43drIhg6KTmzLhvTjRLieWhX
-	AZQRLKOiA2r6iBO0e/vUhckNOyfUFjjtA1sf7V/hhFe3omaWx/qAgvbBef3WOGC1HJfdXQNUO1S
-	BF4c0GrSI=
-X-Received: by 2002:a05:6512:110f:b0:509:4523:4039 with SMTP id l15-20020a056512110f00b0050945234039mr1370437lfg.64.1699449347800;
-        Wed, 08 Nov 2023 05:15:47 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGsbgf3SM0MHlDxRfaSENPYUFfUHK2gXJJo82srcvOyJg18wLHsdyj/twximc+Gpm02YEHwpRJu5gSlmwdFfcM=
-X-Received: by 2002:a05:6512:110f:b0:509:4523:4039 with SMTP id
- l15-20020a056512110f00b0050945234039mr1370397lfg.64.1699449347267; Wed, 08
- Nov 2023 05:15:47 -0800 (PST)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=xTozFzpo;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3A8ECSkF002504;
+	Wed, 8 Nov 2023 08:12:28 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1699452748;
+	bh=/05mKDs+L3+b9HWGM0Rsd7i4wgwq07+/JcoRbZVBICI=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=xTozFzpolg41EonzWY5nYmSDdZyyl0eDR46pQZ5NlLBHvGUHdlr6SH9E28E9ZEV4h
+	 Kb624tCWQAKT2N5hX+5Eyx7zoub75q6XsG7DSxw4/6YXi8NKqb4HkwiiAMtDF7YDG7
+	 f4N67mNfB2YijUF773/E7h9jM75o2o4p5ovsM2Es=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3A8ECS4V024039
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 8 Nov 2023 08:12:28 -0600
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 8
+ Nov 2023 08:12:28 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 8 Nov 2023 08:12:28 -0600
+Received: from [128.247.81.69] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3A8ECRvN047171;
+	Wed, 8 Nov 2023 08:12:28 -0600
+Message-ID: <bcbfaff6-dafa-4aad-9ae1-a8bbcc3ef610@ti.com>
+Date: Wed, 8 Nov 2023 08:12:27 -0600
 MIME-Version: 1.0
-References: <20231025133351.3043121-1-s-adivi@ti.com>
-In-Reply-To: <20231025133351.3043121-1-s-adivi@ti.com>
-From: Sinthu Raja M <sinthu.raja@mistralsolutions.com>
-Date: Wed, 8 Nov 2023 18:45:35 +0530
-Message-ID: <CAEd-yTQ7ZB65YL24EhJE6WO3hdksTH5jgw4DpvAsBRCUmVY4yQ@mail.gmail.com>
-Subject: Re: [meta-arago][kirkstone][PATCH v2] matrix-gui: handle systemd and
- sysvinit scripts separately
-To: s-adivi@ti.com
-Cc: meta-arago@lists.yoctoproject.org, praneeth@ti.com, denis@denix.org, 
-	reatmon@ti.com, c-shilwant@ti.com, a-limaye@ti.com, g-gupta@ti.com, 
-	khasim@ti.com, p-bhagat@ti.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][master/kirkstone][PATCH 1/2] tisdk-sw-manifest: Add
+ code to not fail on tar error
+Content-Language: en-US
+To: Bin Liu <b-liu@ti.com>, Denys Dmytriyenko <denis@denix.org>
+CC: Chirag Shilwant <c-shilwant@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+References: <20231031140433.14899-1-reatmon@ti.com>
+ <20231031154434.GF2408@denix.org>
+ <938c557e-e04b-43ed-9668-63620ce6851a@ti.com>
+ <c957a70a-4a46-4afe-9361-697d8f1fab37@ti.com>
+ <20231102203703.gy4myj7fqayadhgw@iaqt7>
+ <2839e4d9-fcf0-4d24-880d-815f3929f59e@ti.com>
+ <20231103211745.GO2408@denix.org> <20231107221944.dybbybpqvwj54kl4@iaqt7>
+From: Ryan Eatmon <reatmon@ti.com>
+In-Reply-To: <20231107221944.dybbybpqvwj54kl4@iaqt7>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Content-Transfer-Encoding: quoted-printable
-X-BESS-ID: 1699449348-311609-12575-664-1
-X-BESS-VER: 2019.1_20231107.0004
-X-BESS-Apparent-Source-IP: 209.85.167.70
-X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUioBkjpK+cVKVqZGZgZAVgZQ0MDY0iw1OcnE0i
-	DNJMUwzSIxLc3EwDjFzDDNLMXMMsVAqTYWAHa1z0lBAAAA
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.251994 [from 
-	cloudscan17-199.eu-central-1b.ess.aws.cudaops.com]
-	Rule breakdown below
-	 pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-	0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
-X-BESS-BRTS-Status: 1
+X-MIME-Autoconverted: from 8bit to quoted-printable by lelv0143.ext.ti.com id 3A8ECSkF002504
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 08 Nov 2023 13:15:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15003
+ <meta-arago@lists.yoctoproject.org>; Wed, 08 Nov 2023 14:12:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15004
 
-On Wed, Oct 25, 2023 at 7:04=E2=80=AFPM Sai Sree Kartheek Adivi via
-lists.yoctoproject.org <s-adivi=3Dti.com@lists.yoctoproject.org> wrote:
->
-> - Install systemd service file or init script based on the distro_feature=
-s
-> systemd/sysvinit.
-> - systemd service also needs to depend on lighttpd service so that matrix
-> won't start before the webserver.
->
-> Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
-Acked-by: Sinthu Raja <sinthu.raja@ti.com>
-> ---
-> v2: Handle both sysvinit and systemd
->
->  .../matrix/matrix-gui/matrix-gui-2.0.service      |  4 ++--
->  .../recipes-core/matrix/https://linkprotect.cudasvc.com/url?a=3Dhttps%3a=
-%2f%2fmatrix-gui_2.0.bb&c=3DE,1,uI-aTWTLE9ebq4R3RRhS3S8RX4mThQe73KXtJzBcCtL=
-buT9CAfon0qUNsZaGAYmVEb7cr_NfkruorcLHBDi8AYtBCW2hrE-kRJZa5y3Skpd0&typo=3D1 =
-        | 15 +++++++++------
->  2 files changed, 11 insertions(+), 8 deletions(-)
->
-> diff --git a/meta-arago-demos/recipes-core/matrix/matrix-gui/matrix-gui-2=
-.0.service b/meta-arago-demos/recipes-core/matrix/matrix-gui/matrix-gui-2.0=
-.service
-> index 40a8f0f9..462803f3 100644
-> --- a/meta-arago-demos/recipes-core/matrix/matrix-gui/matrix-gui-2.0.serv=
-ice
-> +++ b/meta-arago-demos/recipes-core/matrix/matrix-gui/matrix-gui-2.0.serv=
-ice
-> @@ -1,6 +1,6 @@
->  [Unit]
->  Description=3DMatrix GUI
-> -After=3Dweston.service
-> +After=3Dweston.service lighttpd.service
->  Requires=3Dweston.service
->  Before=3Dhttps://linkprotect.cudasvc.com/url?a=3Dhttps%3a%2f%2fgraphical=
-.target&c=3DE,1,MPCJR5Y4V0RWJzSDnznRKN2ocAPgZGqc-8AanIuzWjQwtMXg4RzQOiBv1lf=
-LcnGLmh4X1Webx5-n4SomRVgodrVDQJGczrNUthox4E9U-bkPoRTZtfoxsFUx&typo=3D1
->
-> @@ -12,7 +12,7 @@ IgnoreSIGPIPE=3Dno
->  KillMode=3Dprocess
->  GuessMainPID=3Dno
->  RemainAfterExit=3Dyes
-> -ExecStart=3D/etc/init.d/matrix-gui-2.0 start
-> +ExecStart=3D/usr/share/matrix-gui-2.0/matrix-gui-2.0 start
->
->  [Install]
->  WantedBy=3Dhttps://linkprotect.cudasvc.com/url?a=3Dhttps%3a%2f%2fmulti-u=
-ser.target&c=3DE,1,FO2Ep-vm1QYUBkm_bcHCCXGwd7W8aDmv6B7saNjwSFd5K0QxebHludZW=
-i273myKGPpfwX3GS-LvRbG7dqhbDZ4g_pyObIv0QgecW3MXn8A,,&typo=3D1
-> diff --git a/meta-arago-demos/recipes-core/matrix/https://linkprotect.cud=
-asvc.com/url?a=3Dhttps%3a%2f%2fmatrix-gui_2.0.bb&c=3DE,1,S1mPhUDq1Ebyj8vRVL=
-jlNdDwKY8xkbXYVvHUkQQHm4y6npO3yg9CGl1d6ufzS-zT8CeAHTxsPXamdttlpNhlp3HDeWnSk=
-V5C0HLnm4KKui4T&typo=3D1 b/meta-arago-demos/recipes-core/matrix/https://lin=
-kprotect.cudasvc.com/url?a=3Dhttps%3a%2f%2fmatrix-gui_2.0.bb&c=3DE,1,0wzPiH=
-CI02ttqigGTj-XVwcZ5pEiRSzuobJBNdwcbBa9GW2TmMRSzS3l0phNqekNzoq7jkyxwW7uq03K6=
-PIR9m8OX2cS_jNWj6KPotaLQVRRsY4,&typo=3D1
-> index 9299a929..508edb9b 100644
-> --- a/meta-arago-demos/recipes-core/matrix/https://linkprotect.cudasvc.co=
-m/url?a=3Dhttps%3a%2f%2fmatrix-gui_2.0.bb&c=3DE,1,EIwOZOJCxC7TXdt5ShejRgxes=
-EuhZKooaS1Z-sBCwG8Hx03bBp4wobKMm98zjFzSBnII_qUdDvO-vc56huvTO90kNlUqmeWMSoA3=
-7fdUL-xMEGio&typo=3D1
-> +++ b/meta-arago-demos/recipes-core/matrix/https://linkprotect.cudasvc.co=
-m/url?a=3Dhttps%3a%2f%2fmatrix-gui_2.0.bb&c=3DE,1,5NNhxGZ76cFnRRNxkiWeN706J=
-Kr2IUXiUV-Zxl5bRk-T_i8lexVL7kpKEgdqbSTaFpqcukoC6_vxrlB2rm6N3NYBiyc7Obuh_0LH=
-26hfC6xaTP_4unwtavgD2A,,&typo=3D1
-> @@ -50,12 +50,15 @@ do_install(){
->         sed -i -e "s/__SWITCH_FOREGROUND_VT__/${SWITCH_FOREGROUND_VT}/" $=
-{WORKDIR}/${MATRIX_INITSCRIPT}
->
->         # Install the script
-> -       install -d ${D}${sysconfdir}/init.d
-> -       install -m 0755 ${WORKDIR}/${MATRIX_INITSCRIPT} ${D}${sysconfdir}=
-/init.d/matrix-gui-2.0
-> -
-> -       # Install the systemd unit file
-> -       install -d ${D}${systemd_system_unitdir}
-> -       install -m 0644 ${WORKDIR}/matrix-gui-2.0.service ${D}${systemd_s=
-ystem_unitdir}
-> +       if ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'true', 'f=
-alse', d)}; then
-> +               install -d ${D}${sysconfdir}/init.d
-> +               install -m 0755 ${WORKDIR}/${MATRIX_INITSCRIPT} ${D}${sys=
-confdir}/init.d/matrix-gui-2.0
-> +       fi
-> +       if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'fa=
-lse', d)}; then
-> +               install -d ${D}${systemd_system_unitdir}
-> +               install -m 0644 ${WORKDIR}/matrix-gui-2.0.service ${D}${s=
-ystemd_system_unitdir}
-> +               install -m 0755 ${WORKDIR}/${MATRIX_INITSCRIPT} ${D}${MAT=
-RIX_BASE_DIR}/matrix-gui-2.0
-> +       fi
->  }
->
->  GUIDEPS =3D "${@bb.utils.contains('DISTRO_FEATURES','opengl',"matrix-gui=
--browser refresh-screen",'',d)}"
-> --
-> 2.34.1
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#14970): https://linkprotect.cudasvc.com/url?a=3Dhttps=
-%3a%2f%2flists.yoctoproject.org%2fg%2fmeta-arago%2fmessage%2f14970&c=3DE,1,=
-82vhypDK5rcX-umeF_e4UOjCPwNB75UdQqbYYv1-nSkhKEbXGh6CMn4HucAoh7REp_1Rpon43EO=
-IXc0TH3irBGQS6zkUsOaFfrkLyKBpuc3Sd8Ipu8nLzwk,&typo=3D1
-> Mute This Topic: https://linkprotect.cudasvc.com/url?a=3Dhttps%3a%2f%2fli=
-sts.yoctoproject.org%2fmt%2f102177988%2f6034914&c=3DE,1,ukl3wgz_kSGrKm0lK0K=
-mDdu4t9PZ2iiZKZUhC64iQ88bKV_7ZIda6k3_j0l44OsGLbbT_l30kSLZU7Xol_37eMNJG0oZk0=
-V0zbBUJJp_AkGNGg,,&typo=3D1
-> Group Owner: meta-arago+owner@lists.yoctoproject.org
-> Unsubscribe: https://linkprotect.cudasvc.com/url?a=3Dhttps%3a%2f%2flists.=
-yoctoproject.org%2fg%2fmeta-arago%2funsub&c=3DE,1,R8Ie2IZt2c3x2MzraIFlKi_Md=
-qxCs3S3VeXY06Wy6DrE6c-qS7aWvdj0aeKCz_NZiQgooQhjePvwLVm7hoyuA98r266f0LXHnuh8=
-CNfrB6s,&typo=3D1 [sinthu.raja@mistralsolutions.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
 
+
+On 11/7/2023 4:19 PM, Bin Liu wrote:
+> Hi,
+>=20
+> On Fri, Nov 03, 2023 at 05:17:45PM -0400, Denys Dmytriyenko wrote:
+>> On Fri, Nov 03, 2023 at 11:18:31AM -0500, Ryan Eatmon via lists.yoctop=
+roject.org wrote:
+>>>
+>>>
+>>> On 11/2/2023 3:37 PM, Bin Liu wrote:
+>>>> Hi,
+>>>>
+>>>> On Thu, Nov 02, 2023 at 05:18:21PM +0530, Chirag Shilwant wrote:
+>>>>> Hi Ryan,
+>>>>>
+>>>>> On 31/10/23 21:29, Ryan Eatmon via lists.yoctoproject.org wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 10/31/2023 10:44 AM, Denys Dmytriyenko wrote:
+>>>>>>> On Tue, Oct 31, 2023 at 09:04:32AM -0500, Ryan Eatmon via
+>>>>>>> lists.yoctoproject.org wrote:
+>>>>>>>> We want to add an image into the core bundle, but that image doe=
+s not
+>>>>>>>> have any opkg .control files.=C2=A0 tar apparently errors out if=
+ you ask it
+>>>>>>>> to extract out files but the files are not in the archive, and t=
+he
+>>>>>>>> recipes are setup that if any of the commands in the shell error=
+ out,
+>>>>>>>> then the entire recipe fails.
+>>>>>>>>
+>>>>>>>> Simple fix, add an || (or) condition to the tar command to print=
+ a
+>>>>>>>> message that there were not any control files instead of errorin=
+g out.
+>>>>>>>
+>>>>>>> So, simply bypassing tar error due to missing *.control files sti=
+ll
+>>>>>>> won't
+>>>>>>> enable you to properly generate the SW manifest. As those *.contr=
+ol
+>>>>>>> files
+>>>>>> >from individual packages are parsed to extract the license inform=
+ation.
+>>>>>>> And they are missing because tiny image specifically disables "pa=
+ckage
+>>>>>>> management" to save on space. Therefore tiny image was not includ=
+ed in
+>>>>>>> the bundle, since it doesn't generate the SW manifest.
+>>>>>>
+>>>>>> And this is why I sent the patch in rather than just taking it. Th=
+is
+>>>>>> patch was a response to Chirag running in the above error when try=
+ing to
+>>>>>> add the tiny image into the core bundle in the processor sdk.
+>>>>>>
+>>>>>> So, why do we want to add tiny to the bundle?
+>>>>>
+>>>>>
+>>>>> We got a requirement from Bin Liu to add tiny-image in
+>>>>> /board-support/prebuilt-images/ of the SDK bundle.
+>>>>> I'm not sure about the "why do we want it to the bundle" part. Addi=
+ng Bin to
+>>>>> provide more insights on the requirement part.
+>>>>
+>>>> The tiny image is very small and uses SysVInit. It has been used in =
+many
+>>>> use cases, initramfs is the most important one as far as I am aware.
+>>>
+>>>
+>>> All of the images now use systemd.
+>>
+>> Correction - all of the images in a single build use the same init man=
+ager,
+>> which by default is systemd.
+>=20
+> systermd or sysvinit is not a concern, as long as there is a "tiny"
+> image for initramfs use cases.
+>=20
+>>
+>> There used to be a hack that would force tiny image to use SysVinit, e=
+ven
+>> when other images use systemd. It was non-standard and problematic, so=
+ was
+>> removed recently.
+>>
+>> There is still a way to control init manager for all Arago images by s=
+etting
+>> ARAGO_SYSVINIT=3D"1" or more directly INIT_MANAGER=3D"sysvinit". But t=
+hat would
+>> affect all images, not just tiny.
+>>
+>> And if you really want tiny to use SysVinit and other images to use sy=
+stemd,
+>> you have to build them separately and you cannot have tiny in tisdk bu=
+ndle.
+>>
+>> FS images in the bundle.
+>>> The issue comes down to license compliance.  The core bundle has the
+>>> requirement to produce a software license manifest for all of the
+>>> items within the image.  That manifest is generated off of the opkg
+>>> control files.  But the tiny image does not have opkg installed as
+>>> it is not needed for the purpose of that image.  So we cannot gather
+>>> the manifest information from the tiny image.
+>>>
+>>> So we have an impossible situation here.  We cannot include the tiny
+>>> image without violation the manifest requirement.  And given that
+>>> the tiny image is mainly meant for wakeup efforts, I don't see a
+>>> need to include it in the bundle.  If someone wants the tiny image,
+>=20
+> I guess by "wakeup efforts" you meant TI internal consumption? No,
+> customers often used it for custom board bringup. The importance has no
+> difference from the "tiny" image to other
+>=20
+> -Bin.
+
+The issue is not if customers find the image useful, the issue is=20
+license reporting compliance we have for including the prebuilt image as=20
+part of the core-bundle.  Since we cannot auto generate the license=20
+manifest since our code uses the opkg framework to extract that info, we=20
+cannot generate the license manifest for the tiny image.
+
+A new system for correctly generating the license manifest would have to=20
+be devised to support this request.  At this time, we cannot include the=20
+tiny image in the core-bundle.  A must larger effort to revamp the=20
+manifest code would have be done to correctly fulfill this corporate=20
+requirement.
+
+And there is nothing stopping a customer from setting up a yocto build=20
+and running:
+
+MACHINE=3D????? bitbake tisdk-tiny-image
+
+We just cannot, currently, do it for them and include it in the prebuilt=20
+bundle.
+
+
+
+>>> they can always run bitbake and generate it.  It should not take
+>>> that much time given that it contains almost no packages within it.
+>>>
+>>>
+>>>> -Bin.
+>>>>
+>>>>>
+>>>>> Regards,
+>>>>> Chirag
+>>>>>
+>>>>>>  =C2=A0 Since tiny should be a subset of the other images, is ther=
+e anything
+>>>>>> not covered in the software manifest that should prevent this patc=
+h?
+>>>>>>
+>>>>>>>
+>>>>>>>> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+>>>>>>>> ---
+>>>>>>>>  =C2=A0 meta-arago-distro/classes/tisdk-sw-manifest.bbclass | 4 =
+++--
+>>>>>>>>  =C2=A0 1 file changed, 2 insertions(+), 2 deletions(-)
+>>>>>>>>
+>>>>>>>> diff --git a/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
+>>>>>>>> b/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
+>>>>>>>> index 14d14f08..b9c63610 100644
+>>>>>>>> --- a/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
+>>>>>>>> +++ b/meta-arago-distro/classes/tisdk-sw-manifest.bbclass
+>>>>>>>> @@ -405,10 +405,10 @@ sw_manifest_target() {
+>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 # Only e=
+xtract tar.gz or tar.bz2 types
+>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if [ -e
+>>>>>>>> ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz ]
+>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 then
+>>>>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 tar xJf
+>>>>>>>> ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz -C
+>>>>>>>> ${IMAGE_ROOTFS}/filesystem --wildcards *.control
+>>>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 tar xJf
+>>>>>>>> ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.xz -C
+>>>>>>>> ${IMAGE_ROOTFS}/filesystem --wildcards *.control || echo "No
+>>>>>>>> control files found in ${image}"
+>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 elif [ -=
+e
+>>>>>>>> ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz ]
+>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 then
+>>>>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 tar xzf
+>>>>>>>> ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz -C
+>>>>>>>> ${IMAGE_ROOTFS}/filesystem --wildcards *.control
+>>>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 tar xzf
+>>>>>>>> ${IMAGE_ROOTFS}/filesystem/${image}-${MACHINE}.tar.gz -C
+>>>>>>>> ${IMAGE_ROOTFS}/filesystem --wildcards *.control || echo "No
+>>>>>>>> control files found in ${image}"
+>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fi
+>>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 done
+>>>>>>>>  =C2=A0 --
+>>>>>>>> 2.17.1
+>>>>>>
 
 --=20
-With Regards
-Sinthu Raja
+Ryan Eatmon                reatmon@ti.com
+-----------------------------------------
+Texas Instruments, Inc.  -  LCPD  -  MGTS
 
