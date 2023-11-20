@@ -1,85 +1,75 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <lcpdbld@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A666AC072A2
-	for <webhook@archiver.kernel.org>; Fri, 17 Nov 2023 17:27:45 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web11.1443.1700242063342982614
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A53A6C5B55F
+	for <webhook@archiver.kernel.org>; Mon, 20 Nov 2023 09:42:18 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web10.46893.1700473336101162251
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 17 Nov 2023 09:27:43 -0800
+ Mon, 20 Nov 2023 01:42:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=c+sOn8BJ;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AHHRf9x062517;
-	Fri, 17 Nov 2023 11:27:41 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1700242061;
-	bh=a7eID1J9N+336nEbi+kHU56eMAtl96Jj6yyJswnUZnc=;
-	h=From:To:Subject:Date;
-	b=c+sOn8BJ7Gqof7+V/XeipRoaK74mWcySrrtqH9zlZhXixRmtJpJiwHAf7T0IMIGsi
-	 4klLWJvkCmvXJInMbe/wAx0h/ll9wPfbfZygtc6JWsbshwGvxAxjwlakE3pfl0EdYz
-	 bIjdJ1Ke+cd2+WlMCSL6dJyADTrtOFOG6W/p9x2k=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AHHRf44130134
+ dkim=none (message not signed); spf=pass (domain: list.ti.com, ip: 198.47.19.142, mailfrom: lcpdbld@list.ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3AK9gERe009270;
+	Mon, 20 Nov 2023 03:42:14 -0600
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3AK9gENQ002544
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 17 Nov 2023 11:27:41 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 17
- Nov 2023 11:27:41 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 20 Nov 2023 03:42:14 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 20
+ Nov 2023 03:42:14 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 17 Nov 2023 11:27:41 -0600
-Received: from uda0214219 (ileaxei01-snat.itg.ti.com [10.180.69.5])
-	by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AHHRf9a082047;
-	Fri, 17 Nov 2023 11:27:41 -0600
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1r42d3-0004kM-Eb; Fri, 17 Nov 2023 11:27:41 -0600
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
+ Frontend Transport; Mon, 20 Nov 2023 03:42:14 -0600
+Received: from fllvdckhpci039.itg.ti.com (fllvdckhpci039.itg.ti.com [10.248.132.250])
+	by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3AK9gEo5126421;
+	Mon, 20 Nov 2023 03:42:14 -0600
+Received: by fllvdckhpci039.itg.ti.com (Postfix, from userid 60899)
+	id 7AE2B10F50C2; Mon, 20 Nov 2023 03:42:14 -0600 (CST)
+From: LCPD Automation Script <lcpdbld@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH] packagegroup-arago-tisdk-addons: Remove netkit-ftp
-Date: Fri, 17 Nov 2023 11:27:41 -0600
-Message-ID: <20231117172741.18207-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+Subject: [meta-arago][master][PATCH] ltp-ddt: CI/CD Auto-Merger: cicd.master.202311200100
+Date: Mon, 20 Nov 2023 03:42:14 -0600
+Message-ID: <1700473334-49005-1-git-send-email-lcpdbld@list.ti.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 17 Nov 2023 17:27:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15015
+ <meta-arago@lists.yoctoproject.org>; Mon, 20 Nov 2023 09:42:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15016
 
-The netkit package was dropped from meta-openembedded [1] for not being
-updated in a while.
+Updated the value(s) for:
+  SRCREV
 
-[1] https://git.openembedded.org/meta-openembedded/commit/?id=4c1e6d32ba6e9a14937a83f0d9375ef4d0b28057
-
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
 ---
- .../packagegroups/packagegroup-arago-tisdk-addons.bb             | 1 -
- 1 file changed, 1 deletion(-)
+ meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-index 8412f5f6..4dec290a 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
-@@ -11,7 +11,6 @@ PACKAGES =+ "${PN}-extra"
- UTILS = " \
-     gdbserver \
-     oprofile \
--    netkit-ftp \
-     ptpd \
-     strongswan \
-     kexec \
+diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
+index 69d2ce8..c969213 100644
+--- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
++++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
+@@ -14,7 +14,7 @@ PE = "1"
+ PR = "r7"
+ PV:append = "+git${SRCPV}"
+ 
+-SRCREV = "873384dd4f9746ae75f433418e90b17c4fdc53d8"
++SRCREV = "6e96fcd718d238c5c5b957507c97eecdcd45c4b3"
+ BRANCH ?= "master"
+ 
+ SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
 -- 
-2.17.1
+1.8.3.1
 
 
