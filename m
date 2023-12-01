@@ -2,113 +2,153 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B0763C46CA3
-	for <webhook@archiver.kernel.org>; Fri,  1 Dec 2023 20:44:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C311FC4167B
+	for <webhook@archiver.kernel.org>; Fri,  1 Dec 2023 20:50:20 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.3756.1701463478073968412
+ by mx.groups.io with SMTP id smtpd.web11.3879.1701463811179565474
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 01 Dec 2023 12:44:39 -0800
+ Fri, 01 Dec 2023 12:50:11 -0800
 Authentication-Results: mx.groups.io;
  dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id D3A8840C56;
-	Fri,  1 Dec 2023 20:44:36 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 8464140C3A;
+	Fri,  1 Dec 2023 20:50:10 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id I_E07Y1o2woM; Fri,  1 Dec 2023 20:44:36 +0000 (UTC)
+	with ESMTP id 2RuHX71PQQWY; Fri,  1 Dec 2023 20:50:10 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id B667440C3A;
-	Fri,  1 Dec 2023 20:44:35 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 13A3E409AE;
+	Fri,  1 Dec 2023 20:50:08 +0000 (UTC)
 Received: from gimli.cabin (argonath.cabin [172.16.1.2])
-	by mail.denix.org (Postfix) with ESMTP id C3795163D79;
-	Fri,  1 Dec 2023 15:44:33 -0500 (EST)
+	by mail.denix.org (Postfix) with ESMTP id 371E0163D77;
+	Fri,  1 Dec 2023 15:50:08 -0500 (EST)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master/kirkstone][PATCH 2/2] arago-gpl-notice: unbreak initscript
-Date: Fri,  1 Dec 2023 15:44:27 -0500
-Message-Id: <20231201204427.19192-2-denis@denix.org>
+Subject: [master/kirkstone][PATCH] weston-init: provide a custom beaglebone weston.ini file
+Date: Fri,  1 Dec 2023 15:50:06 -0500
+Message-Id: <20231201205006.3991-1-denis@denix.org>
 X-Mailer: git-send-email 2.35.3
-In-Reply-To: <20231201204427.19192-1-denis@denix.org>
-References: <20231201204427.19192-1-denis@denix.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 01 Dec 2023 20:44:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15028
+ <meta-arago@lists.yoctoproject.org>; Fri, 01 Dec 2023 20:50:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15029
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
-This was using a SysVinit initscript that was also called from a systemd
-unit file when systemd-compat-units were enabled. With systemd and
-SysVinit now fully separated in Arago, adjust initscripts accordingly to
-work for both init managers.
+AM335x has some display/graphics hardware limitations and moreover
+BeagleBone Black only has external HDMI output, hence add a custom
+weston.ini that sets core/gbm-format=3Drgb565 and output/name=3DHDMI-A-1
+to work out of the box. The rest of the .ini file is unmodified from
+the generic one.
 
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- .../arago-gpl-notice/arago-gpl-notice.bb         | 16 +++++++++++-----
- .../arago-gpl-notice/gplv3-notice.service        |  4 ++--
- 2 files changed, 13 insertions(+), 7 deletions(-)
+ .../wayland/weston-init/beaglebone/weston.ini | 85 +++++++++++++++++++
+ 1 file changed, 85 insertions(+)
+ create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston-ini=
+t/beaglebone/weston.ini
 
-diff --git a/meta-arago-distro/recipes-core/arago-gpl-notice/arago-gpl-no=
-tice.bb b/meta-arago-distro/recipes-core/arago-gpl-notice/arago-gpl-notic=
-e.bb
-index 33aa31f7..6cb428a5 100644
---- a/meta-arago-distro/recipes-core/arago-gpl-notice/arago-gpl-notice.bb
-+++ b/meta-arago-distro/recipes-core/arago-gpl-notice/arago-gpl-notice.bb
-@@ -15,11 +15,17 @@ SRC_URI =3D " file://print-gplv3-packages.sh \
-             file://gplv3-notice.service"
-=20
- do_install(){
--	install -d ${D}${sysconfdir}/init.d
--	install -m 0755 ${S}/print-gplv3-packages.sh ${D}${sysconfdir}/init.d/g=
-plv3-notice
--
--	install -d ${D}${systemd_system_unitdir}
--	install -m0644 ${WORKDIR}/gplv3-notice.service ${D}${systemd_system_uni=
-tdir}
-+	if ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'true', 'false',=
- d)}; then
-+		install -d ${D}${sysconfdir}/init.d
-+		install -m 0755 ${S}/print-gplv3-packages.sh ${D}${sysconfdir}/init.d/=
-gplv3-notice
-+	fi
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init/beagl=
+ebone/weston.ini b/meta-arago-distro/recipes-graphics/wayland/weston-init=
+/beaglebone/weston.ini
+new file mode 100644
+index 00000000..9fd9851d
+--- /dev/null
++++ b/meta-arago-distro/recipes-graphics/wayland/weston-init/beaglebone/w=
+eston.ini
+@@ -0,0 +1,85 @@
++# configuration file for Weston
 +
-+	if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', =
-d)}; then
-+		install -d ${D}${bindir}
-+		install -d ${D}${systemd_system_unitdir}
-+		install -m 0755 ${S}/print-gplv3-packages.sh ${D}${bindir}/gplv3-notic=
-e
-+		install -m 0644 ${WORKDIR}/gplv3-notice.service ${D}${systemd_system_u=
-nitdir}
-+	fi
- }
-=20
- SYSTEMD_SERVICE:${PN} =3D "gplv3-notice.service"
-diff --git a/meta-arago-distro/recipes-core/arago-gpl-notice/arago-gpl-no=
-tice/gplv3-notice.service b/meta-arago-distro/recipes-core/arago-gpl-noti=
-ce/arago-gpl-notice/gplv3-notice.service
-index 50cb8398..13aaf814 100644
---- a/meta-arago-distro/recipes-core/arago-gpl-notice/arago-gpl-notice/gp=
-lv3-notice.service
-+++ b/meta-arago-distro/recipes-core/arago-gpl-notice/arago-gpl-notice/gp=
-lv3-notice.service
-@@ -3,8 +3,8 @@ Description=3DPrint notice about GPLv3 packages
-=20
- [Service]
- Type=3Doneshot
--ExecStart=3D/etc/init.d/gplv3-notice
--WorkingDirectory=3D/etc/init.d
-+ExecStart=3D/usr/bin/gplv3-notice
-+WorkingDirectory=3D/usr/bin
- StandardOutput=3Dtty
-=20
- [Install]
++[core]
++idle-time=3D0
++#modules=3Dxwayland.so,cms-colord.so
++#shell=3Ddesktop-shell.so
++gbm-format=3Drgb565
++require-input=3Dfalse
++
++[shell]
++locking=3Dfalse
++animation=3Dzoom
++panel-position=3Dtop
++startup-animation=3Dfade
++#background-image=3D/usr/share/backgrounds/gnome/Aqua.jpg
++#background-color=3D0xff002244
++#background-type=3Dtile
++#clock-format=3Dminutes
++#panel-color=3D0x90ff0000
++#locking=3Dtrue
++#animation=3Dzoom
++#startup-animation=3Dfade
++#binding-modifier=3Dctrl
++#num-workspaces=3D6
++#cursor-theme=3Dwhiteglass
++#cursor-size=3D24
++
++#lockscreen-icon=3D/usr/share/icons/gnome/256x256/actions/lock.png
++#lockscreen=3D/usr/share/backgrounds/gnome/Garden.jpg
++#homescreen=3D/usr/share/backgrounds/gnome/Blinds.jpg
++#animation=3Dfade
++
++#[launcher]
++#icon=3D/usr/share/icons/gnome/24x24/apps/utilities-terminal.png
++#path=3D/usr/bin/gnome-terminal
++
++#[launcher]
++#icon=3D/usr/share/icons/gnome/24x24/apps/utilities-terminal.png
++#path=3D/usr/bin/weston-terminal
++
++#[launcher]
++#icon=3D/usr/share/icons/hicolor/24x24/apps/google-chrome.png
++#path=3D/usr/bin/google-chrome
++
++#[launcher]
++#icon=3D/usr/share/icons/gnome/24x24/apps/arts.png
++#path=3D/build/weston-0lEgCh/weston-1.11.0/weston-flower
++
++#[input-method]
++#path=3D/usr/libexec/weston-keyboard
++
++[output]
++name=3DHDMI-A-1
++#mode=3D1680x1050
++#transform=3D90
++#icc_profile=3D/usr/share/color/icc/colord/Bluish.icc
++
++#[output]
++#name=3DVGA1
++#mode=3D173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
++#transform=3Dflipped
++
++#[output]
++#name=3DX1
++#mode=3D1024x768
++#transform=3Dflipped-90
++
++[libinput]
++touchscreen_calibrator=3Dtrue
++#enable_tap=3Dtrue
++
++#[touchpad]
++#constant_accel_factor =3D 50
++#min_accel_factor =3D 0.16
++#max_accel_factor =3D 1.0
++
++[screen-share]
++command=3D/usr/bin/weston --backend=3Drdp-backend.so --shell=3Dfullscree=
+n-shell.so --no-clients-resize
++
++#[xwayland]
++#path=3D/usr/bin/Xwayland
++
++[autolaunch]
++# launch the calibrator on startup if a touchscreen is detected
++path=3D/usr/bin/weston-launch-calibrator
 --=20
 2.35.3
 
