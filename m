@@ -2,51 +2,52 @@ Return-Path: <sinthu.raja@mistralsolutions.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6ED5DC46CA3
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6ED24C4167B
 	for <webhook@archiver.kernel.org>; Wed,  6 Dec 2023 14:36:48 +0000 (UTC)
-Received: from egress-ip43b.ess.de.barracuda.com (egress-ip43b.ess.de.barracuda.com [18.185.115.247])
- by mx.groups.io with SMTP id smtpd.web10.33196.1701873400024625237
+Received: from egress-ip12a.ess.de.barracuda.com (egress-ip12a.ess.de.barracuda.com [18.184.203.235])
+ by mx.groups.io with SMTP id smtpd.web11.32828.1701873404751747006
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 06 Dec 2023 06:36:40 -0800
+ Wed, 06 Dec 2023 06:36:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mistralsolutions.com header.s=google header.b=U+gCgmvJ;
- spf=pass (domain: mistralsolutions.com, ip: 18.185.115.247, mailfrom: sinthu.raja@mistralsolutions.com)
-Received: from mail-il1-f198.google.com (mail-il1-f198.google.com [209.85.166.198]) by mx-outbound23-61.eu-central-1b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Wed, 06 Dec 2023 14:36:37 +0000
-Received: by mail-il1-f198.google.com with SMTP id e9e14a558f8ab-35d59b965b9so51679685ab.2
-        for <meta-arago@lists.yoctoproject.org>; Wed, 06 Dec 2023 06:36:38 -0800 (PST)
+ dkim=pass header.i=@mistralsolutions.com header.s=google header.b=Dcr7ZpZX;
+ spf=pass (domain: mistralsolutions.com, ip: 18.184.203.235, mailfrom: sinthu.raja@mistralsolutions.com)
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197]) by mx-outbound47-82.eu-central-1c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Wed, 06 Dec 2023 14:36:42 +0000
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-1d0737b7262so25818665ad.1
+        for <meta-arago@lists.yoctoproject.org>; Wed, 06 Dec 2023 06:36:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mistralsolutions.com; s=google; t=1701873397; x=1702478197; darn=lists.yoctoproject.org;
+        d=mistralsolutions.com; s=google; t=1701873400; x=1702478200; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=n8u6W9qgAQOsHh12vmjFPdGFu6ICcG35q0SUMNnvCPI=;
-        b=U+gCgmvJYuc8Zj7KDmZlTv6ZxPAMCuSkEww04N0pGbK8EPRi9EJdb4vJDFqUeLhqBu
-         MIuywP1DpYedlitQ3ceIPkq8xAXmTz5IMgVI/1fKPfTshs3XFZuI33WpIa3IF1Dnhnfn
-         PCoq9bw0BG/q1f4rxL0wixL20AU9Bamnb9GDg=
+        bh=7wwFnt8323wLNijdbMjSGKEz9lL3z2FAormBxERw3SQ=;
+        b=Dcr7ZpZXfL234ERLOs1Uu4aF2j0BOc616wzzqxm1XHuH4oWximTNa48fA9qjqlj1bH
+         BaiUMMwuX84U808hwhmOrQGYSJpDbMJsU9Y8CfFwUL/DgaKmJC+ONp9Oh+WQRq2z6Bjs
+         l/pcNbjUVZsdVkjYEsqJMOBFU8BswkDd3mPp4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1701873397; x=1702478197;
+        d=1e100.net; s=20230601; t=1701873400; x=1702478200;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=n8u6W9qgAQOsHh12vmjFPdGFu6ICcG35q0SUMNnvCPI=;
-        b=UulqQ/M6W02hW7NzdkE4hlkmqnI8DG87Bh/GLx3B4t9f+xmDCKZgwpLUHZvsNlhEvT
-         mrMq2Zpi02eaRmWF6vlBxpX27dRPGrnOsg1k08OSVw+diaaLvP8sQt/D2vKxyGiRqdAl
-         WidL5GHPjtItJiA33vojebish7xLBZyqQg0tHpnWDM/2XhjiSouPDs+lM9MaHIHwE8KY
-         uZ3eMTykCfOpmThtCUHM/+DzB5Crjd5ISP9IU7JwafKSNc38dG5HfUdHUQVV9N+byMfx
-         qdF3em++1cd7fBFrqSIr6afwY2NZbedhDERD0Hp/agA+w6mUIgosYuQThARDVKmWTSvc
-         YZUw==
-X-Gm-Message-State: AOJu0Yy+/G4VIP9XOWuV94qJgJA9o69mJl2LuC/Eu8yV4MoKnjsQxrB6
-	nf5foj/D6QjXsgw8HvyBaESpyuSqim7yrWcclc+z9K4nyifPSRhAQZc8XFRPX+jrjDAMbx/TmOq
-	WyZd/uNYLkJ/rNYGokUMVefd0lEgaS4LMK/QcIcysB73yfZW8JyexvTMr5CAikE79WKo=
-X-Received: by 2002:a92:de0c:0:b0:35d:5ff1:7842 with SMTP id x12-20020a92de0c000000b0035d5ff17842mr1119260ilm.53.1701873397043;
-        Wed, 06 Dec 2023 06:36:37 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG/p5Ej+o8AzcRJcDajRIEacITbNerRr417iI9F98gIVreFT2TdTdhDXKBCMvflP8svj7sIMg==
-X-Received: by 2002:a92:de0c:0:b0:35d:5ff1:7842 with SMTP id x12-20020a92de0c000000b0035d5ff17842mr1119253ilm.53.1701873396771;
-        Wed, 06 Dec 2023 06:36:36 -0800 (PST)
+        bh=7wwFnt8323wLNijdbMjSGKEz9lL3z2FAormBxERw3SQ=;
+        b=Fn/Z/qMoAVBrSQl5NcWtdCGzlMErHYhpVbKa4UapTZIOi9cNk/ib2Z0woELs72zeK/
+         B9DLYwAN4OpyVCn+9bZz/bsljG88MyyoJMNth/2LWoqlhWM8jEf3JTCfEoWJRu87ICiM
+         ZhCW9MYyeVN2ifQV2ROiX8uSj+Gxhu9mE/OgIorBSujP7A0vPhImUtPZQgehj6aFgdSW
+         oVsOFo1sveLX2TfVtGTPIPGEfe3vpGJbw1c04mxlh093EWxy0yDwhjQkKFIE2777t37r
+         qPCLRqnXXazjGNuXKoWHzKfqWz9miKHv696VqZuBMHcqc8+AG9yvqF6PMnKmNC7Waaze
+         zMkQ==
+X-Gm-Message-State: AOJu0Yxlqx/fWhRw+g43Hg6IocbT2vodezyq1ikAKKz5tbEY8JOL+eW/
+	ZZGJDh9p8zzoJ0RKn6Nz9+E9HaeZ1RkqH7zzdLvPHm/TKhIeI/7cn19nrbqu8iDAzM0DJ8juV/A
+	oDe6qL+cuXo63wIdPMbsdkaVMgJkrQBgm+NZw++Mv1cwIJHBtj1zu1U2WG3+zDfPyTC0d2oD95k
+	F4tg==
+X-Received: by 2002:a17:902:f543:b0:1d0:aeda:9add with SMTP id h3-20020a170902f54300b001d0aeda9addmr760544plf.42.1701873399985;
+        Wed, 06 Dec 2023 06:36:39 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFF51pB0QUYA31e2w3CZA9gi/4hOKeElsSC4kGj7Rlr+9ddWTjbPpbsRjCM51t8eZGFeqC1Jg==
+X-Received: by 2002:a17:902:f543:b0:1d0:aeda:9add with SMTP id h3-20020a170902f54300b001d0aeda9addmr760524plf.42.1701873399580;
+        Wed, 06 Dec 2023 06:36:39 -0800 (PST)
 Received: from LAP568U.mistral.in ([106.51.69.35])
-        by smtp.gmail.com with ESMTPSA id s25-20020a639e19000000b005c67ca3c2c2sm265pgd.21.2023.12.06.06.36.33
+        by smtp.gmail.com with ESMTPSA id s25-20020a639e19000000b005c67ca3c2c2sm265pgd.21.2023.12.06.06.36.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Dec 2023 06:36:36 -0800 (PST)
+        Wed, 06 Dec 2023 06:36:39 -0800 (PST)
 From: Sinthu Raja <sinthu.raja@mistralsolutions.com>
 X-Google-Original-From: Sinthu Raja <sinthu.raja@ti.com>
 To: reatmon@ti.com,
@@ -55,65 +56,59 @@ To: reatmon@ti.com,
 Cc: meta-arago@lists.yoctoproject.org,
 	u-kumar1@ti.com,
 	Sinthu Raja <sinthu.raja@ti.com>
-Subject: [meta-arago][krikstone][PATCH RFC 3/4] ti-test: Remove OAMP-DRM test
-Date: Wed,  6 Dec 2023 20:06:17 +0530
-Message-Id: <20231206143618.27770-4-sinthu.raja@ti.com>
+Subject: [meta-arago][krikstone][PATCH RFC 4/4] branding-core: enable mmip for AM57x platform
+Date: Wed,  6 Dec 2023 20:06:18 +0530
+Message-Id: <20231206143618.27770-5-sinthu.raja@ti.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20231206143618.27770-1-sinthu.raja@ti.com>
 References: <20231206143618.27770-1-sinthu.raja@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-BESS-ID: 1701873397-305949-12365-23170-1
+X-BESS-ID: 1701873401-312114-12328-21950-1
 X-BESS-VER: 2019.1_20231116.1739
-X-BESS-Apparent-Source-IP: 209.85.166.198
-X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyNDAxAbIygIKGxmnmpoamxi
-	lmaeYWyUlGFqkGliapRgZJpokpZmbGJkq1sQCWvz9WQQAAAA==
+X-BESS-Apparent-Source-IP: 209.85.214.197
+X-BESS-Parts: H4sIAAAAAAACA4uuVkqtKFGyUirNy1bSUcovVrIyNDAwBLIygILGFikpSaam5k
+	lGJommlhaGSUmWKeaphqbGZmmpBkZmKUq1sQAcA0S/QQAAAA==
 X-BESS-Outbound-Spam-Score: 0.00
 X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.252636 [from 
-	cloudscan22-252.eu-central-1b.ess.aws.cudaops.com]
+	cloudscan23-120.eu-central-1b.ess.aws.cudaops.com]
 	Rule breakdown below
 	 pts rule name              description
 	---- ---------------------- --------------------------------
-	0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
 	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_SC0_MISMATCH_TO, BSF_BESS_OUTBOUND
+	0.00 BSF_SC0_MISMATCH_TO    META: Envelope rcpt doesn't match header 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS91090 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND, BSF_SC0_MISMATCH_TO
 X-BESS-BRTS-Status: 1
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Wed, 06 Dec 2023 14:36:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15036
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15037
 
 From: Sinthu Raja <sinthu.raja@ti.com>
 
-The omapdrm test is outdated and the required test cases shall be executed
-using the GST commands. Disable the same until the omapdrm test is updated.
+Now that the gstreamer plugins are enabled and ported to 1.20 enable
+the mmip for AM57x platform
 
 Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
 ---
- meta-arago-test/recipes-core/packagegroups/ti-test.bb | 3 ---
+ meta-arago-distro/conf/distro/include/branding-core.inc | 3 ---
  1 file changed, 3 deletions(-)
 
-diff --git a/meta-arago-test/recipes-core/packagegroups/ti-test.bb b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-index cf720c03..9a6dc67a 100644
---- a/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-+++ b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
-@@ -87,15 +87,12 @@ TI_TEST_TI_TOOLS:append:ti43x = " \
-     switch-config \
- "
+diff --git a/meta-arago-distro/conf/distro/include/branding-core.inc b/meta-arago-distro/conf/distro/include/branding-core.inc
+index 79dadc11..85aa09b6 100644
+--- a/meta-arago-distro/conf/distro/include/branding-core.inc
++++ b/meta-arago-distro/conf/distro/include/branding-core.inc
+@@ -12,9 +12,6 @@ ALTERNATIVE_PRIORITY:pn-opencl-monitor-ipu = "1"
+ # Raise priority for sample IPC FW images
+ ALTERNATIVE_PRIORITY:pn-ti-ipc-rtos = "15"
  
--NOT_MAINLINE_MMIP_DEPS = "${@bb.utils.contains('MACHINE_FEATURES', 'mmip', 'omapdrmtest', '', d)}"
+-# Remove mmip - DRM allocator, KMS sink, Wayland sink need porting to GST 1.18
+-MACHINE_FEATURES:remove = "mmip"
 -
- TI_TEST_TI_TOOLS:append:omap-a15 = " \
-     omapconf \
-     pru-icss \
-     switch-config \
-     ${@oe.utils.conditional('ARAGO_BRAND', 'mainline', '', " \
-         ti-ipc-test \
--	    ${NOT_MAINLINE_MMIP_DEPS} \
-     ", d)} \
- "
- 
+ # GC320 support requires out-of-tree drivers not available in until LTS prep is
+ # complete. Disable for now.
+ MACHINE_FEATURES:remove = "gc320"
 -- 
 2.36.1
 
