@@ -1,203 +1,90 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <c-shilwant@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D14DC10DC1
-	for <webhook@archiver.kernel.org>; Fri,  8 Dec 2023 14:55:15 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.37312.1702047313410030509
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B52AC4167B
+	for <webhook@archiver.kernel.org>; Mon, 11 Dec 2023 09:20:52 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.4542.1702286447954840579
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 08 Dec 2023 06:55:13 -0800
+ Mon, 11 Dec 2023 01:20:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=W0AsdlDj;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3B8EtB06077672;
-	Fri, 8 Dec 2023 08:55:11 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=mrnBnNZP;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: c-shilwant@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BB9Kiq6004649;
+	Mon, 11 Dec 2023 03:20:44 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702047311;
-	bh=9S+WF1d6N13HK+jFrM8y38NWJKLZGQzoS5d4VoyYpH4=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=W0AsdlDjix/VkXwqmlKzKND52fuOBZ56AXH0ARv0WTeWYuNZ0C5l4w083pgzDp6q/
-	 +FsLQ2MbWrI4OyQa9W1uMTeQ1wt0bB6SfmMubs8H2mFXb7haUYbr+Bf+dCXCifcwWY
-	 lBbDBCCY8KAy3xlMxJVFsAfI6vHS7PfJ1vP7+5DU=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3B8EtBcm016816
+	s=ti-com-17Q1; t=1702286444;
+	bh=D+l6g3eO1sJYrOwp7e6PtyW3ypokISU1OaVpckcasnA=;
+	h=From:To:CC:Subject:Date;
+	b=mrnBnNZP9ypjtEBfndmr6FgCGvTcE1PCpoU9GoSP1ZZxtL9QISi4w4lXFSWxd8PN4
+	 O/iD4x0CZEYXCxR2NSdJOsujkh/bfXxIjR/mCXYlzUsnUy+nxaezycCraFCzM0Cs/K
+	 G2i2q/xixMYTWrQ0igO+NB6kYbwLtOc9ZVEGa5co=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BB9Kin4104417
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 8 Dec 2023 08:55:11 -0600
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 8
- Dec 2023 08:55:11 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 11 Dec 2023 03:20:44 -0600
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
+ Dec 2023 03:20:44 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 8 Dec 2023 08:55:11 -0600
-Received: from [10.249.38.142] ([10.249.38.142])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3B8EtBqC102303;
-	Fri, 8 Dec 2023 08:55:11 -0600
-Message-ID: <00f90f45-2f2c-4540-b973-e57099bce742@ti.com>
-Date: Fri, 8 Dec 2023 08:55:11 -0600
+ Frontend Transport; Mon, 11 Dec 2023 03:20:44 -0600
+Received: from localhost (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.238])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BB9KhxC056695;
+	Mon, 11 Dec 2023 03:20:44 -0600
+From: Chirag Shilwant <c-shilwant@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>, Denys Dmytriyenko <denis@denix.org>,
+        Ryan Eatmon <reatmon@ti.com>, <meta-arago@lists.yoctoproject.org>
+CC: Sai Sree Kartheek Adivi <s-adivi@ti.com>, Paresh Bhagat <p-bhagat@ti.com>,
+        Khasim <khasim@ti.com>, Gyan Gupta <g-gupta@ti.com>
+Subject: [meta-arago][oe-layersetup][PATCH] configs: processor-sdk: Add new config for AM65x
+Date: Mon, 11 Dec 2023 14:50:35 +0530
+Message-ID: <20231211092035.3271382-1-c-shilwant@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago] [kirkstone] [PATCH] receipes-multimedia: gstreamer:
- Add patches for AM62P
-Content-Language: en-US
-To: Andrew Davis <afd@ti.com>, Devarsh Thakkar <devarsht@ti.com>,
-        <meta-arago@lists.yoctoproject.org>, <praneeth@ti.com>,
-        <denys@konsulko.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
-        <khasim@ti.com>, <nsekhar@ti.com>, <rs@ti.com>, <k-bhargav@ti.com>,
-        <a-limaye@ti.com>, <shyam.jagannathan@ti.com>, <r-ravikumar@ti.com>,
-        <vijayp@ti.com>, <detheridge@ti.com>
-References: <20231206144822.3194663-1-devarsht@ti.com>
- <3d7635f6-6ac7-4ec8-ae02-ab5d5e9b22d4@ti.com>
- <d729dcef-1a8e-b007-ece3-f6038c9100e0@ti.com>
- <17a8d9a4-499c-4010-a5c9-e77969a377e8@ti.com>
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <17a8d9a4-499c-4010-a5c9-e77969a377e8@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by lelv0142.ext.ti.com id 3B8EtB06077672
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 08 Dec 2023 14:55:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15051
+ <meta-arago@lists.yoctoproject.org>; Mon, 11 Dec 2023 09:20:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15052
 
+- Add processor-sdk-09.01.00-am65xx-config.txt used for building AM65x.
 
+Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
+---
+ .../processor-sdk-09.01.00-am65xx-config.txt      | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 configs/processor-sdk/processor-sdk-09.01.00-am65xx-config.txt
 
-On 12/6/2023 11:03 AM, Andrew Davis wrote:
-> On 12/6/23 9:56 AM, Devarsh Thakkar wrote:
->> Hi Andrew,
->>
->> Thanks for the review.
->>
->> On 06/12/23 20:41, Andrew Davis wrote:
->>> On 12/6/23 8:48 AM, Devarsh Thakkar wrote:
->>>> Add patches to prefer contiguous video format and supporting
->>>> dmabuf-import mode for video decoder.
->>>>
->>>> This is to support use-cases involving video codec with other=20
->>>> components
->>>> viz. GPU, Camera e.t.c.
->>>>
->>>
->>> Why does this "support use-cases"? What is wrong with the default=20
->>> formats?
->>
->> For 0002-v4l2-Give-preference-to-contiguous-format-if-support.patch :
->> I think we have certain blocks such as ISP, Camera seem to only suppor=
-t
->> contigous formats which doesn't go well with gstreamer v4l2 which pref=
-ers
->> non-contigous by default and we fail at negotiation.
->>
->> For 0001-v4l2-Changes-for-DMA-Buf-import-j721s2.patch :
->> I think this is a local patch which complements a patch already made=20
->> available
->> in driver, this to support dmabuf import for the decoder.
->>
->>> Are these posted upstream to upstream gstreamer, if not why? Or=20
->>> should we
->>> instead fix the consuming software to handle the default non-contiguo=
-us
->>> formats better..
->>>
->> For 0002-v4l2-Give-preference-to-contiguous-format-if-support.patch :
->>
->> The crux of the issue is that unlike v4l2 gstreamer has only single=20
->> GST video
->> format for both NV12 and NV12M (non-contigous) and it prefers to=20
->> advertise
->> latter during caps negotiation. I think there was a proposal long back=
-=20
->> to have
->> separate GST video formats for NV12 and NV12M but that didn't converge=
-,
->> perhaps they wanted to support this with a VideoMeta based scheme as=20
->> per logs [0].
->>
->> Also I see other vendors also carrying similar patch like this locally.
->>
->> For 0001-v4l2-Changes-for-DMA-Buf-import-j721s2.patch :
->> There again is discussion around this to support this in upstream but =
-the
->> upstream patch is not yet merged [1].
->>
->> Anyways, I don't see any harm in applying these patches if they are=20
->> helping
->> achieve use-cases and I see they are already getting applied for other=
-=20
->> platforms.
->>
->=20
-> This is a lot of good information, it should be in the commit message.
+diff --git a/configs/processor-sdk/processor-sdk-09.01.00-am65xx-config.txt b/configs/processor-sdk/processor-sdk-09.01.00-am65xx-config.txt
+new file mode 100644
+index 0000000..74d349e
+--- /dev/null
++++ b/configs/processor-sdk/processor-sdk-09.01.00-am65xx-config.txt
+@@ -0,0 +1,15 @@
++# This file takes repo entries in the format
++# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
++
++bitbake,https://git.openembedded.org/bitbake,2.0,a7f6c3e67bd9170e93b2b94676e84018faf0df91
++meta-processor-sdk,https://git.ti.com/git/processor-sdk/meta-processor-sdk.git,kirkstone,09.01.00.007-AM65X,layers=
++meta-arago,https://git.yoctoproject.org/meta-arago,kirkstone,09.01.00.007,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
++meta-qt5,https://github.com/meta-qt5/meta-qt5.git,kirkstone,ae8a97f79364bed1abc297636f7933d0e35f22be,layers=
++meta-virtualization,https://git.yoctoproject.org/meta-virtualization,kirkstone,67b0ef4256a484851f3556d281ca4caa88374388,layers=
++meta-openembedded,https://git.openembedded.org/meta-openembedded,kirkstone,8a75c61cce2aa1d6e5a3597ab8fc5a7e6aeae1e4,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
++meta-ti,https://git.yoctoproject.org/meta-ti,kirkstone,09.01.00.007,layers=meta-ti-extras:meta-ti-bsp
++meta-arm,https://git.yoctoproject.org/meta-arm,kirkstone,b187fb9232ca0a6b5f8f90b4715958546fc41d73,layers=meta-arm:meta-arm-toolchain
++oe-core,https://git.openembedded.org/openembedded-core,kirkstone,8726ae02d760270f9e7fe7ef5715d8f7553371ce,layers=meta
++OECORELAYERCONF=./sample-files/bblayers.conf.sample
++OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
++BITBAKE_INCLUSIVE_VARS=yes
+-- 
+2.34.1
 
-Devarsh, can you put together a v2 with the above information in the=20
-commit message?  History like this is very helpful to keep track of so=20
-that we do not lose it to the passage of time.
-
-
-> I do not see any harm either, this was not a NAK. But we do need to=20
-> remember to
-> work on fixing our drivers/applications to better handle NV12M (seems l=
-ike
-> it will remain the default in gstreamer). Otherwise you will have to=20
-> support this
-> hack forever, and for every distro (we have Debian now, I don't see you=
-=20
-> updating
-> gstreamer.deb for the same..).
->=20
-> Andrew
->=20
->> [0]=20
->> https://gitlab.freedesktop.org/gstreamer/gst-plugins-good/-/issues/414
->> [1] :
->> https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/45=
-50/diffs?commit_id=3Db12eaf65f489bab50917e22242758e000d69df58
->>
->> Regards
->> Devarsh
->>
->>> Andrew
->>>
->>>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
->>>> ---
->>>> =C2=A0=C2=A0 .../gstreamer/gstreamer1.0-plugins-good_1.20.%.bbappend=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 4=20
->>>> ++++
->>>> =C2=A0=C2=A0 1 file changed, 4 insertions(+)
->>>>
->>>> diff --git
->>>> a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugin=
-s-good_1.20.%.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/g=
-streamer1.0-plugins-good_1.20.%.bbappend
->>>> index a36c9760..e14a3c93 100644
->>>> ---
->>>> a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugin=
-s-good_1.20.%.bbappend
->>>> +++
->>>> b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugin=
-s-good_1.20.%.bbappend
->>>> @@ -20,4 +20,8 @@ SRC_URI:append:am62axx =3D " \
->>>>       =20
->>>> file://0002-v4l2-Give-preference-to-contiguous-format-if-support.pat=
-ch \
->>>> =C2=A0=C2=A0 "
->>>> =C2=A0=C2=A0 +SRC_URI:append:am62pxx =3D " \
->>>> +=C2=A0=C2=A0=C2=A0 file://0001-v4l2-Changes-for-DMA-Buf-import-j721=
-s2.patch \
->>>> +   =20
->>>> file://0002-v4l2-Give-preference-to-contiguous-format-if-support.pat=
-ch \
->>>> +"
->>>> =C2=A0=C2=A0 PR:append =3D ".arago0"
-
---=20
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
 
