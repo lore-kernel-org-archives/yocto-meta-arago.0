@@ -1,90 +1,71 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D16A6C4167B
-	for <webhook@archiver.kernel.org>; Mon, 11 Dec 2023 21:09:26 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web10.3087.1702328960076209152
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C3EEC4332F
+	for <webhook@archiver.kernel.org>; Wed, 13 Dec 2023 17:58:54 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.43121.1702490324397811919
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 11 Dec 2023 13:09:20 -0800
+ Wed, 13 Dec 2023 09:58:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=qUjy5Q3A;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3BBL9Ig6095559;
-	Mon, 11 Dec 2023 15:09:18 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1702328958;
-	bh=UJZP2m3YeKFnGHo6B/SKhsGnOIoHb6N2pObqIiWTjDk=;
-	h=From:To:Subject:Date;
-	b=qUjy5Q3A7w9PXOIiEEuEQMYVhpCkbf9LlQdVd6WZgLbC0b2eAbginOlZDWeYr6eUv
-	 k9b2BNo6F7gsccIp7bnics50L9nyMOPGTq1BKVT2zUcOK9H7byMx/xNC0PL+9BzEiN
-	 R2mUPF+yqJBVczwFs9Ja+g3ecUxOHxTDyFFnsZUs=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3BBL9Ibc045329
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 11 Dec 2023 15:09:18 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
- Dec 2023 15:09:18 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 11 Dec 2023 15:09:18 -0600
-Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3BBL9HnQ112147;
-	Mon, 11 Dec 2023 15:09:18 -0600
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1rCnWf-0008TB-S2; Mon, 11 Dec 2023 15:09:17 -0600
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH v2] branding-ltsprep: Move to kernel 6.6 and uboot 2024.01
-Date: Mon, 11 Dec 2023 15:09:17 -0600
-Message-ID: <20231211210917.32514-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 73A3540C2E;
+	Wed, 13 Dec 2023 17:58:43 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id z4vb1-thvjsK; Wed, 13 Dec 2023 17:58:43 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5C72340C3A;
+	Wed, 13 Dec 2023 17:58:42 +0000 (UTC)
+Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 0CAE6163DC2;
+	Wed, 13 Dec 2023 12:58:41 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master/kirkstone][PATCH 2/2] meta-arago-test: minor README correction
+Date: Wed, 13 Dec 2023 17:58:33 +0000
+Message-Id: <20231213175833.473745-2-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231213175833.473745-1-denis@denix.org>
+References: <20231213175833.473745-1-denis@denix.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 11 Dec 2023 21:09:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15056
+ <meta-arago@lists.yoctoproject.org>; Wed, 13 Dec 2023 17:58:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15057
 
-Move the kernel version overrides to 6.6 and the uboot version overrides
-to 2024.01 for the next LTS prep.
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+This layer does not depend on meta-qt5.
+
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
-v2: Add uboot.
+ meta-arago-test/README | 4 ----
+ 1 file changed, 4 deletions(-)
 
- .../conf/distro/include/branding-ltsprep.inc              | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/meta-arago-distro/conf/distro/include/branding-ltsprep.inc b/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-index fb831225..f0634e7a 100644
---- a/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-@@ -1,8 +1,8 @@
- 
--PREFERRED_VERSION_linux-ti-staging = "6.1%"
--PREFERRED_VERSION_linux-ti-staging-rt = "6.1%"
--PREFERRED_VERSION_linux-ti-staging-systest = "6.1%"
--PREFERRED_VERSION_u-boot-ti-staging = "2023.04%"
-+PREFERRED_VERSION_linux-ti-staging = "6.6%"
-+PREFERRED_VERSION_linux-ti-staging-rt = "6.6%"
-+PREFERRED_VERSION_linux-ti-staging-systest = "6.6%"
-+PREFERRED_VERSION_u-boot-ti-staging = "2024.01%"
- 
- # Remove mmip - DRM allocator, KMS sink, Wayland sink need porting to GST 1.18
- MACHINE_FEATURES:remove = "mmip"
--- 
-2.17.1
+diff --git a/meta-arago-test/README b/meta-arago-test/README
+index 6f912472..8f1f9993 100644
+--- a/meta-arago-test/README
++++ b/meta-arago-test/README
+@@ -23,10 +23,6 @@ branch: master
+ revision: HEAD
+ layers: meta-oe, meta-networking, meta-python
+=20
+-URI: https://github.com/meta-qt5/meta-qt5
+-branch: master
+-revision: HEAD
+-
+ Send pull requests to meta-arago@lists.yoctoproject.org
+=20
+ Layer maintainers:
+--=20
+2.25.1
 
 
