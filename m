@@ -1,201 +1,142 @@
-Return-Path: <denis@denix.org>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 732F5C47E49
-	for <webhook@archiver.kernel.org>; Wed, 24 Jan 2024 22:07:20 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.172.1706134032602259612
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C0EDDC46CD2
+	for <webhook@archiver.kernel.org>; Wed, 24 Jan 2024 22:51:00 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web10.1754.1706136657517340724
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 24 Jan 2024 14:07:13 -0800
+ Wed, 24 Jan 2024 14:50:57 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id DEF2040C50;
-	Wed, 24 Jan 2024 22:07:11 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id rjF5Q3GhrGU6; Wed, 24 Jan 2024 22:07:11 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C871840C1E;
-	Wed, 24 Jan 2024 22:07:09 +0000 (UTC)
-Received: from thorin.denix (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 79664163DDA;
-	Wed, 24 Jan 2024 17:07:09 -0500 (EST)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master][PATCH 1/2] libcamera: drop old 0.0.5 version
-Date: Wed, 24 Jan 2024 17:07:07 -0500
-Message-Id: <20240124220708.2031475-1-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=k106tF7o;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40OMouws127815
+	for <meta-arago@lists.yoctoproject.org>; Wed, 24 Jan 2024 16:50:56 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1706136656;
+	bh=P3nrpHmJe0cgrO6KtwQr/wwZF5MX/jtj1HB9Xp8oS+s=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=k106tF7oqvc2ClHNlfXI58b79FJDqPFv57ncKVUIaf8k0mr2yy0pUOHMRNeHazF5U
+	 KE/30PDBp8875JwG+3u8Z0uX9EXM4TAEmx7Q7YetkT+GgExDNSCp5yF/xcOvRqkKlT
+	 F8k96JZ0/nPuVzDmQeq48QgUkaDeDG77ZhTCKDmg=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40OMouPP120084
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Wed, 24 Jan 2024 16:50:56 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 24
+ Jan 2024 16:50:55 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 24 Jan 2024 16:50:55 -0600
+Received: from [10.249.39.53] ([10.249.39.53])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40OMotcT080121;
+	Wed, 24 Jan 2024 16:50:55 -0600
+Message-ID: <c5e34b90-4ea7-4bd9-9ff1-adc42f62981d@ti.com>
+Date: Wed, 24 Jan 2024 16:50:55 -0600
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][master/kirkstone][PATCH v2 2/2]
+ gstreamer1.0-plugins-good: Add patch to increase min buffers for CSI capture
+Content-Language: en-US
+To: Rahul T R <r-ravikumar@ti.com>, <meta-arago@lists.yoctoproject.org>
+CC: <devarsht@ti.com>, <j-luthra@ti.com>, <denys@ti.com>, <b-brnich@ti.com>,
+        <p-mantena@ti.com>
+References: <20240123155304.832636-1-r-ravikumar@ti.com>
+ <20240123155304.832636-3-r-ravikumar@ti.com>
+From: Ryan Eatmon <reatmon@ti.com>
+In-Reply-To: <20240123155304.832636-3-r-ravikumar@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 24 Jan 2024 22:07:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15090
+ <meta-arago@lists.yoctoproject.org>; Wed, 24 Jan 2024 22:51:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15092
 
-From: Denys Dmytriyenko <denys@konsulko.com>
 
-This version no longer works with Python 3.12
 
-Version 0.1.0 from meta-openembedded/meta-multimedia has a workaround pat=
-ch.
+On 1/23/2024 9:53 AM, Rahul T R wrote:
+> This is required to avoid the frame drops and increase the tolrence
+> for CSI capture using gsteamer
+> 
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> ---
+>   ...ct-Increase-min-buffers-for-CSI-capt.patch | 32 +++++++++++++++++++
+>   .../gstreamer1.0-plugins-good_1.20.%.bbappend |  3 +-
+>   2 files changed, 34 insertions(+), 1 deletion(-)
+>   create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0005-HACK-gstv4l2object-Increase-min-buffers-for-CSI-capt.patch
+> 
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0005-HACK-gstv4l2object-Increase-min-buffers-for-CSI-capt.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0005-HACK-gstv4l2object-Increase-min-buffers-for-CSI-capt.patch
+> new file mode 100644
+> index 00000000..cd3ff613
+> --- /dev/null
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0005-HACK-gstv4l2object-Increase-min-buffers-for-CSI-capt.patch
+> @@ -0,0 +1,32 @@
+> +From a314ac52a306f8ddde1b53321b8cba5e35f5fa72 Mon Sep 17 00:00:00 2001
+> +From: Rahul T R <r-ravikumar@ti.com>
+> +Date: Tue, 10 Oct 2023 14:42:13 +0530
+> +Subject: [PATCH] HACK: gstv4l2object: Increase min buffers for CSI capture
+> +
+> +With default min buffers, frame drops are observed with CSI capture
+> +pipeline with VISS, LDC and DSS with DMABuf Import mode
+> +
+> +Increasing min buffers queued in v4l2src seems to fix this issue.
+> +Need more amalysis on the exact root cause
+> +
 
-Upstream 0.2.0 version has this fixed and the update patch has been submi=
-tted:
-https://patchwork.yoctoproject.org/project/oe/patch/20240124215938.203054=
-8-1-denis@denix.org/
+NAK.  This patch file is missing an Upstream-Status entry.  There are 
+now QA checks in master that require that to be present for long term 
+auditing purposes.  More info can be found at:
 
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
----
- .../0001-simple-Support-TI-CSI-RX.patch       | 32 ---------
- .../libcamera/libcamera_0.0.5.bb              | 72 -------------------
- 2 files changed, 104 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-multimedia/libcamera/libcam=
-era/0001-simple-Support-TI-CSI-RX.patch
- delete mode 100644 meta-arago-extras/recipes-multimedia/libcamera/libcam=
-era_0.0.5.bb
+https://docs.yoctoproject.org/contributor-guide/recipe-style-guide.html#patch-upstream-status
 
-diff --git a/meta-arago-extras/recipes-multimedia/libcamera/libcamera/000=
-1-simple-Support-TI-CSI-RX.patch b/meta-arago-extras/recipes-multimedia/l=
-ibcamera/libcamera/0001-simple-Support-TI-CSI-RX.patch
-deleted file mode 100644
-index e1c30b61..00000000
---- a/meta-arago-extras/recipes-multimedia/libcamera/libcamera/0001-simpl=
-e-Support-TI-CSI-RX.patch
-+++ /dev/null
-@@ -1,32 +0,0 @@
--From d0e4f4f224671e9fc992d39e7beb9c486303ede1 Mon Sep 17 00:00:00 2001
--From: Jai Luthra <j-luthra@ti.com>
--Date: Thu, 23 Mar 2023 11:38:46 +0530
--Subject: [PATCH] simple: Support TI CSI-RX
--
--Add support for TI's CSI-RX pixel grabber device for the simple
--pipeline.
--
--The driver is not yet merged, but v7 is posted [1] upstream.
--
--Link: https://lore.kernel.org/all/20230314115516.667-1-vaishnav.a@ti.com=
-/ [1]
--Upstream-Status: Pending
--Signed-off-by: Jai Luthra <j-luthra@ti.com>
-----
-- src/libcamera/pipeline/simple/simple.cpp | 2 ++
-- 1 file changed, 2 insertions(+)
--
--diff --git a/src/libcamera/pipeline/simple/simple.cpp b/src/libcamera/pi=
-peline/simple/simple.cpp
--index e1f8b989..520405a1 100644
----- a/src/libcamera/pipeline/simple/simple.cpp
--+++ b/src/libcamera/pipeline/simple/simple.cpp
--@@ -194,6 +194,8 @@ static const SimplePipelineInfo supportedDevices[] =3D=
- {
--	{ "mxc-isi", {} },
--	{ "qcom-camss", {} },
--	{ "sun6i-csi", {} },
--+	{ "j721e-csi2rx", {} },
--+
-- };
--
-- } /* namespace */
----
--2.41.0
-diff --git a/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0=
-.5.bb b/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb
-deleted file mode 100644
-index f4290320..00000000
---- a/meta-arago-extras/recipes-multimedia/libcamera/libcamera_0.0.5.bb
-+++ /dev/null
-@@ -1,72 +0,0 @@
--SUMMARY =3D "Linux libcamera framework"
--SECTION =3D "libs"
--
--LICENSE =3D "GPL-2.0-or-later & LGPL-2.1-or-later"
--
--LIC_FILES_CHKSUM =3D "\
--    file://LICENSES/GPL-2.0-or-later.txt;md5=3Dfed54355545ffd980b814dab4=
-a3b312c \
--    file://LICENSES/LGPL-2.1-or-later.txt;md5=3D2a4f4fd2128ea2f65047ee63=
-fbca9f68 \
--"
--
--SRC_URI =3D " \
--        git://git.libcamera.org/libcamera/libcamera.git;protocol=3Dhttps=
-;branch=3Dmaster \
--        file://0001-simple-Support-TI-CSI-RX.patch \
--"
--
--SRCREV =3D "fb44403f1c5571549ac128c21daee9761eb9249c"
--
--PE =3D "1"
--
--S =3D "${WORKDIR}/git"
--
--DEPENDS =3D "python3-pyyaml-native python3-jinja2-native python3-ply-nat=
-ive python3-jinja2-native udev gnutls chrpath-native libevent libyaml"
--DEPENDS +=3D "${@bb.utils.contains('DISTRO_FEATURES', 'qt', 'qtbase qtba=
-se-native', '', d)}"
--
--PACKAGES =3D+ "${PN}-gst"
--
--PACKAGECONFIG ??=3D ""
--PACKAGECONFIG[gst] =3D "-Dgstreamer=3Denabled,-Dgstreamer=3Ddisabled,gst=
-reamer1.0 gstreamer1.0-plugins-base"
--
--LIBCAMERA_PIPELINES ??=3D "auto"
--
--EXTRA_OEMESON =3D " \
--    -Dpipelines=3D${LIBCAMERA_PIPELINES} \
--    -Dv4l2=3Dtrue \
--    -Dcam=3Denabled \
--    -Dlc-compliance=3Ddisabled \
--    -Dtest=3Dfalse \
--    -Ddocumentation=3Ddisabled \
--"
--
--RDEPENDS:${PN} =3D "${@bb.utils.contains('DISTRO_FEATURES', 'wayland qt'=
-, 'qtwayland', '', d)}"
--
--inherit meson pkgconfig python3native
--
--do_configure:prepend() {
--    sed -i -e 's|py_compile=3DTrue,||' ${S}/utils/ipc/mojo/public/tools/=
-mojom/mojom/generate/template_expander.py
--}
--
--do_install:append() {
--    chrpath -d ${D}${libdir}/libcamera.so
--    chrpath -d ${D}${libdir}/v4l2-compat.so
--}
--
--addtask do_recalculate_ipa_signatures_package after do_package before do=
-_packagedata
--do_recalculate_ipa_signatures_package() {
--    local modules
--    for module in $(find ${PKGD}/usr/lib/libcamera -name "*.so.sign"); d=
-o
--        module=3D"${module%.sign}"
--        if [ -f "${module}" ] ; then
--            modules=3D"${modules} ${module}"
--        fi
--    done
--
--    ${S}/src/ipa/ipa-sign-install.sh ${B}/src/ipa-priv-key.pem "${module=
-s}"
--}
--
--FILES:${PN} +=3D " ${libdir}/v4l2-compat.so"
--FILES:${PN}-gst =3D "${libdir}/gstreamer-1.0"
--
--# libcamera-v4l2 explicitly sets _FILE_OFFSET_BITS=3D32 to get access to
--# both 32 and 64 bit file APIs.
--GLIBC_64BIT_TIME_FLAGS =3D ""
---=20
-2.25.1
+Please fix and send a v3.
 
+
+
+> +Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> +---
+> + sys/v4l2/gstv4l2object.c | 2 ++
+> + 1 file changed, 2 insertions(+)
+> +
+> +diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
+> +index 4ce9fac..9f5a85b 100644
+> +--- a/sys/v4l2/gstv4l2object.c
+> ++++ b/sys/v4l2/gstv4l2object.c
+> +@@ -5172,6 +5172,8 @@ gst_v4l2_object_decide_allocation (GstV4l2Object * obj, GstQuery * query)
+> +      * pool, we'll need what the driver one, and one more, so we can dequeu */
+> +     if (0 == strcmp(obj->vcap.driver, "wave5-dec")) {
+> +         own_min = obj->min_buffers + 3;
+> ++    } else if (0 == strcmp(obj->vcap.driver, "j721e-csi2rx")) {
+> ++        own_min = obj->min_buffers + 4;
+> +     } else {
+> +         own_min = obj->min_buffers + 1;
+> +     }
+> +--
+> +2.34.1
+> +
+> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.20.%.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.20.%.bbappend
+> index 2a1a6e68..782b54a4 100644
+> --- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.20.%.bbappend
+> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.20.%.bbappend
+> @@ -5,6 +5,7 @@ SRC_URI:append = " \
+>       file://0002-Adding-support-for-bayer-formats-with-IR-component.patch \
+>       file://0003-v4l2-Changes-for-DMA-Buf-import-j721s2.patch \
+>       file://0004-v4l2-Give-preference-to-contiguous-format-if-support.patch \
+> +    file://0005-HACK-gstv4l2object-Increase-min-buffers-for-CSI-capt.patch \
+>   "
+>   
+> -PR:append = ".arago1"
+> +PR:append = ".arago2"
+
+-- 
+Ryan Eatmon                reatmon@ti.com
+-----------------------------------------
+Texas Instruments, Inc.  -  LCPD  -  MGTS
 
