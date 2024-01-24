@@ -1,130 +1,74 @@
-Return-Path: <devarsht@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C1489C46CD2
-	for <webhook@archiver.kernel.org>; Wed, 24 Jan 2024 06:17:56 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.16737.1706077067799086826
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 72590C46CD2
+	for <webhook@archiver.kernel.org>; Wed, 24 Jan 2024 22:07:20 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.175.1706134032604820329
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 23 Jan 2024 22:17:48 -0800
+ Wed, 24 Jan 2024 14:07:13 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=QAZLUfqK;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: devarsht@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 40O6Hl8d036448
-	for <meta-arago@lists.yoctoproject.org>; Wed, 24 Jan 2024 00:17:47 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1706077067;
-	bh=I1NIHgOTn3PAYDcR83rdgkwK7ld0SeMtLfkQxENS9os=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=QAZLUfqKD2XRU2KFEjqRsbw8faDW31Gic8i9e9/Ce8xcaH3FTM9I/68G0WM7Ht1mL
-	 HHullM+OfchqF+dlVAnMhYFhbfSpm59fWXfCOyumRHswMtI0Mwv6odbhXQxUXMte0t
-	 UE6PL4wwmaNUOfZlzrwUPaBa19IaBSyRXo33FGaA=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 40O6HlRr037324
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Wed, 24 Jan 2024 00:17:47 -0600
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 24
- Jan 2024 00:17:46 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 24 Jan 2024 00:17:46 -0600
-Received: from [172.24.227.193] (devarsht.dhcp.ti.com [172.24.227.193])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 40O6Hh9T026667;
-	Wed, 24 Jan 2024 00:17:44 -0600
-Message-ID: <a16d5fdf-f21d-5168-806b-da52fa350ec0@ti.com>
-Date: Wed, 24 Jan 2024 11:47:43 +0530
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id DAECD40C30;
+	Wed, 24 Jan 2024 22:07:11 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ylwtTBk3u4uh; Wed, 24 Jan 2024 22:07:11 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id CDB1440C2C;
+	Wed, 24 Jan 2024 22:07:09 +0000 (UTC)
+Received: from thorin.denix (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 86257163DDD;
+	Wed, 24 Jan 2024 17:07:09 -0500 (EST)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master][PATCH 2/2] nativesdk-packagegroup-arago-tisdk-host: replace distutils with setuptools
+Date: Wed, 24 Jan 2024 17:07:08 -0500
+Message-Id: <20240124220708.2031475-2-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240124220708.2031475-1-denis@denix.org>
+References: <20240124220708.2031475-1-denis@denix.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [meta-arago][master/kirkstone][PATCH v2 2/2]
- gstreamer1.0-plugins-good: Add patch to increase min buffers for CSI capture
-Content-Language: en-US
-To: Rahul T R <r-ravikumar@ti.com>, <meta-arago@lists.yoctoproject.org>
-CC: <reatmon@ti.com>, <j-luthra@ti.com>, <denys@ti.com>, <b-brnich@ti.com>,
-        <p-mantena@ti.com>
-References: <20240123155304.832636-1-r-ravikumar@ti.com>
- <20240123155304.832636-3-r-ravikumar@ti.com>
-From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <20240123155304.832636-3-r-ravikumar@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 24 Jan 2024 06:17:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15089
+ <meta-arago@lists.yoctoproject.org>; Wed, 24 Jan 2024 22:07:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15091
 
+From: Denys Dmytriyenko <denys@konsulko.com>
 
+distutils was deprecated from latest Python, use setuptools intead.
 
-On 23/01/24 21:23, Rahul T R wrote:
-> This is required to avoid the frame drops and increase the tolrence
-> for CSI capture using gsteamer
-> 
-> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+---
+ .../packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packa=
+gegroup-arago-tisdk-host.bb b/meta-arago-extras/recipes-core/packagegroup=
+s/nativesdk-packagegroup-arago-tisdk-host.bb
+index 859d9eab..7e77d12f 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup=
+-arago-tisdk-host.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup=
+-arago-tisdk-host.bb
+@@ -27,7 +27,7 @@ EXTRA_TI_TOOLS =3D " \
+ RDEPENDS:${PN} =3D "\
+     nativesdk-packagegroup-sdk-host \
+     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'nativesdk-waylan=
+d-dev', '', d)} \
+-    nativesdk-python3-distutils \
++    nativesdk-python3-setuptools \
+     nativesdk-python3-numpy \
+     nativesdk-git \
+     nativesdk-mtd-utils-ubifs \
+--=20
+2.25.1
 
-> ---
->  ...ct-Increase-min-buffers-for-CSI-capt.patch | 32 +++++++++++++++++++
->  .../gstreamer1.0-plugins-good_1.20.%.bbappend |  3 +-
->  2 files changed, 34 insertions(+), 1 deletion(-)
->  create mode 100644 meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0005-HACK-gstv4l2object-Increase-min-buffers-for-CSI-capt.patch
-> 
-> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0005-HACK-gstv4l2object-Increase-min-buffers-for-CSI-capt.patch b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0005-HACK-gstv4l2object-Increase-min-buffers-for-CSI-capt.patch
-> new file mode 100644
-> index 00000000..cd3ff613
-> --- /dev/null
-> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good/0005-HACK-gstv4l2object-Increase-min-buffers-for-CSI-capt.patch
-> @@ -0,0 +1,32 @@
-> +From a314ac52a306f8ddde1b53321b8cba5e35f5fa72 Mon Sep 17 00:00:00 2001
-> +From: Rahul T R <r-ravikumar@ti.com>
-> +Date: Tue, 10 Oct 2023 14:42:13 +0530
-> +Subject: [PATCH] HACK: gstv4l2object: Increase min buffers for CSI capture
-> +
-> +With default min buffers, frame drops are observed with CSI capture
-> +pipeline with VISS, LDC and DSS with DMABuf Import mode
-> +
-> +Increasing min buffers queued in v4l2src seems to fix this issue.
-> +Need more amalysis on the exact root cause
-> +
-> +Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-> +---
-> + sys/v4l2/gstv4l2object.c | 2 ++
-> + 1 file changed, 2 insertions(+)
-> +
-> +diff --git a/sys/v4l2/gstv4l2object.c b/sys/v4l2/gstv4l2object.c
-> +index 4ce9fac..9f5a85b 100644
-> +--- a/sys/v4l2/gstv4l2object.c
-> ++++ b/sys/v4l2/gstv4l2object.c
-> +@@ -5172,6 +5172,8 @@ gst_v4l2_object_decide_allocation (GstV4l2Object * obj, GstQuery * query)
-> +      * pool, we'll need what the driver one, and one more, so we can dequeu */
-> +     if (0 == strcmp(obj->vcap.driver, "wave5-dec")) {
-> +         own_min = obj->min_buffers + 3;
-> ++    } else if (0 == strcmp(obj->vcap.driver, "j721e-csi2rx")) {
-> ++        own_min = obj->min_buffers + 4;
-> +     } else {
-> +         own_min = obj->min_buffers + 1;
-> +     }
-> +-- 
-> +2.34.1
-> +
-> diff --git a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.20.%.bbappend b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.20.%.bbappend
-> index 2a1a6e68..782b54a4 100644
-> --- a/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.20.%.bbappend
-> +++ b/meta-arago-extras/recipes-multimedia/gstreamer/gstreamer1.0-plugins-good_1.20.%.bbappend
-> @@ -5,6 +5,7 @@ SRC_URI:append = " \
->      file://0002-Adding-support-for-bayer-formats-with-IR-component.patch \
->      file://0003-v4l2-Changes-for-DMA-Buf-import-j721s2.patch \
->      file://0004-v4l2-Give-preference-to-contiguous-format-if-support.patch \
-> +    file://0005-HACK-gstv4l2object-Increase-min-buffers-for-CSI-capt.patch \
->  "
->  
-> -PR:append = ".arago1"
-> +PR:append = ".arago2"
 
