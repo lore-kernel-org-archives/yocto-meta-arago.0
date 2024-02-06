@@ -2,47 +2,47 @@ Return-Path: <detheridge@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 863DDC4829E
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6F32BC4829C
 	for <webhook@archiver.kernel.org>; Tue,  6 Feb 2024 17:58:48 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web11.28350.1707242326856101021
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web10.28485.1707242327445320675
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 06 Feb 2024 09:58:46 -0800
+ Tue, 06 Feb 2024 09:58:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=v87rqr1V;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: detheridge@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=xfO6UbYN;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: detheridge@ti.com)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 416Hwj5S119218;
-	Tue, 6 Feb 2024 11:58:45 -0600
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 416HwkwQ072851;
+	Tue, 6 Feb 2024 11:58:46 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707242325;
-	bh=OToOtTFN8hs7mi+lB3XDWKtqXQCv0WD2lqVGwSLOXf0=;
+	s=ti-com-17Q1; t=1707242326;
+	bh=qLFd/TdBAzqg5zbj0Xe337LKol8c+cCRhgMFy8oMcAQ=;
 	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=v87rqr1V16vgcLMq+Z5CUZL+opaKq2qqYWw6WvYksvm5PhSuyoCTDUPKl4+0WPwPa
-	 5USJfK2RHqqJBJTN7XFcCoZlwHbkByZqT7cOjUYRtSm0qcVVEZ9ewYFd1Aaq5g1uRU
-	 zSf2w9VQkvRsa+6Hy9/uEY/hzAZuZDjtjOcZnx+g=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 416HwjXU039897
+	b=xfO6UbYN5s9iNvw5afWCsQaiCwEldagajFtEsqtL3LPFA/0X4yC++/4PjclCpcfx4
+	 3nk7g3HagsoqzapHljERvXWij2wKsAyCceRx6eQg2H1LSb8Dv3htgyowYoGf7gpbyV
+	 z+blHZ4/ltqSIb28e6id9oFkilsWfMRppJ4VFwWU=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 416HwkLM039907
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 6 Feb 2024 11:58:45 -0600
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 6 Feb 2024 11:58:46 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 6
- Feb 2024 11:58:45 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2024 11:58:46 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 6 Feb 2024 11:58:45 -0600
+ Frontend Transport; Tue, 6 Feb 2024 11:58:46 -0600
 Received: from uda0867391.dal.design.ti.com (uda0867391.dhcp.ti.com [128.247.81.32])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 416HwhcS064292;
-	Tue, 6 Feb 2024 11:58:45 -0600
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 416HwhcT064292;
+	Tue, 6 Feb 2024 11:58:46 -0600
 From: <detheridge@ti.com>
 To: <meta-arago@lists.yoctoproject.org>, <reatmon@ti.com>,
         <denys@konsulko.com>
 CC: <rs@ti.com>, <detheridge@ti.com>
-Subject: [meta-arago][kirkstone][PATCH  3/4] meta-arago: images: update tisdk-default-image to include chromium
-Date: Tue, 6 Feb 2024 11:58:40 -0600
-Message-ID: <20240206175841.32717-4-detheridge@ti.com>
+Subject: [meta-arago][kirkstone][PATCH  4/4] meta-arago: tisdk-default-image: remove old chromium logic
+Date: Tue, 6 Feb 2024 11:58:41 -0600
+Message-ID: <20240206175841.32717-5-detheridge@ti.com>
 X-Mailer: git-send-email 2.36.1
 In-Reply-To: <20240206175841.32717-1-detheridge@ti.com>
 References: <20240206175841.32717-1-detheridge@ti.com>
@@ -54,33 +54,48 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Tue, 06 Feb 2024 17:58:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15120
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15121
 
 From: Darren Etheridge <detheridge@ti.com>
 
-If the chromium-browser-layer is detected, then add
-chromium-ozone-wayland into the default image.
-
-If the layer is detected then append chromium-ozone-wayland to the
-IMAGE_INSTALL variable.  This increases the build time and image size
-which is why we make this conditional on the browser layer being
-present.
+The new dynamic meta-chromium-browser layer will do this same thing
+and add chromium-ozone-wayland into the image if the layer is detected.
+This is a hangover from dunfell and doesn't serve any purpose in
+kirkstone so removing to uncomplicate things.
 
 Signed-off-by: Darren Etheridge <detheridge@ti.com>
 ---
- .../recipes-core/images/tisdk-default-image.bbappend           | 3 +++
- 1 file changed, 3 insertions(+)
- create mode 100644 meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-core/images/tisdk-default-image.bbappend
+ .../recipes-core/images/tisdk-default-image.bb         | 10 ----------
+ 1 file changed, 10 deletions(-)
 
-diff --git a/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-core/images/tisdk-default-image.bbappend b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-core/images/tisdk-default-image.bbappend
-new file mode 100644
-index 00000000..7224fe72
---- /dev/null
-+++ b/meta-arago-distro/dynamic-layers/chromium-browser-layer/recipes-core/images/tisdk-default-image.bbappend
-@@ -0,0 +1,3 @@
-+PR:append = ".chromium0"
-+
-+IMAGE_INSTALL:append = " chromium-ozone-wayland"
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
+index 7761ac34..9c3446f3 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
+@@ -39,15 +39,6 @@ export IMAGE_BASENAME = "tisdk-default-image"
+ # available on the HW.
+ IMAGE_FSTYPES:remove:omapl138 = "ubifs ubi"
+ 
+-# Below is the delta in packages between old fuller and a new smaller default rootfs
+-CHROMIUM = ""
+-CHROMIUM:append:omap-a15 = "\
+-    chromium-ozone-wayland \
+-"
+-CHROMIUM:append:k3 = "\
+-    chromium-ozone-wayland \
+-"
+-
+ EXTRABROWSERS = " \
+     qtwebbrowser-examples \
+     qtwebengine-qmlplugins \
+@@ -56,7 +47,6 @@ EXTRABROWSERS = " \
+ 
+ PYTHON2APPS = " \
+     ${@bb.utils.contains('DISTRO_FEATURES','opengl',"${EXTRABROWSERS}",'',d)} \
+-    ${@bb.utils.contains("BBFILE_COLLECTIONS","browser-layer",bb.utils.contains('DISTRO_FEATURES','wayland',"${CHROMIUM}",'',d),'',d)} \
+ "
+ 
+ DEVTOOLS = " \
 -- 
 2.36.1
 
