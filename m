@@ -1,61 +1,82 @@
-Return-Path: <denis@denix.org>
+Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 55FB2C48297
-	for <webhook@archiver.kernel.org>; Mon, 12 Feb 2024 16:45:10 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.11113.1707756300154341980
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6C1FBC4829C
+	for <webhook@archiver.kernel.org>; Mon, 12 Feb 2024 17:06:40 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web10.11781.1707757595664507726
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 12 Feb 2024 08:45:00 -0800
+ Mon, 12 Feb 2024 09:06:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 1EF5F40C6C;
-	Mon, 12 Feb 2024 16:44:59 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Z72AOavc1yuW; Mon, 12 Feb 2024 16:44:59 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 61FB5406B9;
-	Mon, 12 Feb 2024 16:44:55 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 8712C163E30; Mon, 12 Feb 2024 11:44:54 -0500 (EST)
-Date: Mon, 12 Feb 2024 11:44:54 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: Sinthu Raja <sinthu.raja@mistralsolutions.com>
-Cc: meta-arago@lists.yoctoproject.org, reatmon@ti.com,
-	Sinthu Raja <sinthu.raja@ti.com>
-Subject: Re: [meta-arago][kirkstone][PATCH] graphics: kms++: Enable
- OmapCard support in pykms library
-Message-ID: <20240212164454.GI15614@denix.org>
-References: <20240212163122.20728-1-sinthu.raja@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=PMixoWp7;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: afd@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41CH6WQW081771;
+	Mon, 12 Feb 2024 11:06:32 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707757592;
+	bh=iajlP3+tEZnfzFWOcY7xTrQ4a/+7vnmXgpUHLy6UDyc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=PMixoWp7o9016xMot3Oz/HaXfPF0wHPUraniYBQPJKzyKiL9wyxTtLX3ipvebsgP6
+	 8P5KOtepA7li/PgnsZQftjSoaoJ/vzimex7687lSX/2tBbhAlCsigIypwCHCjir71f
+	 Q0P02FbknWrV3VILIq1o8Naj+vXAhUumUVj5UqKk=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41CH6WpR065793
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 12 Feb 2024 11:06:32 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 12
+ Feb 2024 11:06:32 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 12 Feb 2024 11:06:31 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41CH6VW7020778;
+	Mon, 12 Feb 2024 11:06:31 -0600
+Message-ID: <0bf9ab21-a7dd-478f-b406-888115e9c727@ti.com>
+Date: Mon, 12 Feb 2024 11:06:31 -0600
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][kirkstone][PATCH] graphics: kms++: Enable OmapCard
+ support in pykms library
+Content-Language: en-US
+To: <sinthu.raja@mistralsolutions.com>, <meta-arago@lists.yoctoproject.org>,
+        <reatmon@ti.com>, Denys Dmytriyenko <denis@denix.org>
+CC: Sinthu Raja <sinthu.raja@ti.com>
+References: <20240212163122.20728-1-sinthu.raja@ti.com>
+From: Andrew Davis <afd@ti.com>
 In-Reply-To: <20240212163122.20728-1-sinthu.raja@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 12 Feb 2024 16:45:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15166
+ <meta-arago@lists.yoctoproject.org>; Mon, 12 Feb 2024 17:06:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15167
 
-On Mon, Feb 12, 2024 at 10:01:22PM +0530, Sinthu Raja wrote:
+On 2/12/24 10:31 AM, Sinthu Raja M via lists.yoctoproject.org wrote:
 > From: Sinthu Raja <sinthu.raja@ti.com>
 > 
 > AM57x platform supports OMAP DRM. By default the pykms library
 > disabled the OmapCard support. Enable the same by defining the
 > HAS_LIBDRM_OMAP as a compiler flags
+
+What project uses this feature? I didn't think there were any
+remaining users of the libdrm OMAP specific framebuffers.
+
+Andrew
+
 > 
 > Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
 > ---
->  ...-Add-OMAP-Card-support-for-AM57x-DRM.patch | 26 +++++++++++++++++++
->  .../recipes-graphics/kms++/kms++_git.bb       |  2 ++
->  2 files changed, 28 insertions(+)
->  create mode 100644 meta-arago-extras/recipes-graphics/kms++/kms++/0001-Add-OMAP-Card-support-for-AM57x-DRM.patch
+>   ...-Add-OMAP-Card-support-for-AM57x-DRM.patch | 26 +++++++++++++++++++
+>   .../recipes-graphics/kms++/kms++_git.bb       |  2 ++
+>   2 files changed, 28 insertions(+)
+>   create mode 100644 meta-arago-extras/recipes-graphics/kms++/kms++/0001-Add-OMAP-Card-support-for-AM57x-DRM.patch
 > 
 > diff --git a/meta-arago-extras/recipes-graphics/kms++/kms++/0001-Add-OMAP-Card-support-for-AM57x-DRM.patch b/meta-arago-extras/recipes-graphics/kms++/kms++/0001-Add-OMAP-Card-support-for-AM57x-DRM.patch
 > new file mode 100644
@@ -67,11 +88,7 @@ On Mon, Feb 12, 2024 at 10:01:22PM +0530, Sinthu Raja wrote:
 > +From: Sinthu Raja <sinthu.raja@ti.com>
 > +Date: Mon, 12 Feb 2024 21:47:52 +0530
 > +Subject: [PATCH] Add OMAP Card support for AM57x DRM
-
-Upstream-Status?
-https://docs.yoctoproject.org/contributor-guide/recipe-style-guide.html#patch-upstream-status
-
-
+> +
 > +Signed-off-by: Sinthu Raja <sinthu.raja@ti.com>
 > +---
 > + py/pykms/meson.build | 2 +-
@@ -84,13 +101,13 @@ https://docs.yoctoproject.org/contributor-guide/recipe-style-guide.html#patch-up
 > +@@ -49,7 +49,7 @@ if get_option('libutils')
 > +     pykms_deps += [ libkmsxxutil_dep ]
 > + endif
-> + 
+> +
 > +-pykms_args = [ '-fvisibility=hidden' ]
 > ++pykms_args = [ '-fvisibility=hidden' , '-DHAS_LIBDRM_OMAP' ]
-> + 
+> +
 > + destdir = get_option('libdir') / 'python' + py3_dep.version() / 'site-packages/pykms'
-> + 
-> +-- 
+> +
+> +--
 > +2.36.1
 > +
 > diff --git a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
@@ -98,14 +115,9 @@ https://docs.yoctoproject.org/contributor-guide/recipe-style-guide.html#patch-up
 > --- a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
 > +++ b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
 > @@ -28,3 +28,5 @@ inherit python3native meson pkgconfig update-alternatives
->  ALTERNATIVE_PRIORITY = "100"
->  ALTERNATIVE:${PN} = "kmstest"
->  ALTERNATIVE_LINK_NAME[kmstest] = "${bindir}/kmstest"
+>   ALTERNATIVE_PRIORITY = "100"
+>   ALTERNATIVE:${PN} = "kmstest"
+>   ALTERNATIVE_LINK_NAME[kmstest] = "${bindir}/kmstest"
 > +
 > +SRC_URI:append:am57xx = "file://0001-Add-OMAP-Card-support-for-AM57x-DRM.patch"
-
-Leading whitespace when using :append
-
--- 
-Denys
 
