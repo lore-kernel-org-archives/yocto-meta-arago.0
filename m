@@ -2,48 +2,50 @@ Return-Path: <r-gunasekaran@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A7C68C48BC1
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A7B63C48297
 	for <webhook@archiver.kernel.org>; Mon, 12 Feb 2024 17:57:20 +0000 (UTC)
 Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web10.13210.1707760632633798515
+ by mx.groups.io with SMTP id smtpd.web11.13367.1707760636957455992
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 12 Feb 2024 09:57:12 -0800
+ Mon, 12 Feb 2024 09:57:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=q9ecJxpY;
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=chFSuRpR;
  spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: r-gunasekaran@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41CHvA9V091448;
-	Mon, 12 Feb 2024 11:57:10 -0600
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41CHvFKl091462;
+	Mon, 12 Feb 2024 11:57:15 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707760630;
-	bh=dNP9g92H0fPZsA6uo7MWXjklJ6n/HEDkIieNVFula2Q=;
-	h=From:To:CC:Subject:Date;
-	b=q9ecJxpYDEJnojULgr/sTjgPZoKrY1hupXSEn4f3/fnGUIc7tClnm25+IZIGjnPrk
-	 EsGw2bYTJf6Wi92J4XYA02U9aKAcW6Avdqk4sQGl+ELeex5cGmV/N7p97MU3+zV6K6
-	 TF4p2+VvOKZSTp/CKguuCko6qWJiMouHGB437I5g=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41CHvAJs020889
+	s=ti-com-17Q1; t=1707760635;
+	bh=rclLOJhZhG7Pxb7hB1RgBBYGiO5Wtgmyg1xRuT68LMc=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=chFSuRpRSgkvYU2d9h7YF+qe5EKx+ZQ4IZOiSwlyKqfuFRmVkhQcxMXHTSJKl7G0Z
+	 lM/A1C09zSooj59TO37McAzaLpPZj+WwyTVGBnZYTnA53kg7/tIJgi35CC00/DLQit
+	 9DAbxDxu/JPi9yQjpMKbHFumOHbHbqy9iMM/nUB0=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41CHvFuA023870
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 12 Feb 2024 11:57:10 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 12 Feb 2024 11:57:15 -0600
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 12
- Feb 2024 11:57:09 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2024 11:57:15 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 12 Feb 2024 11:57:10 -0600
+ Frontend Transport; Mon, 12 Feb 2024 11:57:15 -0600
 Received: from uda0500640.dal.design.ti.com (uda0500640.dhcp.ti.com [172.24.227.88])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41CHv7cX116944;
-	Mon, 12 Feb 2024 11:57:07 -0600
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41CHv7cZ116944;
+	Mon, 12 Feb 2024 11:57:13 -0600
 From: Ravi Gunasekaran <r-gunasekaran@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
 CC: <denis@denix.org>, <reatmon@ti.com>, <g-gupta@ti.com>, <praneeth@ti.com>,
         <r-gunasekaran@ti.com>, <srk@ti.com>, <c-shilwant@ti.com>
-Subject: [master/kirkstone][PATCH v3 0/2] Add systemd service for sysrepo and netopeer
-Date: Mon, 12 Feb 2024 23:27:04 +0530
-Message-ID: <20240212175706.27950-1-r-gunasekaran@ti.com>
+Subject: [master/kirkstone][PATCH v3 2/2] meta-arago-extras: sysrepo: Update netopeer and sysrepo to start under systemd
+Date: Mon, 12 Feb 2024 23:27:06 +0530
+Message-ID: <20240212175706.27950-3-r-gunasekaran@ti.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20240212175706.27950-1-r-gunasekaran@ti.com>
+References: <20240212175706.27950-1-r-gunasekaran@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
@@ -51,15 +53,20 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Mon, 12 Feb 2024 17:57:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15168
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15170
 
-This series introduces unit files needed to start sysrepo and netopeer under
-systemd. While adding this change, I have also updated the recipes in
-recipes-sysrepo to use yocto variables
+The init.d scripts for sysrepo and netopeer2-server requires certain
+other init.d scripts that are now removed. And the systemd services generated
+systemd-sysv-generator is not sufficient.
 
+So introduce new unit files for sysrepo and netopeer2 and update the
+respective bitbake recipes.
+
+Signed-off-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+---
 Changes since v2:
 ----------------
-* Introduced new patch [1/2] to fix the yocto variables
+* No change. v1 and v2 contained only a single a patch
 
 Changes since v1:
 ----------------
@@ -68,24 +75,191 @@ Changes since v1:
 v2: https://lore.kernel.org/yocto-meta-arago/20240212075433.24446-1-r-gunasekaran@ti.com/
 v1: https://lore.kernel.org/yocto-meta-arago/20240209103337.25332-1-r-gunasekaran@ti.com/
 
-Ravi Gunasekaran (2):
-  meta-arago-extras: sysrepo: Adopt Yocto variable names
-  meta-arago-extras: sysrepo: Update netopeer and sysrepo to start under
-    systemd
-
- .../libnetconf2/libnetconf2_git.bb            |  2 +-
- .../recipes-sysrepo/libyang/libyang_git.bb    |  2 +-
  .../netopeer2-serverd.service                 | 29 +++++++++++++++
- .../netopeer2-server/netopeer2-server_git.bb  | 34 ++++++++++++-----
+ .../netopeer2-server/netopeer2-server_git.bb  | 20 +++++++++-
  .../sysrepo/sysrepo/sysrepod.service          | 37 +++++++++++++++++++
- .../recipes-sysrepo/sysrepo/sysrepo_git.bb    | 37 ++++++++++++++-----
- .../tsn-yang-models/tsn-yang-models_git.bb    | 16 ++++----
- 7 files changed, 128 insertions(+), 29 deletions(-)
+ .../recipes-sysrepo/sysrepo/sysrepo_git.bb    | 23 ++++++++++--
+ 4 files changed, 104 insertions(+), 5 deletions(-)
  create mode 100644 meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server/netopeer2-serverd.service
  create mode 100644 meta-arago-extras/recipes-sysrepo/sysrepo/sysrepo/sysrepod.service
 
-
-base-commit: db4752d19a46406683f4a4adf8187de8075b70b6
+diff --git a/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server/netopeer2-serverd.service b/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server/netopeer2-serverd.service
+new file mode 100644
+index 00000000..3b365fca
+--- /dev/null
++++ b/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server/netopeer2-serverd.service
+@@ -0,0 +1,29 @@
++#Permission is hereby granted, free of charge, to any person obtaining a copy
++#of this software and associated documentation files (the "Software"), to deal
++#in the Software without restriction, including without limitation the rights
++#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++#copies of the Software, and to permit persons to whom the Software is
++#furnished to do so, subject to the following conditions:
++#
++#The above copyright notice and this permission notice shall be included in
++#all copies or substantial portions of the Software.
++#
++#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
++#THE SOFTWARE.
++
++[Unit]
++Description=Netopeer2-Server
++After=sysrepod.service
++
++[Service]
++RemainAfterExit=true
++Type=oneshot
++ExecStart=/usr/sbin/netopeer2-server -v 1
++
++[Install]
++WantedBy=multi-user.target
+diff --git a/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bb b/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bb
+index 96853ecf..8902cf3b 100644
+--- a/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bb
++++ b/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-server_git.bb
+@@ -3,7 +3,12 @@ DESCRIPTION = "Netopeer2 is based on the new generation of the NETCONF and YANG
+ LICENSE = "BSD-3-Clause"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=41daedff0b24958b2eba4f9086d782e1"
+ 
+-SRC_URI = "git://github.com/CESNET/Netopeer2.git;protocol=https;branch=devel file://netopeer2-server"
++SRC_URI = "git://github.com/CESNET/Netopeer2.git;protocol=https;branch=devel \
++          ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', \
++	        'file://netopeer2-server', '', d)} \
++          ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', \
++	        'file://netopeer2-serverd.service', '', d)} \
++          "
+ 
+ PV = "2.1.59+git${SRCPV}"
+ SRCREV = "b81788d9a81770313a0eb7f88d4224726b3d6e15"
+@@ -16,10 +21,15 @@ RDEPENDS:${PN} += "bash curl"
+ FILES:${PN} += "${datadir}/yang* ${datadir}/netopeer2/* ${libdir}/sysrepo-plugind/*"
+ 
+ inherit cmake pkgconfig
++inherit ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}
+ 
+ # Specify any options you want to pass to cmake using EXTRA_OECMAKE:
+ EXTRA_OECMAKE = " -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE:String=Release -DINSTALL_MODULES=OFF -DGENERATE_HOSTKEY=OFF -DMERGE_LISTEN_CONFIG=OFF"
+ 
++SYSTEMD_PACKAGES = "${PN}"
++SYSTEMD_SERVICE:${PN} = "netopeer2-serverd.service"
++SYSTEMD_AUTO_ENABLE:${PN} = "disable"
++
+ do_install:append () {
+     install -d ${D}${sysconfdir}/netopeer2/scripts
+     install -o root -g root ${S}/scripts/setup.sh ${D}${sysconfdir}/netopeer2/scripts/setup.sh
+@@ -27,5 +37,11 @@ do_install:append () {
+     install -o root -g root ${S}/scripts/merge_config.sh ${D}${sysconfdir}/netopeer2/scripts/merge_config.sh
+     install -d ${D}${sysconfdir}/netopeer2
+     install -d ${D}${sysconfdir}/init.d
+-    install -m 0755 ${WORKDIR}/netopeer2-server ${D}${sysconfdir}/init.d/
++    if ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'true', 'false', d)}; then
++        install -m 0755 ${WORKDIR}/netopeer2-server ${D}${sysconfdir}/init.d/
++    fi
++    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
++        install -d ${D}${systemd_system_unitdir}
++        install -m 0644 ${WORKDIR}/netopeer2-serverd.service ${D}${systemd_system_unitdir}
++    fi
+ }
+diff --git a/meta-arago-extras/recipes-sysrepo/sysrepo/sysrepo/sysrepod.service b/meta-arago-extras/recipes-sysrepo/sysrepo/sysrepo/sysrepod.service
+new file mode 100644
+index 00000000..1b4c3e3b
+--- /dev/null
++++ b/meta-arago-extras/recipes-sysrepo/sysrepo/sysrepo/sysrepod.service
+@@ -0,0 +1,37 @@
++#Permission is hereby granted, free of charge, to any person obtaining a copy
++#of this software and associated documentation files (the "Software"), to deal
++#in the Software without restriction, including without limitation the rights
++#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++#copies of the Software, and to permit persons to whom the Software is
++#furnished to do so, subject to the following conditions:
++#
++#The above copyright notice and this permission notice shall be included in
++#all copies or substantial portions of the Software.
++#
++#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
++#THE SOFTWARE.
++
++[Unit]
++Description=Sysrepo
++After=local-fs.target
++
++[Service]
++RemainAfterExit=true
++Type=oneshot
++
++ExecStartPre=/bin/bash -c 'NP2_MODULE_DIR="/usr/share/yang/modules/netopeer2" \
++			   NP2_MODULE_PERMS="600" NP2_MODULE_OWNER="root" \
++			   NP2_MODULE_GROUP="root" \
++			   exec /etc/netopeer2/scripts/setup.sh'
++ExecStartPre=/bin/bash /etc/netopeer2/scripts/merge_hostkey.sh
++ExecStartPre=/bin/bash /etc/netopeer2/scripts/merge_config.sh
++ExecStartPre= touch /etc/sysrepo/init
++ExecStart=/usr/bin/sysrepo-plugind
++
++[Install]
++WantedBy=multi-user.target
+diff --git a/meta-arago-extras/recipes-sysrepo/sysrepo/sysrepo_git.bb b/meta-arago-extras/recipes-sysrepo/sysrepo/sysrepo_git.bb
+index 3a77e170..a57b6bce 100644
+--- a/meta-arago-extras/recipes-sysrepo/sysrepo/sysrepo_git.bb
++++ b/meta-arago-extras/recipes-sysrepo/sysrepo/sysrepo_git.bb
+@@ -4,7 +4,11 @@ DESCRIPTION = ""
+ LICENSE = "BSD-3-Clause"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=ef345f161efb68c3836e6f5648b2312f"
+ 
+-SRC_URI = "git://github.com/sysrepo/sysrepo.git;protocol=https;branch=devel file://sysrepo"
++SRC_URI = "git://github.com/sysrepo/sysrepo.git;protocol=https;branch=devel \
++           ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', \
++                'file://sysrepo','', d)} \
++           ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', \
++                'file://sysrepod.service','', d)}"
+ 
+ PV = "2.2.71+git${SRCPV}"
+ SRCREV = "b828f0ab4693c613cc66efd053a146e05854d5c8"
+@@ -16,12 +20,18 @@ DEPENDS = "libyang protobuf protobuf-c protobuf-c-native libredblack libev libne
+ FILES:${PN} += "${datadir}/yang/* ${libdir}/sysrepo-plugind/*"
+ 
+ inherit cmake pkgconfig python3native python3-dir
++inherit ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}
++
+ 
+ # Specify any options you want to pass to cmake using EXTRA_OECMAKE:
+ EXTRA_OECMAKE = " -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_BUILD_TYPE:String=Release -DBUILD_EXAMPLES:String=False -DENABLE_TESTS:String=False -DREPOSITORY_LOC:PATH=/etc/sysrepo  -DCALL_TARGET_BINS_DIRECTLY=False -DGEN_LANGUAGE_BINDINGS:String=False "
+ 
+ BBCLASSEXTEND = "native nativesdk"
+ 
++SYSTEMD_PACKAGES = "${PN}"
++SYSTEMD_SERVICE:${PN} = "sysrepod.service"
++SYSTEMD_AUTO_ENABLE:${PN} = "disable"
++
+ do_install:append () {
+     install -d ${D}${sysconfdir}/sysrepo/data/notifications
+     install -d ${D}${sysconfdir}/sysrepo/yang
+@@ -29,6 +39,13 @@ do_install:append () {
+     install -o root -g root ${S}/modules/ietf-netconf-with-defaults.yang ${D}${sysconfdir}/sysrepo/yang/ietf-netconf-with-defaults@2011-06-01.yang
+     install -o root -g root ${S}/modules/ietf-netconf.yang ${D}${sysconfdir}/sysrepo/yang/ietf-netconf@2011-06-01.yang
+     install -d ${D}${sysconfdir}/init.d
+-    install -m 0775 ${WORKDIR}/sysrepo ${D}${sysconfdir}/init.d/
+-    install -d ${D}${libdir}/sysrepo/plugins
++    if ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'true', 'false', d)}; then
++        install -m 0775 ${WORKDIR}/sysrepo ${D}${sysconfdir}/init.d/
++        install -d ${D}${libdir}/sysrepo/plugins
++    fi
++
++    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
++        install -d ${D}${systemd_system_unitdir}
++        install -m 0644 ${WORKDIR}/sysrepod.service ${D}${systemd_system_unitdir}
++    fi
+ }
 -- 
 2.17.1
 
