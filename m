@@ -1,94 +1,82 @@
-Return-Path: <denis@denix.org>
+Return-Path: <afd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1398BC4829A
-	for <webhook@archiver.kernel.org>; Tue, 13 Feb 2024 20:07:47 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.23638.1707854857680078274
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DB78FC4829A
+	for <webhook@archiver.kernel.org>; Tue, 13 Feb 2024 22:51:47 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web11.28523.1707864706380891544
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 13 Feb 2024 12:07:38 -0800
+ Tue, 13 Feb 2024 14:51:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id D954F40C56;
-	Tue, 13 Feb 2024 20:07:36 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id nTKig-30FxDv; Tue, 13 Feb 2024 20:07:36 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 09DFD406B9;
-	Tue, 13 Feb 2024 20:07:31 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 425F5163E90; Tue, 13 Feb 2024 15:07:31 -0500 (EST)
-Date: Tue, 13 Feb 2024 15:07:31 -0500
-From: Denys Dmytriyenko <denis@denix.org>
-To: Randolph Sapp <rs@ti.com>
-Cc: detheridge@ti.com, meta-arago@lists.yoctoproject.org, reatmon@ti.com,
-	denys@konsulko.com
-Subject: Re: [meta-arago][kirkstone][PATCHv2 2/4] meta-arago: distro: add a
- bbappend to patch the chromium browser
-Message-ID: <20240213200731.GA1572@denix.org>
-References: <20240209185635.32675-1-detheridge@ti.com>
- <20240209185635.32675-3-detheridge@ti.com>
- <20240213185921.GM15614@denix.org>
- <819a7cd2-2f3f-4ade-8e00-0dc6bd40ce1d@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=lQBJVk7z;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: afd@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41DMpjvK111716;
+	Tue, 13 Feb 2024 16:51:45 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1707864705;
+	bh=Y9tSOZjmifcPTiYx+7hP1u0codlf2lCwQ/5JlF25UBE=;
+	h=From:To:CC:Subject:Date;
+	b=lQBJVk7zssDECHB4SuyiLtq65UshlPjBpbPdwSpJTmjevvHMa81AQ/unwHoGwm5uO
+	 gutpIjLHDbjHmbF6vkTyGqbr06HEP/DTN34tqR9x/w5C2y6Am0xcuf+yFEOpHegZzn
+	 1gfL891KWOBUuEs4Qy9gT/Aazy9Nc/zauWvaJ5yM=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41DMpiHP116449
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 13 Feb 2024 16:51:45 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 13
+ Feb 2024 16:51:44 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 13 Feb 2024 16:51:44 -0600
+Received: from lelvsmtp6.itg.ti.com ([10.249.42.149])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41DMpiKV108281;
+	Tue, 13 Feb 2024 16:51:44 -0600
+From: Andrew Davis <afd@ti.com>
+To: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
+        <meta-arago@lists.yoctoproject.org>
+CC: Andrew Davis <afd@ti.com>
+Subject: [meta-arago][master][PATCH] packagegroup-arago-tisdk-addons: Disable big-data-ipc-demo
+Date: Tue, 13 Feb 2024 16:51:43 -0600
+Message-ID: <20240213225143.1590112-1-afd@ti.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <819a7cd2-2f3f-4ade-8e00-0dc6bd40ce1d@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 13 Feb 2024 20:07:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15181
+ <meta-arago@lists.yoctoproject.org>; Tue, 13 Feb 2024 22:51:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15182
 
-On Tue, Feb 13, 2024 at 01:17:25PM -0600, Randolph Sapp wrote:
-> On 2/13/24 12:59, Denys Dmytriyenko wrote:
-> >On Fri, Feb 09, 2024 at 12:56:33PM -0600, Etheridge, Darren via lists.yoctoproject.org wrote:
-> >>From: Darren Etheridge <detheridge@ti.com>
-> >>
-> >>This applies a patch for meta-browser/chromium-ozone-wayland to make the
-> >>sandboxing work with the Imagination GPU components without the need for
-> >>the --no-sandbox flag.
-> >>
-> >>GPU acceleration in Chromium is dependant on IMG DDK 23.3.  It works
-> >>across AXE/BXS/8XE GPU's.   No acceleration is expected for SGX.
-> >>
-> >>Also add an upstream patch to stop Chromium from segfaulting when it is
-> >>run with no input devices connected to the board.
-> >>Patch was retrieved from:
-> >>https://chromium.googlesource.com/chromium/src/+/323077958301bc321d840a2c2b983ab469934753
-> >>
-> >>Signed-off-by: Darren Etheridge <detheridge@ti.com>
-> >>---
-> >>
-> >>v2 Fixed typo on bbappend in subject
-> >>
-> >>  meta-arago-distro/conf/layer.conf             |  2 +
-> >>  ...omium-ozone-wayland_111.0.5563.64.bbappend |  8 ++
-> >>  ...dbox-allow-access-to-PowerVR-GPU-fro.patch | 74 +++++++++++++++++++
-> >>  ...-chromium-32307795-fix-nullprt-deref.patch | 52 +++++++++++++
-> >>  4 files changed, 136 insertions(+)
-> [snip]
-> >
-> > Both chromium patches are missing Upstream-Status: tag - I guess
-> first should
-> > be "Inappropriate [TI RGX specific]" and the second "Backport" if
-> it's already
-> > merged upstream:
-> > https://docs.yoctoproject.org/contributor-guide/recipe-style-guide.html#patch-upstream-status
-> >
-> 
-> One for these patches is directly from upstream Chromium. Only one
-> is RGX specific
+Temporarily disable big-data-ipc-demo until a fix for missing
+kernel header dma_buf_phys.h is complete.
 
-And that's exactly what I said.
+Signed-off-by: Andrew Davis <afd@ti.com>
+---
+ .../packagegroups/packagegroup-arago-tisdk-addons.bb            | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 4dec290a..87782326 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -88,8 +88,8 @@ EXTRA_PACKAGES:omapl138 = " \
+ EXTRA_PACKAGES:append:omap-a15 = " ti-ipc-examples-linux"
+ EXTRA_PACKAGES:append:omapl138 = " ti-ipc-examples-linux"
+ 
++# ${@bb.utils.contains('MACHINE_FEATURES','dsp','big-data-ipc-demo big-data-ipc-demo-firmware','',d)}
+ EXTRA_PACKAGES:append:omap-a15 = " \
+-    ${@bb.utils.contains('MACHINE_FEATURES','dsp','big-data-ipc-demo big-data-ipc-demo-firmware','',d)} \
+ "
+ 
+ # acontis-atemsys
+-- 
+2.39.2
 
-> but thanks for linking the naming reference so we
-> can make this clear.
 
