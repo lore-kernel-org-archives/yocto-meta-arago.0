@@ -1,162 +1,90 @@
-Return-Path: <detheridge@ti.com>
+Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A17E3C48BC1
-	for <webhook@archiver.kernel.org>; Wed, 14 Feb 2024 19:40:49 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web10.2169.1707939647936971757
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AC7CBC48BC4
+	for <webhook@archiver.kernel.org>; Thu, 15 Feb 2024 01:01:33 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web10.3979.1707958886358015110
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 14 Feb 2024 11:40:48 -0800
+ Wed, 14 Feb 2024 17:01:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=Lbs8gaPz;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: detheridge@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41EJekqT032370;
-	Wed, 14 Feb 2024 13:40:46 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=G9MCdOU2;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: rs@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41F11OOb067487;
+	Wed, 14 Feb 2024 19:01:24 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1707939646;
-	bh=Dkhw/ZjbYIA3DEu35UvXVe4Z7X2Wnmj1nu/CUq4vXws=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=Lbs8gaPzmH7V0J5+V+M+dAU+HXublVKTYk1HFu73l/Ic9YLgebglGdpcEQHvhHRJ5
-	 BAZEPwGAUEuPeVFckU9ywBXDGUtuj6PUyVqSvwlcftgvqp6UygU8rhYt6v1daxM2MD
-	 PtmWVfMx9BZFjORShsacNYo/CjX/wZnG1OCfY7Rw=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41EJek0L120059
+	s=ti-com-17Q1; t=1707958884;
+	bh=Lyr0/Flf/rL7lgrq1tKp6Ido3uf2oi4anEDobgyqGgM=;
+	h=From:To:CC:Subject:Date:In-Reply-To:References;
+	b=G9MCdOU2Cr1izm5fkpwP9H+puffFGzl5GZ7FshBrm5mVkY+a5tvhcP8Jq9He676VT
+	 8CnwMCFJLHkj0s3zR69IsNgZYxJj8OpBduUqwWTarIIxOKU5qdqj/W5Kyz8QjxaGkG
+	 L8zbni0FNTn59txcbCy1K6378iMhBpCi8eJV1FsA=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41F11OZO083755
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 14 Feb 2024 13:40:46 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 14 Feb 2024 19:01:24 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 14
- Feb 2024 13:40:46 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ Feb 2024 19:01:23 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 14 Feb 2024 13:40:46 -0600
-Received: from [128.247.81.107] (lt5cg1254qm7.dhcp.ti.com [128.247.81.107])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41EJekSL104710;
-	Wed, 14 Feb 2024 13:40:46 -0600
-Message-ID: <5a735fca-585b-4e12-a11b-529c4c9830c4@ti.com>
-Date: Wed, 14 Feb 2024 13:40:46 -0600
+ Frontend Transport; Wed, 14 Feb 2024 19:01:23 -0600
+Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41F11NcD014547;
+	Wed, 14 Feb 2024 19:01:23 -0600
+From: <rs@ti.com>
+To: <detheridge@ti.com>, <reatmon@ti.com>, <denys@konsulko.com>
+CC: <meta-arago@lists.yoctoproject.org>, <j-choudhary@ti.com>
+Subject: [meta-arago][kirkstone][PATCH 2/2] weston: include backported patches in bbappend
+Date: Wed, 14 Feb 2024 19:01:23 -0600
+Message-ID: <20240215010123.3432540-3-rs@ti.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240215010123.3432540-1-rs@ti.com>
+References: <20240215010123.3432540-1-rs@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago] [oe-layersetup][master][PATCH] configs: Add new
- master config for chromium support and clang
-Content-Language: en-US
-To: <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-References: <20240214193551.11148-1-reatmon@ti.com>
-From: "Etheridge, Darren" <detheridge@ti.com>
-In-Reply-To: <20240214193551.11148-1-reatmon@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 14 Feb 2024 19:40:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15187
+ <meta-arago@lists.yoctoproject.org>; Thu, 15 Feb 2024 01:01:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15190
 
+From: Randolph Sapp <rs@ti.com>
 
+Backport some sanity patches related to plane ordering and positioning.
+These are all mandatory for display subsystems that allow primary and
+overlay mutable zpos.
 
-On 2/14/2024 1:35 PM, Ryan Eatmon via lists.yoctoproject.org wrote:
-> In the spirit of the kirkstone config changes to support clang and
-> chromium, update the master configs also.
-> 
-> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+They have all already been accepted upstream already and are only
+necessary for Kirkstone's version of Weston.
 
-Acked-by: Darren Etheridge <detheridge@ti.com>
+Signed-off-by: Randolph Sapp <rs@ti.com>
+---
+ .../recipes-graphics/wayland/weston_10.0.2.bbappend           | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> ---
->   configs/arago-master-chromium-config.txt | 16 ++++++++++++++++
->   configs/arago-master-config.txt          |  4 ++--
->   configs/arago-master-next-config.txt     |  4 ++--
->   configs/arago-master-wip-config.txt      |  4 ++--
->   4 files changed, 22 insertions(+), 6 deletions(-)
->   create mode 100644 configs/arago-master-chromium-config.txt
-> 
-> diff --git a/configs/arago-master-chromium-config.txt b/configs/arago-master-chromium-config.txt
-> new file mode 100644
-> index 0000000..94dfc53
-> --- /dev/null
-> +++ b/configs/arago-master-chromium-config.txt
-> @@ -0,0 +1,16 @@
-> +# This file takes repo entries in the format
-> +# repo name,repo uri,repo branch,repo commit[,layers=layer1:layer2...:layern]
-> +
-> +bitbake,https://git.openembedded.org/bitbake,master,HEAD
-> +meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
-> +meta-browser,https://github.com/OSSystems/meta-browser.git,master,HEAD,layers=
-> +meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
-> +meta-virtualization,https://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
-> +meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
-> +meta-ti,https://git.yoctoproject.org/meta-ti,master,HEAD,layers=meta-ti-extras:meta-ti-bsp
-> +meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> +meta-clang,https://github.com/kraj/meta-clang,master,HEAD,layers=
-> +oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
-> +OECORELAYERCONF=./sample-files/bblayers.conf.sample
-> +OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-> +BITBAKE_INCLUSIVE_VARS=yes
-> diff --git a/configs/arago-master-config.txt b/configs/arago-master-config.txt
-> index 821df1b..ca58dd2 100644
-> --- a/configs/arago-master-config.txt
-> +++ b/configs/arago-master-config.txt
-> @@ -3,13 +3,13 @@
->   
->   bitbake,https://git.openembedded.org/bitbake,master,HEAD
->   meta-arago,https://git.yoctoproject.org/meta-arago,master,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
-> -#meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
-> +#meta-browser,https://github.com/OSSystems/meta-browser.git,master,HEAD,layers=
->   meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
->   meta-virtualization,https://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
->   meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
->   meta-ti,https://git.yoctoproject.org/meta-ti,master,HEAD,layers=meta-ti-extras:meta-ti-bsp
->   meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> -#meta-clang,https://github.com/kraj/meta-clang,master,HEAD,layers=
-> +meta-clang,https://github.com/kraj/meta-clang,master,HEAD,layers=
->   oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
->   OECORELAYERCONF=./sample-files/bblayers.conf.sample
->   OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-> diff --git a/configs/arago-master-next-config.txt b/configs/arago-master-next-config.txt
-> index bcaa5cc..74c497e 100644
-> --- a/configs/arago-master-next-config.txt
-> +++ b/configs/arago-master-next-config.txt
-> @@ -11,13 +11,13 @@ MOTD: NOTE:
->   
->   bitbake,https://git.openembedded.org/bitbake,master,HEAD
->   meta-arago,https://git.yoctoproject.org/meta-arago,master-next,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
-> -#meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
-> +#meta-browser,https://github.com/OSSystems/meta-browser.git,master,HEAD,layers=
->   meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
->   meta-virtualization,https://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
->   meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
->   meta-ti,https://git.yoctoproject.org/meta-ti,master-next,HEAD,layers=meta-ti-extras:meta-ti-bsp
->   meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> -#meta-clang,https://github.com/kraj/meta-clang,master,HEAD,layers=
-> +meta-clang,https://github.com/kraj/meta-clang,master,HEAD,layers=
->   oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
->   OECORELAYERCONF=./sample-files/bblayers.conf.sample
->   OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
-> diff --git a/configs/arago-master-wip-config.txt b/configs/arago-master-wip-config.txt
-> index 86d4b43..cf70ead 100644
-> --- a/configs/arago-master-wip-config.txt
-> +++ b/configs/arago-master-wip-config.txt
-> @@ -3,13 +3,13 @@
->   
->   bitbake,https://git.openembedded.org/bitbake,master,HEAD
->   meta-arago,https://git.yoctoproject.org/meta-arago,master-wip,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
-> -#meta-browser,https://github.com/OSSystems/meta-browser.git,master,5f365ef0f842ba4651efe88787cf9c63bc8b6cb3,layers=
-> +#meta-browser,https://github.com/OSSystems/meta-browser.git,master,HEAD,layers=
->   meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
->   meta-virtualization,https://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
->   meta-openembedded,https://git.openembedded.org/meta-openembedded,master,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
->   meta-ti,https://git.yoctoproject.org/meta-ti,master-wip,HEAD,layers=meta-ti-extras:meta-ti-bsp
->   meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-> -#meta-clang,https://github.com/kraj/meta-clang,master,HEAD,layers=
-> +meta-clang,https://github.com/kraj/meta-clang,master,HEAD,layers=
->   oe-core,https://git.openembedded.org/openembedded-core,master,HEAD,layers=meta
->   OECORELAYERCONF=./sample-files/bblayers.conf.sample
->   OECORELOCALCONF=./sample-files/local-arago64-v2.conf.sample
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_10.0.2.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_10.0.2.bbappend
+index 698ff03e..3c577c6d 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston_10.0.2.bbappend
++++ b/meta-arago-distro/recipes-graphics/wayland/weston_10.0.2.bbappend
+@@ -9,6 +9,10 @@ PR:append = ".arago1"
+ SRC_URI += " \
+         file://0001-backend-drm-Select-plane-based-on-current-attached-C.patch \
+         file://0001-Revert-require-GL_EXT_unpack_subimage-commit.patch \
++        file://0001-backend-drm-Pre-sort-plane-list-by-zpos.patch \
++        file://0002-backend-drm-fix-plane-sorting.patch \
++        file://0003-drm-backend-Remember-to-set-the-zpos-for-the-scanout.patch \
++        file://0004-backend-drm-Assign-plane_idx-by-plane-list-order.patch \
+ "
+ 
+ # required for weston user to interact with the render devices
+-- 
+2.43.0
+
 
