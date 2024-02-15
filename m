@@ -2,46 +2,46 @@ Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EB982C48BEF
-	for <webhook@archiver.kernel.org>; Thu, 15 Feb 2024 17:56:41 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web11.25173.1708019799160587005
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DCB12C48BC4
+	for <webhook@archiver.kernel.org>; Thu, 15 Feb 2024 18:01:31 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web10.26025.1708020084619600467
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 15 Feb 2024 09:56:39 -0800
+ Thu, 15 Feb 2024 10:01:24 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=lbPavPu5;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: rs@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41FHubDt081145;
-	Thu, 15 Feb 2024 11:56:37 -0600
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=TBlqafgr;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: rs@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41FI1Mjl080487;
+	Thu, 15 Feb 2024 12:01:22 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708019797;
-	bh=2LqGSs4m+qfHe9w9dgtJNGREA2Iws3mnUkgOg/dpPSo=;
+	s=ti-com-17Q1; t=1708020082;
+	bh=6rocStNa0cfc8kkPkRV+/lg06tVReHr233HP/22w2iI=;
 	h=From:To:CC:Subject:Date;
-	b=lbPavPu5zOWDO/3IWuuBPEdWpnloIAj3ssU1uqIZLnEVBc+XSTQrmOCA7oqSWMRpK
-	 vqzISgIwJZcIIAmrvBvfLUvt9cvMW0G/gabS3S7GTUf55mK+Rrx6b0wEY7olI6sS8M
-	 lkMMxjavKRvCBhr2kPUPBFOvR5RIUS47oLNEvFDA=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41FHubFi023335
+	b=TBlqafgrT19bByCMQBnPza6q2qz69RJmDHOlMif9cwDq49m4i0PQ3dCR9G+FjZyaE
+	 MtPEBOnRjorGGW41wpLIRJdvOEf0lBDCd511lqaKTUR9SKY2Vj7Wnh4QLLP+lDK4yY
+	 YwSbBgIqx7m8zpfLT2oxKgBXHGjpwXHJ0w8jWydA=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41FI1MWW123367
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 15 Feb 2024 11:56:37 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 15 Feb 2024 12:01:22 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 15
- Feb 2024 11:56:37 -0600
+ Feb 2024 12:01:22 -0600
 Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE115.ent.ti.com
  (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 15 Feb 2024 11:56:37 -0600
+ Frontend Transport; Thu, 15 Feb 2024 12:01:22 -0600
 Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41FHubAj020892;
-	Thu, 15 Feb 2024 11:56:37 -0600
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41FI1MkB029717;
+	Thu, 15 Feb 2024 12:01:22 -0600
 From: <rs@ti.com>
 To: <detheridge@ti.com>, <reatmon@ti.com>, <denys@konsulko.com>
-CC: <meta-arago@lists.yoctoproject.org>, <j-choudhary@ti.com>
-Subject: [meta-arago][kirkstone][PATCHv2 0/2] Backport some sanity patches for weston
-Date: Thu, 15 Feb 2024 11:56:35 -0600
-Message-ID: <20240215175637.3438470-1-rs@ti.com>
+CC: <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][kirkstone][PATCH] weston: add upstrem-status to plane selection patch
+Date: Thu, 15 Feb 2024 11:59:34 -0600
+Message-ID: <20240215175933.3445346-2-rs@ti.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -50,37 +50,33 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 15 Feb 2024 17:56:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15197
+ <meta-arago@lists.yoctoproject.org>; Thu, 15 Feb 2024 18:01:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15199
 
 From: Randolph Sapp <rs@ti.com>
 
-Backport some sanity patches from newer versions of Weston that fix issues
-related to display systems that have primary and overlay planes with mutable
-zpos.
+Add Upstream-Status to a patch we've been carrying for a bit. This has been
+accepted upstream and will be present in the version of Weston used in the next
+Yocto LTS.
 
-Older versions of Weston never attempted to force primary planes to zpos 0 or
-check to make sure overlay planes were ordered in such a way that prevented
-z-fighting. These patches are backported from newer versions for use with
-Kirkstone's locked version of Weston. They have all already been upstreamed.
+Signed-off-by: Randolph Sapp <rs@ti.com>
+---
+ ...1-backend-drm-Select-plane-based-on-current-attached-C.patch | 2 ++
+ 1 file changed, 2 insertions(+)
 
-v2: Fix the malformed Upstream-Status tags
-
-Randolph Sapp (2):
-  weston: backport patches related to plane positioning
-  weston: include backported patches in bbappend
-
- ...kend-drm-Pre-sort-plane-list-by-zpos.patch | 48 +++++++++++++++
- .../0002-backend-drm-fix-plane-sorting.patch  | 38 ++++++++++++
- ...mber-to-set-the-zpos-for-the-scanout.patch | 33 +++++++++++
- ...Assign-plane_idx-by-plane-list-order.patch | 58 +++++++++++++++++++
- .../wayland/weston_10.0.2.bbappend            |  4 ++
- 5 files changed, 181 insertions(+)
- create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0001-backend-drm-Pre-sort-plane-list-by-zpos.patch
- create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0002-backend-drm-fix-plane-sorting.patch
- create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0003-drm-backend-Remember-to-set-the-zpos-for-the-scanout.patch
- create mode 100644 meta-arago-distro/recipes-graphics/wayland/weston/0004-backend-drm-Assign-plane_idx-by-plane-list-order.patch
-
+diff --git a/meta-arago-distro/recipes-graphics/wayland/weston/0001-backend-drm-Select-plane-based-on-current-attached-C.patch b/meta-arago-distro/recipes-graphics/wayland/weston/0001-backend-drm-Select-plane-based-on-current-attached-C.patch
+index d9444641..9c13a5bf 100644
+--- a/meta-arago-distro/recipes-graphics/wayland/weston/0001-backend-drm-Select-plane-based-on-current-attached-C.patch
++++ b/meta-arago-distro/recipes-graphics/wayland/weston/0001-backend-drm-Select-plane-based-on-current-attached-C.patch
+@@ -10,6 +10,8 @@ the corresponding CRTC.
+ This prevents changing a CRTC's primary plane when it is active
+ which is not allowed by the DRM framework.
+ 
++Upstream-Status: Backport 94afcbcdc3f1b1cfc050da242c9c70009b007fc6
++
+ Based-on-patch-by: Eric Ruei <e-ruei1@ti.com>
+ Signed-off-by: Andrew Davis <afd@ti.com>
+ ---
 -- 
 2.43.0
 
