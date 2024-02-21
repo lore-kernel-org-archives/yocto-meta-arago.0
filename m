@@ -1,426 +1,335 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <a-limaye@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 996ABC48BC3
-	for <webhook@archiver.kernel.org>; Tue, 20 Feb 2024 20:53:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 518F7C48BC3
+	for <webhook@archiver.kernel.org>; Wed, 21 Feb 2024 06:01:15 +0000 (UTC)
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.24354.1708462407671742616
+ by mx.groups.io with SMTP id smtpd.web10.7156.1708495265650133809
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 20 Feb 2024 12:53:27 -0800
+ Tue, 20 Feb 2024 22:01:05 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=vRGPnKpb;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41KKrMoY117098;
-	Tue, 20 Feb 2024 14:53:22 -0600
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=rXwRhYmH;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: a-limaye@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41L60xhT005087;
+	Wed, 21 Feb 2024 00:00:59 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1708462402;
-	bh=Y1lMuJME1k7PNtjnfP0Qm+8SdcgDLHVI3hVx4q3mJ5g=;
+	s=ti-com-17Q1; t=1708495259;
+	bh=/MGzACCegSVKGuVVaof1fUbYlpWmG0aleazHWTgeDo0=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=vRGPnKpb46u94i3+5sUclGxlPJE1aT7ZV25J5/w7hrqIcB+TgivUDmA08HByIdbc0
-	 ybUDHUvbwMvmgYNyHb/SAZHWuwwAONwTW7P65yjMw852FehYa9oAepVrkpmhvjp0JW
-	 wJ4d6mViYk0R9AwqjSSaOY1My410jfh2PAp6DsWY=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41KKrMhD063642
+	b=rXwRhYmHZ/xWM2OmUjmmqG2GNNXLgUbH9lbZ6xr0CNnDMWH6ebOeN08Vpv4YQVuoZ
+	 gxjQnpxDyIv6Trj2EleAZuE0MDquxduKph5shewDVPtkl/ozexUAvRa7i0E1Zcpz/e
+	 b2pPo5XDaEQ300wprzwreb48btOk/kmJT1tngx6I=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41L60xSo032080
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 20 Feb 2024 14:53:22 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
- Feb 2024 14:53:21 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 21 Feb 2024 00:00:59 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 21
+ Feb 2024 00:00:58 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 20 Feb 2024 14:53:21 -0600
-Received: from [10.249.39.53] ([10.249.39.53])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41KKrLxS054524;
-	Tue, 20 Feb 2024 14:53:21 -0600
-Message-ID: <c045325d-7a2c-4fee-83b9-0707301bc483@ti.com>
-Date: Tue, 20 Feb 2024 14:53:21 -0600
+ Frontend Transport; Wed, 21 Feb 2024 00:00:58 -0600
+Received: from [172.24.17.33] (lt5cd112gt3k.dhcp.ti.com [172.24.17.33])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41L60ulb041433;
+	Wed, 21 Feb 2024 00:00:56 -0600
+Message-ID: <b393231d-6b89-424a-bb7d-39afab2b340a@ti.com>
+Date: Wed, 21 Feb 2024 11:30:55 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [meta-arago][kirkstone/master][PATCH v4] systemd: Add udev rules
  for persistent naming of the can devices
 Content-Language: en-US
-To: Jon Cormier <jcormier@criticallink.com>
-CC: Aniket Limaye <a-limaye@ti.com>, Denys Dmytriyenko <denis@denix.org>,
-        Davis <afd@ti.com>, <meta-arago@lists.yoctoproject.org>,
-        Bhavya Kapoor
-	<b-kapoor@ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Jon Cormier <jcormier@criticallink.com>
+CC: Denys Dmytriyenko <denis@denix.org>, Davis <afd@ti.com>,
+        <meta-arago@lists.yoctoproject.org>, Bhavya Kapoor <b-kapoor@ti.com>
 References: <20240208183717.1983040-1-a-limaye@ti.com>
  <761e694d-8439-4e5b-9706-01da9580e409@ti.com>
  <20240213174003.GL15614@denix.org>
  <c02302e6-7667-45e3-ac33-8fe195d110dc@ti.com>
  <17B4A99ACD42F65A.28679@lists.yoctoproject.org>
  <CADL8D3ajFe9DoNL0zriBVkOCAVLLh6GDmDevBNf2wPpCydMDOw@mail.gmail.com>
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <CADL8D3ajFe9DoNL0zriBVkOCAVLLh6GDmDevBNf2wPpCydMDOw@mail.gmail.com>
+ <c045325d-7a2c-4fee-83b9-0707301bc483@ti.com>
+From: "Limaye, Aniket" <a-limaye@ti.com>
+In-Reply-To: <c045325d-7a2c-4fee-83b9-0707301bc483@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by lelv0142.ext.ti.com id 41KKrMoY117098
+Content-Transfer-Encoding: base64
+X-MIME-Autoconverted: from 8bit to base64 by lelv0142.ext.ti.com id 41L60xhT005087
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 20 Feb 2024 20:53:28 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15205
+ <meta-arago@lists.yoctoproject.org>; Wed, 21 Feb 2024 06:01:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15206
 
-
-
-On 2/20/2024 2:19 PM, Jon Cormier wrote:
-> This is probably a better recipe to bbappend,=20
-> sources/oe-core/meta/recipes-core/udev/udev-extraconf_1.1.bb=20
-> <http://udev-extraconf_1.1.bb>
-
-That's not a bad idea.
-
-Aniket, can you take a look and see if moving these changes over to that=20
-recipe allows us to support both systemd and sysvinint?  Bear in mind,=20
-we have already accepted this patch series, so any changes would need to=20
-be a new patch.
-
-
-
-> On Sat, Feb 17, 2024 at 8:30=E2=80=AFAM Jon Cormier via lists.yoctoproj=
-ect.org=20
-> <http://lists.yoctoproject.org>=20
-> <jcormier=3Dcriticallink.com@lists.yoctoproject.org=20
-> <mailto:criticallink.com@lists.yoctoproject.org>> wrote:
->=20
->     I think the current issue is that we are bbappend-ing a systemd
->     recipe now
->     to install the udev rules. Perhaps there is a udev recipe that shou=
-ld be
->     bbappended instead?
->=20
->     On Fri, Feb 16, 2024, 3:14=E2=80=AFAM Aniket Limaye via
->     lists.yoctoproject.org <http://lists.yoctoproject.org>
->     <a-limaye=3Dti.com@lists.yoctoproject.org
->     <mailto:ti.com@lists.yoctoproject.org>> wrote:
->=20
->      > I assume the question being how do we plan to handle images wher=
-e
->      > sysvinit is used instead of systemd?
->      >
->      > I do not have a lot of experience with sysvinit vs systemd or
->     udev rules
->      > for that matter. Do you have any suggestions to make these namin=
-g
->      > conventions apply to both?
->      >
->      > Regards,
->      > Aniket
->      >
->      >
->      > On 2/13/2024 11:10 PM, Denys Dmytriyenko wrote:
->      > > BTW, what about sysvinit support?
->      > >
->      > >
->      > > On Thu, Feb 08, 2024 at 01:28:47PM -0600, Andrew Davis via
->      > lists.yoctoproject.org <http://lists.yoctoproject.org> wrote:
->      > >> On 2/8/24 12:37 PM, Aniket Limaye via lists.yoctoproject.org
->     <http://lists.yoctoproject.org> wrote:
->      > >>> When multiple CAN's are present, then names that are getting
->     assigned
->      > >>> change after every boot even after providing alias in the de=
-vice
->      > >>> tree.
->      > >>> So add udev rules to specify the interface name to use for
->      > >>> each mcan device, to make it persistent across reboots.
->      > >>>
->      > >>> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com
->     <mailto:b-kapoor@ti.com>>
->      > >>> Signed-off-by: Aniket Limaye <a-limaye@ti.com
->     <mailto:a-limaye@ti.com>>
->      > >>> ---
->      > >>> v4:
->      > >>>=C2=A0 =C2=A0 =C2=A0 - Reformat patch to avoid repeated code =
-for k3 devices
->      > >>>=C2=A0 =C2=A0 =C2=A0 - Add udev rules for dra7xx and ti33x to=
-o, as suggested
->      > >>>=C2=A0 =C2=A0 =C2=A0 - Still keeping separate files per platf=
-orm to avoid
->     potential
->      > >>>=C2=A0 =C2=A0 =C2=A0 =C2=A0 confusion created by merging all =
-the rules into one file
->      > >> You can keep the rules in separate files, but you need to ins=
-tall
->      > >> them all unconditionally for all machines. Otherwise this pac=
-kage
->      > >> becomes machine specific, which we should avoid.
->      > >>
->      > >> Andrew
->      > >>
->      > >>> v3: Fix typos in the filename being installed in v2
->      > >>> v2:
->      > >>>=C2=A0 =C2=A0 =C2=A0 - Switch to udev rules instead of system=
-d network links,
->     as per
->      > >>>=C2=A0 =C2=A0 =C2=A0 =C2=A0 feedback from v1:
->      > https://lists.yoctoproject.org/g/meta-arago/message/15104
->     <https://lists.yoctoproject.org/g/meta-arago/message/15104>
->      > >>>=C2=A0 =C2=A0 =C2=A0 - Also, extend to Sitara devices as well
->      > >>> ---
->      > >>>=C2=A0 =C2=A0.../systemd/systemd/37-can-am62.rules=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0|=C2=A0 4 ++
->      > >>>=C2=A0 =C2=A0.../systemd/systemd/37-can-dra7.rules=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0|=C2=A0 2 +
->      > >>>=C2=A0 =C2=A0.../systemd/systemd/37-can-j7.rules=C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0| 20 ++++++++++
->      > >>>=C2=A0 =C2=A0.../systemd/systemd/37-can-ti33x.rules=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 |=C2=A0 2 +
->      > >>>=C2=A0 =C2=A0.../recipes-core/systemd/systemd_%.bbappend=C2=A0=
- =C2=A0| 37
->      > +++++++++++++++++++
->      > >>>=C2=A0 =C2=A05 files changed, 65 insertions(+)
->      > >>>=C2=A0 =C2=A0create mode 100644
->      > meta-arago-distro/recipes-core/systemd/systemd/37-can-am62.rules
->      > >>>=C2=A0 =C2=A0create mode 100644
->      > meta-arago-distro/recipes-core/systemd/systemd/37-can-dra7.rules
->      > >>>=C2=A0 =C2=A0create mode 100644
->      > meta-arago-distro/recipes-core/systemd/systemd/37-can-j7.rules
->      > >>>=C2=A0 =C2=A0create mode 100644
->      > meta-arago-distro/recipes-core/systemd/systemd/37-can-ti33x.rule=
-s
->      > >>>
->      > >>> diff --git
->      > a/meta-arago-distro/recipes-core/systemd/systemd/37-can-am62.rul=
-es
->      > b/meta-arago-distro/recipes-core/systemd/systemd/37-can-am62.rul=
-es
->      > >>> new file mode 100644
->      > >>> index 00000000..59dc8075
->      > >>> --- /dev/null
->      > >>> +++
->     b/meta-arago-distro/recipes-core/systemd/systemd/37-can-am62.rules
->      > >>> @@ -0,0 +1,4 @@
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"4e08=
-000.can",
->      > NAME=3D"mcu_mcan0"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"4e18=
-000.can",
->      > NAME=3D"mcu_mcan1"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2070=
-1000.can",
->      > NAME=3D"main_mcan0"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2071=
-1000.can",
->      > NAME=3D"main_mcan1"
->      > >>> diff --git
->      > a/meta-arago-distro/recipes-core/systemd/systemd/37-can-dra7.rul=
-es
->      > b/meta-arago-distro/recipes-core/systemd/systemd/37-can-dra7.rul=
-es
->      > >>> new file mode 100644
->      > >>> index 00000000..3b14150d
->      > >>> --- /dev/null
->      > >>> +++
->     b/meta-arago-distro/recipes-core/systemd/systemd/37-can-dra7.rules
->      > >>> @@ -0,0 +1,2 @@
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"4ae3=
-c000.can",
->      > NAME=3D"main_dcan1"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"4848=
-0000.can",
->      > NAME=3D"main_dcan2"
->      > >>> diff --git
->      > a/meta-arago-distro/recipes-core/systemd/systemd/37-can-j7.rules
->      > b/meta-arago-distro/recipes-core/systemd/systemd/37-can-j7.rules
->      > >>> new file mode 100644
->      > >>> index 00000000..f2804ecd
->      > >>> --- /dev/null
->      > >>> +++
->     b/meta-arago-distro/recipes-core/systemd/systemd/37-can-j7.rules
->      > >>> @@ -0,0 +1,20 @@
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"4052=
-8000.can",
->      > NAME=3D"mcu_mcan0"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"4056=
-8000.can",
->      > NAME=3D"mcu_mcan1"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2701=
-000.can",
->      > NAME=3D"main_mcan0"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2711=
-000.can",
->      > NAME=3D"main_mcan1"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2721=
-000.can",
->      > NAME=3D"main_mcan2"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2731=
-000.can",
->      > NAME=3D"main_mcan3"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2741=
-000.can",
->      > NAME=3D"main_mcan4"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2751=
-000.can",
->      > NAME=3D"main_mcan5"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2761=
-000.can",
->      > NAME=3D"main_mcan6"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2771=
-000.can",
->      > NAME=3D"main_mcan7"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2781=
-000.can",
->      > NAME=3D"main_mcan8"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2791=
-000.can",
->      > NAME=3D"main_mcan9"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"27a1=
-000.can",
->      > NAME=3D"main_mcan10"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"27b1=
-000.can",
->      > NAME=3D"main_mcan11"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"27c1=
-000.can",
->      > NAME=3D"main_mcan12"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"27d1=
-000.can",
->      > NAME=3D"main_mcan13"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2681=
-000.can",
->      > NAME=3D"main_mcan14"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"2691=
-000.can",
->      > NAME=3D"main_mcan15"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"26a1=
-000.can",
->      > NAME=3D"main_mcan16"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"26b1=
-000.can",
->      > NAME=3D"main_mcan17"
->      > >>> diff --git
->      > a/meta-arago-distro/recipes-core/systemd/systemd/37-can-ti33x.ru=
-les
->      > b/meta-arago-distro/recipes-core/systemd/systemd/37-can-ti33x.ru=
-les
->      > >>> new file mode 100644
->      > >>> index 00000000..62d650fe
->      > >>> --- /dev/null
->      > >>> +++
->     b/meta-arago-distro/recipes-core/systemd/systemd/37-can-ti33x.rules
->      > >>> @@ -0,0 +1,2 @@
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"481c=
-c000.can",
->      > NAME=3D"main_dcan0"
->      > >>> +SUBSYSTEM=3D=3D"net", ACTION=3D=3D"add", KERNELS=3D=3D"481d=
-0000.can",
->      > NAME=3D"main_dcan1"
->      > >>> diff --git
->     a/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend
->      > b/meta-arago-distro/recipes-core/systemd/systemd_%.bbappend
->      > >>> index f38606f2..f9919708 100644
->      > >>> --- a/meta-arago-distro/recipes-core/systemd/systemd_%.bbapp=
-end
->      > >>> +++ b/meta-arago-distro/recipes-core/systemd/systemd_%.bbapp=
-end
->      > >>> @@ -2,6 +2,21 @@ PR:append =3D ".arago7"
->      > >>>=C2=A0 =C2=A0FILESEXTRAPATHS:prepend :=3D "${THISDIR}/${PN}:"
->      > >>> +CAN_RULES_SRC =3D ""
->      > >>> +CAN_RULES_SRC:j721e =3D "37-can-j7.rules"
->      > >>> +CAN_RULES_SRC:j7200 =3D "37-can-j7.rules"
->      > >>> +CAN_RULES_SRC:j721s2 =3D "37-can-j7.rules"
->      > >>> +CAN_RULES_SRC:j784s4 =3D "37-can-j7.rules"
->      > >>> +CAN_RULES_SRC:am65xx =3D "37-can-j7.rules"
->      > >>> +CAN_RULES_SRC:am62xx =3D "37-can-am62.rules"
->      > >>> +CAN_RULES_SRC:am62pxx =3D "37-can-am62.rules"
->      > >>> +CAN_RULES_SRC:am62axx =3D "37-can-am62.rules"
->      > >>> +CAN_RULES_SRC:am64xx =3D "37-can-am62.rules"
->      > >>> +CAN_RULES_SRC:j722s =3D "37-can-am62.rules"
->      > >>> +CAN_RULES_SRC:dra7xx =3D "37-can-dra7.rules"
->      > >>> +CAN_RULES_SRC:ti33x =3D "37-can-ti33x.rules"
->      > >>> +CAN_RULES_TGT =3D "${libdir}/udev/rules.d/37-can.rules"
->      > >>> +
->      > >>>=C2=A0 =C2=A0SRC_URI:append =3D " \
->      > >>>=C2=A0 =C2=A0 =C2=A0 =C2=A0file://local.rules \
->      > >>>=C2=A0 =C2=A0 =C2=A0 =C2=A0file://usb1-rules.sh \
->      > >>> @@ -14,6 +29,10 @@ SRC_URI:append =3D " \
->      > >>>=C2=A0 =C2=A0 =C2=A0 =C2=A0file://timesyncd.conf \
->      > >>>=C2=A0 =C2=A0"
->      > >>> +SRC_URI:append:k3 =3D " file://${CAN_RULES_SRC}"
->      > >>> +SRC_URI:append:dra7xx =3D " file://${CAN_RULES_SRC}"
->      > >>> +SRC_URI:append:ti33x =3D " file://${CAN_RULES_SRC}"
->      > >>> +
->      > >>>=C2=A0 =C2=A0do_install:append() {
->      > >>>=C2=A0 =C2=A0 =C2=A0 =C2=A0install -d ${D}${sysconfdir}/udev/=
-rules.d/
->      > >>>=C2=A0 =C2=A0 =C2=A0 =C2=A0install -m 0644 ${WORKDIR}/local.r=
-ules
->      > ${D}${sysconfdir}/udev/rules.d/
->      > >>> @@ -43,3 +62,21 @@ do_install:append() {
->      > >>>=C2=A0 =C2=A0 =C2=A0 =C2=A0install -d ${D}${sysconfdir}/syste=
-md/
->      > >>>=C2=A0 =C2=A0 =C2=A0 =C2=A0install -m 0644 ${WORKDIR}/timesyn=
-cd.conf
->      > ${D}${sysconfdir}/systemd/
->      > >>>=C2=A0 =C2=A0}
->      > >>> +
->      > >>> +do_install:append:k3() {
->      > >>> +=C2=A0 =C2=A0 install -d ${D}${libdir}/udev/rules.d
->      > >>> +=C2=A0 =C2=A0 install -m 0644 ${WORKDIR}/${CAN_RULES_SRC}
->     ${D}${CAN_RULES_TGT}
->      > >>> +}
->      > >>> +
->      > >>> +do_install:append:dra7xx() {
->      > >>> +=C2=A0 =C2=A0 install -d ${D}${libdir}/udev/rules.d
->      > >>> +=C2=A0 =C2=A0 install -m 0644 ${WORKDIR}/${CAN_RULES_SRC}
->     ${D}${CAN_RULES_TGT}
->      > >>> +}
->      > >>> +
->      > >>> +do_install:append:ti33x() {
->      > >>> +=C2=A0 =C2=A0 install -d ${D}${libdir}/udev/rules.d
->      > >>> +=C2=A0 =C2=A0 install -m 0644 ${WORKDIR}/${CAN_RULES_SRC}
->     ${D}${CAN_RULES_TGT}
->      > >>> +}
->      > >>> +
->      > >>> +FILES:udev +=3D "${CAN_RULES_TGT}"
->      > >>> +
->      >
->      >
->      >
->      >
->      >
->      >
->=20
->=20
->     -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->     Links: You receive all messages sent to this group.
->     View/Reply Online (#15202):
->     https://lists.yoctoproject.org/g/meta-arago/message/15202
->     <https://lists.yoctoproject.org/g/meta-arago/message/15202>
->     Mute This Topic: https://lists.yoctoproject.org/mt/104244496/790262=
-1
->     <https://lists.yoctoproject.org/mt/104244496/7902621>
->     Group Owner: meta-arago+owner@lists.yoctoproject.org
->     <mailto:meta-arago%2Bowner@lists.yoctoproject.org>
->     Unsubscribe: https://lists.yoctoproject.org/g/meta-arago/unsub
->     <https://lists.yoctoproject.org/g/meta-arago/unsub>
->     [jcormier@criticallink.com <mailto:jcormier@criticallink.com>]
->     -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
->=20
->=20
->=20
-> --=20
-> Jonathan Cormier
-> Software Engineer
->=20
-> Voice: 315.425.4045=C2=A0x222
->=20
->=20
->=20
-> http://www.CriticalLink.com <http://www.criticallink.com/>
-> 6712 Brooklawn Parkway,=C2=A0Syracuse, NY 13211
->=20
-> <https://www.linkedin.com/company/critical-link-llc>=20
-> <https://twitter.com/Critical_Link>
-
---=20
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
+T24gMi8yMS8yMDI0IDI6MjMgQU0sIFJ5YW4gRWF0bW9uIHdyb3RlOg0KPg0KPg0KPiBPbiAy
+LzIwLzIwMjQgMjoxOSBQTSwgSm9uIENvcm1pZXIgd3JvdGU6DQo+PiBUaGlzIGlzIHByb2Jh
+Ymx5IGEgYmV0dGVyIHJlY2lwZSB0byBiYmFwcGVuZCwgDQo+PiBzb3VyY2VzL29lLWNvcmUv
+bWV0YS9yZWNpcGVzLWNvcmUvdWRldi91ZGV2LWV4dHJhY29uZl8xLjEuYmIgDQo+PiA8aHR0
+cDovL3VkZXYtZXh0cmFjb25mXzEuMS5iYj4NCj4NCkpvbiwNCg0KVGhhbmtzIGZvciB0aGUg
+c3VnZ2VzdGlvbiENCg0KDQo+IFRoYXQncyBub3QgYSBiYWQgaWRlYS4NCj4NCj4gQW5pa2V0
+LCBjYW4geW91IHRha2UgYSBsb29rIGFuZCBzZWUgaWYgbW92aW5nIHRoZXNlIGNoYW5nZXMg
+b3ZlciB0byANCj4gdGhhdCByZWNpcGUgYWxsb3dzIHVzIHRvIHN1cHBvcnQgYm90aCBzeXN0
+ZW1kIGFuZCBzeXN2aW5pbnQ/IEJlYXIgaW4gDQo+IG1pbmQsIHdlIGhhdmUgYWxyZWFkeSBh
+Y2NlcHRlZCB0aGlzIHBhdGNoIHNlcmllcywgc28gYW55IGNoYW5nZXMgd291bGQgDQo+IG5l
+ZWQgdG8gYmUgYSBuZXcgcGF0Y2guDQo+DQpSeWFuLA0KDQpZZWFoIHN1cmUuLi4gSSBjYW4g
+Z2l2ZSBpdCBhIHNob3QsIGFzIGEgbmV3IHBhdGNoLg0KDQo+DQo+PiBPbiBTYXQsIEZlYiAx
+NywgMjAyNCBhdCA4OjMw4oCvQU0gSm9uIENvcm1pZXIgdmlhIA0KPj4gbGlzdHMueW9jdG9w
+cm9qZWN0Lm9yZyA8aHR0cDovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmc+IA0KPj4gPGpjb3Jt
+aWVyPWNyaXRpY2FsbGluay5jb21AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyANCj4+IDxtYWls
+dG86Y3JpdGljYWxsaW5rLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3JnPj4gd3JvdGU6DQo+
+Pg0KPj4gwqDCoMKgIEkgdGhpbmsgdGhlIGN1cnJlbnQgaXNzdWUgaXMgdGhhdCB3ZSBhcmUg
+YmJhcHBlbmQtaW5nIGEgc3lzdGVtZA0KPj4gwqDCoMKgIHJlY2lwZSBub3cNCj4+IMKgwqDC
+oCB0byBpbnN0YWxsIHRoZSB1ZGV2IHJ1bGVzLiBQZXJoYXBzIHRoZXJlIGlzIGEgdWRldiBy
+ZWNpcGUgdGhhdCANCj4+IHNob3VsZCBiZQ0KPj4gwqDCoMKgIGJiYXBwZW5kZWQgaW5zdGVh
+ZD8NCj4+DQo+PiDCoMKgwqAgT24gRnJpLCBGZWIgMTYsIDIwMjQsIDM6MTTigK9BTSBBbmlr
+ZXQgTGltYXllIHZpYQ0KPj4gwqDCoMKgIGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgPGh0dHA6
+Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnPg0KPj4gwqDCoMKgIDxhLWxpbWF5ZT10aS5jb21A
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KPj4gwqDCoMKgIDxtYWlsdG86dGkuY29tQGxpc3Rz
+LnlvY3RvcHJvamVjdC5vcmc+PiB3cm90ZToNCj4+DQo+PiDCoMKgwqDCoCA+IEkgYXNzdW1l
+IHRoZSBxdWVzdGlvbiBiZWluZyBob3cgZG8gd2UgcGxhbiB0byBoYW5kbGUgaW1hZ2VzIHdo
+ZXJlDQo+PiDCoMKgwqDCoCA+IHN5c3Zpbml0IGlzIHVzZWQgaW5zdGVhZCBvZiBzeXN0ZW1k
+Pw0KPj4gwqDCoMKgwqAgPg0KPj4gwqDCoMKgwqAgPiBJIGRvIG5vdCBoYXZlIGEgbG90IG9m
+IGV4cGVyaWVuY2Ugd2l0aCBzeXN2aW5pdCB2cyBzeXN0ZW1kIG9yDQo+PiDCoMKgwqAgdWRl
+diBydWxlcw0KPj4gwqDCoMKgwqAgPiBmb3IgdGhhdCBtYXR0ZXIuIERvIHlvdSBoYXZlIGFu
+eSBzdWdnZXN0aW9ucyB0byBtYWtlIHRoZXNlIG5hbWluZw0KPj4gwqDCoMKgwqAgPiBjb252
+ZW50aW9ucyBhcHBseSB0byBib3RoPw0KPj4gwqDCoMKgwqAgPg0KPj4gwqDCoMKgwqAgPiBS
+ZWdhcmRzLA0KPj4gwqDCoMKgwqAgPiBBbmlrZXQNCj4+IMKgwqDCoMKgID4NCj4+IMKgwqDC
+oMKgID4NCj4+IMKgwqDCoMKgID4gT24gMi8xMy8yMDI0IDExOjEwIFBNLCBEZW55cyBEbXl0
+cml5ZW5rbyB3cm90ZToNCj4+IMKgwqDCoMKgID4gPiBCVFcsIHdoYXQgYWJvdXQgc3lzdmlu
+aXQgc3VwcG9ydD8NCj4+IMKgwqDCoMKgID4gPg0KPj4gwqDCoMKgwqAgPiA+DQo+PiDCoMKg
+wqDCoCA+ID4gT24gVGh1LCBGZWIgMDgsIDIwMjQgYXQgMDE6Mjg6NDdQTSAtMDYwMCwgQW5k
+cmV3IERhdmlzIHZpYQ0KPj4gwqDCoMKgwqAgPiBsaXN0cy55b2N0b3Byb2plY3Qub3JnIDxo
+dHRwOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gd3JvdGU6DQo+PiDCoMKgwqDCoCA+ID4+
+IE9uIDIvOC8yNCAxMjozNyBQTSwgQW5pa2V0IExpbWF5ZSB2aWEgbGlzdHMueW9jdG9wcm9q
+ZWN0Lm9yZw0KPj4gwqDCoMKgIDxodHRwOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gd3Jv
+dGU6DQo+PiDCoMKgwqDCoCA+ID4+PiBXaGVuIG11bHRpcGxlIENBTidzIGFyZSBwcmVzZW50
+LCB0aGVuIG5hbWVzIHRoYXQgYXJlIGdldHRpbmcNCj4+IMKgwqDCoCBhc3NpZ25lZA0KPj4g
+wqDCoMKgwqAgPiA+Pj4gY2hhbmdlIGFmdGVyIGV2ZXJ5IGJvb3QgZXZlbiBhZnRlciBwcm92
+aWRpbmcgYWxpYXMgaW4gdGhlIA0KPj4gZGV2aWNlDQo+PiDCoMKgwqDCoCA+ID4+PiB0cmVl
+Lg0KPj4gwqDCoMKgwqAgPiA+Pj4gU28gYWRkIHVkZXYgcnVsZXMgdG8gc3BlY2lmeSB0aGUg
+aW50ZXJmYWNlIG5hbWUgdG8gdXNlIGZvcg0KPj4gwqDCoMKgwqAgPiA+Pj4gZWFjaCBtY2Fu
+IGRldmljZSwgdG8gbWFrZSBpdCBwZXJzaXN0ZW50IGFjcm9zcyByZWJvb3RzLg0KPj4gwqDC
+oMKgwqAgPiA+Pj4NCj4+IMKgwqDCoMKgID4gPj4+IFNpZ25lZC1vZmYtYnk6IEJoYXZ5YSBL
+YXBvb3IgPGIta2Fwb29yQHRpLmNvbQ0KPj4gwqDCoMKgIDxtYWlsdG86Yi1rYXBvb3JAdGku
+Y29tPj4NCj4+IMKgwqDCoMKgID4gPj4+IFNpZ25lZC1vZmYtYnk6IEFuaWtldCBMaW1heWUg
+PGEtbGltYXllQHRpLmNvbQ0KPj4gwqDCoMKgIDxtYWlsdG86YS1saW1heWVAdGkuY29tPj4N
+Cj4+IMKgwqDCoMKgID4gPj4+IC0tLQ0KPj4gwqDCoMKgwqAgPiA+Pj4gdjQ6DQo+PiDCoMKg
+wqDCoCA+ID4+PsKgIMKgIMKgIC0gUmVmb3JtYXQgcGF0Y2ggdG8gYXZvaWQgcmVwZWF0ZWQg
+Y29kZSBmb3IgazMgZGV2aWNlcw0KPj4gwqDCoMKgwqAgPiA+Pj7CoCDCoCDCoCAtIEFkZCB1
+ZGV2IHJ1bGVzIGZvciBkcmE3eHggYW5kIHRpMzN4IHRvbywgYXMgc3VnZ2VzdGVkDQo+PiDC
+oMKgwqDCoCA+ID4+PsKgIMKgIMKgIC0gU3RpbGwga2VlcGluZyBzZXBhcmF0ZSBmaWxlcyBw
+ZXIgcGxhdGZvcm0gdG8gYXZvaWQNCj4+IMKgwqDCoCBwb3RlbnRpYWwNCj4+IMKgwqDCoMKg
+ID4gPj4+wqAgwqAgwqAgwqAgY29uZnVzaW9uIGNyZWF0ZWQgYnkgbWVyZ2luZyBhbGwgdGhl
+IHJ1bGVzIGludG8gb25lIA0KPj4gZmlsZQ0KPj4gwqDCoMKgwqAgPiA+PiBZb3UgY2FuIGtl
+ZXAgdGhlIHJ1bGVzIGluIHNlcGFyYXRlIGZpbGVzLCBidXQgeW91IG5lZWQgdG8gDQo+PiBp
+bnN0YWxsDQo+PiDCoMKgwqDCoCA+ID4+IHRoZW0gYWxsIHVuY29uZGl0aW9uYWxseSBmb3Ig
+YWxsIG1hY2hpbmVzLiBPdGhlcndpc2UgdGhpcyANCj4+IHBhY2thZ2UNCj4+IMKgwqDCoMKg
+ID4gPj4gYmVjb21lcyBtYWNoaW5lIHNwZWNpZmljLCB3aGljaCB3ZSBzaG91bGQgYXZvaWQu
+DQo+PiDCoMKgwqDCoCA+ID4+DQo+PiDCoMKgwqDCoCA+ID4+IEFuZHJldw0KPj4gwqDCoMKg
+wqAgPiA+Pg0KPj4gwqDCoMKgwqAgPiA+Pj4gdjM6IEZpeCB0eXBvcyBpbiB0aGUgZmlsZW5h
+bWUgYmVpbmcgaW5zdGFsbGVkIGluIHYyDQo+PiDCoMKgwqDCoCA+ID4+PiB2MjoNCj4+IMKg
+wqDCoMKgID4gPj4+wqAgwqAgwqAgLSBTd2l0Y2ggdG8gdWRldiBydWxlcyBpbnN0ZWFkIG9m
+IHN5c3RlbWQgbmV0d29yayBsaW5rcywNCj4+IMKgwqDCoCBhcyBwZXINCj4+IMKgwqDCoMKg
+ID4gPj4+wqAgwqAgwqAgwqAgZmVlZGJhY2sgZnJvbSB2MToNCj4+IMKgwqDCoMKgID4gaHR0
+cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cvbWV0YS1hcmFnby9tZXNzYWdlLzE1MTA0
+DQo+PiA8aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cvbWV0YS1hcmFnby9tZXNz
+YWdlLzE1MTA0Pg0KPj4gwqDCoMKgwqAgPiA+Pj7CoCDCoCDCoCAtIEFsc28sIGV4dGVuZCB0
+byBTaXRhcmEgZGV2aWNlcyBhcyB3ZWxsDQo+PiDCoMKgwqDCoCA+ID4+PiAtLS0NCj4+IMKg
+wqDCoMKgID4gPj4+wqAgwqAuLi4vc3lzdGVtZC9zeXN0ZW1kLzM3LWNhbi1hbTYyLnJ1bGVz
+IMKgIMKgIMKgIMKgfMKgIDQgKysNCj4+IMKgwqDCoMKgID4gPj4+wqAgwqAuLi4vc3lzdGVt
+ZC9zeXN0ZW1kLzM3LWNhbi1kcmE3LnJ1bGVzIMKgIMKgIMKgIMKgfMKgIDIgKw0KPj4gwqDC
+oMKgwqAgPiA+Pj7CoCDCoC4uLi9zeXN0ZW1kL3N5c3RlbWQvMzctY2FuLWo3LnJ1bGVzIMKg
+IMKgIMKgIMKgfCAyMCArKysrKysrKysrDQo+PiDCoMKgwqDCoCA+ID4+PsKgIMKgLi4uL3N5
+c3RlbWQvc3lzdGVtZC8zNy1jYW4tdGkzM3gucnVsZXMgwqAgwqAgwqAgfMKgIDIgKw0KPj4g
+wqDCoMKgwqAgPiA+Pj4gwqAuLi4vcmVjaXBlcy1jb3JlL3N5c3RlbWQvc3lzdGVtZF8lLmJi
+YXBwZW5kwqAgwqB8IDM3DQo+PiDCoMKgwqDCoCA+ICsrKysrKysrKysrKysrKysrKysNCj4+
+IMKgwqDCoMKgID4gPj4+wqAgwqA1IGZpbGVzIGNoYW5nZWQsIDY1IGluc2VydGlvbnMoKykN
+Cj4+IMKgwqDCoMKgID4gPj4+wqAgwqBjcmVhdGUgbW9kZSAxMDA2NDQNCj4+IMKgwqDCoMKg
+ID4gbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3N5c3RlbWQvc3lzdGVtZC8zNy1j
+YW4tYW02Mi5ydWxlcw0KPj4gwqDCoMKgwqAgPiA+Pj7CoCDCoGNyZWF0ZSBtb2RlIDEwMDY0
+NA0KPj4gwqDCoMKgwqAgPiBtZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvcmUvc3lzdGVt
+ZC9zeXN0ZW1kLzM3LWNhbi1kcmE3LnJ1bGVzDQo+PiDCoMKgwqDCoCA+ID4+PsKgIMKgY3Jl
+YXRlIG1vZGUgMTAwNjQ0DQo+PiDCoMKgwqDCoCA+IG1ldGEtYXJhZ28tZGlzdHJvL3JlY2lw
+ZXMtY29yZS9zeXN0ZW1kL3N5c3RlbWQvMzctY2FuLWo3LnJ1bGVzDQo+PiDCoMKgwqDCoCA+
+ID4+PsKgIMKgY3JlYXRlIG1vZGUgMTAwNjQ0DQo+PiDCoMKgwqDCoCA+IG1ldGEtYXJhZ28t
+ZGlzdHJvL3JlY2lwZXMtY29yZS9zeXN0ZW1kL3N5c3RlbWQvMzctY2FuLXRpMzN4LnJ1bGVz
+DQo+PiDCoMKgwqDCoCA+ID4+Pg0KPj4gwqDCoMKgwqAgPiA+Pj4gZGlmZiAtLWdpdA0KPj4g
+wqDCoMKgwqAgPiANCj4+IGEvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3N5c3Rl
+bWQvc3lzdGVtZC8zNy1jYW4tYW02Mi5ydWxlcw0KPj4gwqDCoMKgwqAgPiANCj4+IGIvbWV0
+YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3N5c3RlbWQvc3lzdGVtZC8zNy1jYW4tYW02
+Mi5ydWxlcw0KPj4gwqDCoMKgwqAgPiA+Pj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4+IMKg
+wqDCoMKgID4gPj4+IGluZGV4IDAwMDAwMDAwLi41OWRjODA3NQ0KPj4gwqDCoMKgwqAgPiA+
+Pj4gLS0tIC9kZXYvbnVsbA0KPj4gwqDCoMKgwqAgPiA+Pj4gKysrDQo+PiBiL21ldGEtYXJh
+Z28tZGlzdHJvL3JlY2lwZXMtY29yZS9zeXN0ZW1kL3N5c3RlbWQvMzctY2FuLWFtNjIucnVs
+ZXMNCj4+IMKgwqDCoMKgID4gPj4+IEBAIC0wLDAgKzEsNCBAQA0KPj4gwqDCoMKgwqAgPiA+
+Pj4gK1NVQlNZU1RFTT09Im5ldCIsIEFDVElPTj09ImFkZCIsIEtFUk5FTFM9PSI0ZTA4MDAw
+LmNhbiIsDQo+PiDCoMKgwqDCoCA+IE5BTUU9Im1jdV9tY2FuMCINCj4+IMKgwqDCoMKgID4g
+Pj4+ICtTVUJTWVNURU09PSJuZXQiLCBBQ1RJT049PSJhZGQiLCBLRVJORUxTPT0iNGUxODAw
+MC5jYW4iLA0KPj4gwqDCoMKgwqAgPiBOQU1FPSJtY3VfbWNhbjEiDQo+PiDCoMKgwqDCoCA+
+ID4+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9OPT0iYWRkIiwgS0VSTkVMUz09IjIwNzAx
+MDAwLmNhbiIsDQo+PiDCoMKgwqDCoCA+IE5BTUU9Im1haW5fbWNhbjAiDQo+PiDCoMKgwqDC
+oCA+ID4+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9OPT0iYWRkIiwgS0VSTkVMUz09IjIw
+NzExMDAwLmNhbiIsDQo+PiDCoMKgwqDCoCA+IE5BTUU9Im1haW5fbWNhbjEiDQo+PiDCoMKg
+wqDCoCA+ID4+PiBkaWZmIC0tZ2l0DQo+PiDCoMKgwqDCoCA+IA0KPj4gYS9tZXRhLWFyYWdv
+LWRpc3Ryby9yZWNpcGVzLWNvcmUvc3lzdGVtZC9zeXN0ZW1kLzM3LWNhbi1kcmE3LnJ1bGVz
+DQo+PiDCoMKgwqDCoCA+IA0KPj4gYi9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvcmUv
+c3lzdGVtZC9zeXN0ZW1kLzM3LWNhbi1kcmE3LnJ1bGVzDQo+PiDCoMKgwqDCoCA+ID4+PiBu
+ZXcgZmlsZSBtb2RlIDEwMDY0NA0KPj4gwqDCoMKgwqAgPiA+Pj4gaW5kZXggMDAwMDAwMDAu
+LjNiMTQxNTBkDQo+PiDCoMKgwqDCoCA+ID4+PiAtLS0gL2Rldi9udWxsDQo+PiDCoMKgwqDC
+oCA+ID4+PiArKysNCj4+IGIvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3N5c3Rl
+bWQvc3lzdGVtZC8zNy1jYW4tZHJhNy5ydWxlcw0KPj4gwqDCoMKgwqAgPiA+Pj4gQEAgLTAs
+MCArMSwyIEBADQo+PiDCoMKgwqDCoCA+ID4+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9O
+PT0iYWRkIiwgS0VSTkVMUz09IjRhZTNjMDAwLmNhbiIsDQo+PiDCoMKgwqDCoCA+IE5BTUU9
+Im1haW5fZGNhbjEiDQo+PiDCoMKgwqDCoCA+ID4+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNU
+SU9OPT0iYWRkIiwgS0VSTkVMUz09IjQ4NDgwMDAwLmNhbiIsDQo+PiDCoMKgwqDCoCA+IE5B
+TUU9Im1haW5fZGNhbjIiDQo+PiDCoMKgwqDCoCA+ID4+PiBkaWZmIC0tZ2l0DQo+PiDCoMKg
+wqDCoCA+IGEvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL3N5c3RlbWQvc3lzdGVt
+ZC8zNy1jYW4tajcucnVsZXMNCj4+IMKgwqDCoMKgID4gYi9tZXRhLWFyYWdvLWRpc3Ryby9y
+ZWNpcGVzLWNvcmUvc3lzdGVtZC9zeXN0ZW1kLzM3LWNhbi1qNy5ydWxlcw0KPj4gwqDCoMKg
+wqAgPiA+Pj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4+IMKgwqDCoMKgID4gPj4+IGluZGV4
+IDAwMDAwMDAwLi5mMjgwNGVjZA0KPj4gwqDCoMKgwqAgPiA+Pj4gLS0tIC9kZXYvbnVsbA0K
+Pj4gwqDCoMKgwqAgPiA+Pj4gKysrDQo+PiBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMt
+Y29yZS9zeXN0ZW1kL3N5c3RlbWQvMzctY2FuLWo3LnJ1bGVzDQo+PiDCoMKgwqDCoCA+ID4+
+PiBAQCAtMCwwICsxLDIwIEBADQo+PiDCoMKgwqDCoCA+ID4+PiArU1VCU1lTVEVNPT0ibmV0
+IiwgQUNUSU9OPT0iYWRkIiwgS0VSTkVMUz09IjQwNTI4MDAwLmNhbiIsDQo+PiDCoMKgwqDC
+oCA+IE5BTUU9Im1jdV9tY2FuMCINCj4+IMKgwqDCoMKgID4gPj4+ICtTVUJTWVNURU09PSJu
+ZXQiLCBBQ1RJT049PSJhZGQiLCBLRVJORUxTPT0iNDA1NjgwMDAuY2FuIiwNCj4+IMKgwqDC
+oMKgID4gTkFNRT0ibWN1X21jYW4xIg0KPj4gwqDCoMKgwqAgPiA+Pj4gK1NVQlNZU1RFTT09
+Im5ldCIsIEFDVElPTj09ImFkZCIsIEtFUk5FTFM9PSIyNzAxMDAwLmNhbiIsDQo+PiDCoMKg
+wqDCoCA+IE5BTUU9Im1haW5fbWNhbjAiDQo+PiDCoMKgwqDCoCA+ID4+PiArU1VCU1lTVEVN
+PT0ibmV0IiwgQUNUSU9OPT0iYWRkIiwgS0VSTkVMUz09IjI3MTEwMDAuY2FuIiwNCj4+IMKg
+wqDCoMKgID4gTkFNRT0ibWFpbl9tY2FuMSINCj4+IMKgwqDCoMKgID4gPj4+ICtTVUJTWVNU
+RU09PSJuZXQiLCBBQ1RJT049PSJhZGQiLCBLRVJORUxTPT0iMjcyMTAwMC5jYW4iLA0KPj4g
+wqDCoMKgwqAgPiBOQU1FPSJtYWluX21jYW4yIg0KPj4gwqDCoMKgwqAgPiA+Pj4gK1NVQlNZ
+U1RFTT09Im5ldCIsIEFDVElPTj09ImFkZCIsIEtFUk5FTFM9PSIyNzMxMDAwLmNhbiIsDQo+
+PiDCoMKgwqDCoCA+IE5BTUU9Im1haW5fbWNhbjMiDQo+PiDCoMKgwqDCoCA+ID4+PiArU1VC
+U1lTVEVNPT0ibmV0IiwgQUNUSU9OPT0iYWRkIiwgS0VSTkVMUz09IjI3NDEwMDAuY2FuIiwN
+Cj4+IMKgwqDCoMKgID4gTkFNRT0ibWFpbl9tY2FuNCINCj4+IMKgwqDCoMKgID4gPj4+ICtT
+VUJTWVNURU09PSJuZXQiLCBBQ1RJT049PSJhZGQiLCBLRVJORUxTPT0iMjc1MTAwMC5jYW4i
+LA0KPj4gwqDCoMKgwqAgPiBOQU1FPSJtYWluX21jYW41Ig0KPj4gwqDCoMKgwqAgPiA+Pj4g
+K1NVQlNZU1RFTT09Im5ldCIsIEFDVElPTj09ImFkZCIsIEtFUk5FTFM9PSIyNzYxMDAwLmNh
+biIsDQo+PiDCoMKgwqDCoCA+IE5BTUU9Im1haW5fbWNhbjYiDQo+PiDCoMKgwqDCoCA+ID4+
+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9OPT0iYWRkIiwgS0VSTkVMUz09IjI3NzEwMDAu
+Y2FuIiwNCj4+IMKgwqDCoMKgID4gTkFNRT0ibWFpbl9tY2FuNyINCj4+IMKgwqDCoMKgID4g
+Pj4+ICtTVUJTWVNURU09PSJuZXQiLCBBQ1RJT049PSJhZGQiLCBLRVJORUxTPT0iMjc4MTAw
+MC5jYW4iLA0KPj4gwqDCoMKgwqAgPiBOQU1FPSJtYWluX21jYW44Ig0KPj4gwqDCoMKgwqAg
+PiA+Pj4gK1NVQlNZU1RFTT09Im5ldCIsIEFDVElPTj09ImFkZCIsIEtFUk5FTFM9PSIyNzkx
+MDAwLmNhbiIsDQo+PiDCoMKgwqDCoCA+IE5BTUU9Im1haW5fbWNhbjkiDQo+PiDCoMKgwqDC
+oCA+ID4+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9OPT0iYWRkIiwgS0VSTkVMUz09IjI3
+YTEwMDAuY2FuIiwNCj4+IMKgwqDCoMKgID4gTkFNRT0ibWFpbl9tY2FuMTAiDQo+PiDCoMKg
+wqDCoCA+ID4+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9OPT0iYWRkIiwgS0VSTkVMUz09
+IjI3YjEwMDAuY2FuIiwNCj4+IMKgwqDCoMKgID4gTkFNRT0ibWFpbl9tY2FuMTEiDQo+PiDC
+oMKgwqDCoCA+ID4+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9OPT0iYWRkIiwgS0VSTkVM
+Uz09IjI3YzEwMDAuY2FuIiwNCj4+IMKgwqDCoMKgID4gTkFNRT0ibWFpbl9tY2FuMTIiDQo+
+PiDCoMKgwqDCoCA+ID4+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9OPT0iYWRkIiwgS0VS
+TkVMUz09IjI3ZDEwMDAuY2FuIiwNCj4+IMKgwqDCoMKgID4gTkFNRT0ibWFpbl9tY2FuMTMi
+DQo+PiDCoMKgwqDCoCA+ID4+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9OPT0iYWRkIiwg
+S0VSTkVMUz09IjI2ODEwMDAuY2FuIiwNCj4+IMKgwqDCoMKgID4gTkFNRT0ibWFpbl9tY2Fu
+MTQiDQo+PiDCoMKgwqDCoCA+ID4+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9OPT0iYWRk
+IiwgS0VSTkVMUz09IjI2OTEwMDAuY2FuIiwNCj4+IMKgwqDCoMKgID4gTkFNRT0ibWFpbl9t
+Y2FuMTUiDQo+PiDCoMKgwqDCoCA+ID4+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9OPT0i
+YWRkIiwgS0VSTkVMUz09IjI2YTEwMDAuY2FuIiwNCj4+IMKgwqDCoMKgID4gTkFNRT0ibWFp
+bl9tY2FuMTYiDQo+PiDCoMKgwqDCoCA+ID4+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9O
+PT0iYWRkIiwgS0VSTkVMUz09IjI2YjEwMDAuY2FuIiwNCj4+IMKgwqDCoMKgID4gTkFNRT0i
+bWFpbl9tY2FuMTciDQo+PiDCoMKgwqDCoCA+ID4+PiBkaWZmIC0tZ2l0DQo+PiDCoMKgwqDC
+oCA+IA0KPj4gYS9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvcmUvc3lzdGVtZC9zeXN0
+ZW1kLzM3LWNhbi10aTMzeC5ydWxlcw0KPj4gwqDCoMKgwqAgPiANCj4+IGIvbWV0YS1hcmFn
+by1kaXN0cm8vcmVjaXBlcy1jb3JlL3N5c3RlbWQvc3lzdGVtZC8zNy1jYW4tdGkzM3gucnVs
+ZXMNCj4+IMKgwqDCoMKgID4gPj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+PiDCoMKgwqDC
+oCA+ID4+PiBpbmRleCAwMDAwMDAwMC4uNjJkNjUwZmUNCj4+IMKgwqDCoMKgID4gPj4+IC0t
+LSAvZGV2L251bGwNCj4+IMKgwqDCoMKgID4gPj4+ICsrKw0KPj4gYi9tZXRhLWFyYWdvLWRp
+c3Ryby9yZWNpcGVzLWNvcmUvc3lzdGVtZC9zeXN0ZW1kLzM3LWNhbi10aTMzeC5ydWxlcw0K
+Pj4gwqDCoMKgwqAgPiA+Pj4gQEAgLTAsMCArMSwyIEBADQo+PiDCoMKgwqDCoCA+ID4+PiAr
+U1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9OPT0iYWRkIiwgS0VSTkVMUz09IjQ4MWNjMDAwLmNh
+biIsDQo+PiDCoMKgwqDCoCA+IE5BTUU9Im1haW5fZGNhbjAiDQo+PiDCoMKgwqDCoCA+ID4+
+PiArU1VCU1lTVEVNPT0ibmV0IiwgQUNUSU9OPT0iYWRkIiwgS0VSTkVMUz09IjQ4MWQwMDAw
+LmNhbiIsDQo+PiDCoMKgwqDCoCA+IE5BTUU9Im1haW5fZGNhbjEiDQo+PiDCoMKgwqDCoCA+
+ID4+PiBkaWZmIC0tZ2l0DQo+PiDCoMKgwqAgYS9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVz
+LWNvcmUvc3lzdGVtZC9zeXN0ZW1kXyUuYmJhcHBlbmQNCj4+IMKgwqDCoMKgID4gYi9tZXRh
+LWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvcmUvc3lzdGVtZC9zeXN0ZW1kXyUuYmJhcHBlbmQN
+Cj4+IMKgwqDCoMKgID4gPj4+IGluZGV4IGYzODYwNmYyLi5mOTkxOTcwOCAxMDA2NDQNCj4+
+IMKgwqDCoMKgID4gPj4+IC0tLSANCj4+IGEvbWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1j
+b3JlL3N5c3RlbWQvc3lzdGVtZF8lLmJiYXBwZW5kDQo+PiDCoMKgwqDCoCA+ID4+PiArKysg
+DQo+PiBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29yZS9zeXN0ZW1kL3N5c3RlbWRf
+JS5iYmFwcGVuZA0KPj4gwqDCoMKgwqAgPiA+Pj4gQEAgLTIsNiArMiwyMSBAQCBQUjphcHBl
+bmQgPSAiLmFyYWdvNyINCj4+IMKgwqDCoMKgID4gPj4+wqAgwqBGSUxFU0VYVFJBUEFUSFM6
+cHJlcGVuZCA6PSAiJHtUSElTRElSfS8ke1BOfToiDQo+PiDCoMKgwqDCoCA+ID4+PiArQ0FO
+X1JVTEVTX1NSQyA9ICIiDQo+PiDCoMKgwqDCoCA+ID4+PiArQ0FOX1JVTEVTX1NSQzpqNzIx
+ZSA9ICIzNy1jYW4tajcucnVsZXMiDQo+PiDCoMKgwqDCoCA+ID4+PiArQ0FOX1JVTEVTX1NS
+QzpqNzIwMCA9ICIzNy1jYW4tajcucnVsZXMiDQo+PiDCoMKgwqDCoCA+ID4+PiArQ0FOX1JV
+TEVTX1NSQzpqNzIxczIgPSAiMzctY2FuLWo3LnJ1bGVzIg0KPj4gwqDCoMKgwqAgPiA+Pj4g
+K0NBTl9SVUxFU19TUkM6ajc4NHM0ID0gIjM3LWNhbi1qNy5ydWxlcyINCj4+IMKgwqDCoMKg
+ID4gPj4+ICtDQU5fUlVMRVNfU1JDOmFtNjV4eCA9ICIzNy1jYW4tajcucnVsZXMiDQo+PiDC
+oMKgwqDCoCA+ID4+PiArQ0FOX1JVTEVTX1NSQzphbTYyeHggPSAiMzctY2FuLWFtNjIucnVs
+ZXMiDQo+PiDCoMKgwqDCoCA+ID4+PiArQ0FOX1JVTEVTX1NSQzphbTYycHh4ID0gIjM3LWNh
+bi1hbTYyLnJ1bGVzIg0KPj4gwqDCoMKgwqAgPiA+Pj4gK0NBTl9SVUxFU19TUkM6YW02MmF4
+eCA9ICIzNy1jYW4tYW02Mi5ydWxlcyINCj4+IMKgwqDCoMKgID4gPj4+ICtDQU5fUlVMRVNf
+U1JDOmFtNjR4eCA9ICIzNy1jYW4tYW02Mi5ydWxlcyINCj4+IMKgwqDCoMKgID4gPj4+ICtD
+QU5fUlVMRVNfU1JDOmo3MjJzID0gIjM3LWNhbi1hbTYyLnJ1bGVzIg0KPj4gwqDCoMKgwqAg
+PiA+Pj4gK0NBTl9SVUxFU19TUkM6ZHJhN3h4ID0gIjM3LWNhbi1kcmE3LnJ1bGVzIg0KPj4g
+wqDCoMKgwqAgPiA+Pj4gK0NBTl9SVUxFU19TUkM6dGkzM3ggPSAiMzctY2FuLXRpMzN4LnJ1
+bGVzIg0KPj4gwqDCoMKgwqAgPiA+Pj4gK0NBTl9SVUxFU19UR1QgPSAiJHtsaWJkaXJ9L3Vk
+ZXYvcnVsZXMuZC8zNy1jYW4ucnVsZXMiDQo+PiDCoMKgwqDCoCA+ID4+PiArDQo+PiDCoMKg
+wqDCoCA+ID4+PsKgIMKgU1JDX1VSSTphcHBlbmQgPSAiIFwNCj4+IMKgwqDCoMKgID4gPj4+
+wqAgwqAgwqAgwqBmaWxlOi8vbG9jYWwucnVsZXMgXA0KPj4gwqDCoMKgwqAgPiA+Pj7CoCDC
+oCDCoCDCoGZpbGU6Ly91c2IxLXJ1bGVzLnNoIFwNCj4+IMKgwqDCoMKgID4gPj4+IEBAIC0x
+NCw2ICsyOSwxMCBAQCBTUkNfVVJJOmFwcGVuZCA9ICIgXA0KPj4gwqDCoMKgwqAgPiA+Pj7C
+oCDCoCDCoCDCoGZpbGU6Ly90aW1lc3luY2QuY29uZiBcDQo+PiDCoMKgwqDCoCA+ID4+PsKg
+IMKgIg0KPj4gwqDCoMKgwqAgPiA+Pj4gK1NSQ19VUkk6YXBwZW5kOmszID0gIiBmaWxlOi8v
+JHtDQU5fUlVMRVNfU1JDfSINCj4+IMKgwqDCoMKgID4gPj4+ICtTUkNfVVJJOmFwcGVuZDpk
+cmE3eHggPSAiIGZpbGU6Ly8ke0NBTl9SVUxFU19TUkN9Ig0KPj4gwqDCoMKgwqAgPiA+Pj4g
+K1NSQ19VUkk6YXBwZW5kOnRpMzN4ID0gIiBmaWxlOi8vJHtDQU5fUlVMRVNfU1JDfSINCj4+
+IMKgwqDCoMKgID4gPj4+ICsNCj4+IMKgwqDCoMKgID4gPj4+wqAgwqBkb19pbnN0YWxsOmFw
+cGVuZCgpIHsNCj4+IMKgwqDCoMKgID4gPj4+wqAgwqAgwqAgwqBpbnN0YWxsIC1kICR7RH0k
+e3N5c2NvbmZkaXJ9L3VkZXYvcnVsZXMuZC8NCj4+IMKgwqDCoMKgID4gPj4+wqAgwqAgwqAg
+wqBpbnN0YWxsIC1tIDA2NDQgJHtXT1JLRElSfS9sb2NhbC5ydWxlcw0KPj4gwqDCoMKgwqAg
+PiAke0R9JHtzeXNjb25mZGlyfS91ZGV2L3J1bGVzLmQvDQo+PiDCoMKgwqDCoCA+ID4+PiBA
+QCAtNDMsMyArNjIsMjEgQEAgZG9faW5zdGFsbDphcHBlbmQoKSB7DQo+PiDCoMKgwqDCoCA+
+ID4+PsKgIMKgIMKgIMKgaW5zdGFsbCAtZCAke0R9JHtzeXNjb25mZGlyfS9zeXN0ZW1kLw0K
+Pj4gwqDCoMKgwqAgPiA+Pj7CoCDCoCDCoCDCoGluc3RhbGwgLW0gMDY0NCAke1dPUktESVJ9
+L3RpbWVzeW5jZC5jb25mDQo+PiDCoMKgwqDCoCA+ICR7RH0ke3N5c2NvbmZkaXJ9L3N5c3Rl
+bWQvDQo+PiDCoMKgwqDCoCA+ID4+PsKgIMKgfQ0KPj4gwqDCoMKgwqAgPiA+Pj4gKw0KPj4g
+wqDCoMKgwqAgPiA+Pj4gK2RvX2luc3RhbGw6YXBwZW5kOmszKCkgew0KPj4gwqDCoMKgwqAg
+PiA+Pj4gK8KgIMKgIGluc3RhbGwgLWQgJHtEfSR7bGliZGlyfS91ZGV2L3J1bGVzLmQNCj4+
+IMKgwqDCoMKgID4gPj4+ICvCoCDCoCBpbnN0YWxsIC1tIDA2NDQgJHtXT1JLRElSfS8ke0NB
+Tl9SVUxFU19TUkN9DQo+PiDCoMKgwqAgJHtEfSR7Q0FOX1JVTEVTX1RHVH0NCj4+IMKgwqDC
+oMKgID4gPj4+ICt9DQo+PiDCoMKgwqDCoCA+ID4+PiArDQo+PiDCoMKgwqDCoCA+ID4+PiAr
+ZG9faW5zdGFsbDphcHBlbmQ6ZHJhN3h4KCkgew0KPj4gwqDCoMKgwqAgPiA+Pj4gK8KgIMKg
+IGluc3RhbGwgLWQgJHtEfSR7bGliZGlyfS91ZGV2L3J1bGVzLmQNCj4+IMKgwqDCoMKgID4g
+Pj4+ICvCoCDCoCBpbnN0YWxsIC1tIDA2NDQgJHtXT1JLRElSfS8ke0NBTl9SVUxFU19TUkN9
+DQo+PiDCoMKgwqAgJHtEfSR7Q0FOX1JVTEVTX1RHVH0NCj4+IMKgwqDCoMKgID4gPj4+ICt9
+DQo+PiDCoMKgwqDCoCA+ID4+PiArDQo+PiDCoMKgwqDCoCA+ID4+PiArZG9faW5zdGFsbDph
+cHBlbmQ6dGkzM3goKSB7DQo+PiDCoMKgwqDCoCA+ID4+PiArwqAgwqAgaW5zdGFsbCAtZCAk
+e0R9JHtsaWJkaXJ9L3VkZXYvcnVsZXMuZA0KPj4gwqDCoMKgwqAgPiA+Pj4gK8KgIMKgIGlu
+c3RhbGwgLW0gMDY0NCAke1dPUktESVJ9LyR7Q0FOX1JVTEVTX1NSQ30NCj4+IMKgwqDCoCAk
+e0R9JHtDQU5fUlVMRVNfVEdUfQ0KPj4gwqDCoMKgwqAgPiA+Pj4gK30NCj4+IMKgwqDCoMKg
+ID4gPj4+ICsNCj4+IMKgwqDCoMKgID4gPj4+ICtGSUxFUzp1ZGV2ICs9ICIke0NBTl9SVUxF
+U19UR1R9Ig0KPj4gwqDCoMKgwqAgPiA+Pj4gKw0KPj4gwqDCoMKgwqAgPg0KPj4gwqDCoMKg
+wqAgPg0KPj4gwqDCoMKgwqAgPg0KPj4gwqDCoMKgwqAgPg0KPj4gwqDCoMKgwqAgPg0KPj4g
+wqDCoMKgwqAgPg0KPj4NCj4+DQo+PiDCoMKgwqAgLT0tPS09LT0tPS09LT0tPS09LT0tPS0N
+Cj4+IMKgwqDCoCBMaW5rczogWW91IHJlY2VpdmUgYWxsIG1lc3NhZ2VzIHNlbnQgdG8gdGhp
+cyBncm91cC4NCj4+IMKgwqDCoCBWaWV3L1JlcGx5IE9ubGluZSAoIzE1MjAyKToNCj4+IMKg
+wqDCoCBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy9tZXRhLWFyYWdvL21lc3Nh
+Z2UvMTUyMDINCj4+IDxodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy9tZXRhLWFy
+YWdvL21lc3NhZ2UvMTUyMDI+DQo+PiDCoMKgwqAgTXV0ZSBUaGlzIFRvcGljOiBodHRwczov
+L2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbXQvMTA0MjQ0NDk2Lzc5MDI2MjENCj4+IMKgwqDC
+oCA8aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL210LzEwNDI0NDQ5Ni83OTAyNjIx
+Pg0KPj4gwqDCoMKgIEdyb3VwIE93bmVyOiBtZXRhLWFyYWdvK293bmVyQGxpc3RzLnlvY3Rv
+cHJvamVjdC5vcmcNCj4+IMKgwqDCoCA8bWFpbHRvOm1ldGEtYXJhZ28lMkJvd25lckBsaXN0
+cy55b2N0b3Byb2plY3Qub3JnPg0KPj4gwqDCoMKgIFVuc3Vic2NyaWJlOiBodHRwczovL2xp
+c3RzLnlvY3RvcHJvamVjdC5vcmcvZy9tZXRhLWFyYWdvL3Vuc3ViDQo+PiDCoMKgwqAgPGh0
+dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL21ldGEtYXJhZ28vdW5zdWI+DQo+PiDC
+oMKgwqAgW2pjb3JtaWVyQGNyaXRpY2FsbGluay5jb20gPG1haWx0bzpqY29ybWllckBjcml0
+aWNhbGxpbmsuY29tPl0NCj4+IMKgwqDCoCAtPS09LT0tPS09LT0tPS09LT0tPS09LQ0KPj4N
+Cj4+DQo+Pg0KPj4NCj4+IC0tIA0KPj4gSm9uYXRoYW4gQ29ybWllcg0KPj4gU29mdHdhcmUg
+RW5naW5lZXINCj4+DQo+PiBWb2ljZTogMzE1LjQyNS40MDQ1wqB4MjIyDQo+Pg0KPj4NCj4+
+DQo+PiBodHRwOi8vd3d3LkNyaXRpY2FsTGluay5jb20gPGh0dHA6Ly93d3cuY3JpdGljYWxs
+aW5rLmNvbS8+DQo+PiA2NzEyIEJyb29rbGF3biBQYXJrd2F5LMKgU3lyYWN1c2UsIE5ZIDEz
+MjExDQo+Pg0KPj4gPGh0dHBzOi8vd3d3LmxpbmtlZGluLmNvbS9jb21wYW55L2NyaXRpY2Fs
+LWxpbmstbGxjPiANCj4+IDxodHRwczovL3R3aXR0ZXIuY29tL0NyaXRpY2FsX0xpbms+DQo+
+DQo=
 
