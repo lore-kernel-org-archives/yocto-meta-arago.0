@@ -2,134 +2,124 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 98828CD11C2
-	for <webhook@archiver.kernel.org>; Tue, 19 Mar 2024 15:25:00 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web11.18586.1710861892022717125
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7EE53CD11C2
+	for <webhook@archiver.kernel.org>; Tue, 19 Mar 2024 15:25:40 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web10.18594.1710861939163140818
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 19 Mar 2024 08:24:52 -0700
+ Tue, 19 Mar 2024 08:25:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=jVvbRoCn;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=Q19bhOQm;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42JFOn2V060050;
-	Tue, 19 Mar 2024 10:24:49 -0500
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42JFPcYd105821;
+	Tue, 19 Mar 2024 10:25:38 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1710861889;
-	bh=q2BznWPWDblQP6LkKbO/IOUmt8XqsCNpngU21+hxEHg=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=jVvbRoCn30LoXJaydai+56Qdt8sIhlvqoTcQJ9nEecVATB0CmLE0zYnJn+Jdm5Te0
-	 zSLguS9JGjc1MDleRBnBsaLYrLpl/3q2nHEOg6/2BZFwsFgr7+mMoMOjT55iEpfvfx
-	 RiCc439vaUCKdAhPNpnVfHfwzPtMXc8t6OQ2gDIk=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42JFOntD050719
+	s=ti-com-17Q1; t=1710861938;
+	bh=oI4Uvu7SmKxG9gFepssGZFB+UT3SkUSVhPKqQhFzRnY=;
+	h=From:To:Subject:Date;
+	b=Q19bhOQmf4n6c1K5hyMbKSjvP3KC1ILq9huqFmkUPuQ0N5LcHKmtz7BYfi7YpTE7z
+	 I6yn+U7n2kg6IEFvqN1ZGKl2ibRY8e5OJPzh4C4O2aBOOf2/xIa5ymhgTtT1sj51Tk
+	 PamLbdOIPa9Iso0UHuLlmhaWDuk6/qFrCCJGKrXA=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42JFPcxE052232
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 19 Mar 2024 10:24:49 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 19 Mar 2024 10:25:38 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 19
- Mar 2024 10:24:49 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2024 10:25:37 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 19 Mar 2024 10:24:48 -0500
-Received: from [10.249.32.72] ([10.249.32.72])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42JFOmbs084311;
-	Tue, 19 Mar 2024 10:24:48 -0500
-Message-ID: <05cbf208-8225-4cb5-8da9-b1ad74de4633@ti.com>
-Date: Tue, 19 Mar 2024 10:24:48 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master][PATCH] base-files: Remove fstab override
-To: Andrew Davis <afd@ti.com>, Denys Dmytriyenko <denis@denix.org>
-CC: Denys Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-References: <20240305191145.67894-1-afd@ti.com>
- <20240305204954.GI6072@denix.org>
- <ac416e5d-0e01-4db8-a780-f35fc1f73b27@ti.com>
-Content-Language: en-US
+ Frontend Transport; Tue, 19 Mar 2024 10:25:37 -0500
+Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42JFPb36034308;
+	Tue, 19 Mar 2024 10:25:37 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1rmbLN-0002Qy-Ip; Tue, 19 Mar 2024 10:25:37 -0500
 From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <ac416e5d-0e01-4db8-a780-f35fc1f73b27@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][scarthgap][PATCH] layer.conf: Update LAYERSERIES
+Date: Tue, 19 Mar 2024 10:25:37 -0500
+Message-ID: <20240319152537.9316-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Transfer-Encoding: base64
-X-MIME-Autoconverted: from 8bit to base64 by fllv0016.ext.ti.com id 42JFOn2V060050
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 19 Mar 2024 15:25:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15241
+ <meta-arago@lists.yoctoproject.org>; Tue, 19 Mar 2024 15:25:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15242
 
-DQoNCk9uIDMvMTkvMjAyNCAxMDoxOCBBTSwgQW5kcmV3IERhdmlzIHdyb3RlOg0KPiBPbiAz
-LzUvMjQgMjo0OSBQTSwgRGVueXMgRG15dHJpeWVua28gd3JvdGU6DQo+PiBPbiBUdWUsIE1h
-ciAwNSwgMjAyNCBhdCAwMToxMTo0NVBNIC0wNjAwLCBBbmRyZXcgRGF2aXMgdmlhIA0KPj4g
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZyB3cm90ZToNCj4+PiBUaGVyZSBpcyBhbHJlYWR5IGEg
-dmVyc2lvbiBvZiB0aGlzIGZpbGUgcHJvdmlkZWQgYnkgb2UtY29yZSB0aGF0DQo+Pj4gaXMg
-a2VwdCB1cCB0byBkYXRlLiBEbyBub3Qgb3ZlcnJpZGUgaXQuDQo+Pj4NCj4+PiBTaWduZWQt
-b2ZmLWJ5OiBBbmRyZXcgRGF2aXMgPGFmZEB0aS5jb20+DQo+Pj4gLS0tDQo+Pj4gwqAgLi4u
-L3JlY2lwZXMtY29yZS9iYXNlLWZpbGVzL2Jhc2UtZmlsZXMvZnN0YWLCoMKgwqDCoMKgwqDC
-oCB8IDEzIC0tLS0tLS0tLS0tLS0NCj4+PiDCoCAuLi4vcmVjaXBlcy1jb3JlL2Jhc2UtZmls
-ZXMvYmFzZS1maWxlc18lLmJiYXBwZW5kwqDCoCB8wqAgMiArLQ0KPj4+IMKgIDIgZmlsZXMg
-Y2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDE0IGRlbGV0aW9ucygtKQ0KPj4+IMKgIGRlbGV0
-ZSBtb2RlIDEwMDY0NCANCj4+PiBtZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvcmUvYmFz
-ZS1maWxlcy9iYXNlLWZpbGVzL2ZzdGFiDQo+Pj4NCj4+PiBkaWZmIC0tZ2l0IA0KPj4+IGEv
-bWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL2Jhc2UtZmlsZXMvYmFzZS1maWxlcy9m
-c3RhYiANCj4+PiBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29yZS9iYXNlLWZpbGVz
-L2Jhc2UtZmlsZXMvZnN0YWINCj4+PiBkZWxldGVkIGZpbGUgbW9kZSAxMDA2NDQNCj4+PiBp
-bmRleCA4ZGRhZGQ5OC4uMDAwMDAwMDANCj4+PiAtLS0gYS9tZXRhLWFyYWdvLWRpc3Ryby9y
-ZWNpcGVzLWNvcmUvYmFzZS1maWxlcy9iYXNlLWZpbGVzL2ZzdGFiDQo+Pj4gKysrIC9kZXYv
-bnVsbA0KPj4+IEBAIC0xLDEzICswLDAgQEANCj4+PiAtIyBzdG9jayBmc3RhYiAtIHlvdSBw
-cm9iYWJseSB3YW50IHRvIG92ZXJyaWRlIHRoaXMgd2l0aCBhIG1hY2hpbmUgDQo+Pj4gc3Bl
-Y2lmaWMgb25lDQo+Pj4gLQ0KPj4+IC0vZGV2L3Jvb3TCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-IC/CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBhdXRvICAgICAgIA0K
-Pj4+IGRlZmF1bHRzwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMcKgIDENCj4+PiAtcHJv
-Y8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC9wcm9jwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIHByb2MgICAgICAgDQo+Pj4gZGVmYXVsdHPCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCAwwqAgMA0KPj4+IC1kZXZwdHPCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgIC9kZXYvcHRzwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRldnB0cyAgICAgDQo+
-Pj4gbW9kZT0wNjIwLGdpZD01wqDCoMKgwqDCoMKgIDDCoCAwDQo+Pj4gLXVzYmRldmZzwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgIC9wcm9jL2J1cy91c2LCoMKgwqDCoMKgwqDCoCB1c2Jk
-ZXZmcyAgIA0KPj4+IG5vYXV0b8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAwwqAg
-MA0KPj4+IC10bXBmc8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAvcnVuwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdG1wZnMgICAgICANCj4+PiBtb2RlPTA3NTUs
-bm9kZXYsbm9zdWlkLHN0cmljdGF0aW1lIDDCoCAwDQo+Pg0KPj4+IC10bXBmc8KgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAvdmFyL3ZvbGF0aWxlwqDCoMKgwqDCoMKgwqAgdG1w
-ZnMgICAgICANCj4+PiBkZWZhdWx0cyxzaXplPTUwTcKgwqDCoMKgIDDCoCAwDQo+Pj4gLXRt
-cGZzwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC9tZWRpYS9yYW3CoMKgwqDCoMKg
-wqDCoMKgwqDCoCB0bXBmcyAgICAgIA0KPj4+IGRlZmF1bHRzLHNpemU9MTZNwqDCoMKgwqAg
-MMKgIDANCj4+DQo+PiBUaGUgbWFqb3IgZGlmZmVyZW5jZSBpcyB0aGVzZSAyIHRtcGZzIGVu
-dHJpZXMgLSB1cHN0cmVhbSBkb2Vzbid0IGhhdmUNCj4+IC9tZWRpYS9yYW0sIGFzIHRoYXQg
-d2FzIHNvbWV0aGluZyBUSSB0ZXN0aW5nIGZyYW1ld29yayB3YXMgdXNpbmcuIFBsdXMNCj4+
-IHVwc3RyZWFtIGRvZXNuJ3Qgc2V0IHRoZSBzaXplIHBhcmFtZXRlciAtIGJ5IGRlZmF1bHQg
-dXAgdG8gNTAlIG9mIFJBTSBjYW4NCj4+IGdldCB1c2VkIGJ5IHRtcGZzIGFuZCB0aGVyZSB3
-ZXJlIGlzc3VlcyB3aXRoIHNvbWUgbG93LVJBTSBsZWdhY3kgDQo+PiBwbGF0Zm9ybXMNCj4+
-IGluIHRoZSBwYXN0Lg0KPj4NCj4+IElmIG5laXRoZXIgb2YgdGhlc2UgZGlmZmVyZW5jZXMg
-bWF0dGVyIGFueSBsb25nZXIsIHRoaXMgY2FuIGJlIHJlbW92ZWQuDQo+Pg0KPiANCj4gSWYg
-dGhlIHRlc3RzIGRvIG5lZWQgdGhpcywgdGhlbiB0aGV5IHNob3VsZCBtb3VudCB0aGUgbmVl
-ZGVkIHRtcGZzIGFzIHBhcnQNCj4gb2YgdGhlIHRlc3Qgc2V0dXAsIG5vdCBqdXN0IGFzc3Vt
-ZSBpdCB0byBiZSBzZXR1cCBieSB0aGUgZGlzdHJvLiBTaW1wbGUgYXM6DQo+IA0KPiAjIG1v
-dW50IC10IHRtcGZzIC1vIHNpemU9NTBNIHRtcGZzIC9tZWRpYS9yYW0NCj4gDQo+IFRoZSBv
-bmx5IHdheSB0byBwdXNoIHRoZSB0ZXN0IGZyYW1ld29yayB0byBkbyB0aGUgcmlnaHQgdGhp
-bmcgaXMgdG8NCj4gc3RvcCBkb2luZyBpdCBmb3IgaXQuDQoNCkluIGdlbmVyYWwgSSBhZ3Jl
-ZSwgYnV0IHRoYXQgaXMgZWFzaWVyIHNhaWQgdGhhbiBkb25lLiAgV2UgbmVlZCB0byANCmNv
-b3JkaW5hdGUgdGhpcyBjaGFuZ2Ugd2l0aCB0aGUgdGVzdCB0ZWFtLCBub3QganVzdCBkdW1w
-IGl0IG9uIHRoZW0uIA0KSSdtIG5vdCByZWplY3RpbmcgdGhpcyBwYXRjaCwganVzdCB3YWl0
-aW5nIHVudGlsIHRlc3QgaGFzIGNvbmZpcm1lZCB3ZSANCm5vIGxvbmdlciBuZWVkIGl0Lg0K
-DQoNCj4gQW5kcmV3DQo+IA0KPj4NCj4+PiAtIyB1bmNvbW1lbnQgdGhpcyBpZiB5b3VyIGRl
-dmljZSBoYXMgYSBTRC9NTUMvVHJhbnNmbGFzaCBzbG90DQo+Pj4gLSMvZGV2L21tY2JsazBw
-McKgwqDCoMKgwqDCoCAvbWVkaWEvY2FyZMKgwqDCoMKgwqDCoMKgwqDCoCBhdXRvICAgICAg
-IA0KPj4+IGRlZmF1bHRzLHN5bmMsbm9hdXRvwqAgMMKgIDANCj4+PiAtDQo+Pj4gZGlmZiAt
-LWdpdCANCj4+PiBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29yZS9iYXNlLWZpbGVz
-L2Jhc2UtZmlsZXNfJS5iYmFwcGVuZCANCj4+PiBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lw
-ZXMtY29yZS9iYXNlLWZpbGVzL2Jhc2UtZmlsZXNfJS5iYmFwcGVuZA0KPj4+IGluZGV4IGU1
-YzUzZTgwLi43ZDFmNjc1MSAxMDA2NDQNCj4+PiAtLS0gYS9tZXRhLWFyYWdvLWRpc3Ryby9y
-ZWNpcGVzLWNvcmUvYmFzZS1maWxlcy9iYXNlLWZpbGVzXyUuYmJhcHBlbmQNCj4+PiArKysg
-Yi9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvcmUvYmFzZS1maWxlcy9iYXNlLWZpbGVz
-XyUuYmJhcHBlbmQNCj4+PiBAQCAtMSw0ICsxLDQgQEANCj4+PiDCoCAjIGxvb2sgZm9yIGZp
-bGVzIGluIHRoaXMgbGF5ZXIgZmlyc3QNCj4+PiDCoCBGSUxFU0VYVFJBUEFUSFM6cHJlcGVu
-ZCA6PSAiJHtUSElTRElSfS8ke1BOfToiDQo+Pj4gLVBSOmFwcGVuZCA9ICIuYXJhZ280Ig0K
-Pj4+ICtQUjphcHBlbmQgPSAiLmFyYWdvNSINCj4+PiAtLSANCj4+PiAyLjM5LjINCg0KLS0g
-DQpSeWFuIEVhdG1vbiAgICAgICAgICAgICAgICByZWF0bW9uQHRpLmNvbQ0KLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NClRleGFzIEluc3RydW1lbnRzLCBJ
-bmMuICAtICBMQ1BEICAtICBNR1RTDQo=
+Update the compatibility to just scarthgap.
+
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+---
+ meta-arago-demos/conf/layer.conf  | 2 +-
+ meta-arago-distro/conf/layer.conf | 2 +-
+ meta-arago-extras/conf/layer.conf | 2 +-
+ meta-arago-test/conf/layer.conf   | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/meta-arago-demos/conf/layer.conf b/meta-arago-demos/conf/layer.conf
+index bcfbf0de..610c3688 100644
+--- a/meta-arago-demos/conf/layer.conf
++++ b/meta-arago-demos/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-demos"
+ BBFILE_PATTERN_meta-arago-demos := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-demos = "10"
+ 
+-LAYERSERIES_COMPAT_meta-arago-demos = "kirkstone langdale mickledore nanbield scarthgap"
++LAYERSERIES_COMPAT_meta-arago-demos = "scarthgap"
+ 
+ LAYERDEPENDS_meta-arago-demos = " \
+     core \
+diff --git a/meta-arago-distro/conf/layer.conf b/meta-arago-distro/conf/layer.conf
+index 11218d4c..04e553b4 100644
+--- a/meta-arago-distro/conf/layer.conf
++++ b/meta-arago-distro/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-distro"
+ BBFILE_PATTERN_meta-arago-distro := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-distro = "10"
+ 
+-LAYERSERIES_COMPAT_meta-arago-distro = "kirkstone langdale mickledore nanbield scarthgap"
++LAYERSERIES_COMPAT_meta-arago-distro = "scarthgap"
+ 
+ LAYERDEPENDS_meta-arago-distro = " \
+     core \
+diff --git a/meta-arago-extras/conf/layer.conf b/meta-arago-extras/conf/layer.conf
+index 1a415e89..c1c11db9 100644
+--- a/meta-arago-extras/conf/layer.conf
++++ b/meta-arago-extras/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-extras"
+ BBFILE_PATTERN_meta-arago-extras := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-extras = "10"
+ 
+-LAYERSERIES_COMPAT_meta-arago-extras = "kirkstone langdale mickledore nanbield scarthgap"
++LAYERSERIES_COMPAT_meta-arago-extras = "scarthgap"
+ 
+ # Set a variable to get to the top of the metadata location
+ ARAGOBASE := '${@os.path.normpath("${LAYERDIR}/../")}'
+diff --git a/meta-arago-test/conf/layer.conf b/meta-arago-test/conf/layer.conf
+index 3d23e5de..ad939dce 100644
+--- a/meta-arago-test/conf/layer.conf
++++ b/meta-arago-test/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "meta-arago-test"
+ BBFILE_PATTERN_meta-arago-test := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_meta-arago-test = "10"
+ 
+-LAYERSERIES_COMPAT_meta-arago-test = "kirkstone langdale mickledore nanbield scarthgap"
++LAYERSERIES_COMPAT_meta-arago-test = "scarthgap"
+ 
+ # Set a variable to get to the top of the metadata location
+ TITESTBASE := '${@os.path.normpath("${LAYERDIR}/")}'
+-- 
+2.17.1
+
 
