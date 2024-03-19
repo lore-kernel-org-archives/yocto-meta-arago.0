@@ -1,125 +1,135 @@
-Return-Path: <afd@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 96967CD11C2
-	for <webhook@archiver.kernel.org>; Tue, 19 Mar 2024 15:18:30 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web10.18368.1710861501177824103
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 98828CD11C2
+	for <webhook@archiver.kernel.org>; Tue, 19 Mar 2024 15:25:00 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.18586.1710861892022717125
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 19 Mar 2024 08:18:21 -0700
+ Tue, 19 Mar 2024 08:24:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=C6yrAk+s;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: afd@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42JFIFpf020684;
-	Tue, 19 Mar 2024 10:18:15 -0500
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=jVvbRoCn;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42JFOn2V060050;
+	Tue, 19 Mar 2024 10:24:49 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1710861495;
-	bh=C+hNCVCPkXbDmUS6VrGsR6kuibMZMLP07Av9z5P49Fg=;
+	s=ti-com-17Q1; t=1710861889;
+	bh=q2BznWPWDblQP6LkKbO/IOUmt8XqsCNpngU21+hxEHg=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=C6yrAk+sOCGnbbPWlq028IwDjASDTbHSw8fB4gH0p1l8a1cVT7aeZIpqEQgbW9V++
-	 pPmqH/Dv8NMa3YJfDQchwgKpablxfe2NCH4puiGdSiC2CvMk7Zh+AddusrRVkSVodx
-	 Cv3cy+QrG2WX+jmPx125miKczSrxACBXRdbFYa0c=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42JFIFuw037037
+	b=jVvbRoCn30LoXJaydai+56Qdt8sIhlvqoTcQJ9nEecVATB0CmLE0zYnJn+Jdm5Te0
+	 zSLguS9JGjc1MDleRBnBsaLYrLpl/3q2nHEOg6/2BZFwsFgr7+mMoMOjT55iEpfvfx
+	 RiCc439vaUCKdAhPNpnVfHfwzPtMXc8t6OQ2gDIk=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42JFOntD050719
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 19 Mar 2024 10:18:15 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 19 Mar 2024 10:24:49 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 19
- Mar 2024 10:18:14 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ Mar 2024 10:24:49 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 19 Mar 2024 10:18:14 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42JFIECH018279;
-	Tue, 19 Mar 2024 10:18:14 -0500
-Message-ID: <ac416e5d-0e01-4db8-a780-f35fc1f73b27@ti.com>
-Date: Tue, 19 Mar 2024 10:18:14 -0500
+ Frontend Transport; Tue, 19 Mar 2024 10:24:48 -0500
+Received: from [10.249.32.72] ([10.249.32.72])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42JFOmbs084311;
+	Tue, 19 Mar 2024 10:24:48 -0500
+Message-ID: <05cbf208-8225-4cb5-8da9-b1ad74de4633@ti.com>
+Date: Tue, 19 Mar 2024 10:24:48 -0500
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [meta-arago][master][PATCH] base-files: Remove fstab override
-To: Denys Dmytriyenko <denis@denix.org>
-CC: Denys Dmytriyenko <denys@konsulko.com>, Ryan Eatmon <reatmon@ti.com>,
+To: Andrew Davis <afd@ti.com>, Denys Dmytriyenko <denis@denix.org>
+CC: Denys Dmytriyenko <denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
 References: <20240305191145.67894-1-afd@ti.com>
  <20240305204954.GI6072@denix.org>
+ <ac416e5d-0e01-4db8-a780-f35fc1f73b27@ti.com>
 Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20240305204954.GI6072@denix.org>
+From: Ryan Eatmon <reatmon@ti.com>
+In-Reply-To: <ac416e5d-0e01-4db8-a780-f35fc1f73b27@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: base64
+X-MIME-Autoconverted: from 8bit to base64 by fllv0016.ext.ti.com id 42JFOn2V060050
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 19 Mar 2024 15:18:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15240
+ <meta-arago@lists.yoctoproject.org>; Tue, 19 Mar 2024 15:25:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15241
 
-On 3/5/24 2:49 PM, Denys Dmytriyenko wrote:
-> On Tue, Mar 05, 2024 at 01:11:45PM -0600, Andrew Davis via lists.yoctoproject.org wrote:
->> There is already a version of this file provided by oe-core that
->> is kept up to date. Do not override it.
->>
->> Signed-off-by: Andrew Davis <afd@ti.com>
->> ---
->>   .../recipes-core/base-files/base-files/fstab        | 13 -------------
->>   .../recipes-core/base-files/base-files_%.bbappend   |  2 +-
->>   2 files changed, 1 insertion(+), 14 deletions(-)
->>   delete mode 100644 meta-arago-distro/recipes-core/base-files/base-files/fstab
->>
->> diff --git a/meta-arago-distro/recipes-core/base-files/base-files/fstab b/meta-arago-distro/recipes-core/base-files/base-files/fstab
->> deleted file mode 100644
->> index 8ddadd98..00000000
->> --- a/meta-arago-distro/recipes-core/base-files/base-files/fstab
->> +++ /dev/null
->> @@ -1,13 +0,0 @@
->> -# stock fstab - you probably want to override this with a machine specific one
->> -
->> -/dev/root            /                    auto       defaults              1  1
->> -proc                 /proc                proc       defaults              0  0
->> -devpts               /dev/pts             devpts     mode=0620,gid=5       0  0
->> -usbdevfs             /proc/bus/usb        usbdevfs   noauto                0  0
->> -tmpfs                /run                 tmpfs      mode=0755,nodev,nosuid,strictatime 0  0
-> 
->> -tmpfs                /var/volatile        tmpfs      defaults,size=50M     0  0
->> -tmpfs                /media/ram           tmpfs      defaults,size=16M     0  0
-> 
-> The major difference is these 2 tmpfs entries - upstream doesn't have
-> /media/ram, as that was something TI testing framework was using. Plus
-> upstream doesn't set the size parameter - by default up to 50% of RAM can
-> get used by tmpfs and there were issues with some low-RAM legacy platforms
-> in the past.
-> 
-> If neither of these differences matter any longer, this can be removed.
-> 
-
-If the tests do need this, then they should mount the needed tmpfs as part
-of the test setup, not just assume it to be setup by the distro. Simple as:
-
-# mount -t tmpfs -o size=50M tmpfs /media/ram
-
-The only way to push the test framework to do the right thing is to
-stop doing it for it.
-
-Andrew
-
-> 
->> -# uncomment this if your device has a SD/MMC/Transflash slot
->> -#/dev/mmcblk0p1       /media/card          auto       defaults,sync,noauto  0  0
->> -
->> diff --git a/meta-arago-distro/recipes-core/base-files/base-files_%.bbappend b/meta-arago-distro/recipes-core/base-files/base-files_%.bbappend
->> index e5c53e80..7d1f6751 100644
->> --- a/meta-arago-distro/recipes-core/base-files/base-files_%.bbappend
->> +++ b/meta-arago-distro/recipes-core/base-files/base-files_%.bbappend
->> @@ -1,4 +1,4 @@
->>   # look for files in this layer first
->>   FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
->>   
->> -PR:append = ".arago4"
->> +PR:append = ".arago5"
->> -- 
->> 2.39.2
+DQoNCk9uIDMvMTkvMjAyNCAxMDoxOCBBTSwgQW5kcmV3IERhdmlzIHdyb3RlOg0KPiBPbiAz
+LzUvMjQgMjo0OSBQTSwgRGVueXMgRG15dHJpeWVua28gd3JvdGU6DQo+PiBPbiBUdWUsIE1h
+ciAwNSwgMjAyNCBhdCAwMToxMTo0NVBNIC0wNjAwLCBBbmRyZXcgRGF2aXMgdmlhIA0KPj4g
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZyB3cm90ZToNCj4+PiBUaGVyZSBpcyBhbHJlYWR5IGEg
+dmVyc2lvbiBvZiB0aGlzIGZpbGUgcHJvdmlkZWQgYnkgb2UtY29yZSB0aGF0DQo+Pj4gaXMg
+a2VwdCB1cCB0byBkYXRlLiBEbyBub3Qgb3ZlcnJpZGUgaXQuDQo+Pj4NCj4+PiBTaWduZWQt
+b2ZmLWJ5OiBBbmRyZXcgRGF2aXMgPGFmZEB0aS5jb20+DQo+Pj4gLS0tDQo+Pj4gwqAgLi4u
+L3JlY2lwZXMtY29yZS9iYXNlLWZpbGVzL2Jhc2UtZmlsZXMvZnN0YWLCoMKgwqDCoMKgwqDC
+oCB8IDEzIC0tLS0tLS0tLS0tLS0NCj4+PiDCoCAuLi4vcmVjaXBlcy1jb3JlL2Jhc2UtZmls
+ZXMvYmFzZS1maWxlc18lLmJiYXBwZW5kwqDCoCB8wqAgMiArLQ0KPj4+IMKgIDIgZmlsZXMg
+Y2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDE0IGRlbGV0aW9ucygtKQ0KPj4+IMKgIGRlbGV0
+ZSBtb2RlIDEwMDY0NCANCj4+PiBtZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvcmUvYmFz
+ZS1maWxlcy9iYXNlLWZpbGVzL2ZzdGFiDQo+Pj4NCj4+PiBkaWZmIC0tZ2l0IA0KPj4+IGEv
+bWV0YS1hcmFnby1kaXN0cm8vcmVjaXBlcy1jb3JlL2Jhc2UtZmlsZXMvYmFzZS1maWxlcy9m
+c3RhYiANCj4+PiBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29yZS9iYXNlLWZpbGVz
+L2Jhc2UtZmlsZXMvZnN0YWINCj4+PiBkZWxldGVkIGZpbGUgbW9kZSAxMDA2NDQNCj4+PiBp
+bmRleCA4ZGRhZGQ5OC4uMDAwMDAwMDANCj4+PiAtLS0gYS9tZXRhLWFyYWdvLWRpc3Ryby9y
+ZWNpcGVzLWNvcmUvYmFzZS1maWxlcy9iYXNlLWZpbGVzL2ZzdGFiDQo+Pj4gKysrIC9kZXYv
+bnVsbA0KPj4+IEBAIC0xLDEzICswLDAgQEANCj4+PiAtIyBzdG9jayBmc3RhYiAtIHlvdSBw
+cm9iYWJseSB3YW50IHRvIG92ZXJyaWRlIHRoaXMgd2l0aCBhIG1hY2hpbmUgDQo+Pj4gc3Bl
+Y2lmaWMgb25lDQo+Pj4gLQ0KPj4+IC0vZGV2L3Jvb3TCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+IC/CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBhdXRvICAgICAgIA0K
+Pj4+IGRlZmF1bHRzwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMcKgIDENCj4+PiAtcHJv
+Y8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC9wcm9jwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIHByb2MgICAgICAgDQo+Pj4gZGVmYXVsdHPCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoCAwwqAgMA0KPj4+IC1kZXZwdHPCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgIC9kZXYvcHRzwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGRldnB0cyAgICAgDQo+
+Pj4gbW9kZT0wNjIwLGdpZD01wqDCoMKgwqDCoMKgIDDCoCAwDQo+Pj4gLXVzYmRldmZzwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgIC9wcm9jL2J1cy91c2LCoMKgwqDCoMKgwqDCoCB1c2Jk
+ZXZmcyAgIA0KPj4+IG5vYXV0b8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAwwqAg
+MA0KPj4+IC10bXBmc8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAvcnVuwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgdG1wZnMgICAgICANCj4+PiBtb2RlPTA3NTUs
+bm9kZXYsbm9zdWlkLHN0cmljdGF0aW1lIDDCoCAwDQo+Pg0KPj4+IC10bXBmc8KgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAvdmFyL3ZvbGF0aWxlwqDCoMKgwqDCoMKgwqAgdG1w
+ZnMgICAgICANCj4+PiBkZWZhdWx0cyxzaXplPTUwTcKgwqDCoMKgIDDCoCAwDQo+Pj4gLXRt
+cGZzwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC9tZWRpYS9yYW3CoMKgwqDCoMKg
+wqDCoMKgwqDCoCB0bXBmcyAgICAgIA0KPj4+IGRlZmF1bHRzLHNpemU9MTZNwqDCoMKgwqAg
+MMKgIDANCj4+DQo+PiBUaGUgbWFqb3IgZGlmZmVyZW5jZSBpcyB0aGVzZSAyIHRtcGZzIGVu
+dHJpZXMgLSB1cHN0cmVhbSBkb2Vzbid0IGhhdmUNCj4+IC9tZWRpYS9yYW0sIGFzIHRoYXQg
+d2FzIHNvbWV0aGluZyBUSSB0ZXN0aW5nIGZyYW1ld29yayB3YXMgdXNpbmcuIFBsdXMNCj4+
+IHVwc3RyZWFtIGRvZXNuJ3Qgc2V0IHRoZSBzaXplIHBhcmFtZXRlciAtIGJ5IGRlZmF1bHQg
+dXAgdG8gNTAlIG9mIFJBTSBjYW4NCj4+IGdldCB1c2VkIGJ5IHRtcGZzIGFuZCB0aGVyZSB3
+ZXJlIGlzc3VlcyB3aXRoIHNvbWUgbG93LVJBTSBsZWdhY3kgDQo+PiBwbGF0Zm9ybXMNCj4+
+IGluIHRoZSBwYXN0Lg0KPj4NCj4+IElmIG5laXRoZXIgb2YgdGhlc2UgZGlmZmVyZW5jZXMg
+bWF0dGVyIGFueSBsb25nZXIsIHRoaXMgY2FuIGJlIHJlbW92ZWQuDQo+Pg0KPiANCj4gSWYg
+dGhlIHRlc3RzIGRvIG5lZWQgdGhpcywgdGhlbiB0aGV5IHNob3VsZCBtb3VudCB0aGUgbmVl
+ZGVkIHRtcGZzIGFzIHBhcnQNCj4gb2YgdGhlIHRlc3Qgc2V0dXAsIG5vdCBqdXN0IGFzc3Vt
+ZSBpdCB0byBiZSBzZXR1cCBieSB0aGUgZGlzdHJvLiBTaW1wbGUgYXM6DQo+IA0KPiAjIG1v
+dW50IC10IHRtcGZzIC1vIHNpemU9NTBNIHRtcGZzIC9tZWRpYS9yYW0NCj4gDQo+IFRoZSBv
+bmx5IHdheSB0byBwdXNoIHRoZSB0ZXN0IGZyYW1ld29yayB0byBkbyB0aGUgcmlnaHQgdGhp
+bmcgaXMgdG8NCj4gc3RvcCBkb2luZyBpdCBmb3IgaXQuDQoNCkluIGdlbmVyYWwgSSBhZ3Jl
+ZSwgYnV0IHRoYXQgaXMgZWFzaWVyIHNhaWQgdGhhbiBkb25lLiAgV2UgbmVlZCB0byANCmNv
+b3JkaW5hdGUgdGhpcyBjaGFuZ2Ugd2l0aCB0aGUgdGVzdCB0ZWFtLCBub3QganVzdCBkdW1w
+IGl0IG9uIHRoZW0uIA0KSSdtIG5vdCByZWplY3RpbmcgdGhpcyBwYXRjaCwganVzdCB3YWl0
+aW5nIHVudGlsIHRlc3QgaGFzIGNvbmZpcm1lZCB3ZSANCm5vIGxvbmdlciBuZWVkIGl0Lg0K
+DQoNCj4gQW5kcmV3DQo+IA0KPj4NCj4+PiAtIyB1bmNvbW1lbnQgdGhpcyBpZiB5b3VyIGRl
+dmljZSBoYXMgYSBTRC9NTUMvVHJhbnNmbGFzaCBzbG90DQo+Pj4gLSMvZGV2L21tY2JsazBw
+McKgwqDCoMKgwqDCoCAvbWVkaWEvY2FyZMKgwqDCoMKgwqDCoMKgwqDCoCBhdXRvICAgICAg
+IA0KPj4+IGRlZmF1bHRzLHN5bmMsbm9hdXRvwqAgMMKgIDANCj4+PiAtDQo+Pj4gZGlmZiAt
+LWdpdCANCj4+PiBhL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lwZXMtY29yZS9iYXNlLWZpbGVz
+L2Jhc2UtZmlsZXNfJS5iYmFwcGVuZCANCj4+PiBiL21ldGEtYXJhZ28tZGlzdHJvL3JlY2lw
+ZXMtY29yZS9iYXNlLWZpbGVzL2Jhc2UtZmlsZXNfJS5iYmFwcGVuZA0KPj4+IGluZGV4IGU1
+YzUzZTgwLi43ZDFmNjc1MSAxMDA2NDQNCj4+PiAtLS0gYS9tZXRhLWFyYWdvLWRpc3Ryby9y
+ZWNpcGVzLWNvcmUvYmFzZS1maWxlcy9iYXNlLWZpbGVzXyUuYmJhcHBlbmQNCj4+PiArKysg
+Yi9tZXRhLWFyYWdvLWRpc3Ryby9yZWNpcGVzLWNvcmUvYmFzZS1maWxlcy9iYXNlLWZpbGVz
+XyUuYmJhcHBlbmQNCj4+PiBAQCAtMSw0ICsxLDQgQEANCj4+PiDCoCAjIGxvb2sgZm9yIGZp
+bGVzIGluIHRoaXMgbGF5ZXIgZmlyc3QNCj4+PiDCoCBGSUxFU0VYVFJBUEFUSFM6cHJlcGVu
+ZCA6PSAiJHtUSElTRElSfS8ke1BOfToiDQo+Pj4gLVBSOmFwcGVuZCA9ICIuYXJhZ280Ig0K
+Pj4+ICtQUjphcHBlbmQgPSAiLmFyYWdvNSINCj4+PiAtLSANCj4+PiAyLjM5LjINCg0KLS0g
+DQpSeWFuIEVhdG1vbiAgICAgICAgICAgICAgICByZWF0bW9uQHRpLmNvbQ0KLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NClRleGFzIEluc3RydW1lbnRzLCBJ
+bmMuICAtICBMQ1BEICAtICBNR1RTDQo=
 
