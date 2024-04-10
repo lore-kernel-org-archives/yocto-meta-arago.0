@@ -1,112 +1,181 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <jcormier@criticallink.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6CE76CD1296
-	for <webhook@archiver.kernel.org>; Wed, 10 Apr 2024 21:14:32 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web11.2027.1712783666305737356
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8786ECD11C2
+	for <webhook@archiver.kernel.org>; Wed, 10 Apr 2024 21:59:52 +0000 (UTC)
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+ by mx.groups.io with SMTP id smtpd.web11.3054.1712786388570230518
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 10 Apr 2024 14:14:26 -0700
+ Wed, 10 Apr 2024 14:59:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=Qh3CjuxW;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43ALEOJj027910;
-	Wed, 10 Apr 2024 16:14:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712783664;
-	bh=RA02ZqfSNdidowwciaSBT9LMFcop21bAmHAS4p/yfl8=;
-	h=From:To:Subject:Date;
-	b=Qh3CjuxWOrGMUJa3YT98ESEX1DyOCM5Lim3FL0K4XSFFWsHSMAQzGHhb4/2LqIEKo
-	 ePQATWsCkH1a7aaJ7zqQROhIS8xuv78RD4HsmMQgVO4MRrM/aDk/RGkF2XErJIoY6b
-	 f94I7hXfeO/q3Qd9BtyT8XUFnkXI7Ry226JKTG5s=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43ALEOL5007735
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 10 Apr 2024 16:14:24 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 10
- Apr 2024 16:14:24 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 10 Apr 2024 16:14:24 -0500
-Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43ALEO8a104649;
-	Wed, 10 Apr 2024 16:14:24 -0500
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1rufGy-0005wu-3a; Wed, 10 Apr 2024 16:14:24 -0500
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [oe-layersetup][master][PATCH] configs: Update scarthgap configs for meta-virtualization
-Date: Wed, 10 Apr 2024 16:14:24 -0500
-Message-ID: <20240410211424.22828-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=pass header.i=@criticallink.com header.s=google header.b=PPGEpjDj;
+ spf=pass (domain: criticallink.com, ip: 209.85.167.45, mailfrom: jcormier@criticallink.com)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-516db2214e6so6369261e87.1
+        for <meta-arago@lists.yoctoproject.org>; Wed, 10 Apr 2024 14:59:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=criticallink.com; s=google; t=1712786385; x=1713391185; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=h2JXQkjqsIiK1P2RF/GM5eHWpmphKpl0F5EfvCDt3MM=;
+        b=PPGEpjDjkcyco4tORemmBsQMSV4FtgD+lPc8KP3veDqxQvIzJPt1fzH00j8EzylWMQ
+         O0tJnIqN+CWz4Jr3/zl+ZkHng/9rxuuvkGMPEX+HEKskznUyDQoc8YupvOSMq0iG36Ge
+         H97CWbXKUNGpErmhN2MWAyB/6tjKYrVso7xMFWzZ188X/X9EnHMNgmynXZFVTL7AbAdj
+         tP3EIKBs9tCbfziED6wDmU9TSep0TlXV2KB2kWAj8V9K/bhJPKQY0ob4HntPViCjpdsf
+         MrwqzZEPLbmWq0m50vDDh6VhR40KMrm+E5YFli8/zqWnlkMD/NZeEIKpDWK/G4C8GD5i
+         qijw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1712786385; x=1713391185;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=h2JXQkjqsIiK1P2RF/GM5eHWpmphKpl0F5EfvCDt3MM=;
+        b=T2GuUzGLSYTMHozNH5qrZbjype+mL8HX5g0FU0t5wVUrPYLqWqqYTBDzx5sW5uzh5h
+         w2nw4DnNUso1kuzOhXBHLrW3sxHXKdKkAO2ecuLBirWebzX4odRtRxRJHh86PYFj05vT
+         2LvRBbi/9cKfgTX13aCzaiZYcOAtUIgXFUxFx/SZ2me5ZLgZ+nQ+Z6Tzkwiy9TsE0skv
+         KqDp67RSRNfyhDxa6iVhPYRWO9BmazAiQzqTrSJwRuOyBB3MSgL4MjlmRIKDXx62Yood
+         2zouTyp7NLyWEbfXETCf+pTXQg4k45XvPEk4yocNOVYNmzHSpixjLSmYo1EMYXr31oof
+         Cv1g==
+X-Gm-Message-State: AOJu0YymoEdwm/imr5pH6frhf1i9YMev9MHqG4/4ac2aiCyqOs95nphT
+	Y9Hqabw3MDu0JMvt4lYq70jwcxSnCKublM7t1g0Ece+IYGBB4qLlJbyDjLHpHC58COWClSlgFLL
+	sUnmoYwuU6RmRRIMO5gU9CIbi4uEqmv9x1mbg+FfVQqxv68GfJA==
+X-Google-Smtp-Source: AGHT+IEVnwJ6ffuC+X3S0OG07AfrJBh6bxV+BAID0I6wb8/ZI5BV5BGCq/5JSdEpIkodbxVdJdTQYD4plNRgVhMPt+Q=
+X-Received: by 2002:ac2:5a4e:0:b0:515:a733:2e21 with SMTP id
+ r14-20020ac25a4e000000b00515a7332e21mr2324695lfn.44.1712786385398; Wed, 10
+ Apr 2024 14:59:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+From: Jon Cormier <jcormier@criticallink.com>
+Date: Wed, 10 Apr 2024 17:59:34 -0400
+Message-ID: <CADL8D3bTQb3SgdE4Ku9pAgyKDMs2jVsBN2=U7SD92VhCCK6ifw@mail.gmail.com>
+Subject: RFC: Should sync-clock.services use --utc
+To: meta-arago@lists.yoctoproject.org, Denys Dmytriyenko <denys@konsulko.com>
+Cc: Andrew Meek <Andrew.Meek@tcs-nz.co.nz>
+Content-Type: multipart/alternative; boundary="0000000000001422480615c528e5"
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 10 Apr 2024 21:14:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15262
+ <meta-arago@lists.yoctoproject.org>; Wed, 10 Apr 2024 21:59:52 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15263
 
-meta-virutalization has created a scarthgap branch, so update the
-appropriate configs to point to it.
+--0000000000001422480615c528e5
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
----
- configs/arago-scarthgap-config.txt      | 2 +-
- configs/arago-scarthgap-next-config.txt | 2 +-
- configs/arago-scarthgap-wip-config.txt  | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+I'd like to propose the following change, to resolve what appears to be a
+difference between how timedatectl is reading the rtc and
+sync-clocks.service is reading it.
 
-diff --git a/configs/arago-scarthgap-config.txt b/configs/arago-scarthgap-config.txt
-index a881cc5..5f36770 100644
---- a/configs/arago-scarthgap-config.txt
-+++ b/configs/arago-scarthgap-config.txt
-@@ -5,7 +5,7 @@ bitbake,https://git.openembedded.org/bitbake,2.8,HEAD
- meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
- #meta-browser,https://github.com/OSSystems/meta-browser.git,master,d3d16b47e17dc899e5298cff698dc32e5e639ab4,layers=meta-chromium
- meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
--meta-virtualization,https://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
-+meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,HEAD,layers=
- meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
- meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,HEAD,layers=meta-ti-extras:meta-ti-bsp
- meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-diff --git a/configs/arago-scarthgap-next-config.txt b/configs/arago-scarthgap-next-config.txt
-index f059da0..2445cba 100644
---- a/configs/arago-scarthgap-next-config.txt
-+++ b/configs/arago-scarthgap-next-config.txt
-@@ -13,7 +13,7 @@ bitbake,https://git.openembedded.org/bitbake,2.8,HEAD
- meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap-next,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
- #meta-browser,https://github.com/OSSystems/meta-browser.git,master,d3d16b47e17dc899e5298cff698dc32e5e639ab4,layers=meta-chromium
- meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
--meta-virtualization,https://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
-+meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,HEAD,layers=
- meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
- meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap-next,HEAD,layers=meta-ti-extras:meta-ti-bsp
- meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-diff --git a/configs/arago-scarthgap-wip-config.txt b/configs/arago-scarthgap-wip-config.txt
-index fd422e7..0f5e75f 100644
---- a/configs/arago-scarthgap-wip-config.txt
-+++ b/configs/arago-scarthgap-wip-config.txt
-@@ -5,7 +5,7 @@ bitbake,https://git.openembedded.org/bitbake,2.8,HEAD
- meta-arago,https://git.yoctoproject.org/meta-arago,scarthgap-wip,HEAD,layers=meta-arago-distro:meta-arago-extras:meta-arago-demos:meta-arago-test
- #meta-browser,https://github.com/OSSystems/meta-browser.git,master,d3d16b47e17dc899e5298cff698dc32e5e639ab4,layers=meta-chromium
- meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
--meta-virtualization,https://git.yoctoproject.org/meta-virtualization,master,HEAD,layers=
-+meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,HEAD,layers=
- meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
- meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap-wip,HEAD,layers=meta-ti-extras:meta-ti-bsp
- meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
+recipes-core/systemd/systemd/sync-clocks.service:
+-ExecStart=/sbin/hwclock --systohc
++ExecStart=/sbin/hwclock --utc --systohc
+
+busybox hwclock by default assumes RTC is in local timezone but can be told
+to treat rtc time as UTC by adding --utc.
+timedatectl by default assumes the RTC time is in UTC, "RTC in local TZ:
+no".
+
+Note testing needs to be done with network disconnected otherwise ntp takes
+over.
+
+When system TZ is UTC,  local, universal, and rtc time match.
+
+root@mitysom-am57x:~# timedatectl
+               Local time: Wed 2024-04-10 20:55:35 UTC
+           Universal time: Wed 2024-04-10 20:55:35 UTC
+                 RTC time: Wed 2024-04-10 20:55:36
+                Time zone: n/a (UTC, +0000)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+root@mitysom-am57x:~# hwclock -r
+Wed Apr 10 20:55:368 2024  0.000000 seconds
+
+When system TZ is changed to EST, universal and rtc still match, this makes
+sense.
+
+root@mitysom-am57x:~# timedatectl set-timezone America/New_York
+root@mitysom-am57x:~# timedatectl
+               Local time: Wed 2024-04-10 17:12:06 EDT
+           Universal time: Wed 2024-04-10 21:12:06 UTC
+                 RTC time: Wed 2024-04-10 21:12:01
+                Time zone: America/New_York (EDT, -0400)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+root@mitysom-am57x:~# hwclock -r
+Wed Apr 10 21:12:02 2024  0.000000 seconds
+
+However, after a reboot, RTC time now matches the Local time instead.  If
+you plug in networking and NTP takes over, RTC time will jump back to UTC.
+
+root@mitysom-am57x:~# timedatectl
+               Local time: Wed 2024-04-10 17:13:33 EDT
+           Universal time: Wed 2024-04-10 21:13:33 UTC
+                 RTC time: Wed 2024-04-10 17:13:33
+                Time zone: America/New_York (EDT, -0400)
+System clock synchronized: no
+              NTP service: active
+          RTC in local TZ: no
+root@mitysom-am57x:~# hwclock -r
+Wed Apr 10 17:13:35 2024  0.000000 seconds
+
+With the above-proposed change, this RTC time changing to local time no
+longer happens.
+
+
 -- 
-2.17.1
+Jonathan Cormier
+Software Engineer
 
+--0000000000001422480615c528e5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I&#39;d like to propose the following change, to reso=
+lve what appears to be a difference between how timedatectl is reading the =
+rtc and sync-clocks.service is reading it.<br></div><div><br></div><div>rec=
+ipes-core/systemd/systemd/sync-clocks.service:</div><div>-ExecStart=3D/sbin=
+/hwclock --systohc</div><div>+ExecStart=3D/sbin/hwclock --utc --systohc</di=
+v><br>busybox hwclock by default assumes RTC is in local timezone but can b=
+e told to treat rtc time as UTC by adding --utc.<br>timedatectl by default =
+assumes the RTC time is in UTC, &quot;RTC in local TZ: no&quot;.<br><br>Not=
+e testing needs to be done with network disconnected otherwise ntp takes ov=
+er.<br><br>When system TZ is UTC, =C2=A0local, universal, and rtc time matc=
+h.<br><br><div style=3D"margin-left:40px">root@mitysom-am57x:~# timedatectl=
+<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Local time: Wed =
+2024-04-10 20:55:35 UTC<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Univers=
+al time: Wed 2024-04-10 20:55:35 UTC<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0RTC time: Wed 2024-04-10 20:55:36<br>=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Time zone: n/a (UTC, +0000)<b=
+r>System clock synchronized: yes<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 NTP service: active<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 RTC in=
+ local TZ: no<br>root@mitysom-am57x:~# hwclock -r<br>Wed Apr 10 20:55:368 2=
+024 =C2=A00.000000 seconds<br></div><div><br></div><div>When system TZ is c=
+hanged to EST, universal and rtc still match, this makes sense.<br></div><d=
+iv><br></div><div style=3D"margin-left:40px">root@mitysom-am57x:~# timedate=
+ctl set-timezone America/New_York<br>root@mitysom-am57x:~# timedatectl<br>=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Local time: Wed 2024=
+-04-10 17:12:06 EDT<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Universal t=
+ime: Wed 2024-04-10 21:12:06 UTC<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0RTC time: Wed 2024-04-10 21:12:01<br>=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Time zone: America/New_York (EDT,=
+ -0400)<br>System clock synchronized: yes<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 NTP service: active<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 RTC in local TZ: no<br>root@mitysom-am57x:~# hwclock -r<br>Wed Apr 10 2=
+1:12:02 2024 =C2=A00.000000 seconds</div><div><br></div><div>However, after=
+ a reboot, RTC time now matches the Local time instead.=C2=A0 If you plug i=
+n networking and NTP takes over, RTC time will jump back to UTC.<br></div><=
+div><br></div><div style=3D"margin-left:40px">root@mitysom-am57x:~# timedat=
+ectl <br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Local time:=
+ Wed 2024-04-10 17:13:33 EDT<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Un=
+iversal time: Wed 2024-04-10 21:13:33 UTC<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0RTC time: Wed 2024-04-10 17:13:33<br>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Time zone: America/New=
+_York (EDT, -0400)<br>System clock synchronized: no<br>=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 NTP service: active<br>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 RTC in local TZ: no<br>root@mitysom-am57x:~# hwclock -r<br>We=
+d Apr 10=C2=A017:13:35 2024 =C2=A00.000000 seconds</div><div><br></div><div=
+>With the above-proposed change, this RTC time changing to local time no lo=
+nger happens.<br></div><div><br></div><div><br></div>-- <br>Jonathan Cormie=
+r<br>Software Engineer</div>
+
+--0000000000001422480615c528e5--
 
