@@ -2,46 +2,46 @@ Return-Path: <rs@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A2835C4345F
-	for <webhook@archiver.kernel.org>; Fri, 12 Apr 2024 22:12:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 91A0EC4345F
+	for <webhook@archiver.kernel.org>; Fri, 12 Apr 2024 22:14:04 +0000 (UTC)
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.3801.1712959964460311023
+ by mx.groups.io with SMTP id smtpd.web10.3684.1712960041967765092
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 12 Apr 2024 15:12:44 -0700
+ Fri, 12 Apr 2024 15:14:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=qqrJPnb6;
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=bl8JXpUj;
  spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: rs@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43CMCfEn075156;
-	Fri, 12 Apr 2024 17:12:41 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43CME0Cw075431;
+	Fri, 12 Apr 2024 17:14:00 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712959961;
+	s=ti-com-17Q1; t=1712960040;
 	bh=LJbR+e3M32uhi+c+nj9bRxR5MmLvep1snYfN+xHJXFk=;
 	h=From:To:CC:Subject:Date;
-	b=qqrJPnb6cLVGCmKG3NJfwJAA93tb/dLSzZ8AyACg4tMZ9HCAebpTITLcVOLSqySj1
-	 /P4IOiHSfL+4xc79+lfRZlodaT4ukSn2ygCc7rbtM053N7vPVhSUAy8/8RqsVarPEu
-	 ayj/1OdWh3N1I9zjYBbBi27aH639irwrOt8QJqec=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43CMCfeZ084172
+	b=bl8JXpUjfqeTbID6WGuCvePVSU+RfYUTRt49hPr09AV9SS9Gm/0cIFVVqgPl8sure
+	 HZlkpxAbfoMzPgagfExQRbkAgpUVmfQY+ovjqybznzU5Lf0rdGwHk/B9aU5ehGES9/
+	 9DAp5PJTl/FFb1wq04elboCtGryoiBMMrCnIfo54=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43CME0IP003112
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 12 Apr 2024 17:12:41 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+	Fri, 12 Apr 2024 17:14:00 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 12
- Apr 2024 17:12:40 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2024 17:14:00 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 12 Apr 2024 17:12:41 -0500
+ Frontend Transport; Fri, 12 Apr 2024 17:14:00 -0500
 Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43CMCevs013811;
-	Fri, 12 Apr 2024 17:12:40 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43CME0iJ032572;
+	Fri, 12 Apr 2024 17:14:00 -0500
 From: <rs@ti.com>
 To: <reatmon@ti.com>, <denis@denix.org>
 CC: <meta-arago@lists.yoctoproject.org>
-Subject: [PATCH] weston-init: remove my qol patches now
-Date: Fri, 12 Apr 2024 17:12:40 -0500
-Message-ID: <20240412221240.254965-1-rs@ti.com>
+Subject: [meta-arago][master][PATCH] weston-init: remove old qol patches
+Date: Fri, 12 Apr 2024 17:13:50 -0500
+Message-ID: <20240412221350.542149-1-rs@ti.com>
 X-Mailer: git-send-email 2.44.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -50,8 +50,8 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 12 Apr 2024 22:12:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15269
+ <meta-arago@lists.yoctoproject.org>; Fri, 12 Apr 2024 22:14:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15270
 
 From: Randolph Sapp <rs@ti.com>
 
