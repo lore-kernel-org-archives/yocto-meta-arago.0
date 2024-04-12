@@ -1,97 +1,85 @@
-Return-Path: <rs@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 92F1EC4345F
-	for <webhook@archiver.kernel.org>; Fri, 12 Apr 2024 22:15:44 +0000 (UTC)
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
- by mx.groups.io with SMTP id smtpd.web10.3711.1712960140955432854
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9BF0EC4345F
+	for <webhook@archiver.kernel.org>; Fri, 12 Apr 2024 22:20:54 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.3811.1712960444946548076
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 12 Apr 2024 15:15:41 -0700
+ Fri, 12 Apr 2024 15:20:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=wHwZaZ+V;
- spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: rs@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43CMFdOx019158;
-	Fri, 12 Apr 2024 17:15:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1712960139;
-	bh=NoNYG2ORNNM3JDnwMcOr7b9J7OkFoS9kSTu0pPYAiJw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=wHwZaZ+Vbetb+6/rbiDxqsvFqlZC5Yobqjgd04rwSTTbNNUobvinAF9wZM9K+ou9F
-	 s15DAXxRtvQ+L6rsiKWpX7ypJJ3CAWWnMneiRvyn85F85aEhH4u2JNEau/oPisyK1S
-	 pW8zMNb386bOz6x34cgjB/gDcB7UCzrhbR9QmFOk=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43CMFcnc086420
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 12 Apr 2024 17:15:38 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 12
- Apr 2024 17:15:38 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 12 Apr 2024 17:15:38 -0500
-Received: from [128.247.81.144] (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43CMFcVs019291;
-	Fri, 12 Apr 2024 17:15:38 -0500
-Message-ID: <30ccfcf2-22d4-4aeb-a3fe-137005ec2843@ti.com>
-Date: Fri, 12 Apr 2024 17:15:38 -0500
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id E7CCC40CBA;
+	Fri, 12 Apr 2024 22:20:43 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 5_gI-3Dex8RA; Fri, 12 Apr 2024 22:20:43 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 0B82740C2A;
+	Fri, 12 Apr 2024 22:20:41 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 24762163F03; Fri, 12 Apr 2024 18:20:40 -0400 (EDT)
+Date: Fri, 12 Apr 2024 18:20:40 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: rs@ti.com
+Cc: reatmon@ti.com, meta-arago@lists.yoctoproject.org
+Subject: Re: [PATCH] weston-init: remove my qol patches now
+Message-ID: <20240412222040.GB28791@denix.org>
+References: <20240412221240.254965-1-rs@ti.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago] [PATCH] weston-init: remove my qol patches now
-To: <reatmon@ti.com>, <denis@denix.org>
-CC: <meta-arago@lists.yoctoproject.org>
-References: <17C5A80329178E6A.20885@lists.yoctoproject.org>
-Content-Language: en-US, en-US-large
-From: Randolph Sapp <rs@ti.com>
-In-Reply-To: <17C5A80329178E6A.20885@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240412221240.254965-1-rs@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 12 Apr 2024 22:15:44 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15271
+ <meta-arago@lists.yoctoproject.org>; Fri, 12 Apr 2024 22:20:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15272
 
-On 4/12/24 17:12, Randolph Sapp via lists.yoctoproject.org wrote:
+On Fri, Apr 12, 2024 at 05:12:40PM -0500, rs@ti.com wrote:
 > From: Randolph Sapp <rs@ti.com>
 > 
 > This reverts commit eab6e84b752b0341d1c1627527c99fa68c90bb52.
 > 
 > The changes introduced in this commit were accepted into oe-core and are
 > no longer required here.
-> 
+
+Which branch?
+
+
 > Signed-off-by: Randolph Sapp <rs@ti.com>
 > ---
->   .../wayland/weston-init.bbappend              |  8 --
->   .../wayland/weston-init/weston-socket.sh      | 20 -----
->   .../wayland/weston-init/weston.ini            | 73 +------------------
->   3 files changed, 4 insertions(+), 97 deletions(-)
->   delete mode 100755 meta-arago-distro/recipes-graphics/wayland/weston-init/weston-socket.sh
+>  .../wayland/weston-init.bbappend              |  8 --
+>  .../wayland/weston-init/weston-socket.sh      | 20 -----
+>  .../wayland/weston-init/weston.ini            | 73 +------------------
+>  3 files changed, 4 insertions(+), 97 deletions(-)
+>  delete mode 100755 meta-arago-distro/recipes-graphics/wayland/weston-init/weston-socket.sh
 > 
 > diff --git a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
 > index be6b534b..4d5db58c 100644
 > --- a/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
 > +++ b/meta-arago-distro/recipes-graphics/wayland/weston-init.bbappend
 > @@ -5,18 +5,10 @@ PR:append = ".arago12"
->   SRC_URI:append = " \
->       file://weston.ini \
->       file://weston-launch-calibrator.sh \
+>  SRC_URI:append = " \
+>      file://weston.ini \
+>      file://weston-launch-calibrator.sh \
 > -    file://weston-socket.sh \
->   "
->   
->   do_install:append() {
->       install -Dm755 weston-launch-calibrator.sh ${D}/${bindir}/weston-launch-calibrator
+>  "
+>  
+>  do_install:append() {
+>      install -Dm755 weston-launch-calibrator.sh ${D}/${bindir}/weston-launch-calibrator
 > -
 > -    if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
 > -        install -D -p -m0644 ${WORKDIR}/weston-socket.sh ${D}${sysconfdir}/profile.d/weston-socket.sh
 > -    fi
->   }
->   
->   FILES:${PN}:append = "${bindir}/weston-launch-calibrator"
+>  }
+>  
+>  FILES:${PN}:append = "${bindir}/weston-launch-calibrator"
 > -
 > -GROUPADD_PARAM:${PN} = "-r wayland; -r render"
 > -USERADD_PARAM:${PN} = "--home /home/weston --shell /bin/sh --user-group -G video,input,render weston"
@@ -128,18 +116,18 @@ On 4/12/24 17:12, Randolph Sapp via lists.yoctoproject.org wrote:
 > @@ -1,10 +1,5 @@
 > -# configuration file for Weston
 > -
->   [core]
->   idle-time=0
+>  [core]
+>  idle-time=0
 > -#modules=xwayland.so,cms-colord.so
 > -#shell=desktop-shell.so
 > -#gbm-format=xrgb2101010
->   require-input=false
->   
->   [shell]
+>  require-input=false
+>  
+>  [shell]
 > @@ -12,74 +7,14 @@ locking=false
->   animation=zoom
->   panel-position=top
->   startup-animation=fade
+>  animation=zoom
+>  panel-position=top
+>  startup-animation=fade
 > -#background-image=/usr/share/backgrounds/gnome/Aqua.jpg
 > -#background-color=0xff002244
 > -#background-type=tile
@@ -192,9 +180,9 @@ On 4/12/24 17:12, Randolph Sapp via lists.yoctoproject.org wrote:
 > -#name=X1
 > -#mode=1024x768
 > -#transform=flipped-90
->   
->   [libinput]
->   touchscreen_calibrator=true
+>  
+>  [libinput]
+>  touchscreen_calibrator=true
 > -#enable_tap=true
 > -
 > -#[touchpad]
@@ -207,15 +195,14 @@ On 4/12/24 17:12, Randolph Sapp via lists.yoctoproject.org wrote:
 > -
 > -#[xwayland]
 > -#path=/usr/bin/Xwayland
->   
->   [autolaunch]
->   # launch the calibrator on startup if a touchscreen is detected
->   path=/usr/bin/weston-launch-calibrator
+>  
+>  [autolaunch]
+>  # launch the calibrator on startup if a touchscreen is detected
+>  path=/usr/bin/weston-launch-calibrator
 > +
 > +[screensaver]
 > +# Uncomment path to disable screensaver
 > +#path=@libexecdir@/weston-screensaver
-
-Ignore this version, forgot to add my confirm flag and check tags before 
-sending. Sorry
+> -- 
+> 2.44.0
 
