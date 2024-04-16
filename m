@@ -1,73 +1,100 @@
-Return-Path: <denis@denix.org>
+Return-Path: <c-shilwant@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ED238C4345F
-	for <webhook@archiver.kernel.org>; Mon, 15 Apr 2024 20:00:53 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.2780.1713211244217463707
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A02CBC4345F
+	for <webhook@archiver.kernel.org>; Tue, 16 Apr 2024 05:07:26 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web10.12945.1713244040251548209
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 15 Apr 2024 13:00:44 -0700
+ Mon, 15 Apr 2024 22:07:20 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 8475C40CBD;
-	Mon, 15 Apr 2024 20:00:43 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id npEqn3rC_QHW; Mon, 15 Apr 2024 20:00:43 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 45D4E40A3D;
-	Mon, 15 Apr 2024 20:00:39 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 2D893163F17; Mon, 15 Apr 2024 16:00:39 -0400 (EDT)
-Date: Mon, 15 Apr 2024 16:00:39 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Chirag Shilwant <c-shilwant@ti.com>
-Cc: Ryan Eatmon <reatmon@ti.com>, meta-arago@lists.yoctoproject.org,
-	Gyan Gupta <g-gupta@ti.com>
-Subject: Re: [meta-arago][master/scarthgap][PATCH] recipes-graphics:
- freetype: Remove redundant bbappend
-Message-ID: <20240415200039.GF28791@denix.org>
-References: <20240415094331.3535927-1-c-shilwant@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=GcS1nRR5;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: c-shilwant@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43G57G7c032305;
+	Tue, 16 Apr 2024 00:07:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1713244036;
+	bh=hRf4tQlSlOW+xQleDDQT7ZNl4A8ihpBwa5oawXcBVoo=;
+	h=From:To:CC:Subject:Date;
+	b=GcS1nRR5PAS7v7yiNF+PVW3BdnqP5tS44RZVBnaEdVT6YQvfWkUIRjsA6TQb7InM3
+	 NzMVN2jdi+AvQf9y0hKQPWSv2RU1vf9VFI691dQ4Wm8Y50AFwA9z2gjzXTpmNJA8XI
+	 losuBy/327VnKgLsc37bHxsAM6yDDCJgbStPysHA=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43G57FmT039670
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 16 Apr 2024 00:07:15 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
+ Apr 2024 00:07:15 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 16 Apr 2024 00:07:15 -0500
+Received: from localhost (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.238])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43G57EM2001359;
+	Tue, 16 Apr 2024 00:07:15 -0500
+From: Chirag Shilwant <c-shilwant@ti.com>
+To: Denys Dmytriyenko <denis@denix.org>, Ryan Eatmon <reatmon@ti.com>,
+        <meta-arago@lists.yoctoproject.org>
+CC: Gyan Gupta <g-gupta@ti.com>
+Subject: [meta-arago][master/scarthgap][PATCH] recipes-devtools: Drop bbappends for opkg-utils and swig
+Date: Tue, 16 Apr 2024 10:37:12 +0530
+Message-ID: <20240416050712.167608-1-c-shilwant@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240415094331.3535927-1-c-shilwant@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 15 Apr 2024 20:00:53 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15284
+ <meta-arago@lists.yoctoproject.org>; Tue, 16 Apr 2024 05:07:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15285
 
-Same comment as with dbus.
+- This workaround to exclude rm_work on these packages was
+added to address issues that were observed when combined with
+the sourceipk feature of arago [1].
 
+- As the sourceipk class is dropped from arago [2], we no longer need
+this workaround. If required this workaround should be carried in
+Processor SDK layer (i.e. meta-tisdk) which currently has the sourceipk class [3].
 
-On Mon, Apr 15, 2024 at 03:13:31PM +0530, Chirag Shilwant wrote:
-> freetype recipe from oe-core:meta already has the appropriate
-> SPDX license identifiers [1]. Hence, remove this bbappend.
-> 
-> [1]: https://git.openembedded.org/openembedded-core/tree/meta/recipes-graphics/freetype/freetype_2.13.2.bb?h=scarthgap#n10
-> 
-> Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
-> ---
->  .../recipes-graphics/freetype/freetype_%.bbappend              | 3 ---
->  1 file changed, 3 deletions(-)
->  delete mode 100644 meta-arago-distro/recipes-graphics/freetype/freetype_%.bbappend
-> 
-> diff --git a/meta-arago-distro/recipes-graphics/freetype/freetype_%.bbappend b/meta-arago-distro/recipes-graphics/freetype/freetype_%.bbappend
-> deleted file mode 100644
-> index 860a0797..00000000
-> --- a/meta-arago-distro/recipes-graphics/freetype/freetype_%.bbappend
-> +++ /dev/null
-> @@ -1,3 +0,0 @@
-> -PR:append = ".arago0"
-> -
-> -LICENSE = "GPL-2.0-or-later"
-> -- 
-> 2.34.1
-> 
+[1]: https://git.ti.com/cgit/arago-project/meta-arago/commit/?h=scarthgap&id=0070bdfdf1a91b62eabf8a4d8e2e441bfc1d014b
+
+[2]: https://git.ti.com/cgit/arago-project/meta-arago/commit/?h=scarthgap&id=22868449008e2872a75dede8027947c36a6afc80
+
+[3]: https://git.ti.com/cgit/ti-sdk-linux/meta-tisdk/commit/?h=scarthgap&id=aa297415d65b9bb9d1171a3dd18a2b2b2341fd79
+
+Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
+---
+ .../recipes-devtools/opkg-utils/opkg-utils_%.bbappend          | 3 ---
+ meta-arago-distro/recipes-devtools/swig/swig_%.bbappend        | 3 ---
+ 2 files changed, 6 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-devtools/opkg-utils/opkg-utils_%.bbappend
+ delete mode 100644 meta-arago-distro/recipes-devtools/swig/swig_%.bbappend
+
+diff --git a/meta-arago-distro/recipes-devtools/opkg-utils/opkg-utils_%.bbappend b/meta-arago-distro/recipes-devtools/opkg-utils/opkg-utils_%.bbappend
+deleted file mode 100644
+index 29d90a9d..00000000
+--- a/meta-arago-distro/recipes-devtools/opkg-utils/opkg-utils_%.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-
+-RM_WORK_EXCLUDE += "${PN}"
+-
+diff --git a/meta-arago-distro/recipes-devtools/swig/swig_%.bbappend b/meta-arago-distro/recipes-devtools/swig/swig_%.bbappend
+deleted file mode 100644
+index 29d90a9d..00000000
+--- a/meta-arago-distro/recipes-devtools/swig/swig_%.bbappend
++++ /dev/null
+@@ -1,3 +0,0 @@
+-
+-RM_WORK_EXCLUDE += "${PN}"
+-
+-- 
+2.34.1
+
 
