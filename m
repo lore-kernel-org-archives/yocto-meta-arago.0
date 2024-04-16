@@ -2,100 +2,106 @@ Return-Path: <c-shilwant@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 96B9FC4345F
-	for <webhook@archiver.kernel.org>; Tue, 16 Apr 2024 05:25:46 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web10.13145.1713245144758799415
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DBCFC4345F
+	for <webhook@archiver.kernel.org>; Tue, 16 Apr 2024 06:23:29 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web10.13777.1713248606912482019
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 15 Apr 2024 22:25:44 -0700
+ Mon, 15 Apr 2024 23:23:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=VQ9tySuI;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: c-shilwant@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43G5Pg5j010786;
-	Tue, 16 Apr 2024 00:25:42 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=IjbvjFPZ;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: c-shilwant@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43G6NOvF049025;
+	Tue, 16 Apr 2024 01:23:24 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1713245142;
-	bh=oE9Q69GdZYLfioeBXs8VOFsrLmizQh4Oz64LCen0CSw=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=VQ9tySuI+4sEDBmSUELu8lETCBLK67MI0E6TmocW+tAgaGXCzARM2P73MhiENFuzP
-	 R5aFXRYqULS3QOPcE+KNEsXEPgqi1R4alqD3oOMPmAG1ScVdbi2oJxMD/qB1PCYMKn
-	 7GIJw0fjgqsqQrOfxMCD5j5jGIgtEREP5O19qpx8=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43G5Pg7M025957
+	s=ti-com-17Q1; t=1713248604;
+	bh=7ZUxK7k/KJRVK1VWvwDFKXhkozO9OUuS7b43rFhUBds=;
+	h=From:To:CC:Subject:Date;
+	b=IjbvjFPZrQccHsevvTnY57tPxYGe4k5xy3JFcNCqsbKkCwZ5vpyGXBSJeeMuMNrl7
+	 y5JiLpsD/5BTkmQG3D2KynN2nW31KcB+O2opkptP70cRtMZnCQgzm+Ad7M495+ops2
+	 ziM2V83ENkvPCRQzhafCXX9+XYK3mebG5Q1zEGrs=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43G6NNQA101587
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 16 Apr 2024 00:25:42 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 16 Apr 2024 01:23:24 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
- Apr 2024 00:25:42 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2024 01:23:23 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 16 Apr 2024 00:25:41 -0500
-Received: from [172.24.227.238] (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.238])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43G5Pd7q034993;
-	Tue, 16 Apr 2024 00:25:40 -0500
-Message-ID: <5d9c4555-e2a2-442d-8cec-8c7b2cfb3103@ti.com>
-Date: Tue, 16 Apr 2024 10:55:39 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master/scarthgap][PATCH] recipes-graphics: freetype:
- Remove redundant bbappend
-To: Denys Dmytriyenko <denis@denix.org>
-CC: Ryan Eatmon <reatmon@ti.com>, <meta-arago@lists.yoctoproject.org>,
-        Gyan
- Gupta <g-gupta@ti.com>
-References: <20240415094331.3535927-1-c-shilwant@ti.com>
- <20240415200039.GF28791@denix.org>
-Content-Language: en-US
+ Frontend Transport; Tue, 16 Apr 2024 01:23:23 -0500
+Received: from localhost (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.238])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43G6NMdP067537;
+	Tue, 16 Apr 2024 01:23:23 -0500
 From: Chirag Shilwant <c-shilwant@ti.com>
-In-Reply-To: <20240415200039.GF28791@denix.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+To: Denys Dmytriyenko <denis@denix.org>, Ryan Eatmon <reatmon@ti.com>,
+        <meta-arago@lists.yoctoproject.org>
+CC: Gyan Gupta <g-gupta@ti.com>
+Subject: [meta-arago][scarthgap][PATCH] meta-arago-extras: packagegroups: Fix QA Issue
+Date: Tue, 16 Apr 2024 11:53:17 +0530
+Message-ID: <20240416062317.223194-1-c-shilwant@ti.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 16 Apr 2024 05:25:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15287
+ <meta-arago@lists.yoctoproject.org>; Tue, 16 Apr 2024 06:23:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15288
 
-Hi Denys,
+- Since packagegroup.bbclass is using inherit_defer in oe-core, some classes are
+now appearing after nativesdk resulting in following QA errors.
 
-On 16/04/24 01:30, Denys Dmytriyenko wrote:
-> Same comment as with dbus.
+ ```
+  QA Issue: nativesdk-packagegroup-arago-tisdk-host: native/nativesdk class is not inherited last, this can result in unexpected behaviour. Classes inherited after native/nativesdk: allarch.bbclass [native-last]
+  QA Issue: nativesdk-packagegroup-arago-qte-toolchain-host: native/nativesdk class is not inherited last, this can result in unexpected behaviour. Classes inherited after native/nativesdk: allarch.bbclass [native-last]
 
-freetype as well seems to have multiple licenses [1]
+ ```
 
-[1]: 
-https://git.openembedded.org/openembedded-core/tree/meta/recipes-graphics/freetype/freetype_2.13.2.bb?h=scarthgap#n10 
+- To fix this issue, use inherit_defer that was added in bitbake recently [1].
 
+[1]: https://github.com/openembedded/bitbake/commit/5c2e840eafeba1f0f754c226b87bfb674f7bea29
 
+Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
+---
+ .../nativesdk-packagegroup-arago-qte-toolchain-host.bb         | 3 ++-
+ .../packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb   | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
->
->
-> On Mon, Apr 15, 2024 at 03:13:31PM +0530, Chirag Shilwant wrote:
->> freetype recipe from oe-core:meta already has the appropriate
->> SPDX license identifiers [1]. Hence, remove this bbappend.
->>
->> [1]: https://git.openembedded.org/openembedded-core/tree/meta/recipes-graphics/freetype/freetype_2.13.2.bb?h=scarthgap#n10
->>
->> Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
->> ---
->>   .../recipes-graphics/freetype/freetype_%.bbappend              | 3 ---
->>   1 file changed, 3 deletions(-)
->>   delete mode 100644 meta-arago-distro/recipes-graphics/freetype/freetype_%.bbappend
->>
->> diff --git a/meta-arago-distro/recipes-graphics/freetype/freetype_%.bbappend b/meta-arago-distro/recipes-graphics/freetype/freetype_%.bbappend
->> deleted file mode 100644
->> index 860a0797..00000000
->> --- a/meta-arago-distro/recipes-graphics/freetype/freetype_%.bbappend
->> +++ /dev/null
->> @@ -1,3 +0,0 @@
->> -PR:append = ".arago0"
->> -
->> -LICENSE = "GPL-2.0-or-later"
->> -- 
->> 2.34.1
->>
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb
+index 4d2a98ad..23c45abf 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-qte-toolchain-host.bb
+@@ -2,7 +2,8 @@ DESCRIPTION = "Host packages for Qt Embedded SDK"
+ PR = "r10"
+ LICENSE = "MIT"
+ 
+-inherit packagegroup nativesdk
++inherit packagegroup
++inherit_defer nativesdk
+ 
+ RDEPENDS:${PN} = "\
+     nativesdk-packagegroup-arago-tisdk-host \
+diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
+index 7e77d12f..92a80b6b 100644
+--- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
++++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup-arago-tisdk-host.bb
+@@ -2,7 +2,8 @@ SUMMARY = "Host packages for a standalone Arago SDK with TI tools"
+ PR = "r2"
+ LICENSE = "MIT"
+ 
+-inherit packagegroup nativesdk
++inherit packagegroup
++inherit_defer nativesdk
+ 
+ PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
+ 
+-- 
+2.34.1
+
 
