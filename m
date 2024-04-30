@@ -1,88 +1,99 @@
-Return-Path: <rs@ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id ED48EC4345F
-	for <webhook@archiver.kernel.org>; Tue, 30 Apr 2024 21:39:18 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.578.1714513153049567345
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 344F4C4345F
+	for <webhook@archiver.kernel.org>; Tue, 30 Apr 2024 22:54:44 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.118.1714517683134142336
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 30 Apr 2024 14:39:13 -0700
+ Tue, 30 Apr 2024 15:54:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=EJjOIUwr;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: rs@ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43ULdCTD103579;
-	Tue, 30 Apr 2024 16:39:12 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=gHxERi3A;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43UMsbah055245;
+	Tue, 30 Apr 2024 17:54:37 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714513152;
-	bh=fSMllx+ClVdtSAc9bX3B1M81gbOl86STX2AjtWsbg8c=;
-	h=From:To:CC:Subject:Date;
-	b=EJjOIUwre381SBWKIkvpbI7C+BPldPOKNnxzU6c+LpTLskbMkOWKgQ2lNb6TdRQOD
-	 iLVrD8VaxmdkmmKo/BLRA4CXYHHgSriO1WfWu6GPDgY5Uk3fuMeR5/vE2a/4LDNChL
-	 R7TerNMtIyohnup/J5xkFdKLc+mzDqSLH4N1aLr8=
+	s=ti-com-17Q1; t=1714517677;
+	bh=9Cfkfxiz0hZeJNzedi2QlFxCYB79xXSG5E738hFq+eU=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=gHxERi3APwX7lEEsoGQ2nRh0lEmoXCfS0UU8dOOC1FAZMmylhpkaiXIMqi4mx8kZu
+	 Z4ShAzWaEmhCwUplSq3sgD0V95EACt2WwF2pbXRF8j/Ho3+777rT1jVw83zjlIvktY
+	 OLl+mI2N1K2+EKwWPcE7SV6g7MuKGDaQNumSR5gg=
 Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43ULdCQh009681
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43UMsbmN066485
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 30 Apr 2024 16:39:12 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE103.ent.ti.com
+	Tue, 30 Apr 2024 17:54:37 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE103.ent.ti.com
  (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 30
- Apr 2024 16:39:11 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ Apr 2024 17:54:37 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 30 Apr 2024 16:39:11 -0500
-Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43ULdBac085074;
-	Tue, 30 Apr 2024 16:39:11 -0500
-From: <rs@ti.com>
-To: <reatmon@ti.com>, <denys@konsulko.com>, <detheridge@ti.com>
-CC: <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master/scarthgap][PATCH] branding-ltsprep: enable newer pvr drivers
-Date: Tue, 30 Apr 2024 16:39:10 -0500
-Message-ID: <20240430213910.3697337-1-rs@ti.com>
-X-Mailer: git-send-email 2.44.0
+ Frontend Transport; Tue, 30 Apr 2024 17:54:37 -0500
+Received: from [10.249.35.173] ([10.249.35.173])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43UMsbp7082131;
+	Tue, 30 Apr 2024 17:54:37 -0500
+Message-ID: <da9dde0d-8555-46ba-83db-3e76f5c8f477@ti.com>
+Date: Tue, 30 Apr 2024 17:54:36 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago][kirkstone/master][PATCH] kms++: update to the latest
+ and bump version
+To: Jayesh Choudhary <j-choudhary@ti.com>, <meta-arago@lists.yoctoproject.org>,
+        <denis@denix.org>
+CC: <devarsht@ti.com>, <tomi.valkeinen@ideasonboard.com>, <a-limaye@ti.com>
+References: <20240430094003.196209-1-j-choudhary@ti.com>
+Content-Language: en-US
+From: Ryan Eatmon <reatmon@ti.com>
+In-Reply-To: <20240430094003.196209-1-j-choudhary@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 30 Apr 2024 21:39:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15317
+ <meta-arago@lists.yoctoproject.org>; Tue, 30 Apr 2024 22:54:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15318
 
-From: Randolph Sapp <rs@ti.com>
 
-The newer drivers require a dt binding change for platforms that is only
-present in the ltsprep kernel. Enable them with the new kernel here.
+Is this supposed to be for kirkstone?  Or did you mean scarthgap?
 
-Also pull in the newer pvr-mesa package here as well. It's not strictly
-required for this driver version but it is recommended. It still needs
-some attention with regards to SGX so it will not be enabled by default
-right now.
 
-Signed-off-by: Randolph Sapp <rs@ti.com>
----
- meta-arago-distro/conf/distro/include/branding-ltsprep.inc | 3 +++
- 1 file changed, 3 insertions(+)
+On 4/30/2024 4:40 AM, Jayesh Choudhary wrote:
+> ltp-ddt scripts are using latest dmabuf utilities but the current
+> source code does not have that support in kms++.
+> Bump up the SRCREV to take into account the latest dmabuf changes.
+> 
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> ---
+>   meta-arago-extras/recipes-graphics/kms++/kms++_git.bb | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+> index 2c0abaa7..bae03683 100644
+> --- a/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+> +++ b/meta-arago-extras/recipes-graphics/kms++/kms++_git.bb
+> @@ -3,12 +3,12 @@ HOMEPAGE = "https://github.com/tomba/kmsxx"
+>   LICENSE = "MPL-2.0"
+>   LIC_FILES_CHKSUM = "file://LICENSE;md5=815ca599c9df247a0c7f619bab123dad"
+>   
+> -PV = "2.1"
+> +PV = "2.2"
+>   PR = "r1"
+>   
+>   BRANCH = "master"
+>   SRC_URI = "git://github.com/tomba/kmsxx.git;protocol=https;branch=${BRANCH}"
+> -SRCREV = "5afc8d918f2c084acd65027604868dfde43395cf"
+> +SRCREV = "9ae90ce75478e49844cf984562db0dc1a074462f"
+>   
+>   DEPENDS = "drm fmt"
+>   
 
-diff --git a/meta-arago-distro/conf/distro/include/branding-ltsprep.inc b/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-index 1298bda1..4853f3c6 100644
---- a/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-@@ -3,6 +3,9 @@ PREFERRED_VERSION_linux-ti-staging = "6.6%"
- PREFERRED_VERSION_linux-ti-staging-rt = "6.6%"
- PREFERRED_VERSION_linux-ti-staging-systest = "6.6%"
- PREFERRED_VERSION_u-boot-ti-staging = "2024.04%"
-+PREFERRED_VERSION_ti-img-rogue-umlibs = "24.1.6554834"
-+PREFERRED_VERSION_ti-img-rogue-driver = "24.1.6554834"
-+PREFERRED_VERSION_mesa-pvr = "23.2.1"
- 
- # Remove mmip - DRM allocator, KMS sink, Wayland sink need porting to GST 1.18
- MACHINE_FEATURES:remove = "mmip"
 -- 
-2.44.0
-
+Ryan Eatmon                reatmon@ti.com
+-----------------------------------------
+Texas Instruments, Inc.  -  LCPD  -  MGTS
 
