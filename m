@@ -2,51 +2,51 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 138B0C4345F
-	for <webhook@archiver.kernel.org>; Thu,  2 May 2024 15:11:47 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web11.16200.1714662699134707667
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 960E3C4345F
+	for <webhook@archiver.kernel.org>; Thu,  2 May 2024 21:56:51 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web10.7094.1714687008332748880
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 02 May 2024 08:11:39 -0700
+ Thu, 02 May 2024 14:56:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=Cg2Q6Oo8;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 442FBbuq061515;
-	Thu, 2 May 2024 10:11:37 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=vfaJhrvv;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: reatmon@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 442Lulnd076978;
+	Thu, 2 May 2024 16:56:47 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1714662697;
-	bh=VOLHjq1as7qMHfGdocDBi5PitubK2iZQ+UBbW1lBvDo=;
+	s=ti-com-17Q1; t=1714687007;
+	bh=a4Dop48V5itmV9c6KkY+svzcL4Sijdhdf/WejAcDLME=;
 	h=From:To:Subject:Date;
-	b=Cg2Q6Oo8XISoc1iSTZhoj4fGwPGo3ctSOI0kXcMIZZpC650Y0GzdL7/VWx2NV7/9n
-	 TCSRMRK/mW8mBnHQxE37mJB+sa8XJt4jl7QQPwLu1yM33O8zThG0+shqcZc6AR5d68
-	 mDSDog5NUcmcllM/iZaJfHQADa0JA6FkqvRaasO0=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 442FBbQp010167
+	b=vfaJhrvvn02hEd1Zu2arcCiL2sWCdPttivuMi6ooiqJ8InZXPYTuFyz231M6bcSVK
+	 six6XOyq7OkQsuPjeFTZUoPwNEqG5PPzORs2rweqkXFqP42eT9rbf/gyk73/JJFsAA
+	 0xPZjqJoZiy+SrIWMJItg1X90nptJ0VgBpGzmlq0=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 442LukDd056940
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 2 May 2024 10:11:37 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+	Thu, 2 May 2024 16:56:47 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 2
- May 2024 10:11:37 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ May 2024 16:56:46 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 2 May 2024 10:11:37 -0500
+ Frontend Transport; Thu, 2 May 2024 16:56:46 -0500
 Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 442FBbG6105888;
-	Thu, 2 May 2024 10:11:37 -0500
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 442LukeA094012;
+	Thu, 2 May 2024 16:56:46 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1s2Y5x-0007Oa-0B; Thu, 02 May 2024 10:11:37 -0500
+	id 1s2eQ2-0004Tc-EM; Thu, 02 May 2024 16:56:46 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [oe-layersetup][master][PATCH] configs: Update scarthgap configs for meta-arm
-Date: Thu, 2 May 2024 10:11:36 -0500
-Message-ID: <20240502151136.28389-1-reatmon@ti.com>
+Subject: [meta-arago][master/scarthgap][PATCH] meta-arago-test: ltp-ddt: Update to 20240129
+Date: Thu, 2 May 2024 16:56:46 -0500
+Message-ID: <20240502215646.17168-1-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
@@ -54,58 +54,264 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 02 May 2024 15:11:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15322
+ <meta-arago@lists.yoctoproject.org>; Thu, 02 May 2024 21:56:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15323
 
-meta-arm has created a scarthgap branch, so update the appropriate
-configs to point to it.
+Update the version of ltp-ddt to 20240129.  Since this requires the
+ltp-20240129 recipe, which is available upstream, we no longer need the
+20230127 recipes.
 
 Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- configs/arago-scarthgap-config.txt      | 2 +-
- configs/arago-scarthgap-next-config.txt | 2 +-
- configs/arago-scarthgap-wip-config.txt  | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ ...tp-ddt_20230127.bb => ltp-ddt_20240129.bb} |   4 +-
+ ...002-Remove-OOM-tests-from-runtest-mm.patch |  34 -----
+ .../ltp/ltp/disable_hanging_tests.patch       |  27 ----
+ .../recipes-extended/ltp/ltp_20230127.bb      | 140 ------------------
+ 4 files changed, 2 insertions(+), 203 deletions(-)
+ rename meta-arago-test/recipes-devtools/ltp-ddt/{ltp-ddt_20230127.bb => ltp-ddt_20240129.bb} (95%)
+ delete mode 100644 meta-arago-test/recipes-extended/ltp/ltp/0002-Remove-OOM-tests-from-runtest-mm.patch
+ delete mode 100644 meta-arago-test/recipes-extended/ltp/ltp/disable_hanging_tests.patch
+ delete mode 100644 meta-arago-test/recipes-extended/ltp/ltp_20230127.bb
 
-diff --git a/configs/arago-scarthgap-config.txt b/configs/arago-scarthgap-config.txt
-index 9b35f25..bd2df66 100644
---- a/configs/arago-scarthgap-config.txt
-+++ b/configs/arago-scarthgap-config.txt
-@@ -8,7 +8,7 @@ meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
- meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,HEAD,layers=
- meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
- meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap,HEAD,layers=meta-ti-extras:meta-ti-bsp
--meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-+meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,HEAD,layers=meta-arm:meta-arm-toolchain
- meta-clang,https://github.com/kraj/meta-clang,scarthgap,HEAD,layers=
- oe-core,https://git.openembedded.org/openembedded-core,scarthgap,HEAD,layers=meta
- OECORELAYERCONF=./sample-files/bblayers.conf.sample
-diff --git a/configs/arago-scarthgap-next-config.txt b/configs/arago-scarthgap-next-config.txt
-index 2606d3f..177410a 100644
---- a/configs/arago-scarthgap-next-config.txt
-+++ b/configs/arago-scarthgap-next-config.txt
-@@ -16,7 +16,7 @@ meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
- meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,HEAD,layers=
- meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
- meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap-next,HEAD,layers=meta-ti-extras:meta-ti-bsp
--meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-+meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,HEAD,layers=meta-arm:meta-arm-toolchain
- meta-clang,https://github.com/kraj/meta-clang,scarthgap,HEAD,layers=
- oe-core,https://git.openembedded.org/openembedded-core,scarthgap,HEAD,layers=meta
- OECORELAYERCONF=./sample-files/bblayers.conf.sample
-diff --git a/configs/arago-scarthgap-wip-config.txt b/configs/arago-scarthgap-wip-config.txt
-index 32349d3..bae0606 100644
---- a/configs/arago-scarthgap-wip-config.txt
-+++ b/configs/arago-scarthgap-wip-config.txt
-@@ -8,7 +8,7 @@ meta-qt5,https://github.com/meta-qt5/meta-qt5.git,master,HEAD,layers=
- meta-virtualization,https://git.yoctoproject.org/meta-virtualization,scarthgap,HEAD,layers=
- meta-openembedded,https://git.openembedded.org/meta-openembedded,scarthgap,HEAD,layers=meta-networking:meta-python:meta-oe:meta-gnome:meta-filesystems:meta-multimedia
- meta-ti,https://git.yoctoproject.org/meta-ti,scarthgap-wip,HEAD,layers=meta-ti-extras:meta-ti-bsp
--meta-arm,https://git.yoctoproject.org/meta-arm,master,HEAD,layers=meta-arm:meta-arm-toolchain
-+meta-arm,https://git.yoctoproject.org/meta-arm,scarthgap,HEAD,layers=meta-arm:meta-arm-toolchain
- meta-clang,https://github.com/kraj/meta-clang,scarthgap,HEAD,layers=
- oe-core,https://git.openembedded.org/openembedded-core,scarthgap,HEAD,layers=meta
- OECORELAYERCONF=./sample-files/bblayers.conf.sample
+diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
+similarity index 95%
+rename from meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
+rename to meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
+index 0b990b34..ead0262f 100644
+--- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20230127.bb
++++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
+@@ -11,10 +11,10 @@ PROVIDES += "ltp"
+ DEPENDS += "alsa-lib"
+ 
+ PE = "1"
+-PR = "r7"
++PR = "r1"
+ PV:append = "+git"
+ 
+-SRCREV = "07e0795c14d4bd8bd4857438cf3bb414b1f34eaa"
++SRCREV = "0c8b175b49a463969639eb1539b664f38bba66ff"
+ BRANCH ?= "master"
+ 
+ SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
+diff --git a/meta-arago-test/recipes-extended/ltp/ltp/0002-Remove-OOM-tests-from-runtest-mm.patch b/meta-arago-test/recipes-extended/ltp/ltp/0002-Remove-OOM-tests-from-runtest-mm.patch
+deleted file mode 100644
+index c411df57..00000000
+--- a/meta-arago-test/recipes-extended/ltp/ltp/0002-Remove-OOM-tests-from-runtest-mm.patch
++++ /dev/null
+@@ -1,34 +0,0 @@
+-From e87c2ad1e16cdbd62ba71b2ace3270503decaa56 Mon Sep 17 00:00:00 2001
+-From: "Mingde (Matthew) Zeng" <matthewzmd@gmail.com>
+-Date: Wed, 29 Jul 2020 08:47:09 -0400
+-Subject: [PATCH] Remove OOM tests from runtest/mm
+-
+-Disable OOM tests, as they might cause oeqa ssh connection lost
+-
+-Upstream-Status: Inappropriate [oe-core specific]
+-Signed-off-by: Mingde (Matthew) Zeng <matthew.zeng@windriver.com>
+-[ pvorel: rebased for 20210927 ]
+-Signed-off-by: Petr Vorel <petr.vorel@gmail.com>
+----
+- runtest/mm | 6 ------
+- 1 file changed, 6 deletions(-)
+-
+-diff --git a/runtest/mm b/runtest/mm
+-index 6537666a9..e5a091a5a 100644
+---- a/runtest/mm
+-+++ b/runtest/mm
+-@@ -73,12 +73,6 @@ ksm06_2 ksm06 -n 8000
+-
+- cpuset01 cpuset01
+-
+--oom01 oom01
+--oom02 oom02
+--oom03 oom03
+--oom04 oom04
+--oom05 oom05
+--
+- swapping01 swapping01 -i 5
+-
+- thp01 thp01 -I 120
+---
+-2.33.0
+diff --git a/meta-arago-test/recipes-extended/ltp/ltp/disable_hanging_tests.patch b/meta-arago-test/recipes-extended/ltp/ltp/disable_hanging_tests.patch
+deleted file mode 100644
+index ff1d31a8..00000000
+--- a/meta-arago-test/recipes-extended/ltp/ltp/disable_hanging_tests.patch
++++ /dev/null
+@@ -1,27 +0,0 @@
+-This patch disables tests which we've found "hang" on our infrastructure.
+-
+-proc01:
+-https://autobuilder.yoctoproject.org/typhoon/#/builders/96/builds/1748 (arm)
+-https://autobuilder.yoctoproject.org/typhoon/#/builders/96/builds/1781 (arm)
+-https://autobuilder.yoctoproject.org/typhoon/#/builders/96/builds/2782 (arm)
+-(was trying to read /proc/kmsg, looks like a horrible test anyway)
+-
+-Upstream-Status: Inappropriate [OE Configuration]
+-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+-
+-Index: git/runtest/fs
+-===================================================================
+---- git.orig/runtest/fs
+-+++ git/runtest/fs
+-@@ -64,11 +64,6 @@ writetest01	writetest
+- #Also run the fs_di (Data Integrity tests)
+- fs_di fs_di -d $TMPDIR
+-
+--# Read every file in /proc. Not likely to crash, but does enough
+--# to disturb the kernel. A good kernel latency killer too.
+--# Was not sure why it should reside in runtest/crashme and won't get tested ever
+--proc01 proc01 -m 128
+--
+- read_all_dev read_all -d /dev -p -q -r 3
+- read_all_proc read_all -d /proc -q -r 3
+- read_all_sys read_all -d /sys -q -r 3
+diff --git a/meta-arago-test/recipes-extended/ltp/ltp_20230127.bb b/meta-arago-test/recipes-extended/ltp/ltp_20230127.bb
+deleted file mode 100644
+index 570401ea..00000000
+--- a/meta-arago-test/recipes-extended/ltp/ltp_20230127.bb
++++ /dev/null
+@@ -1,140 +0,0 @@
+-SUMMARY = "Linux Test Project"
+-DESCRIPTION = "The Linux Test Project is a joint project with SGI, IBM, OSDL, and Bull with a goal to deliver test suites to the open source community that validate the reliability, robustness, and stability of Linux. The Linux Test Project is a collection of tools for testing the Linux kernel and related features."
+-HOMEPAGE = "https://linux-test-project.github.io/"
+-SECTION = "console/utils"
+-LICENSE = "GPL-2.0-only & GPL-2.0-or-later & LGPL-2.0-or-later & LGPL-2.1-or-later & BSD-2-Clause"
+-LIC_FILES_CHKSUM = "\
+-    file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
+-    file://testcases/open_posix_testsuite/COPYING;md5=48b1c5ec633e3e30ec2cf884ae699947 \
+-    file://testcases/network/can/filter-tests/COPYING;md5=5b155ea7d7f86eae8e8832955d8b70bc \
+-"
+-
+-DEPENDS = "attr libaio libcap acl openssl zip-native"
+-DEPENDS:append:libc-musl = " fts "
+-EXTRA_OEMAKE:append:libc-musl = " LIBC=musl "
+-EXTRA_OECONF:append:libc-musl = " LIBS=-lfts "
+-
+-# since ltp contains x86-64 assembler which uses the frame-pointer register,
+-# set -fomit-frame-pointer x86-64 to handle cases where optimisation
+-# is set to -O0 or frame pointers have been enabled by -fno-omit-frame-pointer
+-# earlier in CFLAGS, etc.
+-CFLAGS:append:x86-64 = " -fomit-frame-pointer"
+-TUNE_CCARGS:remove:x86 = "-mfpmath=sse"
+-TUNE_CCARGS:remove:x86-64 = "-mfpmath=sse"
+-
+-CFLAGS:append:powerpc64 = " -D__SANE_USERSPACE_TYPES__"
+-CFLAGS:append:mipsarchn64 = " -D__SANE_USERSPACE_TYPES__"
+-SRCREV = "dd2d61ac1a1e09797a6165f478abd4a9f4f43035"
+-
+-SRC_URI = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https \
+-           file://0002-Remove-OOM-tests-from-runtest-mm.patch \
+-           file://disable_hanging_tests.patch \
+-           "
+-
+-S = "${WORKDIR}/git"
+-
+-inherit autotools-brokensep pkgconfig
+-
+-# Version 20220527 added KVM test infrastructure which currently fails to build with gold due to
+-# SORT_NONE in linker script which isn't supported by gold:
+-# https://sourceware.org/bugzilla/show_bug.cgi?id=18097
+-# https://github.com/linux-test-project/ltp/commit/3fce2064b54843218d085aae326c8f7ecf3a8c41#diff-39268f0855c634ca48c8993fcd2c95b12a65b79e8d9fa5ccd6b0f5a8785c0dd6R36
+-LDFLAGS:append = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', ' -fuse-ld=bfd', '', d)}"
+-
+-# After 0002-kvm-use-LD-instead-of-hardcoding-ld.patch
+-# https://github.com/linux-test-project/ltp/commit/f94e0ef3b7280f886384703ef9019aaf2f2dfebb
+-# it fails with gold also a bit later when trying to use *-payload.bin
+-# http://errors.yoctoproject.org/Errors/Details/663094/
+-# work around this by forcing .bfd linked in LD when ld-is-gold is in DISTRO_FEATURES
+-KVM_LD = "${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', '${HOST_PREFIX}ld.bfd${TOOLCHAIN_OPTIONS} ${HOST_LD_ARCH}', '${LD}', d)}"
+-
+-TARGET_CC_ARCH += "${LDFLAGS}"
+-
+-export prefix = "/opt/${PN}"
+-export exec_prefix = "/opt/${PN}"
+-
+-PACKAGECONFIG[numa] = "--with-numa, --without-numa, numactl,"
+-EXTRA_AUTORECONF += "-I ${S}/testcases/realtime/m4"
+-EXTRA_OECONF = " --with-realtime-testsuite --with-open-posix-testsuite "
+-# ltp network/rpc test cases ftbfs when libtirpc is found
+-EXTRA_OECONF += " --without-tirpc "
+-
+-do_compile() {
+-    oe_runmake HOSTCC="${CC_FOR_BUILD}" HOST_CFLAGS="${CFLAGS_FOR_BUILD}" HOST_LDFLAGS="${LDFLAGS_FOR_BUILD}" KVM_LD="${KVM_LD}"
+-}
+-
+-do_install(){
+-    install -d ${D}${prefix}/
+-    oe_runmake DESTDIR=${D} SKIP_IDCHECK=1 install include-install
+-
+-    # fixup not deploy STPfailure_report.pl to avoid confusing about it fails to run
+-    # as it lacks dependency on some perl moudle such as LWP::Simple
+-    # And this script previously works as a tool for analyzing failures from LTP
+-    # runs on the OSDL's Scaleable Test Platform (STP) and it mainly accesses
+-    # http://khack.osdl.org to retrieve ltp test results run on
+-    # OSDL's Scaleable Test Platform, but now http://khack.osdl.org unaccessible
+-    rm -rf ${D}${prefix}/bin/STPfailure_report.pl
+-
+-    # The controllers memcg_stree test seems to cause us hangs and takes 900s
+-    # (maybe we expect more regular output?), anyhow, skip it
+-    sed -e '/^memcg_stress/d' -i ${D}${prefix}/runtest/controllers
+-}
+-
+-RDEPENDS:${PN} = "\
+-    attr \
+-    bash \
+-    bc \
+-    coreutils \
+-    cpio \
+-    cronie \
+-    curl \
+-    e2fsprogs \
+-    e2fsprogs-mke2fs \
+-    expect \
+-    file \
+-    gawk \
+-    gdb \
+-    gzip \
+-    iproute2 \
+-    ldd \
+-    libaio \
+-    logrotate \
+-    net-tools \
+-    perl \
+-    python3-core \
+-    procps \
+-    quota \
+-    unzip \
+-    util-linux \
+-    which \
+-    tar \
+-"
+-
+-FILES:${PN} += "${prefix}/* ${prefix}/runtest/* ${prefix}/scenario_groups/* ${prefix}/testcases/bin/* ${prefix}/testcases/bin/*/bin/* ${prefix}/testscripts/* ${prefix}/testcases/open_posix_testsuite/* ${prefix}/testcases/open_posix_testsuite/conformance/* ${prefix}/testcases/open_posix_testsuite/Documentation/* ${prefix}/testcases/open_posix_testsuite/functional/* ${prefix}/testcases/open_posix_testsuite/include/* ${prefix}/testcases/open_posix_testsuite/scripts/* ${prefix}/testcases/open_posix_testsuite/stress/* ${prefix}/testcases/open_posix_testsuite/tools/* ${prefix}/testcases/data/nm01/lib.a ${prefix}/lib/libmem.a"
+-
+-# Avoid stripping some generated binaries otherwise some of the ltp tests such as ldd01 & nm01 fail
+-INHIBIT_PACKAGE_STRIP_FILES = "${prefix}/testcases/bin/nm01 ${prefix}/testcases/bin/ldd01"
+-INSANE_SKIP:${PN} += "already-stripped staticdev"
+-
+-remove_broken_musl_sources() {
+-	[ "${TCLIBC}" = "musl" ] || return 0
+-
+-	cd ${S}
+-	echo "WARNING: remove unsupported tests (until they're fixed)"
+-
+-	# sync with upstream
+-	# https://github.com/linux-test-project/ltp/blob/master/ci/alpine.sh#L33
+-	rm -rfv \
+-		testcases/kernel/syscalls/fmtmsg/fmtmsg01.c \
+-		testcases/kernel/syscalls/getcontext/getcontext01.c \
+-		testcases/kernel/syscalls/rt_tgsigqueueinfo/rt_tgsigqueueinfo01.c \
+-		testcases/kernel/syscalls/timer_create/timer_create01.c \
+-		testcases/kernel/syscalls/timer_create/timer_create03.c
+-}
+-do_patch[postfuncs] += "remove_broken_musl_sources"
+-
+-# Avoid file dependency scans, as LTP checks for things that may or may not
+-# exist on the running system.  For instance it has specific checks for
+-# csh and ksh which are not typically part of OpenEmbedded systems (but
+-# can be added via additional layers.)
+-SKIP_FILEDEPS:${PN} = '1'
 -- 
 2.17.1
 
