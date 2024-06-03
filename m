@@ -1,100 +1,84 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <c-shilwant@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 87AF9C25B75
-	for <webhook@archiver.kernel.org>; Fri, 31 May 2024 19:46:11 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web10.22653.1717184769109790230
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 49474C25B75
+	for <webhook@archiver.kernel.org>; Mon,  3 Jun 2024 06:38:55 +0000 (UTC)
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by mx.groups.io with SMTP id smtpd.web11.77134.1717396734419791958
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 31 May 2024 12:46:09 -0700
+ Sun, 02 Jun 2024 23:38:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=xQGpyoDO;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=GJ/SWL+c;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: c-shilwant@ti.com)
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 44VJk8Bm074562;
-	Fri, 31 May 2024 14:46:08 -0500
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4536crF9049178
+	for <meta-arago@lists.yoctoproject.org>; Mon, 3 Jun 2024 01:38:53 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717184768;
-	bh=mZ9fbi2jynTbfZ0jcPIKgwseZ7Plu9FGKuwqp83kd2k=;
-	h=From:To:Subject:Date;
-	b=xQGpyoDOCmyNBLlqKSn2iCFiW3FIywn6HqtXHu4GBYEo8TJ8Y7KQ/9BeozCYS19Xf
-	 HJ7A8ZR6OX3ffpba7EI9DDqxqREIDx1ygEmUcB4aPqslXj47YSqJAzI6i8TMlIqmdY
-	 4ugv+48i4lGiaU5hah9G0lLKhfRVXYVvjOinkbqg=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 44VJk864029364
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 31 May 2024 14:46:08 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 31
- May 2024 14:46:08 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	s=ti-com-17Q1; t=1717396733;
+	bh=flx8Qm3j526bIGx326a/G77NC0AKKUIUZVVnmXBgY1I=;
+	h=From:To:CC:Subject:Date;
+	b=GJ/SWL+c69NlTIl0VSTLO6SkwWDd+K2VSG3GAsTeoBpljVms2vxvB0995qI7C7cPg
+	 2yX+Pm2G/zBOet3q+HmmgmOmDEhNltggnb9XLvYlRc38eaGp5n9M72QVGaDOrNZLyx
+	 A9w9jYCRntt3XIaW3FQDC+iYScJSw3s0bEQf7aHQ=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4536crIS008497
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Mon, 3 Jun 2024 01:38:53 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 3
+ Jun 2024 01:38:53 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 31 May 2024 14:46:07 -0500
-Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 44VJk7Pi055997;
-	Fri, 31 May 2024 14:46:07 -0500
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1sD8CV-0006J1-RZ; Fri, 31 May 2024 14:46:07 -0500
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH] recipes: Update for gcc v14 support
-Date: Fri, 31 May 2024 14:46:07 -0500
-Message-ID: <20240531194607.24199-1-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
+ Frontend Transport; Mon, 3 Jun 2024 01:38:53 -0500
+Received: from localhost (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.238])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4536cq3V080638;
+	Mon, 3 Jun 2024 01:38:53 -0500
+From: Chirag Shilwant <c-shilwant@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: Ryan Eatmon <reatmon@ti.com>, Gyan Gupta <g-gupta@ti.com>
+Subject: [meta-arago][master/scarthgap][PATCH] recipes-core: packagegroup-arago-tisdk-addons: Add back kmscube
+Date: Mon, 3 Jun 2024 12:08:46 +0530
+Message-ID: <20240603063846.2815948-1-c-shilwant@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 31 May 2024 19:46:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15349
+ <meta-arago@lists.yoctoproject.org>; Mon, 03 Jun 2024 06:38:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15350
 
-One of the changes in gcc v14 is making implicit-function-declaration an
-error.  For some older software packages the easiest fix is to add
--fpermissive to the compile line.
+- kmscube was earlier packaged as a run time dependency for matrix-gui.
+But now as matrix-gui is removed [1], add kmscube manually.
 
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+- kmscube can be used by developers to quickly validate the GPU and display
+after driver or userspace changes. So it is good to add it back.
+
+[1]: https://git.ti.com/cgit/arago-project/meta-arago/commit/?h=master&id=e4b33fbc34aa90d156310b3cd1cb23f1d0cadab4
+
+Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
 ---
- meta-arago-extras/recipes-support/cclink/ccief-basic_git.bb   | 2 ++
- meta-arago-test/recipes-devtools/cpuloadgen/cpuloadgen_git.bb | 3 ++-
- 2 files changed, 4 insertions(+), 1 deletion(-)
+ .../packagegroups/packagegroup-arago-tisdk-addons.bb             | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-arago-extras/recipes-support/cclink/ccief-basic_git.bb b/meta-arago-extras/recipes-support/cclink/ccief-basic_git.bb
-index a2ade425..a39f8df8 100644
---- a/meta-arago-extras/recipes-support/cclink/ccief-basic_git.bb
-+++ b/meta-arago-extras/recipes-support/cclink/ccief-basic_git.bb
-@@ -20,6 +20,8 @@ S = "${WORKDIR}/git"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+index 8dbffa81..d25c9eb1 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-addons.bb
+@@ -79,6 +79,7 @@ EXTRA_PACKAGES = " \
+     nodejs-npm \
+     protobuf \
+     ccief-basic \
++    kmscube \
+ "
  
- TARGET_CC_ARCH += "${LDFLAGS}"
- 
-+EXTRA_OEMAKE = "CC="${CC} -fpermissive""
-+
- do_compile() {
- # build Master sample application
-     cd ${S}/CCIEF-BASIC_Master/build/linux
-diff --git a/meta-arago-test/recipes-devtools/cpuloadgen/cpuloadgen_git.bb b/meta-arago-test/recipes-devtools/cpuloadgen/cpuloadgen_git.bb
-index 7f734558..751f91c0 100644
---- a/meta-arago-test/recipes-devtools/cpuloadgen/cpuloadgen_git.bb
-+++ b/meta-arago-test/recipes-devtools/cpuloadgen/cpuloadgen_git.bb
-@@ -14,7 +14,8 @@ SRC_URI = "git://github.com/ptitiano/cpuloadgen.git;protocol=https;branch=${BRAN
- 
- S = "${WORKDIR}/git"
- 
--EXTRA_OEMAKE = "DESTDIR=${D}${bindir} CROSS_COMPILE=${TARGET_PREFIX} CC="${CC}""
-+EXTRA_OEMAKE = "DESTDIR=${D}${bindir} CROSS_COMPILE=${TARGET_PREFIX} CC="${CC}" CFLAGS="${CFLAGS}""
-+CFLAGS += "-fpermissive"
- 
- do_install () {
-     install -d ${D}${bindir}
+ EXTRA_PACKAGES:omapl138 = " \
 -- 
-2.17.1
+2.34.1
 
 
