@@ -1,91 +1,107 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E52A9C27C52
-	for <webhook@archiver.kernel.org>; Tue,  4 Jun 2024 15:40:31 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web10.25029.1717515625983481763
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 25E25C27C52
+	for <webhook@archiver.kernel.org>; Tue,  4 Jun 2024 16:05:12 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web10.25707.1717517109710988500
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 04 Jun 2024 08:40:26 -0700
+ Tue, 04 Jun 2024 09:05:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=kUOjH8Tl;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 454FeOCC094740;
-	Tue, 4 Jun 2024 10:40:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717515624;
-	bh=G1rtd0fhjTVM0gllkNYdA0GzXoXW/I1SZXxoRJcM1Zo=;
-	h=From:To:Subject:Date:In-Reply-To:References;
-	b=kUOjH8TlOJMbf7gp41bwFuaXVI2XvOzqziz1nMIrzbqQNzudeLqRRqsHpX2Kr64uB
-	 Q09VlLCZCfCF6BAe5wcR/bwUzl4bI7mKN7rxou/ISxQiF9GMEFQSMhFYzyzKkLHFQA
-	 XCOXnKpcifgzVz+w4serqHmAfde1WFaY0oV8tyKc=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 454FeOVf016982
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 4 Jun 2024 10:40:24 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 4
- Jun 2024 10:40:24 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 4 Jun 2024 10:40:24 -0500
-Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 454FeOqo063028;
-	Tue, 4 Jun 2024 10:40:24 -0500
-Received: from reatmon by uda0214219 with local (Exim 4.90_1)
-	(envelope-from <reatmon@ti.com>)
-	id 1sEWGu-0003En-Eg; Tue, 04 Jun 2024 10:40:24 -0500
-From: Ryan Eatmon <reatmon@ti.com>
-To: Praneeth Bajjuri <praneeth@ti.com>,
-        Denys Dmytriyenko
-	<denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH 2/2] hevc-arm-decoder: Update to UNPACKDIR for files going into WORKDIR
-Date: Tue, 4 Jun 2024 10:40:24 -0500
-Message-ID: <20240604154024.12402-2-reatmon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20240604154024.12402-1-reatmon@ti.com>
-References: <20240604154024.12402-1-reatmon@ti.com>
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D383740C8E;
+	Tue,  4 Jun 2024 16:05:08 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id vpanu5yGKYG4; Tue,  4 Jun 2024 16:05:08 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 146BA40C1C;
+	Tue,  4 Jun 2024 16:05:04 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id BD5BA163F84; Tue,  4 Jun 2024 12:05:03 -0400 (EDT)
+Date: Tue, 4 Jun 2024 12:05:03 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: reatmon@ti.com
+Cc: Praneeth Bajjuri <praneeth@ti.com>,
+	Denys Dmytriyenko <denys@konsulko.com>,
+	meta-arago@lists.yoctoproject.org
+Subject: Re: [meta-arago][scarthgap][PATCH] arm-ddr-bandwidth: Bandwidth
+ script for testing
+Message-ID: <20240604160503.GM21287@denix.org>
+References: <20240603161039.16176-1-reatmon@ti.com>
+ <20240603161039.16176-2-reatmon@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240603161039.16176-2-reatmon@ti.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 04 Jun 2024 15:40:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15361
+ <meta-arago@lists.yoctoproject.org>; Tue, 04 Jun 2024 16:05:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15362
 
-For recipes that have file:// in SRC_URI, the files are placed into
-WORKDIR.  Moving forward [1], that directory will be UNPACKDIR and
-eventually move to somewhere other than WORKDIR.  So update all
-references to WORKDIR that are looking for these file to use UNPACKDIR
-instead.
+On Mon, Jun 03, 2024 at 11:10:39AM -0500, Ryan Eatmon via lists.yoctoproject.org wrote:
+> We need to pull a single script in from the matrix-gui packages since
+> they are getting removed.  The runLmDDRBandwidth.sh is required for the
+> ti-test flow.
+> 
+> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+> ---
+>  .../arm-ddr-bandwidth/arm-ddr-bandwidth.bb    | 23 +++++++++++++++++++
+>  .../recipes-core/packagegroups/ti-test.bb     |  1 +
+>  2 files changed, 24 insertions(+)
+>  create mode 100644 meta-arago-test/recipes-benchmark/arm-ddr-bandwidth/arm-ddr-bandwidth.bb
+> 
+> diff --git a/meta-arago-test/recipes-benchmark/arm-ddr-bandwidth/arm-ddr-bandwidth.bb b/meta-arago-test/recipes-benchmark/arm-ddr-bandwidth/arm-ddr-bandwidth.bb
+> new file mode 100644
+> index 00000000..fc4aea94
+> --- /dev/null
+> +++ b/meta-arago-test/recipes-benchmark/arm-ddr-bandwidth/arm-ddr-bandwidth.bb
+> @@ -0,0 +1,23 @@
+> +SUMMARY = "Benchmark for checking DDR bandwidth"
+> +HOMEPAGE = "https://git.ti.com/cgit/matrix-gui-v2/matrix-gui-v2-apps/tree/arm_apps/arm_ddr_bandwidth/runLmDDRBandwidth.sh"
+> +LICENSE = "CC-BY-SA-3.0"
+> +LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
 
-[1] https://git.openembedded.org/openembedded-core/commit/?id=e022d62ba917790af2121da57646271ef17c03fa
+Isn't the default here ^^^ relative to ${S} anyway?
 
-Signed-off-by: Ryan Eatmon <reatmon@ti.com>
----
- .../recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb
-index 4d89818f..6420f693 100644
---- a/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb
-+++ b/meta-arago-extras/recipes-multimedia/hevc-arm-decoder/hevc-arm-decoder_git.bb
-@@ -38,7 +38,7 @@ do_install() {
-     install -m 755 ${S}/Client/Build/ARM/Out/h265vdec_pp ${D}${bindir}
- 
-     install -d ${D}${datadir}/ti/examples/h265vdec
--    install -m 644 ${WORKDIR}/Testparams.cfg ${D}${datadir}/ti/examples/h265vdec
-+    install -m 644 ${UNPACKDIR}/Testparams.cfg ${D}${datadir}/ti/examples/h265vdec
- 
-     install -d ${D}${docdir}/${PN}
-     for doc in ${S}/Docs/*; do
--- 
-2.17.1
-
+> +
+> +PV = "1.0"
+> +
+> +SRC_URI = " \
+> +    https://git.ti.com/cgit/matrix-gui-v2/matrix-gui-v2-apps/plain/arm_apps/arm_ddr_bandwidth/runLmDDRBandwidth.sh;name=runLmDDRBandwidth \
+> +    https://git.ti.com/cgit/matrix-gui-v2/matrix-gui-v2-apps/plain/LICENSE;name=license \
+> +"
+> +SRC_URI[runLmDDRBandwidth.sha256sum] = "67997d721b351344d8788200a15bb3640093045bc25f2b5307dd331ebd1556a3"
+> +SRC_URI[license.sha256sum] = "7febd1df714fa4b1e44fe0b0f73ceac7f9b9f97326695a0cc7074bd6c8d263e3"
+> +
+> +S = "${WORKDIR}"
+> +
+> +do_install() {
+> +    install -d ${D}${datadir}/matrix-gui-2.0/apps
+> +    install -m 0644 ${S}/runLmDDRBandwidth.sh ${D}${datadir}/matrix-gui-2.0/apps/runLmDDRBandwidth.sh
+> +}
+> +
+> +FILES:${PN} = "${datadir}/matrix-gui-2.0/apps/runLmDDRBandwidth.sh"
+> +
+> diff --git a/meta-arago-test/recipes-core/packagegroups/ti-test.bb b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+> index 4dbd9fca..b71c374b 100644
+> --- a/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+> +++ b/meta-arago-test/recipes-core/packagegroups/ti-test.bb
+> @@ -69,6 +69,7 @@ TI_TEST_BASE:append:armv7ve = " \
+>  #    timestamping
+>  TI_TEST_TI_TOOLS = " \
+>      arm-benchmarks \
+> +    arm-ddr-bandwidth \
+>      cpuloadgen \
+>      input-utils \
+>      ltp-ddt \
+> -- 
+> 2.17.1
 
