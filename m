@@ -1,48 +1,48 @@
-Return-Path: <rs@ti.com>
+Return-Path: <c-shilwant@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 47DCBC25B76
-	for <webhook@archiver.kernel.org>; Mon,  3 Jun 2024 19:59:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 85036C25B74
+	for <webhook@archiver.kernel.org>; Tue,  4 Jun 2024 05:44:28 +0000 (UTC)
 Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web10.3060.1717444788785590937
+ by mx.groups.io with SMTP id smtpd.web11.14290.1717479864240083818
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 03 Jun 2024 12:59:48 -0700
+ Mon, 03 Jun 2024 22:44:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=LubU2PFo;
- spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: rs@ti.com)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 453JxlIg021094;
-	Mon, 3 Jun 2024 14:59:47 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=J+cG5cEk;
+ spf=pass (domain: ti.com, ip: 198.47.19.141, mailfrom: c-shilwant@ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4545iNas032817
+	for <meta-arago@lists.yoctoproject.org>; Tue, 4 Jun 2024 00:44:23 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717444787;
-	bh=glHh64ofxEvjLMLcwZzsOqBeakkL04FKgZekhmX/DGQ=;
+	s=ti-com-17Q1; t=1717479863;
+	bh=4wgDTK1HARUNdbrfxOLFvm2Fzs+CpolME9wu7beFMsI=;
 	h=From:To:CC:Subject:Date;
-	b=LubU2PFo/TldCjQPPXTlng4X4eFGXvINoc6O1ieuo9xAXG2doBXLtjvjdkAhGDmHB
-	 ARNb3q9RmQAgV4SWDfB+22tPUEUnVpxAefXAKgFC5b9Zh8vFvS/STv0CRvEOYhtZTb
-	 UPc4NXTjRtt617TuQvl0Qjywj8HbyJORhZo/EecQ=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 453JxlW7022032
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 3 Jun 2024 14:59:47 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 3
- Jun 2024 14:59:47 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+	b=J+cG5cEkmzBNKZNGdB03Dv+BRT6Kl0fW6pCvi/e9miwBY6VcbRzGgwOZmPzGgMlex
+	 xouiYzbKxzEOsQ+1rWdYX9drBBq3AaNwYj2jjlflj3DfrOwoZ7NvKHgcvj66P5fMtY
+	 d2F1LNmBN+BSfZ5I4kARkknDMg4yWADlkZKa+14g=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4545iNK9046631
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
+	for <meta-arago@lists.yoctoproject.org>; Tue, 4 Jun 2024 00:44:23 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 4
+ Jun 2024 00:44:23 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 3 Jun 2024 14:59:47 -0500
-Received: from rs-desk.dhcp.ti.com (rs-desk.dhcp.ti.com [128.247.81.144])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 453JxlP4017072;
-	Mon, 3 Jun 2024 14:59:47 -0500
-From: <rs@ti.com>
-To: <reatmon@ti.com>, <denis@denix.org>
-CC: <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master/scarthgap][PATCH] gitignore: lift some sane defaults from others
-Date: Mon, 3 Jun 2024 14:59:43 -0500
-Message-ID: <20240603195943.1089740-1-rs@ti.com>
-X-Mailer: git-send-email 2.45.1
+ Frontend Transport; Tue, 4 Jun 2024 00:44:23 -0500
+Received: from localhost (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.238])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4545iMti025334;
+	Tue, 4 Jun 2024 00:44:23 -0500
+From: Chirag Shilwant <c-shilwant@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: Ryan Eatmon <reatmon@ti.com>, Gyan Gupta <g-gupta@ti.com>
+Subject: [meta-arago][master/scarthgap][PATCH v2] recipes-core: packagegroup-arago-tisdk-addons: Add back kmscube
+Date: Tue, 4 Jun 2024 11:14:20 +0530
+Message-ID: <20240604054420.3772763-1-c-shilwant@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -50,35 +50,38 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 03 Jun 2024 19:59:55 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15356
+ <meta-arago@lists.yoctoproject.org>; Tue, 04 Jun 2024 05:44:28 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15357
 
-From: Randolph Sapp <rs@ti.com>
+- kmscube was earlier packaged as a run time dependency for matrix-gui.
+But now as matrix-gui is removed [1], add kmscube manually.
 
-Lift the common parts of the top level gitignore from oe-core and
-meta-openembedded. This masks out temporary python files, intermediate
-artifacts, and patches at the root of the project.
+- kmscube can be used by developers to quickly validate the GPU and display
+after driver or userspace changes. So it is good to add it back.
 
-Signed-off-by: Randolph Sapp <rs@ti.com>
+[1]: https://git.ti.com/cgit/arago-project/meta-arago/commit/?h=master&id=e4b33fbc34aa90d156310b3cd1cb23f1d0cadab4
+
+Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
 ---
- .gitignore | 7 +++++++
- 1 file changed, 7 insertions(+)
- create mode 100644 .gitignore
+v2: Add kmscube in tisdk-graphics packagegroup to limit it's scope
+    to platforms with graphics stack
 
-diff --git a/.gitignore b/.gitignore
-new file mode 100644
-index 00000000..c01df45e
---- /dev/null
-+++ b/.gitignore
-@@ -0,0 +1,7 @@
-+*.pyc
-+*.pyo
-+/*.patch
-+*.swp
-+*.orig
-+*.rej
-+*~
+ .../packagegroups/packagegroup-arago-tisdk-graphics.bb           | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+index 381fa950..a82db154 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-graphics.bb
+@@ -19,6 +19,7 @@ GFX_UTILS:append:omap-a15  = "\
+ RDEPENDS:${PN} = "\
+     libegl \
+     glmark2 \
++    kmscube \
+     ${@bb.utils.contains('MACHINE_FEATURES', 'gc320', 'ti-gc320-tests', '', d)} \
+     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', "${GFX_WAYLAND}", '', d)} \
+     ${GFX_UTILS} \
 -- 
-2.45.1
+2.34.1
 
 
