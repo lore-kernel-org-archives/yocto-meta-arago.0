@@ -2,51 +2,51 @@ Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C81A3C25B76
-	for <webhook@archiver.kernel.org>; Wed,  5 Jun 2024 13:49:57 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web11.15974.1717595390469740523
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B1DE3C27C53
+	for <webhook@archiver.kernel.org>; Wed,  5 Jun 2024 13:53:17 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web11.16045.1717595596189771079
  for <meta-arago@lists.yoctoproject.org>;
- Wed, 05 Jun 2024 06:49:50 -0700
+ Wed, 05 Jun 2024 06:53:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=WsS1/6XU;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 455DnmI0002040;
-	Wed, 5 Jun 2024 08:49:48 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=LggidlX7;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 455DrEPP023345;
+	Wed, 5 Jun 2024 08:53:14 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717595388;
-	bh=kxOvDfORCO0IE47cTGKzJmO5T6PSad2Z8YYchIuX3rM=;
+	s=ti-com-17Q1; t=1717595594;
+	bh=1l0qCOKxvWRuOEttmjb70eVkLmUFIHcgvFZyyeeAYuc=;
 	h=From:To:Subject:Date;
-	b=WsS1/6XUtYifzM8wn/SoVR2cb/C1ytdBPwS7jWn9T55a0nAV5nVmj+OltrbwHaRY2
-	 TnkRF10lJFQTIoQzdV5T2jkRGoFSFuIubEN8MjYAkrpXERZY1zpuc1JewrQ10hZo9O
-	 LfRjwPMcXOMEmEoH9vwJz1VuVHW2AfaCI6HKCw78=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 455DnmgH050709
+	b=LggidlX7kieCeTEc+6rNPKFsig0rBtJuKPaKHWim+Mwe3FZrhzMhqfBle+96cWpi+
+	 IeaBraT6gEaMDHpMwle7bEfswXCvU5GWcd4exdIzD+8tJ7eDV4Q2ekaad9Nqn4Fbwh
+	 OKsrsjtwfAFhGxrfcz9q71UV/0NCgbLjEBgEhK1g=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 455DrEM4026637
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 5 Jun 2024 08:49:48 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+	Wed, 5 Jun 2024 08:53:14 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 5
- Jun 2024 08:49:48 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ Jun 2024 08:53:13 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 5 Jun 2024 08:49:48 -0500
+ Frontend Transport; Wed, 5 Jun 2024 08:53:13 -0500
 Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 455DnmPj030469;
-	Wed, 5 Jun 2024 08:49:48 -0500
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 455DrDeI086057;
+	Wed, 5 Jun 2024 08:53:13 -0500
 Received: from reatmon by uda0214219 with local (Exim 4.90_1)
 	(envelope-from <reatmon@ti.com>)
-	id 1sEr1Q-0003sj-1X; Wed, 05 Jun 2024 08:49:48 -0500
+	id 1sEr4j-00044K-Gs; Wed, 05 Jun 2024 08:53:13 -0500
 From: Ryan Eatmon <reatmon@ti.com>
 To: Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH v2] all: purge matrix ui and all dependent packages
-Date: Wed, 5 Jun 2024 08:49:47 -0500
-Message-ID: <20240605134947.14882-1-reatmon@ti.com>
+Subject: [meta-arago][scarthgap][PATCH v2] all: purge matrix ui and all dependent packages
+Date: Wed, 5 Jun 2024 08:53:13 -0500
+Message-ID: <20240605135313.15600-1-reatmon@ti.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
@@ -54,8 +54,8 @@ X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Wed, 05 Jun 2024 13:49:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15368
+ <meta-arago@lists.yoctoproject.org>; Wed, 05 Jun 2024 13:53:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15369
 
 From: Randolph Sapp <rs@ti.com>
 
@@ -73,6 +73,7 @@ Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
 v2: Remove reference to image-gallery in
     packagegroup-arago-tisdk-multimedia.bb.
+    Also formatted for scarthgap from master version of patch.
 
  meta-arago-demos/conf/layer.conf              |   12 -
  .../image-gallery/image-gallery_git.bb        |   31 -
@@ -122,7 +123,7 @@ v2: Remove reference to image-gallery in
  .../matrix/matrix-gui/matrix-gui-2.0.service  |   18 -
  .../recipes-core/matrix/matrix-gui/php.ini    | 1342 -----------------
  .../recipes-core/matrix/matrix-gui_2.0.bb     |   69 -
- .../matrix/matrix-lighttpd-config.bb          |   33 -
+ .../matrix/matrix-lighttpd-config.bb          |   32 -
  .../matrix/matrix-lighttpd-config/COPYING     |   31 -
  .../lighttpd.conf.matrix                      |  344 -----
  .../recipes-core/matrix/refresh-screen_2.0.bb |   20 -
@@ -133,7 +134,7 @@ v2: Remove reference to image-gallery in
  .../recipes-core/packagegroups/ti-world.bb    |    2 -
  ...-native-Fix-host-contamination-issue.patch |   55 -
  .../recipes-devtools/php/php_%.bbappend       |   29 -
- 59 files changed, 4003 deletions(-)
+ 59 files changed, 4002 deletions(-)
  delete mode 100644 meta-arago-demos/recipes-apps/image-gallery/image-gallery_git.bb
  delete mode 100644 meta-arago-demos/recipes-apps/thermostat-demo/qt-tstat/0002-Replace-QtGui-with-QtWidgets-per-Qt5-migration-guide.patch
  delete mode 100644 meta-arago-demos/recipes-apps/thermostat-demo/qt-tstat/0003-Replace-fromAscii-toAscii-with-fromLatin1-toLatin1-p.patch
@@ -190,7 +191,7 @@ v2: Remove reference to image-gallery in
  delete mode 100644 meta-arago-distro/recipes-devtools/php/php_%.bbappend
 
 diff --git a/meta-arago-demos/conf/layer.conf b/meta-arago-demos/conf/layer.conf
-index 9c7f92db..cb18f840 100644
+index 610c3688..f551af28 100644
 --- a/meta-arago-demos/conf/layer.conf
 +++ b/meta-arago-demos/conf/layer.conf
 @@ -21,18 +21,6 @@ LAYERDEPENDS_meta-arago-demos = " \
@@ -3688,7 +3689,7 @@ index 350e6122..00000000
 -; End:
 diff --git a/meta-arago-demos/recipes-core/matrix/matrix-gui_2.0.bb b/meta-arago-demos/recipes-core/matrix/matrix-gui_2.0.bb
 deleted file mode 100644
-index 1c1b3bbc..00000000
+index fbff1671..00000000
 --- a/meta-arago-demos/recipes-core/matrix/matrix-gui_2.0.bb
 +++ /dev/null
 @@ -1,69 +0,0 @@
@@ -3736,22 +3737,22 @@ index 1c1b3bbc..00000000
 -	cp -rfL ${S}/* ${D}${MATRIX_WEB_DIR}
 -
 -	# Install our php.ini file
--	install -m 0644 ${UNPACKDIR}/php.ini ${D}${MATRIX_BASE_DIR}/
+-	install -m 0644 ${WORKDIR}/php.ini ${D}${MATRIX_BASE_DIR}/
 -
 -	# Set the proper path in the init script
--	sed -i -e s=__MATRIX_WEB_DIR__=${MATRIX_WEB_DIR}= ${UNPACKDIR}/${MATRIX_INITSCRIPT}
--	sed -i -e "s/__MATRIX_FLAGS__/\"${MATRIX_FLAGS}\"/" ${UNPACKDIR}/${MATRIX_INITSCRIPT}
--	sed -i -e "s/__SWITCH_FOREGROUND_VT__/${SWITCH_FOREGROUND_VT}/" ${UNPACKDIR}/${MATRIX_INITSCRIPT}
+-	sed -i -e s=__MATRIX_WEB_DIR__=${MATRIX_WEB_DIR}= ${WORKDIR}/${MATRIX_INITSCRIPT}
+-	sed -i -e "s/__MATRIX_FLAGS__/\"${MATRIX_FLAGS}\"/" ${WORKDIR}/${MATRIX_INITSCRIPT}
+-	sed -i -e "s/__SWITCH_FOREGROUND_VT__/${SWITCH_FOREGROUND_VT}/" ${WORKDIR}/${MATRIX_INITSCRIPT}
 -
 -	# Install the script
 -	if ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'true', 'false', d)}; then
 -		install -d ${D}${sysconfdir}/init.d
--		install -m 0755 ${UNPACKDIR}/${MATRIX_INITSCRIPT} ${D}${sysconfdir}/init.d/matrix-gui-2.0
+-		install -m 0755 ${WORKDIR}/${MATRIX_INITSCRIPT} ${D}${sysconfdir}/init.d/matrix-gui-2.0
 -	fi
 -	if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
 -		install -d ${D}${systemd_system_unitdir}
--		install -m 0644 ${UNPACKDIR}/matrix-gui-2.0.service ${D}${systemd_system_unitdir}
--		install -m 0755 ${UNPACKDIR}/${MATRIX_INITSCRIPT} ${D}${MATRIX_BASE_DIR}/matrix-gui-2.0
+-		install -m 0644 ${WORKDIR}/matrix-gui-2.0.service ${D}${systemd_system_unitdir}
+-		install -m 0755 ${WORKDIR}/${MATRIX_INITSCRIPT} ${D}${MATRIX_BASE_DIR}/matrix-gui-2.0
 -	fi
 -}
 -
@@ -3763,10 +3764,10 @@ index 1c1b3bbc..00000000
 -FILES:${PN} += "${MATRIX_BASE_DIR}/*"
 diff --git a/meta-arago-demos/recipes-core/matrix/matrix-lighttpd-config.bb b/meta-arago-demos/recipes-core/matrix/matrix-lighttpd-config.bb
 deleted file mode 100644
-index d1c51012..00000000
+index c932e67f..00000000
 --- a/meta-arago-demos/recipes-core/matrix/matrix-lighttpd-config.bb
 +++ /dev/null
-@@ -1,33 +0,0 @@
+@@ -1,32 +0,0 @@
 -DESCRIPTION = "Lighttpd config for Matrix"
 -
 -LICENSE = "BSD-3-Clause"
@@ -3781,12 +3782,11 @@ index d1c51012..00000000
 -# Grabbed COPYING file from lighttpd_1.4.30
 -SRC_URI += "file://COPYING"
 -
--S = "${WORKDIR}/sources"
--UNPACKDIR = "${S}"
+-S = "${WORKDIR}"
 -
 -do_install() {
 -	install -d ${D}${sysconfdir}/lighttpd
--	install -m 0644 ${S}/lighttpd.conf.matrix ${D}${sysconfdir}/lighttpd/lighttpd.conf.matrix
+-	install -m 0644 ${WORKDIR}/lighttpd.conf.matrix ${D}${sysconfdir}/lighttpd/lighttpd.conf.matrix
 -}
 -
 -FILES:${PN} = "${sysconfdir}/lighttpd/lighttpd.conf.matrix"
