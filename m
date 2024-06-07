@@ -2,68 +2,68 @@ Return-Path: <c-shilwant@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 71B47C27C55
-	for <webhook@archiver.kernel.org>; Fri,  7 Jun 2024 07:34:38 +0000 (UTC)
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
- by mx.groups.io with SMTP id smtpd.web11.36392.1717745670378506579
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 39F3DC27C55
+	for <webhook@archiver.kernel.org>; Fri,  7 Jun 2024 07:35:18 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.36400.1717745717530242162
  for <meta-arago@lists.yoctoproject.org>;
- Fri, 07 Jun 2024 00:34:30 -0700
+ Fri, 07 Jun 2024 00:35:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=Ce41cKJP;
- spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: c-shilwant@ti.com)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=JOpJ2W2q;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: c-shilwant@ti.com)
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4577YTue015579;
-	Fri, 7 Jun 2024 02:34:29 -0500
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4577ZGAi119834;
+	Fri, 7 Jun 2024 02:35:16 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1717745669;
-	bh=eKKchbwmWzfDftw+DQt9+7xtj/2hdEUIyDtGq8YdEtY=;
+	s=ti-com-17Q1; t=1717745716;
+	bh=ZWwKvD1c0rAoSLWzI0oZ4ZzfGuUyM1hE9PMX9gn/hjQ=;
 	h=Date:Subject:To:References:CC:From:In-Reply-To;
-	b=Ce41cKJPU8M4ssAO01oCG2MiHvuSJsU3x7NvYFByfiBXuOi2JqU/jl4TJdjRS4RNd
-	 Vu/3tLxLaRK/5D64Z9ZBXRCIvS7ErnHSyC472ATaMcXYRf8llLonFRk5jwq5Fgfywd
-	 2gT5zcCtZnjIcwewwJziMA8S0fmodZbqXAugh9yE=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4577YTq8112327
+	b=JOpJ2W2qQ4VC6Qxp3ubiRnbpxsznSXlHckcG5I+8ICnAcioN7Cq8nWaFQoaERC/Cz
+	 x4hMBOiQwvQMuF/CNb20s3yQje+n8LWSxtrCp5lxCtKqIjAOLuzRUZBNz89l564m8g
+	 ayVSZqmC1oAOmGxwBq3EyF6j7OSjgMGqNKGEZPy8=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4577ZG0S113252
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 7 Jun 2024 02:34:29 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 7
- Jun 2024 02:34:28 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
+	Fri, 7 Jun 2024 02:35:16 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE114.ent.ti.com
  (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 7
+ Jun 2024 02:35:15 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 7 Jun 2024 02:34:28 -0500
+ Frontend Transport; Fri, 7 Jun 2024 02:35:15 -0500
 Received: from [172.24.227.238] (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.238])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4577YQto125782;
-	Fri, 7 Jun 2024 02:34:27 -0500
-Message-ID: <d30fe208-21d4-41dc-b621-d856598b8581@ti.com>
-Date: Fri, 7 Jun 2024 13:04:25 +0530
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4577ZDUJ127260;
+	Fri, 7 Jun 2024 02:35:14 -0500
+Message-ID: <6bf1183b-1846-4b27-97a1-a844099d4d49@ti.com>
+Date: Fri, 7 Jun 2024 13:05:13 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] [meta-arago][scarthgap][PATCH] arm-ddr-bandwidth: Fix
+Subject: Re: [EXTERNAL] [meta-arago][master][PATCH] arm-ddr-bandwidth: Fix
  installtion location
 To: <meta-arago@lists.yoctoproject.org>
-References: <20240607020012.2995-1-reatmon@ti.com>
+References: <20240607020109.3174-1-reatmon@ti.com>
 Content-Language: en-US
 CC: <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
         Denys Dmytriyenko
 	<denys@konsulko.com>
 From: Chirag Shilwant <c-shilwant@ti.com>
-In-Reply-To: <20240607020012.2995-1-reatmon@ti.com>
+In-Reply-To: <20240607020109.3174-1-reatmon@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by lelv0142.ext.ti.com id 4577YTue015579
+X-MIME-Autoconverted: from 8bit to quoted-printable by fllv0016.ext.ti.com id 4577ZGAi119834
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Fri, 07 Jun 2024 07:34:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15375
+ <meta-arago@lists.yoctoproject.org>; Fri, 07 Jun 2024 07:35:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15376
 
 In Subject,
 
 s/installtion/installation
-On 07/06/24 07:30, Ryan Eatmon via lists.yoctoproject.org wrote:
+On 07/06/24 07:31, Ryan Eatmon via lists.yoctoproject.org wrote:
 > The script was installed in the wrong directory, but the=20
 > /usr/share/matrix-gui-2.=E2=80=8A0/apps needs to also exist. Signed-off=
 -by:=20
@@ -90,16 +90,16 @@ On 07/06/24 07:30, Ryan Eatmon via lists.yoctoproject.org wrote:
 > diff --git a/meta-arago-test/recipes-benchmark/arm-ddr-bandwidth/arm-dd=
 r-bandwidth.bb b/meta-arago-test/recipes-benchmark/arm-ddr-bandwidth/arm-=
 ddr-bandwidth.bb
-> index 78f80b55..b6766d56 100644
+> index 9155e0bb..7b77216f 100644
 > --- a/meta-arago-test/recipes-benchmark/arm-ddr-bandwidth/arm-ddr-bandw=
 idth.bb
 > +++ b/meta-arago-test/recipes-benchmark/arm-ddr-bandwidth/arm-ddr-bandw=
 idth.bb
-> @@ -16,8 +16,13 @@ S =3D "${WORKDIR}"
+> @@ -17,8 +17,13 @@ UNPACKDIR =3D "${S}"
 >  =20
 >   do_install() {
 >       install -d ${D}${datadir}/matrix-gui-2.0/apps
-> -    install -m 0644 ${S}/runLmDDRBandwidth.sh ${D}${datadir}/matrix-gu=
+> -    install -m 0755 ${S}/runLmDDRBandwidth.sh ${D}${datadir}/matrix-gu=
 i-2.0/apps/runLmDDRBandwidth.sh
 > +
 > +    install -d ${D}${bindir}
@@ -120,17 +120,17 @@ ndwidth.sh
 >
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#15373):https://urldefense.com/v3/__https://lists.yo=
-ctoproject.org/g/meta-arago/message/15373__;!!G3vK!URkGDa08EDbx6Asg9sJfOw=
-18p1ejoi9uHh6mYJUg_EkaJk2HzfbqLMdqEJIvZcX80sZSCelTEbgR761Cwcjs91C33FrIBCl=
-2jQ$
+> View/Reply Online (#15374):https://urldefense.com/v3/__https://lists.yo=
+ctoproject.org/g/meta-arago/message/15374__;!!G3vK!UFcsQhztly0UgSXzKHaqQe=
+kOM1Y8vIeHjOxklsKzmRk0kxH2v0zD7KWR1vkk36_onpx8MyvwU1k12lduQ6yaexAqAWSL6wO=
+DXQ$
 > Mute This Topic:https://urldefense.com/v3/__https://lists.yoctoproject.=
-org/mt/106536231/7030289__;!!G3vK!URkGDa08EDbx6Asg9sJfOw18p1ejoi9uHh6mYJU=
-g_EkaJk2HzfbqLMdqEJIvZcX80sZSCelTEbgR761Cwcjs91C33FpgLdMMZA$
+org/mt/106536244/7030289__;!!G3vK!UFcsQhztly0UgSXzKHaqQekOM1Y8vIeHjOxklsK=
+zmRk0kxH2v0zD7KWR1vkk36_onpx8MyvwU1k12lduQ6yaexAqAWSqi9aioA$
 > Group Owner: meta-arago+owner@lists.yoctoproject.org
 > Unsubscribe:https://urldefense.com/v3/__https://lists.yoctoproject.org/=
-g/meta-arago/unsub__;!!G3vK!URkGDa08EDbx6Asg9sJfOw18p1ejoi9uHh6mYJUg_EkaJ=
-k2HzfbqLMdqEJIvZcX80sZSCelTEbgR761Cwcjs91C33Fq2G0wHLQ$  [c-shilwant@ti.co=
+g/meta-arago/unsub__;!!G3vK!UFcsQhztly0UgSXzKHaqQekOM1Y8vIeHjOxklsKzmRk0k=
+xH2v0zD7KWR1vkk36_onpx8MyvwU1k12lduQ6yaexAqAWTm4yZvYg$  [c-shilwant@ti.co=
 m]
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
