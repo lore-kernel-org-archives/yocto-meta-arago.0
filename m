@@ -1,125 +1,1126 @@
-Return-Path: <denis@denix.org>
+Return-Path: <c-shilwant@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 201B3C27C6E
-	for <webhook@archiver.kernel.org>; Thu, 13 Jun 2024 17:25:54 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.237.1718299548780607006
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 23480C27C6E
+	for <webhook@archiver.kernel.org>; Fri, 14 Jun 2024 06:35:37 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web10.5407.1718346931259130807
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 13 Jun 2024 10:25:49 -0700
+ Thu, 13 Jun 2024 23:35:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 211F840CC4;
-	Thu, 13 Jun 2024 17:25:48 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id oBzrr6XzMyqi; Thu, 13 Jun 2024 17:25:48 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 07C5D40CC2;
-	Thu, 13 Jun 2024 17:25:46 +0000 (UTC)
-Received: from thorin.denix (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 9CB0D163F9F;
-	Thu, 13 Jun 2024 13:25:46 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master/scarthgap][PATCH] branding: simplify some branding configs
-Date: Thu, 13 Jun 2024 13:25:45 -0400
-Message-Id: <20240613172545.771087-1-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
+ dkim=fail reason="dkim: body hash did not verify" header.i=@ti.com header.s=ti-com-17Q1 header.b=gc/SQZIK;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: c-shilwant@ti.com)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45E6ZUoL031702;
+	Fri, 14 Jun 2024 01:35:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718346930;
+	bh=yHEwROVzn9jZOkDVG+tsg68/jyr1emMR23rUBjY2vuU=;
+	h=Date:Subject:To:References:CC:From:In-Reply-To;
+	b=gc/SQZIKLqEF0slVMxfo/aYPGjXoVxpZRHxkxJDqapq3/Qt1+Hp79WwVZjMSgYPXj
+	 KO053xS9SH+7+t9ggxCXrmF79afarhXmi7EluLx4Ut3Q5bbWlLO2TtvtzyOASf/7BT
+	 OokA5HoG8u2qcjybzMjXUkTPuwSk7vJYtZGujQfY=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45E6ZUql043484
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 14 Jun 2024 01:35:30 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 14
+ Jun 2024 01:35:29 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 14 Jun 2024 01:35:29 -0500
+Received: from [172.24.227.238] (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.238])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45E6ZR0L097737;
+	Fri, 14 Jun 2024 01:35:28 -0500
+Message-ID: <0a5606fc-cd38-4120-bf5f-b374b50539be@ti.com>
+Date: Fri, 14 Jun 2024 12:05:27 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [EXTERNAL] [meta-arago][master][PATCH] recipes: Add missing
+ Upstream-Status to patch files
+To: <meta-arago@lists.yoctoproject.org>
+References: <20240613160028.6665-1-reatmon@ti.com>
+Content-Language: en-US
+CC: <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>, Gyan Gupta <g-gupta@ti.com>
+From: Chirag Shilwant <c-shilwant@ti.com>
+In-Reply-To: <20240613160028.6665-1-reatmon@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by lelv0143.ext.ti.com id 45E6ZUoL031702
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 13 Jun 2024 17:25:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15384
+ <meta-arago@lists.yoctoproject.org>; Fri, 14 Jun 2024 06:35:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15385
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+Hi Ryan,
 
-With the addition of multi-BSP support in meta-ti, some branding configs
-can be simplified significantly.
+On a side note, can you help me understand whether all these patches are=20
+still needed?
+As I see few patches that were created 10 years back!
 
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
----
- .../conf/distro/include/branding-ltsprep.inc    | 17 +----------------
- .../conf/distro/include/branding-mainline.inc   | 10 +---------
- .../conf/distro/include/branding-next.inc       |  9 ++-------
- 3 files changed, 4 insertions(+), 32 deletions(-)
-
-diff --git a/meta-arago-distro/conf/distro/include/branding-ltsprep.inc b=
-/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-index 4853f3c6..1b295adf 100644
---- a/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-ltsprep.inc
-@@ -1,11 +1,4 @@
--
--PREFERRED_VERSION_linux-ti-staging =3D "6.6%"
--PREFERRED_VERSION_linux-ti-staging-rt =3D "6.6%"
--PREFERRED_VERSION_linux-ti-staging-systest =3D "6.6%"
--PREFERRED_VERSION_u-boot-ti-staging =3D "2024.04%"
--PREFERRED_VERSION_ti-img-rogue-umlibs =3D "24.1.6554834"
--PREFERRED_VERSION_ti-img-rogue-driver =3D "24.1.6554834"
--PREFERRED_VERSION_mesa-pvr =3D "23.2.1"
-+TI_DEFAULT_BSP =3D "ti-6_6"
-=20
- # Remove mmip - DRM allocator, KMS sink, Wayland sink need porting to GS=
-T 1.18
- MACHINE_FEATURES:remove =3D "mmip"
-@@ -13,11 +6,3 @@ MACHINE_FEATURES:remove =3D "mmip"
- # GC320 support requires out-of-tree drivers not available in until LTS =
-prep is
- # complete. Disable for now.
- MACHINE_FEATURES:remove =3D "gc320"
--
--PREFERRED_PROVIDER_virtual/gpudriver:am335x-evm =3D ""
--PREFERRED_PROVIDER_virtual/gpudriver:am335x-hs-evm =3D ""
--PREFERRED_PROVIDER_virtual/gpudriver:am437x-evm =3D ""
--PREFERRED_PROVIDER_virtual/gpudriver:am437x-hs-evm =3D ""
--PREFERRED_PROVIDER_virtual/gpudriver:am57xx-evm =3D ""
--PREFERRED_PROVIDER_virtual/gpudriver:am57xx-hs-evm =3D ""
--PREFERRED_PROVIDER_virtual/gpudriver:am65xx-evm =3D ""
-diff --git a/meta-arago-distro/conf/distro/include/branding-mainline.inc =
-b/meta-arago-distro/conf/distro/include/branding-mainline.inc
-index 613e76f9..245fa19b 100644
---- a/meta-arago-distro/conf/distro/include/branding-mainline.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-mainline.inc
-@@ -1,9 +1 @@
--PREFERRED_PROVIDER_virtual/kernel =3D "linux-ti-mainline"
--PREFERRED_PROVIDER_virtual/bootloader =3D "u-boot-ti-mainline"
--PREFERRED_PROVIDER_u-boot =3D "u-boot-ti-mainline"
--SRCREV_ti-upstream-tools:pn-linux-ti-mainline =3D "${AUTOREV}"
--
--# GPU support requires out-of-tree SGX and RGX drivers not available in =
-mainline
--# fall back to software rendering
--MACHINE_FEATURES:remove =3D "gpu"
--PREFERRED_PROVIDER_virtual/gpudriver =3D ""
-+TI_DEFAULT_BSP =3D "mainline"
-diff --git a/meta-arago-distro/conf/distro/include/branding-next.inc b/me=
-ta-arago-distro/conf/distro/include/branding-next.inc
-index 20291041..3b504aa1 100644
---- a/meta-arago-distro/conf/distro/include/branding-next.inc
-+++ b/meta-arago-distro/conf/distro/include/branding-next.inc
-@@ -1,10 +1,5 @@
-+TI_DEFAULT_BSP =3D "mainline"
- PREFERRED_PROVIDER_virtual/kernel =3D "linux-ti-next"
--PREFERRED_PROVIDER_virtual/bootloader =3D "u-boot-ti-mainline"
--PREFERRED_PROVIDER_u-boot =3D "u-boot-ti-mainline"
+On 13/06/24 21:30, Ryan Eatmon via lists.yoctoproject.org wrote:
+> Now that master requires Upstream-Status for all layers we need to=20
+> clean up the meta-arago layers. Signed-off-by: Ryan Eatmon=20
+> <reatmon@=E2=80=8Ati.=E2=80=8Acom> ---=20
+> ..=E2=80=8A.=E2=80=8A/pm-qa/0001-Return-non-zero-value-on-test-failure.=
+=E2=80=8Apatch | 2 ++=20
+> ..=E2=80=8A.=E2=80=8A/pm-qa/pm-qa/0002-cpuidle-Avoid-relative-paths.=E2=
+=80=8Apatch
+> ZjQcmQRYFpfptBannerStart
+> This message was sent from outside of Texas Instruments.
+> Do not click links or open attachments unless you recognize the source=20
+> of this email and know the content is safe. If you wish to report this=20
+> message to IT Security, please forward the message as an attachment to=20
+> phishing@list.ti.com
+> ZjQcmQRYFpfptBannerEnd
+> Now that master requires Upstream-Status for all layers we need to clea=
+n
+> up the meta-arago layers.
+>
+> Signed-off-by: Ryan Eatmon <reatmon@ti.com>
+> ---
+>   .../pm-qa/0001-Return-non-zero-value-on-test-failure.patch     | 2 ++
+>   .../pm-qa/pm-qa/0002-cpuidle-Avoid-relative-paths.patch        | 2 ++
+>   .../0001-layer-add-surfaces-Add-screenId-as-an-argument.patch  | 2 ++
+>   .../0002-layer-add-surfaces-surface-layer-management.patch     | 2 ++
+>   .../wayland/wayland-ivi-extension/force-type-conversion.patch  | 3 ++=
 +
- SRCREV:pn-linux-ti-next =3D "${AUTOREV}"
- SRCREV:pn-u-boot-ti-mainline =3D "${AUTOREV}"
--
--# GPU support requires out-of-tree SGX and RGX drivers not available in =
-next
--# fall back to software rendering
--MACHINE_FEATURES:remove =3D "gpu"
--PREFERRED_PROVIDER_virtual/gpudriver =3D ""
---=20
-2.25.1
-
+>   ...-calculator-Add-exit-button-for-non-window-environmen.patch | 2 ++
+>   .../qt5/qtbase/0001-deform-Fix-how-controls-are-shown.patch    | 2 ++
+>   ...-animatedtiles-Add-exit-button-for-non-window-environ.patch | 2 ++
+>   .../qt5/qtbase/0002-deform-disable-opengl-button.patch         | 2 ++
+>   .../0001-touchinteraction.qml-Add-exit-button.patch            | 2 ++
+>   ...-Target.pri-update-to-use-GL_NoX-version-of-GraphicsS.patch | 2 ++
+>   .../recipes-qt/qt5/qtwebkit/GraphicsContext3DQt.cpp.patch      | 3 ++=
++
+>   .../recipes-qt/qt5/qtwebkit/GraphicsSurfaceGL_NoX.cpp.patch    | 3 ++=
++
+>   .../recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.patch       | 3 ++=
++
+>   meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch    | 3 ++=
++
+>   .../recipes-qt/qt5/qtwebkit/qttestbrowser.cpp.patch            | 3 ++=
++
+>   .../0001-hostapd-change-conf-file-for-better-oob-startup.patch | 2 ++
+>   .../recipes-connectivity/vtun/vtun/08-gcc5-inline.patch        | 2 ++
+>   .../recipes-connectivity/vtun/vtun/Add_search_path.patch       | 3 ++=
++
+>   .../recipes-connectivity/vtun/vtun/remove_strip.patch          | 3 ++=
++
+>   .../wpa-supplicant/wpa-supplicant/crypto_openssl.patch         | 3 ++=
++
+>   ...001-configure-Do-not-check-build-executable-extension.patch | 2 ++
+>   ...-Search-within-OE_QMAKE_PATH_EXTERNAL_HOST_BINS-for-q.patch | 2 ++
+>   .../recipes-graphics/devil/files/Remove-ILUT-dependency.patch  | 2 ++
+>   ...-makefile.linux.def-relax-assignment-of-CC-and-other-.patch | 2 ++
+>   ...-Makefile-correct-use-of-CPP-CXX-and-other-standard-v.patch | 2 ++
+>   .../0001-configure.ac-stop-using-export-symbols-regex.patch    | 2 ++
+>   ...-gstducati-configure.ac-stop-using-export-symbols-reg.patch | 2 ++
+>   .../0001-configure.ac-stop-using-export-symbols-regex.patch    | 2 ++
+>   ...1-gstvpe-configure.ac-stop-using-export-symbols-regex.patch | 2 ++
+>   ...-Revert-media-ctl-Don-t-install-libmediactl-and-libv4.patch | 2 ++
+>   .../0001-media-ctl-add-support-for-RGBIr-bayer-formats.patch   | 2 ++
+>   .../0001-v4l2-ctl-Add-routing-and-streams-support.patch        | 2 ++
+>   .../0002-media-ctl-add-support-for-routes-and-streams.patch    | 2 ++
+>   .../v4l-utils/0002-original-patch-mediactl-pkgconfig.patch     | 2 ++
+>   .../0003-original-patch-export-mediactl-headers.patch          | 2 ++
+>   ...-v4l2-ctl-compliance-add-routing-and-streams-multiple.patch | 2 ++
+>   ...-include-loki-SmallObj.h-ISO-C-17-does-not-allow-dyna.patch | 2 ++
+>   ...-include-loki-Threads.h-return-statement-with-a-value.patch | 2 ++
+>   ...-test-Function-FunctionTest.cpp-reference-to-bad_func.patch | 2 ++
+>   .../files/apply-modification-for-tflite-1.15-to-eigen.patch    | 3 ++=
++
+>   .../netopeer2-server/0001-Add-EST-Yang-Models.patch            | 3 ++=
++
+>   .../sysrepo-plugins-common/0001-so-version.patch               | 3 ++=
++
+>   .../linalg/files/0001-Makefile-fix-toolchain-variables.patch   | 2 ++
+>   ...-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j8.patch | 2 ++
+>   ...-float_compute-matmpy-Link-with-libdl-to-resolve-link.patch | 2 ++
+>   ...0001-Fix-paths-for-Yocto-build-and-add-RTOS-build-var.patch | 2 ++
+>   .../iperf/iperf-2.0.5/0001-fix-out-of-tree-config.patch        | 2 ++
+>   ...1-headers.h-remove-math.h-include-that-breaks-aarch64.patch | 2 ++
+>   .../iperf/iperf-2.0.5/0002-fix-bool-size-m4.patch              | 3 ++=
++
+>   .../iperf/iperf-2.0.5/iperf-2.0.5_ManPage.patch                | 2 ++
+>   .../0001-autoconf-fix-for-cross-compilation-for-ARM.patch      | 2 ++
+>   ...1-Makefile.am-lblah-flags-belong-to-LDADD-not-LDFLAGS.patch | 2 ++
+>   53 files changed, 119 insertions(+)
+>
+> diff --git a/meta-arago-distro/recipes-devtools/pm-qa/pm-qa/0001-Return=
+-non-zero-value-on-test-failure.patch b/meta-arago-distro/recipes-devtool=
+s/pm-qa/pm-qa/0001-Return-non-zero-value-on-test-failure.patch
+> index a5b5b8cc..35dbe7f5 100644
+> --- a/meta-arago-distro/recipes-devtools/pm-qa/pm-qa/0001-Return-non-ze=
+ro-value-on-test-failure.patch
+> +++ b/meta-arago-distro/recipes-devtools/pm-qa/pm-qa/0001-Return-non-ze=
+ro-value-on-test-failure.patch
+> @@ -4,6 +4,8 @@ Date: Thu, 13 Aug 2015 15:03:00 -0400
+>  =20
+>   By convention Linux tools return non-zero value on error/failure.
+>  =20
+> +Upstream-Status: Inactive-Upstream
+> +
+>   Signed-off-by: Carlos Hernandez <ceh@ti.com>
+>   ---
+>    include/functions.sh | 1 +
+> diff --git a/meta-arago-distro/recipes-devtools/pm-qa/pm-qa/0002-cpuidl=
+e-Avoid-relative-paths.patch b/meta-arago-distro/recipes-devtools/pm-qa/p=
+m-qa/0002-cpuidle-Avoid-relative-paths.patch
+> index 5252e3b1..0c39d6f4 100644
+> --- a/meta-arago-distro/recipes-devtools/pm-qa/pm-qa/0002-cpuidle-Avoid=
+-relative-paths.patch
+> +++ b/meta-arago-distro/recipes-devtools/pm-qa/pm-qa/0002-cpuidle-Avoid=
+-relative-paths.patch
+> @@ -5,6 +5,8 @@ Date: Thu, 13 Aug 2015 15:03:01 -0400
+>   Instead of assuming location of files in the filesystem by using
+>   relative paths, call binary and let $PATH find binary location.
+>  =20
+> +Upstream-Status: Inactive-Upstream
+> +
+>   Signed-off-by: Carlos Hernandez <ceh@ti.com>
+>   ---
+>    cpuidle/cpuidle_02.sh | 2 +-
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-ext=
+ension/0001-layer-add-surfaces-Add-screenId-as-an-argument.patch b/meta-a=
+rago-distro/recipes-graphics/wayland/wayland-ivi-extension/0001-layer-add=
+-surfaces-Add-screenId-as-an-argument.patch
+> index b8afc0de..b8601e36 100644
+> --- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/=
+0001-layer-add-surfaces-Add-screenId-as-an-argument.patch
+> +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/=
+0001-layer-add-surfaces-Add-screenId-as-an-argument.patch
+> @@ -7,6 +7,8 @@ Add Screen_ID as a argument to handle multiple screens.
+>   Removed choose_screen function as it is redundant
+>   after this change
+>  =20
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   Signed-off-by: Ramprasad N <x0038811@ti.com>
+>   Reviewed-by: Karthik Ramanan <a0393906@ti.com>
+>   ---
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-ext=
+ension/0002-layer-add-surfaces-surface-layer-management.patch b/meta-arag=
+o-distro/recipes-graphics/wayland/wayland-ivi-extension/0002-layer-add-su=
+rfaces-surface-layer-management.patch
+> index eff4a79c..adf6711f 100644
+> --- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/=
+0002-layer-add-surfaces-surface-layer-management.patch
+> +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/=
+0002-layer-add-surfaces-surface-layer-management.patch
+> @@ -6,6 +6,8 @@ Subject: [PATCH 2/2] layer-add-surfaces: surface-layer =
+management
+>   This patch prevents surfaces from getting added to a new layer
+>   if they are already registered to an existing layer.
+>  =20
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   Signed-off-by: Ramprasad N <x0038811@ti.com>
+>   Reviewed-by: Karthik Ramanan <a0393906@ti.com>
+>   ---
+> diff --git a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-ext=
+ension/force-type-conversion.patch b/meta-arago-distro/recipes-graphics/w=
+ayland/wayland-ivi-extension/force-type-conversion.patch
+> index a72aeedf..acebcfe4 100644
+> --- a/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/=
+force-type-conversion.patch
+> +++ b/meta-arago-distro/recipes-graphics/wayland/wayland-ivi-extension/=
+force-type-conversion.patch
+> @@ -1,3 +1,6 @@
+> +
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   diff --git a/ivi-layermanagement-examples/EGLWLMockNavigation/src/Ope=
+nGLES2App.cpp b/ivi-layermanagement-examples/EGLWLMockNavigation/src/Open=
+GLES2App.cpp
+>   index 2e65864..e14dbc0 100644
+>   --- a/ivi-layermanagement-examples/EGLWLMockNavigation/src/OpenGLES2A=
+pp.cpp
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-calculator-Ad=
+d-exit-button-for-non-window-environmen.patch b/meta-arago-distro/recipes=
+-qt/qt5/qtbase/0001-calculator-Add-exit-button-for-non-window-environmen.=
+patch
+> index e123df57..11112878 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-calculator-Add-exit-=
+button-for-non-window-environmen.patch
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase/0001-calculator-Add-exit-=
+button-for-non-window-environmen.patch
+> @@ -3,6 +3,8 @@ From: Jake Stiffler <jake@mcsdk-hpc-test.(none)>
+>   Date: Thu, 19 Mar 2015 15:21:08 -0400
+>   Subject: [PATCH 1/2] calculator: Add exit button for non-window envir=
+onment.
+>  =20
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   Signed-off-by: Jake Stiffler <jake@mcsdk-hpc-test.(none)>
+>   ---
+>    examples/widgets/widgets/calculator/calculator.cpp |    9 ++++++++-
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-deform-Fix-ho=
+w-controls-are-shown.patch b/meta-arago-distro/recipes-qt/qt5/qtbase/0001=
+-deform-Fix-how-controls-are-shown.patch
+> index 076becaa..7f1e0570 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtbase/0001-deform-Fix-how-contr=
+ols-are-shown.patch
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase/0001-deform-Fix-how-contr=
+ols-are-shown.patch
+> @@ -8,6 +8,8 @@ Subject: [PATCH 1/2] deform: Fix how controls are shown.
+>   * If controls are not full screen, then they must retain focus while
+>     opened.
+>  =20
+> +Upstream-Status: Pending
+> +
+>   Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+>   ---
+>    examples/widgets/painting/deform/pathdeform.cpp |    4 +++-
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0002-animatedtiles=
+-Add-exit-button-for-non-window-environ.patch b/meta-arago-distro/recipes=
+-qt/qt5/qtbase/0002-animatedtiles-Add-exit-button-for-non-window-environ.=
+patch
+> index 7b7ab3c2..c1452eda 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtbase/0002-animatedtiles-Add-ex=
+it-button-for-non-window-environ.patch
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase/0002-animatedtiles-Add-ex=
+it-button-for-non-window-environ.patch
+> @@ -4,6 +4,8 @@ Date: Fri, 20 Mar 2015 15:00:51 -0400
+>   Subject: [PATCH 2/2] animatedtiles: Add exit button for non-window
+>    environment.
+>  =20
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   Signed-off-by: Jake Stiffler <jake@mcsdk-hpc-test.(none)>
+>   ---
+>    .../animation/animatedtiles/animatedtiles.qrc      |    1 +
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase/0002-deform-disabl=
+e-opengl-button.patch b/meta-arago-distro/recipes-qt/qt5/qtbase/0002-defo=
+rm-disable-opengl-button.patch
+> index b15324bf..31e573d5 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtbase/0002-deform-disable-openg=
+l-button.patch
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase/0002-deform-disable-openg=
+l-button.patch
+> @@ -3,6 +3,8 @@ From: Jacob Stiffler <j-stiffler@ti.com>
+>   Date: Fri, 12 Jun 2015 10:24:33 -0400
+>   Subject: [PATCH 2/2] deform: disable opengl button.
+>  =20
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+>   ---
+>    examples/widgets/painting/deform/pathdeform.cpp |   12 ++++++------
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtdeclarative/0001-touchi=
+nteraction.qml-Add-exit-button.patch b/meta-arago-distro/recipes-qt/qt5/q=
+tdeclarative/0001-touchinteraction.qml-Add-exit-button.patch
+> index c7ae8d1d..8ff24601 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtdeclarative/0001-touchinteract=
+ion.qml-Add-exit-button.patch
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtdeclarative/0001-touchinteract=
+ion.qml-Add-exit-button.patch
+> @@ -3,6 +3,8 @@ From: Eric Ruei <e-ruei1@ti.com>
+>   Date: Tue, 16 Aug 2016 15:09:04 -0400
+>   Subject: [PATCH] touchinteraction.qml: Add "exit" button
+>  =20
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   Signed-off-by: Eric Ruei <e-ruei1@ti.com>
+>   ---
+>    .../quick/touchinteraction/touchinteraction.qml    | 38 ++++++++++++=
+++++++++++
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-=
+update-to-use-GL_NoX-version-of-GraphicsS.patch b/meta-arago-distro/recip=
+es-qt/qt5/qtwebkit/0001-Target.pri-update-to-use-GL_NoX-version-of-Graphi=
+csS.patch
+> index 55a4c032..5ccf6df3 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-=
+to-use-GL_NoX-version-of-GraphicsS.patch
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit/0001-Target.pri-update-=
+to-use-GL_NoX-version-of-GraphicsS.patch
+> @@ -4,6 +4,8 @@ Date: Thu, 17 Jul 2014 16:11:46 -0400
+>   Subject: [PATCH] Target.pri: update to use GL_NoX version of Graphics=
+Surface
+>    sources
+>  =20
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>   ---
+>    Source/WebCore/Target.pri | 4 ++++
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsContext3=
+DQt.cpp.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsContext=
+3DQt.cpp.patch
+> index aa752bb8..7a7cf752 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsContext3DQt.cpp=
+.patch
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsContext3DQt.cpp=
+.patch
+> @@ -1,3 +1,6 @@
+> +
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   --- qtwebkit/Source/WebCore/platform/graphics/qt/GraphicsContext3DQt.=
+cpp.orig	2013-09-07 13:41:19.946858466 +0530
+>   +++ qtwebkit/Source/WebCore/platform/graphics/qt/GraphicsContext3DQt.=
+cpp	2013-09-07 17:48:13.958979770 +0530
+>   @@ -383,21 +383,23 @@ GraphicsContext3D::GraphicsContext3D(Gra
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceG=
+L_NoX.cpp.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfa=
+ceGL_NoX.cpp.patch
+> index 89712a8b..033fa893 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceGL_NoX.c=
+pp.patch
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceGL_NoX.c=
+pp.patch
+> @@ -1,3 +1,6 @@
+> +
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   diff -Nurp8 Source/WebCore/platform/graphics/surfaces/qt/GraphicsSurf=
+aceGL_NoX.cpp Source-new/WebCore/platform/graphics/surfaces/qt/GraphicsSu=
+rfaceGL_NoX.cpp
+>   --- qtwebkit/Source/WebCore/platform/graphics/surfaces/qt/GraphicsSur=
+faceGL_NoX.cpp	1970-01-01 05:30:00.000000000 +0530
+>   +++ qtwebkit-new/Source/WebCore/platform/graphics/surfaces/qt/Graphic=
+sSurfaceGL_NoX.cpp	2013-09-07 13:43:55.186851650 +0530
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceT=
+oken.h.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceT=
+oken.h.patch
+> index 722df392..719793fd 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.=
+patch
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit/GraphicsSurfaceToken.h.=
+patch
+> @@ -1,3 +1,6 @@
+> +
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   --- qtwebkit/Source/WebCore/platform/graphics/surfaces/GraphicsSurfac=
+eToken.h.orig	2013-09-07 13:44:47.906849335 +0530
+>   +++ qtwebkit/Source/WebCore/platform/graphics/surfaces/GraphicsSurfac=
+eToken.h	2013-09-07 13:46:12.554845618 +0530
+>   @@ -50,17 +50,30 @@ struct GraphicsSurfaceToken {
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patc=
+h b/meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch
+> index 276b3cf8..cc2bf510 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit/WebCore.pri.patch
+> @@ -1,3 +1,6 @@
+> +
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   diff --git a/Source/WebCore/WebCore.pri b/Source/WebCore/WebCore.pri
+>   index 0189394..00f7090 100644
+>   --- a/Source/WebCore/WebCore.pri
+> diff --git a/meta-arago-distro/recipes-qt/qt5/qtwebkit/qttestbrowser.cp=
+p.patch b/meta-arago-distro/recipes-qt/qt5/qtwebkit/qttestbrowser.cpp.pat=
+ch
+> index 9a57be22..badf9349 100644
+> --- a/meta-arago-distro/recipes-qt/qt5/qtwebkit/qttestbrowser.cpp.patch
+> +++ b/meta-arago-distro/recipes-qt/qt5/qtwebkit/qttestbrowser.cpp.patch
+> @@ -1,3 +1,6 @@
+> +
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   --- qtwebkit/Tools/QtTestBrowser/qttestbrowser.cpp.orig	2013-09-08 17=
+:28:48.633593482 +0530
+>   +++ qtwebkit/Tools/QtTestBrowser/qttestbrowser.cpp	2013-09-08 17:29:0=
+7.713592964 +0530
+>   @@ -235,19 +235,20 @@ void LauncherApplication::handleUserOpti
+> diff --git a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemo=
+n-wl18xx/0001-hostapd-change-conf-file-for-better-oob-startup.patch b/met=
+a-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18xx/0001-host=
+apd-change-conf-file-for-better-oob-startup.patch
+> index c89dd4c8..1b1f59a1 100644
+> --- a/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18x=
+x/0001-hostapd-change-conf-file-for-better-oob-startup.patch
+> +++ b/meta-arago-extras/recipes-connectivity/hostap/hostap-daemon-wl18x=
+x/0001-hostapd-change-conf-file-for-better-oob-startup.patch
+> @@ -5,6 +5,8 @@ Subject: [PATCH] hostapd change conf file for better oo=
+b startup
+>  =20
+>   Changed some of the default parameters
+>  =20
+> +Upstream-Status: Inappropriate [configuration change]
+> +
+>   Signed-off-by: Yaniv Mahani <yanivma@ti.com>
+>   ---
+>    hostapd/hostapd.conf |  724 ++++++----------------------------------=
+----------
+> diff --git a/meta-arago-extras/recipes-connectivity/vtun/vtun/08-gcc5-i=
+nline.patch b/meta-arago-extras/recipes-connectivity/vtun/vtun/08-gcc5-in=
+line.patch
+> index c9a00900..18497111 100644
+> --- a/meta-arago-extras/recipes-connectivity/vtun/vtun/08-gcc5-inline.p=
+atch
+> +++ b/meta-arago-extras/recipes-connectivity/vtun/vtun/08-gcc5-inline.p=
+atch
+> @@ -7,6 +7,8 @@ Author: "Potter, Tim (Cloud Services)" <timothy.potter@=
+hp.com>
+>   Reviewed-by: gregor herrmann <gregoa@debian.org>
+>   Last-Update: 2015-07-23
+>  =20
+> +Upstream-Status: Pending
+> +
+>   --- a/cfg_file.y
+>   +++ b/cfg_file.y
+>   @@ -624,7 +624,7 @@
+> diff --git a/meta-arago-extras/recipes-connectivity/vtun/vtun/Add_searc=
+h_path.patch b/meta-arago-extras/recipes-connectivity/vtun/vtun/Add_searc=
+h_path.patch
+> index ebf83310..30808ae3 100644
+> --- a/meta-arago-extras/recipes-connectivity/vtun/vtun/Add_search_path.=
+patch
+> +++ b/meta-arago-extras/recipes-connectivity/vtun/vtun/Add_search_path.=
+patch
+> @@ -1,3 +1,6 @@
+> +
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   --- vtun-3.0.3/configure.orig
+>   +++ vtun-3.0.3/configure
+>   @@ -5680,7 +5680,7 @@
+> diff --git a/meta-arago-extras/recipes-connectivity/vtun/vtun/remove_st=
+rip.patch b/meta-arago-extras/recipes-connectivity/vtun/vtun/remove_strip=
+.patch
+> index 4e123931..86643877 100644
+> --- a/meta-arago-extras/recipes-connectivity/vtun/vtun/remove_strip.pat=
+ch
+> +++ b/meta-arago-extras/recipes-connectivity/vtun/vtun/remove_strip.pat=
+ch
+> @@ -1,3 +1,6 @@
+> +
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   --- vtun-3.0.3/Makefile.orig.in
+>   +++ vtun-3.0.3/Makefile.in
+>   @@ -99,6 +99,5 @@
+> diff --git a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-=
+supplicant/crypto_openssl.patch b/meta-arago-extras/recipes-connectivity/=
+wpa-supplicant/wpa-supplicant/crypto_openssl.patch
+> index 650f5c19..c958f403 100644
+> --- a/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplic=
+ant/crypto_openssl.patch
+> +++ b/meta-arago-extras/recipes-connectivity/wpa-supplicant/wpa-supplic=
+ant/crypto_openssl.patch
+> @@ -1,3 +1,6 @@
+> +
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   --- a/src/crypto/crypto_openssl.c	2019-11-09 06:46:42.112779317 -0600
+>   +++ b/src/crypto/crypto_openssl.c.new	2019-11-09 13:16:57.560629882 -=
+0600
+>   @@ -602,11 +602,15 @@
+> diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6/0001-config=
+ure-Do-not-check-build-executable-extension.patch b/meta-arago-extras/rec=
+ipes-core/llvm/ti-llvm3.6/0001-configure-Do-not-check-build-executable-ex=
+tension.patch
+> index 9a60caf3..e9c332ac 100644
+> --- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6/0001-configure-Do-=
+not-check-build-executable-extension.patch
+> +++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6/0001-configure-Do-=
+not-check-build-executable-extension.patch
+> @@ -6,6 +6,8 @@ Subject: [PATCH] configure: Do not check build executab=
+le extension.
+>    * This seems to cause issues nativesdk and build sdk
+>      architectures are the same.
+>  =20
+> +Upstream-Status: Inappropriate [oe specific]
+> +
+>   Signed-off-by: Jake Stiffler <j-stiffler@ti.com>
+>   ---
+>    configure                 |    3 +++
+> diff --git a/meta-arago-extras/recipes-devtools/cmake/extra-cmake-modul=
+es/0001-Search-within-OE_QMAKE_PATH_EXTERNAL_HOST_BINS-for-q.patch b/meta=
+-arago-extras/recipes-devtools/cmake/extra-cmake-modules/0001-Search-with=
+in-OE_QMAKE_PATH_EXTERNAL_HOST_BINS-for-q.patch
+> index 964dbbf9..a8c2132e 100644
+> --- a/meta-arago-extras/recipes-devtools/cmake/extra-cmake-modules/0001=
+-Search-within-OE_QMAKE_PATH_EXTERNAL_HOST_BINS-for-q.patch
+> +++ b/meta-arago-extras/recipes-devtools/cmake/extra-cmake-modules/0001=
+-Search-within-OE_QMAKE_PATH_EXTERNAL_HOST_BINS-for-q.patch
+> @@ -4,6 +4,8 @@ Date: Mon, 29 Dec 2014 12:05:20 +0100
+>   Subject: [PATCH] Search within OE_QMAKE_PATH_EXTERNAL_HOST_BINS for
+>    qtwaylandscanner
+>  =20
+> +Upstream-Status: Inappropriate [oe specific]
+> +
+>   Signed-off-by: Simon Busch <morphis@gravedo.de>
+>   ---
+>    find-modules/FindQtWaylandScanner.cmake | 2 +-
+> diff --git a/meta-arago-extras/recipes-graphics/devil/files/Remove-ILUT=
+-dependency.patch b/meta-arago-extras/recipes-graphics/devil/files/Remove=
+-ILUT-dependency.patch
+> index 4f0f9dfa..0dcc9263 100644
+> --- a/meta-arago-extras/recipes-graphics/devil/files/Remove-ILUT-depend=
+ency.patch
+> +++ b/meta-arago-extras/recipes-graphics/devil/files/Remove-ILUT-depend=
+ency.patch
+> @@ -1,3 +1,5 @@
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   diff --git a/DevIL/CMakeLists.txt b/DevIL/CMakeLists.txt
+>   index e342f93d..fae40167 100644
+>   --- a/DevIL/CMakeLists.txt
+> diff --git a/meta-arago-extras/recipes-graphics/ti-gc320-tests/files/00=
+01-makefile.linux.def-relax-assignment-of-CC-and-other-.patch b/meta-arag=
+o-extras/recipes-graphics/ti-gc320-tests/files/0001-makefile.linux.def-re=
+lax-assignment-of-CC-and-other-.patch
+> index 0078a296..0ae5ff65 100644
+> --- a/meta-arago-extras/recipes-graphics/ti-gc320-tests/files/0001-make=
+file.linux.def-relax-assignment-of-CC-and-other-.patch
+> +++ b/meta-arago-extras/recipes-graphics/ti-gc320-tests/files/0001-make=
+file.linux.def-relax-assignment-of-CC-and-other-.patch
+> @@ -3,6 +3,8 @@ From: Denys Dmytriyenko <denys@ti.com>
+>   Date: Sun, 26 Mar 2017 14:14:49 -0400
+>   Subject: [PATCH] makefile.linux.def: relax assignment of CC and other=
+ tools
+>  =20
+> +Upstream-Status: Inappropriate [oe specific]
+> +
+>   Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>   ---
+>    tests/src/makefile.linux.def | 14 +++++++-------
+> diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstrea=
+mer1.0-plugins-dsp66/0001-Makefile-correct-use-of-CPP-CXX-and-other-stand=
+ard-v.patch b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstream=
+er1.0-plugins-dsp66/0001-Makefile-correct-use-of-CPP-CXX-and-other-standa=
+rd-v.patch
+> index 3c913ed4..8048de93 100644
+> --- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-=
+plugins-dsp66/0001-Makefile-correct-use-of-CPP-CXX-and-other-standard-v.p=
+atch
+> +++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-=
+plugins-dsp66/0001-Makefile-correct-use-of-CPP-CXX-and-other-standard-v.p=
+atch
+> @@ -3,6 +3,8 @@ From: Denys Dmytriyenko <denys@ti.com>
+>   Date: Sun, 26 Mar 2017 15:12:44 -0400
+>   Subject: [PATCH] Makefile: correct use of CPP/CXX and other standard =
+variables
+>  =20
+> +Upstream-Status: Inappropriate [oe specific]
+> +
+>   Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>   ---
+>    src/kernels/make.inc         | 16 +++++++---------
+> diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstrea=
+mer1.0-plugins-dsp66/0001-configure.ac-stop-using-export-symbols-regex.pa=
+tch b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-pl=
+ugins-dsp66/0001-configure.ac-stop-using-export-symbols-regex.patch
+> index c9721b70..e3df61ac 100644
+> --- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-=
+plugins-dsp66/0001-configure.ac-stop-using-export-symbols-regex.patch
+> +++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-=
+plugins-dsp66/0001-configure.ac-stop-using-export-symbols-regex.patch
+> @@ -7,6 +7,8 @@ The old regex is no longer correct for GStreamer 1.14.
+>  =20
+>   Bug-Debian:https://urldefense.com/v3/__https://bugs.debian.org/894642=
+__;!!G3vK!U9hQUOynrU7Ehw3k-U0BB1YB00PTTyPow1EJYYHSh6LI_KH7dBjbeODabitL5qA=
+1GWPDbUfOO4ZoxoGOzLszfxPXYYg_4NVf9g$
+>  =20
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>   ---
+>    configure.ac | 2 +-
+> diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstrea=
+mer1.0-plugins-ducati/0001-gstducati-configure.ac-stop-using-export-symbo=
+ls-reg.patch b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstrea=
+mer1.0-plugins-ducati/0001-gstducati-configure.ac-stop-using-export-symbo=
+ls-reg.patch
+> index 4104e24e..c6a24c06 100644
+> --- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-=
+plugins-ducati/0001-gstducati-configure.ac-stop-using-export-symbols-reg.=
+patch
+> +++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-=
+plugins-ducati/0001-gstducati-configure.ac-stop-using-export-symbols-reg.=
+patch
+> @@ -5,6 +5,8 @@ Subject: [PATCH] gstducati: configure.ac stop using -ex=
+port-symbols-regex
+>  =20
+>   The old regex is no longer correct for GStreamer 1.14.
+>  =20
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   Signed-off-by: Ramprasad N <x0038811@ti.com>
+>   ---
+>    configure.ac | 2 +-
+> diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstrea=
+mer1.0-plugins-hevc/0001-configure.ac-stop-using-export-symbols-regex.pat=
+ch b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plu=
+gins-hevc/0001-configure.ac-stop-using-export-symbols-regex.patch
+> index c9721b70..e3df61ac 100644
+> --- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-=
+plugins-hevc/0001-configure.ac-stop-using-export-symbols-regex.patch
+> +++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-=
+plugins-hevc/0001-configure.ac-stop-using-export-symbols-regex.patch
+> @@ -7,6 +7,8 @@ The old regex is no longer correct for GStreamer 1.14.
+>  =20
+>   Bug-Debian:https://urldefense.com/v3/__https://bugs.debian.org/894642=
+__;!!G3vK!U9hQUOynrU7Ehw3k-U0BB1YB00PTTyPow1EJYYHSh6LI_KH7dBjbeODabitL5qA=
+1GWPDbUfOO4ZoxoGOzLszfxPXYYg_4NVf9g$
+>  =20
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>   ---
+>    configure.ac | 2 +-
+> diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstrea=
+mer1.0-plugins-vpe/0001-gstvpe-configure.ac-stop-using-export-symbols-reg=
+ex.patch b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1=
+.0-plugins-vpe/0001-gstvpe-configure.ac-stop-using-export-symbols-regex.p=
+atch
+> index d68c152b..d1739df8 100644
+> --- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-=
+plugins-vpe/0001-gstvpe-configure.ac-stop-using-export-symbols-regex.patc=
+h
+> +++ b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-=
+plugins-vpe/0001-gstvpe-configure.ac-stop-using-export-symbols-regex.patc=
+h
+> @@ -12,6 +12,8 @@ undefined symbol as --export-symbols option is no mor=
+e supported.
+>   Rename PACKAGE to vpe to get the expected symbol
+>   gst_plugin_vpe_get_desc
+>  =20
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   Signed-off-by: Ramprasad N <x0038811@ti.com>
+>   ---
+>    configure.ac | 2 +-
+> diff --git a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0=
+001-Revert-media-ctl-Don-t-install-libmediactl-and-libv4.patch b/meta-ara=
+go-extras/recipes-multimedia/v4l-utils/v4l-utils/0001-Revert-media-ctl-Do=
+n-t-install-libmediactl-and-libv4.patch
+> index 7305e471..2b5eef11 100644
+> --- a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0001-Rev=
+ert-media-ctl-Don-t-install-libmediactl-and-libv4.patch
+> +++ b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0001-Rev=
+ert-media-ctl-Don-t-install-libmediactl-and-libv4.patch
+> @@ -7,6 +7,8 @@ Subject: [PATCH] Revert "media-ctl: Don't install libme=
+diactl and
+>  =20
+>   This reverts commit 0911dce53b08b0df3066be2c75f67e8a314d8729.
+>  =20
+> +Upstream-Status: Pending
+> +
+>   Signed-off-by: Khem Raj <raj.khem@gmail.com>
+>  =20
+>   Conflicts:
+> diff --git a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0=
+001-media-ctl-add-support-for-RGBIr-bayer-formats.patch b/meta-arago-extr=
+as/recipes-multimedia/v4l-utils/v4l-utils/0001-media-ctl-add-support-for-=
+RGBIr-bayer-formats.patch
+> index 1dff0637..cf391bf5 100644
+> --- a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0001-med=
+ia-ctl-add-support-for-RGBIr-bayer-formats.patch
+> +++ b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0001-med=
+ia-ctl-add-support-for-RGBIr-bayer-formats.patch
+> @@ -3,6 +3,8 @@ From: Jai Luthra <j-luthra@ti.com>
+>   Date: Tue, 5 Jul 2022 16:23:39 +0530
+>   Subject: [PATCH] media-ctl: add support for RGBIr bayer formats
+>  =20
+> +Upstream-Status: Pending
+> +
+>   Signed-off-by: Jai Luthra <j-luthra@ti.com>
+>   ---
+>    include/linux/media-bus-format.h | 10 +++++++++-
+> diff --git a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0=
+001-v4l2-ctl-Add-routing-and-streams-support.patch b/meta-arago-extras/re=
+cipes-multimedia/v4l-utils/v4l-utils/0001-v4l2-ctl-Add-routing-and-stream=
+s-support.patch
+> index 9fd19edc..57fb630d 100644
+> --- a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0001-v4l=
+2-ctl-Add-routing-and-streams-support.patch
+> +++ b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0001-v4l=
+2-ctl-Add-routing-and-streams-support.patch
+> @@ -12,6 +12,8 @@ configurations per stream.
+>   Based on work from Jacopo Mondi <jacopo@jmondi.org> and
+>   Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.se>.
+>  =20
+> +Upstream-Status: Pending
+> +
+>   Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>   ---
+>    utils/v4l2-ctl/v4l2-ctl-subdev.cpp | 288 +++++++++++++++++++++++++--=
+--
+> diff --git a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0=
+002-media-ctl-add-support-for-routes-and-streams.patch b/meta-arago-extra=
+s/recipes-multimedia/v4l-utils/v4l-utils/0002-media-ctl-add-support-for-r=
+outes-and-streams.patch
+> index 79864f01..5dc06ac0 100644
+> --- a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0002-med=
+ia-ctl-add-support-for-routes-and-streams.patch
+> +++ b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0002-med=
+ia-ctl-add-support-for-routes-and-streams.patch
+> @@ -8,6 +8,8 @@ configurations per stream.
+>  =20
+>   Based on work from Sakari Ailus <sakari.ailus@linux.intel.com>.
+>  =20
+> +Upstream-Status: Pending
+> +
+>   Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>   ---
+>    utils/media-ctl/libmediactl.c   |  41 +++++
+> diff --git a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0=
+002-original-patch-mediactl-pkgconfig.patch b/meta-arago-extras/recipes-m=
+ultimedia/v4l-utils/v4l-utils/0002-original-patch-mediactl-pkgconfig.patc=
+h
+> index 6ad9f2c1..e33b63d1 100644
+> --- a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0002-ori=
+ginal-patch-mediactl-pkgconfig.patch
+> +++ b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0002-ori=
+ginal-patch-mediactl-pkgconfig.patch
+> @@ -3,6 +3,8 @@ From: Khem Raj <raj.khem@gmail.com>
+>   Date: Sun, 1 Mar 2015 22:25:07 +0000
+>   Subject: [PATCH] %% original patch: mediactl-pkgconfig.patch
+>  =20
+> +Upstream-Status: Pending
+> +
+>   ---
+>    utils/media-ctl/Makefile.am | 1 +
+>    1 file changed, 1 insertion(+)
+> diff --git a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0=
+003-original-patch-export-mediactl-headers.patch b/meta-arago-extras/reci=
+pes-multimedia/v4l-utils/v4l-utils/0003-original-patch-export-mediactl-he=
+aders.patch
+> index 5562d2c1..7b599b9d 100644
+> --- a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0003-ori=
+ginal-patch-export-mediactl-headers.patch
+> +++ b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0003-ori=
+ginal-patch-export-mediactl-headers.patch
+> @@ -3,6 +3,8 @@ From: Khem Raj <raj.khem@gmail.com>
+>   Date: Sun, 1 Mar 2015 22:25:07 +0000
+>   Subject: [PATCH] %% original patch: export-mediactl-headers.patch
+>  =20
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   ---
+>    utils/media-ctl/Makefile.am | 4 ++--
+>    1 file changed, 2 insertions(+), 2 deletions(-)
+> diff --git a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0=
+003-v4l2-ctl-compliance-add-routing-and-streams-multiple.patch b/meta-ara=
+go-extras/recipes-multimedia/v4l-utils/v4l-utils/0003-v4l2-ctl-compliance=
+-add-routing-and-streams-multiple.patch
+> index aeb97e09..a9a3afce 100644
+> --- a/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0003-v4l=
+2-ctl-compliance-add-routing-and-streams-multiple.patch
+> +++ b/meta-arago-extras/recipes-multimedia/v4l-utils/v4l-utils/0003-v4l=
+2-ctl-compliance-add-routing-and-streams-multiple.patch
+> @@ -6,6 +6,8 @@ Subject: [PATCH 3/3] v4l2-ctl/compliance: add routing a=
+nd streams multiplexed
+>  =20
+>   Add basic support for routing and streams.
+>  =20
+> +Upstream-Status: Pending
+> +
+>   Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>   ---
+>    utils/v4l2-compliance/v4l2-compliance.cpp   | 120 ++++++++++++++++--=
+--
+> diff --git a/meta-arago-extras/recipes-support/loki/libloki/0001-includ=
+e-loki-SmallObj.h-ISO-C-17-does-not-allow-dyna.patch b/meta-arago-extras/=
+recipes-support/loki/libloki/0001-include-loki-SmallObj.h-ISO-C-17-does-n=
+ot-allow-dyna.patch
+> index acd94d13..cabde7dd 100644
+> --- a/meta-arago-extras/recipes-support/loki/libloki/0001-include-loki-=
+SmallObj.h-ISO-C-17-does-not-allow-dyna.patch
+> +++ b/meta-arago-extras/recipes-support/loki/libloki/0001-include-loki-=
+SmallObj.h-ISO-C-17-does-not-allow-dyna.patch
+> @@ -4,6 +4,8 @@ Date: Mon, 13 Feb 2023 13:11:16 -0600
+>   Subject: [PATCH] include/loki/SmallObj.h: ISO C++17 does not allow dy=
+namic
+>    exception specifications
+>  =20
+> +Upstream-Status: Pending
+> +
+>   Signed-off-by: Andrew Davis <afd@ti.com>
+>   ---
+>    include/loki/SmallObj.h | 15 ++-------------
+> diff --git a/meta-arago-extras/recipes-support/loki/libloki/0001-includ=
+e-loki-Threads.h-return-statement-with-a-value.patch b/meta-arago-extras/=
+recipes-support/loki/libloki/0001-include-loki-Threads.h-return-statement=
+-with-a-value.patch
+> index 91a78e88..3710a45b 100644
+> --- a/meta-arago-extras/recipes-support/loki/libloki/0001-include-loki-=
+Threads.h-return-statement-with-a-value.patch
+> +++ b/meta-arago-extras/recipes-support/loki/libloki/0001-include-loki-=
+Threads.h-return-statement-with-a-value.patch
+> @@ -4,6 +4,8 @@ Date: Mon, 14 Nov 2016 19:41:28 -0500
+>   Subject: [PATCH] include/loki/Threads.h: return-statement with a valu=
+e, in
+>    function returning 'void'
+>  =20
+> +Upstream-Status: Pending
+> +
+>   Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>   ---
+>    include/loki/Threads.h | 4 ++--
+> diff --git a/meta-arago-extras/recipes-support/loki/libloki/0002-test-F=
+unction-FunctionTest.cpp-reference-to-bad_func.patch b/meta-arago-extras/=
+recipes-support/loki/libloki/0002-test-Function-FunctionTest.cpp-referenc=
+e-to-bad_func.patch
+> index 0de9f61c..3ee7d8ff 100644
+> --- a/meta-arago-extras/recipes-support/loki/libloki/0002-test-Function=
+-FunctionTest.cpp-reference-to-bad_func.patch
+> +++ b/meta-arago-extras/recipes-support/loki/libloki/0002-test-Function=
+-FunctionTest.cpp-reference-to-bad_func.patch
+> @@ -4,6 +4,8 @@ Date: Mon, 14 Nov 2016 19:55:08 -0500
+>   Subject: [PATCH] test/Function/FunctionTest.cpp: reference to
+>    'bad_function_call' is ambiguous
+>  =20
+> +Upstream-Status: Pending
+> +
+>   Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>   ---
+>    test/Function/FunctionTest.cpp | 2 +-
+> diff --git a/meta-arago-extras/recipes-support/tensorflow-lite/files/ap=
+ply-modification-for-tflite-1.15-to-eigen.patch b/meta-arago-extras/recip=
+es-support/tensorflow-lite/files/apply-modification-for-tflite-1.15-to-ei=
+gen.patch
+> index 06c9c63a..491dcbfa 100644
+> --- a/meta-arago-extras/recipes-support/tensorflow-lite/files/apply-mod=
+ification-for-tflite-1.15-to-eigen.patch
+> +++ b/meta-arago-extras/recipes-support/tensorflow-lite/files/apply-mod=
+ification-for-tflite-1.15-to-eigen.patch
+> @@ -1,3 +1,6 @@
+> +
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   diff --git a/tensorflow/lite/tools/make/downloads/eigen/Eigen/src/Cor=
+e/arch/NEON/Complex.h b/tensorflow/lite/tools/make/downloads/eigen/Eigen/=
+src/Core/arch/NEON/Complex.h
+>   index 306a309beb..4527a64c91 100644
+>   --- a/tensorflow/lite/tools/make/downloads/eigen/Eigen/src/Core/arch/=
+NEON/Complex.h
+> diff --git a/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopee=
+r2-server/0001-Add-EST-Yang-Models.patch b/meta-arago-extras/recipes-sysr=
+epo/netopeer2-server/netopeer2-server/0001-Add-EST-Yang-Models.patch
+> index 10ed685d..983f594b 100644
+> --- a/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-serv=
+er/0001-Add-EST-Yang-Models.patch
+> +++ b/meta-arago-extras/recipes-sysrepo/netopeer2-server/netopeer2-serv=
+er/0001-Add-EST-Yang-Models.patch
+> @@ -1,3 +1,6 @@
+> +
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   diff --git a/scripts/setup.sh b/scripts/setup.sh
+>   index 7bba711..4a98e66 100755
+>   --- a/scripts/setup.sh
+> diff --git a/meta-arago-extras/recipes-sysrepo/sysrepo-plugins-common/0=
+001-so-version.patch b/meta-arago-extras/recipes-sysrepo/sysrepo-plugins-=
+common/0001-so-version.patch
+> index 0eabf6a9..5e2fc3a5 100644
+> --- a/meta-arago-extras/recipes-sysrepo/sysrepo-plugins-common/0001-so-=
+version.patch
+> +++ b/meta-arago-extras/recipes-sysrepo/sysrepo-plugins-common/0001-so-=
+version.patch
+> @@ -1,3 +1,6 @@
+> +
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   diff --git a/CMakeLists.txt b/CMakeLists.txt
+>   index fd64b80..910510d 100644
+>   --- a/CMakeLists.txt
+> diff --git a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-fi=
+x-toolchain-variables.patch b/meta-arago-extras/recipes-ti/linalg/files/0=
+001-Makefile-fix-toolchain-variables.patch
+> index af7c6a2b..df387977 100644
+> --- a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-fix-toolc=
+hain-variables.patch
+> +++ b/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-fix-toolc=
+hain-variables.patch
+> @@ -3,6 +3,8 @@ From: Denys Dmytriyenko <denys@ti.com>
+>   Date: Sun, 26 Mar 2017 18:17:06 -0400
+>   Subject: [PATCH] Makefile: fix toolchain variables
+>  =20
+> +Upstream-Status: Inappropriate [oe specific]
+> +
+>   Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>   ---
+>    examples/arm+dsp/make.inc                         |  1 -
+> diff --git a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pa=
+ss-PARALLEL_MAKE-variable-to-overwrite-j8.patch b/meta-arago-extras/recip=
+es-ti/linalg/files/0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite=
+-j8.patch
+> index dacea7a5..7d2f1409 100644
+> --- a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass-PARA=
+LLEL_MAKE-variable-to-overwrite-j8.patch
+> +++ b/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass-PARA=
+LLEL_MAKE-variable-to-overwrite-j8.patch
+> @@ -3,6 +3,8 @@ From: Denys Dmytriyenko <denys@ti.com>
+>   Date: Wed, 29 Mar 2017 13:09:05 -0400
+>   Subject: [PATCH] Makefile: pass PARALLEL_MAKE variable to overwrite -=
+j8
+>  =20
+> +Upstream-Status: Inappropriate [oe specific]
+> +
+>   Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>   ---
+>    src/ti/linalg/Makefile | 12 +++++++-----
+> diff --git a/meta-arago-extras/recipes-ti/ocl/ocl/0001-float_compute-ma=
+tmpy-Link-with-libdl-to-resolve-link.patch b/meta-arago-extras/recipes-ti=
+/ocl/ocl/0001-float_compute-matmpy-Link-with-libdl-to-resolve-link.patch
+> index dd13d731..43bc9900 100644
+> --- a/meta-arago-extras/recipes-ti/ocl/ocl/0001-float_compute-matmpy-Li=
+nk-with-libdl-to-resolve-link.patch
+> +++ b/meta-arago-extras/recipes-ti/ocl/ocl/0001-float_compute-matmpy-Li=
+nk-with-libdl-to-resolve-link.patch
+> @@ -7,6 +7,8 @@ Subject: [PATCH] float_compute, matmpy: Link with libdl=
+ to resolve linking
+>   * with GCC 5.3 toolchain, linking with libgomp also requires linking
+>     with libdl
+>  =20
+> +Upstream-Status: Pending
+> +
+>   Signed-off-by: Jacob Stiffler <j-stiffler@ti.com>
+>   ---
+>    examples/float_compute/Makefile | 2 +-
+> diff --git a/meta-arago-extras/recipes-ti/tiovx/files/0001-Fix-paths-fo=
+r-Yocto-build-and-add-RTOS-build-var.patch b/meta-arago-extras/recipes-ti=
+/tiovx/files/0001-Fix-paths-for-Yocto-build-and-add-RTOS-build-var.patch
+> index 1e667b87..ff80debc 100644
+> --- a/meta-arago-extras/recipes-ti/tiovx/files/0001-Fix-paths-for-Yocto=
+-build-and-add-RTOS-build-var.patch
+> +++ b/meta-arago-extras/recipes-ti/tiovx/files/0001-Fix-paths-for-Yocto=
+-build-and-add-RTOS-build-var.patch
+> @@ -3,6 +3,8 @@ From: Djordje Senicic <d-senicic1@ti.com>
+>   Date: Mon, 14 Aug 2017 10:26:39 -0400
+>   Subject: [PATCH] Fix paths for Yocto build and add RTOS build var
+>  =20
+> +Upstream-Status: Inappropriate [oe specific]
+> +
+>   Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
+>   ---
+>    Makefile            | 27 +++++++++++++++++++--------
+> diff --git a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0001-f=
+ix-out-of-tree-config.patch b/meta-arago-test/recipes-benchmark/iperf/ipe=
+rf-2.0.5/0001-fix-out-of-tree-config.patch
+> index e8a02979..003d2523 100644
+> --- a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0001-fix-out-=
+of-tree-config.patch
+> +++ b/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0001-fix-out-=
+of-tree-config.patch
+> @@ -7,6 +7,8 @@ header is not found due to the hard path.
+>   We now make the path for package header relative to our 'srcdir' so i=
+t is
+>   found appropriately.
+>  =20
+> +Upstream-Status: Inappropriate [oe specific]
+> +
+>   Signed-off-by: Awais Belal <awais_belal@mentor.com>
+>   ---
+>   diff --git a/configure.ac b/configure.ac
+> diff --git a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0001-h=
+eaders.h-remove-math.h-include-that-breaks-aarch64.patch b/meta-arago-tes=
+t/recipes-benchmark/iperf/iperf-2.0.5/0001-headers.h-remove-math.h-includ=
+e-that-breaks-aarch64.patch
+> index abd2315b..8d9e03f6 100644
+> --- a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0001-headers.=
+h-remove-math.h-include-that-breaks-aarch64.patch
+> +++ b/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0001-headers.=
+h-remove-math.h-include-that-breaks-aarch64.patch
+> @@ -18,6 +18,8 @@ Content-Transfer-Encoding: 8bit
+>   |      struct __is_integer<bool>
+>   |             ^~~~~~~~~~~~~~~~~~
+>  =20
+> +Upstream-Status: Inappropriate [oe specific]
+> +
+>   Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>   ---
+>    include/headers.h | 1 -
+> diff --git a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0002-f=
+ix-bool-size-m4.patch b/meta-arago-test/recipes-benchmark/iperf/iperf-2.0=
+.5/0002-fix-bool-size-m4.patch
+> index 348e316c..a6001b10 100644
+> --- a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0002-fix-bool=
+-size-m4.patch
+> +++ b/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/0002-fix-bool=
+-size-m4.patch
+> @@ -1,3 +1,6 @@
+> +
+> +Upstream-Status: Pending
+> +
+>   --- iperf-2.0.5/m4/dast.m4.orig	2016-06-15 11:42:03.945581785 -0400
+>   +++ iperf-2.0.5/m4/dast.m4	2016-06-15 11:42:11.053581641 -0400
+>   @@ -11,7 +11,12 @@
+> diff --git a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/iperf-=
+2.0.5_ManPage.patch b/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5=
+/iperf-2.0.5_ManPage.patch
+> index 12e8f463..97cf1ff4 100755
+> --- a/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/iperf-2.0.5_M=
+anPage.patch
+> +++ b/meta-arago-test/recipes-benchmark/iperf/iperf-2.0.5/iperf-2.0.5_M=
+anPage.patch
+> @@ -1,3 +1,5 @@
+> +Upstream-Status: Inappropriate [arago specific]
+> +
+>   diff --git iperf-2.0.5/man/Makefile.am iperf-2.0.5/man/Makefile.am
+>    index ed97bc6..728873f 100644
+>   --- iperf-2.0.5/man/Makefile.am
+> diff --git a/meta-arago-test/recipes-devtools/input-utils/input-utils/0=
+001-autoconf-fix-for-cross-compilation-for-ARM.patch b/meta-arago-test/re=
+cipes-devtools/input-utils/input-utils/0001-autoconf-fix-for-cross-compil=
+ation-for-ARM.patch
+> index 72308690..075920b4 100644
+> --- a/meta-arago-test/recipes-devtools/input-utils/input-utils/0001-aut=
+oconf-fix-for-cross-compilation-for-ARM.patch
+> +++ b/meta-arago-test/recipes-devtools/input-utils/input-utils/0001-aut=
+oconf-fix-for-cross-compilation-for-ARM.patch
+> @@ -6,6 +6,8 @@ Subject: [PATCH] autoconf: fix for cross compilation fo=
+r ARM
+>   * Based on changes from Yebio Mesfin fixup the input-utils to
+>     cross compile for ARM.
+>  =20
+> +Upstream-Status: Inappropriate [oe specific]
+> +
+>   Signed-off-by: Chase Maupin <Chase.Maupin@ti.com>
+>   ---
+>    mk/Autoconf.mk  |    8 ++++++--
+> diff --git a/meta-arago-test/recipes-graphics/omapdrmtest/files/0001-Ma=
+kefile.am-lblah-flags-belong-to-LDADD-not-LDFLAGS.patch b/meta-arago-test=
+/recipes-graphics/omapdrmtest/files/0001-Makefile.am-lblah-flags-belong-t=
+o-LDADD-not-LDFLAGS.patch
+> index f973500c..0adb30b7 100644
+> --- a/meta-arago-test/recipes-graphics/omapdrmtest/files/0001-Makefile.=
+am-lblah-flags-belong-to-LDADD-not-LDFLAGS.patch
+> +++ b/meta-arago-test/recipes-graphics/omapdrmtest/files/0001-Makefile.=
+am-lblah-flags-belong-to-LDADD-not-LDFLAGS.patch
+> @@ -3,6 +3,8 @@ From: Denys Dmytriyenko <denys@ti.com>
+>   Date: Wed, 4 Apr 2018 20:09:54 -0400
+>   Subject: [PATCH] Makefile.am: -lblah flags belong to LDADD, not LDFLA=
+GS
+>  =20
+> +Upstream-Status: Inappropriate [oe specific]
+> +
+>   Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+>   ---
+>    Makefile.am | 3 +--
+> --=20
+> 2.17.1
+>
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#15383):https://urldefense.com/v3/__https://lists.yo=
+ctoproject.org/g/meta-arago/message/15383__;!!G3vK!U9hQUOynrU7Ehw3k-U0BB1=
+YB00PTTyPow1EJYYHSh6LI_KH7dBjbeODabitL5qA1GWPDbUfOO4ZoxoGOzLszfxPXYYhbWiY=
+32g$
+> Mute This Topic:https://urldefense.com/v3/__https://lists.yoctoproject.=
+org/mt/106654448/7030289__;!!G3vK!U9hQUOynrU7Ehw3k-U0BB1YB00PTTyPow1EJYYH=
+Sh6LI_KH7dBjbeODabitL5qA1GWPDbUfOO4ZoxoGOzLszfxPXYYhjFuaC4g$
+> Group Owner: meta-arago+owner@lists.yoctoproject.org
+> Unsubscribe:https://urldefense.com/v3/__https://lists.yoctoproject.org/=
+g/meta-arago/unsub__;!!G3vK!U9hQUOynrU7Ehw3k-U0BB1YB00PTTyPow1EJYYHSh6LI_=
+KH7dBjbeODabitL5qA1GWPDbUfOO4ZoxoGOzLszfxPXYYir3Mgyyg$  [c-shilwant@ti.co=
+m]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
 
