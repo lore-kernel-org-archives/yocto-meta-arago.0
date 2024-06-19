@@ -1,90 +1,95 @@
-Return-Path: <denis@denix.org>
+Return-Path: <c-shilwant@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AB55AC27C4F
-	for <webhook@archiver.kernel.org>; Tue, 18 Jun 2024 21:01:38 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.5681.1718744496205518304
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0712AC2BA18
+	for <webhook@archiver.kernel.org>; Wed, 19 Jun 2024 01:49:00 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web10.10911.1718761735092750260
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 18 Jun 2024 14:01:36 -0700
+ Tue, 18 Jun 2024 18:48:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 199D940CB1;
-	Tue, 18 Jun 2024 21:01:35 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 0r4xlz_s9lgD; Tue, 18 Jun 2024 21:01:35 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A33B040CAA;
-	Tue, 18 Jun 2024 21:01:30 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id DBB9E163FB7; Tue, 18 Jun 2024 17:01:29 -0400 (EDT)
-Date: Tue, 18 Jun 2024 17:01:29 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Chirag Shilwant <c-shilwant@ti.com>
-Cc: meta-arago@lists.yoctoproject.org, Ryan Eatmon <reatmon@ti.com>,
-	Gyan Gupta <g-gupta@ti.com>, Kartheek <s-adivi@ti.com>
-Subject: Re: [meta-arago][master/scarthgap][PATCH v2] recipes-qt: qt5: Add
- xkbcommon to qtbase PACKAGECONFIG
-Message-ID: <20240618210129.GB18231@denix.org>
-References: <20240618122453.1131089-1-c-shilwant@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=svxS88wO;
+ spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: c-shilwant@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 45J1mqXg077911;
+	Tue, 18 Jun 2024 20:48:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1718761732;
+	bh=TzCruI05XUmjFkeZNvweeupeTlOBW1mQrC5U2G9eKDE=;
+	h=From:To:CC:Subject:Date;
+	b=svxS88wOyUDvRIvltKEHB6sMcXXBREfcM204pq4YatOU8iIqFGcH4ENyNPX9qF3wB
+	 /fjHFJM/vKcpT0rbIAmUOvbsPREN0E7F9UUNiDKi/y7Hxpan167BbTLcAfG08qmX5s
+	 phKa3urSFYPmeQZdjus/eTMmBYnqbMakOShX2bqU=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 45J1mqx9055951
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 18 Jun 2024 20:48:52 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 18
+ Jun 2024 20:48:52 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 18 Jun 2024 20:48:52 -0500
+Received: from localhost (chirag-hp-z2-tower-g5-workstation.dhcp.ti.com [172.24.227.238])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 45J1mpRG030499;
+	Tue, 18 Jun 2024 20:48:51 -0500
+From: Chirag Shilwant <c-shilwant@ti.com>
+To: <meta-arago@lists.yoctoproject.org>
+CC: Denys <denis@denix.org>, Ryan Eatmon <reatmon@ti.com>,
+        Gyan Gupta
+	<g-gupta@ti.com>
+Subject: [meta-arago][master/scarthgap][PATCH] meta-arago-distro: recipes-tisdk: Drop oe-layersetup
+Date: Wed, 19 Jun 2024 07:18:45 +0530
+Message-ID: <20240619014845.1700633-1-c-shilwant@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240618122453.1131089-1-c-shilwant@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 18 Jun 2024 21:01:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15401
+ <meta-arago@lists.yoctoproject.org>; Wed, 19 Jun 2024 01:49:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15402
 
-Please add it to PACKAGECONFIG_DISTRO variable, where it was originally. Also, 
-previously it was done in the arago.conf distro configuration, as adjusting 
-PACKAGECONFIGs from their default values is considered a distro-specific 
-change. Plus, it avoids creating tons of one-line .bbappends (though in the 
-case of qtbase, we already have a .bbappend for other reasons). Lastly, 
-refrain from using :append w/o additional overrides and use += instead - it 
-automatically handles whitespaces and is much easier to undo downstream.
+- Users are advised to clone oe-layersetup to trigger
+yocto builds [1] for machine configurations that are
+under meta-ti.
 
+- So having a recipe for it in Yocto doesn't make any sense,
+hence drop it.
 
-On Tue, Jun 18, 2024 at 05:54:53PM +0530, Chirag Shilwant wrote:
-> From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
-> 
-> - For QT apps to use physical keyboard, xkbcommon has to be added in
-> PACKAGECONFIG. This was supported until 09.01 using xkbcommon-evdev which at
-> present is an invalid PACKAGECONFIG & hence was dropped from meta-arago [1].
-> 
-> - Hence, add xkbcommon to PACKAGECONFIG which will enable the use of
-> physical keyboard in QT apps.
-> 
-> [1]: https://git.ti.com/cgit/arago-project/meta-arago/commit/?h=scarthgap&id=de16946741249265a38acb7bb503b39a0c2b4175
-> 
-> Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
-> Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
-> ---
-> v2: Add xkbcommon in PACKAGECONFIG to all platforms instead of making it k3 machine specific
-> 
->  meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
-> index 8ae8110b..4ecfd7ed 100644
-> --- a/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
-> +++ b/meta-arago-distro/recipes-qt/qt5/qtbase_%.bbappend
-> @@ -4,6 +4,8 @@ GLES_EXTRA_DEPS = "libdrm wayland"
->  
->  PACKAGECONFIG[gles2] = "-opengl es2 -eglfs,,virtual/libgles2 virtual/egl ${GLES_EXTRA_DEPS}"
->  
-> +PACKAGECONFIG:append = " xkbcommon"
-> +
->  PR:append = ".arago17"
->  
->  QT_CONFIG_FLAGS += "-qpa ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland', 'eglfs', d)}"
-> -- 
-> 2.34.1
+[1]: https://software-dl.ti.com/processor-sdk-linux/esd/AM62X/09_02_01_10/exports/docs/linux/Overview_Building_the_SDK.html#build-steps
+
+Signed-off-by: Chirag Shilwant <c-shilwant@ti.com>
+---
+ .../recipes-tisdk/oe-layersetup/oe-layersetup.bb    | 13 -------------
+ 1 file changed, 13 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-tisdk/oe-layersetup/oe-layersetup.bb
+
+diff --git a/meta-arago-distro/recipes-tisdk/oe-layersetup/oe-layersetup.bb b/meta-arago-distro/recipes-tisdk/oe-layersetup/oe-layersetup.bb
+deleted file mode 100644
+index 1600b679..00000000
+--- a/meta-arago-distro/recipes-tisdk/oe-layersetup/oe-layersetup.bb
++++ /dev/null
+@@ -1,13 +0,0 @@
+-DESCRIPTION = "Package that contains a script to setup oe-core development environment"
+-LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-
+-PR = "r1"
+-
+-inherit allarch
+-
+-BRANCH ?= "master"
+-SRCREV = "e58f941784fb45fd826779a45b33973e6342700f"
+-SRC_URI = "git://git.ti.com/git/git/arago-project/oe-layersetup.git;protocol=https;branch=${BRANCH}"
+-
+-S = "${WORKDIR}/git"
+-- 
+2.34.1
+
 
