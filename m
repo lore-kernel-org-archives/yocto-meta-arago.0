@@ -1,83 +1,104 @@
-Return-Path: <lcpdbld@list.ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1697DC30653
-	for <webhook@archiver.kernel.org>; Mon,  1 Jul 2024 08:40:34 +0000 (UTC)
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by mx.groups.io with SMTP id smtpd.web10.14965.1719823232380963194
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5CA1CC2BD09
+	for <webhook@archiver.kernel.org>; Mon,  1 Jul 2024 14:37:16 +0000 (UTC)
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+ by mx.groups.io with SMTP id smtpd.web11.21725.1719844634913244183
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 01 Jul 2024 01:40:32 -0700
+ Mon, 01 Jul 2024 07:37:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=M/ioHtjt;
- spf=pass (domain: list.ti.com, ip: 198.47.19.141, mailfrom: lcpdbld@list.ti.com)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4618eTMN064582;
-	Mon, 1 Jul 2024 03:40:29 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=x7vYqm66;
+ spf=pass (domain: ti.com, ip: 198.47.23.248, mailfrom: reatmon@ti.com)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 461EbDs8047740;
+	Mon, 1 Jul 2024 09:37:13 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1719823229; i=@ti.com;
-	bh=uiBrrxT4t5IRIad0pk2RHdkRDzL0Ay9wlmt+3xOuTlM=;
+	s=ti-com-17Q1; t=1719844633;
+	bh=oMoe3733kueJQQyQYOSo3eDuOwxAg8T5mJb/jwkscs8=;
 	h=From:To:Subject:Date;
-	b=M/ioHtjtTIwf/sVk8GackLSoUwPPIx6yJoQkt2YFfw6PGpeEzvOB1i8U16hMIIevQ
-	 V+kFbG4kFj84McXlDTWnMGIzPX1EyCAZvV70fUikyDMziN+vZKrlN/XNs8U4KvyK4I
-	 XnFVN24ZiGtc3GvgeslWhz+PB7qwUnfst1lymOMg=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4618eSPg070536
+	b=x7vYqm66XnpVDMtmHVNnDuiOJ4d37HFXjni87J7VKbZvGSomRRrDpbeH03e2o955h
+	 e9TcvCE94373+VQWAgQIr9jQ0wGCuhObWUHwZVW7gPZ4w0l8NEzZcOB60ALgSpQ1ft
+	 BPMKbluD1E0P8to+VdKdPkYNM/aJImsnqQlf87yo=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 461EbCRR002512
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 1 Jul 2024 03:40:28 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 1 Jul 2024 09:37:12 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 1
- Jul 2024 03:40:28 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2024 09:37:12 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 1 Jul 2024 03:40:28 -0500
-Received: from fllvdckhpci004.itg.ti.com (fllvdckhpci004.itg.ti.com [10.248.130.8])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4618eSXr129740;
-	Mon, 1 Jul 2024 03:40:28 -0500
-Received: by fllvdckhpci004.itg.ti.com (Postfix, from userid 60899)
-	id A8F3F10AA2CB; Mon,  1 Jul 2024 03:40:28 -0500 (CDT)
-From: LCPD Automation Script <lcpdbld@list.ti.com>
-To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Denys
- Dmytriyenko <denys@konsulko.com>,
+ Frontend Transport; Mon, 1 Jul 2024 09:37:12 -0500
+Received: from uda0214219 (uda0214219.dhcp.ti.com [128.247.81.222])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 461EbCs4039497;
+	Mon, 1 Jul 2024 09:37:12 -0500
+Received: from reatmon by uda0214219 with local (Exim 4.90_1)
+	(envelope-from <reatmon@ti.com>)
+	id 1sOI9Y-0006uE-E3; Mon, 01 Jul 2024 09:37:12 -0500
+From: Ryan Eatmon <reatmon@ti.com>
+To: Praneeth Bajjuri <praneeth@ti.com>,
+        Denys Dmytriyenko
+	<denys@konsulko.com>,
         <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][master][PATCH] CI/CD Auto-Merger: cicd.master.202407010100
-Date: Mon, 1 Jul 2024 03:40:28 -0500
-Message-ID: <1719823228-84240-1-git-send-email-lcpdbld@list.ti.com>
-X-Mailer: git-send-email 1.8.3.1
+Subject: [meta-arago][master][PATCH] openssl-perf: Add openssl_aes256_encdec.sh script
+Date: Mon, 1 Jul 2024 09:37:12 -0500
+Message-ID: <20240701143712.26506-1-reatmon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 01 Jul 2024 08:40:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15420
+ <meta-arago@lists.yoctoproject.org>; Mon, 01 Jul 2024 14:37:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15421
 
-Updated the value(s) for:
-  ltp-ddt: SRCREV
+This is an additional openssl script that our testing flow requires.
 
-Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
+Signed-off-by: Ryan Eatmon <reatmon@ti.com>
 ---
- meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../recipes-benchmark/openssl-perf/openssl-perf.bb        | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
-index 76ee939..c527718 100644
---- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
-+++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
-@@ -14,7 +14,7 @@ PE = "1"
- PR = "r1"
- PV:append = "+git"
+diff --git a/meta-arago-test/recipes-benchmark/openssl-perf/openssl-perf.bb b/meta-arago-test/recipes-benchmark/openssl-perf/openssl-perf.bb
+index 8257a561..1d36d489 100644
+--- a/meta-arago-test/recipes-benchmark/openssl-perf/openssl-perf.bb
++++ b/meta-arago-test/recipes-benchmark/openssl-perf/openssl-perf.bb
+@@ -1,5 +1,5 @@
+-SUMMARY = "Benchmark for checking various OpenSSL performance functions"
+-HOMEPAGE = "https://git.ti.com/cgit/matrix-gui-v2/matrix-gui-v2-apps/tree/cryptos_apps_scripts/openssl_perf_scripts/openssl_perf.sh"
++SUMMARY = "Benchmarks for checking various OpenSSL performance functions"
++HOMEPAGE = "https://git.ti.com/cgit/matrix-gui-v2/matrix-gui-v2-apps/tree/cryptos_apps_scripts/"
+ LICENSE = "CC-BY-SA-3.0"
+ LIC_FILES_CHKSUM = "file://${UNPACKDIR}/LICENSE;md5=6e0ae7214f6c74c149cb25f373057fa9"
  
--SRCREV = "47c592f19b393238aee076f92973fcc082e7fb22"
-+SRCREV = "f922118e24c8289128d255e4ab07d8fb13997c57"
- BRANCH ?= "master"
+@@ -7,9 +7,11 @@ PV = "1.0"
  
- SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
+ SRC_URI = " \
+     https://git.ti.com/cgit/matrix-gui-v2/matrix-gui-v2-apps/plain/cryptos_apps_scripts/openssl_perf_scripts/openssl_perf.sh;name=openssl_perf \
++    https://git.ti.com/cgit/matrix-gui-v2/matrix-gui-v2-apps/plain/cryptos_apps_scripts/openssl_aes256_encdec_scripts/openssl_aes256_encdec.sh;name=openssl_aes256_encdec \
+     https://git.ti.com/cgit/matrix-gui-v2/matrix-gui-v2-apps/plain/LICENSE;name=license \
+ "
+ SRC_URI[openssl_perf.sha256sum] = "1ba5188beb6a1fa69d9f34df12c596ed49907c2b2d2ce2d985a305b9ecbed800"
++SRC_URI[openssl_aes256_encdec.sha256sum] = "c63efc35f7c161e02ef6d53b428bfbfce7ea3f2d329c552dbb04f865317eb408"
+ SRC_URI[license.sha256sum] = "7febd1df714fa4b1e44fe0b0f73ceac7f9b9f97326695a0cc7074bd6c8d263e3"
+ 
+ S = "${WORKDIR}/sources"
+@@ -18,7 +20,9 @@ UNPACKDIR = "${S}"
+ do_install() {
+     install -d ${D}${bindir}
+     install -m 0755 ${S}/openssl_perf.sh ${D}${bindir}/openssl_perf.sh
++    install -m 0755 ${S}/openssl_aes256_encdec.sh ${D}${bindir}/openssl_aes256_encdec.sh
+ }
+ 
+ FILES:${PN} = "${bindir}/openssl_perf.sh"
++FILES:${PN} = "${bindir}/openssl_aes256_encdec.sh"
+ 
 -- 
-1.8.3.1
+2.17.1
 
 
