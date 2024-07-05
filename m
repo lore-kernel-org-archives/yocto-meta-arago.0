@@ -1,73 +1,83 @@
-Return-Path: <denis@denix.org>
+Return-Path: <lcpdbld@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 74B93C30653
-	for <webhook@archiver.kernel.org>; Thu,  4 Jul 2024 22:54:13 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.6292.1720133643554182820
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DDF25C30658
+	for <webhook@archiver.kernel.org>; Fri,  5 Jul 2024 12:59:27 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.16578.1720184362397707237
  for <meta-arago@lists.yoctoproject.org>;
- Thu, 04 Jul 2024 15:54:04 -0700
+ Fri, 05 Jul 2024 05:59:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 948E040C7B;
-	Thu,  4 Jul 2024 22:54:02 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id xlOPSDJMoOrf; Thu,  4 Jul 2024 22:54:02 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6F29940AC9;
-	Thu,  4 Jul 2024 22:53:59 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 1F4DF163FE6; Thu,  4 Jul 2024 18:53:59 -0400 (EDT)
-Date: Thu, 4 Jul 2024 18:53:59 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Ryan Eatmon <reatmon@ti.com>
-Cc: meta-arago@lists.yoctoproject.org,
-	Denys Dmytriyenko <denys@konsulko.com>
-Subject: Re: [meta-arago] [master][PATCH] weston: adjust bbappend for minor
- version bump
-Message-ID: <20240704225352.GM18231@denix.org>
-References: <20240702195208.39626-1-denis@denix.org>
- <182eac05-6ae0-4ef1-b779-e67742e8fd7f@ti.com>
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=xNyk7M54;
+ spf=pass (domain: list.ti.com, ip: 198.47.19.142, mailfrom: lcpdbld@list.ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 465CxIHJ010532;
+	Fri, 5 Jul 2024 07:59:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1720184358; i=@ti.com;
+	bh=HiKRsUmWuuATS23QULYmAVykxOzVAxQFcwhThuMmJh8=;
+	h=From:To:Subject:Date;
+	b=xNyk7M54Ijkjfl5hG5raVj7vR1+xD64M+tITBoM4uIe4jIbq/REYiY1prbyHvAMU/
+	 6OeRTPbk82URYWNmJgNOUb/pOuCErVkSxR4/mSjHBA9uy7Q8P8VmO3tP8uNjigt4pv
+	 6kLeBdvjdPj7Jr66ANyHqrBgcdUe3Hr71ugZqsgs=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 465CxINg012784
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 5 Jul 2024 07:59:18 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 5
+ Jul 2024 07:59:18 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 5 Jul 2024 07:59:18 -0500
+Received: from fllvdckhpci004.itg.ti.com (fllvdckhpci004.itg.ti.com [10.248.130.8])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 465CxIFP092100;
+	Fri, 5 Jul 2024 07:59:18 -0500
+Received: by fllvdckhpci004.itg.ti.com (Postfix, from userid 60899)
+	id 6B275110BE03; Fri,  5 Jul 2024 07:59:18 -0500 (CDT)
+From: LCPD Automation Script <lcpdbld@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][scarthgap][PATCH] CI/CD Auto-Merger: cicd.scarthgap.202407050400
+Date: Fri, 5 Jul 2024 07:59:18 -0500
+Message-ID: <1720184358-51524-1-git-send-email-lcpdbld@list.ti.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <182eac05-6ae0-4ef1-b779-e67742e8fd7f@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 04 Jul 2024 22:54:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15430
+ <meta-arago@lists.yoctoproject.org>; Fri, 05 Jul 2024 12:59:27 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15431
 
-On Wed, Jul 03, 2024 at 08:40:41PM -0500, Ryan Eatmon wrote:
-> 
-> 
-> On 7/2/2024 2:52 PM, Denys Dmytriyenko wrote:
-> >From: Denys Dmytriyenko <denys@konsulko.com>
-> >
-> >Make bbappend less strict to apply against minor version bumps, such as 3.0.1
-> >
-> >Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
-> >---
-> >  .../wayland/{weston_13.0.0.bbappend => weston_13.0.%.bbappend}    | 0
-> >  1 file changed, 0 insertions(+), 0 deletions(-)
-> >  rename meta-arago-distro/recipes-graphics/wayland/{weston_13.0.0.bbappend => weston_13.0.%.bbappend} (100%)
-> >
-> >diff --git a/meta-arago-distro/recipes-graphics/wayland/weston_13.0.0.bbappend b/meta-arago-distro/recipes-graphics/wayland/weston_13.0.%.bbappend
-> >similarity index 100%
-> >rename from meta-arago-distro/recipes-graphics/wayland/weston_13.0.0.bbappend
-> >rename to meta-arago-distro/recipes-graphics/wayland/weston_13.0.%.bbappend
-> 
-> Any good reason to not put this on scarthgap as well?  Just to keep
-> them in sync?
+Updated the value(s) for:
+  ltp-ddt: SRCREV
 
-I guess it should be fine for scarthgap as well
+Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
+---
+ meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
+index c527718..5206ab9 100644
+--- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
++++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
+@@ -14,7 +14,7 @@ PE = "1"
+ PR = "r1"
+ PV:append = "+git"
+ 
+-SRCREV = "f922118e24c8289128d255e4ab07d8fb13997c57"
++SRCREV = "d2e5693c64789b15aa8a00c26f2d0ab43febb70b"
+ BRANCH ?= "master"
+ 
+ SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
 -- 
-Denys
+1.8.3.1
+
 
