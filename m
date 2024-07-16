@@ -1,76 +1,83 @@
-Return-Path: <denis@denix.org>
+Return-Path: <lcpdbld@list.ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DB73C3DA4B
-	for <webhook@archiver.kernel.org>; Tue, 16 Jul 2024 01:50:25 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.1211.1721094618996719655
+	by smtp.lore.kernel.org (Postfix) with ESMTP id F1D43C41513
+	for <webhook@archiver.kernel.org>; Tue, 16 Jul 2024 11:51:29 +0000 (UTC)
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+ by mx.groups.io with SMTP id smtpd.web11.8807.1721130687011037968
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 15 Jul 2024 18:50:19 -0700
+ Tue, 16 Jul 2024 04:51:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5BE6F407DA;
-	Tue, 16 Jul 2024 01:50:18 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id HVIdiEI5BMoB; Tue, 16 Jul 2024 01:50:18 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 3517E40C6C;
-	Tue, 16 Jul 2024 01:50:16 +0000 (UTC)
-Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 1F5C6163FF4;
-	Mon, 15 Jul 2024 21:50:16 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master][PATCH] ti-llvm: adopt an LLVM fix for buildpaths errors
-Date: Mon, 15 Jul 2024 21:50:13 -0400
-Message-Id: <20240716015013.3051611-2-denis@denix.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240716015013.3051611-1-denis@denix.org>
-References: <20240716015013.3051611-1-denis@denix.org>
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=pCe/jW43;
+ spf=pass (domain: list.ti.com, ip: 198.47.19.142, mailfrom: lcpdbld@list.ti.com)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46GBpNUe109205;
+	Tue, 16 Jul 2024 06:51:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1721130683; i=@ti.com;
+	bh=z81myNY0Medw1LhfdMfbqF3aVIYy0MYnBT98sXQTdCQ=;
+	h=From:To:Subject:Date;
+	b=pCe/jW43vXrlMM0tVOq+DKdRMmD/dhKes8XOoJ+NCbnZRk1bkY38duo1eiMBNdMV3
+	 7Kycj7t1MSKmHVjLEGcDN/jZXRNZc3A1VOW1J7dyYQepzRkOdgz4fnDu5WFezLxyOA
+	 F1wve1J/+O2V53hJZ2RodFRhXUwFHjT7792ZRxuM=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46GBpNe8120866
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 16 Jul 2024 06:51:23 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
+ Jul 2024 06:51:22 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 16 Jul 2024 06:51:22 -0500
+Received: from fllvdckhpci004.itg.ti.com (fllvdckhpci004.itg.ti.com [10.248.130.8])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46GBpMKB020848;
+	Tue, 16 Jul 2024 06:51:22 -0500
+Received: by fllvdckhpci004.itg.ti.com (Postfix, from userid 60899)
+	id 9E88E10F58E0; Tue, 16 Jul 2024 06:51:22 -0500 (CDT)
+From: LCPD Automation Script <lcpdbld@list.ti.com>
+To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
+        Denys
+ Dmytriyenko <denys@konsulko.com>,
+        <meta-arago@lists.yoctoproject.org>
+Subject: [meta-arago][scarthgap][PATCH] CI/CD Auto-Merger: cicd.scarthgap.202407160400
+Date: Tue, 16 Jul 2024 06:51:22 -0500
+Message-ID: <1721130682-136630-1-git-send-email-lcpdbld@list.ti.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 16 Jul 2024 01:50:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15444
+ <meta-arago@lists.yoctoproject.org>; Tue, 16 Jul 2024 11:51:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15445
 
-From: Denys Dmytriyenko <denys@konsulko.com>
+Updated the value(s) for:
+  ltp-ddt: SRCREV
 
-Make sure llvm-configs doesn't have absolute build paths.
-
-Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
 ---
- meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb | 5 +++++
- 1 file changed, 5 insertions(+)
+ meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb b/meta=
--arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-index 4b990b7f..810c603b 100644
---- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-+++ b/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
-@@ -62,6 +62,11 @@ EXTRA_OECONF +=3D " --enable-targets=3D"host,arm,c6000=
-,msp430" \
-=20
- EXTRA_OEMAKE +=3D "LIBXML2_INC=3D"${LIBXML2_INC}" LIBXML2_LIBS=3D"${LIBX=
-ML2_LIBS}""
-=20
-+# patch out build host paths for reproducibility
-+do_compile:prepend() {
-+        sed -i -e "s,${WORKDIR},,g" ${LLVM_BUILD_DIR}/tools/llvm-config/=
-Release/BuildVariables.inc
-+}
-+
- do_compile:class-native() {
-   cd ${LLVM_BUILD_DIR}
-=20
---=20
-2.25.1
+diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
+index 3016e6a..8dae5d6 100644
+--- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
++++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
+@@ -14,7 +14,7 @@ PE = "1"
+ PR = "r1"
+ PV:append = "+git"
+ 
+-SRCREV = "2204fd86c79c9d8a51802296caf5e70f155ad44a"
++SRCREV = "73e0f3167099858407a4b43b8d09203ef2273ed6"
+ BRANCH ?= "master"
+ 
+ SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
+-- 
+1.8.3.1
 
 
