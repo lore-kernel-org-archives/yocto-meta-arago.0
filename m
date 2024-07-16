@@ -1,83 +1,95 @@
-Return-Path: <lcpdbld@list.ti.com>
+Return-Path: <reatmon@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F1D43C41513
-	for <webhook@archiver.kernel.org>; Tue, 16 Jul 2024 11:51:29 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web11.8807.1721130687011037968
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D3D26C3DA59
+	for <webhook@archiver.kernel.org>; Tue, 16 Jul 2024 14:22:20 +0000 (UTC)
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+ by mx.groups.io with SMTP id smtpd.web10.12149.1721139734682529754
  for <meta-arago@lists.yoctoproject.org>;
- Tue, 16 Jul 2024 04:51:27 -0700
+ Tue, 16 Jul 2024 07:22:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=pCe/jW43;
- spf=pass (domain: list.ti.com, ip: 198.47.19.142, mailfrom: lcpdbld@list.ti.com)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46GBpNUe109205;
-	Tue, 16 Jul 2024 06:51:23 -0500
+ dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=PTUNZefu;
+ spf=pass (domain: ti.com, ip: 198.47.23.249, mailfrom: reatmon@ti.com)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 46GEMBZk038256;
+	Tue, 16 Jul 2024 09:22:11 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1721130683; i=@ti.com;
-	bh=z81myNY0Medw1LhfdMfbqF3aVIYy0MYnBT98sXQTdCQ=;
-	h=From:To:Subject:Date;
-	b=pCe/jW43vXrlMM0tVOq+DKdRMmD/dhKes8XOoJ+NCbnZRk1bkY38duo1eiMBNdMV3
-	 7Kycj7t1MSKmHVjLEGcDN/jZXRNZc3A1VOW1J7dyYQepzRkOdgz4fnDu5WFezLxyOA
-	 F1wve1J/+O2V53hJZ2RodFRhXUwFHjT7792ZRxuM=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46GBpNe8120866
+	s=ti-com-17Q1; t=1721139731;
+	bh=nYGDMDz50S/PDmopjCgCTlufN414Hbu66tRxYdrIAlk=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=PTUNZefuzeU0WQudAwgWY0cA6UjNKfDJs43UMPmV1eRN6aRuEhgpRYtHjPMKxuh3t
+	 bhyxSlqo6QNzZsaOLAUE5KbiuPOJpLOAeNniRCkIdCqeNlx+Iwt6IVg1GVGXuwbqdv
+	 00Z1uE/2Jms0QprZ67WF7N7dtSLqorOIRNUHmQHU=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 46GEMBZR070821
 	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 16 Jul 2024 06:51:23 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 16 Jul 2024 09:22:11 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 16
- Jul 2024 06:51:22 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2024 09:22:10 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 16 Jul 2024 06:51:22 -0500
-Received: from fllvdckhpci004.itg.ti.com (fllvdckhpci004.itg.ti.com [10.248.130.8])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46GBpMKB020848;
-	Tue, 16 Jul 2024 06:51:22 -0500
-Received: by fllvdckhpci004.itg.ti.com (Postfix, from userid 60899)
-	id 9E88E10F58E0; Tue, 16 Jul 2024 06:51:22 -0500 (CDT)
-From: LCPD Automation Script <lcpdbld@list.ti.com>
-To: Ryan Eatmon <reatmon@ti.com>, Praneeth Bajjuri <praneeth@ti.com>,
-        Denys
- Dmytriyenko <denys@konsulko.com>,
-        <meta-arago@lists.yoctoproject.org>
-Subject: [meta-arago][scarthgap][PATCH] CI/CD Auto-Merger: cicd.scarthgap.202407160400
-Date: Tue, 16 Jul 2024 06:51:22 -0500
-Message-ID: <1721130682-136630-1-git-send-email-lcpdbld@list.ti.com>
-X-Mailer: git-send-email 1.8.3.1
+ Frontend Transport; Tue, 16 Jul 2024 09:22:11 -0500
+Received: from [10.249.34.122] ([10.249.34.122])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 46GEMA7c105861;
+	Tue, 16 Jul 2024 09:22:10 -0500
+Message-ID: <7d998bc5-8a36-4c0f-b12c-c4dc2e226d68@ti.com>
+Date: Tue, 16 Jul 2024 09:22:10 -0500
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [meta-arago] [master][PATCH] arago.conf: disable buildpaths QA
+ errors in meta-qt5
+To: Denys Dmytriyenko <denis@denix.org>, <meta-arago@lists.yoctoproject.org>
+CC: Denys Dmytriyenko <denys@konsulko.com>
+References: <20240716015013.3051611-1-denis@denix.org>
+Content-Language: en-US
+From: Ryan Eatmon <reatmon@ti.com>
+In-Reply-To: <20240716015013.3051611-1-denis@denix.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Tue, 16 Jul 2024 11:51:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15445
+ <meta-arago@lists.yoctoproject.org>; Tue, 16 Jul 2024 14:22:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15446
 
-Updated the value(s) for:
-  ltp-ddt: SRCREV
 
-Signed-off-by: LCPD Automation Script <lcpdbld@list.ti.com>
----
- meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
-index 3016e6a..8dae5d6 100644
---- a/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
-+++ b/meta-arago-test/recipes-devtools/ltp-ddt/ltp-ddt_20240129.bb
-@@ -14,7 +14,7 @@ PE = "1"
- PR = "r1"
- PV:append = "+git"
- 
--SRCREV = "2204fd86c79c9d8a51802296caf5e70f155ad44a"
-+SRCREV = "73e0f3167099858407a4b43b8d09203ef2273ed6"
- BRANCH ?= "master"
- 
- SRC_URI:remove = "git://github.com/linux-test-project/ltp.git;branch=master;protocol=https"
+On 7/15/2024 8:50 PM, Denys Dmytriyenko wrote:
+> From: Denys Dmytriyenko <denys@konsulko.com>
+> 
+> As meta-qt5 is not going to fix the issues causing the errors:
+> 
+> https://github.com/meta-qt5/meta-qt5/issues/575
+> 
+> Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+> ---
+>   meta-arago-distro/conf/distro/arago.conf | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/meta-arago-distro/conf/distro/arago.conf b/meta-arago-distro/conf/distro/arago.conf
+> index deaa8c02..716068ba 100644
+> --- a/meta-arago-distro/conf/distro/arago.conf
+> +++ b/meta-arago-distro/conf/distro/arago.conf
+> @@ -188,3 +188,7 @@ LICENSE_FLAGS_ACCEPTED = "commercial_gst-ffmpeg commercial_gstreamer1.0-libav co
+>   
+>   # Do not package own copy of perl into devkit, rely on host one
+>   ASSUME_PROVIDED += "nativesdk-perl"
+> +
+> +# https://github.com/meta-qt5/meta-qt5/issues/575
+> +ERROR_QA:remove:layer-qt5-layer = "buildpaths"
+> +WARN_QA:append:layer-qt5-layer = " buildpaths"
+
+Yeah, I saw that and thought this should be the answer.  Since 
+meta-arago is not seeking compatible status this should be acceptable.
+
+
 -- 
-1.8.3.1
-
+Ryan Eatmon                reatmon@ti.com
+-----------------------------------------
+Texas Instruments, Inc.  -  LCPD  -  MGTS
 
