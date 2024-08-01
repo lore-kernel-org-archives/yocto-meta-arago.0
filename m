@@ -2,8 +2,8 @@ Return-Path: <t-lannynd@ti.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C20C2C3DA64
-	for <webhook@archiver.kernel.org>; Thu,  1 Aug 2024 15:51:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 07B85C3DA64
+	for <webhook@archiver.kernel.org>; Thu,  1 Aug 2024 16:18:19 +0000 (UTC)
 Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
  by mx.groups.io with SMTP id smtpd.web10.71957.1722527474312276179
  for <meta-arago@lists.yoctoproject.org>;
@@ -36,25 +36,27 @@ Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
 Received: from thorsten-Precision-T5600.dhcp.ti.com (thorsten-precision-t5600.dhcp.ti.com [128.247.75.246])
 	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 471FpD0j013999
 	for <meta-arago@lists.yoctoproject.org>; Thu, 1 Aug 2024 10:51:13 -0500
-From: <t-lannynd@ti.com>
+From: "Thorsten Lannynd" <t-lannynd@ti.com>
 To: <meta-arago@lists.yoctoproject.org>
 Subject: [meta-arago][master/scarthgap][PATCH] packagegroup-arago-tisdk-multimedia: Add mpv package
-Date: Thu, 1 Aug 2024 10:51:13 -0500
+Date: Thu, 01 Aug 2024 09:18:08 -0700
 Message-ID: <20240801155113.12804-1-t-lannynd@ti.com>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Old-Date: Thu, 1 Aug 2024 10:51:13 -0500
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Thu, 01 Aug 2024 15:51:18 -0000
+ <meta-arago@lists.yoctoproject.org>; Thu, 01 Aug 2024 16:18:19 -0000
 X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15474
+Message-ID: <20240801161808.hD7_W_ROrB_tMcW2J5p7dkrrX0XMV9MULeNi9VF4X9I@z>
 
 From: Thorsten Lannynd <t-lannynd@ti.com>
 
-Add mpv package
+Add mpv package to allow for video playback and streaming of online videos
 
 Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
 ---
