@@ -1,100 +1,129 @@
-Return-Path: <reatmon@ti.com>
+Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A5006C3DA7F
-	for <webhook@archiver.kernel.org>; Sun,  4 Aug 2024 17:00:21 +0000 (UTC)
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
- by mx.groups.io with SMTP id smtpd.web10.29955.1722790818971601993
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 03C85C3DA7F
+	for <webhook@archiver.kernel.org>; Mon,  5 Aug 2024 04:37:24 +0000 (UTC)
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.1068.1722832643090407988
  for <meta-arago@lists.yoctoproject.org>;
- Sun, 04 Aug 2024 10:00:19 -0700
+ Sun, 04 Aug 2024 21:37:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ti.com header.s=ti-com-17Q1 header.b=NWdxYF90;
- spf=pass (domain: ti.com, ip: 198.47.19.142, mailfrom: reatmon@ti.com)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 474H0IXY026879
-	for <meta-arago@lists.yoctoproject.org>; Sun, 4 Aug 2024 12:00:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1722790818;
-	bh=A7Tx/tz5F5jQ+MjVXcqN71K/ESVDRdNJObwU4jyRHrA=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=NWdxYF90jprQo9liaEZ61K3vEW0k+R2KtazXTOdlrfjXmm6jzNqBjXhYDF+fL/6SY
-	 2ASc2GRgvcwd3FDTLGNsWGCncfJy7DSsoO3ni8cssZlKJY1Stz3BYkPr0IEYfc1+/Y
-	 Ymr/eap7wwYafOPZme02flzbeWEwYeUJ0ke/hstc=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 474H0I5F040765
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL)
-	for <meta-arago@lists.yoctoproject.org>; Sun, 4 Aug 2024 12:00:18 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 4
- Aug 2024 12:00:17 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 4 Aug 2024 12:00:18 -0500
-Received: from [10.249.36.103] ([10.249.36.103])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 474H0HNr084067;
-	Sun, 4 Aug 2024 12:00:17 -0500
-Message-ID: <5e2feec4-330e-4b29-bb7a-d453e0edf448@ti.com>
-Date: Sun, 4 Aug 2024 12:00:17 -0500
+ dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 75F5B40CC3;
+	Mon,  5 Aug 2024 04:37:22 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 8KUNpr9_0pOf; Mon,  5 Aug 2024 04:37:22 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5F09440C21;
+	Mon,  5 Aug 2024 04:37:21 +0000 (UTC)
+Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
+	by mail.denix.org (Postfix) with ESMTP id 236FD164000;
+	Mon,  5 Aug 2024 00:37:21 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: meta-arago@lists.yoctoproject.org
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [master][RFC PATCH 01/16] ti-analytics: remove
+Date: Mon,  5 Aug 2024 00:36:58 -0400
+Message-Id: <20240805043713.172555-1-denis@denix.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [meta-arago][master/scarthgap][PATCH v4] Add mpv package
-To: <t-lannynd@ti.com>, <meta-arago@lists.yoctoproject.org>
-References: <20240801191235.13648-1-t-lannynd@ti.com>
-Content-Language: en-US
-From: Ryan Eatmon <reatmon@ti.com>
-In-Reply-To: <20240801191235.13648-1-t-lannynd@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Sun, 04 Aug 2024 17:00:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15481
+ <meta-arago@lists.yoctoproject.org>; Mon, 05 Aug 2024 04:37:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15482
 
+From: Denys Dmytriyenko <denys@konsulko.com>
 
-We lost the "packagegroup-arago-tisdk-multimedia" from the subject...
+Remove packagegroup that used to build analytics demos and dependencies.
+Those demos have been disabled for a while and are being deprecated -
+remove corresponding packagegroup first for bisectability.
 
-packagegroup-arago-tisdk-multimedia: Add mpv package
+Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
+---
+ .../images/tisdk-default-image.bb             |  1 -
+ .../packagegroups/ti-analytics.bb             | 27 -------------------
+ .../recipes-core/packagegroups/ti-world.bb    |  1 -
+ 3 files changed, 29 deletions(-)
+ delete mode 100644 meta-arago-distro/recipes-core/packagegroups/ti-analy=
+tics.bb
 
+diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb=
+ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
+index c282f9e6..4b5697e5 100644
+--- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
++++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
+@@ -25,7 +25,6 @@ IMAGE_INSTALL +=3D "\
+     packagegroup-arago-tisdk-addons \
+     packagegroup-arago-tisdk-addons-extra \
+     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-=
+tisdk-hmi','packagegroup-arago-base-tisdk-server-extra',d)} \
+-    ti-analytics \
+     ti-demos \
+     ${ARAGO_DEFAULT_IMAGE_EXTRA_INSTALL} \
+     packagegroup-arago-tisdk-sysrepo \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb=
+ b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
+deleted file mode 100644
+index e16e4d51..00000000
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
++++ /dev/null
+@@ -1,27 +0,0 @@
+-SUMMARY =3D "TI World packagegroup"
+-LICENSE =3D "MIT"
+-
+-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+-
+-inherit packagegroup
+-
+-TENSORFLOW_DEMO =3D ""
+-#TENSORFLOW_DEMO =3D " \
+-#    ${@oe.utils.all_distro_features(d, 'opencv', 'tensorflow-lite-demo'=
+, '')} \
+-#"
+-#TENSORFLOW_DEMO:dra7xx =3D " \
+-#    ${@['','tensorflow-lite-demo'][oe.utils.all_distro_features(d, 'ope=
+ncl opencv', True, False) and bb.utils.contains('MACHINE_FEATURES', 'dsp'=
+, True, False, d)]} \
+-#"
+-
+-ANALYTICS =3D ""
+-#ANALYTICS =3D " \
+-#    ${TENSORFLOW_DEMO} \
+-#    ${@['','qt-opencv-opencl-opengl-multithreaded'][oe.utils.all_distro=
+_features(d, 'opencv opencl opengl', True, False) and bb.utils.contains('=
+MACHINE_FEATURES', 'gpu dsp', True, False, d)]} \
+-#    ${@['','barcode-roi'][oe.utils.all_distro_features(d, 'opencv', Tru=
+e, False) and bb.utils.contains('MACHINE_FEATURES', 'dsp', True, False, d=
+)]} \
+-#"
+-ANALYTICS:j7 =3D ""
+-ANALYTICS:omapl138 =3D ""
+-
+-RDEPENDS:${PN} =3D "\
+-    ${ANALYTICS} \
+-"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb b/m=
+eta-arago-distro/recipes-core/packagegroups/ti-world.bb
+index a70701f9..5db67fdf 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
+@@ -56,7 +56,6 @@ RDEPENDS:${PN} =3D "\
+     ${DEVTOOLS} \
+     ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} =
+\
+     packagegroup-arago-misc \
+-    ti-analytics \
+     ti-demos \
+     ${PREFERRED_PROVIDER_virtual/docker} \
+ "
+--=20
+2.25.1
 
-Slow down, and double check each patch revision.
-
-
-On 8/1/2024 2:12 PM, Thorsten Lannynd via lists.yoctoproject.org wrote:
-> From: Thorsten Lannynd <t-lannynd@ti.com>
-> 
-> Add mpv package to allow for video playback and streaming of online videos
-> 
-> Signed-off-by: Thorsten Lannynd <t-lannynd@ti.com>
-> ---
-> v4: Redo patch on latest scarthgap changes
-> 
-> v3: Add version number to patch
-> 
-> v2: Update commit message
-> 
->   .../packagegroups/packagegroup-arago-tisdk-multimedia.bb         | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-> index 2085ad09..c6e39aa1 100644
-> --- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-> +++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tisdk-multimedia.bb
-> @@ -11,6 +11,7 @@ MULTIMEDIA = " \
->       ffmpeg \
->       libcamera \
->       libcamera-gst \
-> +    mpv \
->   "
->   
->   MULTIMEDIA:omapl138 = ""
-
--- 
-Ryan Eatmon                reatmon@ti.com
------------------------------------------
-Texas Instruments, Inc.  -  LCPD  -  MGTS
 
