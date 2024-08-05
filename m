@@ -2,34 +2,34 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 76C2BC52D7C
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6DC70C52D7D
 	for <webhook@archiver.kernel.org>; Mon,  5 Aug 2024 04:37:34 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.980.1722832644538094800
+ by mx.groups.io with SMTP id smtpd.web11.1070.1722832644494118919
  for <meta-arago@lists.yoctoproject.org>;
  Sun, 04 Aug 2024 21:37:24 -0700
 Authentication-Results: mx.groups.io;
  dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id E228140CB0;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id D8BEF40C21;
 	Mon,  5 Aug 2024 04:37:23 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id RT38l4K0bh9i; Mon,  5 Aug 2024 04:37:23 +0000 (UTC)
+	with ESMTP id aoCjlE43BgUB; Mon,  5 Aug 2024 04:37:23 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id C5E9840CC4;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id BA94640CC1;
 	Mon,  5 Aug 2024 04:37:22 +0000 (UTC)
 Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 7E923164060;
+	by mail.denix.org (Postfix) with ESMTP id 6FC4016405E;
 	Mon,  5 Aug 2024 00:37:21 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master][RFC PATCH 10/16] linalg: deprecate
-Date: Mon,  5 Aug 2024 00:37:07 -0400
-Message-Id: <20240805043713.172555-10-denis@denix.org>
+Subject: [master][RFC PATCH 08/16] tiovx: deprecate
+Date: Mon,  5 Aug 2024 00:37:05 -0400
+Message-Id: <20240805043713.172555-8-denis@denix.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240805043713.172555-1-denis@denix.org>
 References: <20240805043713.172555-1-denis@denix.org>
@@ -39,11 +39,11 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Mon, 05 Aug 2024 04:37:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15490
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15489
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
-Remove linalg component as deprecated and not maintained.
+Remove tiovx components as deprecated and not maintained.
 
 This component was offloading processing tasks to DSP using heavily
 modified OpenCL/OpenCV forks of old versions of corresponding upstream
@@ -51,475 +51,485 @@ projects on legacy platforms.
 
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- ...001-Makefile-fix-toolchain-variables.patch | 194 ------------------
- ...RALLEL_MAKE-variable-to-overwrite-j8.patch |  66 ------
- .../recipes-ti/linalg/linalg-examples_git.bb  |  34 ---
- .../recipes-ti/linalg/linalg.inc              |  56 -----
- .../recipes-ti/linalg/linalg_git.bb           |  25 ---
- 5 files changed, 375 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-ti/linalg/files/0001-Makefi=
-le-fix-toolchain-variables.patch
- delete mode 100644 meta-arago-extras/recipes-ti/linalg/files/0001-Makefi=
-le-pass-PARALLEL_MAKE-variable-to-overwrite-j8.patch
- delete mode 100644 meta-arago-extras/recipes-ti/linalg/linalg-examples_g=
-it.bb
- delete mode 100644 meta-arago-extras/recipes-ti/linalg/linalg.inc
- delete mode 100644 meta-arago-extras/recipes-ti/linalg/linalg_git.bb
+ ...r-Yocto-build-and-add-RTOS-build-var.patch | 135 ------------------
+ .../recipes-ti/tiovx/files/reload-dsp-fw.sh   |  66 ---------
+ .../recipes-ti/tiovx/files/setenv.sh          |   8 --
+ .../recipes-ti/tiovx/tiovx-app-host.bb        |  60 --------
+ .../recipes-ti/tiovx/tiovx-lib-host.bb        |  42 ------
+ .../recipes-ti/tiovx/tiovx-sys-iface.bb       |  51 -------
+ .../recipes-ti/tiovx/tiovx-sys.inc            |   5 -
+ 7 files changed, 367 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-ti/tiovx/files/0001-Fix-pat=
+hs-for-Yocto-build-and-add-RTOS-build-var.patch
+ delete mode 100755 meta-arago-extras/recipes-ti/tiovx/files/reload-dsp-f=
+w.sh
+ delete mode 100644 meta-arago-extras/recipes-ti/tiovx/files/setenv.sh
+ delete mode 100644 meta-arago-extras/recipes-ti/tiovx/tiovx-app-host.bb
+ delete mode 100644 meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
+ delete mode 100644 meta-arago-extras/recipes-ti/tiovx/tiovx-sys-iface.bb
+ delete mode 100644 meta-arago-extras/recipes-ti/tiovx/tiovx-sys.inc
 
-diff --git a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-fix-=
-toolchain-variables.patch b/meta-arago-extras/recipes-ti/linalg/files/000=
-1-Makefile-fix-toolchain-variables.patch
+diff --git a/meta-arago-extras/recipes-ti/tiovx/files/0001-Fix-paths-for-=
+Yocto-build-and-add-RTOS-build-var.patch b/meta-arago-extras/recipes-ti/t=
+iovx/files/0001-Fix-paths-for-Yocto-build-and-add-RTOS-build-var.patch
 deleted file mode 100644
-index df387977..00000000
---- a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-fix-toolcha=
-in-variables.patch
+index ff80debc..00000000
+--- a/meta-arago-extras/recipes-ti/tiovx/files/0001-Fix-paths-for-Yocto-b=
+uild-and-add-RTOS-build-var.patch
 +++ /dev/null
-@@ -1,194 +0,0 @@
--From a99f267c7dd799cd66f64fa41a3bd7b5c5d6f8a1 Mon Sep 17 00:00:00 2001
--From: Denys Dmytriyenko <denys@ti.com>
--Date: Sun, 26 Mar 2017 18:17:06 -0400
--Subject: [PATCH] Makefile: fix toolchain variables
+@@ -1,135 +0,0 @@
+-From 32bd788608034f5a49d9cd4a0163190ef666d9a2 Mon Sep 17 00:00:00 2001
+-From: Djordje Senicic <d-senicic1@ti.com>
+-Date: Mon, 14 Aug 2017 10:26:39 -0400
+-Subject: [PATCH] Fix paths for Yocto build and add RTOS build var
 -
 -Upstream-Status: Inappropriate [oe specific]
 -
--Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+-Signed-off-by: Djordje Senicic <d-senicic1@ti.com>
 ----
-- examples/arm+dsp/make.inc                         |  1 -
-- src/ti/linalg/blis/config/cortex-a15/make_defs.mk |  1 -
-- src/ti/linalg/cblas/Makefile.ARM                  |  4 +---
-- src/ti/linalg/clapack/make.inc.ARM                |  8 +++-----
-- src/ti/linalg/clapack/make.inc.ARMBLAS            | 10 ++++------
-- src/ti/linalg/clapack/make.inc.ARMOpenCL          |  8 +++-----
-- src/ti/linalg/make.inc                            |  6 +-----
-- src/ti/linalg/tuning/make.inc                     |  1 -
-- 8 files changed, 12 insertions(+), 27 deletions(-)
+- Makefile            | 27 +++++++++++++++++++--------
+- psdk_tools_path.mak | 32 ++++++++++++++------------------
+- 2 files changed, 33 insertions(+), 26 deletions(-)
 -
--diff --git a/examples/arm+dsp/make.inc b/examples/arm+dsp/make.inc
--index c3a042d..e916b97 100644
----- a/examples/arm+dsp/make.inc
--+++ b/examples/arm+dsp/make.inc
--@@ -11,7 +11,6 @@ ifneq (,$(findstring 86, $(UNAME_M)))
+-diff --git a/Makefile b/Makefile
+-index 0832e07..1be5b0d 100755
+---- a/Makefile
+-+++ b/Makefile
+-@@ -1,6 +1,6 @@
 -=20
--     # gcc ARM cross compiler will not, by default, search the host's
--     # /usr/include.  Explicitly specify here to find dependent vendor h=
-eaders
---    CC =3D arm-linux-gnueabihf-gcc
-- else
--     CC =3D gcc=20
+- # Valid values are: vsdk psdk
+--BUILD_SDK=3Dvsdk
+-+BUILD_SDK=3Dpsdk
+-=20
+- include $(BUILD_SDK)_tools_path.mak
+-=20
+-@@ -8,11 +8,12 @@ BUILD_EMULATION_MODE?=3Dno
+- BUILD_TARGET_MODE?=3Dyes
+-=20
+- BUILD_CONFORMANCE_TEST?=3Dyes
+--BUILD_IVISION_KERNELS?=3Dyes
+-+BUILD_IVISION_KERNELS?=3Dno
+- BUILD_BAM?=3Dyes
+- BUILD_TUTORIAL?=3Dyes
+- BUILD_LINUX_A15?=3Dyes
+--BUILD_EVE?=3Dyes
+-+BUILD_RTOS?=3Dno
+-+BUILD_EVE?=3Dno
+-=20
+- PROFILE?=3Dall
+-=20
+-@@ -43,12 +44,17 @@ TARGET_COMBOS :=3D
+-=20
+- ifeq ($(BUILD_TARGET_MODE),yes)
+-   ifeq ($(PROFILE), $(filter $(PROFILE), debug all))
+--	TARGET_COMBOS +=3D TDAX:SYSBIOS:M4:1:debug:TIARMCGT
+--	TARGET_COMBOS +=3D TDAX:SYSBIOS:C66:1:debug:CGT6X
+-+	ifeq ($(BUILD_RTOS),yes)
+-+	  TARGET_COMBOS +=3D TDAX:SYSBIOS:M4:1:debug:TIARMCGT
+-+	  TARGET_COMBOS +=3D TDAX:SYSBIOS:C66:1:debug:CGT6X
+-+	endif
+-+
+- 	ifeq ($(BUILD_EVE),yes)
+- 	TARGET_COMBOS +=3D TDAX:SYSBIOS:EVE:1:debug:ARP32CGT
+- 	endif
+-+	ifeq ($(BUILD_RTOS),yes)
+- 	TARGET_COMBOS +=3D TDAX:SYSBIOS:A15:1:debug:GCC
+-+	endif
+- 	ifneq ($(OS),Windows_NT)
+- 		ifeq ($(BUILD_LINUX_A15),yes)
+- 		TARGET_COMBOS +=3D TDAX:LINUX:A15:1:debug:GCC_LINARO
+-@@ -57,12 +63,17 @@ ifeq ($(BUILD_TARGET_MODE),yes)
+-   endif
+-=20
+-   ifeq ($(PROFILE), $(filter $(PROFILE), release all))
+--	TARGET_COMBOS +=3D TDAX:SYSBIOS:M4:1:release:TIARMCGT
+--	TARGET_COMBOS +=3D TDAX:SYSBIOS:C66:1:release:CGT6X
+-+	ifeq ($(BUILD_RTOS),yes)
+-+	  TARGET_COMBOS +=3D TDAX:SYSBIOS:M4:1:release:TIARMCGT
+-+	  TARGET_COMBOS +=3D TDAX:SYSBIOS:C66:1:release:CGT6X
+-+	endif
+-+
+- 	ifeq ($(BUILD_EVE),yes)
+- 	TARGET_COMBOS +=3D TDAX:SYSBIOS:EVE:1:release:ARP32CGT
+- 	endif
+--	TARGET_COMBOS +=3D TDAX:SYSBIOS:A15:1:release:GCC
+-+	ifeq ($(BUILD_RTOS),yes)
+-+	  TARGET_COMBOS +=3D TDAX:SYSBIOS:A15:1:release:GCC
+-+	endif
+- 	ifneq ($(OS),Windows_NT)
+- 		ifeq ($(BUILD_LINUX_A15),yes)
+- 		TARGET_COMBOS +=3D TDAX:LINUX:A15:1:release:GCC_LINARO
+-diff --git a/psdk_tools_path.mak b/psdk_tools_path.mak
+-index 36394f8..8fd468d 100755
+---- a/psdk_tools_path.mak
+-+++ b/psdk_tools_path.mak
+-@@ -2,7 +2,6 @@
+- TIOVX_PATH =3D $(abspath .)
+-=20
+- PLSDK_PATH :=3D /home/x0157990/ti-processor-sdk-linux-am57xx-evm-04.00.=
+00.04
+--PRSDK_PATH :=3D /home/x0157990/ti-processor-sdk-rtos-am57xx-evm-04-00-0=
+0-04
+-=20
+- CROSS_COMPILE_LINARO :=3D arm-linux-gnueabihf-
+- CROSS_COMPILE :=3D arm-none-eabi-
+-@@ -16,23 +15,20 @@ ifeq ($(BUILD_OS),Windows_NT)
+- GCC_WINDOWS_ROOT ?=3D C:/CodeBlocks/MinGW
 - endif
--diff --git a/src/ti/linalg/blis/config/cortex-a15/make_defs.mk b/src/ti/=
-linalg/blis/config/cortex-a15/make_defs.mk
--index 58130a0..13e10be 100644
----- a/src/ti/linalg/blis/config/cortex-a15/make_defs.mk
--+++ b/src/ti/linalg/blis/config/cortex-a15/make_defs.mk
--@@ -74,7 +74,6 @@ GIT_LOG    :=3D $(GIT) log --decorate
-- #
 -=20
-- # --- Determine the C compiler and related flags ---
---CC             :=3D arm-linux-gnueabihf-gcc
-- #CC             :=3D gcc
-- # Enable IEEE Standard 1003.1-2004 (POSIX.1d).=20
-- # NOTE: This is needed to enable posix_memalign().
--diff --git a/src/ti/linalg/cblas/Makefile.ARM b/src/ti/linalg/cblas/Make=
-file.ARM
--index 3702887..e065831 100644
----- a/src/ti/linalg/cblas/Makefile.ARM
--+++ b/src/ti/linalg/cblas/Makefile.ARM
--@@ -32,8 +32,6 @@ LN_S =3D ln -sf
-- # Compilers
-- #----------------------------------------------------------------------=
--------
+--XDC_PATH :=3D $(PRSDK_PATH)/xdctools_3_32_01_22_core/
+--TIARMCGT_ROOT :=3D $(PRSDK_PATH)/ti-cgt-arm_16.9.2.LTS
+-+XDC_PATH :=3D $(XDC_INSTALL_DIR)
+-+TIARMCGT_ROOT :=3D  $(TIARMCGTPATH)
+-+GCC_ROOT_LINARO :=3D $(GCCLINARO)
+-+XDIAS_PATH :=3D $(XDAISPATH)
+-+BIOS_PATH :=3D $(SYSBIOSPATH)
+-+PDK_PATH :=3D $(PDKPATH)
+-+SDK_PLATFORM_IF_PATH :=3D $(SDKPLATFORMIFPATH)
 -=20
---CC =3D arm-linux-gnueabihf-gcc
---FC =3D arm-linux-gnueabihf-gfortran
-- LOADER =3D $(FC)
+--GCC_ROOT :=3D $(PRSDK_PATH)/gcc-arm-none-eabi-4_9-2015q3
+--GCC_ROOT_LINARO :=3D /home/x0157990/linaro/gcc-linaro-6.2.1-2016.11-x86=
+_64_arm-linux-gnueabihf
+--CGT6X_ROOT :=3D $(PRSDK_PATH)/ti-cgt-c6000_8.1.3/
+-+GCC_ROOT ?=3D $(GCCARMNONEPATH)
+-+CGT6X_ROOT :=3D $(TI_CGT_INSTALL)
+- GCC_LINUX_ROOT ?=3D /usr/
+-+VXLIB_PATH ?=3D $(VXLIBPATH)
+-+ARP32CGT_ROOT ?=3D $(EVETOOLSPATH}
+-+DMAUTILS_PATH ?=3D $(DSPAPPS_PATH)/dmautils
+-+ALGFRAMEWORK_PATH ?=3D $(DSPAPPS_PATH)/algframework
+-+EDMA3_LLD_PATH :=3D $(EDMA3LLDPATH)
 -=20
-- #----------------------------------------------------------------------=
--------
--@@ -47,6 +45,6 @@ FFLAGS =3D -O2
-- # Archive programs and flags
-- #----------------------------------------------------------------------=
--------
--=20
---ARCH =3D arm-linux-gnueabihf-ar
--+ARCH =3D $(AR)
-- ARCHFLAGS =3D r
-- RANLIB =3D echo
--diff --git a/src/ti/linalg/clapack/make.inc.ARM b/src/ti/linalg/clapack/=
-make.inc.ARM
--index 0fdbe72..204904b 100644
----- a/src/ti/linalg/clapack/make.inc.ARM
--+++ b/src/ti/linalg/clapack/make.inc.ARM
--@@ -23,10 +23,9 @@ PLAT =3D _ARM
-- # This is used to compile C libary
-- #CC        =3D arm-linux-gnueabihf-gcc -DNO_BLAS_WRAP
-- # if no wrapping of the blas library is needed, uncomment next line
---CC        =3D arm-linux-gnueabihf-gcc=20
-- CFLAGS    =3D -O2 -I$(TOPDIR)/INCLUDE=20
---LINKER    =3D arm-linux-gnueabihf-ld
---LOADER    =3D arm-linux-gnueabihf-gcc
--+LINKER    =3D $(LD)
--+LOADER    =3D $(CC)
-- LOADOPTS  =3D -L$(TARGET_ROOTDIR)/lib -L$(TARGET_ROOTDIR)/usr/lib -Wl,-=
-rpath-link,$(TARGET_ROOTDIR)/lib -Wl,-rpath-link,$(TARGET_ROOTDIR)/usr/li=
-b
-- NOOPT     =3D -O0 -I$(TOPDIR)/INCLUDE
-- DRVCFLAGS =3D $(CFLAGS)
--@@ -51,9 +50,8 @@ TIMER    =3D INT_CPU_TIME
-- #  The archiver and the flag(s) to use when building archive (library)
-- #  If you system has no ranlib, set RANLIB =3D echo.
-- #
---ARCH     =3D arm-linux-gnueabihf-ar
--+ARCH     =3D $(AR)
-- ARCHFLAGS=3D cr
---RANLIB   =3D arm-linux-gnueabihf-ranlib
-- #
-- #  The location of BLAS library for linking the testing programs.
-- #  The target's machine-specific, optimized BLAS library should be
--diff --git a/src/ti/linalg/clapack/make.inc.ARMBLAS b/src/ti/linalg/clap=
-ack/make.inc.ARMBLAS
--index e3b1b04..d95763c 100644
----- a/src/ti/linalg/clapack/make.inc.ARMBLAS
--+++ b/src/ti/linalg/clapack/make.inc.ARMBLAS
--@@ -23,10 +23,9 @@ PLAT =3D _ARMBLAS
-- # This is used to compile C libary
-- #CC        =3D arm-linux-gnueabihf-gcc
-- # if no wrapping of the blas library is needed, uncomment next line
---CC        =3D arm-linux-gnueabihf-gcc -DNO_BLAS_WRAP
---CFLAGS    =3D -O3 -I$(TOPDIR)/INCLUDE
---LINKER    =3D arm-linux-gnueabihf-ld
---LOADER    =3D arm-linux-gnueabihf-gcc
--+CFLAGS    =3D -O3 -I$(TOPDIR)/INCLUDE -DNO_BLAS_WRAP
--+LINKER    =3D $(LD)
--+LOADER    =3D $(CC)
-- LOADOPTS  =3D
-- NOOPT     =3D -O0 -I$(TOPDIR)/INCLUDE
-- DRVCFLAGS =3D $(CFLAGS)
--@@ -51,9 +50,8 @@ TIMER    =3D INT_CPU_TIME
-- #  The archiver and the flag(s) to use when building archive (library)
-- #  If you system has no ranlib, set RANLIB =3D echo.
-- #
---ARCH     =3D arm-linux-gnueabihf-ar
--+ARCH     =3D $(AR)
-- ARCHFLAGS=3D cr
---RANLIB   =3D arm-linux-gnueabihf-ranlib
-- #
-- #  The location of BLAS library for linking the testing programs.
-- #  The target's machine-specific, optimized BLAS library should be
--diff --git a/src/ti/linalg/clapack/make.inc.ARMOpenCL b/src/ti/linalg/cl=
-apack/make.inc.ARMOpenCL
--index 036b3d1..1acc421 100644
----- a/src/ti/linalg/clapack/make.inc.ARMOpenCL
--+++ b/src/ti/linalg/clapack/make.inc.ARMOpenCL
--@@ -21,12 +21,11 @@ PLAT =3D _ARM
-- #
-- #######################################################
-- # This is used to compile C libary
---CC        =3D arm-linux-gnueabihf-gcc #-pg
-- # if no wrapping of the blas library is needed, uncomment next line
-- #CC        =3D arm-linux-gnueabihf-gcc -DNO_BLAS_WRAP
-- CFLAGS    =3D -O2 -I$(TOPDIR)/INCLUDE #-g=20
---LINKER    =3D arm-linux-gnueabihf-ld
---LOADER    =3D arm-linux-gnueabihf-gcc
--+LINKER    =3D $(LD)
--+LOADER    =3D $(CC)
-- LOADOPTS  =3D -L$(TARGET_ROOTDIR)/lib -L$(TARGET_ROOTDIR)/usr/lib -Wl,-=
-rpath-link,$(TARGET_ROOTDIR)/lib -Wl,-rpath-link,$(TARGET_ROOTDIR)/usr/li=
-b
-- NOOPT     =3D -O0 -I$(TOPDIR)/INCLUDE
-- DRVCFLAGS =3D $(CFLAGS)
--@@ -51,9 +50,8 @@ TIMER    =3D INT_CPU_TIME
-- #  The archiver and the flag(s) to use when building archive (library)
-- #  If you system has no ranlib, set RANLIB =3D echo.
-- #
---ARCH     =3D arm-linux-gnueabihf-ar
--+ARCH     =3D $(AR)
-- ARCHFLAGS=3D cr
---RANLIB   =3D arm-linux-gnueabihf-ranlib
-- #
-- #  The location of BLAS library for linking the testing programs.
-- #  The target's machine-specific, optimized BLAS library should be
--diff --git a/src/ti/linalg/make.inc b/src/ti/linalg/make.inc
--index b2e1afe..8588019 100644
----- a/src/ti/linalg/make.inc
--+++ b/src/ti/linalg/make.inc
--@@ -1,5 +1,4 @@
 --
---CPP   =3D g++
--+CPP =3D $(CXX)
-- CL6X  =3D cl6x -mv6600 --abi=3Deabi $(DSP_INCLUDE)
-- CLOCL =3D clocl
--=20
--@@ -7,8 +6,6 @@ LIBS  =3D -lOpenCL -locl_util #-lstdc++ -lrt
--=20
-- UNAME_M :=3D$(shell uname -m)
--=20
---OBJCOPY =3D arm-linux-gnueabihf-objcopy
+--VXLIB_PATH ?=3D $(PRSDK_PATH)/vxlib_c66x_1_1_0_0
+--XDIAS_PATH :=3D $(PRSDK_PATH)/xdais_7_24_00_04
+--EDMA3_LLD_PATH :=3D $(PRSDK_PATH)/edma3_lld_2_12_04_28/
+--BIOS_PATH :=3D $(PRSDK_PATH)/bios_6_46_05_55/
 --
-- ifneq (,$(findstring 86, $(UNAME_M)))
--     .DEFAULT_GOAL :=3D cross
--=20
--@@ -29,7 +26,6 @@ ifneq (,$(findstring 86, $(UNAME_M)))
--=20
--     # gcc ARM cross compiler will not, by default, search the host's
--     # /usr/include.  Explicitly specify here to find dependent vendor h=
-eaders
---    cross: override CPP =3D arm-linux-gnueabihf-g++
--     cross: CPP_FLAGS +=3D -I$(TARGET_ROOTDIR)/usr/include -idirafter /u=
-sr/include
--     #cross: CL6X_FLAGS +=3D -I$(OMP_DIR)/packages/ti/runtime/openmp
--=20
--diff --git a/src/ti/linalg/tuning/make.inc b/src/ti/linalg/tuning/make.i=
-nc
--index cd3c653..ecce3d9 100644
----- a/src/ti/linalg/tuning/make.inc
--+++ b/src/ti/linalg/tuning/make.inc
--@@ -11,7 +11,6 @@ ifneq (,$(findstring 86, $(UNAME_M)))
--=20
--     # gcc ARM cross compiler will not, by default, search the host's
--     # /usr/include.  Explicitly specify here to find dependent vendor h=
-eaders
---    CC =3D arm-linux-gnueabihf-gcc
-- else
--     CC =3D gcc=20
-- endif
+--DMAUTILS_PATH ?=3D $(PRSDK_PATH)/REL.DMAUTILS.00.08.00.02/dmautils
+--ALGFRAMEWORK_PATH ?=3D $(PRSDK_PATH)/REL.ALGFRAMEWORK.02.07.00.00/algfr=
+amework
+--PDK_PATH :=3D $(PRSDK_PATH)/pdk_am57xx_1_0_7
+--CMEM_PATH ?=3D $(PLSDK_INSTALL_PATH)/board-support/extra-drivers/cmem-m=
+od-4.14.00.00+gitAUTOINC+b514a99ac4/
+--TARGETFS :=3D $(PLSDK_PATH)/linux-devkit/sysroots/armv7ahf-neon-linux-g=
+nueabi/
+--SDK_PLATFORM_IF_PATH ?=3D /home/x0157990/am57/openvx/ex41_forwardmsg/vx
+-\ No newline at end of file
 ---=20
--2.7.4
+-1.9.1
 -
-diff --git a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass=
--PARALLEL_MAKE-variable-to-overwrite-j8.patch b/meta-arago-extras/recipes=
--ti/linalg/files/0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j=
-8.patch
-deleted file mode 100644
-index 7d2f1409..00000000
---- a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass-PARALL=
-EL_MAKE-variable-to-overwrite-j8.patch
+diff --git a/meta-arago-extras/recipes-ti/tiovx/files/reload-dsp-fw.sh b/=
+meta-arago-extras/recipes-ti/tiovx/files/reload-dsp-fw.sh
+deleted file mode 100755
+index 198fd60f..00000000
+--- a/meta-arago-extras/recipes-ti/tiovx/files/reload-dsp-fw.sh
 +++ /dev/null
 @@ -1,66 +0,0 @@
--From 54378094d58c79a9d5ff6c1cc17d7bfd9c497dab Mon Sep 17 00:00:00 2001
--From: Denys Dmytriyenko <denys@ti.com>
--Date: Wed, 29 Mar 2017 13:09:05 -0400
--Subject: [PATCH] Makefile: pass PARALLEL_MAKE variable to overwrite -j8
+-#!/bin/sh
+-usage() {
+-    cat << EOF
 -
--Upstream-Status: Inappropriate [oe specific]
+-  Usage:
+-         $0 <fw-type: opencl, tiovx>
 -
--Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-----
-- src/ti/linalg/Makefile | 12 +++++++-----
-- 1 file changed, 7 insertions(+), 5 deletions(-)
--
--diff --git a/src/ti/linalg/Makefile b/src/ti/linalg/Makefile
--index 90b8ef4..8d8e338 100644
----- a/src/ti/linalg/Makefile
--+++ b/src/ti/linalg/Makefile
--@@ -13,6 +13,8 @@ CLAPACK_HEADERS =3D$(LINALG_CLAPACK_DIR)/INCLUDE/blasw=
-rap.h
-- CLAPACK_HEADERS+=3D$(LINALG_CLAPACK_DIR)/INCLUDE/clapack.h =20
-- CLAPACK_HEADERS+=3D$(LINALG_CLAPACK_DIR)/INCLUDE/f2c.h =20
--=20
--+PARALLEL_MAKE ?=3D "-j8"
--+
-- ifneq (,$(findstring DSP,$(MAKECMDGOALS)))
--=20
-- ifeq ($(LIBOS),LIB_RTOS)
--@@ -52,7 +54,7 @@ endif
-- DSPlibs:
-- 	cd $(LINALG_CBLAS_DIR); make arch=3DC66 alllib  || exit 1; \
-- 	cd ../$(LINALG_BLIS_DIR); ./configure -p install/$(BLIS_CFG) c66x; \
---	make -j8 MEM_MODEL=3D$(MEM_MODEL) TARGET=3D$(TARGET) LIBOS=3D$(LIBOS) =
-NUM_DSP_CORES=3D$(NUM_DSP_CORES) || exit 1; make install; \
--+	make $(PARALLEL_MAKE) MEM_MODEL=3D$(MEM_MODEL) TARGET=3D$(TARGET) LIBO=
-S=3D$(LIBOS) NUM_DSP_CORES=3D$(NUM_DSP_CORES) || exit 1; make install; \
-- 	cd ../$(LINALG_TICBLAS_DIR)/src; make MEM_MODEL=3D$(MEM_MODEL) TARGET=3D=
-$(TARGET) LIBOS=3D$(LIBOS) NUM_DSP_CORES=3D$(NUM_DSP_CORES) || exit 1; cd=
- ../lib; \
-- 	echo "combining BLIS, CBLAS, and TICBLAS libraries into one: libcblas.=
-ae66"; \
-- 	rm -rf blas_objs blis_objs; mkdir blas_objs blis_objs; cd blis_objs; a=
-r x ../../../blis/install/$(BLIS_CFG)/lib/libblis.ae66; chmod +rw *; \
--@@ -63,8 +65,8 @@ DSPlibs:
-- # Build ARM code for ARM+DSP platforms
-- ARMlibs:
-- 	cd $(LINALG_CBLAS_DIR); make arch=3DARM alllib || exit 1; \
---	cd ../$(LINALG_BLIS_DIR); ./configure -p install/arm cortex-a15; make =
--j8 NUM_ARM_CORES=3D$(NUM_ARM_CORES) || exit 1; make install; \
---	cd ../$(LINALG_CLAPACK_DIR); make f2clib || exit 1; make cblaswrap || =
-exit 1; cd SRC; make -j8 || exit 1; cd ..
--+	cd ../$(LINALG_BLIS_DIR); ./configure -p install/arm cortex-a15; make =
-$(PARALLEL_MAKE) NUM_ARM_CORES=3D$(NUM_ARM_CORES) || exit 1; make install=
-; \
--+	cd ../$(LINALG_CLAPACK_DIR); make f2clib || exit 1; make cblaswrap || =
-exit 1; cd SRC; make $(PARALLEL_MAKE) || exit 1; cd ..
--=20
-- # Build host-callable libraries for ARM+DSP platforms.=20
-- # BLAS has a single archive: libcblas_armplusdsp.a, which includes:
--@@ -91,7 +93,7 @@ ARMplusDSP: DSPlibs ARMlibs
-- cleanDSPlibs:
-- 	rm -f lib/*
-- 	cd $(LINALG_CBLAS_DIR); make arch=3DC66 clean; \
---	cd ../$(LINALG_BLIS_DIR); ./configure -p install/$(BLIS_CFG) c66x; mak=
-e -j8 clean; rm -r install/$(BLIS_CFG); \
--+	cd ../$(LINALG_BLIS_DIR); ./configure -p install/$(BLIS_CFG) c66x; mak=
-e $(PARALLEL_MAKE) clean; rm -r install/$(BLIS_CFG); \
-- 	cd ../$(LINALG_TICBLAS_DIR)/src; make clean;=20
--=20
-- cleanARMlibs:
--@@ -103,7 +105,7 @@ cleanARMlibs:
--=20
-- BLIStest:
-- 	cd $(LINALG_BLIS_DIR); ./configure -p install/arm cortex-a15; \
---	cd testsuite; make lib=3DOpenCLCBLAS -j8=20
--+	cd testsuite; make lib=3DOpenCLCBLAS $(PARALLEL_MAKE)
--=20
-- BLIStestDSP:
-- 	cd $(LINALG_BLIS_DIR); ./configure -p install/$(BLIS_CFG) c66x; \
----=20
--2.7.4
--
-diff --git a/meta-arago-extras/recipes-ti/linalg/linalg-examples_git.bb b=
-/meta-arago-extras/recipes-ti/linalg/linalg-examples_git.bb
-deleted file mode 100644
-index 0871193f..00000000
---- a/meta-arago-extras/recipes-ti/linalg/linalg-examples_git.bb
-+++ /dev/null
-@@ -1,34 +0,0 @@
--DESCRIPTION =3D "TI Linear Algebra Library examples"
--
--include linalg.inc
--PR =3D "${INC_PR}.0"
--
--DEPENDS +=3D "linalg"
--RDEPENDS:${PN} +=3D "opencl-runtime"
--
--export LINALG_DIR =3D "${LINALG_INSTALL_DIR}"
--
--EXAMPLES_ROOT =3D "${WORKDIR}/git/examples/arm+dsp"
--
--do_compile() {
--    cd examples/arm+dsp
--    make
--    # Remove object files before installing so that the binaries are not=
- present
--    find . -name "*.obj" -type f -delete
--    find . -name "*.o" -type f -delete
+-EOF
 -}
 -
--do_install() {
--    install -d ${D}${datadir}/ti/examples/linalg
--    cp -r examples/arm+dsp/* ${D}${datadir}/ti/examples/linalg
--}
+-if [ "$1" ]; then
+-case "$1" in
+-    opencl) echo "Reload opencl firmware to DSP"
+-        ;;
+-    tiovx) echo "Reload tiovx firmware to DSP"
+-        ;;
+-    *) echo "Wrong argument $1"
+-       usage
+-       exit
+-        ;;
+-esac
+-else
+-       usage
+-       exit
+-fi
 -
--FILES:${PN} +=3D "\
--    ${datadir}/ti/examples/linalg/* \
--"
+-fw=3D"${1}"
 -
--FILES:${PN}-dbg +=3D "\
--    ${datadir}/ti/examples/linalg/*/.debug \
--"
+-if [[ ${fw} =3D=3D opencl ]]; then
+-    #Start OpenCL CMEM memory allocation daemon
+-    if pgrep -x "ti-mctd" > /dev/null
+-    then
+-        echo "ti-mctd is running"
+-    else
+-        echo "Starting ti-mctd..."
+-        ti-mctd
+-    fi
+-    # Link opencl monitor firmware for DSPs
+-    ln -s -f /lib/firmware/dra7-dsp1-fw.xe66.opencl-monitor /lib/firmwar=
+e/dra7-dsp1-fw.xe66
+-    ln -s -f /lib/firmware/dra7-dsp2-fw.xe66.opencl-monitor /lib/firmwar=
+e/dra7-dsp2-fw.xe66
+-fi
 -
--INSANE_SKIP:${PN} =3D "arch ldflags textrel"
-diff --git a/meta-arago-extras/recipes-ti/linalg/linalg.inc b/meta-arago-=
-extras/recipes-ti/linalg/linalg.inc
+-if [[ ${fw} =3D=3D tiovx ]]; then
+-    # Kill CMEM multi-process daemon. This releases all CMEM memory used=
+ by OpenCL memory allocation
+-    pkill ti-mctd
+-
+-    # Link tiovx firmware for DSPs
+-    ln -s -f /lib/firmware/dra7-dsp1-fw.xe66.openvx /lib/firmware/dra7-d=
+sp1-fw.xe66
+-    ln -s -f /lib/firmware/dra7-dsp2-fw.xe66.openvx /lib/firmware/dra7-d=
+sp2-fw.xe66
+-fi
+-
+-cd /sys/bus/platform/drivers/omap-rproc/
+-
+-# release DSPs
+-echo "Releasing DSPs..."
+-echo 40800000.dsp > unbind
+-
+-echo 41000000.dsp > unbind
+-
+-# reload firmware for DSPs
+-echo "Reloading firmware for DSPs..."
+-echo 40800000.dsp > bind
+-
+-echo 41000000.dsp > bind
+-
+-cd ~-
+diff --git a/meta-arago-extras/recipes-ti/tiovx/files/setenv.sh b/meta-ar=
+ago-extras/recipes-ti/tiovx/files/setenv.sh
 deleted file mode 100644
-index 32459847..00000000
---- a/meta-arago-extras/recipes-ti/linalg/linalg.inc
+index dc7bcea3..00000000
+--- a/meta-arago-extras/recipes-ti/tiovx/files/setenv.sh
 +++ /dev/null
-@@ -1,56 +0,0 @@
--HOMEPAGE =3D "git://git.ti.com/git/dense-linear-algebra-libraries/linalg=
-.git"
--LICENSE =3D "BSD-3-Clause"
--LIC_FILES_CHKSUM =3D "file://src/ti/linalg/docs/LINALG_1.2.0_manifest.ht=
-ml;md5=3Df30895e41e5947c3439b1ad4cf4c8555"
+@@ -1,8 +0,0 @@
+-#!/bin/bash
 -
--PV =3D "1_2_0_0"
--INC_PR =3D "r7"
+-export PROC_LIST=3D'host khronos_example'
 -
--COMPATIBLE_MACHINE =3D "dra7xx"
+-export LINUX_SYSROOT_DIR=3D/
+-export TIOVXPATH=3D/usr/include/VX
+-export IPCPATH=3D/usr/share/ti/ti-ipc-tree
+-export SDKPLATFORMIFPATH=3D/usr/share/ti/ti-tiovx-lib-tree/sys-iface
+diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-app-host.bb b/meta-=
+arago-extras/recipes-ti/tiovx/tiovx-app-host.bb
+deleted file mode 100644
+index ec8355e0..00000000
+--- a/meta-arago-extras/recipes-ti/tiovx/tiovx-app-host.bb
++++ /dev/null
+@@ -1,60 +0,0 @@
+-SUMMARY =3D "TI OpenVX HOST (Linux A15) conformance verification applica=
+tion, Khronos tutorial example, and Host side IPC implementation"
+-DESCRIPTION =3D "TI OpenVX implementation, TIOVX, includes Khronos defin=
+ed conformance test and tutorial example, as well as additional TI \
+-specific tests. This package creates application which runs all the conf=
+ormance tests (7K-8K) and Khronos tutorial exercise1. \
+-Same package includes IPC implementation (MessageQ based) needed for com=
+munication with DSP firmware (loaded at boot time)"
+-
+-LICENSE =3D "BSD-3-Clause & MIT"
+-LIC_FILES_CHKSUM =3D "file://docs/manifest/TIOVX-APP-HOST_01.00.01.00_ma=
+nifest.html;md5=3D247d7c56d783f583bf802490d5c93db3"
+-
+-FILESEXTRAPATHS:prepend :=3D "${THISDIR}/files:"
+-
+-SRC_URI:append =3D "\
+-     file://setenv.sh \
+-"
+-
+-inherit pkgconfig features_check
+-
+-REQUIRED_DISTRO_FEATURES =3D "opencv"
 -
 -require recipes-ti/includes/arago-paths.inc
--require recipes-ti/includes/ti-staging.inc
+-require tiovx-sys.inc
 -
--inherit features_check
+-DEPENDS =3D "tiovx-sys-iface tiovx-lib-host ti-ipc cmem opencv udev"
+-RDEPENDS:${PN} =3D "tiovx-sys-iface tiovx-sys-iface-firmware tiovx-lib-h=
+ost ti-ipc cmem"
 -
--REQUIRED_MACHINE_FEATURES =3D "dsp"
--REQUIRED_DISTRO_FEATURES =3D "opencl openmp"
+-PR =3D "r3"
 -
--SRC_URI =3D " \
--	git://git.ti.com/git/dense-linear-algebra-libraries/linalg.git;protocol=
-=3Dhttps;branch=3D${BRANCH} \
--	file://0001-Makefile-fix-toolchain-variables.patch \
--	file://0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j8.patch =
-\
--"
+-COMPATIBLE_MACHINE =3D "dra7xx"
+-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+-
+-PROCLIST =3D "host khronos_example"
+-
+-S =3D "${WORKDIR}/git"
+-
+-EXTRA_OEMAKE +=3D " TARGET_ROOTDIR=3D${STAGING_DIR_HOST} "
+-EXTRA_OEMAKE +=3D " GCCLINARO=3D${TOOLCHAIN_PATH} TIOVXPATH=3D${TIOVX_IN=
+STALL_DIR} IPCPATH=3D${IPC_INSTALL_DIR} "
+-EXTRA_OEMAKE +=3D " SDKPLATFORMIFPATH=3D${TIOVX_INSTALL_DIR}/sys-iface "
+-EXTRA_OEMAKE +=3D " PROC_LIST=3D'${PROCLIST}' "
+-
+-do_install () {
+-    install -d ${D}${bindir}/
+-    install -m 0755 ${S}/host/bin/debug/app_host ${D}${bindir}/tiovx-app=
+_host
+-    install -m 0755 ${S}/khronos_example/bin/debug/opticalflow ${D}${bin=
+dir}/tiovx-opticalflow
+-
+-    oe_runmake clean
+-    install -d ${D}${datadir}/ti/examples/openvx
+-    install -m 644 ${S}/products.mak ${D}${datadir}/ti/examples/openvx
+-    install -m 644 ${S}/makefile ${D}${datadir}/ti/examples/openvx
+-    install -m 644 ${WORKDIR}/setenv.sh ${D}${datadir}/ti/examples/openv=
+x
+-    cp -r ${S}/host ${D}${datadir}/ti/examples/openvx
+-    cp -r ${S}/khronos_example  ${D}${datadir}/ti/examples/openvx
+-    cp -r ${S}/shared ${D}${datadir}/ti/examples/openvx
+-}
+-
+-PACKAGES +=3D "${PN}-examples"
+-FILES:${PN}-examples =3D "${datadir}/ti/examples/openvx"
+-RDEPENDS:${PN}-examples =3D "tiovx-lib-host-staticdev tiovx-lib-host-dev=
+"
+-
+-FILES:${PN} +=3D "${bindir}/*"
+-INSANE_SKIP:${PN} =3D "ldflags"
+-INSANE_SKIP:${PN}-examples =3D "dev-deps"
+diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb b/meta-=
+arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
+deleted file mode 100644
+index e2ee926e..00000000
+--- a/meta-arago-extras/recipes-ti/tiovx/tiovx-lib-host.bb
++++ /dev/null
+@@ -1,42 +0,0 @@
+-SUMMARY =3D "TI OpenVX HOST (Linux A15) side library"
+-DESCRIPTION =3D "TI OpenVX implementation, TIOVX, based on Khronos OpenV=
+X framework implementation including multiple C66 optimized kernels. \
+-Khronos defined conformance test is part of this package as well as addi=
+tional TI specific tests. Few tutorial examples are also included. \
+-This package creates necessary libraries and header files for Linux Host=
+ side only. "
+-
+-LICENSE =3D "TI-TSPA"
+-LIC_FILES_CHKSUM =3D "file://docs/manifest/TIOVX_manifest.html;md5=3Dedd=
+4fbfc6c1f01c20d49def4670efac0"
+-
+-require recipes-ti/includes/arago-paths.inc
+-
+-COMPATIBLE_MACHINE =3D "dra7xx"
+-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+-
+-PV =3D "01.00.00.00"
+-PR =3D "r1"
 -
 -BRANCH =3D "master"
--SRCREV =3D "01960b319783b29aacf12b2a72606b28d657b78e"
+-SRC_URI =3D "git://git.ti.com/git/processor-sdk/tiovx.git;protocol=3Dhtt=
+ps;branch=3D${BRANCH}"
+-SRC_URI +=3D "file://0001-Fix-paths-for-Yocto-build-and-add-RTOS-build-v=
+ar.patch "
+-SRCREV =3D "2bfa01201804eaf2e675c743e708e88ab612049e"
 -
--DEPENDS =3D " \
--	common-csl-ip \
--	libarch \
--	ti-xdctools-native \
--	ti-ipc-rtos \
--	ti-sysbios \
--	ti-cgt6x-native \
--	ti-xdais \
--	ti-framework-components \
--	libulm \
--	openmp-rtos \
--	opencl \
--	clocl-native \
--	doxygen-native \
--	zip-native \
+-S =3D "${WORKDIR}/git"
+-
+-DEPENDS =3D "tiovx-sys-iface"
+-
+-EXTRA_OEMAKE +=3D " GCCLINARO=3D${TOOLCHAIN_PATH} "
+-EXTRA_OEMAKE +=3D " SDKPLATFORMIFPATH=3D${TIOVX_INSTALL_DIR}/sys-iface B=
+UILD_RTOS=3Dno "
+-
+-do_install () {
+-    CP_ARGS=3D"-Prf --preserve=3Dmode,timestamps --no-preserve=3Downersh=
+ip"
+-    install -d ${D}${includedir}/VX
+-    install -d ${D}${includedir}/VX/TI
+-    install -d ${D}${libdir}
+-    cp ${CP_ARGS} ${S}/lib/TDAX/A15/LINUX/release/*.a ${D}${libdir}
+-    cp ${CP_ARGS} ${S}/include/VX/* ${D}${includedir}/VX
+-    cp ${CP_ARGS} ${S}/include/TI/* ${D}${includedir}/VX/TI
+-}
+-
+-FILES:${PN}-staticdev =3D "${libdir}"
+-FILES:${PN}-dev =3D "${includedir}"
+-
+-ALLOW_EMPTY:${PN} =3D "1"
+diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-sys-iface.bb b/meta=
+-arago-extras/recipes-ti/tiovx/tiovx-sys-iface.bb
+deleted file mode 100644
+index 3a900e5f..00000000
+--- a/meta-arago-extras/recipes-ti/tiovx/tiovx-sys-iface.bb
++++ /dev/null
+@@ -1,51 +0,0 @@
+-SUMMARY =3D "TI OpenVX interface header files between TIOVX library and =
+HOST, DSP IPC side implementation"
+-DESCRIPTION =3D "Collection of header files needed to define interface b=
+etween TIOVX library and HOST and DSP IPC side implementation. \
+-In order to maintain source compatibility, directory structure follows V=
+SDK source tree layout."
+-
+-LICENSE =3D "TI-TSPA"
+-LIC_FILES_CHKSUM =3D "file://iface/VSDK/docs/TIOVX-SYS-IFACE_1.0.0.0_man=
+ifest.html;md5=3D10904cbdb4f065c025a63ca71ae7de2d"
+-
+-require recipes-ti/includes/arago-paths.inc
+-require tiovx-sys.inc
+-
+-PR =3D "r1"
+-
+-COMPATIBLE_MACHINE =3D "dra7xx"
+-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+-
+-inherit update-alternatives features_check
+-
+-REQUIRED_MACHINE_FEATURES =3D "dsp"
+-
+-SRC_URI:append =3D "\
+-     file://reload-dsp-fw.sh \
 -"
 -
 -S =3D "${WORKDIR}/git"
 -
--export TI_OCL_INSTALL_DIR =3D "${STAGING_DIR_TARGET}/usr/share/ti/opencl=
-"
--export CGTROOT =3D "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
--export TI_OCL_CGT_INSTALL =3D "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6=
-x"
--export XDC_DIR =3D "${XDC_INSTALL_DIR}"
--export BIOS_DIR=3D "${SYSBIOS_INSTALL_DIR}"
--export XDAIS_DIR =3D "${XDAIS_INSTALL_DIR}"
--export FC_DIR =3D "${FC_INSTALL_DIR}"
--export PDK_DIR =3D "${PDK_INSTALL_DIR}"
--export OMP_DIR =3D"${OMP_INSTALL_DIR}"
--export LIBARCH_DIR =3D "${LIBARCH_INSTALL_DIR}"
--export TARGET_ROOTDIR=3D"${STAGING_DIR_TARGET}"
-diff --git a/meta-arago-extras/recipes-ti/linalg/linalg_git.bb b/meta-ara=
-go-extras/recipes-ti/linalg/linalg_git.bb
+-do_install () {
+-#   Install the header files
+-    CP_ARGS=3D"-Prf --preserve=3Dmode,timestamps --no-preserve=3Downersh=
+ip"
+-    install -d ${D}${TIOVX_INSTALL_DIR_RECIPE}/sys-iface
+-    cp ${CP_ARGS} ${S}/iface/VSDK/* ${D}${TIOVX_INSTALL_DIR_RECIPE}/sys-=
+iface
+-#   Install the firmware
+-    install -d ${D}/${base_libdir}/firmware
+-    install -m 0644 ${S}/firmware/tiovx_dsp1.xe66 ${D}/${base_libdir}/fi=
+rmware/dra7-dsp1-fw.xe66.openvx
+-    install -m 0644 ${S}/firmware/tiovx_dsp2.xe66 ${D}/${base_libdir}/fi=
+rmware/dra7-dsp2-fw.xe66.openvx
+-#   Install the scripts for loading dsp firmware
+-    install -d ${D}${bindir}/
+-    install -m 0755 ${WORKDIR}/reload-dsp-fw.sh ${D}${bindir}
+-}
+-
+-ALTERNATIVE:${PN} =3D "dra7-dsp1-fw.xe66 dra7-dsp2-fw.xe66"
+-ALTERNATIVE_LINK_NAME[dra7-dsp1-fw.xe66] =3D "${base_libdir}/firmware/dr=
+a7-dsp1-fw.xe66"
+-ALTERNATIVE_TARGET[dra7-dsp1-fw.xe66] =3D "${base_libdir}/firmware/dra7-=
+dsp1-fw.xe66.openvx"
+-ALTERNATIVE_LINK_NAME[dra7-dsp2-fw.xe66] =3D "${base_libdir}/firmware/dr=
+a7-dsp2-fw.xe66"
+-ALTERNATIVE_TARGET[dra7-dsp2-fw.xe66] =3D "${base_libdir}/firmware/dra7-=
+dsp2-fw.xe66.openvx"
+-ALTERNATIVE_PRIORITY =3D "20"
+-
+-FILES:${PN} +=3D "${TIOVX_INSTALL_DIR_RECIPE}/sys-iface/* "
+-PACKAGES =3D+ "${PN}-firmware"
+-FILES:${PN}-firmware =3D "${base_libdir}/firmware/*"
+-
+-INSANE_SKIP:${PN}-firmware =3D "arch"
+diff --git a/meta-arago-extras/recipes-ti/tiovx/tiovx-sys.inc b/meta-arag=
+o-extras/recipes-ti/tiovx/tiovx-sys.inc
 deleted file mode 100644
-index aa87f5f2..00000000
---- a/meta-arago-extras/recipes-ti/linalg/linalg_git.bb
+index 41fc6825..00000000
+--- a/meta-arago-extras/recipes-ti/tiovx/tiovx-sys.inc
 +++ /dev/null
-@@ -1,25 +0,0 @@
--DESCRIPTION =3D "TI Linear Algebra Library"
+@@ -1,5 +0,0 @@
+-PV =3D "01.00.01.00"
 -
--include linalg.inc
--PR =3D "${INC_PR}.0"
--
--TARGET:dra7xx        =3D "SOC_AM572x"
--MEM_MODEL:dra7xx     =3D "Small"
--PACKAGE_ARCH =3D "${MACHINE_ARCH}"
--
--do_compile() {
--	make -f build/Makefile MEM_MODEL=3D${MEM_MODEL} TARGET=3D${TARGET} LIBO=
-S=3DLIB_OPENCL PARALLEL_MAKE=3D"${PARALLEL_MAKE}"
--}
--
--do_install() {
--	install -d ${D}${LINALG_INSTALL_DIR_RECIPE}
--	cp -r exports/linalg_${PV}/* ${D}${LINALG_INSTALL_DIR_RECIPE}
--}
--
--# to create a package for LINALG
--FILES:${PN}-dev +=3D "${LINALG_INSTALL_DIR_RECIPE}"
--
--INSANE_SKIP:${PN}-dev =3D "arch staticdev"
--ALLOW_EMPTY:${PN} =3D "1"
--
--RDEPENDS:${PN}-dev +=3D "bash perl"
+-BRANCH=3D"master"
+-SRCREV =3D "5be60aee8d013907a4d8a6cc8af35a517a33b49e"
+-SRC_URI =3D "git://git.ti.com/git/processor-sdk/tiovx-app.git;protocol=3D=
+https;branch=3D${BRANCH}"
 --=20
 2.25.1
 
