@@ -2,35 +2,34 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AF778C5473D
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A0DB8C5473A
 	for <webhook@archiver.kernel.org>; Mon, 26 Aug 2024 19:16:35 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.60357.1724699794968354874
+ by mx.groups.io with SMTP id smtpd.web10.61256.1724699794927944021
  for <meta-arago@lists.yoctoproject.org>;
  Mon, 26 Aug 2024 12:16:35 -0700
 Authentication-Results: mx.groups.io;
  dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 5779B40C67;
-	Mon, 26 Aug 2024 19:16:34 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 85A1340CC1;
+	Mon, 26 Aug 2024 19:16:33 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ApZZt3xb_ZNJ; Mon, 26 Aug 2024 19:16:34 +0000 (UTC)
+	with ESMTP id buCnHbq42gKZ; Mon, 26 Aug 2024 19:16:33 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 340B640CC2;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6709C40CCF;
 	Mon, 26 Aug 2024 19:16:32 +0000 (UTC)
 Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id E7048164067;
-	Mon, 26 Aug 2024 15:16:30 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 4F12416406F;
+	Mon, 26 Aug 2024 15:16:31 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
-Cc: Denys Dmytriyenko <denys@konsulko.com>,
-	Andrew Davis <afd@ti.com>
-Subject: [scarthgap][PATCH 07/16] tidl-api, tidl-utils: deprecate
-Date: Mon, 26 Aug 2024 15:16:16 -0400
-Message-Id: <20240826191625.8267-7-denis@denix.org>
+Cc: Denys Dmytriyenko <denys@konsulko.com>
+Subject: [scarthgap][PATCH 15/16] llvm: deprecate
+Date: Mon, 26 Aug 2024 15:16:24 -0400
+Message-Id: <20240826191625.8267-15-denis@denix.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240826191625.8267-1-denis@denix.org>
 References: <20240826191625.8267-1-denis@denix.org>
@@ -40,396 +39,564 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Mon, 26 Aug 2024 19:16:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15541
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15540
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
-Remove old TIDL components as deprecated and not maintained.
+Remove llvm component as deprecated and not maintained.
 
-This component was offloading processing tasks to DSP using heavily
-modified OpenCL/OpenCV forks of old versions of corresponding upstream
-projects on legacy platforms.
-
-Current versions of TIDL/AI components are now maintained in a separate
-meta-edgeai layer from TI.
-
-Acked-by: Andrew Davis <afd@ti.com>
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- ...nativesdk-packagegroup-arago-tisdk-host.bb |  8 ---
- .../recipes-ti/tidl-api/tidl-api.inc          | 21 -------
- .../recipes-ti/tidl-api/tidl-api_git.bb       | 57 -------------------
- .../recipes-ti/tidl-api/tidl-examples_git.bb  | 52 -----------------
- .../recipes-ti/tidl-api/tidl-viewer_git.bb    | 33 -----------
- .../recipes-ti/tidl-utils/tidl-import_git.bb  | 46 ---------------
- .../recipes-ti/tidl-utils/tidl-utils.bb       | 34 -----------
- .../recipes-ti/tidl-utils/tidl-utils.inc      |  4 --
- 8 files changed, 255 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
- delete mode 100644 meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb
- delete mode 100644 meta-arago-extras/recipes-ti/tidl-api/tidl-examples_g=
-it.bb
- delete mode 100644 meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git=
-.bb
- delete mode 100644 meta-arago-extras/recipes-ti/tidl-utils/tidl-import_g=
-it.bb
- delete mode 100644 meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
- delete mode 100644 meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.in=
-c
+ .../recipes-core/images/arago-image.inc       |   1 -
+ .../recipes-core/llvm/llvm-common.bb          |  20 --
+ .../recipes-core/llvm/llvm-common.bbappend    |   5 -
+ .../recipes-core/llvm/llvm-common/llvm-config |  11 --
+ meta-arago-extras/recipes-core/llvm/llvm.inc  | 162 ---------------
+ ...not-check-build-executable-extension.patch |  37 ----
+ .../recipes-core/llvm/ti-llvm3.6_3.6.bb       | 184 ------------------
+ 7 files changed, 420 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-core/llvm/llvm-common.bb
+ delete mode 100644 meta-arago-extras/recipes-core/llvm/llvm-common.bbapp=
+end
+ delete mode 100644 meta-arago-extras/recipes-core/llvm/llvm-common/llvm-=
+config
+ delete mode 100644 meta-arago-extras/recipes-core/llvm/llvm.inc
+ delete mode 100644 meta-arago-extras/recipes-core/llvm/ti-llvm3.6/0001-c=
+onfigure-Do-not-check-build-executable-extension.patch
+ delete mode 100644 meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
 
-diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packa=
-gegroup-arago-tisdk-host.bb b/meta-arago-extras/recipes-core/packagegroup=
-s/nativesdk-packagegroup-arago-tisdk-host.bb
-index 92a80b6b..ed29b6c4 100644
---- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup=
--arago-tisdk-host.bb
-+++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup=
--arago-tisdk-host.bb
-@@ -7,13 +7,6 @@ inherit_defer nativesdk
+diff --git a/meta-arago-distro/recipes-core/images/arago-image.inc b/meta=
+-arago-distro/recipes-core/images/arago-image.inc
+index c4438e5c..37b20850 100644
+--- a/meta-arago-distro/recipes-core/images/arago-image.inc
++++ b/meta-arago-distro/recipes-core/images/arago-image.inc
+@@ -22,7 +22,6 @@ TOOLCHAIN_HOST_TASK:append =3D " nativesdk-buildtools-p=
+erl-dummy"
+ SDK_PACKAGE_ARCHS +=3D "buildtools-dummy-${SDKPKGSUFFIX}"
 =20
- PACKAGEGROUP_DISABLE_COMPLEMENTARY =3D "1"
-=20
--TIDL_TOOLS =3D ""
--#TIDL_TOOLS =3D " \
--#    nativesdk-tidl-import \
--#    nativesdk-tidl-viewer \
--#    nativesdk-tidl-utils \
--#"
--
- EXTRA_TI_TOOLS =3D " \
-     nativesdk-ti-cgt6x \
-     nativesdk-ti-cgt-pru \
-@@ -22,7 +15,6 @@ EXTRA_TI_TOOLS =3D " \
-     nativesdk-open62541-examples \
-     nativesdk-open62541-tests \
-     nativesdk-gcc-arm-baremetal \
--    ${@oe.utils.all_distro_features(d, "opencl opencv", "${TIDL_TOOLS}")=
-} \
- "
-=20
- RDEPENDS:${PN} =3D "\
-diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc b/meta-ar=
-ago-extras/recipes-ti/tidl-api/tidl-api.inc
+ BAD_RECOMMENDATIONS +=3D " \
+-    ti-llvm3.6-dev \
+     libulm-dev \
+     gdbserver-c6x-dev \
+     coreutils \
+diff --git a/meta-arago-extras/recipes-core/llvm/llvm-common.bb b/meta-ar=
+ago-extras/recipes-core/llvm/llvm-common.bb
 deleted file mode 100644
-index 389e565a..00000000
---- a/meta-arago-extras/recipes-ti/tidl-api/tidl-api.inc
+index b69a5775..00000000
+--- a/meta-arago-extras/recipes-core/llvm/llvm-common.bb
 +++ /dev/null
-@@ -1,21 +0,0 @@
--PV =3D "1.5.1"
--INC_PR =3D "r0"
+@@ -1,20 +0,0 @@
+-SUMMARY =3D "Helper script for OE's llvm support"
+-LICENSE =3D "MIT"
+-LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade698e=
+0bcf8506ecda2f7b4f302"
 -
--LIC_FILES_CHKSUM =3D "file://license.txt;md5=3De3daeabffb9fc131a73f16d16=
-cbdb118"
+-SRC_URI =3D "file://llvm-config"
 -
--GIT_URI =3D "git://git.ti.com/git/tidl/tidl-api.git"
--GIT_PROTOCOL =3D "https"
--BRANCH =3D "master"
+-ALLOW_EMPTY:${PN} =3D "1"
+-SYSROOT_PREPROCESS_FUNCS:append:class-target =3D " llvm_common_sysroot_p=
+reprocess"
 -
--SRC_URI =3D "${GIT_URI};protocol=3D${GIT_PROTOCOL};branch=3D${BRANCH}"
--SRCREV =3D "4b801ad96b50f53e977b96d8b227ba4bcb26e011"
--
--# default patchdir is ${S}
--S =3D "${WORKDIR}/git"
--
--inherit features_check
--
--REQUIRED_MACHINE_FEATURES =3D "dsp"
--REQUIRED_MACHINE_FEATURES:class-native =3D ""
--REQUIRED_MACHINE_FEATURES:class-nativesdk =3D ""
--REQUIRED_DISTRO_FEATURES =3D "opencl opencv"
-diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb b/meta=
--arago-extras/recipes-ti/tidl-api/tidl-api_git.bb
-deleted file mode 100644
-index 7f37b63b..00000000
---- a/meta-arago-extras/recipes-ti/tidl-api/tidl-api_git.bb
-+++ /dev/null
-@@ -1,57 +0,0 @@
--SUMMARY =3D "TIDL API"
--DESCRIPTION =3D "TIDL API header and library. Refer TIDL API User's Guid=
-e for details."
--HOMEPAGE =3D "https://downloads.ti.com/mctools/esd/docs/tidl-api/intro.h=
-tml"
--LICENSE =3D "BSD-3-Clause"
--
--include tidl-api.inc
--require recipes-ti/includes/ti-paths.inc
--
--PR =3D "${INC_PR}.0"
--
--COMPATIBLE_MACHINE =3D "dra7xx"
--PACKAGE_ARCH =3D "${MACHINE_ARCH}"
--
--inherit python3native
--
--DEPENDS =3D "opencv \
--           opencl \
--           opencl-monitor \
--           ti-cgt6x-native \
--           clocl-native \
--"
--
--RDEPENDS:${PN} +=3D "opencl-runtime \
--                   opencv \
--"
--
--EXTRA_OEMAKE =3D " -C ${S}/tidl_api \
--                 TARGET_ROOTDIR=3D${STAGING_DIR_HOST} \
--                 TI_OCL_CGT_INSTALL=3D${STAGING_DIR_NATIVE}/usr/share/ti=
-/cgt-c6x \
--"
--
--do_compile() {
--  oe_runmake
+-llvm_common_sysroot_preprocess() {
+-    install -d ${SYSROOT_DESTDIR}${bindir_crossscripts}/
+-    install -m 0755 ${WORKDIR}/llvm-config ${SYSROOT_DESTDIR}${bindir_cr=
+ossscripts}/
 -}
 -
--CP_ARGS=3D"-Prf --preserve=3Dmode,timestamps --no-preserve=3Downership"
--
--TIDL_INSTALL_DIR =3D "${datadir}/ti/tidl"
--
--do_install() {
--    install -d ${D}${TIDL_INSTALL_DIR}
--    install -d ${D}${TIDL_INSTALL_DIR}/tidl_api
--    install -d ${D}${TIDL_INSTALL_DIR}/viewer
--    install -d ${D}${libdir}
--    cp ${CP_ARGS} ${S}/tidl_api/libtidl_*.so* ${D}${libdir}
--    rm -f ${S}/tidl_api/libtidl_*.so*
--    cp ${CP_ARGS} ${S}/tidl_api/* ${D}${TIDL_INSTALL_DIR}/tidl_api/
--    cp ${CP_ARGS} ${S}/viewer/* ${D}${TIDL_INSTALL_DIR}/viewer/
--    install ${S}/readme.md ${D}${TIDL_INSTALL_DIR}/
--}
--
--FILES:${PN} +=3D "\
--    ${TIDL_INSTALL_DIR} \
--"
--
--
--INSANE_SKIP:${PN} =3D "arch ldflags textrel staticdev"
-diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb b=
-/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
-deleted file mode 100644
-index c9756d40..00000000
---- a/meta-arago-extras/recipes-ti/tidl-api/tidl-examples_git.bb
-+++ /dev/null
-@@ -1,52 +0,0 @@
--SUMMARY =3D "TIDL API examples"
--DESCRIPTION =3D "Examples of TIDL API. Refer TIDL API User's Guide for d=
-etails."
--HOMEPAGE =3D "https://downloads.ti.com/mctools/esd/docs/tidl-api/intro.h=
-tml"
--LICENSE =3D "BSD-3-Clause"
--
--include tidl-api.inc
--require recipes-ti/includes/ti-paths.inc
--
--PR =3D "${INC_PR}.0"
--
--COMPATIBLE_MACHINE =3D "dra7xx"
--PACKAGE_ARCH =3D "${MACHINE_ARCH}"
--
--DEPENDS =3D "opencv \
--           clocl-native \
--           ti-cgt6x-native \
--           tidl-api \
--           json-c \
--"
--
--RDEPENDS:${PN} +=3D "tidl-api \
--                   opencl-runtime \
--                   opencv \
--                   json-c \
--                   python3-core \
--"
--
--EXTRA_OEMAKE =3D " -C ${S}/examples \
--                 TARGET_ROOTDIR=3D${STAGING_DIR_HOST} \
--                 TI_OCL_CGT_INSTALL=3D${STAGING_DIR_NATIVE}/usr/share/ti=
-/cgt-c6x \
--"
--
--do_compile() {
--  oe_runmake
--}
--
--CP_ARGS=3D"-Prf --preserve=3Dmode,timestamps --no-preserve=3Downership"
--
--TIDL_INSTALL_DIR =3D "${datadir}/ti/tidl"
--
--do_install() {
--    install -d ${D}${TIDL_INSTALL_DIR}
--    install -d ${D}${TIDL_INSTALL_DIR}/examples
--    cp ${CP_ARGS} ${S}/examples/* ${D}${TIDL_INSTALL_DIR}/examples/
--}
--
--FILES:${PN} +=3D "\
--    ${TIDL_INSTALL_DIR} \
--"
--
--
--INSANE_SKIP:${PN} =3D "arch ldflags textrel staticdev"
-diff --git a/meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb b/m=
-eta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb
-deleted file mode 100644
-index 644b8626..00000000
---- a/meta-arago-extras/recipes-ti/tidl-api/tidl-viewer_git.bb
-+++ /dev/null
-@@ -1,33 +0,0 @@
--SUMMARY =3D "TIDL Network Viewer"
--DESCRIPTION =3D "TIDL Network viewer using dot and graphviz"
--HOMEPAGE =3D "https://downloads.ti.com/mctools/esd/docs/tidl-api/intro.h=
-tml"
--LICENSE =3D "BSD-3-Clause"
--
--include tidl-api.inc
--
--PR =3D "${INC_PR}.0"
--
--DEPENDS =3D "boost boost-native ti-cgt6x-native clocl-native"
--
--TARGET:class-target =3D "arm"
--TARGET:class-native =3D "x86"
--TARGET:class-nativesdk =3D "x86"
--
--CXXFLAGS:append:class-native    =3D " -DPLATFORM_64BIT "
--CXXFLAGS:append:class-nativesdk =3D " -DPLATFORM_64BIT "
--
--EXTRA_OEMAKE =3D " -C ${S}/viewer \
--                 TARGET=3D${TARGET} \
--                 TARGET_ROOTDIR=3D${STAGING_DIR_HOST} \
--"
--
--do_compile() {
--  oe_runmake
--}
--
--do_install() {
--  install -d ${D}${bindir}
--  install -m 755 ${S}/viewer/${TARGET}/tidl_viewer ${D}${bindir}
--}
--
--BBCLASSEXTEND =3D "native nativesdk"
-diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb b=
-/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
-deleted file mode 100644
-index 3c1b81ff..00000000
---- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-import_git.bb
-+++ /dev/null
-@@ -1,46 +0,0 @@
--SUMMARY =3D "TIDL import tool for conversion of Caffe and TF models into=
- TI custom network format"
--DESCRIPTION =3D "TIDL import tool is using protobuf to read and parse in=
-formation from external network models \
--               This is ARM Linux implementation."
--
--require ./tidl-utils.inc
--
--LICENSE =3D "BSD-3-Clause"
--LIC_FILES_CHKSUM =3D "file://modules/ti_dl/inc/itidl_ti.h;beginline=3D1;=
-endline=3D34;md5=3Dcabe1fdaabfa0d85dc5544566b0e2425"
--
--S =3D "${WORKDIR}/git/src/importTool"
--
--DEPENDS =3D "protobuf zlib protobuf-native flatbuffers tensorflow-lite f=
-latbuffers-native tensorflow-lite-native"
--
--EXTRA_OEMAKE +=3D "TIARM_TOOLS=3D${GCC_ARM_NONE_TOOLCHAIN}"
--EXTRA_OEMAKE +=3D "XDAIS_PATH=3D${XDAIS_INSTALL_DIR}"
--EXTRA_OEMAKE +=3D "SHOW_COMMANDS=3D1"
--EXTRA_OEMAKE +=3D "CORE=3Deve"
--EXTRA_OEMAKE +=3D "TARGET_BUILD=3Drelease"
--EXTRA_OEMAKE +=3D "TARGET_PLATFORM=3DPC"
--
--EXTRA_MAKE_ARGS =3D "PLATFORM_BUILD=3Dx86 LINUXENV=3Dx86 LINUX_IMPORT_TO=
-OL=3D64BIT \
--                   PROTOBUF_LIB_DIR=3D${STAGING_DIR_NATIVE}/usr/lib PROT=
-OBUF_INC_DIR=3D${STAGING_DIR_NATIVE}/usr/include \
--                   FLATBUFFERS_INC_DIR=3D${STAGING_DIR_NATIVE}$/usr/incl=
-ude/flatbuffers \
--                   TF_LITE_GENERATED_PATH=3D${STAGING_DIR_NATIVE}/usr/in=
-clude/tensorflow/lite/schema"
--EXTRA_MAKE_ARGS:class-target =3D "LINUX_BUILD_TOOLS=3D${TOOLCHAIN_PATH}/=
-bin/${TARGET_PREFIX} \
--                                PROTOBUF_LIB_DIR=3D${STAGING_LIBDIR} PRO=
-TOBUF_INC_DIR=3D${STAGING_INCDIR} \
--                                FLATBUFFERS_INC_DIR=3D${STAGING_INCDIR}/=
-flatbuffers \
--                                TF_LITE_GENERATED_PATH=3D${STAGING_INCDI=
-R}/tensorflow/lite/schema LINUXENV=3Doearm"
--
--EXTRA_OEMAKE +=3D "${EXTRA_MAKE_ARGS}"
--
--do_compile() {
--    cd ${S}/modules/ti_dl/utils
--    ./genProtoSrc.sh
--    cd ${S}
--    oe_runmake -C modules/ti_dl/utils/tidlModelImport
--}
--
--do_install () {
+-do_install:class-native() {
 -    install -d ${D}${bindir}
--    install -m 755 ${S}/modules/ti_dl/utils/tidlModelImport/out/tidl_mod=
-el_import.out ${D}${bindir}
+-    install -m 0755 ${WORKDIR}/llvm-config ${D}${bindir}
 -}
 -
--INSANE_SKIP:${PN} =3D "ldflags"
--
--BBCLASSEXTEND =3D "native nativesdk"
-diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb b/meta=
--arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
+-BBCLASSEXTEND =3D "native"
+diff --git a/meta-arago-extras/recipes-core/llvm/llvm-common.bbappend b/m=
+eta-arago-extras/recipes-core/llvm/llvm-common.bbappend
 deleted file mode 100644
-index e8aad51c..00000000
---- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.bb
+index 273fb314..00000000
+--- a/meta-arago-extras/recipes-core/llvm/llvm-common.bbappend
 +++ /dev/null
-@@ -1,34 +0,0 @@
--SUMMARY =3D "TIDL Utilities and configuration files"
--DESCRIPTION =3D "TIDL Utilities for standalone simulation and importing =
-/ translation of Caffe and TF-Slim models"
--HOMEPAGE =3D "http://software-dl.ti.com/processor-sdk-linux/esd/docs/lat=
-est/linux/Foundational_Components.html#tidl"
--LICENSE =3D "TI-TFL"
+@@ -1,5 +0,0 @@
+-PR:append =3D ".arago0"
 -
--require ./tidl-utils.inc
+-SYSROOT_PREPROCESS_FUNCS:append:class-nativesdk =3D " llvm_common_sysroo=
+t_preprocess"
 -
--LIC_FILES_CHKSUM =3D "file://docs/LICENSE.txt;md5=3Da93aa5af7a3bbbb6fb34=
-c8df59efaa5c"
+-BBCLASSEXTEND +=3D "nativesdk"
+diff --git a/meta-arago-extras/recipes-core/llvm/llvm-common/llvm-config =
+b/meta-arago-extras/recipes-core/llvm/llvm-common/llvm-config
+deleted file mode 100644
+index b0f33c8d..00000000
+--- a/meta-arago-extras/recipes-core/llvm/llvm-common/llvm-config
++++ /dev/null
+@@ -1,11 +0,0 @@
+-#!/bin/sh
+-# Wrapper script for real llvm-config. Simply calls
 -
--RDEPENDS:${PN}:class-target +=3D "tidl-api tidl-examples"
+-if [ $WANT_LLVM_RELEASE ]; then
+-	exec `dirname $0`/${TARGET_PREFIX}llvm-config$WANT_LLVM_RELEASE ${@}
+-else
+-	echo "To use llvm-common WANT_LLVM_RELEASE needs to be exported."
+-	echo "For example if this is being called through a recipe:"
+-	echo "export WANT_LLVM_RELEASE=3D\"3.3\""
+-	exit 1
+-fi
+diff --git a/meta-arago-extras/recipes-core/llvm/llvm.inc b/meta-arago-ex=
+tras/recipes-core/llvm/llvm.inc
+deleted file mode 100644
+index 64451af8..00000000
+--- a/meta-arago-extras/recipes-core/llvm/llvm.inc
++++ /dev/null
+@@ -1,162 +0,0 @@
+-# LLVM does not provide ABI stability between different versions. For th=
+is
+-# reason OE makes it possible to build and install different llvm versio=
+ns
+-# at the same time.
+-#
+-# This is true for the normal recipes as well as the native ones.
+-#
+-# All regular installation directories are prefixed with 'llvm${LLVM_REL=
+EASE}'
+-# e.g. "${STAGING_BINDIR}/llvm2.5" or "${STAGING_INCDIR}/llvm2.5"
+-#
+-# For your program or library that makes use of llvm you do should not n=
+eed to
+-# modify anything as long as it uses the results of various llvm-config
+-# invocations. If you need customizations something is wrong and it need=
+s to be
+-# fixed (report bug).
+-#
+-# However the *recipe* for your program/library *must* declare
+-# export WANT_LLVM_RELEASE =3D "<valid version number>"
+-# The version number is picked up by a generic wrapper script which just=
+ calls
+-# the variant of the specified version.
+-
+-DESCRIPTION =3D "The Low Level Virtual Machine"
+-HOMEPAGE =3D "http://llvm.org"
+-
+-# 3-clause BSD-like
+-# University of Illinois/NCSA Open Source License
+-LICENSE =3D "NCSA"
+-LIC_FILES_CHKSUM =3D "file://LICENSE.TXT;md5=3Dd0a3ef0d3e0e8f5cf59e5ffc2=
+73ab1f8"
+-
+-DEPENDS =3D "libffi libxml2-native llvm-common"
+-
+-inherit perlnative python3native autotools
+-
+-LLVM_RELEASE =3D "${PV}"
+-LLVM_DIR =3D "llvm${LLVM_RELEASE}"
+-
+-SRC_URI =3D "http://llvm.org/releases/${PV}/llvm-${PV}.src.tar.gz"
+-S =3D "${WORKDIR}/llvm-${PV}.src"
+-
+-LLVM_BUILD_DIR =3D "${WORKDIR}/llvm-${PV}.build"
+-LLVM_INSTALL_DIR =3D "${WORKDIR}/llvm-install"
+-
+-EXTRA_OECONF +=3D "--disable-assertions \
+-                 --enable-debug-runtime \
+-                 --disable-expensive-checks \
+-                 --enable-bindings=3Dnone \
+-                 --enable-keep-symbols \
+-                 --enable-libffi \
+-                 --enable-optimized \
+-                 --enable-shared \
+-                 --enable-targets=3Dhost-only"
+-EXTRA_OEMAKE +=3D "REQUIRES_RTTI=3D1 VERBOSE=3D1"
+-
+-do_configure:prepend() {
+-    # Remove RPATHs
+-    sed -i 's:$(RPATH) -Wl,$(\(ToolDir\|LibDir\|ExmplDir\))::g' ${S}/Mak=
+efile.rules
+-
+-    # Drop "svn" suffix from version string
+-    sed -i 's/${PV}svn/${PV}/g' ${S}/configure
+-
+-    # Fix paths in llvm-config
+-    sed -i "s|sys::path::parent_path(CurrentPath))\.str()|sys::path::par=
+ent_path(sys::path::parent_path(CurrentPath))).str()|g" ${S}/tools/llvm-c=
+onfig/llvm-config.cpp
+-    sed -ri "s#/(bin|include|lib)(/?\")#/\1/${LLVM_DIR}\2#g" ${S}/tools/=
+llvm-config/llvm-config.cpp
+-
+-    # Fix the hardcoded libdir in llvm-config
+-    sed -i 's:/lib\>:/${baselib}:g' ${S}/tools/llvm-config/llvm-config.c=
+pp
+-
+-    # Fails to build unless using separate directory from source
+-    mkdir -p ${LLVM_BUILD_DIR}
+-    cd ${LLVM_BUILD_DIR}
+-}
+-
+-do_compile() {
+-    cd ${LLVM_BUILD_DIR}
+-
+-    # Fix libdir for multilib
+-    sed -i 's:(PROJ_prefix)/lib:(PROJ_prefix)/${baselib}:g' Makefile.con=
+fig
+-
+-    oe_runmake \
+-        AR=3D"${BUILD_AR}" \
+-        CC=3D"${BUILD_CC}" \
+-        CFLAGS=3D"${BUILD_CFLAGS}" \
+-        CXX=3D"${BUILD_CXX}" \
+-        CXXFLAGS=3D"${BUILD_CXXFLAGS}" \
+-        CPP=3D"${BUILD_CPP}" \
+-        CPPFLAGS=3D"${BUILD_CPPFLAGS}" \
+-        NM=3D"${BUILD_NM}" \
+-        RANLIB=3D"${BUILD_RANLIB}" \
+-        PATH=3D"${STAGING_BINDIR_NATIVE}:$PATH" \
+-        cross-compile-build-tools
+-    oe_runmake
+-}
+-
+-do_install() {
+-    cd ${LLVM_BUILD_DIR}
+-    oe_runmake DESTDIR=3D${LLVM_INSTALL_DIR} install
+-
+-    mv ${LLVM_INSTALL_DIR}${bindir}/${HOST_SYS}-llvm-config-host ${LLVM_=
+INSTALL_DIR}/llvm-config-host
+-
+-    install -d ${D}${bindir}/${LLVM_DIR}
+-    mv ${LLVM_INSTALL_DIR}${bindir}/* ${D}${bindir}/${LLVM_DIR}/
+-
+-    install -d ${D}${includedir}/${LLVM_DIR}
+-    mv ${LLVM_INSTALL_DIR}${includedir}/* ${D}${includedir}/${LLVM_DIR}/
+-
+-    install -d ${D}${libdir}/${LLVM_DIR}
+-    mv ${LLVM_INSTALL_DIR}${libdir}/* ${D}${libdir}/${LLVM_DIR}/
+-    ln -s ${LLVM_DIR}/libLLVM-${PV}.so ${D}${libdir}/libLLVM-${PV}.so
+-
+-    install -d ${D}${docdir}/${LLVM_DIR}
+-    mv ${LLVM_INSTALL_DIR}${prefix}/docs/llvm/* ${D}${docdir}/${LLVM_DIR=
+}
+-}
+-
+-SYSROOT_PREPROCESS_FUNCS +=3D "llvm_sysroot_preprocess"
+-
+-llvm_sysroot_preprocess() {
+-    install -d ${SYSROOT_DESTDIR}${bindir_crossscripts}
+-    mv ${LLVM_INSTALL_DIR}/llvm-config-host ${SYSROOT_DESTDIR}${bindir_c=
+rossscripts}/llvm-config${PV}
+-}
+-
+-PACKAGES +=3D "${PN}-bugpointpasses ${PN}-llvmhello"
+-ALLOW_EMPTY:${PN} =3D "1"
+-ALLOW_EMPTY:${PN}-staticdev =3D "1"
+-FILES:${PN} =3D ""
+-FILES:${PN}-staticdev =3D ""
+-FILES:${PN}-dbg =3D " \
+-    ${bindir}/${LLVM_DIR}/.debug \
+-    ${libdir}/${LLVM_DIR}/.debug/BugpointPasses.so \
+-    ${libdir}/${LLVM_DIR}/.debug/LLVMHello.so \
+-    /usr/src/debug \
+-"
+-
+-FILES:${PN}-dev =3D " \
+-    ${bindir}/${LLVM_DIR} \
+-    ${includedir}/${LLVM_DIR} \
+-"
+-RRECOMMENDS:${PN}-dev +=3D "${PN}-bugpointpasses ${PN}-llvmhello"
+-
+-FILES:${PN}-bugpointpasses =3D "\
+-    ${libdir}/${LLVM_DIR}/BugpointPasses.so \
+-"
+-FILES:${PN}-llvmhello =3D "\
+-    ${libdir}/${LLVM_DIR}/LLVMHello.so \
+-"
+-
+-PACKAGES_DYNAMIC =3D "^libllvm${LLVM_RELEASE}-.*$"
+-NOAUTOPACKAGEDEBUG =3D "1"
+-
+-INSANE_SKIP:${MLPREFIX}libllvm${LLVM_RELEASE}-llvm-${LLVM_RELEASE} +=3D =
+"dev-so"
+-
+-python llvm_populate_packages() {
+-    libdir =3D bb.data.expand('${libdir}', d)
+-    libllvm_libdir =3D bb.data.expand('${libdir}/${LLVM_DIR}', d)
+-    split_dbg_packages =3D do_split_packages(d, libllvm_libdir+'/.debug'=
+, '^lib(.*)\.so$', 'libllvm${LLVM_RELEASE}-%s-dbg', 'Split debug package =
+for %s', allow_dirs=3DTrue)
+-    split_packages =3D do_split_packages(d, libdir, '^lib(.*)\.so$', 'li=
+bllvm${LLVM_RELEASE}-%s', 'Split package for %s', allow_dirs=3DTrue, allo=
+w_links=3DTrue, recursive=3DTrue)
+-    split_staticdev_packages =3D do_split_packages(d, libllvm_libdir, '^=
+lib(.*)\.a$', 'libllvm${LLVM_RELEASE}-%s-staticdev', 'Split staticdev pac=
+kage for %s', allow_dirs=3DTrue)
+-    if split_packages:
+-        pn =3D d.getVar('PN')
+-        d.appendVar('RDEPENDS:' + pn, ' '+' '.join(split_packages))
+-        d.appendVar('RDEPENDS:' + pn + '-dbg', ' '+' '.join(split_dbg_pa=
+ckages))
+-        d.appendVar('RDEPENDS:' + pn + '-staticdev', ' '+' '.join(split_=
+staticdev_packages))
+-}
+-
+-PACKAGESPLITFUNCS:prepend =3D "llvm_populate_packages "
+diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6/0001-configur=
+e-Do-not-check-build-executable-extension.patch b/meta-arago-extras/recip=
+es-core/llvm/ti-llvm3.6/0001-configure-Do-not-check-build-executable-exte=
+nsion.patch
+deleted file mode 100644
+index 9a60caf3..00000000
+--- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6/0001-configure-Do-no=
+t-check-build-executable-extension.patch
++++ /dev/null
+@@ -1,37 +0,0 @@
+-From 60da8adc29a84796c9768a1a962eda1915c87332 Mon Sep 17 00:00:00 2001
+-From: Jake Stiffler <j-stiffler@ti.com>
+-Date: Fri, 20 Feb 2015 10:55:11 -0500
+-Subject: [PATCH] configure: Do not check build executable extension.
+-
+- * This seems to cause issues nativesdk and build sdk
+-   architectures are the same.
+-
+-Signed-off-by: Jake Stiffler <j-stiffler@ti.com>
+----
+- configure                 |    3 +++
+- 1 files changed, 3 insertions(+)
+-
+-diff --git a/configure b/configure
+-index decbc40..387c4fd 100755
+---- a/configure
+-+++ b/configure
+-@@ -4951,6 +4951,8 @@ echo "$as_me: error: no acceptable cc found in \$P=
+ATH" >&2;}
+-   rm -f conftest*
+-   echo 'int main () { return 0; }' > conftest.$ac_ext
+-   ac_cv_build_exeext=3D
+-+
+-+if false; then
+-   if { (eval echo "$as_me:$LINENO: \"$ac_build_link\"") >&5
+-   (eval $ac_build_link) 2>&5
+-   ac_status=3D$?
+-@@ -4967,6 +4969,7 @@ echo "$as_me: error: no acceptable cc found in \$P=
+ATH" >&2;}
+- echo "$as_me: error: installation or configuration problem: compiler ca=
+nnot create executables." >&2;}
+-    { (exit 1); exit 1; }; }
+-   fi
+-+fi
+-   rm -f conftest*
+-   test x"${ac_cv_build_exeext}" =3D x && ac_cv_build_exeext=3Dblank
+- fi
+---=20
+-1.7.9.5
+-
+diff --git a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb b/meta=
+-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
+deleted file mode 100644
+index 395651d3..00000000
+--- a/meta-arago-extras/recipes-core/llvm/ti-llvm3.6_3.6.bb
++++ /dev/null
+@@ -1,184 +0,0 @@
+-DESCRIPTION =3D "LLVM 3.6 with support for TI C66x intrinsics"
+-HOMEPAGE =3D "https://git.ti.com/opencl/llvm"
+-
+-PR =3D "r7"
+-
+-do_configure:prepend:class-native() {
+-    # Fix paths in llvm-config
+-    sed -i "s|sys::path::parent_path(sys::path::parent_path(CurrentPath)=
+)).str()|sys::path::parent_path(CurrentPath))\.str()|g" ${S}/tools/llvm-c=
+onfig/llvm-config.cpp
+-}
+-
+-do_configure:prepend() {
+-    # Workaround for libdir fix for multilib to undo what is currently u=
+pstream
+-    sed -i 's:${base_libdir}:/${baselib}:g' ${S}/tools/llvm-config/llvm-=
+config.cpp
+-}
+-
+-require recipes-core/llvm/llvm.inc
+-
+-inherit pkgconfig
+-
+-LIC_FILES_CHKSUM =3D "file://LICENSE.TXT;md5=3D47e311aa9caedd1b3abf098bd=
+7814d1d"
+-
+-DEPENDS +=3D "ncurses libxml2 groff-native"
+-DEPENDS:append:class-target =3D " valgrind"
+-
+-LLVM_DIR =3D "ti-llvm${PV}"
+-
+-LLVM_GIT_NAME =3D "llvm"
+-LLVM_GIT_URI =3D "git://git.ti.com/git/opencl/llvm.git"
+-LLVM_GIT_PROTOCOL =3D "https"
+-LLVM_GIT_BRANCH =3D "release_36_ti"
+-LLVM_GIT_DESTSUFFIX =3D "git"
+-LLVM_GIT_SRCREV =3D "09780c6750b30da81e4a0a805aedf1699fbc37c7"
+-
+-CLANG_GIT_NAME =3D "clang"
+-CLANG_GIT_URI =3D "git://git.ti.com/git/opencl/clang.git"
+-CLANG_GIT_PROTOCOL =3D "https"
+-CLANG_GIT_BRANCH =3D "release_36_ti"
+-CLANG_GIT_DESTSUFFIX =3D "${LLVM_GIT_DESTSUFFIX}/tools/clang"
+-CLANG_GIT_SRCREV =3D "5b006f07bdc22b5ae6917eecdfe243908dd7b029"
+-
+-SRC_URI =3D " \
+-  ${LLVM_GIT_URI};protocol=3D${LLVM_GIT_PROTOCOL};branch=3D${LLVM_GIT_BR=
+ANCH};destsuffix=3D${LLVM_GIT_DESTSUFFIX};name=3D${LLVM_GIT_NAME} \
+-  ${CLANG_GIT_URI};protocol=3D${CLANG_GIT_PROTOCOL};branch=3D${CLANG_GIT=
+_BRANCH};destsuffix=3D${CLANG_GIT_DESTSUFFIX};name=3D${CLANG_GIT_NAME} \
+-  file://0001-configure-Do-not-check-build-executable-extension.patch \
+-"
+-
+-SRCREV_${LLVM_GIT_NAME} =3D "${LLVM_GIT_SRCREV}"
+-SRCREV_${CLANG_GIT_NAME} =3D "${CLANG_GIT_SRCREV}"
+-
+-SRCREV_FORMAT =3D "${LLVM_GIT_NAME}"
 -
 -S =3D "${WORKDIR}/git"
 -
--TARGET:class-target =3D "arm"
--TARGET:class-native =3D "x86"
--TARGET:class-nativesdk =3D "x86"
+-LIBXML2_INC =3D "`pkg-config libxml-2.0 --cflags`"
+-LIBXML2_LIBS =3D "`pkg-config libxml-2.0 --libs`"
 -
--CP_ARGS =3D "-Prf --preserve=3Dmode,timestamps --no-preserve=3Downership=
-"
+-EXTRA_OECONF +=3D " --enable-targets=3D"host,arm,c6000,msp430" \
+-                  --disable-zlib \
+-                  --disable-terminfo \
+-                  --disable-libedit \
+-"
 -
--do_install() {
--  install -d ${D}${bindir}
--  install -d ${D}${datadir}/ti/tidl/utils/test
--  install -d ${D}${datadir}/ti/tidl/utils/docs
--  install -m 755 ${S}/${TARGET}/bin/* ${D}${bindir}
--  cp ${CP_ARGS} ${S}/test/* ${D}${datadir}/ti/tidl/utils/test/.
--  cp ${CP_ARGS} ${S}/docs/* ${D}${datadir}/ti/tidl/utils/docs/.
+-EXTRA_OEMAKE +=3D "LIBXML2_INC=3D"${LIBXML2_INC}" LIBXML2_LIBS=3D"${LIBX=
+ML2_LIBS}""
+-
+-do_compile:class-native() {
+-  cd ${LLVM_BUILD_DIR}
+-
+-  # Fix libdir for multilib
+-  sed -i 's:(PROJ_prefix)/lib:(PROJ_prefix)/${baselib}:g' Makefile.confi=
+g
+-
+-  oe_runmake
 -}
 -
--FILES:${PN} +=3D "${datadir}/ti/tidl/utils \
--                ${bindir}"
+-do_compile:class-nativesdk() {
+-    # Fix for buildpaths error referring to TMPDIR
+-    sed -i 's:@LLVM_SRC_ROOT@::g' ${S}/tools/llvm-config/BuildVariables.=
+inc.in
+-    sed -i 's:@LLVM_OBJ_ROOT@::g' ${S}/tools/llvm-config/BuildVariables.=
+inc.in
+-
+-    cd ${LLVM_BUILD_DIR}
+-
+-    # Fix libdir for multilib
+-    sed -i 's:(PROJ_prefix)/lib:(PROJ_prefix)/${baselib}:g' Makefile.con=
+fig
+-
+-    oe_runmake \
+-        AR=3D"${BUILD_AR}" \
+-        CC=3D"${BUILD_CC}" \
+-        CFLAGS=3D"${BUILD_CFLAGS}" \
+-        CXX=3D"${BUILD_CXX}" \
+-        CXXFLAGS=3D"${BUILD_CXXFLAGS}" \
+-        CPP=3D"${BUILD_CPP}" \
+-        CPPFLAGS=3D"${BUILD_CPPFLAGS}" \
+-        LD=3D"${BUILD_LD}" \
+-        LDFLAGS=3D"${BUILD_LDFLAGS}" \
+-        NM=3D"${BUILD_NM}" \
+-        RANLIB=3D"${BUILD_RANLIB}" \
+-        PATH=3D"${STAGING_BINDIR_NATIVE}:$PATH" \
+-        cross-compile-build-tools
+-
+-    # Workaround for timestamp issue on built-tools
+-    for f in ${LLVM_BUILD_DIR}/BuildTools/Release/bin/*
+-    do
+-        touch $f
+-    done
+-
+-    oe_runmake
+-}
+-
+-# Workaround for libdir fix for multilib
+-do_compile() {
+-    cd ${LLVM_BUILD_DIR}
+-
+-    # Fix libdir for multilib
+-    sed -i 's:(PROJ_prefix)${base_libdir}:(PROJ_prefix)/${baselib}:g' Ma=
+kefile.config
+-
+-    oe_runmake \
+-        AR=3D"${BUILD_AR}" \
+-        CC=3D"${BUILD_CC}" \
+-        CFLAGS=3D"${BUILD_CFLAGS}" \
+-        CXX=3D"${BUILD_CXX}" \
+-        CXXFLAGS=3D"${BUILD_CXXFLAGS}" \
+-        CPP=3D"${BUILD_CPP}" \
+-        CPPFLAGS=3D"${BUILD_CPPFLAGS}" \
+-        NM=3D"${BUILD_NM}" \
+-        RANLIB=3D"${BUILD_RANLIB}" \
+-        PATH=3D"${STAGING_BINDIR_NATIVE}:$PATH" \
+-        cross-compile-build-tools
+-    oe_runmake
+-}
+-
+-do_install:append:class-target() {
+-    for b in ${D}${bindir}/${LLVM_DIR}/${HOST_SYS}-clang*; do
+-        if [ ! -L ${b} ]; then
+-            mv ${b} ${D}${bindir}/`echo "${b}" | sed -e 's|${D}${bindir}=
+/${LLVM_DIR}/${HOST_SYS}-||g'`
+-        fi
+-    done
+-}
+-
+-do_install:class-native() {
+-    cd ${LLVM_BUILD_DIR}
+-    oe_runmake DESTDIR=3D${LLVM_INSTALL_DIR} install
+-
+-    mv ${LLVM_INSTALL_DIR}${bindir}/${HOST_SYS}-llvm-config ${LLVM_INSTA=
+LL_DIR}/llvm-config${PV}-ti
+-
+-    install -d ${D}${bindir}
+-    for b in ${LLVM_INSTALL_DIR}${bindir}/${HOST_SYS}-clang*; do
+-        if [ ! -L ${b} ]; then
+-            mv ${b} ${D}${bindir}/`echo "${b}" | sed -e 's|${LLVM_INSTAL=
+L_DIR}${bindir}/${HOST_SYS}-||g'`
+-        fi
+-    done
+-
+-    install -d ${D}${bindir}/${LLVM_DIR}
+-    mv ${LLVM_INSTALL_DIR}${bindir}/* ${D}${bindir}/${LLVM_DIR}/
+-
+-    install -d ${D}${includedir}/${LLVM_DIR}
+-    mv ${LLVM_INSTALL_DIR}${includedir}/* ${D}${includedir}/${LLVM_DIR}/
+-
+-    install -d ${D}${libdir}/${LLVM_DIR}
+-    mv ${LLVM_INSTALL_DIR}${libdir}/* ${D}${libdir}/${LLVM_DIR}/
+-    ln -s ${LLVM_DIR}/libLLVM-${PV}.so ${D}${libdir}/libLLVM-${PV}.so
+-
+-    install -d ${D}${docdir}/${LLVM_DIR}
+-    mv ${LLVM_INSTALL_DIR}${prefix}/docs/llvm/* ${D}${docdir}/${LLVM_DIR=
+}
+-
+-    install -d ${D}${bindir}
+-    install -m 0755 ${LLVM_INSTALL_DIR}/llvm-config${PV}-ti ${D}${bindir=
+}
+-}
+-
+-
+-SYSROOT_PREPROCESS_FUNCS:class-target +=3D "llvm_sysroot_preprocess_targ=
+et"
+-SYSROOT_PREPROCESS_FUNCS:class-nativesdk +=3D "llvm_sysroot_preprocess_t=
+arget"
+-
+-llvm_sysroot_preprocess() {
+-    :
+-}
+-
+-llvm_sysroot_preprocess_target() {
+-    install -d ${SYSROOT_DESTDIR}${bindir_crossscripts}
+-    mv ${LLVM_INSTALL_DIR}/llvm-config-host ${SYSROOT_DESTDIR}${bindir_c=
+rossscripts}/llvm-config${PV}-ti
+-}
+-
+-INSANE_SKIP:${PN} +=3D "installed-vs-shipped"
+-INSANE_SKIP:${MLPREFIX}libllvm${LLVM_RELEASE}-llvm-${LLVM_RELEASE}.0 +=3D=
+ "dev-so"
 -
 -BBCLASSEXTEND =3D "native nativesdk"
--
--INSANE_SKIP:${PN} +=3D "build-deps ldflags already-stripped"
-diff --git a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc b/met=
-a-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-deleted file mode 100644
-index 80eefe9d..00000000
---- a/meta-arago-extras/recipes-ti/tidl-utils/tidl-utils.inc
-+++ /dev/null
-@@ -1,4 +0,0 @@
--SRC_URI =3D "git://git.ti.com/git/tidl/tidl-utils.git;protocol=3Dhttps;b=
-ranch=3Dmaster"
--SRCREV =3D "6a51b2aff1709c13edb3445bdb4698a28fbb2ae7"
--PV =3D "01.01.03.02"
--PR =3D "r1"
 --=20
 2.25.1
 
