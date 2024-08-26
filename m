@@ -2,44 +2,44 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3B71DC54742
-	for <webhook@archiver.kernel.org>; Mon, 26 Aug 2024 19:16:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 43D15C54731
+	for <webhook@archiver.kernel.org>; Mon, 26 Aug 2024 19:16:35 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.60351.1724699783046609352
+ by mx.groups.io with SMTP id smtpd.web10.61255.1724699794066506006
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 26 Aug 2024 12:16:23 -0700
+ Mon, 26 Aug 2024 12:16:34 -0700
 Authentication-Results: mx.groups.io;
  dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 6A93640CB0;
-	Mon, 26 Aug 2024 19:16:22 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6F5BA40CB8;
+	Mon, 26 Aug 2024 19:16:33 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id F_3Gy1UXeb5i; Mon, 26 Aug 2024 19:16:22 +0000 (UTC)
+	with ESMTP id NTROOk9j8TJj; Mon, 26 Aug 2024 19:16:33 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2A36E40CCE;
-	Mon, 26 Aug 2024 19:16:18 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4A0E140CCA;
+	Mon, 26 Aug 2024 19:16:32 +0000 (UTC)
 Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id DE53A16406A;
-	Mon, 26 Aug 2024 15:16:16 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 1925416406A;
+	Mon, 26 Aug 2024 15:16:31 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [master][PATCH 10/16] linalg: deprecate
-Date: Mon, 26 Aug 2024 15:15:59 -0400
-Message-Id: <20240826191605.8190-10-denis@denix.org>
+Subject: [scarthgap][PATCH 10/16] linalg: deprecate
+Date: Mon, 26 Aug 2024 15:16:19 -0400
+Message-Id: <20240826191625.8267-10-denis@denix.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240826191605.8190-1-denis@denix.org>
-References: <20240826191605.8190-1-denis@denix.org>
+In-Reply-To: <20240826191625.8267-1-denis@denix.org>
+References: <20240826191625.8267-1-denis@denix.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <meta-arago@lists.yoctoproject.org>; Mon, 26 Aug 2024 19:16:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15529
+ <meta-arago@lists.yoctoproject.org>; Mon, 26 Aug 2024 19:16:35 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15538
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
@@ -51,12 +51,12 @@ projects on legacy platforms.
 
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- ...001-Makefile-fix-toolchain-variables.patch | 194 ------------------
- ...RALLEL_MAKE-variable-to-overwrite-j8.patch |  66 ------
- .../recipes-ti/linalg/linalg-examples_git.bb  |  34 ---
+ ...001-Makefile-fix-toolchain-variables.patch | 192 ------------------
+ ...RALLEL_MAKE-variable-to-overwrite-j8.patch |  64 ------
+ .../recipes-ti/linalg/linalg-examples_git.bb  |  34 ----
  .../recipes-ti/linalg/linalg.inc              |  56 -----
  .../recipes-ti/linalg/linalg_git.bb           |  25 ---
- 5 files changed, 375 deletions(-)
+ 5 files changed, 371 deletions(-)
  delete mode 100644 meta-arago-extras/recipes-ti/linalg/files/0001-Makefi=
 le-fix-toolchain-variables.patch
  delete mode 100644 meta-arago-extras/recipes-ti/linalg/files/0001-Makefi=
@@ -70,17 +70,15 @@ diff --git a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-fix-=
 toolchain-variables.patch b/meta-arago-extras/recipes-ti/linalg/files/000=
 1-Makefile-fix-toolchain-variables.patch
 deleted file mode 100644
-index df387977..00000000
+index af7c6a2b..00000000
 --- a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-fix-toolcha=
 in-variables.patch
 +++ /dev/null
-@@ -1,194 +0,0 @@
+@@ -1,192 +0,0 @@
 -From a99f267c7dd799cd66f64fa41a3bd7b5c5d6f8a1 Mon Sep 17 00:00:00 2001
 -From: Denys Dmytriyenko <denys@ti.com>
 -Date: Sun, 26 Mar 2017 18:17:06 -0400
 -Subject: [PATCH] Makefile: fix toolchain variables
--
--Upstream-Status: Inappropriate [oe specific]
 -
 -Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ----
@@ -291,17 +289,15 @@ diff --git a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass=
 -ti/linalg/files/0001-Makefile-pass-PARALLEL_MAKE-variable-to-overwrite-j=
 8.patch
 deleted file mode 100644
-index 7d2f1409..00000000
+index dacea7a5..00000000
 --- a/meta-arago-extras/recipes-ti/linalg/files/0001-Makefile-pass-PARALL=
 EL_MAKE-variable-to-overwrite-j8.patch
 +++ /dev/null
-@@ -1,66 +0,0 @@
+@@ -1,64 +0,0 @@
 -From 54378094d58c79a9d5ff6c1cc17d7bfd9c497dab Mon Sep 17 00:00:00 2001
 -From: Denys Dmytriyenko <denys@ti.com>
 -Date: Wed, 29 Mar 2017 13:09:05 -0400
 -Subject: [PATCH] Makefile: pass PARALLEL_MAKE variable to overwrite -j8
--
--Upstream-Status: Inappropriate [oe specific]
 -
 -Signed-off-by: Denys Dmytriyenko <denys@ti.com>
 ----
