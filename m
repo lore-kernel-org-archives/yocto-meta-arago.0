@@ -2,34 +2,34 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A9BDFC5472E
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B86D9C5472F
 	for <webhook@archiver.kernel.org>; Mon, 26 Aug 2024 19:16:45 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.61262.1724699798180826119
+ by mx.groups.io with SMTP id smtpd.web10.61261.1724699797140611969
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 26 Aug 2024 12:16:38 -0700
+ Mon, 26 Aug 2024 12:16:37 -0700
 Authentication-Results: mx.groups.io;
  dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 8B5F040C67;
-	Mon, 26 Aug 2024 19:16:37 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 80CDC40C67;
+	Mon, 26 Aug 2024 19:16:36 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 6Dm9GjxZnZDB; Mon, 26 Aug 2024 19:16:37 +0000 (UTC)
+	with ESMTP id 76U2ptqN3w-y; Mon, 26 Aug 2024 19:16:36 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5D10A40CCD;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 5897540CCC;
 	Mon, 26 Aug 2024 19:16:32 +0000 (UTC)
 Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id 340E916406D;
+	by mail.denix.org (Postfix) with ESMTP id 315C716406C;
 	Mon, 26 Aug 2024 15:16:31 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [scarthgap][PATCH 13/16] openmpacc: deprecate
-Date: Mon, 26 Aug 2024 15:16:22 -0400
-Message-Id: <20240826191625.8267-13-denis@denix.org>
+Subject: [scarthgap][PATCH 12/16] gstreamer1.0-plugins-dsp66: deprecate
+Date: Mon, 26 Aug 2024 15:16:21 -0400
+Message-Id: <20240826191625.8267-12-denis@denix.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240826191625.8267-1-denis@denix.org>
 References: <20240826191625.8267-1-denis@denix.org>
@@ -39,281 +39,303 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Mon, 26 Aug 2024 19:16:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15545
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15544
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
-Remove openmpacc component as deprecated and not maintained.
+Remove gstreamer1.0-plugins-dsp66 component as deprecated and not maintai=
+ned.
+
+This component was offloading processing tasks to DSP using heavily
+modified OpenCL/OpenCV forks of old versions of corresponding upstream
+projects on legacy platforms.
 
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- ...nativesdk-packagegroup-arago-tisdk-host.bb |  1 -
- .../recipes-ti/openmpacc/clacc_git.bb         | 65 ---------------
- .../openmpacc/openmpacc-examples_git.bb       | 79 -------------------
- .../recipes-ti/openmpacc/openmpacc.inc        | 27 -------
- .../recipes-ti/openmpacc/openmpacc_git.bb     | 20 -----
- 5 files changed, 192 deletions(-)
- delete mode 100644 meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
- delete mode 100644 meta-arago-extras/recipes-ti/openmpacc/openmpacc-exam=
-ples_git.bb
- delete mode 100644 meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
- delete mode 100644 meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.=
-bb
+ .../packagegroup-arago-gst-sdk-target.bb      |  5 --
+ .../packagegroups/packagegroup-arago-gst.bb   |  5 --
+ ...-use-of-CPP-CXX-and-other-standard-v.patch | 89 -------------------
+ ...e.ac-stop-using-export-symbols-regex.patch | 30 -------
+ .../gstreamer1.0-plugins-dsp66_git.bb         | 50 -----------
+ 5 files changed, 179 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/g=
+streamer1.0-plugins-dsp66/0001-Makefile-correct-use-of-CPP-CXX-and-other-=
+standard-v.patch
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/g=
+streamer1.0-plugins-dsp66/0001-configure.ac-stop-using-export-symbols-reg=
+ex.patch
+ delete mode 100644 meta-arago-extras/recipes-multimedia/gst-plugins-ti/g=
+streamer1.0-plugins-dsp66_git.bb
 
-diff --git a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packa=
-gegroup-arago-tisdk-host.bb b/meta-arago-extras/recipes-core/packagegroup=
-s/nativesdk-packagegroup-arago-tisdk-host.bb
-index ed29b6c4..ccc8d380 100644
---- a/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup=
--arago-tisdk-host.bb
-+++ b/meta-arago-extras/recipes-core/packagegroups/nativesdk-packagegroup=
--arago-tisdk-host.bb
-@@ -11,7 +11,6 @@ EXTRA_TI_TOOLS =3D " \
-     nativesdk-ti-cgt6x \
-     nativesdk-ti-cgt-pru \
-     nativesdk-clocl \
--    ${@oe.utils.all_distro_features(d, "opencl openmp", "nativesdk-clacc=
-")} \
-     nativesdk-open62541-examples \
-     nativesdk-open62541-tests \
-     nativesdk-gcc-arm-baremetal \
-diff --git a/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb b/meta-a=
-rago-extras/recipes-ti/openmpacc/clacc_git.bb
-deleted file mode 100644
-index f56d65cc..00000000
---- a/meta-arago-extras/recipes-ti/openmpacc/clacc_git.bb
-+++ /dev/null
-@@ -1,65 +0,0 @@
--SUMMARY =3D "TI OpenMP-Acc C compiler"
--
--include openmpacc.inc
--
--PR =3D "${INC_PR}.0"
--
--DEPENDS =3D "boost elfutils perl-native"
--RDEPENDS:${PN} +=3D "clocl"
--
--S =3D "${WORKDIR}/git/host"
--
--TARGET:class-target =3D "clacc_arm"
--TARGET:class-native =3D "clacc_x86"
--TARGET:class-nativesdk =3D "clacc_x86"
--
--export LINUX_DEVKIT_ROOT =3D "${STAGING_DIR_HOST}"
--export X86_HOST_ROOT =3D "${STAGING_DIR_HOST}"
--
--PARALLEL_MAKE =3D ""
--
--# The variables CLACC_CC and CLACC_CXX are used to point clacc to set it=
-s
--# host_cc and host_link_cc variables which were previously hardcoded in =
-clacc.h.
--# This adds support for different toolchain configurations to build clac=
-c by
--# passing in the compiler names at the build stage and removes correspon=
-ding
--# string replacement requirements in yocto recipes.
--python __anonymous() {
--    cc_name =3D ""
--    cxx_name =3D ""
--    if d.getVar("TOOLCHAIN_PREFIX"):
--        cc_name =3D d.getVar("TOOLCHAIN_PREFIX") + "gcc"
--        cxx_name =3D d.getVar("TOOLCHAIN_PREFIX") + "g++"
--    else:
--        cc_name =3D d.getVar("TARGET_PREFIX") + "gcc"
--        cxx_name =3D d.getVar("TARGET_PREFIX") + "g++"
--
--    # Convert to upper case to workaround GCC preprocessor bug where the=
- word
--    # 'linux' is defined to be 1. This results in arm-linux-gnueabihf- b=
-eing
--    # stringized to arm-1-gnueabihf- by the GCC preprocessor. To workaro=
-und this
--    # bug, convert the names to upper case and send through. Clacc will =
-convert
--    # to lower case before usage.
--    d.setVar("CLACC_CC_NAME", cc_name.upper())
--    d.setVar("CLACC_CXX_NAME", cxx_name.upper())
--}
--
--
--EXTRA_OEMAKE =3D " -C ${S}/clacc \
--                  ${TARGET} \
--                  CXX=3D"${CXX}" \
--                  CLACC_CC=3D"${CLACC_CC_NAME}" \
--                  CLACC_CXX=3D"${CLACC_CXX_NAME}" \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
+ago-gst-sdk-target.bb b/meta-arago-distro/recipes-core/packagegroups/pack=
+agegroup-arago-gst-sdk-target.bb
+index 845cc7ff..fd749711 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst=
+-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst=
+-sdk-target.bb
+@@ -14,13 +14,8 @@ GSTREAMER_DEPS =3D " \
+     gstreamer1.0-libav-dev \
+ "
+=20
+-GSTREAMER_DSP =3D " \
+-    ${@['','gstreamer1.0-plugins-dsp66-dev'][oe.utils.all_distro_feature=
+s(d, 'opencl', True, False) and bb.utils.contains('MACHINE_FEATURES', 'ds=
+p', True, False, d)]} \
 -"
 -
--do_compile() {
--    oe_runmake
--}
+ #    gstreamer1.0-plugins-hevc-dev=20
+ GSTREAMER_DEPS:append:dra7xx =3D " \
+-    ${GSTREAMER_DSP} \
+ "
+=20
+ RDEPENDS:${PN} =3D " \
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
+ago-gst.bb b/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
+ago-gst.bb
+index e8a639bd..3bc3bfc1 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst=
+.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-gst=
+.bb
+@@ -17,13 +17,8 @@ GSTREAMER_DEPS =3D " \
+     gstreamer1.0-libav \
+ "
+=20
+-GSTREAMER_DSP =3D " \
+-    ${@['','gstreamer1.0-plugins-dsp66'][oe.utils.all_distro_features(d,=
+ 'opencl', True, False) and bb.utils.contains('MACHINE_FEATURES', 'dsp', =
+True, False, d)]} \
+-"
 -
--do_install() {
--    install -d ${D}${bindir}
--    install -m 755 clacc/${TARGET} ${D}${bindir}/clacc
--
--    install -d ${D}${mandir}/man1
--    install -m 644 clacc/clacc.1 ${D}${mandir}/man1
--}
--
--BBCLASSEXTEND =3D "native nativesdk"
-diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_gi=
-t.bb b/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
+ #    gstreamer1.0-plugins-hevc=20
+ GSTREAMER_DEPS:append:dra7xx =3D " \
+-    ${GSTREAMER_DSP} \
+ "
+=20
+ GSTREAMER_ACCEL_MM =3D ""
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreame=
+r1.0-plugins-dsp66/0001-Makefile-correct-use-of-CPP-CXX-and-other-standar=
+d-v.patch b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer=
+1.0-plugins-dsp66/0001-Makefile-correct-use-of-CPP-CXX-and-other-standard=
+-v.patch
 deleted file mode 100644
-index 260daf03..00000000
---- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc-examples_git.bb
+index 3c913ed4..00000000
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-pl=
+ugins-dsp66/0001-Makefile-correct-use-of-CPP-CXX-and-other-standard-v.pat=
+ch
 +++ /dev/null
-@@ -1,79 +0,0 @@
--SUMMARY =3D "TI OpenMP-Acc example applications"
+@@ -1,89 +0,0 @@
+-From 145964aa34bc2cbf1499de6e14de80a7c2d7e935 Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Sun, 26 Mar 2017 15:12:44 -0400
+-Subject: [PATCH] Makefile: correct use of CPP/CXX and other standard var=
+iables
 -
--include openmpacc.inc
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- src/kernels/make.inc         | 16 +++++++---------
+- src/kernels/oclconv/Makefile |  7 +++----
+- 2 files changed, 10 insertions(+), 13 deletions(-)
 -
--PR =3D "${INC_PR}.1"
+-diff --git a/src/kernels/make.inc b/src/kernels/make.inc
+-index 797e64b..f1475a3 100644
+---- a/src/kernels/make.inc
+-+++ b/src/kernels/make.inc
+-@@ -4,7 +4,6 @@ DSP_INCLUDE +=3D -I$(TARGET_ROOTDIR)/usr/share/ti/opencl
+- TI_IMGLIB_DIR=3D${TARGET_ROOTDIR}/usr/share/ti/ti-imglib-c66x-tree
+- TI_VLIB_DIR=3D${TARGET_ROOTDIR}/usr/share/ti/ti-vlib-c66x-tree
+-=20
+--CPP   =3D g++=20
+- CL6X  =3D cl6x -mv6600 --abi=3Deabi $(DSP_INCLUDE)
+- CLOCL =3D clocl
+-=20
+-@@ -16,9 +15,9 @@ UNAME_M :=3D$(shell uname -m)
+- # If TI_OCL_INSTALL is set, setup make from that location
+- # ---------------------------------------------------------------------=
+-------
+- ifneq ($(TI_OCL_INSTALL),)
+--    CPP        =3D g++
+--    CPP_FLAGS +=3D -I$(TI_OCL_INSTALL)/usr/include
+--    LD_FLAGS  +=3D -L$(TI_OCL_INSTALL)/usr/lib=20
+-+    CXX        =3D g++
+-+    CXXFLAGS +=3D -I$(TI_OCL_INSTALL)/usr/include
+-+    LDFLAGS  +=3D -L$(TI_OCL_INSTALL)/usr/lib
+-     LIBS      +=3D -lbfd
+-=20
+- # ---------------------------------------------------------------------=
+-------
+-@@ -38,20 +37,19 @@ else ifneq (,$(findstring 86, $(UNAME_M)))
+-=20
+-     # gcc ARM cross compiler will not, by default, search the host's
+-     # /usr/include.  Explicitly specify here to find dependent vendor h=
+eaders
+--    cross: override CPP =3D arm-linux-gnueabihf-g++=20
+--    cross: CPP_FLAGS +=3D -I$(TARGET_ROOTDIR)/usr/include -idirafter /u=
+sr/include
+-+    cross: CXXFLAGS +=3D -I$(TARGET_ROOTDIR)/usr/include -idirafter /us=
+r/include
+-=20
+-     # If cross-compilineg, provide path to dependent ARM libraries on t=
+he=20
+-     # target filesystem
+--    cross: LD_FLAGS =3D -L$(TARGET_ROOTDIR)/lib -L$(TARGET_ROOTDIR)/usr=
+/lib -Wl,-rpath-link,$(TARGET_ROOTDIR)/lib -Wl,-rpath-link,$(TARGET_ROOTD=
+IR)/usr/lib=20
+-+    cross: LDFLAGS =3D -L$(TARGET_ROOTDIR)/lib -L$(TARGET_ROOTDIR)/usr/=
+lib -Wl,-rpath-link,$(TARGET_ROOTDIR)/lib -Wl,-rpath-link,$(TARGET_ROOTDI=
+R)/usr/lib
+- endif
+-=20
+- %.o: %.cpp
+--	@$(CPP) -c $(CPP_FLAGS) $<
+-+	@$(CXX) -c $(CXXFLAGS) $<
+- 	@echo Compiling $<
+-=20
+- %.o: %.c
+--	@$(CPP) -c $(CPP_FLAGS) $<
+-+	@$(CXX) -c $(CXXFLAGS) $<
+- 	@echo Compiling $<
+-=20
+- %.obj: %.c
+-diff --git a/src/kernels/oclconv/Makefile b/src/kernels/oclconv/Makefile
+-index e271670..c3774f8 100644
+---- a/src/kernels/oclconv/Makefile
+-+++ b/src/kernels/oclconv/Makefile
+-@@ -1,12 +1,12 @@
+- EXE         =3D liboclconv.so
+--CPP_FLAGS   =3D -O3 -shared -fPIC -L.
+-+CXXFLAGS   =3D -O3 -shared -fPIC -L.
+- CLOCL_FLAGS =3D=20
+- include ../make.inc
+-=20
+- all: ${EXE}
+-=20
+--$(EXE): oclconv.o=20
+--	@$(CPP) $(CPP_FLAGS) oclconv.o $(LD_FLAGS) $(LIBS) -o $@
+-+$(EXE): oclconv.o
+-+	@$(CXX) $(CXXFLAGS) oclconv.o $(LDFLAGS) $(LIBS) -o $@
+-=20
+- oclconv.o: conv.dsp_h
+-=20
+-@@ -16,4 +16,3 @@ conv.dsp_h: conv.cl ${TI_IMGLIB_DIR}/lib/imglib.ae66 $=
+{TI_VLIB_DIR}/packages/ti/
+-=20
+- install:
+- 	  mkdir -p  ${DESTDIR}/usr/lib && install -m 755 ${EXE} ${DESTDIR}/usr=
+/lib/.
+--
+---=20
+-2.7.4
 -
--DEPENDS =3D "openmpacc clacc-native clocl-native ti-cgt6x-native"
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreame=
+r1.0-plugins-dsp66/0001-configure.ac-stop-using-export-symbols-regex.patc=
+h b/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-plug=
+ins-dsp66/0001-configure.ac-stop-using-export-symbols-regex.patch
+deleted file mode 100644
+index c9721b70..00000000
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-pl=
+ugins-dsp66/0001-configure.ac-stop-using-export-symbols-regex.patch
++++ /dev/null
+@@ -1,30 +0,0 @@
+-From 0fcda9d85c96d5c39dffe21d3bdf01a038b911c9 Mon Sep 17 00:00:00 2001
+-From: Denys Dmytriyenko <denys@ti.com>
+-Date: Tue, 22 Jan 2019 20:39:15 -0500
+-Subject: [PATCH] configure.ac: stop using -export-symbols-regex
+-
+-The old regex is no longer correct for GStreamer 1.14.
+-
+-Bug-Debian: https://bugs.debian.org/894642
+-
+-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+----
+- configure.ac | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/configure.ac b/configure.ac
+-index fee3161..8159c60 100644
+---- a/configure.ac
+-+++ b/configure.ac
+-@@ -81,7 +81,7 @@ fi
+- AC_SUBST(plugindir)
+-=20
+- dnl set proper LDFLAGS for plugins
+--GST_PLUGIN_LDFLAGS=3D"-module -avoid-version -export-symbols-regex '^[_=
+]*gst_plugin_desc\$\$' $GST_ALL_LDFLAGS"
+-+GST_PLUGIN_LDFLAGS=3D"-module -avoid-version $GST_ALL_LDFLAGS"
+- AC_SUBST(GST_PLUGIN_LDFLAGS)
+-=20
+- AC_CONFIG_FILES([Makefile src/Makefile])
+---=20
+-2.7.4
+-
+diff --git a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreame=
+r1.0-plugins-dsp66_git.bb b/meta-arago-extras/recipes-multimedia/gst-plug=
+ins-ti/gstreamer1.0-plugins-dsp66_git.bb
+deleted file mode 100644
+index d92efb9b..00000000
+--- a/meta-arago-extras/recipes-multimedia/gst-plugins-ti/gstreamer1.0-pl=
+ugins-dsp66_git.bb
++++ /dev/null
+@@ -1,50 +0,0 @@
+-DESCRIPTION =3D "GStreamer elements to use the TI DSP C66 in multimedia =
+applications"
+-HOMEPAGE =3D "https://git.ti.com/processor-sdk/gst-plugin-dsp66"
+-LICENSE =3D "BSD-3-Clause"
+-LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D2827f94fc0a1adeff4d9702e97ce2=
+979"
+-
+-SRC_URI =3D "git://git.ti.com/git/processor-sdk/gst-plugin-dsp66.git;pro=
+tocol=3Dhttps;branch=3Dmaster \
+-	file://0001-Makefile-correct-use-of-CPP-CXX-and-other-standard-v.patch =
+\
+-	file://0001-configure.ac-stop-using-export-symbols-regex.patch \
+-"
+-SRCREV =3D "0abedafadbed693592804f23482a9447d81b2dbf"
+-
+-S =3D "${WORKDIR}/git"
+-
+-COMPATIBLE_MACHINE =3D "dra7xx"
+-
+-DEPENDS =3D "gstreamer1.0 gstreamer1.0-plugins-base opencl ti-cgt6x-nati=
+ve clocl-native imglib-c66x vlib-c66x gettext-native"
+-
+-inherit autotools-brokensep pkgconfig gettext
+-inherit features_check
+-
+-REQUIRED_MACHINE_FEATURES =3D "dsp"
+-REQUIRED_DISTRO_FEATURES =3D "opencl"
+-
+-PR =3D "r1"
+-
 -RDEPENDS:${PN} +=3D "opencl-runtime"
--
--S =3D "${WORKDIR}/git/openmpacc-examples-src"
--
--OMPACC_EXAMPLE_LIST =3D " target_update \
--                        vecadd \
--                        printf_debug \
--                        edmamgr \
--                        dspheap \
--                        target_orphan_call \
--                        target_implicit_map \
--                        vecadd_t \
--                        vecadd_complex \
--                        local \
--                        null \
--                        dsplib_fft \
--                        sub_section \
--"
--
--python do_unpack:append() {
--    import shutil
--
--    git_dir =3D d.expand("${WORKDIR}/git/examples")
--    s =3D d.getVar("S")
--
--    os.makedirs(s)
--    shutil.copy(os.path.join(git_dir,"Makefile"),s)
--    shutil.copy(os.path.join(git_dir,"make.inc"),s)
--    for example in d.getVar("OMPACC_EXAMPLE_LIST").split():
--        shutil.copytree(os.path.join(git_dir,example), os.path.join(s,ex=
-ample))
--}
 -
 -EXTRA_OEMAKE =3D " TARGET_ROOTDIR=3D${STAGING_DIR_HOST} \
 -                 TI_OCL_CGT_INSTALL=3D${STAGING_DIR_NATIVE}/usr/share/ti=
 /cgt-c6x \
 -"
 -
--MKFILELIST =3D "vecadd/Makefile vecadd_complex/Makefile dsplib_fft/Makef=
-ile \
--null/Makefile dspheap/Makefile target_implicit_map/Makefile printf_debug=
-/Makefile \
--edmamgr/Makefile vecadd_t/Makefile target_orphan_call/Makefile target_up=
-date/Makefile \
--sub_section/Makefile local/Makefile"
--
 -do_configure() {
--    for f in ${MKFILELIST}; do
--        sed "s|-fopenmp|-fopenmp ${TUNE_CCARGS}${TOOLCHAIN_OPTIONS}|g" -=
-i $f
--    done
+-	cd ${S}
+-	chmod +x autogen.sh
+-	./autogen.sh --host=3Darm-linux --with-libtool-sysroot=3D${STAGING_DIR_=
+TARGET} --prefix=3D/usr
 -}
 -
--do_compile() {
--    oe_runmake
--}
+-EXTRA_OECONF +=3D "--enable-maintainer-mode"
+-EXTRA_OEMAKE +=3D "'ERROR_CFLAGS=3D-Wno-deprecated-declarations'"
 -
--do_install() {
--    install -d ${D}${datadir}/ti/examples/openmpacc
+-FILES:${PN} +=3D "${libdir}/gstreamer-1.0/*.so"
+-FILES:${PN}-dbg +=3D "${libdir}/gstreamer-1.0/.debug"
+-FILES:${PN}-dev +=3D "${libdir}/gstreamer-1.0/*.la"
 -
--    install -m 644 ${B}/Makefile ${D}${datadir}/ti/examples/openmpacc
--    install -m 644 ${B}/make.inc ${D}${datadir}/ti/examples/openmpacc
+-FILES:${PN} +=3D "${libdir}/*.so"
+-FILES:${PN}-dbg +=3D "${libdir}/.debug"
+-FILES:${PN}-dev +=3D "${libdir}/*.la"
+-FILES_SOLIBSDEV =3D ""
 -
--    for ompacc_example in ${OMPACC_EXAMPLE_LIST}; do
--        install -d ${D}${datadir}/ti/examples/openmpacc/${ompacc_example=
-}
--        cp -rv ${B}/${ompacc_example}/* ${D}${datadir}/ti/examples/openm=
-pacc/${ompacc_example}
--    done
--}
--
--FILES:${PN} +=3D "\
--    ${datadir}/ti/examples/openmpacc \
--"
--
--FILES:${PN}-dbg +=3D "\
--    ${datadir}/ti/examples/openmpacc/*/.debug \
--"
--
--INSANE_SKIP:${PN} =3D "arch ldflags textrel staticdev"
-diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc b/meta-=
-arago-extras/recipes-ti/openmpacc/openmpacc.inc
-deleted file mode 100644
-index a54fa48d..00000000
---- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc.inc
-+++ /dev/null
-@@ -1,27 +0,0 @@
--SUMMARY =3D "TI OpenMP Accelerator Model"
--HOMEPAGE =3D "http://downloads.ti.com/mctools/esd/docs/openmpacc/"
--LICENSE =3D "BSD-3-Clause"
--
--inherit features_check
--
--REQUIRED_MACHINE_FEATURES =3D "dsp"
--REQUIRED_MACHINE_FEATURES:class-native =3D ""
--REQUIRED_MACHINE_FEATURES:class-nativesdk =3D ""
--REQUIRED_DISTRO_FEATURES =3D "opencl openmp"
--
--PV =3D "1.5.6.0"
--INC_PR =3D "r0"
--
--LIC_FILES_CHKSUM =3D "file://../debian/copyright;md5=3Daaa2a0939d0819713=
-2fc382e97b62eb0"
--
--FILESEXTRAPATHS:prepend :=3D "${THISDIR}/openmpacc:"
--
--OMPACC_GIT_URI =3D "git://git.ti.com/git/openmp/ti-openmpacc.git"
--OMPACC_GIT_PROTOCOL =3D "https"
--OMPACC_GIT_BRANCH =3D "master"
--
--OMPACC_SRCREV =3D "7c4e68a0bf73ec193edff9dfc23ea764ae6ad434"
--
--BRANCH =3D "${OMPACC_GIT_BRANCH}"
--SRC_URI =3D "${OMPACC_GIT_URI};protocol=3D${OMPACC_GIT_PROTOCOL};branch=3D=
-${BRANCH}"
--SRCREV =3D "${OMPACC_SRCREV}"
-diff --git a/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb b/me=
-ta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
-deleted file mode 100644
-index 7a18e47e..00000000
---- a/meta-arago-extras/recipes-ti/openmpacc/openmpacc_git.bb
-+++ /dev/null
-@@ -1,20 +0,0 @@
--DESCRIPTION =3D "TI OpenMP-Acc host runtime and development packages"
--
--include openmpacc.inc
--
--PR =3D "${INC_PR}.1"
--
--inherit cmake
--
--DEPENDS =3D "boost boost-native opencl"
--RDEPENDS:${PN} +=3D "opencl-runtime"
--RDEPENDS:${PN}-dev +=3D "clacc"
--
--S =3D "${WORKDIR}/git/host"
--
--export TARGET_ROOTDIR =3D "${STAGING_DIR_HOST}"
--export LINUX_DEVKIT_ROOT =3D "${STAGING_DIR_HOST}"
--
--EXTRA_OECMAKE +=3D "-DVERSION=3D"${PV}" -DBUILD_OUTPUT=3Dlib"
--
--FILES:${PN} +=3D "/usr/share/ti/openmpacc/*"
+-INSANE_SKIP:${PN} =3D "ldflags"
 --=20
 2.25.1
 
