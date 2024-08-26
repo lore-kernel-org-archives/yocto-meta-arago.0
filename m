@@ -2,127 +2,140 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 358DFC5472F
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 891A7C54739
 	for <webhook@archiver.kernel.org>; Mon, 26 Aug 2024 19:16:35 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.61249.1724699792629762804
+ by mx.groups.io with SMTP id smtpd.web10.61250.1724699792744995699
  for <meta-arago@lists.yoctoproject.org>;
  Mon, 26 Aug 2024 12:16:32 -0700
 Authentication-Results: mx.groups.io;
  dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 0508240CC1;
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 20AE840CB0;
 	Mon, 26 Aug 2024 19:16:32 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id q_a07eoZ32a7; Mon, 26 Aug 2024 19:16:32 +0000 (UTC)
+	with ESMTP id ilAyaZoeumUn; Mon, 26 Aug 2024 19:16:32 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E47DB40C67;
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 09C0640CB2;
 	Mon, 26 Aug 2024 19:16:30 +0000 (UTC)
 Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id A77F7164060;
+	by mail.denix.org (Postfix) with ESMTP id BFEE4164063;
 	Mon, 26 Aug 2024 15:16:30 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [scarthgap][PATCH 01/16] ti-analytics: remove
-Date: Mon, 26 Aug 2024 15:16:10 -0400
-Message-Id: <20240826191625.8267-1-denis@denix.org>
+Subject: [scarthgap][PATCH 03/16] qt-opencv-opencl-opengl-multithreaded: deprecate
+Date: Mon, 26 Aug 2024 15:16:12 -0400
+Message-Id: <20240826191625.8267-3-denis@denix.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20240826191625.8267-1-denis@denix.org>
+References: <20240826191625.8267-1-denis@denix.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Mon, 26 Aug 2024 19:16:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15530
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15532
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
-Remove packagegroup that used to build analytics demos and dependencies.
-Those demos have been disabled for a while and are being deprecated -
-remove corresponding packagegroup first for bisectability.
+Old analytics demos haven't been maintained for quite some time, remove.
+
+This demo used to offload processing tasks to DSP using heavily modified
+OpenCL/OpenCV forks of old versions of corresponding upstream projects.
 
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- .../images/tisdk-default-image.bb             |  1 -
- .../packagegroups/ti-analytics.bb             | 27 -------------------
- .../recipes-core/packagegroups/ti-world.bb    |  1 -
- 3 files changed, 29 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-core/packagegroups/ti-analy=
-tics.bb
+ ...-opencv-opencl-opengl-multithreaded_git.bb | 46 -------------------
+ ...group-arago-tisdk-multimedia-sdk-target.bb |  1 -
+ 2 files changed, 47 deletions(-)
+ delete mode 100644 meta-arago-demos/recipes-apps/video-analytics-demo/qt=
+-opencv-opencl-opengl-multithreaded_git.bb
 
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb=
- b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-index c282f9e6..4b5697e5 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-@@ -25,7 +25,6 @@ IMAGE_INSTALL +=3D "\
-     packagegroup-arago-tisdk-addons \
-     packagegroup-arago-tisdk-addons-extra \
-     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-=
-tisdk-hmi','packagegroup-arago-base-tisdk-server-extra',d)} \
--    ti-analytics \
-     ti-demos \
-     ${ARAGO_DEFAULT_IMAGE_EXTRA_INSTALL} \
-     packagegroup-arago-tisdk-sysrepo \
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb=
- b/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
+diff --git a/meta-arago-demos/recipes-apps/video-analytics-demo/qt-opencv=
+-opencl-opengl-multithreaded_git.bb b/meta-arago-demos/recipes-apps/video=
+-analytics-demo/qt-opencv-opencl-opengl-multithreaded_git.bb
 deleted file mode 100644
-index e16e4d51..00000000
---- a/meta-arago-distro/recipes-core/packagegroups/ti-analytics.bb
+index de672e28..00000000
+--- a/meta-arago-demos/recipes-apps/video-analytics-demo/qt-opencv-opencl=
+-opengl-multithreaded_git.bb
 +++ /dev/null
-@@ -1,27 +0,0 @@
--SUMMARY =3D "TI World packagegroup"
+@@ -1,46 +0,0 @@
+-DESCRIPTION =3D "A simple multithreaded OpenCV example application using=
+ the Qt framework"
+-HOMEPAGE =3D "https://github.com/devernay/qt-opencv-multithreaded"
+-SECTION =3D "multimedia"
 -LICENSE =3D "MIT"
+-LIC_FILES_CHKSUM =3D "file://COPYING;md5=3De28b998056a1a513e87be11c5045e=
+85b"
 -
--PACKAGE_ARCH =3D "${MACHINE_ARCH}"
+-inherit features_check
 -
--inherit packagegroup
+-REQUIRED_MACHINE_FEATURES =3D "dsp gpu"
+-REQUIRED_DISTRO_FEATURES =3D "opencv opencl opengl"
 -
--TENSORFLOW_DEMO =3D ""
--#TENSORFLOW_DEMO =3D " \
--#    ${@oe.utils.all_distro_features(d, 'opencv', 'tensorflow-lite-demo'=
-, '')} \
--#"
--#TENSORFLOW_DEMO:dra7xx =3D " \
--#    ${@['','tensorflow-lite-demo'][oe.utils.all_distro_features(d, 'ope=
-ncl opencv', True, False) and bb.utils.contains('MACHINE_FEATURES', 'dsp'=
-, True, False, d)]} \
--#"
+-DEPENDS +=3D "opencv opencl virtual/egl ti-cgt6x-native clocl-native dsp=
+lib-c66x"
 -
--ANALYTICS =3D ""
--#ANALYTICS =3D " \
--#    ${TENSORFLOW_DEMO} \
--#    ${@['','qt-opencv-opencl-opengl-multithreaded'][oe.utils.all_distro=
-_features(d, 'opencv opencl opengl', True, False) and bb.utils.contains('=
-MACHINE_FEATURES', 'gpu dsp', True, False, d)]} \
--#    ${@['','barcode-roi'][oe.utils.all_distro_features(d, 'opencv', Tru=
-e, False) and bb.utils.contains('MACHINE_FEATURES', 'dsp', True, False, d=
-)]} \
--#"
--ANALYTICS:j7 =3D ""
--ANALYTICS:omapl138 =3D ""
+-COMPATIBLE_MACHINE =3D "dra7xx"
 -
--RDEPENDS:${PN} =3D "\
--    ${ANALYTICS} \
--"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb b/m=
-eta-arago-distro/recipes-core/packagegroups/ti-world.bb
-index a70701f9..5db67fdf 100644
---- a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-@@ -56,7 +56,6 @@ RDEPENDS:${PN} =3D "\
-     ${DEVTOOLS} \
-     ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} =
-\
-     packagegroup-arago-misc \
--    ti-analytics \
-     ti-demos \
-     ${PREFERRED_PROVIDER_virtual/docker} \
- "
+-PV =3D "1.3.3"
+-PR =3D "r3"
+-
+-BRANCH =3D "master"
+-SRC_URI =3D "git://git.ti.com/git/apps/qt-opencv-opencl-opengl-multithre=
+aded.git;protocol=3Dhttps;branch=3D${BRANCH}"
+-
+-SRCREV =3D "80051ec8befd921e40cfb74a49234ed045576bbc"
+-
+-S =3D "${WORKDIR}/git"
+-
+-inherit qt5
+-
+-export TARGET_ROOTDIR =3D "${STAGING_DIR_HOST}"
+-export TI_OCL_CGT_INSTALL =3D "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6=
+x"
+-export TI_DSPLIB_DIR =3D "${STAGING_DIR_TARGET}/usr/share/ti/ti-dsplib-c=
+66x-tree"
+-
+-CXXFLAGS:append =3D " -DOCV_NATIVE "
+-
+-do_compile() {
+-    cd ${S}
+-    oe_runmake -f oclMakefile
+-    cd -
+-    oe_runmake
+-}
+-
+-do_install() {
+-    install -d ${D}/usr/bin
+-    install -m 755 qt-opencv-opencl-opengl-multithreaded ${D}/usr/bin/qt=
+-opencv-opencl-opengl-multithreaded
+-}
+-
+-RDEPENDS:${PN} +=3D "opencv opencl-runtime"
+diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
+ago-tisdk-multimedia-sdk-target.bb b/meta-arago-distro/recipes-core/packa=
+gegroups/packagegroup-arago-tisdk-multimedia-sdk-target.bb
+index 62bcc0ea..121af56d 100644
+--- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
+dk-multimedia-sdk-target.bb
++++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
+dk-multimedia-sdk-target.bb
+@@ -13,7 +13,6 @@ BARCODE_PKG =3D ""
+=20
+ MULTIMEDIA =3D ""
+=20
+-#    ${@['','qt-opencv-opencl-opengl-multithreaded-dev'][oe.utils.all_di=
+stro_features(d, 'opencv opencl opengl', True, False) and bb.utils.contai=
+ns('MACHINE_FEATURES', 'gpu dsp', True, False, d)]}
+ MULTIMEDIA:append:dra7xx =3D " \
+     hevc-arm-decoder-dev \
+     hevc-arm-decoder-staticdev \
 --=20
 2.25.1
 
