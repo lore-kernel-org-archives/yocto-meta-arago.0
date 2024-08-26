@@ -2,34 +2,34 @@ Return-Path: <denis@denix.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4A55FC54732
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 57964C5472E
 	for <webhook@archiver.kernel.org>; Mon, 26 Aug 2024 19:16:35 +0000 (UTC)
 Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web11.60352.1724699792720337778
+ by mx.groups.io with SMTP id smtpd.web10.61253.1724699793997838760
  for <meta-arago@lists.yoctoproject.org>;
- Mon, 26 Aug 2024 12:16:32 -0700
+ Mon, 26 Aug 2024 12:16:34 -0700
 Authentication-Results: mx.groups.io;
  dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
 Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 1B9DA40C67;
-	Mon, 26 Aug 2024 19:16:32 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 6000C40CB0;
+	Mon, 26 Aug 2024 19:16:33 +0000 (UTC)
 Received: from mailout4.zoneedit.com ([127.0.0.1])
 	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id CoFdpx8-5jQh; Mon, 26 Aug 2024 19:16:32 +0000 (UTC)
+	with ESMTP id xqWAE_e7F8aY; Mon, 26 Aug 2024 19:16:33 +0000 (UTC)
 Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
 	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id F005340CB0;
-	Mon, 26 Aug 2024 19:16:30 +0000 (UTC)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 4555340CBF;
+	Mon, 26 Aug 2024 19:16:32 +0000 (UTC)
 Received: from thorin.han-sole.ts.net (thorin.denix [192.168.30.9])
-	by mail.denix.org (Postfix) with ESMTP id B410F164061;
-	Mon, 26 Aug 2024 15:16:30 -0400 (EDT)
+	by mail.denix.org (Postfix) with ESMTP id 0C495164069;
+	Mon, 26 Aug 2024 15:16:31 -0400 (EDT)
 From: Denys Dmytriyenko <denis@denix.org>
 To: meta-arago@lists.yoctoproject.org
 Cc: Denys Dmytriyenko <denys@konsulko.com>
-Subject: [scarthgap][PATCH 02/16] packagegroup: remove opencl/openmp packagegroups
-Date: Mon, 26 Aug 2024 15:16:11 -0400
-Message-Id: <20240826191625.8267-2-denis@denix.org>
+Subject: [scarthgap][PATCH 09/16] fftlib: deprecate
+Date: Mon, 26 Aug 2024 15:16:18 -0400
+Message-Id: <20240826191625.8267-9-denis@denix.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20240826191625.8267-1-denis@denix.org>
 References: <20240826191625.8267-1-denis@denix.org>
@@ -39,206 +39,280 @@ List-Id: <meta-arago.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <meta-arago@lists.yoctoproject.org>; Mon, 26 Aug 2024 19:16:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15531
+X-Groupsio-URL: https://lists.yoctoproject.org/g/meta-arago/message/15536
 
 From: Denys Dmytriyenko <denys@konsulko.com>
 
-These packagegroups used to group together components for OpenCL/MP suppo=
-rt
-and related other libraries, which are being deprecated. Remove them firs=
-t
-for bisectability.
+Remove fftlib component as deprecated and not maintained.
+
+This component was offloading processing tasks to DSP using heavily
+modified OpenCL/OpenCV forks of old versions of corresponding upstream
+projects on legacy platforms.
 
 Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
 ---
- .../images/tisdk-default-image.bb             |  7 -----
- ...kagegroup-arago-tisdk-opencl-sdk-target.bb | 22 -------------
- .../packagegroup-arago-tisdk-opencl.bb        | 31 -------------------
- ...ckagegroup-arago-toolchain-tisdk-target.bb |  1 -
- .../recipes-core/packagegroups/ti-opencl.bb   | 12 -------
- .../recipes-core/packagegroups/ti-world.bb    |  6 ----
- 6 files changed, 79 deletions(-)
- delete mode 100644 meta-arago-distro/recipes-core/packagegroups/packageg=
-roup-arago-tisdk-opencl-sdk-target.bb
- delete mode 100644 meta-arago-distro/recipes-core/packagegroups/packageg=
-roup-arago-tisdk-opencl.bb
- delete mode 100644 meta-arago-distro/recipes-core/packagegroups/ti-openc=
-l.bb
+ .../recipes-ti/fftlib/fftlib.inc              |  17 ---
+ .../recipes-ti/fftlib/fftlib_git.bb           | 103 ------------------
+ .../recipes-ti/fftlib/ti-fftw-examples_git.bb |  25 -----
+ .../recipes-ti/fftlib/ti-fftw_git.bb          |  63 -----------
+ 4 files changed, 208 deletions(-)
+ delete mode 100644 meta-arago-extras/recipes-ti/fftlib/fftlib.inc
+ delete mode 100644 meta-arago-extras/recipes-ti/fftlib/fftlib_git.bb
+ delete mode 100644 meta-arago-extras/recipes-ti/fftlib/ti-fftw-examples_=
+git.bb
+ delete mode 100644 meta-arago-extras/recipes-ti/fftlib/ti-fftw_git.bb
 
-diff --git a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb=
- b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-index 4b5697e5..faae53d3 100644
---- a/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-+++ b/meta-arago-distro/recipes-core/images/tisdk-default-image.bb
-@@ -18,7 +18,6 @@ IMAGE_INSTALL +=3D "\
-     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-=
-tisdk-graphics','',d)} \
-     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-=
-tisdk-gtk','',d)} \
-     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-=
-tisdk-qte','',d)} \
--    ${@['','packagegroup-arago-tisdk-opencl'][oe.utils.all_distro_featur=
-es(d, 'opencl', True, False) and bb.utils.contains('MACHINE_FEATURES', 'd=
-sp', True, False, d)]} \
-     packagegroup-arago-tisdk-connectivity \
-     packagegroup-arago-tisdk-crypto \
-     packagegroup-arago-tisdk-multimedia \
-@@ -54,13 +53,7 @@ DEVTOOLS =3D " \
-     dtc \
- "
-=20
--OPENCL =3D " \
--    ${@bb.utils.contains('MACHINE_FEATURES','dsp','ti-opencl','',d)} \
--    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-ti=
-sdk-opencl-extra','',d)} \
--"
--
- IMAGE_INSTALL +=3D "\
--    ${@oe.utils.all_distro_features(d, "opencl", "${OPENCL}")} \
-     ${@bb.utils.contains("BBFILE_COLLECTIONS", "meta-python2", "${PYTHON=
-2APPS}", "", d)} \
-     ${DEVTOOLS} \
-     ${@bb.utils.contains('TUNE_FEATURES', 'armv7a', 'valgrind', '', d)} =
-\
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
-ago-tisdk-opencl-sdk-target.bb b/meta-arago-distro/recipes-core/packagegr=
-oups/packagegroup-arago-tisdk-opencl-sdk-target.bb
+diff --git a/meta-arago-extras/recipes-ti/fftlib/fftlib.inc b/meta-arago-=
+extras/recipes-ti/fftlib/fftlib.inc
 deleted file mode 100644
-index b660fcb4..00000000
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
-dk-opencl-sdk-target.bb
+index 49777a53..00000000
+--- a/meta-arago-extras/recipes-ti/fftlib/fftlib.inc
 +++ /dev/null
-@@ -1,22 +0,0 @@
--DESCRIPTION =3D "Task to install headers and libraries of OpenCL/MP and =
-related components"
--LICENSE =3D "MIT"
--PR =3D "r2"
+@@ -1,17 +0,0 @@
+-PV =3D "3_1_0_0"
+-INC_PR =3D "r4"
 -
+-require recipes-ti/includes/arago-paths.inc
+-
+-
+-FFTLIB_GIT_URI =3D "git://git.ti.com/git/fftlib/fftlib"
+-FFTLIB_GIT_PROTOCOL =3D "https"
+-FFTLIB_GIT_BRANCH =3D "master"
+-FFTLIB_GIT_DESTSUFFIX =3D "${WORKDIR}/git"
+-
+-FFTLIB_SRCREV =3D "e05426894c73af940ccc26880ebd7f2c9ce21880"
+-
+-BRANCH =3D "${FFTLIB_GIT_BRANCH}"
+-SRC_URI =3D "${FFTLIB_GIT_URI};destsuffix=3D${FFTLIB_GIT_DESTSUFFIX};pro=
+tocol=3D${FFTLIB_GIT_PROTOCOL};branch=3D${BRANCH}"
+-
+-SRCREV =3D "${FFTLIB_SRCREV}"
+diff --git a/meta-arago-extras/recipes-ti/fftlib/fftlib_git.bb b/meta-ara=
+go-extras/recipes-ti/fftlib/fftlib_git.bb
+deleted file mode 100644
+index 3f7ea874..00000000
+--- a/meta-arago-extras/recipes-ti/fftlib/fftlib_git.bb
++++ /dev/null
+@@ -1,103 +0,0 @@
+-SUMMARY =3D "TI FFTLIB"
+-HOMEPAGE =3D "http://git.ti.com/fftlib/fftlib"
+-LICENSE =3D "BSD-3-Clause"
+-
+-LIC_FILES_CHKSUM =3D "file://ti/fftlib/docs/manifest/manifest.xml.xdt;md=
+5=3D178402e86abc15ff3bac0d4fc57e5463"
+-
+-include fftlib.inc
+-
+-inherit features_check
+-
+-REQUIRED_MACHINE_FEATURES =3D "dsp"
+-REQUIRED_DISTRO_FEATURES =3D "openmp"
+-
+-PR =3D "${INC_PR}.0"
+-
+-DEPENDS =3D "common-csl-ip-rtos libarch ti-xdctools-native doxygen-nativ=
+e ti-cgt6x-native ti-xdais libulm dsplib-c66x php libxslt-native libxslt =
+openmp-rtos"
+-
+-COMPATIBLE_MACHINE =3D "dra7xx"
+-
+-TARGET:dra7xx =3D "SOC_AM572x"
 -PACKAGE_ARCH =3D "${MACHINE_ARCH}"
 -
--inherit packagegroup features_check
+-S =3D "${WORKDIR}/git"
 -
+-export FFTLIB_ROOT=3D"${S}"
+-export DOXYGEN_DIR=3D"${DOXYGEN_INSTALL_DIR}"
+-
+-export TI_OCL_INSTALL_DIR =3D "${STAGING_DIR_TARGET}/usr/share/ti/opencl=
+"
+-export CGTROOT =3D "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
+-export TI_OCL_CGT_INSTALL =3D "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6=
+x"
+-export XDC_DIR =3D "${XDC_INSTALL_DIR}"
+-export BIOS_DIR =3D "${SYSBIOS_INSTALL_DIR}"
+-export XDAIS_DIR =3D "${XDAIS_INSTALL_DIR}"
+-export FC_DIR =3D "${FC_INSTALL_DIR}"
+-export PDK_DIR =3D "${PDK_INSTALL_DIR}"
+-export OMP_DIR =3D"${OMP_INSTALL_DIR}"
+-export IPC_DIR =3D "${IPC_INSTALL_DIR}/packages"
+-export LIBARCH_DIR =3D "${LIBARCH_INSTALL_DIR}"
+-export TARGET_ROOTDIR =3D"${STAGING_DIR_TARGET}"
+-
+-export X86_LLVM_DIR =3D "${STAGING_DIR_NATIVE}/usr"
+-export C6636_PDK_DIR =3D"${PDK_INSTALL_DIR}/packages"
+-export XDCCGROOT =3D "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
+-export LINUX_DEVKIT_ROOT =3D "${STAGING_DIR_TARGET}"
+-
+-export PDK_INSTALL_DIR
+-export FC_INSTALL_DIR
+-export IPC_INSTALL_DIR
+-export XDC_INSTALL_DIR
+-export XDAIS_INSTALL_DIR
+-
+-export OPENMP_INSTALL_DIR=3D"${OMP_INSTALL_DIR}"
+-export BIOS_INSTALL_DIR=3D"${SYSBIOS_INSTALL_DIR}"
+-export EDMA_INSTALL_DIR=3D"${EDMA3_LLD_INSTALL_DIR}"
+-export C66CODEGENTOOL=3D"${TI_OCL_CGT_INSTALL}"
+-export C64CODEGENTOOL=3D"${TI_OCL_CGT_INSTALL}"
+-export TI_DOXYGEN_TEMPLATES=3D"${DOXYGEN_DIR}/TI_Templates/10-01-2007"
+-export XDCBUILDCFG=3D"${FFTLIB_ROOT}/ti/mas/swtools/config.bld"
+-export FFTLIB_INSTALL_DIR=3D"${FFTLIB_ROOT}"
+-export IPC_DIR=3D"{IPC_INSTALL_DIR}"
+-
+-XDCPATH.=3D"${XDCCGROOT}/include;"
+-XDCPATH.=3D"${XDAIS_INSTALL_DIR}/packages;"
+-XDCPATH.=3D"${XDC_INSTALL_DIR}/packages;"
+-XDCPATH.=3D"${FFTLIB_INSTALL_DIR};"
+-XDCPATH.=3D"${FC_INSTALL_DIR}/packages;"
+-XDCPATH.=3D"${OMP_INSTALL_DIR}/packages;"
+-XDCPATH.=3D"${PDK_INSTALL_DIR}/packages;"
+-XDCPATH.=3D"${BIOS_INSTALL_DIR}/packages;"
+-XDCPATH.=3D"${EDMA3_LLD_INSTALL_DIR}/packages;"
+-XDCPATH.=3D"${DSPLIB_C66_INSTALL_DIR}/packages;"
+-XDCPATH.=3D"${IPC_INSTALL_DIR}/packages;"
+-XDCPATH.=3D"${LIBARCH_INSTALL_DIR}/packages;"
+-XDCPATH.=3D"${TI_OCL_INSTALL_DIR};"
+-
+-XDCPATH.=3D"${FFTLIB_ROOT}"
+-
+-export XDCPATH
+-export PATH :=3D "${XDC_INSTALL_DIR}:${PATH}"
+-
+-
+-do_compile() {
+-   echo "Building the FFTLIB.zip"
+-   cd ${FFTLIB_ROOT}/ti/fftlib
+-   xdc XDCARGS=3D"${TARGET} c66x armplusdsp bundle" XDCOPTIONS=3D"-v"
+-}
+-
+-do_install() {
+-
+-   cd ${FFTLIB_ROOT}/ti/fftlib
+-   install -d ${D}${FFTLIB_INSTALL_DIR_RECIPE}
+-
+-   find -name "fftlib*.zip" -exec unzip -o {} -d ${D}${FFTLIB_INSTALL_DI=
+R_RECIPE} \;
+-   mv ${D}${FFTLIB_INSTALL_DIR_RECIPE}/fftlib/* ${D}${FFTLIB_INSTALL_DIR=
+_RECIPE}
+-   rm -r ${D}${FFTLIB_INSTALL_DIR_RECIPE}/fftlib
+-
+-}
+-
+-FILES:${PN}-dev +=3D "${FFTLIB_INSTALL_DIR_RECIPE}"
+-
+-# skip checking binary against ARM architecture
+-INSANE_SKIP:${PN}-dev =3D "arch"
+-ALLOW_EMPTY:${PN} =3D "1"
+diff --git a/meta-arago-extras/recipes-ti/fftlib/ti-fftw-examples_git.bb =
+b/meta-arago-extras/recipes-ti/fftlib/ti-fftw-examples_git.bb
+deleted file mode 100644
+index 9e3347cb..00000000
+--- a/meta-arago-extras/recipes-ti/fftlib/ti-fftw-examples_git.bb
++++ /dev/null
+@@ -1,25 +0,0 @@
+-SUMMARY =3D "TI FFTW"
+-HOMEPAGE =3D "http://git.ti.com/fftlib"
+-LICENSE =3D "BSD-3-Clause"
+-
+-LIC_FILES_CHKSUM =3D "file://../docs/TI-FFTW_3.1.0_manifest.html;md5=3Da=
+aa275ec704a738216ba696898941b44"
+-
+-include fftlib.inc
+-
+-PR =3D "${INC_PR}.0"
+-
+-DEPENDS =3D "ti-fftw"
+-
+-RDEPENDS:${PN} +=3D "ti-fftw-staticdev"
+-
+-S =3D "${WORKDIR}/git/ti/fftw/examples"
+-
+-EXTRA_OEMAKE +=3D "TARGET_ROOTDIR=3D"${STAGING_DIR_TARGET}""
+-
+-do_install() {
+-    install -d ${D}${datadir}/ti/examples/fftw
+-    cp -r ./* ${D}${datadir}/ti/examples/fftw
+-}
+-
+-FILES:${PN} =3D "${datadir}/ti/examples/fftw"
+-INSANE_SKIP:${PN} =3D "ldflags"
+diff --git a/meta-arago-extras/recipes-ti/fftlib/ti-fftw_git.bb b/meta-ar=
+ago-extras/recipes-ti/fftlib/ti-fftw_git.bb
+deleted file mode 100644
+index df9e9708..00000000
+--- a/meta-arago-extras/recipes-ti/fftlib/ti-fftw_git.bb
++++ /dev/null
+@@ -1,63 +0,0 @@
+-SUMMARY =3D "TI FFTW"
+-HOMEPAGE =3D "http://git.ti.com/fftlib"
+-LICENSE =3D "GPL-2.0-only & BSD-3-Clause"
+-
+-LIC_FILES_CHKSUM =3D "file://docs/TI-FFTW_3.1.0_manifest.html;md5=3Daaa2=
+75ec704a738216ba696898941b44 \
+-                    file://fftw-3.3.4/COPYING;md5=3D59530bdf33659b29e73d=
+4adb9f9f6552"
+-
+-include fftlib.inc
+-
+-inherit features_check
+-
+-REQUIRED_MACHINE_FEATURES =3D "dsp"
 -REQUIRED_DISTRO_FEATURES =3D "opencl"
 -
--UTILS =3D " \
--    opencl-staticdev \
--    ${@oe.utils.all_distro_features(d, 'openmp', 'openmpacc-dev')} \
--"
+-PR =3D "${INC_PR}.0"
 -
--UTILS:append:dra7xx =3D " \
--    ${@oe.utils.all_distro_features(d, 'openmp', 'linalg-dev')} \
--"
+-DEPENDS =3D "common-csl-ip-rtos common-csl-ip ti-xdctools-native ti-sysb=
+ios ti-cgt6x-native ti-xdais libulm fftlib dsplib-c66x opencl clocl-nativ=
+e libarch"
 -
--RDEPENDS:${PN} =3D "\
--    ${UTILS} \
--"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
-ago-tisdk-opencl.bb b/meta-arago-distro/recipes-core/packagegroups/packag=
-egroup-arago-tisdk-opencl.bb
-deleted file mode 100644
-index 1aba3f7b..00000000
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-tis=
-dk-opencl.bb
-+++ /dev/null
-@@ -1,31 +0,0 @@
--DESCRIPTION =3D "Task to install OpenCL/MP and related components"
--LICENSE =3D "MIT"
--PR =3D "r4"
+-RDEPENDS:${PN} +=3D "opencl-runtime"
 -
+-COMPATIBLE_MACHINE =3D "dra7xx"
+-TARGET:dra7xx =3D "SOC_AM572x"
 -PACKAGE_ARCH =3D "${MACHINE_ARCH}"
 -
--inherit packagegroup features_check
+-S =3D "${WORKDIR}/git/ti/fftw"
 -
--REQUIRED_DISTRO_FEATURES =3D "opencl"
+-export TI_OCL_INSTALL_DIR =3D "${STAGING_DIR_TARGET}/usr/share/ti/opencl=
+"
+-export TI_OCL_CGT_INSTALL =3D "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6=
+x"
+-export PDK_DIR =3D "${PDK_INSTALL_DIR}"
+-export IPC_DIR =3D "${IPC_INSTALL_DIR}/packages"
+-export XDC_DIR =3D "${XDC_INSTALL_DIR}"
+-export BIOS_DIR =3D "${SYSBIOS_INSTALL_DIR}"
+-export XDAIS_DIR =3D "${XDAIS_INSTALL_DIR}"
+-export FC_DIR =3D "${FC_INSTALL_DIR}"
+-export ULM_DIR =3D"${STAGING_DIR_TARGET}/usr/share/ti/ulm"
+-export GDB_SERVER_DIR =3D "${STAGING_DIR_TARGET}/usr/share/ti/gdbc6x"
+-export X86_LLVM_DIR =3D "${STAGING_DIR_NATIVE}/usr"
+-export C6636_PDK_DIR =3D"${PDK_INSTALL_DIR}/packages"
+-export XDCCGROOT =3D "${STAGING_DIR_NATIVE}/usr/share/ti/cgt-c6x"
+-export LINUX_DEVKIT_ROOT =3D "${STAGING_DIR_TARGET}"
+-export TARGET_ROOTDIR=3D"${STAGING_DIR_TARGET}"
+-export OMP_DIR =3D "${OMP_INSTALL_DIR}"
+-export FFTLIB_DIR=3D"${FFTLIB_INSTALL_DIR}"
+-export DSPLIB_DIR=3D"${DSPLIB_C66_INSTALL_DIR}"
+-export BIOS_INSTALL_DIR=3D"${SYSBIOS_INSTALL_DIR}"
+-export EDMA_INSTALL_DIR=3D"${EDMA3_LLD_INSTALL_DIR}"
+-export XDCTOOLS_DIR=3D"${XDC_INSTALL_DIR}/packages"
+-export LIBARCH_DIR =3D "${LIBARCH_INSTALL_DIR}"
 -
--PACKAGES =3D+ "${PN}-extra"
+-do_compile() {
+-    make build TARGET=3D${TARGET}
+-}
 -
--MAIN_PKGS =3D " \
--    opencl-examples-offline-compile \
--"
+-do_install() {
+-    make install DESTDIR=3D${D}
 -
--EXTRA_PKGS =3D " \
--"
+-    # These files will be installed by the ti-fftw-examples recipe
+-    rm -rf ${D}${datadir}/ti
+-}
 -
--#    ti-fftw-examples
--EXTRA_PKGS:append:dra7xx =3D " \
--    ${@oe.utils.all_distro_features(d, 'openmp', 'linalg-examples')} \
--"
+-ALLOW_EMPTY:${PN} =3D "1"
 -
--RDEPENDS:${PN} =3D "\
--    ${MAIN_PKGS} \
--"
--
--RDEPENDS:${PN}-extra =3D "\
--    ${EXTRA_PKGS} \
--"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/packagegroup-ar=
-ago-toolchain-tisdk-target.bb b/meta-arago-distro/recipes-core/packagegro=
-ups/packagegroup-arago-toolchain-tisdk-target.bb
-index cdf54ecc..43cd9c59 100644
---- a/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-too=
-lchain-tisdk-target.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/packagegroup-arago-too=
-lchain-tisdk-target.bb
-@@ -23,6 +23,5 @@ RDEPENDS:${PN} =3D "\
-     ${TISDK_TOOLCHAIN_BASE_TARGET} \
-     ${TISDK_TOOLCHAIN_EXTRA_TARGET} \
-     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-=
-tisdk-graphics-sdk-target','',d)} \
--    ${@['','packagegroup-arago-tisdk-opencl-sdk-target'][oe.utils.all_di=
-stro_features(d, 'opencl', True, False) and bb.utils.contains('MACHINE_FE=
-ATURES', 'dsp', True, False, d)]} \
-     packagegroup-arago-tisdk-addons-sdk-target \
- "
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-opencl.bb b/=
-meta-arago-distro/recipes-core/packagegroups/ti-opencl.bb
-deleted file mode 100644
-index ecae271f..00000000
---- a/meta-arago-distro/recipes-core/packagegroups/ti-opencl.bb
-+++ /dev/null
-@@ -1,12 +0,0 @@
--# This is just an alias between debian and OE names
--
--LICENSE =3D "MIT"
--
--PACKAGE_ARCH =3D "${MACHINE_ARCH}"
--
--inherit packagegroup
--
--PACKAGES +=3D "${PN}-runtime"
--
--RDEPENDS:${PN} =3D "opencl"
--RDEPENDS:${PN}-runtime =3D "opencl-runtime"
-diff --git a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb b/m=
-eta-arago-distro/recipes-core/packagegroups/ti-world.bb
-index 5db67fdf..438dd8d0 100644
---- a/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-+++ b/meta-arago-distro/recipes-core/packagegroups/ti-world.bb
-@@ -33,11 +33,6 @@ DEVTOOLS =3D " \
-     git \
- "
-=20
--OPENCL =3D " \
--    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-ti=
-sdk-opencl ti-opencl','',d)} \
--    ${@bb.utils.contains('MACHINE_FEATURES','dsp','packagegroup-arago-ti=
-sdk-opencl-extra','',d)} \
--"
--
- RDEPENDS:${PN} =3D "\
-     packagegroup-arago-base \
-     packagegroup-arago-console \
-@@ -45,7 +40,6 @@ RDEPENDS:${PN} =3D "\
-     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-=
-tisdk-graphics','',d)} \
-     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-=
-tisdk-gtk','',d)} \
-     ${@bb.utils.contains('DISTRO_FEATURES','opengl','packagegroup-arago-=
-tisdk-qte qt3d-examples','',d)} \
--    ${@oe.utils.all_distro_features(d, "opencl", "${OPENCL}")} \
-     packagegroup-arago-tisdk-connectivity \
-     packagegroup-arago-tisdk-crypto \
-     packagegroup-arago-tisdk-multimedia \
+-INSANE_SKIP:${PN} =3D "arch"
 --=20
 2.25.1
 
